@@ -10,6 +10,7 @@ import {
   resolveAdvisorThresholdConfig,
 } from '../lib/skill-advisor-brief.js';
 import { scoreAdvisorPrompt } from '../lib/scorer/fusion.js';
+import { withSemanticShadowPromptEmbedding } from '../lib/scorer/lanes/semantic-shadow.js';
 import { DEFAULT_SHADOW_SCORER_LANE_WEIGHTS } from '../lib/scorer/lane-registry.js';
 import { sanitizeSkillLabel } from '../lib/render.js';
 import { recordShadowDelta } from '../lib/shadow/shadow-sink.js';
@@ -218,7 +219,7 @@ function roundScore(value: number): number {
   return Math.round(value * 1_000_000) / 1_000_000;
 }
 
-function computeRecommendationOutput(input: AdvisorRecommendInput): AdvisorRecommendOutput {
+async function computeRecommendationOutput(input: AdvisorRecommendInput): Promise<AdvisorRecommendOutput> {
   // F-005-A5-01: Canonicalize via realpath after the schema allowlist check.
   const workspaceRoot = input.workspaceRoot
     ? canonicalizeWorkspaceRoot(input.workspaceRoot)
@@ -264,11 +265,11 @@ function computeRecommendationOutput(input: AdvisorRecommendInput): AdvisorRecom
   }
 
   const topK = input.options?.topK ?? 3;
-  const result = scoreAdvisorPrompt(input.prompt, {
+  const result = await withSemanticShadowPromptEmbedding(input.prompt, () => scoreAdvisorPrompt(input.prompt, {
     workspaceRoot,
     confidenceThreshold: input.options?.confidenceThreshold,
     uncertaintyThreshold: input.options?.uncertaintyThreshold,
-  });
+  }));
   const recommendations = result.recommendations
     .map((recommendation) => publicRecommendation(recommendation, Boolean(input.options?.includeAttribution)))
     .filter((recommendation): recommendation is NonNullable<typeof recommendation> => Boolean(recommendation))
@@ -328,7 +329,7 @@ export async function handleAdvisorRecommend(args: unknown): Promise<HandlerResp
   });
   const data = process.env.SPECKIT_SKILL_ADVISOR_HOOK_DISABLED === '1'
     ? disabledOutput(workspaceRoot, effectiveThresholds)
-    : computeRecommendationOutput(input);
+    : await computeRecommendationOutput(input);
   return {
     content: [{
       type: 'text',

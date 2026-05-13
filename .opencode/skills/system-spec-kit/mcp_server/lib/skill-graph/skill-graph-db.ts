@@ -6,6 +6,7 @@
 // Follows code-graph-db.ts and coverage-graph-db.ts patterns for lifecycle and indexing.
 
 import Database from 'better-sqlite3';
+import { createEmbeddingsProvider } from '@spec-kit/shared/embeddings/factory';
 import { createHash } from 'node:crypto';
 import { existsSync, mkdirSync, readFileSync, readdirSync, renameSync, rmSync, statSync } from 'node:fs';
 import { basename, dirname, join, relative } from 'node:path';
@@ -15,6 +16,7 @@ import { DATABASE_DIR } from '../../core/config.js';
 // should depend inward on `lib/utils/`; the advisor freshness implementation
 // stays the source of truth.
 import { checkSqliteIntegrity } from '../utils/sqlite-integrity.js';
+import { parseSkillFrontmatter } from '../../skill_advisor/lib/utils/skill-markdown.js';
 
 // ───────────────────────────────────────────────────────────────
 // 1. TYPES
@@ -70,6 +72,20 @@ export interface SkillGraphIndexResult {
   rejectedEdges: number;
   deletedNodes: number;
   warnings: string[];
+}
+
+export interface SkillEmbeddingRefreshResult {
+  embedded: number;
+  skipped: number;
+  failed: number;
+  warnings: string[];
+}
+
+export interface SkillEmbeddingRow {
+  skillId: string;
+  embedding: Float32Array;
+  modelId: string;
+  contentHash: string;
 }
 
 interface ParsedSkillMetadata {
@@ -131,6 +147,9 @@ const SCHEMA_SQL = `
     derived TEXT,
     source_path TEXT NOT NULL UNIQUE,
     content_hash TEXT NOT NULL,
+    embedding BLOB,
+    embedding_model_id TEXT,
+    embedding_content_hash TEXT,
     indexed_at TEXT DEFAULT (datetime('now'))
   );
 
@@ -194,6 +213,24 @@ function ensureSchemaMigrations(database: Database.Database): void {
     CREATE INDEX IF NOT EXISTS idx_skill_nodes_family ON skill_nodes(family);
     CREATE INDEX IF NOT EXISTS idx_skill_edges_source ON skill_edges(source_id, edge_type);
     CREATE INDEX IF NOT EXISTS idx_skill_edges_target ON skill_edges(target_id, edge_type);
+  `);
+
+  const columns = new Set(
+    (database.prepare('PRAGMA table_info(skill_nodes)').all() as Array<{ name: string }>)
+      .map((column) => column.name),
+  );
+  if (!columns.has('embedding')) {
+    database.exec('ALTER TABLE skill_nodes ADD COLUMN embedding BLOB');
+  }
+  if (!columns.has('embedding_model_id')) {
+    database.exec('ALTER TABLE skill_nodes ADD COLUMN embedding_model_id TEXT');
+  }
+  if (!columns.has('embedding_content_hash')) {
+    database.exec('ALTER TABLE skill_nodes ADD COLUMN embedding_content_hash TEXT');
+  }
+  database.exec(`
+    CREATE INDEX IF NOT EXISTS idx_skill_nodes_embedding_model ON skill_nodes(embedding_model_id);
+    CREATE INDEX IF NOT EXISTS idx_skill_nodes_embedding_hash ON skill_nodes(embedding_content_hash);
   `);
 }
 
@@ -338,6 +375,34 @@ function warnWeightBand(edge: SkillEdge, sourcePath: string, warnings: string[])
 
 function computeContentHash(content: string): string {
   return createHash('sha256').update(content).digest('hex');
+}
+
+function encodeEmbedding(vector: Float32Array | readonly number[]): Buffer {
+  const array = vector instanceof Float32Array ? vector : Float32Array.from(vector);
+  return Buffer.from(array.buffer, array.byteOffset, array.byteLength);
+}
+
+function decodeEmbedding(blob: Buffer): Float32Array | null {
+  if (blob.byteLength === 0 || blob.byteLength % Float32Array.BYTES_PER_ELEMENT !== 0) {
+    return null;
+  }
+  const copied = blob.buffer.slice(blob.byteOffset, blob.byteOffset + blob.byteLength);
+  return new Float32Array(copied);
+}
+
+function skillDescriptionForEmbedding(sourcePath: string): string {
+  const skillMdPath = join(dirname(sourcePath), 'SKILL.md');
+  if (!existsSync(skillMdPath)) {
+    return '';
+  }
+  const parsed = parseSkillFrontmatter(readFileSync(skillMdPath, 'utf8'));
+  return parsed.frontmatter.description || '';
+}
+
+function providerModelId(profile: { provider: string; model: string; dim: number; dtype?: string | null; slug?: string }): string {
+  return profile.slug ?? [profile.provider, profile.model, profile.dim, profile.dtype ?? null]
+    .filter((part): part is string | number => part !== null && part !== undefined && part !== '')
+    .join(':');
 }
 
 function discoverGraphMetadataFiles(skillDir: string): string[] {
@@ -663,6 +728,112 @@ export function indexSkillMetadata(skillDir: string): SkillGraphIndexResult {
   setMetadata('last_scan_summary', JSON.stringify(summary));
 
   return summary;
+}
+
+export async function refreshSkillEmbeddings(skillDir?: string): Promise<SkillEmbeddingRefreshResult> {
+  const database = getDb();
+  const provider = await createEmbeddingsProvider();
+  const modelId = providerModelId(provider.getProfile());
+  const warnings: string[] = [];
+  let embedded = 0;
+  let skipped = 0;
+  let failed = 0;
+
+  const rows = database.prepare(`
+    SELECT id, source_path, embedding, embedding_model_id, embedding_content_hash
+    FROM skill_nodes
+    ORDER BY id ASC
+  `).all() as Array<{
+    id: string;
+    source_path: string;
+    embedding: Buffer | null;
+    embedding_model_id: string | null;
+    embedding_content_hash: string | null;
+  }>;
+  const updateEmbedding = database.prepare(`
+    UPDATE skill_nodes
+    SET embedding = ?, embedding_model_id = ?, embedding_content_hash = ?
+    WHERE id = ?
+  `);
+
+  for (const row of rows) {
+    if (skillDir && !row.source_path.startsWith(skillDir)) {
+      skipped++;
+      continue;
+    }
+
+    const description = skillDescriptionForEmbedding(row.source_path).trim();
+    if (!description) {
+      updateEmbedding.run(null, null, null, row.id);
+      skipped++;
+      continue;
+    }
+
+    const contentHash = computeContentHash(description);
+    if (
+      row.embedding
+      && row.embedding_model_id === modelId
+      && row.embedding_content_hash === contentHash
+    ) {
+      skipped++;
+      continue;
+    }
+
+    try {
+      const vector = await provider.embedDocument(description);
+      if (!vector) {
+        throw new Error('provider returned no vector');
+      }
+      updateEmbedding.run(encodeEmbedding(vector), modelId, contentHash, row.id);
+      embedded++;
+    } catch (error: unknown) {
+      failed++;
+      updateEmbedding.run(null, modelId, contentHash, row.id);
+      const message = error instanceof Error ? error.message : String(error);
+      const warning = `EMBEDDING-FAILED: ${row.id} (${message})`;
+      warnings.push(warning);
+      console.warn(`[skill-graph] ${warning}`);
+    }
+  }
+
+  return { embedded, skipped, failed, warnings };
+}
+
+export function loadSkillEmbeddings(skillIds?: readonly string[]): SkillEmbeddingRow[] {
+  const database = getDb();
+  const rows = skillIds && skillIds.length > 0
+    ? database.prepare(`
+        SELECT id, embedding, embedding_model_id, embedding_content_hash
+        FROM skill_nodes
+        WHERE embedding IS NOT NULL
+          AND id IN (${skillIds.map(() => '?').join(', ')})
+        ORDER BY id ASC
+      `).all(...skillIds)
+    : database.prepare(`
+        SELECT id, embedding, embedding_model_id, embedding_content_hash
+        FROM skill_nodes
+        WHERE embedding IS NOT NULL
+        ORDER BY id ASC
+      `).all();
+
+  return (rows as Array<{
+    id: string;
+    embedding: Buffer;
+    embedding_model_id: string | null;
+    embedding_content_hash: string | null;
+  }>)
+    .map((row) => {
+      const embedding = decodeEmbedding(row.embedding);
+      return embedding && row.embedding_model_id && row.embedding_content_hash
+        ? {
+            skillId: row.id,
+            embedding,
+            modelId: row.embedding_model_id,
+            contentHash: row.embedding_content_hash,
+          }
+        : null;
+    })
+    .filter((row): row is SkillEmbeddingRow => row !== null);
 }
 
 // ───────────────────────────────────────────────────────────────
