@@ -101,7 +101,7 @@ class SearchResult(_msgspec.Struct):
     score: float
     raw_score: float = 0.0
     path_class: str = "implementation"
-    rankingSignals: list[str] = msgspec.field(default_factory=list)
+    rankingSignals: list[str] = _msgspec.field(default_factory=list)
 
 
 class SearchResponse(_msgspec.Struct, tag="search"):
