@@ -1,6 +1,6 @@
 ---
 title: "Session Handover: 014-local-embeddings-setup-a"
-description: "Current handover for Local embeddings Setup A. Eleven packets shipped; 012 v3 remediation is in progress with q8 memory default and EmbeddingGemma on both surfaces."
+description: "Current handover for Local embeddings Setup A. Twelve packets shipped (001-012); 012 v3 remediation is complete in 42aa114e3."
 trigger_phrases:
   - "014 handover"
   - "Setup A handover"
@@ -13,9 +13,10 @@ _memory:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a"
     last_updated_at: "2026-05-12T21:30:00Z"
     last_updated_by: "claude-opus-4-7"
-    recent_action: "11 packets shipped; 012 v3 remediation in progress"
-    next_safe_action: "Finish 012 validation and let main agent commit"
-    blockers: []
+    recent_action: "12 packets shipped (001-012); 012 complete in 42aa114e3"
+    next_safe_action: "Use 013 for v4 cleanup follow-up"
+    blockers:
+      - "User-managed GitHub PAT rotation remains manual"
     key_files:
       - "spec.md"
       - "SETUP_A_RECIPE.md"
@@ -38,7 +39,7 @@ _memory:
 <!-- ANCHOR:when-to-use -->
 ## WHEN TO USE THIS TEMPLATE
 
-You are resuming work on packet `system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/`. Terminal state: 11 child packets shipped; 012-v3-remediation is in progress. Both retrieval surfaces use EmbeddingGemma defaults: Spec Kit Memory uses `onnx-community/embeddinggemma-300m-ONNX` with q8 as the system default dtype, and CocoIndex uses `sbert/google/embeddinggemma-300m` with bf16 sentence-transformers loading. Main has 3 commits for the Setup A series; this session must not commit.
+You are resuming work on packet `system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/`. Terminal state: 12 child packets shipped (001-012); 012-v3-remediation is complete in 42aa114e3. Both retrieval surfaces use EmbeddingGemma defaults: Spec Kit Memory uses `onnx-community/embeddinggemma-300m-ONNX` with q8 as the system default dtype, and CocoIndex uses `sbert/google/embeddinggemma-300m` with bf16 sentence-transformers loading. Main has 4 commits for the Setup A series: 2b767d051, d222564cf, d76f3b795, and 42aa114e3.
 
 **Status values:** in_progress
 <!-- /ANCHOR:when-to-use -->
@@ -52,7 +53,7 @@ You are resuming work on packet `system-spec-kit/026-graph-and-context-optimizat
 - **To Session:** post-commit session; deep-review iterations
 - **Phase Completed (validates clean):** 001 through 011
 - **Phase Completed (validates clean):** 012-v3-remediation (q8 default, launcher parity where writable, dtype-keyed DB filenames, Voyage guard timing, tcpdump pktap, CocoIndex search-only hardening, doc alignment)
-- **Outstanding:** strict-validate 014 parent after 012, then main agent commits
+- **Outstanding:** v4 cleanup items in 013; user-managed GitHub PAT rotation remains manual
 - **Handover Time:** 2026-05-13T08:30:00Z
 <!-- /ANCHOR:handover-summary -->
 
@@ -102,7 +103,7 @@ You are resuming work on packet `system-spec-kit/026-graph-and-context-optimizat
 - `.mcp.json` — pristine
 - `opencode.json` — pristine
 - `.gemini/settings.json` — pristine
-- `.codex/config.toml` — MEMORY_DB_PATH override removed (was pinning generic filename, blocking filename-keying); rest pristine
+- `.codex/config.toml` — routed through `spec-kit-memory-launcher.cjs`; q8 filename note shipped in 42aa114e3
 
 **Shell-level / system:**
 - `~/.zshrc` — `export VOYAGE_API_KEY=...` block removed (lines 20-21)
@@ -151,7 +152,7 @@ You are resuming work on packet `system-spec-kit/026-graph-and-context-optimizat
 
 ### 3.1 Recommended Starting Point
 
-012's remediation is implemented and strict-validates clean. Memory-side dtype default is now q8 in source/dist; `.codex/config.toml` remains sandbox-blocked in this Codex environment and the exact patch is recorded under 012 scratch. CocoIndex search-only validation and project status hardening are patched in `daemon.py`.
+012's remediation is complete in 42aa114e3 and strict-validates clean. Memory-side dtype default is q8 in source/dist; `.codex/config.toml` now routes through the launcher after the main-agent patch. CocoIndex search-only validation and project status hardening are patched in `daemon.py`.
 
 **First step in the new session:** verify memory still works (sanity), then pick a track:
 
@@ -219,12 +220,10 @@ Then choose:
 
 ### 3.4 Security Action Items (USER ROTATION REQUIRED)
 
-Three secrets were exposed in the prior session's chat transcript. The packet won't ship until these are rotated:
+Active blocker: user-managed GitHub PAT rotation remains manual.
 
 | Secret | Location in transcript | Where to rotate |
 |---|---|---|
-| Voyage API key `pa-6h<REDACTED>` | Read aloud during cleanup grep | https://dash.voyageai.com/api-keys — revoke + regenerate |
-| HuggingFace token `hf_kF<REDACTED>` | User pasted during 002 setup | https://huggingface.co/settings/tokens — revoke + regenerate; update `~/.cache/huggingface/token` |
 | GitHub PAT `github_pat_11ATX<REDACTED>` | Visible in project `.env:12` (Read during VOYAGE cleanup) | https://github.com/settings/tokens — revoke + regenerate; update `.env` |
 <!-- /ANCHOR:next-session -->
 

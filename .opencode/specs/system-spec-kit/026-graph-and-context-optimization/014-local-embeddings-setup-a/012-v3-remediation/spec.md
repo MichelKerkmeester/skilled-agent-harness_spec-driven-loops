@@ -12,10 +12,9 @@ _memory:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/012-v3-remediation"
     last_updated_at: "2026-05-13T08:30:00Z"
     last_updated_by: "codex-gpt-5"
-    recent_action: "Implemented q8 default, dtype-keyed filenames, launcher parity where writable, search-only hardening, doc alignment, and strict validation"
-    next_safe_action: "Main agent commits the 012 remediation bundle"
-    blockers:
-      - ".codex/config.toml remains EPERM in this sandbox; exact patch is recorded in scratch/codex-config-patch.md"
+    recent_action: "Shipped in 42aa114e3 with main-agent .codex patch"
+    next_safe_action: "Use 013 for v4 cleanup follow-up"
+    blockers: []
     key_files:
       - "spec.md"
       - "plan.md"
@@ -44,14 +43,14 @@ _memory:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P0 |
-| **Status** | Complete |
+| **Status** | Complete (shipped 2026-05-13 in 42aa114e3) |
 | **Created** | 2026-05-13 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 12 of 12 |
 | **Predecessor** | 009-cocoindex-ipc-fix + 011-embeddinggemma-unification |
 | **Successor** | None |
-| **Handoff Criteria** | q8 default and v3 remediation land; strict validation exits 0; no commit from this agent |
+| **Handoff Criteria** | q8 default and v3 remediation shipped in 42aa114e3; strict validation exits 0 |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -84,7 +83,7 @@ Make q8 the memory-side system default, ensure dtype changes create distinct DB 
 ### In Scope
 - q8 memory-side dtype default and docs/config notes
 - dtype included in `EmbeddingProfile` slug/JSON/equality/filename behavior
-- launcher parity for writable Claude/Gemini configs; `.codex` patch recorded because sandbox blocks writes
+- launcher parity for Claude/Gemini/Codex configs; `.codex` patch shipped by main agent because Apple TCC blocks Codex self-writes
 - Voyage auto-shadow warning before provider resolution builds info
 - macOS tcpdump `pktap` script fix
 - CocoIndex search-only `project_root` validation and unloaded status count
@@ -104,7 +103,7 @@ Make q8 the memory-side system default, ensure dtype changes create distinct DB 
 | `shared/embeddings/**` | Modify + dist rebuild | q8 default, dtype profile key, Voyage guard timing |
 | `mcp-coco-index/.../daemon.py` | Modify | search-only root validation and unloaded DB status count |
 | `.claude/mcp.json`, `.gemini/settings.json` | Modify | route through `spec-kit-memory-launcher.cjs` |
-| `.codex/config.toml` | Blocked | exact patch recorded in `scratch/codex-config-patch.md` |
+| `.codex/config.toml` | Modified | main agent applied launcher route and q8 filename note in 42aa114e3 |
 | `.env.example` | Modify | dtype override docs |
 | `014/** docs` | Modify/Create | current-state alignment and 012 packet docs |
 <!-- /ANCHOR:scope -->
@@ -117,7 +116,7 @@ Make q8 the memory-side system default, ensure dtype changes create distinct DB 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-001 | q8 is the memory-side system default | `resolveDtype()` defaults to q8 and `.env.example` documents fp32/q4 overrides |
-| REQ-002 | Launchers load `.env.local` | Claude/Gemini route through launcher; `.codex` patch is documented if sandbox-blocked |
+| REQ-002 | Launchers load `.env.local` | Claude/Gemini/Codex route through launcher; `.codex` patch shipped in 42aa114e3 |
 | REQ-003 | dtype is part of the memory profile key | hf-local DB filename includes `__q8` and profile JSON/equality include dtype |
 | REQ-004 | Voyage guard fires before auto shadowing | `validateConfiguredEmbeddingsProvider()` and startup dimension path warn before info building |
 | REQ-005 | macOS tcpdump script is valid | `tcpdump-verify.sh` uses `pktap` with `TCPDUMP_IFACE` override |
@@ -146,7 +145,7 @@ Make q8 the memory-side system default, ensure dtype changes create distinct DB 
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Risk | `.codex/config.toml` remains sandbox-blocked | Medium | Record exact patch in scratch and continue all writable scope |
+| Risk | Codex cannot directly edit its own `.codex/config.toml` under Apple TCC | Low | Main agent applied the patch in 42aa114e3; future Codex-only note changes should record a scratch patch |
 | Risk | dtype in slug changes active DB filename | Medium | Intended behavior; prevents mixed precision reuse |
 | Risk | sqlite-vec extension unavailable for unloaded status | Low | Fall back to current 0-count behavior and log clearer refresh message |
 | Dependency | TypeScript build | Required | Run `npx tsc --build` from shared package |

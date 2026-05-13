@@ -434,6 +434,7 @@ async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
   const providerName = profile?.provider ?? providerMetadata.provider;
   const providerModel = profile?.model ?? providerMetadata.model ?? embeddings.getModelName();
   const providerDimension = profile?.dim ?? providerMetadata.dim ?? embeddings.getEmbeddingDimension();
+  const providerDtype = profile?.dtype ?? providerMetadata.dtype ?? null;
   const repairActions = [
     'fts_rebuild',
     'trigger_cache_refresh',
@@ -667,6 +668,7 @@ async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
         provider: providerName,
         model: providerModel,
         dimension: providerDimension,
+        dtype: providerDtype,
         healthy: providerMetadata.healthy !== false,
         databasePath: redactPath(vectorIndex.getDbPath() ?? ''),
       },

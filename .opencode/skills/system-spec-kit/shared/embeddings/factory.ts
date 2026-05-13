@@ -333,6 +333,7 @@ export function getStartupEmbeddingDimension(): number {
 }
 
 export function getStartupEmbeddingProfile(): EmbeddingProfile {
+  warnIfVoyageWouldShadowLocal(validateConfiguredEmbeddingsProvider());
   const resolution = resolveProvider();
   const provider = toSupportedProviderName(resolution.name);
   const model = resolveConfiguredModel(provider);
@@ -350,6 +351,7 @@ export function getStartupEmbeddingProfile(): EmbeddingProfile {
 export async function resolveStartupEmbeddingConfig(
   options: Pick<ValidateApiKeyOptions, 'timeout'> = {},
 ): Promise<StartupEmbeddingConfig> {
+  warnIfVoyageWouldShadowLocal(validateConfiguredEmbeddingsProvider());
   const resolution = resolveProvider();
   const validation = await validateApiKey({
     timeout: options.timeout,
@@ -473,6 +475,7 @@ function createProviderInstance(
       return new HfLocalProvider({
         model: options.model,
         dim: options.dim,
+        dtype: options.dtype,
         maxTextLength: options.maxTextLength,
         timeout: options.timeout,
       });
@@ -663,6 +666,9 @@ export const VALIDATION_TIMEOUT_MS: number = 5000;
  */
 export async function validateApiKey(options: ValidateApiKeyOptions = {}): Promise<ApiKeyValidationResult> {
   const timeoutMs = options.timeout || VALIDATION_TIMEOUT_MS;
+  if (!options.provider) {
+    warnIfVoyageWouldShadowLocal(validateConfiguredEmbeddingsProvider());
+  }
   const providerName: SupportedProviderName = options.provider || (resolveProvider().name as SupportedProviderName);
 
   // Local providers don't need API key validation

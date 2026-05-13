@@ -62,6 +62,7 @@ interface PartialProviderMetadata {
   provider: string;
   model?: string;
   dim?: number;
+  dtype?: string | null;
   healthy?: boolean;
 }
 

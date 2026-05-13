@@ -10,10 +10,9 @@ _memory:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/012-v3-remediation"
     last_updated_at: "2026-05-13T08:30:00Z"
     last_updated_by: "codex-gpt-5"
-    recent_action: "Tasks complete except sandbox-blocked .codex patch; strict validation passed"
-    next_safe_action: "Main agent commits the 012 remediation bundle"
-    blockers:
-      - ".codex/config.toml EPERM; patch recorded in scratch"
+    recent_action: "Shipped in 42aa114e3 with main-agent .codex patch"
+    next_safe_action: "Use 013 for v4 cleanup follow-up"
+    blockers: []
     key_files:
       - "tasks.md"
     session_dedup:
@@ -55,7 +54,7 @@ _memory:
 - [x] T005 Add pre-resolution Voyage auto-shadow warning (`factory.ts`)
 - [x] T006 Route Claude config through launcher (`.claude/mcp.json`)
 - [x] T007 Route Gemini config through launcher (`.gemini/settings.json`)
-- [B] T008 Route Codex config through launcher (`.codex/config.toml`) — EPERM, patch recorded
+- [x] T008 Route Codex config through launcher (`.codex/config.toml`) — shipped by main agent in 42aa114e3
 - [x] T009 Add dtype docs to `.env.example`
 - [x] T010 Switch tcpdump default interface to `pktap` (`tcpdump-verify.sh`)
 - [x] T011 Validate CocoIndex search-only `project_root` (`daemon.py`)
@@ -92,7 +91,7 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [x] All non-blocked tasks complete
-- [x] `.codex/config.toml` blocker recorded with exact patch
+- [x] All tasks complete
+- [x] `.codex/config.toml` patch shipped in 42aa114e3
 - [x] Strict validation exits 0 errors / 0 warnings
 <!-- /ANCHOR:completion -->

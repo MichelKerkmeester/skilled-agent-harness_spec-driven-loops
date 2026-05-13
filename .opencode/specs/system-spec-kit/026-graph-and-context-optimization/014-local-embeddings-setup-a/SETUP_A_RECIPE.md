@@ -80,7 +80,7 @@ Delete the stale CocoIndex index (it was built with a different dim — 384d for
 rm -f .cocoindex_code/target_sqlite.db
 ```
 
-Memory side: nothing to delete — filename keys by provider+model+dim+dtype, so Setup A creates a new `context-index__hf-local__onnx-community__embeddinggemma-300m-ONNX__768__q8.sqlite` file automatically. Switching to fp32 creates a separate `__fp32.sqlite` file instead of mixing vectors.
+Memory side: nothing to delete — filename keys by provider+model+dim+dtype, so Setup A creates a new `context-index__hf-local__onnx-community_embeddinggemma-300m-onnx__768__q8.sqlite` file automatically. Switching to fp32 creates a separate `__fp32.sqlite` file instead of mixing vectors.
 
 Trigger reindex via MCP tools (Claude Code / OpenCode):
 - `memory_index_scan({force: true})` — repopulates ~5k spec-doc rows
@@ -90,7 +90,7 @@ Trigger reindex via MCP tools (Claude Code / OpenCode):
 
 ```bash
 # Memory dim is 768 (Gemma native)
-ls .opencode/skills/system-spec-kit/mcp_server/database/context-index__hf-local__onnx-community__embeddinggemma-300m-ONNX__768__q8.sqlite
+ls .opencode/skills/system-spec-kit/mcp_server/database/context-index__hf-local__onnx-community_embeddinggemma-300m-onnx__768__q8.sqlite
 
 # CocoIndex DB grows from 0 toward ~6-~1.3GB during reindex (768d × ~30k chunks × 4 bytes)
 du -sh .cocoindex_code/target_sqlite.db
@@ -128,6 +128,6 @@ mv .env.local .env.local.disabled
 
 The Setup A vec stores stay on disk; they just become orphaned (~~1.3GB). Delete manually if you want the space back:
 ```bash
-rm -f .opencode/skills/system-spec-kit/mcp_server/database/context-index__hf-local__onnx-community__embeddinggemma-300m-ONNX__768__q8.sqlite*
+rm -f .opencode/skills/system-spec-kit/mcp_server/database/context-index__hf-local__onnx-community_embeddinggemma-300m-onnx__768__q8.sqlite*
 rm -f .cocoindex_code/target_sqlite.db  # if currently on Setup A's 768d EmbeddingGemma index
 ```

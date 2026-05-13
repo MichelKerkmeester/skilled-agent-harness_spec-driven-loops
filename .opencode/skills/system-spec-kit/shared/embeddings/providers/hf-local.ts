@@ -415,6 +415,7 @@ export class HfLocalProvider implements IEmbeddingProvider {
       provider: 'hf-local',
       model: this.modelName,
       dim: this.dim,
+      dtype: this.dtype,
       device: currentDevice,
       healthy: this.isHealthy,
       loaded: this.extractor !== null,

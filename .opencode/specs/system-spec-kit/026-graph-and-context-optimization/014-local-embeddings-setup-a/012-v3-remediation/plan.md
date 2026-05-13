@@ -13,7 +13,7 @@ _memory:
     recent_action: "Implementation plan executed and strict validation passed"
     next_safe_action: "Main agent commits the 012 remediation bundle"
     blockers:
-      - ".codex/config.toml EPERM; patch recorded in scratch"
+      - "None"
     key_files:
       - "plan.md"
     session_dedup:
@@ -61,7 +61,7 @@ Execute the exact A-I remediation list from the dispatch. Code first, docs secon
 - [x] TypeScript dist rebuild exits 0 after final edits
 - [x] dtype filename grep finds dist evidence
 - [x] parent strict validation exits 0 errors / 0 warnings
-- [ ] `.codex` blocker is either patched or documented in scratch
+- [x] `.codex` blocker resolved by main-agent patch in 42aa114e3
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -86,7 +86,7 @@ Surgical remediation. No new services or broad refactors.
 
 ### Phase 1: Code and Config
 - A. Flip hf-local dtype default fp32 to q8; rebuild dist.
-- B. Route writable launchers through `spec-kit-memory-launcher.cjs`; document `.codex` blocker if EPERM.
+- B. Route launchers through `spec-kit-memory-launcher.cjs`; `.codex` was applied by main agent because Apple TCC blocks self-writes.
 - C. Add dtype to `EmbeddingProfile` and startup profile construction.
 - D. Add pre-resolution Voyage shadow warning.
 - E. Switch tcpdump script from `any` to `pktap`.
@@ -121,7 +121,7 @@ Surgical remediation. No new services or broad refactors.
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| Writable `.codex/config.toml` | Sandbox | Blocked | exact patch recorded in scratch |
+| Writable `.codex/config.toml` | Apple TCC | Resolved | main-agent patch shipped in 42aa114e3 |
 | sqlite-vec Python module | Runtime optional | Unknown | fallback status message/log if unavailable |
 <!-- /ANCHOR:dependencies -->
 

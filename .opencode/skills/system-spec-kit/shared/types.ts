@@ -1,6 +1,8 @@
 // ---------------------------------------------------------------
 // MODULE: Types
 // ---------------------------------------------------------------
+
+import type { HfLocalDtype } from './embeddings/providers/hf-local.js';
 // Single source of truth for cross-workspace types.
 // Used across shared/, mcp_server/, and scripts/.
 //
@@ -37,6 +39,7 @@ export interface EmbeddingProfile {
   provider: string;
   model: string;
   dim: number;
+  dtype?: string | null;
 }
 
 /**
@@ -54,7 +57,7 @@ export interface IEmbeddingProvider {
   embedQuery(text: string): Promise<Float32Array | null>;
   warmup(): Promise<boolean>;
   getMetadata(): ProviderMetadata;
-  getProfile(): EmbeddingProfileData | { provider: string; model: string; dim: number; baseUrl?: string | null; slug: string };
+  getProfile(): EmbeddingProfileData | { provider: string; model: string; dim: number; dtype?: string | null; baseUrl?: string | null; slug: string };
   healthCheck(): Promise<boolean>;
   getProviderName(): string;
 }
@@ -64,6 +67,7 @@ export interface ProviderMetadata {
   provider: string;
   model: string;
   dim: number;
+  dtype?: HfLocalDtype | null;
   healthy: boolean;
   device?: string | null;
   loaded?: boolean;
@@ -98,6 +102,7 @@ export interface CreateProviderOptions {
   provider?: string;
   model?: string;
   dim?: number;
+  dtype?: HfLocalDtype;
   apiKey?: string;
   warmup?: boolean;
   baseUrl?: string;

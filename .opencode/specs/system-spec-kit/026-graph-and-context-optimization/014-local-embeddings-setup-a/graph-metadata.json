@@ -15,7 +15,8 @@
     "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/009-cocoindex-ipc-fix",
     "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/010-cocoindex-code-only-patterns",
     "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/011-embeddinggemma-unification",
-    "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/012-v3-remediation"
+    "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/012-v3-remediation",
+    "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/013-v4-cleanup"
   ],
   "manual": {
     "depends_on": [],
@@ -38,11 +39,12 @@
       "single-pr commit",
       "qwen3-purged",
       "q8-default",
-      "v3-remediation"
+      "v3-remediation",
+      "v4-cleanup"
     ],
     "importance_tier": "important",
     "status": "in_progress",
-    "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/012-v3-remediation",
+    "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/013-v4-cleanup",
     "key_files": [
       "spec.md",
       "handover.md",

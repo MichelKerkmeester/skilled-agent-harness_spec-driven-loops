@@ -2,7 +2,7 @@
 # 014/007 Voyage Egress Verification (24h capture)
 # ---------------------------------------------------------------------------
 # Purpose: confirm zero outbound traffic to api.voyageai.com over a 24h window
-# under Setup A (hf-local memory + Qwen3 cocoindex).
+# under Setup A (hf-local memory + EmbeddingGemma cocoindex).
 #
 # Run this AFTER 008 ships the bundled commit. Do NOT run during active 014 work
 # (the capture is long-running and noisy).
