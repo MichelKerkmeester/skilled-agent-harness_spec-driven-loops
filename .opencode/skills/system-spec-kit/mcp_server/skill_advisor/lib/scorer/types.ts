@@ -105,6 +105,13 @@ export interface AdvisorScoringOptions {
   readonly uncertaintyThreshold?: number;
   readonly includeAllCandidates?: boolean;
   readonly disabledLanes?: readonly ScorerLane[];
+  /**
+   * Optional scorer lane weights for one scoring call. Overrides are merged over
+   * the default vector without renormalizing; callers own sensible totals. The
+   * lane registry's `live` flag still gates contribution, so overriding a
+   * shadow-only lane's weight does not make it contribute.
+   */
+  readonly laneWeightsOverride?: Partial<Record<ScorerLane, number>>;
 }
 
 export interface AdvisorScoringResult {

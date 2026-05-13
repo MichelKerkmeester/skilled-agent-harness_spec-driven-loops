@@ -23,7 +23,6 @@ import {
   DEFAULT_SCORER_WEIGHTS,
   SCORER_LANES,
   liveWeightTotal,
-  parseScorerWeights,
 } from './weights-config.js';
 import { isLiveScorerLane } from './lane-registry.js';
 import type {
@@ -55,6 +54,21 @@ type AdvisorFreshnessLabel = (typeof ADVISOR_HOOK_FRESHNESS_VALUES)[number];
 
 function emptyLaneScores(): MutableLaneScores {
   return Object.fromEntries(SCORER_LANES.map((lane) => [lane, []])) as unknown as MutableLaneScores;
+}
+
+function effectiveScorerWeights(
+  override: AdvisorScoringOptions['laneWeightsOverride'] | undefined,
+): Readonly<Record<ScorerLane, number>> {
+  if (!override) return DEFAULT_SCORER_WEIGHTS;
+  const weights: Record<ScorerLane, number> = { ...DEFAULT_SCORER_WEIGHTS };
+  const runtimeOverride = override as Partial<Record<string, number>>;
+  for (const lane of SCORER_LANES) {
+    const value = runtimeOverride[lane];
+    if (typeof value === 'number' && Number.isFinite(value)) {
+      weights[lane] = value;
+    }
+  }
+  return weights;
 }
 
 function normalizeRuntimeLabel(value: string | undefined): AdvisorRuntimeLabel | null {
@@ -281,13 +295,13 @@ function primaryIntentBonus(promptLower: string, recommendation: AdvisorScoredRe
 
 export function scoreAdvisorPrompt(prompt: string, options: AdvisorScoringOptions): AdvisorScoringResult {
   const projection = options.projection ?? loadAdvisorProjection(options.workspaceRoot);
-  const weights = parseScorerWeights(DEFAULT_SCORER_WEIGHTS);
+  const weights = effectiveScorerWeights(options.laneWeightsOverride);
   const disabled = new Set(options.disabledLanes ?? []);
   const affordances = normalize(options.affordances ?? []);
   const laneScores = buildLaneScores(prompt, projection, disabled, affordances);
   const liveTotal = SCORER_LANES
     .filter((lane) => !disabled.has(lane))
-    .reduce((total, lane) => isLiveScorerLane(lane) ? total + weights[lane] : total, 0) || liveWeightTotal(weights);
+    .reduce((total, lane) => isLiveScorerLane(lane) ? total + weights[lane] : total, 0) || liveWeightTotal();
   if (isSpeckitMetricsEnabled() && liveTotal > 0) {
     for (const lane of SCORER_LANES) {
       if (!isLiveScorerLane(lane) || disabled.has(lane)) continue;
