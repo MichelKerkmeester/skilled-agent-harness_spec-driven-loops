@@ -2,59 +2,219 @@
   "schema_version": 1,
   "packet_id": "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/020-catalog-playbook-alignment-audit",
   "spec_folder": "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/020-catalog-playbook-alignment-audit",
-  "parent_id": "014",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      "019"
-    ],
+    "depends_on": [],
     "supersedes": [],
-    "related_to": [
-      "017",
-      "018"
-    ]
+    "related_to": []
   },
   "derived": {
     "trigger_phrases": [
       "catalog playbook alignment audit",
-      "local embedding defaults",
-      "llama-cpp hf-local cocoindex defaults"
+      "local embeddings defaults",
+      "llama-cpp hf-local",
+      "embeddinggemma docs audit",
+      "catalog playbook audit plan",
+      "embedding provider cascade",
+      "manual playbook update matrix",
+      "catalog playbook audit tasks",
+      "embedding defaults task ledger",
+      "catalog playbook audit checklist",
+      "embedding defaults verification",
+      "catalog playbook audit decisions"
     ],
     "key_topics": [
-      "provider-cascade",
+      "catalog",
+      "playbook",
+      "alignment",
+      "audit",
+      "local",
+      "embeddings",
+      "defaults",
+      "llama-cpp",
+      "hf-local",
       "embeddinggemma",
-      "feature-catalog",
-      "manual-testing-playbook",
-      "cocoindex-defaults",
-      "non-impact-classification",
-      "documentation-follow-up"
+      "docs",
+      "plan"
     ],
     "importance_tier": "important",
     "status": "complete",
-    "last_active_child_id": null,
     "key_files": [
+      ".opencode/skills/system-spec-kit/feature_catalog/19--feature-flag-reference/05-5-embedding-and-api.md",
+      ".opencode/skills/system-spec-kit/manual_testing_playbook/19--feature-flag-reference/032-5-embedding-and-api.md",
+      ".opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/23-embeddings-and-retry-api.md",
+      ".opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/219-embeddings-and-retry-api.md",
+      ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md",
+      ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
+      ".opencode/skills/mcp-coco-index/feature_catalog/03--indexing-pipeline/04-embedding-provider-selection.md",
+      ".opencode/skills/mcp-coco-index/feature_catalog/08--configuration/01-user-settings.md",
+      ".opencode/skills/mcp-coco-index/feature_catalog/feature_catalog.md",
+      ".opencode/skills/mcp-coco-index/manual_testing_playbook/03--configuration/001-default-model-verification.md",
+      ".opencode/skills/mcp-coco-index/manual_testing_playbook/manual_testing_playbook.md",
+      ".opencode/skills/mcp-coco-index/README.md",
+      ".opencode/skills/mcp-coco-index/manual_testing_playbook/03--configuration/002-project-settings-inspection.md",
+      ".opencode/skills/mcp-coco-index/feature_catalog/06--patches-and-extensions/03-path-class-taxonomy.md",
+      ".opencode/skills/mcp-coco-index/feature_catalog/06--patches-and-extensions/04-implementation-intent-reranking.md",
       "spec.md",
-      "plan.md",
-      "tasks.md",
-      "checklist.md",
-      "decision-record.md",
-      "implementation-summary.md"
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/020-catalog-playbook-alignment-audit/spec.md",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/020-catalog-playbook-alignment-audit/plan.md",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/020-catalog-playbook-alignment-audit/tasks.md",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/020-catalog-playbook-alignment-audit/checklist.md"
     ],
     "entities": [
-      "llama-cpp",
-      "hf-local",
-      "Voyage",
-      "OpenAI",
-      "CocoIndex",
-      "InstructionRetrieval",
-      "Code Graph",
-      "Skill Advisor"
+      {
+        "name": "05-5-embedding-and-api.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/feature_catalog/19--feature-flag-reference/05-5-embedding-and-api.md",
+        "source": "derived"
+      },
+      {
+        "name": "032-5-embedding-and-api.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/19--feature-flag-reference/032-5-embedding-and-api.md",
+        "source": "derived"
+      },
+      {
+        "name": "23-embeddings-and-retry-api.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/23-embeddings-and-retry-api.md",
+        "source": "derived"
+      },
+      {
+        "name": "219-embeddings-and-retry-api.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/219-embeddings-and-retry-api.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature_catalog.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual_testing_playbook.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "04-embedding-provider-selection.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-coco-index/feature_catalog/03--indexing-pipeline/04-embedding-provider-selection.md",
+        "source": "derived"
+      },
+      {
+        "name": "01-user-settings.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-coco-index/feature_catalog/08--configuration/01-user-settings.md",
+        "source": "derived"
+      },
+      {
+        "name": "001-default-model-verification.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-coco-index/manual_testing_playbook/03--configuration/001-default-model-verification.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-coco-index/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "002-project-settings-inspection.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-coco-index/manual_testing_playbook/03--configuration/002-project-settings-inspection.md",
+        "source": "derived"
+      },
+      {
+        "name": "03-path-class-taxonomy.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-coco-index/feature_catalog/06--patches-and-extensions/03-path-class-taxonomy.md",
+        "source": "derived"
+      },
+      {
+        "name": "04-implementation-intent-reranking.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-coco-index/feature_catalog/06--patches-and-extensions/04-implementation-intent-reranking.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/020-catalog-playbook-alignment-audit/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/020-catalog-playbook-alignment-audit/plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/020-catalog-playbook-alignment-audit/tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/020-catalog-playbook-alignment-audit/checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit Memory",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Graph",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Advisor",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
     ],
-    "causal_summary": "Documents which feature catalog and manual testing playbook entries needed update, review, caveat, or no action after local embedding/default changes, then applies the approved documentation follow-ups without runtime code changes.",
+    "causal_summary": "This phase records the audit result for feature catalog and manual testing playbook content affected by the local embedding/default-provider changes and applies the approved follow-up documentation edits. It updates stale default/recommended wording while preserving surface boundaries between Spec Kit Memory, CocoIndex, rerankers, Code Graph, and Skill Advisor. A follow-up code graph remediation was added after the stored-scope refresh kept timing out and stale failed-scan metadata hid the structural failure cause.",
     "created_at": "2026-05-13T14:20:00Z",
-    "last_save_at": "2026-05-13T14:55:00Z",
-    "save_lineage": "graph_only",
-    "last_accessed_at": "2026-05-13T14:55:00Z",
+    "last_save_at": "2026-05-13T18:29:19.082Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": "2026-05-13T15:45:00Z",
     "source_docs": [
       "spec.md",
       "plan.md",

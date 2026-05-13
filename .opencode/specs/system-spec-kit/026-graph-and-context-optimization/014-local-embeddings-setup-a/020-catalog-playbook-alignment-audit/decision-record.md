@@ -10,10 +10,10 @@ contextType: "decision"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/020-catalog-playbook-alignment-audit"
-    last_updated_at: "2026-05-13T14:55:00Z"
+    last_updated_at: "2026-05-13T15:45:00Z"
     last_updated_by: "opencode"
-    recent_action: "Applied embedding-doc follow-ups"
-    next_safe_action: "Review and commit the scoped documentation updates when ready"
+    recent_action: "Applied code graph scan remediation follow-up"
+    next_safe_action: "Restart MCP server if needed, then rerun code_graph_scan"
     blockers: []
     key_files:
       - "spec.md"
@@ -240,3 +240,104 @@ The initial task asked for a Level 3 spec folder that captured audit findings wh
 **How to roll back**: Revert the child phase folder and the scoped documentation files changed by the follow-up.
 <!-- /ANCHOR:adr-002-impl -->
 <!-- /ANCHOR:adr-002 -->
+
+---
+
+<!-- ANCHOR:adr-003 -->
+## ADR-003: Remediate code graph scan refresh loop found during verification
+
+### Metadata
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-05-13 |
+| **Deciders** | opencode |
+
+---
+
+<!-- ANCHOR:adr-003-context -->
+### Context
+
+Stored-scope `code_graph_scan` attempts timed out while the status/read path reported stale graph readiness. Inspection showed three compounding issues: explicit scans forced whole-scope reindexing whenever Git HEAD changed, successful incremental scans did not refresh the candidate manifest, and `last_failed_scan` showed `structural_persistence_error` while its stored errors were dominated by parser diagnostics.
+
+### Constraints
+
+- Keep the fix limited to code graph scan behavior and focused tests.
+- Preserve the existing scan response shape for callers.
+- Do not change embedding provider behavior or CocoIndex behavior.
+<!-- /ANCHOR:adr-003-context -->
+
+---
+
+<!-- ANCHOR:adr-003-decision -->
+### Decision
+
+**We chose**: Preserve incremental scan semantics across Git HEAD drift, refresh the manifest after every promotable scan, and prioritize structural persistence errors in failed-scan metadata.
+
+**How it works**: When callers request incremental scanning, `code_graph_scan` keeps `skipFreshFiles: true` even if stored and current Git HEAD differ. A successful incremental scan records the candidate manifest just like a full scan. Failed-scan metadata places structural persistence errors before parser diagnostics so operators can see the actual promotion blocker.
+<!-- /ANCHOR:adr-003-decision -->
+
+---
+
+<!-- ANCHOR:adr-003-alternatives -->
+### Alternatives Considered
+
+| Option | Pros | Cons | Score |
+|--------|------|------|-------|
+| **Honor incremental scan semantics** | Smallest fix, reduces full-scope timeout risk, preserves caller intent. | Requires updating an older test that expected full reindex on any HEAD drift. | 9/10 |
+| Raise MCP timeout | Might let large scans finish. | Does not fix unnecessary full scans or hidden structural errors. | 4/10 |
+| Force scope-specific exclude globs | Could shrink this workspace scan. | Changes scope fingerprint and risks hiding indexed surfaces. | 3/10 |
+
+**Why this one**: It fixes the refresh loop without broadening scope or weakening stale-read safeguards.
+<!-- /ANCHOR:adr-003-alternatives -->
+
+---
+
+<!-- ANCHOR:adr-003-consequences -->
+### Consequences
+
+**What improves**:
+- Explicit incremental scans can refresh content-stale files without reparsing the full 9k-file scope.
+- Successful incremental scans can clear manifest drift.
+- Operators see structural persistence failures first when a scan cannot promote metadata.
+
+**What it costs**:
+- The old invariant "any Git HEAD change forces full reindex" is replaced by content-hash incremental semantics for explicit incremental scans.
+
+**Risks**:
+
+| Risk | Impact | Mitigation |
+|------|--------|------------|
+| Running MCP process still has old handler loaded | M | Restart/reload MCP server before rerunning live `code_graph_scan`. |
+| Hidden structural error remains unknown until next scan | M | New failed-scan ordering will expose it on the next failed run. |
+<!-- /ANCHOR:adr-003-consequences -->
+
+---
+
+<!-- ANCHOR:adr-003-five-checks -->
+### Five Checks Evaluation
+
+| # | Check | Result | Evidence |
+|---|-------|--------|----------|
+| 1 | **Necessary?** | PASS | Live graph refresh was stuck stale/timing out. |
+| 2 | **Beyond Local Maxima?** | PASS | Compared code fix, timeout increase, and scope exclusions. |
+| 3 | **Sufficient?** | PASS | Fix covers full-scan trigger, manifest freshness, and failed-scan diagnostics. |
+| 4 | **Fits Goal?** | PASS | It directly addresses the verification blocker without touching embedding behavior. |
+| 5 | **Open Horizons?** | PASS | Next failed scan can reveal any remaining structural persistence root cause. |
+
+**Checks Summary**: 5/5 PASS
+<!-- /ANCHOR:adr-003-five-checks -->
+
+---
+
+<!-- ANCHOR:adr-003-impl -->
+### Implementation
+
+**What changes**:
+- Update `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts`.
+- Update `.opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-scan.vitest.ts`.
+
+**How to roll back**: Revert the two code graph files and this packet's metadata addendum, then rerun the previous scan test baseline.
+<!-- /ANCHOR:adr-003-impl -->
+<!-- /ANCHOR:adr-003 -->

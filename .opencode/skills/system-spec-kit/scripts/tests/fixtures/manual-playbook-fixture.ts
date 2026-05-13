@@ -41,6 +41,7 @@ const FIXTURE_PREFIX = 'gate-i-manual-playbook-';
 const TARGET_SPEC_SLUG = '001-manual-fixture-auth-resume';
 const SANDBOX_SPEC_SLUG = '002-test-sandbox';
 const ADMIN_USER_ID = 'gate-i-admin-user';
+const DEFAULT_HF_LOCAL_DB_FILE = 'context-index__hf-local__onnx-community_embeddinggemma-300m-onnx__768__q8.sqlite';
 const SCRIPT_DIR = path.dirname(fileURLToPath(import.meta.url));
 const SKILL_ROOT = path.resolve(SCRIPT_DIR, '..', '..');
 const REPO_ROOT = path.resolve(SKILL_ROOT, '..', '..', '..', '..');
@@ -321,7 +322,7 @@ export async function createManualPlaybookFixture(specFolder: string): Promise<F
   fs.mkdirSync(tempBaseDir, { recursive: true });
   const rootDir = fs.mkdtempSync(path.join(tempBaseDir, FIXTURE_PREFIX));
   const dbDir = path.join(rootDir, 'db');
-  const dbPath = path.join(dbDir, 'context-index.sqlite');
+  const dbPath = path.join(dbDir, DEFAULT_HF_LOCAL_DB_FILE);
   const baselineDbPath = path.join(dbDir, 'context-index.baseline.sqlite');
   const reportDir = process.env.MANUAL_PLAYBOOK_REPORT_ROOT
     ? path.resolve(process.env.MANUAL_PLAYBOOK_REPORT_ROOT)
@@ -605,7 +606,7 @@ export async function createManualPlaybookFixture(specFolder: string): Promise<F
       specFolder: targetSpecFolder,
       content: buildMemoryDoc('Feature Flag DB Path Precedence', 'Database path precedence notes.', [
         'SPEC_KIT_DB_DIR and SPECKIT_DB_DIR override default database discovery.',
-        'MEMORY_DB_PATH points directly to context-index.sqlite for disposable fixtures.',
+        `MEMORY_DB_PATH points directly to the active hf-local default profile database (${DEFAULT_HF_LOCAL_DB_FILE}) for disposable fixtures.`,
       ]),
     },
     {

@@ -9,10 +9,10 @@ contextType: "tasks"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/020-catalog-playbook-alignment-audit"
-    last_updated_at: "2026-05-13T14:55:00Z"
+    last_updated_at: "2026-05-13T15:45:00Z"
     last_updated_by: "opencode"
-    recent_action: "Applied embedding-doc follow-ups"
-    next_safe_action: "Review and commit the scoped documentation updates when ready"
+    recent_action: "Applied code graph scan remediation follow-up"
+    next_safe_action: "Restart MCP server if needed, then rerun code_graph_scan"
     blockers: []
     key_files:
       - "spec.md"
@@ -94,6 +94,18 @@ _memory:
 
 ---
 
+<!-- ANCHOR:phase-4 -->
+## Phase 4: Code Graph Scan Remediation
+
+- [x] T022 Diagnose code graph stale/timing-out refresh behavior (`code_graph_status`, `code_graph_query`, source reads, SQLite metadata).
+- [x] T023 Update explicit scan behavior to honor incremental content-hash reindexing across Git HEAD drift (`scan.ts`).
+- [x] T024 Refresh candidate manifests after successful incremental scans (`scan.ts`).
+- [x] T025 Surface structural persistence errors before parse-error noise in failed-scan metadata (`scan.ts`).
+- [x] T026 Add focused scan regression coverage and run typecheck (`code-graph-scan.vitest.ts`).
+<!-- /ANCHOR:phase-4 -->
+
+---
+
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
@@ -102,6 +114,7 @@ _memory:
 - [x] Manual content verification passed against the dispatch findings.
 - [x] Strict validator passed after final edits.
 - [x] Approved follow-up documentation edits were applied and verified.
+- [x] Focused code graph scan regression test and TypeScript typecheck passed.
 <!-- /ANCHOR:completion -->
 
 ---

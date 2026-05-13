@@ -109,8 +109,8 @@ The PREFIX_REGISTRY in `.opencode/skills/system-spec-kit/shared/embeddings/provi
 
 | Model | Dim | Notes |
 |---|---|---|
-| `nomic-ai/nomic-embed-text-v1.5` | 768 | hf-local fallback — auto-downloads on first use, no auth |
-| `onnx-community/embeddinggemma-300m-ONNX` | 768 | Setup A — gated, transformers.js-native ONNX |
+| `onnx-community/embeddinggemma-300m-ONNX` | 768 | hf-local default — auto-downloads on first use, no auth, q8 |
+| `nomic-ai/nomic-embed-text-v1.5` | 768 | legacy registry entry — opt-in via explicit `HF_EMBEDDINGS_MODEL` |
 | `intfloat/e5-large-v2` | 1024 | Strong text retrieval; passage/query prefixes |
 | `mixedbread-ai/mxbai-embed-large-v1` | 1024 | No prefixes; widely used |
 | `Snowflake/snowflake-arctic-embed-l-v2.0` | 1024 | Matryoshka support; instruction prefix on queries |

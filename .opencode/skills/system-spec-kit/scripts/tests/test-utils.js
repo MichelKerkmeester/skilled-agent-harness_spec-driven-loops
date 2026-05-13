@@ -139,10 +139,10 @@
    * Mock embedding function for testing
    * Generates deterministic pseudo-embeddings based on content hash
    * @param {string} text - Text to embed
-   * @returns {Array} 384-dimensional embedding vector
+   * @returns {Array} 768-dimensional embedding vector
    */
   function mockEmbedding(text) {
-    const DIMENSIONS = 384;
+    const DIMENSIONS = 768;
     const embedding = new Array(DIMENSIONS);
 
     let hash = 0;

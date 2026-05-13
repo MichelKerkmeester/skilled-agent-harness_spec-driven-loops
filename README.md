@@ -136,7 +136,7 @@ cd ../../../../
 Choose an embedding provider:
 
 ```bash
-# Default: llama-cpp (free, local, zero setup on Apple Silicon with Metal GPU)
+# Default when no cloud keys are set: llama-cpp (free, local, zero setup on Apple Silicon with Metal GPU)
 # No setup required. The daemon auto-detects the GGUF model on first run.
 
 # Option A: Voyage AI (cloud, requires API key, opt-in only)
@@ -1268,7 +1268,7 @@ The memory server reads configuration from environment variables:
 Default repo-local database path: `.opencode/skills/system-spec-kit/mcp_server/database/context-index__llama-cpp__unsloth-embeddinggemma-300m-gguf__768__q8.sqlite`. The filename encodes provider, model, dimension and dtype so multiple backends can coexist on disk without mixing vectors.
 
 > [!TIP]
-> If no API key is set, the memory engine auto-detects **HuggingFace Local** embeddings - free, no setup required.
+> If no API key is set, the memory engine auto-detects **llama-cpp** first, then falls back to **HuggingFace Local** embeddings - free, no setup required.
 
 
 &nbsp;

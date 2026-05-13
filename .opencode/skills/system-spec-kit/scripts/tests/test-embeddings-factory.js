@@ -43,8 +43,9 @@ async function testFactory() {
     console.log('3️⃣ Creating embedding profile...');
     const profile = new EmbeddingProfile({
       provider: 'hf-local',
-      model: 'nomic-ai/nomic-embed-text-v1.5',
+      model: 'onnx-community/embeddinggemma-300m-ONNX',
       dim: 768,
+      dtype: 'q8',
     });
     console.log('   Profile:', profile.toDisplayString());
     console.log('   Slug:', profile.slug);

@@ -607,11 +607,11 @@ Spec Kit Memory now supports three embedding backends:
 **Optional environment variables:**
 ```bash
 # Provider selection (llama-cpp|hf-local|voyage|openai|auto)
-export EMBEDDINGS_PROVIDER=hf-local  # Default: local embeddings (free, offline)
+export EMBEDDINGS_PROVIDER=auto  # Default: auto-cascade provider selection
 
 # Voyage config (cloud opt-in)
 export VOYAGE_API_KEY=pa-...
-export VOYAGE_EMBEDDINGS_MODEL=voyage-3.5  # Default
+export VOYAGE_EMBEDDINGS_MODEL=voyage-4  # Default
 
 # OpenAI config (if using OpenAI)
 export OPENAI_API_KEY=sk-...
@@ -1282,7 +1282,7 @@ node .opencode/skills/system-spec-kit/mcp_server/dist/context-server.js
 ```
 
 ### Embeddings not working
-1. Default provider is HF Local. No Ollama required
+1. Default provider cascade is Voyage -> OpenAI -> llama-cpp -> hf-local. No Ollama required
 2. Clear corrupted model cache: `rm -rf .opencode/skills/system-spec-kit/mcp_server/node_modules/@huggingface/transformers/.cache`
 3. Restart MCP server (model re-downloads on first use)
 4. If using cloud provider: verify API key is set and `EMBEDDINGS_PROVIDER` matches

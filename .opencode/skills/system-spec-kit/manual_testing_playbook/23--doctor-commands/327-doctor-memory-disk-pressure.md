@@ -40,14 +40,14 @@ Run /doctor memory --incremental=true with disk near full. Verify the command re
 2. Create a low-free-space filesystem fixture so `df` reports less than the Phase 2 requirement. On macOS, use a small APFS image; on Linux, use a loopback or container volume created from a truncated fixture.
 3. Copy the disposable workspace into the fixture and confirm:
    - `df -k .`
-   - free space is less than `2 * (context-index.sqlite bytes + context-index__voyage__voyage-4__1024.sqlite bytes)`.
+   - free space is less than `2 * (active hf-local default profile DB bytes + vector DB bytes)`. If the sandbox sets `VOYAGE_API_KEY`, include the profile-specific Voyage DB in the total instead.
 4. Record pre-run checksums for both memory DBs.
 5. Confirm there are no pre-existing scenario snapshots:
    - `rm -f .opencode/skills/system-spec-kit/mcp_server/database/context-index*.sqlite.pre-doctor-memory.*.bak`
 6. Run `/doctor memory --incremental=true` through the real runtime.
 7. Capture the refusal output and process exit code.
 8. Confirm no matching snapshot exists:
-   - `test ! -e .opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite.pre-doctor-memory.*.bak`
+   - `test ! -e .opencode/skills/system-spec-kit/mcp_server/database/context-index__hf-local__onnx-community_embeddinggemma-300m-onnx__768__q8.sqlite.pre-doctor-memory.*.bak`
 9. Recompute both DB checksums and compare them to the pre-run values.
 
 ### Expected

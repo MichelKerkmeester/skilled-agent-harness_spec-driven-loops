@@ -52,14 +52,6 @@ embedding:
   model: google/embeddinggemma-300m
 ```
 
-### Example: Smaller Local Model
-
-```yaml
-embedding:
-  provider: sentence-transformers
-  model: sentence-transformers/all-MiniLM-L6-v2
-```
-
 ### Example: Voyage Code 3 Cloud Model
 
 ```yaml
@@ -132,7 +124,6 @@ dist/**, build/**, .next/**, target/**, *.min.js, *.min.css,
 | Model | Provider | Key Required | Dimensions | Notes |
 | ----- | -------- | ------------ | ---------- | ----- |
 | `google/embeddinggemma-300m` | sentence-transformers | None | 768 | Current local default; query prompt resolves to `InstructionRetrieval` |
-| `sentence-transformers/all-MiniLM-L6-v2` | sentence-transformers | None | 384 | Smaller local/offline alternative |
 | `voyage/voyage-code-3` | litellm | `VOYAGE_API_KEY` | 1024 | Cloud alternative requiring API key and rebuild |
 | `text-embedding-3-small` | litellm | `OPENAI_API_KEY` | 1536 | OpenAI, general-purpose |
 | `gemini/gemini-embedding-001` | litellm | `GEMINI_API_KEY` | 768 | Google Gemini |

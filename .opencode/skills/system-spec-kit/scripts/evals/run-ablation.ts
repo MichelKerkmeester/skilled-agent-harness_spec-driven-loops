@@ -29,6 +29,7 @@ import {
   initHybridSearch, hybridSearchEnhanced, vectorIndex,
   type AblationChannel, type AblationSearchFn, type AblationReport,
 } from '../../mcp_server/api/index.js';
+import { resolveActiveProfileDbPath } from '@spec-kit/shared/embeddings/profile';
 import { dirnameFromImportMeta } from '../lib/esm-entry.js';
 
 const moduleDir = dirnameFromImportMeta(import.meta.url);
@@ -47,7 +48,7 @@ function resolveScriptsWorkspaceRoot(): string {
 
 const SCRIPTS_ROOT = resolveScriptsWorkspaceRoot();
 const DB_DIR = path.resolve(SCRIPTS_ROOT, '../mcp_server/database');
-const PROD_DB_PATH = path.join(DB_DIR, 'context-index.sqlite');
+const PROD_DB_PATH = resolveActiveProfileDbPath(undefined, DB_DIR);
 const OUTPUT_PATH = '/tmp/ablation-result.json';
 
 const args = process.argv.slice(2);

@@ -1290,7 +1290,7 @@ A corpus of 110 query-relevance pairs covers all seven intent types with at leas
 
 Hard negative queries are included to verify that irrelevant memories rank low. The corpus also incorporates findings from the G-NEW-2 agent consumption analysis, so queries reflect how agents actually use the system rather than how a spec author imagines they do.
 
-The current JSON dataset carries 297 relevance rows keyed to live parent-memory IDs in the active production database. If `context-index.sqlite` is rebuilt or replaced, operators should rerun `scripts/evals/map-ground-truth-ids.ts` before trusting ablation or dashboard comparisons against stored history.
+The current JSON dataset carries 297 relevance rows keyed to live parent-memory IDs in the active production database. If the active profile-derived Memory MCP database is rebuilt or replaced, operators should rerun `scripts/evals/map-ground-truth-ids.ts` before trusting ablation or dashboard comparisons against stored history.
 
 #### Source Files
 

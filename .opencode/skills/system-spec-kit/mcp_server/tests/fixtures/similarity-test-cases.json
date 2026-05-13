@@ -136,8 +136,8 @@
     "description": "Test cases for semantic similarity scoring validation",
     "version": "1.0.0",
     "created": "2026-01-28",
-    "embeddingModel": "all-MiniLM-L6-v2",
-    "dimensions": 384,
+    "embeddingModel": "google/embeddinggemma-300m",
+    "dimensions": 768,
     "notes": [
       "Expected ranges are approximate based on typical embedding model behavior",
       "Actual values may vary slightly between runs due to model precision",

@@ -259,7 +259,7 @@ Other users follow `SETUP_A_RECIPE.md` to install the local runtime or set expli
 
 **`auto` provider resolution under the new setup**
 
-With `EMBEDDINGS_PROVIDER=auto` (committed default), the factory resolves Voyage -> OpenAI -> llama-cpp when the GGUF runtime is installed -> hf-local. llama-cpp is auto-selected by the availability probe, not by a manual enablement flag; explicit override via `EMBEDDINGS_PROVIDER=<provider>` remains available. If the cascade reaches hf-local and `.env.local` is absent, hf-local falls back to its hardcoded default `nomic-ai/nomic-embed-text-v1.5` (auto-downloads on first use, no auth, 768d).
+With `EMBEDDINGS_PROVIDER=auto` (committed default), the factory resolves Voyage -> OpenAI -> llama-cpp when the GGUF runtime is installed -> hf-local. llama-cpp is auto-selected by the availability probe, not by a manual enablement flag; explicit override via `EMBEDDINGS_PROVIDER=<provider>` remains available. If the cascade reaches hf-local and `.env.local` is absent, hf-local falls back to its hardcoded default `onnx-community/embeddinggemma-300m-ONNX` (auto-downloads on first use, no auth, 768d, q8).
 
 **Why the prefix registry isn't reverted**
 

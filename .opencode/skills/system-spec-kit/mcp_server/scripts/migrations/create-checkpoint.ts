@@ -8,6 +8,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { pathToFileURL } from 'url';
 import Database from 'better-sqlite3';
+import { resolveActiveProfileDbPath } from '@spec-kit/shared/embeddings/profile';
 import { getMemoryRoadmapDefaults } from '../../lib/config/capability-flags.js';
 
 interface CliArgs {
@@ -34,9 +35,9 @@ interface CreateCheckpointResult {
 function resolveDefaultDbPath(): string {
   const candidates = [
     process.env.MEMORY_DB_PATH,
-    path.resolve(process.cwd(), '.opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite'),
-    path.resolve(process.cwd(), 'mcp_server/database/context-index.sqlite'),
-    path.resolve(process.cwd(), 'database/context-index.sqlite'),
+    resolveActiveProfileDbPath(undefined, path.resolve(process.cwd(), '.opencode/skills/system-spec-kit/mcp_server/database')),
+    resolveActiveProfileDbPath(undefined, path.resolve(process.cwd(), 'mcp_server/database')),
+    resolveActiveProfileDbPath(undefined, path.resolve(process.cwd(), 'database')),
   ].filter((candidate): candidate is string => typeof candidate === 'string' && candidate.trim().length > 0);
 
   for (const candidate of candidates) {
@@ -45,7 +46,7 @@ function resolveDefaultDbPath(): string {
     }
   }
 
-  return path.resolve(candidates[0] ?? path.resolve(process.cwd(), 'database/context-index.sqlite'));
+  return path.resolve(candidates[0] ?? resolveActiveProfileDbPath());
 }
 
 /**

@@ -108,7 +108,7 @@ describe('memory pipeline regressions', () => {
 
     const embeddings = await import('../../shared/embeddings');
 
-    expect(embeddings.MODEL_NAME).toBe('nomic-ai/nomic-embed-text-v1.5');
+    expect(embeddings.MODEL_NAME).toBe('onnx-community/embeddinggemma-300m-ONNX');
 
     await embeddings.getEmbeddingProfileAsync();
 

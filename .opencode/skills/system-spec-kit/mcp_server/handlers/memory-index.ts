@@ -532,13 +532,30 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
         }
 
         if (result.status !== 'unchanged') {
+          const rejectionDetail = !isSuccessfulStatus
+            ? {
+                ...(typeof result.rejectionCode === 'string' && result.rejectionCode.length > 0
+                  ? { rejectionCode: result.rejectionCode }
+                  : {}),
+                ...(typeof result.rejectionReason === 'string' && result.rejectionReason.length > 0
+                  ? { rejectionReason: result.rejectionReason }
+                  : (typeof result.message === 'string' && result.message.length > 0
+                    ? { rejectionReason: result.message }
+                    : {})),
+                ...(typeof result.error === 'string' && result.error.length > 0
+                  ? { error: result.error }
+                  : {}),
+              }
+            : {};
+
           results.files.push({
             file: path.basename(filePath),
             filePath,
             specFolder: result.specFolder,
             status: result.status,
             id: result.id,
-            isConstitutional
+            isConstitutional,
+            ...rejectionDetail,
           });
         }
       } else {

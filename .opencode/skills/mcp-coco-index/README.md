@@ -159,7 +159,7 @@ CocoIndex Code resolves queries by embedding the natural-language query text and
 
 The default embedding model is `google/embeddinggemma-300m`, a 768-dimensional model from the same family as the Spec Kit Memory MCP. This unification means both MCP servers share the same vector space, enabling future cross-MCP retrieval. The model runs locally via sentence-transformers on PyTorch with Metal/MPS acceleration on Apple Silicon and requires no API key.
 
-Users can switch to alternative models by editing the global settings file (`~/.cocoindex_code/global_settings.yml`). Available alternatives include `sentence-transformers/all-MiniLM-L6-v2` (384d, minimal footprint) and `voyage/voyage-code-3` (1024d cloud via LiteLLM, requires `VOYAGE_API_KEY`). Changing models requires a full reset and reindex because vector dimensions are incompatible.
+Users can switch to alternative models by editing the global settings file (`~/.cocoindex_code/global_settings.yml`). Available alternatives include `voyage/voyage-code-3` (1024d cloud via LiteLLM, requires `VOYAGE_API_KEY`). Changing models requires a full reset and reindex because vector dimensions are incompatible.
 
 Language and path filters apply after ranking, which means they narrow an already semantically ranked result set rather than replacing semantic ranking with keyword matching. This design keeps the filters fast and the results meaningful. For multi-query agent sessions, set `refresh_index=false` on follow-up calls after the first query has already triggered a refresh. The daemon has a known concurrency issue where simultaneous `refresh_index=true` requests can cause `ComponentContext` errors.
 
@@ -207,7 +207,6 @@ The CLI and MCP interfaces are complementary, not redundant. The CLI handles ind
 | Model | Type | Dimensions | API Key | Best For |
 |---|---|---|---|---|
 | `google/embeddinggemma-300m` | Local via sentence-transformers | 768 | None | Default. Unified with Memory MCP. Metal/MPS accelerated |
-| `sentence-transformers/all-MiniLM-L6-v2` | Local | 384 | None | Minimal disk and RAM footprint (~90MB) |
 | `voyage/voyage-code-3` | Cloud via LiteLLM | 1024 | `VOYAGE_API_KEY` | Higher dimensional cloud embeddings (requires API key) |
 
 **Similarity score interpretation**
@@ -276,7 +275,7 @@ Controls the embedding model used for all projects on this machine.
 ```yaml
 embedding:
   provider: sentence-transformers       # or litellm for cloud models
-  model: google/embeddinggemma-300m     # default 768d (also: sentence-transformers/all-MiniLM-L6-v2, voyage/voyage-code-3)
+  model: google/embeddinggemma-300m     # default 768d (also: voyage/voyage-code-3)
   device: auto                          # auto | cpu | cuda | mps (auto-detects if omitted)
 envs:
   VOYAGE_API_KEY: "your-key-here"       # required only for voyage cloud models
@@ -504,7 +503,7 @@ A: Index management operations (`index`, `status`, `reset`, `init`, `daemon`) ar
 
 **Q: When should I switch from the default model?**
 
-A: The default model (`google/embeddinggemma-300m`, 768 dimensions) provides strong code search quality out of the box and runs locally with no API key. Switch to `all-MiniLM-L6-v2` (384d) when disk and RAM footprint matters more than search quality (around 90MB total). Switch to `voyage/voyage-code-3` (1024d cloud via LiteLLM) when you want higher-dimensional cloud embeddings and have a `VOYAGE_API_KEY`. Voyage Code 3 was trained specifically on code and can give better discrimination on nuanced queries, but adds an API dependency. Switching models requires `ccc reset && ccc index` because vector dimensions are incompatible.
+A: The default model (`google/embeddinggemma-300m`, 768 dimensions) provides strong code search quality out of the box and runs locally with no API key. Switch to `voyage/voyage-code-3` (1024d cloud via LiteLLM) when you want higher-dimensional cloud embeddings and have a `VOYAGE_API_KEY`. Voyage Code 3 was trained specifically on code and can give better discrimination on nuanced queries, but adds an API dependency. Switching models requires `ccc reset && ccc index` because vector dimensions are incompatible.
 
 ---
 
@@ -553,7 +552,7 @@ A: `doctor.sh` is read-only. It inspects the environment, reports what is workin
 |---|---|
 | CocoIndex GitHub | https://github.com/cocoindex-io/cocoindex |
 | CocoIndex Code on PyPI | https://pypi.org/project/cocoindex-code/ |
-| all-MiniLM-L6-v2 on HuggingFace | https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2 |
+| EmbeddingGemma 300M on HuggingFace | https://huggingface.co/google/embeddinggemma-300m |
 | sqlite-vec | https://github.com/asg017/sqlite-vec |
 
 <!-- /ANCHOR:related-documents -->

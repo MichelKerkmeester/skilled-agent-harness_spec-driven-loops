@@ -60,17 +60,6 @@ else
   echo "better-sqlite3:    [FAIL] did not load" >&2
 fi
 
-# Probe onnxruntime-node (optional, may not be installed)
-if [[ -d "$ROOT_DIR/shared/node_modules/onnxruntime-node" ]]; then
-  if node -e "require('$ROOT_DIR/shared/node_modules/onnxruntime-node')" 2>/dev/null; then
-    echo "onnxruntime-node:  [OK] loads"
-  else
-    echo "onnxruntime-node:  [FAIL] did not load" >&2
-  fi
-else
-  echo "onnxruntime-node:  [SKIP] not installed"
-fi
-
 # Probe sharp (optional)
 if [[ -d "$ROOT_DIR/shared/node_modules/sharp" ]]; then
   if node -e "require('$ROOT_DIR/shared/node_modules/sharp')" 2>/dev/null; then

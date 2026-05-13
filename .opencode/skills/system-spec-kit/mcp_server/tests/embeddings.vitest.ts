@@ -254,9 +254,9 @@ describe('Embeddings Architecture (T513)', () => {
       const profile = getStartupEmbeddingProfile();
 
       expect(profile.provider).toBe('hf-local');
-      expect(profile.model).toBe('nomic-ai/nomic-embed-text-v1.5');
+      expect(profile.model).toBe('onnx-community/embeddinggemma-300m-ONNX');
       expect(profile.dim).toBe(768);
-      expect(profile.getDatabasePath('/tmp/spec-kit-db')).toBe('/tmp/spec-kit-db/context-index.sqlite');
+      expect(profile.getDatabasePath('/tmp/spec-kit-db')).toBe('/tmp/spec-kit-db/context-index__hf-local__onnx-community_embeddinggemma-300m-onnx__768__q8.sqlite');
     });
 
     it('T513-03g: hf-local inference respects provider timeout', async () => {

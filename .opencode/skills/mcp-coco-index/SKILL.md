@@ -5,7 +5,7 @@ allowed-tools: [Bash, Read, Grep, Glob]
 version: 1.1.1
 ---
 
-<!-- Keywords: cocoindex-code, semantic-search, vector-embeddings, code-search, mcp-server, ccc, codebase-indexing, voyage-code-3, all-MiniLM-L6-v2 -->
+<!-- Keywords: cocoindex-code, semantic-search, vector-embeddings, code-search, mcp-server, ccc, codebase-indexing, voyage-code-3, embeddinggemma-300m -->
 
 # CocoIndex Code - Semantic Code Search via Vector Embeddings
 
@@ -269,7 +269,6 @@ CocoIndex Code defaults to local EmbeddingGemma and supports alternate embedding
 | Model | Type | Dimensions | API Key | Best For |
 | ----- | ---- | ---------- | ------- | -------- |
 | `google/embeddinggemma-300m` | Local via sentence-transformers | 768 | None | Default code-search model; query prompt resolves to `InstructionRetrieval` |
-| `sentence-transformers/all-MiniLM-L6-v2` | Local | 384 | None | Smaller offline alternative |
 | `voyage/voyage-code-3` | Cloud via LiteLLM | 1024 | `VOYAGE_API_KEY` required | Cloud alternative requiring a rebuild |
 
 **CRITICAL**: Changing the embedding model requires `ccc reset && ccc index` because different models produce vectors with different dimensions. Mixing dimensions corrupts the index.

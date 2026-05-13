@@ -4,7 +4,7 @@
 
 import Database from 'better-sqlite3';
 import { load as loadSqliteVec } from 'sqlite-vec';
-import { fileURLToPath } from 'node:url';
+import * as path from 'path';
 
 import {
   GOVERNANCE_AUDIT_ACTIONS,
@@ -13,6 +13,7 @@ import {
   recordTierDowngradeAudit,
   shouldIndexForMemory,
 } from '@spec-kit/mcp-server/api';
+import { resolveActiveProfileDbPath } from '@spec-kit/shared/embeddings/profile';
 import { isMainModule } from '../lib/esm-entry.js';
 
 interface CountRow {
@@ -73,23 +74,45 @@ interface CleanupPlan {
   downgradeRows: CleanupDowngradeRow[];
 }
 
-const DB_PATH = fileURLToPath(
-  new URL('../../../mcp_server/database/context-index__voyage__voyage-4__1024.sqlite', import.meta.url),
-);
-
 const HELP_TEXT = `
 cleanup-index-scope-violations — Repair memory index scope and constitutional tier violations
 
 Usage:
-  node cleanup-index-scope-violations.js
-  node cleanup-index-scope-violations.js --apply
-  node cleanup-index-scope-violations.js --verify
+  node cleanup-index-scope-violations.js --db <path>
+  node cleanup-index-scope-violations.js --db <path> --apply
+  node cleanup-index-scope-violations.js --db <path> --verify
 
 Options:
+  --db        Required unless MEMORY_DB_PATH is set. SQLite database path.
   --apply     Execute the cleanup in one transaction
   --verify    Report whether the invariants currently hold (exit 0 clean, 1 violations)
   --help,-h   Show this help text
 `;
+
+function readFlagValue(argv: string[], flag: string): string | null {
+  const index = argv.indexOf(flag);
+  if (index === -1 || !argv[index + 1]) {
+    return null;
+  }
+  return argv[index + 1];
+}
+
+function resolveCleanupDbPath(argv: string[]): string {
+  const explicitDbPath = readFlagValue(argv, '--db');
+  if (explicitDbPath && explicitDbPath.trim().length > 0) {
+    return path.resolve(explicitDbPath.trim());
+  }
+
+  const envDbPath = process.env.MEMORY_DB_PATH?.trim();
+  if (envDbPath) {
+    return path.resolve(envDbPath);
+  }
+
+  throw new Error(
+    'Missing required database path. Pass --db <path> or set MEMORY_DB_PATH. ' +
+    `Active-profile default would be: ${resolveActiveProfileDbPath()}`,
+  );
+}
 
 function tableExists(database: InstanceType<typeof Database>, tableName: string): boolean {
   const row = database
@@ -416,12 +439,15 @@ async function main(): Promise<void> {
 
   const apply = process.argv.includes('--apply');
   const verify = process.argv.includes('--verify');
-  const database = new Database(DB_PATH);
+  let database: InstanceType<typeof Database> | null = null;
 
   try {
-    loadSqliteVec(database);
-    const before = collectSummary(database);
-    const plan = buildPlan(database);
+    const dbPath = resolveCleanupDbPath(process.argv.slice(2));
+    const db = new Database(dbPath);
+    database = db;
+    loadSqliteVec(db);
+    const before = collectSummary(db);
+    const plan = buildPlan(db);
 
     printSummary('Before', before);
   console.log('Planned actions:');
@@ -444,10 +470,10 @@ async function main(): Promise<void> {
       process.exit(0);
     }
 
-    const tx = database.transaction(() => {
-      const transactionPlan = buildPlan(database);
-      const applied = applyCleanup(database, transactionPlan);
-      const after = collectSummary(database);
+    const tx = db.transaction(() => {
+      const transactionPlan = buildPlan(db);
+      const applied = applyCleanup(db, transactionPlan);
+      const after = collectSummary(db);
       return { applied, after };
     });
     const { applied, after } = tx();
@@ -459,7 +485,7 @@ async function main(): Promise<void> {
     console.error('[cleanup-index-scope-violations] Error:', error instanceof Error ? error.message : String(error));
     process.exit(1);
   } finally {
-    database.close();
+    database?.close();
   }
 }
 

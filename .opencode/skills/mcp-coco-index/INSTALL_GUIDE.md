@@ -351,7 +351,7 @@ Below are repo-portable patterns that match the checked-in integration.
       "environment": {
         "COCOINDEX_CODE_ROOT_PATH": ".",
         "_NOTE_1_PACKAGE": "Local editable cocoindex-code fork, installed via scripts/install.sh",
-        "_NOTE_2_EMBEDDING": "Default: google/embeddinggemma-300m (local, no API key needed)",
+        "_NOTE_2_EMBEDDING": "Default: google/embeddinggemma-300m (local sentence-transformers, no API key needed, 768d)",
         "_NOTE_3_INDEX": "Index stored in .cocoindex_code/ (gitignored)"
       }
     }
@@ -406,7 +406,7 @@ Below are repo-portable patterns that match the checked-in integration.
       "env": {
         "COCOINDEX_CODE_ROOT_PATH": ".",
         "_NOTE_1_PACKAGE": "Local editable cocoindex-code fork, installed via scripts/install.sh",
-        "_NOTE_2_EMBEDDING": "Default: google/embeddinggemma-300m (local, no API key needed)",
+        "_NOTE_2_EMBEDDING": "Default: google/embeddinggemma-300m (local sentence-transformers, no API key needed, 768d)",
         "_NOTE_3_INDEX": "Index stored in .cocoindex_code/ (gitignored)"
       }
     }
@@ -426,7 +426,7 @@ args = ["mcp"]
 [mcp_servers.cocoindex_code.env]
 COCOINDEX_CODE_ROOT_PATH = "."
 _NOTE_1 = "Requires local editable fork: bash .opencode/skills/mcp-coco-index/scripts/install.sh"
-_NOTE_2 = "Default embedding: google/embeddinggemma-300m (local, no API key needed)"
+_NOTE_2 = "Default embedding: google/embeddinggemma-300m (local sentence-transformers, no API key needed, 768d)"
 _NOTE_3 = "Index stored in .cocoindex_code/ (gitignored)"
 ```
 
@@ -452,15 +452,6 @@ embedding:
   model: voyage/voyage-code-3
 envs:
   VOYAGE_API_KEY: your-key-here
-```
-
-**Smaller local alternative:** `sentence-transformers/all-MiniLM-L6-v2` -- no API key, works offline with lower dimensional vectors.
-
-```yaml
-# Local model (no API key, works offline)
-embedding:
-  provider: sentence-transformers
-  model: sentence-transformers/all-MiniLM-L6-v2
 ```
 
 **Other supported models:** OpenAI `text-embedding-3-small`, Gemini `gemini/gemini-embedding-001`, Cohere `cohere/embed-v4.0`, Ollama `ollama/nomic-embed-text`, Nomic `nomic-ai/CodeRankEmbed`. See [Settings Reference](references/settings_reference.md) for the full list.
@@ -851,7 +842,7 @@ Expected result:
 - **PyPI upstream package**: [cocoindex-code](https://pypi.org/project/cocoindex-code/)
 - **Default Embedding**: [EmbeddingGemma 300M](https://huggingface.co/google/embeddinggemma-300m)
 - **Cloud Embedding Option**: [Voyage Code 3](https://docs.voyageai.com/docs/embeddings)
-- **Small Local Embedding Option**: [all-MiniLM-L6-v2](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2)
+- **Default Local Embedding**: [EmbeddingGemma 300M](https://huggingface.co/google/embeddinggemma-300m)
 
 <!-- /ANCHOR:resources -->
 

@@ -12,6 +12,7 @@
 import Database from 'better-sqlite3';
 import * as path from 'path';
 import * as fs from 'fs';
+import { resolveActiveProfileDbPath } from '@spec-kit/shared/embeddings/profile';
 import { dirnameFromImportMeta } from '../lib/esm-entry.js';
 
 const moduleDir = dirnameFromImportMeta(import.meta.url);
@@ -31,7 +32,7 @@ function resolveScriptsWorkspaceRoot(): string {
 
 const SCRIPTS_ROOT = resolveScriptsWorkspaceRoot();
 const DB_DIR = path.resolve(SCRIPTS_ROOT, '../mcp_server/database');
-const DB_PATH = path.join(DB_DIR, 'context-index.sqlite');
+const DB_PATH = resolveActiveProfileDbPath(undefined, DB_DIR);
 const GT_PATH = path.resolve(SCRIPTS_ROOT, '../mcp_server/lib/eval/data/ground-truth.json');
 const OUTPUT_PATH = '/tmp/ground-truth-id-mapping.json';
 

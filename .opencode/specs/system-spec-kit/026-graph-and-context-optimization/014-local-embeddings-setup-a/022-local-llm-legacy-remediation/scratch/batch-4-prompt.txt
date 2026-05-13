@@ -1,0 +1,78 @@
+# GATE 3 PRE-ANSWERED — DO NOT ASK AGAIN
+
+Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/022-local-llm-legacy-remediation`
+Choice: A) Use existing spec folder
+
+PROCEED DIRECTLY. Never ask Gate 3. Non-interactive --approval-policy=never.
+
+---
+
+# Batch 4 — ONNX backend cleanup (purge rejected runtime)
+
+CONTEXT:
+Packet 014/014 (ONNX cross-platform backend) was REJECTED 2026-05-13 after measuring 3.5x slower than sbert/PyTorch+MPS at parity-preserving settings. The runtime code was reverted, but `onnxruntime-node` and `onnxruntime-common` package dependencies, a native-module probe in setup, and recovery-hint console.error messages still reference the rejected backend. Remove them.
+
+PER PROJECT MEMORY RULE (delete-not-archive):
+- Legacy code must be DELETED physically (rm-style); never commented out, never tombstoned, never stub-with-redirect, never archived to z_archive/.bak/.old.
+- For dependencies: REMOVE the JSON keys entirely, do not just comment them.
+- For probe code: DELETE the probe block entirely.
+- For recovery-hint message: DELETE the rebuild line entirely.
+
+ALLOWED WRITE PATHS (touch ONLY these files):
+- `.opencode/skills/system-spec-kit/package.json` (remove `onnxruntime-common` from dependencies and any `onnxruntime-node` references)
+- `.opencode/skills/system-spec-kit/mcp_server/package.json` (remove `onnxruntime-common` from dependencies and any `onnxruntime-node` references)
+- `.opencode/skills/system-spec-kit/scripts/setup/check-native-modules.sh` (remove the ONNX probe block around line 63)
+- `.opencode/skills/system-spec-kit/shared/embeddings/providers/hf-local.ts` (line ~309: remove the `npm rebuild onnxruntime-node sharp` line from the recovery-hint console.error sequence; leave the surrounding sharp-related guidance intact)
+
+BANNED OPERATIONS (RM-8 Layer 1):
+- NO rm, NO rm -rf, NO git rm, NO mv, NO sed -i, NO rmdir (against the package-lock or anything else)
+- NO git add, NO git commit, NO git push, NO branch changes
+- NO writes outside ALLOWED WRITE PATHS
+- DO NOT touch package-lock.json (lockfile drift will be handled by `npm install` post-batch, run by main agent)
+- DO NOT touch other dependency lines (only `onnxruntime-node` and `onnxruntime-common`)
+- DO NOT remove `sharp` (used by Voyage/OpenAI providers)
+- DO NOT remove `better-sqlite3` (used by Memory MCP)
+- DO NOT touch the 021 review packet or the 022 remediation packet
+
+REQUIREMENTS:
+
+(A) For `package.json` files: open as JSON, locate `dependencies`, `devDependencies`, `optionalDependencies`, and any `devEngines` sections. Remove BOTH `onnxruntime-node` and `onnxruntime-common` keys wherever they appear. Leave all other keys intact. Preserve JSON formatting (indent 2 spaces; trailing newline). Do NOT add new keys.
+
+(B) For `check-native-modules.sh`: locate the probe block that loads/checks `onnxruntime-node` (around line 63). It usually looks like:
+```
+# Probe onnxruntime-node (optional, may not be installed)
+if node -e "require('onnxruntime-node')" 2>/dev/null; then
+  log_pass "onnxruntime-node available"
+else
+  log_skip "onnxruntime-node not installed (optional)"
+fi
+```
+Delete the entire block (including the leading comment). Do NOT add a replacement message.
+
+(C) For `hf-local.ts`: find the recovery-hint console.error block around line 309. It usually has multi-line guidance like:
+```
+console.error('[hf-local] 1. npm rebuild onnxruntime-node sharp');
+console.error('[hf-local] 2. ...');
+```
+Delete ONLY the line that mentions `onnxruntime-node`. Renumber subsequent steps if needed.
+
+(D) Preserve all imports + exports + non-ONNX content. Do NOT reformat unrelated code.
+
+ACCEPTANCE CRITERIA:
+- `grep -E 'onnxruntime-(node|common)' .opencode/skills/system-spec-kit/{package.json,mcp_server/package.json}` returns 0 hits
+- `grep -E 'onnxruntime' .opencode/skills/system-spec-kit/scripts/setup/check-native-modules.sh` returns 0 hits
+- `grep -nE 'npm rebuild onnxruntime-node' .opencode/skills/system-spec-kit/shared/embeddings/providers/hf-local.ts` returns 0 hits
+
+AFTER ALL EDITS, output:
+
+```
+BATCH 4 REPORT
+File: <path> — <N edits> — <one-line summary>
+...
+Scope violations: <none | list>
+Blocked writes: <none | list>
+Total edits: <N>
+Lockfile note: npm install needed (main-agent will run)
+```
+
+Do NOT commit. Do NOT run git. Do NOT run npm install. Stop after writing the report.

@@ -250,9 +250,10 @@ verify_installation() {
     
     # Note about database creation (canonical runtime directory)
     local canonical_db_dir="${project_root}/${MCP_CANONICAL_DB_DIR}"
-    local local_fallback_db_path="${canonical_db_dir}/context-index.sqlite"
-    if [[ -f "${local_fallback_db_path}" ]]; then
-        log_info "Local fallback database already exists: ${local_fallback_db_path}"
+    local existing_context_db
+    existing_context_db=$(find "${canonical_db_dir}" -maxdepth 1 -type f -name 'context-index*.sqlite' 2>/dev/null | head -n 1 || true)
+    if [[ -n "${existing_context_db}" ]]; then
+        log_info "Context database already exists: ${existing_context_db}"
     else
         log_info "Database files will be auto-derived on first use inside: ${canonical_db_dir}"
     fi
@@ -294,10 +295,11 @@ Requirements:
     - Node.js >=${MIN_NODE_VERSION}
     - npm
 
-Embedding Providers (auto-detected in order):
-    1. Voyage AI (VOYAGE_API_KEY) - Recommended, 8% better than OpenAI
+Embedding Providers (auto-cascade resolution order):
+    1. Voyage AI (VOYAGE_API_KEY)
     2. OpenAI (OPENAI_API_KEY)
-    3. Local Hugging Face (no API key needed, default fallback)
+    3. llama-cpp (auto-selected when GGUF runtime is installed)
+    4. Local Hugging Face EmbeddingGemma (no API key needed, default fallback)
 
 After installation:
     Restart OpenCode to load the new MCP server.

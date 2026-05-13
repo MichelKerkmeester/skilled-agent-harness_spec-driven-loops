@@ -9,10 +9,10 @@ contextType: "verification"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/020-catalog-playbook-alignment-audit"
-    last_updated_at: "2026-05-13T14:55:00Z"
+    last_updated_at: "2026-05-13T15:45:00Z"
     last_updated_by: "opencode"
-    recent_action: "Applied embedding-doc follow-ups"
-    next_safe_action: "Review and commit the scoped documentation updates when ready"
+    recent_action: "Applied code graph scan remediation follow-up"
+    next_safe_action: "Restart MCP server if needed, then rerun code_graph_scan"
     blockers: []
     key_files:
       - "spec.md"
@@ -66,13 +66,13 @@ _memory:
 ## Code Quality
 
 - [x] CHK-010 [P0] Code passes lint/format checks.
-  - **Evidence**: No code changed; structural equivalent is strict spec validation.
+  - **Evidence**: `npm exec -- vitest run code_graph/tests/code-graph-scan.vitest.ts` passed; `npm run typecheck` passed.
 - [x] CHK-011 [P0] No console errors or warnings.
-  - **Evidence**: No runtime surface changed.
+  - **Evidence**: Focused Vitest run completed with 38 passing tests and no failing assertions.
 - [x] CHK-012 [P1] Error handling implemented.
-  - **Evidence**: Rollback and edge-case handling documented in `plan.md` and `spec.md`.
+  - **Evidence**: Failed-scan metadata now reports structural persistence errors before parse-error noise.
 - [x] CHK-013 [P1] Code follows project patterns.
-  - **Evidence**: Spec folder follows Level 3 system-spec-kit template contract.
+  - **Evidence**: Code graph scan handler keeps existing scan response shape and focused tests cover the changed behavior.
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -81,13 +81,13 @@ _memory:
 ## Testing
 
 - [x] CHK-020 [P0] All acceptance criteria met.
-  - **Evidence**: Source-of-truth defaults and applied target path matrix captured in `spec.md` and summary.
+  - **Evidence**: Source-of-truth defaults, applied target path matrix, and code graph scan remediation captured in `spec.md` and summary.
 - [x] CHK-021 [P0] Manual testing complete.
   - **Evidence**: Manual review verified every dispatch finding appears in the packet.
 - [x] CHK-022 [P1] Edge cases tested.
   - **Evidence**: Reranker `llama-cpp`, docs/spec taxonomy, Code Graph, and Skill Advisor caveats documented.
 - [x] CHK-023 [P1] Error scenarios validated.
-  - **Evidence**: No-op/non-impact cases, accidental runtime-code mutation risk, and code graph timeout status documented.
+  - **Evidence**: Structural persistence error ordering covered by `code-graph-scan.vitest.ts`; code graph timeout status documented.
 <!-- /ANCHOR:testing -->
 
 ---
@@ -100,13 +100,13 @@ _memory:
 - [x] CHK-FIX-002 [P0] Same-class producer inventory completed, or instance-only status proven by grep.
   - **Evidence**: Dispatch-supplied path matrix is preserved as the scoped inventory.
 - [x] CHK-FIX-003 [P0] Consumer inventory completed for changed helpers, policies, schema fields, response fields, docs, and tests.
-  - **Evidence**: Documentation consumers listed by catalog/playbook package and surface.
+  - **Evidence**: Documentation consumers listed by catalog/playbook package and surface; code graph consumers are the scan handler response, status readiness, and focused scan tests.
 - [x] CHK-FIX-004 [P0] Security/path/parser/redaction adversarial table tests covered when applicable.
-  - **Evidence**: Not applicable; this is documentation-only and has no parser/security code change.
+  - **Evidence**: No parser/security input surface changed; scan error metadata ordering is covered by focused regression tests.
 - [x] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed.
   - **Evidence**: Summary lists applied update/review/non-impact rows.
 - [x] CHK-FIX-006 [P1] Hostile env/global-state variant executed when tests or code read process-wide state.
-  - **Evidence**: Not applicable; no code or env reader changed.
+  - **Evidence**: Existing test setup clears code graph index-scope env vars around scan handler cases.
 - [x] CHK-FIX-007 [P1] Evidence is pinned to explicit paths, not a moving branch-relative range.
   - **Evidence**: All target files are listed by exact repository path.
 <!-- /ANCHOR:fix-completeness -->
@@ -132,7 +132,7 @@ _memory:
 - [x] CHK-040 [P1] Spec/plan/tasks synchronized.
   - **Evidence**: All docs reference the same audit scope and target path matrix.
 - [x] CHK-041 [P1] Code comments adequate.
-  - **Evidence**: Not applicable; no code changed.
+  - **Evidence**: Scan handler comment now documents why successful incremental scans refresh the candidate manifest.
 - [x] CHK-042 [P2] README updated if applicable.
   - **Evidence**: README/install/reference docs updated where stale default wording was present.
 <!-- /ANCHOR:docs -->
@@ -183,9 +183,9 @@ _memory:
 ## L3: PERFORMANCE VERIFICATION
 
 - [x] CHK-110 [P1] Response time targets met.
-  - **Evidence**: Not applicable; no runtime code path changed.
+  - **Evidence**: Scan remediation avoids unnecessary full reindex on Git HEAD drift when incremental scanning is requested.
 - [x] CHK-111 [P1] Throughput targets met.
-  - **Evidence**: Not applicable; documentation-only packet.
+  - **Evidence**: Incremental scan path keeps content-hash skipping enabled instead of forcing a whole-scope parse.
 - [x] CHK-112 [P2] Load testing completed.
   - **Evidence**: Not applicable by scope.
 - [x] CHK-113 [P2] Performance benchmarks documented.
@@ -248,4 +248,5 @@ _memory:
 |----------|------|--------|------|
 | markdown-agent | Spec-doc executor | Approved for packet creation | 2026-05-13 |
 | opencode | Target docs updater | Approved after follow-up application | 2026-05-13 |
+| opencode | Code graph remediation | Approved after focused test/typecheck pass | 2026-05-13 |
 <!-- /ANCHOR:sign-off -->

@@ -7,10 +7,9 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import Database from 'better-sqlite3';
+import { resolveActiveProfileDbPath } from '@spec-kit/shared/embeddings/profile';
 import { getMemoryRoadmapDefaults } from '../config/capability-flags.js';
 import { DEFAULT_DB_DIR, initEvalDb, getEvalDbPath } from './eval-db.js';
-
-const CONTEXT_DB_FILENAME = 'context-index.sqlite';
 
 interface MemoryStateBaselineSnapshot {
   capturedAt: string;
@@ -62,7 +61,7 @@ function resolveContextDbPath(explicitPath?: string): string {
     return path.resolve(process.env.MEMORY_DB_PATH.trim());
   }
 
-  return path.resolve(DEFAULT_DB_DIR, CONTEXT_DB_FILENAME);
+  return resolveActiveProfileDbPath(undefined, DEFAULT_DB_DIR);
 }
 
 function openContextDb(dbPath: string): Database.Database | null {

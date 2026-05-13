@@ -337,7 +337,9 @@ describe('handleCodeGraphScan', () => {
     }
   });
 
-  it('forces a full reindex when git HEAD changes', async () => {
+  it('honors incremental scans when git HEAD changes', async () => {
+    mocks.isFileStaleMock.mockReturnValue(true);
+
     const response = await handleCodeGraphScan({
       rootDir: process.cwd(),
       incremental: true,
@@ -364,7 +366,7 @@ describe('handleCodeGraphScan', () => {
     expect(payload.status).toBe('ok');
     expect(payload.data.filesIndexed).toBe(1);
     expect(payload.data.filesSkipped).toBe(0);
-    expect(payload.data.fullReindexTriggered).toBe(true);
+    expect(payload.data.fullReindexTriggered).toBe(false);
     expect(payload.data.previousGitHead).toBe('old-head');
     expect(payload.data.currentGitHead).toBe('new-head');
     expect(payload.data.canonicalReadiness).toBe('ready');
@@ -374,9 +376,13 @@ describe('handleCodeGraphScan', () => {
       cwd: process.cwd(),
       encoding: 'utf-8',
     }));
-    expect(mocks.removeFileMock).toHaveBeenCalledWith('/workspace/removed.ts');
-    expect(mocks.isFileStaleMock).not.toHaveBeenCalled();
+    expect(mocks.indexFilesMock).toHaveBeenCalledWith(expect.any(Object), { skipFreshFiles: true });
+    expect(mocks.removeFileMock).not.toHaveBeenCalled();
+    expect(mocks.isFileStaleMock).toHaveBeenCalledWith('/workspace/current.ts', {
+      currentContentHash: 'hash-1',
+    });
     expect(mocks.upsertFileMock).toHaveBeenCalled();
+    expect(mocks.recordCandidateManifestMock).toHaveBeenCalledWith(mocks.getTrackedFilesMock.mock.results.at(-1)?.value);
     expect(payload.data.detectorProvenanceSummary).toEqual({
       dominant: 'structured',
       counts: {
@@ -1399,6 +1405,104 @@ describe('handleCodeGraphScan', () => {
     expect(mocks.recordCandidateManifestMock).not.toHaveBeenCalled();
   });
 
+  it('keeps skip-list-heavy parse bypass scans promotable', async () => {
+    mocks.execSyncMock.mockReturnValue('same-head\n');
+    mocks.getLastGitHeadMock.mockReturnValue('same-head');
+    mocks.indexFilesMock.mockResolvedValue(withPreParseSkippedCount([
+      {
+        filePath: '/workspace/current-a.ts',
+        language: 'typescript',
+        contentHash: 'hash-clean-a',
+        nodes: [{ symbolId: 'current-a::symbol' }],
+        edges: [],
+        detectorProvenance: 'structured',
+        parseHealth: 'clean',
+        parseDurationMs: 10,
+        parseErrors: [],
+      },
+      {
+        filePath: '/workspace/current-b.ts',
+        language: 'typescript',
+        contentHash: 'hash-clean-b',
+        nodes: [{ symbolId: 'current-b::symbol' }],
+        edges: [],
+        detectorProvenance: 'structured',
+        parseHealth: 'clean',
+        parseDurationMs: 10,
+        parseErrors: [],
+      },
+      {
+        filePath: '/workspace/skip-a.sh',
+        language: 'shell',
+        contentHash: 'hash-skip-a',
+        nodes: [],
+        edges: [],
+        detectorProvenance: 'ast',
+        parseHealth: 'error',
+        parseDurationMs: 10,
+        parseErrors: ['Parser skipped by skip-list (B1): known native parser crash'],
+      },
+      {
+        filePath: '/workspace/skip-b.sh',
+        language: 'shell',
+        contentHash: 'hash-skip-b',
+        nodes: [],
+        edges: [],
+        detectorProvenance: 'ast',
+        parseHealth: 'error',
+        parseDurationMs: 10,
+        parseErrors: ['Parser skipped by skip-list (B2): known wasm trap'],
+      },
+      {
+        filePath: '/workspace/skip-c.sh',
+        language: 'shell',
+        contentHash: 'hash-skip-c',
+        nodes: [],
+        edges: [],
+        detectorProvenance: 'ast',
+        parseHealth: 'error',
+        parseDurationMs: 10,
+        parseErrors: ['Parser skipped by skip-list (B1): known native parser crash'],
+      },
+      {
+        filePath: '/workspace/broken.ts',
+        language: 'typescript',
+        contentHash: 'hash-error',
+        nodes: [],
+        edges: [],
+        detectorProvenance: 'ast',
+        parseHealth: 'error',
+        parseDurationMs: 10,
+        parseErrors: ['native parser crashed'],
+      },
+    ]));
+
+    const response = await handleCodeGraphScan({
+      rootDir: process.cwd(),
+      incremental: false,
+    });
+    const payload = JSON.parse(response.content[0].text) as {
+      status: string;
+      data: {
+        errors: string[];
+        failedScan: null;
+        parserSkipListBypassCount: number;
+        warnings: string[];
+      };
+    };
+
+    expect(payload.status).toBe('ok');
+    expect(payload.data.parserSkipListBypassCount).toBe(3);
+    expect(payload.data.failedScan).toBeNull();
+    expect(payload.data.errors.join('\n')).toContain('native parser crashed');
+    expect(payload.data.errors.join('\n')).not.toContain('Parser skipped by skip-list');
+    expect(payload.data.warnings.join('\n')).not.toContain('parse error ratio');
+    expect(mocks.recordFailedScanMock).not.toHaveBeenCalled();
+    expect(mocks.recordCandidateManifestMock).toHaveBeenCalledWith(mocks.getTrackedFilesMock.mock.results.at(-1)?.value);
+    expect(mocks.setLastGitHeadMock).toHaveBeenCalledWith('same-head');
+    expect(mocks.setCodeGraphScopeMock).toHaveBeenCalled();
+  });
+
   it('records candidate manifest even when individual files parse-error', async () => {
     mocks.execSyncMock.mockReturnValue('same-head\n');
     mocks.getLastGitHeadMock.mockReturnValue('same-head');
@@ -1444,6 +1548,61 @@ describe('handleCodeGraphScan', () => {
     expect(payload.data.failedScan).toBeNull();
     expect(mocks.recordCandidateManifestMock).toHaveBeenCalledWith(mocks.getTrackedFilesMock.mock.results.at(-1)?.value);
     expect(mocks.setLastGitHeadMock).toHaveBeenCalledWith('same-head');
+  });
+
+  it('prioritizes structural persistence errors in failed scan metadata', async () => {
+    mocks.execSyncMock.mockReturnValue('same-head\n');
+    mocks.getLastGitHeadMock.mockReturnValue('same-head');
+    mocks.persistIndexedFileResultMock.mockImplementation((result) => {
+      if (result.filePath === '/workspace/structural.ts') {
+        throw new Error('database is locked');
+      }
+      if (result.parseHealth === 'error') {
+        mocks.recordParseDiagnosticMock(result.filePath, result.parseErrors.join('; '));
+      }
+    });
+    mocks.indexFilesMock.mockResolvedValue(withPreParseSkippedCount([
+      {
+        filePath: '/workspace/broken.ts',
+        language: 'typescript',
+        contentHash: 'hash-error',
+        nodes: [],
+        edges: [],
+        detectorProvenance: 'ast',
+        parseHealth: 'error',
+        parseDurationMs: 10,
+        parseErrors: ['Tree contains syntax errors (partial parse)'],
+      },
+      {
+        filePath: '/workspace/structural.ts',
+        language: 'typescript',
+        contentHash: 'hash-clean',
+        nodes: [{ symbolId: 'structural::symbol' }],
+        edges: [],
+        detectorProvenance: 'structured',
+        parseHealth: 'clean',
+        parseDurationMs: 10,
+        parseErrors: [],
+      },
+    ]));
+
+    const response = await handleCodeGraphScan({
+      rootDir: process.cwd(),
+      incremental: false,
+    });
+    const payload = JSON.parse(response.content[0].text) as {
+      status: string;
+      data: {
+        failedScan: { reason: string; errors: string[] };
+      };
+    };
+
+    expect(payload.status).toBe('ok');
+    expect(payload.data.failedScan.reason).toBe('structural_persistence_error');
+    expect(payload.data.failedScan.errors[0]).toContain('structural.ts: database is locked');
+    expect(payload.data.failedScan.errors.join('\n')).toContain('Tree contains syntax errors');
+    expect(mocks.setLastGitHeadMock).not.toHaveBeenCalled();
+    expect(mocks.recordCandidateManifestMock).not.toHaveBeenCalled();
   });
 
   it('exposes parse diagnostics in scan and status responses', async () => {

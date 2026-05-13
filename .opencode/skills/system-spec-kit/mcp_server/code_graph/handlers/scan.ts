@@ -48,6 +48,7 @@ export interface ScanResult {
   filesScanned: number;
   filesIndexed: number;
   filesSkipped: number;
+  parserSkipListBypassCount: number;
   totalNodes: number;
   totalEdges: number;
   errors: string[];
@@ -77,6 +78,7 @@ export interface ScanResult {
 }
 
 const DEFAULT_FATAL_PARSE_ERROR_RATIO = 0.5;
+const PARSER_SKIP_LIST_PREFIX = 'Parser skipped by skip-list';
 
 function summarizeDetectorProvenance(
   results: Array<{ detectorProvenance?: DetectorProvenance }>,
@@ -142,8 +144,35 @@ function summarizeGraphEdgeEnrichment(
   return best;
 }
 
-function countParseErrorFiles(results: Array<{ parseHealth: string; parseErrors: string[] }>): number {
-  return results.filter((result) => result.parseHealth === 'error' || result.parseErrors.length > 0).length;
+interface ParseErrorFileClassification {
+  cleanCount: number;
+  skipListBypassCount: number;
+  realErrorCount: number;
+}
+
+function classifyParseErrorFiles(
+  results: Array<{ parseHealth: string; parseErrors: string[] }>,
+): ParseErrorFileClassification {
+  return results.reduce<ParseErrorFileClassification>((counts, result) => {
+    const hasParseErrors = result.parseErrors.length > 0;
+    const hasOnlySkipListBypassErrors = hasParseErrors
+      && result.parseErrors.every((error) => error.startsWith(PARSER_SKIP_LIST_PREFIX));
+    const hasRealParseErrors = result.parseErrors.some((error) => !error.startsWith(PARSER_SKIP_LIST_PREFIX));
+
+    if (hasOnlySkipListBypassErrors) {
+      counts.skipListBypassCount++;
+    } else if (result.parseHealth === 'error' || hasRealParseErrors) {
+      counts.realErrorCount++;
+    } else {
+      counts.cleanCount++;
+    }
+
+    return counts;
+  }, {
+    cleanCount: 0,
+    skipListBypassCount: 0,
+    realErrorCount: 0,
+  });
 }
 
 function countPersistableNodes(results: Array<{ parseHealth: string; nodes: unknown[] }>): number {
@@ -328,14 +357,14 @@ export async function handleCodeGraphScan(args: ScanArgs): Promise<{ content: Ar
 
   const previousGitHead = graphDb.getLastGitHead();
   const currentGitHead = getCurrentGitHead(canonicalRootDir);
-  const fullReindexTriggered = incremental
-    && previousGitHead !== null
+  const gitHeadChanged = previousGitHead !== null
     && currentGitHead !== null
     && previousGitHead !== currentGitHead;
-  const effectiveIncremental = incremental && !fullReindexTriggered;
+  const fullReindexTriggered = false;
+  const effectiveIncremental = incremental;
 
-  if (fullReindexTriggered) {
-    console.error(`[code-graph-scan] Git HEAD changed (${previousGitHead} -> ${currentGitHead}); forcing full reindex`);
+  if (gitHeadChanged && incremental) {
+    console.error(`[code-graph-scan] Git HEAD changed (${previousGitHead} -> ${currentGitHead}); honoring incremental content-hash reindex`);
   }
 
   const results = await indexFiles(config, { skipFreshFiles: effectiveIncremental });
@@ -345,8 +374,13 @@ export async function handleCodeGraphScan(args: ScanArgs): Promise<{ content: Ar
   const priorStats = graphDb.getStats();
   const priorNodeCount = priorStats.totalNodes;
   const candidatePersistableNodeCount = countPersistableNodes(results);
-  const parseErrorCount = countParseErrorFiles(results);
-  const parseErrorRatio = computeParseErrorRatio(parseErrorCount, results.length);
+  const parseErrorClassification = classifyParseErrorFiles(results);
+  const parseErrorCount = parseErrorClassification.realErrorCount;
+  const parserSkipListBypassCount = parseErrorClassification.skipListBypassCount;
+  // Skip-list bypasses are intentionally not parsed, so exclude them from the
+  // ratio denominator. The fatal threshold should measure degradation among
+  // files the parser actually attempted, especially in narrow incremental scans.
+  const parseErrorRatio = computeParseErrorRatio(parseErrorCount, results.length - parserSkipListBypassCount);
   const severeParseErrorScan = parseErrorRatio > DEFAULT_FATAL_PARSE_ERROR_RATIO;
   const fullScan = !effectiveIncremental;
   const storedScope = graphDb.getStoredCodeGraphScope();
@@ -398,6 +432,7 @@ export async function handleCodeGraphScan(args: ScanArgs): Promise<{ content: Ar
             filesScanned: results.length,
             filesIndexed: 0,
             filesSkipped: preParseSkippedCount,
+            parserSkipListBypassCount,
             totalNodes: priorStats.totalNodes,
             totalEdges: priorStats.totalEdges,
             errors: results.flatMap((result) => {
@@ -473,6 +508,7 @@ export async function handleCodeGraphScan(args: ScanArgs): Promise<{ content: Ar
             filesScanned: results.length,
             filesIndexed: 0,
             filesSkipped: preParseSkippedCount,
+            parserSkipListBypassCount,
             totalNodes: priorStats.totalNodes,
             totalEdges: priorStats.totalEdges,
             errors: results.flatMap((result) => {
@@ -516,6 +552,7 @@ export async function handleCodeGraphScan(args: ScanArgs): Promise<{ content: Ar
   let totalEdges = 0;
   const errors: string[] = [];
   const structuralErrors: string[] = [];
+  const parserSkipWarnings: string[] = [];
 
   if (effectiveIncremental) {
     cleanupMissingTrackedFiles(graphDb.getTrackedFiles());
@@ -558,11 +595,28 @@ export async function handleCodeGraphScan(args: ScanArgs): Promise<{ content: Ar
 
     if (result.parseErrors.length > 0) {
       const filePath = relativize(result.filePath, canonicalWorkspace);
-      errors.push(...result.parseErrors.map(e => `${filePath}: ${e}`));
+      // Parser skip-list entries are the designed safety net for grammars that
+      // crash on certain inputs (B1: tree-sitter API quirk; B2: WASM trap).
+      // Route them to warnings so they do not pollute the error count or
+      // obscure real persistence failures in failedScan.errors.
+      for (const parseError of result.parseErrors) {
+        const message = `${filePath}: ${parseError}`;
+        if (parseError.includes('Parser skipped by skip-list')) {
+          parserSkipWarnings.push(message);
+        } else {
+          errors.push(message);
+        }
+      }
     }
   }
 
   const scanPromotable = !severeParseErrorScan && structuralErrors.length === 0;
+  const failedScanErrors = structuralErrors.length > 0
+    ? [
+        ...structuralErrors,
+        ...errors.filter((error) => !structuralErrors.includes(error)),
+      ].slice(0, 10)
+    : errors.slice(0, 10);
   const failedScan = scanPromotable
     ? null
     : graphDb.recordFailedScan({
@@ -575,7 +629,7 @@ export async function handleCodeGraphScan(args: ScanArgs): Promise<{ content: Ar
       currentGitHead,
       scopeFingerprint: scopePolicy.fingerprint,
       scopeLabel: scopePolicy.label,
-      errors: errors.slice(0, 10),
+      errors: failedScanErrors,
     });
 
   if (scanPromotable && filesIndexed > 0 && results.length > 0) {
@@ -593,11 +647,13 @@ export async function handleCodeGraphScan(args: ScanArgs): Promise<{ content: Ar
     graphDb.setCodeGraphScope(scopePolicy);
   }
 
-  // F-014-C4-03: refresh candidate manifest after a successful full scan so
+  // F-014-C4-03: refresh candidate manifest after a successful scan so
   // the next detectState() has a current baseline to compare against. Without
   // this, code_graph_status reports stale ("candidate manifest drift") on the
-  // very next call after an explicit user-triggered scan.
-  if (!effectiveIncremental && structuralErrors.length === 0 && !severeParseErrorScan) {
+  // very next call after an explicit user-triggered scan. Incremental scans
+  // also discover new indexable files via find-candidates, so refresh their
+  // manifest after successful promotion too.
+  if (scanPromotable) {
     try {
       recordCandidateManifest(graphDb.getTrackedFiles());
     } catch {
@@ -651,6 +707,7 @@ export async function handleCodeGraphScan(args: ScanArgs): Promise<{ content: Ar
     filesScanned: results.length,
     filesIndexed,
     filesSkipped,
+    parserSkipListBypassCount,
     totalNodes: responseTotalNodes,
     totalEdges: responseTotalEdges,
     errors: errors.slice(0, 10).map(error => relativizeScanError(error, canonicalWorkspace)),
@@ -672,8 +729,9 @@ export async function handleCodeGraphScan(args: ScanArgs): Promise<{ content: Ar
     failedScan,
     warnings: [
       ...(severeParseErrorScan
-        ? [`scan metadata promotion blocked: parse error ratio ${parseErrorRatio.toFixed(2)} exceeds ${DEFAULT_FATAL_PARSE_ERROR_RATIO}`]
+        ? [`scan metadata promotion blocked: real parse error ratio ${parseErrorRatio.toFixed(2)} exceeds ${DEFAULT_FATAL_PARSE_ERROR_RATIO}`]
         : []),
+      ...parserSkipWarnings.slice(0, 10),
       ...(results.warnings ?? []).map(warning => relativizeScanWarning(warning, canonicalWorkspace)),
     ],
     capExceeded: results.capExceeded ?? { maxNodes: false, depth: false, gitignoreSize: false },

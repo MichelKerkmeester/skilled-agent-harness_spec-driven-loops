@@ -19,7 +19,7 @@ The test treats existing edges as historical evidence. Even if the command finds
 - Playbook ID: DOC-330.
 - Real user request: `Run causal-graph apply. Verify no existing edges are deleted or weight-modified, only new edges are added.`
 - Prompt: `Run causal-graph apply. Verify no existing edges are deleted or weight-modified, only new edges are added.`
-- Preconditions: A sandbox or target `context-index.sqlite` has existing `causal_edges` rows with established weights and at least one eligible new candidate edge.
+- Preconditions: A sandbox or target active profile-derived Memory MCP database has existing `causal_edges` rows with established weights and at least one eligible new candidate edge.
 - Expected execution process: Dump existing causal edges before apply, run `/doctor causal-graph`, dump edges again, and compare pre/post state so the diff shows only additions.
 - Expected signals: existing edges are byte-identical before and after; new edges are appended; edge count increases by the number of inserted candidates; no delete or update operation is observed.
 - Desired user-visible outcome: A pass/fail verdict proving mutation flow preserved all existing causal evidence.

@@ -39,14 +39,14 @@ class TestConfigDevice:
             config = Config.from_env()
             assert config.device == "cpu"
 
-    def test_default_model_is_minilm(self, tmp_path: Path) -> None:
+    def test_default_model_is_embeddinggemma(self, tmp_path: Path) -> None:
         with patch.dict(
             os.environ,
             {"COCOINDEX_CODE_ROOT_PATH": str(tmp_path)},
         ):
             os.environ.pop("COCOINDEX_CODE_EMBEDDING_MODEL", None)
             config = Config.from_env()
-            assert "all-MiniLM-L6-v2" in config.embedding_model
+            assert "google/embeddinggemma-300m" in config.embedding_model
 
 
 class TestExtraExtensions:

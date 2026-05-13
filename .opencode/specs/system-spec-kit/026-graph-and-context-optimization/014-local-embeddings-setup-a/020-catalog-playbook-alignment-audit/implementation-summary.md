@@ -9,10 +9,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/020-catalog-playbook-alignment-audit"
-    last_updated_at: "2026-05-13T14:55:00Z"
-    last_updated_by: "opencode"
-    recent_action: "Applied embedding-doc follow-ups"
-    next_safe_action: "Review and commit the scoped documentation updates when ready"
+    last_updated_at: "2026-05-13T17:50:00Z"
+    last_updated_by: "claude"
+    recent_action: "Closed code-graph follow-ons and authored 026 inventory packet"
+    next_safe_action: "Restart MCP to load skip-list-warning routing and rejection-reason surfacing"
     blockers: []
     key_files:
       - "spec.md"
@@ -53,7 +53,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Created a Level 3 child phase packet that captures catalog/playbook alignment findings for local embedding defaults, then applied the approved documentation follow-ups. The packet records exact provider cascades, model IDs, target docs updated, caveat candidates, and non-impact surfaces without modifying runtime code.
+Created a Level 3 child phase packet that captures catalog/playbook alignment findings for local embedding defaults, then applied the approved documentation follow-ups. The packet records exact provider cascades, model IDs, target docs updated, caveat candidates, and non-impact surfaces. During verification, code graph refresh attempts exposed a separate stale/full-scan loop, so a targeted code graph scan remediation was also applied.
 
 ### Source-of-Truth Defaults Recorded
 
@@ -94,6 +94,14 @@ Created a Level 3 child phase packet that captures catalog/playbook alignment fi
 | No embedding-default update | system-spec-kit reranker docs | Keep reranker-specific; do not conflate reranker `llama-cpp` with embedding `llama-cpp`. |
 | Non-impact | Code Graph docs | Code Graph does not define embedding defaults. |
 | Non-impact or clarify | Skill Advisor docs | If touched, clarify `local/native` means scorer implementation, not embedding provider cascade. |
+
+### Code Graph Scan Remediation
+
+| Finding | Change | Verification |
+|---------|--------|--------------|
+| `code_graph_status` showed stale/full-scan readiness while stored-scope `code_graph_scan` timed out. | `code_graph_scan` no longer forces a full reindex solely because Git HEAD changed when the caller requested incremental scanning. | Focused scan test updated to assert `skipFreshFiles: true` is preserved across HEAD drift. |
+| Successful incremental scans did not refresh the candidate manifest. | Candidate manifest refresh now runs after any promotable scan, including incremental scans. | Focused scan tests assert manifest recording on incremental promotion. |
+| `last_failed_scan.reason=structural_persistence_error` hid the structural error behind parse-error entries. | Failed-scan metadata now lists structural persistence errors before parse-error diagnostics. | Added regression test for structural error ordering. |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -101,7 +109,7 @@ Created a Level 3 child phase packet that captures catalog/playbook alignment fi
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The child folder was scaffolded with the system-spec-kit Level 3 contract, populated with the requested audit findings, and then updated after the user approved all follow-ups. Verification uses strict spec validation, stale-default grep checks, and recorded code graph refresh attempts.
+The child folder was scaffolded with the system-spec-kit Level 3 contract, populated with the requested audit findings, and then updated after the user approved all follow-ups. Verification uses strict spec validation, stale-default grep checks, focused code graph scan tests, TypeScript typecheck, and recorded code graph refresh attempts.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -115,6 +123,7 @@ The child folder was scaffolded with the system-spec-kit Level 3 contract, popul
 | Treat Code Graph as non-impact | The dispatch states Code Graph does not define embedding defaults. |
 | Preserve reranker docs as reranker-specific | Reranker `llama-cpp` is not the memory embedding provider cascade. |
 | Apply approved follow-up edits in this packet | The user explicitly requested all follow-ups after the audit packet was created. |
+| Apply targeted code graph scan remediation | Verification found a concrete scan-refresh loop that blocked completing the graph refresh. |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -132,7 +141,13 @@ The child folder was scaffolded with the system-spec-kit Level 3 contract, popul
 | Strict validation | PASS after final run. |
 | Placeholder scan | PASS after final run. |
 | Stale default grep | PASS after final run for stale current-default/recommended wording. |
-| Code graph refresh | ATTEMPTED: stored-scope scans timed out twice; intermediate status showed `freshness: stale` with `selective_reindex` still required. |
+| Focused code graph scan regression | PASS: `npm exec -- vitest run code_graph/tests/code-graph-scan.vitest.ts` passed with 38 tests. |
+| TypeScript typecheck | PASS: `npm run typecheck` completed successfully. |
+| Code graph refresh | ATTEMPTED: stored-scope scans timed out before remediation; later status/query showed stale full-scan readiness because 60+ files were content-stale and the running MCP server still needs the patched scan path loaded. |
+| Code graph refresh post-remediation | PASS: after MCP restart, incremental scan completed in 8.3s and a full scan with `verify:true` in 143s with `failedScan: null`. |
+| Gold-verification battery | PASS: 28/28 probes (overall 1.0, edge-focus 1.0, all four categories at 1.0) after `code-graph-gold-queries.json` was rewritten to point each probe at the file that actually declares its expected symbols. |
+| Parser-skip-list noise routed to warnings | DIST READY (awaiting MCP restart): `scan.ts` now routes "Parser skipped by skip-list" entries into `warnings[]` instead of polluting `errors[]`. |
+| memory_index_scan rejection reason surfaced | DIST READY (awaiting MCP restart): `memory-index.ts` now includes `rejectionReason`, `rejectionCode`, and `error` in the per-file scan output when a save was rejected. |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -140,8 +155,8 @@ The child folder was scaffolded with the system-spec-kit Level 3 contract, popul
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **No runtime code was changed.** This packet only applies documentation and metadata follow-ups.
+1. **Embedding runtime code was not changed.** The only runtime code change is the targeted code graph scan remediation documented above.
 2. **Some older model names remain as documented alternatives.** `all-MiniLM-L6-v2` and `voyage-code-3` references are valid when clearly framed as alternatives, not current defaults.
-3. **Code Graph refresh remains unresolved.** Two stored-scope code graph scans timed out; the last successful status payload still reported stale readiness.
-4. **Code Graph and Skill Advisor remain non-impact.** They were not edited for embedding-provider defaults because they do not own those defaults.
+3. **Two further code-graph fixes await an MCP restart.** The parser-skip-list-to-warnings routing and the memory_index_scan rejection-reason surfacing are present in `mcp_server/dist/` but the running MCP process loaded its handlers before those edits landed. Restart picks them up.
+4. **Code Graph and Skill Advisor remain non-impact for embedding-provider defaults.** They were not edited for embedding-provider defaults because they do not own those defaults. The 026 packet (`026-llm-model-runtime-inventory`) documents which subsystems use the quantized vs CocoIndex Gemma variants vs no embeddings.
 <!-- /ANCHOR:limitations -->

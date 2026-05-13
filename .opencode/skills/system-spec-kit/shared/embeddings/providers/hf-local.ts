@@ -306,9 +306,8 @@ export class HfLocalProvider implements IEmbeddingProvider {
           console.error(`[hf-local] ${errMsg}`);
           console.error(`[hf-local] Running: Node ${process.version} (MODULE_VERSION ${process.versions.modules})`);
           console.error('[hf-local] Recovery options:');
-          console.error('[hf-local]   1. npm rebuild onnxruntime-node sharp');
-          console.error('[hf-local]   2. Clear cache: rm -rf ~/.cache/huggingface/hub/');
-          console.error('[hf-local]   3. Switch provider: EMBEDDINGS_PROVIDER=voyage');
+          console.error('[hf-local]   1. Clear cache: rm -rf ~/.cache/huggingface/hub/');
+          console.error('[hf-local]   2. Switch provider: EMBEDDINGS_PROVIDER=voyage');
           console.error('[hf-local] \u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550');
         }
 

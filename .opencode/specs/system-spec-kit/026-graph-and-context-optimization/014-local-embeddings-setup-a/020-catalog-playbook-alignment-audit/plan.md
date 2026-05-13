@@ -10,10 +10,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/020-catalog-playbook-alignment-audit"
-    last_updated_at: "2026-05-13T14:55:00Z"
+    last_updated_at: "2026-05-13T15:45:00Z"
     last_updated_by: "opencode"
-    recent_action: "Applied embedding-doc follow-ups"
-    next_safe_action: "Review and commit the scoped documentation updates when ready"
+    recent_action: "Applied code graph scan remediation follow-up"
+    next_safe_action: "Restart MCP server if needed, then rerun code_graph_scan"
     blockers: []
     key_files:
       - "spec.md"
@@ -45,14 +45,14 @@ _memory:
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | Markdown spec documentation |
+| **Language/Stack** | Markdown spec documentation plus TypeScript code graph handler/tests |
 | **Framework** | Spec Kit Level 3 packet under a phase parent |
 | **Storage** | File-backed spec folder metadata |
-| **Testing** | `validate.sh --strict` plus placeholder grep |
+| **Testing** | `validate.sh --strict`, focused Vitest, TypeScript typecheck, alignment drift |
 
 ### Overview
 
-Create a Level 3 child phase that records audit findings for stale feature catalog and manual testing playbook expectations after local embedding defaults changed, then apply the approved documentation follow-ups. The plan remains documentation-only: it updates docs and metadata without touching runtime code.
+Create a Level 3 child phase that records audit findings for stale feature catalog and manual testing playbook expectations after local embedding defaults changed, then apply the approved documentation follow-ups. Verification exposed a separate code graph scan refresh loop, so this packet now includes a targeted TypeScript follow-up for `code_graph_scan` and its focused tests.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -64,13 +64,14 @@ Create a Level 3 child phase that records audit findings for stale feature catal
 - [x] Problem statement clear and scope documented.
 - [x] Success criteria measurable.
 - [x] Dependencies identified: dispatch-supplied source-of-truth defaults and exact target file list.
-- [x] Write boundary confirmed: only files under the `020-catalog-playbook-alignment-audit` child folder.
+- [x] Write boundary confirmed: docs in the approved follow-up set plus targeted code graph scan handler/test remediation.
 
 ### Definition of Done
 - [x] All acceptance criteria captured in `spec.md`.
 - [x] P0/P1 and P2/P3 findings mapped to concrete follow-on actions.
 - [x] Approved catalog/playbook and related reference docs are updated.
 - [x] Strict validation and placeholder checks run.
+- [x] Focused code graph scan test and TypeScript typecheck run after runtime remediation.
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -108,6 +109,7 @@ Dispatch findings feed this packet. The approved follow-up edits update catalog/
 | system-spec-kit reranker docs | Reranker-specific `llama-cpp` context. | No embedding-default update. | Preserve distinction between reranker backend and embedding provider cascade. |
 | Code Graph docs | Structural graph, no embedding defaults. | Non-impact. | No update required. |
 | Skill Advisor docs | Local/native scorer implementation language. | Non-impact unless caveat is needed. | Clarify `local/native` means scorer implementation, not embedding provider cascade. |
+| code graph scan handler | Explicit scan path for stale structural graph refresh. | Runtime remediation. | Incremental scans now stay incremental across Git HEAD drift, refresh candidate manifests after promotion, and report structural persistence errors first. |
 <!-- /ANCHOR:affected-surfaces -->
 
 ---
@@ -138,6 +140,13 @@ Dispatch findings feed this packet. The approved follow-up edits update catalog/
 - [x] Run placeholder marker check.
 - [x] Verify stale default wording is removed from current-default claims.
 - [x] Attempt code graph refresh and record stale/timeout status.
+
+### Phase 5: Code Graph Scan Remediation
+- [x] Diagnose stale/timing-out code graph refresh behavior.
+- [x] Update `code_graph_scan` to honor incremental scans across Git HEAD drift.
+- [x] Refresh candidate manifest after successful incremental scans.
+- [x] Prioritize structural persistence errors in failed-scan metadata.
+- [x] Add focused regression tests and run TypeScript typecheck.
 <!-- /ANCHOR:phases -->
 
 ---
@@ -151,6 +160,8 @@ Dispatch findings feed this packet. The approved follow-up edits update catalog/
 | Placeholder scan | Obvious scaffold markers and sample text | `grep`/Python text scan over child folder markdown |
 | Scope verification | Ensure only documentation/metadata files changed for this follow-up | Git diff review outside target scope |
 | Manual content check | Source-of-truth defaults and target path matrix | Human review against dispatch findings |
+| Code graph regression | Incremental HEAD drift and failed-scan metadata ordering | `npm exec -- vitest run code_graph/tests/code-graph-scan.vitest.ts` |
+| Type safety | TypeScript compile contract | `npm run typecheck` |
 <!-- /ANCHOR:testing -->
 
 ---

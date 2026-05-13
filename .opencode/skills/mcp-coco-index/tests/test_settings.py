@@ -47,7 +47,7 @@ def _patch_user_dir(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
 def test_default_user_settings() -> None:
     s = default_user_settings()
     assert s.embedding.provider == "sentence-transformers"
-    assert "all-MiniLM-L6-v2" in s.embedding.model
+    assert "google/embeddinggemma-300m" in s.embedding.model
     assert s.embedding.device is None
     assert s.envs == {}
 

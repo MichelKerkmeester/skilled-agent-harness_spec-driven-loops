@@ -74,7 +74,7 @@
     },
     {
       "id": 9,
-      "content": "Vector embeddings use 384 dimensions for semantic search",
+      "content": "Vector embeddings use 768 dimensions for semantic search",
       "summary": "Embedding dimensions",
       "importance": 3,
       "stability": 10.0,
