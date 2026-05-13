@@ -12,7 +12,8 @@
     "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/006-bge-m3-hybrid-evaluation",
     "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/007-voyage-cleanup-and-egress-monitoring",
     "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/008-finalize-and-commit",
-    "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/009-cocoindex-ipc-fix"
+    "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/009-cocoindex-ipc-fix",
+    "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/010-cocoindex-code-only-patterns"
   ],
   "manual": {
     "depends_on": [],

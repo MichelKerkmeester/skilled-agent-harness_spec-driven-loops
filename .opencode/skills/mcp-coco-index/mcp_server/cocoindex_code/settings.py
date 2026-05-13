@@ -39,12 +39,15 @@ DEFAULT_INCLUDED_PATTERNS: list[str] = [
     "**/*.sh",  # Shell
     "**/*.bash",  # Bash
     "**/*.zsh",  # Zsh
-    "**/*.md",  # Markdown
-    "**/*.mdx",  # MDX
-    "**/*.txt",  # Plain text
-    "**/*.rst",  # reStructuredText
     "**/*.php",  # PHP
     "**/*.lua",  # Lua
+    # 014-local-embeddings-setup-a / 010-cocoindex-code-only-patterns:
+    # markdown / mdx / txt / rst REMOVED from defaults — cocoindex is for CODE
+    # search; documentation is indexed by spec-kit-memory which has its own
+    # vec store and routing. Keeping docs here caused 4-runtime-mirror
+    # duplication (every SKILL.md indexed 4x) and ~45% of the index volume
+    # was non-code content. Spec-folder content was already excluded; this
+    # removes the remaining doc-format defaults.
 ]
 
 DEFAULT_EXCLUDED_PATTERNS: list[str] = [
