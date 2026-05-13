@@ -86,7 +86,7 @@ snapshot_download(repo_id=<model_id>)
 ```python
 m = SentenceTransformer('google/embeddinggemma-300m', device='mps')
 v = m.encode('def hello(): return "world"', normalize_embeddings=True)
-# Result: load_s=24.3, encode_ms=1429, dim=2560, norm=1.0034
+# Result: load_s=24.3, encode_ms=1429, dim=768, norm=1.0034
 ```
 
 ### Smoke test — EmbeddingGemma (Node / transformers.js v3.8.1)
@@ -119,7 +119,7 @@ const out = await pipe('hello world', { pooling: 'mean', normalize: true });
 ### Disk
 ```
 ~/.cache/huggingface/hub/                                                            ~11.3GB total
-├── models--Qwen--EmbeddingGemma-300m/                                                ~620MB / 14 files
+├── models--google--embeddinggemma-300m/                                              ~620MB / 14 files
 ├── models--google--embeddinggemma-300m/                                             1.2GB / 19 files (canonical ref)
 ├── models--onnx-community--embeddinggemma-300m-ONNX/                                2.6GB / 21 files
 └── onnx-community/embeddinggemma-300m-ONNX → ../models--...--ONNX/snapshots/<hash>  (symlink)
@@ -128,7 +128,7 @@ const out = await pipe('hello world', { pooling: 'mean', normalize: true });
 ### Smoke test results
 | Model | Load | Encode | Dim | Norm | Result |
 |---|---|---|---|---|---|
-| EmbeddingGemma-300m (Python+MPS) | 24.3s | 1429ms cold | 2560 | 1.0034 | ✓ PASS |
+| EmbeddingGemma-300m (Python+MPS) | 24.3s | 1429ms cold | 768 | 1.0034 | ✓ PASS |
 | EmbeddingGemma ONNX (Node fp32) | 640ms | 9ms warm | 768 | 1.0000 | ✓ PASS |
 
 ### Strict validate

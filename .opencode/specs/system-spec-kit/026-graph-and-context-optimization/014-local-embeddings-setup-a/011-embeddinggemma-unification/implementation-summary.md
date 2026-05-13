@@ -13,10 +13,9 @@ _memory:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/011-embeddinggemma-unification"
     last_updated_at: "2026-05-13T07:35:00Z"
     last_updated_by: "codex-gpt-5"
-    recent_action: "Gemma unification in progress"
-    next_safe_action: "Resolve Codex config write blocker"
-    blockers:
-      - ".codex/config.toml is read-only to this sandbox"
+    recent_action: "All edits shipped + .codex/config.toml fixed by main agent"
+    next_safe_action: "Use 012 for v3 remediation follow-up"
+    blockers: []
     key_files:
       - "spec.md"
       - "plan.md"
@@ -26,7 +25,7 @@ _memory:
       fingerprint: "sha256:0140110c2a9e0000000000000000000000000000000000000000000000000004"
       session_id: "014-011-embeddinggemma-2026-05-13"
       parent_session_id: null
-    completion_pct: 70
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "Gate 3 folder? -> User pre-answered existing 014/011"
@@ -45,9 +44,9 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 011-embeddinggemma-unification |
-| **Completed** | pending - blocked on `.codex/config.toml` write access |
+| **Completed** | 2026-05-13 |
 | **Level** | 1 |
-| **Status** | In Progress (70%) - source defaults patched; docs/sweep/validation pending |
+| **Status** | Complete (shipped 2026-05-13 in commit d76f3b795) |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -57,7 +56,7 @@ _memory:
 
 The embedding defaults now point at EmbeddingGemma at the editable source layers:
 
-- Memory side: `onnx-community/embeddinggemma-300m-ONNX`, hf-local, 768 dims, fp32 default in transformers.js/ONNX.
+- Memory side: `onnx-community/embeddinggemma-300m-ONNX`, hf-local, 768 dims, q8 default after 012.
 - CocoIndex side: `google/embeddinggemma-300m`, sentence-transformers, 768 dims, bf16 as loaded from the safetensors metadata.
 
 CocoIndex keeps the query prompt mapping already added by the main agent: `google/embeddinggemma-300m -> InstructionRetrieval`, which resolves to `task: code retrieval | query: `. Document prompts are not applied because the CocoIndex daemon path does not expose asymmetric query/document prompt hooks. That means indexed documents remain unprefixed. This is suboptimal compared with a true asymmetric EmbeddingGemma setup, but acceptable for the current quiet/default profile.
@@ -70,7 +69,7 @@ CocoIndex keeps the query prompt mapping already added by the main agent: `googl
 | `cocoindex_code/settings.py` | Modified | New generated/default user setting `google/embeddinggemma-300m` + `sentence-transformers` |
 | `hf-local.ts` | Modified | New ONNX EmbeddingGemma default for memory |
 | `factory.ts` | Modified | hf-local provider-default metadata now matches ONNX EmbeddingGemma |
-| Runtime configs except `.codex/config.toml` | Modified | Notes now describe Gemma defaults |
+| Runtime configs | Modified | Notes now describe Gemma defaults |
 | `011/*.md` + metadata | Created | Level-1 packet docs |
 <!-- /ANCHOR:what-built -->
 
@@ -105,9 +104,9 @@ Main-agent execution in the shared workspace. The dedicated patch tool rejected 
 | Dedicated patch tool | `apply_patch` with workspace-relative paths | BLOCKED - rejected as outside project |
 | Codex config write | `touch .codex/.write-test`; direct write to `.codex/config.toml` | BLOCKED - EPERM |
 | Source default diff | `git diff -- config.py settings.py hf-local.ts factory.ts` | PASS - expected defaults changed |
-| Shared TypeScript build | `cd .opencode/skills/system-spec-kit/shared && npx tsc --build` | pending |
-| Legacy model sweep | targeted `rg` over active legacy code-side default strings | pending |
-| Strict validate | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <packet> --strict` | pending |
+| Shared TypeScript build | `cd .opencode/skills/system-spec-kit/shared && npx tsc --build` | PASS |
+| Legacy model sweep | targeted `rg` over active legacy code-side default strings | PASS - only historical/registry mentions remain |
+| Strict validate | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <packet> --strict` | PASS |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -115,7 +114,7 @@ Main-agent execution in the shared workspace. The dedicated patch tool rejected 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **`.codex/config.toml` is read-only in this sandbox.** Both temp-file in-place edit and direct write return EPERM; even creating `.codex/.write-test` fails. This blocks a fully shipped state until patched outside this sandbox or permissions change.
+1. **Prior `.codex/config.toml` write blocker is resolved for 011.** The main agent patched the file outside the previous sandbox on 2026-05-13; 012 records the new q8 launcher-parity patch separately.
 2. **CocoIndex document-side prompt is unprefixed.** Query prompt is set through `InstructionRetrieval`, but doc prompts are not supported by the daemon.
 3. **Gemma is the quiet default, not necessarily the strongest code model.** Qwen remains available as an explicit recognized model for users willing to pay the RAM/indexing cost.
 <!-- /ANCHOR:limitations -->

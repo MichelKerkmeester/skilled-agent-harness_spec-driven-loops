@@ -42,7 +42,7 @@ _memory:
 |--------|-------|
 | **Language/Stack** | Python 3.11 (sentence-transformers for both models, sqlite-vec for KNN, RRF fusion via Reciprocal Rank Fusion) |
 | **Framework** | Standalone harness in `006/scratch/run-eval.py`; uses cocoindex's query path post-009 |
-| **Storage** | Three sqlite-vec DBs: existing target_sqlite.db (Qwen3 768-dim), bge-m3-dense.sqlite (1024-dim), bge-m3-hybrid.sqlite (multi-vec) |
+| **Storage** | Three sqlite-vec DBs: existing target_sqlite.db (EmbeddingGemma-300m 768-dim), bge-m3-dense.sqlite (1024-dim), bge-m3-hybrid.sqlite (multi-vec) |
 | **Testing** | Manual eval run; MRR@10 + NDCG@10 against hand-labeled set |
 
 ### Overview
@@ -113,7 +113,7 @@ Eval-set + 3 indexes → per-query top-10 retrieval → per-query score → mean
 ### Phase 3: Decide
 - [ ] Compare deltas
 - [ ] If hybrid bge-m3 beats EmbeddingGemma-dense by ≥5pp MRR@10 → recommend ship + open follow-on for schema work
-- [ ] Otherwise → recommend status quo (stay on Qwen3)
+- [ ] Otherwise → recommend status quo (stay on EmbeddingGemma-300m baseline)
 - [ ] Document in implementation-summary
 - [ ] Strict validate exits 0
 <!-- /ANCHOR:phases -->
@@ -146,6 +146,6 @@ Eval-set + 3 indexes → per-query top-10 retrieval → per-query score → mean
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: Eval results show bge-m3 ≪ Qwen3, but a stakeholder still wants the schema change
+- **Trigger**: Eval results show bge-m3 ≪ EmbeddingGemma-300m baseline, but a stakeholder still wants the schema change
 - **Procedure**: Decision is documented; schema work is its own packet anyway. Nothing to roll back in 006.
 <!-- /ANCHOR:rollback -->

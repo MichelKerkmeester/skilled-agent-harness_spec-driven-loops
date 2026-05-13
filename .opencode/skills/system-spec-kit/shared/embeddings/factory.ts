@@ -2,7 +2,7 @@
 // MODULE: Factory
 // ---------------------------------------------------------------
 
-import { HfLocalProvider } from './providers/hf-local.js';
+import { HfLocalProvider, resolveDtype as resolveHfLocalDtype } from './providers/hf-local.js';
 import { OpenAIProvider, MODEL_DIMENSIONS as OPENAI_MODEL_DIMENSIONS } from './providers/openai.js';
 import { EmbeddingProfile } from './profile.js';
 import { VoyageProvider, MODEL_DIMENSIONS as VOYAGE_MODEL_DIMENSIONS, resolveVoyageBaseUrl } from './providers/voyage.js';
@@ -112,6 +112,22 @@ function warnIfVoyageDriftDetected(effectiveProvider: string): void {
   }
 }
 
+function warnIfVoyageWouldShadowLocal(explicitProvider: string | null): void {
+  if (voyageDriftWarned) {
+    return;
+  }
+  if (explicitProvider === 'voyage') {
+    return;
+  }
+  if (process.env.VOYAGE_API_KEY && (!explicitProvider || explicitProvider === 'auto')) {
+    voyageDriftWarned = true;
+    console.warn(
+      '[factory] VOYAGE_API_KEY is set and EMBEDDINGS_PROVIDER=auto will resolve to Voyage. ' +
+      'Set EMBEDDINGS_PROVIDER=hf-local explicitly to force local, or unset VOYAGE_API_KEY.',
+    );
+  }
+}
+
 const DEFAULT_PROVIDER_MODELS: Readonly<Record<SupportedProviderName, string>> = {
   voyage: 'voyage-4',
   openai: 'text-embedding-3-small',
@@ -202,6 +218,7 @@ function buildProviderConfigFingerprint(provider: string): string {
     VOYAGE_EMBEDDINGS_MODEL: process.env.VOYAGE_EMBEDDINGS_MODEL || '',
     OPENAI_EMBEDDINGS_MODEL: process.env.OPENAI_EMBEDDINGS_MODEL || '',
     HF_EMBEDDINGS_MODEL: process.env.HF_EMBEDDINGS_MODEL || '',
+    HF_EMBEDDINGS_DTYPE: process.env.HF_EMBEDDINGS_DTYPE || '',
   });
 }
 
@@ -262,6 +279,7 @@ function getProviderInfoForResolution(resolution: ProviderResolution): ProviderI
 export function validateConfiguredEmbeddingsProvider(value: string | undefined = process.env.EMBEDDINGS_PROVIDER): ConfiguredProviderName | null {
   const normalized = normalizeProviderName(value);
   if (!normalized) {
+    warnIfVoyageWouldShadowLocal(null);
     return null;
   }
 
@@ -270,6 +288,7 @@ export function validateConfiguredEmbeddingsProvider(value: string | undefined =
     throw new Error(`Invalid EMBEDDINGS_PROVIDER "${value}". Supported: ${SUPPORTED_PROVIDERS.join(', ')}`);
   }
 
+  warnIfVoyageWouldShadowLocal(normalized);
   return normalized;
 }
 
@@ -309,6 +328,7 @@ function resolveStartupEmbeddingDimension(resolution: ProviderResolution): numbe
 }
 
 export function getStartupEmbeddingDimension(): number {
+  warnIfVoyageWouldShadowLocal(validateConfiguredEmbeddingsProvider());
   return resolveStartupEmbeddingDimension(resolveProvider());
 }
 
@@ -322,6 +342,7 @@ export function getStartupEmbeddingProfile(): EmbeddingProfile {
     provider,
     model,
     dim,
+    dtype: provider === 'hf-local' ? resolveHfLocalDtype() : null,
     baseUrl: provider === 'voyage' ? resolveVoyageBaseUrl() : null,
   });
 }

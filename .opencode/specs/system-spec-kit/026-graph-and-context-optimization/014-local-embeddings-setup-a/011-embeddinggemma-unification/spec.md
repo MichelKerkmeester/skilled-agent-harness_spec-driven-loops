@@ -13,10 +13,9 @@ _memory:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/011-embeddinggemma-unification"
     last_updated_at: "2026-05-13T07:35:00Z"
     last_updated_by: "codex-gpt-5"
-    recent_action: "Gemma unification in progress"
-    next_safe_action: "Resolve Codex config write blocker"
-    blockers:
-      - ".codex/config.toml is read-only to this sandbox"
+    recent_action: "All edits shipped + .codex/config.toml fixed by main agent"
+    next_safe_action: "Use 012 for v3 remediation follow-up"
+    blockers: []
     key_files:
       - "spec.md"
       - "plan.md"
@@ -26,7 +25,7 @@ _memory:
       fingerprint: "sha256:0140110c2a9e0000000000000000000000000000000000000000000000000001"
       session_id: "014-011-embeddinggemma-2026-05-13"
       parent_session_id: null
-    completion_pct: 70
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "Gate 3 folder? -> User pre-answered existing 014/011"
@@ -45,11 +44,11 @@ _memory:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P0 |
-| **Status** | In Progress (source/config/docs patched except Codex config blocker) |
+| **Status** | Complete (shipped 2026-05-13 in commit d76f3b795) |
 | **Created** | 2026-05-13 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 11 of 11 |
+| **Phase** | 11 of 12 |
 | **Predecessor** | 004-vec-store-rebuild + 009-cocoindex-ipc-fix + 010-cocoindex-code-only-patterns |
 | **Successor** | None |
 | **Handoff Criteria** | Both embedding surfaces default to EmbeddingGemma; Qwen3 active references are purged except recognized-model registries; strict validation passes |
@@ -140,7 +139,7 @@ Make EmbeddingGemma the default everywhere new clones read their embedding defau
 ## 5. SUCCESS CRITERIA
 
 - **SC-001**: New clones default to EmbeddingGemma on both memory and CocoIndex surfaces without user-specific local config
-- **SC-002**: Memory uses `onnx-community/embeddinggemma-300m-ONNX`, fp32 default, 768 dims
+- **SC-002**: Memory uses `onnx-community/embeddinggemma-300m-ONNX`, q8 default after 012, 768 dims
 - **SC-003**: CocoIndex uses `google/embeddinggemma-300m`, sentence-transformers bf16 safetensors load, 768 dims
 - **SC-004**: CocoIndex applies the `InstructionRetrieval` query prompt mode and does not apply a document prompt
 - **SC-005**: Strict validation exits 0 for 011 and parent 014
@@ -155,7 +154,7 @@ Make EmbeddingGemma the default everywhere new clones read their embedding defau
 |------|------|--------|------------|
 | Risk | Gemma recall is lower than Qwen3 on code | Med | Acceptable trade-off for quiet local default; Qwen entries stay recognized for explicit opt-in |
 | Risk | CocoIndex lacks asymmetric doc prompts | Med | Query prompt is applied; doc side remains unprefixed and documented as known suboptimal |
-| Risk | Repo-local `.codex/` is write-blocked | High | Record blocker in 011 scratch; all other config surfaces updated |
+| Risk | Repo-local `.codex/` is write-blocked | Resolved | Main agent patched `.codex/config.toml` outside the prior sandbox on 2026-05-13 |
 | Dependency | TypeScript build available | Med | Run `npx tsc --build` from shared package after source edits |
 <!-- /ANCHOR:risks -->
 
@@ -164,5 +163,5 @@ Make EmbeddingGemma the default everywhere new clones read their embedding defau
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Can the sandbox be allowed to write `.codex/config.toml`, or should that one config file be patched manually outside this session?
+(none)
 <!-- /ANCHOR:questions -->

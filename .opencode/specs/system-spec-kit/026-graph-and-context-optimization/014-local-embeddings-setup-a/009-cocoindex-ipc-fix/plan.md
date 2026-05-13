@@ -77,13 +77,13 @@ Diagnostic-first; fix-smallest. Three layers in scope:
 3. **Client (`cocoindex_code/client.py`)** — recv_bytes + decode_response
 
 ### Key Components
-- **`registry.search()`** — calls `query_codebase()` in `query.py`; uses `embedder.embed()` for query-side embedding (Qwen3 via sentence-transformers); top-K KNN against `code_chunks_vec`
+- **`registry.search()`** — calls `query_codebase()` in `query.py`; uses `embedder.embed()` for query-side embedding (EmbeddingGemma-300m via sentence-transformers); top-K KNN against `code_chunks_vec`
 - **`SearchResponse(success, results, total_returned, offset, dedupedAliases, uniqueResultCount, message)`** — see `protocol.py:107`. `results: list[SearchResult]` where each SearchResult includes a `content: str` field that can be sizable
 - **`encode_request` / `decode_response`** — msgspec.json or msgpack wrappers; tag-discriminated union
 - **`multiprocessing.connection.Connection.send_bytes/recv_bytes`** — 4-byte length prefix on macOS Unix sockets
 
 ### Data Flow
-Search call → client.send_bytes(SearchRequest) → daemon.recv_bytes → daemon dispatches → daemon embeds query via Qwen3 → daemon runs KNN against code_chunks_vec → daemon builds SearchResponse with N SearchResult entries → msgspec encode → daemon.send_bytes → client.recv_bytes → msgspec decode_response → return to caller. The truncation appears at the final decode step.
+Search call → client.send_bytes(SearchRequest) → daemon.recv_bytes → daemon dispatches → daemon embeds query via EmbeddingGemma-300m → daemon runs KNN against code_chunks_vec → daemon builds SearchResponse with N SearchResult entries → msgspec encode → daemon.send_bytes → client.recv_bytes → msgspec decode_response → return to caller. The truncation appears at the final decode step.
 <!-- /ANCHOR:architecture -->
 
 ---

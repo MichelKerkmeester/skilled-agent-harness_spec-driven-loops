@@ -1,13 +1,13 @@
-# Setup A Recipe — Local Embeddings (EmbeddingGemma + Qwen3)
+# Setup A Recipe — Local Embeddings (EmbeddingGemma q8)
 
-This packet does NOT bake user-specific model choices into committed configs. New users get safe defaults out-of-box (Nomic-text-v1.5 768d for memory, all-MiniLM-L6-v2 384d for code — both small, open, auto-downloads on first use).
+Setup A is now the shipped default for new clones. Committed launcher configs keep `EMBEDDINGS_PROVIDER=auto`, but the memory-side hf-local fallback is `onnx-community/embeddinggemma-300m-ONNX` at q8 by default, and the code side defaults to `sbert/google/embeddinggemma-300m`.
 
-To activate Setup A on your machine, follow this recipe. Setup A swaps both vec stores to bigger/stronger local models:
+Use this recipe when setting up the local HuggingFace cache or when opting into a different dtype/model locally:
 
 | Surface | Default | Setup A |
 |---|---|---|
-| Memory (Spec Kit Memory MCP) | `nomic-ai/nomic-embed-text-v1.5` (768d, ~270MB) | `onnx-community/embeddinggemma-300m-ONNX` (768d, ~620MB fp32 / ~190MB Q4) |
-| Code (CocoIndex MCP) | `sbert/sentence-transformers/all-MiniLM-L6-v2` (384d, ~90MB) | `sbert/google/embeddinggemma-300m` (768d, ~620MB fp16 on Metal) |
+| Memory (Spec Kit Memory MCP) | `onnx-community/embeddinggemma-300m-ONNX` (768d, q8, ~310MB) | Optional `.env.local` override to fp32/q4 or another registered model |
+| Code (CocoIndex MCP) | `sbert/google/embeddinggemma-300m` (768d, bf16 on Metal) | Optional `COCOINDEX_CODE_EMBEDDING_MODEL` override |
 
 ## Prerequisites
 
@@ -55,9 +55,11 @@ ln -sfn "$PWD/$SNAPSHOT" "$PWD/onnx-community/embeddinggemma-300m-ONNX"
 
 ```bash
 cat > .env.local << 'EOF'
-HF_EMBEDDINGS_MODEL=onnx-community/embeddinggemma-300m-ONNX
-EMBEDDING_DIM=768
-COCOINDEX_CODE_EMBEDDING_MODEL=sbert/google/embeddinggemma-300m
+# Defaults are already committed; include only overrides you need.
+# HF_EMBEDDINGS_DTYPE=q8       # default; use fp32 for full precision or q4 for smallest RAM
+# HF_EMBEDDINGS_MODEL=onnx-community/embeddinggemma-300m-ONNX
+# EMBEDDING_DIM=768
+# COCOINDEX_CODE_EMBEDDING_MODEL=sbert/google/embeddinggemma-300m
 EOF
 ```
 
@@ -78,7 +80,7 @@ Delete the stale CocoIndex index (it was built with a different dim — 384d for
 rm -f .cocoindex_code/target_sqlite.db
 ```
 
-Memory side: nothing to delete — filename keys by provider+model+dim, so Setup A creates a new `context-index__hf-local__onnx-community__embeddinggemma-300m-ONNX__768.sqlite` file automatically.
+Memory side: nothing to delete — filename keys by provider+model+dim+dtype, so Setup A creates a new `context-index__hf-local__onnx-community__embeddinggemma-300m-ONNX__768__q8.sqlite` file automatically. Switching to fp32 creates a separate `__fp32.sqlite` file instead of mixing vectors.
 
 Trigger reindex via MCP tools (Claude Code / OpenCode):
 - `memory_index_scan({force: true})` — repopulates ~5k spec-doc rows
@@ -88,14 +90,14 @@ Trigger reindex via MCP tools (Claude Code / OpenCode):
 
 ```bash
 # Memory dim is 768 (Gemma native)
-ls .opencode/skills/system-spec-kit/mcp_server/database/context-index__hf-local__onnx-community__embeddinggemma-300m-ONNX__768.sqlite
+ls .opencode/skills/system-spec-kit/mcp_server/database/context-index__hf-local__onnx-community__embeddinggemma-300m-ONNX__768__q8.sqlite
 
 # CocoIndex DB grows from 0 toward ~6-~1.3GB during reindex (768d × ~30k chunks × 4 bytes)
 du -sh .cocoindex_code/target_sqlite.db
 ```
 
 In your MCP-enabled runtime, run:
-- `memory_health()` → expect `provider=hf-local`, `model=onnx-community/embeddinggemma-300m-ONNX`, `dim=768`
+- `memory_health()` → expect `provider=hf-local`, `model=onnx-community/embeddinggemma-300m-ONNX`, `dim=768`, `dtype=q8`
 - `memory_search("known trigger")` → expect <30ms p95, top-1 hit
 - `cocoindex_code.search("known function name")` → expect <100ms p95
 
@@ -114,18 +116,18 @@ The PREFIX_REGISTRY in `.opencode/skills/system-spec-kit/shared/embeddings/provi
 
 For an unregistered model, set `HF_EMBEDDINGS_PREFIX_DOC` and `HF_EMBEDDINGS_PREFIX_QUERY` in `.env.local` as needed (empty string = "no prefix" explicitly).
 
-For CocoIndex (code side), any sentence-transformers-compatible model with `sbert/` prefix works. The `_QUERY_PROMPT_MODELS` dict in `mcp-coco-index/mcp_server/cocoindex_code/shared.py` ships prompt-name shortcuts for Nomic-embed-code, CodeRankEmbed, and Qwen3-Embedding sizes — override with `COCOINDEX_QUERY_PROMPT_NAME` if needed.
+For CocoIndex (code side), any sentence-transformers-compatible model with `sbert/` prefix works. The `_QUERY_PROMPT_MODELS` dict in `mcp-coco-index/mcp_server/cocoindex_code/shared.py` ships prompt-name shortcuts for EmbeddingGemma, Nomic-embed-code, CodeRankEmbed, and Qwen3-Embedding sizes — override with `COCOINDEX_QUERY_PROMPT_NAME` if needed.
 
 ## Rollback to defaults
 
 ```bash
 mv .env.local .env.local.disabled
 # Restart your MCP runtime
-# MCP servers fall back to Nomic-text-v1.5 (memory) + MiniLM (code) — both auto-download if absent
+# MCP servers fall back to committed EmbeddingGemma defaults — both auto-download if absent and HF access is available
 ```
 
 The Setup A vec stores stay on disk; they just become orphaned (~~1.3GB). Delete manually if you want the space back:
 ```bash
-rm -f .opencode/skills/system-spec-kit/mcp_server/database/context-index__hf-local__onnx-community__embeddinggemma-300m-ONNX__768.sqlite*
-rm -f .cocoindex_code/target_sqlite.db  # if currently on Setup A's 768d Qwen index
+rm -f .opencode/skills/system-spec-kit/mcp_server/database/context-index__hf-local__onnx-community__embeddinggemma-300m-ONNX__768__q8.sqlite*
+rm -f .cocoindex_code/target_sqlite.db  # if currently on Setup A's 768d EmbeddingGemma index
 ```

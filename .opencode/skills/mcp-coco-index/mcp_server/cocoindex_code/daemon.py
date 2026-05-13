@@ -173,6 +173,21 @@ class SearchOnlyContext:
         return self._values[key]
 
 
+def _validate_project_root(claimed: str) -> str:
+    """Resolve and constrain client-supplied project roots to the user's home."""
+    raw_path = Path(claimed).expanduser()
+    if ".." in raw_path.parts:
+        raise ValueError(f"project_root must not contain '..' segments: rejected {claimed}")
+
+    project_root = raw_path.resolve()
+    home = Path.home().resolve()
+    try:
+        project_root.relative_to(home)
+    except ValueError as exc:
+        raise ValueError(f"project_root must be inside home: rejected {project_root}") from exc
+    return str(project_root)
+
+
 # ---------------------------------------------------------------------------
 # Daemon paths
 # ---------------------------------------------------------------------------
@@ -386,6 +401,7 @@ class ProjectRegistry:
         offset: int = 0,
     ) -> SearchResults:
         """Search within a project."""
+        project_root = _validate_project_root(project_root)
         root = Path(project_root)
         target_db = root / ".cocoindex_code" / "target_sqlite.db"
         project = self._projects.get(project_root)
@@ -437,10 +453,42 @@ class ProjectRegistry:
 
     def get_status(self, project_root: str) -> ProjectStatusResponse:
         """Get index stats for a project."""
+        project_root = _validate_project_root(project_root)
         project = self._projects.get(project_root)
         if project is None:
+            target_db = Path(project_root) / ".cocoindex_code" / "target_sqlite.db"
+            if target_db.exists():
+                try:
+                    import sqlite_vec
+
+                    conn = sqlite3.connect(f"file:{target_db}?mode=ro", uri=True)
+                    try:
+                        conn.enable_load_extension(True)
+                        sqlite_vec.load(conn)
+                        total_chunks = conn.execute("SELECT COUNT(*) FROM code_chunks_vec").fetchone()[0]
+                        total_files = conn.execute(
+                            "SELECT COUNT(DISTINCT file_path) FROM code_chunks_vec"
+                        ).fetchone()[0]
+                        lang_rows = conn.execute(
+                            "SELECT language, COUNT(*) as cnt FROM code_chunks_vec"
+                            " GROUP BY language ORDER BY cnt DESC"
+                        ).fetchall()
+                        return ProjectStatusResponse(
+                            indexing=False,
+                            total_chunks=total_chunks,
+                            total_files=total_files,
+                            languages={lang: cnt for lang, cnt in lang_rows},
+                            index_exists=True,
+                        )
+                    finally:
+                        conn.close()
+                except Exception:
+                    logger.exception("Failed to read unloaded project sqlite status for %s", project_root)
+                    logger.warning(
+                        "0 chunks reported; project not loaded — call ccc index to refresh"
+                    )
             return ProjectStatusResponse(
-                indexing=False, total_chunks=0, total_files=0, languages={}
+                indexing=False, total_chunks=0, total_files=0, languages={}, index_exists=target_db.exists()
             )
 
         db = project.env.get_context(SQLITE_DB)

@@ -1,6 +1,6 @@
 ---
 title: "Session Handover: 014-local-embeddings-setup-a"
-description: "Pre-restart handover for the Voyage→local embeddings migration. Sub-phases 001-003 complete; 004 vec-store rebuild requires user runtime restart from a clean shell."
+description: "Current handover for Local embeddings Setup A. Eleven packets shipped; 012 v3 remediation is in progress with q8 memory default and EmbeddingGemma on both surfaces."
 trigger_phrases:
   - "014 handover"
   - "Setup A handover"
@@ -13,10 +13,9 @@ _memory:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a"
     last_updated_at: "2026-05-12T21:30:00Z"
     last_updated_by: "claude-opus-4-7"
-    recent_action: "Full 014 cascade strict-validates clean; 005+007 shipped; 009 search-path patched"
-    next_safe_action: "User runs commit; then 20-30 deep-review iterations"
-    blockers:
-      - "Cocoindex msgspec truncation prevents search end-to-end (daemon writes correct 768-dim schema but returns malformed binary frames)"
+    recent_action: "11 packets shipped; 012 v3 remediation in progress"
+    next_safe_action: "Finish 012 validation and let main agent commit"
+    blockers: []
     key_files:
       - "spec.md"
       - "SETUP_A_RECIPE.md"
@@ -26,7 +25,7 @@ _memory:
       fingerprint: "sha256:01400a4e0d0c00000000000000000000000000000000000000000000000000ed"
       session_id: "014-handover-2026-05-12"
       parent_session_id: null
-    completion_pct: 92
+    completion_pct: 96
     open_questions: []
     answered_questions: []
 ---
@@ -39,7 +38,7 @@ _memory:
 <!-- ANCHOR:when-to-use -->
 ## WHEN TO USE THIS TEMPLATE
 
-You are resuming work on packet `system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/`. The prior Claude Code session shipped sub-phases 001-003 (prefix registry architecture, model installation + compat smoke tests, project-local MCP config rollout) and now needs the user to restart their MCP runtimes before 004 (vec-store rebuild) can proceed.
+You are resuming work on packet `system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/`. Terminal state: 11 child packets shipped; 012-v3-remediation is in progress. Both retrieval surfaces use EmbeddingGemma defaults: Spec Kit Memory uses `onnx-community/embeddinggemma-300m-ONNX` with q8 as the system default dtype, and CocoIndex uses `sbert/google/embeddinggemma-300m` with bf16 sentence-transformers loading. Main has 3 commits for the Setup A series; this session must not commit.
 
 **Status values:** in_progress
 <!-- /ANCHOR:when-to-use -->
@@ -51,10 +50,10 @@ You are resuming work on packet `system-spec-kit/026-graph-and-context-optimizat
 
 - **From Session:** 014-autonomous-completion-2026-05-12 (Claude Opus 4.7, /goal autonomous mode)
 - **To Session:** post-commit session; deep-review iterations
-- **Phase Completed (validates clean):** 001, 002, 003, 004 (memory ✓ + cocoindex schema ✓), 005 (q4 plumbing + cosine benchmark mean 0.9811), 006 (planning + gated on 009), 007 (deletes + egress guard + tcpdump script), 008 (commit message + post-merge checks authored), 009 (search-path patched, daemon stall is upstream blocker)
-- **All 9 packets + parent strict-validate ✓ PASSED** — Errors: 0, Warnings: 0 across the cascade
-- **Outstanding:** user runs `git commit -F .opencode/specs/.../008/scratch/commit-message.txt`; user runs `tcpdump-verify.sh` for 24h post-merge; 20-30 spec-kit deep-review iterations (per /goal directive) follow the commit
-- **Handover Time:** 2026-05-12T22:20:00Z
+- **Phase Completed (validates clean):** 001 through 011
+- **Phase Completed (validates clean):** 012-v3-remediation (q8 default, launcher parity where writable, dtype-keyed DB filenames, Voyage guard timing, tcpdump pktap, CocoIndex search-only hardening, doc alignment)
+- **Outstanding:** strict-validate 014 parent after 012, then main agent commits
+- **Handover Time:** 2026-05-13T08:30:00Z
 <!-- /ANCHOR:handover-summary -->
 
 ---
@@ -116,7 +115,7 @@ You are resuming work on packet `system-spec-kit/026-graph-and-context-optimizat
 - `.opencode/specs/.../014-local-embeddings-setup-a/SETUP_A_RECIPE.md` — install guide for other users
 
 **HF cache populated (~/.cache/huggingface/hub/):**
-- `models--Qwen--EmbeddingGemma-300m/` — ~620MB, 14 files (sentence-transformers form, for CocoIndex via Python)
+- `models--google--embeddinggemma-300m/` — ~620MB, 14 files (sentence-transformers form, for CocoIndex via Python)
 - `models--google--embeddinggemma-300m/` — 1.2GB, 19 files (canonical sentence-transformers form, reference only)
 - `models--onnx-community--embeddinggemma-300m-ONNX/` — 2.6GB, 21 files (transformers.js ONNX port with fp32/fp16/q4/q4f16/int8/no-gather-q4 variants)
 - `onnx-community/embeddinggemma-300m-ONNX/` (symlink → snapshot dir for transformers.js flat layout)
@@ -152,7 +151,7 @@ You are resuming work on packet `system-spec-kit/026-graph-and-context-optimizat
 
 ### 3.1 Recommended Starting Point
 
-004's evening continuation already swapped both vec stores under Setup A. Memory side is fully operational. Cocoindex side has the right EmbeddingGemma schema but query path is broken by an upstream `msgspec.DecodeError: Input data was truncated`. The next session should NOT re-run the rebuild — pick up from the cocoindex IPC investigation OR jump to an independent track.
+012's remediation is implemented and strict-validates clean. Memory-side dtype default is now q8 in source/dist; `.codex/config.toml` remains sandbox-blocked in this Codex environment and the exact patch is recorded under 012 scratch. CocoIndex search-only validation and project status hardening are patched in `daemon.py`.
 
 **First step in the new session:** verify memory still works (sanity), then pick a track:
 

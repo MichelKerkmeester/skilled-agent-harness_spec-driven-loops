@@ -75,7 +75,7 @@ _memory:
 We chose EmbeddingGemma-300m for cocoindex in 002 on theoretical grounds (strong code-retrieval scores in published benchmarks). We've never measured retrieval quality against this codebase. bge-m3 advertises hybrid retrieval — combining dense vectors, sparse lexical scores, and multi-vector colbert reranking — and on text-heavy benchmarks it often wins by 3-7pp MRR@10. We don't know if it helps on code, and we don't know if the sqlite-vec schema change is worth it.
 
 ### Purpose
-Build a small ground-truth query set (40-60 queries with hand-labeled relevant files), index the same codebase with both Qwen3 and bge-m3 variants, measure MRR@10 and NDCG@10. Decide ship/don't-ship based on whether hybrid bge-m3 beats EmbeddingGemma-dense by ≥5 percentage points MRR@10.
+Build a small ground-truth query set (40-60 queries with hand-labeled relevant files), index the same codebase with the EmbeddingGemma-300m baseline and bge-m3 variants, measure MRR@10 and NDCG@10. Decide ship/don't-ship based on whether hybrid bge-m3 beats EmbeddingGemma-dense by ≥5 percentage points MRR@10.
 <!-- /ANCHOR:problem -->
 
 ---

@@ -24,6 +24,7 @@ export interface EmbeddingProfileData {
   provider: string;
   model: string;
   dim: number;
+  dtype?: string | null;
   baseUrl?: string | null;
   slug?: string;
 }
@@ -483,6 +484,7 @@ export interface ParsedProfileSlug {
   provider: string;
   model: string;
   dim: number;
+  dtype?: string | null;
 }
 
 /** Profile JSON representation */
@@ -490,6 +492,7 @@ export interface ProfileJson {
   provider: string;
   model: string;
   dim: number;
+  dtype: string | null;
   baseUrl: string | null;
   slug: string;
 }

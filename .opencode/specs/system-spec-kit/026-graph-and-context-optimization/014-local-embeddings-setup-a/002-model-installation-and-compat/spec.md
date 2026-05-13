@@ -60,7 +60,7 @@ _memory:
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-**Phase 2** of `014-local-embeddings-setup-a`. Pulls the Setup A model weights to the local HF cache and verifies they actually load in their respective runtimes (sentence-transformers on Python for Qwen3; transformers.js on Node for EmbeddingGemma).
+**Phase 2** of `014-local-embeddings-setup-a`. Pulls the Setup A model weights to the local HF cache and verifies they actually load in their respective runtimes (sentence-transformers on Python for EmbeddingGemma; transformers.js on Node for EmbeddingGemma ONNX).
 
 **Scope Boundary**: model downloads + load-time smoke tests only. No MCP config edits, no live-server swap, no vec-store changes.
 
@@ -69,7 +69,7 @@ _memory:
 **Deliverables**:
 - `google/embeddinggemma-300m` in `~/.cache/huggingface/hub/` (~~620MB)
 - `onnx-community/embeddinggemma-300m-ONNX` in `~/.cache/huggingface/hub/` (~2.6GB; transformers.js-compatible ONNX port of `google/embeddinggemma-300m`)
-- Python smoke test for EmbeddingGemma-300m (sentence-transformers, MPS, dim 2560)
+- Python smoke test for EmbeddingGemma-300m (sentence-transformers, MPS, dim 768)
 - Node smoke test for EmbeddingGemma (transformers.js v3.8.1, ONNX fp32, dim 768)
 - Symlink bridging Python's `models--<org>--<name>/snapshots/<hash>/` cache layout to transformers.js's `<org>/<name>/` flat layout
 <!-- /ANCHOR:phase-context -->
@@ -110,7 +110,7 @@ Pre-pull both models to disk so 003/004 don't hit network during the live swap, 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `~/.cache/huggingface/token` | Create | User's HF token (mode 600) |
-| `~/.cache/huggingface/hub/models--Qwen--EmbeddingGemma-300m/**` | Create | EmbeddingGemma-300m weights via snapshot_download |
+| `~/.cache/huggingface/hub/models--google--embeddinggemma-300m/**` | Create | EmbeddingGemma-300m weights via snapshot_download |
 | `~/.cache/huggingface/hub/models--google--embeddinggemma-300m/**` | Create | Canonical sentence-transformers form (gated) |
 | `~/.cache/huggingface/hub/models--onnx-community--embeddinggemma-300m-ONNX/**` | Create | ONNX port for transformers.js |
 | `~/.cache/huggingface/hub/onnx-community/embeddinggemma-300m-ONNX` | Symlink | Bridge to snapshot dir for transformers.js |
@@ -127,9 +127,9 @@ Pre-pull both models to disk so 003/004 don't hit network during the live swap, 
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | EmbeddingGemma-300m on disk | `~/.cache/huggingface/hub/models--Qwen--EmbeddingGemma-300m/` exists; ≥7GB |
+| REQ-001 | EmbeddingGemma-300m on disk | `~/.cache/huggingface/hub/models--google--embeddinggemma-300m/` exists; model files present |
 | REQ-002 | EmbeddingGemma ONNX on disk | `~/.cache/huggingface/hub/models--onnx-community--embeddinggemma-300m-ONNX/snapshots/<hash>/onnx/model.onnx` exists |
-| REQ-003 | EmbeddingGemma-300m smoke test green | Python sentence-transformers loads model; dim=2560; norm≈1.0 |
+| REQ-003 | EmbeddingGemma-300m smoke test green | Python sentence-transformers loads model; dim=768; norm≈1.0 |
 | REQ-004 | EmbeddingGemma smoke test green | Node transformers.js v3.8.1 loads ONNX; dims=[1,768]; norm=1.0 |
 
 ### P1 - Required
@@ -146,7 +146,7 @@ Pre-pull both models to disk so 003/004 don't hit network during the live swap, 
 ## 5. SUCCESS CRITERIA
 
 - **SC-001**: Both models load from local cache in offline mode (no network round-trip during smoke test)
-- **SC-002**: Encoded vector dims match expected (2560 for Qwen, 768 for Gemma)
+- **SC-002**: Encoded vector dims match expected (768 for Python EmbeddingGemma and 768 for ONNX Gemma)
 - **SC-003**: Both vectors are unit-normalized (norm ≈ 1.0)
 - **SC-004**: Strict-validate exits 0
 <!-- /ANCHOR:success-criteria -->

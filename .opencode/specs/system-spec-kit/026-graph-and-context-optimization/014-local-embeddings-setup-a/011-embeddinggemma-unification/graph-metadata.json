@@ -28,7 +28,7 @@
       "qwen3-purged"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "completed",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -42,7 +42,7 @@
       "_QUERY_PROMPT_MODELS",
       "InstructionRetrieval"
     ],
-    "causal_summary": "Unifies Setup A on EmbeddingGemma for both memory and CocoIndex defaults. Query prompt support exists for CocoIndex; document-side prompt remains unprefixed. Current blocker: repo-local .codex/config.toml cannot be written by this sandbox.",
+    "causal_summary": "Unifies Setup A on EmbeddingGemma for both memory and CocoIndex defaults. Query prompt support exists for CocoIndex; document-side prompt remains unprefixed. Main agent resolved the prior .codex/config.toml blocker on 2026-05-13.",
     "created_at": "2026-05-13T07:35:00Z",
     "last_save_at": "2026-05-13T07:35:00Z",
     "save_lineage": "graph_only",

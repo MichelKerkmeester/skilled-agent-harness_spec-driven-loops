@@ -138,16 +138,18 @@ interface HfLocalOptions {
 
 // 014-local-embeddings-setup-a / 005-q4-quantization:
 // Allowed dtypes for ONNX model variants exposed by @huggingface/transformers.
-// EmbeddingGemma-300m-ONNX ships fp32 (default), fp16, q4, q4f16, quantized (int8),
-// and a no_gather_q4 variant. fp32 is the recall-safe baseline; q4 halves RAM at
-// a small recall cost; q4f16 is the in-between sweet spot per transformers.js docs.
+// EmbeddingGemma-300m-ONNX ships fp32, fp16, q4, q4f16, quantized (int8),
+// and a no_gather_q4 variant. 014/012 flipped the system default fp32->q8;
+// q8 gives ~99% quality at 1/4 the RAM (~310MB vs ~620MB) and is the
+// recommended baseline. Users can opt back to fp32 by setting
+// HF_EMBEDDINGS_DTYPE=fp32 in .env.local.
 const ALLOWED_HF_DTYPES: ReadonlyArray<string> = [
   'fp32', 'fp16', 'q4', 'q4f16', 'q8', 'int8', 'uint8', 'bnb4',
 ];
 export type HfLocalDtype = 'fp32' | 'fp16' | 'q4' | 'q4f16' | 'q8' | 'int8' | 'uint8' | 'bnb4';
 
-function resolveDtype(explicit?: string): HfLocalDtype {
-  const raw = (explicit ?? process.env.HF_EMBEDDINGS_DTYPE ?? 'fp32').trim();
+export function resolveDtype(explicit?: string): HfLocalDtype {
+  const raw = (explicit ?? process.env.HF_EMBEDDINGS_DTYPE ?? 'q8').trim();
   if (!ALLOWED_HF_DTYPES.includes(raw)) {
     console.warn(
       `[hf-local] Unknown HF_EMBEDDINGS_DTYPE="${raw}"; falling back to fp32. Allowed: ${ALLOWED_HF_DTYPES.join(', ')}`,
@@ -425,6 +427,7 @@ export class HfLocalProvider implements IEmbeddingProvider {
       provider: 'hf-local',
       model: this.modelName,
       dim: this.dim,
+      dtype: this.dtype,
     });
   }
 

@@ -46,14 +46,14 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | In Progress (012 v3 remediation) |
 | **Created** | 2026-05-12 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |
 | **Parent Packet** | scaffold/014-local-embeddings-setup-a |
 | **Predecessor** | None |
 | **Successor** | None |
-| **Handoff Criteria** | Validator + template + generator changes ship so parent validates under tolerant policy |
+| **Handoff Criteria** | All Setup A child packets strict-validate; q8 default, launcher parity, and v3 remediation are documented |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -99,14 +99,18 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 1 | 001-prefix-registry-architecture/ | [Phase 1 scope] | Pending |
-| 2 | 002-model-installation-and-compat/ | [Phase 2 scope] | Pending |
-| 3 | 003-mcp-config-rollout/ | [Phase 3 scope] | Pending |
-| 4 | 004-vec-store-rebuild/ | [Phase 4 scope] | Pending |
-| 5 | 005-q4-quantization/ | [Phase 5 scope] | Pending |
-| 6 | 006-bge-m3-hybrid-evaluation/ | [Phase 6 scope] | Pending |
-| 7 | 007-voyage-cleanup-and-egress-monitoring/ | [Phase 7 scope] | Pending |
-| 8 | 008-finalize-and-commit/ | [Phase 8 scope] | Pending |
+| 1 | 001-prefix-registry-architecture/ | Prefix registry architecture | Complete |
+| 2 | 002-model-installation-and-compat/ | Model installation and runtime compatibility | Complete |
+| 3 | 003-mcp-config-rollout/ | MCP config rollout | Complete |
+| 4 | 004-vec-store-rebuild/ | Vec-store rebuild | Complete |
+| 5 | 005-q4-quantization/ | Quantized hf-local dtype plumbing | Complete |
+| 6 | 006-bge-m3-hybrid-evaluation/ | bge-m3 hybrid evaluation plan | Complete |
+| 7 | 007-voyage-cleanup-and-egress-monitoring/ | Voyage cleanup and egress monitoring | Complete |
+| 8 | 008-finalize-and-commit/ | Finalize and commit bundle | Complete |
+| 9 | 009-cocoindex-ipc-fix/ | CocoIndex IPC/search fix | Complete |
+| 10 | 010-cocoindex-code-only-patterns/ | CocoIndex code-only pattern cleanup | Complete |
+| 11 | 011-embeddinggemma-unification/ | EmbeddingGemma default unification | Complete |
+| 12 | 012-v3-remediation/ | v3 deep-review remediation and q8 system default | Complete |
 
 ### Phase Transition Rules
 
@@ -125,7 +129,11 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 004-vec-store-rebuild | 005-q4-quantization | [Criteria TBD] | [Verification TBD] |
 | 005-q4-quantization | 006-bge-m3-hybrid-evaluation | [Criteria TBD] | [Verification TBD] |
 | 006-bge-m3-hybrid-evaluation | 007-voyage-cleanup-and-egress-monitoring | [Criteria TBD] | [Verification TBD] |
-| 007-voyage-cleanup-and-egress-monitoring | 008-finalize-and-commit | [Criteria TBD] | [Verification TBD] |
+| 007-voyage-cleanup-and-egress-monitoring | 008-finalize-and-commit | Egress script and cleanup docs land | strict validate |
+| 008-finalize-and-commit | 009-cocoindex-ipc-fix | Post-merge review exposes IPC search failure | search-path validation |
+| 009-cocoindex-ipc-fix | 010-cocoindex-code-only-patterns | Search works and code-only index quality issue is visible | sqlite row counts |
+| 010-cocoindex-code-only-patterns | 011-embeddinggemma-unification | Code-only baseline stabilized | default config sweep |
+| 011-embeddinggemma-unification | 012-v3-remediation | v3 deep-review findings remain valid | strict validate |
 <!-- /ANCHOR:phase-map -->
 
 ---
@@ -133,8 +141,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 <!-- ANCHOR:questions -->
 ## 4. OPEN QUESTIONS
 
-- Which child phase should execute first?
-- What handoff criteria must each child satisfy?
+(none)
 <!-- /ANCHOR:questions -->
 
 ---

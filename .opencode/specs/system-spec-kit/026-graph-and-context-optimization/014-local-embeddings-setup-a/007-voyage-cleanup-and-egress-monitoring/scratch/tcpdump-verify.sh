@@ -26,9 +26,14 @@ echo ""
 echo "Run for 24h then Ctrl+C. Expected: 0 packets captured."
 echo ""
 
+# pktap is Apple's pseudo-interface that captures across all NICs (Wi-Fi, Ethernet, VPN utun*).
+# To capture on a specific interface only, override TCPDUMP_IFACE:
+#   TCPDUMP_IFACE=en0 bash tcpdump-verify.sh
+IFACE="${TCPDUMP_IFACE:-pktap}"
+
 # `host api.voyageai.com` filter catches both A and AAAA records;
 # `tcp port 443` narrows to HTTPS which is voyage's API surface.
-sudo tcpdump -i any -nn \
+sudo tcpdump -i "$IFACE" -nn \
   "(host api.voyageai.com) and tcp port 443" \
   -w "${CAPTURE_FILE}" \
   | tee "${LOG_FILE}"

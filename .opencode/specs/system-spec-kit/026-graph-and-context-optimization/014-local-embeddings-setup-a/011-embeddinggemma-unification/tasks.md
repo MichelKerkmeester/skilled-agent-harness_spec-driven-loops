@@ -13,10 +13,9 @@ _memory:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/011-embeddinggemma-unification"
     last_updated_at: "2026-05-13T07:35:00Z"
     last_updated_by: "codex-gpt-5"
-    recent_action: "Gemma unification in progress"
-    next_safe_action: "Resolve Codex config write blocker"
-    blockers:
-      - ".codex/config.toml is read-only to this sandbox"
+    recent_action: "All edits shipped + .codex/config.toml fixed by main agent"
+    next_safe_action: "Use 012 for v3 remediation follow-up"
+    blockers: []
     key_files:
       - "spec.md"
       - "plan.md"
@@ -26,7 +25,7 @@ _memory:
       fingerprint: "sha256:0140110c2a9e0000000000000000000000000000000000000000000000000003"
       session_id: "014-011-embeddinggemma-2026-05-13"
       parent_session_id: null
-    completion_pct: 70
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "Gate 3 folder? -> User pre-answered existing 014/011"
@@ -72,10 +71,10 @@ _memory:
 - [x] T007 Update `hf-local.ts` default model to `onnx-community/embeddinggemma-300m-ONNX`
 - [x] T008 Update `factory.ts` provider default + metadata fallback to ONNX Gemma
 - [x] T009 Update OpenCode/MCP/Claude/Gemini runtime notes
-- [B] T010 Update `.codex/config.toml` runtime notes (filesystem EPERM)
+- [x] T010 Update `.codex/config.toml` runtime notes (main agent patched outside prior sandbox)
 - [x] T011 Update `.env.example` active examples
-- [ ] T012 Update parent + prior packet docs
-- [ ] T013 Purge active Qwen3 references outside allowed historical exceptions
+- [x] T012 Update parent + prior packet docs
+- [x] T013 Purge active Qwen3 references outside allowed historical exceptions
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -83,8 +82,8 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T014 Rebuild shared dist: `cd .opencode/skills/system-spec-kit/shared && npx tsc --build`
-- [ ] T015 Strict validate 011 and every updated packet, then parent recursive strict validation
+- [x] T014 Rebuild shared dist: `cd .opencode/skills/system-spec-kit/shared && npx tsc --build`
+- [x] T015 Strict validate 011 and every updated packet, then parent recursive strict validation
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -92,9 +91,9 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All non-blocked tasks complete
-- [ ] Codex config blocker resolved or documented in `scratch/blocker.md`
-- [ ] Strict validation commands recorded with evidence
+- [x] All non-blocked tasks complete
+- [x] Codex config blocker resolved or documented in `scratch/blocker.md`
+- [x] Strict validation commands recorded with evidence
 <!-- /ANCHOR:completion -->
 
 ---

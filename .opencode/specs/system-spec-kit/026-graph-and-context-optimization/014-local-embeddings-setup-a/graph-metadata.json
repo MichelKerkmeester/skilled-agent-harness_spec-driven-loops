@@ -14,7 +14,8 @@
     "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/008-finalize-and-commit",
     "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/009-cocoindex-ipc-fix",
     "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/010-cocoindex-code-only-patterns",
-    "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/011-embeddinggemma-unification"
+    "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/011-embeddinggemma-unification",
+    "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/012-v3-remediation"
   ],
   "manual": {
     "depends_on": [],
@@ -35,11 +36,13 @@
       "vec-store rebuild",
       "voyage cleanup",
       "single-pr commit",
-      "qwen3-purged"
+      "qwen3-purged",
+      "q8-default",
+      "v3-remediation"
     ],
     "importance_tier": "important",
     "status": "in_progress",
-    "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/011-embeddinggemma-unification",
+    "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/012-v3-remediation",
     "key_files": [
       "spec.md",
       "handover.md",
@@ -53,7 +56,7 @@
       "target_sqlite.db",
       "spec-kit-memory-launcher"
     ],
-    "causal_summary": "Local embeddings Setup A now targets EmbeddingGemma on both surfaces: ONNX port for Spec Kit Memory and canonical sentence-transformers model for CocoIndex. 011 supersedes the earlier Qwen code-side plan while preserving recognized-model registry entries for explicit opt-in.",
+    "causal_summary": "Local embeddings Setup A targets EmbeddingGemma on both surfaces: ONNX port for Spec Kit Memory and canonical sentence-transformers model for CocoIndex. 012 remediates v3 review findings, flips the memory dtype system default to q8, and separates hf-local DB filenames by dtype.",
     "created_at": "2026-05-12T16:27:47Z",
     "last_save_at": "2026-05-13T07:35:00Z",
     "save_lineage": "graph_only",
