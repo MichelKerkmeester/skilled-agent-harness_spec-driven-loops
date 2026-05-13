@@ -182,7 +182,7 @@ describe('semantic shadow cosine lane', () => {
     ]);
   });
 
-  it('keeps semantic shadow matches out of live recommendation fields', () => {
+  it('keeps semantic matches from overturning an explicit top route', () => {
     const projection = createFixtureProjection([
       skill({
         id: 'alpha',
@@ -205,21 +205,11 @@ describe('semantic shadow cosine lane', () => {
       disabledLanes: ['semantic_shadow'],
     });
 
-    expect({
-      recommendedSkill: withShadow.topSkill,
-      confidence: withShadow.recommendations[0]?.confidence,
-    }).toEqual({
-      recommendedSkill: withoutShadow.topSkill,
-      confidence: withoutShadow.recommendations[0]?.confidence,
-    });
-    expect({
-      recommendedSkill: withShadow.topSkill,
-      confidence: withShadow.recommendations[0]?.confidence,
-    }).toMatchInlineSnapshot(`
-      {
-        "confidence": 0.9039,
-        "recommendedSkill": "alpha",
-      }
-    `);
+    const semantic = withShadow.recommendations[0]?.laneContributions.find((lane) => lane.lane === 'semantic_shadow');
+
+    expect(withShadow.topSkill).toBe(withoutShadow.topSkill);
+    expect(withShadow.topSkill).toBe('alpha');
+    expect(semantic?.weightedScore).toBeGreaterThan(0);
+    expect(semantic?.shadowOnly).toBe(false);
   });
 });

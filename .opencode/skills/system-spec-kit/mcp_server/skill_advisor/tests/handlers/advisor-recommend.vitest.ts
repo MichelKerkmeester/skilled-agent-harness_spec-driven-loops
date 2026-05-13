@@ -40,11 +40,11 @@ function status(freshness: 'live' | 'stale' | 'absent' | 'unavailable' = 'live')
     lastScanAt: freshness === 'absent' ? null : '2026-04-20T00:00:00.000Z',
     skillCount: freshness === 'absent' ? 0 : 42,
     laneWeights: {
-      explicit_author: 0.45,
-      lexical: 0.3,
-      graph_causal: 0.15,
-      derived_generated: 0.1,
-      semantic_shadow: 0,
+      explicit_author: 0.42,
+      lexical: 0.28,
+      graph_causal: 0.13,
+      derived_generated: 0.12,
+      semantic_shadow: 0.05,
     },
   };
 }
@@ -62,8 +62,8 @@ function recommendation(overrides: Record<string, unknown> = {}) {
     laneContributions: [{
       lane: 'explicit_author',
       rawScore: 1,
-      weightedScore: 0.45,
-      weight: 0.45,
+      weightedScore: 0.42,
+      weight: 0.42,
       evidence: ['phrase:spec folder'],
       shadowOnly: false,
     }],
@@ -80,7 +80,7 @@ function scoreResult(recommendations = [recommendation()], ambiguous = false) {
     ambiguous,
     metrics: {
       candidateCount: recommendations.length,
-      liveLaneCount: 4,
+      liveLaneCount: 5,
     },
   };
 }

@@ -49,7 +49,7 @@ describe('advisor_status handler', () => {
     expect(status.trustState.lastLiveAt).toBe('2026-04-20T00:00:00.000Z');
     expect(status.lastScanAt).toBe('2026-04-20T00:00:00.000Z');
     expect(status.skillCount).toBe(1);
-    expect(status.laneWeights.explicit_author).toBe(0.45);
+    expect(status.laneWeights.explicit_author).toBe(0.42);
   });
 
   // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H

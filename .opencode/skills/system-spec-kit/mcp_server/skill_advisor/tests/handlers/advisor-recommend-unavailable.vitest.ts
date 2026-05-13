@@ -49,11 +49,11 @@ describe('advisor_recommend unavailable freshness fail-open', () => {
       lastScanAt: null,
       skillCount: 0,
       laneWeights: {
-        explicit_author: 0.45,
-        lexical: 0.3,
-        graph_causal: 0.15,
-        derived_generated: 0.15,
-        semantic_shadow: 0,
+        explicit_author: 0.42,
+        lexical: 0.28,
+        graph_causal: 0.13,
+        derived_generated: 0.12,
+        semantic_shadow: 0.05,
       },
       errors: ['database disk image is malformed'],
     });
@@ -70,7 +70,7 @@ describe('advisor_recommend unavailable freshness fail-open', () => {
       topSkill: 'system-spec-kit',
       unknown: false,
       ambiguous: false,
-      metrics: { candidateCount: 1, liveLaneCount: 4 },
+      metrics: { candidateCount: 1, liveLaneCount: 5 },
     });
 
     const response = parseResponse(await handleAdvisorRecommend({

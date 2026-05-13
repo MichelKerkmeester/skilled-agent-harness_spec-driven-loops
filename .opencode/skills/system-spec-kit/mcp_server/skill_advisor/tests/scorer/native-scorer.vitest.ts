@@ -99,7 +99,7 @@ describe('027/003 native scorer units', () => {
     expect(result[1].ambiguousWith).toBeUndefined();
   });
 
-  it('AC-5 semantic shadow scores but contributes 0.00 to live fusion', () => {
+  it('AC-5 semantic shadow scores and contributes to live fusion', () => {
     const projection = createFixtureProjection([
       skill({
         id: 'semantic-skill',
@@ -114,7 +114,8 @@ describe('027/003 native scorer units', () => {
     const top = result.recommendations[0];
     const semantic = top.laneContributions.find((lane) => lane.lane === 'semantic_shadow');
     expect(semantic?.rawScore).toBeGreaterThan(0);
-    expect(semantic?.weightedScore).toBe(0);
+    expect(semantic?.weightedScore).toBeCloseTo((semantic?.rawScore ?? 0) * SEMANTIC_SHADOW_WEIGHT, 6);
+    expect(semantic?.shadowOnly).toBe(false);
   });
 
   it('AC-8 explicit deprecated prompt surfaces deprecated skill with redirect metadata', () => {
