@@ -1,0 +1,26 @@
+# Iteration 004 — Local-LLM Legacy Hunt
+
+## Focus
+I scanned correctness-sensitive code and config surfaces for active defaults, provider resolution, sqlite path selection, and evaluation/maintenance scripts that can still route Memory MCP or tooling toward pre-014 profiles. I prioritized executable `.ts` paths and checked-in MCP client config because stale docs were already heavily covered by iterations 001-003, while this pass needed residue that can affect runtime behavior or operator commands.
+
+## Findings
+
+| ID | Severity | Dimension | File:Line | Evidence (quote) | Disposition | Recommendation |
+|----|----------|-----------|-----------|------------------|-------------|----------------|
+| L-004-001 | P1 | correctness | .opencode/skills/system-spec-kit/shared/embeddings.ts:868 | `export const DEFAULT_MODEL_NAME: string = 'nomic-ai/nomic-embed-text-v1.5';` | confirmed-residue | Change the legacy facade fallback to `onnx-community/embeddinggemma-300m-ONNX` with q8/768 expectations, or remove the fallback if factory profiles are now the only source of truth. |
+| L-004-002 | P1 | correctness | .opencode/skills/system-spec-kit/shared/embeddings/profile.ts:79 | "return \`${baseDir}/context-index.sqlite\`;" | confirmed-residue | Remove or quarantine the legacy generic sqlite filename branch so all active Memory MCP profiles use filename-keyed `context-index__<profile>.sqlite` paths. |
+| L-004-003 | P1 | correctness | .opencode/skills/system-spec-kit/scripts/evals/map-ground-truth-ids.ts:34 | `const DB_PATH = path.join(DB_DIR, 'context-index.sqlite');` | confirmed-residue | Resolve the active Memory MCP database from the current embedding profile instead of hardcoding the deleted generic sqlite filename. |
+| L-004-004 | P1 | correctness | .opencode/skills/system-spec-kit/scripts/evals/run-ablation.ts:50 | `const PROD_DB_PATH = path.join(DB_DIR, 'context-index.sqlite');` | confirmed-residue | Use the profile-derived post-014 sqlite path for ablation runs so evaluation reads the active hf-local EmbeddingGemma store. |
+| L-004-005 | P1 | correctness | .opencode/skills/system-spec-kit/scripts/evals/run-bm25-baseline.ts:39 | `const PROD_DB_PATH = path.join(DB_DIR, 'context-index.sqlite');` | confirmed-residue | Replace the hardcoded generic database path with the active profile database resolver. |
+| L-004-006 | P1 | correctness | .opencode/skills/system-spec-kit/mcp_server/lib/eval/memory-state-baseline.ts:65 | `return path.resolve(DEFAULT_DB_DIR, CONTEXT_DB_FILENAME);` | confirmed-residue | Stop defaulting baseline capture to `context-index.sqlite`; derive the current Memory MCP profile path unless an explicit override is supplied. |
+| L-004-007 | P1 | correctness | .opencode/skills/system-spec-kit/scripts/memory/cleanup-index-scope-violations.ts:77 | `new URL('../../../mcp_server/database/context-index__voyage__voyage-4__1024.sqlite', import.meta.url),` | confirmed-residue | Make the cleanup script target the active profile database or require an explicit `--db` path; do not hardcode the old Voyage 1024 store. |
+| L-004-008 | P1 | correctness | .codex/config.toml:21 | `_NOTE_1_DATABASE = "Default DB: context-index__llama-cpp__unsloth-embeddinggemma-300m-gguf__768__q8.sqlite (auto-derived from provider+model+dim+dtype; hf-local ONNX q8 is the fallback)."` | confirmed-residue | Update the Codex MCP config note so the default database is the hf-local EmbeddingGemma ONNX q8 profile; keep llama-cpp as explicit opt-in only. |
+| L-004-009 | P1 | correctness | .claude/mcp.json:17 | `"_NOTE_1_DATABASE": "Default DB: context-index__llama-cpp__unsloth-embeddinggemma-300m-gguf__768__q8.sqlite (auto-derived from provider+model+dim+dtype; hf-local ONNX q8 is the fallback).",` | confirmed-residue | Align the Claude MCP default database note with post-014 hf-local defaults and remove llama-cpp-as-default wording. |
+| L-004-010 | P1 | correctness | opencode.json:27 | `"_NOTE_1_DATABASE": "Default DB: context-index__llama-cpp__unsloth-embeddinggemma-300m-gguf__768__q8.sqlite (auto-derived from provider+model+dim+dtype; hf-local ONNX q8 is the fallback).",` | confirmed-residue | Align the OpenCode MCP config note with the hf-local EmbeddingGemma default database profile. |
+| L-004-011 | P1 | correctness | .gemini/settings.json:34 | `"_NOTE_1_DATABASE": "Default DB: context-index__llama-cpp__unsloth-embeddinggemma-300m-gguf__768__q8.sqlite (auto-derived from provider+model+dim+dtype; hf-local ONNX q8 is the fallback).",` | confirmed-residue | Align the Gemini MCP config note with the hf-local EmbeddingGemma default database profile. |
+
+## Iteration summary
+- Files scanned: 169
+- New findings: 11 (P0=0, P1=11, P2=0)
+- Out-of-scope/historical noted but NOT flagged: 8
+- Notes: Saturation is starting in docs/templates, but correctness residue remains in executable eval/cleanup scripts and legacy embedding facades. I did not flag the intentional Voyage/OpenAI fallback provider registry, explicit llama-cpp provider implementation, regression tests for fallback behavior, the 014 migration narrative, review-packet artifacts, code-graph/spec-memory rows, CocoIndex's already-canonical `default_user_settings()`, or generic `context-index.sqlite` test fixtures.

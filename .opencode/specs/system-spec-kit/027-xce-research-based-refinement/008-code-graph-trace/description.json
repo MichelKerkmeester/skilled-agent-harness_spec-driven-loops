@@ -1,0 +1,52 @@
+{
+  "title": "Phase Parent: 027/003 Code Graph Trace",
+  "trigger_phrases": [
+    "027 phase 003",
+    "code-graph trace",
+    "code_graph_trace",
+    "trace tool"
+  ],
+  "level": "phase-parent",
+  "importance_tier": "important",
+  "contextType": "implementation",
+  "status": "phase-parent",
+  "priority": "P1",
+  "createdAt": "2026-05-08T15:00:00Z",
+  "updatedAt": "2026-05-12T00:00:00Z",
+  "branch": "main",
+  "parent_track": "027-xce-research-based-refinement",
+  "parent_id": "system-spec-kit/027-xce-research-based-refinement",
+  "manual": {
+    "children": [
+      "001-contract",
+      "002-lib-impl",
+      "003-handler",
+      "004-test"
+    ],
+    "depends_on": [
+      "system-spec-kit/027-xce-research-based-refinement/007-code-graph-hld-lld"
+    ]
+  },
+  "derived": {
+    "status": "phase-parent",
+    "completion_pct": 0,
+    "last_active_child_id": null
+  },
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/008-code-graph-trace",
+  "description": "Lean phase-parent control file for the contract-first decomposition of code_graph_trace.",
+  "keywords": [
+    "phase-parent",
+    "code-graph",
+    "trace",
+    "contract-first"
+  ],
+  "lastUpdated": "2026-05-12T00:00:00.000Z",
+  "specId": "008",
+  "folderSlug": "code-graph-trace",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

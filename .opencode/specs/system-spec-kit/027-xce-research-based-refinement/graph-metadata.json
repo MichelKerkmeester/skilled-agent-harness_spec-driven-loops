@@ -4,18 +4,23 @@
   "spec_folder": "system-spec-kit/027-xce-research-based-refinement",
   "parent_id": null,
   "children_ids": [
-    "system-spec-kit/027-xce-research-based-refinement/001-cocoindex-complete-fork",
-    "system-spec-kit/027-xce-research-based-refinement/002-code-graph-hld-lld",
-    "system-spec-kit/027-xce-research-based-refinement/003-code-graph-trace",
-    "system-spec-kit/027-xce-research-based-refinement/004-code-graph-impact-analysis",
-    "system-spec-kit/027-xce-research-based-refinement/005-skill-advisor-first-action-mandate",
-    "system-spec-kit/027-xce-research-based-refinement/006-code-graph-adoption-eval",
-    "system-spec-kit/027-xce-research-based-refinement/007-coco-intent-steering",
-    "system-spec-kit/027-xce-research-based-refinement/008-memory-semantic-triggers",
-    "system-spec-kit/027-xce-research-based-refinement/009-feedback-reducers",
-    "system-spec-kit/027-xce-research-based-refinement/010-retrieval-rerank-clients",
-    "system-spec-kit/027-xce-research-based-refinement/011-coco-memory-context-extras",
-    "system-spec-kit/027-xce-research-based-refinement/012-feedback-p0-correctness"
+    "system-spec-kit/027-xce-research-based-refinement/001-rename-mcp-namespace-mk-spec-memory",
+    "system-spec-kit/027-xce-research-based-refinement/002-feedback-p0-correctness",
+    "system-spec-kit/027-xce-research-based-refinement/003-memoization-dependency-dag-foundation",
+    "system-spec-kit/027-xce-research-based-refinement/004-causal-graph-lifecycle-tombstones",
+    "system-spec-kit/027-xce-research-based-refinement/005-frontmatter-causal-edge-promoter",
+    "system-spec-kit/027-xce-research-based-refinement/006-statediff-reconciliation-layer",
+    "system-spec-kit/027-xce-research-based-refinement/007-code-graph-hld-lld",
+    "system-spec-kit/027-xce-research-based-refinement/008-code-graph-trace",
+    "system-spec-kit/027-xce-research-based-refinement/009-code-graph-impact-analysis",
+    "system-spec-kit/027-xce-research-based-refinement/010-code-graph-adoption-eval",
+    "system-spec-kit/027-xce-research-based-refinement/011-memory-semantic-triggers",
+    "system-spec-kit/027-xce-research-based-refinement/012-feedback-reducers",
+    "system-spec-kit/027-xce-research-based-refinement/013-cocoindex-complete-fork",
+    "system-spec-kit/027-xce-research-based-refinement/014-coco-intent-steering",
+    "system-spec-kit/027-xce-research-based-refinement/015-retrieval-rerank-clients",
+    "system-spec-kit/027-xce-research-based-refinement/016-coco-memory-context-extras",
+    "system-spec-kit/027-xce-research-based-refinement/017-cocoindex-memory-port-research"
   ],
   "migrated": true,
   "migration_source": "legacy",
@@ -283,7 +288,7 @@
     ],
     "causal_summary": "The `external/` folder began as XCE research and now also contains the downloaded upstream cocoindex-code snapshot for the complete-fork prerequisite. Pt-01 produced the original code-graph + skill-advisor phases; pt-02 cross-validated those plans; pt-03 expanded scope to mcp-coco-index and the memory backend. Phase 001 was added on 2026-05-10 to replace the partial mcp-coco-index soft fork with a complete local fork of the upstream cocoindex-code MCP wrapper at v0.2.33, while keeping the transitive cocoindex engine as a pinned/audited dependency unless scope expands. The original phase children were renumbered to 002-011; CocoIndex-facing phases 007, 010, and 011 now depend on Phase 001 before modifying the MCP wrapper.",
     "created_at": "2026-05-08T00:00:00Z",
-    "last_save_at": "2026-05-10T10:05:44.449Z",
+    "last_save_at": "2026-05-13T09:18:48.676Z",
     "save_lineage": "codex-phase-001-cocoindex-complete-fork-plan",
     "last_accessed_at": "2026-05-10T10:05:44.449Z",
     "source_docs": [
@@ -294,7 +299,7 @@
       "001-cocoindex-complete-fork/plan.md",
       "001-cocoindex-complete-fork/research.md"
     ],
-    "last_active_child_id": "system-spec-kit/027-xce-research-based-refinement/012-feedback-p0-correctness",
-    "last_active_at": "2026-05-11T16:10:00Z"
+    "last_active_child_id": "system-spec-kit/027-xce-research-based-refinement/001-rename-mcp-namespace-mk-spec-memory",
+    "last_active_at": "2026-05-13T09:18:48.675Z"
   }
 }

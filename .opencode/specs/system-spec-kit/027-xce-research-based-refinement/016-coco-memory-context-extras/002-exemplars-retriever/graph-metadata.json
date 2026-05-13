@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/027-xce-research-based-refinement/016-coco-memory-context-extras/002-exemplars-retriever",
+  "spec_folder": "system-spec-kit/027-xce-research-based-refinement/016-coco-memory-context-extras/002-exemplars-retriever",
+  "parent_id": "system-spec-kit/027-xce-research-based-refinement/016-coco-memory-context-extras",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [
+      "system-spec-kit/027-xce-research-based-refinement/016-coco-memory-context-extras/001-exemplars-schema",
+      "system-spec-kit/027-xce-research-based-refinement/013-cocoindex-complete-fork"
+    ],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": ["027 011 002 exemplars retriever", "coco exemplar retriever", "exemplar_retriever.py"],
+    "key_topics": ["coco", "exemplars", "retriever", "query", "response"],
+    "importance_tier": "important",
+    "status": "draft",
+    "completion_pct": 0,
+    "key_files": ["spec.md", "plan.md", "tasks.md", "checklist.md", "implementation-summary.md"],
+    "entities": [
+      {
+        "name": "exemplar_retriever.py",
+        "kind": "code",
+        "path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/exemplars/exemplar_retriever.py",
+        "source": "planned"
+      }
+    ],
+    "causal_summary": "Child 002 adds Coco exemplar retrieval as a separate response group after schema work lands.",
+    "created_at": "2026-05-12T00:00:00Z",
+    "last_save_at": "2026-05-12T00:00:00Z",
+    "save_lineage": "phase-child-scaffold",
+    "last_accessed_at": "2026-05-12T00:00:00Z",
+    "source_docs": ["spec.md", "plan.md", "tasks.md", "checklist.md"],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

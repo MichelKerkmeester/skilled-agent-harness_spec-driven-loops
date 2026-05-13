@@ -1,0 +1,53 @@
+
+ RUN  v4.1.2 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+
+stderr | mcp_server/tests/embeddings-llama-cpp-parity.vitest.ts > llama-cpp vs hf-local embedding parity > matches hf-local on the 50-chunk representative panel
+[hf-local] Loading onnx-community/embeddinggemma-300m-ONNX (dtype=q8, first load may take 15-30s)...
+
+stderr | mcp_server/tests/embeddings-llama-cpp-parity.vitest.ts > llama-cpp vs hf-local embedding parity > matches hf-local on the 50-chunk representative panel
+[hf-local] Attempting device: mps
+
+stderr | mcp_server/tests/embeddings-llama-cpp-parity.vitest.ts > llama-cpp vs hf-local embedding parity > matches hf-local on the 50-chunk representative panel
+[hf-local] MPS unavailable (Unsupported device: "mps". Should be one of: cpu.), using CPU
+
+stderr | mcp_server/tests/embeddings-llama-cpp-parity.vitest.ts > llama-cpp vs hf-local embedding parity > matches hf-local on the 50-chunk representative panel
+[hf-local] Model loaded in 689ms (device: cpu)
+
+stderr | mcp_server/tests/embeddings-llama-cpp-parity.vitest.ts > llama-cpp vs hf-local embedding parity > matches hf-local on the 50-chunk representative panel
+[node-llama-cpp] ggml_metal_library_init_from_source: error compiling source
+
+stderr | mcp_server/tests/embeddings-llama-cpp-parity.vitest.ts > llama-cpp vs hf-local embedding parity > matches hf-local on the 50-chunk representative panel
+[node-llama-cpp] ggml_metal_device_init: - the tensor API is not supported in this environment - disabling
+
+stderr | mcp_server/tests/embeddings-llama-cpp-parity.vitest.ts > llama-cpp vs hf-local embedding parity > matches hf-local on the 50-chunk representative panel
+[node-llama-cpp] load: control-looking token:    212 '</s>' was not control-type; this is probably a bug in the model. its type will be overridden
+
+stderr | mcp_server/tests/embeddings-llama-cpp-parity.vitest.ts > llama-cpp vs hf-local embedding parity > matches hf-local on the 50-chunk representative panel
+[node-llama-cpp] load: special_eos_id is not in special_eog_ids - the tokenizer config may be incorrect
+
+stdout | mcp_server/tests/embeddings-llama-cpp-parity.vitest.ts > llama-cpp vs hf-local embedding parity > matches hf-local on the 50-chunk representative panel
+{"mean_cosine":0.9677582325103543,"min_cosine":0.9515004519950576,"samples":50}
+
+ ❯ mcp_server/tests/embeddings-llama-cpp-parity.vitest.ts (1 test | 1 failed) 5645ms
+     × matches hf-local on the 50-chunk representative panel 5645ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  mcp_server/tests/embeddings-llama-cpp-parity.vitest.ts > llama-cpp vs hf-local embedding parity > matches hf-local on the 50-chunk representative panel
+AssertionError: expected 0.9677582325103543 to be greater than or equal to 0.995
+ ❯ mcp_server/tests/embeddings-llama-cpp-parity.vitest.ts:112:18
+    110|     }));
+    111|
+    112|     expect(mean).toBeGreaterThanOrEqual(0.995);
+       |                  ^
+    113|     expect(min).toBeGreaterThanOrEqual(0.99);
+    114|   }, 600000);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed (1)
+   Start at  11:54:29
+   Duration  5.76s (transform 25ms, setup 9ms, import 21ms, tests 5.65s, environment 0ms)
+

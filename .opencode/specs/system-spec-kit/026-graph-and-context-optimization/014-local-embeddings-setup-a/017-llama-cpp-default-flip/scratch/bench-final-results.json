@@ -1,0 +1,33 @@
+[
+  {
+    "provider": "hf-local",
+    "mode": "query",
+    "model": "onnx-community/embeddinggemma-300m-ONNX",
+    "iterations": 1000,
+    "warmup_iterations": 20,
+    "p50_ms": 35.956375,
+    "p95_ms": 38.379833,
+    "p99_ms": 41.209583,
+    "mean_ms": 36.191475,
+    "rss_mb": 1772.266,
+    "peak_watts": null,
+    "power_note": "powermetrics requires sudo",
+    "recorded_at": "2026-05-13T10:59:23.569Z"
+  },
+  {
+    "provider": "llama-cpp",
+    "mode": "query",
+    "model": "unsloth/embeddinggemma-300m-GGUF",
+    "model_path": "/Users/michelkerkmeester/.cache/huggingface/gguf/embeddinggemma-300m/embeddinggemma-300M-Q8_0.gguf",
+    "iterations": 1000,
+    "warmup_iterations": 20,
+    "p50_ms": 6.027083,
+    "p95_ms": 7.1365,
+    "p99_ms": 7.773041,
+    "mean_ms": 6.024455,
+    "rss_mb": 1200.781,
+    "peak_watts": null,
+    "power_note": "powermetrics requires sudo",
+    "recorded_at": "2026-05-13T10:59:33.677Z"
+  }
+]

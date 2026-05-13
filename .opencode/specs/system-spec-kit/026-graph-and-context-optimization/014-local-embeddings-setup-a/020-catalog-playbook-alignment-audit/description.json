@@ -1,0 +1,23 @@
+{
+  "specFolder": "020-catalog-playbook-alignment-audit",
+  "description": "Level 3 audit and follow-up packet for feature catalog and manual testing playbook alignment after local embedding default changes.",
+  "keywords": [
+    "catalog-playbook-alignment",
+    "local-embeddings",
+    "llama-cpp",
+    "hf-local",
+    "cocoindex",
+    "embeddinggemma",
+    "audit-handoff",
+    "documentation-follow-up"
+  ],
+  "lastUpdated": "2026-05-13T14:55:00Z",
+  "specId": "020",
+  "folderSlug": "catalog-playbook-alignment-audit",
+  "parentChain": [
+    "014-local-embeddings-setup-a"
+  ],
+  "memorySequence": 20,
+  "memoryNameHistory": [],
+  "level": "3"
+}

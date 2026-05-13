@@ -1,0 +1,4 @@
+label,backend,ep,ml_compute_units,model_format,static_shapes,batch_size,max_length,fixed_padding,use_fast_tokenizer,iterations,warmup_excluded,per_item_summary,profile_path,mean_ms,p50_ms,p95_ms,p99_ms,error
+format-MLProgram,onnx,CoreMLExecutionProvider,CPUAndNeuralEngine,MLProgram,0,1,2048,False,,100,5,"{""mean_ms"": 173.970568299992, ""p50_ms"": 174.3696249977802, ""p95_ms"": 224.67758299899288, ""p99_ms"": 245.70812500314787}",,173.970568299992,174.3696249977802,224.67758299899288,245.70812500314787,
+format-NeuralNetwork,onnx,ERROR,CPUAndNeuralEngine,NeuralNetwork,0,1,,,,100,5,,,,,,,"Fail: [ONNXRuntimeError] : 1 : FAIL : Exception during initialization: /Users/cloudtest/vss/_work/1/s/onnxruntime/core/optimizer/initializer.cc:45 onnxruntime::Initializer::Initializer(const onnx::TensorProto &, const std::filesystem::path &) !model_path.empty() was false. model_path must not be empty. Ensure that a path is provided when the model is created or loaded.
+"

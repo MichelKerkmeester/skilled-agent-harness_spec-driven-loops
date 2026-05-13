@@ -1,0 +1,19 @@
+{
+  "level": "1",
+  "specFolder": "027-xce-research-based-refinement/017-cocoindex-memory-port-research",
+  "description": "Phase 1: cocoindex-memory-port-research",
+  "keywords": [
+    "phase",
+    "cocoindex-memory-port-research"
+  ],
+  "lastUpdated": "2026-05-13T08:30:32.710Z",
+  "specId": "017",
+  "folderSlug": "cocoindex-memory-port-research",
+  "parentChain": [
+    "027-xce-research-based-refinement"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "13-05-26_09-30__manual-context-save.md"
+  ]
+}

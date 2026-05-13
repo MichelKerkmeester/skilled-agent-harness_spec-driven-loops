@@ -20,7 +20,7 @@ Reranking nudges implementation results upward when the query asks for code, def
 <!-- ANCHOR:current-reality -->
 ## 2. CURRENT REALITY
 
-Query text is checked for implementation-intent keywords. When present, implementation chunks receive a small boost while docs and spec research receive a small penalty. The raw score remains available for audit.
+Query text is checked for implementation-intent keywords. When present, implementation chunks receive a small boost while docs and spec research receive a small penalty if those path classes exist in the active index. The raw score remains available for audit. Current defaults are code-oriented, so docs/spec penalties mostly protect explicit opt-in or legacy indexes rather than implying docs/spec files are indexed by default.
 <!-- /ANCHOR:current-reality -->
 
 ---

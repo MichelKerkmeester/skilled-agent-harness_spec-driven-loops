@@ -98,7 +98,7 @@ CocoIndex Code gives AI assistants the ability to search your codebase by meanin
 | **Fork**      | Local editable package at `.opencode/skills/mcp-coco-index/mcp_server` |
 | **Binary**    | `ccc`                                                                 |
 | **License**   | Apache-2.0                                                            |
-| **Embedding** | Configurable (default: all-MiniLM-L6-v2 local, recommended: Voyage Code 3) |
+| **Embedding** | Configurable (default: local EmbeddingGemma 300M; cloud alternatives available) |
 
 ### When to Use Semantic Search
 
@@ -351,7 +351,7 @@ Below are repo-portable patterns that match the checked-in integration.
       "environment": {
         "COCOINDEX_CODE_ROOT_PATH": ".",
         "_NOTE_1_PACKAGE": "Local editable cocoindex-code fork, installed via scripts/install.sh",
-        "_NOTE_2_EMBEDDING": "Default: all-MiniLM-L6-v2 (local, no API key needed)",
+        "_NOTE_2_EMBEDDING": "Default: google/embeddinggemma-300m (local, no API key needed)",
         "_NOTE_3_INDEX": "Index stored in .cocoindex_code/ (gitignored)"
       }
     }
@@ -406,7 +406,7 @@ Below are repo-portable patterns that match the checked-in integration.
       "env": {
         "COCOINDEX_CODE_ROOT_PATH": ".",
         "_NOTE_1_PACKAGE": "Local editable cocoindex-code fork, installed via scripts/install.sh",
-        "_NOTE_2_EMBEDDING": "Default: all-MiniLM-L6-v2 (local, no API key needed)",
+        "_NOTE_2_EMBEDDING": "Default: google/embeddinggemma-300m (local, no API key needed)",
         "_NOTE_3_INDEX": "Index stored in .cocoindex_code/ (gitignored)"
       }
     }
@@ -426,7 +426,7 @@ args = ["mcp"]
 [mcp_servers.cocoindex_code.env]
 COCOINDEX_CODE_ROOT_PATH = "."
 _NOTE_1 = "Requires local editable fork: bash .opencode/skills/mcp-coco-index/scripts/install.sh"
-_NOTE_2 = "Default embedding: all-MiniLM-L6-v2 (local, no API key needed)"
+_NOTE_2 = "Default embedding: google/embeddinggemma-300m (local, no API key needed)"
 _NOTE_3 = "Index stored in .cocoindex_code/ (gitignored)"
 ```
 
@@ -434,10 +434,19 @@ _NOTE_3 = "Index stored in .cocoindex_code/ (gitignored)"
 
 CocoIndex Code supports multiple embedding models. Configure via `~/.cocoindex_code/global_settings.yml`.
 
-**Primary (recommended):** `voyage/voyage-code-3` via LiteLLM provider -- best code search quality. Requires `VOYAGE_API_KEY`.
+**Default:** `google/embeddinggemma-300m` via the `sentence-transformers` provider -- local 768-dimensional code search with no API key.
 
 ```yaml
-# Voyage Code 3 (recommended - best code search quality)
+# Default local model (no API key, works offline)
+embedding:
+  provider: sentence-transformers
+  model: google/embeddinggemma-300m
+```
+
+**Cloud alternative:** `voyage/voyage-code-3` via LiteLLM provider. Requires `VOYAGE_API_KEY` and a full index rebuild.
+
+```yaml
+# Voyage Code 3 (cloud alternative)
 embedding:
   provider: litellm
   model: voyage/voyage-code-3
@@ -445,7 +454,7 @@ envs:
   VOYAGE_API_KEY: your-key-here
 ```
 
-**Alternative (local):** `sentence-transformers/all-MiniLM-L6-v2` -- no API key, works offline. This is the current default.
+**Smaller local alternative:** `sentence-transformers/all-MiniLM-L6-v2` -- no API key, works offline with lower dimensional vectors.
 
 ```yaml
 # Local model (no API key, works offline)
@@ -616,8 +625,8 @@ ccc status
 
 | Property        | Value                                                                       |
 | --------------- | --------------------------------------------------------------------------- |
-| **Default**     | all-MiniLM-L6-v2 (local, no API key, 384 dimensions)                       |
-| **Recommended** | Voyage Code 3 via LiteLLM (API key required, best code search quality)      |
+| **Default**     | `google/embeddinggemma-300m` (local, no API key, 768 dimensions)            |
+| **Cloud option** | Voyage Code 3 via LiteLLM (API key required, rebuild required)             |
 | **Flexibility** | 7+ models supported including OpenAI, Gemini, Cohere, Ollama, Nomic         |
 | **Config**      | `~/.cocoindex_code/global_settings.yml` (see [Settings Reference](references/settings_reference.md)) |
 
@@ -840,8 +849,9 @@ Expected result:
 
 - **Upstream**: [cocoindex-io/cocoindex-code](https://github.com/cocoindex-io/cocoindex-code)
 - **PyPI upstream package**: [cocoindex-code](https://pypi.org/project/cocoindex-code/)
-- **Default Embedding**: [all-MiniLM-L6-v2](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2)
-- **Recommended Embedding**: [Voyage Code 3](https://docs.voyageai.com/docs/embeddings)
+- **Default Embedding**: [EmbeddingGemma 300M](https://huggingface.co/google/embeddinggemma-300m)
+- **Cloud Embedding Option**: [Voyage Code 3](https://docs.voyageai.com/docs/embeddings)
+- **Small Local Embedding Option**: [all-MiniLM-L6-v2](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2)
 
 <!-- /ANCHOR:resources -->
 

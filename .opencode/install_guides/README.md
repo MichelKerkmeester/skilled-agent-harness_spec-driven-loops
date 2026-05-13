@@ -29,7 +29,7 @@ importance_tier: "important"
 - [6. VERSION COMPATIBILITY & RESOURCES](#6--version-compatibility--resources)
 - [7. COMPONENT MATRIX](#7--component-matrix)
 - [8. PHASE 1: PREREQUISITES](#8--phase-1-prerequisites)
-- [9. PHASE 2: OLLAMA & MODELS](#9--phase-2-ollama--models)
+- [9. PHASE 2: OLLAMA SUPPORT (REMOVED)](#9--phase-2-ollama-support-removed)
 - [10. PHASE 3: MCP SERVERS](#10--phase-3-mcp-servers)
 - [11. PHASE 4: PLUGINS](#11--phase-4-plugins)
 - [12. CONFIGURATION TEMPLATES](#12--configuration-templates)
@@ -141,8 +141,6 @@ echo "    ├──────────────────────�
 printf "  │ %-23s │ %-29s │\n" "Node.js 18+" "$(node -v 2>/dev/null | grep -qE '^v(1[89]|2)' && echo '✅ '$(node -v) || echo '❌ Missing')"
 printf "  │ %-23s │ %-29s │\n" "Python 3.10+" "$(python3 -V 2>&1 | grep -qE '3\.(1[0-9]|[2-9][0-9])' && echo '✅ '$(python3 -V 2>&1 | cut -d' ' -f2) || echo '❌ Missing')"
 printf "  │ %-23s │ %-29s │\n" "uv" "$(command -v uv >/dev/null && echo '✅ Installed' || echo '❌ Missing')"
-printf "  │ %-23s │ %-29s │\n" "Ollama" "$(command -v ollama >/dev/null && echo '✅ Installed' || echo '❌ Missing')"
-printf "  │ %-23s │ %-29s │\n" "nomic-embed-text" "$(ollama list 2>/dev/null | grep -q nomic && echo '✅ Pulled' || echo '❌ Not pulled')"
 printf "  │ %-23s │ %-29s │\n" "Chrome DevTools (bdg)" "$(command -v bdg >/dev/null && echo '✅ Installed' || echo '⚪ Optional')"
 echo "    ├─────────────────────────┼───────────────────────────────┤"
 printf "  │ %-23s │ %-29s │\n" "opencode.json" "$(test -f opencode.json && echo '✅ Exists' || echo '❌ Missing')"
@@ -190,7 +188,7 @@ Answer these questions to configure your installation:
 - **Gemini (Google)** → Requires `GEMINI_API_KEY`
 - **Ollama (Local)** → Optional for local inference
 
-> **Note:** Spec Kit Memory embeddings support multiple providers (OpenAI, HF Local, optional Ollama). HF Local works by default without additional installation. See [Section 10.2](#102-spec-kit-memory-context-preservation) for details.
+> **Note:** Spec Kit Memory embeddings support multiple providers: `llama-cpp` (default, Metal GPU on Apple Silicon), HF Local (fallback ONNX CPU), Voyage (cloud opt-in), OpenAI (cloud opt-in). The default works out of the box with no API key. See [Section 10.2](#102-spec-kit-memory-context-preservation) for details.
 
 ### Windows-Specific Configuration
 
@@ -303,10 +301,11 @@ uname -s | grep -E "Darwin|Linux" && echo "✅ PASS" || echo "❌ FAIL"
 
 **Disk breakdown:**
 - MCP servers: ~500MB
-- Ollama base: ~1GB
-- nomic-embed-text model: ~300MB
-- llama3.2 model (optional): ~4GB
-- Spec Kit Memory database: ~50MB typical
+- EmbeddingGemma model (default, llama-cpp Q8_0 GGUF or HF Local ONNX q8): ~310MB
+- node-llama-cpp Metal dylib (Apple Silicon): ~50MB
+- Spec Kit Memory database: ~50MB typical (grows with rows)
+- Ollama base (optional, external LLM inference only): ~1GB
+- llama3.2 LLM model (optional, external): ~4GB
 
 **Quick Verification:**
 ```bash
@@ -481,69 +480,11 @@ node --version | grep -E "^v(1[89]|2[0-9])" && python3 --version | grep -E "3\.(
 
 <!-- /ANCHOR:phase-1-prerequisites -->
 <!-- ANCHOR:phase-2-ollama-models-optional -->
-## 9. PHASE 2: OLLAMA & MODELS (OPTIONAL)
+## 9. PHASE 2: OLLAMA SUPPORT (REMOVED)
 
-Ollama provides local LLM inference and embeddings. **No longer required** for Spec Kit Memory.
+Ollama is no longer part of the Memory MCP embedding cascade. The Memory MCP now defaults to `llama-cpp` with Metal GPU acceleration on Apple Silicon, and falls back to HF Local ONNX when llama-cpp is unavailable. Skip directly to Phase 3 for MCP server setup.
 
-**Since v12.0:** Spec Kit Memory supports multiple embedding backends:
-- **Voyage** (recommended if you have `VOYAGE_API_KEY`). Best retrieval quality, cloud embeddings
-- **OpenAI** (alternative if you have `OPENAI_API_KEY`). Cloud embeddings
-- **HF Local** (default without API keys). Local embeddings with HuggingFace Transformers
-- **Ollama** (optional). For local embeddings via Ollama
-
-> **Skip Check:** If you prefer OpenAI or HF local, you can skip this entire phase.
-
-### 9.1 Install Ollama (Only if you'll use Ollama for embeddings)
-
-**Check:** `command -v ollama` → If path shown, skip to 9.2
-
-<details>
-<summary>macOS</summary>
-
-```bash
-brew install ollama
-```
-</details>
-
-<details>
-<summary>Linux</summary>
-
-```bash
-curl -fsSL https://ollama.com/install.sh | sh
-```
-</details>
-
-### 9.2 Start Ollama Service
-
-```bash
-# Start in background
-ollama serve &
-
-# Or start as service (macOS)
-brew services start ollama
-```
-
-### 9.3 Pull Required Models
-
-```bash
-# Embedding model (to use Ollama as provider)
-ollama pull nomic-embed-text
-
-# Optional: Reasoning model for local inference
-ollama pull llama3.2
-```
-
-### Validation: `ollama_check`
-
-- [ ] Ollama service is running (only if you chose Ollama)
-- [ ] nomic-embed-text model is available (only if you chose Ollama)
-- [ ] (Optional) llama3.2 model is available
-
-**Quick Verification:**
-```bash
-# Only if you will use Ollama:
-ollama list | grep -q "nomic-embed-text" && echo "✅ PASS" || echo "❌ FAIL"
-```
+If you still want to run Ollama for other purposes, see the [Ollama documentation](https://ollama.com/). It is not driven by the Memory MCP factory cascade.
 
 ---
 
@@ -631,18 +572,20 @@ Spec Kit Memory now supports three embedding backends:
 
 | Provider | When to use | Dimension | Requirements |
 |----------|-------------|-----------|------------|
-| **Voyage** | Recommended, best quality | 1024 | `VOYAGE_API_KEY` |
-| **OpenAI** | API key available, cloud preference | 1536/3072 | `OPENAI_API_KEY` |
-| **HF Local** | No API key, privacy/offline | 768 | Node.js only (default) |
-| **Ollama** | Ollama local preference | 768 | Ollama + nomic model |
+| **llama-cpp** | Default, local, zero setup on Apple Silicon | 768 | `node-llama-cpp` (auto-installed) + GGUF model |
+| **HF Local** | Fallback when llama-cpp is unavailable | 768 | Node.js only |
+| **Voyage** | Cloud opt-in | 1024 | `VOYAGE_API_KEY` |
+| **OpenAI** | Cloud opt-in | 1536/3072 | `OPENAI_API_KEY` |
 
-**Default provider:** HF Local (free, offline, no API key needed)
+**Default provider:** llama-cpp on Apple Silicon (free, offline, no API key, Metal GPU). Falls back to HF Local when the llama-cpp probe fails.
 
-**Provider selection:**
-- Default: HF Local (768d), works out of the box with no API key required
-- If `VOYAGE_API_KEY` set + `EMBEDDINGS_PROVIDER=voyage`: uses Voyage (recommended, 8% better retrieval)
-- If `OPENAI_API_KEY` set + `EMBEDDINGS_PROVIDER=openai`: uses OpenAI
-- Manual override: `export EMBEDDINGS_PROVIDER=hf-local|voyage|openai`
+**Provider selection (cascade order when `EMBEDDINGS_PROVIDER=auto` or unset):**
+1. Explicit `EMBEDDINGS_PROVIDER` env var (if set and not `auto`)
+2. `VOYAGE_API_KEY` if present (cloud opt-in)
+3. `OPENAI_API_KEY` if present (cloud opt-in)
+4. **llama-cpp** if `node-llama-cpp` loads and the GGUF model is reachable (default on Apple Silicon)
+5. **HF Local** as fallback when the llama-cpp probe fails
+- Manual override: `export EMBEDDINGS_PROVIDER=llama-cpp|hf-local|voyage|openai|auto`
 
 **Location:** Bundled in project at `.opencode/skills/system-spec-kit/`
 
@@ -663,10 +606,10 @@ Spec Kit Memory now supports three embedding backends:
 
 **Optional environment variables:**
 ```bash
-# Provider selection (hf-local|voyage|openai)
+# Provider selection (llama-cpp|hf-local|voyage|openai|auto)
 export EMBEDDINGS_PROVIDER=hf-local  # Default: local embeddings (free, offline)
 
-# Voyage config (recommended - best retrieval quality)
+# Voyage config (cloud opt-in)
 export VOYAGE_API_KEY=pa-...
 export VOYAGE_EMBEDDINGS_MODEL=voyage-3.5  # Default
 
@@ -675,7 +618,13 @@ export OPENAI_API_KEY=sk-...
 export OPENAI_EMBEDDINGS_MODEL=text-embedding-3-small  # Default
 
 # HF Local config (if using HF local)
-export HF_EMBEDDINGS_MODEL=nomic-ai/nomic-embed-text-v1.5  # Default
+export HF_EMBEDDINGS_MODEL=onnx-community/embeddinggemma-300m-ONNX  # Default (fallback path)
+export HF_EMBEDDINGS_DTYPE=q8  # Default (also: fp32, fp16, q4, int8, uint8, bnb4)
+
+# llama-cpp config (default local provider)
+export LLAMA_CPP_EMBEDDINGS_MODEL=unsloth/embeddinggemma-300m-GGUF  # Default
+export LLAMA_CPP_EMBEDDINGS_GGUF_FILE=embeddinggemma-300M-Q8_0.gguf  # Default
+export MEMORY_AUTO_MIGRATE_HF_TO_LLAMA=true  # Set to "false" to disable 018 auto-migration
 
 # Database directory (optional - default: .opencode/skills/system-spec-kit/mcp_server/database/)
 export MEMORY_DB_DIR=/path/to/database
@@ -1341,7 +1290,10 @@ node .opencode/skills/system-spec-kit/mcp_server/dist/context-server.js
 ### Memory search returns empty
 ```bash
 # Check database has content
-sqlite3 .opencode/skills/system-spec-kit/mcp_server/dist/database/context-index.sqlite "SELECT COUNT(*) FROM memory_index;"
+# Find the active database file (filename encodes provider, model, dim, and dtype)
+ls .opencode/skills/system-spec-kit/mcp_server/database/context-index__*.sqlite
+# Then query it (replace path with the file you found):
+sqlite3 .opencode/skills/system-spec-kit/mcp_server/database/context-index__llama-cpp__*.sqlite "SELECT COUNT(*) FROM memory_index;"
 ```
 
 </details>

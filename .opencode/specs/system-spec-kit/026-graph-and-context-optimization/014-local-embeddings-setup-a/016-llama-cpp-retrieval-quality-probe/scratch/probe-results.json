@@ -1,0 +1,276 @@
+{
+  "corpus_size": 200,
+  "query_count": 50,
+  "query_strategy": "approach_A",
+  "hf_local": {
+    "model": "onnx-community/embeddinggemma-300m-ONNX",
+    "embedding_time_seconds": 27.746219,
+    "mrr_top200": 1
+  },
+  "llama_cpp": {
+    "model": "unsloth/embeddinggemma-300m-GGUF",
+    "model_path": "/Users/michelkerkmeester/.cache/huggingface/gguf/embeddinggemma-300m/embeddinggemma-300M-Q8_0.gguf",
+    "embedding_time_seconds": 11.686622,
+    "mrr_top200": 1
+  },
+  "metrics": {
+    "recall_at_5_overlap_mean": 0.912,
+    "recall_at_5_overlap_p25": 0.8,
+    "spearman_rho_top10_mean": 0.865028,
+    "mrr_relative_delta": 0
+  },
+  "verdict": "EQUIVALENT",
+  "one_line_interpretation": "Retrieval rank ordering is stable enough that the prior vector-cosine miss looks migration-only, assuming a one-time re-index.",
+  "examples": [
+    {
+      "query": "Packet: system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/033-release-readiness-synthesis-and-remediation Spec Folder: system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/033-release-readiness-synthesis-and-remediation Status:",
+      "target_doc_id": "2299",
+      "hf_local_top5": [
+        {
+          "doc_id": "2299",
+          "score": 0.89249
+        },
+        {
+          "doc_id": "2280",
+          "score": 0.890538
+        },
+        {
+          "doc_id": "2279",
+          "score": 0.857677
+        },
+        {
+          "doc_id": "2244",
+          "score": 0.851703
+        },
+        {
+          "doc_id": "2253",
+          "score": 0.851532
+        }
+      ],
+      "llama_cpp_top5": [
+        {
+          "doc_id": "2299",
+          "score": 0.857209
+        },
+        {
+          "doc_id": "2280",
+          "score": 0.850029
+        },
+        {
+          "doc_id": "2279",
+          "score": 0.807267
+        },
+        {
+          "doc_id": "2228",
+          "score": 0.795843
+        },
+        {
+          "doc_id": "2244",
+          "score": 0.793324
+        }
+      ],
+      "overlap_at_5": 0.8,
+      "spearman_rho_top10": 0.951515
+    },
+    {
+      "query": "--- title: \"Tasks: 101/004 Deep AI Council Reference Expansion\" description: \"Task list for deep-ai-council reference expansion, playbook coverage, SKILL. md routing, and Level 1 packet metadata.",
+      "target_doc_id": "479",
+      "hf_local_top5": [
+        {
+          "doc_id": "479",
+          "score": 0.884311
+        },
+        {
+          "doc_id": "491",
+          "score": 0.776116
+        },
+        {
+          "doc_id": "2202",
+          "score": 0.768804
+        },
+        {
+          "doc_id": "519",
+          "score": 0.761987
+        },
+        {
+          "doc_id": "2198",
+          "score": 0.749973
+        }
+      ],
+      "llama_cpp_top5": [
+        {
+          "doc_id": "479",
+          "score": 0.863466
+        },
+        {
+          "doc_id": "491",
+          "score": 0.70699
+        },
+        {
+          "doc_id": "2202",
+          "score": 0.695904
+        },
+        {
+          "doc_id": "519",
+          "score": 0.686211
+        },
+        {
+          "doc_id": "505",
+          "score": 0.675366
+        }
+      ],
+      "overlap_at_5": 0.8,
+      "spearman_rho_top10": 0.915152
+    },
+    {
+      "query": "--- title: \"Implementation Summary: Live Handler Envelope Capture Seam\" template_source: \"SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2. 2\" description: \"Created the live handleMemorySearch envelope/audit behavioral test that closes the deterministic capture seam for v1.",
+      "target_doc_id": "811",
+      "hf_local_top5": [
+        {
+          "doc_id": "811",
+          "score": 0.883181
+        },
+        {
+          "doc_id": "812",
+          "score": 0.857959
+        },
+        {
+          "doc_id": "816",
+          "score": 0.776021
+        },
+        {
+          "doc_id": "1013",
+          "score": 0.723097
+        },
+        {
+          "doc_id": "826",
+          "score": 0.717569
+        }
+      ],
+      "llama_cpp_top5": [
+        {
+          "doc_id": "811",
+          "score": 0.852274
+        },
+        {
+          "doc_id": "812",
+          "score": 0.817837
+        },
+        {
+          "doc_id": "816",
+          "score": 0.719377
+        },
+        {
+          "doc_id": "1013",
+          "score": 0.636751
+        },
+        {
+          "doc_id": "826",
+          "score": 0.626332
+        }
+      ],
+      "overlap_at_5": 1,
+      "spearman_rho_top10": 0.9
+    },
+    {
+      "query": "--- title: \"Implementation Plan: Stress Test Folder Completion\" template_source: \"SPECKIT_TEMPLATE_SOURCE: plan-core | v2. 2\" description: \"Plan for content-based stress-test discovery, subsystem moves, config updates, docs refresh, and verification.",
+      "target_doc_id": "959",
+      "hf_local_top5": [
+        {
+          "doc_id": "959",
+          "score": 0.898849
+        },
+        {
+          "doc_id": "1116",
+          "score": 0.780289
+        },
+        {
+          "doc_id": "1199",
+          "score": 0.776932
+        },
+        {
+          "doc_id": "1136",
+          "score": 0.758902
+        },
+        {
+          "doc_id": "802",
+          "score": 0.75489
+        }
+      ],
+      "llama_cpp_top5": [
+        {
+          "doc_id": "959",
+          "score": 0.868207
+        },
+        {
+          "doc_id": "1116",
+          "score": 0.714202
+        },
+        {
+          "doc_id": "1199",
+          "score": 0.710306
+        },
+        {
+          "doc_id": "1136",
+          "score": 0.684212
+        },
+        {
+          "doc_id": "935",
+          "score": 0.683291
+        }
+      ],
+      "overlap_at_5": 0.8,
+      "spearman_rho_top10": 0.866667
+    },
+    {
+      "query": "Packet: system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/024-followup-quality-pass/005-stress-test-folder-migration Spec Folder:",
+      "target_doc_id": "2278",
+      "hf_local_top5": [
+        {
+          "doc_id": "2278",
+          "score": 0.866782
+        },
+        {
+          "doc_id": "2299",
+          "score": 0.851465
+        },
+        {
+          "doc_id": "2280",
+          "score": 0.85076
+        },
+        {
+          "doc_id": "2253",
+          "score": 0.843576
+        },
+        {
+          "doc_id": "2309",
+          "score": 0.840942
+        }
+      ],
+      "llama_cpp_top5": [
+        {
+          "doc_id": "2278",
+          "score": 0.824909
+        },
+        {
+          "doc_id": "2299",
+          "score": 0.799505
+        },
+        {
+          "doc_id": "2280",
+          "score": 0.796439
+        },
+        {
+          "doc_id": "2244",
+          "score": 0.791611
+        },
+        {
+          "doc_id": "2253",
+          "score": 0.787453
+        }
+      ],
+      "overlap_at_5": 0.8,
+      "spearman_rho_top10": 0.909091
+    }
+  ]
+}

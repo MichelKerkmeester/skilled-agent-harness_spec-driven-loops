@@ -1,0 +1,27 @@
+# Iteration 005 — Local-LLM Legacy Hunt
+
+## Focus
+This traceability pass scanned user-facing Markdown, skill references, install guides, feature-catalog docs, and selected config/comment surfaces for stale post-014 embedding-default claims. I prioritized claims that still present Voyage, MiniLM, OpenAI `text-embedding-3-small`, or generic `context-index.sqlite` paths as defaults/recommendations, while excluding the 014 migration narrative, this review packet, doctor provider-detection routes, historical spec-memory rows, and living fallback/opt-in code paths.
+
+## Findings
+
+| ID | Severity | Dimension | File:Line | Evidence (quote) | Disposition | Recommendation |
+|----|----------|-----------|-----------|------------------|-------------|----------------|
+| L-005-001 | P1 | traceability | README.md:1257 | "- **`VOYAGE_API_KEY`** (optional) - Voyage AI embeddings (recommended)" | confirmed-residue | Remove the recommendation and describe Voyage only as an optional cloud provider. |
+| L-005-002 | P1 | traceability | README.md:1261 | "Default repo-local database path: `.opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite`" | confirmed-residue | Replace the generic sqlite path with the derived hf-local EmbeddingGemma profile filename or profile-derived directory guidance. |
+| L-005-003 | P1 | traceability | README.md:1289 | "- **Paths** - The checked-in configs default to `.opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite`. If a runtime cannot write inside the repo, override `MEMORY_DB_PATH` (and, when relevant, `SPEC_KIT_DB_DIR`) to a writable location." | confirmed-residue | Update the checked-in config path description to say the sqlite filename is derived from provider, model, dims, and dtype. |
+| L-005-004 | P1 | traceability | README.md:1434 | "- **[→ Voyage AI](https://www.voyageai.com/)** - Recommended embedding provider" | confirmed-residue | Change the external-resource label so hf-local is the default and Voyage is optional/fallback. |
+| L-005-005 | P1 | traceability | .opencode/install_guides/README.md:489 | "- **Voyage** (recommended if you have `VOYAGE_API_KEY`). Best retrieval quality, cloud embeddings" | confirmed-residue | Remove recommended wording from the install guide and lead with hf-local EmbeddingGemma defaults. |
+| L-005-006 | P1 | traceability | .opencode/install_guides/README.md:634 | "\| **Voyage** \| Recommended, best quality \| 1024 \| `VOYAGE_API_KEY` \|" | confirmed-residue | Rewrite the provider table so hf-local q8 768d is the default row and Voyage is optional. |
+| L-005-007 | P1 | traceability | .opencode/install_guides/README.md:643 | "- If `VOYAGE_API_KEY` set + `EMBEDDINGS_PROVIDER=voyage`: uses Voyage (recommended, 8% better retrieval)" | confirmed-residue | Remove the quantified recommendation and frame explicit Voyage selection as opt-in only. |
+| L-005-008 | P1 | traceability | .opencode/install_guides/README.md:675 | "export OPENAI_EMBEDDINGS_MODEL=text-embedding-3-small  # Default" | confirmed-residue | Replace the default export example with canonical hf-local model/dtype/dims, leaving OpenAI as optional setup if documented. |
+| L-005-009 | P1 | traceability | .opencode/skills/system-spec-kit/references/config/environment_variables.md:46 | "2. `VOYAGE_API_KEY` detected (auto-selects Voyage)" | confirmed-residue | Rework provider-selection docs around `auto -> hf-local` when no keys are present and explicit opt-in for cloud providers. |
+| L-005-010 | P1 | traceability | .opencode/skills/system-spec-kit/feature_catalog/19--feature-flag-reference/05-5-embedding-and-api.md:23 | "\| `EMBEDDING_DIM` \| _(provider default)_ \| number \| `lib/search/vector-index-store.ts`, `shared/embeddings/factory.ts` \| Compatibility check and startup override for the stored vector dimension. Any positive explicit `EMBEDDING_DIM` value is honored first; otherwise runtime dimension selection comes from the active provider profile (Voyage 1024, OpenAI 1536, local 768 fallback). \|" | confirmed-residue | Update the feature-flag reference to make 768d hf-local EmbeddingGemma the default profile and cloud dimensions optional. |
+| L-005-011 | P1 | traceability | .opencode/skills/system-spec-kit/feature_catalog/19--feature-flag-reference/05-5-embedding-and-api.md:24 | "\| `EMBEDDINGS_PROVIDER` \| `'auto'` \| string \| `shared/embeddings/factory.ts` \| Selects the embedding provider. Valid values include `'auto'`, `'openai'`, `'hf-local'`, and `'voyage'`. In `'auto'` mode, resolution precedence is explicit `EMBEDDINGS_PROVIDER` -> `VOYAGE_API_KEY` -> `OPENAI_API_KEY` -> local fallback. \|" | confirmed-residue | Align the documented `auto` precedence with post-014 resolution and keep cloud providers out of the default narrative. |
+| L-005-012 | P1 | traceability | .opencode/skills/mcp-coco-index/INSTALL_GUIDE.md:619 | "\| **Default**     \| all-MiniLM-L6-v2 (local, no API key, 384 dimensions)                       \|" | confirmed-residue | Replace the CocoIndex summary default with `sentence-transformers` + `google/embeddinggemma-300m`, bf16, 768 dims. |
+
+## Iteration summary
+- Files scanned: 3990
+- New findings: 12 (P0=0, P1=12, P2=0)
+- Out-of-scope/historical noted but NOT flagged: 10
+- Notes: Fresh traceability residue remains in root README, install guides, feature-flag references, and CocoIndex guide summaries. The scan intentionally skipped this review packet, 014 migration history, doctor route provider-detection text, fallback-chain code, and old spec/graph metadata rows.

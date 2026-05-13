@@ -1,0 +1,196 @@
+{
+  "sessionId": "027-013-cocoindex-port-2026-05-13",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-k1-1-does-cocoindex-main-s-memoization-dependency-dag-pattern-from-python-cocoin",
+      "text": "**K1.1**: Does cocoindex-main's memoization + dependency-DAG pattern (from `python/cocoindex/_internal/memo_fingerprint.py` + `rust/core/src/state/db_schema.rs` + `rust/core/src/state/stable_path.rs`) transfer cleanly to TypeScript+SQLite, or does it require a Rust-equivalent runtime / heed-style KV store?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 0
+    },
+    {
+      "id": "question-2-k1-2-can-the-childexistence-childcomponenttombstone-lifecycle-model-from-rust-co",
+      "text": "**K1.2**: Can the `ChildExistence` + `ChildComponentTombstone` lifecycle model from `rust/core/src/state/stable_path.rs` be ported into the flat `causal_edges` table at `lib/search/vector-index-schema.ts` to give causal edges automatic lifecycle/cleanup?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 0
+    },
+    {
+      "id": "question-3-k1-3-can-python-cocoindex-connectorkits-statediff-py-s-desired-prior-insert-upse",
+      "text": "**K1.3**: Can `python/cocoindex/connectorkits/statediff.py`'s `(desired, prior) → {insert, upsert, replace, delete}` model replace our ad-hoc post-mutation hooks (alias conflict detection, divergence reconciliation)?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 0
+    },
+    {
+      "id": "question-4-k1-4-should-spec-doc-embeddings-be-chunked-by-frontmatter-h2-sections-with-per-c",
+      "text": "**K1.4**: Should spec-doc embeddings be chunked (by frontmatter / H2 sections) with per-chunk fingerprint so editing one section of a long spec doesn't re-embed the whole thing? (Reference: `examples/code_embedding/`.)",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 0
+    },
+    {
+      "id": "question-5-k1-5-can-causal-edges-be-auto-derived-from-spec-doc-relationships-supersedes-cau",
+      "text": "**K1.5**: Can causal edges be auto-derived from spec-doc relationships (supersedes, caused-by, cited-by) using cocoindex's `conversation_to_knowledge` multi-phase extraction pattern (LLM extract → embed-dedup → canonical → graph)? How do we validate LLM-extracted edges to avoid graph pollution?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 0
+    },
+    {
+      "id": "question-6-k1-6-confirm-query-intelligence-is-a-non-port-axis-cocoindex-is-ingest-focused-w",
+      "text": "**K1.6**: Confirm query intelligence is a non-port axis — cocoindex is ingest-focused with retrieval delegated to backends. Document the negative finding.",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 0
+    },
+    {
+      "id": "question-7-k2-1-where-does-the-mcp-prefix-originate-claude-code-runtime-alone-or-cross-runt",
+      "text": "**K2.1**: Where does the `mcp__` prefix originate (Claude Code runtime alone, or cross-runtime MCP convention)? How is the server-name segment registered across OpenCode, Codex, Gemini, Claude Code?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 0
+    },
+    {
+      "id": "question-8-k2-2-does-mk-survive-the-tightest-known-regex-constraint-alphanumeric-underscore",
+      "text": "**K2.2**: Does `mk_*` survive the tightest known regex constraint (alphanumeric + underscore + hyphen only) plus known provider rejections (DeepSeek/Moonshot `:`, opencode-skills `@`)?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 0
+    },
+    {
+      "id": "question-9-k2-3-after-spec-kit-memory-mk-memory-full-tool-names-remain-redundant-mcp-mk-mem",
+      "text": "**K2.3**: After `spec_kit_memory → mk_memory`, full tool names remain redundant (`mcp__mk_memory__memory_context`). Should tools also drop `memory_*`? Or shorten server to bare `mk`?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 0
+    },
+    {
+      "id": "question-10-k2-4-what-is-the-total-callsite-count-for-mcp-spec-kit-memory-across-claude-md-a",
+      "text": "**K2.4**: What is the total callsite count for `mcp__spec_kit_memory__*` across CLAUDE.md + all SKILL.md files + hook scripts + docs + `tool-schemas.ts`? Migration cost ceiling.",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 0
+    },
+    {
+      "id": "question-11-k2-5-what-s-the-final-naming-recommendation-given-chars-saved-migration-churn-ru",
+      "text": "**K2.5**: What's the final naming recommendation, given chars-saved × migration-churn × runtime-risk trade-off?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 0
+    }
+  ],
+  "keyFindings": [
+    {
+      "id": "finding-2-3-dependency-edges-parent-component-path-text-child-component-path-text-edge-kind-",
+      "text": "`dependency_edges(parent_component_path TEXT, child_component_path TEXT, edge_kind TEXT, child_key TEXT, child_fingerprint BLOB, PRIMARY KEY(parent_component_path, child_component_path, edge_kind, child_key))`",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-2-memoization-logic-deps-component-path-text-input-fingerprint-blob-logic-hash-blo",
+      "text": "`memoization_logic_deps(component_path TEXT, input_fingerprint BLOB, logic_hash BLOB, PRIMARY KEY(component_path, input_fingerprint, logic_hash))`",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-1-memoization-records-component-path-text-memo-kind-text-input-fingerprint-blob-co",
+      "text": "`memoization_records(component_path TEXT, memo_kind TEXT, input_fingerprint BLOB, code_hash BLOB, output_fingerprint BLOB, output_blob BLOB, memo_state_blob BLOB, computed_at INTEGER, PRIMARY KEY(component_path, memo_kind, input_fingerprint, code_hash))`",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-5-target-state-owner-target-state-path-text-primary-key-component-path-text-not-nu",
+      "text": "`target_state_owner(target_state_path TEXT PRIMARY KEY, component_path TEXT NOT NULL)`",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-4-target-state-tracking-component-path-text-target-state-path-text-provider-id-int",
+      "text": "`target_state_tracking(component_path TEXT, target_state_path TEXT, provider_id INTEGER, provider_schema_version INTEGER, state_fingerprint BLOB, tracking_record_blob BLOB, version INTEGER, deleted INTEGER DEFAULT 0, PRIMARY KEY(component_path, target_state_path, provider_id))`",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-6-add-the-memoization-and-dependency-tables-behind-a-schema-version-bump",
+      "text": "Add the memoization and dependency tables behind a schema version bump.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-7-backfill-file-level-memo-records-from-existing-memory-index-rows-using-canonical",
+      "text": "Backfill file-level memo records from existing `memory_index` rows using `canonical_file_path`, `content_hash`, `document_type`, and `updated_at`.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-10-gradually-move-expensive-derived-work-especially-parsing-graph-metadata-expansio",
+      "text": "Gradually move expensive derived work, especially parsing, graph metadata expansion, embedding generation, and post-mutation graph hooks, behind memo records.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-9-keep-mtime-content-hash-fast-path-as-a-coarse-filter-if-a-file-changed-walk-depe",
+      "text": "Keep mtime/content-hash fast path as a coarse filter. If a file changed, walk dependents; if unchanged and all dependency fingerprints match, skip.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-8-mark-backfilled-rows-as-dependency-state-unknown-or-equivalent-so-the-first-dag-",
+      "text": "Mark backfilled rows as `dependency_state = unknown` or equivalent so the first DAG-aware scan can populate dependency edges without deleting existing index data.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-10-1-k1-1-memoization-dependency-dag-indexing-yes-with-adaptation",
+      "text": "K1.1 memoization + dependency-DAG indexing: YES-WITH-ADAPTATION.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-2-k1-2-causal-edge-lifecycle-yes-with-adaptation",
+      "text": "K1.2 causal-edge lifecycle: YES-WITH-ADAPTATION.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-3-k1-3-statediff-reconciliation-yes-with-adaptation",
+      "text": "K1.3 statediff reconciliation: YES-WITH-ADAPTATION.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-4-k1-4-incremental-chunked-embeddings-yes-with-adaptation",
+      "text": "K1.4 incremental chunked embeddings: YES-WITH-ADAPTATION.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-5-k1-5-auto-causal-edge-derivation-yes-with-adaptation-deterministic-phase-1-first",
+      "text": "K1.5 auto causal-edge derivation: YES-WITH-ADAPTATION, deterministic Phase 1 first and LLM Phase 2 deferred.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-6-k1-6-query-intelligence-non-port-confirmed",
+      "text": "K1.6 query intelligence: NON-PORT CONFIRMED.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-7-k2-x-namespace-server-only-rename-spec-kit-memory-mk-memory-raw-tool-names-uncha",
+      "text": "K2.x namespace: server-only rename `spec_kit_memory` -> `mk-memory`, raw tool names unchanged.",
+      "addedAtIteration": 10,
+      "sources": []
+    }
+  ],
+  "ruledOutDirections": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "metrics": {
+    "iterationsCompleted": 10,
+    "openQuestions": 0,
+    "resolvedQuestions": 11,
+    "keyFindings": 17,
+    "convergenceScore": 0.09,
+    "coverageBySources": {}
+  },
+  "corruptionWarnings": [],
+  "status": "INITIALIZED"
+}

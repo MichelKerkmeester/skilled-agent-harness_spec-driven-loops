@@ -264,12 +264,13 @@ This split is intentional: index lifecycle is operator territory; search is the 
 
 ### Embedding Models
 
-CocoIndex Code supports two embedding models, configured via `~/.cocoindex_code/global_settings.yml`:
+CocoIndex Code defaults to local EmbeddingGemma and supports alternate embedding models configured via `~/.cocoindex_code/global_settings.yml`:
 
 | Model | Type | Dimensions | API Key | Best For |
 | ----- | ---- | ---------- | ------- | -------- |
-| `voyage/voyage-code-3` (primary) | Cloud via LiteLLM | 1024 | `VOYAGE_API_KEY` required | Higher quality code search |
-| `sentence-transformers/all-MiniLM-L6-v2` | Local | 384 | None | Offline use, no API dependency |
+| `google/embeddinggemma-300m` | Local via sentence-transformers | 768 | None | Default code-search model; query prompt resolves to `InstructionRetrieval` |
+| `sentence-transformers/all-MiniLM-L6-v2` | Local | 384 | None | Smaller offline alternative |
+| `voyage/voyage-code-3` | Cloud via LiteLLM | 1024 | `VOYAGE_API_KEY` required | Cloud alternative requiring a rebuild |
 
 **CRITICAL**: Changing the embedding model requires `ccc reset && ccc index` because different models produce vectors with different dimensions. Mixing dimensions corrupts the index.
 

@@ -43,8 +43,32 @@ Current state:
 - `handlers/`, `code_graph/`, `lib/`, and `skill_advisor/` own the runtime behavior behind those tools.
 - `database/` stores local SQLite state for indexed memory and code graph data.
 - Runtime hooks under `hooks/` prepare startup, prompt, and compact-context payloads for supported clients.
+- Embedding provider selection is controlled by `EMBEDDINGS_PROVIDER`. The default `auto` cascade is cloud key when configured, then `llama-cpp` when the local GGUF runtime is available, then `hf-local` as the local fallback.
 
 This package is local-first. It reads and writes repository-local databases, generated build output, and hook payloads, while keeping authored spec docs outside the server package.
+
+### llama-cpp embeddings
+
+`llama-cpp` routes Memory MCP embeddings through `node-llama-cpp` and a local Q8_0 GGUF EmbeddingGemma file. Fresh clones need no manual migration: after the model is installed, `EMBEDDINGS_PROVIDER=auto` resolves to `llama-cpp` after cloud providers.
+
+```bash
+bash .opencode/skills/system-spec-kit/scripts/install-llama-cpp.sh
+```
+
+The provider keeps a separate profile slug (`llama-cpp__unsloth-embeddinggemma-300m-gguf__768__q8`) so its vector index does not mix with `hf-local`.
+
+### Migration
+
+Fresh clones do not need any migration work. Upgrades from a prior `hf-local` install are handled on the first Memory MCP daemon startup: the server detects the largest `context-index__hf-local__*.sqlite`, re-embeds rows into the `llama-cpp` store, validates matching row counts plus the sample-vector check, deletes the source sqlite and any `-shm`/`-wal` companions, then writes `.opencode/skills/system-spec-kit/mcp_server/database/.auto-migration-complete.json`.
+
+Use this opt-out to preserve the old warning-plus-manual-script behavior:
+
+```bash
+MEMORY_AUTO_MIGRATE_HF_TO_LLAMA=false
+npx tsx .opencode/skills/system-spec-kit/scripts/migrate-embeddings-to-llama-cpp.ts
+```
+
+Use `EMBEDDINGS_PROVIDER=hf-local` when a host cannot load the GGUF runtime or when you intentionally want the old provider for that run.
 
 <!-- /ANCHOR:overview -->
 

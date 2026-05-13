@@ -92,7 +92,7 @@ The framework adds three layers on top of the base platform:
          │  Graph-first routing ─ 3-tier fallback   │
          │  FSRS decay ─ RRF fusion ─ query intel   │
          │  runtime flags ─ eval guardrails         │
-         │  Voyage │ OpenAI │ HuggingFace Local     │
+         │  llama-cpp │ HF Local │ OpenAI │ Voyage  │
          └──────────────────────┬───────────────────┘
                                 │
                                 ▼
@@ -136,14 +136,17 @@ cd ../../../../
 Choose an embedding provider:
 
 ```bash
-# Option A: Voyage AI (recommended - best quality)
+# Default: llama-cpp (free, local, zero setup on Apple Silicon with Metal GPU)
+# No setup required. The daemon auto-detects the GGUF model on first run.
+
+# Option A: Voyage AI (cloud, requires API key, opt-in only)
 export VOYAGE_API_KEY="your-key-here"
 
-# Option B: OpenAI embeddings
+# Option B: OpenAI embeddings (cloud, requires API key)
 export OPENAI_API_KEY="your-key-here"
 
-# Option C: HuggingFace Local (free, no API key needed)
-# No setup required - auto-detected when no API keys are set
+# Option C: HuggingFace Local (free, CPU fallback when llama-cpp is unavailable)
+# Auto-detected when the llama-cpp probe fails and no cloud keys are set
 ```
 
 ### Verify Installation
@@ -514,9 +517,10 @@ Preview all checks without saving using `dryRun: true`. Learned relevance feedba
 &nbsp;
 #### Embedding Providers
 
-- **Voyage AI** - Set `VOYAGE_API_KEY` env var. Best quality, recommended.
-- **OpenAI** - Set `OPENAI_API_KEY` env var. Strong alternative.
-- **HuggingFace Local** - No setup needed. Free, auto-detected fallback.
+- **llama-cpp** - Default on Apple Silicon. Free, local, 768d Q8_0 GGUF with Metal GPU. No setup.
+- **HuggingFace Local** - Fallback when llama-cpp is unavailable. Free, local, 768d q8 ONNX. No setup.
+- **Voyage AI** - Cloud opt-in. Set `VOYAGE_API_KEY`. 1024d. Gated by egress guard.
+- **OpenAI** - Cloud opt-in. Set `OPENAI_API_KEY`. 1536d.
 
 ---
 
@@ -825,7 +829,7 @@ These skills let you run **cross-CLI agent teams from any starting CLI**. Whiche
 - Progressive tool loading - zero upfront cost, tools load on first use. Type-safe with autocomplete.
 
 **mcp-coco-index**
-- Semantic code search via vector embeddings (Voyage Code 3 and All-MiniLM-L6-v2 models)
+- Semantic code search via vector embeddings (google/embeddinggemma-300m 768d default; alternative models via global settings)
 - Natural-language discovery of code patterns and implementations across 28+ languages
 - Two access modes: CLI (`ccc`) for direct terminal use, MCP server for AI agent integration
 
@@ -1254,11 +1258,14 @@ The other shipped skills will continue working unchanged: `sk-doc` will still va
 
 The memory server reads configuration from environment variables:
 
-- **`VOYAGE_API_KEY`** (optional) - Voyage AI embeddings (recommended)
+- **`VOYAGE_API_KEY`** (optional) - Voyage AI cloud embeddings (opt-in only, gated by egress guard)
+- **`LLAMA_CPP_EMBEDDINGS_MODEL`** (optional) - Override llama-cpp model (default: `unsloth/embeddinggemma-300m-GGUF`)
+- **`HF_EMBEDDINGS_DTYPE`** (optional) - hf-local fallback dtype (default: `q8`; also: `fp32`, `fp16`, `q4`, `int8`, `uint8`, `bnb4`)
+- **`MEMORY_AUTO_MIGRATE_HF_TO_LLAMA`** (optional) - Set to `false` to disable 018 auto-migration on first startup
 - **`OPENAI_API_KEY`** (optional) - OpenAI embeddings (alternative)
 - **`MEMORY_DB_PATH`** (optional) - Override default database path
 
-Default repo-local database path: `.opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite`
+Default repo-local database path: `.opencode/skills/system-spec-kit/mcp_server/database/context-index__llama-cpp__unsloth-embeddinggemma-300m-gguf__768__q8.sqlite`. The filename encodes provider, model, dimension and dtype so multiple backends can coexist on disk without mixing vectors.
 
 > [!TIP]
 > If no API key is set, the memory engine auto-detects **HuggingFace Local** embeddings - free, no setup required.
@@ -1286,7 +1293,7 @@ The runtime centers on a SQLite `memory_index` table with 56 columns plus compan
 - **Search companions** - FTS5 and vector tables support lexical and embedding retrieval alongside BM25 rebuild/index data.
 - **Graph/lifecycle** - Causal edges, lineage projection, checkpoints, working memory, and access tracking support decision tracing and session continuity.
 - **Evaluation** - Separate eval tables persist ablation/reporting metrics, with guards for missing query IDs and synthetic token-usage markers.
-- **Paths** - The checked-in configs default to `.opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite`. If a runtime cannot write inside the repo, override `MEMORY_DB_PATH` (and, when relevant, `SPEC_KIT_DB_DIR`) to a writable location.
+- **Paths** - The checked-in configs default to the provider-keyed database path under `.opencode/skills/system-spec-kit/mcp_server/database/`. The filename encodes provider, model, dimension and dtype (for example: `context-index__llama-cpp__unsloth-embeddinggemma-300m-gguf__768__q8.sqlite`). If a runtime cannot write inside the repo, override `MEMORY_DB_PATH` (and, when relevant, `SPEC_KIT_DB_DIR`) to a writable location.
 
 &nbsp;
 ### opencode.json Structure
@@ -1431,7 +1438,7 @@ A: The feature catalog is a 294-entry reference across 22 categories documenting
 **External Resources:**
 
 - **[→ OpenCode](https://github.com/sst/opencode)** - The underlying AI coding platform
-- **[→ Voyage AI](https://www.voyageai.com/)** - Recommended embedding provider
+- **[→ Voyage AI](https://www.voyageai.com/)** - Cloud embedding provider (opt-in)
 - **[→ HuggingFace](https://huggingface.co/)** - Free local embedding alternative
 
 <!-- /ANCHOR:related-documents -->

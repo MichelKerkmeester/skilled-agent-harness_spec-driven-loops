@@ -711,9 +711,9 @@ Precedence chain identified
 Provider selection audit.
 
 #### Scenario Contract
-Prompt: `Validate 5. Embedding and API against memory_search({ query:"EMBEDDINGS_PROVIDER auto provider selection rules", limit:20 }).`
+Prompt: `Validate 5. Embedding and API against memory_search({ query:"EMBEDDINGS_PROVIDER auto provider selection rules llama-cpp hf-local EmbeddingGemma", limit:20 }).`
 
-Provider rules and key precedence shown
+Provider rules show explicit provider override, cloud key precedence, local `llama-cpp` default, and `hf-local` fallback with current EmbeddingGemma model IDs.
 
 #### Test Execution
 > **Feature File:** [EX-032](19--feature-flag-reference/032-5-embedding-and-api.md)

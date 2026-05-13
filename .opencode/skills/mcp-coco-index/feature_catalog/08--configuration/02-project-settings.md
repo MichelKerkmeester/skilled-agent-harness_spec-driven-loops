@@ -20,7 +20,7 @@ Project settings define which files enter the index and how custom extensions ma
 <!-- ANCHOR:current-reality -->
 ## 2. CURRENT REALITY
 
-`ccc init` writes project settings under `.cocoindex_code/settings.yml`. Missing project settings are an initialization error for normal CLI commands, while empty files load as defaults.
+`ccc init` writes project settings under `.cocoindex_code/settings.yml`. Missing project settings are an initialization error for normal CLI commands, while empty files load as defaults. The current default include set is code-oriented; markdown/text documentation formats were removed from defaults, and repo-local spec/changelog directories are excluded by checked-in project settings.
 <!-- /ANCHOR:current-reality -->
 
 ---

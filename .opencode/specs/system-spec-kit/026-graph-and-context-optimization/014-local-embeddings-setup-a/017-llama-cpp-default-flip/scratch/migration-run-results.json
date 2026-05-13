@@ -1,0 +1,15 @@
+{
+  "source": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/database/context-index__hf-local__onnx-community_embeddinggemma-300m-onnx__768__q8.sqlite",
+  "target": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/database/context-index__llama-cpp__unsloth-embeddinggemma-300m-gguf__768__q8.sqlite",
+  "source_rows": 2488,
+  "target_rows": 2488,
+  "migrated_rows": 2488,
+  "skipped_rows": 0,
+  "pruned_target_only_rows": 7,
+  "summary_rows": 0,
+  "validation_sample_size": 10,
+  "mismatches": 0,
+  "wall_clock_seconds": 130.117,
+  "started_at": "2026-05-13T10:50:10.852Z",
+  "completed_at": "2026-05-13T10:52:20.970Z"
+}

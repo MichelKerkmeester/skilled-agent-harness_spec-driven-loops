@@ -143,7 +143,7 @@ For install and API details, see [Skill Advisor Native Package README](mcp_serve
 | Node.js       | 18+                      | Required for scripts and MCP server    |
 | TypeScript    | 5.0+                     | Source compiled to `dist/` directories |
 | Bash          | 4.0+                     | Spec management shell scripts          |
-| Embedding API | None (HuggingFace local) | Voyage AI recommended for best quality |
+| Embedding API | None (llama-cpp local default) | Zero setup on Apple Silicon. HF Local ONNX as fallback. Voyage and OpenAI are cloud opt-in. |
 
 Workspace module profile:
 
@@ -358,7 +358,7 @@ When you search, the system checks five sources at once -- like a librarian who 
 
 | Channel          | How It Works                                        | Good For                                       |
 | ---------------- | --------------------------------------------------- | ---------------------------------------------- |
-| **Vector**       | Compares meaning via embeddings (Voyage AI 1024d)   | Finding related content even when words differ |
+| **Vector**       | Compares meaning via embeddings (EmbeddingGemma 768d default) | Finding related content even when words differ |
 | **FTS5**         | Full-text search on exact words and phrases         | Specific terms and error messages              |
 | **BM25**         | Keyword relevance scoring                           | Ranking when you know roughly what you want    |
 | **Causal Graph** | Follows cause-and-effect links between memories     | "Why did we choose this?" questions            |
@@ -684,20 +684,26 @@ Session starts
 
 ### Embedding Providers
 
-The indexed-continuity store converts text to numerical embeddings for vector search. Three providers are supported:
+The indexed-continuity store converts text to numerical embeddings for vector search. Five providers are supported. The default cascade (when `EMBEDDINGS_PROVIDER=auto` or unset) is local-first:
 
 | Provider          | Dimensions | Notes                                                            |
 | ----------------- | ---------- | ---------------------------------------------------------------- |
-| Voyage AI         | 1024       | Recommended. Best retrieval quality. Requires `VOYAGE_API_KEY`   |
-| OpenAI            | 1536       | Alternative. Requires `OPENAI_API_KEY`                           |
-| HuggingFace Local | Varies     | No API key needed. Higher latency, runs entirely on your machine |
+| llama-cpp         | 768        | Default on Apple Silicon. Q8_0 GGUF + Metal GPU. No setup.       |
+| HuggingFace Local | 768        | Fallback when llama-cpp is unavailable. q8 ONNX on CPU. No setup. |
+| Voyage AI         | 1024       | Cloud opt-in. Requires `VOYAGE_API_KEY`. Gated by egress guard.  |
+| OpenAI            | 1536       | Cloud opt-in. Requires `OPENAI_API_KEY`.                         |
 
 ### Environment Variables
 
 | Variable             | Required    | Description                                          |
 | -------------------- | ----------- | ---------------------------------------------------- |
-| `VOYAGE_API_KEY`     | Recommended | Voyage AI embeddings (1024d, best retrieval quality) |
-| `OPENAI_API_KEY`     | Alternative | OpenAI embeddings fallback                           |
+| `VOYAGE_API_KEY`     | No          | Voyage AI cloud embeddings (opt-in)                  |
+| `OPENAI_API_KEY`     | No          | OpenAI cloud embeddings (opt-in)                     |
+| `LLAMA_CPP_EMBEDDINGS_MODEL` | No  | Override llama-cpp model (default: `unsloth/embeddinggemma-300m-GGUF`) |
+| `LLAMA_CPP_EMBEDDINGS_GGUF_FILE` | No | GGUF filename (default: `embeddinggemma-300M-Q8_0.gguf`)         |
+| `HF_EMBEDDINGS_MODEL` | No         | Override hf-local model (default: `onnx-community/embeddinggemma-300m-ONNX`) |
+| `HF_EMBEDDINGS_DTYPE` | No         | hf-local dtype: `q8` default, also `fp32`, `fp16`, `q4`, `int8`, `uint8`, `bnb4` |
+| `MEMORY_AUTO_MIGRATE_HF_TO_LLAMA` | No | Set to `false` to disable 018 auto-migration on first startup |
 | `SPEC_KIT_DB_DIR` / `SPECKIT_DB_DIR` | No | Preferred database-directory override; runtime derives the sqlite filename from the active embedding profile |
 | `MEMORY_DB_PATH`     | No          | Explicit file override for the active SQLite database path |
 | `SPEC_KIT_LOG_LEVEL` | No          | Log verbosity: `debug`, `info`, `warn`, `error`      |
@@ -717,7 +723,7 @@ For generic MCP clients that use `mcpServers` syntax (for example Claude Desktop
         "/absolute/path/to/.opencode/skills/system-spec-kit/mcp_server/dist/context-server.js"
       ],
       "env": {
-        "VOYAGE_API_KEY": "your-key-here"
+        "EMBEDDINGS_PROVIDER": "auto"
       }
     }
   }

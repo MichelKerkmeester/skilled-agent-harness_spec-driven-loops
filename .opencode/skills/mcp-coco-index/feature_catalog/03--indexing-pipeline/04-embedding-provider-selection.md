@@ -20,7 +20,7 @@ The embedder factory selects the runtime embedding backend. It supports local se
 <!-- ANCHOR:current-reality -->
 ## 2. CURRENT REALITY
 
-Default user settings choose `sentence-transformers/all-MiniLM-L6-v2`. When the provider is `sentence-transformers`, the factory strips the legacy `sbert/` prefix and can set a query prompt. Other providers route through LiteLLM.
+Default user settings choose the local sentence-transformers provider with `google/embeddinggemma-300m`; environment defaults may present the same model as `sbert/google/embeddinggemma-300m`. When the provider is `sentence-transformers`, the factory strips the legacy `sbert/` prefix and resolves the `InstructionRetrieval` query prompt for EmbeddingGemma. Other providers route through LiteLLM.
 <!-- /ANCHOR:current-reality -->
 
 ---

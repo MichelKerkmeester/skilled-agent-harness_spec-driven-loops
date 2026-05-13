@@ -20,7 +20,7 @@ Path classes let search ranking treat implementation code differently from docs,
 <!-- ANCHOR:current-reality -->
 ## 2. CURRENT REALITY
 
-Classification happens during indexing. Vendor and generated paths are recognized first, spec research paths are separated from regular implementation, tests are detected by path and filename and docs are recognized outside spec trees.
+Classification happens during indexing for files that pass the include/exclude filters. Vendor and generated paths are recognized first, spec research paths are separated from regular implementation, tests are detected by path and filename and docs are recognized outside spec trees. The taxonomy remains available for explicit opt-in or legacy indexes even though current defaults are code-oriented and do not require docs/spec formats in the default include set.
 <!-- /ANCHOR:current-reality -->
 
 ---

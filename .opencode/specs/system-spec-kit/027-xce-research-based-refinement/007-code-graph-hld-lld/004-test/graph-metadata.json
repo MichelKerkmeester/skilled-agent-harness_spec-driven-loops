@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/027-xce-research-based-refinement/007-code-graph-hld-lld/004-test",
+  "spec_folder": "system-spec-kit/027-xce-research-based-refinement/007-code-graph-hld-lld/004-test",
+  "parent_id": "system-spec-kit/027-xce-research-based-refinement/007-code-graph-hld-lld",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [
+      "001-contract"
+    ],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "status": "spec-scaffolded",
+    "level": 2,
+    "completion_pct": 0,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ]
+  },
+  "importance_tier": "important"
+}

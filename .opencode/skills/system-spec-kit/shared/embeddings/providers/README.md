@@ -1,8 +1,9 @@
 ---
 title: "Embedding Providers"
-description: "Concrete embedding provider implementations for HuggingFace Local, OpenAI and Voyage AI backends."
+description: "Concrete embedding provider implementations for llama-cpp, HuggingFace Local, OpenAI and Voyage AI backends."
 trigger_phrases:
   - "embedding providers"
+  - "llama-cpp embeddings"
   - "hf local provider"
   - "openai embeddings"
   - "voyage embeddings"
@@ -35,6 +36,8 @@ This folder contains provider adapters for the `IEmbeddingProvider` interface fr
 
 The parent package owns provider selection in `../factory.ts`. Files in this folder should stay focused on backend behavior: request shaping, retries, task prefixes, metadata and health checks.
 
+> **Auto-migration on first startup.** When the active provider resolves to `llama-cpp` and a pre-existing `context-index__hf-local__*.sqlite` store is present, the Memory MCP server re-embeds the rows into the new llama-cpp store and deletes the source. The logic lives in the MCP server startup path, not in this folder. See the MCP server README and packet 018 for the full lifecycle.
+
 <!-- /ANCHOR:overview -->
 
 ---
@@ -45,16 +48,18 @@ The parent package owns provider selection in `../factory.ts`. Files in this fol
 ```text
 providers/
 ├── README.md      # This file
-├── hf-local.ts    # HuggingFace local transformer provider
+├── llama-cpp.ts   # llama-cpp GGUF provider (default local)
+├── hf-local.ts    # HuggingFace local ONNX provider (fallback)
 ├── openai.ts      # OpenAI embeddings provider
 └── voyage.ts      # Voyage AI embeddings provider
 ```
 
 | File | Provider | Default model | Dimensions | Role |
 | ---- | -------- | ------------- | ---------- | ---- |
-| `hf-local.ts` | HuggingFace Local | `nomic-ai/nomic-embed-text-v1.5` | 768 | Offline provider with `search_document:` and `search_query:` prefixes |
+| `llama-cpp.ts` | llama-cpp | `unsloth/embeddinggemma-300m-GGUF` | 768 | Default local provider. Metal GPU acceleration, Q8_0 GGUF quantization, EmbeddingGemma prefixes |
+| `hf-local.ts` | HuggingFace Local | `onnx-community/embeddinggemma-300m-ONNX` | 768 | Fallback local provider. ONNX q8 quantization on CPU when llama-cpp is unavailable |
 | `openai.ts` | OpenAI | `text-embedding-3-small` | 1536 | Cloud provider with OpenAI usage tracking and retry handling |
-| `voyage.ts` | Voyage AI | `voyage-4` | 1024 | Cloud provider using Voyage `input_type` for document and query embeddings |
+| `voyage.ts` | Voyage AI | configured via env | 1024 | Cloud opt-in provider using Voyage `input_type` for document and query embeddings |
 
 <!-- /ANCHOR:structure -->
 
@@ -125,6 +130,8 @@ For README-only edits, `validate_document.py` is the required file-level check.
 | [embeddings/profile.ts](../profile.ts) | Per-profile database path generation |
 | [shared/types.ts](../../types.ts) | `IEmbeddingProvider` and shared retrieval types |
 | [shared/utils/retry.ts](../../utils/retry.ts) | Retry helper used by cloud providers |
+| [mcp_server/README.md](../../../mcp_server/README.md) | Memory MCP server entry point, auto-migration lifecycle, env vars |
+| [packet 018](../../../../../specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/018-llama-cpp-auto-migration/) | hf-local to llama-cpp auto-migration spec |
 
 <!-- /ANCHOR:related -->
 

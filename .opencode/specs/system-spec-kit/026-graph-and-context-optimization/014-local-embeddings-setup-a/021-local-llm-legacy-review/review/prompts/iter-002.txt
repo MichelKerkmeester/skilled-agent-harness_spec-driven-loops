@@ -1,0 +1,107 @@
+You are iteration 2 of 20 in a /spec_kit:deep-review hunt for legacy residue from the local-LLM and embedding-default migration shipped in packet 014-local-embeddings-setup-a.
+
+POST-014 CANONICAL DEFAULTS (treat as ground truth):
+- Memory MCP: provider=hf-local, model=onnx-community/embeddinggemma-300m-ONNX, dtype=q8, dims=768
+- CocoIndex: provider=sentence-transformers, model=google/embeddinggemma-300m, dtype=bf16, dims=768
+- Provider resolution: EMBEDDINGS_PROVIDER=auto falls through to hf-local when no API keys present
+- Optional: EMBEDDINGS_PROVIDER=llama-cpp (explicit opt-in) with synchronous auto-migrate on startup
+
+PURGED FROM DEFAULTS (residue if asserted as active default):
+- Voyage AI (voyageai, voyage-3, voyage-4, voyage-code-3) — kept as fallback in factory chain but NO LONGER the recommended/primary
+- Qwen3 (qwen3, qwen-3, qwen-32k) — registry kept for opt-in, PURGED FROM DEFAULT DOCS
+- MiniLM-384d — stale CocoIndex sqlite deleted in 004; no active code path
+- Legacy generic context-index.sqlite (pre-filename-keyed) — deleted in 007
+- ONNX runtime backend — REJECTED 2026-05-13 (014/014 sub-phase reverted)
+
+SCOPE SURFACES (read-only):
+1. Code .ts/.py/.cjs under: shared/, .opencode/skills/, scripts/, mcp_server/, cocoindex_code/
+2. Markdown .md/SKILL.md/README/INSTALL_GUIDE under: .opencode/skills/**, .opencode/install_guides/, repo root
+3. JSON/configs: description.json, graph-metadata.json (per packet), package.json, .utcp_config.json, .claude/mcp.json, root .mcp.json, opencode.json, _routes.yaml, .codex/config.toml, .gemini/settings.json, pyproject.toml, requirements*.txt, .opencode/settings*.json, .claude/settings*.json
+4. Assets/templates/fixtures: assets/config_templates.md, prompt packs, test fixtures, frozen sample text
+5. References: .opencode/skills/**/references/**
+
+KNOWN STALE ANCHORS (must surface as P1 by iter 1-3):
+- .opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md — "prefers voyage-4 then openai then hf-local"
+- .opencode/skills/system-spec-kit/references/memory/embedding_resilience.md — 1024-dim cache key references
+- .opencode/skills/mcp-coco-index/INSTALL_GUIDE.md — voyage-code-3 as primary
+- .opencode/skills/mcp-coco-index/references/settings_reference.md — voyage as default
+- .opencode/install_guides/README.md — text-embedding-3-small default export
+
+INTENTIONAL HISTORICAL CONTEXT (do NOT flag as residue):
+- .opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/** migration narrative
+- shared/embeddings/factory.ts provider fallback chain — LIVING resolver (falls through to hf-local when no key)
+- .opencode/commands/doctor/{_routes.yaml,doctor_memory.yaml} provider-detection
+- vitest fixtures exercising Voyage/OpenAI fallback paths — regression safety
+- Code-graph or spec-memory rows with old strings (data, not source)
+- This packet (021-local-llm-legacy-review/**) — review artifacts, not target
+
+REVIEW DIMENSIONS (categorize each finding under exactly one):
+- correctness: dead/unreachable code, incorrect defaults asserted in code, config-drift between committed configs
+- traceability: stale docs/READMEs/SKILL.md/INSTALL_GUIDE/references claiming outdated defaults
+- maintainability: fixture rot, asset rot, orphaned templates, legacy prompt-pack residue
+
+SEVERITY LEVELS:
+- P0 (Blocker): default-asserting code/doc that BREAKS post-014 behavior or actively misleads users into wrong setup
+- P1 (Required): visible/user-facing doc or config asserting a different default than canonical post-014
+- P2 (Suggestion): commented-out residue, obsolete example, redundant fixture
+
+BANNED OPERATIONS (RM-8 Layer 1):
+- NO rm, NO rm -rf, NO git rm, NO mv, NO sed -i, NO rmdir
+- NO writes outside the iteration file at the exact path given below
+- NO commits, NO branch creation
+- READ-ONLY against repo except your iteration file
+If you detect a need to mutate, record it as a "scope_violation" finding instead of executing.
+
+YOUR TASK FOR THIS ITERATION (#2):
+1. Focus dimension for this iter: traceability
+2. Use rg/grep + Read across the scope surfaces. Discriminate residue from intentional historical context.
+3. Produce EXACTLY ONE file: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/021-local-llm-legacy-review/review/iterations/iteration-002.md
+4. The file must be markdown with this structure:
+
+# Iteration 002 — Local-LLM Legacy Hunt
+
+## Focus
+[one paragraph: what you scanned this iteration and why]
+
+## Findings
+
+| ID | Severity | Dimension | File:Line | Evidence (quote) | Disposition | Recommendation |
+|----|----------|-----------|-----------|------------------|-------------|----------------|
+| L-002-001 | P1 | traceability | path/to/file:N | "quoted snippet" | confirmed-residue | [short fix recommendation] |
+| ... | ... | ... | ... | ... | ... | ... |
+
+## Iteration summary
+- Files scanned: N
+- New findings: N (P0=N, P1=N, P2=N)
+- Out-of-scope/historical noted but NOT flagged: N
+- Notes: [anything for the synthesizer]
+
+CONSTRAINTS:
+- 5–15 NEW findings per iter (avoid duplicating prior iterations — see prior findings below)
+- Each finding MUST have a real file:line evidence quote (no hallucinated paths)
+- If you cannot find new genuine residue, output fewer findings + note "saturation" in iteration summary
+- Skip files inside /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/021-local-llm-legacy-review (this review packet itself)
+- Skip files inside .git/, node_modules/, __pycache__/, .venv/, dist/, build/, _sandbox/
+
+WRITE ONLY /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/021-local-llm-legacy-review/review/iterations/iteration-002.md. DO NOT WRITE ANYWHERE ELSE.
+
+
+PRIOR ITERATIONS FINDINGS (avoid duplicate flags — these are already covered):
+
+--- iteration-001.md ---
+| L-001-001 | P0 | correctness | .opencode/skills/system-spec-kit/shared/embeddings/factory.ts:819 | "const llamaCppAvailability = getLlamaCppAvailability();" | confirmed-residue | Remove `llama-cpp` from the implicit `auto` no-key path; only select it when `EMBEDDINGS_PROVIDER=llama-cpp` is explicit. |
+| L-001-002 | P0 | correctness | .opencode/skills/system-spec-kit/shared/embeddings/factory.ts:822 | "name: 'llama-cpp'," | confirmed-residue | Change the no-key default branch to return `hf-local` with `onnx-community/embeddinggemma-300m-ONNX`, `q8`, 768 dims. |
+| L-001-003 | P1 | correctness | .codex/config.toml:23 | "_NOTE_3_EMBEDDINGS_PROVIDER = \"Options: auto \| llama-cpp \| hf-local \| voyage \| openai. Default 'auto' resolves to llama-cpp; set EMBEDDINGS_PROVIDER=hf-local to opt out.\"" | confirmed-residue | Update Codex config notes so `auto` resolves to `hf-local` without API keys and `llama-cpp` is explicit opt-in. |
+| L-001-004 | P1 | correctness | .claude/mcp.json:19 | "\"_NOTE_3_EMBEDDINGS_PROVIDER\": \"Options: auto \| llama-cpp \| hf-local \| voyage \| openai. Default 'auto' resolves to llama-cpp; set EMBEDDINGS_PROVIDER=hf-local to opt out.\"," | confirmed-residue | Align Claude MCP config note with post-014 provider resolution and remove the opt-out framing. |
+| L-001-005 | P1 | correctness | opencode.json:29 | "\"_NOTE_3_EMBEDDINGS_PROVIDER\": \"Options: auto \| llama-cpp \| hf-local \| voyage \| openai. Default 'auto' resolves to llama-cpp; set EMBEDDINGS_PROVIDER=hf-local to opt out.\"," | confirmed-residue | Align OpenCode config note with `auto -> hf-local` for no-key startup. |
+| L-001-006 | P1 | correctness | .gemini/settings.json:36 | "\"_NOTE_3_EMBEDDINGS_PROVIDER\": \"Options: auto \| llama-cpp \| hf-local \| voyage \| openai. Default 'auto' resolves to llama-cpp; set EMBEDDINGS_PROVIDER=hf-local to opt out.\"," | confirmed-residue | Align Gemini config note with `auto -> hf-local` and make `llama-cpp` opt-in only. |
+| L-001-007 | P1 | traceability | .opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:445 | "In `EMBEDDINGS_PROVIDER=auto`, the runtime prefers Voyage `voyage-4` (1024 dims) when `VOYAGE_API_KEY` is present, then OpenAI `text-embedding-3-small` (1536 dims) when `OPENAI_API_KEY` is present" | confirmed-residue | Rewrite the embedding default reference around the canonical hf-local default; keep cloud providers as explicit/optional fallback details. |
+| L-001-008 | P1 | traceability | .opencode/skills/system-spec-kit/references/memory/embedding_resilience.md:23 | "\| Voyage Provider \| `shared/embeddings/providers/voyage.ts` \| Primary embedding provider \|" | confirmed-residue | Change the architecture table to name `hf-local` as the default provider and Voyage as optional/fallback. |
+| L-001-009 | P1 | traceability | .opencode/skills/system-spec-kit/references/memory/embedding_resilience.md:48 | "│ 1. VOYAGE AI (Primary)                                            │" | confirmed-residue | Replace the fallback-order diagram with the post-014 resolver order and remove Voyage-as-primary language. |
+| L-001-010 | P1 | traceability | .opencode/skills/mcp-coco-index/INSTALL_GUIDE.md:101 | "\| **Embedding** \| Configurable (default: all-MiniLM-L6-v2 local, recommended: Voyage Code 3) \|" | confirmed-residue | Update CocoIndex install guide to `sentence-transformers` + `google/embeddinggemma-300m`, `bf16`, 768 dims as the default. |
+| L-001-011 | P1 | traceability | .opencode/skills/mcp-coco-index/references/settings_reference.md:43 | "\| `embedding.model`    \| string        \| `sentence-transformers/all-MiniLM-L6-v2`   \| Model identifier passed to the provider          \|" | confirmed-residue | Replace MiniLM defaults with `google/embeddinggemma-300m` and 768-dimensional expectations. |
+| L-001-012 | P1 | traceability | .opencode/skills/mcp-coco-index/SKILL.md:271 | "\| `voyage/voyage-code-3` (primary) \| Cloud via LiteLLM \| 1024 \| `VOYAGE_API_KEY` required \| Higher quality code search \|" | confirmed-residue | Remove `primary` from Voyage Code 3 and document it only as optional LiteLLM/cloud configuration. |
+| L-001-013 | P1 | maintainability | .opencode/skills/mcp-coco-index/assets/config_templates.md:75 | "\"_NOTE_2\": \"Default embedding: all-MiniLM-L6-v2 (local, no API key needed)\"," | confirmed-residue | Refresh config templates so generated client configs do not reintroduce the MiniLM default. |
+| L-001-014 | P1 | traceability | .opencode/install_guides/README.md:671 | "export VOYAGE_EMBEDDINGS_MODEL=voyage-3.5  # Default" | confirmed-residue | Replace the stale Voyage default example with canonical hf-local defaults; keep Voyage only as optional explicit provider setup. |
+| L-001-015 | P1 | traceability | .opencode/install_guides/README.md:678 | "export HF_EMBEDDINGS_MODEL=nomic-ai/nomic-embed-text-v1.5  # Default" | confirmed-residue | Update HF Local example to `onnx-community/embeddinggemma-300m-ONNX`, `q8`, 768 dims. |
+

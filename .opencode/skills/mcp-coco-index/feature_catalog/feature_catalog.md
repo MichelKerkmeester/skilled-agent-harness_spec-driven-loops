@@ -290,7 +290,7 @@ Creates sentence-transformer or LiteLLM embedders from user settings.
 
 #### Current Reality
 
-Default user settings choose `sentence-transformers/all-MiniLM-L6-v2`. When the provider is `sentence-transformers`, the factory strips the legacy `sbert/` prefix and can set a query prompt. Other providers route through LiteLLM.
+Default user settings choose the local sentence-transformers provider with `google/embeddinggemma-300m`; environment defaults may present the same model as `sbert/google/embeddinggemma-300m`. When the provider is `sentence-transformers`, the factory strips the legacy `sbert/` prefix and resolves the `InstructionRetrieval` query prompt for EmbeddingGemma. Other providers route through LiteLLM.
 
 #### Source Files
 
@@ -678,7 +678,7 @@ Stores embedding provider, model, device and daemon environment variables global
 
 #### Current Reality
 
-The default user settings use the local sentence-transformers provider and `all-MiniLM-L6-v2`. The loader rejects missing or empty settings files and the saver writes explicit YAML.
+The default user settings use the local sentence-transformers provider and `google/embeddinggemma-300m`; environment defaults may expose the same model as `sbert/google/embeddinggemma-300m`. The query prompt registry maps this model to `InstructionRetrieval`. The loader rejects missing or empty settings files and the saver writes explicit YAML.
 
 #### Source Files
 

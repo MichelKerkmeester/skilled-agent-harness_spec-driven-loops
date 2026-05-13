@@ -1,0 +1,29 @@
+# Iteration 007 — Local-LLM Legacy Hunt
+
+## Focus
+This iteration scanned correctness-sensitive code and config surfaces for residue that can alter or misrepresent active post-014 defaults: runtime MCP configs, setup scripts, checkpoint migration scripts, Memory MCP embedding package config, and CocoIndex active defaults. The emphasis was on committed configuration drift and executable/script behavior, while excluding the historical 014 migration narrative, the current 015 review packet, opt-in provider registries, and regression fixtures that intentionally exercise fallback paths.
+
+## Findings
+
+| ID | Severity | Dimension | File:Line | Evidence (quote) | Disposition | Recommendation |
+|----|----------|-----------|-----------|------------------|-------------|----------------|
+| L-007-001 | P1 | correctness | .codex/config.toml:22 | "_NOTE_2_PROVIDERS = \"Auto cascade: VOYAGE_API_KEY -> OPENAI_API_KEY -> llama-cpp (GGUF Q8_0 + Metal) -> hf-local (ONNX q8 fallback).\"" | confirmed-residue | Rewrite the Codex provider note so `auto` falls through to `hf-local` when no API keys are present, with `llama-cpp` documented only as explicit opt-in. |
+| L-007-002 | P1 | correctness | .claude/mcp.json:18 | "\"_NOTE_2_PROVIDERS\": \"Auto cascade: VOYAGE_API_KEY -> OPENAI_API_KEY -> llama-cpp (GGUF Q8_0 + Metal) -> hf-local (ONNX q8 fallback).\"" | confirmed-residue | Align the Claude MCP provider note with post-014 resolution and remove `llama-cpp` from the implicit auto cascade. |
+| L-007-003 | P1 | correctness | opencode.json:28 | "\"_NOTE_2_PROVIDERS\": \"Auto cascade: VOYAGE_API_KEY -> OPENAI_API_KEY -> llama-cpp (GGUF Q8_0 + Metal) -> hf-local (ONNX q8 fallback).\"" | confirmed-residue | Align the OpenCode MCP provider note with `auto -> hf-local` for no-key startup and explicit-only `llama-cpp`. |
+| L-007-004 | P1 | correctness | .gemini/settings.json:35 | "\"_NOTE_2_PROVIDERS\": \"Auto cascade: VOYAGE_API_KEY -> OPENAI_API_KEY -> llama-cpp (GGUF Q8_0 + Metal) -> hf-local (ONNX q8 fallback).\"" | confirmed-residue | Align the Gemini MCP provider note with the canonical hf-local default path. |
+| L-007-005 | P1 | correctness | .codex/config.toml:25 | "_NOTE_5_GET_VOYAGE_KEY = \"Get Voyage key: https://dash.voyageai.com/api-keys (recommended, 8% better than OpenAI)\"" | confirmed-residue | Remove the Voyage recommendation from the Codex runtime config note; keep Voyage only as optional explicit provider setup. |
+| L-007-006 | P1 | correctness | .claude/mcp.json:21 | "\"_NOTE_5_GET_VOYAGE_KEY\": \"Get Voyage key: https://dash.voyageai.com/api-keys (recommended, 8% better than OpenAI)\"," | confirmed-residue | Remove the Voyage recommendation from the Claude MCP config note and avoid unsupported quality claims in defaults guidance. |
+| L-007-007 | P1 | correctness | opencode.json:31 | "\"_NOTE_5_GET_VOYAGE_KEY\": \"Get Voyage key: https://dash.voyageai.com/api-keys (recommended, 8% better than OpenAI)\"," | confirmed-residue | Remove Voyage-as-recommended wording from the OpenCode config note. |
+| L-007-008 | P1 | correctness | .gemini/settings.json:38 | "\"_NOTE_5_GET_VOYAGE_KEY\": \"Get Voyage key: https://dash.voyageai.com/api-keys (recommended, 8% better than OpenAI)\"," | confirmed-residue | Remove Voyage-as-recommended wording from the Gemini config note. |
+| L-007-009 | P1 | correctness | .opencode/skills/system-spec-kit/scripts/install-llama-cpp.sh:83 | "log_pass \"llama-cpp embeddings ready. Default auto mode can now use llama-cpp.\"" | confirmed-residue | Change the installer success message to say `llama-cpp` is available for explicit `EMBEDDINGS_PROVIDER=llama-cpp`, not default auto mode. |
+| L-007-010 | P1 | correctness | .opencode/skills/system-spec-kit/mcp_server/scripts/migrations/create-checkpoint.ts:37 | "path.resolve(process.cwd(), '.opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite')," | confirmed-residue | Resolve checkpoint source DBs through the active embedding profile path instead of hardcoded legacy `context-index.sqlite` candidates. |
+| L-007-011 | P1 | correctness | .opencode/skills/system-spec-kit/mcp_server/scripts/migrations/restore-checkpoint.ts:36 | "path.resolve(process.cwd(), '.opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite')," | confirmed-residue | Resolve restore target/source DBs through the active embedding profile path instead of hardcoded legacy `context-index.sqlite` candidates. |
+| L-007-012 | P2 | correctness | .opencode/skills/system-spec-kit/package.json:39 | "\"onnxruntime-node\": {" | confirmed-residue | Remove or justify the explicit `onnxruntime-node` package metadata after the ONNX runtime backend rejection; keep only dependencies required by the accepted hf-local path. |
+| L-007-013 | P2 | correctness | .opencode/skills/system-spec-kit/scripts/setup/check-native-modules.sh:63 | "# Probe onnxruntime-node (optional, may not be installed)" | confirmed-residue | Drop the native-module probe for the rejected ONNX runtime backend, or gate it behind an explicit supported backend mode. |
+| L-007-014 | P2 | correctness | .opencode/skills/system-spec-kit/shared/embeddings/providers/hf-local.ts:309 | "console.error('[hf-local]   1. npm rebuild onnxruntime-node sharp');" | confirmed-residue | Update hf-local recovery guidance so it does not tell users to rebuild the rejected `onnxruntime-node` backend. |
+
+## Iteration summary
+- Files scanned: 4335
+- New findings: 14 (P0=0, P1=11, P2=3)
+- Out-of-scope/historical noted but NOT flagged: 5
+- Notes: Skipped the 014 migration narrative, the 015 review packet, the living provider fallback factory findings already reported in iteration 001, Qwen prompt-registry opt-in entries, and fallback-path regression tests. No saturation yet; correctness residue remains concentrated in runtime config notes, setup/migration scripts, and native backend cleanup.

@@ -46,7 +46,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress (012 v3 remediation) |
+| **Status** | Complete |
 | **Created** | 2026-05-12 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |
@@ -68,6 +68,8 @@ This phased decomposition tracks Local embeddings Setup A — EmbeddingGemma-300
 Keep parent documentation lean while child phases own detailed plans, tasks, checklists, and continuity.
 
 > **Phase-parent note:** This spec.md is the ONLY authored document at the parent level. All detailed planning, task breakdowns, checklists, and decisions live in the child phase folders listed in the Phase Documentation Map below. This keeps the parent from drifting stale as phases execute and pivot.
+
+Closing summary: Setup A began as a Voyage-to-local embeddings migration and concludes with `EMBEDDINGS_PROVIDER=auto` cascading Voyage -> OpenAI -> llama-cpp (when GGUF runtime is installed) -> hf-local, plus CocoIndex on local EmbeddingGemma. The final llama-cpp line ships the faster GGUF backend as an availability-probed automatic selection, with explicit override via `EMBEDDINGS_PROVIDER=<provider>` still available. The evidence chain is now explicit: 014/014 ONNX was too slow for CocoIndex, 015 showed llama-cpp speed and RSS wins with vector parity miss, 016 showed a smaller retrieval-equivalent result, and 017's larger rerun returned MILD_DIVERGENCE but the operator accepted the flip with hf-local retained as the health-checked fallback.
 <!-- /ANCHOR:problem -->
 
 ---

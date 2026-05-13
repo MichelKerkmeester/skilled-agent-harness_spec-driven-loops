@@ -1,0 +1,17 @@
+{
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/004-causal-graph-lifecycle-tombstones",
+  "description": "Phase 1: causal-graph-lifecycle-tombstones",
+  "keywords": [
+    "phase",
+    "causal-graph-lifecycle-tombstones"
+  ],
+  "lastUpdated": "2026-05-13T09:00:47.256Z",
+  "specId": "004",
+  "folderSlug": "causal-graph-lifecycle-tombstones",
+  "parentChain": [
+    "027-xce-research-based-refinement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

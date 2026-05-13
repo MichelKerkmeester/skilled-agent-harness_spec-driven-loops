@@ -40,11 +40,27 @@ envs:                   # Dict of environment variables injected into daemon
 | Field                | Type          | Default                                     | Description                                      |
 | -------------------- | ------------- | ------------------------------------------- | ------------------------------------------------ |
 | `embedding.provider` | string        | `sentence-transformers`                     | Embedding backend: `sentence-transformers` (local) or `litellm` (API) |
-| `embedding.model`    | string        | `sentence-transformers/all-MiniLM-L6-v2`   | Model identifier passed to the provider          |
+| `embedding.model`    | string        | `google/embeddinggemma-300m`               | Model identifier passed to the provider          |
 | `embedding.device`   | string / null | `null`                                      | Compute device. `null` auto-detects (GPU if available, else CPU) |
 | `envs`               | dict          | `{}`                                        | Environment variables injected into the daemon process. Used for API keys |
 
-### Example: Voyage Code 3 (recommended)
+### Example: Default Local EmbeddingGemma
+
+```yaml
+embedding:
+  provider: sentence-transformers
+  model: google/embeddinggemma-300m
+```
+
+### Example: Smaller Local Model
+
+```yaml
+embedding:
+  provider: sentence-transformers
+  model: sentence-transformers/all-MiniLM-L6-v2
+```
+
+### Example: Voyage Code 3 Cloud Model
 
 ```yaml
 embedding:
@@ -52,14 +68,6 @@ embedding:
   model: voyage/voyage-code-3
 envs:
   VOYAGE_API_KEY: your-key-here
-```
-
-### Example: Local Model (default, offline)
-
-```yaml
-embedding:
-  provider: sentence-transformers
-  model: sentence-transformers/all-MiniLM-L6-v2
 ```
 
 > **CRITICAL**: Changing the embedding model requires `ccc reset && ccc index` to rebuild the index. Different models produce different vector dimensions and cannot be mixed.
@@ -123,8 +131,9 @@ dist/**, build/**, .next/**, target/**, *.min.js, *.min.css,
 
 | Model | Provider | Key Required | Dimensions | Notes |
 | ----- | -------- | ------------ | ---------- | ----- |
-| `voyage/voyage-code-3` | litellm | `VOYAGE_API_KEY` | 1024 | Best code search quality, recommended |
-| `sentence-transformers/all-MiniLM-L6-v2` | sentence-transformers | None | 384 | Local, offline, current default |
+| `google/embeddinggemma-300m` | sentence-transformers | None | 768 | Current local default; query prompt resolves to `InstructionRetrieval` |
+| `sentence-transformers/all-MiniLM-L6-v2` | sentence-transformers | None | 384 | Smaller local/offline alternative |
+| `voyage/voyage-code-3` | litellm | `VOYAGE_API_KEY` | 1024 | Cloud alternative requiring API key and rebuild |
 | `text-embedding-3-small` | litellm | `OPENAI_API_KEY` | 1536 | OpenAI, general-purpose |
 | `gemini/gemini-embedding-001` | litellm | `GEMINI_API_KEY` | 768 | Google Gemini |
 | `cohere/embed-v4.0` | litellm | `COHERE_API_KEY` | 1024 | Cohere |

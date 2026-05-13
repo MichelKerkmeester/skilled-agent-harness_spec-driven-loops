@@ -16,12 +16,12 @@ This scenario validates 5. Embedding and API for `EX-032`. It focuses on Provide
 
 
 - Objective: Provider selection audit.
-- Real user request: `Please validate 5. Embedding and API against memory_search({ query:"EMBEDDINGS_PROVIDER auto provider selection rules", limit:20 }) and tell me whether the expected signals are present: Provider rules and key precedence shown.`
-- Prompt: `Validate 5. Embedding and API against memory_search({ query:"EMBEDDINGS_PROVIDER auto provider selection rules", limit:20 }).`
+- Real user request: `Please validate 5. Embedding and API against memory_search({ query:"EMBEDDINGS_PROVIDER auto provider selection rules llama-cpp hf-local EmbeddingGemma", limit:20 }) and tell me whether the expected signals are present: provider rules, key precedence, llama-cpp local default, and hf-local fallback shown.`
+- Prompt: `Validate 5. Embedding and API against memory_search({ query:"EMBEDDINGS_PROVIDER auto provider selection rules llama-cpp hf-local EmbeddingGemma", limit:20 }).`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
-- Expected signals: Provider rules and key precedence shown
+- Expected signals: Provider rules show explicit `EMBEDDINGS_PROVIDER` first, then `VOYAGE_API_KEY`, then `OPENAI_API_KEY`, then local `llama-cpp`, then `hf-local`; local defaults name `unsloth/embeddinggemma-300m-GGUF` and `onnx-community/embeddinggemma-300m-ONNX` q8.
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
-- Pass/fail: PASS if provider routing is clear
+- Pass/fail: PASS if provider routing, key precedence, and both local default/fallback model IDs are clear
 
 ---
 
@@ -30,16 +30,16 @@ This scenario validates 5. Embedding and API for `EX-032`. It focuses on Provide
 ### Prompt
 
 ```
-Validate 5. Embedding and API against memory_search({ query:"EMBEDDINGS_PROVIDER auto provider selection rules", limit:20 }).
+Validate 5. Embedding and API against memory_search({ query:"EMBEDDINGS_PROVIDER auto provider selection rules llama-cpp hf-local EmbeddingGemma", limit:20 }).
 ```
 
 ### Commands
 
-1. memory_search({ query:"EMBEDDINGS_PROVIDER auto provider selection rules", limit:20 })
+1. memory_search({ query:"EMBEDDINGS_PROVIDER auto provider selection rules llama-cpp hf-local EmbeddingGemma", limit:20 })
 
 ### Expected
 
-Provider rules and key precedence shown
+Provider rules show explicit `EMBEDDINGS_PROVIDER` first, then `VOYAGE_API_KEY`, then `OPENAI_API_KEY`, then local `llama-cpp`, then `hf-local`; local defaults name `unsloth/embeddinggemma-300m-GGUF` and `onnx-community/embeddinggemma-300m-ONNX` q8.
 
 ### Evidence
 
@@ -47,7 +47,7 @@ Search output
 
 ### Pass / Fail
 
-- **Pass**: provider routing is clear
+- **Pass**: provider routing, key precedence, and both local default/fallback model IDs are clear
 - **Fail**: Any contradicting evidence appears or the pass condition is not met.
 
 ### Failure Triage

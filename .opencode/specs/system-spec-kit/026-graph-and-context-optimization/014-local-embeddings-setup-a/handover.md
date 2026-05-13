@@ -69,7 +69,7 @@ You are resuming work on packet `system-spec-kit/026-graph-and-context-optimizat
 | Prefix registry + env override (ADR-001) | Hardcoded Nomic prefix was causing ~5-8% silent recall loss on non-Nomic models | hf-local.ts + factory.ts + cocoindex shared.py |
 | Use `onnx-community/embeddinggemma-300m-ONNX` not canonical `google/embeddinggemma-300m` | transformers.js v3.8.1 needs ONNX; canonical Google repo ships only PyTorch/safetensors | live HF_EMBEDDINGS_MODEL value + PREFIX_REGISTRY entry |
 | Project-local `.env.local` mechanism (not committed configs) | Committed model env vars would break new users (no model on disk, no HF auth, no symlink) | `.env.local` + dotenv loading in both launchers |
-| `EMBEDDINGS_PROVIDER=auto` retained (not `hf-local`) | User preference; auto resolves to hf-local when no API keys are present | All 5 committed MCP configs |
+| `EMBEDDINGS_PROVIDER=auto` retained (not `hf-local`) | User preference; auto-cascade resolves Voyage -> OpenAI -> llama-cpp when the GGUF runtime is installed -> hf-local | All 5 committed MCP configs |
 | Voyage purged from launchd + zshrc + .env | `auto` would silently re-prefer Voyage as long as the key was present | Belt-and-suspenders for `auto` correctness |
 
 ### 2.2 Blockers Encountered
@@ -158,7 +158,7 @@ You are resuming work on packet `system-spec-kit/026-graph-and-context-optimizat
 
 ```
 # Sanity (memory must still be healthy):
-memory_health() → expect 2112 vec rows, healthy=true, provider=hf-local
+memory_health() → expect healthy=true; provider follows auto-cascade: Voyage -> OpenAI -> llama-cpp when the GGUF runtime is installed -> hf-local
 
 # Check cocoindex daemon state (it was indexing in background):
 ls -la .cocoindex_code/target_sqlite.db
@@ -255,11 +255,11 @@ The original plan baked Setup A's model env vars (`HF_EMBEDDINGS_MODEL=onnx-comm
 
 We reverted the 5 committed configs to pristine. Setup A now lives in `.env.local` (gitignored via `*.local` in `.gitignore`). Both MCP launchers were modified to read `.env.local` then `.env` at startup, populating `process.env` BEFORE the embedding code path runs. Existing process.env wins over file values, so a shell-exported value still overrides .env.local.
 
-Other users follow `SETUP_A_RECIPE.md` to opt in. They never modify committed configs.
+Other users follow `SETUP_A_RECIPE.md` to install the local runtime or set explicit provider/model overrides. They never modify committed configs.
 
 **`auto` provider resolution under the new setup**
 
-With `EMBEDDINGS_PROVIDER=auto` (committed default) and no API keys, the factory falls through to `hf-local`. `.env.local` then sets `HF_EMBEDDINGS_MODEL` to the Setup A choice. If `.env.local` is absent, hf-local falls back to its hardcoded default `nomic-ai/nomic-embed-text-v1.5` (auto-downloads on first use, no auth, 768d).
+With `EMBEDDINGS_PROVIDER=auto` (committed default), the factory resolves Voyage -> OpenAI -> llama-cpp when the GGUF runtime is installed -> hf-local. llama-cpp is auto-selected by the availability probe, not by a manual enablement flag; explicit override via `EMBEDDINGS_PROVIDER=<provider>` remains available. If the cascade reaches hf-local and `.env.local` is absent, hf-local falls back to its hardcoded default `nomic-ai/nomic-embed-text-v1.5` (auto-downloads on first use, no auth, 768d).
 
 **Why the prefix registry isn't reverted**
 

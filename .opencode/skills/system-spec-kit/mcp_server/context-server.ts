@@ -68,7 +68,9 @@ import { createMCPErrorResponse, wrapForMCP } from './lib/response/envelope.js';
 // T303: Startup checks (extracted from this file)
 import { detectNodeVersionMismatch, checkSqliteVersion } from './startup-checks.js';
 import {
+  getStartupEmbeddingProfile,
   getStartupEmbeddingDimension,
+  runAutoMigrationIfNeeded,
   resolveStartupEmbeddingConfig,
   validateConfiguredEmbeddingsProvider,
 } from '@spec-kit/shared/embeddings/factory';
@@ -1819,6 +1821,14 @@ async function main(): Promise<void> {
     }
   } else {
     console.warn('[context-server] API key validation skipped (SPECKIT_SKIP_API_VALIDATION=true)');
+  }
+
+  const resolvedProfile = getStartupEmbeddingProfile();
+  const migrationResult = await runAutoMigrationIfNeeded(resolvedProfile);
+  if (migrationResult.status === 'failed') {
+    console.error(`[context-server] auto-migration failed; falling back to hf-local for this run. reason=${migrationResult.reason}`);
+    process.env.EMBEDDINGS_PROVIDER = 'hf-local';
+    startupEmbeddingConfig = await resolveStartupEmbeddingConfig({ timeout: API_KEY_VALIDATION_TIMEOUT_MS });
   }
 
   if (!process.env.EMBEDDING_DIM) {

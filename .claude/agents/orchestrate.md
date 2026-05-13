@@ -155,7 +155,7 @@ When dispatching ANY non-orchestrator agent, append this to the Task prompt:
 | Agent     | File                          | Notes                                                                                  |
 | --------- | ----------------------------- | -------------------------------------------------------------------------------------- |
 | @context  | `.claude/agents/context.md`  | Sub-agent with direct retrieval only. Routes ALL exploration tasks                     |
-| @markdown | `.claude/agents/markdown.md` | `/create:*` command executor; sk-doc template-first; caller-restricted to create commands |
+| @markdown | `.claude/agents/markdown.md` | Template-first documentation executor for `/create:*`, scoped markdown, and spec-doc authoring |
 | @deep-research | `.claude/agents/deep-research.md` | LEAF agent; iterative autonomous research loop with externalized state          |
 | @deep-ai-council | `.claude/agents/deep-ai-council.md` | Planning-only multi-strategy architect (max 3 strategies)                              |
 | @review   | `.claude/agents/review.md`   | Codebase-agnostic quality scoring                                                      |

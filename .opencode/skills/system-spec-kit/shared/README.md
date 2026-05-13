@@ -83,15 +83,15 @@ These modules support packet-doc-first continuity: `/spec_kit:resume` rebuilds a
 | ------------------------ | ------------- | ------------------------------------------------ |
 | Top-Level TS Modules     | 8             | index, embeddings, chunking, trigger extractor, types, normalization, config, paths |
 | Top-Level Subdirectories | 10            | algorithms, contracts, dist, embeddings, lib, mcp_server, parsing, ranking, scoring, utils |
-| Provider Implementations | 3             | OpenAI, HF Local, Voyage                         |
-| Embedding Dimensions     | 768/1024/1536 | Provider-dependent                               |
+| Provider Implementations | 5             | llama-cpp (default), HF Local (fallback), OpenAI, Voyage, auto |
+| Embedding Dimensions     | 768/1024/1536 | 768 default (llama-cpp and HF Local); 1024 (Voyage); 1536 (OpenAI) |
 
 ### Key Features
 
 | Feature                         | Description                                                    |
 | ------------------------------- | -------------------------------------------------------------- |
-| **Multi-Provider Embeddings**   | Supports Voyage, OpenAI, HuggingFace local with auto-detection |
-| **Dynamic Dimension Detection** | 768 (HF), 1024 (Voyage), 1536/3072 (OpenAI)                    |
+| **Multi-Provider Embeddings**   | Supports llama-cpp (default), HuggingFace local (fallback), Voyage, OpenAI with auto-detection |
+| **Dynamic Dimension Detection** | 768 (llama-cpp and HF Local), 1024 (Voyage), 1536/3072 (OpenAI) |
 | **Task-Specific Functions**     | Document, query and clustering embeddings                      |
 | **TF-IDF + Semantic Triggers**  | Advanced trigger phrase extraction (v11)                       |
 | **Adaptive Fusion Support**     | Intent-aware weighting used by the runtime 5-channel retrieval pipeline (Vector, FTS5, BM25, Graph, Degree) |
@@ -155,7 +155,7 @@ import { generateDocumentEmbedding, getProviderMetadata } from '@spec-kit/shared
 // Check active provider
 const meta: { provider: string, model: string, dim: number, healthy: boolean } = getProviderMetadata()
 console.log(`Provider: ${meta.provider}, Dimensions: ${meta.dim}`)
-// Example: "Provider: voyage, Dimensions: 1024"
+// Example: "Provider: llama-cpp, Dimensions: 768"
 
 // Generate an embedding
 const embedding: Float32Array = await generateDocumentEmbedding('How does authentication work?')
@@ -193,9 +193,10 @@ shared/
 │   ├── profile.ts              # Embedding profiles and DB path generation
 │   ├── README.md               # Embeddings factory documentation
 │   └── providers/
-│       ├── hf-local.ts         # HuggingFace local (fallback)
+│       ├── llama-cpp.ts        # llama-cpp GGUF (default local provider)
+│       ├── hf-local.ts         # HuggingFace ONNX (fallback local provider)
 │       ├── openai.ts           # OpenAI embeddings API
-│       ├── voyage.ts           # Voyage AI (recommended)
+│       ├── voyage.ts           # Voyage AI (cloud opt-in)
 │       └── README.md           # Provider comparison and interface docs
 ├── lib/
 │   └── structure-aware-chunker.ts # Markdown-aware chunking helpers
@@ -235,7 +236,7 @@ shared/
 | `trigger-extractor.ts` | Trigger phrase extraction for memory indexing |
 | `normalization.ts` | Canonical DB row <-> app object conversion |
 | `config.ts` | Shared DB directory resolution and update marker paths |
-| `paths.ts` | Canonical `context-index.sqlite` path resolution |
+| `paths.ts` | Provider-keyed database path resolution (encodes provider, model, dim and dtype in the filename) |
 | `algorithms/` | Shared adaptive fusion, RRF fusion, and MMR reranking helpers |
 | `contracts/retrieval-trace.ts` | Typed retrieval trace and context envelope contracts |
 | `scoring/folder-scoring.ts` | Composite folder scoring and ranking |
@@ -255,7 +256,7 @@ shared/
 
 | Aspect             | Details                                 |
 | ------------------ | --------------------------------------- |
-| **Providers**      | Voyage AI, OpenAI, HuggingFace local    |
+| **Providers**      | llama-cpp (default), HuggingFace local (fallback), Voyage AI, OpenAI |
 | **Auto-Detection** | Selects best provider based on API keys |
 | **Fallback**       | Graceful degradation to HF local        |
 | **Task Types**     | Document, query and clustering embeddings  |
@@ -299,7 +300,7 @@ The canonical source is the `shared/` package. `shared/embeddings.ts` is the pub
 | --------------- | ----- | ------------------------------------- |
 | Problem Terms   | 3.0x  | "short output", "missing data"        |
 | Technical Terms | 2.5x  | "generateContext", "memory_search"    |
-| Decision Terms  | 2.0x  | "chose openai", "selected voyage"     |
+| Decision Terms  | 2.0x  | "chose llama-cpp", "selected openai"  |
 | Action Terms    | 1.5x  | "fix bug", "add feature"              |
 | Compound Nouns  | 1.3x  | "trigger extraction", "memory system" |
 
@@ -314,13 +315,14 @@ The canonical source is the `shared/` package. `shared/embeddings.ts` is the pub
 
 ### Provider Comparison
 
-| Feature    | Voyage     | HF Local | OpenAI    |
-| ---------- | ---------- | -------- | --------- |
-| Cost       | ~$0.06/1M  | Free     | ~$0.02/1M |
-| Quality    | Best (+8%) | Good     | Good      |
-| Dimensions | 1024       | 768      | 1536/3072 |
-| Privacy    | Cloud      | Local    | Cloud     |
-| Offline    | No         | Yes      | No        |
+| Feature    | llama-cpp | HF Local | Voyage     | OpenAI    |
+| ---------- | --------- | -------- | ---------- | --------- |
+| Cost       | Free      | Free     | ~$0.06/1M  | ~$0.02/1M |
+| Quality    | Good (0.968 cos parity with HF Local) | Good | Good (cloud) | Good |
+| Dimensions | 768       | 768      | 1024       | 1536/3072 |
+| Privacy    | Local     | Local    | Cloud      | Cloud     |
+| Offline    | Yes       | Yes      | No         | No        |
+| Default    | Yes (Apple Silicon) | Fallback | Opt-in | Opt-in |
 
 <!-- /ANCHOR:features -->
 
@@ -331,20 +333,25 @@ The canonical source is the `shared/` package. `shared/embeddings.ts` is the pub
 
 ### Environment Variables
 
-| Variable                  | Required | Default                          | Description                     |
-| ------------------------- | -------- | -------------------------------- | ------------------------------- |
-| `VOYAGE_API_KEY`          | No       | -                                | Voyage AI API key (recommended) |
-| `OPENAI_API_KEY`          | No       | -                                | OpenAI API key                  |
-| `EMBEDDINGS_PROVIDER`     | No       | `auto`                           | Force specific provider         |
-| `OPENAI_EMBEDDINGS_MODEL` | No       | `text-embedding-3-small`         | OpenAI model                    |
-| `HF_EMBEDDINGS_MODEL`     | No       | `nomic-ai/nomic-embed-text-v1.5` | HF model                        |
+| Variable                  | Required | Default                                       | Description                          |
+| ------------------------- | -------- | --------------------------------------------- | ------------------------------------ |
+| `EMBEDDINGS_PROVIDER`     | No       | `auto`                                        | One of: `auto`, `llama-cpp`, `hf-local`, `voyage`, `openai` |
+| `LLAMA_CPP_EMBEDDINGS_MODEL` | No    | `unsloth/embeddinggemma-300m-GGUF`            | Override llama-cpp model             |
+| `LLAMA_CPP_EMBEDDINGS_GGUF_FILE` | No | `embeddinggemma-300M-Q8_0.gguf`               | GGUF filename                        |
+| `HF_EMBEDDINGS_MODEL`     | No       | `onnx-community/embeddinggemma-300m-ONNX`     | hf-local fallback model              |
+| `HF_EMBEDDINGS_DTYPE`     | No       | `q8`                                          | hf-local dtype: `q8`, `fp32`, `fp16`, `q4`, `int8`, `uint8`, `bnb4` |
+| `MEMORY_AUTO_MIGRATE_HF_TO_LLAMA` | No | unset (enabled)                              | Set to `false` to disable 018 auto-migration |
+| `VOYAGE_API_KEY`          | No       | -                                             | Voyage AI cloud embeddings (opt-in)  |
+| `OPENAI_API_KEY`          | No       | -                                             | OpenAI cloud embeddings (opt-in)     |
+| `OPENAI_EMBEDDINGS_MODEL` | No       | `text-embedding-3-small`                      | OpenAI model                         |
 
 ### Provider Selection Precedence
 
 1. Explicit `EMBEDDINGS_PROVIDER` (if not `auto`)
-2. Auto-detection: Voyage if `VOYAGE_API_KEY` exists (recommended)
-3. Auto-detection: OpenAI if `OPENAI_API_KEY` exists
-4. Fallback: HF local (no API key needed)
+2. Auto-detection: Voyage if `VOYAGE_API_KEY` exists (cloud opt-in)
+3. Auto-detection: OpenAI if `OPENAI_API_KEY` exists (cloud opt-in)
+4. Default local: llama-cpp if `node-llama-cpp` loads and the GGUF model is reachable
+5. Fallback local: HF local when the llama-cpp probe fails (always available, no API key)
 
 ### Per-Profile Databases
 
@@ -372,14 +379,14 @@ import { generateDocumentEmbedding, getEmbeddingDimension } from '@spec-kit/shar
 import { extractTriggerPhrases } from '@spec-kit/shared/trigger-extractor'
 
 // Generate embedding for memory content
-const content: string = 'Decided to use Voyage API for embeddings due to quality'
+const content: string = 'Switched to llama-cpp embeddings for local-first retrieval'
 const embedding: Float32Array = await generateDocumentEmbedding(content)
 console.log(`Dimensions: ${embedding.length}`)
 
 // Extract trigger phrases
 const triggers: string[] = extractTriggerPhrases(content)
 console.log(`Triggers: ${triggers.join(', ')}`)
-// Output: "voyage api, embeddings, quality"
+// Output: "llama-cpp embeddings, local-first retrieval"
 ```
 
 ---
@@ -411,12 +418,12 @@ import { getProviderMetadata, getEmbeddingProfile } from '@spec-kit/shared/embed
 // Check current provider
 const meta = getProviderMetadata()
 console.log(meta)
-// { provider: 'voyage', model: 'voyage-code-2', dim: 1024, healthy: true }
+// { provider: 'llama-cpp', model: 'unsloth/embeddinggemma-300m-GGUF', dim: 768, healthy: true }
 
 // Get database path for current profile
 const profile = getEmbeddingProfile()
 const dbPath: string = profile.getDatabasePath('/base/path')
-// '/base/path/context-index__voyage__voyage-code-2__1024.sqlite'
+// '/base/path/context-index__llama-cpp__unsloth-embeddinggemma-300m-gguf__768__q8.sqlite'
 ```
 
 ---
@@ -486,7 +493,8 @@ await preWarmModel()
 **Solution**: Per-profile databases should prevent this. If it occurs:
 ```bash
 # Delete old database and let system create new one
-rm .opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite
+# Database filenames encode provider, model, dim and dtype.
+rm .opencode/skills/system-spec-kit/mcp_server/database/context-index__*.sqlite*
 ```
 
 ---
@@ -495,7 +503,7 @@ rm .opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite
 
 **Symptom**: First embedding takes 30+ seconds
 
-**Cause**: HF local downloads ~274MB model on first run
+**Cause**: llama-cpp or HF Local downloads ~310MB EmbeddingGemma model on first run
 
 **Solution**:
 ```typescript
@@ -509,7 +517,7 @@ await preWarmModel()
 
 | Problem               | Quick Fix                                              |
 | --------------------- | ------------------------------------------------------ |
-| Provider not detected | Check `echo $VOYAGE_API_KEY` or `echo $OPENAI_API_KEY` |
+| Provider not detected | Check `echo $EMBEDDINGS_PROVIDER`, then `echo $LLAMA_CPP_EMBEDDINGS_MODEL` or `echo $VOYAGE_API_KEY` |
 | Wrong provider        | Set `EMBEDDINGS_PROVIDER` explicitly                   |
 | Slow triggers         | Ensure content is <10KB for <100ms                     |
 | Empty triggers        | Check content length (minimum 50 chars)                |
@@ -518,9 +526,11 @@ await preWarmModel()
 
 ```bash
 # Check environment
+echo "EMBEDDINGS_PROVIDER: $EMBEDDINGS_PROVIDER"
+echo "LLAMA_CPP_EMBEDDINGS_MODEL: $LLAMA_CPP_EMBEDDINGS_MODEL"
+echo "HF_EMBEDDINGS_DTYPE: $HF_EMBEDDINGS_DTYPE"
 echo "VOYAGE_API_KEY: ${VOYAGE_API_KEY:0:10}..."
 echo "OPENAI_API_KEY: ${OPENAI_API_KEY:0:10}..."
-echo "EMBEDDINGS_PROVIDER: $EMBEDDINGS_PROVIDER"
 
 # Run from shared/ so Node resolves compiled modules in dist/
 cd .opencode/skills/system-spec-kit/shared
@@ -556,8 +566,9 @@ console.log(extractTriggerPhrases('memory search trigger extraction'))"
 | Resource                                                                  | Description                        |
 | ------------------------------------------------------------------------- | ---------------------------------- |
 | [@huggingface/transformers](https://github.com/huggingface/transformers.js) | JavaScript ML library for HF local |
-| [nomic-embed-text](https://huggingface.co/nomic-ai/nomic-embed-text-v1.5) | Default HF embedding model         |
-| [Voyage AI](https://www.voyageai.com/)                                    | Recommended embedding provider     |
+| [EmbeddingGemma GGUF](https://huggingface.co/unsloth/embeddinggemma-300m-GGUF) | Default llama-cpp embedding model |
+| [EmbeddingGemma ONNX](https://huggingface.co/onnx-community/embeddinggemma-300m-ONNX) | Fallback HF Local embedding model |
+| [Voyage AI](https://www.voyageai.com/)                                    | Cloud embedding provider (opt-in)  |
 | [OpenAI Embeddings](https://platform.openai.com/docs/guides/embeddings)   | OpenAI embedding API docs          |
 
 <!-- /ANCHOR:related -->

@@ -1,0 +1,4 @@
+label,backend,ep,ml_compute_units,model_format,static_shapes,batch_size,max_length,fixed_padding,samples,mean_cosine,min_cosine,p05_cosine
+static-parity-max128,onnx,CoreMLExecutionProvider,CPUAndNeuralEngine,MLProgram,1,1,128,True,50,0.8686554431915283,0.4885525405406952,0.7671178579330444
+static-parity-max512,onnx,CoreMLExecutionProvider,CPUAndNeuralEngine,MLProgram,1,1,512,True,50,0.9976921081542969,0.9923011064529419,0.9935550093650818
+static-parity-max2048,onnx,CoreMLExecutionProvider,CPUAndNeuralEngine,MLProgram,0,1,2048,False,50,0.9976921081542969,0.9923010468482971,0.9935550093650818

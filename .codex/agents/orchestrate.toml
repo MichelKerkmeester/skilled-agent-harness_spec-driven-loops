@@ -157,7 +157,7 @@ When dispatching ANY non-orchestrator agent, append this to the Task prompt:
 | Agent     | File                          | Notes                                                                                  |
 | --------- | ----------------------------- | -------------------------------------------------------------------------------------- |
 | @context  | `.codex/agents/context.toml`  | Sub-agent with direct retrieval only. Routes ALL exploration tasks                     |
-| @markdown | `.codex/agents/markdown.toml` | `/create:*` command executor; sk-doc template-first; caller-restricted to create commands |
+| @markdown | `.codex/agents/markdown.toml` | Template-first documentation executor for `/create:*`, scoped markdown, and spec-doc authoring |
 | @deep-research | `.codex/agents/deep-research.toml` | LEAF agent; iterative autonomous research loop with externalized state          |
 | @deep-ai-council | `.codex/agents/deep-ai-council.toml` | Planning-only multi-strategy architect (max 3 strategies)                              |
 | @review   | `.codex/agents/review.toml`   | Codebase-agnostic quality scoring                                                      |

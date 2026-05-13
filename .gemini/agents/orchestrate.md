@@ -155,7 +155,7 @@ When dispatching ANY non-orchestrator agent, append this to the Task prompt:
 | Agent     | File                          | Notes                                                                                  |
 | --------- | ----------------------------- | -------------------------------------------------------------------------------------- |
 | @context  | `.gemini/agents/context.md`  | Sub-agent with direct retrieval only. Routes ALL exploration tasks                     |
-| @markdown | `.gemini/agents/markdown.md` | `/create:*` command executor; sk-doc template-first; caller-restricted to create commands |
+| @markdown | `.gemini/agents/markdown.md` | Template-first documentation executor for `/create:*`, scoped markdown, and spec-doc authoring |
 | @deep-research | `.gemini/agents/deep-research.md` | LEAF agent; iterative autonomous research loop with externalized state          |
 | @deep-ai-council | `.gemini/agents/deep-ai-council.md` | Planning-only multi-strategy architect (max 3 strategies)                              |
 | @review   | `.gemini/agents/review.md`   | Codebase-agnostic quality scoring                                                      |

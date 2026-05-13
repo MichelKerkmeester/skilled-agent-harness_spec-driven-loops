@@ -1,0 +1,28 @@
+{
+  "specId": "015",
+  "folderSlug": "node-llama-cpp-evaluation",
+  "title": "node-llama-cpp Memory MCP embedding evaluation",
+  "description": "Evaluates an opt-in node-llama-cpp GGUF provider for Spec Kit Memory embeddings against hf-local with parity and benchmark gates. llama-cpp is faster on query latency but fails cosine parity, so the default remains hf-local.",
+  "parentChain": [
+    "014-local-embeddings-setup-a"
+  ],
+  "memorySequence": 15,
+  "level": "2",
+  "status": "complete",
+  "importance_tier": "important",
+  "contextType": "implementation",
+  "keywords": [
+    "node-llama-cpp",
+    "llama-cpp",
+    "GGUF",
+    "EmbeddingGemma",
+    "Memory MCP",
+    "hf-local",
+    "embedding parity",
+    "local embeddings",
+    "benchmark",
+    "default no-flip"
+  ],
+  "created_at": "2026-05-13T09:52:09Z",
+  "last_updated_at": "2026-05-13T09:56:14Z"
+}

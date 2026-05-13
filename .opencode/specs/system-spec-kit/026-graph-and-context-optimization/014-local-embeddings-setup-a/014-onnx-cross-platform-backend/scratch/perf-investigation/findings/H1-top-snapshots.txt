@@ -1,0 +1,2402 @@
+pid=94267
+Processes: 813 total, 6 running, 1 stuck, 806 sleeping, 6867 threads 
+2026/05/13 10:56:07
+Load Avg: 3.55, 3.24, 3.39 
+CPU usage: 23.23% user, 14.9% sys, 62.67% idle 
+SharedLibs: 764M resident, 147M data, 125M linkedit.
+MemRegions: 1130410 total, 26G resident, 412M private, 5958M shared.
+PhysMem: 61G used (6259M wired, 7470M compressor), 2369M unused.
+VM: 461T vsize, 6144M framework vsize, 1243666(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15416012/20G in, 5949941/6575M out.
+Disks: 7640274/157G read, 7563397/155G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 813 total, 6 running, 807 sleeping, 6878 threads 
+2026/05/13 10:56:09
+Load Avg: 3.55, 3.24, 3.39 
+CPU usage: 21.20% user, 11.39% sys, 67.40% idle 
+SharedLibs: 764M resident, 147M data, 125M linkedit.
+MemRegions: 1131176 total, 27G resident, 412M private, 5958M shared.
+PhysMem: 61G used (6130M wired, 7473M compressor), 2117M unused.
+VM: 461T vsize, 6144M framework vsize, 1243918(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15416223/20G in, 5950072/6575M out.
+Disks: 7640484/157G read, 7563413/155G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 801 total, 5 running, 796 sleeping, 6863 threads 
+2026/05/13 10:56:24
+Load Avg: 5.08, 3.58, 3.51 
+CPU usage: 44.77% user, 8.95% sys, 46.26% idle 
+SharedLibs: 753M resident, 147M data, 123M linkedit.
+MemRegions: 1131544 total, 29G resident, 401M private, 6281M shared.
+PhysMem: 63G used (5602M wired, 7472M compressor), 408M unused.
+VM: 456T vsize, 6144M framework vsize, 1244186(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15421438/20G in, 5951687/6578M out.
+Disks: 7653010/157G read, 7570887/157G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 801 total, 5 running, 796 sleeping, 6852 threads 
+2026/05/13 10:56:26
+Load Avg: 5.08, 3.58, 3.51 
+CPU usage: 53.3% user, 8.96% sys, 38.0% idle 
+SharedLibs: 753M resident, 147M data, 123M linkedit.
+MemRegions: 1131756 total, 30G resident, 401M private, 6272M shared.
+PhysMem: 63G used (5584M wired, 7472M compressor), 177M unused.
+VM: 456T vsize, 6144M framework vsize, 1244186(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15421570/20G in, 5951770/6578M out.
+Disks: 7653285/157G read, 7570887/157G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 801 total, 8 running, 793 sleeping, 6855 threads 
+2026/05/13 10:56:27
+Load Avg: 5.08, 3.58, 3.51 
+CPU usage: 64.49% user, 10.26% sys, 25.23% idle 
+SharedLibs: 753M resident, 147M data, 123M linkedit.
+MemRegions: 1131884 total, 30G resident, 400M private, 6269M shared.
+PhysMem: 63G used (5653M wired, 7472M compressor), 292M unused.
+VM: 456T vsize, 6144M framework vsize, 1244186(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15422176/20G in, 5951876/6578M out.
+Disks: 7653573/157G read, 7571062/157G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 801 total, 6 running, 795 sleeping, 6849 threads 
+2026/05/13 10:56:29
+Load Avg: 6.11, 3.82, 3.59 
+CPU usage: 63.42% user, 10.6% sys, 26.50% idle 
+SharedLibs: 753M resident, 147M data, 123M linkedit.
+MemRegions: 1131949 total, 30G resident, 401M private, 6288M shared.
+PhysMem: 63G used (5605M wired, 7472M compressor), 274M unused.
+VM: 456T vsize, 6144M framework vsize, 1244186(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15422377/20G in, 5951973/6578M out.
+Disks: 7653819/157G read, 7571249/157G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 801 total, 4 running, 797 sleeping, 6854 threads 
+2026/05/13 10:56:30
+Load Avg: 6.11, 3.82, 3.59 
+CPU usage: 59.73% user, 7.24% sys, 33.1% idle 
+SharedLibs: 753M resident, 147M data, 123M linkedit.
+MemRegions: 1131962 total, 30G resident, 401M private, 6293M shared.
+PhysMem: 63G used (5476M wired, 7472M compressor), 317M unused.
+VM: 456T vsize, 6144M framework vsize, 1244186(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15422604/20G in, 5952052/6579M out.
+Disks: 7654322/157G read, 7571250/157G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 801 total, 7 running, 794 sleeping, 6863 threads 
+2026/05/13 10:56:32
+Load Avg: 6.11, 3.82, 3.59 
+CPU usage: 62.91% user, 7.52% sys, 29.56% idle 
+SharedLibs: 753M resident, 147M data, 123M linkedit.
+MemRegions: 1132016 total, 30G resident, 401M private, 6276M shared.
+PhysMem: 63G used (5508M wired, 7472M compressor), 253M unused.
+VM: 456T vsize, 6144M framework vsize, 1244190(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15422705/20G in, 5952104/6579M out.
+Disks: 7654673/157G read, 7571250/157G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 801 total, 9 running, 792 sleeping, 6859 threads 
+2026/05/13 10:56:33
+Load Avg: 6.11, 3.82, 3.59 
+CPU usage: 63.20% user, 11.54% sys, 25.25% idle 
+SharedLibs: 753M resident, 147M data, 123M linkedit.
+MemRegions: 1132168 total, 31G resident, 401M private, 6303M shared.
+PhysMem: 63G used (5539M wired, 7472M compressor), 195M unused.
+VM: 456T vsize, 6144M framework vsize, 1244190(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15423145/20G in, 5952249/6579M out.
+Disks: 7654996/157G read, 7571252/157G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 801 total, 5 running, 796 sleeping, 6851 threads 
+2026/05/13 10:56:35
+Load Avg: 6.58, 3.96, 3.64 
+CPU usage: 65.80% user, 9.45% sys, 24.73% idle 
+SharedLibs: 753M resident, 147M data, 123M linkedit.
+MemRegions: 1132168 total, 31G resident, 400M private, 6394M shared.
+PhysMem: 63G used (5829M wired, 7472M compressor), 151M unused.
+VM: 456T vsize, 6144M framework vsize, 1244190(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15423516/20G in, 5952401/6579M out.
+Disks: 7655193/157G read, 7571277/157G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 801 total, 6 running, 795 sleeping, 6824 threads 
+2026/05/13 10:56:37
+Load Avg: 6.58, 3.96, 3.64 
+CPU usage: 64.18% user, 8.98% sys, 26.83% idle 
+SharedLibs: 753M resident, 147M data, 123M linkedit.
+MemRegions: 1132269 total, 31G resident, 401M private, 6395M shared.
+PhysMem: 63G used (5786M wired, 7472M compressor), 83M unused.
+VM: 456T vsize, 6144M framework vsize, 1244190(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15423919/20G in, 5952623/6580M out.
+Disks: 7655285/157G read, 7571292/157G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 801 total, 5 running, 796 sleeping, 6837 threads 
+2026/05/13 10:56:38
+Load Avg: 6.58, 3.96, 3.64 
+CPU usage: 60.7% user, 7.83% sys, 32.9% idle 
+SharedLibs: 753M resident, 147M data, 123M linkedit.
+MemRegions: 1132766 total, 31G resident, 401M private, 6322M shared.
+PhysMem: 63G used (5488M wired, 7472M compressor), 207M unused.
+VM: 456T vsize, 6144M framework vsize, 1244190(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15424282/20G in, 5952779/6580M out.
+Disks: 7655356/157G read, 7571292/157G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 800 total, 5 running, 795 sleeping, 6865 threads 
+2026/05/13 10:56:40
+Load Avg: 7.66, 4.22, 3.74 
+CPU usage: 64.1% user, 9.18% sys, 26.79% idle 
+SharedLibs: 753M resident, 147M data, 123M linkedit.
+MemRegions: 1132796 total, 31G resident, 400M private, 6321M shared.
+PhysMem: 63G used (4953M wired, 7472M compressor), 194M unused.
+VM: 455T vsize, 6144M framework vsize, 1244213(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15424789/20G in, 5953055/6581M out.
+Disks: 7655372/157G read, 7571293/157G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 801 total, 10 running, 791 sleeping, 6877 threads 
+2026/05/13 10:56:41
+Load Avg: 7.66, 4.22, 3.74 
+CPU usage: 66.62% user, 7.22% sys, 26.14% idle 
+SharedLibs: 753M resident, 147M data, 123M linkedit.
+MemRegions: 1132904 total, 31G resident, 401M private, 6248M shared.
+PhysMem: 63G used (5411M wired, 7472M compressor), 244M unused.
+VM: 456T vsize, 6144M framework vsize, 1244221(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15425093/20G in, 5953244/6582M out.
+Disks: 7655780/157G read, 7571317/157G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 801 total, 4 running, 797 sleeping, 6876 threads 
+2026/05/13 10:56:43
+Load Avg: 7.66, 4.22, 3.74 
+CPU usage: 67.20% user, 10.63% sys, 22.15% idle 
+SharedLibs: 753M resident, 147M data, 123M linkedit.
+MemRegions: 1132887 total, 31G resident, 401M private, 6286M shared.
+PhysMem: 63G used (5717M wired, 7472M compressor), 162M unused.
+VM: 456T vsize, 6144M framework vsize, 1244221(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15425858/20G in, 5953591/6582M out.
+Disks: 7655782/157G read, 7571321/157G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 801 total, 6 running, 795 sleeping, 6872 threads 
+2026/05/13 10:56:45
+Load Avg: 8.09, 4.37, 3.79 
+CPU usage: 68.71% user, 9.14% sys, 22.14% idle 
+SharedLibs: 753M resident, 147M data, 123M linkedit.
+MemRegions: 1132886 total, 31G resident, 401M private, 6223M shared.
+PhysMem: 63G used (5517M wired, 7472M compressor), 87M unused.
+VM: 456T vsize, 6144M framework vsize, 1244221(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15426454/20G in, 5953974/6583M out.
+Disks: 7655913/157G read, 7571340/157G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 801 total, 5 running, 796 sleeping, 6838 threads 
+2026/05/13 10:56:46
+Load Avg: 8.09, 4.37, 3.79 
+CPU usage: 60.79% user, 9.18% sys, 30.1% idle 
+SharedLibs: 753M resident, 147M data, 123M linkedit.
+MemRegions: 1132826 total, 31G resident, 401M private, 6221M shared.
+PhysMem: 63G used (5515M wired, 7472M compressor), 114M unused.
+VM: 456T vsize, 6144M framework vsize, 1244221(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15426902/20G in, 5954239/6583M out.
+Disks: 7655920/157G read, 7571540/157G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 801 total, 5 running, 796 sleeping, 6846 threads 
+2026/05/13 10:56:48
+Load Avg: 8.09, 4.37, 3.79 
+CPU usage: 59.62% user, 9.17% sys, 31.20% idle 
+SharedLibs: 753M resident, 147M data, 123M linkedit.
+MemRegions: 1132803 total, 31G resident, 400M private, 6203M shared.
+PhysMem: 63G used (5445M wired, 7472M compressor), 96M unused.
+VM: 456T vsize, 6144M framework vsize, 1244221(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15427269/20G in, 5954393/6583M out.
+Disks: 7655969/157G read, 7571540/157G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 800 total, 6 running, 1 stuck, 793 sleeping, 6847 threads 
+2026/05/13 10:56:50
+Load Avg: 8.56, 4.53, 3.85 
+CPU usage: 61.44% user, 9.86% sys, 28.69% idle 
+SharedLibs: 753M resident, 147M data, 123M linkedit.
+MemRegions: 1132755 total, 31G resident, 400M private, 6203M shared.
+PhysMem: 63G used (5382M wired, 7472M compressor), 138M unused.
+VM: 455T vsize, 6144M framework vsize, 1244221(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15427745/20G in, 5954660/6585M out.
+Disks: 7656017/157G read, 7571905/157G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 800 total, 6 running, 794 sleeping, 6871 threads 
+2026/05/13 10:56:51
+Load Avg: 8.56, 4.53, 3.85 
+CPU usage: 63.41% user, 8.3% sys, 28.55% idle 
+SharedLibs: 753M resident, 147M data, 123M linkedit.
+MemRegions: 1132903 total, 31G resident, 397M private, 6230M shared.
+PhysMem: 63G used (5243M wired, 7479M compressor), 125M unused.
+VM: 455T vsize, 6144M framework vsize, 1244221(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15428248/20G in, 5954961/6585M out.
+Disks: 7656704/157G read, 7571987/157G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 802 total, 9 running, 793 sleeping, 6882 threads 
+2026/05/13 10:56:53
+Load Avg: 8.56, 4.53, 3.85 
+CPU usage: 19.29% user, 10.70% sys, 70.0% idle 
+SharedLibs: 753M resident, 147M data, 123M linkedit.
+MemRegions: 1132838 total, 28G resident, 398M private, 5797M shared.
+PhysMem: 61G used (5898M wired, 7480M compressor), 2148M unused.
+VM: 456T vsize, 6144M framework vsize, 1244269(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15428659/20G in, 5955135/6586M out.
+Disks: 7656922/157G read, 7572519/157G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+top sampler error: TimeoutExpired: Command '['top', '-l', '1', '-pid', '94267', '-stats', 'pid,cpu,command']' timed out after 5 seconds
+Processes: 800 total, 4 running, 796 sleeping, 6891 threads 
+2026/05/13 10:57:07
+Load Avg: 7.75, 4.55, 3.87 
+CPU usage: 48.59% user, 10.83% sys, 40.57% idle 
+SharedLibs: 753M resident, 147M data, 123M linkedit.
+MemRegions: 1132625 total, 30G resident, 394M private, 6010M shared.
+PhysMem: 62G used (4479M wired, 7728M compressor), 700M unused.
+VM: 455T vsize, 6144M framework vsize, 1244309(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15440085/20G in, 5957609/6588M out.
+Disks: 7667967/158G read, 7579525/158G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 800 total, 4 running, 796 sleeping, 6886 threads 
+2026/05/13 10:57:09
+Load Avg: 8.09, 4.67, 3.92 
+CPU usage: 59.62% user, 8.11% sys, 32.26% idle 
+SharedLibs: 753M resident, 147M data, 123M linkedit.
+MemRegions: 1132623 total, 31G resident, 394M private, 5936M shared.
+PhysMem: 62G used (5444M wired, 7728M compressor), 689M unused.
+VM: 455T vsize, 6144M framework vsize, 1244309(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15440324/20G in, 5957761/6589M out.
+Disks: 7668111/158G read, 7579937/158G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 804 total, 5 running, 799 sleeping, 6895 threads 
+2026/05/13 10:57:10
+Load Avg: 8.09, 4.67, 3.92 
+CPU usage: 60.6% user, 11.71% sys, 28.22% idle 
+SharedLibs: 753M resident, 147M data, 123M linkedit.
+MemRegions: 1132787 total, 31G resident, 398M private, 5930M shared.
+PhysMem: 62G used (5327M wired, 7728M compressor), 816M unused.
+VM: 457T vsize, 6144M framework vsize, 1244309(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15441649/20G in, 5958172/6590M out.
+Disks: 7668603/158G read, 7579943/158G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 802 total, 6 running, 796 sleeping, 6870 threads 
+2026/05/13 10:57:12
+Load Avg: 8.09, 4.67, 3.92 
+CPU usage: 61.34% user, 9.9% sys, 29.55% idle 
+SharedLibs: 753M resident, 147M data, 123M linkedit.
+MemRegions: 1132624 total, 30G resident, 397M private, 5938M shared.
+PhysMem: 62G used (5407M wired, 7728M compressor), 814M unused.
+VM: 456T vsize, 6144M framework vsize, 1244309(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15442037/20G in, 5958412/6590M out.
+Disks: 7668985/158G read, 7579943/158G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 803 total, 4 running, 1 stuck, 798 sleeping, 6873 threads 
+2026/05/13 10:57:14
+Load Avg: 8.09, 4.67, 3.92 
+CPU usage: 60.8% user, 8.24% sys, 31.67% idle 
+SharedLibs: 753M resident, 147M data, 123M linkedit.
+MemRegions: 1132683 total, 31G resident, 397M private, 5947M shared.
+PhysMem: 62G used (5415M wired, 7728M compressor), 658M unused.
+VM: 457T vsize, 6144M framework vsize, 1244309(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15442950/20G in, 5958642/6591M out.
+Disks: 7669336/158G read, 7579944/158G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 803 total, 4 running, 799 sleeping, 6861 threads 
+2026/05/13 10:57:15
+Load Avg: 8.24, 4.76, 3.95 
+CPU usage: 58.18% user, 7.8% sys, 34.72% idle 
+SharedLibs: 753M resident, 147M data, 123M linkedit.
+MemRegions: 1132699 total, 31G resident, 397M private, 5942M shared.
+PhysMem: 62G used (5354M wired, 7728M compressor), 677M unused.
+VM: 457T vsize, 6144M framework vsize, 1244309(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15443242/20G in, 5958823/6591M out.
+Disks: 7669574/158G read, 7579945/158G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 803 total, 6 running, 797 sleeping, 6847 threads 
+2026/05/13 10:57:17
+Load Avg: 8.24, 4.76, 3.95 
+CPU usage: 58.55% user, 7.34% sys, 34.9% idle 
+SharedLibs: 753M resident, 147M data, 123M linkedit.
+MemRegions: 1132685 total, 31G resident, 397M private, 5915M shared.
+PhysMem: 62G used (5368M wired, 7728M compressor), 701M unused.
+VM: 457T vsize, 6144M framework vsize, 1244309(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15443443/20G in, 5958980/6591M out.
+Disks: 7669950/158G read, 7579948/158G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 803 total, 6 running, 797 sleeping, 6856 threads 
+2026/05/13 10:57:18
+Load Avg: 8.24, 4.76, 3.95 
+CPU usage: 63.86% user, 9.35% sys, 26.77% idle 
+SharedLibs: 753M resident, 147M data, 123M linkedit.
+MemRegions: 1132831 total, 31G resident, 397M private, 5983M shared.
+PhysMem: 63G used (5574M wired, 7728M compressor), 298M unused.
+VM: 457T vsize, 6144M framework vsize, 1244309(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15443808/20G in, 5959240/6591M out.
+Disks: 7670035/158G read, 7580187/158G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 804 total, 4 running, 800 sleeping, 6885 threads 
+2026/05/13 10:57:20
+Load Avg: 8.38, 4.85, 3.99 
+CPU usage: 66.28% user, 8.34% sys, 25.36% idle 
+SharedLibs: 753M resident, 147M data, 123M linkedit.
+MemRegions: 1132896 total, 31G resident, 398M private, 5978M shared.
+PhysMem: 63G used (5274M wired, 7728M compressor), 344M unused.
+VM: 457T vsize, 6144M framework vsize, 1244309(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15444406/20G in, 5959520/6592M out.
+Disks: 7670052/158G read, 7580190/158G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 805 total, 4 running, 801 sleeping, 6885 threads 
+2026/05/13 10:57:21
+Load Avg: 8.38, 4.85, 3.99 
+CPU usage: 60.32% user, 6.58% sys, 33.9% idle 
+SharedLibs: 753M resident, 147M data, 123M linkedit.
+MemRegions: 1132898 total, 31G resident, 399M private, 5972M shared.
+PhysMem: 63G used (5219M wired, 7728M compressor), 437M unused.
+VM: 457T vsize, 6144M framework vsize, 1244309(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15444643/20G in, 5959712/6592M out.
+Disks: 7670100/158G read, 7580190/158G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 805 total, 4 running, 801 sleeping, 6882 threads 
+2026/05/13 10:57:23
+Load Avg: 8.38, 4.85, 3.99 
+CPU usage: 61.40% user, 8.43% sys, 30.15% idle 
+SharedLibs: 753M resident, 147M data, 123M linkedit.
+MemRegions: 1132909 total, 31G resident, 399M private, 5920M shared.
+PhysMem: 62G used (5285M wired, 7728M compressor), 618M unused.
+VM: 457T vsize, 6144M framework vsize, 1244309(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15445110/20G in, 5959963/6592M out.
+Disks: 7670104/158G read, 7580191/158G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 805 total, 4 running, 801 sleeping, 6873 threads 
+2026/05/13 10:57:24
+Load Avg: 8.67, 4.97, 4.04 
+CPU usage: 58.3% user, 6.63% sys, 35.32% idle 
+SharedLibs: 753M resident, 147M data, 123M linkedit.
+MemRegions: 1132859 total, 31G resident, 398M private, 5858M shared.
+PhysMem: 62G used (4363M wired, 7728M compressor), 727M unused.
+VM: 457T vsize, 6144M framework vsize, 1244309(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15445422/20G in, 5960116/6593M out.
+Disks: 7670144/158G read, 7580874/158G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 807 total, 4 running, 803 sleeping, 6875 threads 
+2026/05/13 10:57:26
+Load Avg: 8.67, 4.97, 4.04 
+CPU usage: 58.41% user, 7.24% sys, 34.33% idle 
+SharedLibs: 753M resident, 147M data, 123M linkedit.
+MemRegions: 1132899 total, 31G resident, 401M private, 5854M shared.
+PhysMem: 62G used (5079M wired, 7728M compressor), 638M unused.
+VM: 458T vsize, 6144M framework vsize, 1244313(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15445907/20G in, 5960383/6594M out.
+Disks: 7670905/158G read, 7581194/158G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 807 total, 7 running, 800 sleeping, 6882 threads 
+2026/05/13 10:57:27
+Load Avg: 8.67, 4.97, 4.04 
+CPU usage: 62.74% user, 8.38% sys, 28.87% idle 
+SharedLibs: 753M resident, 147M data, 123M linkedit.
+MemRegions: 1132925 total, 31G resident, 401M private, 5850M shared.
+PhysMem: 62G used (5360M wired, 7728M compressor), 608M unused.
+VM: 458T vsize, 6144M framework vsize, 1244313(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15446283/20G in, 5960633/6594M out.
+Disks: 7670945/158G read, 7581267/158G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 809 total, 7 running, 802 sleeping, 6881 threads 
+2026/05/13 10:57:29
+Load Avg: 8.70, 5.03, 4.06 
+CPU usage: 32.45% user, 11.18% sys, 56.36% idle 
+SharedLibs: 753M resident, 147M data, 123M linkedit.
+MemRegions: 1132681 total, 30G resident, 403M private, 5398M shared.
+PhysMem: 61G used (5351M wired, 7728M compressor), 1810M unused.
+VM: 459T vsize, 6144M framework vsize, 1244313(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15446711/20G in, 5960859/6594M out.
+Disks: 7670952/158G read, 7581585/158G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 819 total, 8 running, 811 sleeping, 6929 threads 
+2026/05/13 10:57:45
+Load Avg: 8.59, 5.18, 4.13 
+CPU usage: 43.65% user, 8.50% sys, 47.84% idle 
+SharedLibs: 753M resident, 147M data, 123M linkedit.
+MemRegions: 1134746 total, 31G resident, 410M private, 6278M shared.
+PhysMem: 62G used (5248M wired, 8292M compressor), 603M unused.
+VM: 463T vsize, 6144M framework vsize, 1244333(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15450701/20G in, 5962760/6598M out.
+Disks: 7701420/159G read, 7587018/159G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 820 total, 7 running, 813 sleeping, 7022 threads 
+2026/05/13 10:57:46
+Load Avg: 8.59, 5.18, 4.13 
+CPU usage: 47.23% user, 9.84% sys, 42.92% idle 
+SharedLibs: 753M resident, 147M data, 123M linkedit.
+MemRegions: 1135780 total, 31G resident, 411M private, 6517M shared.
+PhysMem: 63G used (5636M wired, 8291M compressor), 258M unused.
+VM: 464T vsize, 6144M framework vsize, 1244333(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15451080/20G in, 5963010/6598M out.
+Disks: 7701508/159G read, 7587065/159G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 820 total, 4 running, 816 sleeping, 7007 threads 
+2026/05/13 10:57:48
+Load Avg: 8.59, 5.18, 4.13 
+CPU usage: 44.57% user, 11.38% sys, 44.4% idle 
+SharedLibs: 753M resident, 147M data, 123M linkedit.
+MemRegions: 1135804 total, 31G resident, 408M private, 6563M shared.
+PhysMem: 63G used (7346M wired, 8662M compressor), 191M unused.
+VM: 464T vsize, 6144M framework vsize, 1244357(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15453953/20G in, 5963666/6600M out.
+Disks: 7701819/159G read, 7588269/159G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 816 total, 5 running, 811 sleeping, 6974 threads 
+2026/05/13 10:57:50
+Load Avg: 8.94, 5.31, 4.18 
+CPU usage: 49.8% user, 10.18% sys, 40.72% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1135886 total, 31G resident, 406M private, 6450M shared.
+PhysMem: 63G used (6193M wired, 8971M compressor), 210M unused.
+VM: 462T vsize, 6144M framework vsize, 1244357(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15461148/20G in, 5965877/6600M out.
+Disks: 7701997/159G read, 7588271/159G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 814 total, 7 running, 807 sleeping, 6940 threads 
+2026/05/13 10:57:51
+Load Avg: 8.94, 5.31, 4.18 
+CPU usage: 51.74% user, 9.1% sys, 39.23% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1135672 total, 31G resident, 404M private, 6448M shared.
+PhysMem: 63G used (6029M wired, 8970M compressor), 542M unused.
+VM: 461T vsize, 6144M framework vsize, 1244357(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15461563/20G in, 5966179/6601M out.
+Disks: 7702440/159G read, 7588304/159G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 813 total, 6 running, 807 sleeping, 6933 threads 
+2026/05/13 10:57:52
+Load Avg: 8.94, 5.31, 4.18 
+CPU usage: 55.31% user, 8.89% sys, 35.78% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1135660 total, 31G resident, 403M private, 6411M shared.
+PhysMem: 62G used (5524M wired, 8969M compressor), 751M unused.
+VM: 461T vsize, 6144M framework vsize, 1244357(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15463414/20G in, 5966431/6602M out.
+Disks: 7702559/159G read, 7588339/159G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 813 total, 6 running, 807 sleeping, 6975 threads 
+2026/05/13 10:57:54
+Load Avg: 9.19, 5.42, 4.23 
+CPU usage: 52.0% user, 7.69% sys, 40.29% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1135738 total, 31G resident, 403M private, 6303M shared.
+PhysMem: 62G used (4858M wired, 8969M compressor), 1193M unused.
+VM: 461T vsize, 6144M framework vsize, 1244361(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15463523/20G in, 5966485/6602M out.
+Disks: 7702789/159G read, 7589453/159G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 814 total, 6 running, 808 sleeping, 6980 threads 
+2026/05/13 10:57:55
+Load Avg: 9.19, 5.42, 4.23 
+CPU usage: 53.14% user, 7.42% sys, 39.43% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1135775 total, 31G resident, 404M private, 6323M shared.
+PhysMem: 62G used (4766M wired, 8969M compressor), 1272M unused.
+VM: 461T vsize, 6144M framework vsize, 1244361(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15464411/20G in, 5966788/6603M out.
+Disks: 7703257/159G read, 7589775/159G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 814 total, 6 running, 808 sleeping, 6978 threads 
+2026/05/13 10:57:57
+Load Avg: 9.19, 5.42, 4.23 
+CPU usage: 53.25% user, 7.55% sys, 39.19% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1135740 total, 31G resident, 404M private, 6352M shared.
+PhysMem: 62G used (4658M wired, 8969M compressor), 1300M unused.
+VM: 461T vsize, 6144M framework vsize, 1244361(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15464609/20G in, 5966925/6603M out.
+Disks: 7703318/159G read, 7589775/159G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 814 total, 6 running, 808 sleeping, 6973 threads 
+2026/05/13 10:57:58
+Load Avg: 9.19, 5.42, 4.23 
+CPU usage: 54.9% user, 7.33% sys, 38.57% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1135744 total, 31G resident, 404M private, 6353M shared.
+PhysMem: 62G used (5300M wired, 8959M compressor), 1239M unused.
+VM: 461T vsize, 6144M framework vsize, 1244361(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15464773/20G in, 5967005/6603M out.
+Disks: 7703390/159G read, 7589780/159G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 814 total, 5 running, 1 stuck, 808 sleeping, 6932 threads 
+2026/05/13 10:58:00
+Load Avg: 9.33, 5.51, 4.27 
+CPU usage: 52.18% user, 7.95% sys, 39.85% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1135700 total, 31G resident, 404M private, 6343M shared.
+PhysMem: 62G used (5242M wired, 8959M compressor), 1007M unused.
+VM: 461T vsize, 6144M framework vsize, 1244361(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15465039/20G in, 5967183/6603M out.
+Disks: 7703605/159G read, 7590252/159G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 813 total, 5 running, 808 sleeping, 6909 threads 
+2026/05/13 10:58:01
+Load Avg: 9.33, 5.51, 4.27 
+CPU usage: 56.14% user, 7.28% sys, 36.56% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1135595 total, 30G resident, 403M private, 6336M shared.
+PhysMem: 60G used (4842M wired, 8957M compressor), 2720M unused.
+VM: 461T vsize, 6144M framework vsize, 1244361(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15465213/20G in, 5967294/6603M out.
+Disks: 7703630/159G read, 7590259/159G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 812 total, 5 running, 807 sleeping, 6905 threads 
+2026/05/13 10:58:02
+Load Avg: 9.33, 5.51, 4.27 
+CPU usage: 53.61% user, 7.43% sys, 38.95% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1135562 total, 30G resident, 402M private, 6288M shared.
+PhysMem: 60G used (4664M wired, 8951M compressor), 2829M unused.
+VM: 460T vsize, 6144M framework vsize, 1244361(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15465392/20G in, 5967437/6603M out.
+Disks: 7703658/159G read, 7590288/159G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 812 total, 7 running, 805 sleeping, 6890 threads 
+2026/05/13 10:58:04
+Load Avg: 10.42, 5.80, 4.38 
+CPU usage: 52.81% user, 8.66% sys, 38.52% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1135542 total, 30G resident, 402M private, 6341M shared.
+PhysMem: 60G used (5108M wired, 8951M compressor), 2729M unused.
+VM: 460T vsize, 6144M framework vsize, 1244361(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15465702/20G in, 5967686/6604M out.
+Disks: 7703737/159G read, 7591216/159G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 811 total, 6 running, 805 sleeping, 6893 threads 
+2026/05/13 10:58:06
+Load Avg: 10.42, 5.80, 4.38 
+CPU usage: 48.88% user, 15.71% sys, 35.40% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1135820 total, 30G resident, 401M private, 6448M shared.
+PhysMem: 61G used (5725M wired, 8951M compressor), 2334M unused.
+VM: 460T vsize, 6144M framework vsize, 1244361(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15466131/20G in, 5967970/6605M out.
+Disks: 7703875/159G read, 7592119/159G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 812 total, 7 running, 805 sleeping, 6923 threads 
+2026/05/13 10:58:07
+Load Avg: 10.42, 5.80, 4.38 
+CPU usage: 52.22% user, 10.36% sys, 37.40% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1136229 total, 30G resident, 402M private, 6428M shared.
+PhysMem: 61G used (5591M wired, 8950M compressor), 2336M unused.
+VM: 460T vsize, 6144M framework vsize, 1244361(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15466365/20G in, 5968090/6606M out.
+Disks: 7704187/159G read, 7592305/159G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 811 total, 8 running, 803 sleeping, 6922 threads 
+2026/05/13 10:58:09
+Load Avg: 10.42, 5.80, 4.38 
+CPU usage: 53.11% user, 10.78% sys, 36.9% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1136327 total, 30G resident, 401M private, 6508M shared.
+PhysMem: 61G used (5712M wired, 8950M compressor), 2193M unused.
+VM: 460T vsize, 6144M framework vsize, 1244361(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15467603/20G in, 5968381/6606M out.
+Disks: 7704298/159G read, 7592307/159G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 810 total, 9 running, 801 sleeping, 6936 threads 
+2026/05/13 10:58:11
+Load Avg: 10.63, 5.92, 4.43 
+CPU usage: 53.32% user, 14.76% sys, 31.90% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1136318 total, 29G resident, 400M private, 6548M shared.
+PhysMem: 61G used (5840M wired, 8948M compressor), 2517M unused.
+VM: 460T vsize, 6144M framework vsize, 1244361(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15468027/20G in, 5968686/6606M out.
+Disks: 7704540/159G read, 7592679/159G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 807 total, 7 running, 800 sleeping, 6908 threads 
+2026/05/13 10:58:12
+Load Avg: 10.63, 5.92, 4.43 
+CPU usage: 49.74% user, 14.6% sys, 36.18% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1136117 total, 29G resident, 398M private, 6423M shared.
+PhysMem: 60G used (5577M wired, 8948M compressor), 2763M unused.
+VM: 458T vsize, 6144M framework vsize, 1244369(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15468372/20G in, 5968929/6608M out.
+Disks: 7704675/159G read, 7593269/159G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 804 total, 6 running, 1 stuck, 797 sleeping, 6901 threads 
+2026/05/13 10:58:14
+Load Avg: 10.98, 6.07, 4.49 
+CPU usage: 49.30% user, 14.13% sys, 36.55% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1136075 total, 29G resident, 394M private, 6400M shared.
+PhysMem: 60G used (5955M wired, 8948M compressor), 2794M unused.
+VM: 457T vsize, 6144M framework vsize, 1244369(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15468615/20G in, 5969077/6609M out.
+Disks: 7704828/159G read, 7593270/159G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 804 total, 11 running, 1 stuck, 792 sleeping, 6897 threads 
+2026/05/13 10:58:16
+Load Avg: 10.98, 6.07, 4.49 
+CPU usage: 50.20% user, 16.11% sys, 33.67% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1136157 total, 29G resident, 394M private, 6399M shared.
+PhysMem: 60G used (6202M wired, 8948M compressor), 2726M unused.
+VM: 457T vsize, 6144M framework vsize, 1244369(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15470783/20G in, 5969387/6609M out.
+Disks: 7705059/159G read, 7593715/159G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 804 total, 5 running, 799 sleeping, 6960 threads 
+2026/05/13 10:58:17
+Load Avg: 10.98, 6.07, 4.49 
+CPU usage: 49.60% user, 15.45% sys, 34.93% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1136335 total, 29G resident, 394M private, 6458M shared.
+PhysMem: 61G used (6304M wired, 8947M compressor), 2423M unused.
+VM: 457T vsize, 6144M framework vsize, 1244369(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15470885/20G in, 5969468/6609M out.
+Disks: 7705066/159G read, 7593721/159G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 801 total, 6 running, 795 sleeping, 6918 threads 
+2026/05/13 10:58:19
+Load Avg: 10.98, 6.07, 4.49 
+CPU usage: 49.48% user, 11.12% sys, 39.38% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1111526 total, 25G resident, 391M private, 6525M shared.
+PhysMem: 57G used (6691M wired, 8773M compressor), 6054M unused.
+VM: 455T vsize, 6144M framework vsize, 1244377(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15471601/20G in, 5969841/6612M out.
+Disks: 7705259/159G read, 7594450/159G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 801 total, 5 running, 796 sleeping, 6921 threads 
+2026/05/13 10:58:20
+Load Avg: 10.58, 6.07, 4.50 
+CPU usage: 49.31% user, 10.11% sys, 40.57% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1111648 total, 26G resident, 391M private, 6548M shared.
+PhysMem: 57G used (6195M wired, 8767M compressor), 6237M unused.
+VM: 455T vsize, 6144M framework vsize, 1244377(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15472157/20G in, 5970014/6612M out.
+Disks: 7705500/159G read, 7594823/159G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 801 total, 7 running, 794 sleeping, 6898 threads 
+2026/05/13 10:58:21
+Load Avg: 10.58, 6.07, 4.50 
+CPU usage: 47.31% user, 9.47% sys, 43.21% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1111540 total, 25G resident, 391M private, 6543M shared.
+PhysMem: 57G used (5952M wired, 8767M compressor), 6320M unused.
+VM: 455T vsize, 6144M framework vsize, 1244377(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15472789/20G in, 5970192/6613M out.
+Disks: 7705543/159G read, 7594827/159G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 801 total, 4 running, 1 stuck, 796 sleeping, 6893 threads 
+2026/05/13 10:58:23
+Load Avg: 10.58, 6.07, 4.50 
+CPU usage: 48.79% user, 7.44% sys, 43.75% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1111686 total, 25G resident, 391M private, 6531M shared.
+PhysMem: 57G used (5865M wired, 8767M compressor), 6455M unused.
+VM: 455T vsize, 6144M framework vsize, 1244377(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15472978/20G in, 5970325/6614M out.
+Disks: 7705638/159G read, 7595325/159G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 801 total, 4 running, 797 sleeping, 6840 threads 
+2026/05/13 10:58:24
+Load Avg: 10.69, 6.17, 4.54 
+CPU usage: 50.63% user, 8.0% sys, 41.36% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1111685 total, 25G resident, 391M private, 6395M shared.
+PhysMem: 57G used (5916M wired, 8766M compressor), 6644M unused.
+VM: 455T vsize, 6144M framework vsize, 1244377(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15473883/20G in, 5970478/6614M out.
+Disks: 7705736/159G read, 7595905/159G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 801 total, 5 running, 796 sleeping, 6837 threads 
+2026/05/13 10:58:26
+Load Avg: 10.69, 6.17, 4.54 
+CPU usage: 47.35% user, 10.46% sys, 42.18% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1111686 total, 25G resident, 391M private, 6484M shared.
+PhysMem: 57G used (5465M wired, 8766M compressor), 6618M unused.
+VM: 455T vsize, 6144M framework vsize, 1244377(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15474490/20G in, 5970730/6616M out.
+Disks: 7705757/159G read, 7596736/159G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 801 total, 3 running, 798 sleeping, 6838 threads 
+2026/05/13 10:58:27
+Load Avg: 10.69, 6.17, 4.54 
+CPU usage: 47.34% user, 7.56% sys, 45.9% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1111705 total, 25G resident, 391M private, 6444M shared.
+PhysMem: 56G used (5404M wired, 8764M compressor), 6727M unused.
+VM: 455T vsize, 6144M framework vsize, 1244377(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15475208/20G in, 5970921/6616M out.
+Disks: 7705801/159G read, 7596742/159G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 801 total, 3 running, 1 stuck, 797 sleeping, 6836 threads 
+2026/05/13 10:58:28
+Load Avg: 10.69, 6.17, 4.54 
+CPU usage: 43.38% user, 7.13% sys, 49.47% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1111737 total, 25G resident, 391M private, 6361M shared.
+PhysMem: 56G used (5470M wired, 8764M compressor), 6911M unused.
+VM: 455T vsize, 6144M framework vsize, 1244377(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15475477/20G in, 5971019/6616M out.
+Disks: 7705806/159G read, 7596746/159G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 801 total, 4 running, 797 sleeping, 6836 threads 
+2026/05/13 10:58:30
+Load Avg: 10.80, 6.26, 4.59 
+CPU usage: 46.24% user, 9.49% sys, 44.26% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1111661 total, 25G resident, 391M private, 6368M shared.
+PhysMem: 56G used (6169M wired, 8656M compressor), 6890M unused.
+VM: 455T vsize, 6144M framework vsize, 1244377(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15475691/20G in, 5971191/6617M out.
+Disks: 7705813/159G read, 7596772/159G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 801 total, 4 running, 797 sleeping, 6838 threads 
+2026/05/13 10:58:31
+Load Avg: 10.80, 6.26, 4.59 
+CPU usage: 44.34% user, 8.98% sys, 46.66% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1111717 total, 25G resident, 391M private, 6355M shared.
+PhysMem: 56G used (5865M wired, 8656M compressor), 7015M unused.
+VM: 455T vsize, 6144M framework vsize, 1244377(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15475818/20G in, 5971332/6617M out.
+Disks: 7705858/159G read, 7596772/159G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 801 total, 4 running, 797 sleeping, 6856 threads 
+2026/05/13 10:58:33
+Load Avg: 10.80, 6.26, 4.59 
+CPU usage: 43.76% user, 9.98% sys, 46.24% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1111840 total, 25G resident, 392M private, 6387M shared.
+PhysMem: 56G used (5632M wired, 8654M compressor), 6992M unused.
+VM: 455T vsize, 6144M framework vsize, 1244377(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15475972/20G in, 5971499/6617M out.
+Disks: 7705860/159G read, 7596777/159G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 801 total, 6 running, 795 sleeping, 6873 threads 
+2026/05/13 10:58:34
+Load Avg: 10.25, 6.23, 4.58 
+CPU usage: 42.99% user, 8.54% sys, 48.45% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1111961 total, 25G resident, 392M private, 6390M shared.
+PhysMem: 56G used (5703M wired, 8654M compressor), 7020M unused.
+VM: 455T vsize, 6144M framework vsize, 1244377(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15476085/20G in, 5971623/6617M out.
+Disks: 7706049/159G read, 7596814/159G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 801 total, 5 running, 796 sleeping, 6875 threads 
+2026/05/13 10:58:36
+Load Avg: 10.25, 6.23, 4.58 
+CPU usage: 46.56% user, 9.72% sys, 43.71% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1112043 total, 25G resident, 392M private, 6493M shared.
+PhysMem: 56G used (5864M wired, 8654M compressor), 6818M unused.
+VM: 455T vsize, 6144M framework vsize, 1244377(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15476318/20G in, 5971793/6618M out.
+Disks: 7706059/159G read, 7598052/159G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 801 total, 4 running, 797 sleeping, 6868 threads 
+2026/05/13 10:58:37
+Load Avg: 10.25, 6.23, 4.58 
+CPU usage: 50.70% user, 7.50% sys, 41.79% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1112186 total, 25G resident, 392M private, 6459M shared.
+PhysMem: 56G used (5407M wired, 8653M compressor), 6765M unused.
+VM: 455T vsize, 6144M framework vsize, 1244385(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15476585/20G in, 5972015/6619M out.
+Disks: 7706154/159G read, 7598425/159G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 803 total, 6 running, 797 sleeping, 7027 threads 
+2026/05/13 10:58:38
+Load Avg: 10.25, 6.23, 4.58 
+CPU usage: 43.65% user, 10.91% sys, 45.42% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1113601 total, 25G resident, 393M private, 6430M shared.
+PhysMem: 56G used (5761M wired, 8653M compressor), 6700M unused.
+VM: 455T vsize, 6144M framework vsize, 1244385(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15476881/20G in, 5972102/6619M out.
+Disks: 7706270/159G read, 7598426/159G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 803 total, 5 running, 798 sleeping, 7026 threads 
+2026/05/13 10:58:40
+Load Avg: 10.79, 6.41, 4.66 
+CPU usage: 49.90% user, 11.31% sys, 38.77% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1113621 total, 25G resident, 393M private, 6442M shared.
+PhysMem: 56G used (5658M wired, 8652M compressor), 6757M unused.
+VM: 455T vsize, 6144M framework vsize, 1244385(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15476978/20G in, 5972218/6619M out.
+Disks: 7706311/159G read, 7598426/159G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 802 total, 5 running, 797 sleeping, 7008 threads 
+2026/05/13 10:58:41
+Load Avg: 10.79, 6.41, 4.66 
+CPU usage: 43.23% user, 11.70% sys, 45.5% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1113511 total, 25G resident, 393M private, 6479M shared.
+PhysMem: 57G used (5860M wired, 8643M compressor), 6457M unused.
+VM: 455T vsize, 6144M framework vsize, 1244385(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15477235/20G in, 5972362/6619M out.
+Disks: 7709176/159G read, 7598427/159G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 803 total, 2 running, 801 sleeping, 6889 threads 
+2026/05/13 10:58:43
+Load Avg: 10.79, 6.41, 4.66 
+CPU usage: 42.5% user, 10.67% sys, 47.26% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1113292 total, 25G resident, 393M private, 6512M shared.
+PhysMem: 57G used (6134M wired, 8643M compressor), 6441M unused.
+VM: 455T vsize, 6144M framework vsize, 1244385(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15477431/20G in, 5972470/6620M out.
+Disks: 7709785/159G read, 7598429/159G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 803 total, 5 running, 798 sleeping, 6863 threads 
+2026/05/13 10:58:44
+Load Avg: 10.09, 6.33, 4.64 
+CPU usage: 44.16% user, 8.97% sys, 46.85% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1113355 total, 25G resident, 393M private, 6480M shared.
+PhysMem: 57G used (5569M wired, 8643M compressor), 6578M unused.
+VM: 455T vsize, 6144M framework vsize, 1244385(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15477508/20G in, 5972522/6620M out.
+Disks: 7709785/159G read, 7598430/159G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 803 total, 5 running, 798 sleeping, 6852 threads 
+2026/05/13 10:58:46
+Load Avg: 10.09, 6.33, 4.64 
+CPU usage: 46.62% user, 8.49% sys, 44.88% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1113351 total, 25G resident, 393M private, 6417M shared.
+PhysMem: 56G used (5526M wired, 8643M compressor), 6807M unused.
+VM: 455T vsize, 6144M framework vsize, 1244385(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15477631/20G in, 5972601/6620M out.
+Disks: 7709950/159G read, 7598435/159G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 803 total, 4 running, 799 sleeping, 6831 threads 
+2026/05/13 10:58:47
+Load Avg: 10.09, 6.33, 4.64 
+CPU usage: 48.64% user, 7.39% sys, 43.95% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1113313 total, 25G resident, 393M private, 6350M shared.
+PhysMem: 56G used (4645M wired, 8643M compressor), 7045M unused.
+VM: 455T vsize, 6144M framework vsize, 1244389(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15477767/20G in, 5972638/6620M out.
+Disks: 7709955/159G read, 7598438/159G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 803 total, 3 running, 800 sleeping, 6837 threads 
+2026/05/13 10:58:48
+Load Avg: 10.09, 6.33, 4.64 
+CPU usage: 43.12% user, 7.48% sys, 49.39% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1113322 total, 25G resident, 393M private, 6349M shared.
+PhysMem: 56G used (5690M wired, 8643M compressor), 6995M unused.
+VM: 455T vsize, 6144M framework vsize, 1244389(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15477928/20G in, 5972713/6620M out.
+Disks: 7709996/159G read, 7599061/159G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 802 total, 3 running, 799 sleeping, 6843 threads 
+2026/05/13 10:58:50
+Load Avg: 10.16, 6.41, 4.68 
+CPU usage: 41.53% user, 10.3% sys, 48.43% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1113303 total, 25G resident, 392M private, 6433M shared.
+PhysMem: 56G used (5859M wired, 8643M compressor), 6905M unused.
+VM: 455T vsize, 6144M framework vsize, 1244389(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15478015/20G in, 5972784/6620M out.
+Disks: 7709997/159G read, 7599062/159G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 802 total, 3 running, 799 sleeping, 6842 threads 
+2026/05/13 10:58:51
+Load Avg: 10.16, 6.41, 4.68 
+CPU usage: 43.88% user, 9.54% sys, 46.57% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1113317 total, 25G resident, 392M private, 6437M shared.
+PhysMem: 56G used (5670M wired, 8643M compressor), 6799M unused.
+VM: 455T vsize, 6144M framework vsize, 1244393(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15478147/20G in, 5972906/6620M out.
+Disks: 7710011/159G read, 7599074/159G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 800 total, 4 running, 796 sleeping, 6840 threads 
+2026/05/13 10:58:53
+Load Avg: 10.16, 6.41, 4.68 
+CPU usage: 45.42% user, 9.72% sys, 44.84% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1112015 total, 25G resident, 392M private, 6439M shared.
+PhysMem: 56G used (5714M wired, 8643M compressor), 6856M unused.
+VM: 454T vsize, 6144M framework vsize, 1244393(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15478684/20G in, 5973046/6620M out.
+Disks: 7710043/159G read, 7599077/159G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 800 total, 4 running, 796 sleeping, 6838 threads 
+2026/05/13 10:58:54
+Load Avg: 9.83, 6.40, 4.68 
+CPU usage: 48.0% user, 8.51% sys, 43.48% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1112096 total, 25G resident, 392M private, 6446M shared.
+PhysMem: 56G used (5869M wired, 8643M compressor), 6831M unused.
+VM: 454T vsize, 6144M framework vsize, 1244397(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15478765/20G in, 5973112/6620M out.
+Disks: 7710045/159G read, 7599812/160G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 800 total, 4 running, 796 sleeping, 6820 threads 
+2026/05/13 10:58:56
+Load Avg: 9.83, 6.40, 4.68 
+CPU usage: 45.51% user, 9.45% sys, 45.3% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1112631 total, 25G resident, 392M private, 6450M shared.
+PhysMem: 56G used (5600M wired, 8643M compressor), 6856M unused.
+VM: 454T vsize, 6144M framework vsize, 1244397(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15478933/20G in, 5973264/6620M out.
+Disks: 7710094/159G read, 7600921/160G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 800 total, 5 running, 795 sleeping, 6842 threads 
+2026/05/13 10:58:57
+Load Avg: 9.83, 6.40, 4.68 
+CPU usage: 47.50% user, 9.17% sys, 43.31% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1112693 total, 25G resident, 392M private, 6291M shared.
+PhysMem: 56G used (5688M wired, 8643M compressor), 6983M unused.
+VM: 454T vsize, 6144M framework vsize, 1244397(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15479061/20G in, 5973334/6620M out.
+Disks: 7710096/159G read, 7601141/160G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 800 total, 6 running, 794 sleeping, 6823 threads 
+2026/05/13 10:58:58
+Load Avg: 9.83, 6.40, 4.68 
+CPU usage: 41.68% user, 10.11% sys, 48.19% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1112622 total, 25G resident, 392M private, 6341M shared.
+PhysMem: 56G used (5774M wired, 8643M compressor), 6931M unused.
+VM: 454T vsize, 6144M framework vsize, 1244397(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15479190/20G in, 5973410/6620M out.
+Disks: 7710137/159G read, 7601145/160G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 800 total, 7 running, 793 sleeping, 6832 threads 
+2026/05/13 10:59:00
+Load Avg: 10.48, 6.60, 4.76 
+CPU usage: 42.37% user, 9.27% sys, 48.34% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1112590 total, 25G resident, 392M private, 6397M shared.
+PhysMem: 57G used (6417M wired, 8643M compressor), 6349M unused.
+VM: 454T vsize, 6144M framework vsize, 1244401(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15479276/20G in, 5973487/6620M out.
+Disks: 7710140/159G read, 7601152/160G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 800 total, 3 running, 2 stuck, 795 sleeping, 6822 threads 
+2026/05/13 10:59:01
+Load Avg: 10.48, 6.60, 4.76 
+CPU usage: 43.65% user, 9.98% sys, 46.36% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1112614 total, 25G resident, 392M private, 6445M shared.
+PhysMem: 57G used (5661M wired, 8643M compressor), 6542M unused.
+VM: 454T vsize, 6144M framework vsize, 1244409(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15479335/20G in, 5973535/6620M out.
+Disks: 7710184/159G read, 7601152/160G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 800 total, 2 running, 798 sleeping, 6827 threads 
+2026/05/13 10:59:03
+Load Avg: 10.48, 6.60, 4.76 
+CPU usage: 42.42% user, 8.23% sys, 49.34% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1112549 total, 25G resident, 392M private, 6456M shared.
+PhysMem: 57G used (5843M wired, 8643M compressor), 6612M unused.
+VM: 454T vsize, 6144M framework vsize, 1244409(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15479511/20G in, 5973655/6620M out.
+Disks: 7710188/159G read, 7601672/160G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 800 total, 8 running, 792 sleeping, 6812 threads 
+2026/05/13 10:59:04
+Load Avg: 10.60, 6.68, 4.80 
+CPU usage: 42.33% user, 9.51% sys, 48.15% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1112486 total, 25G resident, 392M private, 6454M shared.
+PhysMem: 56G used (5672M wired, 8643M compressor), 6675M unused.
+VM: 454T vsize, 6144M framework vsize, 1244409(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15479581/20G in, 5973706/6620M out.
+Disks: 7710228/159G read, 7601698/160G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 799 total, 4 running, 1 stuck, 794 sleeping, 6814 threads 
+2026/05/13 10:59:06
+Load Avg: 10.60, 6.68, 4.80 
+CPU usage: 43.21% user, 10.35% sys, 46.43% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1112457 total, 25G resident, 391M private, 6417M shared.
+PhysMem: 56G used (5734M wired, 8643M compressor), 6745M unused.
+VM: 454T vsize, 6144M framework vsize, 1244409(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15479768/20G in, 5973829/6620M out.
+Disks: 7710229/159G read, 7602300/160G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 800 total, 5 running, 795 sleeping, 6816 threads 
+2026/05/13 10:59:07
+Load Avg: 10.60, 6.68, 4.80 
+CPU usage: 46.19% user, 8.92% sys, 44.87% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1112494 total, 25G resident, 392M private, 6411M shared.
+PhysMem: 57G used (5785M wired, 8643M compressor), 6653M unused.
+VM: 454T vsize, 6144M framework vsize, 1244409(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15479874/20G in, 5973914/6620M out.
+Disks: 7710271/159G read, 7602721/160G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 801 total, 4 running, 797 sleeping, 6822 threads 
+2026/05/13 10:59:08
+Load Avg: 10.60, 6.68, 4.80 
+CPU usage: 46.21% user, 13.7% sys, 40.71% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1112667 total, 25G resident, 392M private, 6442M shared.
+PhysMem: 56G used (5735M wired, 8644M compressor), 6698M unused.
+VM: 455T vsize, 6144M framework vsize, 1244704(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15480265/20G in, 5974049/6620M out.
+Disks: 7710754/159G read, 7603293/160G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 800 total, 5 running, 1 stuck, 794 sleeping, 6852 threads 
+2026/05/13 10:59:10
+Load Avg: 9.99, 6.62, 4.79 
+CPU usage: 52.37% user, 14.27% sys, 33.35% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1112764 total, 25G resident, 392M private, 6471M shared.
+PhysMem: 56G used (5821M wired, 8646M compressor), 6678M unused.
+VM: 454T vsize, 6144M framework vsize, 1244916(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15480574/20G in, 5974297/6622M out.
+Disks: 7711398/159G read, 7604132/160G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 799 total, 4 running, 1 stuck, 794 sleeping, 6867 threads 
+2026/05/13 10:59:12
+Load Avg: 9.99, 6.62, 4.79 
+CPU usage: 44.35% user, 10.57% sys, 45.6% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1112779 total, 25G resident, 391M private, 6465M shared.
+PhysMem: 57G used (5608M wired, 8646M compressor), 6647M unused.
+VM: 454T vsize, 6144M framework vsize, 1244916(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15480685/20G in, 5974360/6622M out.
+Disks: 7711398/159G read, 7604138/160G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 800 total, 4 running, 796 sleeping, 6879 threads 
+2026/05/13 10:59:13
+Load Avg: 9.99, 6.62, 4.79 
+CPU usage: 43.31% user, 9.94% sys, 46.73% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1112765 total, 25G resident, 392M private, 6365M shared.
+PhysMem: 57G used (5894M wired, 8646M compressor), 6674M unused.
+VM: 454T vsize, 6144M framework vsize, 1244916(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15480844/20G in, 5974483/6622M out.
+Disks: 7711439/159G read, 7604159/160G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 800 total, 4 running, 796 sleeping, 6863 threads 
+2026/05/13 10:59:15
+Load Avg: 10.48, 6.78, 4.86 
+CPU usage: 45.22% user, 9.74% sys, 45.3% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1112769 total, 25G resident, 392M private, 6416M shared.
+PhysMem: 56G used (5874M wired, 8646M compressor), 6673M unused.
+VM: 454T vsize, 6144M framework vsize, 1244920(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15480995/20G in, 5974551/6622M out.
+Disks: 7711441/159G read, 7604160/160G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 800 total, 6 running, 794 sleeping, 6832 threads 
+2026/05/13 10:59:16
+Load Avg: 10.48, 6.78, 4.86 
+CPU usage: 46.87% user, 9.2% sys, 44.10% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1112793 total, 25G resident, 392M private, 6455M shared.
+PhysMem: 57G used (6390M wired, 8646M compressor), 6234M unused.
+VM: 454T vsize, 6144M framework vsize, 1244920(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15481117/20G in, 5974650/6622M out.
+Disks: 7711487/159G read, 7604162/160G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 800 total, 6 running, 794 sleeping, 6824 threads 
+2026/05/13 10:59:17
+Load Avg: 10.48, 6.78, 4.86 
+CPU usage: 44.20% user, 8.81% sys, 46.98% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1112790 total, 25G resident, 392M private, 6470M shared.
+PhysMem: 57G used (6132M wired, 8646M compressor), 6009M unused.
+VM: 454T vsize, 6144M framework vsize, 1244924(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15481217/20G in, 5974717/6622M out.
+Disks: 7711493/159G read, 7604167/160G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 800 total, 5 running, 795 sleeping, 6821 threads 
+2026/05/13 10:59:19
+Load Avg: 10.20, 6.78, 4.87 
+CPU usage: 47.15% user, 10.35% sys, 42.49% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1112784 total, 25G resident, 392M private, 6440M shared.
+PhysMem: 57G used (5807M wired, 8646M compressor), 6052M unused.
+VM: 454T vsize, 6144M framework vsize, 1244924(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15481326/20G in, 5974798/6622M out.
+Disks: 7711533/159G read, 7604167/160G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 800 total, 5 running, 795 sleeping, 6818 threads 
+2026/05/13 10:59:20
+Load Avg: 10.20, 6.78, 4.87 
+CPU usage: 47.0% user, 9.40% sys, 43.58% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1112814 total, 25G resident, 392M private, 6460M shared.
+PhysMem: 57G used (6378M wired, 8646M compressor), 5916M unused.
+VM: 454T vsize, 6144M framework vsize, 1244924(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15481417/20G in, 5974869/6622M out.
+Disks: 7711536/159G read, 7604945/160G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 800 total, 4 running, 796 sleeping, 6824 threads 
+2026/05/13 10:59:22
+Load Avg: 10.20, 6.78, 4.87 
+CPU usage: 46.12% user, 8.17% sys, 45.70% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1112609 total, 25G resident, 392M private, 6391M shared.
+PhysMem: 57G used (5920M wired, 8646M compressor), 6199M unused.
+VM: 454T vsize, 6144M framework vsize, 1244924(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15481519/20G in, 5974932/6622M out.
+Disks: 7711536/159G read, 7604949/160G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 800 total, 6 running, 794 sleeping, 6827 threads 
+2026/05/13 10:59:23
+Load Avg: 10.20, 6.78, 4.87 
+CPU usage: 46.27% user, 7.78% sys, 45.94% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1112600 total, 25G resident, 392M private, 6381M shared.
+PhysMem: 57G used (5768M wired, 8646M compressor), 6325M unused.
+VM: 454T vsize, 6144M framework vsize, 1244924(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15481705/20G in, 5975037/6622M out.
+Disks: 7711576/159G read, 7604953/160G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 800 total, 4 running, 796 sleeping, 6810 threads 
+2026/05/13 10:59:24
+Load Avg: 10.10, 6.82, 4.89 
+CPU usage: 44.54% user, 8.96% sys, 46.48% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1112590 total, 25G resident, 392M private, 6363M shared.
+PhysMem: 57G used (5864M wired, 8646M compressor), 6519M unused.
+VM: 454T vsize, 6144M framework vsize, 1244924(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15481765/20G in, 5975076/6622M out.
+Disks: 7711577/159G read, 7605634/160G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 800 total, 6 running, 794 sleeping, 6811 threads 
+2026/05/13 10:59:26
+Load Avg: 10.10, 6.82, 4.89 
+CPU usage: 45.47% user, 11.6% sys, 43.45% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1112675 total, 25G resident, 392M private, 6441M shared.
+PhysMem: 57G used (5928M wired, 8640M compressor), 6575M unused.
+VM: 454T vsize, 6144M framework vsize, 1244924(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15481943/20G in, 5975201/6622M out.
+Disks: 7711617/159G read, 7605635/160G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 800 total, 6 running, 794 sleeping, 6812 threads 
+2026/05/13 10:59:27
+Load Avg: 10.10, 6.82, 4.89 
+CPU usage: 44.57% user, 9.68% sys, 45.73% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1113164 total, 26G resident, 392M private, 6447M shared.
+PhysMem: 57G used (5896M wired, 8640M compressor), 6439M unused.
+VM: 454T vsize, 6144M framework vsize, 1244924(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15482058/20G in, 5975304/6622M out.
+Disks: 7711621/159G read, 7605636/160G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 800 total, 4 running, 796 sleeping, 6809 threads 
+2026/05/13 10:59:29
+Load Avg: 10.09, 6.87, 4.92 
+CPU usage: 49.6% user, 16.9% sys, 34.83% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1114179 total, 26G resident, 392M private, 6463M shared.
+PhysMem: 57G used (5818M wired, 8640M compressor), 6391M unused.
+VM: 454T vsize, 6144M framework vsize, 1244932(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15482211/20G in, 5975431/6622M out.
+Disks: 7711741/159G read, 7606357/160G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 801 total, 3 running, 798 sleeping, 6823 threads 
+2026/05/13 10:59:30
+Load Avg: 10.09, 6.87, 4.92 
+CPU usage: 49.76% user, 13.11% sys, 37.11% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1114413 total, 26G resident, 392M private, 6469M shared.
+PhysMem: 57G used (5584M wired, 8638M compressor), 6248M unused.
+VM: 455T vsize, 6144M framework vsize, 1245168(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15482329/20G in, 5975536/6622M out.
+Disks: 7711942/159G read, 7606690/160G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 800 total, 5 running, 795 sleeping, 6837 threads 
+2026/05/13 10:59:32
+Load Avg: 10.09, 6.87, 4.92 
+CPU usage: 47.51% user, 16.15% sys, 36.32% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1114374 total, 26G resident, 392M private, 6562M shared.
+PhysMem: 57G used (5773M wired, 8637M compressor), 5928M unused.
+VM: 454T vsize, 6144M framework vsize, 1245168(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15482900/20G in, 5975958/6624M out.
+Disks: 7713045/159G read, 7607604/160G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 800 total, 3 running, 797 sleeping, 6849 threads 
+2026/05/13 10:59:33
+Load Avg: 10.09, 6.87, 4.92 
+CPU usage: 41.79% user, 8.23% sys, 49.96% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1114408 total, 26G resident, 392M private, 6716M shared.
+PhysMem: 57G used (5930M wired, 8637M compressor), 5764M unused.
+VM: 454T vsize, 6144M framework vsize, 1245168(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15482991/20G in, 5976032/6624M out.
+Disks: 7713063/159G read, 7607605/160G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 800 total, 3 running, 797 sleeping, 6838 threads 
+2026/05/13 10:59:34
+Load Avg: 10.24, 6.96, 4.97 
+CPU usage: 45.93% user, 7.69% sys, 46.36% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1114348 total, 26G resident, 392M private, 6641M shared.
+PhysMem: 57G used (5215M wired, 8637M compressor), 5977M unused.
+VM: 454T vsize, 6144M framework vsize, 1245168(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15483123/20G in, 5976090/6624M out.
+Disks: 7713103/159G read, 7607643/160G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 800 total, 5 running, 795 sleeping, 6841 threads 
+2026/05/13 10:59:36
+Load Avg: 10.24, 6.96, 4.97 
+CPU usage: 47.53% user, 9.35% sys, 43.10% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1114549 total, 26G resident, 392M private, 6684M shared.
+PhysMem: 57G used (4658M wired, 8636M compressor), 5960M unused.
+VM: 454T vsize, 6144M framework vsize, 1245168(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15492591/20G in, 5978183/6624M out.
+Disks: 7713103/159G read, 7607649/160G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 799 total, 6 running, 793 sleeping, 6821 threads 
+2026/05/13 10:59:37
+Load Avg: 10.24, 6.96, 4.97 
+CPU usage: 50.86% user, 7.92% sys, 41.21% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1114571 total, 26G resident, 391M private, 6654M shared.
+PhysMem: 57G used (5503M wired, 8636M compressor), 5822M unused.
+VM: 454T vsize, 6144M framework vsize, 1245172(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15494406/20G in, 5979893/6638M out.
+Disks: 7713152/159G read, 7608608/160G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 801 total, 4 running, 797 sleeping, 6837 threads 
+2026/05/13 10:59:39
+Load Avg: 10.24, 6.96, 4.97 
+CPU usage: 50.89% user, 6.36% sys, 42.74% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1114704 total, 26G resident, 393M private, 6513M shared.
+PhysMem: 57G used (5057M wired, 8636M compressor), 5976M unused.
+VM: 455T vsize, 6144M framework vsize, 1245172(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15494501/20G in, 5979939/6638M out.
+Disks: 7713153/159G read, 7608608/160G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 801 total, 4 running, 797 sleeping, 6851 threads 
+2026/05/13 10:59:40
+Load Avg: 10.71, 7.11, 5.03 
+CPU usage: 44.19% user, 17.78% sys, 38.1% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1115338 total, 26G resident, 393M private, 6666M shared.
+PhysMem: 58G used (5701M wired, 8636M compressor), 5568M unused.
+VM: 455T vsize, 6144M framework vsize, 1245172(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15500545/20G in, 5984328/6678M out.
+Disks: 7713197/159G read, 7611435/160G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 800 total, 4 running, 1 stuck, 795 sleeping, 6860 threads 
+2026/05/13 10:59:42
+Load Avg: 10.71, 7.11, 5.03 
+CPU usage: 45.57% user, 14.19% sys, 40.23% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1115724 total, 26G resident, 393M private, 6678M shared.
+PhysMem: 58G used (6369M wired, 8636M compressor), 5483M unused.
+VM: 454T vsize, 6144M framework vsize, 1245196(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15502684/20G in, 5984809/6679M out.
+Disks: 7713211/159G read, 7611995/160G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 801 total, 5 running, 796 sleeping, 6866 threads 
+2026/05/13 10:59:43
+Load Avg: 10.71, 7.11, 5.03 
+CPU usage: 45.33% user, 8.98% sys, 45.67% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1115953 total, 26G resident, 393M private, 6747M shared.
+PhysMem: 58G used (5794M wired, 8635M compressor), 5322M unused.
+VM: 455T vsize, 6144M framework vsize, 1245196(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15504914/20G in, 5985106/6679M out.
+Disks: 7713324/159G read, 7612510/160G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 801 total, 5 running, 796 sleeping, 6850 threads 
+2026/05/13 10:59:45
+Load Avg: 11.29, 7.29, 5.11 
+CPU usage: 46.93% user, 7.90% sys, 45.16% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1116037 total, 26G resident, 393M private, 6718M shared.
+PhysMem: 58G used (5419M wired, 8633M compressor), 5419M unused.
+VM: 455T vsize, 6144M framework vsize, 1245196(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15508362/20G in, 5985541/6679M out.
+Disks: 7713364/159G read, 7613418/160G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 801 total, 4 running, 797 sleeping, 6859 threads 
+2026/05/13 10:59:46
+Load Avg: 11.29, 7.29, 5.11 
+CPU usage: 45.27% user, 7.17% sys, 47.54% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1116082 total, 26G resident, 393M private, 6806M shared.
+PhysMem: 58G used (4683M wired, 8629M compressor), 5340M unused.
+VM: 455T vsize, 6144M framework vsize, 1245196(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15508595/20G in, 5985646/6679M out.
+Disks: 7713365/159G read, 7614220/160G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 801 total, 5 running, 796 sleeping, 6829 threads 
+2026/05/13 10:59:47
+Load Avg: 11.29, 7.29, 5.11 
+CPU usage: 47.47% user, 8.59% sys, 43.93% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1115941 total, 26G resident, 393M private, 6644M shared.
+PhysMem: 58G used (5489M wired, 8627M compressor), 5387M unused.
+VM: 455T vsize, 6144M framework vsize, 1245204(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15508662/20G in, 5985702/6679M out.
+Disks: 7713409/159G read, 7614221/160G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 797 total, 6 running, 791 sleeping, 6821 threads 
+2026/05/13 10:59:49
+Load Avg: 11.43, 7.38, 5.15 
+CPU usage: 52.46% user, 15.29% sys, 32.23% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1115653 total, 26G resident, 394M private, 6664M shared.
+PhysMem: 59G used (7128M wired, 8622M compressor), 4287M unused.
+VM: 453T vsize, 6144M framework vsize, 1246231(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15508811/20G in, 5985840/6679M out.
+Disks: 7714113/159G read, 7614536/160G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 799 total, 5 running, 794 sleeping, 6950 threads 
+2026/05/13 10:59:50
+Load Avg: 11.43, 7.38, 5.15 
+CPU usage: 46.91% user, 15.5% sys, 38.3% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1140291 total, 26G resident, 398M private, 7024M shared.
+PhysMem: 59G used (6936M wired, 8318M compressor), 3696M unused.
+VM: 457T vsize, 6144M framework vsize, 1246735(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15509152/20G in, 5986152/6679M out.
+Disks: 7714608/159G read, 7615343/160G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 803 total, 4 running, 1 stuck, 798 sleeping, 7006 threads 
+2026/05/13 10:59:52
+Load Avg: 11.43, 7.38, 5.15 
+CPU usage: 42.73% user, 7.56% sys, 49.70% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1188301 total, 26G resident, 402M private, 7037M shared.
+PhysMem: 59G used (6649M wired, 8316M compressor), 3852M unused.
+VM: 464T vsize, 6144M framework vsize, 1248749(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15509577/20G in, 5986423/6679M out.
+Disks: 7715650/159G read, 7616016/160G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 801 total, 3 running, 1 stuck, 797 sleeping, 7053 threads 
+2026/05/13 10:59:53
+Load Avg: 11.43, 7.38, 5.15 
+CPU usage: 41.88% user, 8.14% sys, 49.96% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1187769 total, 26G resident, 401M private, 7158M shared.
+PhysMem: 59G used (5393M wired, 8317M compressor), 4256M unused.
+VM: 463T vsize, 6144M framework vsize, 1250277(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15509815/20G in, 5986530/6679M out.
+Disks: 7716477/159G read, 7617266/160G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 800 total, 6 running, 794 sleeping, 7032 threads 
+2026/05/13 10:59:55
+Load Avg: 11.15, 7.39, 5.17 
+CPU usage: 45.32% user, 8.2% sys, 46.64% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1175768 total, 26G resident, 401M private, 7106M shared.
+PhysMem: 59G used (6351M wired, 8320M compressor), 3841M unused.
+VM: 461T vsize, 6144M framework vsize, 1251146(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15510292/20G in, 5986783/6679M out.
+Disks: 7717135/159G read, 7617451/160G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 800 total, 5 running, 795 sleeping, 6978 threads 
+2026/05/13 10:59:56
+Load Avg: 11.15, 7.39, 5.17 
+CPU usage: 42.78% user, 7.65% sys, 49.55% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1175792 total, 27G resident, 401M private, 7155M shared.
+PhysMem: 59G used (5532M wired, 8319M compressor), 4004M unused.
+VM: 461T vsize, 6144M framework vsize, 1252747(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15511258/20G in, 5987214/6680M out.
+Disks: 7718226/159G read, 7617793/160G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 801 total, 4 running, 797 sleeping, 6980 threads 
+2026/05/13 10:59:57
+Load Avg: 11.15, 7.39, 5.17 
+CPU usage: 45.0% user, 11.54% sys, 43.45% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1175839 total, 27G resident, 401M private, 7168M shared.
+PhysMem: 59G used (5458M wired, 8317M compressor), 4311M unused.
+VM: 462T vsize, 6144M framework vsize, 1252835(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15511510/20G in, 5987365/6680M out.
+Disks: 7718313/159G read, 7618766/160G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 801 total, 8 running, 793 sleeping, 6926 threads 
+2026/05/13 10:59:59
+Load Avg: 11.70, 7.57, 5.24 
+CPU usage: 49.36% user, 13.87% sys, 36.76% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1175746 total, 27G resident, 401M private, 7146M shared.
+PhysMem: 59G used (4984M wired, 8319M compressor), 4438M unused.
+VM: 462T vsize, 6144M framework vsize, 1253351(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15511609/20G in, 5987448/6680M out.
+Disks: 7718774/159G read, 7618804/160G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 801 total, 4 running, 1 stuck, 796 sleeping, 6923 threads 
+2026/05/13 11:00:00
+Load Avg: 11.70, 7.57, 5.24 
+CPU usage: 45.91% user, 10.87% sys, 43.21% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1175734 total, 27G resident, 401M private, 7167M shared.
+PhysMem: 58G used (5201M wired, 8319M compressor), 4680M unused.
+VM: 462T vsize, 6144M framework vsize, 1253467(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15511726/20G in, 5987541/6680M out.
+Disks: 7718835/159G read, 7619447/160G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 801 total, 3 running, 798 sleeping, 6899 threads 
+2026/05/13 11:00:02
+Load Avg: 11.70, 7.57, 5.24 
+CPU usage: 46.82% user, 12.2% sys, 41.14% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1175588 total, 27G resident, 401M private, 7160M shared.
+PhysMem: 58G used (5034M wired, 8319M compressor), 4737M unused.
+VM: 462T vsize, 6144M framework vsize, 1253467(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15511822/20G in, 5987580/6680M out.
+Disks: 7718964/159G read, 7619483/160G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 801 total, 3 running, 798 sleeping, 6892 threads 
+2026/05/13 11:00:03
+Load Avg: 11.70, 7.57, 5.24 
+CPU usage: 44.44% user, 10.63% sys, 44.92% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1175524 total, 27G resident, 401M private, 7149M shared.
+PhysMem: 58G used (5342M wired, 8319M compressor), 4827M unused.
+VM: 462T vsize, 6144M framework vsize, 1253475(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15511927/20G in, 5987677/6680M out.
+Disks: 7718968/159G read, 7619483/160G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 801 total, 3 running, 798 sleeping, 6868 threads 
+2026/05/13 11:00:05
+Load Avg: 11.72, 7.64, 5.28 
+CPU usage: 45.28% user, 10.87% sys, 43.84% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1175480 total, 27G resident, 401M private, 7148M shared.
+PhysMem: 58G used (4890M wired, 8319M compressor), 4967M unused.
+VM: 462T vsize, 6144M framework vsize, 1253475(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15511995/20G in, 5987722/6680M out.
+Disks: 7719013/159G read, 7619515/160G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 799 total, 5 running, 794 sleeping, 6868 threads 
+2026/05/13 11:00:06
+Load Avg: 11.72, 7.64, 5.28 
+CPU usage: 47.12% user, 9.77% sys, 43.10% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1175446 total, 27G resident, 400M private, 7052M shared.
+PhysMem: 58G used (5149M wired, 8319M compressor), 5063M unused.
+VM: 461T vsize, 6144M framework vsize, 1253475(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15512283/20G in, 5987969/6681M out.
+Disks: 7719039/159G read, 7620391/160G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 800 total, 4 running, 796 sleeping, 6889 threads 
+2026/05/13 11:00:07
+Load Avg: 11.72, 7.64, 5.28 
+CPU usage: 43.26% user, 6.73% sys, 50.0% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1175525 total, 27G resident, 401M private, 7089M shared.
+PhysMem: 58G used (5212M wired, 8319M compressor), 5030M unused.
+VM: 461T vsize, 6144M framework vsize, 1253475(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15512439/20G in, 5988075/6681M out.
+Disks: 7719046/159G read, 7620784/160G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 800 total, 5 running, 795 sleeping, 6900 threads 
+2026/05/13 11:00:09
+Load Avg: 11.72, 7.64, 5.28 
+CPU usage: 45.94% user, 9.40% sys, 44.64% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1175736 total, 27G resident, 401M private, 7186M shared.
+PhysMem: 59G used (5753M wired, 8320M compressor), 4476M unused.
+VM: 461T vsize, 6144M framework vsize, 1253807(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15513901/20G in, 5988440/6681M out.
+Disks: 7719333/159G read, 7621269/160G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 801 total, 4 running, 797 sleeping, 6921 threads 
+2026/05/13 11:00:10
+Load Avg: 11.91, 7.75, 5.33 
+CPU usage: 45.97% user, 12.71% sys, 41.31% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1175873 total, 27G resident, 402M private, 7131M shared.
+PhysMem: 59G used (5271M wired, 8320M compressor), 4622M unused.
+VM: 462T vsize, 6144M framework vsize, 1253807(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15514146/20G in, 5988631/6681M out.
+Disks: 7719336/159G read, 7621941/160G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 799 total, 3 running, 796 sleeping, 6911 threads 
+2026/05/13 11:00:12
+Load Avg: 11.91, 7.75, 5.33 
+CPU usage: 42.62% user, 8.17% sys, 49.19% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1175737 total, 27G resident, 401M private, 7148M shared.
+PhysMem: 58G used (5019M wired, 8320M compressor), 4769M unused.
+VM: 461T vsize, 6144M framework vsize, 1253807(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15514568/20G in, 5988750/6681M out.
+Disks: 7719376/159G read, 7621947/160G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 800 total, 3 running, 797 sleeping, 6903 threads 
+2026/05/13 11:00:13
+Load Avg: 11.91, 7.75, 5.33 
+CPU usage: 36.94% user, 9.66% sys, 53.38% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1175306 total, 26G resident, 401M private, 6992M shared.
+PhysMem: 57G used (5107M wired, 8320M compressor), 5964M unused.
+VM: 461T vsize, 6144M framework vsize, 1253935(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15515305/20G in, 5988965/6681M out.
+Disks: 7719502/159G read, 7622024/160G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 799 total, 4 running, 795 sleeping, 6895 threads 
+2026/05/13 11:00:28
+Load Avg: 9.98, 7.53, 5.30 
+CPU usage: 40.66% user, 6.81% sys, 52.51% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1176248 total, 29G resident, 401M private, 6138M shared.
+PhysMem: 60G used (4396M wired, 8316M compressor), 3063M unused.
+VM: 461T vsize, 6144M framework vsize, 1254675(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15518044/20G in, 5990758/6684M out.
+Disks: 7727702/160G read, 7630862/161G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 799 total, 4 running, 795 sleeping, 6906 threads 
+2026/05/13 11:00:29
+Load Avg: 10.30, 7.64, 5.35 
+CPU usage: 52.47% user, 8.60% sys, 38.92% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1176396 total, 29G resident, 401M private, 6160M shared.
+PhysMem: 60G used (5268M wired, 8316M compressor), 2826M unused.
+VM: 461T vsize, 6144M framework vsize, 1254675(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15518401/20G in, 5991089/6684M out.
+Disks: 7728197/160G read, 7630965/161G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 799 total, 5 running, 794 sleeping, 6918 threads 
+2026/05/13 11:00:30
+Load Avg: 10.30, 7.64, 5.35 
+CPU usage: 52.77% user, 7.64% sys, 39.58% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1176462 total, 28G resident, 401M private, 6155M shared.
+PhysMem: 59G used (5005M wired, 8316M compressor), 3792M unused.
+VM: 461T vsize, 6144M framework vsize, 1254699(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15518777/20G in, 5991178/6684M out.
+Disks: 7728281/160G read, 7630997/161G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 799 total, 4 running, 1 stuck, 794 sleeping, 6906 threads 
+2026/05/13 11:00:32
+Load Avg: 10.30, 7.64, 5.35 
+CPU usage: 54.8% user, 7.91% sys, 38.0% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1176526 total, 28G resident, 401M private, 6155M shared.
+PhysMem: 59G used (4974M wired, 8314M compressor), 3779M unused.
+VM: 461T vsize, 6144M framework vsize, 1254711(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15519297/20G in, 5991391/6685M out.
+Disks: 7728530/160G read, 7631064/161G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 799 total, 4 running, 795 sleeping, 6901 threads 
+2026/05/13 11:00:33
+Load Avg: 10.30, 7.64, 5.35 
+CPU usage: 59.24% user, 8.91% sys, 31.84% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1176720 total, 28G resident, 401M private, 6143M shared.
+PhysMem: 59G used (4819M wired, 8313M compressor), 3796M unused.
+VM: 461T vsize, 6144M framework vsize, 1255301(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15520269/20G in, 5991848/6685M out.
+Disks: 7729118/160G read, 7631264/161G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 799 total, 4 running, 795 sleeping, 6891 threads 
+2026/05/13 11:00:35
+Load Avg: 10.60, 7.74, 5.40 
+CPU usage: 55.1% user, 9.9% sys, 35.88% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1176736 total, 28G resident, 401M private, 6152M shared.
+PhysMem: 59G used (4880M wired, 8313M compressor), 3823M unused.
+VM: 461T vsize, 6144M framework vsize, 1255353(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15520849/20G in, 5991970/6685M out.
+Disks: 7729449/160G read, 7632216/161G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 799 total, 3 running, 796 sleeping, 6904 threads 
+2026/05/13 11:00:36
+Load Avg: 10.60, 7.74, 5.40 
+CPU usage: 53.25% user, 7.56% sys, 39.18% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1176776 total, 28G resident, 401M private, 6159M shared.
+PhysMem: 59G used (4706M wired, 8313M compressor), 3987M unused.
+VM: 461T vsize, 6144M framework vsize, 1255397(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15521326/20G in, 5992115/6685M out.
+Disks: 7729752/160G read, 7632590/161G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 799 total, 3 running, 796 sleeping, 6906 threads 
+2026/05/13 11:00:38
+Load Avg: 10.60, 7.74, 5.40 
+CPU usage: 53.58% user, 8.20% sys, 38.20% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1176788 total, 28G resident, 401M private, 6160M shared.
+PhysMem: 59G used (4969M wired, 8313M compressor), 4008M unused.
+VM: 461T vsize, 6144M framework vsize, 1255397(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15521395/20G in, 5992164/6685M out.
+Disks: 7729848/160G read, 7632590/161G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 799 total, 3 running, 1 stuck, 795 sleeping, 6922 threads 
+2026/05/13 11:00:39
+Load Avg: 10.55, 7.78, 5.43 
+CPU usage: 54.71% user, 8.38% sys, 36.90% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1176928 total, 28G resident, 401M private, 6171M shared.
+PhysMem: 59G used (5319M wired, 8313M compressor), 3701M unused.
+VM: 461T vsize, 6144M framework vsize, 1256732(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15521537/20G in, 5992291/6685M out.
+Disks: 7730773/160G read, 7633348/161G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 800 total, 4 running, 796 sleeping, 6927 threads 
+2026/05/13 11:00:41
+Load Avg: 10.55, 7.78, 5.43 
+CPU usage: 53.80% user, 9.48% sys, 36.70% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1176956 total, 27G resident, 402M private, 6170M shared.
+PhysMem: 58G used (4810M wired, 8313M compressor), 5302M unused.
+VM: 461T vsize, 6144M framework vsize, 1256744(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15521629/20G in, 5992366/6685M out.
+Disks: 7730780/160G read, 7633523/161G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 800 total, 4 running, 796 sleeping, 6931 threads 
+2026/05/13 11:00:42
+Load Avg: 10.55, 7.78, 5.43 
+CPU usage: 55.63% user, 8.10% sys, 36.26% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1176969 total, 27G resident, 403M private, 6171M shared.
+PhysMem: 58G used (5659M wired, 8313M compressor), 5096M unused.
+VM: 461T vsize, 6144M framework vsize, 1256744(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15521743/20G in, 5992456/6685M out.
+Disks: 7730821/160G read, 7633565/161G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 800 total, 5 running, 795 sleeping, 6924 threads 
+2026/05/13 11:00:44
+Load Avg: 10.55, 7.78, 5.43 
+CPU usage: 62.29% user, 11.70% sys, 25.99% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1176965 total, 27G resident, 403M private, 6155M shared.
+PhysMem: 59G used (5843M wired, 8313M compressor), 4441M unused.
+VM: 461T vsize, 6144M framework vsize, 1256944(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15521967/20G in, 5992556/6685M out.
+Disks: 7731222/160G read, 7633803/161G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 801 total, 3 running, 798 sleeping, 6892 threads 
+2026/05/13 11:00:45
+Load Avg: 10.67, 7.85, 5.46 
+CPU usage: 60.57% user, 11.93% sys, 27.48% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1177011 total, 27G resident, 403M private, 6181M shared.
+PhysMem: 58G used (5250M wired, 8313M compressor), 4648M unused.
+VM: 462T vsize, 6144M framework vsize, 1256956(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15522113/20G in, 5992651/6685M out.
+Disks: 7731337/160G read, 7633959/161G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 803 total, 6 running, 797 sleeping, 6919 threads 
+2026/05/13 11:00:47
+Load Avg: 10.67, 7.85, 5.46 
+CPU usage: 60.13% user, 10.46% sys, 29.40% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1177152 total, 27G resident, 404M private, 6181M shared.
+PhysMem: 58G used (5125M wired, 8313M compressor), 4723M unused.
+VM: 463T vsize, 6144M framework vsize, 1256980(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15522178/20G in, 5992695/6685M out.
+Disks: 7731466/160G read, 7634294/161G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 800 total, 4 running, 796 sleeping, 6928 threads 
+2026/05/13 11:00:48
+Load Avg: 10.67, 7.85, 5.46 
+CPU usage: 61.69% user, 11.38% sys, 26.92% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1176965 total, 27G resident, 402M private, 6186M shared.
+PhysMem: 58G used (5539M wired, 8313M compressor), 4940M unused.
+VM: 461T vsize, 6144M framework vsize, 1256988(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15522519/20G in, 5992772/6685M out.
+Disks: 7731513/160G read, 7634574/161G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 800 total, 5 running, 795 sleeping, 6939 threads 
+2026/05/13 11:00:50
+Load Avg: 10.29, 7.82, 5.47 
+CPU usage: 51.26% user, 10.77% sys, 37.95% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1176990 total, 27G resident, 402M private, 5732M shared.
+PhysMem: 59G used (5779M wired, 8313M compressor), 4460M unused.
+VM: 461T vsize, 6144M framework vsize, 1257012(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15523247/20G in, 5993009/6686M out.
+Disks: 7731569/160G read, 7635221/161G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 800 total, 4 running, 796 sleeping, 6928 threads 
+2026/05/13 11:00:52
+Load Avg: 10.29, 7.82, 5.47 
+CPU usage: 59.53% user, 8.79% sys, 31.67% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1177060 total, 27G resident, 403M private, 5734M shared.
+PhysMem: 58G used (4881M wired, 8313M compressor), 4825M unused.
+VM: 461T vsize, 6144M framework vsize, 1257012(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15523591/20G in, 5993186/6686M out.
+Disks: 7731626/160G read, 7635250/161G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 799 total, 5 running, 794 sleeping, 6899 threads 
+2026/05/13 11:00:53
+Load Avg: 10.29, 7.82, 5.47 
+CPU usage: 55.82% user, 7.40% sys, 36.77% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1165046 total, 27G resident, 402M private, 5725M shared.
+PhysMem: 58G used (5017M wired, 8313M compressor), 4954M unused.
+VM: 460T vsize, 6144M framework vsize, 1257016(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15523657/20G in, 5993238/6686M out.
+Disks: 7731628/160G read, 7635256/161G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 800 total, 5 running, 795 sleeping, 6895 threads 
+2026/05/13 11:00:54
+Load Avg: 10.35, 7.87, 5.50 
+CPU usage: 55.15% user, 7.3% sys, 37.81% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1177043 total, 27G resident, 403M private, 5734M shared.
+PhysMem: 58G used (4833M wired, 8313M compressor), 5122M unused.
+VM: 461T vsize, 6144M framework vsize, 1257024(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15523737/20G in, 5993279/6686M out.
+Disks: 7731673/160G read, 7635729/161G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 800 total, 4 running, 796 sleeping, 6868 threads 
+2026/05/13 11:00:56
+Load Avg: 10.35, 7.87, 5.50 
+CPU usage: 55.35% user, 7.85% sys, 36.79% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1177003 total, 27G resident, 403M private, 5728M shared.
+PhysMem: 58G used (4785M wired, 8312M compressor), 5213M unused.
+VM: 461T vsize, 6144M framework vsize, 1257044(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15524623/20G in, 5993466/6686M out.
+Disks: 7731683/160G read, 7635751/161G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---
+Processes: 800 total, 4 running, 796 sleeping, 6883 threads 
+2026/05/13 11:00:57
+Load Avg: 10.35, 7.87, 5.50 
+CPU usage: 5.46% user, 7.26% sys, 87.27% idle 
+SharedLibs: 753M resident, 147M data, 124M linkedit.
+MemRegions: 1176642 total, 26G resident, 402M private, 5711M shared.
+PhysMem: 57G used (4848M wired, 8312M compressor), 5685M unused.
+VM: 461T vsize, 6144M framework vsize, 1257044(0) swapins, 2058851(0) swapouts.
+Networks: packets: 15524824/20G in, 5993537/6686M out.
+Disks: 7731723/160G read, 7635908/161G written.
+
+PID    %CPU COMMAND
+94267  0.0  Python 
+
+---

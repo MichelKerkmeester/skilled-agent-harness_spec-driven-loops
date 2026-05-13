@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/014-onnx-cross-platform-backend",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/014-onnx-cross-platform-backend",
+  "parent_id": "014",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [
+      "013"
+    ],
+    "supersedes": [],
+    "related_to": [
+      "system-spec-kit/026-graph-and-context-optimization/027-cocoindex-rewrites/001-cocoindex-complete-fork"
+    ]
+  },
+  "derived": {
+    "trigger_phrases": [
+      "014 onnx cross-platform backend",
+      "onnxruntime cocoindex backend",
+      "coreml execution provider",
+      "neural engine cocoindex",
+      "directml cocoindex",
+      "cross-platform embedding backend"
+    ],
+    "key_topics": [
+      "onnxruntime",
+      "execution-provider-selection",
+      "coreml-ep",
+      "directml-ep",
+      "cuda-ep",
+      "openvino-ep",
+      "cpu-ep-fallback",
+      "embedding-backend-gate",
+      "parity-gate",
+      "ep-change-detection",
+      "backend-state-file"
+    ],
+    "importance_tier": "important",
+    "status": "rejected",
+    "last_active_child_id": null,
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "decision-record.md"
+    ],
+    "entities": [
+      "OnnxEmbedder",
+      "_select_providers",
+      "backend_state.py",
+      "CoreMLExecutionProvider",
+      "DmlExecutionProvider",
+      "CUDAExecutionProvider",
+      "OpenVINOExecutionProvider",
+      "CPUExecutionProvider",
+      "COCOINDEX_CODE_BACKEND",
+      "onnx-community/embeddinggemma-300m-ONNX"
+    ],
+    "causal_summary": "REJECTED 2026-05-13 after six-hypothesis perf investigation (H1-H6). Opt-in ONNX Runtime backend shipped initially but measured 3.5x slower than sbert/PyTorch+MPS at parity-preserving settings on Apple Silicon. H1 found CoreML EP only claims 23% of Gemma ops; Neural Engine barely active. H3 found static-pad128 unlocks fast inference (40.9ms p50) but breaks parity (mean cosine 0.869). Production code reverted; packet retained as decision record. See decision-record.md.",
+    "created_at": "2026-05-13T09:55:00Z",
+    "last_save_at": "2026-05-13T11:15:00Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": "2026-05-13T11:15:00Z",
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "decision-record.md"
+    ]
+  }
+}

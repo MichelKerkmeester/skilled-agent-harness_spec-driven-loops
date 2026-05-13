@@ -73,8 +73,8 @@ If that exploration feeds into Spec Kit packet recovery, `/spec_kit:resume` rema
 | Version | 1.0.0 |
 | MCP tools exposed | 1 (`search`) |
 | Supported languages | 28+ |
-| Default embedding model | `sentence-transformers/all-MiniLM-L6-v2` (local, no API key) |
-| Primary embedding model | `voyage/voyage-code-3` via LiteLLM (1024-dim, requires `VOYAGE_API_KEY`) |
+| Default embedding model | `google/embeddinggemma-300m` via sentence-transformers (768-dim bf16, local, no API key, Metal/MPS accelerated on Apple Silicon) |
+| Unified with Memory MCP | Yes (both use the EmbeddingGemma 768d model family) |
 | Vector storage | SQLite via sqlite-vec |
 | Chunk size | 1000 chars, 250 char minimum, 150 char overlap |
 | Similarity metric | Cosine similarity (0.0 to 1.0) |
@@ -100,7 +100,7 @@ If that exploration feeds into Spec Kit packet recovery, `/spec_kit:resume` rema
 | Incremental indexing | Only re-embeds changed files on subsequent runs |
 | Daemon architecture | Auto-starts, auto-restarts on version or settings change |
 | Spec Kit integration | Companion lifecycle tools (`ccc_status`, `ccc_reindex`, `ccc_feedback`) and code-graph/session integration are available through system-spec-kit |
-| Two embedding models | Local (no API key) or cloud (higher quality) |
+| EmbeddingGemma default | Unified 768d local model shared with Memory MCP, no API key, Metal/MPS accelerated |
 | 28+ languages | Language-aware chunk splitting preserves function and class boundaries |
 
 In the broader system-spec-kit stack, CocoIndex is the semantic half of a three-system retrieval model: CocoIndex finds conceptually similar code, Code Graph answers structural questions, and session bootstrap surfaces CocoIndex readiness during recovery. The companion lifecycle helpers exposed through system-spec-kit are `ccc_status`, `ccc_reindex`, and `ccc_feedback`.
@@ -157,7 +157,9 @@ ccc search "database migration" --path "src/**" --limit 5
 
 CocoIndex Code resolves queries by embedding the natural-language query text and comparing the resulting vector against pre-computed vectors for every code chunk in the index. This means the search engine reads intent, not characters. A query for "graceful shutdown handler" finds code that tears down servers or releases resources, even if the words "graceful", "shutdown", or "handler" never appear in that code.
 
-The two embedding models trade off quality against convenience. The local model (`all-MiniLM-L6-v2`) requires no API key and works offline, making it the right default for most projects. The Voyage Code 3 model produces 1024-dimensional vectors trained specifically on code, and consistently returns higher-quality results for complex queries on large codebases. Switching models requires a full reset and reindex because the vector dimensions are incompatible.
+The default embedding model is `google/embeddinggemma-300m`, a 768-dimensional model from the same family as the Spec Kit Memory MCP. This unification means both MCP servers share the same vector space, enabling future cross-MCP retrieval. The model runs locally via sentence-transformers on PyTorch with Metal/MPS acceleration on Apple Silicon and requires no API key.
+
+Users can switch to alternative models by editing the global settings file (`~/.cocoindex_code/global_settings.yml`). Available alternatives include `sentence-transformers/all-MiniLM-L6-v2` (384d, minimal footprint) and `voyage/voyage-code-3` (1024d cloud via LiteLLM, requires `VOYAGE_API_KEY`). Changing models requires a full reset and reindex because vector dimensions are incompatible.
 
 Language and path filters apply after ranking, which means they narrow an already semantically ranked result set rather than replacing semantic ranking with keyword matching. This design keeps the filters fast and the results meaningful. For multi-query agent sessions, set `refresh_index=false` on follow-up calls after the first query has already triggered a refresh. The daemon has a known concurrency issue where simultaneous `refresh_index=true` requests can cause `ComponentContext` errors.
 
@@ -204,8 +206,9 @@ The CLI and MCP interfaces are complementary, not redundant. The CLI handles ind
 
 | Model | Type | Dimensions | API Key | Best For |
 |---|---|---|---|---|
-| `sentence-transformers/all-MiniLM-L6-v2` | Local | 384 | None | Offline use, no API dependency |
-| `voyage/voyage-code-3` | Cloud via LiteLLM | 1024 | `VOYAGE_API_KEY` | Higher quality code search |
+| `google/embeddinggemma-300m` | Local via sentence-transformers | 768 | None | Default. Unified with Memory MCP. Metal/MPS accelerated |
+| `sentence-transformers/all-MiniLM-L6-v2` | Local | 384 | None | Minimal disk and RAM footprint (~90MB) |
+| `voyage/voyage-code-3` | Cloud via LiteLLM | 1024 | `VOYAGE_API_KEY` | Higher dimensional cloud embeddings (requires API key) |
 
 **Similarity score interpretation**
 
@@ -273,10 +276,10 @@ Controls the embedding model used for all projects on this machine.
 ```yaml
 embedding:
   provider: sentence-transformers       # or litellm for cloud models
-  model: all-MiniLM-L6-v2              # or voyage/voyage-code-3
-  device: cpu                           # cpu | cuda | mps (auto-detects if omitted)
+  model: google/embeddinggemma-300m     # default 768d (also: sentence-transformers/all-MiniLM-L6-v2, voyage/voyage-code-3)
+  device: auto                          # auto | cpu | cuda | mps (auto-detects if omitted)
 envs:
-  VOYAGE_API_KEY: "your-key-here"       # required only for voyage models
+  VOYAGE_API_KEY: "your-key-here"       # required only for voyage cloud models
 ```
 
 **Project settings** (`.cocoindex_code/settings.yml`)
@@ -317,7 +320,9 @@ Set `"disabled": false` to activate. The MCP server is disabled by default to av
 |---|---|---|
 | `COCOINDEX_CODE_ROOT_PATH` | auto-detected | Override project root for indexing |
 | `COCOINDEX_CODE_DIR` | `~/.cocoindex_code` | Override config and data directory |
-| `VOYAGE_API_KEY` | (none) | Required for Voyage Code 3 cloud embeddings |
+| `COCOINDEX_CODE_EMBEDDING_MODEL` | `sbert/google/embeddinggemma-300m` | Override the cocoindex embedding model |
+| `COCOINDEX_QUERY_PROMPT_NAME` | from registry | Override cocoindex query-prompt routing |
+| `VOYAGE_API_KEY` | (none) | Required only when using Voyage cloud models |
 
 **Root path detection order**
 
@@ -497,9 +502,9 @@ A: Index management operations (`index`, `status`, `reset`, `init`, `daemon`) ar
 
 ---
 
-**Q: When should I use Voyage Code 3 instead of the local model?**
+**Q: When should I switch from the default model?**
 
-A: Use Voyage Code 3 when search quality matters more than avoiding an API dependency. The local model (`all-MiniLM-L6-v2`) is a general-purpose sentence embedding model with 384 dimensions. It works well for most queries but can miss nuanced code patterns. Voyage Code 3 was trained on code and produces 1024-dimensional vectors, giving it better discrimination between semantically similar but functionally different patterns. Switch to it when you notice too many false positives or misses on important queries. Remember: switching models requires `ccc reset && ccc index`.
+A: The default model (`google/embeddinggemma-300m`, 768 dimensions) provides strong code search quality out of the box and runs locally with no API key. Switch to `all-MiniLM-L6-v2` (384d) when disk and RAM footprint matters more than search quality (around 90MB total). Switch to `voyage/voyage-code-3` (1024d cloud via LiteLLM) when you want higher-dimensional cloud embeddings and have a `VOYAGE_API_KEY`. Voyage Code 3 was trained specifically on code and can give better discrimination on nuanced queries, but adds an API dependency. Switching models requires `ccc reset && ccc index` because vector dimensions are incompatible.
 
 ---
 

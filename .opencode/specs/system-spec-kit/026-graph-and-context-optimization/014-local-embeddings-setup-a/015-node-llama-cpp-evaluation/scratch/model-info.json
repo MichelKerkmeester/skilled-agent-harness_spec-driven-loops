@@ -1,0 +1,16 @@
+{
+  "requested_model_id": "bartowski/embeddinggemma-300m-GGUF",
+  "requested_filename": "embeddinggemma-300M-Q4_K_M.gguf",
+  "requested_model_available": false,
+  "requested_model_probe": "https://huggingface.co/api/models/bartowski/embeddinggemma-300m-GGUF returned HTTP 401 on 2026-05-13",
+  "substitution_reason": "Public Hugging Face search did not expose the requested bartowski Q4_K_M artifact. Q8_0 was selected from a public EmbeddingGemma GGUF repo to preserve parity for evaluation.",
+  "model_id": "unsloth/embeddinggemma-300m-GGUF",
+  "filename": "embeddinggemma-300M-Q8_0.gguf",
+  "model_path": "/Users/michelkerkmeester/.cache/huggingface/gguf/embeddinggemma-300m/embeddinggemma-300M-Q8_0.gguf",
+  "sha256": "a0f7b4e13c397a6e1b32c2de75b1f65a14c92ec524d5f674d94a4290a1c4969b",
+  "size_bytes": 328577056,
+  "gguf_arch": "gemma-embedding",
+  "embedding_length": 768,
+  "download_method": "curl -L --fail from https://huggingface.co/unsloth/embeddinggemma-300m-GGUF/resolve/main/embeddinggemma-300M-Q8_0.gguf",
+  "recorded_at": "2026-05-13T11:44:00Z"
+}

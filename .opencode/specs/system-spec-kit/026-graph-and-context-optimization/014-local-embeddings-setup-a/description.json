@@ -8,9 +8,10 @@
     "embeddinggemma-300m",
     "code",
     "memory",
-    "qwen3-purged"
+    "qwen3-purged",
+    "catalog-playbook-alignment"
   ],
-  "lastUpdated": "2026-05-13T07:35:00Z",
+  "lastUpdated": "2026-05-13T14:55:00Z",
   "specId": "014",
   "folderSlug": "local-embeddings-setup-a",
   "parentChain": [],

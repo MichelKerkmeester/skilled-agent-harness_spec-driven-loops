@@ -1,0 +1,2 @@
+label,backend,ep,ml_compute_units,model_format,static_shapes,batch_size,iterations,warmup_excluded,profile_path,mean_ms,p50_ms,p95_ms,p99_ms
+ten-separate-encode-calls,onnx,CoreMLExecutionProvider,CPUAndNeuralEngine,MLProgram,0,1,10,0,/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/014-onnx-cross-platform-backend/scratch/perf-investigation/profiles/ort-coreml-h2_2026-05-13_11-02-01_422.json,320.2556625008583,180.93687500368105,1557.494749999023,1557.494749999023

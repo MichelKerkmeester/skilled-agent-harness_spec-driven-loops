@@ -1,17 +1,18 @@
 # Setup A Recipe — Local Embeddings (EmbeddingGemma q8)
 
-Setup A is now the shipped default for new clones. Committed launcher configs keep `EMBEDDINGS_PROVIDER=auto`, but the memory-side hf-local fallback is `onnx-community/embeddinggemma-300m-ONNX` at q8 by default, and the code side defaults to `sbert/google/embeddinggemma-300m`.
+Setup A is now the shipped default for new clones. Committed launcher configs keep `EMBEDDINGS_PROVIDER=auto`: auto-cascade resolves Voyage -> OpenAI -> llama-cpp (when GGUF runtime is installed) -> hf-local. llama-cpp is auto-selected by the availability probe, not by a manual enablement flag; explicit override via `EMBEDDINGS_PROVIDER=<provider>` remains available. The code side defaults to `sbert/google/embeddinggemma-300m`.
 
-Use this recipe when setting up the local HuggingFace cache or when opting into a different dtype/model locally:
+Use this recipe when setting up the local HuggingFace cache, installing the GGUF runtime, or choosing a different dtype/model locally:
 
 | Surface | Default | Setup A |
 |---|---|---|
-| Memory (Spec Kit Memory MCP) | `onnx-community/embeddinggemma-300m-ONNX` (768d, q8, ~310MB) | Optional `.env.local` override to fp32/q4 or another registered model |
+| Memory (Spec Kit Memory MCP) | `auto`: Voyage -> OpenAI -> llama-cpp when GGUF runtime is installed -> hf-local | Optional `.env.local` override to a specific provider, dtype, or registered hf-local model |
 | Code (CocoIndex MCP) | `sbert/google/embeddinggemma-300m` (768d, bf16 on Metal) | Optional `COCOINDEX_CODE_EMBEDDING_MODEL` override |
 
 ## Prerequisites
 
 - macOS with Apple Silicon (M-series). Setup A is hardware-validated on M5 Max 64GB but should work down to M1 with 16GB+ RAM if you don't run a chat model alongside.
+- GGUF runtime for llama-cpp auto-selection. When it is installed, `EMBEDDINGS_PROVIDER=auto` selects llama-cpp before falling back to hf-local.
 - HuggingFace account + token (free) — required only for the EmbeddingGemma half because the canonical `google/embeddinggemma-300m` repo is gated. The transformers.js-compatible ONNX port `onnx-community/embeddinggemma-300m-ONNX` is mirrored from it and inherits the same gating.
 
 ## Install steps
@@ -56,6 +57,7 @@ ln -sfn "$PWD/$SNAPSHOT" "$PWD/onnx-community/embeddinggemma-300m-ONNX"
 ```bash
 cat > .env.local << 'EOF'
 # Defaults are already committed; include only overrides you need.
+# EMBEDDINGS_PROVIDER=hf-local  # optional explicit rollback from auto-cascade
 # HF_EMBEDDINGS_DTYPE=q8       # default; use fp32 for full precision or q4 for smallest RAM
 # HF_EMBEDDINGS_MODEL=onnx-community/embeddinggemma-300m-ONNX
 # EMBEDDING_DIM=768
@@ -80,7 +82,7 @@ Delete the stale CocoIndex index (it was built with a different dim — 384d for
 rm -f .cocoindex_code/target_sqlite.db
 ```
 
-Memory side: nothing to delete — filename keys by provider+model+dim+dtype, so Setup A creates a new `context-index__hf-local__onnx-community_embeddinggemma-300m-onnx__768__q8.sqlite` file automatically. Switching to fp32 creates a separate `__fp32.sqlite` file instead of mixing vectors.
+Memory side: nothing to delete — filename keys by provider+model+dim+dtype, so auto-cascade creates a provider-specific sqlite file automatically. With the GGUF runtime installed, users get llama-cpp by default; switching to hf-local or fp32 creates a separate sqlite file instead of mixing vectors.
 
 Trigger reindex via MCP tools (Claude Code / OpenCode):
 - `memory_index_scan({force: true})` — repopulates ~5k spec-doc rows
@@ -97,7 +99,7 @@ du -sh .cocoindex_code/target_sqlite.db
 ```
 
 In your MCP-enabled runtime, run:
-- `memory_health()` → expect `provider=hf-local`, `model=onnx-community/embeddinggemma-300m-ONNX`, `dim=768`, `dtype=q8`
+- `memory_health()` → expect `provider=llama-cpp` when the GGUF runtime is installed; otherwise the cascade continues to `hf-local`
 - `memory_search("known trigger")` → expect <30ms p95, top-1 hit
 - `cocoindex_code.search("known function name")` → expect <100ms p95
 
@@ -107,7 +109,7 @@ The PREFIX_REGISTRY in `.opencode/skills/system-spec-kit/shared/embeddings/provi
 
 | Model | Dim | Notes |
 |---|---|---|
-| `nomic-ai/nomic-embed-text-v1.5` | 768 | Default — auto-downloads on first use, no auth |
+| `nomic-ai/nomic-embed-text-v1.5` | 768 | hf-local fallback — auto-downloads on first use, no auth |
 | `onnx-community/embeddinggemma-300m-ONNX` | 768 | Setup A — gated, transformers.js-native ONNX |
 | `intfloat/e5-large-v2` | 1024 | Strong text retrieval; passage/query prefixes |
 | `mixedbread-ai/mxbai-embed-large-v1` | 1024 | No prefixes; widely used |
@@ -123,7 +125,7 @@ For CocoIndex (code side), any sentence-transformers-compatible model with `sber
 ```bash
 mv .env.local .env.local.disabled
 # Restart your MCP runtime
-# MCP servers fall back to committed EmbeddingGemma defaults — both auto-download if absent and HF access is available
+# MCP servers fall back to committed auto-cascade defaults; with the GGUF runtime installed, Memory selects llama-cpp by default
 ```
 
 The Setup A vec stores stay on disk; they just become orphaned (~~1.3GB). Delete manually if you want the space back:

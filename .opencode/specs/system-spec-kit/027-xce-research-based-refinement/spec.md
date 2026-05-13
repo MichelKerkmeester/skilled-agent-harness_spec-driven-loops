@@ -369,3 +369,36 @@ REQ-011
 **Given** resource-map.md is emitted with Inputs/Outputs/External sections
 **Given** run completes within 180 wall-clock minutes
 -->
+
+<!-- ANCHOR:phase-map -->
+## PHASE DOCUMENTATION MAP
+
+> This spec uses phased decomposition. Each phase is an independently executable child spec folder. All implementation details (plan, tasks, checklist, decisions, continuity) live inside the phase children.
+
+| Phase | Folder | Focus | Status |
+|-------|--------|-------|--------|
+| 13 | 013-cocoindex-memory-port-research/ | [Phase 13 scope] | Pending |
+
+| 18 | 001-rename-mcp-namespace-mk-spec-memory/ | [Phase 18 scope] | Pending |
+| 19 | 003-memoization-dependency-dag-foundation/ | [Phase 19 scope] | Pending |
+| 20 | 004-causal-graph-lifecycle-tombstones/ | [Phase 20 scope] | Pending |
+| 21 | 005-frontmatter-causal-edge-promoter/ | [Phase 21 scope] | Pending |
+| 22 | 006-statediff-reconciliation-layer/ | [Phase 22 scope] | Pending |
+### Phase Transition Rules
+
+- Each phase MUST pass `validate.sh` independently before the next phase begins
+- Parent spec tracks aggregate progress via this map
+- Use `/spec_kit:resume [parent-folder]/[NNN-phase]/` to resume a specific phase
+- Run `validate.sh --recursive` on parent to validate all phases as integrated unit
+
+### Phase Handoff Criteria
+
+| From | To | Criteria | Verification |
+|------|-----|----------|--------------|
+| 012-feedback-p0-correctness | 013-cocoindex-memory-port-research | [Criteria TBD] | [Verification TBD] |
+| 017-cocoindex-memory-port-research | 001-rename-mcp-namespace-mk-spec-memory | [Criteria TBD] | [Verification TBD] |
+| 001-rename-mcp-namespace-mk-spec-memory | 003-memoization-dependency-dag-foundation | [Criteria TBD] | [Verification TBD] |
+| 003-memoization-dependency-dag-foundation | 004-causal-graph-lifecycle-tombstones | [Criteria TBD] | [Verification TBD] |
+| 004-causal-graph-lifecycle-tombstones | 005-frontmatter-causal-edge-promoter | [Criteria TBD] | [Verification TBD] |
+| 005-frontmatter-causal-edge-promoter | 006-statediff-reconciliation-layer | [Criteria TBD] | [Verification TBD] |
+<!-- /ANCHOR:phase-map -->

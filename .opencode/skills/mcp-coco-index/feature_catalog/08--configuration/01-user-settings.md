@@ -20,7 +20,7 @@ User settings apply across projects and control the embedding backend plus daemo
 <!-- ANCHOR:current-reality -->
 ## 2. CURRENT REALITY
 
-The default user settings use the local sentence-transformers provider and `all-MiniLM-L6-v2`. The loader rejects missing or empty settings files and the saver writes explicit YAML.
+The default user settings use the local sentence-transformers provider and `google/embeddinggemma-300m`; environment defaults may expose the same model as `sbert/google/embeddinggemma-300m`. The query prompt registry maps this model to `InstructionRetrieval`. The loader rejects missing or empty settings files and the saver writes explicit YAML.
 <!-- /ANCHOR:current-reality -->
 
 ---

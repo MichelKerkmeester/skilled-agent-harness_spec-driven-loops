@@ -83,12 +83,9 @@ embedder: Embedder | None = None
 query_prompt_name: str | None = None
 
 
-def create_embedder(settings: EmbeddingSettings) -> Embedder:
-    """Create and return an embedder instance based on settings.
-
-    Also sets the module-level ``embedder`` and ``query_prompt_name`` variables.
-    """
-    global embedder, query_prompt_name
+def _build_embedder(settings: EmbeddingSettings) -> Embedder:
+    """Build an embedder from settings."""
+    global query_prompt_name
 
     if settings.provider == "sentence-transformers":
         from cocoindex.ops.sentence_transformers import SentenceTransformerEmbedder
@@ -99,7 +96,7 @@ def create_embedder(settings: EmbeddingSettings) -> Embedder:
             model_name = model_name[len(SBERT_PREFIX) :]
 
         query_prompt_name = resolve_query_prompt_name(model_name)
-        instance: Embedder = SentenceTransformerEmbedder(
+        instance = SentenceTransformerEmbedder(
             model_name,
             device=settings.device,
             trust_remote_code=True,
@@ -112,6 +109,17 @@ def create_embedder(settings: EmbeddingSettings) -> Embedder:
         query_prompt_name = None
         logger.info("Embedding model (LiteLLM): %s", settings.model)
 
+    return instance
+
+
+def create_embedder(settings: EmbeddingSettings) -> Embedder:
+    """Create and return an embedder instance based on settings.
+
+    Also sets the module-level ``embedder`` and ``query_prompt_name`` variables.
+    """
+    global embedder
+
+    instance = _build_embedder(settings)
     embedder = instance
     return instance
 

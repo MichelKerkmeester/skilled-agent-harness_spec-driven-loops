@@ -32,8 +32,8 @@ trigger_phrases:
 
 Current state:
 
-- Supported provider names are `voyage`, `openai`, `hf-local` and `auto`.
-- `auto` chooses from available configuration, with local fallback when cloud providers are not usable.
+- Supported provider names are `llama-cpp`, `voyage`, `openai`, `hf-local` and `auto`.
+- `auto` cascades cloud-keys-first then local: `VOYAGE_API_KEY` -> `OPENAI_API_KEY` -> `llama-cpp` (default local on Apple Silicon) -> `hf-local` (always-available CPU fallback when llama-cpp init fails).
 - Profiles derive provider, model, dimension, optional base URL and database filename.
 - Provider modules isolate external API and local model behavior from the factory.
 
@@ -49,7 +49,8 @@ embeddings/
 +-- factory.ts              # Provider resolution, validation and construction
 +-- profile.ts              # Profile slugs and database path derivation
 +-- providers/
-|   +-- hf-local.ts         # Local HuggingFace provider
+|   +-- llama-cpp.ts        # Default local GGUF provider (Metal-accelerated)
+|   +-- hf-local.ts         # Fallback local ONNX provider
 |   +-- openai.ts           # OpenAI provider
 |   +-- voyage.ts           # Voyage provider
 |   `-- README.md           # Provider-level notes
@@ -86,7 +87,8 @@ profile.ts -> providers/*
 |---|---|
 | `factory.ts` | Resolves configured provider, validates API keys and creates `IEmbeddingProvider` instances. |
 | `profile.ts` | Creates profile slugs, parses slugs and maps profiles to SQLite database paths. |
-| `providers/hf-local.ts` | Implements local embedding generation. |
+| `providers/llama-cpp.ts` | Implements llama-cpp GGUF embedding with Metal GPU health check, lazy session init and EmbeddingGemma prefixes. |
+| `providers/hf-local.ts` | Implements local ONNX embedding (fallback when llama-cpp is unavailable). |
 | `providers/openai.ts` | Implements OpenAI embedding requests and model dimensions. |
 | `providers/voyage.ts` | Implements Voyage embedding requests, model dimensions and base URL resolution. |
 | `providers/README.md` | Documents provider-specific contracts and behavior. |

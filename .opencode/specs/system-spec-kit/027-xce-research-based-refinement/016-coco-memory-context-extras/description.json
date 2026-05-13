@@ -1,0 +1,69 @@
+{
+  "title": "Phase Parent 011 — Coco Memory Context Extras",
+  "trigger_phrases": [
+    "027 phase 011",
+    "coco memory context extras",
+    "coco exemplars track",
+    "memory curator track",
+    "phase parent 011"
+  ],
+  "level": "phase",
+  "importance_tier": "important",
+  "contextType": "implementation",
+  "status": "phase-parent",
+  "priority": "P2",
+  "createdAt": "2026-05-09T11:00:00Z",
+  "branch": "main",
+  "parent_track": "027-xce-research-based-refinement",
+  "parent_id": "system-spec-kit/027-xce-research-based-refinement",
+  "manual": {
+    "children": [
+      "system-spec-kit/027-xce-research-based-refinement/016-coco-memory-context-extras/001-exemplars-schema",
+      "system-spec-kit/027-xce-research-based-refinement/016-coco-memory-context-extras/002-exemplars-retriever",
+      "system-spec-kit/027-xce-research-based-refinement/016-coco-memory-context-extras/003-exemplars-maintenance",
+      "system-spec-kit/027-xce-research-based-refinement/016-coco-memory-context-extras/004-curator-prompt",
+      "system-spec-kit/027-xce-research-based-refinement/016-coco-memory-context-extras/005-curator-integration"
+    ],
+    "depends_on": [
+      "system-spec-kit/027-xce-research-based-refinement/013-cocoindex-complete-fork"
+    ]
+  },
+  "soft_depends_on": [
+    "006-code-graph-adoption-eval",
+    "008-memory-semantic-triggers",
+    "009-feedback-reducers"
+  ],
+  "derived": {
+    "status": "phase-parent",
+    "completion_pct": 0,
+    "last_active_child_id": null,
+    "children": [
+      "001-exemplars-schema",
+      "002-exemplars-retriever",
+      "003-exemplars-maintenance",
+      "004-curator-prompt",
+      "005-curator-integration"
+    ]
+  },
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/016-coco-memory-context-extras",
+  "description": "Phase parent for two independent presentation-layer tracks: Coco exemplars in Python and memory context curation in TypeScript. Child phases own detailed implementation plans and validation.",
+  "keywords": [
+    "phase",
+    "parent",
+    "coco",
+    "exemplars",
+    "memory",
+    "curator",
+    "context",
+    "presentation"
+  ],
+  "lastUpdated": "2026-05-12T00:00:00Z",
+  "specId": "016",
+  "folderSlug": "coco-memory-context-extras",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

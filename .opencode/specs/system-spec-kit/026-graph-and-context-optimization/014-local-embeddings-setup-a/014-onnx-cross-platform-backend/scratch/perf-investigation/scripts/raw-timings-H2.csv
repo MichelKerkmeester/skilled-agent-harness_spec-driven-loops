@@ -1,0 +1,11 @@
+label,backend,ep,ml_compute_units,model_format,static_shapes,batch_size,iteration,latency_ms,per_item_latency_ms
+ten-separate-encode-calls,onnx,CoreMLExecutionProvider,CPUAndNeuralEngine,MLProgram,0,1,0,1557.494749999023,1557.494749999023
+ten-separate-encode-calls,onnx,CoreMLExecutionProvider,CPUAndNeuralEngine,MLProgram,0,1,1,159.71429199998965,159.71429199998965
+ten-separate-encode-calls,onnx,CoreMLExecutionProvider,CPUAndNeuralEngine,MLProgram,0,1,2,205.7864580056048,205.7864580056048
+ten-separate-encode-calls,onnx,CoreMLExecutionProvider,CPUAndNeuralEngine,MLProgram,0,1,3,217.2194170052535,217.2194170052535
+ten-separate-encode-calls,onnx,CoreMLExecutionProvider,CPUAndNeuralEngine,MLProgram,0,1,4,228.14916700008325,228.14916700008325
+ten-separate-encode-calls,onnx,CoreMLExecutionProvider,CPUAndNeuralEngine,MLProgram,0,1,5,180.93687500368105,180.93687500368105
+ten-separate-encode-calls,onnx,CoreMLExecutionProvider,CPUAndNeuralEngine,MLProgram,0,1,6,156.6785839968361,156.6785839968361
+ten-separate-encode-calls,onnx,CoreMLExecutionProvider,CPUAndNeuralEngine,MLProgram,0,1,7,139.88633299595676,139.88633299595676
+ten-separate-encode-calls,onnx,CoreMLExecutionProvider,CPUAndNeuralEngine,MLProgram,0,1,8,187.08308300119825,187.08308300119825
+ten-separate-encode-calls,onnx,CoreMLExecutionProvider,CPUAndNeuralEngine,MLProgram,0,1,9,169.60766600095667,169.60766600095667
