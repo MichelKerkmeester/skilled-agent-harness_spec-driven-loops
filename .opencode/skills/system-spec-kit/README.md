@@ -143,7 +143,7 @@ For install and API details, see [Skill Advisor Native Package README](mcp_serve
 | Node.js       | 18+                      | Required for scripts and MCP server    |
 | TypeScript    | 5.0+                     | Source compiled to `dist/` directories |
 | Bash          | 4.0+                     | Spec management shell scripts          |
-| Embedding API | None (llama-cpp local default) | Zero setup on Apple Silicon. HF Local ONNX as fallback. Voyage and OpenAI are cloud opt-in. |
+| Embedding API | None for local fallback | Auto-cascade uses Voyage/OpenAI when keys are set, then llama-cpp on Apple Silicon, then HF Local ONNX. |
 
 Workspace module profile:
 
@@ -684,7 +684,7 @@ Session starts
 
 ### Embedding Providers
 
-The indexed-continuity store converts text to numerical embeddings for vector search. Five providers are supported. The default cascade (when `EMBEDDINGS_PROVIDER=auto` or unset) is local-first:
+The indexed-continuity store converts text to numerical embeddings for vector search. Five providers are supported. The default cascade (when `EMBEDDINGS_PROVIDER=auto` or unset) is Voyage -> OpenAI -> llama-cpp -> hf-local:
 
 | Provider          | Dimensions | Notes                                                            |
 | ----------------- | ---------- | ---------------------------------------------------------------- |

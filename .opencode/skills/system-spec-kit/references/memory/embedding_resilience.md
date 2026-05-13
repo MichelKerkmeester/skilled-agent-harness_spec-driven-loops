@@ -92,6 +92,20 @@ const PROVIDER_CHAIN: ProviderConfig[] = [
     model: 'text-embedding-3-small',
     dimensions: 1536,
     priority: 2
+  },
+  {
+    name: 'llama-cpp',
+    envKey: 'LLAMA_CPP_EMBEDDINGS_MODEL',
+    model: 'unsloth/embeddinggemma-300m-GGUF',
+    dimensions: 768,
+    priority: 3
+  },
+  {
+    name: 'hf-local',
+    envKey: 'HF_EMBEDDINGS_MODEL',
+    model: 'onnx-community/embeddinggemma-300m-ONNX',
+    dimensions: 768,
+    priority: 4
   }
 ];
 ```
@@ -251,9 +265,9 @@ Cached embeddings enable search without network connectivity (REQ-032):
 │ memory_id     │ TEXT PRIMARY KEY                                │
 │ content_hash  │ TEXT (SHA-256 of source content)                │
 │ embedding     │ BLOB (float32 array)                            │
-│ provider      │ TEXT (voyage/openai)                            │
-│ model         │ TEXT (voyage-4/text-embedding-3-small)          │
-│ dimensions    │ INTEGER (1024/1536)                             │
+│ provider      │ TEXT (voyage/openai/llama-cpp/hf-local)         │
+│ model         │ TEXT (active embedding model)                   │
+│ dimensions    │ INTEGER (1024/1536/768)                         │
 │ created_at    │ DATETIME                                        │
 │ last_used     │ DATETIME                                        │
 └─────────────────────────────────────────────────────────────────┘

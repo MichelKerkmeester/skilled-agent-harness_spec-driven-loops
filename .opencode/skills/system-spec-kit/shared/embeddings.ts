@@ -865,7 +865,7 @@ const EMBEDDING_DIM: number = 768;
 const EMBEDDING_TIMEOUT: number = 30000;
 // MAX_TEXT_LENGTH is imported from chunking.ts (single source of truth)
 // DEFAULT_MODEL_NAME is the fallback; use get_model_name() for the actual active model
-export const DEFAULT_MODEL_NAME: string = 'nomic-ai/nomic-embed-text-v1.5';
+export const DEFAULT_MODEL_NAME: string = 'onnx-community/embeddinggemma-300m-ONNX';
 // Legacy alias for backwards compatibility
 export let MODEL_NAME: string = detectConfiguredModelName();
 const BATCH_RATE_LIMIT_DELAY: number = BATCH_DELAY_MS; // Alias for export

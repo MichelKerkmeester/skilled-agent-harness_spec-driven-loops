@@ -45,13 +45,14 @@ The MCP server supports multiple embedding providers for semantic search. Provid
 1. Explicit `EMBEDDINGS_PROVIDER` setting
 2. `VOYAGE_API_KEY` detected (auto-selects Voyage)
 3. `OPENAI_API_KEY` detected (auto-selects OpenAI)
-4. Falls back to `hf-local` (Hugging Face local inference)
+4. `llama-cpp` when `node-llama-cpp` loads and the GGUF model is reachable
+5. Falls back to `hf-local` (Hugging Face local inference)
 
 ### Provider Selection
 
 | Variable | Default | Purpose |
 |----------|---------|---------|
-| `EMBEDDINGS_PROVIDER` | `auto` | Explicit provider: `voyage`, `openai`, `hf-local`, or `auto` |
+| `EMBEDDINGS_PROVIDER` | `auto` | Explicit provider: `voyage`, `openai`, `llama-cpp`, `hf-local`, or `auto` |
 
 ### Voyage AI Provider
 
@@ -71,7 +72,7 @@ The MCP server supports multiple embedding providers for semantic search. Provid
 
 | Variable | Default | Purpose |
 |----------|---------|---------|
-| `HF_EMBEDDINGS_MODEL` | `nomic-ai/nomic-embed-text-v1.5` | Local model name (768 dimensions) |
+| `HF_EMBEDDINGS_MODEL` | `onnx-community/embeddinggemma-300m-ONNX` | hf-local model name (768 dimensions) |
 
 ### Rate Limiting
 
@@ -132,7 +133,7 @@ ENABLE_RERANKER=true node mcp_server/dist/context-server.js
 # Quiet mode for CI/CD
 SPECKIT_QUIET=true bash scripts/spec/validate.sh specs/001-feature/
 
-# Use Voyage AI embeddings (high quality, cloud-based)
+# Use Voyage AI embeddings (cloud-based)
 VOYAGE_API_KEY=your-key-here node mcp_server/dist/context-server.js
 
 # Use OpenAI embeddings

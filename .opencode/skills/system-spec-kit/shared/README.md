@@ -83,14 +83,14 @@ These modules support packet-doc-first continuity: `/spec_kit:resume` rebuilds a
 | ------------------------ | ------------- | ------------------------------------------------ |
 | Top-Level TS Modules     | 8             | index, embeddings, chunking, trigger extractor, types, normalization, config, paths |
 | Top-Level Subdirectories | 10            | algorithms, contracts, dist, embeddings, lib, mcp_server, parsing, ranking, scoring, utils |
-| Provider Implementations | 5             | llama-cpp (default), HF Local (fallback), OpenAI, Voyage, auto |
+| Provider Implementations | 5             | Voyage, OpenAI, llama-cpp, HF Local, auto |
 | Embedding Dimensions     | 768/1024/1536 | 768 default (llama-cpp and HF Local); 1024 (Voyage); 1536 (OpenAI) |
 
 ### Key Features
 
 | Feature                         | Description                                                    |
 | ------------------------------- | -------------------------------------------------------------- |
-| **Multi-Provider Embeddings**   | Supports llama-cpp (default), HuggingFace local (fallback), Voyage, OpenAI with auto-detection |
+| **Multi-Provider Embeddings**   | Supports Voyage, OpenAI, llama-cpp, and HuggingFace local with auto-cascade selection |
 | **Dynamic Dimension Detection** | 768 (llama-cpp and HF Local), 1024 (Voyage), 1536/3072 (OpenAI) |
 | **Task-Specific Functions**     | Document, query and clustering embeddings                      |
 | **TF-IDF + Semantic Triggers**  | Advanced trigger phrase extraction (v11)                       |
@@ -189,7 +189,7 @@ shared/
 ├── contracts/
 │   └── retrieval-trace.ts      # Typed trace/envelope contracts for retrieval responses
 ├── embeddings/                 # Provider implementations and profile helpers
-│   ├── factory.ts              # Provider selection and auto-detection
+│   ├── factory.ts              # Provider selection and auto-cascade
 │   ├── profile.ts              # Embedding profiles and DB path generation
 │   ├── README.md               # Embeddings factory documentation
 │   └── providers/
@@ -348,8 +348,8 @@ The canonical source is the `shared/` package. `shared/embeddings.ts` is the pub
 ### Provider Selection Precedence
 
 1. Explicit `EMBEDDINGS_PROVIDER` (if not `auto`)
-2. Auto-detection: Voyage if `VOYAGE_API_KEY` exists (cloud opt-in)
-3. Auto-detection: OpenAI if `OPENAI_API_KEY` exists (cloud opt-in)
+2. Auto-cascade: Voyage if `VOYAGE_API_KEY` is set (cascade priority 1)
+3. Auto-cascade: OpenAI if `OPENAI_API_KEY` is set (cascade priority 2)
 4. Default local: llama-cpp if `node-llama-cpp` loads and the GGUF model is reachable
 5. Fallback local: HF local when the llama-cpp probe fails (always available, no API key)
 

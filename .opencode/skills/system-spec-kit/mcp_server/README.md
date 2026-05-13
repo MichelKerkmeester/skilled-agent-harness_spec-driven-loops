@@ -43,7 +43,7 @@ Current state:
 - `handlers/`, `code_graph/`, `lib/`, and `skill_advisor/` own the runtime behavior behind those tools.
 - `database/` stores local SQLite state for indexed memory and code graph data.
 - Runtime hooks under `hooks/` prepare startup, prompt, and compact-context payloads for supported clients.
-- Embedding provider selection is controlled by `EMBEDDINGS_PROVIDER`. The default `auto` cascade is cloud key when configured, then `llama-cpp` when the local GGUF runtime is available, then `hf-local` as the local fallback.
+- Embedding provider selection is controlled by `EMBEDDINGS_PROVIDER`. The default `auto` cascade is Voyage when `VOYAGE_API_KEY` is set, then OpenAI when `OPENAI_API_KEY` is set, then `llama-cpp` when the local GGUF runtime is available, then `hf-local` as the local fallback.
 
 This package is local-first. It reads and writes repository-local databases, generated build output, and hook payloads, while keeping authored spec docs outside the server package.
 
