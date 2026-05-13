@@ -1,0 +1,10 @@
+
+PRIOR ITERATIONS FINDINGS (avoid duplicate flags — these are already covered):
+
+--- iteration-001.md ---
+| L-001-001 | P1 | correctness | .vscode/mcp.json:20 | "Current: 'auto' (VOYAGE_API_KEY -> OPENAI_API_KEY -> hf-local). Options: 'auto', 'voyage', 'openai', 'hf-local'" | confirmed-residue | Update VS Code MCP config to the canonical auto cascade and include `llama-cpp` in provider options. |
+| L-001-002 | P1 | correctness | .vscode/mcp.json:22 | "Get Voyage key: https://dash.voyageai.com/api-keys (recommended, 8% better than OpenAI)" | confirmed-residue | Remove the unsupported "recommended, 8% better than OpenAI" marketing claim from the live config note. |
+| L-001-003 | P1 | correctness | .vscode/mcp.json:39 | "Default embedding: all-MiniLM-L6-v2 (local, no API key needed)" | confirmed-residue | Replace the CocoIndex default note with `google/embeddinggemma-300m` / 768-dim sentence-transformers wording. |
+| L-001-004 | P1 | correctness | .opencode/commands/doctor/update.md:121 | "LONG-POLE: memory_index_scan over context-index + voyage vector DB." | confirmed-residue | Make the `/doctor:update` prompt provider-neutral and refer to the active profile DB(s), not Voyage specifically. |
+| L-001-005 | P1 | correctness | .claude/commands/doctor/update.md:121 | "LONG-POLE: memory_index_scan over context-index + voyage vector DB." | confirmed-residue | Mirror the provider-neutral `/doctor:update` prompt wording in the Claude command pack. |
+| L-001-006 | P1 | correctness | .gemini/commands/doctor/update.toml:2 | "LONG-POLE: memory_index_scan over context-index + voyage vector DB." | confirmed-residue | Regenerate or patch the Gemini command pack from the corrected provider-neutral doctor update source. |

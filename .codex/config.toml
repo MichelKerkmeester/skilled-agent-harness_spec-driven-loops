@@ -13,9 +13,10 @@ args = [".opencode/bin/spec-kit-memory-launcher.cjs"]
 [mcp_servers.spec_kit_memory.env]
 EMBEDDINGS_PROVIDER = "auto"
 # MEMORY_DB_PATH intentionally unset: filename is auto-derived from provider+model+dim+dtype
-# (e.g., context-index__hf-local__onnx-community_embeddinggemma-300m-onnx__768__q8.sqlite
-# for the Setup A default since 014/012). To override the model: set
-# HF_EMBEDDINGS_MODEL in .env.local at repo root (see .env.example).
+# (e.g., context-index__llama-cpp__unsloth-embeddinggemma-300m-gguf__768__q8.sqlite when the
+# GGUF runtime is installed; otherwise context-index__hf-local__onnx-community_embeddinggemma-300m-onnx__768__q8.sqlite).
+# Resolved automatically by the active embedding profile via shared/embeddings/profile.ts.
+# To override the model: set HF_EMBEDDINGS_MODEL or LLAMA_CPP_EMBEDDINGS_MODEL_PATH in .env.local (see .env.example).
 SPECKIT_SESSION_BOOST = "true"
 SPECKIT_CAUSAL_BOOST = "true"
 _NOTE_1_DATABASE = "Default DB: context-index__llama-cpp__unsloth-embeddinggemma-300m-gguf__768__q8.sqlite (auto-derived from provider+model+dim+dtype; hf-local ONNX q8 is the fallback)."

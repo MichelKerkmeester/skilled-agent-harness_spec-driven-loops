@@ -1,0 +1,139 @@
+# GATE 3 PRE-ANSWERED — Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/029-post-027-findings-remediation` — A) existing. PROCEED. Non-interactive --approval-policy=never.
+
+---
+
+# Fix all 21 P1 + 16 P2 findings from 027 deep-review
+
+## CANONICAL POST-014 SHIP STATE (binding ground truth)
+
+- Auto cascade resolver order: **Voyage → OpenAI → llama-cpp (auto when GGUF runtime installed) → hf-local**
+- llama-cpp auto-selects when its GGUF runtime is installed — NOT explicit opt-in. `LLAMA_CPP_EMBEDDINGS_MODEL` is a model OVERRIDE.
+- Voyage default: `voyage-4` (1024 dims)
+- OpenAI default: `text-embedding-3-small` (1536 dims)
+- llama-cpp default: `unsloth/embeddinggemma-300m-GGUF` → safe-slug `unsloth-embeddinggemma-300m-gguf`, 768 dims, q8 dtype
+- hf-local default: `onnx-community/embeddinggemma-300m-ONNX`, 768 dims, q8 dtype
+- Profile DB filename pattern: `context-index__<provider>__<safe-model>__<dim>__<dtype>.sqlite`
+- DESIGN DECISION (this remediation): cloud profiles (voyage, openai) get a canonical synthetic dtype slug `cloud` (so cloud DB filenames become `context-index__voyage__voyage-4__1024__cloud.sqlite` and `context-index__openai__text-embedding-3-small__1536__cloud.sqlite`), enforcing uniform `provider/model/dim/dtype` contract. This fixes L-003-001/002/003.
+
+## ALLOWED WRITE PATHS (touch ONLY these)
+
+### Group A: Profile identity + dtype contract (code fixes)
+1. `.opencode/skills/system-spec-kit/shared/embeddings/profile.ts` (resolveActiveProfileDtype returns `'cloud'` for voyage/openai, share hf-local dtype allow-list)
+2. `.opencode/skills/system-spec-kit/shared/embeddings/providers/llama-cpp.ts` (validate `LLAMA_CPP_EMBEDDINGS_DTYPE` against allow-list)
+3. `.opencode/skills/system-spec-kit/shared/embeddings/providers/hf-local.ts` (line ~155: invalid dtype falls back to `q8` not `fp32`)
+4. `.opencode/skills/system-spec-kit/mcp_server/tests/embeddings.vitest.ts` (line ~250: update Voyage profile-path assertion to dtype-inclusive)
+
+### Group B: Provider fallback correctness (code fixes)
+5. `.opencode/skills/system-spec-kit/shared/embeddings.ts` (line 769: add `case 'llama-cpp'` branch in detectConfiguredModelName, line 765: cloud defaults use provider-native model lookups)
+6. `.opencode/skills/system-spec-kit/mcp_server/context-server.ts` (line ~1830: on auto-migration failure, re-resolve provider via shared resolver instead of hardcoding hf-local)
+7. `.opencode/skills/system-spec-kit/shared/embeddings/factory.ts` (line ~906: sanitize options before constructing hf-local fallback)
+8. `.opencode/skills/system-spec-kit/scripts/tests/test-embeddings-behavioral.js` (line ~361: stale "both keys → 768" comment; cascade truth is Voyage wins → 1024)
+9. `.opencode/skills/system-spec-kit/scripts/tests/test-embeddings-behavioral.js` (line ~242: behavioral assertion expects ONNX EmbeddingGemma default — verify still correct after Group A; update if needed)
+
+### Group C: Profile-keyed DB naming cleanup (doc + minor code)
+10. `PUBLIC_RELEASE.md` (line ~25: singleton example → profile-keyed placeholder)
+11. `.opencode/skills/system-spec-kit/shared/README.md` (lines ~207, ~364: `speckit_memory.db` references → `context-index__*.sqlite` profile pattern)
+12. `.opencode/skills/system-spec-kit/mcp_server/scripts/migrations/restore-checkpoint.ts` (line ~169: backup basename uses singleton — use `pre-restore-${path.basename(args.dbPath)}`)
+13. `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/054-runtime-cleanup-followups/graph-metadata.json` (line ~88: refresh stale DB path)
+14. `.opencode/skills/system-spec-kit/scripts/evals/run-bm25-baseline.ts` (line ~10: comment singleton sqlite)
+15. `.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-generator.ts` (line ~100: provenance comment singleton)
+16. `.opencode/skills/system-spec-kit/scripts/tests/test-folder-detector-functional.js` (line ~22: test points at singleton)
+
+### Group D: Operator docs + catalog drift
+17. `.opencode/skills/system-spec-kit/references/memory/embedding_resilience.md` (lines ~23, ~62, ~98: architecture table includes llama-cpp/hf-local; replace "Voyage Primary" / "Local Cache Last Resort"; clarify LLAMA_CPP_EMBEDDINGS_MODEL is model override)
+18. `.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md` (lines ~116, ~209: cloud filename examples → dtype-inclusive shape; ONNX terminology — keep transitive note but soften)
+19. `.opencode/install_guides/README.md` (line ~567: "three embedding backends" → "four providers in cascade")
+20. `.opencode/skills/system-spec-kit/config/config.jsonc` (lines ~25, ~28: doc-only examples; remove voyage-4 hardcode in line 25; use placeholder for line 28)
+21. `.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/29-setup-native-module-health-and-mcp-installation.md` (line ~32: drop onnxruntime-node probe reference)
+22. `.opencode/skills/system-spec-kit/shared/embeddings/providers/README.md` (line ~62: Voyage row name `voyage-4` default)
+
+### Group E: Fixture + generated artifact refresh
+23. `.opencode/skills/system-spec-kit/scripts/tests/fixtures/manual-playbook-fixture.ts` (line ~609: "active hf-local default profile database" → placeholder)
+24. `.opencode/skills/system-spec-kit/scripts/tests/fixtures/manual-playbook-fixture.js` (line ~380: MEMORY_DB_PATH points to singleton — use placeholder)
+25. `.opencode/skills/system-spec-kit/manual_testing_playbook/23--doctor-commands/326-doctor-memory-sigint-cancellation.md` (line ~46: dtype-less Voyage checksum example → dtype-inclusive)
+26. `.opencode/skills/system-spec-kit/scripts/tests/test-embeddings-behavioral.js` (cross-listed with Group B above; one file may have multiple findings)
+
+### Group F: Legacy dependency/comment residue
+27. `.opencode/skills/system-spec-kit/shared/chunking.ts` (line ~18: rationale cites Nomic-era; update to EmbeddingGemma)
+28. `.opencode/skills/system-spec-kit/mcp_server/lib/parsing/content-normalizer.ts` (line ~210: comment references nomic-embed-text-v1.5; update)
+29. `.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md` (line ~209: ONNX transitive note — already touched in batch 12; if reviewer still flags, add explicit clarification block)
+
+## BANNED OPERATIONS
+
+- NO rm/mv/sed -i/git/branch
+- NO writes outside ALLOWED WRITE PATHS
+- DO NOT touch 021/022/023/025/026/027/028 packets
+- DO NOT touch `.claude/commands/doctor/*` (hardlinks of .opencode/)
+- DO NOT touch package-lock.json (transitive deps are legit)
+- DO NOT touch barter/ (deleted)
+- DO NOT regenerate vitest or run npm install
+
+## CRITICAL DESIGN DECISION: Cloud dtype = "cloud"
+
+Per the user-confirmed canonical contract (provider/model/dim/dtype slug), cloud providers (voyage, openai) need a synthetic dtype to satisfy the contract. Use the literal string `"cloud"`:
+- Voyage profile slug: `voyage__voyage-4__1024__cloud`
+- OpenAI profile slug: `openai__text-embedding-3-small__1536__cloud`
+- DB filenames: `context-index__voyage__voyage-4__1024__cloud.sqlite`, `context-index__openai__text-embedding-3-small__1536__cloud.sqlite`
+
+In `profile.ts:resolveActiveProfileDtype`:
+```typescript
+function resolveActiveProfileDtype(provider: ActiveProfileProvider): string | null {
+  if (provider === 'hf-local') {
+    return normalizeProfileDtype(process.env.HF_EMBEDDINGS_DTYPE) || 'q8';
+  }
+  if (provider === 'llama-cpp') {
+    const configured = normalizeProfileDtype(process.env.LLAMA_CPP_EMBEDDINGS_DTYPE);
+    return configured && configured !== 'q8_0' ? configured : 'q8';
+  }
+  // Cloud providers get synthetic 'cloud' slug for uniform provider/model/dim/dtype contract
+  if (provider === 'voyage' || provider === 'openai') {
+    return 'cloud';
+  }
+  return null;
+}
+```
+
+Then update `mcp_server/tests/embeddings.vitest.ts:250` (and any other test) to assert the new dtype-inclusive cloud filename: `context-index__voyage__voyage-4__1024__cloud.sqlite`.
+
+Also update doc examples (Group D items 18-22) to show the new cloud filename shape.
+
+## REQUIREMENTS
+
+For each finding from 027's review-report.md §8 (P1) and §9 (P2), apply the rule listed in that report's "Recommendation" column. Match by file:line + evidence snippet.
+
+For dtype contract:
+- Cloud dtype = `'cloud'` literal
+- hf-local invalid dtype → `'q8'` (canonical) instead of `'fp32'`
+- llama-cpp dtype: validate against allow-list `['q8', 'q4', 'q4_0', 'q4_1', 'q5_0', 'q5_1', 'q8_0', 'f16', 'f32']`; invalid → `'q8'`
+
+For `detectConfiguredModelName` (embeddings.ts:769):
+- Add `case 'llama-cpp': return providerInfo.config.LLAMA_CPP_EMBEDDINGS_MODEL || 'unsloth-embeddinggemma-300m-gguf';` (use the safe-slug form since this is used for profile slug matching)
+
+For `factory.ts:906` (hf-local fallback construction):
+- When falling back to hf-local from any other provider, do NOT forward `options.model` or `options.dim` (those came from the failed provider). Build fresh hf-local options from env or defaults.
+
+For `context-server.ts:1830` (migration failure):
+- Replace `process.env.EMBEDDINGS_PROVIDER = 'hf-local';` with a re-resolve call: `process.env.EMBEDDINGS_PROVIDER = await resolveActiveProfileProvider(); /* re-init via shared resolver */` or similar — make it idempotent with the shared resolver.
+
+## ACCEPTANCE
+
+After all edits:
+- `npx vitest run tests/embeddings.vitest.ts` exits 0 (existing tests still pass; embeddings.vitest.ts:250 updated to dtype-inclusive cloud filename)
+- `grep -nE 'speckit_memory\.db' .opencode/skills/system-spec-kit/shared/README.md` returns 0
+- `grep -nE "process\.env\.EMBEDDINGS_PROVIDER = 'hf-local'" .opencode/skills/system-spec-kit/mcp_server/context-server.ts` returns 0
+- `grep -nE 'pre-restore-context-index\.sqlite' .opencode/skills/system-spec-kit/mcp_server/scripts/migrations/restore-checkpoint.ts` returns 0
+- `grep -nE 'case .llama-cpp.' .opencode/skills/system-spec-kit/shared/embeddings.ts` returns ≥1 match (new branch added)
+
+## REPORT
+
+```
+BATCH 14 (029 P1/P2 fix) REPORT
+File: <path> — <N edits> — <summary>
+...
+Scope violations: <none | list>
+Blocked writes: <none | list>
+Total edits: <N>
+TypeScript syntax: PASS | FAIL — <details>
+```
+
+No commits. No git. Do not run vitest or npm install. Stop after the report.

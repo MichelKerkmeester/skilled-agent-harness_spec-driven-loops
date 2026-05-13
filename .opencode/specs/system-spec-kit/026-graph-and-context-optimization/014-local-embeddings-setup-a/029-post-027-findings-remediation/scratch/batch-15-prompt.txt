@@ -1,0 +1,114 @@
+# GATE 3 PRE-ANSWERED — Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/029-post-027-findings-remediation` — A) existing. PROCEED. Non-interactive --approval-policy=never.
+
+---
+
+# Batch 15 — Cloud dtype propagation + cascade fallback + setup metadata
+
+## CONTEXT
+
+030 re-review (run after 029) found 8 P1s. All are direct consequences of 029's cloud dtype contract change (`'cloud'` literal for voyage/openai profiles). Fix them now.
+
+## SHIP STATE (binding, unchanged from 029)
+
+- Cascade: VOYAGE_API_KEY → OPENAI_API_KEY → llama-cpp (when GGUF installed) → hf-local
+- Cloud providers (voyage, openai) use synthetic dtype `'cloud'` in profile slug
+- Profile DB filenames now include `__cloud` for cloud providers: `context-index__voyage__voyage-4__1024__cloud.sqlite`, `context-index__openai__text-embedding-3-small__1536__cloud.sqlite`
+
+## ALLOWED WRITE PATHS
+
+### Cloud dtype propagation (5 P1 — most urgent)
+1. `.opencode/skills/system-spec-kit/shared/embeddings/providers/voyage.ts` (around line 338 `getProfile()` — add `dtype: 'cloud'`)
+2. `.opencode/skills/system-spec-kit/shared/embeddings/providers/openai.ts` (around line 308 `getProfile()` — add `dtype: 'cloud'`)
+3. `.opencode/skills/system-spec-kit/shared/types.ts` (around line 70 — widen dtype typing to include `'cloud'`)
+4. `.opencode/skills/system-spec-kit/mcp_server/tests/local-llm-features/profile-db-filename.vitest.ts` (around lines 66, 72 — update assertions to include `__cloud` suffix)
+
+### Cascade fallback (1 P1)
+5. `.opencode/skills/system-spec-kit/shared/embeddings/factory.ts` (around line 899 — fallback should resume cascade, not jump to hf-local)
+
+### Setup metadata (2 P1)
+6. `.opencode/skills/mcp-coco-index/mcp_server/pyproject.toml` (around line 51 — update default-install description)
+7. `.opencode/skills/system-spec-kit/scripts/setup/install.sh` (around line 194 — add llama-cpp to _NOTE_2_PROVIDERS)
+
+### P2 advisories — fix where reasonable, skip if cosmetic
+8. `.opencode/skills/system-spec-kit/scripts/setup/install.sh` (line ~274 — install help omits llama-cpp)
+9. `.opencode/skills/system-spec-kit/README.md` (line ~691 — provider table implies llama-cpp is Apple-Silicon-only)
+10. `.opencode/skills/system-spec-kit/README.md` (line ~146 — Requirements row says auto-cascade goes to llama-cpp on Apple Silicon and then HF Local ONNX)
+11. `.opencode/skills/system-spec-kit/shared/embeddings/providers/hf-local.ts` (line ~21 — comment calls Nomic prefix a "default")
+12. `README.md` (lines ~139, ~520 — describe llama-cpp as no-cloud-key default on Apple Silicon — soften to mention Linux compatibility)
+13. `.opencode/skills/system-spec-kit/shared/README.md` (line ~260 — auto-detection summary only mentions API keys; line ~325 — provider table marks Apple-Silicon-only)
+14. `.opencode/skills/system-spec-kit/shared/embeddings/README.md` (line ~36 — cascade parenthetical says llama-cpp is default local on Apple Silicon)
+15. `.opencode/skills/system-spec-kit/mcp_server/README.md` (line ~71 — hf-local described as "old provider")
+16. `.opencode/skills/system-spec-kit/shared/embeddings/factory.ts` (line ~770 — fallback reason still calls hf-local "Default local provider")
+
+## BANNED OPERATIONS
+
+- NO rm/mv/sed -i/git/branch
+- NO writes outside ALLOWED WRITE PATHS
+- DO NOT modify 021-028 packets (or 029, 030 review packets)
+- DO NOT touch profile.ts (its cloud dtype is already correct)
+
+## REQUIREMENTS
+
+### Cloud dtype propagation
+
+R1. `voyage.ts:getProfile()`: Add `dtype: 'cloud',` field next to `provider: 'voyage',`. Make sure the EmbeddingProfile constructor and return type accept this.
+
+R2. `openai.ts:getProfile()`: Same — add `dtype: 'cloud',` next to `provider: 'openai',`.
+
+R3. `types.ts`: The `dtype` field in `ProviderInfo` / similar metadata types should accept `HfLocalDtype | 'cloud' | null` or a broader `EmbeddingProfileDtype` union. Pick the cleanest typing change.
+
+R4. `profile-db-filename.vitest.ts` lines 66 and 72: Update Voyage filename assertion from `context-index__voyage__voyage-4__1024.sqlite` to `context-index__voyage__voyage-4__1024__cloud.sqlite`. Same for OpenAI line 72. Also update the test profile construction to include `dtype: 'cloud'` if it explicitly constructs an EmbeddingProfile.
+
+### Cascade fallback
+
+R5. `factory.ts:899`: The current code does:
+```
+console.warn(`[factory] Attempting fallback from ${requestedProvider} to hf-local...`);
+```
+
+Replace this one-hop fallback with an ordered cascade resume. Specifically, when provider X fails to initialize, try the next provider in the canonical order:
+- Voyage failure → try OpenAI (if key) → llama-cpp (if available) → hf-local
+- OpenAI failure → try llama-cpp (if available) → hf-local
+- llama-cpp failure → try hf-local
+- hf-local failure → throw
+
+Implement by introducing a helper `getCascadeFallbackOrder(failedProvider)` that returns the remaining providers in order, then iterate trying each `createProviderInstance` until one succeeds. Log each attempt clearly.
+
+### Setup metadata
+
+R6. `mcp-coco-index/mcp_server/pyproject.toml` line 51: Currently `Default install (pip install -e .) routes through LiteLLM (Voyage AI etc.) only.` Replace with `Default install (pip install -e .) uses local sentence-transformers (EmbeddingGemma 300m) and never requires an API key. LiteLLM (Voyage AI etc.) is an optional explicit setup.`
+
+R7. `install.sh` line 194: `_NOTE_2_PROVIDERS` currently lists `Voyage (1024 dims), OpenAI (1536/3072 dims), HF Local (768 dims, no API needed)`. Insert `llama-cpp (768 dims, GGUF Q8_0, auto when installed)` between OpenAI and HF Local.
+
+### P2 cleanups (best-effort)
+
+R8. For all "Apple Silicon" / "no setup" claims on llama-cpp: soften to "auto when GGUF runtime is installed (Apple Silicon Metal GPU acceleration when available; CPU fallback otherwise)". Don't pin llama-cpp to Apple Silicon as a requirement.
+
+R9. For "old provider" / "Default local provider" wording on hf-local: change to "final fallback provider" or "canonical fallback when llama-cpp runtime is unavailable".
+
+R10. For `install.sh:274` install help: add llama-cpp to the provider list mirror.
+
+R11. For `hf-local.ts:21` comment: clarify Nomic prefix is "legacy compatibility export, not the current default" instead of saying it's a default.
+
+## ACCEPTANCE
+
+After edits:
+- `grep -nE "dtype: 'cloud'" .opencode/skills/system-spec-kit/shared/embeddings/providers/voyage.ts .opencode/skills/system-spec-kit/shared/embeddings/providers/openai.ts` returns ≥2 matches
+- `grep -nE "context-index__voyage__voyage-4__1024__cloud" .opencode/skills/system-spec-kit/mcp_server/tests/local-llm-features/profile-db-filename.vitest.ts` returns ≥1
+- `grep -nE "llama-cpp" .opencode/skills/system-spec-kit/scripts/setup/install.sh` shows the new _NOTE_2_PROVIDERS line includes llama-cpp
+- Run `node ./mcp_server/node_modules/vitest/vitest.mjs run mcp_server/tests/local-llm-features --config mcp_server/vitest.config.ts` from spec-kit root → all pass
+- `npx tsc --noEmit -p tsconfig.json` from spec-kit root → exit 0
+
+## REPORT
+
+```
+BATCH 15 REPORT
+File: <path> — <N edits> — <summary>
+...
+Scope violations: <none | list>
+TypeScript syntax: PASS | FAIL
+Vitest local-llm-features: PASS | FAIL — <count>
+Total edits: <N>
+```
+
+No commits. No git. Stop after the report.

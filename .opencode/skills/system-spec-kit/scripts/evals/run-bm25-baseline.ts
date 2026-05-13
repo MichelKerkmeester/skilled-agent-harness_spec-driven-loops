@@ -7,7 +7,7 @@
 // ───────────────────────────────────────────────────────────────
 //
 // Execute the BM25-only baseline against the
-// Live production context-index.sqlite and record results in the
+// Live production context-index__*.sqlite profile database and record results in the
 // Eval DB. Produces the contingency decision (PAUSE/RATIONALIZE/
 // PROCEED) with bootstrap 95% CI for statistical significance.
 //

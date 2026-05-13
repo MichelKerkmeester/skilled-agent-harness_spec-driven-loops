@@ -3,6 +3,7 @@ import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 const FIXTURE_PREFIX = 'gate-i-manual-playbook-';
+const DEFAULT_PROFILE_DB_FILE = 'context-index__<provider>__<safe-model>__<dim>__<dtype>.sqlite';
 const TARGET_SPEC_SLUG = '001-manual-fixture-auth-resume';
 const SANDBOX_SPEC_SLUG = '002-test-sandbox';
 const ADMIN_USER_ID = 'gate-i-admin-user';
@@ -191,7 +192,7 @@ export async function createManualPlaybookFixture(specFolder) {
     fs.mkdirSync(tempBaseDir, { recursive: true });
     const rootDir = fs.mkdtempSync(path.join(tempBaseDir, FIXTURE_PREFIX));
     const dbDir = path.join(rootDir, 'db');
-    const dbPath = path.join(dbDir, 'context-index.sqlite');
+    const dbPath = path.join(dbDir, DEFAULT_PROFILE_DB_FILE);
     const baselineDbPath = path.join(dbDir, 'context-index.baseline.sqlite');
     const reportDir = process.env.MANUAL_PLAYBOOK_REPORT_ROOT
         ? path.resolve(process.env.MANUAL_PLAYBOOK_REPORT_ROOT)
@@ -377,7 +378,7 @@ export async function createManualPlaybookFixture(specFolder) {
             specFolder: targetSpecFolder,
             content: buildMemoryDoc('Feature Flag DB Path Precedence', 'Database path precedence notes.', [
                 'SPEC_KIT_DB_DIR and SPECKIT_DB_DIR override default database discovery.',
-                'MEMORY_DB_PATH points directly to context-index.sqlite for disposable fixtures.',
+                'MEMORY_DB_PATH may pin a disposable profile database; production uses context-index__<provider>__<safe-model>__<dim>__<dtype>.sqlite.',
             ]),
         },
         {

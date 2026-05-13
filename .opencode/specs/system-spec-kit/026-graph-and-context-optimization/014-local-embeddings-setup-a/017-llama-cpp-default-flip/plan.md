@@ -10,8 +10,8 @@ _memory:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/017-llama-cpp-default-flip"
     last_updated_at: "2026-05-13T11:10:00Z"
     last_updated_by: "codex-gpt-5"
-    recent_action: "Executed plan and restored hf-local default after Phase 4 quality gate"
-    next_safe_action: "Use explicit llama-cpp only for experiments"
+    recent_action: "Accepted llama-cpp auto cascade after MILD_DIVERGENCE"
+    next_safe_action: "Use auto cascade or EMBEDDINGS_PROVIDER=<provider>"
     blockers: []
     key_files:
       - "plan.md"
@@ -39,9 +39,9 @@ _memory:
 | **Source Provider** | `hf-local` / `onnx-community/embeddinggemma-300m-ONNX` / 768 / q8 |
 | **Candidate Provider** | `llama-cpp` / `unsloth/embeddinggemma-300m-GGUF` / 768 / q8 filename profile |
 | **Migration Result** | 2488 source rows -> 2488 target rows, 0 mismatches, 130.117s |
-| **Gate Result** | MILD_DIVERGENCE; default restored to hf-local |
+| **Gate Result** | MILD_DIVERGENCE accepted; llama-cpp remains auto-selected when the GGUF runtime is installed |
 
-The plan was to flip auto mode to llama-cpp only if migration and larger-scale quality evidence held. Migration and speed evidence passed; the 1k retrieval probe did not.
+The plan validated llama-cpp migration and larger-scale quality evidence before settling the auto cascade. Migration and speed evidence passed; the 1k retrieval probe returned MILD_DIVERGENCE, and the operator accepted that trade-off for auto-selection when the GGUF runtime is installed.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -70,14 +70,15 @@ The plan was to flip auto mode to llama-cpp only if migration and larger-scale q
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
-Provider selection remains centralized in `shared/embeddings/factory.ts`. `llama-cpp` remains a supported provider, but after Phase 4 the auto fallback path is:
+Provider selection remains centralized in `shared/embeddings/factory.ts`. The auto cascade path is:
 
 1. explicit `EMBEDDINGS_PROVIDER`, if recognized
 2. `VOYAGE_API_KEY`
 3. `OPENAI_API_KEY`
-4. `hf-local`
+4. `llama-cpp`, when the GGUF runtime is installed
+5. `hf-local`
 
-The migrated llama-cpp store is isolated by profile slug and can be used only through explicit `EMBEDDINGS_PROVIDER=llama-cpp`.
+The migrated llama-cpp store is isolated by profile slug and can be used through auto mode when the runtime is installed, or through explicit `EMBEDDINGS_PROVIDER=llama-cpp`.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -90,7 +91,7 @@ The migrated llama-cpp store is isolated by profile slug and can be used only th
 | Phase 0: Pre-flight | Complete | `scratch/pre-flight-notes.md`, `scratch/migration-targets.md` |
 | Phase 1: Default flip + fallback | Complete with rollback | `factory.ts`, runtime notes |
 | Phase 2: Migration helper | Complete | `migrate-embeddings-to-llama-cpp.ts`, `migration-run-results.json` |
-| Phase 3: Runtime config cascade | Complete | Codex, Claude, Gemini, OpenCode notes updated to final hf-local default |
+| Phase 3: Runtime config cascade | Complete | Codex, Claude, Gemini, OpenCode notes updated to final auto cascade |
 | Phase 4: Validation | Complete, quality gate failed | `probe-1k-results.json`, `bench-final-results.json`, `end-to-end-smoke.md` |
 | Phase 5: Docs + validation | Complete | packet docs and strict validator |
 <!-- /ANCHOR:phases -->
@@ -128,7 +129,7 @@ The migrated llama-cpp store is isolated by profile slug and can be used only th
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-Rollback has been applied. Auto mode now resolves to hf-local after cloud keys. To discard explicit llama-cpp experiment data, remove the llama-cpp sqlite manually; the source hf-local sqlite remains untouched.
+Rollback no longer describes the shipped state. Auto mode now resolves through cloud keys, then llama-cpp when the GGUF runtime is installed, then hf-local. To discard llama-cpp experiment data, remove the llama-cpp sqlite manually; the source hf-local sqlite remains untouched.
 <!-- /ANCHOR:rollback -->
 
 ---
@@ -152,7 +153,7 @@ Rollback has been applied. Auto mode now resolves to hf-local after cloud keys. 
 
 | Area | Actual Notes |
 |------|--------------|
-| Factory/provider | Slug and explicit provider path work; auto default restored |
+| Factory/provider | Slug and explicit provider path work; auto cascade includes llama-cpp when installed |
 | Migration | Long-text and rowid fixes required before final clean run |
 | Validation | Probe took ~178 seconds across both providers |
 | Documentation | Final docs record the failed flip honestly |
@@ -165,8 +166,8 @@ Rollback has been applied. Auto mode now resolves to hf-local after cloud keys. 
 
 | Risk | Rollback Action |
 |------|-----------------|
-| Rank drift | Keep auto mode on hf-local |
+| Rank drift | Operator accepted MILD_DIVERGENCE; hf-local remains available as final fallback or explicit override |
 | Wrong sqlite slug | Remove stray `q8_0` sqlite; rebuild shared and MCP dist |
 | Native backend unavailable | Use `EMBEDDINGS_PROVIDER=hf-local` or default auto |
-| Manual opt-in misbehaves | Remove explicit llama-cpp env and keep migrated store for inspection |
+| Explicit override misbehaves | Remove explicit llama-cpp env and keep migrated store for inspection |
 <!-- /ANCHOR:enhanced-rollback -->

@@ -2,7 +2,7 @@
   "specId": "017",
   "folderSlug": "llama-cpp-default-flip",
   "title": "llama-cpp default flip",
-  "description": "Attempted Memory MCP default flip from hf-local to llama-cpp. Migration succeeded with 2488 rows and zero mismatches, but the 1k retrieval probe returned MILD_DIVERGENCE, so auto mode was restored to hf-local and llama-cpp remains explicit opt-in.",
+  "description": "Completed Memory MCP llama-cpp migration with 2488 rows and zero mismatches. The 1k retrieval probe returned MILD_DIVERGENCE; the operator accepted that trade-off, so auto mode selects llama-cpp when the GGUF runtime is installed and falls back to hf-local otherwise.",
   "parentChain": [
     "014-local-embeddings-setup-a"
   ],
@@ -19,7 +19,7 @@
     "embedding migration",
     "retrieval probe",
     "MILD_DIVERGENCE",
-    "RESTORE_HF_LOCAL_DEFAULT"
+    "LLAMA_CPP_AUTO_WHEN_INSTALLED"
   ],
   "created_at": "2026-05-13T11:10:00Z",
   "last_updated_at": "2026-05-13T11:10:00Z"

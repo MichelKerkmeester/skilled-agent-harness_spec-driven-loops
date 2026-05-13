@@ -1,0 +1,30 @@
+{
+  "reviewTarget": "POST-029 FINAL RE-REVIEW: confirm batches 1-14 (incl. 029's 61-edit fix of 027's 21 P1 + 16 P2 findings) yield PASS. Q1=A, Q2=yes ground truth. Cloud dtype is now 'cloud' literal (synthetic slug for uniform contract). barter/ deleted. 028 test suite added (43 tests). Expected: P1=0 or near-0.",
+  "reviewTargetType": "files",
+  "reviewDimensions": [
+    "correctness",
+    "traceability",
+    "maintainability"
+  ],
+  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/030-post-029-final-re-review",
+  "artifactDir": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/030-post-029-final-re-review/review",
+  "maxIterations": 10,
+  "convergenceThreshold": 0.05,
+  "executionMode": "auto",
+  "resource_map": {
+    "emit": true
+  },
+  "config": {
+    "executor": {
+      "type": "cli-codex",
+      "kind": "cli-codex",
+      "model": "gpt-5.5",
+      "reasoningEffort": "high",
+      "serviceTier": "fast",
+      "timeoutSeconds": 900
+    }
+  },
+  "recoveryAnchor": "2c76529effaa35a7df88849c67bb0446d6c852d8",
+  "startedAt": "2026-05-13T19:50:00Z",
+  "lineageMode": "auto"
+}

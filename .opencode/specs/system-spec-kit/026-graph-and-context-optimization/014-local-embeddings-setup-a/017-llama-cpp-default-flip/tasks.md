@@ -11,7 +11,7 @@ _memory:
     last_updated_at: "2026-05-13T11:10:00Z"
     last_updated_by: "codex-gpt-5"
     recent_action: "Recorded completed task ledger"
-    next_safe_action: "Review implementation-summary.md for the no-flip result"
+    next_safe_action: "Review implementation-summary.md for auto cascade metrics and fallback behavior"
     blockers: []
     key_files:
       - "tasks.md"
@@ -50,9 +50,9 @@ _memory:
 | T000 | Inspect factory default resolution | Done | `scratch/pre-flight-notes.md` |
 | T001 | Inspect `LlamaCppProvider` | Done | `scratch/pre-flight-notes.md` |
 | T002 | Inventory sqlite stores | Done | `scratch/migration-targets.md`: 2488 rows, 92.29 MiB |
-| T010 | Attempt default flip/fallback chain | Done then rolled back | `factory.ts` final auto path restores hf-local |
+| T010 | Implement default flip/fallback chain | Done | `factory.ts` final auto path cascades through Voyage -> OpenAI -> llama-cpp -> hf-local |
 | T011 | Add install helper | Done | `scripts/install-llama-cpp.sh` |
-| T012 | Update `.env.example` | Done | final notes document opt-in llama-cpp |
+| T012 | Update `.env.example` | Done | final notes document llama-cpp auto-selection when GGUF runtime is installed |
 | T013 | Normalize llama-cpp slug | Done | slug `llama-cpp__unsloth-embeddinggemma-300m-gguf__768__q8` |
 <!-- /ANCHOR:phase-1 -->
 
@@ -67,10 +67,10 @@ _memory:
 | T021 | Add migration pending warning | Done | `getStartupEmbeddingProfile()` warns for explicit llama-cpp empty target |
 | T022 | Write migration runbook | Done | `scratch/migration-runbook.md` |
 | T023 | Run live migration | Done | 2488 rows, 0 mismatches, 130.117s |
-| T030 | Update Codex config notes | Done | `.codex/config.toml` final hf-local default notes |
-| T031 | Update Claude config notes | Done | `.claude/mcp.json` final hf-local default notes |
-| T032 | Update Gemini config notes | Done | `.gemini/settings.json` final hf-local default notes |
-| T033 | Update OpenCode config notes | Done | `opencode.json` final hf-local default notes |
+| T030 | Update Codex config notes | Done | `.codex/config.toml` final auto cascade notes |
+| T031 | Update Claude config notes | Done | `.claude/mcp.json` final auto cascade notes |
+| T032 | Update Gemini config notes | Done | `.gemini/settings.json` final auto cascade notes |
+| T033 | Update OpenCode config notes | Done | `opencode.json` final auto cascade notes |
 | T034 | Update MCP README | Done | optional llama-cpp section |
 <!-- /ANCHOR:phase-2 -->
 
@@ -87,7 +87,7 @@ _memory:
 | T050 | Author packet docs | Done | `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `implementation-summary.md` |
 | T051 | Strict validate packet | Done | final strict validator exits 0 |
 | T052 | Update parent graph metadata | Done | last active child points to 017 |
-| T053 | Update parent status/summary | Done | parent status complete with no-flip close-out |
+| T053 | Update parent status/summary | Done | parent status complete with auto cascade close-out |
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -97,8 +97,8 @@ _memory:
 
 - [x] Migration completed with 2488 target rows and zero mismatches.
 - [x] 1k retrieval probe completed and controlled the default decision.
-- [x] Auto provider resolution restored to hf-local after the MILD_DIVERGENCE verdict.
-- [x] Runtime configs and docs reflect the final no-flip state.
+- [x] Operator accepted MILD_DIVERGENCE; llama-cpp stays in the auto cascade with hf-local as fallback.
+- [x] Runtime configs and docs reflect the final auto cascade state.
 <!-- /ANCHOR:completion -->
 
 ---

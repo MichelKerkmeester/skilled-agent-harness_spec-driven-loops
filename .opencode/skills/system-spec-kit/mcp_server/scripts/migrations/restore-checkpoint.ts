@@ -166,7 +166,7 @@ function runRestoreCheckpoint(args: CliArgs): RestoreCheckpointResult {
   const now = new Date();
   const backupPath = path.join(
     args.backupDir,
-    `${toTimestampId(now)}__pre-restore-context-index.sqlite`,
+    `${toTimestampId(now)}__pre-restore-${path.basename(args.dbPath)}`,
   );
 
   if (targetExists) {

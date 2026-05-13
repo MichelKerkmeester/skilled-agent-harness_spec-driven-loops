@@ -1,0 +1,33 @@
+{
+  "specFolder": "025-post-remediation-v2-re-review",
+  "description": "Post-batches-6-10 confirmatory re-review: 10-iter /spec_kit:deep-review:auto to validate the second-pass remediation cleanly landed. Expected verdict:",
+  "keywords": [
+    "post-batches-6-10",
+    "confirmatory",
+    "re-review",
+    "10-iter",
+    "deep-review",
+    "auto",
+    "validate",
+    "second-pass",
+    "remediation",
+    "cleanly",
+    "landed",
+    "expected",
+    "verdict",
+    "pass",
+    "pass-with-advisories",
+    "executor",
+    "cli-codex",
+    "gpt-5",
+    "high",
+    "fast"
+  ],
+  "lastUpdated": "2026-05-13T17:09:11.325Z",
+  "specId": "025",
+  "folderSlug": "post-remediation-v2-re-review",
+  "parentChain": [],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

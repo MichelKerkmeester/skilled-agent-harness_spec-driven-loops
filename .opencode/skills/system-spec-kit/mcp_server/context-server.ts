@@ -70,6 +70,7 @@ import { detectNodeVersionMismatch, checkSqliteVersion } from './startup-checks.
 import {
   getStartupEmbeddingProfile,
   getStartupEmbeddingDimension,
+  resolveProvider,
   runAutoMigrationIfNeeded,
   resolveStartupEmbeddingConfig,
   validateConfiguredEmbeddingsProvider,
@@ -1826,8 +1827,9 @@ async function main(): Promise<void> {
   const resolvedProfile = getStartupEmbeddingProfile();
   const migrationResult = await runAutoMigrationIfNeeded(resolvedProfile);
   if (migrationResult.status === 'failed') {
-    console.error(`[context-server] auto-migration failed; falling back to hf-local for this run. reason=${migrationResult.reason}`);
-    process.env.EMBEDDINGS_PROVIDER = 'hf-local';
+    const reResolvedProvider = resolveProvider().name;
+    console.error(`[context-server] auto-migration failed; re-resolved provider=${reResolvedProvider}. reason=${migrationResult.reason}`);
+    process.env.EMBEDDINGS_PROVIDER = reResolvedProvider;
     startupEmbeddingConfig = await resolveStartupEmbeddingConfig({ timeout: API_KEY_VALIDATION_TIMEOUT_MS });
   }
 

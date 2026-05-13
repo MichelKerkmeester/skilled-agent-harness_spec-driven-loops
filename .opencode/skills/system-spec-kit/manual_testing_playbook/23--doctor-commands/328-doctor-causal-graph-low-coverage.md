@@ -19,7 +19,7 @@ The scenario is intentionally operator-visible. A real user wants to know whethe
 - Playbook ID: DOC-328.
 - Real user request: `Check causal graph coverage. We had a deep-research session last week and want to know if the edges are well-linked.`
 - Prompt: `Check causal graph coverage. We had a deep-research session last week and want to know if the edges are well-linked.`
-- Preconditions: the active profile-derived Memory MCP database exists and `memory_causal_stats({})` reports causal-edge coverage below 60%, such as 45%.
+- Preconditions: the active resolved profile Memory MCP database exists and `memory_causal_stats({})` reports causal-edge coverage below 60%, such as 45%.
 - Expected execution process: Run `/doctor causal-graph`, capture the read-only stats and drift report, verify no causal-edge mutation occurred, and return a concise verdict.
 - Expected signals: status is `ATTENTION`, `STALE`, or `DEGRADED`; coverage is below 60%; recommendation names `/doctor causal-graph` with the default confidence floor.
 - Desired user-visible outcome: A short report saying the graph is under target and naming the remediation command.
@@ -38,7 +38,7 @@ Check causal graph coverage. We had a deep-research session last week and want t
 
 ### Commands
 
-1. Confirm the sandbox or target runtime uses an active profile-derived Memory MCP database whose `memory_causal_stats({})` coverage is below 60%.
+1. Confirm the sandbox or target runtime uses an active resolved profile Memory MCP database whose `memory_causal_stats({})` coverage is below 60%.
 2. Record the pre-run causal edge count from `memory_causal_stats({})`.
 3. Run `/doctor causal-graph`.
 4. Capture the health report, stats table, drift signals, recommendation block, and state-log path.
@@ -62,7 +62,7 @@ The pre-run and post-run causal edge counts are identical because the read-only 
 
 - **PASS**: coverage below 60% is reported, the status is degraded or attention-worthy, the recommendation explicitly names `/doctor causal-graph`, and edge count is unchanged.
 - **FAIL**: coverage is omitted, the report claims healthy status below the 60% target, the apply recommendation is missing, or read-only diagnostic flow mutates causal edges.
-- **SKIP**: no sandbox or target active profile-derived Memory MCP database with below-target causal coverage is available.
+- **SKIP**: no sandbox or target active resolved profile Memory MCP database with below-target causal coverage is available.
 - **UNAUTOMATABLE**: the runtime cannot execute `/doctor causal-graph` or the memory causal stats tool in the current environment.
 
 ### Failure Triage

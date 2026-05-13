@@ -201,10 +201,10 @@ shared/
 ├── lib/
 │   └── structure-aware-chunker.ts # Markdown-aware chunking helpers
 ├── mcp_server/
-│   └── database/
-│       ├── .db-updated         # Update marker for the shared database directory
-│       ├── README.md           # Database directory notes and handling guidance
-│       └── speckit_memory.db   # Active shared SQLite database file
+	│   └── database/
+	│       ├── .db-updated         # Update marker for the shared database directory
+	│       ├── README.md           # Database directory notes and handling guidance
+	│       └── context-index__*.sqlite # Active profile-keyed SQLite database files
 ├── parsing/
 │   ├── memory-sufficiency.ts          # Memory sufficiency checks
 │   ├── memory-template-contract.ts    # Template contract validation for continuity support artifacts
@@ -256,9 +256,9 @@ shared/
 
 | Aspect             | Details                                 |
 | ------------------ | --------------------------------------- |
-| **Providers**      | llama-cpp (default), HuggingFace local (fallback), Voyage AI, OpenAI |
-| **Auto-Detection** | Selects best provider based on API keys |
-| **Fallback**       | Graceful degradation to HF local        |
+| **Providers**      | llama-cpp (auto when GGUF runtime is installed), HuggingFace local (final fallback), Voyage AI, OpenAI |
+| **Auto-Detection** | Selects provider via cloud keys, then llama-cpp availability, then HF local |
+| **Fallback**       | Graceful degradation through the provider cascade |
 | **Task Types**     | Document, query and clustering embeddings  |
 
 **Key Functions**:
@@ -322,7 +322,7 @@ The canonical source is the `shared/` package. `shared/embeddings.ts` is the pub
 | Dimensions | 768       | 768      | 1024       | 1536/3072 |
 | Privacy    | Local     | Local    | Cloud      | Cloud     |
 | Offline    | Yes       | Yes      | No         | No        |
-| Default    | Yes (Apple Silicon) | Fallback | Opt-in | Opt-in |
+| Default    | Auto when GGUF runtime is installed | Final fallback | Opt-in | Opt-in |
 
 <!-- /ANCHOR:features -->
 
@@ -359,9 +359,9 @@ The shared database directory currently contains the runtime database plus its m
 
 ```
 database/
-├── .db-updated       # Update marker for the shared database directory
-├── README.md         # Database directory notes and handling guidance
-└── speckit_memory.db # Active shared SQLite database file
+├── .db-updated              # Update marker for the shared database directory
+├── README.md                # Database directory notes and handling guidance
+└── context-index__*.sqlite  # Active profile-keyed SQLite database files
 ```
 
 <!-- /ANCHOR:configuration -->

@@ -18,14 +18,14 @@
   // ─────────────────────────────────────────────────────────────
   // 2. SEMANTIC SEARCH
   // ─────────────────────────────────────────────────────────────
-  "semanticSearch": {
-    "enabled": true,
-    "minSimilarityScore": 50,
-    "maxResults": 10,
-    "embeddingModel": "voyage-4"
-  },
-  "memoryIndex": {
-    "databasePath": ".opencode/skills/system-spec-kit/mcp_server/dist/database/context-index.sqlite",
+	  "semanticSearch": {
+	    "enabled": true,
+	    "minSimilarityScore": 50,
+	    "maxResults": 10,
+	    "embeddingModel": "<resolved-provider-model>"
+	  },
+	  "memoryIndex": {
+	    "databasePath": ".opencode/skills/system-spec-kit/mcp_server/database/context-index__<provider>__<safe-model>__<dim>__<dtype>.sqlite",
     "autoRebuildOnSave": true,
     "verifyOnStartup": false
   },

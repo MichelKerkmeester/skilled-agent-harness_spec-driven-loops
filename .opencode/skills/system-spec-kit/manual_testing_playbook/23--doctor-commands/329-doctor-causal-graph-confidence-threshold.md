@@ -19,7 +19,7 @@ The threshold matters because causal links are evidence, not cleanup churn. The 
 - Playbook ID: DOC-329.
 - Real user request: `Auto-link causal edges. I want only high-confidence links applied.`
 - Prompt: `Auto-link causal edges. I want only high-confidence links applied.`
-- Preconditions: A sandbox or target active profile-derived Memory MCP database has candidate causal edges with mixed confidence, including at least one `0.85`, one `0.65`, and one `0.40` candidate.
+- Preconditions: A sandbox or target active resolved profile Memory MCP database has candidate causal edges with mixed confidence, including at least one `0.85`, one `0.65`, and one `0.40` candidate.
 - Expected execution process: Run `/doctor causal-graph --confidence-threshold=0.7`, capture the candidate list, snapshot path, inserted count, skipped candidates, and post-run stats.
 - Expected signals: candidates with confidence `>= 0.7` are linked; candidates below `0.7` are skipped with `skipped: below threshold`; causal edge count delta equals the number of newly inserted `>= 0.7` candidates.
 - Desired user-visible outcome: A concise applied verdict that names inserted high-confidence edges and skipped lower-confidence records.

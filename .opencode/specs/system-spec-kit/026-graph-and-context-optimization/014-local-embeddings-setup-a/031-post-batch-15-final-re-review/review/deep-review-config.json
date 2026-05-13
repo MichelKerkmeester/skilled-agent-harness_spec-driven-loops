@@ -1,0 +1,30 @@
+{
+  "reviewTarget": "POST-BATCH-15 RE-REVIEW: confirm 030's 8 P1 + 11 P2 findings fixed by batch 15. Cloud dtype='cloud' now in provider.getProfile() returns; factory.ts has cascade fallback; install.sh + pyproject.toml updated.",
+  "reviewTargetType": "files",
+  "reviewDimensions": [
+    "correctness",
+    "traceability",
+    "maintainability"
+  ],
+  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/031-post-batch-15-final-re-review",
+  "artifactDir": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/031-post-batch-15-final-re-review/review",
+  "maxIterations": 10,
+  "convergenceThreshold": 0.05,
+  "executionMode": "auto",
+  "resource_map": {
+    "emit": true
+  },
+  "config": {
+    "executor": {
+      "type": "cli-codex",
+      "kind": "cli-codex",
+      "model": "gpt-5.5",
+      "reasoningEffort": "high",
+      "serviceTier": "fast",
+      "timeoutSeconds": 900
+    }
+  },
+  "recoveryAnchor": "2c76529effaa35a7df88849c67bb0446d6c852d8",
+  "startedAt": "2026-05-13T19:50:00Z",
+  "lineageMode": "auto"
+}

@@ -100,14 +100,18 @@ describe('Embeddings Architecture (T513)', () => {
       expect(resolution.reason).toContain('OPENAI_API_KEY');
     });
 
-    it('T513-01d: auto mode defaults to hf-local with no keys', () => {
+    it('T513-01d: auto mode selects llama-cpp when installed, otherwise falls through to hf-local', () => {
       delete process.env.EMBEDDINGS_PROVIDER;
       delete process.env.VOYAGE_API_KEY;
       delete process.env.OPENAI_API_KEY;
 
       const resolution = resolveProvider();
-      expect(resolution.name).toBe('hf-local');
-      expect(resolution.reason).toContain('Default fallback');
+      expect(['llama-cpp', 'hf-local']).toContain(resolution.name);
+      if (resolution.name === 'llama-cpp') {
+        expect(resolution.reason).toContain('llama-cpp');
+      } else {
+        expect(resolution.reason).toContain('Default fallback');
+      }
     });
   });
 
@@ -243,20 +247,25 @@ describe('Embeddings Architecture (T513)', () => {
       expect(profile.provider).toBe('voyage');
       expect(profile.model).toBe('voyage-4');
       expect(profile.dim).toBe(1024);
-      expect(profile.getDatabasePath('/tmp/spec-kit-db')).toBe('/tmp/spec-kit-db/context-index__voyage__voyage-4__1024.sqlite');
+      expect(profile.getDatabasePath('/tmp/spec-kit-db')).toBe('/tmp/spec-kit-db/context-index__voyage__voyage-4__1024__cloud.sqlite');
     });
 
-    it('T513-03f: startup profile keeps the local fallback database path when no API keys are present', () => {
+    it('T513-03f: startup profile uses installed llama-cpp DB path or hf-local fallback with no API keys', () => {
       delete process.env.EMBEDDINGS_PROVIDER;
       delete process.env.VOYAGE_API_KEY;
       delete process.env.OPENAI_API_KEY;
 
       const profile = getStartupEmbeddingProfile();
 
-      expect(profile.provider).toBe('hf-local');
-      expect(profile.model).toBe('onnx-community/embeddinggemma-300m-ONNX');
+      expect(['llama-cpp', 'hf-local']).toContain(profile.provider);
       expect(profile.dim).toBe(768);
-      expect(profile.getDatabasePath('/tmp/spec-kit-db')).toBe('/tmp/spec-kit-db/context-index__hf-local__onnx-community_embeddinggemma-300m-onnx__768__q8.sqlite');
+      if (profile.provider === 'llama-cpp') {
+        expect(profile.model).toBe('unsloth-embeddinggemma-300m-GGUF');
+        expect(profile.getDatabasePath('/tmp/spec-kit-db')).toBe('/tmp/spec-kit-db/context-index__llama-cpp__unsloth-embeddinggemma-300m-gguf__768__q8.sqlite');
+      } else {
+        expect(profile.model).toBe('onnx-community/embeddinggemma-300m-ONNX');
+        expect(profile.getDatabasePath('/tmp/spec-kit-db')).toBe('/tmp/spec-kit-db/context-index__hf-local__onnx-community_embeddinggemma-300m-onnx__768__q8.sqlite');
+      }
     });
 
     it('T513-03g: hf-local inference respects provider timeout', async () => {

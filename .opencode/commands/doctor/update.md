@@ -118,11 +118,11 @@ When: about to run `memory_index_scan` on context-index + vector-index. Suppress
 
 Prompt text:
 ```
-LONG-POLE: memory_index_scan over context-index + voyage vector DB.
+LONG-POLE: memory_index_scan over the active profile DBs (Memory MCP + vector index if Voyage/OpenAI keyed).
 
-   ETA      5-15 min  (depends on corpus size + Voyage API throughput)
+   ETA      5-15 min  (depends on corpus size; Voyage/OpenAI add API throughput when keyed)
    Mutates  full re-index   (rollback available via Phase 3 snapshot)
-   Network  Voyage API required — confirm credentials
+   Network  Voyage/OpenAI API required only when keyed — confirm credentials
 
    1) Proceed
    2) Skip   (advisor → STALE; deep-loop init still runs)
@@ -210,9 +210,9 @@ Use it after upgrading spec-kit, after large packet moves, after a stale startup
 | Subsystem     | Database                                                           | Status/Health                        | Mutating Tool                          | Gold Battery                           |
 | ------------- | ------------------------------------------------------------------ | ------------------------------------ | -------------------------------------- | -------------------------------------- |
 | code-graph    | `mcp_server/database/code-graph.sqlite`                            | `code_graph_status`                  | `code_graph_scan` / `code_graph_apply` | code-graph query battery               |
-| context-index | `mcp_server/database/context-index.sqlite`                         | `memory_health`, `memory_stats`      | `memory_index_scan`                    | `memory_search` representative queries |
-| vector-index  | `mcp_server/database/context-index__voyage__voyage-4__1024.sqlite` | `memory_health`, `memory_stats`      | `memory_index_scan`                    | embedding-backed `memory_search`       |
-| causal-edges  | `context-index.sqlite` table                                       | `memory_causal_stats`                | `memory_causal_link`                   | coverage and orphan checks             |
+| context-index | `mcp_server/database/context-index__*.sqlite` active profile DB    | `memory_health`, `memory_stats`      | `memory_index_scan`                    | `memory_search` representative queries |
+| vector-index  | `mcp_server/database/context-index__*.sqlite` active profile DB    | `memory_health`, `memory_stats`      | `memory_index_scan`                    | embedding-backed `memory_search`       |
+| causal-edges  | active profile DB `causal_edges` table                             | `memory_causal_stats`                | `memory_causal_link`                   | coverage and orphan checks             |
 | skill-graph   | `mcp_server/database/skill-graph.sqlite`                           | `skill_graph_status`                 | `skill_graph_scan`                     | skill count/freshness + query          |
 | advisor       | skill graph + advisor tables                                       | `advisor_status`, `advisor_validate` | `advisor_rebuild`                      | validation suite                       |
 | deep-loop     | `mcp_server/database/deep-loop-graph.sqlite`                       | `deep_loop_graph_status`             | `deep_loop_graph_upsert`               | convergence signal                     |
@@ -265,8 +265,7 @@ Additional non-tier prompts (always fire when their trigger condition is met):
 | Allowed Targets                                                                                                                                                   | Notes                                  |
 | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
 | `mcp_server/database/code-graph.sqlite` and `mcp_server/database/code-graph.sqlite.pre-doctor-update.*.bak`                                                       | structural graph DB + snapshots        |
-| `mcp_server/database/context-index.sqlite` and `mcp_server/database/context-index.sqlite.pre-doctor-update.*.bak`                                                 | memory records, FTS, causal edges      |
-| `mcp_server/database/context-index__voyage__voyage-4__1024.sqlite` and `mcp_server/database/context-index__voyage__voyage-4__1024.sqlite.pre-doctor-update.*.bak` | vector DB                              |
+| `mcp_server/database/context-index__*.sqlite` and `mcp_server/database/context-index__*.sqlite.pre-doctor-update.*.bak`                                           | memory records, FTS, causal edges, vectors |
 | `mcp_server/database/skill-graph.sqlite` and `mcp_server/database/skill-graph.sqlite.pre-doctor-update.*.bak`                                                     | skill graph DB                         |
 | `mcp_server/database/deep-loop-graph.sqlite` and `mcp_server/database/deep-loop-graph.sqlite.pre-doctor-update.*.bak`                                             | deep research/review graph DB          |
 | `mcp_server/database/speckit-eval.db` and `mcp_server/database/speckit-eval.db.pre-doctor-update.*.bak`                                                           | eval DB                                |
@@ -320,7 +319,7 @@ Forbidden targets include all spec folder docs, authored skill source, all agent
       "end": "2026-05-09T13:07:00Z",
       "duration_seconds": 300,
       "exit": 0,
-      "snapshot_path": "mcp_server/database/context-index.sqlite.pre-doctor-update.3.4.1.0.20260509T130100Z.bak"
+      "snapshot_path": "mcp_server/database/context-index__llama-cpp__unsloth-embeddinggemma-300m-gguf__768__q8.sqlite.pre-doctor-update.3.4.1.0.20260509T130100Z.bak"
     }
   ],
   "final_status": "ok|failed|rolled_back|cancelled|unrollbackable|restart_required"

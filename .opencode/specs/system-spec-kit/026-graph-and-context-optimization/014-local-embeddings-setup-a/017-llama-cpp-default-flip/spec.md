@@ -1,10 +1,10 @@
 ---
 title: "Feature Specification: 017 llama-cpp default flip"
-description: "Attempted Memory MCP default flip from hf-local to llama-cpp with migration, runtime config cascade, and scale validation; final recommendation restores hf-local after the 1k probe returned MILD_DIVERGENCE."
+description: "Completed Memory MCP llama-cpp migration, runtime config cascade, and scale validation; final ship state keeps llama-cpp auto-selected when its GGUF runtime is installed, with hf-local as the no-runtime fallback."
 trigger_phrases:
   - "017 llama cpp default flip"
   - "Memory MCP llama-cpp migration"
-  - "restore hf-local default"
+  - "hf-local fallback"
   - "llama-cpp 1k retrieval probe"
 importance_tier: "critical"
 contextType: "implementation"
@@ -13,8 +13,8 @@ _memory:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/017-llama-cpp-default-flip"
     last_updated_at: "2026-05-13T11:10:00Z"
     last_updated_by: "codex-gpt-5"
-    recent_action: "Completed migration and validation; restored hf-local default after 1k probe missed EQUIVALENT"
-    next_safe_action: "Keep auto mode on hf-local; use llama-cpp only with explicit EMBEDDINGS_PROVIDER=llama-cpp"
+    recent_action: "Accepted llama-cpp auto cascade after MILD_DIVERGENCE"
+    next_safe_action: "Keep auto cascade Voyage -> OpenAI -> llama-cpp -> hf-local"
     blockers: []
     key_files:
       - "spec.md"
@@ -35,7 +35,7 @@ _memory:
     answered_questions:
       - "Gate 3 folder? -> User pre-answered this packet."
       - "Use subagents? -> Forbidden; SPAWN_AGENT_USED=no."
-      - "Ship llama-cpp as auto default? -> No. 1k retrieval verdict was MILD_DIVERGENCE."
+      - "Ship llama-cpp in auto cascade? -> Yes when the GGUF runtime is installed; operator accepted the MILD_DIVERGENCE verdict."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify | v2.2 -->
 # Feature Specification: 017 llama-cpp default flip
@@ -56,7 +56,7 @@ _memory:
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |
 | **Phase** | 17 |
-| **Outcome** | **RESTORE_HF_LOCAL_DEFAULT** after 1k probe missed EQUIVALENT |
+| **Outcome** | **LLAMA_CPP_AUTO_WHEN_INSTALLED** after operator accepted MILD_DIVERGENCE |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -68,7 +68,7 @@ _memory:
 Packets 015 and 016 showed that `llama-cpp` is much faster than the current `hf-local` Memory MCP embedding backend and that the smaller 200-row retrieval probe was rank-equivalent. The remaining decision was whether to flip the automatic local default, migrate the live hf-local store, and cascade runtime config notes across Codex, Claude, Gemini, and OpenCode.
 
 ### Purpose
-Perform the default-flip implementation and migration work, then hold the change to a larger 1000-row / 100-query retrieval probe before shipping. The decisive result was below the contract bar: recall@5 overlap was 0.926 and MRR relative delta was 0.000455, but Spearman top-10 was 0.816125 against the >=0.85 EQUIVALENT threshold. The automatic default was therefore restored to `hf-local`; `llama-cpp` remains explicit opt-in.
+Perform the default-flip implementation and migration work, then hold the change to a larger 1000-row / 100-query retrieval probe before shipping. The decisive result was below the contract bar: recall@5 overlap was 0.926 and MRR relative delta was 0.000455, but Spearman top-10 was 0.816125 against the >=0.85 EQUIVALENT threshold. The operator accepted `llama-cpp`'s mild divergence and kept it as the automatic default-when-installed in the cascade; `hf-local` remains the no-runtime fallback.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -77,7 +77,7 @@ Perform the default-flip implementation and migration work, then hold the change
 ## 3. SCOPE
 
 ### In Scope
-- Factory default-resolution work for `llama-cpp` and rollback after validation.
+- Factory default-resolution work for `llama-cpp` as an auto-selected provider when the GGUF runtime is installed.
 - `LlamaCppProvider` profile slug normalization to `llama-cpp__unsloth-embeddinggemma-300m-gguf__768__q8`.
 - Idempotent install helper for `node-llama-cpp@3.17.1` and the Q8_0 GGUF model.
 - Idempotent migration helper from hf-local sqlite stores to llama-cpp sqlite stores.
@@ -90,18 +90,18 @@ Perform the default-flip implementation and migration work, then hold the change
 - Deleting the source hf-local sqlite.
 - CocoIndex changes.
 - Git operations.
-- Shipping a llama-cpp auto default after the scale probe failed the EQUIVALENT bar.
+- Deleting or demoting the `hf-local` fallback.
 
 ### Files Changed
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skills/system-spec-kit/shared/embeddings/factory.ts` | Modify | Added llama-cpp probing path, then restored auto fallback to hf-local after validation |
+| `.opencode/skills/system-spec-kit/shared/embeddings/factory.ts` | Modify | Added auto cascade: Voyage -> OpenAI -> llama-cpp when GGUF runtime is installed -> hf-local fallback |
 | `.opencode/skills/system-spec-kit/shared/embeddings/providers/llama-cpp.ts` | Modify | Added loadability probe and slug-compatible profile metadata |
 | `.opencode/skills/system-spec-kit/scripts/install-llama-cpp.sh` | Add | Idempotent dependency/model bootstrap helper |
 | `.opencode/skills/system-spec-kit/scripts/migrate-embeddings-to-llama-cpp.ts` | Add | Explicit migration helper with sample validation |
-| `.env.example` and runtime configs | Modify | Documented hf-local auto default and llama-cpp explicit opt-in |
-| `.opencode/skills/system-spec-kit/mcp_server/README.md` | Modify | Documented optional llama-cpp path and final no-flip result |
+| `.env.example` and runtime configs | Modify | Documented auto cascade with llama-cpp selected when the GGUF runtime is installed and hf-local fallback |
+| `.opencode/skills/system-spec-kit/mcp_server/README.md` | Modify | Documented llama-cpp auto-when-installed path and hf-local fallback |
 | `scratch/` | Add | Pre-flight notes, migration runbook/results, rollback, probe, bench, and smoke evidence |
 <!-- /ANCHOR:scope -->
 
@@ -113,7 +113,7 @@ Perform the default-flip implementation and migration work, then hold the change
 ### Functional Requirements
 - **REQ-001** Explicit `EMBEDDINGS_PROVIDER=llama-cpp` must remain functional.
 - **REQ-002** Auto mode must keep cloud key precedence for Voyage and OpenAI.
-- **REQ-003** Auto mode must not ship llama-cpp unless the larger retrieval probe returns EQUIVALENT.
+- **REQ-003** Auto mode selects `llama-cpp` when the GGUF runtime is installed; `hf-local` remains the fallback when no GGUF runtime is available.
 - **REQ-004** Existing hf-local store must remain intact.
 - **REQ-005** Migration must preserve rows and IDs while replacing vector blobs.
 - **REQ-006** Migration must exit successfully only with zero validation mismatches.
@@ -136,7 +136,7 @@ Perform the default-flip implementation and migration work, then hold the change
 2. Final benchmark records both backends.
 3. 1k retrieval probe determines whether the default flip ships.
 4. MCP-path smoke confirms explicit llama-cpp can query the migrated store.
-5. If the probe verdict is below EQUIVALENT, auto mode is restored to hf-local.
+5. Operator acceptance of MILD_DIVERGENCE keeps llama-cpp in the auto cascade with hf-local as fallback.
 6. Packet strict validation exits 0.
 <!-- /ANCHOR:success-criteria -->
 
@@ -150,8 +150,8 @@ Perform the default-flip implementation and migration work, then hold the change
 | Risk | Rank-order drift at larger scale | Faster backend could degrade retrieval | 1k/100-query probe gates the default |
 | Risk | Vector store mixing | Wrong sqlite profile could corrupt search | Provider-specific slug with `q8` dtype |
 | Risk | Long docs exceed llama context | Migration/probe failures | `maxTextLength=700` chunking |
-| Risk | Native module portability | llama-cpp may not load on every host | Explicit install helper and opt-in provider |
-| Dependency | GGUF model | Required for explicit llama-cpp | `install-llama-cpp.sh` verifies SHA-256 |
+| Risk | Native module portability | llama-cpp may not load on every host | Auto cascade falls through to hf-local when the GGUF runtime is unavailable |
+| Dependency | GGUF model | Required for llama-cpp auto selection or explicit override | `install-llama-cpp.sh` verifies SHA-256 |
 <!-- /ANCHOR:risks -->
 
 ---
@@ -161,7 +161,7 @@ Perform the default-flip implementation and migration work, then hold the change
 
 | Area | Complexity | Notes |
 |------|------------|-------|
-| Factory/default path | Medium | Default changed and then restored based on probe verdict |
+| Factory/default path | Medium | Auto cascade now includes llama-cpp when the GGUF runtime is installed |
 | Migration helper | Medium | Copies schema, re-embeds rows, preserves IDs, validates vectors |
 | Scale probe | Medium | 1000 docs, 100 queries, two providers, ranking metrics |
 | Runtime cascade | Low | Config note updates only |
@@ -179,7 +179,7 @@ Perform the default-flip implementation and migration work, then hold the change
 | Retrieval quality gate | EQUIVALENT required to ship default | `scratch/probe-1k-results.json` |
 | Speed evidence | Both p50s recorded | `scratch/bench-final-results.json` |
 | Runtime smoke | PASS | `scratch/end-to-end-smoke.md` |
-| Rollback | hf-local default restored | `resolveProvider()` and runtime notes |
+| Auto cascade | Voyage -> OpenAI -> llama-cpp -> hf-local | `resolveProvider()` and runtime notes |
 <!-- /ANCHOR:nfr -->
 
 ---

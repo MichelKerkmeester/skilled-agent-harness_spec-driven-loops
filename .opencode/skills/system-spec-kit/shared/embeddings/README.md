@@ -33,7 +33,7 @@ trigger_phrases:
 Current state:
 
 - Supported provider names are `llama-cpp`, `voyage`, `openai`, `hf-local` and `auto`.
-- `auto` cascades cloud-keys-first then local: `VOYAGE_API_KEY` -> `OPENAI_API_KEY` -> `llama-cpp` (default local on Apple Silicon) -> `hf-local` (always-available CPU fallback when llama-cpp init fails).
+- `auto` cascades cloud-keys-first then local: `VOYAGE_API_KEY` -> `OPENAI_API_KEY` -> `llama-cpp` (auto when GGUF runtime is installed; Apple Silicon Metal GPU acceleration when available, CPU fallback otherwise) -> `hf-local` (final fallback when llama-cpp runtime is unavailable).
 - Profiles derive provider, model, dimension, optional base URL and database filename.
 - Provider modules isolate external API and local model behavior from the factory.
 

@@ -1,0 +1,85 @@
+# GATE 3 PRE-ANSWERED — Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/022-local-llm-legacy-remediation` — A) existing. PROCEED. Non-interactive --approval-policy=never.
+
+---
+
+# Batch 9 — Install guide Ollama purge + manual testing playbook softening
+
+## SHIP STATE (binding)
+
+Cascade: VOYAGE_API_KEY -> OPENAI_API_KEY -> llama-cpp (when GGUF runtime installed) -> hf-local.
+- Per user Q1=A, llama-cpp auto-selects when its GGUF runtime is installed (NOT explicit opt-in)
+- The active default profile depends on the runtime — llama-cpp profile when installed, hf-local profile otherwise
+- Ollama / nomic-embed-text is NO LONGER a required or recommended local provider (the actual local cascade is llama-cpp + hf-local with EmbeddingGemma)
+
+## ALLOWED WRITE PATHS
+
+1. `.opencode/install_guides/README.md` (Ollama removal at lines ~600, ~925, ~938, ~1427 + any related context)
+2. `.opencode/skills/system-spec-kit/manual_testing_playbook/23--doctor-commands/323-doctor-memory-fresh-install.md`
+3. `.opencode/skills/system-spec-kit/manual_testing_playbook/23--doctor-commands/324-doctor-memory-drift-detection.md`
+4. `.opencode/skills/system-spec-kit/manual_testing_playbook/23--doctor-commands/325-doctor-memory-long-pole-rebuild.md`
+5. `.opencode/skills/system-spec-kit/manual_testing_playbook/23--doctor-commands/326-doctor-memory-sigint-cancellation.md`
+6. `.opencode/skills/system-spec-kit/manual_testing_playbook/23--doctor-commands/327-doctor-memory-disk-pressure.md`
+7. `.opencode/skills/system-spec-kit/manual_testing_playbook/23--doctor-commands/328-doctor-causal-graph-low-coverage.md`
+8. `.opencode/skills/system-spec-kit/manual_testing_playbook/23--doctor-commands/329-doctor-causal-graph-confidence-threshold.md`
+9. `.opencode/skills/system-spec-kit/manual_testing_playbook/23--doctor-commands/330-doctor-causal-graph-add-only.md`
+10. `.opencode/skills/system-spec-kit/manual_testing_playbook/23--doctor-commands/338-doctor-update-G5-confirm-failure-injection.md`
+11. `.opencode/skills/system-spec-kit/manual_testing_playbook/23--doctor-commands/340-doctor-update-G7-sigint.md`
+
+## BANNED OPERATIONS
+
+- NO rm/mv/sed -i/git/branch
+- NO writes outside ALLOWED WRITE PATHS
+- DO NOT touch 021/022/023 packets, factory/profile/provider code, .codex/.claude/.gemini/.opencode runtime config files, or scripts/setup/install.sh
+
+## REQUIREMENTS
+
+### (A) `.opencode/install_guides/README.md` — Ollama purge + cascade default rewording
+
+A.1 Line ~600 (or nearby): `"EMBEDDINGS_PROVIDER": "hf-local"` appears as an example value in a sample opencode.json snippet. Replace `"hf-local"` with `"auto"` so the example doesn't pin new installs to the fallback provider.
+
+A.2 Lines ~925, ~938: There's an Ollama/nomic verification checklist:
+- `"Ollama running with nomic-embed-text model"` — REMOVE this checklist item entirely (delete the whole bullet line + any surrounding "Ollama" subsection introduction if it's now empty)
+- `ollama list | grep -q "nomic-embed-text" &&` — REMOVE the command (or replace with a hf-local-profile-DB existence check like `test -f .opencode/skills/system-spec-kit/mcp_server/database/context-index__*.sqlite &&`)
+
+A.3 Line ~1427 (quick-reference): `ollama pull nomic-embed-text` — REMOVE entirely. If there's an "Ollama" subsection in the quick reference, delete it (since Ollama is no longer the recommended local path).
+
+A.4 Scan the rest of the file for ANY `ollama` mention or `nomic-embed-text` mention; remove or replace consistently. Use `grep -nE 'ollama|nomic-embed-text' .opencode/install_guides/README.md` to verify zero hits at the end (case-insensitive grep).
+
+### (B) Manual testing playbook softening
+
+The 023 review found that batch 5 introduced wording like "active hf-local default profile" in these doctor-command playbook files. Per Q1=A, the actual active default is llama-cpp WHEN the GGUF runtime is installed, hf-local otherwise. The playbook scenarios should describe the ACTIVE RESOLVED PROFILE generically, not pin to one provider as "the default".
+
+For each playbook file in the allow-list:
+
+B.1 Replace phrases like:
+   - "active hf-local default profile database" → "active resolved profile database (llama-cpp profile when GGUF runtime is installed, hf-local profile otherwise)"
+   - "hf-local default profile" → "active resolved profile"
+   - "for the hf-local default" → "for the active resolved profile"
+   - Specific filename `context-index__hf-local__onnx-community_embeddinggemma-300m-onnx__768__q8.sqlite` used as "THE default" → describe both: "the active profile DB (e.g., `context-index__llama-cpp__unsloth-embeddinggemma-300m-gguf__768__q8.sqlite` when GGUF runtime installed, else `context-index__hf-local__onnx-community_embeddinggemma-300m-onnx__768__q8.sqlite`)"
+
+B.2 Preconditions / setup-step lines that ASSUME hf-local DB filename: rewrite to use a glob `context-index__*.sqlite` or to derive the DB filename at runtime via `resolveActiveProfileDbPath`.
+
+B.3 Pass/fail commands that `test -e` a specific filename should use a glob match instead (or derive via the resolver helper).
+
+B.4 Preserve the SEMANTICS of each scenario — only update the DB filename and profile-naming language. Do NOT touch other steps, expected signals, or pass/fail logic.
+
+B.5 If the SIGINT playbook (326) references the Voyage 1024 checksum fixture, leave the Voyage filename as one valid example (it's correct when VOYAGE_API_KEY is set) but reframe the line so it doesn't claim Voyage is THE default. Same applies to any reference to specific profile DB filenames.
+
+## ACCEPTANCE
+
+After edits:
+- `grep -nE 'ollama|nomic-embed-text' .opencode/install_guides/README.md` (case-insensitive) returns 0
+- `grep -nE 'active hf-local default profile|hf-local default profile database' .opencode/skills/system-spec-kit/manual_testing_playbook/23--doctor-commands/` returns 0
+
+## REPORT
+
+```
+BATCH 9 REPORT
+File: <path> — <N edits> — <summary>
+...
+Scope violations: <none | list>
+Blocked writes: <none | list>
+Total edits: <N>
+```
+
+No commits. No git. Stop after the report.

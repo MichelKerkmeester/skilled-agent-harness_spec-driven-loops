@@ -1160,13 +1160,13 @@ describe('handleMemoryHealth - Happy Path', () => {
     if (!handler?.handleMemoryHealth || !vectorIndex) { throw new Error('Test setup incomplete: memory-crud handler or vector-index unavailable'); }
     installHealthMocks({
       dbAvailable: true,
-      providerMetadata: { provider: 'huggingface', model: 'gte-small', healthy: true },
-      embeddingProfile: { dim: 384, getDatabasePath: (base: string) => base + '/gte.db' },
+      providerMetadata: { provider: 'hf-local', model: 'onnx-community/embeddinggemma-300m-ONNX', healthy: true },
+      embeddingProfile: { dim: 768, getDatabasePath: (base: string) => base + '/context-index__hf-local__onnx-community_embeddinggemma-300m-onnx__768__q8.sqlite' },
     });
     const result = await handler.handleMemoryHealth({});
     const parsed = parseResponse(result);
-    expect(parsed?.data?.embeddingProvider?.provider).toBe('huggingface');
-    expect(parsed?.data?.embeddingProvider?.dimension).toBe(384);
+    expect(parsed?.data?.embeddingProvider?.provider).toBe('hf-local');
+    expect(parsed?.data?.embeddingProvider?.dimension).toBe(768);
   });
 
   it('EXT-H4b: Health resolves lazy profile before reporting provider dimensions', async (ctx) => {

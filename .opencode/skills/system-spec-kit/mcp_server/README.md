@@ -68,7 +68,7 @@ MEMORY_AUTO_MIGRATE_HF_TO_LLAMA=false
 npx tsx .opencode/skills/system-spec-kit/scripts/migrate-embeddings-to-llama-cpp.ts
 ```
 
-Use `EMBEDDINGS_PROVIDER=hf-local` when a host cannot load the GGUF runtime or when you intentionally want the old provider for that run.
+Use `EMBEDDINGS_PROVIDER=hf-local` when a host cannot load the GGUF runtime or when you intentionally want the canonical fallback provider for that run.
 
 <!-- /ANCHOR:overview -->
 

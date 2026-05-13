@@ -42,8 +42,8 @@ Start a full rebuild and Ctrl-C it after ~30 seconds. Verify the index isn't hal
 3. Create a disposable Docker-backed workspace from the current repository.
 4. Confirm both memory DBs exist and at least one pre-doctor snapshot can be created.
 5. Record pre-rebuild checksums:
-   - `shasum .opencode/skills/system-spec-kit/mcp_server/database/context-index__hf-local__onnx-community_embeddinggemma-300m-onnx__768__q8.sqlite`
-   - If `VOYAGE_API_KEY` is set for the sandbox, also record the profile-specific Voyage database checksum, e.g. `.opencode/skills/system-spec-kit/mcp_server/database/context-index__voyage__voyage-4__1024.sqlite`.
+   - `shasum .opencode/skills/system-spec-kit/mcp_server/database/context-index__*.sqlite`
+   - If `VOYAGE_API_KEY` is set for the sandbox, the active resolved profile may be Voyage; record that checksum as a valid profile-specific example, e.g. `.opencode/skills/system-spec-kit/mcp_server/database/context-index__voyage__voyage-4__1024__cloud.sqlite`.
 6. Start `/doctor memory --incremental=false` in the real runtime.
 7. After the command enters Phase 3 rebuild, send Ctrl-C after roughly 30 seconds.
 8. Wait for the command to settle; record whether restore finishes within roughly 5 seconds after SIGINT handling begins.

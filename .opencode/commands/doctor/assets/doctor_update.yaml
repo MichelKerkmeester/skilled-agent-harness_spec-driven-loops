@@ -99,10 +99,8 @@ mutation_boundaries:
   allowed_targets:
     - "mcp_server/database/code-graph.sqlite"  # structural code graph DB
     - "mcp_server/database/code-graph.sqlite.pre-doctor-update.*.bak"
-    - "mcp_server/database/context-index.sqlite"  # memory FTS/metadata DB
-    - "mcp_server/database/context-index.sqlite.pre-doctor-update.*.bak"
-    - "mcp_server/database/context-index__voyage__voyage-4__1024.sqlite"  # memory vector DB
-    - "mcp_server/database/context-index__voyage__voyage-4__1024.sqlite.pre-doctor-update.*.bak"
+    - "mcp_server/database/context-index__*.sqlite"  # active profile memory/vector DB
+    - "mcp_server/database/context-index__*.sqlite.pre-doctor-update.*.bak"
     - "mcp_server/database/skill-graph.sqlite"  # skill routing graph DB
     - "mcp_server/database/skill-graph.sqlite.pre-doctor-update.*.bak"
     - "mcp_server/database/deep-loop-graph.sqlite"  # research/review coverage graph DB
@@ -413,7 +411,16 @@ workflow:
           total_specs=$(find .opencode/specs -mindepth 2 -maxdepth 5 -name 'spec.md' 2>/dev/null | wc -l)
           indexed_specs=$(node -e "
             const Database = require('better-sqlite3');
-            const db = new Database('.opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite');
+            const fs = require('fs');
+            const path = require('path');
+            const dir = '.opencode/skills/system-spec-kit/mcp_server/database';
+            // TODO(022): use resolveActiveProfileDbPath from shared/embeddings/profile.js for unambiguous active-profile selection when multiple provider DBs coexist.
+            const file = fs.readdirSync(dir).find((name) => /^context-index__.*\.sqlite$/.test(name));
+            if (!file) {
+              console.log(0);
+              process.exit(0);
+            }
+            const db = new Database(path.join(dir, file));
             const r = db.prepare(\"SELECT COUNT(DISTINCT spec_folder) AS n FROM memory_index WHERE spec_folder IS NOT NULL\").get();
             console.log(r.n);
             db.close();

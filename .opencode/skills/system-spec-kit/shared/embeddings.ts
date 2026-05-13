@@ -761,11 +761,15 @@ function detectConfiguredModelName(): string {
   const effectiveProvider = providerInfo.effectiveProvider || providerInfo.provider;
   switch (effectiveProvider) {
     case 'voyage':
-      return providerInfo.config.VOYAGE_EMBEDDINGS_MODEL
-        || (process.env.VOYAGE_API_KEY ? 'voyage-4' : DEFAULT_MODEL_NAME);
+      return providerInfo.config.VOYAGE_EMBEDDINGS_MODEL || 'voyage-4';
     case 'openai':
-      return providerInfo.config.OPENAI_EMBEDDINGS_MODEL
-        || (process.env.OPENAI_API_KEY ? 'text-embedding-3-small' : DEFAULT_MODEL_NAME);
+      return providerInfo.config.OPENAI_EMBEDDINGS_MODEL || 'text-embedding-3-small';
+    case 'llama-cpp':
+      return (providerInfo.config.LLAMA_CPP_EMBEDDINGS_MODEL || 'unsloth/embeddinggemma-300m-GGUF')
+        .replace(/\//g, '-')
+        .replace(/[^a-zA-Z0-9-_.]/g, '_')
+        .replace(/__+/g, '_')
+        .toLowerCase();
     case 'hf-local':
     default:
       return providerInfo.config.HF_EMBEDDINGS_MODEL || DEFAULT_MODEL_NAME;

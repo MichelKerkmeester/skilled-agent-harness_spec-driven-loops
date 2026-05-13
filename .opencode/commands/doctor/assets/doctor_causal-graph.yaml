@@ -75,8 +75,8 @@ field_handling:
 # ─────────────────────────────────────────────────────────────────
 mutation_boundaries:
   allowed_targets:
-    - "mcp_server/database/context-index.sqlite"  # host DB for causal_edges table
-    - "mcp_server/database/context-index.sqlite.pre-doctor-causal-graph.*.bak"  # causal-edge snapshot files only
+    - "mcp_server/database/context-index__*.sqlite"  # active profile DB for causal_edges table
+    - "mcp_server/database/context-index__*.sqlite.pre-doctor-causal-graph.*.bak"  # causal-edge snapshot files only
   forbidden_targets:
     - ".opencode/specs/**/*.md"  # never write into spec packet docs from causal doctor
     - ".opencode/specs/**/description.json"  # metadata updates belong to memory-save tooling
@@ -86,7 +86,7 @@ mutation_boundaries:
     - ".opencode/agents/**/*.md"
     - ".opencode/commands/doctor/*.md"
     - ".opencode/commands/doctor/assets/doctor_*.yaml"
-    - "mcp_server/database/context-index__voyage__*.sqlite"
+    - "mcp_server/database/context-index.sqlite*"  # legacy singleton DB path and snapshots
     - "mcp_server/database/*code-graph*"
     - "mcp_server/database/*deep-loop*"
     - "mcp_server/database/*eval*"
@@ -158,7 +158,7 @@ workflow:
     purpose: "Read causal graph coverage and baseline stats."
     activities:
       - "Run: memory_causal_stats({})"
-      - "Bash: stat -f '%m %z' mcp_server/database/context-index.sqlite"
+      - "Bash: stat -f '%m %z' mcp_server/database/context-index__*.sqlite"
       - "Capture total_edges, by_relation, avg_strength, unique_sources, unique_targets, link_coverage_percent, orphanedEdges, health, relationCoverage."
       - "Interactive gate: before_phase_1_analysis"
     outputs:
@@ -171,7 +171,7 @@ workflow:
     validation: discovery_complete
     fail_fast:
       - "memory_causal_stats returns error -> STATUS=FAIL with diagnostic"
-      - "context-index.sqlite missing -> STATUS=MISSING with recommendation to run /doctor memory"
+      - "context-index__*.sqlite missing -> STATUS=MISSING with recommendation to run /doctor memory"
 
   phase_1_analysis:
     purpose: "Sample up to 10 records around drift signals using read-only traversal."
@@ -248,8 +248,7 @@ output_contract:
 # ─────────────────────────────────────────────────────────────────
 halt_conditions:
   - "Phase 0 fails to read memory_causal_stats -> STATUS=FAIL"
-  - "context-index.sqlite missing -> STATUS=MISSING; recommend /doctor memory"
+  - "context-index__*.sqlite missing -> STATUS=MISSING; recommend /doctor memory"
   - "Any phase emits a write attempt -> STATUS=FAIL with ERROR='confirm-mode-mutation-violation'"
   - "Any operation attempts causal_edges deletion -> STATUS=FAIL with ERROR='causal-delete-forbidden'"
   - "User answers n at any interactive gate -> STATUS=CANCELLED and emit state log"
-

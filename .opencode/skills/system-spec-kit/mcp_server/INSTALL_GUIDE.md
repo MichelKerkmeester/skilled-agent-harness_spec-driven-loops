@@ -79,7 +79,7 @@ Spec Kit Memory is an MCP (Model Context Protocol) server that gives AI assistan
 │                                                                 │
 │  SQLite + sqlite-vec for vector storage                         │
 │  Canonical DBs:                                                 │
-│    mcp_server/database/context-index.sqlite (memory)            │
+│    mcp_server/database/context-index__*.sqlite (active profile) │
 │    mcp_server/database/code-graph.sqlite   (structural graph)   │
 └────────────────────┬────────────────────────────────────────────┘
                      │
@@ -110,14 +110,14 @@ This guide addresses the full installation lifecycle and common failures after m
 | Path | Purpose |
 |---|---|
 | `.opencode/skills/system-spec-kit/mcp_server/dist/context-server.js` | MCP entry script |
-| `.opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite` | Default repo-local memory database used by the checked-in configs |
+| `.opencode/skills/system-spec-kit/mcp_server/database/context-index__*.sqlite` | Active repo-local memory database resolved from the embedding profile |
 | `.opencode/skills/system-spec-kit/mcp_server/database/code-graph.sqlite` | Default repo-local structural code-graph database used by the checked-in configs |
 
-The checked-in repo configs currently point `SPEC_KIT_DB_DIR` at `mcp_server/database/`. The runtime then derives the actual sqlite filename from the active embedding profile: local fallback stays on `context-index.sqlite`, while Voyage and OpenAI profiles get their own profile-specific filenames in the same directory. Override `MEMORY_DB_PATH` only when you intentionally want to pin one exact sqlite file.
+The checked-in repo configs currently point `SPEC_KIT_DB_DIR` at `mcp_server/database/`. The runtime derives the active sqlite filename through `shared/embeddings/profile.ts:resolveActiveProfileDbPath`. Local profile filenames are `context-index__llama-cpp__unsloth-embeddinggemma-300m-gguf__768__q8.sqlite` and `context-index__hf-local__onnx-community_embeddinggemma-300m-onnx__768__q8.sqlite`; cloud profiles use the synthetic `cloud` dtype, for example `context-index__voyage__voyage-4__1024__cloud.sqlite` and `context-index__openai__text-embedding-3-small__1536__cloud.sqlite`. Override `MEMORY_DB_PATH` only when you intentionally want to pin one exact sqlite file.
 
 The Code Graph system uses a separate database stored alongside the spec-doc record index:
 
-- `code-graph.sqlite` (auto-created on first `code_graph_scan`, stored alongside `context-index.sqlite`)
+- `code-graph.sqlite` (auto-created on first `code_graph_scan`, stored alongside the active `context-index__*.sqlite` profile DB)
 - Tables: `code_files` (indexed source files), `code_nodes` (symbols), `code_edges` (relationships)
 - Edge types: `CONTAINS`, `CALLS`, `IMPORTS`, `EXPORTS`, `EXTENDS`, `IMPLEMENTS`, `DECORATES`, `OVERRIDES`, `TYPE_OF`
 
@@ -206,10 +206,9 @@ This installs:
 - `sqlite-vec` (vector extension for semantic search)
 - `web-tree-sitter` (WASM-based tree-sitter bindings, no native compilation)
 - `tree-sitter-wasms` (pre-compiled WASM grammar bundles for JS, TS, Python, Bash)
-- `@huggingface/transformers` (local embedding model)
+- `@huggingface/transformers` (local embedding runtime used by the hf-local provider). Note: this package brings `onnxruntime-common` as an internal transitive dependency for Transformers.js model execution; this is not a standalone ONNX backend selection, and no user-facing ONNX runtime installation is required.
 - `@modelcontextprotocol/sdk` (MCP protocol implementation)
 - `chokidar` (file watching for auto-indexing)
-- `onnxruntime-common` (ONNX model runtime)
 - `zod` (schema validation)
 
 Platform-specific optional packages installed automatically when the platform matches:
@@ -823,7 +822,8 @@ Search memory for why we chose SQLite over PostgreSQL
 # Symptom: Search returns no results
 
 # Check the database:
-sqlite3 .opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite \
+ACTIVE_DB=$(ls .opencode/skills/system-spec-kit/mcp_server/database/context-index__*.sqlite | head -n 1)
+sqlite3 "$ACTIVE_DB" \
   "SELECT COUNT(*) FROM memory_index"
 # Shows the spec-doc record count
 
@@ -945,10 +945,11 @@ ls scripts/node_modules/sqlite-vec-darwin-arm64/vec0.dylib
 Check the database:
 
 ```bash
-sqlite3 .opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite \
+ACTIVE_DB=$(ls .opencode/skills/system-spec-kit/mcp_server/database/context-index__*.sqlite | head -n 1)
+sqlite3 "$ACTIVE_DB" \
   "SELECT COUNT(*) FROM memory_index"
 
-sqlite3 .opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite \
+sqlite3 "$ACTIVE_DB" \
   "SELECT embedding_status, COUNT(*) FROM memory_index GROUP BY embedding_status"
 ```
 
@@ -1016,7 +1017,8 @@ Use this procedure when an update leaves the server broken and you need to resto
 **Step 1: Back up the current database (if it has data you want to keep)**
 
 ```bash
-cp .opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite \
+ACTIVE_DB=.opencode/skills/system-spec-kit/mcp_server/database/context-index__llama-cpp__unsloth-embeddinggemma-300m-gguf__768__q8.sqlite
+cp "$ACTIVE_DB" \
    .opencode/skills/system-spec-kit/mcp_server/database/rollback-$(date +%Y%m%d-%H%M%S).sqlite
 ```
 
@@ -1056,7 +1058,7 @@ bash scripts/setup/check-native-modules.sh
 
 ```bash
 cp .opencode/skills/system-spec-kit/mcp_server/database/rollback-YYYYMMDD-HHMMSS.sqlite \
-   .opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite
+   "$ACTIVE_DB"
 ```
 
 **Step 7: Restart your AI client and re-index**
@@ -1078,7 +1080,7 @@ This calls `memory_index_scan({ force: true })` to repopulate the search index f
 | Path | Purpose |
 |---|---|
 | `.opencode/skills/system-spec-kit/mcp_server/dist/context-server.js` | MCP server entry point |
-| `.opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite` | Canonical database (runtime) |
+| `.opencode/skills/system-spec-kit/mcp_server/database/context-index__*.sqlite` | Active profile database resolved by `shared/embeddings/profile.ts:resolveActiveProfileDbPath` |
 | `.opencode/skills/system-spec-kit/mcp_server/database/code-graph.sqlite` | Structural code-graph database |
 | `.opencode/skills/system-spec-kit/scripts/setup/check-prerequisites.sh` | Verify Node.js version and prerequisites |
 | `.opencode/skills/system-spec-kit/scripts/setup/check-native-modules.sh` | Native module diagnostics |
@@ -1110,14 +1112,15 @@ node mcp_server/dist/context-server.js
 python3 -m json.tool < opencode.json > /dev/null
 
 # Database inspection
-sqlite3 mcp_server/database/context-index.sqlite \
+ACTIVE_DB=$(ls mcp_server/database/context-index__*.sqlite | head -n 1)
+sqlite3 "$ACTIVE_DB" \
   "SELECT COUNT(*) FROM memory_index"
 
-sqlite3 mcp_server/database/context-index.sqlite \
+sqlite3 "$ACTIVE_DB" \
   "SELECT embedding_status, COUNT(*) FROM memory_index GROUP BY embedding_status"
 
 # Backup database
-cp mcp_server/database/context-index.sqlite \
+cp "$ACTIVE_DB" \
   mcp_server/database/backup-$(date +%Y%m%d-%H%M%S).sqlite
 
 # Validate documentation wikilinks
@@ -1135,7 +1138,7 @@ PREREQS:      bash scripts/setup/check-prerequisites.sh
 NATIVE CHECK: bash scripts/setup/check-native-modules.sh
 NATIVE FIX:   bash scripts/setup/rebuild-native-modules.sh
 SMOKE TEST:   node mcp_server/dist/context-server.js
-DB PATH:      mcp_server/database/context-index.sqlite
+DB PATH:      mcp_server/database/context-index__*.sqlite (active profile)
 GRAPH LINKS:  bash scripts/check-links.sh
 PHASE VALID:  bash scripts/validate.sh specs/NNN-name --recursive
 
@@ -1159,6 +1162,6 @@ MCP TOOLS: memory_context, memory_search, memory_match_triggers,
 
 | Version | Date | Summary |
 |---|---|---|
-| v1.7.2 | 2026-03-15 | Dependency audit: `sqlite-vec-darwin-arm64` moved to `optionalDependencies`. Added `@huggingface/transformers`, `chokidar`, `onnxruntime-common`, `zod`. `node-llama-cpp` added as optional. Rollback procedure added. Prerequisites script (`check-prerequisites.sh`) documented. |
+| v1.7.2 | 2026-03-15 | Dependency audit: `sqlite-vec-darwin-arm64` moved to `optionalDependencies`. Added `@huggingface/transformers` (with `onnxruntime-common` transitively), `chokidar`, `zod`. `node-llama-cpp` added as optional. Rollback procedure added. Prerequisites script (`check-prerequisites.sh`) documented. |
 | v1.7.x | 2026-02-20 | Cross-encoder reranking enabled by default. Co-activation score boost fix. Query expansion on deep mode. Evidence gap warnings. MMR reranking with intent-mapped lambda. Phase system support (recursive validation, phase detection scoring). Feature flag updates. `memory_context` tokenUsage parameter. 28-tool surface area. |
 | v1.x | 2025 | Adaptive fusion, extended telemetry, artifact-class routing, append-only mutation ledger, typed retrieval contracts. Semantic search, trigger matching, intent-aware context, session deduplication. |

@@ -40,7 +40,7 @@ Run /doctor:update. We'll force a failure on causal-edges-init to test rollback.
 
 1. Create a disposable workspace and confirm the required SQLite DBs exist.
 2. Export `SPECKIT_FAIL_STEP=causal-edges-init` for the command runtime.
-3. Record pre-run checksums for the active profile-derived Memory MCP database and downstream DBs that can be affected by rollback.
+3. Record pre-run checksums for the active resolved profile Memory MCP database and downstream DBs that can be affected by rollback.
 4. Run `/doctor:update` through the real runtime.
 5. Approve prompts through snapshot and dependency execution until the injected `causal-edges-init` failure fires.
 6. Capture the failure prompt and select rollback.
@@ -50,7 +50,7 @@ Run /doctor:update. We'll force a failure on causal-edges-init to test rollback.
 
 ### Expected
 
-The command loads `doctor_update.yaml`, snapshots the in-scope SQLite DBs, reaches `causal-edges-init`, and fails only because `SPECKIT_FAIL_STEP=causal-edges-init` requested a synthetic failure. Interactive mode offers retry from start, rollback snapshot and exit, or leave as-is. Selecting rollback restores the active profile-derived Memory MCP database and any downstream affected DBs from snapshots and records final status as rolled back or failed-with-rollback.
+The command loads `doctor_update.yaml`, snapshots the in-scope SQLite DBs, reaches `causal-edges-init`, and fails only because `SPECKIT_FAIL_STEP=causal-edges-init` requested a synthetic failure. Interactive mode offers retry from start, rollback snapshot and exit, or leave as-is. Selecting rollback restores the active resolved profile Memory MCP database and any downstream affected DBs from snapshots and records final status as rolled back or failed-with-rollback.
 
 ### Evidence
 
@@ -69,7 +69,7 @@ The command loads `doctor_update.yaml`, snapshots the in-scope SQLite DBs, reach
 
 ### Failure Triage
 
-If the failure is not injected, verify the runtime propagates `SPECKIT_FAIL_STEP` into the YAML execution environment. If rollback is not offered, inspect `doctor_update.yaml` `failure_options` and Phase 5 failure policy. If checksums differ, treat it as a rollback failure and inspect snapshot restore ordering for the active profile-derived Memory MCP database and downstream DBs.
+If the failure is not injected, verify the runtime propagates `SPECKIT_FAIL_STEP` into the YAML execution environment. If rollback is not offered, inspect `doctor_update.yaml` `failure_options` and Phase 5 failure policy. If checksums differ, treat it as a rollback failure and inspect snapshot restore ordering for the active resolved profile Memory MCP database and downstream DBs.
 
 ## 4. SOURCE FILES
 

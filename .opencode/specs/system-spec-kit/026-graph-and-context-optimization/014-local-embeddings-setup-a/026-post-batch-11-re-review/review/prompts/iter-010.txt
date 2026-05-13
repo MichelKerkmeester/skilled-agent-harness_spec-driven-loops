@@ -1,0 +1,170 @@
+You are iteration 10 of 10 in a POST-REMEDIATION RE-REVIEW. Packet 021 ran the original deep-review; packet 022 just landed 5 batches of fixes. Your job is to confirm 022's fixes are clean AND surface any genuinely NEW residue 022 missed or introduced.
+
+CRITICAL — USER CLARIFICATIONS (these REVERSE earlier framings; treat as binding ground truth):
+
+Q1 (User answered A): The actual ship state is EMBEDDINGS_PROVIDER=auto cascading Voyage -> OpenAI -> llama-cpp (auto-selected when GGUF runtime installed) -> hf-local. **llama-cpp auto-select-when-installed IS the intended default behavior**, NOT explicit opt-in. The 014/017 implementation-summary's "explicit opt-in" wording was the BUG; the code is correct. Batch 1 of 022 already fixed the 014 narrative to reflect this.
+
+Q2 (User answered yes): Voyage auto-pick when VOYAGE_API_KEY is set is INTENTIONAL. The Voyage -> OpenAI -> llama-cpp -> hf-local cascade is the canonical resolver order, NOT residue. Do NOT flag the cascade itself.
+
+POST-014 + POST-022 CANONICAL DEFAULTS (treat as ground truth):
+- Auto-cascade resolver order: VOYAGE_API_KEY (Voyage) -> OPENAI_API_KEY (OpenAI) -> llama-cpp (when GGUF runtime installed) -> hf-local
+- Memory MCP hf-local fallback: onnx-community/embeddinggemma-300m-ONNX, dtype=q8, dims=768
+- CocoIndex sentence-transformers default: google/embeddinggemma-300m, dtype=bf16, dims=768
+- Voyage default model: voyage-4, dims=1024
+- OpenAI default model: text-embedding-3-small, dims=1536
+- Sqlite filenames are profile-keyed: context-index__<provider>__<safe-model>__<dim>__<dtype>.sqlite (resolved via shared/embeddings/profile.ts:resolveActiveProfileDbPath)
+- ONNX runtime backend: REJECTED (014/014 reverted); onnxruntime-node and onnxruntime-common removed from package.jsons
+
+TRUE RESIDUE (FLAG as P1 if found):
+- Docs or configs claiming a DIFFERENT default for hf-local than EmbeddingGemma (e.g. still naming nomic-ai/nomic-embed-text-v1.5 or all-MiniLM-L6-v2 as the current default)
+- Docs claiming "llama-cpp explicit opt-in" or "hf-local restored as automatic default" (contradicts Q1=A)
+- Marketing claims like "Voyage recommended (8% better than OpenAI)" or "(primary)" attached to voyage-code-3 in default contexts
+- Hardcoded literal "context-index.sqlite" or "context-index__voyage__voyage-4__1024.sqlite" in production code (NOT in vitest temp-dir patterns)
+- onnxruntime-node or onnxruntime-common references in production code (NOT in z_archive)
+- 384-dim claims as a current default (MiniLM-era)
+- Stale test assertions expecting nomic-ai/nomic-embed-text-v1.5 or 384 dims
+
+INTENTIONAL — DO NOT FLAG (these are CORRECT per Q1=A, Q2=yes, or test patterns):
+- The Voyage -> OpenAI -> llama-cpp -> hf-local cascade DESCRIPTION wherever it appears (correct precedence)
+- "Default DB: context-index__llama-cpp__unsloth-embeddinggemma-300m-gguf__768__q8.sqlite" in committed runtime configs (this names the actual default DB when llama-cpp is auto-selected, which is intended)
+- llama-cpp named as "default local provider" or "default when no cloud keys" in docs (correct per Q1=A)
+- factory.ts auto-select-llama-cpp logic (intended behavior)
+- voyage.ts / openai.ts / hf-local.ts provider implementations (intended)
+- Voyage registry entries in factory.ts for model dimensions (legacy-model-lookup support, intended)
+- nomic-ai/nomic-embed-text-v1.5 in shared/embeddings/factory.ts and providers/hf-local.ts model-dim registries (intentional legacy-model-lookup support; user can opt in via HF_EMBEDDINGS_MODEL)
+- .opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/** migration narrative (historical record)
+- .opencode/specs/**/z_archive/** any content (frozen history)
+- .opencode/specs/**/review/logs/** stderr/stdout files (forensic transcripts of past review runs; not source)
+- .opencode/specs/**/review/iterations/** of OTHER packets (frozen review artifacts)
+- evidence/*.txt or evidence/*.jsonl files (forensic records)
+- vitest temp-dir patterns using "context-index.sqlite" as a fixed test filename (correct test idiom)
+- test_backward_compat.py asserting old model strings (regression safety)
+- doctor_memory.yaml / _routes.yaml provider-detection branches (required for /doctor diagnostics)
+- 021-local-llm-legacy-review/**, 022-local-llm-legacy-remediation/**, 026-post-batch-11-re-review/** (own packets, not target)
+
+SCOPE SURFACES (read-only):
+1. Code .ts/.py/.cjs under: shared/, .opencode/skills/, scripts/, mcp_server/, cocoindex_code/
+2. Markdown .md/SKILL.md/README/INSTALL_GUIDE under: .opencode/skills/**, .opencode/install_guides/, repo root
+3. JSON/configs: description.json, graph-metadata.json (per packet), package.json, .utcp_config.json, .claude/mcp.json, root .mcp.json, opencode.json, _routes.yaml, .codex/config.toml, .gemini/settings.json, pyproject.toml, requirements*.txt, .opencode/settings*.json, .claude/settings*.json
+4. Assets/templates/fixtures: assets/config_templates.md, prompt packs, test fixtures, frozen sample text
+5. References: .opencode/skills/**/references/**
+
+REVIEW DIMENSIONS (categorize each finding under exactly one):
+- correctness: dead/unreachable code, incorrect defaults asserted in code, config-drift between committed configs
+- traceability: stale docs/READMEs/SKILL.md/INSTALL_GUIDE/references claiming outdated defaults
+- maintainability: fixture rot, asset rot, orphaned templates, legacy prompt-pack residue
+
+SEVERITY LEVELS:
+- P0 (Blocker): default-asserting code/doc that BREAKS post-014 behavior or actively misleads users into wrong setup
+- P1 (Required): visible/user-facing doc or config asserting a different default than canonical post-014
+- P2 (Suggestion): commented-out residue, obsolete example, redundant fixture
+
+BANNED OPERATIONS (RM-8 Layer 1):
+- NO rm, NO rm -rf, NO git rm, NO mv, NO sed -i, NO rmdir
+- NO writes outside the iteration file at the exact path given below
+- NO commits, NO branch creation
+- READ-ONLY against repo except your iteration file
+If you detect a need to mutate, record it as a "scope_violation" finding instead of executing.
+
+YOUR TASK FOR THIS ITERATION (#10):
+1. Focus dimension for this iter: correctness
+2. Use rg/grep + Read across the scope surfaces. Discriminate residue from intentional historical context.
+3. Produce EXACTLY ONE file: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/026-post-batch-11-re-review/review/iterations/iteration-010.md
+4. The file must be markdown with this structure:
+
+# Iteration 010 — Local-LLM Legacy Hunt
+
+## Focus
+[one paragraph: what you scanned this iteration and why]
+
+## Findings
+
+| ID | Severity | Dimension | File:Line | Evidence (quote) | Disposition | Recommendation |
+|----|----------|-----------|-----------|------------------|-------------|----------------|
+| L-010-001 | P1 | traceability | path/to/file:N | "quoted snippet" | confirmed-residue | [short fix recommendation] |
+| ... | ... | ... | ... | ... | ... | ... |
+
+## Iteration summary
+- Files scanned: N
+- New findings: N (P0=N, P1=N, P2=N)
+- Out-of-scope/historical noted but NOT flagged: N
+- Notes: [anything for the synthesizer]
+
+CONSTRAINTS:
+- 5–15 NEW findings per iter (avoid duplicating prior iterations — see prior findings below)
+- Each finding MUST have a real file:line evidence quote (no hallucinated paths)
+- If you cannot find new genuine residue, output fewer findings + note "saturation" in iteration summary
+- Skip files inside /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/026-post-batch-11-re-review (this review packet itself)
+- Skip files inside .git/, node_modules/, __pycache__/, .venv/, dist/, build/, _sandbox/
+
+WRITE ONLY /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/026-post-batch-11-re-review/review/iterations/iteration-010.md. DO NOT WRITE ANYWHERE ELSE.
+
+
+PRIOR ITERATIONS FINDINGS (avoid duplicate flags — these are already covered):
+
+--- iteration-001.md ---
+| L-001-001 | P1 | correctness | .vscode/mcp.json:20 | "Current: 'auto' (VOYAGE_API_KEY -> OPENAI_API_KEY -> hf-local). Options: 'auto', 'voyage', 'openai', 'hf-local'" | confirmed-residue | Update VS Code MCP config to the canonical auto cascade and include `llama-cpp` in provider options. |
+| L-001-002 | P1 | correctness | .vscode/mcp.json:22 | "Get Voyage key: https://dash.voyageai.com/api-keys (recommended, 8% better than OpenAI)" | confirmed-residue | Remove the unsupported "recommended, 8% better than OpenAI" marketing claim from the live config note. |
+| L-001-003 | P1 | correctness | .vscode/mcp.json:39 | "Default embedding: all-MiniLM-L6-v2 (local, no API key needed)" | confirmed-residue | Replace the CocoIndex default note with `google/embeddinggemma-300m` / 768-dim sentence-transformers wording. |
+| L-001-004 | P1 | correctness | .opencode/commands/doctor/update.md:121 | "LONG-POLE: memory_index_scan over context-index + voyage vector DB." | confirmed-residue | Make the `/doctor:update` prompt provider-neutral and refer to the active profile DB(s), not Voyage specifically. |
+| L-001-005 | P1 | correctness | .claude/commands/doctor/update.md:121 | "LONG-POLE: memory_index_scan over context-index + voyage vector DB." | confirmed-residue | Mirror the provider-neutral `/doctor:update` prompt wording in the Claude command pack. |
+| L-001-006 | P1 | correctness | .gemini/commands/doctor/update.toml:2 | "LONG-POLE: memory_index_scan over context-index + voyage vector DB." | confirmed-residue | Regenerate or patch the Gemini command pack from the corrected provider-neutral doctor update source. |
+
+--- iteration-002.md ---
+| L-002-001 | P1 | traceability | .opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/017-llama-cpp-default-flip/description.json:5 | "auto mode was restored to hf-local and llama-cpp remains explicit opt-in" | confirmed-residue | Refresh the packet description metadata to match the clarified outcome: llama-cpp became the intended auto local default when the GGUF runtime is installed, with hf-local as fallback. |
+| L-002-002 | P1 | traceability | .opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/017-llama-cpp-default-flip/graph-metadata.json:54 | "auto mode was restored to hf-local and llama-cpp remains explicit opt-in" | confirmed-residue | Regenerate or patch the graph metadata causal summary so memory/graph retrieval does not resurface the reversed 017 framing. |
+| L-002-003 | P2 | traceability | .opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/29-setup-native-module-health-and-mcp-installation.md:32 | "attempts to load `better-sqlite3` plus optional `onnxruntime-node` and `sharp` installs" | confirmed-residue | Update the feature catalog entry to match `scripts/setup/check-native-modules.sh`, which now probes `better-sqlite3` and optional `sharp` only. |
+
+--- iteration-003.md ---
+| L-003-001 | P1 | maintainability | .opencode/skills/system-spec-kit/scripts/setup/install.sh:195 | "otherwise HF local fallback stays active" | confirmed-residue | Update the generated MCP config note to document the full auto cascade: Voyage -> OpenAI -> llama-cpp when GGUF runtime is installed -> hf-local fallback. |
+| L-003-002 | P1 | maintainability | .opencode/skills/system-spec-kit/mcp_server/tests/embeddings.vitest.ts:103 | "auto mode defaults to hf-local with no keys" | confirmed-residue | Rework the provider-resolution test so no-key auto mode expects llama-cpp when the GGUF runtime probe succeeds and hf-local only when that probe is unavailable. |
+| L-003-003 | P1 | maintainability | .gemini/commands/doctor.toml:2 | "`memory`        \| `mcp_server/database/context-index.sqlite` + voyage embedding DB" | confirmed-residue | Regenerate the Gemini `/doctor` command pack from the corrected router source so it names provider-keyed active profile DBs instead of the singleton plus Voyage DB. |
+| L-003-004 | P2 | maintainability | .gemini/scripts/spec-kit-memory.sh:32 | "DEFAULT_DB_PATH=\"${REPO_ROOT}/.opencode/skills/system-spec-kit/mcp_server/database/context-index__hf-local__onnx-community_embeddinggemma-300m-onnx__768__q8.sqlite\"" | confirmed-residue | Remove the unused `DEFAULT_DB_PATH` or rename it to an explicit hf-local fallback constant so the launcher does not imply hf-local is the default active DB. |
+| L-003-005 | P2 | maintainability | PUBLIC_RELEASE.md:25 | "context-index.sqlite" | confirmed-residue | Refresh the public release layout example to show provider-keyed active profile DB filenames or a neutral `context-index__<provider>__<safe-model>__<dim>__<dtype>.sqlite` placeholder. |
+
+--- iteration-004.md ---
+| L-004-001 | P1 | correctness | .opencode/commands/doctor/scripts/mcp-doctor.sh:204 | "Fallback: hf-local default profile (covers fresh-install case before any provider DB exists)" | confirmed-residue | Replace the shell fallback with the canonical local default profile (`llama-cpp` when GGUF runtime is installed) or call the shared profile resolver instead of hardcoding hf-local. |
+| L-004-002 | P1 | correctness | .claude/commands/doctor/scripts/mcp-doctor.sh:204 | "Fallback: hf-local default profile (covers fresh-install case before any provider DB exists)" | confirmed-residue | Mirror the corrected doctor MCP database probe so Claude's command pack does not treat hf-local as the fresh-install default. |
+| L-004-003 | P2 | correctness | .opencode/skills/system-spec-kit/scripts/tests/test-folder-detector-functional.js:22 | "const REAL_DB_PATH = path.join(SKILL_ROOT, 'mcp_server/database/context-index.sqlite');" | confirmed-residue | Update the functional test to locate the active provider-keyed DB or inject a disposable `MEMORY_DB_PATH`; avoid the singleton production DB path. |
+| L-004-004 | P2 | correctness | .opencode/skills/system-spec-kit/scripts/tests/fixtures/manual-playbook-fixture.ts:609 | "MEMORY_DB_PATH points directly to the active hf-local default profile database (${DEFAULT_HF_LOCAL_DB_FILE}) for disposable fixtures." | confirmed-residue | Reword the generated fixture note to say it pins an explicit disposable hf-local fixture DB, not the active/default profile. |
+| L-004-005 | P2 | correctness | .opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-generator.ts:100 | "IDs were mapped from the production context-index.sqlite DB via" | confirmed-residue | Make the eval comment provider-neutral, e.g. "active profile DB", so future eval maintenance does not chase the retired singleton filename. |
+
+--- iteration-005.md ---
+| L-005-001 | P1 | traceability | .opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/017-llama-cpp-default-flip/spec.md:17 | "Keep auto mode on hf-local; use llama-cpp only with explicit EMBEDDINGS_PROVIDER=llama-cpp" | confirmed-residue | Update the continuity next action to the clarified canonical state: auto mode can select llama-cpp when the GGUF runtime is available, with hf-local only as fallback. |
+| L-005-002 | P1 | traceability | .opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/017-llama-cpp-default-flip/spec.md:71 | "The automatic default was therefore restored to `hf-local`; `llama-cpp` remains explicit opt-in." | confirmed-residue | Rewrite the outcome paragraph to record the user-accepted flip: llama-cpp became the intended automatic local default when installed. |
+| L-005-003 | P1 | traceability | .opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/017-llama-cpp-default-flip/spec.md:103 | "Documented hf-local auto default and llama-cpp explicit opt-in" | confirmed-residue | Replace this file-change summary with the canonical runtime-note cascade: Voyage -> OpenAI -> llama-cpp -> hf-local. |
+| L-005-004 | P1 | traceability | .opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/017-llama-cpp-default-flip/plan.md:73 | "`llama-cpp` remains a supported provider, but after Phase 4 the auto fallback path is:" | confirmed-residue | Change the architecture section so `llama-cpp` is part of the auto resolver order before `hf-local`, not merely a supported explicit provider. |
+| L-005-005 | P1 | traceability | .opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/017-llama-cpp-default-flip/plan.md:93 | "Codex, Claude, Gemini, OpenCode notes updated to final hf-local default" | confirmed-residue | Replace "final hf-local default" with "final auto cascade" and name the llama-cpp local-default branch. |
+| L-005-006 | P1 | traceability | .opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/017-llama-cpp-default-flip/checklist.md:63 | "Auto mode restored to hf-local after failed probe." | confirmed-residue | Update the checklist evidence to reflect the post-clarification outcome: auto mode selects llama-cpp when available and falls back to hf-local. |
+| L-005-007 | P1 | traceability | .opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/017-llama-cpp-default-flip/tasks.md:70 | "`.codex/config.toml` final hf-local default notes" | confirmed-residue | Update the runtime-config task evidence to say the notes document the canonical auto cascade, not an hf-local default. |
+| L-005-008 | P1 | traceability | .opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/017-llama-cpp-default-flip/tasks.md:100 | "Auto provider resolution restored to hf-local after the MILD_DIVERGENCE verdict." | confirmed-residue | Replace this completion criterion with the clarified accepted flip and hf-local fallback behavior. |
+
+--- iteration-006.md ---
+| L-006-001 | P1 | maintainability | barter/.codex/config.toml:15 | "MEMORY_DB_PATH = \".opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite\"" | confirmed-residue | Remove the singleton `MEMORY_DB_PATH` pin and let the shared profile resolver derive the provider-keyed sqlite filename. |
+| L-006-002 | P1 | maintainability | barter/.codex/config.toml:20 | "_NOTE_3_EMBEDDINGS_PROVIDER = \"Current: 'hf-local' (free, offline). Options: 'auto', 'voyage', 'openai'\"" | confirmed-residue | Update the Codex scaffold note to the canonical `auto` cascade and include `llama-cpp` plus `hf-local` in the provider options. |
+| L-006-003 | P1 | maintainability | barter/.codex/config.toml:39 | "_NOTE_2 = \"Default embedding: all-MiniLM-L6-v2 (local, no API key needed)\"" | confirmed-residue | Replace the CocoIndex default note with `google/embeddinggemma-300m`, bf16, 768-dim sentence-transformers wording. |
+| L-006-004 | P1 | maintainability | barter/opencode.json:88 | "\"_NOTE_3_EMBEDDINGS_PROVIDER\": \"Current: 'auto' (VOYAGE_API_KEY -> OPENAI_API_KEY -> hf-local). Options: 'auto', 'voyage', 'openai', 'hf-local'\"," | confirmed-residue | Regenerate the Barter OpenCode config note so the cascade includes `llama-cpp` between OpenAI and `hf-local`. |
+| L-006-005 | P1 | maintainability | barter/opencode.json:90 | "\"_NOTE_5_GET_VOYAGE_KEY\": \"Get Voyage key: https://dash.voyageai.com/api-keys (recommended, 8% better than OpenAI)\"," | confirmed-residue | Remove the unsupported Voyage marketing claim from the Barter OpenCode config copy. |
+| L-006-006 | P1 | maintainability | barter/opencode.json:104 | "\"_NOTE_2\": \"Default embedding: all-MiniLM-L6-v2 (local, no API key needed)\"," | confirmed-residue | Refresh the Barter CocoIndex config copy to the canonical EmbeddingGemma default. |
+| L-006-007 | P1 | maintainability | barter/.vscode/mcp.json:20 | "\"_NOTE_3_EMBEDDINGS_PROVIDER\": \"Current: 'auto' (VOYAGE_API_KEY -> OPENAI_API_KEY -> hf-local). Options: 'auto', 'voyage', 'openai', 'hf-local'\"," | confirmed-residue | Regenerate the Barter VS Code MCP config from the corrected provider-cascade template. |
+| L-006-008 | P1 | maintainability | barter/.vscode/mcp.json:33 | "\"_NOTE_2\": \"Default embedding: all-MiniLM-L6-v2 (local, no API key needed)\"" | confirmed-residue | Replace the stale MiniLM default with `google/embeddinggemma-300m` / 768-dim wording. |
+| L-006-009 | P1 | maintainability | barter/.opencode/skills/mcp-coco-index/references/settings_reference.md:43 | "| `embedding.model`    | string        | `sentence-transformers/all-MiniLM-L6-v2`   | Model identifier passed to the provider          |" | confirmed-residue | Update the Barter CocoIndex settings reference default to `google/embeddinggemma-300m`. |
+| L-006-010 | P1 | maintainability | barter/.opencode/skills/mcp-coco-index/references/settings_reference.md:127 | "| `sentence-transformers/all-MiniLM-L6-v2` | sentence-transformers | None | 384 | Local, offline, current default |" | confirmed-residue | Change this model table so EmbeddingGemma is the current default and MiniLM is not presented as 384-dim current state. |
+| L-006-011 | P1 | maintainability | barter/.opencode/skills/mcp-coco-index/feature_catalog/03--indexing-pipeline/04-embedding-provider-selection.md:23 | "Default user settings choose `sentence-transformers/all-MiniLM-L6-v2`." | confirmed-residue | Regenerate the Barter CocoIndex feature-catalog entry from the updated EmbeddingGemma default documentation. |
+| L-006-012 | P1 | maintainability | barter/.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:116 | "local fallback stays on `context-index.sqlite`, while Voyage and OpenAI profiles get their own profile-specific filenames in the same directory." | confirmed-residue | Replace the singleton fallback description with provider-keyed filenames for all active profiles, including hf-local and llama-cpp. |
+| L-006-013 | P1 | maintainability | barter/.opencode/skills/system-spec-kit/package.json:39 | "\"onnxruntime-node\": {" | confirmed-residue | Remove the stale `onnxruntime-node` override from the Barter system-spec-kit package mirror. |
+| L-006-014 | P1 | maintainability | barter/.opencode/skills/system-spec-kit/mcp_server/package.json:58 | "\"onnxruntime-common\": \"^1.21.0\"," | confirmed-residue | Remove the stale direct `onnxruntime-common` dependency from the Barter MCP server package mirror. |
+| L-006-015 | P1 | maintainability | barter/.opencode/skills/system-spec-kit/mcp_server/tests/embeddings.vitest.ts:103 | "it('T513-01d: auto mode defaults to hf-local with no keys', () => {" | confirmed-residue | Port the Barter embedding tests to the post-014 resolver expectation: no-key auto can select `llama-cpp` when the GGUF runtime is installed, then fall back to `hf-local`. |
+
+--- iteration-007.md ---
+| L-007-001 | P1 | correctness | .opencode/skills/system-spec-kit/package-lock.json:7470 | `"onnxruntime-node": "1.21.0",` | confirmed-residue | Regenerate or repair the lockfile so the rejected ONNX runtime package is not still installed through the committed dependency graph, or explicitly document why this transitive runtime remains unavoidable. |
+| L-007-002 | P2 | correctness | .opencode/skills/system-spec-kit/scripts/evals/run-bm25-baseline.ts:10 | `// Live production context-index.sqlite and record results in the` | confirmed-residue | Update the script comment to say it runs against the active provider-profile database resolved by `resolveActiveProfileDbPath`. |
+| L-007-003 | P2 | correctness | .opencode/skills/system-spec-kit/mcp_server/scripts/migrations/restore-checkpoint.ts:169 | `` `${toTimestampId(now)}__pre-restore-context-index.sqlite`, `` | confirmed-residue | Make the backup filename derive from the actual target DB basename so checkpoint restores do not keep emitting singleton-style artifact names. |
+
+--- iteration-008.md ---
+| L-008-001 | P1 | traceability | .opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:209 | "`@huggingface/transformers` (local embedding model; brings `onnxruntime-common` transitively for Transformers.js internals)" | confirmed-residue | Remove the current install-guide dependency claim for `onnxruntime-common`, or rewrite it to state that the rejected ONNX runtime backend is not an installed/runtime dependency in the post-014 path. |
+| L-008-002 | P2 | traceability | .opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:1165 | "Added `@huggingface/transformers` (with `onnxruntime-common` transitively), `chokidar`, `zod`." | confirmed-residue | Add a supersession note or update the version-history entry so readers do not carry the rejected ONNX runtime dependency forward as current installation guidance. |
+
+--- iteration-009.md ---
+| L-009-001 | P2 | maintainability | .opencode/skills/system-spec-kit/scripts/tests/fixtures/manual-playbook-fixture.js:380 | "MEMORY_DB_PATH points directly to context-index.sqlite for disposable fixtures." | confirmed-residue | Regenerate or patch the compiled manual-playbook fixture so the disposable DB note uses provider-neutral wording, matching the post-014 profile-keyed filename model. |
+

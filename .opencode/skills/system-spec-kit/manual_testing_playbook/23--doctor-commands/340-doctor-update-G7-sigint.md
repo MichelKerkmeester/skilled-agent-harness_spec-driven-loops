@@ -39,7 +39,7 @@ Start /doctor:update, then Ctrl-C ~30 sec into the memory rebuild step.
 ### Commands
 
 1. Create a disposable workspace with the current spec-kit databases.
-2. Confirm snapshots are enabled and record pre-run checksums for the active profile-derived Memory MCP database and the vector index database.
+2. Confirm snapshots are enabled and record pre-run checksums for the active resolved profile Memory MCP database and the vector index database.
 3. Run `/doctor:update` through the real runtime.
 4. Wait until Phase 5 enters `context-index` or `memory_index_scan({ incremental: false, force: true })`.
 5. Send Ctrl-C roughly 30 seconds into the memory rebuild step.
@@ -54,7 +54,7 @@ The command loads `doctor_update.yaml`, skips the status decision gate, begins t
 
 ### Evidence
 
-- Pre-run checksums for the active profile-derived Memory MCP database and the vector DB.
+- Pre-run checksums for the active resolved profile Memory MCP database and the vector DB.
 - Transcript showing `/doctor:update` entered the memory rebuild step.
 - Transcript showing Ctrl-C was sent and SIGINT handling ran.
 - State log with cancellation timestamp, rollback reason, snapshot path, and final status cancelled.

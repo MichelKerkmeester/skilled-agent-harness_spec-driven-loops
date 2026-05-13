@@ -7,7 +7,7 @@ import path from 'path';
 import { existsSync } from 'fs';
 import { access } from 'fs/promises';
 import { fileURLToPath, pathToFileURL } from 'url';
-import { EmbeddingProfile } from '../profile.js';
+import { ALLOWED_LLAMA_CPP_DTYPES, EmbeddingProfile, normalizeProfileDtype } from '../profile.js';
 import { semanticChunk, MAX_TEXT_LENGTH } from '../../chunking.js';
 import type { EmbeddingProfileData, IEmbeddingProvider, ProviderMetadata } from '../../types.js';
 import { getPrefixFor } from './hf-local.js';
@@ -106,11 +106,11 @@ function normalizeModelPath(configuredPath?: string): string {
 }
 
 function resolveLlamaCppDtype(): string {
-  const configured = process.env.LLAMA_CPP_EMBEDDINGS_DTYPE?.trim().toLowerCase();
-  if (!configured || configured === 'q8_0') {
+  const configured = normalizeProfileDtype(process.env.LLAMA_CPP_EMBEDDINGS_DTYPE);
+  if (!configured || !ALLOWED_LLAMA_CPP_DTYPES.includes(configured) || configured === 'q8_0') {
     return 'q8';
   }
-  return configured.replace(/[^a-z0-9-_.]/g, '_').replace(/__+/g, '_');
+  return configured;
 }
 
 function resolveProfileModel(model: string): string {

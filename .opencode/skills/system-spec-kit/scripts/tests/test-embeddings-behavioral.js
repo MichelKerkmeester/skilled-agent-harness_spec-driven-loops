@@ -358,11 +358,11 @@ async function testPureFunctionsAndConstants() {
   assertEqual(emb.getEmbeddingDimension(), 1536,
     'EB-030: getEmbeddingDimension infers 1536 from OPENAI_API_KEY');
 
-  // Both keys → defaults to 768 (ambiguous)
+  // Both usable cloud keys -> Voyage wins in the auto cascade.
   process.env.VOYAGE_API_KEY = 'v-key';
   process.env.OPENAI_API_KEY = 'o-key';
-  assertEqual(emb.getEmbeddingDimension(), 768,
-    'EB-031: getEmbeddingDimension returns 768 when both API keys present (ambiguous)');
+  assertEqual(emb.getEmbeddingDimension(), 1024,
+    'EB-031: getEmbeddingDimension returns 1024 when both API keys present (Voyage wins)');
 
   // Restore env
   if (origProvider !== undefined) process.env.EMBEDDINGS_PROVIDER = origProvider;

@@ -16,10 +16,10 @@
       "env": {
         "EMBEDDINGS_PROVIDER": "auto",
         "_NOTE_1_DATABASE": "DB path auto-derived from provider profile (no MEMORY_DB_PATH needed)",
-        "_NOTE_2_PROVIDERS": "Supports: Voyage (1024 dims), OpenAI (1536/3072 dims), HF Local (768 dims, no API needed)",
-        "_NOTE_3_EMBEDDINGS_PROVIDER": "Current: 'auto' (VOYAGE_API_KEY -> OPENAI_API_KEY -> hf-local). Options: 'auto', 'voyage', 'openai', 'hf-local'",
+        "_NOTE_2_PROVIDERS": "Supports: Voyage (1024 dims), OpenAI (1536/3072 dims), llama-cpp (GGUF Q8_0 + Metal, 768 dims), HF Local (ONNX q8, 768 dims, no API needed)",
+        "_NOTE_3_EMBEDDINGS_PROVIDER": "Auto cascade: VOYAGE_API_KEY -> OPENAI_API_KEY -> llama-cpp (when GGUF runtime installed) -> hf-local. Set EMBEDDINGS_PROVIDER=<provider> to force a specific provider.",
         "_NOTE_4_CLOUD_PROVIDERS": "For cloud: add VOYAGE_API_KEY or OPENAI_API_KEY; Voyage uses rerank-2.5 and auto-selects the matching DB profile",
-        "_NOTE_5_GET_VOYAGE_KEY": "Get Voyage key: https://dash.voyageai.com/api-keys (recommended, 8% better than OpenAI)",
+        "_NOTE_5_GET_VOYAGE_KEY": "Get Voyage key: https://dash.voyageai.com/api-keys",
         "_NOTE_6_GET_OPENAI_KEY": "Get OpenAI key: https://platform.openai.com/api-keys",
         "_NOTE_7_FEATURE_FLAGS": "Opt-out flags (default ON): SPECKIT_ADAPTIVE_FUSION, SPECKIT_SESSION_BOOST, SPECKIT_CAUSAL_BOOST, SPECKIT_HYDE_ACTIVE, SPECKIT_ENTITY_LINKING, SPECKIT_GRAPH_CONCEPT_ROUTING, SPECKIT_GRAPH_REFRESH_MODE=write_local. Tier 3 LLM save routing is always on (fail-open to Tier 2 on timeout).",
         "_NOTE_8_CODE_GRAPH_SCOPE": "Maintainer mode — opt-in all 5 .opencode/ folders (skills, agents, commands, specs, plugins) to the structural code graph. Per-call code_graph_scan args (includeSkills/Agents/Commands/Specs/Plugins) override these env defaults.",
@@ -36,7 +36,7 @@
       "env": {
         "COCOINDEX_CODE_ROOT_PATH": ".",
         "_NOTE_1": "Install: bash .opencode/skills/mcp-coco-index/scripts/install.sh",
-        "_NOTE_2": "Default embedding: all-MiniLM-L6-v2 (local, no API key needed)",
+        "_NOTE_2": "Default embedding: google/embeddinggemma-300m (local sentence-transformers, no API key needed, 768d bf16)",
         "_NOTE_3": "Index stored in .cocoindex_code/ (gitignored)"
       }
     },

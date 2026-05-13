@@ -29,7 +29,7 @@ importance_tier: "important"
 - [6. VERSION COMPATIBILITY & RESOURCES](#6--version-compatibility--resources)
 - [7. COMPONENT MATRIX](#7--component-matrix)
 - [8. PHASE 1: PREREQUISITES](#8--phase-1-prerequisites)
-- [9. PHASE 2: OLLAMA SUPPORT (REMOVED)](#9--phase-2-ollama-support-removed)
+- [9. PHASE 2: LOCAL EMBEDDINGS](#9--phase-2-local-embeddings)
 - [10. PHASE 3: MCP SERVERS](#10--phase-3-mcp-servers)
 - [11. PHASE 4: PLUGINS](#11--phase-4-plugins)
 - [12. CONFIGURATION TEMPLATES](#12--configuration-templates)
@@ -116,7 +116,7 @@ I need to install OpenCode components. Please guide me using .opencode/install_g
 
 My environment:
 - Platform: [macOS / Linux / Windows WSL]
-- LLM Provider: [Claude / GitHub Copilot / OpenAI / Gemini / Ollama]
+- LLM Provider: [Claude / GitHub Copilot / OpenAI / Gemini]
 - Install Mode: [Full / Minimal / Missing only / Custom]
 - Components (if custom): [Code Mode, Spec Kit Memory, Sequential Thinking, Chrome DevTools CLI]
 
@@ -186,9 +186,7 @@ Answer these questions to configure your installation:
 - **GitHub Copilot** → Requires GitHub authentication
 - **OpenAI / Codex** → Requires `OPENAI_API_KEY`
 - **Gemini (Google)** → Requires `GEMINI_API_KEY`
-- **Ollama (Local)** → Optional for local inference
-
-> **Note:** Spec Kit Memory embeddings support multiple providers: `llama-cpp` (default, Metal GPU on Apple Silicon), HF Local (fallback ONNX CPU), Voyage (cloud opt-in), OpenAI (cloud opt-in). The default works out of the box with no API key. See [Section 10.2](#102-spec-kit-memory-context-preservation) for details.
+> **Note:** Spec Kit Memory embeddings support multiple providers: `llama-cpp` (local when GGUF runtime is installed), HF Local (fallback ONNX CPU), Voyage (cloud when `VOYAGE_API_KEY` is set), and OpenAI (cloud when `OPENAI_API_KEY` is set). The default `auto` cascade works out of the box with no API key. See [Section 10.2](#102-spec-kit-memory-context-preservation) for details.
 
 ### Windows-Specific Configuration
 
@@ -280,16 +278,16 @@ uname -s | grep -E "Darwin|Linux" && echo "✅ PASS" || echo "❌ FAIL"
 
 ### 6.1 Version Compatibility Matrix
 
-| OpenCode | Node.js | Python | Ollama | Key Components                 |
-| -------- | ------- | ------ | ------ | ------------------------------ |
-| 25.x+    | 18-22   | 3.10+  | 0.3+   | All MCP servers, native skills |
-| 24.x     | 18-20   | 3.10+  | 0.2+   | Most MCP servers               |
-| 23.x     | 18-20   | 3.9+   | 0.1+   | Basic MCP servers only         |
+| OpenCode | Node.js | Python | Key Components                 |
+| -------- | ------- | ------ | ------------------------------ |
+| 25.x+    | 18-22   | 3.10+  | All MCP servers, native skills |
+| 24.x     | 18-20   | 3.10+  | Most MCP servers               |
+| 23.x     | 18-20   | 3.9+   | Basic MCP servers only         |
 
 **Notes:**
 - Node.js 22+ recommended for best performance
 - Python 3.12 recommended for Sequential Thinking
-- Ollama 0.3+ optional for local LLM inference
+- Spec Kit Memory local embeddings resolve automatically through the active provider profile.
 
 ### 6.2 Resource Requirements
 
@@ -297,15 +295,13 @@ uname -s | grep -E "Darwin|Linux" && echo "✅ PASS" || echo "❌ FAIL"
 | -------- | ---- | ---- | -------- | ----------------------------------------- |
 | Minimal  | 4GB  | 2GB  | Optional | Code Mode + Spec Kit Memory               |
 | Standard | 8GB  | 5GB  | Required | + Sequential Thinking                     |
-| Full     | 16GB | 10GB | Required | All + Ollama models + Chrome DevTools CLI |
+| Full     | 16GB | 10GB | Required | All + Chrome DevTools CLI                 |
 
 **Disk breakdown:**
 - MCP servers: ~500MB
 - EmbeddingGemma model (default, llama-cpp Q8_0 GGUF or HF Local ONNX q8): ~310MB
 - node-llama-cpp Metal dylib (Apple Silicon): ~50MB
 - Spec Kit Memory database: ~50MB typical (grows with rows)
-- Ollama base (optional, external LLM inference only): ~1GB
-- llama3.2 LLM model (optional, external): ~4GB
 
 **Quick Verification:**
 ```bash
@@ -323,7 +319,7 @@ uname -s | grep -E "Darwin|Linux" && echo "✅ PASS" || echo "❌ FAIL"
 | Component           | Type       | Purpose                                               | Dependencies                            |
 | ------------------- | ---------- | ----------------------------------------------------- | --------------------------------------- |
 | Code Mode           | MCP Server | External tool orchestration (GitHub, your CMS, etc.) | Node.js 18+                             |
-| Spec Kit Memory     | MCP Server | Conversation context preservation                     | Node.js 18+, Ollama (optional)          |
+| Spec Kit Memory     | MCP Server | Conversation context preservation                     | Node.js 18+                             |
 | Sequential Thinking | MCP Server | Complex reasoning chains                              | npx (Node.js 18+)                       |
 | Native Skills       | Built-in   | Skill discovery from .opencode/skills/                 | None (OpenCode v1.0.190+)               |
 | Chrome DevTools CLI | CLI Tool   | Browser debugging & automation                        | Node.js 18+                             |
@@ -341,8 +337,8 @@ uname -s | grep -E "Darwin|Linux" && echo "✅ PASS" || echo "❌ FAIL"
           ┌────────────────────────────┼────────────────────────────┐
           ▼                            ▼                            ▼
     ┌──────────┐                ┌───────────┐                ┌───────────┐
-    │  Ollama  │                │    npm    │                │    uv     │
-    │  Models  │                │  (global) │                │  (Python) │
+    │  Local   │                │    npm    │                │    uv     │
+    │Embeddings│                │  (global) │                │  (Python) │
     └────┬─────┘                └─────┬─────┘                └─────┬─────┘
          │                            │                            │
          ▼                            ▼                            ▼
@@ -373,7 +369,7 @@ uname -s | grep -E "Darwin|Linux" && echo "✅ PASS" || echo "❌ FAIL"
 
 **Full Bundle** (all components):
 ```
-Prerequisites → Ollama → Code Mode → Spec Kit Memory →
+Prerequisites → Local Embeddings → Code Mode → Spec Kit Memory →
 Sequential Thinking → Chrome DevTools CLI →
 Antigravity Auth → OpenAI Codex Auth
 ```
@@ -479,16 +475,16 @@ node --version | grep -E "^v(1[89]|2[0-9])" && python3 --version | grep -E "3\.(
 ---
 
 <!-- /ANCHOR:phase-1-prerequisites -->
-<!-- ANCHOR:phase-2-ollama-models-optional -->
-## 9. PHASE 2: OLLAMA SUPPORT (REMOVED)
+<!-- ANCHOR:phase-2-local-embeddings -->
+## 9. PHASE 2: LOCAL EMBEDDINGS
 
-Ollama is no longer part of the Memory MCP embedding cascade. The Memory MCP now defaults to `llama-cpp` with Metal GPU acceleration on Apple Silicon, and falls back to HF Local ONNX when llama-cpp is unavailable. Skip directly to Phase 3 for MCP server setup.
+Spec Kit Memory resolves the active local embedding profile automatically. When the GGUF runtime is installed, the `llama-cpp` profile is selected. Otherwise, the cascade falls back to the HF Local ONNX profile.
 
-If you still want to run Ollama for other purposes, see the [Ollama documentation](https://ollama.com/). It is not driven by the Memory MCP factory cascade.
+No separate local model service is required for Memory MCP embeddings. Continue to Phase 3 for MCP server setup.
 
 ---
 
-<!-- /ANCHOR:phase-2-ollama-models-optional -->
+<!-- /ANCHOR:phase-2-local-embeddings -->
 <!-- ANCHOR:phase-3-mcp-servers -->
 ## 10. PHASE 3: MCP SERVERS
 
@@ -568,22 +564,22 @@ Spec Kit Memory provides conversation context preservation with vector search.
 
 **V12.0: Multiple Embedding Providers**
 
-Spec Kit Memory now supports three embedding backends:
+Spec Kit Memory now supports four providers in cascade:
 
 | Provider | When to use | Dimension | Requirements |
 |----------|-------------|-----------|------------|
-| **llama-cpp** | Default, local, zero setup on Apple Silicon | 768 | `node-llama-cpp` (auto-installed) + GGUF model |
+| **llama-cpp** | Local profile when GGUF runtime is installed | 768 | `node-llama-cpp` + GGUF model |
 | **HF Local** | Fallback when llama-cpp is unavailable | 768 | Node.js only |
 | **Voyage** | Cloud opt-in | 1024 | `VOYAGE_API_KEY` |
 | **OpenAI** | Cloud opt-in | 1536/3072 | `OPENAI_API_KEY` |
 
-**Default provider:** llama-cpp on Apple Silicon (free, offline, no API key, Metal GPU). Falls back to HF Local when the llama-cpp probe fails.
+**Default provider:** `auto`. The active default profile depends on the runtime: llama-cpp when the GGUF runtime is installed, HF Local otherwise.
 
 **Provider selection (cascade order when `EMBEDDINGS_PROVIDER=auto` or unset):**
 1. Explicit `EMBEDDINGS_PROVIDER` env var (if set and not `auto`)
 2. `VOYAGE_API_KEY` if present (cloud opt-in)
 3. `OPENAI_API_KEY` if present (cloud opt-in)
-4. **llama-cpp** if `node-llama-cpp` loads and the GGUF model is reachable (default on Apple Silicon)
+4. **llama-cpp** if `node-llama-cpp` loads and the GGUF model is reachable
 5. **HF Local** as fallback when the llama-cpp probe fails
 - Manual override: `export EMBEDDINGS_PROVIDER=llama-cpp|hf-local|voyage|openai|auto`
 
@@ -597,7 +593,7 @@ Spec Kit Memory now supports three embedding backends:
       "command": "node",
       "args": [".opencode/skills/system-spec-kit/mcp_server/dist/context-server.js"],
       "env": {
-        "EMBEDDINGS_PROVIDER": "hf-local"
+        "EMBEDDINGS_PROVIDER": "auto"
       }
     }
   }
@@ -644,7 +640,7 @@ ls -la .opencode/skills/system-spec-kit/mcp_server/database/
 
 - [ ] Context server JS file exists
 - [ ] Database directory exists (or will be created)
-- [ ] Embeddings provider loads on first run (OpenAI or HF local depending on config)
+- [ ] Embeddings provider loads on first run (auto-cascade: `VOYAGE_API_KEY` -> `OPENAI_API_KEY` -> llama-cpp when GGUF runtime is installed -> hf-local)
 
 **Quick Verification:**
 ```bash
@@ -922,7 +918,6 @@ test -d .opencode/skill && [ $(ls -1 .opencode/skill | wc -l) -ge 1 ] && echo "�
 ### Checklist
 
 - [ ] Prerequisites: Node.js 18+, Python 3.10+, uv
-- [ ] Ollama running with nomic-embed-text model
 - [ ] All 3 native MCP servers configured in opencode.json
 - [ ] Skills directory exists with native skills
 - [ ] Configuration files exist and are valid JSON
@@ -935,7 +930,6 @@ node --version | grep -E "^v(1[89]|2[0-9])" && \
 python3 --version | grep -E "3\.(1[0-9]|[2-9][0-9])" && \
 test -f opencode.json && \
 test -d .opencode/skill && \
-ollama list | grep -q "nomic-embed-text" && \
 echo "✅ INSTALLATION COMPLETE" || echo "❌ VERIFICATION FAILED"
 ```
 
@@ -1030,7 +1024,6 @@ BACKUP=$(ls -td ~/.opencode-backup-* 2>/dev/null | head -1) && [ -n "$BACKUP" ] 
 | Symptom                      | Recovery Command                                           |
 | ---------------------------- | ---------------------------------------------------------- |
 | MCP server hangs             | `pkill -f "server-name" && opencode`                       |
-| Ollama not responding        | `pkill ollama && ollama serve &`                           |
 | Database corruption (Memory) | `rm -rf .opencode/skills/system-spec-kit/mcp_server/database/` |
 | Config invalid JSON          | Restore from backup or regenerate from Section 12 templates |
 | npm packages broken          | `npm cache clean --force && npm install -g <package>`      |
@@ -1282,7 +1275,7 @@ node .opencode/skills/system-spec-kit/mcp_server/dist/context-server.js
 ```
 
 ### Embeddings not working
-1. Default provider cascade is Voyage -> OpenAI -> llama-cpp -> hf-local. No Ollama required
+1. Auto-cascade is `VOYAGE_API_KEY` -> `OPENAI_API_KEY` -> llama-cpp when GGUF runtime is installed -> hf-local
 2. Clear corrupted model cache: `rm -rf .opencode/skills/system-spec-kit/mcp_server/node_modules/@huggingface/transformers/.cache`
 3. Restart MCP server (model re-downloads on first use)
 4. If using cloud provider: verify API key is set and `EMBEDDINGS_PROVIDER` matches
@@ -1293,7 +1286,7 @@ node .opencode/skills/system-spec-kit/mcp_server/dist/context-server.js
 # Find the active database file (filename encodes provider, model, dim, and dtype)
 ls .opencode/skills/system-spec-kit/mcp_server/database/context-index__*.sqlite
 # Then query it (replace path with the file you found):
-sqlite3 .opencode/skills/system-spec-kit/mcp_server/database/context-index__llama-cpp__*.sqlite "SELECT COUNT(*) FROM memory_index;"
+sqlite3 "$(ls .opencode/skills/system-spec-kit/mcp_server/database/context-index__*.sqlite | head -n 1)" "SELECT COUNT(*) FROM memory_index;"
 ```
 
 </details>
@@ -1423,8 +1416,6 @@ bash .opencode/commands/doctor/scripts/mcp-doctor.sh --fix
 | Task                 | Command                                                     |
 | -------------------- | ----------------------------------------------------------- |
 | Check prerequisites  | `node -v && python3 -V`                                     |
-| Start Ollama         | `ollama serve`                                              |
-| Pull embedding model | `ollama pull nomic-embed-text`                              |
 | List skills          | `ls .opencode/skills/`                                       |
 | Read skill           | `cat .opencode/skills/<skill-name>/SKILL.md`                 |
 | Browser screenshot   | `bdg screenshot --url <url> --output out.png`               |

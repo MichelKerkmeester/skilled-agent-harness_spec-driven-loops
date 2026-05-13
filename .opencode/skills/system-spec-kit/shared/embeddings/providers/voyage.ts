@@ -336,6 +336,7 @@ export class VoyageProvider implements IEmbeddingProvider {
   getProfile(): EmbeddingProfile {
     return new EmbeddingProfile({
       provider: 'voyage',
+      dtype: 'cloud',
       model: this.modelName,
       dim: this.dim,
       baseUrl: this.baseUrl,

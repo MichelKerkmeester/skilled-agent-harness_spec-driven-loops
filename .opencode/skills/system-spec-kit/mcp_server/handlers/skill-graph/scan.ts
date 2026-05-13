@@ -4,7 +4,7 @@
 // MCP tool handler for skill_graph_scan — indexes skill metadata.
 
 import { resolve } from 'node:path';
-import { indexSkillMetadata } from '../../lib/skill-graph/skill-graph-db.js';
+import { indexSkillMetadata, refreshSkillEmbeddings } from '../../lib/skill-graph/skill-graph-db.js';
 import type { MCPCallerContext } from '../../lib/context/caller-context.js';
 import { requireTrustedCaller } from '../../skill_advisor/lib/auth/trusted-caller.js';
 import { computeAdvisorSourceSignature } from '../../skill_advisor/lib/freshness.js';
@@ -47,6 +47,7 @@ export async function handleSkillGraphScan(
     }
 
     const scanResult = indexSkillMetadata(skillsRoot);
+    const embeddingRefresh = await refreshSkillEmbeddings(skillsRoot);
     const sourceSignature = computeAdvisorSourceSignature(cwd);
     publishSkillGraphGeneration({
       workspaceRoot: cwd,
@@ -59,6 +60,7 @@ export async function handleSkillGraphScan(
     return okResponse({
       skillsRoot,
       ...scanResult,
+      embeddings: embeddingRefresh,
     });
   } catch (err: unknown) {
     return errorResponse(

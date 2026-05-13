@@ -40,8 +40,8 @@ This router never modifies authored spec packet docs. Each routed target has its
 
 | Target          | Location                                                                                  | Mutation class | Reason                                                            | Alternative                                                  |
 | --------------- | ----------------------------------------------------------------------------------------- | -------------- | ----------------------------------------------------------------- | ------------------------------------------------------------ |
-| `memory`        | `mcp_server/database/context-index.sqlite` + voyage embedding DB                          | **mutates**    | Runtime database files, not spec folder packets                   | Phase 3 canonical-path validator + `VACUUM INTO` snapshot    |
-| `causal-graph`  | `mcp_server/database/context-index.sqlite` causal_edges table                             | **add-only**   | Edges are evidence; existing rows never deleted or updated        | Phase 3 validator + snapshot; halts if upsert detected       |
+| `memory`        | `mcp_server/database/context-index__*.sqlite` active profile DB                           | **mutates**    | Runtime database files, not spec folder packets                   | Phase 3 canonical-path validator + `VACUUM INTO` snapshot    |
+| `causal-graph`  | `mcp_server/database/context-index__*.sqlite` causal_edges table                          | **add-only**   | Edges are evidence; existing rows never deleted or updated        | Phase 3 validator + snapshot; halts if upsert detected       |
 | `code-graph`    | `.opencode/code-graph.config.json` + `code-graph.sqlite`                                  | **mutates**    | Runtime config + index; not packet docs                           | Phase 3 validator + gold-battery + auto-rollback             |
 | `deep-loop`     | `mcp_server/database/deep-loop-graph.sqlite`                                              | **mutates**    | Coverage graph DB; not packet docs                                | Phase 3 validator + `VACUUM INTO` snapshot                   |
 | `cocoindex`     | `.opencode/skills/mcp-coco-index/mcp_server/database/`                                    | **mutates**    | CocoIndex runtime stores; not packet docs                         | Phase 2/3 validator + pre-reindex snapshots                  |
@@ -129,7 +129,7 @@ What do you want to do?
 Pick by symptom:
 
    Search returns stale or empty results              → 2  Memory
-   "context-index.sqlite missing" warning             → 2  Memory
+   "context-index__*.sqlite missing" warning          → 2  Memory
    memory_drift_why returns nothing                   → 3  Causal-Graph
    "causal coverage <60%" warning                     → 3  Causal-Graph
    cocoindex search returns 0 hits for known code     → 4  Code-Graph (structural)

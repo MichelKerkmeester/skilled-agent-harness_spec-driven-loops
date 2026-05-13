@@ -19,8 +19,10 @@ operating_mode:
 
 
 memory_doctor_invariant: |
-  Memory doctor workflows treat context-index.sqlite and the voyage vector DB as
-  the only memory-owned mutable stores, and only :apply modes may rebuild them.
+  Memory doctor workflows treat the active provider-keyed profile DBs
+  (llama-cpp, hf-local, voyage, and openai profiles matching
+  context-index__*.sqlite) as the only memory-owned mutable stores, and only
+  :apply modes may rebuild them.
   Diagnostic modes are report-only. Apply modes rely on ADR-001's per-file
   memory_index_scan transaction finding, so SIGINT uses the ~5 sec settle window
   before restoring snapshots for cross-file consistency.
@@ -61,8 +63,7 @@ field_handling:
     false: "diagnostic input only; recommend full apply when high-severity drift is detected"
 mutation_boundaries:
   allowed_targets:
-    - "mcp_server/database/context-index.sqlite"  # primary memory FTS/metadata DB
-    - "mcp_server/database/context-index__voyage__voyage-4__1024.sqlite"  # 1024-dim voyage vector DB
+    - "mcp_server/database/context-index__*.sqlite"  # provider-keyed active profile DBs
     - "mcp_server/database/context-index*.sqlite.pre-doctor-memory.*.bak"  # memory snapshot files only
   forbidden_targets:
     - ".opencode/specs/**/*.md"  # never write into spec packet docs from /doctor memory
@@ -142,17 +143,15 @@ workflow:
     activities:
       - "Run: memory_health({reportMode: 'full'})"
       - "Run: memory_stats({})"
-      - "Bash: stat -f '%m %z' database/context-index.sqlite (mtime + size)"
-      - "Bash: stat -f '%m %z' database/context-index__voyage__voyage-4__1024.sqlite"
+      - "Bash: stat -f '%m %z' database/context-index__*.sqlite (mtime + size for present profile DBs)"
       - "Interactive gate: before_phase_1_analysis"
     outputs:
       - total_records: N
       - last_index_at: ISO_timestamp
       - fts_health: ok|degraded|missing
       - embedding_health: ok|degraded|missing
-      - context_index_size: bytes
-      - voyage_db_size: bytes
-      - context_index_mtime: epoch_seconds
+      - profile_db_sizes: [{path: string, size: bytes}]
+      - profile_db_mtimes: [{path: string, mtime: epoch_seconds}]
     validation: discovery_complete
     fail_fast:
       - "memory_health returns error → STATUS=FAIL with diagnostic"
@@ -233,4 +232,3 @@ halt_conditions:
   - "Database files missing entirely → STATUS=MISSING (not FAIL); recommend :apply to bootstrap"
   - "Any phase emits a write attempt → STATUS=FAIL with ERROR='confirm-mode-mutation-violation'"
   - "User answers `n` at any interactive gate → STATUS=CANCELLED and emit state log"
-

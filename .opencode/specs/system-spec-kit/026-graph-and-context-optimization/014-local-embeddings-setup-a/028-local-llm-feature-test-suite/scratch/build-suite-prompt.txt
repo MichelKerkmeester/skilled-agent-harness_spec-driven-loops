@@ -1,0 +1,223 @@
+# GATE 3 PRE-ANSWERED — Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/028-local-llm-feature-test-suite` — A) existing. PROCEED. Non-interactive --approval-policy=never.
+
+---
+
+# Build the local-LLM feature test suite
+
+## CONTEXT
+
+The 028 packet at `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/028-local-llm-feature-test-suite/spec.md` describes a comprehensive vitest suite that validates every documented hf-local + llama-cpp feature against actual runtime behavior. Build the test files.
+
+## CANONICAL POST-014 SHIP STATE (binding ground truth for assertions)
+
+- Cascade: VOYAGE_API_KEY → OPENAI_API_KEY → llama-cpp (when GGUF runtime installed) → hf-local
+- hf-local default model: `onnx-community/embeddinggemma-300m-ONNX`, 768 dims, q8 dtype
+- llama-cpp default model: `unsloth/embeddinggemma-300m-GGUF`, 768 dims, q8 dtype, normalized slug `unsloth-embeddinggemma-300m-gguf`
+- Voyage default: `voyage-4`, 1024 dims (cloud, no dtype)
+- OpenAI default: `text-embedding-3-small`, 1536 dims (cloud, no dtype)
+- Profile DB filename pattern: `context-index__<provider>__<safe-model>__<dim>__<dtype>.sqlite` (cloud omits dtype suffix)
+- Resolver: `shared/embeddings/profile.ts:resolveActiveProfileProvider`, `resolveActiveProfileModel`, `resolveActiveProfileDbPath`
+- llama-cpp availability probe: `shared/embeddings/llama-cpp-availability.ts:getLlamaCppAvailability` (checks `resolveWorkspaceNodeLlamaCppEntrypoint()` + `existsSync(resolveLlamaCppModelPath())`)
+- Factory cascade implementation: `shared/embeddings/factory.ts:resolveProvider` (~line 800+; uses `getLlamaCppAvailability` between OPENAI and hf-local)
+- hf-local PREFIX_REGISTRY: `shared/embeddings/providers/hf-local.ts:32-83`
+- Auto-migration: triggered when llama-cpp becomes the active provider AND a stale hf-local DB exists; opt-out via `MEMORY_AUTO_MIGRATE_HF_TO_LLAMA=false`
+
+## ALLOWED WRITE PATHS
+
+Create exactly these files (do NOT create others):
+
+1. `.opencode/skills/system-spec-kit/mcp_server/tests/local-llm-features/README.md`
+2. `.opencode/skills/system-spec-kit/mcp_server/tests/local-llm-features/cascade-resolution.vitest.ts`
+3. `.opencode/skills/system-spec-kit/mcp_server/tests/local-llm-features/default-model-selection.vitest.ts`
+4. `.opencode/skills/system-spec-kit/mcp_server/tests/local-llm-features/embedding-shape.vitest.ts`
+5. `.opencode/skills/system-spec-kit/mcp_server/tests/local-llm-features/prefix-system.vitest.ts`
+6. `.opencode/skills/system-spec-kit/mcp_server/tests/local-llm-features/auto-migration.vitest.ts`
+7. `.opencode/skills/system-spec-kit/mcp_server/tests/local-llm-features/health-reporting.vitest.ts`
+8. `.opencode/skills/system-spec-kit/mcp_server/tests/local-llm-features/native-modules.vitest.ts`
+9. `.opencode/skills/system-spec-kit/mcp_server/tests/local-llm-features/profile-db-filename.vitest.ts`
+10. `.opencode/skills/system-spec-kit/mcp_server/tests/local-llm-features/cross-platform.vitest.ts`
+11. `.opencode/skills/system-spec-kit/mcp_server/tests/local-llm-features/offline-degradation.vitest.ts`
+12. `.opencode/skills/system-spec-kit/mcp_server/tests/local-llm-features/performance/embedding-latency.bench.ts`
+13. `.opencode/skills/system-spec-kit/mcp_server/tests/local-llm-features/performance/throughput.bench.ts`
+14. `.opencode/skills/system-spec-kit/mcp_server/tests/local-llm-features/performance/cold-start.bench.ts`
+15. `.opencode/skills/system-spec-kit/mcp_server/tests/local-llm-features/performance/migration-throughput.bench.ts`
+16. `.opencode/skills/system-spec-kit/mcp_server/tests/local-llm-features/performance/baselines/README.md`
+
+## BANNED OPERATIONS
+
+- NO rm/mv/sed -i/git/branch
+- NO writes outside ALLOWED WRITE PATHS
+- NO modifications to factory.ts, profile.ts, providers/*, or 014/* packet docs
+- DO NOT commit, do NOT run npm install, do NOT run vitest yourself — main agent will run it
+
+## REQUIREMENTS PER FILE
+
+### Common style for all .vitest.ts files
+
+```typescript
+import { describe, it, expect, beforeAll, afterAll, beforeEach, afterEach, vi } from 'vitest';
+import { existsSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import path from 'node:path';
+```
+
+Each `describe` block should:
+- Have a top-level comment citing the doc claim being validated (e.g., `// CLAIM: shared/README.md:348-355 — auto cascade order is Voyage -> OpenAI -> llama-cpp -> hf-local`)
+- Use isolated temp dirs (`mkdtempSync(path.join(tmpdir(), 'spec-kit-test-'))`)
+- Clean up in `afterEach` / `afterAll`
+- Stub env vars carefully (save/restore originals)
+
+Use `it.skipIf(condition)` for tests that require optional infrastructure (e.g., real GGUF model).
+
+### 1. `cascade-resolution.vitest.ts` (≥6 tests)
+
+Test `resolveActiveProfileProvider()` from `shared/embeddings/profile.ts` AND `resolveProvider()` from `shared/embeddings/factory.ts`:
+
+- T1: VOYAGE_API_KEY set + no other env → returns `'voyage'`
+- T2: OPENAI_API_KEY set (no VOYAGE) → returns `'openai'`
+- T3: No cloud keys + mock `getLlamaCppAvailability` to `{ available: true }` → returns `'llama-cpp'` (mock via `vi.mock` of `'../../../shared/embeddings/llama-cpp-availability.js'`)
+- T4: No cloud keys + mock probe to `{ available: false }` → returns `'hf-local'`
+- T5: Explicit `EMBEDDINGS_PROVIDER=hf-local` (with other env set) → returns `'hf-local'` (explicit wins)
+- T6: Explicit `EMBEDDINGS_PROVIDER=llama-cpp` (probe says unavailable) → factory should still try and either gracefully fall back OR error clearly; document the actual behavior
+
+Each test must save+restore process.env mutations.
+
+### 2. `default-model-selection.vitest.ts` (≥4 tests)
+
+Test `resolveActiveProfileModel(provider)` from `shared/embeddings/profile.ts`:
+
+- T1: `resolveActiveProfileModel('hf-local')` with no HF_EMBEDDINGS_MODEL → `'onnx-community/embeddinggemma-300m-ONNX'`
+- T2: `resolveActiveProfileModel('llama-cpp')` with no LLAMA_CPP_EMBEDDINGS_MODEL → normalized `'unsloth-embeddinggemma-300m-GGUF'.replace('/', '-')` (verify actual value)
+- T3: `resolveActiveProfileModel('voyage')` → `'voyage-4'`
+- T4: `resolveActiveProfileModel('openai')` → `'text-embedding-3-small'`
+
+### 3. `embedding-shape.vitest.ts` (≥3 tests, skip if model not downloaded)
+
+Skip when `~/.cache/huggingface/transformers/onnx-community/embeddinggemma-300m-ONNX/` doesn't exist.
+
+- T1: hf-local generates 768-dim Float32 vectors for sample text
+- T2: hf-local rejects empty string with a clear error
+- T3: hf-local handles long text (5000+ chars) without truncation crash
+
+Optional T4 (skip if GGUF not installed): llama-cpp generates 768-dim vectors.
+
+### 4. `prefix-system.vitest.ts` (≥6 tests)
+
+Test `PREFIX_REGISTRY` + `getPrefixFor` from `shared/embeddings/providers/hf-local.ts`:
+
+- T1: PREFIX_REGISTRY has entries for ['onnx-community/embeddinggemma-300m-ONNX', 'nomic-ai/nomic-embed-text-v1.5', 'intfloat/e5-large-v2', 'mixedbread-ai/mxbai-embed-large-v1', 'Snowflake/snowflake-arctic-embed-l-v2.0', 'BAAI/bge-m3']
+- T2: getPrefixFor('onnx-community/embeddinggemma-300m-ONNX', 'document') returns the doc prefix
+- T3: getPrefixFor('onnx-community/embeddinggemma-300m-ONNX', 'query') returns the query prefix
+- T4: getPrefixFor('nomic-ai/nomic-embed-text-v1.5', 'document') returns `'search_document: '`
+- T5: HF_EMBEDDINGS_PREFIX_DOC env override wins over registry
+- T6: Unknown model name returns sensible default (empty or registry-fallback)
+
+### 5. `auto-migration.vitest.ts` (≥4 tests, skip if llama-cpp not available)
+
+Test auto-migration logic from `shared/embeddings/factory.ts`:
+
+- T1: Empty hf-local DB + llama-cpp available → migration completes, `.auto-migration-complete.json` written
+- T2: Populated hf-local DB → migration re-embeds all rows into llama-cpp profile DB
+- T3: MEMORY_AUTO_MIGRATE_HF_TO_LLAMA=false → migration skipped (no marker file)
+- T4: Migration marker present → subsequent starts skip migration
+
+Use isolated temp dir as `MEMORY_DB_DIR`; never touch the real database directory.
+
+### 6. `health-reporting.vitest.ts` (≥3 tests)
+
+- T1: HfLocalProvider instance has `getProviderMetadata()` returning `{ name: 'hf-local', model, dimension: 768, dtype: 'q8' }`
+- T2: `provider.healthCheck()` returns truthy when model is loadable
+- T3: Mock memory_health response shape includes provider + dtype + dimension fields
+
+### 7. `native-modules.vitest.ts` (≥4 tests)
+
+- T1: `resolveWorkspaceNodeLlamaCppEntrypoint()` returns a path OR null (doesn't throw)
+- T2: When llama-cpp module exists but GGUF doesn't, `getLlamaCppAvailability()` returns `{ available: false, reason: contains 'GGUF model not found' }`
+- T3: Transformers.js loads via dynamic import without native rebuild
+- T4: `better-sqlite3` and `sqlite-vec` can be required (no DLOPEN errors)
+
+### 8. `profile-db-filename.vitest.ts` (≥6 tests)
+
+Test `resolveActiveProfileDbPath()` and `createProfileSlug()` from `shared/embeddings/profile.ts`:
+
+- T1: hf-local active → filename `context-index__hf-local__onnx-community_embeddinggemma-300m-onnx__768__q8.sqlite`
+- T2: llama-cpp active → filename `context-index__llama-cpp__unsloth-embeddinggemma-300m-gguf__768__q8.sqlite`
+- T3: voyage active → filename `context-index__voyage__voyage-4__1024.sqlite` (no dtype)
+- T4: openai active → filename `context-index__openai__text-embedding-3-small__1536.sqlite` (no dtype)
+- T5: createProfileSlug normalizes slashes and uppercase in model names
+- T6: NO scenario produces the legacy singleton `context-index.sqlite`
+
+### 9. `cross-platform.vitest.ts` (≥3 tests)
+
+- T1 (skipIf NOT darwin/arm64): On Apple Silicon, hf-local device hint is `'mps'`
+- T2 (skipIf NOT darwin): On macOS, llama-cpp Metal acceleration is available when GGUF is installed
+- T3 (skipIf darwin/arm64): On non-Apple platforms, llama-cpp may be unavailable; hf-local fallback works
+
+Use `process.platform` and `process.arch` to gate.
+
+### 10. `offline-degradation.vitest.ts` (≥3 tests)
+
+- T1: Cached embedding (mock cache hit) returns vector without invoking provider
+- T2: Vector search unavailable (mock factory throw) → falls back to FTS5 keyword path (mock the search-path module)
+- T3: Provider failure triggers exponential backoff (mock retry-manager)
+
+### 11-14. Performance benchmarks (`performance/*.bench.ts`)
+
+Use vitest's `bench` API (`import { bench } from 'vitest'`). Each .bench.ts file:
+- Reads sample texts from a local fixture array (50 char / 500 char / 5000 char strings, ≥10 each)
+- Warms up provider before measurement
+- Runs N=10 iterations, captures median + p95 + p99
+- Writes results JSON to `tests/local-llm-features/performance/baselines/<bench-name>__<provider>.json` (gitignored under `_runtime/` if you prefer)
+- Output JSON schema: `{ provider, model, dim, dtype, samples: number, p50_ms, p95_ms, p99_ms, runs: number[] }`
+
+Benches:
+- `embedding-latency.bench.ts`: per provider, per text length
+- `throughput.bench.ts`: embeddings/sec for batch sizes 1, 10, 100
+- `cold-start.bench.ts`: time from new provider instance to first successful embedding
+- `migration-throughput.bench.ts`: rows/sec during 100-row hf-local→llama-cpp migration
+
+Use `process.env.SPECKIT_RUN_BENCHMARKS=true` gate. If not set, benches skip with `it.skipIf(!process.env.SPECKIT_RUN_BENCHMARKS)`.
+
+### 15. `README.md`
+
+Suite overview. Sections:
+- **Purpose** — one paragraph
+- **How to run** — `cd .opencode/skills/system-spec-kit && npx vitest run mcp_server/tests/local-llm-features` for functional, `SPECKIT_RUN_BENCHMARKS=true npx vitest bench mcp_server/tests/local-llm-features/performance` for perf
+- **Test groups** — table of 10 functional groups + 4 perf benches with one-line summary each
+- **Skip conditions** — when each test group skips (model not downloaded, llama-cpp not installed, non-Apple platform)
+- **Baseline format** — JSON schema for `performance/baselines/*.json`
+- **Maintenance** — how to add new feature tests (cite the doc, add test, run)
+
+### 16. `performance/baselines/README.md`
+
+One-paragraph note: "Perf baseline JSON files are written here by .bench.ts runs. Schema: provider/model/dim/dtype/p50_ms/p95_ms/p99_ms/runs. Commit only when intentionally updating the baseline for a measured improvement; do NOT commit noisy CI-only variations."
+
+## TECHNICAL NOTES
+
+- Vitest config is at `.opencode/skills/system-spec-kit/mcp_server/vitest.config.ts` (don't modify)
+- Existing tests in `.opencode/skills/system-spec-kit/mcp_server/tests/embeddings.vitest.ts` are good reference for mocking patterns
+- Use `vi.mock('../../../shared/embeddings/llama-cpp-availability.js', () => ({ getLlamaCppAvailability: vi.fn() }))` to control availability per test
+- For env-mutation tests, use `const originalEnv = { ...process.env }; afterEach(() => { process.env = { ...originalEnv }; });`
+- For temp-dir tests, always rm -rf in `afterEach`
+
+## ACCEPTANCE
+
+After writing all 16 files:
+- `bash -n` on shell snippets if any
+- TypeScript syntax checks: `find tests/local-llm-features -name '*.ts' | xargs npx tsc --noEmit --target esnext --module nodenext --moduleResolution nodenext --strict false 2>&1 | head -20` (best-effort)
+- Each .vitest.ts has at least 1 `describe` and 1 `it` block
+- README.md is human-readable, ≥800 chars
+- No imports from `node_modules/` paths (use package names)
+
+## REPORT
+
+```
+BATCH 13 (test suite) REPORT
+File: <path> — <N test cases> — <one-line purpose>
+...
+Scope violations: <none | list>
+Files created: <N>
+Total LOC: <approx>
+```
+
+No commits. No git. Do not run vitest. Stop after the report.

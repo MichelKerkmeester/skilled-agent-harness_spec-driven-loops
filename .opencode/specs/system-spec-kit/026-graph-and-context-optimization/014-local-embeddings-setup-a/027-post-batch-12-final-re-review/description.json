@@ -1,0 +1,30 @@
+{
+  "specFolder": "027-post-batch-12-final-re-review",
+  "description": "Final-final confirmatory re-review after batch 12 (017 narrative + remaining doc/config residue). Expected PASS verdict. Last gate before commit + pus",
+  "keywords": [
+    "final-final",
+    "confirmatory",
+    "re-review",
+    "batch",
+    "017",
+    "narrative",
+    "remaining",
+    "doc",
+    "config",
+    "residue",
+    "expected",
+    "pass",
+    "verdict",
+    "last",
+    "gate",
+    "commit",
+    "push"
+  ],
+  "lastUpdated": "2026-05-13T18:36:27.630Z",
+  "specId": "027",
+  "folderSlug": "post-batch-12-final-re-review",
+  "parentChain": [],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

@@ -7,19 +7,19 @@ description: "Manual scenario validating /doctor memory bootstrap behavior when 
 
 ## 1. OVERVIEW
 
-This scenario validates `/doctor memory` on a disposable workspace that has never created the memory continuity-index. It proves the command can bootstrap the active hf-local default profile database, `mcp_server/database/context-index__hf-local__onnx-community_embeddinggemma-300m-onnx__768__q8.sqlite`, create the required schema, run the initial scan, and finish the post-apply gold battery without relying on a prior `memory_index_scan` run.
+This scenario validates `/doctor memory` on a disposable workspace that has never created the memory continuity-index. It proves the command can bootstrap the active resolved profile database (llama-cpp profile when GGUF runtime is installed, hf-local profile otherwise), create the required schema, run the initial scan, and finish the post-apply gold battery without relying on a prior `memory_index_scan` run.
 
-The behavior is user-observable: a real operator starts with no active profile-derived Memory MCP database, asks for memory bootstrap, and receives an applied report instead of a missing-index failure.
+The behavior is user-observable: a real operator starts with no active resolved profile Memory MCP database, asks for memory bootstrap, and receives an applied report instead of a missing-index failure.
 
 ---
 
 ## 2. SCENARIO CONTRACT
 
-- Objective: Fresh memory-index bootstrap from an absent active profile-derived database.
+- Objective: Fresh memory-index bootstrap from an absent active resolved profile database.
 - Real user request: `Bootstrap the memory continuity-index from scratch. The workspace has no active Memory MCP database yet.`
 - Prompt: `Bootstrap the memory continuity-index from scratch. The workspace has no active Memory MCP database yet.`
 - Prompt voice: Natural-human.
-- Exact command sequence: create disposable workspace -> confirm `mcp_server/database/context-index__hf-local__onnx-community_embeddinggemma-300m-onnx__768__q8.sqlite` is absent -> run `/doctor memory --incremental=true` -> verify DB file and gold-battery output.
+- Exact command sequence: create disposable workspace -> confirm the active profile DB is absent (e.g., `context-index__llama-cpp__unsloth-embeddinggemma-300m-gguf__768__q8.sqlite` when GGUF runtime installed, else `context-index__hf-local__onnx-community_embeddinggemma-300m-onnx__768__q8.sqlite`) -> run `/doctor memory --incremental=true` -> verify DB file and gold-battery output.
 - Expected signals: schema creation or missing-index bootstrap path, initial `memory_index_scan`, nonzero or empty-corpus-safe scan summary, gold-battery exit 0, final status `APPLIED`.
 - Desired user-visible outcome: A concise applied verdict naming the new database path and the gold-battery result.
 - Pass/fail: PASS if the database exists after the run and post-verify succeeds; FAIL if the command treats the missing DB as an unrecoverable error.
@@ -37,13 +37,13 @@ Bootstrap the memory continuity-index from scratch. The workspace has no active 
 ### Commands
 
 1. Create a disposable copy of the repository or fresh checkout.
-2. In that sandbox, ensure `.opencode/skills/system-spec-kit/mcp_server/database/context-index__hf-local__onnx-community_embeddinggemma-300m-onnx__768__q8.sqlite` and matching profile-specific `*.pre-doctor-memory.*.bak` files are absent.
+2. In that sandbox, ensure the active resolved profile DB and matching profile-specific `*.pre-doctor-memory.*.bak` files are absent.
 3. Confirm the precondition:
-   - `test ! -e .opencode/skills/system-spec-kit/mcp_server/database/context-index__hf-local__onnx-community_embeddinggemma-300m-onnx__768__q8.sqlite`
+   - `test -z "$(ls .opencode/skills/system-spec-kit/mcp_server/database/context-index__*.sqlite 2>/dev/null)"`
 4. Run `/doctor memory --incremental=true` through the real runtime.
 5. Capture the complete command transcript, including the setup values resolved by `.opencode/commands/doctor.md`.
 6. Confirm the postcondition:
-   - `test -s .opencode/skills/system-spec-kit/mcp_server/database/context-index__hf-local__onnx-community_embeddinggemma-300m-onnx__768__q8.sqlite`
+   - `ls .opencode/skills/system-spec-kit/mcp_server/database/context-index__*.sqlite >/dev/null`
 7. Capture the Phase 4 gold-battery summary and final state-log path.
 
 ### Expected
@@ -54,13 +54,13 @@ The command resolves `intent=APPLY`, loads `.opencode/commands/doctor/assets/doc
 
 - Pre-run `test ! -e` output or shell transcript proving the DB was absent.
 - `/doctor memory --incremental=true` transcript.
-- Post-run `test -s` output proving the active hf-local default profile database exists.
+- Post-run existence output proving the active resolved profile database exists.
 - State log showing `command: "/doctor memory"`, `intent: APPLY`, `incremental: true`, and `status: APPLIED`.
 - Gold-battery summary with exit 0 or equivalent pass indicator.
 
 ### Pass / Fail
 
-- **PASS**: the active hf-local default profile database exists and is nonempty after the run, `memory_index_scan` reports bootstrap or scan completion, and gold-battery verification exits 0.
+- **PASS**: the active resolved profile database exists and is nonempty after the run, `memory_index_scan` reports bootstrap or scan completion, and gold-battery verification exits 0.
 - **FAIL**: The missing DB causes a hard error, the schema is not created, the DB remains absent or zero bytes, or the gold battery fails without rollback evidence.
 - **SKIP**: Runtime cannot invoke the real `/doctor memory` command or the memory MCP tools are unavailable in the sandbox.
 - **UNAUTOMATABLE**: Not expected for this scenario; the behavior is directly runnable in a disposable workspace.

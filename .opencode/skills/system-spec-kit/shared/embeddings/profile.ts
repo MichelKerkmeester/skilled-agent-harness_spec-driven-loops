@@ -4,6 +4,7 @@
 
 import * as fs from 'fs';
 import * as path from 'path';
+import { getLlamaCppAvailability } from './llama-cpp-availability.js';
 import type { ParsedProfileSlug, ProfileJson } from '../types.js';
 
 // ---------------------------------------------------------------
@@ -110,6 +111,29 @@ export class EmbeddingProfile {
 
 type ActiveProfileProvider = 'voyage' | 'openai' | 'hf-local' | 'llama-cpp';
 
+export const ALLOWED_HF_LOCAL_DTYPES: ReadonlyArray<string> = [
+  'fp32',
+  'fp16',
+  'q4',
+  'q4f16',
+  'q8',
+  'int8',
+  'uint8',
+  'bnb4',
+];
+
+export const ALLOWED_LLAMA_CPP_DTYPES: ReadonlyArray<string> = [
+  'q8',
+  'q4',
+  'q4_0',
+  'q4_1',
+  'q5_0',
+  'q5_1',
+  'q8_0',
+  'f16',
+  'f32',
+];
+
 function normalizeProfileProvider(value: string | undefined | null): ActiveProfileProvider | null {
   const normalized = value?.trim().toLowerCase();
   if (
@@ -133,7 +157,7 @@ function hasUsableApiKey(value: string | undefined): boolean {
     && !upperValue.includes('HERE');
 }
 
-function resolveActiveProfileProvider(): ActiveProfileProvider {
+export function resolveActiveProfileProvider(): ActiveProfileProvider {
   const explicitProvider = normalizeProfileProvider(process.env.EMBEDDINGS_PROVIDER);
   if (explicitProvider) {
     return explicitProvider;
@@ -143,6 +167,9 @@ function resolveActiveProfileProvider(): ActiveProfileProvider {
   }
   if (hasUsableApiKey(process.env.OPENAI_API_KEY)) {
     return 'openai';
+  }
+  if (getLlamaCppAvailability().available) {
+    return 'llama-cpp';
   }
   return 'hf-local';
 }
@@ -188,7 +215,7 @@ function resolveActiveProfileDim(provider: ActiveProfileProvider, model: string)
   return 768;
 }
 
-function normalizeProfileDtype(value: string | undefined | null): string | null {
+export function normalizeProfileDtype(value: string | undefined | null): string | null {
   const normalized = value?.trim().toLowerCase();
   if (!normalized) {
     return null;
@@ -196,13 +223,27 @@ function normalizeProfileDtype(value: string | undefined | null): string | null 
   return normalized.replace(/[^a-z0-9-_.]/g, '_').replace(/__+/g, '_');
 }
 
-function resolveActiveProfileDtype(provider: ActiveProfileProvider): string | null {
+function resolveAllowedDtype(
+  value: string | undefined | null,
+  allowed: ReadonlyArray<string>,
+  fallback: string,
+): string {
+  const configured = normalizeProfileDtype(value);
+  if (configured && allowed.includes(configured)) {
+    return configured === 'q8_0' ? 'q8' : configured;
+  }
+  return fallback;
+}
+
+export function resolveActiveProfileDtype(provider: ActiveProfileProvider): string | null {
   if (provider === 'hf-local') {
-    return normalizeProfileDtype(process.env.HF_EMBEDDINGS_DTYPE) || 'q8';
+    return resolveAllowedDtype(process.env.HF_EMBEDDINGS_DTYPE, ALLOWED_HF_LOCAL_DTYPES, 'q8');
   }
   if (provider === 'llama-cpp') {
-    const configured = normalizeProfileDtype(process.env.LLAMA_CPP_EMBEDDINGS_DTYPE);
-    return configured && configured !== 'q8_0' ? configured : 'q8';
+    return resolveAllowedDtype(process.env.LLAMA_CPP_EMBEDDINGS_DTYPE, ALLOWED_LLAMA_CPP_DTYPES, 'q8');
+  }
+  if (provider === 'voyage' || provider === 'openai') {
+    return 'cloud';
   }
   return null;
 }

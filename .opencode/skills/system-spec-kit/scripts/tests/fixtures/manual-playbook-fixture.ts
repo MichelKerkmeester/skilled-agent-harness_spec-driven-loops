@@ -606,7 +606,7 @@ export async function createManualPlaybookFixture(specFolder: string): Promise<F
       specFolder: targetSpecFolder,
       content: buildMemoryDoc('Feature Flag DB Path Precedence', 'Database path precedence notes.', [
         'SPEC_KIT_DB_DIR and SPECKIT_DB_DIR override default database discovery.',
-        `MEMORY_DB_PATH points directly to the active hf-local default profile database (${DEFAULT_HF_LOCAL_DB_FILE}) for disposable fixtures.`,
+        `MEMORY_DB_PATH may pin a disposable profile database such as ${DEFAULT_HF_LOCAL_DB_FILE}; production uses context-index__<provider>__<safe-model>__<dim>__<dtype>.sqlite.`,
       ]),
     },
     {

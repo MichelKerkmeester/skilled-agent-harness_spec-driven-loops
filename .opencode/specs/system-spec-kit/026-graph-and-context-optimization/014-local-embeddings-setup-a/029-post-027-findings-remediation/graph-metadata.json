@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/029-post-027-findings-remediation",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/029-post-027-findings-remediation",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+    "derived": {
+    "trigger_phrases": [],
+    "key_topics": [],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": ["spec.md","plan.md","tasks.md","checklist.md"],
+    "entities": [],
+    "causal_summary": "Fix all 21 P1 + 16 P2 findings from 027 deep-review. 6 workstreams: profile identity & dtype contract, provider fallback correctness, profile-keyed DB naming cleanup, operator docs & catalog drift, fixture refresh, legacy dependency/comment residue. cli-codex gpt-5.5 reasoning=high service_tier=standard (NOT fast).",
+    "created_at": "2026-05-13T19:18:30Z",
+    "last_save_at": "2026-05-13T19:18:30Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": ["spec.md","plan.md","tasks.md","checklist.md"]
+  }
+}

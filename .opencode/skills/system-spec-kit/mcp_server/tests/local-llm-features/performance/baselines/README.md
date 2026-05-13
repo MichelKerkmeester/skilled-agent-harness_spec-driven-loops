@@ -1,0 +1,1 @@
+Perf baseline JSON files are written here by `.bench.ts` runs. Schema: provider/model/dim/dtype/p50_ms/p95_ms/p99_ms/runs. Commit only when intentionally updating the baseline for a measured improvement; do not commit noisy CI-only variations.

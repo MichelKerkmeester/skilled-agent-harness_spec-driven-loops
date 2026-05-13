@@ -63,11 +63,13 @@ export interface IEmbeddingProvider {
 }
 
 /** Provider metadata returned by getMetadata() */
+export type EmbeddingProfileDtype = HfLocalDtype | 'cloud';
+
 export interface ProviderMetadata {
   provider: string;
   model: string;
   dim: number;
-  dtype?: HfLocalDtype | null;
+  dtype?: EmbeddingProfileDtype | null;
   healthy: boolean;
   device?: string | null;
   loaded?: boolean;

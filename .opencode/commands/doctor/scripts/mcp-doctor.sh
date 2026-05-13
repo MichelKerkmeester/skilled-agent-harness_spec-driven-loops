@@ -195,19 +195,26 @@ diagnose_spec_kit_memory() {
     _log log_warn "Node version marker not found (run rebuild to create)"
   fi
 
-  # Check 4: database directory
-  if [[ -d "$db_dir" ]]; then
-    local db_file="$db_dir/context-index.sqlite"
-    if [[ -f "$db_file" ]]; then
-      local db_size
-      db_size="$(du -h "$db_file" 2>/dev/null | cut -f1)"
-      record_pass "$srv" "database" "context-index.sqlite exists ($db_size)"
-      _log log_pass "Database exists ($db_size)"
-    else
-      record_warn "$srv" "database" "Database directory exists but context-index.sqlite missing"
-      _log log_warn "Database directory exists but no context-index.sqlite"
-    fi
-  else
+	  # Check 4: database directory
+	  if [[ -d "$db_dir" ]]; then
+	    # Active embedding profile DB (derived in TS at runtime); shell-side, glob for present profile files.
+	    local db_file
+	    db_file=$(ls -t "$db_dir"/context-index__*.sqlite 2>/dev/null | head -1 || true)
+	    if [[ -z "$db_file" ]]; then
+	      # Fallback when no profile DB exists yet (fresh-install case; first run creates the active profile DB).
+	      db_file="$db_dir/context-index__hf-local__onnx-community_embeddinggemma-300m-onnx__768__q8.sqlite"
+	    fi
+	    if [[ -f "$db_file" ]]; then
+	      local db_name db_size
+	      db_name="$(basename "$db_file")"
+	      db_size="$(du -h "$db_file" 2>/dev/null | cut -f1)"
+	      record_pass "$srv" "database" "$db_name exists ($db_size)"
+	      _log log_pass "Database exists: $db_name ($db_size)"
+	    else
+	      record_warn "$srv" "database" "Database directory exists but no provider-keyed profile DB found"
+	      _log log_warn "Database directory exists but no provider-keyed profile DB found"
+	    fi
+	  else
     record_warn "$srv" "database" "Database directory not found"
     _log log_warn "Database directory not found (created on first MCP use)"
   fi

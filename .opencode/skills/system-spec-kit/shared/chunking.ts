@@ -15,7 +15,7 @@ import type { PriorityPatterns, PriorityBuckets } from './types.js';
 /**
  * Maximum text length for embedding generation.
  * This value is used across all embedding providers.
- * Based on nomic-embed-text-v1.5 context window (~8192 tokens).
+ * Based on the EmbeddingGemma 300M profile window used by the local defaults.
  */
 export const MAX_TEXT_LENGTH: number = 8000;
 /** Defines reserved overview. */

@@ -19,7 +19,7 @@
     "trigger_phrases": [
       "017 llama cpp default flip",
       "Memory MCP llama-cpp migration",
-      "restore hf-local default",
+      "hf-local fallback",
       "llama-cpp 1k retrieval probe"
     ],
     "key_topics": [
@@ -28,7 +28,7 @@
       "Memory MCP",
       "embedding migration",
       "retrieval quality",
-      "default rollback"
+      "auto cascade"
     ],
     "importance_tier": "critical",
     "status": "complete",
@@ -51,7 +51,7 @@
       "sqlite-vec",
       "EmbeddingProfile"
     ],
-    "causal_summary": "017 completed the live llama-cpp migration and validation close-out: 2488 rows migrated with zero mismatches, llama-cpp benchmark p50 was 6.027083ms vs hf-local 35.956375ms, but the 1k retrieval probe returned MILD_DIVERGENCE with Spearman 0.816125, so auto mode was restored to hf-local and llama-cpp remains explicit opt-in.",
+    "causal_summary": "017 completed the live llama-cpp migration and validation close-out: 2488 rows migrated with zero mismatches, llama-cpp benchmark p50 was 6.027083ms vs hf-local 35.956375ms, and the 1k retrieval probe returned MILD_DIVERGENCE with Spearman 0.816125. The operator accepted that trade-off, so auto mode selects llama-cpp when the GGUF runtime is installed and falls back to hf-local otherwise.",
     "created_at": "2026-05-13T11:10:00Z",
     "last_save_at": "2026-05-13T11:10:00Z",
     "last_accessed_at": "2026-05-13T11:10:00Z",

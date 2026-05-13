@@ -46,7 +46,7 @@
       ".opencode/skills/system-spec-kit/SKILL.md",
       "mcp_server/skill_advisor/lib/utils/workspace-root.ts",
       "mcp_server/dist/skill_advisor/lib/utils/workspace-root.js",
-      "mcp_server/database/context-index__voyage__voyage-4__1024.sqlite",
+      "mcp_server/database/context-index__voyage__voyage-4__1024__cloud.sqlite",
       "scratch/fts-vec-mismatch-ids.txt",
       "scratch/pre-bulk-delete-stats.json",
       "scratch/fts-vec-diagnosis.md",
@@ -83,9 +83,9 @@
         "source": "derived"
       },
       {
-        "name": "context-index__voyage__voyage-4__1024.sqlite",
+        "name": "context-index__voyage__voyage-4__1024__cloud.sqlite",
         "kind": "file",
-        "path": "mcp_server/database/context-index__voyage__voyage-4__1024.sqlite",
+        "path": "mcp_server/database/context-index__voyage__voyage-4__1024__cloud.sqlite",
         "source": "derived"
       },
       {

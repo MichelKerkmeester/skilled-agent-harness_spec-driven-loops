@@ -19,6 +19,7 @@ export default defineConfig({
       'mcp_server/tests/**/*.{vitest,test}.ts',
       'mcp_server/code_graph/tests/**/*.{vitest,test}.ts',
       'mcp_server/stress_test/code-graph/doctor-apply-mode-stress.vitest.ts',
+      'mcp_server/skill_advisor/lib/**/*.{vitest,test}.ts',
       'mcp_server/skill_advisor/tests/**/*.{vitest,test}.ts',
       'scripts/tests/**/*.{vitest,test}.ts',
       ...(INCLUDE_BENCHES ? ['mcp_server/skill_advisor/bench/**/*.bench.ts'] : []),

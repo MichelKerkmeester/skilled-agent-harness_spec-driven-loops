@@ -59,7 +59,7 @@ providers/
 | `llama-cpp.ts` | llama-cpp | `unsloth/embeddinggemma-300m-GGUF` | 768 | Default local provider. Metal GPU acceleration, Q8_0 GGUF quantization, EmbeddingGemma prefixes |
 | `hf-local.ts` | HuggingFace Local | `onnx-community/embeddinggemma-300m-ONNX` | 768 | Fallback local provider. ONNX q8 quantization on CPU when llama-cpp is unavailable |
 | `openai.ts` | OpenAI | `text-embedding-3-small` | 1536 | Cloud provider with OpenAI usage tracking and retry handling |
-| `voyage.ts` | Voyage AI | configured via env | 1024 | Cloud opt-in provider using Voyage `input_type` for document and query embeddings |
+| `voyage.ts` | Voyage AI | `voyage-4` | 1024 | Cloud provider using Voyage `input_type` for document and query embeddings |
 
 <!-- /ANCHOR:structure -->
 

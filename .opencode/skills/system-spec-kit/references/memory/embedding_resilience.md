@@ -20,10 +20,12 @@ The embedding resilience system ensures semantic search remains functional even 
 | Component | Location | Purpose |
 |-----------|----------|---------|
 | Embeddings Factory | `shared/embeddings/factory.ts` | Provider selection and fallback |
-| Voyage Provider | `shared/embeddings/providers/voyage.ts` | Primary embedding provider |
-| OpenAI Provider | `shared/embeddings/providers/openai.ts` | Secondary fallback provider |
+| Voyage Provider | `shared/embeddings/providers/voyage.ts` | First cloud cascade provider when `VOYAGE_API_KEY` is usable |
+| OpenAI Provider | `shared/embeddings/providers/openai.ts` | Second cloud cascade provider when `OPENAI_API_KEY` is usable |
+| llama-cpp Provider | `shared/embeddings/providers/llama-cpp.ts` | Default local provider when the GGUF runtime and model are installed |
+| HF Local Provider | `shared/embeddings/providers/hf-local.ts` | Final local fallback using Transformers.js and the ONNX EmbeddingGemma model |
 | Retry Manager | `mcp_server/lib/providers/retry-manager.ts` | Exponential backoff handling |
-| Vector Index | `mcp_server/lib/search/vector-index.ts` | Local embedding cache |
+| Vector Index | `mcp_server/lib/search/vector-index.ts` | Profile-keyed local vector stores and keyword fallback |
 
 ### Core Principle
 
@@ -59,12 +61,21 @@ The system attempts providers in order until one succeeds (REQ-029):
 └───────────────────────────────────┬───────────────────────────────┘
                                     ↓ FAIL
 ┌───────────────────────────────────────────────────────────────────┐
-│ 3. LOCAL CACHE (Last Resort)                                      │
-│    Source: Previously computed embeddings in SQLite               │
-│    Quality: Varies (depends on cache age)                         │
-│    Latency: <10ms                                                 │
+│ 3. LLAMA-CPP (Default Local When Installed)                       │
+│    Model: unsloth/embeddinggemma-300m-GGUF                        │
+│    Quality: Local EmbeddingGemma, q8 GGUF                         │
+│    Latency: local runtime dependent                               │
+└───────────────────────────────────┬───────────────────────────────┘
+                                    ↓ FAIL
+┌───────────────────────────────────────────────────────────────────┐
+│ 4. HF-LOCAL (Final Local Provider)                                │
+│    Model: onnx-community/embeddinggemma-300m-ONNX                 │
+│    Quality: Local EmbeddingGemma, q8 ONNX                         │
+│    Latency: local runtime dependent                               │
 └───────────────────────────────────┴───────────────────────────────┘
 ```
+
+If all embedding providers fail, retrieval degrades to existing profile-keyed cached rows and keyword search; that cache/keyword path is not an embedding provider in the cascade.
 
 ### Provider Configuration
 
@@ -109,6 +120,8 @@ const PROVIDER_CHAIN: ProviderConfig[] = [
   }
 ];
 ```
+
+`LLAMA_CPP_EMBEDDINGS_MODEL` overrides the selected GGUF model identity. It is not an opt-in switch; llama-cpp auto-selects when the GGUF runtime and model probe succeeds.
 
 ### Fallback Triggers
 

@@ -19,7 +19,7 @@ const SCRIPTS_DIR = path.join(__dirname, '..', 'dist');
 const SKILL_ROOT = path.join(__dirname, '..', '..'); // .opencode/skills/system-spec-kit
 const PROJECT_ROOT = path.resolve(__dirname, '..', '..', '..', '..', '..'); // actual project root
 const BETTER_SQLITE3_PATH = path.join(SKILL_ROOT, 'mcp_server/node_modules/better-sqlite3');
-const REAL_DB_PATH = path.join(SKILL_ROOT, 'mcp_server/database/context-index.sqlite');
+const REAL_DB_PATH = path.join(SKILL_ROOT, 'mcp_server/database/context-index__<provider>__<safe-model>__<dim>__<dtype>.sqlite');
 const RECENT_SESSION_LOOKUP_SQL =
   `SELECT spec_folder FROM session_learning WHERE created_at > datetime('now', '-24 hours') ORDER BY created_at DESC LIMIT 1`;
 const DETECT_SPEC_FUNCTION_MARKER = 'async function detectSpecFolder';
@@ -939,7 +939,7 @@ async function testConfigProjectRootAlignment() {
     // Test 2: DB path from PROJECT_ROOT matches expected location
     const constructedDbPath = path.join(
       CONFIG.PROJECT_ROOT,
-      'skill/system-spec-kit/mcp_server/database/context-index.sqlite'
+      'skill/system-spec-kit/mcp_server/database/context-index__<provider>__<safe-model>__<dim>__<dtype>.sqlite'
     );
     if (constructedDbPath === REAL_DB_PATH || path.resolve(constructedDbPath) === path.resolve(REAL_DB_PATH)) {
       pass('T-FD08b: Constructed DB path matches expected', path.basename(constructedDbPath));
@@ -1277,61 +1277,52 @@ async function main() {
   log('═══════════════════════════════════════════════════════════════');
 
   // Category 1: DB Query Correctness
-  log('\n── Category 1: DB Query Correctness ──
-');
+  log('\n── Category 1: DB Query Correctness ──\n');
   await testDbQueryReturnsRecentRecord();
   await testDbQueryReturnsMostRecentOfMultiple();
   await testDbQueryReturnsNullWhenEmpty();
 
   // Category 2: 24-Hour Boundary Filter
-  log('\n── Category 2: 24-Hour Boundary Filter ──
-');
+  log('\n── Category 2: 24-Hour Boundary Filter ──\n');
   await testBoundaryFilter24hOldRecord();
   await testBoundaryFilterRecentWithOld();
   await testBoundaryFilterEdge23h59m();
 
   // Category 3: Silent Error Fallthrough
-  log('\n── Category 3: Silent Error Fallthrough ──
-');
+  log('\n── Category 3: Silent Error Fallthrough ──\n');
   await testSilentFallthroughMissingDb();
   await testSilentFallthroughMissingTable();
   await testSilentFallthroughBadRequirePath();
   await testSilentFallthroughCombinedInDetect();
 
   // Category 4: Folder Validation
-  log('\n── Category 4: Folder Validation ──
-');
+  log('\n── Category 4: Folder Validation ──\n');
   await testFolderValidationResolvesPath();
   await testFolderValidationExistingFolder();
   await testFolderValidationNonexistentFolder();
 
   // Category 5: Priority Chain Integration
-  log('\n── Category 5: Priority Chain Integration ──
-');
+  log('\n── Category 5: Priority Chain Integration ──\n');
   await testPriority1OverridesAll();
   await testPriority2OverridesDb();
   await testPriority25BeforePriority3();
   await testPriorityChainOrder();
 
   // Category 6: Real DB Structure
-  log('\n── Category 6: Real DB Structure ──
-');
+  log('\n── Category 6: Real DB Structure ──\n');
   await testRealDbSchema();
   await testRealDbQueryable();
 
   // Category 7: filterArchiveFolders Edge Cases
-  log('\n── Category 7: filterArchiveFolders Edge Cases ──
-');
+  log('\n── Category 7: filterArchiveFolders Edge Cases ──\n');
   await testFilterArchiveFoldersEdgeCases();
 
   // Category 8: CONFIG Alignment
-  log('\n── Category 8: CONFIG Alignment ──
-');
+  log('\n── Category 8: CONFIG Alignment ──\n');
   await testConfigProjectRootAlignment();
 
   // Category 9: Session-Selection Regressions
-  log('\n── Category 9: Session-Selection Regressions ──
-');
+  log('\n── Category 9: Session-Selection Regressions ──\n');
   await testArchiveCandidateExcludedWhenActiveExists();
   await testAliasNormalizationDeterminism();
   await testRankingResistsMtimeSkew();

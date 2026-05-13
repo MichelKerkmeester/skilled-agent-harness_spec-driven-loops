@@ -20,9 +20,9 @@ Public Repo (source of truth)
 
 your-project.com (consumer project)
   .opencode -> Public/.opencode  ← SYMLINK (entire framework + specs)
-  .opencode-local/               ← Project-specific runtime data
-    database/
-      context-index.sqlite
+	  .opencode-local/               ← Project-specific runtime data
+	    database/
+	      context-index__<provider>__<safe-model>__<dim>__<dtype>.sqlite
   opencode.json                  ← MCP config (sets SPEC_KIT_DB_DIR)
   AGENTS.md                      ← Project-specific AI instructions
 ```

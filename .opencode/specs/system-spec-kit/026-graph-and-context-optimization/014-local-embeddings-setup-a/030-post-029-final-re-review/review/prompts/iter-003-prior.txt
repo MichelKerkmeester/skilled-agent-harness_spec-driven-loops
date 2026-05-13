@@ -1,0 +1,6 @@
+
+PRIOR ITERATIONS FINDINGS (avoid duplicate flags — these are already covered):
+
+--- iteration-001.md ---
+
+--- iteration-002.md ---

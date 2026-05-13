@@ -136,8 +136,8 @@ cd ../../../../
 Choose an embedding provider:
 
 ```bash
-# Default when no cloud keys are set: llama-cpp (free, local, zero setup on Apple Silicon with Metal GPU)
-# No setup required. The daemon auto-detects the GGUF model on first run.
+# Default when no cloud keys are set: llama-cpp when the GGUF runtime is installed
+# Apple Silicon Metal GPU acceleration is used when available; CPU fallback otherwise.
 
 # Option A: Voyage AI (cloud, requires API key, opt-in only)
 export VOYAGE_API_KEY="your-key-here"
@@ -517,8 +517,8 @@ Preview all checks without saving using `dryRun: true`. Learned relevance feedba
 &nbsp;
 #### Embedding Providers
 
-- **llama-cpp** - Default on Apple Silicon. Free, local, 768d Q8_0 GGUF with Metal GPU. No setup.
-- **HuggingFace Local** - Fallback when llama-cpp is unavailable. Free, local, 768d q8 ONNX. No setup.
+- **llama-cpp** - Auto when GGUF runtime is installed. Free, local, 768d Q8_0 GGUF; Apple Silicon Metal GPU acceleration when available, CPU fallback otherwise.
+- **HuggingFace Local** - Final fallback when llama-cpp runtime is unavailable. Free, local, 768d q8 ONNX.
 - **Voyage AI** - Cloud opt-in. Set `VOYAGE_API_KEY`. 1024d. Gated by egress guard.
 - **OpenAI** - Cloud opt-in. Set `OPENAI_API_KEY`. 1536d.
 
@@ -1268,7 +1268,7 @@ The memory server reads configuration from environment variables:
 Default repo-local database path: `.opencode/skills/system-spec-kit/mcp_server/database/context-index__llama-cpp__unsloth-embeddinggemma-300m-gguf__768__q8.sqlite`. The filename encodes provider, model, dimension and dtype so multiple backends can coexist on disk without mixing vectors.
 
 > [!TIP]
-> If no API key is set, the memory engine auto-detects **llama-cpp** first, then falls back to **HuggingFace Local** embeddings - free, no setup required.
+> If no API key is set, the memory engine auto-detects **llama-cpp** when the GGUF runtime is installed, then falls back to **HuggingFace Local** embeddings.
 
 
 &nbsp;

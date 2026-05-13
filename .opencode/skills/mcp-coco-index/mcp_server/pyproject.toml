@@ -48,7 +48,8 @@ ccc = "cocoindex_code.cli:app"
 
 [project.optional-dependencies]
 # Local on-device embedding stack (sentence-transformers + transitive torch/transformers).
-# Default install (`pip install -e .`) routes through LiteLLM (Voyage AI etc.) only.
+# Default install (`pip install -e .`) uses local sentence-transformers (EmbeddingGemma 300m) and never requires an API key.
+# LiteLLM (Voyage AI etc.) is an optional explicit setup.
 # Users who want offline / no-API-key embeddings: `pip install -e ".[local]"`.
 local = [
     "sentence-transformers>=2.2.0",

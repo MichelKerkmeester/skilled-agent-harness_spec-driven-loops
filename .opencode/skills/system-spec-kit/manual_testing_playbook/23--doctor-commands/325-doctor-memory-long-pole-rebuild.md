@@ -36,16 +36,16 @@ Force a full rebuild of the memory index. I changed embedding provider and need 
 
 ### Commands
 
-1. Use a disposable workspace with a populated active hf-local default profile database and vector DB.
+1. Use a disposable workspace with a populated active resolved profile database and vector DB.
 2. Confirm precondition:
-   - `test -s .opencode/skills/system-spec-kit/mcp_server/database/context-index__hf-local__onnx-community_embeddinggemma-300m-onnx__768__q8.sqlite`
+   - `find .opencode/skills/system-spec-kit/mcp_server/database -name 'context-index__*.sqlite' -size +0 -print -quit | grep -q .`
 3. Run `/doctor memory --incremental=false` through the real runtime.
 4. When the setup phase presents the long-pole ETA prompt, answer yes and keep the transcript.
 5. Capture snapshot creation lines for both memory DBs.
 6. Capture the Phase 3 rebuild summary, including `incremental: false` and `force: true`.
 7. Capture the Phase 4 gold-battery summary and the Phase 6 state-log path.
 8. Confirm at least one matching snapshot exists:
-   - `ls .opencode/skills/system-spec-kit/mcp_server/database/context-index__hf-local__onnx-community_embeddinggemma-300m-onnx__768__q8.sqlite.pre-doctor-memory.*.bak`
+   - `ls .opencode/skills/system-spec-kit/mcp_server/database/context-index__*.sqlite.pre-doctor-memory.*.bak`
 
 ### Expected
 

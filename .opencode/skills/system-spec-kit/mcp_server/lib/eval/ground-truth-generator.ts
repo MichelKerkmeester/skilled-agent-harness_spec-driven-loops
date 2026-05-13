@@ -97,7 +97,7 @@ const GATES = {
  * 1-3 relevance entries at grades 3 (highly relevant), 2 (relevant),
  * and 1 (partial). Hard-negative queries have no relevance entries.
  *
- * IDs were mapped from the production context-index.sqlite DB via
+ * IDs were mapped from the active production context-index__*.sqlite profile DB via
  * FTS5-based matching (scripts/map-ground-truth-ids.ts).
  */
 export function generateGroundTruth(): GroundTruthDataset {

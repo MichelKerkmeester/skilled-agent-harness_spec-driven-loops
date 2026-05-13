@@ -26,7 +26,7 @@ routes:
     setup_vars: [execution_mode, intent, incremental, no_snapshot, dry_run]
     allowed_flags: ["--incremental=true|false", "--no-snapshot", "--dry-run"]
     mutating: mutates
-    gate3_location: "mcp_server/database/context-index.sqlite + context-index__voyage__voyage-4__1024.sqlite"
+    gate3_location: "mcp_server/database/context-index__*.sqlite (active provider-keyed profile DB)"
     mcp_tools:
       - mcp__spec_kit_memory__memory_health
       - mcp__spec_kit_memory__memory_index_scan
@@ -44,7 +44,7 @@ routes:
     setup_vars: [execution_mode, intent, confidence_threshold, no_snapshot, dry_run]
     allowed_flags: ["--confidence-threshold=N", "--no-snapshot", "--dry-run"]
     mutating: add-only
-    gate3_location: "mcp_server/database/context-index.sqlite causal_edges table (add-only; existing edges never deleted or updated)"
+    gate3_location: "mcp_server/database/context-index__*.sqlite causal_edges table (add-only; existing edges never deleted or updated)"
     mcp_tools:
       - mcp__spec_kit_memory__memory_causal_stats
       - mcp__spec_kit_memory__memory_causal_link

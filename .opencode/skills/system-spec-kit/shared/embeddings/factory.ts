@@ -9,8 +9,14 @@ import path from 'path';
 import { fileURLToPath, pathToFileURL } from 'url';
 
 import { HfLocalProvider, resolveDtype as resolveHfLocalDtype } from './providers/hf-local.js';
+import {
+  getLlamaCppAvailability,
+  LLAMA_CPP_DEFAULT_MODEL_PATH,
+  resolveLlamaCppModelPath,
+  resolveWorkspaceNodeLlamaCppEntrypoint,
+} from './llama-cpp-availability.js';
 import { OpenAIProvider, MODEL_DIMENSIONS as OPENAI_MODEL_DIMENSIONS } from './providers/openai.js';
-import { EmbeddingProfile } from './profile.js';
+import { EmbeddingProfile, resolveActiveProfileDtype } from './profile.js';
 import { VoyageProvider, MODEL_DIMENSIONS as VOYAGE_MODEL_DIMENSIONS, resolveVoyageBaseUrl } from './providers/voyage.js';
 import type {
   IEmbeddingProvider,
@@ -132,16 +138,7 @@ export function setAutoMigrationTestOverridesForTests(overrides: AutoMigrationTe
 export const SUPPORTED_PROVIDERS = ['openai', 'voyage', 'hf-local', 'llama-cpp', 'auto'] as const;
 const SUPPORTED_PROVIDER_SET: ReadonlySet<string> = new Set(SUPPORTED_PROVIDERS);
 
-const LLAMA_CPP_DEFAULT_MODEL_FILE = 'embeddinggemma-300M-Q8_0.gguf';
 const LLAMA_CPP_MIGRATION_MODEL = 'unsloth/embeddinggemma-300m-GGUF';
-const LLAMA_CPP_DEFAULT_MODEL_PATH = path.join(
-  os.homedir(),
-  '.cache',
-  'huggingface',
-  'gguf',
-  'embeddinggemma-300m',
-  LLAMA_CPP_DEFAULT_MODEL_FILE,
-);
 const LLAMA_CPP_INSTALL_HINT = "Run 'bash .opencode/skills/system-spec-kit/scripts/install-llama-cpp.sh' to enable the faster default.";
 
 let llamaCppFallbackWarned = false;
@@ -296,67 +293,12 @@ function buildProviderConfigFingerprint(provider: string): string {
   });
 }
 
-function normalizeOptionalPath(rawPath: string | undefined | null): string | null {
-  if (!rawPath || rawPath.trim().length === 0) {
-    return null;
-  }
-  const trimmed = rawPath.trim();
-  if (trimmed.startsWith('~/')) {
-    return path.join(os.homedir(), trimmed.slice(2));
-  }
-  return path.resolve(trimmed);
-}
-
-function resolveLlamaCppModelPath(): string {
-  return normalizeOptionalPath(process.env.LLAMA_CPP_EMBEDDINGS_MODEL_PATH) || LLAMA_CPP_DEFAULT_MODEL_PATH;
-}
-
 function resolveLlamaCppDtype(): string {
-  const configured = process.env.LLAMA_CPP_EMBEDDINGS_DTYPE?.trim().toLowerCase();
-  if (!configured || configured === 'q8_0') {
-    return 'q8';
-  }
-  return configured.replace(/[^a-z0-9-_.]/g, '_').replace(/__+/g, '_');
+  return resolveActiveProfileDtype('llama-cpp') || 'q8';
 }
 
 function resolveLlamaCppProfileModel(model: string): string {
   return model.replace(/\//g, '-');
-}
-
-function resolveWorkspaceNodeLlamaCppEntrypoint(): string | null {
-  let currentDir = path.dirname(fileURLToPath(import.meta.url));
-  while (currentDir !== path.dirname(currentDir)) {
-    const candidates = [
-      path.join(currentDir, 'node_modules', 'node-llama-cpp', 'dist', 'index.js'),
-      path.join(currentDir, 'mcp_server', 'node_modules', 'node-llama-cpp', 'dist', 'index.js'),
-    ];
-    for (const candidate of candidates) {
-      if (existsSync(candidate)) {
-        return candidate;
-      }
-    }
-    currentDir = path.dirname(currentDir);
-  }
-  return null;
-}
-
-function getLlamaCppAvailability(): { available: boolean; reason?: string } {
-  if (!resolveWorkspaceNodeLlamaCppEntrypoint()) {
-    return {
-      available: false,
-      reason: 'node-llama-cpp is not installed',
-    };
-  }
-
-  const modelPath = resolveLlamaCppModelPath();
-  if (!existsSync(modelPath)) {
-    return {
-      available: false,
-      reason: `GGUF model not found at ${modelPath}`,
-    };
-  }
-
-  return { available: true };
 }
 
 function warnLlamaCppUnavailable(reason: string): void {
@@ -727,9 +669,7 @@ export function getStartupEmbeddingProfile(): EmbeddingProfile {
     dim,
     dtype: provider === 'hf-local'
       ? resolveHfLocalDtype()
-      : provider === 'llama-cpp'
-        ? resolveLlamaCppDtype()
-        : null,
+      : resolveActiveProfileDtype(provider),
     baseUrl: provider === 'voyage' ? resolveVoyageBaseUrl() : null,
   });
   return profile;
@@ -827,7 +767,7 @@ export function resolveProvider(): ProviderResolution {
   warnLlamaCppUnavailable(llamaCppAvailability.reason || 'availability probe failed');
   return {
     name: 'hf-local',
-    reason: 'Default local provider (transformers.js/ONNX q8)',
+    reason: 'Final fallback provider (transformers.js/ONNX q8)',
   };
 }
 
@@ -950,42 +890,105 @@ async function ensureCloudProviderValidated(options: ValidateApiKeyOptions): Pro
   return validation;
 }
 
+function getCascadeFallbackOrder(failedProvider: SupportedProviderName): SupportedProviderName[] {
+  const cascadeOrder: SupportedProviderName[] = ['voyage', 'openai', 'llama-cpp', 'hf-local'];
+  const failedIndex = cascadeOrder.indexOf(failedProvider);
+  return failedIndex === -1 ? [] : cascadeOrder.slice(failedIndex + 1);
+}
+
+function buildCascadeFallbackOptions(
+  providerName: SupportedProviderName,
+  options: CreateProviderOptions,
+): CreateProviderOptions {
+  const fallbackOptions: CreateProviderOptions = {
+    maxTextLength: options.maxTextLength,
+    timeout: options.timeout,
+    warmup: options.warmup,
+  };
+
+  if (providerName === 'hf-local') {
+    fallbackOptions.dtype = options.dtype;
+  }
+
+  return fallbackOptions;
+}
+
+function shouldSkipCascadeProvider(providerName: SupportedProviderName): string | null {
+  if (providerName === 'voyage' && !process.env.VOYAGE_API_KEY) {
+    return 'VOYAGE_API_KEY is not set';
+  }
+
+  if (providerName === 'openai' && !process.env.OPENAI_API_KEY) {
+    return 'OPENAI_API_KEY is not set';
+  }
+
+  return null;
+}
+
 async function createFallbackProvider(
   requestedProvider: SupportedProviderName,
   options: CreateProviderOptions,
   fallbackReason: string,
   requestedDim: number,
 ): Promise<IEmbeddingProvider> {
-  console.warn(`[factory] Attempting fallback from ${requestedProvider} to hf-local...`);
-  const provider = await createProviderInstance('hf-local', options);
-  const fallbackDim = provider.getMetadata().dim;
-  const dimensionChanged = requestedDim !== fallbackDim;
+  const fallbackOrder = getCascadeFallbackOrder(requestedProvider);
+  const failures: string[] = [];
 
-  if (dimensionChanged) {
-    console.error(
-      `[factory] WARNING: Provider fallback changed embedding dimension from ${requestedDim} to ${fallbackDim}. ` +
-      `Vector index may need rebuilding. Existing ${requestedDim}-dim vectors are incompatible with ${fallbackDim}-dim vectors.`
-    );
-  }
+  for (const fallbackProvider of fallbackOrder) {
+    const skipReason = shouldSkipCascadeProvider(fallbackProvider);
+    if (skipReason) {
+      console.warn(`[factory] Skipping fallback candidate ${fallbackProvider}: ${skipReason}`);
+      continue;
+    }
 
-  if (options.warmup) {
+    console.warn(`[factory] Attempting cascade fallback from ${requestedProvider} to ${fallbackProvider}...`);
+    const fallbackOptions = buildCascadeFallbackOptions(fallbackProvider, options);
+
     try {
-      await provider.warmup();
-    } catch (fallbackWarmupError: unknown) {
-      if (fallbackWarmupError instanceof Error) {
-        void fallbackWarmupError.message;
+      await ensureCloudProviderValidated({
+        provider: fallbackProvider,
+        timeout: options.timeout,
+      });
+
+      const provider = await createProviderInstance(fallbackProvider, fallbackOptions);
+      const fallbackDim = provider.getMetadata().dim;
+      const dimensionChanged = requestedDim !== fallbackDim;
+
+      if (dimensionChanged) {
+        console.error(
+          `[factory] WARNING: Provider fallback changed embedding dimension from ${requestedDim} to ${fallbackDim}. ` +
+          `Vector index may need rebuilding. Existing ${requestedDim}-dim vectors are incompatible with ${fallbackDim}-dim vectors.`
+        );
       }
-      console.warn(`[factory] Fallback warmup failed: ${getErrorMessage(fallbackWarmupError)}`);
-      // Continue anyway - provider will attempt lazy initialization on first use
+
+      if (options.warmup) {
+        try {
+          await provider.warmup();
+        } catch (fallbackWarmupError: unknown) {
+          if (fallbackWarmupError instanceof Error) {
+            void fallbackWarmupError.message;
+          }
+          console.warn(`[factory] Fallback warmup failed for ${fallbackProvider}: ${getErrorMessage(fallbackWarmupError)}`);
+          // Continue anyway - provider will attempt lazy initialization on first use
+        }
+      }
+
+      return attachFactoryMetadata(provider, {
+        requestedProvider,
+        effectiveProvider: fallbackProvider,
+        fallbackReason,
+        dimensionChanged,
+      });
+    } catch (fallbackError: unknown) {
+      failures.push(`${fallbackProvider}: ${getErrorMessage(fallbackError)}`);
+      console.warn(`[factory] Cascade fallback candidate ${fallbackProvider} failed: ${getErrorMessage(fallbackError)}`);
     }
   }
 
-  return attachFactoryMetadata(provider, {
-    requestedProvider,
-    effectiveProvider: 'hf-local',
-    fallbackReason,
-    dimensionChanged,
-  });
+  throw new Error(
+    `Provider fallback failed after ${requestedProvider} error (${fallbackReason}). ` +
+    `Cascade attempts: ${failures.length > 0 ? failures.join('; ') : 'none'}`,
+  );
 }
 
 // ---------------------------------------------------------------
@@ -1022,7 +1025,10 @@ export async function createEmbeddingsProvider(options: CreateProviderOptions = 
       if (!success) {
         console.warn(`[factory] Warmup failed for ${providerName}`);
 
-        if ((providerName === 'openai' || providerName === 'voyage') && allowsAutomaticFallback(options.provider)) {
+        if ((providerName === 'openai' || providerName === 'voyage' || providerName === 'llama-cpp') && allowsAutomaticFallback(options.provider)) {
+          if (providerName === 'llama-cpp') {
+            warnLlamaCppUnavailable(`warmup failed for ${providerName}`);
+          }
           return createFallbackProvider(
             providerName,
             options,
@@ -1045,7 +1051,7 @@ export async function createEmbeddingsProvider(options: CreateProviderOptions = 
     }
     console.error(`[factory] Error creating provider ${providerName}:`, getErrorMessage(error));
 
-    // Fallback to hf-local for auto-detected providers when the selected backend is unavailable.
+    // Resume the auto cascade when the selected backend is unavailable.
     if ((providerName === 'openai' || providerName === 'voyage' || providerName === 'llama-cpp') && allowsAutomaticFallback(options.provider)) {
       if (providerName === 'llama-cpp') {
         warnLlamaCppUnavailable(getErrorMessage(error));

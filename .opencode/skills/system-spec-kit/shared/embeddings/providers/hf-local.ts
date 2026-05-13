@@ -2,7 +2,7 @@
 // MODULE: HF Local
 // ---------------------------------------------------------------
 
-import { EmbeddingProfile } from '../profile.js';
+import { ALLOWED_HF_LOCAL_DTYPES, EmbeddingProfile, normalizeProfileDtype } from '../profile.js';
 import { semanticChunk, MAX_TEXT_LENGTH } from '../../chunking.js';
 import type { IEmbeddingProvider, ProviderMetadata, TaskPrefixMap } from '../../types.js';
 
@@ -18,7 +18,7 @@ const MODEL_LOAD_TIMEOUT: number = 120000; // 2 minutes (model is ~274MB)
 
 // Task prefixes required by nomic-embed-text-v1.5
 // See: https://huggingface.co/nomic-ai/nomic-embed-text-v1.5
-// NOTE: kept as the default (Nomic) prefix shape for backward-compatible consumers
+// NOTE: legacy compatibility export, not the current default, kept for consumers
 // (shared/embeddings.ts, shared/index.ts, mcp_server/lib/providers/embeddings.ts).
 // New code should call getPrefixFor() instead — see PREFIX_REGISTRY below.
 /** Defines task prefix. */
@@ -143,20 +143,18 @@ interface HfLocalOptions {
 // q8 gives ~99% quality at 1/4 the RAM (~310MB vs ~620MB) and is the
 // recommended baseline. Users can opt back to fp32 by setting
 // HF_EMBEDDINGS_DTYPE=fp32 in .env.local.
-const ALLOWED_HF_DTYPES: ReadonlyArray<string> = [
-  'fp32', 'fp16', 'q4', 'q4f16', 'q8', 'int8', 'uint8', 'bnb4',
-];
 export type HfLocalDtype = 'fp32' | 'fp16' | 'q4' | 'q4f16' | 'q8' | 'int8' | 'uint8' | 'bnb4';
 
 export function resolveDtype(explicit?: string): HfLocalDtype {
-  const raw = (explicit ?? process.env.HF_EMBEDDINGS_DTYPE ?? 'q8').trim();
-  if (!ALLOWED_HF_DTYPES.includes(raw)) {
+  const raw = explicit ?? process.env.HF_EMBEDDINGS_DTYPE ?? 'q8';
+  const normalized = normalizeProfileDtype(raw);
+  if (!normalized || !ALLOWED_HF_LOCAL_DTYPES.includes(normalized)) {
     console.warn(
-      `[hf-local] Unknown HF_EMBEDDINGS_DTYPE="${raw}"; falling back to fp32. Allowed: ${ALLOWED_HF_DTYPES.join(', ')}`,
+      `[hf-local] Unknown HF_EMBEDDINGS_DTYPE="${raw}"; falling back to q8. Allowed: ${ALLOWED_HF_LOCAL_DTYPES.join(', ')}`,
     );
-    return 'fp32';
+    return 'q8';
   }
-  return raw as HfLocalDtype;
+  return normalized as HfLocalDtype;
 }
 
 interface ErrorWithCode extends Error {
@@ -298,7 +296,7 @@ export class HfLocalProvider implements IEmbeddingProvider {
         this.loadingPromise = null;
         this.isHealthy = false;
 
-        // Detect native module version mismatch (onnxruntime-node, sharp)
+        // Detect native module version mismatch (e.g., sharp built against a different Node ABI)
         const errMsg = getErrorMessage(error);
         const errCode = getErrorCode(error);
         if (errCode === 'ERR_DLOPEN_FAILED' || errMsg.includes('NODE_MODULE_VERSION') || errMsg.includes('was compiled against a different Node.js version')) {

@@ -58,10 +58,10 @@ _memory:
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [x] CHK-010 [P0] `llama-cpp` remains explicit provider path.
+- [x] CHK-010 [P0] `llama-cpp` remains explicit provider path and auto-selected when installed.
   - **Evidence**: `EMBEDDINGS_PROVIDER=llama-cpp` benchmark and MCP smoke both execute.
-- [x] CHK-011 [P0] Auto mode restored to hf-local after failed probe.
-  - **Evidence**: `resolveProvider()` returns `hf-local` after cloud key checks.
+- [x] CHK-011 [P0] Auto mode cascades through Voyage -> OpenAI -> llama-cpp -> hf-local.
+  - **Evidence**: `resolveProvider()` selects llama-cpp when the GGUF runtime is installed and falls through to `hf-local` when it is unavailable.
 - [x] CHK-012 [P1] Slug follows dtype convention.
   - **Evidence**: migrated sqlite path uses `__768__q8.sqlite`.
 - [x] CHK-013 [P1] Migration script is idempotent.
@@ -96,8 +96,8 @@ _memory:
   - **Evidence**: `0.926`.
 - [x] CHK-032 [P0] Spearman top-10 recorded.
   - **Evidence**: `0.816125`.
-- [x] CHK-033 [P0] Verdict controls default.
-  - **Evidence**: verdict `MILD_DIVERGENCE`; auto default restored to hf-local.
+- [x] CHK-033 [P0] Verdict and operator decision control default.
+  - **Evidence**: verdict `MILD_DIVERGENCE`; operator accepted the mild divergence and kept llama-cpp in the auto cascade with hf-local fallback.
 - [x] CHK-034 [P1] MRR delta recorded.
   - **Evidence**: `0.000455`.
 <!-- /ANCHOR:quality-gate -->
@@ -120,8 +120,8 @@ _memory:
 <!-- ANCHOR:fix-completeness -->
 ## FIX COMPLETENESS
 
-- [x] CHK-038 [P0] The failed default flip is fully rolled back.
-  - **Evidence**: auto mode resolves to hf-local after cloud keys.
+- [x] CHK-038 [P0] The default flip resolves to the accepted auto cascade.
+  - **Evidence**: auto mode resolves through cloud keys, then llama-cpp when the GGUF runtime is installed, then hf-local.
 - [x] CHK-039 [P0] Explicit llama-cpp remains usable.
   - **Evidence**: benchmark and MCP smoke both use explicit llama-cpp.
 <!-- /ANCHOR:fix-completeness -->
@@ -144,13 +144,13 @@ _memory:
 <!-- ANCHOR:runtime -->
 ## Runtime And Smoke
 
-- [x] CHK-050 [P0] Codex config notes final default.
+- [x] CHK-050 [P0] Codex config notes final auto cascade.
   - **Evidence**: `.codex/config.toml`.
-- [x] CHK-051 [P0] Claude config notes final default.
+- [x] CHK-051 [P0] Claude config notes final auto cascade.
   - **Evidence**: `.claude/mcp.json`.
-- [x] CHK-052 [P0] Gemini config notes final default.
+- [x] CHK-052 [P0] Gemini config notes final auto cascade.
   - **Evidence**: `.gemini/settings.json`.
-- [x] CHK-053 [P0] OpenCode config notes final default.
+- [x] CHK-053 [P0] OpenCode config notes final auto cascade.
   - **Evidence**: `opencode.json`.
 - [x] CHK-054 [P1] MCP smoke uses actual launcher path.
   - **Evidence**: `scratch/end-to-end-smoke.md` records JSON-RPC stdio launcher path and PASS.
@@ -178,8 +178,8 @@ _memory:
 
 - [x] CHK-064 [P0] Packet docs contain real metrics.
   - **Evidence**: implementation summary records migration, probe, bench, and smoke values.
-- [x] CHK-065 [P1] README and env docs reflect opt-in llama-cpp.
-  - **Evidence**: `.env.example` and MCP README describe hf-local auto default.
+- [x] CHK-065 [P1] README and env docs reflect llama-cpp auto-selection when installed.
+  - **Evidence**: `.env.example` and MCP README describe the Voyage -> OpenAI -> llama-cpp -> hf-local cascade.
 <!-- /ANCHOR:docs -->
 
 ---
@@ -200,5 +200,5 @@ _memory:
 <!-- ANCHOR:summary -->
 ## Verification Summary
 
-Migration and explicit llama-cpp execution are sound. The automatic default flip is not shipped because the larger retrieval probe returned MILD_DIVERGENCE.
+Migration and explicit llama-cpp execution are sound. Operator accepted MILD_DIVERGENCE; llama-cpp stays in the auto cascade when the GGUF runtime is installed, and hf-local remains the fallback.
 <!-- /ANCHOR:summary -->

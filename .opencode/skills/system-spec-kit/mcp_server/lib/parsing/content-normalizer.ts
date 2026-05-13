@@ -207,7 +207,7 @@ function collapseWhitespace(content: string): string {
  *   8. Collapse excess whitespace  — final cleanup
  *
  * The result is a clean prose representation suitable for semantic
- * embedding models (nomic-embed-text-v1.5 and compatible providers).
+ * embedding models (EmbeddingGemma defaults and compatible providers).
  *
  * Integration point:
  *   memory-parser.ts  ~line 159 after `readFileWithEncoding()`,

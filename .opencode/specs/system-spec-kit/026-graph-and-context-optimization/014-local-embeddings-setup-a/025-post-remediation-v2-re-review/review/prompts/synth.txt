@@ -1,0 +1,28 @@
+You are the synthesizer for a /spec_kit:deep-review run that just completed 20 iterations of local-LLM legacy hunting.
+
+Read all iteration files at /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/025-post-remediation-v2-re-review/review/iterations/iteration-*.md. Deduplicate findings (same file:line collapsed). Produce TWO files:
+
+1. /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/025-post-remediation-v2-re-review/review/review-report.md — canonical review report with these sections:
+   ## 1. Stop Reason — "max_iterations_reached" (20/20)
+   ## 2. Iteration Count — 20
+   ## 3. Dimension Coverage — table: correctness/traceability/maintainability finding counts
+   ## 4. Severity Counts — P0/P1/P2 totals AFTER dedup
+   ## 5. Verdict — PASS / CONDITIONAL (P1 present) / FAIL (P0 present); include hasAdvisories=true when P2 present
+   ## 6. Release-Readiness — short paragraph on whether canonical post-014 default state is consistent across the repo
+   ## 7. Top P0 Findings (if any) — full table with evidence
+   ## 8. Top P1 Findings — full table with evidence
+   ## 9. Top P2 Findings (advisories) — abbreviated table
+   ## 10. Recommendation — either "PASS-with-advisories, close 015 packet" or "Scaffold 022-local-llm-legacy-remediation packet"; if 016 is recommended, list top batch-able remediation groups
+
+2. /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/025-post-remediation-v2-re-review/review/resource-map.md — coverage map:
+   | Surface | Files Scanned | P0 | P1 | P2 | Notes |
+   One row per surface family from scope.
+
+DEDUPLICATION RULES:
+- Same file:line across iterations: keep highest-severity, merge evidence/recommendation
+- Same file different lines: separate findings
+- "intentional-historical" disposition: list in a separate appendix "Excluded as historical context"; do NOT count in main tables
+
+Use iteration files as source of truth. Do NOT invent new findings.
+
+After writing both files, output one line: "SYNTH_DONE p0=N p1=N p2=N verdict=X"

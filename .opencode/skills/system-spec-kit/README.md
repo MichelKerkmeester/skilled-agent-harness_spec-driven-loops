@@ -143,7 +143,7 @@ For install and API details, see [Skill Advisor Native Package README](mcp_serve
 | Node.js       | 18+                      | Required for scripts and MCP server    |
 | TypeScript    | 5.0+                     | Source compiled to `dist/` directories |
 | Bash          | 4.0+                     | Spec management shell scripts          |
-| Embedding API | None for local fallback | Auto-cascade uses Voyage/OpenAI when keys are set, then llama-cpp on Apple Silicon, then HF Local ONNX. |
+| Embedding API | None for local fallback | Auto-cascade uses Voyage/OpenAI when keys are set, then llama-cpp when the GGUF runtime is installed, then HF Local ONNX. |
 
 Workspace module profile:
 
@@ -688,8 +688,8 @@ The indexed-continuity store converts text to numerical embeddings for vector se
 
 | Provider          | Dimensions | Notes                                                            |
 | ----------------- | ---------- | ---------------------------------------------------------------- |
-| llama-cpp         | 768        | Default on Apple Silicon. Q8_0 GGUF + Metal GPU. No setup.       |
-| HuggingFace Local | 768        | Fallback when llama-cpp is unavailable. q8 ONNX on CPU. No setup. |
+| llama-cpp         | 768        | Auto when GGUF runtime is installed. Apple Silicon Metal GPU acceleration when available; CPU fallback otherwise. |
+| HuggingFace Local | 768        | Final fallback when llama-cpp runtime is unavailable. q8 ONNX on CPU. |
 | Voyage AI         | 1024       | Cloud opt-in. Requires `VOYAGE_API_KEY`. Gated by egress guard.  |
 | OpenAI            | 1536       | Cloud opt-in. Requires `OPENAI_API_KEY`.                         |
 
