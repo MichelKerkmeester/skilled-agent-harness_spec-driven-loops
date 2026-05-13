@@ -8,7 +8,7 @@ PACKET FOLDER (already exists, scaffolded):
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/001-prefix-registry-architecture/
 
 CONTEXT
-HfLocalProvider (TypeScript, transformers.js-backed) and cocoindex_code/shared.py both hardcode prefix conventions for one specific embedding model family (Nomic). Any model swap silently inherits the wrong prefix → ~5-8% recall loss. We are migrating from Voyage to local embeddings (Qwen3-Embedding-4B for code, EmbeddingGemma for memory). The new models use DIFFERENT prefix conventions. We need a model-keyed registry + env-var override so future swaps are config-only.
+HfLocalProvider (TypeScript, transformers.js-backed) and cocoindex_code/shared.py both hardcode prefix conventions for one specific embedding model family (Nomic). Any model swap silently inherits the wrong prefix → ~5-8% recall loss. We are migrating from Voyage to local embeddings (EmbeddingGemma-300m for code, EmbeddingGemma for memory). The new models use DIFFERENT prefix conventions. We need a model-keyed registry + env-var override so future swaps are config-only.
 
 ═══════════════════════════════════════════════════════════════════
 SOURCE EDITS — 3 files
@@ -43,7 +43,7 @@ SOURCE EDITS — 3 files
 3) `.opencode/skills/system-spec-kit/mcp_server/cocoindex_code/shared.py`
    - Find `_QUERY_PROMPT_MODELS` (~line 24-76). Currently `{"nomic-ai/nomic-embed-code", "nomic-ai/CodeRankEmbed"}`.
    - Convert from `set[str]` to `dict[str, str]` mapping model_id → prompt_name. Existing entries → `"query"` value.
-   - Add: `"Qwen/Qwen3-Embedding-0.6B": "query"`, `"Qwen/Qwen3-Embedding-4B": "query"`, `"Qwen/Qwen3-Embedding-8B": "query"`.
+   - Add: `"google/embeddinggemma-300m": "query"`, `"google/embeddinggemma-300m": "query"`, `"google/embeddinggemma-300m": "query"`.
    - Add env-var override layer in the lookup function:
      • `COCOINDEX_QUERY_PROMPT_NAME` env overrides query prompt
      • `COCOINDEX_DOC_PROMPT_NAME` env overrides document prompt

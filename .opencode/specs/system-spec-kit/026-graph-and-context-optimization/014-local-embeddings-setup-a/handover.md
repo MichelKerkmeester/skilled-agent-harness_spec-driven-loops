@@ -16,7 +16,7 @@ _memory:
     recent_action: "Full 014 cascade strict-validates clean; 005+007 shipped; 009 search-path patched"
     next_safe_action: "User runs commit; then 20-30 deep-review iterations"
     blockers:
-      - "Cocoindex msgspec truncation prevents search end-to-end (daemon writes correct 2560-dim schema but returns malformed binary frames)"
+      - "Cocoindex msgspec truncation prevents search end-to-end (daemon writes correct 768-dim schema but returns malformed binary frames)"
     key_files:
       - "spec.md"
       - "SETUP_A_RECIPE.md"
@@ -116,7 +116,7 @@ You are resuming work on packet `system-spec-kit/026-graph-and-context-optimizat
 - `.opencode/specs/.../014-local-embeddings-setup-a/SETUP_A_RECIPE.md` — install guide for other users
 
 **HF cache populated (~/.cache/huggingface/hub/):**
-- `models--Qwen--Qwen3-Embedding-4B/` — 7.5GB, 14 files (sentence-transformers form, for CocoIndex via Python)
+- `models--Qwen--EmbeddingGemma-300m/` — ~620MB, 14 files (sentence-transformers form, for CocoIndex via Python)
 - `models--google--embeddinggemma-300m/` — 1.2GB, 19 files (canonical sentence-transformers form, reference only)
 - `models--onnx-community--embeddinggemma-300m-ONNX/` — 2.6GB, 21 files (transformers.js ONNX port with fp32/fp16/q4/q4f16/int8/no-gather-q4 variants)
 - `onnx-community/embeddinggemma-300m-ONNX/` (symlink → snapshot dir for transformers.js flat layout)
@@ -152,7 +152,7 @@ You are resuming work on packet `system-spec-kit/026-graph-and-context-optimizat
 
 ### 3.1 Recommended Starting Point
 
-004's evening continuation already swapped both vec stores under Setup A. Memory side is fully operational. Cocoindex side has the right Qwen3 schema but query path is broken by an upstream `msgspec.DecodeError: Input data was truncated`. The next session should NOT re-run the rebuild — pick up from the cocoindex IPC investigation OR jump to an independent track.
+004's evening continuation already swapped both vec stores under Setup A. Memory side is fully operational. Cocoindex side has the right EmbeddingGemma schema but query path is broken by an upstream `msgspec.DecodeError: Input data was truncated`. The next session should NOT re-run the rebuild — pick up from the cocoindex IPC investigation OR jump to an independent track.
 
 **First step in the new session:** verify memory still works (sanity), then pick a track:
 
@@ -173,19 +173,19 @@ Then choose:
 
 1. **Sub-phase 004 — Vec-store rebuild** (~75% complete):
    - ✅ Memory rebuild: 2112/2112 rows under hf-local/EmbeddingGemma-300m-ONNX/768; hybrid search verified (101ms pipeline, 88.39% similarity)
-   - ✅ Stale `.cocoindex_code/target_sqlite.db` removed; fresh DB created with `embedding float[2560]` schema (Qwen3-Embedding-4B)
+   - ✅ Stale `.cocoindex_code/target_sqlite.db` removed; fresh DB created with `embedding float[768]` schema (EmbeddingGemma-300m)
    - ✅ Public venv editable install re-pinned to Public source (was accidentally pointing at Barter sibling — see `feedback_public_venv_editable_install_must_be_self.md`)
-   - ✅ `~/.cocoindex_code/global_settings.yml` updated from voyage/voyage-code-3 to Qwen/Qwen3-Embedding-4B
+   - ✅ `~/.cocoindex_code/global_settings.yml` updated from voyage/voyage-code-3 to google/embeddinggemma-300m
    - ✅ 004 packet docs filled (spec/plan/tasks/implementation-summary); strict-validate PASSED 0 errors
    - ⚠️ Cocoindex query path blocked by `msgspec.DecodeError: Input data was truncated` — upstream IPC issue, see implementation-summary §Known Limitations 8-10
    - ⚠️ Cocoindex indexing rate stalled at 1335 markdown rows (~10 rows/sec, ~10-20× slower than handover estimate) — daemon on Metal but only 5-9% CPU
 
 2. **NEW Sub-phase 009 — Cocoindex IPC truncation fix** (gates 006):
    - Goal: diagnose and fix `msgspec.DecodeError: Input data was truncated` in `cocoindex_code/client.py:130` (SearchRequest response decode)
-   - Hypothesis: 2560-dim float32 vector serialization (10KB per result × N) hits a buffer limit, OR daemon emits partial response while mid-indexing
+   - Hypothesis: 768-dim float32 vector serialization (10KB per result × N) hits a buffer limit, OR daemon emits partial response while mid-indexing
    - Reproduction: `ccc search "test" --limit 1` hangs silently; `cocoindex_code.search query="test" refresh_index=false` returns `Input data was truncated` immediately
    - Daemon logs: not captured via MCP; need to run `ccc run-daemon --verbose` standalone to see internal errors
-   - Acceptance: a known-token search returns ≥1 result with `success=true` against the Qwen3 index
+   - Acceptance: a known-token search returns ≥1 result with `success=true` against the EmbeddingGemma index
 
 3. **Sub-phase 005 — Q4 quantization** (independent of cocoindex; can proceed):
    - Add `HF_EMBEDDINGS_DTYPE` env var plumb through hf-local.ts
@@ -195,7 +195,7 @@ Then choose:
 
 4. **Sub-phase 006 — bge-m3 hybrid evaluation** (BLOCKED on 009):
    - Build 50-query eval harness
-   - Index code corpus with Qwen3-4B (baseline) + bge-m3 dense + bge-m3 hybrid
+   - Index code corpus with EmbeddingGemma-300m (baseline) + bge-m3 dense + bge-m3 hybrid
    - Decision matrix: ship sqlite-vec schema extension only if hybrid wins by >5pp MRR@10
 
 5. **Sub-phase 007 — Voyage cleanup + egress monitoring** (depends on 005+006 stable for 24h):
@@ -250,8 +250,8 @@ Before handover (verify before user restarts):
 
 **Why `.env.local` matters for portability**
 
-The original plan baked Setup A's model env vars (`HF_EMBEDDINGS_MODEL=onnx-community/embeddinggemma-300m-ONNX`, `EMBEDDING_DIM=768`, `COCOINDEX_CODE_EMBEDDING_MODEL=sbert/Qwen/Qwen3-Embedding-4B`) into the 5 committed MCP configs. The user flagged that this would break other users:
-- No model on disk → MCP child tries to download ~10GB on first call, blocking startup
+The original plan baked Setup A's model env vars (`HF_EMBEDDINGS_MODEL=onnx-community/embeddinggemma-300m-ONNX`, `EMBEDDING_DIM=768`, `COCOINDEX_CODE_EMBEDDING_MODEL=sbert/google/embeddinggemma-300m`) into the 5 committed MCP configs. The user flagged that this would break other users:
+- No model on disk → MCP child tries to download ~~1.3GB on first call, blocking startup
 - No HF auth → gated EmbeddingGemma repo fails with 401
 - No symlink → transformers.js can't find the ONNX files even if downloaded
 

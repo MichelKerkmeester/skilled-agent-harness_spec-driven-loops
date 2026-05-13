@@ -3,7 +3,7 @@ os.environ['HF_HUB_OFFLINE'] = '1'
 from sentence_transformers import SentenceTransformer
 
 t0 = time.time()
-m = SentenceTransformer('Qwen/Qwen3-Embedding-4B', device='mps')
+m = SentenceTransformer('google/embeddinggemma-300m', device='mps')
 load_s = time.time() - t0
 
 t1 = time.time()

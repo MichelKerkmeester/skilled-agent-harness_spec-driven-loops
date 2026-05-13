@@ -26,7 +26,7 @@
       "SearchResponse serialization",
       "cocoindex Rust core",
       "multiprocessing.connection",
-      "2560-dim vector IPC",
+      "768-dim vector IPC",
       "daemon indexing stall",
       "include_patterns coverage"
     ],
@@ -46,7 +46,7 @@
       "target_sqlite.db",
       "code_chunks_vec"
     ],
-    "causal_summary": "Follow-on packet to 004. Cocoindex's IPC layer between the Rust daemon and the Python client returns truncated binary frames for SearchResponse, blocking all end-to-end semantic search calls under the Qwen3-Embedding-4B setup. Direct sqlite-vec queries against the same target_sqlite.db return valid 2560-dim KNN results, confirming the data is good. 009 will diagnose the serialization bug, fix the response decode path, and unblock 006 (bge-m3 hybrid evaluation).",
+    "causal_summary": "Follow-on packet to 004. Cocoindex's IPC layer between the Rust daemon and the Python client returns truncated binary frames for SearchResponse, blocking all end-to-end semantic search calls under the EmbeddingGemma-300m setup. Direct sqlite-vec queries against the same target_sqlite.db return valid 768-dim KNN results, confirming the data is good. 009 will diagnose the serialization bug, fix the response decode path, and unblock 006 (bge-m3 hybrid evaluation).",
     "created_at": "2026-05-12T21:35:00Z",
     "last_save_at": "2026-05-12T21:35:00Z",
     "save_lineage": "graph_only",

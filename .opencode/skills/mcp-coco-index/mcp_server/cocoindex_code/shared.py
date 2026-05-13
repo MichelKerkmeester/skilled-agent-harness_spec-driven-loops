@@ -39,6 +39,18 @@ _QUERY_PROMPT_MODELS: dict[str, str] = {
     "Qwen/Qwen3-Embedding-0.6B": "query",
     "Qwen/Qwen3-Embedding-4B": "query",
     "Qwen/Qwen3-Embedding-8B": "query",
+    # 014-local-embeddings-setup-a / 011-embeddinggemma-unification:
+    # EmbeddingGemma uses task-specific prompt templates. For CODE SEARCH the
+    # canonical prompt is "InstructionRetrieval" -> "task: code retrieval | query: ".
+    # The alternative "query" -> "task: search result | query: " is for general
+    # retrieval (what spec-kit-memory uses). Code search wants the code variant.
+    #
+    # NOTE: this sets only the QUERY prompt. EmbeddingGemma also has a distinct
+    # DOCUMENT prompt ("title: none | text: ") expected at indexing time.
+    # CocoIndex's current daemon doesn't apply asymmetric query/document prompts,
+    # so documents are indexed without the document prefix. Quality is suboptimal
+    # vs ideal EmbeddingGemma usage but still much better than no prompt at all.
+    "google/embeddinggemma-300m": "InstructionRetrieval",
 }
 
 

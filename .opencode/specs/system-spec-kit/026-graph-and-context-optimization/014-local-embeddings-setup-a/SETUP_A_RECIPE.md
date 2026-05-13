@@ -7,7 +7,7 @@ To activate Setup A on your machine, follow this recipe. Setup A swaps both vec 
 | Surface | Default | Setup A |
 |---|---|---|
 | Memory (Spec Kit Memory MCP) | `nomic-ai/nomic-embed-text-v1.5` (768d, ~270MB) | `onnx-community/embeddinggemma-300m-ONNX` (768d, ~620MB fp32 / ~190MB Q4) |
-| Code (CocoIndex MCP) | `sbert/sentence-transformers/all-MiniLM-L6-v2` (384d, ~90MB) | `sbert/Qwen/Qwen3-Embedding-4B` (2560d, ~8GB fp16 on Metal) |
+| Code (CocoIndex MCP) | `sbert/sentence-transformers/all-MiniLM-L6-v2` (384d, ~90MB) | `sbert/google/embeddinggemma-300m` (768d, ~620MB fp16 on Metal) |
 
 ## Prerequisites
 
@@ -34,11 +34,11 @@ To activate Setup A on your machine, follow this recipe. Setup A swaps both vec 
 # Use the project's cocoindex venv Python (already has sentence-transformers + huggingface_hub installed)
 PY=.opencode/skills/mcp-coco-index/mcp_server/.venv/bin/python3
 
-$PY -c "from huggingface_hub import snapshot_download; snapshot_download('Qwen/Qwen3-Embedding-4B')"
+$PY -c "from huggingface_hub import snapshot_download; snapshot_download('google/embeddinggemma-300m')"
 $PY -c "from huggingface_hub import snapshot_download; snapshot_download('onnx-community/embeddinggemma-300m-ONNX')"
 ```
 
-Expect ~10GB total in `~/.cache/huggingface/hub/`. The Qwen pull is ~7.5GB (14 files); the EmbeddingGemma ONNX pull is ~2.6GB (21 files including fp32/fp16/q4/q4f16/int8 variants).
+Expect ~~1.3GB total in `~/.cache/huggingface/hub/`. The EmbeddingGemma pull is ~~620MB (14 files); the EmbeddingGemma ONNX pull is ~2.6GB (21 files including fp32/fp16/q4/q4f16/int8 variants).
 
 ### 3. Create the transformers.js cache symlink
 
@@ -57,7 +57,7 @@ ln -sfn "$PWD/$SNAPSHOT" "$PWD/onnx-community/embeddinggemma-300m-ONNX"
 cat > .env.local << 'EOF'
 HF_EMBEDDINGS_MODEL=onnx-community/embeddinggemma-300m-ONNX
 EMBEDDING_DIM=768
-COCOINDEX_CODE_EMBEDDING_MODEL=sbert/Qwen/Qwen3-Embedding-4B
+COCOINDEX_CODE_EMBEDDING_MODEL=sbert/google/embeddinggemma-300m
 EOF
 ```
 
@@ -73,7 +73,7 @@ Both populate `process.env` for the MCP child before any embedding code runs. Ex
 
 ### 6. Rebuild vec stores
 
-Delete the stale CocoIndex index (it was built with a different dim — 384d for MiniLM default OR 2560d if you previously ran Setup A but on a different model):
+Delete the stale CocoIndex index (it was built with a different dim — 384d for MiniLM default OR 768d if you previously ran Setup A but on a different model):
 ```bash
 rm -f .cocoindex_code/target_sqlite.db
 ```
@@ -90,7 +90,7 @@ Trigger reindex via MCP tools (Claude Code / OpenCode):
 # Memory dim is 768 (Gemma native)
 ls .opencode/skills/system-spec-kit/mcp_server/database/context-index__hf-local__onnx-community__embeddinggemma-300m-ONNX__768.sqlite
 
-# CocoIndex DB grows from 0 toward ~6-10GB during reindex (2560d × ~30k chunks × 4 bytes)
+# CocoIndex DB grows from 0 toward ~6-~1.3GB during reindex (768d × ~30k chunks × 4 bytes)
 du -sh .cocoindex_code/target_sqlite.db
 ```
 
@@ -124,8 +124,8 @@ mv .env.local .env.local.disabled
 # MCP servers fall back to Nomic-text-v1.5 (memory) + MiniLM (code) — both auto-download if absent
 ```
 
-The Setup A vec stores stay on disk; they just become orphaned (~10GB). Delete manually if you want the space back:
+The Setup A vec stores stay on disk; they just become orphaned (~~1.3GB). Delete manually if you want the space back:
 ```bash
 rm -f .opencode/skills/system-spec-kit/mcp_server/database/context-index__hf-local__onnx-community__embeddinggemma-300m-ONNX__768.sqlite*
-rm -f .cocoindex_code/target_sqlite.db  # if currently on Setup A's 2560d Qwen index
+rm -f .cocoindex_code/target_sqlite.db  # if currently on Setup A's 768d Qwen index
 ```

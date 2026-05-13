@@ -116,7 +116,7 @@ def default_user_settings() -> UserSettings:
     return UserSettings(
         embedding=EmbeddingSettings(
             provider="sentence-transformers",
-            model="sentence-transformers/all-MiniLM-L6-v2",
+            model="google/embeddinggemma-300m",
         )
     )
 

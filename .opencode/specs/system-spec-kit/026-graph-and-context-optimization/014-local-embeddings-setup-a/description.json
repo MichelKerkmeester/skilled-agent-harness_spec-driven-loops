@@ -1,16 +1,16 @@
 {
   "specFolder": "014-local-embeddings-setup-a",
-  "description": "Local embeddings Setup A — Qwen3-Embedding-4B for code, EmbeddingGemma-300m for memory",
+  "description": "Local embeddings Setup A - EmbeddingGemma for both code and memory",
   "keywords": [
     "local",
     "embeddings",
     "setup",
-    "qwen3-embedding-4b",
-    "code",
     "embeddinggemma-300m",
-    "memory"
+    "code",
+    "memory",
+    "qwen3-purged"
   ],
-  "lastUpdated": "2026-05-12T16:27:47.525Z",
+  "lastUpdated": "2026-05-13T07:35:00Z",
   "specId": "014",
   "folderSlug": "local-embeddings-setup-a",
   "parentChain": [],

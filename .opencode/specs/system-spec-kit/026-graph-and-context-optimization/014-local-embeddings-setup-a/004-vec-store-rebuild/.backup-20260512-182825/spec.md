@@ -55,7 +55,7 @@ _memory:
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This is **Phase 4** of the Local embeddings Setup A — Qwen3-Embedding-4B for code, EmbeddingGemma-300m for memory specification.
+This is **Phase 4** of the Local embeddings Setup A — EmbeddingGemma-300m for code, EmbeddingGemma-300m for memory specification.
 
 **Scope Boundary**: [To be defined during planning]
 

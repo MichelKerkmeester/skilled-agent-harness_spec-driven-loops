@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Phase 9 — Cocoindex IPC Fix"
-description: "Diagnose and fix the cocoindex Rust↔Python IPC truncation that blocks all semantic-search calls under the Qwen3-Embedding-4B setup. Direct sqlite-vec KNN against the same target_sqlite.db works perfectly (proves data layer is healthy); cocoindex_code.search returns msgspec.DecodeError: Input data was truncated. Also unblock daemon indexing past 1335 markdown chunks to cover source-code languages."
+description: "Diagnose and fix the cocoindex Rust↔Python IPC truncation that blocks all semantic-search calls under the EmbeddingGemma-300m setup. Direct sqlite-vec KNN against the same target_sqlite.db works perfectly (proves data layer is healthy); cocoindex_code.search returns msgspec.DecodeError: Input data was truncated. Also unblock daemon indexing past 1335 markdown chunks to cover source-code languages."
 trigger_phrases:
   - "009 cocoindex IPC fix"
   - "msgspec truncation cocoindex search"
@@ -74,10 +74,10 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-Under Setup A (Qwen3-Embedding-4B / sentence-transformers / 2560-dim), the cocoindex daemon writes valid embeddings to `target_sqlite.db` (proven via direct sqlite-vec KNN returning relevant results at distance 0.97-1.03 on packet-local queries), but every search call through cocoindex's own MCP/CLI path returns `msgspec.DecodeError: Input data was truncated`. Separately, daemon indexes only 1335 markdown chunks then idles at 0% CPU despite `include_patterns` covering .py/.ts/.js/.go/.rs/.md.
+Under Setup A (EmbeddingGemma-300m / sentence-transformers / 768-dim), the cocoindex daemon writes valid embeddings to `target_sqlite.db` (proven via direct sqlite-vec KNN returning relevant results at distance 0.97-1.03 on packet-local queries), but every search call through cocoindex's own MCP/CLI path returns `msgspec.DecodeError: Input data was truncated`. Separately, daemon indexes only 1335 markdown chunks then idles at 0% CPU despite `include_patterns` covering .py/.ts/.js/.go/.rs/.md.
 
 ### Purpose
-Restore end-to-end semantic search through the standard cocoindex tools so 006 and downstream phases can compare ranking quality against a working baseline. Secondary: unstall the daemon so it indexes the full repo under Qwen3.
+Restore end-to-end semantic search through the standard cocoindex tools so 006 and downstream phases can compare ranking quality against a working baseline. Secondary: unstall the daemon so it indexes the full repo under EmbeddingGemma.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -151,8 +151,8 @@ Restore end-to-end semantic search through the standard cocoindex tools so 006 a
 |------|------|--------|------------|
 | Risk | Bug is in cocoindex Rust core (compiled `_internal/core.abi3.so`), not patchable from in-repo source | High | Push fix upstream; pin a fork until merged; for 014 ship, document workaround (direct sqlite-vec for any consumer that absolutely needs search now) |
 | Risk | Daemon stall has a separate root cause from the truncation | Med | Investigate them as two independent issues; ship a single-fix packet only if both share root cause; otherwise split into 009 (search) and 010 (indexing) |
-| Risk | Diagnostic logging itself reveals a deeper bug (e.g., 2560-dim float32 serialization isn't supported by msgspec at all) | Med | Document and escalate; possibly use a different serialization layer for SearchResponse only |
-| Dependency | 004's existing target_sqlite.db with partial Qwen3 vectors | Hard | Don't `rm` it during 009 — direct sqlite-vec validation still works against it |
+| Risk | Diagnostic logging itself reveals a deeper bug (e.g., 768-dim float32 serialization isn't supported by msgspec at all) | Med | Document and escalate; possibly use a different serialization layer for SearchResponse only |
+| Dependency | 004's existing target_sqlite.db with partial EmbeddingGemma vectors | Hard | Don't `rm` it during 009 — direct sqlite-vec validation still works against it |
 | Dependency | cocoindex package version 0.2.3+spec-kit-fork.0.2.0 (alpha-ish) | Med | If upstream has shipped fixes after our fork point, consider rebasing the fork |
 <!-- /ANCHOR:risks -->
 

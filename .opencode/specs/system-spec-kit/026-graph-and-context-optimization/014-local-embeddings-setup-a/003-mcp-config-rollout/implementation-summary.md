@@ -59,7 +59,7 @@ _memory:
 
 ### Env additions per config
 - `spec_kit_memory`: `HF_EMBEDDINGS_MODEL=onnx-community/embeddinggemma-300m-ONNX`, `EMBEDDING_DIM=768`
-- `cocoindex_code`: `COCOINDEX_CODE_EMBEDDING_MODEL=sbert/Qwen/Qwen3-Embedding-4B`
+- `cocoindex_code`: `COCOINDEX_CODE_EMBEDDING_MODEL=sbert/google/embeddinggemma-300m`
 - `EMBEDDINGS_PROVIDER` retained as `"auto"` per user direction (will resolve to `hf-local` once API keys are absent)
 
 ### Voyage cleanup

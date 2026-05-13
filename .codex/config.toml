@@ -13,15 +13,14 @@ args = [".opencode/skills/system-spec-kit/mcp_server/dist/context-server.js"]
 [mcp_servers.spec_kit_memory.env]
 EMBEDDINGS_PROVIDER = "auto"
 # MEMORY_DB_PATH intentionally unset: filename is auto-derived from provider+model+dim
-# (e.g., context-index__hf-local__nomic-ai__nomic-embed-text-v1.5__768.sqlite for the
-# auto-resolved default). 014-local-embeddings-setup-a removed the explicit override
-# that pinned the generic context-index.sqlite filename (a leftover from an older state).
-# To override the model: set HF_EMBEDDINGS_MODEL in .env.local at repo root (see .env.example).
+# (e.g., context-index__hf-local__onnx-community__embeddinggemma-300m-ONNX__768.sqlite
+# for the Setup A default since 014/011). To override the model: set
+# HF_EMBEDDINGS_MODEL in .env.local at repo root (see .env.example).
 SPECKIT_SESSION_BOOST = "true"
 SPECKIT_CAUSAL_BOOST = "true"
-_NOTE_1_DATABASE = "Stores vectors in: .opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite"
-_NOTE_2_PROVIDERS = "Supports: Voyage (1024 dims), OpenAI (1536/3072 dims), HF Local (768 dims, no API needed)"
-_NOTE_3_EMBEDDINGS_PROVIDER = "Current: 'hf-local' (free, offline). Options: 'auto', 'voyage', 'openai'"
+_NOTE_1_DATABASE = "Stores vectors in: .opencode/skills/system-spec-kit/mcp_server/database/context-index__hf-local__onnx-community__embeddinggemma-300m-ONNX__768.sqlite"
+_NOTE_2_PROVIDERS = "Default HF Local: onnx-community/embeddinggemma-300m-ONNX (768 dims, no API key); cloud providers optional (Voyage 1024 dims, OpenAI 1536/3072 dims)"
+_NOTE_3_EMBEDDINGS_PROVIDER = "Current: 'hf-local' (free, offline, Setup A default). Options: 'auto', 'voyage', 'openai'"
 _NOTE_4_CLOUD_PROVIDERS = "For cloud: add VOYAGE_API_KEY or OPENAI_API_KEY and set EMBEDDINGS_PROVIDER=auto"
 _NOTE_5_GET_VOYAGE_KEY = "Get Voyage key: https://dash.voyageai.com/api-keys (recommended, 8% better than OpenAI)"
 _NOTE_6_GET_OPENAI_KEY = "Get OpenAI key: https://platform.openai.com/api-keys"
@@ -40,7 +39,7 @@ args = ["mcp"]
 [mcp_servers.cocoindex_code.env]
 COCOINDEX_CODE_ROOT_PATH = "."
 _NOTE_1 = "Install: bash .opencode/skills/mcp-coco-index/scripts/install.sh"
-_NOTE_2 = "Default embedding: all-MiniLM-L6-v2 (local, no API key needed)"
+_NOTE_2 = "Default embedding: google/embeddinggemma-300m (sentence-transformers, ~620MB, no API key — Setup A default since 014/011)"
 _NOTE_3 = "Index stored in .cocoindex_code/ (gitignored)"
 
 [mcp_servers.code_mode]

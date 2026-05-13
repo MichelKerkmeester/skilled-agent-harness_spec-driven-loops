@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Phase 4 — Vec-Store Rebuild"
-description: "After 003 patched MCP configs, the active memory vec store and the CocoIndex sqlite still held data from the pre-Setup-A models (Voyage 1024-dim memory, MiniLM 384-dim code). Phase 4 wipes both, triggers a clean rebuild under the Setup A model identities (EmbeddingGemma-300m-ONNX 768-dim memory, Qwen3-Embedding-4B 2560-dim code), and verifies dims plus query latencies on both surfaces."
+description: "After 003 patched MCP configs, the active memory vec store and the CocoIndex sqlite still held data from the pre-Setup-A models (Voyage 1024-dim memory, MiniLM 384-dim code). Phase 4 wipes both, triggers a clean rebuild under the Setup A model identities (EmbeddingGemma-300m-ONNX 768-dim memory, EmbeddingGemma-300m 768-dim code), and verifies dims plus query latencies on both surfaces."
 trigger_phrases:
   - "004 vec-store-rebuild"
   - "memory_index_scan setup A"
@@ -53,7 +53,7 @@ _memory:
 | **Phase** | 4 of 8 |
 | **Predecessor** | 003-mcp-config-rollout |
 | **Successor** | 005-q4-quantization |
-| **Handoff Criteria** | vec_memories row count == memory_index FTS count; cocoindex returns ≥1 result on a known query under Qwen3 |
+| **Handoff Criteria** | vec_memories row count == memory_index FTS count; cocoindex returns ≥1 result on a known query under EmbeddingGemma |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -77,7 +77,7 @@ _memory:
 After 003's config rollout, every MCP child sees Setup A env vars, but the on-disk vec stores still reflect the previous embedding model identities. The Spec Kit Memory layer uses filename-keyed sqlite (so a clean DB auto-appeared as soon as the launcher loaded `.env.local`), but it had 0 rows — search returned nothing. CocoIndex's `target_sqlite.db` is single-file and was 2.0GB of stale MiniLM 384-dim vectors held open by a daemon that pre-dated the user's runtime restart.
 
 ### Purpose
-Rebuild both stores under the Setup A model identities so the new memory + code search paths are populated and verifiably working: hybrid search on memory returns vector-grade similarity scores against 768-dim EmbeddingGemma; cocoindex returns relevant code chunks against 2560-dim Qwen3.
+Rebuild both stores under the Setup A model identities so the new memory + code search paths are populated and verifiably working: hybrid search on memory returns vector-grade similarity scores against 768-dim EmbeddingGemma; cocoindex returns relevant code chunks against 768-dim Qwen3.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -89,7 +89,7 @@ Rebuild both stores under the Setup A model identities so the new memory + code 
 - `rm` the stale `.cocoindex_code/target_sqlite.db` (2.0GB MiniLM)
 - Kick the stale CocoIndex daemon so the MCP server spawns a fresh one with Setup A env
 - Trigger `memory_index_scan` to populate the new 768-dim filename-keyed sqlite (`context-index__hf-local__onnx-community_embeddinggemma-300m-onnx__768.sqlite`)
-- Trigger `cocoindex_code.search refresh_index=true` to force a Qwen3-4B reindex
+- Trigger `cocoindex_code.search refresh_index=true` to force a EmbeddingGemma-300m reindex
 - Verify embedding dims (memory: 768, cocoindex: 2560), provider health, and pipeline latencies via `memory_health` + an end-to-end search
 
 ### Out of Scope
@@ -106,7 +106,7 @@ Rebuild both stores under the Setup A model identities so the new memory + code 
 |-----------|-------------|-------------|
 | `.cocoindex_code/target_sqlite.db` | Delete | 2.0GB stale MiniLM 384-dim index |
 | `.opencode/skills/system-spec-kit/mcp_server/database/context-index__hf-local__onnx-community_embeddinggemma-300m-onnx__768.sqlite` | Create/Populate | New 768-dim memory vec store (auto-created by launcher on first spawn; populated by `memory_index_scan`) |
-| `.cocoindex_code/target_sqlite.db` (new) | Create/Populate | Fresh Qwen3-4B 2560-dim index (auto-rebuilt by `cocoindex_code.search refresh_index=true`) |
+| `.cocoindex_code/target_sqlite.db` (new) | Create/Populate | Fresh EmbeddingGemma-300m 768-dim index (auto-rebuilt by `cocoindex_code.search refresh_index=true`) |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -123,7 +123,7 @@ Rebuild both stores under the Setup A model identities so the new memory + code 
 | REQ-003 | Memory provider healthy under Setup A | `embeddingProvider.healthy == true`, `provider == hf-local`, `model == onnx-community/embeddinggemma-300m-ONNX`, `dimension == 768` |
 | REQ-004 | Memory hybrid search works | `memory_quick_search` returns ≥1 result with `searchType == "hybrid"` and `activeChannels >= 2` |
 | REQ-005 | CocoIndex serves a query | `cocoindex_code.search` returns `success=true` with ≥1 result for a known-token query, post-rebuild |
-| REQ-006 | CocoIndex dim is 2560 (Qwen3) | New `target_sqlite.db` schema reports 2560-dim vectors |
+| REQ-006 | CocoIndex dim is 2560 (Qwen3) | New `target_sqlite.db` schema reports 768-dim vectors |
 
 ### P1 - Required (complete OR user-approved deferral)
 
@@ -139,7 +139,7 @@ Rebuild both stores under the Setup A model identities so the new memory + code 
 ## 5. SUCCESS CRITERIA
 
 - **SC-001**: Memory side returns vector-grade similarity scores (>0.75) on packet-local queries
-- **SC-002**: CocoIndex `target_sqlite.db` exists with 2560-dim vector schema and serves at least one query
+- **SC-002**: CocoIndex `target_sqlite.db` exists with 768-dim vector schema and serves at least one query
 - **SC-003**: Both stores are filename-keyed (memory) or path-determined (cocoindex) so future model swaps don't collide
 - **SC-004**: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <004-packet> --strict` exits 0
 <!-- /ANCHOR:success-criteria -->

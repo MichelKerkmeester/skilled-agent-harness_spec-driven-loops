@@ -1,6 +1,6 @@
 ---
-title: "Feature Specification: Local embeddings Setup A — Qwen3-Embedding-4B for code, EmbeddingGemma-300m for memory"
-description: "Phase parent for Local embeddings Setup A — Qwen3-Embedding-4B for code, EmbeddingGemma-300m for memory"
+title: "Feature Specification: Local embeddings Setup A — EmbeddingGemma-300m for code, EmbeddingGemma-300m for memory"
+description: "Phase parent for Local embeddings Setup A — EmbeddingGemma-300m for code, EmbeddingGemma-300m for memory"
 trigger_phrases:
   - "014-local-embeddings-setup-a"
   - "phase parent"
@@ -37,7 +37,7 @@ _memory:
     - What needs done: the high-level outcome the phases work toward
 -->
 
-# Feature Specification: Local embeddings Setup A — Qwen3-Embedding-4B for code, EmbeddingGemma-300m for memory
+# Feature Specification: Local embeddings Setup A — EmbeddingGemma-300m for code, EmbeddingGemma-300m for memory
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
@@ -62,7 +62,7 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-This phased decomposition tracks Local embeddings Setup A — Qwen3-Embedding-4B for code, EmbeddingGemma-300m for memory across independently executable child phase folders.
+This phased decomposition tracks Local embeddings Setup A — EmbeddingGemma-300m for code, EmbeddingGemma-300m for memory across independently executable child phase folders.
 
 ### Purpose
 Keep parent documentation lean while child phases own detailed plans, tasks, checklists, and continuity.
@@ -76,7 +76,7 @@ Keep parent documentation lean while child phases own detailed plans, tasks, che
 ## 3. SCOPE
 
 ### In Scope
-- Root purpose and child phase manifest for Local embeddings Setup A — Qwen3-Embedding-4B for code, EmbeddingGemma-300m for memory
+- Root purpose and child phase manifest for Local embeddings Setup A — EmbeddingGemma-300m for code, EmbeddingGemma-300m for memory
 - Per-phase implementation details in child folders
 
 ### Out of Scope

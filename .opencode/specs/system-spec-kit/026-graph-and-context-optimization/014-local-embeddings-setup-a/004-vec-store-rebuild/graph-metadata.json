@@ -26,7 +26,7 @@
     "key_topics": [
       "hf-local provider",
       "EmbeddingGemma-300m-ONNX",
-      "Qwen3-Embedding-4B",
+      "EmbeddingGemma-300m",
       "vec_memories 768-dim",
       "cocoindex target_sqlite.db rebuild",
       "embedding_cache content-hash hit",
@@ -52,7 +52,7 @@
       "ccc run-daemon",
       "spec-kit-memory-launcher"
     ],
-    "causal_summary": "Vec-store rebuild under Setup A models. Memory side complete: 2112/2112 vec rows under hf-local/EmbeddingGemma-300m-ONNX/768. CocoIndex side staged (stale DB removed, daemon killed); final Qwen3-4B rebuild blocked on user /mcp reconnect cocoindex_code.",
+    "causal_summary": "Vec-store rebuild under Setup A models. Memory side complete: 2112/2112 vec rows under hf-local/EmbeddingGemma-300m-ONNX/768. CocoIndex side staged (stale DB removed, daemon killed); final EmbeddingGemma-300m rebuild blocked on user /mcp reconnect cocoindex_code.",
   "created_at": "2026-05-12T16:27:49Z",
   "last_save_at": "2026-05-12T20:00:00Z",
   "save_lineage": "graph_only",

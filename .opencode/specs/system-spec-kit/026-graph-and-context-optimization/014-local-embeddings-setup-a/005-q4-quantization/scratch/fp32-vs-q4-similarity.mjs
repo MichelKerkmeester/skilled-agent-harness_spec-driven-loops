@@ -19,7 +19,7 @@ const CORPUS = [
   'EmbeddingGemma-300m-ONNX supports fp32, fp16, q4, q4f16, int8 dtype variants',
   'voyage-4 was the previous embedding default before the local migration',
   'sqlite-vec stores float[768] embeddings in a virtual table with vec0 module',
-  'cocoindex daemon writes 2560-dim Qwen3-Embedding-4B vectors to target_sqlite.db',
+  'cocoindex daemon writes 768-dim EmbeddingGemma vectors to target_sqlite.db',
   'when refresh_index is true the cocoindex search call triggers a daemon reindex',
   'multiprocessing.connection.Connection.send_bytes prepends a 4-byte length header',
   'the prefix registry maps model id to document and query prefix strings',

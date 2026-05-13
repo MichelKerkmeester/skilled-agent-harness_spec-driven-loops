@@ -10,7 +10,7 @@ import type { IEmbeddingProvider, ProviderMetadata, TaskPrefixMap } from '../../
 // 1. CONFIGURATION
 // ---------------------------------------------------------------
 
-const DEFAULT_MODEL: string = 'nomic-ai/nomic-embed-text-v1.5';
+const DEFAULT_MODEL: string = 'onnx-community/embeddinggemma-300m-ONNX';
 const EMBEDDING_DIM: number = 768;
 // MAX_TEXT_LENGTH imported from chunking.ts (single source of truth)
 const EMBEDDING_TIMEOUT: number = 30000;

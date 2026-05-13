@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: 014/006 bge-m3-hybrid-evaluation"
-description: "(Scaffolded — pending 009 unblock.) Planning packet for the bge-m3 vs Qwen3 retrieval-quality side-by-side eval. Decision matrix: ship sqlite-vec schema extension only if hybrid bge-m3 beats Qwen3-dense by ≥5pp MRR@10."
+description: "(Scaffolded — pending 009 unblock.) Planning packet for the bge-m3 vs EmbeddingGemma retrieval-quality side-by-side eval. Decision matrix: ship sqlite-vec schema extension only if hybrid bge-m3 beats EmbeddingGemma-dense by ≥5pp MRR@10."
 trigger_phrases:
   - "014/006 bge-m3 eval planned"
   - "MRR delta decision"
@@ -54,11 +54,11 @@ _memory:
 
 The intent is a small-N (40-60 query) side-by-side comparison of three retrieval variants against this codebase, using MRR@10 + NDCG@10 as the primary metrics:
 
-- **Qwen3-Embedding-4B** (current Setup A baseline)
+- **EmbeddingGemma-300m** (current Setup A baseline)
 - **bge-m3 dense** (single-vector, 1024-dim)
 - **bge-m3 hybrid** (dense + sparse + colbert combined via Reciprocal Rank Fusion)
 
-Decision rule: ship the schema extension to support multi-vector retrieval only if hybrid bge-m3 wins by ≥5 percentage points MRR@10 over the Qwen3 baseline. The 5pp threshold reflects "noticeable to a real user", not just statistical significance on a 50-query sample.
+Decision rule: ship the schema extension to support multi-vector retrieval only if hybrid bge-m3 wins by ≥5 percentage points MRR@10 over the EmbeddingGemma baseline. The 5pp threshold reflects "noticeable to a real user", not just statistical significance on a 50-query sample.
 
 ### Files Changed
 
@@ -101,7 +101,7 @@ Decision rule: ship the schema extension to support multi-vector retrieval only 
 | Check | Command | Result |
 |-------|---------|--------|
 | Eval set is valid JSONL | `python -c "import json; [json.loads(l) for l in open('scratch/eval-set.jsonl')]"` | (pending) |
-| Qwen3 baseline result file exists with MRR@10 | `jq '.mrr_at_10' scratch/results-qwen3.json` | (pending) |
+| EmbeddingGemma baseline result file exists with MRR@10 | `jq '.mrr_at_10' scratch/results-embeddinggemma.json` | (pending) |
 | bge-m3 dense result file exists with MRR@10 | `jq '.mrr_at_10' scratch/results-bge-m3-dense.json` | (pending) |
 | bge-m3 hybrid result file exists with MRR@10 | `jq '.mrr_at_10' scratch/results-bge-m3-hybrid.json` | (pending) |
 | Decision recorded with evidence | grep `recommend` in this implementation-summary | (pending) |
@@ -113,7 +113,7 @@ Decision rule: ship the schema extension to support multi-vector retrieval only 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Gated on 009.** Cannot run the Qwen3 baseline via cocoindex search until the msgspec truncation is fixed. Direct sqlite-vec KNN works (per 004 §Known Limitations 8) but it bypasses cocoindex's rerank/filter logic, so direct-vec numbers aren't comparable to production search.
+1. **Gated on 009.** Cannot run the EmbeddingGemma baseline via cocoindex search until the msgspec truncation is fixed. Direct sqlite-vec KNN works (per 004 §Known Limitations 8) but it bypasses cocoindex's rerank/filter logic, so direct-vec numbers aren't comparable to production search.
 2. **Small-N eval set.** 40-60 queries gives wide 95% CIs. A clean ≥5pp delta is required to ship; smaller deltas should not justify a schema change.
 3. **Eval is in-distribution.** All queries come from this codebase's vocabulary. Generalization to a different codebase isn't measured.
 4. **bge-m3 model not yet cached.** ~2GB download via snapshot_download is needed before T002.

@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Phase 6 — bge-m3 Hybrid Evaluation"
-description: "Evaluate bge-m3 dense + hybrid against Qwen3 baseline on code retrieval. Eval-only; ship decision is the deliverable. Gated on 009."
+description: "Evaluate bge-m3 dense + hybrid against EmbeddingGemma baseline on code retrieval. Eval-only; ship decision is the deliverable. Gated on 009."
 trigger_phrases:
   - "006 plan bge-m3 eval"
   - "MRR NDCG harness"
@@ -42,7 +42,7 @@ _memory:
 |--------|-------|
 | **Language/Stack** | Python 3.11 (sentence-transformers for both models, sqlite-vec for KNN, RRF fusion via Reciprocal Rank Fusion) |
 | **Framework** | Standalone harness in `006/scratch/run-eval.py`; uses cocoindex's query path post-009 |
-| **Storage** | Three sqlite-vec DBs: existing target_sqlite.db (Qwen3 2560-dim), bge-m3-dense.sqlite (1024-dim), bge-m3-hybrid.sqlite (multi-vec) |
+| **Storage** | Three sqlite-vec DBs: existing target_sqlite.db (Qwen3 768-dim), bge-m3-dense.sqlite (1024-dim), bge-m3-hybrid.sqlite (multi-vec) |
 | **Testing** | Manual eval run; MRR@10 + NDCG@10 against hand-labeled set |
 
 ### Overview
@@ -91,7 +91,7 @@ Eval-set + 3 indexes → per-query top-10 retrieval → per-query score → mean
 | `006/scratch/eval-set.jsonl` | Eval ground truth | Create | ≥40 lines, validates as JSONL |
 | `006/scratch/run-eval.py` | Scoring harness | Create | Runs end-to-end without errors |
 | `006/scratch/results-*.json` | Per-model metrics | Create | Three files, each with MRR@10 + NDCG@10 + latency stats |
-| Production sqlite-vec schema | Single 2560-dim column | UNCHANGED in 006 (decision goes in implementation-summary) | n/a |
+| Production sqlite-vec schema | Single 768-dim column | UNCHANGED in 006 (decision goes in implementation-summary) | n/a |
 <!-- /ANCHOR:affected-surfaces -->
 
 ---
@@ -105,14 +105,14 @@ Eval-set + 3 indexes → per-query top-10 retrieval → per-query score → mean
 - [ ] Build eval-set.jsonl (hand-label or synthesize)
 
 ### Phase 2: Run
-- [ ] Index codebase with Qwen3 (baseline already exists in target_sqlite.db post-009)
+- [ ] Index codebase with EmbeddingGemma (baseline already exists in target_sqlite.db post-009)
 - [ ] Index codebase with bge-m3 dense
 - [ ] Index codebase with bge-m3 hybrid (dense + sparse + colbert via RRF)
 - [ ] Score each variant: MRR@10, NDCG@10, query p95 latency, index wall time
 
 ### Phase 3: Decide
 - [ ] Compare deltas
-- [ ] If hybrid bge-m3 beats Qwen3-dense by ≥5pp MRR@10 → recommend ship + open follow-on for schema work
+- [ ] If hybrid bge-m3 beats EmbeddingGemma-dense by ≥5pp MRR@10 → recommend ship + open follow-on for schema work
 - [ ] Otherwise → recommend status quo (stay on Qwen3)
 - [ ] Document in implementation-summary
 - [ ] Strict validate exits 0

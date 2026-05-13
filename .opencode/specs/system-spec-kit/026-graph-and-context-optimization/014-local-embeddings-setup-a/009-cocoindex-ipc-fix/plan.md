@@ -42,11 +42,11 @@ _memory:
 |--------|-------|
 | **Language/Stack** | Python 3.11 (cocoindex_code, sentence-transformers, multiprocessing.connection, msgspec); Rust (cocoindex `_internal/core.abi3.so` — likely the actual serialization site) |
 | **Framework** | cocoindex 1.0.0a33 (alpha; upstream fork); litellm (no longer used under Setup A but still loaded) |
-| **Storage** | SQLite + sqlite-vec extension (2560-dim) for vectors; LMDB at `.cocoindex_code/cocoindex.db/mdb/` (~3GB) for cocoindex's internal index state |
+| **Storage** | SQLite + sqlite-vec extension (768-dim) for vectors; LMDB at `.cocoindex_code/cocoindex.db/mdb/` (~3GB) for cocoindex's internal index state |
 | **Testing** | Manual cocoindex_code.search round-trip; direct sqlite-vec KNN as ground truth; `ccc search` CLI |
 
 ### Overview
-Three-phase diagnostic: reproduce → instrument → patch. The data layer is proven healthy (direct sqlite-vec returns valid 2560-dim KNN); fault is in cocoindex's IPC. Likely candidates: daemon encode emits truncated bytes due to a 2560-dim float32 array hitting an msgspec/multiprocessing limit; OR daemon swallows an exception and sends a partial frame; OR client recv_bytes loses bytes when reading a frame whose length-prefix overflows. The 1335-markdown-row stall is a separate but related symptom (daemon also writes correct vectors but somehow gives up partway through the language set).
+Three-phase diagnostic: reproduce → instrument → patch. The data layer is proven healthy (direct sqlite-vec returns valid 768-dim KNN); fault is in cocoindex's IPC. Likely candidates: daemon encode emits truncated bytes due to a 768-dim float32 array hitting an msgspec/multiprocessing limit; OR daemon swallows an exception and sends a partial frame; OR client recv_bytes loses bytes when reading a frame whose length-prefix overflows. The 1335-markdown-row stall is a separate but related symptom (daemon also writes correct vectors but somehow gives up partway through the language set).
 <!-- /ANCHOR:summary -->
 
 ---
@@ -145,7 +145,7 @@ Search call → client.send_bytes(SearchRequest) → daemon.recv_bytes → daemo
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| 004 vec-store-rebuild | Internal | Green | 009 needs the existing target_sqlite.db with Qwen3 vectors |
+| 004 vec-store-rebuild | Internal | Green | 009 needs the existing target_sqlite.db with EmbeddingGemma vectors |
 | cocoindex 1.0.0a33 | External | Yellow | Bug may live in the Rust core; can't patch from in-repo Python |
 | sqlite-vec | External | Green | Direct sqlite-vec works; not the failure surface |
 | msgspec | External | Green (assumed) | The error string is from msgspec, but msgspec is correct — it's reporting what it received |

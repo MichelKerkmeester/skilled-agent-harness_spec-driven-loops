@@ -129,7 +129,7 @@ Make `auto` deterministically resolve to `hf-local` by purging Voyage from every
 
 - **SC-001**: Auto-resolver lands on `hf-local` on next MCP spawn
 - **SC-002**: New vec store filename uses `hf-local__onnx-community__embeddinggemma-300m-ONNX__768`
-- **SC-003**: CocoIndex (post-004 rebuild) uses `sbert/Qwen/Qwen3-Embedding-4B`
+- **SC-003**: CocoIndex (post-004 rebuild) uses `sbert/google/embeddinggemma-300m`
 - **SC-004**: Strict-validate exits 0
 <!-- /ANCHOR:success-criteria -->
 

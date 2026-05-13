@@ -34,12 +34,12 @@ EMBEDDING_DIM=768
 
 **cocoindex-code env additions:**
 ```
-COCOINDEX_CODE_EMBEDDING_MODEL=sbert/Qwen/Qwen3-Embedding-4B
+COCOINDEX_CODE_EMBEDDING_MODEL=sbert/google/embeddinggemma-300m
 ```
 
 **CRITICAL SAFETY STEP:** also REMOVE or null out `VOYAGE_API_KEY` from EVERY config (spec-kit-memory section). Setting to empty string `""` is equivalent to removing for factory.ts:327 detection logic.
 
-**Note on fallback (if 002 triggered model fallback):** If sub-phase 002's implementation-summary.md indicates fallback to `mixedbread-ai/mxbai-embed-large-v1` or `Snowflake/snowflake-arctic-embed-l-v2.0` for memory, USE THAT model+dim instead of EmbeddingGemma. Similarly check if Qwen3-4B was swapped to arctic-l for code. Always read 002's summary first.
+**Note on fallback (if 002 triggered model fallback):** If sub-phase 002's implementation-summary.md indicates fallback to `mixedbread-ai/mxbai-embed-large-v1` or `Snowflake/snowflake-arctic-embed-l-v2.0` for memory, USE THAT model+dim instead of EmbeddingGemma. Similarly check if EmbeddingGemma-300m was swapped to arctic-l for code. Always read 002's summary first.
 
 ═══════════════════════════════════════════════════════════════════
 PER-FILE VALIDATION (after edits)

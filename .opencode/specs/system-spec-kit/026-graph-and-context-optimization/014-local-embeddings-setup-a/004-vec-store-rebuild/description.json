@@ -1,6 +1,6 @@
 {
   "specFolder": "014-local-embeddings-setup-a/004-vec-store-rebuild",
-  "description": "Phase 4 — Vec-Store Rebuild. Memory side rebuilt under EmbeddingGemma-300m-ONNX 768-dim (2112/2112 success rows) after launcher kill + /mcp reconnect cleared an MCP-child lazy-load wedge. DELETE+rescan workaround bypassed UNCHANGED_EMBEDDING_STATUSES dedup; embedding_cache content-hash hits avoided model re-inference. CocoIndex side staged: 2.0GB MiniLM target_sqlite.db deleted, stale daemon killed; final Qwen3-Embedding-4B rebuild pending user /mcp reconnect cocoindex_code.",
+  "description": "Phase 4 — Vec-Store Rebuild. Memory side rebuilt under EmbeddingGemma-300m-ONNX 768-dim (2112/2112 success rows) after launcher kill + /mcp reconnect cleared an MCP-child lazy-load wedge. DELETE+rescan workaround bypassed UNCHANGED_EMBEDDING_STATUSES dedup; embedding_cache content-hash hits avoided model re-inference. CocoIndex side staged: 2.0GB MiniLM target_sqlite.db deleted, stale daemon killed; final EmbeddingGemma-300m rebuild pending user /mcp reconnect cocoindex_code.",
   "keywords": [
     "phase-4",
     "vec-store-rebuild",

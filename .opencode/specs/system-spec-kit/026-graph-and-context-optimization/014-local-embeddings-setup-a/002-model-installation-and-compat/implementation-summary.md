@@ -1,11 +1,11 @@
 ---
 title: "Implementation Summary: 014/002 model-installation-and-compat"
-description: "Setup A sub-phase 002 complete: Qwen3-Embedding-4B + EmbeddingGemma ONNX downloaded; both smoke tests green; transformers.js risk gate cleared via onnx-community port; symlink bridges Python/transformers.js cache layouts."
+description: "Setup A sub-phase 002 complete: EmbeddingGemma-300m + EmbeddingGemma ONNX downloaded; both smoke tests green; transformers.js risk gate cleared via onnx-community port; symlink bridges Python/transformers.js cache layouts."
 trigger_phrases:
   - "014/002 done"
   - "model installation complete"
   - "EmbeddingGemma ONNX working"
-  - "Qwen3-4B downloaded"
+  - "EmbeddingGemma-300m downloaded"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
@@ -18,7 +18,7 @@ _memory:
     blockers: []
     key_files:
       - "spec.md"
-      - "scratch/test-qwen3-4b.py"
+      - "scratch/test-embeddinggemma.py"
       - "scratch/test-embeddinggemma.mjs"
       - "../../../../../skills/system-spec-kit/mcp_server/scratch/test-embeddinggemma.mjs"
     session_dedup:
@@ -57,7 +57,7 @@ _memory:
 Local HF cache populated with both Setup A models, plus a symlink that bridges Python's `huggingface_hub` cache layout to transformers.js's expected flat layout. Risk gate (transformers.js × Gemma3 ST-config) cleared by switching from the canonical `google/embeddinggemma-300m` repo (PyTorch/safetensors only) to the purpose-built `onnx-community/embeddinggemma-300m-ONNX` repo (transformers.js-tagged, includes fp32/fp16/q4/q4f16/int8/no-gather-q4 ONNX variants).
 
 **Models on disk:**
-- `Qwen/Qwen3-Embedding-4B` — 7.5GB, 14 files (sentence-transformers form for the cocoindex Python daemon)
+- `google/embeddinggemma-300m` — ~620MB, 14 files (sentence-transformers form for the cocoindex Python daemon)
 - `google/embeddinggemma-300m` — 1.2GB (canonical sentence-transformers form, downloaded under HF auth after user accepted Google's Gemma license; retained for reference but NOT used by HfLocalProvider)
 - `onnx-community/embeddinggemma-300m-ONNX` — 2.6GB, 21 files including all dtype variants (the actual model the MCP server will load)
 
@@ -82,9 +82,9 @@ from huggingface_hub import snapshot_download
 snapshot_download(repo_id=<model_id>)
 ```
 
-### Smoke test — Qwen3-Embedding-4B (Python / sentence-transformers / MPS)
+### Smoke test — EmbeddingGemma-300m (Python / sentence-transformers / MPS)
 ```python
-m = SentenceTransformer('Qwen/Qwen3-Embedding-4B', device='mps')
+m = SentenceTransformer('google/embeddinggemma-300m', device='mps')
 v = m.encode('def hello(): return "world"', normalize_embeddings=True)
 # Result: load_s=24.3, encode_ms=1429, dim=2560, norm=1.0034
 ```
@@ -119,7 +119,7 @@ const out = await pipe('hello world', { pooling: 'mean', normalize: true });
 ### Disk
 ```
 ~/.cache/huggingface/hub/                                                            ~11.3GB total
-├── models--Qwen--Qwen3-Embedding-4B/                                                7.5GB / 14 files
+├── models--Qwen--EmbeddingGemma-300m/                                                ~620MB / 14 files
 ├── models--google--embeddinggemma-300m/                                             1.2GB / 19 files (canonical ref)
 ├── models--onnx-community--embeddinggemma-300m-ONNX/                                2.6GB / 21 files
 └── onnx-community/embeddinggemma-300m-ONNX → ../models--...--ONNX/snapshots/<hash>  (symlink)
@@ -128,7 +128,7 @@ const out = await pipe('hello world', { pooling: 'mean', normalize: true });
 ### Smoke test results
 | Model | Load | Encode | Dim | Norm | Result |
 |---|---|---|---|---|---|
-| Qwen3-Embedding-4B (Python+MPS) | 24.3s | 1429ms cold | 2560 | 1.0034 | ✓ PASS |
+| EmbeddingGemma-300m (Python+MPS) | 24.3s | 1429ms cold | 2560 | 1.0034 | ✓ PASS |
 | EmbeddingGemma ONNX (Node fp32) | 640ms | 9ms warm | 768 | 1.0000 | ✓ PASS |
 
 ### Strict validate

@@ -115,7 +115,7 @@ function warnIfVoyageDriftDetected(effectiveProvider: string): void {
 const DEFAULT_PROVIDER_MODELS: Readonly<Record<SupportedProviderName, string>> = {
   voyage: 'voyage-4',
   openai: 'text-embedding-3-small',
-  'hf-local': 'nomic-ai/nomic-embed-text-v1.5',
+  'hf-local': 'onnx-community/embeddinggemma-300m-ONNX',
 };
 
 // Correctness: one canonical dimension map for startup and runtime
@@ -254,7 +254,7 @@ function getProviderInfoForResolution(resolution: ProviderResolution): ProviderI
       VOYAGE_EMBEDDINGS_MODEL: process.env.VOYAGE_EMBEDDINGS_MODEL || 'voyage-4',
       OPENAI_API_KEY: process.env.OPENAI_API_KEY ? '***set***' : 'not set',
       OPENAI_EMBEDDINGS_MODEL: process.env.OPENAI_EMBEDDINGS_MODEL || 'text-embedding-3-small',
-      HF_EMBEDDINGS_MODEL: process.env.HF_EMBEDDINGS_MODEL || 'nomic-ai/nomic-embed-text-v1.5',
+      HF_EMBEDDINGS_MODEL: process.env.HF_EMBEDDINGS_MODEL || DEFAULT_PROVIDER_MODELS['hf-local'],
     },
   };
 }

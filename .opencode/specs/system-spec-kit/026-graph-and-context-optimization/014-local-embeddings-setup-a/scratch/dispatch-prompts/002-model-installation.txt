@@ -22,9 +22,9 @@ TASKS
    - `node -e "const m = require('@huggingface/transformers'); console.log(m.env.version || 'unknown')"` from `.opencode/skills/system-spec-kit/mcp_server/` dir — confirm transformers.js is installed.
 
 2) Pre-download models (resumable, can take 5-10 min):
-   - `huggingface-cli download Qwen/Qwen3-Embedding-4B` (~8GB)
+   - `huggingface-cli download google/embeddinggemma-300m` (~620MB)
    - `huggingface-cli download google/embeddinggemma-300m` (~620MB, includes ONNX variants)
-   - Verify cache: `du -sh ~/.cache/huggingface/hub/` should grow to 9-10GB.
+   - Verify cache: `du -sh ~/.cache/huggingface/hub/` should grow to 9-~1.3GB.
 
 3) **RISK-GATE SMOKE TEST — EmbeddingGemma via transformers.js**:
    Write `002-model-installation-and-compat/scratch/test-embeddinggemma.mjs`:
@@ -41,21 +41,21 @@ TASKS
    **PASS criteria**: dims `[1, 768]`, finite floats in `first5`, load_ms < 30000.
    **FAIL → document fallback in implementation-summary.md**: switch memory side to `mixedbread-ai/mxbai-embed-large-v1` (1024d, no-prefix already in registry from 001). Record the failure mode (error message verbatim) and update plan.md to reflect the model swap.
 
-4) **MIRROR SMOKE TEST — Qwen3-Embedding-4B via sentence-transformers**:
-   Write `002-model-installation-and-compat/scratch/test-qwen3-4b.py`:
+4) **MIRROR SMOKE TEST — EmbeddingGemma-300m via sentence-transformers**:
+   Write `002-model-installation-and-compat/scratch/test-embeddinggemma.py`:
    ```python
    import os
    os.environ['HF_HUB_OFFLINE'] = '1'
    from sentence_transformers import SentenceTransformer
    import time
    t0 = time.time()
-   m = SentenceTransformer('Qwen/Qwen3-Embedding-4B', device='mps')
+   m = SentenceTransformer('google/embeddinggemma-300m', device='mps')
    load_s = time.time() - t0
    v = m.encode('def hello(): return "world"', normalize_embeddings=True)
    import json
    print(json.dumps({'load_s': round(load_s, 2), 'dim': int(v.shape[0]), 'first5': v[:5].tolist()}))
    ```
-   Run: `python3 002-model-installation-and-compat/scratch/test-qwen3-4b.py`
+   Run: `python3 002-model-installation-and-compat/scratch/test-embeddinggemma.py`
    **PASS criteria**: `dim` is 2560, finite floats, `load_s` < 60.
    **FAIL → fallback to `Snowflake/snowflake-arctic-embed-l-v2.0`** (1024d, also in 001's registry). Same documentation discipline.
 
@@ -90,7 +90,7 @@ BANNED OPERATIONS
 RESPONSE CONTRACT — these fields MUST appear at the end of your final response
 ═══════════════════════════════════════════════════════════════════
 
-BINDING: I have read the 002 MODEL INSTALLATION contract. I ran pre-flight checks, pre-downloaded both models, smoke-tested EmbeddingGemma via transformers.js, smoke-tested Qwen3-Embedding-4B via sentence-transformers, recorded results in the packet docs, and strict-validated the packet.
+BINDING: I have read the 002 MODEL INSTALLATION contract. I ran pre-flight checks, pre-downloaded both models, smoke-tested EmbeddingGemma via transformers.js, smoke-tested EmbeddingGemma-300m via sentence-transformers, recorded results in the packet docs, and strict-validated the packet.
 AGENT_RECEIVED: cli-opencode openai/gpt-5.5-fast --variant high
 SPAWN_AGENT_USED: no
 PREFLIGHT:
@@ -102,12 +102,12 @@ PREFLIGHT:
   python_mps: <true/false>
   transformersjs_version: <x.y.z>
 MODELS_DOWNLOADED:
-  Qwen/Qwen3-Embedding-4B: <yes/no, on-disk size>
+  google/embeddinggemma-300m: <yes/no, on-disk size>
   google/embeddinggemma-300m: <yes/no, on-disk size>
 SMOKE_TEST_RESULTS:
   embeddinggemma: PASS/FAIL — dims=<...>, load_ms=<...>, error=<verbatim if fail>
   qwen3-4b: PASS/FAIL — dim=<...>, load_s=<...>, error=<verbatim if fail>
-FALLBACK_TRIGGERED: <none / EmbeddingGemma→mxbai-large / Qwen3-4B→arctic-l>
+FALLBACK_TRIGGERED: <none / EmbeddingGemma→mxbai-large / EmbeddingGemma-300m→arctic-l>
 HF_CACHE_AFTER: <size>
 STRICT_VALIDATE_EXIT_CODE: <0/1/2>
 KNOWN_GAPS: <anything missing or deferred>

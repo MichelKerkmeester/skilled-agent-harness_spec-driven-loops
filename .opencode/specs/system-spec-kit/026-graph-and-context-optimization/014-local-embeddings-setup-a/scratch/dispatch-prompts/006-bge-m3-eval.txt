@@ -8,7 +8,7 @@ PACKET FOLDER:
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/006-bge-m3-hybrid-evaluation/
 
 CONTEXT
-Sub-phases 001-004 are complete; Setup A baseline runs Qwen3-Embedding-4B for code search (CocoIndex). `BAAI/bge-m3` offers dense + sparse + multi-vector (ColBERT-style) retrieval in one model. If hybrid beats pure-dense Qwen3-4B by a meaningful margin, it changes the code-side recommendation. Worth evaluating but only ship schema work if the lift justifies it.
+Sub-phases 001-004 are complete; Setup A baseline runs EmbeddingGemma-300m for code search (CocoIndex). `BAAI/bge-m3` offers dense + sparse + multi-vector (ColBERT-style) retrieval in one model. If hybrid beats pure-dense EmbeddingGemma-300m by a meaningful margin, it changes the code-side recommendation. Worth evaluating but only ship schema work if the lift justifies it.
 
 ═══════════════════════════════════════════════════════════════════
 TASKS
@@ -29,7 +29,7 @@ TASKS
    - `run-eval.py` — orchestrator script
 
 3) Index code corpus three ways at `006-bge-m3-hybrid-evaluation/eval/indexes/`:
-   - `qwen3-4b/` — current Setup A baseline. Use existing `.cocoindex_code/target_sqlite.db` if Qwen3-4B is the active model; otherwise build a parallel index here.
+   - `qwen3-4b/` — current Setup A baseline. Use existing `.cocoindex_code/target_sqlite.db` if EmbeddingGemma-300m is the active model; otherwise build a parallel index here.
    - `bge-m3-dense/` — bge-m3 dense-only via sentence-transformers (`SentenceTransformer('BAAI/bge-m3').encode(...)`)
    - `bge-m3-hybrid/` — bge-m3 dense + sparse + colbert via the `FlagEmbedding` library or huggingface raw model output. Use `BGEM3FlagModel(...).encode(texts, return_dense=True, return_sparse=True, return_colbert_vecs=True)`. Store sparse + colbert in JSON sidecar.
 
@@ -38,7 +38,7 @@ TASKS
 5) For hybrid scoring, use Reciprocal Rank Fusion (RRF): `score_hybrid = sum(1/(60+rank_i))` across dense/sparse/colbert ranks. Standard RRF k=60.
 
 6) Decision matrix (write to `decision-record.md`):
-   - If Qwen3-4B wins OR ties within 2pp MRR@10 → keep Setup A as-is; document bge-m3 as alternative
+   - If EmbeddingGemma-300m wins OR ties within 2pp MRR@10 → keep Setup A as-is; document bge-m3 as alternative
    - If bge-m3-dense wins by >2pp → swap default to bge-m3 (still pure-dense; no schema work)
    - If bge-m3-hybrid wins by >5pp over best dense → SHIP schema extension (sparse + colbert columns in cocoindex's vec0 table + RRF fusion in query path)
 

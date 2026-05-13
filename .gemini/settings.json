@@ -32,7 +32,7 @@
       "env": {
         "EMBEDDINGS_PROVIDER": "auto",
         "_NOTE_1_DATABASE": "DB path auto-derived from provider profile (no MEMORY_DB_PATH needed)",
-        "_NOTE_2_PROVIDERS": "Supports: Voyage (1024 dims), OpenAI (1536/3072 dims), HF Local (768 dims, no API needed)",
+        "_NOTE_2_PROVIDERS": "Default HF Local: onnx-community/embeddinggemma-300m-ONNX (768 dims, no API key); cloud providers optional",
         "_NOTE_3_EMBEDDINGS_PROVIDER": "Current: 'auto' (VOYAGE_API_KEY -> OPENAI_API_KEY -> hf-local). Options: 'auto', 'voyage', 'openai', 'hf-local'",
         "_NOTE_4_CLOUD_PROVIDERS": "For cloud: add VOYAGE_API_KEY or OPENAI_API_KEY; Voyage uses rerank-2.5 and auto-selects the matching DB profile",
         "_NOTE_5_GET_VOYAGE_KEY": "Get Voyage key: https://dash.voyageai.com/api-keys (recommended, 8% better than OpenAI)",
@@ -54,7 +54,8 @@
       ],
       "cwd": ".",
       "env": {
-        "COCOINDEX_CODE_ROOT_PATH": "."
+        "COCOINDEX_CODE_ROOT_PATH": ".",
+        "_NOTE_2": "Default embedding: google/embeddinggemma-300m (sentence-transformers, ~620MB, no API key)"
       },
       "trust": true
     },

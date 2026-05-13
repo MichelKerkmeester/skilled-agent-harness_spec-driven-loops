@@ -44,11 +44,11 @@ _memory:
 |--------|-------|
 | **Language/Stack** | TypeScript (better-sqlite3 + sqlite-vec via Node 25.6.1 MCP child); Python 3.11 (sentence-transformers + cocoindex Rust daemon via `.venv`) |
 | **Framework** | Spec Kit Memory MCP (`@huggingface/transformers` v3.8.1 ONNX runtime); CocoIndex MCP (sentence-transformers on Metal/MPS) |
-| **Storage** | SQLite + vec0 extension (memory, 768-dim); SQLite + sqlite-vec (cocoindex, 2560-dim) |
+| **Storage** | SQLite + vec0 extension (memory, 768-dim); SQLite + sqlite-vec (cocoindex, 768-dim) |
 | **Testing** | `memory_health` + `memory_quick_search` (MCP tools); `cocoindex_code.search` round-trip; direct sqlite3 CLI inspection for row counts |
 
 ### Overview
-Bring up the two vec stores under Setup A. Memory side gets a fresh filename-keyed sqlite that the launcher auto-creates on first spawn; we populate it via `memory_index_scan`. CocoIndex's stale 2GB MiniLM `target_sqlite.db` gets `rm`'d so the daemon rebuilds from scratch under Qwen3-4B on the next `refresh_index=true` call. The non-obvious part: both MCP layers had stale runtime state from before the 003 env propagated, so the path includes restart + reconnect cycles, and a SQLite-level workaround for the `UNCHANGED_EMBEDDING_STATUSES` dedup that blocked the obvious `force=true` rescan.
+Bring up the two vec stores under Setup A. Memory side gets a fresh filename-keyed sqlite that the launcher auto-creates on first spawn; we populate it via `memory_index_scan`. CocoIndex's stale 2GB MiniLM `target_sqlite.db` gets `rm`'d so the daemon rebuilds from scratch under EmbeddingGemma-300m on the next `refresh_index=true` call. The non-obvious part: both MCP layers had stale runtime state from before the 003 env propagated, so the path includes restart + reconnect cycles, and a SQLite-level workaround for the `UNCHANGED_EMBEDDING_STATUSES` dedup that blocked the obvious `force=true` rescan.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -59,13 +59,13 @@ Bring up the two vec stores under Setup A. Memory side gets a fresh filename-key
 ### Definition of Ready
 - [x] 003 verified — `.env.local` exists, Voyage purged from shell/`.env`/launchd
 - [x] User restarted Claude Code from a fresh terminal (no inherited VOYAGE_API_KEY)
-- [x] HF cache has Qwen3-Embedding-4B + onnx-community/embeddinggemma-300m-ONNX (+ symlink)
+- [x] HF cache has EmbeddingGemma-300m + onnx-community/embeddinggemma-300m-ONNX (+ symlink)
 
 ### Definition of Done
 - [x] Memory: `vecRowsTotal == ftsRowsTotal == memoryCount` per `memory_health`
 - [x] Memory: hybrid search returns ≥1 result with `searchType=="hybrid"`
 - [ ] CocoIndex: `target_sqlite.db` exists post-rebuild and serves a known query (pending `/mcp reconnect cocoindex_code`)
-- [ ] CocoIndex: verified 2560-dim schema
+- [ ] CocoIndex: verified 768-dim schema
 - [ ] Strict validate exits 0
 <!-- /ANCHOR:quality-gates -->
 
@@ -115,7 +115,7 @@ This packet hit several runtime-state issues that are documented here even thoug
 ### Phase 1: Setup
 - [x] Confirm `.env.local` loaded into MCP child (`[spec-kit-memory-launcher] loaded 3 env(s) from .env.local` in stderr)
 - [x] Confirm `embeddingProvider == hf-local` + dim 768 via `memory_health`
-- [x] Confirm HF cache: Qwen3-Embedding-4B + onnx-community/embeddinggemma-300m-ONNX + symlink
+- [x] Confirm HF cache: EmbeddingGemma-300m + onnx-community/embeddinggemma-300m-ONNX + symlink
 
 ### Phase 2: Core Implementation
 - [x] Delete `.cocoindex_code/target_sqlite.db` (2.0GB)

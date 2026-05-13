@@ -1,6 +1,6 @@
 {
   "specFolder": "014-local-embeddings-setup-a/009-cocoindex-ipc-fix",
-  "description": "Phase 9 (follow-on) — Diagnose and fix the cocoindex Rust↔Python IPC truncation bug that surfaced in 004. Daemon writes correct 2560-dim Qwen3 vectors to target_sqlite.db and direct sqlite-vec KNN queries return semantically relevant top-K results, but every cocoindex_code.search call returns msgspec.DecodeError: Input data was truncated. Also investigate why daemon stalls at 1335 markdown rows without progressing to source-code languages despite include_patterns coverage. Gates 006-bge-m3-hybrid-evaluation.",
+  "description": "Phase 9 (follow-on) — Diagnose and fix the cocoindex Rust↔Python IPC truncation bug that surfaced in 004. Daemon writes correct 768-dim EmbeddingGemma vectors to target_sqlite.db and direct sqlite-vec KNN queries return semantically relevant top-K results, but every cocoindex_code.search call returns msgspec.DecodeError: Input data was truncated. Also investigate why daemon stalls at 1335 markdown rows without progressing to source-code languages despite include_patterns coverage. Gates 006-bge-m3-hybrid-evaluation.",
   "keywords": [
     "phase-9",
     "cocoindex-ipc-fix",

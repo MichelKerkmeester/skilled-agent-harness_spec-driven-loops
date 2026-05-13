@@ -7,7 +7,7 @@ import os
 from dataclasses import dataclass
 from pathlib import Path
 
-_DEFAULT_MODEL = "sbert/sentence-transformers/all-MiniLM-L6-v2"
+_DEFAULT_MODEL = "sbert/google/embeddinggemma-300m"
 
 
 def _find_root_with_marker(start: Path, markers: list[str]) -> Path | None:

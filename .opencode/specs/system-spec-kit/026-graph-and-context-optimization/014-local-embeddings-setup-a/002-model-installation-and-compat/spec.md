@@ -1,9 +1,9 @@
 ---
 title: "Feature Specification: Phase 2: model-installation-and-compat"
-description: "Pre-download Setup A models (Qwen3-Embedding-4B for code via sentence-transformers; EmbeddingGemma-300m via the ONNX-community port for transformers.js). Risk-gate transformers.js × Gemma3 ST-config compatibility before the live MCP swap."
+description: "Pre-download Setup A models (EmbeddingGemma-300m for code via sentence-transformers; EmbeddingGemma-300m via the ONNX-community port for transformers.js). Risk-gate transformers.js × Gemma3 ST-config compatibility before the live MCP swap."
 trigger_phrases:
   - "002 model installation"
-  - "Qwen3-Embedding-4B download"
+  - "EmbeddingGemma-300m download"
   - "EmbeddingGemma download"
   - "transformers.js gemma"
   - "onnx-community/embeddinggemma-300m-ONNX"
@@ -21,7 +21,7 @@ _memory:
     key_files:
       - "spec.md"
       - "implementation-summary.md"
-      - "scratch/test-qwen3-4b.py"
+      - "scratch/test-embeddinggemma.py"
       - "scratch/test-embeddinggemma.mjs"
     session_dedup:
       fingerprint: "sha256:01400290deba0000000000000000000000000000000000000000000000000002"
@@ -67,9 +67,9 @@ _memory:
 **Dependencies**: independent of 001. Can run in parallel with 001 (and did, in this packet).
 
 **Deliverables**:
-- `Qwen/Qwen3-Embedding-4B` in `~/.cache/huggingface/hub/` (~7.5GB)
+- `google/embeddinggemma-300m` in `~/.cache/huggingface/hub/` (~~620MB)
 - `onnx-community/embeddinggemma-300m-ONNX` in `~/.cache/huggingface/hub/` (~2.6GB; transformers.js-compatible ONNX port of `google/embeddinggemma-300m`)
-- Python smoke test for Qwen3-4B (sentence-transformers, MPS, dim 2560)
+- Python smoke test for EmbeddingGemma-300m (sentence-transformers, MPS, dim 2560)
 - Node smoke test for EmbeddingGemma (transformers.js v3.8.1, ONNX fp32, dim 768)
 - Symlink bridging Python's `models--<org>--<name>/snapshots/<hash>/` cache layout to transformers.js's `<org>/<name>/` flat layout
 <!-- /ANCHOR:phase-context -->
@@ -80,7 +80,7 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-HF cache was empty (48KB) post-reboot. The Setup A live swap (sub-phase 003) would block on first-use model downloads — ~10GB combined — and risk hanging the MCP startup. We also did NOT know whether `@huggingface/transformers` v3.8.1 (the npm pkg HfLocalProvider uses) could actually load `google/embeddinggemma-300m`: Gemma3 architecture support in transformers.js is recent; the sentence-transformers config layer atop Gemma3 was the highest-risk unknown.
+HF cache was empty (48KB) post-reboot. The Setup A live swap (sub-phase 003) would block on first-use model downloads — ~~1.3GB combined — and risk hanging the MCP startup. We also did NOT know whether `@huggingface/transformers` v3.8.1 (the npm pkg HfLocalProvider uses) could actually load `google/embeddinggemma-300m`: Gemma3 architecture support in transformers.js is recent; the sentence-transformers config layer atop Gemma3 was the highest-risk unknown.
 
 ### Purpose
 Pre-pull both models to disk so 003/004 don't hit network during the live swap, AND prove transformers.js can load EmbeddingGemma in the actual MCP runtime before we commit env-var changes. If transformers.js had failed, the packet would have switched to the documented fallback `mixedbread-ai/mxbai-embed-large-v1` (already in PREFIX_REGISTRY).
@@ -92,9 +92,9 @@ Pre-pull both models to disk so 003/004 don't hit network during the live swap, 
 ## 3. SCOPE
 
 ### In Scope
-- Pre-download Qwen3-Embedding-4B (~7.5GB, 14 files)
+- Pre-download EmbeddingGemma-300m (~~620MB, 14 files)
 - Pre-download EmbeddingGemma — canonical (`google/embeddinggemma-300m`, ~1.2GB sentence-transformers form) AND ONNX port (`onnx-community/embeddinggemma-300m-ONNX`, ~2.6GB with fp32/fp16/q4/q4f16/int8/no-gather-q4 variants)
-- Python smoke test for Qwen3-4B
+- Python smoke test for EmbeddingGemma-300m
 - Node smoke test for EmbeddingGemma (transformers.js compat — risk gate)
 - Symlink Python cache → transformers.js flat layout
 - HF auth via user-provided token (stored at `~/.cache/huggingface/token` with mode 600)
@@ -110,11 +110,11 @@ Pre-pull both models to disk so 003/004 don't hit network during the live swap, 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `~/.cache/huggingface/token` | Create | User's HF token (mode 600) |
-| `~/.cache/huggingface/hub/models--Qwen--Qwen3-Embedding-4B/**` | Create | Qwen3-4B weights via snapshot_download |
+| `~/.cache/huggingface/hub/models--Qwen--EmbeddingGemma-300m/**` | Create | EmbeddingGemma-300m weights via snapshot_download |
 | `~/.cache/huggingface/hub/models--google--embeddinggemma-300m/**` | Create | Canonical sentence-transformers form (gated) |
 | `~/.cache/huggingface/hub/models--onnx-community--embeddinggemma-300m-ONNX/**` | Create | ONNX port for transformers.js |
 | `~/.cache/huggingface/hub/onnx-community/embeddinggemma-300m-ONNX` | Symlink | Bridge to snapshot dir for transformers.js |
-| `scratch/test-qwen3-4b.py` | Create | Python smoke test |
+| `scratch/test-embeddinggemma.py` | Create | Python smoke test |
 | `scratch/test-embeddinggemma.mjs` | Create | Node smoke test (resides in `mcp_server/scratch/` for module resolution; mirrored here for evidence) |
 <!-- /ANCHOR:scope -->
 
@@ -127,9 +127,9 @@ Pre-pull both models to disk so 003/004 don't hit network during the live swap, 
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | Qwen3-Embedding-4B on disk | `~/.cache/huggingface/hub/models--Qwen--Qwen3-Embedding-4B/` exists; ≥7GB |
+| REQ-001 | EmbeddingGemma-300m on disk | `~/.cache/huggingface/hub/models--Qwen--EmbeddingGemma-300m/` exists; ≥7GB |
 | REQ-002 | EmbeddingGemma ONNX on disk | `~/.cache/huggingface/hub/models--onnx-community--embeddinggemma-300m-ONNX/snapshots/<hash>/onnx/model.onnx` exists |
-| REQ-003 | Qwen3-4B smoke test green | Python sentence-transformers loads model; dim=2560; norm≈1.0 |
+| REQ-003 | EmbeddingGemma-300m smoke test green | Python sentence-transformers loads model; dim=2560; norm≈1.0 |
 | REQ-004 | EmbeddingGemma smoke test green | Node transformers.js v3.8.1 loads ONNX; dims=[1,768]; norm=1.0 |
 
 ### P1 - Required

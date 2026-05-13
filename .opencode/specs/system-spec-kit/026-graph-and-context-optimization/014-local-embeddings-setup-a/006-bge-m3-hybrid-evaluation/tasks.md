@@ -1,6 +1,6 @@
 ---
 title: "Tasks: Phase 6 — bge-m3 Hybrid Evaluation"
-description: "Task list for the bge-m3 vs Qwen3 retrieval-quality eval. Execution gated on 009."
+description: "Task list for the bge-m3 vs EmbeddingGemma retrieval-quality eval. Execution gated on 009."
 trigger_phrases:
   - "006 tasks bge-m3 eval"
 importance_tier: "important"
@@ -60,7 +60,7 @@ _memory:
 ## Phase 2: Implementation
 
 - [ ] T004 Implement `scratch/run-eval.py` (load model, index codebase, run queries, score MRR@10 + NDCG@10)
-- [ ] T005 Run baseline: Qwen3-Embedding-4B → `results-qwen3.json`
+- [ ] T005 Run baseline: EmbeddingGemma-300m → `results-embeddinggemma.json`
 - [ ] T006 Run bge-m3 dense → `results-bge-m3-dense.json`
 - [ ] T007 Run bge-m3 hybrid (dense + sparse + colbert via RRF) → `results-bge-m3-hybrid.json`
 <!-- /ANCHOR:phase-2 -->
@@ -95,6 +95,6 @@ _memory:
 
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
-- **Predecessor**: `../004-vec-store-rebuild/implementation-summary.md` (Qwen3 baseline) + `../009-cocoindex-ipc-fix/implementation-summary.md` (working search)
+- **Predecessor**: `../004-vec-store-rebuild/implementation-summary.md` (EmbeddingGemma baseline) + `../009-cocoindex-ipc-fix/implementation-summary.md` (working search)
 - **Successor**: If `ship` → new sqlite-vec schema packet
 <!-- /ANCHOR:cross-refs -->

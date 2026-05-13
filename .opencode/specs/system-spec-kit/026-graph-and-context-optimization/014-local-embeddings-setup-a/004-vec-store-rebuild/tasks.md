@@ -68,9 +68,9 @@ _memory:
 - [x] T007 DELETE+rescan workaround: direct sqlite3 `DELETE FROM memory_index WHERE embedding_status IN ('pending','retry')` (FTS auto-cascades via trigger), then `memory_index_scan` — `embedding_cache` hits avoid re-running model inference, 2112 rows finalized with `embedding_status='success'`
 - [x] T008 Kill stale `ccc run-daemon` (pid 2379, started before user runtime restart, holding pre-Setup-A env)
 - [x] T008a Discover cross-repo editable install drift (Public venv pointing at Barter source); `pip install -e .` from Public to self-pin; save memory note
-- [x] T008b Update `~/.cocoindex_code/global_settings.yml` from `voyage/voyage-code-3` to `Qwen/Qwen3-Embedding-4B` / `sentence-transformers` (backup at `.pre-014-004.bak`)
+- [x] T008b Update `~/.cocoindex_code/global_settings.yml` from `voyage/voyage-code-3` to `google/embeddinggemma-300m` / `sentence-transformers` (backup at `.pre-014-004.bak`)
 - [x] T009 User ran `/mcp reconnect cocoindex_code` (twice — once before the editable-install fix, once after); fresh MCP server respawned with Setup A env
-- [x] T010 `cocoindex_code.search refresh_index=true` triggered Qwen3 rebuild — daemon spawned on Metal, created `target_sqlite.db` with 2560-dim schema, started indexing markdown files (1335 chunks in first 3 min)
+- [x] T010 `cocoindex_code.search refresh_index=true` triggered Qwen3 rebuild — daemon spawned on Metal, created `target_sqlite.db` with 768-dim schema, started indexing markdown files (1335 chunks in first 3 min)
 - [B] T010a Diagnose `msgspec.DecodeError: Input data was truncated` on search responses — upstream cocoindex IPC bug, deferred to follow-on packet
 - [B] T010b Profile and improve indexing rate (currently ~10 rows/s on Metal, ~10-20× slower than handover estimate) — deferred to follow-on
 <!-- /ANCHOR:phase-2 -->
@@ -81,7 +81,7 @@ _memory:
 ## Phase 3: Verification
 
 - [x] T011 Memory side verified: `memory_health` → `healthy=true`, `vecRowsTotal=2112`, `circuitBreakerOpen=false`, `queueDepth=0`; `memory_quick_search` returns hybrid result with 88.39% similarity
-- [x] T012a CocoIndex schema verified: `embedding float[2560]` in `code_chunks_vec` (matches Qwen3-Embedding-4B native dim)
+- [x] T012a CocoIndex schema verified: `embedding float[768]` in `code_chunks_vec` (matches EmbeddingGemma-300m native dim)
 - [B] T012b CocoIndex end-to-end search verification: blocked on T010a (msgspec truncation)
 - [x] T013 Update spec/plan/tasks/implementation-summary with actual outcomes + wedge incident notes
 - [ ] T014 Strict validate: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/004-vec-store-rebuild --strict` exits 0

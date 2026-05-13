@@ -1,9 +1,9 @@
 ---
 title: "Feature Specification: Phase 6 — bge-m3 Hybrid Evaluation"
-description: "Evaluate bge-m3 (dense + sparse + colbert via RRF) against Qwen3-Embedding-4B baseline for code search on this codebase. Decision matrix: ship sqlite-vec schema extension only if hybrid wins by >5pp MRR@10. Blocked on 009-cocoindex-ipc-fix until cocoindex search returns valid results."
+description: "Evaluate bge-m3 (dense + sparse + colbert via RRF) against EmbeddingGemma-300m baseline for code search on this codebase. Decision matrix: ship sqlite-vec schema extension only if hybrid wins by >5pp MRR@10. Blocked on 009-cocoindex-ipc-fix until cocoindex search returns valid results."
 trigger_phrases:
   - "006 bge-m3 hybrid eval"
-  - "bge-m3 vs Qwen3 baseline"
+  - "bge-m3 vs EmbeddingGemma baseline"
   - "RRF hybrid ranking eval"
   - "MRR@10 code search"
 importance_tier: "important"
@@ -51,7 +51,7 @@ _memory:
 | **Phase** | 6 of 9 |
 | **Predecessor** | 004-vec-store-rebuild + 009-cocoindex-ipc-fix |
 | **Successor** | 007-voyage-cleanup-and-egress-monitoring (independent in practice) |
-| **Handoff Criteria** | MRR@10 comparison Qwen3 vs bge-m3-dense vs bge-m3-hybrid recorded; decision documented |
+| **Handoff Criteria** | MRR@10 comparison EmbeddingGemma vs bge-m3-dense vs bge-m3-hybrid recorded; decision documented |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -59,11 +59,11 @@ _memory:
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-**Phase 6** of `014-local-embeddings-setup-a`. Optional retrieval-quality study. The Qwen3-Embedding-4B baseline (set in 004) is already known to be a strong code-search model. bge-m3 brings the option of hybrid retrieval (dense + sparse BM25-like + colbert-style multi-vector) which can improve recall on lexical-heavy code queries. The question is whether the wins justify the schema complexity (sqlite-vec's current single-vector column would need to become multi-column or per-token).
+**Phase 6** of `014-local-embeddings-setup-a`. Optional retrieval-quality study. The EmbeddingGemma-300m baseline (set in 004) is already known to be a strong code-search model. bge-m3 brings the option of hybrid retrieval (dense + sparse BM25-like + colbert-style multi-vector) which can improve recall on lexical-heavy code queries. The question is whether the wins justify the schema complexity (sqlite-vec's current single-vector column would need to become multi-column or per-token).
 
 **Scope Boundary**: evaluation only. NO schema changes shipped in this packet — the decision matrix records "ship vs don't ship". An actual hybrid retrieval rollout is a follow-on packet if 006 says "ship".
 
-**Dependencies**: 009-cocoindex-ipc-fix must restore working cocoindex search first. Without that, the Qwen3 baseline can only be queried via the direct sqlite-vec workaround, which is workable but lossy (no top-K ranking metadata, no de-dup logic, no `pathClass` boosts).
+**Dependencies**: 009-cocoindex-ipc-fix must restore working cocoindex search first. Without that, the EmbeddingGemma baseline can only be queried via the direct sqlite-vec workaround, which is workable but lossy (no top-K ranking metadata, no de-dup logic, no `pathClass` boosts).
 <!-- /ANCHOR:phase-context -->
 
 ---
@@ -72,10 +72,10 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-We chose Qwen3-Embedding-4B for cocoindex in 002 on theoretical grounds (strong code-retrieval scores in published benchmarks). We've never measured retrieval quality against this codebase. bge-m3 advertises hybrid retrieval — combining dense vectors, sparse lexical scores, and multi-vector colbert reranking — and on text-heavy benchmarks it often wins by 3-7pp MRR@10. We don't know if it helps on code, and we don't know if the sqlite-vec schema change is worth it.
+We chose EmbeddingGemma-300m for cocoindex in 002 on theoretical grounds (strong code-retrieval scores in published benchmarks). We've never measured retrieval quality against this codebase. bge-m3 advertises hybrid retrieval — combining dense vectors, sparse lexical scores, and multi-vector colbert reranking — and on text-heavy benchmarks it often wins by 3-7pp MRR@10. We don't know if it helps on code, and we don't know if the sqlite-vec schema change is worth it.
 
 ### Purpose
-Build a small ground-truth query set (40-60 queries with hand-labeled relevant files), index the same codebase with both Qwen3 and bge-m3 variants, measure MRR@10 and NDCG@10. Decide ship/don't-ship based on whether hybrid bge-m3 beats Qwen3-dense by ≥5 percentage points MRR@10.
+Build a small ground-truth query set (40-60 queries with hand-labeled relevant files), index the same codebase with both Qwen3 and bge-m3 variants, measure MRR@10 and NDCG@10. Decide ship/don't-ship based on whether hybrid bge-m3 beats EmbeddingGemma-dense by ≥5 percentage points MRR@10.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -85,7 +85,7 @@ Build a small ground-truth query set (40-60 queries with hand-labeled relevant f
 
 ### In Scope
 - Build 40-60 query / relevant-files pairs in `006/scratch/eval-set.jsonl`
-- Index codebase with Qwen3-Embedding-4B (baseline; already exists in target_sqlite.db post-004+009)
+- Index codebase with EmbeddingGemma-300m (baseline; already exists in target_sqlite.db post-004+009)
 - Index codebase with bge-m3 dense variant
 - Index codebase with bge-m3 hybrid (sparse + dense + colbert via RRF)
 - Run MRR@10 + NDCG@10 for each
@@ -118,7 +118,7 @@ Build a small ground-truth query set (40-60 queries with hand-labeled relevant f
 |----|-------------|---------------------|
 | REQ-001 | Cocoindex search returns valid results | gated on 009 ship |
 | REQ-002 | Eval query set exists | `006/scratch/eval-set.jsonl` has ≥40 queries with `relevant_files` lists |
-| REQ-003 | Qwen3 baseline MRR@10 measured | `results-qwen3.json` written |
+| REQ-003 | EmbeddingGemma baseline MRR@10 measured | `results-embeddinggemma.json` written |
 | REQ-004 | bge-m3 dense MRR@10 measured | `results-bge-m3-dense.json` written |
 | REQ-005 | bge-m3 hybrid MRR@10 measured | `results-bge-m3-hybrid.json` written |
 | REQ-006 | Decision documented | implementation-summary or decision-record.md records ship/don't-ship + delta |
