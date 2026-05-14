@@ -1,0 +1,35 @@
+{
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/014-local-llama-cpp/041-llama-cpp-metal-investigation",
+  "description": "Research-only packet documenting node-llama-cpp Metal initialization failures, local package and system evidence, H1-H5 hypothesis evaluation, and an ADR recommendation to defer source implementation.",
+  "keywords": [
+    "llama-cpp",
+    "metal",
+    "embeddings",
+    "node-llama-cpp",
+    "ggml",
+    "gpuLayers",
+    "darwin-25.4.0",
+    "embeddinggemma"
+  ],
+  "lastUpdated": "2026-05-14T15:23:23Z",
+  "specId": "041",
+  "folderSlug": "llama-cpp-metal-investigation",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "014-local-llama-cpp"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "title": "llama-cpp Metal investigation",
+  "type": "research",
+  "trigger_phrases": [
+    "llama-cpp Metal warnings",
+    "ggml_metal_library_init_from_source",
+    "tensor API unsupported",
+    "gpuLayers 0",
+    "EmbeddingGemma GGUF"
+  ],
+  "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-llama-cpp/041-llama-cpp-metal-investigation",
+  "level": 1
+}
