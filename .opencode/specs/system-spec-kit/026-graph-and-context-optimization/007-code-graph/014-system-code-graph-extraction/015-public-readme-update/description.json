@@ -1,0 +1,25 @@
+{
+  "level": "1",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/015-public-readme-update",
+  "description": "Public README Update",
+  "keywords": [
+    "public",
+    "readme",
+    "system",
+    "code",
+    "graph",
+    "mcp",
+    "topology"
+  ],
+  "lastUpdated": "2026-05-14T19:30:00Z",
+  "specId": "015",
+  "folderSlug": "public-readme-update",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "007-code-graph",
+    "014-system-code-graph-extraction"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}
