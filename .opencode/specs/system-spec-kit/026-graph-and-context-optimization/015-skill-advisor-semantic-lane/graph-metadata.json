@@ -7,7 +7,8 @@
     "system-spec-kit/026-graph-and-context-optimization/015-skill-advisor-semantic-lane/001-embed-cache-and-cosine-wiring",
     "system-spec-kit/026-graph-and-context-optimization/015-skill-advisor-semantic-lane/002-ablation-sweep-and-promote",
     "system-spec-kit/026-graph-and-context-optimization/015-skill-advisor-semantic-lane/003-weight-sweep-harness",
-    "system-spec-kit/026-graph-and-context-optimization/015-skill-advisor-semantic-lane/004-corpus-seeded-sweep"
+    "system-spec-kit/026-graph-and-context-optimization/015-skill-advisor-semantic-lane/004-corpus-seeded-sweep",
+    "system-spec-kit/026-graph-and-context-optimization/015-skill-advisor-semantic-lane/005-skill-metadata-quality-audit"
   ],
   "migrated": false,
   "manual": {
@@ -39,7 +40,7 @@
     ],
     "importance_tier": "important",
     "status": "in_progress",
-    "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/015-skill-advisor-semantic-lane/004-corpus-seeded-sweep",
+    "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/015-skill-advisor-semantic-lane/005-skill-metadata-quality-audit",
     "key_files": [
       "spec.md",
       "description.json",
