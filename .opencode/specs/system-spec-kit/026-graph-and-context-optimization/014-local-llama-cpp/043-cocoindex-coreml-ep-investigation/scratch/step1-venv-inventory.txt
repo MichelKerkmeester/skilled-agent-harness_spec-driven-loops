@@ -1,0 +1,45 @@
+# Step 1 - CocoIndex venv inventory
+# captured_at=2026-05-14T16:12:06Z
+
+$ .opencode/skills/mcp-coco-index/mcp_server/.venv/bin/python -c import onnxruntime
+1.26.0
+['CoreMLExecutionProvider', 'AzureExecutionProvider', 'CPUExecutionProvider']
+exit=0
+
+$ .opencode/skills/mcp-coco-index/mcp_server/.venv/bin/python -m pip show onnxruntime onnxruntime-coreml onnxruntime-silicon sentence-transformers
+WARNING: The directory '/Users/michelkerkmeester/Library/Caches/pip' or its parent directory is not owned or is not writable by the current user. The cache has been disabled. Check the permissions and owner of that directory. If executing pip with sudo, you should use sudo's -H flag.
+WARNING: Package(s) not found: onnxruntime-coreml, onnxruntime-silicon
+Name: onnxruntime
+Version: 1.26.0
+Summary: ONNX Runtime is a runtime accelerator for Machine Learning models
+Home-page: https://onnxruntime.ai
+Author: Microsoft Corporation
+Author-email: onnxruntime@microsoft.com
+License: MIT License
+Location: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages
+Requires: flatbuffers, numpy, packaging, protobuf
+Required-by: 
+---
+Name: sentence-transformers
+Version: 5.4.1
+Summary: Embeddings, Retrieval, and Reranking
+Home-page: https://www.SBERT.net
+Author: 
+Author-email: Nils Reimers <info@nils-reimers.de>, Tom Aarsen <tom.aarsen@huggingface.co>
+License: Apache 2.0
+Location: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages
+Requires: huggingface-hub, numpy, scikit-learn, scipy, torch, tqdm, transformers, typing_extensions
+Required-by: 
+exit=0
+
+$ .opencode/skills/mcp-coco-index/mcp_server/.venv/bin/python -c platform
+macOS-26.4-arm64-arm-64bit
+arm64
+exit=0
+
+$ ls .opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python*/site-packages | grep -i onnx\|coreml\|sentence | head -10
+onnxruntime
+onnxruntime-1.26.0.dist-info
+sentence_transformers
+sentence_transformers-5.4.1.dist-info
+exit=0

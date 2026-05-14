@@ -1,0 +1,67 @@
+# Step 2 - CocoIndex EP configuration search
+# captured_at=2026-05-14T16:12:18Z
+
+$ rg -n InferenceSession/providers/CoreML/CPU in Python sources
+
+$ rg -n SentenceTransformer/model/device in Python sources
+.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/schema.py:21:    embedding: Any  # NDArray - type hint relaxed for compatibility
+.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/daemon.py:845:    embedder = create_embedder(user_settings.embedding)
+.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/settings.py:44:    # 014-local-embeddings-setup-a / 010-cocoindex-code-only-patterns:
+.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/settings.py:89:    embedding: EmbeddingSettings
+.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/settings.py:117:        embedding=EmbeddingSettings(
+.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/settings.py:119:            model="google/embeddinggemma-300m",
+.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/settings.py:259:        "provider": settings.embedding.provider,
+.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/settings.py:260:        "model": settings.embedding.model,
+.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/settings.py:262:    if settings.embedding.device is not None:
+.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/settings.py:263:        emb["device"] = settings.embedding.device
+.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/settings.py:264:    d["embedding"] = emb
+.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/settings.py:271:    emb_dict = d.get("embedding")
+.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/settings.py:273:        raise ValueError("global_settings.yml must contain 'embedding' with at least 'model' field")
+.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/settings.py:280:    embedding = EmbeddingSettings(**emb_kwargs)
+.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/settings.py:282:    return UserSettings(embedding=embedding, envs=envs)
+.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/indexer.py:294:                embedding=await embedder.embed(chunk.text),
+.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/cli.py:4:# Modified by 014-local-embeddings-setup-a / 003-mcp-config-rollout:
+.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/shared.py:4:# Modified by 014-local-embeddings-setup-a / 001-prefix-registry-architecture:
+.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/shared.py:21:    from cocoindex.ops.sentence_transformers import SentenceTransformerEmbedder
+.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/shared.py:30:# Maps model_id -> prompt_name passed to SentenceTransformerEmbedder.
+.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/shared.py:38:    # 014-local-embeddings-setup-a / 001-prefix-registry-architecture additions:
+.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/shared.py:42:    # 014-local-embeddings-setup-a / 011-embeddinggemma-unification:
+.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/shared.py:53:    "google/embeddinggemma-300m": "InstructionRetrieval",
+.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/shared.py:57:def resolve_query_prompt_name(model_name: str) -> str | None:
+.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/shared.py:66:    return _QUERY_PROMPT_MODELS.get(model_name)
+.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/shared.py:70:Embedder = Union["SentenceTransformerEmbedder", "LiteLLMEmbedder"]
+.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/shared.py:91:        from cocoindex.ops.sentence_transformers import SentenceTransformerEmbedder
+.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/shared.py:93:        model_name = settings.model
+.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/shared.py:95:        if model_name.startswith(SBERT_PREFIX):
+.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/shared.py:96:            model_name = model_name[len(SBERT_PREFIX) :]
+.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/shared.py:98:        query_prompt_name = resolve_query_prompt_name(model_name)
+.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/shared.py:99:        instance = SentenceTransformerEmbedder(
+.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/shared.py:100:            model_name,
+.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/shared.py:101:            device=settings.device,
+.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/shared.py:140:    embedding: Annotated[NDArray, embedder]  # type: ignore[type-arg]
+.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/query.py:96:    embedding_bytes: bytes,
+.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/query.py:107:            WHERE embedding MATCH ? AND k = ? AND language = ?
+.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/query.py:110:            (embedding_bytes, k, language),
+.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/query.py:117:        WHERE embedding MATCH ? AND k = ?
+.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/query.py:120:        (embedding_bytes, k),
+.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/query.py:126:    embedding_bytes: bytes,
+.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/query.py:135:    params: list[Any] = [embedding_bytes]
+.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/query.py:153:               vec_distance_L2(embedding, ?) as distance
+.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/query.py:298:    # Generate query embedding.
+.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/query.py:300:    query_embedding = await embedder.embed(query, query_prompt_name)
+.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/query.py:305:            stage="embedding",
+.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/query.py:309:    embedding_bytes = query_embedding.astype("float32").tobytes()
+.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/query.py:316:            rows = _full_scan_query(conn, embedding_bytes, fetch_k, 0, languages, paths)
+.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/query.py:319:            rows = _knn_query(conn, embedding_bytes, fetch_k, lang)
+.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/query.py:326:                    for row in _knn_query(conn, embedding_bytes, fetch_k, lang)
+.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/config.py:10:_DEFAULT_MODEL = "sbert/google/embeddinggemma-300m"
+.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/config.py:76:    embedding_model: str
+.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/config.py:92:        # Get embedding model
+.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/config.py:93:        # Prefix "sbert/" for SentenceTransformers models, otherwise LiteLLM.
+.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/config.py:94:        embedding_model = os.environ.get(
+.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/config.py:123:            embedding_model=embedding_model,
+.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/config.py:125:            device=device,
+.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/server.py:263:def _convert_embedding_model(env_model: str) -> tuple[str, str]:
+.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/server.py:358:            provider, model = _convert_embedding_model(env_model)
+.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/server.py:359:            us.embedding = EmbeddingSettings(provider=provider, model=model)
+.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/server.py:364:            us.embedding.device = env_device

@@ -1,0 +1,19 @@
+# Step 3 - Gap probes
+# captured_at=2026-05-14T16:16:22Z
+
+$ python runtime/provider/package availability
+onnxruntime.version 1.26.0
+onnxruntime.available_providers ['CoreMLExecutionProvider', 'AzureExecutionProvider', 'CPUExecutionProvider']
+CoreMLExecutionProvider.available True
+optimum.installed False
+onnx.installed False
+onnxruntime.installed True
+coremltools.installed False
+optimum.onnxruntime.installed False
+torch.version 2.11.0
+torch.mps.built True
+torch.mps.available False
+sentence_transformers.autodevice cpu
+SentenceTransformer.signature (model_name_or_path: 'str | None' = None, *, modules: 'list[nn.Module] | None' = None, device: 'str | None' = None, prompts: 'dict[str, str] | None' = None, default_prompt_name: 'str | None' = None, cache_folder: 'str | None' = None, trust_remote_code: 'bool' = False, revision: 'str | None' = None, local_files_only: 'bool' = False, token: 'bool | str | None' = None, use_auth_token: 'bool | str | None' = None, model_kwargs: 'dict[str, Any] | None' = None, processor_kwargs: 'dict[str, Any] | None' = None, config_kwargs: 'dict[str, Any] | None' = None, model_card_data: 'SentenceTransformerModelCardData | None' = None, backend: "Literal['torch', 'onnx', 'openvino']" = 'torch', similarity_fn_name: "Literal['cosine', 'dot', 'euclidean', 'manhattan'] | SimilarityFunction | None" = None, truncate_dim: 'int | None' = None) -> 'None'
+SentenceTransformerEmbedder.signature (model_name_or_path: 'str', *, device: 'str | None' = None, trust_remote_code: 'bool' = False) -> 'None'
+exit=0
