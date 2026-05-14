@@ -168,18 +168,19 @@ describe('Embeddings Architecture (T513)', () => {
         dimensionChanged: boolean;
       } }).factoryMetadata;
 
-      expect(provider.getMetadata().provider).toBe('hf-local');
-      expect(factoryMetadata).toMatchObject({
-        requestedProvider: 'voyage',
-        effectiveProvider: 'hf-local',
-        dimensionChanged: true,
-      });
+      // Post-029 cascade fallback: Voyage fail -> OpenAI (no key, skipped) -> llama-cpp (if installed) -> hf-local.
+      // The effective provider depends on machine availability; both are valid cascade landings.
+      const LOCAL_PROVIDERS = ['llama-cpp', 'hf-local'];
+      expect(LOCAL_PROVIDERS).toContain(provider.getMetadata().provider);
+      expect(factoryMetadata?.requestedProvider).toBe('voyage');
+      expect(LOCAL_PROVIDERS).toContain(factoryMetadata?.effectiveProvider);
+      expect(factoryMetadata?.dimensionChanged).toBe(true);
       expect(factoryMetadata?.fallbackReason).toContain('warmup failed');
 
       const info = getProviderInfo();
-      expect(info.provider).toBe('hf-local');
+      expect(LOCAL_PROVIDERS).toContain(info.provider);
       expect(info.requestedProvider).toBe('voyage');
-      expect(info.effectiveProvider).toBe('hf-local');
+      expect(LOCAL_PROVIDERS).toContain(info.effectiveProvider);
       expect(info.dimensionChanged).toBe(true);
     });
 

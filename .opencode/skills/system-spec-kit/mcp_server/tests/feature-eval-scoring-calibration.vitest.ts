@@ -101,7 +101,7 @@ describe('T001: Embedding Cache', () => {
 
   // T041-02: Cache miss returns null
   it('T041-02: cache miss returns null for unknown hash', () => {
-    const result = lookupEmbedding(db, 'deadbeef00000000', 'any-model', 384);
+    const result = lookupEmbedding(db, 'deadbeef00000000', 'any-model', 768);
     expect(result).toBeNull();
   });
 

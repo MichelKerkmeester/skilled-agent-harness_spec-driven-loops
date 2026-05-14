@@ -156,7 +156,7 @@ function createTestDatabase(opts = {}) {
     loadSqliteVec(db);
     db.exec(`
       CREATE VIRTUAL TABLE vec_memories USING vec0(
-        embedding FLOAT[384]
+        embedding FLOAT[768]
       )
     `);
   }
@@ -192,7 +192,7 @@ function insertHistory(db, memoryId, event = 'ADD') {
  * Fills with zeros for simplicity.
  */
 function insertVector(db, rowid) {
-  const embedding = new Float32Array(384).fill(0);
+  const embedding = new Float32Array(768).fill(0);
   db.prepare('INSERT INTO vec_memories (rowid, embedding) VALUES (?, ?)').run(
     BigInt(rowid),
     Buffer.from(embedding.buffer)

@@ -66,7 +66,7 @@ const mockVectorSearch: VectorSearchFn = (_embedding, options = {}) => {
 };
 
 async function runQuery(query: string) {
-  const results = await hybridSearch.hybridSearchEnhanced(query, new Float32Array(384).fill(0.2), {
+  const results = await hybridSearch.hybridSearchEnhanced(query, new Float32Array(768).fill(0.2), {
     limit: 5,
   });
   expect(results.length).toBeGreaterThan(0);

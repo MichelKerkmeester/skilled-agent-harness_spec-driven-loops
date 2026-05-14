@@ -685,7 +685,7 @@ async function testBatchProcessing() {
 async function testLazyLoadingLifecycle() {
   log('\n🔬 GROUP F: Lazy loading & provider lifecycle');
 
-  const mockProvider = createMockProvider({ dim: 384, provider: 'lifecycle-test', model: 'test-v2' });
+  const mockProvider = createMockProvider({ dim: 768, provider: 'lifecycle-test', model: 'test-v2' });
   const { emb, restore } = loadEmbeddingsWithMock(mockProvider);
 
   try {
@@ -734,8 +734,8 @@ async function testLazyLoadingLifecycle() {
       'EB-108: getEmbeddingProfile returns non-null after init');
     assertEqual(profile.provider, 'lifecycle-test',
       'EB-109: getEmbeddingProfile.provider matches mock');
-    assertEqual(profile.dim, 384,
-      'EB-110: getEmbeddingProfile.dim matches mock (384)');
+    assertEqual(profile.dim, 768,
+      'EB-110: getEmbeddingProfile.dim matches mock (768)');
 
     // --- getEmbeddingProfileAsync ---
     const asyncProfile = await emb.getEmbeddingProfileAsync();
@@ -750,8 +750,8 @@ async function testLazyLoadingLifecycle() {
       'EB-113: getProviderMetadata.healthy is true');
 
     // --- getEmbeddingDimension uses provider when available ---
-    assertEqual(emb.getEmbeddingDimension(), 384,
-      'EB-114: getEmbeddingDimension returns provider dim (384) when initialized');
+    assertEqual(emb.getEmbeddingDimension(), 768,
+      'EB-114: getEmbeddingDimension returns provider dim (768) when initialized');
 
     // --- preWarmModel ---
     const warmResult = await emb.preWarmModel();

@@ -368,7 +368,7 @@ describe('C138 Stage: MMR Reranker Production', () => {
     const candidates = Array.from({ length: 20 }, (_, i) => ({
       id: i + 1,
       score: 1 - i * 0.04,
-      embedding: new Float32Array(Array.from({ length: 384 }, () => Math.random())),
+      embedding: new Float32Array(Array.from({ length: 768 }, () => Math.random())),
     }));
 
     const start = performance.now();

@@ -72,7 +72,7 @@ describe('Embedding Cache (T015)', () => {
 
   // T015-03: Cache miss returns null for unknown hash
   it('T015-03: cache miss returns null', () => {
-    const result = lookupEmbedding(db, 'nonexistent_hash', 'any-model', 384);
+    const result = lookupEmbedding(db, 'nonexistent_hash', 'any-model', 768);
     expect(result).toBeNull();
   });
 
@@ -263,7 +263,7 @@ describe('Embedding Cache (T015)', () => {
   it('T015-11: cache lookup performance benchmark', () => {
     const hash = computeContentHash('perf test');
     const model = 'test-model';
-    const dims = 384;
+    const dims = 768;
     const emb = makeEmbeddingBuffer(dims);
 
     storeEmbedding(db, hash, model, emb, dims);

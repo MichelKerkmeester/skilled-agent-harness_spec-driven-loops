@@ -792,7 +792,7 @@ describe('T008: includeContent-independent dedup in hybrid search path', () => {
 
     const results = await hybridSearch.hybridSearchEnhanced(
       'dedup regression query',
-      new Float32Array(384).fill(0.1),
+      new Float32Array(768).fill(0.1),
       {
         limit: 20,
         useBm25: false,
@@ -812,7 +812,7 @@ describe('T008: includeContent-independent dedup in hybrid search path', () => {
 
     const results = await hybridSearch.hybridSearchEnhanced(
       'dedup regression query',
-      new Float32Array(384).fill(0.1),
+      new Float32Array(768).fill(0.1),
       {
         limit: 20,
         includeContent: true,
@@ -829,7 +829,7 @@ describe('T008: includeContent-independent dedup in hybrid search path', () => {
 
   it('returns identical deduped canonical IDs for includeContent=false vs true', async () => {
     hybridSearch.init(createHybridMockDb(), mockVectorSearch, null);
-    const embedding = new Float32Array(384).fill(0.1);
+    const embedding = new Float32Array(768).fill(0.1);
 
     const defaultPath = await hybridSearch.hybridSearchEnhanced('dedup regression query', embedding, {
       limit: 20,

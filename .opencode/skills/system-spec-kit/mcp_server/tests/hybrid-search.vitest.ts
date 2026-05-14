@@ -439,7 +439,7 @@ describe('Hybrid Search Unit Tests (T031+)', () => {
       for (const doc of MOCK_DOCS) {
         bm25.addDocument(String(doc.id), doc.content);
       }
-      mockEmbedding = new Float32Array(384).fill(0.1);
+      mockEmbedding = new Float32Array(768).fill(0.1);
     });
 
     it('T031-HYB-01: hybridSearchEnhanced() returns results', () => {
@@ -552,7 +552,7 @@ describe('Hybrid Search Unit Tests (T031+)', () => {
     beforeAll(() => {
       const mockDb = createMockDb();
       hybridSearch.init(mockDb, mockVectorSearch, mockGraphSearch);
-      mockEmbedding = new Float32Array(384).fill(0.1);
+      mockEmbedding = new Float32Array(768).fill(0.1);
     });
 
     it('T031-RRF-01: unified_search available from rrf-fusion', () => {
@@ -584,7 +584,7 @@ describe('Hybrid Search Unit Tests (T031+)', () => {
     beforeAll(() => {
       const mockDb = createMockDb();
       hybridSearch.init(mockDb, mockVectorSearch, null);
-      mockEmbedding = new Float32Array(384).fill(0.1);
+      mockEmbedding = new Float32Array(768).fill(0.1);
     });
 
     it('T031-BASIC-01: hybridSearch() returns result', () => {
@@ -632,7 +632,7 @@ describe('Hybrid Search Unit Tests (T031+)', () => {
     beforeAll(() => {
       const mockDb = createMockDb();
       hybridSearch.init(mockDb, mockVectorSearch, null);
-      mockEmbedding = new Float32Array(384).fill(0.1);
+      mockEmbedding = new Float32Array(768).fill(0.1);
     });
 
     it('T031-FALL-01: searchWithFallback() returns result', () => {
@@ -716,7 +716,7 @@ describe('Hybrid Search Unit Tests (T031+)', () => {
     it('T031-ERR-01: hybridSearchEnhanced() with valid init works', () => {
       const mockDb = createMockDb();
       hybridSearch.init(mockDb, mockVectorSearch, null);
-      const mockEmbedding = new Float32Array(384).fill(0.1);
+      const mockEmbedding = new Float32Array(768).fill(0.1);
       expect(() => {
         hybridSearch.hybridSearchEnhanced('test', mockEmbedding, { limit: 5 });
       }).not.toThrow();
@@ -792,7 +792,7 @@ describe('C138-P0: useGraph:true Default Routing', () => {
     for (const doc of MOCK_DOCS) {
       bm25.addDocument(String(doc.id), doc.content);
     }
-    mockEmbedding = new Float32Array(384).fill(0.1);
+    mockEmbedding = new Float32Array(768).fill(0.1);
   });
 
   afterEach(() => {
@@ -877,7 +877,7 @@ describe('C138-P0: Adaptive Fallback in searchWithFallback', () => {
       // "auth" is a simple query; Tier 1 routes to a subset of channels.
       // Limit=1 guarantees degradation (count < 3), so Tier 2 should run and
       // Force-enable all channels, including graph.
-      const embedding = new Float32Array(384).fill(0.1);
+      const embedding = new Float32Array(768).fill(0.1);
       await hybridSearch.searchWithFallback('auth', embedding, { limit: 1 });
 
       expect(graphSearchCallCount).toBeGreaterThanOrEqual(1);
@@ -925,7 +925,7 @@ describe('P1 fallback threshold and channel gating regressions', () => {
 
     const results = await hybridSearch.searchWithFallback(
       'authentication',
-      new Float32Array(384).fill(0.1),
+      new Float32Array(768).fill(0.1),
       { limit: 5, useFts: false, useBm25: false, useGraph: false }
     );
 
@@ -946,7 +946,7 @@ describe('P1 fallback threshold and channel gating regressions', () => {
 
     await hybridSearch.collectRawCandidates(
       'authentication',
-      new Float32Array(384).fill(0.1),
+      new Float32Array(768).fill(0.1),
       { limit: 5, useFts: false, useBm25: false, useGraph: false }
     );
 
@@ -966,7 +966,7 @@ describe('P1 fallback threshold and channel gating regressions', () => {
 
     const results = await hybridSearch.collectRawCandidates(
       'authentication',
-      new Float32Array(384).fill(0.1),
+      new Float32Array(768).fill(0.1),
       { limit: 5, useFts: false, useBm25: false, useGraph: false }
     );
 
@@ -990,7 +990,7 @@ describe('P1 fallback threshold and channel gating regressions', () => {
 
     const results = await hybridSearch.searchWithFallback(
       'authentication',
-      new Float32Array(384).fill(0.1),
+      new Float32Array(768).fill(0.1),
       { limit: 5, useFts: false, useBm25: false, useGraph: false }
     );
 
@@ -1014,7 +1014,7 @@ describe('P1 fallback threshold and channel gating regressions', () => {
     try {
       const results = await hybridSearch.searchWithFallback(
         'authentication',
-        new Float32Array(384).fill(0.1),
+        new Float32Array(768).fill(0.1),
         { limit: 1, useFts: false, useBm25: false, useGraph: false }
       );
 
@@ -1119,7 +1119,7 @@ describe('Degree channel fusion regression coverage', () => {
 
     const results = await hybridSearch.hybridSearchEnhanced(
       'fix auth bug',
-      new Float32Array(384).fill(0.1),
+      new Float32Array(768).fill(0.1),
       {
         limit: 5,
         useFts: false,
@@ -1145,7 +1145,7 @@ describe('Degree channel fusion regression coverage', () => {
 
     const results = await hybridSearch.hybridSearchEnhanced(
       'fix auth bug',
-      new Float32Array(384).fill(0.1),
+      new Float32Array(768).fill(0.1),
       {
         limit: 5,
         useFts: false,
@@ -1175,7 +1175,7 @@ describe('Degree channel fusion regression coverage', () => {
 
     const results = await hybridSearch.hybridSearchEnhanced(
       'authentication',
-      new Float32Array(384).fill(0.1),
+      new Float32Array(768).fill(0.1),
       { limit: 10, intent: 'understand' }
     );
 
@@ -1234,7 +1234,7 @@ describe('Degree channel fusion regression coverage', () => {
 
       const results = await hybridSearch.hybridSearchEnhanced(
         'authentication',
-        new Float32Array(384).fill(0.1),
+        new Float32Array(768).fill(0.1),
         {
           limit: 5,
           useFts: false,
@@ -1312,7 +1312,7 @@ describe('P1 post-ranking truncation and token budget regressions', () => {
 
     const results = await hybridSearch.hybridSearchEnhanced(
       'authentication',
-      new Float32Array(384).fill(0.1),
+      new Float32Array(768).fill(0.1),
       { limit: 10, useFts: false, useBm25: true, useGraph: false, intent: 'understand' }
     );
 
@@ -1450,7 +1450,7 @@ describe('Sprint 1 Search-Core Fixes (Task #2)', () => {
     hybridSearch.init(mockDb, mockVectorSearch, mockGraphSearch);
 
     const longTrigger = 'explain authentication token refresh integration details now please';
-    const embedding = new Float32Array(384).fill(0.2);
+    const embedding = new Float32Array(768).fill(0.2);
     const results = await hybridSearch.hybridSearchEnhanced(longTrigger, embedding, {
       limit: 10,
       triggerPhrases: [longTrigger],
@@ -1469,7 +1469,7 @@ describe('Sprint 1 Search-Core Fixes (Task #2)', () => {
     const mockDb = createMockDb();
     hybridSearch.init(mockDb, mockVectorSearch, mockGraphSearch);
 
-    const embedding = new Float32Array(384).fill(0.1);
+    const embedding = new Float32Array(768).fill(0.1);
     const results = await hybridSearch.hybridSearchEnhanced('authentication module', embedding, { limit: 10 });
 
     expect(results.length).toBeGreaterThan(0);
@@ -1497,7 +1497,7 @@ describe('Sprint 1 Search-Core Fixes (Task #2)', () => {
     const mockDb = createMockDb();
     hybridSearch.init(mockDb, hugeVectorSearch, null);
 
-    const embedding = new Float32Array(384).fill(0.3);
+    const embedding = new Float32Array(768).fill(0.3);
     const results = await hybridSearch.hybridSearchEnhanced('fix bug', embedding, { limit: 20 });
 
     const s3meta = (results as unknown as Record<string, unknown>)._s3meta as
@@ -1526,7 +1526,7 @@ describe('Sprint 1 Search-Core Fixes (Task #2)', () => {
     const mockDb = createMockDb();
     hybridSearch.init(mockDb, hugeVectorSearch, null);
 
-    const embedding = new Float32Array(384).fill(0.3);
+    const embedding = new Float32Array(768).fill(0.3);
     const results = await hybridSearch.hybridSearchEnhanced('fix bug', embedding, {
       limit: 20,
       useBm25: false,
@@ -1567,26 +1567,26 @@ describe('BUG-1: Ablation channel disable via useVector/useBm25/useFts options',
   });
 
   it('BUG1-T1: useVector=false prevents vector search function from being called', async () => {
-    const embedding = new Float32Array(384).fill(0.1);
+    const embedding = new Float32Array(768).fill(0.1);
     await hybridSearch.hybridSearchEnhanced('authentication', embedding, { limit: 10, useVector: false });
     expect(vectorCallCount).toBe(0);
   });
 
   it('BUG1-T2: useVector=true (default) calls vector search function', async () => {
-    const embedding = new Float32Array(384).fill(0.1);
+    const embedding = new Float32Array(768).fill(0.1);
     await hybridSearch.hybridSearchEnhanced('authentication', embedding, { limit: 10 });
     expect(vectorCallCount).toBeGreaterThanOrEqual(1);
   });
 
   it('BUG1-T3: useFts=false removes FTS results from output', async () => {
-    const embedding = new Float32Array(384).fill(0.1);
+    const embedding = new Float32Array(768).fill(0.1);
     const results = await hybridSearch.hybridSearchEnhanced('authentication', embedding, { limit: 10, useFts: false });
     const ftsSources = results.filter(r => r.source === 'fts');
     expect(ftsSources.length).toBe(0);
   });
 
   it('BUG1-T4: useBm25=false removes BM25 results from output', async () => {
-    const embedding = new Float32Array(384).fill(0.1);
+    const embedding = new Float32Array(768).fill(0.1);
     const results = await hybridSearch.hybridSearchEnhanced('authentication', embedding, { limit: 10, useBm25: false });
     const bm25Sources = results.filter(r => r.source === 'bm25');
     expect(bm25Sources.length).toBe(0);
