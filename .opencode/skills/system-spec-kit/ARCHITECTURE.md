@@ -47,7 +47,7 @@ importance_tier: "important"
 
 Two consumed subsystems live as first-class self-contained packages under `mcp_server/`, with adjacent operator-runner folders for the quality matrix and opt-in stress validation:
 
-- `mcp_server/skill_advisor/` — Native skill routing advisor. Houses its own `lib/`, `handlers/`, `tools/`, `tests/`, `scripts/`, `bench/`, `compat/`, `schemas/`, operator docs (`README.md`, `INSTALL_GUIDE.md`, `SET-UP_GUIDE.md`), plus `feature_catalog/` and `manual_testing_playbook/` packages.
+- `system-skill-advisor/mcp_server/` — Native skill routing advisor. Houses its own `lib/`, `handlers/`, `tools/`, `tests/`, `scripts/`, `bench/`, `compat/`, `schemas/`, operator docs (`README.md`, `INSTALL_GUIDE.md`, `SET-UP_GUIDE.md`), plus `feature_catalog/` and `manual_testing_playbook/` packages.
 - `mcp_server/code_graph/` — Structural code graph + coco-index facade. Houses its own `lib/`, `handlers/`, `tools/`, `tests/`.
 - `mcp_server/matrix_runners/` — Packet-036 F1-F14 x CLI adapter manifest, five per-CLI adapters, and meta-runner for external executor cells.
 - `mcp_server/stress_test/` — Opt-in stress/load/degraded-state suites, excluded from default `npm test` and run through `npm run stress`.
@@ -178,8 +178,8 @@ system-spec-kit/
 | `scripts/` | `mcp_server/lib/*` | Disallowed unless explicitly allowlisted |
 | `mcp_server/` | `shared/` | Allowed |
 | `mcp_server/lib/*` | `mcp_server/api/*` | Disallowed |
-| External plugin | `mcp_server/skill_advisor/compat/index.ts` | Allowed (stable public API) |
-| External plugin | `mcp_server/skill_advisor/lib/*` | Disallowed (private internals) |
+| External plugin | `system-skill-advisor/mcp_server/compat/index.ts` | Allowed (stable public API) |
+| External plugin | `system-skill-advisor/mcp_server/lib/*` | Disallowed (private internals) |
 
 This keeps the runtime internals private while still exposing a stable boundary for tooling and external plugins.
 
@@ -270,7 +270,7 @@ Three graph systems now coexist:
 
 ### Skill advisor
 
-The skill advisor is a self-contained subsystem at `mcp_server/skill_advisor/`; see §5 for package internals, §7 for hook integration.
+The skill advisor is a self-contained subsystem at `system-skill-advisor/mcp_server/`; see §5 for package internals, §7 for hook integration.
 
 <!-- /ANCHOR:runtime-subsystems -->
 
@@ -283,7 +283,7 @@ The current self-contained package produces the compact skill recommendation bri
 
 ### Package layout
 
-`mcp_server/skill_advisor/` is a first-class self-contained package. Its `lib/` tree contains:
+`system-skill-advisor/mcp_server/` is a first-class self-contained package. Its `lib/` tree contains:
 
 | Subfolder | Purpose |
 |---|---|
@@ -298,7 +298,7 @@ The current self-contained package produces the compact skill recommendation bri
 
 ### 5-lane analytical fusion
 
-Defined in `mcp_server/skill_advisor/lib/scorer/weights-config.ts:8-19` and exercised through `mcp_server/skill_advisor/lib/scorer/fusion.ts`:
+Defined in `system-skill-advisor/mcp_server/lib/scorer/weights-config.ts:8-19` and exercised through `system-skill-advisor/mcp_server/lib/scorer/fusion.ts`:
 
 | Lane | Weight | Role |
 |---|---|---|
@@ -310,7 +310,7 @@ Defined in `mcp_server/skill_advisor/lib/scorer/weights-config.ts:8-19` and exer
 
 `semantic_shadow` is locked at `0.00` live weight (ADR-006). The semantic lane is scored shadow-only and inert until a future weight rebalance is justified by measured live-corpus evidence; no automated promotion subsystem is wired today.
 
-Alias canonicalization lives in `mcp_server/skill_advisor/lib/scorer/aliases.ts`. It is intentionally narrow: command-backed skills may list exact accepted ids such as `deep-review`, `spec_kit:deep-review`, `/spec_kit:deep-review`, and `command-spec-kit-deep-review`, but unrelated ids never compare equal through fuzzy or prefix matching.
+Alias canonicalization lives in `system-skill-advisor/mcp_server/lib/scorer/aliases.ts`. It is intentionally narrow: command-backed skills may list exact accepted ids such as `deep-review`, `spec_kit:deep-review`, `/spec_kit:deep-review`, and `command-spec-kit-deep-review`, but unrelated ids never compare equal through fuzzy or prefix matching.
 
 ### Daemon + freshness + trust states
 
@@ -320,7 +320,7 @@ Alias canonicalization lives in `mcp_server/skill_advisor/lib/scorer/aliases.ts`
 
 ### MCP tools
 
-Four tools, registered under `mcp_server/skill_advisor/tools/`:
+Four tools, registered under `system-skill-advisor/mcp_server/tools/`:
 
 | Tool | Handler | Purpose |
 |---|---|---|
@@ -331,9 +331,9 @@ Four tools, registered under `mcp_server/skill_advisor/tools/`:
 
 ### Compatibility surfaces
 
-- **Python compat shim**: `mcp_server/skill_advisor/scripts/skill_advisor.py` with daemon-probe → native fallback → local fallback.
-- **Stable public API**: `mcp_server/skill_advisor/compat/index.ts`. Plugin bridges import from here, never from `lib/*`.
-- **Gate 2 fallback path**: `python3 .opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py`.
+- **Python compat shim**: `system-skill-advisor/mcp_server/scripts/skill_advisor.py` with daemon-probe → native fallback → local fallback.
+- **Stable public API**: `system-skill-advisor/mcp_server/compat/index.ts`. Plugin bridges import from here, never from `lib/*`.
+- **Gate 2 fallback path**: `python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py`.
 
 ### Accuracy benchmarks
 
@@ -344,11 +344,11 @@ Four tools, registered under `mcp_server/skill_advisor/tools/`:
 | UNKNOWN rate (abstentions) | ≤10 |
 | Python-correct regressions | 0 (ADR-007 regression-protection parity) |
 
-Regression suite: `mcp_server/skill_advisor/scripts/skill_advisor_regression.py` — 52/52 P0 cases pass.
+Regression suite: `system-skill-advisor/mcp_server/scripts/skill_advisor_regression.py` — 52/52 P0 cases pass.
 
 ### Test surfaces
 
-`mcp_server/skill_advisor/tests/` — Vitest suites across `scorer/`, `handlers/`, `parity/`, `compat/`, `legacy/` (11 advisor-*.vitest.ts files relocated from `mcp_server/tests/`), and `python/`.
+`system-skill-advisor/mcp_server/tests/` — Vitest suites across `scorer/`, `handlers/`, `parity/`, `compat/`, `legacy/` (11 advisor-*.vitest.ts files relocated from `mcp_server/tests/`), and `python/`.
 
 <!-- /ANCHOR:skill-advisor -->
 
@@ -427,13 +427,13 @@ For runtimes without native hook support, the plugin bridge provides native-firs
 
 - **Bridge entry**: `.opencode/plugins/spec-kit-skill-advisor.js` (OpenCode plugin ESM entrypoint with a default-export factory)
 - **Bridge runtime**: `.opencode/plugins/spec-kit-skill-advisor-bridge.mjs` (delegation logic)
-- **Import target**: `mcp_server/skill_advisor/compat/index.ts` (stable public API — never `lib/*`)
+- **Import target**: `system-skill-advisor/mcp_server/compat/index.ts` (stable public API — never `lib/*`)
 
 Delegation order:
 
 1. Daemon probe → if live, return brief from daemon state.
 2. Native fallback → invoke `compat/index.ts` inline.
-3. Python shim fallback → spawn `mcp_server/skill_advisor/scripts/skill_advisor.py`.
+3. Python shim fallback → spawn `system-skill-advisor/mcp_server/scripts/skill_advisor.py`.
 
 The bridge keeps runtime state inside each plugin instance, dedups concurrent identical in-flight requests before spawning a second bridge call, caps prompt stdin / rendered brief / cache entry sizes, and evicts the oldest cached entry when the configured cache cap is exceeded.
 
@@ -456,15 +456,15 @@ Key checks:
 - `scripts/evals/check-architecture-boundaries.ts`
 - workspace typechecks for `@spec-kit/mcp-server` and `@spec-kit/scripts`
 - targeted Vitest suites for save, resume, routing, public API, and docs parity
-- skill-advisor test surface: `mcp_server/skill_advisor/tests/` — 23 files / 167 tests
+- skill-advisor test surface: `system-skill-advisor/mcp_server/tests/` — 23 files / 167 tests
 - code-graph test surface: `mcp_server/code_graph/tests/` — 7 files / 52 tests
-- Python regression: `mcp_server/skill_advisor/scripts/skill_advisor_regression.py` — 52/52 P0 cases
+- Python regression: `system-skill-advisor/mcp_server/scripts/skill_advisor_regression.py` — 52/52 P0 cases
 
 ### Practical rule set
 
 - Edit authored `.ts`, `.md`, and shell sources, not `dist/`.
 - Use `mcp_server/api/` as the import boundary from `scripts/`.
-- External plugins import only from `mcp_server/skill_advisor/compat/index.ts`, never from `lib/*`.
+- External plugins import only from `system-skill-advisor/mcp_server/compat/index.ts`, never from `lib/*`.
 - Keep packet recovery anchored on `/spec_kit:resume`.
 - Treat `handover.md`, `_memory.continuity`, and spec docs as the continuity backbone.
 - Skill-advisor and code-graph are consumed subsystems of `system-spec-kit`; neither ships a `SKILL.md`.
@@ -477,13 +477,13 @@ Key checks:
 ## 9. DECISION RECORDS
 
 Architectural decisions for the skill-advisor and code-graph subsystems are
-captured in the runtime source anchors under `mcp_server/skill_advisor/` and
+captured in the runtime source anchors under `system-skill-advisor/mcp_server/` and
 `mcp_server/code_graph/`, with package-level rationale in the subsystem docs.
 
 | ADR | Subject |
 |---|---|
 | ADR-001 | Chokidar + hash-aware SQLite indexer as daemon substrate |
-| ADR-002 | Self-contained `mcp_server/skill_advisor/` package layout |
+| ADR-002 | Self-contained `system-skill-advisor/mcp_server/` package layout |
 | ADR-003 | 5-lane analytical fusion weights (`0.45 / 0.30 / 0.15 / 0.10 / 0.00`) |
 | ADR-004 | Daemon lease model (long-running writer) |
 | ADR-005 | Migration from split `lib/` + `scripts/` layout to self-contained package |
@@ -503,9 +503,9 @@ Cross-ADR flow: ADR-001 → ADR-004 (lease needs a long-running writer); ADR-002
 - `mcp_server/lib/README.md`
 - `mcp_server/handlers/README.md`
 - `mcp_server/hooks/README.md`
-- `mcp_server/skill_advisor/README.md`
-- `mcp_server/skill_advisor/INSTALL_GUIDE.md`
-- `mcp_server/skill_advisor/SET-UP_GUIDE.md`
+- `system-skill-advisor/mcp_server/README.md`
+- `system-skill-advisor/mcp_server/INSTALL_GUIDE.md`
+- `system-skill-advisor/mcp_server/SET-UP_GUIDE.md`
 - `mcp_server/matrix_runners/README.md`
 - `mcp_server/stress_test/README.md`
 - `mcp_server/code_graph/lib/README.md`

@@ -43,7 +43,7 @@ Across this skill tree, `/spec_kit:resume` is the canonical recovery surface for
 
 `.opencode/skills/` holds 17 skill folders. Skills are not passive references. Each skill contains executable guidance that an AI agent loads on demand through Gate 2 routing or explicit invocation. Skills carry their own references, assets, scripts, and graph metadata so domain knowledge stays close to the code that uses it.
 
-Skills divide into five categories: CLI orchestrators that delegate work to external AI binaries, MCP integrations that wrap third-party tools, code workflow and review skills, documentation and improvement-loop utilities, and the system-spec-kit foundation that governs every file modification. The primary routing engine is now the native TypeScript Skill Advisor package at `system-spec-kit/mcp_server/skill_advisor/`, exposed through `advisor_recommend`, `advisor_status`, and `advisor_validate`. The Python `system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py` entrypoint remains as a compatibility shim with native-first delegation and local fallback.
+Skills divide into five categories: CLI orchestrators that delegate work to external AI binaries, MCP integrations that wrap third-party tools, code workflow and review skills, documentation and improvement-loop utilities, and the system-spec-kit foundation that governs every file modification. The primary routing engine is now the native TypeScript Skill Advisor package at `system-skill-advisor/mcp_server/`, exposed through `advisor_recommend`, `advisor_status`, and `advisor_validate`. The Python `system-skill-advisor/mcp_server/scripts/skill_advisor.py` entrypoint remains as a compatibility shim with native-first delegation and local fallback.
 
 Adding a skill is intentional. Every new skill goes through `sk-doc`'s scaffolding workflow, gets a SKILL.md with proper frontmatter, and is discovered by the native advisor through graph metadata indexing. The Python shim can still discover it directly when fallback mode is active.
 
@@ -69,7 +69,7 @@ Adding a skill is intentional. Every new skill goes through `sk-doc`'s scaffoldi
 | --- | --- |
 | Gate 2 routing | Native `advisor_recommend` scores requests with 5-lane fusion and returns prompt-safe recommendations |
 | Advisor health and validation | `advisor_status` reports freshness, `skillCount`, `lastScanAt`, and lane weights; `advisor_validate` returns measured corpus, holdout, parity, safety, and latency slices |
-| Graph metadata system | Per-folder `graph-metadata.json` feeds the SQLite skill graph, with `system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json` kept for export and fallback workflows |
+| Graph metadata system | Per-folder `graph-metadata.json` feeds the SQLite skill graph, with `system-skill-advisor/mcp_server/scripts/skill-graph.json` kept for export and fallback workflows |
 | On-demand loading | Skills load only when needed so context stays focused |
 | Self-contained skills | References, assets, and scripts live inside each skill folder |
 | Auto-discovery | New skills are found through graph metadata and SKILL.md discovery |
@@ -93,7 +93,7 @@ advisor_recommend({"prompt":"rewrite README for skill library","options":{"topK"
 ```
 
 ```bash
-python3 .opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py "rewrite README for skill library" --threshold 0.8
+python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py "rewrite README for skill library" --threshold 0.8
 ```
 
 **2. Open a skill directly**
@@ -298,9 +298,9 @@ The `name` and `description` fields are required. `trigger_phrases` strengthen r
 Every folder under `.opencode/skills/` contributes a `graph-metadata.json` file to the shared routing graph. The native runtime reads the SQLite skill graph first. The JSON snapshot remains useful for export and fallback workflows:
 
 ```bash
-python3 .opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_graph_compiler.py --validate-only
-python3 .opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_graph_compiler.py
-# Writes .opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json
+python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_graph_compiler.py --validate-only
+python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_graph_compiler.py
+# Writes .opencode/skills/system-skill-advisor/mcp_server/scripts/skill-graph.json
 ```
 
 Native health and validation:
@@ -329,7 +329,7 @@ advisor_validate({"skillSlug":null})
 
 ```bash
 # Documentation task: sk-doc is recommended at high confidence through the shim
-python3 .opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py "create a flowchart for the auth flow" --threshold 0.8
+python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py "create a flowchart for the auth flow" --threshold 0.8
 ```
 
 Native equivalent:
@@ -378,15 +378,15 @@ node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js \
 
 ```bash
 # Regression quality check
-python3 .opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor_regression.py \
-  --dataset .opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/fixtures/skill_advisor_regression_cases.jsonl \
-  --out .opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/out/regression-report.json
+python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor_regression.py \
+  --dataset .opencode/skills/system-skill-advisor/mcp_server/scripts/fixtures/skill_advisor_regression_cases.jsonl \
+  --out .opencode/skills/system-skill-advisor/mcp_server/scripts/out/regression-report.json
 
 # Latency benchmark
-python3 .opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor_bench.py \
-  --dataset .opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/fixtures/skill_advisor_regression_cases.jsonl \
+python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor_bench.py \
+  --dataset .opencode/skills/system-skill-advisor/mcp_server/scripts/fixtures/skill_advisor_regression_cases.jsonl \
   --runs 7 \
-  --out .opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/out/benchmark-report.json
+  --out .opencode/skills/system-skill-advisor/mcp_server/scripts/out/benchmark-report.json
 ```
 
 <!-- /ANCHOR:usage-examples -->
@@ -412,7 +412,7 @@ ls .opencode/skills/*/SKILL.md
 head -10 .opencode/skills/sk-git/SKILL.md
 
 # Lower the threshold temporarily to inspect low-confidence matches
-python3 .opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py "commit changes" --threshold 0.5
+python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py "commit changes" --threshold 0.5
 ```
 
 ### Wrong skill is recommended
@@ -436,7 +436,7 @@ python3 .opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_
 head -15 .opencode/skills/my-new-skill/SKILL.md
 
 # Force a discovery refresh (clears the mtime cache)
-python3 .opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py "test" --health
+python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py "test" --health
 ```
 
 ### Skill scripts fail with import errors
@@ -472,7 +472,7 @@ Yes. The advisor returns a ranked list. A task may load a primary skill (for exa
 
 **Q: What is the difference between skill-local scripts and the shared scripts/ folder?**
 
-The native routing package lives in `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/`. The compatibility scripts live in `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/` and handle legacy routing, graph export, benchmarking, and regression testing. Skill-local scripts in a skill's own `scripts/` folder handle domain-specific automation.
+The native routing package lives in `.opencode/skills/system-skill-advisor/mcp_server/`. The compatibility scripts live in `.opencode/skills/system-skill-advisor/mcp_server/scripts/` and handle legacy routing, graph export, benchmarking, and regression testing. Skill-local scripts in a skill's own `scripts/` folder handle domain-specific automation.
 
 **Q: Why does the advisor cap confidence at 0.95?**
 
@@ -488,8 +488,8 @@ The cap preserves a margin of uncertainty so the calling AI retains judgment on 
 | Document | Purpose |
 | --- | --- |
 | [Main Framework README](../../README.md) | Root project overview and framework entry point |
-| [Skill Advisor README](system-spec-kit/mcp_server/skill_advisor/README.md) | Native advisor overview, MCP quick start, compatibility shim, runtime hooks, and playbook index |
-| [Skill Advisor Setup Guide](system-spec-kit/mcp_server/skill_advisor/SET-UP_GUIDE.md) | Native bootstrap pointer, validation commands, rollback controls, and operator states |
+| [Skill Advisor README](system-skill-advisor/mcp_server/README.md) | Native advisor overview, MCP quick start, compatibility shim, runtime hooks, and playbook index |
+| [Skill Advisor Setup Guide](system-skill-advisor/mcp_server/SET-UP_GUIDE.md) | Native bootstrap pointer, validation commands, rollback controls, and operator states |
 | [system-spec-kit SKILL.md](system-spec-kit/SKILL.md) | Spec folder workflow and memory foundation |
 | [sk-doc SKILL.md](sk-doc/SKILL.md) | Documentation quality standards and templates |
 | [sk-git SKILL.md](sk-git/SKILL.md) | Git workflow orchestration |

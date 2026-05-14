@@ -39,7 +39,7 @@
     ],
     "importance_tier": "important",
     "status": "in_progress",
-    "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/013-skill-advisor-semantic-lane/009-system-skill-advisor-extraction/005-hooks-compat-and-consumer-cutover",
+    "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/013-skill-advisor-semantic-lane/009-system-skill-advisor-extraction/006-validation-cleanup-and-deprecation-removal",
     "key_files": [
       "spec.md",
       "description.json",

@@ -416,7 +416,7 @@ Feature file: [DAC-032](09--council-graph-value-comparison/006-mid-run-interrupt
 | Test File | Scenario IDs |
 | --- | --- |
 | `.opencode/skills/system-spec-kit/mcp_server/tests/multi-ai-council-runtime-parity.vitest.ts` | DAC-001 |
-| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/scorer/native-scorer.vitest.ts` | DAC-002 |
+| `.opencode/skills/system-skill-advisor/mcp_server/tests/scorer/native-scorer.vitest.ts` | DAC-002 |
 | `.opencode/skills/system-spec-kit/mcp_server/tests/multi-ai-council-permission-scope.vitest.ts` | DAC-003, DAC-004, DAC-011, DAC-012, DAC-017 |
 | `.opencode/skills/system-spec-kit/mcp_server/tests/multi-ai-council-audit-trail.vitest.ts` | DAC-005, DAC-006, DAC-013 |
 | `.opencode/skills/system-spec-kit/mcp_server/tests/multi-ai-council-rollback.vitest.ts` | DAC-010 |

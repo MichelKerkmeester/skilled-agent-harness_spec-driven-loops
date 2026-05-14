@@ -59,8 +59,8 @@ Packets 013 (code-graph hook improvements) and 014 (skill-advisor hook improveme
 | 013 | CALLS disambiguation + `deadlineMs` + null-summary clearing | [`22--context-preservation-and-code-graph/08-code-graph-storage-query.md`](22--context-preservation-and-code-graph/08-code-graph-storage-query.md) |
 | 013 | `graphQualitySummary` on status/startup surfaces | [`08-code-graph-storage-query.md`](22--context-preservation-and-code-graph/08-code-graph-storage-query.md), [`mcp_server/code_graph/README.md`](../mcp_server/code_graph/README.md) |
 | 013 | Shared startup payload parity across Claude/Gemini/Copilot/Codex | [`18--ux-hooks/21-shared-provenance-and-copilot-compact-cache-parity.md`](18--ux-hooks/21-shared-provenance-and-copilot-compact-cache-parity.md), [`22--context-preservation-and-code-graph/03-session-start-priming.md`](22--context-preservation-and-code-graph/03-session-start-priming.md) (Claude slice), `references/config/hook_system.md` (Shared Startup Payload Parity section) |
-| 014 | `advisor_recommend`/`advisor_validate` `workspaceRoot` + `effectiveThresholds` | `mcp_server/skill_advisor/README.md`, `references/hooks/skill-advisor-hook.md` |
-| 014 | `advisor_validate` `thresholdSemantics` + `telemetry.outcomes.totals` | `mcp_server/skill_advisor/README.md`, `references/hooks/skill-advisor-hook-validation.md` |
+| 014 | `advisor_recommend`/`advisor_validate` `workspaceRoot` + `effectiveThresholds` | `system-skill-advisor/mcp_server/README.md`, `references/hooks/skill-advisor-hook.md` |
+| 014 | `advisor_validate` `thresholdSemantics` + `telemetry.outcomes.totals` | `system-skill-advisor/mcp_server/README.md`, `references/hooks/skill-advisor-hook-validation.md` |
 | 014 | Durable JSONL diagnostics sinks + cross-process readback | `references/hooks/skill-advisor-hook.md`, `references/hooks/skill-advisor-hook-validation.md` (Step 3) |
 | 014 | OpenCode plugin-helper bridge + `0.8 / 0.35` threshold contract | `references/config/hook_system.md` (Advisor Bridge and Threshold Contract section), `references/hooks/skill-advisor-hook.md` |
 

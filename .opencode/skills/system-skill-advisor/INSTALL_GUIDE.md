@@ -65,7 +65,7 @@ system_skill_advisor.advisor_recommend({"prompt":"save this conversation context
 system_skill_advisor.advisor_validate({"skillSlug":null})
 ```
 
-Also verify the active runtime lists both MCP servers: `spec_kit_memory` for memory/context tools and `system_skill_advisor` for advisor tools. The `spec_kit_memory.advisor_*` tools are deprecated proxy descriptors during 013/009/005 only; child 013/009/006 removes that bridge.
+Also verify the active runtime lists both MCP servers: `spec_kit_memory` for memory/context tools and `system_skill_advisor` for advisor tools.
 
 Expected:
 

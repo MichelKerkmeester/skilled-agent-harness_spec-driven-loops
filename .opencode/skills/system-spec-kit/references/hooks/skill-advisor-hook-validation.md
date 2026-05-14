@@ -30,10 +30,10 @@ Required files:
 |------|---------|
 | `.opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook.md` | Operator reference (native tool table + runtime matrix + shared threshold/render contract) |
 | `.opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook-validation.md` | This playbook |
-| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-recommend.ts` | `advisor_recommend` handler (must accept `workspaceRoot`) |
-| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-validate.ts` | `advisor_validate` handler (must surface `thresholdSemantics` + telemetry totals) |
-| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/render.ts` | Shared `renderAdvisorBrief(...)` invariants |
-| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/metrics.ts` | Durable JSONL diagnostics sink + metric labels |
+| `.opencode/skills/system-skill-advisor/mcp_server/handlers/advisor-recommend.ts` | `advisor_recommend` handler (must accept `workspaceRoot`) |
+| `.opencode/skills/system-skill-advisor/mcp_server/handlers/advisor-validate.ts` | `advisor_validate` handler (must surface `thresholdSemantics` + telemetry totals) |
+| `.opencode/skills/system-skill-advisor/mcp_server/lib/render.ts` | Shared `renderAdvisorBrief(...)` invariants |
+| `.opencode/skills/system-skill-advisor/mcp_server/lib/metrics.ts` | Durable JSONL diagnostics sink + metric labels |
 | `.opencode/plugins/spec-kit-skill-advisor.js` | OpenCode plugin |
 | `.opencode/skills/system-spec-kit/mcp_server/plugin_bridges/spec-kit-skill-advisor-bridge.mjs` | OpenCode plugin-helper bridge entrypoint |
 
@@ -46,7 +46,7 @@ Required files:
 Goal: verify `advisor_recommend` accepts explicit `workspaceRoot` and surfaces the resolved workspace + effective thresholds.
 
 ```bash
-npx vitest run .opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/advisor-recommend.contract.vitest.ts \
+npx vitest run .opencode/skills/system-skill-advisor/mcp_server/tests/advisor-recommend.contract.vitest.ts \
   --config .opencode/skills/system-spec-kit/mcp_server/vitest.config.ts \
   --reporter verbose
 ```
@@ -159,7 +159,7 @@ Confirm no runtime or plugin still routes through a bespoke formatter or a non-s
 
 ```bash
 rg -n "renderAdvisorBrief|effectiveThresholds|thresholdSemantics|workspaceRoot" \
-  .opencode/skills/system-spec-kit/mcp_server/skill_advisor \
+  .opencode/skills/system-skill-advisor/mcp_server \
   .opencode/plugins/spec-kit-skill-advisor.js \
   .opencode/skills/system-spec-kit/mcp_server/plugin_bridges/spec-kit-skill-advisor-bridge.mjs \
   .opencode/skills/system-spec-kit/mcp_server/hooks
@@ -177,7 +177,7 @@ Pass condition: the first grep returns the expected shared-contract references; 
 Confirm metric names match the reference doc:
 
 ```bash
-rg -n "speckit_advisor_hook_" .opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/metrics.ts
+rg -n "speckit_advisor_hook_" .opencode/skills/system-skill-advisor/mcp_server/lib/metrics.ts
 ```
 
 Expected metric names:

@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Validate advisor extraction and remove deprecated bridge"
-description: "Planned execution ledger for child 006; records the scaffolded validation and cleanup contract before implementation runs."
+description: "Execution ledger for child 006 final cleanup: memory proxy removed, stale live docs swept, standalone advisor probe passed, package-local validation blocked."
 trigger_phrases:
   - "013/009/006 implementation summary"
   - "advisor cleanup implementation ledger"
@@ -12,9 +12,11 @@ _memory:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/013-skill-advisor-semantic-lane/009-system-skill-advisor-extraction/006-validation-cleanup-and-deprecation-removal"
     last_updated_at: "2026-05-14T12:45:00Z"
     last_updated_by: "codex"
-    recent_action: "Docs authored"
-    next_safe_action: "Execute Phase 1 inventory"
-    blockers: []
+    recent_action: "Validation cleanup landed; P0 tests blocked"
+    next_safe_action: "Fix system-skill-advisor package-local Vitest/path failures, then rerun final matrix"
+    blockers:
+      - "Package-local system-skill-advisor Vitest failed: 153 passed / 71 failed / 38 files."
+      - "Hook smoke failed one settings-driven suite because expected Claude settings file is absent."
     key_files:
       - "implementation-summary.md"
       - "checklist.md"
@@ -23,10 +25,11 @@ _memory:
       fingerprint: "sha256:0130090060000000000000000000000000000000000000000000000000000000"
       session_id: "013-009-006-validation-cleanup"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 80
     open_questions: []
     answered_questions:
-      - "This dispatch authored the Level 3 spec docs only; cleanup implementation remains pending."
+      - "ADR-003 operator confirmation was pre-granted in the 2026-05-14 dispatch."
+      - "Memory MCP advisor proxy removal was applied and direct tool exposure now returns no advisor_* tools."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 # Implementation Summary: Validate Advisor Extraction and Remove Deprecated Bridge
@@ -41,7 +44,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | `006-validation-cleanup-and-deprecation-removal` |
-| **Status** | Planned |
+| **Status** | Implemented-with-blockers |
 | **Level** | 3 |
 | **Created** | 2026-05-14 |
 <!-- /ANCHOR:metadata -->
@@ -51,31 +54,29 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-This scaffold turns child 006 from raw templates into an executable Level 3 packet for the final advisor extraction pass. It defines the validation matrix, bridge-removal gate, stale-doc cleanup policy, cross-runtime smoke expectations, checklist rows, and metadata needed before the actual cleanup run begins.
+Child 006 executed the final cleanup allowed by scope: the temporary `spec_kit_memory` advisor proxy was removed, bridge-only tool descriptors were deleted from memory MCP exposure, migration-window deprecation text was removed from install guides, and stale live references to the retired old advisor path were rewritten.
 
-### Specification Contract
+### Cleanup Results
 
-The spec now describes Step 5 of ADR-001's migration: validate the standalone `system_skill_advisor` MCP server, prove all runtimes call it directly, then remove the temporary `spec_kit_memory` advisor proxy and stale old-path documentation.
+| Surface | Result | Evidence |
+|---------|--------|----------|
+| Memory MCP proxy | PASS | `tools/index.ts` no longer exports `advisorTools`; proxy helpers and dispatcher entry were deleted. |
+| Memory MCP tool schemas | PASS | `tool-schemas.ts` bridge descriptors were deleted; `TOOL_DEFINITIONS.filter(t => t.name.startsWith('advisor_'))` returned `[]`. |
+| Memory MCP smoke | PASS | Direct `spec_kit_memory` tools/list returned 45 tools and `advisorTools: []`. |
+| Stale old path docs | PASS | `rg -n "mcp_server/skill_advisor" .opencode --glob '!**/dist/**' --glob '!**/specs/**' --glob '!**/node_modules/**'` returned 0. |
+| Install guides | PASS | Both relevant guides now describe `spec_kit_memory` plus standalone `system_skill_advisor`; deprecated proxy text is gone. |
+| Standalone advisor direct probe | PASS | Direct MCP `tools/list` returned `advisor_rebuild`, `advisor_recommend`, `advisor_status`, `advisor_validate`; `advisor_recommend` returned status `ok` with one recommendation. |
+| DB path | PASS | `.opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sqlite` exists; `.opencode/skills/system-skill-advisor/database/skill-graph.sqlite` does not. |
 
-### Execution Plan
+### Inventory Counts
 
-The plan uses three phases: setup inventory, implementation cleanup, and final verification. The critical gate is ADR-003: proxy removal requires zero callers in spec packets, zero callers in plugin/code surfaces, and manual operator confirmation.
-
-### Decision Ledger
-
-Five ADR entries are authored:
-
-| ADR | Decision |
-|-----|----------|
-| ADR-001 | Parent ADR remains authoritative. |
-| ADR-002 | Full validation surface required for completion. |
-| ADR-003 | Deprecation removal requires zero callers plus operator confirmation. |
-| ADR-004 | Delete stale live docs, annotate legitimate historical refs. |
-| ADR-005 | Final proof requires cross-runtime smoke plus old-surface absence checks. |
-
-### Metadata
-
-`description.json` and `graph-metadata.json` identify this child as planned packet `006` under the `009-system-skill-advisor-extraction` phase parent.
+| Inventory | Before | After |
+|-----------|--------|-------|
+| `spec_kit_memory.advisor_*` non-markdown callers | 0 callers (1 proxy deprecation constant hit) | 0 |
+| Old `mcp_server/skill_advisor` live hits | 159 | 0 |
+| Invalid second-server warnings | 0 | 0 |
+| Cluster C files swept | 44 | n/a |
+| Historical refs annotated | 0 | Specs were left untouched; live docs were rewritten. |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -83,7 +84,12 @@ Five ADR entries are authored:
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The scaffold was authored from the existing Level 3 template files already present in the packet folder. Required parent and sibling context came from ADR-001, the phase parent spec, child 003's spec and description shape, and child 003's implementation summary note that remaining old path references may be historical or child 006 cleanup work.
+The implementation was delivered in cleanup clusters:
+
+1. Proxy code and bridge descriptors were deleted from `system-spec-kit/mcp_server`.
+2. TypeScript was rebuilt with `tsc --build --force`; the legacy flat runtime `dist` files were synced from the freshly built nested output because the launcher still executes the flat `dist/context-server.js` tree.
+3. Install guides and live stale docs were rewritten to point at `.opencode/skills/system-skill-advisor/mcp_server/`.
+4. Direct MCP probes verified standalone advisor availability and memory MCP advisor absence.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -93,10 +99,9 @@ The scaffold was authored from the existing Level 3 template files already prese
 
 | Decision | Why |
 |----------|-----|
-| Keep packet status planned | This dispatch is spec-docs-only and does not execute cleanup. |
-| Require validation before deletion | The proxy exists to protect callers during migration, so removal needs evidence first. |
-| Preserve parent ADR topology | Child 006 should not reopen server-id or tool-id decisions. |
-| Track historical docs separately from live docs | Migration rationale remains useful, but operator instructions must be current. |
+| Remove proxy despite advisor package tests already failing | ADR-003 was satisfied: zero caller evidence plus pre-granted operator confirmation. The failing tests are in the forbidden standalone advisor surface, not caused by proxy deletion. |
+| Rewrite live old-path references instead of retaining historical callouts | ADR-004 says live operator docs must not point users back to the old path. Spec packet history was left untouched. |
+| Mark packet blocked, not complete | P0 package-local Vitest is red and the hook smoke matrix has a failing runtime-settings suite. |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -106,11 +111,17 @@ The scaffold was authored from the existing Level 3 template files already prese
 
 | Check | Result |
 |-------|--------|
-| Required reading | PASS: ADR-001, parent spec, child 003 spec, child 003 description, and child 003 implementation summary were read. |
-| Scope discipline | PASS: authored docs are scoped to `013/009/006` plus its metadata files. |
-| Strict validation | PASS: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/013-skill-advisor-semantic-lane/009-system-skill-advisor-extraction/006-validation-cleanup-and-deprecation-removal --strict --verbose` exited 0. |
-| JSON parse smoke | PASS: Node `JSON.parse` smoke passed for `description.json` and `graph-metadata.json`. |
-| Runtime cleanup validation | Not run: packet implementation remains planned. |
+| Required reading | PASS: ADR-001, child 006 spec/plan/decision/tasks, proxy code, tool schemas, install guides, and stale-doc samples read. |
+| Package-local Vitest | FAIL: `npm test` from `system-skill-advisor/mcp_server` discovered 38 files / 224 tests; 153 passed, 71 failed. Failures include missing `chokidar`, missing package-local paths, parity regression, and absent Claude settings fixture. |
+| Python parity | PASS with degraded status: `python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py --health` exited 0 and reported `status: degraded` because SQLite was unavailable to the Python fallback. |
+| Hook smoke | FAIL: `vitest run tests/hooks` from system-spec-kit produced 5 passing files and 1 failing settings-driven suite due absent `/Users/michelkerkmeester/MEGA/Development/Code_Environment/.claude/settings.local.json`. |
+| Runtime OpenCode | PASS: `opencode mcp list` showed connected `spec_kit_memory` and `system_skill_advisor`. |
+| Runtime Codex | PASS: `codex mcp list` showed enabled `spec_kit_memory` and `system_skill_advisor`. |
+| Runtime Claude | INCONCLUSIVE: repo `.claude/mcp.json` lists both servers, but `claude mcp list` did not show `system_skill_advisor` in the returned rows. |
+| Runtime Gemini | INCONCLUSIVE: repo `.gemini/settings.json` lists both servers, but `gemini mcp list` returned no usable rows. |
+| Direct MCP advisor probe | PASS: standalone server listed all four advisor tools and `advisor_recommend` returned `status: ok`. |
+| Memory MCP absence probe | PASS: memory server direct tools/list returned no `advisor_*` tools. |
+| Build | PASS: `../node_modules/.bin/tsc --build --force` exited 0 from `system-spec-kit/mcp_server`. |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -118,7 +129,7 @@ The scaffold was authored from the existing Level 3 template files already prese
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Cleanup not executed.** The memory proxy, stale docs, runtime probes, DB checks, and package-local tests remain future work for the implementation run.
-2. **Operator confirmation pending.** ADR-003 blocks proxy deletion until zero-caller evidence and manual confirmation are captured.
-3. **Checklist mostly pending.** Only scaffold-authoring checklist rows are checked; implementation evidence must update the remaining rows.
+1. **P0 package-local Vitest is failing.** The failures are in `.opencode/skills/system-skill-advisor/mcp_server/`, which this dispatch explicitly forbids editing.
+2. **Hook smoke has one failing suite.** The failing suite expects a Claude settings file outside this repo root.
+3. **Runtime CLI probes are mixed.** Direct MCP probes are green, OpenCode/Codex list both servers, Claude/Gemini CLI listing remains inconclusive.
 <!-- /ANCHOR:limitations -->

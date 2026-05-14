@@ -43,13 +43,13 @@ Tool and resource hints can improve Skill Advisor recall, but raw descriptions c
 **Block A — Affordance routing + privacy (010/004 baseline + 010/007/T-D denylist):**
 
 1. `cd .opencode/skills/system-spec-kit/mcp_server && ./node_modules/.bin/vitest run skill_advisor/tests/affordance-normalizer.test.ts skill_advisor/tests/lane-attribution.test.ts skill_advisor/tests/routing-fixtures.affordance.test.ts --reporter=dot`
-2. `python3 .opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/python/test_skill_advisor.py`
+2. `python3 .opencode/skills/system-skill-advisor/mcp_server/tests/python/test_skill_advisor.py`
 3. `cd .opencode/skills/system-spec-kit/mcp_server && npm run typecheck`
 
 **Block B — Debug counter parity (R-007-P2-9, 010/007/T-F):**
 
-4. **TS counters surface:** `rg -n "affordanceNormalizerCounters|getAffordanceNormalizerCounters|resetAffordanceNormalizerCounters" .opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/affordance-normalizer.ts` — confirm 5 counters declared (`received`, `accepted`, `dropped_unsafe`, `dropped_empty`, `dropped_unknown_skill`), exported getter, exported reset.
-5. **Python counters surface:** `rg -n "AFFORDANCE_NORMALIZER_COUNTERS|get_affordance_normalizer_counters|reset_affordance_normalizer_counters" .opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_graph_compiler.py` — confirm matching 5-key dict, getter, reset.
+4. **TS counters surface:** `rg -n "affordanceNormalizerCounters|getAffordanceNormalizerCounters|resetAffordanceNormalizerCounters" .opencode/skills/system-skill-advisor/mcp_server/lib/affordance-normalizer.ts` — confirm 5 counters declared (`received`, `accepted`, `dropped_unsafe`, `dropped_empty`, `dropped_unknown_skill`), exported getter, exported reset.
+5. **Python counters surface:** `rg -n "AFFORDANCE_NORMALIZER_COUNTERS|get_affordance_normalizer_counters|reset_affordance_normalizer_counters" .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_graph_compiler.py` — confirm matching 5-key dict, getter, reset.
 6. **Counter parity assertion:** call `resetAffordanceNormalizerCounters()`, run normalizer over the shared fixture (`skill_advisor/tests/__shared__/affordance-injection-fixtures.json`, 28 injection + 11 benign + 4 privacy), then call `getAffordanceNormalizerCounters()`. Assert: `received === 43` (28 + 11 + 4), `accepted >= 11` (benign survive), `dropped_unsafe >= 28` (injection phrases drop), `dropped_empty + dropped_unknown_skill` accounts for the rest. Repeat in Python via `test_skill_advisor.py` shared-fixture parity tests (already covers PY counters).
 
 ### Expected
@@ -69,7 +69,7 @@ Captured command output for steps 1–3, `rg` output for steps 4–5, the counte
 ### Failure Triage
 
 - **Block A**: Check `affordance-normalizer.ts` allowlist first. Then inspect `fusion.ts` to confirm raw affordance inputs call `normalize()` before lane execution. Finally inspect `derived.ts` and `graph-causal.ts` for raw phrase evidence or non-`EDGE_MULTIPLIER` relation usage.
-- **Block B**: If counters absent, inspect `mcp_server/skill_advisor/lib/affordance-normalizer.ts:153-157` for `affordanceNormalizerCounters` declaration + bumps inside `normalize()`, and `mcp_server/skill_advisor/scripts/skill_graph_compiler.py:407` for the matching Python dict + bumps inside `normalize_affordance_input()` (010/007/T-F R-007-P2-9). If parity diverges, run the Python R-007-P2-8 shared-fixture test trio to isolate which sanitizer (TS or PY) is out of sync.
+- **Block B**: If counters absent, inspect `system-skill-advisor/mcp_server/lib/affordance-normalizer.ts:153-157` for `affordanceNormalizerCounters` declaration + bumps inside `normalize()`, and `system-skill-advisor/mcp_server/scripts/skill_graph_compiler.py:407` for the matching Python dict + bumps inside `normalize_affordance_input()` (010/007/T-F R-007-P2-9). If parity diverges, run the Python R-007-P2-8 shared-fixture test trio to isolate which sanitizer (TS or PY) is out of sync.
 
 ---
 
@@ -86,10 +86,10 @@ Captured command output for steps 1–3, `rg` output for steps 4–5, the counte
 
 | File | Role |
 |---|---|
-| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/affordance-normalizer.ts` | Primary affordance sanitizer |
-| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/affordance-normalizer.test.ts` | Privacy and allowlist regression coverage |
-| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/lane-attribution.test.ts` | Lane attribution regression coverage |
-| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/routing-fixtures.affordance.test.ts` | Routing recall and precision regression coverage |
+| `.opencode/skills/system-skill-advisor/mcp_server/lib/affordance-normalizer.ts` | Primary affordance sanitizer |
+| `.opencode/skills/system-skill-advisor/mcp_server/tests/affordance-normalizer.test.ts` | Privacy and allowlist regression coverage |
+| `.opencode/skills/system-skill-advisor/mcp_server/tests/lane-attribution.test.ts` | Lane attribution regression coverage |
+| `.opencode/skills/system-skill-advisor/mcp_server/tests/routing-fixtures.affordance.test.ts` | Routing recall and precision regression coverage |
 
 ---
 

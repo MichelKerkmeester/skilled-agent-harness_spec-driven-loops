@@ -65,7 +65,7 @@ Baseline: per `.opencode/skills/system-spec-kit/scripts/observability/smart-rout
 
 1. **For each prompt in the battery** (P1-P15, N1-N5):
    ```
-   bash: python3 .opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py "<prompt>" --threshold 0.8 >> /tmp/skc-SA001-advisor-results.jsonl
+   bash: python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py "<prompt>" --threshold 0.8 >> /tmp/skc-SA001-advisor-results.jsonl
    ```
 2. **Parse aggregate** (use `jq` or a small Python script): count positive wins, negative false-positives, compute accuracy.
 3. **Compare to baseline**: 50% (per smart-router-measurement-results.jsonl). New accuracy should be measurably higher OR identical (no regression).
@@ -107,9 +107,9 @@ If negative FPR > 0:
 
 ## 4. SOURCE FILES
 
-- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py` — advisor binary.
-- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json` — sk-code signals + adjacency.
-- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/routing-accuracy/labeled-prompts.jsonl` — golden set source (used for P2-P10).
+- `.opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py` — advisor binary.
+- `.opencode/skills/system-skill-advisor/mcp_server/scripts/skill-graph.json` — sk-code signals + adjacency.
+- `.opencode/skills/system-skill-advisor/mcp_server/scripts/routing-accuracy/labeled-prompts.jsonl` — golden set source (used for P2-P10).
 - `.opencode/skills/system-spec-kit/scripts/observability/smart-router-measurement-results.jsonl` — baseline accuracy reference (50% for sk-code as of 2026-05-03).
 
 ## 5. SOURCE METADATA
@@ -150,7 +150,7 @@ These are domain-specific skills winning over the general sk-code router. The pr
 - `.opencode/skills/sk-doc/graph-metadata.json` — added 17 documentation signals (skill.md headline, headline section to clarify, clarify the routing model, clarify the two-axis routing, add a one-line summary, etc.)
 
 **Compiled & re-indexed**:
-- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json` recompiled
+- `.opencode/skills/system-skill-advisor/mcp_server/scripts/skill-graph.json` recompiled
 - `.opencode/skills/system-spec-kit/mcp_server/database/skill-graph.sqlite` re-indexed via `skill_graph_scan` MCP tool
 
 **Note on global impact**: These changes affect global advisor routing across all skills. The N04 prompt ("Reorganize the cli-codex README into Quick Start, Architecture, and Reference sections") now routes to `sk-doc` (correct) instead of `cli-codex` — beneficial collateral effect. No regressions detected in v4 vs baseline.

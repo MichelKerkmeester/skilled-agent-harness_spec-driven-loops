@@ -57,13 +57,13 @@ Add Lenis smooth-scroll to src/2_javascript/scroll.js, gated by IntersectionObse
 1. `.opencode/skills/sk-code/SKILL.md` is at HEAD-of-main.
 2. `references/stack_detection.md:30-37` contains the WEBFLOW marker block (verify with `head -40 .opencode/skills/sk-code/references/stack_detection.md`).
 3. Sandbox: create `/tmp/skc-SD001-sandbox/src/2_javascript/scroll.js` with placeholder content (the AI doesn't need to actually write — we're testing routing).
-4. Skill advisor binary callable: `python3 .opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py --help` exits 0.
+4. Skill advisor binary callable: `python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py --help` exits 0.
 
 ### Exact Command Sequence
 
 1. **Skill advisor probe**:
    ```
-   bash: python3 .opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py "Add Lenis smooth-scroll to src/2_javascript/scroll.js, gated by IntersectionObserver when the hero becomes visible." --threshold 0.8 > /tmp/skc-SD001-advisor.txt
+   bash: python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py "Add Lenis smooth-scroll to src/2_javascript/scroll.js, gated by IntersectionObserver when the hero becomes visible." --threshold 0.8 > /tmp/skc-SD001-advisor.txt
    ```
 2. **Verify advisor result**: top-1 == `sk-code`, score ≥ 0.80.
 3. **Invoke sk-code** in the orchestrator runtime by feeding the same prompt.
@@ -104,7 +104,7 @@ Add Lenis smooth-scroll to src/2_javascript/scroll.js, gated by IntersectionObse
 - `.opencode/skills/sk-code/references/stack_detection.md` — WEBFLOW marker definitions (lines 30-37).
 - `.opencode/skills/sk-code/references/smart_routing.md` — Intent → resource-loading mapping.
 - `.opencode/skills/sk-code/references/webflow/implementation/webflow_patterns.md` — Expected-loaded reference.
-- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json` — sk-code signals + adjacency.
+- `.opencode/skills/system-skill-advisor/mcp_server/scripts/skill-graph.json` — sk-code signals + adjacency.
 
 ## 5. SOURCE METADATA
 

@@ -29,20 +29,20 @@ The Python graph compiler mirrors the same contract for derived metadata. It can
 
 | File | Layer | Role |
 |------|-------|------|
-| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/affordance-normalizer.ts` | Skill Advisor | Allowlist sanitizer and privacy stripping for affordance inputs |
-| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/derived.ts` | Skill Advisor | Adds normalized affordance triggers to `derived_generated` scoring |
-| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/graph-causal.ts` | Skill Advisor | Adds normalized affordance edges using existing graph-causal edge multipliers |
-| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/fusion.ts` | Skill Advisor | Forces affordance normalization before scorer lane execution |
-| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_graph_compiler.py` | Skill Advisor | Compiles `derived.affordances[]` as derived inputs without new entity kinds |
+| `.opencode/skills/system-skill-advisor/mcp_server/lib/affordance-normalizer.ts` | Skill Advisor | Allowlist sanitizer and privacy stripping for affordance inputs |
+| `.opencode/skills/system-skill-advisor/mcp_server/lib/scorer/lanes/derived.ts` | Skill Advisor | Adds normalized affordance triggers to `derived_generated` scoring |
+| `.opencode/skills/system-skill-advisor/mcp_server/lib/scorer/lanes/graph-causal.ts` | Skill Advisor | Adds normalized affordance edges using existing graph-causal edge multipliers |
+| `.opencode/skills/system-skill-advisor/mcp_server/lib/scorer/fusion.ts` | Skill Advisor | Forces affordance normalization before scorer lane execution |
+| `.opencode/skills/system-skill-advisor/mcp_server/scripts/skill_graph_compiler.py` | Skill Advisor | Compiles `derived.affordances[]` as derived inputs without new entity kinds |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |------|------|------|
-| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/affordance-normalizer.test.ts` | Vitest | Allowlist, privacy, and no raw phrase attribution checks |
-| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/lane-attribution.test.ts` | Vitest | Confirms affordance evidence appears through `derived_generated` and `graph_causal` only |
-| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/routing-fixtures.affordance.test.ts` | Vitest | Recall improvement and explicit-trigger precedence fixtures |
-| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/python/test_skill_advisor.py` | Python | Compiler affordance normalization and entity-type allowlist regression checks |
+| `.opencode/skills/system-skill-advisor/mcp_server/tests/affordance-normalizer.test.ts` | Vitest | Allowlist, privacy, and no raw phrase attribution checks |
+| `.opencode/skills/system-skill-advisor/mcp_server/tests/lane-attribution.test.ts` | Vitest | Confirms affordance evidence appears through `derived_generated` and `graph_causal` only |
+| `.opencode/skills/system-skill-advisor/mcp_server/tests/routing-fixtures.affordance.test.ts` | Vitest | Recall improvement and explicit-trigger precedence fixtures |
+| `.opencode/skills/system-skill-advisor/mcp_server/tests/python/test_skill_advisor.py` | Python | Compiler affordance normalization and entity-type allowlist regression checks |
 
 ---
 

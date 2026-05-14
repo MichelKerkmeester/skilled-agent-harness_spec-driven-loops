@@ -17,7 +17,7 @@ Sub-detection rules defined in SKILL.md lines 78-90.
 
 **Exact prompt**:
 ```
-Update the skill_advisor.py argparse block at .opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py to add a --json-output flag that emits results as JSON.
+Update the skill_advisor.py argparse block at .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py to add a --json-output flag that emits results as JSON.
 ```
 
 **Expected detection**:
@@ -41,7 +41,7 @@ Update the skill_advisor.py argparse block at .opencode/skills/system-spec-kit/m
 
 ### Preconditions
 
-1. Target file exists: `bash: test -f .opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py`
+1. Target file exists: `bash: test -f .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py`
 2. Python sub-language reference set intact: 3 files under `references/opencode/python/`.
 
 ### Exact Command Sequence

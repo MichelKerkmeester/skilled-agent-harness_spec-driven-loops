@@ -12,9 +12,11 @@ _memory:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/013-skill-advisor-semantic-lane/009-system-skill-advisor-extraction/006-validation-cleanup-and-deprecation-removal"
     last_updated_at: "2026-05-14T12:45:00Z"
     last_updated_by: "codex"
-    recent_action: "Docs authored"
-    next_safe_action: "Execute Phase 1 inventory"
-    blockers: []
+    recent_action: "Validation cleanup landed; P0 tests blocked"
+    next_safe_action: "Fix system-skill-advisor package-local Vitest/path failures, then rerun final matrix"
+    blockers:
+      - "Package-local system-skill-advisor Vitest failed: 153 passed / 71 failed / 38 files."
+      - "Hook smoke failed one settings-driven suite because expected Claude settings file is absent."
     key_files:
       - "plan.md"
       - "spec.md"
@@ -24,7 +26,7 @@ _memory:
       fingerprint: "sha256:0130090060000000000000000000000000000000000000000000000000000000"
       session_id: "013-009-006-validation-cleanup"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 80
     open_questions: []
     answered_questions:
       - "Cleanup order: validate first, remove proxy second, rerun full matrix third."

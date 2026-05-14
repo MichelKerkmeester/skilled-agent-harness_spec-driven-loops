@@ -105,9 +105,9 @@ rm -rf "$WORK"
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Skill Advisor playbook scenario: [006-advisor-status-rebuild-separation.md](../../mcp_server/skill_advisor/manual_testing_playbook/01--native-mcp-tools/006-advisor-status-rebuild-separation.md)
-- Source: `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-status.ts`
-- Source: `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-rebuild.ts`
+- Skill Advisor playbook scenario: [006-advisor-status-rebuild-separation.md](../../system-skill-advisor/mcp_server/manual_testing_playbook/01--native-mcp-tools/006-advisor-status-rebuild-separation.md)
+- Source: `.opencode/skills/system-skill-advisor/mcp_server/handlers/advisor-status.ts`
+- Source: `.opencode/skills/system-skill-advisor/mcp_server/handlers/advisor-rebuild.ts`
 
 ---
 
