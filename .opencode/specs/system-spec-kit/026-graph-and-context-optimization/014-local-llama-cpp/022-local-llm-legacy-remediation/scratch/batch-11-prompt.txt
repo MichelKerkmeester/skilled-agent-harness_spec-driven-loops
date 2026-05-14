@@ -1,0 +1,127 @@
+# GATE 3 PRE-ANSWERED — Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/022-local-llm-legacy-remediation` — A) existing. PROCEED. Non-interactive --approval-policy=never.
+
+---
+
+# Batch 11 — Comprehensive P1 cleanup from 025 re-review
+
+## SHIP STATE (binding)
+
+Cascade: VOYAGE_API_KEY -> OPENAI_API_KEY -> llama-cpp (when GGUF runtime installed) -> hf-local.
+- Voyage default model: `voyage-4` (1024 dims)
+- OpenAI default model: `text-embedding-3-small` (1536 dims)
+- llama-cpp profile DB: `context-index__llama-cpp__unsloth-embeddinggemma-300m-gguf__768__q8.sqlite`
+- hf-local profile DB: `context-index__hf-local__onnx-community_embeddinggemma-300m-onnx__768__q8.sqlite`
+- DB filename resolver: `shared/embeddings/profile.ts:resolveActiveProfileDbPath`
+- Onnxruntime-common is a TRANSITIVE dep of `@huggingface/transformers` (not a direct dep); the ONNX cross-platform backend (014/014) was rejected as a different concept.
+
+## NOTE ON HARDLINKS
+
+`.opencode/commands/doctor/{update.md, assets/*.yaml}` and `.opencode/commands/doctor.md` are HARDLINKED into the corresponding `.claude/commands/...` paths. Edit each FILE ONCE — both paths update.
+
+## ALLOWED WRITE PATHS
+
+### Doctor command surfaces (hardlinked .opencode <-> .claude — edit only the .opencode path)
+1. `.opencode/commands/doctor.md`
+2. `.opencode/commands/doctor/update.md`
+3. `.opencode/commands/doctor/assets/doctor_causal-graph.yaml`
+4. `.opencode/commands/doctor/assets/doctor_update.yaml`
+
+### Memory MCP docs
+5. `.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md` (multiple lines: 82, 113, 116, 120, 212, 1019, 1059, 1081, 1113, 1138)
+6. `.opencode/skills/system-spec-kit/references/memory/memory_system.md` (line ~25)
+
+### Install guide remaining
+7. `.opencode/install_guides/README.md` (lines ~643, ~1289 + any other unfixed `Recommended` / generic-sqlite mentions)
+
+### CocoIndex docs (residual Voyage Code 3 + MiniLM cleanup)
+8. `.opencode/skills/mcp-coco-index/INSTALL_GUIDE.md` (lines ~446, ~620)
+9. `.opencode/skills/mcp-coco-index/README.md` (lines ~162, ~210, ~506)
+10. `.opencode/skills/mcp-coco-index/SKILL.md` (line ~272)
+11. `.opencode/skills/mcp-coco-index/references/settings_reference.md` (lines ~55, ~60, ~127, ~202)
+
+### Env example
+12. `.opencode/skills/system-spec-kit/.env.example` (line ~66 + any other still-stale line)
+
+## BANNED OPERATIONS
+
+- NO rm, mv, sed -i, git ops, branch changes
+- NO writes outside ALLOWED WRITE PATHS
+- DO NOT touch `.claude/commands/...` paths directly (they are hardlinks — let edits propagate via the .opencode path)
+- DO NOT touch factory.ts, profile.ts, llama-cpp-availability.ts, providers/*, 021/022/023/025 packets
+- DO NOT touch test fixtures (those were batch 5 territory; the new ones are P2-only)
+
+## REQUIREMENTS
+
+### General replacement rules
+
+R1. Any `context-index.sqlite` literal (without profile suffix) used as a DEFAULT or PRIMARY DB path:
+   - In docs: describe both profile filenames (llama-cpp + hf-local) with the "active profile filename via shared/embeddings/profile.ts:resolveActiveProfileDbPath" preamble
+   - In YAML invariants/lists: use the glob `context-index__*.sqlite` or list all 4 canonical profile filenames
+
+R2. `nomic-ai/nomic-embed-text-v1.5` as current default → `onnx-community/embeddinggemma-300m-ONNX`
+R3. `all-MiniLM-L6-v2` as CocoIndex current default → `google/embeddinggemma-300m`
+R4. `voyage-3.5` as current Voyage default → `voyage-4`
+R5. `voyage/voyage-code-3 (primary)` annotation → drop "(primary)"; it's an optional cloud opt-in
+R6. Voyage "Recommended (8% better than OpenAI)" wording in default contexts → drop the recommendation
+R7. "Default when no API keys" or "Default: hf-local" wording → describe the full cascade: "Auto-cascade: VOYAGE_API_KEY → OPENAI_API_KEY → llama-cpp (when GGUF runtime installed) → hf-local"
+R8. References to `onnxruntime-common` or `onnxruntime-node` as a "direct dependency" or "required" → they are transitive deps of `@huggingface/transformers` (only used by the rejected ONNX cross-platform backend or by transformers.js internally)
+
+### File-specific guidance
+
+For #1 `.opencode/commands/doctor.md`:
+- Lines 43, 44 — likely describe doctor command's memory database scope. Update to reflect provider-keyed profile DBs.
+
+For #2 `.opencode/commands/doctor/update.md`:
+- Lines 213-214, 268-269, 323 — likely describe DB filenames in update workflow. Use provider-keyed profile filenames or the glob pattern.
+
+For #3 `.opencode/commands/doctor/assets/doctor_causal-graph.yaml`:
+- Lines 78, 161 — likely describe DB boundaries for causal-graph operations. Use glob or list all 4 profile filenames.
+
+For #4 `.opencode/commands/doctor/assets/doctor_update.yaml`:
+- Lines 102, 104, 416 — same pattern as doctor_causal-graph.yaml.
+
+For #5 `mcp_server/INSTALL_GUIDE.md`:
+- Line 82: likely a runtime-path table row introducing the DB filename
+- Line 113, 116, 120: known stale (singleton sqlite + Voyage profile claims)
+- Line 212: `onnxruntime-common` as direct runtime dependency (now transitive)
+- Lines 1019, 1059, 1081, 1113, 1138: likely additional resource-table / dependency / database-path rows
+
+Apply R1, R7, R8 consistently.
+
+For #7 install_guides/README.md:
+- Line 643: "Voyage 8% better" wording or similar marketing in default context
+- Line 1289: provider description still implies hf-local default-when-no-keys
+
+For #11 `mcp-coco-index/references/settings_reference.md`:
+- Line 202: Voyage/voyage-4 mapping wording with stale "default/shortcut" framing
+- Lines 55, 60, 127: residual MiniLM or voyage-code-3 (primary) annotations
+
+For #12 `.env.example` line 66:
+- Read the file. The line should already match the post-batch-7 content. If it still has "Choose a provider (or use default hf-local)" wording, apply R7. If it's fine, report `0 edits`.
+
+### Approach
+
+1. For each file: open with sed/Read to check the line content, apply rules R1-R8 if the line matches a residue pattern
+2. Preserve all OTHER content unchanged
+3. Make MINIMAL edits — only fix the residue, don't reorganize
+
+## ACCEPTANCE
+
+Run these greps and confirm zero matches:
+- `rg -n '"context-index\\.sqlite"' .opencode/commands/doctor/`
+- `rg -n 'voyage/voyage-code-3 \\(primary\\)' .opencode/skills/mcp-coco-index/`
+- `rg -n 'onnxruntime-common.*ONNX model runtime' .opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md`
+- `rg -n 'use default hf-local' .opencode/skills/system-spec-kit/.env.example`
+
+## REPORT
+
+```
+BATCH 11 REPORT
+File: <path> — <N edits> — <summary>
+...
+Scope violations: <none | list>
+Blocked writes: <none | list>
+Total edits: <N>
+```
+
+No commits. No git. Stop after the report.
