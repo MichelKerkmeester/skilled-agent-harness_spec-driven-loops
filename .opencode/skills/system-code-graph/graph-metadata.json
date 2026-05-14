@@ -28,7 +28,7 @@
     "siblings": [
       {
         "target": "system-spec-kit",
-        "weight": 0.7,
+        "weight": 0.5,
         "context": "sibling skill after Phase 003 source migration"
       }
     ],

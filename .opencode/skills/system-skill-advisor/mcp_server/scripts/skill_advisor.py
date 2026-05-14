@@ -210,7 +210,7 @@ SKILL_GRAPH_SQLITE_PATH = os.path.normpath(os.path.join(
     'skill-graph.sqlite',
 ))
 GRAPH_ADJACENCY_EDGE_TYPES = ("depends_on", "enhances", "siblings", "prerequisite_for")
-GRAPH_ONLY_SKILL_IDS = {"skill_advisor"}  # snake_case after commit 7dfd108 rename
+GRAPH_ONLY_SKILL_IDS = {"system-skill-advisor"}
 GRAPHLESS_INLINE_SKILL_IDS = {"create:agent", "create:testing-playbook", "memory:save"}
 
 SKILL_ALIAS_GROUPS = {

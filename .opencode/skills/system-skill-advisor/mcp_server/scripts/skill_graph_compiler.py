@@ -191,19 +191,14 @@ def discover_graph_metadata(skills_dir: str) -> List[Tuple[str, str, dict]]:
 
     advisor_meta_path = os.path.join(
         skills_dir,
-        "system-spec-kit",
-        "mcp_server",
-        "skill_advisor",
+        "system-skill-advisor",
         "graph-metadata.json",
     )
-    # Folder + skill_id are both snake_case after commit 7dfd108 ("align skill_id
-    # with folder name (skill_advisor)"). The injected entry must use the same
-    # snake_case form so the validator's folder_name == skill_id check passes.
-    if os.path.isfile(advisor_meta_path) and not any(folder == "skill_advisor" for folder, _, _ in results):
+    if os.path.isfile(advisor_meta_path) and not any(folder == "system-skill-advisor" for folder, _, _ in results):
         try:
             with open(advisor_meta_path, "r", encoding="utf-8") as f:
                 data = json.load(f)
-            results.append(("skill_advisor", advisor_meta_path, data))
+            results.append(("system-skill-advisor", advisor_meta_path, data))
         except (json.JSONDecodeError, OSError) as exc:
             corrupt.append((advisor_meta_path, str(exc)))
 
@@ -334,9 +329,8 @@ def validate_derived_metadata(folder_name: str, derived: Any, all_skill_ids: Set
             errors.append(f"derived.{field_name} must be valid ISO 8601, got {timestamp!r}")
 
     skill_dir = os.path.join(SKILLS_DIR, folder_name)
-    # The advisor's own metadata lives under the nested mcp_server tree, not at the
-    # top-level skills_dir. Fall back to the canonical path when the flat lookup misses.
-    if folder_name == "skill_advisor" and not os.path.isdir(skill_dir):
+    # Legacy fallback for pre-extraction metadata layouts.
+    if folder_name == "system-skill-advisor" and not os.path.isdir(skill_dir):
         skill_dir = os.path.join(SKILLS_DIR, "system-skill-advisor", "mcp_server")
     repo_root = os.path.dirname(os.path.dirname(SKILLS_DIR))
 
