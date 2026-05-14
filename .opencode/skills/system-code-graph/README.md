@@ -1,28 +1,32 @@
 ---
-title: "Code Graph Subsystem"
-description: "Structural code graph package for scan, query, status, context and CocoIndex bridge MCP tools."
+title: "System Code Graph: Structural Code Intelligence Skill"
+description: "Human-facing guide for the standalone system-code-graph skill, its mk-code-index MCP server, runtime docs, validation commands and operator workflows."
 trigger_phrases:
-  - "code graph subsystem"
-  - "code graph indexer"
-  - "code graph readme"
-  - "structural graph tools"
+  - "system code graph readme"
+  - "code graph skill"
+  - "mk-code-index"
+  - "code_graph tools"
+  - "structural code graph"
 ---
 
-# Code Graph Subsystem
+# System Code Graph
+
+> Structural code indexing, SQLite-backed graph storage and MCP-facing code intelligence for impact analysis, neighborhood retrieval, readiness checks and change detection.
+
+---
 
 <!-- ANCHOR:table-of-contents -->
 ## TABLE OF CONTENTS
 
 - [1. OVERVIEW](#1--overview)
-- [2. ARCHITECTURE](#2--architecture)
-- [3. PACKAGE TOPOLOGY](#3--package-topology)
-- [4. DIRECTORY TREE](#4--directory-tree)
-- [5. KEY FILES](#5--key-files)
-- [6. BOUNDARIES AND FLOW](#6--boundaries-and-flow)
-- [7. ENTRYPOINTS](#7--entrypoints)
-- [8. SCAN SCOPE](#8--scan-scope)
-- [9. VALIDATION](#9--validation)
-- [10. RELATED](#10--related)
+- [2. QUICK START](#2--quick-start)
+- [3. FEATURES](#3--features)
+- [4. STRUCTURE](#4--structure)
+- [5. CONFIGURATION](#5--configuration)
+- [6. USAGE EXAMPLES](#6--usage-examples)
+- [7. TROUBLESHOOTING](#7--troubleshooting)
+- [8. FAQ](#8--faq)
+- [9. RELATED DOCUMENTS](#9--related-documents)
 
 <!-- /ANCHOR:table-of-contents -->
 
@@ -31,322 +35,254 @@ trigger_phrases:
 <!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
-`mcp_server/` owns the structural graph package inside the Spec Kit Memory MCP server. It scans source files, persists file-symbol-edge records in SQLite, exposes graph MCP tools and bridges selected CocoIndex Code operations through `ccc_*` handlers.
+### Purpose
 
-Status: PHASE 007 STANDALONE MCP COMPLETE — code, database, docs co-located; MCP tools registered under `mcp__mk_code_index__*` namespace via standalone server.
+`system-code-graph` is the standalone skill package for structural code intelligence. It scans source files into a local SQLite graph, answers relationship queries, prepares compact LLM context and exposes recovery-safe MCP tools through the `mk-code-index` server.
 
-Current state:
+Use this README when you need a human map of the skill. Use [SKILL.md](./SKILL.md) for runtime routing instructions and [ARCHITECTURE.md](./ARCHITECTURE.md) for system-level design.
 
-- Graph reads expose readiness, trust and graph-quality metadata so callers can detect stale or missing indexes.
-- Context reads can return blocked payloads when a full scan is required before graph answers are safe.
-- Startup and compaction surfaces reuse the same graph summary payloads produced by the library.
-- Default scans target end-user repository code. Files under `.opencode/skills/**` are skipped unless a maintainer opts in.
-- Schema v5 adds a parser skip-list and quarantine reporting so broad internal scans can contain known bash parser failures without triggering the B1 to B2 cascade.
+### Key Statistics
+
+| Metric | Value |
+|---|---|
+| Skill version | `1.0.0.0` |
+| Runtime package | `@spec-kit/system-code-graph` |
+| MCP server name | `mk-code-index` |
+| Client namespace | `mcp__mk_code_index__*` |
+| Active MCP tools | 10 |
+| Storage | SQLite files under `mcp_server/database/` |
+| Primary docs | `feature_catalog/`, `manual_testing_playbook/`, `mcp_server/**/README.md` |
+
+### How This Compares
+
+| Need | Use This Skill | Use Another Surface |
+|---|---|---|
+| Find callers, imports, outlines or blast radius | `code_graph_query` | Use Grep only for exact text. |
+| Build graph neighborhoods around known files or symbols | `code_graph_context` | Use CocoIndex first when the seed is only semantic intent. |
+| Check stale or missing graph state | `code_graph_status`, `code_graph_verify` | Use system-spec-kit memory docs for session continuity. |
+| Maintain shared spec, memory or hook lifecycle | Not owned here | Use `system-spec-kit`. |
+| Search code by concept with embeddings | Bridge through `ccc_*` when needed | Use `mcp-coco-index` as the primary semantic search surface. |
+
+### Key Features
+
+| Feature | What It Does |
+|---|---|
+| Structural scan | Parses supported source files and persists file, symbol and edge rows. |
+| Readiness contract | Blocks graph reads when the index is stale, empty or scope-mismatched. |
+| Relationship queries | Returns outlines, call edges, import edges and blast radius results. |
+| Context assembly | Builds compact graph neighborhoods for LLM context windows. |
+| Change detection | Maps unified diffs to affected symbols when graph readiness is fresh. |
+| Verification battery | Runs gold-query checks against the current graph. |
+| Apply-mode recovery | Runs gated recovery operations with pre and post verification. |
+| CocoIndex bridge | Exposes `ccc_status`, `ccc_reindex` and `ccc_feedback` for semantic index coordination. |
 
 <!-- /ANCHOR:overview -->
 
 ---
 
-<!-- ANCHOR:architecture -->
-## 2. ARCHITECTURE
+<!-- ANCHOR:quick-start -->
+## 2. QUICK START
+
+**Step 1: Check graph health.**
+
+Call the standalone MCP server through the normalized namespace:
 
 ```text
-╭────────────────────────────────────────────────────────────╮
-│                    CODE GRAPH SUBSYSTEM                    │
-╰────────────────────────────────────────────────────────────╯
-
-┌──────────────────┐      ┌──────────────────┐
-│ MCP callers      │ ───▶ │ handlers/        │
-│ code_graph_*     │      │ request adapters │
-│ ccc_*            │      └────────┬─────────┘
-└──────────────────┘               │
-                                    ▼
-┌──────────────────┐      ┌──────────────────┐
-│ tools/           │ ◀─── │ lib/             │
-│ registry surface │      │ graph engine     │
-└──────────────────┘      └────────┬─────────┘
-                                    │
-                                    ▼
-┌──────────────────┐      ┌──────────────────┐
-│ database/        │      │ CocoIndex Code   │
-│ code-graph.sqlite│      │ bridge commands  │
-└──────────────────┘      └──────────────────┘
-
-Dependency direction:
-tools registry → handlers → lib → database or external bridge
-startup surfaces → lib startup summary helpers
+mcp__mk_code_index__code_graph_status({})
 ```
 
-<!-- /ANCHOR:architecture -->
+Expected result: a status payload with `readiness`, `canonicalReadiness`, `trustState`, `lastScanAt`, `schemaVersion` and graph-quality metadata.
+
+**Step 2: Refresh the graph when readiness is blocked or stale.**
+
+```text
+mcp__mk_code_index__code_graph_scan({ "incremental": true })
+```
+
+Expected result: scan metadata with updated file, node and edge counts. Use a full scan when the stored scope fingerprint differs from the requested scope.
+
+**Step 3: Run local validation before changing runtime behavior.**
+
+```bash
+.opencode/skills/system-code-graph/node_modules/.bin/tsc --noEmit -p .opencode/skills/system-code-graph/tsconfig.json
+.opencode/skills/system-code-graph/node_modules/.bin/vitest --config .opencode/skills/system-code-graph/vitest.config.ts --run code-graph
+```
+
+Expected result: TypeScript exits `0`, and the focused code-graph Vitest suites pass.
+
+<!-- /ANCHOR:quick-start -->
 
 ---
 
-<!-- ANCHOR:package-topology -->
-## 3. PACKAGE TOPOLOGY
+<!-- ANCHOR:features -->
+## 3. FEATURES
 
-```text
-mcp_server/
-├── README.md                  │ Package overview
-├── handlers/                  │ MCP tool handlers
-├── lib/                       │ Indexer, DB, readiness and context logic
-├── tools/                     │ Tool registration and dispatcher wiring
-├── tests/                     │ Vitest coverage for graph behavior
-├── feature_catalog/           │ Current feature inventory
-└── manual_testing_playbook/   │ Manual validation scenarios
-```
+### 3.1 FEATURE HIGHLIGHTS
 
-Allowed dependency direction:
+The skill is strongest when structure matters. It can answer "what imports this file?", "what calls this function?", "what symbols changed in this diff?" and "is the graph trustworthy enough to use?" without treating code as plain text.
 
-```text
-tools/ → handlers/ → lib/
-handlers/ → shared MCP schemas and result types
-lib/ → database files and external parser or bridge adapters
-tests/ → public handlers and library entrypoints
-```
+Graph reads are deliberately false-safe. When the database is stale, missing or outside the active scan scope, handlers return blocked payloads with a required next action instead of plausible empty answers.
 
-Disallowed dependency direction:
+### 3.2 TOOL REFERENCE
 
-```text
-lib/ → handlers/
-database layer → MCP transport modules
-feature catalog or playbook docs → runtime imports
-```
-
-<!-- /ANCHOR:package-topology -->
-
----
-
-<!-- ANCHOR:directory-tree -->
-## 4. DIRECTORY TREE
-
-```text
-mcp_server/
-├── README.md
-├── handlers/
-│   ├── README.md
-│   ├── scan.ts
-│   ├── query.ts
-│   ├── status.ts
-│   ├── context.ts
-│   ├── verify.ts
-│   ├── detect-changes.ts
-│   ├── ccc-status.ts
-│   ├── ccc-reindex.ts
-│   └── ccc-feedback.ts
-├── lib/
-│   ├── README.md
-│   ├── structural-indexer.ts
-│   ├── tree-sitter-parser.ts
-│   ├── parser-skip-list.ts
-│   ├── code-graph-db.ts
-│   ├── code-graph-context.ts
-│   ├── seed-resolver.ts
-│   ├── index-scope-policy.ts
-│   └── readiness-contract.ts
-├── tools/
-│   ├── code-graph-tools.ts
-│   └── index.ts
-├── tests/
-├── feature_catalog/
-└── manual_testing_playbook/
-```
-
-<!-- /ANCHOR:directory-tree -->
-
----
-
-<!-- ANCHOR:key-files -->
-## 5. KEY FILES
-
-| File | Responsibility |
-|---|---|
-| `handlers/scan.ts` | MCP scan entrypoint for incremental and full graph indexing. |
-| `handlers/query.ts` | Structural relationship reads such as outlines, calls, imports and blast radius. |
-| `handlers/status.ts` | Freshness, readiness, parse-health and graph-quality reporting. |
-| `handlers/context.ts` | Compact graph neighborhoods for LLM context windows. |
-| `handlers/detect-changes.ts` | Unified-diff to affected-symbol preflight. |
-| `lib/structural-indexer.ts` | Workspace walk, parse and persistence pipeline. |
-| `lib/parser-skip-list.ts` | Per-file parser skip-list for B1 and B2 tree-sitter failures, including lookup, write, summary and schema v5 seed backfill helpers. |
-| `lib/code-graph-db.ts` | SQLite schema, graph storage and startup highlights. |
-| `lib/code-graph-context.ts` | Context assembly with budget and partial-output metadata. |
-| `lib/index-scope-policy.ts` | Resolves end-user-vs-skill-inclusive scope policy from env + per-call args. Per-call boolean overrides env. |
-| `lib/readiness-contract.ts` | Readiness and trust-state vocabulary used by public payloads. |
-| `tools/code-graph-tools.ts` | MCP tool registration and dispatch mapping. |
-
-<!-- /ANCHOR:key-files -->
-
----
-
-<!-- ANCHOR:boundaries-flow -->
-## 6. BOUNDARIES AND FLOW
-
-| Boundary | Rule |
-|---|---|
-| Imports | Runtime code flows from `tools/` into `handlers/`, then into `lib/`. |
-| Exports | Public MCP tool behavior is exposed through the tool registry, not by importing handlers directly from outside the package. |
-| Ownership | This package owns graph indexing and graph context. Memory continuity remains owned by the memory and spec-document surfaces. |
-
-Main flow:
-
-```text
-╭──────────────────────────────────────────╮
-│ MCP client or runtime startup surface     │
-╰──────────────────────────────────────────╯
-                   │
-                   ▼
-┌──────────────────────────────────────────┐
-│ tools registry dispatches requested tool  │
-└──────────────────────────────────────────┘
-                   │
-                   ▼
-┌──────────────────────────────────────────┐
-│ handler adapts args and readiness checks  │
-└──────────────────────────────────────────┘
-                   │
-                   ▼
-┌──────────────────────────────────────────┐
-│ lib reads or updates SQLite graph state   │
-└──────────────────────────────────────────┘
-                   │
-                   ▼
-╭──────────────────────────────────────────╮
-│ structured payload returns to caller      │
-╰──────────────────────────────────────────╯
-```
-
-<!-- /ANCHOR:boundaries-flow -->
-
----
-
-<!-- ANCHOR:entrypoints -->
-## 7. ENTRYPOINTS
-
-| Entrypoint | Type | Purpose |
+| Tool | Purpose | Primary Files |
 |---|---|---|
-| `mcp_server/index.ts` | MCP entrypoint | Registers standalone `mk-code-index` server with code-graph tools only. |
-| `tools/code-graph-tools.ts` | Module | Registers public MCP tool dispatchers. |
-| `handlers/index.ts` | Module | Re-exports handler functions. |
-| `lib/index.ts` | Module | Re-exports library functions and types. |
-| `code_graph_scan` | MCP tool | Builds or refreshes graph state. |
-| `code_graph_query` | MCP tool | Reads structural relationships. |
-| `code_graph_status` | MCP tool | Reports graph health. |
-| `code_graph_context` | MCP tool | Returns compact graph context. |
-| `detect_changes` | MCP tool | Maps a diff to affected graph symbols. |
-| `ccc_*` | MCP tools | Bridge CocoIndex Code status, indexing and feedback. |
+| `code_graph_scan` | Build or refresh graph state. | `mcp_server/handlers/scan.ts`, `mcp_server/lib/structural-indexer.ts` |
+| `code_graph_query` | Read outlines, calls, imports and blast radius. | `mcp_server/handlers/query.ts`, `mcp_server/lib/code-graph-db.ts` |
+| `code_graph_status` | Report graph health and readiness. | `mcp_server/handlers/status.ts`, `mcp_server/lib/readiness-contract.ts` |
+| `code_graph_context` | Build compact graph neighborhoods. | `mcp_server/handlers/context.ts`, `mcp_server/lib/code-graph-context.ts` |
+| `code_graph_verify` | Run the gold-query verification battery. | `mcp_server/handlers/verify.ts`, `mcp_server/lib/gold-query-verifier.ts` |
+| `code_graph_apply` | Run verification-gated recovery operations. | `mcp_server/handlers/apply.ts`, `mcp_server/lib/apply-orchestrator.ts` |
+| `detect_changes` | Map unified diffs to affected graph symbols. | `mcp_server/handlers/detect-changes.ts`, `mcp_server/lib/diff-parser.ts` |
+| `ccc_status` | Check CocoIndex bridge availability. | `mcp_server/handlers/ccc-status.ts` |
+| `ccc_reindex` | Trigger CocoIndex reindexing. | `mcp_server/handlers/ccc-reindex.ts` |
+| `ccc_feedback` | Record CocoIndex result feedback. | `mcp_server/handlers/ccc-feedback.ts` |
 
-<!-- /ANCHOR:entrypoints -->
+<!-- /ANCHOR:features -->
 
 ---
 
-<!-- ANCHOR:scan-scope -->
-## 8. SCAN SCOPE
-
-`code_graph_scan` excludes generated, vendored and internal-heavy paths by default:
+<!-- ANCHOR:structure -->
+## 4. STRUCTURE
 
 ```text
-node_modules
-dist
-.git
-vendor
-external
-z_future
-z_archive
-mcp-coco-index/mcp_server
-.opencode/skills/**
-.opencode/agents/**
-.opencode/commands/**
-.opencode/specs/**
-.opencode/plugins/**
+system-code-graph/
++-- SKILL.md                         # Runtime routing and invariants
++-- README.md                        # Human-facing skill overview
++-- ARCHITECTURE.md                  # System architecture and boundaries
++-- package.json                     # Private runtime package metadata
++-- tsconfig.json                    # TypeScript build config
++-- vitest.config.ts                 # Focused test config
++-- feature_catalog/                 # Current feature inventory
++-- manual_testing_playbook/         # Operator validation scenarios
++-- mcp_server/
+|   +-- index.ts                     # Standalone mk-code-index MCP entrypoint
+|   +-- tool-schemas.ts              # Public MCP tool schemas
+|   +-- handlers/                    # Tool request adapters
+|   +-- lib/                         # Graph implementation and readiness logic
+|   +-- tools/                       # Tool dispatch and export surface
+|   +-- tests/                       # Vitest unit and integration coverage
+|   +-- stress_test/code-graph/      # Pressure and degraded-mode coverage
+|   `-- database/                    # Local SQLite graph files and launcher state
+`-- node_modules/                    # Local dependencies, not skill-authored docs
 ```
 
-### Broader Default Excludes
+| Path | Purpose |
+|---|---|
+| [SKILL.md](./SKILL.md) | Runtime instruction surface for agents. |
+| [ARCHITECTURE.md](./ARCHITECTURE.md) | Deeper design, dependency direction and subsystem boundaries. |
+| [feature_catalog/feature_catalog.md](./feature_catalog/feature_catalog.md) | Inventory of current runtime features. |
+| [manual_testing_playbook/manual_testing_playbook.md](./manual_testing_playbook/manual_testing_playbook.md) | Manual scenario index and evidence protocol. |
+| [mcp_server/handlers/README.md](./mcp_server/handlers/README.md) | Handler-layer code README. |
+| [mcp_server/lib/README.md](./mcp_server/lib/README.md) | Library-layer code README. |
+| [mcp_server/tools/README.md](./mcp_server/tools/README.md) | MCP dispatch code README. |
+| [mcp_server/database/README.md](./mcp_server/database/README.md) | Database artifact README. |
 
-The `.opencode/skill`, `.opencode/agent`, `.opencode/command`, `.opencode/specs` and `.opencode/plugins` folders are skipped by default. Maintainers working on Spec Kit internals can opt folders back in with env vars:
-
-```bash
-SPECKIT_CODE_GRAPH_INDEX_SKILLS=true
-SPECKIT_CODE_GRAPH_INDEX_AGENTS=true
-SPECKIT_CODE_GRAPH_INDEX_COMMANDS=true
-SPECKIT_CODE_GRAPH_INDEX_SPECS=true
-SPECKIT_CODE_GRAPH_INDEX_PLUGINS=true
-```
-
-or for one scan with per-folder arguments:
-
-```json
-{
-  "incremental": false,
-  "includeSkills": true,
-  "includeAgents": true,
-  "includeCommands": true,
-  "includeSpecs": true,
-  "includePlugins": true
-}
-```
-
-### Granular Skill Selection
-
-`includeSkills` also accepts a list of `sk-*` skill names. This scans only the selected skill folders while keeping other `.opencode/skills/**` folders out:
-
-```bash
-SPECKIT_CODE_GRAPH_INDEX_SKILLS=sk-code-review,sk-doc
-```
-
-```json
-{
-  "incremental": false,
-  "includeSkills": ["sk-code-review", "sk-doc"]
-}
-```
-
-### Doc-Language File Types
-
-When a folder is opted in, the scan persists more than source code. Markdown, JSON, JSONC, YAML, YML and TOML files in that folder become `code_files` rows tagged `language='doc'` with zero nodes and zero edges. This honors the public contract that opted-in folders are actually scanned (without dragging tree-sitter parsers across non-code formats). AST-only consumers that join `code_nodes` or `code_edges` correctly find nothing for these files. The doc lane stays inactive when no `.opencode/` folder is opted in.
-
-### Precedence
-
-When both are present, scan-call arguments take precedence over env vars. Use env vars for process-wide defaults; use per-call args for one-off overrides.
-
-### Symlink Semantics
-
-`rootDir` is canonicalized via realpath before the default exclusion guard runs. Symlinked roots that resolve into excluded `.opencode/**` folders are still excluded from default scans.
-
-`mcp-coco-index/mcp_server` stays excluded even when skill indexing is enabled.
-
-Existing databases record the active scan scope in `code_graph_metadata`. If the stored scope differs from the current scope, read paths return the existing blocked payload with `requiredAction:"code_graph_scan"`. Run an explicit full scan to prune old rows:
-
-```json
-{ "incremental": false }
-```
-
-Full scans delete out-of-scope graph rows from SQLite. They do not archive derived graph data.
-
-<!-- /ANCHOR:scan-scope -->
+<!-- /ANCHOR:structure -->
 
 ---
 
-<!-- ANCHOR:validation -->
-## 9. VALIDATION
+<!-- ANCHOR:configuration -->
+## 5. CONFIGURATION
 
-Run from the repository root.
+| Setting | Default | Purpose |
+|---|---|---|
+| `SPECKIT_CODE_GRAPH_INDEX_SKILLS` | `false` | Include `.opencode/skills/**` during scans. Also accepts comma-separated `sk-*` names. |
+| `SPECKIT_CODE_GRAPH_INDEX_AGENTS` | `false` | Include `.opencode/agents/**`. |
+| `SPECKIT_CODE_GRAPH_INDEX_COMMANDS` | `false` | Include `.opencode/commands/**`. |
+| `SPECKIT_CODE_GRAPH_INDEX_SPECS` | `false` | Include `.opencode/specs/**`. |
+| `SPECKIT_CODE_GRAPH_INDEX_PLUGINS` | `false` | Include `.opencode/plugins/**`. |
+| `SPECKIT_PARSER_SKIP_LIST_ENABLED` | enabled by runtime policy | Lets parser failures be quarantined and surfaced through status metadata. |
 
-```bash
-npm test -- --run code-graph
-```
+Per-call scan arguments override matching environment settings. Use environment variables for process-wide defaults and per-call options for one scan.
 
-Expected result: code graph handler, library and integration suites pass.
-
-<!-- /ANCHOR:validation -->
+<!-- /ANCHOR:configuration -->
 
 ---
 
-<!-- ANCHOR:related -->
-## 10. RELATED
+<!-- ANCHOR:usage-examples -->
+## 6. USAGE EXAMPLES
 
-- [Code Graph Library](./lib/README.md)
-- [Code Graph Handlers](./handlers/README.md)
-- [Feature Catalog](./feature_catalog/feature_catalog.md)
-- [Manual Testing Playbook](./manual_testing_playbook/manual_testing_playbook.md)
-- [MCP Server](../README.md)
+**Blast-radius preflight**
 
-<!-- /ANCHOR:related -->
+```text
+User request: "What depends on mcp_server/lib/readiness-contract.ts?"
+Tool path: mcp__mk_code_index__code_graph_query
+Arguments: { "operation": "blast_radius", "subject": ".opencode/skills/system-code-graph/mcp_server/lib/readiness-contract.ts" }
+Expected output: reverse import impact with readiness metadata.
+```
+
+**Diff impact check**
+
+```text
+User request: "Which symbols does this patch touch?"
+Tool path: mcp__mk_code_index__detect_changes
+Arguments: { "diff": "<unified diff>" }
+Expected output: affected symbols, or a blocked response when the graph is not fresh.
+```
+
+**Semantic seed then structural context**
+
+```text
+User request: "Find the scan readiness path and give me nearby code."
+Workflow: use CocoIndex semantic search for candidate files, then pass selected seeds to code_graph_context.
+Expected output: compact graph neighborhood around the selected files or symbols.
+```
+
+<!-- /ANCHOR:usage-examples -->
+
+---
+
+<!-- ANCHOR:troubleshooting -->
+## 7. TROUBLESHOOTING
+
+| What You See | Cause | Fix |
+|---|---|---|
+| `requiredAction: "code_graph_scan"` | The graph is stale, missing or scope-mismatched. | Run `code_graph_scan` with the intended scope. Use `incremental: false` for scope changes. |
+| Skill files do not appear in scan results | `.opencode/skills/**` is excluded by default. | Set `includeSkills: true` or pass an explicit `sk-*` list. |
+| `parserHealth: "quarantined"` | One or more parser failures were added to the skip-list. | Inspect `parserSkipList.sample` from `code_graph_status`, then repair or accept the quarantine. |
+| Unknown MCP tool error mentions `mk-code-index` | The tool name is not registered in `mcp_server/tools/code-graph-tools.ts`. | Add the schema, handler export and dispatch case in one change. |
+| Local docs mention `system_code_graph` | The old MCP server name was replaced by packet 010. | Use `mk-code-index`, `mk_code_index` and `mcp__mk_code_index__*` for current runtime docs. |
+
+<!-- /ANCHOR:troubleshooting -->
+
+---
+
+<!-- ANCHOR:faq -->
+## 8. FAQ
+
+**Q: Why is the skill folder still named `system-code-graph` while the MCP server is `mk-code-index`?**
+
+A: The skill package owns documentation and source layout. `mk-code-index` is the standalone MCP server identity introduced by packet 010.
+
+**Q: Does this replace Grep?**
+
+A: No. Use Grep for exact text and file content checks. Use code graph tools when relationships, symbols, freshness or impact matter.
+
+**Q: Should dependency READMEs under `node_modules/` follow this template?**
+
+A: No. Those files belong to third-party packages. Keep sk-doc template alignment to authored system-code-graph docs.
+
+**Q: Where should shared memory or resume behavior be documented?**
+
+A: Keep shared lifecycle, memory and resume behavior in `system-spec-kit`. This skill documents code-graph-owned runtime behavior and operator validation.
+
+<!-- /ANCHOR:faq -->
+
+---
+
+<!-- ANCHOR:related-documents -->
+## 9. RELATED DOCUMENTS
+
+| Document | Purpose |
+|---|---|
+| [SKILL.md](./SKILL.md) | Runtime routing, tool choice and invariants. |
+| [ARCHITECTURE.md](./ARCHITECTURE.md) | System design and integration boundaries. |
+| [mcp_server/handlers/README.md](./mcp_server/handlers/README.md) | Handler-layer package topology. |
+| [mcp_server/lib/README.md](./mcp_server/lib/README.md) | Core graph implementation topology. |
+| [mcp_server/tools/README.md](./mcp_server/tools/README.md) | MCP dispatch surface. |
+| [mcp_server/tests/README.md](./mcp_server/tests/README.md) | Automated test coverage map. |
+| [feature_catalog/feature_catalog.md](./feature_catalog/feature_catalog.md) | Current feature inventory. |
+| [manual_testing_playbook/manual_testing_playbook.md](./manual_testing_playbook/manual_testing_playbook.md) | Manual validation scenario index. |
+
+<!-- /ANCHOR:related-documents -->

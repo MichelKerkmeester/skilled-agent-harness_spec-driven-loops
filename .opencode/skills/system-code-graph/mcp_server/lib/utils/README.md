@@ -1,6 +1,6 @@
 ---
-title: "Code Graph Utils"
-description: "Shared workspace-boundary helpers used by every code-graph handler that accepts caller-supplied paths."
+title: "Code Graph Utils: Workspace Path Safety"
+description: "Shared workspace-boundary helpers used by code-graph handlers that accept caller-supplied paths."
 trigger_phrases:
   - "workspace path validation"
   - "code graph utils"
@@ -8,9 +8,9 @@ trigger_phrases:
   - "workspace containment"
 ---
 
-# Code Graph Utils
+# Code Graph Utils: Workspace Path Safety
 
-> Workspace canonicalization and containment helpers shared across the code-graph handler surface. Centralizes the workspace-boundary invariant so handlers stay consistent.
+> Workspace canonicalization and containment helpers shared across the code-graph handler surface.
 
 ---
 
@@ -18,11 +18,11 @@ trigger_phrases:
 ## TABLE OF CONTENTS
 
 - [1. OVERVIEW](#1--overview)
-- [2. STRUCTURE](#2--structure)
+- [2. DIRECTORY TREE](#2--directory-tree)
 - [3. STABLE API](#3--stable-api)
-- [4. BOUNDARIES](#4--boundaries)
+- [4. BOUNDARIES AND FLOW](#4--boundaries-and-flow)
 - [5. VALIDATION](#5--validation)
-- [6. RELATED DOCUMENTS](#6--related-documents)
+- [6. RELATED](#6--related)
 
 <!-- /ANCHOR:table-of-contents -->
 
@@ -31,27 +31,24 @@ trigger_phrases:
 <!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
-`utils/` provides one module: `workspace-path.ts`. It exports a small, deterministic helper set that every code-graph handler accepting a caller-supplied path uses to canonicalize that path and assert workspace containment before any read or scan happens.
+`utils/` provides one module: `workspace-path.ts`. It canonicalizes workspace and candidate paths, then checks that caller-supplied roots stay inside the active workspace before any scan, verify or diff preflight proceeds.
 
-Use this package whenever a code-graph handler must accept untrusted path input. Keep the workspace-boundary contract in one place so all handlers honor the same rule.
+Use this package when a code-graph handler accepts untrusted path input. Keep the workspace-boundary contract here so handlers enforce the same rule.
 
 <!-- /ANCHOR:overview -->
 
 ---
 
-<!-- ANCHOR:structure -->
-## 2. STRUCTURE
+<!-- ANCHOR:directory-tree -->
+## 2. DIRECTORY TREE
 
 ```text
 utils/
-└── workspace-path.ts
++-- workspace-path.ts  # Canonical path and workspace-containment helpers
+`-- README.md
 ```
 
-| File | Purpose |
-| ---- | ------- |
-| `workspace-path.ts` | Canonicalize workspace and candidate paths via `realpathSync` and assert workspace containment |
-
-<!-- /ANCHOR:structure -->
+<!-- /ANCHOR:directory-tree -->
 
 ---
 
@@ -59,11 +56,11 @@ utils/
 ## 3. STABLE API
 
 | Export | Kind | Purpose |
-| ------ | ---- | ------- |
-| `CanonicalizedWorkspace` | interface | Discriminated record of `canonicalWorkspace` and `canonicalRootDir` |
-| `canonicalizeWorkspacePaths` | function | Resolve a workspace root and a candidate `rootDir` to canonical absolute paths; returns `null` on broken symlinks or invalid input |
-| `isWithinWorkspace` | function | Boolean check that a candidate canonical path equals or descends from the canonical workspace root |
-| `assertWithinWorkspace` | function | Throw-form of `isWithinWorkspace`; raises a labeled error when the boundary is violated |
+|---|---|---|
+| `CanonicalizedWorkspace` | Interface | Discriminated record of `canonicalWorkspace` and `canonicalRootDir`. |
+| `canonicalizeWorkspacePaths` | Function | Resolves a workspace root and candidate `rootDir` to canonical absolute paths. Returns `null` on broken symlinks or invalid input. |
+| `isWithinWorkspace` | Function | Checks whether a candidate canonical path equals or descends from the canonical workspace root. |
+| `assertWithinWorkspace` | Function | Throw-form of `isWithinWorkspace` with a labeled error for boundary violations. |
 
 These helpers operate on string paths only. Callers must canonicalize both inputs before calling `isWithinWorkspace` or `assertWithinWorkspace`.
 
@@ -71,47 +68,50 @@ These helpers operate on string paths only. Callers must canonicalize both input
 
 ---
 
-<!-- ANCHOR:boundaries -->
-## 4. BOUNDARIES
+<!-- ANCHOR:boundaries-flow -->
+## 4. BOUNDARIES AND FLOW
 
-- Code-graph handlers in `mcp_server/handlers/**` import these helpers as the only sanctioned source of workspace-boundary checks.
-- `utils/` may import Node standard modules. It must not import handler code, database adapters, or higher-level orchestration.
-- Tests live with their handler caller; this folder stays test-free as long as the helper surface remains a single module.
+| Boundary | Rule |
+|---|---|
+| Imports | `utils/` may import Node standard modules. It must not import handlers, database adapters or orchestration modules. |
+| Exports | Handlers import these helpers as the sanctioned workspace-boundary check. |
+| Tests | Coverage currently lives with the handler callers. Keep this folder test-free while it remains a single helper module. |
 
-Active production callers (fan-in):
+Active production callers:
 
-| Caller | Helpers used |
-| ------ | ------------ |
+| Caller | Helpers Used |
+|---|---|
 | `mcp_server/handlers/scan.ts` | `canonicalizeWorkspacePaths`, `isWithinWorkspace` |
 | `mcp_server/handlers/verify.ts` | `canonicalizeWorkspacePaths`, `isWithinWorkspace`, `assertWithinWorkspace` |
 | `mcp_server/handlers/detect-changes.ts` | `canonicalizeWorkspacePaths`, `isWithinWorkspace` |
 
-<!-- /ANCHOR:boundaries -->
+<!-- /ANCHOR:boundaries-flow -->
 
 ---
 
 <!-- ANCHOR:validation -->
 ## 5. VALIDATION
 
+Run from the repository root.
+
 ```bash
-npx tsc --noEmit
-python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/system-spec-kit/mcp_server/lib/utils/README.md
+.opencode/skills/system-code-graph/node_modules/.bin/tsc --noEmit -p .opencode/skills/system-code-graph/tsconfig.json
+python3 .opencode/skills/sk-doc/scripts/validate_document.py --type readme .opencode/skills/system-code-graph/mcp_server/lib/utils/README.md
 ```
 
-Type checking covers the helper signatures. The README validator confirms structural alignment with the sk-doc readme template.
+Expected result: TypeScript exits `0`, and the README validator reports no blocking errors.
 
 <!-- /ANCHOR:validation -->
 
 ---
 
 <!-- ANCHOR:related -->
-## 6. RELATED DOCUMENTS
+## 6. RELATED
 
 | Document | Purpose |
-| -------- | ------- |
-| [../README.md](../README.md) | Parent code-graph library overview, references this folder under §5 Key Files |
-| [../../handlers/](../../handlers/) | Code-graph MCP handlers that consume these helpers |
+|---|---|
+| [../README.md](../README.md) | Parent code-graph library overview. |
+| [../../handlers/README.md](../../handlers/README.md) | Code-graph MCP handlers that consume these helpers. |
+| [../../../README.md](../../../README.md) | Skill-level overview and operator guide. |
 
 <!-- /ANCHOR:related -->
-
----

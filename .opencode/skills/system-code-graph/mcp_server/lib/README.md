@@ -1,14 +1,19 @@
 ---
-title: "Code Graph Library"
-description: "Core implementation modules for structural indexing, SQLite graph storage, readiness checks and compact graph context."
+title: "Code Graph Library: Indexing, Readiness And Context"
+description: "Core implementation modules for structural indexing, SQLite graph storage, readiness checks, recovery operations and compact graph context."
 trigger_phrases:
   - "code graph library"
   - "structural indexer"
   - "code graph db"
   - "readiness contract"
+  - "code graph apply"
 ---
 
-# Code Graph Library
+# Code Graph Library: Indexing, Readiness And Context
+
+> Core graph implementation behind the `mk-code-index` MCP handlers.
+
+---
 
 <!-- ANCHOR:table-of-contents -->
 ## TABLE OF CONTENTS
@@ -30,14 +35,15 @@ trigger_phrases:
 <!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
-`lib/` owns the code graph implementation behind the MCP handlers. It indexes source files, stores graph records in SQLite, resolves seeds, builds compact context payloads and reports readiness metadata for callers that need false-safe graph reads.
+`lib/` owns the implementation behind the code graph handlers. It indexes source files, stores graph records in SQLite, resolves seeds, builds compact context payloads, runs recovery workflows and reports readiness metadata for callers that need false-safe graph reads.
 
 Current state:
 
-- The indexer parses TypeScript, JavaScript, Python and shell files through tree-sitter with a regex fallback.
-- The database layer stores files, nodes and edges with schema version metadata and startup highlights.
-- Context builders merge structural graph, Memory MCP and CocoIndex inputs under token budgets.
-- The bash grammar's missing `external_scanner_reset` symbol is contained via a SQLite skip-list and a module-level `parserHealth: 'ok' | 'quarantined'` flag. See `parser-skip-list.ts` and the catch hook in `tree-sitter-parser.ts`.
+- The indexer parses TypeScript, JavaScript, Python and shell files through tree-sitter with fallback handling.
+- Markdown, JSON, JSONC, YAML, YML and TOML files can be registered as `language='doc'` rows when `.opencode/` folders are explicitly opted in.
+- The database layer stores files, nodes, edges, metadata, diagnostics, parser skip-list rows and verification records.
+- Context builders merge structural graph, Spec Kit memory and CocoIndex inputs under token budgets.
+- Apply-mode recovery runs pre and post verification before committing graph repair operations.
 
 <!-- /ANCHOR:overview -->
 
@@ -47,31 +53,21 @@ Current state:
 ## 2. ARCHITECTURE
 
 ```text
-╭────────────────────────────────────────────────────────────╮
-│                      CODE GRAPH LIBRARY                    │
-╰────────────────────────────────────────────────────────────╯
-
-┌──────────────────┐      ┌──────────────────┐
-│ handlers/*       │ ───▶ │ readiness layer  │
-│ MCP entrypoints  │      │ ensure-ready     │
-└──────────────────┘      └────────┬─────────┘
-                                    │
-                                    ▼
-┌──────────────────┐      ┌──────────────────┐
-│ indexer layer    │ ───▶ │ storage layer    │
-│ structural-index │      │ code-graph-db    │
-└────────┬─────────┘      └────────┬─────────┘
-         │                         │
-         ▼                         ▼
-┌──────────────────┐      ┌──────────────────┐
-│ parser layer     │      │ context layer    │
-│ tree-sitter      │      │ graph context    │
-│ regex fallback   │      │ seed resolver    │
-└──────────────────┘      └──────────────────┘
+handlers/*
+  -> readiness and result adapters
+  -> indexer, query, context, verify or apply modules
+  -> parser, database, budget and recovery helpers
+  -> SQLite graph state or typed payload
+```
 
 Dependency direction:
-handlers → readiness → indexer/database/context
-context → seed resolver → database
+
+```text
+handlers -> lib/index.ts
+read paths -> ensure-ready -> database and scope policy
+scan paths -> structural-indexer -> parser -> database
+context paths -> seed-resolver -> database -> budget allocator
+apply paths -> apply-orchestrator -> recovery procedures and verification
 database does not import handlers
 ```
 
@@ -84,44 +80,52 @@ database does not import handlers
 
 ```text
 lib/
-├── index.ts                    │ Public library barrel
-├── structural-indexer.ts       │ Workspace walk, parse and persist pipeline
-├── tree-sitter-parser.ts       │ AST extraction and parser selection
-├── parser-skip-list.ts         │ B1/B2 parser-failure skip-list (schema v5)
-├── code-graph-db.ts            │ SQLite schema and graph queries
-├── code-graph-context.ts       │ Compact context assembly
-├── seed-resolver.ts            │ File and line seeds to graph nodes
-├── compact-merger.ts           │ Memory, code graph and CocoIndex merge
-├── ensure-ready.ts             │ Readiness guard and scan trigger logic
-├── readiness-contract.ts       │ Readiness and trust vocabulary
-├── budget-allocator.ts         │ Token-budget distribution
-├── working-set-tracker.ts      │ Recent file and symbol tracking
-├── runtime-detection.ts        │ Runtime and hook policy checks
-├── indexer-types.ts            │ Graph types and scan defaults
-├── index-scope-policy.ts       │ Env and per-call scope policy resolution
-├── query-result-adapter.ts     │ Stable handler result shapes
-├── ops-hardening.ts            │ Query timeout and retry guards
-├── query-intent-classifier.ts  │ Query intent routing
-├── startup-brief.ts            │ Startup graph summary payloads
-├── utils/                      │ Workspace path helpers
-└── README.md
++-- index.ts                    # Public library barrel
++-- structural-indexer.ts       # Workspace walk, parse and persist pipeline
++-- tree-sitter-parser.ts       # AST extraction and parser selection
++-- parser-skip-list.ts         # Parser-failure quarantine storage
++-- code-graph-db.ts            # SQLite schema and graph queries
++-- code-graph-context.ts       # Compact context assembly
++-- seed-resolver.ts            # File and line seeds to graph nodes
++-- compact-merger.ts           # Memory, graph and CocoIndex merge
++-- ensure-ready.ts             # Readiness guard and scan trigger logic
++-- readiness-contract.ts       # Readiness and trust vocabulary
++-- query-result-adapter.ts     # Stable handler result shapes
++-- apply-orchestrator.ts       # Verification-gated recovery dispatcher
++-- apply-metadata.ts           # Apply-mode audit metadata helpers
++-- recovery-procedures.ts      # Graph recovery operations
++-- diff-parser.ts              # Unified diff parsing for detect_changes
++-- edge-drift.ts               # Edge distribution drift checks
++-- gold-query-verifier.ts      # Verification query execution
++-- gold-battery-runner.ts      # Verification battery orchestration
++-- budget-allocator.ts         # Token-budget distribution
++-- working-set-tracker.ts      # Recent file and symbol tracking
++-- runtime-detection.ts        # Runtime and hook policy checks
++-- indexer-types.ts            # Graph types and scan defaults
++-- index-scope-policy.ts       # Env and per-call scan scope policy
++-- ops-hardening.ts            # Query timeout and retry guards
++-- query-intent-classifier.ts  # Query intent routing
++-- startup-brief.ts            # Startup graph summary payloads
++-- phase-runner.ts             # Ordered phase execution helper
++-- utils/                      # Workspace path helpers
+`-- README.md
 ```
 
 Allowed dependency direction:
 
 ```text
-handlers → lib/index.ts
-lib/context modules → lib/database and lib/seed modules
-lib/indexer modules → lib/parser modules → lib/types
-shared utilities → no handler imports
+handlers -> lib/index.ts
+lib/context modules -> lib/database and lib/seed modules
+lib/indexer modules -> lib/parser modules -> lib/types
+shared utilities -> no handler imports
 ```
 
 Disallowed dependency direction:
 
 ```text
-lib → handlers
-database layer → MCP transport layer
-parser layer → startup or compaction surfaces
+lib -> handlers
+database layer -> MCP transport layer
+parser layer -> startup or compaction surfaces
 ```
 
 <!-- /ANCHOR:package-topology -->
@@ -133,27 +137,37 @@ parser layer → startup or compaction surfaces
 
 ```text
 lib/
-├── structural-indexer.ts
-├── tree-sitter-parser.ts
-├── parser-skip-list.ts
-├── code-graph-db.ts
-├── code-graph-context.ts
-├── seed-resolver.ts
-├── compact-merger.ts
-├── ensure-ready.ts
-├── readiness-contract.ts
-├── budget-allocator.ts
-├── working-set-tracker.ts
-├── runtime-detection.ts
-├── indexer-types.ts
-├── index-scope-policy.ts
-├── query-result-adapter.ts
-├── ops-hardening.ts
-├── query-intent-classifier.ts
-├── startup-brief.ts
-├── utils/
-├── index.ts
-└── README.md
++-- apply-metadata.ts
++-- apply-orchestrator.ts
++-- auto-rescan-policy.ts
++-- budget-allocator.ts
++-- code-graph-context.ts
++-- code-graph-db.ts
++-- compact-merger.ts
++-- diff-parser.ts
++-- edge-drift.ts
++-- ensure-ready.ts
++-- exclude-rule-classifier.ts
++-- gold-battery-runner.ts
++-- gold-query-verifier.ts
++-- index-scope-policy.ts
++-- index.ts
++-- indexer-types.ts
++-- ops-hardening.ts
++-- parser-skip-list.ts
++-- phase-runner.ts
++-- query-intent-classifier.ts
++-- query-result-adapter.ts
++-- readiness-contract.ts
++-- recovery-procedures.ts
++-- runtime-detection.ts
++-- seed-resolver.ts
++-- startup-brief.ts
++-- structural-indexer.ts
++-- tree-sitter-parser.ts
++-- working-set-tracker.ts
++-- utils/
+`-- README.md
 ```
 
 <!-- /ANCHOR:directory-tree -->
@@ -165,20 +179,27 @@ lib/
 
 | File | Responsibility |
 |---|---|
-| `structural-indexer.ts` | Walks files, applies scan filters, parses symbols and persists graph rows. Short-circuits `language='doc'` files (markdown, JSON, JSONC, YAML, YML, TOML) to register-only rows without tree-sitter parsing. |
-| `tree-sitter-parser.ts` | Extracts AST-backed nodes and edges with fallback parser support. Skips the `'doc'` language entirely. Adds pre-parse skip-list lookup, post-parse B1/B2 catch hook and exports `getParserHealth()` and `classifyError()`. Schema v5, env-gated by `SPECKIT_PARSER_SKIP_LIST_ENABLED`. |
-| `parser-skip-list.ts` | Per-file skip-list for B1 and B2 tree-sitter failures. Exports `lookupSkipList`, `addToSkipList`, `recordSuccess`, `getSkipListSummary` and `seedFromProduction`. Fail-open on SQLite errors. |
-| `code-graph-db.ts` | Owns SQLite schema, graph CRUD, statistics and startup highlights. Schema v5 includes `parser_skip_list` and an idempotent v4 to v5 migration that seeds the table from `parse_diagnostics`. |
+| `structural-indexer.ts` | Walks files, applies scan filters, parses symbols and persists graph rows. |
+| `tree-sitter-parser.ts` | Extracts AST-backed nodes and edges, skips doc-language rows and reports parser health. |
+| `parser-skip-list.ts` | Stores per-file parser skip-list rows for repeated tree-sitter failures. |
+| `code-graph-db.ts` | Owns SQLite schema, graph CRUD, statistics and startup highlights. |
 | `code-graph-context.ts` | Builds token-bounded neighborhoods for `code_graph_context`. |
-| `seed-resolver.ts` | Resolves manual, graph and CocoIndex file-line seeds to indexed graph nodes. |
-| `compact-merger.ts` | Merges Memory MCP, code graph and CocoIndex context payloads. |
+| `seed-resolver.ts` | Resolves manual, graph and CocoIndex seeds to indexed graph nodes. |
+| `compact-merger.ts` | Merges Spec Kit memory, code graph and CocoIndex context payloads. |
 | `ensure-ready.ts` | Determines whether graph reads can proceed or must return a blocked payload. |
 | `readiness-contract.ts` | Defines readiness, canonical readiness and trust-state terms. |
-| `budget-allocator.ts` | Splits context budgets across graph sections and overflow. |
-| `working-set-tracker.ts` | Tracks recently touched files and symbols for context recovery. |
-| `indexer-types.ts` | Defines graph node, edge, parse result and scan default types. Owns `SupportedLanguage` (including the `'doc'` lane), `detectLanguage()` extension routing and the default include-glob set. |
-| `index-scope-policy.ts` | Resolves end-user-vs-skill-inclusive scope policy from env + per-call args across the 5 default-excluded `.opencode/` folders. Per-call boolean or `sk-*` list overrides env. Emits the v2 scope fingerprint stored on the graph metadata row. |
+| `query-result-adapter.ts` | Normalizes query handler result shapes. |
+| `apply-orchestrator.ts` | Coordinates verification-gated graph recovery operations and rollback behavior. |
+| `apply-metadata.ts` | Builds apply-mode audit metadata and log paths. |
+| `recovery-procedures.ts` | Provides repair, rollback and corruption-recovery helpers. |
+| `diff-parser.ts` | Parses unified diffs for `detect_changes`. |
+| `edge-drift.ts` | Compares edge distributions for graph-quality drift. |
+| `gold-query-verifier.ts` | Executes gold-query assertions against the current graph. |
+| `gold-battery-runner.ts` | Runs and summarizes verification batteries. |
+| `index-scope-policy.ts` | Resolves end-user-vs-skill-inclusive scan scope from env and per-call args. |
+| `indexer-types.ts` | Defines graph node, edge, parse result, language and scan default types. |
 | `startup-brief.ts` | Builds compact startup graph summaries for runtime surfaces. |
+| `utils/workspace-path.ts` | Canonicalizes caller-supplied paths and enforces workspace containment. |
 
 <!-- /ANCHOR:key-files -->
 
@@ -191,34 +212,27 @@ lib/
 |---|---|
 | Imports | Library modules may import local utilities, shared MCP server types and storage adapters. |
 | Exports | `index.ts` exposes library modules to handlers and startup surfaces. |
-| Ownership | Core graph state, parser behavior, readiness and context assembly live here. MCP argument handling lives in `../handlers/`. |
+| Ownership | Core graph state, parser behavior, readiness, recovery and context assembly live here. MCP argument handling lives in `../handlers/`. |
+| Storage | SQLite persistence flows through `code-graph-db.ts`; callers should not write database files directly. |
 
 Indexing flow:
 
 ```text
-╭──────────────────────────────────────────╮
-│ code_graph_scan handler                   │
-╰──────────────────────────────────────────╯
-                   │
-                   ▼
-┌──────────────────────────────────────────┐
-│ structural-indexer applies scan filters   │
-└──────────────────────────────────────────┘
-                   │
-                   ▼
-┌──────────────────────────────────────────┐
-│ parser extracts nodes and edges           │
-└──────────────────────────────────────────┘
-                   │
-                   ▼
-┌──────────────────────────────────────────┐
-│ code-graph-db persists files and graph    │
-└──────────────────────────────────────────┘
-                   │
-                   ▼
-╭──────────────────────────────────────────╮
-│ status and context reads use fresh graph  │
-╰──────────────────────────────────────────╯
+code_graph_scan handler
+  -> structural-indexer applies scan filters
+  -> parser extracts nodes and edges
+  -> code-graph-db persists files and graph rows
+  -> status and context reads use fresh graph state
+```
+
+Recovery flow:
+
+```text
+code_graph_apply handler
+  -> apply-orchestrator runs preflight verification
+  -> selected recovery procedure executes
+  -> post verification confirms graph quality
+  -> audit metadata records the outcome
 ```
 
 <!-- /ANCHOR:boundaries-flow -->
@@ -236,9 +250,10 @@ Indexing flow:
 | `buildCodeGraphContext()` | Function | Produces compact graph neighborhoods. |
 | `resolveSeeds()` | Function | Maps context seeds to graph nodes. |
 | `ensureCodeGraphReady()` | Function | Checks readiness before graph reads. |
+| `applyCodeGraph()` | Function | Runs verification-gated graph recovery operations. |
 | `buildStartupBrief()` | Function | Builds startup graph summary payloads. |
-| `lookupSkipList()` / `addToSkipList()` / `getSkipListSummary()` / `seedFromProduction()` / `recordSuccess()` | Functions | Skip-list reads, writes, summary and seed backfill in `parser-skip-list.ts`. |
-| `getParserHealth()` / `classifyError()` | Functions | Module-level parser-health getter and B1/B2 error classifier in `tree-sitter-parser.ts`. |
+| `lookupSkipList()` / `addToSkipList()` / `getSkipListSummary()` / `seedFromProduction()` / `recordSuccess()` | Functions | Skip-list reads, writes, summary and seed backfill. |
+| `getParserHealth()` / `classifyError()` | Functions | Parser-health getter and parser-error classifier. |
 
 <!-- /ANCHOR:entrypoints -->
 
@@ -250,10 +265,11 @@ Indexing flow:
 Run from the repository root.
 
 ```bash
-npm test -- --run code-graph
+.opencode/skills/system-code-graph/node_modules/.bin/tsc --noEmit -p .opencode/skills/system-code-graph/tsconfig.json
+.opencode/skills/system-code-graph/node_modules/.bin/vitest --config .opencode/skills/system-code-graph/vitest.config.ts --run code-graph
 ```
 
-Expected result: parser, indexer, context, readiness and database suites pass.
+Expected result: TypeScript exits `0`, and parser, indexer, context, readiness, recovery and database suites pass.
 
 <!-- /ANCHOR:validation -->
 
@@ -262,8 +278,12 @@ Expected result: parser, indexer, context, readiness and database suites pass.
 <!-- ANCHOR:related -->
 ## 9. RELATED
 
-- [Code Graph Subsystem](../README.md)
-- [Code Graph Handlers](../handlers/README.md)
-- [MCP Server](../../README.md)
+| Document | Purpose |
+|---|---|
+| [../../README.md](../../README.md) | Skill-level overview and operator guide. |
+| [../handlers/README.md](../handlers/README.md) | Handler-layer request adapters. |
+| [../tools/README.md](../tools/README.md) | MCP dispatch and exports. |
+| [utils/README.md](./utils/README.md) | Workspace path helper contract. |
+| [../database/README.md](../database/README.md) | SQLite runtime artifact guide. |
 
 <!-- /ANCHOR:related -->

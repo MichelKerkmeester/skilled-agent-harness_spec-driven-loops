@@ -1,14 +1,19 @@
 ---
-title: "Code Graph Handlers"
-description: "MCP handler entrypoints for structural code graph tools and CocoIndex bridge tools."
+title: "Code Graph Handlers: MCP Request Adapters"
+description: "MCP handler entrypoints for structural code-graph tools, recovery operations, change detection and CocoIndex bridge tools."
 trigger_phrases:
   - "code graph handlers"
   - "code_graph handlers"
+  - "mk-code-index handlers"
   - "ccc handlers"
   - "detect_changes handler"
 ---
 
-# Code Graph Handlers
+# Code Graph Handlers: MCP Request Adapters
+
+> Request adaptation layer between the `mk-code-index` tool dispatcher and the core graph library.
+
+---
 
 <!-- ANCHOR:table-of-contents -->
 ## TABLE OF CONTENTS
@@ -30,14 +35,15 @@ trigger_phrases:
 <!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
-`handlers/` owns the MCP tool handlers for the structural code graph package. Each file adapts one public MCP operation to the lower-level library in `../lib/`, then returns a typed payload with readiness, trust and recovery metadata when relevant.
+`handlers/` owns the MCP request adapters for the standalone code graph package. Each handler accepts parsed tool arguments, calls lower-level behavior in `../lib/` and returns a typed payload with readiness, trust, recovery or bridge metadata.
 
 Current state:
 
-- Structural graph handlers cover scan, query, status, context, verify and diff preflight reads.
-- CocoIndex bridge handlers cover status, reindex and feedback calls for the `ccc_*` tools.
-- Read handlers use shared readiness contracts instead of returning silent empty graph answers when the index is stale or missing.
-- Parser quarantine state surfaces through handler responses so operators can see `parserHealth: 'ok' | 'quarantined'` and the current skip-list sample without inspecting SQLite directly.
+- Structural handlers cover scan, query, status, context, verify and apply-mode recovery.
+- `detect_changes` maps unified diffs to affected indexed symbols and refuses stale graph reads.
+- CocoIndex bridge handlers cover status, reindex and feedback for the `ccc_*` tools.
+- Read handlers use shared readiness contracts instead of returning silent empty answers.
+- Parser quarantine state surfaces through `parserHealth` and `parserSkipList` fields.
 
 <!-- /ANCHOR:overview -->
 
@@ -47,29 +53,19 @@ Current state:
 ## 2. ARCHITECTURE
 
 ```text
-╭────────────────────────────────────────────────────────────╮
-│                    CODE GRAPH HANDLERS                     │
-╰────────────────────────────────────────────────────────────╯
-
-┌──────────────────┐      ┌──────────────────┐
-│ MCP tool schemas │ ───▶ │ tools registry   │
-│ tool-schemas.ts  │      │ code-graph-tools │
-└──────────────────┘      └────────┬─────────┘
-                                    │
-                                    ▼
-┌────────────────────────────────────────────────────────────┐
-│ Handler files                                              │
-│ scan  query  status  context  verify  detect  ccc bridges  │
-└────────────────────────────┬───────────────────────────────┘
-                             │
-                             ▼
-┌────────────────────────────────────────────────────────────┐
-│ ../lib                                                     │
-│ indexer  database  readiness  context  seed resolution     │
-└────────────────────────────────────────────────────────────┘
+mk-code-index MCP client
+  -> ../tools/code-graph-tools.ts
+  -> handlers/index.ts
+  -> handler file for the requested tool
+  -> ../lib graph, readiness, recovery or bridge module
+  -> typed MCP payload
+```
 
 Dependency direction:
-tool registry → handlers → ../lib
+
+```text
+tools registry -> handlers -> ../lib
+handlers -> shared schemas and response types
 handlers do not import sibling handler internals
 ```
 
@@ -82,33 +78,34 @@ handlers do not import sibling handler internals
 
 ```text
 handlers/
-├── index.ts             │ Barrel exports for the tool registry
-├── scan.ts              │ Workspace indexing entrypoint
-├── query.ts             │ Structural relationship reads
-├── status.ts            │ Graph health and readiness probe
-├── context.ts           │ Token-bounded graph neighborhoods
-├── verify.ts            │ Verification battery runner
-├── detect-changes.ts    │ Unified-diff affected-symbol preflight
-├── ccc-status.ts        │ CocoIndex bridge status
-├── ccc-reindex.ts       │ CocoIndex bridge reindex trigger
-├── ccc-feedback.ts      │ CocoIndex bridge feedback sink
-└── README.md
++-- index.ts             # Barrel exports for the tool registry
++-- scan.ts              # Workspace indexing entrypoint
++-- query.ts             # Structural relationship reads
++-- status.ts            # Graph health and readiness probe
++-- context.ts           # Token-bounded graph neighborhoods
++-- verify.ts            # Gold-query verification battery
++-- apply.ts             # Verification-gated recovery operations
++-- detect-changes.ts    # Unified-diff affected-symbol preflight
++-- ccc-status.ts        # CocoIndex bridge status
++-- ccc-reindex.ts       # CocoIndex bridge reindex trigger
++-- ccc-feedback.ts      # CocoIndex bridge feedback sink
+`-- README.md
 ```
 
 Allowed dependency direction:
 
 ```text
-tools/code-graph-tools.ts → handlers/index.ts → handler files → ../lib
-handler files → ../lib/readiness-contract.ts
-handler files → ../lib/query-result-adapter.ts
+../tools/code-graph-tools.ts -> handlers/index.ts -> handler files -> ../lib
+handler files -> ../lib/readiness-contract.ts
+handler files -> ../lib/query-result-adapter.ts
 ```
 
 Disallowed dependency direction:
 
 ```text
-../lib → handlers
-handler file → another handler file for shared logic
-ccc bridge handler → structural index internals without a library adapter
+../lib -> handlers
+handler file -> another handler file for shared logic
+ccc bridge handler -> structural index internals without a library adapter
 ```
 
 <!-- /ANCHOR:package-topology -->
@@ -120,17 +117,18 @@ ccc bridge handler → structural index internals without a library adapter
 
 ```text
 handlers/
-├── index.ts
-├── scan.ts
-├── query.ts
-├── status.ts
-├── context.ts
-├── verify.ts
-├── detect-changes.ts
-├── ccc-status.ts
-├── ccc-reindex.ts
-├── ccc-feedback.ts
-└── README.md
++-- apply.ts
++-- ccc-feedback.ts
++-- ccc-reindex.ts
++-- ccc-status.ts
++-- context.ts
++-- detect-changes.ts
++-- index.ts
++-- query.ts
++-- scan.ts
++-- status.ts
++-- verify.ts
+`-- README.md
 ```
 
 <!-- /ANCHOR:directory-tree -->
@@ -142,11 +140,12 @@ handlers/
 
 | File | Responsibility |
 |---|---|
-| `scan.ts` | Handles `code_graph_scan`, walks the workspace and updates the SQLite graph through the library indexer. Accepts `includeSkills` (boolean or `sk-*` list), `includeAgents`, `includeCommands`, `includeSpecs`, `includePlugins` per-call args; resolves the active scope policy via `../lib/index-scope-policy.ts`. Per-call args override the matching `SPECKIT_CODE_GRAPH_INDEX_*` env vars. Returns `parserSkipList: { added, healed, totalAfterScan }`. |
+| `scan.ts` | Handles `code_graph_scan`, resolves scan scope and updates the SQLite graph through the indexer. |
 | `query.ts` | Handles `code_graph_query` structural reads such as outline, calls, imports and blast radius. |
-| `status.ts` | Handles `code_graph_status` health probes with freshness, readiness, parse health and graph-quality fields. Returns `parserHealth: 'ok' | 'quarantined'` and `parserSkipList: { count, lastSeenAt, sample }`. |
+| `status.ts` | Handles `code_graph_status` health probes with freshness, readiness, parse health and graph-quality fields. |
 | `context.ts` | Handles `code_graph_context` neighborhoods from manual, graph or CocoIndex seeds. |
 | `verify.ts` | Handles `code_graph_verify` checks against the current index. |
+| `apply.ts` | Handles `code_graph_apply` verification-gated recovery operations and audit output. |
 | `detect-changes.ts` | Handles `detect_changes` by mapping unified diffs to indexed symbols only when graph readiness is fresh. |
 | `ccc-status.ts` | Handles `ccc_status` availability and index-state checks for CocoIndex Code. |
 | `ccc-reindex.ts` | Handles `ccc_reindex` incremental or full CocoIndex reindex requests. |
@@ -165,33 +164,16 @@ handlers/
 | Imports | Handler files import shared behavior from `../lib/` and schema types from the MCP server. |
 | Exports | `index.ts` is the folder entrypoint consumed by the code graph tool registry. |
 | Ownership | Handler files own request adaptation, response shaping and recovery metadata. Core graph behavior belongs in `../lib/`. |
+| Namespace | Handlers are reached through the standalone `mcp__mk_code_index__*` client namespace. |
 
 Main flow:
 
 ```text
-╭──────────────────────────────────────────╮
-│ MCP client calls code_graph_* or ccc_*    │
-╰──────────────────────────────────────────╯
-                   │
-                   ▼
-┌──────────────────────────────────────────┐
-│ tools/code-graph-tools.ts dispatcher      │
-└──────────────────────────────────────────┘
-                   │
-                   ▼
-┌──────────────────────────────────────────┐
-│ handler validates arguments and readiness │
-└──────────────────────────────────────────┘
-                   │
-                   ▼
-┌──────────────────────────────────────────┐
-│ ../lib executes graph, bridge or DB work  │
-└──────────────────────────────────────────┘
-                   │
-                   ▼
-╭──────────────────────────────────────────╮
-│ handler returns typed MCP payload         │
-╰──────────────────────────────────────────╯
+MCP client calls code_graph_*, detect_changes or ccc_*
+  -> tools/code-graph-tools.ts validates required arguments
+  -> handler adapts args and readiness checks
+  -> ../lib executes graph, recovery, bridge or DB work
+  -> handler returns typed MCP payload
 ```
 
 <!-- /ANCHOR:boundaries-flow -->
@@ -209,6 +191,7 @@ Main flow:
 | `code_graph_status` | MCP tool | Reports graph health and trust metadata. |
 | `code_graph_context` | MCP tool | Builds compact graph context from seeds. |
 | `code_graph_verify` | MCP tool | Runs graph verification checks. |
+| `code_graph_apply` | MCP tool | Runs guarded graph recovery operations. |
 | `detect_changes` | MCP tool | Maps a unified diff to affected graph symbols. |
 | `ccc_status`, `ccc_reindex`, `ccc_feedback` | MCP tools | Bridge to CocoIndex Code status, indexing and feedback. |
 
@@ -222,10 +205,10 @@ Main flow:
 Run from the repository root.
 
 ```bash
-npm test -- --run code-graph
+.opencode/skills/system-code-graph/node_modules/.bin/vitest --config .opencode/skills/system-code-graph/vitest.config.ts --run code-graph-query-handler code-graph-context-handler code-graph-scan detect-changes code-graph-apply
 ```
 
-Expected result: code graph handler and library suites pass.
+Expected result: handler, readiness and apply-mode suites pass.
 
 <!-- /ANCHOR:validation -->
 
@@ -234,8 +217,11 @@ Expected result: code graph handler and library suites pass.
 <!-- ANCHOR:related -->
 ## 9. RELATED
 
-- [Code Graph Subsystem](../README.md)
-- [Code Graph Library](../lib/README.md)
-- [MCP Server](../../README.md)
+| Document | Purpose |
+|---|---|
+| [../../README.md](../../README.md) | Skill-level overview and operator guide. |
+| [../lib/README.md](../lib/README.md) | Core graph library README. |
+| [../tools/README.md](../tools/README.md) | MCP dispatch README. |
+| [../tests/README.md](../tests/README.md) | Automated test map for handler behavior. |
 
 <!-- /ANCHOR:related -->
