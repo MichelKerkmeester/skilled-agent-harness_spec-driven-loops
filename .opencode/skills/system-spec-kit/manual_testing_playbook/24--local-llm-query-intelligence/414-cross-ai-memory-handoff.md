@@ -46,10 +46,11 @@ Then saves it:
 
 ```
 mcp__spec_kit_memory__memory_save({
-  filePath: "<absolute path to the file written above>",
-  retentionPolicy: "ephemeral"
+  filePath: "<absolute path to the file written above>"
 })
 ```
+
+(Do NOT pass `retentionPolicy: "ephemeral"` — see post-014/022 follow-up note in 401-paraphrase-recall.md.)
 
 Save the returned parent_id as `STORED_ID`. Wait 3 seconds for indexing.
 

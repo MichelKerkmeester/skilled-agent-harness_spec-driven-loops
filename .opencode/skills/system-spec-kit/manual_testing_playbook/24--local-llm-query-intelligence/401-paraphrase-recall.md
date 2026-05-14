@@ -55,11 +55,17 @@ Verify Memory MCP paraphrase recall: store a memory about FSRS, then query with 
 2. Save the memory:
    ```
    memory_save({
-     filePath: "<absolute path to the file written in step 1>",
-     retentionPolicy: "ephemeral"
+     filePath: "<absolute path to the file written in step 1>"
    })
    ```
    Capture the returned `parent_id` as `STORED_ID`.
+
+   > NOTE: do NOT pass `retentionPolicy: "ephemeral"` — it silently triggers
+   > governed-ingest enforcement at `lib/governance/scope-governance.ts:235`
+   > which requires `tenantId`, `sessionId`, `userId`/`agentId`,
+   > `provenanceSource`, `provenanceActor`, and `deleteAfter`. Rely on
+   > explicit `memory_delete` cleanup in section 4 instead. See
+   > `022-local-llm-legacy-remediation/ai-council/embedding-worker-diagnostic/post-execution-followup.md`.
 
 3. Wait ~3 seconds for indexing + embedding.
 

@@ -43,7 +43,7 @@ Step 1 — write `.opencode/specs/_sandbox/24-413-baseline/research.md` (baselin
   ---
   EmbeddingGemma 300m is the canonical local embedding model for Memory MCP, producing 768-dimensional vectors via either ONNX (hf-local) or GGUF Q8_0 (llama-cpp). Both provider paths are post-014 supported.
 
-  Then memory_save({filePath, retentionPolicy:"ephemeral"}) → BASELINE_ID.
+  Then `memory_save({filePath})` → BASELINE_ID. (Do NOT pass `retentionPolicy: "ephemeral"` — see post-014/022 follow-up note in 401-paraphrase-recall.md.)
 
 Step 2 — for each of 5 variants V1..V5, write `.opencode/specs/_sandbox/24-413-V<n>/research.md` then save:
 

@@ -48,9 +48,9 @@ Orchestrating AI stores 5 baseline memories. For each i in 1..5:
   b. Save it:
      ```
      mcp__spec_kit_memory__memory_save({
-       filePath: "<absolute path from step a>",
-       retentionPolicy: "ephemeral"
+       filePath: "<absolute path from step a>"
      })
+     # Do NOT pass retentionPolicy: "ephemeral" — see post-014/022 follow-up note in 401-paraphrase-recall.md.
      ```
 
 ### Phase 2 — Launch concurrent reader
@@ -97,9 +97,9 @@ You are <CLI-B>. Wait 3 seconds for CLI-A's reader to start its loop, then fire 
 
   b. Save:
      mcp__spec_kit_memory__memory_save({
-       filePath: "<absolute path from step a>",
-       retentionPolicy: "ephemeral"
+       filePath: "<absolute path from step a>"
      })
+     # Do NOT pass retentionPolicy: "ephemeral" — see post-014/022 follow-up note in 401-paraphrase-recall.md.
 
   Record each save's parent_id + timestamp_ms.
   Return: array of 10 save records as JSON.

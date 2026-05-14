@@ -63,7 +63,7 @@ You are <external-CLI>. I am Claude orchestrating a Memory MCP causal-graph vali
      ---
      On detected provider switch, run the auto-migration path: factory.ts triggers re-embedding of all rows into the new profile-keyed sqlite, then deletes the old DB. After migration completes, semantic search returns provider-native results without stale FTS5 fallback.
 
-2. Call mcp__spec_kit_memory__memory_save once per file (3 calls total), passing each absolute filePath plus `retentionPolicy: "ephemeral"`. Capture the 3 returned parent_ids as A_ID, B_ID, C_ID.
+2. Call mcp__spec_kit_memory__memory_save once per file (3 calls total), passing each absolute filePath. Capture the 3 returned parent_ids as A_ID, B_ID, C_ID. (Do NOT pass `retentionPolicy: "ephemeral"` — see post-014/022 follow-up note in 401-paraphrase-recall.md.)
 
 3. Wait 5 seconds for the daemon to index + run the edge-derivation pass.
 
