@@ -28,7 +28,7 @@ _memory:
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
 # Tasks: 016 Manual Testing Verification
 
-<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_LEVEL: 1 -->
 
 ---
 
