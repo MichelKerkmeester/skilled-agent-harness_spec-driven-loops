@@ -1,0 +1,24 @@
+{
+  "level": "1",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/009-tsconfig-references-restructure",
+  "description": "TSConfig References Restructure",
+  "keywords": [
+    "tsconfig",
+    "references",
+    "system",
+    "code",
+    "graph",
+    "emit"
+  ],
+  "lastUpdated": "2026-05-14T16:26:51Z",
+  "specId": "009",
+  "folderSlug": "tsconfig-references-restructure",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "007-code-graph",
+    "014-system-code-graph-extraction"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}

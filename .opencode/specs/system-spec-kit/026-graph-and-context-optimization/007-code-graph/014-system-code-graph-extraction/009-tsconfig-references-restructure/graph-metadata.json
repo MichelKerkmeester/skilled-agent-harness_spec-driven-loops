@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/009-tsconfig-references-restructure",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/009-tsconfig-references-restructure",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [
+      "system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction"
+    ],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "009 tsconfig references restructure",
+      "system code graph shared dist emit gap",
+      "unicode normalization missing from fresh dist",
+      "drop system code graph tsconfig references",
+      "009 tsconfig references restructure plan",
+      "system code graph tsconfig emit plan",
+      "009 tsconfig references restructure tasks",
+      "system code graph shared emit tasks",
+      "009 tsconfig references restructure summary",
+      "system code graph shared dist emit complete"
+    ],
+    "key_topics": [
+      "009",
+      "tsconfig",
+      "references",
+      "system",
+      "code",
+      "graph",
+      "shared",
+      "dist",
+      "emit",
+      "unicode",
+      "normalization",
+      "launcher"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-code-graph/tsconfig.json",
+      ".opencode/skills/system-code-graph/dist/system-spec-kit/shared/unicode-normalization.js",
+      ".opencode/bin/system-code-graph-launcher.cjs",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "tsconfig.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-code-graph/tsconfig.json",
+        "source": "derived"
+      },
+      {
+        "name": "unicode-normalization.js",
+        "kind": "file",
+        "path": ".opencode/skills/system-code-graph/dist/system-spec-kit/shared/unicode-normalization.js",
+        "source": "derived"
+      },
+      {
+        "name": "system-code-graph-launcher.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/system-code-graph-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Packet 014 kept both an include for system-spec-kit shared TypeScript sources and a project reference to that shared project in the extracted system-code-graph tsconfig. TypeScript typechecked shared files but deferred their emit to the referenced project, leaving dist/system-spec-kit/shared/unicode-normalization.js absent from fresh extracted builds.",
+    "created_at": "2026-05-14T16:26:51Z",
+    "last_save_at": "2026-05-14T16:26:51Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ]
+  }
+}

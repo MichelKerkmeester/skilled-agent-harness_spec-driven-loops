@@ -29,11 +29,6 @@
       ]
     }
   },
-  "references": [
-    {
-      "path": "../system-spec-kit/shared"
-    }
-  ],
   "include": [
     "mcp_server/**/*.ts",
     "../system-spec-kit/mcp_server/**/*.ts",
