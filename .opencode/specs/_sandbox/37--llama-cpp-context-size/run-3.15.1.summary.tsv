@@ -1,0 +1,12 @@
+size	chars	tokens	result	vectorLen	elapsedMs	error
+256	256	43	vector	768	164	
+512	512	85	vector	768	33	
+1024	1024	168	vector	768	24	
+2048	2048	335	vector	768	29	
+3000	3000	492	vector	768	30	
+4000	4000	655	throw		2	Input is longer than the context size. Try to increase the context size or use another model that supports longer contexts.
+5000	5000	819	throw		1	Input is longer than the context size. Try to increase the context size or use another model that supports longer contexts.
+6000	6000	985	throw		2	Input is longer than the context size. Try to increase the context size or use another model that supports longer contexts.
+7000	7000	1148	throw		2	Input is longer than the context size. Try to increase the context size or use another model that supports longer contexts.
+8000	8000	1312	throw		2	Input is longer than the context size. Try to increase the context size or use another model that supports longer contexts.
+10000	10000	1640	throw		3	Input is longer than the context size. Try to increase the context size or use another model that supports longer contexts.

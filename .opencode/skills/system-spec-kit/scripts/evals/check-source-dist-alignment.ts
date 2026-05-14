@@ -140,7 +140,7 @@ const DIST_TARGETS: DistTarget[] = [
     sourceRoot: path.join('mcp_server', 'lib'),
   },
   {
-    label: 'mcp_server/skill_advisor',
+    label: 'system-skill-advisor/mcp_server',
     distRoot: path.join('mcp_server', 'dist', 'skill_advisor'),
     sourceRoot: path.join('mcp_server', 'skill_advisor'),
   },

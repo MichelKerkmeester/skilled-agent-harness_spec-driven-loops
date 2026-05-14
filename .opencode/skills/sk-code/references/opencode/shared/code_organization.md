@@ -32,7 +32,7 @@ This reference defines how to organize files, structure modules, and order impor
 |---------|-------------|----------------|
 | TypeScript module structure | `.opencode/skills/system-spec-kit/mcp_server/context-server.ts` | Lines 1-70 |
 | TypeScript exports | `.opencode/skills/system-spec-kit/scripts/core/config.ts` | Export block near file end |
-| Python imports | `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py` | Import block near file top |
+| Python imports | `.opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py` | Import block near file top |
 | Shell structure | `lib/common.sh` | Lines 1-40 |
 
 ---

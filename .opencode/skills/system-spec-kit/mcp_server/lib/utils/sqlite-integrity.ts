@@ -11,4 +11,4 @@
 // Inward dependency direction: storage callers depend on this utility;
 // advisor internals depend on its underlying implementation.
 
-export { checkSqliteIntegrity } from '../../skill_advisor/lib/freshness/sqlite-integrity.js';
+export { checkSqliteIntegrity } from '../../../../system-skill-advisor/mcp_server/lib/freshness/sqlite-integrity.js';

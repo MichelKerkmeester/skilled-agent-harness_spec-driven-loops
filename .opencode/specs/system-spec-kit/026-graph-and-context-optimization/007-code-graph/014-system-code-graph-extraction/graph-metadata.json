@@ -10,7 +10,8 @@
     "system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/004-rewire-consumers-and-tool-registration",
     "system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/005-doc-and-runtime-migration",
     "system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/006-validation-and-cleanup",
-    "system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/007-mcp-topology-pivot"
+    "system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/007-mcp-topology-pivot",
+    "system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/008-orphan-code-graph-db-cleanup"
   ],
   "migrated": false,
   "manual": {
@@ -80,7 +81,7 @@
     ],
     "causal_summary": "Moves the code-graph subsystem out of system-spec-kit's MCP server tree into a dedicated `.opencode/skills/system-code-graph/` skill package with first-class SKILL.md, graph-metadata.json, references, manual_testing_playbook, feature_catalog, and a clean MCP server integration story. The 007 line proved code-graph is empirically stable, so this is structural cleanup, not a functional change. Decomposed into 6 provisional phases; the exact decomposition is locked by child 001's ADR before later children scaffold.",
     "created_at": "2026-05-14T07:00:38Z",
-    "last_save_at": "2026-05-14T09:17:09Z",
+    "last_save_at": "2026-05-14T15:06:22.190317Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-14T07:00:38Z",
     "source_docs": [

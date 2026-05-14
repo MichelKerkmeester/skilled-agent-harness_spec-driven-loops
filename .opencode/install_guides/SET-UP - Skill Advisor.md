@@ -71,7 +71,7 @@ Most "tweak it to match my setup" needs are signal additions, not lane-weight ch
    ```
 2. **Re-index the SQLite graph** (REQUIRED — without this, signal edits have ZERO effect on routing):
    - Via your AI client's MCP tool list: call `skill_graph_scan({})`
-   - Or via Python compatibility: `python3 .opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_graph_compiler.py --export-json --pretty` then call `skill_graph_scan({})`
+   - Or via Python compatibility: `python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_graph_compiler.py --export-json --pretty` then call `skill_graph_scan({})`
 3. **Verify**: query `advisor_recommend({ prompt: "your test phrase", options: { topK: 3 } })` — your skill should now appear.
 
 **Why this is the recommended path for external users:**
@@ -156,12 +156,12 @@ npm --prefix .opencode/skills/system-spec-kit/mcp_server test -- skill_advisor
 ```bash
 # Stash any unrelated WIP first to avoid loss
 git stash push -m "skill-advisor-rollback-safety" -- \
-  .opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/ \
+  .opencode/skills/system-skill-advisor/mcp_server/lib/ \
   .opencode/skills/*/graph-metadata.json
 
 # Then restore
 git restore --source=HEAD -- \
-  .opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/ \
+  .opencode/skills/system-skill-advisor/mcp_server/lib/ \
   .opencode/skills/*/graph-metadata.json
 
 npm --prefix .opencode/skills/system-spec-kit/mcp_server run build
@@ -181,7 +181,7 @@ npm --prefix .opencode/skills/system-spec-kit/mcp_server run build
 | Wrong skill in `advisor_recommend` | Stale graph index — run `skill_graph_scan({})` |
 | Edited `graph-metadata.json` but scores unchanged | Forgot to re-index — call `skill_graph_scan({})`. The advisor reads from `database/skill-graph.sqlite`, not the JSON file. |
 | `skill_graph_scan` reports `scannedFiles: 20, indexedFiles: 18` | Normal — the indexer skips `scripts/test-fixtures/*/graph-metadata.json` (test scaffolding, not real skills). The 18 is your real skill count. |
-| Cannot parse `explicit.ts` | `git restore --source=HEAD -- .opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/explicit.ts` (restores from HEAD without affecting unrelated WIP) |
+| Cannot parse `explicit.ts` | `git restore --source=HEAD -- .opencode/skills/system-skill-advisor/mcp_server/lib/scorer/lanes/explicit.ts` (restores from HEAD without affecting unrelated WIP) |
 | MCP server missing | `npm --prefix .opencode/skills/system-spec-kit/mcp_server install && npm run build` |
 
 ---
@@ -190,6 +190,6 @@ npm --prefix .opencode/skills/system-spec-kit/mcp_server run build
 
 - **Command reference:** `.opencode/commands/doctor.md`
 - **Workflow YAML:** `.opencode/commands/doctor/assets/doctor_skill-advisor_{auto,confirm}.yaml`
-- **Operator setup (advanced):** `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/SET-UP_GUIDE.md`
+- **Operator setup (advanced):** `.opencode/skills/system-skill-advisor/mcp_server/SET-UP_GUIDE.md`
 - **Native MCP install:** `.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md`
 - **Related guides:** [SET-UP - Skill Creation](./SET-UP%20-%20Skill%20Creation.md) (run skill-advisor after creating a new skill)

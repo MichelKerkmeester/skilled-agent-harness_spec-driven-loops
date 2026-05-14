@@ -133,7 +133,7 @@ describe('006 campaign migration lineage remediation', () => {
   it('does not silently fall back to the legacy skill-graph.json runtime artifact', () => {
     const scriptPath = path.join(
       repoRoot,
-      '.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py',
+      '.opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py',
     );
     const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'advisor-graph-fallback-'));
     const sqlitePath = path.join(tmpDir, 'missing-skill-graph.sqlite');

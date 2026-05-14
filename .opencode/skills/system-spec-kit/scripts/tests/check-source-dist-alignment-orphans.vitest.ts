@@ -104,7 +104,7 @@ describe('check-source-dist-alignment orphan detection (F-020-D5-02)', () => {
     const checkerSource = fs.readFileSync(CHECKER_PATH, 'utf8');
     const expectedSubtrees = [
       'mcp_server/lib',
-      'mcp_server/skill_advisor',
+      'system-skill-advisor/mcp_server',
       'mcp_server/handlers',
       'mcp_server/formatters',
       'mcp_server/tools',

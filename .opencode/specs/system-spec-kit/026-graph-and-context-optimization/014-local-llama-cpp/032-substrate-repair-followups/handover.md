@@ -83,3 +83,7 @@ Items NOT addressed in 032 that emerged from execution:
 ## Status: shipped with caveats
 
 3 / 5 children PASS. 2 / 5 BLOCKED with documented external blockers. 1 index-scope-policy bug found and fixed inline. The parent 032 packet itself ships as **complete-with-caveats**: all 5 children have full Level-2 docs, the dist artifacts work, the substrate is more diagnosable than at the start of the session.
+
+## 2026-05-14 follow-up — 037 closed the embedding-worker root cause
+
+Packet 037 (`../037-llama-cpp-embedding-worker-deep-dive/`) reproduced the chronic null-return failure, confirmed the `contextSize: 512` hardcode as the root cause, and shipped the source patch + vitest + ADR-003. The embedding worker now uses the model's `trainContextSize` (EmbeddingGemma → 2048) with a token-count preflight that truncates over-budget inputs. Vitest 4/4 PASS including the real-model smoke test (T030-04). 032/004 (failed-embedding-cleanup) and 032/002 (rerun-24-scenarios-suite) can now run cleanly once the operator re-dispatches against the healed worker — both blockers documented in those packets are resolved at the substrate level.

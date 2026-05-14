@@ -8,4 +8,4 @@
 // a neutral path so high-level payload code depends inward on `lib/utils/`
 // instead of crossing into `skill_advisor/lib/render`.
 
-export { sanitizeSkillLabel } from '../../skill_advisor/lib/render.js';
+export { sanitizeSkillLabel } from '../../../../system-skill-advisor/mcp_server/lib/render.js';

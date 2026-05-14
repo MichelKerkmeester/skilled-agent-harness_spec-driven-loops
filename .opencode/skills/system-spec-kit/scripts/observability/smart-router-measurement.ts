@@ -12,7 +12,7 @@ import { fileURLToPath } from 'node:url';
 
 import {
   buildSkillAdvisorBrief,
-} from '../../mcp_server/skill_advisor/lib/skill-advisor-brief.js';
+} from '../../../system-skill-advisor/mcp_server/lib/skill-advisor-brief.js';
 import {
   readSmartRouterComplianceJsonl,
   recordSmartRouterCompliance,

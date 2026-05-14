@@ -1,10 +1,8 @@
 {
   "command": "system-code-graph-launcher",
-  "start": "2026-05-14T09:34:29.174Z",
-  "end": "2026-05-14T09:34:31.375Z",
-  "status": "failed",
-  "actions": [
-    "installed dependencies and built @spec-kit/system-code-graph MCP server"
-  ],
-  "error": "npx tsc -p tsconfig.json exited 1"
+  "start": "2026-05-14T15:02:28.319Z",
+  "end": "2026-05-14T15:02:28.321Z",
+  "status": "ready",
+  "actions": [],
+  "server": ".opencode/skills/system-code-graph/mcp_server/dist/index.js"
 }
