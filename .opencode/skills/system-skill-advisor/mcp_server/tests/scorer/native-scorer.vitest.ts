@@ -446,7 +446,7 @@ describe('027/003 native scorer units', () => {
   it('falls back to filesystem projection when the SQLite graph is corrupt', () => {
     const root = mkdtempSync(join(tmpdir(), 'advisor-projection-corrupt-'));
     try {
-      const dbDir = join(root, '.opencode', 'skills', 'system-spec-kit', 'mcp_server', 'database');
+      const dbDir = join(root, '.opencode', 'skills', 'system-skill-advisor', 'mcp_server', 'database');
       mkdirSync(dbDir, { recursive: true });
       writeFileSync(join(dbDir, 'skill-graph.sqlite'), 'not a sqlite database', 'utf8');
 

@@ -9,6 +9,7 @@ import * as path from 'path';
 import { pathToFileURL } from 'url';
 import Database from 'better-sqlite3';
 import { resolveActiveProfileDbPath } from '@spec-kit/shared/embeddings/profile';
+import { DATABASE_DIR } from '../../core/config.js';
 import { getMemoryRoadmapDefaults } from '../../lib/config/capability-flags.js';
 
 interface CliArgs {
@@ -35,7 +36,7 @@ interface CreateCheckpointResult {
 function resolveDefaultDbPath(): string {
   const candidates = [
     process.env.MEMORY_DB_PATH,
-    resolveActiveProfileDbPath(undefined, path.resolve(process.cwd(), '.opencode/skills/system-spec-kit/mcp_server/database')),
+    resolveActiveProfileDbPath(undefined, DATABASE_DIR),
     resolveActiveProfileDbPath(undefined, path.resolve(process.cwd(), 'mcp_server/database')),
     resolveActiveProfileDbPath(undefined, path.resolve(process.cwd(), 'database')),
   ].filter((candidate): candidate is string => typeof candidate === 'string' && candidate.trim().length > 0);

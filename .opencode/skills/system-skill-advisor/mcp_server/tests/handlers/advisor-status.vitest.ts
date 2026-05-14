@@ -11,10 +11,19 @@ import { describe, expect, it } from 'vitest';
 import { handleAdvisorStatus, readAdvisorStatus } from '../../handlers/advisor-status.js';
 import { computeAdvisorSourceSignature } from '../../lib/freshness.js';
 
+const ADVISOR_DB_RELATIVE_PATH = join(
+  '.opencode',
+  'skills',
+  'system-skill-advisor',
+  'mcp_server',
+  'database',
+  'skill-graph.sqlite',
+);
+
 function workspace(name: string): string {
   const root = mkdtempSync(join(tmpdir(), `advisor-status-${name}-`));
   mkdirSync(join(root, '.opencode', 'skills', '.advisor-state'), { recursive: true });
-  mkdirSync(join(root, '.opencode', 'skills', 'system-spec-kit', 'mcp_server', 'database'), { recursive: true });
+  mkdirSync(join(root, '.opencode', 'skills', 'system-skill-advisor', 'mcp_server', 'database'), { recursive: true });
   mkdirSync(join(root, '.opencode', 'skills', 'alpha'), { recursive: true });
   writeFileSync(join(root, '.opencode', 'skills', 'alpha', 'graph-metadata.json'), '{"skill_id":"alpha"}\n', 'utf8');
   return root;
@@ -31,7 +40,7 @@ function writeGeneration(root: string, state: 'live' | 'stale' | 'absent' | 'una
 }
 
 function writeDb(root: string): void {
-  writeFileSync(join(root, '.opencode', 'skills', 'system-spec-kit', 'mcp_server', 'database', 'skill-graph.sqlite'), '', 'utf8');
+  writeFileSync(join(root, ADVISOR_DB_RELATIVE_PATH), '', 'utf8');
 }
 
 describe('advisor_status handler', () => {
@@ -56,7 +65,7 @@ describe('advisor_status handler', () => {
   it('keeps signed generations live when source mtimes exceed skipped SQLite writes', () => {
     const root = workspace('signed-live');
     writeDb(root);
-    const dbPath = join(root, '.opencode', 'skills', 'system-spec-kit', 'mcp_server', 'database', 'skill-graph.sqlite');
+    const dbPath = join(root, ADVISOR_DB_RELATIVE_PATH);
     const metadataPath = join(root, '.opencode', 'skills', 'alpha', 'graph-metadata.json');
     utimesSync(dbPath, new Date('2026-04-19T00:00:00.000Z'), new Date('2026-04-19T00:00:00.000Z'));
     utimesSync(metadataPath, new Date('2026-04-21T00:00:00.000Z'), new Date('2026-04-21T00:00:00.000Z'));
@@ -80,7 +89,7 @@ describe('advisor_status handler', () => {
     const root = workspace('nested-mtime');
     writeDb(root);
     writeGeneration(root, 'live', 6);
-    const dbPath = join(root, '.opencode', 'skills', 'system-spec-kit', 'mcp_server', 'database', 'skill-graph.sqlite');
+    const dbPath = join(root, ADVISOR_DB_RELATIVE_PATH);
     const metadataPath = join(root, '.opencode', 'skills', 'alpha', 'graph-metadata.json');
     utimesSync(dbPath, new Date('2026-04-19T00:00:00.000Z'), new Date('2026-04-19T00:00:00.000Z'));
     utimesSync(metadataPath, new Date('2026-04-21T00:00:00.000Z'), new Date('2026-04-21T00:00:00.000Z'));

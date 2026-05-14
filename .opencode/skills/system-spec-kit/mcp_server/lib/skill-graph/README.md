@@ -35,7 +35,7 @@ skill-graph/
 
 | File | Role |
 |---|---|
-| `skill-graph-db.ts` | Initializes `skill-graph.sqlite`, validates metadata, indexes nodes and edges, handles stats and row mapping. |
+| `skill-graph-db.ts` | Initializes `graph-metadata-index.sqlite`, validates metadata, indexes nodes and edges, handles stats and row mapping. |
 | `skill-graph-queries.ts` | Provides relationship lookups such as dependencies, dependents, family members, hubs, orphans, paths and subgraphs. |
 
 ## 4. ENTRYPOINTS
@@ -46,7 +46,7 @@ skill-graph/
 
 ## 5. BOUNDARIES
 
-- This folder owns `skill-graph.sqlite` schema and query logic only.
+- This folder owns `graph-metadata-index.sqlite` schema and query logic only.
 - Metadata source files remain under individual skill folders.
 - Tool wrappers should call these helpers rather than writing graph tables directly.
 

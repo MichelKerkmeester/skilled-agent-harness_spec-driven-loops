@@ -564,7 +564,7 @@ const memoryIngestCancel: ToolDefinition = {
 
 const skillGraphScan: ToolDefinition = {
   name: 'skill_graph_scan',
-  description: '[L7:Maintenance] Index or re-index all .opencode/skills/*/graph-metadata.json files into skill-graph.sqlite using the hash-aware SQLite indexer. Token Budget: 800.',
+  description: '[L7:Maintenance] Index or re-index all .opencode/skills/*/graph-metadata.json files into graph-metadata-index.sqlite using the hash-aware SQLite indexer. Token Budget: 800.',
   inputSchema: {
     type: 'object', additionalProperties: false,
     properties: {

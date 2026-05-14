@@ -24,7 +24,7 @@ const PYTHON_AVAILABLE = (() => {
 const REPO_ROOT = resolve(__dirname, '..', '..', '..', '..', '..', '..');
 const BENCH_SCRIPT = resolve(
   REPO_ROOT,
-  '.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor_bench.py',
+  '.opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor_bench.py',
 );
 
 describe('sa-037 — Python bench runner', () => {

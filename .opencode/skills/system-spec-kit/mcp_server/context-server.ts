@@ -227,7 +227,7 @@ const GRAPH_ENRICHMENT_NEIGHBOR_LIMIT = 6;
 const GRAPH_ENRICHMENT_SYMBOL_LIMIT = 4;
 const SKILL_GRAPH_WATCH_DEBOUNCE_MS = 2000;
 const SKILL_GRAPH_METADATA_FILENAME = 'graph-metadata.json';
-const SKILL_GRAPH_DATABASE_PATH = path.join(DATABASE_DIR, 'skill-graph.sqlite');
+const SKILL_GRAPH_DATABASE_PATH = path.join(DATABASE_DIR, SKILL_GRAPH_DB_FILENAME);
 const GRAPH_CONTEXT_EXCLUDED_TOOLS = new Set<string>([
   ...MEMORY_AWARE_TOOLS,
   // Code-graph MCP tools route through standalone system_code_graph per ADR-002.

@@ -7,11 +7,12 @@ import { mkdirSync, mkdtempSync, rmSync, utimesSync, writeFileSync } from 'node:
 import { tmpdir } from 'node:os';
 import { dirname, join } from 'node:path';
 
-import { handleAdvisorStatus, readAdvisorStatus } from '../../skill_advisor/handlers/advisor-status.js';
-import { handleAdvisorValidate } from '../../skill_advisor/handlers/advisor-validate.js';
-import { AdvisorStatusOutputSchema, AdvisorValidateOutputSchema } from '../../skill_advisor/schemas/advisor-tool-schemas.js';
+import { handleAdvisorStatus, readAdvisorStatus } from '../../../../system-skill-advisor/mcp_server/handlers/advisor-status.js';
+import { handleAdvisorValidate } from '../../../../system-skill-advisor/mcp_server/handlers/advisor-validate.js';
+import { AdvisorStatusOutputSchema, AdvisorValidateOutputSchema } from '../../../../system-skill-advisor/mcp_server/schemas/advisor-tool-schemas.js';
 
 const BOGUS_DAEMON_PID = '999999999';
+const ADVISOR_DB_RELATIVE_PATH = '.opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sqlite';
 
 function writeFile(root: string, relativePath: string, content: string): void {
   const filePath = join(root, relativePath);
@@ -32,7 +33,7 @@ function writeGeneration(root: string, state: 'live' | 'stale' | 'absent' | 'una
 function createDegradedWorkspace(): string {
   const root = mkdtempSync(join(tmpdir(), 'sa-027-status-'));
   writeFile(root, '.opencode/skills/alpha/graph-metadata.json', '{"skill_id":"alpha"}\n');
-  writeFile(root, '.opencode/skills/system-spec-kit/mcp_server/database/skill-graph.sqlite', '');
+  writeFile(root, ADVISOR_DB_RELATIVE_PATH, '');
   writeGeneration(root, 'live', 42);
   return root;
 }
@@ -67,11 +68,11 @@ describe('sa-027 / sa-028 — MCP diagnostics under degraded daemon state', () =
         expect.stringContaining('no live daemon PID/process evidence'),
       ]);
       expect(data.laneWeights).toEqual(expect.objectContaining({
-        explicit_author: 0.45,
-        lexical: 0.3,
-        graph_causal: 0.15,
-        derived_generated: 0.15,
-        semantic_shadow: 0,
+        explicit_author: 0.42,
+        lexical: 0.28,
+        graph_causal: 0.13,
+        derived_generated: 0.12,
+        semantic_shadow: 0.05,
       }));
       expect(response.content[0]?.text).not.toMatch(/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/i);
     } finally {
@@ -82,7 +83,7 @@ describe('sa-027 / sa-028 — MCP diagnostics under degraded daemon state', () =
   it('advisor_status downgrades physically stale artifacts without rebuilding them', () => {
     const root = createDegradedWorkspace();
     try {
-      const dbPath = join(root, '.opencode/skills/system-spec-kit/mcp_server/database/skill-graph.sqlite');
+      const dbPath = join(root, ADVISOR_DB_RELATIVE_PATH);
       const metadataPath = join(root, '.opencode/skills/alpha/graph-metadata.json');
       utimesSync(dbPath, new Date('2026-04-19T00:00:00.000Z'), new Date('2026-04-19T00:00:00.000Z'));
       utimesSync(metadataPath, new Date('2026-04-21T00:00:00.000Z'), new Date('2026-04-21T00:00:00.000Z'));

@@ -6,9 +6,9 @@
 import { resolve } from 'node:path';
 import { indexSkillMetadata, refreshSkillEmbeddings } from '../../lib/skill-graph/skill-graph-db.js';
 import type { MCPCallerContext } from '../../lib/context/caller-context.js';
-import { requireTrustedCaller } from '../../skill_advisor/lib/auth/trusted-caller.js';
-import { computeAdvisorSourceSignature } from '../../skill_advisor/lib/freshness.js';
-import { publishSkillGraphGeneration } from '../../skill_advisor/lib/freshness/generation.js';
+import { requireTrustedCaller } from '../../../../system-skill-advisor/mcp_server/lib/auth/trusted-caller.js';
+import { computeAdvisorSourceSignature } from '../../../../system-skill-advisor/mcp_server/lib/freshness.js';
+import { publishSkillGraphGeneration } from '../../../../system-skill-advisor/mcp_server/lib/freshness/generation.js';
 import { errorResponse, okResponse, redactDiagnosticText } from './response-envelope.js';
 
 // ───────────────────────────────────────────────────────────────

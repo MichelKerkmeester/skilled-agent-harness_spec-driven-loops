@@ -15,6 +15,14 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 import { loadAdvisorProjection } from '../../lib/scorer/projection.js';
 
 const workspaces: string[] = [];
+const ADVISOR_DB_RELATIVE_PATH = join(
+  '.opencode',
+  'skills',
+  'system-skill-advisor',
+  'mcp_server',
+  'database',
+  'skill-graph.sqlite',
+);
 
 function workspace(name: string): string {
   const root = join(tmpdir(), `${name}-${process.pid}-${Date.now()}-${Math.random().toString(16).slice(2)}`);
@@ -66,7 +74,7 @@ describe('F-004-A4-01: loadAdvisorProjection surfaces SQLite failures explicitly
     const root = workspace('advisor-projection-corrupt-db');
     // Write a corrupt sqlite file at the path that loadSqliteProjection looks
     // for. better-sqlite3 will throw when it tries to open this.
-    const dbPath = join(root, '.opencode', 'skills', 'system-spec-kit', 'mcp_server', 'database', 'skill-graph.sqlite');
+    const dbPath = join(root, ADVISOR_DB_RELATIVE_PATH);
     write(dbPath, Buffer.from('this is not a valid SQLite database'));
     // Also add a filesystem skill so the fallback has content to return.
     const skillDir = join(root, '.opencode', 'skills', 'sample-skill');

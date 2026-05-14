@@ -27,6 +27,15 @@ import {
 } from '../../lib/generation.js';
 import { clearAdvisorSourceCache } from '../../lib/source-cache.js';
 
+const ADVISOR_DB_RELATIVE_PATH = join(
+  '.opencode',
+  'skills',
+  'system-skill-advisor',
+  'mcp_server',
+  'database',
+  'skill-graph.sqlite',
+);
+
 function writeFile(filePath: string, content: string, mtimeMs: number): void {
   mkdirSync(dirname(filePath), { recursive: true });
   writeFileSync(filePath, content, 'utf8');
@@ -45,9 +54,8 @@ function writeAdvisorSources(workspaceRoot: string, mtimeMs: number): void {
     workspaceRoot,
     '.opencode',
     'skills',
-    'system-spec-kit',
+    'system-skill-advisor',
     'mcp_server',
-    'skill_advisor',
     'scripts',
   );
   writeFile(join(scriptDirectory, 'skill_advisor.py'), '# advisor\n', mtimeMs);
@@ -57,7 +65,7 @@ function writeAdvisorSources(workspaceRoot: string, mtimeMs: number): void {
 
 function writeSqliteArtifact(workspaceRoot: string, mtimeMs: number): void {
   writeFile(
-    join(workspaceRoot, '.opencode', 'skills', 'system-spec-kit', 'mcp_server', 'database', 'skill-graph.sqlite'),
+    join(workspaceRoot, ADVISOR_DB_RELATIVE_PATH),
     'sqlite',
     mtimeMs,
   );
@@ -69,9 +77,8 @@ function writeJsonFallback(workspaceRoot: string, mtimeMs: number): void {
       workspaceRoot,
       '.opencode',
       'skills',
-      'system-spec-kit',
+      'system-skill-advisor',
       'mcp_server',
-      'skill_advisor',
       'scripts',
       'skill-graph.json',
     ),

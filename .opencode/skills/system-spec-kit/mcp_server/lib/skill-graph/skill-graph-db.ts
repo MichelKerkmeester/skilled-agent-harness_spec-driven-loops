@@ -2,7 +2,7 @@
 // MODULE: Skill Graph Database
 // ───────────────────────────────────────────────────────────────
 // SQLite storage for skill graph metadata (nodes + edges).
-// Uses dedicated skill-graph.sqlite alongside the other graph databases.
+// Uses dedicated graph-metadata-index.sqlite alongside the other graph databases.
 // Follows code-graph-db.ts and coverage-graph-db.ts patterns for lifecycle and indexing.
 
 import Database from 'better-sqlite3';
@@ -16,7 +16,7 @@ import { DATABASE_DIR } from '../../core/config.js';
 // should depend inward on `lib/utils/`; the advisor freshness implementation
 // stays the source of truth.
 import { checkSqliteIntegrity } from '../utils/sqlite-integrity.js';
-import { parseSkillFrontmatter } from '../../skill_advisor/lib/utils/skill-markdown.js';
+import { parseSkillFrontmatter } from '../../../../system-skill-advisor/mcp_server/lib/utils/skill-markdown.js';
 
 // ───────────────────────────────────────────────────────────────
 // 1. TYPES
@@ -101,7 +101,7 @@ type JsonRecord = Record<string, unknown>;
 
 export const SCHEMA_VERSION = 1;
 
-export const DB_FILENAME = 'skill-graph.sqlite';
+export const DB_FILENAME = 'graph-metadata-index.sqlite';
 
 const SKILL_METADATA_FILENAME = 'graph-metadata.json';
 const MIN_WEIGHT = 0.0;
