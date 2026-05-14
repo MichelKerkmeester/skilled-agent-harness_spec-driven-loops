@@ -10,69 +10,223 @@
     "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/013-skill-advisor-semantic-lane/009-system-skill-advisor-extraction/004-standalone-mcp-launcher-and-runtime-configs",
     "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/013-skill-advisor-semantic-lane/009-system-skill-advisor-extraction/005-hooks-compat-and-consumer-cutover",
     "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/013-skill-advisor-semantic-lane/009-system-skill-advisor-extraction/006-validation-cleanup-and-deprecation-removal",
-    "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/013-skill-advisor-semantic-lane/009-system-skill-advisor-extraction/007-skill-graph-db-rename"
+    "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/013-skill-advisor-semantic-lane/009-system-skill-advisor-extraction/007-skill-graph-db-rename",
+    "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/013-skill-advisor-semantic-lane/009-system-skill-advisor-extraction/008-move-skill-graph-tools-to-advisor",
+    "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/013-skill-advisor-semantic-lane/009-system-skill-advisor-extraction/009-fix-script-fs-scope"
   ],
-  "migrated": false,
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/013-skill-advisor-semantic-lane",
-      "system-spec-kit/026-graph-and-context-optimization/010-template-levels"
-    ],
+    "depends_on": [],
     "supersedes": [],
-    "related_to": [
-      "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor"
-    ]
+    "related_to": []
   },
   "derived": {
     "trigger_phrases": [
       "system skill advisor extraction",
-      "skill advisor own folder",
+      "skill advisor package move",
+      "skill advisor own skill folder",
       "advisor mcp server separation",
-      "skill advisor first-class",
-      "skill folder structural migration"
+      "013/009 handover",
+      "skill advisor extraction handover",
+      "resume 013/009",
+      "advisor follow-on",
+      "system_skill_advisor next steps"
     ],
     "key_topics": [
-      "system-skill-advisor",
-      "skill-advisor-extraction",
-      "advisor-package-move",
-      "mcp-topology",
-      "first-class-skill-folder"
+      "system",
+      "skill",
+      "advisor",
+      "extraction",
+      "package",
+      "move",
+      "own",
+      "folder",
+      "mcp",
+      "server",
+      "separation",
+      "013"
     ],
     "importance_tier": "important",
     "status": "in_progress",
-    "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/013-skill-advisor-semantic-lane/009-system-skill-advisor-extraction/007-skill-graph-db-rename",
     "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/database/skill-graph.sqlite",
+      "001-design-and-decision-record/research/standalone-mcp-discussion.md",
       "spec.md",
-      "description.json",
-      "graph-metadata.json"
+      "001-design-and-decision-record/decision-record.md",
+      ".opencode/bin/skill-advisor-launcher.cjs",
+      ".codex/config.toml",
+      ".claude/mcp.json",
+      ".gemini/settings.json",
+      "plugin_bridges/spec-kit-skill-advisor-bridge.mjs",
+      ".opencode/skills/system-skill-advisor/mcp_server/advisor-server.ts",
+      ".opencode/plugins/spec-kit-skill-advisor.js",
+      ".opencode/skills/system-spec-kit/mcp_server/plugin_bridges/spec-kit-skill-advisor-bridge.mjs",
+      ".opencode/skills/system-spec-kit/mcp_server/tools/index.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/skill-graph/skill-graph-db.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md",
+      ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py",
+      ".opencode/skills/system-skill-advisor/README.md",
+      ".opencode/skills/system-skill-advisor/feature_catalog/06--mcp-surface/04-compat-entrypoint.md"
     ],
     "entities": [
       {
-        "name": "Skill Advisor",
+        "name": "skill-graph.sqlite",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/database/skill-graph.sqlite",
+        "source": "derived"
+      },
+      {
+        "name": "standalone-mcp-discussion.md",
+        "kind": "doc",
+        "path": "001-design-and-decision-record/research/standalone-mcp-discussion.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-advisor-launcher.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/skill-advisor-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "config.toml",
+        "kind": "file",
+        "path": ".codex/config.toml",
+        "source": "derived"
+      },
+      {
+        "name": "mcp.json",
+        "kind": "config",
+        "path": ".claude/mcp.json",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".gemini/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec-kit-skill-advisor-bridge.mjs",
+        "kind": "file",
+        "path": "plugin_bridges/spec-kit-skill-advisor-bridge.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "advisor-server.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/advisor-server.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec-kit-skill-advisor.js",
+        "kind": "code",
+        "path": ".opencode/plugins/spec-kit-skill-advisor.js",
+        "source": "derived"
+      },
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tools/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "tool-schemas.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
+        "source": "derived"
+      },
+      {
+        "name": "context-server.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
+        "source": "derived"
+      },
+      {
+        "name": "skill-graph-db.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/skill-graph/skill-graph-db.ts",
+        "source": "derived"
+      },
+      {
+        "name": "INSTALL_GUIDE.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill_advisor.py",
+        "kind": "file",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-skill-advisor/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "04-compat-entrypoint.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-skill-advisor/feature_catalog/06--mcp-surface/04-compat-entrypoint.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "system-skill-advisor",
+        "name": "Root Purpose The",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "system-spec-kit",
+        "name": "Hard Operator Constraints The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Standalone Advisor",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "With Legacy Tool Bridge",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Open Questions",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "Moves the skill advisor subsystem out of system-spec-kit's MCP server tree into a dedicated `.opencode/skills/system-skill-advisor/` skill package with first-class SKILL.md, graph-metadata.json, references, manual_testing_playbook, feature_catalog, and a clean MCP server integration story. The 015 line stabilized advisor behavior so this is structural cleanup, not a functional change. Decomposed into 5 provisional phases; the exact decomposition is locked by child 001's ADR before later children scaffold.",
+    "causal_summary": "The skill advisor today lives at `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/`. It is a sizeable subsystem — handlers, scorer fusion, lane registry, scorer lanes, daemon lifecycle, projection, ablation, schemas, tests, feature_catalog, manual_testing_playbook, plus a `references/` tree — buried 5 levels deep inside `system-spec-kit`. That coupling makes it harder to:",
     "created_at": "2026-05-14T02:00:00Z",
-    "last_save_at": "2026-05-14T02:00:00Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-05-14T13:51:58.738Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": "2026-05-14T02:00:00Z",
     "source_docs": [
-      "spec.md"
-    ]
+      "spec.md",
+      "handover.md"
+    ],
+    "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/013-skill-advisor-semantic-lane/009-system-skill-advisor-extraction/009-fix-script-fs-scope",
+    "last_active_at": "2026-05-14T16:45:00Z"
   }
 }
