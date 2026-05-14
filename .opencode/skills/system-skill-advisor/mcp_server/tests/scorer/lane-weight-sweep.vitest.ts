@@ -32,7 +32,8 @@ const PACKET_RELATIVE_PATH = join(
   'specs',
   'system-spec-kit',
   '026-graph-and-context-optimization',
-  '015-skill-advisor-semantic-lane',
+  '008-skill-advisor',
+  '013-skill-advisor-semantic-lane',
   '004-corpus-seeded-sweep',
 );
 
@@ -41,7 +42,8 @@ const HARDER_PACKET_RELATIVE_PATH = join(
   'specs',
   'system-spec-kit',
   '026-graph-and-context-optimization',
-  '015-skill-advisor-semantic-lane',
+  '008-skill-advisor',
+  '013-skill-advisor-semantic-lane',
   '007-harder-intent-corpus-resweep',
 );
 

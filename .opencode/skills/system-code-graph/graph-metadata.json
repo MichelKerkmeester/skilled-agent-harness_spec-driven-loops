@@ -92,9 +92,7 @@
     ],
     "key_files": [
       ".opencode/skills/system-code-graph/SKILL.md",
-      ".opencode/skills/system-code-graph/README.md",
-      ".opencode/skills/system-code-graph/mcp_server/",
-      ".opencode/skills/system-code-graph/mcp_server/database/"
+      ".opencode/skills/system-code-graph/README.md"
     ],
     "entities": [
       {
@@ -105,7 +103,7 @@
       },
       {
         "name": "spec_kit_memory",
-        "kind": "mcp_server",
+        "kind": "reference",
         "path": ".opencode/skills/system-code-graph/SKILL.md",
         "source": "derived"
       }
