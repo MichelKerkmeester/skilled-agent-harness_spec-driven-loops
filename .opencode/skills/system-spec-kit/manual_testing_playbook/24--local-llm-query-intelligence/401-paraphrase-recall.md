@@ -36,20 +36,33 @@ Verify Memory MCP paraphrase recall: store a memory about FSRS, then query with 
 
 ### Commands
 
-1. Store the original memory:
+1. Write a canonical research-doc file with the test content. memory_save requires a `filePath` to a canonical spec doc on the allowlist (`research.md` is the simplest fit). Path:
+   `.opencode/specs/_sandbox/24-401/research.md`
+
+   File contents:
+   ```markdown
+   ---
+   title: "FSRS for spaced repetition (scenario 401 baseline)"
+   description: "Test memory for paraphrase recall validation."
+   trigger_phrases: ["fsrs", "spaced repetition", "memory scheduler"]
+   ---
+
+   # FSRS for spaced repetition
+
+   Use FSRS (Free Spaced Repetition Scheduler) algorithm for spaced repetition. FSRS predicts memory stability and difficulty per item, schedules reviews at optimal intervals to minimize forgetting.
+   ```
+
+2. Save the memory:
    ```
    memory_save({
-     content: "Use FSRS (Free Spaced Repetition Scheduler) algorithm for spaced repetition. FSRS predicts memory stability and difficulty per item, schedules reviews at optimal intervals to minimize forgetting.",
-     trigger_phrases: ["fsrs", "spaced repetition", "memory scheduler"],
-     importance_tier: "normal",
-     spec_folder: "_sandbox/24--local-llm-query-intelligence/401",
+     filePath: "<absolute path to the file written in step 1>",
+     retentionPolicy: "ephemeral"
    })
    ```
-2. Wait for indexing to complete (the daemon typically auto-indexes within 2 seconds).
-3. Verify the index has the new row:
-   ```
-   memory_stats() → confirm row count incremented by 1
-   ```
+   Capture the returned `parent_id` as `STORED_ID`.
+
+3. Wait ~3 seconds for indexing + embedding.
+
 4. Query with a paraphrase that does NOT share trigger phrases:
    ```
    memory_search({
@@ -76,7 +89,10 @@ The top-3 should include a memory whose content references FSRS or the stored ph
 ## 4. CLEAN-UP
 
 ```
-memory_delete({ parent_id: "<id-from-step-1>" })
+memory_delete({ parent_id: STORED_ID })
 ```
 
-Or leave under `_sandbox/24--local-llm-query-intelligence/401/` and clean the whole sandbox folder at the end of the suite.
+Then remove the on-disk test file:
+```
+rm -rf .opencode/specs/_sandbox/24-401/
+```

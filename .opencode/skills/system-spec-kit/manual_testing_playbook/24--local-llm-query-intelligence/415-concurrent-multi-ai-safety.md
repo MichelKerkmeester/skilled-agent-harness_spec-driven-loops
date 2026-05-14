@@ -32,16 +32,26 @@ This scenario simulates the race and checks the result for coherence.
 
 ### Phase 1 — Pre-seed Memory MCP
 
-Orchestrating AI stores 5 baseline memories (so search returns meaningful results):
+Orchestrating AI stores 5 baseline memories. For each i in 1..5:
 
-```
-for i in 1..5:
-  mcp__spec_kit_memory__memory_save({
-    content: "Pre-seed memory 415-baseline-{i}: local LLM concurrent safety probe baseline.",
-    trigger_phrases: ["concurrent safety baseline 415-{i}"],
-    spec_folder: "_sandbox/24--local-llm-query-intelligence/415",
-  })
-```
+  a. Write `.opencode/specs/_sandbox/24-415-base-{i}/research.md`:
+     ```markdown
+     ---
+     title: "Concurrent safety probe baseline 415-{i}"
+     description: "Pre-seed for concurrent multi-AI safety test."
+     trigger_phrases: ["concurrent safety baseline 415-{i}"]
+     ---
+
+     Pre-seed memory 415-baseline-{i}: local LLM concurrent safety probe baseline.
+     ```
+
+  b. Save it:
+     ```
+     mcp__spec_kit_memory__memory_save({
+       filePath: "<absolute path from step a>",
+       retentionPolicy: "ephemeral"
+     })
+     ```
 
 ### Phase 2 — Launch concurrent reader
 
@@ -74,14 +84,22 @@ External CLI-B (use a different CLI than CLI-A):
 
 ```bash
 codex exec --model "gpt-5.5" -c approval_policy=never --sandbox workspace-write - <<'PROMPT'
-You are <CLI-B>. Wait 3 seconds for CLI-A's reader to start its loop, then fire 10 memory_save calls back-to-back (no delay between them):
+You are <CLI-B>. Wait 3 seconds for CLI-A's reader to start its loop, then fire 10 memory_save calls back-to-back (no delay between them). For each i in 1..10:
 
-  for i in 1..10:
-    mcp__spec_kit_memory__memory_save({
-      content: "Concurrent write 415-write-{i}: testing interleaved access against an active reader.",
-      trigger_phrases: ["concurrent write probe 415-{i}"],
-      spec_folder: "_sandbox/24--local-llm-query-intelligence/415",
-    })
+  a. Write `.opencode/specs/_sandbox/24-415-write-{i}/research.md`:
+     ---
+     title: "Concurrent write probe 415-{i}"
+     description: "Concurrent write test against active reader."
+     trigger_phrases: ["concurrent write probe 415-{i}"]
+     ---
+
+     Concurrent write 415-write-{i}: testing interleaved access against an active reader.
+
+  b. Save:
+     mcp__spec_kit_memory__memory_save({
+       filePath: "<absolute path from step a>",
+       retentionPolicy: "ephemeral"
+     })
 
   Record each save's parent_id + timestamp_ms.
   Return: array of 10 save records as JSON.
@@ -142,6 +160,10 @@ Verdict: PASS — 50/50 reads coherent, 10/10 writes succeeded, 0 errors total.
 
 ## 5. CLEAN-UP
 
+Loop memory_delete over the 15 captured parent_ids (5 pre-seed + 10 writes), then remove on-disk files:
 ```
-mcp__spec_kit_memory__memory_bulk_delete({ spec_folder: "_sandbox/24--local-llm-query-intelligence/415" })
+for ID in [<5 baseline parent_ids> + <10 write parent_ids>]:
+  mcp__spec_kit_memory__memory_delete({ parent_id: ID })
+
+rm -rf .opencode/specs/_sandbox/24-415-*
 ```

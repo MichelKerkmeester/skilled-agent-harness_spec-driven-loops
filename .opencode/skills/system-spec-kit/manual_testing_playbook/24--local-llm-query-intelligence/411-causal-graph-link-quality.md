@@ -35,37 +35,45 @@ The behavior is user-observable: a downstream AI consumer that calls `memory_dri
 The external CLI receives this verbatim:
 
 ```
-You are claude-code (or codex / gemini — pick one per run). I am Claude orchestrating a Memory MCP validation. The local LLM (EmbeddingGemma via llama-cpp) is the embedding backbone. I need you to:
+You are <external-CLI>. I am Claude orchestrating a Memory MCP causal-graph validation. The local LLM (EmbeddingGemma via llama-cpp) is the embedding backbone.
 
-1. Save these three causal-chain memories through mcp__spec_kit_memory__memory_save (one per call):
+1. Write three canonical research-doc files under `.opencode/specs/_sandbox/`. memory_save requires `filePath` to a canonical spec doc; the directory containing the file becomes its spec-folder for grouping.
 
-   Memory A (problem):
-     content: "Memory MCP semantic search returns stale results after a provider switch from hf-local to llama-cpp. Symptoms: top-K contains pre-migration entries with mismatched dimensions."
+   File A — `.opencode/specs/_sandbox/24-411-A/research.md` (problem):
+     ---
+     title: "Stale results after provider switch"
+     description: "Causal chain test — problem step (scenario 411)."
      trigger_phrases: ["stale results after provider switch", "post-migration semantic search"]
-     importance_tier: "normal"
-     spec_folder: "_sandbox/24--local-llm-query-intelligence/411"
+     ---
+     Memory MCP semantic search returns stale results after a provider switch from hf-local to llama-cpp. Symptoms: top-K contains pre-migration entries with mismatched dimensions.
 
-   Memory B (root cause):
-     content: "Provider switches change the embedding dimension and base model. Vectors stored with the old provider are dimensionally incompatible with new queries. The vector-index-store correctly refuses the mismatch but falls back to FTS5, which returns the stale lexical hits."
+   File B — `.opencode/specs/_sandbox/24-411-B/research.md` (root cause):
+     ---
+     title: "Embedding dimension mismatch after switch"
+     description: "Causal chain test — root cause step (scenario 411)."
      trigger_phrases: ["embedding dimension mismatch after switch", "FTS5 fallback masks stale data"]
-     importance_tier: "normal"
-     spec_folder: "_sandbox/24--local-llm-query-intelligence/411"
+     ---
+     Provider switches change the embedding dimension and base model. Vectors stored with the old provider are dimensionally incompatible with new queries. The vector-index-store correctly refuses the mismatch but falls back to FTS5, which returns the stale lexical hits.
 
-   Memory C (mitigation):
-     content: "On detected provider switch, run the auto-migration path: factory.ts triggers re-embedding of all rows into the new profile-keyed sqlite, then deletes the old DB. After migration completes, semantic search returns provider-native results without stale FTS5 fallback."
+   File C — `.opencode/specs/_sandbox/24-411-C/research.md` (mitigation):
+     ---
+     title: "Auto-migration on provider switch"
+     description: "Causal chain test — mitigation step (scenario 411)."
      trigger_phrases: ["auto-migration on provider switch", "re-embed all rows"]
-     importance_tier: "important"
-     spec_folder: "_sandbox/24--local-llm-query-intelligence/411"
+     ---
+     On detected provider switch, run the auto-migration path: factory.ts triggers re-embedding of all rows into the new profile-keyed sqlite, then deletes the old DB. After migration completes, semantic search returns provider-native results without stale FTS5 fallback.
 
-2. Wait 5 seconds for the daemon to index and run the edge-derivation pass.
+2. Call mcp__spec_kit_memory__memory_save once per file (3 calls total), passing each absolute filePath plus `retentionPolicy: "ephemeral"`. Capture the 3 returned parent_ids as A_ID, B_ID, C_ID.
 
-3. Call mcp__spec_kit_memory__memory_causal_stats() and capture the totals.
+3. Wait 5 seconds for the daemon to index + run the edge-derivation pass.
 
-4. Call mcp__spec_kit_memory__memory_causal_link with the three parent IDs you got from step 1; ask it to return causal edges grouped by source memory.
+4. Call mcp__spec_kit_memory__memory_causal_stats() and capture the totals.
 
-5. Return a JSON object with:
+5. Call mcp__spec_kit_memory__memory_causal_link with the three parent IDs A_ID/B_ID/C_ID; ask it to return causal edges grouped by source memory.
+
+6. Return a JSON object with:
    {
-     "memories": [<3 parent IDs>],
+     "memories": [A_ID, B_ID, C_ID],
      "stats_after_save": <causal_stats output>,
      "edges_among_three": [{source, target, confidence, kind}],
      "verdict": "PASS" | "PARTIAL" | "FAIL" with one-line rationale
@@ -109,7 +117,14 @@ The orchestrating Claude (this playbook caller) verifies the external CLI's resp
 ## 4. CLEAN-UP
 
 ```
-mcp__spec_kit_memory__memory_bulk_delete({ parent_ids: [<3 from step 1>] })
+mcp__spec_kit_memory__memory_delete({ parent_id: A_ID })
+mcp__spec_kit_memory__memory_delete({ parent_id: B_ID })
+mcp__spec_kit_memory__memory_delete({ parent_id: C_ID })
 ```
 
-This also removes the edges attached to those memories.
+Then remove the on-disk test files:
+```
+rm -rf .opencode/specs/_sandbox/24-411-A .opencode/specs/_sandbox/24-411-B .opencode/specs/_sandbox/24-411-C
+```
+
+Memory delete also removes the causal edges attached to those memories.

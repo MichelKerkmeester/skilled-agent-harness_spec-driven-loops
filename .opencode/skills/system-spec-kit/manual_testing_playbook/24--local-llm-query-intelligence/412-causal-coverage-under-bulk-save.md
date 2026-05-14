@@ -63,7 +63,7 @@ Topic 4 — chunking + retrieval:
   - "Re-rank stage applies channel diversification and confidence cliff"
   - "MMR diversifies the final top-K to avoid duplicate content"
 
-For each memory, use a unique trigger_phrases array (2 phrases each) drawn from the content. Set importance_tier="normal" and spec_folder="_sandbox/24--local-llm-query-intelligence/412".
+For each of the 20 memories, write a canonical research-doc file at `.opencode/specs/_sandbox/24-412-T<topic>-<n>/research.md` where <topic> is 1-4 and <n> is 1-5. Each file has frontmatter (title from content first words, description "Cluster coverage probe", trigger_phrases drawn from the content) and the content sentence as the body. Then call memory_save({filePath, retentionPolicy:"ephemeral"}) once per file (20 calls). Capture the 20 parent_ids grouped by topic.
 
 After all 20 saves complete, wait 8 seconds for indexing + edge derivation. Then:
 
@@ -109,6 +109,10 @@ diagonal-row-leader check: 4/4 ✓
 
 ## 4. CLEAN-UP
 
+Loop memory_delete over the 20 captured parent_ids, then remove on-disk files:
 ```
-mcp__spec_kit_memory__memory_bulk_delete({ spec_folder: "_sandbox/24--local-llm-query-intelligence/412" })
+for ID in <20 parent_ids>:
+  mcp__spec_kit_memory__memory_delete({ parent_id: ID })
+
+rm -rf .opencode/specs/_sandbox/24-412-*
 ```

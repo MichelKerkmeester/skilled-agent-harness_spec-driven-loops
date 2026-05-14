@@ -30,14 +30,24 @@ This scenario tests that **storage AI ≠ retrieval AI** does NOT degrade recall
 
 ### Phase 1 — Orchestrating AI stores
 
-The orchestrating AI (the one running the playbook) executes:
+The orchestrating AI (the one running the playbook) first writes a canonical research-doc file at `.opencode/specs/_sandbox/24-414/research.md`:
+
+```markdown
+---
+title: "Cross-AI handoff probe (scenario 414)"
+description: "Test memory for cross-AI retrieval validation."
+trigger_phrases: ["cross-AI handoff scenario 414", "shared Memory MCP retrieval probe"]
+---
+
+Cross-AI handoff test: this memory was stored by Claude during validation scenario 414. The retrieval test verifies any MCP-connected AI (Codex, Gemini, claude-code) can find it via memory_search using the trigger phrases below. Active embedding provider should be local-LLM (llama-cpp + EmbeddingGemma).
+```
+
+Then saves it:
 
 ```
 mcp__spec_kit_memory__memory_save({
-  content: "Cross-AI handoff test: this memory was stored by Claude during validation scenario 414. The retrieval test verifies any MCP-connected AI (Codex, Gemini, claude-code) can find it via memory_search using the trigger phrases below. Active embedding provider should be local-LLM (llama-cpp + EmbeddingGemma).",
-  trigger_phrases: ["cross-AI handoff scenario 414", "shared Memory MCP retrieval probe"],
-  importance_tier: "normal",
-  spec_folder: "_sandbox/24--local-llm-query-intelligence/414",
+  filePath: "<absolute path to the file written above>",
+  retentionPolicy: "ephemeral"
 })
 ```
 
@@ -128,4 +138,5 @@ Per CLI:
 
 ```
 mcp__spec_kit_memory__memory_delete({ parent_id: STORED_ID })
+rm -rf .opencode/specs/_sandbox/24-414/
 ```
