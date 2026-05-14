@@ -25,8 +25,9 @@ const COCOINDEX_DAEMON_STDERR_LOG = path.join(
 );
 const DAEMON_STDERR_CAP_BYTES = 200000;
 const CONNECT_TIMEOUT_MS = 60000;
-const DEFAULT_SCENARIOS = Array.from({ length: 15 }, (_, index) => 401 + index);
+export const DEFAULT_SCENARIOS = Array.from({ length: 15 }, (_, index) => 401 + index);
 const execFileAsync = promisify(execFile);
+const DAEMON_ENV_DENYLIST = /^(GITHUB_TOKEN|GITLAB_TOKEN|NPM_TOKEN|GH_TOKEN|AWS_|GCP_|GOOGLE_|AZURE_|SLACK_|DISCORD_|TWILIO_|STRIPE_|SSH_|GPG_|GNUPGHOME|PASSWORD|SECRET)/i;
 
 const sdkRequire = createRequire(path.join(MEMORY_SERVER_ROOT, 'package.json'));
 const { Client } = await import(pathToFileURL(sdkRequire.resolve('@modelcontextprotocol/sdk/client/index.js')));
@@ -34,7 +35,16 @@ const { StdioClientTransport } = await import(
   pathToFileURL(sdkRequire.resolve('@modelcontextprotocol/sdk/client/stdio.js'))
 );
 
-function parseScenarioList(value) {
+function buildDaemonEnv(extras = {}) {
+  const env = {};
+  for (const [key, value] of Object.entries(process.env)) {
+    if (value === undefined || DAEMON_ENV_DENYLIST.test(key)) continue;
+    env[key] = value;
+  }
+  return { ...env, ...extras };
+}
+
+export function parseScenarioList(value) {
   if (!value) return DEFAULT_SCENARIOS;
   const scenarios = [];
   for (const part of value.split(',')) {
@@ -52,7 +62,7 @@ function parseScenarioList(value) {
 }
 
 function parseArgs(argv) {
-  const options = { scenarios: DEFAULT_SCENARIOS };
+  const options = { scenarios: DEFAULT_SCENARIOS, stderrLog: true };
   for (let i = 0; i < argv.length; i += 1) {
     const arg = argv[i];
     if (arg === '--scenarios') {
@@ -60,6 +70,8 @@ function parseArgs(argv) {
       i += 1;
     } else if (arg.startsWith('--scenarios=')) {
       options.scenarios = parseScenarioList(arg.slice('--scenarios='.length));
+    } else if (arg === '--no-stderr-log') {
+      options.stderrLog = false;
     }
   }
   return options;
@@ -115,7 +127,7 @@ function normalizeToolName(server, tool) {
   return tool;
 }
 
-function normalizeArguments(toolName, args) {
+export function normalizeArguments(toolName, args) {
   const normalized = { ...args };
   if (toolName === 'search' && typeof normalized.num_results === 'number' && normalized.limit === undefined) {
     normalized.limit = normalized.num_results;
@@ -130,13 +142,47 @@ export function selectClientForServer(clients, server) {
   return null;
 }
 
-function parseObjectLiteral(source) {
+function decodeSingleQuotedString(inner) {
+  let decoded = '';
+  for (let i = 0; i < inner.length; i += 1) {
+    const ch = inner[i];
+    if (ch !== '\\') {
+      decoded += ch;
+      continue;
+    }
+    i += 1;
+    if (i >= inner.length) {
+      decoded += '\\';
+      break;
+    }
+    const escaped = inner[i];
+    if (escaped === 'n') decoded += '\n';
+    else if (escaped === 'r') decoded += '\r';
+    else if (escaped === 't') decoded += '\t';
+    else if (escaped === 'b') decoded += '\b';
+    else if (escaped === 'f') decoded += '\f';
+    else if (escaped === 'v') decoded += '\v';
+    else if (escaped === '0') decoded += '\0';
+    else decoded += escaped;
+  }
+  return decoded;
+}
+
+export function parseObjectLiteral(source) {
   const trimmed = source.trim();
   if (!trimmed) return {};
   try {
-    return JSON.parse(trimmed);
+    const value = JSON.parse(trimmed);
+    if (!value || typeof value !== 'object' || Array.isArray(value)) {
+      throw new Error('tool arguments are not an object');
+    }
+    return value;
   } catch {
-    const value = Function(`"use strict"; return (${trimmed});`)();
+    const normalized = trimmed
+      .replace(/([{,]\s*)([a-zA-Z_$][a-zA-Z0-9_$]*)\s*:/g, '$1"$2":')
+      .replace(/'((?:[^'\\]|\\.)*?)'/g, (_, inner) => JSON.stringify(decodeSingleQuotedString(inner)))
+      .replace(/,(\s*[}\]])/g, '$1');
+    const value = JSON.parse(normalized);
     if (!value || typeof value !== 'object' || Array.isArray(value)) {
       throw new Error('tool arguments are not an object');
     }
@@ -208,6 +254,9 @@ function responseFailureMessage(response) {
   if (parsed?.status === 'error' || parsed?.status === 'failed') {
     return String(parsed.message ?? `status=${parsed.status}`);
   }
+  if (typeof parsed?.code === 'string' && parsed.code.toLowerCase().includes('error')) {
+    return String(parsed.message ?? parsed.error ?? `code=${parsed.code}`);
+  }
   if (parsed?.ok === false) return String(parsed.message ?? 'ok=false');
   if (parsed?.success === false) return String(parsed.message ?? 'success=false');
   return null;
@@ -265,8 +314,19 @@ function createCappedStderrStream(logPath) {
   };
 }
 
+function createNullStderrDrain() {
+  return {
+    attach(transport) {
+      transport.stderr?.resume();
+    },
+    end() {
+      return Promise.resolve();
+    },
+  };
+}
+
 async function connectSharedClient({ name, transportOptions, stderrLog }) {
-  const stderr = createCappedStderrStream(stderrLog);
+  const stderr = stderrLog ? createCappedStderrStream(stderrLog) : createNullStderrDrain();
   const transport = new StdioClientTransport({
     ...transportOptions,
     stderr: 'pipe',
@@ -329,7 +389,7 @@ async function waitForCocoIndexDaemonIdle({ command, cwd, env, projectRoot, time
   return false;
 }
 
-function percentile(values, p) {
+export function percentile(values, p) {
   if (values.length === 0) return 0;
   const sorted = [...values].sort((a, b) => a - b);
   const index = Math.ceil((p / 100) * sorted.length) - 1;
@@ -433,8 +493,57 @@ async function runLatencyScenario(client) {
   };
 }
 
-async function runGenericScenario(clients, toolNameSets, scenario, markdown) {
-  const calls = parseScenarioToolCalls(markdown);
+export function checkToolAvailability(calls, toolNameSets) {
+  const unavailable = calls
+    .filter((call) => !call.parseError)
+    .find((call) => {
+      const toolNames = toolNameSets[call.server];
+      return !toolNames || !toolNames.has(call.tool);
+    });
+  if (!unavailable) return { available: true };
+  return {
+    available: false,
+    server: unavailable.server,
+    tool: unavailable.tool,
+    reason: `Connected shared daemon does not expose ${unavailable.server}.${unavailable.tool}.`,
+  };
+}
+
+export async function executeScenarioCalls(clients, calls) {
+  const results = [];
+  for (const call of calls.filter((entry) => !entry.parseError)) {
+    const client = selectClientForServer(clients, call.server);
+    if (!client) {
+      results.push({
+        call,
+        ok: false,
+        error: `Shared daemon client for ${call.server} is not connected.`,
+      });
+      continue;
+    }
+    try {
+      const response = await callScenarioTool(client, call);
+      const failureMessage = responseFailureMessage(response);
+      results.push({
+        call,
+        ok: !failureMessage,
+        error: failureMessage || undefined,
+      });
+    } catch (error) {
+      results.push({
+        call,
+        ok: false,
+        error: error instanceof Error ? error.message : String(error),
+      });
+    }
+  }
+  const succeeded = results.filter((result) => result.ok).length;
+  const failed = results.length - succeeded;
+  const firstError = results.find((result) => !result.ok) ?? null;
+  return { results, succeeded, failed, firstError };
+}
+
+function assembleVerdict(scenario, calls, availability, exec) {
   if (calls.length === 0) {
     return {
       scenario,
@@ -444,56 +553,64 @@ async function runGenericScenario(clients, toolNameSets, scenario, markdown) {
     };
   }
 
-  const unavailable = calls.find((call) => {
-    const toolNames = toolNameSets[call.server];
-    return !toolNames || !toolNames.has(call.tool);
-  });
-  if (unavailable) {
+  if (!availability.available) {
     return {
       scenario,
       verdict: 'SKIP',
-      key_metric: `${unavailable.tool} unavailable`,
-      detail: `Connected shared daemon does not expose ${unavailable.server}.${unavailable.tool}.`,
+      key_metric: `${availability.tool} unavailable`,
+      detail: availability.reason,
     };
   }
 
-  let passed = 0;
-  for (const call of calls) {
-    if (call.parseError) {
-      return {
-        scenario,
-        verdict: 'SKIP',
-        key_metric: `${passed}/${calls.length} calls executed`,
-        detail: `Could not parse ${call.tool}: ${call.parseError}`,
-      };
-    }
-    const client = selectClientForServer(clients, call.server);
-    if (!client) {
-      return {
-        scenario,
-        verdict: 'SKIP',
-        key_metric: `${call.server} unavailable`,
-        detail: `Shared daemon client for ${call.server} is not connected.`,
-      };
-    }
-    const response = await callScenarioTool(client, call);
-    const failureMessage = responseFailureMessage(response);
-    if (failureMessage) {
-      return {
-        scenario,
-        verdict: 'FAIL',
-        key_metric: `${passed}/${calls.length} calls succeeded`,
-        detail: `${call.tool} returned an error response: ${failureMessage}`,
-      };
-    }
-    passed += 1;
+  const parseErrors = calls.filter((call) => call.parseError);
+  const firstParseError = parseErrors[0];
+  if (!exec || exec.results.length === 0) {
+    return {
+      scenario,
+      verdict: 'SKIP',
+      key_metric: `0/${calls.length} calls executed`,
+      detail: firstParseError
+        ? `Could not parse ${firstParseError.tool}: ${firstParseError.parseError}`
+        : 'No executable MCP calls in TEST EXECUTION.',
+    };
   }
+
+  if (exec.failed > 0) {
+    const failed = exec.firstError;
+    const reason = failed?.error ?? 'unknown error';
+    const tool = failed?.call?.tool ?? 'unknown';
+    const parseDetail = parseErrors.length > 0 ? `; parse errors: ${parseErrors.length}` : '';
+    return {
+      scenario,
+      verdict: 'FAIL',
+      key_metric: `${exec.succeeded}/${calls.length} calls succeeded; first failure: ${tool}(${reason})`,
+      detail: `${tool} returned an error response: ${reason}${parseDetail}`,
+    };
+  }
+
+  if (parseErrors.length > 0) {
+    return {
+      scenario,
+      verdict: 'PARTIAL',
+      key_metric: `${exec.succeeded}/${calls.length} calls succeeded`,
+      detail: `${exec.succeeded}/${exec.results.length} executable calls succeeded; ${parseErrors.length} parse errors; first parse error: ${firstParseError.tool}(${firstParseError.parseError})`,
+    };
+  }
+
   return {
     scenario,
     verdict: 'PASS',
-    key_metric: `${passed}/${calls.length} calls succeeded`,
+    key_metric: `${exec.succeeded}/${calls.length} calls succeeded`,
     detail: 'All mechanically parsed MCP calls completed through the shared daemon.',
   };
+}
+
+async function runGenericScenario(clients, toolNameSets, scenario, markdown) {
+  const calls = parseScenarioToolCalls(markdown);
+  const availability = checkToolAvailability(calls, toolNameSets);
+  if (!availability.available) return assembleVerdict(scenario, calls, availability, null);
+  const exec = await executeScenarioCalls(clients, calls);
+  return assembleVerdict(scenario, calls, availability, exec);
 }
 
 async function runScenario(clients, toolNameSets, scenario) {
@@ -535,21 +652,19 @@ async function main() {
         command: process.execPath,
         args: ['.opencode/bin/spec-kit-memory-launcher.cjs'],
         cwd: REPO_ROOT,
-        env: {
-          ...process.env,
+        env: buildDaemonEnv({
           SPECKIT_RETRY_ENABLED: 'false',
-        },
+        }),
       },
-      stderrLog: MEMORY_DAEMON_STDERR_LOG,
+      stderrLog: options.stderrLog ? MEMORY_DAEMON_STDERR_LOG : null,
     });
     connections.push(memoryConnection);
 
     const cocoindexCommand = path.join(REPO_ROOT, '.opencode/skills/mcp-coco-index/mcp_server/.venv/bin/ccc');
-    const cocoindexEnv = {
-      ...process.env,
+    const cocoindexEnv = buildDaemonEnv({
       COCOINDEX_CODE_ROOT_PATH: REPO_ROOT,
       COCOINDEX_CODE_MCP_REQUEST_TIMEOUT_MS: '120000',
-    };
+    });
     const cocoindexConnection = await connectSharedClient({
       name: 'cocoindex-code',
       transportOptions: {
@@ -558,7 +673,7 @@ async function main() {
         cwd: REPO_ROOT,
         env: cocoindexEnv,
       },
-      stderrLog: COCOINDEX_DAEMON_STDERR_LOG,
+      stderrLog: options.stderrLog ? COCOINDEX_DAEMON_STDERR_LOG : null,
     });
     connections.push(cocoindexConnection);
     if (cocoindexConnection.client) {

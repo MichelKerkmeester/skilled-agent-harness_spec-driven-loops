@@ -123,6 +123,7 @@ The command exited 0. It did not crash either daemon, and it wrote one TSV row f
 |----------|-----|
 | Resolve SDK imports relative to `@spec-kit/mcp-server` | Bare ESM imports do not resolve from `_sandbox` because the repo root has no matching `node_modules`. |
 | Use one transport per MCP surface | This preserves the architectural point of 045: shared daemons, no child agents, no per-scenario MCP server stack. Proxying CocoIndex through memory would reduce one client connection, but it would couple two MCP surfaces and hide CocoIndex transport failures behind memory diagnostics. |
+| Spawn a second StdioClientTransport for cocoindex_code instead of proxying through memory daemon | Two transports keeps each daemon's tool surface authoritative — cocoindex_code listTools() includes `search` and `cocoindex_refresh_index` which the memory daemon will never expose. Proxying would require maintaining a shadow tool registry inside the memory daemon, double the maintenance surface. Cost: two stderr streams + one extra subprocess startup. Acceptable for evidence tooling. |
 | Route by `call.server` | Memory and CocoIndex expose different tool namespaces; per-server routing prevents false unavailable-tool decisions. |
 | Add dedicated 410 automation | 410 is a clean memory-search scenario and gives a real positive smoke signal for the one-daemon path. |
 | Cap daemon stderr logging | Startup scans can produce large background logs; capped evidence is enough to debug startup without bloating the packet. |
@@ -172,6 +173,12 @@ Run a targeted smoke:
 node _sandbox/24--local-llm-query-intelligence/evidence/run-mcp-direct.mjs --scenarios 403,404,407,410 </dev/null
 ```
 
+Disable daemon stderr evidence capture when paths, queries, or stack traces are sensitive:
+
+```bash
+node _sandbox/24--local-llm-query-intelligence/evidence/run-mcp-direct.mjs --no-stderr-log --scenarios 403,404,407,410 </dev/null
+```
+
 Read results:
 
 ```bash
@@ -188,4 +195,5 @@ cat _sandbox/24--local-llm-query-intelligence/evidence/run-2026-05-14-shared-dae
 2. **The parser is intentionally conservative.** It handles direct MCP call blocks and memory tool calls, but narrative validation scenarios still SKIP.
 3. **410 is system-load sensitive.** The runner records cold and steady metrics separately; compare steady-state values for pass/fail.
 4. **Daemon stderr is capped.** The evidence log is useful for startup diagnosis, not a complete daemon transcript.
+5. **Daemon stderr logs may capture sensitive output.** Capped at 200KB per daemon; if the daemon prints query strings, file paths, or stack traces, they land in `_sandbox/.../evidence/run-2026-05-14-shared-daemon.{daemon,cocoindex}.stderr.log`. Operators with sensitivity concerns can pass `--no-stderr-log` to disable capture (added in same commit as this note).
 <!-- /ANCHOR:limitations -->

@@ -1,9 +1,34 @@
 import { describe, expect, it } from 'vitest';
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 
-import {
+function findRepoRoot(start: string): string {
+  let current = start;
+  while (current !== path.dirname(current)) {
+    const runner = path.join(
+      current,
+      '_sandbox/24--local-llm-query-intelligence/evidence/run-mcp-direct.mjs',
+    );
+    if (fs.existsSync(runner)) return current;
+    current = path.dirname(current);
+  }
+  throw new Error('Could not locate run-mcp-direct.mjs from test path');
+}
+
+const repoRoot = findRepoRoot(path.dirname(fileURLToPath(import.meta.url)));
+const runnerPath = path.join(repoRoot, '_sandbox/24--local-llm-query-intelligence/evidence/run-mcp-direct.mjs');
+const {
+  DEFAULT_SCENARIOS,
+  checkToolAvailability,
+  executeScenarioCalls,
+  normalizeArguments,
+  parseObjectLiteral,
+  parseScenarioList,
   parseScenarioToolCalls,
+  percentile,
   selectClientForServer,
-} from '../../../../../_sandbox/24--local-llm-query-intelligence/evidence/run-mcp-direct.mjs';
+} = await import(pathToFileURL(runnerPath).href);
 
 describe('045 shared daemon runner helpers', () => {
   it('parses MCP playbook calls with unquoted object keys and num_results aliases', () => {
@@ -51,5 +76,77 @@ memory_search({ query: "latency baseline", limit: 5 })
     expect(selectClientForServer({ spec_kit_memory, cocoindex_code }, 'spec_kit_memory')).toBe(spec_kit_memory);
     expect(selectClientForServer({ spec_kit_memory, cocoindex_code }, 'cocoindex_code')).toBe(cocoindex_code);
     expect(selectClientForServer({ spec_kit_memory, cocoindex_code }, 'unknown_server')).toBeNull();
+  });
+
+  it('routes via primary daemon keys (spec_kit_memory + cocoindex_code)', () => {
+    const memoryClient = { name: 'mem' };
+    const cocoindexClient = { name: 'coco' };
+    const clients = { spec_kit_memory: memoryClient, cocoindex_code: cocoindexClient };
+
+    expect(selectClientForServer(clients, 'spec_kit_memory')).toBe(memoryClient);
+    expect(selectClientForServer(clients, 'cocoindex_code')).toBe(cocoindexClient);
+    expect(selectClientForServer(clients, 'unknown')).toBeNull();
+  });
+
+  it('parses scenario ranges and singletons', () => {
+    expect(parseScenarioList('401-403, 410')).toEqual([401, 402, 403, 410]);
+  });
+
+  it('returns default scenarios for an empty scenario list', () => {
+    expect(parseScenarioList('')).toEqual(DEFAULT_SCENARIOS);
+    expect(DEFAULT_SCENARIOS).toHaveLength(15);
+  });
+
+  it('normalizes search num_results aliases without changing memory_search limits', () => {
+    expect(normalizeArguments('search', { query: 'x', num_results: 10 })).toEqual({
+      query: 'x',
+      limit: 10,
+    });
+    expect(normalizeArguments('memory_search', { query: 'x', limit: 5 })).toEqual({
+      query: 'x',
+      limit: 5,
+    });
+  });
+
+  it('parses object literals with unquoted keys', () => {
+    expect(parseObjectLiteral('{query: "x", limit: 5}')).toEqual({ query: 'x', limit: 5 });
+  });
+
+  it('parses single-quoted object literals with trailing commas', () => {
+    expect(parseObjectLiteral("{query: 'x', limit: 5,}")).toEqual({ query: 'x', limit: 5 });
+  });
+
+  it('calculates percentiles and handles empty inputs', () => {
+    expect(percentile([10, 20, 30, 40, 50], 95)).toBe(50);
+    expect(percentile([], 95)).toBe(0);
+  });
+
+  it('checks tool availability and executes every runnable call before aggregating failures', async () => {
+    const calls = [
+      { server: 'spec_kit_memory', tool: 'memory_search', arguments: { query: 'ok' } },
+      { server: 'cocoindex_code', tool: 'search', arguments: { query: 'bad' } },
+    ];
+    const availability = checkToolAvailability(calls, {
+      spec_kit_memory: new Set(['memory_search']),
+      cocoindex_code: new Set(['search']),
+    });
+    const clients = {
+      spec_kit_memory: {
+        callTool: async () => ({ content: [{ type: 'text', text: '{"success":true}' }] }),
+      },
+      cocoindex_code: {
+        callTool: async () => ({ content: [{ type: 'text', text: '{"status":"failed","message":"boom"}' }] }),
+      },
+    };
+
+    expect(availability).toEqual({ available: true });
+    await expect(executeScenarioCalls(clients, calls)).resolves.toMatchObject({
+      succeeded: 1,
+      failed: 1,
+      firstError: {
+        call: { tool: 'search' },
+        error: 'boom',
+      },
+    });
   });
 });

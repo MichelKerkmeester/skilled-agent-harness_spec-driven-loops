@@ -93,7 +93,7 @@ All under `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/01
 | **042** CocoIndex refresh split | ✅ shipped | default `refresh_index=false` + new `cocoindex_refresh_index` MCP tool + ADR-004; 3 pytest PASS |
 | **043** suite revalidation | ✅ shipped | scaffolded + surfaced codex-MCP-daemon Metal-contention architectural finding |
 | **044** template-contract divergence | ✅ shipped | memory_save loosened for canonical spec docs (Path B: when sufficiency PASS + specDocHealth.pass + known doc type); 59-test regression PASS |
-| **045** shared-daemon suite runner | ✅ shipped | Node MCP-client runner now connects memory and CocoIndex MCP surfaces; smoke: 403/404/407/410 PASS |
+| **045** shared-daemon suite runner | ✅ shipped | second cocoindex_code StdioClientTransport + selectClientForServer routing; smoke 403/404/407/410 all PASS (steady p50≈7ms); P1 cleanup + connect timeout closed via deep-review 048 |
 | **046** handover anchor naming | ✅ shipped | router + spec-doc-structure aligned on `session-notes`; 50-test PASS; live handover routes correctly |
 | **047** V8 dominates relaxation | ✅ shipped | doc-type thresholds (handover 5/+4, ADR/impl-summary 6/+4) + parent-child ancestry allowlist; live 014 handover validator: `QUALITY_GATE_PASS`; 13/13 vitest |
 
@@ -163,7 +163,7 @@ All under `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/01
 
 ### 045 SHIPPED — CocoIndex MCP wired
 
-Scenarios 403/404/407 now run through the dedicated `cocoindex_code` MCP client, while 410 continues to run through `spec_kit_memory`. The post-wiring smoke set reports 403/404/407/410 PASS.
+Resolved. Commit `cddfbe4aa` wired the second `cocoindex_code` StdioClientTransport and `selectClientForServer` routing, so scenarios 403/404/407 now run through the dedicated CocoIndex MCP client while 410 continues through `spec_kit_memory`. Commit `7d2a21013` closed the P1 cleanup and connect-timeout findings from deep-review 048, and `b74e0c95e` closed the bounded 048 deep-review findings. The post-wiring smoke set reports 403/404/407/410 PASS.
 
 ### 046 PARTIAL → resolved by 047
 
