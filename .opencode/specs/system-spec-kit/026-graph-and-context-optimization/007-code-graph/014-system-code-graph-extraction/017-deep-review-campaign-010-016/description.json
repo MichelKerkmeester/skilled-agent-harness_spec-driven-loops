@@ -1,0 +1,12 @@
+{
+  "title": "017: Deep-Review Campaign 010-016",
+  "description": "Deep-review of the 7-packet code-graph remediation campaign shipped 2026-05-14. 10 iterations, CONDITIONAL verdict, 1 P1 + 19 P2 findings.",
+  "status": "complete",
+  "urgency": "normal",
+  "derived": {
+    "last_active_child_id": null,
+    "phase_count": 0,
+    "completion_percentage": 100
+  },
+  "tags": ["deep-review", "code-graph", "mk-code-index", "mcp-rename", "assessment"]
+}

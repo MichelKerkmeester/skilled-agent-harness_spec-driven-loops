@@ -1,0 +1,23 @@
+{
+  "id": "017-deep-review-campaign-010-016",
+  "title": "017: Deep-Review Campaign 010-016",
+  "status": "complete",
+  "parentPhase": "014-system-code-graph-extraction",
+  "derived": {
+    "last_active_child_id": null,
+    "phase_count": 0,
+    "completion_percentage": 100
+  },
+  "review": {
+    "verdict": "CONDITIONAL",
+    "hasAdvisories": true,
+    "iterations": 10,
+    "convergedAtIteration": 10,
+    "stopReason": "maxIterationsReached",
+    "p0": 0,
+    "p1": 1,
+    "p2": 19
+  },
+  "createdAt": "2026-05-14T18:33:47Z",
+  "updatedAt": "2026-05-14T21:00:00Z"
+}
