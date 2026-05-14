@@ -20,7 +20,7 @@ import { spawnSync } from 'node:child_process';
 import { existsSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { describe, expect, it } from 'vitest';
+import { afterAll, describe, expect, it } from 'vitest';
 import { findAdvisorWorkspaceRoot } from '../../lib/utils/workspace-root.js';
 
 const here = dirname(fileURLToPath(import.meta.url));
@@ -44,7 +44,25 @@ function runBridge(input: string): { status: number | null; stdout: string; stde
   };
 }
 
+function restoreNativeGeneration(): void {
+  spawnSync('node', ['--input-type=module', '-e', `
+    import { publishSkillGraphGeneration } from './.opencode/skills/system-skill-advisor/mcp_server/dist/system-skill-advisor/mcp_server/lib/freshness/generation.js';
+    publishSkillGraphGeneration({
+      workspaceRoot: process.cwd(),
+      reason: 'plugin-bridge-test-cleanup',
+      state: 'live',
+    });
+  `], {
+    cwd: repoRoot,
+    encoding: 'utf8',
+  });
+}
+
 describe('spec-kit skill advisor plugin bridge smoke (F-020-D5-04)', () => {
+  afterAll(() => {
+    restoreNativeGeneration();
+  });
+
   it('exists at the canonical source-of-truth path', () => {
     expect(existsSync(bridgePath)).toBe(true);
   });

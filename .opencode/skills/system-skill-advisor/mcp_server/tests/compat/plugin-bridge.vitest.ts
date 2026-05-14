@@ -6,7 +6,7 @@ import { spawnSync } from 'node:child_process';
 import { readFileSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { describe, expect, it } from 'vitest';
+import { afterAll, describe, expect, it } from 'vitest';
 import { findAdvisorWorkspaceRoot } from '../../lib/utils/workspace-root.js';
 
 const here = dirname(fileURLToPath(import.meta.url));
@@ -34,7 +34,25 @@ function parseBridge(stdout: string): { status: string; brief: string | null; me
   return JSON.parse(stdout.trim());
 }
 
+function restoreNativeGeneration(): void {
+  spawnSync('node', ['--input-type=module', '-e', `
+    import { publishSkillGraphGeneration } from './.opencode/skills/system-skill-advisor/mcp_server/dist/system-skill-advisor/mcp_server/lib/freshness/generation.js';
+    publishSkillGraphGeneration({
+      workspaceRoot: process.cwd(),
+      reason: 'plugin-bridge-test-cleanup',
+      state: 'live',
+    });
+  `], {
+    cwd: repoRoot,
+    encoding: 'utf8',
+  });
+}
+
 describe('spec-kit skill advisor plugin bridge compat path', () => {
+  afterAll(() => {
+    restoreNativeGeneration();
+  });
+
   it('publishes one effective-threshold contract for whichever bridge route is active', () => {
     const result = runBridge({ prompt: 'save this conversation context to memory' });
     expect(result.status).toBe(0);
