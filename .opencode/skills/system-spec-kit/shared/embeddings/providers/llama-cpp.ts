@@ -39,38 +39,45 @@ interface LlamaCppOptions {
   timeout?: number;
 }
 
-interface NodeLlamaCppModule {
+export interface NodeLlamaCppModule {
   getLlama: () => Promise<LlamaRuntime>;
 }
 
-interface LlamaRuntime {
+export interface LlamaRuntime {
   loadModel: (options: Record<string, unknown>) => Promise<LlamaModel>;
   gpu?: string;
 }
 
-interface LlamaModel {
+export interface LlamaModel {
   createEmbeddingContext: (options?: Record<string, unknown>) => Promise<LlamaEmbeddingContext>;
   embeddingVectorSize?: number;
+  trainContextSize?: number;
+  tokenize?: (text: string) => unknown[];
+  detokenize?: (tokens: unknown[]) => string;
   dispose?: () => Promise<void>;
 }
 
-interface LlamaEmbeddingContext {
+export interface LlamaEmbeddingContext {
   getEmbeddingFor: (input: string) => Promise<{ vector: readonly number[] }>;
   dispose?: () => Promise<void>;
 }
 
-interface LlamaCppRuntimeState {
+export interface LlamaCppRuntimeState {
   llama: LlamaRuntime;
   model: LlamaModel;
   context: LlamaEmbeddingContext;
   modelPath: string;
   loadTimeMs: number;
   gpu: string | null;
+  tokenBudget: number;
+  contextSize: number;
 }
 
 let cachedRuntime: LlamaCppRuntimeState | null = null;
 let runtimePromise: Promise<LlamaCppRuntimeState> | null = null;
 let runtimePromisePath: string | null = null;
+let testRuntimeOverride: LlamaCppRuntimeState | null = null;
+let testNodeLlamaCppModule: NodeLlamaCppModule | null = null;
 
 interface LlamaCppAvailability {
   available: boolean;
@@ -130,6 +137,10 @@ function resolveGpuLayers(): number | 'auto' | 'max' {
 }
 
 async function loadNodeLlamaCpp(): Promise<NodeLlamaCppModule> {
+  if (testNodeLlamaCppModule) {
+    return testNodeLlamaCppModule;
+  }
+
   try {
     const moduleName = 'node-llama-cpp';
     const mod = await import(moduleName) as unknown;
@@ -193,6 +204,9 @@ async function ensureReadableModel(modelPath: string): Promise<void> {
 }
 
 async function loadRuntime(modelPath: string): Promise<LlamaCppRuntimeState> {
+  if (testRuntimeOverride) {
+    return testRuntimeOverride;
+  }
   if (cachedRuntime && cachedRuntime.modelPath === modelPath) {
     return cachedRuntime;
   }
@@ -212,10 +226,14 @@ async function loadRuntime(modelPath: string): Promise<LlamaCppRuntimeState> {
       embedding: true,
       gpuLayers: resolveGpuLayers(),
     });
+    const trainContextSize = model.trainContextSize ?? 2048;
     const context = await model.createEmbeddingContext({
-      contextSize: 512,
-      batchSize: 512,
+      contextSize: 'auto',
+      minContextSize: 512,
+      maxContextSize: trainContextSize,
+      batchSize: Math.min(512, trainContextSize),
     });
+    const tokenBudget = Math.floor(trainContextSize * 0.9);
 
     const runtime = {
       llama,
@@ -224,6 +242,8 @@ async function loadRuntime(modelPath: string): Promise<LlamaCppRuntimeState> {
       modelPath,
       loadTimeMs: Date.now() - start,
       gpu: typeof llama.gpu === 'string' ? llama.gpu : null,
+      tokenBudget,
+      contextSize: trainContextSize,
     };
     cachedRuntime = runtime;
     return runtime;
@@ -335,6 +355,15 @@ export class LlamaCppProvider implements IEmbeddingProvider {
 
     try {
       const runtime = await this.getRuntime();
+      if (typeof runtime.model.tokenize !== 'function' || typeof runtime.model.detokenize !== 'function') {
+        throw new Error('llama-cpp model tokenizer is unavailable; cannot enforce token budget');
+      }
+      const tokens = runtime.model.tokenize(inputText);
+      if (tokens.length > runtime.tokenBudget) {
+        console.warn(`[llama-cpp] Text ${tokens.length} tokens exceeds budget ${runtime.tokenBudget}, truncating`);
+        const truncated = tokens.slice(0, runtime.tokenBudget);
+        inputText = runtime.model.detokenize(truncated);
+      }
       const embedding = await withTimeout(
         runtime.context.getEmbeddingFor(inputText),
         this.timeout,
@@ -410,3 +439,23 @@ export class LlamaCppProvider implements IEmbeddingProvider {
     return 'llama-cpp';
   }
 }
+
+function resetRuntimeForTesting(): void {
+  cachedRuntime = null;
+  runtimePromise = null;
+  runtimePromisePath = null;
+  testRuntimeOverride = null;
+  testNodeLlamaCppModule = null;
+}
+
+export const __llamaCppTestables = {
+  DEFAULT_MODEL_PATH,
+  loadRuntime,
+  resetRuntimeForTesting,
+  setRuntimeOverride(runtime: LlamaCppRuntimeState | null): void {
+    testRuntimeOverride = runtime;
+  },
+  setNodeLlamaCppModule(module: NodeLlamaCppModule | null): void {
+    testNodeLlamaCppModule = module;
+  },
+};
