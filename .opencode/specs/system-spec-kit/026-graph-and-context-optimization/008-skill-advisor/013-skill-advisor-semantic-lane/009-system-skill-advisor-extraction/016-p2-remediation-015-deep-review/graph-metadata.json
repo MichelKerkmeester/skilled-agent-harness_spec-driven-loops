@@ -4,7 +4,7 @@
   "title": "Close 015 deep-review P2 advisories",
   "status": "complete",
   "derived": {
-    "last_active_at": "2026-05-14T21:36:00Z",
+    "last_active_at": "2026-05-14T21:42:00Z",
     "last_active_child_id": null,
     "trigger_phrases": [
       "013/009/016",

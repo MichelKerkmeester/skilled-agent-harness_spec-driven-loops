@@ -11,8 +11,8 @@ _memory:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/013-skill-advisor-semantic-lane/009-system-skill-advisor-extraction/016-p2-remediation-015-deep-review"
     last_updated_at: "2026-05-14T21:30:00Z"
     last_updated_by: "codex"
-    recent_action: "Remediation verified"
-    next_safe_action: "Commit and push"
+    recent_action: "Remediation committed and pushed"
+    next_safe_action: "None"
     blockers: []
     key_files:
       - "plan.md"
@@ -58,7 +58,7 @@ This plan closes the P2 ledger without changing the 015 rename boundary. The imp
 - [x] All 11 scoped items fixed or explicitly documented.
 - [x] Advisor Vitest passes with at least 291 tests.
 - [x] Packet 016 and parent 013/009 strict validation pass.
-- [ ] Commit and push complete on `main`.
+- [x] Commit and push complete on `main`.
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -122,7 +122,7 @@ Required inventories completed:
 - [x] Run advisor build and test suite.
 - [x] Run packet 016 strict validation.
 - [x] Run parent 013/009 strict validation.
-- [ ] Commit and push.
+- [x] Commit and push.
 <!-- /ANCHOR:phases -->
 
 ---
