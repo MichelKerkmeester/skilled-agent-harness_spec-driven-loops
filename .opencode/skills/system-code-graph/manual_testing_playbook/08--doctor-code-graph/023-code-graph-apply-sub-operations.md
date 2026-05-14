@@ -1,0 +1,81 @@
+---
+title: "023 — code_graph_apply sub-operations (rescan, prune-excludes, repair-nodes)"
+description: "Verify each of the 5 code_graph_apply operations executes its pre/post gold-query battery and rollback semantics correctly."
+trigger_phrases:
+  - "023 apply sub-operations"
+  - "code graph apply rescan prune repair"
+importance_tier: "important"
+contextType: "verification"
+---
+
+# Scenario 023 — `code_graph_apply` sub-operations
+
+> **Coverage gap closed (F018):** the existing playbook scenario 015 covers `doctor code-graph` route policy but not the apply tool's individual operations. This scenario exercises each of `rescan`, `prune-excludes`, `repair-nodes`, `recover-sqlite-corruption`, `rollback-bad-apply` to confirm the gate-then-apply-then-verify lifecycle.
+
+## Preconditions
+
+- Code graph index in any state (apply paths can recover from stale/error states).
+- Working DB backup exists (apply-mode writes one before destructive operations).
+
+## Steps
+
+1. **Dry-run rescan** (safe, no mutation):
+   ```jsonc
+   mcp__mk_code_index__code_graph_apply({
+     operation: "rescan",
+     dryRun: true
+   })
+   ```
+   Expected: returns the gold-query battery pre-state without performing the rescan. `status:"dry_run_complete"` or equivalent.
+
+2. **prune-excludes classification** (no mutation; lists candidates):
+   ```jsonc
+   mcp__mk_code_index__code_graph_apply({
+     operation: "prune-excludes",
+     excludePatterns: ["**/__tests__/**", "**/*.test.ts"],
+     lowTierOptIn: false
+   })
+   ```
+   Expected: returns classification of supplied patterns (which files would be pruned, which are protected, tier ranking). Without `lowTierOptIn:true`, low-tier patterns are reported but not applied.
+
+3. **repair-nodes preflight** (without crash-root-cause flag):
+   ```jsonc
+   mcp__mk_code_index__code_graph_apply({
+     operation: "repair-nodes",
+     quarantineOlderThanDays: 7
+   })
+   ```
+   Expected: returns `requiredAction:"set_crash_root_cause_addressed"` or equivalent refusal. `repair-nodes` is gated on `crashRootCauseAddressed:true` to prevent re-parsing files that are in parser_skip_list for valid reasons.
+
+4. **recover-sqlite-corruption preflight** (without `confirm:true`):
+   ```jsonc
+   mcp__mk_code_index__code_graph_apply({
+     operation: "recover-sqlite-corruption"
+   })
+   ```
+   Expected: returns refusal requiring `confirm:true`. Hard-stale recovery is destructive and must be acknowledged.
+
+5. **rollback-bad-apply** (only valid after a previous apply has been recorded):
+   ```jsonc
+   mcp__mk_code_index__code_graph_status({})
+   // Read apply.lastResult; if a recent apply exists:
+   mcp__mk_code_index__code_graph_apply({
+     operation: "rollback-bad-apply",
+     dryRun: true
+   })
+   ```
+   Expected: dry-run returns the rollback target (the prior baseline) without applying. Live rollback restores prior DB state.
+
+## Pass criteria
+
+| # | Operation | Check | Pass |
+|---|-----------|-------|------|
+| 1 | rescan dry-run | Returns pre-battery state, no mutation | ☐ |
+| 2 | prune-excludes | Classifies patterns without applying | ☐ |
+| 3 | repair-nodes | Refuses without crashRootCauseAddressed | ☐ |
+| 4 | recover-sqlite-corruption | Refuses without confirm | ☐ |
+| 5 | rollback-bad-apply | Dry-run reports prior baseline | ☐ |
+
+## Notes
+
+Tests `mcp_server/handlers/apply.ts` → `mcp_server/lib/apply-mode/{rescan,prune,repair,recovery,rollback}.ts`. Each operation runs the gold-query battery before AND after (verify via `apply.batteryPassRate` in `code_graph_status` post-apply).

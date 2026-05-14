@@ -132,6 +132,7 @@ Operators may dispatch sub-agents in parallel waves for independent scenarios, e
 | ID | Scenario | File |
 | --- | --- | --- |
 | 011 | tool call shape validation (authoritative tool list: `mcp_server/tool-schemas.ts` `CODE_GRAPH_TOOL_SCHEMAS` + `TOOL_DEFINITIONS` alias) | [011-tool-call-shape-validation.md](./06--mcp-tool-surface/011-tool-call-shape-validation.md) |
+| 022 | code_graph_query blast_radius multi-subject + transitive (F018 coverage) | [022-code-graph-query-blast-radius.md](./06--mcp-tool-surface/022-code-graph-query-blast-radius.md) |
 
 ---
 
@@ -142,6 +143,7 @@ Operators may dispatch sub-agents in parallel waves for independent scenarios, e
 | 012 | ccc_reindex binary shell out | [012-ccc-reindex-binary-shell-out.md](./07--ccc-integration/012-ccc-reindex-binary-shell-out.md) |
 | 013 | ccc_feedback jsonl append | [013-ccc-feedback-jsonl-append.md](./07--ccc-integration/013-ccc-feedback-jsonl-append.md) |
 | 014 | ccc_status availability probe | [014-ccc-status-availability-probe.md](./07--ccc-integration/014-ccc-status-availability-probe.md) |
+| 024 | detect_changes with multi-file unified diff (F018 coverage) | [024-detect-changes-multi-file-diff.md](./03--detect-changes/024-detect-changes-multi-file-diff.md) |
 
 ---
 
@@ -150,6 +152,7 @@ Operators may dispatch sub-agents in parallel waves for independent scenarios, e
 | ID | Scenario | File |
 | --- | --- | --- |
 | 015 | doctor apply mode policy | [015-doctor-apply-mode-policy.md](./08--doctor-code-graph/015-doctor-apply-mode-policy.md) |
+| 023 | code_graph_apply sub-operations rescan/prune/repair (F018 coverage) | [023-code-graph-apply-sub-operations.md](./08--doctor-code-graph/023-code-graph-apply-sub-operations.md) |
 
 ---
 
