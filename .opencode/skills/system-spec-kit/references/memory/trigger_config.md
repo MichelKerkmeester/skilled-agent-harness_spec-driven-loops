@@ -82,7 +82,7 @@ The `memory_match_triggers` MCP tool provides fast trigger phrase matching witho
 
 ```typescript
 // Fast trigger matching (<50ms) - no embeddings required
-const result = await spec_kit_memory_memory_match_triggers({
+const result = await mcp__mk_spec_memory__memory_match_triggers({
   prompt: "I want to save context for this session",
   limit: 3  // Maximum matching spec-doc records to return
 });
@@ -379,7 +379,7 @@ Before deploying custom triggers:
 - [generate-context.ts](../../scripts/memory/generate-context.ts) - Context generation script
 
 ### Related Skills
-- `spec_kit_memory` - Integrated MCP tools for context preservation
+- `mk-spec-memory` - Integrated MCP tools for context preservation
 
 ---
 

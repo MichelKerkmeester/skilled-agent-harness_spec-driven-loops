@@ -137,7 +137,9 @@ export function normalizeArguments(toolName, args) {
 }
 
 export function selectClientForServer(clients, server) {
-  if (server === 'spec_kit_memory') return clients.spec_kit_memory ?? clients.memory ?? null;
+  if (server === 'mk_spec_memory' || server === 'mk-spec-memory') {
+    return clients.mk_spec_memory ?? clients['mk-spec-memory'] ?? clients.memory ?? null;
+  }
   if (server === 'cocoindex_code') return clients.cocoindex_code ?? clients.cocoindex ?? null;
   return null;
 }
@@ -200,7 +202,7 @@ export function parseScenarioToolCalls(markdown) {
     const closeIndex = findMatchingParen(execution, openIndex);
     if (closeIndex < 0) continue;
     const argsSource = execution.slice(openIndex + 1, closeIndex);
-    const server = match[2] || 'spec_kit_memory';
+    const server = match[2] || 'mk_spec_memory';
     const tool = normalizeToolName(server, match[3] || match[4]);
     try {
       calls.push({
@@ -624,8 +626,8 @@ async function runScenario(clients, toolNameSets, scenario) {
     };
   }
   const markdown = fs.readFileSync(file, 'utf8');
-  if (scenario === 410 && toolNameSets.spec_kit_memory?.has('memory_search')) {
-    return { scenario, ...(await runLatencyScenario(clients.spec_kit_memory)) };
+  if (scenario === 410 && toolNameSets.mk_spec_memory?.has('memory_search')) {
+    return { scenario, ...(await runLatencyScenario(clients.mk_spec_memory)) };
   }
   return runGenericScenario(clients, toolNameSets, scenario, markdown);
 }
@@ -647,10 +649,10 @@ async function main() {
   const connections = [];
   try {
     const memoryConnection = await connectSharedClient({
-      name: 'spec-kit-memory',
+      name: 'mk-spec-memory',
       transportOptions: {
         command: process.execPath,
-        args: ['.opencode/bin/spec-kit-memory-launcher.cjs'],
+        args: ['.opencode/bin/mk-spec-memory-launcher.cjs'],
         cwd: REPO_ROOT,
         env: buildDaemonEnv({
           SPECKIT_RETRY_ENABLED: 'false',
@@ -693,11 +695,11 @@ async function main() {
     }
 
     const clients = {
-      spec_kit_memory: memoryConnection.client,
+      mk_spec_memory: memoryConnection.client,
       cocoindex_code: cocoindexConnection.client,
     };
     const toolNameSets = {
-      spec_kit_memory: memoryConnection.toolNames,
+      mk_spec_memory: memoryConnection.toolNames,
       cocoindex_code: cocoindexConnection.toolNames,
     };
     for (const scenario of options.scenarios) {

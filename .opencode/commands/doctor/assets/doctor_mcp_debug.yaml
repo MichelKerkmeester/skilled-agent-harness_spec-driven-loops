@@ -24,7 +24,7 @@ operating_mode:
 # ─────────────────────────────────────────────────────────────────
 mcp_debug_doctor_invariant: |
   MCP debug workflows run the mcp-doctor.sh diagnostic script against all 4
-  MCP servers (spec-kit-memory, cocoindex-code, code-mode, sequential-thinking),
+  MCP servers (mk-spec-memory, cocoindex-code, code-mode, sequential-thinking),
   cross-reference each failure with its install guide, and apply guided repairs
   ONLY when --fix is passed AND the user approves the proposed repair. No
   silent mutation: every config edit, env change, or build step requires
@@ -39,7 +39,7 @@ upstream_assets:
     spec: "spec.md"
     decision_record: "decision-record.md"  # ADRs covering MCP server install + repair
   install_guides:
-    spec_kit_memory: ".opencode/install_guides/MCP - Spec Kit Memory.md"
+    mk-spec-memory: ".opencode/install_guides/MCP - Spec Kit Memory.md"
     cocoindex_code: ".opencode/install_guides/MCP - CocoIndex Code.md"
     code_mode: ".opencode/install_guides/MCP - Code Mode.md"
     sequential_thinking: ".opencode/install_guides/MCP - Sequential Thinking.md"
@@ -82,7 +82,7 @@ arguments:
   server_filter:
     flag: "--server"
     value: "<name>"
-    valid_values: [spec_kit_memory, cocoindex_code, code_mode, sequential_thinking]
+    valid_values: [mk-spec-memory, cocoindex_code, code_mode, sequential_thinking]
     default: null
     effect: "Only diagnose the specified server"
 
@@ -90,7 +90,7 @@ arguments:
 # REFERENCE: INSTALL GUIDES
 # ─────────────────────────────────────────────────────────────────
 install_guides:
-  spec_kit_memory: .opencode/install_guides/MCP - Spec Kit Memory.md
+  mk-spec-memory: .opencode/install_guides/MCP - Spec Kit Memory.md
   cocoindex_code: .opencode/install_guides/MCP - CocoIndex Code.md
   code_mode: .opencode/install_guides/MCP - Code Mode.md
   sequential_thinking: .opencode/install_guides/MCP - Sequential Thinking.md
@@ -109,7 +109,7 @@ config_files:
 # REFERENCE: REPAIR ACTIONS
 # ─────────────────────────────────────────────────────────────────
 repair_actions:
-  spec_kit_memory:
+  mk-spec-memory:
     dist_missing:
       command: "cd .opencode/skills/system-spec-kit && npm install && npm run build"
       description: "Install dependencies and rebuild dist"

@@ -76,7 +76,7 @@ Capture parent_ids as V1..V5.
 
 Step 3 — wait 5 seconds for indexing + drift detection.
 
-Step 4 — call mcp__spec_kit_memory__memory_drift_why({ parent_id: BASELINE_ID, limit: 10 }).
+Step 4 — call mcp__mk_spec_memory__memory_drift_why({ parent_id: BASELINE_ID, limit: 10 }).
 
 Step 5 — return JSON:
   {
@@ -132,7 +132,7 @@ Step 5 — return JSON:
 Loop memory_delete over BASELINE_ID + V1..V5, then remove on-disk files:
 ```
 for ID in [BASELINE_ID, V1, V2, V3, V4, V5]:
-  mcp__spec_kit_memory__memory_delete({ parent_id: ID })
+  mcp__mk_spec_memory__memory_delete({ parent_id: ID })
 
 rm -rf .opencode/specs/_sandbox/24-413-baseline .opencode/specs/_sandbox/24-413-V1 .opencode/specs/_sandbox/24-413-V2 .opencode/specs/_sandbox/24-413-V3 .opencode/specs/_sandbox/24-413-V4 .opencode/specs/_sandbox/24-413-V5
 ```

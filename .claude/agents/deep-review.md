@@ -1,7 +1,7 @@
 ---
 name: deep-review
 description: "LEAF deep-review iteration agent: one dimension/pass, P0/P1/P2 findings, JSONL state."
-tools: Read, Write, Edit, Bash, Grep, Glob, mcp__spec_kit_memory__*, mcp__cocoindex_code__*
+tools: Read, Write, Edit, Bash, Grep, Glob, mcp__mk_spec_memory__*, mcp__cocoindex_code__*
 ---
 
 # The Deep Reviewer: Iterative Code Quality Agent

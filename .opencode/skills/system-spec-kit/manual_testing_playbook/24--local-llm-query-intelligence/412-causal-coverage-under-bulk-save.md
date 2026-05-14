@@ -33,7 +33,7 @@ This scenario stores 20 memories spanning 4 topics × 5 memories each, then insp
 ### Prompt (AI-to-CLI handoff)
 
 ```
-You are <external-CLI>. I am Claude orchestrating a memory-substrate validation. Save 20 memories grouped into 4 topics (5 memories each) through mcp__spec_kit_memory__memory_save, then verify causal coverage. Topics + sample content:
+You are <external-CLI>. I am Claude orchestrating a memory-substrate validation. Save 20 memories grouped into 4 topics (5 memories each) through mcp__mk_spec_memory__memory_save, then verify causal coverage. Topics + sample content:
 
 Topic 1 — embedding provider cascade:
   - "Voyage and OpenAI API keys take priority over local providers"
@@ -67,8 +67,8 @@ For each of the 20 memories, write a canonical research-doc file at `.opencode/s
 
 After all 20 saves complete, wait 8 seconds for indexing + edge derivation. Then:
 
-1. Run mcp__spec_kit_memory__memory_causal_stats({ spec_folder: "_sandbox/24--local-llm-query-intelligence/412" }).
-2. For each pair of the 20 parent IDs you saved, run mcp__spec_kit_memory__memory_causal_link to enumerate edges.
+1. Run mcp__mk_spec_memory__memory_causal_stats({ spec_folder: "_sandbox/24--local-llm-query-intelligence/412" }).
+2. For each pair of the 20 parent IDs you saved, run mcp__mk_spec_memory__memory_causal_link to enumerate edges.
 3. Build a 4×4 confusion matrix counting edges where source∈topic_i and target∈topic_j.
 4. Return JSON: { memories_by_topic: {1:[...],2:[...],3:[...],4:[...]}, confusion_matrix: [[..]×4], intra_count: N, inter_count: M, ratio: intra/inter, verdict: "PASS|PARTIAL|FAIL" with rationale }.
 ```
@@ -112,7 +112,7 @@ diagonal-row-leader check: 4/4 ✓
 Loop memory_delete over the 20 captured parent_ids, then remove on-disk files:
 ```
 for ID in <20 parent_ids>:
-  mcp__spec_kit_memory__memory_delete({ parent_id: ID })
+  mcp__mk_spec_memory__memory_delete({ parent_id: ID })
 
 rm -rf .opencode/specs/_sandbox/24-412-*
 ```

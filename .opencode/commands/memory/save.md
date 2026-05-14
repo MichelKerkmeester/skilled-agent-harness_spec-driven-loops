@@ -1,7 +1,7 @@
 ---
 description: Save current conversation context into canonical spec-doc continuity surfaces with semantic indexing
 argument-hint: "<spec-folder>"
-allowed-tools: Read, Edit, Bash, Task, spec_kit_memory_memory_save, spec_kit_memory_memory_index_scan, spec_kit_memory_memory_stats, spec_kit_memory_memory_update
+allowed-tools: Read, Edit, Bash, Task, mcp__mk_spec_memory__memory_save, mcp__mk_spec_memory__memory_index_scan, mcp__mk_spec_memory__memory_stats, mcp__mk_spec_memory__memory_update
 ---
 
 # MANDATORY FIRST ACTION - SPEC FOLDER RESOLUTION
@@ -560,7 +560,7 @@ STEP            REQUIRED CALLS                            ON FAILURE
 ─────────────── ───────────────────────────────────────── ──────────────
 FOLDER DETECT   Bash (ls, CLI argument)                   Prompt user
 CONTEXT SAVE    Bash (node generate-context.js)           Show error msg
-IMMEDIATE INDEX spec_kit_memory_memory_index_scan (optional) Show error msg
+IMMEDIATE INDEX mcp__mk_spec_memory__memory_index_scan (optional) Show error msg
 ```
 
 **Script Location:** `.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js`
@@ -568,7 +568,7 @@ IMMEDIATE INDEX spec_kit_memory_memory_index_scan (optional) Show error msg
 **Immediate indexing:** Canonical spec-doc surfaces participate in spec-doc indexing. If you need fresh retrieval immediately after a save, run a targeted index scan:
 
 ```javascript
-spec_kit_memory_memory_index_scan({
+mcp__mk_spec_memory__memory_index_scan({
   specFolder: "011-memory",
   includeSpecDocs: true,
   force: true
@@ -597,7 +597,7 @@ node .opencode/skills/system-spec-kit/scripts/dist/memory/backfill-frontmatter.j
 node .opencode/skills/system-spec-kit/scripts/dist/memory/backfill-frontmatter.js --apply --include-archive
 
 # Rebuild index after normalization
-spec_kit_memory_memory_index_scan({ force: true })
+mcp__mk_spec_memory__memory_index_scan({ force: true })
 ```
 
 Recommended order: **normalize → verify → rebuild**.
@@ -609,7 +609,7 @@ When MCP is unavailable or embedding fails, the canonical document update still 
 **Manual Retry:**
 ```javascript
 // Entire folder
-spec_kit_memory_memory_index_scan({ specFolder: "011-memory", force: true })
+mcp__mk_spec_memory__memory_index_scan({ specFolder: "011-memory", force: true })
 ```
 
 **Recovery Options:**

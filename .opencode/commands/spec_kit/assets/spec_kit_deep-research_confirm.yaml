@@ -71,7 +71,7 @@ agent_config:
   model: opus
   leaf_only: true
   tools: [Read, Write, Edit, Bash, Grep, Glob, WebFetch, mcp__cocoindex_code__search]
-  mcp_servers: [spec_kit_memory, cocoindex_code]
+  mcp_servers: [mk-spec-memory, cocoindex_code]
   tool_call_budget: { target: 8, max: 12 }
 
 # ─────────────────────────────────────────────────────────────────
@@ -399,7 +399,7 @@ workflow:
       step_graph_convergence:
         action: "Evaluate coverage-graph convergence before the inline 3-signal vote and persist the graph decision snapshot"
         mcp_tool:
-          name: mcp__spec_kit_memory__deep_loop_graph_convergence
+          name: mcp__mk_spec_memory__deep_loop_graph_convergence
           note: "Run before the inline vote. STOP from the inline 3-signal vote is allowed only when the graph decision is STOP_ALLOWED or absent."
           parameters:
             specFolder: "{spec_folder}"
@@ -720,7 +720,7 @@ workflow:
           - graph_upsert_event_count: "Count mapped node and edge events"
         if_graph_events_present:
           mcp_tool:
-            name: mcp__spec_kit_memory__deep_loop_graph_upsert
+            name: mcp__mk_spec_memory__deep_loop_graph_upsert
             note: "Skip silently when graphEvents is missing or empty."
             parameters:
               specFolder: "{spec_folder}"

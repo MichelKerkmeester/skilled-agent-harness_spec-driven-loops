@@ -15,7 +15,7 @@ source "${SCRIPT_DIR}/_utils.sh"
 # ───────────────────────────────────────────────────────────────
 # 1. CONFIGURATION
 # ───────────────────────────────────────────────────────────────
-readonly MCP_NAME="spec_kit_memory"
+readonly MCP_NAME="mk-spec-memory"
 readonly MCP_DISPLAY_NAME="Spec Kit Memory"
 readonly SPEC_KIT_ROOT_DIR=".opencode/skills/system-spec-kit"
 readonly MCP_SERVER_DIR="${SPEC_KIT_ROOT_DIR}/mcp_server"

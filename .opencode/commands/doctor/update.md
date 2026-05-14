@@ -1,7 +1,7 @@
 ---
 description: Rebuild spec-kit runtime databases in dependency-safe order through the interactive confirm workflow.
 argument-hint: "[--force] [--no-snapshot] [--cleanup-legacy] [--migrate] [--keep-snapshots] [--resume-bootstrap]"
-allowed-tools: Read, Bash, Grep, Glob, mcp__cocoindex_code__search, mcp__mk_code_index__code_graph_status, mcp__mk_code_index__code_graph_query, mcp__mk_code_index__code_graph_context, mcp__mk_code_index__code_graph_scan, mcp__mk_code_index__code_graph_apply, mcp__mk_code_index__detect_changes, mcp__spec_kit_memory__memory_context, mcp__spec_kit_memory__memory_search, mcp__spec_kit_memory__memory_health, mcp__spec_kit_memory__memory_index_scan, mcp__spec_kit_memory__memory_drift_why, mcp__spec_kit_memory__memory_stats, mcp__spec_kit_memory__memory_causal_stats, mcp__spec_kit_memory__memory_causal_link, mcp__spec_kit_memory__deep_loop_graph_status, mcp__spec_kit_memory__deep_loop_graph_query, mcp__spec_kit_memory__deep_loop_graph_upsert, mcp__spec_kit_memory__deep_loop_graph_convergence, mcp__mk_code_index__ccc_status, mcp__mk_code_index__ccc_reindex, mcp__mk_code_index__ccc_feedback, mcp__spec_kit_memory__advisor_recommend, mcp__spec_kit_memory__advisor_status, mcp__spec_kit_memory__advisor_validate, mcp__spec_kit_memory__advisor_rebuild, mcp__mk_skill_advisor__skill_graph_scan, mcp__mk_skill_advisor__skill_graph_query, mcp__mk_skill_advisor__skill_graph_status, mcp__spec_kit_memory__eval_run_ablation, mcp__spec_kit_memory__session_health
+allowed-tools: Read, Bash, Grep, Glob, mcp__cocoindex_code__search, mcp__mk_code_index__code_graph_status, mcp__mk_code_index__code_graph_query, mcp__mk_code_index__code_graph_context, mcp__mk_code_index__code_graph_scan, mcp__mk_code_index__code_graph_apply, mcp__mk_code_index__detect_changes, mcp__mk_spec_memory__memory_context, mcp__mk_spec_memory__memory_search, mcp__mk_spec_memory__memory_health, mcp__mk_spec_memory__memory_index_scan, mcp__mk_spec_memory__memory_drift_why, mcp__mk_spec_memory__memory_stats, mcp__mk_spec_memory__memory_causal_stats, mcp__mk_spec_memory__memory_causal_link, mcp__mk_spec_memory__deep_loop_graph_status, mcp__mk_spec_memory__deep_loop_graph_query, mcp__mk_spec_memory__deep_loop_graph_upsert, mcp__mk_spec_memory__deep_loop_graph_convergence, mcp__mk_code_index__ccc_status, mcp__mk_code_index__ccc_reindex, mcp__mk_code_index__ccc_feedback, mcp__mk_spec_memory__advisor_recommend, mcp__mk_spec_memory__advisor_status, mcp__mk_spec_memory__advisor_validate, mcp__mk_spec_memory__advisor_rebuild, mcp__mk_skill_advisor__skill_graph_scan, mcp__mk_skill_advisor__skill_graph_query, mcp__mk_skill_advisor__skill_graph_status, mcp__mk_spec_memory__eval_run_ablation, mcp__mk_spec_memory__session_health
 ---
 <!-- skill_agent: system-spec-kit -->
 
@@ -26,7 +26,7 @@ allowed-tools: Read, Bash, Grep, Glob, mcp__cocoindex_code__search, mcp__mk_code
 - **ALL** execution happens through the YAML asset selected during setup.
 - **YAML START CONDITION**: do not load YAML until every setup value is bound.
 - **NO NEW MCP TOOLS**: use only existing `code_graph_*`, `memory_*`, `skill_graph_*`, `advisor_*`, `deep_loop_graph_*`, `ccc_*`, `eval_run_ablation`, and `session_health` surfaces.
-- **MCP STARTUP BOOTSTRAP**: `spec_kit_memory` config points to `.opencode/bin/spec-kit-memory-launcher.cjs`, not directly to `dist/context-server.js`. The launcher may build missing TypeScript output before OpenCode registers MCP tools.
+- **MCP STARTUP BOOTSTRAP**: `mk-spec-memory` config points to `.opencode/bin/mk-spec-memory-launcher.cjs`, not directly to `dist/context-server.js`. The launcher may build missing TypeScript output before OpenCode registers MCP tools.
 - **RESTART CONTRACT**: if runtime bootstrap changes layout or build artifacts during `/doctor:update`, stop with `STATUS=RESTART_REQUIRED`; start a fresh OpenCode process and rerun with `--resume-bootstrap`.
 - **SNAPSHOT DEFAULT**: snapshot every SQLite database before mutation unless `--no-snapshot` was explicitly passed.
 - **TEST FAILURE INJECTION**: disposable-workspace tests may set `SPECKIT_FAIL_STEP=<dependency-step>`; production operators leave it unset.
@@ -350,7 +350,7 @@ Snapshots: <kept|cleaned|skipped>
 - `STATUS=RESTART_REQUIRED` — Phase 1.5 built mcp_server/dist; needs fresh OpenCode process + --resume-bootstrap
 - `STATUS=FAIL ERROR="..."` — see state log `.doctor-update.last-run.json` for details
 
-When `STATUS=RESTART_REQUIRED`, no database rebuild has started yet. Start a fresh OpenCode process so the MCP launcher can register the now-built `spec_kit_memory` surface, then rerun `/doctor:update --resume-bootstrap`.
+When `STATUS=RESTART_REQUIRED`, no database rebuild has started yet. Start a fresh OpenCode process so the MCP launcher can register the now-built `mk-spec-memory` surface, then rerun `/doctor:update --resume-bootstrap`.
 
 ## RELATED COMMANDS
 

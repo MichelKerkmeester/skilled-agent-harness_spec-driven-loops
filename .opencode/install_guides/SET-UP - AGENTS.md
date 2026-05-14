@@ -392,7 +392,7 @@ Use the default weights from the template:
 | Server                | Tool Prefix             | Purpose                     |
 | --------------------- | ----------------------- | --------------------------- |
 | `sequential-thinking` | `sequential_thinking_*` | Complex multi-step reasoning |
-| `spec-kit-memory`     | `memory_*`              | Context preservation        |
+| `mk-spec-memory`     | `memory_*`              | Context preservation        |
 | `code-mode`           | `call_tool_chain()`     | External tool orchestration |
 
 #### Update Tool Routing Decision Tree
@@ -971,7 +971,7 @@ User Message
 |                       | Yes    | sk-code          | Implementation workflow     |
 |                       | Yes    | mcp-code-mode         | Webflow integration         |
 | **Skills - Remove**   | No     | sk-git                | Optional for solo projects  |
-| **MCP - Keep**        | Yes    | spec_kit_memory       | Required for spec-kit skill |
+| **MCP - Keep**        | Yes    | mk-spec-memory       | Required for spec-kit skill |
 |                       | Yes    | code_mode             | External tool access        |
 | **MCP - Remove**      | No     | sequential_thinking   | Overkill for frontend       |
 | **Commands - Keep**   | Yes    | /memory:*             | Context preservation        |
@@ -995,7 +995,7 @@ User Message
 |                     | Yes    | sk-git              | PR/commit workflows              |
 | **Skills - Remove** | No     | mcp-chrome-devtools | No browser UI                    |
 |                     | No     | mcp-code-mode       | No Webflow needed                |
-| **MCP - Keep**      | Yes    | spec_kit_memory     | Context preservation             |
+| **MCP - Keep**      | Yes    | mk-spec-memory     | Context preservation             |
 |                     | Yes    | sequential_thinking | Complex reasoning                |
 | **MCP - Remove**    | No     | code_mode           | No external design tools         |
 
@@ -1201,7 +1201,7 @@ Update AGENTS.md to reference only the commands that exist in your `.opencode/co
 | Category          | Count  | Items                                                                                                                       |
 | ----------------- | ------ | --------------------------------------------------------------------------------------------------------------------------- |
 | **Skills**        | 15     | mcp-chrome-devtools, mcp-coco-index, mcp-code-mode, system-spec-kit, cli-codex, cli-claude-code, cli-gemini, sk-code, sk-code-review, deep-research, sk-doc, sk-git, sk-prompt |
-| **MCP Servers**   | 3      | sequential-thinking, spec-kit-memory, code-mode                                                                             |
+| **MCP Servers**   | 3      | sequential-thinking, mk-spec-memory, code-mode                                                                             |
 | **Commands**      | 22     | /create:* (7), /memory:* (6), /spec_kit:* (8), agent_router (1)                                                             |
 | **Gates + Rules** | 3 + 3  | Gate 1-3 (Understanding, Skill Routing, Spec Folder) + Behavioral Rules (Memory Context Loading, Memory Save Rule, Completion Verification) |
 

@@ -106,7 +106,7 @@ describe('Handler Memory Save (T518) [deferred - requires DB test fixtures]', ()
         if (options?.recursive) {
           return undefined;
         }
-        if (String(targetPath).includes('spec-kit-memory-save-locks')) {
+        if (String(targetPath).includes('mk-spec-memory-save-locks')) {
           lockAttempts += 1;
           if (lockAttempts === 1) {
             const error = new Error('lock busy') as NodeJS.ErrnoException;

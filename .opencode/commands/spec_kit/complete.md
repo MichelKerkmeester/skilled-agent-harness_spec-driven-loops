@@ -1,7 +1,7 @@
 ---
 description: End-to-end SpecKit workflow (14+ steps). Modes: :auto, :confirm, :with-research, :with-phases.
 argument-hint: "<feature-description> [:auto|:confirm] [:with-research] [:with-phases] [--phases N] [--phase-names list] [--phase-folder=<path>] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)"
-allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, memory_context, spec_kit_memory_memory_save, spec_kit_memory_memory_index_scan, mcp__cocoindex_code__search
+allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, memory_context, mcp__mk_spec_memory__memory_save, mcp__mk_spec_memory__memory_index_scan, mcp__cocoindex_code__search
 ---
 
 > ⚠️ **EXECUTION PROTOCOL — READ FIRST**

@@ -79,7 +79,7 @@ chmod +x .opencode/install_guides/install_scripts/*.sh
 
 # 3. Install core MCPs (recommended order)
 .opencode/install_guides/install_scripts/install-code-mode.sh
-.opencode/install_guides/install_scripts/install-spec-kit-memory.sh
+.opencode/install_guides/install_scripts/install-mk-spec-memory.sh
 .opencode/install_guides/install_scripts/install-sequential-thinking.sh
 ```
 
@@ -123,7 +123,7 @@ opencode
 install_scripts/
 ├── _utils.sh                      # Shared utility functions (36 functions)
 ├── install-sequential-thinking.sh # Sequential Thinking MCP
-├── install-spec-kit-memory.sh     # Spec Kit Memory MCP
+├── install-mk-spec-memory.sh     # Spec Kit Memory MCP
 ├── install-code-mode.sh           # Code Mode MCP
 ├── install-chrome-devtools.sh     # Chrome DevTools MCP (bdg CLI)
 ├── install-cocoindex-code.sh      # CocoIndex Code MCP (symlink)
@@ -151,7 +151,7 @@ install_scripts/
 | Script | Component | Description | Prerequisites |
 |--------|-----------|-------------|---------------|
 | `install-sequential-thinking.sh` | Sequential Thinking MCP | Structured problem-solving via flexible thinking | Node.js 18+ |
-| `install-spec-kit-memory.sh` | Spec Kit Memory MCP | Semantic vector search for conversation context | Node.js 18+, npm |
+| `install-mk-spec-memory.sh` | Spec Kit Memory MCP | Semantic vector search for conversation context | Node.js 18+, npm |
 | `install-code-mode.sh` | Code Mode MCP | MCP orchestration via TypeScript execution | Node.js 18+ |
 | `install-chrome-devtools.sh` | Chrome DevTools CLI | Browser debugging via CDP (bdg CLI) | Node.js 18+, Chrome |
 | `install-cocoindex-code.sh` | CocoIndex Code MCP | Semantic code search via vector embeddings | Node.js 18+, Python 3.10+ |
@@ -180,7 +180,7 @@ install_scripts/
 ./install-all.sh --skip chrome-devtools
 
 # Install only specific MCPs
-./install-all.sh --only code-mode --only spec-kit-memory
+./install-all.sh --only code-mode --only mk-spec-memory
 
 # Dry-run mode (preview without installing)
 ./install-all.sh --dry-run
@@ -235,7 +235,7 @@ All scripts support these standard options:
 ```bash
 # Install the three core MCPs in recommended order
 ./install-code-mode.sh
-./install-spec-kit-memory.sh
+./install-mk-spec-memory.sh
 ./install-sequential-thinking.sh
 ```
 
@@ -260,7 +260,7 @@ All scripts support these standard options:
 
 | Pattern | Command | When to Use |
 |---------|---------|-------------|
-| Core setup | `./install-all.sh --only code-mode --only spec-kit-memory --only sequential-thinking` | New project setup |
+| Core setup | `./install-all.sh --only code-mode --only mk-spec-memory --only sequential-thinking` | New project setup |
 | Full setup | `./install-all.sh` | Complete MCP installation |
 | Reinstall | `./install-<component>.sh --force` | Fix broken installation |
 | Debug | `./install-<component>.sh -v` | Troubleshoot issues |

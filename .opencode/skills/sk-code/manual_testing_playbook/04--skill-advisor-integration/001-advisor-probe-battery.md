@@ -127,7 +127,7 @@ If negative FPR > 0:
 | Baseline (smart-router-measurement-results.jsonl, 2026-05-03) | 50% (4/8) | n/a | n/a | Pre-remediation |
 | V1 (this battery, pre-remediation) | **5/15 = 33.3%** | 4/5 = 80.0% | 9/20 = 45% | sk-code lost to cli-codex/system-spec-kit/deep-review on most code-work prompts; N01 false-positive |
 | V2 (after sk-code intent_signals additions, before DB re-index) | 5/15 = 33.3% | 4/5 = 80.0% | 9/20 = 45% | Identical scores — confirmed advisor reads from DB not JSON |
-| V3 (after `mcp__spec_kit_memory__skill_graph_scan` re-index) | 10/15 = 66.7% | 4/5 = 80.0% | 14/20 = 70% | +33pp positive jump from DB sync alone |
+| V3 (after `mcp__mk_spec_memory__skill_graph_scan` re-index) | 10/15 = 66.7% | 4/5 = 80.0% | 14/20 = 70% | +33pp positive jump from DB sync alone |
 | V4 (after sk-doc strong signals + sk-code script-build signals + re-index) | **11/15 = 73.3%** | **5/5 = 100%** | **16/20 = 80%** | **N01 false-positive RESOLVED**; P10 fixed via "build a tiny script" + "counts how many" signals |
 
 **Final Verdict**: **PASS** (combined 80% accuracy, exceeds 75% threshold).

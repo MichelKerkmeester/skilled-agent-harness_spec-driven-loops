@@ -37,7 +37,7 @@ trigger_phrases:
 
 The `memory` command group provides operations for the Spec Kit Memory MCP system. These 4 commands cover context preservation, unified knowledge retrieval and analysis, constitutional memory management, and database maintenance plus async ingest. Session recovery now lives under `/spec_kit:resume`.
 
-All commands interact with the memory MCP server tools (`spec_kit_memory_*`). They follow a gate-based argument validation pattern: if required arguments are missing, the command prompts the user before proceeding.
+All commands interact with the memory MCP server tools (`mk_spec_memory_*`). They follow a gate-based argument validation pattern: if required arguments are missing, the command prompts the user before proceeding.
 
 ### Canonical Section Order
 

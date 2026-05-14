@@ -4,7 +4,7 @@
   "family": "system",
   "category": "system",
   "mcp_server_topology": "co-resident",
-  "mcp_server_host": "spec_kit_memory",
+  "mcp_server_host": "mk-spec-memory",
   "edges": {
     "depends_on": [
       {
@@ -102,13 +102,13 @@
         "source": "derived"
       },
       {
-        "name": "spec_kit_memory",
+        "name": "mk-spec-memory",
         "kind": "reference",
         "path": ".opencode/skills/system-code-graph/SKILL.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "Code-graph subsystem skill for structural AST indexing, SQLite-backed graph storage, and 12 MCP tools used for impact analysis, graph context retrieval, readiness reporting, and change detection. Extracted from system-spec-kit per ADR-001 while preserving co-resident MCP topology under spec_kit_memory.",
+    "causal_summary": "Code-graph subsystem skill for structural AST indexing, SQLite-backed graph storage, and 12 MCP tools used for impact analysis, graph context retrieval, readiness reporting, and change detection. Extracted from system-spec-kit per ADR-001 while preserving co-resident MCP topology under mk-spec-memory.",
     "source_docs": [
       "SKILL.md",
       "README.md"

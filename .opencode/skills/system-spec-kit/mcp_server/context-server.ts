@@ -891,7 +891,7 @@ async function invalidateReinitializedDbCaches(): Promise<void> {
 ──────────────────────────────────────────────────────────────── */
 
 const server = new Server(
-  { name: 'context-server', version: '1.7.2' },
+  { name: 'mk-spec-memory', version: '1.7.2' },
   { capabilities: { tools: {} } }
 );
 const serverWithInstructions = server as unknown as { setInstructions?: (instructions: string) => void };

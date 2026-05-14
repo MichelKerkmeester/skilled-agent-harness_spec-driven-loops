@@ -350,7 +350,7 @@ Use the agent directory that matches the active runtime/provider profile:
 
 1. **Native MCP servers** (`opencode.json`) - Direct tools, called natively. **Exactly 4 servers registered:**
    - `sequential_thinking` — Sequential Thinking
-   - `spec_kit_memory` — Spec Kit Memory (the umbrella server; exposes a larger tool set)
+   - `mk-spec-memory` — Spec Kit Memory (the umbrella server; exposes a larger tool set)
    - `code_mode` — Code Mode
    - `cocoindex_code` — CocoIndex Code
 

@@ -7,7 +7,7 @@ description: "Bootstrap, verification, compatibility, rollback, and operator not
 
 <!-- sk-doc-template: skill_reference_install_guide -->
 
-This is the canonical bootstrap guide for the standalone Skill Advisor MCP server. The advisor runs as `mk_skill_advisor`, separate from `spec_kit_memory`, while preserving the public tool ids `advisor_recommend`, `advisor_rebuild`, `advisor_status`, `advisor_validate`, `skill_graph_scan`, `skill_graph_query`, `skill_graph_status`, and `skill_graph_validate`.
+This is the canonical bootstrap guide for the standalone Skill Advisor MCP server. The advisor runs as `mk_skill_advisor`, separate from `mk-spec-memory`, while preserving the public tool ids `advisor_recommend`, `advisor_rebuild`, `advisor_status`, `advisor_validate`, `skill_graph_scan`, `skill_graph_query`, `skill_graph_status`, and `skill_graph_validate`.
 
 ---
 
@@ -42,7 +42,7 @@ The native advisor is a TypeScript package under `.opencode/skills/system-skill-
 
 - Node.js and npm available for the standalone system-skill-advisor MCP server.
 - Repository root as the working directory.
-- Runtime MCP configuration includes both `spec_kit_memory` and `mk_skill_advisor`.
+- Runtime MCP configuration includes both `mk-spec-memory` and `mk_skill_advisor`.
 - `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED` is unset unless intentionally testing rollback.
 
 ---
@@ -80,7 +80,7 @@ mk_skill_advisor.advisor_recommend({"prompt":"save this conversation context to 
 mk_skill_advisor.advisor_validate({"skillSlug":null})
 ```
 
-Also verify the active runtime lists both MCP servers: `spec_kit_memory` for memory/context tools and `mk_skill_advisor` for advisor tools.
+Also verify the active runtime lists both MCP servers: `mk-spec-memory` for memory/context tools and `mk_skill_advisor` for advisor tools.
 
 Expected:
 

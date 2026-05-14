@@ -40,7 +40,7 @@ upstream_assets:
     spec: "spec.md"
     decision_record: "decision-record.md"
   install_guides:
-    spec_kit_memory: ".opencode/install_guides/MCP - Spec Kit Memory.md"
+    mk-spec-memory: ".opencode/install_guides/MCP - Spec Kit Memory.md"
     cocoindex_code: ".opencode/install_guides/MCP - CocoIndex Code.md"
     code_mode: ".opencode/install_guides/MCP - Code Mode.md"
     sequential_thinking: ".opencode/install_guides/MCP - Sequential Thinking.md"
@@ -79,7 +79,7 @@ arguments:
   server_filter:
     flag: "--server"
     value: "<name>"
-    valid_values: [spec_kit_memory, cocoindex_code, code_mode, sequential_thinking]
+    valid_values: [mk-spec-memory, cocoindex_code, code_mode, sequential_thinking]
     default: null
     effect: "Only install the specified server"
   runtime_filter:
@@ -93,7 +93,7 @@ arguments:
 # REFERENCE: INSTALL GUIDES (read these during workflow)
 # ─────────────────────────────────────────────────────────────────
 install_guides:
-  spec_kit_memory: .opencode/install_guides/MCP - Spec Kit Memory.md
+  mk-spec-memory: .opencode/install_guides/MCP - Spec Kit Memory.md
   cocoindex_code: .opencode/install_guides/MCP - CocoIndex Code.md
   code_mode: .opencode/install_guides/MCP - Code Mode.md
   sequential_thinking: .opencode/install_guides/MCP - Sequential Thinking.md
@@ -102,7 +102,7 @@ install_guides:
 # REFERENCE: SERVER DEFINITIONS
 # ─────────────────────────────────────────────────────────────────
 servers:
-  spec_kit_memory:
+  mk-spec-memory:
     label: "Spec Kit Memory"
     runtime: node
     skill_dir: ".opencode/skills/system-spec-kit"
@@ -211,9 +211,9 @@ workflow:
       - "If --server flag provided, validate server name"
       - "If --runtime flag provided, validate runtime name"
     prerequisite_matrix:
-      node_20_11: { required_for: [spec_kit_memory, code_mode, sequential_thinking], check: "node --version" }
+      node_20_11: { required_for: [mk-spec-memory, code_mode, sequential_thinking], check: "node --version" }
       python_311: { required_for: [cocoindex_code], check: "python3 --version" }
-      npm: { required_for: [spec_kit_memory, code_mode], check: "npm --version" }
+      npm: { required_for: [mk-spec-memory, code_mode], check: "npm --version" }
       npx: { required_for: [sequential_thinking], check: "npx --version" }
     on_missing_prereq:
       action: "WARN and skip affected servers, continue with others"

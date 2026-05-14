@@ -175,7 +175,7 @@ workflow:
     approval: "auto-acknowledge before database flock; this phase uses Bash/Node only, no MCP tools"
     purpose: "Resolve the fresh-start paradox: OpenCode can only register MCP tools at process startup, so missing dist/layout must be fixed before MCP-dependent phases run."
     launcher_contract:
-      mcp_config_entrypoint: ".opencode/bin/spec-kit-memory-launcher.cjs"
+      mcp_config_entrypoint: ".opencode/bin/mk-spec-memory-launcher.cjs"
       invariant: "MCP configs MUST point to the stable launcher, not directly to mcp_server/dist/context-server.js."
       launcher_behavior: "resolve singular/plural skill layout, build @spec-kit/mcp-server and @spec-kit/scripts when dist is missing, then exec the real MCP server"
     command_preflight:

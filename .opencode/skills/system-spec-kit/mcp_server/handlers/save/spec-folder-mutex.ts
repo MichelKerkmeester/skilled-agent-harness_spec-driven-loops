@@ -12,7 +12,7 @@ import path from 'node:path';
 // Feature catalog: Atomic-save parity and partial-indexing hints
 
 const SPEC_FOLDER_LOCKS = new Map<string, Promise<unknown>>();
-const LOCK_ROOT = path.join(os.tmpdir(), 'spec-kit-memory-save-locks');
+const LOCK_ROOT = path.join(os.tmpdir(), 'mk-spec-memory-save-locks');
 const LOCK_WAIT_MS = 25;
 const LOCK_TIMEOUT_MS = 30_000;
 const LOCK_STALE_MS = 5 * 60 * 1000;

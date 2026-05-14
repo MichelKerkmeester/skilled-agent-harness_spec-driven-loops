@@ -1,7 +1,7 @@
 {
-  "command": "spec-kit-memory-launcher",
-  "start": "2026-05-14T17:17:00.478Z",
-  "end": "2026-05-14T17:17:00.479Z",
+  "command": "mk-spec-memory-launcher",
+  "start": "2026-05-14T21:46:25.656Z",
+  "end": "2026-05-14T21:46:25.657Z",
   "status": "ready",
   "actions": [
     "set SPECKIT_CODE_GRAPH_DB_DIR=.opencode/skills/system-code-graph/mcp_server/database for standalone system-code-graph storage"

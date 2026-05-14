@@ -8,7 +8,7 @@
         "@modelcontextprotocol/server-sequential-thinking"
       ]
     },
-    "spec_kit_memory": {
+    "mk-spec-memory": {
       "command": "node",
       "args": [
         ".opencode/skills/system-spec-kit/mcp_server/dist/context-server.js"

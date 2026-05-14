@@ -228,7 +228,7 @@ async function buildSkillGraphTopologySummary(): Promise<SkillGraphTopologySumma
     hubSkills: [],
     staleness: null,
     validation: null,
-    error: 'skill graph topology is owned by mk_skill_advisor; session_bootstrap no longer calls the removed spec_kit_memory proxy',
+    error: 'skill graph topology is owned by mk_skill_advisor; session_bootstrap no longer calls the removed mk-spec-memory proxy',
   };
   return {
     ...unavailable,

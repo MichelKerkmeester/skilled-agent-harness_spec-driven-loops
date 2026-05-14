@@ -98,7 +98,7 @@ This phase turns the K2.x naming decision into a bounded implementation packet. 
 
 ### Problem Statement
 
-The current configured server alias forces a 22-character fully qualified prefix, `mcp__spec_kit_memory__`, into every Claude-style tool reference. That prefix is noisy in instructions, specs, prompts, and tests, and it obscures the actual raw tool name that users need to reason about.
+The current configured server alias forces a 22-character fully qualified prefix, `mcp__mk_spec_memory__`, into every Claude-style tool reference. That prefix is noisy in instructions, specs, prompts, and tests, and it obscures the actual raw tool name that users need to reason about.
 
 The alias also has a cross-runtime policy problem. The research synthesis records that Gemini documents an `mcp_<serverName>_<toolName>` pattern and warns against underscores in MCP server names because policy parsing splits after `mcp_`. A server alias with underscores is therefore policy-ambiguous even if the local server continues to work.
 
@@ -156,7 +156,7 @@ Rename the configured server alias to `mk-spec-memory` so Spec Kit Memory tool r
 | REQ-001 | All four runtime configs use `mk-spec-memory` as the Spec Kit Memory MCP server alias. | `rg "spec_kit_memory" opencode.json .claude/mcp.json .codex/config.toml .gemini/settings.json` returns no active config key matches, and `rg "mk-spec-memory"` finds one server key per runtime config. |
 | REQ-002 | Raw tool names remain unchanged. | `tool-schemas.ts` still defines `memory_context`, `memory_search`, `memory_quick_search`, `memory_match_triggers`, `memory_save`, and `memory_index_scan` without server-prefix edits. |
 | REQ-003 | Each runtime can resolve `memory_context` through the renamed server alias. | Smoke tests in OpenCode, Claude Code, Codex, and Gemini each invoke or list a Spec Kit Memory tool under the new alias. |
-| REQ-004 | Active fully qualified references migrate away from the old prefix. | `rg "mcp__spec_kit_memory__" . --glob '*.md' --glob '*.ts' --glob '*.json' --glob '*.sh'` returns zero active matches after implementation exclusions are applied. |
+| REQ-004 | Active fully qualified references migrate away from the old prefix. | `rg "mcp__mk_spec_memory__" . --glob '*.md' --glob '*.ts' --glob '*.json' --glob '*.sh'` returns zero active matches after implementation exclusions are applied. |
 
 ### P1 - Required (complete OR user-approved deferral)
 
@@ -172,7 +172,7 @@ Rename the configured server alias to `mk-spec-memory` so Spec Kit Memory tool r
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: Zero active `mcp__spec_kit_memory__` occurrences remain after migration.
+- **SC-001**: Zero active `mcp__mk_spec_memory__` occurrences remain after migration.
 - **SC-002**: Each configured runtime resolves at least one Spec Kit Memory tool call through the new `mk-spec-memory` server alias.
 - **SC-003**: Raw MCP tool names remain byte-for-byte compatible for callers that address tools by raw schema name.
 - **SC-004**: Gemini configuration contains no underscore-bearing Spec Kit Memory MCP server alias.

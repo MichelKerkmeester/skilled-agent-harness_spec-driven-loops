@@ -18,7 +18,7 @@ permission:
   patch: deny
   external_directory: allow
 mcpServers:
-  - spec_kit_memory
+  - mk-spec-memory
   - sequential_thinking
 ---
 

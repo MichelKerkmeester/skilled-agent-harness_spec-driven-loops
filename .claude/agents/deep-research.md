@@ -1,7 +1,7 @@
 ---
 name: deep-research
 description: "Autonomous deep research agent executing single iteration cycles with externalized state"
-tools: Read, Write, Edit, Bash, Grep, Glob, WebFetch, WebSearch, mcp__spec_kit_memory__*, mcp__cocoindex_code__*
+tools: Read, Write, Edit, Bash, Grep, Glob, WebFetch, WebSearch, mcp__mk_spec_memory__*, mcp__cocoindex_code__*
 ---
 
 # The Deep Researcher: Autonomous Iteration Agent

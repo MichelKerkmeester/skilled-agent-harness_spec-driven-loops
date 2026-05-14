@@ -1,7 +1,7 @@
 ---
 description: Unified continuity retrieval: spec-doc search, baselines, memory causal graph, ablations, dashboards.
 argument-hint: "<query> [--intent:<type>] | preflight <specFolder> <taskId> | postflight <specFolder> <taskId> | history <specFolder> | causal <memoryId> | link <sourceId> <targetId> <relation> | unlink <edgeId> | causal-stats | ablation | dashboard"
-allowed-tools: Read, spec_kit_memory_memory_context, spec_kit_memory_memory_quick_search, spec_kit_memory_memory_search, spec_kit_memory_memory_match_triggers, spec_kit_memory_task_preflight, spec_kit_memory_task_postflight, spec_kit_memory_memory_drift_why, spec_kit_memory_memory_causal_link, spec_kit_memory_memory_causal_stats, spec_kit_memory_memory_causal_unlink, spec_kit_memory_eval_run_ablation, spec_kit_memory_eval_reporting_dashboard, spec_kit_memory_memory_get_learning_history
+allowed-tools: Read, mcp__mk_spec_memory__memory_context, mcp__mk_spec_memory__memory_quick_search, mcp__mk_spec_memory__memory_search, mcp__mk_spec_memory__memory_match_triggers, mcp__mk_spec_memory__task_preflight, mcp__mk_spec_memory__task_postflight, mcp__mk_spec_memory__memory_drift_why, mcp__mk_spec_memory__memory_causal_link, mcp__mk_spec_memory__memory_causal_stats, mcp__mk_spec_memory__memory_causal_unlink, mcp__mk_spec_memory__eval_run_ablation, mcp__mk_spec_memory__eval_reporting_dashboard, mcp__mk_spec_memory__memory_get_learning_history
 ---
 
 > **Code Graph bridge:** Structural routing may call stable `code_graph_*` MCP tools; the code-graph implementation and docs are owned by `.opencode/skills/system-code-graph/`.
@@ -297,7 +297,7 @@ Adjust search parameters:
 #### Step 3: Execute Search with Optimizations
 
 ```javascript
-spec_kit_memory_memory_context({
+mcp__mk_spec_memory__memory_context({
   input: query,
   intent: intent,
   mode: "auto",                 // use "deep" for expanded multi-query retrieval
@@ -850,10 +850,10 @@ STATUS=OK ACTION=dashboard
 |------|----------------|---------|------------|
 | RETRIEVAL (default) | | | |
 | Intent detect | Parse query, match keywords | LOCAL | Default to 'understand' |
-| Context (preferred) | `spec_kit_memory_memory_context({ input, ... })` | SINGLE | Fall back to manual search |
-| Quick search (optional) | `spec_kit_memory_memory_quick_search({ query, ... })` | SINGLE | Fall back to preferred/manual retrieval |
-| Trigger check | `spec_kit_memory_memory_match_triggers({ prompt: query })` | OPTIONAL | Continue without |
-| Search (manual) | `spec_kit_memory_memory_search({ query, anchors, includeContent: true })` | SINGLE | Show error msg |
+| Context (preferred) | `mcp__mk_spec_memory__memory_context({ input, ... })` | SINGLE | Fall back to manual search |
+| Quick search (optional) | `mcp__mk_spec_memory__memory_quick_search({ query, ... })` | SINGLE | Fall back to preferred/manual retrieval |
+| Trigger check | `mcp__mk_spec_memory__memory_match_triggers({ prompt: query })` | OPTIONAL | Continue without |
+| Search (manual) | `mcp__mk_spec_memory__memory_search({ query, anchors, includeContent: true })` | SINGLE | Show error msg |
 | ANALYSIS | | | |
 | Preflight | `task_preflight()` | SINGLE | Show error msg |
 | Postflight | `task_postflight()` | SINGLE | Show error msg |
@@ -867,7 +867,7 @@ STATUS=OK ACTION=dashboard
 
 ### Tool Signatures
 
-> **Note:** The dedicated `spec_kit_memory_memory_context()` tool provides unified intent-aware retrieval server-side. It accepts `input`, `mode`, `intent`, `specFolder`, governed retrieval params (`tenantId`, `userId`, `agentId`), `limit`, `sessionId`, `enableDedup`, `includeContent`, `includeTrace`, `tokenUsage`, and `anchors`. `spec_kit_memory_memory_quick_search()` also supports governed retrieval via `tenantId`, `userId`, and `agentId`. This is the recommended unified approach. The manual orchestration below is for advanced use cases requiring fine-grained control.
+> **Note:** The dedicated `mcp__mk_spec_memory__memory_context()` tool provides unified intent-aware retrieval server-side. It accepts `input`, `mode`, `intent`, `specFolder`, governed retrieval params (`tenantId`, `userId`, `agentId`), `limit`, `sessionId`, `enableDedup`, `includeContent`, `includeTrace`, `tokenUsage`, and `anchors`. `mcp__mk_spec_memory__memory_quick_search()` also supports governed retrieval via `tenantId`, `userId`, and `agentId`. This is the recommended unified approach. The manual orchestration below is for advanced use cases requiring fine-grained control.
 
 > **Adaptive Fusion, Hybrid Routing & Telemetry:** Retrieval combines vector, FTS5/BM25, and structural code graph channels, then applies intent-adaptive fusion and reranking. Results may be routed through artifact-class classification before scoring. When `SPECKIT_ADAPTIVE_FUSION` is enabled, weights adapt dynamically by intent, including the internal continuity profile (`0.52 / 0.18 / 0.07 / 0.23`) used for resume-style retrieval. When `SPECKIT_EXTENDED_TELEMETRY` is enabled, extended telemetry is captured (query timing, score distributions, fusion decisions) and written to the telemetry log, while `getRerankerStatus()` reports reranker latency and cache `hits` / `misses` / `staleHits` / `evictions`.
 >
@@ -877,7 +877,7 @@ STATUS=OK ACTION=dashboard
 // ─── Retrieval tools ───────────────────────────────────────────
 
 // Option 1: Dedicated context tool (preferred - single call)
-spec_kit_memory_memory_context({
+mcp__mk_spec_memory__memory_context({
   input: "<query>",
   intent: "<add_feature|fix_bug|refactor|security_audit|understand|find_spec|find_decision>",  // Optional, auto-detected if omitted
   specFolder: "<folder>",  // Optional
@@ -889,7 +889,7 @@ spec_kit_memory_memory_context({
 })
 
 // Option 2: Simplified search for fast query-only retrieval
-spec_kit_memory_memory_quick_search({
+mcp__mk_spec_memory__memory_quick_search({
   query: "<query>",
   limit: 10,                // Optional
   specFolder: "<folder>",   // Optional
@@ -899,7 +899,7 @@ spec_kit_memory_memory_quick_search({
 })
 
 // Option 3: Manual search with anchors (advanced - fine-grained control)
-spec_kit_memory_memory_search({
+mcp__mk_spec_memory__memory_search({
   query: "<query>",
   anchors: ["<anchor1>", "<anchor2>", ...],  // Intent-specific
   limit: 10,
@@ -911,19 +911,19 @@ spec_kit_memory_memory_search({
 // ─── Analysis tools ───────────────────────────────────────────
 
 // Epistemic measurement
-spec_kit_memory_task_preflight({ specFolder, taskId, knowledgeScore, uncertaintyScore, contextScore, knowledgeGaps, sessionId })
-spec_kit_memory_task_postflight({ specFolder, taskId, knowledgeScore, uncertaintyScore, contextScore, gapsClosed, newGapsDiscovered })
+mcp__mk_spec_memory__task_preflight({ specFolder, taskId, knowledgeScore, uncertaintyScore, contextScore, knowledgeGaps, sessionId })
+mcp__mk_spec_memory__task_postflight({ specFolder, taskId, knowledgeScore, uncertaintyScore, contextScore, gapsClosed, newGapsDiscovered })
 
 // Memory causal graph
-spec_kit_memory_memory_drift_why({ memoryId, maxDepth, direction, relations, includeMemoryDetails })
-spec_kit_memory_memory_causal_link({ sourceId, targetId, relation, strength, evidence })
-spec_kit_memory_memory_causal_unlink({ edgeId })
-spec_kit_memory_memory_causal_stats({})
+mcp__mk_spec_memory__memory_drift_why({ memoryId, maxDepth, direction, relations, includeMemoryDetails })
+mcp__mk_spec_memory__memory_causal_link({ sourceId, targetId, relation, strength, evidence })
+mcp__mk_spec_memory__memory_causal_unlink({ edgeId })
+mcp__mk_spec_memory__memory_causal_stats({})
 
 // Evaluation
-spec_kit_memory_eval_run_ablation({ mode: "ablation", channels, groundTruthQueryIds, recallK, storeResults: true, includeFormattedReport: true })
-spec_kit_memory_eval_reporting_dashboard({ sprintFilter, channelFilter, metricFilter, limit, format })
-spec_kit_memory_memory_get_learning_history({ specFolder, sessionId, limit, onlyComplete, includeSummary })
+mcp__mk_spec_memory__eval_run_ablation({ mode: "ablation", channels, groundTruthQueryIds, recallK, storeResults: true, includeFormattedReport: true })
+mcp__mk_spec_memory__eval_reporting_dashboard({ sprintFilter, channelFilter, metricFilter, limit, format })
+mcp__mk_spec_memory__memory_get_learning_history({ specFolder, sessionId, limit, onlyComplete, includeSummary })
 ```
 
 ### Tool Coverage

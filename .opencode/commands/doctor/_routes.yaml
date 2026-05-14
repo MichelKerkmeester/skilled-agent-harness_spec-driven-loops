@@ -17,7 +17,7 @@
 #   trigger_phrases:  list   — advisor lexical-routing phrases for this target
 #
 # Code-graph implementation/docs are owned by .opencode/skills/system-code-graph/;
-# stable MCP tool IDs remain registered through spec_kit_memory.
+# stable MCP tool IDs remain registered through mk-spec-memory.
 # To add a new target: append a route here, then re-run route-validate.sh.
 # To remove a target: delete the route AND its corresponding assets/doctor_<target>.yaml.
 # ─────────────────────────────────────────────────────────────────
@@ -30,11 +30,11 @@ routes:
     mutating: mutates
     gate3_location: "mcp_server/database/context-index__*.sqlite (active provider-keyed profile DB)"
     mcp_tools:
-      - mcp__spec_kit_memory__memory_health
-      - mcp__spec_kit_memory__memory_index_scan
-      - mcp__spec_kit_memory__memory_drift_why
-      - mcp__spec_kit_memory__memory_search
-      - mcp__spec_kit_memory__memory_stats
+      - mcp__mk_spec_memory__memory_health
+      - mcp__mk_spec_memory__memory_index_scan
+      - mcp__mk_spec_memory__memory_drift_why
+      - mcp__mk_spec_memory__memory_search
+      - mcp__mk_spec_memory__memory_stats
     trigger_phrases:
       - "memory continuity index drift"
       - "memory health rebuild"
@@ -48,10 +48,10 @@ routes:
     mutating: add-only
     gate3_location: "mcp_server/database/context-index__*.sqlite causal_edges table (add-only; existing edges never deleted or updated)"
     mcp_tools:
-      - mcp__spec_kit_memory__memory_causal_stats
-      - mcp__spec_kit_memory__memory_causal_link
-      - mcp__spec_kit_memory__memory_drift_why
-      - mcp__spec_kit_memory__memory_search
+      - mcp__mk_spec_memory__memory_causal_stats
+      - mcp__mk_spec_memory__memory_causal_link
+      - mcp__mk_spec_memory__memory_drift_why
+      - mcp__mk_spec_memory__memory_search
     trigger_phrases:
       - "causal edges drift"
       - "causal graph doctor"
@@ -76,8 +76,8 @@ routes:
       - mcp__mk_code_index__code_graph_scan
       - mcp__mk_code_index__code_graph_apply
       - mcp__mk_code_index__detect_changes
-      - mcp__spec_kit_memory__memory_context
-      - mcp__spec_kit_memory__memory_search
+      - mcp__mk_spec_memory__memory_context
+      - mcp__mk_spec_memory__memory_search
     trigger_phrases:
       - "code-graph index drift"
       - "code-graph rebuild"
@@ -91,10 +91,10 @@ routes:
     mutating: mutates
     gate3_location: "mcp_server/database/deep-loop-graph.sqlite"
     mcp_tools:
-      - mcp__spec_kit_memory__deep_loop_graph_status
-      - mcp__spec_kit_memory__deep_loop_graph_query
-      - mcp__spec_kit_memory__deep_loop_graph_upsert
-      - mcp__spec_kit_memory__deep_loop_graph_convergence
+      - mcp__mk_spec_memory__deep_loop_graph_status
+      - mcp__mk_spec_memory__deep_loop_graph_query
+      - mcp__mk_spec_memory__deep_loop_graph_upsert
+      - mcp__mk_spec_memory__deep_loop_graph_convergence
     trigger_phrases:
       - "deep-loop coverage"
       - "deep-loop graph rebuild"
@@ -125,15 +125,15 @@ routes:
     gate3_location: "lib/scorer/lanes/*.ts + .opencode/skills/*/graph-metadata.json"
     mcp_tools:
       - mcp__cocoindex_code__search
-      - mcp__spec_kit_memory__advisor_recommend
-      - mcp__spec_kit_memory__advisor_status
-      - mcp__spec_kit_memory__advisor_validate
-      - mcp__spec_kit_memory__advisor_rebuild
+      - mcp__mk_spec_memory__advisor_recommend
+      - mcp__mk_spec_memory__advisor_status
+      - mcp__mk_spec_memory__advisor_validate
+      - mcp__mk_spec_memory__advisor_rebuild
       - mcp__mk_skill_advisor__skill_graph_scan
       - mcp__mk_skill_advisor__skill_graph_query
       - mcp__mk_skill_advisor__skill_graph_status
-      - mcp__spec_kit_memory__memory_context
-      - mcp__spec_kit_memory__memory_search
+      - mcp__mk_spec_memory__memory_context
+      - mcp__mk_spec_memory__memory_search
     trigger_phrases:
       - "skill advisor scoring"
       - "skill advisor rebuild"

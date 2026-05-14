@@ -1,13 +1,13 @@
 ---
 description: Manage indexed-continuity DB: stats, scan, cleanup, retention, validate, checkpoint, ingest, CCC.
 argument-hint: "[scan [--force]] | [cleanup] | [retention-sweep [--dry-run]] | [bulk-delete <tier> [--older-than <days>] [--folder <spec>]] | [tier <id> <tier>] | [triggers <id>] | [validate <id> <useful|not>] | [delete <id>] | [health] | [checkpoint <subcommand>] | [ingest <subcommand>] | [ccc <status|reindex|feedback>]"
-allowed-tools: Read, spec_kit_memory_memory_stats, spec_kit_memory_memory_list, spec_kit_memory_memory_search, spec_kit_memory_memory_index_scan, spec_kit_memory_memory_validate, spec_kit_memory_memory_update, spec_kit_memory_memory_delete, spec_kit_memory_memory_bulk_delete, spec_kit_memory_memory_retention_sweep, spec_kit_memory_memory_health, spec_kit_memory_checkpoint_create, spec_kit_memory_checkpoint_restore, spec_kit_memory_checkpoint_list, spec_kit_memory_checkpoint_delete, spec_kit_memory_memory_ingest_start, spec_kit_memory_memory_ingest_status, spec_kit_memory_memory_ingest_cancel, spec_kit_memory_ccc_status, spec_kit_memory_ccc_reindex, spec_kit_memory_ccc_feedback
+allowed-tools: Read, mcp__mk_spec_memory__memory_stats, mcp__mk_spec_memory__memory_list, mcp__mk_spec_memory__memory_search, mcp__mk_spec_memory__memory_index_scan, mcp__mk_spec_memory__memory_validate, mcp__mk_spec_memory__memory_update, mcp__mk_spec_memory__memory_delete, mcp__mk_spec_memory__memory_bulk_delete, mcp__mk_spec_memory__memory_retention_sweep, mcp__mk_spec_memory__memory_health, mcp__mk_spec_memory__checkpoint_create, mcp__mk_spec_memory__checkpoint_restore, mcp__mk_spec_memory__checkpoint_list, mcp__mk_spec_memory__checkpoint_delete, mcp__mk_spec_memory__memory_ingest_start, mcp__mk_spec_memory__memory_ingest_status, mcp__mk_spec_memory__memory_ingest_cancel, mcp__mk_spec_memory__ccc_status, mcp__mk_spec_memory__ccc_reindex, mcp__mk_spec_memory__ccc_feedback
 ---
 
 # 🚨 MANDATORY FIRST ACTION - DO NOT SKIP
 
 > **NEVER use Bash to query the database directly. NEVER run `sqlite3` commands.**
-> All database access MUST go through the `spec_kit_memory_*` MCP tools listed in `allowed-tools`.
+> All database access MUST go through the `mk_spec_memory_*` MCP tools listed in `allowed-tools`.
 > If an MCP tool returns an error, report the error to the user: do NOT fall back to raw SQL via Bash.
 
 **STATUS: BLOCKED** (until argument is parsed)
@@ -255,7 +255,7 @@ node .opencode/skills/system-spec-kit/scripts/dist/memory/backfill-frontmatter.j
 node .opencode/skills/system-spec-kit/scripts/dist/memory/backfill-frontmatter.js --apply --include-archive
 
 # 3) Re-run scan
-spec_kit_memory_memory_index_scan({ force: true })
+mcp__mk_spec_memory__memory_index_scan({ force: true })
 ```
 
 Recommended order: **normalize → verify → rebuild**.
@@ -297,8 +297,8 @@ Graph metadata rows are generated from canonical packet docs. Derived `status` f
 ### Call Examples
 
 ```javascript
-spec_kit_memory_memory_index_scan({ force: false })  // Normal incremental
-spec_kit_memory_memory_index_scan({ force: true })   // Force full re-index
+mcp__mk_spec_memory__memory_index_scan({ force: false })  // Normal incremental
+mcp__mk_spec_memory__memory_index_scan({ force: true })   // Force full re-index
 ```
 
 **Targeted indexing examples:**
@@ -421,9 +421,9 @@ Runs `memory_retention_sweep` to audit or delete governed spec-doc records whose
 ### Workflow
 
 1. Parse `--dry-run`; default to dry-run unless the user explicitly requests apply.
-2. Execute `spec_kit_memory_memory_retention_sweep({ dryRun: true })` for previews.
+2. Execute `mcp__mk_spec_memory__memory_retention_sweep({ dryRun: true })` for previews.
 3. Before a mutating sweep, display the expired count and ask for confirmation.
-4. Execute `spec_kit_memory_memory_retention_sweep({ dryRun: false })` only after confirmation.
+4. Execute `mcp__mk_spec_memory__memory_retention_sweep({ dryRun: false })` only after confirmation.
 5. Report deleted count plus any retention audit metadata returned by the tool.
 
 ---
@@ -468,7 +468,7 @@ MEMORY:BULK-DELETE
 5. **Execute:**
 
 ```javascript
-spec_kit_memory_memory_bulk_delete({
+mcp__mk_spec_memory__memory_bulk_delete({
   tier: "<tier>",
   confirm: true,
   specFolder: "<spec>",       // omit if not specified
@@ -515,7 +515,7 @@ Excluded paths (`z_future/`, `/external/`) are rejected outright at save time an
 
 1. **Validate:** tier must be one of: constitutional, critical, important, normal, temporary, deprecated
 2. **Validate:** id must exist in indexed-continuity database
-3. **Execute:** `spec_kit_memory_memory_update({ id: <id>, importanceTier: "<tier>" })`
+3. **Execute:** `mcp__mk_spec_memory__memory_update({ id: <id>, importanceTier: "<tier>" })`
 4. **Inspect:** if the returned tier differs from the requested tier, the invariant guard fired — check the `governance_audit` log for a `tier_downgrade_non_constitutional_path` row tied to this memory id
 5. **Confirm:**
 
@@ -566,7 +566,7 @@ STATUS=OK ID=<id> TRIGGERS=<N>
 ### Workflow
 
 1. Parse: `"useful"` → `wasUseful: true` | `"not"` → `wasUseful: false`
-2. Execute: `spec_kit_memory_memory_validate({ id: <id>, wasUseful: <bool> })`
+2. Execute: `mcp__mk_spec_memory__memory_validate({ id: <id>, wasUseful: <bool> })`
 3. Confirm:
 
 ```text
@@ -601,7 +601,7 @@ STATUS=OK ID=<id> USEFUL=<true|false>
 ### Step 1: Retrieve and Display
 
 ```javascript
-spec_kit_memory_memory_list({ limit: 100, sortBy: "created_at" })
+mcp__mk_spec_memory__memory_list({ limit: 100, sortBy: "created_at" })
 ```
 
 For protected tiers (constitutional, critical):
@@ -633,7 +633,7 @@ MEMORY:DELETE
 ### Step 2: Execute and Confirm
 
 ```javascript
-spec_kit_memory_memory_delete({ id: <id> })
+mcp__mk_spec_memory__memory_delete({ id: <id> })
 ```
 
 ```text
@@ -651,7 +651,7 @@ STATUS=OK DELETED=<id>
 
 **Trigger:** `/memory:manage health`
 
-Execute `spec_kit_memory_memory_health({})`. Display:
+Execute `mcp__mk_spec_memory__memory_health({})`. Display:
 
 ```text
 MEMORY:HEALTH
@@ -694,7 +694,7 @@ STATUS=OK HEALTH=<healthy|degraded|error> SCHEMA=v13
 **Trigger:** `/memory:manage checkpoint create <name>`
 
 ```javascript
-spec_kit_memory_checkpoint_create({
+mcp__mk_spec_memory__checkpoint_create({
   name: "<checkpoint_name>",
   specFolder: "<folder>",   // Optional
   metadata: { ... }         // Optional
@@ -794,7 +794,7 @@ STATUS=FAIL CHECKPOINT=<name> ACTION=restore ROLLBACK=failed
 **Trigger:** `/memory:manage checkpoint list`
 
 ```javascript
-spec_kit_memory_checkpoint_list({ limit: 50, specFolder: "<folder>" })
+mcp__mk_spec_memory__checkpoint_list({ limit: 50, specFolder: "<folder>" })
 ```
 
 ```text
@@ -821,7 +821,7 @@ STATUS=OK ACTION=list
 **CONFIRMATION GATE:** Before calling checkpoint_delete, display the checkpoint name and ask for explicit user confirmation. Do not proceed without a confirmed response.
 
 ```javascript
-spec_kit_memory_checkpoint_delete({ name: "<checkpoint_name>", confirmName: "<checkpoint_name>" })
+mcp__mk_spec_memory__checkpoint_delete({ name: "<checkpoint_name>", confirmName: "<checkpoint_name>" })
 ```
 
 > **Safety contract:** `confirmName` is **required** and must exactly match `name`. The tool will reject the request if `confirmName` is missing or does not match.
@@ -851,7 +851,7 @@ Async bulk ingestion of multiple markdown files. Files are processed sequentiall
 **Trigger:** `/memory:manage ingest start <path1> [path2 ...] [--folder <specFolder>]`
 
 ```javascript
-spec_kit_memory_memory_ingest_start({
+mcp__mk_spec_memory__memory_ingest_start({
   paths: ["/abs/path/file1.md", "/abs/path/file2.md"],
   specFolder: "<spec-folder>"  // optional
 })
@@ -871,7 +871,7 @@ Returns a `jobId` immediately. Use `ingest status <jobId>` to check progress.
 **Trigger:** `/memory:manage ingest status <jobId>`
 
 ```javascript
-spec_kit_memory_memory_ingest_status({ jobId: "<jobId>" })
+mcp__mk_spec_memory__memory_ingest_status({ jobId: "<jobId>" })
 ```
 
 Shows job state (`running`, `completed`, `cancelled`, `failed`) and per-file progress.
@@ -881,7 +881,7 @@ Shows job state (`running`, `completed`, `cancelled`, `failed`) and per-file pro
 **Trigger:** `/memory:manage ingest cancel <jobId>`
 
 ```javascript
-spec_kit_memory_memory_ingest_cancel({ jobId: "<jobId>" })
+mcp__mk_spec_memory__memory_ingest_cancel({ jobId: "<jobId>" })
 ```
 
 Cancellation is checked between files: the currently processing file completes before the job stops.
@@ -912,7 +912,7 @@ CocoIndex CCC operations are explicit operator-triggered MCP calls. No startup, 
 **Trigger:** `/memory:manage ccc status`
 
 ```javascript
-spec_kit_memory_ccc_status({})
+mcp__mk_spec_memory__ccc_status({})
 ```
 
 Reports CocoIndex binary availability and index status.
@@ -922,7 +922,7 @@ Reports CocoIndex binary availability and index status.
 **Trigger:** `/memory:manage ccc reindex [--full]`
 
 ```javascript
-spec_kit_memory_ccc_reindex({ full: <true|false> })
+mcp__mk_spec_memory__ccc_reindex({ full: <true|false> })
 ```
 
 Runs CocoIndex incremental re-indexing by default. Use `--full` only when the semantic index is missing, stale, or explicitly requested by an operator.
@@ -932,7 +932,7 @@ Runs CocoIndex incremental re-indexing by default. Use `--full` only when the se
 **Trigger:** `/memory:manage ccc feedback <query> <rating> [--comment <text>]`
 
 ```javascript
-spec_kit_memory_ccc_feedback({
+mcp__mk_spec_memory__ccc_feedback({
   query: "<query>",
   rating: "helpful",
   comment: "<optional comment>"
@@ -999,22 +999,22 @@ spec_kit_memory_ccc_feedback({
 ### Tool Signatures
 
 ```javascript
-spec_kit_memory_memory_stats({})
-spec_kit_memory_memory_list({ limit: N, sortBy: "created_at", specFolder: "optional" })
-spec_kit_memory_memory_search({ query: "<q>", limit: N, specFolder: "optional" })
-spec_kit_memory_memory_index_scan({ force, specFolder, includeSpecDocs, includeConstitutional, incremental })
-spec_kit_memory_memory_validate({ id: <id>, wasUseful: <bool> })
-spec_kit_memory_memory_update({ id: <id>, importanceTier: "<tier>", triggerPhrases: [...] })
-spec_kit_memory_memory_delete({ id: <id> })
-spec_kit_memory_memory_bulk_delete({ tier: "<tier>", confirm: true, specFolder: "optional", olderThanDays: N, skipCheckpoint: false })
-spec_kit_memory_memory_health({})
-spec_kit_memory_checkpoint_create({ name: "<name>", specFolder: "optional", metadata: {...} })
-spec_kit_memory_checkpoint_restore({ name: "<name>", clearExisting: <bool> })
-spec_kit_memory_checkpoint_list({ limit: 50, specFolder: "optional" })
-spec_kit_memory_checkpoint_delete({ name: "<name>", confirmName: "<name>" })
-spec_kit_memory_memory_ingest_start({ paths: ["<path1>", "<path2>"], specFolder: "optional" })
-spec_kit_memory_memory_ingest_status({ jobId: "<jobId>" })
-spec_kit_memory_memory_ingest_cancel({ jobId: "<jobId>" })
+mcp__mk_spec_memory__memory_stats({})
+mcp__mk_spec_memory__memory_list({ limit: N, sortBy: "created_at", specFolder: "optional" })
+mcp__mk_spec_memory__memory_search({ query: "<q>", limit: N, specFolder: "optional" })
+mcp__mk_spec_memory__memory_index_scan({ force, specFolder, includeSpecDocs, includeConstitutional, incremental })
+mcp__mk_spec_memory__memory_validate({ id: <id>, wasUseful: <bool> })
+mcp__mk_spec_memory__memory_update({ id: <id>, importanceTier: "<tier>", triggerPhrases: [...] })
+mcp__mk_spec_memory__memory_delete({ id: <id> })
+mcp__mk_spec_memory__memory_bulk_delete({ tier: "<tier>", confirm: true, specFolder: "optional", olderThanDays: N, skipCheckpoint: false })
+mcp__mk_spec_memory__memory_health({})
+mcp__mk_spec_memory__checkpoint_create({ name: "<name>", specFolder: "optional", metadata: {...} })
+mcp__mk_spec_memory__checkpoint_restore({ name: "<name>", clearExisting: <bool> })
+mcp__mk_spec_memory__checkpoint_list({ limit: 50, specFolder: "optional" })
+mcp__mk_spec_memory__checkpoint_delete({ name: "<name>", confirmName: "<name>" })
+mcp__mk_spec_memory__memory_ingest_start({ paths: ["<path1>", "<path2>"], specFolder: "optional" })
+mcp__mk_spec_memory__memory_ingest_status({ jobId: "<jobId>" })
+mcp__mk_spec_memory__memory_ingest_cancel({ jobId: "<jobId>" })
 ```
 
 > **Feature Flag Behavior:** `SPECKIT_ADAPTIVE_FUSION` affects scan and search behavior: when enabled, index scans apply adaptive weight profiles during embedding and artifact-class routing during re-indexing. `SPECKIT_EXTENDED_TELEMETRY` enables detailed per-operation metrics for scan, search, and health calls. **Mutation Ledger:** cleanup and delete operations are recorded in the append-only mutation ledger, providing a full audit trail that can be reviewed when investigating unexpected state changes.

@@ -8,10 +8,10 @@
       ],
       "disabled": false
     },
-    "spec_kit_memory": {
+    "mk-spec-memory": {
       "command": "node",
       "args": [
-        ".opencode/bin/spec-kit-memory-launcher.cjs"
+        ".opencode/bin/mk-spec-memory-launcher.cjs"
       ],
       "env": {
         "EMBEDDINGS_PROVIDER": "auto",

@@ -1,7 +1,7 @@
 ---
 description: Router for /doctor <target>; dispatches per-subsystem diagnostic to the right YAML via the _routes.yaml manifest.
 argument-hint: "<target> [flags] | list | ?"
-allowed-tools: Read, Bash, Grep, Glob, Edit, Write, mcp__cocoindex_code__search, mcp__spec_kit_memory__code_graph_status, mcp__spec_kit_memory__code_graph_query, mcp__spec_kit_memory__code_graph_context, mcp__spec_kit_memory__code_graph_scan, mcp__spec_kit_memory__code_graph_apply, mcp__spec_kit_memory__detect_changes, mcp__spec_kit_memory__memory_context, mcp__spec_kit_memory__memory_search, mcp__spec_kit_memory__memory_health, mcp__spec_kit_memory__memory_index_scan, mcp__spec_kit_memory__memory_drift_why, mcp__spec_kit_memory__memory_stats, mcp__spec_kit_memory__memory_causal_stats, mcp__spec_kit_memory__memory_causal_link, mcp__spec_kit_memory__deep_loop_graph_status, mcp__spec_kit_memory__deep_loop_graph_query, mcp__spec_kit_memory__deep_loop_graph_upsert, mcp__spec_kit_memory__deep_loop_graph_convergence, mcp__spec_kit_memory__ccc_status, mcp__spec_kit_memory__ccc_reindex, mcp__spec_kit_memory__ccc_feedback, mcp__spec_kit_memory__advisor_recommend, mcp__spec_kit_memory__advisor_status, mcp__spec_kit_memory__advisor_validate, mcp__spec_kit_memory__advisor_rebuild, mcp__mk_skill_advisor__skill_graph_scan, mcp__mk_skill_advisor__skill_graph_query, mcp__mk_skill_advisor__skill_graph_status
+allowed-tools: Read, Bash, Grep, Glob, Edit, Write, mcp__cocoindex_code__search, mcp__mk_spec_memory__code_graph_status, mcp__mk_spec_memory__code_graph_query, mcp__mk_spec_memory__code_graph_context, mcp__mk_spec_memory__code_graph_scan, mcp__mk_spec_memory__code_graph_apply, mcp__mk_spec_memory__detect_changes, mcp__mk_spec_memory__memory_context, mcp__mk_spec_memory__memory_search, mcp__mk_spec_memory__memory_health, mcp__mk_spec_memory__memory_index_scan, mcp__mk_spec_memory__memory_drift_why, mcp__mk_spec_memory__memory_stats, mcp__mk_spec_memory__memory_causal_stats, mcp__mk_spec_memory__memory_causal_link, mcp__mk_spec_memory__deep_loop_graph_status, mcp__mk_spec_memory__deep_loop_graph_query, mcp__mk_spec_memory__deep_loop_graph_upsert, mcp__mk_spec_memory__deep_loop_graph_convergence, mcp__mk_spec_memory__ccc_status, mcp__mk_spec_memory__ccc_reindex, mcp__mk_spec_memory__ccc_feedback, mcp__mk_spec_memory__advisor_recommend, mcp__mk_spec_memory__advisor_status, mcp__mk_spec_memory__advisor_validate, mcp__mk_spec_memory__advisor_rebuild, mcp__mk_skill_advisor__skill_graph_scan, mcp__mk_skill_advisor__skill_graph_query, mcp__mk_skill_advisor__skill_graph_status
 ---
 <!-- skill_agent: system-spec-kit -->
 
@@ -104,7 +104,7 @@ What do you want to do?
    6) Debug CocoIndex                    (semantic search daemon)
    7) Re-tune Skill Advisor              (which skill gets recommended)
    8) Audit Skill Description budget     (char counts, CI-friendly)
-   9) Install/repair MCP servers         (spec-kit-memory, cocoindex-code, etc.)
+   9) Install/repair MCP servers         (mk-spec-memory, cocoindex-code, etc.)
    0) Full sweep — rebuild everything    (no migration, current schema)
    H) Help me decide
    X) Cancel

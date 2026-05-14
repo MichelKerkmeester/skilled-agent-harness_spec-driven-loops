@@ -43,7 +43,7 @@ _QUERY_PROMPT_MODELS: dict[str, str] = {
     # EmbeddingGemma uses task-specific prompt templates. For CODE SEARCH the
     # canonical prompt is "InstructionRetrieval" -> "task: code retrieval | query: ".
     # The alternative "query" -> "task: search result | query: " is for general
-    # retrieval (what spec-kit-memory uses). Code search wants the code variant.
+    # retrieval (what mk-spec-memory uses). Code search wants the code variant.
     #
     # NOTE: this sets only the QUERY prompt. EmbeddingGemma also has a distinct
     # DOCUMENT prompt ("title: none | text: ") expected at indexing time.

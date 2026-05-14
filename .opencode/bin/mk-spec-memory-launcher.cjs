@@ -36,7 +36,7 @@ for (const fname of ['.env.local', '.env']) {
   const p = path.join(root, fname);
   if (fs.existsSync(p)) {
     const n = loadEnvFile(p);
-    if (n > 0) process.stderr.write(`[spec-kit-memory-launcher] loaded ${n} env(s) from ${fname}\n`);
+    if (n > 0) process.stderr.write(`[mk-spec-memory-launcher] loaded ${n} env(s) from ${fname}\n`);
   }
 }
 
@@ -44,8 +44,8 @@ let skillsDir = path.join(opencodeDir, 'skills');
 let legacySkillDir = path.join(opencodeDir, 'skill');
 let kitDir = path.join(skillsDir, 'system-spec-kit');
 let dbDir = path.join(kitDir, 'mcp_server', 'database');
-let lockDir = path.join(dbDir, '.spec-kit-memory-launcher.lockdir');
-let stateFile = path.join(dbDir, '.spec-kit-memory-launcher.json');
+let lockDir = path.join(dbDir, '.mk-spec-memory-launcher.lockdir');
+let stateFile = path.join(dbDir, '.mk-spec-memory-launcher.json');
 let canonicalCodeGraphDbDir = path.join(skillsDir, 'system-code-graph', 'mcp_server', 'database');
 
 const rel = (p) => path.relative(root, p) || '.';
@@ -54,7 +54,7 @@ const now = () => new Date().toISOString();
 let childProcess = null;
 
 function log(message) {
-  process.stderr.write(`[spec-kit-memory-launcher] ${message}\n`);
+  process.stderr.write(`[mk-spec-memory-launcher] ${message}\n`);
 }
 
 function refreshPaths() {
@@ -62,8 +62,8 @@ function refreshPaths() {
   legacySkillDir = path.join(opencodeDir, 'skill');
   kitDir = path.join(skillsDir, 'system-spec-kit');
   dbDir = path.join(kitDir, 'mcp_server', 'database');
-  lockDir = path.join(dbDir, '.spec-kit-memory-launcher.lockdir');
-  stateFile = path.join(dbDir, '.spec-kit-memory-launcher.json');
+  lockDir = path.join(dbDir, '.mk-spec-memory-launcher.lockdir');
+  stateFile = path.join(dbDir, '.mk-spec-memory-launcher.json');
   canonicalCodeGraphDbDir = path.join(skillsDir, 'system-code-graph', 'mcp_server', 'database');
 }
 
@@ -244,7 +244,7 @@ for (const signal of ['SIGINT', 'SIGTERM', 'SIGHUP']) {
     if (lockHeld) {
       buildIfNeeded(actions);
       writeState({
-        command: 'spec-kit-memory-launcher',
+        command: 'mk-spec-memory-launcher',
         start: started,
         end: now(),
         status: 'ready',
@@ -257,7 +257,7 @@ for (const signal of ['SIGINT', 'SIGTERM', 'SIGHUP']) {
   } catch (error) {
     try {
       writeState({
-        command: 'spec-kit-memory-launcher',
+        command: 'mk-spec-memory-launcher',
         start: started,
         end: now(),
         status: 'failed',

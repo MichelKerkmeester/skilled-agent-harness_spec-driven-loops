@@ -16,7 +16,7 @@ This directory owns the standalone `mk_skill_advisor` MCP server implementation.
 <!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
-The server exposes advisor routing and skill graph tools from the advisor package. It is separate from `spec_kit_memory`, and packet 013/009/011 moved the skill graph DB/query library and startup lifecycle under this package.
+The server exposes advisor routing and skill graph tools from the advisor package. It is separate from `mk-spec-memory`, and packet 013/009/011 moved the skill graph DB/query library and startup lifecycle under this package.
 
 <!-- /ANCHOR:overview -->
 

@@ -13,7 +13,7 @@
 #   --json              Output machine-readable JSON
 #   --fix               Attempt auto-repair for failures
 #   --server <name>     Diagnose a single server only
-#                       Names: spec_kit_memory, cocoindex_code, code_mode, sequential_thinking
+#                       Names: mk-spec-memory, cocoindex_code, code_mode, sequential_thinking
 #   --root <path>       Override project root
 #
 # Exit Codes:
@@ -47,7 +47,7 @@ Options:
   --json              Output machine-readable JSON
   --fix               Attempt auto-repair for failures
   --server <name>     Diagnose a single server only
-                      Names: spec_kit_memory, cocoindex_code, code_mode, sequential_thinking
+                      Names: mk-spec-memory, cocoindex_code, code_mode, sequential_thinking
   --root <path>       Override project root
 
 Exit Codes:
@@ -56,7 +56,7 @@ Exit Codes:
   2  Failures detected
 
 Servers Checked:
-  spec_kit_memory       Spec Kit Memory (Node.js MCP, SQLite + embeddings)
+  mk-spec-memory       Spec Kit Memory (Node.js MCP, SQLite + embeddings)
   cocoindex_code        CocoIndex Code (Python MCP, semantic search)
   code_mode             Code Mode (Node.js MCP, TypeScript tool orchestration)
   sequential_thinking   Sequential Thinking (npx MCP, structured reasoning)
@@ -141,8 +141,8 @@ fi
 # ══════════════════════════════════════════════════════════════
 
 # ── Spec Kit Memory ───────────────────────────────────────────
-diagnose_spec_kit_memory() {
-  local srv="spec_kit_memory"
+diagnose_mk_spec_memory() {
+  local srv="mk-spec-memory"
   local skill_dir="$PROJECT_ROOT/.opencode/skills/system-spec-kit"
   local dist_entry="$skill_dir/mcp_server/dist/context-server.js"
   local db_dir="$skill_dir/mcp_server/database"
@@ -498,7 +498,7 @@ detect_and_check_configs() {
     ".vscode/mcp.json|json-vscode-mcp|VS Code / Copilot"
   )
 
-  local -a servers=("spec_kit_memory" "cocoindex_code" "code_mode" "sequential_thinking")
+  local -a servers=("mk-spec-memory" "cocoindex_code" "code_mode" "sequential_thinking")
 
   for cfg_entry in "${config_files[@]}"; do
     IFS='|' read -r cfg_path cfg_format cfg_label <<< "$cfg_entry"
@@ -530,7 +530,7 @@ detect_and_check_configs() {
 # ══════════════════════════════════════════════════════════════
 # MAIN DISPATCH
 # ══════════════════════════════════════════════════════════════
-should_run "spec_kit_memory"      && diagnose_spec_kit_memory
+should_run "mk-spec-memory"      && diagnose_mk-spec-memory
 should_run "cocoindex_code"       && diagnose_cocoindex_code
 should_run "code_mode"            && diagnose_code_mode
 should_run "sequential_thinking"  && diagnose_sequential_thinking

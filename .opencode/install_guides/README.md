@@ -488,7 +488,7 @@ No separate local model service is required for Memory MCP embeddings. Continue 
 <!-- ANCHOR:phase-3-mcp-servers -->
 ## 10. PHASE 3: MCP SERVERS
 
-> **Skip Check:** Run `grep -q '"code_mode"' opencode.json && grep -q '"spec_kit_memory"' opencode.json && echo "✅ All configured"`. If all configured, skip to Phase 4.
+> **Skip Check:** Run `grep -q '"code_mode"' opencode.json && grep -q '"mk-spec-memory"' opencode.json && echo "✅ All configured"`. If all configured, skip to Phase 4.
 
 ### Installation Order (Important!)
 
@@ -589,7 +589,7 @@ Spec Kit Memory now supports four providers in cascade:
 ```json
 {
   "mcp": {
-    "spec_kit_memory": {
+    "mk-spec-memory": {
       "command": "node",
       "args": [".opencode/skills/system-spec-kit/mcp_server/dist/context-server.js"],
       "env": {
@@ -636,7 +636,7 @@ Each provider+model+dimension combination uses its own SQLite database. This pre
 ls -la .opencode/skills/system-spec-kit/mcp_server/database/
 ```
 
-### Validation: `spec_kit_memory_check`
+### Validation: `mk_spec_memory_check`
 
 - [ ] Context server JS file exists
 - [ ] Database directory exists (or will be created)
@@ -644,7 +644,7 @@ ls -la .opencode/skills/system-spec-kit/mcp_server/database/
 
 **Quick Verification:**
 ```bash
-test -f .opencode/skills/system-spec-kit/mcp_server/dist/context-server.js && grep -q '"spec_kit_memory"' opencode.json && echo "✅ PASS" || echo "❌ FAIL"
+test -f .opencode/skills/system-spec-kit/mcp_server/dist/context-server.js && grep -q '"mk-spec-memory"' opencode.json && echo "✅ PASS" || echo "❌ FAIL"
 ```
 
 **Verify active provider:**
@@ -735,7 +735,7 @@ bdg --version >/dev/null 2>&1 && echo "✅ PASS" || echo "❌ FAIL"
 
 **Quick Verification:**
 ```bash
-grep -q '"code_mode"' opencode.json && grep -q '"spec_kit_memory"' opencode.json && echo "✅ PASS" || echo "❌ FAIL"
+grep -q '"code_mode"' opencode.json && grep -q '"mk-spec-memory"' opencode.json && echo "✅ PASS" || echo "❌ FAIL"
 ```
 
 ---
@@ -854,7 +854,7 @@ test -d .opencode/skill && [ $(ls -1 .opencode/skill | wc -l) -ge 1 ] && echo "�
       "args": ["utcp-mcp"],
       "env": {}
     },
-    "spec_kit_memory": {
+    "mk-spec-memory": {
       "command": "node",
       "args": [".opencode/skills/system-spec-kit/mcp_server/dist/context-server.js"]
     },
@@ -893,7 +893,7 @@ test -d .opencode/skill && [ $(ls -1 .opencode/skill | wc -l) -ge 1 ] && echo "�
       "args": ["utcp-mcp"],
       "env": {}
     },
-    "spec_kit_memory": {
+    "mk-spec-memory": {
       "command": "node",
       "args": [".opencode/skills/system-spec-kit/mcp_server/dist/context-server.js"]
     }
@@ -1391,7 +1391,7 @@ Instead of manual troubleshooting, use the built-in diagnostic commands that che
 
 # Diagnose or install a single server
 /doctor:mcp debug --server cocoindex_code
-/doctor:mcp install --server spec_kit_memory
+/doctor:mcp install --server mk-spec-memory
 ```
 
 The doctor commands read the install guides, check system reality, and offer guided repair. Available across OpenCode, Claude Code, Codex CLI, and Gemini CLI.
@@ -1437,7 +1437,7 @@ bash .opencode/commands/doctor/scripts/mcp-doctor.sh --fix
 
 | Category           | Count | Items                                                                                                                    |
 | ------------------ | ----- | ------------------------------------------------------------------------------------------------------------------------ |
-| Native MCP Servers | 3     | code_mode, spec_kit_memory, sequential_thinking                                                                          |
+| Native MCP Servers | 3     | code_mode, mk-spec-memory, sequential_thinking                                                                          |
 | Skills             | 17    | cli-claude-code, cli-codex, cli-gemini, cli-opencode, mcp-chrome-devtools, mcp-coco-index, mcp-code-mode, sk-code, sk-code-review, deep-research, deep-review, sk-doc, sk-git, deep-agent-improvement, sk-prompt, system-spec-kit |
 | Commands           | 22    | /create:* (7), /memory:* (6), /spec_kit:* (8), agent_router (1)                                                         |
 | CLI Tools          | 1     | Chrome DevTools (bdg)                                                                                                    |

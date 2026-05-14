@@ -706,7 +706,7 @@ For generic MCP clients that use `mcpServers` syntax (for example Claude Desktop
 ```json
 {
   "mcpServers": {
-    "spec-kit-memory": {
+    "mk-spec-memory": {
       "command": "node",
       "args": [
         "/absolute/path/to/.opencode/skills/system-spec-kit/mcp_server/dist/context-server.js"
@@ -877,7 +877,7 @@ node .opencode/skills/system-spec-kit/mcp_server/dist/context-server.js
 node --version
 ```
 
-Verify `spec-kit-memory` appears in your `opencode.json` or equivalent MCP config file (see [Configuration](#5-configuration)).
+Verify `mk-spec-memory` appears in your `opencode.json` or equivalent MCP config file (see [Configuration](#5-configuration)).
 
 ---
 

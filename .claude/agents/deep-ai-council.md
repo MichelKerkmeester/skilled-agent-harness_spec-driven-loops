@@ -1,7 +1,7 @@
 ---
 name: deep-ai-council
 description: "Deep AI Council scoped-write planning architect: diverse AI lenses, multi-round deliberation, ai-council artifact writes only."
-tools: Read, Write, Edit, Grep, Glob, WebFetch, Agent, mcp__spec_kit_memory__*, mcp__sequential_thinking__*
+tools: Read, Write, Edit, Grep, Glob, WebFetch, Agent, mcp__mk_spec_memory__*, mcp__sequential_thinking__*
 ---
 
 # The Deep AI Council: Multi-Strategy Planning Architect

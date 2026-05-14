@@ -4,7 +4,7 @@ Tune the OpenCode skill advisor scoring tables (TOKEN_BOOSTS, PHRASE_BOOSTS, der
 
 > **Part of OpenCode Installation.** See the [Master Installation Guide](./README.md) for complete setup.
 > **Command:** `/doctor skill-advisor` (auto + confirm modes) — full reference in `.opencode/commands/doctor.md`.
-> **Ownership:** As of `013/009/008`, `skill_graph_*` tools are served by the `mk_skill_advisor` MCP server, not `spec_kit_memory`. Operations remain identical; public tool ids are unchanged.
+> **Ownership:** As of `013/009/008`, `skill_graph_*` tools are served by the `mk_skill_advisor` MCP server, not `mk-spec-memory`. Operations remain identical; public tool ids are unchanged.
 
 ---
 

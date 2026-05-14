@@ -43,7 +43,7 @@ DEFAULT_INCLUDED_PATTERNS: list[str] = [
     "**/*.lua",  # Lua
     # 014-local-embeddings-setup-a / 010-cocoindex-code-only-patterns:
     # markdown / mdx / txt / rst REMOVED from defaults — cocoindex is for CODE
-    # search; documentation is indexed by spec-kit-memory which has its own
+    # search; documentation is indexed by mk-spec-memory which has its own
     # vec store and routing. Keeping docs here caused 4-runtime-mirror
     # duplication (every SKILL.md indexed 4x) and ~45% of the index volume
     # was non-code content. Spec-folder content was already excluded; this

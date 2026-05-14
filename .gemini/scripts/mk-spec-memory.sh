@@ -5,7 +5,7 @@
 # Launches the Spec Kit Memory MCP server with auto-detected
 # embedding provider and database path resolution.
 #
-# Usage: spec-kit-memory.sh
+# Usage: mk-spec-memory.sh
 #
 # Environment:
 #   EMBEDDINGS_PROVIDER   - auto | voyage | openai | llama-cpp | hf-local (default: auto)

@@ -72,7 +72,7 @@ memory_search({ query: "auth", specFolder: "122-skill-standardization" })
 ❌ **Wrong approach:**
 ```javascript
 // Calling through Code Mode (loses native efficiency)
-call_tool_chain(`spec_kit_memory.memory_search({ query: "test" })`)
+call_tool_chain(`mk-spec-memory.memory_search({ query: "test" })`)
 ```
 
 ✅ **Correct approach:**
@@ -107,7 +107,7 @@ memory_search({ query: "test" })
 **Connection Recovery Protocol:**
 
 1. Check server status: `ps aux | grep context-server`
-2. Verify config: `cat opencode.json | jq '.mcp["spec_kit_memory"]'`
+2. Verify config: `cat opencode.json | jq '.mcp["mk-spec-memory"]'`
 3. Test basic call: `memory_stats()`
 4. If still failing: restart server and wait 10s
 

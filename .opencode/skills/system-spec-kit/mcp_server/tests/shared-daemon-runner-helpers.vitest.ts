@@ -58,7 +58,7 @@ memory_search({ query: "latency baseline", limit: 5 })
         raw: expect.stringContaining('mcp__cocoindex_code__search'),
       },
       {
-        server: 'spec_kit_memory',
+        server: 'mk_spec_memory',
         tool: 'memory_search',
         arguments: {
           query: 'latency baseline',
@@ -70,20 +70,22 @@ memory_search({ query: "latency baseline", limit: 5 })
   });
 
   it('selects the MCP client for each known server', () => {
-    const spec_kit_memory = { name: 'memory' };
-    const cocoindex_code = { name: 'cocoindex' };
+    const memoryClient = { name: 'memory' };
+    const cocoindexClient = { name: 'cocoindex' };
+    const clients = { mk_spec_memory: memoryClient, cocoindex_code: cocoindexClient };
 
-    expect(selectClientForServer({ spec_kit_memory, cocoindex_code }, 'spec_kit_memory')).toBe(spec_kit_memory);
-    expect(selectClientForServer({ spec_kit_memory, cocoindex_code }, 'cocoindex_code')).toBe(cocoindex_code);
-    expect(selectClientForServer({ spec_kit_memory, cocoindex_code }, 'unknown_server')).toBeNull();
+    expect(selectClientForServer(clients, 'mk_spec_memory')).toBe(memoryClient);
+    expect(selectClientForServer(clients, 'mk-spec-memory')).toBe(memoryClient);
+    expect(selectClientForServer(clients, 'cocoindex_code')).toBe(cocoindexClient);
+    expect(selectClientForServer(clients, 'unknown_server')).toBeNull();
   });
 
-  it('routes via primary daemon keys (spec_kit_memory + cocoindex_code)', () => {
+  it('routes via primary daemon keys (mk_spec_memory + cocoindex_code)', () => {
     const memoryClient = { name: 'mem' };
     const cocoindexClient = { name: 'coco' };
-    const clients = { spec_kit_memory: memoryClient, cocoindex_code: cocoindexClient };
+    const clients = { mk_spec_memory: memoryClient, cocoindex_code: cocoindexClient };
 
-    expect(selectClientForServer(clients, 'spec_kit_memory')).toBe(memoryClient);
+    expect(selectClientForServer(clients, 'mk_spec_memory')).toBe(memoryClient);
     expect(selectClientForServer(clients, 'cocoindex_code')).toBe(cocoindexClient);
     expect(selectClientForServer(clients, 'unknown')).toBeNull();
   });
@@ -123,15 +125,15 @@ memory_search({ query: "latency baseline", limit: 5 })
 
   it('checks tool availability and executes every runnable call before aggregating failures', async () => {
     const calls = [
-      { server: 'spec_kit_memory', tool: 'memory_search', arguments: { query: 'ok' } },
+      { server: 'mk_spec_memory', tool: 'memory_search', arguments: { query: 'ok' } },
       { server: 'cocoindex_code', tool: 'search', arguments: { query: 'bad' } },
     ];
     const availability = checkToolAvailability(calls, {
-      spec_kit_memory: new Set(['memory_search']),
+      mk_spec_memory: new Set(['memory_search']),
       cocoindex_code: new Set(['search']),
     });
     const clients = {
-      spec_kit_memory: {
+      mk_spec_memory: {
         callTool: async () => ({ content: [{ type: 'text', text: '{"success":true}' }] }),
       },
       cocoindex_code: {

@@ -29,7 +29,7 @@ allowed-tools: Read, Bash, Grep, Glob, Edit, Write
 - **STANDALONE COMMAND**: this is not part of `/doctor`'s subsystem-diagnostic family. It handles MCP infrastructure repair, which is upstream of every subsystem's database.
 
 > **Format:** `/doctor:mcp <install|debug> [flags]`
-> Examples: `/doctor:mcp install --server spec-kit-memory`, `/doctor:mcp debug --fix`
+> Examples: `/doctor:mcp install --server mk-spec-memory`, `/doctor:mcp debug --fix`
 
 ## GATE 3 STATUS
 
@@ -112,7 +112,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 
 `/doctor:mcp` bundles two MCP infrastructure operations:
 
-- **`install`** — Fresh install (or reinstall) all 4 MCP servers (`spec-kit-memory`, `cocoindex-code`, `sequential-thinking`, `code-mode`) from their canonical install guides. Checks runtime prerequisites (Node ≥ 20.11.0, Python ≥ 3.11, npm, npx), assesses current state per server, runs install/build/configure steps, and verifies via `mcp-doctor.sh --json`.
+- **`install`** — Fresh install (or reinstall) all 4 MCP servers (`mk-spec-memory`, `cocoindex-code`, `sequential-thinking`, `code-mode`) from their canonical install guides. Checks runtime prerequisites (Node ≥ 20.11.0, Python ≥ 3.11, npm, npx), assesses current state per server, runs install/build/configure steps, and verifies via `mcp-doctor.sh --json`.
 - **`debug`** — Diagnose and repair broken MCP servers. Runs `mcp-doctor.sh --json`, cross-references each failure with its install guide, offers targeted repair (`--fix`), re-verifies, and reports a final status.
 
 These are the only two operations on MCP infrastructure itself. Every other `/doctor*` workflow runs INSIDE the working MCP layer; if MCP is broken, run `/doctor:mcp debug --fix` first.
@@ -144,7 +144,7 @@ These are the only two operations on MCP infrastructure itself. Every other `/do
 ```
 # Install (fresh / reinstall)
 /doctor:mcp install                                  # Install all 4 MCP servers from scratch
-/doctor:mcp install --server spec-kit-memory         # Install just spec-kit-memory
+/doctor:mcp install --server mk-spec-memory         # Install just mk-spec-memory
 /doctor:mcp install --runtime claude                 # Install for a specific runtime
 
 # Debug (diagnose + optional repair)

@@ -54,7 +54,7 @@ The framework adds four layers on top of the base platform:
 | **🤖 11 Agents**        | 11 custom specialists, multi-runtime                                                                                                                                                                                                              |
 | **🎯 19 Skills**        | Code, docs, git, prompts, MCP, research, review, improvement, cross-AI, and standalone system packages                                                                                                                                            |
 | **⌨️ 22 Commands**      | 6 spec_kit + 4 memory + 6 create + 2 improve + 3 doctor + 1 agent_router                                                                                                                                                                          |
-| **🔧 68 MCP Tools**     | spec_kit_memory (41), mk_skill_advisor (8), mk_code_index (10), code mode (7), CocoIndex (1), sequential thinking (1). See canonical count in FAQ                                                                            |
+| **🔧 68 MCP Tools**     | mk-spec-memory (41), mk_skill_advisor (8), mk_code_index (10), code mode (7), CocoIndex (1), sequential thinking (1). See canonical count in FAQ                                                                            |
 | **🔍 CocoIndex Code**   | [Forked](.opencode/skills/mcp-coco-index/NOTICE) from [cocoindex-io/cocoindex-code](https://github.com/cocoindex-io/cocoindex-code) (Apache 2.0) - semantic code search via vector embeddings and natural-language discovery across 28+ languages |
 | **🏗️ Code Graph**       | First-class skill at [`.opencode/skills/system-code-graph/`](.opencode/skills/system-code-graph/) with standalone MCP server identity `mk-code-index` and client namespace `mcp__mk_code_index__*`                                               |
 | **⚡ Runtime Coverage** | OpenCode, Codex CLI, Claude Code, Gemini CLI, plus Copilot MCP/startup support                                                                                                                                                                    |
@@ -88,7 +88,7 @@ The framework adds four layers on top of the base platform:
                  ▼                           ▼
          ┌──────────────────────────────────────────┐
          │          NATIVE MCP TOPOLOGY             │
-         │  spec_kit_memory      context + memory   │
+         │  mk-spec-memory      context + memory   │
          │  mk_skill_advisor     skill routing      │
          │  mk_code_index        structural graph   │
          │  cocoindex_code       semantic search    │
@@ -175,7 +175,7 @@ export OPENAI_API_KEY="your-key-here"
 node .opencode/skills/system-spec-kit/mcp_server/dist/context-server.js --help
 
 # Check the current native MCP registrations across runtime configs
-rg '"spec_kit_memory"|"mk_skill_advisor"|"mk_code_index"|"cocoindex_code"' opencode.json .claude/mcp.json .codex/config.toml .gemini/settings.json
+rg '"mk-spec-memory"|"mk_skill_advisor"|"mk_code_index"|"cocoindex_code"' opencode.json .claude/mcp.json .codex/config.toml .gemini/settings.json
 ```
 
 ### First Use
@@ -380,7 +380,7 @@ The full MCP API reference is in the [MCP Server README](.opencode/skills/system
 &nbsp;
 #### Layered MCP Surface
 
-The `spec_kit_memory` tools are organized into a layered architecture. Code graph and skill-advisor tools moved to standalone MCP servers, so this table covers memory-owned tools only:
+The `mk-spec-memory` tools are organized into a layered architecture. Code graph and skill-advisor tools moved to standalone MCP servers, so this table covers memory-owned tools only:
 
 | Layer  | Name            | Tools  | Token Budget | Purpose                                                                      |
 | ------ | --------------- | ------ | ------------ | ---------------------------------------------------------------------------- |
@@ -1195,7 +1195,7 @@ Canonical native server set:
 
 | Server                 | Tools | Purpose                                                                |
 | ---------------------- | ----- | ---------------------------------------------------------------------- |
-| `spec_kit_memory`      | 41    | Cognitive memory, session recovery, causal/eval tools, and graph loops |
+| `mk-spec-memory`      | 41    | Cognitive memory, session recovery, causal/eval tools, and graph loops |
 | `mk_skill_advisor`     | 8     | Gate 2 advisor routing plus skill-graph scan/query/status/validation   |
 | `mk_code_index`        | 10    | Structural code graph, `detect_changes`, and CocoIndex bridge helpers  |
 | `code_mode`            | 7     | External tool orchestration via TypeScript execution                   |
@@ -1339,7 +1339,7 @@ Abbreviated shape. Runtime config files can temporarily differ while the `mk-cod
 ```json
 {
   "mcp": {
-    "spec_kit_memory": {
+    "mk-spec-memory": {
       "type": "local"
     },
     "mk_skill_advisor": {
@@ -1442,7 +1442,7 @@ A: Define the agent in `.opencode/agents/` (the source of truth), then copy the 
 &nbsp;
 **Q: How many MCP tools are there and where are they defined?**
 
-A: 68 total across 6 native MCP servers, sourced from registered MCP-dispatched tools only. Breakdown: 41 `spec_kit_memory` tools from `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts`, 8 `mk_skill_advisor` tools from `.opencode/skills/system-skill-advisor/mcp_server/advisor-server.ts`, 10 `mk_code_index` tools from `.opencode/skills/system-code-graph/mcp_server/tool-schemas.ts`, 7 code mode tools, 1 semantic code search tool (`cocoindex_code`), and 1 sequential thinking tool. Canonical advisor/skill-graph docs use `mk_skill_advisor` / `mcp__mk_skill_advisor__*`; canonical code-graph docs use `mk_code_index` / `mcp__mk_code_index__*`.
+A: 68 total across 6 native MCP servers, sourced from registered MCP-dispatched tools only. Breakdown: 41 `mk-spec-memory` tools from `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts`, 8 `mk_skill_advisor` tools from `.opencode/skills/system-skill-advisor/mcp_server/advisor-server.ts`, 10 `mk_code_index` tools from `.opencode/skills/system-code-graph/mcp_server/tool-schemas.ts`, 7 code mode tools, 1 semantic code search tool (`cocoindex_code`), and 1 sequential thinking tool. Canonical advisor/skill-graph docs use `mk_skill_advisor` / `mcp__mk_skill_advisor__*`; canonical code-graph docs use `mk_code_index` / `mcp__mk_code_index__*`.
 &nbsp;
 
 **Q: What is the feature catalog?**
@@ -1484,4 +1484,4 @@ A: The feature catalog is a 294-entry reference across 22 categories documenting
 <!-- /ANCHOR:related-documents -->
 
 
-*Documentation version: 4.9 | Last updated: 2026-05-14 | Framework: 11 agents, 19 skills, 22 commands, 68 MCP tools (41 spec_kit_memory + 8 mk_skill_advisor + 10 mk_code_index + 7 code mode + 1 CocoIndex + 1 sequential thinking; deferred / internal-only handlers do NOT count).*
+*Documentation version: 4.9 | Last updated: 2026-05-14 | Framework: 11 agents, 19 skills, 22 commands, 68 MCP tools (41 mk-spec-memory + 8 mk_skill_advisor + 10 mk_code_index + 7 code mode + 1 CocoIndex + 1 sequential thinking; deferred / internal-only handlers do NOT count).*

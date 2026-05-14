@@ -47,7 +47,7 @@ Orchestrating AI stores 5 baseline memories. For each i in 1..5:
 
   b. Save it:
      ```
-     mcp__spec_kit_memory__memory_save({
+     mcp__mk_spec_memory__memory_save({
        filePath: "<absolute path from step a>"
      })
      # Do NOT pass retentionPolicy: "ephemeral" — see post-014/022 follow-up note in 401-paraphrase-recall.md.
@@ -62,7 +62,7 @@ codex exec --model "gpt-5.5" -c approval_policy=never --sandbox workspace-write 
 You are <CLI-A>. Run this tight loop for 30 seconds:
 
   for i in 1..50:
-    response = mcp__spec_kit_memory__memory_search({
+    response = mcp__mk_spec_memory__memory_search({
       query: "local LLM concurrent safety probe",
       limit: 5,
     })
@@ -96,7 +96,7 @@ You are <CLI-B>. Wait 3 seconds for CLI-A's reader to start its loop, then fire 
      Concurrent write 415-write-{i}: testing interleaved access against an active reader.
 
   b. Save:
-     mcp__spec_kit_memory__memory_save({
+     mcp__mk_spec_memory__memory_save({
        filePath: "<absolute path from step a>"
      })
      # Do NOT pass retentionPolicy: "ephemeral" — see post-014/022 follow-up note in 401-paraphrase-recall.md.
@@ -163,7 +163,7 @@ Verdict: PASS — 50/50 reads coherent, 10/10 writes succeeded, 0 errors total.
 Loop memory_delete over the 15 captured parent_ids (5 pre-seed + 10 writes), then remove on-disk files:
 ```
 for ID in [<5 baseline parent_ids> + <10 write parent_ids>]:
-  mcp__spec_kit_memory__memory_delete({ parent_id: ID })
+  mcp__mk_spec_memory__memory_delete({ parent_id: ID })
 
 rm -rf .opencode/specs/_sandbox/24-415-*
 ```

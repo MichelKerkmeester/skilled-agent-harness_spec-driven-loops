@@ -290,7 +290,7 @@ Add the following to `opencode.json` in your project root:
 ```json
 {
   "mcp": {
-    "spec_kit_memory": {
+    "mk-spec-memory": {
       "type": "local",
       "command": [
         "node",
@@ -331,7 +331,7 @@ Add the following to that file:
 ```json
 {
   "mcpServers": {
-    "spec_kit_memory": {
+    "mk-spec-memory": {
       "command": "node",
       "args": [
         "/Users/YOUR_USERNAME/path/to/project/.opencode/skills/system-spec-kit/mcp_server/dist/context-server.js"
@@ -362,7 +362,7 @@ Add these flags to the `environment` (or `env`) block of any configuration optio
 ```json
 {
   "mcp": {
-    "spec_kit_memory": {
+    "mk-spec-memory": {
       "type": "local",
       "command": [
         "node",
@@ -425,7 +425,7 @@ Ask your AI assistant:
 What MCP tools are available?
 ```
 
-You should see `spec_kit_memory` tools listed, including:
+You should see `mk-spec-memory` tools listed, including:
 - `memory_context` (unified context retrieval)
 - `memory_search` (semantic search)
 - `memory_match_triggers` (fast trigger matching)
@@ -440,7 +440,7 @@ You should see `spec_kit_memory` tools listed, including:
 - `session_bootstrap` (complete session bootstrap)
 - `session_resume` (combined session resume)
 
-Skill Advisor is a separate MCP server named `mk_skill_advisor`, registered alongside `spec_kit_memory`. Its public tool ids remain stable:
+Skill Advisor is a separate MCP server named `mk_skill_advisor`, registered alongside `mk-spec-memory`. Its public tool ids remain stable:
 - `advisor_recommend` (native skill routing recommendations)
 - `advisor_rebuild` (advisor graph rebuild)
 - `advisor_status` (daemon freshness and trust-state health)
@@ -837,7 +837,7 @@ sqlite3 "$ACTIVE_DB" \
 ### Example 8: Troubleshooting Codex MCP Startup Failure
 
 ```bash
-# Symptom: Codex cannot initialize spec_kit_memory MCP server
+# Symptom: Codex cannot initialize mk-spec-memory MCP server
 
 # Check 1: SPEC_KIT_DB_DIR must be writable
 # In .codex/config.toml, verify the directory is writable:

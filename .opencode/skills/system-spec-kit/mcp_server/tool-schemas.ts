@@ -555,7 +555,7 @@ const memoryIngestCancel: ToolDefinition = {
 // Code Graph - Structural code analysis tools
 // Code-graph tool schemas migrated to system-code-graph standalone MCP server per ADR-002
 // (.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/007-mcp-topology-pivot/decision-record.md)
-// Tool IDs unchanged (ADR-001 Q4 stable); namespace changed: mcp__spec_kit_memory__code_graph_* → mcp__mk_code_index__code_graph_*
+// Tool IDs unchanged (ADR-001 Q4 stable); namespace changed: mcp__mk_spec_memory__code_graph_* → mcp__mk_code_index__code_graph_*
 
 
 

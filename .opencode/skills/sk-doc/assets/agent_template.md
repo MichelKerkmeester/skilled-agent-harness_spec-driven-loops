@@ -68,7 +68,7 @@ permission:
   patch: deny
   external_directory: allow
 mcpServers:
-  - spec_kit_memory
+  - mk-spec-memory
   - cocoindex_code
 ---
 ```
@@ -84,7 +84,7 @@ Use the unified `permission:` object with `allow`, `deny`, or `ask`. The older s
 | `mode` | string | Yes | `subagent`, `agent`, `primary`, or `all` as supported by runtime |
 | `temperature` | float | Yes | Usually `0.1`; use higher values only when variation is useful |
 | `permission` | object | Yes | Runtime capability boundary |
-| `mcpServers` | list | No | Explicit MCP servers available to the agent, for example `[spec_kit_memory, cocoindex_code]` |
+| `mcpServers` | list | No | Explicit MCP servers available to the agent, for example `[mk-spec-memory, cocoindex_code]` |
 
 ### Mode Reference
 
