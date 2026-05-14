@@ -353,18 +353,6 @@ Use `ccc_feedback` to improve search quality over time:
 
 Feedback is stored in `.opencode/skills/mcp-coco-index/feedback/search-feedback.jsonl` for analysis.
 
-## 10. OVERVIEW
-
-_TODO: populate this section_
-
----
-
-## 11. OVERVIEW
-
-_TODO: populate this section_
-
----
-
 ## 9. RELATED RESOURCES
 
 | Resource        | Location                                                           |

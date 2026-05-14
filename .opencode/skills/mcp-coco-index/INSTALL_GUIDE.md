@@ -9,7 +9,7 @@ trigger_phrases:
 
 # CocoIndex Code Installation Guide
 
-Complete installation and configuration guide for CocoIndex Code, a semantic code search engine for AI-assisted development. Provides natural language code search across your entire codebase with configurable embedding models (local or API-based). Runs as an MCP server exposing a single `search` tool to AI assistants, while `status`, `index`, `reset`, and `daemon` remain CLI commands.
+Complete installation and configuration guide for CocoIndex Code, a semantic code search engine for AI-assisted development. Provides natural language code search across your entire codebase with configurable embedding models (local or API-based). Runs as an MCP server exposing `search` and `cocoindex_refresh_index` to AI assistants, while `status`, `index`, `reset`, and `daemon` remain CLI commands.
 
 > **Part of OpenCode Installation.** See the [Master Installation Guide](../README.md) for complete setup.
 > **Package:** local editable `cocoindex-code` soft-fork | **Dependencies:** Python 3.11+
@@ -143,7 +143,7 @@ Search task received --> Do you know the exact text?
 |              CocoIndex Code MCP Server                       |
 |              (ccc mcp)                                       |
 |                                                              |
-|  MCP Tool: search only                                      |
+|  MCP Tools: search + cocoindex_refresh_index                |
 |  Embedding: configurable (local or API-based)                |
 +------------------------------+------------------------------+
                                |

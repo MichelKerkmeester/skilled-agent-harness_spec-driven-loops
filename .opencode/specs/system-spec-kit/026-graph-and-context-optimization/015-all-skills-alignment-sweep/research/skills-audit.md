@@ -67,9 +67,9 @@ DQI proxy uses four local signals: template pass, frontmatter budget, current-re
 | deep-ai-council | 80 md | 90 -> 91 | No blocking sk-doc findings; council state and derived graph docs current | Verified in Batch B |
 | deep-research | 88 md | 90 -> 91 | No blocking sk-doc findings; deferred lifecycle language is explicit current truth | Verified in Batch B |
 | deep-review | 86 md | 90 -> 93 | Removed duplicate `_TODO` quick-reference sections and corrected canonical `deep-review-state.jsonl` playbook references | Aligned in Batch B |
-| mcp-chrome-devtools | 35 md | 90 | No blocking sk-doc findings | Pending Batch C |
-| mcp-coco-index | 188 md | 91 | Need verify post-040 embedding wording and fork docs | Pending Batch C |
-| mcp-code-mode | 45 md | 90 | No blocking sk-doc findings | Pending Batch C |
+| mcp-chrome-devtools | 35 md | 90 -> 92 | INSTALL_GUIDE H2s aligned with sk-doc install-guide template | Aligned in Batch C |
+| mcp-coco-index | 188 md | 91 -> 94 | README/INSTALL_GUIDE now state two MCP tools (`search`, `cocoindex_refresh_index`); removed generated `_TODO` tails in references | Aligned in Batch C |
+| mcp-code-mode | 45 md | 90 -> 92 | INSTALL_GUIDE H2s aligned with sk-doc install-guide template | Aligned in Batch C |
 | sk-code | 119 md | 90 | No blocking sk-doc findings | Pending Batch D |
 | sk-code-review | 32 md | 90 | No blocking sk-doc findings | Pending Batch D |
 | sk-doc | 72 md | 92 | Template authority; minimal-change policy | Pending Batch D |

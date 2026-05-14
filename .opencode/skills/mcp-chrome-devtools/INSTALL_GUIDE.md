@@ -9,7 +9,7 @@ Complete installation and configuration guide for Chrome DevTools browser debugg
 
 ---
 
-## 0. AI-First Install Guide
+## 0. AI-FIRST INSTALL GUIDE
 
 Copy and paste this prompt to your AI assistant to get installation help:
 
@@ -66,7 +66,7 @@ Not working? Go to [Troubleshooting](#9-troubleshooting).
 
 ---
 
-## 1. Overview
+## 1. OVERVIEW
 
 Chrome DevTools gives AI assistants browser debugging capabilities through two approaches. The CLI (`bdg`) is the primary method: direct, fast and token-efficient. The MCP fallback runs through Code Mode and suits multi-tool orchestration or parallel browser testing.
 
@@ -184,7 +184,7 @@ Chrome DevTools' 26 MCP tools would consume roughly 78k tokens if exposed native
 
 ---
 
-## 2. Prerequisites
+## 2. PREREQUISITES
 
 ### Required Tools
 
@@ -229,7 +229,7 @@ export CHROME_PATH="/usr/bin/chromium-browser"
 
 ---
 
-## 3. Installation
+## 3. INSTALLATION
 
 ### Step 1: Install browser-debugger-cli
 
@@ -309,7 +309,7 @@ Confirm CLI installation is complete:
 
 ---
 
-## 4. Configuration
+## 4. CONFIGURATION
 
 MCP is optional. Configure it only if you need multi-tool workflows or when CLI is not available.
 
@@ -482,7 +482,7 @@ export CHROME_FLAGS="--disable-gpu --disable-dev-shm-usage --remote-debugging-ad
 
 ---
 
-## 5. Verification
+## 5. VERIFICATION
 
 ### One-Command Health Check
 
@@ -532,7 +532,7 @@ Your AI client successfully captures a screenshot on request. The system is oper
 
 ---
 
-## 6. Usage
+## 6. USAGE
 
 ### Pattern 1: Quick Screenshot (CLI)
 
@@ -685,7 +685,7 @@ bdg "$URL" 2>&1 || exit 1
 
 ---
 
-## 7. Features
+## 7. FEATURES
 
 | Feature            | CLI (bdg)                                   | MCP (Code Mode)                         |
 | ------------------ | ------------------------------------------- | --------------------------------------- |
@@ -707,7 +707,7 @@ bdg "$URL" 2>&1 || exit 1
 
 ---
 
-## 8. Examples
+## 8. EXAMPLES
 
 ### Example 1: Full Debug Session
 
@@ -842,7 +842,7 @@ bdg stop 2>&1
 
 ---
 
-## 9. Troubleshooting
+## 9. TROUBLESHOOTING
 
 ### Error/Cause/Fix Reference
 
@@ -964,7 +964,7 @@ lsof -i :9222
 
 ---
 
-## 10. Resources
+## 10. RESOURCES
 
 ### Related Documentation
 

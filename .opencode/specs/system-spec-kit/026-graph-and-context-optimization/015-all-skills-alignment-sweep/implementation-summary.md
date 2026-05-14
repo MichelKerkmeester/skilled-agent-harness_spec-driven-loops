@@ -10,8 +10,8 @@ _memory:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/015-all-skills-alignment-sweep"
     last_updated_at: "2026-05-14T18:55:00Z"
     last_updated_by: "codex"
-    recent_action: "Batch B aligned deep-review placeholders and state-log references"
-    next_safe_action: "Commit Batch B, then continue Batch C"
+    recent_action: "Batch C aligned MCP integration docs"
+    next_safe_action: "Commit Batch C, then continue Batch D"
     blockers: []
     key_files:
       - "implementation-summary.md"
@@ -20,7 +20,7 @@ _memory:
       fingerprint: "sha256:2cfd48f68ca907b81aba558a20c7260fc016cd25dab7c1ab22a937ec7b98ed9d"
       session_id: "015-all-skills-alignment-sweep"
       parent_session_id: null
-    completion_pct: 35
+    completion_pct: 55
     open_questions: []
     answered_questions: []
 ---
@@ -65,7 +65,7 @@ Verified `deep-agent-improvement`, `deep-ai-council`, `deep-research`, and `deep
 
 ### Batch C: MCP Integration Skills
 
-Pending.
+Aligned install-guide headers for `mcp-chrome-devtools` and `mcp-code-mode` with the sk-doc install-guide template. Updated `mcp-coco-index` current-reality language so primary docs describe both MCP tools, `search` and `cocoindex_refresh_index`, and removed generated `_TODO` tail sections from three reference files.
 
 ### Batch D: sk-* General Skills
 
@@ -108,6 +108,9 @@ The sweep uses five sequential batches so each skill family can be reviewed and 
 | Batch A `quick_validate.py` | PASS, 4/4 valid with no warnings after description trims |
 | Batch B `quick_validate.py` | PASS, 4/4 deep-loop skills valid |
 | Batch B changed-doc validation | PASS, `deep-review/references/quick_reference.md` as reference and playbook README both valid |
+| Batch C `quick_validate.py` | PASS, 3/3 MCP integration skills valid |
+| Batch C primary docs validation | PASS, 3 READMEs and 3 INSTALL_GUIDEs valid; install guides retain one non-blocking section-0 warning |
+| Batch C changed references validation | PASS, `search_patterns.md`, `settings_reference.md`, and `tool_reference.md` valid as references |
 | Packet strict validation | Pending final close-out |
 <!-- /ANCHOR:verification -->
 
@@ -126,8 +129,8 @@ The sweep uses five sequential batches so each skill family can be reviewed and 
 | Batch | Commit | Scope | Verification |
 |---|---|---|---|
 | A | `da1a5b48e1` | CLI executor descriptions plus packet scaffold/audit | 4/4 `quick_validate.py` PASS |
-| B | Pending | Deep-loop skills | 4/4 `quick_validate.py` PASS; changed docs validate |
-| C | Pending | MCP integration skills | Pending |
+| B | `2f2cbe8378` | Deep-loop skills | 4/4 `quick_validate.py` PASS; changed docs validate |
+| C | Pending | MCP integration skills | 3/3 `quick_validate.py` PASS; primary and changed docs validate |
 | D | Pending | sk-* skills | Pending |
 | E | Pending | system-* skills and root READMEs | Pending |
 

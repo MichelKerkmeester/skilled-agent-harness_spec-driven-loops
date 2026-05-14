@@ -1,6 +1,6 @@
 ---
 title: CocoIndex Code Tool Reference
-description: Complete reference for the CocoIndex Code CLI commands and MCP tool with parameters, examples, and expected output.
+description: Complete reference for the CocoIndex Code CLI commands and MCP tools with parameters, examples, and expected output.
 trigger_phrases:
   - ccc commands
   - cocoindex tools
@@ -502,18 +502,6 @@ Verified against `query._ranked_result` as of mcp-coco-index 1.1.1 (packet 078/0
 - **Forward-compatible writes.** Callers SHOULD NOT write code that *requires* these fields to be absent — i.e. don't assert `assert "rankingSignals" not in result`, since that asserts vanilla and breaks under this fork.
 - **Reindex required.** Existing indexes built by an older binary won't have `source_realpath` / `content_hash` / `path_class` populated on their chunk rows. Run `ccc reset && ccc index` once after upgrading to fork ≥0.2.0 to populate. The fallback path (using `content_hash` only when `source_realpath` is missing) keeps the dedup correct during the transition.
 - **Verifying the binary.** Run `ccc --version` — a fork build reports `0.2.3+spec-kit-fork.0.2.0`. If the version string does NOT contain `+spec-kit-fork.`, the binary is upstream PyPI cocoindex-code and none of the fields above will be emitted. See `INSTALL_GUIDE.md` §Verify and §Reinstall for recovery.
-
-## 9. OVERVIEW
-
-_TODO: populate this section_
-
----
-
-## 10. OVERVIEW
-
-_TODO: populate this section_
-
----
 
 ## 8. RELATED RESOURCES
 

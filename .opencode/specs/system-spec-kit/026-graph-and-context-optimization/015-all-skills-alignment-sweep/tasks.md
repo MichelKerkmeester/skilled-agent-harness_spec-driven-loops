@@ -64,8 +64,8 @@ _memory:
 - [x] T010 Batch A audit/edit CLI executor skills
 - [x] T011 Commit Batch A
 - [x] T020 Batch B audit/edit deep-loop skills
-- [ ] T021 Commit Batch B
-- [ ] T030 Batch C audit/edit MCP integration skills
+- [x] T021 Commit Batch B
+- [x] T030 Batch C audit/edit MCP integration skills
 - [ ] T031 Commit Batch C
 - [ ] T040 Batch D audit/edit sk-* skills
 - [ ] T041 Commit Batch D

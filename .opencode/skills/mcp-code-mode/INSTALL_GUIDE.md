@@ -8,7 +8,7 @@ Complete installation and configuration guide for the Code Mode MCP server. This
 
 ---
 
-## 0. AI-First Install Guide
+## 0. AI-FIRST INSTALL GUIDE
 
 **Copy and paste this prompt to your AI assistant to get installation help:**
 
@@ -59,7 +59,7 @@ Guide me through each step with the exact commands and configuration needed.
 
 ---
 
-## 1. Overview
+## 1. OVERVIEW
 
 Code Mode MCP is a TypeScript execution environment that provides unified access to 159 MCP tools across 6 manuals through progressive disclosure. Instead of exposing all tools to your AI context (causing token exhaustion), Code Mode provides a single execution environment where tools are accessed programmatically and loaded on-demand.
 
@@ -154,7 +154,7 @@ Code Mode keeps your context flat at ~1.6k tokens regardless of how many servers
 
 ---
 
-## 2. Prerequisites
+## 2. PREREQUISITES
 
 Before installing Code Mode MCP, ensure you have the following.
 
@@ -204,7 +204,7 @@ node --version && [ -f .env ] && [ -f .utcp_config.json ] && echo "PASS" || echo
 
 ---
 
-## 3. Installation
+## 3. INSTALLATION
 
 ### Step 1: Choose Installation Location
 
@@ -317,7 +317,7 @@ grep -q '"code_mode"' opencode.json && echo "PASS" || echo "FAIL"
 
 ---
 
-## 4. Configuration
+## 4. CONFIGURATION
 
 ### Option A: Configure for Claude Code CLI
 
@@ -689,7 +689,7 @@ Add servers to `.utcp_config.json` in the `manual_call_templates` array:
 
 ---
 
-## 5. Verification
+## 5. VERIFICATION
 
 ### Check 1: Verify Configuration Files
 
@@ -765,7 +765,7 @@ echo "Run: list_tools() in OpenCode to verify"
 
 ---
 
-## 6. Usage
+## 6. USAGE
 
 ### CRITICAL: Naming Pattern
 
@@ -943,7 +943,7 @@ call_tool_chain({
 
 ---
 
-## 7. Features
+## 7. FEATURES
 
 ### 7.1 call_tool_chain
 
@@ -1016,7 +1016,7 @@ tool_info({
 
 ---
 
-## 8. Examples
+## 8. EXAMPLES
 
 ### Example 1: MyService Site Management
 
@@ -1243,7 +1243,7 @@ call_tool_chain({
 
 ---
 
-## 9. Troubleshooting
+## 9. TROUBLESHOOTING
 
 ### Error Message Quick Reference
 
@@ -1419,7 +1419,7 @@ await myservice.myservice_sites_list({});
 
 ---
 
-## 10. Resources
+## 10. RESOURCES
 
 ### Documentation
 

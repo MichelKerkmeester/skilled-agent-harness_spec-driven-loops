@@ -1,6 +1,6 @@
 ---
 title: "CocoIndex Code - Semantic Code Search"
-description: "Semantic code search via vector embeddings. CocoIndex Code enables natural-language discovery of code, patterns, and implementations across 28+ languages using a CLI and a single MCP search tool."
+description: "Semantic code search via vector embeddings, with CLI search plus MCP search and explicit refresh tools."
 trigger_phrases:
   - "semantic search"
   - "cocoindex"
@@ -13,7 +13,7 @@ trigger_phrases:
 
 # CocoIndex Code - Semantic Code Search
 
-> Find code by what it does, not what it says: natural-language queries resolved to semantically relevant results across 28+ languages via CLI or a single MCP tool.
+> Find code by what it does, not what it says: natural-language queries resolved to semantically relevant results across 28+ languages via CLI or MCP tools.
 
 ## Forked From
 
@@ -60,7 +60,7 @@ Patches landed per the spec packet at `.opencode/specs/system-spec-kit/026-graph
 
 CocoIndex Code is a semantic code search tool built on vector embeddings. Where `grep` matches exact characters, CocoIndex Code matches meaning. Ask for "retry logic with exponential backoff" and it returns code that implements that pattern, regardless of how the author named variables or functions. This makes it the right tool when you know what a piece of code does but not where it lives or what it is called.
 
-The skill ships with two access modes. The CLI (`ccc`) is fastest for one-off queries and all index management operations. The MCP server (`ccc mcp`) exposes a single `search` tool that AI agents call directly via stdio transport, integrating semantic search into any tool-calling workflow without leaving the conversation.
+The skill ships with two access modes. The CLI (`ccc`) is fastest for one-off queries and full index management operations. The MCP server (`ccc mcp`) exposes `search` plus `cocoindex_refresh_index`, so AI agents can query semantically by default and refresh explicitly after code changes.
 
 Indexing is incremental and daemon-backed. The first run scans and embeds all supported files in the project. Subsequent runs update only changed files. A background daemon starts automatically on the first command, persists across calls, and restarts itself when settings or the binary version change.
 
@@ -71,7 +71,7 @@ If that exploration feeds into Spec Kit packet recovery, `/spec_kit:resume` rema
 | Property | Value |
 |---|---|
 | Version | 1.0.0 |
-| MCP tools exposed | 1 (`search`) |
+| MCP tools exposed | 2 (`search`, `cocoindex_refresh_index`) |
 | Supported languages | 28+ |
 | Default embedding model | `google/embeddinggemma-300m` via sentence-transformers (768-dim bf16, local, no API key, Metal/MPS accelerated on Apple Silicon) |
 | Unified with Memory MCP | Yes (both use the EmbeddingGemma 768d model family) |

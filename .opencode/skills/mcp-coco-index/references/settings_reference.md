@@ -15,6 +15,12 @@ Complete reference for all CocoIndex Code configuration files, embedding model o
 
 ---
 
+## 1. OVERVIEW
+
+CocoIndex Code reads per-user global settings plus per-project index settings. Use this reference to pick the active embedding model, understand root-path discovery, and map environment variables without guessing from daemon behavior.
+
+---
+
 ## 1. GLOBAL SETTINGS
 
 **File:** `~/.cocoindex_code/global_settings.yml`
@@ -213,18 +219,6 @@ These older variable names are mapped automatically for backward compatibility:
 | --------------- | ------- |
 | `COCOSEARCH_DIR` | `COCOINDEX_CODE_DIR` |
 | `COCOSEARCH_ROOT_PATH` | `COCOINDEX_CODE_ROOT_PATH` |
-
----
-
-## 8. OVERVIEW
-
-_TODO: populate this section_
-
----
-
-## 9. OVERVIEW
-
-_TODO: populate this section_
 
 ---
 
