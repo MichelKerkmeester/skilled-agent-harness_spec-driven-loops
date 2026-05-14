@@ -13,8 +13,8 @@ _memory:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-local-llama-cpp/041-llama-cpp-metal-investigation"
     last_updated_at: "2026-05-14T15:55:00Z"
     last_updated_by: "orchestrator-post-investigation"
-    recent_action: "Recorded post-investigation Option A execution: rebuild from source against local Xcode 26.2 / Darwin 25.4 SDK succeeded; Metal is operational; embeddingProvider.healthy=true at live MCP"
-    next_safe_action: "Operate under restored Metal path. Reopen a follow-up packet only if perf degrades or warnings prove fatal under load."
+    recent_action: "Recorded Option A execution outcome"
+    next_safe_action: "Reopen if Metal perf degrades"
     blockers: []
     key_files:
       - "research.md"
