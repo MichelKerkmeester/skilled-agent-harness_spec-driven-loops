@@ -1,6 +1,6 @@
 ---
 name: cli-gemini
-description: "Gemini CLI executor for Google Search-backed research, architecture sweeps, large-context code analysis, and cross-model validation."
+description: "Gemini CLI executor for Google Search-backed research, architecture sweeps, large-context analysis, and validation."
 allowed-tools: [Bash, Read, Glob, Grep]
 version: 1.2.5.0
 ---
