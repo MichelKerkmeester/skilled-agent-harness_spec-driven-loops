@@ -12,10 +12,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/013-skill-advisor-semantic-lane/009-system-skill-advisor-extraction"
-    last_updated_at: "2026-05-14T20:05:00Z"
+    last_updated_at: "2026-05-14T20:45:00Z"
     last_updated_by: "codex"
-    recent_action: "011 full extraction shipped (D2a+D2b); 012 doc alignment; 013 spec-kit cleanup"
-    next_safe_action: "Operator: 014 manual testing via cli-opencode"
+    recent_action: "015 mk_skill_advisor MCP server rename verified"
+    next_safe_action: "Commit scoped rename"
     blockers: []
     key_files:
       - "handover.md"
@@ -26,6 +26,7 @@ _memory:
       - "011-mcp-server-full-extraction/implementation-summary.md"
       - "012-doc-alignment-sk-doc/implementation-summary.md"
       - "013-spec-kit-ref-cleanup/implementation-summary.md"
+      - "015-mcp-server-rename-mk-skill-advisor/implementation-summary.md"
     session_dedup:
       fingerprint: "sha256:0130090099a06ed10c5d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d"
       session_id: "013-009-handover-2026-05-14"
@@ -36,6 +37,7 @@ _memory:
       - "008 implementation shipped 2026-05-14 via 2 dispatches (D1: 8447663a0, D2: a93fffb7c). Advisor vitest 285/291; 4-runtime smoke green except Claude INCONCLUSIVE. Details in §7."
       - "010 close-out resolved remaining graph-health and parity failures. Advisor vitest is 291/291. Details in §8."
       - "011/012/013 parallel sweep shipped 2026-05-14. Full MCP extraction complete; advisor owns lib + lifecycle; spec-kit fully extracted. Details in §9."
+      - "015 renames the advisor MCP server id from system_skill_advisor to mk_skill_advisor while preserving folder and tool ids."
 ---
 # Session Handover Document
 
@@ -516,6 +518,10 @@ Codex closed the final extraction sweep on `main` after D2a moved the skill grap
 
 Next safe action: Line close-out; all children shipped and validated.
 
+### 015 addendum: MCP server runtime rename
+
+Packet `015-mcp-server-rename-mk-skill-advisor` reopens the line for a runtime identity cleanup requested by the operator. Scope is limited to the MCP server id, launcher name/state file, runtime config blocks, and live namespace consumers: `system_skill_advisor` becomes `mk_skill_advisor`; `.opencode/skills/system-skill-advisor/` and all `advisor_*` / `skill_graph_*` tool ids remain unchanged.
+
 ---
 
 ## 10. Session 5 — Manual testing validation via cli-opencode (014)
@@ -556,8 +562,9 @@ Operator continued with `opencode run --model opencode-go/glm-5.1` to validate t
 | 012-doc-alignment-sk-doc | shipped |
 | 013-spec-kit-ref-cleanup | shipped |
 | 014-manual-testing-validation | shipped |
+| 015-mcp-server-rename-mk-skill-advisor | shipped |
 
-Next safe action: Line close-out; all children shipped and validated.
+Next safe action: Verify and commit 015, then re-run parent strict validation if needed.
 
 ---
 

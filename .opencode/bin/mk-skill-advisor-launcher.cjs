@@ -35,7 +35,7 @@ for (const fname of ['.env.local', '.env']) {
   const p = path.join(root, fname);
   if (fs.existsSync(p)) {
     const n = loadEnvFile(p);
-    if (n > 0) process.stderr.write(`[skill-advisor-launcher] loaded ${n} env(s) from ${fname}\n`);
+    if (n > 0) process.stderr.write(`[mk-skill-advisor-launcher] loaded ${n} env(s) from ${fname}\n`);
   }
 }
 
@@ -43,8 +43,8 @@ let skillsDir = path.join(opencodeDir, 'skills');
 let kitDir = path.join(skillsDir, 'system-skill-advisor');
 let mcpDir = path.join(kitDir, 'mcp_server');
 let dbDir = path.join(mcpDir, 'database');
-let lockDir = path.join(dbDir, '.skill-advisor-launcher.lockdir');
-let stateFile = path.join(dbDir, '.skill-advisor-launcher.json');
+let lockDir = path.join(dbDir, '.mk-skill-advisor-launcher.lockdir');
+let stateFile = path.join(dbDir, '.mk-skill-advisor-launcher.json');
 
 const rel = (p) => path.relative(root, p) || '.';
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -52,7 +52,7 @@ const now = () => new Date().toISOString();
 let childProcess = null;
 
 function log(message) {
-  process.stderr.write(`[skill-advisor-launcher] ${message}\n`);
+  process.stderr.write(`[mk-skill-advisor-launcher] ${message}\n`);
 }
 
 function refreshPaths() {
@@ -60,8 +60,8 @@ function refreshPaths() {
   kitDir = path.join(skillsDir, 'system-skill-advisor');
   mcpDir = path.join(kitDir, 'mcp_server');
   dbDir = path.join(mcpDir, 'database');
-  lockDir = path.join(dbDir, '.skill-advisor-launcher.lockdir');
-  stateFile = path.join(dbDir, '.skill-advisor-launcher.json');
+  lockDir = path.join(dbDir, '.mk-skill-advisor-launcher.lockdir');
+  stateFile = path.join(dbDir, '.mk-skill-advisor-launcher.json');
 }
 
 function exists(p) {
@@ -204,7 +204,7 @@ for (const signal of ['SIGINT', 'SIGTERM', 'SIGHUP']) {
     if (lockHeld) {
       buildIfNeeded(actions);
       writeState({
-        command: 'skill-advisor-launcher',
+        command: 'mk-skill-advisor-launcher',
         start: started,
         end: now(),
         status: 'ready',
@@ -218,7 +218,7 @@ for (const signal of ['SIGINT', 'SIGTERM', 'SIGHUP']) {
   } catch (error) {
     try {
       writeState({
-        command: 'skill-advisor-launcher',
+        command: 'mk-skill-advisor-launcher',
         start: started,
         end: now(),
         status: 'failed',

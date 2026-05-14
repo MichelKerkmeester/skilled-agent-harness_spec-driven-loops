@@ -5,7 +5,7 @@ description: "Reports skill graph health, staleness, families, categories, schem
 
 # Skill graph status
 
-**Owned by**: `system_skill_advisor` MCP server (since `013/009/008`).
+**Owned by**: `mk_skill_advisor` MCP server (since `013/009/008`).
 
 <!-- ANCHOR:overview -->
 ## 1. OVERVIEW

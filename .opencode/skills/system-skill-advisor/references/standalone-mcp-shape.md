@@ -3,7 +3,7 @@ title: "Standalone MCP Shape"
 description: "Summary of ADR-001 standalone System Skill Advisor MCP topology and migration boundary."
 trigger_phrases:
   - "standalone advisor mcp shape"
-  - "system_skill_advisor topology"
+  - "mk_skill_advisor topology"
   - "advisor mcp server boundary"
 ---
 
@@ -16,7 +16,7 @@ trigger_phrases:
 <!-- ANCHOR:1-decision -->
 ## 1. DECISION
 
-ADR-001 chooses a standalone MCP server named `system_skill_advisor`.
+ADR-001 chooses a standalone MCP server named `mk_skill_advisor`.
 
 The server owns:
 
@@ -37,7 +37,7 @@ The server owns:
 The standalone boundary is a process boundary, not only a folder move.
 
 ```text
-system_skill_advisor -> advisor tools and skill graph DB
+mk_skill_advisor -> advisor tools and skill graph DB
 spec_kit_memory      -> memory, continuity, and spec-kit tools
 ```
 

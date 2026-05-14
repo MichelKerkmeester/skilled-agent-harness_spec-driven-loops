@@ -29,7 +29,7 @@ trigger_phrases:
 <!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
-`mcp_server/tools/` contains MCP `ToolDefinition` descriptors for the standalone `system_skill_advisor` surface. Each descriptor defines a tool name, prompt-safe description and JSON Schema input contract.
+`mcp_server/tools/` contains MCP `ToolDefinition` descriptors for the standalone `mk_skill_advisor` surface. Each descriptor defines a tool name, prompt-safe description and JSON Schema input contract.
 
 Current state:
 

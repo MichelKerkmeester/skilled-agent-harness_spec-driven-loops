@@ -5,7 +5,7 @@ description: "Manual scenario for validating skill_graph_validate diagnostics."
 
 # 285 -- Skill graph validate
 
-**Owned by**: `system_skill_advisor` MCP server (since `013/009/008`).
+**Owned by**: `mk_skill_advisor` MCP server (since `013/009/008`).
 
 ## 1. OVERVIEW
 

@@ -90,7 +90,7 @@ export const ALL_DISPATCHERS = [
   checkpointTools,
   lifecycleTools,
   // codeGraphTools intentionally omitted: standalone system_code_graph owns MCP dispatch per ADR-002.
-  // skillGraphTools intentionally omitted: standalone system_skill_advisor owns MCP dispatch per 013/009/008.
+  // skillGraphTools intentionally omitted: standalone mk_skill_advisor owns MCP dispatch per 013/009/008.
   coverageGraphTools,
   councilGraphTools,
 ] as const;

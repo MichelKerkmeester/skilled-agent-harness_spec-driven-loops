@@ -18,7 +18,7 @@ vi.mock('../../handlers/skill-graph/index.js', () => ({
 
 const { dispatchTool } = await import('../../advisor-server.js');
 
-describe('system_skill_advisor skill_graph_* dispatch', () => {
+describe('mk_skill_advisor skill_graph_* dispatch', () => {
   beforeEach(() => {
     vi.clearAllMocks();
   });

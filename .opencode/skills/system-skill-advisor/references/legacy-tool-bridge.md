@@ -23,7 +23,7 @@ Keep these public tool ids stable:
 - `advisor_status`
 - `advisor_validate`
 
-The MCP server namespace changes to `system_skill_advisor`; the tool ids do not change.
+The MCP server namespace changes to `mk_skill_advisor`; the tool ids do not change.
 
 ---
 

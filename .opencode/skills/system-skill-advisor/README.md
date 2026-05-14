@@ -31,7 +31,7 @@ trigger_phrases:
 <!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
-`system-skill-advisor/` owns native Gate 2 skill routing for Spec Kit. It contains the standalone `system_skill_advisor` MCP server, scorer, daemon freshness checks, skill graph tools, validation bundle and Python compatibility scripts.
+`system-skill-advisor/` owns native Gate 2 skill routing for Spec Kit. It contains the standalone `mk_skill_advisor` MCP server, scorer, daemon freshness checks, skill graph tools, validation bundle and Python compatibility scripts.
 
 Current state:
 

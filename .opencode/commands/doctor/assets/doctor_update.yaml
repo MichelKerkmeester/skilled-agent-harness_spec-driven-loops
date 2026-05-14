@@ -437,8 +437,8 @@ workflow:
             echo "  run Phase 8 backfill OR /memory:save per affected packet to fix"
           fi
       causal-edges-init: "memory_causal_link(...) for high-confidence missing lineage"
-      skill-graph: "system_skill_advisor.skill_graph_scan({})"
-      advisor: "system_skill_advisor.advisor_rebuild({ force: true }) + system_skill_advisor.advisor_validate({})"
+      skill-graph: "mk_skill_advisor.skill_graph_scan({})"
+      advisor: "mk_skill_advisor.advisor_rebuild({ force: true }) + mk_skill_advisor.advisor_validate({})"
       deep-loop-graph: "deep_loop_graph_upsert(...)"
       speckit-eval: "eval_run_ablation({})"
     failure:

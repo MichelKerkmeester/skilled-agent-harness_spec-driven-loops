@@ -78,7 +78,7 @@ Production and operator docs should treat the package-local path as the default.
 <!-- ANCHOR:4-migration-notes -->
 ## 5. MIGRATION NOTES
 
-Current package state keeps the database under `mcp_server/database/` and exposes it through the standalone `system_skill_advisor` MCP server.
+Current package state keeps the database under `mcp_server/database/` and exposes it through the standalone `mk_skill_advisor` MCP server.
 
 The `skill_graph_*` handlers and the lower-level `lib/skill-graph/` database/query library are advisor-owned and package-local.
 

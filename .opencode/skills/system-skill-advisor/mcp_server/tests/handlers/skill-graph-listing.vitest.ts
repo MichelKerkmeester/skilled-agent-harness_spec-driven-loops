@@ -13,7 +13,7 @@ const SKILL_GRAPH_TOOLS = [
   'skill_graph_validate',
 ] as const;
 
-describe('system_skill_advisor skill_graph_* listing', () => {
+describe('mk_skill_advisor skill_graph_* listing', () => {
   it('lists advisor tools plus four skill_graph_* tools', () => {
     const toolNames = TOOL_DEFINITIONS.map((tool) => tool.name);
 

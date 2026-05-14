@@ -1,10 +1,10 @@
 ---
 title: "Architecture: system-skill-advisor"
-description: "Current package architecture for the standalone system_skill_advisor MCP server, advisor routing, skill graph tools, database ownership, and pending skill-graph library extraction."
+description: "Current package architecture for the standalone mk_skill_advisor MCP server, advisor routing, skill graph tools, database ownership, and pending skill-graph library extraction."
 trigger_phrases:
   - "system skill advisor architecture"
   - "standalone advisor mcp"
-  - "system_skill_advisor tools"
+  - "mk_skill_advisor tools"
   - "skill graph database path"
   - "advisor skill graph architecture"
 importance_tier: "important"
@@ -14,7 +14,7 @@ importance_tier: "important"
 
 <!-- sk-doc-template: architecture_current_reality -->
 
-Current-reality architecture for the standalone Skill Advisor package. The package owns the `system_skill_advisor` MCP server, advisor routing tools, skill graph MCP tools, package-local database path, and operator docs; the `lib/skill-graph/` database/query library remains in `system-spec-kit` until packet 011 moves it.
+Current-reality architecture for the standalone Skill Advisor package. The package owns the `mk_skill_advisor` MCP server, advisor routing tools, skill graph MCP tools, package-local database path, and operator docs; the `lib/skill-graph/` database/query library remains in `system-spec-kit` until packet 011 moves it.
 
 <!-- ANCHOR:table-of-contents -->
 ## TABLE OF CONTENTS
@@ -39,7 +39,7 @@ Current-reality architecture for the standalone Skill Advisor package. The packa
 
 `system-skill-advisor` is the standalone Gate 2 routing subsystem. It recommends the right skill for non-trivial prompts, reports advisor freshness, validates routing quality, rebuilds advisor state, and exposes the SQLite-backed skill graph through the same MCP server namespace.
 
-The current server id is `system_skill_advisor`. It is registered as a native MCP server and exposes eight public tools:
+The current server id is `mk_skill_advisor`. It is registered as a native MCP server and exposes eight public tools:
 
 | Tool family | Tools |
 |---|---|
@@ -57,7 +57,7 @@ The public `advisor_*` ids remain stable from the original extraction ADR. The `
 
 ### Owns
 
-- MCP tool descriptors and dispatch for `system_skill_advisor`.
+- MCP tool descriptors and dispatch for `mk_skill_advisor`.
 - Advisor handlers for recommendation, status, rebuild, and validation.
 - Skill graph MCP handlers for scan, query, status, and validation.
 - Scorer, freshness, daemon, derived metadata, lifecycle, compatibility, corpus, auth, shadow, and utility modules under `mcp_server/lib/`.
@@ -275,7 +275,7 @@ Current doc-alignment note: the checked-in regression harness was run during thi
 ## 9. FUTURE WORK
 
 - Packet 011: move or settle the `lib/skill-graph/` library location so handlers no longer depend on the `system-spec-kit` runtime tree.
-- Refresh `opencode.json` notes so MCP registration comments mention all eight `system_skill_advisor` tools.
+- Refresh `opencode.json` notes so MCP registration comments mention all eight `mk_skill_advisor` tools.
 - Reconcile regression-fixture totals and expected ids with the current command/skill naming model.
 - Promote any lane-weight changes only with measured validation evidence and synchronized docs.
 

@@ -91,7 +91,7 @@ describe('session-bootstrap handler', () => {
       status: 'unavailable',
       totalSkills: 0,
       totalEdges: 0,
-      error: expect.stringContaining('system_skill_advisor'),
+      error: expect.stringContaining('mk_skill_advisor'),
     });
     expect(parsed.data.opencodeTransport.systemTransform.title).toContain('Startup Digest');
     expect(parsed.data.graphOps.previewPolicy.mode).toBe('metadata-only');

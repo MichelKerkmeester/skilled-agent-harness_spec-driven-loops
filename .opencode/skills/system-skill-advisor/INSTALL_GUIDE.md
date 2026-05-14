@@ -7,7 +7,7 @@ description: "Bootstrap, verification, compatibility, rollback, and operator not
 
 <!-- sk-doc-template: skill_reference_install_guide -->
 
-This is the canonical bootstrap guide for the standalone Skill Advisor MCP server. The advisor runs as `system_skill_advisor`, separate from `spec_kit_memory`, while preserving the public tool ids `advisor_recommend`, `advisor_rebuild`, `advisor_status`, `advisor_validate`, `skill_graph_scan`, `skill_graph_query`, `skill_graph_status`, and `skill_graph_validate`.
+This is the canonical bootstrap guide for the standalone Skill Advisor MCP server. The advisor runs as `mk_skill_advisor`, separate from `spec_kit_memory`, while preserving the public tool ids `advisor_recommend`, `advisor_rebuild`, `advisor_status`, `advisor_validate`, `skill_graph_scan`, `skill_graph_query`, `skill_graph_status`, and `skill_graph_validate`.
 
 ---
 
@@ -42,7 +42,7 @@ The native advisor is a TypeScript package under `.opencode/skills/system-skill-
 
 - Node.js and npm available for the standalone system-skill-advisor MCP server.
 - Repository root as the working directory.
-- Runtime MCP configuration includes both `spec_kit_memory` and `system_skill_advisor`.
+- Runtime MCP configuration includes both `spec_kit_memory` and `mk_skill_advisor`.
 - `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED` is unset unless intentionally testing rollback.
 
 ---
@@ -59,10 +59,10 @@ npm --prefix .opencode/skills/system-skill-advisor/mcp_server install
 npm --prefix .opencode/skills/system-skill-advisor/mcp_server run build
 ```
 
-Start or refresh the `system_skill_advisor` MCP server in the active runtime. The launcher is:
+Start or refresh the `mk_skill_advisor` MCP server in the active runtime. The launcher is:
 
 ```bash
-node .opencode/bin/skill-advisor-launcher.cjs
+node .opencode/bin/mk-skill-advisor-launcher.cjs
 ```
 
 ---
@@ -72,15 +72,15 @@ node .opencode/bin/skill-advisor-launcher.cjs
 <!-- ANCHOR:4-verification -->
 ## 4. VERIFICATION
 
-Verify native tool registration through `system_skill_advisor`:
+Verify native tool registration through `mk_skill_advisor`:
 
 ```text
-system_skill_advisor.advisor_status({"workspaceRoot":"/absolute/path/to/repo"})
-system_skill_advisor.advisor_recommend({"prompt":"save this conversation context to memory","options":{"topK":1}})
-system_skill_advisor.advisor_validate({"skillSlug":null})
+mk_skill_advisor.advisor_status({"workspaceRoot":"/absolute/path/to/repo"})
+mk_skill_advisor.advisor_recommend({"prompt":"save this conversation context to memory","options":{"topK":1}})
+mk_skill_advisor.advisor_validate({"skillSlug":null})
 ```
 
-Also verify the active runtime lists both MCP servers: `spec_kit_memory` for memory/context tools and `system_skill_advisor` for advisor tools.
+Also verify the active runtime lists both MCP servers: `spec_kit_memory` for memory/context tools and `mk_skill_advisor` for advisor tools.
 
 Expected:
 
@@ -136,7 +136,7 @@ python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.p
 python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py --force-local "save this context"
 ```
 
-The OpenCode plugin bridge follows the same pattern: MCP-level `system_skill_advisor.advisor_recommend` delegation with prompt-safe fail-open behavior. Plugin consumers must use the stable bridge entrypoint:
+The OpenCode plugin bridge follows the same pattern: MCP-level `mk_skill_advisor.advisor_recommend` delegation with prompt-safe fail-open behavior. Plugin consumers must use the stable bridge entrypoint:
 
 ```text
 .opencode/skills/system-spec-kit/mcp_server/plugin_bridges/spec-kit-skill-advisor-bridge.mjs
@@ -182,7 +182,7 @@ unset SPECKIT_SKILL_ADVISOR_FORCE_LOCAL
 <!-- ANCHOR:8-operator-checks -->
 ## 8. OPERATOR CHECKS
 
-`skill_graph_*` tools are owned by the `system_skill_advisor` MCP server as of `013/009/008`; public tool ids remain unchanged.
+`skill_graph_*` tools are owned by the `mk_skill_advisor` MCP server as of `013/009/008`; public tool ids remain unchanged.
 
 Use `advisor_status` as the prompt-safe health source:
 

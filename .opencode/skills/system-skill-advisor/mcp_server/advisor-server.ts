@@ -114,7 +114,7 @@ async function loadSkillGraphWatchFactory(): Promise<(paths: string[], options: 
 function logSkillGraphIndexResult(trigger: string, result: ReturnType<typeof indexSkillMetadata>): void {
   if (trigger === 'startup-scan') {
     console.error(
-      '[skill-advisor-launcher] Skill graph: scanned=%d indexed=%d skipped=%d edges=%d rejected=%d deleted=%d',
+      '[mk-skill-advisor-launcher] Skill graph: scanned=%d indexed=%d skipped=%d edges=%d rejected=%d deleted=%d',
       result.scannedFiles,
       result.indexedFiles,
       result.skippedFiles,
@@ -125,13 +125,13 @@ function logSkillGraphIndexResult(trigger: string, result: ReturnType<typeof ind
     return;
   }
 
-  console.error(`[skill-advisor-launcher] Skill graph ${trigger}: indexed=${result.indexedFiles}`);
+  console.error(`[mk-skill-advisor-launcher] Skill graph ${trigger}: indexed=${result.indexedFiles}`);
 }
 
 async function startupSkillGraphScan(): Promise<void> {
   const skillGraphSourceDir = resolveSkillGraphSourceDir();
   if (!skillGraphSourceDir) {
-    console.warn('[skill-advisor-launcher] Skill graph source directory not found; skipping startup scan');
+    console.warn('[mk-skill-advisor-launcher] Skill graph source directory not found; skipping startup scan');
     return;
   }
 
@@ -157,12 +157,12 @@ async function startupSkillGraphScan(): Promise<void> {
         sourceSignature,
       });
       console.warn(
-        `[skill-advisor-launcher] Skill graph post-index assertion failed: ${status.freshness}/${status.trustState.state}`,
+        `[mk-skill-advisor-launcher] Skill graph post-index assertion failed: ${status.freshness}/${status.trustState.state}`,
       );
     }
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : String(error);
-    console.warn('[skill-advisor-launcher] Skill graph startup scan failed:', message);
+    console.warn('[mk-skill-advisor-launcher] Skill graph startup scan failed:', message);
   }
 }
 
@@ -173,7 +173,7 @@ let shuttingDown = false;
 async function shutdownAdvisor(reason: string): Promise<void> {
   if (shuttingDown) return;
   shuttingDown = true;
-  console.error(`[skill-advisor-launcher] ${reason}`);
+  console.error(`[mk-skill-advisor-launcher] ${reason}`);
   if (skillGraphDaemon) {
     await skillGraphDaemon.shutdown(reason);
     skillGraphDaemon = null;
@@ -234,7 +234,7 @@ export async function dispatchTool(
 }
 
 const server = new Server(
-  { name: 'system_skill_advisor', version: '0.1.0' },
+  { name: 'mk_skill_advisor', version: '0.1.0' },
   { capabilities: { tools: {} } },
 );
 
@@ -275,7 +275,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request): Promise<MCPResp
 });
 
 export async function main(): Promise<void> {
-  console.error(`[skill-advisor-launcher] DB: ${resolveSkillGraphDbPath()}`);
+  console.error(`[mk-skill-advisor-launcher] DB: ${resolveSkillGraphDbPath()}`);
   initSkillGraphDb(resolveSkillGraphDbDir());
   await startupSkillGraphScan();
   const watchFactory = await loadSkillGraphWatchFactory();
@@ -285,7 +285,7 @@ export async function main(): Promise<void> {
     generationReason: 'advisor-server-watcher-reindex',
     watchFactory,
   });
-  console.error(`[skill-advisor-launcher] Skill graph daemon active=${skillGraphDaemon.active}`);
+  console.error(`[mk-skill-advisor-launcher] Skill graph daemon active=${skillGraphDaemon.active}`);
   transport = new StdioServerTransport();
   await server.connect(transport);
 }
@@ -300,7 +300,7 @@ if (isMain) {
     void shutdownAdvisor('SIGTERM').finally(() => process.exit(0));
   });
   main().catch((error: unknown) => {
-    console.error('[skill-advisor-launcher] Fatal error:', error);
+    console.error('[mk-skill-advisor-launcher] Fatal error:', error);
     closeSkillGraphDb();
     process.exit(1);
   });

@@ -60,7 +60,7 @@ Adding a skill is intentional. Every new skill goes through `sk-doc`'s scaffoldi
 | Documentation, research, review, and improvement skills | 6 | deep-agent-improvement, deep-ai-council, deep-research, deep-review, sk-doc, sk-prompt |
 | Git and system skills | 4 | sk-git, system-code-graph, system-skill-advisor, system-spec-kit |
 | Skills with local scripts/ | 9 | See Section 4 for the current script-bearing folders |
-| Native advisor tools | 8 | `advisor_*` plus `skill_graph_*` tools exposed by `system_skill_advisor` |
+| Native advisor tools | 8 | `advisor_*` plus `skill_graph_*` tools exposed by `mk_skill_advisor` |
 | Shared compatibility scripts | 5 | `skill_advisor.py`, runtime, bench, regression, and graph compiler |
 
 ### Key Features

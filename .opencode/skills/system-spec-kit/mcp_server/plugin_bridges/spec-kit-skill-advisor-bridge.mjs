@@ -3,7 +3,7 @@
 // ║ COMPONENT: Spec Kit Skill Advisor Plugin Bridge (MJS source-of-truth)   ║
 // ╠══════════════════════════════════════════════════════════════════════════╣
 // ║ PURPOSE: Subprocess bridge between `.opencode/plugins/spec-kit-skill-   ║
-// ║          advisor.js` and the standalone system_skill_advisor MCP       ║
+// ║          advisor.js` and the standalone mk_skill_advisor MCP       ║
 // ║          server. The plugin                                           ║
 // ║          spawns this script with stdin JSON; this script writes a      ║
 // ║          single stdout JSON response and exits.                         ║
@@ -41,7 +41,7 @@ const DISABLED_ENV = COMPAT_CONTRACT.disabledEnv;
 const FORCE_LOCAL_ENV = COMPAT_CONTRACT.forceLocalEnv;
 const DEFAULT_CONFIDENCE_THRESHOLD = COMPAT_CONTRACT.defaults.confidenceThreshold;
 const DEFAULT_UNCERTAINTY_THRESHOLD = COMPAT_CONTRACT.defaults.uncertaintyThreshold;
-const ADVISOR_LAUNCHER_PATH = fileURLToPath(new URL('../../../../bin/skill-advisor-launcher.cjs', import.meta.url));
+const ADVISOR_LAUNCHER_PATH = fileURLToPath(new URL('../../../../bin/mk-skill-advisor-launcher.cjs', import.meta.url));
 const ADVISOR_MCP_TIMEOUT_MS = 8000;
 
 function response(args) {
@@ -212,11 +212,11 @@ async function callAdvisorTool(name, args, workspaceRoot) {
   transport.stderr?.on('data', () => {});
   const client = new Client({ name: 'spec-kit-skill-advisor-plugin-bridge', version: '0.1.0' });
   try {
-    await withTimeout(client.connect(transport), ADVISOR_MCP_TIMEOUT_MS, 'system_skill_advisor initialize');
+    await withTimeout(client.connect(transport), ADVISOR_MCP_TIMEOUT_MS, 'mk_skill_advisor initialize');
     return await withTimeout(
       client.callTool({ name, arguments: args }),
       ADVISOR_MCP_TIMEOUT_MS,
-      `system_skill_advisor.${name}`,
+      `mk_skill_advisor.${name}`,
     );
   } finally {
     try {

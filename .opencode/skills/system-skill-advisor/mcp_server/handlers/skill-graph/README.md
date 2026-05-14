@@ -23,7 +23,7 @@ trigger_phrases:
 <!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
-`handlers/skill-graph/` owns the `system_skill_advisor` MCP-facing handlers for the SQLite-backed skill graph. The handlers parse tool arguments, call skill graph libraries, and return redacted JSON response envelopes.
+`handlers/skill-graph/` owns the `mk_skill_advisor` MCP-facing handlers for the SQLite-backed skill graph. The handlers parse tool arguments, call skill graph libraries, and return redacted JSON response envelopes.
 
 Moved from `system-spec-kit/mcp_server/handlers/skill-graph/` in 013/009/008. Packet 013/009/011 moved the SQLite DB/query layer into this package so handlers and lifecycle share one owner.
 

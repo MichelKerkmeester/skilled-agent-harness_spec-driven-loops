@@ -16,7 +16,9 @@
     "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/013-skill-advisor-semantic-lane/009-system-skill-advisor-extraction/010-skill-id-rename",
     "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/013-skill-advisor-semantic-lane/009-system-skill-advisor-extraction/011-mcp-server-full-extraction",
     "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/013-skill-advisor-semantic-lane/009-system-skill-advisor-extraction/012-doc-alignment-sk-doc",
-    "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/013-skill-advisor-semantic-lane/009-system-skill-advisor-extraction/013-spec-kit-ref-cleanup"
+    "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/013-skill-advisor-semantic-lane/009-system-skill-advisor-extraction/013-spec-kit-ref-cleanup",
+    "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/013-skill-advisor-semantic-lane/009-system-skill-advisor-extraction/014-manual-testing-validation",
+    "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/013-skill-advisor-semantic-lane/009-system-skill-advisor-extraction/015-mcp-server-rename-mk-skill-advisor"
   ],
   "migrated": true,
   "migration_source": "legacy",
@@ -230,7 +232,7 @@
       "spec.md",
       "handover.md"
     ],
-    "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/013-skill-advisor-semantic-lane/009-system-skill-advisor-extraction/011-mcp-server-full-extraction",
-    "last_active_at": "2026-05-14T20:05:00Z"
+    "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/013-skill-advisor-semantic-lane/009-system-skill-advisor-extraction/015-mcp-server-rename-mk-skill-advisor",
+    "last_active_at": "2026-05-14T20:30:00Z"
   }
 }

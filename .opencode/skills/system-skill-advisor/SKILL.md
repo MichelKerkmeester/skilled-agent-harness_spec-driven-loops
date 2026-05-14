@@ -70,7 +70,7 @@ user prompt
   |
   +-- non-trivial or ambiguous request
         |
-        +-- advisor_recommend on system_skill_advisor MCP
+        +-- advisor_recommend on mk_skill_advisor MCP
         |
         +-- top recommendation above confidence threshold -> invoke that skill
         |
@@ -93,7 +93,7 @@ Resource domains:
 
 ADR-001 locks the target shape as **Standalone Advisor MCP With Legacy Tool Bridge**.
 
-The package owns a dedicated MCP server named `system_skill_advisor`. Public tool ids stay stable:
+The package owns a dedicated MCP server named `mk_skill_advisor`. Public tool ids stay stable:
 
 - `advisor_recommend`
 - `advisor_rebuild`
@@ -182,7 +182,7 @@ This skill is healthy when:
 
 Current package state:
 
-- `system_skill_advisor` is registered as a standalone MCP server.
+- `mk_skill_advisor` is registered as a standalone MCP server.
 - Advisor handlers, schemas, tools, scripts, tests, docs, and database path ownership live under this package.
 - `skill_graph_*` MCP handlers and tool descriptors live under this package.
 - `lib/skill-graph/` database/query logic remains in `system-spec-kit` until the pending packet 011 cleanup.

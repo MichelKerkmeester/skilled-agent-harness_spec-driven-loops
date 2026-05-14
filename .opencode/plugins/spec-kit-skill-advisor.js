@@ -36,11 +36,11 @@ const DISABLED_ENV = 'SPECKIT_SKILL_ADVISOR_HOOK_DISABLED';
 const LEGACY_DISABLED_ENV = 'SPECKIT_SKILL_ADVISOR_PLUGIN_DISABLED';
 const BRIDGE_PATH = fileURLToPath(new URL('../skills/system-spec-kit/mcp_server/plugin_bridges/spec-kit-skill-advisor-bridge.mjs', import.meta.url));
 // 013/009/005: cache-signature paths follow the standalone advisor package.
-// The bridge now dispatches through system_skill_advisor instead of the old
+// The bridge now dispatches through mk_skill_advisor instead of the old
 // memory-owned advisor compat path.
 const ADVISOR_SOURCE_PATHS = [
   BRIDGE_PATH,
-  fileURLToPath(new URL('../bin/skill-advisor-launcher.cjs', import.meta.url)),
+  fileURLToPath(new URL('../bin/mk-skill-advisor-launcher.cjs', import.meta.url)),
   fileURLToPath(new URL('../skills/system-skill-advisor/mcp_server/advisor-server.ts', import.meta.url)),
   fileURLToPath(new URL('../skills/system-skill-advisor/mcp_server/dist/system-skill-advisor/mcp_server/advisor-server.js', import.meta.url)),
 ];

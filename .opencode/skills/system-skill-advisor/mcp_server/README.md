@@ -11,7 +11,7 @@ trigger_phrases:
 
 <!-- sk-doc-template: skill_readme -->
 
-This directory owns the standalone `system_skill_advisor` MCP server implementation.
+This directory owns the standalone `mk_skill_advisor` MCP server implementation.
 
 <!-- ANCHOR:overview -->
 ## 1. OVERVIEW
