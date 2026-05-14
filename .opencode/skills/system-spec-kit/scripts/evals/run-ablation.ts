@@ -137,7 +137,13 @@ async function main(): Promise<void> {
   // To HybridSearchOptions flags and run hybridSearchEnhanced.
   const searchFn: AblationSearchFn = async (query, disabledChannels) => {
     const channelFlags = toHybridSearchFlags(disabledChannels);
-    const embedding = await generateQueryEmbedding(query);
+    let embedding: Float32Array | null = null;
+    try {
+      embedding = await generateQueryEmbedding(query);
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : String(error);
+      console.warn(`[run-ablation] Query embedding failed: ${message}`);
+    }
 
     const results = await hybridSearchEnhanced(query, embedding, {
       limit: 20,

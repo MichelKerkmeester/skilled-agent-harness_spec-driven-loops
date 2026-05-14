@@ -538,6 +538,26 @@ function mergeQueryFacetCoverage(resultSets: PipelineRow[][]): PipelineRow[] {
  */
 export async function executeStage1(input: Stage1Input): Promise<Stage1Output> {
   const startTime = Date.now();
+  try {
+    return await executeStage1Core(input, startTime);
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : String(error);
+    console.warn(`[stage1-candidate-gen] Stage 1 failed, returning empty candidates: ${message}`);
+    return {
+      candidates: [],
+      metadata: {
+        searchType: input.config.searchType,
+        channelCount: 0,
+        activeChannels: 0,
+        candidateCount: 0,
+        constitutionalInjected: 0,
+        durationMs: Date.now() - startTime,
+      },
+    };
+  }
+}
+
+async function executeStage1Core(input: Stage1Input, startTime: number): Promise<Stage1Output> {
   const { config } = input;
   // Fix #16: Cache embedding at function scope for reuse in constitutional injection
   let cachedEmbedding: Float32Array | number[] | null = null;

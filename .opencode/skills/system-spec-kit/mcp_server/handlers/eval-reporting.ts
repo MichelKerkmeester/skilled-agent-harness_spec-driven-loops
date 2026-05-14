@@ -80,6 +80,16 @@ function normalizeChannels(input?: string[]): AblationChannel[] {
   return valid.length > 0 ? valid : ALL_CHANNELS;
 }
 
+async function generateQueryEmbeddingOrNull(query: string, context: string): Promise<Float32Array | null> {
+  try {
+    return await generateQueryEmbedding(query);
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : String(error);
+    console.warn(`[eval-reporting] ${context} embedding failed: ${message}`);
+    return null;
+  }
+}
+
 function initializeEvalHybridSearch(database: ReturnType<typeof vectorIndex.getDb>) {
   const graphSearchFn = createUnifiedGraphSearchFn(database);
   initHybridSearch(database, vectorIndex.vectorSearch, graphSearchFn);
@@ -265,7 +275,7 @@ async function handleEvalRunAblation(args: RunAblationArgs): Promise<MCPResponse
 
     const searchFn: AblationSearchFn = async (query, disabledChannels) => {
       const channelFlags = toHybridSearchFlags(disabledChannels);
-      const embedding = await generateQueryEmbedding(query);
+      const embedding = await generateQueryEmbeddingOrNull(query, 'ablation query');
 
       const searchOptions = {
         limit: recallK,
@@ -366,7 +376,7 @@ async function handleEvalKSensitivity(args: KSensitivityArgs): Promise<MCPRespon
 
   const queryLists: RankedList[][] = [];
   for (const query of queries) {
-    const embedding = await generateQueryEmbedding(query);
+    const embedding = await generateQueryEmbeddingOrNull(query, 'k-sensitivity query');
     queryLists.push(buildRawFusionLists(db, graphSearchFn, query, embedding, limit));
   }
 

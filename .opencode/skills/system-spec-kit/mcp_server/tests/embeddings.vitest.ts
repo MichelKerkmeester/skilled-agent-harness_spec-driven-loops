@@ -12,6 +12,8 @@ import {
 } from '@spec-kit/shared/embeddings/factory';
 import { VoyageProvider } from '@spec-kit/shared/embeddings/providers/voyage';
 import { getStartupEmbeddingProfile } from '../../shared/embeddings/factory.js';
+import * as sharedEmbeddings from '../../shared/embeddings.js';
+import type { IEmbeddingProvider } from '../../shared/types.js';
 import * as embeddingsFacade from '../lib/providers/embeddings';
 
 const ENV_KEYS = [
@@ -30,6 +32,7 @@ const originalFetch = globalThis.fetch;
 const HF_LOCAL_PROVIDER_FILE = path.resolve(__dirname, '..', '..', 'shared', 'embeddings', 'providers', 'hf-local.ts');
 const OPENAI_PROVIDER_FILE = path.resolve(__dirname, '..', '..', 'shared', 'embeddings', 'providers', 'openai.ts');
 const VOYAGE_PROVIDER_FILE = path.resolve(__dirname, '..', '..', 'shared', 'embeddings', 'providers', 'voyage.ts');
+const CONTEXT_SIZE_ERROR = 'Input is longer than the context size';
 
 function resetEnv(): void {
   for (const key of ENV_KEYS) {
@@ -55,10 +58,42 @@ function mockFetch(status: number, body: Record<string, unknown>): void {
   } as Response)) as typeof fetch;
 }
 
+function vector768(): Float32Array {
+  const vector = new Float32Array(768);
+  vector[0] = 1;
+  return vector;
+}
+
+function mockEmbeddingProvider(overrides: Partial<IEmbeddingProvider> = {}): IEmbeddingProvider {
+  return {
+    generateEmbedding: vi.fn(async () => vector768()),
+    embedDocument: vi.fn(async () => vector768()),
+    embedQuery: vi.fn(async () => vector768()),
+    warmup: vi.fn(async () => true),
+    getMetadata: vi.fn(() => ({
+      provider: 'test-provider',
+      model: 'test-model',
+      dim: 768,
+      healthy: true,
+    })),
+    getProfile: vi.fn(() => ({
+      provider: 'test-provider',
+      model: 'test-model',
+      dim: 768,
+      dtype: 'q8',
+      slug: 'test-provider__test-model__768__q8',
+    })),
+    healthCheck: vi.fn(async () => true),
+    getProviderName: vi.fn(() => 'test-provider'),
+    ...overrides,
+  };
+}
+
 describe('Embeddings Architecture (T513)', () => {
   beforeEach(() => {
     resetEnv();
     restoreFetch();
+    sharedEmbeddings.__embeddingCircuitTestables.resetForTesting();
     vi.restoreAllMocks();
   });
 
@@ -66,6 +101,7 @@ describe('Embeddings Architecture (T513)', () => {
     resetEnv();
     restoreFetch();
     vi.useRealTimers();
+    sharedEmbeddings.__embeddingCircuitTestables.resetForTesting();
     vi.restoreAllMocks();
   });
 
@@ -323,6 +359,67 @@ describe('Embeddings Architecture (T513)', () => {
       delete process.env.OPENAI_API_KEY;
 
       expect(embeddingsFacade.getModelName()).toBe('voyage-4-lite');
+    });
+  });
+
+  describe('T029-error-propagation', () => {
+    it('T029-01: generateDocumentEmbedding rejects with real provider errors', async () => {
+      const provider = mockEmbeddingProvider({
+        embedDocument: vi.fn(async () => {
+          throw new Error(CONTEXT_SIZE_ERROR);
+        }),
+      });
+      sharedEmbeddings.__embeddingCircuitTestables.setProviderForTesting(provider);
+
+      await expect(sharedEmbeddings.generateDocumentEmbedding('long document text'))
+        .rejects.toThrow(CONTEXT_SIZE_ERROR);
+    });
+
+    it('T029-02: generateQueryEmbedding rejects with real provider errors', async () => {
+      const provider = mockEmbeddingProvider({
+        embedQuery: vi.fn(async () => {
+          throw new Error(CONTEXT_SIZE_ERROR);
+        }),
+      });
+      sharedEmbeddings.__embeddingCircuitTestables.setProviderForTesting(provider);
+
+      await expect(sharedEmbeddings.generateQueryEmbedding('long query text'))
+        .rejects.toThrow(CONTEXT_SIZE_ERROR);
+    });
+
+    it('T029-03: generateBatchEmbeddings resolves null entries when one item throws', async () => {
+      const provider = mockEmbeddingProvider({
+        generateEmbedding: vi.fn(async (text: string) => {
+          if (text.includes('bad')) {
+            throw new Error(CONTEXT_SIZE_ERROR);
+          }
+          return vector768();
+        }),
+      });
+      sharedEmbeddings.__embeddingCircuitTestables.setProviderForTesting(provider);
+
+      const result = await sharedEmbeddings.generateBatchEmbeddings(
+        ['good item', 'bad item', 'another good item'],
+        3,
+        { verbose: true, delayMs: 0 },
+      );
+
+      expect(result).toEqual([null, null, null]);
+    });
+
+    it('T029-04: real provider throws increment the embedding circuit failure counter', async () => {
+      const provider = mockEmbeddingProvider({
+        generateEmbedding: vi.fn(async () => {
+          throw new Error(CONTEXT_SIZE_ERROR);
+        }),
+      });
+      sharedEmbeddings.__embeddingCircuitTestables.setProviderForTesting(provider);
+      const before = sharedEmbeddings.__embeddingCircuitTestables.embeddingCircuit.failures;
+
+      await expect(sharedEmbeddings.generateEmbedding('trigger provider failure'))
+        .rejects.toThrow(CONTEXT_SIZE_ERROR);
+
+      expect(sharedEmbeddings.__embeddingCircuitTestables.embeddingCircuit.failures).toBe(before + 1);
     });
   });
 });

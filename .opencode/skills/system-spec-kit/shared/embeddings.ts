@@ -505,7 +505,7 @@ async function generateEmbedding(text: string): Promise<Float32Array | null> {
     recordEmbeddingFailure();
     const msg = error instanceof Error ? error.message : String(error);
     console.warn(`[embeddings] generateEmbedding failed: ${msg}`);
-    return null;
+    throw error;
   }
 }
 
@@ -557,6 +557,7 @@ async function generateBatchEmbeddings(
   let currentBackoff = 0; // Additional backoff from 429 responses
   const MAX_429_RETRIES = 3;
   const results: (Float32Array | null)[] = [];
+  let batchErrorCount = 0;
   for (let i = 0; i < texts.length; i += concurrency) {
     const batchNum = Math.floor(i / concurrency) + 1;
     const batch = texts.slice(i, i + concurrency);
@@ -597,6 +598,7 @@ async function generateBatchEmbeddings(
         } else {
           // Non-429 error or retries exhausted: push nulls for this batch
           console.error(`[embeddings] Batch ${batchNum} failed: ${errMsg}`);
+          batchErrorCount += batch.length;
           batchResults = batch.map(() => null);
         }
       }
@@ -616,6 +618,9 @@ async function generateBatchEmbeddings(
 
   if (verbose && totalBatches > 1) {
     console.error(`[embeddings] All ${totalBatches} batches complete`);
+  }
+  if (verbose && batchErrorCount > 0) {
+    console.error(`[embeddings] ${batchErrorCount} embedding(s) returned null after batch errors`);
   }
 
   return results;
@@ -666,7 +671,7 @@ async function generateDocumentEmbedding(text: string): Promise<Float32Array | n
     recordEmbeddingFailure();
     const msg = error instanceof Error ? error.message : String(error);
     console.warn(`[embeddings] generateDocumentEmbedding failed: ${msg}`);
-    return null;
+    throw error;
   }
 }
 
@@ -720,7 +725,7 @@ async function generateQueryEmbedding(query: string): Promise<Float32Array | nul
     recordEmbeddingFailure();
     const msg = error instanceof Error ? error.message : String(error);
     console.warn(`[embeddings] generateQueryEmbedding failed: ${msg}`);
-    return null;
+    throw error;
   }
 }
 
@@ -940,6 +945,22 @@ export const __embeddingCircuitTestables = {
   isEmbeddingCircuitBreakerEnabled,
   recordEmbeddingSuccess,
   recordEmbeddingFailure,
+  resetForTesting(): void {
+    embeddingCircuit.failures = 0;
+    embeddingCircuit.openedAt = null;
+    providerInstance = null;
+    providerInitPromise = null;
+    providerInitStartTime = null;
+    providerInitCompleteTime = null;
+    firstEmbeddingTime = null;
+    MODEL_NAME = detectConfiguredModelName();
+    clearEmbeddingCache();
+  },
+  setProviderForTesting(provider: IEmbeddingProvider | null): void {
+    providerInstance = provider;
+    providerInitPromise = null;
+    MODEL_NAME = provider ? getProviderModelName(provider) : detectConfiguredModelName();
+  },
   EMBEDDING_CB_THRESHOLD,
   EMBEDDING_CB_COOLDOWN_MS,
 };

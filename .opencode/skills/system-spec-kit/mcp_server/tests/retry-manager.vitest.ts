@@ -1,5 +1,5 @@
 // TEST: RETRY MANAGER
-import { describe, it, expect, beforeEach, afterAll, vi } from 'vitest';
+import { describe, it, expect, beforeEach, afterEach, afterAll, vi } from 'vitest';
 import * as path from 'path';
 import * as os from 'os';
 import * as fs from 'fs';
@@ -28,6 +28,9 @@ type RetryContentLoader = NonNullable<Parameters<typeof mod.processRetryQueue>[1
 type EmbeddingStatus = RetryQueueItem['embedding_status'];
 
 describe('retry-manager [deferred - requires DB test fixtures]', () => {
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
 
   // ═══════════════════════════════════════════════════════════
   // ───────────────────────────────────────────────────────────────
@@ -553,6 +556,50 @@ describe('retry-manager [deferred - requires DB test fixtures]', () => {
         expect(row?.embedding_status).toBe('retry');
         expect(row?.retry_count).toBe(1);
         expect(row?.failure_reason).toContain('Embedding generation returned null');
+      });
+
+      it('T45d: provider throws persist sanitized provider failure instead of null-return reason', async () => {
+        const activeDb = getDbOrThrow();
+        activeDb.exec(`
+          CREATE TABLE IF NOT EXISTS vec_memories (
+            rowid INTEGER PRIMARY KEY,
+            embedding BLOB NOT NULL
+          );
+          CREATE TABLE IF NOT EXISTS embedding_cache (
+            content_hash TEXT NOT NULL,
+            model_id TEXT NOT NULL,
+            embedding BLOB NOT NULL,
+            dimensions INTEGER NOT NULL,
+            created_at TEXT NOT NULL DEFAULT (datetime('now')),
+            last_used_at TEXT NOT NULL DEFAULT (datetime('now')),
+            PRIMARY KEY (content_hash, model_id)
+          );
+        `);
+
+        insertTestMemory(6004, '/tmp/provider-throws.md', 'pending', 0);
+        const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+        const embeddingSpy = vi
+          .spyOn(embeddings, 'generateDocumentEmbedding')
+          .mockRejectedValue(new Error('Input is longer than the context size'));
+
+        const result = await mod.retryEmbedding(6004, `retry-provider-throw-${Date.now()}`);
+        expect(result.success).toBe(false);
+        expect(embeddingSpy).toHaveBeenCalledTimes(1);
+
+        const row = activeDb.prepare(
+          'SELECT embedding_status, retry_count, failure_reason FROM memory_index WHERE id = ?'
+        ).get(6004) as {
+          embedding_status: string;
+          retry_count: number;
+          failure_reason: string | null;
+        } | undefined;
+
+        expect(row).toBeDefined();
+        expect(row?.embedding_status).toBe('retry');
+        expect(row?.retry_count).toBe(1);
+        expect(row?.failure_reason).toMatch(/EMBEDDING_PROVIDER_ERROR|provider.*type.*provider_error|context size/i);
+        expect(row?.failure_reason).not.toBe('Embedding generation returned null');
+        expect(errorSpy).toHaveBeenCalled();
       });
 
       it('T45c: max-retry exhaustion records a terminal failed state', async () => {
