@@ -113,7 +113,7 @@ The sweep used the required baseline grep before fixes, then bucketed doc hits u
 AGENT_RECEIVED=013/009/013-spec-kit-ref-cleanup
 SPAWN_AGENT_USED=no
 RESULT=PASS
-COMMITS=aa3756b16
+COMMITS=recorded-in-final-delivery
 PACKET_SCAFFOLDED=YES
 BASELINE_HITS_COUNT=208
 BUCKETED_STALE_LIVE=31

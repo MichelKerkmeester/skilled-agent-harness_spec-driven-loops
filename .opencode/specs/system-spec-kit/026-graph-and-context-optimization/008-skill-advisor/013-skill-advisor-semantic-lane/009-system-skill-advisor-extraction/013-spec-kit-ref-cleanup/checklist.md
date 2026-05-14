@@ -110,7 +110,7 @@ _memory:
 - [x] CHK-040 [P1] Level 2 packet docs authored.
   - **Evidence**: `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `implementation-summary.md`, `description.json`, and `graph-metadata.json` exist.
 - [x] CHK-041 [P1] Binding trace completed.
-  - **Evidence**: `implementation-summary.md` records all required BINDING fields with commit `aa3756b16`.
+  - **Evidence**: `implementation-summary.md` records all required BINDING fields; final delivery records the post-amend commit SHA.
 <!-- /ANCHOR:docs -->
 
 ---
