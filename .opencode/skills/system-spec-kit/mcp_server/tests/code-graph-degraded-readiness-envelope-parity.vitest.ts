@@ -57,12 +57,12 @@ function makeEmptyPrepare() {
 }
 
 function installContextMocks(): void {
-  vi.doMock('../code_graph/lib/ensure-ready.js', () => ({
+  vi.doMock('../../../system-code-graph/mcp_server/lib/ensure-ready.js', () => ({
     ensureCodeGraphReady: mocks.ensureCodeGraphReady,
     getGraphReadinessSnapshot: mocks.getGraphReadinessSnapshot,
     getGraphFreshness: mocks.getGraphFreshness,
   }));
-  vi.doMock('../code_graph/lib/code-graph-db.js', () => ({
+  vi.doMock('../../../system-code-graph/mcp_server/lib/code-graph-db.js', () => ({
     getDb: mocks.getDb,
     getStats: mocks.getStats,
     getStoredCodeGraphScope: mocks.getStoredCodeGraphScope,
@@ -78,12 +78,12 @@ function installContextMocks(): void {
 }
 
 function installStatusMocks(): void {
-  vi.doMock('../code_graph/lib/ensure-ready.js', () => ({
+  vi.doMock('../../../system-code-graph/mcp_server/lib/ensure-ready.js', () => ({
     ensureCodeGraphReady: mocks.ensureCodeGraphReady,
     getGraphReadinessSnapshot: mocks.getGraphReadinessSnapshot,
     getGraphFreshness: mocks.getGraphFreshness,
   }));
-  vi.doMock('../code_graph/lib/code-graph-db.js', () => ({
+  vi.doMock('../../../system-code-graph/mcp_server/lib/code-graph-db.js', () => ({
     getStats: mocks.getStats,
     getStoredCodeGraphScope: mocks.getStoredCodeGraphScope,
     countTrackedSkillFiles: mocks.countTrackedSkillFiles,
@@ -156,7 +156,7 @@ describe('code_graph_context degraded-readiness envelope (F-001)', () => {
     // remaps to `freshness: 'error'` per the existing post-PR4 contract.
     mocks.ensureCodeGraphReady.mockRejectedValue(new Error('db locked'));
 
-    const { handleCodeGraphContext } = await import('../code_graph/handlers/context.js');
+    const { handleCodeGraphContext } = await import('../../../system-code-graph/mcp_server/handlers/context.js');
     const result = await handleCodeGraphContext({ subject: 'src/foo.ts' });
     const parsed = JSON.parse(result.content[0].text) as {
       status: string;
@@ -200,7 +200,7 @@ describe('code_graph_context degraded-readiness envelope (F-001)', () => {
       reason: 'graph is empty (0 nodes)',
     });
 
-    const { handleCodeGraphContext } = await import('../code_graph/handlers/context.js');
+    const { handleCodeGraphContext } = await import('../../../system-code-graph/mcp_server/handlers/context.js');
     const result = await handleCodeGraphContext({ subject: 'src/foo.ts' });
     const parsed = JSON.parse(result.content[0].text) as {
       status: string;
@@ -226,7 +226,7 @@ describe('code_graph_context degraded-readiness envelope (F-001)', () => {
       throw new Error('stats unavailable');
     });
 
-    const { handleCodeGraphContext } = await import('../code_graph/handlers/context.js');
+    const { handleCodeGraphContext } = await import('../../../system-code-graph/mcp_server/handlers/context.js');
     const result = await handleCodeGraphContext({ subject: 'src/foo.ts' });
     const parsed = JSON.parse(result.content[0].text) as {
       status: string;
@@ -266,7 +266,7 @@ describe('code_graph_status DB-unavailable envelope (F-003)', () => {
       throw new Error('database is locked');
     });
 
-    const { handleCodeGraphStatus } = await import('../code_graph/handlers/status.js');
+    const { handleCodeGraphStatus } = await import('../../../system-code-graph/mcp_server/handlers/status.js');
     const result = await handleCodeGraphStatus();
     const parsed = JSON.parse(result.content[0].text) as {
       status: string;
@@ -312,7 +312,7 @@ describe('code_graph_status DB-unavailable envelope (F-003)', () => {
       throw new Error('database is locked');
     });
 
-    const { handleCodeGraphStatus } = await import('../code_graph/handlers/status.js');
+    const { handleCodeGraphStatus } = await import('../../../system-code-graph/mcp_server/handlers/status.js');
     const result = await handleCodeGraphStatus();
     const parsed = JSON.parse(result.content[0].text) as {
       status: string;
@@ -340,7 +340,7 @@ describe('code_graph_status DB-unavailable envelope (F-003)', () => {
     mocks.getGraphFreshness.mockReturnValue('fresh');
     // getStats default beforeEach() return is fine (lastScanTimestamp=null).
 
-    const { handleCodeGraphStatus } = await import('../code_graph/handlers/status.js');
+    const { handleCodeGraphStatus } = await import('../../../system-code-graph/mcp_server/handlers/status.js');
     const result = await handleCodeGraphStatus();
     const parsed = JSON.parse(result.content[0].text) as {
       status: string;
@@ -371,7 +371,7 @@ describe('cross-handler shared degraded-readiness vocabulary parity', () => {
     // match byte-for-byte across handlers; the wrapping payload differs.
     installContextMocks();
     mocks.ensureCodeGraphReady.mockRejectedValue(new Error('db locked'));
-    const { handleCodeGraphContext } = await import('../code_graph/handlers/context.js');
+    const { handleCodeGraphContext } = await import('../../../system-code-graph/mcp_server/handlers/context.js');
     const ctxResult = await handleCodeGraphContext({ subject: 'src/foo.ts' });
     const ctxParsed = JSON.parse(ctxResult.content[0].text) as {
       data?: Record<string, unknown>;
@@ -391,7 +391,7 @@ describe('cross-handler shared degraded-readiness vocabulary parity', () => {
     });
     mocks.getGraphFreshness.mockReturnValue('error');
     installStatusMocks();
-    const { handleCodeGraphStatus } = await import('../code_graph/handlers/status.js');
+    const { handleCodeGraphStatus } = await import('../../../system-code-graph/mcp_server/handlers/status.js');
     const stsResult = await handleCodeGraphStatus();
     const stsParsed = JSON.parse(stsResult.content[0].text) as {
       data?: Record<string, unknown>;

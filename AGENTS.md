@@ -103,7 +103,7 @@ Hook-capable runtimes (Claude, Codex, Gemini, OpenCode) may inject startup conte
 
 1. `/spec_kit:resume` is the canonical surface; rebuild context in order: `handover.md` → `_memory.continuity` → canonical spec docs (`implementation-summary.md` → `tasks.md` → `plan.md` → `spec.md`).
 2. **Phase parent** (target has `[0-9]{3}-name/` children with their own spec/description): honor `graph-metadata.json.derived.last_active_child_id`, else list children with statuses. Lean trio policy — only `spec.md`, `description.json`, `graph-metadata.json` live at parent; read the chosen child's continuity ladder, NOT the parent's plan/tasks/implementation-summary.
-3. Stale or missing structural context: run `session_bootstrap()`, then `code_graph_scan` if needed. Graph unavailable: use CocoIndex + direct reads, but keep the packet-local continuity ladder as source-of-truth.
+3. Stale or missing structural context: run `session_bootstrap()`, then `code_graph_scan` if needed. Graph unavailable: use CocoIndex + direct reads, but keep the packet-local continuity ladder as source-of-truth. Code-graph implementation/docs are owned by `.opencode/skills/system-code-graph/`; tool names stay stable.
 4. Re-anchor on spec folder, current task, blockers, and next steps before making changes.
 
 ---

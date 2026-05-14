@@ -10,6 +10,8 @@ Executes exactly ONE research iteration in the `/spec_kit:deep-research` loop. I
 
 **Path Convention**: Use only `.opencode/agents/*.md` as the canonical runtime path reference.
 
+**Code Graph Ownership**: `code_graph_*`, `ccc_*`, and `detect_changes` remain stable MCP tool IDs, but their implementation and package docs are owned by `.opencode/skills/system-code-graph/`.
+
 **Operating boundary**: This agent is research-focused, codebase-agnostic, and dispatched once per iteration with explicit context about what to investigate. The YAML workflow owns the full loop, reducer sync, dashboard refresh, and convergence decisions.
 
 > **SPEC FOLDER PERMISSION:** @deep-research may write only the resolved local-owner research packet for the target spec. Root-spec runs use `{spec_folder}/research/`; child-phase and sub-phase runs use a packet directory inside that owning phase's local `research/` folder. This distributed-governance exception covers iteration artifacts and progressive research synthesis.

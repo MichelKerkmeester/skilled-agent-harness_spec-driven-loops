@@ -11,8 +11,8 @@
 import { createHash } from 'node:crypto';
 import { statSync } from 'node:fs';
 import { isCocoIndexAvailable } from '../lib/utils/cocoindex-path.js';
-import * as graphDb from '../code_graph/lib/code-graph-db.js';
-import { getGraphFreshness, type GraphFreshness } from '../code_graph/lib/ensure-ready.js';
+import * as graphDb from '../../../system-code-graph/mcp_server/lib/code-graph-db.js';
+import { getGraphFreshness, type GraphFreshness } from '../../../system-code-graph/mcp_server/lib/ensure-ready.js';
 import { computeQualityScore, recordMetricEvent, recordBootstrapEvent } from '../lib/session/context-metrics.js';
 import { buildStructuralBootstrapContract } from '../lib/session/session-snapshot.js';
 import type { StructuralBootstrapContract } from '../lib/session/session-snapshot.js';
@@ -33,7 +33,7 @@ import {
 import {
   buildCodeGraphOpsContract,
   type CodeGraphOpsContract,
-} from '../code_graph/lib/ops-hardening.js';
+} from '../../../system-code-graph/mcp_server/lib/ops-hardening.js';
 import { getCallerContext } from '../lib/context/caller-context.js';
 import { loadMatchingStates, type HookProducerMetadata, type HookState } from '../hooks/claude/hook-state.js';
 import { buildResumeLadder } from '../lib/resume/resume-ladder.js';
@@ -74,18 +74,18 @@ export interface CachedSessionSummaryDecision {
   status: 'accepted' | 'rejected';
   category: 'accepted' | 'fidelity' | 'freshness';
   reason:
-    | 'accepted'
-    | 'missing_state'
-    | 'schema_mismatch'
-    | 'missing_summary'
-    | 'missing_producer_metadata'
-    | 'missing_required_fields'
-    | 'transcript_unreadable'
-    | 'transcript_identity_mismatch'
-    | 'stale_summary'
-    | 'summary_precedes_producer_turn'
-    | 'scope_mismatch'
-    | 'unknown_scope';
+  | 'accepted'
+  | 'missing_state'
+  | 'schema_mismatch'
+  | 'missing_summary'
+  | 'missing_producer_metadata'
+  | 'missing_required_fields'
+  | 'transcript_unreadable'
+  | 'transcript_identity_mismatch'
+  | 'stale_summary'
+  | 'summary_precedes_producer_turn'
+  | 'scope_mismatch'
+  | 'unknown_scope';
   detail: string;
   cachedSummary: CachedSessionSummary | null;
 }

@@ -111,9 +111,10 @@ describe('H5: all tool schemas have additionalProperties: false', () => {
   });
 
   // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+  // 014: code-graph extraction removed 10 schemas (code_graph_*, ccc_*, detect_changes); 4 advisor_* tools added elsewhere → 49
   it('total tool count matches expected', () => {
     // Ensures no schema was accidentally dropped during bulk edit
-    expect(TOOL_DEFINITIONS.length).toBe(55);
+    expect(TOOL_DEFINITIONS.length).toBe(49);
   });
 });
 

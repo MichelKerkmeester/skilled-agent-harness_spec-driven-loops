@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/006-validation-and-cleanup",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/006-validation-and-cleanup",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction",
+  "children_ids": [],
+  "migrated": false,
+  "manual": {
+    "depends_on": [
+      "system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/005-doc-and-runtime-migration"
+    ],
+    "supersedes": [],
+    "related_to": [
+      "system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction",
+      "system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/001-design-and-decision-record"
+    ]
+  },
+  "derived": {
+    "trigger_phrases": [
+      "code graph validation cleanup",
+      "phase 006 validation and cleanup",
+      "system-code-graph final validation"
+    ],
+    "key_topics": [
+      "system-code-graph",
+      "validation",
+      "database-handoff",
+      "stale-reference-cleanup",
+      "parent-completion"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "last_active_child_id": null,
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "Code Graph",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "manual"
+      },
+      {
+        "name": "system-code-graph",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "manual"
+      }
+    ],
+    "causal_summary": "Final validation and cleanup for extracting code-graph into system-code-graph. Confirms typecheck, full Vitest, gold verifier, DB parity, stale-reference cleanup, and parent completion.",
+    "created_at": "2026-05-14T08:43:25Z",
+    "last_save_at": "2026-05-14T09:13:21Z",
+    "save_lineage": "manual",
+    "last_accessed_at": "2026-05-14T08:43:25Z",
+    "source_docs": [
+      "spec.md",
+      "plan.md"
+    ]
+  }
+}

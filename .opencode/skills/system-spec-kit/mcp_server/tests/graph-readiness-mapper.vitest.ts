@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import type { GraphReadinessSnapshot } from '../code_graph/lib/ensure-ready.js';
+import type { GraphReadinessSnapshot } from '../../../system-code-graph/mcp_server/lib/ensure-ready.js';
 import { mapGraphReadinessToTelemetry } from '../lib/search/graph-readiness-mapper.js';
 
 function snapshot(

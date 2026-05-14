@@ -71,11 +71,11 @@ vi.mock('../lib/search/intent-classifier.js', () => ({
   emitIntentTelemetry: vi.fn(),
 }));
 
-vi.mock('../code_graph/lib/query-intent-classifier.js', () => ({
+vi.mock('../../../system-code-graph/mcp_server/lib/query-intent-classifier.js', () => ({
   classifyQueryIntent: mocks.classifyQueryIntent,
 }));
 
-vi.mock('../code_graph/lib/code-graph-context.js', () => ({
+vi.mock('../../../system-code-graph/mcp_server/lib/code-graph-context.js', () => ({
   buildContext: mocks.buildContext,
 }));
 

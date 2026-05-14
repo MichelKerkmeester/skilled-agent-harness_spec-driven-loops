@@ -1,0 +1,9 @@
+{
+  "type": "iteration",
+  "iteration": 1,
+  "newInfoRatio": 0.35,
+  "status": "complete",
+  "focus": "Deep inventory of code_graph/ source tree",
+  "findings": "Mapped 111 files in code_graph/ tree: 31 lib TS files, 11 handler TS files, 2 tool TS files, 32 test files (28 vitest + 1 test-d + 1 test.ts + 1 gold-queries.json asset + 1 README), 35 in-package docs (4 READMEs + 16 feature catalog + 11 manual test playbook). Identified DB import from core/config.ts (line 20), 12 MCP tools registered, 10 export-rich handler modules.",
+  "timestamp": "2026-05-14T08:00:00Z"
+}

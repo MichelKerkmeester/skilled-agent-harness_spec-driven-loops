@@ -4,6 +4,8 @@ argument-hint: "<query> [--intent:<type>] | preflight <specFolder> <taskId> | po
 allowed-tools: Read, spec_kit_memory_memory_context, spec_kit_memory_memory_quick_search, spec_kit_memory_memory_search, spec_kit_memory_memory_match_triggers, spec_kit_memory_task_preflight, spec_kit_memory_task_postflight, spec_kit_memory_memory_drift_why, spec_kit_memory_memory_causal_link, spec_kit_memory_memory_causal_stats, spec_kit_memory_memory_causal_unlink, spec_kit_memory_eval_run_ablation, spec_kit_memory_eval_reporting_dashboard, spec_kit_memory_memory_get_learning_history
 ---
 
+> **Code Graph bridge:** Structural routing may call stable `code_graph_*` MCP tools; the code-graph implementation and docs are owned by `.opencode/skills/system-code-graph/`.
+
 # 🚨 MANDATORY FIRST ACTION - DO NOT SKIP
 
 **BEFORE READING ANYTHING ELSE IN THIS FILE, CHECK `$ARGUMENTS`:**

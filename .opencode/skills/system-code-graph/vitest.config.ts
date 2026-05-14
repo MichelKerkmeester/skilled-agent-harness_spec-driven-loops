@@ -1,0 +1,18 @@
+import { defineConfig } from 'vitest/config';
+import path from 'node:path';
+
+const repoRoot = path.resolve(import.meta.dirname, '../../..');
+process.chdir('/private/tmp');
+
+export default defineConfig({
+  root: repoRoot,
+  test: {
+    include: [
+      '.opencode/skills/system-code-graph/mcp_server/tests/**/*.{vitest,test}.ts',
+      '.opencode/skills/system-code-graph/mcp_server/stress_test/code-graph/**/*.{vitest,test}.ts',
+    ],
+    exclude: ['node_modules', 'dist'],
+    globals: false,
+    testTimeout: 30000,
+  },
+});

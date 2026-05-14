@@ -41,7 +41,7 @@ const RESUME_MODE = 'minimal';
 const MESSAGES_TRANSFORM_ENABLED = true;
 const MESSAGES_TRANSFORM_MODE = 'schema_aligned';
 const SYNTHETIC_METADATA_KEY = 'specKitCompactCodeGraph';
-const BRIDGE_PATH = fileURLToPath(new URL('../skills/system-spec-kit/mcp_server/plugin_bridges/spec-kit-compact-code-graph-bridge.mjs', import.meta.url));
+const BRIDGE_PATH = fileURLToPath(new URL('../skills/system-code-graph/mcp_server/plugin_bridges/spec-kit-compact-code-graph-bridge.mjs', import.meta.url));
 
 /**
  * @typedef {{

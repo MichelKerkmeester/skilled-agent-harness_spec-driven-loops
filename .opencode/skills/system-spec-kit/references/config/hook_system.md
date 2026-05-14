@@ -131,6 +131,8 @@ All four supported runtimes transport the same compact startup shared-payload th
 
 `graphQualitySummary` is also surfaced on `code_graph_status` and `session_bootstrap()` / startup-brief responses, so operators can inspect the same quality envelope regardless of transport. `session_bootstrap()` remains a manual fallback when native startup hooks are disabled — it is no longer a Codex-only substitute.
 
+Hooks remain in `system-spec-kit` because they own runtime lifecycle transport. Code-graph readiness, quality, and package docs are owned by the sibling `.opencode/skills/system-code-graph/` skill and imported through the co-resident MCP registration path.
+
 ---
 
 ## 11. ADVISOR BRIDGE AND THRESHOLD CONTRACT
@@ -160,4 +162,3 @@ The same retrieval building blocks power both hook delivery and explicit recover
 3. `session_bootstrap()` / `session_resume()` — Session-oriented wrappers that layer health and structural context around resume retrieval
 
 ---
-

@@ -13,7 +13,7 @@ import {
   SHARED_PAYLOAD_TRUST_STATE_VALUES,
 } from './shared-payload.js';
 import type { SharedPayloadEnvelope, SharedPayloadSection } from './shared-payload.js';
-import type { CodeGraphOpsContract } from '../../code_graph/lib/ops-hardening.js';
+import type { CodeGraphOpsContract } from '../../../../system-code-graph/mcp_server/lib/ops-hardening.js';
 
 /** Hook names emitted by the OpenCode transport adapter. */
 export type OpenCodeTransportHook =
@@ -233,28 +233,28 @@ export function buildOpenCodeTransportPlan(args: {
         systemTransform: {
           hook: 'experimental.chat.system.transform',
           title: 'OpenCode Startup Digest',
-           payloadKind: systemPayload.kind,
-           dedupeKey: `system:${systemPayload.kind}`,
-           content: appendStartupSnapshotNote(renderBlockContent(
-             systemPayload,
-             'Inject this as the startup digest for hookless OpenCode recovery. Keep it transport-only.',
-             args.graphOps,
-           ),
-           ),
-         },
+          payloadKind: systemPayload.kind,
+          dedupeKey: `system:${systemPayload.kind}`,
+          content: appendStartupSnapshotNote(renderBlockContent(
+            systemPayload,
+            'Inject this as the startup digest for hookless OpenCode recovery. Keep it transport-only.',
+            args.graphOps,
+          ),
+          ),
+        },
       }
       : {}),
     messagesTransform: messagePayloads.map((payload, index) => ({
       hook: 'experimental.chat.messages.transform' as const,
       title: index === 0 ? 'OpenCode Retrieved Context' : 'OpenCode Operational Context',
       payloadKind: payload.kind,
-       dedupeKey: `messages:${payload.kind}:${index}`,
-       content: renderBlockContent(
-         payload,
-         'Inject this as bounded current-turn context. Do not treat it as retrieval policy.',
-         payload.kind === 'resume' ? args.graphOps : null,
-       ),
-     })),
+      dedupeKey: `messages:${payload.kind}:${index}`,
+      content: renderBlockContent(
+        payload,
+        'Inject this as bounded current-turn context. Do not treat it as retrieval policy.',
+        payload.kind === 'resume' ? args.graphOps : null,
+      ),
+    })),
     ...(compactionPayload
       ? {
         compaction: {

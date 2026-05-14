@@ -480,7 +480,7 @@ Run one smoke test per shipped capability to confirm the new behaviors are wired
 # 1. Stale path: leave the graph stale OR scan once and then modify a tracked source file
 #    (do NOT rerun code_graph_scan).
 # 2. Generate a unified diff that touches a known indexed function:
-git diff -- .opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts > /tmp/diff.txt
+git diff -- .opencode/skills/system-code-graph/mcp_server/code_graph/handlers/scan.ts > /tmp/diff.txt
 
 # 3. Call the detect_changes MCP tool with the stale graph:
 #       detect_changes({ diff: <contents of /tmp/diff.txt>, rootDir: <workspace root> })

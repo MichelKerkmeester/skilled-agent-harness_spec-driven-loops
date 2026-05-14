@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/003-physical-move-and-database",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/003-physical-move-and-database",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction",
+  "children_ids": [],
+  "migrated": false,
+  "manual": {
+    "depends_on": [
+      "system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/002-scaffold-skill"
+    ],
+    "supersedes": [],
+    "related_to": [
+      "system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/001-design-and-decision-record"
+    ]
+  },
+  "derived": {
+    "trigger_phrases": [
+      "003 physical move code graph",
+      "code graph database copy",
+      "system-code-graph source move"
+    ],
+    "key_topics": [
+      "code-graph-source-move",
+      "database-copy",
+      "system-code-graph",
+      "speckit-code-graph-db-dir"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "last_active_child_id": null,
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "system-code-graph",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "SPECKIT_CODE_GRAPH_DB_DIR",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 003 performs the physical code-graph source move and DB copy into system-code-graph. The source DB remains available as a fallback and consumer rewiring is completed by atomic sibling Phase 004.",
+    "created_at": "2026-05-14T08:06:12Z",
+    "last_save_at": "2026-05-14T09:13:21Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": "2026-05-14T08:06:12Z",
+    "source_docs": [
+      "spec.md",
+      "plan.md"
+    ]
+  }
+}

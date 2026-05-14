@@ -140,6 +140,8 @@ plus 4 Skill Advisor descriptors imported into the same registry.
 | L7: Maintenance | `ccc_reindex()` | Trigger incremental or full CocoIndex re-indexing | Refresh semantic search after a refactor |
 | L7: Maintenance | `ccc_feedback()` | Submit search-quality feedback for CocoIndex results | Record whether semantic hits were helpful |
 
+Code-graph implementation and package docs are owned by `.opencode/skills/system-code-graph/`; memory keeps the L6/L7 routing surface because the stable MCP tool IDs remain co-resident.
+
 ### memory_index_scan() Parameters
 
 | Parameter | Type | Default | Description |

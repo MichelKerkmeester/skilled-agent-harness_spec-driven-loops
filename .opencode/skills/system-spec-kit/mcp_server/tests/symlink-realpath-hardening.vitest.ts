@@ -35,7 +35,7 @@ function createCodeGraphSymlinkFixtures() {
 
 function setupIndexerMocks(): void {
   vi.resetModules();
-  vi.doMock('../code_graph/lib/code-graph-db.js', () => ({
+  vi.doMock('../../../system-code-graph/mcp_server/lib/code-graph-db.js', () => ({
     isFileStale: vi.fn(() => true),
   }));
   process.env.SPECKIT_PARSER = 'regex';
@@ -95,8 +95,8 @@ describe('realpath hardening for symlinked paths', () => {
     const { root, safeFilePath } = createCodeGraphSymlinkFixtures();
 
     try {
-      const { getDefaultConfig } = await import('../code_graph/lib/indexer-types.js');
-      const { indexFiles } = await import('../code_graph/lib/structural-indexer.js');
+      const { getDefaultConfig } = await import('../../../system-code-graph/mcp_server/lib/indexer-types.js');
+      const { indexFiles } = await import('../../../system-code-graph/mcp_server/lib/structural-indexer.js');
 
       const results = await indexFiles({
         ...getDefaultConfig(root),

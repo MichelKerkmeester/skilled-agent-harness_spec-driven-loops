@@ -10,6 +10,8 @@ Executes ONE review iteration within an autonomous review loop: read externalize
 
 **Path Convention**: Use only `.gemini/agents/*.md` as the canonical runtime path reference.
 
+**Code Graph Ownership**: `code_graph_*`, `ccc_*`, and `detect_changes` remain stable MCP tool IDs, but their implementation and package docs are owned by `.opencode/skills/system-code-graph/`.
+
 **CRITICAL**: This agent executes a SINGLE review iteration, not the full loop. The loop is managed by `/spec_kit:deep-review` and dispatches this agent once per iteration.
 
 **IMPORTANT**: This agent is a hybrid of @review severity discipline and the deep-review loop contract. It reviews code but does NOT modify code under review.

@@ -1,0 +1,121 @@
+{
+  "schema_version": 2,
+  "skill_id": "system-code-graph",
+  "family": "system",
+  "category": "system",
+  "mcp_server_topology": "co-resident",
+  "mcp_server_host": "spec_kit_memory",
+  "edges": {
+    "depends_on": [
+      {
+        "target": "system-spec-kit",
+        "weight": 0.8,
+        "context": "co-resident MCP registration and extraction parent"
+      }
+    ],
+    "enhances": [
+      {
+        "target": "system-spec-kit",
+        "weight": 0.6,
+        "context": "structural context, startup readiness, and impact analysis"
+      },
+      {
+        "target": "mcp-coco-index",
+        "weight": 0.4,
+        "context": "structural follow-up for semantic code discovery"
+      }
+    ],
+    "siblings": [
+      {
+        "target": "system-spec-kit",
+        "weight": 0.7,
+        "context": "sibling skill after Phase 003 source migration"
+      }
+    ],
+    "conflicts_with": [],
+    "prerequisite_for": []
+  },
+  "manual": {
+    "depends_on": [
+      "system-spec-kit"
+    ],
+    "related_to": [
+      "mcp-coco-index",
+      "sk-code"
+    ]
+  },
+  "domains": [
+    "code-graph",
+    "structural-indexing",
+    "impact-analysis",
+    "blast-radius",
+    "readiness",
+    "sqlite"
+  ],
+  "intent_signals": [
+    "code graph",
+    "code-graph",
+    "structural code indexing",
+    "code graph scan",
+    "code graph query",
+    "code graph context",
+    "blast radius",
+    "impact analysis",
+    "detect changes"
+  ],
+  "derived": {
+    "trigger_phrases": [
+      "code graph",
+      "code-graph",
+      "structural code indexing",
+      "code graph scan",
+      "code graph query",
+      "code graph context",
+      "blast radius",
+      "impact analysis",
+      "detect changes"
+    ],
+    "key_topics": [
+      "structural AST indexing",
+      "SQLite-backed graph storage",
+      "code_graph MCP tools",
+      "ccc bridge tools",
+      "graph readiness",
+      "impact analysis"
+    ],
+    "intent_signals": [
+      "scan code graph",
+      "query structural graph",
+      "retrieve code graph context",
+      "check graph freshness",
+      "analyze blast radius"
+    ],
+    "key_files": [
+      ".opencode/skills/system-code-graph/SKILL.md",
+      ".opencode/skills/system-code-graph/README.md",
+      ".opencode/skills/system-code-graph/mcp_server/",
+      ".opencode/skills/system-code-graph/mcp_server/database/"
+    ],
+    "entities": [
+      {
+        "name": "system-code-graph",
+        "kind": "skill",
+        "path": ".opencode/skills/system-code-graph/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec_kit_memory",
+        "kind": "mcp_server",
+        "path": ".opencode/skills/system-code-graph/SKILL.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Code-graph subsystem skill for structural AST indexing, SQLite-backed graph storage, and 12 MCP tools used for impact analysis, graph context retrieval, readiness reporting, and change detection. Extracted from system-spec-kit per ADR-001 while preserving co-resident MCP topology under spec_kit_memory.",
+    "source_docs": [
+      "SKILL.md",
+      "README.md"
+    ],
+    "created_at": "2026-05-14T07:54:11Z",
+    "last_updated_at": "2026-05-14T07:54:11Z"
+  }
+}

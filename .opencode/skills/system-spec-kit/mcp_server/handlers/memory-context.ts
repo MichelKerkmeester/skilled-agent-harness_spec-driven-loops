@@ -15,8 +15,8 @@ import * as intentClassifier from '../lib/search/intent-classifier.js';
 import type { IntentTelemetry } from '../lib/search/intent-classifier.js';
 
 // Query-intent routing (Phase 020: structural/semantic/hybrid classification)
-import { classifyQueryIntent } from '../code_graph/lib/query-intent-classifier.js';
-import { buildContext } from '../code_graph/lib/code-graph-context.js';
+import { classifyQueryIntent } from '../../../system-code-graph/mcp_server/lib/query-intent-classifier.js';
+import { buildContext } from '../../../system-code-graph/mcp_server/lib/code-graph-context.js';
 
 // Core handlers for routing
 import { handleMemorySearch } from './memory-search.js';
@@ -1280,29 +1280,29 @@ function buildResponseMeta(params: BuildResponseMetaParams): Record<string, unkn
 
   const telemetryMeta = retrievalTelemetry.isExtendedTelemetryEnabled()
     ? (() => {
-        try {
-          const t = retrievalTelemetry.createTelemetry();
-          retrievalTelemetry.recordMode(
-            t,
-            effectiveMode,
-            pressureOverrideApplied,
-            pressurePolicy.level,
-            pressurePolicy.ratio ?? undefined,
-          );
-          if (effectiveMode !== requestedMode && pressureOverrideApplied) {
-            retrievalTelemetry.recordFallback(t, `pressure override: ${requestedMode} -> ${effectiveMode}`);
-          }
-          retrievalTelemetry.recordTransitionDiagnostics(
-            t,
-            includeTrace === true ? sessionTransition : undefined,
-          );
-          return { _telemetry: retrievalTelemetry.toJSON(t) };
-        } catch (error: unknown) {
-          void error;
-          // Telemetry must never crash the handler
-          return {};
+      try {
+        const t = retrievalTelemetry.createTelemetry();
+        retrievalTelemetry.recordMode(
+          t,
+          effectiveMode,
+          pressureOverrideApplied,
+          pressurePolicy.level,
+          pressurePolicy.ratio ?? undefined,
+        );
+        if (effectiveMode !== requestedMode && pressureOverrideApplied) {
+          retrievalTelemetry.recordFallback(t, `pressure override: ${requestedMode} -> ${effectiveMode}`);
         }
-      })()
+        retrievalTelemetry.recordTransitionDiagnostics(
+          t,
+          includeTrace === true ? sessionTransition : undefined,
+        );
+        return { _telemetry: retrievalTelemetry.toJSON(t) };
+      } catch (error: unknown) {
+        void error;
+        // Telemetry must never crash the handler
+        return {};
+      }
+    })()
     : {};
 
   return {
@@ -1366,557 +1366,557 @@ async function handleMemoryContext(args: ContextArgs): Promise<MCPResponse> {
   const requestId = randomUUID();
 
   try {
-  try {
-    await checkDatabaseUpdated();
-  } catch (error: unknown) {
-    const message = error instanceof Error ? error.message : String(error);
-    return createMCPErrorResponse({
-      tool: 'memory_context',
-      error: `Database state check failed: ${message}`,
-      code: 'E_INTERNAL',
-      details: { requestId, layer: 'L1:Orchestration' },
-      recovery: {
-        hint: 'The memory database may be unavailable. Retry or check database connectivity.',
-      },
-    });
-  }
-
-  const {
-    input,
-    mode: requested_mode = 'auto',
-    intent: explicit_intent,
-    specFolder: spec_folder,
-    limit,
-    enableDedup: enableDedup = true,
-    includeContent: include_content = false,
-    tokenUsage,
-    anchors
-  } = args;
-
-  // Validate input
-  if (!input || typeof input !== 'string' || input.trim().length === 0) {
-    return createMCPErrorResponse({
-      tool: 'memory_context',
-      error: 'Input is required and must be a non-empty string',
-      code: 'E_VALIDATION',
-      details: { requestId, layer: 'L1:Orchestration' },
-      recovery: {
-        hint: 'Provide a query, prompt, or context description'
-      }
-    });
-  }
-
-  const normalizedInput = input.trim();
-
-  // ── Phase 020: Query-Intent Routing ──────────────────────────
-  // Classify query intent and optionally augment response with code
-  // graph context for structural/hybrid queries. Entire block is
-  // wrapped in try/catch — any failure silently falls through to
-  // existing semantic logic.
-  let queryIntentMetadata: QueryIntentMetadata | null = null;
-  let graphContextResult: Record<string, unknown> | null = null;
-
-  if (requested_mode !== 'resume') {
     try {
-      const classification = classifyQueryIntent(normalizedInput);
-      queryIntentMetadata = {
-        queryIntent: classification.intent,
-        routedBackend: classification.intent === 'structural' && classification.confidence > 0.65
-          ? 'structural'
-          : classification.intent === 'hybrid'
-            ? 'hybrid'
-            : 'semantic',
-        confidence: classification.confidence,
-        matchedKeywords: classification.matchedKeywords,
-      };
-
-      // F050: Extract a symbol-like token from the query instead of passing
-      // raw prose to buildContext({ subject }). resolveSubjectToRef() matches
-      // against code_nodes.name / fq_name, so prose never resolves.
-      // Heuristic: pick the first token that looks like a code identifier
-      // (contains uppercase, underscore, or dot — e.g. "buildContext", "fq_name",
-      // "code-graph-db.ts"). Falls back to first matched keyword, then normalizedInput.
-      const codeIdentifierPattern = /[A-Z_.]|^[a-z]+[A-Z]/;
-      const inputTokens = normalizedInput.split(/\s+/).filter(t => t.length >= 2);
-      const extractedSubject =
-        inputTokens.find(t => codeIdentifierPattern.test(t)) ??
-        (classification.matchedKeywords?.[0]) ??
-        normalizedInput;
-
-      if (classification.intent === 'structural' && classification.confidence > 0.65) {
-        try {
-          const cgResult = buildContext({ input: normalizedInput, subject: extractedSubject });
-          if (cgResult.metadata.totalNodes > 0) {
-            graphContextResult = {
-              graphContext: cgResult.graphContext,
-              textBrief: cgResult.textBrief,
-              combinedSummary: cgResult.combinedSummary,
-              nextActions: cgResult.nextActions,
-              metadata: cgResult.metadata,
-            };
-          }
-        } catch {
-          // Code graph unavailable — fall through to semantic
-        }
-      } else if (classification.intent === 'hybrid') {
-        try {
-          const cgResult = buildContext({ input: normalizedInput, subject: extractedSubject });
-          if (cgResult.metadata.totalNodes > 0) {
-            graphContextResult = {
-              graphContext: cgResult.graphContext,
-              textBrief: cgResult.textBrief,
-              combinedSummary: cgResult.combinedSummary,
-              nextActions: cgResult.nextActions,
-              metadata: cgResult.metadata,
-            };
-          }
-        } catch {
-          // Code graph unavailable — hybrid degrades to semantic-only
-        }
-      }
-      // 'semantic' or low-confidence: no graph context, fall through
-    } catch {
-      // Classification failed — fall through to existing logic entirely
+      await checkDatabaseUpdated();
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : String(error);
+      return createMCPErrorResponse({
+        tool: 'memory_context',
+        error: `Database state check failed: ${message}`,
+        code: 'E_INTERNAL',
+        details: { requestId, layer: 'L1:Orchestration' },
+        recovery: {
+          hint: 'The memory database may be unavailable. Retry or check database connectivity.',
+        },
+      });
     }
-  }
 
-  // Eval logger — capture context query at entry (fail-safe)
-  let _evalQueryId = 0;
-  let _evalRunId = 0;
-  try {
-    const evalEntry = logSearchQuery({
-      query: normalizedInput,
-      intent: explicit_intent ?? null,
-      specFolder: spec_folder ?? null,
-    });
-    _evalQueryId = evalEntry.queryId;
-    _evalRunId = evalEntry.evalRunId;
-  } catch {
-    // Intentional no-op — error deliberately discarded
-  }
+    const {
+      input,
+      mode: requested_mode = 'auto',
+      intent: explicit_intent,
+      specFolder: spec_folder,
+      limit,
+      enableDedup: enableDedup = true,
+      includeContent: include_content = false,
+      tokenUsage,
+      anchors
+    } = args;
 
-  const {
-    requestedSessionId,
-    effectiveSessionId,
-    resumed: resumedSession,
-    priorMode: previousState,
-    counter: eventCounterStart,
-    error: sessionScopeError,
-  } = resolveSessionLifecycle(args, null);
-  if (sessionScopeError) {
-    return createMCPErrorResponse({
-      tool: 'memory_context',
-      error: sessionScopeError,
-      code: 'E_SESSION_SCOPE',
-      details: { requestId, layer: 'L1:Orchestration', requestedSessionId: args.sessionId ?? null },
-      recovery: {
-        hint: 'Retry without sessionId to let the server mint a trusted session, then reuse the returned effectiveSessionId.',
-      },
-    });
-  }
-  const sessionLifecycle: SessionLifecycleMetadata = {
-    sessionScope: requestedSessionId ? 'caller' : 'ephemeral',
-    requestedSessionId,
-    effectiveSessionId,
-    resumed: resumedSession,
-    eventCounterStart,
-    resumedContextCount: 0,
-  };
+    // Validate input
+    if (!input || typeof input !== 'string' || input.trim().length === 0) {
+      return createMCPErrorResponse({
+        tool: 'memory_context',
+        error: 'Input is required and must be a non-empty string',
+        code: 'E_VALIDATION',
+        details: { requestId, layer: 'L1:Orchestration' },
+        recovery: {
+          hint: 'Provide a query, prompt, or context description'
+        }
+      });
+    }
 
-  // Get layer info for response metadata
-  const layerInfo: LayerInfo | null = layerDefs.getLayerInfo('memory_context');
-  const tokenBudget = layerInfo?.tokenBudget ?? 2000;
+    const normalizedInput = input.trim();
 
-  const runtimeContextStats: RuntimeContextStats = {
-    tokenBudget,
-  };
-  try {
-    runtimeContextStats.tokenCount = estimateTokens(normalizedInput);
-  } catch {
-    runtimeContextStats.tokenCount = undefined;
-  }
+    // ── Phase 020: Query-Intent Routing ──────────────────────────
+    // Classify query intent and optionally augment response with code
+    // graph context for structural/hybrid queries. Entire block is
+    // wrapped in try/catch — any failure silently falls through to
+    // existing semantic logic.
+    let queryIntentMetadata: QueryIntentMetadata | null = null;
+    let graphContextResult: Record<string, unknown> | null = null;
 
-  // Resolve token pressure (caller -> estimator -> unavailable)
-  const pressurePolicyEnabled = isPressurePolicyEnabled(effectiveSessionId);
-  const autoResumeEnabled = isAutoResumeEnabled(effectiveSessionId);
+    if (requested_mode !== 'resume') {
+      try {
+        const classification = classifyQueryIntent(normalizedInput);
+        queryIntentMetadata = {
+          queryIntent: classification.intent,
+          routedBackend: classification.intent === 'structural' && classification.confidence > 0.65
+            ? 'structural'
+            : classification.intent === 'hybrid'
+              ? 'hybrid'
+              : 'semantic',
+          confidence: classification.confidence,
+          matchedKeywords: classification.matchedKeywords,
+        };
 
-  const pressurePolicy = pressurePolicyEnabled
-    ? getPressureLevel(tokenUsage, runtimeContextStats)
-    : {
-        level: 'none' as const,
-        ratio: null,
-        source: 'unavailable' as const,
-        warning: null,
-      };
-  if (pressurePolicy.warning) {
-    console.warn(pressurePolicy.warning);
-  }
+        // F050: Extract a symbol-like token from the query instead of passing
+        // raw prose to buildContext({ subject }). resolveSubjectToRef() matches
+        // against code_nodes.name / fq_name, so prose never resolves.
+        // Heuristic: pick the first token that looks like a code identifier
+        // (contains uppercase, underscore, or dot — e.g. "buildContext", "fq_name",
+        // "code-graph-db.ts"). Falls back to first matched keyword, then normalizedInput.
+        const codeIdentifierPattern = /[A-Z_.]|^[a-z]+[A-Z]/;
+        const inputTokens = normalizedInput.split(/\s+/).filter(t => t.length >= 2);
+        const extractedSubject =
+          inputTokens.find(t => codeIdentifierPattern.test(t)) ??
+          (classification.matchedKeywords?.[0]) ??
+          normalizedInput;
 
-  // Build options object for strategy executors
-  const options: ContextOptions = {
-    specFolder: spec_folder,
-    tenantId: args.tenantId,
-    userId: args.userId,
-    agentId: args.agentId,
-    limit,
-    sessionId: effectiveSessionId,
-    enableDedup: enableDedup,
-    includeContent: include_content,
-    includeTrace: (args as unknown as Record<string, unknown>).includeTrace === true, // CHK-040
-    anchors,
-    profile: args.profile,
-  };
+        if (classification.intent === 'structural' && classification.confidence > 0.65) {
+          try {
+            const cgResult = buildContext({ input: normalizedInput, subject: extractedSubject });
+            if (cgResult.metadata.totalNodes > 0) {
+              graphContextResult = {
+                graphContext: cgResult.graphContext,
+                textBrief: cgResult.textBrief,
+                combinedSummary: cgResult.combinedSummary,
+                nextActions: cgResult.nextActions,
+                metadata: cgResult.metadata,
+              };
+            }
+          } catch {
+            // Code graph unavailable — fall through to semantic
+          }
+        } else if (classification.intent === 'hybrid') {
+          try {
+            const cgResult = buildContext({ input: normalizedInput, subject: extractedSubject });
+            if (cgResult.metadata.totalNodes > 0) {
+              graphContextResult = {
+                graphContext: cgResult.graphContext,
+                textBrief: cgResult.textBrief,
+                combinedSummary: cgResult.combinedSummary,
+                nextActions: cgResult.nextActions,
+                metadata: cgResult.metadata,
+              };
+            }
+          } catch {
+            // Code graph unavailable — hybrid degrades to semantic-only
+          }
+        }
+        // 'semantic' or low-confidence: no graph context, fall through
+      } catch {
+        // Classification failed — fall through to existing logic entirely
+      }
+    }
 
-  const {
-    effectiveMode,
-    pressureOverrideApplied,
-    pressureOverrideTargetMode,
-    pressureWarning,
-    intentClassification,
-  } = resolveEffectiveMode(
-    { ...args, input: normalizedInput },
-    {
+    // Eval logger — capture context query at entry (fail-safe)
+    let _evalQueryId = 0;
+    let _evalRunId = 0;
+    try {
+      const evalEntry = logSearchQuery({
+        query: normalizedInput,
+        intent: explicit_intent ?? null,
+        specFolder: spec_folder ?? null,
+      });
+      _evalQueryId = evalEntry.queryId;
+      _evalRunId = evalEntry.evalRunId;
+    } catch {
+      // Intentional no-op — error deliberately discarded
+    }
+
+    const {
       requestedSessionId,
       effectiveSessionId,
       resumed: resumedSession,
       priorMode: previousState,
       counter: eventCounterStart,
-    },
-    pressurePolicy,
-  );
-  const {
-    detectedIntent,
-    intentConfidence,
-    intentEvidence,
-    resumeHeuristicApplied,
-    source: intentSource,
-  } = intentClassification;
-
-  // Phase C: Intent-to-profile auto-routing for memory_context.
-  // Explicit caller `profile` always takes precedence; auto-detect fills in when absent.
-  // Skip for 'quick' mode: quick routes through handleMemoryMatchTriggers which does not
-  // support profile formatting — setting a profile there would be a no-op.
-  if (!options.profile && detectedIntent && effectiveMode !== 'quick' && isIntentAutoProfileEnabled()) {
-    try {
-      const autoProfile = intentClassifier.getProfileForIntent(
-        detectedIntent as import('../lib/search/intent-classifier.js').IntentType
-      );
-      if (autoProfile) {
-        options.profile = autoProfile;
-        console.error(`[memory-context] Intent-to-profile auto-routing: '${detectedIntent}' → profile '${autoProfile}'`);
-      }
-    } catch (_autoProfileErr: unknown) {
-      // Auto-profile is best-effort — never breaks context retrieval
-    }
-  }
-
-  const sessionTransition = buildSessionTransitionTrace({
-    previousState,
-    resumedSession,
-    effectiveMode,
-    requestedMode: requested_mode,
-    detectedIntent: detectedIntent ?? null,
-    pressureOverrideApplied,
-    queryHeuristicApplied: resumeHeuristicApplied,
-  });
-  options.sessionTransition = options.includeTrace === true ? sessionTransition : undefined;
-
-  const discoveredFolder = maybeDiscoverSpecFolder(options, { ...args, input: normalizedInput });
-  // FIX P0: Folder discovery sets options.folderBoost for scoring only.
-  // Do NOT propagate as options.specFolder — that becomes an exact-match filter
-  // in vector-index-queries.ts (m.spec_folder = ?) which silently drops all
-  // results when the discovered path has no indexed memories.
-  const sessionStateResult = sessionManager.saveSessionState(effectiveSessionId, {
-    specFolder: options.specFolder ?? discoveredFolder ?? spec_folder,
-    tenantId: args.tenantId,
-    userId: args.userId,
-    agentId: args.agentId,
-    currentTask: normalizedInput.slice(0, 500),
-  });
-  if (!sessionStateResult.success) {
-    console.warn(
-      `[memory-context] Failed to persist session identity for ${effectiveSessionId}: ${sessionStateResult.error ?? 'unknown error'}`,
-    );
-  }
-
-  let result: ContextResult;
-  try {
-    result = await executeStrategy(effectiveMode, options, {
-      ...args,
-      input: normalizedInput,
-      intent: detectedIntent,
-    });
-  } catch (error: unknown) {
-    console.error(`[memory-context] Strategy execution failed [requestId=${requestId}]:`, toErrorMessage(error));
-    return createMCPErrorResponse({
-      tool: 'memory_context',
-      error: toErrorMessage(error),
-      code: 'E_STRATEGY',
-      details: {
-        requestId,
-        layer: 'L1:Orchestration',
-        mode: effectiveMode,
-        alternativeLayers: layerDefs.getRecommendedLayers('search')
-      },
-      recovery: {
-        hint: 'Try a different mode or check your input'
-      }
-    });
-  }
-
-  const strategyError = extractStrategyError(result);
-  if (strategyError) {
-    return createMCPErrorResponse({
-      tool: 'memory_context',
-      error: strategyError.error,
-      code: strategyError.code,
-      details: {
-        requestId,
-        layer: 'L1:Orchestration',
-        mode: effectiveMode,
-        upstream: strategyError.details,
-      },
-      recovery: {
-        hint: strategyError.hints[0] ?? 'Try a different mode or check your input',
-        actions: strategyError.hints.slice(1),
-        severity: strategyError.severity ?? 'error',
-      },
-    });
-  }
-
-  // FIX RC1-A (superseded by P0 fix): Folder discovery no longer promotes to
-  // options.specFolder, so the recovery retry is no longer needed. The folder
-  // boost still applies via options.folderBoost for scoring prioritization.
-
-  try {
-    workingMemory.setSessionInferredMode(effectiveSessionId, effectiveMode);
-  } catch (error: unknown) {
-    void error;
-    // Best-effort session state write — do not fail the handler
-  }
-
-  // T205: Determine effective token budget from mode or layer definitions
-  const modeTokenBudget = CONTEXT_MODES[effectiveMode]?.tokenBudget;
-  const effectiveBudget = modeTokenBudget || tokenBudget;
-
-  // M1 FIX: Inject auto-resume context BEFORE budget enforcement
-  // so the final response respects the advertised token budget.
-  const tracedResult0: ContextResult = effectiveMode === 'quick' && options.includeTrace === true
-    ? attachSessionTransitionTrace(
-      result as ContextResult & { content?: Array<{ text?: string; type?: string }> },
-      sessionTransition,
-    ) as ContextResult
-    : result;
-
-  if (autoResumeEnabled && effectiveMode === 'resume' && resumedSession) {
-    const resumeContextItems = workingMemory.getSessionPromptContext(effectiveSessionId, workingMemory.DECAY_FLOOR, 5);
-    if (resumeContextItems.length > 0) {
-      sessionLifecycle.resumedContextCount = resumeContextItems.length;
-      (tracedResult0 as Record<string, unknown>).systemPromptContext = resumeContextItems.map((item) => ({
-        memoryId: item.memoryId,
-        title: item.title,
-        filePath: item.filePath,
-        attentionScore: item.attentionScore,
-      }));
-      (tracedResult0 as Record<string, unknown>).systemPromptContextInjected = true;
-    }
-  }
-
-  // T205: Enforce token budget AFTER all context injection
-  const { result: budgetedResult, enforcement } = enforceTokenBudget(tracedResult0, effectiveBudget);
-  const tracedResult = budgetedResult;
-  const intentTelemetry = detectedIntent ? intentClassifier.emitIntentTelemetry(normalizedInput, {
-    taskIntent: {
-      intent: detectedIntent,
-      confidence: intentConfidence,
-      evidence: intentEvidence,
-    },
-    backendRouting: {
-      route: queryIntentMetadata?.routedBackend ?? 'semantic',
-      confidence: queryIntentMetadata?.confidence ?? 0,
-    },
-  }) : null;
-
-  // Phase 020: Attach graph context and query-intent routing metadata
-  const responseData: ContextResult & Record<string, unknown> = { ...tracedResult };
-  if (graphContextResult) {
-    responseData.graphContext = graphContextResult;
-  }
-  if (queryIntentMetadata) {
-    // REQ-004 (Cluster 2): Annotate explicitly so callers do not confuse this
-    // backend-channel selector with the authoritative `meta.intent` task intent.
-    responseData.queryIntentRouting = {
-      ...queryIntentMetadata,
-      route: queryIntentMetadata.routedBackend,
-      classificationKind: 'backend-routing',
-      authoritativeFor: ['channel-selection'],
-      seeAlso: 'meta.intent',
-    };
-  }
-  const structuralRoutingNudge = buildStructuralRoutingNudge(
-    normalizedInput,
-    queryIntentMetadata,
-    graphContextResult,
-  );
-  if (structuralRoutingNudge) {
-    responseData.structuralRoutingNudge = structuralRoutingNudge;
-  }
-  const contextQueryPlan = (() => {
-    try {
-      return routeQuery(normalizedInput).queryPlan;
-    } catch {
-      return createEmptyQueryPlan({
-        complexity: 'unknown',
-        selectedChannels: [queryIntentMetadata?.routedBackend ?? 'semantic'],
-        fallbackPolicy: {
-          mode: 'telemetry_only',
-          reason: 'QueryPlan telemetry fallback after routeQuery failure',
+      error: sessionScopeError,
+    } = resolveSessionLifecycle(args, null);
+    if (sessionScopeError) {
+      return createMCPErrorResponse({
+        tool: 'memory_context',
+        error: sessionScopeError,
+        code: 'E_SESSION_SCOPE',
+        details: { requestId, layer: 'L1:Orchestration', requestedSessionId: args.sessionId ?? null },
+        recovery: {
+          hint: 'Retry without sessionId to let the server mint a trusted session, then reuse the returned effectiveSessionId.',
         },
       });
     }
-  })();
-  const searchDecisionEnvelope = buildSearchDecisionEnvelope({
-    requestId,
-    tenantId: args.tenantId,
-    userId: args.userId,
-    agentId: args.agentId,
-    queryPlan: contextQueryPlan,
-    trustTreeInput: {
-      responsePolicy: {
-        state: 'live',
-        decision: 'memory_context_response',
-      },
-      codeGraph: queryIntentMetadata
-        ? {
-          trustState: graphContextResult ? 'live' : 'absent',
-          canonicalReadiness: graphContextResult ? 'ready' : 'missing',
-        }
-        : undefined,
-    },
-    timestamp: new Date(_contextStartTime).toISOString(),
-    latencyMs: Date.now() - _contextStartTime,
-  });
-  responseData.searchDecisionEnvelope = searchDecisionEnvelope;
-  responseData.search_decision_envelope = searchDecisionEnvelope;
+    const sessionLifecycle: SessionLifecycleMetadata = {
+      sessionScope: requestedSessionId ? 'caller' : 'ephemeral',
+      requestedSessionId,
+      effectiveSessionId,
+      resumed: resumedSession,
+      eventCounterStart,
+      resumedContextCount: 0,
+    };
 
-  // Build response with layer metadata
-  const _contextResponse = createMCPResponse({
-    tool: 'memory_context',
-    summary: enforcement.truncated
-      ? `Context retrieved via ${effectiveMode} mode (${tracedResult.strategy} strategy) [truncated${enforcement.originalResultCount !== undefined ? `: ${enforcement.originalResultCount} → ${enforcement.returnedResultCount} results` : ''} to fit ${effectiveBudget} token budget]`
-      : `Context retrieved via ${effectiveMode} mode (${tracedResult.strategy} strategy)`,
-    data: responseData,
-    hints: [
-      `Mode: ${CONTEXT_MODES[effectiveMode].description}`,
-      `For more granular control, use L2 tools: memory_search, memory_match_triggers`,
-      `Token budget: ${effectiveBudget} (${effectiveMode} mode)`,
-      ...(structuralRoutingNudge ? [structuralRoutingNudge.message] : []),
-      ...(pressureWarning ? [pressureWarning] : [])
-    ],
-    extraMeta: buildResponseMeta({
+    // Get layer info for response metadata
+    const layerInfo: LayerInfo | null = layerDefs.getLayerInfo('memory_context');
+    const tokenBudget = layerInfo?.tokenBudget ?? 2000;
+
+    const runtimeContextStats: RuntimeContextStats = {
+      tokenBudget,
+    };
+    try {
+      runtimeContextStats.tokenCount = estimateTokens(normalizedInput);
+    } catch {
+      runtimeContextStats.tokenCount = undefined;
+    }
+
+    // Resolve token pressure (caller -> estimator -> unavailable)
+    const pressurePolicyEnabled = isPressurePolicyEnabled(effectiveSessionId);
+    const autoResumeEnabled = isAutoResumeEnabled(effectiveSessionId);
+
+    const pressurePolicy = pressurePolicyEnabled
+      ? getPressureLevel(tokenUsage, runtimeContextStats)
+      : {
+        level: 'none' as const,
+        ratio: null,
+        source: 'unavailable' as const,
+        warning: null,
+      };
+    if (pressurePolicy.warning) {
+      console.warn(pressurePolicy.warning);
+    }
+
+    // Build options object for strategy executors
+    const options: ContextOptions = {
+      specFolder: spec_folder,
+      tenantId: args.tenantId,
+      userId: args.userId,
+      agentId: args.agentId,
+      limit,
+      sessionId: effectiveSessionId,
+      enableDedup: enableDedup,
+      includeContent: include_content,
+      includeTrace: (args as unknown as Record<string, unknown>).includeTrace === true, // CHK-040
+      anchors,
+      profile: args.profile,
+    };
+
+    const {
       effectiveMode,
-      requestedMode: requested_mode,
-      tracedResult,
-      pressurePolicy,
       pressureOverrideApplied,
       pressureOverrideTargetMode,
       pressureWarning,
-      sessionLifecycle,
-      effectiveBudget,
-      enforcement,
-      intentClassification: {
-        detectedIntent,
-        intentConfidence,
-        intentEvidence,
-        resumeHeuristicApplied,
-        source: intentSource,
+      intentClassification,
+    } = resolveEffectiveMode(
+      { ...args, input: normalizedInput },
+      {
+        requestedSessionId,
+        effectiveSessionId,
+        resumed: resumedSession,
+        priorMode: previousState,
+        counter: eventCounterStart,
       },
-      discoveredFolder,
-      includeTrace: options.includeTrace === true,
-      sessionTransition,
-      structuralRoutingNudge,
-      intentTelemetry,
-    })
-  });
+      pressurePolicy,
+    );
+    const {
+      detectedIntent,
+      intentConfidence,
+      intentEvidence,
+      resumeHeuristicApplied,
+      source: intentSource,
+    } = intentClassification;
 
-  // Consumption instrumentation — log context event (fail-safe, never throws)
-  try {
-    const db = vectorIndex.getDb();
-    if (db) {
-      initConsumptionLog(db);
-      let resultIds: number[] = [];
-      let resultCount = 0;
+    // Phase C: Intent-to-profile auto-routing for memory_context.
+    // Explicit caller `profile` always takes precedence; auto-detect fills in when absent.
+    // Skip for 'quick' mode: quick routes through handleMemoryMatchTriggers which does not
+    // support profile formatting — setting a profile there would be a no-op.
+    if (!options.profile && detectedIntent && effectiveMode !== 'quick' && isIntentAutoProfileEnabled()) {
       try {
-        if (_contextResponse?.content?.[0]?.text) {
-          const innerResults = extractResultRowsFromContextResponse(_contextResponse.content[0].text);
-          resultIds = innerResults.map(r => r.id as number).filter(id => typeof id === 'number');
-          resultCount = innerResults.length;
+        const autoProfile = intentClassifier.getProfileForIntent(
+          detectedIntent as import('../lib/search/intent-classifier.js').IntentType
+        );
+        if (autoProfile) {
+          options.profile = autoProfile;
+          console.error(`[memory-context] Intent-to-profile auto-routing: '${detectedIntent}' → profile '${autoProfile}'`);
         }
-      } catch {
-        // Intentional no-op — error deliberately discarded
+      } catch (_autoProfileErr: unknown) {
+        // Auto-profile is best-effort — never breaks context retrieval
       }
-      logConsumptionEvent(db, {
-        event_type: 'context',
-        query_text: normalizedInput,
-        intent: detectedIntent ?? null,
-        mode: effectiveMode,
-        result_count: resultCount,
-        result_ids: resultIds,
-        session_id: effectiveSessionId,
-        latency_ms: Date.now() - _contextStartTime,
-        spec_folder_filter: spec_folder ?? null,
+    }
+
+    const sessionTransition = buildSessionTransitionTrace({
+      previousState,
+      resumedSession,
+      effectiveMode,
+      requestedMode: requested_mode,
+      detectedIntent: detectedIntent ?? null,
+      pressureOverrideApplied,
+      queryHeuristicApplied: resumeHeuristicApplied,
+    });
+    options.sessionTransition = options.includeTrace === true ? sessionTransition : undefined;
+
+    const discoveredFolder = maybeDiscoverSpecFolder(options, { ...args, input: normalizedInput });
+    // FIX P0: Folder discovery sets options.folderBoost for scoring only.
+    // Do NOT propagate as options.specFolder — that becomes an exact-match filter
+    // in vector-index-queries.ts (m.spec_folder = ?) which silently drops all
+    // results when the discovered path has no indexed memories.
+    const sessionStateResult = sessionManager.saveSessionState(effectiveSessionId, {
+      specFolder: options.specFolder ?? discoveredFolder ?? spec_folder,
+      tenantId: args.tenantId,
+      userId: args.userId,
+      agentId: args.agentId,
+      currentTask: normalizedInput.slice(0, 500),
+    });
+    if (!sessionStateResult.success) {
+      console.warn(
+        `[memory-context] Failed to persist session identity for ${effectiveSessionId}: ${sessionStateResult.error ?? 'unknown error'}`,
+      );
+    }
+
+    let result: ContextResult;
+    try {
+      result = await executeStrategy(effectiveMode, options, {
+        ...args,
+        input: normalizedInput,
+        intent: detectedIntent,
+      });
+    } catch (error: unknown) {
+      console.error(`[memory-context] Strategy execution failed [requestId=${requestId}]:`, toErrorMessage(error));
+      return createMCPErrorResponse({
+        tool: 'memory_context',
+        error: toErrorMessage(error),
+        code: 'E_STRATEGY',
+        details: {
+          requestId,
+          layer: 'L1:Orchestration',
+          mode: effectiveMode,
+          alternativeLayers: layerDefs.getRecommendedLayers('search')
+        },
+        recovery: {
+          hint: 'Try a different mode or check your input'
+        }
       });
     }
-  } catch {
-    // Intentional no-op — error deliberately discarded
-  }
 
-  // Eval logger — capture final context results at exit (fail-safe)
-  try {
-    if (_evalRunId && _evalQueryId) {
-      let finalMemoryIds: number[] = [];
-      let finalScores: number[] = [];
-      try {
-        if (_contextResponse?.content?.[0]?.text) {
-          const innerResults = extractResultRowsFromContextResponse(_contextResponse.content[0].text);
-          finalMemoryIds = innerResults.map(r => (r.id ?? r.memoryId) as number).filter(id => typeof id === 'number');
-          finalScores = innerResults.map(r => (r.score ?? r.similarity ?? 0) as number);
-        }
-      } catch {
-        // Intentional no-op — error deliberately discarded
-      }
-      logFinalResult({
-        evalRunId: _evalRunId,
-        queryId: _evalQueryId,
-        resultMemoryIds: finalMemoryIds,
-        scores: finalScores,
-        fusionMethod: effectiveMode,
-        latencyMs: Date.now() - _contextStartTime,
-      });
-
-      const strategy = typeof budgetedResult?.strategy === 'string' && budgetedResult.strategy.length > 0
-        ? budgetedResult.strategy
-        : effectiveMode;
-      logChannelResult({
-        evalRunId: _evalRunId,
-        queryId: _evalQueryId,
-        channel: `context_${strategy}`,
-        resultMemoryIds: finalMemoryIds,
-        scores: finalScores,
-        hitCount: finalMemoryIds.length,
-        latencyMs: Date.now() - _contextStartTime,
+    const strategyError = extractStrategyError(result);
+    if (strategyError) {
+      return createMCPErrorResponse({
+        tool: 'memory_context',
+        error: strategyError.error,
+        code: strategyError.code,
+        details: {
+          requestId,
+          layer: 'L1:Orchestration',
+          mode: effectiveMode,
+          upstream: strategyError.details,
+        },
+        recovery: {
+          hint: strategyError.hints[0] ?? 'Try a different mode or check your input',
+          actions: strategyError.hints.slice(1),
+          severity: strategyError.severity ?? 'error',
+        },
       });
     }
-  } catch {
-    // Intentional no-op — error deliberately discarded
-  }
 
-  recordSearchDecision({
-    ...searchDecisionEnvelope,
-    latencyMs: Date.now() - _contextStartTime,
-  });
+    // FIX RC1-A (superseded by P0 fix): Folder discovery no longer promotes to
+    // options.specFolder, so the recovery retry is no longer needed. The folder
+    // boost still applies via options.folderBoost for scoring prioritization.
 
-  return _contextResponse;
+    try {
+      workingMemory.setSessionInferredMode(effectiveSessionId, effectiveMode);
+    } catch (error: unknown) {
+      void error;
+      // Best-effort session state write — do not fail the handler
+    }
+
+    // T205: Determine effective token budget from mode or layer definitions
+    const modeTokenBudget = CONTEXT_MODES[effectiveMode]?.tokenBudget;
+    const effectiveBudget = modeTokenBudget || tokenBudget;
+
+    // M1 FIX: Inject auto-resume context BEFORE budget enforcement
+    // so the final response respects the advertised token budget.
+    const tracedResult0: ContextResult = effectiveMode === 'quick' && options.includeTrace === true
+      ? attachSessionTransitionTrace(
+        result as ContextResult & { content?: Array<{ text?: string; type?: string }> },
+        sessionTransition,
+      ) as ContextResult
+      : result;
+
+    if (autoResumeEnabled && effectiveMode === 'resume' && resumedSession) {
+      const resumeContextItems = workingMemory.getSessionPromptContext(effectiveSessionId, workingMemory.DECAY_FLOOR, 5);
+      if (resumeContextItems.length > 0) {
+        sessionLifecycle.resumedContextCount = resumeContextItems.length;
+        (tracedResult0 as Record<string, unknown>).systemPromptContext = resumeContextItems.map((item) => ({
+          memoryId: item.memoryId,
+          title: item.title,
+          filePath: item.filePath,
+          attentionScore: item.attentionScore,
+        }));
+        (tracedResult0 as Record<string, unknown>).systemPromptContextInjected = true;
+      }
+    }
+
+    // T205: Enforce token budget AFTER all context injection
+    const { result: budgetedResult, enforcement } = enforceTokenBudget(tracedResult0, effectiveBudget);
+    const tracedResult = budgetedResult;
+    const intentTelemetry = detectedIntent ? intentClassifier.emitIntentTelemetry(normalizedInput, {
+      taskIntent: {
+        intent: detectedIntent,
+        confidence: intentConfidence,
+        evidence: intentEvidence,
+      },
+      backendRouting: {
+        route: queryIntentMetadata?.routedBackend ?? 'semantic',
+        confidence: queryIntentMetadata?.confidence ?? 0,
+      },
+    }) : null;
+
+    // Phase 020: Attach graph context and query-intent routing metadata
+    const responseData: ContextResult & Record<string, unknown> = { ...tracedResult };
+    if (graphContextResult) {
+      responseData.graphContext = graphContextResult;
+    }
+    if (queryIntentMetadata) {
+      // REQ-004 (Cluster 2): Annotate explicitly so callers do not confuse this
+      // backend-channel selector with the authoritative `meta.intent` task intent.
+      responseData.queryIntentRouting = {
+        ...queryIntentMetadata,
+        route: queryIntentMetadata.routedBackend,
+        classificationKind: 'backend-routing',
+        authoritativeFor: ['channel-selection'],
+        seeAlso: 'meta.intent',
+      };
+    }
+    const structuralRoutingNudge = buildStructuralRoutingNudge(
+      normalizedInput,
+      queryIntentMetadata,
+      graphContextResult,
+    );
+    if (structuralRoutingNudge) {
+      responseData.structuralRoutingNudge = structuralRoutingNudge;
+    }
+    const contextQueryPlan = (() => {
+      try {
+        return routeQuery(normalizedInput).queryPlan;
+      } catch {
+        return createEmptyQueryPlan({
+          complexity: 'unknown',
+          selectedChannels: [queryIntentMetadata?.routedBackend ?? 'semantic'],
+          fallbackPolicy: {
+            mode: 'telemetry_only',
+            reason: 'QueryPlan telemetry fallback after routeQuery failure',
+          },
+        });
+      }
+    })();
+    const searchDecisionEnvelope = buildSearchDecisionEnvelope({
+      requestId,
+      tenantId: args.tenantId,
+      userId: args.userId,
+      agentId: args.agentId,
+      queryPlan: contextQueryPlan,
+      trustTreeInput: {
+        responsePolicy: {
+          state: 'live',
+          decision: 'memory_context_response',
+        },
+        codeGraph: queryIntentMetadata
+          ? {
+            trustState: graphContextResult ? 'live' : 'absent',
+            canonicalReadiness: graphContextResult ? 'ready' : 'missing',
+          }
+          : undefined,
+      },
+      timestamp: new Date(_contextStartTime).toISOString(),
+      latencyMs: Date.now() - _contextStartTime,
+    });
+    responseData.searchDecisionEnvelope = searchDecisionEnvelope;
+    responseData.search_decision_envelope = searchDecisionEnvelope;
+
+    // Build response with layer metadata
+    const _contextResponse = createMCPResponse({
+      tool: 'memory_context',
+      summary: enforcement.truncated
+        ? `Context retrieved via ${effectiveMode} mode (${tracedResult.strategy} strategy) [truncated${enforcement.originalResultCount !== undefined ? `: ${enforcement.originalResultCount} → ${enforcement.returnedResultCount} results` : ''} to fit ${effectiveBudget} token budget]`
+        : `Context retrieved via ${effectiveMode} mode (${tracedResult.strategy} strategy)`,
+      data: responseData,
+      hints: [
+        `Mode: ${CONTEXT_MODES[effectiveMode].description}`,
+        `For more granular control, use L2 tools: memory_search, memory_match_triggers`,
+        `Token budget: ${effectiveBudget} (${effectiveMode} mode)`,
+        ...(structuralRoutingNudge ? [structuralRoutingNudge.message] : []),
+        ...(pressureWarning ? [pressureWarning] : [])
+      ],
+      extraMeta: buildResponseMeta({
+        effectiveMode,
+        requestedMode: requested_mode,
+        tracedResult,
+        pressurePolicy,
+        pressureOverrideApplied,
+        pressureOverrideTargetMode,
+        pressureWarning,
+        sessionLifecycle,
+        effectiveBudget,
+        enforcement,
+        intentClassification: {
+          detectedIntent,
+          intentConfidence,
+          intentEvidence,
+          resumeHeuristicApplied,
+          source: intentSource,
+        },
+        discoveredFolder,
+        includeTrace: options.includeTrace === true,
+        sessionTransition,
+        structuralRoutingNudge,
+        intentTelemetry,
+      })
+    });
+
+    // Consumption instrumentation — log context event (fail-safe, never throws)
+    try {
+      const db = vectorIndex.getDb();
+      if (db) {
+        initConsumptionLog(db);
+        let resultIds: number[] = [];
+        let resultCount = 0;
+        try {
+          if (_contextResponse?.content?.[0]?.text) {
+            const innerResults = extractResultRowsFromContextResponse(_contextResponse.content[0].text);
+            resultIds = innerResults.map(r => r.id as number).filter(id => typeof id === 'number');
+            resultCount = innerResults.length;
+          }
+        } catch {
+          // Intentional no-op — error deliberately discarded
+        }
+        logConsumptionEvent(db, {
+          event_type: 'context',
+          query_text: normalizedInput,
+          intent: detectedIntent ?? null,
+          mode: effectiveMode,
+          result_count: resultCount,
+          result_ids: resultIds,
+          session_id: effectiveSessionId,
+          latency_ms: Date.now() - _contextStartTime,
+          spec_folder_filter: spec_folder ?? null,
+        });
+      }
+    } catch {
+      // Intentional no-op — error deliberately discarded
+    }
+
+    // Eval logger — capture final context results at exit (fail-safe)
+    try {
+      if (_evalRunId && _evalQueryId) {
+        let finalMemoryIds: number[] = [];
+        let finalScores: number[] = [];
+        try {
+          if (_contextResponse?.content?.[0]?.text) {
+            const innerResults = extractResultRowsFromContextResponse(_contextResponse.content[0].text);
+            finalMemoryIds = innerResults.map(r => (r.id ?? r.memoryId) as number).filter(id => typeof id === 'number');
+            finalScores = innerResults.map(r => (r.score ?? r.similarity ?? 0) as number);
+          }
+        } catch {
+          // Intentional no-op — error deliberately discarded
+        }
+        logFinalResult({
+          evalRunId: _evalRunId,
+          queryId: _evalQueryId,
+          resultMemoryIds: finalMemoryIds,
+          scores: finalScores,
+          fusionMethod: effectiveMode,
+          latencyMs: Date.now() - _contextStartTime,
+        });
+
+        const strategy = typeof budgetedResult?.strategy === 'string' && budgetedResult.strategy.length > 0
+          ? budgetedResult.strategy
+          : effectiveMode;
+        logChannelResult({
+          evalRunId: _evalRunId,
+          queryId: _evalQueryId,
+          channel: `context_${strategy}`,
+          resultMemoryIds: finalMemoryIds,
+          scores: finalScores,
+          hitCount: finalMemoryIds.length,
+          latencyMs: Date.now() - _contextStartTime,
+        });
+      }
+    } catch {
+      // Intentional no-op — error deliberately discarded
+    }
+
+    recordSearchDecision({
+      ...searchDecisionEnvelope,
+      latencyMs: Date.now() - _contextStartTime,
+    });
+
+    return _contextResponse;
   } catch (error: unknown) {
     console.error(`[memory-context] Unexpected failure [requestId=${requestId}]:`, error);
     return createMCPErrorResponse({

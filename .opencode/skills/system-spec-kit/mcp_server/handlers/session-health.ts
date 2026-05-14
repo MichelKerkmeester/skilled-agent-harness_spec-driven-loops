@@ -26,7 +26,7 @@ import {
 import {
   buildCodeGraphOpsContract,
   type CodeGraphOpsContract,
-} from '../code_graph/lib/ops-hardening.js';
+} from '../../../system-code-graph/mcp_server/lib/ops-hardening.js';
 import type { MCPResponse } from '@spec-kit/shared/types';
 
 /* ───────────────────────────────────────────────────────────────

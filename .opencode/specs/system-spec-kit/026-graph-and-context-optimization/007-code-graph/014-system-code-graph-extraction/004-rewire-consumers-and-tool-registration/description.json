@@ -1,0 +1,18 @@
+{
+  "level": "2",
+  "specFolder": "004-rewire-consumers-and-tool-registration",
+  "description": "Phase 004 rewires system-spec-kit handlers, hooks, context-server, tool registration, tests, session utilities, skill_advisor references, Vitest discovery, and the compact code-graph plugin bridge path after the Phase 003 source move. MCP topology remains co-resident under spec_kit_memory and code_graph_*/ccc_*/detect_changes tool IDs stay stable.",
+  "keywords": [
+    "code-graph-consumer-rewire",
+    "sibling-skill-imports",
+    "stable-code-graph-tool-ids",
+    "co-resident-mcp",
+    "phase-004"
+  ],
+  "lastUpdated": "2026-05-14T08:15:39Z",
+  "specId": "004",
+  "folderSlug": "rewire-consumers-and-tool-registration",
+  "parentChain": [
+    "014-system-code-graph-extraction"
+  ]
+}

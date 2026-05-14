@@ -21,10 +21,10 @@ const mocks = vi.hoisted(() => ({
 
 function installMocks(readiness: ReadyResultFixture): void {
   mocks.ensureCodeGraphReady.mockResolvedValue(readiness);
-  vi.doMock('../code_graph/lib/ensure-ready.js', () => ({
+  vi.doMock('../../../system-code-graph/mcp_server/lib/ensure-ready.js', () => ({
     ensureCodeGraphReady: mocks.ensureCodeGraphReady,
   }));
-  vi.doMock('../code_graph/lib/code-graph-db.js', () => ({
+  vi.doMock('../../../system-code-graph/mcp_server/lib/code-graph-db.js', () => ({
     getDb: mocks.getDb,
     getLastDetectorProvenance: mocks.getLastDetectorProvenance,
     queryEdgesFrom: mocks.queryEdgesFrom,
@@ -38,7 +38,7 @@ function installMocks(readiness: ReadyResultFixture): void {
 
 async function queryWithReadiness(readiness: ReadyResultFixture) {
   installMocks(readiness);
-  const { handleCodeGraphQuery } = await import('../code_graph/handlers/query.js');
+  const { handleCodeGraphQuery } = await import('../../../system-code-graph/mcp_server/handlers/query.js');
   const result = await handleCodeGraphQuery({
     operation: readiness.action === 'full_scan' ? 'calls_from' : 'outline',
     subject: 'src/example.ts',
@@ -130,10 +130,10 @@ describe('code_graph_query fallbackDecision routing', () => {
   });
 
   it('routes readiness errors to rg after scan diagnostics fail', async () => {
-    vi.doMock('../code_graph/lib/ensure-ready.js', () => ({
+    vi.doMock('../../../system-code-graph/mcp_server/lib/ensure-ready.js', () => ({
       ensureCodeGraphReady: mocks.ensureCodeGraphReady,
     }));
-    vi.doMock('../code_graph/lib/code-graph-db.js', () => ({
+    vi.doMock('../../../system-code-graph/mcp_server/lib/code-graph-db.js', () => ({
       getDb: mocks.getDb,
       getLastDetectorProvenance: mocks.getLastDetectorProvenance,
       queryEdgesFrom: mocks.queryEdgesFrom,
@@ -145,7 +145,7 @@ describe('code_graph_query fallbackDecision routing', () => {
     }));
     mocks.ensureCodeGraphReady.mockRejectedValueOnce(new Error('db locked'));
 
-    const { handleCodeGraphQuery } = await import('../code_graph/handlers/query.js');
+    const { handleCodeGraphQuery } = await import('../../../system-code-graph/mcp_server/handlers/query.js');
     const result = await handleCodeGraphQuery({
       operation: 'outline',
       subject: 'src/example.ts',

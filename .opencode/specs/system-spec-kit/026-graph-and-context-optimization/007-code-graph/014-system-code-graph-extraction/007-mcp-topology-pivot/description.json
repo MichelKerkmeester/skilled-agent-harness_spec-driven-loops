@@ -1,0 +1,18 @@
+{
+  "level": "2",
+  "specFolder": "007-mcp-topology-pivot",
+  "description": "ADR-002 standalone MCP topology pivot for system-code-graph: moves code-graph tool schemas and MCP registration out of spec_kit_memory while preserving stable tool IDs, direct library imports, and code-graph behavior.",
+  "keywords": [
+    "mcp-topology-pivot",
+    "system-code-graph",
+    "standalone-mcp",
+    "adr-002",
+    "code-graph-tool-schemas"
+  ],
+  "lastUpdated": "2026-05-14T09:24:15Z",
+  "specId": "007",
+  "folderSlug": "mcp-topology-pivot",
+  "parentChain": [
+    "014-system-code-graph-extraction"
+  ]
+}

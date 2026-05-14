@@ -16,6 +16,8 @@
 #   mcp_tools:        list   — subset of router's frontmatter allowed-tools union
 #   trigger_phrases:  list   — advisor lexical-routing phrases for this target
 #
+# Code-graph implementation/docs are owned by .opencode/skills/system-code-graph/;
+# stable MCP tool IDs remain registered through spec_kit_memory.
 # To add a new target: append a route here, then re-run route-validate.sh.
 # To remove a target: delete the route AND its corresponding assets/doctor_<target>.yaml.
 # ─────────────────────────────────────────────────────────────────
@@ -65,15 +67,15 @@ routes:
       - "--dry-run"
       - "--confirm"
     mutating: mutates
-    gate3_location: ".opencode/code-graph.config.json + code-graph.sqlite"
+    gate3_location: ".opencode/code-graph.config.json + .opencode/skills/system-code-graph/database/code-graph.sqlite"
     mcp_tools:
       - mcp__cocoindex_code__search
-      - mcp__spec_kit_memory__code_graph_status
-      - mcp__spec_kit_memory__code_graph_query
-      - mcp__spec_kit_memory__code_graph_context
-      - mcp__spec_kit_memory__code_graph_scan
-      - mcp__spec_kit_memory__code_graph_apply
-      - mcp__spec_kit_memory__detect_changes
+      - mcp__system_code_graph__code_graph_status
+      - mcp__system_code_graph__code_graph_query
+      - mcp__system_code_graph__code_graph_context
+      - mcp__system_code_graph__code_graph_scan
+      - mcp__system_code_graph__code_graph_apply
+      - mcp__system_code_graph__detect_changes
       - mcp__spec_kit_memory__memory_context
       - mcp__spec_kit_memory__memory_search
     trigger_phrases:
@@ -106,9 +108,9 @@ routes:
     mutating: mutates
     gate3_location: ".opencode/skills/mcp-coco-index/mcp_server/database/ (SQLite + vector stores)"
     mcp_tools:
-      - mcp__spec_kit_memory__ccc_status
-      - mcp__spec_kit_memory__ccc_reindex
-      - mcp__spec_kit_memory__ccc_feedback
+      - mcp__system_code_graph__ccc_status
+      - mcp__system_code_graph__ccc_reindex
+      - mcp__system_code_graph__ccc_feedback
     trigger_phrases:
       - "cocoindex daemon hung"
       - "cocoindex reindex"

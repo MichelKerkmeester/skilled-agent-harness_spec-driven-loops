@@ -550,6 +550,7 @@ SPECKIT_CODE_GRAPH_INDEX_AGENTS=true
 SPECKIT_CODE_GRAPH_INDEX_COMMANDS=true
 SPECKIT_CODE_GRAPH_INDEX_SPECS=true
 SPECKIT_CODE_GRAPH_INDEX_PLUGINS=true
+SPECKIT_CODE_GRAPH_DB_DIR=/path/to/code-graph-db # optional DB-dir override
 ```
 
 Per-call args override env vars when provided. Env vars apply only for fields omitted from the scan call:
@@ -561,14 +562,14 @@ code_graph_scan({
 })
 ```
 
-Existing v1 scans trigger a blocked read with `requiredAction:"code_graph_scan"` until you re-run the scan. See [code_graph/README.md §8 SCAN SCOPE](.opencode/skills/system-spec-kit/mcp_server/code_graph/README.md#8-scan-scope) for the full scan-scope rules and precedence details.
+Existing v1 scans trigger a blocked read with `requiredAction:"code_graph_scan"` until you re-run the scan. See [code_graph/README.md §8 SCAN SCOPE](.opencode/skills/system-code-graph/mcp_server/code_graph/README.md#8-scan-scope) for the full scan-scope rules and precedence details.
 
 Our CocoIndex is forked. The Python wrapper that powers semantic search is a soft-fork at version `0.2.3+spec-kit-fork.0.2.0`, vendored alongside the skill so it ships with this repo; the Rust engine underneath stays on PyPI. The fork adds four things the upstream wrapper doesn't: duplicate suppression so mirror copies of the same file don't crowd results, canonical path identity per chunk (so dedup works across symlinks), a path-class taxonomy that nudges "find me the implementation of X" toward implementation files first, and ranking telemetry that surfaces *why* each result ranked where it did. Responses from the MCP tool or `ccc search` CLI carry seven fork-specific fields, `source_realpath`, `content_hash`, `path_class`, `dedupedAliases`, `uniqueResultCount`, `raw_score`, `rankingSignals`, that vanilla cocoindex output does not include. Schema, attribution, and per-release patch list all live under [`.opencode/skills/mcp-coco-index/`](.opencode/skills/mcp-coco-index/).
 
 &nbsp;
 #### How the Code Graph Works
 
-The Code Graph is a SQLite-backed structural index that ships as part of the Spec Kit MCP server (`context-server.ts`). It is available to **every supported CLI** - Claude Code, Codex CLI, Gemini CLI, and GitHub Copilot - because each runtime connects to the same MCP server via its own config (`.claude/mcp.json`, `.mcp.json`, `.codex/config.toml`, `.agents/mcp.json`).
+The Code Graph is a SQLite-backed structural index owned by `.opencode/skills/system-code-graph/` and registered through the co-resident Spec Kit MCP server (`context-server.ts`). It is available to **every supported CLI** - Claude Code, Codex CLI, Gemini CLI, and GitHub Copilot - because each runtime connects to the same MCP server via its own config (`.claude/mcp.json`, `.mcp.json`, `.codex/config.toml`, `.agents/mcp.json`).
 
 **Startup injection.** When the MCP server starts, it initializes the `code-graph.sqlite` database, runs a non-blocking startup scan, and activates a file watcher. All four supported runtimes (Claude Code, Gemini CLI, GitHub Copilot, Codex CLI) transport the same compact startup shared-payload through their runtime hooks (`session-prime.ts` on Claude/Gemini/Copilot, `session-start.ts` on Codex). The payload includes a one-line health summary, `graphQualitySummary` (detector provenance + edge-enrichment summary), and the `sharedPayloadTransport` envelope so downstream consumers receive identical structural context regardless of runtime. `session_bootstrap()` remains available as a manual recovery surface when native hooks are disabled.
 
@@ -612,7 +613,7 @@ Safety is non-negotiable: the tool checks the graph is fresh before parsing the 
 
 Under the hood the scan runner is split into four declared phases (`find-candidates` → `parse-candidates` → `finalize` → `emit-metrics`) for clearer instrumentation, with no SQLite schema changes.
 
-The code graph runtime has its own feature catalog and operator playbook under [code_graph/feature_catalog/](.opencode/skills/system-spec-kit/mcp_server/code_graph/feature_catalog/) and [code_graph/manual_testing_playbook/](.opencode/skills/system-spec-kit/mcp_server/code_graph/manual_testing_playbook/). They document 17 runtime features and 15 manual scenarios for freshness, scan/verify/status, `detect_changes`, context retrieval, coverage graph, CCC, and doctor-code-graph behavior.
+The code graph runtime has its own feature catalog and operator playbook under [code_graph/feature_catalog/](.opencode/skills/system-code-graph/mcp_server/code_graph/feature_catalog/) and [code_graph/manual_testing_playbook/](.opencode/skills/system-code-graph/mcp_server/code_graph/manual_testing_playbook/). Category-22 code-graph overview docs live under [system-code-graph/feature_catalog](.opencode/skills/system-code-graph/feature_catalog/22--context-preservation-and-code-graph/) and [system-code-graph/manual_testing_playbook](.opencode/skills/system-code-graph/manual_testing_playbook/22--context-preservation-and-code-graph/). They document runtime features and manual scenarios for freshness, scan/verify/status, `detect_changes`, context retrieval, coverage graph, CCC, and doctor-code-graph behavior.
 
 &nbsp;
 #### What Each System Does
@@ -1335,6 +1336,7 @@ SPECKIT_CODE_GRAPH_INDEX_AGENTS    (covers .opencode/agents/**)
 SPECKIT_CODE_GRAPH_INDEX_COMMANDS  (covers .opencode/commands/**)
 SPECKIT_CODE_GRAPH_INDEX_SPECS     (covers .opencode/specs/**)
 SPECKIT_CODE_GRAPH_INDEX_PLUGINS   (covers .opencode/plugins/**)
+SPECKIT_CODE_GRAPH_DB_DIR          (optional code-graph SQLite directory override)
 ```
 
 **End users see all 5 as `"false"`** thanks to the [git clean filter](#git-clean-filter--maintainer-mode-stays-local). That's the framework default and what you want, the code graph indexes your project code, not the framework backend.
@@ -1409,7 +1411,7 @@ A: 63 total across 4 native MCP servers, sourced from the registered MCP-dispatc
 
 **Q: What is the feature catalog?**
 
-A: The feature catalog is a 294-entry reference across 22 categories documenting every capability of the memory system. The technical reference lives at `.opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md`; the code graph runtime adds a package-local catalog at `.opencode/skills/system-spec-kit/mcp_server/code_graph/feature_catalog/feature_catalog.md`.
+A: The feature catalog is a 294-entry reference across 22 categories documenting every capability of the memory system. The technical reference lives at `.opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md`; the code graph runtime adds package-local docs at `.opencode/skills/system-code-graph/mcp_server/code_graph/feature_catalog/feature_catalog.md` plus category-22 docs at `.opencode/skills/system-code-graph/feature_catalog/22--context-preservation-and-code-graph/`.
 
 <!-- /ANCHOR:faq -->
 
@@ -1431,8 +1433,8 @@ A: The feature catalog is a 294-entry reference across 22 categories documenting
 - **[→ sk-doc Skill](.opencode/skills/sk-doc/SKILL.md)** - Documentation standards, DQI scoring
 - **[→ Skills Index](.opencode/skills/README.md)** - All 17 skills with invocation patterns
 - **[→ Feature Catalog](.opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md)** - 294-entry technical reference
-- **[→ Code Graph Runtime Catalog](.opencode/skills/system-spec-kit/mcp_server/code_graph/feature_catalog/feature_catalog.md)** - Package-local code graph runtime inventory
-- **[→ Code Graph Manual Playbook](.opencode/skills/system-spec-kit/mcp_server/code_graph/manual_testing_playbook/manual_testing_playbook.md)** - Operator scenarios for code graph validation
+- **[→ Code Graph Runtime Catalog](.opencode/skills/system-code-graph/mcp_server/code_graph/feature_catalog/feature_catalog.md)** - Package-local code graph runtime inventory
+- **[→ Code Graph Manual Playbook](.opencode/skills/system-code-graph/mcp_server/code_graph/manual_testing_playbook/manual_testing_playbook.md)** - Operator scenarios for code graph validation
 - **[→ Latest System Spec-Kit Release Notes](.opencode/changelog/system-spec-kit/v3.4.0.3.md)** - Most recent shipped release notes
 
 **External Resources:**

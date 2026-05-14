@@ -341,6 +341,8 @@ When using `code_graph_context`, the response includes freshness metadata:
 
 Use `code_graph_scan` to refresh the structural index, and `ccc_reindex` for the semantic index.
 
+Code Graph ownership lives under `.opencode/skills/system-code-graph/`; this CocoIndex skill remains the semantic-search side of the routing pair.
+
 ### Quality Feedback Loop
 
 Use `ccc_feedback` to improve search quality over time:
@@ -370,4 +372,3 @@ _TODO: populate this section_
 | Tool Reference  | `.opencode/skills/mcp-coco-index/references/tool_reference.md`  |
 | INSTALL_GUIDE   | `.opencode/skills/mcp-coco-index/INSTALL_GUIDE.md`             |
 | Config Templates| `.opencode/skills/mcp-coco-index/assets/config_templates.md`    |
-

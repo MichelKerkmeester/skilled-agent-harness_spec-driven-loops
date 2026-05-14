@@ -448,7 +448,7 @@ describe('Context Server', () => {
       '../lib/errors',
       '../lib/utils/canonical-path',
       '../lib/utils/cleanup-helpers',
-      '../code_graph/lib/code-graph-db',
+      '../../../system-code-graph/mcp_server/lib/code-graph-db',
       '../lib/storage/history',
       '../handlers/memory-index-discovery',
       '../handlers/mutation-hooks',
@@ -899,7 +899,7 @@ describe('Context Server', () => {
       vi.doMock('../lib/storage/lineage-state.js', () => ({ runLineageBackfill: vi.fn(async () => ({ repaired: 0 })) }))
       vi.doMock('../lib/search/hybrid-search', () => ({ init: vi.fn() }))
       vi.doMock('../lib/search/hybrid-search.js', () => ({ init: vi.fn() }))
-      vi.doMock('../code_graph/lib/runtime-detection.js', () => ({
+      vi.doMock('../../../system-code-graph/mcp_server/lib/runtime-detection.js', () => ({
         detectRuntime: vi.fn(async () => ({ runtime: 'test', version: '0.0.0' })),
       }))
       vi.doMock('../lib/search/session-boost', () => ({ init: vi.fn() }))
@@ -1029,12 +1029,12 @@ describe('Context Server', () => {
           }
         }),
       }))
-      vi.doMock('../code_graph/lib/code-graph-db', () => ({
+      vi.doMock('../../../system-code-graph/mcp_server/lib/code-graph-db', () => ({
         init: vi.fn(),
         getDb: vi.fn(() => null),
         close: vi.fn(),
       }))
-      vi.doMock('../code_graph/lib/code-graph-db.js', () => ({
+      vi.doMock('../../../system-code-graph/mcp_server/lib/code-graph-db.js', () => ({
         init: vi.fn(),
         getDb: vi.fn(() => null),
         close: vi.fn(),

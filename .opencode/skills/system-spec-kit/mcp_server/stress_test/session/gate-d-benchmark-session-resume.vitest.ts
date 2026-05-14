@@ -14,7 +14,7 @@ const { loadMostRecentStateMock, loadMatchingStatesMock } = vi.hoisted(() => ({
   loadMatchingStatesMock: vi.fn(() => ({ states: [], errors: [] })),
 }));
 
-vi.mock('../../code_graph/lib/code-graph-db.js', () => ({
+vi.mock('../../../../system-code-graph/mcp_server/lib/code-graph-db.js', () => ({
   getStats: vi.fn(() => ({
     totalFiles: 10,
     totalNodes: 50,
@@ -28,7 +28,7 @@ vi.mock('../../code_graph/lib/code-graph-db.js', () => ({
   })),
 }));
 
-vi.mock('../../code_graph/lib/ensure-ready.js', () => ({
+vi.mock('../../../../system-code-graph/mcp_server/lib/ensure-ready.js', () => ({
   getGraphFreshness: vi.fn(() => 'fresh'),
 }));
 

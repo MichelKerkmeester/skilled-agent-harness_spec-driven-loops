@@ -7,7 +7,7 @@ import { join } from 'node:path';
 import { describe, it, expect, afterEach } from 'vitest';
 import { createRuntimeFixture, setRuntimeEnv, clearRuntimeEnv } from './fixtures/runtime-fixtures.js';
 import { clearCodexHookPolicyCacheForTests } from '../lib/codex-hook-policy.js';
-import { detectRuntime, areHooksAvailable, getRecoveryApproach } from '../code_graph/lib/runtime-detection.js';
+import { detectRuntime, areHooksAvailable, getRecoveryApproach } from '../../../system-code-graph/mcp_server/lib/runtime-detection.js';
 
 const ORIGINAL_CWD = process.cwd();
 let copilotFixtureDir: string | null = null;

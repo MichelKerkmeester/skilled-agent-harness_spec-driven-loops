@@ -45,9 +45,9 @@ import {
   setLastGitHead,
   upsertFile,
   replaceNodes,
-} from '../code_graph/lib/code-graph-db.js';
-import type { CodeNode } from '../code_graph/lib/indexer-types.js';
-import { generateContentHash } from '../code_graph/lib/indexer-types.js';
+} from '../../../system-code-graph/mcp_server/lib/code-graph-db.js';
+import type { CodeNode } from '../../../system-code-graph/mcp_server/lib/indexer-types.js';
+import { generateContentHash } from '../../../system-code-graph/mcp_server/lib/indexer-types.js';
 
 interface MockSessionStateRow {
   session_id: string;

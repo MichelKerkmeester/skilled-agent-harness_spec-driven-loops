@@ -1,0 +1,8 @@
+{
+  "name": "system-code-graph",
+  "version": "1.0.0.0",
+  "description": "Code-graph subsystem skill: structural AST indexing + SQLite-backed graph storage + 12 MCP tools for impact analysis and readiness reporting. Extracted from system-spec-kit per ADR-001 (packet 014).",
+  "tier": 1,
+  "skill_kind": "umbrella",
+  "lastUpdated": "2026-05-14T07:54:11Z"
+}

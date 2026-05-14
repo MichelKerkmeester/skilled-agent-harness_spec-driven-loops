@@ -1,0 +1,18 @@
+{
+  "level": "2",
+  "specFolder": "002-scaffold-skill",
+  "description": "Create the empty .opencode/skills/system-code-graph/ skill scaffold and Phase 002 packet docs. No code moves; system-spec-kit/mcp_server/code_graph remains untouched until Phase 003. Documents ADR-001 Q3 co-resident MCP topology under spec_kit_memory.",
+  "keywords": [
+    "code graph skill scaffold",
+    "system-code-graph scaffold",
+    "002 scaffold-skill",
+    "empty skill folder",
+    "co-resident mcp topology"
+  ],
+  "lastUpdated": "2026-05-14T07:54:11Z",
+  "specId": "002",
+  "folderSlug": "scaffold-skill",
+  "parentChain": [
+    "014-system-code-graph-extraction"
+  ]
+}

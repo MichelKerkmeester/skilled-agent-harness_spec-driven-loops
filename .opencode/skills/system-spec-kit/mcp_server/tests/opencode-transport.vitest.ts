@@ -3,7 +3,7 @@ import {
   buildOpenCodeTransportPlan,
   coerceSharedPayloadEnvelope,
 } from '../lib/context/opencode-transport.js';
-import type { CodeGraphOpsContract } from '../code_graph/lib/ops-hardening.js';
+import type { CodeGraphOpsContract } from '../../../system-code-graph/mcp_server/lib/ops-hardening.js';
 import type { SharedPayloadEnvelope } from '../lib/context/shared-payload.js';
 
 function makePayload(

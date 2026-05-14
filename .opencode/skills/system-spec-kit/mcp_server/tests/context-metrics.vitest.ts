@@ -4,7 +4,7 @@
 import { describe, it, expect, vi } from 'vitest';
 
 // Mock code-graph-db to avoid real DB access in computeGraphFreshness
-vi.mock('../code_graph/lib/code-graph-db.js', () => ({
+vi.mock('../../../system-code-graph/mcp_server/lib/code-graph-db.js', () => ({
   getStats: vi.fn(() => ({
     totalFiles: 5,
     totalNodes: 20,

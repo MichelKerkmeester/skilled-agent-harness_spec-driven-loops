@@ -6,7 +6,7 @@ import {
   allocateBudget,
   createDefaultSources,
   DEFAULT_FLOORS,
-} from '../code_graph/lib/budget-allocator.js';
+} from '../../../system-code-graph/mcp_server/lib/budget-allocator.js';
 
 describe('budget allocator', () => {
   describe('DEFAULT_FLOORS', () => {

@@ -1,0 +1,20 @@
+{
+  "level": 2,
+  "specFolder": "006-validation-and-cleanup",
+  "description": "Final validation and cleanup phase for system-code-graph extraction: full typecheck, full Vitest, gold verifier, DB parity cleanup, stale-reference cleanup, and parent completion.",
+  "keywords": [
+    "system-code-graph",
+    "validation",
+    "cleanup",
+    "gold-query",
+    "database-handoff",
+    "parent-completion"
+  ],
+  "lastUpdated": "2026-05-14T08:43:25Z",
+  "specId": "006",
+  "folderSlug": "validation-and-cleanup",
+  "parentChain": [
+    "007-code-graph",
+    "014-system-code-graph-extraction"
+  ]
+}

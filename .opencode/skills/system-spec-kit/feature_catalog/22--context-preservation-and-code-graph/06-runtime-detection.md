@@ -15,7 +15,7 @@ Runtime-signal detection reads environment variables to identify claude-code, co
 
 ## 2. CURRENT REALITY
 
-mcp_server/code_graph/lib/runtime-detection.ts
+.opencode/skills/system-code-graph/mcp_server/code_graph/lib/runtime-detection.ts
 
 ---
 

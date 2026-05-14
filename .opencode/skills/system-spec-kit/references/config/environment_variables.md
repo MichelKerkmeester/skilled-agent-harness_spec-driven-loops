@@ -194,6 +194,8 @@ These flags are managed via `isFeatureEnabled()` in `rollout-policy.ts` with 100
 | `SPECKIT_DASHBOARD_LIMIT` | `10000` | S7 | Row cap for `eval_reporting_dashboard` queries |
 | `SPECKIT_GRAPH_UNIFIED` | ON | S7 | Unified graph retrieval with deterministic ranking, explainability trace, and rollback support |
 | `SPECKIT_PARSER` | `treesitter` | R-024 | Structural parser backend for code graph indexing: `treesitter` (default WASM AST parser) or `regex` (lightweight fallback) |
+| `SPECKIT_PARSER_SKIP_LIST_ENABLED` | ON | R-024 | Enables code-graph parser skip-list safeguards for generated, vendored, or unsupported inputs |
+| `SPECKIT_CODE_GRAPH_DB_DIR` | unset | 014/005 | Optional override for the code-graph SQLite directory now owned by `.opencode/skills/system-code-graph/`; tests and CI can isolate graph DB files here |
 | `SPECKIT_GRAPH_REFRESH_MODE` | `write_local` | R-011 | Graph refresh policy: off, write_local, scheduled. Graduated default: write_local |
 | `SPECKIT_GRAPH_WALK_ROLLOUT` | `bounded_runtime` | S5 | Graph walk rollout state: off, trace_only, bounded_runtime. Default: bounded_runtime |
 | `SPECKIT_HYDE` | ON | R-011 | HyDE shadow document generation for embedding enrichment |

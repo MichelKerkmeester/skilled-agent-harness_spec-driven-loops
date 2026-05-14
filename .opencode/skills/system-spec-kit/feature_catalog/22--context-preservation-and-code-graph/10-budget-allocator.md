@@ -15,7 +15,7 @@ Floors: constitutional 700, code graph 1200, CocoIndex 900, triggered 400, overf
 
 ## 2. CURRENT REALITY
 
-mcp_server/code_graph/lib/budget-allocator.ts
+.opencode/skills/system-code-graph/mcp_server/code_graph/lib/budget-allocator.ts
 
 ---
 

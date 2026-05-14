@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/004-rewire-consumers-and-tool-registration",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/004-rewire-consumers-and-tool-registration",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction",
+  "children_ids": [],
+  "migrated": false,
+  "manual": {
+    "depends_on": [
+      "system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/003-physical-move-and-database"
+    ],
+    "supersedes": [],
+    "related_to": [
+      "system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/001-design-and-decision-record"
+    ]
+  },
+  "derived": {
+    "trigger_phrases": [
+      "004 rewire code graph consumers",
+      "code graph sibling imports",
+      "system-code-graph tool registration"
+    ],
+    "key_topics": [
+      "consumer-rewire",
+      "sibling-skill-imports",
+      "tool-registration",
+      "vitest-config",
+      "plugin-bridge"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "last_active_child_id": null,
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec_kit_memory",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "system-code-graph",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 004 rewires consumers after the physical source move while preserving co-resident MCP registration and stable code-graph tool IDs. It updates import paths, test discovery, and plugin bridge resolution without changing code-graph semantics.",
+    "created_at": "2026-05-14T08:06:12Z",
+    "last_save_at": "2026-05-14T09:13:21Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": "2026-05-14T08:06:12Z",
+    "source_docs": [
+      "spec.md",
+      "plan.md"
+    ]
+  }
+}

@@ -24,7 +24,7 @@ import { routeQuery } from '../lib/search/query-router.js';
 import { probeCocoIndexDaemon } from '../lib/cocoindex/daemon-probe.js';
 import { createEmptyQueryPlan, type QueryPlan } from '../lib/query/query-plan.js';
 import { calibrateCocoIndexOverfetch } from '../lib/search/cocoindex-calibration.js';
-import { getGraphReadinessSnapshot } from '../code_graph/lib/ensure-ready.js';
+import { getGraphReadinessSnapshot } from '../../../system-code-graph/mcp_server/lib/ensure-ready.js';
 import { mapGraphReadinessToTelemetry } from '../lib/search/graph-readiness-mapper.js';
 import {
   buildSearchDecisionEnvelope,
@@ -1327,7 +1327,7 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
     const data = parsedResponse?.envelope.data && typeof parsedResponse.envelope.data === 'object'
       ? parsedResponse.envelope.data as Record<string, unknown>
       : null;
-      const existingResults = Array.isArray(data?.results) ? data.results as SessionAwareResult[] : null;
+    const existingResults = Array.isArray(data?.results) ? data.results as SessionAwareResult[] : null;
 
     if (parsedResponse && data && existingResults && existingResults.length > 0) {
       const deduped = deduplicateWithSessionState(existingResults, sessionId);

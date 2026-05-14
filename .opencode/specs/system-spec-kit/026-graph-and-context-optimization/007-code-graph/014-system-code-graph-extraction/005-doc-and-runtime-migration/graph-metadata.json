@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/005-doc-and-runtime-migration",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/005-doc-and-runtime-migration",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction",
+  "children_ids": [],
+  "migrated": false,
+  "manual": {
+    "depends_on": [
+      "system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/004-rewire-consumers-and-tool-registration"
+    ],
+    "supersedes": [],
+    "related_to": [
+      "system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/001-design-and-decision-record"
+    ]
+  },
+  "derived": {
+    "trigger_phrases": [
+      "code graph doc migration",
+      "category 22 split",
+      "system-code-graph docs",
+      "phase 005 doc and runtime migration"
+    ],
+    "key_topics": [
+      "system-code-graph",
+      "doc-migration",
+      "category-22",
+      "agents",
+      "commands",
+      "top-level-docs"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "last_active_child_id": null,
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "Code Graph",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "manual"
+      },
+      {
+        "name": "system-code-graph",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "manual"
+      }
+    ],
+    "causal_summary": "Migrates code-graph-owned category-22 docs and runtime references from system-spec-kit to system-code-graph after source/database movement and consumer rewire completed in phases 003 and 004.",
+    "created_at": "2026-05-14T08:21:27Z",
+    "last_save_at": "2026-05-14T09:13:21Z",
+    "save_lineage": "manual",
+    "last_accessed_at": "2026-05-14T08:21:27Z",
+    "source_docs": [
+      "spec.md",
+      "plan.md"
+    ]
+  }
+}

@@ -5,6 +5,8 @@ allowed-tools: Read, Bash, Grep, Glob, Edit, Write, mcp__cocoindex_code__search,
 ---
 <!-- skill_agent: system-spec-kit -->
 
+> **Code Graph ownership:** `/doctor code-graph` still uses stable `code_graph_*`, `ccc_*`, and `detect_changes` MCP tools. The implementation and package docs now live under `.opencode/skills/system-code-graph/`; router ownership stays here.
+
 > ⚠️ **EXECUTION PROTOCOL — READ FIRST**
 >
 > This command is a ROUTER. It resolves a positional target from `$ARGUMENTS`, parses the target-specific flag schema, and hands off to the matching YAML workflow asset.
@@ -42,7 +44,7 @@ This router never modifies authored spec packet docs. Each routed target has its
 | --------------- | ----------------------------------------------------------------------------------------- | -------------- | ----------------------------------------------------------------- | ------------------------------------------------------------ |
 | `memory`        | `mcp_server/database/context-index__*.sqlite` active profile DB                           | **mutates**    | Runtime database files, not spec folder packets                   | Phase 3 canonical-path validator + `VACUUM INTO` snapshot    |
 | `causal-graph`  | `mcp_server/database/context-index__*.sqlite` causal_edges table                          | **add-only**   | Edges are evidence; existing rows never deleted or updated        | Phase 3 validator + snapshot; halts if upsert detected       |
-| `code-graph`    | `.opencode/code-graph.config.json` + `code-graph.sqlite`                                  | **mutates**    | Runtime config + index; not packet docs                           | Phase 3 validator + gold-battery + auto-rollback             |
+| `code-graph`    | `.opencode/code-graph.config.json` + `.opencode/skills/system-code-graph/database/code-graph.sqlite` | **mutates**    | Runtime config + index; not packet docs                           | Phase 3 validator + gold-battery + auto-rollback             |
 | `deep-loop`     | `mcp_server/database/deep-loop-graph.sqlite`                                              | **mutates**    | Coverage graph DB; not packet docs                                | Phase 3 validator + `VACUUM INTO` snapshot                   |
 | `cocoindex`     | `.opencode/skills/mcp-coco-index/mcp_server/database/`                                    | **mutates**    | CocoIndex runtime stores; not packet docs                         | Phase 2/3 validator + pre-reindex snapshots                  |
 | `skill-advisor` | `lib/scorer/lanes/*.ts` + `.opencode/skills/*/graph-metadata.json`                        | **mutates**    | Runtime scorer config + graph metadata; not packet docs           | Phase 3 validator + per-run rollback script                  |

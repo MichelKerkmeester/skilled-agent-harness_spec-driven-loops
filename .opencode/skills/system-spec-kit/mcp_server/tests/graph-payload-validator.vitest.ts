@@ -97,7 +97,7 @@ describe('code graph query trust emission', () => {
 
   // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
   it('emits separate trust axes on code-graph payloads', async () => {
-    vi.doMock('../code_graph/lib/ensure-ready.js', () => ({
+    vi.doMock('../../../system-code-graph/mcp_server/lib/ensure-ready.js', () => ({
       ensureCodeGraphReady: vi.fn(async () => ({
         freshness: 'fresh',
         action: 'none',
@@ -106,7 +106,7 @@ describe('code graph query trust emission', () => {
       })),
     }));
 
-    vi.doMock('../code_graph/lib/code-graph-db.js', () => ({
+    vi.doMock('../../../system-code-graph/mcp_server/lib/code-graph-db.js', () => ({
       queryOutline: vi.fn(() => [{
         name: 'handleOutline',
         kind: 'function',
@@ -123,7 +123,7 @@ describe('code graph query trust emission', () => {
       queryStartupHighlights: vi.fn(() => []),
     }));
 
-    const { handleCodeGraphQuery } = await import('../code_graph/handlers/query.js');
+    const { handleCodeGraphQuery } = await import('../../../system-code-graph/mcp_server/handlers/query.js');
     const result = await handleCodeGraphQuery({ operation: 'outline', subject: 'src/file.ts' });
     const parsed = JSON.parse(result.content[0].text);
 
@@ -139,7 +139,7 @@ describe('code graph query trust emission', () => {
   });
 
   it('fails closed when query emission validation rejects the trust payload', async () => {
-    vi.doMock('../code_graph/lib/ensure-ready.js', () => ({
+    vi.doMock('../../../system-code-graph/mcp_server/lib/ensure-ready.js', () => ({
       ensureCodeGraphReady: vi.fn(async () => ({
         freshness: 'fresh',
         action: 'none',
@@ -148,7 +148,7 @@ describe('code graph query trust emission', () => {
       })),
     }));
 
-    vi.doMock('../code_graph/lib/code-graph-db.js', () => ({
+    vi.doMock('../../../system-code-graph/mcp_server/lib/code-graph-db.js', () => ({
       queryOutline: vi.fn(() => []),
       getDb: vi.fn(),
       resolveSubjectFilePath: vi.fn((subject: string) => subject),
@@ -165,7 +165,7 @@ describe('code graph query trust emission', () => {
       );
     });
 
-    const { handleCodeGraphQuery } = await import('../code_graph/handlers/query.js');
+    const { handleCodeGraphQuery } = await import('../../../system-code-graph/mcp_server/handlers/query.js');
 
     await expect(handleCodeGraphQuery({
       operation: 'outline',
@@ -200,7 +200,7 @@ describe('session bootstrap trust preservation', () => {
       })),
     }));
 
-    vi.doMock('../code_graph/lib/code-graph-db.js', () => ({
+    vi.doMock('../../../system-code-graph/mcp_server/lib/code-graph-db.js', () => ({
       getStats: vi.fn(() => ({
         lastScanTimestamp: '2026-04-08T12:00:00.000Z',
         totalNodes: 42,

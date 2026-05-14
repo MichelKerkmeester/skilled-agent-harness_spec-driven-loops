@@ -89,6 +89,8 @@ If that exploration feeds into Spec Kit packet recovery, `/spec_kit:resume` rema
 | `Glob` | You know the file name or extension pattern | Cannot search file contents |
 | `Read` | You know the exact file path | No search capability |
 
+Code Graph implementation and package docs live under `.opencode/skills/system-code-graph/`; the MCP tool IDs stay `code_graph_*`, `ccc_*`, and `detect_changes`.
+
 ### Key Features
 
 | Feature | Description |

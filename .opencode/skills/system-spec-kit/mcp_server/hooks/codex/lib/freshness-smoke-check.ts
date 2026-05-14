@@ -3,9 +3,9 @@
 // ───────────────────────────────────────────────────────────────
 
 import { performance } from 'node:perf_hooks';
-import { buildStartupBrief } from '../../../code_graph/lib/startup-brief.js';
+import { buildStartupBrief } from '../../../../../system-code-graph/mcp_server/lib/startup-brief.js';
 
-import type { StartupBriefResult } from '../../../code_graph/lib/startup-brief.js';
+import type { StartupBriefResult } from '../../../../../system-code-graph/mcp_server/lib/startup-brief.js';
 
 /** Result of the Codex cold-start context freshness smoke check. */
 export interface CodexFreshnessSmokeCheckResult {

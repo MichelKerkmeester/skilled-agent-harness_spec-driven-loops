@@ -6,7 +6,7 @@ import {
   resolveIndexScopePolicy,
   type IndexScopePolicy,
   type ResolveIndexScopePolicyInput,
-} from '../../code_graph/lib/index-scope-policy.js';
+} from '../../../../system-code-graph/mcp_server/lib/index-scope-policy.js';
 
 const SEGMENT_BOUNDARY = '(^|/)';
 const SEGMENT_END = '(/|$)';

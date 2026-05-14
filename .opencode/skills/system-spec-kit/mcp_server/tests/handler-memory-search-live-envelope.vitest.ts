@@ -43,12 +43,12 @@ vi.mock('../lib/search/pipeline/index.js', () => ({
   executePipeline: vi.fn(),
 }));
 
-vi.mock('../code_graph/lib/ensure-ready.js', () => ({
+vi.mock('../../../system-code-graph/mcp_server/lib/ensure-ready.js', () => ({
   getGraphReadinessSnapshot: vi.fn(),
 }));
 
 import { handleMemorySearch } from '../handlers/memory-search.js';
-import { getGraphReadinessSnapshot } from '../code_graph/lib/ensure-ready.js';
+import { getGraphReadinessSnapshot } from '../../../system-code-graph/mcp_server/lib/ensure-ready.js';
 import { executePipeline } from '../lib/search/pipeline/index.js';
 
 interface ParsedResponse {

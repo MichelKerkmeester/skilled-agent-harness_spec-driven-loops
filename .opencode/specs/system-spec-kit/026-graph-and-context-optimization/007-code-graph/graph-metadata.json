@@ -13,7 +13,8 @@
     "system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research",
     "system-spec-kit/026-graph-and-context-optimization/007-code-graph/008-code-graph-backend-resilience",
     "system-spec-kit/026-graph-and-context-optimization/007-code-graph/009-end-user-scope-default",
-    "system-spec-kit/026-graph-and-context-optimization/007-code-graph/012-real-world-usefulness-test"
+    "system-spec-kit/026-graph-and-context-optimization/007-code-graph/012-real-world-usefulness-test",
+    "system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction"
   ],
   "migrated": true,
   "migration_source": "legacy",
@@ -223,7 +224,7 @@
     ],
     "causal_summary": "The first consolidation preserved old packets behind an extra archive layer, which made the active phase surface harder to browse.",
     "created_at": "2026-04-21T13:00:00Z",
-    "last_save_at": "2026-04-27T13:33:11Z",
+    "last_save_at": "2026-05-14T09:17:09Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -232,6 +233,6 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "last_active_child_id": "012-real-world-usefulness-test"
+    "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction"
   }
 }

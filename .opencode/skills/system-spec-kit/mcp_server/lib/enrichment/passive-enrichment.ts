@@ -80,7 +80,7 @@ async function enrichWithCodeGraphSymbols(
   if (paths.length === 0) return [];
 
   try {
-    const graphDb = await import('../../code_graph/lib/code-graph-db.js');
+    const graphDb = await import('../../../../system-code-graph/mcp_server/lib/code-graph-db.js');
     const db = graphDb.getDb();
     if (!db) return [];
 

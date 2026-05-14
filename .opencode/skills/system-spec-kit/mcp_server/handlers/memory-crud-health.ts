@@ -19,7 +19,7 @@ import { toErrorMessage } from '../utils/index.js';
 
 import { summarizeAliasConflicts } from './memory-index.js';
 import * as causalEdges from '../lib/storage/causal-edges.js';
-import { getEmbeddingRetryStats } from '../lib/providers/retry-manager.js';
+import { getCircuitFlapState, getEmbeddingRetryStats } from '../lib/providers/retry-manager.js';
 import {
   getSnapshot as getRoutingTelemetrySnapshot,
   WINDOW_SIZE as ROUTING_TELEMETRY_WINDOW_SIZE,
@@ -312,7 +312,15 @@ async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
   let aliasConflicts: ReturnType<typeof summarizeAliasConflicts> = summarizeAliasConflicts([]);
   let aliasRows: AliasConflictDbRow[] = [];
   let divergentAliasGroups: DivergentAliasGroup[] = [];
-  const embeddingRetry = getEmbeddingRetryStats();
+  const processHealth = {
+    pid: process.pid,
+    rss_mb: Math.round(process.memoryUsage().rss / 1024 / 1024),
+    uptime_seconds: Math.round(process.uptime()),
+  };
+  const embeddingRetry = {
+    ...getEmbeddingRetryStats(),
+    ...getCircuitFlapState(),
+  };
   try {
     if (database) {
       const countResult = database.prepare('SELECT COUNT(*) as count FROM memory_index')
@@ -376,6 +384,7 @@ async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
         reportMode,
         status: database ? 'healthy' : 'degraded',
         databaseConnected: !!database,
+        process: processHealth,
         embeddingRetry,
         specFolder: specFolder ?? null,
         limit: safeLimit,
@@ -490,6 +499,7 @@ async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
         autoRepairRequested: true,
         needsConfirmation: true,
         actions: repairActions,
+        process: processHealth,
         embeddingRetry,
       },
       hints: [
@@ -659,6 +669,7 @@ async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
       vectorSearchAvailable: vectorIndex.isVectorSearchAvailable(),
       memoryCount,
       uptime: process.uptime(),
+      process: processHealth,
       version: SERVER_VERSION,
       reportMode: 'full',
       aliasConflicts,

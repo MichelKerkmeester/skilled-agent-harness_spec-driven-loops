@@ -70,7 +70,7 @@ describe('session-prime startup surface', () => {
       logCachedSummaryDecision: vi.fn(),
     }));
 
-    vi.doMock('../code_graph/lib/startup-brief.js', () => ({
+    vi.doMock('../../../system-code-graph/mcp_server/lib/startup-brief.js', () => ({
       buildStartupBrief: vi.fn(() => ({
         startupSurface: '- Spec folder: none\n- Memory: startup summary only\n- What would you like to work on?',
         graphState: 'ready',
@@ -128,7 +128,7 @@ describe('memory_context advisory metadata', () => {
       })),
     }));
 
-    vi.doMock('../code_graph/lib/code-graph-context.js', () => ({
+    vi.doMock('../../../system-code-graph/mcp_server/lib/code-graph-context.js', () => ({
       buildContext: vi.fn(() => ({
         graphContext: { nodes: ['handleSessionBootstrap'] },
         textBrief: 'Graph context ready',
@@ -183,7 +183,7 @@ describe('memory_context advisory metadata', () => {
       })),
     }));
 
-    vi.doMock('../code_graph/lib/code-graph-context.js', () => ({
+    vi.doMock('../../../system-code-graph/mcp_server/lib/code-graph-context.js', () => ({
       buildContext: vi.fn(() => ({
         graphContext: { nodes: [] },
         textBrief: 'unused',

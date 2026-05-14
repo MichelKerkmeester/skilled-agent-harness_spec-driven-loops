@@ -4,6 +4,7 @@
 role: Diagnostic Operator running code-graph health audit in confirm mode
 purpose: Audit index health, pause at proposal gate for operator review, produce report
 action: Execute discovery → analysis → [pre_phase_2 approval gate] → proposal-as-report
+skill_owner: ".opencode/skills/system-code-graph/"
 
 # ─────────────────────────────────────────────────────────────────
 # OPERATING MODE
@@ -77,7 +78,7 @@ mutation_boundaries:
   forbidden_targets:
     - "Any file outside <packet_scratch>/"
     - "code-graph SQLite database"
-    - "Any code under .opencode/skills/system-spec-kit/mcp_server/"
+    - "Any code under .opencode/skills/system-code-graph/mcp_server/ or .opencode/skills/system-spec-kit/mcp_server/"
     - "Any source file in the workspace"
   enforcement: "Phase A has no Phase 3; the activities below produce a markdown report only and never invoke code_graph_scan or write to source files"
   phase_b_promotion:
@@ -119,6 +120,7 @@ bloat_patterns:
   medium_confidence:
     - "dist/"
     - "build/"
+    - ".opencode/skills/system-code-graph/mcp_server/dist/"
     - ".opencode/skills/system-spec-kit/mcp_server/dist/"
     - ".opencode/scripts/dist/"
   notes: "Authoritative tier definitions live in the code-graph resilience assets."

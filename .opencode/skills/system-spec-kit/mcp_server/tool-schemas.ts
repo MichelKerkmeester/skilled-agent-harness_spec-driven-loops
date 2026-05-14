@@ -12,7 +12,7 @@ import {
   advisorRebuildTool,
   advisorStatusTool,
   advisorValidateTool,
-} from './skill_advisor/tools/index.js';
+} from '../../system-skill-advisor/mcp_server/tools/index.js';
 
 /**
  * Re-export schema validation helpers used by the MCP tool entry points.
@@ -46,14 +46,14 @@ export interface ToolDefinition {
 // T061: L1 Orchestration - Unified entry point (Token Budget: 3500)
 const memoryContext: ToolDefinition = {
   name: 'memory_context',
-  description: '[L1:Orchestration] Unified entry point for context retrieval with intent-aware routing. START HERE for most context-retrieval operations across indexed spec docs and constitutional rules. For session recovery, use mode: \'resume\' with profile: \'resume\'. Automatically detects task intent (add_feature, fix_bug, refactor, security_audit, understand, find_spec, find_decision) and routes to optimal retrieval strategy. Modes: auto (default), quick (trigger-based), deep (comprehensive), focused (intent-optimized), resume (session recovery). Token Budget: 3500. For code search by concept/intent, prefer mcp__cocoindex_code__search (CocoIndex). For structural code queries (callers, imports), prefer code_graph_query.',
+  description: '[L1:Orchestration] Unified entry point for context retrieval with intent-aware routing. START HERE for most context-retrieval operations across indexed spec docs and constitutional rules. For session recovery, use mode: \'resume\' with profile: \'resume\'. Automatically detects task intent (add_feature, fix_bug, refactor, security_audit, understand, find_spec, find_decision) and routes to optimal retrieval strategy. Modes: auto (default), quick (trigger-based), deep (comprehensive), focused (intent-optimized), resume (session recovery). Token Budget: 3500. For code search by concept/intent, prefer mcp__cocoindex_code__search (CocoIndex). For structural code queries (callers, imports), prefer mcp__system_code_graph__code_graph_query.',
   inputSchema: { type: 'object', additionalProperties: false, properties: { input: { type: 'string', minLength: 1, description: 'The query, prompt, or context description (required)' }, mode: { type: 'string', enum: ['auto', 'quick', 'deep', 'focused', 'resume'], default: 'auto', description: 'Context retrieval mode: auto (detect intent), quick (fast triggers), deep (comprehensive search), focused (intent-optimized), resume (session recovery)' }, intent: { type: 'string', enum: ['add_feature', 'fix_bug', 'refactor', 'security_audit', 'understand', 'find_spec', 'find_decision'], description: 'Explicit task intent. If not provided and mode=auto, intent is auto-detected from input.' }, specFolder: { type: 'string', description: 'Limit context to specific spec folder' }, tenantId: { type: 'string', description: 'Tenant boundary for governed retrieval when memory_context routes to memory_search.' }, userId: { type: 'string', description: 'User boundary for governed retrieval when memory_context routes to memory_search.' }, agentId: { type: 'string', description: 'Agent boundary for governed retrieval when memory_context routes to memory_search.' }, limit: { type: 'number', minimum: 1, maximum: 100, description: 'Maximum results (mode-specific defaults apply)' }, sessionId: { type: 'string', description: 'Optional server-issued session identifier for working-memory continuity. When provided, it must match an existing server-managed session or the call is rejected. Omit it to let the server generate a new session for this request.' }, enableDedup: { type: 'boolean', default: true, description: 'Enable session deduplication' }, includeContent: { type: 'boolean', default: false, description: 'Include full file content in results' }, includeTrace: { type: 'boolean', default: false, description: 'Include provenance-rich trace data (scores, source, trace) in results when underlying memory_search is called' }, tokenUsage: { type: 'number', minimum: 0.0, maximum: 1.0, description: "Optional caller token usage ratio (0.0-1.0)" }, anchors: { type: 'array', items: { type: 'string' }, description: 'Filter content to specific anchors (e.g., ["state", "next-steps"] for resume mode)' }, profile: { type: 'string', enum: ['quick', 'research', 'resume', 'debug'], description: 'Optional response profile formatter. Returns a reduced or mode-aware response shape when profile formatting is enabled.' } }, required: ['input'] },
 };
 
 // L2: Core - Primary operations (Token Budget: 3500)
 const memorySearch: ToolDefinition = {
   name: 'memory_search',
-  description: '[L2:Core] Search indexed spec-doc continuity semantically using vector similarity. Returns ranked results with similarity scores. Constitutional tier rules are ALWAYS included at the top of results (~2000 tokens max), regardless of query. Requires query (string), concepts (array of 2-5 strings), or cursor (string) for continuation pagination. Supports intent-aware retrieval (REQ-006) with task-specific weight adjustments. When implicit feedback logging is enabled, searches also emit shadow-only feedback signals such as search_shown and, for includeContent runs, result_cited. Token Budget: 3500. For code search by concept/intent, prefer mcp__cocoindex_code__search (CocoIndex). For structural code queries (callers, imports), prefer code_graph_query.',
+  description: '[L2:Core] Search indexed spec-doc continuity semantically using vector similarity. Returns ranked results with similarity scores. Constitutional tier rules are ALWAYS included at the top of results (~2000 tokens max), regardless of query. Requires query (string), concepts (array of 2-5 strings), or cursor (string) for continuation pagination. Supports intent-aware retrieval (REQ-006) with task-specific weight adjustments. When implicit feedback logging is enabled, searches also emit shadow-only feedback signals such as search_shown and, for includeContent runs, result_cited. Token Budget: 3500. For code search by concept/intent, prefer mcp__cocoindex_code__search (CocoIndex). For structural code queries (callers, imports), prefer mcp__system_code_graph__code_graph_query.',
   inputSchema: {
     type: 'object',
     additionalProperties: false,
@@ -559,162 +559,14 @@ const memoryIngestCancel: ToolDefinition = {
 };
 
 // Code Graph - Structural code analysis tools
-const codeGraphScan: ToolDefinition = {
-  name: 'code_graph_scan',
-  description: '[L7:Maintenance] Scan workspace files and build structural code graph index (functions, classes, imports, calls). Supports incremental re-indexing via content hash. Token Budget: 1000.',
-  inputSchema: {
-    type: 'object', additionalProperties: false,
-    properties: {
-      rootDir: { type: 'string', description: 'Root directory to scan (default: workspace root)' },
-      includeGlobs: { type: 'array', items: { type: 'string' }, description: 'Glob patterns for files to include' },
-      excludeGlobs: { type: 'array', items: { type: 'string' }, description: 'Additional glob patterns to exclude' },
-      incremental: { type: 'boolean', default: true, description: 'Skip unchanged files (default: true)' },
-      includeSkills: {
-        oneOf: [
-          { type: 'boolean' },
-          { type: 'array', items: { type: 'string', pattern: '^sk-[a-z0-9-]+$' } },
-        ],
-        default: false,
-        description: 'Include all .opencode/skills files with true, or only named sk-* skills with an array; default false keeps end-user code scope',
-      },
-      includeAgents: { type: 'boolean', default: false, description: 'Include .opencode/agent files in this scan; default false keeps end-user code scope' },
-      includeCommands: { type: 'boolean', default: false, description: 'Include .opencode/command files in this scan; default false keeps end-user code scope' },
-      includeSpecs: { type: 'boolean', default: false, description: 'Include .opencode/specs files in this scan; default false keeps end-user code scope' },
-      includePlugins: { type: 'boolean', default: false, description: 'Include .opencode/plugins files in this scan; default false keeps end-user code scope' },
-      verify: { type: 'boolean', default: false, description: 'Run the gold-query verification battery after an explicit full scan (default: false)' },
-      persistBaseline: { type: 'boolean', default: false, description: 'Persist the current edge-distribution baseline after a full scan even when one already exists' },
-      forceZeroNodeReset: { type: 'boolean', default: false, description: 'Allow an explicit destructive reset when a full scan produces zero indexed nodes over a populated graph' },
-      forceScopeChange: { type: 'boolean', default: false, description: 'Allow replacing a populated code graph with a full scan from a different scope fingerprint' },
-    },
-    required: [],
-  },
-};
+// Code-graph tool schemas migrated to system-code-graph standalone MCP server per ADR-002
+// (.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/007-mcp-topology-pivot/decision-record.md)
+// Tool IDs unchanged (ADR-001 Q4 stable); namespace changed: mcp__spec_kit_memory__code_graph_* → mcp__system_code_graph__code_graph_*
 
-const codeGraphQuery: ToolDefinition = {
-  name: 'code_graph_query',
-  description: '[L6:Analysis] Query structural relationships: outline (file symbols), calls_from/calls_to (call graph), imports_from/imports_to (dependency graph), and blast_radius (reverse import impact). Use INSTEAD of Grep for structural queries (callers, imports, dependencies). Supports includeTransitive for multi-hop BFS traversal. Token Budget: 1200.',
-  inputSchema: {
-    type: 'object', additionalProperties: false,
-    properties: {
-      operation: { type: 'string', enum: ['outline', 'calls_from', 'calls_to', 'imports_from', 'imports_to', 'blast_radius'], description: 'Query operation (required)' },
-      subject: { type: 'string', minLength: 1, description: 'File path, symbol name, or symbolId to query (required)' },
-      subjects: { type: 'array', items: { type: 'string' }, description: 'Optional additional file paths or symbols for blast-radius union mode' },
-      unionMode: { type: 'string', enum: ['single', 'multi'], description: 'Blast-radius subject handling mode; use multi to union subject + subjects' },
-      edgeType: { type: 'string', description: 'Filter by edge type (optional)' },
-      limit: { type: 'number', minimum: 1, maximum: 200, default: 50, description: 'Max results' },
-      includeTransitive: { type: 'boolean', default: false, description: 'Enable multi-hop BFS traversal (follows edges transitively)' },
-      maxDepth: { type: 'number', minimum: 1, maximum: 10, default: 3, description: 'Max traversal depth when includeTransitive is true' },
-      minConfidence: { type: 'number', minimum: 0, maximum: 1, description: 'Minimum confidence threshold (0-1) for blast_radius dependency edges; defaults to 0 (include all). Filters import-edge confidences before blast-radius assembly.' },
-    },
-    required: ['operation', 'subject'],
-  },
-};
 
-const codeGraphStatus: ToolDefinition = {
-  name: 'code_graph_status',
-  description: '[L7:Maintenance] Report code graph index health. Returns totalFiles, totalNodes, totalEdges, freshness, readiness, canonicalReadiness, trustState, lastScanAt, lastPersistedAt, lastGitHead, dbFileSize, schemaVersion, nodesByKind, edgesByType, parseHealth, and graphQualitySummary. Token Budget: 500.',
-  inputSchema: { type: 'object', additionalProperties: false, properties: {}, required: [] },
-};
 
-const codeGraphContext: ToolDefinition = {
-  name: 'code_graph_context',
-  description: '[L6:Analysis] Get LLM-oriented compact graph neighborhoods. Accepts CocoIndex search results as seeds — use CocoIndex (mcp__cocoindex_code__search) for semantic search first, then pass results here for structural expansion. Supports manual seeds (provider: manual) and graph seeds (provider: graph). Modes: neighborhood (1-hop calls+imports), outline (file symbols), impact (reverse callers). When readiness requires a full scan, returns an explicit blocked payload with requiredAction `code_graph_scan`, readiness metadata, and lastPersistedAt instead of degraded graph answers. Successful responses include metadata.partialOutput for deadline/budget truncation details (reasons, omittedSections, omittedAnchors, truncatedText). Token Budget: 1200.',
-  inputSchema: {
-    type: 'object', additionalProperties: false,
-    properties: {
-      input: { type: 'string', description: 'Natural language context query' },
-      queryMode: { type: 'string', enum: ['neighborhood', 'outline', 'impact'], default: 'neighborhood', description: 'Graph expansion mode' },
-      subject: { type: 'string', description: 'Symbol name, fqName, or symbolId' },
-      seeds: {
-        type: 'array',
-        items: {
-          type: 'object',
-          properties: {
-            filePath: { type: 'string' },
-            startLine: { type: 'number' },
-            endLine: { type: 'number' },
-            query: { type: 'string' },
-            provider: { type: 'string', enum: ['cocoindex', 'manual', 'graph'], description: 'Seed provider type' },
-            source: { type: 'string', description: 'Optional provenance label surfaced on resolved anchors' },
-            file: { type: 'string', description: 'CocoIndex file path (provider: cocoindex)' },
-            range: { type: 'object', properties: { start: { type: 'number' }, end: { type: 'number' } }, description: 'CocoIndex line range' },
-            score: { type: 'number', description: 'CocoIndex relevance score' },
-            snippet: { type: 'string', description: 'CocoIndex snippet text preserved with the seed' },
-            symbolName: { type: 'string', description: 'Manual seed symbol name' },
-            kind: { type: 'string', description: 'Manual seed kind metadata' },
-            nodeId: { type: 'string', description: 'Graph seed node identifier' },
-            symbolId: { type: 'string', description: 'Graph seed symbol ID' },
-          },
-        },
-        description: 'Seeds from CocoIndex, manual input, or graph lookups',
-      },
-      budgetTokens: { type: 'number', minimum: 100, maximum: 4000, default: 1200, description: 'Token budget for response' },
-      profile: { type: 'string', enum: ['quick', 'research', 'debug'], description: 'Output density profile' },
-      includeTrace: { type: 'boolean', description: 'Include trace metadata in response for debugging' },
-    },
-    required: [],
-  },
-};
 
-const codeGraphVerify: ToolDefinition = {
-  name: 'code_graph_verify',
-  description: '[L7:Maintenance] Execute the persisted code-graph gold-query battery against the current index. Returns blocked when readiness is not fresh, supports category filtering, optional per-query details, fail-fast mode, and optional baseline persistence. Token Budget: 1000.',
-  inputSchema: {
-    type: 'object', additionalProperties: false,
-    properties: {
-      rootDir: { type: 'string', description: 'Root directory for readiness checks (default: workspace root)' },
-      batteryPath: { type: 'string', description: 'Optional path to a gold-query battery JSON file' },
-      category: {
-        type: 'string',
-        enum: ['mcp-tool', 'cross-module', 'exported-type', 'regression-detection'],
-        description: 'Optional category filter for the verification battery',
-      },
-      failFast: { type: 'boolean', description: 'Stop on first failing verification query' },
-      includeDetails: { type: 'boolean', description: 'Include per-query verification details in the result payload' },
-      persistBaseline: { type: 'boolean', description: 'Persist the verification result as the latest stored baseline' },
-      allowInlineIndex: { type: 'boolean', description: 'Allow readiness checks to perform inline indexing before verification' },
-    },
-    required: [],
-  },
-};
 
-const codeGraphApply: ToolDefinition = {
-  name: 'code_graph_apply',
-  description: '[L8:Code Graph] Verification-gated apply-mode for code graph recovery. Runs the gold-query battery before and after typed recovery operations, enforces soft-stale self-healing boundaries, writes JSONL audit logs, and rolls back bad applies. Token Budget: 1000.',
-  inputSchema: {
-    type: 'object', additionalProperties: false,
-    properties: {
-      rootDir: { type: 'string', description: 'Workspace root (default: current working directory)' },
-      operation: {
-        type: 'string',
-        enum: ['rescan', 'prune-excludes', 'repair-nodes', 'recover-sqlite-corruption', 'rollback-bad-apply'],
-        description: 'Apply operation to run. Defaults to re-scan routing based on staleness state.',
-      },
-      confirm: { type: 'boolean', description: 'Required for hard-stale recovery before any mutation.' },
-      dryRun: { type: 'boolean', description: 'Run pre/post batteries and classification, but skip operation dispatch.' },
-      crashRootCauseAddressed: { type: 'boolean', description: 'Required true before repair-nodes re-parses parser_skip_list candidates.' },
-      quarantineOlderThanDays: { type: 'number', minimum: 1, maximum: 365, description: 'Minimum parser_skip_list age for repair-nodes eligibility.' },
-      lowTierOptIn: { type: 'boolean', description: 'Required to include low-tier exclude-rule patterns.' },
-      excludePatterns: { type: 'array', items: { type: 'string' }, description: 'Candidate exclude patterns for prune-excludes classification.' },
-      batteryPath: { type: 'string', description: 'Optional gold-query battery path under approved asset roots.' },
-      includeDetails: { type: 'boolean', description: 'Include per-query battery details in apply response.' },
-    },
-    required: [],
-  },
-};
-
-const detectChanges: ToolDefinition = {
-  name: 'detect_changes',
-  description: '[L6:Analysis] Read-only preflight: maps a unified-diff input to the structural symbols it touches via line-range overlap against indexed code_nodes. Refuses to answer when graph readiness is anything other than "fresh" — returns status: "blocked" instead of a false-safe empty affectedSymbols[]. Use BEFORE acting on a diff so callers see hard refuse on stale/empty/error state. Token Budget: 1200.',
-  inputSchema: {
-    type: 'object', additionalProperties: false,
-    properties: {
-      diff: { type: 'string', minLength: 1, description: 'Unified-diff text (e.g. `git diff` output) to map onto indexed symbols' },
-      rootDir: { type: 'string', description: 'Workspace root (default: process.cwd()). Must resolve under the workspace; symlinks are canonicalized via realpathSync.' },
-    },
-    required: ['diff'],
-  },
-};
 
 const skillGraphScan: ToolDefinition = {
   name: 'skill_graph_scan',
@@ -759,38 +611,8 @@ const skillGraphValidate: ToolDefinition = {
   inputSchema: { type: 'object', additionalProperties: false, properties: {}, required: [] },
 };
 
-const cccStatus: ToolDefinition = {
-  name: 'ccc_status',
-  description: '[L7:Maintenance] Check CocoIndex availability. Returns available, binaryPath, indexExists, indexSize, and recommendation.',
-  inputSchema: { type: 'object', additionalProperties: false, properties: {}, required: [] },
-};
 
-const cccReindex: ToolDefinition = {
-  name: 'ccc_reindex',
-  description: '[L7:Maintenance] Trigger CocoIndex incremental (or full) re-indexing of the workspace.',
-  inputSchema: {
-    type: 'object', additionalProperties: false,
-    properties: {
-      full: { type: 'boolean', default: false, description: 'Full re-index (slower) vs incremental' },
-    },
-    required: [],
-  },
-};
 
-const cccFeedback: ToolDefinition = {
-  name: 'ccc_feedback',
-  description: '[L7:Maintenance] Submit quality feedback on CocoIndex search results to improve future searches.',
-  inputSchema: {
-    type: 'object', additionalProperties: false,
-    properties: {
-      query: { type: 'string', description: 'The search query that was executed' },
-      resultFile: { type: 'string', description: 'File path from the result being rated' },
-      rating: { type: 'string', enum: ['helpful', 'not_helpful', 'partial'], description: 'Quality rating' },
-      comment: { type: 'string', description: 'Optional free-form feedback' },
-    },
-    required: ['query', 'rating'],
-  },
-};
 
 // T018: Session health diagnostic tool
 const sessionHealth: ToolDefinition = {
@@ -1076,14 +898,7 @@ export const TOOL_DEFINITIONS: ToolDefinition[] = [
   memoryIngestStart,
   memoryIngestStatus,
   memoryIngestCancel,
-  // L8: Code Graph
-  codeGraphScan,
-  codeGraphQuery,
-  codeGraphStatus,
-  codeGraphContext,
-  codeGraphVerify,
-  codeGraphApply,
-  detectChanges,
+  // L8: Code Graph schemas live in system-code-graph per ADR-002
   // L8: Skill Graph
   skillGraphScan,
   skillGraphQuery,
@@ -1093,10 +908,7 @@ export const TOOL_DEFINITIONS: ToolDefinition[] = [
   advisorRebuildTool,
   advisorStatusTool,
   advisorValidateTool,
-  // L8: CocoIndex
-  cccStatus,
-  cccReindex,
-  cccFeedback,
+  // L8: CocoIndex code-graph bridge schemas live in system-code-graph per ADR-002
   // L9: Coverage Graph
   deepLoopGraphUpsert,
   deepLoopGraphQuery,

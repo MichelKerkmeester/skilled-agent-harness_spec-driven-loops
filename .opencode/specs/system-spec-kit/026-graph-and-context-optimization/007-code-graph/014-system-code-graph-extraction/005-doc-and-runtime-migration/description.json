@@ -1,0 +1,19 @@
+{
+  "level": "2",
+  "specFolder": "005-doc-and-runtime-migration",
+  "description": "Phase 005 migrates code-graph-owned category-22 docs into system-code-graph, keeps shared context/hook docs in system-spec-kit, updates agents, commands, top-level docs, skill cross-refs, constitutional/config references, and refreshes system-code-graph SKILL/README status. Tool IDs stay unchanged.",
+  "keywords": [
+    "code-graph-doc-migration",
+    "category-22-split",
+    "system-code-graph-docs",
+    "agent-command-reference-update",
+    "speckit-code-graph-db-dir",
+    "phase-005"
+  ],
+  "lastUpdated": "2026-05-14T08:21:27Z",
+  "specId": "005",
+  "folderSlug": "doc-and-runtime-migration",
+  "parentChain": [
+    "014-system-code-graph-extraction"
+  ]
+}

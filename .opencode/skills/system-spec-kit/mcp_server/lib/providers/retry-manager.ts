@@ -373,15 +373,33 @@ const retryHealthSnapshot: EmbeddingRetryStats = {
 // The API call and return a transient error instead.
 const PROVIDER_FAILURE_THRESHOLD = 5;
 const PROVIDER_COOLDOWN_MS = 120_000; // 2 minutes
+const CIRCUIT_TRANSITION_WINDOW_MS = 10 * 60 * 1000; // 10 minutes
+const FLAPPING_THRESHOLD = 2;
+const circuitTransitions: number[] = [];
 
 let providerFailures = 0;
 let providerCircuitOpenedAt: number | null = null;
+
+function recordCircuitTransition(): void {
+  const now = Date.now();
+  circuitTransitions.push(now);
+  while (circuitTransitions.length > 0 && circuitTransitions[0] < now - CIRCUIT_TRANSITION_WINDOW_MS) {
+    circuitTransitions.shift();
+  }
+}
+
+function getCircuitFlapState(): { flapping: boolean; transitionsInLast10Min: number } {
+  const now = Date.now();
+  const recent = circuitTransitions.filter(t => t >= now - CIRCUIT_TRANSITION_WINDOW_MS);
+  return { flapping: recent.length > FLAPPING_THRESHOLD, transitionsInLast10Min: recent.length };
+}
 
 function isProviderCircuitOpen(): boolean {
   if (providerCircuitOpenedAt === null) return false;
   if (Date.now() - providerCircuitOpenedAt >= PROVIDER_COOLDOWN_MS) {
     providerCircuitOpenedAt = null;
     providerFailures = 0;
+    recordCircuitTransition();
     return false;
   }
   return true;
@@ -397,6 +415,7 @@ function recordProviderFailure(): void {
   providerFailures++;
   if (providerFailures >= PROVIDER_FAILURE_THRESHOLD && providerCircuitOpenedAt === null) {
     providerCircuitOpenedAt = Date.now();
+    recordCircuitTransition();
     console.warn(`[retry-manager] Embedding provider circuit breaker OPEN after ${providerFailures} consecutive failures. Cooldown: ${PROVIDER_COOLDOWN_MS}ms`);
   }
   retryHealthSnapshot.circuitBreakerOpen = isProviderCircuitOpen();
@@ -973,6 +992,7 @@ export {
   getFailedEmbeddings,
   getRetryStats,
   getEmbeddingRetryStats,
+  getCircuitFlapState,
   retryEmbedding,
   claimAndRetryEmbedding,
   markAsFailed,

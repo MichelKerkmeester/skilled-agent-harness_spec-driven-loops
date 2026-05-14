@@ -2165,6 +2165,8 @@ async function main(): Promise<void> {
   transportConnectedAt = new Date().toISOString();
   transport = new StdioServerTransport();
   await server.connect(transport);
+  const rssMb = Math.round(process.memoryUsage().rss / 1024 / 1024);
+  console.error(`[health] startup pid=${process.pid} rss=${rssMb}MB uptime=0s`);
   console.error('[context-server] Context MCP server running on stdio');
 
   // Background startup scan
