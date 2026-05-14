@@ -11,7 +11,9 @@
     "system-spec-kit/026-graph-and-context-optimization/015-skill-advisor-semantic-lane/005-skill-metadata-quality-audit",
     "system-spec-kit/026-graph-and-context-optimization/015-skill-advisor-semantic-lane/006-apply-metadata-fixes-and-resweep",
     "system-spec-kit/026-graph-and-context-optimization/015-skill-advisor-semantic-lane/007-harder-intent-corpus-resweep",
-    "system-spec-kit/026-graph-and-context-optimization/015-skill-advisor-semantic-lane/008-populate-intent-signals-and-relationships"
+    "system-spec-kit/026-graph-and-context-optimization/015-skill-advisor-semantic-lane/008-populate-intent-signals-and-relationships",
+    "system-spec-kit/026-graph-and-context-optimization/015-skill-advisor-semantic-lane/009-system-skill-advisor-extraction",
+    "system-spec-kit/026-graph-and-context-optimization/015-skill-advisor-semantic-lane/010-advisor-routing-calibration"
   ],
   "migrated": false,
   "manual": {
@@ -43,7 +45,7 @@
     ],
     "importance_tier": "important",
     "status": "in_progress",
-    "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/015-skill-advisor-semantic-lane/008-populate-intent-signals-and-relationships",
+    "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/015-skill-advisor-semantic-lane/010-advisor-routing-calibration",
     "key_files": [
       "spec.md",
       "description.json",

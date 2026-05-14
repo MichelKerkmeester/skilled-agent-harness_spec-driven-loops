@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "tasks"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-system-skill-advisor-extraction/001-design-and-decision-record"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/015-skill-advisor-semantic-lane/009-system-skill-advisor-extraction/001-design-and-decision-record"
     last_updated_at: "2026-05-14T02:00:00Z"
     last_updated_by: "claude"
     recent_action: "Scaffolded packet"
@@ -54,7 +54,7 @@ _memory:
 - [ ] T012 Pick winner + rationale.
 - [ ] T013 Write `research/extraction-survey.md` covering inventory + scoring.
 - [ ] T014 Write `decision-record.md` ADR-001 locking the shape.
-- [ ] T015 Update parent phase `016-system-skill-advisor-extraction/spec.md` "What Needs Done" section to reflect chosen migration sequence.
+- [ ] T015 Update parent phase `015-skill-advisor-semantic-lane/009-system-skill-advisor-extraction/spec.md` "What Needs Done" section to reflect chosen migration sequence.
 - [ ] T016 Update this packet's `implementation-summary.md` with the chosen shape + key tradeoffs.
 <!-- /ANCHOR:phase-2 -->
 
@@ -86,7 +86,7 @@ _memory:
 <!-- ANCHOR:cross-refs -->
 ## CROSS-REFERENCES
 
-- Parent: `016-system-skill-advisor-extraction`
+- Parent: `015-skill-advisor-semantic-lane/009-system-skill-advisor-extraction`
 - Predecessor stability: `015-skill-advisor-semantic-lane` (8 sub-packets shipped)
 - Downstream packets gated on this: `016/002-scaffold-new-skill-folder` (not yet scaffolded), `016/003-move-source-and-tests`, `016/004-update-consumers`, `016/005-validation-and-cleanup`
 <!-- /ANCHOR:cross-refs -->

@@ -1,6 +1,6 @@
 {
   "level": "phase",
-  "specFolder": "016-system-skill-advisor-extraction",
+  "specFolder": "009-system-skill-advisor-extraction",
   "description": "Phase parent for migrating the skill advisor subsystem out of system-spec-kit into a dedicated `.opencode/skills/system-skill-advisor/` package with first-class SKILL.md, references, manual_testing_playbook, feature_catalog, and a clean MCP server integration story.",
   "keywords": [
     "system-skill-advisor",
@@ -11,9 +11,9 @@
     "structural-migration"
   ],
   "lastUpdated": "2026-05-14T02:00:00Z",
-  "specId": "016",
+  "specId": "009",
   "folderSlug": "system-skill-advisor-extraction",
   "parentChain": [
-    "026-graph-and-context-optimization"
+    "015-skill-advisor-semantic-lane"
   ]
 }

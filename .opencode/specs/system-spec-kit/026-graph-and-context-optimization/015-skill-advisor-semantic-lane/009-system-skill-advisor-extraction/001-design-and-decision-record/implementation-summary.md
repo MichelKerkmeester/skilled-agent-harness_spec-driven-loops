@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-system-skill-advisor-extraction/001-design-and-decision-record"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/015-skill-advisor-semantic-lane/009-system-skill-advisor-extraction/001-design-and-decision-record"
     last_updated_at: "2026-05-14T02:00:00Z"
     last_updated_by: "claude"
     recent_action: "Scaffolded packet"
@@ -73,10 +73,10 @@ To be filled. Plan: dispatch cli-codex gpt-5.5 xhigh; codex inspects the advisor
 
 | Gate | Status | Evidence |
 |------|--------|----------|
-| Strict spec validation | Pending | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-system-skill-advisor-extraction/001-design-and-decision-record --strict` |
+| Strict spec validation | Pending | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/015-skill-advisor-semantic-lane/009-system-skill-advisor-extraction/001-design-and-decision-record --strict` |
 | ADR-001 present | Pending | `decision-record.md` exists with chosen shape |
 | Survey present | Pending | `research/extraction-survey.md` lists consumers |
-| Parent phase spec updated | Pending | `016-system-skill-advisor-extraction/spec.md` reflects chosen sequence |
+| Parent phase spec updated | Pending | `015-skill-advisor-semantic-lane/009-system-skill-advisor-extraction/spec.md` reflects chosen sequence |
 <!-- /ANCHOR:verification -->
 
 ---

@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "verification"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-system-skill-advisor-extraction/001-design-and-decision-record"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/015-skill-advisor-semantic-lane/009-system-skill-advisor-extraction/001-design-and-decision-record"
     last_updated_at: "2026-05-14T02:00:00Z"
     last_updated_by: "claude"
     recent_action: "Scaffolded packet"

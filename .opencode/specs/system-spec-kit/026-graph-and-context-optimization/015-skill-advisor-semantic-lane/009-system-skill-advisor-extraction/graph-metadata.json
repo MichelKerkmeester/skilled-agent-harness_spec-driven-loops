@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/016-system-skill-advisor-extraction",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/016-system-skill-advisor-extraction",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/015-skill-advisor-semantic-lane/009-system-skill-advisor-extraction",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/015-skill-advisor-semantic-lane/009-system-skill-advisor-extraction",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/015-skill-advisor-semantic-lane",
   "children_ids": [
-    "system-spec-kit/026-graph-and-context-optimization/016-system-skill-advisor-extraction/001-design-and-decision-record"
+    "system-spec-kit/026-graph-and-context-optimization/015-skill-advisor-semantic-lane/009-system-skill-advisor-extraction/001-design-and-decision-record"
   ],
   "migrated": false,
   "manual": {
@@ -34,7 +34,7 @@
     ],
     "importance_tier": "important",
     "status": "in_progress",
-    "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/016-system-skill-advisor-extraction/001-design-and-decision-record",
+    "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/015-skill-advisor-semantic-lane/009-system-skill-advisor-extraction/001-design-and-decision-record",
     "key_files": [
       "spec.md",
       "description.json",

@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "specification"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-system-skill-advisor-extraction/001-design-and-decision-record"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/015-skill-advisor-semantic-lane/009-system-skill-advisor-extraction/001-design-and-decision-record"
     last_updated_at: "2026-05-14T02:00:00Z"
     last_updated_by: "claude"
     recent_action: "Scaffolded packet"
@@ -59,16 +59,21 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The skill advisor today is a substantial subsystem buried 5 levels deep inside `system-spec-kit`: handlers, scorer fusion + 5 lanes, lane registry, daemon lifecycle, projection, ablation, schemas, tests, feature_catalog, manual_testing_playbook, references — all under `mcp_server/skill_advisor/`. The parent phase 016 wants to extract it into a first-class `.opencode/skills/system-skill-advisor/` skill folder, but the exact architectural shape is not obvious. Three big questions need an answer BEFORE any file moves:
+The skill advisor today is a substantial subsystem buried 5 levels deep inside `system-spec-kit`. The parent phase 015/009 extracts it into a first-class `.opencode/skills/system-skill-advisor/` skill folder, subject to two HARD operator constraints:
 
-- **MCP server topology**: does the extracted advisor ship its own MCP server process, or stay co-resident with the system-spec-kit MCP server?
+- **Constraint A — DB-LOCAL**: the skill-graph database (`skill-graph.sqlite` + `-wal` + `-shm`) must live inside `.opencode/skills/system-skill-advisor/`.
+- **Constraint B — STANDALONE-MCP**: the advisor must run as its own MCP server process, separate from `spec_kit_memory`.
+
+A codex gpt-5.5 xhigh impact analysis at `research/standalone-mcp-discussion.md` walked the 11 impact areas of these constraints and narrowed 4 candidate shapes down to 2. It **recommends "Standalone Advisor MCP With Legacy Tool Bridge"** — keeping `advisor_*` tool ids stable on the new server, with `spec_kit_memory` either exposing deprecated proxy tools or fail-fast hints during a migration window.
+
+Three operator questions still need a decision before ADR-001 finalizes:
+
 - **Tool-id stability**: do `advisor_recommend`, `advisor_rebuild`, `advisor_status`, `advisor_validate` keep their names, or migrate to a `system_skill_advisor.*` namespace?
-- **Backwards compatibility**: do existing consumers (advisor hook brief, skill_advisor.py script, internal callers, doctor commands) need a transition window with both old and new paths working, or do we cut over cleanly?
-
-Picking the wrong shape costs migration rework + potential consumer breakage. Picking blind costs more.
+- **Backwards-compat window**: does `spec_kit_memory` expose deprecated proxy tools during cutover, or fail fast with a migration hint?
+- **DB path env override**: is `SYSTEM_SKILL_ADVISOR_DB_DIR` supported (tests/CI), or fixed under the new skill folder?
 
 ### Purpose
-Read every advisor surface in the codebase, enumerate 3-4 architectural shapes, evaluate each against a fixed criteria set, pick a winner, write the ADR. The ADR locks the migration shape so subsequent children (002 scaffold, 003 move, 004 update consumers, 005 cleanup) can scaffold + execute without re-litigating the design.
+Lock the codex-recommended shape into ADR-001, answer the three operator questions inline (or surface explicit "needs operator decision" markers in the ADR), finalize the per-runtime config update strategy, and update parent phase `spec.md` "What Needs Done" with the locked 5-phase migration sequence so children 002-006 can scaffold + execute without re-litigating the design.
 <!-- /ANCHOR:problem -->
 
 ---
