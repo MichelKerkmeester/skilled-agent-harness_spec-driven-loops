@@ -14,12 +14,14 @@ import { parseArgs as actualParseArgs } from '../tools/types'
 
 const SERVER_DIR = path.resolve(__dirname, '..')
 const SOURCE_FILE = path.join(SERVER_DIR, 'context-server.ts')
+const ADVISOR_SOURCE_FILE = path.join(SERVER_DIR, '..', '..', 'system-skill-advisor', 'mcp_server', 'advisor-server.ts')
 const TOOL_SCHEMAS_FILE = path.join(SERVER_DIR, 'tool-schemas.ts')
 const TOOL_TYPES_FILE = path.join(SERVER_DIR, 'tools', 'types.ts')
 const STARTUP_CHECKS_FILE = path.join(SERVER_DIR, 'startup-checks.ts')
 const SHARED_TYPES_FILE = path.join(SERVER_DIR, '..', 'shared', 'types.ts')
 
 let sourceCode = ''
+let advisorSourceCode = ''
 let toolSchemasCode = ''
 let toolTypesCode = ''
 let startupChecksCode = ''
@@ -66,6 +68,7 @@ async function importFirst<T>(loaders: Array<() => Promise<unknown>>): Promise<T
 describe('Context Server', () => {
   beforeAll(() => {
     sourceCode = fs.readFileSync(SOURCE_FILE, 'utf8')
+    advisorSourceCode = fs.readFileSync(ADVISOR_SOURCE_FILE, 'utf8')
     toolSchemasCode = fs.readFileSync(TOOL_SCHEMAS_FILE, 'utf8')
     toolTypesCode = fs.readFileSync(TOOL_TYPES_FILE, 'utf8')
     startupChecksCode = fs.readFileSync(STARTUP_CHECKS_FILE, 'utf8')
@@ -2576,12 +2579,12 @@ describe('Context Server', () => {
       expect(sourceCode).toMatch(/if\s*\(startupScanInProgress\)/)
     })
 
-    it('F-015: startup skill graph publish asserts artifacts before accepting live state', () => {
-      expect(sourceCode).toMatch(/function\s+assertSkillGraphLivePublication/)
-      expect(sourceCode).toContain('getSkillGraphGenerationPath(workspaceRoot)')
-      expect(sourceCode).toContain('readAdvisorStatus({ workspaceRoot })')
-      expect(sourceCode).toContain("reason: 'post-index-assertion-failed'")
-      expect(sourceCode).toContain("state: 'stale'")
+    it('F-015: skill graph live-state publication is owned by advisor startup', () => {
+      expect(sourceCode).not.toMatch(/function\s+assertSkillGraphLivePublication/)
+      expect(sourceCode).not.toContain('publishSkillGraphGeneration')
+      expect(advisorSourceCode).toContain('publishSkillGraphGeneration')
+      expect(advisorSourceCode).toContain("reason: 'advisor-server-startup-scan'")
+      expect(advisorSourceCode).toContain("state: 'live'")
     })
   })
 

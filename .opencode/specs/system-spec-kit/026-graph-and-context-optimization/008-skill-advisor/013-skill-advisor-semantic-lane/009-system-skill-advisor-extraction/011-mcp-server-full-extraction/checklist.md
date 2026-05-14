@@ -1,6 +1,6 @@
 ---
 title: "Verification Checklist: Full MCP extraction of skill graph library and lifecycle"
-description: "D2a checklist for atomic lifecycle transfer to system_skill_advisor."
+description: "D2a+D2b checklist for atomic lifecycle transfer to system_skill_advisor and close-out verification."
 trigger_phrases:
   - "013/009/011 checklist"
   - "skill graph extraction verification"
@@ -9,12 +9,12 @@ contextType: "verification"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/013-skill-advisor-semantic-lane/009-system-skill-advisor-extraction/011-mcp-server-full-extraction"
-    last_updated_at: "2026-05-14T17:45:00Z"
+    last_updated_at: "2026-05-14T20:05:00Z"
     last_updated_by: "codex"
-    recent_action: "D2a checks recorded; strict validation pending final pass"
-    next_safe_action: "Dispatch D2b (hooks + tests + schemas verification)"
+    recent_action: "011 full extraction shipped (D2a+D2b)"
+    next_safe_action: "Operator: 014 manual testing via cli-opencode"
     blockers: []
-    completion_pct: 60
+    completion_pct: 100
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->
 # Verification Checklist: Full MCP extraction of skill graph library and lifecycle
@@ -96,8 +96,22 @@ _memory:
 
 - [x] CHK-040 [P1] Spec, plan, tasks, checklist, ADRs, and summary authored.
 - [x] CHK-041 [P1] Council artifact promoted to research.
-- [x] CHK-042 [P2] Broader public docs deferred to D2b unless touched by code path.
+- [x] CHK-042 [P2] Broader public docs deferred to D2b unless touched by code path. Evidence: D2b updated parent continuity only; 012/013 sibling packets already shipped their own docs.
 <!-- /ANCHOR:docs -->
+
+---
+
+<!-- ANCHOR:d2b-closeout -->
+## D2b Close-Out
+
+- [x] CHK-200 [P0] Hooks import advisor brief/render/metrics from existing advisor paths. Evidence: Claude, Codex, and Gemini hook files inspected; `npx tsc --noEmit` passed.
+- [x] CHK-201 [P0] Schema imports resolve advisor tool schemas and parameter-key tuples. Evidence: `tool-input-schemas.ts` inspected; `npx tsc --noEmit` passed.
+- [x] CHK-202 [P1] Session-bootstrap topology path remains safe after D2a. Evidence: targeted `session-bootstrap` suites passed 3/3; topology summary reports advisor ownership instead of removed memory proxy.
+- [x] CHK-203 [P0] Advisor full Vitest passes. Evidence: `npm test` passed 291/291.
+- [x] CHK-204 [P1] Memory full Vitest run and classified. Evidence: `npm test` core baseline-red at 11,404/11,582 with unrelated failures; stale F-015 fixture fixed; `test:file-watcher` passed 21/21 separately.
+- [x] CHK-205 [P1] Broader seams classified. Evidence: 15 non-test matches, 13 legitimate sibling imports, 2 shared-candidate flags, 0 test seams.
+- [x] CHK-206 [P0] Parent continuity updated. Evidence: parent handover §9 appended and graph metadata children list extended to 011/012/013.
+<!-- /ANCHOR:d2b-closeout -->
 
 ---
 
@@ -115,8 +129,8 @@ _memory:
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 12 | 12/12 |
-| P1 Items | 12 | 12/12 |
+| P0 Items | 15 | 15/15 |
+| P1 Items | 16 | 16/16 |
 | P2 Items | 1 | 1/1 |
 
 **Verification Date**: 2026-05-14
@@ -186,5 +200,6 @@ _memory:
 | Approver | Role | Status | Date |
 |----------|------|--------|------|
 | Operator | Scope owner | Approved D2a dispatch | 2026-05-14 |
-| Codex | Implementer | Verified targeted gates | 2026-05-14 |
+| Operator | Scope owner | Approved D2b close-out dispatch | 2026-05-14 |
+| Codex | Implementer | Verified targeted gates, full advisor suite, memory baseline classification, and parent continuity | 2026-05-14 |
 <!-- /ANCHOR:sign-off -->

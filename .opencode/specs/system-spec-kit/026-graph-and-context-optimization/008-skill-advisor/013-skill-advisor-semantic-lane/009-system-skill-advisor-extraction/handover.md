@@ -12,10 +12,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/013-skill-advisor-semantic-lane/009-system-skill-advisor-extraction"
-    last_updated_at: "2026-05-14T18:25:00Z"
+    last_updated_at: "2026-05-14T20:05:00Z"
     last_updated_by: "codex"
-    recent_action: "010 close-out shipped: advisor Vitest 291/291 and graph-health green"
-    next_safe_action: "Operator: optional Tier 3 runtime refreshes only"
+    recent_action: "011 full extraction shipped (D2a+D2b); 012 doc alignment; 013 spec-kit cleanup"
+    next_safe_action: "Operator: 014 manual testing via cli-opencode"
     blockers: []
     key_files:
       - "handover.md"
@@ -23,6 +23,9 @@ _memory:
       - "graph-metadata.json"
       - "008-move-skill-graph-tools-to-advisor/implementation-summary.md"
       - "010-skill-id-rename/implementation-summary.md"
+      - "011-mcp-server-full-extraction/implementation-summary.md"
+      - "012-doc-alignment-sk-doc/implementation-summary.md"
+      - "013-spec-kit-ref-cleanup/implementation-summary.md"
     session_dedup:
       fingerprint: "sha256:0130090099a06ed10c5d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d"
       session_id: "013-009-handover-2026-05-14"
@@ -32,6 +35,7 @@ _memory:
     answered_questions:
       - "008 implementation shipped 2026-05-14 via 2 dispatches (D1: 8447663a0, D2: a93fffb7c). Advisor vitest 285/291; 4-runtime smoke green except Claude INCONCLUSIVE. Details in §7."
       - "010 close-out resolved remaining graph-health and parity failures. Advisor vitest is 291/291. Details in §8."
+      - "011/012/013 parallel sweep shipped 2026-05-14. Full MCP extraction complete; advisor owns lib + lifecycle; spec-kit fully extracted. Details in §9."
 ---
 # Session Handover Document
 
@@ -467,6 +471,53 @@ Codex continued the 013/009 line on `main` and closed the remaining advisor pack
 
 ---
 
+## 9. Session 5 — Full extraction + parallel doc alignment + spec-kit cleanup (011/012/013)
+
+Codex closed the final extraction sweep on `main` after D2a moved the skill graph library and lifecycle into advisor ownership. D2b verified the adjacent spec-kit surfaces, ran full advisor Vitest, classified memory package baseline-red failures, fixed the stale D2a fixture in `context-server.vitest.ts`, and updated this parent continuity.
+
+### Ship trail
+
+| Commit | Packet | Scope |
+|---|---|---|
+| `8bee0781f` | 013 | Initial spec-kit cleanup sweep after extraction. |
+| `0bd708c4b` | 012 | Advisor doc alignment through sk-doc; architecture and README refresh. |
+| `24fad82cb` | 013 | Final spec-kit ref cleanup packet evidence. |
+| `76317ed82` | 011 D2a | Atomic skill graph library + lifecycle move into `system_skill_advisor`. |
+| D2b final commit | 011 D2b | Hooks, schemas, session-bootstrap topology, full tests, parent continuity, and strict validation. |
+
+### D2b verification
+
+| Check | Result |
+|---|---|
+| Hook imports | PASS for present runtimes: Claude, Codex, Gemini. No `hooks/opencode/` directory exists in this checkout. |
+| Schema imports | PASS via `npx tsc --noEmit`; advisor schema and contract-key imports resolve. |
+| Session-bootstrap topology | PASS; targeted session-bootstrap suites passed 3/3 and topology reports advisor ownership instead of reading a removed memory proxy. |
+| Advisor full Vitest | PASS, 291/291. |
+| Memory full Vitest | CORE BASELINE-RED: 11,404/11,582 passed, 95 failed, 83 skipped. D2b fixed the stale F-015 skill graph ownership fixture; remaining failures are unrelated baseline surfaces. File-watcher leg passed 21/21 separately. |
+| Broader seams | 15 total non-test matches: 13 legitimate sibling imports, 2 shared-candidate flags, 0 test seams. |
+
+### Final 13-child inventory
+
+| Child | Status |
+|---|---|
+| 001-design-and-decision-record | shipped |
+| 002-scaffold-system-skill-advisor-package | shipped |
+| 003-move-advisor-source-db-and-tests | shipped |
+| 004-standalone-mcp-launcher-and-runtime-configs | shipped |
+| 005-hooks-compat-and-consumer-cutover | shipped |
+| 006-validation-cleanup-and-deprecation-removal | shipped |
+| 007-skill-graph-db-rename | shipped |
+| 008-move-skill-graph-tools-to-advisor | shipped |
+| 009-fix-script-fs-scope | shipped |
+| 010-skill-id-rename | shipped |
+| 011-mcp-server-full-extraction | shipped |
+| 012-doc-alignment-sk-doc | shipped |
+| 013-spec-kit-ref-cleanup | shipped |
+
+Next safe action: 014 manual testing via cli-opencode.
+
+---
+
 ## RELATED DOCUMENTS
 
 - **Parent Spec:** `spec.md`
@@ -478,8 +529,9 @@ Codex continued the 013/009 line on `main` and closed the remaining advisor pack
   - `006-validation-cleanup-and-deprecation-removal/implementation-summary.md`
   - `007-skill-graph-db-rename/implementation-summary.md`
   - `009-fix-script-fs-scope/implementation-summary.md` *(Session 2 add)*
-- **Scaffolded packet (impl pending):**
-  - `008-move-skill-graph-tools-to-advisor/spec.md` + `plan.md` + `tasks.md`
+  - `011-mcp-server-full-extraction/implementation-summary.md`
+  - `012-doc-alignment-sk-doc/implementation-summary.md`
+  - `013-spec-kit-ref-cleanup/implementation-summary.md`
 - **Approved plan file (Session 1):** `/Users/michelkerkmeester/.claude/plans/glittery-juggling-lecun.md` — final addendum section "ADDENDUM — Implementation of phases 4, 5, 6"
 - **Approved plan file (Session 2):** `/Users/michelkerkmeester/.claude/plans/read-and-follow-handover-splendid-wall.md`
 - **Dispatch prompts archive (Session 1):** `/tmp/cli-codex-dispatches/013-009-{004,005,006}-impl-prompt.md` + `/tmp/cli-codex-dispatches/skill-graph-db-cleanup-prompt.md` (ephemeral)
