@@ -48,16 +48,14 @@
       "iterative-research"
     ],
     "key_topics": [
-      "research",
-      "investigation",
-      "analysis",
-      "convergence",
-      "iterative research",
-      "externalized state",
-      "convergence detection",
-      "jsonl state",
-      "fresh context",
-      "autoresearch"
+      "research-question-decomposition",
+      "evidence-synthesis",
+      "research-state-jsonl",
+      "source-triangulation",
+      "research-convergence-stop",
+      "iteration-deltas",
+      "iterative-investigation",
+      "fresh-context-research"
     ],
     "key_files": [
       ".opencode/skills/deep-research/SKILL.md",

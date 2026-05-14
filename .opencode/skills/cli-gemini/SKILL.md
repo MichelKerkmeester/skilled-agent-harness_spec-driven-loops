@@ -1,6 +1,6 @@
 ---
 name: cli-gemini
-description: "Gemini CLI orchestrator: dispatch Google's Gemini CLI for code, web research, architecture analysis, cross-AI validation."
+description: "Gemini CLI executor for Google Search-backed research, architecture sweeps, large-context code analysis, and cross-model validation."
 allowed-tools: [Bash, Read, Glob, Grep]
 version: 1.2.5.0
 ---

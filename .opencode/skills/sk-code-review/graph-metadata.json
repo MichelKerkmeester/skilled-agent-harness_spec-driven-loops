@@ -64,16 +64,13 @@
       "code-review"
     ],
     "key_topics": [
-      "review",
-      "audit",
-      "security",
-      "quality-gate",
-      "merge-readiness",
-      "findings",
-      "findings-first review",
-      "security review",
-      "merge readiness",
-      "quality gates"
+      "findings-first-pr-review",
+      "security-correctness-minimums",
+      "merge-readiness-risk",
+      "surface-specific-evidence",
+      "actionable-line-findings",
+      "review-baseline-gate",
+      "quality-gate-evidence"
     ],
     "key_files": [
       ".opencode/skills/sk-code-review/SKILL.md",

@@ -1,6 +1,6 @@
 ---
 name: cli-claude-code
-description: "Claude Code CLI orchestrator: dispatch Anthropic's Claude Code from external AI assistants for code, review, deep reasoning."
+description: "Claude Code CLI executor for Anthropic-backed deep reasoning, code edits, code review, and structured handoff from another assistant."
 allowed-tools: [Bash, Read, Glob, Grep]
 version: 1.1.5.0
 ---

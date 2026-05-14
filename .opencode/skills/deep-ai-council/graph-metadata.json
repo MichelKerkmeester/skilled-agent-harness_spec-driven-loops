@@ -46,18 +46,23 @@
       "deep ai council",
       "ai council deliberation",
       "multi-seat planning council",
+      "multi-seat strategy deliberation",
+      "council decision comparison",
+      "ai council planning artifacts",
+      "council convergence check",
       "council convergence",
       "ai-council artifact persistence",
       "council graph support"
     ],
     "key_topics": [
-      "planning",
-      "deliberation",
-      "strategy comparison",
-      "council artifacts",
+      "seat-perspectives",
+      "decision-matrix",
+      "council-state-artifacts",
+      "strategy-deliberation",
+      "planning-convergence",
       "append-only state",
-      "convergence",
-      "derived graph"
+      "council-artifact-persistence",
+      "derived-council-graph"
     ],
     "key_files": [
       ".opencode/skills/deep-ai-council/SKILL.md",

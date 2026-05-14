@@ -54,16 +54,14 @@
       "anthropic"
     ],
     "key_topics": [
-      "cli",
-      "delegation",
-      "cross-ai",
-      "reasoning",
-      "code-editing",
-      "claude code",
-      "cli orchestration",
-      "cross-ai delegation",
-      "deep reasoning",
-      "structured output"
+      "anthropic-claude-code",
+      "extended-thinking-review",
+      "claude-code-editing",
+      "structured-claude-handoff",
+      "anthropic-backed-review",
+      "deep-reasoning-handoff",
+      "claude-code-cli",
+      "code-editing-escalation"
     ],
     "key_files": [
       ".opencode/skills/cli-claude-code/SKILL.md",

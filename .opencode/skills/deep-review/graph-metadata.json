@@ -60,16 +60,14 @@
       "code-audit"
     ],
     "key_topics": [
-      "review",
-      "audit",
-      "iterative",
-      "convergence",
-      "severity",
-      "iterative review",
-      "severity findings",
-      "externalized state",
-      "convergence detection",
-      "release readiness"
+      "multi-pass-code-audit",
+      "p0-p1-p2-findings",
+      "review-state-jsonl",
+      "release-readiness-gate",
+      "residual-risk-triage",
+      "review-convergence-stop",
+      "iterative-review-loop",
+      "severity-weighted-findings"
     ],
     "key_files": [
       ".opencode/skills/deep-review/SKILL.md",
