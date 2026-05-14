@@ -1,56 +1,140 @@
 ---
-title: "System Skill Advisor: Feature Catalog"
-description: "Initial scaffold for the standalone System Skill Advisor feature catalog. Full population moves from the legacy source tree in child 003."
+title: "Skill Advisor: Feature Catalog"
+description: "Current feature inventory for the native-first skill advisor, covering daemon freshness, auto-indexing, lifecycle routing, 5-lane scorer fusion, MCP surface, runtime hooks, plugin bridge, and Python compatibility."
 trigger_phrases:
-  - "system skill advisor feature catalog"
+  - "skill advisor catalog"
   - "advisor feature catalog"
-  - "advisor_recommend catalog"
+  - "native advisor features"
+  - "skill advisor inventory"
 ---
 
-# System Skill Advisor: Feature Catalog
+# Skill Advisor: Feature Catalog
 
-This is the initial scaffold for the standalone `system-skill-advisor` feature catalog. Full population happens in child 003 when the advisor source, tests, feature catalog, and playbook move from `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/`.
+This catalog is the current inventory for the skill advisor. The package source of truth is `.opencode/skills/system-skill-advisor/mcp_server/`. Each group links to per-feature files that cite the real implementation and test anchors.
 
 ---
 
 ## TABLE OF CONTENTS
 
 - [1. OVERVIEW](#1--overview)
-- [2. MCP SURFACE](#2--mcp-surface)
-- [3. FUTURE POPULATION](#3--future-population)
+- [2. DAEMON AND FRESHNESS](#2--daemon-and-freshness)
+- [3. AUTO-INDEXING](#3--auto-indexing)
+- [4. LIFECYCLE ROUTING](#4--lifecycle-routing)
+- [5. SCORER FUSION](#5--scorer-fusion)
+- [6. MCP SURFACE](#6--mcp-surface)
+- [7. HOOKS AND PLUGIN](#7--hooks-and-plugin)
+- [8. PYTHON COMPAT](#8--python-compat)
 
 ---
 
 ## 1. OVERVIEW
 
-Initial scaffold, full population in child 003.
+The catalog covers 37 features across 7 groups. Group 1 owns daemon correctness; groups 2-3 own the index and lifecycle surface that feeds the scorer; group 4 owns scoring; group 5 exposes the MCP tools; groups 6-7 cover runtime integrations and Python compatibility.
 
-The legacy source catalog currently contains daemon freshness, auto-indexing, lifecycle routing, scorer fusion, MCP surface, hooks/plugin, and Python compatibility groups. This scaffold mirrors one real MCP surface entry so discovery has a concrete package-local feature anchor without duplicating all legacy content before the runtime move.
+| Group | Count | Scope |
+| --- | --- | --- |
+| [01--daemon-and-freshness](./01--daemon-and-freshness/) | 7 | Watcher, lease, lifecycle, generation, trust state, rebuild-from-source, cache invalidation |
+| [02--auto-indexing](./02--auto-indexing/) | 6 | Derived extraction, sanitizer, provenance, sync, anti-stuffing, DF/IDF corpus |
+| [03--lifecycle-routing](./03--lifecycle-routing/) | 5 | Age haircut, supersession, archive handling, schema migration, rollback |
+| [04--scorer-fusion](./04--scorer-fusion/) | 6 | 5-lane fusion, projection, ambiguity, attribution, ablation, weights config |
+| [06--mcp-surface](./06--mcp-surface/) | 5 | `advisor_recommend`, `advisor_rebuild`, `advisor_status`, `advisor_validate`, stable compat entrypoint |
+| [07--hooks-and-plugin](./07--hooks-and-plugin/) | 5 | Claude, Copilot, Gemini, Codex hooks plus OpenCode plugin bridge |
+| [08--python-compat](./08--python-compat/) | 3 | Python CLI shim, regression suite, bench runner |
+
+Baseline numbers (remediation SHA `97a318d83`):
+
+| Metric | Value |
+| --- | --- |
+| Full-corpus top-1 accuracy | 80.5% |
+| Holdout top-1 accuracy | 77.5% |
+| UNKNOWN count | <= 10 |
+| Python regression suite | 52 of 52 pass |
+| Advisor vitest tests | 167 across 23 files |
+| Watcher idle envelope | 0.031% CPU, 5.516 MB RSS |
+| Cache-hit p95 | ~6.989 ms |
+| Uncached p95 | ~11.45 ms |
 
 ---
 
-## 2. MCP SURFACE
+## 2. DAEMON AND FRESHNESS
 
-| Feature | File | Current state |
-|---|---|---|
-| `advisor_recommend` MCP tool | [06--mcp-surface/01-advisor-recommend.md](./06--mcp-surface/01-advisor-recommend.md) | Mirrored scaffold entry; implementation moves in child 003 |
+| Feature | File |
+| --- | --- |
+| Chokidar narrow-scope watcher | [01--daemon-and-freshness/01-watcher.md](./01--daemon-and-freshness/01-watcher.md) |
+| Workspace single-writer lease | [01--daemon-and-freshness/02-lease.md](./01--daemon-and-freshness/02-lease.md) |
+| Daemon lifecycle and health | [01--daemon-and-freshness/03-lifecycle.md](./01--daemon-and-freshness/03-lifecycle.md) |
+| Generation-tagged snapshot publication | [01--daemon-and-freshness/04-generation.md](./01--daemon-and-freshness/04-generation.md) |
+| Live / stale / absent / unavailable trust state | [01--daemon-and-freshness/05-trust-state.md](./01--daemon-and-freshness/05-trust-state.md) |
+| Rebuild from source on corrupt SQLite | [01--daemon-and-freshness/06-rebuild-from-source.md](./01--daemon-and-freshness/06-rebuild-from-source.md) |
+| Generation-tied cache invalidation | [01--daemon-and-freshness/07-cache-invalidation.md](./01--daemon-and-freshness/07-cache-invalidation.md) |
 
 ---
 
-## 3. FUTURE POPULATION
+## 3. AUTO-INDEXING
 
-Child 003 moves or rehomes the complete legacy catalog from:
+| Feature | File |
+| --- | --- |
+| Deterministic derived extraction | [02--auto-indexing/01-derived-extraction.md](./02--auto-indexing/01-derived-extraction.md) |
+| A7 sanitizer at every write boundary | [02--auto-indexing/02-sanitizer.md](./02--auto-indexing/02-sanitizer.md) |
+| Provenance fingerprints and trust lanes | [02--auto-indexing/03-provenance-and-trust-lanes.md](./02--auto-indexing/03-provenance-and-trust-lanes.md) |
+| Graph-metadata derived sync | [02--auto-indexing/04-sync.md](./02--auto-indexing/04-sync.md) |
+| Anti-stuffing and cardinality caps | [02--auto-indexing/05-anti-stuffing.md](./02--auto-indexing/05-anti-stuffing.md) |
+| DF/IDF corpus stats (active-only) | [02--auto-indexing/06-df-idf-corpus.md](./02--auto-indexing/06-df-idf-corpus.md) |
 
-```text
-.opencode/skills/system-spec-kit/mcp_server/skill_advisor/feature_catalog/
-```
+---
 
-Expected groups after full population:
+## 4. LIFECYCLE ROUTING
 
-- `01--daemon-and-freshness`
-- `02--auto-indexing`
-- `03--lifecycle-routing`
-- `04--scorer-fusion`
-- `06--mcp-surface`
-- `07--hooks-and-plugin`
-- `08--python-compat`
+| Feature | File |
+| --- | --- |
+| Derived-lane-only age haircut | [03--lifecycle-routing/01-age-haircut.md](./03--lifecycle-routing/01-age-haircut.md) |
+| Asymmetric supersession routing | [03--lifecycle-routing/02-supersession.md](./03--lifecycle-routing/02-supersession.md) |
+| Archive and future skills indexed but not routed | [03--lifecycle-routing/03-archive-handling.md](./03--lifecycle-routing/03-archive-handling.md) |
+| Schema v1 to v2 additive backfill | [03--lifecycle-routing/04-schema-migration.md](./03--lifecycle-routing/04-schema-migration.md) |
+| Atomic lifecycle rollback | [03--lifecycle-routing/05-rollback.md](./03--lifecycle-routing/05-rollback.md) |
+
+---
+
+## 5. SCORER FUSION
+
+| Feature | File |
+| --- | --- |
+| Five-lane analytical fusion | [04--scorer-fusion/01-five-lane-fusion.md](./04--scorer-fusion/01-five-lane-fusion.md) |
+| Skill-nodes / skill-edges projection | [04--scorer-fusion/02-projection.md](./04--scorer-fusion/02-projection.md) |
+| Top-2 ambiguity window | [04--scorer-fusion/03-ambiguity.md](./04--scorer-fusion/03-ambiguity.md) |
+| Lane contribution attribution | [04--scorer-fusion/04-attribution.md](./04--scorer-fusion/04-attribution.md) |
+| Lane-by-lane ablation protocol | [04--scorer-fusion/05-ablation.md](./04--scorer-fusion/05-ablation.md) |
+| Lane weights configuration | [04--scorer-fusion/06-weights-config.md](./04--scorer-fusion/06-weights-config.md) |
+
+---
+
+## 6. MCP SURFACE
+
+| Feature | File |
+| --- | --- |
+| `advisor_recommend` MCP tool | [06--mcp-surface/01-advisor-recommend.md](./06--mcp-surface/01-advisor-recommend.md) |
+| `advisor_rebuild` MCP tool | [06--mcp-surface/05-advisor-rebuild.md](./06--mcp-surface/05-advisor-rebuild.md) |
+| `advisor_status` MCP tool | [06--mcp-surface/02-advisor-status.md](./06--mcp-surface/02-advisor-status.md) |
+| `advisor_validate` MCP tool | [06--mcp-surface/03-advisor-validate.md](./06--mcp-surface/03-advisor-validate.md) |
+| Stable `compat/index.ts` entrypoint | [06--mcp-surface/04-compat-entrypoint.md](./06--mcp-surface/04-compat-entrypoint.md) |
+
+---
+
+## 7. HOOKS AND PLUGIN
+
+| Feature | File |
+| --- | --- |
+| Claude Code `user-prompt-submit` hook | [07--hooks-and-plugin/01-claude-hook.md](./07--hooks-and-plugin/01-claude-hook.md) |
+| Gemini CLI `user-prompt-submit` hook | [07--hooks-and-plugin/03-gemini-hook.md](./07--hooks-and-plugin/03-gemini-hook.md) |
+| Codex CLI native SessionStart/UserPromptSubmit hooks with prompt-wrapper fallback | [07--hooks-and-plugin/04-codex-hook.md](./07--hooks-and-plugin/04-codex-hook.md) |
+| OpenCode plugin bridge | [07--hooks-and-plugin/05-opencode-plugin-bridge.md](./07--hooks-and-plugin/05-opencode-plugin-bridge.md) |
+
+---
+
+## 8. PYTHON COMPAT
+
+| Feature | File |
+| --- | --- |
+| Python CLI shim (`skill_advisor.py`) | [08--python-compat/01-cli-shim.md](./08--python-compat/01-cli-shim.md) |
+| Python regression suite (52/52) | [08--python-compat/02-regression-suite.md](./08--python-compat/02-regression-suite.md) |
+| Python bench runner (`skill_advisor_bench.py`) | [08--python-compat/03-bench-runner.md](./08--python-compat/03-bench-runner.md) |

@@ -1,174 +1,68 @@
 {
-  "schema_version": 1,
-  "skill_id": "system-skill-advisor",
-  "skill_path": ".opencode/skills/system-skill-advisor/",
+  "schema_version": 2,
+  "skill_id": "skill_advisor",
   "family": "system",
   "category": "system",
-  "domains": [
-    "routing",
-    "advisor",
-    "gate-2",
-    "skill-graph",
-    "mcp",
-    "semantic-lane",
-    "legacy-bridge"
-  ],
-  "intent_signals": [
-    "skill routing",
-    "gate 2",
-    "advisor_recommend",
-    "advisor_status",
-    "which skill should handle this",
-    "route request to skill",
-    "skill advisor hook",
-    "system_skill_advisor mcp"
-  ],
   "edges": {
-    "depends_on": [],
+    "depends_on": [
+      { "target": "mcp-coco-index", "weight": 0.7, "context": "semantic search routing and discovery signals" }
+    ],
     "enhances": [
-      {
-        "target": "sk-code",
-        "weight": 0.7,
-        "context": "routes code implementation requests to surface-aware code workflows"
-      },
-      {
-        "target": "sk-doc",
-        "weight": 0.7,
-        "context": "routes markdown, skill package, catalog, playbook, and install-guide work"
-      },
-      {
-        "target": "sk-code-review",
-        "weight": 0.7,
-        "context": "routes read-only code review, audit, and findings-first feedback requests"
-      },
-      {
-        "target": "mcp-coco-index",
-        "weight": 0.6,
-        "context": "routes semantic code discovery when exact symbols are unknown"
-      },
-      {
-        "target": "mcp-code-mode",
-        "weight": 0.6,
-        "context": "routes external MCP orchestration tasks"
-      },
-      {
-        "target": "sk-git",
-        "weight": 0.5,
-        "context": "routes branch, commit, PR, and finish workflows"
-      }
+      { "target": "cli-claude-code", "weight": 0.7, "context": "routes claude delegation requests" },
+      { "target": "cli-codex", "weight": 0.7, "context": "routes codex delegation requests" },
+      { "target": "cli-gemini", "weight": 0.7, "context": "routes gemini delegation requests" },
+      { "target": "mcp-chrome-devtools", "weight": 0.7, "context": "routes browser debugging requests" },
+      { "target": "mcp-coco-index", "weight": 0.7, "context": "routes semantic code search requests" },
+      { "target": "mcp-code-mode", "weight": 0.7, "context": "routes MCP orchestration requests" },
+      { "target": "sk-code", "weight": 0.7, "context": "routes frontend and system-code requests via sk-code stack detection" },
+      { "target": "sk-code-review", "weight": 0.7, "context": "routes code review requests" },
+      { "target": "deep-research", "weight": 0.7, "context": "routes autonomous research requests" },
+      { "target": "deep-review", "weight": 0.7, "context": "routes autonomous review requests" },
+      { "target": "sk-doc", "weight": 0.7, "context": "routes documentation requests" },
+      { "target": "sk-git", "weight": 0.7, "context": "routes git workflow requests" },
+      { "target": "deep-agent-improvement", "weight": 0.7, "context": "routes agent improvement requests" },
+      { "target": "sk-prompt", "weight": 0.7, "context": "routes prompt improvement requests" },
+      { "target": "system-spec-kit", "weight": 0.7, "context": "routes spec folder and memory requests" }
     ],
     "siblings": [],
     "conflicts_with": [],
-    "prerequisite_for": [
-      {
-        "target": "system-spec-kit",
-        "weight": 0.7,
-        "context": "Gate 2 advisor routing is required before non-trivial spec-kit workflows"
-      }
-    ]
+    "prerequisite_for": []
   },
-  "manual": {
-    "depends_on": [
-      "system-spec-kit",
-      "015-skill-advisor-semantic-lane",
-      "015/009/001-design-and-decision-record",
-      "015/009/002-scaffold-system-skill-advisor-package"
-    ],
-    "related_to": [
-      "sk-code",
-      "sk-doc",
-      "sk-code-review",
-      "sk-git",
-      "sk-prompt",
-      "mcp-coco-index",
-      "mcp-code-mode",
-      "deep-research",
-      "deep-review",
-      "deep-ai-council",
-      "deep-agent-improvement"
-    ],
-    "supersedes": [
-      "system-spec-kit/skill_advisor (subsystem inside system-spec-kit)"
-    ]
-  },
+  "domains": ["routing", "advisor", "scoring", "graph", "confidence"],
+  "intent_signals": ["skill routing", "gate 2", "which skill", "route request"],
   "derived": {
-    "intent_signals": [
-      "advisor_recommend native MCP routing",
-      "advisor_status freshness check",
-      "advisor_rebuild skill graph refresh",
-      "advisor_validate corpus and slice validation",
-      "Gate 2 skill routing",
-      "which skill should handle this request",
-      "skill advisor prompt hook",
-      "system_skill_advisor standalone MCP",
-      "legacy advisor tool bridge",
-      "skill graph health"
-    ],
     "trigger_phrases": [
-      "skill advisor",
-      "system skill advisor",
-      "gate 2 routing",
-      "advisor_recommend",
-      "advisor_status",
-      "advisor_rebuild",
-      "advisor_validate",
-      "which skill should handle this",
-      "route this request to a skill",
-      "standalone advisor mcp"
+      "skill routing", "gate 2 routing", "which skill", "route request",
+      "skill advisor", "confidence threshold", "skill discovery",
+      "regression harness", "benchmark harness", "graph compiler"
     ],
     "key_topics": [
-      "standalone-mcp",
-      "legacy-tool-bridge",
-      "skill-routing",
-      "gate-2",
-      "advisor-tools",
-      "skill-graph",
-      "database-path-policy",
-      "runtime-hooks",
-      "semantic-lane"
+      "routing", "advisor", "scoring", "graph", "confidence",
+      "calibration", "regression", "benchmark", "compiler", "discovery"
     ],
-    "importance_tier": "critical",
-    "status": "in_progress",
     "key_files": [
-      ".opencode/skills/system-skill-advisor/SKILL.md",
-      ".opencode/skills/system-skill-advisor/README.md",
-      ".opencode/skills/system-skill-advisor/ARCHITECTURE.md",
-      ".opencode/skills/system-skill-advisor/INSTALL_GUIDE.md",
-      ".opencode/skills/system-skill-advisor/references/db-path-policy.md",
+      ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py",
+      ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor_runtime.py",
+      ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor_regression.py",
+      ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor_bench.py",
+      ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_graph_compiler.py",
+      ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill-graph.json",
+      ".opencode/skills/system-skill-advisor/mcp_server/scripts/fixtures/skill_advisor_regression_cases.jsonl",
       ".opencode/skills/system-skill-advisor/mcp_server/README.md"
     ],
     "entities": [
-      {
-        "name": "system-skill-advisor",
-        "kind": "skill",
-        "path": ".opencode/skills/system-skill-advisor/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "system_skill_advisor",
-        "kind": "reference",
-        "path": ".opencode/skills/system-skill-advisor/mcp_server/README.md",
-        "source": "manual"
-      },
-      {
-        "name": "advisor_recommend",
-        "kind": "mcp-tool",
-        "path": ".opencode/skills/system-skill-advisor/feature_catalog/06--mcp-surface/01-advisor-recommend.md",
-        "source": "manual"
-      }
+      { "name": "skill-advisor", "kind": "skill", "path": ".opencode/skills/system-skill-advisor/mcp_server/README.md", "source": "derived" },
+      { "name": "skill_advisor.py", "kind": "script", "path": ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py", "source": "derived" },
+      { "name": "skill_graph_compiler.py", "kind": "script", "path": ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_graph_compiler.py", "source": "derived" },
+      { "name": "skill_advisor_regression.py", "kind": "script", "path": ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor_regression.py", "source": "derived" },
+      { "name": "skill-graph.json", "kind": "config", "path": ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill-graph.json", "source": "derived" }
     ],
-    "causal_summary": "First-class skill package envelope for the extracted Skill Advisor. It documents the ADR-001 standalone MCP target, keeps stable advisor_* tool ids for legacy consumers, reserves the package-local skill graph database path, and prepares child 003 to move source, tests, and database ownership out of system-spec-kit.",
+    "causal_summary": "The skill advisor is the Gate 2 routing engine that scores user requests against all 19 skill descriptions using token normalization, synonym expansion, intent boosting, graph-derived transitive boosts, and confidence calibration. It returns ranked recommendations with dual-threshold filtering so the calling AI can invoke the right skill with measured certainty.",
     "source_docs": [
-      "SKILL.md",
       "README.md",
-      "ARCHITECTURE.md",
-      "references/db-path-policy.md",
-      "references/standalone-mcp-shape.md",
-      "references/legacy-tool-bridge.md",
-      "feature_catalog/feature_catalog.md",
-      "manual_testing_playbook/manual_testing_playbook.md"
+      "SET-UP_GUIDE.md"
     ],
-    "created_at": "2026-05-14T00:00:00Z",
-    "last_updated_at": "2026-05-14T00:00:00Z"
+    "created_at": "2026-04-13T00:00:00Z",
+    "last_updated_at": "2026-04-13T23:00:00Z"
   }
 }

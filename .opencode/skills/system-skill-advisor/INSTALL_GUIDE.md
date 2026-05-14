@@ -1,60 +1,183 @@
 ---
-title: "System Skill Advisor Install Guide"
-description: "Stub install guide for the future standalone System Skill Advisor MCP server registration handled by child 004."
-trigger_phrases:
-  - "system skill advisor install"
-  - "skill-advisor-launcher.cjs"
-  - "system_skill_advisor mcp registration"
+title: "Skill Advisor Native Bootstrap"
+description: "Bootstrap, verification, compatibility, rollback, and operator notes for the native advisor_recommend architecture."
 ---
 
-# System Skill Advisor Install Guide
+# Skill Advisor Native Bootstrap
 
-This is a stub for child 004. Child 002 only creates the package envelope.
+This is the canonical bootstrap guide for the native Skill Advisor. The advisor lives inside the existing system-spec-kit MCP server; do not register a second MCP server for it.
 
 ---
 
-## 1. CURRENT STATE
+## TABLE OF CONTENTS
 
-The package is envelope-only per `015/009/002-scaffold-system-skill-advisor-package`.
+- [1. OVERVIEW](#1-overview)
+- [2. PREREQUISITES](#2-prerequisites)
+- [3. INSTALLATION](#3-installation)
+- [4. VERIFICATION](#4-verification)
+- [5. NATIVE PACKAGE CHECKS](#5-native-package-checks)
+- [6. COMPAT SHIMS](#6-compat-shims)
+- [7. ROLLBACK](#7-rollback)
+- [8. OPERATOR CHECKS](#8-operator-checks)
+- [9. RELATED RESOURCES](#9-related-resources)
 
-Runtime source, tests, and database path resolution still live under:
+---
 
-```text
-.opencode/skills/system-spec-kit/mcp_server/skill_advisor/
+## 1. OVERVIEW
+
+The native advisor is a TypeScript package under `mcp_server/skill_advisor/` with the public MCP tools `advisor_recommend`, `advisor_rebuild`, `advisor_status`, and `advisor_validate`. This TypeScript path is primary, while the Python `skill_advisor.py` shim remains as the compatibility surface for scripts and prompt hooks.
+
+---
+
+## 2. PREREQUISITES
+
+- Node.js and npm available for the system-spec-kit MCP server.
+- Repository root as the working directory.
+- Runtime MCP configuration already points at the system-spec-kit MCP server.
+- `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED` is unset unless intentionally testing rollback.
+
+---
+
+## 3. INSTALLATION
+
+Install dependencies and build the MCP server:
+
+```bash
+npm --prefix .opencode/skills/system-spec-kit/mcp_server install
+npm --prefix .opencode/skills/system-spec-kit/mcp_server run build
 ```
 
-The standalone MCP server is not registered yet. Do not add runtime config entries in child 002.
+Start or refresh the system-spec-kit MCP server in the active runtime.
 
 ---
 
-## 2. FUTURE MCP SERVER REGISTRATION
+## 4. VERIFICATION
 
-Child 004 will author the real install flow.
-
-Planned steps:
-
-1. Add `.opencode/bin/skill-advisor-launcher.cjs`.
-2. Add the standalone MCP server entrypoint under `.opencode/skills/system-skill-advisor/mcp_server/`.
-3. Register `system_skill_advisor` in:
-   - `opencode.json`
-   - `.codex/config.toml`
-   - `.claude/mcp.json`
-   - `.gemini/settings.json`
-4. Keep public tool ids stable:
-   - `advisor_recommend`
-   - `advisor_status`
-   - `advisor_rebuild`
-   - `advisor_validate`
-5. Verify the database path:
+Verify native tool registration:
 
 ```text
-.opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sqlite
+advisor_status({"workspaceRoot":"/absolute/path/to/repo"})
+advisor_recommend({"prompt":"save this conversation context to memory","options":{"topK":1}})
+advisor_validate({"skillSlug":null})
 ```
 
-TODO for child 004: replace this stub with executable setup, config snippets, cold-start build behavior, and verification commands.
+Expected:
+
+- `advisor_status` returns `freshness`, `generation`, `trustState`, `lastGenerationBump`, `lastScanAt`, `skillCount`, and `laneWeights`.
+- `advisor_recommend` returns prompt-safe `recommendations[]`, cache state, lifecycle redirect metadata, and freshness trust.
+- `advisor_rebuild` rebuilds stale, absent, or unavailable advisor state and returns before/after freshness diagnostics.
+- `advisor_validate` returns real corpus, holdout, parity, safety, and latency measurements.
 
 ---
 
-## 3. MIGRATION NOTE
+## 5. NATIVE PACKAGE CHECKS
 
-The legacy advisor runtime remains co-located with `system-spec-kit` until child 003 moves source, tests, and database ownership into this package. Child 004 wires launch and runtime configs after that move.
+Run before declaring bootstrap complete:
+
+```bash
+npm --prefix .opencode/skills/system-spec-kit/mcp_server run typecheck
+npm --prefix .opencode/skills/system-spec-kit/mcp_server run build
+(cd .opencode/skills/system-spec-kit/mcp_server && ../scripts/node_modules/.bin/vitest run skill_advisor/tests/ code_graph/tests/ --reporter=default)
+```
+
+Current native advisor baseline:
+
+| Metric | Expected |
+| --- | --- |
+| Full corpus top-1 | 80.5% |
+| Holdout top-1 | 77.5% |
+| UNKNOWN count | <= 10 |
+| Python-correct regressions | 0 |
+| Python regression suite | 52/52 passed |
+| Package-local tests | 23 files / 167 tests |
+
+---
+
+## 6. COMPAT SHIMS
+
+`skill_advisor.py` remains the CLI compatibility surface. In one-shot mode it probes the native advisor first and translates `advisor_recommend` output back to the legacy JSON-array shape. If the native probe is unavailable, it falls back to the local Python scorer.
+
+```bash
+python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py "help me commit my changes"
+printf '%s' "help me commit my changes" | python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py --stdin
+```
+
+Testing controls:
+
+```bash
+python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py --force-native "save this context"
+python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py --force-local "save this context"
+```
+
+The OpenCode plugin bridge follows the same pattern: native probe, `advisor_recommend` delegation, then Python-backed brief fallback. Plugin consumers must use the stable entrypoint:
+
+```text
+.opencode/skills/system-skill-advisor/mcp_server/compat/index.ts
+```
+
+After build, the compiled path is:
+
+```text
+.opencode/skills/system-spec-kit/mcp_server/dist/skill_advisor/compat/index.js
+```
+
+---
+
+## 7. ROLLBACK
+
+Use rollback only long enough to diagnose or recover the native path.
+
+```bash
+# Disable prompt-time advisor surfaces and native recommendation output.
+export SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1
+
+# Keep hooks enabled but force Python compatibility where supported.
+export SPECKIT_SKILL_ADVISOR_FORCE_LOCAL=1
+
+# CLI-only Python path.
+python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py --force-local "your prompt"
+```
+
+Unset variables after recovery:
+
+```bash
+unset SPECKIT_SKILL_ADVISOR_HOOK_DISABLED
+unset SPECKIT_SKILL_ADVISOR_FORCE_LOCAL
+```
+
+---
+
+## 8. OPERATOR CHECKS
+
+Use `advisor_status` as the prompt-safe health source:
+
+```text
+advisor_status({"workspaceRoot":"/absolute/path/to/repo"})
+```
+
+State interpretation:
+
+| State | Meaning | Action |
+| --- | --- | --- |
+| `live` | Current graph generation is trusted | No action. |
+| `stale` | Source files are newer than graph state | Run `skill_graph_scan` or restart the watcher. |
+| `absent` | Graph state is missing | Rebuild from source; `advisor_recommend` should return an empty fail-open set. |
+| `unavailable` | Status cannot be read | Inspect daemon logs and rebuild source state. |
+| `degraded` | Runtime can only provide limited trust | Follow OP-001 in the manual playbook. |
+| `quarantined` | Malformed skill metadata was isolated | Follow OP-002 in the manual playbook. |
+
+Manual recovery scenarios live at:
+
+```text
+.opencode/skills/system-skill-advisor/mcp_server/manual_testing_playbook/manual_testing_playbook.md
+```
+
+---
+
+## 9. RELATED RESOURCES
+
+| Document | Purpose |
+| --- | --- |
+| [README.md](./README.md) | Package-local architecture and public API entrypoints. |
+| [README.md](./README.md) | Operator overview, quick start, runtime integrations. |
+| [Hook reference](../../references/hooks/skill-advisor-hook.md) | Claude, Copilot, Gemini, Codex, and OpenCode plugin hook contract. |

@@ -1,16 +1,27 @@
 ---
-title: "System Skill Advisor MCP Server Scaffold"
-description: "Drop target for the future standalone System Skill Advisor MCP server source, tests, and database ownership."
+title: "System Skill Advisor MCP Server"
+description: "Standalone package home for skill-advisor handlers, libraries, schemas, scripts, tests, benchmarks, and database ownership."
 trigger_phrases:
   - "system skill advisor mcp server"
-  - "child 003 drop target"
-  - "advisor mcp server scaffold"
+  - "advisor mcp server"
+  - "advisor standalone package"
 ---
 
-# System Skill Advisor MCP Server Scaffold
+# System Skill Advisor MCP Server
 
-Child 003's drop target.
+This directory now owns the advisor implementation that previously lived inside the Spec Kit MCP server tree.
 
-The advisor TypeScript source (`handlers/`, `lib/`, `tools/`, `schemas/`, `scripts/`, `compat/`, tests) plus the skill-graph SQLite DB move here during `015/009/003-move-advisor-source-db-and-tests`.
+## Structure
 
-No code yet.
+- `handlers/`: MCP handler implementations for `advisor_recommend`, `advisor_status`, `advisor_rebuild`, and `advisor_validate`.
+- `lib/`: scorer, daemon, freshness, lifecycle, compatibility, corpus, derived-metadata, auth, shadow, and utility modules.
+- `tools/`: advisor tool dispatch and package-local registration helpers.
+- `schemas/`: Zod contracts and compatibility schemas for advisor inputs, outputs, and derived metadata.
+- `scripts/`: Python compatibility runtime, graph compiler, routing-accuracy corpus tooling, fixtures, and generated script outputs.
+- `compat/`: TypeScript bridge surface for compatibility consumers.
+- `tests/`: Vitest and Python coverage for handlers, scorer behavior, schema contracts, compatibility, parity, cache, hook, and legacy regression cases.
+- `bench/`: calibration, latency, watcher, scorer, and code-graph benchmark harnesses.
+- `data/`: package-local runtime data such as shadow deltas.
+- `database/`: package-local `skill-graph.sqlite` and its WAL/SHM companions.
+
+The existing Spec Kit memory MCP server can still import these modules during the bridge window. Public advisor tool ids stay unchanged.

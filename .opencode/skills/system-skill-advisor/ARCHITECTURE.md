@@ -10,7 +10,7 @@ trigger_phrases:
 
 # System Skill Advisor Architecture
 
-This document records the child 002 architecture envelope for the standalone `system-skill-advisor` package. ADR-001 is the controlling decision: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/015-skill-advisor-semantic-lane/009-system-skill-advisor-extraction/001-design-and-decision-record/decision-record.md`.
+This document records the child 002 architecture envelope for the standalone `system-skill-advisor` package. ADR-001 is the controlling decision: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/013-skill-advisor-semantic-lane/009-system-skill-advisor-extraction/001-design-and-decision-record/decision-record.md`.
 
 ---
 

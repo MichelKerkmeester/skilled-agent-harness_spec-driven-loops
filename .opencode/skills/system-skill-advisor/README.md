@@ -1,111 +1,198 @@
 ---
-title: "System Skill Advisor"
-description: "Operator-facing entry point for the standalone Skill Advisor MCP package envelope and extraction references."
+title: "Skill Advisor Package"
+description: "Native skill routing package for advisor MCP tools, hooks, scoring, validation and Python compatibility."
 trigger_phrases:
-  - "system skill advisor readme"
-  - "skill advisor package"
-  - "advisor install guide"
-  - "advisor database path"
+  - "skill advisor"
+  - "advisor_recommend"
+  - "gate 2 routing"
+  - "skill advisor hook"
 ---
 
-# System Skill Advisor
+# Skill Advisor Package
 
-The System Skill Advisor routes non-trivial requests to the right skill. This package is the new first-class home for the advisor envelope created by child 002 of the 015/009 extraction.
-
----
-
+<!-- ANCHOR:table-of-contents -->
 ## TABLE OF CONTENTS
 
 - [1. OVERVIEW](#1--overview)
-- [2. CURRENT STATE](#2--current-state)
-- [3. STRUCTURE](#3--structure)
-- [4. DATABASE LOCATION](#4--database-location)
-- [5. INSTALLATION](#5--installation)
-- [6. RELATED DOCUMENTS](#6--related-documents)
+- [2. ARCHITECTURE](#2--architecture)
+- [3. DIRECTORY TREE](#3--directory-tree)
+- [4. KEY FILES](#4--key-files)
+- [5. BOUNDARIES AND FLOW](#5--boundaries-and-flow)
+- [6. ENTRYPOINTS](#6--entrypoints)
+- [7. VALIDATION](#7--validation)
+- [8. RELATED](#8--related)
+
+<!-- /ANCHOR:table-of-contents -->
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
-ADR-001 selects **Standalone Advisor MCP With Legacy Tool Bridge**. The final server id is `system_skill_advisor`; the public tool ids stay `advisor_recommend`, `advisor_rebuild`, `advisor_status`, and `advisor_validate`.
+`skill_advisor/` owns native Gate 2 skill routing for Spec Kit. It contains the scorer, daemon freshness checks, MCP handlers, runtime hook rendering, validation bundle and Python compatibility scripts.
 
-Use this README when you need operator orientation for the advisor package, database ownership, migration phase boundaries, or where to find the scaffolded catalog, playbook, and references.
+Current state:
 
----
+- Native MCP tools are the primary runtime surface.
+- Python scripts remain a compatibility path for callers that cannot use MCP tools directly.
+- Public responses stay prompt-safe and expose skill labels, scores, thresholds and trust metadata.
+- Command-backed skills use explicit alias groups where command ids and skill ids are legitimate names for the same capability.
 
-## 2. CURRENT STATE
-
-This is an envelope-only scaffold.
-
-| Area | State |
-|---|---|
-| Package docs | Present |
-| `graph-metadata.json` | Present |
-| Feature catalog | Initial scaffold only |
-| Manual testing playbook | Initial scaffold only |
-| `mcp_server/` source | Reserved for child 003 |
-| Runtime launcher | Future child 004 work |
-| Four-runtime MCP config | Future child 004 work |
-| Consumer cutover | Future child 005 work |
-
-Runtime code still lives under `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/` until child 003 moves it.
+<!-- /ANCHOR:overview -->
 
 ---
 
-## 3. STRUCTURE
+<!-- ANCHOR:architecture -->
+## 2. ARCHITECTURE
 
 ```text
-system-skill-advisor/
-+-- SKILL.md
-+-- README.md
-+-- ARCHITECTURE.md
-+-- INSTALL_GUIDE.md
-+-- graph-metadata.json
-+-- feature_catalog/
-+-- manual_testing_playbook/
-+-- references/
-`-- mcp_server/
-    +-- README.md
-    `-- database/
-        `-- .gitkeep
+╭────────────────────────────────────────────────────────────────╮
+│ Skill Advisor                                                  │
+╰────────────────────────────────────────────────────────────────╯
+
+┌──────────────┐      ┌──────────────┐      ┌──────────────────┐
+│ MCP callers  │ ───▶ │ handlers/    │ ───▶ │ lib/scorer/      │
+│ Hook callers │      │ tools/       │      │ lib/freshness/   │
+└──────┬───────┘      └──────┬───────┘      └────────┬─────────┘
+       │                     │                       │
+       ▼                     ▼                       ▼
+┌──────────────┐      ┌──────────────┐      ┌──────────────────┐
+│ compat/      │      │ schemas/     │      │ daemon + graph   │
+│ scripts/     │      │ docs/tests   │      │ metadata         │
+└──────────────┘      └──────────────┘      └──────────────────┘
+
+Dependency direction:
+handlers → lib → schemas
+compat → handlers and lib
+scripts call the native package first, then Python fallback when needed
 ```
 
-| Path | Purpose |
-|---|---|
-| `SKILL.md` | Runtime skill instructions and advisor routing policy. |
-| `graph-metadata.json` | Skill graph metadata for discovery and routing. |
-| `feature_catalog/` | Initial feature inventory. Full population lands in child 003. |
-| `manual_testing_playbook/` | Initial manual scenario package. Full population lands in child 003. |
-| `references/` | Package-local policies and ADR summaries. |
-| `mcp_server/` | Child 003 drop target for source, tests, and database ownership. |
+<!-- /ANCHOR:architecture -->
 
 ---
 
-## 4. DATABASE LOCATION
-
-The future advisor database lives at:
+<!-- ANCHOR:directory-tree -->
+## 3. DIRECTORY TREE
 
 ```text
-.opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sqlite
+skill_advisor/
+├── README.md
+├── INSTALL_GUIDE.md
+├── SET-UP_GUIDE.md
+├── bench/                    # Latency and scorer measurement helpers
+├── compat/                   # Stable package entrypoints for external callers
+├── daemon/                   # Watcher and freshness process code
+├── docs/                     # Operator notes and alignment records
+├── feature_catalog/          # Current feature inventory
+├── handlers/                 # MCP handler implementations
+├── lib/                      # Scorer, freshness, lifecycle and rendering logic
+├── manual_testing_playbook/  # Manual scenario package
+├── schemas/                  # Tool and metadata contracts
+├── scripts/                  # Python shim, regression and bench scripts
+├── tests/                    # Vitest and compatibility coverage
+└── tools/                    # MCP tool descriptors
 ```
 
-This is the package-local database path required by ADR-001 constraint A. See `references/db-path-policy.md` for the rule and rationale.
+<!-- /ANCHOR:directory-tree -->
 
 ---
 
-## 5. INSTALLATION
+<!-- ANCHOR:key-files -->
+## 4. KEY FILES
 
-The real standalone MCP install flow lands in child 004. It will add `.opencode/bin/skill-advisor-launcher.cjs` and wire `system_skill_advisor` into OpenCode, Codex, Claude, and Gemini runtime configs.
+| File | Role |
+|---|---|
+| `handlers/advisor-recommend.ts` | Scores prompts and returns prompt-safe recommendations. |
+| `handlers/advisor-status.ts` | Reports freshness, trust state and generation metadata. |
+| `handlers/advisor-rebuild.ts` | Rebuilds the advisor index from source metadata. |
+| `handlers/advisor-validate.ts` | Runs corpus, holdout, parity, safety and latency checks. |
+| `compat/index.ts` | Stable native compatibility entrypoint. |
+| `scripts/skill_advisor.py` | Python shim for runtimes that need CLI output. |
+| `lib/scorer/` | Five-lane scoring, ambiguity handling and narrow alias canonicalization. |
+| `lib/freshness/` | Freshness, trust and cache state logic. |
 
-Current operator guidance lives in `INSTALL_GUIDE.md`. Treat it as a stub until child 004 ships.
+<!-- /ANCHOR:key-files -->
 
 ---
 
-## 6. RELATED DOCUMENTS
+<!-- ANCHOR:boundaries-and-flow -->
+## 5. BOUNDARIES AND FLOW
 
-- `ARCHITECTURE.md`
-- `INSTALL_GUIDE.md`
-- `references/db-path-policy.md`
-- `references/standalone-mcp-shape.md`
-- `references/legacy-tool-bridge.md`
-- ADR-001: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/015-skill-advisor-semantic-lane/009-system-skill-advisor-extraction/001-design-and-decision-record/decision-record.md`
+Boundaries:
+
+- This package owns advisor routing only.
+- It may read skill metadata, graph metadata and advisor cache state.
+- It must not own code graph indexing or memory retrieval behavior.
+- Runtime plugins should import `dist/skill_advisor/compat/index.js`, not private compiled handler files.
+- Alias handling is internal to scoring and validation; it maps only fixed command/skill id groups and does not rewrite public recommendation ids.
+
+Control flow:
+
+```text
+╭────────────────────╮
+│ prompt or command  │
+╰─────────┬──────────╯
+          ▼
+┌────────────────────┐
+│ MCP tool or shim   │
+└─────────┬──────────┘
+          ▼
+┌────────────────────┐
+│ schema validation  │
+└─────────┬──────────┘
+          ▼
+┌────────────────────┐
+│ scorer + freshness │
+└─────────┬──────────┘
+          ▼
+┌────────────────────┐
+│ prompt-safe brief  │
+└────────────────────┘
+```
+
+<!-- /ANCHOR:boundaries-and-flow -->
+
+---
+
+<!-- ANCHOR:entrypoints -->
+## 6. ENTRYPOINTS
+
+| Entrypoint | Use |
+|---|---|
+| `advisor_recommend` | Runtime skill recommendation. |
+| `advisor_status` | Freshness and trust inspection. |
+| `advisor_rebuild` | Index rebuild after skill metadata changes. |
+| `advisor_validate` | Release and regression validation. |
+| `scripts/skill_advisor.py` | CLI compatibility and hook fallback. |
+
+<!-- /ANCHOR:entrypoints -->
+
+---
+
+<!-- ANCHOR:validation -->
+## 7. VALIDATION
+
+Run from the repository root:
+
+```bash
+npm --prefix .opencode/skills/system-spec-kit/mcp_server run typecheck
+npm --prefix .opencode/skills/system-spec-kit/mcp_server run build
+(cd .opencode/skills/system-spec-kit/mcp_server && ../scripts/node_modules/.bin/vitest run skill_advisor/tests/ --reporter=default)
+python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor_regression.py --dataset .opencode/skills/system-skill-advisor/mcp_server/scripts/fixtures/skill_advisor_regression_cases.jsonl
+```
+
+<!-- /ANCHOR:validation -->
+
+---
+
+<!-- ANCHOR:related -->
+## 8. RELATED
+
+| Document | Role |
+|---|---|
+| [INSTALL_GUIDE.md](./INSTALL_GUIDE.md) | Setup, rollback and operator checks. |
+| [Feature catalog](./feature_catalog/feature_catalog.md) | Current feature inventory. |
+| [Manual testing playbook](./manual_testing_playbook/manual_testing_playbook.md) | Manual validation scenarios. |
+| [Hook reference](../../references/hooks/skill-advisor-hook.md) | Runtime hook contract. |
+
+<!-- /ANCHOR:related -->

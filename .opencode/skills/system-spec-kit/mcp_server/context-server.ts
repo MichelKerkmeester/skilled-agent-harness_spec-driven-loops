@@ -85,20 +85,20 @@ import { runLineageBackfill } from './lib/storage/lineage-state.js';
 import * as hybridSearch from './lib/search/hybrid-search.js';
 import { createUnifiedGraphSearchFn } from './lib/search/graph-search-fn.js';
 import { isGraphUnifiedEnabled } from './lib/search/graph-flags.js';
-import * as graphDb from './code_graph/lib/code-graph-db.js';
-import { detectRuntime, type RuntimeInfo } from './code_graph/lib/runtime-detection.js';
+import * as graphDb from '../../system-code-graph/mcp_server/lib/code-graph-db.js';
+import { detectRuntime, type RuntimeInfo } from '../../system-code-graph/mcp_server/lib/runtime-detection.js';
 import {
   DB_FILENAME as SKILL_GRAPH_DB_FILENAME,
   closeDb as closeSkillGraphDb,
   indexSkillMetadata,
   initDb as initSkillGraphDb,
 } from './lib/skill-graph/skill-graph-db.js';
-import { computeAdvisorSourceSignature } from './skill_advisor/lib/freshness.js';
+import { computeAdvisorSourceSignature } from '../../system-skill-advisor/mcp_server/lib/freshness.js';
 import {
   getSkillGraphGenerationPath,
   publishSkillGraphGeneration,
-} from './skill_advisor/lib/freshness/generation.js';
-import { readAdvisorStatus } from './skill_advisor/handlers/advisor-status.js';
+} from '../../system-skill-advisor/mcp_server/lib/freshness/generation.js';
+import { readAdvisorStatus } from '../../system-skill-advisor/mcp_server/handlers/advisor-status.js';
 import * as sessionBoost from './lib/search/session-boost.js';
 import * as causalBoost from './lib/search/causal-boost.js';
 import * as bm25Index from './lib/search/bm25-index.js';
@@ -230,10 +230,7 @@ const SKILL_GRAPH_METADATA_FILENAME = 'graph-metadata.json';
 const SKILL_GRAPH_DATABASE_PATH = path.join(DATABASE_DIR, 'skill-graph.sqlite');
 const GRAPH_CONTEXT_EXCLUDED_TOOLS = new Set<string>([
   ...MEMORY_AWARE_TOOLS,
-  'code_graph_query',
-  'code_graph_context',
-  'code_graph_scan',
-  'code_graph_status',
+  // Code-graph MCP tools route through standalone system_code_graph per ADR-002.
 ]);
 
 interface GraphContextNeighborSummary {
@@ -271,8 +268,8 @@ interface DispatchGraphContextMeta {
 export interface StructuralRoutingNudge {
   advisory: true;
   readiness: 'ready';
-  preferredTool: 'code_graph_query';
-  secondaryTool: 'code_graph_context';
+  preferredTool: 'mcp__system_code_graph__code_graph_query';
+  secondaryTool: 'mcp__system_code_graph__code_graph_context';
   message: string;
   preservesAuthority: 'session_bootstrap';
   surface: 'response-hints' | 'session-bootstrap' | 'memory-context';
@@ -339,9 +336,9 @@ export function maybeStructuralNudge(
   return {
     advisory: true,
     readiness: 'ready',
-    preferredTool: 'code_graph_query',
-    secondaryTool: 'code_graph_context',
-    message: 'Advisory only: this looks like a structural question. Prefer `code_graph_query` before Grep or Glob for callers, imports, outline, and dependency lookups.',
+    preferredTool: 'mcp__system_code_graph__code_graph_query',
+    secondaryTool: 'mcp__system_code_graph__code_graph_context',
+    message: 'Advisory only: this looks like a structural question. Prefer `mcp__system_code_graph__code_graph_query` before Grep or Glob for callers, imports, outline, and dependency lookups.',
     preservesAuthority: 'session_bootstrap',
     surface: options.surface ?? 'response-hints',
   };
@@ -820,7 +817,7 @@ async function buildServerInstructions(): Promise<string> {
   ];
 
   // Phase 024 / Item 4 + M8 / T-CGQ-12: Session recovery digest from
-  // session-snapshot. 'empty' recommends code_graph_scan (graph absent);
+  // session-snapshot. 'empty' recommends mcp__system_code_graph__code_graph_scan (graph absent);
   // 'error' recommends memory_health because structural context is
   // unavailable, not merely outdated.
   try {
@@ -829,9 +826,9 @@ async function buildServerInstructions(): Promise<string> {
     const hasData = snap.specFolder || snap.graphFreshness !== 'error' || snap.sessionQuality !== 'unknown';
     if (hasData) {
       const recommended = !snap.primed ? 'call session_bootstrap()' :
-        snap.graphFreshness === 'empty' ? 'run code_graph_scan' :
-        snap.graphFreshness === 'error' ? 'call memory_health (structural context unavailable)' :
-        snap.sessionQuality === 'critical' ? 'call memory_context(resume)' : 'ready';
+        snap.graphFreshness === 'empty' ? 'run mcp__system_code_graph__code_graph_scan' :
+          snap.graphFreshness === 'error' ? 'call memory_health (structural context unavailable)' :
+            snap.sessionQuality === 'critical' ? 'call memory_context(resume)' : 'ready';
       lines.push('');
       lines.push('## Session Recovery');
       lines.push(`- Last spec folder: ${snap.specFolder || 'none'}`);
@@ -843,22 +840,22 @@ async function buildServerInstructions(): Promise<string> {
 
   // Phase 027 + M8 / T-CGQ-12 (R27-002): Structural bootstrap guidance for
   // non-hook runtimes. Readiness vocabulary is aligned across bootstrap,
-  // resume, health, and code_graph_query (ready | stale | absent |
-  // unavailable). code_graph_query is only recommended when structural
+  // resume, health, and mcp__system_code_graph__code_graph_query (ready | stale | absent |
+  // unavailable). mcp__system_code_graph__code_graph_query is only recommended when structural
   // context is actually reachable; 'absent' and 'unavailable' route to
   // repair/recovery, not query.
   lines.push('');
   lines.push('## Structural Bootstrap (Phase 027)');
   lines.push('Non-hook runtimes receive automatic structural context via session_bootstrap, session_resume, and auto-prime.');
-  lines.push('- If structural context shows "ready": code_graph_query is available for structural lookups');
-  lines.push('- If "stale": code_graph_query still works, but a session_bootstrap refresh is recommended');
-  lines.push('- If "absent" (empty/missing graph): run code_graph_scan first, then session_bootstrap');
-  lines.push('- If "unavailable" (DB unreachable / readiness probe failed): call memory_health for repair guidance instead of code_graph_query');
-  lines.push('- Recovery priority: session_bootstrap → session_resume → code_graph_scan');
+  lines.push('- If structural context shows "ready": mcp__system_code_graph__code_graph_query is available for structural lookups');
+  lines.push('- If "stale": mcp__system_code_graph__code_graph_query still works, but a session_bootstrap refresh is recommended');
+  lines.push('- If "absent" (empty/missing graph): run mcp__system_code_graph__code_graph_scan first, then session_bootstrap');
+  lines.push('- If "unavailable" (DB unreachable / readiness probe failed): call memory_health for repair guidance instead of mcp__system_code_graph__code_graph_query');
+  lines.push('- Recovery priority: session_bootstrap → session_resume → mcp__system_code_graph__code_graph_scan');
 
   // Phase 024 + M8 / T-CGQ-12: Tool routing decision tree.
-  // code_graph_query is only surfaced when graph freshness is 'fresh' or
-  // 'stale' (queryable). 'empty' → recommend code_graph_scan; 'error' →
+  // mcp__system_code_graph__code_graph_query is only surfaced when graph freshness is 'fresh' or
+  // 'stale' (queryable). 'empty' → recommend mcp__system_code_graph__code_graph_scan; 'error' →
   // recommend memory_health because the database probe failed.
   try {
     const { getSessionSnapshot: getSnap } = await import('./lib/session/session-snapshot.js');
@@ -868,9 +865,9 @@ async function buildServerInstructions(): Promise<string> {
       routingRules.push('Semantic/concept code search → mcp__cocoindex_code__search');
     }
     if (snap.graphFreshness === 'fresh' || snap.graphFreshness === 'stale') {
-      routingRules.push('Structural queries (callers, imports, deps) → code_graph_query');
+      routingRules.push('Structural queries (callers, imports, deps) → mcp__system_code_graph__code_graph_query');
     } else if (snap.graphFreshness === 'empty') {
-      routingRules.push('Structural queries → unavailable: run code_graph_scan first (graph is absent)');
+      routingRules.push('Structural queries → unavailable: run mcp__system_code_graph__code_graph_scan first (graph is absent)');
     } else if (snap.graphFreshness === 'error') {
       routingRules.push('Structural queries → unavailable: call memory_health to diagnose (graph readiness unavailable)');
     }
@@ -963,9 +960,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request, _extra: unknown)
     if (name === 'memory_context' && validatedArgs.mode === 'resume') {
       recordMetricEvent({ kind: 'memory_recovery' });
     }
-    if (name.startsWith('code_graph_')) {
-      recordMetricEvent({ kind: 'code_graph_query' });
-    }
+    // Code-graph MCP metrics now originate from standalone system_code_graph per ADR-002.
     if (typeof validatedArgs.specFolder === 'string' && validatedArgs.specFolder) {
       recordMetricEvent({ kind: 'spec_folder_change', specFolder: validatedArgs.specFolder as string });
     }
@@ -1066,7 +1061,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request, _extra: unknown)
           const envelope = JSON.parse(result.content[0].text) as Record<string, unknown>;
           if (envelope && typeof envelope === 'object' && !Array.isArray(envelope)) {
             const existingHints = Array.isArray(envelope.hints) ? envelope.hints as string[] : [];
-            existingHints.push('Tip: For code search queries, consider using mcp__cocoindex_code__search for semantic code search or code_graph_query for structural lookups.');
+            existingHints.push('Tip: For code search queries, consider using mcp__cocoindex_code__search for semantic code search or mcp__system_code_graph__code_graph_query for structural lookups.');
             envelope.hints = existingHints;
             result.content[0].text = JSON.stringify(envelope, null, 2);
           }
