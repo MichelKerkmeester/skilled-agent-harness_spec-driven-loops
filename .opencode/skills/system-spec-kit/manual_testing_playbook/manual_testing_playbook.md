@@ -39,7 +39,7 @@ Canonical source artifacts:
 - `.opencode/skills/system-spec-kit/manual_testing_playbook/21--implement-and-remove-deprecated-features/`
 - `.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/`
 - `.opencode/skills/system-spec-kit/manual_testing_playbook/23--doctor-commands/`
-- `.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/`
+- `.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/` — local-LLM memory substrate (query intelligence + causal graph + drift detection + cross-AI handoff + concurrent multi-AI safety)
 
 ---
 
