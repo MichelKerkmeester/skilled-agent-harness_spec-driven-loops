@@ -30,7 +30,7 @@ export { buildSkillAdvisorBrief } from '../lib/skill-advisor-brief.js';
 export { renderAdvisorBrief } from '../lib/render.js';
 ```
 
-The OpenCode plugin bridge imports the compiled equivalent at `dist/skill_advisor/compat/index.js`. The Python shim probes the same entrypoint through the daemon-probe helper. Pinning to private paths in `dist/handlers/` is explicitly disallowed.
+The OpenCode plugin bridge imports the compiled equivalent at `dist/system-skill-advisor/mcp_server/compat/index.js`. The Python shim probes the same entrypoint through the daemon-probe helper. Pinning to private paths in `dist/handlers/` is explicitly disallowed.
 
 <!-- /ANCHOR:current-reality -->
 

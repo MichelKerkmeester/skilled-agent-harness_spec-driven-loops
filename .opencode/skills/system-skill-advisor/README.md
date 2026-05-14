@@ -123,7 +123,7 @@ Boundaries:
 - This package owns advisor routing only.
 - It may read skill metadata, graph metadata and advisor cache state.
 - It must not own code graph indexing or memory retrieval behavior.
-- Runtime plugins should import `dist/skill_advisor/compat/index.js`, not private compiled handler files.
+- Runtime plugins should import `dist/system-skill-advisor/mcp_server/compat/index.js`, not private compiled handler files.
 - Alias handling is internal to scoring and validation; it maps only fixed command/skill id groups and does not rewrite public recommendation ids.
 
 Control flow:
