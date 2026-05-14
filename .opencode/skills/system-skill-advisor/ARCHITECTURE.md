@@ -70,11 +70,7 @@ The public `advisor_*` ids remain stable from the original extraction ADR. The `
 - Spec folders, memory save/search, resume ladder, and packet validation. Those remain `system-spec-kit`.
 - Code graph indexing and `ccc_*` semantic code search. Those remain `system-code-graph` / `mcp-coco-index`.
 - Private source code rewrites outside the advisor package.
-- The final `lib/skill-graph/` database/query library location until packet 011 completes.
-
-### Current Temporary Boundary
-
-The skill graph MCP handlers live in this package, but they still import the database/query layer from `.opencode/skills/system-spec-kit/mcp_server/lib/skill-graph/`. That is an explicit transitional boundary, not the final architecture.
+- Spec Kit Memory database, retrieval, and packet continuity internals.
 
 <!-- /ANCHOR:boundaries -->
 
@@ -124,7 +120,7 @@ Key dependency direction:
 | `handlers/` | `lib/`, `schemas/` | Handler orchestration only |
 | `compat/` | public handler/lib APIs | Stable bridge surface |
 | `scripts/skill_advisor.py` | native MCP/compat first, Python fallback second | Compatibility path |
-| `handlers/skill-graph/` | `system-spec-kit/mcp_server/lib/skill-graph/` | Transitional until packet 011 |
+| `handlers/skill-graph/` | `lib/skill-graph/` | Package-local skill graph DB/query library |
 
 <!-- /ANCHOR:components -->
 
@@ -160,13 +156,13 @@ The scorer uses the lane registry in `lib/scorer/lane-registry.ts`. Current live
 ```text
 skill_graph_scan
   -> handlers/skill-graph/scan.ts
-  -> transitional skill graph DB/query library
+  -> lib/skill-graph DB/query library
   -> package-local SQLite graph state
   -> freshness/generation update
 
 skill_graph_query/status/validate
   -> handlers/skill-graph/*
-  -> transitional skill graph DB/query library
+  -> lib/skill-graph DB/query library
   -> redacted MCP response
 ```
 

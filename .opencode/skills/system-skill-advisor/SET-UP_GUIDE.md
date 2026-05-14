@@ -14,14 +14,14 @@ This guide covers the current setup for `.opencode/skills/system-skill-advisor/m
 <!-- ANCHOR:table-of-contents -->
 ## TABLE OF CONTENTS
 
-- [1. OVERVIEW](#1-overview)
-- [2. CANONICAL INSTALL PATH](#2-canonical-install-path)
-- [3. COMPATIBILITY SHIM](#3-compatibility-shim)
-- [4. RUNTIME HOOKS AND PLUGIN](#4-runtime-hooks-and-plugin)
-- [5. VALIDATION](#5-validation)
-- [6. ROLLBACK CONTROLS](#6-rollback-controls)
-- [7. OPERATOR STATES](#7-operator-states)
-- [8. REFERENCE COMMANDS](#8-reference-commands)
+- [1. OVERVIEW](#1--overview)
+- [2. CANONICAL INSTALL PATH](#2--canonical-install-path)
+- [3. COMPATIBILITY SHIM](#3--compatibility-shim)
+- [4. RUNTIME HOOKS AND PLUGIN](#4--runtime-hooks-and-plugin)
+- [5. VALIDATION](#5--validation)
+- [6. ROLLBACK CONTROLS](#6--rollback-controls)
+- [7. OPERATOR STATES](#7--operator-states)
+- [8. REFERENCE COMMANDS](#8--reference-commands)
 
 ---
 
@@ -30,11 +30,16 @@ This guide covers the current setup for `.opencode/skills/system-skill-advisor/m
 <!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
-Phase 027 moved Skill Advisor routing into a native MCP package with three public tools:
+Phase 027 moved Skill Advisor routing into a native MCP package. The current public surface is eight tools:
 
 - `advisor_recommend`
+- `advisor_rebuild`
 - `advisor_status`
 - `advisor_validate`
+- `skill_graph_scan`
+- `skill_graph_query`
+- `skill_graph_status`
+- `skill_graph_validate`
 
 The native package owns scorer fusion, freshness trust, daemon watching, lifecycle redirects, prompt-safe response schemas, promotion gates, and package-local tests. The Python shim probes this native path first and falls back to local Python scoring when native routing is unavailable or explicitly bypassed.
 
@@ -140,7 +145,7 @@ The OpenCode bridge must use the stable package entrypoint:
 After build, plugin consumers load:
 
 ```text
-.opencode/skills/system-spec-kit/mcp_server/dist/skill_advisor/compat/index.js
+.opencode/skills/system-skill-advisor/mcp_server/dist/system-skill-advisor/mcp_server/compat/index.js
 ```
 
 ---

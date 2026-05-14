@@ -106,7 +106,7 @@ The package owns a dedicated MCP server named `system_skill_advisor`. Public too
 
 The stable tool ids matter because live consumers already call them from hooks, Python compatibility shims, plugin bridges, doctor workflows, install guides, and MCP clients. Server-level namespacing supplies the boundary, so callers use the standalone server without learning a new advisor vocabulary.
 
-The advisor implementation and database now live under this skill package, while memory remains focused on memory tools. One transitional boundary remains: the `skill_graph_*` handlers still import the database/query layer from `system-spec-kit/mcp_server/lib/skill-graph/` until packet 011 settles that library location.
+The advisor implementation, skill-graph library, and package-local database now live under this skill package, while memory remains focused on memory tools.
 
 ---
 
@@ -121,7 +121,7 @@ Always:
 - Keep the advisor database under `.opencode/skills/system-skill-advisor/mcp_server/database/`.
 - Keep public advisor and skill graph tool ids stable unless a later ADR explicitly changes them.
 - Preserve prompt-safety boundaries. Advisor metadata and lane attribution must not echo raw prompt text.
-- Treat the `lib/skill-graph/` dependency as transitional until packet 011 completes.
+- Keep `lib/skill-graph/` package-local to `system-skill-advisor`.
 
 Never:
 

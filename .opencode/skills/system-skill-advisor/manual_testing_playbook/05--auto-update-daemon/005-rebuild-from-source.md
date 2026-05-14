@@ -14,6 +14,18 @@ trigger_phrases:
 
 ---
 
+<!-- ANCHOR:table-of-contents -->
+## TABLE OF CONTENTS
+
+- [1. OVERVIEW](#1--overview)
+- [2. SCENARIO CONTRACT](#2--scenario-contract)
+- [3. TEST EXECUTION](#3--test-execution)
+- [4. SOURCE FILES](#4--source-files)
+
+---
+
+<!-- /ANCHOR:table-of-contents -->
+
 <!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
@@ -41,7 +53,7 @@ Validate the rebuild-from-source recovery path in `lib/freshness/rebuild-from-so
 1. In the disposable copy, replace `skill-graph.sqlite` with invalid bytes:
 
 ```bash
-printf 'corrupt' > /tmp/path-to-copy/.opencode/skills/system-skill-advisor/mcp_server/scripts/skill-graph.sqlite
+printf 'corrupt' > /tmp/path-to-copy/.opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sqlite
 ```
 
 2. Detect the failure:

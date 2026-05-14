@@ -8,10 +8,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/015-all-skills-alignment-sweep"
-    last_updated_at: "2026-05-14T19:35:00Z"
+    last_updated_at: "2026-05-14T20:10:00Z"
     last_updated_by: "codex"
-    recent_action: "Batch D aligned sk-doc asset/reference docs"
-    next_safe_action: "Commit Batch D, then continue Batch E"
+    recent_action: "Batch E aligned system docs and root READMEs"
+    next_safe_action: "Commit Batch E, then run final verification"
     blockers: []
     key_files:
       - "implementation-summary.md"
@@ -20,7 +20,7 @@ _memory:
       fingerprint: "sha256:2cfd48f68ca907b81aba558a20c7260fc016cd25dab7c1ab22a937ec7b98ed9d"
       session_id: "015-all-skills-alignment-sweep"
       parent_session_id: null
-    completion_pct: 70
+    completion_pct: 85
     open_questions: []
     answered_questions: []
 ---
@@ -73,7 +73,7 @@ Verified `sk-code`, `sk-code-review`, `sk-git`, and `sk-prompt` primary docs wit
 
 ### Batch E: system-* Skills and Root READMEs
 
-Pending.
+Aligned the root README and `.opencode/skills/README.md` to the current 19-skill inventory and canonical `mk-code-index` code-graph naming. Verified `system-code-graph` and `system-spec-kit` primary docs. Updated `system-skill-advisor` docs that still described the skill-graph library as transitional, the old compat dist path, or the wrong `skill-graph.sqlite` location. The changed advisor docs now validate against sk-doc.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -114,6 +114,10 @@ The sweep uses five sequential batches so each skill family can be reviewed and 
 | Batch D `quick_validate.py` | PASS, 5/5 sk-* skills valid |
 | Batch D changed-doc validation | PASS, six flowchart assets validate as assets and `install_guide_creation.md` validates as reference |
 | Batch D stale-reference grep | PASS, no `_TODO`, old advisor extraction path, or legacy `mcp__system_code_graph` matches in Batch D scope |
+| Batch E `quick_validate.py` | PASS, 3/3 system-* skills valid |
+| Batch E README validation | PASS, root README, skills README and system-skill-advisor README valid |
+| Batch E changed-doc validation | PASS, system-skill-advisor SKILL, ARCHITECTURE, SET-UP_GUIDE, DB policy, advisor rebuild feature and three playbook scenarios validate |
+| Batch E stale-reference grep | PASS for active docs; remaining `mcp__system_code_graph` matches are source/config comments outside doc-only scope |
 | Packet strict validation | Pending final close-out |
 <!-- /ANCHOR:verification -->
 
@@ -134,8 +138,8 @@ The sweep uses five sequential batches so each skill family can be reviewed and 
 | A | `da1a5b48e1` | CLI executor descriptions plus packet scaffold/audit | 4/4 `quick_validate.py` PASS |
 | B | `2f2cbe8378` | Deep-loop skills | 4/4 `quick_validate.py` PASS; changed docs validate |
 | C | `18ddb4294d` | MCP integration skills | 3/3 `quick_validate.py` PASS; primary and changed docs validate |
-| D | Pending | sk-* skills | 5/5 `quick_validate.py` PASS; changed docs validate |
-| E | Pending | system-* skills and root READMEs | Pending |
+| D | `e336331efa` | sk-* skills | 5/5 `quick_validate.py` PASS; changed docs validate |
+| E | Pending | system-* skills and root READMEs | 3/3 `quick_validate.py` PASS; changed docs validate |
 
 ---
 

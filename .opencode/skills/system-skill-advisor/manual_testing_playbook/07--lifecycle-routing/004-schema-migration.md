@@ -14,6 +14,18 @@ trigger_phrases:
 
 ---
 
+<!-- ANCHOR:table-of-contents -->
+## TABLE OF CONTENTS
+
+- [1. OVERVIEW](#1--overview)
+- [2. SCENARIO CONTRACT](#2--scenario-contract)
+- [3. TEST EXECUTION](#3--test-execution)
+- [4. SOURCE FILES](#4--source-files)
+
+---
+
+<!-- /ANCHOR:table-of-contents -->
+
 <!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
@@ -40,7 +52,7 @@ Validate that `lib/lifecycle/schema-migration.ts` performs additive backfill fro
 1. Snapshot the v1 state:
 
 ```bash
-cp /tmp/path-to-copy/.opencode/skills/system-skill-advisor/mcp_server/scripts/skill-graph.sqlite /tmp/pre-v1.sqlite
+cp /tmp/path-to-copy/.opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sqlite /tmp/pre-v1.sqlite
 ```
 
 2. Trigger migration by bringing up the daemon against the v1 workspace:

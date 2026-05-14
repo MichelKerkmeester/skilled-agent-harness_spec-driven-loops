@@ -41,9 +41,9 @@ Across this skill tree, `/spec_kit:resume` is the canonical recovery surface for
 <!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
-`.opencode/skills/` holds 17 skill folders. Skills are not passive references. Each skill contains executable guidance that an AI agent loads on demand through Gate 2 routing or explicit invocation. Skills carry their own references, assets, scripts, and graph metadata so domain knowledge stays close to the code that uses it.
+`.opencode/skills/` holds 19 skill folders. Skills are not passive references. Each skill contains executable guidance that an AI agent loads on demand through Gate 2 routing or explicit invocation. Skills carry their own references, assets, scripts, and graph metadata so domain knowledge stays close to the code that uses it.
 
-Skills divide into five categories: CLI orchestrators that delegate work to external AI binaries, MCP integrations that wrap third-party tools, code workflow and review skills, documentation and improvement-loop utilities, and the system-spec-kit foundation that governs every file modification. The primary routing engine is now the native TypeScript Skill Advisor package at `system-skill-advisor/mcp_server/`, exposed through `advisor_recommend`, `advisor_status`, and `advisor_validate`. The Python `system-skill-advisor/mcp_server/scripts/skill_advisor.py` entrypoint remains as a compatibility shim with native-first delegation and local fallback.
+Skills divide into five categories: CLI orchestrators that delegate work to external AI binaries, MCP integrations that wrap third-party tools, code workflow and review skills, documentation and improvement-loop utilities, and the system packages that govern routing, code graph, and file-modifying workflows. The primary routing engine is now the native TypeScript Skill Advisor package at `system-skill-advisor/mcp_server/`, exposed through four `advisor_*` tools and four `skill_graph_*` tools. The Python `system-skill-advisor/mcp_server/scripts/skill_advisor.py` entrypoint remains as a compatibility shim with native-first delegation and local fallback.
 
 Adding a skill is intentional. Every new skill goes through `sk-doc`'s scaffolding workflow, gets a SKILL.md with proper frontmatter, and is discovered by the native advisor through graph metadata indexing. The Python shim can still discover it directly when fallback mode is active.
 
@@ -51,16 +51,16 @@ Adding a skill is intentional. Every new skill goes through `sk-doc`'s scaffoldi
 
 | Metric | Value | Notes |
 | --- | --- | --- |
-| Total skill folders | 17 | Top-level skills under `.opencode/skills/` |
-| Folders with graph metadata | 16 | Every top-level skill folder under `.opencode/skills/` currently ships with `graph-metadata.json` |
+| Total skill folders | 19 | Top-level non-hidden skills under `.opencode/skills/` |
+| Folders with graph metadata | 19 | Every top-level non-hidden skill folder under `.opencode/skills/` currently ships with `graph-metadata.json` |
 | Graph families | 6 | `cli`, `mcp`, `sk-code`, `sk-deep`, `sk-util`, `system` |
 | CLI orchestrator skills | 4 | cli-claude-code, cli-codex, cli-gemini, cli-opencode |
 | MCP integration skills | 3 | mcp-chrome-devtools, mcp-coco-index, mcp-code-mode |
 | Code workflow and review skills | 2 | sk-code, sk-code-review |
-| Documentation, research, review, and improvement skills | 5 | deep-agent-improvement, deep-research, deep-review, sk-doc, sk-prompt |
-| Git and system skills | 2 | sk-git, system-spec-kit |
-| Skills with local scripts/ | 12 | See Section 4 for the current script-bearing folders |
-| Native advisor tools | 3 | `advisor_recommend`, `advisor_status`, `advisor_validate` |
+| Documentation, research, review, and improvement skills | 6 | deep-agent-improvement, deep-ai-council, deep-research, deep-review, sk-doc, sk-prompt |
+| Git and system skills | 4 | sk-git, system-code-graph, system-skill-advisor, system-spec-kit |
+| Skills with local scripts/ | 9 | See Section 4 for the current script-bearing folders |
+| Native advisor tools | 8 | `advisor_*` plus `skill_graph_*` tools exposed by `system_skill_advisor` |
 | Shared compatibility scripts | 5 | `skill_advisor.py`, runtime, bench, regression, and graph compiler |
 
 ### Key Features
@@ -133,11 +133,11 @@ The skill system covers four distinct workflow domains.
 
 **CLI Delegation.** The four CLI skills (cli-claude-code, cli-codex, cli-gemini, cli-opencode) let any AI assistant hand off work to an external AI binary. Each skill specifies the right binary flags, model selection, prompt formatting, and output parsing. This enables parallel execution and cross-AI validation without the calling AI needing to know binary internals.
 
-**MCP Tool Wrapping.** The five MCP skills route tool calls through Code Mode for token-efficient execution. mcp-code-mode is the hub: it handles ClickUp, Figma, Notion, Chrome DevTools, and other external services through a single TypeScript execution layer. mcp-coco-index adds semantic code search via vector embeddings for finding relevant implementations by concept rather than exact keyword.
+**MCP Tool Wrapping.** The three MCP integration skills route tool calls through Code Mode or package-local MCP surfaces for token-efficient execution. mcp-code-mode is the hub for external services, mcp-chrome-devtools handles browser debugging, and mcp-coco-index adds semantic code search via vector embeddings for finding relevant implementations by concept rather than exact keyword.
 
 **Code Workflow Skills.** `sk-code` provides **multi-stack coding standards, references, and assets** — surface-aware patterns, checklists, and verification recipes for project-specific frontend and system-code surfaces (JavaScript, TypeScript, Python, Shell, JSON/JSONC, MCP/agents/commands/skills). Smart-routing internals auto-detect the active stack. `sk-code-review` provides the findings-first review baseline and uses `sk-code` surface evidence where applicable.
 
-**System Foundation.** system-spec-kit governs all file modifications through spec folder workflows (Levels 1-3+), template validation, and Spec Kit Memory for context preservation across sessions. It includes a hook system for automated context preservation at Claude Code lifecycle boundaries (PreCompact, SessionStart, Stop), a structural code graph with 4 MCP tools (code_graph_scan/query/status/context), and a CocoIndex bridge for semantic-to-structural expansion. It is the only skill that is mandatory for every task involving file changes.
+**System Foundation.** system-spec-kit governs all file modifications through spec folder workflows (Levels 1-3+), template validation, and Spec Kit Memory for context preservation across sessions. system-skill-advisor owns Gate 2 routing and the skill graph, while system-code-graph owns the `mk-code-index` structural graph MCP tools. system-spec-kit remains mandatory for every task involving file changes.
 
 ### 3.2 FEATURE REFERENCE
 
@@ -170,6 +170,7 @@ The skill system covers four distinct workflow domains.
 | Skill | Version | Description |
 | --- | --- | --- |
 | `deep-agent-improvement` | 1.0.0.0 | Evaluator-first agent improvement with 5-dimension integration-aware scoring, dynamic profiling, deterministic benchmarks, and guarded promotion |
+| `deep-ai-council` | 1.0.0.0 | Multi-seat planning council for complex scoped-write decisions and convergence artifacts |
 | `deep-research` | 1.2.0 | Autonomous research loop with iterative investigation, externalized state, and convergence detection |
 | `deep-review` | 1.0.0 | Autonomous iterative code review with severity-weighted findings, dimension coverage, convergence detection, and release readiness verdicts |
 | `sk-doc` | 1.3.0.0 | Markdown quality enforcement, component templates, validation scripts, and DQI scoring |
@@ -180,6 +181,8 @@ The skill system covers four distinct workflow domains.
 | Skill | Version | Description |
 | --- | --- | --- |
 | `sk-git` | 1.1.0.0 | Git workflow orchestrator for workspace setup, clean commits, and work completion |
+| `system-code-graph` | 1.0.0.0 | Structural code indexing and `mk-code-index` MCP workflows |
+| `system-skill-advisor` | 0.1.0 | Standalone Gate 2 routing package and skill graph MCP server |
 | `system-spec-kit` | 2.2.27.0 | Spec folder workflow, template architecture, validation, and Spec Kit Memory |
 
 <!-- /ANCHOR:features -->
@@ -198,14 +201,8 @@ The skill system covers four distinct workflow domains.
 ├── mcp-chrome-devtools/    # Browser debugging via MCP
 ├── mcp-coco-index/         # Semantic code search via vector embeddings
 ├── mcp-code-mode/          # MCP orchestration hub (TypeScript)
-├── skill-advisor/          # Shared routing package
-│   ├── README.md
-│   ├── SET-UP_GUIDE.md
-│   ├── graph-metadata.json
-│   ├── feature_catalog/
-│   ├── manual_testing_playbook/
-│   └── scripts/            # Python compat shim, graph export compiler, regression, fixtures, out
 ├── deep-agent-improvement/       # Evaluator-first agent improvement loop
+├── deep-ai-council/        # Multi-seat planning council
 ├── sk-code/                # Multi-stack coding standards, references, assets
 ├── sk-code-review/         # Findings-first code review baseline
 ├── deep-research/       # Autonomous deep research loop
@@ -213,6 +210,8 @@ The skill system covers four distinct workflow domains.
 ├── sk-doc/                 # Documentation quality and templates
 ├── sk-git/                 # Git workflow orchestrator
 ├── sk-prompt/      # Prompt engineering specialist
+├── system-code-graph/      # Structural code graph and mk-code-index MCP server
+├── system-skill-advisor/   # Standalone Gate 2 advisor and skill graph package
 ├── system-spec-kit/        # Spec folder and memory foundation
 └── README.md               # This file
 ```
@@ -247,9 +246,11 @@ For the full system-spec-kit script inventory, see `system-spec-kit/scripts/scri
 | `cli-codex` | Yes | Yes | No |
 | `cli-gemini` | Yes | Yes | No |
 | `cli-opencode` | Yes | Yes | No |
-| `mcp-chrome-devtools` | Yes | No | No |
+| `mcp-chrome-devtools` | Yes | No | Yes |
 | `mcp-coco-index` | Yes | No | No |
 | `mcp-code-mode` | Yes | Yes | Yes |
+| `deep-agent-improvement` | Yes | No | Yes |
+| `deep-ai-council` | Yes | No | Yes |
 | `sk-code` | Varies | Varies | Varies |
 | `sk-code-review` | Varies | Varies | Varies |
 | `deep-research` | Yes | No | Yes |
@@ -257,6 +258,8 @@ For the full system-spec-kit script inventory, see `system-spec-kit/scripts/scri
 | `sk-doc` | Yes | Yes | Yes |
 | `sk-git` | Yes | Yes | No |
 | `sk-prompt` | Yes | Yes | No |
+| `system-code-graph` | Yes | No | No |
+| `system-skill-advisor` | Yes | No | No |
 | `system-spec-kit` | Yes | Yes | Yes |
 
 <!-- /ANCHOR:structure -->
@@ -488,8 +491,8 @@ The cap preserves a margin of uncertainty so the calling AI retains judgment on 
 | Document | Purpose |
 | --- | --- |
 | [Main Framework README](../../README.md) | Root project overview and framework entry point |
-| [Skill Advisor README](system-skill-advisor/mcp_server/README.md) | Native advisor overview, MCP quick start, compatibility shim, runtime hooks, and playbook index |
-| [Skill Advisor Setup Guide](system-skill-advisor/mcp_server/SET-UP_GUIDE.md) | Native bootstrap pointer, validation commands, rollback controls, and operator states |
+| [Skill Advisor README](system-skill-advisor/README.md) | Native advisor overview, MCP quick start, compatibility shim, runtime hooks, and playbook index |
+| [Skill Advisor Setup Guide](system-skill-advisor/SET-UP_GUIDE.md) | Native bootstrap pointer, validation commands, rollback controls, and operator states |
 | [system-spec-kit SKILL.md](system-spec-kit/SKILL.md) | Spec folder workflow and memory foundation |
 | [sk-doc SKILL.md](sk-doc/SKILL.md) | Documentation quality standards and templates |
 | [sk-git SKILL.md](sk-git/SKILL.md) | Git workflow orchestration |

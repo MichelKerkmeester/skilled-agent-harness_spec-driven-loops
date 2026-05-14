@@ -54,9 +54,9 @@ The framework adds four layers on top of the base platform:
 | **🤖 11 Agents**        | 11 custom specialists, multi-runtime                                                                                                                                                                                                              |
 | **🎯 19 Skills**        | Code, docs, git, prompts, MCP, research, review, improvement, cross-AI, and standalone system packages                                                                                                                                            |
 | **⌨️ 22 Commands**      | 6 spec_kit + 4 memory + 6 create + 2 improve + 3 doctor + 1 agent_router                                                                                                                                                                          |
-| **🔧 68 MCP Tools**     | spec_kit_memory (41), system_skill_advisor (8), system_code_graph (10), code mode (7), CocoIndex (1), sequential thinking (1). See canonical count in FAQ                                                                                        |
+| **🔧 68 MCP Tools**     | spec_kit_memory (41), system_skill_advisor (8), mk-code-index / mk_code_index (10), code mode (7), CocoIndex (1), sequential thinking (1). See canonical count in FAQ                                                                            |
 | **🔍 CocoIndex Code**   | [Forked](.opencode/skills/mcp-coco-index/NOTICE) from [cocoindex-io/cocoindex-code](https://github.com/cocoindex-io/cocoindex-code) (Apache 2.0) - semantic code search via vector embeddings and natural-language discovery across 28+ languages |
-| **🏗️ Code Graph**       | First-class skill at [`.opencode/skills/system-code-graph/`](.opencode/skills/system-code-graph/) with the current standalone MCP server name `system_code_graph`                                                                                |
+| **🏗️ Code Graph**       | First-class skill at [`.opencode/skills/system-code-graph/`](.opencode/skills/system-code-graph/) with standalone MCP server identity `mk-code-index` and client namespace `mcp__mk_code_index__*`                                               |
 | **⚡ Runtime Coverage** | OpenCode, Codex CLI, Claude Code, Gemini CLI, plus Copilot MCP/startup support                                                                                                                                                                    |
 
 ### How It All Connects
@@ -90,7 +90,7 @@ The framework adds four layers on top of the base platform:
          │          NATIVE MCP TOPOLOGY             │
          │  spec_kit_memory      context + memory   │
          │  system_skill_advisor skill routing      │
-         │  system_code_graph    structural graph   │
+         │  mk_code_index        structural graph   │
          │  cocoindex_code       semantic search    │
          │  code_mode            external tools     │
          │  sequential_thinking  reasoning helper   │
@@ -107,7 +107,7 @@ The framework adds four layers on top of the base platform:
 
 ### What's Shipped Recently
 
-Packet [014 system-code-graph extraction](.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/) moved the code graph into `.opencode/skills/system-code-graph/` with its own MCP boundary. The current registered MCP server name is still `system_code_graph`; the parallel 010 rename packet may supersede that with `mk-code-index`, so this README intentionally uses the name registered in the current runtime configs.
+Packet [014 system-code-graph extraction](.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/) moved the code graph into `.opencode/skills/system-code-graph/` with its own MCP boundary. The follow-on 010 rename established `mk-code-index` as the standalone server identity and `mcp__mk_code_index__*` as the live documentation namespace.
 
 Recent 038/039 work also tightened the public surface without turning this README into a changelog: [038 CocoIndex feature catalog](.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/038-coco-index-feature-catalog/) added a canonical mcp-coco-index feature inventory, [039 stress-test expansion](.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/039-stress-test-expansion-and-alignment/) aligned stress coverage, and the local llama-cpp [038](.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-llama-cpp/038-embedding-error-propagation/) / [039](.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-llama-cpp/039-token-aware-chunking/) packets hardened embedding failure reporting and token-aware truncation.
 
@@ -174,8 +174,8 @@ export OPENAI_API_KEY="your-key-here"
 # Check that the memory server builds correctly
 node .opencode/skills/system-spec-kit/mcp_server/dist/context-server.js --help
 
-# Check the current native MCP registrations
-rg '"spec_kit_memory"|"system_skill_advisor"|"system_code_graph"|"cocoindex_code"' opencode.json
+# Check the current native MCP registrations across runtime configs
+rg '"spec_kit_memory"|"system_skill_advisor"|"mk_code_index"|"system_code_graph"|"cocoindex_code"' opencode.json .claude/mcp.json .codex/config.toml .gemini/settings.json
 ```
 
 ### First Use
@@ -196,7 +196,7 @@ See [§4 Customizing for Your Stack](#customizing-for-your-stack) for the full c
 
 ### Code-Graph Indexing
 
-The standalone `system_code_graph` MCP server indexes **your project's production code** by default, not the framework backend. End users get this automatically through the committed config defaults. See [§4 Maintainer-Mode Code-Graph Flags](#maintainer-mode-code-graph-flags-already-disabled-for-end-users) only if you're contributing upstream.
+The standalone `mk-code-index` MCP server indexes **your project's production code** by default, not the framework backend. End users get this automatically through the committed config defaults. See [§4 Maintainer-Mode Code-Graph Flags](#maintainer-mode-code-graph-flags-already-disabled-for-end-users) only if you're contributing upstream.
 
 <!-- /ANCHOR:quick-start -->
 
@@ -391,7 +391,7 @@ The `spec_kit_memory` tools are organized into a layered architecture. Code grap
 | **L5** | Lifecycle       | 4      | 600          | Checkpoints and lifecycle state                                              |
 | **L6** | Analysis        | 8      | 1,200        | Causal graph, epistemic baselines, evaluations, and dashboards               |
 | **L7** | Maintenance     | 5      | 1,000        | Memory index scans, async ingest, and learning history                       |
-| **L8** | Moved Surfaces  | 0      | -            | Code graph lives in `system_code_graph`; advisor and skill graph live in `system_skill_advisor` |
+| **L8** | Moved Surfaces  | 0      | -            | Code graph lives in `mk-code-index`; advisor and skill graph live in `system_skill_advisor` |
 | **L9** | Coverage Graph  | 4      | 700          | Deep-loop coverage graph operations                                          |
 | **L9** | Council Graph   | 4      | 700          | Deep AI Council graph operations                                             |
 |        | **Total**       | **41** | **10,500**   |                                                                              |
@@ -590,7 +590,7 @@ Our CocoIndex is forked. The Python wrapper that powers semantic search is a sof
 &nbsp;
 #### How the Code Graph Works
 
-The Code Graph is a SQLite-backed structural index owned by `.opencode/skills/system-code-graph/` and registered as the standalone `system_code_graph` MCP server in the current runtime configs. It is available to supported CLIs through their runtime config files, with MCP callers using the `mcp__system_code_graph__*` namespace. A parallel 010 packet may rename this surface to `mk-code-index`; this README does not pre-empt that rename.
+The Code Graph is a SQLite-backed structural index owned by `.opencode/skills/system-code-graph/` and registered as the standalone `mk-code-index` MCP server. MCP callers use the `mcp__mk_code_index__*` namespace. Runtime config parity is mixed across clients during the rename transition, so docs use the canonical `mk-code-index` surface while follow-on config work handles remaining legacy bindings.
 
 **Startup injection.** When the MCP server starts, it initializes the `code-graph.sqlite` database, runs a non-blocking startup scan, and activates a file watcher. All four supported runtimes (Claude Code, Gemini CLI, GitHub Copilot, Codex CLI) transport the same compact startup shared-payload through their runtime hooks (`session-prime.ts` on Claude/Gemini/Copilot, `session-start.ts` on Codex). The payload includes a one-line health summary, `graphQualitySummary` (detector provenance + edge-enrichment summary), and the `sharedPayloadTransport` envelope so downstream consumers receive identical structural context regardless of runtime. `session_bootstrap()` remains available as a manual recovery surface when native hooks are disabled.
 
@@ -642,7 +642,7 @@ The code graph runtime has its own feature catalog and operator playbook under [
 | System                   | Best for                                                                   | Primary surface                                                                  |
 | ------------------------ | -------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
 | **CocoIndex**            | Concept search, similar implementations, unfamiliar modules                | `mcp__cocoindex_code__search`                                                    |
-| **Code Graph**           | Callers, imports, symbol outlines, impact analysis, neighborhood expansion | `mcp__system_code_graph__code_graph_*`, `mcp__system_code_graph__detect_changes`, `mcp__system_code_graph__ccc_*` |
+| **Code Graph**           | Callers, imports, symbol outlines, impact analysis, neighborhood expansion | `mcp__mk_code_index__code_graph_*`, `mcp__mk_code_index__detect_changes`, `mcp__mk_code_index__ccc_*` |
 | **Session bridge tools** | Session bootstrap, resume, and health checks around graph availability     | `session_bootstrap`, `session_resume`, `session_health`                          |
 | **CCC utilities**        | CocoIndex availability, reindexing, result feedback                        | `ccc_status`, `ccc_reindex`, `ccc_feedback`                                      |
 
@@ -850,7 +850,7 @@ These skills let you run **cross-CLI agent teams from any starting CLI**. Whiche
 **system-code-graph**
 - First-class code-graph subsystem at `.opencode/skills/system-code-graph/`
 - Owns structural AST indexing, SQLite graph storage, readiness contracts, `detect_changes`, and CocoIndex bridge helpers
-- Current MCP server name: `system_code_graph`; parallel packet 010 may supersede this with `mk-code-index`
+- Current MCP server name: `mk-code-index`; client namespace: `mcp__mk_code_index__*`
 
 **system-skill-advisor**
 - Standalone Gate 2 skill routing package at `.opencode/skills/system-skill-advisor/`
@@ -1191,13 +1191,13 @@ Code Mode MCP gives the AI access to external tools (Figma, GitHub, Chrome DevTo
 
 #### Native MCP Servers
 
-Defined in `opencode.json`:
+Canonical native server set:
 
 | Server                 | Tools | Purpose                                                                |
 | ---------------------- | ----- | ---------------------------------------------------------------------- |
 | `spec_kit_memory`      | 41    | Cognitive memory, session recovery, causal/eval tools, and graph loops |
 | `system_skill_advisor` | 8     | Gate 2 advisor routing plus skill-graph scan/query/status/validation   |
-| `system_code_graph`    | 10    | Structural code graph, `detect_changes`, and CocoIndex bridge helpers  |
+| `mk_code_index`        | 10    | Structural code graph, `detect_changes`, and CocoIndex bridge helpers  |
 | `code_mode`            | 7     | External tool orchestration via TypeScript execution                   |
 | `cocoindex_code`       | 1     | Semantic code search via vector embeddings                             |
 | `sequential_thinking`  | 1     | Structured multi-step reasoning for complex problems                   |
@@ -1282,7 +1282,7 @@ The other shipped skills will continue working unchanged: `sk-doc` will still va
 
 - **`CLAUDE.md`** - Gate definitions, behavior rules, coding anti-patterns. Used by Claude Code (primary runtime).
 - **`AGENTS.md`** - Agent routing, capability reference, gate documentation. Used by all runtimes.
-- **`opencode.json`** - MCP server bindings (4 servers), model configuration. Used by OpenCode platform.
+- **`opencode.json`** - MCP server bindings, model configuration, and launcher notes. Used by OpenCode platform.
 - **`.utcp_config.json`** - Code Mode external tool registrations. Used by `mcp-code-mode` skill.
 - **`.claude/mcp.json`** - Claude Code MCP configuration. Claude Code only.
 - **`.codex/config.toml`** - Codex CLI MCP configuration and profile definitions.
@@ -1332,9 +1332,9 @@ The runtime centers on a SQLite `memory_index` table with 56 columns plus compan
 - **Paths** - The checked-in configs default to the provider-keyed database path under `.opencode/skills/system-spec-kit/mcp_server/database/`. The filename encodes provider, model, dimension and dtype (for example: `context-index__llama-cpp__unsloth-embeddinggemma-300m-gguf__768__q8.sqlite`). If a runtime cannot write inside the repo, override `MEMORY_DB_PATH` (and, when relevant, `SPEC_KIT_DB_DIR`) to a writable location.
 
 &nbsp;
-### opencode.json Structure
+### MCP Config Shape
 
-Abbreviated shape; `opencode.json` is the source of truth for launcher paths and environment notes.
+Abbreviated shape. Runtime config files can temporarily differ while the `mk-code-index` rename is being rolled out across clients; the canonical code-graph identity is `mk_code_index` / `mcp__mk_code_index__*`.
 
 ```json
 {
@@ -1345,7 +1345,7 @@ Abbreviated shape; `opencode.json` is the source of truth for launcher paths and
     "system_skill_advisor": {
       "type": "local"
     },
-    "system_code_graph": {
+    "mk_code_index": {
       "type": "local"
     },
     "code_mode": {
@@ -1442,7 +1442,7 @@ A: Define the agent in `.opencode/agents/` (the source of truth), then copy the 
 &nbsp;
 **Q: How many MCP tools are there and where are they defined?**
 
-A: 68 total across 6 native MCP servers, sourced from registered MCP-dispatched tools only. Breakdown: 41 `spec_kit_memory` tools from `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts`, 8 `system_skill_advisor` tools from `.opencode/skills/system-skill-advisor/mcp_server/advisor-server.ts`, 10 `system_code_graph` tools from `.opencode/skills/system-code-graph/mcp_server/tool-schemas.ts`, 7 code mode tools, 1 semantic code search tool (`cocoindex_code`), and 1 sequential thinking tool. All server bindings are defined in `opencode.json`.
+A: 68 total across 6 native MCP servers, sourced from registered MCP-dispatched tools only. Breakdown: 41 `spec_kit_memory` tools from `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts`, 8 `system_skill_advisor` tools from `.opencode/skills/system-skill-advisor/mcp_server/advisor-server.ts`, 10 `mk-code-index` tools from `.opencode/skills/system-code-graph/mcp_server/tool-schemas.ts`, 7 code mode tools, 1 semantic code search tool (`cocoindex_code`), and 1 sequential thinking tool. Canonical code-graph docs use `mk-code-index` / `mcp__mk_code_index__*`; runtime config parity is tracked separately where legacy keys remain.
 &nbsp;
 
 **Q: What is the feature catalog?**
@@ -1484,4 +1484,4 @@ A: The feature catalog is a 294-entry reference across 22 categories documenting
 <!-- /ANCHOR:related-documents -->
 
 
-*Documentation version: 4.7 | Last updated: 2026-05-14 | Framework: 11 agents, 19 skills, 22 commands, 68 MCP tools (41 spec_kit_memory + 8 system_skill_advisor + 10 system_code_graph + 7 code mode + 1 CocoIndex + 1 sequential thinking; deferred / internal-only handlers do NOT count).*
+*Documentation version: 4.8 | Last updated: 2026-05-14 | Framework: 11 agents, 19 skills, 22 commands, 68 MCP tools (41 spec_kit_memory + 8 system_skill_advisor + 10 mk-code-index + 7 code mode + 1 CocoIndex + 1 sequential thinking; deferred / internal-only handlers do NOT count).*

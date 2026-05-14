@@ -75,9 +75,9 @@ DQI proxy uses four local signals: template pass, frontmatter budget, current-re
 | sk-doc | 72 md | 92 -> 95 | Removed generated `_TODO` tails from six flowchart assets and `install_guide_creation.md`; added real overview sections to flowchart assets | Aligned in Batch D |
 | sk-git | 44 md | 90 -> 91 | No blocking sk-doc findings; primary docs validate | Verified in Batch D |
 | sk-prompt | 40 md | 90 -> 91 | No blocking sk-doc findings; primary docs validate | Verified in Batch D |
-| system-code-graph | 50 md | 94 | Skill docs already use `mk-code-index`; root README still stale | Pending Batch E |
-| system-skill-advisor | 121 md | 91 | Some advisor docs still mention old compat dist path or wrong DB path | Pending Batch E |
-| system-spec-kit | 1305 md | 90 | Primary docs validate; targeted root/current-reality checks still needed | Pending Batch E |
+| system-code-graph | 50 md | 94 -> 95 | Package docs already use `mk-code-index`; root README now uses canonical `mk-code-index` / `mcp__mk_code_index__*` language | Verified in Batch E |
+| system-skill-advisor | 121 md | 91 -> 95 | Updated package-local skill graph library, compat entrypoint, DB path and `advisor_rebuild` docs; touched docs validate | Aligned in Batch E |
+| system-spec-kit | 1305 md | 90 -> 91 | Primary docs validate; source/config code-graph namespace drift remains out of doc-only scope and is routed to follow-on | Verified in Batch E |
 
 ---
 

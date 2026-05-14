@@ -39,7 +39,7 @@ Current state:
 - Python scripts remain a compatibility path for callers that cannot use MCP tools directly.
 - Public responses stay prompt-safe and expose skill labels, scores, thresholds and trust metadata.
 - Command-backed skills use explicit alias groups where command ids and skill ids are legitimate names for the same capability.
-- `lib/skill-graph/` database/query logic remains a transitional dependency from `system-spec-kit` until packet 011 completes.
+- `lib/skill-graph/` database/query logic is package-local to `system-skill-advisor`.
 
 <!-- /ANCHOR:overview -->
 

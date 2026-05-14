@@ -13,8 +13,17 @@ trigger_phrases:
 
 ---
 
+<!-- ANCHOR:1-overview -->
+## 1. OVERVIEW
+
+This policy fixes the current runtime location for the advisor's package-local SQLite skill graph database and its sidecar files.
+
+---
+
+<!-- /ANCHOR:1-overview -->
+
 <!-- ANCHOR:1-policy -->
-## 1. POLICY
+## 2. POLICY
 
 The advisor database lives inside the standalone advisor skill package:
 
@@ -40,7 +49,7 @@ skill-graph.sqlite-shm
 <!-- /ANCHOR:1-policy -->
 
 <!-- ANCHOR:2-rationale -->
-## 2. RATIONALE
+## 3. RATIONALE
 
 ADR-001 constraint A requires DB-local ownership for the extracted advisor. The database is the advisor's runtime state, so it belongs with the skill that reads, writes, validates, and rebuilds it.
 
@@ -56,7 +65,7 @@ This separation gives cleaner mutation scope:
 <!-- /ANCHOR:2-rationale -->
 
 <!-- ANCHOR:3-test-and-ci-override -->
-## 3. TEST AND CI OVERRIDE
+## 4. TEST AND CI OVERRIDE
 
 `SYSTEM_SKILL_ADVISOR_DB_DIR` is allowed for tests and disposable CI runs only.
 
@@ -67,10 +76,10 @@ Production and operator docs should treat the package-local path as the default.
 <!-- /ANCHOR:3-test-and-ci-override -->
 
 <!-- ANCHOR:4-migration-notes -->
-## 4. MIGRATION NOTES
+## 5. MIGRATION NOTES
 
 Current package state keeps the database under `mcp_server/database/` and exposes it through the standalone `system_skill_advisor` MCP server.
 
-The `skill_graph_*` handlers are advisor-owned. The lower-level `lib/skill-graph/` database/query library is still a transitional dependency from `system-spec-kit` until packet 011 completes.
+The `skill_graph_*` handlers and the lower-level `lib/skill-graph/` database/query library are advisor-owned and package-local.
 
 <!-- /ANCHOR:4-migration-notes -->
