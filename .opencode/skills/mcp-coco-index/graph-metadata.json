@@ -22,6 +22,14 @@
       }
     ]
   },
+  "manual": {
+    "depends_on": [],
+    "related_to": [
+      "mcp-code-mode",
+      "system-spec-kit",
+      "sk-code"
+    ]
+  },
   "domains": [
     "code-search",
     "semantic-search",
@@ -60,6 +68,13 @@
       "mcp search tool",
       "query intent routing",
       "cocoindex code"
+    ],
+    "intent_signals": [
+      "semantic code search",
+      "find code by intent",
+      "index codebase",
+      "query code patterns",
+      "refresh index"
     ],
     "key_files": [
       ".opencode/skills/mcp-coco-index/SKILL.md",

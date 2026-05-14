@@ -34,6 +34,15 @@
       }
     ]
   },
+  "manual": {
+    "depends_on": [],
+    "related_to": [
+      "sk-code-review",
+      "system-spec-kit",
+      "mcp-chrome-devtools",
+      "sk-prompt"
+    ]
+  },
   "domains": [
     "code",
     "smart-router",
@@ -138,6 +147,13 @@
       "language-sub-detection",
       "code-quality",
       "verification"
+    ],
+    "intent_signals": [
+      "implement code",
+      "fix bug",
+      "refactor",
+      "detect code surface",
+      "verify after change"
     ],
     "source_docs": [
       "SKILL.md",

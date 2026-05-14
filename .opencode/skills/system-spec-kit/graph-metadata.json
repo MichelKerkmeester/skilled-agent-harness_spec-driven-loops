@@ -32,6 +32,16 @@
       }
     ]
   },
+  "manual": {
+    "depends_on": [],
+    "related_to": [
+      "sk-doc",
+      "sk-code",
+      "sk-git",
+      "deep-research",
+      "deep-review"
+    ]
+  },
   "domains": [
     "spec",
     "memory",
@@ -73,6 +83,13 @@
       "context preservation",
       "hybrid memory search",
       "validation gates"
+    ],
+    "intent_signals": [
+      "create spec folder",
+      "save context",
+      "resume session",
+      "validate packet",
+      "preserve continuity"
     ],
     "key_files": [
       ".opencode/skills/system-spec-kit/SKILL.md",

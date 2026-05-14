@@ -28,6 +28,16 @@
       }
     ]
   },
+  "manual": {
+    "depends_on": [
+      "sk-code"
+    ],
+    "related_to": [
+      "deep-review",
+      "system-spec-kit",
+      "sk-doc"
+    ]
+  },
   "domains": [
     "review",
     "audit",
@@ -71,6 +81,13 @@
       "actionable-line-findings",
       "review-baseline-gate",
       "quality-gate-evidence"
+    ],
+    "intent_signals": [
+      "review code",
+      "rank findings",
+      "security review",
+      "merge readiness",
+      "quality gate"
     ],
     "key_files": [
       ".opencode/skills/sk-code-review/SKILL.md",

@@ -26,6 +26,18 @@
     "conflicts_with": [],
     "prerequisite_for": []
   },
+  "manual": {
+    "depends_on": [
+      "system-spec-kit"
+    ],
+    "related_to": [
+      "cli-claude-code",
+      "cli-codex",
+      "sk-code",
+      "mcp-code-mode",
+      "system-spec-kit"
+    ]
+  },
   "domains": [
     "cli",
     "delegation",
@@ -62,6 +74,13 @@
       "google-backed-code-analysis",
       "architecture-sweep",
       "search-grounded-research"
+    ],
+    "intent_signals": [
+      "delegate to gemini",
+      "google search research",
+      "architecture sweep",
+      "large context analysis",
+      "cross-model validation"
     ],
     "key_files": [
       ".opencode/skills/cli-gemini/SKILL.md",

@@ -16,6 +16,14 @@
       }
     ]
   },
+  "manual": {
+    "depends_on": [],
+    "related_to": [
+      "mcp-chrome-devtools",
+      "mcp-coco-index",
+      "cli-opencode"
+    ]
+  },
   "domains": [
     "mcp",
     "tool-chain",
@@ -53,6 +61,13 @@
       "context reduction",
       "type-safe orchestration",
       "mcp code mode"
+    ],
+    "intent_signals": [
+      "orchestrate mcp tools",
+      "chain tool calls",
+      "execute typescript tool flow",
+      "integrate external mcp",
+      "reduce tool context"
     ],
     "key_files": [
       ".opencode/skills/mcp-code-mode/SKILL.md",

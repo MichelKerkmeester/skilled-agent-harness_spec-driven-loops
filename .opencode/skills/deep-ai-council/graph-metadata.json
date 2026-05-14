@@ -22,6 +22,16 @@
     "conflicts_with": [],
     "prerequisite_for": []
   },
+  "manual": {
+    "depends_on": [
+      "system-spec-kit"
+    ],
+    "related_to": [
+      "deep-research",
+      "deep-agent-improvement",
+      "sk-prompt"
+    ]
+  },
   "domains": [
     "planning",
     "deliberation",
@@ -63,6 +73,13 @@
       "append-only state",
       "council-artifact-persistence",
       "derived-council-graph"
+    ],
+    "intent_signals": [
+      "multi-seat planning",
+      "deliberate options",
+      "compare decisions",
+      "persist council artifacts",
+      "check convergence"
     ],
     "key_files": [
       ".opencode/skills/deep-ai-council/SKILL.md",

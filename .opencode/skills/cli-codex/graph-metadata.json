@@ -26,6 +26,18 @@
     "conflicts_with": [],
     "prerequisite_for": []
   },
+  "manual": {
+    "depends_on": [
+      "system-spec-kit"
+    ],
+    "related_to": [
+      "cli-claude-code",
+      "cli-gemini",
+      "sk-code",
+      "mcp-code-mode",
+      "system-spec-kit"
+    ]
+  },
   "domains": [
     "cli",
     "delegation",
@@ -63,6 +75,13 @@
       "repo-analysis",
       "openai-backed-review",
       "codex-cli-handoff"
+    ],
+    "intent_signals": [
+      "delegate to codex",
+      "web research",
+      "repo analysis",
+      "codex review",
+      "parallel generation"
     ],
     "key_files": [
       ".opencode/skills/cli-codex/SKILL.md",

@@ -32,6 +32,16 @@
     "conflicts_with": [],
     "prerequisite_for": []
   },
+  "manual": {
+    "depends_on": [],
+    "related_to": [
+      "sk-doc",
+      "sk-code",
+      "cli-claude-code",
+      "cli-codex",
+      "cli-gemini"
+    ]
+  },
   "domains": [
     "prompt",
     "framework",
@@ -71,6 +81,13 @@
       "clear scoring",
       "depth methodology",
       "structured prompting"
+    ],
+    "intent_signals": [
+      "improve prompt",
+      "select prompt framework",
+      "score clear quality",
+      "structure prompt",
+      "rewrite instructions"
     ],
     "key_files": [
       ".opencode/skills/sk-prompt/SKILL.md",

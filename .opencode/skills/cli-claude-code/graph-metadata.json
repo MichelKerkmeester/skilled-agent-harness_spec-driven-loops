@@ -26,6 +26,18 @@
     "conflicts_with": [],
     "prerequisite_for": []
   },
+  "manual": {
+    "depends_on": [
+      "system-spec-kit"
+    ],
+    "related_to": [
+      "cli-codex",
+      "cli-gemini",
+      "sk-code",
+      "mcp-code-mode",
+      "system-spec-kit"
+    ]
+  },
   "domains": [
     "cli",
     "delegation",
@@ -62,6 +74,13 @@
       "deep-reasoning-handoff",
       "claude-code-cli",
       "code-editing-escalation"
+    ],
+    "intent_signals": [
+      "delegate to claude",
+      "deep reasoning",
+      "code edit handoff",
+      "structured output",
+      "claude review"
     ],
     "key_files": [
       ".opencode/skills/cli-claude-code/SKILL.md",

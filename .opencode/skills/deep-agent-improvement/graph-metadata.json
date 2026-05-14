@@ -16,6 +16,16 @@
     "conflicts_with": [],
     "prerequisite_for": []
   },
+  "manual": {
+    "depends_on": [
+      "system-spec-kit"
+    ],
+    "related_to": [
+      "sk-doc",
+      "sk-prompt",
+      "deep-ai-council"
+    ]
+  },
   "domains": [
     "agent",
     "evaluation",
@@ -54,6 +64,13 @@
       "benchmark harness",
       "promotion rules",
       "rollback controls"
+    ],
+    "intent_signals": [
+      "improve agent",
+      "score candidate",
+      "benchmark agent",
+      "guard promotion",
+      "rollback comparison"
     ],
     "key_files": [
       ".opencode/skills/deep-agent-improvement/SKILL.md",

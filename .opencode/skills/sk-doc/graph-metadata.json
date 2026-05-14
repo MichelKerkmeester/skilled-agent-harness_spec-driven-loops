@@ -22,6 +22,14 @@
     "conflicts_with": [],
     "prerequisite_for": []
   },
+  "manual": {
+    "depends_on": [],
+    "related_to": [
+      "system-spec-kit",
+      "sk-git",
+      "sk-prompt"
+    ]
+  },
   "domains": [
     "documentation",
     "markdown",
@@ -79,6 +87,13 @@
       "component creation",
       "templates",
       "flowcharts"
+    ],
+    "intent_signals": [
+      "write documentation",
+      "validate markdown",
+      "create readme",
+      "scaffold component",
+      "build install guide"
     ],
     "key_files": [
       ".opencode/skills/sk-doc/SKILL.md",

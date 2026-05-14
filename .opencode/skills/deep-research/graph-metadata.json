@@ -21,6 +21,16 @@
     "conflicts_with": [],
     "prerequisite_for": []
   },
+  "manual": {
+    "depends_on": [
+      "system-spec-kit"
+    ],
+    "related_to": [
+      "deep-review",
+      "deep-ai-council",
+      "mcp-coco-index"
+    ]
+  },
   "domains": [
     "research",
     "investigation",
@@ -56,6 +66,13 @@
       "iteration-deltas",
       "iterative-investigation",
       "fresh-context-research"
+    ],
+    "intent_signals": [
+      "deep research",
+      "iterate investigation",
+      "synthesize evidence",
+      "track research state",
+      "detect convergence"
     ],
     "key_files": [
       ".opencode/skills/deep-research/SKILL.md",

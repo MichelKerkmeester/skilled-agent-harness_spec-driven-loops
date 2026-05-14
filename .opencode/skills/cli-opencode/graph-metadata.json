@@ -26,6 +26,19 @@
     "conflicts_with": [],
     "prerequisite_for": []
   },
+  "manual": {
+    "depends_on": [
+      "system-spec-kit"
+    ],
+    "related_to": [
+      "cli-claude-code",
+      "cli-codex",
+      "cli-gemini",
+      "deep-research",
+      "deep-review",
+      "mcp-code-mode"
+    ]
+  },
   "domains": [
     "cli",
     "delegation",
@@ -70,6 +83,13 @@
       "share url",
       "agent dispatch",
       "memory handback"
+    ],
+    "intent_signals": [
+      "delegate to opencode",
+      "parallel detached session",
+      "full runtime dispatch",
+      "cross-ai handback",
+      "agent dispatch"
     ],
     "key_files": [
       ".opencode/skills/cli-opencode/SKILL.md",

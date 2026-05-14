@@ -16,6 +16,14 @@
     "conflicts_with": [],
     "prerequisite_for": []
   },
+  "manual": {
+    "depends_on": [],
+    "related_to": [
+      "system-spec-kit",
+      "sk-doc",
+      "sk-code-review"
+    ]
+  },
   "domains": [
     "git",
     "worktree",
@@ -57,6 +65,13 @@
       "conventional commits",
       "pull requests",
       "workspace isolation"
+    ],
+    "intent_signals": [
+      "setup worktree",
+      "prepare commit",
+      "finish pull request",
+      "manage branch",
+      "split changes"
     ],
     "key_files": [
       ".opencode/skills/sk-git/SKILL.md",

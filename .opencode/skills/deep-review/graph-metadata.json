@@ -22,6 +22,17 @@
     "conflicts_with": [],
     "prerequisite_for": []
   },
+  "manual": {
+    "depends_on": [
+      "system-spec-kit",
+      "sk-code-review"
+    ],
+    "related_to": [
+      "deep-research",
+      "sk-code-review",
+      "sk-code"
+    ]
+  },
   "domains": [
     "review",
     "audit",
@@ -68,6 +79,13 @@
       "review-convergence-stop",
       "iterative-review-loop",
       "severity-weighted-findings"
+    ],
+    "intent_signals": [
+      "deep review",
+      "iterative audit",
+      "triage findings",
+      "track review state",
+      "detect review convergence"
     ],
     "key_files": [
       ".opencode/skills/deep-review/SKILL.md",
