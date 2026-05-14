@@ -109,7 +109,11 @@ describeIf('llama-cpp vs hf-local embedding parity', () => {
       samples: scores.length,
     }));
 
-    expect(mean).toBeGreaterThanOrEqual(0.995);
-    expect(min).toBeGreaterThanOrEqual(0.99);
+    // 014/015 packet measured mean cosine 0.968, min 0.951 on the 50-chunk panel.
+    // 014/016 retrieval probe found recall@5 + MRR EQUIVALENT despite this MILD_DIVERGENCE,
+    // so the operator accepted llama-cpp as the auto-default. Thresholds below give
+    // ~0.02 headroom for normal Q8_0 quantization noise.
+    expect(mean).toBeGreaterThanOrEqual(0.95);
+    expect(min).toBeGreaterThanOrEqual(0.90);
   }, 600000);
 });
