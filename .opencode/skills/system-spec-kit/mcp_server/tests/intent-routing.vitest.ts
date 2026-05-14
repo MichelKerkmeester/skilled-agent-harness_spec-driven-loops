@@ -30,7 +30,7 @@ function makeRouterContext() {
       packet_kind: 'phase' as const,
       save_mode: 'route-as' as const,
       recent_docs_touched: ['handover.md'],
-      recent_anchors_touched: ['session-log'],
+      recent_anchors_touched: ['session-notes'],
       likely_phase_anchor: 'phase-2',
       session_id: 'intent-routing-test',
     },

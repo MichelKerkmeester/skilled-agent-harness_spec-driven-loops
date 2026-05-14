@@ -227,7 +227,7 @@ compute_recommended_next_step() {
         printf '%s\n' "Daemon will auto-start on the next ccc search or ccc index command."
         return 0
     fi
-    printf '%s\n' "Semantic search is ready. Use MCP search first, then follow-up queries with refresh_index=false."
+    printf '%s\n' "Semantic search is ready. Use MCP search directly; call cocoindex_refresh_index after code changes."
 }
 
 compute_readiness() {

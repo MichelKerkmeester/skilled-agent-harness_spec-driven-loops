@@ -208,6 +208,33 @@ const EXECUTION_SIGNAL_PATTERNS = [
 const SPEC_ID_REGEX = /\b\d{3}-[a-z][a-z0-9-]*(?=[\s,.)/:"'`]|$)/gi;
 const FINDING_ID_SPEC_FALSE_POSITIVE_REGEX = /^\d{3}-i\d{3}-p\d-\d{3}$/i;
 const NUMERIC_RANGE_SPEC_FALSE_POSITIVE_REGEX = /^\d{3}-\d+(?:-\d+)*$/;
+const NUMERIC_PREFIX_NON_SPEC_SUFFIXES = new Set([
+  'dimension',
+  'line',
+  'byte',
+  'char',
+  'token',
+  'row',
+  'pixel',
+  'bit',
+  'mb',
+  'gb',
+  'kb',
+  'ms',
+  'sec',
+  'min',
+]);
+const HIGH_CROSS_REFERENCE_DOC_BASENAMES = new Set([
+  'decision-record.md',
+  'handover.md',
+  'implementation-summary.md',
+]);
+const DOMINATES_FOREIGN_SPEC_DEFAULT_MIN_MENTIONS = 3;
+const DOMINATES_FOREIGN_SPEC_DEFAULT_CURRENT_DELTA = 2;
+const DOMINATES_FOREIGN_SPEC_RELAXED_MIN_MENTIONS = 6;
+const DOMINATES_FOREIGN_SPEC_RELAXED_CURRENT_DELTA = 4;
+const DOMINATES_FOREIGN_SPEC_HANDOVER_MIN_MENTIONS = 5;
+const directChildSpecIdsByFolder = new Map<string, Set<string>>();
 const TITLE_CONTAMINATION_PATTERNS: Array<{ pattern: RegExp; label: string }> = [
   { pattern: /^(to promote a memory|epistemic state captured at session start|table of contents)\b/i, label: 'template instructional heading' },
   { pattern: /^\[[^\]]+\]$/i, label: 'placeholder bracket title' },
@@ -476,10 +503,17 @@ function hasSignificantFileCountDivergence(
   return ratio >= 2 && absoluteDifference >= 5;
 }
 
-function isValidSpecIdCandidate(candidate: string): boolean {
+function isValidSpecIdCandidate(candidate: string, content?: string, index?: number): boolean {
   const trimmed = candidate.trim();
   if (trimmed.length === 0) {
     return false;
+  }
+
+  if (typeof content === 'string' && typeof index === 'number') {
+    const lookback = content.slice(Math.max(0, index - 6), index);
+    if (/adr-$/i.test(lookback)) {
+      return false;
+    }
   }
 
   if (NUMERIC_RANGE_SPEC_FALSE_POSITIVE_REGEX.test(trimmed)) {
@@ -496,6 +530,10 @@ function isValidSpecIdCandidate(candidate: string): boolean {
   }
 
   const tailSegments = tail.split('-');
+  if (tailSegments.length === 1 && NUMERIC_PREFIX_NON_SPEC_SUFFIXES.has(tailSegments[0].toLowerCase())) {
+    return false;
+  }
+
   if (tailSegments.length === 1 && /\d/.test(tailSegments[0])) {
     return false;
   }
@@ -504,7 +542,9 @@ function isValidSpecIdCandidate(candidate: string): boolean {
 }
 
 export function extractSpecIdCandidates(content: string): string[] {
-  return (content.match(SPEC_ID_REGEX) ?? []).filter(isValidSpecIdCandidate);
+  return Array.from(content.matchAll(SPEC_ID_REGEX))
+    .filter((match) => isValidSpecIdCandidate(match[0], content, match.index))
+    .map((match) => match[0]);
 }
 
 function countDistinctSpecIds(content: string): Map<string, number> {
@@ -525,6 +565,54 @@ function countSpecIdsInValues(values: string[]): Map<string, number> {
 function extractCurrentSpecId(specFolder: string): string | null {
   const matches = extractSpecIdCandidates(specFolder);
   return matches ? matches[matches.length - 1] : null;
+}
+
+function extractSpecFolderFromFilePath(filePath: string): string | null {
+  const normalized = filePath.replace(/\\/g, '/');
+  const specsIndex = normalized.lastIndexOf('/specs/');
+  if (specsIndex === -1) {
+    return null;
+  }
+
+  const afterSpecs = normalized.slice(specsIndex + '/specs/'.length);
+  const parts = afterSpecs.split('/').filter((part) => part.length > 0);
+  let lastSpecSegmentIndex = -1;
+  for (let index = 0; index < parts.length; index += 1) {
+    if (/^\d{3}-/.test(parts[index])) {
+      lastSpecSegmentIndex = index;
+    }
+  }
+
+  if (lastSpecSegmentIndex === -1) {
+    return null;
+  }
+
+  return parts.slice(0, lastSpecSegmentIndex + 1).join('/');
+}
+
+function isHighCrossReferenceDocument(filePath?: string): boolean {
+  if (!filePath) {
+    return false;
+  }
+
+  return HIGH_CROSS_REFERENCE_DOC_BASENAMES.has(path.basename(filePath));
+}
+
+function getDominatesForeignSpecThresholds(filePath?: string): { minMentions: number; currentDelta: number } {
+  const basename = filePath ? path.basename(filePath) : '';
+  if (!HIGH_CROSS_REFERENCE_DOC_BASENAMES.has(basename)) {
+    return {
+      minMentions: DOMINATES_FOREIGN_SPEC_DEFAULT_MIN_MENTIONS,
+      currentDelta: DOMINATES_FOREIGN_SPEC_DEFAULT_CURRENT_DELTA,
+    };
+  }
+
+  return {
+    minMentions: basename === 'handover.md'
+      ? DOMINATES_FOREIGN_SPEC_HANDOVER_MIN_MENTIONS
+      : DOMINATES_FOREIGN_SPEC_RELAXED_MIN_MENTIONS,
+    currentDelta: DOMINATES_FOREIGN_SPEC_RELAXED_CURRENT_DELTA,
+  };
 }
 
 function resolveSpecFolderPath(specFolder: string): string | null {
@@ -562,6 +650,24 @@ function resolveSpecFolderPath(specFolder: string): string | null {
   return null;
 }
 
+function extractDirectChildSpecIds(resolvedSpecFolder: string): Set<string> {
+  const cached = directChildSpecIdsByFolder.get(resolvedSpecFolder);
+  if (cached) {
+    return new Set(cached);
+  }
+
+  const childSpecIds = new Set<string>();
+  const childEntries = fs.readdirSync(resolvedSpecFolder, { withFileTypes: true });
+  for (const entry of childEntries) {
+    if (entry.isDirectory() && /^\d{3}-/.test(entry.name)) {
+      childSpecIds.add(entry.name);
+    }
+  }
+
+  directChildSpecIdsByFolder.set(resolvedSpecFolder, childSpecIds);
+  return new Set(childSpecIds);
+}
+
 /**
  * CG-07c: Extract all spec IDs from the full spec folder path.
  * Child specs (nested paths) legitimately reference parent spec IDs,
@@ -579,16 +685,8 @@ function extractAllowedSpecIds(specFolder: string): Set<string> {
   }
 
   try {
-    const childEntries = fs.readdirSync(resolvedSpecFolder, { withFileTypes: true });
-    for (const entry of childEntries) {
-      if (!entry.isDirectory() || !/^\d{3}-/.test(entry.name)) {
-        continue;
-      }
-
-      const childSpecPath = path.resolve(resolvedSpecFolder, entry.name, 'spec.md');
-      if (fs.existsSync(childSpecPath)) {
-        allowedSpecIds.add(entry.name);
-      }
+    for (const childSpecId of extractDirectChildSpecIds(resolvedSpecFolder)) {
+      allowedSpecIds.add(childSpecId);
     }
 
     // Rec 5: Also scan sibling phases under the parent spec folder.
@@ -715,10 +813,7 @@ function validateMemoryQualityContent(content: string, options?: { filePath?: st
   // the spec_folder frontmatter field — without it, V8 sees current_spec as unknown
   // and treats all cross-references as foreign contamination.
   if (!specFolder && options?.filePath) {
-    const specsMatch = options.filePath.match(/[/\\]specs[/\\]((?:.+?[/\\])?(?:\d{3}-[^/\\]+))/);
-    if (specsMatch) {
-      specFolder = specsMatch[1];
-    }
+    specFolder = extractSpecFolderFromFilePath(options.filePath) ?? '';
   }
 
   const ruleResults: RuleResult[] = [];
@@ -826,6 +921,7 @@ function validateMemoryQualityContent(content: string, options?: { filePath?: st
   let dominatesForeignSpec = false;
   let scatteredForeignSpec = false;
   const scatteredForeignMentions: string[] = [];
+  const scatteredForeignSpecThreshold = isHighCrossReferenceDocument(options?.filePath) ? 4 : 2;
   if (specIdCounts.size > 0) {
     const currentSpecMentions = currentSpecId ? (specIdCounts.get(currentSpecId) ?? 0) : 0;
     let strongestForeignMentions = 0;
@@ -841,8 +937,12 @@ function validateMemoryQualityContent(content: string, options?: { filePath?: st
         }
       }
     }
-    dominatesForeignSpec = strongestForeignMentions >= 3 && strongestForeignMentions >= currentSpecMentions + 2;
-    scatteredForeignSpec = scatteredForeignMentions.length >= 2 && totalForeignMentions >= 2 && strongestForeignMentions <= 2;
+    const dominatesThresholds = getDominatesForeignSpecThresholds(options?.filePath);
+    dominatesForeignSpec = strongestForeignMentions >= dominatesThresholds.minMentions
+      && strongestForeignMentions >= currentSpecMentions + dominatesThresholds.currentDelta;
+    scatteredForeignSpec = scatteredForeignMentions.length >= scatteredForeignSpecThreshold
+      && totalForeignMentions >= scatteredForeignSpecThreshold
+      && strongestForeignMentions <= 2;
   }
 
   const frontmatterForeignSpec = foreignFrontmatterMentions.length > 0;

@@ -30,7 +30,7 @@ This document combines the current feature inventory for the `mcp-coco-index` sk
 
 ## 1. OVERVIEW
 
-Use this catalog as the canonical inventory for the live `mcp-coco-index` feature surface. The skill provides semantic code search through a local `ccc` CLI, a daemon-backed MCP `search` tool, an indexing pipeline, readiness scripts, configuration references, fork-specific ranking extensions and validation coverage.
+Use this catalog as the canonical inventory for the live `mcp-coco-index` feature surface. The skill provides semantic code search through a local `ccc` CLI, daemon-backed MCP `search` and `cocoindex_refresh_index` tools, an indexing pipeline, readiness scripts, configuration references, fork-specific ranking extensions and validation coverage.
 
 | Category | Coverage | Primary Runtime Surface |
 |---|---:|---|
@@ -164,17 +164,17 @@ See [`01--cli-commands/07-daemon-subcommands.md`](01--cli-commands/07-daemon-sub
 
 ## 3. MCP SERVER
 
-These entries cover the stdio MCP server and its single exposed tool. The MCP surface is intentionally narrower than the CLI surface.
+These entries cover the stdio MCP server and its exposed search plus explicit refresh tools. The MCP surface is intentionally narrower than the CLI surface.
 
 ### Search tool contract
 
 #### Description
 
-Defines the single MCP `search` tool and its natural-language retrieval contract.
+Defines the MCP `search` tool and its natural-language retrieval contract.
 
 #### Current Reality
 
-The tool accepts natural language or code snippets, returns code chunks with paths and line numbers and tells callers to start with a small result limit. Index, status and reset are intentionally outside the MCP tool surface.
+The tool accepts natural language or code snippets, returns code chunks with paths and line numbers and tells callers to start with a small result limit. Status, index lifecycle and reset are intentionally outside the MCP tool surface.
 
 #### Source Files
 
@@ -186,11 +186,11 @@ See [`02--mcp-server/01-search-tool-contract.md`](02--mcp-server/01-search-tool-
 
 #### Description
 
-Refreshes the index before MCP searches unless callers opt out.
+Keeps MCP searches no-refresh by default while preserving explicit refresh.
 
 #### Current Reality
 
-The server calls `client.index(project_root)` before search when `refresh_index` is true. Cross-CLI guidance recommends disabling refresh on follow-up MCP queries to avoid unnecessary daemon work.
+The server calls `client.index(project_root)` before search only when `refresh_index` is true. The separate `cocoindex_refresh_index` tool calls the same daemon refresh path without performing a search.
 
 #### Source Files
 

@@ -163,9 +163,9 @@ The default embedding model is `google/embeddinggemma-300m`, a 768-dimensional m
 
 Users can switch to alternative models by editing the global settings file (`~/.cocoindex_code/global_settings.yml`). Available alternatives include `voyage/voyage-code-3` (1024d cloud via LiteLLM, requires `VOYAGE_API_KEY`). Changing models requires a full reset and reindex because vector dimensions are incompatible.
 
-Language and path filters apply after ranking, which means they narrow an already semantically ranked result set rather than replacing semantic ranking with keyword matching. This design keeps the filters fast and the results meaningful. For multi-query agent sessions, set `refresh_index=false` on follow-up calls after the first query has already triggered a refresh. The daemon has a known concurrency issue where simultaneous `refresh_index=true` requests can cause `ComponentContext` errors.
+Language and path filters apply after ranking, which means they narrow an already semantically ranked result set rather than replacing semantic ranking with keyword matching. This design keeps the filters fast and the results meaningful. For multi-query agent sessions, use the default `refresh_index=false` search path and call `cocoindex_refresh_index` explicitly after code changes. The daemon has a known concurrency issue where simultaneous `refresh_index=true` requests can cause `ComponentContext` errors.
 
-The CLI and MCP interfaces are complementary, not redundant. The CLI handles index management operations (`index`, `status`, `reset`, `init`, `daemon`) that have no MCP equivalents. The MCP server exposes only the `search` tool because index management is a human-initiated operation, not an agent-initiated one. When building an AI workflow that needs semantic search, configure the MCP server and let agents call `search` directly.
+The CLI and MCP interfaces are complementary, not redundant. The CLI handles index lifecycle operations (`index`, `status`, `reset`, `init`, `daemon`) that have no destructive MCP equivalents. The MCP server exposes `search` plus explicit `cocoindex_refresh_index`, so agents can keep search latency predictable and refresh the index only when needed.
 
 ### 3.2 FEATURE REFERENCE
 
@@ -192,7 +192,13 @@ The CLI and MCP interfaces are complementary, not redundant. The CLI handles ind
 | `paths` | list or null | No | null | Filter by file paths |
 | `limit` | integer | No | 5 | Maximum number of results to return |
 | `offset` | integer | No | 0 | Number of results to skip for pagination |
-| `refresh_index` | boolean | No | true | Trigger index refresh before searching |
+| `refresh_index` | boolean | No | false | Trigger index refresh before searching |
+
+**MCP tool: `cocoindex_refresh_index`**
+
+| Parameter | Type | Required | Default | Description |
+|---|---|---|---|---|
+| `paths` | list or null | No | null | Optional changed-path hints; current daemon refresh remains project-wide incremental |
 
 **CLI vs. MCP parameter differences**
 
@@ -201,7 +207,8 @@ The CLI and MCP interfaces are complementary, not redundant. The CLI handles ind
 | Language filter | `--lang` (repeatable flag) | `languages` (list) | CLI: one flag per language. MCP: list of strings |
 | Path filter | `--path` (single string) | `paths` (list) | CLI: one path. MCP: multiple paths |
 | Result limit | `--limit` (default 10) | `limit` (default 5) | Different defaults |
-| Index refresh | `--refresh` (default false) | `refresh_index` (default true) | Different defaults |
+| Index refresh before search | `--refresh` (default false) | `refresh_index` (default false) | Same default |
+| Explicit index refresh | `ccc index` | `cocoindex_refresh_index` | MCP refresh is project-wide incremental |
 | Pagination | `--offset` | `offset` (default 0) | Available on both surfaces |
 
 **Embedding models**
@@ -439,10 +446,10 @@ What you see: MCP search tool returns a `ComponentContext` error when multiple q
 
 Common causes: The daemon has a known concurrency issue when multiple simultaneous requests each trigger a refresh.
 
-Fix: Set `refresh_index=false` on all follow-up queries in a multi-query session. Only the first query in a session needs to refresh.
+Fix: Keep normal searches on the default `refresh_index=false` path. Use `cocoindex_refresh_index` before the search batch when code changed.
 
 ```json
-{ "query": "your query", "refresh_index": false }
+{ "query": "your query" }
 ```
 
 ---
@@ -497,9 +504,9 @@ bash .opencode/skills/mcp-coco-index/scripts/install.sh
 <!-- ANCHOR:faq -->
 ## 8. FAQ
 
-**Q: Why does CocoIndex Code only expose one MCP tool when the CLI has seven commands?**
+**Q: Why does CocoIndex Code expose fewer MCP tools than the CLI has commands?**
 
-A: Index management operations (`index`, `status`, `reset`, `init`, `daemon`) are intended for human-initiated workflows, not agent-initiated ones. An agent asking to reset a codebase index would be a destructive action with no confirmation step. The MCP interface exposes only `search` to keep agent behavior predictable and safe. Run index management commands from a terminal.
+A: Index lifecycle operations (`index`, `status`, `reset`, `init`, `daemon`) are intended for human-initiated workflows. An agent asking to reset a codebase index would be a destructive action with no confirmation step. The MCP interface exposes `search` plus a bounded `cocoindex_refresh_index` hook so agent searches stay predictable while refresh remains explicit. Run broader index management commands from a terminal.
 
 ---
 
@@ -511,7 +518,7 @@ A: The default model (`google/embeddinggemma-300m`, 768 dimensions) provides str
 
 **Q: How often should I reindex?**
 
-A: The daemon handles incremental updates automatically. Run `ccc index` manually after major structural changes: branch switches, large merges, or significant refactors. For day-to-day work, the index stays current because changed files are detected on each query when `refresh_index=true` (MCP default) or `--refresh` (CLI flag).
+A: The daemon handles incremental updates when refresh is requested. Run `ccc index` manually after major structural changes: branch switches, large merges, or significant refactors. For day-to-day agent workflows, call `cocoindex_refresh_index` after code changes, or use `search(refresh_index=true)` for a backward-compatible one-shot refresh before search. CLI users can pass `--refresh`.
 
 ---
 

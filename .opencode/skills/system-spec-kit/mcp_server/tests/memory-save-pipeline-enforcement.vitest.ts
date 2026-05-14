@@ -356,6 +356,43 @@ describe('Cat 0: Golden Path', () => {
     expect(['indexed', 'created', 'updated', 'duplicate', 'deferred', 'unchanged']).toContain(result.status);
     expect(result.id).toBeGreaterThan(0);
   });
+
+  it('dry-run accepts canonical spec docs that satisfy the spec-doc health contract', async () => {
+    const compliantFixtureRoot = [
+      path.join(process.cwd(), 'scripts/test-fixtures/053-template-compliant-level2'),
+      path.join(process.cwd(), '../scripts/test-fixtures/053-template-compliant-level2'),
+    ].find((candidate) => fs.existsSync(path.join(candidate, 'spec.md')));
+    expect(compliantFixtureRoot).toBeTruthy();
+    for (const fileName of [
+      'spec.md',
+      'plan.md',
+      'tasks.md',
+      'checklist.md',
+      'implementation-summary.md',
+      'graph-metadata.json',
+    ]) {
+      fs.copyFileSync(
+        path.join(compliantFixtureRoot!, fileName),
+        path.join(FIXTURE_ROOT, fileName),
+      );
+    }
+
+    const filePath = path.join(FIXTURE_ROOT, 'implementation-summary.md');
+    const response = await handler.handleMemorySave({
+      filePath,
+      dryRun: true,
+      skipPreflight: true,
+    });
+    const payload = parseResponse(response as { content: Array<{ text: string }> });
+
+    expect(payload.data.would_pass).toBe(true);
+    expect(payload.data.templateContract.valid).toBe(false);
+    expect(payload.data.templateContract.violations.some(
+      (violation: { code: string }) => violation.code === 'missing_section',
+    )).toBe(true);
+    expect(payload.data.specDocHealth.pass).toBe(true);
+    expect(payload.hints).toContain('Manual-fallback mode would bypass the strict memory template contract for this save');
+  });
 });
 
 // ───────────────────────────────────────────────────────────────

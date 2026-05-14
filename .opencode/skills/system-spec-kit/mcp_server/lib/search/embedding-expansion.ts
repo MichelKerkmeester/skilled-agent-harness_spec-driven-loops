@@ -68,6 +68,9 @@ const DEFAULT_CANDIDATE_LIMIT = 5;
 /** Maximum distinct expanded terms appended to combinedQuery. */
 const MAX_EXPANSION_TERMS = 8;
 
+/** Conservative query-size cap before llama-cpp embedding worker token preflight. */
+export const COMBINED_QUERY_CHAR_BUDGET = 6500;
+
 /** Minimum token length — short tokens (≤2 chars) add noise, not signal. */
 const MIN_TERM_LENGTH = 3;
 
@@ -99,6 +102,32 @@ function identityResult(query: string): ExpandedQuery {
     expanded: [],
     combinedQuery: query,
   };
+}
+
+/**
+ * Build an expanded query without letting low-priority expansion terms push
+ * the consumer-side query past the embedding worker's practical context size.
+ */
+export function buildBoundedCombinedQuery(
+  baseQuery: string,
+  expansionTerms: string[],
+  charBudget = COMBINED_QUERY_CHAR_BUDGET,
+): string {
+  let combined = baseQuery;
+
+  if (combined.length >= charBudget) {
+    return combined;
+  }
+
+  for (const term of expansionTerms) {
+    const candidate = `${combined} ${term}`;
+    if (candidate.length > charBudget) {
+      break;
+    }
+    combined = candidate;
+  }
+
+  return combined;
 }
 
 // ───────────────────────────────────────────────────────────────
@@ -265,7 +294,7 @@ export async function expandQueryWithEmbeddings(
     // Append the top expanded terms to the original query.
     // A space-separated suffix keeps the combined query compatible with both
     // FTS and embedding re-encoding without requiring a separator token.
-    const combinedQuery = `${query} ${expanded.join(' ')}`;
+    const combinedQuery = buildBoundedCombinedQuery(query, expanded);
 
     return {
       original: query,

@@ -12,6 +12,7 @@ from __future__ import annotations
 
 import asyncio
 import json
+import logging
 import os
 from pathlib import Path
 from typing import TYPE_CHECKING
@@ -22,6 +23,15 @@ from pydantic import BaseModel, Field
 if TYPE_CHECKING:
     from .client import DaemonClient
 
+from .observability import (
+    elapsed_ms,
+    log_json,
+    log_response_size,
+    log_stage,
+    monotonic_ms,
+    new_request_id,
+    resolve_mcp_request_timeout_ms,
+)
 from .protocol import IndexingProgress
 
 _MCP_INSTRUCTIONS = (
@@ -34,6 +44,7 @@ _MCP_INSTRUCTIONS = (
     " unlike grep or text matching,"
     " it finds relevant code even when exact keywords are unknown."
 )
+logger = logging.getLogger(__name__)
 
 
 # === Pydantic Models for Tool Inputs/Outputs ===
@@ -60,11 +71,21 @@ class SearchResultModel(BaseModel):
     """Result from search tool."""
 
     success: bool
+    reqId: str | None = None
     results: list[CodeChunkResult] = Field(default_factory=list)
     total_returned: int = Field(default=0)
     offset: int = Field(default=0)
     dedupedAliases: int = Field(default=0)
     uniqueResultCount: int = Field(default=0)
+    message: str | None = None
+
+
+class RefreshIndexResultModel(BaseModel):
+    """Result from explicit refresh_index tool."""
+
+    success: bool
+    reqId: str | None = None
+    paths: list[str] | None = None
     message: str | None = None
 
 
@@ -74,6 +95,15 @@ class SearchResultModel(BaseModel):
 def create_mcp_server(client: DaemonClient, project_root: str) -> FastMCP:
     """Create a lightweight MCP server that delegates to the daemon."""
     mcp = FastMCP("cocoindex-code", instructions=_MCP_INSTRUCTIONS)
+    request_timeout_ms = resolve_mcp_request_timeout_ms()
+    log_json(
+        logger,
+        event="cocoindex_mcp_request_timeout_config",
+        envVar="COCOINDEX_CODE_MCP_REQUEST_TIMEOUT_MS",
+        timeoutMs=request_timeout_ms,
+        minMs=1000,
+        maxMs=600000,
+    )
 
     @mcp.tool(
         name="search",
@@ -114,11 +144,11 @@ def create_mcp_server(client: DaemonClient, project_root: str) -> FastMCP:
             description="Number of results to skip for pagination",
         ),
         refresh_index: bool = Field(
-            default=True,
+            default=False,
             description=(
                 "Whether to incrementally update the index before searching."
-                " Set to False for faster consecutive queries"
-                " when the codebase hasn't changed."
+                " Defaults to False for predictable search latency."
+                " Set to True only when this search must force a refresh first."
             ),
         ),
         languages: list[str] | None = Field(
@@ -134,47 +164,189 @@ def create_mcp_server(client: DaemonClient, project_root: str) -> FastMCP:
         ),
     ) -> SearchResultModel:
         """Query the codebase index via the daemon."""
+        req_id = new_request_id()
+        stage_start = monotonic_ms()
+        languages = languages or None
+        paths = paths or None
+        log_stage(
+            logger,
+            req_id=req_id,
+            stage="parse",
+            duration_ms=elapsed_ms(stage_start),
+        )
         loop = asyncio.get_event_loop()
         try:
-            if refresh_index:
-                await loop.run_in_executor(None, lambda: client.index(project_root))
-            resp = await loop.run_in_executor(
-                None,
-                lambda: client.search(
-                    project_root=project_root,
-                    query=query,
-                    languages=languages,
-                    paths=paths,
-                    limit=limit,
-                    offset=offset,
-                ),
-            )
-            return SearchResultModel(
-                success=resp.success,
-                results=[
-                    CodeChunkResult(
-                        file_path=r.file_path,
-                        language=r.language,
-                        content=r.content,
-                        start_line=r.start_line,
-                        end_line=r.end_line,
-                        score=r.score,
-                        raw_score=r.raw_score,
-                        path_class=r.path_class,
-                        rankingSignals=r.rankingSignals,
+            async def _run_search_request() -> SearchResultModel:
+                if refresh_index:
+                    refresh_start = monotonic_ms()
+                    await loop.run_in_executor(None, lambda: client.index(project_root))
+                    log_stage(
+                        logger,
+                        req_id=req_id,
+                        stage="refresh_index",
+                        duration_ms=elapsed_ms(refresh_start),
                     )
-                    for r in resp.results
-                ],
-                total_returned=resp.total_returned,
-                offset=resp.offset,
-                dedupedAliases=resp.dedupedAliases,
-                uniqueResultCount=resp.uniqueResultCount,
-                message=resp.message,
+                resp = await loop.run_in_executor(
+                    None,
+                    lambda: client.search(
+                        project_root=project_root,
+                        query=query,
+                        languages=languages,
+                        paths=paths,
+                        limit=limit,
+                        offset=offset,
+                        req_id=req_id,
+                    ),
+                )
+                return SearchResultModel(
+                    success=resp.success,
+                    reqId=req_id,
+                    results=[
+                        CodeChunkResult(
+                            file_path=r.file_path,
+                            language=r.language,
+                            content=r.content,
+                            start_line=r.start_line,
+                            end_line=r.end_line,
+                            score=r.score,
+                            raw_score=r.raw_score,
+                            path_class=r.path_class,
+                            rankingSignals=r.rankingSignals,
+                        )
+                        for r in resp.results
+                    ],
+                    total_returned=resp.total_returned,
+                    offset=resp.offset,
+                    dedupedAliases=resp.dedupedAliases,
+                    uniqueResultCount=resp.uniqueResultCount,
+                    message=resp.message,
+                )
+
+            result = await asyncio.wait_for(
+                _run_search_request(),
+                timeout=request_timeout_ms / 1000,
             )
+            _log_json_response_size(result, req_id=req_id)
+            return result
+        except asyncio.TimeoutError:
+            message = f"Query timed out after {request_timeout_ms}ms (reqId={req_id})"
+            log_json(
+                logger,
+                event="cocoindex_request_timeout",
+                reqId=req_id,
+                timeoutMs=request_timeout_ms,
+            )
+            result = SearchResultModel(success=False, reqId=req_id, message=message)
+            _log_json_response_size(result, req_id=req_id)
+            return result
         except Exception as e:
-            return SearchResultModel(success=False, message=f"Query failed: {e!s}")
+            result = SearchResultModel(
+                success=False,
+                reqId=req_id,
+                message=f"Query failed: {e!s} (reqId={req_id})",
+            )
+            _log_json_response_size(result, req_id=req_id)
+            return result
+
+    @mcp.tool(
+        name="cocoindex_refresh_index",
+        description=(
+            "Incrementally refresh the CocoIndex code index without performing"
+            " a semantic search. Use this when the codebase changed and you want"
+            " the next MCP search to read a fresher index without spending the"
+            " search request's latency budget on refresh work."
+        ),
+    )
+    async def cocoindex_refresh_index(
+        paths: list[str] | None = Field(
+            default=None,
+            description=(
+                "Optional changed-path hint for callers. The current daemon refresh"
+                " path is project-wide incremental indexing, so this value is"
+                " accepted for the MCP contract but does not limit refresh scope."
+            ),
+        ),
+    ) -> RefreshIndexResultModel:
+        """Refresh the codebase index via the daemon without searching."""
+        req_id = new_request_id()
+        stage_start = monotonic_ms()
+        paths = paths or None
+        log_stage(
+            logger,
+            req_id=req_id,
+            stage="parse",
+            duration_ms=elapsed_ms(stage_start),
+        )
+        loop = asyncio.get_event_loop()
+        try:
+            async def _run_refresh_request() -> RefreshIndexResultModel:
+                refresh_start = monotonic_ms()
+                resp = await loop.run_in_executor(None, lambda: client.index(project_root))
+                log_stage(
+                    logger,
+                    req_id=req_id,
+                    stage="refresh_index",
+                    duration_ms=elapsed_ms(refresh_start),
+                )
+                message = resp.message or "Index refresh complete"
+                if paths:
+                    message = (
+                        f"{message}; paths were accepted as hints,"
+                        " refresh remains project-wide incremental"
+                    )
+                return RefreshIndexResultModel(
+                    success=resp.success,
+                    reqId=req_id,
+                    paths=paths,
+                    message=message,
+                )
+
+            result = await asyncio.wait_for(
+                _run_refresh_request(),
+                timeout=request_timeout_ms / 1000,
+            )
+            _log_json_response_size(result, req_id=req_id)
+            return result
+        except asyncio.TimeoutError:
+            message = f"Refresh timed out after {request_timeout_ms}ms (reqId={req_id})"
+            log_json(
+                logger,
+                event="cocoindex_request_timeout",
+                reqId=req_id,
+                timeoutMs=request_timeout_ms,
+            )
+            result = RefreshIndexResultModel(success=False, reqId=req_id, paths=paths, message=message)
+            _log_json_response_size(result, req_id=req_id)
+            return result
+        except Exception as e:
+            result = RefreshIndexResultModel(
+                success=False,
+                reqId=req_id,
+                paths=paths,
+                message=f"Refresh failed: {e!s} (reqId={req_id})",
+            )
+            _log_json_response_size(result, req_id=req_id)
+            return result
 
     return mcp
+
+
+def _log_json_response_size(result: BaseModel, *, req_id: str) -> None:
+    stage_start = monotonic_ms()
+    payload = result.model_dump_json().encode("utf-8")
+    log_stage(
+        logger,
+        req_id=req_id,
+        stage="response_serialization",
+        duration_ms=elapsed_ms(stage_start),
+        result_count=getattr(result, "total_returned", 0),
+    )
+    log_response_size(
+        logger,
+        req_id=req_id,
+        byte_count=len(payload),
+        stage="json_response",
+    )
 
 
 # Keep the old `mcp` global for backward compatibility in __init__.py

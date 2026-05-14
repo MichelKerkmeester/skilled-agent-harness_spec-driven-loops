@@ -11,15 +11,15 @@ trigger_phrases:
 
 # CocoIndex Code Tool Reference
 
-Complete reference for all CLI commands and the MCP tool exposed by CocoIndex Code.
+Complete reference for all CLI commands and MCP tools exposed by CocoIndex Code.
 
 ---
 
 ## 1. OVERVIEW
 
-This document provides the complete reference for CocoIndex Code CLI commands and MCP tool. It covers all available commands (search, index, status, init, reset, mcp, daemon), their parameters, expected output, supported languages, environment variables, settings schema, and related resources.
+This document provides the complete reference for CocoIndex Code CLI commands and MCP tools. It covers all available commands (search, index, status, init, reset, mcp, daemon), their parameters, expected output, supported languages, environment variables, settings schema, and related resources.
 
-**Important distinction:** The MCP server exposes exactly **1 tool** (`search`). The `status`, `index`, and `reset` operations are **CLI-only commands** and are not available through the MCP protocol.
+**Important distinction:** The MCP server exposes `search` and `cocoindex_refresh_index`. The `status`, index lifecycle, and reset operations are still CLI-only commands and are not available through the MCP protocol.
 
 ---
 
@@ -194,8 +194,8 @@ ccc mcp
 **Notes:**
 - This command is used in MCP configuration files (not run manually)
 - Communicates via stdin/stdout using the MCP protocol
-- Exposes 1 tool: `search`
-- The `status`, `index`, and `reset` operations are CLI-only and not exposed via MCP
+- Exposes 2 tools: `search` and `cocoindex_refresh_index`
+- The `status`, index lifecycle, and `reset` operations are CLI-only and not exposed via MCP
 
 ---
 
@@ -268,9 +268,9 @@ If stale daemon state still blocks startup after a crash or manual process kill,
 
 ---
 
-## 2. MCP TOOL
+## 2. MCP TOOLS
 
-The MCP server (`ccc mcp`) exposes exactly **1 tool**: `search`. All other operations (status, index, reset) are CLI-only commands.
+The MCP server (`ccc mcp`) exposes `search` and `cocoindex_refresh_index`. Status, index lifecycle, and reset remain CLI-only commands.
 
 ### search
 
@@ -283,14 +283,15 @@ Perform semantic search across the indexed codebase.
 | `paths`         | list of strings \| null | No       | null    | Filter by file paths                     |
 | `limit`         | integer                 | No       | 5       | Maximum number of results to return      |
 | `offset`        | integer                 | No       | 0       | Number of results to skip for pagination |
-| `refresh_index` | boolean                 | No       | true    | Trigger index refresh before searching   |
+| `refresh_index` | boolean                 | No       | false   | Trigger index refresh before searching   |
 
 **Parameter notes:**
 - `languages` accepts a list (e.g., `["python", "typescript"]`), not a single string
 - `paths` accepts a list (e.g., `["src/api/", "lib/"]`), not a single string
 - `limit` defaults to **5** for MCP (CLI `--limit` defaults to 10)
 - `offset` defaults to **0** for MCP and can be used for pagination
-- `refresh_index` defaults to `true` -- set to `false` after the first query in a multi-query session when the codebase has not changed
+- `refresh_index` defaults to `false` for predictable search latency
+- `refresh_index=true` remains supported for backward-compatible one-shot refresh-before-search calls
 
 **MCP request example:**
 ```json
@@ -316,6 +317,26 @@ Perform semantic search across the indexed codebase.
 
 > **Fork-specific telemetry.** Each result row also carries `dedupedAliases`, `uniqueResultCount`, `rankingSignals`, `source_realpath`, `content_hash`, `path_class`, and `raw_score` — these come from this skill's bundled fork (`0.2.3+spec-kit-fork.0.2.0`) and are NOT present in vanilla upstream cocoindex-code. Callers writing client code against this MCP must account for the extended shape. See [§7 Fork-Specific Output Telemetry](#-7-fork-specific-output-telemetry) for the full schema.
 
+### cocoindex_refresh_index
+
+Refresh the code index without performing a semantic search.
+
+| Parameter | Type                    | Required | Default | Description |
+| --------- | ----------------------- | -------- | ------- | ----------- |
+| `paths`   | list of strings \| null | No       | null    | Optional changed-path hints; current daemon refresh remains project-wide incremental |
+
+**Parameter notes:**
+- Use this tool after file changes when the next search should read a fresh index.
+- The current daemon refresh path is project-wide incremental indexing. `paths` is accepted as an MCP contract hint but does not restrict the refresh scope yet.
+- The response includes `success`, `reqId`, `paths`, and `message`.
+
+**MCP request example:**
+```json
+{
+  "paths": ["src/api/"]
+}
+```
+
 ---
 
 ## 3. CLI vs. MCP PARAMETER MAPPING
@@ -327,7 +348,8 @@ Perform semantic search across the indexed codebase.
 | Path filter      | `--path` (string)   | `paths` (list)   | CLI: single path. MCP: list of paths        |
 | Result limit     | `--limit` (default: 10) | `limit` (default: 5) | Different defaults        |
 | Pagination       | `--offset`          | `offset` (default: 0)  | Available on both surfaces                   |
-| Index refresh before search | `--refresh` on `ccc search` | `refresh_index` | CLI search: default false. MCP: default true |
+| Index refresh before search | `--refresh` on `ccc search` | `refresh_index` | CLI search: default false. MCP search: default false |
+| Explicit index refresh | `ccc index` | `cocoindex_refresh_index` | MCP refresh is project-wide incremental; CLI index behavior unchanged |
 
 ---
 

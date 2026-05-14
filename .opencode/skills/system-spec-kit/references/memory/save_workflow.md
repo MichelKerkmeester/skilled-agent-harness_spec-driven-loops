@@ -323,7 +323,7 @@ The routed save path classifies each canonical chunk into exactly 8 categories:
 | `narrative_progress` | `implementation-summary.md::what-built` | Substantive system or packet delta |
 | `narrative_delivery` | `implementation-summary.md::how-delivered` | Sequencing, gating, rollout, and verification path |
 | `decision` | `decision-record.md::adr-NNN` on L3/L3+ or `implementation-summary.md::decisions` on L1/L2 | Choice, tradeoff, rationale |
-| `handover_state` | `handover.md::session-log` | Recent action, blocker, resume order, next safe action |
+| `handover_state` | `handover.md::session-notes` | Recent action, blocker, resume order, next safe action |
 | `research_finding` | `research/research.md::findings` | Investigation result or cited evidence |
 | `task_update` | `tasks.md::<phase-anchor>` | Task or checklist mutation |
 | `metadata_only` | `_memory.continuity` | Machine-owned continuity payloads |

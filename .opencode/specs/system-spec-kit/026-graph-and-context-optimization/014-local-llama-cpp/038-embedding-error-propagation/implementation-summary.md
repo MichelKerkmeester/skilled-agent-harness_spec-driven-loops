@@ -104,8 +104,24 @@ Delivered in the working tree as a scoped patch across the shared facade, three 
 
 ---
 
+<!-- ANCHOR:cross-references -->
+## Cross-References (added 2026-05-14)
+
+038 made `generateDocumentEmbedding` / `generateQueryEmbedding` rethrow real provider errors instead of swallowing them as null. This is the upstream half of the embedding-worker repair effort. The downstream half (preventing those errors in the first place) ships in `../039-token-aware-chunking/` (token-budget truncation before `getEmbeddingFor`) and `../037-llama-cpp-embedding-worker-deep-dive/` (API hotfix + Phase 1 reproduction + ADR-003).
+
+The three packets compose:
+- **038** — errors are no longer hidden when the worker fails.
+- **039** — the worker no longer fails for inputs under `trainContextSize × 0.9` tokens.
+- **037** — reproduces the failure mode end-to-end, fixes the `model.tokenize` API used by 039's preflight, documents the contract change.
+
+After all three land, save-heavy scenarios in the 24-- query-intelligence playbook (411–415) should no longer trip the circuit breaker. 036 cleans the 214 historical failed rows.
+<!-- /ANCHOR:cross-references -->
+
+---
+
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
 1. **Git staging is blocked.** The code and packet files are uncommitted because `.git/index.lock` creation returns EPERM.
+2. **Downstream worker fix lives in 037 + 039.** 038 on its own surfaces failures rather than fixing them. Operators should treat 037 + 038 + 039 as a single coordinated landing.
 <!-- /ANCHOR:limitations -->

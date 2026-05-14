@@ -224,8 +224,8 @@ Do you know the exact text?
 
 ### Multi-Query Sessions
 
-- First MCP query may keep the default `refresh_index=true`
-- Follow-up MCP queries should prefer `refresh_index=false` when the codebase has not changed
+- MCP `search` defaults to `refresh_index=false`
+- Call `cocoindex_refresh_index` before a search batch when the codebase has changed
 - CLI follow-up queries should omit `--refresh` unless you actually need to update the index
 
 ---

@@ -20,6 +20,17 @@ from typing import Any, TextIO
 from cocoindex.connectors import sqlite as coco_sqlite
 
 from ._version import __version__
+from .observability import (
+    elapsed_ms,
+    ipc_debug_enabled,
+    log_json,
+    log_msgspec_decode_error,
+    log_response_size,
+    log_stage,
+    monotonic_ms,
+    new_request_id,
+    resolve_mcp_request_timeout_ms,
+)
 from .project import Project
 from .protocol import (
     DaemonProjectInfo,
@@ -60,36 +71,87 @@ from .settings import (
 from .shared import EMBEDDER, SQLITE_DB, Embedder, create_embedder
 
 logger = logging.getLogger(__name__)
+_client_disconnect_count = 0
+_client_disconnect_lock = threading.Lock()
 
 
 def _ipc_debug_enabled() -> bool:
-    return os.environ.get("COCOINDEX_CODE_IPC_DEBUG", "").lower() in {
-        "1",
-        "true",
-        "yes",
-        "on",
-    }
+    return ipc_debug_enabled()
 
 
-def _safe_send_bytes(conn: Connection, payload: bytes, *, label: str = "response") -> None:
+def _increment_client_disconnect_count() -> int:
+    global _client_disconnect_count
+    with _client_disconnect_lock:
+        _client_disconnect_count += 1
+        return _client_disconnect_count
+
+
+def _get_client_disconnect_count() -> int:
+    with _client_disconnect_lock:
+        return _client_disconnect_count
+
+
+def _safe_send_bytes(
+    conn: Connection,
+    payload: bytes,
+    *,
+    label: str = "response",
+    req_id: str | None = None,
+) -> None:
     """Send bytes over a multiprocessing connection, swallowing pipe errors.
 
     Logs once at INFO if the client disconnected. Never raises.
     """
     if _ipc_debug_enabled():
-        logger.info(
-            "ipc_send label=%s bytes=%d first200_hex=%s",
-            label,
-            len(payload),
-            payload[:200].hex(),
+        log_json(
+            logger,
+            event="cocoindex_ipc_send",
+            reqId=req_id,
+            label=label,
+            bytes=len(payload),
+            first200Hex=payload[:200].hex(),
         )
     try:
         conn.send_bytes(payload)
     except (BrokenPipeError, ConnectionResetError):
-        logger.info("client disconnected before response could be sent")
+        count = _increment_client_disconnect_count()
+        log_json(
+            logger,
+            event="cocoindex_client_disconnect",
+            reqId=req_id,
+            message="client disconnected before response could be sent",
+            count=count,
+        )
     except Exception:
         logger.exception("ipc_send failed label=%s bytes=%d", label, len(payload))
         raise
+
+
+def _response_result_count(resp: Response) -> int:
+    if isinstance(resp, SearchResponse):
+        return len(resp.results)
+    if isinstance(resp, IndexProgressUpdate):
+        return 1
+    return 0
+
+
+def _send_response(conn: Connection, resp: Response, *, req_id: str) -> None:
+    stage_start = monotonic_ms()
+    payload = encode_response(resp)
+    log_stage(
+        logger,
+        req_id=req_id,
+        stage="response_serialization",
+        duration_ms=elapsed_ms(stage_start),
+        result_count=_response_result_count(resp),
+    )
+    log_response_size(
+        logger,
+        req_id=req_id,
+        byte_count=len(payload),
+        stage="msgspec_response",
+    )
+    _safe_send_bytes(conn, payload, label=type(resp).__name__, req_id=req_id)
 
 
 def _pid_alive(pid: int) -> bool:
@@ -399,6 +461,7 @@ class ProjectRegistry:
         paths: list[str] | None = None,
         limit: int = 5,
         offset: int = 0,
+        req_id: str | None = None,
     ) -> SearchResults:
         """Search within a project."""
         project_root = _validate_project_root(project_root)
@@ -427,6 +490,7 @@ class ProjectRegistry:
                 offset=offset,
                 languages=languages,
                 paths=paths,
+                req_id=req_id,
             )
         finally:
             if db_to_close is not None:
@@ -568,6 +632,7 @@ async def handle_connection(
     start_time: float,
     shutdown_event: asyncio.Event,
     settings_mtime_us: int | None,
+    request_timeout_ms: int,
 ) -> None:
     """Handle a single client connection."""
     loop = asyncio.get_event_loop()
@@ -589,16 +654,34 @@ async def handle_connection(
                 break
 
             try:
+                stage_start = monotonic_ms()
                 req = decode_request(data)
             except Exception as e:
-                resp: Response = ErrorResponse(message=f"Invalid request: {e}")
-                _safe_send_bytes(conn, encode_response(resp), label=type(resp).__name__)
+                log_msgspec_decode_error(
+                    logger,
+                    direction="request",
+                    data=data,
+                    error=e,
+                )
+                req_id = new_request_id()
+                resp: Response = ErrorResponse(message=f"Invalid request: {e}", reqId=req_id)
+                _send_response(conn, resp, req_id=req_id)
                 continue
+            req_id = getattr(req, "reqId", None) or new_request_id()
+            log_stage(
+                logger,
+                req_id=req_id,
+                stage="parse",
+                duration_ms=elapsed_ms(stage_start),
+            )
 
             if not handshake_done:
                 if not isinstance(req, HandshakeRequest):
-                    resp = ErrorResponse(message="First message must be a handshake")
-                    _safe_send_bytes(conn, encode_response(resp), label=type(resp).__name__)
+                    resp = ErrorResponse(
+                        message="First message must be a handshake",
+                        reqId=req_id,
+                    )
+                    _send_response(conn, resp, req_id=req_id)
                     break
 
                 ok = req.version == __version__
@@ -607,27 +690,34 @@ async def handle_connection(
                     daemon_version=__version__,
                     global_settings_mtime_us=settings_mtime_us,
                 )
-                _safe_send_bytes(conn, encode_response(resp), label=type(resp).__name__)
+                _send_response(conn, resp, req_id=req_id)
                 if not ok:
                     break
                 handshake_done = True
                 continue
 
-            result = await _dispatch(req, registry, start_time, shutdown_event)
+            try:
+                result = await asyncio.wait_for(
+                    _dispatch(req, registry, start_time, shutdown_event, req_id=req_id),
+                    timeout=request_timeout_ms / 1000,
+                )
+            except asyncio.TimeoutError:
+                resp = ErrorResponse(
+                    message=f"Request timed out after {request_timeout_ms}ms",
+                    reqId=req_id,
+                )
+                _send_response(conn, resp, req_id=req_id)
+                continue
             if isinstance(result, AsyncIterator):
                 try:
                     async for resp in result:
-                        _safe_send_bytes(conn, encode_response(resp), label=type(resp).__name__)
+                        _send_response(conn, resp, req_id=req_id)
                 except Exception as exc:
                     logger.info("error during streaming response: %s", exc)
-                    error_resp = ErrorResponse(message=str(exc))
-                    _safe_send_bytes(
-                        conn,
-                        encode_response(error_resp),
-                        label=type(error_resp).__name__,
-                    )
+                    error_resp = ErrorResponse(message=str(exc), reqId=req_id)
+                    _send_response(conn, error_resp, req_id=req_id)
             else:
-                _safe_send_bytes(conn, encode_response(result), label=type(result).__name__)
+                _send_response(conn, result, req_id=req_id)
 
             if isinstance(req, StopRequest):
                 break
@@ -641,7 +731,7 @@ async def handle_connection(
 
 
 async def _search_with_wait(
-    registry: ProjectRegistry, req: SearchRequest
+    registry: ProjectRegistry, req: SearchRequest, *, req_id: str
 ) -> AsyncIterator[SearchStreamResponse]:
     """Stream search response, waiting for ongoing indexing first."""
     yield IndexWaitingNotice()
@@ -654,6 +744,7 @@ async def _search_with_wait(
             paths=req.paths,
             limit=req.limit,
             offset=req.offset,
+            req_id=req_id,
         )
         yield SearchResponse(
             success=True,
@@ -664,7 +755,7 @@ async def _search_with_wait(
             uniqueResultCount=results.uniqueResultCount,
         )
     except Exception as e:
-        yield ErrorResponse(message=str(e))
+        yield ErrorResponse(message=str(e), reqId=req_id)
 
 
 async def _dispatch(
@@ -672,6 +763,8 @@ async def _dispatch(
     registry: ProjectRegistry,
     start_time: float,
     shutdown_event: asyncio.Event,
+    *,
+    req_id: str,
 ) -> Response | AsyncIterator[IndexStreamResponse] | AsyncIterator[SearchStreamResponse]:
     """Dispatch a request to the appropriate handler.
 
@@ -686,7 +779,7 @@ async def _dispatch(
         if isinstance(req, SearchRequest):
             # If load-time indexing is in progress, return a streaming response
             if registry.should_wait_for_indexing(req.project_root):
-                return _search_with_wait(registry, req)
+                return _search_with_wait(registry, req, req_id=req_id)
 
             results = await registry.search(
                 project_root=req.project_root,
@@ -695,6 +788,7 @@ async def _dispatch(
                 paths=req.paths,
                 limit=req.limit,
                 offset=req.offset,
+                req_id=req_id,
             )
             return SearchResponse(
                 success=True,
@@ -713,6 +807,7 @@ async def _dispatch(
                 version=__version__,
                 uptime_seconds=time.monotonic() - start_time,
                 projects=registry.list_projects(),
+                clientDisconnects=_get_client_disconnect_count(),
             )
 
         if isinstance(req, RemoveProjectRequest):
@@ -723,10 +818,10 @@ async def _dispatch(
             shutdown_event.set()
             return StopResponse(ok=True)
 
-        return ErrorResponse(message=f"Unknown request type: {type(req).__name__}")
+        return ErrorResponse(message=f"Unknown request type: {type(req).__name__}", reqId=req_id)
     except Exception as e:
         logger.exception("Error dispatching request")
-        return ErrorResponse(message=str(e))
+        return ErrorResponse(message=str(e), reqId=req_id)
 
 
 # ---------------------------------------------------------------------------
@@ -807,10 +902,26 @@ def run_daemon() -> None:
         force=True,
     )
 
+    request_timeout_ms = resolve_mcp_request_timeout_ms()
     logger.info("Daemon starting (PID %d, version %s)", os.getpid(), __version__)
+    log_json(
+        logger,
+        event="cocoindex_mcp_request_timeout_config",
+        envVar="COCOINDEX_CODE_MCP_REQUEST_TIMEOUT_MS",
+        timeoutMs=request_timeout_ms,
+        minMs=1000,
+        maxMs=600000,
+    )
 
     try:
-        asyncio.run(_async_daemon_main(embedder, settings_mtime_us, startup_lock_fd))
+        asyncio.run(
+            _async_daemon_main(
+                embedder,
+                settings_mtime_us,
+                startup_lock_fd,
+                request_timeout_ms=request_timeout_ms,
+            )
+        )
     finally:
         # Clean up socket first, then PID file last.
         # The PID file is the authoritative "daemon is alive" indicator, so it
@@ -837,9 +948,15 @@ async def _async_daemon_main(
     embedder: Embedder,
     settings_mtime_us: int | None,
     startup_lock_fd: TextIO | None = None,
+    request_timeout_ms: int | None = None,
 ) -> None:
     """Async main loop for the daemon."""
     start_time = time.monotonic()
+    resolved_request_timeout_ms = (
+        request_timeout_ms
+        if request_timeout_ms is not None
+        else resolve_mcp_request_timeout_ms()
+    )
     registry = ProjectRegistry(embedder)
     shutdown_event = asyncio.Event()
 
@@ -873,7 +990,16 @@ async def _async_daemon_main(
         evt: asyncio.Event,
         task_set: set[asyncio.Task[Any]],
     ) -> None:
-        task = asyncio.create_task(handle_connection(conn, reg, st, evt, settings_mtime_us))
+        task = asyncio.create_task(
+            handle_connection(
+                conn,
+                reg,
+                st,
+                evt,
+                settings_mtime_us,
+                resolved_request_timeout_ms,
+            )
+        )
         task_set.add(task)
         task.add_done_callback(task_set.discard)
 

@@ -95,7 +95,22 @@ Delivered in the working tree with a focused provider patch and a targeted Vites
 | `cd .opencode/skills/system-spec-kit/mcp_server && npx tsc --noEmit` | PASS, exit 0; output saved to `/tmp/030-typecheck.txt`. |
 | `npx vitest run tests/llama-cpp-token-budget.vitest.ts` | PASS, exit 0; 3 passed and 1 skipped. |
 | `validate.sh --strict` on 039 | PASS after compacting `next_safe_action`. |
+| Real-model smoke (T030-04 with `EMBEDDINGS_PROVIDER=llama-cpp`) | Initially FAIL (TypeError, see Cross-References). Closed by 037 API hotfix; subsequent run PASS 4/4. |
 <!-- /ANCHOR:verification -->
+
+---
+
+<!-- ANCHOR:cross-references -->
+## Cross-References (added 2026-05-14)
+
+039 shipped the source patch and the 4-case vitest. Packet `../037-llama-cpp-embedding-worker-deep-dive/` then ran the real-model smoke (T030-04) under `EMBEDDINGS_PROVIDER=llama-cpp` and surfaced an API mismatch: the patch used `runtime.model.tokenizer.tokenize(inputText)`, but `LlamaModel.tokenizer` in `node-llama-cpp@3.17.1` is a *callable* (a function with a `.detokenize` property attached), not an object with a `.tokenize` method. The fix swapped to `runtime.model.tokenize(inputText)` — the documented direct method on `LlamaModel` (`LlamaModel.d.ts:181`). The mock in `llama-cpp-token-budget.vitest.ts` was likewise switched from `model.tokenizer.tokenize(...)` to `model.tokenize(...)`, and T030-04 now PASSes against the real GGUF.
+
+037 also ships:
+- The Phase 1 reproduction harness and TSV evidence at `_sandbox/37--llama-cpp-context-size/`.
+- ADR-003 (`../037-llama-cpp-embedding-worker-deep-dive/decision-record.md`) capturing the rationale, four alternatives weighed, and the API hotfix narrative.
+
+039 is functionally complete; 037 is its companion evidence + hotfix packet.
+<!-- /ANCHOR:cross-references -->
 
 ---
 
@@ -104,4 +119,5 @@ Delivered in the working tree with a focused provider patch and a targeted Vites
 
 1. **Auto context can use more memory.** Low-memory hosts may fail where the old fixed 512-token context loaded, so failures remain explicit and the real-runtime smoke test is conditional.
 2. **Git staging is blocked.** The code and packet files are uncommitted because `.git/index.lock` creation returns EPERM.
+3. **API hotfix lived in 037.** The original 039 patch shipped the wrong call (`model.tokenizer.tokenize`) and would have crashed the real model at runtime. Future maintainers should treat 037 + 039 as a single fix when reviewing or reverting.
 <!-- /ANCHOR:limitations -->

@@ -272,4 +272,53 @@ If the user re-runs `snapshot_download('onnx-community/embeddinggemma-300m-ONNX'
 **Network from this host**
 
 curl/Node fetch to huggingface.co times out (HTTP 000 after 30s). Python huggingface_hub works fine — used for all downloads. transformers.js runs fully offline against the symlinked cache. Cause unknown; not blocking. Likely macOS DNS/proxy quirk that surfaces after a fresh reboot.
+
+---
+
+## 2026-05-14 — Substrate-repair wave closeout
+
+The local-LLM Memory MCP substrate is healed end-to-end. Today's session shipped 8 packets and 4 source patches with all strict-validates clean. The original blocker — chronic E081/E085 save failures on substantive content — is resolved at the worker, the consumer, the build, and the V-rule observability layers.
+
+### Packets shipped (in dependency order)
+
+| Packet | Outcome | What it does |
+|--------|---------|---------------|
+| **038-embedding-error-propagation** | shipped (moved here from root `029-`) | `generateDocumentEmbedding`/`generateQueryEmbedding` now rethrow provider errors instead of swallowing as null. Upstream half of the worker repair. |
+| **039-token-aware-chunking** | shipped (moved here from root `030-`) | `LlamaCppProvider` derives `tokenBudget = trainContextSize × 0.9`, uses `contextSize: 'auto'` with `maxContextSize`, and tokenizer-preflight truncates over-budget input. Downstream half of the worker repair. |
+| **037-llama-cpp-embedding-worker-deep-dive** | shipped | Reproduction harness + ADR-003. Caught the API hotfix: 039's patch used `model.tokenizer.tokenize(...)` but `LlamaModel.tokenizer` in `node-llama-cpp@3.17.1` is a *callable*, not an object. Switched to `model.tokenize(...)` per `LlamaModel.d.ts:181`. Real-model vitest T030-04 now PASS against the GGUF. |
+| **033-system-code-graph-import-path-cleanup** | shipped | `mcp_server/tsconfig.json` excludes `../../shared/**`; new `scripts/finalize-dist.mjs` rewrites compiled imports to `@spec-kit/shared/*.js` and removes the orphan `dist/system-spec-kit/shared/` tree. Orphan no longer regenerates on clean builds. |
+| **034-query-expansion-context-size** | shipped | `lib/search/embedding-expansion.ts` adds `COMBINED_QUERY_CHAR_BUDGET=6500` + `buildBoundedCombinedQuery()`. Consumer-side mirror of 039's worker-side fix — keeps the original query and drops low-priority synonyms when over budget. |
+| **036-failed-embedding-cleanup-retry** | shipped (no-op needed) | Confirmed the retry-manager already drained the historical 214 failed embeddings once 037+039 fixed the worker. Final state: `failed=0`, `success=2907`, `pending=1105` (workflow-driven, not failure-driven). |
+| **035-cocoindex-mcp-reliability** | diagnostic-only | Mapped the CocoIndex MCP code paths (`server.py`/`client.py`/`daemon.py`/`query.py`). Root cause hypothesis: host MCP timeout < worst-case search path. Fix lives in 041. |
+| **040-v-rule-cross-spec-overreach** | shipped | `scripts/lib/validate-memory-quality.ts` — 4 fixes (numeric-prefix denylist for "768-dimension"/"142-line" false-positives; ADR-NNN exclusion; last-match `current_spec` extraction; document-type-aware threshold relaxation for decision-records). 5/5 new + 3/3 existing vitests PASS. Unblocks live `memory_save` on ADR-like content. |
+| **041-cocoindex-ipc-observability** | in flight | Carrying a single `req_id` through the daemon's server.py → client.py → daemon.py → query.py path with stage timing, response byte counts, msgspec payload metadata behind `COCOINDEX_CODE_IPC_DEBUG`, client-disconnect counter, and `COCOINDEX_CODE_MCP_REQUEST_TIMEOUT_MS` env knob. |
+
+### Live-substrate verification
+
+- `memory_health`: `embeddingProvider.healthy=true`, `circuitBreakerOpen=false`, `flapping=false`, `transitionsInLast10Min=0`. memoryCount=3647 → 4042 over the day.
+- `memory_save` of 4000-char ADR: succeeds end-to-end, indexed at id=4435 (V8 no longer false-blocks).
+- `memory_search` hybrid pipeline: returns ranked results, similarity 81+ on the new docs.
+- `validate-memory-quality.js` direct run on 037 ADR-003: `QUALITY_GATE_PASS`, `matchesFound=[]`, `current_spec=037-llama-cpp-embedding-worker-deep-dive` (was misidentified as parent `026-` before 040).
+- `npm run build`: exit 0; orphan dist gone and stays gone (033's finalize-dist.mjs enforces).
+- vitest matrix: 11 NEW tests across 037+040+034 + 1 fixed real-model smoke + 3 governance regression — all PASS.
+
+### Parent phase map updated
+
+`014-local-llama-cpp/spec.md` Phase Documentation Map now lists 37/38/39 rows with handoff criteria reflecting 037→038→039 sequence. 033/034/035/036/040/041 not yet listed at the parent level (operator choice — they're "internal substrate" packets that don't need top-level surfacing).
+
+### Open follow-ons after this wave
+
+1. **042 — CocoIndex behavior change**: default `refresh_index=false` for MCP routes; split refresh from search. Depends on 041 landing first. User-visible behavior change → its own decision record.
+2. **043 — 24-- scenario suite revalidation**: replay the 15 query-intelligence scenarios against the now-healed substrate. Baseline was 2 PASS / 2 PARTIAL / 11 FAIL. Expected uplift: 411–415 should all PASS (worker repaired); 401 should PASS (034 bounded expansion); 404/407 may stay PARTIAL until 041+042 land.
+3. **Commit grouping**: many uncommitted M files; operator decision. Suggested split: `feat(embeddings,037/038/039)`, `fix(scripts,040)`, `refactor(mcp_server,033)`, `feat(search,034)`, `docs(036)`, `docs(035)`, `feat(cocoindex,041)`.
+
+### What didn't ship this wave
+
+- The Memory MCP daemon's running instance still uses the dist built BEFORE 040's V-rule fix. The next daemon restart picks up the new logic (manual: kill `spec-kit-memory-launcher.cjs` PIDs, MCP auto-respawns on the next tool call).
+- 035's behavior-change half (default refresh_index=false) — intentionally deferred to 042.
+- IPC payload-debug end-to-end demo — 041 ships the hooks, but actually triggering them requires running CocoIndex queries under load. 043's suite revalidation will exercise them.
+
+### Branch + commit state
+
+All work sits on `main`. No feature branches. No commits — operator decides grouping.
 <!-- /ANCHOR:session-notes -->

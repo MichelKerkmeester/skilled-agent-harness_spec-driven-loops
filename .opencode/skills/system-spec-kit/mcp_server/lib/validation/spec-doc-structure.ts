@@ -774,6 +774,9 @@ function validateFrontmatterMemoryBlock(folder: string, level: string): RuleResu
 
 function detectAnchorShape(anchorBody: string, basename: string, anchorId: string): 'table' | 'checklist' | 'adr' | 'section' | 'prose' {
   const trimmed = anchorBody.trim();
+  if (basename === 'handover.md' && anchorId === 'session-notes') {
+    return 'section';
+  }
   if (basename === 'decision-record.md' || anchorId.startsWith('adr-')) {
     return 'adr';
   }
@@ -1025,14 +1028,16 @@ function validateCrossAnchorContamination(contaminationPlan: ContaminationPlan |
   if (inferred === 'drop') {
     diagnostics.push({
       code: 'SPECDOC_CONTAM_003',
-      severity: 'error',
+      severity: contaminationPlan.routeOverrideAccepted ? 'warning' : 'error',
       detail: `routing payload resolves to drop but was routed as '${routed}'`,
     });
-    return createResult(
-      'CROSS_ANCHOR_CONTAMINATION',
-      diagnostics,
-      'Cross-anchor contamination check passed',
-    );
+    if (!contaminationPlan.routeOverrideAccepted) {
+      return createResult(
+        'CROSS_ANCHOR_CONTAMINATION',
+        diagnostics,
+        'Cross-anchor contamination check passed',
+      );
+    }
   }
 
   if (routed !== inferred) {

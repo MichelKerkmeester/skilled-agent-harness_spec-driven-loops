@@ -21,7 +21,8 @@ Use this reference when an agent or operator needs a stable, cross-CLI operating
 
 - start with readiness checks when setup is uncertain
 - use CocoIndex for concept search and Grep for exact text
-- switch follow-up MCP queries to `refresh_index=false` unless code changed
+- keep MCP searches on the default `refresh_index=false` path unless a specific call must refresh first
+- call `cocoindex_refresh_index` explicitly when code changed before a search batch
 - treat sibling-repo adoption as payload plus config wiring, not advisor heuristics alone
 
 ---
@@ -65,7 +66,7 @@ bash .opencode/skills/mcp-coco-index/scripts/ensure_ready.sh --strict --require-
 
 ### Follow-Up Queries
 
-- For MCP, switch to `refresh_index=false` after the first query unless the code changed.
+- For MCP, keep the default `refresh_index=false` search path; call `cocoindex_refresh_index` when the code changed.
 - For CLI, only pass `--refresh` when the index truly needs an update.
 - Narrow with language and path filters before broadening the wording.
 
@@ -116,7 +117,7 @@ Use `Grep` first when the prompt asks for:
 #### Claude Code
 - **MCP tool**: `mcp__cocoindex_code__search`
 - **Auto-activation**: CLAUDE.md MANDATORY TOOLS says MUST use for concept search
-- **Best practice**: Use MCP `search` tool directly; set `refresh_index=false` after first query
+- **Best practice**: Use MCP `search` tool directly; call `cocoindex_refresh_index` after code changes
 
 #### Codex CLI
 - **MCP config**: `.codex/config.toml` under `[mcp_servers.cocoindex_code]`
@@ -131,7 +132,7 @@ Use `Grep` first when the prompt asks for:
 #### GitHub Copilot
 - **MCP config**: `.agents/settings.json` under `mcpServers.cocoindex_code`
 - **Auto-activation**: AGENTS.md Code Search Protocol section
-- **Known issue**: Use `refresh_index=false` for follow-up queries to avoid daemon concurrency crashes
+- **Known issue**: Avoid simultaneous `refresh_index=true` searches; use `cocoindex_refresh_index` before the batch instead
 
 #### OpenCode
 - **MCP config**: `opencode.json` under `mcpServers.cocoindex_code`

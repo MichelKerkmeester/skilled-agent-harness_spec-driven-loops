@@ -15,9 +15,6 @@
       "node_modules/@types"
     ],
     "paths": {
-      "@spec-kit/shared/*": [
-        "../shared/*"
-      ],
       "better-sqlite3": [
         "../node_modules/@types/better-sqlite3/index.d.ts"
       ],
@@ -47,6 +44,8 @@
   "exclude": [
     "node_modules",
     "dist",
+    "../../shared",
+    "../../shared/**",
     "../../system-code-graph/mcp_server/tests/**/*.vitest.ts",
     "../../system-code-graph/mcp_server/tests/**/*.test.ts",
     "../../system-code-graph/mcp_server/tests/**/*.test-d.ts",

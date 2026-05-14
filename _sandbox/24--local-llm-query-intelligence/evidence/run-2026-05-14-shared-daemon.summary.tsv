@@ -1,0 +1,3 @@
+scenario	verdict	key_metric	detail
+403	SKIP	search unavailable	Connected shared daemon does not expose cocoindex_code.search.
+410	PASS	steady p50=8ms p95=10ms p99=768ms qps=43.54	cold p50=11ms p95=1322ms p99=3995ms qps=6.17; targets met 4/4

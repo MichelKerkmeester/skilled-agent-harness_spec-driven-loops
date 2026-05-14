@@ -118,7 +118,7 @@ describe('content-router tier 1 classification', () => {
     });
   });
 
-  it('routes handover state to handover session-log', async () => {
+  it('routes handover state to handover session-notes', async () => {
     const decision = await router.classifyContent({
       id: 'chunk-5',
       text: 'Current state: validator compiled. Next session should restart the MCP server and rerun the focused query.',
@@ -127,6 +127,7 @@ describe('content-router tier 1 classification', () => {
 
     expect(decision.category).toBe('handover_state');
     expect(decision.target.docPath).toBe('handover.md');
+    expect(decision.target.anchorId).toBe('session-notes');
     expect(decision.target.mergeMode).toBe('append-section');
   });
 

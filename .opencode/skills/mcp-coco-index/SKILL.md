@@ -9,7 +9,7 @@ version: 1.1.1
 
 # CocoIndex Code - Semantic Code Search via Vector Embeddings
 
-Natural language code search through two complementary approaches: CLI (ccc) for speed and one-off queries, MCP server (1 tool: `search`) for AI agent integration via stdio transport.
+Natural language code search through two complementary approaches: CLI (ccc) for speed and one-off queries, MCP server tools (`search`, `cocoindex_refresh_index`) for AI agent integration via stdio transport.
 
 ## 1. WHEN TO USE
 
@@ -243,7 +243,7 @@ Use `ccc status`, `ccc index`, `ccc search "query" --lang <language> --path "<gl
 
 ### MCP Approach
 
-The MCP server exposes `search` only. Index/status/reset operations remain CLI-only unless routed through the Spec Kit Memory `ccc_*` tools. Use `refresh_index=true` on the first query, then `false` for follow-up searches when the codebase has not changed.
+The MCP server exposes `search` and `cocoindex_refresh_index`. Index/status/reset operations remain CLI-only unless routed through the Spec Kit Memory `ccc_*` tools. `search` defaults `refresh_index=false`; call `cocoindex_refresh_index` when the codebase changed, or pass `refresh_index=true` for backward-compatible one-shot refresh-before-search behavior.
 
 ### MCP Tool Coverage
 
@@ -252,15 +252,16 @@ The MCP server exposes a SUBSET of CocoIndex Code's CLI surface. Maintenance ope
 | Operation | CLI | MCP |
 |---|---|---|
 | `search` | ✓ (`ccc search`) | ✓ (`mcp__cocoindex_code__search`) |
-| `index` | ✓ (`ccc index`) | ✗ (operator-only) |
+| `refresh index` | ✓ (`ccc index`) | ✓ (`mcp__cocoindex_code__cocoindex_refresh_index`) |
+| `index lifecycle` | ✓ (`ccc index`) | ✗ (operator-only) |
 | `init` | ✓ (`ccc init`) | ✗ (operator-only) |
 | `status` | ✓ (`ccc status`) | ✗ (operator-only) |
 | `reset` | ✓ (`ccc reset`) | ✗ (operator-only) |
 | `daemon` | ✓ (`ccc daemon`) | ✗ (operator-only) |
 
-If you need to refresh the index from an AI agent, use `search(refresh_index=true)` once per session. After the first refresh, set `refresh_index=false` to avoid re-indexing on every query (see `refresh_index` parameter in the `search` tool docs).
+If you need to refresh the index from an AI agent, call `cocoindex_refresh_index()` explicitly. `search(refresh_index=true)` still works for backward compatibility, but the default search path no longer refreshes first.
 
-This split is intentional: index lifecycle is operator territory; search is the single AI-callable entry point.
+This split is intentional: index lifecycle is operator territory, explicit refresh is a bounded AI-callable maintenance hook, and search should stay predictable by default.
 
 ### Embedding Models
 
@@ -356,7 +357,8 @@ Use short, focused 2-5 word concept queries. Add language/path filters to narrow
 ### Concurrent Query Sessions
 
 When sending multiple searches in sequence (e.g., exploring a codebase):
-- Set `refresh_index=false` after the first query -- the index only needs refreshing once per session
+- Keep searches on the default `refresh_index=false` path after any explicit refresh
+- Call `cocoindex_refresh_index` once before the search batch when code changed
 - The daemon has a known concurrency issue where simultaneous `refresh_index=true` requests can cause `ComponentContext` errors
 - CLI equivalent: queries are sequential by nature, so this only applies to MCP usage
 

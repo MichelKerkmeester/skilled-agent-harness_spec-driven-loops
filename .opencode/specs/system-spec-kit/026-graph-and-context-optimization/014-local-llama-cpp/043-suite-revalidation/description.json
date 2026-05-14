@@ -1,0 +1,23 @@
+{
+  "specFolder": "043-suite-revalidation",
+  "description": "Post-substrate-wave revalidation of the 24-- local LLM query intelligence scenario suite, comparing scenarios 401-415 against the 032/002 baseline.",
+  "keywords": [
+    "suite-revalidation",
+    "24--local-llm-query-intelligence",
+    "post-substrate-wave",
+    "scenario-runner",
+    "memory-substrate"
+  ],
+  "lastUpdated": "2026-05-14T16:35:00Z",
+  "specId": "043",
+  "folderSlug": "suite-revalidation",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "014-local-llama-cpp"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2",
+  "status": "fail"
+}

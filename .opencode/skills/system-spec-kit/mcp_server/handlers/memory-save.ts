@@ -263,6 +263,17 @@ const STANDARD_MEMORY_TEMPLATE_MARKERS = [
   '## recovery hints',
   '<!-- memory metadata -->',
 ];
+const CANONICAL_SPEC_DOCUMENT_TYPES = new Set([
+  'spec',
+  'plan',
+  'tasks',
+  'checklist',
+  'decision_record',
+  'implementation_summary',
+  'research',
+  'handover',
+  'resource_map',
+]);
 const ROUTE_CATEGORIES = new Set<RouteCategory>([
   'narrative_progress',
   'narrative_delivery',
@@ -322,13 +333,26 @@ function shouldBypassTemplateContract(
   sourceClassification: PreparedParsedMemory['sourceClassification'],
   sufficiencyResult: MemorySufficiencyResult,
   templateContract: MemoryTemplateContractResult,
+  specDocHealth?: SpecDocHealthResult | null,
+  documentType?: string,
 ): boolean {
+  const isValidCanonicalSpecDoc = Boolean(
+    documentType
+      && CANONICAL_SPEC_DOCUMENT_TYPES.has(documentType)
+      && specDocHealth?.pass === true,
+  );
+
   return sourceClassification === MANUAL_FALLBACK_SOURCE_CLASSIFICATION
     && sufficiencyResult.pass
-    && sufficiencyResult.evidenceCounts.primary === 0
-    && sufficiencyResult.evidenceCounts.support >= 3
-    && sufficiencyResult.evidenceCounts.anchors >= 1
-    && !templateContract.valid;
+    && !templateContract.valid
+    && (
+      isValidCanonicalSpecDoc
+      || (
+        sufficiencyResult.evidenceCounts.primary === 0
+        && sufficiencyResult.evidenceCounts.support >= 3
+        && sufficiencyResult.evidenceCounts.anchors >= 1
+      )
+    );
 }
 
 function buildQualityLoopMetadata(
@@ -425,7 +449,7 @@ function prepareParsedMemoryForIndexing(
           reasons: [`V-rule hard block: ${failedRuleIds.join(', ')}`],
           evidenceCounts: { primary: 0, support: 0, total: 0, semanticChars: 0, uniqueWords: 0, anchors: 0, triggerPhrases: 0 },
         },
-        templateContract: { valid: false, violations: [], missingAnchors: [], unexpectedTemplateArtifacts: [] } as MemoryTemplateContractResult,
+        templateContract: { valid: true, violations: [], missingAnchors: [], unexpectedTemplateArtifacts: [] } as MemoryTemplateContractResult,
         specDocHealth: null,
         finalizedFileContent: null,
         sourceClassification: 'template-generated',
@@ -1835,6 +1859,8 @@ function buildAtomicPlannerAdvisories(
     prepared.preparedMemory.sourceClassification,
     prepared.preparedMemory.sufficiencyResult,
     prepared.preparedMemory.templateContract,
+    prepared.preparedMemory.specDocHealth,
+    prepared.preparedMemory.parsed.documentType,
   );
 
   for (const warning of warnings) {
@@ -1928,6 +1954,8 @@ function buildAtomicPlannerReadyResult(
     prepared.preparedMemory.sourceClassification,
     prepared.preparedMemory.sufficiencyResult,
     prepared.preparedMemory.templateContract,
+    prepared.preparedMemory.specDocHealth,
+    prepared.preparedMemory.parsed.documentType,
   );
   if (!validation.ok && options.force !== true) {
     blockers.push(serializePlannerBlocker(buildPlannerBlocker({
@@ -2104,7 +2132,13 @@ async function processPreparedMemory(
       templateContract,
       sourceClassification,
     } = currentPrepared;
-    const templateContractBypassed = shouldBypassTemplateContract(sourceClassification, sufficiencyResult, templateContract);
+    const templateContractBypassed = shouldBypassTemplateContract(
+      sourceClassification,
+      sufficiencyResult,
+      templateContract,
+      currentPrepared.specDocHealth,
+      parsed.documentType,
+    );
 
     if (!qualityLoopResult.passed && qualityLoopResult.rejected) {
       if (qualityGateMode === 'warn-only') {
@@ -2825,11 +2859,15 @@ async function handleMemorySave(args: SaveArgs): Promise<MCPResponse> {
         preparedDryRun.sourceClassification,
         preparedDryRun.sufficiencyResult,
         preparedDryRun.templateContract,
+        preparedDryRun.specDocHealth,
+        preparedDryRun.parsed.documentType,
       );
     const bypassMode = shouldBypassTemplateContract(
       preparedDryRun.sourceClassification,
       preparedDryRun.sufficiencyResult,
       preparedDryRun.templateContract,
+      preparedDryRun.specDocHealth,
+      preparedDryRun.parsed.documentType,
     );
     const { createMCPSuccessResponse } = await import('../lib/response/envelope.js');
     const dryRunSummary = !preflightValidation.wouldPass

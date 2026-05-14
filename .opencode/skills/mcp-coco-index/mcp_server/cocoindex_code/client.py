@@ -15,6 +15,11 @@ from typing import TextIO
 
 from ._version import __version__
 from .daemon import _connection_family, daemon_pid_path, daemon_socket_path
+from .observability import (
+    ipc_debug_enabled,
+    log_msgspec_decode_error,
+    new_request_id,
+)
 from .protocol import (
     DaemonStatusResponse,
     ErrorResponse,
@@ -43,12 +48,7 @@ logger = logging.getLogger(__name__)
 
 
 def _ipc_debug_enabled() -> bool:
-    return os.environ.get("COCOINDEX_CODE_IPC_DEBUG", "").lower() in {
-        "1",
-        "true",
-        "yes",
-        "on",
-    }
+    return ipc_debug_enabled()
 
 
 def _log_ipc_recv(label: str, data: bytes) -> None:
@@ -97,9 +97,19 @@ class DaemonClient:
                 data = self._conn.recv_bytes()
             except EOFError:
                 raise RuntimeError("Connection to daemon lost during indexing")
-            resp = decode_response(data)
+            try:
+                resp = decode_response(data)
+            except Exception as exc:
+                log_msgspec_decode_error(
+                    logger,
+                    direction="response",
+                    data=data,
+                    error=exc,
+                )
+                raise
             if isinstance(resp, ErrorResponse):
-                raise RuntimeError(f"Daemon error: {resp.message}")
+                suffix = f" (reqId={resp.reqId})" if resp.reqId else ""
+                raise RuntimeError(f"Daemon error: {resp.message}{suffix}")
             if isinstance(resp, IndexWaitingNotice):
                 if on_waiting is not None:
                     on_waiting()
@@ -121,6 +131,7 @@ class DaemonClient:
         limit: int = 5,
         offset: int = 0,
         on_waiting: Callable[[], None] | None = None,
+        req_id: str | None = None,
     ) -> SearchResponse:
         """Search the codebase.
 
@@ -128,27 +139,39 @@ class DaemonClient:
         progress), calls *on_waiting* (if provided) then continues reading
         until the final ``SearchResponse``.
         """
-        self._conn.send_bytes(
-            encode_request(
-                SearchRequest(
-                    project_root=project_root,
-                    query=query,
-                    languages=languages,
-                    paths=paths,
-                    limit=limit,
-                    offset=offset,
-                )
+        correlation_id = req_id or new_request_id()
+        encoded_request = encode_request(
+            SearchRequest(
+                project_root=project_root,
+                query=query,
+                languages=languages,
+                paths=paths,
+                limit=limit,
+                offset=offset,
+                reqId=correlation_id,
             )
         )
+        self._conn.send_bytes(encoded_request)
         while True:
             try:
                 data = self._conn.recv_bytes()
             except EOFError:
                 raise RuntimeError("Connection to daemon lost during search")
             _log_ipc_recv("search", data)
-            resp = decode_response(data)
+            try:
+                resp = decode_response(data)
+            except Exception as exc:
+                log_msgspec_decode_error(
+                    logger,
+                    direction="response",
+                    data=data,
+                    error=exc,
+                    req_id=correlation_id,
+                )
+                raise
             if isinstance(resp, ErrorResponse):
-                raise RuntimeError(f"Daemon error: {resp.message}")
+                response_req_id = resp.reqId or correlation_id
+                raise RuntimeError(f"Daemon error: {resp.message} (reqId={response_req_id})")
             if isinstance(resp, IndexWaitingNotice):
                 if on_waiting is not None:
                     on_waiting()
@@ -184,9 +207,19 @@ class DaemonClient:
     def _send(self, req: Request) -> Response:
         self._conn.send_bytes(encode_request(req))
         data = self._conn.recv_bytes()
-        resp = decode_response(data)
+        try:
+            resp = decode_response(data)
+        except Exception as exc:
+            log_msgspec_decode_error(
+                logger,
+                direction="response",
+                data=data,
+                error=exc,
+            )
+            raise
         if isinstance(resp, ErrorResponse):
-            raise RuntimeError(f"Daemon error: {resp.message}")
+            suffix = f" (reqId={resp.reqId})" if resp.reqId else ""
+            raise RuntimeError(f"Daemon error: {resp.message}{suffix}")
         return resp
 
 

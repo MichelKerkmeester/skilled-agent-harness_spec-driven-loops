@@ -5,13 +5,17 @@ from __future__ import annotations
 
 import heapq
 import hashlib
+import logging
 import sqlite3
 from pathlib import Path
 from typing import Any
 
+from .observability import elapsed_ms, log_stage, monotonic_ms
 from .schema import QueryResult
 from .settings import PROJECT_SETTINGS, is_canonical_path
 from .shared import EMBEDDER, SQLITE_DB, query_prompt_name
+
+logger = logging.getLogger(__name__)
 
 
 def _l2_to_score(distance: float) -> float:
@@ -272,6 +276,7 @@ async def query_codebase(
     offset: int = 0,
     languages: list[str] | None = None,
     paths: list[str] | None = None,
+    req_id: str | None = None,
 ) -> QueryResults:
     """
     Perform vector similarity search using vec0 KNN index.
@@ -291,12 +296,21 @@ async def query_codebase(
     project_settings = env.get_context(PROJECT_SETTINGS)
 
     # Generate query embedding.
+    stage_start = monotonic_ms()
     query_embedding = await embedder.embed(query, query_prompt_name)
+    if req_id is not None:
+        log_stage(
+            logger,
+            req_id=req_id,
+            stage="embedding",
+            duration_ms=elapsed_ms(stage_start),
+        )
 
     embedding_bytes = query_embedding.astype("float32").tobytes()
     unique_k = max(limit + offset, 1)
     fetch_k = unique_k * 4
 
+    stage_start = monotonic_ms()
     with db.readonly() as conn:
         if paths:
             rows = _full_scan_query(conn, embedding_bytes, fetch_k, 0, languages, paths)
@@ -313,11 +327,29 @@ async def query_codebase(
                 ),
                 key=lambda r: r[8],
             )
+    if req_id is not None:
+        log_stage(
+            logger,
+            req_id=req_id,
+            stage="index_lookup",
+            duration_ms=elapsed_ms(stage_start),
+            result_count=len(rows),
+        )
 
-    return _dedup_and_rank_rows(
+    stage_start = monotonic_ms()
+    results = _dedup_and_rank_rows(
         rows,
         query=query,
         limit=limit,
         offset=offset,
         canonical_paths=project_settings.canonical_resource_paths,
     )
+    if req_id is not None:
+        log_stage(
+            logger,
+            req_id=req_id,
+            stage="rerank",
+            duration_ms=elapsed_ms(stage_start),
+            result_count=len(results),
+        )
+    return results

@@ -1,7 +1,7 @@
 {
   "command": "system-code-graph-launcher",
-  "start": "2026-05-14T15:02:28.319Z",
-  "end": "2026-05-14T15:02:28.321Z",
+  "start": "2026-05-14T17:13:25.057Z",
+  "end": "2026-05-14T17:13:25.058Z",
   "status": "ready",
   "actions": [],
   "server": ".opencode/skills/system-code-graph/mcp_server/dist/index.js"

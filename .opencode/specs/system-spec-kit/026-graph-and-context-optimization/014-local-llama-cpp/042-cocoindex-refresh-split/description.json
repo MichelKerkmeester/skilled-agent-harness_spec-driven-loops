@@ -1,0 +1,24 @@
+{
+  "specFolder": "042-cocoindex-refresh-split",
+  "description": "Changes CocoIndex MCP search to default refresh_index=false and adds explicit cocoindex_refresh_index for refresh without search.",
+  "keywords": [
+    "cocoindex",
+    "mcp",
+    "refresh_index",
+    "cocoindex_refresh_index",
+    "search latency",
+    "explicit refresh"
+  ],
+  "lastUpdated": "2026-05-14T16:45:00Z",
+  "specId": "042",
+  "folderSlug": "cocoindex-refresh-split",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "014-local-llama-cpp"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "3",
+  "status": "complete"
+}

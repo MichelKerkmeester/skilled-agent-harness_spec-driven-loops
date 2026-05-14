@@ -42,7 +42,7 @@ const SOURCE_SHAPES = [
 
 const ROUTING_AUDIT_CODE = 'CR001' as const;
 const DROP_TARGET_PREFIX = 'scratch/pending-route-' as const;
-const DEFAULT_HANDOVER_ANCHOR = 'session-log' as const;
+const DEFAULT_HANDOVER_ANCHOR = 'session-notes' as const;
 const DEFAULT_RESEARCH_ANCHOR = 'findings' as const;
 const DEFAULT_DECISION_ANCHOR = 'adr-NNN' as const;
 const DEFAULT_PROGRESS_ANCHOR = 'what-built' as const;

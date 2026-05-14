@@ -119,6 +119,44 @@ This anchor is prose only.
   };
 }
 
+function createHandoverSessionNotesFixture(): { folder: string; mergePlan: MergePlan } {
+  const folder = makeTempDir('speckit-handover-');
+  fs.writeFileSync(
+    path.join(folder, 'handover.md'),
+    `---
+title: "Session Handover"
+description: "Fixture"
+trigger_phrases:
+  - "handover"
+importance_tier: "normal"
+contextType: "handover"
+---
+# Session Handover
+
+<!-- ANCHOR:session-notes -->
+## 5. Session Notes
+
+The existing notes may contain prose plus tables.
+
+| Packet | Outcome |
+|--------|---------|
+| 001 | shipped |
+<!-- /ANCHOR:session-notes -->
+`,
+    'utf8',
+  );
+
+  return {
+    folder,
+    mergePlan: {
+      targetFile: 'handover.md',
+      targetAnchor: 'session-notes',
+      mergeMode: 'append-section',
+      chunkText: '## Follow-up\n\nContinue from the saved state.',
+    },
+  };
+}
+
 afterEach(() => {
   while (TEMP_DIRS.length > 0) {
     const tempDir = TEMP_DIRS.pop();
@@ -225,6 +263,18 @@ describe('spec-doc-structure contract', () => {
     expect(result.details.some((detail) => detail.includes('SPECDOC_MERGE_003'))).toBe(true);
   });
 
+  it('allows section appends to handover session-notes even when existing notes contain tables', () => {
+    const fixture = createHandoverSessionNotesFixture();
+    const result = runSpecDocStructureRule({
+      folder: fixture.folder,
+      level: '1',
+      rule: 'MERGE_LEGALITY',
+      mergePlan: fixture.mergePlan,
+    });
+
+    expect(result.status).toBe('pass');
+  });
+
   it('fails sufficiency when the what-built anchor is empty', () => {
     const folder = copyFixture('063-template-compliant-level3');
     seedContinuityAcrossFixture(folder);
@@ -289,6 +339,24 @@ describe('spec-doc-structure contract', () => {
 
     expect(result.status).toBe('fail');
     expect(result.details.some((detail) => detail.includes('SPECDOC_CONTAM_003'))).toBe(true);
+  });
+
+  it('warns instead of hard-failing when an accepted route override targets drop-shaped content', () => {
+    const folder = copyFixture('063-template-compliant-level3');
+    const result = runSpecDocStructureRule({
+      folder,
+      level: '3',
+      rule: 'CROSS_ANCHOR_CONTAMINATION',
+      contaminationPlan: {
+        routeCategory: 'handover_state',
+        chunkText: 'CONVERSATION_LOG\nuser: continue later\nassistant: current state saved\n',
+        routeOverrideAccepted: true,
+      },
+    });
+
+    expect(result.status).toBe('warn');
+    expect(result.details.some((detail) => detail.includes('SPECDOC_CONTAM_003'))).toBe(true);
+    expect(result.details.some((detail) => detail.includes('route override accepted risk'))).toBe(true);
   });
 
   it('fails post-save fingerprint verification on mismatched content', () => {

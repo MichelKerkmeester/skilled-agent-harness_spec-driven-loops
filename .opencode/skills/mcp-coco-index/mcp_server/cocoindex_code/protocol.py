@@ -25,6 +25,7 @@ class SearchRequest(_msgspec.Struct, tag="search"):
     paths: list[str] | None = None
     limit: int = 5
     offset: int = 0
+    reqId: str | None = None
 
 
 class ProjectStatusRequest(_msgspec.Struct, tag="project_status"):
@@ -132,6 +133,7 @@ class DaemonStatusResponse(_msgspec.Struct, tag="daemon_status"):
     version: str
     uptime_seconds: float
     projects: list[DaemonProjectInfo]
+    clientDisconnects: int = 0
 
 
 class RemoveProjectResponse(_msgspec.Struct, tag="remove_project"):
@@ -144,6 +146,7 @@ class StopResponse(_msgspec.Struct, tag="stop"):
 
 class ErrorResponse(_msgspec.Struct, tag="error"):
     message: str
+    reqId: str | None = None
 
 
 Response = (

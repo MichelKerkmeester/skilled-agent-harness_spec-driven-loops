@@ -115,6 +115,8 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 12 | 012-v3-remediation/ | v3 deep-review remediation and q8 system default | Complete |
 
 | 37 | 037-llama-cpp-embedding-worker-deep-dive/ | Confirm contextSize:512 hypothesis + minimal worker fix | Pending |
+| 38 | 038-embedding-error-propagation/ | Propagate real embedding provider errors instead of catching as null | Complete |
+| 39 | 039-token-aware-chunking/ | Token-aware llama-cpp truncation bounded by model trainContextSize | Complete |
 ### Phase Transition Rules
 
 - Each phase MUST pass `validate.sh` independently before the next phase begins
@@ -138,6 +140,8 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 010-cocoindex-code-only-patterns | 011-embeddinggemma-unification | Code-only baseline stabilized | default config sweep |
 | 011-embeddinggemma-unification | 012-v3-remediation | v3 deep-review findings remain valid | strict validate |
 | 032-substrate-repair-followups | 037-llama-cpp-embedding-worker-deep-dive | 032 left 2/5 children blocked on embedding worker health | Phase 3 falsify/confirm + Phase 5 live round-trip |
+| 037-llama-cpp-embedding-worker-deep-dive | 038-embedding-error-propagation | Embedding-worker fix shipped; propagation gap surfaces | Vitest T029-error-propagation 4/4 PASS |
+| 038-embedding-error-propagation | 039-token-aware-chunking | Errors propagate cleanly; token-budget truncation closes the worker bug | Vitest T030-XX 4/4 PASS incl. real-model smoke |
 <!-- /ANCHOR:phase-map -->
 
 ---
