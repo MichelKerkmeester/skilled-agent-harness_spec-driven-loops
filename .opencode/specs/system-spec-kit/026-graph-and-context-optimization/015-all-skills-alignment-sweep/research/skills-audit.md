@@ -63,10 +63,10 @@ DQI proxy uses four local signals: template pass, frontmatter budget, current-re
 | cli-codex | 46 md | 87 | `SKILL.md` description 144 chars, over 130 soft target; current `gpt-5.5` docs are intentional per skill | Aligned in Batch A |
 | cli-gemini | 34 md | 88 | `SKILL.md` description 132 chars, over 130 soft target | Aligned in Batch A |
 | cli-opencode | 48 md | 90 | No blocking sk-doc findings; `opencode-go` docs match current skill policy | Verified in Batch A |
-| deep-agent-improvement | 81 md | 90 | No blocking sk-doc findings | Pending Batch B |
-| deep-ai-council | 80 md | 90 | No blocking sk-doc findings | Pending Batch B |
-| deep-research | 88 md | 90 | No blocking sk-doc findings | Pending Batch B |
-| deep-review | 86 md | 90 | No blocking sk-doc findings | Pending Batch B |
+| deep-agent-improvement | 81 md | 90 -> 91 | No blocking sk-doc findings; JSONL/journal docs current | Verified in Batch B |
+| deep-ai-council | 80 md | 90 -> 91 | No blocking sk-doc findings; council state and derived graph docs current | Verified in Batch B |
+| deep-research | 88 md | 90 -> 91 | No blocking sk-doc findings; deferred lifecycle language is explicit current truth | Verified in Batch B |
+| deep-review | 86 md | 90 -> 93 | Removed duplicate `_TODO` quick-reference sections and corrected canonical `deep-review-state.jsonl` playbook references | Aligned in Batch B |
 | mcp-chrome-devtools | 35 md | 90 | No blocking sk-doc findings | Pending Batch C |
 | mcp-coco-index | 188 md | 91 | Need verify post-040 embedding wording and fork docs | Pending Batch C |
 | mcp-code-mode | 45 md | 90 | No blocking sk-doc findings | Pending Batch C |

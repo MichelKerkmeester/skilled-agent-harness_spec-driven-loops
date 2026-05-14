@@ -10,8 +10,8 @@ _memory:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/015-all-skills-alignment-sweep"
     last_updated_at: "2026-05-14T18:55:00Z"
     last_updated_by: "codex"
-    recent_action: "Batch A in progress; packet scaffolded and CLI descriptions trimmed"
-    next_safe_action: "Commit Batch A, then continue Batch B"
+    recent_action: "Batch B aligned deep-review placeholders and state-log references"
+    next_safe_action: "Commit Batch B, then continue Batch C"
     blockers: []
     key_files:
       - "implementation-summary.md"
@@ -20,7 +20,7 @@ _memory:
       fingerprint: "sha256:2cfd48f68ca907b81aba558a20c7260fc016cd25dab7c1ab22a937ec7b98ed9d"
       session_id: "015-all-skills-alignment-sweep"
       parent_session_id: null
-    completion_pct: 15
+    completion_pct: 35
     open_questions: []
     answered_questions: []
 ---
@@ -61,7 +61,7 @@ Trimmed the three CLI `SKILL.md` descriptions that exceeded the sk-doc 130-chara
 
 ### Batch B: Deep-Loop Skills
 
-Pending.
+Verified `deep-agent-improvement`, `deep-ai-council`, `deep-research`, and `deep-review` against sk-doc validators and current state-machine language. `deep-review` needed two fixes: a generated `_TODO` tail in `references/quick_reference.md` was removed by adding a real overview, and the manual playbook now uses the canonical `review/deep-review-state.jsonl` state log name.
 
 ### Batch C: MCP Integration Skills
 
@@ -106,6 +106,8 @@ The sweep uses five sequential batches so each skill family can be reviewed and 
 | Baseline `quick_validate.py` for 19 skills | PASS, 19/19 valid; three CLI soft warnings before Batch A |
 | Primary README validator | PASS, 21/21 valid for root and skill primary READMEs |
 | Batch A `quick_validate.py` | PASS, 4/4 valid with no warnings after description trims |
+| Batch B `quick_validate.py` | PASS, 4/4 deep-loop skills valid |
+| Batch B changed-doc validation | PASS, `deep-review/references/quick_reference.md` as reference and playbook README both valid |
 | Packet strict validation | Pending final close-out |
 <!-- /ANCHOR:verification -->
 
@@ -123,8 +125,8 @@ The sweep uses five sequential batches so each skill family can be reviewed and 
 
 | Batch | Commit | Scope | Verification |
 |---|---|---|---|
-| A | Pending | CLI executor descriptions plus packet scaffold/audit | 4/4 `quick_validate.py` PASS |
-| B | Pending | Deep-loop skills | Pending |
+| A | `da1a5b48e1` | CLI executor descriptions plus packet scaffold/audit | 4/4 `quick_validate.py` PASS |
+| B | Pending | Deep-loop skills | 4/4 `quick_validate.py` PASS; changed docs validate |
 | C | Pending | MCP integration skills | Pending |
 | D | Pending | sk-* skills | Pending |
 | E | Pending | system-* skills and root READMEs | Pending |

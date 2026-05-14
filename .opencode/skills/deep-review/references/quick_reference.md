@@ -9,7 +9,11 @@ One-page cheat sheet for the autonomous deep review loop.
 
 ---
 
-## 1. COMMANDS
+## 1. OVERVIEW
+
+Use this quick reference when you need the command shape, artifact names, convergence rules, and synthesis outputs for the autonomous deep-review loop without loading the full protocol references.
+
+### Commands
 
 | Command | Description |
 |---------|-------------|
@@ -205,15 +209,3 @@ For review-specific protocol documentation, see local `references/`:
 - `loop_protocol.md` — Review loop lifecycle (4 phases)
 - `state_format.md` — Review state file schemas
 - `convergence.md` — Review convergence algorithms
-
-## 14. OVERVIEW
-
-_TODO: populate this section_
-
----
-
-## 15. OVERVIEW
-
-_TODO: populate this section_
-
----

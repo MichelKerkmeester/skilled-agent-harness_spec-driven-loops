@@ -88,7 +88,7 @@ This playbook provides 32 deterministic scenarios across 6 categories validating
 
 1. `manual_testing_playbook.md`
 2. Referenced per-feature files under `manual_testing_playbook/NN--category-name/`
-3. Scenario execution evidence including `review/iterations/iteration-NNN.md`, `review/review-state.jsonl`, and `review/review-report.md` when synthesis runs
+3. Scenario execution evidence including `review/iterations/iteration-NNN.md`, `review/deep-review-state.jsonl`, and `review/review-report.md` when synthesis runs
 4. Feature-to-scenario coverage map (every DRV-NNN appears in section 14)
 5. Triage notes for all non-pass outcomes including pause-sentinel halts, malformed-state recovery, and convergence stalls
 
@@ -99,7 +99,7 @@ For each executed scenario, check:
 1. Preconditions were satisfied (state files initialized, prior review state validated where applicable, scope discovery complete).
 2. The canonical prompt and command sequence were executed against the canonical deep-review surface.
 3. Expected signals are present in the captured iteration files, JSONL events, and `review-report.md` when produced.
-4. Evidence is complete and readable, including `review-state.jsonl` events and any `graphEvents` arrays the scenario produces.
+4. Evidence is complete and readable, including `deep-review-state.jsonl` events and any `graphEvents` arrays the scenario produces.
 5. Outcome rationale is explicit and references the user-visible deliverable named in the scenario.
 
 Scenario verdict:

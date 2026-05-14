@@ -53,7 +53,7 @@ _memory:
 - [x] T002 Scaffold Level 3 packet at `015-all-skills-alignment-sweep`
 - [x] T003 [P] Read sk-doc operating manual and skill templates
 - [x] T004 [P] Read 013/009 handover and `git log --oneline -50`
-- [ ] T005 Create `research/skills-audit.md`
+- [x] T005 Create `research/skills-audit.md`
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -61,9 +61,9 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T010 Batch A audit/edit CLI executor skills
-- [ ] T011 Commit Batch A
-- [ ] T020 Batch B audit/edit deep-loop skills
+- [x] T010 Batch A audit/edit CLI executor skills
+- [x] T011 Commit Batch A
+- [x] T020 Batch B audit/edit deep-loop skills
 - [ ] T021 Commit Batch B
 - [ ] T030 Batch C audit/edit MCP integration skills
 - [ ] T031 Commit Batch C
