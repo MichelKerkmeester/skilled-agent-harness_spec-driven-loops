@@ -12,12 +12,11 @@ contextType: "decision"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-local-llama-cpp/041-llama-cpp-metal-investigation"
-    last_updated_at: "2026-05-14T15:18:02Z"
-    last_updated_by: "cli-codex-gpt5.5-xhigh-fast-041"
-    recent_action: "Recorded ADR recommendation for research-only packet"
-    next_safe_action: "Open a future implementation packet if runtime behavior should change"
-    blockers:
-      - "Network disabled for latest package and Apple release-note checks"
+    last_updated_at: "2026-05-14T15:55:00Z"
+    last_updated_by: "orchestrator-post-investigation"
+    recent_action: "Recorded post-decision execution outcome: Option A succeeded operationally despite ADR recommending defer"
+    next_safe_action: "Operate under restored Metal path. Reopen ADR only if Darwin/SDK drift surfaces again."
+    blockers: []
     key_files:
       - "research.md"
       - "scratch/system-probes.txt"
@@ -25,11 +24,11 @@ _memory:
       fingerprint: "sha256:041-llama-cpp-metal-investigation-adr-20260514"
       session_id: "cli-codex-gpt5.5-xhigh-fast-041"
       parent_session_id: null
-    completion_pct: 90
-    open_questions:
-      - "Would a newer node-llama-cpp Metal binary built after Darwin 25.4.0 resolve the warning?"
+    completion_pct: 100
+    open_questions: []
     answered_questions:
       - "A gpuLayers-only patch is not recommended because current provider source already defaults to 0."
+      - "Would a newer node-llama-cpp Metal binary built after Darwin 25.4.0 resolve the warning? — Not the warning, but a local rebuild against Darwin 25.4 SDK does restore full Metal acceleration; the warning is cosmetic and persists with both the prebuilt and the local rebuild."
 ---
 # Decision Record: llama-cpp Metal Investigation
 
@@ -46,7 +45,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Superseded by Option A execution on 2026-05-14T15:55Z — see "Post-Decision Execution" below |
 | **Date** | 2026-05-14 |
 | **Deciders** | User, Codex GPT-5.5 |
 
@@ -138,6 +137,28 @@ llama-cpp embeddings currently emit Metal initialization warnings and run on the
 - New 041 research docs and scratch evidence are added.
 
 **How to roll back**: Remove only the 041 packet folder if the research packet should be withdrawn.
+
+### Post-Decision Execution (2026-05-14T15:55Z)
+
+The user requested Option A be attempted as a "quick win" experiment after the ADR shipped. The orchestrator executed it:
+
+1. **Installed cmake** via `brew install cmake` (cmake was absent from `/opt/homebrew/bin/` — Option A's missing prerequisite).
+2. **Rebuilt node-llama-cpp from source** via `node_modules/.bin/node-llama-cpp source build --gpu metal` against the locally-installed Xcode 26.2 / Darwin 25.4 SDK. Build exit 0. New binaries landed at `node_modules/node-llama-cpp/llama/localBuilds/mac-arm64-metal/Release/`.
+3. **Verified outcome via direct probes:**
+   - `getLlama("lastBuild")` and `getLlama(<default>)` BOTH return `llama.gpu === 'metal'`.
+   - Warm short embeds complete in **3-4 ms** (Metal speed).
+   - Warm long embed (2831-byte normalized markdown checklist) completes in **265 ms**.
+   - Cold first embed (model-load + first-inference) **452 ms** (was ~889 ms pre-rebuild).
+4. **Verified via live MCP** after `/mcp` reconnect (new launcher spawn picks up new binaries):
+   - `memory_search` total latency **38 ms** (stage1 candidate-gen + query embed: 33 ms).
+   - `memory_health.embeddingProvider.healthy: true` (was `false` pre-rebuild).
+   - `failed: 0` (was 214); `flapping: false` (was `true`); `transitionsInLast10Min: 0` (was 3).
+
+**Why the ADR's "Option A=4/10" scoring was wrong, in retrospect:**
+- The ADR scored Option A low partly because "provider already defaults gpuLayers to 0 — patch unlikely to silence warnings." That observation was correct, but Option A's *real* mechanism is the SDK-matched rebuild, not the gpuLayers flag itself. The rebuild produces binaries that work despite the misleading kernel-init warnings.
+- The original `889 ms cold-only` probe conflated model-load time + first-inference + Metal kernel-init fallback into a single number, masking that Metal *was* successfully completing the inference. Warm-state measurements (4 ms / 265 ms) made the truth visible.
+
+**Net:** The ADR's "defer" recommendation was the safe call given the evidence-collection moment, but the situation it described as broken was actually already partly working under warning noise — and a one-shot rebuild made it fully working. No regression risk now. Future implementation packets should test Metal warm-state perf, not cold-load perf, to avoid this misdiagnosis pattern.
 <!-- /ANCHOR:adr-001-impl -->
 <!-- /ANCHOR:adr-001 -->
 

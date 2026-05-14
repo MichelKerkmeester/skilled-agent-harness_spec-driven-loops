@@ -11,10 +11,10 @@ contextType: "research"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-local-llama-cpp/041-llama-cpp-metal-investigation"
-    last_updated_at: "2026-05-14T15:23:23Z"
-    last_updated_by: "cli-codex-gpt5.5-xhigh-fast-041"
-    recent_action: "Summarized research packet and ADR recommendation"
-    next_safe_action: "Use ADR to choose a future implementation packet"
+    last_updated_at: "2026-05-14T15:55:00Z"
+    last_updated_by: "orchestrator-post-investigation"
+    recent_action: "Recorded post-investigation Option A execution: rebuild from source against local Xcode 26.2 / Darwin 25.4 SDK succeeded; Metal is operational; embeddingProvider.healthy=true at live MCP"
+    next_safe_action: "Operate under restored Metal path. Reopen a follow-up packet only if perf degrades or warnings prove fatal under load."
     blockers: []
     key_files:
       - "research.md"
@@ -26,10 +26,10 @@ _memory:
       session_id: "cli-codex-gpt5.5-xhigh-fast-041"
       parent_session_id: null
     completion_pct: 100
-    open_questions:
-      - "Network-backed external checks are deferred."
+    open_questions: []
     answered_questions:
       - "A gpuLayers-only change is not supported by the current provider evidence because gpuLayers already defaults to 0."
+      - "Option A (rebuild from source against local Darwin 25.4 SDK) was executed post-ADR and succeeded; the Metal kernel-init warnings persist but are cosmetic — Metal is the active backend and embeddings run at GPU speeds (4ms warm short, 265ms warm long, 452ms cold first)."
 ---
 # Implementation Summary
 
@@ -105,6 +105,10 @@ The work used read-only probes plus one scratch script in the 041 packet. No sou
 | Scratch auto backend probe | FAIL as expected for evidence, Metal context creation failed even with explicit `gpuLayers: 0` |
 | Scratch CPU backend probe with `build: "never"` | FAIL as expected for evidence, no CPU prebuilt binary found |
 | Strict spec validation | PASS, exit 0 |
+| **Post-ADR Option A executed** (rebuild from source via `node-llama-cpp source build --gpu metal` against Xcode 26.2 / Darwin 25.4 SDK after `brew install cmake`) | **PASS, build exit 0; new binaries at `node_modules/node-llama-cpp/llama/localBuilds/mac-arm64-metal/Release/`** |
+| **Post-rebuild direct `getLlama("lastBuild")` + `getLlama(<default>)` warm embeds** | **PASS, ~3-4ms per short embed, ~265ms warm long, ~452ms cold first — definitively Metal-accelerated** |
+| **Post-rebuild live MCP `memory_search` query latency** | **PASS, total 38ms (stage1 candidate gen + embed: 33ms)** |
+| **Post-rebuild `memory_health` reports** | `embeddingProvider.healthy: true`; `failed: 0`; `flapping: false`; `transitionsInLast10Min: 0` (was false/214/true/3 pre-rebuild) |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -112,9 +116,10 @@ The work used read-only probes plus one scratch script in the 041 packet. No sou
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **External release notes were not checked.** Network access was disabled, so Darwin 25.4.0 / macOS 26.4 Metal release notes remain an external follow-up.
-2. **No source fix was tested.** The packet intentionally stopped at research and ADR output.
-3. **CPU backend proof is incomplete.** `getLlama({ gpu: false, build: "never" })` fails because the current install has no CPU-only prebuilt binary.
+1. **External release notes were not checked during the research phase.** Network access was disabled at that time. Post-investigation execution proved unnecessary — the rebuild succeeded against local SDKs.
+2. **The ADR recommendation has been superseded operationally.** Option C (defer) was the right call given the evidence available at the time. After this packet shipped, a one-line `brew install cmake` + `node-llama-cpp source build --gpu metal` executed Option A successfully — Metal is now operational. The kernel-init warnings still fire but are cosmetic; `llama.gpu` returns `'metal'` and embeddings run at GPU speeds.
+3. **The "tensor API is not supported - disabling" warning is misleading.** It logs during early Metal backend handshake but a fallback compile path succeeds — embeddings run on the GPU. Pre-rebuild AND post-rebuild both emit this warning. Treat it as noise unless `llama.gpu` returns something other than `'metal'`.
+4. **CPU backend proof is incomplete.** `getLlama({ gpu: false, build: "never" })` fails because the current install has no CPU-only prebuilt binary. Not a regression — orthogonal to Metal status.
 <!-- /ANCHOR:limitations -->
 
 ---
