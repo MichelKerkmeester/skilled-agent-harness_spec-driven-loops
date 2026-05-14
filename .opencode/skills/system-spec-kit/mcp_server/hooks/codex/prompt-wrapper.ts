@@ -19,13 +19,13 @@ import {
   type AdvisorHookFreshness,
   type AdvisorHookResult,
   type AdvisorHookStatus,
-} from '../../skill_advisor/lib/skill-advisor-brief.js';
-import { renderAdvisorBrief } from '../../skill_advisor/lib/render.js';
+} from '../../../../system-skill-advisor/mcp_server/lib/skill-advisor-brief.js';
+import { renderAdvisorBrief } from '../../../../system-skill-advisor/mcp_server/lib/render.js';
 import {
   createAdvisorHookDiagnosticRecord,
   persistAdvisorHookDiagnosticRecord,
   serializeAdvisorHookDiagnosticRecord,
-} from '../../skill_advisor/lib/metrics.js';
+} from '../../../../system-skill-advisor/mcp_server/lib/metrics.js';
 import {
   codexHookTimeoutMs,
   parseCodexUserPromptSubmitInputSources,

@@ -3,8 +3,8 @@
 // ║ COMPONENT: Spec Kit Skill Advisor Plugin Bridge (MJS source-of-truth)   ║
 // ╠══════════════════════════════════════════════════════════════════════════╣
 // ║ PURPOSE: Subprocess bridge between `.opencode/plugins/spec-kit-skill-   ║
-// ║          advisor.js` and the native Node advisor compat surface in     ║
-// ║          mcp_server/dist/skill_advisor/compat/index.js. The plugin     ║
+// ║          advisor.js` and the standalone system_skill_advisor MCP       ║
+// ║          server. The plugin                                           ║
 // ║          spawns this script with stdin JSON; this script writes a      ║
 // ║          single stdout JSON response and exits.                         ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
@@ -24,20 +24,25 @@
 //      .ts → .mjs build step exclusive to this single file. Either path is
 //      a larger packet than the source/dist boundary fixes here.
 //
-// Smoke tests asserting the named exports (`buildBrief` / `loadNativeAdvisorModules`)
-// live at mcp_server/skill_advisor/tests/compat/plugin-bridge-smoke.vitest.ts
-// and run as part of the standard test suite.
+// Smoke tests asserting the subprocess envelope live in the standalone
+// system-skill-advisor compatibility test suite.
 // Helper for packet 026/007/009. This file intentionally lives outside
 // `.opencode/plugins/` so OpenCode discovers only real plugin entrypoints.
 
 import { readFileSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
 
-const COMPAT_CONTRACT = JSON.parse(readFileSync(new URL('../skill_advisor/schemas/compat-contract.json', import.meta.url), 'utf8'));
+import { Client } from '@modelcontextprotocol/sdk/client/index.js';
+import { StdioClientTransport } from '@modelcontextprotocol/sdk/client/stdio.js';
+
+const COMPAT_CONTRACT = JSON.parse(readFileSync(new URL('../../../system-skill-advisor/mcp_server/schemas/compat-contract.json', import.meta.url), 'utf8'));
 const STATUS_VALUES = new Set(COMPAT_CONTRACT.statusValues);
 const DISABLED_ENV = COMPAT_CONTRACT.disabledEnv;
 const FORCE_LOCAL_ENV = COMPAT_CONTRACT.forceLocalEnv;
 const DEFAULT_CONFIDENCE_THRESHOLD = COMPAT_CONTRACT.defaults.confidenceThreshold;
 const DEFAULT_UNCERTAINTY_THRESHOLD = COMPAT_CONTRACT.defaults.uncertaintyThreshold;
+const ADVISOR_LAUNCHER_PATH = fileURLToPath(new URL('../../../../bin/skill-advisor-launcher.cjs', import.meta.url));
+const ADVISOR_MCP_TIMEOUT_MS = 8000;
 
 function response(args) {
   return {
@@ -142,6 +147,95 @@ function sanitizeLabel(value) {
   return cleaned;
 }
 
+function processEnv() {
+  return Object.fromEntries(
+    Object.entries(process.env).filter((entry) => typeof entry[1] === 'string'),
+  );
+}
+
+function withTimeout(operation, timeoutMs, label) {
+  let timeout;
+  return new Promise((resolve, reject) => {
+    timeout = setTimeout(() => {
+      reject(Object.assign(new Error(`${label} timed out after ${timeoutMs}ms`), { code: 'ADVISOR_MCP_TIMEOUT' }));
+    }, timeoutMs);
+    timeout.unref?.();
+    operation.then(
+      (value) => {
+        if (timeout) clearTimeout(timeout);
+        resolve(value);
+      },
+      (error) => {
+        if (timeout) clearTimeout(timeout);
+        reject(error);
+      },
+    );
+  });
+}
+
+function renderAdvisorBrief(result, options = {}) {
+  if (result.status !== 'ok') return null;
+  if (result.freshness !== 'live' && result.freshness !== 'stale') return null;
+
+  const tokenCap = Math.min(Math.max(1, positiveInt(result.metrics?.tokenCap ?? options.tokenCap, 80)), 120);
+  const thresholdConfig = options.thresholdConfig ?? {};
+  const recommendations = Array.isArray(result.recommendations)
+    ? result.recommendations.filter((recommendation) => (
+      recommendation.passes_threshold === true
+      || (
+        recommendation.confidence >= (thresholdConfig.confidenceThreshold ?? DEFAULT_CONFIDENCE_THRESHOLD)
+        && (
+          thresholdConfig.confidenceOnly === true
+          || recommendation.uncertainty <= (thresholdConfig.uncertaintyThreshold ?? DEFAULT_UNCERTAINTY_THRESHOLD)
+        )
+      )
+    ))
+    : [];
+  const top = recommendations[0];
+  if (!top) return null;
+
+  const topLabel = sanitizeLabel(result.sharedPayload?.metadata?.skillLabel ?? top.skill);
+  if (!topLabel) return null;
+  const text = `Advisor: ${result.freshness}; use ${topLabel} ${formatScore(top.confidence)}/${formatScore(top.uncertainty)} pass.`;
+  const charCap = Math.min(tokenCap, 80) * 4;
+  return text.length <= charCap ? text : `${text.slice(0, Math.max(1, charCap - 3)).trimEnd()}...`;
+}
+
+async function callAdvisorTool(name, args, workspaceRoot) {
+  const transport = new StdioClientTransport({
+    command: process.execPath,
+    args: [ADVISOR_LAUNCHER_PATH],
+    cwd: workspaceRoot,
+    env: processEnv(),
+    stderr: 'pipe',
+  });
+  transport.stderr?.on('data', () => {});
+  const client = new Client({ name: 'spec-kit-skill-advisor-plugin-bridge', version: '0.1.0' });
+  try {
+    await withTimeout(client.connect(transport), ADVISOR_MCP_TIMEOUT_MS, 'system_skill_advisor initialize');
+    return await withTimeout(
+      client.callTool({ name, arguments: args }),
+      ADVISOR_MCP_TIMEOUT_MS,
+      `system_skill_advisor.${name}`,
+    );
+  } finally {
+    try {
+      await client.close();
+    } catch {
+      // Best-effort process cleanup; bridge callers still get fail-open output.
+    }
+  }
+}
+
+function parseAdvisorToolData(toolResponse) {
+  const first = Array.isArray(toolResponse?.content) ? toolResponse.content[0] : null;
+  if (typeof first?.text !== 'string') {
+    throw Object.assign(new Error('Advisor MCP response missing text content'), { code: 'ADVISOR_MCP_BAD_RESPONSE' });
+  }
+  const parsed = JSON.parse(first.text);
+  return parsed?.data ?? parsed;
+}
+
 // F-006-B1-03: The dead `renderNativeBrief()` alternate renderer was removed
 // here. It was unreferenced (verified via grep across mcp_server) and could
 // drift from the shared `renderAdvisorBrief()` formatter. Bridge output now
@@ -150,14 +244,12 @@ function sanitizeLabel(value) {
 // stay because they are still used by `buildNativeBrief` and `buildLegacyBrief`.
 
 async function loadNativeAdvisorModules() {
-  const compatModule = await import('../dist/skill_advisor/compat/index.js');
-
   return {
-    readAdvisorStatus: compatModule.readAdvisorStatus,
-    handleAdvisorRecommend: compatModule.handleAdvisorRecommend,
-    probeAdvisorDaemon: compatModule.probeAdvisorDaemon ?? null,
-    buildSkillAdvisorBrief: compatModule.buildSkillAdvisorBrief,
-    renderAdvisorBrief: compatModule.renderAdvisorBrief,
+    readAdvisorStatus: async (args) => parseAdvisorToolData(await callAdvisorTool('advisor_status', args, args.workspaceRoot)),
+    handleAdvisorRecommend: (args) => callAdvisorTool('advisor_recommend', args, args.workspaceRoot),
+    probeAdvisorDaemon: null,
+    buildSkillAdvisorBrief: null,
+    renderAdvisorBrief,
   };
 }
 
@@ -183,7 +275,7 @@ async function probeNativeAdvisor(input) {
   if (typeof modules.probeAdvisorDaemon === 'function') {
     return modules.probeAdvisorDaemon({ workspaceRoot: input.workspaceRoot });
   }
-  const status = modules.readAdvisorStatus({ workspaceRoot: input.workspaceRoot });
+  const status = await modules.readAdvisorStatus({ workspaceRoot: input.workspaceRoot });
   return {
     available: status.freshness === 'live' || status.freshness === 'stale',
     freshness: status.freshness,
@@ -277,40 +369,24 @@ async function buildNativeBrief(input) {
 }
 
 async function buildLegacyBrief(input) {
-  const { buildSkillAdvisorBrief, renderAdvisorBrief } = await loadNativeAdvisorModules();
-
   const maxTokens = positiveInt(input.maxTokens, 80);
   const effectiveThresholds = {
     confidenceThreshold: threshold(input.thresholdConfidence),
     uncertaintyThreshold: DEFAULT_UNCERTAINTY_THRESHOLD,
     confidenceOnly: false,
   };
-  const result = await buildSkillAdvisorBrief(input.prompt, {
-    workspaceRoot: input.workspaceRoot,
-    runtime: 'codex',
-    maxTokens,
-    thresholdConfig: effectiveThresholds,
-  });
-  const brief = renderAdvisorBrief(result, {
-    tokenCap: maxTokens,
-    thresholdConfig: effectiveThresholds,
-  });
-  const top = result.recommendations?.[0] ?? null;
 
   return response({
-    brief,
-    status: result.status,
+    brief: null,
+    status: 'fail_open',
+    error: 'SYSTEM_SKILL_ADVISOR_UNAVAILABLE',
     metadata: {
       route: 'python',
       workspaceRoot: input.workspaceRoot,
       effectiveThresholds,
-      freshness: result.freshness,
-      durationMs: result.metrics.durationMs,
-      cacheHit: result.metrics.cacheHit,
-      subprocessInvoked: result.metrics.subprocessInvoked,
-      recommendationCount: result.metrics.recommendationCount,
-      tokenCap: result.metrics.tokenCap,
-      skillLabel: sanitizeLabel(top?.skill),
+      freshness: 'unavailable',
+      recommendationCount: 0,
+      tokenCap: maxTokens,
     },
   });
 }

@@ -10,11 +10,12 @@ contextType: "plan"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/013-skill-advisor-semantic-lane/009-system-skill-advisor-extraction/005-hooks-compat-and-consumer-cutover"
-    last_updated_at: "2026-05-14T12:45:00Z"
+    last_updated_at: "2026-05-14T12:36:34Z"
     last_updated_by: "codex"
-    recent_action: "COMPACT authored plan"
-    next_safe_action: "Run Phase 1 inventory"
-    blockers: []
+    recent_action: "Consumer cutover implemented"
+    next_safe_action: "Continue to 006 cleanup"
+    blockers:
+      - "Legacy hook Vitest suites import removed ../skill_advisor test helpers outside the 005 edit whitelist."
     key_files:
       - "plan.md"
       - "spec.md"
@@ -63,17 +64,17 @@ The implementation moves advisor consumers from the memory MCP boundary to the s
 - [x] ADR-001 accepted standalone advisor MCP with stable `advisor_*` ids.
 - [x] ADR-003 in this packet selects the legacy bridge behavior.
 - [x] Existing caller inventory seeds are known: plugin bridge, memory dispatch, hooks, Python shim, doctor YAMLs, install guides.
-- [ ] Child 004 standalone launcher/config registration is verified before implementation begins.
+- [x] Child 004 standalone launcher/config registration is verified before implementation begins.
 
 ### Definition of Done
 
-- [ ] Production callers route through `system_skill_advisor` or the package-local compatibility surface.
-- [ ] `spec_kit_memory` advisor registration is proxy-only and logs deprecation.
-- [ ] OpenCode skill-advisor plugin bridge no longer imports old `dist/skill_advisor` paths.
-- [ ] Hook smoke tests pass for Claude, Codex, Gemini, and OpenCode paths covered by the repo.
-- [ ] Python shim smoke passes through the package-local script path.
-- [ ] `/doctor:update --cleanup-legacy=false` exercises the standalone advisor path.
-- [ ] Install guides describe memory MCP plus standalone advisor MCP.
+- [x] Production callers route through `system_skill_advisor` or the package-local compatibility surface.
+- [x] `spec_kit_memory` advisor registration is proxy-only and logs deprecation.
+- [x] OpenCode skill-advisor plugin bridge no longer imports old `dist/skill_advisor` paths.
+- [ ] Hook smoke tests pass for Claude, Codex, Gemini, and OpenCode paths covered by the repo. BLOCKED: hook Vitest fixtures import old test helper paths outside this packet's edit whitelist.
+- [x] Python shim smoke passes through the package-local script path.
+- [x] `/doctor:update --cleanup-legacy=false` exercises the standalone advisor path. Safe equivalent used: doctor YAML parse plus standalone target grep.
+- [x] Install guides describe memory MCP plus standalone advisor MCP.
 <!-- /ANCHOR:quality-gates -->
 
 ---

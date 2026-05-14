@@ -11,11 +11,12 @@ contextType: "spec"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/013-skill-advisor-semantic-lane/009-system-skill-advisor-extraction/005-hooks-compat-and-consumer-cutover"
-    last_updated_at: "2026-05-14T12:45:00Z"
+    last_updated_at: "2026-05-14T12:36:34Z"
     last_updated_by: "codex"
-    recent_action: "COMPACT authored L3 docs"
-    next_safe_action: "Implement 005 consumer cutover"
-    blockers: []
+    recent_action: "Consumer cutover implemented"
+    next_safe_action: "Continue to 006 cleanup"
+    blockers:
+      - "Legacy hook Vitest suites still import removed ../skill_advisor test helpers outside the 005 edit whitelist."
     key_files:
       - "spec.md"
       - "plan.md"
@@ -56,7 +57,7 @@ Child 005 moves the remaining prompt-time, plugin, shim, doctor, and documentati
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P0 |
-| **Status** | Ready for Implementation |
+| **Status** | Implemented with caveats |
 | **Created** | 2026-05-14 |
 | **Branch** | `main` |
 <!-- /ANCHOR:metadata -->

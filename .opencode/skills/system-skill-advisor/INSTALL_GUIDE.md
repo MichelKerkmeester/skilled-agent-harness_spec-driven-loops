@@ -5,7 +5,7 @@ description: "Bootstrap, verification, compatibility, rollback, and operator not
 
 # Skill Advisor Native Bootstrap
 
-This is the canonical bootstrap guide for the native Skill Advisor. The advisor lives inside the existing system-spec-kit MCP server; do not register a second MCP server for it.
+This is the canonical bootstrap guide for the standalone Skill Advisor MCP server. The advisor runs as `system_skill_advisor`, separate from `spec_kit_memory`, while preserving the public tool ids `advisor_recommend`, `advisor_rebuild`, `advisor_status`, and `advisor_validate`.
 
 ---
 
@@ -25,41 +25,47 @@ This is the canonical bootstrap guide for the native Skill Advisor. The advisor 
 
 ## 1. OVERVIEW
 
-The native advisor is a TypeScript package under `mcp_server/skill_advisor/` with the public MCP tools `advisor_recommend`, `advisor_rebuild`, `advisor_status`, and `advisor_validate`. This TypeScript path is primary, while the Python `skill_advisor.py` shim remains as the compatibility surface for scripts and prompt hooks.
+The native advisor is a TypeScript package under `.opencode/skills/system-skill-advisor/mcp_server/` with the public MCP tools `advisor_recommend`, `advisor_rebuild`, `advisor_status`, and `advisor_validate`. The standalone MCP server owns the advisor handlers, schemas, launcher, and package-local SQLite DB at `.opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sqlite`. The Python `skill_advisor.py` shim remains as the compatibility surface for scripts and prompt hooks.
 
 ---
 
 ## 2. PREREQUISITES
 
-- Node.js and npm available for the system-spec-kit MCP server.
+- Node.js and npm available for the standalone system-skill-advisor MCP server.
 - Repository root as the working directory.
-- Runtime MCP configuration already points at the system-spec-kit MCP server.
+- Runtime MCP configuration includes both `spec_kit_memory` and `system_skill_advisor`.
 - `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED` is unset unless intentionally testing rollback.
 
 ---
 
 ## 3. INSTALLATION
 
-Install dependencies and build the MCP server:
+Install dependencies and build the advisor MCP server:
 
 ```bash
-npm --prefix .opencode/skills/system-spec-kit/mcp_server install
-npm --prefix .opencode/skills/system-spec-kit/mcp_server run build
+npm --prefix .opencode/skills/system-skill-advisor/mcp_server install
+npm --prefix .opencode/skills/system-skill-advisor/mcp_server run build
 ```
 
-Start or refresh the system-spec-kit MCP server in the active runtime.
+Start or refresh the `system_skill_advisor` MCP server in the active runtime. The launcher is:
+
+```bash
+node .opencode/bin/skill-advisor-launcher.cjs
+```
 
 ---
 
 ## 4. VERIFICATION
 
-Verify native tool registration:
+Verify native tool registration through `system_skill_advisor`:
 
 ```text
-advisor_status({"workspaceRoot":"/absolute/path/to/repo"})
-advisor_recommend({"prompt":"save this conversation context to memory","options":{"topK":1}})
-advisor_validate({"skillSlug":null})
+system_skill_advisor.advisor_status({"workspaceRoot":"/absolute/path/to/repo"})
+system_skill_advisor.advisor_recommend({"prompt":"save this conversation context to memory","options":{"topK":1}})
+system_skill_advisor.advisor_validate({"skillSlug":null})
 ```
+
+Also verify the active runtime lists both MCP servers: `spec_kit_memory` for memory/context tools and `system_skill_advisor` for advisor tools. The `spec_kit_memory.advisor_*` tools are deprecated proxy descriptors during 013/009/005 only; child 013/009/006 removes that bridge.
 
 Expected:
 
@@ -75,9 +81,9 @@ Expected:
 Run before declaring bootstrap complete:
 
 ```bash
-npm --prefix .opencode/skills/system-spec-kit/mcp_server run typecheck
-npm --prefix .opencode/skills/system-spec-kit/mcp_server run build
-(cd .opencode/skills/system-spec-kit/mcp_server && ../scripts/node_modules/.bin/vitest run skill_advisor/tests/ code_graph/tests/ --reporter=default)
+npm --prefix .opencode/skills/system-skill-advisor/mcp_server run typecheck
+npm --prefix .opencode/skills/system-skill-advisor/mcp_server run build
+npm --prefix .opencode/skills/system-skill-advisor/mcp_server run test -- tests/compat/plugin-bridge-smoke.vitest.ts tests/handlers/advisor-recommend.vitest.ts --reporter=default
 ```
 
 Current native advisor baseline:
@@ -109,16 +115,16 @@ python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.p
 python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py --force-local "save this context"
 ```
 
-The OpenCode plugin bridge follows the same pattern: native probe, `advisor_recommend` delegation, then Python-backed brief fallback. Plugin consumers must use the stable entrypoint:
+The OpenCode plugin bridge follows the same pattern: MCP-level `system_skill_advisor.advisor_recommend` delegation with prompt-safe fail-open behavior. Plugin consumers must use the stable bridge entrypoint:
 
 ```text
-.opencode/skills/system-skill-advisor/mcp_server/compat/index.ts
+.opencode/skills/system-spec-kit/mcp_server/plugin_bridges/spec-kit-skill-advisor-bridge.mjs
 ```
 
-After build, the compiled path is:
+If a package-level import is needed inside a subprocess fallback, it must target the standalone advisor package, never the old system-spec-kit advisor path. After build, the standalone server entrypoint is:
 
 ```text
-.opencode/skills/system-spec-kit/mcp_server/dist/skill_advisor/compat/index.js
+.opencode/skills/system-skill-advisor/mcp_server/dist/system-skill-advisor/mcp_server/advisor-server.js
 ```
 
 ---

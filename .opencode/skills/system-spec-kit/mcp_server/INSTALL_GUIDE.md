@@ -2,7 +2,7 @@
 
 > MCP Server v1.7.2 | 2026-03-15 (verification steps refreshed on 2026-04-25)
 
-Complete installation and configuration guide for the Spec Kit Memory MCP server. This guide enables AI-powered context retrieval and conversation memory across your project. The system indexes markdown documentation from spec folders and constitutional rules to surface relevant information during AI interactions. It provides 54 tools (canonical source: `TOOL_DEFINITIONS.length` in `mcp_server/tool-schemas.ts`) covering semantic search, trigger-based memory surfacing, intent-aware context loading, causal relationship tracking, session learning, evaluation, validation, advisor rebuilds, retention sweeps, and bounded structural code-graph indexing.
+Complete installation and configuration guide for the Spec Kit Memory MCP server. This guide enables AI-powered context retrieval and conversation memory across your project. The system indexes markdown documentation from spec folders and constitutional rules to surface relevant information during AI interactions. It provides memory, trigger, context, evaluation, retention, and compatibility tools (canonical source: `TOOL_DEFINITIONS.length` in `mcp_server/tool-schemas.ts`). Skill Advisor tools now live primarily in the standalone `system_skill_advisor` MCP server; the `spec_kit_memory.advisor_*` registrations are temporary deprecated proxies for the 013/009/005 migration window and will be removed in 013/009/006.
 
 > **Part of OpenCode Installation.** See the [Master Installation Guide](../README.md) for complete setup.
 
@@ -440,12 +440,15 @@ You should see `spec_kit_memory` tools listed, including:
 - `session_bootstrap` (complete session bootstrap)
 - `session_resume` (combined session resume)
 
-For a fresh native Skill Advisor install, also verify these public tools are present:
+Skill Advisor is a separate MCP server named `system_skill_advisor`. Its public tool ids remain stable:
 - `advisor_recommend` (native skill routing recommendations)
+- `advisor_rebuild` (advisor graph rebuild)
 - `advisor_status` (daemon freshness and trust-state health)
 - `advisor_validate` (measured corpus, parity, safety, and latency slices)
 
-Use [skill_advisor/INSTALL_GUIDE.md](./skill_advisor/INSTALL_GUIDE.md) for the native bootstrap checklist and [skill_advisor/README.md](./skill_advisor/README.md) for the API/tool contract while validating a new install.
+During 013/009/005 only, `spec_kit_memory` still lists deprecated `advisor_*` proxy descriptors. Calls through those proxies emit `[advisor-deprecation]` once per process and forward to `system_skill_advisor` when available; child 013/009/006 removes this bridge. New consumers should call `system_skill_advisor.advisor_*`, not `spec_kit_memory.advisor_*`.
+
+Use [system-skill-advisor/INSTALL_GUIDE.md](../../system-skill-advisor/INSTALL_GUIDE.md) for the standalone advisor bootstrap checklist and API/tool contract while validating a new install.
 
 Then verify the structural side too. Ask your AI assistant:
 

@@ -39,6 +39,18 @@ export interface ToolDefinition {
   outputSchema?: Record<string, unknown>;
 }
 
+function deprecatedAdvisorProxyTool(toolDefinition: ToolDefinition): ToolDefinition {
+  return {
+    ...toolDefinition,
+    description: `[DEPRECATED proxy] ${toolDefinition.description} Primary owner: system_skill_advisor.${toolDefinition.name}. spec_kit_memory registration is a temporary compatibility bridge and will be removed in 013/009/006.`,
+  };
+}
+
+const advisorRecommendProxyTool = deprecatedAdvisorProxyTool(advisorRecommendTool);
+const advisorRebuildProxyTool = deprecatedAdvisorProxyTool(advisorRebuildTool);
+const advisorStatusProxyTool = deprecatedAdvisorProxyTool(advisorStatusTool);
+const advisorValidateProxyTool = deprecatedAdvisorProxyTool(advisorValidateTool);
+
 // ───────────────────────────────────────────────────────────────
 // 2. TOOL DEFINITIONS
 
@@ -904,10 +916,10 @@ export const TOOL_DEFINITIONS: ToolDefinition[] = [
   skillGraphQuery,
   skillGraphStatus,
   skillGraphValidate,
-  advisorRecommendTool,
-  advisorRebuildTool,
-  advisorStatusTool,
-  advisorValidateTool,
+  advisorRecommendProxyTool,
+  advisorRebuildProxyTool,
+  advisorStatusProxyTool,
+  advisorValidateProxyTool,
   // L8: CocoIndex code-graph bridge schemas live in system-code-graph per ADR-002
   // L9: Coverage Graph
   deepLoopGraphUpsert,

@@ -39,7 +39,7 @@ from typing import Any, Dict, List, Optional, Set
 # Path to skill directory.
 # This script lives in .opencode/skills/system-skill-advisor/mcp_server/scripts/.
 SCRIPT_DIR = os.path.dirname(os.path.realpath(__file__))
-SKILLS_DIR = os.path.abspath(os.path.join(SCRIPT_DIR, "..", "..", "..", ".."))
+SKILLS_DIR = os.path.abspath(os.path.join(SCRIPT_DIR, "..", "..", ".."))
 REPO_ROOT = os.path.dirname(os.path.dirname(SKILLS_DIR))
 LOCAL_CCC_BIN = os.path.join(
     SKILLS_DIR,
@@ -60,6 +60,8 @@ NATIVE_ADVISOR_STATUS = os.path.join(
     "system-skill-advisor",
     "mcp_server",
     "dist",
+    "system-skill-advisor",
+    "mcp_server",
     "handlers",
     "advisor-status.js",
 )
@@ -70,7 +72,9 @@ NATIVE_ADVISOR_COMPAT = os.path.join(
     "system-skill-advisor",
     "mcp_server",
     "dist",
-    "compat",
+    "system-skill-advisor",
+    "mcp_server",
+    "handlers",
     "index.js",
 )
 NATIVE_GENERATION_MODULE = os.path.join(
@@ -80,6 +84,8 @@ NATIVE_GENERATION_MODULE = os.path.join(
     "system-skill-advisor",
     "mcp_server",
     "dist",
+    "system-skill-advisor",
+    "mcp_server",
     "lib",
     "freshness",
     "generation.js",

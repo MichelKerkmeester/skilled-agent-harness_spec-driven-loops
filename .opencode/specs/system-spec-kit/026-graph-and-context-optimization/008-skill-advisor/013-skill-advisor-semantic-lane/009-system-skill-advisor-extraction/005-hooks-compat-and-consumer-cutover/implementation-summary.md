@@ -1,6 +1,6 @@
 ---
-title: "Implementation Summary: Hooks Compat And Consumer Cutover Spec Docs"
-description: "Authored the Level 3 planning packet for cutting advisor consumers over to system_skill_advisor while keeping stable advisor_* tool ids and a temporary legacy proxy."
+title: "Implementation Summary: Hooks Compat And Consumer Cutover"
+description: "Implemented the 005 consumer cutover from memory-owned advisor handlers to standalone system_skill_advisor routing with a temporary spec_kit_memory deprecation proxy."
 trigger_phrases:
   - "013 009 005 implementation summary"
   - "advisor consumer cutover docs authored"
@@ -10,11 +10,12 @@ contextType: "implementation-summary"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/013-skill-advisor-semantic-lane/009-system-skill-advisor-extraction/005-hooks-compat-and-consumer-cutover"
-    last_updated_at: "2026-05-14T12:45:00Z"
+    last_updated_at: "2026-05-14T12:36:34Z"
     last_updated_by: "codex"
-    recent_action: "COMPACT completed docs"
-    next_safe_action: "Implement 005 cutover"
-    blockers: []
+    recent_action: "Consumer cutover implemented"
+    next_safe_action: "Continue to 006 cleanup"
+    blockers:
+      - "Legacy hook Vitest suites import removed ../skill_advisor test helpers outside the 005 edit whitelist."
     key_files:
       - "implementation-summary.md"
       - "spec.md"
@@ -28,7 +29,7 @@ _memory:
       fingerprint: "sha256:0130090050000000000000000000000000000000000000000000000000000000"
       session_id: "013-009-005-hooks-compat-consumer-cutover"
       parent_session_id: null
-    completion_pct: 100
+    completion_pct: 95
     open_questions: []
     answered_questions:
       - "Docs choose proxy with deprecation log for one migration window."
@@ -49,7 +50,7 @@ _memory:
 | **Spec Folder** | `005-hooks-compat-and-consumer-cutover` |
 | **Completed** | 2026-05-14 |
 | **Level** | 3 |
-| **Scope Completed** | Spec-docs-only scaffold |
+| **Scope Completed** | Implemented with caveats |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -57,31 +58,21 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-The 005 packet is now a real Level 3 specification package instead of a template scaffold. It defines the consumer cutover from `spec_kit_memory` advisor ownership to `system_skill_advisor` advisor ownership, keeps public `advisor_*` tool ids stable, and records the temporary legacy proxy decision that child 006 will later remove.
+The 005 packet now cuts advisor consumers over to the standalone `system_skill_advisor` boundary while preserving public `advisor_*` tool ids. `spec_kit_memory` still exposes `advisor_*` for one migration window, but those handlers are now a deprecated stdio proxy that forwards to `system_skill_advisor` and returns a prompt-safe migration hint if forwarding fails.
 
-### Specification
+### Runtime Cutover
 
-`spec.md` now captures the problem, scope, eight requirements, success criteria, risks, edge cases, complexity, and user stories for the hook/plugin/shim/doctor/install-guide cutover.
+- `.opencode/plugins/spec-kit-skill-advisor.js` now keys cache freshness off the standalone launcher/source/dist paths.
+- `.opencode/skills/system-spec-kit/mcp_server/plugin_bridges/spec-kit-skill-advisor-bridge.mjs` now reads the standalone advisor contract and calls `system_skill_advisor.advisor_recommend` over MCP stdio.
+- `.opencode/skills/system-spec-kit/mcp_server/tools/index.ts` keeps the `advisorTools` export but changes it into the ADR-003 proxy with a once-per-process deprecation log.
+- `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts` keeps advisor descriptors as deprecated proxy descriptors for child 006 removal.
 
-### Plan And Tasks
+### Consumer Surfaces
 
-`plan.md` now lays out the three required phases: setup inventory, implementation cutover, and verification. `tasks.md` mirrors that flow with concrete tasks for consumers, proxy behavior, docs, and smoke tests.
-
-### Decisions
-
-`decision-record.md` now contains five ADR entries:
-
-| ADR | Decision |
-|-----|----------|
-| ADR-001 | Reuse the parent standalone advisor MCP decision. |
-| ADR-002 | Preserve public `advisor_*` tool ids. |
-| ADR-003 | Proxy legacy `spec_kit_memory` advisor calls for one migration window. |
-| ADR-004 | Prefer MCP-level dispatch for plugin bridge cutover. |
-| ADR-005 | Point doctor update advisor probes at the new server. |
-
-### Metadata
-
-`graph-metadata.json` was populated with the packet id, parent relationship, manual dependencies, trigger phrases, entities, source docs, and planned implementation status. `description.json` was created using the sibling 003 shape.
+- Hook source under `mcp_server/hooks/**` already targets `system-skill-advisor`; no old hook-source import remained.
+- The canonical Python shim path was corrected to resolve the repo root and standalone built handler/generation paths.
+- Doctor assets now point scorer paths and advisor DB/health references at `.opencode/skills/system-skill-advisor/mcp_server`.
+- Both install guides describe the dual-MCP topology and the temporary proxy window.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -89,7 +80,7 @@ The 005 packet is now a real Level 3 specification package instead of a template
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The docs were authored after reading the parent ADR, parent phase spec, sibling 003 metadata shape, the existing 005 scaffold, and representative consumer surfaces. The consumer inventory found mixed current state: some hooks already import from `system-skill-advisor`, memory MCP still registers `advisor_*`, and the OpenCode skill-advisor plugin bridge still references old `dist/skill_advisor` compatibility paths.
+The implementation followed the packet sequence: required ADR/spec/plan/task reads, three required inventory greps, launcher/config verification, bridge/plugin cutover, memory proxy conversion, doctor/install-guide updates, Python shim verification, builds, stdio smokes, and stale-reference inventory.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -99,10 +90,10 @@ The docs were authored after reading the parent ADR, parent phase spec, sibling 
 
 | Decision | Why |
 |----------|-----|
-| Treat the packet as spec-docs-only | The dispatch explicitly forbids code, hook, plugin, shim, and sibling edits. |
-| Keep implementation tasks pending | The docs describe the future cutover; this run only authored the planning packet. |
-| Choose proxy over fail-fast | Unknown external callers may still be bound to `spec_kit_memory.advisor_*`; a one-window proxy avoids breaking them during cutover. |
-| Prefer MCP-level plugin dispatch | It preserves the standalone server boundary and avoids re-coupling OpenCode host code to compiled advisor internals. |
+| Keep memory-side `advisorTools` but proxy over stdio | Satisfies ADR-003 compatibility without importing or mutating advisor DB state in the memory MCP process. |
+| Keep plugin bridge as subprocess + MCP client | Preserves the OpenCode host isolation and routes through the standalone server boundary. |
+| Mark test-suite failures as blocked, not patched | The failing hook/plugin-bridge Vitest files are outside the packet edit whitelist and encode stale pre-005 paths. |
+| Sync generated root dist for the existing launcher | The current launcher starts root `dist/context-server.js`; generated nested output was mirrored so smoke tests exercise the patched proxy. |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -112,13 +103,17 @@ The docs were authored after reading the parent ADR, parent phase spec, sibling 
 
 | Check | Result |
 |-------|--------|
-| Required reading | PASS: parent ADR, parent spec, sibling 003 spec/description, 005 scaffold, and consumer surfaces inspected. |
-| Authored docs | PASS: six markdown docs authored from scaffold. |
-| Metadata docs | PASS: `graph-metadata.json` populated and `description.json` created. |
-| ADR count | PASS: five ADR entries authored. |
-| Requirements count | PASS: eight requirements authored. |
-| Strict spec validation | PASS: `validate.sh .../005-hooks-compat-and-consumer-cutover --strict` exited 0. |
-| JSON smoke | PASS: Node parsed `graph-metadata.json` and `description.json`. |
+| Child 004 availability | PASS: launcher exists; all four runtime configs contain `system_skill_advisor`; standalone launcher printed DB path. |
+| Build | PASS: `npm --prefix .opencode/skills/system-skill-advisor/mcp_server run build`; `npm --prefix .opencode/skills/system-spec-kit run build --workspace=@spec-kit/mcp-server`. |
+| Plugin bridge smoke | PASS: direct stdin JSON returned `status:"ok"`, `route:"native"`, `Advisor: stale; use system-spec-kit ...`. |
+| Memory MCP startup | PASS: `node dist/context-server.js < /dev/null` reached `Context MCP server running on stdio` with no crash. |
+| Advisor proxy smoke | PASS: `spec_kit_memory.advisor_recommend` forwarded through `system_skill_advisor`; stderr contained `[advisor-deprecation]`. |
+| Standalone advisor smoke | PASS: `node .opencode/bin/skill-advisor-launcher.cjs < /dev/null` printed the package-local DB path and exited cleanly on closed stdin. |
+| Python shim smoke | PASS: `--force-native`, `--force-local`, and `--health` all exited 0 after standalone path correction. |
+| Doctor assets | PASS: Ruby YAML parse passed for `doctor_skill-advisor.yaml` and `doctor_update.yaml`. |
+| Hook/plugin tests | PARTIAL: OpenCode plugin Vitest passed 30/30; four hook Vitest suites failed before tests ran because they import deleted `../skill_advisor/...` helpers; standalone plugin-bridge Vitests compute repo root one directory too high. |
+| Stale-reference grep | PASS with caveat: post-edit live non-doc/non-test count is 3, limited to the proxy deprecation string and historical stress config excludes. |
+| Strict spec validation | PASS: `validate.sh .../005-hooks-compat-and-consumer-cutover --strict` exited 0 with 0 errors and 0 warnings. |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -126,7 +121,7 @@ The docs were authored after reading the parent ADR, parent phase spec, sibling 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Implementation not performed.** This dispatch was spec-docs-only; all code, hook, plugin, shim, doctor, and install-guide edits remain pending for the implementation pass.
-2. **Child 004 docs are still scaffold-like in this checkout.** The 005 docs assume the intended child 004 deliverable from the parent sequence: a registered standalone `system_skill_advisor` server.
-3. **Consumer inventory is representative, not exhaustive implementation evidence.** Phase 1 of the implementation plan still requires a full grep inventory and classification before edits.
+1. **Test fixtures remain stale.** The hook Vitest suites and standalone plugin-bridge tests need a child-006 or separately scoped test-fixture update because they reference removed old paths and were not in the 005 whitelist.
+2. **Doctor full mutation route not executed.** The safe equivalent was YAML parse plus target grep; `/doctor:update --cleanup-legacy=false` was not run because it can mutate DB state.
+3. **Proxy remains temporary.** Child 006 should remove memory-side advisor descriptors/dispatch and clean historical stress config excludes.
 <!-- /ANCHOR:limitations -->

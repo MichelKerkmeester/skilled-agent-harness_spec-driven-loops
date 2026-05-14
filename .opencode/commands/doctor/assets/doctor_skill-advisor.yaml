@@ -71,12 +71,12 @@ field_handling:
 # ─────────────────────────────────────────────────────────────────
 mutation_boundaries:
   allowed_targets:
-    - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/explicit.ts"
-    - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/lexical.ts"
+    - ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/lanes/explicit.ts"
+    - ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/lanes/lexical.ts"
     - ".opencode/skills/*/graph-metadata.json"
   forbidden_targets:
     - ".opencode/skills/*/SKILL.md (content)"
-    - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/weights-config.ts"
+    - ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/weights-config.ts"
     - "Any fusion scorer or daemon code"
   enforcement: "Phase 3 first activity (validate_targets) runs canonical-path validation BEFORE any write. Failure halts before mutation."
   validator:
@@ -182,13 +182,13 @@ approval_gates:
 # ─────────────────────────────────────────────────────────────────
 scoring_sources:
   explicit_ts:
-    path: ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/explicit.ts"
+    path: ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/lanes/explicit.ts"
     fields: ["TOKEN_BOOSTS", "PHRASE_BOOSTS"]
   lexical_ts:
-    path: ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/lexical.ts"
+    path: ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/lanes/lexical.ts"
     fields: ["CATEGORY_HINTS"]
   weights_config_ts:
-    path: ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/weights-config.ts"
+    path: ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/weights-config.ts"
     fields: ["read-only - lane weights"]
   graph_metadata_per_skill:
     path: ".opencode/skills/{skill}/graph-metadata.json"
