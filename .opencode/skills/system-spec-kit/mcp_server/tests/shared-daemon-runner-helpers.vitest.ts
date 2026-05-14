@@ -1,6 +1,9 @@
 import { describe, expect, it } from 'vitest';
 
-import { parseScenarioToolCalls } from '../../../../../_sandbox/24--local-llm-query-intelligence/evidence/run-mcp-direct.mjs';
+import {
+  parseScenarioToolCalls,
+  selectClientForServer,
+} from '../../../../../_sandbox/24--local-llm-query-intelligence/evidence/run-mcp-direct.mjs';
 
 describe('045 shared daemon runner helpers', () => {
   it('parses MCP playbook calls with unquoted object keys and num_results aliases', () => {
@@ -39,5 +42,14 @@ memory_search({ query: "latency baseline", limit: 5 })
         raw: expect.stringContaining('memory_search'),
       },
     ]);
+  });
+
+  it('selects the MCP client for each known server', () => {
+    const memory = { name: 'memory' };
+    const cocoindex = { name: 'cocoindex' };
+
+    expect(selectClientForServer({ memory, cocoindex }, 'spec_kit_memory')).toBe(memory);
+    expect(selectClientForServer({ memory, cocoindex }, 'cocoindex_code')).toBe(cocoindex);
+    expect(selectClientForServer({ memory, cocoindex }, 'unknown_server')).toBeNull();
   });
 });

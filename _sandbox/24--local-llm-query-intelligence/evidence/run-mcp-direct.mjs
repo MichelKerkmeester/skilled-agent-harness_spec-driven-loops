@@ -1,9 +1,11 @@
 #!/usr/bin/env node
 import fs from 'node:fs';
 import path from 'node:path';
+import { execFile } from 'node:child_process';
 import { performance } from 'node:perf_hooks';
 import { pathToFileURL } from 'node:url';
 import { createRequire } from 'node:module';
+import { promisify } from 'node:util';
 
 const SCRIPT_DIR = path.dirname(new URL(import.meta.url).pathname);
 const REPO_ROOT = path.resolve(SCRIPT_DIR, '../../..');
@@ -16,8 +18,14 @@ const SUMMARY_TSV = path.join(
   SCRIPT_DIR,
   'run-2026-05-14-shared-daemon.summary.tsv',
 );
-const DAEMON_STDERR_LOG = path.join(SCRIPT_DIR, 'run-2026-05-14-shared-daemon.daemon.stderr.log');
+const MEMORY_DAEMON_STDERR_LOG = path.join(SCRIPT_DIR, 'run-2026-05-14-shared-daemon.daemon.stderr.log');
+const COCOINDEX_DAEMON_STDERR_LOG = path.join(
+  SCRIPT_DIR,
+  'run-2026-05-14-shared-daemon.cocoindex.stderr.log',
+);
+const DAEMON_STDERR_CAP_BYTES = 200000;
 const DEFAULT_SCENARIOS = Array.from({ length: 15 }, (_, index) => 401 + index);
+const execFileAsync = promisify(execFile);
 
 const sdkRequire = createRequire(path.join(MEMORY_SERVER_ROOT, 'package.json'));
 const { Client } = await import(pathToFileURL(sdkRequire.resolve('@modelcontextprotocol/sdk/client/index.js')));
@@ -115,6 +123,12 @@ function normalizeArguments(toolName, args) {
   return normalized;
 }
 
+export function selectClientForServer(clients, server) {
+  if (server === 'spec_kit_memory') return clients.spec_kit_memory ?? clients.memory ?? null;
+  if (server === 'cocoindex_code') return clients.cocoindex_code ?? clients.cocoindex ?? null;
+  return null;
+}
+
 function parseObjectLiteral(source) {
   const trimmed = source.trim();
   if (!trimmed) return {};
@@ -177,9 +191,128 @@ async function callTool(client, name, args, timeoutMs = 120000) {
     setTimeout(() => reject(new Error(`tool timeout after ${timeoutMs}ms: ${name}`)), timeoutMs).unref();
   });
   return Promise.race([
-    client.callTool({ name, arguments: args }),
+    client.callTool({ name, arguments: args }, undefined, { timeout: timeoutMs }),
     timeout,
   ]);
+}
+
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+function responseFailureMessage(response) {
+  if (response?.isError) return 'MCP tool returned isError=true';
+  const parsed = response?.structuredContent ?? parseToolJson(response);
+  if (parsed?.error) return String(parsed.error);
+  if (parsed?.success === false) return String(parsed.message ?? 'success=false');
+  return null;
+}
+
+function isTransientCocoIndexFailure(message) {
+  return /Input data was truncated|timed out after \d+ms|tool timeout after \d+ms/i.test(message);
+}
+
+async function callScenarioTool(client, call) {
+  const maxAttempts = call.server === 'cocoindex_code' && call.tool === 'search' ? 3 : 1;
+  let lastResponse = null;
+  for (let attempt = 1; attempt <= maxAttempts; attempt += 1) {
+    let response;
+    try {
+      response = await callTool(client, call.tool, call.arguments);
+    } catch (error) {
+      const message = error instanceof Error ? error.message : String(error);
+      if (attempt === maxAttempts || !isTransientCocoIndexFailure(message)) {
+        throw error;
+      }
+      await sleep(8000);
+      continue;
+    }
+    const failureMessage = responseFailureMessage(response);
+    if (!failureMessage || attempt === maxAttempts || !isTransientCocoIndexFailure(failureMessage)) {
+      return response;
+    }
+    lastResponse = response;
+    await sleep(8000);
+  }
+  return lastResponse;
+}
+
+function createCappedStderrStream(logPath) {
+  const stream = fs.createWriteStream(logPath, { flags: 'w' });
+  let bytes = 0;
+  return {
+    stream,
+    attach(transport) {
+      transport.stderr?.on('data', (chunk) => {
+        if (bytes >= DAEMON_STDERR_CAP_BYTES) return;
+        const buffer = Buffer.isBuffer(chunk) ? chunk : Buffer.from(String(chunk));
+        const remaining = DAEMON_STDERR_CAP_BYTES - bytes;
+        stream.write(buffer.subarray(0, remaining));
+        bytes += Math.min(buffer.length, remaining);
+        if (bytes >= DAEMON_STDERR_CAP_BYTES) {
+          stream.write('\n[shared-daemon-runner] stderr log capped at 200000 bytes\n');
+        }
+      });
+    },
+    end() {
+      return new Promise((resolve) => stream.end(resolve));
+    },
+  };
+}
+
+async function connectSharedClient({ name, transportOptions, stderrLog }) {
+  const stderr = createCappedStderrStream(stderrLog);
+  const transport = new StdioClientTransport({
+    ...transportOptions,
+    stderr: 'pipe',
+  });
+  stderr.attach(transport);
+
+  const client = new Client({ name: `shared-daemon-suite-runner-${name}`, version: '0.1.0' });
+  try {
+    await client.connect(transport);
+    const listed = await client.listTools();
+    return {
+      client,
+      toolNames: new Set(listed.tools.map((tool) => tool.name)),
+      stderr,
+      diagnostic: null,
+    };
+  } catch (error) {
+    await client.close().catch(() => {});
+    return {
+      client: null,
+      toolNames: new Set(),
+      stderr,
+      diagnostic: {
+        scenario: `runner:${name}`,
+        verdict: 'FAIL',
+        key_metric: `${name} connect failed`,
+        detail: error instanceof Error ? error.message : String(error),
+      },
+    };
+  }
+}
+
+async function waitForCocoIndexDaemonIdle({ command, cwd, env, projectRoot, timeoutMs = 120000 }) {
+  const started = performance.now();
+  while (performance.now() - started < timeoutMs) {
+    try {
+      const { stdout } = await execFileAsync(command, ['daemon', 'status'], {
+        cwd,
+        env,
+        timeout: 5000,
+        maxBuffer: 10000,
+      });
+      if (stdout.includes(`${projectRoot} [idle]`) || !stdout.includes('[indexing]')) {
+        return true;
+      }
+    } catch {
+      // The first status probe can race daemon startup; retry until the bounded timeout.
+    }
+    await sleep(2000);
+  }
+  return false;
 }
 
 function percentile(values, p) {
@@ -286,7 +419,7 @@ async function runLatencyScenario(client) {
   };
 }
 
-async function runGenericScenario(client, toolNames, scenario, markdown) {
+async function runGenericScenario(clients, toolNameSets, scenario, markdown) {
   const calls = parseScenarioToolCalls(markdown);
   if (calls.length === 0) {
     return {
@@ -297,7 +430,10 @@ async function runGenericScenario(client, toolNames, scenario, markdown) {
     };
   }
 
-  const unavailable = calls.find((call) => !toolNames.has(call.tool));
+  const unavailable = calls.find((call) => {
+    const toolNames = toolNameSets[call.server];
+    return !toolNames || !toolNames.has(call.tool);
+  });
   if (unavailable) {
     return {
       scenario,
@@ -317,14 +453,23 @@ async function runGenericScenario(client, toolNames, scenario, markdown) {
         detail: `Could not parse ${call.tool}: ${call.parseError}`,
       };
     }
-    const response = await callTool(client, call.tool, call.arguments);
-    const parsed = parseToolJson(response);
-    if (response?.isError || parsed?.error || parsed?.success === false) {
+    const client = selectClientForServer(clients, call.server);
+    if (!client) {
+      return {
+        scenario,
+        verdict: 'SKIP',
+        key_metric: `${call.server} unavailable`,
+        detail: `Shared daemon client for ${call.server} is not connected.`,
+      };
+    }
+    const response = await callScenarioTool(client, call);
+    const failureMessage = responseFailureMessage(response);
+    if (failureMessage) {
       return {
         scenario,
         verdict: 'FAIL',
         key_metric: `${passed}/${calls.length} calls succeeded`,
-        detail: `${call.tool} returned an error response.`,
+        detail: `${call.tool} returned an error response: ${failureMessage}`,
       };
     }
     passed += 1;
@@ -337,7 +482,7 @@ async function runGenericScenario(client, toolNames, scenario, markdown) {
   };
 }
 
-async function runScenario(client, toolNames, scenario) {
+async function runScenario(clients, toolNameSets, scenario) {
   const file = findScenarioFile(scenario);
   if (!file) {
     return {
@@ -348,10 +493,10 @@ async function runScenario(client, toolNames, scenario) {
     };
   }
   const markdown = fs.readFileSync(file, 'utf8');
-  if (scenario === 410 && toolNames.has('memory_search')) {
-    return { scenario, ...(await runLatencyScenario(client)) };
+  if (scenario === 410 && toolNameSets.spec_kit_memory?.has('memory_search')) {
+    return { scenario, ...(await runLatencyScenario(clients.spec_kit_memory)) };
   }
-  return runGenericScenario(client, toolNames, scenario, markdown);
+  return runGenericScenario(clients, toolNameSets, scenario, markdown);
 }
 
 function writeSummary(rows) {
@@ -367,34 +512,74 @@ function writeSummary(rows) {
 async function main() {
   const options = parseArgs(process.argv.slice(2));
   fs.mkdirSync(SCRIPT_DIR, { recursive: true });
-  const stderrStream = fs.createWriteStream(DAEMON_STDERR_LOG, { flags: 'w' });
-  const transport = new StdioClientTransport({
-    command: process.execPath,
-    args: ['.opencode/bin/spec-kit-memory-launcher.cjs'],
-    cwd: REPO_ROOT,
-    env: {
-      ...process.env,
-      SPECKIT_RETRY_ENABLED: 'false',
-    },
-    stderr: 'pipe',
-  });
-  transport.stderr?.pipe(stderrStream);
-
-  const client = new Client({ name: 'shared-daemon-suite-runner', version: '0.1.0' });
   const rows = [];
+  const connections = [];
   try {
-    await client.connect(transport);
-    const listed = await client.listTools();
-    const toolNames = new Set(listed.tools.map((tool) => tool.name));
+    const memoryConnection = await connectSharedClient({
+      name: 'spec-kit-memory',
+      transportOptions: {
+        command: process.execPath,
+        args: ['.opencode/bin/spec-kit-memory-launcher.cjs'],
+        cwd: REPO_ROOT,
+        env: {
+          ...process.env,
+          SPECKIT_RETRY_ENABLED: 'false',
+        },
+      },
+      stderrLog: MEMORY_DAEMON_STDERR_LOG,
+    });
+    connections.push(memoryConnection);
+
+    const cocoindexCommand = path.join(REPO_ROOT, '.opencode/skills/mcp-coco-index/mcp_server/.venv/bin/ccc');
+    const cocoindexEnv = {
+      ...process.env,
+      COCOINDEX_CODE_ROOT_PATH: REPO_ROOT,
+      COCOINDEX_CODE_MCP_REQUEST_TIMEOUT_MS: '120000',
+    };
+    const cocoindexConnection = await connectSharedClient({
+      name: 'cocoindex-code',
+      transportOptions: {
+        command: cocoindexCommand,
+        args: ['mcp'],
+        cwd: REPO_ROOT,
+        env: cocoindexEnv,
+      },
+      stderrLog: COCOINDEX_DAEMON_STDERR_LOG,
+    });
+    connections.push(cocoindexConnection);
+    if (cocoindexConnection.client) {
+      await waitForCocoIndexDaemonIdle({
+        command: cocoindexCommand,
+        cwd: REPO_ROOT,
+        env: cocoindexEnv,
+        projectRoot: REPO_ROOT,
+      });
+    }
+
+    for (const connection of connections) {
+      if (connection.diagnostic) {
+        rows.push(connection.diagnostic);
+        console.log(JSON.stringify(connection.diagnostic));
+      }
+    }
+
+    const clients = {
+      spec_kit_memory: memoryConnection.client,
+      cocoindex_code: cocoindexConnection.client,
+    };
+    const toolNameSets = {
+      spec_kit_memory: memoryConnection.toolNames,
+      cocoindex_code: cocoindexConnection.toolNames,
+    };
     for (const scenario of options.scenarios) {
-      const row = await runScenario(client, toolNames, scenario);
+      const row = await runScenario(clients, toolNameSets, scenario);
       rows.push(row);
       console.log(JSON.stringify(row));
     }
   } finally {
     writeSummary(rows);
-    await client.close().catch(() => {});
-    await new Promise((resolve) => stderrStream.end(resolve));
+    await Promise.all(connections.map((connection) => connection.client?.close().catch(() => {})));
+    await Promise.all(connections.map((connection) => connection.stderr.end()));
   }
 }
 
