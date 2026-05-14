@@ -8,7 +8,6 @@ import * as causalTools from './causal-tools.js';
 import * as checkpointTools from './checkpoint-tools.js';
 import * as lifecycleTools from './lifecycle-tools.js';
 // Code-graph MCP dispatch moved to standalone system_code_graph server per ADR-002.
-import * as skillGraphTools from './skill-graph-tools.js';
 import { validateToolArgs } from '../schemas/tool-input-schemas.js';
 import { handleCoverageGraphConvergence } from '../handlers/coverage-graph/convergence.js';
 import { handleCoverageGraphQuery } from '../handlers/coverage-graph/query.js';
@@ -75,12 +74,11 @@ export const councilGraphTools = {
 };
 
 const SCHEMA_VALIDATED_TOOL_NAMES = new Set<string>([
-  ...skillGraphTools.TOOL_NAMES,
   ...coverageGraphTools.TOOL_NAMES,
   ...councilGraphTools.TOOL_NAMES,
 ]);
 
-export { contextTools, memoryTools, causalTools, checkpointTools, lifecycleTools, skillGraphTools };
+export { contextTools, memoryTools, causalTools, checkpointTools, lifecycleTools };
 
 export type { MCPResponse } from './types.js';
 
@@ -92,7 +90,7 @@ export const ALL_DISPATCHERS = [
   checkpointTools,
   lifecycleTools,
   // codeGraphTools intentionally omitted: standalone system_code_graph owns MCP dispatch per ADR-002.
-  skillGraphTools,
+  // skillGraphTools intentionally omitted: standalone system_skill_advisor owns MCP dispatch per 013/009/008.
   coverageGraphTools,
   councilGraphTools,
 ] as const;
@@ -108,9 +106,6 @@ export async function dispatchTool(
       const validatedArgs = SCHEMA_VALIDATED_TOOL_NAMES.has(name)
         ? validateToolArgs(name, args)
         : args;
-      if (dispatcher === skillGraphTools) {
-        return skillGraphTools.handleTool(name, validatedArgs, callerContext);
-      }
       return dispatcher.handleTool(name, validatedArgs);
     }
   }

@@ -195,10 +195,6 @@ describe('Context Server', () => {
       'code_graph_verify',
       'code_graph_apply',
       'detect_changes',
-      'skill_graph_scan',
-      'skill_graph_query',
-      'skill_graph_status',
-      'skill_graph_validate',
       'ccc_status',
       'ccc_reindex',
       'ccc_feedback',
@@ -310,7 +306,6 @@ describe('Context Server', () => {
       'memory_drift_why', 'memory_causal_link', 'memory_causal_stats', 'memory_causal_unlink',
       'eval_run_ablation', 'eval_reporting_dashboard',
       'code_graph_scan', 'code_graph_query', 'code_graph_status', 'code_graph_context',
-      'skill_graph_scan', 'skill_graph_query', 'skill_graph_status', 'skill_graph_validate',
       'ccc_status', 'ccc_reindex', 'ccc_feedback',
       'session_health', 'session_resume',
     ]

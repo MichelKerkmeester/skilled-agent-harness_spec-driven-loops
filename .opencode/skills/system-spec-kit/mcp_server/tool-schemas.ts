@@ -562,54 +562,6 @@ const memoryIngestCancel: ToolDefinition = {
 
 
 
-// BRIDGE-ONLY: forwarded to system_skill_advisor by 013/009/008 ADR-003.
-// Slated for removal in D2 Cluster D.
-const skillGraphScan: ToolDefinition = {
-  name: 'skill_graph_scan',
-  description: '[L7:Maintenance] Index or re-index all .opencode/skills/*/graph-metadata.json files into graph-metadata-index.sqlite using the hash-aware SQLite indexer. Token Budget: 800.',
-  inputSchema: {
-    type: 'object', additionalProperties: false,
-    properties: {
-      skillsRoot: { type: 'string', description: 'Optional skills root to scan (default: .opencode/skills). Must resolve to a path under the current workspace; paths escaping the workspace are rejected.' },
-    },
-    required: [],
-  },
-};
-
-const skillGraphQuery: ToolDefinition = {
-  name: 'skill_graph_query',
-  description: '[L6:Analysis] Query the SQLite-backed skill graph using structural relationship traversals. Supports depends_on, dependents, enhances, enhanced_by, family_members, conflicts, transitive_path, hub_skills, orphans, and subgraph. Token Budget: 1000.',
-  inputSchema: {
-    type: 'object', additionalProperties: false,
-    properties: {
-      queryType: { type: 'string', enum: ['depends_on', 'dependents', 'enhances', 'enhanced_by', 'family_members', 'conflicts', 'transitive_path', 'hub_skills', 'orphans', 'subgraph'], description: 'Query type to execute (required)' },
-      skillId: { type: 'string', description: 'Skill identifier for single-skill queries' },
-      sourceSkillId: { type: 'string', description: 'Source skill identifier for transitive_path' },
-      targetSkillId: { type: 'string', description: 'Target skill identifier for transitive_path' },
-      family: { type: 'string', enum: ['cli', 'mcp', 'sk-code', 'deep-loop', 'sk-util', 'system'], description: 'Family name for family_members query' },
-      minInbound: { type: 'number', minimum: 0, maximum: 200, default: 2, description: 'Minimum inbound edge count for hub_skills query' },
-      depth: { type: 'number', minimum: 1, maximum: 10, default: 2, description: 'Traversal depth for subgraph query' },
-      limit: { type: 'number', minimum: 1, maximum: 200, default: 50, description: 'Maximum results to return for list queries' },
-    },
-    required: ['queryType'],
-  },
-};
-
-const skillGraphStatus: ToolDefinition = {
-  name: 'skill_graph_status',
-  description: '[L7:Maintenance] Report skill graph health. Returns totalSkills, totalEdges, lastIndexedAt, families, categories, schemaVersions, staleness, validation, and dbStatus from the live SQLite graph. Token Budget: 500.',
-  inputSchema: { type: 'object', additionalProperties: false, properties: {}, required: [] },
-};
-
-const skillGraphValidate: ToolDefinition = {
-  name: 'skill_graph_validate',
-  description: '[L7:Maintenance] Validate the live skill graph for schema-version drift, broken edges, recommended weight-band violations, reciprocal symmetry, and lightweight dependency-cycle errors. Token Budget: 800.',
-  inputSchema: { type: 'object', additionalProperties: false, properties: {}, required: [] },
-};
-
-
-
-
 // T018: Session health diagnostic tool
 const sessionHealth: ToolDefinition = {
   name: 'session_health',
@@ -895,11 +847,7 @@ export const TOOL_DEFINITIONS: ToolDefinition[] = [
   memoryIngestStatus,
   memoryIngestCancel,
   // L8: Code Graph schemas live in system-code-graph per ADR-002
-  // L8: Skill Graph
-  skillGraphScan,
-  skillGraphQuery,
-  skillGraphStatus,
-  skillGraphValidate,
+  // L8: Skill Graph schemas live in system-skill-advisor per 013/009/008.
   // L8: CocoIndex code-graph bridge schemas live in system-code-graph per ADR-002
   // L9: Coverage Graph
   deepLoopGraphUpsert,

@@ -5,6 +5,8 @@ description: "Manual scenario for validating skill_graph_status health output."
 
 # 283 -- Skill graph status
 
+**Owned by**: `system_skill_advisor` MCP server (since `013/009/008`).
+
 ## 1. OVERVIEW
 
 This scenario validates skill graph status health output for `283`. It focuses on confirming that `skill_graph_status` reports live graph totals, staleness, families, categories, schema versions, validation, and DB status.

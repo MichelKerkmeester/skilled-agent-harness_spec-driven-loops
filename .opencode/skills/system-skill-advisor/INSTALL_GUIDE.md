@@ -155,6 +155,8 @@ unset SPECKIT_SKILL_ADVISOR_FORCE_LOCAL
 
 ## 8. OPERATOR CHECKS
 
+`skill_graph_*` tools are owned by the `system_skill_advisor` MCP server as of `013/009/008`; public tool ids remain unchanged.
+
 Use `advisor_status` as the prompt-safe health source:
 
 ```text

@@ -4,6 +4,7 @@ Tune the OpenCode skill advisor scoring tables (TOKEN_BOOSTS, PHRASE_BOOSTS, der
 
 > **Part of OpenCode Installation.** See the [Master Installation Guide](./README.md) for complete setup.
 > **Command:** `/doctor skill-advisor` (auto + confirm modes) — full reference in `.opencode/commands/doctor.md`.
+> **Ownership:** As of `013/009/008`, `skill_graph_*` tools are served by the `system_skill_advisor` MCP server, not `spec_kit_memory`. Operations remain identical; public tool ids are unchanged.
 
 ---
 
@@ -82,7 +83,7 @@ Most "tweak it to match my setup" needs are signal additions, not lane-weight ch
 
 The full `/doctor skill-advisor` workflow (Section 2 below) is for batch optimization across all skills + lane-weight tuning. Use it after large repo restructures or when adding 5+ new skills.
 
-> **Critical**: The advisor reads scoring inputs from `.opencode/skills/system-spec-kit/mcp_server/database/skill-graph.sqlite`, NOT from `graph-metadata.json` directly. Editing JSON without running `skill_graph_scan` will produce identical pre-edit scores.
+> **Critical**: The advisor reads scoring inputs from `.opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sqlite`, NOT from `graph-metadata.json` directly. Editing JSON without running `skill_graph_scan` will produce identical pre-edit scores.
 
 ---
 

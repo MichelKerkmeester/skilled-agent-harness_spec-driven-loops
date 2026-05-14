@@ -32,7 +32,6 @@ import {
   buildCodeGraphOpsContract,
   type CodeGraphOpsContract,
 } from '../../../system-code-graph/mcp_server/lib/ops-hardening.js';
-import { handleTool as handleSkillGraphProxyTool } from '../tools/skill-graph-tools.js';
 import type { MCPResponse } from '@spec-kit/shared/types';
 
 /* ───────────────────────────────────────────────────────────────
@@ -198,61 +197,6 @@ function extractStructuralTrustFromPayload(
   return structuralSection?.structuralTrust ?? null;
 }
 
-function asRecord(value: unknown): Record<string, unknown> | null {
-  return value && typeof value === 'object' && !Array.isArray(value)
-    ? value as Record<string, unknown>
-    : null;
-}
-
-function asNumber(value: unknown, fallback = 0): number {
-  return typeof value === 'number' && Number.isFinite(value) ? value : fallback;
-}
-
-function asString(value: unknown): string | null {
-  return typeof value === 'string' && value.trim().length > 0 ? value : null;
-}
-
-function normalizeGroupCounts(value: unknown): Array<{ name: string; count: number }> {
-  if (!Array.isArray(value)) {
-    return [];
-  }
-
-  return value.flatMap((item) => {
-    const record = asRecord(item);
-    const name = asString(record?.name);
-    if (!record || !name) {
-      return [];
-    }
-
-    return [{
-      name,
-      count: asNumber(record.count),
-    }];
-  });
-}
-
-function normalizeHubSkills(value: unknown): SkillGraphTopologyHub[] {
-  if (!Array.isArray(value)) {
-    return [];
-  }
-
-  return value.flatMap((item) => {
-    const record = asRecord(item);
-    const node = asRecord(record?.node);
-    const skillId = asString(node?.id);
-    if (!record || !node || !skillId) {
-      return [];
-    }
-
-    return [{
-      skillId,
-      family: asString(node.family),
-      category: asString(node.category),
-      inboundCount: asNumber(record.inboundCount),
-    }];
-  });
-}
-
 function describeSkillGraphTopology(topology: Omit<SkillGraphTopologySummary, 'summary'>): string {
   if (topology.status === 'unavailable') {
     return `Skill graph topology unavailable: ${topology.error ?? 'unknown error'}`;
@@ -275,64 +219,21 @@ function describeSkillGraphTopology(topology: Omit<SkillGraphTopologySummary, 's
 }
 
 async function buildSkillGraphTopologySummary(): Promise<SkillGraphTopologySummary> {
-  try {
-    const statusData = extractData(await handleSkillGraphProxyTool('skill_graph_status', {}) as MCPResponse);
-    if (statusData.error) {
-      const unavailable = {
-        status: 'unavailable' as const,
-        totalSkills: 0,
-        totalEdges: 0,
-        lastIndexedAt: null,
-        familyDistribution: [],
-        hubSkills: [],
-        staleness: null,
-        validation: null,
-        error: String(statusData.error),
-      };
-      return {
-        ...unavailable,
-        summary: describeSkillGraphTopology(unavailable),
-      };
-    }
-
-    const hubData = extractData(await handleSkillGraphProxyTool('skill_graph_query', {
-      queryType: 'hub_skills',
-      minInbound: 2,
-      limit: 5,
-    }) as MCPResponse);
-    const totalSkills = asNumber(statusData.totalSkills);
-    const topology = {
-      status: (asString(statusData.dbStatus) === 'ready' ? 'ready' : 'empty') as 'ready' | 'empty',
-      totalSkills,
-      totalEdges: asNumber(statusData.totalEdges),
-      lastIndexedAt: asString(statusData.lastIndexedAt),
-      familyDistribution: normalizeGroupCounts(statusData.families),
-      hubSkills: normalizeHubSkills(hubData.skills),
-      staleness: asRecord(statusData.staleness),
-      validation: asRecord(statusData.validation),
-    };
-
-    return {
-      ...topology,
-      summary: describeSkillGraphTopology(topology),
-    };
-  } catch (error: unknown) {
-    const unavailable = {
-      status: 'unavailable' as const,
-      totalSkills: 0,
-      totalEdges: 0,
-      lastIndexedAt: null,
-      familyDistribution: [],
-      hubSkills: [],
-      staleness: null,
-      validation: null,
-      error: error instanceof Error ? error.message : String(error),
-    };
-    return {
-      ...unavailable,
-      summary: describeSkillGraphTopology(unavailable),
-    };
-  }
+  const unavailable = {
+    status: 'unavailable' as const,
+    totalSkills: 0,
+    totalEdges: 0,
+    lastIndexedAt: null,
+    familyDistribution: [],
+    hubSkills: [],
+    staleness: null,
+    validation: null,
+    error: 'skill graph topology is owned by system_skill_advisor; session_bootstrap no longer calls the removed spec_kit_memory proxy',
+  };
+  return {
+    ...unavailable,
+    summary: describeSkillGraphTopology(unavailable),
+  };
 }
 
 function buildStructuralRoutingNudge(

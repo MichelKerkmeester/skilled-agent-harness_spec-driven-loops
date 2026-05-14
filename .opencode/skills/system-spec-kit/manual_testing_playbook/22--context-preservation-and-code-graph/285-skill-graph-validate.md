@@ -5,6 +5,8 @@ description: "Manual scenario for validating skill_graph_validate diagnostics."
 
 # 285 -- Skill graph validate
 
+**Owned by**: `system_skill_advisor` MCP server (since `013/009/008`).
+
 ## 1. OVERVIEW
 
 This scenario validates skill graph diagnostics for `285`. It focuses on confirming that `skill_graph_validate` reports schema, edge, relation-weight, symmetry, and cycle checks with a readable pass/warn/error state.

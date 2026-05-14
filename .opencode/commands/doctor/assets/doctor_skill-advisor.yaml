@@ -85,7 +85,7 @@ mutation_boundaries:
     steps:
       - "For each target in proposal_diff: resolve via realpath; reject absolute paths; reject paths containing `..` or symlinks escaping repo root"
       - "Assert resolved target is repo-relative (under repo_root)"
-      - "Match resolved target against allowed_targets patterns: exact match for explicit.ts/lexical.ts; glob match for .opencode/skills/<name>/graph-metadata.json where <name> exists in skill_graph_status"
+      - "Match resolved target against allowed_targets patterns: exact match for explicit.ts/lexical.ts; glob match for .opencode/skills/<name>/graph-metadata.json where <name> exists in system_skill_advisor.skill_graph_status"
       - "Reject any match against forbidden_targets patterns"
       - "On first violation: abort phase 3 entirely, append violation to validation_log, exit STATUS=FAIL with diagnostic"
     on_pass: "proceed to baseline capture + edit activities"
@@ -203,7 +203,7 @@ workflow:
     activities:
       - "List all skill folders: ls -d .opencode/skills/*/"
       - "Read each SKILL.md frontmatter (name, description, trigger phrases)"
-      - "Check skill graph status: skill_graph_status({})"
+      - "Check skill graph status: system_skill_advisor.skill_graph_status({})"
       - "Detect repo context: package.json, tsconfig.json, requirements.txt, language hints"
       - "Build skill inventory with current trigger coverage"
       - "Display summary to user before proceeding"
@@ -259,7 +259,7 @@ workflow:
       token_max_length: 64
       phrase_max_length: 128
       phrase_forbidden: "control characters (0x00-0x1F + 0x7F)"
-      skill_id_check: "must exist in skill_graph_status({}).skills"
+      skill_id_check: "must exist in system_skill_advisor.skill_graph_status({}).skills"
       boost_range: "[0.0, 1.0]"
       on_violation: "exclude entry from proposal, append to schema_violations, do not silently coerce"
     gate_after: "pre_phase_3 (Apply)"

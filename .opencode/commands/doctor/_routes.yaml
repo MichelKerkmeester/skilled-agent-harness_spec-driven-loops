@@ -129,9 +129,9 @@ routes:
       - mcp__spec_kit_memory__advisor_status
       - mcp__spec_kit_memory__advisor_validate
       - mcp__spec_kit_memory__advisor_rebuild
-      - mcp__spec_kit_memory__skill_graph_scan
-      - mcp__spec_kit_memory__skill_graph_query
-      - mcp__spec_kit_memory__skill_graph_status
+      - mcp__system_skill_advisor__skill_graph_scan
+      - mcp__system_skill_advisor__skill_graph_query
+      - mcp__system_skill_advisor__skill_graph_status
       - mcp__spec_kit_memory__memory_context
       - mcp__spec_kit_memory__memory_search
     trigger_phrases:

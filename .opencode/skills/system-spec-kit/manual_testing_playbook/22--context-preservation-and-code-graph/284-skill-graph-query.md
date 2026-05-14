@@ -5,6 +5,8 @@ description: "Manual scenario for validating skill_graph_query relationship read
 
 # 284 -- Skill graph query
 
+**Owned by**: `system_skill_advisor` MCP server (since `013/009/008`).
+
 ## 1. OVERVIEW
 
 This scenario validates skill graph relationship reads for `284`. It focuses on confirming that `skill_graph_query` returns bounded structured results with query type metadata.

@@ -5,6 +5,8 @@ description: "Reports skill graph health, staleness, families, categories, schem
 
 # Skill graph status
 
+**Owned by**: `system_skill_advisor` MCP server (since `013/009/008`).
+
 <!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
@@ -24,8 +26,8 @@ Current runtime behavior is documented in the source files below.
 
 | File | Role |
 |------|------|
-| `mcp_server/tool-schemas.ts` | Public MCP descriptor |
-| `mcp_server/tools/skill-graph-tools.ts` | Dispatcher |
+| `system-skill-advisor/mcp_server/tools/skill-graph-tools.ts` | Public MCP descriptor |
+| `system-skill-advisor/mcp_server/handlers/skill-graph/status.ts` | Handler |
 <!-- /ANCHOR:source-files -->
 
 <!-- ANCHOR:source-metadata -->
