@@ -37,7 +37,7 @@ This playbook validates the code graph runtime at `.opencode/skills/system-code-
 
 ## 1. OVERVIEW
 
-The playbook contains 15 scenarios across 8 groups. It targets the current reality map: read-path checks are bounded and half-auto, full scan/verify/status are operator actions, `detect_changes` is read-only and blocks on stale state, CCC tools are manual and coverage graph automation is limited to deep-loop command YAML.
+The playbook contains 21 scenarios across 9 groups. It targets the current reality map: read-path checks are bounded and half-auto, full scan/verify/status are operator actions, `detect_changes` is read-only and blocks on stale state, CCC tools are manual and coverage graph automation is limited to deep-loop command YAML. Group 09 adds post-rename infrastructure probes from packet 016.
 
 | Group | Scenario Files |
 | --- | --- |
@@ -49,6 +49,7 @@ The playbook contains 15 scenarios across 8 groups. It targets the current reali
 | MCP tool surface | [06--mcp-tool-surface](./06--mcp-tool-surface/) |
 | CCC integration | [07--ccc-integration](./07--ccc-integration/) |
 | Doctor code graph | [08--doctor-code-graph](./08--doctor-code-graph/) |
+| Post-rename infrastructure | [09--post-rename-infrastructure](./09--post-rename-infrastructure/) |
 
 ## 2. GLOBAL PRECONDITIONS
 
@@ -150,6 +151,18 @@ Operators may dispatch sub-agents in parallel waves for independent scenarios, e
 | --- | --- | --- |
 | 015 | doctor apply mode policy | [015-doctor-apply-mode-policy.md](./08--doctor-code-graph/015-doctor-apply-mode-policy.md) |
 
+---
+
+## 14b. POST-RENAME INFRASTRUCTURE
+
+| ID | Scenario | File |
+| --- | --- | --- |
+| 016 | MCP tool manifest post-rename | [016-mcp-tool-manifest-post-rename.md](./06--mcp-tool-surface/016-mcp-tool-manifest-post-rename.md) |
+| 017 | launcher startup prefix | [017-launcher-startup-prefix.md](./09--post-rename-infrastructure/017-launcher-startup-prefix.md) |
+| 018 | mcp.json server key rename | [018-mcp-json-server-key-rename.md](./09--post-rename-infrastructure/018-mcp-json-server-key-rename.md) |
+| 019 | database path verification | [019-database-path-verification.md](./09--post-rename-infrastructure/019-database-path-verification.md) |
+| 020 | TypeScript build and entry point | [020-typescript-build-and-entry-point.md](./09--post-rename-infrastructure/020-typescript-build-and-entry-point.md) |
+| 021 | unicode-normalization fix from 009 | [021-unicode-normalization-fix-from-009.md](./09--post-rename-infrastructure/021-unicode-normalization-fix-from-009.md) |
 
 ---
 

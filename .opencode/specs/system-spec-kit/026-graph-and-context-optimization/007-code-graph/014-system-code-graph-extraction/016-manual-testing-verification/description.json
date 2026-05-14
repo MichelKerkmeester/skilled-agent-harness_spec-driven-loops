@@ -1,0 +1,14 @@
+{
+  "id": "016-manual-testing-verification",
+  "title": "016 Manual Testing Verification",
+  "status": "complete",
+  "level": 1,
+  "parent": "014-system-code-graph-extraction",
+  "children": [],
+  "tags": ["verification", "manual-testing", "mk-code-index", "post-rename"],
+  "created": "2026-05-14",
+  "derived": {
+    "last_active_child_id": null,
+    "status": "complete"
+  }
+}
