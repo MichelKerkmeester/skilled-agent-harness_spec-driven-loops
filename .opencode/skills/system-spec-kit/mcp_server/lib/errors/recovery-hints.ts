@@ -100,6 +100,14 @@ export const ERROR_CODES = {
   MEMORY_DELETE_FAILED: 'E082',
   MEMORY_UPDATE_FAILED: 'E083',
   MEMORY_DUPLICATE: 'E084',
+  // Specific save-failure subtypes (added post-014/022 to replace the E081 catch-all per
+  // ai-council/embedding-worker-diagnostic/post-execution-followup.md; preserves the
+  // underlying issue message so callers can act on it instead of seeing only "unexpected error"):
+  MEMORY_SAVE_GOVERNANCE_REJECTED: 'E085',
+  MEMORY_SAVE_EMBEDDING_FAILED: 'E086',
+  MEMORY_SAVE_SQLITE_BUSY: 'E087',
+  MEMORY_SAVE_DB_ERROR: 'E088',
+  MEMORY_SAVE_VALIDATION_FAILED: 'E089',
 
   // Validation errors (E090-E099)
   VALIDATION_FAILED: 'E090',

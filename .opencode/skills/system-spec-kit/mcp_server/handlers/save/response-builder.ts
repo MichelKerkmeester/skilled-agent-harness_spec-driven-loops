@@ -485,6 +485,63 @@ export function buildPlannerResponse({ planner }: BuildPlannerResponseParams): M
   });
 }
 
+/**
+ * Classify a save-time error message into a specific error code. Added post-014/022
+ * (per ai-council/embedding-worker-diagnostic/post-execution-followup.md) to replace
+ * the historical E081 catch-all that obscured the actual failure mode for hours of
+ * debugging. The full message is still returned in the `error` field; this only
+ * picks a more specific code so callers can pattern-match on the code without
+ * parsing the message string.
+ */
+function classifySaveErrorCode(errorMessage: string): string {
+  const lower = errorMessage.toLowerCase();
+  if (lower.includes('governed ingest rejected') || lower.includes('governance_rejected')) {
+    return 'E085'; // MEMORY_SAVE_GOVERNANCE_REJECTED
+  }
+  if (
+    lower.includes('failed to generate embedding')
+    || lower.includes('embedding generation failed')
+    || lower.includes('embedding timeout')
+    || lower.includes('llama-cpp')
+    || lower.includes('hf-local')
+  ) {
+    return 'E086'; // MEMORY_SAVE_EMBEDDING_FAILED
+  }
+  if (lower.includes('sqlite_busy') || lower.includes('database is locked')) {
+    return 'E087'; // MEMORY_SAVE_SQLITE_BUSY
+  }
+  if (lower.includes('sqlite') || lower.includes('database error')) {
+    return 'E088'; // MEMORY_SAVE_DB_ERROR
+  }
+  if (
+    lower.includes('validation failed')
+    || lower.includes('must be a canonical spec document')
+    || lower.includes('filepath is required')
+  ) {
+    return 'E089'; // MEMORY_SAVE_VALIDATION_FAILED
+  }
+  return 'E081'; // MEMORY_SAVE_FAILED (true catch-all for unknown error shapes)
+}
+
+/**
+ * Extract structured details from save-time error messages where useful. For the
+ * "Governed ingest rejected: A; B; C" pattern, this splits the issues into an
+ * `issues` array so callers can iterate over individual problems instead of
+ * substring-matching the joined string.
+ */
+function extractSaveErrorDetails(errorMessage: string): Record<string, unknown> {
+  const govPrefix = 'Governed ingest rejected:';
+  const govIndex = errorMessage.indexOf(govPrefix);
+  if (govIndex >= 0) {
+    const tail = errorMessage.slice(govIndex + govPrefix.length).trim();
+    const issues = tail.split(/;\s*/).map((issue) => issue.trim()).filter(Boolean);
+    if (issues.length > 0) {
+      return { issues };
+    }
+  }
+  return {};
+}
+
 export function buildSaveResponse({ result, filePath, asyncEmbedding, requestId }: BuildSaveResponseParams): MCPResponse {
   if (result.status === 'unchanged') {
     return createMCPSuccessResponse({
@@ -505,16 +562,24 @@ export function buildSaveResponse({ result, filePath, asyncEmbedding, requestId 
       ? result.error
       : (typeof result.message === 'string' && result.message.length > 0 ? result.message : 'Memory save failed');
 
+    // Post-014/022: classify the error by pattern so the response code points at the actual
+    // failure mode instead of always returning E081 "unexpected error". The full message
+    // is still preserved in the `error` field. See
+    // ai-council/embedding-worker-diagnostic/post-execution-followup.md.
+    const classifiedCode = classifySaveErrorCode(errorMessage);
+    const extraDetails = extractSaveErrorDetails(errorMessage);
+
     return createMCPErrorResponse({
       tool: 'memory_save',
       error: errorMessage,
-      code: 'E081',
+      code: classifiedCode,
       details: {
         status: result.status,
         id: result.id,
         specFolder: result.specFolder,
         title: result.title,
         ...(typeof result.superseded === 'boolean' ? { superseded: result.superseded } : {}),
+        ...extraDetails,
       },
     });
   }
