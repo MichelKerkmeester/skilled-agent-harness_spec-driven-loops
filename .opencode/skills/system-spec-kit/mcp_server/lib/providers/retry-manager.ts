@@ -340,10 +340,14 @@ const BACKOFF_DELAYS: number[] = [
 const MAX_RETRIES = 3;
 
 // Background retry job configuration (REQ-031, CHK-179)
+// Env-overrideable (post-014/022 substrate repair — see 022-local-llm-legacy-remediation/ai-council/embedding-worker-diagnostic):
+//   SPECKIT_RETRY_INTERVAL_MS — interval between background batches (default 300000 = 5 min)
+//   SPECKIT_RETRY_BATCH_SIZE  — items processed per batch (default 5)
+//   SPECKIT_RETRY_ENABLED     — set to "false" to disable the background loop entirely (default enabled)
 const BACKGROUND_JOB_CONFIG: BackgroundJobConfig = {
-  intervalMs: 5 * 60 * 1000,
-  batchSize: 5,
-  enabled: true,
+  intervalMs: parseInt(process.env.SPECKIT_RETRY_INTERVAL_MS || String(5 * 60 * 1000), 10),
+  batchSize: parseInt(process.env.SPECKIT_RETRY_BATCH_SIZE || '5', 10),
+  enabled: (process.env.SPECKIT_RETRY_ENABLED ?? 'true') !== 'false',
 };
 
 // Background job state
