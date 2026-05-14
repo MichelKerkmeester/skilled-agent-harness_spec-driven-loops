@@ -9,7 +9,7 @@
 ──────────────────────────────────────────────────────────────── */
 
 import { z, ZodError } from 'zod';
-import { AdvisorToolInputSchemas } from '../skill_advisor/schemas/advisor-tool-schemas.js';
+import { AdvisorToolInputSchemas } from '../../../system-skill-advisor/mcp_server/schemas/advisor-tool-schemas.js';
 // F-018-D3-04 (partial): Critical advisor contracts source their parameter
 // key tuples from a shared module so ALLOWED_PARAMETERS and the JSON Schema
 // descriptors cannot drift. See advisor-contract-keys.ts header for why the
@@ -17,7 +17,7 @@ import { AdvisorToolInputSchemas } from '../skill_advisor/schemas/advisor-tool-s
 import {
   ADVISOR_RECOMMEND_PARAMETER_KEYS,
   ADVISOR_VALIDATE_PARAMETER_KEYS,
-} from '../skill_advisor/tools/advisor-contract-keys.js';
+} from '../../../system-skill-advisor/mcp_server/tools/advisor-contract-keys.js';
 
 import type { ZodType } from 'zod';
 
@@ -123,17 +123,6 @@ const mergeModeHintEnum = z.enum([
   'append-section',
 ]);
 
-const codeGraphOperationEnum = z.enum([
-  'outline',
-  'calls_from',
-  'calls_to',
-  'imports_from',
-  'imports_to',
-  'blast_radius',
-]);
-
-const codeGraphQueryModeEnum = z.enum(['neighborhood', 'outline', 'impact']);
-
 const skillGraphQueryTypeEnum = z.enum([
   'depends_on',
   'dependents',
@@ -191,8 +180,6 @@ const councilGraphQueryTypeEnum = z.enum([
   'convergence_blockers',
   'hot_nodes',
 ]);
-
-const cccFeedbackRatingEnum = z.enum(['helpful', 'not_helpful', 'partial']);
 
 /* ───────────────────────────────────────────────────────────────
    5. SCHEMA DEFINITIONS
@@ -518,103 +505,6 @@ const memoryIngestCancelSchema = getSchema({
   jobId: z.string().min(1),
 });
 
-const codeGraphScanSchema = getSchema({
-  rootDir: optionalPathString(),
-  includeGlobs: optionalStringArray,
-  excludeGlobs: optionalStringArray,
-  incremental: z.boolean().optional(),
-  includeSkills: z.boolean().or(z.array(z.string().regex(/^sk-[a-z0-9-]+$/))).optional(),
-  includeAgents: z.boolean().optional(),
-  includeCommands: z.boolean().optional(),
-  includeSpecs: z.boolean().optional(),
-  includePlugins: z.boolean().optional(),
-  verify: z.boolean().optional(),
-  persistBaseline: z.boolean().optional(),
-  forceZeroNodeReset: z.boolean().optional(),
-  forceScopeChange: z.boolean().optional(),
-});
-
-const codeGraphQuerySchema = getSchema({
-  operation: codeGraphOperationEnum,
-  subject: z.string().min(1),
-  subjects: optionalStringArray,
-  unionMode: z.enum(['single', 'multi']).optional(),
-  edgeType: z.string().optional(),
-  limit: positiveIntMax(200).optional(),
-  includeTransitive: z.boolean().optional(),
-  maxDepth: positiveIntMax(10).optional(),
-  minConfidence: z.number().min(0).max(1).optional(),
-});
-
-const codeGraphSeedSchema = z.object({
-  filePath: z.string().optional(),
-  startLine: safeNumericPreprocess.pipe(z.number()).optional(),
-  endLine: safeNumericPreprocess.pipe(z.number()).optional(),
-  query: z.string().optional(),
-  provider: z.enum(['cocoindex', 'manual', 'graph']).optional(),
-  source: z.string().optional(),
-  file: z.string().optional(),
-  range: z.object({
-    start: safeNumericPreprocess.pipe(z.number()).optional(),
-    end: safeNumericPreprocess.pipe(z.number()).optional(),
-  }).optional(),
-  score: safeNumericPreprocess.pipe(z.number()).optional(),
-  snippet: z.string().optional(),
-  symbolName: z.string().optional(),
-  kind: z.string().optional(),
-  nodeId: z.string().optional(),
-  symbolId: z.string().optional(),
-  // ── Q-OPP / packet 015 — CocoIndex fork telemetry passthrough ──
-  // The fork (cocoindex_code v0.2.3+spec-kit-fork.0.2.0) emits these
-  // fields on each QueryResult. Both snake_case (wire) and camelCase
-  // (internal) are accepted on input and normalized to camelCase by
-  // the context handler. ADDITIVE METADATA ONLY — never used to alter
-  // anchor scoring, confidence, resolution, or ordering.
-  rawScore: safeNumericPreprocess.pipe(z.number()).optional(),
-  raw_score: safeNumericPreprocess.pipe(z.number()).optional(),
-  pathClass: z.string().optional(),
-  path_class: z.string().optional(),
-  rankingSignals: z.array(z.string()).optional(),
-});
-
-const codeGraphContextSchema = getSchema({
-  input: z.string().optional(),
-  queryMode: codeGraphQueryModeEnum.optional(),
-  subject: z.string().optional(),
-  seeds: z.array(codeGraphSeedSchema).optional(),
-  budgetTokens: boundedNumber(100, 4000).optional(),
-  profile: z.enum(['quick', 'research', 'debug']).optional(),
-  includeTrace: z.boolean().optional(),
-});
-
-const codeGraphVerifySchema = getSchema({
-  rootDir: optionalPathString(),
-  batteryPath: optionalPathString(),
-  category: z.enum(['mcp-tool', 'cross-module', 'exported-type', 'regression-detection']).optional(),
-  failFast: z.boolean().optional(),
-  includeDetails: z.boolean().optional(),
-  persistBaseline: z.boolean().optional(),
-  allowInlineIndex: z.boolean().optional(),
-});
-
-const codeGraphApplySchema = getSchema({
-  rootDir: optionalPathString(),
-  operation: z.enum(['rescan', 'prune-excludes', 'repair-nodes', 'recover-sqlite-corruption', 'rollback-bad-apply']).optional(),
-  confirm: z.boolean().optional(),
-  dryRun: z.boolean().optional(),
-  crashRootCauseAddressed: z.boolean().optional(),
-  quarantineOlderThanDays: boundedNumber(1, 365).optional(),
-  lowTierOptIn: z.boolean().optional(),
-  excludePatterns: optionalStringArray,
-  batteryPath: optionalPathString(),
-  includeDetails: z.boolean().optional(),
-});
-
-const detectChangesSchema = getSchema({
-  diff: z.string().min(1),
-  rootDir: optionalPathString(),
-});
-
 const skillGraphScanSchema = getSchema({
   skillsRoot: optionalPathString(),
 });
@@ -633,19 +523,6 @@ const skillGraphQuerySchema = getSchema({
 const skillGraphStatusSchema = getSchema({});
 
 const skillGraphValidateSchema = getSchema({});
-
-const cccStatusSchema = getSchema({});
-
-const cccReindexSchema = getSchema({
-  full: z.boolean().optional(),
-});
-
-const cccFeedbackSchema = getSchema({
-  query: z.string().min(1),
-  resultFile: z.string().optional(),
-  rating: cccFeedbackRatingEnum,
-  comment: z.string().optional(),
-});
 
 const deepLoopGraphNodeSchema = z.object({
   id: z.string().min(1),
@@ -780,13 +657,6 @@ export const TOOL_SCHEMAS: Record<string, ToolInputSchema> = {
   memory_ingest_start: memoryIngestStartSchema as unknown as ToolInputSchema,
   memory_ingest_status: memoryIngestStatusSchema as unknown as ToolInputSchema,
   memory_ingest_cancel: memoryIngestCancelSchema as unknown as ToolInputSchema,
-  code_graph_scan: codeGraphScanSchema as unknown as ToolInputSchema,
-  code_graph_query: codeGraphQuerySchema as unknown as ToolInputSchema,
-  code_graph_status: getSchema({}) as unknown as ToolInputSchema,
-  code_graph_context: codeGraphContextSchema as unknown as ToolInputSchema,
-  code_graph_verify: codeGraphVerifySchema as unknown as ToolInputSchema,
-  code_graph_apply: codeGraphApplySchema as unknown as ToolInputSchema,
-  detect_changes: detectChangesSchema as unknown as ToolInputSchema,
   skill_graph_scan: skillGraphScanSchema as unknown as ToolInputSchema,
   skill_graph_query: skillGraphQuerySchema as unknown as ToolInputSchema,
   skill_graph_status: skillGraphStatusSchema as unknown as ToolInputSchema,
@@ -795,9 +665,6 @@ export const TOOL_SCHEMAS: Record<string, ToolInputSchema> = {
   advisor_rebuild: AdvisorToolInputSchemas.advisor_rebuild as unknown as ToolInputSchema,
   advisor_status: AdvisorToolInputSchemas.advisor_status as unknown as ToolInputSchema,
   advisor_validate: AdvisorToolInputSchemas.advisor_validate as unknown as ToolInputSchema,
-  ccc_status: cccStatusSchema as unknown as ToolInputSchema,
-  ccc_reindex: cccReindexSchema as unknown as ToolInputSchema,
-  ccc_feedback: cccFeedbackSchema as unknown as ToolInputSchema,
   deep_loop_graph_upsert: deepLoopGraphUpsertSchema as unknown as ToolInputSchema,
   deep_loop_graph_query: deepLoopGraphQuerySchema as unknown as ToolInputSchema,
   deep_loop_graph_status: deepLoopGraphStatusSchema as unknown as ToolInputSchema,
@@ -848,13 +715,6 @@ const ALLOWED_PARAMETERS: Record<string, string[]> = {
   memory_ingest_start: ['paths', 'specFolder', 'tenantId', 'userId', 'agentId', 'sessionId', 'provenanceSource', 'provenanceActor', 'governedAt', 'retentionPolicy', 'deleteAfter'],
   memory_ingest_status: ['jobId'],
   memory_ingest_cancel: ['jobId'],
-  code_graph_scan: ['rootDir', 'includeGlobs', 'excludeGlobs', 'incremental', 'includeSkills', 'includeAgents', 'includeCommands', 'includeSpecs', 'includePlugins', 'verify', 'persistBaseline', 'forceZeroNodeReset', 'forceScopeChange'],
-  code_graph_query: ['operation', 'subject', 'subjects', 'unionMode', 'edgeType', 'limit', 'includeTransitive', 'maxDepth', 'minConfidence'],
-  code_graph_status: [],
-  code_graph_context: ['input', 'queryMode', 'subject', 'seeds', 'budgetTokens', 'profile', 'includeTrace'],
-  code_graph_verify: ['rootDir', 'batteryPath', 'category', 'failFast', 'includeDetails', 'persistBaseline', 'allowInlineIndex'],
-  code_graph_apply: ['rootDir', 'operation', 'confirm', 'dryRun', 'crashRootCauseAddressed', 'quarantineOlderThanDays', 'lowTierOptIn', 'excludePatterns', 'batteryPath', 'includeDetails'],
-  detect_changes: ['diff', 'rootDir'],
   skill_graph_scan: ['skillsRoot'],
   skill_graph_query: ['queryType', 'skillId', 'sourceSkillId', 'targetSkillId', 'family', 'minInbound', 'depth', 'limit'],
   skill_graph_status: [],
@@ -866,9 +726,6 @@ const ALLOWED_PARAMETERS: Record<string, string[]> = {
   advisor_rebuild: ['force'],
   advisor_status: ['workspaceRoot'],
   advisor_validate: [...ADVISOR_VALIDATE_PARAMETER_KEYS],
-  ccc_status: [],
-  ccc_reindex: ['full'],
-  ccc_feedback: ['query', 'resultFile', 'rating', 'comment'],
   deep_loop_graph_upsert: ['specFolder', 'loopType', 'sessionId', 'nodes', 'edges'],
   deep_loop_graph_query: ['specFolder', 'loopType', 'queryType', 'nodeId', 'sessionId', 'limit', 'maxDepth'],
   deep_loop_graph_status: ['specFolder', 'loopType', 'sessionId'],
