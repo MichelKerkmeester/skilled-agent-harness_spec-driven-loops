@@ -12,13 +12,15 @@ import { HfLocalProvider } from '../../../shared/embeddings/providers/hf-local.j
 import { LlamaCppProvider } from '../../../shared/embeddings/providers/llama-cpp.js';
 
 const originalEnv = { ...process.env };
+// HuggingFace Hub cache convention: ~/.cache/huggingface/hub/models--<org>--<name>/
+// (transformers.js + the hub CLI both write here; the older
+// ~/.cache/huggingface/transformers/ path is the pre-v3 layout and is not used.)
 const hfModelCache = path.join(
   homedir(),
   '.cache',
   'huggingface',
-  'transformers',
-  'onnx-community',
-  'embeddinggemma-300m-ONNX',
+  'hub',
+  'models--onnx-community--embeddinggemma-300m-ONNX',
 );
 let tempDir: string | null = null;
 
