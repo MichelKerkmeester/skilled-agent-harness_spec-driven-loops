@@ -206,7 +206,6 @@ SKILL_GRAPH_COMPILER_PATH = os.path.join(SCRIPT_DIR, "skill_graph_compiler.py")
 SKILL_GRAPH_SQLITE_PATH = os.path.normpath(os.path.join(
     os.path.dirname(__file__),
     '..',
-    '..',
     'database',
     'skill-graph.sqlite',
 ))

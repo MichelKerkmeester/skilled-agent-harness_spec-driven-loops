@@ -29,7 +29,7 @@ from typing import Any, Dict, List, Optional, Set, Tuple
 # ───────────────────────────────────────────────────────────────
 
 SCRIPT_DIR = os.path.dirname(os.path.realpath(__file__))
-SKILLS_DIR = os.path.abspath(os.path.join(SCRIPT_DIR, "..", "..", "..", ".."))
+SKILLS_DIR = os.path.abspath(os.path.join(SCRIPT_DIR, "..", "..", ".."))
 DEFAULT_OUTPUT = os.path.join(SCRIPT_DIR, "skill-graph.json")
 
 COMPILED_SCHEMA_VERSION = 1
