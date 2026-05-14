@@ -22,6 +22,7 @@ Run from the repository root:
 ```bash
 cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 npm --prefix .opencode/skills/system-spec-kit/mcp_server run build
+npm --prefix .opencode/skills/system-skill-advisor/mcp_server run build
 ```
 
 Required files:
@@ -35,7 +36,7 @@ Required files:
 | `.opencode/skills/system-skill-advisor/mcp_server/lib/render.ts` | Shared `renderAdvisorBrief(...)` invariants |
 | `.opencode/skills/system-skill-advisor/mcp_server/lib/metrics.ts` | Durable JSONL diagnostics sink + metric labels |
 | `.opencode/plugins/spec-kit-skill-advisor.js` | OpenCode plugin |
-| `.opencode/skills/system-spec-kit/mcp_server/plugin_bridges/spec-kit-skill-advisor-bridge.mjs` | OpenCode plugin-helper bridge entrypoint |
+| `.opencode/plugins/spec-kit-skill-advisor-bridge.mjs` | OpenCode plugin-helper bridge entrypoint |
 
 ---
 
@@ -93,7 +94,7 @@ Goal: confirm the plugin-helper bridge path is wired and routes through the shar
 
 ```bash
 node --input-type=module -e "
-  import('./.opencode/skills/system-spec-kit/mcp_server/plugin_bridges/spec-kit-skill-advisor-bridge.mjs').then(async mod => {
+  import('./.opencode/plugins/spec-kit-skill-advisor-bridge.mjs').then(async mod => {
     const res = await mod.default({ prompt: 'implement a TypeScript hook', cwd: process.cwd() });
     console.log(JSON.stringify(res, null, 2));
   });
@@ -161,13 +162,13 @@ Confirm no runtime or plugin still routes through a bespoke formatter or a non-s
 rg -n "renderAdvisorBrief|effectiveThresholds|thresholdSemantics|workspaceRoot" \
   .opencode/skills/system-skill-advisor/mcp_server \
   .opencode/plugins/spec-kit-skill-advisor.js \
-  .opencode/skills/system-spec-kit/mcp_server/plugin_bridges/spec-kit-skill-advisor-bridge.mjs \
+  .opencode/plugins/spec-kit-skill-advisor-bridge.mjs \
   .opencode/skills/system-spec-kit/mcp_server/hooks
 
 rg -n "formatAdvisorBrief|legacyAdvisorRender|custom formatter" \
   .opencode/skills/system-spec-kit/mcp_server \
   .opencode/plugins \
-  .opencode/skills/system-spec-kit/mcp_server/plugin_bridges
+  .opencode/plugins
 ```
 
 Pass condition: the first grep returns the expected shared-contract references; the second grep returns no hits (no drift back to branch-specific rendering).
@@ -299,4 +300,3 @@ rm -f /tmp/speckit-advisor-regression.jsonl /tmp/speckit-advisor-regression.out.
 ```
 
 ---
-

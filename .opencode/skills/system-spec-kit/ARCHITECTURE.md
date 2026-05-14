@@ -1,6 +1,6 @@
 ---
 title: "Architecture: system-spec-kit"
-description: "Current package architecture for scripts, MCP runtime, shared modules, self-contained skill-advisor + code-graph subsystems, hook integration matrix, and canonical continuity flows."
+description: "Current package architecture for scripts, MCP runtime, shared modules, sibling skill-advisor integration, code-graph subsystem, hook integration matrix, and canonical continuity flows."
 trigger_phrases:
   - "system spec kit architecture"
   - "canonical continuity architecture"
@@ -15,7 +15,7 @@ importance_tier: "important"
 
 # Architecture: system-spec-kit
 
-> Current-reality architecture for the `system-spec-kit` package: authored code lives in `scripts/`, `mcp_server/`, and `shared/`; the `mcp_server/` tree now hosts two self-contained consumed subsystems (`skill_advisor/`, `code_graph/`), matrix runners, and opt-in stress tests; packet continuity is rebuilt through `/spec_kit:resume` and canonical spec documents.
+> Current-reality architecture for the `system-spec-kit` package: authored code lives in `scripts/`, `mcp_server/`, and `shared/`; the sibling `system-skill-advisor` skill owns advisor routing, while `mcp_server/` hosts memory runtime, hooks, the code-graph subsystem, matrix runners, and opt-in stress tests. Packet continuity is rebuilt through `/spec_kit:resume` and canonical spec documents.
 
 <!-- ANCHOR:table-of-contents -->
 ## TABLE OF CONTENTS
@@ -45,14 +45,14 @@ importance_tier: "important"
 | `shared/` | Neutral modules imported by both scripts and runtime | TypeScript under `shared/` |
 | `dist/` | Built JavaScript entrypoints | Generated output only |
 
-Two consumed subsystems live as first-class self-contained packages under `mcp_server/`, with adjacent operator-runner folders for the quality matrix and opt-in stress validation:
+The extracted advisor is a sibling skill, while code graph remains a first-class self-contained package under `mcp_server/`. Adjacent operator-runner folders still live in spec-kit for the quality matrix and opt-in stress validation:
 
-- `system-skill-advisor/mcp_server/` — Native skill routing advisor. Houses its own `lib/`, `handlers/`, `tools/`, `tests/`, `scripts/`, `bench/`, `compat/`, `schemas/`, operator docs (`README.md`, `INSTALL_GUIDE.md`, `SET-UP_GUIDE.md`), plus `feature_catalog/` and `manual_testing_playbook/` packages.
+- `../system-skill-advisor/mcp_server/` — Native skill routing advisor owned by the sibling `system-skill-advisor` skill. Houses its own `lib/`, `handlers/`, `tools/`, `tests/`, `scripts/`, `bench/`, `compat/`, `schemas/`, operator docs (`README.md`, `INSTALL_GUIDE.md`, `SET-UP_GUIDE.md`), plus `feature_catalog/` and `manual_testing_playbook/` packages.
 - `mcp_server/code_graph/` — Structural code graph + coco-index facade. Houses its own `lib/`, `handlers/`, `tools/`, `tests/`.
 - `mcp_server/matrix_runners/` — Packet-036 F1-F14 x CLI adapter manifest, five per-CLI adapters, and meta-runner for external executor cells.
 - `mcp_server/stress_test/` — Opt-in stress/load/degraded-state suites, excluded from default `npm test` and run through `npm run stress`.
 
-Neither subsystem ships a `SKILL.md`. They are consumed subsystems of `system-spec-kit`, not standalone skills. All operator-facing routing goes through `system-spec-kit` entry points.
+The advisor sibling ships its own `SKILL.md`; spec-kit docs reference it only as a sibling runtime dependency. The code-graph package is still consumed inside spec-kit and does not ship a separate `SKILL.md`.
 
 The package no longer treats generated memory notes as the primary continuity artifact. The operator-facing recovery surface is `/spec_kit:resume`, and the recovery chain is:
 
@@ -85,9 +85,9 @@ Generated memory artifacts are supporting context only.
 │  │  │ codex/   │ │context/  │ │ │ merge/   │ │ continuity/ │      │ │
 │  │  └──────────┘ └──────────┘ │ └──────────┘ └─────────────┘      │ │
 │  │  ┌─────────────────────────┴─────────────────────────────┐     │ │
-│  │  │              Consumed Subsystems                      │     │ │
+│  │  │              Runtime Subsystems                       │     │ │
 │  │  │ ┌────────────────────┐ ┌────────────────────────────┐ │     │ │
-│  │  │ │  skill_advisor/    │ │     code_graph/            │ │     │ │
+│  │  │ │ sibling advisor    │ │     code_graph/            │ │     │ │
 │  │  │ │ ┌────────────────┐ │ │ ┌────────────────────────┐ │ │     │ │
 │  │  │ │ │5-lane fusion   │ │ │ │indexer, readiness,     │ │ │     │ │
 │  │  │ │ │scorer daemon   │ │ │ │seed resolver, budget   │ │ │     │ │
@@ -114,7 +114,7 @@ Generated memory artifacts are supporting context only.
 │  Dependency direction: scripts/ ──▶ mcp_server/api/                 │
 │                         mcp_server/ ──▶ shared/                     │
 │                         scripts/ ──▶ shared/                        │
-│                         Plugin ──▶ skill_advisor/compat/            │
+│                         Plugin ──▶ ../system-skill-advisor/compat/            │
 │                                                                     │
 └─────────────────────────────────────────────────────────────────────┘
 ```
@@ -147,24 +147,15 @@ system-spec-kit/
 │   ├── scripts/                    # Compatibility wrappers only
 │   ├── matrix_runners/             # F1-F14 x CLI adapter runners
 │   ├── stress_test/                # Opt-in stress/load/degraded-state suites
-│   ├── skill_advisor/              # Self-contained advisor package (see §5)
-│   │   ├── lib/                    # scorer (fusion + lanes), daemon, freshness, lifecycle, compat, ...
-│   │   ├── handlers/               # advisor-recommend | advisor-status | advisor-validate
-│   │   ├── tools/                  # MCP tool registrations
-│   │   ├── schemas/                # Zod schemas for tools and derived metadata
-│   │   ├── compat/                 # Stable public API entrypoint for plugin bridge
-│   │   ├── tests/                  # Vitest suites (scorer, parity, handlers, compat, legacy, python)
-│   │   ├── bench/                  # latency / scorer / watcher benches
-│   │   ├── scripts/                # Python compat shim, runtime, regression, bench, compiler
-│   │   ├── feature_catalog/        # Feature catalog package
-│   │   ├── manual_testing_playbook/ # Manual testing playbook package
-│   │   ├── README.md / INSTALL_GUIDE.md / SET-UP_GUIDE.md
-│   │   └── graph-metadata.json
 │   └── code_graph/                 # Self-contained code-graph package (see §6)
 │       ├── lib/                    # indexer, readiness contract, seed resolver, coco-index integration
 │       ├── handlers/               # code_graph_* + ccc_* (coco-index facade)
 │       ├── tools/                  # MCP tool registrations
 │       └── tests/                  # 7 files / 52 tests
+├── ../system-skill-advisor/         # Sibling skill that owns advisor routing (see §5)
+│   ├── SKILL.md / README.md / INSTALL_GUIDE.md / SET-UP_GUIDE.md
+│   ├── feature_catalog/ / manual_testing_playbook/
+│   └── mcp_server/                  # advisor MCP server, handlers, tools, compat, tests, scripts
 ├── shared/                         # Neutral cross-package modules
 └── specs/ / .opencode/specs/       # Packet docs and continuity artifacts
 ```
@@ -503,9 +494,9 @@ Cross-ADR flow: ADR-001 → ADR-004 (lease needs a long-running writer); ADR-002
 - `mcp_server/lib/README.md`
 - `mcp_server/handlers/README.md`
 - `mcp_server/hooks/README.md`
-- `system-skill-advisor/mcp_server/README.md`
-- `system-skill-advisor/mcp_server/INSTALL_GUIDE.md`
-- `system-skill-advisor/mcp_server/SET-UP_GUIDE.md`
+- `../system-skill-advisor/mcp_server/README.md`
+- `../system-skill-advisor/mcp_server/INSTALL_GUIDE.md`
+- `../system-skill-advisor/mcp_server/SET-UP_GUIDE.md`
 - `mcp_server/matrix_runners/README.md`
 - `mcp_server/stress_test/README.md`
 - `mcp_server/code_graph/lib/README.md`

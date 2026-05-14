@@ -62,7 +62,7 @@ Full definitions: **AGENTS.md § 2 — MANDATORY GATES**
 | Gate       | Type           | One-Line Summary                                                          |
 | ---------- | -------------- | ------------------------------------------------------------------------- |
 | **Gate 1** | SOFT           | Understanding + context surfacing on each user message                    |
-| **Gate 2** | REQUIRED       | Skill routing via Skill Advisor Hook (primary) or `skill_advisor.py`      |
+| **Gate 2** | REQUIRED       | Skill routing via Skill Advisor Hook (primary) or the `system-skill-advisor` Python compat shim |
 | **Gate 3** | **HARD BLOCK** | Spec folder A/B/C/D/E question before ANY file modification               |
 | **Gate 4** | **HARD BLOCK** | Skill-owned workflow enforcement for iterative loops (`:auto` suffix etc) |
 

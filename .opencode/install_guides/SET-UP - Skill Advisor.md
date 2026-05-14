@@ -17,7 +17,7 @@ Run the skill-advisor command to tune my OpenCode skill advisor scoring system.
 
 PREREQUISITE CHECK (verify before proceeding):
 - [ ] At least one skill exists at .opencode/skills/<name>/SKILL.md
-- [ ] system-spec-kit MCP server is built (dist/ exists)
+- [ ] system-skill-advisor MCP server is built (dist/ exists)
 - [ ] skill_graph_scan tool is in your tool list
 - [ ] Baseline advisor tests pass before any changes
 
@@ -30,7 +30,7 @@ Steps:
 4. On success: summarize files modified and how to undo if needed.
 5. On test failure: run the per-run rollback script that Phase 3 generated under <packet_scratch>/rollback-<timestamp>.sh
    (it restores only the exact files this run modified, so any unrelated WIP is preserved).
-   The script also runs npm --prefix .opencode/skills/system-spec-kit/mcp_server run build at the end.
+   The script also runs npm --prefix .opencode/skills/system-skill-advisor/mcp_server run build at the end.
 ```
 
 **Expected duration:** 5–10 minutes interactive | 1–2 minutes autonomous.
@@ -45,8 +45,8 @@ Steps:
 # 1. Install MCP server dependencies (no package-lock.json is committed; install resolves latest compatible versions)
 npm --prefix .opencode/skills/system-spec-kit/mcp_server install
 
-# 2. Build dist/ (compiled output the runtime loads)
-npm --prefix .opencode/skills/system-spec-kit/mcp_server run build
+# 2. Build advisor dist/ (compiled output the runtime loads)
+npm --prefix .opencode/skills/system-skill-advisor/mcp_server run build
 ```
 
 **Verification checks (after build):**
@@ -54,9 +54,9 @@ npm --prefix .opencode/skills/system-spec-kit/mcp_server run build
 | Requirement | Check |
 | --- | --- |
 | At least one skill exists | `ls .opencode/skills/*/SKILL.md` returns paths |
-| MCP server is built | `ls .opencode/skills/system-spec-kit/mcp_server/dist/` shows JS |
+| MCP server is built | `ls .opencode/skills/system-skill-advisor/mcp_server/dist/` shows JS |
 | `skill_graph_scan` available | Tool appears in your AI client's tool list |
-| Baseline tests pass | `npm --prefix .opencode/skills/system-spec-kit/mcp_server test -- skill_advisor` is green |
+| Baseline tests pass | `npm --prefix .opencode/skills/system-skill-advisor/mcp_server test` is green |
 
 ---
 
@@ -126,7 +126,7 @@ The command rebuilds `dist/`, runs `skill_graph_scan`, and runs the advisor test
 
 ```bash
 # Tests still green
-npm --prefix .opencode/skills/system-spec-kit/mcp_server test -- skill_advisor
+npm --prefix .opencode/skills/system-skill-advisor/mcp_server test
 
 # Graph re-indexed (in your AI client)
 skill_graph_status({})
@@ -147,7 +147,7 @@ Phase 3 generates a per-run rollback script at `<packet_scratch>/rollback-<times
 bash <packet_scratch>/rollback-<timestamp>.sh
 
 # 2. Verify rollback
-npm --prefix .opencode/skills/system-spec-kit/mcp_server test -- skill_advisor
+npm --prefix .opencode/skills/system-skill-advisor/mcp_server test
 ```
 
 **Why the per-run script and not `git checkout HEAD --`?** A broad `git checkout HEAD -- .opencode/skills/...` would discard any unrelated WIP in those paths. The per-run script restores only the files this command touched, leaving other changes intact.
@@ -165,7 +165,7 @@ git restore --source=HEAD -- \
   .opencode/skills/system-skill-advisor/mcp_server/lib/ \
   .opencode/skills/*/graph-metadata.json
 
-npm --prefix .opencode/skills/system-spec-kit/mcp_server run build
+npm --prefix .opencode/skills/system-skill-advisor/mcp_server run build
 ```
 
 ---
@@ -183,7 +183,7 @@ npm --prefix .opencode/skills/system-spec-kit/mcp_server run build
 | Edited `graph-metadata.json` but scores unchanged | Forgot to re-index — call `skill_graph_scan({})`. The advisor reads from `database/skill-graph.sqlite`, not the JSON file. |
 | `skill_graph_scan` reports `scannedFiles: 20, indexedFiles: 18` | Normal — the indexer skips `scripts/test-fixtures/*/graph-metadata.json` (test scaffolding, not real skills). The 18 is your real skill count. |
 | Cannot parse `explicit.ts` | `git restore --source=HEAD -- .opencode/skills/system-skill-advisor/mcp_server/lib/scorer/lanes/explicit.ts` (restores from HEAD without affecting unrelated WIP) |
-| MCP server missing | `npm --prefix .opencode/skills/system-spec-kit/mcp_server install && npm run build` |
+| MCP server missing | `npm --prefix .opencode/skills/system-spec-kit/mcp_server install && npm --prefix .opencode/skills/system-skill-advisor/mcp_server run build` |
 
 ---
 
@@ -192,5 +192,5 @@ npm --prefix .opencode/skills/system-spec-kit/mcp_server run build
 - **Command reference:** `.opencode/commands/doctor.md`
 - **Workflow YAML:** `.opencode/commands/doctor/assets/doctor_skill-advisor_{auto,confirm}.yaml`
 - **Operator setup (advanced):** `.opencode/skills/system-skill-advisor/mcp_server/SET-UP_GUIDE.md`
-- **Native MCP install:** `.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md`
+- **Native MCP install:** `.opencode/skills/system-skill-advisor/INSTALL_GUIDE.md`
 - **Related guides:** [SET-UP - Skill Creation](./SET-UP%20-%20Skill%20Creation.md) (run skill-advisor after creating a new skill)
