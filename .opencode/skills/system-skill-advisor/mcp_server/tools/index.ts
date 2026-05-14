@@ -8,7 +8,7 @@ import {
   handleAdvisorStatus,
   handleAdvisorValidate,
 } from '../handlers/index.js';
-import type { MCPCallerContext } from '../../../system-spec-kit/mcp_server/lib/context/caller-context.js';
+import type { MCPCallerContext } from '../lib/context/caller-context.js';
 
 export { advisorRecommendTool } from './advisor-recommend.js';
 export { advisorRebuildTool } from './advisor-rebuild.js';

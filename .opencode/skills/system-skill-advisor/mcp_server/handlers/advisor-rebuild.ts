@@ -4,7 +4,7 @@
 
 import { resolve } from 'node:path';
 
-import { indexSkillMetadata } from '../../../system-spec-kit/mcp_server/lib/skill-graph/skill-graph-db.js';
+import { indexSkillMetadata } from '../lib/skill-graph/skill-graph-db.js';
 import { computeAdvisorSourceSignature } from '../lib/freshness.js';
 import { publishSkillGraphGeneration } from '../lib/freshness/generation.js';
 import {
@@ -13,7 +13,7 @@ import {
 } from '../schemas/advisor-tool-schemas.js';
 import { readAdvisorStatus } from './advisor-status.js';
 
-import type { SkillGraphIndexResult } from '../../../system-spec-kit/mcp_server/lib/skill-graph/skill-graph-db.js';
+import type { SkillGraphIndexResult } from '../lib/skill-graph/skill-graph-db.js';
 import type {
   AdvisorFreshness,
   AdvisorRebuildInput,

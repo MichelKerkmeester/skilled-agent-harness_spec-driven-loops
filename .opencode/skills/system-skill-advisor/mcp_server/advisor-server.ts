@@ -2,7 +2,9 @@
 // MODULE: Advisor MCP Server
 // ───────────────────────────────────────────────────────────────
 
+import fs from 'node:fs';
 import path from 'node:path';
+import { pathToFileURL } from 'node:url';
 
 import { Server } from '@modelcontextprotocol/sdk/server/index.js';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
@@ -24,7 +26,18 @@ import {
 } from './tools/index.js';
 
 import type { ToolDefinition } from './tools/types.js';
-import { runWithCallerContext, type MCPCallerContext } from '../../system-spec-kit/mcp_server/lib/context/caller-context.js';
+import {
+  closeDb as closeSkillGraphDb,
+  indexSkillMetadata,
+  initDb as initSkillGraphDb,
+  resolveSkillGraphDbDir,
+} from './lib/skill-graph/skill-graph-db.js';
+import { computeAdvisorSourceSignature } from './lib/freshness.js';
+import { publishSkillGraphGeneration } from './lib/freshness/generation.js';
+import { startSkillGraphDaemon, type SkillGraphDaemon } from './lib/daemon/lifecycle.js';
+import type { SkillGraphFsWatcher } from './lib/daemon/watcher.js';
+import { readAdvisorStatus } from './handlers/advisor-status.js';
+import { runWithCallerContext, type MCPCallerContext } from './lib/context/caller-context.js';
 
 type MCPResponse = {
   content: Array<{ type: 'text'; text: string }>;
@@ -42,17 +55,134 @@ export const TOOL_DEFINITIONS: ToolDefinition[] = [
 const TOOL_NAMES = new Set(TOOL_DEFINITIONS.map((tool) => tool.name));
 
 function resolveSkillGraphDbPath(): string {
-  const dbDir = process.env.SYSTEM_SKILL_ADVISOR_DB_DIR
-    ? path.resolve(process.env.SYSTEM_SKILL_ADVISOR_DB_DIR)
-    : path.resolve(
-      process.cwd(),
-      '.opencode',
-      'skills',
-      'system-skill-advisor',
-      'mcp_server',
-      'database',
+  return path.join(resolveSkillGraphDbDir(), 'skill-graph.sqlite');
+}
+
+function resolveSkillGraphSourceDir(): string | null {
+  const candidates = Array.from(new Set([
+    path.resolve(process.cwd(), '.opencode', 'skills'),
+    path.resolve(import.meta.dirname, '..', '..', '..', '..', '.opencode', 'skills'),
+  ]));
+
+  for (const candidate of candidates) {
+    if (fs.existsSync(candidate)) {
+      return candidate;
+    }
+  }
+
+  return null;
+}
+
+function resolveWorkspaceRoot(): string {
+  const candidates = Array.from(new Set([
+    process.cwd(),
+    path.resolve(import.meta.dirname, '..', '..', '..', '..'),
+  ]));
+
+  for (const candidate of candidates) {
+    if (fs.existsSync(path.join(candidate, '.opencode', 'skills'))) {
+      return candidate;
+    }
+  }
+
+  return process.cwd();
+}
+
+async function loadSkillGraphWatchFactory(): Promise<(paths: string[], options: Record<string, unknown>) => SkillGraphFsWatcher> {
+  const workspaceRoot = resolveWorkspaceRoot();
+  const chokidarPath = path.join(
+    workspaceRoot,
+    '.opencode',
+    'skills',
+    'system-spec-kit',
+    'mcp_server',
+    'node_modules',
+    'chokidar',
+    'index.js',
+  );
+  const chokidarModule = await import(pathToFileURL(chokidarPath).href) as {
+    default?: { watch?: (paths: string[], options: Record<string, unknown>) => SkillGraphFsWatcher };
+    watch?: (paths: string[], options: Record<string, unknown>) => SkillGraphFsWatcher;
+  };
+  const watch = chokidarModule.default?.watch ?? chokidarModule.watch;
+  if (!watch) {
+    throw new Error(`Unable to load chokidar watch factory from ${chokidarPath}`);
+  }
+  return watch;
+}
+
+function logSkillGraphIndexResult(trigger: string, result: ReturnType<typeof indexSkillMetadata>): void {
+  if (trigger === 'startup-scan') {
+    console.error(
+      '[skill-advisor-launcher] Skill graph: scanned=%d indexed=%d skipped=%d edges=%d rejected=%d deleted=%d',
+      result.scannedFiles,
+      result.indexedFiles,
+      result.skippedFiles,
+      result.indexedEdges,
+      result.rejectedEdges,
+      result.deletedNodes,
     );
-  return path.join(dbDir, 'skill-graph.sqlite');
+    return;
+  }
+
+  console.error(`[skill-advisor-launcher] Skill graph ${trigger}: indexed=${result.indexedFiles}`);
+}
+
+async function startupSkillGraphScan(): Promise<void> {
+  const skillGraphSourceDir = resolveSkillGraphSourceDir();
+  if (!skillGraphSourceDir) {
+    console.warn('[skill-advisor-launcher] Skill graph source directory not found; skipping startup scan');
+    return;
+  }
+
+  try {
+    const result = indexSkillMetadata(skillGraphSourceDir);
+    logSkillGraphIndexResult('startup-scan', result);
+    const workspaceRoot = process.cwd();
+    const sourceSignature = computeAdvisorSourceSignature(workspaceRoot);
+    publishSkillGraphGeneration({
+      workspaceRoot,
+      changedPaths: [skillGraphSourceDir],
+      reason: 'advisor-server-startup-scan',
+      state: 'live',
+      sourceSignature,
+    });
+    const status = readAdvisorStatus({ workspaceRoot });
+    if (status.freshness !== 'live' || status.trustState.state === 'absent') {
+      publishSkillGraphGeneration({
+        workspaceRoot,
+        changedPaths: [skillGraphSourceDir],
+        reason: 'advisor-server-post-index-assertion-failed',
+        state: 'stale',
+        sourceSignature,
+      });
+      console.warn(
+        `[skill-advisor-launcher] Skill graph post-index assertion failed: ${status.freshness}/${status.trustState.state}`,
+      );
+    }
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : String(error);
+    console.warn('[skill-advisor-launcher] Skill graph startup scan failed:', message);
+  }
+}
+
+let transport: StdioServerTransport | null = null;
+let skillGraphDaemon: SkillGraphDaemon | null = null;
+let shuttingDown = false;
+
+async function shutdownAdvisor(reason: string): Promise<void> {
+  if (shuttingDown) return;
+  shuttingDown = true;
+  console.error(`[skill-advisor-launcher] ${reason}`);
+  if (skillGraphDaemon) {
+    await skillGraphDaemon.shutdown(reason);
+    skillGraphDaemon = null;
+  }
+  closeSkillGraphDb();
+  if (transport) {
+    transport.close();
+    transport = null;
+  }
 }
 
 function toMCP(result: { content: Array<{ type: string; text: string }> }): MCPResponse {
@@ -146,15 +276,32 @@ server.setRequestHandler(CallToolRequestSchema, async (request): Promise<MCPResp
 
 export async function main(): Promise<void> {
   console.error(`[skill-advisor-launcher] DB: ${resolveSkillGraphDbPath()}`);
-  const transport = new StdioServerTransport();
+  initSkillGraphDb(resolveSkillGraphDbDir());
+  await startupSkillGraphScan();
+  const watchFactory = await loadSkillGraphWatchFactory();
+  skillGraphDaemon = await startSkillGraphDaemon({
+    workspaceRoot: process.cwd(),
+    skillsRoot: resolveSkillGraphSourceDir() ?? undefined,
+    generationReason: 'advisor-server-watcher-reindex',
+    watchFactory,
+  });
+  console.error(`[skill-advisor-launcher] Skill graph daemon active=${skillGraphDaemon.active}`);
+  transport = new StdioServerTransport();
   await server.connect(transport);
 }
 
 const isMain = process.argv[1] && decodeURIComponent(import.meta.url).endsWith(process.argv[1].replace(/\\/g, '/'));
 
 if (isMain) {
+  process.once('SIGINT', () => {
+    void shutdownAdvisor('SIGINT').finally(() => process.exit(0));
+  });
+  process.once('SIGTERM', () => {
+    void shutdownAdvisor('SIGTERM').finally(() => process.exit(0));
+  });
   main().catch((error: unknown) => {
     console.error('[skill-advisor-launcher] Fatal error:', error);
+    closeSkillGraphDb();
     process.exit(1);
   });
 }

@@ -2,21 +2,15 @@
 // MODULE: Skill Graph Database
 // ───────────────────────────────────────────────────────────────
 // SQLite storage for skill graph metadata (nodes + edges).
-// Uses dedicated graph-metadata-index.sqlite alongside the other graph databases.
-// Follows code-graph-db.ts and coverage-graph-db.ts patterns for lifecycle and indexing.
+// Uses the advisor package-local skill-graph.sqlite runtime database.
 
 import Database from 'better-sqlite3';
 import { createEmbeddingsProvider } from '@spec-kit/shared/embeddings/factory';
 import { createHash } from 'node:crypto';
 import { existsSync, mkdirSync, readFileSync, readdirSync, renameSync, rmSync, statSync } from 'node:fs';
-import { basename, dirname, join, relative } from 'node:path';
-import { DATABASE_DIR } from '../../core/config.js';
-// F-016-D1-01: Pull the SQLite integrity helper from the neutral utils seam
-// instead of reaching into advisor freshness internals. Storage callers
-// should depend inward on `lib/utils/`; the advisor freshness implementation
-// stays the source of truth.
-import { checkSqliteIntegrity } from '../utils/sqlite-integrity.js';
-import { parseSkillFrontmatter } from '../../../../system-skill-advisor/mcp_server/lib/utils/skill-markdown.js';
+import { basename, dirname, join, relative, resolve } from 'node:path';
+import { checkSqliteIntegrity } from '../freshness/sqlite-integrity.js';
+import { parseSkillFrontmatter } from '../utils/skill-markdown.js';
 
 // ───────────────────────────────────────────────────────────────
 // 1. TYPES
@@ -101,7 +95,7 @@ type JsonRecord = Record<string, unknown>;
 
 export const SCHEMA_VERSION = 1;
 
-export const DB_FILENAME = 'graph-metadata-index.sqlite';
+export const DB_FILENAME = 'skill-graph.sqlite';
 
 const SKILL_METADATA_FILENAME = 'graph-metadata.json';
 const MIN_WEIGHT = 0.0;
@@ -189,6 +183,24 @@ const SCHEMA_SQL = `
 let db: Database.Database | null = null;
 let dbPath: string | null = null;
 
+export function resolveSkillGraphDbDir(): string {
+  if (process.env.SYSTEM_SKILL_ADVISOR_DB_DIR) {
+    return resolve(process.env.SYSTEM_SKILL_ADVISOR_DB_DIR);
+  }
+  return resolve(
+    process.cwd(),
+    '.opencode',
+    'skills',
+    'system-skill-advisor',
+    'mcp_server',
+    'database',
+  );
+}
+
+export function getSkillGraphDbPath(): string {
+  return dbPath ?? join(resolveSkillGraphDbDir(), DB_FILENAME);
+}
+
 function recoverMalformedDatabase(databasePath: string, reason: string): void {
   if (!existsSync(databasePath)) {
     return;
@@ -271,7 +283,7 @@ export function initDb(dbDir: string): Database.Database {
 
 /** Get the current database instance (lazy-initializes if needed). */
 export function getDb(): Database.Database {
-  if (!db) initDb(DATABASE_DIR);
+  if (!db) initDb(resolveSkillGraphDbDir());
   return db!;
 }
 

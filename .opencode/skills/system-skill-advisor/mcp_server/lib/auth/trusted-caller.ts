@@ -2,7 +2,7 @@
 // MODULE: Trusted Caller Guard
 // ───────────────────────────────────────────────────────────────
 
-import { getCallerContext, type MCPCallerContext } from '../../../../system-spec-kit/mcp_server/lib/context/caller-context.js';
+import { getCallerContext, type MCPCallerContext } from '../context/caller-context.js';
 
 export interface TrustedCallerRejection {
   readonly ok: false;

@@ -87,18 +87,6 @@ import { createUnifiedGraphSearchFn } from './lib/search/graph-search-fn.js';
 import { isGraphUnifiedEnabled } from './lib/search/graph-flags.js';
 import * as graphDb from '../../system-code-graph/mcp_server/lib/code-graph-db.js';
 import { detectRuntime, type RuntimeInfo } from '../../system-code-graph/mcp_server/lib/runtime-detection.js';
-import {
-  DB_FILENAME as SKILL_GRAPH_DB_FILENAME,
-  closeDb as closeSkillGraphDb,
-  indexSkillMetadata,
-  initDb as initSkillGraphDb,
-} from './lib/skill-graph/skill-graph-db.js';
-import { computeAdvisorSourceSignature } from '../../system-skill-advisor/mcp_server/lib/freshness.js';
-import {
-  getSkillGraphGenerationPath,
-  publishSkillGraphGeneration,
-} from '../../system-skill-advisor/mcp_server/lib/freshness/generation.js';
-import { readAdvisorStatus } from '../../system-skill-advisor/mcp_server/handlers/advisor-status.js';
 import * as sessionBoost from './lib/search/session-boost.js';
 import * as causalBoost from './lib/search/causal-boost.js';
 import * as bm25Index from './lib/search/bm25-index.js';
@@ -212,12 +200,6 @@ type AfterToolCallback = (tool: string, callId: string, result: unknown) => Prom
 
 const afterToolCallbacks: Array<AfterToolCallback> = [];
 
-interface ChokidarModule {
-  default: {
-    watch: (paths: string | string[], options: Record<string, unknown>) => FSWatcher;
-  };
-}
-
 /** Timeout (ms) for API key validation during startup. */
 const API_KEY_VALIDATION_TIMEOUT_MS = 5_000;
 
@@ -225,12 +207,9 @@ const GRAPH_ENRICHMENT_TIMEOUT_MS = 250;
 const GRAPH_ENRICHMENT_OUTLINE_LIMIT = 6;
 const GRAPH_ENRICHMENT_NEIGHBOR_LIMIT = 6;
 const GRAPH_ENRICHMENT_SYMBOL_LIMIT = 4;
-const SKILL_GRAPH_WATCH_DEBOUNCE_MS = 2000;
-const SKILL_GRAPH_METADATA_FILENAME = 'graph-metadata.json';
-const SKILL_GRAPH_DATABASE_PATH = path.join(DATABASE_DIR, SKILL_GRAPH_DB_FILENAME);
 const GRAPH_CONTEXT_EXCLUDED_TOOLS = new Set<string>([
   ...MEMORY_AWARE_TOOLS,
-  // Code-graph MCP tools route through standalone system_code_graph per ADR-002.
+  // Code-graph MCP tools route through standalone mk-code-index per ADR-002.
 ]);
 
 interface GraphContextNeighborSummary {
@@ -268,8 +247,8 @@ interface DispatchGraphContextMeta {
 export interface StructuralRoutingNudge {
   advisory: true;
   readiness: 'ready';
-  preferredTool: 'mcp__system_code_graph__code_graph_query';
-  secondaryTool: 'mcp__system_code_graph__code_graph_context';
+  preferredTool: 'mcp__mk_code_index__code_graph_query';
+  secondaryTool: 'mcp__mk_code_index__code_graph_context';
   message: string;
   preservesAuthority: 'session_bootstrap';
   surface: 'response-hints' | 'session-bootstrap' | 'memory-context';
@@ -336,9 +315,9 @@ export function maybeStructuralNudge(
   return {
     advisory: true,
     readiness: 'ready',
-    preferredTool: 'mcp__system_code_graph__code_graph_query',
-    secondaryTool: 'mcp__system_code_graph__code_graph_context',
-    message: 'Advisory only: this looks like a structural question. Prefer `mcp__system_code_graph__code_graph_query` before Grep or Glob for callers, imports, outline, and dependency lookups.',
+    preferredTool: 'mcp__mk_code_index__code_graph_query',
+    secondaryTool: 'mcp__mk_code_index__code_graph_context',
+    message: 'Advisory only: this looks like a structural question. Prefer `mcp__mk_code_index__code_graph_query` before Grep or Glob for callers, imports, outline, and dependency lookups.',
     preservesAuthority: 'session_bootstrap',
     surface: options.surface ?? 'response-hints',
   };
@@ -817,7 +796,7 @@ async function buildServerInstructions(): Promise<string> {
   ];
 
   // Phase 024 / Item 4 + M8 / T-CGQ-12: Session recovery digest from
-  // session-snapshot. 'empty' recommends mcp__system_code_graph__code_graph_scan (graph absent);
+  // session-snapshot. 'empty' recommends mcp__mk_code_index__code_graph_scan (graph absent);
   // 'error' recommends memory_health because structural context is
   // unavailable, not merely outdated.
   try {
@@ -826,7 +805,7 @@ async function buildServerInstructions(): Promise<string> {
     const hasData = snap.specFolder || snap.graphFreshness !== 'error' || snap.sessionQuality !== 'unknown';
     if (hasData) {
       const recommended = !snap.primed ? 'call session_bootstrap()' :
-        snap.graphFreshness === 'empty' ? 'run mcp__system_code_graph__code_graph_scan' :
+        snap.graphFreshness === 'empty' ? 'run mcp__mk_code_index__code_graph_scan' :
           snap.graphFreshness === 'error' ? 'call memory_health (structural context unavailable)' :
             snap.sessionQuality === 'critical' ? 'call memory_context(resume)' : 'ready';
       lines.push('');
@@ -840,22 +819,22 @@ async function buildServerInstructions(): Promise<string> {
 
   // Phase 027 + M8 / T-CGQ-12 (R27-002): Structural bootstrap guidance for
   // non-hook runtimes. Readiness vocabulary is aligned across bootstrap,
-  // resume, health, and mcp__system_code_graph__code_graph_query (ready | stale | absent |
-  // unavailable). mcp__system_code_graph__code_graph_query is only recommended when structural
+  // resume, health, and mcp__mk_code_index__code_graph_query (ready | stale | absent |
+  // unavailable). mcp__mk_code_index__code_graph_query is only recommended when structural
   // context is actually reachable; 'absent' and 'unavailable' route to
   // repair/recovery, not query.
   lines.push('');
   lines.push('## Structural Bootstrap (Phase 027)');
   lines.push('Non-hook runtimes receive automatic structural context via session_bootstrap, session_resume, and auto-prime.');
-  lines.push('- If structural context shows "ready": mcp__system_code_graph__code_graph_query is available for structural lookups');
-  lines.push('- If "stale": mcp__system_code_graph__code_graph_query still works, but a session_bootstrap refresh is recommended');
-  lines.push('- If "absent" (empty/missing graph): run mcp__system_code_graph__code_graph_scan first, then session_bootstrap');
-  lines.push('- If "unavailable" (DB unreachable / readiness probe failed): call memory_health for repair guidance instead of mcp__system_code_graph__code_graph_query');
-  lines.push('- Recovery priority: session_bootstrap → session_resume → mcp__system_code_graph__code_graph_scan');
+  lines.push('- If structural context shows "ready": mcp__mk_code_index__code_graph_query is available for structural lookups');
+  lines.push('- If "stale": mcp__mk_code_index__code_graph_query still works, but a session_bootstrap refresh is recommended');
+  lines.push('- If "absent" (empty/missing graph): run mcp__mk_code_index__code_graph_scan first, then session_bootstrap');
+  lines.push('- If "unavailable" (DB unreachable / readiness probe failed): call memory_health for repair guidance instead of mcp__mk_code_index__code_graph_query');
+  lines.push('- Recovery priority: session_bootstrap → session_resume → mcp__mk_code_index__code_graph_scan');
 
   // Phase 024 + M8 / T-CGQ-12: Tool routing decision tree.
-  // mcp__system_code_graph__code_graph_query is only surfaced when graph freshness is 'fresh' or
-  // 'stale' (queryable). 'empty' → recommend mcp__system_code_graph__code_graph_scan; 'error' →
+  // mcp__mk_code_index__code_graph_query is only surfaced when graph freshness is 'fresh' or
+  // 'stale' (queryable). 'empty' → recommend mcp__mk_code_index__code_graph_scan; 'error' →
   // recommend memory_health because the database probe failed.
   try {
     const { getSessionSnapshot: getSnap } = await import('./lib/session/session-snapshot.js');
@@ -865,9 +844,9 @@ async function buildServerInstructions(): Promise<string> {
       routingRules.push('Semantic/concept code search → mcp__cocoindex_code__search');
     }
     if (snap.graphFreshness === 'fresh' || snap.graphFreshness === 'stale') {
-      routingRules.push('Structural queries (callers, imports, deps) → mcp__system_code_graph__code_graph_query');
+      routingRules.push('Structural queries (callers, imports, deps) → mcp__mk_code_index__code_graph_query');
     } else if (snap.graphFreshness === 'empty') {
-      routingRules.push('Structural queries → unavailable: run mcp__system_code_graph__code_graph_scan first (graph is absent)');
+      routingRules.push('Structural queries → unavailable: run mcp__mk_code_index__code_graph_scan first (graph is absent)');
     } else if (snap.graphFreshness === 'error') {
       routingRules.push('Structural queries → unavailable: call memory_health to diagnose (graph readiness unavailable)');
     }
@@ -960,7 +939,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request, _extra: unknown)
     if (name === 'memory_context' && validatedArgs.mode === 'resume') {
       recordMetricEvent({ kind: 'memory_recovery' });
     }
-    // Code-graph MCP metrics now originate from standalone system_code_graph per ADR-002.
+    // Code-graph MCP metrics now originate from standalone mk-code-index per ADR-002.
     if (typeof validatedArgs.specFolder === 'string' && validatedArgs.specFolder) {
       recordMetricEvent({ kind: 'spec_folder_change', specFolder: validatedArgs.specFolder as string });
     }
@@ -1061,7 +1040,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request, _extra: unknown)
           const envelope = JSON.parse(result.content[0].text) as Record<string, unknown>;
           if (envelope && typeof envelope === 'object' && !Array.isArray(envelope)) {
             const existingHints = Array.isArray(envelope.hints) ? envelope.hints as string[] : [];
-            existingHints.push('Tip: For code search queries, consider using mcp__cocoindex_code__search for semantic code search or mcp__system_code_graph__code_graph_query for structural lookups.');
+            existingHints.push('Tip: For code search queries, consider using mcp__cocoindex_code__search for semantic code search or mcp__mk_code_index__code_graph_query for structural lookups.');
             envelope.hints = existingHints;
             result.content[0].text = JSON.stringify(envelope, null, 2);
           }
@@ -1401,195 +1380,6 @@ async function startupScan(basePath: string): Promise<void> {
   }
 }
 
-function resolveSkillGraphSourceDir(): string | null {
-  const candidates = Array.from(new Set([
-    path.resolve(DEFAULT_BASE_PATH, '.opencode', 'skills'),
-    path.resolve(process.cwd(), '.opencode', 'skills'),
-    path.resolve(import.meta.dirname, '..', '..', '..', '..', '.opencode', 'skills'),
-  ]));
-
-  for (const candidate of candidates) {
-    if (fs.existsSync(candidate)) {
-      return candidate;
-    }
-  }
-
-  return null;
-}
-
-async function loadSkillGraphWatchFactory(): Promise<(paths: string | string[], options: Record<string, unknown>) => FSWatcher> {
-  const chokidarModule = await import('chokidar') as ChokidarModule;
-  return chokidarModule.default.watch;
-}
-
-function logSkillGraphIndexResult(trigger: string, result: ReturnType<typeof indexSkillMetadata>): void {
-  if (trigger === 'startup-scan') {
-    const staleCount = result.indexedFiles + result.deletedNodes;
-    if (!skillGraphDatabaseExistedAtStartup) {
-      console.error(`[context-server] Skill graph: created fresh (${result.scannedFiles} skills indexed)`);
-      return;
-    }
-
-    if (staleCount === 0) {
-      console.error(`[context-server] Skill graph: loaded existing (${result.scannedFiles} skills, 0 stale)`);
-      return;
-    }
-
-    console.error(`[context-server] Skill graph: reindexed (${result.indexedFiles} skills updated)`);
-    return;
-  }
-
-  const watcherMatch = /^watcher-(add|change|unlink):(.+)$/.exec(trigger);
-  if (watcherMatch) {
-    const action = watcherMatch[1];
-    const skillName = watcherMatch[2];
-
-    if (action === 'add') {
-      console.error(`[context-server] Skill graph: new skill detected - ${skillName} (${result.scannedFiles} total)`);
-      return;
-    }
-
-    if (action === 'unlink') {
-      console.error(`[context-server] Skill graph: skill removed - ${skillName} (${result.scannedFiles} total)`);
-      return;
-    }
-
-    console.error(`[context-server] Skill graph: reindexed ${skillName}`);
-    return;
-  }
-
-  console.error(
-    '[context-server] Skill graph %s: scanned=%d indexed=%d skipped=%d edges=%d rejected=%d deleted=%d',
-    trigger,
-    result.scannedFiles,
-    result.indexedFiles,
-    result.skippedFiles,
-    result.indexedEdges,
-    result.rejectedEdges,
-    result.deletedNodes,
-  );
-}
-
-function getSkillGraphSqlitePath(): string {
-  return path.join(DATABASE_DIR, SKILL_GRAPH_DB_FILENAME);
-}
-
-function assertSkillGraphLivePublication(workspaceRoot: string): { ok: true } | { ok: false; reason: string } {
-  if (!fs.existsSync(getSkillGraphSqlitePath())) {
-    return { ok: false, reason: 'sqlite-missing' };
-  }
-  if (!fs.existsSync(getSkillGraphGenerationPath(workspaceRoot))) {
-    return { ok: false, reason: 'generation-missing' };
-  }
-
-  const status = readAdvisorStatus({ workspaceRoot });
-  if (status.freshness !== 'live' || status.trustState.state === 'absent') {
-    return { ok: false, reason: `advisor-status-${status.freshness}-${status.trustState.state}` };
-  }
-  return { ok: true };
-}
-
-async function runSkillGraphIndex(trigger: string): Promise<void> {
-  if (skillGraphScanInProgress) {
-    skillGraphScanQueued = true;
-    return;
-  }
-
-  const skillGraphSourceDir = resolveSkillGraphSourceDir();
-  if (!skillGraphSourceDir) {
-    console.warn('[context-server] Skill graph source directory not found; skipping index');
-    return;
-  }
-
-  skillGraphScanInProgress = true;
-  try {
-    const result = indexSkillMetadata(skillGraphSourceDir);
-    logSkillGraphIndexResult(trigger, result);
-    const sourceSignature = computeAdvisorSourceSignature(process.cwd());
-    publishSkillGraphGeneration({
-      workspaceRoot: process.cwd(),
-      changedPaths: [skillGraphSourceDir],
-      reason: `context-server-${trigger}`,
-      state: 'live',
-      sourceSignature,
-    });
-    const liveAssertion = assertSkillGraphLivePublication(process.cwd());
-    if (!liveAssertion.ok) {
-      publishSkillGraphGeneration({
-        workspaceRoot: process.cwd(),
-        changedPaths: [skillGraphSourceDir],
-        reason: 'post-index-assertion-failed',
-        state: 'stale',
-        sourceSignature,
-      });
-      console.warn(`[context-server] Skill graph post-index assertion failed: ${liveAssertion.reason}`);
-    }
-  } catch (skillGraphIndexErr: unknown) {
-    const message = skillGraphIndexErr instanceof Error ? skillGraphIndexErr.message : String(skillGraphIndexErr);
-    console.warn('[context-server] Skill graph index failed:', message);
-  } finally {
-    skillGraphScanInProgress = false;
-    if (skillGraphScanQueued) {
-      skillGraphScanQueued = false;
-      setImmediate(() => {
-        void runSkillGraphIndex('queued-rescan');
-      });
-    }
-  }
-}
-
-function scheduleSkillGraphIndex(trigger: string): void {
-  if (skillGraphWatchDebounceTimer) {
-    clearTimeout(skillGraphWatchDebounceTimer);
-  }
-
-  skillGraphWatchDebounceTimer = setTimeout(() => {
-    skillGraphWatchDebounceTimer = null;
-    void runSkillGraphIndex(trigger);
-  }, SKILL_GRAPH_WATCH_DEBOUNCE_MS);
-}
-
-async function startupSkillGraphScan(): Promise<void> {
-  await runSkillGraphIndex('startup-scan');
-}
-
-async function startSkillGraphWatcher(): Promise<void> {
-  if (skillGraphWatcher) {
-    return;
-  }
-
-  const skillGraphSourceDir = resolveSkillGraphSourceDir();
-  if (!skillGraphSourceDir) {
-    console.warn('[context-server] Skill graph watcher skipped: skill directory not found');
-    return;
-  }
-
-  const watchFactory = await loadSkillGraphWatchFactory();
-  const watchGlob = path.join(skillGraphSourceDir, '*', SKILL_GRAPH_METADATA_FILENAME);
-  skillGraphWatcher = watchFactory(watchGlob, {
-    ignoreInitial: true,
-    awaitWriteFinish: { stabilityThreshold: 1000 },
-    followSymlinks: false,
-  });
-
-  const schedule = (trigger: string) => (targetPath: unknown) => {
-    if (typeof targetPath !== 'string') {
-      return;
-    }
-    scheduleSkillGraphIndex(`${trigger}:${path.basename(path.dirname(targetPath))}`);
-  };
-
-  skillGraphWatcher.on('add', schedule('watcher-add'));
-  skillGraphWatcher.on('change', schedule('watcher-change'));
-  skillGraphWatcher.on('unlink', schedule('watcher-unlink'));
-  skillGraphWatcher.on('error', (watchErr: unknown) => {
-    const message = watchErr instanceof Error ? watchErr.message : String(watchErr);
-    console.warn('[context-server] Skill graph watcher error:', message);
-  });
-
-  console.error(`[context-server] Skill graph watcher started for ${watchGlob}`);
-}
-
 /* ───────────────────────────────────────────────────────────────
    7. GRACEFUL SHUTDOWN
 ──────────────────────────────────────────────────────────────── */
@@ -1601,11 +1391,6 @@ let transportConnectedAt: string | null = null;
 // P1-11 FIX: Module-level guard to avoid redundant initializeDb() calls per tool invocation
 let dbInitialized = false;
 let fileWatcher: FSWatcher | null = null;
-let skillGraphWatcher: FSWatcher | null = null;
-let skillGraphWatchDebounceTimer: NodeJS.Timeout | null = null;
-let skillGraphScanInProgress = false;
-let skillGraphScanQueued = false;
-let skillGraphDatabaseExistedAtStartup = false;
 
 /** Maximum time (ms) to wait for async cleanup before force-exiting. */
 const SHUTDOWN_DEADLINE_MS = 5000;
@@ -1637,21 +1422,10 @@ async function fatalShutdown(reason: string, exitCode: number): Promise<void> {
         fileWatcher = null;
       }
     });
-    await runAsyncCleanupStep('skillGraphWatcher', async () => {
-      if (skillGraphWatchDebounceTimer) {
-        clearTimeout(skillGraphWatchDebounceTimer);
-        skillGraphWatchDebounceTimer = null;
-      }
-      if (skillGraphWatcher) {
-        await skillGraphWatcher.close();
-        skillGraphWatcher = null;
-      }
-    });
     await runAsyncCleanupStep('local-reranker', async () => {
       await disposeLocalReranker();
     });
     runCleanupStep('vectorIndex', () => vectorIndex.closeDb());
-    runCleanupStep('skillGraphDb', () => closeSkillGraphDb());
     // P1-09 FIX: Close MCP transport on shutdown
     runCleanupStep('transport', () => {
       if (transport) {
@@ -1836,14 +1610,6 @@ async function main(): Promise<void> {
 
   console.error('[context-server] Initializing database...');
   vectorIndex.initializeDb();
-  try {
-    skillGraphDatabaseExistedAtStartup = fs.existsSync(SKILL_GRAPH_DATABASE_PATH);
-    initSkillGraphDb(DATABASE_DIR);
-    console.error('[context-server] Skill graph database initialized');
-  } catch (skillGraphInitErr: unknown) {
-    const message = skillGraphInitErr instanceof Error ? skillGraphInitErr.message : String(skillGraphInitErr);
-    console.warn('[context-server] Skill graph database init failed (non-fatal):', message);
-  }
   dbInitialized = true;
   console.error('[context-server] Database initialized');
   console.error('[context-server] Database path: ' + DATABASE_PATH);
@@ -2136,12 +1902,6 @@ async function main(): Promise<void> {
         console.warn('[context-server] File watcher startup failed:', message);
       }
 
-      try {
-        await startSkillGraphWatcher();
-      } catch (skillGraphWatchErr: unknown) {
-        const message = skillGraphWatchErr instanceof Error ? skillGraphWatchErr.message : String(skillGraphWatchErr);
-        console.warn('[context-server] Skill graph watcher startup failed:', message);
-      }
     }
   } catch (err: unknown) {
     const message = err instanceof Error ? err.message : String(err);
@@ -2172,7 +1932,6 @@ async function main(): Promise<void> {
   // Background startup scan
   setImmediate(() => {
     void startupScan(DEFAULT_BASE_PATH);
-    void startupSkillGraphScan();
   });
 }
 

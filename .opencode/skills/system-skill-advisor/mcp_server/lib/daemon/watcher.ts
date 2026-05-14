@@ -5,8 +5,7 @@
 import { createHash } from 'node:crypto';
 import { closeSync, existsSync, fsyncSync, mkdirSync, openSync, readFileSync, readdirSync, renameSync, rmSync, writeFileSync } from 'node:fs';
 import { basename, dirname, join, relative, resolve, sep } from 'node:path';
-import chokidar from 'chokidar';
-import { indexSkillMetadata } from '../../../../system-spec-kit/mcp_server/lib/skill-graph/skill-graph-db.js';
+import { indexSkillMetadata } from '../skill-graph/skill-graph-db.js';
 import { runDaemonStateMutation } from './state-mutation.js';
 import { workspaceRelativeFilePath } from '../derived/provenance.js';
 import { errorMessage } from '../utils/error-format.js';
@@ -377,7 +376,11 @@ export function createSkillGraphWatcher(options: SkillGraphWatcherOptions): Skil
   };
   let targets = discoverWatchTargets(workspaceRoot, skillsRoot, recordMalformedMetadata);
   const targetPaths = targets.map((target) => target.path);
-  const watcher = (options.watchFactory ?? chokidar.watch)(targetPaths, {
+  if (!options.watchFactory) {
+    throw new Error('Skill graph watcher requires a watchFactory provided by the MCP server startup');
+  }
+
+  const watcher = options.watchFactory(targetPaths, {
     ignoreInitial: true,
     awaitWriteFinish: { stabilityThreshold: options.backpressure?.stableWriteMs ?? DEFAULT_STABLE_WRITE_MS },
     atomic: true,

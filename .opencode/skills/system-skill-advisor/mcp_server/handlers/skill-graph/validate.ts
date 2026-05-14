@@ -4,7 +4,7 @@
 // MCP tool handler for skill_graph_validate — validates the live
 // SQLite skill graph against schema, edge, and weight rules.
 
-import * as skillGraphDb from '../../../../system-spec-kit/mcp_server/lib/skill-graph/skill-graph-db.js';
+import * as skillGraphDb from '../../lib/skill-graph/skill-graph-db.js';
 
 // ───────────────────────────────────────────────────────────────
 // 1. CONSTANTS

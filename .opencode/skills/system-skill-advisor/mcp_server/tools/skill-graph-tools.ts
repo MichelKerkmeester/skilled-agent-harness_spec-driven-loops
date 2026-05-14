@@ -9,7 +9,7 @@ import {
   handleSkillGraphValidate,
 } from '../handlers/skill-graph/index.js';
 
-import type { MCPCallerContext } from '../../../system-spec-kit/mcp_server/lib/context/caller-context.js';
+import type { MCPCallerContext } from '../lib/context/caller-context.js';
 import type { ToolDefinition } from './types.js';
 
 type MCPResponse = {
@@ -19,7 +19,7 @@ type MCPResponse = {
 
 export const skillGraphScanTool: ToolDefinition = {
   name: 'skill_graph_scan',
-  description: '[L7:Maintenance] Index or re-index all .opencode/skills/*/graph-metadata.json files into graph-metadata-index.sqlite using the hash-aware SQLite indexer. Token Budget: 800.',
+  description: '[L7:Maintenance] Index or re-index all .opencode/skills/*/graph-metadata.json files into skill-graph.sqlite using the hash-aware SQLite indexer. Token Budget: 800.',
   inputSchema: {
     type: 'object',
     additionalProperties: false,
