@@ -115,6 +115,9 @@ Create a direct Node MCP client runner that starts shared Spec Kit Memory and Co
 | REQ-004 | Runner emits scenario JSON rows and writes TSV evidence. | Smoke run writes `run-2026-05-14-shared-daemon.summary.tsv` with `scenario`, `verdict`, `key_metric`, `detail`. |
 | REQ-005 | Unsupported tool surfaces do not masquerade as PASS. | CocoIndex-only calls are SKIP when `cocoindex_code.search` is not exposed by the connected daemon. |
 | REQ-006 | Strict packet validation runs. | `validate.sh <045 packet> --strict` result is recorded. |
+| REQ-010 | Runner starts a CocoIndex MCP client when scenarios require semantic search. | Script creates one `StdioClientTransport` for `.opencode/skills/mcp-coco-index/mcp_server/.venv/bin/ccc mcp`. |
+| REQ-011 | Runner survives partial connect failure during cleanup. | Failed daemon connections emit diagnostic rows, connected clients close, and stderr streams end. |
+| REQ-012 | Runner bounds daemon MCP handshakes. | `client.connect()` is wrapped in a 60s timeout and failures produce diagnostic rows. |
 
 ### P1 - Required (complete OR user-approved deferral)
 
@@ -130,7 +133,7 @@ Create a direct Node MCP client runner that starts shared Spec Kit Memory and Co
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: Runner uses one MCP client connection to the memory launcher.
+- **SC-001**: Runner uses one MCP client connection per daemon surface: `spec_kit_memory` and `cocoindex_code`.
 - **SC-002**: Smoke command exits 0 and the daemon terminates cleanly.
 - **SC-003**: Scenario 410 returns PASS from real memory searches.
 - **SC-004**: Scenario 403 either runs through a real CocoIndex MCP surface or records an explicit SKIP reason.

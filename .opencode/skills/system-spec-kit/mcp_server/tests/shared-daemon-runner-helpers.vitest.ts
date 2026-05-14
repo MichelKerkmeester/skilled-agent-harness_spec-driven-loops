@@ -45,11 +45,11 @@ memory_search({ query: "latency baseline", limit: 5 })
   });
 
   it('selects the MCP client for each known server', () => {
-    const memory = { name: 'memory' };
-    const cocoindex = { name: 'cocoindex' };
+    const spec_kit_memory = { name: 'memory' };
+    const cocoindex_code = { name: 'cocoindex' };
 
-    expect(selectClientForServer({ memory, cocoindex }, 'spec_kit_memory')).toBe(memory);
-    expect(selectClientForServer({ memory, cocoindex }, 'cocoindex_code')).toBe(cocoindex);
-    expect(selectClientForServer({ memory, cocoindex }, 'unknown_server')).toBeNull();
+    expect(selectClientForServer({ spec_kit_memory, cocoindex_code }, 'spec_kit_memory')).toBe(spec_kit_memory);
+    expect(selectClientForServer({ spec_kit_memory, cocoindex_code }, 'cocoindex_code')).toBe(cocoindex_code);
+    expect(selectClientForServer({ spec_kit_memory, cocoindex_code }, 'unknown_server')).toBeNull();
   });
 });

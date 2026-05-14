@@ -122,7 +122,7 @@ The command exited 0. It did not crash either daemon, and it wrote one TSV row f
 | Decision | Why |
 |----------|-----|
 | Resolve SDK imports relative to `@spec-kit/mcp-server` | Bare ESM imports do not resolve from `_sandbox` because the repo root has no matching `node_modules`. |
-| Use one transport per MCP surface | This preserves the architectural point of 045: shared daemons, no child agents, no per-scenario MCP server stack. |
+| Use one transport per MCP surface | This preserves the architectural point of 045: shared daemons, no child agents, no per-scenario MCP server stack. Proxying CocoIndex through memory would reduce one client connection, but it would couple two MCP surfaces and hide CocoIndex transport failures behind memory diagnostics. |
 | Route by `call.server` | Memory and CocoIndex expose different tool namespaces; per-server routing prevents false unavailable-tool decisions. |
 | Add dedicated 410 automation | 410 is a clean memory-search scenario and gives a real positive smoke signal for the one-daemon path. |
 | Cap daemon stderr logging | Startup scans can produce large background logs; capped evidence is enough to debug startup without bloating the packet. |

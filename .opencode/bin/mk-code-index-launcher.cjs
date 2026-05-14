@@ -174,11 +174,17 @@ function buildIfNeeded(actions) {
   run('npm', [installCommand, '--no-audit', '--no-fund', '--silent'], { cwd: kitDir });
   run('npx', ['tsc', '-p', 'tsconfig.json'], { cwd: kitDir });
 
+  // F012: Derive the nested dist subdir from kitDir's basename rather than hardcoding
+  // the directory name. tsc emits with rootDir=".." so the skill directory name
+  // appears as a dist subdir; using basename keeps this resilient to future renames
+  // of the skill folder (e.g. if `system-code-graph/` is ever renamed at the
+  // filesystem level, this fallback continues to work without source edits).
+  const skillDirName = path.basename(kitDir);
   const direct = path.join(kitDir, 'mcp_server', 'dist', 'index.js');
-  const nested = path.join(kitDir, 'dist', 'system-code-graph', 'mcp_server', 'index.js');
+  const nested = path.join(kitDir, 'dist', skillDirName, 'mcp_server', 'index.js');
   if (!exists(direct) && exists(nested)) {
     fs.mkdirSync(path.dirname(direct), { recursive: true });
-    fs.writeFileSync(direct, "import '../../dist/system-code-graph/mcp_server/index.js';\n");
+    fs.writeFileSync(direct, `import '../../dist/${skillDirName}/mcp_server/index.js';\n`);
   }
 
   const missing = requiredArtifacts().filter((artifact) => !exists(artifact));

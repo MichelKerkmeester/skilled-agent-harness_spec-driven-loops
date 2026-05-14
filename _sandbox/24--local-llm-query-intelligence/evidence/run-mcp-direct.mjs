@@ -205,6 +205,10 @@ function responseFailureMessage(response) {
   if (response?.isError) return 'MCP tool returned isError=true';
   const parsed = response?.structuredContent ?? parseToolJson(response);
   if (parsed?.error) return String(parsed.error);
+  if (parsed?.status === 'error' || parsed?.status === 'failed') {
+    return String(parsed.message ?? `status=${parsed.status}`);
+  }
+  if (parsed?.ok === false) return String(parsed.message ?? 'ok=false');
   if (parsed?.success === false) return String(parsed.message ?? 'success=false');
   return null;
 }
