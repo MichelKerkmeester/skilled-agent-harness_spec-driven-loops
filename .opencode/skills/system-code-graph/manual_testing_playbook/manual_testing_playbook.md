@@ -131,7 +131,7 @@ Operators may dispatch sub-agents in parallel waves for independent scenarios, e
 
 | ID | Scenario | File |
 | --- | --- | --- |
-| 011 | tool call shape validation | [011-tool-call-shape-validation.md](./06--mcp-tool-surface/011-tool-call-shape-validation.md) |
+| 011 | tool call shape validation (authoritative tool list: `mcp_server/tool-schemas.ts` `CODE_GRAPH_TOOL_SCHEMAS` + `TOOL_DEFINITIONS` alias) | [011-tool-call-shape-validation.md](./06--mcp-tool-surface/011-tool-call-shape-validation.md) |
 
 ---
 

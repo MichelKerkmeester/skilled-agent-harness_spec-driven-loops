@@ -109,6 +109,8 @@ Read paths use `ensureCodeGraphReady()` before answering structural queries. Man
 <!-- ANCHOR:integration-points -->
 ## 7. INTEGRATION POINTS
 
+**Naming convention.** The skill directory and SKILL.md `name` field use `system-code-graph` (filesystem slug). The MCP server name and client namespace use `mk-code-index` (runtime identity, namespaced as `mcp__mk_code_index__*` because MCP converts hyphens to underscores in tool namespace prefixes). Both names are intentional and correct in their respective scopes — directory paths under `.opencode/skills/system-code-graph/` always use the skill slug; MCP-facing identifiers always use `mk-code-index` / `mk_code_index`.
+
 Cross-subsystem consumers use two intentional paths:
 
 | Consumer Type | Integration |

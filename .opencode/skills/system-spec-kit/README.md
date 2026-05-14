@@ -108,7 +108,7 @@ Spec Kit can surface structural-readiness state during startup and recovery, but
 | Surface | Owner | Notes |
 | ------------------- | ------------------- | ------------------- |
 | Spec folders, memory, resume, hooks | `system-spec-kit` | Canonical continuity, `/spec_kit:resume`, and lifecycle transport stay here. |
-| Structural graph tools | `system-code-graph` | `code_graph_scan`, `code_graph_query`, `code_graph_status`, `code_graph_context`, `code_graph_verify`, `code_graph_apply`, and `detect_changes` are documented in the sibling skill. |
+| Structural graph tools | `system-code-graph` (MCP namespace: `mcp__mk_code_index__*`) | `code_graph_scan`, `code_graph_query`, `code_graph_status`, `code_graph_context`, `code_graph_verify`, `code_graph_apply`, and `detect_changes` are documented in the sibling skill. |
 | CocoIndex bridge | Current MCP runtime | Semantic code-search lifecycle surfaces such as `ccc_status`, `ccc_reindex`, and `ccc_feedback` remain cross-skill integration points. |
 
 Startup payload parity still transports the same compact shared payload across Claude, Gemini, Copilot, and Codex. When that payload includes graph freshness or `graphQualitySummary`, treat it as imported structural context from `system-code-graph`, not as system-spec-kit implementation ownership.

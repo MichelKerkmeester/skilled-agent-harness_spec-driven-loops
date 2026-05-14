@@ -25,6 +25,13 @@ function loadEnvFile(filePath) {
     if ((val.startsWith('"') && val.endsWith('"')) || (val.startsWith("'") && val.endsWith("'"))) {
       val = val.slice(1, -1);
     }
+    // F009 hardening: reject values containing embedded newlines or NUL bytes.
+    // The minimal parser is line-oriented; embedded \n in a quoted value would
+    // already have terminated the line, but defend explicitly.
+    if (val.includes('\n') || val.includes('\0')) {
+      process.stderr.write(`[mk-code-index-launcher] env value for ${key} contains control chars; skipping\n`);
+      continue;
+    }
     if (!(key in process.env)) {
       process.env[key] = val;
       count++;
@@ -159,7 +166,7 @@ function buildIfNeeded(actions) {
   }
 
   if (!exists(kitDir)) {
-    throw new Error(`system-code-graph not found at ${rel(kitDir)}`);
+    throw new Error(`mk-code-index skill (system-code-graph directory) not found at ${rel(kitDir)}`);
   }
 
   actions.push('installed dependencies and built @spec-kit/system-code-graph MCP server');
@@ -183,6 +190,7 @@ function buildIfNeeded(actions) {
 async function acquireBootstrapLock() {
   fs.mkdirSync(dbDir, { recursive: true });
   const deadline = Date.now() + 120000;
+  const STALE_LOCK_MS = 5 * 60 * 1000; // 5 minutes — covers SIGKILL'd prior launchers
   while (true) {
     try {
       fs.mkdirSync(lockDir);
@@ -193,6 +201,21 @@ async function acquireBootstrapLock() {
       }
       if (artifactsReady()) {
         return false;
+      }
+      // F019 hardening: detect stale lockdir from SIGKILL'd predecessor.
+      // Existing process should refresh the dir; an mtime older than 5min
+      // implies the holder is gone. Remove and retry.
+      try {
+        const lockStat = fs.statSync(lockDir);
+        if (Date.now() - lockStat.mtimeMs > STALE_LOCK_MS) {
+          process.stderr.write(
+            `[mk-code-index-launcher] stale bootstrap lock (mtime ${Math.round((Date.now() - lockStat.mtimeMs) / 1000)}s old); reclaiming ${rel(lockDir)}\n`
+          );
+          fs.rmSync(lockDir, { recursive: true, force: true });
+          continue;
+        }
+      } catch {
+        // stat race — lock disappeared; loop and retry mkdirSync
       }
       if (Date.now() > deadline) {
         throw new Error(`bootstrap lock timed out at ${rel(lockDir)}`);

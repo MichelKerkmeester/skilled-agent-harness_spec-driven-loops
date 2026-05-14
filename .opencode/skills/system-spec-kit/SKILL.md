@@ -372,7 +372,7 @@ Run `.opencode/skills/system-spec-kit/scripts/spec/validate.sh <spec-folder> --s
 
 ### Code Graph and Search Routing
 
-Use CocoIndex for semantic discovery, Code Graph for structural relationships, and Spec Kit Memory for prior decisions and continuity. `code_graph_scan`, `code_graph_query`, `code_graph_context`, `code_graph_status`, and `detect_changes` share the readiness contract and return blocked/degraded payloads rather than silent empty answers when graph state is stale.
+Use CocoIndex for semantic discovery, Code Graph for structural relationships, and Spec Kit Memory for prior decisions and continuity. `code_graph_scan`, `code_graph_query`, `code_graph_context`, `code_graph_status`, and `detect_changes` (under MCP namespace `mcp__mk_code_index__*`, owned by the standalone `system-code-graph` skill) share the readiness contract and return blocked/degraded payloads rather than silent empty answers when graph state is stale.
 
 ---
 
