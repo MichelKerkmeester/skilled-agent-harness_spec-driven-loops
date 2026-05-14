@@ -6,12 +6,13 @@ import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { describe, expect, it } from 'vitest';
+import { findAdvisorWorkspaceRoot } from '../lib/utils/workspace-root.js';
 
 const here = dirname(fileURLToPath(import.meta.url));
-const repoRoot = resolve(here, '..', '..', '..', '..', '..', '..');
+const repoRoot = findAdvisorWorkspaceRoot(here);
 const playbookRoot = resolve(
   repoRoot,
-  '.opencode/skills/system-skill-advisor/mcp_server/manual_testing_playbook',
+  '.opencode/skills/system-skill-advisor/manual_testing_playbook',
 );
 const rootPlaybook = resolve(playbookRoot, 'manual_testing_playbook.md');
 

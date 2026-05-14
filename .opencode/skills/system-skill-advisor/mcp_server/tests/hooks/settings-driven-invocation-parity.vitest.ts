@@ -64,15 +64,13 @@ import { execFileSync } from 'node:child_process';
 import { existsSync, readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { describe, expect, it } from 'vitest';
+import { findAdvisorWorkspaceRoot } from '../../lib/utils/workspace-root.js';
 
 // ───────────────────────────────────────────────────────────────
 // 1. PATH RESOLUTION
 // ───────────────────────────────────────────────────────────────
 
-// tests/hooks/<this-file>.ts -> 7 levels up reaches repo root.
-//   hooks -> tests -> skill-advisor -> mcp_server -> system-spec-kit
-//   -> skill -> .opencode -> <repo-root>
-const REPO_ROOT = resolve(import.meta.dirname, '../../../../../../..');
+const REPO_ROOT = findAdvisorWorkspaceRoot(import.meta.dirname);
 const SETTINGS_PATH = resolve(REPO_ROOT, '.claude/settings.local.json');
 const SETTINGS_EXISTS = existsSync(SETTINGS_PATH);
 const RAW_SETTINGS = SETTINGS_EXISTS ? readFileSync(SETTINGS_PATH, 'utf8') : '';

@@ -22,7 +22,7 @@ import {
 } from '../../lib/scorer/lanes/semantic-shadow.js';
 import { createFixtureProjection, loadAdvisorProjection } from '../../lib/scorer/projection.js';
 import type { SkillProjection } from '../../lib/scorer/types.js';
-import * as skillGraphDb from '../../../lib/skill-graph/skill-graph-db.js';
+import * as skillGraphDb from '../../../../system-spec-kit/mcp_server/lib/skill-graph/skill-graph-db.js';
 import { HARDER_INTENT_PROMPT_CORPUS } from './fixtures/harder-intent-prompt-corpus.js';
 import { INTENT_PROMPT_CORPUS } from './fixtures/intent-prompt-corpus.js';
 import { seedSkillEmbeddings, type SeedResult } from './fixtures/seed-skill-embeddings.js';

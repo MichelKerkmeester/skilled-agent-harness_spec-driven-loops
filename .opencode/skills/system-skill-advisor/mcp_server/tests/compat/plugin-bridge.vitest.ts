@@ -7,9 +7,10 @@ import { readFileSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { describe, expect, it } from 'vitest';
+import { findAdvisorWorkspaceRoot } from '../../lib/utils/workspace-root.js';
 
 const here = dirname(fileURLToPath(import.meta.url));
-const repoRoot = resolve(here, '..', '..', '..', '..', '..', '..', '..');
+const repoRoot = findAdvisorWorkspaceRoot(here);
 const bridgePath = resolve(repoRoot, '.opencode/skills/system-spec-kit/mcp_server/plugin_bridges/spec-kit-skill-advisor-bridge.mjs');
 
 function runBridge(payload: Record<string, unknown>, env: NodeJS.ProcessEnv = {}) {

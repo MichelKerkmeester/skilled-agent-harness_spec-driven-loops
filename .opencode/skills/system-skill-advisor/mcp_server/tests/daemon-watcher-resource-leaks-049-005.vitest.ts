@@ -15,6 +15,15 @@ import { mkdirSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { dirname, join } from 'node:path';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+
+vi.mock('chokidar', () => ({
+  default: {
+    watch: vi.fn(() => {
+      throw new Error('chokidar should be injected by watcher fixtures');
+    }),
+  },
+}));
+
 import {
   createSkillGraphWatcher,
   discoverWatchTargets,

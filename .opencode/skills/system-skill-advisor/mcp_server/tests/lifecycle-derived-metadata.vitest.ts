@@ -6,6 +6,15 @@ import { existsSync, mkdirSync, readFileSync, rmSync, symlinkSync, writeFileSync
 import { tmpdir } from 'node:os';
 import { dirname, join, relative } from 'node:path';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+
+vi.mock('chokidar', () => ({
+  default: {
+    watch: vi.fn(() => {
+      throw new Error('chokidar should be injected by watcher fixtures');
+    }),
+  },
+}));
+
 import { applyAntiStuffing } from '../lib/derived/anti-stuffing.js';
 import { extractDerivedMetadata } from '../lib/derived/extract.js';
 import { hasFingerprintChanged } from '../lib/derived/provenance.js';

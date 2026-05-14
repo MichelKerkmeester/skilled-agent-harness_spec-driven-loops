@@ -7,6 +7,15 @@ import { tmpdir } from 'node:os';
 import { dirname, join, relative } from 'node:path';
 import Database from 'better-sqlite3';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+
+vi.mock('chokidar', () => ({
+  default: {
+    watch: vi.fn(() => {
+      throw new Error('chokidar should be injected by watcher fixtures');
+    }),
+  },
+}));
+
 import { acquireSkillGraphLease, readLeaseSnapshot } from '../lib/daemon/lease.js';
 import { startSkillGraphDaemon } from '../lib/daemon/lifecycle.js';
 import {

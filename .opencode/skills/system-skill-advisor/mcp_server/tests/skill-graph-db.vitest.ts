@@ -6,8 +6,8 @@ import { mkdtempSync, mkdirSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { closeDb, getDb, indexSkillMetadata, initDb } from '../../lib/skill-graph/skill-graph-db.js';
-import { writeGraphMetadata } from '../../tests/fixtures/skill-graph-db.js';
+import { closeDb, getDb, indexSkillMetadata, initDb } from '../../../system-spec-kit/mcp_server/lib/skill-graph/skill-graph-db.js';
+import { writeGraphMetadata } from '../../../system-spec-kit/mcp_server/tests/fixtures/skill-graph-db.js';
 
 describe('skill graph database indexing', () => {
   afterEach(() => {

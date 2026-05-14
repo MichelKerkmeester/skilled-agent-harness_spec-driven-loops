@@ -9,6 +9,7 @@ import {
 import { join, resolve } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { scoreAdvisorPrompt } from '../../lib/scorer/fusion.js';
+import { findAdvisorWorkspaceRoot } from '../../lib/utils/workspace-root.js';
 
 interface CorpusRow {
   readonly id: string;
@@ -24,7 +25,7 @@ interface ParityRegression {
   readonly hook_top_1: string | null;
 }
 
-const workspaceRoot = resolve(import.meta.dirname, '../../../../../../..');
+const workspaceRoot = findAdvisorWorkspaceRoot(import.meta.dirname);
 const corpusPath = join(
   workspaceRoot,
   '.opencode/skills/system-skill-advisor/mcp_server/scripts/routing-accuracy/labeled-prompts.jsonl',

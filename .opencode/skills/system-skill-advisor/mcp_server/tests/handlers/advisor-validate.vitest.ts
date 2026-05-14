@@ -9,10 +9,11 @@ import { fileURLToPath } from 'node:url';
 import { describe, expect, it } from 'vitest';
 
 import { advisorHookOutcomesPath } from '../../lib/metrics.js';
+import { findAdvisorWorkspaceRoot } from '../../lib/utils/workspace-root.js';
 import { AdvisorValidateInputSchema, AdvisorValidateOutputSchema } from '../../schemas/advisor-tool-schemas.js';
 import { handleAdvisorValidate } from '../../handlers/advisor-validate.js';
 
-const REPO_ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../../../../../../..');
+const REPO_ROOT = findAdvisorWorkspaceRoot(dirname(fileURLToPath(import.meta.url)));
 
 describe('advisor_validate handler', () => {
   it('returns the required slice bundle schema for a skill subset', async () => {
