@@ -12,21 +12,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/013-skill-advisor-semantic-lane/009-system-skill-advisor-extraction"
-    last_updated_at: "2026-05-14T18:30:00Z"
-    last_updated_by: "claude-opus-4-7"
-    recent_action: "008 implementation shipped (D1+D2); skill_graph_* now advisor-owned"
-    next_safe_action: "Operator: Tier 3 (claude mcp list refresh, /doctor:update smoke, advisor_rebuild)"
+    last_updated_at: "2026-05-14T18:25:00Z"
+    last_updated_by: "codex"
+    recent_action: "010 close-out shipped: advisor Vitest 291/291 and graph-health green"
+    next_safe_action: "Operator: optional Tier 3 runtime refreshes only"
     blockers: []
     key_files:
       - "handover.md"
       - "spec.md"
       - "graph-metadata.json"
-      - "004-standalone-mcp-launcher-and-runtime-configs/implementation-summary.md"
-      - "005-hooks-compat-and-consumer-cutover/implementation-summary.md"
-      - "006-validation-cleanup-and-deprecation-removal/implementation-summary.md"
-      - "007-skill-graph-db-rename/implementation-summary.md"
       - "008-move-skill-graph-tools-to-advisor/implementation-summary.md"
-      - "009-fix-script-fs-scope/implementation-summary.md"
+      - "010-skill-id-rename/implementation-summary.md"
     session_dedup:
       fingerprint: "sha256:0130090099a06ed10c5d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d"
       session_id: "013-009-handover-2026-05-14"
@@ -34,12 +30,8 @@ _memory:
     completion_pct: 100
     open_questions: []
     answered_questions:
-      - "ADR-001 5-phase migration is complete with 007 added as the skill-graph DB filename-disambig follow-on."
-      - "Option B (rename) chosen for skill-graph DB collision; Option A deferred per 007 ADR-001."
-      - "Tier 4 Option A confirmed: scaffold 013/009/008 (operator decision 2026-05-14 plan-mode)."
-      - "60/224 vitest blocker resolved: Tier 1 took pass count 164→279 (+115); 009 fixes added +1 → 280/287. Hook smoke FAIL→PASS."
-      - "Production bugs (skill_graph_compiler.py:32, skill_advisor.py:206) fixed in 009 as operator-selected Tier 5."
       - "008 implementation shipped 2026-05-14 via 2 dispatches (D1: 8447663a0, D2: a93fffb7c). Advisor vitest 285/291; 4-runtime smoke green except Claude INCONCLUSIVE. Details in §7."
+      - "010 close-out resolved remaining graph-health and parity failures. Advisor vitest is 291/291. Details in §8."
 ---
 # Session Handover Document
 
@@ -435,6 +427,42 @@ Ephemeral (`/tmp` clears on reboot). Both prompts use the dispatch contract patt
 ### Approved plan file (Session 3)
 
 `/Users/michelkerkmeester/.claude/plans/read-and-follow-handover-splendid-wall.md` — modified in-place from Session 2's Tier-1-4 plan to Session 3's 2-dispatch 008 implementation plan. Plan-mode AskUserQuestion + Sequential Thinking used for design phase.
+
+---
+
+## 8. Remaining-tests close-out (Session 4, 2026-05-14)
+
+Codex continued the 013/009 line on `main` and closed the remaining advisor package failures. Live state differed from the dispatch snapshot: commit `da87f8937` had already landed the two hint fixes, so this session preserved that commit and continued from `3 failed | 288 passed | 3 skipped`.
+
+### Ship trail
+
+| Commit | Scope |
+|---|---|
+| `da87f8937` | Pre-existing hint commit: lane-weight-sweep path fix and system-code-graph metadata cleanup. |
+| `a8d10ba9b` | `010-skill-id-rename`: graph skill id rename, generated graph cache refresh, graph-health fix, and parity baseline close-out. |
+
+### Results
+
+- **Advisor Vitest**: `40 passed (40)`, `291 passed (291)`.
+- **Graph health**: compiler validation passes; `skill_advisor.py --health` reports `status: ok`; stale `skill_advisor` SQLite node removed.
+- **Parity triage**: Option A for both parity tests. The accepted drift is pinned to `rr-iter3-146`; no `.skip` was added.
+- **Strict validation**: PASS for `010-skill-id-rename`, parent `009-system-skill-advisor-extraction`, and lane parent `013-skill-advisor-semantic-lane`.
+- **New child packet**: `010-skill-id-rename` is shipped.
+
+### Children inventory (final)
+
+| Child | Status |
+|---|---|
+| 001-design-and-decision-record | shipped |
+| 002-scaffold-system-skill-advisor-package | shipped |
+| 003-move-advisor-source-db-and-tests | shipped |
+| 004-standalone-mcp-launcher-and-runtime-configs | shipped |
+| 005-hooks-compat-and-consumer-cutover | shipped |
+| 006-validation-cleanup-and-deprecation-removal | shipped |
+| 007-skill-graph-db-rename | shipped |
+| 008-move-skill-graph-tools-to-advisor | shipped |
+| 009-fix-script-fs-scope | shipped |
+| 010-skill-id-rename | shipped |
 <!-- /ANCHOR:session-notes -->
 
 ---
