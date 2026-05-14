@@ -4,6 +4,12 @@ Demonstrates multiple tasks running simultaneously with synchronization points.
 
 ---
 
+## 1. OVERVIEW
+
+Use this asset when documenting workflows that split into concurrent branches and later join at a synchronization point.
+
+---
+
 ## Use Case: Deployment Pipeline with Parallel Tests
 
 ```
@@ -185,15 +191,3 @@ Demonstrates multiple tasks running simultaneously with synchronization points.
 - Concurrent API calls
 - Distributed computing tasks
 - Multi-environment deployments
-
-## 1. OVERVIEW
-
-_TODO: populate this section_
-
----
-
-## 1. OVERVIEW
-
-_TODO: populate this section_
-
----

@@ -4,6 +4,12 @@ Complex decision tree with multiple branches and conditional logic.
 
 ---
 
+## 1. OVERVIEW
+
+Use this asset when documenting conditional workflows with explicit branch labels, retries, and terminal outcomes.
+
+---
+
 ## Use Case: E-commerce Order Processing System
 
 ```
@@ -294,15 +300,3 @@ Complex decision tree with multiple branches and conditional logic.
 5. **Business Logic** - Real-world e-commerce rules
 6. **Fallback Options** - Alternatives provided when possible
 7. **Complete Coverage** - All possible paths considered
-
-## 1. OVERVIEW
-
-_TODO: populate this section_
-
----
-
-## 1. OVERVIEW
-
-_TODO: populate this section_
-
----

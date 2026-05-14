@@ -4,6 +4,12 @@ A basic linear workflow demonstrating sequential steps without branching.
 
 ---
 
+## 1. OVERVIEW
+
+Use this asset when documenting a short linear workflow where each step follows directly from the previous one.
+
+---
+
 ## Use Case: New User Registration
 
 ```
@@ -88,15 +94,3 @@ A basic linear workflow demonstrating sequential steps without branching.
 - Step-by-step tutorials
 - Installation procedures
 - Simple form submissions
-
-## 1. OVERVIEW
-
-_TODO: populate this section_
-
----
-
-## 1. OVERVIEW
-
-_TODO: populate this section_
-
----

@@ -70,11 +70,11 @@ DQI proxy uses four local signals: template pass, frontmatter budget, current-re
 | mcp-chrome-devtools | 35 md | 90 -> 92 | INSTALL_GUIDE H2s aligned with sk-doc install-guide template | Aligned in Batch C |
 | mcp-coco-index | 188 md | 91 -> 94 | README/INSTALL_GUIDE now state two MCP tools (`search`, `cocoindex_refresh_index`); removed generated `_TODO` tails in references | Aligned in Batch C |
 | mcp-code-mode | 45 md | 90 -> 92 | INSTALL_GUIDE H2s aligned with sk-doc install-guide template | Aligned in Batch C |
-| sk-code | 119 md | 90 | No blocking sk-doc findings | Pending Batch D |
-| sk-code-review | 32 md | 90 | No blocking sk-doc findings | Pending Batch D |
-| sk-doc | 72 md | 92 | Template authority; minimal-change policy | Pending Batch D |
-| sk-git | 44 md | 90 | No blocking sk-doc findings | Pending Batch D |
-| sk-prompt | 40 md | 90 | No blocking sk-doc findings | Pending Batch D |
+| sk-code | 119 md | 90 -> 91 | No blocking sk-doc findings; primary docs validate | Verified in Batch D |
+| sk-code-review | 32 md | 90 -> 91 | No blocking sk-doc findings; primary docs validate | Verified in Batch D |
+| sk-doc | 72 md | 92 -> 95 | Removed generated `_TODO` tails from six flowchart assets and `install_guide_creation.md`; added real overview sections to flowchart assets | Aligned in Batch D |
+| sk-git | 44 md | 90 -> 91 | No blocking sk-doc findings; primary docs validate | Verified in Batch D |
+| sk-prompt | 40 md | 90 -> 91 | No blocking sk-doc findings; primary docs validate | Verified in Batch D |
 | system-code-graph | 50 md | 94 | Skill docs already use `mk-code-index`; root README still stale | Pending Batch E |
 | system-skill-advisor | 121 md | 91 | Some advisor docs still mention old compat dist path or wrong DB path | Pending Batch E |
 | system-spec-kit | 1305 md | 90 | Primary docs validate; targeted root/current-reality checks still needed | Pending Batch E |

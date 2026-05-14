@@ -4,6 +4,12 @@ Multi-tier system architecture showing interaction between different layers and 
 
 ---
 
+## 1. OVERVIEW
+
+Use this asset when documenting system interactions across layers, services, stores, caches, and error paths.
+
+---
+
 ## Use Case: Microservices Authentication & Data Flow
 
 ```
@@ -364,15 +370,3 @@ Multi-tier system architecture showing interaction between different layers and 
 - **Cache Miss**: ~100ms (includes DB query)
 - **Token Validation**: < 5ms
 - **Total Round Trip**: 100-200ms typical
-
-## 1. OVERVIEW
-
-_TODO: populate this section_
-
----
-
-## 1. OVERVIEW
-
-_TODO: populate this section_
-
----

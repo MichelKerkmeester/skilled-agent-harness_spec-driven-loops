@@ -4,6 +4,12 @@ Complete user onboarding journey with embedded multi-step processes.
 
 ---
 
+## 1. OVERVIEW
+
+Use this asset when documenting onboarding journeys that mix education, validation, progress feedback, and completion states.
+
+---
+
 ## Use Case: Product Onboarding with Profile & Content Creation
 
 Generic onboarding flow integrating value propositions, celebrations, and multi-step profile/content creation.
@@ -333,15 +339,3 @@ Generic onboarding flow integrating value propositions, celebrations, and multi-
 - Success screen: 30-45 seconds
 
 **Total**: ~12-15 minutes for complete onboarding
-
-## 1. OVERVIEW
-
-_TODO: populate this section_
-
----
-
-## 1. OVERVIEW
-
-_TODO: populate this section_
-
----

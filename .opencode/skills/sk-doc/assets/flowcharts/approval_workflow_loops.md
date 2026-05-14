@@ -4,6 +4,12 @@ Document approval flow with multiple reviewers, revision cycles, and escalation 
 
 ---
 
+## 1. OVERVIEW
+
+Use this asset when documenting approval workflows that can loop through revisions before final sign-off.
+
+---
+
 ## Use Case: Marketing Content Approval Process
 
 ```
@@ -380,15 +386,3 @@ Document approval flow with multiple reviewers, revision cycles, and escalation 
 - **Fast Track** (no revisions): 2 days
 - **Standard** (1-2 revisions): 3-4 days  
 - **Complex** (3+ revisions): 5+ days
-
-## 1. OVERVIEW
-
-_TODO: populate this section_
-
----
-
-## 1. OVERVIEW
-
-_TODO: populate this section_
-
----
