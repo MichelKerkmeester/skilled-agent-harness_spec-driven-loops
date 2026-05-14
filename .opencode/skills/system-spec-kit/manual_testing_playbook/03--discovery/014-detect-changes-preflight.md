@@ -74,9 +74,9 @@ Stored response payloads from steps 3, 5, 9, 10, 13; the diff texts from steps 2
 
 ### Failure Triage
 
-- Block A: confirm `ensureCodeGraphReady` is wired with `allowInlineIndex: false` so the read path doesn't silently scan → check `mcp_server/code_graph/handlers/detect-changes.ts:readinessRequiresBlock` switch is comparing against `'fresh'` only → if attribution misses, inspect `queryOutline(filePath)` rows and `parseUnifiedDiff` hunk ranges for off-by-one in line numbering.
-- Block B: confirm `mcp_server/code_graph/handlers/detect-changes.ts:118-160` returns the structured `CandidatePathResult` with `status: 'reject'` for paths escaping `canonicalRootDir` (010/007/T-D R-007-3); verify the `blockedReason` string carries the offending path.
-- Block C: confirm `mcp_server/code_graph/lib/diff-parser.ts:109-220` tracks `remainingOldLines` / `remainingNewLines` per hunk so subsequent `---`/`+++` headers terminate the hunk body (010/007/T-D R-007-4); compare hunk-body line counters against expected per-file totals.
+- Block A: confirm `ensureCodeGraphReady` is wired with `allowInlineIndex: false` so the read path doesn't silently scan → check `.opencode/skills/system-code-graph/mcp_server/handlers/detect-changes.ts:readinessRequiresBlock` switch is comparing against `'fresh'` only → if attribution misses, inspect `queryOutline(filePath)` rows and `parseUnifiedDiff` hunk ranges for off-by-one in line numbering.
+- Block B: confirm `.opencode/skills/system-code-graph/mcp_server/handlers/detect-changes.ts:118-160` returns the structured `CandidatePathResult` with `status: 'reject'` for paths escaping `canonicalRootDir` (010/007/T-D R-007-3); verify the `blockedReason` string carries the offending path.
+- Block C: confirm `.opencode/skills/system-code-graph/mcp_server/lib/diff-parser.ts:109-220` tracks `remainingOldLines` / `remainingNewLines` per hunk so subsequent `---`/`+++` headers terminate the hunk body (010/007/T-D R-007-4); compare hunk-body line counters against expected per-file totals.
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)

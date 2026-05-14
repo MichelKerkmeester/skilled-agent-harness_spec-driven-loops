@@ -61,7 +61,7 @@ Together, these two halves form a documentation-and-memory loop: spec folders ca
 
 | Category                    | Count                | Details                                                                                         |
 | --------------------------- | -------------------- | ----------------------------------------------------------------------------------------------- |
-| **MCP Tools**               | 54                   | Canonical count from `TOOL_DEFINITIONS` in `mcp_server/tool-schemas.ts`. Spans L1-L7 plus L8 (code graph + skill graph/advisor + CocoIndex bridge) and L9 (deep loop graph). Internal helper handlers and any deferred / not-yet-wired handlers are intentionally excluded. |
+| **MCP Tools**               | 54                   | Canonical count from `TOOL_DEFINITIONS` in `mcp_server/tool-schemas.ts`. Spans Spec Kit Memory, Skill Advisor, CocoIndex bridge, and deep-loop surfaces. Structural code-graph tool ownership is documented by the sibling `.opencode/skills/system-code-graph/` skill. Internal helper handlers and any deferred / not-yet-wired handlers are intentionally excluded. |
 | **Commands**                | 13                   | 9 spec_kit + 4 memory                                                                           |
 | **Documentation Levels**    | 4                    | Levels 1, 2, 3, 3+                                                                              |
 | **Feature Catalog Entries** | 294                  | Across 22 categories                                                                            |
@@ -91,9 +91,9 @@ Together, these two halves form a documentation-and-memory loop: spec folders ca
 | ----------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Spec Folder Workflow**      | Creates mandatory documentation for every file-modifying conversation, scaled to 4 levels based on scope and risk, with packet-local changelog closeout for packet roots and child phases                      |
 | **Level Contract Templates** | Manifest template architecture where each level resolves the files and sections it needs                                                                                                                       |
-| **Spec Kit Memory MCP**       | 54-tool MCP server providing persistent semantic memory, graph intelligence, graph-first routing, and session orchestration across sessions, models and tools                                                 |
+| **Spec Kit Memory MCP**       | 54-tool MCP server providing persistent semantic memory, causal/degree retrieval, and session orchestration across sessions, models and tools                                                              |
 | **Startup / Recovery Surfaces** | `/spec_kit:resume` is the canonical operator-facing recovery surface. Under the hood, startup and recovery rebuild active context from `handover.md`, then `_memory.continuity`, then canonical spec docs |
-| **Code Graph**                | Structural code analysis: tree-sitter WASM indexer + SQLite storage via 4 core graph tools, with adjacent `session_*` and `ccc_*` helpers for readiness, recovery, and semantic follow-up                 |
+| **Cross-Skill Code Graph Integration** | Startup and recovery surfaces can report structural-readiness state from the sibling `system-code-graph` skill while Spec Kit keeps ownership of spec folders, memory, and lifecycle hooks                 |
 | **Skill Advisor**             | Native routing package with `advisor_recommend`, `advisor_status`, `advisor_validate`, 5-lane fusion, Python compatibility shim, runtime hooks, and OpenCode plugin bridge                    |
 | **Session Continuity**        | `generate-context.js` updates canonical continuity surfaces and refreshes packet metadata on every `/memory:save` invocation so `/spec_kit:resume` can rebuild the next session from packet-local sources     |
 | **Validation Scripts**        | 20-rule validation, continuity freshness checks, and strict EVIDENCE-marker linting for spec folders                                                                                                          |
@@ -101,30 +101,19 @@ Together, these two halves form a documentation-and-memory loop: spec folders ca
 | **Constitutional Memory**     | Always-surface rules with a 3.0x boost that never decay -- like pinned notes that show up in every search                                                                                                      |
 | **Shared Memory**             | Controlled knowledge sharing with deny-by-default access for teams and multi-agent setups                                                                                                                      |
 
-### Code Graph
+### Cross-Skill Structural Context
 
-Structural code analysis via tree-sitter WASM parsing and SQLite storage. Maps function calls, imports, class hierarchy, and containment across JS/TS/Python/Shell files.
+Spec Kit can surface structural-readiness state during startup and recovery, but the structural indexer, graph database, and `code_graph_*` / `detect_changes` package documentation are owned by `.opencode/skills/system-code-graph/`.
 
-| Tool Category       | Tools                                                                    | Purpose                                                            |
-| ------------------- | ------------------------------------------------------------------------ | ------------------------------------------------------------------ |
-| **Graph Query**     | code_graph_scan, code_graph_query, code_graph_status, code_graph_context | Index, query, and explore structural relationships                 |
-| **Preflight**       | `detect_changes` (012/002 handler; registered as MCP tool in 010/007 T-A) | Read-only diff -> affected-symbol mapping with hard refuse on stale graph |
-| **CCC (CocoIndex)** | ccc_status, ccc_reindex, ccc_feedback                                    | Semantic-search lifecycle management and operator feedback         |
-| **Session**         | session_health, session_resume, session_bootstrap                        | Structural recovery, readiness checks, and startup/bootstrap state |
+| Surface | Owner | Notes |
+| ------------------- | ------------------- | ------------------- |
+| Spec folders, memory, resume, hooks | `system-spec-kit` | Canonical continuity, `/spec_kit:resume`, and lifecycle transport stay here. |
+| Structural graph tools | `system-code-graph` | `code_graph_scan`, `code_graph_query`, `code_graph_status`, `code_graph_context`, `code_graph_verify`, `code_graph_apply`, and `detect_changes` are documented in the sibling skill. |
+| CocoIndex bridge | Current MCP runtime | Semantic code-search lifecycle surfaces such as `ccc_status`, `ccc_reindex`, and `ccc_feedback` remain cross-skill integration points. |
 
-CocoIndex (semantic search) finds code by concept. Code Graph (structural) maps what connects to what. Startup and recovery surfaces now report freshness-aware graph state, structural read paths return a `readiness` block, and lightly stale graphs may repair inline with bounded `selective_reindex` while empty or broadly stale graphs stay on the explicit `code_graph_scan` path.
+Startup payload parity still transports the same compact shared payload across Claude, Gemini, Copilot, and Codex. When that payload includes graph freshness or `graphQualitySummary`, treat it as imported structural context from `system-code-graph`, not as system-spec-kit implementation ownership.
 
-**Phase-DAG runner (012/002):** `indexFiles()` now runs through a typed phase-DAG runner (`mcp_server/code_graph/lib/phase-runner.ts`). The scan flow is decomposed into four declared phases — `find-candidates` -> `parse-candidates` -> `finalize` -> `emit-metrics` — validated for duplicate names, missing dependencies, and cycles before any phase body runs. Failures bubble through `PhaseRunnerError('phase-failure')` with the offending `phaseName` attached. The decomposition is purely orchestrational: the SQLite schema, public exports, and historical `IndexFilesResult` shape are preserved.
-
-**Readiness & response contract:** `code_graph_query` and `code_graph_context` share the same response contract. When readiness requires a suppressed `full_scan`, both return an explicit `status: "blocked"` payload with `requiredAction: "code_graph_scan"`, `blockReason: "full_scan_required"`, `degraded`, and `graphAnswersOmitted` instead of silently returning empty results. `code_graph_context` success payloads carry structured `data.metadata.partialOutput` (`isPartial`, `reasons`, `omittedSections`, `omittedAnchors`, `truncatedText`) plus an explicit `deadlineMs` field. `code_graph_status` surfaces `graphQualitySummary` (detector provenance + edge-enrichment confidence). CALLS queries on ambiguous subjects (e.g. `handle*`) prefer callable implementation nodes over wrapper-shadow candidates and return ambiguity / selected-candidate metadata. CocoIndex seed fidelity preserves `score`, `snippet`, and range metadata through context resolution.
-
-**Edge explanation and blast-radius uplift (012/003):** Relationship rows on `code_graph_query` and structured edges on `code_graph_context` now surface graph-local `reason` and `step` fields next to the existing `confidence` / `detectorProvenance` / `evidenceClass` metadata. `blast_radius` keeps the prior file-oriented payload while adding `depthGroups`, `riskLevel` (graph-local: `high` on ambiguity or depth-one fanout >10, `medium` on 4-10, `low` otherwise), an optional `minConfidence` traversal filter, `ambiguityCandidates` for unresolved subjects, and a structured `failureFallback` so callers never get a bare error string when resolution cannot continue. Schema unchanged — the new fields ride inside the existing `code_edges.metadata` JSON blob.
-
-**`detect_changes` preflight (012/002, MCP tool wired in 010/007 T-A):** A read-only handler at `mcp_server/code_graph/handlers/detect-changes.ts` accepts `{ diff: string, rootDir?: string }` and returns `{ status, affectedSymbols[], affectedFiles[], blockedReason?, timestamp, readiness }`. The P1 safety invariant is hard: `ensureCodeGraphReady` runs first with `allowInlineIndex: false` and `allowInlineFullScan: false`, and any non-`fresh` readiness state returns `status: 'blocked'` before the diff is parsed. A clean-room minimal unified-diff parser (`mcp_server/code_graph/lib/diff-parser.ts`) handles `diff --git`, `--- a/<path>`, `+++ b/<path>`, and `@@ -oldStart[,oldLines] +newStart[,newLines] @@` headers, returning `parse_error` on malformed input — no new npm dependency was added (ADR-012-001). The handler is exported from `handlers/index.ts`, dispatched via `code_graph/tools/code-graph-tools.ts`, and validated by the JSON schema in `tool-schemas.ts` and the Zod schema in `schemas/tool-input-schemas.ts` (010/007 T-A wiring).
-
-**Startup payload parity:** All four runtimes (Claude, Gemini, Copilot, Codex) now transport the same compact startup shared-payload through their runtime-specific startup hooks, including the `graphQualitySummary` summary. `session_bootstrap()` remains available as a manual recovery surface when native hooks are unavailable.
-
-For full tool reference with parameters, see [MCP Server README](mcp_server/README.md).
+For package-level structural details, see `.opencode/skills/system-code-graph/README.md` and `.opencode/skills/system-code-graph/mcp_server/tool-schemas.ts`.
 
 ### Skill Advisor
 
@@ -1034,7 +1023,7 @@ A: The indexed-continuity store can index any markdown file, beyond spec folder 
 
 **Q: What is the difference between this README and the MCP server README?**
 
-A: This README covers the whole skill: spec folders, documentation levels, commands, templates, scripts and a high-level summary of the indexed-continuity store. The MCP server README (`mcp_server/README.md`) goes deep on the indexed-continuity store: the 54-tool API reference, 5 core retrieval channels plus the CocoIndex bridge, code graph and session lifecycle tooling, canonical resume/bootstrap behavior, save pipeline, causal graph, query intelligence and evaluation infrastructure. When you need to understand how a specific MCP tool works or how the search pipeline makes decisions, go to the MCP server README.
+A: This README covers the whole skill: spec folders, documentation levels, commands, templates, scripts and a high-level summary of the indexed-continuity store. The MCP server README (`mcp_server/README.md`) goes deep on the indexed-continuity store: the 54-tool API reference, 5 core retrieval channels plus the CocoIndex bridge, session lifecycle tooling, canonical resume/bootstrap behavior, save pipeline, causal graph, query intelligence and evaluation infrastructure. Structural code-graph package details live in `.opencode/skills/system-code-graph/`.
 
 ---
 

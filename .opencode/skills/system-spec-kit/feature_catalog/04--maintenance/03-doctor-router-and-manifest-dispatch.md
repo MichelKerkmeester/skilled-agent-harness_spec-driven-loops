@@ -80,7 +80,7 @@ The router itself never mutates anything. Each YAML workflow declares its own mu
 
 ## 5. RELATED CATALOG ENTRIES
 
-- `08--doctor-code-graph/` (under `mcp_server/code_graph/feature_catalog/`) — original per-command catalog rows for the code-graph apply mode policy. The `/doctor code-graph` invocation form is now driven by this router.
+- `08--doctor-code-graph/` (under `.opencode/skills/system-code-graph/feature_catalog/`) — original per-command catalog rows for the code-graph apply mode policy. The `/doctor code-graph` invocation form is now driven by this router.
 
 ---
 

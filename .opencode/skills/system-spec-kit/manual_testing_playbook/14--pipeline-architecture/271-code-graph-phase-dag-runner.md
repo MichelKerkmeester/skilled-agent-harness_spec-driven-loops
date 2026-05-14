@@ -34,8 +34,8 @@ Validate the Code Graph phase-DAG runner against the documented contract and ret
 
 ### Commands
 
-1. Run the runner unit suite: `vitest run mcp_server/code_graph/tests/phase-runner.test.ts` — confirm the duplicate-name, missing-dependency, cycle, and dependency-only-output tests all pass.
-2. Run the existing indexer + scan suites: `vitest run mcp_server/code_graph/tests/code-graph-indexer.vitest.ts mcp_server/code_graph/tests/code-graph-scan.vitest.ts` — confirm zero regressions.
+1. Run the runner unit suite: `vitest run .opencode/skills/system-code-graph/mcp_server/tests/phase-runner.test.ts` — confirm the duplicate-name, missing-dependency, cycle, and dependency-only-output tests all pass.
+2. Run the existing indexer + scan suites: `vitest run .opencode/skills/system-code-graph/mcp_server/tests/code-graph-indexer.vitest.ts .opencode/skills/system-code-graph/mcp_server/tests/code-graph-scan.vitest.ts` — confirm zero regressions.
 3. Run a real scan: `code_graph_scan({ rootDir: <fixture-or-workspace> })` and capture `filesScanned`, `filesIndexed`, `totalNodes`, `totalEdges`.
 4. Compare counts against the pre-wrap baseline (recorded before this sub-phase landed). Counts MUST match exactly because the wrap is purely orchestrational.
 5. Inspect logs for `[structural-indexer] scanned ... files` and `[structural-indexer] refreshed ... specific file(s)` — both messages MUST still appear (now emitted from inside `find-candidates`).
@@ -55,7 +55,7 @@ Vitest output for the three suites plus a paired `code_graph_scan` payload showi
 
 ### Failure Triage
 
-Inspect `mcp_server/code_graph/lib/phase-runner.ts` (Kahn-sort + rejection paths), `mcp_server/code_graph/lib/structural-indexer.ts:buildIndexPhases` (the four declared phases), and `indexFiles()` (must preserve `IndexFilesResult` shape including `preParseSkippedCount`).
+Inspect `.opencode/skills/system-code-graph/mcp_server/lib/phase-runner.ts` (Kahn-sort + rejection paths), `.opencode/skills/system-code-graph/mcp_server/lib/structural-indexer.ts:buildIndexPhases` (the four declared phases), and `indexFiles()` (must preserve `IndexFilesResult` shape including `preParseSkippedCount`).
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)

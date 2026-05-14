@@ -34,9 +34,9 @@ Validate the graph degraded stress cell isolation contract against cd .opencode/
 
 ### Commands
 
-1. `shasum -a 256 .opencode/skills/system-spec-kit/mcp_server/database/code-graph.sqlite > /tmp/279-pre.sha`
+1. `shasum -a 256 .opencode/skills/system-code-graph/mcp_server/database/code-graph.sqlite > /tmp/279-pre.sha`
 2. `cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/code-graph-degraded-sweep.vitest.ts 2>&1 | tee /tmp/279-vitest.txt`
-3. `shasum -a 256 .opencode/skills/system-spec-kit/mcp_server/database/code-graph.sqlite > /tmp/279-post.sha && diff /tmp/279-pre.sha /tmp/279-post.sha`
+3. `shasum -a 256 .opencode/skills/system-code-graph/mcp_server/database/code-graph.sqlite > /tmp/279-post.sha && diff /tmp/279-pre.sha /tmp/279-post.sha`
 
 ### Expected
 
@@ -53,7 +53,7 @@ Vitest exits 0 with all 4 bucket assertions passing and the dedicated live-DB gu
 
 ### Failure Triage
 
-If sha256 diff non-empty: inspect `mcp_server/tests/code-graph-degraded-sweep.vitest.ts` for missing `initDb(tempDir)` call, missing `vi.spyOn(process, 'cwd')` pin, or readiness-debounce cache leak. If guard test no-ops (live DB absent): the protection check cannot run; restore the live DB before re-running. If a bucket mis-routes: cross-check against `mcp_server/code_graph/handlers/query.ts` `buildGraphQueryPayload()` and `mcp_server/code_graph/lib/ensure-ready.ts` `detectState()`.
+If sha256 diff non-empty: inspect `mcp_server/tests/code-graph-degraded-sweep.vitest.ts` for missing `initDb(tempDir)` call, missing `vi.spyOn(process, 'cwd')` pin, or readiness-debounce cache leak. If guard test no-ops (live DB absent): the protection check cannot run; restore the live DB before re-running. If a bucket mis-routes: cross-check against `.opencode/skills/system-code-graph/mcp_server/handlers/query.ts` `buildGraphQueryPayload()` and `.opencode/skills/system-code-graph/mcp_server/lib/ensure-ready.ts` `detectState()`.
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)

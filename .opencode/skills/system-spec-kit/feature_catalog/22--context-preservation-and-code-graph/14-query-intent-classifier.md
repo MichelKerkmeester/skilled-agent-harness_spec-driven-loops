@@ -25,7 +25,7 @@ The classifier exposes its output through a normalized `IntentTelemetry` envelop
 
 | File | Layer | Role |
 |------|-------|------|
-| `.opencode/skills/system-code-graph/mcp_server/code_graph/lib/query-intent-classifier.ts` | Lib | Keyword-based intent classification with confidence scoring |
+| `.opencode/skills/system-code-graph/mcp_server/lib/query-intent-classifier.ts` | Lib | Keyword-based intent classification with confidence scoring |
 | `mcp_server/handlers/memory-context.ts` | Handler | Consumer: routes queries based on classified intent |
 
 ---

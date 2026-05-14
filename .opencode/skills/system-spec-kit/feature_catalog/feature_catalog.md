@@ -51,13 +51,13 @@ Use this catalog as the canonical inventory for both current behavior and delive
 
 ### Hook contract coverage map
 
-Packets 013 (code-graph hook improvements) and 014 (skill-advisor hook improvements) under `026/009-hook-package/` ship contract-level changes surfaced in the following catalog entries and references:
+Packet 013 code-graph hook improvements now point at the extracted `system-code-graph` skill for graph-owned package details. Packet 014 skill-advisor hook improvements point at the sibling `system-skill-advisor` skill and the system-spec-kit hook references that consume it.
 
 | Packet | Shipped surface | Primary catalog / reference entry |
 |---|---|---|
-| 013 | Blocked/degraded `full_scan` contract on `code_graph_query` **and** `code_graph_context` | [`22--context-preservation-and-code-graph/24-code-graph-readiness-contract.md`](22--context-preservation-and-code-graph/24-code-graph-readiness-contract.md), [`09-cocoindex-bridge-context.md`](22--context-preservation-and-code-graph/09-cocoindex-bridge-context.md) |
-| 013 | CALLS disambiguation + `deadlineMs` + null-summary clearing | [`22--context-preservation-and-code-graph/08-code-graph-storage-query.md`](22--context-preservation-and-code-graph/08-code-graph-storage-query.md) |
-| 013 | `graphQualitySummary` on status/startup surfaces | [`08-code-graph-storage-query.md`](22--context-preservation-and-code-graph/08-code-graph-storage-query.md), [`mcp_server/code_graph/README.md`](../mcp_server/code_graph/README.md) |
+| 013 | Blocked/degraded `full_scan` contract on `code_graph_query` **and** `code_graph_context` | `.opencode/skills/system-code-graph/feature_catalog/feature_catalog.md`, `.opencode/skills/system-code-graph/README.md` |
+| 013 | CALLS disambiguation + `deadlineMs` + null-summary clearing | `.opencode/skills/system-code-graph/feature_catalog/feature_catalog.md` |
+| 013 | `graphQualitySummary` on status/startup surfaces | `.opencode/skills/system-code-graph/README.md`, `references/config/hook_system.md` |
 | 013 | Shared startup payload parity across Claude/Gemini/Copilot/Codex | [`18--ux-hooks/21-shared-provenance-and-copilot-compact-cache-parity.md`](18--ux-hooks/21-shared-provenance-and-copilot-compact-cache-parity.md), [`22--context-preservation-and-code-graph/03-session-start-priming.md`](22--context-preservation-and-code-graph/03-session-start-priming.md) (Claude slice), `references/config/hook_system.md` (Shared Startup Payload Parity section) |
 | 014 | `advisor_recommend`/`advisor_validate` `workspaceRoot` + `effectiveThresholds` | `system-skill-advisor/mcp_server/README.md`, `references/hooks/skill-advisor-hook.md` |
 | 014 | `advisor_validate` `thresholdSemantics` + `telemetry.outcomes.totals` | `system-skill-advisor/mcp_server/README.md`, `references/hooks/skill-advisor-hook-validation.md` |

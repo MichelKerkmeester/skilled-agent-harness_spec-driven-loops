@@ -44,7 +44,7 @@ If startup brief construction throws, the helper returns `fresh: false`, `lastUp
 | `mcp_server/hooks/codex/lib/freshness-smoke-check.ts:10-21` | Hook lib | Defines result and dependency-injection contracts |
 | `mcp_server/hooks/codex/lib/freshness-smoke-check.ts:23-25` | Hook lib | Defines the ready-context predicate |
 | `mcp_server/hooks/codex/lib/freshness-smoke-check.ts:27-48` | Hook lib | Runs the smoke check, reports freshness metadata, and fails closed on startup-brief errors |
-| `mcp_server/code_graph/lib/startup-brief.ts` | Code graph lib | Builds the startup payload consumed by the smoke check |
+| `.opencode/skills/system-code-graph/mcp_server/lib/startup-brief.ts` | Code graph lib | Builds the startup payload consumed by the smoke check |
 
 ### Validation And Tests
 

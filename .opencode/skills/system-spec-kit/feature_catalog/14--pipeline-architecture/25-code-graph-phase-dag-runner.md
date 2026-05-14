@@ -15,7 +15,7 @@ This is a pipeline-architecture entry because it reshapes the internal coordinat
 
 ## 2. CURRENT REALITY
 
-The runner lives at `mcp_server/code_graph/lib/phase-runner.ts`. It defines a `Phase<I, O>` interface — `name`, `inputs[]`, optional `output`, `run(deps): O` — and exports `runPhases(phases)` plus `topologicalSort(phases)`. The DAG is validated in three rejection passes before any phase body runs:
+The runner lives at `.opencode/skills/system-code-graph/mcp_server/lib/phase-runner.ts`. It defines a `Phase<I, O>` interface — `name`, `inputs[]`, optional `output`, `run(deps): O` — and exports `runPhases(phases)` plus `topologicalSort(phases)`. The DAG is validated in three rejection passes before any phase body runs:
 
 1. **Duplicate phase names** → `PhaseRunnerError('duplicate-phase')`. The first colliding name is named in the message.
 2. **Missing dependency** → `PhaseRunnerError('missing-dependency')`. A phase listing a name that no other phase produces or owns is rejected with the offending phase named.
@@ -44,16 +44,16 @@ The decomposition mirrors the previous inline flow exactly. No phase reorders pe
 
 | File | Layer | Role |
 |------|-------|------|
-| `mcp_server/code_graph/lib/phase-runner.ts` | Lib | Defines `Phase<I,O>`, `PhaseRunnerError`, `topologicalSort()`, `runPhases()` |
-| `mcp_server/code_graph/lib/structural-indexer.ts` | Lib | `buildIndexPhases()` declares the four scan phases; `indexFiles()` invokes `runPhases()` and preserves the historical `IndexFilesResult` shape |
+| `.opencode/skills/system-code-graph/mcp_server/lib/phase-runner.ts` | Lib | Defines `Phase<I,O>`, `PhaseRunnerError`, `topologicalSort()`, `runPhases()` |
+| `.opencode/skills/system-code-graph/mcp_server/lib/structural-indexer.ts` | Lib | `buildIndexPhases()` declares the four scan phases; `indexFiles()` invokes `runPhases()` and preserves the historical `IndexFilesResult` shape |
 
 ### Validation And Tests
 
 | File | Focus |
 |------|-------|
-| `mcp_server/code_graph/tests/phase-runner.test.ts` | Topological sort correctness, duplicate-name / missing-dep / cycle rejection paths, dependency-only output visibility, async phase awaiting, failure attribution, custom output keys |
-| `mcp_server/code_graph/tests/code-graph-indexer.vitest.ts` (existing) | Backward-compat coverage for `indexFiles` exports — passes unchanged |
-| `mcp_server/code_graph/tests/code-graph-scan.vitest.ts` (existing) | End-to-end scan handler coverage — passes unchanged |
+| `.opencode/skills/system-code-graph/mcp_server/tests/phase-runner.test.ts` | Topological sort correctness, duplicate-name / missing-dep / cycle rejection paths, dependency-only output visibility, async phase awaiting, failure attribution, custom output keys |
+| `.opencode/skills/system-code-graph/mcp_server/tests/code-graph-indexer.vitest.ts` (existing) | Backward-compat coverage for `indexFiles` exports — passes unchanged |
+| `.opencode/skills/system-code-graph/mcp_server/tests/code-graph-scan.vitest.ts` (existing) | End-to-end scan handler coverage — passes unchanged |
 
 ---
 

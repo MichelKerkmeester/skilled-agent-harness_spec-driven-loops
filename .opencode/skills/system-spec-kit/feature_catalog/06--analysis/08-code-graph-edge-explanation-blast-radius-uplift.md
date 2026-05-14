@@ -34,18 +34,18 @@ When a symbol subject resolves to multiple graph nodes, the response returns amb
 
 | File | Role |
 |------|------|
-| `mcp_server/code_graph/lib/structural-indexer.ts` | Writes `reason` and `step` into edge metadata JSON |
-| `mcp_server/code_graph/handlers/query.ts` | Surfaces edge explanations and enriched blast-radius output |
-| `mcp_server/code_graph/lib/code-graph-context.ts` | Carries edge explanation fields into context payloads |
-| `mcp_server/code_graph/lib/code-graph-db.ts` | Schema reference showing unchanged `code_edges.metadata` JSON column |
+| `.opencode/skills/system-code-graph/mcp_server/lib/structural-indexer.ts` | Writes `reason` and `step` into edge metadata JSON |
+| `.opencode/skills/system-code-graph/mcp_server/handlers/query.ts` | Surfaces edge explanations and enriched blast-radius output |
+| `.opencode/skills/system-code-graph/mcp_server/lib/code-graph-context.ts` | Carries edge explanation fields into context payloads |
+| `.opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts` | Schema reference showing unchanged `code_edges.metadata` JSON column |
 
 ### Validation And Tests
 
 | File | Focus |
 |------|-------|
-| `mcp_server/code_graph/tests/code-graph-indexer.vitest.ts` | Edge metadata reason and step emission |
-| `mcp_server/code_graph/tests/code-graph-query-handler.vitest.ts` | Blast-radius risk, filtering, ambiguity and fallback behavior |
-| `mcp_server/code_graph/tests/code-graph-context-handler.vitest.ts` | Context payload propagation for edge explanations |
+| `.opencode/skills/system-code-graph/mcp_server/tests/code-graph-indexer.vitest.ts` | Edge metadata reason and step emission |
+| `.opencode/skills/system-code-graph/mcp_server/tests/code-graph-query-handler.vitest.ts` | Blast-radius risk, filtering, ambiguity and fallback behavior |
+| `.opencode/skills/system-code-graph/mcp_server/tests/code-graph-context-handler.vitest.ts` | Context payload propagation for edge explanations |
 
 <!-- /ANCHOR:source-files -->
 
