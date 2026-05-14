@@ -2,7 +2,7 @@
 // MODULE: advisor_recommend Tool Descriptor
 // ───────────────────────────────────────────────────────────────
 
-import type { ToolDefinition } from '../../../system-spec-kit/mcp_server/tool-schemas.js';
+import type { ToolDefinition } from './types.js';
 // F-018-D3-04 (partial): The descriptor's `properties` keys MUST stay aligned
 // with ADVISOR_RECOMMEND_PARAMETER_KEYS so the JSON Schema, Zod schema, and
 // ALLOWED_PARAMETERS stay in sync. The tuple is the single source of truth;

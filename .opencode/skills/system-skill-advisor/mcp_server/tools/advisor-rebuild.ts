@@ -2,7 +2,7 @@
 // MODULE: advisor_rebuild Tool Descriptor
 // ───────────────────────────────────────────────────────────────
 
-import type { ToolDefinition } from '../../../system-spec-kit/mcp_server/tool-schemas.js';
+import type { ToolDefinition } from './types.js';
 
 /** MCP tool descriptor for explicit advisor graph rebuilds. */
 export const advisorRebuildTool: ToolDefinition = {

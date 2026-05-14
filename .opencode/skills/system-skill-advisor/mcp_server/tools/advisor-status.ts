@@ -2,7 +2,7 @@
 // MODULE: advisor_status Tool Descriptor
 // ───────────────────────────────────────────────────────────────
 
-import type { ToolDefinition } from '../../../system-spec-kit/mcp_server/tool-schemas.js';
+import type { ToolDefinition } from './types.js';
 
 export const advisorStatusTool: ToolDefinition = {
   name: 'advisor_status',
