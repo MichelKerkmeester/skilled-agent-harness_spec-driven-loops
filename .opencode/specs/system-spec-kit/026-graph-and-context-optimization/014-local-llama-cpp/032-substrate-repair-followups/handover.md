@@ -8,7 +8,7 @@ Wave 1 + Wave 2 + Continuation runner all dispatched + completed.
 | Child | Status | Headline |
 |---|---|---|
 | 001-governance-retention-decouple | ✅ complete | ADR-002 Option A shipped: `retentionPolicy:"ephemeral"` no longer triggers governed-ingest; `DEFAULT_EPHEMERAL_TTL_MS=24h` added; 3-case vitest PASS; live save id=3372 round-trip PASS. |
-| 002-rerun-24-scenarios-suite | ⛔ blocked | 14/15 scenarios reached a verdict (415 never started). 2 PASS / 2 PARTIAL / 9 FAIL / 1 SKIP. Below the 8/15 threshold; status: **blocked**. Real query-intelligence signal emerged despite substrate flaps — see findings below. |
+| 002-rerun-24-scenarios-suite | ⛔ blocked | 15/15 scenarios reached a verdict (final-5 runner closed out 411-415 in a separate 20-min pass). Final: **2 PASS / 2 PARTIAL / 11 FAIL**. Below the 8/15 threshold; status: **blocked**. All 5 save-heavy scenarios (411-415) failed on substrate (index-scope-policy crash + circuit-breaker open + embedding fail) — fix shipped inline this packet but daemon needs a restart to pick it up. Real query-intelligence signal still emerged in the search-only scenarios — see findings below. |
 | 003-mcp-server-build-fix | ✅ complete | Resolved 3 `@modelcontextprotocol/sdk` Cannot-find-module errors via package-manifest repair. `npm run build` exits 0. Earlier Fix-1 dist markers survived rebuild. |
 | 004-failed-embedding-cleanup | ⛔ blocked | Script `mcp_server/scripts/repair-failed-embeddings.mjs` shipped + dry-run PASS. Live run blocked by separate llama-cpp Metal init / node-llama-cpp build issue in codex sandbox AND from main session. 214 failed embeddings persist. |
 | 005-substrate-stability-instrumentation | ✅ complete | Daemon startup RSS log, `memory_health.data.process.{pid,rss_mb,uptime_seconds}`, `embeddingRetry.{flapping,transitionsInLast10Min}` shipped. `resource-map.md` documents 5 thresholds. `npm run typecheck` PASS. |
@@ -41,11 +41,11 @@ Fix shipped inline in this packet (one-line edit). The MCP server should start c
 | 408 | Compound concept synthesis | FAIL | 0/4 expected constituent sources in top-10. Returned 6 duplicate review scripts + 3 test/migration files instead. |
 | 409 | LLM-made memory recall | FAIL | 4/10 sampled memories surfaced in top-3 (threshold 8/10). Generic trigger phrases (`graph`, `system-spec-kit`) particularly weak. |
 | 410 | Query latency + throughput | **PASS** | Steady-state p50=1.43ms / p95=138ms / p99=139ms — 140× faster than the 200ms interactive target. |
-| 411 | Causal graph link quality | FAIL | 0 memories persisted; embedding provider circuit-breaker open at run time. |
-| 412 | Causal coverage under bulk save | SKIP | Memory MCP server crashed on startup (ERR_MODULE_NOT_FOUND — fixed in this packet). |
-| 413 | Drift detection quality | FAIL | Aborted mid-run; no VERDICT emitted. |
-| 414 | Cross-AI memory handoff | FAIL | Aborted mid-run; no VERDICT emitted. |
-| 415 | Concurrent multi-AI safety | NEVER-STARTED | Runner exited before scenario reached. |
+| 411 | Causal graph link quality | FAIL | 0 memories persisted; embedding provider circuit-breaker open; both memory_save (E081) and memory_ingest_start blocked. |
+| 412 | Causal coverage under bulk save | FAIL | 20/20 memory_save calls failed with E081 (provider unhealthy: 214 failed embeddings). No edge derivation possible. |
+| 413 | Drift detection quality | FAIL | Aborted mid-run during final-5 batch; no VERDICT emitted by the executor. |
+| 414 | Cross-AI memory handoff | FAIL | Aborted mid-run during final-5 batch; no VERDICT emitted by the executor. |
+| 415 | Concurrent multi-AI safety | FAIL | 100% save failure rate (5/5 pre-seed E081). Interestingly: 10/10 concurrent READS completed with zero errors + zero duplicates, confirming the READ path is fine — only writes are blocked. |
 
 ## Substrate-Quality Findings (real signal from 002)
 
