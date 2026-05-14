@@ -11,59 +11,23 @@
     "system-spec-kit/026-graph-and-context-optimization/014-local-llama-cpp/032-substrate-repair-followups/005-substrate-stability-instrumentation"
   ],
   "manual": {
-    "depends_on": [
-      "system-spec-kit/026-graph-and-context-optimization/014-local-llama-cpp/022-local-llm-legacy-remediation"
-    ],
+    "depends_on": ["system-spec-kit/026-graph-and-context-optimization/014-local-llama-cpp/022-local-llm-legacy-remediation"],
     "supersedes": [],
-    "related_to": [
-      "system-spec-kit/026-graph-and-context-optimization/014-local-llama-cpp/021-local-llm-legacy-review",
-      "system-spec-kit/026-graph-and-context-optimization/014-local-llama-cpp/028-local-llm-feature-test-suite"
-    ]
+    "related_to": ["system-spec-kit/026-graph-and-context-optimization/014-local-llama-cpp/021-local-llm-legacy-review"]
   },
   "derived": {
-    "trigger_phrases": [
-      "032 substrate repair followups",
-      "post-022 ephemeral-governance decouple",
-      "ADR-002 Option A implementation",
-      "post-014 substrate-stability instrumentation",
-      "failed embedding cleanup"
-    ],
-    "key_topics": [
-      "phase-parent",
-      "governance-retention-decouple",
-      "scenario-rerun-validation",
-      "mcp-server-build-fix",
-      "failed-embedding-repair",
-      "substrate-stability-instrumentation",
-      "codex-dispatch-waves"
-    ],
+    "trigger_phrases": ["032 complete with caveats", "substrate repair followups shipped", "002 blocked at 4 PASS", "004 blocked at script-only", "index-scope-policy import fix"],
+    "key_topics": ["phase-parent", "governance-retention-decouple", "scenario-rerun-validation", "mcp-server-build-fix", "failed-embedding-repair", "substrate-stability-instrumentation", "index-scope-policy-fix"],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "last_active_child_id": null,
-    "key_files": [
-      "spec.md",
-      "description.json",
-      "graph-metadata.json"
-    ],
-    "entities": [
-      "ADR-002",
-      "scope-governance.ts",
-      "retry-manager.ts",
-      "response-builder.ts",
-      "memory-crud-health.ts",
-      "DEFAULT_EPHEMERAL_TTL_MS",
-      "kimi-k2.6",
-      "gpt-5.5",
-      "cli-codex"
-    ],
-    "causal_summary": "Phase-parent packet bundling 5 approved follow-ups to 022's substrate-repair work. Wave 1 (3 parallel codex): 001 implements ADR-002 Option A (decouple retentionPolicy ephemeral from requiresGovernedIngest + supply default TTL), 003 fixes the 3 MCP SDK import errors blocking npm run build, 004 writes a one-shot Node script clearing the remaining 24 failed embeddings. Wave 2 (sequential): 002 re-runs the 15-scenario 24-- suite via cli-opencode + kimi-k2.6 against the post-fix substrate, 005 adds RSS log + circuit-flapping flag instrumentation. Each child dispatches one fresh codex agent (gpt-5.5 high fast) with pre-bound Gate 3 + inline-contract binding trace.",
+    "key_files": ["spec.md", "handover.md", "description.json", "graph-metadata.json"],
+    "entities": ["ADR-002", "scope-governance.ts", "retry-manager.ts", "response-builder.ts", "memory-crud-health.ts", "context-server.ts", "DEFAULT_EPHEMERAL_TTL_MS", "kimi-k2.6", "gpt-5.5", "cli-codex", "index-scope-policy.js"],
+    "causal_summary": "Phase-parent for 5 follow-ups to 022 substrate-repair work. Final: 3 children complete (001 governance-decouple ADR-002 shipped; 003 mcp_server build fixed; 005 substrate-stability instrumentation shipped) + 2 blocked (002 rerun stuck at 4 PASS/PARTIAL of 15 due to multiple substrate flaps; 004 failed-embedding script blocked by Metal/CMake env issues). Bonus inline fix during execution: dist/lib/utils/index-scope.js was importing system-code-graph/mcp_server/lib/index-scope-policy.js from a wrong relative path (post-extraction); fix routes to the actual nested dist location. Real query-intelligence signal extracted: 403 PASS (code-intent matching) + 410 PASS (latency 140x interactive target) + 406/407 PARTIAL (specificity ladder + adversarial near-miss). Headline finding: query-expansion pipeline exceeds llama-cpp context-size limit, blocking paraphrase recall — new follow-up packet 034 recommended.",
     "created_at": "2026-05-14T11:05:00Z",
-    "last_save_at": "2026-05-14T11:05:00Z",
+    "last_save_at": "2026-05-14T14:30:00Z",
     "save_lineage": "main-agent",
-    "last_accessed_at": "2026-05-14T11:05:00Z",
-    "source_docs": [
-      "spec.md",
-      "description.json"
-    ]
+    "last_accessed_at": "2026-05-14T14:30:00Z",
+    "source_docs": ["spec.md", "handover.md", "description.json"]
   }
 }
