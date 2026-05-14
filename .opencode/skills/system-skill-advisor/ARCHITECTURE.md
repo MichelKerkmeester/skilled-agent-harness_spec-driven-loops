@@ -196,7 +196,7 @@ skill-graph.sqlite-wal
 skill-graph.sqlite-shm
 ```
 
-Tests and disposable CI runs may set `SYSTEM_SKILL_ADVISOR_DB_DIR`. Operator docs treat the package-local path as canonical. The advisor package should be the only runtime owner of advisor graph state once packet 011 finishes the library-location cleanup.
+Tests and disposable CI runs may set `MK_SKILL_ADVISOR_DB_DIR`; `SYSTEM_SKILL_ADVISOR_DB_DIR` remains a legacy fallback for compatibility. Operator docs treat the package-local path as canonical. The advisor package should be the only runtime owner of advisor graph state once packet 011 finishes the library-location cleanup.
 
 Runtime trust states use the shared vocabulary:
 

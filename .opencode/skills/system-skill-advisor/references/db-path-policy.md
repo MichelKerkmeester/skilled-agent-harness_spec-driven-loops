@@ -67,7 +67,7 @@ This separation gives cleaner mutation scope:
 <!-- ANCHOR:3-test-and-ci-override -->
 ## 4. TEST AND CI OVERRIDE
 
-`SYSTEM_SKILL_ADVISOR_DB_DIR` is allowed for tests and disposable CI runs only.
+`MK_SKILL_ADVISOR_DB_DIR` is allowed for tests and disposable CI runs only. `SYSTEM_SKILL_ADVISOR_DB_DIR` remains a legacy fallback for existing scripts.
 
 Production and operator docs should treat the package-local path as the default. A runtime override must not be used to silently re-collocate the advisor DB with `system-spec-kit/mcp_server/database/`.
 

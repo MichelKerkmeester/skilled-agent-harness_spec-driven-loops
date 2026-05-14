@@ -22,7 +22,7 @@ The default database path is `.opencode/skills/system-skill-advisor/mcp_server/d
 <!-- ANCHOR:2-boundaries -->
 ## 2. BOUNDARIES
 
-Runtime state belongs to the standalone advisor package. Tests may override the directory with `SYSTEM_SKILL_ADVISOR_DB_DIR`, but operator documentation should treat the package-local path as canonical.
+Runtime state belongs to the standalone advisor package. Tests may override the directory with `MK_SKILL_ADVISOR_DB_DIR`; `SYSTEM_SKILL_ADVISOR_DB_DIR` remains a legacy fallback. Operator documentation should treat the package-local path as canonical.
 
 <!-- /ANCHOR:2-boundaries -->
 

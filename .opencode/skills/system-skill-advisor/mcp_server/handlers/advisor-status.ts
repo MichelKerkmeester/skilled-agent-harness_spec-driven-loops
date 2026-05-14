@@ -24,8 +24,9 @@ import type {
 
 type HandlerResponse = { content: Array<{ type: string; text: string }> };
 
-const SKILL_GRAPH_DB = process.env.SYSTEM_SKILL_ADVISOR_DB_DIR
-  ? join(process.env.SYSTEM_SKILL_ADVISOR_DB_DIR, 'skill-graph.sqlite')
+const advisorDbDirOverride = process.env.MK_SKILL_ADVISOR_DB_DIR ?? process.env.SYSTEM_SKILL_ADVISOR_DB_DIR;
+const SKILL_GRAPH_DB = advisorDbDirOverride
+  ? join(advisorDbDirOverride, 'skill-graph.sqlite')
   : join('.opencode', 'skills', 'system-skill-advisor', 'mcp_server', 'database', 'skill-graph.sqlite');
 const SKILL_ROOT = join('.opencode', 'skills');
 const DEFAULT_MAX_METADATA_FILES = 5_000;

@@ -18,7 +18,8 @@
     "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/013-skill-advisor-semantic-lane/009-system-skill-advisor-extraction/012-doc-alignment-sk-doc",
     "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/013-skill-advisor-semantic-lane/009-system-skill-advisor-extraction/013-spec-kit-ref-cleanup",
     "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/013-skill-advisor-semantic-lane/009-system-skill-advisor-extraction/014-manual-testing-validation",
-    "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/013-skill-advisor-semantic-lane/009-system-skill-advisor-extraction/015-mcp-server-rename-mk-skill-advisor"
+    "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/013-skill-advisor-semantic-lane/009-system-skill-advisor-extraction/015-mcp-server-rename-mk-skill-advisor",
+    "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/013-skill-advisor-semantic-lane/009-system-skill-advisor-extraction/016-p2-remediation-015-deep-review"
   ],
   "migrated": true,
   "migration_source": "legacy",
@@ -37,7 +38,7 @@
       "skill advisor extraction handover",
       "resume 013/009",
       "advisor follow-on",
-      "system_skill_advisor next steps"
+      "mk_skill_advisor next steps"
     ],
     "key_topics": [
       "system",
@@ -60,7 +61,7 @@
       "001-design-and-decision-record/research/standalone-mcp-discussion.md",
       "spec.md",
       "001-design-and-decision-record/decision-record.md",
-      ".opencode/bin/skill-advisor-launcher.cjs",
+      ".opencode/bin/mk-skill-advisor-launcher.cjs",
       ".codex/config.toml",
       ".claude/mcp.json",
       ".gemini/settings.json",
@@ -97,9 +98,9 @@
         "source": "derived"
       },
       {
-        "name": "skill-advisor-launcher.cjs",
+        "name": "mk-skill-advisor-launcher.cjs",
         "kind": "file",
-        "path": ".opencode/bin/skill-advisor-launcher.cjs",
+        "path": ".opencode/bin/mk-skill-advisor-launcher.cjs",
         "source": "derived"
       },
       {
@@ -232,7 +233,7 @@
       "spec.md",
       "handover.md"
     ],
-    "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/013-skill-advisor-semantic-lane/009-system-skill-advisor-extraction/015-mcp-server-rename-mk-skill-advisor",
-    "last_active_at": "2026-05-14T20:38:51.902Z"
+    "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/013-skill-advisor-semantic-lane/009-system-skill-advisor-extraction/016-p2-remediation-015-deep-review",
+    "last_active_at": "2026-05-14T21:30:00.000Z"
   }
 }

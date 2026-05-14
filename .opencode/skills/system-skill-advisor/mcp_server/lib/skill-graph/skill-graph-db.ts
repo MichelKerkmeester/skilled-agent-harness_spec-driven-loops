@@ -184,8 +184,9 @@ let db: Database.Database | null = null;
 let dbPath: string | null = null;
 
 export function resolveSkillGraphDbDir(): string {
-  if (process.env.SYSTEM_SKILL_ADVISOR_DB_DIR) {
-    return resolve(process.env.SYSTEM_SKILL_ADVISOR_DB_DIR);
+  const overrideDbDir = process.env.MK_SKILL_ADVISOR_DB_DIR ?? process.env.SYSTEM_SKILL_ADVISOR_DB_DIR;
+  if (overrideDbDir) {
+    return resolve(overrideDbDir);
   }
   return resolve(
     process.cwd(),

@@ -182,9 +182,9 @@ Control flow:
 Run from the repository root:
 
 ```bash
-npm --prefix .opencode/skills/system-spec-kit/mcp_server run typecheck
-npm --prefix .opencode/skills/system-spec-kit/mcp_server run build
-(cd .opencode/skills/system-spec-kit/mcp_server && ../scripts/node_modules/.bin/vitest run skill_advisor/tests/ --reporter=default)
+npm --prefix .opencode/skills/system-skill-advisor/mcp_server run typecheck
+npm --prefix .opencode/skills/system-skill-advisor/mcp_server run build
+(cd .opencode/skills/system-skill-advisor/mcp_server && npx vitest run --reporter=default)
 python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor_regression.py --dataset .opencode/skills/system-skill-advisor/mcp_server/scripts/fixtures/skill_advisor_regression_cases.jsonl
 ```
 

@@ -69,8 +69,9 @@ function exists(p) {
 }
 
 function advisorDbPath() {
-  const resolvedDbDir = process.env.SYSTEM_SKILL_ADVISOR_DB_DIR
-    ? path.resolve(process.env.SYSTEM_SKILL_ADVISOR_DB_DIR)
+  const overrideDbDir = process.env.MK_SKILL_ADVISOR_DB_DIR ?? process.env.SYSTEM_SKILL_ADVISOR_DB_DIR;
+  const resolvedDbDir = overrideDbDir
+    ? path.resolve(overrideDbDir)
     : dbDir;
   return path.join(resolvedDbDir, 'skill-graph.sqlite');
 }
