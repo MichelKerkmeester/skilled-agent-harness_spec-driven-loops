@@ -206,7 +206,7 @@ This installs:
 - `sqlite-vec` (vector extension for semantic search)
 - `web-tree-sitter` (WASM-based tree-sitter bindings, no native compilation)
 - `tree-sitter-wasms` (pre-compiled WASM grammar bundles for JS, TS, Python, Bash)
-- `@huggingface/transformers` (local embedding runtime used by the hf-local provider). Note: this package brings `onnxruntime-common` as an internal transitive dependency for Transformers.js model execution; this is not a standalone ONNX backend selection, and no user-facing ONNX runtime installation is required.
+- `@huggingface/transformers` (local embedding runtime for hf-local; pulls `onnxruntime-common` as an internal transitive dep — no user-facing ONNX runtime install required).
 - `@modelcontextprotocol/sdk` (MCP protocol implementation)
 - `chokidar` (file watching for auto-indexing)
 - `zod` (schema validation)
