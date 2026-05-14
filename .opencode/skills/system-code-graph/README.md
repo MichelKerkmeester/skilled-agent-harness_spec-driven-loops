@@ -33,7 +33,7 @@ trigger_phrases:
 
 `mcp_server/` owns the structural graph package inside the Spec Kit Memory MCP server. It scans source files, persists file-symbol-edge records in SQLite, exposes graph MCP tools and bridges selected CocoIndex Code operations through `ccc_*` handlers.
 
-Status: PHASE 007 STANDALONE MCP COMPLETE — code, database, docs co-located; MCP tools registered under `mcp__system_code_graph__*` namespace via standalone server.
+Status: PHASE 007 STANDALONE MCP COMPLETE — code, database, docs co-located; MCP tools registered under `mcp__mk_code_index__*` namespace via standalone server.
 
 Current state:
 
@@ -223,7 +223,7 @@ Main flow:
 
 | Entrypoint | Type | Purpose |
 |---|---|---|
-| `mcp_server/index.ts` | MCP entrypoint | Registers standalone `system_code_graph` server with code-graph tools only. |
+| `mcp_server/index.ts` | MCP entrypoint | Registers standalone `mk-code-index` server with code-graph tools only. |
 | `tools/code-graph-tools.ts` | Module | Registers public MCP tool dispatchers. |
 | `handlers/index.ts` | Module | Re-exports handler functions. |
 | `lib/index.ts` | Module | Re-exports library functions and types. |

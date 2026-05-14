@@ -4,7 +4,7 @@ import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js'
 import { CallToolRequestSchema, ListToolsRequestSchema } from '@modelcontextprotocol/sdk/types.js';
 import * as codeGraphTools from './tools/index.js';
 import { CODE_GRAPH_TOOL_SCHEMAS } from './tool-schemas.js';
-const server = new Server({ name: 'system_code_graph', version: '1.0.0' }, { capabilities: { tools: {} } });
+const server = new Server({ name: 'mk-code-index', version: '1.0.0' }, { capabilities: { tools: {} } });
 server.setRequestHandler(ListToolsRequestSchema, async () => ({
     tools: CODE_GRAPH_TOOL_SCHEMAS,
 }));

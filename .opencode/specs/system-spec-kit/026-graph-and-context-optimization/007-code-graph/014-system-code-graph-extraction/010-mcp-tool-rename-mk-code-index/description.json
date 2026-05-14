@@ -1,0 +1,24 @@
+{
+  "level": "1",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/010-mcp-tool-rename-mk-code-index",
+  "description": "MCP Tool Rename mk-code-index",
+  "keywords": [
+    "mcp",
+    "tool",
+    "rename",
+    "mk",
+    "code",
+    "index"
+  ],
+  "lastUpdated": "2026-05-14T17:29:04Z",
+  "specId": "010",
+  "folderSlug": "mcp-tool-rename-mk-code-index",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "007-code-graph",
+    "014-system-code-graph-extraction"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}

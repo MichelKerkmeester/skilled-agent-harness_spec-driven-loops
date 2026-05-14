@@ -9,7 +9,7 @@ _memory:
     last_updated_at: "2026-05-14T09:17:09Z"
     last_updated_by: "codex"
     recent_action: "Completed Phase 007 standalone MCP topology pivot"
-    next_safe_action: "Restart MCP children to pick up system_code_graph"
+    next_safe_action: "Restart MCP children to pick up mk-code-index"
     blockers: []
     key_files:
       - "SKILL.md"
@@ -18,7 +18,7 @@ _memory:
       - "manual_testing_playbook/22--context-preservation-and-code-graph/"
 ---
 
-<!-- PHASE 007 STANDALONE MCP COMPLETE — code, database, docs co-located; MCP tools registered under `mcp__system_code_graph__*` namespace via standalone server. -->
+<!-- PHASE 007 STANDALONE MCP COMPLETE — code, database, docs co-located; MCP tools registered under `mcp__mk_code_index__*` namespace via standalone server. -->
 
 <!-- Keywords: code-graph, code graph, structural code indexing, blast radius, impact analysis, code_graph_scan, code_graph_query, code_graph_context, code_graph_status, ccc_status, detect_changes -->
 
@@ -49,7 +49,7 @@ Use this skill for:
 
 The code-graph subsystem exposes 12 tools, owns 7 graph tables, and currently indexes a 55 MB live graph. It is consumed by 5 cross-subsystem handlers, 6 startup hooks, and the OpenCode plugin bridge.
 
-The code-graph subsystem now lives in `.opencode/skills/system-code-graph/`. Stable MCP tool IDs are registered through the standalone `system_code_graph` MCP server, exposed to clients as `mcp__system_code_graph__*`.
+The code-graph subsystem now lives in `.opencode/skills/system-code-graph/`. Stable MCP tool IDs are registered through the standalone `mk-code-index` MCP server, exposed to clients as `mcp__mk_code_index__*`.
 <!-- /ANCHOR:overview -->
 
 ---
@@ -87,8 +87,8 @@ See [README.md](./README.md) for the overview and tool list. Runtime source live
 <!-- ANCHOR:rules -->
 ## 4. RULES
 
-- MCP tools are registered under standalone `system_code_graph` per ADR-002.
-- MCP callers use `mcp__system_code_graph__code_graph_*`, `mcp__system_code_graph__ccc_*`, and `mcp__system_code_graph__detect_changes`.
+- MCP tools are registered under standalone `mk-code-index` per ADR-002.
+- MCP callers use `mcp__mk_code_index__code_graph_*`, `mcp__mk_code_index__ccc_*`, and `mcp__mk_code_index__detect_changes`.
 - Direct library consumers in system-spec-kit handlers/hooks continue to use in-process imports.
 - Keep shared lifecycle and memory surfaces in `system-spec-kit`; move only code-graph-owned docs/source here.
 <!-- /ANCHOR:rules -->
@@ -140,7 +140,7 @@ Cross-subsystem consumers use two intentional paths:
 | Consumer Type | Integration |
 |---------------|-------------|
 | system-spec-kit handlers/hooks/session surfaces | Direct in-process imports from `system-code-graph/mcp_server/lib/*` for shared readiness, startup, and context helpers. |
-| MCP callers, agents, and commands | Standalone `system_code_graph` MCP namespace: `mcp__system_code_graph__code_graph_*`, `mcp__system_code_graph__ccc_*`, and `mcp__system_code_graph__detect_changes`. |
+| MCP callers, agents, and commands | Standalone `mk-code-index` MCP namespace: `mcp__mk_code_index__code_graph_*`, `mcp__mk_code_index__ccc_*`, and `mcp__mk_code_index__detect_changes`. |
 
 The shared SQLite file remains the coordination boundary; the scan loop is the single writer.
 <!-- /ANCHOR:integration-points -->

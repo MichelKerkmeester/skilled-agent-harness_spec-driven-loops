@@ -1,7 +1,7 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Code Graph Tool Schemas
 // ───────────────────────────────────────────────────────────────
-// ADR-002: standalone system_code_graph MCP server owns these schemas.
+// ADR-002: standalone mk-code-index MCP server owns these schemas.
 export { getSchema, getToolSchema, validateToolArgs, } from '../../system-spec-kit/mcp_server/schemas/tool-input-schemas.js';
 const codeGraphScan = {
     name: 'code_graph_scan',

@@ -36,7 +36,7 @@ for (const fname of ['.env.local', '.env']) {
   const p = path.join(root, fname);
   if (fs.existsSync(p)) {
     const n = loadEnvFile(p);
-    if (n > 0) process.stderr.write(`[system-code-graph-launcher] loaded ${n} env(s) from ${fname}\n`);
+    if (n > 0) process.stderr.write(`[mk-code-index-launcher] loaded ${n} env(s) from ${fname}\n`);
   }
 }
 
@@ -59,7 +59,7 @@ if (process.env.SPECKIT_CODE_GRAPH_MAINTAINER_MODE === 'true') {
     process.env[key] = 'true';
   }
   process.stderr.write(
-    '[system-code-graph-launcher] MAINTAINER_MODE=true: forcing all 5 INDEX_* to "true"\n'
+    '[mk-code-index-launcher] MAINTAINER_MODE=true: forcing all 5 INDEX_* to "true"\n'
   );
 }
 
@@ -67,8 +67,8 @@ let skillsDir = path.join(opencodeDir, 'skills');
 let legacySkillDir = path.join(opencodeDir, 'skill');
 let kitDir = path.join(skillsDir, 'system-code-graph');
 let dbDir = path.join(kitDir, 'mcp_server', 'database');
-let lockDir = path.join(dbDir, '.system-code-graph-launcher.lockdir');
-let stateFile = path.join(dbDir, '.system-code-graph-launcher.json');
+let lockDir = path.join(dbDir, '.mk-code-index-launcher.lockdir');
+let stateFile = path.join(dbDir, '.mk-code-index-launcher.json');
 
 const rel = (p) => path.relative(root, p) || '.';
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -76,7 +76,7 @@ const now = () => new Date().toISOString();
 let childProcess = null;
 
 function log(message) {
-  process.stderr.write(`[system-code-graph-launcher] ${message}\n`);
+  process.stderr.write(`[mk-code-index-launcher] ${message}\n`);
 }
 
 function refreshPaths() {
@@ -84,8 +84,8 @@ function refreshPaths() {
   legacySkillDir = path.join(opencodeDir, 'skill');
   kitDir = path.join(skillsDir, 'system-code-graph');
   dbDir = path.join(kitDir, 'mcp_server', 'database');
-  lockDir = path.join(dbDir, '.system-code-graph-launcher.lockdir');
-  stateFile = path.join(dbDir, '.system-code-graph-launcher.json');
+  lockDir = path.join(dbDir, '.mk-code-index-launcher.lockdir');
+  stateFile = path.join(dbDir, '.mk-code-index-launcher.json');
 }
 
 function exists(p) {
@@ -249,7 +249,7 @@ for (const signal of ['SIGINT', 'SIGTERM', 'SIGHUP']) {
     if (lockHeld) {
       buildIfNeeded(actions);
       writeState({
-        command: 'system-code-graph-launcher',
+        command: 'mk-code-index-launcher',
         start: started,
         end: now(),
         status: 'ready',
@@ -262,7 +262,7 @@ for (const signal of ['SIGINT', 'SIGTERM', 'SIGHUP']) {
   } catch (error) {
     try {
       writeState({
-        command: 'system-code-graph-launcher',
+        command: 'mk-code-index-launcher',
         start: started,
         end: now(),
         status: 'failed',

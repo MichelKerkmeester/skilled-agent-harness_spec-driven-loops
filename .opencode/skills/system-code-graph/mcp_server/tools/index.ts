@@ -12,7 +12,7 @@ export async function dispatch(name: string, args: Record<string, unknown>) {
   return {
     content: [{
       type: 'text' as const,
-      text: JSON.stringify({ status: 'error', error: `Unknown system_code_graph tool: ${name}` }),
+      text: JSON.stringify({ status: 'error', error: `Unknown mk-code-index tool: ${name}` }),
     }],
     isError: true,
   };
