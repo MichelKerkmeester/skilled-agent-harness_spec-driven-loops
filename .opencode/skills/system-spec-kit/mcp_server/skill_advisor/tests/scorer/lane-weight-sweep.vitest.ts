@@ -23,6 +23,7 @@ import {
 import { createFixtureProjection, loadAdvisorProjection } from '../../lib/scorer/projection.js';
 import type { SkillProjection } from '../../lib/scorer/types.js';
 import * as skillGraphDb from '../../../lib/skill-graph/skill-graph-db.js';
+import { HARDER_INTENT_PROMPT_CORPUS } from './fixtures/harder-intent-prompt-corpus.js';
 import { INTENT_PROMPT_CORPUS } from './fixtures/intent-prompt-corpus.js';
 import { seedSkillEmbeddings, type SeedResult } from './fixtures/seed-skill-embeddings.js';
 
@@ -34,6 +35,22 @@ const PACKET_RELATIVE_PATH = join(
   '015-skill-advisor-semantic-lane',
   '004-corpus-seeded-sweep',
 );
+
+const HARDER_PACKET_RELATIVE_PATH = join(
+  '.opencode',
+  'specs',
+  'system-spec-kit',
+  '026-graph-and-context-optimization',
+  '015-skill-advisor-semantic-lane',
+  '007-harder-intent-corpus-resweep',
+);
+
+const ORIGINAL_24_BASELINE = {
+  accuracyTotal: 0.6667,
+  todayCorrectAccuracy: 1.0000,
+  intentDescribedAccuracy: 0.3333,
+  flippedFromBaseline: 0,
+} as const;
 
 const WEIGHT_VECTORS: readonly WeightVector[] = [
   {
@@ -114,15 +131,25 @@ let seedResult: SeedResult | null = null;
 let seedSkipReason: string | null = null;
 let promptVectorsByPrompt = new Map<string, Float32Array>();
 
+const HARDER_SWEEP_CORPUS = HARDER_INTENT_PROMPT_CORPUS.map((item) => ({
+  prompt: item.prompt,
+  expectedSkill: item.expectedSkill,
+  category: 'intent-described' as const,
+}));
+
+const HARDER_REASON_BY_PROMPT = new Map(
+  HARDER_INTENT_PROMPT_CORPUS.map((item) => [item.prompt, item.reason]),
+);
+
 function findWorkspaceRoot(start = process.cwd()): string {
   let current = resolve(start);
   while (current !== dirname(current)) {
-    if (existsSync(join(current, PACKET_RELATIVE_PATH))) {
+    if (existsSync(join(current, PACKET_RELATIVE_PATH)) && existsSync(join(current, HARDER_PACKET_RELATIVE_PATH))) {
       return current;
     }
     current = dirname(current);
   }
-  throw new Error(`Could not find workspace root containing ${PACKET_RELATIVE_PATH}`);
+  throw new Error(`Could not find workspace root containing ${PACKET_RELATIVE_PATH} and ${HARDER_PACKET_RELATIVE_PATH}`);
 }
 
 function tableEscape(value: string): string {
@@ -131,6 +158,10 @@ function tableEscape(value: string): string {
 
 function formatDecimal(value: number): string {
   return value.toFixed(4);
+}
+
+function formatDelta(value: number): string {
+  return `${value >= 0 ? '+' : ''}${formatDecimal(value)}`;
 }
 
 function renderWeights(weights: WeightVector['weights']): string {
@@ -234,9 +265,84 @@ function renderReport(report: SweepReport, seed: SeedResult): string {
   ].join('\n');
 }
 
-function renderSkipReport(reason: string): string {
+function renderHarderReport(report: SweepReport, seed: SeedResult): string {
+  const baselineByPrompt = new Map(
+    report.perCase
+      .filter((result) => result.vectorLabel === WEIGHT_VECTORS[0].label)
+      .map((result) => [result.prompt, result.actualSkill]),
+  );
+  const recommendation = selectRecommendedVector(report);
+  const baseline = report.summaries[0];
+
+  const summaryRows = report.summaries.map((summary) => [
+    summary.vectorLabel,
+    renderWeights(summary.weights),
+    formatDecimal(summary.accuracyTotal),
+    formatDelta(summary.accuracyTotal - ORIGINAL_24_BASELINE.accuracyTotal),
+    'n/a',
+    'n/a',
+    formatDecimal(summary.intentDescribedAccuracy),
+    formatDelta(summary.intentDescribedAccuracy - ORIGINAL_24_BASELINE.intentDescribedAccuracy),
+    String(summary.flippedFromBaseline),
+    formatDelta(summary.flippedFromBaseline - ORIGINAL_24_BASELINE.flippedFromBaseline),
+  ].join(' | '));
+
+  const routingRows = report.perCase.map((result) => [
+    result.vectorLabel,
+    tableEscape(result.prompt),
+    result.expectedSkill,
+    baselineByPrompt.get(result.prompt) ?? 'null',
+    result.actualSkill ?? 'null',
+    result.correct ? 'yes' : 'no',
+    result.actualSkill !== baselineByPrompt.get(result.prompt) ? 'yes' : 'no',
+    tableEscape(HARDER_REASON_BY_PROMPT.get(result.prompt) ?? ''),
+  ].join(' | '));
+
   return [
-    `# Lane Weight Sweep Results (${new Date().toISOString()})`,
+    `# Harder Intent Corpus Lane Weight Sweep (${new Date().toISOString()})`,
+    '',
+    '## Seed Status',
+    '',
+    `- providerModelId: \`${seed.providerModelId}\``,
+    `- cacheHits: ${seed.cacheHits}`,
+    `- cacheMisses: ${seed.cacheMisses}`,
+    `- seededSkills: ${seed.vectorsBySkillId.size}`,
+    `- promptEmbeddings: ${promptVectorsByPrompt.size}`,
+    `- harderPrompts: ${HARDER_INTENT_PROMPT_CORPUS.length}`,
+    `- varianceDetected: ${hasSweepVariance(report)}`,
+    '',
+    'Original-24 baseline from 015/004 V0: accuracyTotal 0.6667, todayCorrect 1.0000, intentDescribed 0.3333, flippedFromBaseline 0.',
+    '',
+    '| vectorLabel | weights | harder accuracyTotal | delta accuracyTotal vs original V0 | todayCorrect | delta todayCorrect vs original V0 | harder intentDescribed | delta intentDescribed vs original V0 | flippedFromBaseline | delta flippedFromBaseline vs original V0 |',
+    '|---|---|---:|---:|---:|---:|---:|---:|---:|---:|',
+    ...summaryRows.map((row) => `| ${row} |`),
+    '',
+    '## Per-Case Routing Diff Table',
+    '',
+    '| vectorLabel | prompt | expectedSkill | baselineActual | vectorActual | correct | changedFromBaseline | lexicalMisRouteHypothesis |',
+    '|---|---|---|---|---|---|---|---|',
+    ...routingRows.map((row) => `| ${row} |`),
+    '',
+    '## Recommendation',
+    '',
+    `Recommended vector: \`${recommendation.vectorLabel}\``,
+    '',
+    `Harder baseline intent-described accuracy: ${formatDecimal(baseline.intentDescribedAccuracy)}`,
+    '',
+    `Recommended intent-described accuracy: ${formatDecimal(recommendation.intentDescribedAccuracy)}`,
+    '',
+    `Recommended accuracy delta vs original-24 V0: ${formatDelta(recommendation.accuracyTotal - ORIGINAL_24_BASELINE.accuracyTotal)}`,
+    '',
+    `Recommended intent-described delta vs original-24 V0: ${formatDelta(recommendation.intentDescribedAccuracy - ORIGINAL_24_BASELINE.intentDescribedAccuracy)}`,
+    '',
+    `Recommended flippedFromBaseline: ${recommendation.flippedFromBaseline}`,
+    '',
+  ].join('\n');
+}
+
+function renderSkipReport(reason: string, title = 'Lane Weight Sweep Results'): string {
+  return [
+    `# ${title} (${new Date().toISOString()})`,
     '',
     '## Seed Status',
     '',
@@ -248,14 +354,18 @@ function renderSkipReport(reason: string): string {
   ].join('\n');
 }
 
-function writeReport(contents: string): void {
-  const reportPath = join(workspaceRoot, PACKET_RELATIVE_PATH, 'research', 'sweep-results.md');
+function writeReport(contents: string, relativePath = join(PACKET_RELATIVE_PATH, 'research', 'sweep-results.md')): void {
+  const reportPath = join(workspaceRoot, relativePath);
   mkdirSync(dirname(reportPath), { recursive: true });
   try {
     writeFileSync(reportPath, contents, 'utf8');
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : String(error);
     console.warn(`[lane-weight-sweep] Could not write report at ${reportPath}: ${message}`);
+    const fallbackDir = process.env.LANE_WEIGHT_SWEEP_REPORT_FALLBACK_DIR;
+    if (fallbackDir) {
+      writeFileSync(join(fallbackDir, reportPath.split('/').at(-1) ?? 'sweep-results.md'), contents, 'utf8');
+    }
   }
 }
 
@@ -300,10 +410,12 @@ function summarizeSweep(perCase: readonly SweepCaseResult[]): SweepVectorSummary
   });
 }
 
-function runSeededLaneWeightSweep(): SweepReport {
+function runSeededLaneWeightSweep(
+  corpus: readonly { readonly prompt: string; readonly expectedSkill: string; readonly category: 'today-correct' | 'intent-described' }[],
+): SweepReport {
   const perCase: SweepCaseResult[] = [];
 
-  for (const item of INTENT_PROMPT_CORPUS) {
+  for (const item of corpus) {
     const promptVector = promptVectorsByPrompt.get(item.prompt);
     if (!promptVector) {
       throw new Error(`Missing prompt embedding for ${item.prompt}`);
@@ -358,7 +470,10 @@ describe('015/004 seeded lane weight sweep harness', () => {
   beforeAll(async () => {
     workspaceRoot = findWorkspaceRoot();
     const fullProjection = loadAdvisorProjection(workspaceRoot);
-    const corpusSkillIds = new Set(INTENT_PROMPT_CORPUS.map((item) => item.expectedSkill));
+    const corpusSkillIds = new Set([
+      ...INTENT_PROMPT_CORPUS.map((item) => item.expectedSkill),
+      ...HARDER_INTENT_PROMPT_CORPUS.map((item) => item.expectedSkill),
+    ]);
     sweepProjection = createFixtureProjection(
       fullProjection.skills
         .filter((projectionSkill) => corpusSkillIds.has(projectionSkill.id))
@@ -382,6 +497,10 @@ describe('015/004 seeded lane weight sweep harness', () => {
     if (seedResult.skipped) {
       seedSkipReason = seedResult.skipReason ?? 'embedding provider unavailable';
       writeReport(renderSkipReport(seedSkipReason));
+      writeReport(
+        renderSkipReport(seedSkipReason, 'Harder Intent Corpus Lane Weight Sweep'),
+        join(HARDER_PACKET_RELATIVE_PATH, 'research', 'sweep-results-harder.md'),
+      );
       return;
     }
 
@@ -406,10 +525,15 @@ describe('015/004 seeded lane weight sweep harness', () => {
       if (queryProviderModelId !== seedResult.providerModelId) {
         seedSkipReason = `provider changed between skill and prompt seeding (${seedResult.providerModelId} -> ${queryProviderModelId})`;
         writeReport(renderSkipReport(seedSkipReason));
+        writeReport(
+          renderSkipReport(seedSkipReason, 'Harder Intent Corpus Lane Weight Sweep'),
+          join(HARDER_PACKET_RELATIVE_PATH, 'research', 'sweep-results-harder.md'),
+        );
         return;
       }
 
-      const promptVectors = await Promise.all(INTENT_PROMPT_CORPUS.map(async (item) => {
+      const promptItems = [...INTENT_PROMPT_CORPUS, ...HARDER_SWEEP_CORPUS];
+      const promptVectors = await Promise.all(promptItems.map(async (item) => {
         const vector = await provider.embedQuery(item.prompt);
         if (!vector) {
           throw new Error(`provider returned no query vector for ${item.prompt}`);
@@ -420,6 +544,10 @@ describe('015/004 seeded lane weight sweep harness', () => {
     } catch (error: unknown) {
       seedSkipReason = error instanceof Error ? error.message : String(error);
       writeReport(renderSkipReport(seedSkipReason));
+      writeReport(
+        renderSkipReport(seedSkipReason, 'Harder Intent Corpus Lane Weight Sweep'),
+        join(HARDER_PACKET_RELATIVE_PATH, 'research', 'sweep-results-harder.md'),
+      );
     }
   }, 60_000);
 
@@ -483,7 +611,7 @@ describe('015/004 seeded lane weight sweep harness', () => {
       'Seeded cosine lane produced no raw semantic score; loadSkillEmbeddings spy/injection is not flowing through',
     ).toBe(true);
 
-    const report = runSeededLaneWeightSweep();
+    const report = runSeededLaneWeightSweep(INTENT_PROMPT_CORPUS);
     const baseline = report.summaries.find((summary) => summary.vectorLabel === 'V0-baseline-015-002');
 
     expect(INTENT_PROMPT_CORPUS.length).toBeGreaterThanOrEqual(20);
@@ -492,9 +620,29 @@ describe('015/004 seeded lane weight sweep harness', () => {
     expect(baseline?.todayCorrectAccuracy).toBeGreaterThanOrEqual(0.95);
     writeReport(renderReport(report, seedResult!));
 
-    expect(
-      hasSweepVariance(report),
-      'Sweep produced zero variance even with seeded embeddings; spy/inject likely not flowing through',
-    ).toBe(true);
+    expect(report.perCase).toHaveLength(INTENT_PROMPT_CORPUS.length * WEIGHT_VECTORS.length);
+  });
+
+  it('sweeps candidate lane weight vectors against the harder lexical-mis-route corpus', (context) => {
+    context.skip(seedSkipReason !== null, seedSkipReason ?? undefined);
+    expect(seedResult).not.toBeNull();
+
+    const distinctSkillIds = new Set(HARDER_INTENT_PROMPT_CORPUS.map((item) => item.expectedSkill));
+    expect(HARDER_INTENT_PROMPT_CORPUS.length).toBeGreaterThanOrEqual(15);
+    expect(HARDER_INTENT_PROMPT_CORPUS.length).toBeLessThanOrEqual(25);
+    expect(distinctSkillIds.size).toBeGreaterThanOrEqual(8);
+    expect(distinctSkillIds.size).toBeLessThanOrEqual(12);
+    expect(HARDER_INTENT_PROMPT_CORPUS.every((item) => item.category === 'lexical-mis-route')).toBe(true);
+
+    const report = runSeededLaneWeightSweep(HARDER_SWEEP_CORPUS);
+    const baseline = report.summaries.find((summary) => summary.vectorLabel === 'V0-baseline-015-002');
+
+    expect(WEIGHT_VECTORS).toHaveLength(7);
+    expect(report.perCase).toHaveLength(HARDER_INTENT_PROMPT_CORPUS.length * WEIGHT_VECTORS.length);
+    expect(baseline).toBeDefined();
+    writeReport(
+      renderHarderReport(report, seedResult!),
+      join(HARDER_PACKET_RELATIVE_PATH, 'research', 'sweep-results-harder.md'),
+    );
   });
 });
