@@ -151,13 +151,19 @@ function ensureLayout(actions) {
 }
 
 function requiredArtifacts() {
+  const skillDirName = path.basename(kitDir);
   return [
     path.join(kitDir, 'mcp_server', 'dist', 'index.js'),
+    path.join(kitDir, 'dist', skillDirName, 'mcp_server', 'index.js'),
   ];
 }
 
 function artifactsReady() {
   return requiredArtifacts().every(exists);
+}
+
+function localTscEntrypoint() {
+  return path.join(kitDir, 'node_modules', 'typescript', 'bin', 'tsc');
 }
 
 function buildIfNeeded(actions) {
@@ -170,9 +176,11 @@ function buildIfNeeded(actions) {
   }
 
   actions.push('installed dependencies and built @spec-kit/system-code-graph MCP server');
-  const installCommand = exists(path.join(kitDir, 'package-lock.json')) ? 'ci' : 'install';
-  run('npm', [installCommand, '--no-audit', '--no-fund', '--silent'], { cwd: kitDir });
-  run('npx', ['tsc', '-p', 'tsconfig.json'], { cwd: kitDir });
+  if (!exists(localTscEntrypoint())) {
+    const installCommand = exists(path.join(kitDir, 'package-lock.json')) ? 'ci' : 'install';
+    run('npm', [installCommand, '--no-audit', '--no-fund', '--silent'], { cwd: kitDir });
+  }
+  run(process.execPath, [localTscEntrypoint(), '-p', 'tsconfig.json'], { cwd: kitDir });
 
   // F012: Derive the nested dist subdir from kitDir's basename rather than hardcoding
   // the directory name. tsc emits with rootDir=".." so the skill directory name
