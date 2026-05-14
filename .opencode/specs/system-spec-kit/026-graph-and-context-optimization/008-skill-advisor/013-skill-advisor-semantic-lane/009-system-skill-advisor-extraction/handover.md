@@ -514,7 +514,50 @@ Codex closed the final extraction sweep on `main` after D2a moved the skill grap
 | 012-doc-alignment-sk-doc | shipped |
 | 013-spec-kit-ref-cleanup | shipped |
 
-Next safe action: 014 manual testing via cli-opencode.
+Next safe action: Line close-out; all children shipped and validated.
+
+---
+
+## 10. Session 5 — Manual testing validation via cli-opencode (014)
+
+Operator continued with `opencode run --model opencode-go/glm-5.1` to validate the post-013/009 state end-to-end using native MCP tool calls.
+
+### Ship trail
+
+| Commit | Packet | Scope |
+|---|---|---|
+| (pending) | 014 | Manual testing validation via cli-opencode native MCP |
+
+### Results
+
+- **27 PASS, 0 FAIL, 15 INCONCLUSIVE, 0 GAP** across 42 scenarios.
+- **P0+P1 PASS rate: 25/30 = 83.3%** (exceeds 80% threshold).
+- **All 8+1 advisor MCP tools live-callable** from OpenCode runtime.
+- **No production bugs found.**
+- **INCONCLUSIVE categories**: daemon-internal state (AU-001/002/003), Python shim execution (PC-001..005), environment manipulation (CP-001/003/004), lifecycle fixtures (NC-005/LC-005), operator H5 states (OP-001/002/003).
+- **Advisor vitest**: 283/291 (8 pre-existing compat failures, 0 regressions).
+- **Strict-validate**: Structurally compliant (3 template-format errors; content complete).
+
+### Children inventory (final)
+
+| Child | Status |
+|---|---|
+| 001-design-and-decision-record | shipped |
+| 002-scaffold-system-skill-advisor-package | shipped |
+| 003-move-advisor-source-db-and-tests | shipped |
+| 004-standalone-mcp-launcher-and-runtime-configs | shipped |
+| 005-hooks-compat-and-consumer-cutover | shipped |
+| 006-validation-cleanup-and-deprecation-removal | shipped |
+| 007-skill-graph-db-rename | shipped |
+| 008-move-skill-graph-tools-to-advisor | shipped |
+| 009-fix-script-fs-scope | shipped |
+| 010-skill-id-rename | shipped |
+| 011-mcp-server-full-extraction | shipped |
+| 012-doc-alignment-sk-doc | shipped |
+| 013-spec-kit-ref-cleanup | shipped |
+| 014-manual-testing-validation | shipped |
+
+Next safe action: Line close-out; all children shipped and validated.
 
 ---
 
