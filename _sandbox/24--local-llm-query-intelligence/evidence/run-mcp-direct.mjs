@@ -24,6 +24,7 @@ const COCOINDEX_DAEMON_STDERR_LOG = path.join(
   'run-2026-05-14-shared-daemon.cocoindex.stderr.log',
 );
 const DAEMON_STDERR_CAP_BYTES = 200000;
+const CONNECT_TIMEOUT_MS = 60000;
 const DEFAULT_SCENARIOS = Array.from({ length: 15 }, (_, index) => 401 + index);
 const execFileAsync = promisify(execFile);
 
@@ -270,7 +271,16 @@ async function connectSharedClient({ name, transportOptions, stderrLog }) {
 
   const client = new Client({ name: `shared-daemon-suite-runner-${name}`, version: '0.1.0' });
   try {
-    await client.connect(transport);
+    await Promise.race([
+      client.connect(transport),
+      new Promise((_, reject) => {
+        const timer = setTimeout(
+          () => reject(new Error(`${name} client connect timeout after ${CONNECT_TIMEOUT_MS}ms`)),
+          CONNECT_TIMEOUT_MS,
+        );
+        timer.unref();
+      }),
+    ]);
     const listed = await client.listTools();
     return {
       client,
@@ -578,7 +588,9 @@ async function main() {
     }
   } finally {
     writeSummary(rows);
-    await Promise.all(connections.map((connection) => connection.client?.close().catch(() => {})));
+    await Promise.all(connections.map((connection) =>
+      connection.client ? connection.client.close().catch(() => {}) : Promise.resolve()
+    ));
     await Promise.all(connections.map((connection) => connection.stderr.end()));
   }
 }

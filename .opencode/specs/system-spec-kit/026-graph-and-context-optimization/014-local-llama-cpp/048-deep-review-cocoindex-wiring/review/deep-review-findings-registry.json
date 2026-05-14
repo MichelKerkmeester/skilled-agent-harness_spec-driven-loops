@@ -1,0 +1,44 @@
+{
+  "sessionId": "rvw-2026-05-14-cocoindex-wiring",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {"findingId":"F001","severity":"P1","category":"correctness","status":"active","dimension":"correctness","title":"finally cleanup throws TypeError on null client","file":"_sandbox/24--local-llm-query-intelligence/evidence/run-mcp-direct.mjs","line":581,"firstSeen":1,"lastSeen":5,"transitions":[{"iteration":1,"from":null,"to":"P1","reason":"Initial discovery"},{"iteration":5,"from":"P1","to":"P1","reason":"Adversarial re-check upheld"}]},
+    {"findingId":"F002","severity":"P1","category":"correctness","status":"active","dimension":"correctness","title":"No timeout on client.connect()","file":"_sandbox/24--local-llm-query-intelligence/evidence/run-mcp-direct.mjs","line":273,"firstSeen":1,"lastSeen":5,"transitions":[{"iteration":1,"from":null,"to":"P1","reason":"Initial discovery"},{"iteration":5,"from":"P1","to":"P1","reason":"Adversarial re-check upheld"}]},
+    {"findingId":"F003","severity":"P2","category":"correctness","status":"active","dimension":"security","title":"parseObjectLiteral uses Function() constructor","file":"_sandbox/24--local-llm-query-intelligence/evidence/run-mcp-direct.mjs","line":138,"firstSeen":1,"lastSeen":2,"transitions":[{"iteration":1,"from":null,"to":"P2","reason":"Initial discovery (correctness)"},{"iteration":2,"from":"P2","to":"P2","reason":"Confirmed security dimension"}]},
+    {"findingId":"F004","severity":"P2","category":"correctness","status":"active","dimension":"correctness","title":"responseFailureMessage may miss error patterns","file":"_sandbox/24--local-llm-query-intelligence/evidence/run-mcp-direct.mjs","line":203,"firstSeen":1,"lastSeen":1,"transitions":[{"iteration":1,"from":null,"to":"P2","reason":"Initial discovery"}]},
+    {"findingId":"F005","severity":"P2","category":"correctness","status":"active","dimension":"correctness","title":"runGenericScenario fail-fast loses parallel-call information","file":"_sandbox/24--local-llm-query-intelligence/evidence/run-mcp-direct.mjs","line":447,"firstSeen":1,"lastSeen":1,"transitions":[{"iteration":1,"from":null,"to":"P2","reason":"Initial discovery"}]},
+    {"findingId":"F006","severity":"P2","category":"security","status":"active","dimension":"security","title":"Unconditional process.env propagation to subprocess daemons","file":"_sandbox/24--local-llm-query-intelligence/evidence/run-mcp-direct.mjs","line":524,"firstSeen":2,"lastSeen":2,"transitions":[{"iteration":2,"from":null,"to":"P2","reason":"Initial discovery"}]},
+    {"findingId":"F007","severity":"P2","category":"security","status":"active","dimension":"security","title":"Stderr capped logs may capture sensitive daemon output","file":"_sandbox/24--local-llm-query-intelligence/evidence/run-mcp-direct.mjs","line":21,"firstSeen":2,"lastSeen":2,"transitions":[{"iteration":2,"from":null,"to":"P2","reason":"Initial discovery"}]},
+    {"findingId":"F008","severity":"P2","category":"traceability","status":"active","dimension":"traceability","title":"Handover file describes 045 as PARTIAL contradicting commit","file":".opencode/specs/.../HANDOVER-2026-05-14-evening.md","line":96,"firstSeen":3,"lastSeen":3,"transitions":[{"iteration":3,"from":null,"to":"P2","reason":"Initial discovery"}]},
+    {"findingId":"F009","severity":"P2","category":"traceability","status":"active","dimension":"traceability","title":"Spec requirements describe only single-client architecture","file":"045-shared-daemon-suite-runner/spec.md","line":112,"firstSeen":3,"lastSeen":3,"transitions":[{"iteration":3,"from":null,"to":"P2","reason":"Initial discovery"}]},
+    {"findingId":"F010","severity":"P2","category":"traceability","status":"active","dimension":"traceability","title":"Architecture tradeoff analysis not documented","file":"045-shared-daemon-suite-runner/implementation-summary.md","line":119,"firstSeen":3,"lastSeen":3,"transitions":[{"iteration":3,"from":null,"to":"P2","reason":"Initial discovery"}]},
+    {"findingId":"F011","severity":"P2","category":"maintainability","status":"active","dimension":"maintainability","title":"Test uses fallback keys not primary keys from production","file":"mcp_server/tests/shared-daemon-runner-helpers.vitest.ts","line":48,"firstSeen":4,"lastSeen":4,"transitions":[{"iteration":4,"from":null,"to":"P2","reason":"Initial discovery"}]},
+    {"findingId":"F012","severity":"P2","category":"maintainability","status":"active","dimension":"maintainability","title":"Minimal test coverage (2 of 14+ functions tested)","file":"mcp_server/tests/shared-daemon-runner-helpers.vitest.ts","line":1,"firstSeen":4,"lastSeen":4,"transitions":[{"iteration":4,"from":null,"to":"P2","reason":"Initial discovery"}]},
+    {"findingId":"F013","severity":"P2","category":"maintainability","status":"active","dimension":"maintainability","title":"Deep relative import path fragile to file moves","file":"mcp_server/tests/shared-daemon-runner-helpers.vitest.ts","line":6,"firstSeen":4,"lastSeen":4,"transitions":[{"iteration":4,"from":null,"to":"P2","reason":"Initial discovery"}]},
+    {"findingId":"F014","severity":"P2","category":"maintainability","status":"active","dimension":"maintainability","title":"runGenericScenario mixes 3 phases in one function","file":"_sandbox/24--local-llm-query-intelligence/evidence/run-mcp-direct.mjs","line":422,"firstSeen":4,"lastSeen":4,"transitions":[{"iteration":4,"from":null,"to":"P2","reason":"Initial discovery"}]}
+  ],
+  "resolvedFindings": [],
+  "repeatedFindings": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "blockedStopHistory": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 2,
+    "P2": 12
+  },
+  "openFindingsCount": 14,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.72,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "corruptionWarnings": []
+}

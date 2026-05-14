@@ -2,4 +2,4 @@ scenario	verdict	key_metric	detail
 403	PASS	4/4 calls succeeded	All mechanically parsed MCP calls completed through the shared daemon.
 404	PASS	3/3 calls succeeded	All mechanically parsed MCP calls completed through the shared daemon.
 407	PASS	3/3 calls succeeded	All mechanically parsed MCP calls completed through the shared daemon.
-410	PASS	steady p50=7ms p95=8ms p99=760ms qps=44.31	cold p50=11ms p95=106ms p99=1837ms qps=14.96; targets met 4/4
+410	PASS	steady p50=7ms p95=8ms p99=760ms qps=44.72	cold p50=11ms p95=103ms p99=1787ms qps=15.23; targets met 4/4
