@@ -1,25 +1,40 @@
 ---
-title: "24 — Local-LLM query intelligence"
-description: "Operator-driven scenarios that evaluate the real query intelligence delivered by the post-014 local-LLM stack: EmbeddingGemma 300m (q8) via llama-cpp on Apple Silicon Metal, with hf-local ONNX as the fallback. Each scenario fires a realistic user query through the Memory MCP / CocoIndex semantic search path and grades the response against expected signals."
+title: "24 — Local-LLM memory substrate (query intelligence + causal graph + cross-AI handoff)"
+description: "Operator-driven scenarios that evaluate the real-world behavior of the post-014 local-LLM stack (EmbeddingGemma 300m q8 via llama-cpp on Apple Silicon Metal, with hf-local ONNX fallback) as a SHARED memory substrate for AI assistants. Goes beyond mechanical embedding shape checks: tests query intelligence, causal-graph quality, drift detection, cross-AI memory handoff, and concurrent multi-AI safety."
 audited_post_018: true
 ---
 
-# 24 — Local-LLM query intelligence
+# 24 — Local-LLM memory substrate
 
 ## Why this category
 
-The vitest-style tests under `mcp_server/tests/local-llm-features/` verify the **mechanical** properties of the local-LLM stack: vector shape, determinism, L2 normalization, cascade resolution, profile-keyed DB filenames, auto-migration, native module loading. Those are necessary but not sufficient — they cannot tell you whether the system **actually retrieves the right thing** when a real operator types a real question.
+The vitest-style tests in `mcp_server/tests/local-llm-features/` verify the **mechanical** properties of the local-LLM stack: vector shape, determinism, L2 normalization, cascade resolution, profile-keyed DB filenames, auto-migration, native module loading. Those are necessary but not sufficient — they cannot tell you whether the system **actually behaves correctly** for the AI assistants that depend on it.
 
-This playbook fills that gap. Each scenario is a small, realistic query session that exercises one dimension of query intelligence end-to-end:
+This playbook fills that gap. The local LLM (EmbeddingGemma via llama-cpp) is the embedding backbone that powers:
 
-- **Recall under paraphrase** — does a memory survive when the operator queries it with different words?
-- **Code-intent matching** — does "how does X work" find X's implementation, not just the docs?
-- **Disambiguation** — when a token has multiple senses, does context choose the right one?
-- **Multi-aspect synthesis** — does a compound query pull from multiple sources correctly?
-- **Adversarial near-miss** — does lexical overlap alone fool the ranker?
-- **LLM-made output recall** — when the local LLM has stored something, is it retrievable later?
+- **Query intelligence** — does a paraphrased query find the right memory?
+- **Causal graph quality** — does the embedding give the edge builder enough signal to connect related memories without false-linking unrelated ones?
+- **Drift detection** — does `memory_drift_why` correctly identify contradictory memories about the same concept?
+- **Cross-AI handoff** — when Claude stores something, can Codex/Gemini find it later in a separate CLI session?
+- **Concurrent safety** — when two AIs interleave save + search against the same DB, does the substrate stay coherent?
 
-Run each scenario manually. Capture the top-K returned by the search. Compare against the expected signals. Mark PASS / FAIL / SKIP and attach the verbatim transcript.
+Each scenario fires a realistic AI-to-CLI handoff prompt that mimics the actual production pattern: one AI (the orchestrator) dispatching another AI (an external CLI like cli-codex / cli-gemini / cli-claude-code) to exercise the Memory MCP through its own MCP client. The pattern reflects how the Memory MCP is actually used — never by humans typing directly, always by AI assistants invoking each other.
+
+## Prompt convention: AI-to-CLI handoff
+
+Every scenario uses this prompt shape (mirrors production):
+
+```
+You are <external-CLI-name>. I am <orchestrating-AI> running <scenario-title>.
+The local LLM (EmbeddingGemma via llama-cpp) is the embedding backbone.
+
+I need you to:
+1. <concrete action through MCP tool>
+2. <concrete action>
+3. Return JSON with: <required fields>
+```
+
+The orchestrating AI invokes the external CLI through `codex exec`, `gemini ...`, or `claude -p ...`. The external CLI opens its own MCP session against the same Memory MCP DB. The cross-AI nature is the point — every scenario tests behavior that depends on the substrate working consistently across AI consumers.
 
 ## Pre-flight (run once before the suite)
 
@@ -33,49 +48,68 @@ ls .opencode/skills/system-spec-kit/mcp_server/database/context-index__*.sqlite 
 
 # Confirm CocoIndex has indexed the repo:
 .opencode/skills/mcp-coco-index/mcp_server/.venv/bin/ccc status 2>&1 | head -5
+
+# Confirm at least 2 external CLIs are installed for cross-AI scenarios:
+which codex && codex --version
+which gemini && gemini --version
+which claude && claude --version
 ```
 
-If llama-cpp is missing, the scenarios still run — they just exercise hf-local instead. Note which provider was active in each scenario's evidence section.
+If only one external CLI is available, the cross-AI scenarios (414, 415) can still run using a single CLI in two separate invocations — note that the test is then weaker (same provider on both sides).
 
 ## Scenario inventory
 
+### A. Query intelligence (401-410)
+
 | # | Title | Probes | Pass signal |
 |---|-------|--------|-------------|
-| 401 | Paraphrase recall | Same concept, different wording → same memory surfaces | Top-3 includes the paraphrased target |
-| 402 | Synonymy across vocabularies | Domain jargon vs plain language | Both queries hit the same canonical docs |
-| 403 | Code-intent matching | Question-form query finds implementation | Implementation file ranks higher than its README |
-| 404 | Disambiguation under context | Polysemous query token | Active context biases the ranking correctly |
-| 405 | Multi-aspect query synthesis | 3-concept compound query | Top-K spans all 3 concepts |
+| 401 | Paraphrase recall | Same concept, different wording → same memory surfaces | Top-3 includes the paraphrased target, score > 0.5 |
+| 402 | Synonymy across vocabularies | Domain jargon vs plain language | ≥ 3/4 query pairs at ≥ 60% top-5 Jaccard |
+| 403 | Code-intent matching | Question-form query finds implementation | Implementation file ranks higher than its README in ≥ 3/4 |
+| 404 | Disambiguation under context | Polysemous query token | All 3 variants correctly disambiguate to intended sense |
+| 405 | Multi-aspect query synthesis | 3-concept compound query | Top-5 covers all 3 concepts with ≥ 2 multi-aspect results |
 | 406 | Specificity ladder | Same topic at 3 abstraction levels | Each level returns the most-specific match |
-| 407 | Adversarial near-miss | Lexical overlap, semantic distance | The semantically-correct result outranks the lexical decoy |
-| 408 | Compound concept synthesis | Concept not directly stated in any single doc | Top-3 results compose the answer |
-| 409 | LLM-made memory recall | Quality of memories the local LLM has indexed | Self-stored memories surface for their own triggers |
-| 410 | Query latency + throughput under load | Real-world query load on local stack | p50 ≤ 200ms, p95 ≤ 800ms over 50 mixed queries |
+| 407 | Adversarial near-miss | Lexical overlap, semantic distance | Semantically-correct result outranks lexical decoy in ≥ 2/3 |
+| 408 | Compound concept synthesis | Concept not directly stated in any single doc | ≥ 2/4 constituents in top-3, ≥ 3/4 in top-5 |
+| 409 | LLM-made memory recall | Quality of memories the local LLM has indexed | ≥ 8/10 random samples in top-3, mean rank ≤ 2 |
+| 410 | Query latency + throughput under load | Real-world query load on local stack | p50 ≤ 200ms, p95 ≤ 800ms, p99 ≤ 2s, ≥ 5 qps |
+
+### B. Causal graph + memory substrate (411-415)
+
+| # | Title | Probes | Pass signal |
+|---|-------|--------|-------------|
+| 411 | Causal graph link quality | Does the local LLM connect a 3-step causal chain? | ≥ 2 of 2 chain edges with confidence ≥ 0.5 |
+| 412 | Causal coverage under bulk save | Intra-cluster cohesion + inter-cluster separation across 4 topics | intra/inter edge ratio ≥ 2×, diagonal is row-leader in 4/4 topics |
+| 413 | Drift detection quality | `memory_drift_why` ranks contradicting memories correctly | ≥ 3/5 variants surfaced; strongest contradiction in top-2 |
+| 414 | Cross-AI memory handoff | AI-A stores → AI-B finds | External CLI returns stored memory in top-3, score ≥ 0.6 |
+| 415 | Concurrent multi-AI safety | 50 reads interleaved with 10 writes from a different CLI | All reads internally consistent, 0 errors, 0 duplicates |
 
 ## How to read a scenario file
 
-Each file follows the same shape as `23--doctor-commands/*.md`:
+Each file follows the same shape:
 
 1. **OVERVIEW** — one-paragraph scope statement
-2. **SCENARIO CONTRACT** — objective, real user request, RCAF prompt, expected signals, pass/fail criteria
-3. **TEST EXECUTION** — prompt + exact command sequence
-4. **EXPECTED** — what the operator should observe in the response
-5. **EVIDENCE** — what to capture (transcript, top-K dump, latency, etc.)
-
-The commands assume the runtime is the canonical Memory MCP + CocoIndex setup (post-014). MCP tool names use the `mcp__spec_kit_memory__*` / `mcp__cocoindex_code__search` namespaces as exposed in the runtime.
+2. **SCENARIO CONTRACT** — objective, real user request, AI-to-CLI handoff prompt, expected signals, pass/fail criteria
+3. **TEST EXECUTION** — phase-by-phase commands; for cross-AI scenarios, separate phases for orchestrator and external CLIs
+4. **EXPECTED** — what the operator should observe (JSON schema for AI-to-CLI returns, top-K dumps, confusion matrices, rank tables)
+5. **EVIDENCE** — what to capture (verbatim AI responses, per-CLI summary tables, judgment notes)
+6. **CLEAN-UP** — sandbox memory deletion (where applicable)
 
 ## Grading rubric
 
-- **PASS** — Top-K matches expected signals, observed within latency bounds, no errors in the transcript.
-- **PARTIAL** — Top-K contains the expected target but ranked below another reasonable result (still actionable; note specifics).
-- **FAIL** — Top-K does NOT contain the expected target, OR the ranking inverts semantic distance (clearly wrong result outranks correct one).
-- **SKIP** — Pre-flight missing (no llama-cpp + hf-local both unavailable, no indexed corpus, etc.). Document the blocker.
+- **PASS** — Top-K matches expected signals, observed within latency bounds, all AI-to-CLI handoffs returned coherent JSON, no errors in any transcript.
+- **PARTIAL** — Result contains the expected target but with a notable deviation (ranked below threshold but still in top-10, one of 3 CLIs failed but the other 2 passed, etc.). Still actionable, with specifics noted.
+- **FAIL** — Expected target absent from top-K, OR cross-AI handoff produced corrupt JSON / errors, OR concurrent reads returned inconsistent data.
+- **SKIP** — Pre-flight missing (no llama-cpp + hf-local both unavailable, no indexed corpus, no external CLI for cross-AI scenarios). Document the blocker.
 
-Aggregate the 10 scenarios into a single packet-level verdict in `_sandbox/24--local-llm-query-intelligence/evidence/`.
+Aggregate the 15 scenarios into a single packet-level summary in `_sandbox/24--local-llm-query-intelligence/evidence/summary.md`.
 
 ## Related references
 
 - Vitest mechanical checks: `mcp_server/tests/local-llm-features/*.vitest.ts` (10 files, 53 tests)
-- Quality property checks: `mcp_server/tests/local-llm-features/llama-cpp-quality.vitest.ts` (determinism, L2 norm, similarity ordering)
+- Quality property checks: `mcp_server/tests/local-llm-features/llama-cpp-quality.vitest.ts` (determinism, L2 norm, similarity ordering, 10 tests)
 - Embedding architecture: `shared/embeddings/README.md`, `references/memory/embedding_resilience.md`
 - Cascade behavior: `shared/embeddings/factory.ts:resolveProvider`, `shared/embeddings/profile.ts:resolveActiveProfileProvider`
+- Causal graph: `shared/embeddings/causal-graph-db.ts`, `mcp_server/handlers/memory-causal-*.ts`
+- Drift detection: `mcp_server/handlers/memory-drift-why.ts`
+- Cross-AI MCP wiring: `.codex/config.toml`, `.gemini/settings.json`, `.claude/mcp.json`, `opencode.json`, `.mcp.json`, `.vscode/mcp.json` (all point at the same Memory MCP DB)
