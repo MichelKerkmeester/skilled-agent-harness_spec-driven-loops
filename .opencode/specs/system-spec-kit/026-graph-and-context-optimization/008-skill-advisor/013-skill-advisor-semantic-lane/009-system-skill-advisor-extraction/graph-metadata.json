@@ -48,7 +48,7 @@
       "013"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "shipped",
     "key_files": [
       ".opencode/skills/system-spec-kit/mcp_server/database/skill-graph.sqlite",
       "001-design-and-decision-record/research/standalone-mcp-discussion.md",
@@ -226,7 +226,7 @@
       "spec.md",
       "handover.md"
     ],
-    "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/013-skill-advisor-semantic-lane/009-system-skill-advisor-extraction/009-fix-script-fs-scope",
-    "last_active_at": "2026-05-14T16:45:00Z"
+    "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/013-skill-advisor-semantic-lane/009-system-skill-advisor-extraction/008-move-skill-graph-tools-to-advisor",
+    "last_active_at": "2026-05-14T18:30:00Z"
   }
 }

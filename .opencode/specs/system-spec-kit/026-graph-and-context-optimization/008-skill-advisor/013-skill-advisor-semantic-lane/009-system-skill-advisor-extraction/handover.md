@@ -12,10 +12,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/013-skill-advisor-semantic-lane/009-system-skill-advisor-extraction"
-    last_updated_at: "2026-05-14T16:45:00Z"
+    last_updated_at: "2026-05-14T18:30:00Z"
     last_updated_by: "claude-opus-4-7"
-    recent_action: "Tiers 1+2+4+5 shipped; 008 scaffolded; 009 scaffold+fix complete"
-    next_safe_action: "Operator: Tier 3 (claude/gemini mcp list, /doctor:update, advisor_rebuild)"
+    recent_action: "008 implementation shipped (D1+D2); skill_graph_* now advisor-owned"
+    next_safe_action: "Operator: Tier 3 (claude mcp list refresh, /doctor:update smoke, advisor_rebuild)"
     blockers: []
     key_files:
       - "handover.md"
@@ -25,21 +25,21 @@ _memory:
       - "005-hooks-compat-and-consumer-cutover/implementation-summary.md"
       - "006-validation-cleanup-and-deprecation-removal/implementation-summary.md"
       - "007-skill-graph-db-rename/implementation-summary.md"
-      - "008-move-skill-graph-tools-to-advisor/spec.md"
+      - "008-move-skill-graph-tools-to-advisor/implementation-summary.md"
       - "009-fix-script-fs-scope/implementation-summary.md"
     session_dedup:
       fingerprint: "sha256:0130090099a06ed10c5d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d"
       session_id: "013-009-handover-2026-05-14"
       parent_session_id: null
-    completion_pct: 97
-    open_questions:
-      - "008-move-skill-graph-tools-to-advisor implementation (Level 3, ~4-7h cli-codex) — when to dispatch?"
+    completion_pct: 100
+    open_questions: []
     answered_questions:
       - "ADR-001 5-phase migration is complete with 007 added as the skill-graph DB filename-disambig follow-on."
       - "Option B (rename) chosen for skill-graph DB collision; Option A deferred per 007 ADR-001."
       - "Tier 4 Option A confirmed: scaffold 013/009/008 (operator decision 2026-05-14 plan-mode)."
       - "60/224 vitest blocker resolved: Tier 1 took pass count 164→279 (+115); 009 fixes added +1 → 280/287. Hook smoke FAIL→PASS."
       - "Production bugs (skill_graph_compiler.py:32, skill_advisor.py:206) fixed in 009 as operator-selected Tier 5."
+      - "008 implementation shipped 2026-05-14 via 2 cli-codex dispatches: D1 (8447663a0) registered skill_graph_* on advisor + added one-window memory proxy; D2 (a93fffb7c) cutover 5 consumer files + removed proxy/descriptors. Vitest stable at 285/291 advisor; 4-runtime smoke PASS except Claude INCONCLUSIVE (CLI cache, expected per 004/006). Zero-caller grep returns 1 historical hit only."
 ---
 # Session Handover Document
 
@@ -380,6 +380,61 @@ Ephemeral (`/tmp` clears on reboot). For 008 implementation, lift the structure 
 ### Approved plan file (Session 2)
 
 `/Users/michelkerkmeester/.claude/plans/read-and-follow-handover-splendid-wall.md` — the plan-mode artifact for this session's execution.
+
+---
+
+## 7. Session 3 update — 008 implementation shipped (2026-05-14T18:30Z)
+
+Operator continued with "work on open items" + "use cli codex" against the same plan file. Two cli-codex dispatches landed 013/009/008's implementation (D1+D2 split at the natural proxy checkpoint).
+
+| Commit | Tier | Scope |
+|---|---|---|
+| `8447663a0` | 008 D1 | cli-codex gpt-5.5 high fast moved 7 handler files from `system-spec-kit/mcp_server/handlers/skill-graph/` to `system-skill-advisor/mcp_server/handlers/skill-graph/` (git detected as renames); registered 4 `skill_graph_*` tools on `system_skill_advisor` MCP server; added one-window stdio MCP proxy in `spec_kit_memory.tools/skill-graph-tools.ts` with deprecation log + 10s timeout. Advisor vitest 280/287 → 285/291. ADR decisions: subdir layout, Risk R-ε path 1 (direct cross-package import to `system-spec-kit/mcp_server/lib/skill-graph/skill-graph-db.js`). |
+| `a93fffb7c` | 008 D2 | cli-codex gpt-5.5 high fast retargeted 5 doctor files / 15 hits from `mcp__spec_kit_memory__skill_graph_*` → `mcp__system_skill_advisor__skill_graph_*`; added ownership notes to 9 docs (install guides + feature catalog + manual testing playbook); deleted memory-side proxy file + descriptors + tests; updated `handlers/session-bootstrap.ts`. 4-runtime smoke: OpenCode + Codex + Gemini PASS; Claude INCONCLUSIVE (CLI cache, expected per 004/006). All 3 strict-validates PASS. `completion_pct=100`. |
+
+### Final state after Session 3
+
+- **`system_skill_advisor` MCP server** owns all 8 skill-related tools (4 `advisor_*` + 4 `skill_graph_*`). Single source of truth for skill graph operations.
+- **`spec_kit_memory` MCP server** no longer registers any `skill_graph_*` tool. Memory MCP scope returned to memory/context-graph/deep-loop concerns.
+- **Vitest stable**: 285/291 advisor (no regression vs 008 baseline); memory pkg core 11391/11576 (baseline-red failures unrelated).
+- **Strict-validate PASS** at packet 008, parent 013/009, grandparent 013.
+- **Zero-caller grep**: 1 historical hit only (sk-code V3 playbook snapshot — intentional historical record per ADR-004).
+- **All children shipped**: 001-009 (no scaffold-only packets remain).
+
+### 013/009 line — terminal close-out reached
+
+The 5-phase ADR-001 advisor extraction + 4 follow-on packets (007 DB rename, 008 skill_graph_* migration, 009 fs-scope fixes) are all shipped. The phase parent's open question on Tier 4 Option A (move skill_graph_* tools) is resolved. The remaining work outside this phase parent's scope:
+
+- **Tier 3 operator actions** (claude/gemini MCP listing refresh, /doctor:update smoke, advisor_rebuild) — human-initiated.
+- **4 pre-existing parity-test vitest failures** — documented orthogonal to 013/009.
+
+These do NOT block 013/009 close-out.
+
+### Children inventory (final)
+
+| Child | Status |
+|---|---|
+| 001-design-and-decision-record | shipped |
+| 002-scaffold-system-skill-advisor-package | shipped |
+| 003-move-advisor-source-db-and-tests | shipped |
+| 004-standalone-mcp-launcher-and-runtime-configs | shipped |
+| 005-hooks-compat-and-consumer-cutover | shipped |
+| 006-validation-cleanup-and-deprecation-removal | shipped |
+| 007-skill-graph-db-rename | shipped |
+| 008-move-skill-graph-tools-to-advisor | shipped (D1+D2, completion_pct=100) |
+| 009-fix-script-fs-scope | shipped |
+
+### Dispatch prompts archive (Session 3)
+
+- `/tmp/cli-codex-dispatches/013-009-008-dispatch1-prompt.md` (D1: setup + advisor reg + memory proxy)
+- `/tmp/cli-codex-dispatches/013-009-008-dispatch2-prompt.md` (D2: cutover + cleanup + verify)
+- `/tmp/cli-codex-dispatches/013-009-008-dispatch1-out.log`, `.../dispatch2-out.log`
+
+Ephemeral (`/tmp` clears on reboot). Both prompts use the dispatch contract pattern from §5.
+
+### Approved plan file (Session 3)
+
+`/Users/michelkerkmeester/.claude/plans/read-and-follow-handover-splendid-wall.md` — modified in-place from Session 2's Tier-1-4 plan to Session 3's 2-dispatch 008 implementation plan. Plan-mode AskUserQuestion + Sequential Thinking used for design phase.
 <!-- /ANCHOR:session-notes -->
 
 ---
