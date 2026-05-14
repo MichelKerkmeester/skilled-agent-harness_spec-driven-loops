@@ -32,8 +32,7 @@ import {
   buildCodeGraphOpsContract,
   type CodeGraphOpsContract,
 } from '../../../system-code-graph/mcp_server/lib/ops-hardening.js';
-import { handleSkillGraphStatus } from './skill-graph/status.js';
-import { handleSkillGraphQuery } from './skill-graph/query.js';
+import { handleTool as handleSkillGraphProxyTool } from '../tools/skill-graph-tools.js';
 import type { MCPResponse } from '@spec-kit/shared/types';
 
 /* ───────────────────────────────────────────────────────────────
@@ -277,7 +276,7 @@ function describeSkillGraphTopology(topology: Omit<SkillGraphTopologySummary, 's
 
 async function buildSkillGraphTopologySummary(): Promise<SkillGraphTopologySummary> {
   try {
-    const statusData = extractData(await handleSkillGraphStatus());
+    const statusData = extractData(await handleSkillGraphProxyTool('skill_graph_status', {}) as MCPResponse);
     if (statusData.error) {
       const unavailable = {
         status: 'unavailable' as const,
@@ -296,11 +295,11 @@ async function buildSkillGraphTopologySummary(): Promise<SkillGraphTopologySumma
       };
     }
 
-    const hubData = extractData(await handleSkillGraphQuery({
+    const hubData = extractData(await handleSkillGraphProxyTool('skill_graph_query', {
       queryType: 'hub_skills',
       minInbound: 2,
       limit: 5,
-    }));
+    }) as MCPResponse);
     const totalSkills = asNumber(statusData.totalSkills);
     const topology = {
       status: (asString(statusData.dbStatus) === 'ready' ? 'ready' : 'empty') as 'ready' | 'empty',

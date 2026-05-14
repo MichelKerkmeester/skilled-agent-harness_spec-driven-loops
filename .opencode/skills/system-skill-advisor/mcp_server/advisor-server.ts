@@ -19,20 +19,24 @@ import {
   advisorRecommendTool,
   advisorStatusTool,
   advisorValidateTool,
+  skillGraphToolDefinitions,
+  skillGraphTools,
 } from './tools/index.js';
 
 import type { ToolDefinition } from './tools/types.js';
+import { runWithCallerContext, type MCPCallerContext } from '../../system-spec-kit/mcp_server/lib/context/caller-context.js';
 
 type MCPResponse = {
   content: Array<{ type: 'text'; text: string }>;
   isError?: boolean;
 };
 
-const TOOL_DEFINITIONS: ToolDefinition[] = [
+export const TOOL_DEFINITIONS: ToolDefinition[] = [
   advisorRecommendTool,
   advisorRebuildTool,
   advisorStatusTool,
   advisorValidateTool,
+  ...skillGraphToolDefinitions,
 ];
 
 const TOOL_NAMES = new Set(TOOL_DEFINITIONS.map((tool) => tool.name));
@@ -57,7 +61,34 @@ function toMCP(result: { content: Array<{ type: string; text: string }> }): MCPR
   };
 }
 
-async function dispatchTool(name: string, args: Record<string, unknown>): Promise<MCPResponse | null> {
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return value !== null && typeof value === 'object' && !Array.isArray(value);
+}
+
+function resolveTrustedCaller(metadata: Record<string, unknown>): boolean {
+  if (metadata.trusted === false || metadata.callerAuthority === 'untrusted') {
+    return false;
+  }
+  return metadata.trusted === true || metadata.callerAuthority === 'trusted' || metadata.transport === undefined;
+}
+
+function buildCallerContext(extra: unknown): MCPCallerContext {
+  const metadata = isRecord(extra) ? { ...extra } : {};
+  return {
+    sessionId: typeof metadata.sessionId === 'string' ? metadata.sessionId : null,
+    transport: 'stdio',
+    connectedAt: new Date().toISOString(),
+    callerPid: typeof metadata.pid === 'number' && Number.isFinite(metadata.pid) ? metadata.pid : undefined,
+    trusted: resolveTrustedCaller(metadata),
+    metadata,
+  };
+}
+
+export async function dispatchTool(
+  name: string,
+  args: Record<string, unknown>,
+  callerContext?: MCPCallerContext | null,
+): Promise<MCPResponse | null> {
   switch (name) {
     case 'advisor_recommend':
       return toMCP(await handleAdvisorRecommend(args));
@@ -68,7 +99,7 @@ async function dispatchTool(name: string, args: Record<string, unknown>): Promis
     case 'advisor_validate':
       return toMCP(await handleAdvisorValidate(args));
     default:
-      return null;
+      return skillGraphTools.handleTool(name, args, callerContext);
   }
 }
 
@@ -82,7 +113,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
 }));
 
 server.setRequestHandler(CallToolRequestSchema, async (request): Promise<MCPResponse> => {
-  const requestParams = request.params as { name: string; arguments?: Record<string, unknown> };
+  const requestParams = request.params as { name: string; arguments?: Record<string, unknown>; _meta?: unknown };
   const name = requestParams.name;
   const args = requestParams.arguments ?? {};
 
@@ -94,7 +125,11 @@ server.setRequestHandler(CallToolRequestSchema, async (request): Promise<MCPResp
   }
 
   try {
-    const response = await dispatchTool(name, args);
+    const callerContext = buildCallerContext(requestParams._meta);
+    const response = await runWithCallerContext(
+      callerContext,
+      async () => dispatchTool(name, args, callerContext),
+    );
     if (response) return response;
     return {
       isError: true,

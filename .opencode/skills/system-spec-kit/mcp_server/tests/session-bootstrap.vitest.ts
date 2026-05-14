@@ -53,66 +53,63 @@ vi.mock('../handlers/session-health.js', () => ({
   })),
 }));
 
-vi.mock('../handlers/skill-graph/status.js', () => ({
-  handleSkillGraphStatus: vi.fn(async () => ({
+const { mockHandleSkillGraphProxyTool } = vi.hoisted(() => ({
+  mockHandleSkillGraphProxyTool: vi.fn(async (name: string) => ({
     content: [{
       type: 'text',
-      text: JSON.stringify({
-        status: 'ok',
-        data: {
-          totalSkills: 6,
-          totalEdges: 9,
-          lastIndexedAt: '2026-04-21T08:00:00.000Z',
-          families: [
-            { name: 'sk-code', count: 2 },
-            { name: 'system', count: 4 },
-          ],
-          categories: [{ name: 'workflow', count: 6 }],
-          staleness: {
-            trackedSkills: 6,
-            freshSourceFiles: 6,
-            changedSourceFiles: 0,
-            missingSourceFiles: 0,
-            staleSkillIds: [],
+      text: JSON.stringify(name === 'skill_graph_status'
+        ? {
+          status: 'ok',
+          data: {
+            totalSkills: 6,
+            totalEdges: 9,
+            lastIndexedAt: '2026-04-21T08:00:00.000Z',
+            families: [
+              { name: 'sk-code', count: 2 },
+              { name: 'system', count: 4 },
+            ],
+            categories: [{ name: 'workflow', count: 6 }],
+            staleness: {
+              trackedSkills: 6,
+              freshSourceFiles: 6,
+              changedSourceFiles: 0,
+              missingSourceFiles: 0,
+              staleSkillIds: [],
+            },
+            validation: {
+              brokenEdgeCount: 0,
+              weightBandViolations: 0,
+              unsupportedSchemaVersionCount: 0,
+              isHealthy: true,
+            },
+            dbStatus: 'ready',
           },
-          validation: {
-            brokenEdgeCount: 0,
-            weightBandViolations: 0,
-            unsupportedSchemaVersionCount: 0,
-            isHealthy: true,
+        }
+        : {
+          status: 'ok',
+          data: {
+            queryType: 'hub_skills',
+            minInbound: 2,
+            skills: [
+              {
+                node: {
+                  id: 'system-spec-kit',
+                  family: 'system',
+                  category: 'documentation',
+                  sourcePath: '/private/source/path',
+                  contentHash: 'secret-hash',
+                },
+                inboundCount: 4,
+              },
+            ],
           },
-          dbStatus: 'ready',
-        },
-      }),
+        }),
     }],
   })),
 }));
 
-vi.mock('../handlers/skill-graph/query.js', () => ({
-  handleSkillGraphQuery: vi.fn(async () => ({
-    content: [{
-      type: 'text',
-      text: JSON.stringify({
-        status: 'ok',
-        data: {
-          queryType: 'hub_skills',
-          minInbound: 2,
-          skills: [
-            {
-              node: {
-                id: 'system-spec-kit',
-                family: 'system',
-                category: 'documentation',
-                sourcePath: '/private/source/path',
-                contentHash: 'secret-hash',
-              },
-              inboundCount: 4,
-            },
-          ],
-        },
-      }),
-    }],
-  })),
+vi.mock('../tools/skill-graph-tools.js', () => ({
+  handleTool: mockHandleSkillGraphProxyTool,
 }));
 
 vi.mock('../lib/session/context-metrics.js', () => ({
@@ -131,8 +128,7 @@ vi.mock('../lib/session/session-snapshot.js', () => ({
 import { handleSessionBootstrap } from '../handlers/session-bootstrap.js';
 import { handleSessionResume } from '../handlers/session-resume.js';
 import { handleSessionHealth } from '../handlers/session-health.js';
-import { handleSkillGraphStatus } from '../handlers/skill-graph/status.js';
-import { handleSkillGraphQuery } from '../handlers/skill-graph/query.js';
+import { handleTool as handleSkillGraphProxyTool } from '../tools/skill-graph-tools.js';
 import { buildStructuralBootstrapContract } from '../lib/session/session-snapshot.js';
 import { recordBootstrapEvent } from '../lib/session/context-metrics.js';
 
@@ -171,8 +167,8 @@ describe('session-bootstrap handler', () => {
     });
     expect(JSON.stringify(parsed.data.skillGraphTopology)).not.toContain('/private/source/path');
     expect(JSON.stringify(parsed.data.skillGraphTopology)).not.toContain('secret-hash');
-    expect(handleSkillGraphStatus).toHaveBeenCalledTimes(1);
-    expect(handleSkillGraphQuery).toHaveBeenCalledWith({
+    expect(handleSkillGraphProxyTool).toHaveBeenCalledWith('skill_graph_status', {});
+    expect(handleSkillGraphProxyTool).toHaveBeenCalledWith('skill_graph_query', {
       queryType: 'hub_skills',
       minInbound: 2,
       limit: 5,

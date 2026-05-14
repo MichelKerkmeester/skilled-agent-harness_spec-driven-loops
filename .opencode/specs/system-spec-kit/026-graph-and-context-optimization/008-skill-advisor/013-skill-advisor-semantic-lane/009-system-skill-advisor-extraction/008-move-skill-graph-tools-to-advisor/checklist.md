@@ -38,14 +38,14 @@ _memory:
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Requirements documented in `spec.md`.
-  - **Evidence**: Pending implementation.
-- [ ] CHK-002 [P0] Technical approach defined in `plan.md`.
-  - **Evidence**: Pending implementation.
-- [ ] CHK-003 [P1] Dependencies identified and available.
-  - **Evidence**: Pending implementation.
-- [ ] CHK-004 [P1] Baseline consumer inventory captured.
-  - **Evidence**: Pending implementation.
+- [x] CHK-001 [P0] Requirements documented in `spec.md`.
+  - **Evidence**: REQ-001 through REQ-005 reviewed before D1 edits; D1 verifies REQ-001, REQ-002, and REQ-004 bridge window.
+- [x] CHK-002 [P0] Technical approach defined in `plan.md`.
+  - **Evidence**: D1 followed Phase 1 setup plus Cluster A and Cluster B.
+- [x] CHK-003 [P1] Dependencies identified and available.
+  - **Evidence**: 005 proxy pattern, 003 handler move pattern, existing advisor server, and system-spec-kit DB layer were read and used.
+- [x] CHK-004 [P1] Baseline consumer inventory captured.
+  - **Evidence**: Live old-prefix grep returned 10 matches across 4 non-spec files; D2 cutover untouched.
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -53,16 +53,16 @@ _memory:
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] Advisor server registers all four `skill_graph_*` tools.
-  - **Evidence**: Pending implementation.
-- [ ] CHK-011 [P0] Advisor-local handlers exist for scan, query, status, and validate.
-  - **Evidence**: Pending implementation.
-- [ ] CHK-012 [P0] No long-lived duplicate primary handler logic remains in memory MCP.
-  - **Evidence**: Pending implementation.
-- [ ] CHK-013 [P1] Handler authorization and output shapes are preserved.
-  - **Evidence**: Pending implementation.
-- [ ] CHK-014 [P1] Code follows existing advisor package conventions.
-  - **Evidence**: Pending implementation.
+- [x] CHK-010 [P0] Advisor server registers all four `skill_graph_*` tools.
+  - **Evidence**: Advisor stdio `tools/list` returned 8 tools: 4 `advisor_*` plus 4 `skill_graph_*`.
+- [x] CHK-011 [P0] Advisor-local handlers exist for scan, query, status, and validate.
+  - **Evidence**: `handlers/skill-graph/{scan,query,status,validate}.ts` now live under `system-skill-advisor`.
+- [x] CHK-012 [P0] No long-lived duplicate primary handler logic remains in memory MCP.
+  - **Evidence**: 7 old files under `system-spec-kit/mcp_server/handlers/skill-graph/` were physically deleted; memory keeps proxy only.
+- [x] CHK-013 [P1] Handler authorization and output shapes are preserved.
+  - **Evidence**: Targeted memory handler tests against advisor handlers pass, including scan auth and diagnostic redaction.
+- [x] CHK-014 [P1] Code follows existing advisor package conventions.
+  - **Evidence**: Descriptors export through `tools/index.ts`; handlers export through `handlers/index.ts`; `advisor-server.ts` owns MCP listing/dispatch.
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -70,10 +70,10 @@ _memory:
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-020 [P0] Advisor package tests cover descriptor registration and handler dispatch.
-  - **Evidence**: Pending implementation.
-- [ ] CHK-021 [P0] Memory proxy tests cover forwarding and timeout behavior.
-  - **Evidence**: Pending implementation.
+- [x] CHK-020 [P0] Advisor package tests cover descriptor registration and handler dispatch.
+  - **Evidence**: `skill-graph-listing.vitest.ts` and `skill-graph-dispatch.vitest.ts`; targeted advisor run passed 19/19 with `advisor-recommend` dispatcher coverage.
+- [x] CHK-021 [P0] Memory proxy tests cover forwarding and timeout behavior.
+  - **Evidence**: `skill-graph-proxy.vitest.ts` covers forwarding, one-time deprecation log, unavailable response, and 10s timeout.
 - [ ] CHK-022 [P0] Final memory MCP tests prove `skill_graph_*` descriptors are removed after cleanup.
   - **Evidence**: Pending implementation.
 - [ ] CHK-023 [P1] System-code-graph readiness smoke passes after retarget.
@@ -100,12 +100,12 @@ _memory:
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-030 [P0] Trusted-caller behavior for `skill_graph_scan` is preserved.
-  - **Evidence**: Pending implementation.
-- [ ] CHK-031 [P1] Proxy does not expose new unauthenticated write paths.
-  - **Evidence**: Pending implementation.
-- [ ] CHK-032 [P1] No secrets, credentials, or machine-local paths are introduced in docs.
-  - **Evidence**: Pending implementation.
+- [x] CHK-030 [P0] Trusted-caller behavior for `skill_graph_scan` is preserved.
+  - **Evidence**: Existing scan auth tests now target advisor handler path and pass.
+- [x] CHK-031 [P1] Proxy does not expose new unauthenticated write paths.
+  - **Evidence**: Proxy only forwards existing tool ids to `system_skill_advisor`; scan trust remains enforced in the advisor handler.
+- [x] CHK-032 [P1] No secrets, credentials, or machine-local paths are introduced in docs.
+  - **Evidence**: Packet docs record command evidence and local paths already present in packet metadata only; no secrets added.
 <!-- /ANCHOR:security -->
 
 ---
@@ -140,9 +140,9 @@ _memory:
 ## File Organization
 
 - [ ] CHK-050 [P0] Scope stays within implementation packet and approved code/doc files.
-  - **Evidence**: Pending implementation.
-- [ ] CHK-051 [P1] Temporary scratch or generated files are avoided or kept in approved locations.
-  - **Evidence**: Pending implementation.
+  - **Evidence**: D1 stayed within the requested packages and packet docs, except `session-bootstrap.ts` was also patched to prevent importing the physically deleted handler files.
+- [x] CHK-051 [P1] Temporary scratch or generated files are avoided or kept in approved locations.
+  - **Evidence**: No scratch/archive files were created; package builds updated ignored `dist` outputs only.
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -150,12 +150,12 @@ _memory:
 <!-- ANCHOR:arch-verify -->
 ## L3: Architecture Verification
 
-- [ ] CHK-100 [P0] ADR-001 through ADR-004 are accepted and aligned with parent ADR-001.
-  - **Evidence**: Pending implementation.
-- [ ] CHK-101 [P0] Tool-id stability is proven: public ids remain `skill_graph_*`.
-  - **Evidence**: Pending implementation.
-- [ ] CHK-102 [P0] Server ownership changes from `spec_kit_memory` to `system_skill_advisor`.
-  - **Evidence**: Pending implementation.
+- [x] CHK-100 [P0] ADR-001 through ADR-004 are accepted and aligned with parent ADR-001.
+  - **Evidence**: D1 implemented ADR-001, ADR-002, and ADR-003; ADR-004 remains D2 cutover ordering.
+- [x] CHK-101 [P0] Tool-id stability is proven: public ids remain `skill_graph_*`.
+  - **Evidence**: Advisor and memory descriptors use unchanged ids: `skill_graph_scan/query/status/validate`.
+- [x] CHK-102 [P0] Server ownership changes from `spec_kit_memory` to `system_skill_advisor`.
+  - **Evidence**: Advisor now owns native descriptors and handlers; memory side is a bridge-only proxy.
 - [ ] CHK-103 [P1] Consumer cutover order follows risk ordering: system-code-graph, hooks, plugins, docs.
   - **Evidence**: Pending implementation.
 - [ ] CHK-104 [P1] Rollback paths are documented per cluster.
@@ -167,8 +167,8 @@ _memory:
 <!-- ANCHOR:perf-verify -->
 ## L3: Performance Verification
 
-- [ ] CHK-105 [P1] Proxy timeout behavior is bounded at 10 seconds.
-  - **Evidence**: Pending implementation.
+- [x] CHK-105 [P1] Proxy timeout behavior is bounded at 10 seconds.
+  - **Evidence**: Proxy constant is 10,000ms and fake-clock timeout test passes.
 - [ ] CHK-106 [P1] `skill_graph_scan` runtime does not regress materially versus baseline.
   - **Evidence**: Pending implementation.
 <!-- /ANCHOR:perf-verify -->
@@ -178,10 +178,10 @@ _memory:
 <!-- ANCHOR:compliance-verify -->
 ## L3: Compliance Verification
 
-- [ ] CHK-107 [P0] Tool ids remain `skill_graph_scan`, `skill_graph_query`, `skill_graph_status`, and `skill_graph_validate`.
-  - **Evidence**: Pending implementation.
-- [ ] CHK-108 [P1] Server-prefix migration is documented as caller-visible.
-  - **Evidence**: Pending implementation.
+- [x] CHK-107 [P0] Tool ids remain `skill_graph_scan`, `skill_graph_query`, `skill_graph_status`, and `skill_graph_validate`.
+  - **Evidence**: `tools/list` on advisor and memory both expose the unchanged public ids.
+- [x] CHK-108 [P1] Server-prefix migration is documented as caller-visible.
+  - **Evidence**: Implementation summary records D1 dual-prefix bridge and D2 caller cutover.
 <!-- /ANCHOR:compliance-verify -->
 
 ---
@@ -208,12 +208,12 @@ _memory:
 
 - [ ] CHK-120 [P0] Final grep shows zero live `mcp__spec_kit_memory__skill_graph_` callers.
   - **Evidence**: Pending implementation.
-- [ ] CHK-121 [P0] Strict validation passes for packet 008.
-  - **Evidence**: Pending implementation.
+- [x] CHK-121 [P0] Strict validation passes for packet 008.
+  - **Evidence**: `validate.sh .../008-move-skill-graph-tools-to-advisor --strict` exited 0 with 0 errors and 0 warnings.
 - [ ] CHK-122 [P1] Strict validation passes for parent 013/009 and grandparent 013.
   - **Evidence**: Pending implementation.
-- [ ] CHK-123 [P1] Implementation summary records test results and residual risks.
-  - **Evidence**: Pending implementation.
+- [x] CHK-123 [P1] Implementation summary records test results and residual risks.
+  - **Evidence**: D1 evidence, test counts, smokes, scope anomaly, and D2 next action recorded in `implementation-summary.md`.
 <!-- /ANCHOR:deploy-ready -->
 
 ---
@@ -239,6 +239,6 @@ _memory:
 
 - [ ] CHK-124 [P0] Operator confirms proxy removal after zero-caller evidence.
   - **Evidence**: Pending implementation.
-- [ ] CHK-125 [P1] Final packet handoff names residual risks and next safe action.
-  - **Evidence**: Pending implementation.
+- [x] CHK-125 [P1] Final packet handoff names residual risks and next safe action.
+  - **Evidence**: `next_safe_action` is set to Dispatch D2; D2 consumer cutover and cleanup remain open.
 <!-- /ANCHOR:sign-off -->

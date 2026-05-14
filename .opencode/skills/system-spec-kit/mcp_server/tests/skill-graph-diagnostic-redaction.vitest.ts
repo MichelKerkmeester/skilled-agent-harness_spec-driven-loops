@@ -8,7 +8,7 @@ import { join } from 'node:path';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import SpecKitSkillAdvisorPlugin from '../../../../plugins/spec-kit-skill-advisor.js';
-import { handleSkillGraphScan } from '../handlers/skill-graph/scan.js';
+import { handleSkillGraphScan } from '../../../system-skill-advisor/mcp_server/handlers/skill-graph/scan.js';
 import { runWithCallerContext } from '../lib/context/caller-context.js';
 import type { MCPCallerContext } from '../lib/context/caller-context.js';
 

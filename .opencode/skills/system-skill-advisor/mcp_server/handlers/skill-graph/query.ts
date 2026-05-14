@@ -4,8 +4,8 @@
 // MCP tool handler for skill_graph_query — traverses skill graph
 // relationships from the SQLite-backed store.
 
-import type { SkillFamily } from '../../lib/skill-graph/skill-graph-db.js';
-import * as skillGraphQueries from '../../lib/skill-graph/skill-graph-queries.js';
+import type { SkillFamily } from '../../../../system-spec-kit/mcp_server/lib/skill-graph/skill-graph-db.js';
+import * as skillGraphQueries from '../../../../system-spec-kit/mcp_server/lib/skill-graph/skill-graph-queries.js';
 import { errorResponse, okResponse as envelopeOkResponse } from './response-envelope.js';
 
 // ───────────────────────────────────────────────────────────────

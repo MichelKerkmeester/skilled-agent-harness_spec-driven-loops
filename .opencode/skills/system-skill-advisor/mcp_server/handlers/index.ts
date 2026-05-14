@@ -6,3 +6,9 @@ export { handleAdvisorRecommend, handle_advisor_recommend } from './advisor-reco
 export { handleAdvisorRebuild, handle_advisor_rebuild, rebuildAdvisorIndex } from './advisor-rebuild.js';
 export { handleAdvisorStatus, handle_advisor_status, readAdvisorStatus } from './advisor-status.js';
 export { handleAdvisorValidate, handle_advisor_validate, validateAdvisor } from './advisor-validate.js';
+export {
+  handleSkillGraphQuery,
+  handleSkillGraphScan,
+  handleSkillGraphStatus,
+  handleSkillGraphValidate,
+} from './skill-graph/index.js';

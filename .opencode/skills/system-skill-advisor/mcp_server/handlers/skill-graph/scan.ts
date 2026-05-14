@@ -4,11 +4,11 @@
 // MCP tool handler for skill_graph_scan — indexes skill metadata.
 
 import { resolve } from 'node:path';
-import { indexSkillMetadata, refreshSkillEmbeddings } from '../../lib/skill-graph/skill-graph-db.js';
-import type { MCPCallerContext } from '../../lib/context/caller-context.js';
-import { requireTrustedCaller } from '../../../../system-skill-advisor/mcp_server/lib/auth/trusted-caller.js';
-import { computeAdvisorSourceSignature } from '../../../../system-skill-advisor/mcp_server/lib/freshness.js';
-import { publishSkillGraphGeneration } from '../../../../system-skill-advisor/mcp_server/lib/freshness/generation.js';
+import { indexSkillMetadata, refreshSkillEmbeddings } from '../../../../system-spec-kit/mcp_server/lib/skill-graph/skill-graph-db.js';
+import type { MCPCallerContext } from '../../../../system-spec-kit/mcp_server/lib/context/caller-context.js';
+import { requireTrustedCaller } from '../../lib/auth/trusted-caller.js';
+import { computeAdvisorSourceSignature } from '../../lib/freshness.js';
+import { publishSkillGraphGeneration } from '../../lib/freshness/generation.js';
 import { errorResponse, okResponse, redactDiagnosticText } from './response-envelope.js';
 
 // ───────────────────────────────────────────────────────────────

@@ -17,7 +17,9 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`handlers/skill-graph/` owns the MCP-facing handlers for the SQLite-backed skill graph. The handlers parse tool arguments, call skill graph libraries, and return redacted JSON response envelopes.
+`handlers/skill-graph/` owns the `system_skill_advisor` MCP-facing handlers for the SQLite-backed skill graph. The handlers parse tool arguments, call skill graph libraries, and return redacted JSON response envelopes.
+
+Moved from `system-spec-kit/mcp_server/handlers/skill-graph/` in 013/009/008. The SQLite DB layer remains in `system-spec-kit/mcp_server/lib/skill-graph/` per 007 ADR-001.
 
 Current state:
 
@@ -39,11 +41,10 @@ Current state:
 ## 3. USAGE NOTES
 
 - Keep MCP response formatting in `response-envelope.ts` so handlers return a consistent shape.
-- Use `../../lib/skill-graph/` for database and traversal logic. Handlers should stay thin.
+- Use the `system-spec-kit/mcp_server/lib/skill-graph/` public DB/query layer for database and traversal logic. Handlers should stay thin.
 - Add new query types in both the handler type union and the switch implementation.
 
 ## 4. RELATED RESOURCES
 
-- [`../../lib/skill-graph/`](../../lib/skill-graph/)
-- [`../../skill_advisor/`](../../skill_advisor/)
+- [`../../../../system-spec-kit/mcp_server/lib/skill-graph/`](../../../../system-spec-kit/mcp_server/lib/skill-graph/)
 - [`../`](../)

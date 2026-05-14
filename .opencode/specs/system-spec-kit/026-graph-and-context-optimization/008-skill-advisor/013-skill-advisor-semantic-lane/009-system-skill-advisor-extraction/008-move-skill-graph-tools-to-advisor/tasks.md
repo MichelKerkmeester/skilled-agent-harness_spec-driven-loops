@@ -55,12 +55,18 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## PHASE 1: SETUP
 
-- [ ] T001 Read parent handover, 001 ADR, 004/005/006 specs, 005/006 ADRs, 007 spec/summary, and this packet's docs. [30m]
-- [ ] T002 Run full live grep for `skill_graph_(scan|query|status|validate)` and `mcp__spec_kit_memory__skill_graph_`; record file and match counts. [20m]
-- [ ] T003 Inventory current `spec_kit_memory` registration files: `tool-schemas.ts`, `schemas/tool-input-schemas.ts`, `tools/index.ts`, `tools/skill-graph-tools.ts`, and handler tests. [30m]
-- [ ] T004 Inventory handler dependencies for scan, query, status, and validate. [40m]
-- [ ] T005 Capture baseline `system-skill-advisor/mcp_server` Vitest pass count. [30m]
-- [ ] T006 Decide final advisor handler layout and update this task list if implementation discovers a cleaner local convention. [15m] {deps: T004}
+- [x] T001 Read parent handover, 001 ADR, 004/005/006 specs, 005/006 ADRs, 007 spec/summary, and this packet's docs. [30m]
+  - Evidence: Required packet docs, 005 proxy summary, 003 handler move summary, existing handlers, schemas, and advisor server conventions were read before edits.
+- [x] T002 Run full live grep for `skill_graph_(scan|query|status|validate)` and `mcp__spec_kit_memory__skill_graph_`; record file and match counts. [20m]
+  - Evidence: Live old-prefix grep returned 10 matches across 4 non-spec files; D2 consumer surfaces were not edited.
+- [x] T003 Inventory current `spec_kit_memory` registration files: `tool-schemas.ts`, `schemas/tool-input-schemas.ts`, `tools/index.ts`, `tools/skill-graph-tools.ts`, and handler tests. [30m]
+  - Evidence: `tool-schemas.ts` kept four bridge descriptors; `tools/index.ts` still exports `skillGraphTools`; `tools/skill-graph-tools.ts` replaced with proxy.
+- [x] T004 Inventory handler dependencies for scan, query, status, and validate. [40m]
+  - Evidence: Handler imports were limited to `lib/skill-graph/*`, caller context, trusted-caller/freshness helpers, and local response envelope.
+- [x] T005 Capture baseline `system-skill-advisor/mcp_server` Vitest pass count. [30m]
+  - Evidence: Baseline `npm test` was 280 passed / 287 total, 4 failed tests plus 1 failed suite and 3 skipped.
+- [x] T006 Decide final advisor handler layout and update this task list if implementation discovers a cleaner local convention. [15m] {deps: T004}
+  - Evidence: Chose `handlers/skill-graph/` subdir to preserve the existing `response-envelope.ts`, `index.ts`, and README harness.
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -70,18 +76,27 @@ _memory:
 
 ### Cluster A - Advisor Registration
 
-- [ ] T007 Add `skill_graph_*` descriptors and input schemas to advisor tool schema files. [45m] {deps: T003, T004}
-- [ ] T008 Implement advisor-local `skill_graph_scan` handler. [45m] {deps: T004, T007}
-- [ ] T009 Implement advisor-local `skill_graph_query` handler. [45m] {deps: T004, T007}
-- [ ] T010 Implement advisor-local `skill_graph_status` handler. [45m] {deps: T004, T007}
-- [ ] T011 Implement advisor-local `skill_graph_validate` handler. [45m] {deps: T004, T007}
-- [ ] T012 Register all four handlers in `advisor-server.ts` dispatch. [30m] {deps: T008, T009, T010, T011}
-- [ ] T013 Add advisor package tests for tool listing, schema validation, and handler dispatch. [60m] {deps: T012}
+- [x] T007 Add `skill_graph_*` descriptors and input schemas to advisor tool schema files. [45m] {deps: T003, T004}
+  - Evidence: Added four descriptors in `system-skill-advisor/mcp_server/tools/skill-graph-tools.ts` and exported them through `tools/index.ts`.
+- [x] T008 Implement advisor-local `skill_graph_scan` handler. [45m] {deps: T004, T007}
+  - Evidence: Moved `scan.ts` to `system-skill-advisor/mcp_server/handlers/skill-graph/scan.ts`.
+- [x] T009 Implement advisor-local `skill_graph_query` handler. [45m] {deps: T004, T007}
+  - Evidence: Moved `query.ts` to `system-skill-advisor/mcp_server/handlers/skill-graph/query.ts`.
+- [x] T010 Implement advisor-local `skill_graph_status` handler. [45m] {deps: T004, T007}
+  - Evidence: Moved `status.ts` to `system-skill-advisor/mcp_server/handlers/skill-graph/status.ts`.
+- [x] T011 Implement advisor-local `skill_graph_validate` handler. [45m] {deps: T004, T007}
+  - Evidence: Moved `validate.ts` to `system-skill-advisor/mcp_server/handlers/skill-graph/validate.ts`.
+- [x] T012 Register all four handlers in `advisor-server.ts` dispatch. [30m] {deps: T008, T009, T010, T011}
+  - Evidence: `advisor-server.ts` lists 8 tools and dispatches `skill_graph_*` through advisor-local `skillGraphTools`.
+- [x] T013 Add advisor package tests for tool listing, schema validation, and handler dispatch. [60m] {deps: T012}
+  - Evidence: Added `skill-graph-listing.vitest.ts` and `skill-graph-dispatch.vitest.ts`; targeted advisor handler tests pass 19/19.
 
 ### Cluster B - Memory Proxy
 
-- [ ] T014 Add temporary memory-side proxy descriptors and dispatchers mirroring 005 ADR-003. [45m] {deps: T012}
-- [ ] T015 Add proxy tests for forwarding, once-only deprecation log, unavailable-server response, and 10s timeout path. [45m] {deps: T014}
+- [x] T014 Add temporary memory-side proxy descriptors and dispatchers mirroring 005 ADR-003. [45m] {deps: T012}
+  - Evidence: Replaced `system-spec-kit/mcp_server/tools/skill-graph-tools.ts` with stdio MCP proxy and annotated memory descriptors as bridge-only.
+- [x] T015 Add proxy tests for forwarding, once-only deprecation log, unavailable-server response, and 10s timeout path. [45m] {deps: T014}
+  - Evidence: Added `skill-graph-proxy.vitest.ts`; targeted memory proxy/handler/bootstrap tests pass 15 passed, 1 skipped.
 
 ### Cluster C - Consumer Cutover
 

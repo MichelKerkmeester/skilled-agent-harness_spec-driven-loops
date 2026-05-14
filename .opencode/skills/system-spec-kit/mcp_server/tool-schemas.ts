@@ -562,6 +562,8 @@ const memoryIngestCancel: ToolDefinition = {
 
 
 
+// BRIDGE-ONLY: forwarded to system_skill_advisor by 013/009/008 ADR-003.
+// Slated for removal in D2 Cluster D.
 const skillGraphScan: ToolDefinition = {
   name: 'skill_graph_scan',
   description: '[L7:Maintenance] Index or re-index all .opencode/skills/*/graph-metadata.json files into graph-metadata-index.sqlite using the hash-aware SQLite indexer. Token Budget: 800.',

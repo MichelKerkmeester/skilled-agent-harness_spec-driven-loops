@@ -10,7 +10,7 @@ import { readSkillGraphGeneration } from '../lib/freshness/generation.js';
 import { createTrustState } from '../lib/freshness/trust-state.js';
 import { DEFAULT_SCORER_WEIGHTS } from '../lib/scorer/weights-config.js';
 import { errorMessage } from '../lib/utils/error-format.js';
-import { redactDiagnosticText } from '../../../system-spec-kit/mcp_server/handlers/skill-graph/response-envelope.js';
+import { redactDiagnosticText } from './skill-graph/response-envelope.js';
 import {
   AdvisorStatusInputSchema,
   AdvisorStatusOutputSchema,

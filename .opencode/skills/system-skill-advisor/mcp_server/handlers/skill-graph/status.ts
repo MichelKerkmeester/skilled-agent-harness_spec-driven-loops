@@ -7,7 +7,7 @@
 import { createHash } from 'node:crypto';
 import { existsSync, readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
-import * as skillGraphDb from '../../lib/skill-graph/skill-graph-db.js';
+import * as skillGraphDb from '../../../../system-spec-kit/mcp_server/lib/skill-graph/skill-graph-db.js';
 import { errorResponse, okResponse } from './response-envelope.js';
 
 // ───────────────────────────────────────────────────────────────
