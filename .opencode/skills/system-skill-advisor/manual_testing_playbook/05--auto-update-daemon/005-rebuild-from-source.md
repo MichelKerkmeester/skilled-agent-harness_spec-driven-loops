@@ -7,16 +7,23 @@ trigger_phrases:
   - "corrupt sqlite advisor"
   - "daemon recovery rebuild"
 ---
+
 # AU-005 Rebuild From Source on Corrupt SQLite
+
+<!-- sk-doc-template: manual_testing_playbook -->
 
 ---
 
+<!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
 Validate the rebuild-from-source recovery path in `lib/freshness/rebuild-from-source.ts` when the advisor SQLite database is corrupted, including fail-open behavior and cache-invalidation wiring.
 
 ---
 
+<!-- /ANCHOR:1-overview -->
+
+<!-- ANCHOR:2-scenario-contract -->
 ## 2. SCENARIO CONTRACT
 
 - Disposable workspace copy. Do not corrupt the live repo database.
@@ -26,6 +33,9 @@ Validate the rebuild-from-source recovery path in `lib/freshness/rebuild-from-so
 
 ---
 
+<!-- /ANCHOR:2-scenario-contract -->
+
+<!-- ANCHOR:3-test-execution -->
 ## 3. TEST EXECUTION
 
 1. In the disposable copy, replace `skill-graph.sqlite` with invalid bytes:
@@ -65,6 +75,9 @@ skill_graph_scan({})
 
 ---
 
+<!-- /ANCHOR:3-test-execution -->
+
+<!-- ANCHOR:4-source-files -->
 ## 4. SOURCE FILES
 
 - Scenario [OP-003](../04--operator-h5/003-unavailable-daemon.md) — operator recovery flow.
@@ -74,9 +87,14 @@ skill_graph_scan({})
 
 ---
 
+<!-- /ANCHOR:4-source-files -->
+
+<!-- ANCHOR:5-source-metadata -->
 ## 5. SOURCE METADATA
 
 - Group: Auto Update Daemon
 - Playbook ID: AU-005
 - Canonical root source: manual_testing_playbook.md
 - Feature file path: 05--auto-update-daemon/005-rebuild-from-source.md
+
+<!-- /ANCHOR:5-source-metadata -->

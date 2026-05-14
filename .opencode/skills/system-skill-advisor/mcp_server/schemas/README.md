@@ -9,6 +9,9 @@ trigger_phrases:
 
 # Skill Advisor Schemas: Tool And Metadata Contracts
 
+<!-- sk-doc-template: skill_readme -->
+
+<!-- ANCHOR:table-of-contents -->
 ## TABLE OF CONTENTS
 
 - [1. OVERVIEW](#1--overview)
@@ -21,6 +24,9 @@ trigger_phrases:
 
 ---
 
+<!-- /ANCHOR:table-of-contents -->
+
+<!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
 `skill_advisor/schemas/` defines contract shapes used by advisor tools, daemon status reporting, compatibility validation and generated skill metadata. These files keep prompt-safe tool surfaces and generated metadata shapes separate from handler orchestration.
@@ -33,6 +39,9 @@ Current state:
 
 ---
 
+<!-- /ANCHOR:1-overview -->
+
+<!-- ANCHOR:2-directory-tree -->
 ## 2. DIRECTORY TREE
 
 ```text
@@ -47,6 +56,9 @@ schemas/
 
 ---
 
+<!-- /ANCHOR:2-directory-tree -->
+
+<!-- ANCHOR:3-key-files -->
 ## 3. KEY FILES
 
 | File | Responsibility |
@@ -59,6 +71,9 @@ schemas/
 
 ---
 
+<!-- /ANCHOR:3-key-files -->
+
+<!-- ANCHOR:4-boundaries-and-flow -->
 ## 4. BOUNDARIES AND FLOW
 
 | Boundary | Rule |
@@ -78,6 +93,9 @@ advisor tool, daemon or generator path
 
 ---
 
+<!-- /ANCHOR:4-boundaries-and-flow -->
+
+<!-- ANCHOR:5-entrypoints -->
 ## 5. ENTRYPOINTS
 
 | Entrypoint | Type | Purpose |
@@ -89,6 +107,9 @@ advisor tool, daemon or generator path
 
 ---
 
+<!-- /ANCHOR:5-entrypoints -->
+
+<!-- ANCHOR:6-validation -->
 ## 6. VALIDATION
 
 Run from the repository root.
@@ -101,8 +122,13 @@ Expected result: exit code `0`.
 
 ---
 
+<!-- /ANCHOR:6-validation -->
+
+<!-- ANCHOR:7-related -->
 ## 7. RELATED
 
 - [`../README.md`](../README.md)
 - [`../tests/schemas/README.md`](../tests/schemas/README.md)
 - [`../handlers/README.md`](../handlers/README.md)
+
+<!-- /ANCHOR:7-related -->

@@ -9,6 +9,9 @@ trigger_phrases:
 
 # Skill Advisor Scripts: CLI And Regression Utilities
 
+<!-- sk-doc-template: skill_readme -->
+
+<!-- ANCHOR:table-of-contents -->
 ## TABLE OF CONTENTS
 
 - [1. OVERVIEW](#1--overview)
@@ -21,6 +24,9 @@ trigger_phrases:
 
 ---
 
+<!-- /ANCHOR:table-of-contents -->
+
+<!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
 `skill_advisor/scripts/` holds command-line utilities and generated assets used by the skill-advisor package. The scripts support prompt routing checks, benchmark runs, regression validation, runtime invocation and skill-graph compilation.
@@ -33,6 +39,9 @@ Current state:
 
 ---
 
+<!-- /ANCHOR:1-overview -->
+
+<!-- ANCHOR:2-directory-tree -->
 ## 2. DIRECTORY TREE
 
 ```text
@@ -53,6 +62,9 @@ scripts/
 
 ---
 
+<!-- /ANCHOR:2-directory-tree -->
+
+<!-- ANCHOR:3-key-files -->
 ## 3. KEY FILES
 
 | File | Responsibility |
@@ -67,6 +79,9 @@ scripts/
 
 ---
 
+<!-- /ANCHOR:3-key-files -->
+
+<!-- ANCHOR:4-boundaries-and-flow -->
 ## 4. BOUNDARIES AND FLOW
 
 | Boundary | Rule |
@@ -86,6 +101,9 @@ prompt, fixture or skill graph source
 
 ---
 
+<!-- /ANCHOR:4-boundaries-and-flow -->
+
+<!-- ANCHOR:5-entrypoints -->
 ## 5. ENTRYPOINTS
 
 | Entrypoint | Type | Purpose |
@@ -97,6 +115,9 @@ prompt, fixture or skill graph source
 
 ---
 
+<!-- /ANCHOR:5-entrypoints -->
+
+<!-- ANCHOR:6-validation -->
 ## 6. VALIDATION
 
 Run from the repository root.
@@ -109,8 +130,13 @@ Expected result: exit code `0`.
 
 ---
 
+<!-- /ANCHOR:6-validation -->
+
+<!-- ANCHOR:7-related -->
 ## 7. RELATED
 
 - [`../README.md`](../README.md)
 - [`../lib/README.md`](../lib/README.md)
 - [`../tests/README.md`](../tests/README.md)
+
+<!-- /ANCHOR:7-related -->

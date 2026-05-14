@@ -7,16 +7,23 @@ trigger_phrases:
   - "sanitizeSkillLabel"
   - "write boundary sanitization"
 ---
+
 # AI-002 A7 Sanitizer at Every Write Boundary
+
+<!-- sk-doc-template: manual_testing_playbook -->
 
 ---
 
+<!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
 Validate that `lib/derived/sanitizer.ts` is invoked at every public write boundary: SQLite persistence, `graph-metadata.json.derived` writes, response envelopes emitted by `handlers/advisor-recommend.ts`, and diagnostic records written by adapters.
 
 ---
 
+<!-- /ANCHOR:1-overview -->
+
+<!-- ANCHOR:2-scenario-contract -->
 ## 2. SCENARIO CONTRACT
 
 - Repo root working directory.
@@ -26,6 +33,9 @@ Validate that `lib/derived/sanitizer.ts` is invoked at every public write bounda
 
 ---
 
+<!-- /ANCHOR:2-scenario-contract -->
+
+<!-- ANCHOR:3-test-execution -->
 ## 3. TEST EXECUTION
 
 1. Call `advisor_recommend` with a benign prompt that should match an active skill:
@@ -56,6 +66,9 @@ advisor_recommend({"prompt":"save this conversation context to memory","options"
 
 ---
 
+<!-- /ANCHOR:3-test-execution -->
+
+<!-- ANCHOR:4-source-files -->
 ## 4. SOURCE FILES
 
 - Scenario [AI-001](./001-derived-extraction.md) — derived extraction correctness.
@@ -65,9 +78,14 @@ advisor_recommend({"prompt":"save this conversation context to memory","options"
 
 ---
 
+<!-- /ANCHOR:4-source-files -->
+
+<!-- ANCHOR:5-source-metadata -->
 ## 5. SOURCE METADATA
 
 - Group: Auto Indexing
 - Playbook ID: AI-002
 - Canonical root source: manual_testing_playbook.md
 - Feature file path: 06--auto-indexing/002-sanitizer-boundaries.md
+
+<!-- /ANCHOR:5-source-metadata -->

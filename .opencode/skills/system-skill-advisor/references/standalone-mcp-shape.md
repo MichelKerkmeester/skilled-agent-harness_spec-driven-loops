@@ -9,8 +9,11 @@ trigger_phrases:
 
 # Standalone MCP Shape
 
+<!-- sk-doc-template: skill_reference -->
+
 ---
 
+<!-- ANCHOR:1-decision -->
 ## 1. DECISION
 
 ADR-001 chooses a standalone MCP server named `system_skill_advisor`.
@@ -26,6 +29,9 @@ The server owns:
 
 ---
 
+<!-- /ANCHOR:1-decision -->
+
+<!-- ANCHOR:2-boundary -->
 ## 2. BOUNDARY
 
 The standalone boundary is a process boundary, not only a folder move.
@@ -39,6 +45,9 @@ The memory MCP server may keep a temporary bridge for legacy `advisor_*` calls d
 
 ---
 
+<!-- /ANCHOR:2-boundary -->
+
+<!-- ANCHOR:3-child-packet-ownership -->
 ## 3. CHILD PACKET OWNERSHIP
 
 | Packet | Responsibility |
@@ -48,3 +57,5 @@ The memory MCP server may keep a temporary bridge for legacy `advisor_*` calls d
 | 004 | Launcher and runtime config |
 | 005 | Hooks and consumer cutover |
 | 006 | Cleanup and bridge removal |
+
+<!-- /ANCHOR:3-child-packet-ownership -->

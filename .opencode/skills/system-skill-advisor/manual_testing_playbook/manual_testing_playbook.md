@@ -5,6 +5,8 @@ description: "Canonical sk-doc manual testing playbook for the Skill Advisor man
 
 # Skill Advisor: Manual Testing Playbook
 
+<!-- sk-doc-template: manual_testing_playbook -->
+
 This document combines the canonical manual-validation contract for the `skill_advisor` package into a single reference. The root playbook acts as the operator directory, review protocol, and orchestration guide while the per-feature files carry scenario-specific execution truth.
 
 ---
@@ -25,6 +27,7 @@ Canonical package artifacts:
 
 ---
 
+<!-- ANCHOR:table-of-contents -->
 ## TABLE OF CONTENTS
 
 - [1. OVERVIEW](#1--overview)
@@ -48,6 +51,9 @@ Canonical package artifacts:
 
 ---
 
+<!-- /ANCHOR:table-of-contents -->
+
+<!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
 This playbook provides 42 deterministic scenario files across 9 categories validating the Skill Advisor surface. Scenario IDs use a multi-prefix scheme: `NC` for native MCP tools, `CL` for CLI hooks and plugin behavior, `CP` for compatibility and disable controls, `OP` for operator H5 states, `AU` for auto-update daemon behavior, `AI` for auto-indexing, `LC` for lifecycle routing, `SC` for scorer fusion, and `PC` for Python compatibility.
@@ -71,6 +77,9 @@ Coverage note (2026-05-07): the prior operator scenario corpus now lives under `
 
 ---
 
+<!-- /ANCHOR:1-overview -->
+
+<!-- ANCHOR:2-global-preconditions -->
 ## 2. GLOBAL PRECONDITIONS
 
 1. Working directory is the repository root.
@@ -87,6 +96,9 @@ npm --prefix .opencode/skills/system-spec-kit/mcp_server run build
 
 ---
 
+<!-- /ANCHOR:2-global-preconditions -->
+
+<!-- ANCHOR:3-global-evidence-requirements -->
 ## 3. GLOBAL EVIDENCE REQUIREMENTS
 
 - Scenario ID and per-feature file path.
@@ -100,6 +112,9 @@ npm --prefix .opencode/skills/system-spec-kit/mcp_server run build
 
 ---
 
+<!-- /ANCHOR:3-global-evidence-requirements -->
+
+<!-- ANCHOR:4-deterministic-command-notation -->
 ## 4. DETERMINISTIC COMMAND NOTATION
 
 - CLI commands shown as `bash: <command>`.
@@ -110,6 +125,9 @@ npm --prefix .opencode/skills/system-spec-kit/mcp_server run build
 
 ---
 
+<!-- /ANCHOR:4-deterministic-command-notation -->
+
+<!-- ANCHOR:5-review-protocol-and-release-readiness -->
 ## 5. REVIEW PROTOCOL AND RELEASE READINESS
 
 ### Inputs Required
@@ -149,6 +167,9 @@ Release is `READY` only when all 42 scenario files are `PASS` or have an approve
 
 ---
 
+<!-- /ANCHOR:5-review-protocol-and-release-readiness -->
+
+<!-- ANCHOR:6-sub-agent-orchestration-and-wave-planning -->
 ## 6. SUB-AGENT ORCHESTRATION AND WAVE PLANNING
 
 ### Purpose
@@ -178,6 +199,9 @@ This section records wave planning for the canonical Skill Advisor manual test p
 
 ---
 
+<!-- /ANCHOR:6-sub-agent-orchestration-and-wave-planning -->
+
+<!-- ANCHOR:7-native-mcp-tools -->
 ## 7. NATIVE MCP TOOLS
 
 This category validates native mcp tools scenarios `NC-001..NC-006`.
@@ -193,6 +217,9 @@ This category validates native mcp tools scenarios `NC-001..NC-006`.
 
 ---
 
+<!-- /ANCHOR:7-native-mcp-tools -->
+
+<!-- ANCHOR:8-cli-hooks-and-plugin -->
 ## 8. CLI HOOKS AND PLUGIN
 
 This category validates cli hooks and plugin scenarios `CL-001..CL-005`.
@@ -206,6 +233,9 @@ This category validates cli hooks and plugin scenarios `CL-001..CL-005`.
 
 ---
 
+<!-- /ANCHOR:8-cli-hooks-and-plugin -->
+
+<!-- ANCHOR:9-compat-and-disable -->
 ## 9. COMPAT AND DISABLE
 
 This category validates compat and disable scenarios `CP-001..CP-004`.
@@ -219,6 +249,9 @@ This category validates compat and disable scenarios `CP-001..CP-004`.
 
 ---
 
+<!-- /ANCHOR:9-compat-and-disable -->
+
+<!-- ANCHOR:10-operator-h5 -->
 ## 10. OPERATOR H5
 
 This category validates operator h5 scenarios `OP-001..OP-003`.
@@ -231,6 +264,9 @@ This category validates operator h5 scenarios `OP-001..OP-003`.
 
 ---
 
+<!-- /ANCHOR:10-operator-h5 -->
+
+<!-- ANCHOR:11-auto-update-daemon -->
 ## 11. AUTO UPDATE DAEMON
 
 This category validates auto update daemon scenarios `AU-001..AU-005`.
@@ -245,6 +281,9 @@ This category validates auto update daemon scenarios `AU-001..AU-005`.
 
 ---
 
+<!-- /ANCHOR:11-auto-update-daemon -->
+
+<!-- ANCHOR:12-auto-indexing -->
 ## 12. AUTO INDEXING
 
 This category validates auto indexing scenarios `AI-001..AI-005`.
@@ -259,6 +298,9 @@ This category validates auto indexing scenarios `AI-001..AI-005`.
 
 ---
 
+<!-- /ANCHOR:12-auto-indexing -->
+
+<!-- ANCHOR:13-lifecycle-routing -->
 ## 13. LIFECYCLE ROUTING
 
 This category validates lifecycle routing scenarios `LC-001..LC-005`.
@@ -273,6 +315,9 @@ This category validates lifecycle routing scenarios `LC-001..LC-005`.
 
 ---
 
+<!-- /ANCHOR:13-lifecycle-routing -->
+
+<!-- ANCHOR:14-scorer-fusion -->
 ## 14. SCORER FUSION
 
 This category validates scorer fusion scenarios `SC-001..SC-005`.
@@ -287,6 +332,9 @@ This category validates scorer fusion scenarios `SC-001..SC-005`.
 
 ---
 
+<!-- /ANCHOR:14-scorer-fusion -->
+
+<!-- ANCHOR:15-python-compat -->
 ## 15. PYTHON COMPAT
 
 This category validates python compat scenarios `PC-001..PC-005`.
@@ -296,11 +344,14 @@ This category validates python compat scenarios `PC-001..PC-005`.
 | PC-001 | Python Shim --stdin Round-Trip | [001-stdin-mode.md](10--python-compat/001-stdin-mode.md) |
 | PC-002 | --force-native and --force-local Toggles | [002-force-native-force-local.md](10--python-compat/002-force-native-force-local.md) |
 | PC-003 | threshold Confidence Flag | [003-threshold-flag.md](10--python-compat/003-threshold-flag.md) |
-| PC-004 | Python Regression Suite 52/52 | [004-regression-suite.md](10--python-compat/004-regression-suite.md) |
+| PC-004 | Python Regression Dataset | [004-regression-suite.md](10--python-compat/004-regression-suite.md) |
 | PC-005 | Python Bench Runner | [005-bench-runner.md](10--python-compat/005-bench-runner.md) |
 
 ---
 
+<!-- /ANCHOR:15-python-compat -->
+
+<!-- ANCHOR:16-automated-test-cross-reference -->
 ## 16. AUTOMATED TEST CROSS-REFERENCE
 
 The active inventory check lives at `.opencode/skills/system-skill-advisor/mcp_server/tests/manual-testing-playbook.vitest.ts`. It verifies the root playbook rows, the live per-feature file inventory, and the 42-scenario package count.
@@ -316,6 +367,9 @@ Validator limitation: `validate_document.py` validates this root document and pe
 
 ---
 
+<!-- /ANCHOR:16-automated-test-cross-reference -->
+
+<!-- ANCHOR:17-feature-catalog-cross-reference-index -->
 ## 17. FEATURE CATALOG CROSS-REFERENCE INDEX
 
 | Scenario prefix | Category | Feature file directory |
@@ -334,9 +388,14 @@ Per-feature files include SOURCE FILES sections with implementation, catalog, an
 
 ---
 
+<!-- /ANCHOR:17-feature-catalog-cross-reference-index -->
+
+<!-- ANCHOR:18-legacy-id-cross-reference -->
 ## 18. LEGACY ID CROSS-REFERENCE
 
 - SAD-001 -> NC-001 (01--native-mcp-tools/001-native-recommend-happy-path.md)
 - SAD-002 -> NC-004 (01--native-mcp-tools/004-ambiguous-brief-rendering.md)
 - SAD-003 -> CL-001 (02--cli-hooks-and-plugin/001-claude-user-prompt-submit.md)
 - SAD-004 -> NC-006 (01--native-mcp-tools/006-advisor-status-rebuild-separation.md)
+
+<!-- /ANCHOR:18-legacy-id-cross-reference -->

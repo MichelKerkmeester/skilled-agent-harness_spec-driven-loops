@@ -7,10 +7,14 @@ trigger_phrases:
   - "ambiguous brief"
   - "ambiguous"
 ---
+
 # NC-004 Ambiguous Brief Rendering
+
+<!-- sk-doc-template: manual_testing_playbook -->
 
 ---
 
+<!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
 Validate that ambiguous advisor results surface as ambiguity rather than a false single-skill certainty.
@@ -19,6 +23,9 @@ Validate that ambiguous advisor results surface as ambiguity rather than a false
 
 ---
 
+<!-- /ANCHOR:1-overview -->
+
+<!-- ANCHOR:2-scenario-contract -->
 ## 2. SCENARIO CONTRACT
 
 - Repo root is the working directory.
@@ -27,6 +34,9 @@ Validate that ambiguous advisor results surface as ambiguity rather than a false
 
 ---
 
+<!-- /ANCHOR:2-scenario-contract -->
+
+<!-- ANCHOR:3-test-execution -->
 ## 3. TEST EXECUTION
 
 1. Run the ambiguity-focused unit test:
@@ -66,6 +76,9 @@ advisor_recommend({"prompt":"review opencode docs and improve the prompt package
 
 ---
 
+<!-- /ANCHOR:3-test-execution -->
+
+<!-- ANCHOR:4-source-files -->
 ## 4. SOURCE FILES
 
 - `.opencode/skills/system-skill-advisor/mcp_server/lib/scorer/ambiguity.ts`
@@ -73,9 +86,14 @@ advisor_recommend({"prompt":"review opencode docs and improve the prompt package
 
 ---
 
+<!-- /ANCHOR:4-source-files -->
+
+<!-- ANCHOR:5-source-metadata -->
 ## 5. SOURCE METADATA
 
 - Group: Native MCP Tools
 - Playbook ID: NC-004
 - Canonical root source: manual_testing_playbook.md
 - Feature file path: 01--native-mcp-tools/004-ambiguous-brief-rendering.md
+
+<!-- /ANCHOR:5-source-metadata -->

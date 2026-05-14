@@ -10,6 +10,8 @@ trigger_phrases:
 
 # A7 Sanitizer at Every Write Boundary
 
+<!-- sk-doc-template: skill_asset_feature_catalog -->
+
 <!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 

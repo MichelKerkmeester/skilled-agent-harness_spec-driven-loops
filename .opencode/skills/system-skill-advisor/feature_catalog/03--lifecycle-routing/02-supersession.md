@@ -10,6 +10,8 @@ trigger_phrases:
 
 # Asymmetric Supersession Routing
 
+<!-- sk-doc-template: skill_asset_feature_catalog -->
+
 <!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 

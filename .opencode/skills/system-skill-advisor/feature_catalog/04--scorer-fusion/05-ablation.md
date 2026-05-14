@@ -10,6 +10,8 @@ trigger_phrases:
 
 # Lane-by-Lane Ablation Protocol
 
+<!-- sk-doc-template: skill_asset_feature_catalog -->
+
 <!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 

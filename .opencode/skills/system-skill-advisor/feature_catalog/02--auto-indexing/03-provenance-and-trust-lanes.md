@@ -10,6 +10,8 @@ trigger_phrases:
 
 # Provenance Fingerprints and Trust Lanes
 
+<!-- sk-doc-template: skill_asset_feature_catalog -->
+
 <!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 

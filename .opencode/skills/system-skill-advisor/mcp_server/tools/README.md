@@ -1,6 +1,6 @@
 ---
 title: "Skill Advisor Tools: MCP Tool Descriptors"
-description: "Tool descriptor modules for native skill advisor recommendation, status, rebuild and validation endpoints."
+description: "Tool descriptor modules for native advisor and skill graph MCP endpoints."
 trigger_phrases:
   - "advisor tools"
   - "skill advisor descriptors"
@@ -9,6 +9,9 @@ trigger_phrases:
 
 # Skill Advisor Tools: MCP Tool Descriptors
 
+<!-- sk-doc-template: skill_readme -->
+
+<!-- ANCHOR:table-of-contents -->
 ## TABLE OF CONTENTS
 
 - [1. OVERVIEW](#1--overview)
@@ -21,9 +24,12 @@ trigger_phrases:
 
 ---
 
+<!-- /ANCHOR:table-of-contents -->
+
+<!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
-`skill_advisor/tools/` contains MCP `ToolDefinition` descriptors for the native skill advisor surface. Each descriptor defines a tool name, prompt-safe description and JSON Schema input contract.
+`mcp_server/tools/` contains MCP `ToolDefinition` descriptors for the standalone `system_skill_advisor` surface. Each descriptor defines a tool name, prompt-safe description and JSON Schema input contract.
 
 Current state:
 
@@ -31,9 +37,13 @@ Current state:
 - `advisor_status` reports freshness, trust state and daemon availability.
 - `advisor_rebuild` rebuilds checked-in skill metadata when status is stale or absent.
 - `advisor_validate` runs the heavier advisor validation bundle after explicit confirmation.
+- `skill_graph_scan`, `skill_graph_query`, `skill_graph_status`, and `skill_graph_validate` expose the advisor-owned skill graph MCP surface.
 
 ---
 
+<!-- /ANCHOR:1-overview -->
+
+<!-- ANCHOR:2-directory-tree -->
 ## 2. DIRECTORY TREE
 
 ```text
@@ -44,11 +54,16 @@ tools/
 +-- advisor-status.ts         # advisor_status descriptor
 +-- advisor-validate.ts       # advisor_validate descriptor
 +-- index.ts                  # Descriptor barrel exports
++-- skill-graph-tools.ts      # skill_graph_* descriptors and dispatcher
++-- types.ts                  # Descriptor type contract
 `-- README.md
 ```
 
 ---
 
+<!-- /ANCHOR:2-directory-tree -->
+
+<!-- ANCHOR:3-key-files -->
 ## 3. KEY FILES
 
 | File | Responsibility |
@@ -59,9 +74,14 @@ tools/
 | `advisor-rebuild.ts` | Defines the explicit rebuild descriptor and optional `force` flag. |
 | `advisor-validate.ts` | Defines the heavy validation descriptor with `confirmHeavyRun: true`. |
 | `advisor-contract-keys.ts` | Keeps selected descriptor property keys aligned with schema consumers. |
+| `skill-graph-tools.ts` | Defines `skill_graph_scan`, `skill_graph_query`, `skill_graph_status`, and `skill_graph_validate`. |
+| `types.ts` | Defines the local `ToolDefinition` contract. |
 
 ---
 
+<!-- /ANCHOR:3-key-files -->
+
+<!-- ANCHOR:4-boundaries-and-flow -->
 ## 4. BOUNDARIES AND FLOW
 
 | Boundary | Rule |
@@ -87,6 +107,9 @@ Advisor handler validates input and runs logic
 
 ---
 
+<!-- /ANCHOR:4-boundaries-and-flow -->
+
+<!-- ANCHOR:5-entrypoints -->
 ## 5. ENTRYPOINTS
 
 | Entrypoint | Type | Purpose |
@@ -95,9 +118,16 @@ Advisor handler validates input and runs logic
 | `advisorStatusTool` | Descriptor | Registers `advisor_status`. |
 | `advisorRebuildTool` | Descriptor | Registers `advisor_rebuild`. |
 | `advisorValidateTool` | Descriptor | Registers `advisor_validate`. |
+| `skillGraphScanTool` | Descriptor | Registers `skill_graph_scan`. |
+| `skillGraphQueryTool` | Descriptor | Registers `skill_graph_query`. |
+| `skillGraphStatusTool` | Descriptor | Registers `skill_graph_status`. |
+| `skillGraphValidateTool` | Descriptor | Registers `skill_graph_validate`. |
 
 ---
 
+<!-- /ANCHOR:5-entrypoints -->
+
+<!-- ANCHOR:6-validation -->
 ## 6. VALIDATION
 
 Run from the repository root.
@@ -110,7 +140,12 @@ Expected result: exit code `0`.
 
 ---
 
+<!-- /ANCHOR:6-validation -->
+
+<!-- ANCHOR:7-related -->
 ## 7. RELATED
 
 - [`../README.md`](../README.md)
 - [`index.ts`](index.ts)
+
+<!-- /ANCHOR:7-related -->

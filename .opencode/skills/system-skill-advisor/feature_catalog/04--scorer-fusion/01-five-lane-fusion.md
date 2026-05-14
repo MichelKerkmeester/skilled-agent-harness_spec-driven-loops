@@ -1,6 +1,6 @@
 ---
 title: "Five-Lane Analytical Fusion"
-description: "Analytical fusion of 5 lanes (explicit_author 0.45, lexical 0.30, graph_causal 0.15, derived_generated 0.15, semantic_shadow 0.00) that produces the live routing score."
+description: "Analytical fusion of 5 lanes (explicit_author 0.42, lexical 0.28, graph_causal 0.13, derived_generated 0.12, semantic_shadow 0.05) that produces the live routing score."
 trigger_phrases:
   - "five lane fusion"
   - "lane weights canonical"
@@ -9,6 +9,8 @@ trigger_phrases:
 ---
 
 # Five-Lane Analytical Fusion
+
+<!-- sk-doc-template: skill_asset_feature_catalog -->
 
 <!-- ANCHOR:overview -->
 ## 1. OVERVIEW
@@ -24,11 +26,11 @@ Combine evidence from five independent lanes into a single routing score with do
 
 | Lane | Weight | Source |
 | --- | --- | --- |
-| `explicit_author` | 0.45 | Author-declared signals via `intent_signals`, trigger_phrases, and explicit mentions. |
-| `lexical` | 0.30 | Token overlap weighted by IDF from the active corpus. |
-| `graph_causal` | 0.15 | Graph-edge evidence projected through skill_nodes and skill_edges. |
-| `derived_generated` | 0.15 | Auto-extracted derived entries under trust-lane control. |
-| `semantic_shadow` | 0.00 | Semantic similarity (shadow-only; live weight is hardcoded at 0). |
+| `explicit_author` | 0.42 | Author-declared signals via `intent_signals`, trigger_phrases, and explicit mentions. |
+| `lexical` | 0.28 | Token overlap weighted by IDF from the active corpus. |
+| `graph_causal` | 0.13 | Graph-edge evidence projected through skill_nodes and skill_edges. |
+| `derived_generated` | 0.12 | Auto-extracted derived entries under trust-lane control. |
+| `semantic_shadow` | 0.05 | Semantic similarity evidence from the current lane registry. |
 
 Weight configuration is exposed via `advisor_status.laneWeights`.
 

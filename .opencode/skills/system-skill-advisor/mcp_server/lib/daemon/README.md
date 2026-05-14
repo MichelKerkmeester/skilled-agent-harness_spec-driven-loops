@@ -9,6 +9,9 @@ trigger_phrases:
 
 # Daemon Library: Advisor Watcher Lifecycle
 
+<!-- sk-doc-template: skill_readme -->
+
+<!-- ANCHOR:table-of-contents -->
 ## TABLE OF CONTENTS
 
 - [1. OVERVIEW](#1--overview)
@@ -21,6 +24,9 @@ trigger_phrases:
 
 ---
 
+<!-- /ANCHOR:table-of-contents -->
+
+<!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
 `lib/daemon/` contains helpers for the skill-advisor daemon and watcher path. It keeps leases, lifecycle state, state mutation and watcher orchestration separate from scorer and rendering modules.
@@ -33,6 +39,9 @@ Current state:
 
 ---
 
+<!-- /ANCHOR:1-overview -->
+
+<!-- ANCHOR:2-directory-tree -->
 ## 2. DIRECTORY TREE
 
 ```text
@@ -47,6 +56,9 @@ daemon/
 
 ---
 
+<!-- /ANCHOR:2-directory-tree -->
+
+<!-- ANCHOR:3-key-files -->
 ## 3. KEY FILES
 
 | File | Responsibility |
@@ -59,6 +71,9 @@ daemon/
 
 ---
 
+<!-- /ANCHOR:3-key-files -->
+
+<!-- ANCHOR:4-boundaries-and-flow -->
 ## 4. BOUNDARIES AND FLOW
 
 | Boundary | Rule |
@@ -79,6 +94,9 @@ daemon startup or file change
 
 ---
 
+<!-- /ANCHOR:4-boundaries-and-flow -->
+
+<!-- ANCHOR:5-entrypoints -->
 ## 5. ENTRYPOINTS
 
 | Entrypoint | Type | Purpose |
@@ -90,6 +108,9 @@ daemon startup or file change
 
 ---
 
+<!-- /ANCHOR:5-entrypoints -->
+
+<!-- ANCHOR:6-validation -->
 ## 6. VALIDATION
 
 Run from the repository root.
@@ -102,8 +123,13 @@ Expected result: exit code `0`.
 
 ---
 
+<!-- /ANCHOR:6-validation -->
+
+<!-- ANCHOR:7-related -->
 ## 7. RELATED
 
 - [`../README.md`](../README.md)
 - [`../compat/README.md`](../compat/README.md)
 - [`../../schemas/README.md`](../../schemas/README.md)
+
+<!-- /ANCHOR:7-related -->

@@ -8,6 +8,8 @@ trigger_phrases:
 
 # Skill Advisor Handler Tests
 
+<!-- sk-doc-template: skill_readme -->
+
 > Vitest coverage for advisor MCP handler response shapes, status reporting and validation contracts.
 
 <!-- ANCHOR:table-of-contents -->

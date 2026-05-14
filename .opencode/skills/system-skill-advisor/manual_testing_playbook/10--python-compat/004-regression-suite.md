@@ -1,22 +1,29 @@
 ---
-title: "PC-004 Python Regression Suite 52/52"
-description: "Manual validation that scripts/skill_advisor_regression.py runs the 52-case P0 regression suite to completion and reports 52/52 passes."
+title: "PC-004 Python Regression Dataset"
+description: "Manual validation that scripts/skill_advisor_regression.py runs the checked-in P0 regression dataset to completion and reports pass/fail totals."
 trigger_phrases:
   - "pc-004"
   - "python regression suite"
-  - "52 of 52 pass"
+  - "regression harness coverage"
   - "skill_advisor_regression.py"
 ---
-# PC-004 Python Regression Suite 52/52
+
+# PC-004 Python Regression Dataset
+
+<!-- sk-doc-template: manual_testing_playbook -->
 
 ---
 
+<!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
-Validate that `scripts/skill_advisor_regression.py` runs the P0 regression dataset at `scripts/fixtures/skill_advisor_regression_cases.jsonl` and reports 52 of 52 cases passing against the Python scorer.
+Validate that `scripts/skill_advisor_regression.py` runs the P0 regression dataset at `scripts/fixtures/skill_advisor_regression_cases.jsonl` and reports pass/fail totals against the Python scorer.
 
 ---
 
+<!-- /ANCHOR:1-overview -->
+
+<!-- ANCHOR:2-scenario-contract -->
 ## 2. SCENARIO CONTRACT
 
 - Repo root; Python 3 available.
@@ -25,6 +32,9 @@ Validate that `scripts/skill_advisor_regression.py` runs the P0 regression datas
 
 ---
 
+<!-- /ANCHOR:2-scenario-contract -->
+
+<!-- ANCHOR:3-test-execution -->
 ## 3. TEST EXECUTION
 
 1. Run the suite:
@@ -36,12 +46,12 @@ python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor_r
 
 2. Capture stdout and exit code.
 3. Inspect per-case results for any FAIL entry.
-4. Confirm the summary line reports `52/52` or the current documented total.
+4. Confirm the summary line reports the current dataset total and pass/fail counts.
 
 ### Expected Signals
 
 - Exit code is 0.
-- Summary reports all cases passing (current baseline 52/52).
+- Summary reports all cases passing for the checked-in dataset.
 - No case is marked SKIP without an explicit reason.
 - No prompt text is written to logs beyond what the dataset already contains.
 
@@ -55,6 +65,9 @@ python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor_r
 
 ---
 
+<!-- /ANCHOR:3-test-execution -->
+
+<!-- ANCHOR:4-source-files -->
 ## 4. SOURCE FILES
 
 - Scenario [PC-005](./005-bench-runner.md) — bench runner.
@@ -64,9 +77,14 @@ python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor_r
 
 ---
 
+<!-- /ANCHOR:4-source-files -->
+
+<!-- ANCHOR:5-source-metadata -->
 ## 5. SOURCE METADATA
 
 - Group: Python Compat
 - Playbook ID: PC-004
 - Canonical root source: manual_testing_playbook.md
 - Feature file path: 10--python-compat/004-regression-suite.md
+
+<!-- /ANCHOR:5-source-metadata -->

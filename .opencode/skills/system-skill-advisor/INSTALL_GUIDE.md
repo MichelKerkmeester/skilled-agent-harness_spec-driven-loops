@@ -5,10 +5,13 @@ description: "Bootstrap, verification, compatibility, rollback, and operator not
 
 # Skill Advisor Native Bootstrap
 
-This is the canonical bootstrap guide for the standalone Skill Advisor MCP server. The advisor runs as `system_skill_advisor`, separate from `spec_kit_memory`, while preserving the public tool ids `advisor_recommend`, `advisor_rebuild`, `advisor_status`, and `advisor_validate`.
+<!-- sk-doc-template: skill_reference_install_guide -->
+
+This is the canonical bootstrap guide for the standalone Skill Advisor MCP server. The advisor runs as `system_skill_advisor`, separate from `spec_kit_memory`, while preserving the public tool ids `advisor_recommend`, `advisor_rebuild`, `advisor_status`, `advisor_validate`, `skill_graph_scan`, `skill_graph_query`, `skill_graph_status`, and `skill_graph_validate`.
 
 ---
 
+<!-- ANCHOR:table-of-contents -->
 ## TABLE OF CONTENTS
 
 - [1. OVERVIEW](#1-overview)
@@ -23,12 +26,18 @@ This is the canonical bootstrap guide for the standalone Skill Advisor MCP serve
 
 ---
 
+<!-- /ANCHOR:table-of-contents -->
+
+<!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
-The native advisor is a TypeScript package under `.opencode/skills/system-skill-advisor/mcp_server/` with the public MCP tools `advisor_recommend`, `advisor_rebuild`, `advisor_status`, and `advisor_validate`. The standalone MCP server owns the advisor handlers, schemas, launcher, and package-local SQLite DB at `.opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sqlite`. The Python `skill_advisor.py` shim remains as the compatibility surface for scripts and prompt hooks.
+The native advisor is a TypeScript package under `.opencode/skills/system-skill-advisor/mcp_server/` with the public MCP tools `advisor_recommend`, `advisor_rebuild`, `advisor_status`, `advisor_validate`, `skill_graph_scan`, `skill_graph_query`, `skill_graph_status`, and `skill_graph_validate`. The standalone MCP server owns the advisor handlers, schemas, launcher, and package-local SQLite DB at `.opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sqlite`. The Python `skill_advisor.py` shim remains as the compatibility surface for scripts and prompt hooks.
 
 ---
 
+<!-- /ANCHOR:1-overview -->
+
+<!-- ANCHOR:2-prerequisites -->
 ## 2. PREREQUISITES
 
 - Node.js and npm available for the standalone system-skill-advisor MCP server.
@@ -38,6 +47,9 @@ The native advisor is a TypeScript package under `.opencode/skills/system-skill-
 
 ---
 
+<!-- /ANCHOR:2-prerequisites -->
+
+<!-- ANCHOR:3-installation -->
 ## 3. INSTALLATION
 
 Install dependencies and build the advisor MCP server:
@@ -55,6 +67,9 @@ node .opencode/bin/skill-advisor-launcher.cjs
 
 ---
 
+<!-- /ANCHOR:3-installation -->
+
+<!-- ANCHOR:4-verification -->
 ## 4. VERIFICATION
 
 Verify native tool registration through `system_skill_advisor`:
@@ -76,6 +91,9 @@ Expected:
 
 ---
 
+<!-- /ANCHOR:4-verification -->
+
+<!-- ANCHOR:5-native-package-checks -->
 ## 5. NATIVE PACKAGE CHECKS
 
 Run before declaring bootstrap complete:
@@ -94,11 +112,14 @@ Current native advisor baseline:
 | Holdout top-1 | 77.5% |
 | UNKNOWN count | <= 10 |
 | Python-correct regressions | 0 |
-| Python regression suite | 52/52 passed |
+| Python regression suite | regression harness available |
 | Package-local tests | 23 files / 167 tests |
 
 ---
 
+<!-- /ANCHOR:5-native-package-checks -->
+
+<!-- ANCHOR:6-compat-shims -->
 ## 6. COMPAT SHIMS
 
 `skill_advisor.py` remains the CLI compatibility surface. In one-shot mode it probes the native advisor first and translates `advisor_recommend` output back to the legacy JSON-array shape. If the native probe is unavailable, it falls back to the local Python scorer.
@@ -129,6 +150,9 @@ If a package-level import is needed inside a subprocess fallback, it must target
 
 ---
 
+<!-- /ANCHOR:6-compat-shims -->
+
+<!-- ANCHOR:7-rollback -->
 ## 7. ROLLBACK
 
 Use rollback only long enough to diagnose or recover the native path.
@@ -153,6 +177,9 @@ unset SPECKIT_SKILL_ADVISOR_FORCE_LOCAL
 
 ---
 
+<!-- /ANCHOR:7-rollback -->
+
+<!-- ANCHOR:8-operator-checks -->
 ## 8. OPERATOR CHECKS
 
 `skill_graph_*` tools are owned by the `system_skill_advisor` MCP server as of `013/009/008`; public tool ids remain unchanged.
@@ -182,6 +209,9 @@ Manual recovery scenarios live at:
 
 ---
 
+<!-- /ANCHOR:8-operator-checks -->
+
+<!-- ANCHOR:9-related-resources -->
 ## 9. RELATED RESOURCES
 
 | Document | Purpose |
@@ -189,3 +219,5 @@ Manual recovery scenarios live at:
 | [README.md](./README.md) | Package-local architecture and public API entrypoints. |
 | [README.md](./README.md) | Operator overview, quick start, runtime integrations. |
 | [Hook reference](../../references/hooks/skill-advisor-hook.md) | Claude, Copilot, Gemini, Codex, and OpenCode plugin hook contract. |
+
+<!-- /ANCHOR:9-related-resources -->

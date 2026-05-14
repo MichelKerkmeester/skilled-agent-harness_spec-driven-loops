@@ -10,6 +10,8 @@ trigger_phrases:
 
 # Skill Advisor Package
 
+<!-- sk-doc-template: skill_readme -->
+
 <!-- ANCHOR:table-of-contents -->
 ## TABLE OF CONTENTS
 
@@ -29,14 +31,15 @@ trigger_phrases:
 <!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
-`skill_advisor/` owns native Gate 2 skill routing for Spec Kit. It contains the scorer, daemon freshness checks, MCP handlers, runtime hook rendering, validation bundle and Python compatibility scripts.
+`system-skill-advisor/` owns native Gate 2 skill routing for Spec Kit. It contains the standalone `system_skill_advisor` MCP server, scorer, daemon freshness checks, skill graph tools, validation bundle and Python compatibility scripts.
 
 Current state:
 
-- Native MCP tools are the primary runtime surface.
+- Native MCP tools are the primary runtime surface: four `advisor_*` tools plus four `skill_graph_*` tools.
 - Python scripts remain a compatibility path for callers that cannot use MCP tools directly.
 - Public responses stay prompt-safe and expose skill labels, scores, thresholds and trust metadata.
 - Command-backed skills use explicit alias groups where command ids and skill ids are legitimate names for the same capability.
+- `lib/skill-graph/` database/query logic remains a transitional dependency from `system-spec-kit` until packet 011 completes.
 
 <!-- /ANCHOR:overview -->
 
@@ -75,22 +78,22 @@ scripts call the native package first, then Python fallback when needed
 ## 3. DIRECTORY TREE
 
 ```text
-skill_advisor/
+system-skill-advisor/
 ├── README.md
 ├── INSTALL_GUIDE.md
 ├── SET-UP_GUIDE.md
-├── bench/                    # Latency and scorer measurement helpers
-├── compat/                   # Stable package entrypoints for external callers
-├── daemon/                   # Watcher and freshness process code
-├── docs/                     # Operator notes and alignment records
 ├── feature_catalog/          # Current feature inventory
-├── handlers/                 # MCP handler implementations
-├── lib/                      # Scorer, freshness, lifecycle and rendering logic
 ├── manual_testing_playbook/  # Manual scenario package
-├── schemas/                  # Tool and metadata contracts
-├── scripts/                  # Python shim, regression and bench scripts
-├── tests/                    # Vitest and compatibility coverage
-└── tools/                    # MCP tool descriptors
+├── references/               # Package policies and migration references
+└── mcp_server/
+    ├── bench/                # Latency and scorer measurement helpers
+    ├── compat/               # Stable package entrypoints for external callers
+    ├── handlers/             # MCP handler implementations
+    ├── lib/                  # Scorer, freshness, lifecycle and rendering logic
+    ├── schemas/              # Tool and metadata contracts
+    ├── scripts/              # Python shim, regression and bench scripts
+    ├── tests/                # Vitest and compatibility coverage
+    └── tools/                # MCP tool descriptors
 ```
 
 <!-- /ANCHOR:directory-tree -->
@@ -163,6 +166,10 @@ Control flow:
 | `advisor_status` | Freshness and trust inspection. |
 | `advisor_rebuild` | Index rebuild after skill metadata changes. |
 | `advisor_validate` | Release and regression validation. |
+| `skill_graph_scan` | Skill graph metadata indexing. |
+| `skill_graph_query` | Skill relationship and subgraph queries. |
+| `skill_graph_status` | Skill graph health and count reporting. |
+| `skill_graph_validate` | Skill graph integrity validation. |
 | `scripts/skill_advisor.py` | CLI compatibility and hook fallback. |
 
 <!-- /ANCHOR:entrypoints -->

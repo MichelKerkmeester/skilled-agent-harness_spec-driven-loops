@@ -9,6 +9,9 @@ trigger_phrases:
 
 # Skill Advisor Tests: Regression And Contract Coverage
 
+<!-- sk-doc-template: skill_readme -->
+
+<!-- ANCHOR:table-of-contents -->
 ## TABLE OF CONTENTS
 
 - [1. OVERVIEW](#1--overview)
@@ -23,6 +26,9 @@ trigger_phrases:
 
 ---
 
+<!-- /ANCHOR:table-of-contents -->
+
+<!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
 `skill_advisor/tests/` is the regression surface for the skill-advisor package. It groups focused Vitest suites, compatibility checks, handler and hook tests, schema checks, Python parity tests and shared fixtures used by the advisor scorer and daemon paths.
@@ -35,6 +41,9 @@ Current state:
 
 ---
 
+<!-- /ANCHOR:1-overview -->
+
+<!-- ANCHOR:2-architecture -->
 ## 2. ARCHITECTURE
 
 ```text
@@ -63,6 +72,9 @@ Dependency direction: test suites -> fixtures -> advisor runtime modules
 
 ---
 
+<!-- /ANCHOR:2-architecture -->
+
+<!-- ANCHOR:3-package-topology -->
 ## 3. PACKAGE TOPOLOGY
 
 ```text
@@ -100,6 +112,9 @@ fixtures -> generated runtime state without an explicit test setup
 
 ---
 
+<!-- /ANCHOR:3-package-topology -->
+
+<!-- ANCHOR:4-directory-tree -->
 ## 4. DIRECTORY TREE
 
 ```text
@@ -118,6 +133,9 @@ tests/
 
 ---
 
+<!-- /ANCHOR:4-directory-tree -->
+
+<!-- ANCHOR:5-key-files -->
 ## 5. KEY FILES
 
 | File | Responsibility |
@@ -131,6 +149,9 @@ tests/
 
 ---
 
+<!-- /ANCHOR:5-key-files -->
+
+<!-- ANCHOR:6-boundaries-and-flow -->
 ## 6. BOUNDARIES AND FLOW
 
 | Boundary | Rule |
@@ -150,6 +171,9 @@ fixture or inline scenario
 
 ---
 
+<!-- /ANCHOR:6-boundaries-and-flow -->
+
+<!-- ANCHOR:7-entrypoints -->
 ## 7. ENTRYPOINTS
 
 | Entrypoint | Type | Purpose |
@@ -161,6 +185,9 @@ fixture or inline scenario
 
 ---
 
+<!-- /ANCHOR:7-entrypoints -->
+
+<!-- ANCHOR:8-validation -->
 ## 8. VALIDATION
 
 Run from the repository root.
@@ -173,8 +200,13 @@ Expected result: exit code `0`.
 
 ---
 
+<!-- /ANCHOR:8-validation -->
+
+<!-- ANCHOR:9-related -->
 ## 9. RELATED
 
 - [`../README.md`](../README.md)
 - [`../lib/README.md`](../lib/README.md)
 - [`scorer/README.md`](scorer/README.md)
+
+<!-- /ANCHOR:9-related -->

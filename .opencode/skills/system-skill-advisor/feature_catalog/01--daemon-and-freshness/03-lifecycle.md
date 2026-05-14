@@ -10,6 +10,8 @@ trigger_phrases:
 
 # Daemon Lifecycle and Health Reporting
 
+<!-- sk-doc-template: skill_asset_feature_catalog -->
+
 <!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 

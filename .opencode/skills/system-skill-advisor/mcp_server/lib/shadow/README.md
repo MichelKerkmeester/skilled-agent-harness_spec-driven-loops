@@ -8,6 +8,9 @@ trigger_phrases:
 
 # Shadow Library: Advisor Shadow Sink
 
+<!-- sk-doc-template: skill_readme -->
+
+<!-- ANCHOR:table-of-contents -->
 ## TABLE OF CONTENTS
 
 - [1. OVERVIEW](#1--overview)
@@ -20,6 +23,9 @@ trigger_phrases:
 
 ---
 
+<!-- /ANCHOR:table-of-contents -->
+
+<!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
 `lib/shadow/` contains the advisor shadow sink. It supports shadow-mode recording or comparison paths without mixing that behavior into scoring, rendering or handler code.
@@ -32,6 +38,9 @@ Current state:
 
 ---
 
+<!-- /ANCHOR:1-overview -->
+
+<!-- ANCHOR:2-directory-tree -->
 ## 2. DIRECTORY TREE
 
 ```text
@@ -42,6 +51,9 @@ shadow/
 
 ---
 
+<!-- /ANCHOR:2-directory-tree -->
+
+<!-- ANCHOR:3-key-files -->
 ## 3. KEY FILES
 
 | File | Responsibility |
@@ -50,6 +62,9 @@ shadow/
 
 ---
 
+<!-- /ANCHOR:3-key-files -->
+
+<!-- ANCHOR:4-boundaries-and-flow -->
 ## 4. BOUNDARIES AND FLOW
 
 | Boundary | Rule |
@@ -69,6 +84,9 @@ advisor shadow payload
 
 ---
 
+<!-- /ANCHOR:4-boundaries-and-flow -->
+
+<!-- ANCHOR:5-entrypoints -->
 ## 5. ENTRYPOINTS
 
 | Entrypoint | Type | Purpose |
@@ -77,6 +95,9 @@ advisor shadow payload
 
 ---
 
+<!-- /ANCHOR:5-entrypoints -->
+
+<!-- ANCHOR:6-validation -->
 ## 6. VALIDATION
 
 Run from the repository root.
@@ -89,7 +110,12 @@ Expected result: exit code `0`.
 
 ---
 
+<!-- /ANCHOR:6-validation -->
+
+<!-- ANCHOR:7-related -->
 ## 7. RELATED
 
 - [`../README.md`](../README.md)
 - [`../../tests/README.md`](../../tests/README.md)
+
+<!-- /ANCHOR:7-related -->

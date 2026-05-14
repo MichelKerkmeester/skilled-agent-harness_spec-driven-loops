@@ -9,8 +9,11 @@ trigger_phrases:
 
 # System Skill Advisor DB Path Policy
 
+<!-- sk-doc-template: skill_reference -->
+
 ---
 
+<!-- ANCHOR:1-policy -->
 ## 1. POLICY
 
 The advisor database lives inside the standalone advisor skill package:
@@ -34,6 +37,9 @@ skill-graph.sqlite-shm
 
 ---
 
+<!-- /ANCHOR:1-policy -->
+
+<!-- ANCHOR:2-rationale -->
 ## 2. RATIONALE
 
 ADR-001 constraint A requires DB-local ownership for the extracted advisor. The database is the advisor's runtime state, so it belongs with the skill that reads, writes, validates, and rebuilds it.
@@ -47,6 +53,9 @@ This separation gives cleaner mutation scope:
 
 ---
 
+<!-- /ANCHOR:2-rationale -->
+
+<!-- ANCHOR:3-test-and-ci-override -->
 ## 3. TEST AND CI OVERRIDE
 
 `SYSTEM_SKILL_ADVISOR_DB_DIR` is allowed for tests and disposable CI runs only.
@@ -55,10 +64,13 @@ Production and operator docs should treat the package-local path as the default.
 
 ---
 
+<!-- /ANCHOR:3-test-and-ci-override -->
+
+<!-- ANCHOR:4-migration-notes -->
 ## 4. MIGRATION NOTES
 
-Child 002 documents this policy and reserves `mcp_server/database/`.
+Current package state keeps the database under `mcp_server/database/` and exposes it through the standalone `system_skill_advisor` MCP server.
 
-Child 003 moves the DB resolver and runtime ownership into this package.
+The `skill_graph_*` handlers are advisor-owned. The lower-level `lib/skill-graph/` database/query library is still a transitional dependency from `system-spec-kit` until packet 011 completes.
 
-Child 004 wires the standalone launcher and runtime configs.
+<!-- /ANCHOR:4-migration-notes -->

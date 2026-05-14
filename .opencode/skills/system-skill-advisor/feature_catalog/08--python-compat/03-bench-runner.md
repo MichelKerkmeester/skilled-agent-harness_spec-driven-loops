@@ -10,6 +10,8 @@ trigger_phrases:
 
 # Python Bench Runner (skill_advisor_bench.py)
 
+<!-- sk-doc-template: skill_asset_feature_catalog -->
+
 <!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 

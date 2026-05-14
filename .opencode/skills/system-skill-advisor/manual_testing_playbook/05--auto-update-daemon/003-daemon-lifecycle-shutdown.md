@@ -7,16 +7,23 @@ trigger_phrases:
   - "sigterm shutdown"
   - "daemon health"
 ---
+
 # AU-003 Daemon Lifecycle and SIGTERM
+
+<!-- sk-doc-template: manual_testing_playbook -->
 
 ---
 
+<!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
 Validate graceful boot, health reporting, and SIGTERM-based shutdown for the advisor daemon in `lib/daemon/lifecycle.ts`.
 
 ---
 
+<!-- /ANCHOR:1-overview -->
+
+<!-- ANCHOR:2-scenario-contract -->
 ## 2. SCENARIO CONTRACT
 
 - Disposable workspace copy or isolated MCP server process.
@@ -26,6 +33,9 @@ Validate graceful boot, health reporting, and SIGTERM-based shutdown for the adv
 
 ---
 
+<!-- /ANCHOR:2-scenario-contract -->
+
+<!-- ANCHOR:3-test-execution -->
 ## 3. TEST EXECUTION
 
 1. Bring the daemon up:
@@ -61,6 +71,9 @@ kill -TERM <daemon_pid>
 
 ---
 
+<!-- /ANCHOR:3-test-execution -->
+
+<!-- ANCHOR:4-source-files -->
 ## 4. SOURCE FILES
 
 - Scenario [AU-002](./002-lease-single-writer.md) — single-writer lease reclaim.
@@ -70,9 +83,14 @@ kill -TERM <daemon_pid>
 
 ---
 
+<!-- /ANCHOR:4-source-files -->
+
+<!-- ANCHOR:5-source-metadata -->
 ## 5. SOURCE METADATA
 
 - Group: Auto Update Daemon
 - Playbook ID: AU-003
 - Canonical root source: manual_testing_playbook.md
 - Feature file path: 05--auto-update-daemon/003-daemon-lifecycle-shutdown.md
+
+<!-- /ANCHOR:5-source-metadata -->

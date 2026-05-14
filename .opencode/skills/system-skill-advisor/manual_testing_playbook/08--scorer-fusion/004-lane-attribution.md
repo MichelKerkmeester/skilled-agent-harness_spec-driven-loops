@@ -7,16 +7,23 @@ trigger_phrases:
   - "includeAttribution"
   - "laneBreakdown"
 ---
+
 # SC-004 Lane Contribution Attribution
+
+<!-- sk-doc-template: manual_testing_playbook -->
 
 ---
 
+<!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
 Validate that `includeAttribution: true` returns per-lane `lane`, `rawScore`, `weight`, `weightedScore`, and `shadowOnly` metadata via `lib/scorer/attribution.ts` and that no prompt text or prompt-derived evidence snippets appear in the attribution output.
 
 ---
 
+<!-- /ANCHOR:1-overview -->
+
+<!-- ANCHOR:2-scenario-contract -->
 ## 2. SCENARIO CONTRACT
 
 - Repo root; MCP server built.
@@ -24,6 +31,9 @@ Validate that `includeAttribution: true` returns per-lane `lane`, `rawScore`, `w
 
 ---
 
+<!-- /ANCHOR:2-scenario-contract -->
+
+<!-- ANCHOR:3-test-execution -->
 ## 3. TEST EXECUTION
 
 1. Call with attribution enabled:
@@ -53,6 +63,9 @@ advisor_recommend({"prompt":"review this pull request","options":{"topK":1,"incl
 
 ---
 
+<!-- /ANCHOR:3-test-execution -->
+
+<!-- ANCHOR:4-source-files -->
 ## 4. SOURCE FILES
 
 - Scenario [SC-001](./001-five-lane-fusion.md) — fusion weights sanity.
@@ -62,9 +75,14 @@ advisor_recommend({"prompt":"review this pull request","options":{"topK":1,"incl
 
 ---
 
+<!-- /ANCHOR:4-source-files -->
+
+<!-- ANCHOR:5-source-metadata -->
 ## 5. SOURCE METADATA
 
 - Group: Scorer Fusion
 - Playbook ID: SC-004
 - Canonical root source: manual_testing_playbook.md
 - Feature file path: 08--scorer-fusion/004-lane-attribution.md
+
+<!-- /ANCHOR:5-source-metadata -->

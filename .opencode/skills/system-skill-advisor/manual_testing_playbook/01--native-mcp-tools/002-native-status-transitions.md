@@ -7,16 +7,23 @@ trigger_phrases:
   - "native advisor_status"
   - "native"
 ---
+
 # NC-002 Native advisor_status Transitions
+
+<!-- sk-doc-template: manual_testing_playbook -->
 
 ---
 
+<!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
 Validate that `advisor_status` reports live, stale, and absent states with the Phase 027 `skillCount` and `lastScanAt` fields.
 
 ---
 
+<!-- /ANCHOR:1-overview -->
+
+<!-- ANCHOR:2-scenario-contract -->
 ## 2. SCENARIO CONTRACT
 
 - Repo root is the working directory.
@@ -25,6 +32,9 @@ Validate that `advisor_status` reports live, stale, and absent states with the P
 
 ---
 
+<!-- /ANCHOR:2-scenario-contract -->
+
+<!-- ANCHOR:3-test-execution -->
 ## 3. TEST EXECUTION
 
 1. Live check:
@@ -54,6 +64,9 @@ advisor_status({"workspaceRoot":"/absolute/path/to/repo"})
 
 ---
 
+<!-- /ANCHOR:3-test-execution -->
+
+<!-- ANCHOR:4-source-files -->
 ## 4. SOURCE FILES
 
 - `.opencode/skills/system-skill-advisor/mcp_server/handlers/advisor-status.ts`
@@ -61,9 +74,14 @@ advisor_status({"workspaceRoot":"/absolute/path/to/repo"})
 
 ---
 
+<!-- /ANCHOR:4-source-files -->
+
+<!-- ANCHOR:5-source-metadata -->
 ## 5. SOURCE METADATA
 
 - Group: Native MCP Tools
 - Playbook ID: NC-002
 - Canonical root source: manual_testing_playbook.md
 - Feature file path: 01--native-mcp-tools/002-native-status-transitions.md
+
+<!-- /ANCHOR:5-source-metadata -->

@@ -27,14 +27,17 @@ intent_signals:
   - "run the skill advisor hook"
 ---
 
-<!-- Keywords: system-skill-advisor, skill-advisor, advisor_recommend, advisor_status, advisor_rebuild, advisor_validate, gate-2-routing, standalone-mcp, legacy-tool-bridge, skill-graph -->
+<!-- Keywords: system-skill-advisor, skill-advisor, advisor_recommend, advisor_status, advisor_rebuild, advisor_validate, skill_graph_scan, skill_graph_query, skill_graph_status, skill_graph_validate, gate-2-routing, standalone-mcp, legacy-tool-bridge, skill-graph -->
 
 # System Skill Advisor
+
+<!-- sk-doc-template: skill_md -->
 
 Routes non-trivial user requests to the right skill through the standalone Skill Advisor MCP package.
 
 ---
 
+<!-- ANCHOR:1-when-to-use -->
 ## 1. WHEN TO USE
 
 Use this skill when the work is about skill selection, Gate 2 routing, advisor MCP tools, prompt-time skill-advisor hooks, skill graph freshness, or the standalone advisor package.
@@ -43,7 +46,7 @@ Activation signals:
 
 - A request asks which skill should handle a task.
 - A runtime hook needs a skill recommendation before execution.
-- An operator asks about `advisor_recommend`, `advisor_status`, `advisor_rebuild`, or `advisor_validate`.
+- An operator asks about `advisor_recommend`, `advisor_status`, `advisor_rebuild`, `advisor_validate`, `skill_graph_scan`, `skill_graph_query`, `skill_graph_status`, or `skill_graph_validate`.
 - A packet touches the skill graph, skill metadata, advisor scorer, advisor feature catalog, or manual testing playbook.
 - A migration step references ADR-001: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/013-skill-advisor-semantic-lane/009-system-skill-advisor-extraction/001-design-and-decision-record/decision-record.md`.
 
@@ -51,6 +54,9 @@ Do not use this skill as a replacement for the recommended target skill. For exa
 
 ---
 
+<!-- /ANCHOR:1-when-to-use -->
+
+<!-- ANCHOR:2-smart-routing -->
 ## 2. SMART ROUTING
 
 This package is mandatory context for non-trivial Gate 2 routing. The advisor scores the prompt against skill metadata, hook signals, graph-derived relations, and manual intent declarations, then returns calibrated recommendations.
@@ -73,55 +79,68 @@ user prompt
 
 Resource domains:
 
-- `feature_catalog/` documents current advisor capabilities. Child 002 contains an initial scaffold; child 003 moves the full catalog.
-- `manual_testing_playbook/` documents deterministic operator scenarios. Child 002 contains an initial scenario; child 003 moves the full playbook.
-- `references/` contains package policies and architectural summaries used by later extraction children.
-- `mcp_server/` is the child 003 drop target for handlers, schemas, tools, scripts, tests, and the package-local SQLite database.
+- `feature_catalog/` documents current advisor capabilities and source-of-truth feature references.
+- `manual_testing_playbook/` documents deterministic operator scenarios for advisor tools, hooks, compatibility, daemon behavior, and skill graph flows.
+- `references/` contains package policies and architectural summaries used by extraction and maintenance work.
+- `mcp_server/` owns handlers, schemas, tools, scripts, tests, library modules, and the package-local SQLite database.
 
 ---
 
+<!-- /ANCHOR:2-smart-routing -->
+
+<!-- ANCHOR:3-how-it-works -->
 ## 3. HOW IT WORKS
 
 ADR-001 locks the target shape as **Standalone Advisor MCP With Legacy Tool Bridge**.
 
-The target package owns a dedicated MCP server named `system_skill_advisor`. Public tool ids stay stable:
+The package owns a dedicated MCP server named `system_skill_advisor`. Public tool ids stay stable:
 
 - `advisor_recommend`
 - `advisor_rebuild`
 - `advisor_status`
 - `advisor_validate`
+- `skill_graph_scan`
+- `skill_graph_query`
+- `skill_graph_status`
+- `skill_graph_validate`
 
-The stable tool ids matter because live consumers already call them from hooks, Python compatibility shims, plugin bridges, doctor workflows, install guides, and MCP clients. Server-level namespacing supplies the new boundary, so callers can move from the old memory-owned registration to the standalone server without learning a new tool vocabulary.
+The stable tool ids matter because live consumers already call them from hooks, Python compatibility shims, plugin bridges, doctor workflows, install guides, and MCP clients. Server-level namespacing supplies the boundary, so callers use the standalone server without learning a new advisor vocabulary.
 
-During the migration window, legacy `advisor_*` access through `spec_kit_memory` may be proxied or fail fast with a migration hint. After children 003-006 complete, the advisor implementation and database live under this skill package, while memory remains focused on memory tools.
+The advisor implementation and database now live under this skill package, while memory remains focused on memory tools. One transitional boundary remains: the `skill_graph_*` handlers still import the database/query layer from `system-spec-kit/mcp_server/lib/skill-graph/` until packet 011 settles that library location.
 
 ---
 
+<!-- /ANCHOR:3-how-it-works -->
+
+<!-- ANCHOR:4-rules -->
 ## 4. RULES
 
 Always:
 
 - Treat ADR-001 as the source of truth for standalone MCP topology and bridge behavior.
 - Keep the advisor database under `.opencode/skills/system-skill-advisor/mcp_server/database/`.
-- Keep public advisor tool ids stable unless a later ADR explicitly changes them.
+- Keep public advisor and skill graph tool ids stable unless a later ADR explicitly changes them.
 - Preserve prompt-safety boundaries. Advisor metadata and lane attribution must not echo raw prompt text.
-- Distinguish envelope work from runtime moves. Child 002 is docs and scaffold only.
+- Treat the `lib/skill-graph/` dependency as transitional until packet 011 completes.
 
 Never:
 
 - Store `skill-graph.sqlite` under `.opencode/skills/system-spec-kit/mcp_server/database/` after the runtime move.
 - Let both memory and advisor MCP servers write the same advisor SQLite database.
-- Rename `advisor_*` tools as part of the first standalone extraction.
-- Modify runtime configs, launchers, hook wrappers, or production advisor source as part of child 002.
+- Rename `advisor_*` or `skill_graph_*` public tools as part of documentation work.
+- Move `lib/skill-graph/` during a doc-only pass.
 
 Escalate if:
 
-- A caller requires renamed public tools before the bridge window is complete.
+- A caller requires renamed public tools.
 - The standalone advisor cannot build without a broader shared-runtime extraction.
 - Any migration step would create competing writers for `skill-graph.sqlite`.
 
 ---
 
+<!-- /ANCHOR:4-rules -->
+
+<!-- ANCHOR:5-references -->
 ## 5. REFERENCES
 
 Primary contract:
@@ -135,9 +154,15 @@ Package references:
 - `references/db-path-policy.md`
 - `references/standalone-mcp-shape.md`
 - `references/legacy-tool-bridge.md`
+- `ARCHITECTURE.md`
+- `mcp_server/README.md`
+- `mcp_server/tools/README.md`
 
 ---
 
+<!-- /ANCHOR:5-references -->
+
+<!-- ANCHOR:6-success-criteria -->
 ## 6. SUCCESS CRITERIA
 
 This skill is healthy when:
@@ -145,30 +170,35 @@ This skill is healthy when:
 - `SKILL.md` frontmatter and `graph-metadata.json` parse cleanly.
 - Skill discovery sees `system-skill-advisor` as a first-class critical system skill.
 - Advisor routing requests resolve to this package without displacing target execution skills such as `sk-code`, `sk-doc`, or `system-spec-kit`.
-- `advisor_*` public ids remain documented as stable through the migration window.
+- `advisor_*` and `skill_graph_*` public ids remain documented as stable.
 - The package-local database path is documented consistently.
 
 ---
 
+<!-- /ANCHOR:6-success-criteria -->
+
+<!-- ANCHOR:7-integration-points -->
 ## 7. INTEGRATION POINTS
 
-Current migration state:
+Current package state:
 
-- Child 002 creates this envelope only.
-- Child 003 moves advisor source, tests, and DB path ownership into `mcp_server/`.
-- Child 004 adds `.opencode/bin/skill-advisor-launcher.cjs` and four-runtime MCP config entries.
-- Child 005 cuts hooks, plugin bridge, Python shim, doctor workflows, and consumers over to the standalone package.
-- Child 006 removes temporary legacy proxies and stale docs after validation.
+- `system_skill_advisor` is registered as a standalone MCP server.
+- Advisor handlers, schemas, tools, scripts, tests, docs, and database path ownership live under this package.
+- `skill_graph_*` MCP handlers and tool descriptors live under this package.
+- `lib/skill-graph/` database/query logic remains in `system-spec-kit` until the pending packet 011 cleanup.
 
 Expected consumers:
 
 - Prompt-time hooks for Claude, Codex, Gemini, and OpenCode.
-- MCP clients that call `advisor_recommend`, `advisor_status`, `advisor_rebuild`, or `advisor_validate`.
+- MCP clients that call `advisor_recommend`, `advisor_status`, `advisor_rebuild`, `advisor_validate`, `skill_graph_scan`, `skill_graph_query`, `skill_graph_status`, or `skill_graph_validate`.
 - Doctor workflows that validate advisor health and rebuild state.
 - Skill graph indexers and routing accuracy checks.
 
 ---
 
+<!-- /ANCHOR:7-integration-points -->
+
+<!-- ANCHOR:8-references-and-related-resources -->
 ## 8. REFERENCES AND RELATED RESOURCES
 
 Related skills:
@@ -180,3 +210,5 @@ Related skills:
 - `mcp-coco-index` is a peer semantic-search route for code discovery, not a replacement for advisor routing.
 
 The advisor should recommend these skills. It should not absorb their implementation rules.
+
+<!-- /ANCHOR:8-references-and-related-resources -->

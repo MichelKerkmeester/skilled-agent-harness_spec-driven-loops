@@ -10,6 +10,8 @@ trigger_phrases:
 
 # DF/IDF Corpus Stats (Active-Only)
 
+<!-- sk-doc-template: skill_asset_feature_catalog -->
+
 <!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 

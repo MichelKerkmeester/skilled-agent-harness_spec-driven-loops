@@ -10,6 +10,8 @@ trigger_phrases:
 
 # Live / Stale / Absent / Unavailable Trust State
 
+<!-- sk-doc-template: skill_asset_feature_catalog -->
+
 <!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 

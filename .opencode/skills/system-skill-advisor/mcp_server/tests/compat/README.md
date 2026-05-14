@@ -8,6 +8,8 @@ trigger_phrases:
 
 # Skill Advisor Compat Tests
 
+<!-- sk-doc-template: skill_readme -->
+
 > Compatibility coverage for advisor daemon, plugin bridge, Python parity and redirect contracts.
 
 <!-- ANCHOR:table-of-contents -->

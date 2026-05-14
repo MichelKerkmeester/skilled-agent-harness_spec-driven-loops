@@ -1,22 +1,29 @@
 ---
 title: "SC-001 Five-Lane Analytical Fusion"
-description: "Manual validation that the 5-lane fusion produces weighted scores using the canonical weights: explicit_author 0.45, lexical 0.30, graph_causal 0.15, derived_generated 0.10, semantic_shadow 0.00."
+description: "Manual validation that the 5-lane fusion produces weighted scores using the canonical weights: explicit_author 0.42, lexical 0.28, graph_causal 0.13, derived_generated 0.12, semantic_shadow 0.05."
 trigger_phrases:
   - "sc-001"
   - "five lane fusion"
   - "lane weights canonical"
   - "advisor fusion"
 ---
+
 # SC-001 Five-Lane Analytical Fusion
 
+<!-- sk-doc-template: manual_testing_playbook -->
+
 ---
 
+<!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
-Validate that `lib/scorer/fusion.ts` combines the five lanes with the canonical weights `explicit_author: 0.45`, `lexical: 0.30`, `graph_causal: 0.15`, `derived_generated: 0.15`, `semantic_shadow: 0.00`, and that the weight configuration is discoverable via `advisor_status.laneWeights`.
+Validate that `lib/scorer/fusion.ts` combines the five lanes with the canonical weights `explicit_author: 0.42`, `lexical: 0.28`, `graph_causal: 0.13`, `derived_generated: 0.12`, `semantic_shadow: 0.05`, and that the weight configuration is discoverable via `advisor_status.laneWeights`.
 
 ---
 
+<!-- /ANCHOR:1-overview -->
+
+<!-- ANCHOR:2-scenario-contract -->
 ## 2. SCENARIO CONTRACT
 
 - Repo root working directory.
@@ -25,6 +32,9 @@ Validate that `lib/scorer/fusion.ts` combines the five lanes with the canonical 
 
 ---
 
+<!-- /ANCHOR:2-scenario-contract -->
+
+<!-- ANCHOR:3-test-execution -->
 ## 3. TEST EXECUTION
 
 1. Call status and capture `laneWeights`:
@@ -46,7 +56,7 @@ advisor_recommend({"prompt":"save this conversation context to memory","options"
 ### Expected Signals
 
 - `advisor_status.laneWeights` equals the canonical configuration above.
-- `semantic_shadow.weight == 0.00` in all envelopes (semantic lock).
+- `semantic_shadow.weight == 0.05` in envelopes that expose current lane weights.
 - For every lane, `weightedScore` matches `rawScore * weight` within `1e-9` tolerance.
 - Aggregate score equals the sum of lane `weightedScore` values (or matches the documented fusion formula).
 
@@ -60,6 +70,9 @@ advisor_recommend({"prompt":"save this conversation context to memory","options"
 
 ---
 
+<!-- /ANCHOR:3-test-execution -->
+
+<!-- ANCHOR:4-source-files -->
 ## 4. SOURCE FILES
 
 - Scenario [SC-004](./004-lane-attribution.md) — lane attribution metadata.
@@ -68,9 +81,14 @@ advisor_recommend({"prompt":"save this conversation context to memory","options"
 
 ---
 
+<!-- /ANCHOR:4-source-files -->
+
+<!-- ANCHOR:5-source-metadata -->
 ## 5. SOURCE METADATA
 
 - Group: Scorer Fusion
 - Playbook ID: SC-001
 - Canonical root source: manual_testing_playbook.md
 - Feature file path: 08--scorer-fusion/001-five-lane-fusion.md
+
+<!-- /ANCHOR:5-source-metadata -->

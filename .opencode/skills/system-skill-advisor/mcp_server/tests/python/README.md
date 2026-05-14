@@ -8,6 +8,8 @@ trigger_phrases:
 
 # Skill Advisor Python Tests
 
+<!-- sk-doc-template: skill_readme -->
+
 <!-- ANCHOR:table-of-contents -->
 ## TABLE OF CONTENTS
 

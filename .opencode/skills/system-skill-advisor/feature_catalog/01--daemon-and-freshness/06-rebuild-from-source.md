@@ -10,6 +10,8 @@ trigger_phrases:
 
 # Rebuild From Source on Corrupt SQLite
 
+<!-- sk-doc-template: skill_asset_feature_catalog -->
+
 <!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 

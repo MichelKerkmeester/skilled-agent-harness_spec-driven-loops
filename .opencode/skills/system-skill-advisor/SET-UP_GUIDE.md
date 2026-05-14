@@ -5,10 +5,13 @@ description: "Setup, validation, rollback, and operator guidance for the Phase 0
 
 # Skill Advisor Setup Guide
 
+<!-- sk-doc-template: skill_reference_setup_guide -->
+
 This guide covers the current setup for `.opencode/skills/system-skill-advisor/mcp_server/` after Phase 027. The canonical runtime is the native TypeScript package under `.opencode/skills/system-skill-advisor/mcp_server/`; the Python script remains for compatibility and diagnostics.
 
 ---
 
+<!-- ANCHOR:table-of-contents -->
 ## TABLE OF CONTENTS
 
 - [1. OVERVIEW](#1-overview)
@@ -22,6 +25,9 @@ This guide covers the current setup for `.opencode/skills/system-skill-advisor/m
 
 ---
 
+<!-- /ANCHOR:table-of-contents -->
+
+<!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
 Phase 027 moved Skill Advisor routing into a native MCP package with three public tools:
@@ -40,12 +46,15 @@ Current baseline:
 | Holdout top-1 | 77.5% |
 | UNKNOWN target | <= 10 |
 | Python-correct regressions | 0 |
-| Python regression suite | 52/52 passed |
+| Python regression suite | regression harness available |
 | Native MCP tools | 3 |
-| Fusion lanes | 5, with `semantic_shadow` at live weight 0.00 |
+| Fusion lanes | 5, with `semantic_shadow` at live weight 0.05 |
 
 ---
 
+<!-- /ANCHOR:1-overview -->
+
+<!-- ANCHOR:2-canonical-install-path -->
 ## 2. CANONICAL INSTALL PATH
 
 Use the native bootstrap guide as the source of truth:
@@ -75,6 +84,9 @@ Expected:
 
 ---
 
+<!-- /ANCHOR:2-canonical-install-path -->
+
+<!-- ANCHOR:3-compatibility-shim -->
 ## 3. COMPATIBILITY SHIM
 
 The stable Python entry remains:
@@ -104,6 +116,9 @@ Mode meanings:
 
 ---
 
+<!-- /ANCHOR:3-compatibility-shim -->
+
+<!-- ANCHOR:4-runtime-hooks-and-plugin -->
 ## 4. RUNTIME HOOKS AND PLUGIN
 
 Prompt-time routing is available across runtime adapters:
@@ -130,6 +145,9 @@ After build, plugin consumers load:
 
 ---
 
+<!-- /ANCHOR:4-runtime-hooks-and-plugin -->
+
+<!-- ANCHOR:5-validation -->
 ## 5. VALIDATION
 
 Native validation:
@@ -161,6 +179,9 @@ Manual validation:
 
 ---
 
+<!-- /ANCHOR:5-validation -->
+
+<!-- ANCHOR:6-rollback-controls -->
 ## 6. ROLLBACK CONTROLS
 
 Use these controls only while diagnosing or recovering:
@@ -189,6 +210,9 @@ unset SPECKIT_SKILL_ADVISOR_FORCE_LOCAL
 
 ---
 
+<!-- /ANCHOR:6-rollback-controls -->
+
+<!-- ANCHOR:7-operator-states -->
 ## 7. OPERATOR STATES
 
 | State | Meaning | First Response |
@@ -208,6 +232,9 @@ H5 operator scenarios live in the manual playbook under `04--operator-h5/`.
 
 ---
 
+<!-- /ANCHOR:7-operator-states -->
+
+<!-- ANCHOR:8-reference-commands -->
 ## 8. REFERENCE COMMANDS
 
 ```bash
@@ -234,3 +261,5 @@ python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.p
 python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor_regression.py \
   --dataset .opencode/skills/system-skill-advisor/mcp_server/scripts/fixtures/skill_advisor_regression_cases.jsonl
 ```
+
+<!-- /ANCHOR:8-reference-commands -->

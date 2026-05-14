@@ -10,6 +10,8 @@ trigger_phrases:
 
 # Lane Weights Configuration
 
+<!-- sk-doc-template: skill_asset_feature_catalog -->
+
 <!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
@@ -20,7 +22,7 @@ Keep the canonical lane weights in exactly one place and expose them to callers 
 <!-- ANCHOR:current-reality -->
 ## 2. CURRENT REALITY
 
-`lib/scorer/weights-config.ts` defines the canonical weights from `lib/scorer/lane-registry.ts`: `explicit_author: 0.45`, `lexical: 0.30`, `graph_causal: 0.15`, `derived_generated: 0.15`, `semantic_shadow: 0.00`. These values are surfaced through `advisor_status.laneWeights` and consumed by `lib/scorer/fusion.ts`.
+`lib/scorer/weights-config.ts` defines the canonical weights from `lib/scorer/lane-registry.ts`: `explicit_author: 0.42`, `lexical: 0.28`, `graph_causal: 0.13`, `derived_generated: 0.12`, `semantic_shadow: 0.05`. These values are surfaced through `advisor_status.laneWeights` and consumed by `lib/scorer/fusion.ts`.
 
 <!-- /ANCHOR:current-reality -->
 

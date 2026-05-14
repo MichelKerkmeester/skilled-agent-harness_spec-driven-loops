@@ -7,16 +7,23 @@ trigger_phrases:
   - "python shim"
   - "python"
 ---
+
 # CP-001 Python Shim --stdin Mode
+
+<!-- sk-doc-template: manual_testing_playbook -->
 
 ---
 
+<!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
 Validate that `skill_advisor.py --stdin` reads exactly one prompt from stdin and still routes through native-first compatibility.
 
 ---
 
+<!-- /ANCHOR:1-overview -->
+
+<!-- ANCHOR:2-scenario-contract -->
 ## 2. SCENARIO CONTRACT
 
 - Repo root is the working directory.
@@ -25,6 +32,9 @@ Validate that `skill_advisor.py --stdin` reads exactly one prompt from stdin and
 
 ---
 
+<!-- /ANCHOR:2-scenario-contract -->
+
+<!-- ANCHOR:3-test-execution -->
 ## 3. TEST EXECUTION
 
 1. Run:
@@ -56,6 +66,9 @@ printf '%s' "save this conversation context to memory" | python3 .opencode/skill
 
 ---
 
+<!-- /ANCHOR:3-test-execution -->
+
+<!-- ANCHOR:4-source-files -->
 ## 4. SOURCE FILES
 
 - `.opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py`
@@ -63,9 +76,14 @@ printf '%s' "save this conversation context to memory" | python3 .opencode/skill
 
 ---
 
+<!-- /ANCHOR:4-source-files -->
+
+<!-- ANCHOR:5-source-metadata -->
 ## 5. SOURCE METADATA
 
 - Group: Compat And Disable
 - Playbook ID: CP-001
 - Canonical root source: manual_testing_playbook.md
 - Feature file path: 03--compat-and-disable/001-python-shim-stdin.md
+
+<!-- /ANCHOR:5-source-metadata -->

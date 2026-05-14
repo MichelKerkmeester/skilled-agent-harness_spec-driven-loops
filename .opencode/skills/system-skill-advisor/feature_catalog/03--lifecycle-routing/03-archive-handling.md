@@ -10,6 +10,8 @@ trigger_phrases:
 
 # Archive and Future Skills Indexed But Not Routed
 
+<!-- sk-doc-template: skill_asset_feature_catalog -->
+
 <!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 

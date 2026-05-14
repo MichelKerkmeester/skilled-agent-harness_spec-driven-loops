@@ -10,10 +10,13 @@ trigger_phrases:
 
 # Skill Advisor: Feature Catalog
 
+<!-- sk-doc-template: skill_asset_feature_catalog -->
+
 This catalog is the current inventory for the skill advisor. The package source of truth is `.opencode/skills/system-skill-advisor/mcp_server/`. Each group links to per-feature files that cite the real implementation and test anchors.
 
 ---
 
+<!-- ANCHOR:table-of-contents -->
 ## TABLE OF CONTENTS
 
 - [1. OVERVIEW](#1--overview)
@@ -27,6 +30,9 @@ This catalog is the current inventory for the skill advisor. The package source 
 
 ---
 
+<!-- /ANCHOR:table-of-contents -->
+
+<!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
 The catalog covers 37 features across 7 groups. Group 1 owns daemon correctness; groups 2-3 own the index and lifecycle surface that feeds the scorer; group 4 owns scoring; group 5 exposes the MCP tools; groups 6-7 cover runtime integrations and Python compatibility.
@@ -48,7 +54,7 @@ Baseline numbers (remediation SHA `97a318d83`):
 | Full-corpus top-1 accuracy | 80.5% |
 | Holdout top-1 accuracy | 77.5% |
 | UNKNOWN count | <= 10 |
-| Python regression suite | 52 of 52 pass |
+| Python regression suite | regression harness coverage |
 | Advisor vitest tests | 167 across 23 files |
 | Watcher idle envelope | 0.031% CPU, 5.516 MB RSS |
 | Cache-hit p95 | ~6.989 ms |
@@ -56,6 +62,9 @@ Baseline numbers (remediation SHA `97a318d83`):
 
 ---
 
+<!-- /ANCHOR:1-overview -->
+
+<!-- ANCHOR:2-daemon-and-freshness -->
 ## 2. DAEMON AND FRESHNESS
 
 | Feature | File |
@@ -70,6 +79,9 @@ Baseline numbers (remediation SHA `97a318d83`):
 
 ---
 
+<!-- /ANCHOR:2-daemon-and-freshness -->
+
+<!-- ANCHOR:3-auto-indexing -->
 ## 3. AUTO-INDEXING
 
 | Feature | File |
@@ -83,6 +95,9 @@ Baseline numbers (remediation SHA `97a318d83`):
 
 ---
 
+<!-- /ANCHOR:3-auto-indexing -->
+
+<!-- ANCHOR:4-lifecycle-routing -->
 ## 4. LIFECYCLE ROUTING
 
 | Feature | File |
@@ -95,6 +110,9 @@ Baseline numbers (remediation SHA `97a318d83`):
 
 ---
 
+<!-- /ANCHOR:4-lifecycle-routing -->
+
+<!-- ANCHOR:5-scorer-fusion -->
 ## 5. SCORER FUSION
 
 | Feature | File |
@@ -108,6 +126,9 @@ Baseline numbers (remediation SHA `97a318d83`):
 
 ---
 
+<!-- /ANCHOR:5-scorer-fusion -->
+
+<!-- ANCHOR:6-mcp-surface -->
 ## 6. MCP SURFACE
 
 | Feature | File |
@@ -120,6 +141,9 @@ Baseline numbers (remediation SHA `97a318d83`):
 
 ---
 
+<!-- /ANCHOR:6-mcp-surface -->
+
+<!-- ANCHOR:7-hooks-and-plugin -->
 ## 7. HOOKS AND PLUGIN
 
 | Feature | File |
@@ -131,10 +155,15 @@ Baseline numbers (remediation SHA `97a318d83`):
 
 ---
 
+<!-- /ANCHOR:7-hooks-and-plugin -->
+
+<!-- ANCHOR:8-python-compat -->
 ## 8. PYTHON COMPAT
 
 | Feature | File |
 | --- | --- |
 | Python CLI shim (`skill_advisor.py`) | [08--python-compat/01-cli-shim.md](./08--python-compat/01-cli-shim.md) |
-| Python regression suite (52/52) | [08--python-compat/02-regression-suite.md](./08--python-compat/02-regression-suite.md) |
+| Python regression dataset | [08--python-compat/02-regression-suite.md](./08--python-compat/02-regression-suite.md) |
 | Python bench runner (`skill_advisor_bench.py`) | [08--python-compat/03-bench-runner.md](./08--python-compat/03-bench-runner.md) |
+
+<!-- /ANCHOR:8-python-compat -->

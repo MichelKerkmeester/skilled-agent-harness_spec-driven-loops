@@ -9,11 +9,21 @@ trigger_phrases:
 
 # System Skill Advisor MCP Server
 
-This directory now owns the advisor implementation that previously lived inside the Spec Kit MCP server tree.
+<!-- sk-doc-template: skill_readme -->
 
-## Structure
+This directory owns the standalone `system_skill_advisor` MCP server implementation.
 
-- `handlers/`: MCP handler implementations for `advisor_recommend`, `advisor_status`, `advisor_rebuild`, and `advisor_validate`.
+<!-- ANCHOR:overview -->
+## 1. OVERVIEW
+
+The server exposes advisor routing and skill graph tools from the advisor package. It is separate from `spec_kit_memory`, and packet 013/009/011 moved the skill graph DB/query library and startup lifecycle under this package.
+
+<!-- /ANCHOR:overview -->
+
+<!-- ANCHOR:structure -->
+## 2. STRUCTURE
+
+- `handlers/`: MCP handler implementations for `advisor_recommend`, `advisor_status`, `advisor_rebuild`, `advisor_validate`, `skill_graph_scan`, `skill_graph_query`, `skill_graph_status`, and `skill_graph_validate`.
 - `lib/`: scorer, daemon, freshness, lifecycle, compatibility, corpus, derived-metadata, auth, shadow, and utility modules.
 - `tools/`: advisor tool dispatch and package-local registration helpers.
 - `schemas/`: Zod contracts and compatibility schemas for advisor inputs, outputs, and derived metadata.
@@ -24,4 +34,31 @@ This directory now owns the advisor implementation that previously lived inside 
 - `data/`: package-local runtime data such as shadow deltas.
 - `database/`: package-local `skill-graph.sqlite` and its WAL/SHM companions.
 
-The existing Spec Kit memory MCP server can still import these modules during the bridge window. Public advisor tool ids stay unchanged.
+<!-- /ANCHOR:structure -->
+
+<!-- ANCHOR:entrypoints -->
+## 3. ENTRYPOINTS
+
+| Tool | Purpose |
+|---|---|
+| `advisor_recommend` | Prompt-to-skill routing |
+| `advisor_rebuild` | Explicit advisor graph rebuild |
+| `advisor_status` | Freshness, generation, trust, and daemon state |
+| `advisor_validate` | Routing validation bundle |
+| `skill_graph_scan` | Skill metadata indexing |
+| `skill_graph_query` | Skill graph relationship traversal |
+| `skill_graph_status` | Skill graph status and counts |
+| `skill_graph_validate` | Skill graph integrity checks |
+
+<!-- /ANCHOR:entrypoints -->
+
+<!-- ANCHOR:related -->
+## 4. RELATED
+
+- [../README.md](../README.md)
+- [../ARCHITECTURE.md](../ARCHITECTURE.md)
+- [tools/README.md](tools/README.md)
+- [handlers/README.md](handlers/README.md)
+- [database/README.md](database/README.md)
+
+<!-- /ANCHOR:related -->

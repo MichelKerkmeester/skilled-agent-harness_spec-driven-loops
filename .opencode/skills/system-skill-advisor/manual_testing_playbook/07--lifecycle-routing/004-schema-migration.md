@@ -7,16 +7,23 @@ trigger_phrases:
   - "v1 to v2 backfill"
   - "additive migration"
 ---
+
 # LC-004 Schema v1 to v2 Additive Backfill
+
+<!-- sk-doc-template: manual_testing_playbook -->
 
 ---
 
+<!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
 Validate that `lib/lifecycle/schema-migration.ts` performs additive backfill from the v1 schema to v2 without dropping or mutating existing fields, and that a rollback to v1 leaves original data intact.
 
 ---
 
+<!-- /ANCHOR:1-overview -->
+
+<!-- ANCHOR:2-scenario-contract -->
 ## 2. SCENARIO CONTRACT
 
 - Disposable workspace copy containing a v1 schema seed of `skill-graph.sqlite` or `graph-metadata.json` entries.
@@ -25,6 +32,9 @@ Validate that `lib/lifecycle/schema-migration.ts` performs additive backfill fro
 
 ---
 
+<!-- /ANCHOR:2-scenario-contract -->
+
+<!-- ANCHOR:3-test-execution -->
 ## 3. TEST EXECUTION
 
 1. Snapshot the v1 state:
@@ -59,6 +69,9 @@ advisor_status({"workspaceRoot":"/tmp/path-to-copy"})
 
 ---
 
+<!-- /ANCHOR:3-test-execution -->
+
+<!-- ANCHOR:4-source-files -->
 ## 4. SOURCE FILES
 
 - Scenario [LC-005](./005-rollback-lifecycle.md) — lifecycle rollback.
@@ -68,9 +81,14 @@ advisor_status({"workspaceRoot":"/tmp/path-to-copy"})
 
 ---
 
+<!-- /ANCHOR:4-source-files -->
+
+<!-- ANCHOR:5-source-metadata -->
 ## 5. SOURCE METADATA
 
 - Group: Lifecycle Routing
 - Playbook ID: LC-004
 - Canonical root source: manual_testing_playbook.md
 - Feature file path: 07--lifecycle-routing/004-schema-migration.md
+
+<!-- /ANCHOR:5-source-metadata -->

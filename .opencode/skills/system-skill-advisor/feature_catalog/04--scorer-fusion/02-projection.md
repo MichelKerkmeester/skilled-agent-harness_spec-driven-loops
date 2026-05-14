@@ -10,6 +10,8 @@ trigger_phrases:
 
 # Skill-Nodes / Skill-Edges Projection
 
+<!-- sk-doc-template: skill_asset_feature_catalog -->
+
 <!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 

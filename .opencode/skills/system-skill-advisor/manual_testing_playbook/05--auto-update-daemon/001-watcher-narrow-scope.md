@@ -7,16 +7,23 @@ trigger_phrases:
   - "chokidar narrow scope"
   - "auto update daemon watcher"
 ---
+
 # AU-001 Chokidar Watcher Narrow Scope
+
+<!-- sk-doc-template: manual_testing_playbook -->
 
 ---
 
+<!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
 Validate that the daemon watcher in `lib/daemon/watcher.ts` subscribes only to `SKILL.md`, `graph-metadata.json`, and dynamic `derived.key_files` paths, and that unrelated file writes under `.opencode/` or repo root do not trigger a reindex.
 
 ---
 
+<!-- /ANCHOR:1-overview -->
+
+<!-- ANCHOR:2-scenario-contract -->
 ## 2. SCENARIO CONTRACT
 
 - Repo root is the working directory.
@@ -27,6 +34,9 @@ Validate that the daemon watcher in `lib/daemon/watcher.ts` subscribes only to `
 
 ---
 
+<!-- /ANCHOR:2-scenario-contract -->
+
+<!-- ANCHOR:3-test-execution -->
 ## 3. TEST EXECUTION
 
 1. Capture baseline generation:
@@ -72,6 +82,9 @@ touch .opencode/skills/sk-doc/SKILL.md
 
 ---
 
+<!-- /ANCHOR:3-test-execution -->
+
+<!-- ANCHOR:4-source-files -->
 ## 4. SOURCE FILES
 
 - Scenario [AU-002](./002-lease-single-writer.md) — single-writer lease semantics.
@@ -81,9 +94,14 @@ touch .opencode/skills/sk-doc/SKILL.md
 
 ---
 
+<!-- /ANCHOR:4-source-files -->
+
+<!-- ANCHOR:5-source-metadata -->
 ## 5. SOURCE METADATA
 
 - Group: Auto Update Daemon
 - Playbook ID: AU-001
 - Canonical root source: manual_testing_playbook.md
 - Feature file path: 05--auto-update-daemon/001-watcher-narrow-scope.md
+
+<!-- /ANCHOR:5-source-metadata -->

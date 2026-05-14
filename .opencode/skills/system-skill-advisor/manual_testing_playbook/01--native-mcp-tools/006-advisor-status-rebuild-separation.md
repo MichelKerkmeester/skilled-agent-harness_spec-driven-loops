@@ -10,6 +10,9 @@ trigger_phrases:
 
 # NC-006 Advisor Status and Rebuild Separation
 
+<!-- sk-doc-template: manual_testing_playbook -->
+
+<!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
 Validate the separation between `advisor_status` and `advisor_rebuild`. `advisor_status` must report stale, absent, or unavailable state without repair side effects; `advisor_rebuild` must perform the rebuild only when explicitly called.
@@ -18,6 +21,9 @@ Validate the separation between `advisor_status` and `advisor_rebuild`. `advisor
 
 ---
 
+<!-- /ANCHOR:1-overview -->
+
+<!-- ANCHOR:2-scenario-contract -->
 ## 2. SCENARIO CONTRACT
 
 - **Goal**: Reproduce stale advisor state, verify status calls are diagnostic-only, and verify explicit rebuild behavior.
@@ -29,6 +35,9 @@ Validate the separation between `advisor_status` and `advisor_rebuild`. `advisor
 
 ---
 
+<!-- /ANCHOR:2-scenario-contract -->
+
+<!-- ANCHOR:3-test-execution -->
 ## 3. TEST EXECUTION
 
 ### Commands
@@ -92,6 +101,9 @@ rm -rf "$WORK"
 
 ---
 
+<!-- /ANCHOR:3-test-execution -->
+
+<!-- ANCHOR:4-source-files -->
 ## 4. SOURCE FILES
 
 | File | Role |
@@ -103,6 +115,9 @@ rm -rf "$WORK"
 
 ---
 
+<!-- /ANCHOR:4-source-files -->
+
+<!-- ANCHOR:5-source-metadata -->
 ## 5. SOURCE METADATA
 
 - Group: Native MCP Tools
@@ -110,3 +125,5 @@ rm -rf "$WORK"
 - Current behavior: `advisor_status` is diagnostic-only; `advisor_rebuild` is the explicit repair path.
 - Canonical root source: `manual_testing_playbook.md`
 - Feature file path: `01--native-mcp-tools/006-advisor-status-rebuild-separation.md`
+
+<!-- /ANCHOR:5-source-metadata -->

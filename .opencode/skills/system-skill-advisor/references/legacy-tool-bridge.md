@@ -9,8 +9,11 @@ trigger_phrases:
 
 # Legacy Tool Bridge
 
+<!-- sk-doc-template: skill_reference -->
+
 ---
 
+<!-- ANCHOR:1-policy -->
 ## 1. POLICY
 
 Keep these public tool ids stable:
@@ -24,6 +27,9 @@ The MCP server namespace changes to `system_skill_advisor`; the tool ids do not 
 
 ---
 
+<!-- /ANCHOR:1-policy -->
+
+<!-- ANCHOR:2-why -->
 ## 2. WHY
 
 Live consumers already call `advisor_*` ids from:
@@ -39,8 +45,13 @@ A public rename would force broad consumer churn at the same time as the process
 
 ---
 
+<!-- /ANCHOR:2-why -->
+
+<!-- ANCHOR:3-bridge-window -->
 ## 3. BRIDGE WINDOW
 
 During migration, `spec_kit_memory` may keep deprecated proxy tools or fail fast with a migration hint. That bridge exists only to protect callers while runtime configs and hooks move.
 
 After child 006, advisor tool ownership belongs to the standalone server.
+
+<!-- /ANCHOR:3-bridge-window -->

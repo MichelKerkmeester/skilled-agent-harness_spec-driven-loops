@@ -11,6 +11,8 @@ trigger_phrases:
 
 # Top-2 Ambiguity Window
 
+<!-- sk-doc-template: skill_asset_feature_catalog -->
+
 <!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 

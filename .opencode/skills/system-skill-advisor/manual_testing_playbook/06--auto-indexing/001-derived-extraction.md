@@ -7,16 +7,23 @@ trigger_phrases:
   - "deterministic n-gram"
   - "graph-metadata derived"
 ---
+
 # AI-001 Deterministic Derived Extraction
+
+<!-- sk-doc-template: manual_testing_playbook -->
 
 ---
 
+<!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
 Validate that derived extraction in `lib/derived/extract.ts` produces deterministic, stable output from SKILL.md frontmatter, body, fenced examples, `references/**`, `assets/**`, `intent_signals`, `source_docs`, and declared `key_files`, and that `lib/derived/sync.ts` writes the result only to `graph-metadata.json.derived` without mutating SKILL.md.
 
 ---
 
+<!-- /ANCHOR:1-overview -->
+
+<!-- ANCHOR:2-scenario-contract -->
 ## 2. SCENARIO CONTRACT
 
 - Disposable workspace copy.
@@ -26,6 +33,9 @@ Validate that derived extraction in `lib/derived/extract.ts` produces determinis
 
 ---
 
+<!-- /ANCHOR:2-scenario-contract -->
+
+<!-- ANCHOR:3-test-execution -->
 ## 3. TEST EXECUTION
 
 1. Capture pre-state of the target skill:
@@ -68,6 +78,9 @@ cp .opencode/skills/sk-doc/graph-metadata.json /tmp/post-derived.json
 
 ---
 
+<!-- /ANCHOR:3-test-execution -->
+
+<!-- ANCHOR:4-source-files -->
 ## 4. SOURCE FILES
 
 - Scenario [AI-002](./002-sanitizer-boundaries.md) — A7 sanitizer boundary enforcement.
@@ -77,9 +90,14 @@ cp .opencode/skills/sk-doc/graph-metadata.json /tmp/post-derived.json
 
 ---
 
+<!-- /ANCHOR:4-source-files -->
+
+<!-- ANCHOR:5-source-metadata -->
 ## 5. SOURCE METADATA
 
 - Group: Auto Indexing
 - Playbook ID: AI-001
 - Canonical root source: manual_testing_playbook.md
 - Feature file path: 06--auto-indexing/001-derived-extraction.md
+
+<!-- /ANCHOR:5-source-metadata -->

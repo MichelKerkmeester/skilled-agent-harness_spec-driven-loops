@@ -7,16 +7,23 @@ trigger_phrases:
   - "force-local flag"
   - "compat force toggles"
 ---
+
 # PC-002 --force-native and --force-local Toggles
+
+<!-- sk-doc-template: manual_testing_playbook -->
 
 ---
 
+<!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
 Validate `--force-native` (requires native; fails if unavailable) and `--force-local` (bypasses native; uses Python scorer in `skill_advisor_runtime.py`).
 
 ---
 
+<!-- /ANCHOR:1-overview -->
+
+<!-- ANCHOR:2-scenario-contract -->
 ## 2. SCENARIO CONTRACT
 
 - Repo root; Python 3 available.
@@ -25,6 +32,9 @@ Validate `--force-native` (requires native; fails if unavailable) and `--force-l
 
 ---
 
+<!-- /ANCHOR:2-scenario-contract -->
+
+<!-- ANCHOR:3-test-execution -->
 ## 3. TEST EXECUTION
 
 1. Run native-required:
@@ -62,6 +72,9 @@ SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1 python3 .opencode/skills/system-skill-advi
 
 ---
 
+<!-- /ANCHOR:3-test-execution -->
+
+<!-- ANCHOR:4-source-files -->
 ## 4. SOURCE FILES
 
 - Scenario [CP-002](../03--compat-and-disable/002-force-local-force-native.md) — original toggles scenario.
@@ -71,9 +84,14 @@ SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1 python3 .opencode/skills/system-skill-advi
 
 ---
 
+<!-- /ANCHOR:4-source-files -->
+
+<!-- ANCHOR:5-source-metadata -->
 ## 5. SOURCE METADATA
 
 - Group: Python Compat
 - Playbook ID: PC-002
 - Canonical root source: manual_testing_playbook.md
 - Feature file path: 10--python-compat/002-force-native-force-local.md
+
+<!-- /ANCHOR:5-source-metadata -->
