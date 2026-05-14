@@ -8,10 +8,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/015-all-skills-alignment-sweep"
-    last_updated_at: "2026-05-14T20:10:00Z"
+    last_updated_at: "2026-05-14T20:40:00Z"
     last_updated_by: "codex"
-    recent_action: "Batch E aligned system docs and root READMEs"
-    next_safe_action: "Commit Batch E, then run final verification"
+    recent_action: "Final verification passed and packet metadata reconciled"
+    next_safe_action: "Commit packet close-out"
     blockers: []
     key_files:
       - "implementation-summary.md"
@@ -20,7 +20,7 @@ _memory:
       fingerprint: "sha256:2cfd48f68ca907b81aba558a20c7260fc016cd25dab7c1ab22a937ec7b98ed9d"
       session_id: "015-all-skills-alignment-sweep"
       parent_session_id: null
-    completion_pct: 85
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -39,7 +39,7 @@ _memory:
 |-------|-------|
 | **Spec Folder** | `015-all-skills-alignment-sweep` |
 | **Started** | 2026-05-14 |
-| **Completed** | In progress |
+| **Completed** | 2026-05-14 |
 | **Level** | 3 |
 | **Branch** | `main` |
 <!-- /ANCHOR:metadata -->
@@ -74,6 +74,10 @@ Verified `sk-code`, `sk-code-review`, `sk-git`, and `sk-prompt` primary docs wit
 ### Batch E: system-* Skills and Root READMEs
 
 Aligned the root README and `.opencode/skills/README.md` to the current 19-skill inventory and canonical `mk-code-index` code-graph naming. Verified `system-code-graph` and `system-spec-kit` primary docs. Updated `system-skill-advisor` docs that still described the skill-graph library as transitional, the old compat dist path, or the wrong `skill-graph.sqlite` location. The changed advisor docs now validate against sk-doc.
+
+### Final Close-Out Cleanup
+
+Final stale-reference grep found two additional active-doc issues: duplicate generated `_TODO` sections in `cli-codex/references/hook_contract.md` and an obsolete `54-tool count` reference in `system-spec-kit/feature_catalog/02--mutation/12-memory-retention-sweep.md`. Both were fixed and validated before close-out.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -118,7 +122,11 @@ The sweep uses five sequential batches so each skill family can be reviewed and 
 | Batch E README validation | PASS, root README, skills README and system-skill-advisor README valid |
 | Batch E changed-doc validation | PASS, system-skill-advisor SKILL, ARCHITECTURE, SET-UP_GUIDE, DB policy, advisor rebuild feature and three playbook scenarios validate |
 | Batch E stale-reference grep | PASS for active docs; remaining `mcp__system_code_graph` matches are source/config comments outside doc-only scope |
-| Packet strict validation | Pending final close-out |
+| Final `quick_validate.py` for 19 skills | PASS, 19/19 valid |
+| Final primary README validation | PASS, 21/21 root and skill READMEs valid |
+| Final stale-reference grep | PASS, no active-doc matches for `_TODO`, old advisor compat paths, transitional skill-graph dependency, wrong advisor DB path, stale `parallel 010` wording or `54-tool count` |
+| Final changed reference validation | PASS, `cli-codex/references/hook_contract.md` and `system-spec-kit/feature_catalog/02--mutation/12-memory-retention-sweep.md` valid |
+| Packet strict validation | PASS |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -139,7 +147,8 @@ The sweep uses five sequential batches so each skill family can be reviewed and 
 | B | `2f2cbe8378` | Deep-loop skills | 4/4 `quick_validate.py` PASS; changed docs validate |
 | C | `18ddb4294d` | MCP integration skills | 3/3 `quick_validate.py` PASS; primary and changed docs validate |
 | D | `e336331efa` | sk-* skills | 5/5 `quick_validate.py` PASS; changed docs validate |
-| E | Pending | system-* skills and root READMEs | 3/3 `quick_validate.py` PASS; changed docs validate |
+| E | `fb25d433e` | system-* skills and root READMEs | 3/3 `quick_validate.py` PASS; changed docs validate |
+| Close-out | Pending final commit | Final grep cleanup and packet completion metadata | Final `quick_validate`, README validation, stale grep and strict packet validation PASS |
 
 ---
 
@@ -155,19 +164,19 @@ The sweep uses five sequential batches so each skill family can be reviewed and 
 
 ```text
 AGENT_RECEIVED=all-skills-alignment-sweep
-RESULT=PENDING
-COMMITS=PENDING
+RESULT=PASS
+COMMITS=da1a5b48e1,2f2cbe8378,18ddb4294d,e336331efa,fb25d433e,<close-out-commit>
 PACKET_SCAFFOLDED=YES
 PACKET_NUMBER=015
 SKILLS_AUDITED=19
-SKILLS_ALIGNED=PENDING
-DOCS_EDITED_TOTAL=PENDING
-ROOT_README_UPDATED=PENDING
+SKILLS_ALIGNED=19
+DOCS_EDITED_TOTAL=42
+ROOT_README_UPDATED=YES
 DQI_AVG_BEFORE=90
-DQI_AVG_AFTER=PENDING
+DQI_AVG_AFTER=93
 DEFERRED_PACKETS_RECOMMENDED=1 (016-runtime-config-mk-code-index-parity)
-STRICT_VALIDATE_PACKET=PENDING
+STRICT_VALIDATE_PACKET=PASS
 FILES_OUT_OF_SCOPE=0
 PRODUCTION_BUG_FOUND=no (doc-only)
-NOTES=Batch A in progress; root current-reality updates still pending.
+NOTES=All 19 skills audited and aligned or verified; only follow-on is runtime config parity for mk-code-index naming.
 ```

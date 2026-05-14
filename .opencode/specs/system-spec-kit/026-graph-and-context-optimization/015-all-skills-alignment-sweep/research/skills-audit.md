@@ -60,7 +60,7 @@ DQI proxy uses four local signals: template pass, frontmatter budget, current-re
 | Skill | Primary Docs | Baseline DQI | Findings | Status |
 |---|---:|---:|---|---|
 | cli-claude-code | 41 md | 88 | `SKILL.md` description 133 chars, over 130 soft target | Aligned in Batch A |
-| cli-codex | 46 md | 87 | `SKILL.md` description 144 chars, over 130 soft target; current `gpt-5.5` docs are intentional per skill | Aligned in Batch A |
+| cli-codex | 46 md | 87 -> 91 | `SKILL.md` description trimmed; final stale-reference grep also removed generated `_TODO` tail from `references/hook_contract.md`; current `gpt-5.5` docs are intentional per skill | Aligned in Batch A / close-out |
 | cli-gemini | 34 md | 88 | `SKILL.md` description 132 chars, over 130 soft target | Aligned in Batch A |
 | cli-opencode | 48 md | 90 | No blocking sk-doc findings; `opencode-go` docs match current skill policy | Verified in Batch A |
 | deep-agent-improvement | 81 md | 90 -> 91 | No blocking sk-doc findings; JSONL/journal docs current | Verified in Batch B |
@@ -77,7 +77,7 @@ DQI proxy uses four local signals: template pass, frontmatter budget, current-re
 | sk-prompt | 40 md | 90 -> 91 | No blocking sk-doc findings; primary docs validate | Verified in Batch D |
 | system-code-graph | 50 md | 94 -> 95 | Package docs already use `mk-code-index`; root README now uses canonical `mk-code-index` / `mcp__mk_code_index__*` language | Verified in Batch E |
 | system-skill-advisor | 121 md | 91 -> 95 | Updated package-local skill graph library, compat entrypoint, DB path and `advisor_rebuild` docs; touched docs validate | Aligned in Batch E |
-| system-spec-kit | 1305 md | 90 -> 91 | Primary docs validate; source/config code-graph namespace drift remains out of doc-only scope and is routed to follow-on | Verified in Batch E |
+| system-spec-kit | 1305 md | 90 -> 92 | Primary docs validate; final stale-reference grep corrected an active feature-catalog tool-count reference; source/config code-graph namespace drift remains out of doc-only scope and is routed to follow-on | Verified in Batch E / close-out |
 
 ---
 

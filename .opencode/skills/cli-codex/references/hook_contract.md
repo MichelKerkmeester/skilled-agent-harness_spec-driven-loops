@@ -10,11 +10,19 @@ trigger_phrases:
 
 # Codex CLI Hook Contract
 
+<!-- sk-doc-template: skill_reference -->
+
+---
+
+## 1. OVERVIEW
+
 Codex CLI 0.130.0 exposes native hooks behind the stable `hooks` feature flag.
 Spec Kit Memory uses the native `SessionStart` and `UserPromptSubmit` surfaces
 to inject startup context and the compact skill-advisor brief.
 
-## 1. Activation
+---
+
+## 2. Activation
 
 Hooks are inert unless enabled:
 
@@ -27,7 +35,7 @@ hooks = true
 Superset `codex` wrapper already passes this flag, but `~/.codex/config.toml`
 should still include it so direct Codex invocations behave the same way.
 
-## 2. Registration
+## 3. Registration
 
 Codex reads hook entries from `~/.codex/hooks.json` using the Claude-style
 outer array plus nested `hooks` array shape:
@@ -65,7 +73,7 @@ When appending Spec Kit Memory hooks, preserve existing Superset `notify.sh`
 entries. Multiple hooks for one event run concurrently, so hook commands must be
 idempotent and must not rely on registration order.
 
-## 3. Event Inputs
+## 4. Event Inputs
 
 Hook commands receive JSON on stdin. Current generated schemas use snake_case
 field names and reject unknown properties.
@@ -101,7 +109,7 @@ field names and reject unknown properties.
 }
 ```
 
-## 4. Event Outputs
+## 5. Event Outputs
 
 Use JSON output for model-visible context:
 
@@ -123,7 +131,7 @@ as a developer-role message in the conversation state. For `SessionStart`, it is
 placed before the first user prompt; for `UserPromptSubmit`, it is placed after
 the submitted user message.
 
-## 5. Exit and Timeout Semantics
+## 6. Exit and Timeout Semantics
 
 | Condition | Behavior |
 | --- | --- |
@@ -136,7 +144,7 @@ Spec Kit hooks use short per-hook timeouts in registration and return `{}` on
 fail-open paths. The prompt hook emits a bounded stale advisory on cold-start
 timeout so the user can see the advisor surface is installed.
 
-## 6. Spec Kit Memory Wiring
+## 7. Spec Kit Memory Wiring
 
 Installed paths:
 
@@ -159,7 +167,7 @@ Expected stdout is `{}` or a JSON object with
 `hookSpecificOutput.additionalContext`; for matching work prompts it should be
 non-empty and start with `Advisor:` on the prompt hook.
 
-## 7. Sources
+## 8. Sources
 
 - OpenAI Codex source schema:
   `https://raw.githubusercontent.com/openai/codex/main/codex-rs/hooks/src/schema.rs`
@@ -170,15 +178,3 @@ non-empty and start with `Advisor:` on the prompt hook.
   `https://github.com/openai/codex/issues/16933`
 - Packet-local synthesis:
   `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-hook-package/005-codex-hook-parity-remediation/research/007-deep-review-remediation-pt-02/research.md`
-
-## 8. OVERVIEW
-
-_TODO: populate this section_
-
----
-
-## 9. OVERVIEW
-
-_TODO: populate this section_
-
----
