@@ -4,7 +4,7 @@ description: "Verify that one stale tracked file can be selectively reindexed by
 trigger_phrases:
   - "001"
   - "ensure ready selective reindex"
-  - "code_graph manual testing"
+  - "system-code-graph manual testing"
 importance_tier: "normal"
 ---
 # 001 ensure-ready selective reindex
@@ -19,11 +19,11 @@ Verify that one stale tracked file can be selectively reindexed by the readiness
 
 - Objective: Verify that one stale tracked file can be selectively reindexed by the readiness helper without broad full-scan behavior.
 - Real user request: `Validate that code_graph can repair a single stale tracked file without triggering an unrequested full scan.`
-- RCAF Prompt: `As a code graph read-path tester, execute selective readiness reindex checks against a disposable stale-file workspace. Verify one stale tracked file is repaired without broad full-scan behavior. Return PASS/FAIL with command evidence and JSON excerpts.`
-- Expected execution process: Create a disposable workspace, run a full scan, touch one indexed TypeScript file, call `code_graph_query` for the touched file, and capture readiness fields from the response.
+- Operator prompt: `Validate selective code-graph readiness in a disposable workspace. Show that one stale tracked file repairs without an unrequested full scan and return PASS/FAIL with command evidence and JSON excerpts.`
+- Expected execution process: Create a disposable workspace, run a full scan, touch one indexed TypeScript file, call `code_graph_query` for the touched file and capture readiness fields from the response.
 - Expected signals: Response shows `status:"ok"` plus readiness or self-heal evidence such as `inlineIndexPerformed:true` or `selfHealResult:"ok"`, with no transcript line showing an unrequested full `code_graph_scan`.
 - Desired user-visible outcome: A concise verdict explaining whether selective reindex repaired the stale file without broad scan behavior.
-- Pass/fail: PASS if the stale file is repaired and no hidden full scan appears; FAIL if the call blocks unexpectedly, performs an unrequested full scan, or omits readiness evidence.
+- Pass/fail: PASS if the stale file is repaired and no hidden full scan appears. FAIL if the call blocks unexpectedly, performs an unrequested full scan or omits readiness evidence.
 
 ---
 

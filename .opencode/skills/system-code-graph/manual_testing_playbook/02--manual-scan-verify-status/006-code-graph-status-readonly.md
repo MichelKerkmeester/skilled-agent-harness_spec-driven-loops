@@ -4,7 +4,7 @@ description: "Verify status reads readiness and graph quality without mutating o
 trigger_phrases:
   - "006"
   - "code graph status readonly"
-  - "code_graph manual testing"
+  - "system-code-graph manual testing"
 importance_tier: "normal"
 ---
 # 006 code_graph_status readonly
@@ -19,11 +19,11 @@ Verify status reads readiness and graph quality without mutating or repairing st
 
 - Objective: Verify status reads readiness and graph quality without mutating or repairing stale state.
 - Real user request: `Inspect code_graph_status around a stale-file fixture and confirm it reports diagnostics without repairing the graph.`
-- RCAF Prompt: `As a code graph status reviewer, execute read-only status checks against code_graph_status around a stale-file fixture. Verify readiness and graph-quality diagnostics are reported without mutation or repair. Return PASS/FAIL with before-and-after evidence.`
-- Expected execution process: Capture `code_graph_status({})` twice around a stale-file fixture, compare `lastPersistedAt`, readiness, and scan counts, and confirm no `code_graph_scan` was invoked.
-- Expected signals: Status returns diagnostic fields including `freshness`, `readiness`, `canonicalReadiness`, `trustState`, and `graphQualitySummary`, but does not repair stale state.
+- Operator prompt: `Inspect code_graph_status around a stale-file fixture. Show readiness and graph-quality diagnostics without repair or scan mutation, then return PASS/FAIL with before-and-after evidence.`
+- Expected execution process: Capture `code_graph_status({})` twice around a stale-file fixture, compare `lastPersistedAt`, readiness and scan counts and confirm no `code_graph_scan` was invoked.
+- Expected signals: Status returns diagnostic fields including `freshness`, `readiness`, `canonicalReadiness`, `trustState` and `graphQualitySummary`, but does not repair stale state.
 - Desired user-visible outcome: A concise verdict explaining whether status stayed diagnostic-only.
-- Pass/fail: PASS if status reports diagnostics without changing persistence or scan evidence; FAIL if it repairs stale state, invokes scan, or omits readiness and graph-quality diagnostics.
+- Pass/fail: PASS if status reports diagnostics without changing persistence or scan evidence. FAIL if it repairs stale state, invokes scan or omits readiness and graph-quality diagnostics.
 
 ---
 
@@ -32,12 +32,12 @@ Verify status reads readiness and graph quality without mutating or repairing st
 ### Commands
 
 1. Capture `code_graph_status({})` twice around a stale-file fixture.
-2. Compare `lastPersistedAt`, readiness, and scan counts.
+2. Compare `lastPersistedAt`, readiness and scan counts.
 3. Confirm no `code_graph_scan` was invoked.
 
 ### Expected Output / Verification
 
-Status returns diagnostic fields including `freshness`, `readiness`, `canonicalReadiness`, `trustState`, and `graphQualitySummary`, but does not repair stale state.
+Status returns diagnostic fields including `freshness`, `readiness`, `canonicalReadiness`, `trustState` and `graphQualitySummary`, but does not repair stale state.
 
 ### Cleanup
 

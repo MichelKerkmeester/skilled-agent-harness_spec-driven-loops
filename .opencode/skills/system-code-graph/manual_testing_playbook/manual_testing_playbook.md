@@ -1,15 +1,16 @@
 ---
 title: "Code Graph: Manual Testing Playbook"
-description: "Operator validation package for the code_graph runtime catalog, covering read-path freshness, scan/status/verify, detect_changes, context retrieval, coverage graph tools, MCP dispatch, CCC integration, and doctor-code-graph policy."
+description: "Operator validation package for the system-code-graph skill and mk-code-index MCP server, covering readiness, structural queries, detect_changes, context retrieval, coverage graph references, CCC bridge tools and doctor-code-graph policy."
 trigger_phrases:
-  - "code_graph manual testing playbook"
+  - "system-code-graph manual testing playbook"
+  - "mk-code-index manual testing playbook"
   - "code graph validation"
-  - "code_graph runtime playbook"
+  - "code graph runtime playbook"
 importance_tier: "important"
 ---
 # Code Graph: Manual Testing Playbook
 
-This playbook validates the runtime-package code graph surface at `.opencode/skills/system-code-graph/mcp_server/`. The package mirrors `skill_advisor/manual_testing_playbook/`: the root file is the operator index, and numbered category folders hold deterministic scenario entries.
+This playbook validates the code graph runtime at `.opencode/skills/system-code-graph/mcp_server/`. Live MCP examples use the `mk-code-index` namespace as `mcp__mk_code_index__*`, while the stable tool IDs remain `code_graph_*`, `detect_changes` and `ccc_*`.
 
 ---
 
@@ -36,7 +37,7 @@ This playbook validates the runtime-package code graph surface at `.opencode/ski
 
 ## 1. OVERVIEW
 
-The playbook contains 15 scenarios across 8 groups. It targets the current reality map: read-path checks are bounded and half-auto, full scan/verify/status are operator actions, detect_changes is read-only and blocks on stale state, CCC tools are direct/manual, and coverage graph automation is limited to deep-loop command YAML.
+The playbook contains 15 scenarios across 8 groups. It targets the current reality map: read-path checks are bounded and half-auto, full scan/verify/status are operator actions, `detect_changes` is read-only and blocks on stale state, CCC tools are manual and coverage graph automation is limited to deep-loop command YAML.
 
 | Group | Scenario Files |
 | --- | --- |
@@ -52,31 +53,31 @@ The playbook contains 15 scenarios across 8 groups. It targets the current reali
 ## 2. GLOBAL PRECONDITIONS
 
 1. Working directory is the repository root.
-2. Build the MCP server before handler-level checks: `npm --prefix .opencode/skills/system-spec-kit/mcp_server run build`.
-3. Use disposable workspace copies for file mutation, stale graph, scan, and doctor apply scenarios.
-4. Capture stdout, stderr, exit code, and MCP JSON payload excerpts.
+2. Build the MCP server before handler-level checks: `node .opencode/skills/system-code-graph/node_modules/typescript/bin/tsc -p .opencode/skills/system-code-graph/tsconfig.json`.
+3. Use disposable workspace copies for file mutation, stale graph, scan and doctor apply scenarios.
+4. Capture stdout, stderr, exit code and MCP JSON payload excerpts.
 
 ## 3. GLOBAL EVIDENCE REQUIREMENTS
 
 - Scenario ID and file path.
 - Exact command or MCP call used.
-- JSON fields that prove readiness, action, status, or output shape.
-- PASS, FAIL, or SKIP verdict with one reason.
+- JSON fields that prove readiness, action, status or output shape.
+- PASS, FAIL or SKIP verdict with one reason.
 
 ## 4. DETERMINISTIC COMMAND NOTATION
 
 - Bash commands are shown as `bash: <command>`.
-- MCP tool calls are shown as `mcp.<tool>(<args>)`.
-- Slash-command scenarios cite the command and the YAML path; run them in a disposable workspace.
+- MCP tool calls are shown as `mcp__mk_code_index__<tool>(<args>)` for the standalone code graph server.
+- Slash-command scenarios cite the command and the YAML path. Run them in a disposable workspace.
 - `->` separates sequential steps.
 
 ## 5. REVIEW PROTOCOL AND RELEASE READINESS
 
-A scenario passes only when the expected fields appear and the transcript shows no hidden full scan, unrequested mutation, or missing readiness block.
+A scenario passes only when the expected fields appear and the transcript shows no hidden full scan, unrequested mutation or missing readiness block.
 
 ## 6. SUB-AGENT ORCHESTRATION AND WAVE PLANNING
 
-Operators may dispatch sub-agents in parallel waves for independent scenarios, especially read-only category checks. The primary use remains single-operator sequential execution so command transcripts, MCP payloads, and verdict evidence stay easy to audit.
+Operators may dispatch sub-agents in parallel waves for independent scenarios, especially read-only category checks. The primary use remains single-operator sequential execution so command transcripts, MCP payloads and verdict evidence stay easy to audit.
 
 ---
 

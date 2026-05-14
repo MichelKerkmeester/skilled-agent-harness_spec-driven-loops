@@ -1,10 +1,9 @@
 ---
 title: "ccc_status"
-description: "Manual CocoIndex bridge status probe reporting binary availability, index presence, and recommendation text."
+description: "Manual CocoIndex bridge status probe reporting binary availability, index presence and recommendation text."
 trigger_phrases:
   - "ccc_status"
-  - "code_graph runtime catalog"
-  - "ccc_status"
+  - "system-code-graph feature catalog"
 importance_tier: "important"
 ---
 
@@ -25,7 +24,7 @@ Direct MCP call only. Session/bootstrap surfaces probe availability directly, no
 
 ### Class
 
-manual, copied from the current reality map.
+manual. The tool runs only when an operator calls it explicitly.
 
 ### Caveats / Fallback
 
@@ -39,9 +38,9 @@ Availability does not prove search quality. Pair with an actual CocoIndex search
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/system-code-graph/mcp_server/handlers/ccc-status.ts:22-58` | Handler | reports binary path, index presence, readiness-not-applicable fields, and recommendation |
+| `.opencode/skills/system-code-graph/mcp_server/handlers/ccc-status.ts:22-58` | Handler | reports binary path, index presence, readiness-not-applicable fields and recommendation |
 | `.opencode/skills/system-code-graph/mcp_server/tools/code-graph-tools.ts:86-88` | Tool surface | dispatches the requested tool |
-| `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:723-727` | Schema | defines the public schema |
+| `.opencode/skills/system-code-graph/mcp_server/tool-schemas.ts:183-187` | Schema | defines the public schema |
 
 ### Validation And Tests
 

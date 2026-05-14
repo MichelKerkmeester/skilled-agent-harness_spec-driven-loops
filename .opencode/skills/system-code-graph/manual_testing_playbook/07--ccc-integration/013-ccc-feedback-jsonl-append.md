@@ -1,29 +1,29 @@
 ---
 title: "013 ccc_feedback jsonl append"
-description: "Verify ccc_feedback appends one JSONL feedback entry with query, rating, resultFile, and comment fields."
+description: "Verify ccc_feedback appends one JSONL feedback entry with query, rating, resultFile and comment fields."
 trigger_phrases:
   - "013"
   - "ccc feedback jsonl append"
-  - "code_graph manual testing"
+  - "system-code-graph manual testing"
 importance_tier: "normal"
 ---
 # 013 ccc_feedback jsonl append
 
 ## 1. OVERVIEW
 
-Verify ccc_feedback appends one JSONL feedback entry with query, rating, resultFile, and comment fields.
+Verify ccc_feedback appends one JSONL feedback entry with query, rating, resultFile and comment fields.
 
 ---
 
 ## 2. SCENARIO CONTRACT
 
-- Objective: Verify ccc_feedback appends one JSONL feedback entry with query, rating, resultFile, and comment fields.
+- Objective: Verify ccc_feedback appends one JSONL feedback entry with query, rating, resultFile and comment fields.
 - Real user request: `Record a CocoIndex feedback entry and confirm exactly one valid JSONL line is appended with the expected fields.`
-- RCAF Prompt: `As a CocoIndex integration tester, execute ccc_feedback append checks against the feedback JSONL file in a disposable workspace. Verify one valid feedback entry records query, rating, resultFile, and comment fields. Return PASS/FAIL with response and JSONL evidence.`
+- Operator prompt: `Record one ccc_feedback entry in a disposable workspace. Show the response and the appended JSONL line, then return PASS/FAIL with field evidence.`
 - Expected execution process: In a disposable copy, call `ccc_feedback({"query":"code graph","rating":"partial","comment":"manual test"})` and inspect `.opencode/skills/mcp-coco-index/feedback/search-feedback.jsonl`.
-- Expected signals: Response has `recorded:true`; JSONL file contains one new valid JSON line with timestamp, query, rating, and comment.
+- Expected signals: Response has `recorded:true`. JSONL file contains one new valid JSON line with timestamp, query, rating and comment.
 - Desired user-visible outcome: A concise verdict explaining whether feedback recording produced the expected JSONL audit entry.
-- Pass/fail: PASS if one valid JSONL feedback line is appended with expected fields; FAIL if no line is written, multiple lines appear, fields are missing, or validation accepts a missing rating.
+- Pass/fail: PASS if one valid JSONL feedback line is appended with expected fields. FAIL if no line is written, multiple lines appear, fields are missing or validation accepts a missing rating.
 
 ---
 
@@ -36,7 +36,7 @@ Verify ccc_feedback appends one JSONL feedback entry with query, rating, resultF
 
 ### Expected Output / Verification
 
-Response has `recorded:true`; JSONL file contains one new valid JSON line with timestamp, query, rating, and comment.
+Response has `recorded:true`. JSONL file contains one new valid JSON line with timestamp, query, rating and comment.
 
 ### Cleanup
 

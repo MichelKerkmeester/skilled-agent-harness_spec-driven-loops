@@ -1,10 +1,9 @@
 ---
 title: "Context handler"
-description: "Handler-level context assembly that normalizes seeds, enforces deadlines, and routes blocked readiness before building graph context."
+description: "Handler-level context assembly that normalizes seeds, enforces deadlines and routes blocked readiness before building graph context."
 trigger_phrases:
   - "context handler"
-  - "code_graph runtime catalog"
-  - "context handler"
+  - "system-code-graph feature catalog"
 importance_tier: "important"
 ---
 
@@ -13,7 +12,7 @@ importance_tier: "important"
 <!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
-The context handler is the boundary between external seeds and internal graph context assembly. It normalizes CocoIndex/manual/graph seeds, picks a query mode, and refuses unsafe readiness before `buildContext()`.
+The context handler is the boundary between external seeds and internal graph context assembly. It normalizes CocoIndex/manual/graph seeds, picks a query mode and refuses unsafe readiness before `buildContext()`.
 <!-- /ANCHOR:overview -->
 
 <!-- ANCHOR:current-reality -->

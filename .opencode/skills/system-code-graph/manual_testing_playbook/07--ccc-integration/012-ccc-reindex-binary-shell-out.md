@@ -4,7 +4,7 @@ description: "Verify ccc_reindex shells out to the local ccc binary and reports 
 trigger_phrases:
   - "012"
   - "ccc reindex binary shell out"
-  - "code_graph manual testing"
+  - "system-code-graph manual testing"
 importance_tier: "normal"
 ---
 # 012 ccc_reindex binary shell out
@@ -19,11 +19,11 @@ Verify ccc_reindex shells out to the local ccc binary and reports unavailable bi
 
 - Objective: Verify ccc_reindex shells out to the local ccc binary and reports unavailable binary cleanly.
 - Real user request: `Check whether ccc_reindex uses the local ccc binary and gives a clear install message when the binary is unavailable.`
-- RCAF Prompt: `As a CocoIndex integration tester, execute ccc_reindex availability checks against the local ccc binary path. Verify available binaries produce reindex status and missing binaries report install guidance cleanly. Return PASS/FAIL with status and error evidence.`
-- Expected execution process: Call `ccc_status`, then call `ccc_reindex({"full":false})` in a disposable workspace if the binary exists, or capture the install error from `ccc_reindex` if it is missing.
-- Expected signals: Available binary path leads to `status:"ok"` with mode and duration; missing binary returns a clear install instruction.
+- Operator prompt: `Check ccc_reindex against the local ccc binary path. Show successful reindex status or clear missing-binary guidance, then return PASS/FAIL with status and error evidence.`
+- Expected execution process: Call `ccc_status`, then call `ccc_reindex({"full":false})` in a disposable workspace if the binary exists or capture the install error from `ccc_reindex` if it is missing.
+- Expected signals: Available binary path leads to `status:"ok"` with mode and duration. Missing binary returns a clear install instruction.
 - Desired user-visible outcome: A concise verdict explaining whether ccc_reindex delegates to the binary or fails with actionable setup guidance.
-- Pass/fail: PASS if available binary reindex succeeds or unavailable binary returns clear install guidance; FAIL if the shell-out path is invisible, missing-binary errors are unclear, or generated artifacts are not isolated.
+- Pass/fail: PASS if available binary reindex succeeds or unavailable binary returns clear install guidance. FAIL if the shell-out path is invisible, missing-binary errors are unclear or generated artifacts are not isolated.
 
 ---
 
@@ -37,7 +37,7 @@ Verify ccc_reindex shells out to the local ccc binary and reports unavailable bi
 
 ### Expected Output / Verification
 
-Available binary path leads to `status:"ok"` with mode and duration; missing binary returns a clear install instruction.
+Available binary path leads to `status:"ok"` with mode and duration. Missing binary returns a clear install instruction.
 
 ### Cleanup
 

@@ -4,7 +4,7 @@ description: "Verify ccc_status reports binary/index availability and recommenda
 trigger_phrases:
   - "014"
   - "ccc status availability probe"
-  - "code_graph manual testing"
+  - "system-code-graph manual testing"
 importance_tier: "normal"
 ---
 # 014 ccc_status availability probe
@@ -19,11 +19,11 @@ Verify ccc_status reports binary/index availability and recommendation without i
 
 - Objective: Verify ccc_status reports binary/index availability and recommendation without invoking reindex.
 - Real user request: `Probe ccc_status and confirm it reports binary and index availability without creating or changing CocoIndex artifacts.`
-- RCAF Prompt: `As a CocoIndex integration tester, execute availability probe checks against ccc_status. Verify binary/index diagnostics and recommendations are reported without invoking reindex or mutating artifacts. Return PASS/FAIL with diagnostic payload evidence.`
-- Expected execution process: Call `ccc_status({})` and capture `available`, `binaryPath`, `indexExists`, `indexSize`, and `recommendation`.
-- Expected signals: Response is diagnostic-only and does not create or modify `.cocoindex_code`; recommendation matches binary/index presence.
+- Operator prompt: `Probe ccc_status without running reindex. Show binary and index diagnostics, recommendation text and artifact non-mutation evidence, then return PASS/FAIL.`
+- Expected execution process: Call `ccc_status({})` and capture `available`, `binaryPath`, `indexExists`, `indexSize` and `recommendation`.
+- Expected signals: Response is diagnostic-only and does not create or modify `.cocoindex_code`. Recommendation matches binary/index presence.
 - Desired user-visible outcome: A concise verdict explaining whether ccc_status stayed read-only and reported actionable availability diagnostics.
-- Pass/fail: PASS if diagnostics match binary/index state and no reindex artifacts change; FAIL if status invokes reindex, mutates `.cocoindex_code`, or gives a mismatched recommendation.
+- Pass/fail: PASS if diagnostics match binary/index state and no reindex artifacts change. FAIL if status invokes reindex, mutates `.cocoindex_code` or gives a mismatched recommendation.
 
 ---
 
@@ -31,7 +31,7 @@ Verify ccc_status reports binary/index availability and recommendation without i
 
 ### Commands
 
-Call `ccc_status({})` and capture `available`, `binaryPath`, `indexExists`, `indexSize`, and `recommendation`.
+Call `ccc_status({})` and capture `available`, `binaryPath`, `indexExists`, `indexSize` and `recommendation`.
 
 ### Expected Output / Verification
 

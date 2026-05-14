@@ -3,8 +3,7 @@ title: "code_graph_verify"
 description: "Manual gold-query verification tool that blocks on stale readiness and executes the persisted code-graph battery only when fresh."
 trigger_phrases:
   - "code_graph_verify"
-  - "code_graph runtime catalog"
-  - "code_graph_verify"
+  - "system-code-graph feature catalog"
 importance_tier: "important"
 ---
 
@@ -21,7 +20,7 @@ importance_tier: "important"
 
 ### Trigger / Auto-Fire Path
 
-Manual MCP maintenance call, or optional verification inside an explicit full `code_graph_scan`.
+Manual MCP maintenance call or optional verification inside an explicit full `code_graph_scan`.
 
 ### Class
 
@@ -39,10 +38,10 @@ The handler refuses stale graphs. Run `code_graph_scan({ incremental:false })` b
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/system-code-graph/mcp_server/handlers/verify.ts:141-190` | Handler | resolves paths, checks readiness, blocks when not fresh, and runs the battery |
+| `.opencode/skills/system-code-graph/mcp_server/handlers/verify.ts:141-190` | Handler | resolves paths, checks readiness, blocks when not fresh and runs the battery |
 | `.opencode/skills/system-code-graph/mcp_server/lib/gold-query-verifier.ts:23-26` | Library | defines the default battery path |
 | `.opencode/skills/system-code-graph/mcp_server/lib/gold-query-verifier.ts:405-430` | Library | loads and validates the battery JSON |
-| `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:645-664` | Schema | defines the public schema |
+| `.opencode/skills/system-code-graph/mcp_server/tool-schemas.ts:120-140` | Schema | defines the public schema |
 
 ### Validation And Tests
 

@@ -3,8 +3,7 @@ title: "ccc_reindex"
 description: "Manual CocoIndex bridge tool that shells out to the ccc CLI for incremental or full reindexing."
 trigger_phrases:
   - "ccc_reindex"
-  - "code_graph runtime catalog"
-  - "ccc_reindex"
+  - "system-code-graph feature catalog"
 importance_tier: "important"
 ---
 
@@ -25,7 +24,7 @@ Direct MCP call only. Session/bootstrap surfaces probe CocoIndex availability th
 
 ### Class
 
-manual, copied from the current reality map.
+manual. The tool runs only when an operator calls it explicitly.
 
 ### Caveats / Fallback
 
@@ -41,7 +40,7 @@ Requires the local `ccc` binary. Use `mcp__cocoindex_code__search` for actual se
 |---|---|---|
 | `.opencode/skills/system-code-graph/mcp_server/handlers/ccc-reindex.ts:27-54` | Handler | locates the `ccc` binary and runs `index` or `index --full` |
 | `.opencode/skills/system-code-graph/mcp_server/tools/code-graph-tools.ts:86-90` | Tool surface | dispatches the requested tool |
-| `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:729-739` | Schema | defines the public schema |
+| `.opencode/skills/system-code-graph/mcp_server/tool-schemas.ts:190-200` | Schema | defines the public schema |
 
 ### Validation And Tests
 

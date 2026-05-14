@@ -3,7 +3,7 @@ title: "Query self-heal"
 description: "code_graph_query invokes ensureCodeGraphReady with selective inline indexing allowed and full inline scans suppressed."
 trigger_phrases:
   - "query self heal"
-  - "code_graph runtime catalog"
+  - "system-code-graph feature catalog"
   - "query self-heal"
 importance_tier: "important"
 ---
@@ -13,7 +13,7 @@ importance_tier: "important"
 <!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
-`code_graph_query` is a structural read surface for outline, call, import, and blast-radius queries. Before answering, it asks the readiness helper for a bounded repair opportunity.
+`code_graph_query` is a structural read surface for outline, call, import and blast-radius queries. Before answering, it asks the readiness helper for a bounded repair opportunity.
 <!-- /ANCHOR:overview -->
 
 <!-- ANCHOR:current-reality -->
@@ -25,7 +25,7 @@ Manual tool call only. The self-heal happens inside that requested read path.
 
 ### Class
 
-half. Code graph freshness checks are half-auto; `code_graph_query` has conditional local/native pass evidence only.
+half. Code graph freshness checks are half-auto. `code_graph_query` has conditional local/native pass evidence only.
 
 ### Caveats / Fallback
 
@@ -41,7 +41,7 @@ When stale files exceed the selective threshold or Git HEAD changed, query block
 |---|---|---|
 | `.opencode/skills/system-code-graph/mcp_server/handlers/query.ts:1078-1092` | Handler | calls `ensureCodeGraphReady(... allowInlineIndex:true, allowInlineFullScan:false)` |
 | `.opencode/skills/system-code-graph/mcp_server/handlers/query.ts:1093-1120` | Handler | returns a structured unavailable envelope on readiness crashes |
-| `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:579-596` | Schema | defines the public `code_graph_query` schema |
+| `.opencode/skills/system-code-graph/mcp_server/tool-schemas.ts:51-69` | Schema | defines the public `code_graph_query` schema |
 | `.opencode/skills/system-code-graph/mcp_server/tools/code-graph-tools.ts:65-70` | Tool surface | validates required `operation` and `subject` before dispatch |
 
 ### Validation And Tests

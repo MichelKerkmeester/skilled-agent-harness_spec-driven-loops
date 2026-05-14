@@ -3,8 +3,7 @@ title: "deep_loop_graph_convergence"
 description: "Coverage-graph convergence tool auto-fired by deep-research and deep-review YAML before inline stop voting."
 trigger_phrases:
   - "deep_loop_graph_convergence"
-  - "code_graph runtime catalog"
-  - "deep_loop_graph_convergence"
+  - "system-code-graph feature catalog"
 importance_tier: "important"
 ---
 
@@ -25,7 +24,7 @@ Command-owned deep-research/deep-review YAML plus direct MCP call.
 
 ### Class
 
-auto, copied from the current reality map for the deep-loop workflows.
+auto inside the deep-loop command workflows. Direct MCP calls remain explicit.
 
 ### Caveats / Fallback
 
@@ -39,10 +38,10 @@ Auto means "inside the command YAML workflow," not globally scheduled. Empty gra
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:146-240` | Handler | validates namespace, handles empty graphs, computes signals, and emits decisions |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:146-240` | Handler | validates namespace, handles empty graphs, computes signals and emits decisions |
 | `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:392-408` | Implementation | calls convergence before the research stop vote |
 | `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:410-425` | Implementation | calls convergence before the review stop vote |
-| `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:883-896` | Schema | defines the public schema |
+| `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:692-705` | Schema | defines the public schema |
 
 ### Validation And Tests
 

@@ -1,29 +1,29 @@
 ---
-title: "015 doctor apply mode policy"
-description: "Verify doctor-code-graph separates read-only diagnostic mode from explicit apply-mode mutation and verification policy."
+title: "015 doctor code-graph route policy"
+description: "Verify doctor-code-graph exposes mutating route metadata while the current YAML keeps Phase A diagnostic-only."
 trigger_phrases:
   - "015"
   - "doctor apply mode policy"
-  - "code_graph manual testing"
+  - "system-code-graph manual testing"
 importance_tier: "normal"
 ---
-# 015 doctor apply mode policy
+# 015 doctor code-graph route policy
 
 ## 1. OVERVIEW
 
-Verify doctor-code-graph separates read-only diagnostic mode from explicit apply-mode mutation and verification policy.
+Verify doctor-code-graph exposes mutating route metadata while the current YAML keeps Phase A diagnostic-only.
 
 ---
 
 ## 2. SCENARIO CONTRACT
 
-- Objective: Verify doctor-code-graph separates read-only diagnostic mode from explicit apply-mode mutation and verification policy.
-- Real user request: `Review doctor-code-graph auto and apply workflows to confirm diagnostics are read-only and apply mode has explicit verification and rollback policy.`
-- RCAF Prompt: `As a doctor-code-graph policy reviewer, inspect diagnostic and apply workflow definitions against doctor-code-graph command files. Verify read-only mode forbids mutation and apply mode limits writes before scan/query verification and rollback policy. Return PASS/FAIL with source anchors and evidence excerpts.`
-- Expected execution process: Read the documented command and YAML line ranges, and run only diagnostic mode unless using a disposable workspace for apply-mode checks.
-- Expected signals: Diagnostic auto/confirm forbids source mutation and scan; apply/apply-confirm explicitly limits writes to config/scratch, then verifies with scan/query and rollback policy.
-- Desired user-visible outcome: A concise verdict explaining whether doctor-code-graph keeps diagnostic and apply policies separate.
-- Pass/fail: PASS if diagnostic paths stay read-only and apply paths document limited writes plus verification/rollback; FAIL if diagnostic mode mutates, apply mode lacks verification policy, or medium/low tiers bypass interactive gating.
+- Objective: Verify doctor-code-graph exposes mutating route metadata while the current YAML keeps Phase A diagnostic-only.
+- Real user request: `Review doctor-code-graph routing and YAML to confirm the current workflow is diagnostic-only despite mutating route metadata.`
+- Operator prompt: `Inspect doctor-code-graph route metadata and YAML. Show mk-code-index tool grants, read-only Phase A policy and packet-scratch write limits, then return PASS/FAIL.`
+- Expected execution process: Read the route manifest and current doctor code-graph YAML line ranges, then run only diagnostic mode unless using a disposable workspace.
+- Expected signals: Route metadata lists `mk-code-index` tools and mutating flags. Current YAML forbids mutation outside packet-local scratch and never invokes `code_graph_scan` in Phase A.
+- Desired user-visible outcome: A concise verdict explaining whether the current doctor-code-graph workflow keeps diagnostics read-only.
+- Pass/fail: PASS if route metadata and YAML boundaries are both visible and Phase A remains diagnostic-only. FAIL if the YAML mutates source/config/DB state or the route lacks `mk-code-index` grants.
 
 ---
 
@@ -31,14 +31,14 @@ Verify doctor-code-graph separates read-only diagnostic mode from explicit apply
 
 ### Commands
 
-1. Read `.opencode/commands/doctor.md:13-32`.
-2. Read `doctor_code-graph_auto.yaml:19-24` and `:191-204`.
-3. Read `doctor_code-graph_apply.yaml:24-30` and `:135-156`.
-4. Run only diagnostic mode unless using disposable workspace.
+1. Read `.opencode/commands/doctor/_routes.yaml:54-79`.
+2. Read `.opencode/commands/doctor/assets/doctor_code-graph.yaml:20-23` and `.opencode/commands/doctor/assets/doctor_code-graph.yaml:76-86`.
+3. Read `.opencode/commands/doctor/assets/doctor_code-graph.yaml:131-187` and `.opencode/commands/doctor/assets/doctor_code-graph.yaml:191-206`.
+4. Run only diagnostic mode unless using a disposable workspace.
 
 ### Expected Output / Verification
 
-Diagnostic auto/confirm forbids source mutation and scan. Apply/apply-confirm explicitly limits writes to config/scratch, then verifies with scan/query and rollback policy.
+Route metadata lists `mk-code-index` tools and mutating flags. Current YAML forbids mutation outside packet-local scratch and never invokes `code_graph_scan` in Phase A.
 
 ### Cleanup
 
@@ -46,7 +46,7 @@ Remove scratch/apply artifacts from disposable copy.
 
 ### Variant Scenarios
 
-In apply-confirm, verify medium/low tiers require interactive gating.
+Run `/doctor code-graph --scope=all --dry-run` in a disposable workspace and confirm any report writes stay under packet-local scratch.
 
 ---
 

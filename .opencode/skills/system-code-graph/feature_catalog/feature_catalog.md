@@ -1,16 +1,16 @@
 ---
 title: "Code Graph: Feature Catalog"
-description: "Runtime-package feature inventory for the code_graph subsystem, covering read-path freshness, manual scan/status/verify, detect_changes, context retrieval, coverage graph tools, MCP registration, CCC integration, and doctor-code-graph policy."
+description: "Current feature inventory for the system-code-graph skill and mk-code-index MCP server, with source anchors for graph readiness, structural queries, CCC bridge tools, coverage graph references and doctor-code-graph policy."
 trigger_phrases:
-  - "code_graph feature catalog"
-  - "code_graph runtime catalog"
+  - "system-code-graph feature catalog"
+  - "mk-code-index feature catalog"
   - "code graph inventory"
-  - "code_graph manual testing playbook"
+  - "code graph runtime catalog"
 importance_tier: "important"
 ---
 # Code Graph: Feature Catalog
 
-This catalog is the runtime-package inventory for `.opencode/skills/system-code-graph/mcp_server/`. It mirrors the `skill_advisor/feature_catalog/` package shape while keeping the code graph reality map precise: read-path checks are half-automated, maintenance tools are manual, CCC tools are manual, and deep-loop graph automation is limited to the command-owned YAML paths documented below.
+This catalog is the current feature inventory for `.opencode/skills/system-code-graph/mcp_server/`. Live MCP callers use the standalone `mk-code-index` namespace, exposed as `mcp__mk_code_index__*`. The stable tool IDs remain `code_graph_*`, `detect_changes` and `ccc_*`.
 
 ---
 
@@ -30,7 +30,7 @@ This catalog is the runtime-package inventory for `.opencode/skills/system-code-
 
 ## 1. OVERVIEW
 
-The catalog covers 17 runtime features across 8 groups. Per-feature files carry the implementation surface, trigger path, reality classification, fallback, and cross-references.
+The catalog covers 17 runtime features across 8 groups. Per-feature files carry the implementation surface, trigger path, current automation class, fallback and cross-references.
 
 | Group | Count | Scope |
 | --- | ---: | --- |
@@ -43,7 +43,7 @@ The catalog covers 17 runtime features across 8 groups. Per-feature files carry 
 | [07--ccc-integration](./07--ccc-integration/) | 3 | CCC integration |
 | [08--doctor-code-graph](./08--doctor-code-graph/) | 1 | Doctor code graph |
 
-Reality classification source: the current automation map classifies code graph freshness as half-auto, CCC as manual, deep-loop convergence as auto, deep-loop upsert as half, and deep-loop query/status as manual. Matrix coverage treats code graph query and scan/verify as conditional local/native validation surfaces, not fully covered external-executor cells.
+Reality classification source: read-path freshness is half-auto because requested reads can run bounded repair, full scan/verify/status are manual, CCC tools are manual, deep-loop convergence runs automatically inside command YAML, deep-loop upsert is conditional and deep-loop query/status are manual.
 
 
 ---

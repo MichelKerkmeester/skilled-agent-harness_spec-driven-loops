@@ -4,7 +4,7 @@ description: "Verify deep-loop command YAML contains live convergence calls befo
 trigger_phrases:
   - "009"
   - "deep loop graph convergence yaml fire"
-  - "code_graph manual testing"
+  - "system-code-graph manual testing"
 importance_tier: "normal"
 ---
 # 009 deep_loop_graph_convergence yaml fire
@@ -19,11 +19,11 @@ Verify deep-loop command YAML contains live convergence calls before stop voting
 
 - Objective: Verify deep-loop command YAML contains live convergence calls before stop voting.
 - Real user request: `Review the deep-research and deep-review auto YAML to confirm graph convergence is called before stop voting.`
-- RCAF Prompt: `As a coverage graph workflow reviewer, inspect deep-loop command YAML convergence paths against the auto workflow files. Verify graph convergence MCP calls occur before inline stop logic and produce a convergence event. Return PASS/FAIL with file anchors and evidence excerpts.`
+- Operator prompt: `Inspect the deep-research and deep-review auto YAML convergence paths. Show that graph convergence runs before stop voting, then return PASS/FAIL with file anchors and evidence excerpts.`
 - Expected execution process: Read the specified deep-research and deep-review YAML line ranges, then optionally run a minimal deep-loop fixture and capture a graph convergence JSONL event.
 - Expected signals: YAML calls `mcp__spec_kit_memory__deep_loop_graph_convergence` before inline stop logic and appends a graph convergence event.
 - Desired user-visible outcome: A concise verdict explaining whether deep-loop stop voting is guarded by live graph convergence checks.
-- Pass/fail: PASS if both YAML paths call graph convergence before stop logic and event evidence is present when run; FAIL if the call is missing, occurs after stop voting, or no convergence event can be observed in the fixture.
+- Pass/fail: PASS if both YAML paths call graph convergence before stop logic and event evidence is present when run. FAIL if the call is missing, occurs after stop voting or no convergence event can be observed in the fixture.
 
 ---
 

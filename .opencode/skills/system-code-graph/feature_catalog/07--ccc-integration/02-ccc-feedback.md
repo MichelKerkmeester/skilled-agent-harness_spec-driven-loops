@@ -3,8 +3,7 @@ title: "ccc_feedback"
 description: "Manual CocoIndex bridge tool that appends search feedback JSONL for future analysis."
 trigger_phrases:
   - "ccc_feedback"
-  - "code_graph runtime catalog"
-  - "ccc_feedback"
+  - "system-code-graph feature catalog"
 importance_tier: "important"
 ---
 
@@ -21,11 +20,11 @@ importance_tier: "important"
 
 ### Trigger / Auto-Fire Path
 
-Direct MCP call only. No hook, CI, session bootstrap, or memory command path invokes feedback automatically.
+Direct MCP call only. No hook, CI, session bootstrap or memory command path invokes feedback automatically.
 
 ### Class
 
-manual, copied from the current reality map.
+manual. The tool runs only when an operator calls it explicitly.
 
 ### Caveats / Fallback
 
@@ -39,9 +38,9 @@ Feedback writes under `.opencode/skills/mcp-coco-index/feedback/search-feedback.
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/system-code-graph/mcp_server/handlers/ccc-feedback.ts:29-60` | Handler | validates query/rating, creates the feedback directory, and appends JSONL |
+| `.opencode/skills/system-code-graph/mcp_server/handlers/ccc-feedback.ts:29-60` | Handler | validates query/rating, creates the feedback directory and appends JSONL |
 | `.opencode/skills/system-code-graph/mcp_server/tools/code-graph-tools.ts:91-96` | Tool surface | validates required fields before dispatch |
-| `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:741-753` | Schema | defines the public schema |
+| `.opencode/skills/system-code-graph/mcp_server/tool-schemas.ts:203-216` | Schema | defines the public schema |
 
 ### Validation And Tests
 

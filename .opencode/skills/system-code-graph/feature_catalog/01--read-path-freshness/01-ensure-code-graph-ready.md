@@ -1,10 +1,9 @@
 ---
 title: "Ensure code graph ready"
-description: "Shared readiness helper that detects empty, stale, full-scan, and selective-reindex states and can run bounded selective repair on read paths."
+description: "Shared readiness helper that detects empty, stale, full-scan and selective-reindex states and can run bounded selective repair on read paths."
 trigger_phrases:
   - "ensure code graph ready"
-  - "code_graph runtime catalog"
-  - "ensure code graph ready"
+  - "system-code-graph feature catalog"
 importance_tier: "important"
 ---
 
@@ -13,7 +12,7 @@ importance_tier: "important"
 <!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
-`ensureCodeGraphReady()` is the read-path gate used by query, context, and verification surfaces. It detects graph readiness without a watcher, cleans deleted tracked files, and performs the minimum allowed inline repair.
+`ensureCodeGraphReady()` is the read-path gate used by query, context and verification surfaces. It detects graph readiness without a watcher, cleans deleted tracked files and performs the minimum allowed inline repair.
 <!-- /ANCHOR:overview -->
 
 <!-- ANCHOR:current-reality -->
@@ -39,7 +38,7 @@ Full-scan states are refused by query/context when inline full scans are disable
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/system-code-graph/mcp_server/lib/ensure-ready.ts:141-225` | Library | detects empty, stale, full-scan, and selective-reindex states |
+| `.opencode/skills/system-code-graph/mcp_server/lib/ensure-ready.ts:141-225` | Library | detects empty, stale, full-scan and selective-reindex states |
 | `.opencode/skills/system-code-graph/mcp_server/lib/ensure-ready.ts:329-375` | Library | debounces checks and blocks inline repair when callers disallow it |
 | `.opencode/skills/system-code-graph/mcp_server/lib/ensure-ready.ts:398-421` | Library | runs selective reindex for stale tracked files |
 | `.opencode/skills/system-code-graph/mcp_server/lib/ensure-ready.ts:272-287` | Library | stages persistence so failed writes leave files stale for retry |

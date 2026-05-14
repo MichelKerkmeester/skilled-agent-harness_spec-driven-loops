@@ -4,7 +4,7 @@ description: "Prove code_graph_verify refuses stale graph state before executing
 trigger_phrases:
   - "005"
   - "code graph verify blocked on stale"
-  - "code_graph manual testing"
+  - "system-code-graph manual testing"
 importance_tier: "normal"
 ---
 # 005 code_graph_verify blocked on stale
@@ -19,11 +19,11 @@ Prove code_graph_verify refuses stale graph state before executing the gold batt
 
 - Objective: Prove code_graph_verify refuses stale graph state before executing the gold battery.
 - Real user request: `Confirm code_graph_verify blocks on stale graph state, then passes through to verification after an explicit rescan.`
-- RCAF Prompt: `As a code graph verification operator, execute stale-state verify checks against code_graph_verify in a disposable workspace. Verify stale state blocks before the gold battery and explicit rescan enables verification. Return PASS/FAIL with blocked and ok payload excerpts.`
+- Operator prompt: `Validate code_graph_verify around stale graph state. Show the blocked payload before rescan and the verification payload after explicit scan, then return PASS/FAIL.`
 - Expected execution process: Run a full scan, modify a tracked source file, call `code_graph_verify`, then run an explicit full `code_graph_scan` and call verify again.
-- Expected signals: First verify returns `status:"blocked"` with readiness; second verify returns `status:"ok"` with `result.passed` and pass-rate fields.
+- Expected signals: First verify returns `status:"blocked"` with readiness. Second verify returns `status:"ok"` with `result.passed` and pass-rate fields.
 - Desired user-visible outcome: A concise verdict explaining whether verify protects against stale input and resumes after scan.
-- Pass/fail: PASS if stale verify blocks and post-scan verify returns ok with pass-rate data; FAIL if verify runs on stale state, remains blocked after rescan, or omits readiness/pass-rate fields.
+- Pass/fail: PASS if stale verify blocks and post-scan verify returns ok with pass-rate data. FAIL if verify runs on stale state, remains blocked after rescan or omits readiness/pass-rate fields.
 
 ---
 

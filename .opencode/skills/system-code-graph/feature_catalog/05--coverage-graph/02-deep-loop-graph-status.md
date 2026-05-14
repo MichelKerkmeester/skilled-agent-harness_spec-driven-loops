@@ -1,10 +1,9 @@
 ---
 title: "deep_loop_graph_status"
-description: "Manual coverage-graph status tool for session-scoped node/edge counts, relation breakdowns, signals, and momentum."
+description: "Manual coverage-graph status tool for session-scoped node/edge counts, relation breakdowns, signals and momentum."
 trigger_phrases:
   - "deep_loop_graph_status"
-  - "code_graph runtime catalog"
-  - "deep_loop_graph_status"
+  - "system-code-graph feature catalog"
 importance_tier: "important"
 ---
 
@@ -21,11 +20,11 @@ importance_tier: "important"
 
 ### Trigger / Auto-Fire Path
 
-Direct MCP call only; there is no command YAML auto-fire for status.
+Direct MCP call only. There is no command YAML auto-fire for status.
 
 ### Class
 
-manual, copied from the current reality map.
+manual. The tool runs only when an operator calls it explicitly.
 
 ### Caveats / Fallback
 
@@ -39,9 +38,9 @@ Empty graphs return zero counts and null signals. Use upsert-enabled deep loops 
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/status.ts:33-89` | Handler | validates input and returns scoped stats, signals, and momentum |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/status.ts:33-89` | Handler | validates input and returns scoped stats, signals and momentum |
 | `.opencode/skills/system-spec-kit/mcp_server/tools/index.ts:33-49` | Tool surface | registers and dispatches the tool |
-| `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:869-880` | Schema | defines the public schema |
+| `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:678-690` | Schema | defines the public schema |
 
 ### Validation And Tests
 

@@ -1,10 +1,9 @@
 ---
 title: "code_graph_status"
-description: "Diagnostic-only health probe that reads readiness, graph counts, parser health, edge drift, and gold verification trust without mutating graph state."
+description: "Diagnostic-only health probe that reads readiness, graph counts, parser health, edge drift and gold verification trust without mutating graph state."
 trigger_phrases:
   - "code_graph_status"
-  - "code_graph runtime catalog"
-  - "code_graph_status"
+  - "system-code-graph feature catalog"
 importance_tier: "important"
 ---
 
@@ -25,11 +24,11 @@ Manual diagnostic MCP call. Startup/resume surfaces may include status-like stru
 
 ### Class
 
-manual diagnostic. Diagnostic freshness tools detect state; explicit repair paths rebuild or scan.
+manual diagnostic. Diagnostic freshness tools detect state. Explicit repair paths rebuild or scan.
 
 ### Caveats / Fallback
 
-Status can recommend `rg` or `code_graph_scan`; it does not perform either. Treat stale status as an operator prompt, not repair proof.
+Status can recommend `rg` or `code_graph_scan`. It does not perform either. Treat stale status as an operator prompt, not repair proof.
 <!-- /ANCHOR:current-reality -->
 
 <!-- ANCHOR:source-files -->
@@ -42,7 +41,7 @@ Status can recommend `rg` or `code_graph_scan`; it does not perform either. Trea
 | `.opencode/skills/system-code-graph/mcp_server/handlers/status.ts:158-180` | Handler | reads the readiness snapshot before stats |
 | `.opencode/skills/system-code-graph/mcp_server/handlers/status.ts:181-212` | Handler | returns a degraded envelope when stats are unavailable |
 | `.opencode/skills/system-code-graph/mcp_server/handlers/status.ts:214-260` | Handler | assembles the successful status payload |
-| `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:599-603` | Schema | defines the public schema |
+| `.opencode/skills/system-code-graph/mcp_server/tool-schemas.ts:72-76` | Schema | defines the public schema |
 
 ### Validation And Tests
 

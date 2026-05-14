@@ -3,8 +3,7 @@ title: "code_graph_context"
 description: "LLM-oriented context retrieval surface that expands seeds into compact graph neighborhoods while preserving readiness and partial-output metadata."
 trigger_phrases:
   - "code_graph_context"
-  - "code_graph runtime catalog"
-  - "code_graph_context"
+  - "system-code-graph feature catalog"
 importance_tier: "important"
 ---
 
@@ -13,7 +12,7 @@ importance_tier: "important"
 <!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
-`code_graph_context` returns compact structural neighborhoods for LLM use. It accepts manual, graph, and CocoIndex seeds and embeds readiness metadata in both success and blocked responses.
+`code_graph_context` returns compact structural neighborhoods for LLM use. It accepts manual, graph and CocoIndex seeds and embeds readiness metadata in both success and blocked responses.
 <!-- /ANCHOR:overview -->
 
 <!-- ANCHOR:current-reality -->
@@ -25,7 +24,7 @@ Manual tool call only. `code_graph_context` auto-fire is half because readiness 
 
 ### Class
 
-half. The tool self-checks readiness on invocation; no ambient hook calls it automatically.
+half. The tool self-checks readiness on invocation. No ambient hook calls it automatically.
 
 ### Caveats / Fallback
 
@@ -41,7 +40,7 @@ Blocked responses omit graph answers. Follow `requiredAction:"code_graph_scan"` 
 |---|---|---|
 | `.opencode/skills/system-code-graph/mcp_server/handlers/context.ts:154-169` | Handler | runs read-path readiness with selective indexing allowed and full scans suppressed |
 | `.opencode/skills/system-code-graph/mcp_server/handlers/context.ts:184-229` | Handler | returns blocked payloads with required action and fallback decision |
-| `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:605-643` | Schema | defines the public schema, seed formats, and blocked-read contract |
+| `.opencode/skills/system-code-graph/mcp_server/tool-schemas.ts:79-117` | Schema | defines the public schema, seed formats and blocked-read contract |
 | `.opencode/skills/system-code-graph/mcp_server/tools/code-graph-tools.ts:75-76` | Tool surface | dispatches the handler |
 
 ### Validation And Tests

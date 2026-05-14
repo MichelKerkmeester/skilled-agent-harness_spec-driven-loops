@@ -1,10 +1,9 @@
 ---
 title: "Tool registrations"
-description: "MCP registration and dispatch surface for code_graph, CCC, and deep-loop coverage graph tools."
+description: "MCP registration and dispatch surface for mk-code-index code_graph, detect_changes, CCC and deep-loop coverage graph references."
 trigger_phrases:
   - "tool registrations"
-  - "code_graph runtime catalog"
-  - "tool registrations"
+  - "system-code-graph feature catalog"
 importance_tier: "important"
 ---
 
@@ -13,7 +12,7 @@ importance_tier: "important"
 <!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
-The runtime exposes code graph tools through the code_graph dispatcher and deep-loop coverage graph tools through the top-level tool dispatcher.
+The `mk-code-index` runtime exposes code graph, detect_changes and CCC tools through the code graph dispatcher. Deep-loop coverage graph tools still dispatch through the system-spec-kit MCP server.
 <!-- /ANCHOR:overview -->
 
 <!-- ANCHOR:current-reality -->
@@ -39,10 +38,11 @@ Schema validation rejects malformed tool calls before handler execution for regi
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/system-code-graph/mcp_server/tools/code-graph-tools.ts:20-31` | Tool surface | registers `code_graph_*`, `detect_changes`, and `ccc_*` names |
+| `.opencode/skills/system-code-graph/mcp_server/tools/code-graph-tools.ts:20-31` | Tool surface | registers `code_graph_*`, `detect_changes` and `ccc_*` names |
 | `.opencode/skills/system-code-graph/mcp_server/tools/code-graph-tools.ts:60-100` | Tool surface | dispatches those names to handlers |
-| `.opencode/skills/system-spec-kit/mcp_server/tools/index.ts:79-101` | Tool surface | includes code graph, skill graph, advisor, and coverage graph names in schema-validated dispatch |
-| `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:561-678` | Schema | defines code graph and detect_changes schemas |
+| `.opencode/skills/system-spec-kit/mcp_server/tools/index.ts:30-49` | Tool surface | registers and dispatches deep-loop coverage graph tools |
+| `.opencode/skills/system-code-graph/mcp_server/tool-schemas.ts:19-216` | Schema | defines code graph, detect_changes and CCC schemas |
+| `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:613-705` | Schema | defines deep-loop coverage graph schemas |
 
 ### Validation And Tests
 

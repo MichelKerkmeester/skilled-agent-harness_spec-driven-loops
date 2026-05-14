@@ -1,10 +1,9 @@
 ---
 title: "code_graph_scan"
-description: "Manual maintenance tool that scans workspace files, indexes structural nodes/edges, and optionally runs the gold-query verifier after explicit full scans."
+description: "Manual maintenance tool that scans workspace files, indexes structural nodes/edges and optionally runs the gold-query verifier after explicit full scans."
 trigger_phrases:
   - "code_graph_scan"
-  - "code_graph runtime catalog"
-  - "code_graph_scan"
+  - "system-code-graph feature catalog"
 importance_tier: "important"
 ---
 
@@ -13,7 +12,7 @@ importance_tier: "important"
 <!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
-`code_graph_scan` is the explicit refresh path for the structural graph. It supports incremental scans, full scans, Git HEAD full-reindex promotion, detector provenance summaries, edge enrichment summaries, and optional gold-battery verification.
+`code_graph_scan` is the explicit refresh path for the structural graph. It supports incremental scans, full scans, Git HEAD full-reindex promotion, detector provenance summaries, edge enrichment summaries and optional gold-battery verification.
 <!-- /ANCHOR:overview -->
 
 <!-- ANCHOR:current-reality -->
@@ -25,7 +24,7 @@ Manual MCP maintenance call. Read paths may recommend it, but they do not run a 
 
 ### Class
 
-manual. `code_graph_scan`, verify, status, and doctor commands remain the manual control plane.
+manual. `code_graph_scan`, verify, status and doctor commands remain the manual control plane.
 
 ### Caveats / Fallback
 
@@ -41,8 +40,8 @@ Run full scans in a disposable workspace for destructive exclude/prune checks. `
 |---|---|---|
 | `.opencode/skills/system-code-graph/mcp_server/handlers/scan.ts:177-230` | Handler | resolves scan arguments and executes `indexFiles()` |
 | `.opencode/skills/system-code-graph/mcp_server/handlers/scan.ts:241-278` | Handler | prunes removed files and persists indexed results |
-| `.opencode/skills/system-code-graph/mcp_server/handlers/scan.ts:307-360` | Handler | returns scan counts, readiness, provenance, and verification fields |
-| `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:562-576` | Schema | defines the public schema |
+| `.opencode/skills/system-code-graph/mcp_server/handlers/scan.ts:307-360` | Handler | returns scan counts, readiness, provenance and verification fields |
+| `.opencode/skills/system-code-graph/mcp_server/tool-schemas.ts:19-48` | Schema | defines the public schema |
 
 ### Validation And Tests
 

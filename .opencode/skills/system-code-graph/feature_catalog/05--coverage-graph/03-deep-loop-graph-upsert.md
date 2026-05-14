@@ -3,8 +3,7 @@ title: "deep_loop_graph_upsert"
 description: "Coverage-graph write tool called conditionally by deep-research and deep-review YAML when latest iteration graphEvents are present."
 trigger_phrases:
   - "deep_loop_graph_upsert"
-  - "code_graph runtime catalog"
-  - "deep_loop_graph_upsert"
+  - "system-code-graph feature catalog"
 importance_tier: "important"
 ---
 
@@ -21,11 +20,11 @@ importance_tier: "important"
 
 ### Trigger / Auto-Fire Path
 
-Command-owned deep-research/deep-review YAML, conditional on `graphEvents`; direct MCP call remains available.
+Command-owned deep-research/deep-review YAML, conditional on `graphEvents`. Direct MCP call remains available.
 
 ### Class
 
-half, copied from the current reality map.
+half. Command workflows can call it conditionally and direct MCP calls remain explicit.
 
 ### Caveats / Fallback
 
@@ -42,7 +41,7 @@ No `graphEvents` means no upsert. The workflow skip is intentional and should no
 | `.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/upsert.ts:65-86` | Handler | validates namespace and rejects empty batches |
 | `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:817-836` | Implementation | conditionally calls upsert for research graph events |
 | `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:841-863` | Implementation | conditionally calls upsert for review graph events |
-| `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:804-848` | Schema | defines the public schema |
+| `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:614-658` | Schema | defines the public schema |
 
 ### Validation And Tests
 
