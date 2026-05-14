@@ -70,12 +70,12 @@ routes:
     gate3_location: ".opencode/code-graph.config.json + .opencode/skills/system-code-graph/database/code-graph.sqlite"
     mcp_tools:
       - mcp__cocoindex_code__search
-      - mcp__system_code_graph__code_graph_status
-      - mcp__system_code_graph__code_graph_query
-      - mcp__system_code_graph__code_graph_context
-      - mcp__system_code_graph__code_graph_scan
-      - mcp__system_code_graph__code_graph_apply
-      - mcp__system_code_graph__detect_changes
+      - mcp__mk_code_index__code_graph_status
+      - mcp__mk_code_index__code_graph_query
+      - mcp__mk_code_index__code_graph_context
+      - mcp__mk_code_index__code_graph_scan
+      - mcp__mk_code_index__code_graph_apply
+      - mcp__mk_code_index__detect_changes
       - mcp__spec_kit_memory__memory_context
       - mcp__spec_kit_memory__memory_search
     trigger_phrases:
@@ -108,9 +108,9 @@ routes:
     mutating: mutates
     gate3_location: ".opencode/skills/mcp-coco-index/mcp_server/database/ (SQLite + vector stores)"
     mcp_tools:
-      - mcp__system_code_graph__ccc_status
-      - mcp__system_code_graph__ccc_reindex
-      - mcp__system_code_graph__ccc_feedback
+      - mcp__mk_code_index__ccc_status
+      - mcp__mk_code_index__ccc_reindex
+      - mcp__mk_code_index__ccc_feedback
     trigger_phrases:
       - "cocoindex daemon hung"
       - "cocoindex reindex"
