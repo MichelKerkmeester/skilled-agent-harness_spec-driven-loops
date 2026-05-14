@@ -128,6 +128,7 @@ The command exited 0. It did not crash either daemon, and it wrote one TSV row f
 | Add dedicated 410 automation | 410 is a clean memory-search scenario and gives a real positive smoke signal for the one-daemon path. |
 | Cap daemon stderr logging | Startup scans can produce large background logs; capped evidence is enough to debug startup without bloating the packet. |
 | Wait for CocoIndex daemon readiness | `ccc mcp` triggers background indexing; bounded readiness handling keeps startup work from being reported as scenario failure. |
+| Substrate runner promoted to canonical vitest gate (049-substrate-stress-coverage) | The harness lives at `mcp_server/stress_test/substrate/run-substrate-stress-harness.mjs`; the sandbox path stays as the operator-facing evidence tool. They share the TSV output for continuity. Sync manually until automated mirror lands. |
 <!-- /ANCHOR:decisions -->
 
 ---

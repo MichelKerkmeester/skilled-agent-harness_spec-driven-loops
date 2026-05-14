@@ -84,6 +84,7 @@ mcp_server/stress_test/
 ├── code-graph/                     # Degraded readiness and large-input sweeps
 ├── session/                        # Session entry-limit and resume benchmarks
 ├── matrix/                         # Synthetic search routing and latency comparison
+├── substrate/                      # Local substrate runner and pure-logic stress gate
 ├── vitest.stress.config.ts         # Stress-only Vitest config
 └── README.md
 ```
@@ -103,6 +104,7 @@ mcp_server/stress_test/
 | `code-graph/` | Exercises degraded graph readiness and large input caps. |
 | `session/` | Measures session limits and resume latency. |
 | `matrix/` | Runs synthetic matrix routing and latency comparisons. |
+| `substrate/` | Promotes the 045 shared-daemon substrate runner and covers query expansion, token-budget edges, and V-rule save floods. |
 
 <!-- /ANCHOR:key-files -->
 
@@ -158,6 +160,7 @@ Main flow:
 | `npm run stress` | npm script | Runs the full stress suite from `mcp_server/`. |
 | `npm run stress:harness` | npm script | Runs the search-quality test-grid slice. |
 | `npm run stress:matrix` | npm script | Runs the matrix stress slice. |
+| `npm run stress:substrate` | npm script | Runs the substrate stress gate from `mcp_server/stress_test/substrate/`. |
 | `vitest.stress.config.ts` | Vitest config | Defines the stress-only test discovery boundary. |
 
 <!-- /ANCHOR:entrypoints -->
@@ -173,6 +176,7 @@ Run from `.opencode/skills/system-spec-kit/mcp_server` unless noted.
 npm run stress
 npm run stress:harness
 npm run stress:matrix
+npm run stress:substrate
 npx vitest run --config vitest.stress.config.ts stress_test/session/session-manager-stress.vitest.ts
 ```
 
