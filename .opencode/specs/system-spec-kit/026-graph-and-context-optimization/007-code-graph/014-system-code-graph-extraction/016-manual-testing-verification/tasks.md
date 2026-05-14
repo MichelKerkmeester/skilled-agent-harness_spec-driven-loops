@@ -33,7 +33,7 @@ _memory:
 ---
 
 <!-- ANCHOR:notation -->
-## 1. NOTATION
+## 1. TASK NOTATION
 
 - `[x]` — Completed
 - `[ ]` — Pending
@@ -46,7 +46,7 @@ Each task references its evidence anchor in `implementation-summary.md` or `chec
 ---
 
 <!-- ANCHOR:phase-1 -->
-## 2. Phase 1: Setup + Inventory
+## 2. PHASE 1: SETUP
 
 - [x] T001 [P0] `find .opencode/skills/system-code-graph/manual_testing_playbook -name '*.md' -type f` → 15 scenarios enumerated
 - [x] T002 [P0] Read each scenario's documented steps and expected outcomes

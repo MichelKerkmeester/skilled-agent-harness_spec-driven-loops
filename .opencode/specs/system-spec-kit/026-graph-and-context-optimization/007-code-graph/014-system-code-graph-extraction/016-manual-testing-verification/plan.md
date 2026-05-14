@@ -85,7 +85,7 @@ Two-layer verification approach:
 ---
 
 <!-- ANCHOR:phases -->
-## 5. PHASES
+## 5. IMPLEMENTATION PHASES
 
 ### Phase 1: Inventory (existing scenarios)
 - `find manual_testing_playbook -name '*.md'` to enumerate
@@ -107,7 +107,7 @@ Two-layer verification approach:
 ---
 
 <!-- ANCHOR:testing -->
-## 6. TESTING
+## 6. TESTING STRATEGY
 
 Verification IS the testing. Each PASS verdict is itself a test result captured in checklist.md. The packet's `implementation-summary.md` records all 21 verdicts with evidence anchors. No separate test artifacts needed.
 <!-- /ANCHOR:testing -->
@@ -126,7 +126,7 @@ Verification IS the testing. Each PASS verdict is itself a test result captured 
 ---
 
 <!-- ANCHOR:rollback -->
-## 8. ROLLBACK
+## 8. ROLLBACK PLAN
 
 Verification-only packet — no rollback needed for the packet itself. If a future regression surfaces against any of the 21 verdicts, file a follow-on packet with the specific failure evidence; this packet's checklist.md serves as the reference baseline.
 <!-- /ANCHOR:rollback -->
