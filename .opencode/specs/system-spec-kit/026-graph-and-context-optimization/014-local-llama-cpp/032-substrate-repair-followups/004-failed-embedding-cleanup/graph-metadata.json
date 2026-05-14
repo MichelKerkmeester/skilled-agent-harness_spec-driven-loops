@@ -13,7 +13,7 @@
     "trigger_phrases": ["repair failed embeddings script", "memory_index embedding_status failed cleanup"],
     "key_topics": ["cleanup", "embeddings", "memory-index", "one-shot-script"],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "blocked",
     "key_files": ["spec.md"],
     "entities": ["memory_index", "vec_index_store", "repair-failed-embeddings.mjs", "embedding_status", "llama-cpp"],
     "causal_summary": "One-shot Node script repairing the remaining ~24 historical failed embeddings (down from 214; 190 cleared naturally by the new retry-throughput config). Reads failed rows, re-embeds inline, writes to vec_index_store, updates row to success. Idempotent + safe-batched. Reports per-row outcomes for rows that genuinely can't embed.",

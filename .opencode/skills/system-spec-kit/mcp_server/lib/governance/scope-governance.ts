@@ -9,6 +9,12 @@ import type Database from 'better-sqlite3';
 
 // Feature catalog: Hierarchical scope governance, governed ingest, retention, and audit
 
+/**
+ * Default TTL for ephemeral memories when the caller doesn't supply an explicit deleteAfter.
+ * 24h is conservative: short enough to clean up active test fixtures, long
+ * enough to survive a typical autonomous workflow.
+ */
+export const DEFAULT_EPHEMERAL_TTL_MS = 24 * 60 * 60 * 1000;
 
 /**
  * Retention modes applied during governed ingest.
@@ -232,8 +238,7 @@ export function requiresGovernedIngest(input: GovernedIngestInput): boolean {
     || typeof input.provenanceSource === 'string'
     || typeof input.provenanceActor === 'string'
     || typeof input.governedAt === 'string'
-    || input.retentionPolicy === 'ephemeral'
-    || typeof input.deleteAfter === 'string';
+    || (input.retentionPolicy !== 'ephemeral' && typeof input.deleteAfter === 'string');
 }
 
 /**
@@ -254,6 +259,11 @@ export function validateGovernedIngest(input: GovernedIngestInput): GovernanceDe
   const provenanceActor = normalizeId(input.provenanceActor) ?? '';
 
   if (!requiresGovernedIngest(input)) {
+    const computedDeleteAfter = deleteAfter ?? (
+      retentionPolicy === 'ephemeral'
+        ? new Date(Date.now() + DEFAULT_EPHEMERAL_TTL_MS).toISOString()
+        : null
+    );
     // B8: Return null instead of empty string for optional scope fields
     // when governance is not required, to avoid persisting false-y placeholders.
     return {
@@ -267,7 +277,7 @@ export function validateGovernedIngest(input: GovernedIngestInput): GovernanceDe
         provenanceActor: provenanceActor || null,
         governedAt,
         retentionPolicy,
-        deleteAfter,
+        deleteAfter: computedDeleteAfter,
       },
       issues,
     };

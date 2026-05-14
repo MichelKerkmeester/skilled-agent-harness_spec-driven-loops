@@ -1,92 +1,167 @@
 ---
 title: "001 governance-retention-decouple (ADR-002 Option A implementation)"
-description: "Decouple `retentionPolicy: 'ephemeral'` from `requiresGovernedIngest()` in `mcp_server/lib/governance/scope-governance.ts`. Add a default ephemeral TTL constant. Auto-populate `deleteAfter` when ephemeral is set without one. Add vitest coverage for 3 cases."
+description: "Decouple `retentionPolicy: 'ephemeral'` from governance enforcement, default ephemeral TTL, and verify with focused governance tests."
 trigger_phrases:
   - "ADR-002 Option A implementation"
   - "retentionPolicy ephemeral decouple"
   - "DEFAULT_EPHEMERAL_TTL_MS"
   - "scope-governance.ts requiresGovernedIngest fix"
 importance_tier: "important"
-status: "planned"
+contextType: "spec"
+status: "complete"
+_memory:
+  continuity:
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-local-llama-cpp/032-substrate-repair-followups/001-governance-retention-decouple"
+    last_updated_at: "2026-05-14T11:10:00Z"
+    last_updated_by: "cli-codex"
+    recent_action: "Implemented ADR-002 Option A and documented verification evidence."
+    next_safe_action: "Review the documented llama-cpp memory_search blocker if strict live search proof is required."
 ---
 
-# 001 — Governance-retention decouple
+# 001 — Governance Retention Decouple
 
-## Goal
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify | v2.2 -->
 
-Stop `memory_save({filePath, retentionPolicy: "ephemeral"})` from silently demanding the full audit chain (`tenantId`, `sessionId`, `userId`/`agentId`, `provenanceSource`, `provenanceActor`, `deleteAfter`). Make ephemeral retention a pure retention concern with a sensible default TTL.
+---
 
-## Source anchors (read these first)
+<!-- ANCHOR:metadata -->
+## 1. METADATA
 
-- `.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:229-237` — the `requiresGovernedIngest()` function. Remove `input.retentionPolicy === 'ephemeral'` from the trigger conditions.
-- `.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:248-274` — the early-return block. When `requiresGovernedIngest` returns false but `retentionPolicy === 'ephemeral'` and `deleteAfter` is null, populate `deleteAfter` to `now + DEFAULT_EPHEMERAL_TTL_MS`.
-- `.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:287-289` — the H21 deleteAfter-required check. May need adjusting since ephemeral no longer triggers full governance.
-- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:2784-2807` — the call site (verify only; no edits expected).
+| Field | Value |
+|-------|-------|
+| Level | 2 |
+| Priority | P0 |
+| Status | Complete |
+| Created | 2026-05-14 |
+| Packet | `032-substrate-repair-followups/001-governance-retention-decouple` |
 
-## Code changes
+<!-- /ANCHOR:metadata -->
+---
 
-1. Add a new constant near the top of `scope-governance.ts`:
-   ```ts
-   /**
-    * Default TTL for ephemeral memories when the caller doesn't supply an explicit deleteAfter.
-    * 24h is conservative — short enough to clean up actively-running test fixtures, long
-    * enough to survive a typical autonomous workflow.
-    */
-   export const DEFAULT_EPHEMERAL_TTL_MS = 24 * 60 * 60 * 1000;
-   ```
+<!-- ANCHOR:problem -->
+## 2. PROBLEM & PURPOSE
 
-2. Remove the ephemeral trigger from `requiresGovernedIngest()`:
-   ```ts
-   // BEFORE
-   return Object.values(scope).some(...)
-     || typeof input.provenanceSource === 'string'
-     || typeof input.provenanceActor === 'string'
-     || typeof input.governedAt === 'string'
-     || input.retentionPolicy === 'ephemeral'   // ← remove this line
-     || typeof input.deleteAfter === 'string';
-   ```
+### Problem Statement
 
-3. Update the early-return block in `validateGovernedIngest()` to supply the default TTL:
-   ```ts
-   // Inside the `if (!requiresGovernedIngest(input))` branch
-   const computedDeleteAfter = deleteAfter ?? (
-     retentionPolicy === 'ephemeral'
-       ? new Date(Date.now() + DEFAULT_EPHEMERAL_TTL_MS).toISOString()
-       : null
-   );
+Passing `retentionPolicy: "ephemeral"` to `memory_save` silently triggered governed-ingest validation and required the full audit chain. Callers that only wanted temporary retention were rejected with governance errors.
 
-   return {
-     allowed: true,
-     normalized: {
-       // ...other fields...
-       retentionPolicy,
-       deleteAfter: computedDeleteAfter,
-     },
-     issues: [],
-   };
-   ```
+### Purpose
 
-4. Mirror all source changes to `.opencode/skills/system-spec-kit/mcp_server/dist/lib/governance/scope-governance.js` (build chain is broken; dual-patch until child 003 lands).
+Implement ADR-002 Option A: ephemeral retention is a retention concern, not an audit-governance concern. Ephemeral saves without governance fields should succeed and receive a concrete default TTL.
 
-## Vitest coverage (REQUIRED)
+<!-- /ANCHOR:problem -->
+---
 
-Add a new vitest file `mcp_server/tests/governance-ephemeral-decouple.vitest.ts` covering:
+<!-- ANCHOR:scope -->
+## 3. SCOPE
 
-- **Case A** — ephemeral WITH full governance fields: `validateGovernedIngest({retentionPolicy: 'ephemeral', tenantId, sessionId, userId, provenanceSource, provenanceActor, deleteAfter})` returns `{allowed: true}` with the caller's `deleteAfter` preserved.
-- **Case B** — ephemeral ALONE: `validateGovernedIngest({retentionPolicy: 'ephemeral'})` returns `{allowed: true}` with `normalized.deleteAfter` non-null and ~24h in the future.
-- **Case C** — ephemeral WITH explicit deleteAfter only: `validateGovernedIngest({retentionPolicy: 'ephemeral', deleteAfter: <some ISO>})` returns `{allowed: true}` with `normalized.deleteAfter` matching the caller's value (not the default).
+### In Scope
 
-## Acceptance criteria
+- Update `requiresGovernedIngest()` in `scope-governance.ts`.
+- Add `DEFAULT_EPHEMERAL_TTL_MS = 24 * 60 * 60 * 1000`.
+- Compute default `deleteAfter` for ephemeral retention when the caller omits it.
+- Preserve explicit caller `deleteAfter` values for ephemeral retention.
+- Mirror the runtime change to `dist/lib/governance/scope-governance.js`.
+- Add focused vitest coverage.
 
-1. `npm test -- governance-ephemeral` passes the 3 new tests.
-2. `memory_save({filePath: <valid spec doc>, retentionPolicy: "ephemeral"})` (no other governance fields) succeeds (no E085 governance rejection), returns a non-zero id.
-3. The stored memory's `delete_after` column is non-null and approximately `now + 24h`.
-4. Existing governance tests still pass (no regressions).
-5. `implementation-summary.md` filled with: source anchors, what changed, vitest run output, manual round-trip test result.
-6. `checklist.md` marked with evidence for each acceptance criterion.
+### Out of Scope
 
-## Out of scope
+- Retention sweep changes.
+- Error-code changes beyond the existing E085 classifier.
+- Existing-row migrations.
+- Running `npm run build`.
 
-- Changing the retention sweep logic (separate concern; sweep already handles null/non-null `delete_after`).
-- Adding more error codes beyond what E085 already provides.
-- Migrating existing rows with retention_policy='ephemeral' + delete_after=NULL to have a TTL.
+### Files to Change
+
+| File Path | Change Type | Description |
+|-----------|-------------|-------------|
+| `.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts` | Modify | Source governance behavior. |
+| `.opencode/skills/system-spec-kit/mcp_server/dist/lib/governance/scope-governance.js` | Modify | Runtime mirror while build is broken. |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/governance-ephemeral-decouple.vitest.ts` | Create | Three-case vitest coverage. |
+| Packet docs | Create/modify | Plan, tasks, checklist, implementation summary, metadata. |
+
+<!-- /ANCHOR:scope -->
+---
+
+<!-- ANCHOR:requirements -->
+## 4. REQUIREMENTS
+
+### P0 - Blockers
+
+| ID | Requirement | Acceptance Criteria |
+|----|-------------|---------------------|
+| REQ-001 | Ephemeral alone is allowed | `validateGovernedIngest({ retentionPolicy: "ephemeral" })` returns `allowed: true`. |
+| REQ-002 | Default TTL is populated | Ephemeral alone returns non-null `normalized.deleteAfter` within the 24h TTL window. |
+| REQ-003 | Explicit ephemeral TTL is preserved | `retentionPolicy: "ephemeral"` with explicit `deleteAfter` returns the caller value. |
+| REQ-004 | Full governance still works | Ephemeral with full governance fields and explicit `deleteAfter` remains allowed. |
+
+### P1 - Required
+
+| ID | Requirement | Acceptance Criteria |
+|----|-------------|---------------------|
+| REQ-005 | Dist mirror updated | Runtime JS file matches source behavior. |
+| REQ-006 | Existing governance tests pass | Existing governance-focused vitests exit 0. |
+| REQ-007 | Live save path checked | `memory_save` without governance fields returns a positive id and non-null `delete_after`. |
+
+<!-- /ANCHOR:requirements -->
+---
+
+<!-- ANCHOR:success-criteria -->
+## 5. SUCCESS CRITERIA
+
+- SC-001: Focused vitest file passes all three new cases.
+- SC-002: Existing governance tests pass with no regression.
+- SC-003: Live `memory_save({ filePath, retentionPolicy: "ephemeral" })` no longer returns E085.
+- SC-004: Packet docs record PASS/FAIL evidence for implementation and live verification.
+
+<!-- /ANCHOR:success-criteria -->
+---
+
+<!-- ANCHOR:risks -->
+## 6. RISKS & DEPENDENCIES
+
+| Type | Item | Impact | Mitigation |
+|------|------|--------|------------|
+| Dependency | Broken build | Source changes cannot be compiled into dist | Patch source and dist directly. |
+| Dependency | llama-cpp provider | `memory_search` may fail before lexical results | Document provider failure and clean up saved id. |
+| Risk | Over-decoupling `deleteAfter` | Explicit TTL-only ephemeral case could still trigger governance | Treat `ephemeral + deleteAfter` as retention-only when no audit fields exist. |
+
+<!-- /ANCHOR:risks -->
+---
+
+<!-- ANCHOR:nfr -->
+## 7. NON-FUNCTIONAL REQUIREMENTS
+
+- NFR-001: Keep the code change surgical and local to governance validation.
+- NFR-002: Avoid schema changes and migrations.
+- NFR-003: Preserve audit-governance enforcement when scope or provenance fields are supplied.
+
+<!-- /ANCHOR:nfr -->
+---
+
+<!-- ANCHOR:edge-cases -->
+## 8. EDGE CASES
+
+- Ephemeral with no `deleteAfter`: default to 24h.
+- Ephemeral with explicit `deleteAfter`: preserve caller timestamp.
+- Ephemeral with full governance: validate through governed-ingest path.
+- Non-ephemeral with `deleteAfter`: still treated as governance-triggering metadata.
+
+<!-- /ANCHOR:edge-cases -->
+---
+
+<!-- ANCHOR:questions -->
+## 9. OPEN QUESTIONS
+
+- Should `memory_search` have a lexical-only fallback when the embedding provider cannot initialize? Resolved for this packet as out of scope and documented as a verification blocker.
+
+<!-- /ANCHOR:questions -->
+---
+
+<!-- ANCHOR:complexity -->
+## 10. COMPLEXITY
+
+Small behavioral change in a shared governance helper, medium verification risk because the live memory-search round trip depends on local llama-cpp availability.
+
+<!-- /ANCHOR:complexity -->
