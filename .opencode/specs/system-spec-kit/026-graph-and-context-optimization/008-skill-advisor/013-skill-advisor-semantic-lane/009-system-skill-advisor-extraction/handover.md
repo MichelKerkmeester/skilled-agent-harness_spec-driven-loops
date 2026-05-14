@@ -39,7 +39,7 @@ _memory:
       - "Tier 4 Option A confirmed: scaffold 013/009/008 (operator decision 2026-05-14 plan-mode)."
       - "60/224 vitest blocker resolved: Tier 1 took pass count 164→279 (+115); 009 fixes added +1 → 280/287. Hook smoke FAIL→PASS."
       - "Production bugs (skill_graph_compiler.py:32, skill_advisor.py:206) fixed in 009 as operator-selected Tier 5."
-      - "008 implementation shipped 2026-05-14 via 2 cli-codex dispatches: D1 (8447663a0) registered skill_graph_* on advisor + added one-window memory proxy; D2 (a93fffb7c) cutover 5 consumer files + removed proxy/descriptors. Vitest stable at 285/291 advisor; 4-runtime smoke PASS except Claude INCONCLUSIVE (CLI cache, expected per 004/006). Zero-caller grep returns 1 historical hit only."
+      - "008 implementation shipped 2026-05-14 via 2 dispatches (D1: 8447663a0, D2: a93fffb7c). Advisor vitest 285/291; 4-runtime smoke green except Claude INCONCLUSIVE. Details in §7."
 ---
 # Session Handover Document
 
