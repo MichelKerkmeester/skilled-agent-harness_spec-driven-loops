@@ -72,6 +72,11 @@ export interface LaneMatch {
 
 export type LaneScores = Readonly<Record<ScorerLane, readonly LaneMatch[]>>;
 
+export interface LaneDampingConfig {
+  readonly threshold: number;
+  readonly floor: number;
+}
+
 export interface LaneContribution {
   readonly lane: ScorerLane;
   readonly rawScore: number;
@@ -112,6 +117,12 @@ export interface AdvisorScoringOptions {
    * shadow-only lane's weight does not make it contribute.
    */
   readonly laneWeightsOverride?: Partial<Record<ScorerLane, number>>;
+  /**
+   * Optional per-call contribution damping. Overrides are merged over registry
+   * defaults. When a lane's raw score falls below `threshold`, fusion scales the
+   * lane's effective weight by `floor`.
+   */
+  readonly dampingOverride?: Partial<Record<ScorerLane, LaneDampingConfig>>;
 }
 
 export interface AdvisorScoringResult {

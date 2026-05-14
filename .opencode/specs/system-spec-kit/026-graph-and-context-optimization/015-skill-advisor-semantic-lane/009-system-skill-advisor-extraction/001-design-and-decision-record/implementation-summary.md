@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Design + ADR for skill advisor extraction"
-description: "Pending; filled by codex with chosen shape + alternatives + rationale."
+description: "Design summary for ADR-001 locking the standalone advisor MCP with legacy tool bridge."
 trigger_phrases:
   - "advisor extraction design summary"
 importance_tier: "important"
@@ -8,10 +8,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/015-skill-advisor-semantic-lane/009-system-skill-advisor-extraction/001-design-and-decision-record"
-    last_updated_at: "2026-05-14T02:00:00Z"
-    last_updated_by: "claude"
-    recent_action: "Scaffolded packet"
-    next_safe_action: "Dispatch codex"
+    last_updated_at: "2026-05-14T07:35:00Z"
+    last_updated_by: "codex"
+    recent_action: "Wrote ADR-001 and extraction survey"
+    next_safe_action: "Run strict validation and scaffold child 002"
     blockers: []
     key_files:
       - "implementation-summary.md"
@@ -32,7 +32,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Implemented |
 | **Created** | 2026-05-14 |
 | **Branch** | `001-design-and-decision-record` |
 <!-- /ANCHOR:metadata -->
@@ -42,7 +42,13 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-To be filled by main agent after codex returns. Expected artifacts: `research/extraction-survey.md` listing every advisor source file + every consumer call site + tool registrations; `decision-record.md` ADR-001 with chosen architectural shape, alternatives table (≥3 rows × 6 criteria), rationale, consequences, rollback; updates to parent phase `spec.md` "What Needs Done" reflecting chosen migration sequence.
+This packet produced the design artifacts for the skill advisor extraction.
+
+- `decision-record.md` now contains ADR-001, **Standalone Advisor MCP With Legacy Tool Bridge**.
+- `research/extraction-survey.md` inventories the current advisor source tree, live consumer grep summary, registration lines, runtime config baselines, and documentation references.
+- No advisor source, skill metadata, tests, runtime configs, launcher code, or parent phase file was modified.
+
+The parent 015/009 `spec.md` already contained the locked 5-phase migration sequence; this packet references that sequence rather than rewriting it because the current dispatch write scope allowed only this packet's ADR, survey, and implementation summary.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -50,7 +56,12 @@ To be filled by main agent after codex returns. Expected artifacts: `research/ex
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-To be filled. Plan: dispatch cli-codex gpt-5.5 xhigh; codex inspects the advisor source tree + greps the whole repo for consumers + reads tool registrations, enumerates 3-4 shapes, scores them, picks one, writes ADR + survey.
+Delivery was research-only:
+
+1. Read the parent phase spec, this packet's spec/plan/tasks/checklist/summary, and the full `research/standalone-mcp-discussion.md`.
+2. Read the advisor README and install guide, tool registration sites in `tool-schemas.ts`, MCP wiring in `context-server.ts`, the memory launcher pattern, and all four runtime MCP configs.
+3. Ran `git grep` inventories for advisor handler imports, `advisor_*` ids, `skill_advisor` mentions, and `skill-graph.sqlite` references.
+4. Wrote the structured survey and ADR inside the approved packet write scope.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -60,10 +71,11 @@ To be filled. Plan: dispatch cli-codex gpt-5.5 xhigh; codex inspects the advisor
 
 | Decision | Why |
 |----------|-----|
-| Research-only packet | Lock the design before any code moves |
-| 4 candidate shapes minimum | Forces meaningful comparison |
-| 6-criterion score | Removes "I think this is better" subjectivity |
-| Parent phase spec updated by this packet | Subsequent children scaffold from the chosen sequence |
+| Chosen shape: Standalone Advisor MCP With Legacy Tool Bridge | Satisfies DB-local and standalone-MCP constraints while avoiding immediate caller churn. |
+| Keep `advisor_*` tool ids stable | Server id `system_skill_advisor` provides namespace separation; renaming tools would force broad hook, shim, docs, and operator-guide edits. |
+| Keep deprecated `spec_kit_memory` proxy tools during one migration window | Protects callers still bound to the old server while runtime configs and hooks cut over. |
+| Allow `SYSTEM_SKILL_ADVISOR_DB_DIR` only for tests/CI | Preserves DB-local default ownership while allowing isolated temporary roots for verification. |
+| Parent phase sequence referenced, not edited | Direct write scope for this dispatch excluded the parent phase file; the sequence was already locked there. |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -73,10 +85,12 @@ To be filled. Plan: dispatch cli-codex gpt-5.5 xhigh; codex inspects the advisor
 
 | Gate | Status | Evidence |
 |------|--------|----------|
-| Strict spec validation | Pending | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/015-skill-advisor-semantic-lane/009-system-skill-advisor-extraction/001-design-and-decision-record --strict` |
-| ADR-001 present | Pending | `decision-record.md` exists with chosen shape |
-| Survey present | Pending | `research/extraction-survey.md` lists consumers |
-| Parent phase spec updated | Pending | `015-skill-advisor-semantic-lane/009-system-skill-advisor-extraction/spec.md` reflects chosen sequence |
+| Strict spec validation | Pass | `validate.sh --strict` passed for packet 001, parent 015/009, and parent 015 with 0 errors and 0 warnings. |
+| ADR-001 present | Pass | `decision-record.md` exists and names **Standalone Advisor MCP With Legacy Tool Bridge**. |
+| Survey present | Pass | `research/extraction-survey.md` includes source tree, consumer call sites, registration sites, runtime configs, and docs references. |
+| Consumer grep evidence | Pass | Live consumer grep found 607 matching lines across 154 files after excluding historical spec packets, sandbox content, tests, feature catalogs, playbooks, references, and SQLite binaries. |
+| Runtime configs inventoried | Pass | Survey lists `opencode.json`, `.codex/config.toml`, `.claude/mcp.json`, and `.gemini/settings.json` current `spec_kit_memory` entries. |
+| Scope control | Pass | Only `decision-record.md`, `research/extraction-survey.md`, and `implementation-summary.md` were written. |
 <!-- /ANCHOR:verification -->
 
 ---
