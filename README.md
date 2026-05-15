@@ -1,11 +1,4 @@
-# Skilled Agent Orchestration w/ Custom Spec Kit - Modular Framework
-
-[![GitHub Stars](https://img.shields.io/github/stars/MichelKerkmeester/opencode--spec-kit-skilled-agent-orchestration?style=for-the-badge&logo=github&color=fce566&labelColor=222222)](https://github.com/MichelKerkmeester/opencode--spec-kit-skilled-agent-orchestration/stargazers)
-[![License](https://img.shields.io/github/license/MichelKerkmeester/opencode--spec-kit-skilled-agent-orchestration?style=for-the-badge&color=7bd88f&labelColor=222222)](LICENSE)
-[![Latest Release](https://img.shields.io/github/v/release/MichelKerkmeester/opencode--spec-kit-skilled-agent-orchestration?style=for-the-badge&color=5ad4e6&labelColor=222222)](https://github.com/MichelKerkmeester/opencode--spec-kit-skilled-agent-orchestration/releases)
-
-Custom-built orchestration for AI coding assistants: memory, spec framework, semantic search,
-code graph context, skill routing, and specialized agents in one modular framework.
+# Skilled Agent Orchestration w/ Custom Spec Kit 
 
 | Core layer | What it adds |
 | --- | --- |
@@ -16,11 +9,19 @@ code graph context, skill routing, and specialized agents in one modular framewo
 | 🤖 **11 Specialized Agents** | Focused roles for implementation, review, research, docs, git, and more |
 | 🎯 **20 On-Demand Skills** | Skill Advisor routing for the right workflow at the right time |
 
-Works with **OpenCode**, **Codex**, **Claude Code**, **Gemini**, and **Devin CLI**.
-Supports external CLI agent orchestration without unnecessary MCPs or proxies.
-Designed to be modular, inspectable, and easy to adapt to your own stack.
+**Reasons to try it**
+
+[![GitHub Stars](https://img.shields.io/github/stars/MichelKerkmeester/opencode--spec-kit-skilled-agent-orchestration?style=for-the-badge&logo=github&color=fce566&labelColor=222222)](https://github.com/MichelKerkmeester/opencode--spec-kit-skilled-agent-orchestration/stargazers)
+[![License](https://img.shields.io/github/license/MichelKerkmeester/opencode--spec-kit-skilled-agent-orchestration?style=for-the-badge&color=7bd88f&labelColor=222222)](LICENSE)
+[![Latest Release](https://img.shields.io/github/v/release/MichelKerkmeester/opencode--spec-kit-skilled-agent-orchestration?style=for-the-badge&color=5ad4e6&labelColor=222222)](https://github.com/MichelKerkmeester/opencode--spec-kit-skilled-agent-orchestration/releases)
+
+- Works with **Opencode**, **Codex**, **Claude Code**, **Gemini**, and **Devin CLI**
+- Supports external CLI agent orchestration without unnecessary MCPs or proxies
+- Designed to be modular, readable, and easy to adapt to your own stack
 
 > Don't buy me unwanted coffee: https://buymeacoffee.com/michelkerkmeester
+
+---
 
 <!-- ANCHOR:table-of-contents -->
 
@@ -42,7 +43,6 @@ Designed to be modular, inspectable, and easy to adapt to your own stack.
 - [RELATED DOCUMENTS](#6--related-documents)
 
 <!-- /ANCHOR:table-of-contents -->
-
 
 <!-- ANCHOR:overview -->
 
