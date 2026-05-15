@@ -10,7 +10,7 @@
     "skill-folder-first-class",
     "structural-migration"
   ],
-  "lastUpdated": "2026-05-15T05:41:26.232Z",
+  "lastUpdated": "2026-05-15T12:29:53.146Z",
   "specId": "009",
   "folderSlug": "system-skill-advisor-extraction",
   "parentChain": [
@@ -19,10 +19,11 @@
     "008-skill-advisor",
     "013-skill-advisor-semantic-lane"
   ],
-  "memorySequence": 3,
+  "memorySequence": 4,
   "memoryNameHistory": [
     "14-05-26_14-51__shipped-adr-001-s-5-phase-advisor-extraction.md",
     "14-05-26_14-51__shipped-adr-001-s-5-phase-advisor-extraction.md",
-    "15-05-26_06-41__manual-context-save.md"
+    "15-05-26_06-41__manual-context-save.md",
+    "15-05-26_13-29__closed-the-system-skill-advisor-extraction-line.md"
   ]
 }

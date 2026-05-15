@@ -65,7 +65,7 @@ export declare class LlamaCppProvider implements IEmbeddingProvider {
 }
 declare function resetRuntimeForTesting(): void;
 export declare const __llamaCppTestables: {
-    DEFAULT_MODEL_PATH: any;
+    DEFAULT_MODEL_PATH: string;
     loadRuntime: typeof loadRuntime;
     resetRuntimeForTesting: typeof resetRuntimeForTesting;
     setRuntimeOverride(runtime: LlamaCppRuntimeState | null): void;

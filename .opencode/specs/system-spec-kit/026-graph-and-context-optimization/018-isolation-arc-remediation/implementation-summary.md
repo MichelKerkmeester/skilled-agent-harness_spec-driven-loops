@@ -74,6 +74,31 @@ Verification results:
 - `npx vitest run tests/code-graph-boundary-path-validation.vitest.ts --reporter=default 2>&1 </dev/null | tail -5` passed: 5/5 tests.
 - Hard import audit returned no `system-code-graph` imports from `system-spec-kit/mcp_server`.
 
+## Phase E — Move compact-merger + budget-allocator to @spec-kit/shared
+
+Files moved:
+- `.opencode/skills/system-spec-kit/mcp_server/lib/context/compact-merger.ts` -> `.opencode/skills/system-spec-kit/shared/compact-merger.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/context/budget-allocator.ts` -> `.opencode/skills/system-spec-kit/shared/budget-allocator.ts`
+
+Importers updated:
+- 2 importers in `system-spec-kit/mcp_server/` now import `mergeCompactBrief` from `@spec-kit/shared/compact-merger`.
+
+Shared package exports:
+- `@spec-kit/shared/compact-merger`
+- `@spec-kit/shared/budget-allocator`
+- Barrel exports from `@spec-kit/shared` for `mergeCompactBrief`, budget allocation helpers, and their public types.
+
+Dependency boundary note:
+- `compact-merger.ts` no longer imports from `mcp_server/lib/context/shared-payload.ts`. It carries the compact payload envelope shape it returns, keeping `@spec-kit/shared` independent of MCP server source while avoiding a broad move of the 1k-line shared-payload contract.
+
+Verification results:
+- `cd .opencode/skills/system-spec-kit/shared && npm run build 2>&1 | tail -10` passed.
+- `cd .opencode/skills/system-spec-kit/shared && npx tsc --noEmit 2>&1 | tail -10` passed with no diagnostics.
+- `cd .opencode/skills/system-spec-kit/mcp_server && npx tsc --noEmit 2>&1 | tail -10` passed with no diagnostics.
+- Hard import audit returned no stale `../lib/context/compact-merger` or `../lib/context/budget-allocator` imports from `system-spec-kit/mcp_server`.
+- `npx vitest run tests/structural-contract.vitest.ts tests/session-bootstrap.vitest.ts tests/code-graph-boundary-path-validation.vitest.ts --reporter=default 2>&1 </dev/null | tail -8` passed: 23/23 tests across 3 files.
+- Cross-skill isolation audit returned no `system-code-graph` imports from `system-spec-kit/mcp_server`.
+
 ## Phase F — Structural-Contract Coverage Diff
 
 File added:

@@ -42,6 +42,11 @@
     "conflicts_with": [],
     "prerequisite_for": []
   },
+  "enhance_when": {
+    "skill_has_asset": "assets/cli_prompt_quality_card.md",
+    "weight": 0.4,
+    "context_template": "prompt quality card"
+  },
   "manual": {
     "depends_on": [],
     "related_to": [

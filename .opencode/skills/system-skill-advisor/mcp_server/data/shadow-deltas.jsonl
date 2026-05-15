@@ -1312,3 +1312,17 @@
 {"prompt":"Implement cache isolation","recommendation":"repo-b-skill","liveScore":0.72,"shadowScore":0.4,"delta":-0.32,"dominantLane":"explicit_author","timestamp":"2026-05-15T11:01:53.374Z"}
 {"prompt":"Implement stale route","recommendation":"system-spec-kit","liveScore":0.72,"shadowScore":0.4,"delta":-0.32,"dominantLane":"explicit_author","timestamp":"2026-05-15T11:01:53.374Z"}
 {"prompt":"Implement dispatcher route","recommendation":"system-spec-kit","liveScore":0.72,"shadowScore":0.4,"delta":-0.32,"dominantLane":"explicit_author","timestamp":"2026-05-15T11:01:53.375Z"}
+{"prompt":"Implement a spec folder workflow","recommendation":"system-spec-kit","liveScore":0.72,"shadowScore":0.4,"delta":-0.32,"dominantLane":"explicit_author","timestamp":"2026-05-15T14:03:54.295Z"}
+{"prompt":"secret@example.com ambiguous advisor prompt","recommendation":"alpha","liveScore":0.5,"shadowScore":0.4,"delta":-0.1,"dominantLane":"explicit_author","timestamp":"2026-05-15T14:03:54.299Z"}
+{"prompt":"secret@example.com ambiguous advisor prompt","recommendation":"beta","liveScore":0.49,"shadowScore":0.4,"delta":-0.09,"dominantLane":"explicit_author","timestamp":"2026-05-15T14:03:54.299Z"}
+{"prompt":"Implement a strict threshold route","recommendation":"system-spec-kit","liveScore":0.72,"shadowScore":0.4,"delta":-0.32,"dominantLane":"explicit_author","timestamp":"2026-05-15T14:03:54.305Z"}
+{"prompt":"Use sk-x-v1","recommendation":"sk-x-v1","liveScore":0.72,"shadowScore":0.4,"delta":-0.32,"dominantLane":"explicit_author","timestamp":"2026-05-15T14:03:54.306Z"}
+{"prompt":"Use safe skill","recommendation":"safe-skill","liveScore":0.72,"shadowScore":0.4,"delta":-0.32,"dominantLane":"explicit_author","timestamp":"2026-05-15T14:03:54.306Z"}
+{"prompt":"Implement cache route","recommendation":"system-spec-kit","liveScore":0.72,"shadowScore":0.4,"delta":-0.32,"dominantLane":"explicit_author","timestamp":"2026-05-15T14:03:54.307Z"}
+{"prompt":"Implement cache isolation","recommendation":"system-spec-kit","liveScore":0.72,"shadowScore":0.4,"delta":-0.32,"dominantLane":"explicit_author","timestamp":"2026-05-15T14:03:54.308Z"}
+{"prompt":"Implement cache isolation","recommendation":"system-spec-kit","liveScore":0.72,"shadowScore":0.4,"delta":-0.32,"dominantLane":"explicit_author","timestamp":"2026-05-15T14:03:54.308Z"}
+{"prompt":"Implement cache isolation","recommendation":"system-spec-kit","liveScore":0.72,"shadowScore":0.4,"delta":-0.32,"dominantLane":"explicit_author","timestamp":"2026-05-15T14:03:54.308Z"}
+{"prompt":"Implement cache isolation","recommendation":"repo-a-skill","liveScore":0.72,"shadowScore":0.4,"delta":-0.32,"dominantLane":"explicit_author","timestamp":"2026-05-15T14:03:54.309Z"}
+{"prompt":"Implement cache isolation","recommendation":"repo-b-skill","liveScore":0.72,"shadowScore":0.4,"delta":-0.32,"dominantLane":"explicit_author","timestamp":"2026-05-15T14:03:54.309Z"}
+{"prompt":"Implement stale route","recommendation":"system-spec-kit","liveScore":0.72,"shadowScore":0.4,"delta":-0.32,"dominantLane":"explicit_author","timestamp":"2026-05-15T14:03:54.310Z"}
+{"prompt":"Implement dispatcher route","recommendation":"system-spec-kit","liveScore":0.72,"shadowScore":0.4,"delta":-0.32,"dominantLane":"explicit_author","timestamp":"2026-05-15T14:03:54.311Z"}

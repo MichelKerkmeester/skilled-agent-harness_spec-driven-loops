@@ -7,6 +7,7 @@ import {
   handleSkillGraphScan,
   handleSkillGraphStatus,
   handleSkillGraphValidate,
+  handleSkillGraphPropagateEnhances,
 } from '../handlers/skill-graph/index.js';
 
 import type { MCPCallerContext } from '../lib/context/caller-context.js';
@@ -62,11 +63,31 @@ export const skillGraphValidateTool: ToolDefinition = {
   inputSchema: { type: 'object', additionalProperties: false, properties: {}, required: [] },
 };
 
+export const skillGraphPropagateEnhancesTool: ToolDefinition = {
+  name: 'skill_graph_propagate_enhances',
+  description: '[L7:Maintenance] Detect, report, and optionally apply missing inbound edges.enhances[] declarations across skills. Default mode: report (no writes).',
+  inputSchema: {
+    type: 'object',
+    additionalProperties: false,
+    properties: {
+      skillsRoot: { type: 'string', description: 'Defaults to .opencode/skills' },
+      mode: { type: 'string', enum: ['report', 'propose', 'apply'], default: 'report' },
+      minConfidence: { type: 'number', minimum: 0, maximum: 1, default: 0.75 },
+      targetSkillIds: { type: 'array', items: { type: 'string' } },
+      sourceSkillIds: { type: 'array', items: { type: 'string' } },
+      applyCandidateIds: { type: 'array', items: { type: 'string' } },
+      applyAllHighConfidence: { type: 'boolean', default: false },
+      dryRun: { type: 'boolean', default: true },
+    },
+  },
+};
+
 export const skillGraphToolDefinitions: ToolDefinition[] = [
   skillGraphScanTool,
   skillGraphQueryTool,
   skillGraphStatusTool,
   skillGraphValidateTool,
+  skillGraphPropagateEnhancesTool,
 ];
 
 export const TOOL_NAMES = new Set(skillGraphToolDefinitions.map((tool) => tool.name));
@@ -116,6 +137,8 @@ export async function handleTool(
       return toMCP(await handleSkillGraphStatus());
     case 'skill_graph_validate':
       return toMCP(await handleSkillGraphValidate());
+    case 'skill_graph_propagate_enhances':
+      return toMCP(await handleSkillGraphPropagateEnhances(args as unknown as Parameters<typeof handleSkillGraphPropagateEnhances>[0], callerContext));
     default:
       return null;
   }

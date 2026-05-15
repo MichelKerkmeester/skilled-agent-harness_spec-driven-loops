@@ -96,6 +96,13 @@
         "target": "cli-opencode",
         "weight": 0.7,
         "context": "routes opencode delegation requests"
+      },
+      {
+        "target": "deep-ai-council",
+        "weight": 0.7,
+        "context": "routes deep-ai-council delegation requests",
+        "auto_added_at": "2026-05-15T14:10:44.259Z",
+        "auto_added_reason": "family-inference:0.45 + asset-shape:0.30 + sibling-transitivity:0.15"
       }
     ],
     "siblings": [],
@@ -189,5 +196,13 @@
     ],
     "created_at": "2026-04-13T00:00:00Z",
     "last_updated_at": "2026-04-13T23:00:00Z"
+  },
+  "enhance_when": {
+    "skill_has_files": [
+      "SKILL.md",
+      "graph-metadata.json"
+    ],
+    "weight": 0.7,
+    "context_template": "routes ${target.id} delegation requests"
   }
 }

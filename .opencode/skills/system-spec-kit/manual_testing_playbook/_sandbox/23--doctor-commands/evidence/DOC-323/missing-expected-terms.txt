@@ -1,2 +1,0 @@
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/manual_testing_playbook/_sandbox/23--doctor-commands/evidence/DOC-323/pass-fail-section.md:/doctor:memory
-intent=APPLY
