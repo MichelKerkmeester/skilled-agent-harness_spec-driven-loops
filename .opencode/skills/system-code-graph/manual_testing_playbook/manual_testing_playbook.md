@@ -30,6 +30,7 @@ This playbook validates the code graph runtime at `.opencode/skills/system-code-
 - [12. MCP TOOL SURFACE](#12--mcp-tool-surface)
 - [13. CCC INTEGRATION](#13--ccc-integration)
 - [14. DOCTOR CODE GRAPH](#14--doctor-code-graph)
+- [14c. DEVIN HOOKS](#14c--devin-hooks)
 - [15. AUTOMATED TEST CROSS-REFERENCE](#15--automated-test-cross-reference)
 - [16. FEATURE CATALOG CROSS-REFERENCE INDEX](#16--feature-catalog-cross-reference-index)
 
@@ -37,7 +38,7 @@ This playbook validates the code graph runtime at `.opencode/skills/system-code-
 
 ## 1. OVERVIEW
 
-The playbook contains 21 scenarios across 9 groups. It targets the current reality map: read-path checks are bounded and half-auto, full scan/verify/status are operator actions, `detect_changes` is read-only and blocks on stale state, CCC tools are manual and coverage graph automation is limited to deep-loop command YAML. Group 09 adds post-rename infrastructure probes from packet 016.
+The playbook contains 22 scenarios across 10 groups. It targets the current reality map: read-path checks are bounded and half-auto, full scan/verify/status are operator actions, `detect_changes` is read-only and blocks on stale state, CCC tools are manual and coverage graph automation is limited to deep-loop command YAML. Group 09 adds post-rename infrastructure probes from packet 016. Group 10 adds the Devin CLI SessionStart hook scenario shipped in packet 036-cli-devin-code-graph-hook.
 
 | Group | Scenario Files |
 | --- | --- |
@@ -50,6 +51,7 @@ The playbook contains 21 scenarios across 9 groups. It targets the current reali
 | CCC integration | [07--ccc-integration](./07--ccc-integration/) |
 | Doctor code graph | [08--doctor-code-graph](./08--doctor-code-graph/) |
 | Post-rename infrastructure | [09--post-rename-infrastructure](./09--post-rename-infrastructure/) |
+| Devin hooks | [10--devin-hooks](./10--devin-hooks/) |
 
 ## 2. GLOBAL PRECONDITIONS
 
@@ -166,6 +168,16 @@ Operators may dispatch sub-agents in parallel waves for independent scenarios, e
 | 019 | database path verification | [019-database-path-verification.md](./09--post-rename-infrastructure/019-database-path-verification.md) |
 | 020 | TypeScript build and entry point | [020-typescript-build-and-entry-point.md](./09--post-rename-infrastructure/020-typescript-build-and-entry-point.md) |
 | 021 | unicode-normalization fix from 009 | [021-unicode-normalization-fix-from-009.md](./09--post-rename-infrastructure/021-unicode-normalization-fix-from-009.md) |
+
+---
+
+## 14c. DEVIN HOOKS
+
+Validates the Devin CLI `SessionStart` hook variant shipped in packet `036-cli-devin-code-graph-hook`. The hook source lives at `system-spec-kit/mcp_server/hooks/devin/session-start.ts` (intentional asymmetry vs the advisor pattern — see ADR-001 of packet 036). Registration lives in `.devin/hooks.v1.json` under `SessionStart`.
+
+| ID | Scenario | File |
+| --- | --- | --- |
+| DH-001 | Devin CLI SessionStart Hook | [025-devin-session-start.md](./10--devin-hooks/025-devin-session-start.md) |
 
 ---
 

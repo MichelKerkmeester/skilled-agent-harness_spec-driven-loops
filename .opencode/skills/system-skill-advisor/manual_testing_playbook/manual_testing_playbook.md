@@ -56,7 +56,7 @@ Canonical package artifacts:
 <!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
-This playbook provides 45 deterministic scenario files across 9 categories validating the Skill Advisor surface. Scenario IDs use a multi-prefix scheme: `NC` for native MCP tools, `CL` for CLI hooks and plugin behavior, `CP` for compatibility and disable controls, `OP` for operator H5 states, `AU` for auto-update daemon behavior, `AI` for auto-indexing, `LC` for lifecycle routing, `SC` for scorer fusion, and `PC` for Python compatibility.
+This playbook provides 46 deterministic scenario files across 9 categories validating the Skill Advisor surface. Scenario IDs use a multi-prefix scheme: `NC` for native MCP tools, `CL` for CLI hooks and plugin behavior, `CP` for compatibility and disable controls, `OP` for operator H5 states, `AU` for auto-update daemon behavior, `AI` for auto-indexing, `LC` for lifecycle routing, `SC` for scorer fusion, and `PC` for Python compatibility.
 
 Coverage note (2026-05-07): the prior operator scenario corpus now lives under `manual_testing_playbook/` as the canonical manual validation package. Former `SAD-NNN` IDs are deprecated and mapped to current feature files in section 18. The source root index describes 43 scenarios, but the source category tree contains 42 `NNN-*.md` scenario files and no `CL-002`; this root playbook reflects the live file inventory.
 
@@ -163,7 +163,7 @@ Scenario verdict:
 
 ### Release Readiness Rule
 
-Release is `READY` only when all 45 scenario files are `PASS` or have an approved `SKIP` with a real blocker, and no prompt-safety, rebuild, daemon, indexing, lifecycle, scorer, or compatibility failure remains unresolved.
+Release is `READY` only when all 46 scenario files are `PASS` or have an approved `SKIP` with a real blocker, and no prompt-safety, rebuild, daemon, indexing, lifecycle, scorer, or compatibility failure remains unresolved.
 
 ---
 
@@ -188,7 +188,7 @@ This section records wave planning for the canonical Skill Advisor manual test p
 ### Recommended Wave Plan
 
 - **Wave 1**: `NC-001..NC-009` native MCP behavior.
-- **Wave 2**: `CL-001`, `CL-003..CL-005` runtime hooks and plugin bridge.
+- **Wave 2**: `CL-001`, `CL-003..CL-006` runtime hooks and plugin bridge (CL-006 covers the Devin CLI variant added in packet 025-cli-devin-skill-advisor-hook).
 - **Wave 3**: `CP-001..CP-004` compatibility and disable controls.
 - **Wave 4**: `OP-001..OP-003` H5 operator states.
 - **Wave 5**: `AU-001..AU-005` auto-update daemon behavior.
@@ -225,7 +225,7 @@ This category validates native mcp tools scenarios `NC-001..NC-009`.
 <!-- ANCHOR:8-cli-hooks-and-plugin -->
 ## 8. CLI HOOKS AND PLUGIN
 
-This category validates cli hooks and plugin scenarios `CL-001..CL-005`.
+This category validates cli hooks and plugin scenarios `CL-001..CL-006`.
 
 | ID | Scenario | File |
 |---|---|---|
@@ -233,6 +233,7 @@ This category validates cli hooks and plugin scenarios `CL-001..CL-005`.
 | CL-003 | Gemini CLI UserPromptSubmit Hook | [003-gemini-user-prompt-submit.md](02--cli-hooks-and-plugin/003-gemini-user-prompt-submit.md) |
 | CL-004 | Codex CLI Native Hooks And Wrapper Fallback | [004-codex-hook-and-wrapper.md](02--cli-hooks-and-plugin/004-codex-hook-and-wrapper.md) |
 | CL-005 | OpenCode Plugin Bridge | [005-opencode-plugin-bridge.md](02--cli-hooks-and-plugin/005-opencode-plugin-bridge.md) |
+| CL-006 | Devin CLI UserPromptSubmit Hook | [006-devin-user-prompt-submit.md](02--cli-hooks-and-plugin/006-devin-user-prompt-submit.md) |
 
 ---
 
