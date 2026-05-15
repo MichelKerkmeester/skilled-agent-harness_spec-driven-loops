@@ -1,9 +1,9 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { coerceSharedPayloadEnvelope } from '../lib/context/opencode-transport.js';
+import { coerceSharedPayloadEnvelope } from '../../../system-spec-kit/mcp_server/lib/context/opencode-transport.js';
 import {
   type SharedPayloadEnvelope,
   validateStructuralTrustPayload,
-} from '../lib/context/shared-payload.js';
+} from '../../../system-spec-kit/mcp_server/lib/context/shared-payload.js';
 
 function makeSharedPayloadEnvelope(): SharedPayloadEnvelope {
   return {
@@ -86,18 +86,18 @@ describe('code graph query trust emission', () => {
   beforeEach(() => {
     vi.resetModules();
     vi.clearAllMocks();
-    vi.doUnmock('../lib/context/shared-payload.js');
+    vi.doUnmock('../../../system-spec-kit/mcp_server/lib/context/shared-payload.js');
   });
 
   afterEach(() => {
     vi.resetModules();
     vi.clearAllMocks();
-    vi.doUnmock('../lib/context/shared-payload.js');
+    vi.doUnmock('../../../system-spec-kit/mcp_server/lib/context/shared-payload.js');
   });
 
   // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
   it('emits separate trust axes on code-graph payloads', async () => {
-    vi.doMock('../../../system-code-graph/mcp_server/lib/ensure-ready.js', () => ({
+    vi.doMock('../lib/ensure-ready.js', () => ({
       ensureCodeGraphReady: vi.fn(async () => ({
         freshness: 'fresh',
         action: 'none',
@@ -106,7 +106,7 @@ describe('code graph query trust emission', () => {
       })),
     }));
 
-    vi.doMock('../../../system-code-graph/mcp_server/lib/code-graph-db.js', () => ({
+    vi.doMock('../lib/code-graph-db.js', () => ({
       queryOutline: vi.fn(() => [{
         name: 'handleOutline',
         kind: 'function',
@@ -123,7 +123,7 @@ describe('code graph query trust emission', () => {
       queryStartupHighlights: vi.fn(() => []),
     }));
 
-    const { handleCodeGraphQuery } = await import('../../../system-code-graph/mcp_server/handlers/query.js');
+    const { handleCodeGraphQuery } = await import('../handlers/query.js');
     const result = await handleCodeGraphQuery({ operation: 'outline', subject: 'src/file.ts' });
     const parsed = JSON.parse(result.content[0].text);
 
@@ -139,7 +139,7 @@ describe('code graph query trust emission', () => {
   });
 
   it('fails closed when query emission validation rejects the trust payload', async () => {
-    vi.doMock('../../../system-code-graph/mcp_server/lib/ensure-ready.js', () => ({
+    vi.doMock('../lib/ensure-ready.js', () => ({
       ensureCodeGraphReady: vi.fn(async () => ({
         freshness: 'fresh',
         action: 'none',
@@ -148,7 +148,7 @@ describe('code graph query trust emission', () => {
       })),
     }));
 
-    vi.doMock('../../../system-code-graph/mcp_server/lib/code-graph-db.js', () => ({
+    vi.doMock('../lib/code-graph-db.js', () => ({
       queryOutline: vi.fn(() => []),
       getDb: vi.fn(),
       resolveSubjectFilePath: vi.fn((subject: string) => subject),
@@ -158,14 +158,14 @@ describe('code graph query trust emission', () => {
       queryStartupHighlights: vi.fn(() => []),
     }));
 
-    const sharedPayload = await import('../lib/context/shared-payload.js');
+    const sharedPayload = await import('../../../system-spec-kit/mcp_server/lib/context/shared-payload.js');
     vi.spyOn(sharedPayload, 'attachStructuralTrustFields').mockImplementation(() => {
       throw new sharedPayload.StructuralTrustPayloadError(
         'code_graph_query outline payload rejects collapsed scalar fields: trust.',
       );
     });
 
-    const { handleCodeGraphQuery } = await import('../../../system-code-graph/mcp_server/handlers/query.js');
+    const { handleCodeGraphQuery } = await import('../handlers/query.js');
 
     await expect(handleCodeGraphQuery({
       operation: 'outline',
@@ -178,17 +178,17 @@ describe('session bootstrap trust preservation', () => {
   beforeEach(() => {
     vi.resetModules();
     vi.clearAllMocks();
-    vi.doUnmock('../lib/context/shared-payload.js');
+    vi.doUnmock('../../../system-spec-kit/mcp_server/lib/context/shared-payload.js');
   });
 
   afterEach(() => {
     vi.resetModules();
     vi.clearAllMocks();
-    vi.doUnmock('../lib/context/shared-payload.js');
+    vi.doUnmock('../../../system-spec-kit/mcp_server/lib/context/shared-payload.js');
   });
 
   it('preserves separate trust axes through real session_resume and session_bootstrap outputs', async () => {
-    vi.doMock('../handlers/memory-context.js', () => ({
+    vi.doMock('../../../system-spec-kit/mcp_server/handlers/memory-context.js', () => ({
       handleMemoryContext: vi.fn(async () => ({
         content: [{
           type: 'text',
@@ -200,7 +200,7 @@ describe('session bootstrap trust preservation', () => {
       })),
     }));
 
-    vi.doMock('../../../system-code-graph/mcp_server/lib/code-graph-db.js', () => ({
+    vi.doMock('../lib/code-graph-db.js', () => ({
       getStats: vi.fn(() => ({
         lastScanTimestamp: '2026-04-08T12:00:00.000Z',
         totalNodes: 42,
@@ -209,17 +209,17 @@ describe('session bootstrap trust preservation', () => {
       })),
     }));
 
-    vi.doMock('../lib/utils/cocoindex-path.js', () => ({
+    vi.doMock('../../../system-spec-kit/mcp_server/lib/utils/cocoindex-path.js', () => ({
       isCocoIndexAvailable: vi.fn(() => true),
     }));
 
-    vi.doMock('../lib/session/context-metrics.js', () => ({
+    vi.doMock('../../../system-spec-kit/mcp_server/lib/session/context-metrics.js', () => ({
       recordBootstrapEvent: vi.fn(),
       recordMetricEvent: vi.fn(),
       computeQualityScore: vi.fn(() => ({ level: 'healthy' })),
     }));
 
-    vi.doMock('../handlers/session-health.js', () => ({
+    vi.doMock('../../../system-spec-kit/mcp_server/handlers/session-health.js', () => ({
       handleSessionHealth: vi.fn(async () => ({
         content: [{
           type: 'text',
@@ -228,7 +228,7 @@ describe('session bootstrap trust preservation', () => {
       })),
     }));
 
-    vi.doMock('../lib/session/session-snapshot.js', () => ({
+    vi.doMock('../../../system-spec-kit/mcp_server/lib/session/session-snapshot.js', () => ({
       buildStructuralBootstrapContract: vi.fn(() => ({
         status: 'ready',
         summary: 'Structural context ready',
@@ -238,7 +238,7 @@ describe('session bootstrap trust preservation', () => {
       })),
     }));
 
-    const { handleSessionResume } = await import('../handlers/session-resume.js');
+    const { handleSessionResume } = await import('../../../system-spec-kit/mcp_server/handlers/session-resume.js');
     const resumeResult = await handleSessionResume({ specFolder: 'specs/026-root' });
     const parsedResume = JSON.parse(resumeResult.content[0].text);
     const resumeStructuralSection = parsedResume.data.payloadContract.sections.find(
@@ -251,7 +251,7 @@ describe('session bootstrap trust preservation', () => {
       freshnessAuthority: 'live',
     });
 
-    const { handleSessionBootstrap } = await import('../handlers/session-bootstrap.js');
+    const { handleSessionBootstrap } = await import('../../../system-spec-kit/mcp_server/handlers/session-bootstrap.js');
     const result = await handleSessionBootstrap({ specFolder: 'specs/026-root' });
     const parsed = JSON.parse(result.content[0].text);
     const structuralSection = parsed.data.payloadContract.sections.find(

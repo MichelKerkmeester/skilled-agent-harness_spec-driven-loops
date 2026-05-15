@@ -71,12 +71,12 @@ vi.mock('../lib/search/intent-classifier.js', () => ({
   emitIntentTelemetry: vi.fn(),
 }));
 
-vi.mock('../../../system-code-graph/mcp_server/lib/query-intent-classifier.js', () => ({
+vi.mock('../lib/code-graph-boundary.js', () => ({
   classifyQueryIntent: mocks.classifyQueryIntent,
-}));
-
-vi.mock('../../../system-code-graph/mcp_server/lib/code-graph-context.js', () => ({
-  buildContext: mocks.buildContext,
+  callCodeGraphTool: vi.fn(async () => ({
+    status: 'ok',
+    data: mocks.buildContext(),
+  })),
 }));
 
 vi.mock('../handlers/memory-search.js', () => ({

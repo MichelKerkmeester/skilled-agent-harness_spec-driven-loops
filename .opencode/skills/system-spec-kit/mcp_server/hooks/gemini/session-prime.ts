@@ -30,6 +30,7 @@ import {
   validatePendingCompactPrimeSemantics,
 } from '../claude/hook-state.js';
 import { parseGeminiStdin, formatGeminiOutput } from './shared.js';
+import { getStartupBriefFromMarker } from '../../lib/code-graph-boundary.js';
 
 const CACHE_TTL_MS = 30 * 60 * 1000;
 const IS_CLI_ENTRY = process.argv[1]
@@ -46,13 +47,8 @@ type StartupBrief = {
   sharedPayloadTransport?: string | null;
 };
 
-let buildStartupBrief: ((highlightCount?: number, stateScope?: { specFolder?: string; claudeSessionId?: string }) => StartupBrief) | null = null;
-try {
-  const mod = await import('../../../../system-code-graph/mcp_server/lib/startup-brief.js');
-  buildStartupBrief = mod.buildStartupBrief;
-} catch {
-  // Startup brief module not available — keep static startup output
-}
+const buildStartupBrief = (_highlightCount?: number, _stateScope?: { specFolder?: string; claudeSessionId?: string }): StartupBrief =>
+  getStartupBriefFromMarker();
 
 /** Handle source=compact (post-compress): inject cached PreCompress payload */
 export function handleCompact(sessionId: string): OutputSection[] {
@@ -151,20 +147,16 @@ function handleStartup(input: { sessionId?: string; cwd?: unknown; specFolder?: 
   const requestedSpecFolder = readRequestedSpecFolder(input);
   let startupBrief: StartupBrief | null = null;
   try {
-    startupBrief = buildStartupBrief
-      ? buildStartupBrief(undefined, input.sessionId || requestedSpecFolder
-        ? {
-          ...(input.sessionId ? { claudeSessionId: input.sessionId } : {}),
-          ...(requestedSpecFolder ? { specFolder: requestedSpecFolder } : {}),
-        }
-        : undefined)
-      : null;
+    startupBrief = buildStartupBrief(undefined, input.sessionId || requestedSpecFolder
+      ? {
+        ...(input.sessionId ? { claudeSessionId: input.sessionId } : {}),
+        ...(requestedSpecFolder ? { specFolder: requestedSpecFolder } : {}),
+      }
+      : undefined);
   } catch (err: unknown) {
     hookLog('error', 'gemini:session-prime', `buildStartupBrief threw: ${err instanceof Error ? err.message : String(err)}`);
   }
-  if (!buildStartupBrief) {
-    hookLog('warn', 'gemini:session-prime', 'Startup brief module unavailable — using fallback surface');
-  } else if (!startupBrief) {
+  if (!startupBrief) {
     hookLog('warn', 'gemini:session-prime', 'buildStartupBrief returned null — possible startup-brief regression');
   } else if (!startupBrief.startupSurface) {
     hookLog('warn', 'gemini:session-prime', 'startupBrief.startupSurface is empty — possible startup-brief regression');

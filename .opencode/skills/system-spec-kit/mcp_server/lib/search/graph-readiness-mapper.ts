@@ -3,7 +3,7 @@
 // ───────────────────────────────────────────────────────────────
 // Maps code-graph readiness payloads onto SearchDecisionEnvelope telemetry.
 
-import type { GraphReadinessSnapshot } from '../../../../system-code-graph/mcp_server/lib/ensure-ready.js';
+import type { GraphReadinessSnapshot } from '@spec-kit/shared/code-graph-contracts';
 import type { DegradedReadinessTelemetry } from './search-decision-envelope.js';
 
 interface CodeGraphQueryReadinessTelemetrySource {
@@ -85,4 +85,3 @@ export function mapGraphReadinessToTelemetry(
     ? mapCodeGraphQueryTelemetry(input)
     : mapSnapshotTelemetry(input);
 }
-

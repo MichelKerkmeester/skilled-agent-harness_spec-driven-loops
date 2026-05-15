@@ -22,7 +22,7 @@ describe('graph-first routing nudge helper', () => {
       })).toMatchObject({
         advisory: true,
         readiness: 'ready',
-        preferredTool: 'code_graph_query',
+        preferredTool: 'mcp__mk_code_index__code_graph_query',
       });
     }
   });
@@ -70,8 +70,8 @@ describe('session-prime startup surface', () => {
       logCachedSummaryDecision: vi.fn(),
     }));
 
-    vi.doMock('../../../system-code-graph/mcp_server/lib/startup-brief.js', () => ({
-      buildStartupBrief: vi.fn(() => ({
+    vi.doMock('../lib/code-graph-boundary.js', () => ({
+      getStartupBriefFromMarker: vi.fn(() => ({
         startupSurface: '- Spec folder: none\n- Memory: startup summary only\n- What would you like to work on?',
         graphState: 'ready',
         graphOutline: 'Code graph ready',
@@ -128,13 +128,23 @@ describe('memory_context advisory metadata', () => {
       })),
     }));
 
-    vi.doMock('../../../system-code-graph/mcp_server/lib/code-graph-context.js', () => ({
-      buildContext: vi.fn(() => ({
-        graphContext: { nodes: ['handleSessionBootstrap'] },
-        textBrief: 'Graph context ready',
-        combinedSummary: 'Graph context ready',
-        nextActions: ['Use code_graph_query'],
-        metadata: { totalNodes: 3 },
+    vi.doMock('../lib/code-graph-boundary.js', () => ({
+      classifyQueryIntent: vi.fn(() => ({
+        intent: 'structural',
+        confidence: 0.95,
+        structuralScore: 3,
+        semanticScore: 0,
+        matchedKeywords: ['what calls'],
+      })),
+      callCodeGraphTool: vi.fn(async () => ({
+        status: 'ok',
+        data: {
+          graphContext: [{ nodes: ['handleSessionBootstrap'] }],
+          textBrief: 'Graph context ready',
+          combinedSummary: 'Graph context ready',
+          nextActions: ['Use code_graph_query'],
+          metadata: { totalNodes: 3 },
+        },
       })),
     }));
 
@@ -183,13 +193,23 @@ describe('memory_context advisory metadata', () => {
       })),
     }));
 
-    vi.doMock('../../../system-code-graph/mcp_server/lib/code-graph-context.js', () => ({
-      buildContext: vi.fn(() => ({
-        graphContext: { nodes: [] },
-        textBrief: 'unused',
-        combinedSummary: 'unused',
-        nextActions: [],
-        metadata: { totalNodes: 0 },
+    vi.doMock('../lib/code-graph-boundary.js', () => ({
+      classifyQueryIntent: vi.fn(() => ({
+        intent: 'semantic',
+        confidence: 0.9,
+        structuralScore: 0,
+        semanticScore: 3,
+        matchedKeywords: ['find code'],
+      })),
+      callCodeGraphTool: vi.fn(async () => ({
+        status: 'ok',
+        data: {
+          graphContext: [{ nodes: [] }],
+          textBrief: 'unused',
+          combinedSummary: 'unused',
+          nextActions: [],
+          metadata: { totalNodes: 0 },
+        },
       })),
     }));
 

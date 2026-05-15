@@ -8,11 +8,11 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
-import { closeDb, initDb } from '../../../../system-code-graph/mcp_server/lib/code-graph-db.js';
-import { handleCodeGraphQuery } from '../../../../system-code-graph/mcp_server/handlers/query.js';
-import { createEmptyQueryPlan } from '../../lib/query/query-plan.js';
-import { mapGraphReadinessToTelemetry } from '../../lib/search/graph-readiness-mapper.js';
-import { buildSearchDecisionEnvelope } from '../../lib/search/search-decision-envelope.js';
+import { closeDb, initDb } from '../../lib/code-graph-db.js';
+import { handleCodeGraphQuery } from '../../handlers/query.js';
+import { createEmptyQueryPlan } from '../../../../system-spec-kit/mcp_server/lib/query/query-plan.js';
+import { mapGraphReadinessToTelemetry } from '../../../../system-spec-kit/mcp_server/lib/search/graph-readiness-mapper.js';
+import { buildSearchDecisionEnvelope } from '../../../../system-spec-kit/mcp_server/lib/search/search-decision-envelope.js';
 
 interface CodeGraphQueryPayload {
   status: string;

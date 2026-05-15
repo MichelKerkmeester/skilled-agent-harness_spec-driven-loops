@@ -240,8 +240,8 @@ describe('session-prime hook', () => {
         })),
         logCachedSummaryDecision: vi.fn(),
       }));
-      vi.doMock('../../../system-code-graph/mcp_server/lib/startup-brief.js', () => ({
-        buildStartupBrief: vi.fn(() => ({
+      vi.doMock('../lib/code-graph-boundary.js', () => ({
+        getStartupBriefFromMarker: vi.fn(() => ({
           graphOutline: '- handlers/session-bootstrap.ts',
           sessionContinuity: null,
           graphSummary: { files: 1, nodes: 2, edges: 3, lastScan: '2026-04-09T10:00:00.000Z' },
@@ -284,14 +284,32 @@ describe('session-prime hook', () => {
       );
     });
 
-    it('falls back to the static startup surface when the startup brief module is unavailable', async () => {
+    it('falls back to the marker fallback surface when code-graph readiness is unavailable', async () => {
       vi.doMock('../hooks/claude/hook-state.js', async () => vi.importActual('../hooks/claude/hook-state.js'));
       vi.doMock('../handlers/session-resume.js', () => ({
         getCachedSessionSummaryDecision: vi.fn(() => ({ status: 'rejected', reason: 'no cached summary' })),
         logCachedSummaryDecision: vi.fn(),
       }));
-      vi.doMock('../../../system-code-graph/mcp_server/lib/startup-brief.js', () => {
-        throw new Error('synthetic startup brief import failure');
+      vi.doMock('../lib/code-graph-boundary.js', () => {
+        return {
+          getStartupBriefFromMarker: vi.fn(() => ({
+            graphOutline: null,
+            sessionContinuity: null,
+            graphSummary: null,
+            graphQualitySummary: null,
+            graphState: 'missing',
+            cocoIndexAvailable: false,
+            startupSurface: [
+              'Session context received. Current state:',
+              '',
+              '- Memory: startup summary only (resume on demand)',
+              '- Code Graph: unavailable',
+              '- CocoIndex: unknown',
+            ].join('\n'),
+            sharedPayload: null,
+            sharedPayloadTransport: null,
+          })),
+        };
       });
 
       const { handleStartup } = await import('../hooks/claude/session-prime.js');
@@ -300,10 +318,7 @@ describe('session-prime hook', () => {
       expect(sections[0]?.title).toBe('Session Context');
       expect(sections[0]?.content).toContain('cached continuity rejected: no cached summary');
       expect(sections[0]?.content).toContain('- Code Graph: unavailable');
-      expect(sections.map((section) => section.title)).toContain('Startup Brief Warning');
-      expect(sections.find((section) => section.title === 'Startup Brief Warning')?.content).toContain(
-        'Startup brief module unavailable',
-      );
+      expect(sections.map((section) => section.title)).not.toContain('Startup Brief Warning');
       expect(sections.map((section) => section.title)).not.toContain('Session Continuity');
     });
 

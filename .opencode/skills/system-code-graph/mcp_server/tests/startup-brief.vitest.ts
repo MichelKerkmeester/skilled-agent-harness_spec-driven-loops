@@ -3,7 +3,7 @@
 // ───────────────────────────────────────────────────────────────
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 
-vi.mock('../../../system-code-graph/mcp_server/lib/code-graph-db.js', () => ({
+vi.mock('../lib/code-graph-db.js', () => ({
   getStats: vi.fn(() => ({
     totalFiles: 12,
     totalNodes: 64,
@@ -21,14 +21,14 @@ vi.mock('../../../system-code-graph/mcp_server/lib/code-graph-db.js', () => ({
   ])),
 }));
 
-vi.mock('../../../system-code-graph/mcp_server/lib/ensure-ready.js', () => ({
+vi.mock('../lib/ensure-ready.js', () => ({
   getGraphReadinessSnapshot: vi.fn(() => ({
     freshness: 'fresh',
     reason: 'ready',
   })),
 }));
 
-vi.mock('../hooks/claude/hook-state.js', () => ({
+vi.mock('../../../system-spec-kit/mcp_server/hooks/claude/hook-state.js', () => ({
   loadMostRecentState: vi.fn(() => ({
     ok: true,
     state: {
@@ -49,15 +49,15 @@ vi.mock('../hooks/claude/hook-state.js', () => ({
   })),
 }));
 
-vi.mock('../lib/utils/cocoindex-path.js', () => ({
+vi.mock('../../../system-spec-kit/mcp_server/lib/utils/cocoindex-path.js', () => ({
   isCocoIndexAvailable: vi.fn(() => false),
 }));
 
-import { buildStartupBrief } from '../../../system-code-graph/mcp_server/lib/startup-brief.js';
-import * as graphDb from '../../../system-code-graph/mcp_server/lib/code-graph-db.js';
-import { getGraphReadinessSnapshot } from '../../../system-code-graph/mcp_server/lib/ensure-ready.js';
-import * as hookState from '../hooks/claude/hook-state.js';
-import * as cocoIndexPath from '../lib/utils/cocoindex-path.js';
+import { buildStartupBrief } from '../lib/startup-brief.js';
+import * as graphDb from '../lib/code-graph-db.js';
+import { getGraphReadinessSnapshot } from '../lib/ensure-ready.js';
+import * as hookState from '../../../system-spec-kit/mcp_server/hooks/claude/hook-state.js';
+import * as cocoIndexPath from '../../../system-spec-kit/mcp_server/lib/utils/cocoindex-path.js';
 
 describe('startup-brief', () => {
   beforeEach(() => {

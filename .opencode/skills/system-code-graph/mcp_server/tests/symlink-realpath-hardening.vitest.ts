@@ -35,7 +35,7 @@ function createCodeGraphSymlinkFixtures() {
 
 function setupIndexerMocks(): void {
   vi.resetModules();
-  vi.doMock('../../../system-code-graph/mcp_server/lib/code-graph-db.js', () => ({
+  vi.doMock('../lib/code-graph-db.js', () => ({
     isFileStale: vi.fn(() => true),
   }));
   process.env.SPECKIT_PARSER = 'regex';
@@ -53,8 +53,8 @@ describe('realpath hardening for symlinked paths', () => {
     const database = new BetterSqlite3(':memory:');
 
     try {
-      vi.doMock('../core/index.js', async (importOriginal) => {
-        const actual = await importOriginal<typeof import('../core/index.js')>();
+      vi.doMock('../../../system-spec-kit/mcp_server/core/index.js', async (importOriginal) => {
+        const actual = await importOriginal<typeof import('../../../system-spec-kit/mcp_server/core/index.js')>();
         return {
           ...actual,
           checkDatabaseUpdated: vi.fn(async () => false),
@@ -77,7 +77,7 @@ describe('realpath hardening for symlinked paths', () => {
         };
       });
 
-      const { handleMemorySave } = await import('../handlers/memory-save.js');
+      const { handleMemorySave } = await import('../../../system-spec-kit/mcp_server/handlers/memory-save.js');
 
       const response = await handleMemorySave({ filePath: safeSpecPath });
       const envelope = JSON.parse(response.content[0].text);
@@ -95,8 +95,8 @@ describe('realpath hardening for symlinked paths', () => {
     const { root, safeFilePath } = createCodeGraphSymlinkFixtures();
 
     try {
-      const { getDefaultConfig } = await import('../../../system-code-graph/mcp_server/lib/indexer-types.js');
-      const { indexFiles } = await import('../../../system-code-graph/mcp_server/lib/structural-indexer.js');
+      const { getDefaultConfig } = await import('../lib/indexer-types.js');
+      const { indexFiles } = await import('../lib/structural-indexer.js');
 
       const results = await indexFiles({
         ...getDefaultConfig(root),

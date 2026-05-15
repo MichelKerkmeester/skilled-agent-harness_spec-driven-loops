@@ -11,8 +11,11 @@
 import { createHash } from 'node:crypto';
 import { statSync } from 'node:fs';
 import { isCocoIndexAvailable } from '../lib/utils/cocoindex-path.js';
-import * as graphDb from '../../../system-code-graph/mcp_server/lib/code-graph-db.js';
-import { getGraphFreshness, type GraphFreshness } from '../../../system-code-graph/mcp_server/lib/ensure-ready.js';
+import {
+  getCodeGraphStatusViaRpc,
+  getGraphFreshnessFromMarker,
+} from '../lib/code-graph-boundary.js';
+import type { GraphFreshness } from '@spec-kit/shared/code-graph-contracts';
 import { computeQualityScore, recordMetricEvent, recordBootstrapEvent } from '../lib/session/context-metrics.js';
 import { buildStructuralBootstrapContract } from '../lib/session/session-snapshot.js';
 import type { StructuralBootstrapContract } from '../lib/session/session-snapshot.js';
@@ -33,7 +36,7 @@ import {
 import {
   buildCodeGraphOpsContract,
   type CodeGraphOpsContract,
-} from '../../../system-code-graph/mcp_server/lib/ops-hardening.js';
+} from '@spec-kit/shared/code-graph-contracts';
 import { getCallerContext } from '../lib/context/caller-context.js';
 import { loadMatchingStates, type HookProducerMetadata, type HookState } from '../hooks/claude/hook-state.js';
 import { buildResumeLadder } from '../lib/resume/resume-ladder.js';
@@ -590,14 +593,17 @@ export async function handleSessionResume(args: SessionResumeArgs): Promise<MCPR
     fileCount: 0,
   };
   try {
-    const stats = graphDb.getStats();
-    const freshness = getGraphFreshness(process.cwd());
+    const snapshot = await getCodeGraphStatusViaRpc();
+    if (snapshot.status !== 'ok' || !snapshot.data) {
+      throw new Error(snapshot.error ?? 'code_graph_status returned no data');
+    }
+    const freshness = snapshot.data.freshness ?? getGraphFreshnessFromMarker();
     codeGraph = {
       status: freshness,
-      lastScan: stats.lastScanTimestamp,
-      nodeCount: stats.totalNodes,
-      edgeCount: stats.totalEdges,
-      fileCount: stats.totalFiles,
+      lastScan: snapshot.data.lastScanAt,
+      nodeCount: snapshot.data.totalNodes,
+      edgeCount: snapshot.data.totalEdges,
+      fileCount: snapshot.data.totalFiles,
     };
     // Graph status hints deferred to structural contract (Phase 027)
     // — structural context hints at lines 128-130 provide preferred recovery path

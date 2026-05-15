@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import type { GraphReadinessSnapshot } from '../../../system-code-graph/mcp_server/lib/ensure-ready.js';
+import type { GraphReadinessSnapshot } from '@spec-kit/shared/code-graph-contracts';
 import { mapGraphReadinessToTelemetry } from '../lib/search/graph-readiness-mapper.js';
 
 function snapshot(
@@ -44,4 +44,3 @@ describe('mapGraphReadinessToTelemetry', () => {
     });
   });
 });
-

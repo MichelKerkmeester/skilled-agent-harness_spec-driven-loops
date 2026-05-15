@@ -36,22 +36,24 @@ const { loadMostRecentStateMock, loadMatchingStatesMock } = vi.hoisted(() => {
   return { loadMostRecentStateMock, loadMatchingStatesMock };
 });
 
-vi.mock('../../../system-code-graph/mcp_server/lib/code-graph-db.js', () => ({
-  getStats: vi.fn(() => ({
-    totalFiles: 10,
-    totalNodes: 50,
-    totalEdges: 30,
-    lastScanTimestamp: new Date().toISOString(),
-    dbFileSize: 2048,
-    schemaVersion: 1,
-    nodesByKind: {},
-    edgesByType: {},
-    parseHealthSummary: {},
+vi.mock('../lib/code-graph-boundary.js', () => ({
+  getCodeGraphStatusViaRpc: vi.fn(async () => ({
+    status: 'ok',
+    data: {
+      totalFiles: 10,
+      totalNodes: 50,
+      totalEdges: 30,
+      staleFiles: 0,
+      lastScanAt: new Date().toISOString(),
+      dbFileSize: 2048,
+      schemaVersion: 1,
+      nodesByKind: {},
+      edgesByType: {},
+      parseHealth: {},
+      freshness: 'fresh',
+    },
   })),
-}));
-
-vi.mock('../../../system-code-graph/mcp_server/lib/ensure-ready.js', () => ({
-  getGraphFreshness: vi.fn(() => 'fresh'),
+  getGraphFreshnessFromMarker: vi.fn(() => 'fresh'),
 }));
 
 vi.mock('../lib/session/context-metrics.js', () => ({
@@ -70,8 +72,7 @@ vi.mock('../hooks/claude/hook-state.js', () => ({
 }));
 
 import { getCachedSessionSummaryDecision, handleSessionResume } from '../handlers/session-resume.js';
-import * as graphDb from '../../../system-code-graph/mcp_server/lib/code-graph-db.js';
-import { getGraphFreshness } from '../../../system-code-graph/mcp_server/lib/ensure-ready.js';
+import * as codeGraphBoundary from '../lib/code-graph-boundary.js';
 import { computeQualityScore, recordBootstrapEvent } from '../lib/session/context-metrics.js';
 
 function createWorkspace(): string {
@@ -302,7 +303,22 @@ describe('session-resume handler', () => {
 
     writeDoc(workspacePath, specFolder, 'implementation-summary.md', buildImplementationSummary(specFolder));
     process.chdir(workspacePath);
-    vi.mocked(getGraphFreshness).mockReturnValueOnce('stale');
+    vi.mocked(codeGraphBoundary.getCodeGraphStatusViaRpc).mockResolvedValueOnce({
+      status: 'ok',
+      data: {
+        totalFiles: 10,
+        totalNodes: 50,
+        totalEdges: 30,
+        staleFiles: 0,
+        lastScanAt: new Date().toISOString(),
+        dbFileSize: 2048,
+        schemaVersion: 1,
+        nodesByKind: {},
+        edgesByType: {},
+        parseHealth: {},
+        freshness: 'stale',
+      },
+    });
 
     const result = await handleSessionResume({ specFolder });
     const parsed = JSON.parse(result.content[0].text);
@@ -318,8 +334,9 @@ describe('session-resume handler', () => {
 
     writeDoc(workspacePath, specFolder, 'implementation-summary.md', buildImplementationSummary(specFolder));
     process.chdir(workspacePath);
-    vi.mocked(graphDb.getStats).mockImplementationOnce(() => {
-      throw new Error('DB not initialized');
+    vi.mocked(codeGraphBoundary.getCodeGraphStatusViaRpc).mockResolvedValueOnce({
+      status: 'error',
+      error: 'DB not initialized',
     });
 
     const result = await handleSessionResume({ specFolder });

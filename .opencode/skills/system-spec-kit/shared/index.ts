@@ -68,6 +68,25 @@ export type {
 } from './types.js';
 
 export type { WeightedDocumentSections } from './embeddings.js';
+export type {
+  GraphFreshness,
+  ReadyAction,
+  StructuralReadiness,
+  ReadinessScopeDiagnostic,
+  GraphReadinessSnapshot,
+  CodeGraphStatsSnapshot,
+  StartupGraphSummary,
+  StartupGraphQualitySummary,
+  StartupBriefResult,
+  CodeGraphReadinessMarker,
+  MetadataOnlyPreview,
+  CodeGraphOpsContract,
+} from './code-graph-contracts.js';
+export {
+  normalizeStructuralReadiness,
+  buildCodeGraphOpsContract,
+  createMetadataOnlyPreview,
+} from './code-graph-contracts.js';
 
 // DB normalization functions
 export {

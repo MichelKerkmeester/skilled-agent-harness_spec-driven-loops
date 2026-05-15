@@ -24,6 +24,7 @@ import { buildReadinessBlock } from '../lib/readiness-contract.js';
 import { getSkipListSummary } from '../lib/parser-skip-list.js';
 import { getParserHealth } from '../lib/tree-sitter-parser.js';
 import { getLastApplyMetadata } from '../lib/apply-metadata.js';
+import { writeCodeGraphReadinessMarker } from '../lib/readiness-marker.js';
 
 type GoldVerificationTrust = 'live' | 'stale' | 'absent';
 
@@ -185,6 +186,11 @@ function getGoldVerificationTrust(
 
 /** Handle code_graph_status tool call */
 export async function handleCodeGraphStatus(): Promise<{ content: Array<{ type: string; text: string }> }> {
+  try {
+    writeCodeGraphReadinessMarker(process.cwd());
+  } catch {
+    // Status must remain best-effort even if the marker cannot be refreshed.
+  }
   // Packet 016 / F-003: read the readiness snapshot FIRST so the degraded
   // envelope still surfaces even when `graphDb.getStats()` throws (e.g. DB
   // file corrupted or locked). Previously stats was called first; on crash

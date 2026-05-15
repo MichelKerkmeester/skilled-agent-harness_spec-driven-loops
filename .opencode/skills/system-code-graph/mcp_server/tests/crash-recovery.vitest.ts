@@ -22,16 +22,16 @@ vi.mock('../core/config.js', async (importOriginal) => {
   };
 });
 
-vi.mock('../lib/cognitive/working-memory.js', () => mockState.workingMemory);
+vi.mock('../../../system-spec-kit/mcp_server/lib/cognitive/working-memory.js', () => mockState.workingMemory);
 
-import * as sessionManager from '../lib/session/session-manager.js';
+import * as sessionManager from '../../../system-spec-kit/mcp_server/lib/session/session-manager.js';
 import {
   findPendingFiles,
   getPendingPath,
   recoverAllPendingFiles,
   recoverPendingFile,
   resetMetrics,
-} from '../lib/storage/transaction-manager.js';
+} from '../../../system-spec-kit/mcp_server/lib/storage/transaction-manager.js';
 import {
   SCHEMA_VERSION,
   initDb,
@@ -45,9 +45,9 @@ import {
   setLastGitHead,
   upsertFile,
   replaceNodes,
-} from '../../../system-code-graph/mcp_server/lib/code-graph-db.js';
-import type { CodeNode } from '../../../system-code-graph/mcp_server/lib/indexer-types.js';
-import { generateContentHash } from '../../../system-code-graph/mcp_server/lib/indexer-types.js';
+} from '../lib/code-graph-db.js';
+import type { CodeNode } from '../lib/indexer-types.js';
+import { generateContentHash } from '../lib/indexer-types.js';
 
 interface MockSessionStateRow {
   session_id: string;

@@ -6,7 +6,7 @@ import {
   classifyQueryIntent,
   type QueryIntent,
   type ClassificationResult,
-} from '../../../system-code-graph/mcp_server/lib/query-intent-classifier.js';
+} from '../lib/query-intent-classifier.js';
 
 describe('query-intent-classifier', () => {
   describe('structural queries', () => {

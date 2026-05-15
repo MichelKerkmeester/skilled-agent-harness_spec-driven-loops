@@ -23,6 +23,7 @@ import {
   validatePendingCompactPrimeSemantics,
 } from './hook-state.js';
 import { getCachedSessionSummaryDecision, logCachedSummaryDecision } from '../../handlers/session-resume.js';
+import { getStartupBriefFromMarker } from '../../lib/code-graph-boundary.js';
 
 const CACHE_TTL_MS = 30 * 60 * 1000;
 const IS_CLI_ENTRY = process.argv[1]
@@ -39,16 +40,8 @@ type StartupBrief = {
   sharedPayloadTransport?: string | null;
 };
 
-// Dynamic import for startup brief builder — may not be available
-let buildStartupBrief: ((highlightCount?: number, stateScope?: { specFolder?: string; claudeSessionId?: string }) => StartupBrief) | null = null;
-let startupBriefImportError: string | null = null;
-try {
-  const mod = await import('../../../../system-code-graph/mcp_server/lib/startup-brief.js');
-  buildStartupBrief = mod.buildStartupBrief;
-} catch (err: unknown) {
-  startupBriefImportError = err instanceof Error ? err.message : String(err);
-  // Startup brief module not available — keep static startup output
-}
+const buildStartupBrief = (_highlightCount?: number, _stateScope?: { specFolder?: string; claudeSessionId?: string }): StartupBrief =>
+  getStartupBriefFromMarker();
 
 /** Handle source=compact: inject cached PreCompact payload (from 3-source merger) */
 function handleCompact(sessionId: string): OutputSection[] {
@@ -195,22 +188,15 @@ export function handleStartup(
   let startupBrief: StartupBrief | null = null;
   let startupBriefWarning: string | null = null;
   try {
-    startupBrief = buildStartupBrief
-      ? buildStartupBrief(undefined, {
-        claudeSessionId: sessionId,
-        specFolder: requestedSpecFolder,
-      })
-      : null;
+    startupBrief = buildStartupBrief(undefined, {
+      claudeSessionId: sessionId,
+      specFolder: requestedSpecFolder,
+    });
   } catch (err: unknown) {
     startupBriefWarning = `buildStartupBrief threw: ${err instanceof Error ? err.message : String(err)}`;
     hookLog('error', 'session-prime', startupBriefWarning);
   }
-  if (!buildStartupBrief) {
-    startupBriefWarning = startupBriefImportError
-      ? `Startup brief module unavailable: ${startupBriefImportError}`
-      : 'Startup brief module unavailable';
-    hookLog('warn', 'session-prime', `${startupBriefWarning} — using fallback surface`);
-  } else if (!startupBrief) {
+  if (!startupBrief) {
     startupBriefWarning = 'buildStartupBrief returned null';
     hookLog('warn', 'session-prime', `${startupBriefWarning} — possible startup-brief regression`);
   } else if (!startupBrief.startupSurface) {

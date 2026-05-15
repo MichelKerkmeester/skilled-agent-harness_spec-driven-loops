@@ -7,8 +7,10 @@
 
 import { getSessionMetrics, computeQualityScore, getLastToolCallAt } from './context-metrics.js';
 import { isSessionPrimed, getLastActiveSessionId } from '../../hooks/memory-surface.js';
-import { getStats as getGraphStats } from '../../../../system-code-graph/mcp_server/lib/code-graph-db.js';
-import { getGraphFreshness } from '../../../../system-code-graph/mcp_server/lib/ensure-ready.js';
+import {
+  getGraphFreshnessFromMarker,
+  getGraphStatsFromMarker,
+} from '../code-graph-boundary.js';
 import { isCocoIndexAvailable } from '../utils/cocoindex-path.js';
 import {
   trustStateFromStructuralStatus,
@@ -47,11 +49,7 @@ const STRUCTURAL_CONTRACT_MAX_TOKENS = 500;
 ──────────────────────────────────────────────────────────────── */
 
 function resolveGraphFreshness(): SessionSnapshot['graphFreshness'] {
-  try {
-    return getGraphFreshness(process.cwd());
-  } catch {
-    return 'error';
-  }
+  return getGraphFreshnessFromMarker();
 }
 
 function estimateTextTokens(text: string): number {
@@ -218,7 +216,10 @@ export function buildStructuralBootstrapContract(
 
   if (status === 'ready' || status === 'stale') {
     try {
-      const stats = getGraphStats();
+      const stats = getGraphStatsFromMarker();
+      if (!stats) {
+        throw new Error('code graph readiness marker has no stats');
+      }
       const freshnessLabel = status === 'stale' ? 'stale' : 'fresh';
       summary = `Code graph: ${stats.totalFiles} files, ${stats.totalNodes} nodes, ${stats.totalEdges} edges (${freshnessLabel})`;
       const topKinds = Object.entries(stats.nodesByKind)
@@ -263,7 +264,10 @@ export function buildStructuralBootstrapContract(
       lastUpdated: status === 'ready' || status === 'stale'
         ? (() => {
           try {
-            const stats = getGraphStats();
+            const stats = getGraphStatsFromMarker();
+            if (!stats) {
+              return null;
+            }
             return stats.lastScanTimestamp ?? null;
           } catch {
             return null;

@@ -8,22 +8,24 @@ const { loadMatchingStatesMock } = vi.hoisted(() => ({
   loadMatchingStatesMock: vi.fn(() => ({ states: [], errors: [] })),
 }));
 
-vi.mock('../../../system-code-graph/mcp_server/lib/code-graph-db.js', () => ({
-  getStats: vi.fn(() => ({
-    totalFiles: 10,
-    totalNodes: 50,
-    totalEdges: 30,
-    lastScanTimestamp: new Date().toISOString(),
-    dbFileSize: 2048,
-    schemaVersion: 1,
-    nodesByKind: {},
-    edgesByType: {},
-    parseHealthSummary: {},
+vi.mock('../lib/code-graph-boundary.js', () => ({
+  getCodeGraphStatusViaRpc: vi.fn(async () => ({
+    status: 'ok',
+    data: {
+      totalFiles: 10,
+      totalNodes: 50,
+      totalEdges: 30,
+      staleFiles: 0,
+      lastScanAt: new Date().toISOString(),
+      dbFileSize: 2048,
+      schemaVersion: 1,
+      nodesByKind: {},
+      edgesByType: {},
+      parseHealth: {},
+      freshness: 'fresh',
+    },
   })),
-}));
-
-vi.mock('../../../system-code-graph/mcp_server/lib/ensure-ready.js', () => ({
-  getGraphFreshness: vi.fn(() => 'fresh'),
+  getGraphFreshnessFromMarker: vi.fn(() => 'fresh'),
 }));
 
 vi.mock('../lib/session/context-metrics.js', () => ({

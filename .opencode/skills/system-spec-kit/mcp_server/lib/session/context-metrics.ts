@@ -5,7 +5,7 @@
 // Collects events during MCP tool dispatch and computes quality scores.
 // In-memory only — no DB persistence needed for now.
 
-import { getStats as getGraphStats } from '../../../../system-code-graph/mcp_server/lib/code-graph-db.js';
+import { getGraphStatsFromMarker } from '../code-graph-boundary.js';
 
 /* ───────────────────────────────────────────────────────────────
    1. TYPES
@@ -178,7 +178,8 @@ function computeRecovery(): number {
 /** Compute graph freshness: 1.0 fresh, 0.5 stale, 0.0 empty/error. */
 function computeGraphFreshness(): number {
   try {
-    const stats = getGraphStats();
+    const stats = getGraphStatsFromMarker();
+    if (!stats) return 0.0;
     if (stats.totalFiles === 0) return 0.0;
     if (!stats.lastScanTimestamp) return 0.5;
     const age = Date.now() - new Date(stats.lastScanTimestamp).getTime();

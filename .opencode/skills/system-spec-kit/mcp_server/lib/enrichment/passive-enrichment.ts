@@ -13,6 +13,7 @@
 //   - Recursion guard (no enrichment of enrichment)
 
 import { estimateTokenCount } from '@spec-kit/shared/utils/token-estimate';
+import { callCodeGraphTool } from '../code-graph-boundary.js';
 
 /* ───────────────────────────────────────────────────────────────
    1. TYPES
@@ -69,9 +70,39 @@ function extractMentionedPaths(text: string): string[] {
   return [...matches];
 }
 
+function collectGraphSymbols(payload: Record<string, unknown>): string[] {
+  const data = typeof payload.data === 'object' && payload.data !== null && !Array.isArray(payload.data)
+    ? payload.data as Record<string, unknown>
+    : {};
+  const symbols: string[] = [];
+  const anchors = Array.isArray(data.anchors) ? data.anchors : [];
+  for (const anchor of anchors) {
+    if (typeof anchor !== 'object' || anchor === null) continue;
+    const record = anchor as Record<string, unknown>;
+    const symbol = typeof record.symbol === 'string' ? record.symbol : null;
+    if (symbol) symbols.push(symbol);
+    if (symbols.length >= 10) return symbols;
+  }
+  const graphContext = Array.isArray(data.graphContext) ? data.graphContext : [];
+  for (const entry of graphContext) {
+    if (typeof entry !== 'object' || entry === null) continue;
+    const nodes = Array.isArray((entry as Record<string, unknown>).nodes)
+      ? (entry as Record<string, unknown>).nodes as unknown[]
+      : [];
+    for (const node of nodes) {
+      if (typeof node !== 'object' || node === null) continue;
+      const record = node as Record<string, unknown>;
+      const name = typeof record.name === 'string' ? record.name : null;
+      const kind = typeof record.kind === 'string' ? record.kind : 'symbol';
+      if (name) symbols.push(`${kind}:${name}`);
+      if (symbols.length >= 10) return symbols;
+    }
+  }
+  return symbols;
+}
+
 /**
- * Enrich with code graph symbols near mentioned files.
- * Dynamically imports code-graph-db to avoid hard dependency.
+ * Enrich with code graph symbols near mentioned files through the MCP boundary.
  */
 async function enrichWithCodeGraphSymbols(
   paths: string[],
@@ -80,27 +111,13 @@ async function enrichWithCodeGraphSymbols(
   if (paths.length === 0) return [];
 
   try {
-    const graphDb = await import('../../../../system-code-graph/mcp_server/lib/code-graph-db.js');
-    const db = graphDb.getDb();
-    if (!db) return [];
-
-    // Look up symbols in the mentioned files (top 3 per file, max 10 total)
-    const symbols: string[] = [];
-    for (const filePath of paths.slice(0, 3)) {
-      const rows = db.prepare(`
-        SELECT name, kind FROM code_nodes
-        WHERE file_path LIKE ? OR file_path LIKE ?
-        ORDER BY kind ASC, name ASC
-        LIMIT 3
-      `).all(`%${filePath}`, `%${filePath.replace(/^\.\//, '')}`) as Array<{ name: string; kind: string }>;
-
-      for (const row of rows) {
-        symbols.push(`${row.kind}:${row.name}`);
-        if (symbols.length >= 10) break;
-      }
-      if (symbols.length >= 10) break;
-    }
-
+    const payload = await callCodeGraphTool('code_graph_context', {
+      queryMode: 'neighborhood',
+      profile: 'quick',
+      budgetTokens: 400,
+      seeds: paths.slice(0, 3).map((filePath) => ({ filePath, source: 'passive-enrichment' })),
+    }, Math.min(DEFAULT_DEADLINE_MS, 250));
+    const symbols = collectGraphSymbols(payload);
     if (symbols.length === 0) return [];
 
     const hint = `[code-graph] Symbols near mentioned files: ${symbols.join(', ')}`;

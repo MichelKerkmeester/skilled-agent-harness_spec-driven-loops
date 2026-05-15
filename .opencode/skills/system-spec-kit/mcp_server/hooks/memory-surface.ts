@@ -6,11 +6,11 @@ import { isCocoIndexAvailable } from '../lib/utils/cocoindex-path.js';
 import * as vectorIndex from '../lib/search/vector-index.js';
 import * as triggerMatcher from '../lib/parsing/trigger-matcher.js';
 import { enrichWithRetrievalDirectives } from '../lib/search/retrieval-directives.js';
-import * as graphDb from '../../../system-code-graph/mcp_server/lib/code-graph-db.js';
 import { estimateTokenCount } from '@spec-kit/shared/utils/token-estimate';
 import { recordBootstrapEvent } from '../lib/session/context-metrics.js';
 import * as workingMemory from '../lib/cognitive/working-memory.js';
 import { buildStructuralBootstrapContract } from '../lib/session/session-snapshot.js';
+import { getCodeGraphStatusSnapshotFromMarker } from '../lib/code-graph-boundary.js';
 
 import type { Database } from '@spec-kit/shared/types';
 // F-017-D2-01: Import the type from the neutral seam module instead of from
@@ -217,34 +217,7 @@ function clearConstitutionalCache(): void {
 }
 
 function getCodeGraphStatusSnapshot(): NonNullable<AutoSurfaceResult['codeGraphStatus']> {
-  try {
-    const stats = graphDb.getStats();
-    const staleCount = (graphDb.getDb().prepare(`
-      SELECT COUNT(*) as c FROM code_files
-      WHERE parse_health = 'error' OR parse_health = 'recovered'
-    `).get() as { c: number }).c;
-
-    return {
-      status: 'ok',
-      data: {
-        totalFiles: stats.totalFiles,
-        totalNodes: stats.totalNodes,
-        totalEdges: stats.totalEdges,
-        staleFiles: staleCount,
-        lastScanAt: stats.lastScanTimestamp,
-        dbFileSize: stats.dbFileSize,
-        schemaVersion: stats.schemaVersion,
-        nodesByKind: stats.nodesByKind,
-        edgesByType: stats.edgesByType,
-        parseHealth: stats.parseHealthSummary,
-      },
-    };
-  } catch (err: unknown) {
-    return {
-      status: 'error',
-      error: `Code graph not initialized: ${err instanceof Error ? err.message : String(err)}`,
-    };
-  }
+  return getCodeGraphStatusSnapshotFromMarker();
 }
 
 /* ───────────────────────────────────────────────────────────────

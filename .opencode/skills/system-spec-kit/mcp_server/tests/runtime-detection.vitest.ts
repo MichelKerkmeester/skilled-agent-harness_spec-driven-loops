@@ -6,7 +6,7 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { describe, it, expect, afterEach } from 'vitest';
 import { clearCodexHookPolicyCacheForTests } from '../lib/codex-hook-policy.js';
-import { detectRuntime, areHooksAvailable, getRecoveryApproach } from '../../../system-code-graph/mcp_server/lib/runtime-detection.js';
+import { detectRuntime, areHooksAvailable, getRecoveryApproach } from '../lib/runtime-detection.js';
 
 function clearRuntimeEnv(): void {
   delete process.env.CLAUDE_CODE;

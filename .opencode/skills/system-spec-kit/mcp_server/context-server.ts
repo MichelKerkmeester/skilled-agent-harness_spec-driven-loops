@@ -85,8 +85,8 @@ import { runLineageBackfill } from './lib/storage/lineage-state.js';
 import * as hybridSearch from './lib/search/hybrid-search.js';
 import { createUnifiedGraphSearchFn } from './lib/search/graph-search-fn.js';
 import { isGraphUnifiedEnabled } from './lib/search/graph-flags.js';
-import * as graphDb from '../../system-code-graph/mcp_server/lib/code-graph-db.js';
-import { detectRuntime, type RuntimeInfo } from '../../system-code-graph/mcp_server/lib/runtime-detection.js';
+import { callCodeGraphTool } from './lib/code-graph-boundary.js';
+import { detectRuntime, type RuntimeInfo } from './lib/runtime-detection.js';
 import * as sessionBoost from './lib/search/session-boost.js';
 import * as causalBoost from './lib/search/causal-boost.js';
 import * as bm25Index from './lib/search/bm25-index.js';
@@ -525,98 +525,54 @@ function extractFilePathsFromToolArgs(args: unknown): string[] {
 
 function buildDispatchGraphContext(
   filePaths: string[],
-  deadlineMs: number,
-): Omit<DispatchGraphContextMeta, 'latencyMs'> {
+  _deadlineMs: number,
+): Promise<Omit<DispatchGraphContextMeta, 'latencyMs'>> {
+  return buildDispatchGraphContextViaRpc(filePaths);
+}
+
+async function buildDispatchGraphContextViaRpc(
+  filePaths: string[],
+): Promise<Omit<DispatchGraphContextMeta, 'latencyMs'>> {
   const files: GraphContextFileSummary[] = [];
 
   for (const filePath of filePaths) {
-    if (Date.now() >= deadlineMs) {
-      break;
-    }
-
-    const outline = graphDb.queryOutline(filePath).slice(0, GRAPH_ENRICHMENT_OUTLINE_LIMIT);
-    const neighbors = new Map<string, {
-      relationTypes: Set<string>;
-      symbols: GraphContextNeighborSummary['symbols'];
-    }>();
-
-    for (const node of outline) {
-      if (Date.now() >= deadlineMs) {
-        break;
-      }
-
-      for (const entry of graphDb.queryEdgesFrom(node.symbolId)) {
-        if (Date.now() >= deadlineMs) {
-          break;
-        }
-
-        const neighborNode = entry.targetNode;
-        if (!neighborNode || neighborNode.filePath === filePath) {
-          continue;
-        }
-
-        let bucket = neighbors.get(neighborNode.filePath);
-        if (!bucket) {
-          bucket = { relationTypes: new Set<string>(), symbols: [] };
-          neighbors.set(neighborNode.filePath, bucket);
-        }
-
-        bucket.relationTypes.add(entry.edge.edgeType);
-        if (bucket.symbols.length < GRAPH_ENRICHMENT_SYMBOL_LIMIT) {
-          bucket.symbols.push({
-            name: neighborNode.fqName,
-            kind: neighborNode.kind,
-            line: neighborNode.startLine,
-            direction: 'outgoing',
-            relation: entry.edge.edgeType,
-          });
-        }
-      }
-
-      for (const entry of graphDb.queryEdgesTo(node.symbolId)) {
-        if (Date.now() >= deadlineMs) {
-          break;
-        }
-
-        const neighborNode = entry.sourceNode;
-        if (!neighborNode || neighborNode.filePath === filePath) {
-          continue;
-        }
-
-        let bucket = neighbors.get(neighborNode.filePath);
-        if (!bucket) {
-          bucket = { relationTypes: new Set<string>(), symbols: [] };
-          neighbors.set(neighborNode.filePath, bucket);
-        }
-
-        bucket.relationTypes.add(entry.edge.edgeType);
-        if (bucket.symbols.length < GRAPH_ENRICHMENT_SYMBOL_LIMIT) {
-          bucket.symbols.push({
-            name: neighborNode.fqName,
-            kind: neighborNode.kind,
-            line: neighborNode.startLine,
-            direction: 'incoming',
-            relation: entry.edge.edgeType,
-          });
-        }
-      }
-    }
-
+    const payload = await callCodeGraphTool('code_graph_context', {
+      subject: filePath,
+      queryMode: 'neighborhood',
+      profile: 'quick',
+      budgetTokens: 800,
+    }, GRAPH_ENRICHMENT_TIMEOUT_MS);
+    const data = typeof payload.data === 'object' && payload.data !== null && !Array.isArray(payload.data)
+      ? payload.data as Record<string, unknown>
+      : {};
+    const graphContext = Array.isArray(data.graphContext)
+      ? data.graphContext as Array<Record<string, unknown>>
+      : [];
+    const firstSection = graphContext[0] ?? {};
+    const outline = Array.isArray(firstSection.nodes)
+      ? (firstSection.nodes as Array<Record<string, unknown>>).slice(0, GRAPH_ENRICHMENT_OUTLINE_LIMIT)
+      : [];
+    const edges = Array.isArray(firstSection.edges)
+      ? (firstSection.edges as Array<Record<string, unknown>>).slice(0, GRAPH_ENRICHMENT_NEIGHBOR_LIMIT)
+      : [];
     files.push({
       filePath,
       outline: outline.map((node) => ({
-        name: node.fqName,
-        kind: node.kind,
-        line: node.startLine,
+        name: typeof node.name === 'string' ? node.name : '',
+        kind: typeof node.kind === 'string' ? node.kind : '',
+        line: typeof node.line === 'number' ? node.line : 0,
       })),
-      neighbors: Array.from(neighbors.entries())
-        .map(([neighborPath, summary]) => ({
-          filePath: neighborPath,
-          relationTypes: Array.from(summary.relationTypes).sort(),
-          symbols: summary.symbols,
-        }))
-        .sort((left, right) => right.symbols.length - left.symbols.length)
-        .slice(0, GRAPH_ENRICHMENT_NEIGHBOR_LIMIT),
+      neighbors: edges.map((edge) => ({
+        filePath: typeof edge.to === 'string' ? edge.to : filePath,
+        relationTypes: typeof edge.type === 'string' ? [edge.type] : [],
+        symbols: [{
+          name: typeof edge.to === 'string' ? edge.to : '',
+          kind: 'symbol',
+          line: 0,
+          direction: 'outgoing' as const,
+          relation: typeof edge.type === 'string' ? edge.type : 'related',
+        }],
+      })),
     });
   }
 
@@ -649,21 +605,19 @@ async function resolveDispatchGraphContext(
 
   const buildPromise = new Promise<DispatchGraphContextMeta>((resolve) => {
     queueMicrotask(() => {
-      try {
-        const context = buildDispatchGraphContext(
-          filePaths,
-          startedAt + GRAPH_ENRICHMENT_TIMEOUT_MS,
-        );
-
+      void buildDispatchGraphContext(
+        filePaths,
+        startedAt + GRAPH_ENRICHMENT_TIMEOUT_MS,
+      ).then((resolvedContext) => {
         if (aborted || Date.now() - startedAt >= GRAPH_ENRICHMENT_TIMEOUT_MS) {
           return;
         }
 
         resolve({
-          ...context,
+          ...resolvedContext,
           latencyMs: Date.now() - startedAt,
         });
-      } catch (error: unknown) {
+      }).catch((error: unknown) => {
         if (aborted) return;
         resolve({
           status: 'unavailable',
@@ -673,7 +627,7 @@ async function resolveDispatchGraphContext(
           latencyMs: Date.now() - startedAt,
           error: error instanceof Error ? error.message : String(error),
         });
-      }
+      });
     });
   });
 

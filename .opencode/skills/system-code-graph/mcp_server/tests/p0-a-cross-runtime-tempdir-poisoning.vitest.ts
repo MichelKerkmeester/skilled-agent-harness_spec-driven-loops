@@ -5,17 +5,17 @@ import { join } from 'node:path';
 
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 
-import { ensureStateDir, getStatePath, loadState, saveState, type HookState } from '../hooks/claude/hook-state.js';
-import { handleStartup as handleClaudeStartup } from '../hooks/claude/session-prime.js';
-import { processStopHook } from '../hooks/claude/session-stop.js';
-import { handleCompact as handleGeminiCompact } from '../hooks/gemini/session-prime.js';
-import { getCachedSessionSummaryDecision } from '../handlers/session-resume.js';
-import { buildStartupBrief } from '../../../system-code-graph/mcp_server/lib/startup-brief.js';
-import { createSharedPayloadEnvelope } from '../lib/context/shared-payload.js';
+import { ensureStateDir, getStatePath, loadState, saveState, type HookState } from '../../../system-spec-kit/mcp_server/hooks/claude/hook-state.js';
+import { handleStartup as handleClaudeStartup } from '../../../system-spec-kit/mcp_server/hooks/claude/session-prime.js';
+import { processStopHook } from '../../../system-spec-kit/mcp_server/hooks/claude/session-stop.js';
+import { handleCompact as handleGeminiCompact } from '../../../system-spec-kit/mcp_server/hooks/gemini/session-prime.js';
+import { getCachedSessionSummaryDecision } from '../../../system-spec-kit/mcp_server/handlers/session-resume.js';
+import { buildStartupBrief } from '../lib/startup-brief.js';
+import { createSharedPayloadEnvelope } from '../../../system-spec-kit/mcp_server/lib/context/shared-payload.js';
 import {
   CANONICAL_FOLD_VERSION,
   getUnicodeRuntimeFingerprint,
-} from '../../scripts/lib/unicode-normalization';
+} from '../../../system-spec-kit/shared/unicode-normalization.js';
 
 function buildTranscriptFingerprint(transcriptPath: string): {
   fingerprint: string;

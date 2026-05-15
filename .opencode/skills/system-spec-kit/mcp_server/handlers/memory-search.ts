@@ -24,7 +24,7 @@ import { routeQuery } from '../lib/search/query-router.js';
 import { probeCocoIndexDaemon } from '../lib/cocoindex/daemon-probe.js';
 import { createEmptyQueryPlan, type QueryPlan } from '../lib/query/query-plan.js';
 import { calibrateCocoIndexOverfetch } from '../lib/search/cocoindex-calibration.js';
-import { getGraphReadinessSnapshot } from '../../../system-code-graph/mcp_server/lib/ensure-ready.js';
+import { getGraphReadinessSnapshotFromMarker } from '../lib/code-graph-boundary.js';
 import { mapGraphReadinessToTelemetry } from '../lib/search/graph-readiness-mapper.js';
 import {
   buildSearchDecisionEnvelope,
@@ -1198,7 +1198,7 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
       }),
     });
     const degradedReadiness = mapGraphReadinessToTelemetry(
-      getGraphReadinessSnapshot(process.cwd()),
+      getGraphReadinessSnapshotFromMarker(),
     );
     searchDecisionEnvelope = buildSearchDecisionEnvelope({
       requestId: searchDecisionRequestId,

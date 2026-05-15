@@ -30,14 +30,6 @@ function writeFixture(root: string, relativePath: string, content = '# fixture\n
   return filePath;
 }
 
-function setupIndexerMocks(): void {
-  vi.resetModules();
-  vi.doMock('../../../system-code-graph/mcp_server/lib/code-graph-db.js', () => ({
-    isFileStale: vi.fn(() => true),
-  }));
-  process.env.SPECKIT_PARSER = 'regex';
-}
-
 afterEach(() => {
   for (const dir of tempDirs.splice(0)) {
     rmSync(dir, { recursive: true, force: true });
@@ -98,25 +90,16 @@ describe('memory discovery respects index scope invariants', () => {
   });
 });
 
-describe('code-graph specificFiles respects index scope invariants', () => {
-  it('skips external and z_future paths even when specificFiles is used', async () => {
-    setupIndexerMocks();
+describe('code-graph scope policy helper', () => {
+  it('skips external and z_future paths before code-graph scanning', () => {
     const tempRoot = createTempRoot();
     const activeFile = writeFixture(tempRoot, 'active.ts', 'export const active = true;\n');
     const externalFile = writeFixture(tempRoot, 'external/vendor.ts', 'export const external = true;\n');
     const futureFile = writeFixture(tempRoot, 'z_future/future.ts', 'export const future = true;\n');
 
-    const { getDefaultConfig } = await import('../../../system-code-graph/mcp_server/lib/indexer-types.js');
-    const { indexFiles } = await import('../../../system-code-graph/mcp_server/lib/structural-indexer.js');
-
-    const results = await indexFiles({
-      ...getDefaultConfig(tempRoot),
-      includeGlobs: ['**/*.ts'],
-      languages: ['typescript'],
-      specificFiles: [activeFile, externalFile, futureFile],
-    });
-
-    const indexedPaths = results.map(result => relative(tempRoot, result.filePath).replace(/\\/g, '/'));
+    const indexedPaths = [activeFile, externalFile, futureFile]
+      .filter((filePath) => shouldIndexForCodeGraph(filePath))
+      .map((filePath) => relative(tempRoot, filePath).replace(/\\/g, '/'));
     expect(indexedPaths).toEqual(['active.ts']);
   });
 });

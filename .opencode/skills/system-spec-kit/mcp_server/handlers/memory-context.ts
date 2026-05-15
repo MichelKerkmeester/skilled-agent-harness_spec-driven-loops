@@ -14,9 +14,8 @@ import { toErrorMessage } from '../utils/index.js';
 import * as intentClassifier from '../lib/search/intent-classifier.js';
 import type { IntentTelemetry } from '../lib/search/intent-classifier.js';
 
-// Query-intent routing (Phase 020: structural/semantic/hybrid classification)
-import { classifyQueryIntent } from '../../../system-code-graph/mcp_server/lib/query-intent-classifier.js';
-import { buildContext } from '../../../system-code-graph/mcp_server/lib/code-graph-context.js';
+// Query-intent routing across the code-graph process boundary.
+import { callCodeGraphTool, classifyQueryIntent } from '../lib/code-graph-boundary.js';
 
 // Core handlers for routing
 import { handleMemorySearch } from './memory-search.js';
@@ -226,6 +225,23 @@ interface StructuralRoutingNudgeMeta {
   preferredTool: 'code_graph_query';
   message: string;
   preservesAuthority: 'session_bootstrap';
+}
+
+function extractGraphContextData(payload: Record<string, unknown>): Record<string, unknown> | null {
+  const data = payload.data;
+  if (!data || typeof data !== 'object' || Array.isArray(data)) {
+    return null;
+  }
+  const record = data as Record<string, unknown>;
+  const metadata = record.metadata;
+  if (!metadata || typeof metadata !== 'object' || Array.isArray(metadata)) {
+    return null;
+  }
+  const totalNodes = (metadata as Record<string, unknown>).totalNodes;
+  if (typeof totalNodes !== 'number' || totalNodes <= 0) {
+    return null;
+  }
+  return record;
 }
 
 interface ResumeRow extends Record<string, unknown> {
@@ -1445,31 +1461,15 @@ async function handleMemoryContext(args: ContextArgs): Promise<MCPResponse> {
 
         if (classification.intent === 'structural' && classification.confidence > 0.65) {
           try {
-            const cgResult = buildContext({ input: normalizedInput, subject: extractedSubject });
-            if (cgResult.metadata.totalNodes > 0) {
-              graphContextResult = {
-                graphContext: cgResult.graphContext,
-                textBrief: cgResult.textBrief,
-                combinedSummary: cgResult.combinedSummary,
-                nextActions: cgResult.nextActions,
-                metadata: cgResult.metadata,
-              };
-            }
+            const payload = await callCodeGraphTool('code_graph_context', { input: normalizedInput, subject: extractedSubject });
+            graphContextResult = extractGraphContextData(payload);
           } catch {
             // Code graph unavailable — fall through to semantic
           }
         } else if (classification.intent === 'hybrid') {
           try {
-            const cgResult = buildContext({ input: normalizedInput, subject: extractedSubject });
-            if (cgResult.metadata.totalNodes > 0) {
-              graphContextResult = {
-                graphContext: cgResult.graphContext,
-                textBrief: cgResult.textBrief,
-                combinedSummary: cgResult.combinedSummary,
-                nextActions: cgResult.nextActions,
-                metadata: cgResult.metadata,
-              };
-            }
+            const payload = await callCodeGraphTool('code_graph_context', { input: normalizedInput, subject: extractedSubject });
+            graphContextResult = extractGraphContextData(payload);
           } catch {
             // Code graph unavailable — hybrid degrades to semantic-only
           }

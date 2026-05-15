@@ -5,7 +5,7 @@
 //   and recordSearchDecision with SPECKIT_SEARCH_DECISION_AUDIT_PATH.
 // - Mocked: executePipeline returns deterministic candidate rows and stage
 //   metadata; core database-readiness checks are no-op stubs.
-// - Mocked: getGraphReadinessSnapshot returns deterministic readiness
+// - Mocked: getGraphReadinessSnapshotFromMarker returns deterministic readiness
 //   snapshots so TC-3 validates handler wiring without depending on repo
 //   graph state.
 // - Deterministic fields: tenantId, queryPlan presence, rerankGateDecision,
@@ -43,12 +43,12 @@ vi.mock('../lib/search/pipeline/index.js', () => ({
   executePipeline: vi.fn(),
 }));
 
-vi.mock('../../../system-code-graph/mcp_server/lib/ensure-ready.js', () => ({
-  getGraphReadinessSnapshot: vi.fn(),
+vi.mock('../lib/code-graph-boundary.js', () => ({
+  getGraphReadinessSnapshotFromMarker: vi.fn(),
 }));
 
 import { handleMemorySearch } from '../handlers/memory-search.js';
-import { getGraphReadinessSnapshot } from '../../../system-code-graph/mcp_server/lib/ensure-ready.js';
+import { getGraphReadinessSnapshotFromMarker } from '../lib/code-graph-boundary.js';
 import { executePipeline } from '../lib/search/pipeline/index.js';
 
 interface ParsedResponse {
@@ -210,7 +210,7 @@ describe('handleMemorySearch live SearchDecisionEnvelope seam', () => {
     auditPath = join(tempDir, 'search-decisions.jsonl');
     vi.stubEnv('SPECKIT_SEARCH_DECISION_AUDIT_PATH', auditPath);
     vi.mocked(executePipeline).mockResolvedValue(pipelineFixture());
-    vi.mocked(getGraphReadinessSnapshot).mockReturnValue({
+    vi.mocked(getGraphReadinessSnapshotFromMarker).mockReturnValue({
       freshness: 'fresh',
       action: 'none',
       reason: 'all tracked files are up-to-date',
@@ -219,7 +219,7 @@ describe('handleMemorySearch live SearchDecisionEnvelope seam', () => {
 
   afterEach(() => {
     vi.mocked(executePipeline).mockReset();
-    vi.mocked(getGraphReadinessSnapshot).mockReset();
+    vi.mocked(getGraphReadinessSnapshotFromMarker).mockReset();
     vi.unstubAllEnvs();
     while (tempDirs.length > 0) {
       const tempDir = tempDirs.pop();
@@ -278,7 +278,7 @@ describe('handleMemorySearch live SearchDecisionEnvelope seam', () => {
   });
 
   it('TC-3 emits snapshot-derived degradedReadiness from memory_search', async () => {
-    vi.mocked(getGraphReadinessSnapshot).mockReturnValueOnce({
+    vi.mocked(getGraphReadinessSnapshotFromMarker).mockReturnValueOnce({
       freshness: 'empty',
       action: 'full_scan',
       reason: 'graph is empty (0 nodes)',
@@ -306,6 +306,6 @@ describe('handleMemorySearch live SearchDecisionEnvelope seam', () => {
       degraded: true,
     });
     expect(envelope.degradedReadiness?.freshness).toBeDefined();
-    expect(getGraphReadinessSnapshot).toHaveBeenCalledWith(process.cwd());
+    expect(getGraphReadinessSnapshotFromMarker).toHaveBeenCalled();
   });
 });
