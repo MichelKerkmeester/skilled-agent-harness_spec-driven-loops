@@ -1,0 +1,60 @@
+name: Isolation Check
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.opencode/skills/system-spec-kit/mcp_server/**'
+      - '.opencode/skills/system-spec-kit/shared/**'
+
+jobs:
+  no-cross-skill-imports:
+    name: No cross-skill imports from spec-kit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: Install ripgrep
+        run: sudo apt-get update && sudo apt-get install -y ripgrep
+      - name: Audit spec-kit MCP source for system-code-graph imports
+        run: |
+          set -euo pipefail
+          # Fail if any TS/JS source file in spec-kit MCP server imports from system-code-graph.
+          # The /dist/ directory is excluded (stale compiled output regenerates on next tsc).
+          # The test/stress files are also excluded because they may mock the boundary.
+          MATCHES=$(rg -n "from ['\"]?.*system-code-graph" \
+            .opencode/skills/system-spec-kit/mcp_server/ \
+            --type ts --type js \
+            --glob '!**/dist/**' \
+            --glob '!**/node_modules/**' \
+            --glob '!**/tests/**' \
+            --glob '!**/stress_test/**' \
+            || true)
+          if [ -n "$MATCHES" ]; then
+            echo "::error::Cross-skill imports detected in spec-kit/mcp_server/."
+            echo "$MATCHES"
+            echo ""
+            echo "Per the 015 isolation arc + 018 remediation, spec-kit MUST NOT import from system-code-graph at the TypeScript source level."
+            echo "Use the boundary wrapper (mcp_server/lib/code-graph-boundary.ts) or @spec-kit/shared types instead."
+            exit 1
+          fi
+          echo "✅ No cross-skill imports found."
+      - name: Audit spec-kit MCP source for system-skill-advisor imports
+        run: |
+          set -euo pipefail
+          MATCHES=$(rg -n "from ['\"]?.*system-skill-advisor" \
+            .opencode/skills/system-spec-kit/mcp_server/ \
+            --type ts --type js \
+            --glob '!**/dist/**' \
+            --glob '!**/node_modules/**' \
+            --glob '!**/tests/**' \
+            --glob '!**/stress_test/**' \
+            || true)
+          if [ -n "$MATCHES" ]; then
+            echo "::error::Cross-skill imports detected in spec-kit/mcp_server/."
+            echo "$MATCHES"
+            echo ""
+            echo "Per the 016 isolation arc, spec-kit MUST NOT import from system-skill-advisor at the TypeScript source level."
+            exit 1
+          fi
+          echo "✅ No skill-advisor imports found."
