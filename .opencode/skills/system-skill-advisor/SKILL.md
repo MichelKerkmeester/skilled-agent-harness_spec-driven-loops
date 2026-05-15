@@ -83,6 +83,22 @@ Resource domains:
 - `references/` contains package policies and architectural summaries used by extraction and maintenance work.
 - `mcp_server/` owns handlers, schemas, tools, scripts, tests, library modules, and the package-local SQLite database.
 
+### Routing key
+
+The routing key is the prompt's intent class, scored by `advisor_recommend` against indexed skill metadata, hook signals and graph-derived relations. Operators may override the advisor by naming a skill explicitly in the prompt.
+
+### Fallback contract
+
+- **Low confidence (top score below the configured threshold):** surface the top 3 candidates with their scores, request disambiguation and load no skill until the operator picks one.
+- **Advisor MCP unavailable:** fall back to keyword matching against each skill's frontmatter `trigger_phrases`, then announce the degraded mode.
+- **Empty result:** never route silently. Always emit a "no candidate above threshold" notice with a disambiguation checklist.
+
+### Anti-patterns
+
+- Static skill inventories that miss newly-installed skills. The advisor reads `.opencode/skills/*/SKILL.md` at every call so the inventory stays current.
+- Hardcoded tool IDs in caller code. Consult the live registration in `mcp_server/tools/index.ts` and `mcp_server/tools/skill-graph-tools.ts`.
+- Returning a single recommendation when two top scores are within 0.1 of each other. Surface both candidates instead.
+
 ---
 
 <!-- /ANCHOR:2-smart-routing -->

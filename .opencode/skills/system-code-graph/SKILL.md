@@ -61,6 +61,22 @@ Use this routing before choosing a tool or reference:
 
 The standalone MCP server name is `mk-code-index`. Tool IDs stay stable as `code_graph_*`, `detect_changes` and `ccc_*`.
 
+### Routing key
+
+The routing key is the natural-language intent class returned by `code_graph_classify_query_intent` (structural / semantic / hybrid). Operators may override by naming a tool directly in the prompt.
+
+### Fallback contract
+
+- **Unclassifiable intent:** call `code_graph_classify_query_intent` first. If the classifier returns low confidence, ask for one concrete file path, symbol or error message before proceeding.
+- **`mk_code_index` MCP unavailable:** report the state and stop. Structural queries do not fall back to text search because ambiguous text-search results mislead more than they help.
+- **Graph not ready (`status` returns `blocked`, `empty` or `absent`):** call `code_graph_scan` first, then retry. Never return a stale or empty graph result as if it were authoritative.
+
+### Anti-patterns
+
+- Hardcoded tool lists in router code. Consult `mcp_server/tool-schemas.ts` `CODE_GRAPH_TOOL_SCHEMAS` as the source of truth.
+- Using `code_graph_query` for unclassified queries. Classify intent first so the right tool runs.
+- Treating `detect_changes` as a general query tool. It is diff-driven impact analysis with a fixed schema, not a query surface.
+
 <!-- /ANCHOR:smart-routing -->
 
 ---
