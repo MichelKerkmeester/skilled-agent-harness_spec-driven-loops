@@ -30,7 +30,7 @@ This catalog is the current feature inventory for `.opencode/skills/system-code-
 
 ## 1. OVERVIEW
 
-The catalog covers 17 runtime features across 8 groups. Per-feature files carry the implementation surface, trigger path, current automation class, fallback and cross-references.
+The catalog covers 17 runtime features plus 1 migrated coverage-graph reference across 8 groups. Per-feature files carry the implementation surface, trigger path, current automation class, fallback and cross-references.
 
 **Feature-to-tool granularity (F013/F014).** The 17 features map to **10 MCP tools** in the `mk-code-index` server because individual features often compose multiple operations on the same tool (e.g. `code_graph_query` provides multiple query operations — `outline`, `calls_from`, `calls_to`, `imports_from`, `imports_to`, `blast_radius` — each catalogued as its own feature). Additionally, the **coverage-graph deep-loop tools** (`deep_loop_graph_*`) live in the **mk-spec-memory** MCP server (`mcp__mk_spec_memory__deep_loop_graph_*`), not in `mk-code-index`. They appear in this catalog for cross-skill discoverability since they share the structural-graph workflow surface.
 
@@ -40,7 +40,7 @@ The catalog covers 17 runtime features across 8 groups. Per-feature files carry 
 | [02--manual-scan-verify-status](./02--manual-scan-verify-status/) | 3 | Manual scan / verify / status |
 | [03--detect-changes](./03--detect-changes/) | 1 | Detect-changes preflight |
 | [04--context-retrieval](./04--context-retrieval/) | 2 | Context retrieval |
-| [05--coverage-graph](./05--coverage-graph/) | 4 | Coverage graph |
+| [05--coverage-graph](./05--coverage-graph/) | 5 | Coverage graph |
 | [06--mcp-tool-surface](./06--mcp-tool-surface/) | 1 | MCP tool surface |
 | [07--ccc-integration](./07--ccc-integration/) | 3 | CCC integration |
 | [08--doctor-code-graph](./08--doctor-code-graph/) | 1 | Doctor code graph |
@@ -94,6 +94,7 @@ Reality classification source: read-path freshness is half-auto because requeste
 | deep_loop_graph_status | [05--coverage-graph/02-deep-loop-graph-status.md](./05--coverage-graph/02-deep-loop-graph-status.md) |
 | deep_loop_graph_upsert | [05--coverage-graph/03-deep-loop-graph-upsert.md](./05--coverage-graph/03-deep-loop-graph-upsert.md) |
 | deep_loop_graph_convergence | [05--coverage-graph/04-deep-loop-graph-convergence.md](./05--coverage-graph/04-deep-loop-graph-convergence.md) |
+| deep_loop_graph_query read path | [05--coverage-graph/05-deep-loop-graph-query-read-path.md](./05--coverage-graph/05-deep-loop-graph-query-read-path.md) |
 
 ---
 

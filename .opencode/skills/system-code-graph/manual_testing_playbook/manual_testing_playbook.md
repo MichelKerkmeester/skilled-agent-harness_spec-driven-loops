@@ -37,7 +37,7 @@ This playbook validates the code graph runtime at `.opencode/skills/system-code-
 
 ## 1. OVERVIEW
 
-The playbook contains 21 scenarios across 9 groups. It targets the current reality map: read-path checks are bounded and half-auto, full scan/verify/status are operator actions, `detect_changes` is read-only and blocks on stale state, CCC tools are manual and coverage graph automation is limited to deep-loop command YAML. Group 09 adds post-rename infrastructure probes from packet 016.
+The playbook contains 22 scenarios across 9 groups. It targets the current reality map: read-path checks are bounded and half-auto, full scan/verify/status are operator actions, `detect_changes` is read-only and blocks on stale state, CCC tools are manual and coverage graph automation is limited to deep-loop command YAML. Group 09 adds post-rename infrastructure probes from packet 016.
 
 | Group | Scenario Files |
 | --- | --- |
@@ -124,6 +124,7 @@ Operators may dispatch sub-agents in parallel waves for independent scenarios, e
 | --- | --- | --- |
 | 009 | deep_loop_graph_convergence yaml fire | [009-deep-loop-graph-convergence-yaml-fire.md](./05--coverage-graph/009-deep-loop-graph-convergence-yaml-fire.md) |
 | 010 | deep_loop_graph_upsert conditional | [010-deep-loop-graph-upsert-conditional.md](./05--coverage-graph/010-deep-loop-graph-upsert-conditional.md) |
+| 025 | deep_loop_graph_query read path | [025-deep-loop-graph-query-read-path.md](./05--coverage-graph/025-deep-loop-graph-query-read-path.md) |
 
 ---
 

@@ -3865,7 +3865,7 @@ This split playbook keeps automated coverage references in three places:
 | 283 | Context Preservation | Skill graph status | [283](22--context-preservation-and-code-graph/283-skill-graph-status.md) | [22--context-preservation-and-code-graph/28-skill-graph-status.md](../feature_catalog/22--context-preservation-and-code-graph/28-skill-graph-status.md) |
 | 284 | Context Preservation | Skill graph query | [284](22--context-preservation-and-code-graph/284-skill-graph-query.md) | [22--context-preservation-and-code-graph/27-skill-graph-query.md](../feature_catalog/22--context-preservation-and-code-graph/27-skill-graph-query.md) |
 | 285 | Context Preservation | Skill graph validate | [285](22--context-preservation-and-code-graph/285-skill-graph-validate.md) | [22--context-preservation-and-code-graph/29-skill-graph-validate.md](../feature_catalog/22--context-preservation-and-code-graph/29-skill-graph-validate.md) |
-| 286 | Context Preservation | Coverage graph query | [286](22--context-preservation-and-code-graph/286-coverage-graph-query.md) | [22--context-preservation-and-code-graph/30-coverage-graph-query.md](../feature_catalog/22--context-preservation-and-code-graph/30-coverage-graph-query.md) |
+| 286 | Code Graph | Coverage graph query | [025](../../system-code-graph/manual_testing_playbook/05--coverage-graph/025-deep-loop-graph-query-read-path.md) | [05--coverage-graph/05-deep-loop-graph-query-read-path.md](../../system-code-graph/feature_catalog/05--coverage-graph/05-deep-loop-graph-query-read-path.md) |
 
 ---
 | 323 | Doctor Commands | /doctor memory fresh-install bootstrap | [323](23--doctor-commands/323-doctor-memory-fresh-install.md) | [.opencode/commands/doctor.md](../../../commands/doctor.md) |

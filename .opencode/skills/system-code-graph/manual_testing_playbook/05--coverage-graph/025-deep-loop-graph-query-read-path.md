@@ -1,13 +1,13 @@
 ---
-title: "286 -- Coverage graph query"
+title: "025 deep_loop_graph_query read path"
 description: "Manual scenario for validating deep_loop_graph_query read paths."
 ---
 
-# 286 -- Coverage graph query
+# 025 deep_loop_graph_query read path
 
 ## 1. OVERVIEW
 
-This scenario validates coverage graph query read paths for `286`. It focuses on confirming that `deep_loop_graph_query` reads namespaced deep-loop coverage graph state and returns coverage-gap results or a clean empty state.
+This scenario validates coverage graph query read paths. It focuses on confirming that `deep_loop_graph_query` reads namespaced deep-loop coverage graph state and returns coverage-gap results or a clean empty state.
 
 ### Why This Matters
 
@@ -59,7 +59,7 @@ Tool response transcript showing coverage-gap results or an explicit empty-state
 
 ## 4. SOURCE METADATA
 
-- Group: Context Preservation and Code Graph
-- Playbook ID: 286
+- Group: Coverage graph
+- Playbook ID: 025
 - Canonical root source: `manual_testing_playbook.md`
-- Feature file path: `22--context-preservation-and-code-graph/286-coverage-graph-query.md`
+- Feature file path: `05--coverage-graph/025-deep-loop-graph-query-read-path.md`

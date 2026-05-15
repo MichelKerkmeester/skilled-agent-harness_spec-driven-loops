@@ -4674,5 +4674,6 @@ The active package includes a dedicated category folder with feature records for
 ### Source Files
 
 - Category overview: [`22--context-preservation-and-code-graph/01-category-overview.md`](22--context-preservation-and-code-graph/01-category-overview.md)
-- Latest feature: [`22--context-preservation-and-code-graph/30-coverage-graph-query.md`](22--context-preservation-and-code-graph/30-coverage-graph-query.md)
+- Latest spec-kit-owned feature: [`22--context-preservation-and-code-graph/25-resource-map-template.md`](22--context-preservation-and-code-graph/25-resource-map-template.md)
+- Code-graph-owned entries moved to: [`../system-code-graph/feature_catalog/feature_catalog.md`](../system-code-graph/feature_catalog/feature_catalog.md)
 - Playbook counterpart: [`../manual_testing_playbook/22--context-preservation-and-code-graph/`](../manual_testing_playbook/22--context-preservation-and-code-graph/)
