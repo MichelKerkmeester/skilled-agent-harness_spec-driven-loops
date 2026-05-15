@@ -19,7 +19,7 @@ import {
   type AdvisorGenerationSnapshot,
   type AdvisorGenerationRecoveryPath,
 } from './generation.js';
-import type { AdvisorEnvelopeMetadata } from '../../../system-spec-kit/mcp_server/lib/context/shared-payload.js';
+import type { AdvisorEnvelopeMetadata } from './shared/shared-payload.js';
 import {
   classifyAdvisorException,
   type AdvisorErrorClass,

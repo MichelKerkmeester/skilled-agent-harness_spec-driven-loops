@@ -11,7 +11,7 @@ import {
   type SharedPayloadSection,
   type SharedPayloadSourceRef,
   type SharedPayloadTrustState,
-} from '../../../system-spec-kit/mcp_server/lib/context/shared-payload.js';
+} from './shared/shared-payload.js';
 import {
   getAdvisorFreshness,
   type AdvisorFreshnessResult,

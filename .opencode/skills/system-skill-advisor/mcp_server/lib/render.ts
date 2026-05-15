@@ -2,7 +2,7 @@
 // MODULE: Skill Advisor Brief Renderer
 // ───────────────────────────────────────────────────────────────
 
-import { canonicalFold } from '../../../system-spec-kit/shared/unicode-normalization.js';
+import { canonicalFold } from './shared/unicode-normalization.js';
 import type { AdvisorRecommendation } from './subprocess.js';
 
 // ───────────────────────────────────────────────────────────────

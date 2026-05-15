@@ -2,7 +2,7 @@
 // MODULE: Skill Advisor Prompt Policy
 // ───────────────────────────────────────────────────────────────
 
-import { canonicalFold } from '../../../system-spec-kit/shared/unicode-normalization.js';
+import { canonicalFold } from './shared/unicode-normalization.js';
 
 export interface AdvisorPromptPolicyResult {
   readonly fire: boolean;
