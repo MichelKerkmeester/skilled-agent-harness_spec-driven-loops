@@ -3,7 +3,7 @@
 // ───────────────────────────────────────────────────────────────
 
 import { appendFileSync, existsSync, mkdirSync, renameSync, statSync } from 'node:fs';
-import { dirname, resolve } from 'node:path';
+import { dirname, isAbsolute, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const DEFAULT_MAX_BYTES = 10 * 1024 * 1024;
@@ -36,13 +36,61 @@ function defaultShadowDeltaPath(): string {
   return resolve(here, '..', '..', 'data', 'shadow-deltas.jsonl');
 }
 
+function findWorkspaceRoot(start = process.cwd()): string {
+  let current = resolve(start);
+  while (true) {
+    if (existsSync(resolve(current, '.opencode'))) {
+      return current;
+    }
+    const parent = dirname(current);
+    if (parent === current) {
+      return resolve(start);
+    }
+    current = parent;
+  }
+}
+
+function isPathInside(rootPath: string, targetPath: string): boolean {
+  const rel = relative(rootPath, targetPath);
+  return rel === '' || (!rel.startsWith('..') && !isAbsolute(rel));
+}
+
+function resolveShadowDeltaPath(options: RecordShadowDeltaOptions): { ok: true; path: string } | { ok: false; path: string; error: string } {
+  if (options.logPath) {
+    return { ok: true, path: resolve(options.logPath) };
+  }
+
+  const envPath = process.env.SPECKIT_ADVISOR_SHADOW_DELTA_PATH;
+  if (!envPath) {
+    return { ok: true, path: defaultShadowDeltaPath() };
+  }
+
+  const resolvedPath = resolve(envPath);
+  const workspaceRoot = findWorkspaceRoot();
+  if (!isPathInside(workspaceRoot, resolvedPath)) {
+    return {
+      ok: false,
+      path: resolvedPath,
+      error: `SPECKIT_ADVISOR_SHADOW_DELTA_PATH must stay under workspace root: ${workspaceRoot}`,
+    };
+  }
+  return { ok: true, path: resolvedPath };
+}
+
 function recordShadowDelta(
   record: ShadowDeltaRecord,
   options: RecordShadowDeltaOptions = {},
 ): RecordShadowDeltaResult {
-  const logPath = options.logPath
-    ?? process.env.SPECKIT_ADVISOR_SHADOW_DELTA_PATH
-    ?? defaultShadowDeltaPath();
+  const resolved = resolveShadowDeltaPath(options);
+  const logPath = resolved.path;
+  if (!resolved.ok) {
+    return {
+      written: false,
+      logPath,
+      rotated: false,
+      error: resolved.error,
+    };
+  }
   try {
     const rotated = rotateIfNeeded(logPath, options.maxBytes ?? DEFAULT_MAX_BYTES, options.now ?? new Date());
     mkdirSync(dirname(logPath), { recursive: true });
@@ -72,5 +120,5 @@ function rotateIfNeeded(logPath: string, maxBytes: number, now: Date): boolean {
 
 export {
   recordShadowDelta,
+  resolveShadowDeltaPath,
 };
-

@@ -49,6 +49,8 @@ let stateFile = path.join(dbDir, '.mk-skill-advisor-launcher.json');
 const rel = (p) => path.relative(root, p) || '.';
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 const now = () => new Date().toISOString();
+const BOOTSTRAP_LOCK_TIMEOUT_MS = 120000;
+const SOURCE_DIRS = ['handlers', 'lib', 'schemas', 'tools'];
 let childProcess = null;
 
 function log(message) {
@@ -113,8 +115,47 @@ function requiredArtifacts() {
   ];
 }
 
+function latestSourceMtimeMs() {
+  let latest = 0;
+  const candidates = [
+    path.join(mcpDir, 'advisor-server.ts'),
+    path.join(mcpDir, 'package.json'),
+    path.join(mcpDir, 'tsconfig.json'),
+    path.join(mcpDir, 'tsconfig.build.json'),
+    ...SOURCE_DIRS.map((dir) => path.join(mcpDir, dir)),
+  ];
+
+  const visit = (candidate) => {
+    if (!exists(candidate)) return;
+    const stat = fs.statSync(candidate);
+    if (stat.isDirectory()) {
+      for (const entry of fs.readdirSync(candidate)) {
+        visit(path.join(candidate, entry));
+      }
+      return;
+    }
+    if (candidate.endsWith('.ts') || candidate.endsWith('.json')) {
+      latest = Math.max(latest, stat.mtimeMs);
+    }
+  };
+
+  for (const candidate of candidates) {
+    visit(candidate);
+  }
+  return latest;
+}
+
 function artifactsReady() {
-  return requiredArtifacts().every(exists);
+  const artifacts = requiredArtifacts();
+  if (!artifacts.every(exists)) {
+    return false;
+  }
+
+  const sourceMtime = latestSourceMtimeMs();
+  if (sourceMtime === 0) {
+    return true;
+  }
+  return artifacts.every((artifact) => fs.statSync(artifact).mtimeMs >= sourceMtime);
 }
 
 function buildIfNeeded(actions) {
@@ -137,9 +178,24 @@ function buildIfNeeded(actions) {
   }
 }
 
-async function acquireBootstrapLock() {
+function removeStaleBootstrapLock(staleMs = BOOTSTRAP_LOCK_TIMEOUT_MS) {
+  if (!exists(lockDir)) {
+    return false;
+  }
+  const ageMs = Date.now() - fs.statSync(lockDir).mtimeMs;
+  if (ageMs <= staleMs) {
+    return false;
+  }
+  fs.rmSync(lockDir, { recursive: true, force: true });
+  log(`removed stale bootstrap lock at ${rel(lockDir)} (${Math.round(ageMs / 1000)}s old)`);
+  return true;
+}
+
+async function acquireBootstrapLock(options = {}) {
   fs.mkdirSync(dbDir, { recursive: true });
-  const deadline = Date.now() + 120000;
+  const deadline = Date.now() + (options.timeoutMs ?? BOOTSTRAP_LOCK_TIMEOUT_MS);
+  const staleMs = options.staleMs ?? BOOTSTRAP_LOCK_TIMEOUT_MS;
+  const retrySleepMs = options.retrySleepMs ?? 1000;
   while (true) {
     try {
       fs.mkdirSync(lockDir);
@@ -151,10 +207,13 @@ async function acquireBootstrapLock() {
       if (artifactsReady()) {
         return false;
       }
+      if (removeStaleBootstrapLock(staleMs)) {
+        continue;
+      }
       if (Date.now() > deadline) {
         throw new Error(`bootstrap lock timed out at ${rel(lockDir)}`);
       }
-      await sleep(1000);
+      await sleep(retrySleepMs);
     }
   }
 }
@@ -181,23 +240,26 @@ function launchServer() {
   });
 }
 
-for (const signal of ['SIGINT', 'SIGTERM', 'SIGHUP']) {
-  process.on(signal, () => {
-    if (childProcess && !childProcess.killed) {
-      childProcess.kill(signal);
-      setTimeout(() => process.exit(128), 5000).unref();
-      return;
-    }
-    process.exit(128);
-  });
+function installSignalHandlers() {
+  for (const signal of ['SIGINT', 'SIGTERM', 'SIGHUP']) {
+    process.on(signal, () => {
+      if (childProcess && !childProcess.killed) {
+        childProcess.kill(signal);
+        setTimeout(() => process.exit(128), 5000).unref();
+        return;
+      }
+      process.exit(128);
+    });
+  }
 }
 
-(async () => {
+async function main() {
   const started = now();
   const actions = [];
   let lockHeld = false;
 
   try {
+    installSignalHandlers();
     refreshPaths();
     log(`DB: ${advisorDbPath()}`);
 
@@ -236,4 +298,25 @@ for (const signal of ['SIGINT', 'SIGTERM', 'SIGHUP']) {
       fs.rmSync(lockDir, { recursive: true, force: true });
     }
   }
-})();
+}
+
+function configureLauncherPathsForTesting(nextPaths) {
+  if (nextPaths.skillsDir) skillsDir = nextPaths.skillsDir;
+  if (nextPaths.kitDir) kitDir = nextPaths.kitDir;
+  if (nextPaths.mcpDir) mcpDir = nextPaths.mcpDir;
+  if (nextPaths.dbDir) dbDir = nextPaths.dbDir;
+  if (nextPaths.lockDir) lockDir = nextPaths.lockDir;
+  if (nextPaths.stateFile) stateFile = nextPaths.stateFile;
+}
+
+if (require.main === module) {
+  void main();
+}
+
+module.exports = {
+  acquireBootstrapLock,
+  artifactsReady,
+  configureLauncherPathsForTesting,
+  latestSourceMtimeMs,
+  removeStaleBootstrapLock,
+};

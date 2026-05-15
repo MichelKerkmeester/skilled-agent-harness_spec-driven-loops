@@ -9,6 +9,7 @@ describe('advisor shadow sink', () => {
   const tempDirs: string[] = [];
 
   afterEach(() => {
+    delete process.env.SPECKIT_ADVISOR_SHADOW_DELTA_PATH;
     while (tempDirs.length > 0) {
       const dir = tempDirs.pop();
       if (dir) rmSync(dir, { recursive: true, force: true });
@@ -63,5 +64,24 @@ describe('advisor shadow sink', () => {
     expect(existsSync(`${logPath}.2026-04-29T00-00-00-000Z.rotated`)).toBe(true);
     expect(readFileSync(logPath, 'utf8')).toContain('"recommendation":"sk-git"');
   });
-});
 
+  it('rejects env-var shadow delta paths outside the workspace root', () => {
+    const tempDir = mkdtempSync(join(tmpdir(), 'shadow-sink-outside-'));
+    tempDirs.push(tempDir);
+    process.env.SPECKIT_ADVISOR_SHADOW_DELTA_PATH = join(tempDir, 'shadow-deltas.jsonl');
+
+    const result = recordShadowDelta({
+      prompt: 'prompt',
+      recommendation: 'sk-code',
+      liveScore: 0.1,
+      shadowScore: 0.2,
+      delta: 0.1,
+      dominantLane: null,
+      timestamp: '2026-04-29T00:00:00.000Z',
+    });
+
+    expect(result.written).toBe(false);
+    expect(result.error).toContain('must stay under workspace root');
+    expect(existsSync(result.logPath)).toBe(false);
+  });
+});
