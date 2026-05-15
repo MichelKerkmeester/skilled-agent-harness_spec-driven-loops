@@ -1,0 +1,111 @@
+---
+title: "Ownership Boundary: system-spec-kit vs system-code-graph"
+description: "Explains why deep-loop and coverage tools remain in system-spec-kit while structural indexing lives in system-code-graph, with integration points and extraction history."
+trigger_phrases:
+  - "ownership boundary"
+  - "deep loop vs code graph"
+  - "coverage graph ownership"
+  - "spec-kit code-graph split"
+---
+
+# Ownership Boundary: system-spec-kit vs system-code-graph
+
+<!-- sk-doc-template: skill_reference -->
+
+---
+
+<!-- ANCHOR:1-overview -->
+## 1. OVERVIEW
+
+This reference documents the intentional split between workflow state, which lives in `system-spec-kit`, and structural code data, which lives in `system-code-graph`. The split emerged from a multi-phase extraction. It prevents confusion about why some graph-related code stayed in spec-kit.
+
+The split keeps two concerns separate: deep-loop research and review workflows are tightly coupled to spec-folder lifecycle, while the structural indexer is a standalone read service that other skills can consume.
+
+---
+
+<!-- /ANCHOR:1-overview -->
+
+<!-- ANCHOR:2-what-lives-in-system-spec-kit -->
+## 2. WHAT LIVES IN SYSTEM-SPEC-KIT
+
+`system-spec-kit` retains two library trees that own workflow state:
+
+- **Deep-loop library** - `mcp_server/lib/deep-loop/` covers executor configuration (`executor-config.ts`), executor audit logs (`executor-audit.ts`), post-dispatch validation (`post-dispatch-validate.ts`) and prompt rendering (`prompt-pack.ts`).
+- **Coverage-graph library** - `mcp_server/lib/coverage-graph/` covers session-scoped deep-loop coverage graph storage (`coverage-graph-db.ts`), relationship queries (`coverage-graph-query.ts`) and convergence signal aggregation (`coverage-graph-signals.ts`).
+
+Both libraries own research and review loop state, iteration logs and convergence snapshots. They are tightly coupled to spec-folder lifecycle and memory continuity, so moving them would divorce research state from the spec-kit workflow engine.
+
+---
+
+<!-- /ANCHOR:2-what-lives-in-system-spec-kit -->
+
+<!-- ANCHOR:3-what-lives-in-system-code-graph -->
+## 3. WHAT LIVES IN SYSTEM-CODE-GRAPH
+
+`system-code-graph` owns four areas of pure structural code data:
+
+- **Structural indexer** - AST parsing through tree-sitter and symbol extraction.
+- **SQLite graph storage** - Tables `code_files`, `code_nodes` and `code_edges` plus their indexes.
+- **Readiness state machine** - Freshness states `fresh`, `stale`, `empty`, `error` and `absent` with transition gates.
+- **MCP tool surface** - 10 tools through the `mk_code_index` server, including `code_graph_*`, `ccc_*` and `detect_changes`.
+
+The package is a pure code-structure service with no workflow dependencies. Independent iteration on graph algorithms can proceed without touching spec-kit.
+
+---
+
+<!-- /ANCHOR:3-what-lives-in-system-code-graph -->
+
+<!-- ANCHOR:4-integration-points -->
+## 4. INTEGRATION POINTS
+
+Four contracts cross the boundary:
+
+- **Startup briefs** - `code-graph-boundary.ts` in `system-spec-kit` reads the `.code-graph-readiness.json` marker from the `system-code-graph` database directory.
+- **MCP tool calls** - `callCodeGraphTool()` spawns the `mk-code-index` launcher subprocess for query, status and classify operations.
+- **In-process library imports** - Handlers and hooks in `system-spec-kit` import directly from `system-code-graph/mcp_server/lib/*` for shared readiness helpers.
+- **Shared SQLite file** - Single-writer scan loop in `system-code-graph`. Readers in both skills coordinate through WAL mode on the same database file.
+
+The contract boundary is the readiness marker, the MCP tool interface and the shared database file. `system-spec-kit` owns workflow orchestration and research state. `system-code-graph` owns the structural data and read-path safety.
+
+---
+
+<!-- /ANCHOR:4-integration-points -->
+
+<!-- ANCHOR:5-extraction-history -->
+## 5. EXTRACTION HISTORY
+
+The boundary emerged from an extraction packet under `system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/`. The packet executed a six-phase migration covering child phases 015 through 020 with 14 follow-on phases 021 through 034.
+
+ADR-001 locked the early decisions: stable tool IDs, database move and sibling imports. ADR-002 superseded the original co-resident-MCP question and moved the code graph to a standalone MCP topology. The migration moved 108 code-graph files. Deep-loop and coverage-graph were explicitly excluded from the move.
+
+---
+
+<!-- /ANCHOR:5-extraction-history -->
+
+<!-- ANCHOR:6-decision-rationale -->
+## 6. DECISION RATIONALE
+
+The split reflects two different ownership models:
+
+- **Deep-loop stayed** because it owns executor configuration and research-loop state. The loop state is keyed by spec folder and tracks per-iteration audit, prompt assembly and post-dispatch validation.
+- **Coverage-graph stayed** because each coverage graph is scoped to a deep-loop session inside a spec folder. The data has no meaning outside that workflow.
+- **Structural indexing moved** because it is a reusable read service. Symbol extraction, edge construction and graph query paths are independent of any spec workflow.
+
+Separation lets graph algorithms iterate independently of workflow orchestration and keeps cross-package import directions simple.
+
+---
+
+<!-- /ANCHOR:6-decision-rationale -->
+
+<!-- ANCHOR:7-future-considerations -->
+## 7. FUTURE CONSIDERATIONS
+
+There are no current plans to migrate deep-loop or coverage-graph to a standalone package. Roadmap notes:
+
+- A future move would require decoupling deep-loop from spec-folder lifecycle and memory continuity.
+- A move would only be considered if deep-loop became a general-purpose executor service beyond spec workflows.
+- Any change would need its own ADR, packet and migration plan with explicit before-and-after ownership tables.
+
+Planned status: stable. The boundary is treated as settled until a future packet proposes otherwise.
+
+<!-- /ANCHOR:7-future-considerations -->
