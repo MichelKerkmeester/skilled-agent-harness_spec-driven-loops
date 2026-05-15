@@ -2,3 +2,6 @@
 {"type":"iteration","iteration":1,"track":1,"newInfoRatio":0.00,"status":"complete","focus":"system-spec-kit/SKILL.md drift survey","findings":5,"timestamp":"2026-05-15T17:19:59Z"}
 {"type":"iteration","iteration":2,"track":1,"newInfoRatio":1.00,"status":"complete","focus":"system-spec-kit/SKILL.md anchor gap","findings":7,"timestamp":"2026-05-15T17:19:59Z"}
 {"type":"iteration","iteration":3,"track":1,"newInfoRatio":0.85,"status":"complete","focus":"system-spec-kit/SKILL.md content drift","findings":6,"timestamp":"2026-05-15T17:19:59Z"}
+{"type":"iteration","iteration":4,"track":2,"newInfoRatio":0.85,"status":"complete","focus":"system-code-graph/SKILL.md drift survey","findings":6,"timestamp":"2026-05-15T17:21:21Z"}
+{"type":"iteration","iteration":5,"track":2,"newInfoRatio":0.18,"status":"complete","focus":"system-code-graph/SKILL.md content","findings":2,"timestamp":"2026-05-15T17:21:21Z"}
+{"type":"iteration","iteration":6,"track":3,"newInfoRatio":0.25,"status":"complete","focus":"system-skill-advisor/SKILL.md drift survey","findings":2,"timestamp":"2026-05-15T17:21:21Z"}
