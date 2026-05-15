@@ -662,30 +662,14 @@ function clampNumericConfidence(value: unknown): number {
   return Math.max(0, Math.min(1, value));
 }
 
-// R-007-P2-3: Read-path allowlist for `reason` / `step` strings on
-// edge metadata. Defense-in-depth: `code-graph-db.rowToEdge` already
-// sanitizes on parse, but if metadata arrives via another path
-// (e.g. directly mutated objects, mocked test rows) we still
-// guarantee single-line, length-capped, non-control-char output.
-const EDGE_METADATA_REASON_MAX_LENGTH = 200;
-const EDGE_METADATA_REASON_BLOCKED = /[\x00-\x1F\x7F]/;
-
-function sanitizeEdgeMetadataReadString(value: unknown): string | null {
-  if (typeof value !== 'string') return null;
-  if (value.length === 0) return null;
-  if (value.length > EDGE_METADATA_REASON_MAX_LENGTH) return null;
-  if (EDGE_METADATA_REASON_BLOCKED.test(value)) return null;
-  return value;
-}
-
 function edgeMetadataOutput(edge: OutboundEdgeEntry['edge'] | InboundEdgeEntry['edge']) {
   return {
     confidence: clampNumericConfidence(edge.metadata?.confidence ?? edge.weight),
     numericConfidence: clampNumericConfidence(edge.metadata?.confidence ?? edge.weight),
     detectorProvenance: edge.metadata?.detectorProvenance ?? null,
     evidenceClass: edge.metadata?.evidenceClass ?? null,
-    reason: sanitizeEdgeMetadataReadString(edge.metadata?.reason),
-    step: sanitizeEdgeMetadataReadString(edge.metadata?.step),
+    reason: graphDb.sanitizeEdgeMetadataString(edge.metadata?.reason),
+    step: graphDb.sanitizeEdgeMetadataString(edge.metadata?.step),
     edgeEvidenceClass: classifyEdgeEvidenceClass(
       edge.edgeType,
       edge.metadata as Record<string, unknown> | undefined,
@@ -1135,9 +1119,10 @@ export async function handleCodeGraphQuery(args: QueryArgs): Promise<{ content: 
     };
   }
 
-  const { operation, subject, limit = 50 } = args;
+  const { operation, subject } = args;
+  const limit = Math.max(1, Math.min(Number(args.limit) || 50, 1000));
   const { edgeType: requestedEdgeType, error: edgeTypeError } = resolveRequestedEdgeType(args);
-  const maxDepth = args.maxDepth ?? 3;
+  const maxDepth = Math.max(1, Math.min(Number(args.maxDepth) || 3, 20));
 
   if (edgeTypeError) {
     return {

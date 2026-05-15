@@ -30,6 +30,19 @@ export async function handleCccFeedback(args: FeedbackArgs): Promise<{ content: 
       };
     }
 
+    const validRatings = ['helpful', 'not_helpful', 'partial'] as const;
+    if (!validRatings.includes(args.rating)) {
+      return {
+        content: [{
+          type: 'text',
+          text: JSON.stringify({
+            status: 'error',
+            error: `Invalid rating: "${args.rating}". Must be one of: ${validRatings.join(', ')}`,
+          }),
+        }],
+      };
+    }
+
     const projectRoot = process.cwd();
     const feedbackPath = resolve(projectRoot, '.opencode/skills/mcp-coco-index/feedback/search-feedback.jsonl');
 
@@ -46,7 +59,19 @@ export async function handleCccFeedback(args: FeedbackArgs): Promise<{ content: 
     const readiness = await probeCocoIndexReadiness(projectRoot);
     const lastPersistedAt = graphDb.getStats().lastScanTimestamp;
 
-    appendFileSync(feedbackPath, JSON.stringify(entry) + '\n', 'utf-8');
+    try {
+      appendFileSync(feedbackPath, JSON.stringify(entry) + '\n', 'utf-8');
+    } catch (writeErr: unknown) {
+      return {
+        content: [{
+          type: 'text',
+          text: JSON.stringify({
+            status: 'error',
+            error: `Failed to write feedback: ${writeErr instanceof Error ? writeErr.message : String(writeErr)}`,
+          }),
+        }],
+      };
+    }
 
     return {
       content: [{

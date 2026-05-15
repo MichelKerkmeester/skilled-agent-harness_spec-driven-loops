@@ -9,6 +9,8 @@ import { execFileSync } from 'node:child_process';
 import * as graphDb from '../lib/code-graph-db.js';
 import { probeCocoIndexReadiness } from '../lib/ccc-readiness-probe.js';
 
+const REINDEX_OUTPUT_MAX_LENGTH = 2000;
+
 export interface ReindexArgs {
   full?: boolean;
 }
@@ -17,7 +19,8 @@ export interface ReindexArgs {
 export async function handleCccReindex(args: ReindexArgs): Promise<{ content: Array<{ type: string; text: string }> }> {
   try {
     const projectRoot = process.cwd();
-    const cccBin = resolve(projectRoot, '.opencode/skills/mcp-coco-index/mcp_server/.venv/bin/ccc');
+    const defaultCccBin = resolve(projectRoot, '.opencode/skills/mcp-coco-index/mcp_server/.venv/bin/ccc');
+    const cccBin = process.env.COCOINDEX_BIN_PATH ?? defaultCccBin;
 
     if (!existsSync(cccBin)) {
       return {
@@ -54,7 +57,7 @@ export async function handleCccReindex(args: ReindexArgs): Promise<{ content: Ar
             data: {
               mode: args.full ? 'full' : 'incremental',
               durationMs,
-              output: output.slice(0, 2000),
+              output: output.slice(0, REINDEX_OUTPUT_MAX_LENGTH),
               readiness,
               canonicalReadiness: readiness.canonicalReadiness,
               trustState: readiness.trustState,

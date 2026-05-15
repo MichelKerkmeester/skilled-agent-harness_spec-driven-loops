@@ -337,7 +337,8 @@ function expandAnchor(anchor: ArtifactRef, mode: QueryMode, remainingMs?: number
   let omittedNodes = 0;
   let omittedEdges = 0;
 
-  const budgetExpired = (): boolean => performance.now() - startTime > budgetMs;
+  const startHr = process.hrtime.bigint();
+  const budgetExpired = (): boolean => Number(process.hrtime.bigint() - startHr) / 1e6 > budgetMs;
 
   const finalize = (): ExpansionResult => ({
     section: {

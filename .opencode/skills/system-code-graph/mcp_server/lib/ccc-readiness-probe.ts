@@ -143,7 +143,8 @@ function isIndexStale(indexDir: string): boolean {
 async function probeCocoIndexReadinessUncached(
   workspaceRoot: string,
 ): Promise<CocoIndexReadinessBlock> {
-  const cccBin = resolve(workspaceRoot, '.opencode/skills/mcp-coco-index/mcp_server/.venv/bin/ccc');
+  const defaultCccBin = resolve(workspaceRoot, '.opencode/skills/mcp-coco-index/mcp_server/.venv/bin/ccc');
+  const cccBin = process.env.COCOINDEX_BIN_PATH ?? defaultCccBin;
   const indexDir = resolve(workspaceRoot, '.cocoindex_code');
 
   // 1. Binary missing

@@ -12,7 +12,8 @@ import { probeCocoIndexReadiness } from '../lib/ccc-readiness-probe.js';
 export async function handleCccStatus(): Promise<{ content: Array<{ type: string; text: string }> }> {
   try {
     const projectRoot = process.cwd();
-    const cccBin = resolve(projectRoot, '.opencode/skills/mcp-coco-index/mcp_server/.venv/bin/ccc');
+    const defaultCccBin = resolve(projectRoot, '.opencode/skills/mcp-coco-index/mcp_server/.venv/bin/ccc');
+    const cccBin = process.env.COCOINDEX_BIN_PATH ?? defaultCccBin;
     const indexDir = resolve(projectRoot, '.cocoindex_code');
 
     const available = existsSync(cccBin);

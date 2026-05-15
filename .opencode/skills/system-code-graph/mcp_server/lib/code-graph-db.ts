@@ -1008,7 +1008,8 @@ export function resolveSubjectFilePath(subject: string): string | null {
   const byName = d.prepare('SELECT file_path FROM code_nodes WHERE name = ? LIMIT 1').get(subject) as { file_path: string } | undefined;
   if (byName) return byName.file_path;
 
-  const like = d.prepare('SELECT file_path FROM code_files WHERE file_path LIKE ? LIMIT 1').get(`%${subject}`) as { file_path: string } | undefined;
+  const escapedSubject = subject.replace(/[%_]/g, '\\$&');
+  const like = d.prepare('SELECT file_path FROM code_files WHERE file_path LIKE ? LIMIT 1').get(`%${escapedSubject}`) as { file_path: string } | undefined;
   if (like) return like.file_path;
 
   return null;

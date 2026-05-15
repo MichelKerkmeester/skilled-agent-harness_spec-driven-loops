@@ -327,7 +327,8 @@ export async function handleDetectChanges(args: DetectChangesArgs): Promise<MCPR
         // and any change would always overlap it, drowning the
         // signal in noise.
         if (node.kind === 'module') continue;
-        const nodeLines = Math.max(1, node.endLine - node.startLine + 1);
+        if (node.endLine < node.startLine) continue;
+        const nodeLines = node.endLine - node.startLine + 1;
 
         const overlapsPostImage = hunk.newLines > 0 && rangesOverlap(
           node.startLine, nodeLines,

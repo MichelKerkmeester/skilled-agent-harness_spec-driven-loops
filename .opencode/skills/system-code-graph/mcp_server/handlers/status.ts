@@ -26,7 +26,16 @@ import { getParserHealth } from '../lib/tree-sitter-parser.js';
 import { getLastApplyMetadata } from '../lib/apply-metadata.js';
 import { writeCodeGraphReadinessMarker } from '../lib/readiness-marker.js';
 
-/** @deprecated Use SharedPayloadTrustState from readiness-contract. */
+/**
+ * Gold-query verification trust state, derived from the persisted gold battery
+ * execution results. Narrower than {@link SharedPayloadTrustState} (excludes
+ * `unavailable`) because gold verification can only report `live`, `stale`, or
+ * `absent` — it is not a liveness-dependent subsystem.
+ *
+ * @deprecated Use {@link SharedPayloadTrustState} from readiness-contract for
+ * new code; this alias exists only for backward compatibility with status
+ * handler consumers that reference `GoldVerificationTrust`.
+ */
 type GoldVerificationTrust = SharedPayloadTrustState;
 
 interface VerificationPassPolicy {
