@@ -80,6 +80,9 @@ let skillsDir = path.join(opencodeDir, 'skills');
 let legacySkillDir = path.join(opencodeDir, 'skill');
 let kitDir = path.join(skillsDir, 'system-code-graph');
 let dbDir = path.join(kitDir, 'mcp_server', 'database');
+// DB path is inside the skill directory by design as of v1.0.1.0.
+// Standalone-storage relocation (e.g. .opencode/.spec-kit/code-graph/database)
+// is deferred to follow-on packet.
 let lockDir = path.join(dbDir, '.mk-code-index-launcher.lockdir');
 let stateFile = path.join(dbDir, '.mk-code-index-launcher.json');
 
