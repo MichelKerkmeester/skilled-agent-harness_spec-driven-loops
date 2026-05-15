@@ -74,7 +74,7 @@ Run from the repository root.
 cd .opencode/skills/system-spec-kit/mcp_server && npm test -- tests/copilot-hook-wiring.vitest.ts
 ```
 
-The JSON structure validation test passes. Two additional tests fail due to missing local hook build artifacts (`dist/hooks/copilot/session-prime.js` and `dist/hooks/copilot/user-prompt-submit.js`). Run the consumer test to exercise this configuration.
+The consumer test contains 4 cases. 2 cases pass (JSON structure validation and the superset-notify wrapper output check). 2 cases fail due to missing local hook build artifacts (`dist/hooks/copilot/session-prime.js` and `dist/hooks/copilot/user-prompt-submit.js`). Run the consumer test to exercise this configuration.
 
 <!-- /ANCHOR:validation -->
 
@@ -83,8 +83,8 @@ The JSON structure validation test passes. Two additional tests fail due to miss
 <!-- ANCHOR:related -->
 ## 5. RELATED
 
-- [Parent: .github](../README.md)
-- [Skill README](../../README.md)
-- [Tests: tests/](../../tests/README.md)
+- [Parent: mcp_server](../../README.md)
+- [Consumer test: tests/copilot-hook-wiring.vitest.ts](../../tests/copilot-hook-wiring.vitest.ts)
+- [Tests](../../tests/README.md)
 
 <!-- /ANCHOR:related -->
