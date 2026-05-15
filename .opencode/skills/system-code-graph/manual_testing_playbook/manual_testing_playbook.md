@@ -30,15 +30,16 @@ This playbook validates the code graph runtime at `.opencode/skills/system-code-
 - [12. MCP TOOL SURFACE](#12--mcp-tool-surface)
 - [13. CCC INTEGRATION](#13--ccc-integration)
 - [14. DOCTOR CODE GRAPH](#14--doctor-code-graph)
-- [14c. DEVIN HOOKS](#14c--devin-hooks)
-- [15. AUTOMATED TEST CROSS-REFERENCE](#15--automated-test-cross-reference)
-- [16. FEATURE CATALOG CROSS-REFERENCE INDEX](#16--feature-catalog-cross-reference-index)
+- [15. POST-RENAME INFRASTRUCTURE](#15--post-rename-infrastructure)
+- [16. DEVIN HOOKS](#16--devin-hooks)
+- [17. AUTOMATED TEST CROSS-REFERENCE](#17--automated-test-cross-reference)
+- [18. FEATURE CATALOG CROSS-REFERENCE INDEX](#18--feature-catalog-cross-reference-index)
 
 ---
 
 ## 1. OVERVIEW
 
-The playbook contains 22 scenarios across 10 groups. It targets the current reality map: read-path checks are bounded and half-auto, full scan/verify/status are operator actions, `detect_changes` is read-only and blocks on stale state, CCC tools are manual and coverage graph automation is limited to deep-loop command YAML. Group 09 adds post-rename infrastructure probes from packet 016. Group 10 adds the Devin CLI SessionStart hook scenario shipped in packet 036-cli-devin-code-graph-hook.
+The playbook contains 22 scenarios across 10 groups. It targets the current reality map: read-path checks are bounded and half-auto, full scan/verify/status are operator actions, `detect_changes` is read-only and blocks on stale state, CCC tools are manual and coverage graph automation is limited to deep-loop command YAML. Group 09 adds post-rename infrastructure probes. Group 10 adds the Devin CLI SessionStart hook scenario shipped in packet 036-cli-devin-code-graph-hook.
 
 | Group | Scenario Files |
 | --- | --- |
@@ -109,6 +110,7 @@ Operators may dispatch sub-agents in parallel waves for independent scenarios, e
 | ID | Scenario | File |
 | --- | --- | --- |
 | 007 | detect_changes no inline index | [007-detect-changes-no-inline-index.md](./03--detect-changes/007-detect-changes-no-inline-index.md) |
+| 024 | detect_changes with multi-file unified diff (F018 coverage) | [024-detect-changes-multi-file-diff.md](./03--detect-changes/024-detect-changes-multi-file-diff.md) |
 
 ---
 
@@ -135,6 +137,7 @@ Operators may dispatch sub-agents in parallel waves for independent scenarios, e
 | --- | --- | --- |
 | 011 | tool call shape validation (authoritative tool list: `mcp_server/tool-schemas.ts` `CODE_GRAPH_TOOL_SCHEMAS` + `TOOL_DEFINITIONS` alias) | [011-tool-call-shape-validation.md](./06--mcp-tool-surface/011-tool-call-shape-validation.md) |
 | 022 | code_graph_query blast_radius multi-subject + transitive (F018 coverage) | [022-code-graph-query-blast-radius.md](./06--mcp-tool-surface/022-code-graph-query-blast-radius.md) |
+| 016 | MCP tool manifest post-rename | [016-mcp-tool-manifest-post-rename.md](./06--mcp-tool-surface/016-mcp-tool-manifest-post-rename.md) |
 
 ---
 
@@ -145,7 +148,6 @@ Operators may dispatch sub-agents in parallel waves for independent scenarios, e
 | 012 | ccc_reindex binary shell out | [012-ccc-reindex-binary-shell-out.md](./07--ccc-integration/012-ccc-reindex-binary-shell-out.md) |
 | 013 | ccc_feedback jsonl append | [013-ccc-feedback-jsonl-append.md](./07--ccc-integration/013-ccc-feedback-jsonl-append.md) |
 | 014 | ccc_status availability probe | [014-ccc-status-availability-probe.md](./07--ccc-integration/014-ccc-status-availability-probe.md) |
-| 024 | detect_changes with multi-file unified diff (F018 coverage) | [024-detect-changes-multi-file-diff.md](./03--detect-changes/024-detect-changes-multi-file-diff.md) |
 
 ---
 
@@ -158,11 +160,10 @@ Operators may dispatch sub-agents in parallel waves for independent scenarios, e
 
 ---
 
-## 14b. POST-RENAME INFRASTRUCTURE
+## 15. POST-RENAME INFRASTRUCTURE
 
 | ID | Scenario | File |
 | --- | --- | --- |
-| 016 | MCP tool manifest post-rename | [016-mcp-tool-manifest-post-rename.md](./06--mcp-tool-surface/016-mcp-tool-manifest-post-rename.md) |
 | 017 | launcher startup prefix | [017-launcher-startup-prefix.md](./09--post-rename-infrastructure/017-launcher-startup-prefix.md) |
 | 018 | mcp.json server key rename | [018-mcp-json-server-key-rename.md](./09--post-rename-infrastructure/018-mcp-json-server-key-rename.md) |
 | 019 | database path verification | [019-database-path-verification.md](./09--post-rename-infrastructure/019-database-path-verification.md) |
@@ -171,20 +172,20 @@ Operators may dispatch sub-agents in parallel waves for independent scenarios, e
 
 ---
 
-## 14c. DEVIN HOOKS
+## 16. DEVIN HOOKS
 
 Validates the Devin CLI `SessionStart` hook variant shipped in packet `036-cli-devin-code-graph-hook`. The hook source lives at `system-spec-kit/mcp_server/hooks/devin/session-start.ts` (intentional asymmetry vs the advisor pattern — see ADR-001 of packet 036). Registration lives in `.devin/hooks.v1.json` under `SessionStart`.
 
 | ID | Scenario | File |
 | --- | --- | --- |
-| DH-001 | Devin CLI SessionStart Hook | [025-devin-session-start.md](./10--devin-hooks/025-devin-session-start.md) |
+| 025 | Devin CLI SessionStart Hook | [025-devin-session-start.md](./10--devin-hooks/025-devin-session-start.md) |
 
 ---
 
-## 15. AUTOMATED TEST CROSS-REFERENCE
+## 17. AUTOMATED TEST CROSS-REFERENCE
 
 Automated coverage lives in the code_graph runtime tests and build checks. Use this section as the manual-to-automated trace point when recording evidence for release review.
 
-## 16. FEATURE CATALOG CROSS-REFERENCE INDEX
+## 18. FEATURE CATALOG CROSS-REFERENCE INDEX
 
 Each scenario maps to the runtime catalog at [../feature_catalog/feature_catalog.md](../feature_catalog/feature_catalog.md).
