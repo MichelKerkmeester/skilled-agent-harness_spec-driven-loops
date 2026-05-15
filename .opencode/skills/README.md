@@ -494,7 +494,7 @@ The cap preserves a margin of uncertainty so the calling AI retains judgment on 
 | --- | --- |
 | [Main Framework README](../../README.md) | Root project overview and framework entry point |
 | [Skill Advisor README](system-skill-advisor/README.md) | Native advisor overview, MCP quick start, compatibility shim, runtime hooks, and playbook index |
-| [Skill Advisor Setup Guide](system-skill-advisor/SET-UP_GUIDE.md) | Native bootstrap pointer, validation commands, rollback controls, and operator states |
+| [Skill Advisor Install + Setup Guide](system-skill-advisor/INSTALL_GUIDE.md) | Bootstrap, verification, runtime hooks, rollback controls, operator states, reference commands (merged INSTALL_GUIDE + SET-UP_GUIDE 2026-05-15) |
 | [system-spec-kit SKILL.md](system-spec-kit/SKILL.md) | Spec folder workflow and memory foundation |
 | [sk-doc SKILL.md](sk-doc/SKILL.md) | Documentation quality standards and templates |
 | [sk-git SKILL.md](sk-git/SKILL.md) | Git workflow orchestration |

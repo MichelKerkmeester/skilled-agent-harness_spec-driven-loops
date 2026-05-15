@@ -80,8 +80,7 @@ scripts call the native package first, then Python fallback when needed
 ```text
 system-skill-advisor/
 ├── README.md
-├── INSTALL_GUIDE.md
-├── SET-UP_GUIDE.md
+├── INSTALL_GUIDE.md          # Install + Setup (merged 2026-05-15)
 ├── feature_catalog/          # Current feature inventory
 ├── manual_testing_playbook/  # Manual scenario package
 ├── references/               # Package policies and migration references

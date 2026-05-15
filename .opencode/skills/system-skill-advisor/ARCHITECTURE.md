@@ -84,8 +84,7 @@ system-skill-advisor/
 +-- SKILL.md                       # Runtime skill instructions
 +-- README.md                      # Human-facing package overview
 +-- ARCHITECTURE.md                # Current architecture
-+-- INSTALL_GUIDE.md               # Bootstrap and operator install checks
-+-- SET-UP_GUIDE.md                # Runtime configuration and operations
++-- INSTALL_GUIDE.md               # Install + setup + runtime hooks + rollback + reference commands (merged 2026-05-15)
 +-- references/                    # Policy and migration references
 +-- feature_catalog/               # Current capability inventory
 +-- manual_testing_playbook/       # Manual validation scenarios
@@ -263,7 +262,7 @@ Primary verification surfaces:
 | Python regression harness | `python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor_regression.py --dataset .opencode/skills/system-skill-advisor/mcp_server/scripts/fixtures/skill_advisor_regression_cases.jsonl` |
 | Feature coverage | `.opencode/skills/system-skill-advisor/feature_catalog/feature_catalog.md` |
 | Manual validation | `.opencode/skills/system-skill-advisor/manual_testing_playbook/manual_testing_playbook.md` |
-| Install/setup checks | `INSTALL_GUIDE.md` and `SET-UP_GUIDE.md` |
+| Install/setup checks | `INSTALL_GUIDE.md` (install + setup merged 2026-05-15) |
 
 Current doc-alignment note: the checked-in regression harness was run during this pass and returned failures against existing expectations. That is not changed by this documentation packet; the result is recorded as a content-discrepancy signal rather than a runtime fix.
 
@@ -288,7 +287,6 @@ Current doc-alignment note: the checked-in regression harness was run during thi
 
 - [README.md](./README.md)
 - [INSTALL_GUIDE.md](./INSTALL_GUIDE.md)
-- [SET-UP_GUIDE.md](./SET-UP_GUIDE.md)
 - [references/db-path-policy.md](./references/db-path-policy.md)
 - [references/standalone-mcp-shape.md](./references/standalone-mcp-shape.md)
 - [references/legacy-tool-bridge.md](./references/legacy-tool-bridge.md)

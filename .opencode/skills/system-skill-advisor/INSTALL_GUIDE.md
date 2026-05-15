@@ -1,28 +1,30 @@
 ---
-title: "Skill Advisor Native Bootstrap"
-description: "Bootstrap, verification, compatibility, rollback, and operator notes for the native advisor_recommend architecture."
+title: "Skill Advisor Install + Setup Guide"
+description: "Bootstrap, verification, runtime hooks, compatibility shim, rollback, operator notes, and reference commands for the native advisor_recommend architecture (merged INSTALL_GUIDE + SET-UP_GUIDE)."
 ---
 
-# Skill Advisor Native Bootstrap
+# Skill Advisor Install + Setup Guide
 
 <!-- sk-doc-template: skill_reference_install_guide -->
 
-This is the canonical bootstrap guide for the standalone Skill Advisor MCP server. The advisor runs as `mk_skill_advisor`, separate from `mk-spec-memory`, while preserving the public tool ids `advisor_recommend`, `advisor_rebuild`, `advisor_status`, `advisor_validate`, `skill_graph_scan`, `skill_graph_query`, `skill_graph_status`, and `skill_graph_validate`.
+This is the canonical install + setup guide for the standalone Skill Advisor MCP server. The advisor runs as `mk_skill_advisor`, separate from `mk-spec-memory`, while preserving the public tool ids `advisor_recommend`, `advisor_rebuild`, `advisor_status`, `advisor_validate`, `skill_graph_scan`, `skill_graph_query`, `skill_graph_status`, and `skill_graph_validate`. This document merges the previously-separate `SET-UP_GUIDE.md` (runtime hooks, rollback CLI, operator states, reference commands) into the install bootstrap so there is a single source of truth.
 
 ---
 
 <!-- ANCHOR:table-of-contents -->
 ## TABLE OF CONTENTS
 
-- [1. OVERVIEW](#1-overview)
-- [2. PREREQUISITES](#2-prerequisites)
-- [3. INSTALLATION](#3-installation)
-- [4. VERIFICATION](#4-verification)
-- [5. NATIVE PACKAGE CHECKS](#5-native-package-checks)
-- [6. COMPAT SHIMS](#6-compat-shims)
-- [7. ROLLBACK](#7-rollback)
-- [8. OPERATOR CHECKS](#8-operator-checks)
-- [9. RELATED RESOURCES](#9-related-resources)
+- [1. OVERVIEW](#1--overview)
+- [2. PREREQUISITES](#2--prerequisites)
+- [3. INSTALLATION](#3--installation)
+- [4. VERIFICATION](#4--verification)
+- [5. NATIVE PACKAGE CHECKS](#5--native-package-checks)
+- [6. RUNTIME HOOKS AND PLUGIN](#6--runtime-hooks-and-plugin)
+- [7. COMPAT SHIMS](#7--compat-shims)
+- [8. ROLLBACK](#8--rollback)
+- [9. OPERATOR CHECKS](#9--operator-checks)
+- [10. REFERENCE COMMANDS](#10--reference-commands)
+- [11. RELATED RESOURCES](#11--related-resources)
 
 ---
 
@@ -119,8 +121,37 @@ Current native advisor baseline:
 
 <!-- /ANCHOR:5-native-package-checks -->
 
-<!-- ANCHOR:6-compat-shims -->
-## 6. COMPAT SHIMS
+<!-- ANCHOR:6-runtime-hooks-and-plugin -->
+## 6. RUNTIME HOOKS AND PLUGIN
+
+Prompt-time routing is available across runtime adapters:
+
+| Runtime | Hook Surface |
+| --- | --- |
+| Claude Code | `.opencode/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts` |
+| Gemini CLI | `.opencode/skills/system-skill-advisor/hooks/gemini/user-prompt-submit.ts` |
+| Codex CLI | `.opencode/skills/system-skill-advisor/hooks/codex/user-prompt-submit.ts` plus `prompt-wrapper.ts` fallback and `lib/codex-hook-policy.ts` |
+| Devin CLI | `.opencode/skills/system-skill-advisor/hooks/devin/user-prompt-submit.ts` via `.devin/hooks.v1.json` |
+| OpenCode | `.opencode/plugins/mk-skill-advisor.js` plus the cross-process gateway at `.opencode/skills/system-skill-advisor/mcp_server/plugin_bridges/mk-skill-advisor-bridge.mjs` |
+
+The OpenCode bridge must use the stable package entrypoint:
+
+```text
+.opencode/skills/system-skill-advisor/mcp_server/compat/index.ts
+```
+
+After build, plugin consumers load:
+
+```text
+.opencode/skills/system-skill-advisor/mcp_server/dist/system-skill-advisor/mcp_server/compat/index.js
+```
+
+---
+
+<!-- /ANCHOR:6-runtime-hooks-and-plugin -->
+
+<!-- ANCHOR:7-compat-shims -->
+## 7. COMPAT SHIMS
 
 `skill_advisor.py` remains the CLI compatibility surface. In one-shot mode it probes the native advisor first and translates `advisor_recommend` output back to the legacy JSON-array shape. If the native probe is unavailable, it falls back to the local Python scorer.
 
@@ -128,6 +159,15 @@ Current native advisor baseline:
 python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py "help me commit my changes"
 printf '%s' "help me commit my changes" | python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py --stdin
 ```
+
+Mode meanings:
+
+| Mode | Behavior |
+| --- | --- |
+| default | Probe native; use native if live/stale; otherwise local Python fallback. |
+| `--stdin` | Read one prompt from stdin. |
+| `--force-native` | Require native routing and fail prompt-safely when unavailable. |
+| `--force-local` | Bypass native routing and run local Python scoring. |
 
 Testing controls:
 
@@ -150,12 +190,19 @@ If a package-level import is needed inside a subprocess fallback, it must target
 
 ---
 
-<!-- /ANCHOR:6-compat-shims -->
+<!-- /ANCHOR:7-compat-shims -->
 
-<!-- ANCHOR:7-rollback -->
-## 7. ROLLBACK
+<!-- ANCHOR:8-rollback -->
+## 8. ROLLBACK
 
 Use rollback only long enough to diagnose or recover the native path.
+
+| Control | Scope |
+| --- | --- |
+| `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1` | Disables prompt-time advisor surfaces and native recommendations. |
+| `SPECKIT_SKILL_ADVISOR_FORCE_LOCAL=1` | Forces Python fallback in shim or plugin bridge diagnostics. |
+| `--force-local` | CLI-only Python scorer path. |
+| `--force-native` | CLI-only native-required path. |
 
 ```bash
 # Disable prompt-time advisor surfaces and native recommendation output.
@@ -177,10 +224,10 @@ unset SPECKIT_SKILL_ADVISOR_FORCE_LOCAL
 
 ---
 
-<!-- /ANCHOR:7-rollback -->
+<!-- /ANCHOR:8-rollback -->
 
-<!-- ANCHOR:8-operator-checks -->
-## 8. OPERATOR CHECKS
+<!-- ANCHOR:9-operator-checks -->
+## 9. OPERATOR CHECKS
 
 `skill_graph_*` tools are owned by the `mk_skill_advisor` MCP server as of `013/009/008`; public tool ids remain unchanged.
 
@@ -207,17 +254,56 @@ Manual recovery scenarios live at:
 .opencode/skills/system-skill-advisor/mcp_server/manual_testing_playbook/manual_testing_playbook.md
 ```
 
+### Indexer scan-vs-index counts
+
+`skill_graph_scan` reports two numbers: `scannedFiles` (every `graph-metadata.json` discovered) and `indexedFiles` (real skills indexed into SQLite). The delta is normally 1–2: the indexer skips `scripts/test-fixtures/*/graph-metadata.json` (test scaffolding) and emits a `NON-SKILL-METADATA: skipped …` warning. A larger delta means real skills are being filtered — inspect the warning list.
+
+H5 operator scenarios live in the manual playbook under `04--operator-h5/`.
+
 ---
 
-<!-- /ANCHOR:8-operator-checks -->
+<!-- /ANCHOR:9-operator-checks -->
 
-<!-- ANCHOR:9-related-resources -->
-## 9. RELATED RESOURCES
+<!-- ANCHOR:10-reference-commands -->
+## 10. REFERENCE COMMANDS
+
+```bash
+# Build native package
+npm --prefix .opencode/skills/system-skill-advisor/mcp_server run build
+
+# Typecheck native package
+npm --prefix .opencode/skills/system-skill-advisor/mcp_server run typecheck
+
+# Python shim default
+python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py "create a pull request on github"
+
+# Python shim stdin
+printf '%s' "save this conversation context to memory" | \
+  python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py --stdin
+
+# Native required
+python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py --force-native "save this context"
+
+# Python fallback required
+python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py --force-local "save this context"
+
+# Regression compatibility
+python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor_regression.py \
+  --dataset .opencode/skills/system-skill-advisor/mcp_server/scripts/fixtures/skill_advisor_regression_cases.jsonl
+```
+
+---
+
+<!-- /ANCHOR:10-reference-commands -->
+
+<!-- ANCHOR:11-related-resources -->
+## 11. RELATED RESOURCES
 
 | Document | Purpose |
 | --- | --- |
-| [README.md](./README.md) | Package-local architecture and public API entrypoints. |
 | [README.md](./README.md) | Operator overview, quick start, runtime integrations. |
-| [Hook reference](../../references/hooks/skill-advisor-hook.md) | Claude, Copilot, Gemini, Codex, and OpenCode plugin hook contract. |
+| [ARCHITECTURE.md](./ARCHITECTURE.md) | Package-local architecture and public API entrypoints. |
+| [Hook reference](../../references/hooks/skill-advisor-hook.md) | Claude, Copilot, Gemini, Codex, Devin, and OpenCode plugin hook contract. |
+| [Manual testing playbook](./mcp_server/manual_testing_playbook/manual_testing_playbook.md) | OP-001 / OP-002 operator scenarios + indexer edge cases. |
 
-<!-- /ANCHOR:9-related-resources -->
+<!-- /ANCHOR:11-related-resources -->
