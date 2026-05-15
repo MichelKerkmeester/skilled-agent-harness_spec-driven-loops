@@ -5,7 +5,10 @@
 // Uses the advisor package-local skill-graph.sqlite runtime database.
 
 import Database from 'better-sqlite3';
-import { createEmbeddingsProvider } from '@spec-kit/shared/embeddings/factory';
+// NOTE: ../shared/embeddings is a symlink to system-spec-kit/shared/embeddings (packet 040).
+// Makes the cross-skill dependency on system-spec-kit visible in the file tree.
+// If you delete system-spec-kit, this symlink dangles and embeddings-backed features break.
+import { createEmbeddingsProvider } from '../shared/embeddings/factory.js';
 import { createHash } from 'node:crypto';
 import { existsSync, mkdirSync, readFileSync, readdirSync, renameSync, rmSync, statSync } from 'node:fs';
 import { basename, dirname, join, relative, resolve } from 'node:path';

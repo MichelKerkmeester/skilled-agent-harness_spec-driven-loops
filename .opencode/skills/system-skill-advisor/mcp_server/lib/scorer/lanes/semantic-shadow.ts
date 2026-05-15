@@ -2,7 +2,10 @@
 // MODULE: Semantic Shadow Lane
 // ───────────────────────────────────────────────────────────────
 
-import { createEmbeddingsProvider } from '@spec-kit/shared/embeddings/factory.js';
+// NOTE: lib/shared/embeddings is a symlink to system-spec-kit/shared/embeddings (packet 040).
+// Makes the cross-skill dependency on system-spec-kit visible in the file tree.
+// If you delete system-spec-kit, this symlink dangles and embeddings-backed features break.
+import { createEmbeddingsProvider } from '../../shared/embeddings/factory.js';
 import { loadSkillEmbeddings } from '../../skill-graph/skill-graph-db.js';
 import { scoreTokenOverlap, tokenize } from '../text.js';
 import type { AdvisorProjection, LaneMatch } from '../types.js';
