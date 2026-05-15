@@ -36,6 +36,33 @@ const MARKER_PATH = fileURLToPath(new URL(
   import.meta.url,
 ));
 const LAUNCHER_PATH = fileURLToPath(new URL('../../../../bin/mk-code-index-launcher.cjs', import.meta.url));
+const MCP_SUBPROCESS_ENV_ALLOWLIST = new Set<string>([
+  'PATH',
+  'HOME',
+  'USER',
+  'SHELL',
+  'TMPDIR',
+  'LANG',
+  'LC_ALL',
+  'TERM',
+  'NODE_ENV',
+  'NODE_OPTIONS',
+  'NODE_PATH',
+  'HOMEBREW_PREFIX',
+  'HOMEBREW_CELLAR',
+  'HOMEBREW_REPOSITORY',
+]);
+
+const MCP_SUBPROCESS_ENV_NAMESPACE_PREFIXES = [
+  'SPECKIT_',
+  'MEMORY_',
+  'CODE_GRAPH_',
+  'SPEC_KIT_',
+  'COCOINDEX_',
+  'EMBEDDINGS_',
+  'MK_CODE_INDEX_',
+  'MK_SPEC_MEMORY_',
+];
 
 export interface CodeGraphStatusSnapshot {
   status: 'ok' | 'error';
@@ -81,10 +108,22 @@ function sleepSync(ms: number): void {
   Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, ms);
 }
 
-function processEnv(): Record<string, string> {
-  return Object.fromEntries(
-    Object.entries(process.env).filter((entry): entry is [string, string] => typeof entry[1] === 'string'),
-  );
+export function buildSubprocessEnv(extras: Record<string, string> = {}): Record<string, string> {
+  const out: Record<string, string> = {};
+  for (const [key, value] of Object.entries(process.env)) {
+    if (value === undefined) continue;
+    if (MCP_SUBPROCESS_ENV_ALLOWLIST.has(key)) {
+      out[key] = value;
+      continue;
+    }
+    if (MCP_SUBPROCESS_ENV_NAMESPACE_PREFIXES.some(prefix => key.startsWith(prefix))) {
+      out[key] = value;
+    }
+  }
+  for (const [key, value] of Object.entries(extras)) {
+    out[key] = value;
+  }
+  return out;
 }
 
 function withTimeout<T>(operation: Promise<T>, timeoutMs: number, label: string): Promise<T> {
@@ -239,7 +278,7 @@ export async function callCodeGraphTool(
     command: process.execPath,
     args: [LAUNCHER_PATH],
     cwd: path.resolve(process.cwd()),
-    env: processEnv(),
+    env: buildSubprocessEnv(),
     stderr: 'pipe',
   });
   transport.stderr?.on('data', () => {});
