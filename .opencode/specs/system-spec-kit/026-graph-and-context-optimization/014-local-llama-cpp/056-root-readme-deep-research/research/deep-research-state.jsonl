@@ -2,3 +2,5 @@
 {"type":"iteration","iteration":1,"track":1,"newInfoRatio":0.85,"status":"complete","focus":"tool surface count and per-server breakdown","timestamp":"2026-05-15T14:55:33Z"}
 {"type":"iteration","iteration":2,"track":1,"newInfoRatio":0.00,"status":"complete","focus":"agent + skill + command counts","timestamp":"2026-05-15T14:57:11Z"}
 {"type":"iteration","iteration":3,"track":1,"newInfoRatio":0.00,"status":"complete","focus":"MCP server registration inventory","timestamp":"2026-05-15T14:57:11Z"}
+{"type":"iteration","iteration":4,"track":2,"newInfoRatio":0.67,"status":"complete","focus":"MCP server names + versions","timestamp":"2026-05-15T14:59:14Z"}
+{"type":"iteration","iteration":5,"track":2,"newInfoRatio":0.00,"status":"complete","focus":"file paths + env vars","timestamp":"2026-05-15T14:59:14Z"}
