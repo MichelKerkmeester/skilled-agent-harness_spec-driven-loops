@@ -6,3 +6,6 @@
 {"type":"iteration","iteration":5,"track":2,"newInfoRatio":0.00,"status":"complete","focus":"file paths + env vars","timestamp":"2026-05-15T14:59:14Z"}
 {"type":"iteration","iteration":6,"track":2,"newInfoRatio":0.00,"status":"complete","focus":"install steps + Quick Start","timestamp":"2026-05-15T15:00:39Z"}
 {"type":"iteration","iteration":7,"track":3,"newInfoRatio":1.00,"status":"complete","focus":"banned HVR words","timestamp":"2026-05-15T15:00:39Z"}
+{"type":"iteration","iteration":8,"track":3,"newInfoRatio":1.00,"status":"complete","focus":"punctuation hard blockers","timestamp":"2026-05-15T15:02:28Z"}
+{"type":"iteration","iteration":9,"track":3,"newInfoRatio":0.00,"status":"complete","focus":"banned HVR phrases","timestamp":"2026-05-15T15:02:28Z"}
+{"type":"iteration","iteration":10,"track":4,"newInfoRatio":0.50,"status":"complete","focus":"native MCP topology diagram","timestamp":"2026-05-15T15:02:28Z"}
