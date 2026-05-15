@@ -38,9 +38,10 @@ _memory:
 |-------|-------|
 | **Spec Folder** | system-spec-kit/026-graph-and-context-optimization/014-local-llama-cpp/054-code-folder-readmes |
 | **Phase** | C of 4 |
-| **Completed** | TBD |
+| **Completed** | 2026-05-15 |
 | **Level** | 1 |
-| **Files in scope** | 8 new READMEs |
+| **Files in scope** | 7 new READMEs (revised down from 8 — `data/` already had a valid README) |
+| **Commits** | `61cfa9d37` (initial), `0a21c65e3` (P1 patches from sonnet review) |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -48,20 +49,19 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-(Filled post-execution.) Phase C closes the sk-doc gap in system-spec-kit/mcp_server. 8 new READMEs:
+Phase C closes the sk-doc gap in system-spec-kit/mcp_server. 7 new READMEs (scope revised down from 8 after discovery confirmed `data/` already had a valid README):
 
-- `.github/hooks/README.md`
-- `data/README.md`
-- `matrix_runners/templates/README.md`
-- `tests/advisor-fixtures/README.md`
-- `tests/description/fixtures/README.md`
-- `tests/fixtures/council-value/README.md`
-- `tests/fixtures/council-value/data/README.md`
-- `tests/validation/fixtures/README.md`
+- `.github/hooks/README.md` (1 file: superset-notify.json)
+- `matrix_runners/templates/README.md` (14 F1-F14 matrix-runner test templates)
+- `tests/advisor-fixtures/README.md` (10 skill-advisor JSON fixtures)
+- `tests/description/fixtures/README.md` (3 description module JSON fixtures)
+- `tests/fixtures/council-value/README.md` (6 dac-NNN.ts + seed-helpers + data/)
+- `tests/fixtures/council-value/data/README.md` (scenarios.cjs)
+- `tests/validation/fixtures/README.md` (3 evidence markdown fixtures)
 
-Each follows the sk-doc CODE template with anchored sections, YAML frontmatter, and HVR-compliant prose. 8 context bundles in `research/context-bundles/` document per-folder file inventory.
+Each follows the sk-doc CODE template (compact variant) with 6 anchored sections, YAML frontmatter, and HVR-compliant prose. 7 context bundles in `research/context-bundles/` document per-folder file inventory.
 
-3-check verification gate transcript at `research/bundle-verification.md`.
+3-check verification gate transcript at `research/bundle-verification.md` records the imports grep, exports grep, and validation_commands smoke-run results per bundle. The smoke-run step caught 0 wrong-cwd defects this phase (compared to Phase B which let through 2 P0 cwd errors via the 2-check gate).
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -106,12 +106,13 @@ Each follows the sk-doc CODE template with anchored sections, YAML frontmatter, 
 
 | Check | Result | Command |
 |-------|--------|---------|
-| Per-README sk-doc validate | TBD | `python3 .opencode/skills/sk-doc/scripts/validate_document.py <readme> --type readme` |
-| Per-README HVR score | TBD | `validate_document.py --json` |
-| Anchor presence | TBD | grep |
-| 3-check verification gate | TBD | `research/bundle-verification.md` |
-| Strict-validate packet | TBD | `validate.sh --strict` |
-| Sonnet double-check | TBD | Task tool |
+| Per-README sk-doc validate (7 files) | 7/7 PASS | `python3 .opencode/skills/sk-doc/scripts/validate_document.py <readme> --type readme` |
+| Anchor presence | All present | grep |
+| 3-check verification gate | PASS after corrections | 1 false-negative import patched (`tests/fixtures/council-value/data/`); 5 of 7 smoke-runs green; 2 of 7 cite consumer tests that are non-green for environmental reasons (READMEs documented honestly without overclaim) |
+| Strict-validate packet | PASS, 0 errors / 0 warnings | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <packet> --strict` |
+| Sonnet @markdown structural review | PASS (0 P0 / 1 P1 / 1 P2 advisory) | Task tool dispatch |
+| Sonnet @review factual review | PASS (0 P0 / 1 P1 / 0 P2 — same finding as @markdown P1) | Task tool dispatch |
+| P1 patch | applied in `0a21c65e3` | broken parent link + imprecise test-count in `.github/hooks/README.md` |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -119,7 +120,12 @@ Each follows the sk-doc CODE template with anchored sections, YAML frontmatter, 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-- 8 folders are mostly fixture / template / data folders; their READMEs use the compact variant.
-- Phase C does not refactor the 96 already-passing READMEs; only adds the 8 missing ones.
-- The 3-check gate is more thorough than Phase B's but still does not catch every class of hallucination. Sonnet @review remains the last gate before commit.
+- 7 folders are fixture / template / config folders; their READMEs use the compact variant.
+- Phase C does not refactor the 96 already-passing READMEs; only adds the 7 missing ones.
+- The 3-check gate is more thorough than Phase B's 2-check gate but still does not catch every class of imprecision. Sonnet @review remains the last gate before commit. Phase C's @review still found 1 P1 (test-count imprecision), but 0 P0s.
+- 2 READMEs (`.github/hooks`, `tests/advisor-fixtures`) cite consumer tests with non-green status (pre-existing failures or all-skipped). The READMEs document this honestly. Restoring those tests to green is out of scope for this packet.
+
+## Parallel-session interference
+
+No collision observed this phase. The Phase B parallel-revert pattern did not recur because (a) Phase C edits landed close to git baseline (very few `M` files in scope), (b) the 7 files are all NEW (created files less prone to revert than edited files), and (c) commit happened immediately after Pass 2 + validate.
 <!-- /ANCHOR:limitations -->
