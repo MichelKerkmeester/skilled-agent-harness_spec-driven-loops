@@ -30,9 +30,8 @@
         ".opencode/bin/mk-skill-advisor-launcher.cjs"
       ],
       "env": {
-        "_NOTE_1_OWNERSHIP": "Standalone MCP server for skill-advisor subsystem (extracted from mk-spec-memory per 013/009 ADR-001).",
-        "_NOTE_2_DB": "Database lives at .opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sqlite by default; MK_SKILL_ADVISOR_DB_DIR overrides, with SYSTEM_SKILL_ADVISOR_DB_DIR as a legacy fallback.",
-        "_NOTE_3_TOOLS": "Registers 8 tools: advisor_recommend/rebuild/status/validate plus skill_graph_scan/query/status/validate. MCP namespace: mcp__mk_skill_advisor__*",
+        "_NOTE_1_DB": "Database lives at .opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sqlite by default; MK_SKILL_ADVISOR_DB_DIR overrides, with SYSTEM_SKILL_ADVISOR_DB_DIR as a legacy fallback.",
+        "_NOTE_2_TOOLS": "Registers 8 tools: advisor_recommend/rebuild/status/validate plus skill_graph_scan/query/status/validate. MCP namespace: mcp__mk_skill_advisor__*",
         "MK_SKILL_ADVISOR_DB_DIR": ".opencode/skills/system-skill-advisor/mcp_server/database",
         "SPECKIT_ADVISOR_SHADOW_MODE": "0",
         "SPECKIT_SKILL_ADVISOR_HOOK_DISABLED": "0"
@@ -44,10 +43,9 @@
         ".opencode/bin/mk-code-index-launcher.cjs"
       ],
       "env": {
-        "_NOTE_1_OWNERSHIP": "Standalone MCP server for code-graph subsystem (extracted from system-spec-kit per ADR-002 in packet 014/007-mcp-topology-pivot).",
-        "_NOTE_2_DB": "Database lives at .opencode/skills/system-code-graph/mcp_server/database/code-graph.sqlite by default; SPECKIT_CODE_GRAPH_DB_DIR overrides.",
-        "_NOTE_3_TOOLS": "Registers 10 tools: code_graph_scan/query/context/status/verify/apply, detect_changes, ccc_status/reindex/feedback. MCP namespace: mcp__mk_code_index__*",
-        "_NOTE_4_INDEX_DEFAULTS": "INDEX_* committed defaults are false (end-user safe). Maintainer mode: set SPECKIT_CODE_GRAPH_MAINTAINER_MODE=true in .env.local (gitignored); the launcher will force all 5 INDEX_* to true at startup. Per-call code_graph_scan args (includeSkills, includeAgents, includeCommands, includeSpecs, includePlugins) still override env for fine-grained control.",
+        "_NOTE_1_DB": "Database lives at .opencode/skills/system-code-graph/mcp_server/database/code-graph.sqlite by default; SPECKIT_CODE_GRAPH_DB_DIR overrides.",
+        "_NOTE_2_TOOLS": "Registers 10 tools: code_graph_scan/query/context/status/verify/apply, detect_changes, ccc_status/reindex/feedback. MCP namespace: mcp__mk_code_index__*",
+        "_NOTE_3_INDEX_DEFAULTS": "INDEX_* committed defaults are false (end-user safe). Maintainer mode: set SPECKIT_CODE_GRAPH_MAINTAINER_MODE=true in .env.local (gitignored); the launcher will force all 5 INDEX_* to true at startup. Per-call code_graph_scan args (includeSkills, includeAgents, includeCommands, includeSpecs, includePlugins) still override env for fine-grained control.",
         "SPECKIT_CODE_GRAPH_INDEX_SKILLS": "false",
         "SPECKIT_CODE_GRAPH_INDEX_AGENTS": "false",
         "SPECKIT_CODE_GRAPH_INDEX_COMMANDS": "false",
@@ -57,7 +55,9 @@
     },
     "cocoindex_code": {
       "command": ".opencode/skills/mcp-coco-index/mcp_server/.venv/bin/ccc",
-      "args": ["mcp"],
+      "args": [
+        "mcp"
+      ],
       "env": {
         "COCOINDEX_CODE_ROOT_PATH": ".",
         "_NOTE_1": "Install: bash .opencode/skills/mcp-coco-index/scripts/install.sh",

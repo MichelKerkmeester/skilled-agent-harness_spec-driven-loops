@@ -1,4 +1,11 @@
 #!/usr/bin/env node
+// [mk-skill-advisor-launcher] MCP child-process launcher for the mk-skill-advisor
+// server (system-skill-advisor). Loads project-local env overrides, ensures dist
+// artifacts are built and current, serializes concurrent starts via a filesystem
+// bootstrap lock with mtime-based staleness detection, then spawns the advisor MCP
+// server child. All stderr lines are tagged with the bracketed module prefix for ops
+// grepping. See .opencode/skills/system-skill-advisor/ for the standalone skill.
+
 const fs = require('fs');
 const path = require('path');
 const { spawn, spawnSync } = require('child_process');

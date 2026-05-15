@@ -1,4 +1,12 @@
 #!/usr/bin/env node
+// [mk-code-index-launcher] MCP child-process launcher for the mk-code-index server
+// (system-code-graph). Loads project-local env overrides, applies the maintainer-mode
+// INDEX_* override when SPECKIT_CODE_GRAPH_MAINTAINER_MODE=true, ensures dist artifacts
+// are built and current, serializes concurrent starts via a filesystem bootstrap lock,
+// then spawns the code-graph MCP server child. All stderr lines are tagged with the
+// bracketed module prefix for ops grepping. See .opencode/skills/system-code-graph/ for
+// the standalone skill that owns the server source.
+
 const fs = require('fs');
 const path = require('path');
 const { spawn, spawnSync } = require('child_process');
@@ -6,7 +14,6 @@ const { spawn, spawnSync } = require('child_process');
 const root = path.resolve(__dirname, '..', '..');
 const opencodeDir = path.join(root, '.opencode');
 
-// 014-local-embeddings-setup-a / 003-mcp-config-rollout:
 // Load project-local env overrides BEFORE spawning the MCP child. .env.local wins over
 // .env, both are gitignored. Existing process.env wins over file values (do not override).
 // Minimal parser — no external dependency.
@@ -25,7 +32,6 @@ function loadEnvFile(filePath) {
     if ((val.startsWith('"') && val.endsWith('"')) || (val.startsWith("'") && val.endsWith("'"))) {
       val = val.slice(1, -1);
     }
-    // F009 hardening: reject values containing embedded newlines or NUL bytes.
     // The minimal parser is line-oriented; embedded \n in a quoted value would
     // already have terminated the line, but defend explicitly.
     if (val.includes('\n') || val.includes('\0')) {
@@ -182,7 +188,7 @@ function buildIfNeeded(actions) {
   }
   run(process.execPath, [localTscEntrypoint(), '-p', 'tsconfig.json'], { cwd: kitDir });
 
-  // F012: Derive the nested dist subdir from kitDir's basename rather than hardcoding
+  // Derive the nested dist subdir from kitDir's basename rather than hardcoding
   // the directory name. tsc emits with rootDir=".." so the skill directory name
   // appears as a dist subdir; using basename keeps this resilient to future renames
   // of the skill folder (e.g. if `system-code-graph/` is ever renamed at the
@@ -216,7 +222,7 @@ async function acquireBootstrapLock() {
       if (artifactsReady()) {
         return false;
       }
-      // F019 hardening: detect stale lockdir from SIGKILL'd predecessor.
+      // Detect stale lockdir from SIGKILL'd predecessor.
       // Existing process should refresh the dir; an mtime older than 5min
       // implies the holder is gone. Remove and retry.
       try {

@@ -1,4 +1,11 @@
 #!/usr/bin/env node
+// [mk-spec-memory-launcher] MCP child-process launcher for the mk-spec-memory server.
+// Loads project-local env overrides, ensures dist artifacts are built and current,
+// serializes concurrent starts via a filesystem bootstrap lock, then spawns the
+// context-server.js child. All stderr lines are tagged with the bracketed module
+// prefix for ops grepping. See .opencode/specs/.../014/052-mk-spec-memory-rename for
+// the rename packet that established this name.
+
 const fs = require('fs');
 const path = require('path');
 const { spawn, spawnSync } = require('child_process');
@@ -6,7 +13,6 @@ const { spawn, spawnSync } = require('child_process');
 const root = path.resolve(__dirname, '..', '..');
 const opencodeDir = path.join(root, '.opencode');
 
-// 014-local-embeddings-setup-a / 003-mcp-config-rollout:
 // Load project-local env overrides BEFORE spawning the MCP child. .env.local wins over
 // .env, both are gitignored. Existing process.env wins over file values (do not override).
 // Minimal parser — no external dependency.
