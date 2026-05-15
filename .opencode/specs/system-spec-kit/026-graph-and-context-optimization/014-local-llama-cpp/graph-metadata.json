@@ -28,7 +28,12 @@
     "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/022-local-llm-legacy-remediation",
     "system-spec-kit/026-graph-and-context-optimization/014-local-llama-cpp/038-embedding-error-propagation",
     "system-spec-kit/026-graph-and-context-optimization/014-local-llama-cpp/039-token-aware-chunking",
-    "system-spec-kit/026-graph-and-context-optimization/014-local-llama-cpp/041-llama-cpp-metal-investigation"
+    "system-spec-kit/026-graph-and-context-optimization/014-local-llama-cpp/041-llama-cpp-metal-investigation",
+    "system-spec-kit/026-graph-and-context-optimization/014-local-llama-cpp/049-substrate-stress-coverage",
+    "system-spec-kit/026-graph-and-context-optimization/014-local-llama-cpp/050-all-skills-alignment-sweep",
+    "system-spec-kit/026-graph-and-context-optimization/014-local-llama-cpp/051-runtime-config-mk-code-index-parity-plus-findings",
+    "system-spec-kit/026-graph-and-context-optimization/014-local-llama-cpp/052-mk-spec-memory-rename",
+    "system-spec-kit/026-graph-and-context-optimization/014-local-llama-cpp/053-mk-spec-memory-rename-remediation"
   ],
   "manual": {
     "depends_on": [],
@@ -61,7 +66,7 @@
     ],
     "importance_tier": "important",
     "status": "in-progress",
-    "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/014-local-llama-cpp/041-llama-cpp-metal-investigation",
+    "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/014-local-llama-cpp/049-substrate-stress-coverage",
     "key_files": [
       "spec.md",
       "handover.md",
@@ -77,7 +82,7 @@
     ],
     "causal_summary": "Local embeddings Setup A targets EmbeddingGemma on both surfaces: ONNX port for Spec Kit Memory and canonical sentence-transformers model for CocoIndex. 012 remediates v3 review findings, flips the memory dtype system default to q8, and separates hf-local DB filenames by dtype. 014/014 (ONNX cross-platform backend) was REJECTED 2026-05-13 after measuring 3.5x slower than sbert/PyTorch+MPS at parity-preserving settings. 015-node-llama-cpp-evaluation completed: llama-cpp p50 6.454292ms vs hf-local 39.538333ms, but parity failed (mean 0.9677582325103543, min 0.9515004519950576); flip-default-recommendation stayed no pending retrieval evidence. 016-llama-cpp-retrieval-quality-probe completed: on 200 sampled Memory MCP docs and 50 derived queries, retrieval was EQUIVALENT (recall@5 overlap mean 0.912, p25 0.8, Spearman top-10 mean 0.865028, MRR delta 0); parity miss appears migration/re-index relevant rather than retrieval-quality blocking. 017-llama-cpp-default-flip completed: 2488-row llama-cpp migration succeeded with zero mismatches; 1k retrieval probe showed MILD_DIVERGENCE on Spearman rank correlation (0.816) but EQUIVALENT recall@5 (0.926) and MRR; operator accepted the flip and llama-cpp became the auto default with hf-local retained as health-checked fallback. 018-llama-cpp-auto-migration completed: warn-only MIGRATION_PENDING upgraded to synchronous auto-migrate-validate-delete with MEMORY_AUTO_MIGRATE_HF_TO_LLAMA=false opt-out. 019-readme-resource-map: cli-opencode + deepseek-v4-pro scanned 522 READMEs read-only, classified 7 as MAJOR, produced resource-map.md; main agent applied edits to all 7 canonical READMEs (Voyage-as-default removed, llama-cpp documented, EmbeddingGemma documented, new env vars added, legacy context-index.sqlite filename refs updated), Q1 removed Ollama section from install guide, Q3 added auto-migration mention to providers README, 6+1 barter README copies replaced with relative symlinks to canonical (Q2). 014 setup-A line concludes with aligned operator-facing documentation.",
     "created_at": "2026-05-12T16:27:47Z",
-    "last_save_at": "2026-05-14T17:11:16.371Z",
+    "last_save_at": "2026-05-15T06:25:52Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-13T12:01:28Z",
     "source_docs": [
@@ -85,6 +90,6 @@
       "handover.md",
       "SETUP_A_RECIPE.md"
     ],
-    "last_active_at": "2026-05-14T17:11:16.371Z"
+    "last_active_at": "2026-05-15T06:21:31.208Z"
   }
 }
