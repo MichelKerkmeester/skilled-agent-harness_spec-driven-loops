@@ -8,7 +8,7 @@
 >
 > Don't buy me unwanted coffee: https://buymeacoffee.com/michelkerkmeester
 
-**🧠 Persistent Memory** • **📋 Structured Docs** • **🔍 First-Class Code Graph** • **🤖 11 Specialized Agents** • **⚡ 5 Mirrored Runtimes**
+**📋 Spec Kit Framework** • **🧠 Cognitive Memory** • **🤖 11 Specialized Agents** • **🎯 20 On-Demand Skills** • **🔍 Code Index + Graph** • **🪝 Cross-Runtime Hooks** • **⚡ 5 Mirrored Runtimes** • **➕ More**
 
 <!-- ANCHOR:table-of-contents -->
 
