@@ -19,8 +19,6 @@
 - Supports external CLI agent orchestration without unnecessary MCPs or proxies
 - Designed to be modular, inspectable, and easy to adapt to your own stack
 
----
-
 > Don't buy me unwanted coffee: https://buymeacoffee.com/michelkerkmeester
 
 ---
