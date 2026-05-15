@@ -1,15 +1,16 @@
-# Skilled Agent Orchestration w/ Custom Spec Kit Framework
+# Skilled Agent Orchestration w/ Custom Spec Kit - Modular Framework
 
 [![GitHub Stars](https://img.shields.io/github/stars/MichelKerkmeester/opencode--spec-kit-skilled-agent-orchestration?style=for-the-badge&logo=github&color=fce566&labelColor=222222)](https://github.com/MichelKerkmeester/opencode--spec-kit-skilled-agent-orchestration/stargazers)
 [![License](https://img.shields.io/github/license/MichelKerkmeester/opencode--spec-kit-skilled-agent-orchestration?style=for-the-badge&color=7bd88f&labelColor=222222)](LICENSE)
 [![Latest Release](https://img.shields.io/github/v/release/MichelKerkmeester/opencode--spec-kit-skilled-agent-orchestration?style=for-the-badge&color=5ad4e6&labelColor=222222)](https://github.com/MichelKerkmeester/opencode--spec-kit-skilled-agent-orchestration/releases)
 
-> Multi-agent AI development framework with cognitive memory, structured documentation, 11 agents, 20 skills, 22 command entry points and standalone MCP servers for memory, skill routing, structural code graph, semantic code search, code mode and sequential thinking. Works with OpenCode, Codex, Claude Code, Gemini, and Devin CLI. Also supports external CLI Agent Orchestration, without unneeded MCPs or Proxies.
->
-> Don't buy me unwanted coffee: https://buymeacoffee.com/michelkerkmeester
-
 **📋 Spec Kit Framework** • **🧠 Cognitive Memory** • **🤖 11 Specialized Agents** • **🎯 20 On-Demand Skills**
 **🔍 Code Index + Graph** • **⚡ 5 Runtimes** **➕ More**
+
+> Custom built, fully modular, and easy to reverse engineer for your needs.
+> Works with OpenCode, Codex, Claude Code, Gemini, and Devin CLI.
+> Also supports external CLI Agent Orchestration, without unneeded MCPs or Proxies.
+> Don't buy me unwanted coffee: https://buymeacoffee.com/michelkerkmeester
 
 <!-- ANCHOR:table-of-contents -->
 
