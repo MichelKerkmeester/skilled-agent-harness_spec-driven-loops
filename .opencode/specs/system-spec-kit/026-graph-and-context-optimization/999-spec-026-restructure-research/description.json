@@ -1,0 +1,23 @@
+{
+  "level": "1",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/999-spec-026-restructure-research",
+  "description": "Temporary research packet — 40-iter cli-devin SWE-1.6 deep-research analyzing the current 026 phase parent and its 22 children to propose a consolidated restructure (merge / remove / regroup / rename) optimized for historic recall. Packet is deleted after the resulting restructure ships.",
+  "keywords": [
+    "spec-restructure-research",
+    "026-consolidation",
+    "phase-merge-rename",
+    "historic-recall-optimization",
+    "40-iter-deep-research",
+    "cli-devin-swe-1.6",
+    "999-temporary"
+  ],
+  "lastUpdated": "2026-05-15T21:30:00Z",
+  "specId": "999",
+  "folderSlug": "spec-026-restructure-research",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}
