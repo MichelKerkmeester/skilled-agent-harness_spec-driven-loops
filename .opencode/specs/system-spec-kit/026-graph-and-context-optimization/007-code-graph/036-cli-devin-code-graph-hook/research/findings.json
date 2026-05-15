@@ -1,0 +1,235 @@
+{
+  "schema_version": 1,
+  "packet_id": "036-cli-devin-code-graph-hook",
+  "findings": [
+    {
+      "id": "F001",
+      "question": "Q1",
+      "category": "devin-contract",
+      "summary": "Devin documentation is silent on hookSpecificOutput.additionalContext; Claude SessionStart hook uses plain text output, not JSON; empirical verification blocked by self-invocation constraint",
+      "confidence": "LOW",
+      "evidence": [
+        {
+          "source": "https://cli.devin.ai/docs/extensibility/hooks/lifecycle-hooks",
+          "type": "external-doc",
+          "description": "Devin lifecycle hooks docs document SessionStart input (source field) but no additionalContext output field"
+        },
+        {
+          "source": "https://docs.anthropic.com/en/docs/claude-code/hooks",
+          "type": "external-doc",
+          "description": "Claude Code docs explicitly document hookSpecificOutput.additionalContext for SessionStart"
+        },
+        {
+          "source": ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts",
+          "type": "source-code",
+          "lines": "377-382",
+          "description": "Existing Claude SessionStart hook uses plain text markdown output via formatHookOutput, not JSON"
+        },
+        {
+          "source": ".claude/settings.local.json",
+          "type": "config",
+          "lines": "56-67",
+          "description": "Code-graph SessionStart hook is registered in Claude config"
+        },
+        {
+          "source": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/025-cli-devin-skill-advisor-hook/research/iterations/iteration-01.md",
+          "type": "parallel-research",
+          "description": "Advisor packet reached identical findings for UserPromptSubmit"
+        }
+      ],
+      "recommendation": "Rely on read_config_from.claude=true inheritance; add explicit Devin variant only if empirical testing reveals inheritance doesn't work",
+      "actionable": true,
+      "blocks_q2": true,
+      "blocks_q3": true
+    },
+    {
+      "id": "F002",
+      "question": "Q2",
+      "category": "architecture-decision",
+      "summary": "Hook source migration to system-code-graph/hooks/ has high breaking change risk (110+ file references, .claude/settings.local.json paths, build config changes); recommend Option B (keep current location) and add Devin variant locally",
+      "confidence": "MEDIUM-HIGH",
+      "evidence": [
+        {
+          "source": ".opencode/skills/system-code-graph/hooks/",
+          "type": "directory-structure",
+          "description": "system-code-graph has no hooks directory; advisor pattern shows skill-owned hooks"
+        },
+        {
+          "source": ".opencode/skills/system-spec-kit/mcp_server/lib/code-graph-boundary.ts",
+          "type": "source-code",
+          "lines": "4,30-36",
+          "description": "Boundary layer provides cross-skill interface; hooks depend on this layer"
+        },
+        {
+          "source": ".opencode/skills/system-spec-kit/mcp_server/scripts/finalize-dist.mjs",
+          "type": "source-code",
+          "lines": "13,52",
+          "description": "Build process bundles system-code-graph as sibling; migration would require build changes"
+        },
+        {
+          "source": "grep output",
+          "type": "code-search",
+          "description": "110+ files reference system-spec-kit/mcp_server/dist/hooks path"
+        },
+        {
+          "source": ".claude/settings.local.json",
+          "type": "config",
+          "lines": "56-67",
+          "description": "Critical hook registration path would need atomic update"
+        }
+      ],
+      "recommendation": "Option B: Keep hooks in system-spec-kit/mcp_server/hooks/, add Devin variant locally; document asymmetry in ADR-001",
+      "actionable": true,
+      "blocks_q3": false
+    },
+    {
+      "id": "F003",
+      "question": "Q3",
+      "category": "devin-contract",
+      "summary": "Hybrid approach recommended: try Option C (inheritance via read_config_from.claude=true) first, fallback to Option A (system-spec-kit/hooks/devin/) if inheritance fails; matches advisor packet pattern",
+      "confidence": "MEDIUM",
+      "evidence": [
+        {
+          "source": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/025-cli-devin-skill-advisor-hook/research/iterations/iteration-02.md",
+          "type": "parallel-research",
+          "description": "Advisor packet recommended identical hybrid approach for UserPromptSubmit"
+        },
+        {
+          "source": "iteration-01 findings",
+          "type": "internal-reference",
+          "description": "Q1 uncertainty makes Option C a calculated risk"
+        }
+      ],
+      "recommendation": "Hybrid: Phase C attempt Option C first, implement Option A if context injection fails; document both in ADR-002",
+      "actionable": true,
+      "blocks_q4": false
+    },
+    {
+      "id": "F004",
+      "question": "Q4",
+      "category": "contract-verification",
+      "summary": "Startup payload contract verified in readiness-marker.ts: kind=startup, provenance fields, sectionKeys=[structural-context]; getStartupBriefFromMarker() provides clean access; import surface safe for hook location",
+      "confidence": "HIGH",
+      "evidence": [
+        {
+          "source": ".opencode/skills/system-code-graph/mcp_server/lib/readiness-marker.ts",
+          "type": "source-code",
+          "lines": "189-203",
+          "description": "buildStartupBrief() emits exact required contract"
+        },
+        {
+          "source": ".opencode/skills/system-spec-kit/mcp_server/lib/code-graph-boundary.ts",
+          "type": "source-code",
+          "lines": "215-229",
+          "description": "getStartupBriefFromMarker() provides clean interface"
+        }
+      ],
+      "recommendation": "Direct call pattern: Devin variant should call getStartupBriefFromMarker() using same import path as existing variants",
+      "actionable": true
+    },
+    {
+      "id": "F005",
+      "question": "Q5",
+      "category": "hook-behavior",
+      "summary": "Freshness handling: mirror Claude pattern (warn + recommend code_graph_scan, no inline refresh); Devin stop_hook_active semantics out of scope for SessionStart hook",
+      "confidence": "HIGH",
+      "evidence": [
+        {
+          "source": ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts",
+          "type": "source-code",
+          "lines": "273-278",
+          "description": "Claude variant shows stale warning pattern"
+        }
+      ],
+      "recommendation": "Mirror Claude stale-handling exactly; stop-hook relevance out of scope",
+      "actionable": true
+    },
+    {
+      "id": "F006",
+      "question": "Q6",
+      "category": "plugin-rename",
+      "summary": "Plugin rename scope: PLUGIN_ID, bridge, docs, tests; no legacy env vars found; matches advisor pattern but simpler (no env alias needed)",
+      "confidence": "HIGH",
+      "evidence": [
+        {
+          "source": "grep output",
+          "type": "code-search",
+          "description": "No SPECKIT_*_CODE_GRAPH_* env vars found"
+        }
+      ],
+      "recommendation": "Direct rename: spec-kit-compact-code-graph → mk-code-graph; no env var aliases needed",
+      "actionable": true
+    },
+    {
+      "id": "F007",
+      "question": "Q7",
+      "category": "plugin-rename",
+      "summary": "Bridge rename: spec-kit-compact-code-graph-bridge.mjs → mk-code-graph-bridge.mjs; no duplicate found at system-spec-kit (advisor had duplicate, code-graph does not)",
+      "confidence": "HIGH",
+      "evidence": [
+        {
+          "source": "ls output",
+          "type": "directory-structure",
+          "description": "No duplicate bridge file exists"
+        }
+      ],
+      "recommendation": "Simple rename with import path updates; no deletion needed",
+      "actionable": true
+    },
+    {
+      "id": "F008",
+      "question": "Q8",
+      "category": "naming-decision",
+      "summary": "Naming asymmetry justified: mk-code-index (MCP server) is stable tool contract; mk-code-graph (plugin) matches SKILL folder for symmetry; ADR-002 draft documents rationale",
+      "confidence": "HIGH",
+      "evidence": [
+        {
+          "source": ".devin/config.json",
+          "type": "config",
+          "lines": "41-56",
+          "description": "MCP server registered as mk_code_index"
+        }
+      ],
+      "recommendation": "Maintain asymmetry; document in ADR-002; add explanation to SKILL.md and plugins/README.md",
+      "actionable": true
+    },
+    {
+      "id": "F009",
+      "question": "Q9",
+      "category": "post-extraction-audit",
+      "summary": "Post-extraction surface clean: only justified boundary layer references; no accidental cross-references; sk-code compliant for TypeScript/Node surface",
+      "confidence": "HIGH",
+      "evidence": [
+        {
+          "source": ".opencode/skills/system-spec-kit/mcp_server/lib/code-graph-boundary.ts",
+          "type": "source-code",
+          "lines": "4",
+          "description": "Boundary layer documented as intentional interface"
+        }
+      ],
+      "recommendation": "No remediation needed; standard verification (typecheck, lint, vitest) should pass",
+      "actionable": true
+    },
+    {
+      "id": "F010",
+      "question": "Q10",
+      "category": "synthesis",
+      "summary": "sk-doc baseline assessed; gaps identified (SET-UP_GUIDE empty, plugin rename refs, Devin variant docs); Phase B/C synthesis complete; convergence achieved",
+      "confidence": "HIGH",
+      "evidence": [
+        {
+          "source": "doc inventory",
+          "type": "directory-structure",
+          "description": "SKILL.md, README, INSTALL_GUIDE, SET-UP_GUIDE (empty), feature_catalog, manual_testing_playbook"
+        }
+      ],
+      "recommendation": "Proceed to Phase B; populate SET-UP_GUIDE; update plugin rename refs; implement Phase C with risk mitigations",
+      "actionable": true
+    }
+  ],
+  "convergence": {
+    "hard_cap_reached": false,
+    "questions_answered": 10,
+    "questions_remaining": 0
+  }
+}
