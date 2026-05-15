@@ -1,33 +1,36 @@
 ---
-title: "Implementation Plan: Phase 1: rename-mcp-namespace-mk-spec-memory [template:level_1/plan.md]"
-description: "[2-3 sentences: what this implements and the technical approach]"
+title: "Implementation Plan: mk-spec-memory MCP Rename"
+description: "Plan for renaming the Spec Kit Memory MCP server alias to mk-spec-memory while preserving raw tool names and historical audit references."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
-importance_tier: "normal"
-contextType: "general"
+  - "017 rename plan"
+  - "mk-spec-memory implementation plan"
+  - "spec kit memory mcp rename"
+importance_tier: "important"
+contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/001-rename-mcp-namespace-mk-spec-memory"
-    last_updated_at: "2026-05-13T09:00:44Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/017-mk-spec-memory-rename"
+    last_updated_at: "2026-05-15T05:59:52Z"
+    last_updated_by: "main_agent"
+    recent_action: "Replaced scaffold plan with actual shipped rename plan"
+    next_safe_action: "Reference shipped evidence"
     blockers: []
-    key_files: []
+    key_files:
+      - "spec.md"
+      - "implementation-summary.md"
+      - "resource-map.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/001-rename-mcp-namespace-mk-spec-memory"
+      fingerprint: "sha256:0e2c75b4cb50ff6c84f4bd30d24aa04d40be962f40d6695a4145dc5ea1c42b7f"
+      session_id: "main-2026-05-15-017-plan-remediation"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "Raw MCP tool names remain unchanged"
+      - "Historical spec packet docs are preserved as audit trail"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Implementation Plan: Phase 1: rename-mcp-namespace-mk-spec-memory
+# Implementation Plan: mk-spec-memory MCP Rename
 
 <!-- SPECKIT_LEVEL: 1 -->
 
@@ -40,13 +43,14 @@ _memory:
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Language/Stack** | OpenCode MCP runtime config, Node.js launcher, TypeScript MCP server |
+| **Framework** | Model Context Protocol server and multi-runtime config files |
+| **Storage** | Launcher state files and existing Spec Kit Memory databases |
+| **Testing** | JSON-RPC smoke probe, grep verification, strict spec validation |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+
+Rename the configured Spec Kit Memory MCP server alias from `spec_kit_memory` / `spec-kit-memory` to `mk-spec-memory`. The implementation changes runtime server keys, launcher identity, operational fully qualified references, and documentation while preserving raw MCP tool names such as `memory_context` and `memory_search`.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -55,14 +59,15 @@ _memory:
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Research confirmed runtime aliases produce host-qualified MCP tool prefixes.
+- [x] Scope excludes raw tool-name changes and historical packet rewrites.
+- [x] Runtime config surfaces are known: OpenCode, Claude Code, Codex, Gemini, `.mcp.json`, and `.vscode/mcp.json`.
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] Runtime configs use `mk-spec-memory` and the renamed launcher.
+- [x] Operational `mcp__spec_kit_memory__*` references are migrated or documented as historical.
+- [x] Smoke evidence confirms `serverInfo.name = "mk-spec-memory"` and the 41 raw tools remain listed.
+- [x] Packet docs record the active-vs-historical split and validation evidence.
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -71,14 +76,18 @@ _memory:
 ## 3. ARCHITECTURE
 
 ### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+
+Configuration rename plus compatibility-preserving runtime identity update.
 
 ### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
+- **Runtime config keys**: OpenCode, Claude Code, Codex, Gemini, `.mcp.json`, and `.vscode/mcp.json` derive visible tool namespaces from the configured server alias.
+- **Launcher binary**: `.opencode/bin/mk-spec-memory-launcher.cjs` owns env loading, lock-dir lifecycle, and state-file naming.
+- **MCP server source**: `context-server.ts` advertises the server display name while raw tool schemas remain unchanged.
+- **Operational docs and scripts**: active command, skill, agent, YAML, and test references use the new `mcp__mk_spec_memory__*` prefix.
 
 ### Data Flow
-[Brief description of how data moves through the system]
+
+Runtimes start the launcher, the launcher loads environment and spawns the MCP server, and host tools expose `mcp__mk_spec_memory__<raw_tool_name>` while the server still registers raw names such as `memory_context`.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -86,18 +95,13 @@ _memory:
 <!-- ANCHOR:affected-surfaces -->
 ## FIX ADDENDUM: AFFECTED SURFACES
 
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
-
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-
-Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
+| Runtime MCP configs | Define server alias and launch command | Rename server key and point to launcher | Config grep plus JSON/TOML parse where applicable |
+| MCP server source/dist | Advertise server identity | Update server name to `mk-spec-memory`; rebuild dist | JSON-RPC initialize smoke probe |
+| Launcher and state files | Own env loading and process lifecycle | Rename launcher/state prefix to mk-spec-memory | Launcher stderr prefix and smoke probe |
+| Operational references | Host-qualified tool examples and command allowlists | Sweep old prefix to new prefix, excluding historical docs | Grep excluding `.opencode/specs/**/*.md` audit trail |
+| Historical specs | Audit trail of prior server name | Preserve old references | Resource map documents retained counts |
 <!-- /ANCHOR:affected-surfaces -->
 
 ---
@@ -105,20 +109,20 @@ Required inventories:
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
-### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
+### Phase 1: Runtime Identity
+- [x] Rename runtime server keys to `mk-spec-memory`.
+- [x] Rename launcher binary and launcher state-file prefix.
+- [x] Update server display name in MCP source and dist.
 
-### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+### Phase 2: Operational Sweep
+- [x] Replace active `mcp__spec_kit_memory__*` references with `mcp__mk_spec_memory__*`.
+- [x] Retune substrate harness and sandbox runner for hyphen display name plus underscore namespace form.
+- [x] Preserve `.opencode/specs/**/*.md` historical references as audit evidence.
 
-### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
+### Phase 3: Verification and Documentation
+- [x] Run smoke probe against the renamed launcher.
+- [x] Reconcile resource-map counts and shipped evidence.
+- [x] Record validation evidence in implementation-summary.md.
 <!-- /ANCHOR:phases -->
 
 ---
@@ -128,9 +132,10 @@ Required inventories:
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Smoke | MCP initialize and tools/list through launcher | Node JSON-RPC probe |
+| Grep | Old prefix absent from active operational files | `rg` / `grep` with historical exclusions |
+| Syntax | Changed JS/TS helper surfaces | Existing vitest/build checks from implementation summary |
+| Spec validation | Packet metadata and required docs | `validate.sh --strict` |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -140,7 +145,9 @@ Required inventories:
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| Runtime support for hyphenated server keys | Runtime config | Green | Codex TOML needs quoted table name |
+| Raw MCP tool schemas | Internal API | Green | Must remain byte-for-byte stable for callers |
+| Historical packet policy | Documentation | Green | Old references are preserved only in audit-trail docs |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -148,16 +155,6 @@ Required inventories:
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: A runtime cannot start or resolve `memory_context` through `mk-spec-memory`.
+- **Procedure**: Revert the rename commit, restore the previous runtime server keys and launcher filename, then restart MCP runtimes. No data migration rollback is required because raw tool names and database formats did not change.
 <!-- /ANCHOR:rollback -->
-
----
-
-<!--
-CORE TEMPLATE (~90 lines)
-- Essential technical planning
-- Simple phase structure
-- Add L2/L3 addendums for complexity
--->
-

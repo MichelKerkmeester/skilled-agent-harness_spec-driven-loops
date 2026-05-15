@@ -1,7 +1,7 @@
 ---
 description: Manage indexed-continuity DB: stats, scan, cleanup, retention, validate, checkpoint, ingest, CCC.
 argument-hint: "[scan [--force]] | [cleanup] | [retention-sweep [--dry-run]] | [bulk-delete <tier> [--older-than <days>] [--folder <spec>]] | [tier <id> <tier>] | [triggers <id>] | [validate <id> <useful|not>] | [delete <id>] | [health] | [checkpoint <subcommand>] | [ingest <subcommand>] | [ccc <status|reindex|feedback>]"
-allowed-tools: Read, mcp__mk_spec_memory__memory_stats, mcp__mk_spec_memory__memory_list, mcp__mk_spec_memory__memory_search, mcp__mk_spec_memory__memory_index_scan, mcp__mk_spec_memory__memory_validate, mcp__mk_spec_memory__memory_update, mcp__mk_spec_memory__memory_delete, mcp__mk_spec_memory__memory_bulk_delete, mcp__mk_spec_memory__memory_retention_sweep, mcp__mk_spec_memory__memory_health, mcp__mk_spec_memory__checkpoint_create, mcp__mk_spec_memory__checkpoint_restore, mcp__mk_spec_memory__checkpoint_list, mcp__mk_spec_memory__checkpoint_delete, mcp__mk_spec_memory__memory_ingest_start, mcp__mk_spec_memory__memory_ingest_status, mcp__mk_spec_memory__memory_ingest_cancel, mcp__mk_spec_memory__ccc_status, mcp__mk_spec_memory__ccc_reindex, mcp__mk_spec_memory__ccc_feedback
+allowed-tools: Read, mcp__mk_spec_memory__memory_stats, mcp__mk_spec_memory__memory_list, mcp__mk_spec_memory__memory_search, mcp__mk_spec_memory__memory_index_scan, mcp__mk_spec_memory__memory_validate, mcp__mk_spec_memory__memory_update, mcp__mk_spec_memory__memory_delete, mcp__mk_spec_memory__memory_bulk_delete, mcp__mk_spec_memory__memory_retention_sweep, mcp__mk_spec_memory__memory_health, mcp__mk_spec_memory__checkpoint_create, mcp__mk_spec_memory__checkpoint_restore, mcp__mk_spec_memory__checkpoint_list, mcp__mk_spec_memory__checkpoint_delete, mcp__mk_spec_memory__memory_ingest_start, mcp__mk_spec_memory__memory_ingest_status, mcp__mk_spec_memory__memory_ingest_cancel, mcp__mk_code_index__ccc_status, mcp__mk_code_index__ccc_reindex, mcp__mk_code_index__ccc_feedback
 ---
 
 # 🚨 MANDATORY FIRST ACTION - DO NOT SKIP
@@ -912,7 +912,7 @@ CocoIndex CCC operations are explicit operator-triggered MCP calls. No startup, 
 **Trigger:** `/memory:manage ccc status`
 
 ```javascript
-mcp__mk_spec_memory__ccc_status({})
+mcp__mk_code_index__ccc_status({})
 ```
 
 Reports CocoIndex binary availability and index status.
@@ -922,7 +922,7 @@ Reports CocoIndex binary availability and index status.
 **Trigger:** `/memory:manage ccc reindex [--full]`
 
 ```javascript
-mcp__mk_spec_memory__ccc_reindex({ full: <true|false> })
+mcp__mk_code_index__ccc_reindex({ full: <true|false> })
 ```
 
 Runs CocoIndex incremental re-indexing by default. Use `--full` only when the semantic index is missing, stale, or explicitly requested by an operator.
@@ -932,7 +932,7 @@ Runs CocoIndex incremental re-indexing by default. Use `--full` only when the se
 **Trigger:** `/memory:manage ccc feedback <query> <rating> [--comment <text>]`
 
 ```javascript
-mcp__mk_spec_memory__ccc_feedback({
+mcp__mk_code_index__ccc_feedback({
   query: "<query>",
   rating: "helpful",
   comment: "<optional comment>"

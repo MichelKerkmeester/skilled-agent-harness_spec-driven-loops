@@ -138,7 +138,7 @@ The smoke probe spun up the renamed launcher, ran JSON-RPC `initialize` + `tools
 | Dist rebuilt with new server name | PASS — `dist/context-server.js:629` now `name: 'mk-spec-memory'` |
 | Operational sweep: zero `mcp__spec_kit_memory__` outside historical packets | PASS — `grep` excluding `.opencode/specs/`, `/changelog/`, `_sandbox/.../evidence/` returns 0 hits |
 | Historical packet preservation | PASS — 90+ files under `.opencode/specs/**/*.md` still carry the old prefix as audit-trail evidence |
-| `validate.sh --strict` on 017 packet | Pending (run before commit) |
+| `validate.sh --strict` on 017 packet | PASS — exit 0, 0 errors / 0 warnings |
 <!-- /ANCHOR:verification -->
 
 ---

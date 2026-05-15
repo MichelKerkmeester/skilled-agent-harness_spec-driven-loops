@@ -11,7 +11,7 @@
     "mk-spec-memory": {
       "command": "node",
       "args": [
-        ".opencode/skills/system-spec-kit/mcp_server/dist/context-server.js"
+        ".opencode/bin/mk-spec-memory-launcher.cjs"
       ],
       "env": {
         "EMBEDDINGS_PROVIDER": "auto",

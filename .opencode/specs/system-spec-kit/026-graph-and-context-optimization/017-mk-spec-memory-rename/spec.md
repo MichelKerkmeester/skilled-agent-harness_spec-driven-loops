@@ -11,11 +11,11 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "027-xce-research-based-refinement/001-rename-mcp-namespace-mk-spec-memory"
-    last_updated_at: "2026-05-13T09:20:00Z"
-    last_updated_by: "codex"
-    recent_action: "authored spec"
-    next_safe_action: "plan rename"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/017-mk-spec-memory-rename"
+    last_updated_at: "2026-05-15T05:59:52Z"
+    last_updated_by: "main_agent"
+    recent_action: "shipped mk-spec-memory rename and remediated metadata drift"
+    next_safe_action: "treat packet as shipped; use 018 remediation packet for review closure evidence"
     blockers: []
     key_files:
       - "opencode.json"
@@ -23,12 +23,11 @@ _memory:
       - ".codex/config.toml"
       - ".gemini/settings.json"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "027-001-spec-authoring"
+      fingerprint: "sha256:eb972bf242e1e8011675a557c41fdf62d3c4cc379231dc666d41d4c0c0607e77"
+      session_id: "026-017-mk-spec-memory-rename-shipped"
       parent_session_id: null
-    completion_pct: 10
-    open_questions:
-      - "auxiliary mk pattern"
+    completion_pct: 100
+    open_questions: []
     answered_questions:
       - "raw tools unchanged"
 ---
@@ -44,11 +43,11 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Target Level** | 2 |
+| **Target Level** | 1 |
 | **Priority** | P0 |
-| **Status** | Draft |
+| **Status** | Shipped |
 | **Created** | 2026-05-13 |
-| **Branch** | `scaffold/001-rename-mcp-namespace-mk-spec-memory` |
+| **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 18 of 18 |
 | **Predecessor** | 017-cocoindex-memory-port-research |
@@ -63,9 +62,9 @@ _memory:
 | `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:48` | `name: 'memory_context',` proves the tool name itself does not include the server alias. |
 | `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:214` | `const memoryMatchTriggers: ToolDefinition = {` confirms sibling memory tools are likewise raw definitions. |
 | `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:1038` | `export const TOOL_DEFINITIONS: ToolDefinition[] = [` aggregates raw tool registrations independently from runtime namespace keys. |
-| `research/research.md:200` | Runtime config keys provide the server-name segment, and Gemini warns against underscores because its policy parser splits after `mcp_`. |
-| `research/research.md:218` | Research measured 166 raw old-prefix occurrences under the requested migration filter. |
-| `research/research.md:266` | The implementation packet scope is a server-alias rename while preserving all raw tool names. |
+| Origin research at `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/research/` | Runtime config keys provide the server-name segment, and Gemini warns against underscores because its policy parser splits after `mcp_`. (Research carried with the packet's origin in 027; this rename's resource-map.md is the load-bearing artifact post-shipment.) |
+| Pre-shipment count | Research measured 166 raw old-prefix occurrences under the requested migration filter. Post-shipment: 0 active operational hits (verified via grep), ~90 historical refs preserved as audit trail. |
+| Packet scope | Server-alias rename only; all raw tool names (`memory_context`, `memory_search`, etc.) preserved byte-for-byte. |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -156,7 +155,7 @@ Rename the configured server alias to `mk-spec-memory` so Spec Kit Memory tool r
 | REQ-001 | All four runtime configs use `mk-spec-memory` as the Spec Kit Memory MCP server alias. | `rg "spec_kit_memory" opencode.json .claude/mcp.json .codex/config.toml .gemini/settings.json` returns no active config key matches, and `rg "mk-spec-memory"` finds one server key per runtime config. |
 | REQ-002 | Raw tool names remain unchanged. | `tool-schemas.ts` still defines `memory_context`, `memory_search`, `memory_quick_search`, `memory_match_triggers`, `memory_save`, and `memory_index_scan` without server-prefix edits. |
 | REQ-003 | Each runtime can resolve `memory_context` through the renamed server alias. | Smoke tests in OpenCode, Claude Code, Codex, and Gemini each invoke or list a Spec Kit Memory tool under the new alias. |
-| REQ-004 | Active fully qualified references migrate away from the old prefix. | `rg "mcp__mk_spec_memory__" . --glob '*.md' --glob '*.ts' --glob '*.json' --glob '*.sh'` returns zero active matches after implementation exclusions are applied. |
+| REQ-004 | Active fully qualified references migrate away from the old prefix. | `rg "mcp__spec_kit_memory__" . --glob '*.md' --glob '*.ts' --glob '*.json' --glob '*.sh'` returns zero active matches after implementation exclusions are applied, except historical `.opencode/specs/**/*.md` audit-trail references. |
 
 ### P1 - Required (complete OR user-approved deferral)
 
@@ -172,7 +171,7 @@ Rename the configured server alias to `mk-spec-memory` so Spec Kit Memory tool r
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: Zero active `mcp__mk_spec_memory__` occurrences remain after migration.
+- **SC-001**: Zero active `mcp__spec_kit_memory__` occurrences remain outside `.opencode/specs/**/*.md` historical audit-trail references after migration.
 - **SC-002**: Each configured runtime resolves at least one Spec Kit Memory tool call through the new `mk-spec-memory` server alias.
 - **SC-003**: Raw MCP tool names remain byte-for-byte compatible for callers that address tools by raw schema name.
 - **SC-004**: Gemini configuration contains no underscore-bearing Spec Kit Memory MCP server alias.

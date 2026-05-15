@@ -45,7 +45,7 @@ Source roots: `.opencode/`, `.claude/`, `.codex/`, `.gemini/`, repo root. Exclud
 
 ---
 
-## Layer 1 — Runtime configs (4 files, server key renamed)
+## Layer 1 — Runtime configs (6 files, server key renamed)
 
 | File | Old key | New key |
 |------|---------|---------|
@@ -53,6 +53,8 @@ Source roots: `.opencode/`, `.claude/`, `.codex/`, `.gemini/`, repo root. Exclud
 | `.claude/mcp.json` | `"spec_kit_memory"` | `"mk-spec-memory"` |
 | `.codex/config.toml` | `[mcp_servers.spec_kit_memory]` | `[mcp_servers."mk-spec-memory"]` (TOML quotes required for hyphen) |
 | `.gemini/settings.json` | `"spec_kit_memory"` | `"mk-spec-memory"` |
+| `.mcp.json` | `"spec_kit_memory"` / direct server entry | `"mk-spec-memory"` with `.opencode/bin/mk-spec-memory-launcher.cjs` |
+| `.vscode/mcp.json` | `"spec_kit_memory"` / direct-to-dist server entry | `"mk-spec-memory"` with `.opencode/bin/mk-spec-memory-launcher.cjs` |
 
 The Gemini change is the load-bearing one — Gemini's policy parser splits on `mcp_` and treats underscores in server names as policy-ambiguous.
 
@@ -60,7 +62,7 @@ The Gemini change is the load-bearing one — Gemini's policy parser splits on `
 
 ## Layer 2 — MCP namespace prefix references (`mcp__spec_kit_memory__*`)
 
-**Total files with prefix at start: 86.** Triage:
+**Total references at start: ~151.** Triage:
 
 ### Operational (~61 files — UPDATED)
 
@@ -72,9 +74,9 @@ Includes:
 - YAML workflow files: `.opencode/commands/doctor/_routes.yaml`, the four `spec_kit_deep-{research,review}_{auto,confirm}.yaml` assets
 - Active non-spec markdown across `.opencode/skills/`, `.opencode/commands/`, `.opencode/agents/`
 
-### Historical (54+ files — PRESERVED)
+### Historical (~90 files — PRESERVED)
 
-Spec packet `.md` docs under `.opencode/specs/` retain `mcp__spec_kit_memory__*` as evidence of pre-rename state. Same precedent as the mk-code-index rename retained `mcp__system_code_graph__*` in 007/010/014/018/020 packet docs.
+Spec packet `.md` docs under `.opencode/specs/` retain `mcp__spec_kit_memory__*` as evidence of pre-rename state. Same precedent as the mk-code-index rename retained `mcp__system_code_graph__*` in 007/010/014/018/020 packet docs. The audit split is approximately 61 operational files changed plus 90 historical files preserved.
 
 ---
 

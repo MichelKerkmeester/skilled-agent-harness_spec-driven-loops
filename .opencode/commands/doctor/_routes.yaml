@@ -17,7 +17,8 @@
 #   trigger_phrases:  list   — advisor lexical-routing phrases for this target
 #
 # Code-graph implementation/docs are owned by .opencode/skills/system-code-graph/;
-# stable MCP tool IDs remain registered through mk-spec-memory.
+# stable code_graph/detect_changes/ccc MCP tools are registered through mk-code-index.
+# Skill-advisor recommendation tools are registered through mk-skill-advisor.
 # To add a new target: append a route here, then re-run route-validate.sh.
 # To remove a target: delete the route AND its corresponding assets/doctor_<target>.yaml.
 # ─────────────────────────────────────────────────────────────────
@@ -125,10 +126,10 @@ routes:
     gate3_location: "lib/scorer/lanes/*.ts + .opencode/skills/*/graph-metadata.json"
     mcp_tools:
       - mcp__cocoindex_code__search
-      - mcp__mk_spec_memory__advisor_recommend
-      - mcp__mk_spec_memory__advisor_status
-      - mcp__mk_spec_memory__advisor_validate
-      - mcp__mk_spec_memory__advisor_rebuild
+      - mcp__mk_skill_advisor__advisor_recommend
+      - mcp__mk_skill_advisor__advisor_status
+      - mcp__mk_skill_advisor__advisor_validate
+      - mcp__mk_skill_advisor__advisor_rebuild
       - mcp__mk_skill_advisor__skill_graph_scan
       - mcp__mk_skill_advisor__skill_graph_query
       - mcp__mk_skill_advisor__skill_graph_status
