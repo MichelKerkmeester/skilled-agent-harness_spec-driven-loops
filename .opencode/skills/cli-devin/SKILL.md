@@ -106,7 +106,7 @@ if detect_self_invocation():
 
 ### Smart Router
 
-Provider-specific intent dictionary (used by the shared helper functions in [`system-spec-kit/references/cli/shared_smart_router.md`](../system-spec-kit/references/cli/shared_smart_router.md)):
+Provider-specific dictionaries (used by the shared helper functions in [`system-spec-kit/references/cli/shared_smart_router.md`](../system-spec-kit/references/cli/shared_smart_router.md)):
 
 ```python
 INTENT_SIGNALS = {
@@ -117,22 +117,42 @@ INTENT_SIGNALS = {
     "DEVIN_RULES_SKILLS":    {"weight": 3, "keywords": ["devin rules", "devin skills", "devin skill show"]},
     "DEVIN_PERMISSION":      {"weight": 3, "keywords": ["devin permission-mode", "devin dangerous"]},
     "DEVIN_AUTH":            {"weight": 2, "keywords": ["devin auth", "devin login", "devin auth status", "devin configure"]},
-    "UNKNOWN_FALLBACK":      {"weight": 1, "keywords": []},
 }
 
-ROUTING_KEY = "devin"
+RESOURCE_MAP = {
+    "DEVIN_LOCAL_DISPATCH":  ["references/cli_reference.md", "references/devin_tools.md", "references/integration_patterns.md"],
+    "DEVIN_CLOUD_HANDOFF":   ["references/cloud_handoff.md", "references/integration_patterns.md"],
+    "DEVIN_ACP_BRIDGE":      ["references/devin_tools.md", "references/integration_patterns.md"],
+    "DEVIN_MCP_OPS":         ["references/devin_tools.md", "references/cli_reference.md"],
+    "DEVIN_RULES_SKILLS":    ["references/agent_delegation.md", "references/cli_reference.md"],
+    "DEVIN_PERMISSION":      ["references/cli_reference.md", "references/devin_tools.md"],
+    "DEVIN_AUTH":            ["references/cli_reference.md"],
+}
+
+LOADING_LEVELS = {
+    "ALWAYS": ["references/cli_reference.md", "assets/prompt_quality_card.md"],
+    "ON_DEMAND_KEYWORDS": ["full reference", "all templates", "deep dive", "complete guide", "devin agent", "devin prompt", "cloud handoff guide", "acp bridge", "rules skills"],
+    "ON_DEMAND": ["references/devin_tools.md", "assets/prompt_templates.md"],
+}
+
+UNKNOWN_FALLBACK_CHECKLIST = [
+    "Is the user asking about Devin CLI specifically (SWE 1.6 dispatch)?",
+    "Does the task benefit from a cloud handoff to a separate Devin sandbox?",
+    "Would a sibling cli-* peer (cli-codex, cli-claude-code) be a better routing target?",
+    "Is the request actually about ACP bridge, MCP ops, rules/skills or auth?",
+]
 ```
 
-| Intent | Reference Load |
-|--------|----------------|
-| DEVIN_LOCAL_DISPATCH | `cli_reference.md`, `devin_tools.md`, `integration_patterns.md#use-case-1` |
-| DEVIN_CLOUD_HANDOFF  | `cloud_handoff.md`, `integration_patterns.md#use-case-3` |
-| DEVIN_ACP_BRIDGE     | `devin_tools.md#acp`, `integration_patterns.md#use-case-2` |
-| DEVIN_MCP_OPS        | `devin_tools.md#mcp`, `cli_reference.md#mcp-subcommands` |
-| DEVIN_RULES_SKILLS   | `agent_delegation.md`, `cli_reference.md#rules-skills` |
-| DEVIN_PERMISSION     | `cli_reference.md#permission-modes`, `devin_tools.md#permission-modes-vs-family` |
-| DEVIN_AUTH           | `cli_reference.md#auth-preflight` |
-| UNKNOWN_FALLBACK     | Surface the closest matching cli-* peer; for raw model dispatch suggest cli-codex or cli-claude-code |
+**Call sequence** (using shared helpers from `shared_smart_router.md`):
+
+1. `discover_markdown_resources()` — recursively enumerate current `.md` files under existing `references/` and `assets/` folders at routing time.
+2. `_guard_in_skill()` + `load_if_available()` — sandbox paths to this skill, reject non-markdown loads, skip missing files, and suppress duplicates.
+3. `score_intents(task)` and `select_intents(scores, ambiguity_delta=1.0)` — preserve provider-specific weighted intent scoring and top-2 ambiguity handling.
+4. `get_routing_key(task, intents)` — derive the provider routing key from task/provider context, then fall back to `devin`.
+5. ALWAYS-load `LOADING_LEVELS["ALWAYS"]`, then return `UNKNOWN_FALLBACK` with `UNKNOWN_FALLBACK_CHECKLIST` when max score is 0.
+6. CONDITIONAL-load `RESOURCE_MAP[intent]`, ON_DEMAND-load keyword matches, and return a notice when no provider-specific knowledge base is available beyond always-load resources.
+
+The `route_devin_resources(task)` function body lives in [`shared_smart_router.md`](../system-spec-kit/references/cli/shared_smart_router.md) — substitute `<PROVIDER>` = `devin`.
 
 ---
 
