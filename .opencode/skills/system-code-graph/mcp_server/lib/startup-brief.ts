@@ -6,15 +6,15 @@
 
 import { getStats, queryStartupHighlights, type StartupHighlight } from './code-graph-db.js';
 import { getGraphReadinessSnapshot } from './ensure-ready.js';
-import { loadMostRecentState, type HookStateScope } from '../../../system-spec-kit/mcp_server/hooks/claude/hook-state.js';
-import { isCocoIndexAvailable } from '../../../system-spec-kit/mcp_server/lib/utils/cocoindex-path.js';
+import { loadMostRecentState, type HookStateScope } from './shared/hook-state.js';
+import { isCocoIndexAvailable } from './shared/cocoindex-path.js';
 import {
   createSharedPayloadEnvelope,
   trustStateFromGraphState,
   type SharedPayloadEnvelope,
   type SharedPayloadSection,
   type SharedPayloadTrustState,
-} from '../../../system-spec-kit/mcp_server/lib/context/shared-payload.js';
+} from './shared/shared-payload.js';
 
 /** Compact startup summary for the locally indexed code graph. */
 export interface StartupGraphSummary {

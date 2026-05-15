@@ -5,7 +5,7 @@
 
 import { existsSync, readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
-import { detectCodexHookPolicy } from '../../../system-spec-kit/mcp_server/lib/codex-hook-policy.js';
+import { detectCodexHookPolicy } from './shared/codex-hook-policy.js';
 
 /** Supported runtime identifiers */
 export type RuntimeId = 'claude-code' | 'codex-cli' | 'copilot-cli' | 'gemini-cli' | 'unknown';

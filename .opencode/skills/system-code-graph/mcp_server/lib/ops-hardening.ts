@@ -8,11 +8,11 @@ export {
   normalizeStructuralReadiness,
   buildCodeGraphOpsContract,
   createMetadataOnlyPreview,
-} from '../../../system-spec-kit/shared/code-graph-contracts.js';
+} from './shared/code-graph-contracts.js';
 
 export type {
   GraphFreshness,
   StructuralReadiness,
   MetadataOnlyPreview,
   CodeGraphOpsContract,
-} from '../../../system-spec-kit/shared/code-graph-contracts.js';
+} from './shared/code-graph-contracts.js';

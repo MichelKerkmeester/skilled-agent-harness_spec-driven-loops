@@ -33,15 +33,15 @@ import {
   type DetectorProvenance,
   type SharedPayloadTrustState,
   type StructuralTrust,
-} from '../../../system-spec-kit/mcp_server/lib/context/shared-payload.js';
-import { assertNever } from '../../../system-spec-kit/mcp_server/lib/utils/exhaustiveness.js';
+} from './shared/shared-payload.js';
+import { assertNever } from './shared/assert-never.js';
 
 // Re-export the surface types that downstream consumers (query.ts
 // and its Wave B siblings) need so they can import everything
 // readiness-related from a single module.
 export type { ReadyResult } from './ensure-ready.js';
 export type { StructuralReadiness } from './ops-hardening.js';
-export type { SharedPayloadTrustState } from '../../../system-spec-kit/mcp_server/lib/context/shared-payload.js';
+export type { SharedPayloadTrustState } from './shared/shared-payload.js';
 
 interface QueryTrustMetadata {
   graphMetadata?: Record<string, unknown>;

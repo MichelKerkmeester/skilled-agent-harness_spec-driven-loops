@@ -3,12 +3,6 @@
 // ───────────────────────────────────────────────────────────────
 // ADR-002: standalone mk-code-index MCP server owns these schemas.
 
-export {
-  getSchema,
-  getToolSchema,
-  validateToolArgs,
-} from '../../system-spec-kit/mcp_server/schemas/tool-input-schemas.js';
-
 export interface ToolDefinition {
   name: string;
   description: string;

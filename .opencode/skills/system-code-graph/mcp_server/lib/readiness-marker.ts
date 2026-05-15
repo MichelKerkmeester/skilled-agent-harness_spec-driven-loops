@@ -13,7 +13,7 @@ import type {
   CodeGraphStatsSnapshot,
   StartupBriefResult,
   StartupGraphQualitySummary,
-} from '../../../system-spec-kit/shared/code-graph-contracts.js';
+} from './shared/code-graph-contracts.js';
 
 export const CODE_GRAPH_READINESS_MARKER_BASE_DIR = resolve(
   process.cwd(),

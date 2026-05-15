@@ -1,9 +1,9 @@
 import type { ReadyResult } from './ensure-ready.js';
 import type { StructuralReadiness } from './ops-hardening.js';
-import { type SharedPayloadTrustState, type StructuralTrust } from '../../../system-spec-kit/mcp_server/lib/context/shared-payload.js';
+import { type SharedPayloadTrustState, type StructuralTrust } from './shared/shared-payload.js';
 export type { ReadyResult } from './ensure-ready.js';
 export type { StructuralReadiness } from './ops-hardening.js';
-export type { SharedPayloadTrustState } from '../../../system-spec-kit/mcp_server/lib/context/shared-payload.js';
+export type { SharedPayloadTrustState } from './shared/shared-payload.js';
 interface QueryTrustMetadata {
     graphMetadata?: Record<string, unknown>;
     structuralTrust: StructuralTrust;

@@ -20,9 +20,9 @@ import {
   detectLanguage,
 } from './indexer-types.js';
 import { isFileStale } from './code-graph-db.js';
-import { shouldIndexForCodeGraph } from '../../../system-spec-kit/mcp_server/lib/utils/index-scope.js';
-import { resolveCanonicalPath } from '../../../system-spec-kit/mcp_server/lib/utils/canonical-path.js';
-import { isSpeckitMetricsEnabled, speckitMetrics } from '../../../system-skill-advisor/mcp_server/lib/metrics.js';
+import { shouldIndexForCodeGraph } from './shared/index-scope.js';
+import { resolveCanonicalPath } from './shared/canonical-path.js';
+import { isSpeckitMetricsEnabled, speckitMetrics } from './shared/metrics-stub.js';
 import { runPhases, type Phase } from './phase-runner.js';
 
 interface IgnoreInstance {

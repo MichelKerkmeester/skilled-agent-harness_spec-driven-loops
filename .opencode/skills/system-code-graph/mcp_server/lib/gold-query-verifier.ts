@@ -6,7 +6,7 @@
 import { existsSync, readFileSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { createLogger } from '../../../system-spec-kit/mcp_server/lib/utils/logger.js';
+import { createLogger } from './shared/logger.js';
 import {
   isRecord,
   parseOutlineQueryResult,

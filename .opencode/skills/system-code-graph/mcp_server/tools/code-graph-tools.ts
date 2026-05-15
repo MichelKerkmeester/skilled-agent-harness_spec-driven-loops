@@ -19,8 +19,8 @@ import {
   // PHASE-004-IMPORT-SLOT: handleCodeGraphImpactAnalysis (027/004)
 } from '../handlers/index.js';
 
-import type { MCPResponse } from '../../../system-spec-kit/mcp_server/tools/types.js';
-import { parseArgs } from '../../../system-spec-kit/mcp_server/tools/types.js';
+import type { MCPResponse } from '../lib/shared/mcp-types.js';
+import { parseArgs } from '../lib/shared/mcp-types.js';
 
 /** Tool names handled by this module */
 export const TOOL_NAMES = new Set([
