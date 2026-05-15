@@ -1,11 +1,8 @@
-# Skilled Agent Orchestration w/ Custom Spec Kit - Modular Framework
+# Skilled Agent Orchestration w/ Custom Spec Kit 
 
 [![GitHub Stars](https://img.shields.io/github/stars/MichelKerkmeester/opencode--spec-kit-skilled-agent-orchestration?style=for-the-badge&logo=github&color=fce566&labelColor=222222)](https://github.com/MichelKerkmeester/opencode--spec-kit-skilled-agent-orchestration/stargazers)
 [![License](https://img.shields.io/github/license/MichelKerkmeester/opencode--spec-kit-skilled-agent-orchestration?style=for-the-badge&color=7bd88f&labelColor=222222)](LICENSE)
 [![Latest Release](https://img.shields.io/github/v/release/MichelKerkmeester/opencode--spec-kit-skilled-agent-orchestration?style=for-the-badge&color=5ad4e6&labelColor=222222)](https://github.com/MichelKerkmeester/opencode--spec-kit-skilled-agent-orchestration/releases)
-
-Custom-built orchestration for AI coding assistants: memory, spec framework, semantic search,
-code graph context, skill routing, and specialized agents in one modular framework.
 
 | Core layer | What it adds |
 | --- | --- |
