@@ -56,6 +56,9 @@ for n in $(seq "${START_ITER}" "${END_ITER}"); do
   log "[${NNN}] start"
   START_TS=$(date +%s)
 
+  # Devin stdout is the iter content; stderr is dispatch noise / errors.
+  # The research-iter recipe is read-only, so devin can't Write the iter file itself —
+  # the dispatcher captures stdout directly to OUTPUT.
   cd "${REPO_ROOT}"
   devin --print \
     --prompt-file "${PROMPT}" \
@@ -63,24 +66,35 @@ for n in $(seq "${START_ITER}" "${END_ITER}"); do
     --permission-mode auto \
     --agent-config "${AGENT_CONFIG_TMP}" \
     </dev/null \
-    > "${LOG}" 2>&1
+    > "${OUTPUT}" 2> "${LOG}"
   EXIT_CODE=$?
 
   END_TS=$(date +%s)
   DURATION=$((END_TS - START_TS))
 
   if [[ "${EXIT_CODE}" -ne 0 ]]; then
-    log "[${NNN}] FAIL — devin exit ${EXIT_CODE} after ${DURATION}s — log: ${LOG}"
-    continue
-  fi
-
-  if [[ ! -f "${OUTPUT}" ]]; then
-    log "[${NNN}] PARTIAL — devin exit 0 but output not written. Possibly the prompt's Write was not executed. log: ${LOG}"
+    log "[${NNN}] FAIL — devin exit ${EXIT_CODE} after ${DURATION}s — stderr: ${LOG}"
+    # Move partial output aside if it exists, for inspection
+    [[ -f "${OUTPUT}" ]] && mv "${OUTPUT}" "${OUTPUT}.failed"
     continue
   fi
 
   OUTPUT_SIZE=$(stat -f%z "${OUTPUT}" 2>/dev/null || stat -c%s "${OUTPUT}")
-  log "[${NNN}] done in ${DURATION}s — output ${OUTPUT_SIZE} bytes"
+  if [[ "${OUTPUT_SIZE}" -lt 500 ]]; then
+    log "[${NNN}] PARTIAL — devin exit 0 but output ${OUTPUT_SIZE} bytes (< 500). stderr: ${LOG}"
+    mv "${OUTPUT}" "${OUTPUT}.partial"
+    continue
+  fi
+
+  # Extract JSONL delta row from the iter content and append to state file.
+  # The iter prompt asks devin to print the JSONL row in the final section.
+  JSONL_ROW=$(grep -E '^\{"iter_id":' "${OUTPUT}" | head -1)
+  if [[ -n "${JSONL_ROW}" ]]; then
+    echo "${JSONL_ROW}" >> "${PACKET}/research/deep-research-state.jsonl"
+    log "[${NNN}] done in ${DURATION}s — output ${OUTPUT_SIZE} bytes + JSONL appended"
+  else
+    log "[${NNN}] done in ${DURATION}s — output ${OUTPUT_SIZE} bytes (no JSONL row found)"
+  fi
 
   # Per-iter commit
   cd "${REPO_ROOT}"
