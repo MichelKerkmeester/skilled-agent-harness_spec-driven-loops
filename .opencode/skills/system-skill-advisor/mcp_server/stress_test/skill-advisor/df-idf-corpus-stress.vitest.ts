@@ -8,7 +8,7 @@ import {
   computeCorpusStats,
   createDebouncedCorpusUpdater,
   type CorpusDocument,
-} from '../../skill_advisor/lib/corpus/df-idf.js';
+} from '../../lib/corpus/df-idf.js';
 
 describe('sa-013 — DF-IDF corpus stats', () => {
   let tmpDir: string;

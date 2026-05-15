@@ -22,7 +22,10 @@ import {
   mrr,
 } from './metrics.js';
 import type { SearchDecisionEnvelope } from '../../lib/search/search-decision-envelope.js';
-import type { ShadowDeltaRecord } from '../../lib/shadow/shadow-sink.js';
+
+interface ShadowDeltaRecord {
+  readonly [key: string]: unknown;
+}
 
 interface SearchQualityCandidate {
   id: string;

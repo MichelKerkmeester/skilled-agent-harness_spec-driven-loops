@@ -6,13 +6,13 @@ import {
   handleGeminiUserPromptSubmit,
   parseGeminiUserPromptSubmitInput,
   type GeminiUserPromptSubmitInput,
-} from '../hooks/gemini/user-prompt-submit.js';
-import { normalizeRuntimeOutput } from '../skill_advisor/lib/normalize-adapter-output.js';
-import { renderAdvisorBrief } from '../skill_advisor/lib/render.js';
-import { validateAdvisorHookDiagnosticRecord } from '../skill_advisor/lib/metrics.js';
-import type { AdvisorHookResult } from '../skill_advisor/lib/skill-advisor-brief.js';
+} from '../../../hooks/gemini/user-prompt-submit.js';
+import { normalizeRuntimeOutput } from '../../lib/normalize-adapter-output.js';
+import { renderAdvisorBrief } from '../../lib/render.js';
+import { validateAdvisorHookDiagnosticRecord } from '../../lib/metrics.js';
+import type { AdvisorHookResult } from '../../lib/skill-advisor-brief.js';
 
-const fixturesDir = join(import.meta.dirname, 'advisor-fixtures');
+const fixturesDir = join(import.meta.dirname, '..', 'legacy', 'advisor-fixtures');
 
 function fixture(name: string): AdvisorHookResult {
   return JSON.parse(readFileSync(join(fixturesDir, name), 'utf8')) as AdvisorHookResult;

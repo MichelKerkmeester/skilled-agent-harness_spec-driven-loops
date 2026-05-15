@@ -2,9 +2,9 @@ import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import { mkdtempSync, rmSync } from 'node:fs';
 import { join } from 'node:path';
 
-import { scoreAdvisorPrompt } from '../../skill_advisor/lib/scorer/fusion.js';
-import { createFixtureProjection } from '../../skill_advisor/lib/scorer/projection.js';
-import type { SkillProjection } from '../../skill_advisor/lib/scorer/types.js';
+import { scoreAdvisorPrompt } from '../../lib/scorer/fusion.js';
+import { createFixtureProjection } from '../../lib/scorer/projection.js';
+import type { SkillProjection } from '../../lib/scorer/types.js';
 
 function skillProjection(input: {
   readonly id: string;

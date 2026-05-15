@@ -11,6 +11,7 @@
     "tsBuildInfoFile": "./dist/tsconfig.build.tsbuildinfo"
   },
   "include": [
+    "../hooks/**/*.ts",
     "advisor-server.ts",
     "handlers/**/*.ts",
     "lib/**/*.ts",

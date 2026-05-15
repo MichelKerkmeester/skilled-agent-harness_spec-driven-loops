@@ -6,7 +6,7 @@ import { join } from 'node:path';
 import {
   applyAntiStuffing,
   DEFAULT_MAX_TRIGGER_PHRASES,
-} from '../../skill_advisor/lib/derived/anti-stuffing.js';
+} from '../../lib/derived/anti-stuffing.js';
 
 describe('sa-012 — Anti-stuffing cardinality caps', () => {
   let tmpDir: string;

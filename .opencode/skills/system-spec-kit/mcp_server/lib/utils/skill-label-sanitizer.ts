@@ -1,11 +1,29 @@
 // ───────────────────────────────────────────────────────────────
-// MODULE: Skill Label Sanitizer Neutral Utility
+// MODULE: Skill Label Sanitizer Utility
 // ───────────────────────────────────────────────────────────────
-// F-016-D1-02: Neutral seam for `sanitizeSkillLabel` so the shared payload
-// contract (and other cross-cutting payload consumers) do not have to import
-// advisor renderer internals just to sanitize a string. The advisor renderer
-// implementation stays the source of truth; this module re-exports it from
-// a neutral path so high-level payload code depends inward on `lib/utils/`
-// instead of crossing into `skill_advisor/lib/render`.
+// Spec-kit keeps this prompt-safety helper local so shared payload validation
+// does not import advisor renderer internals.
 
-export { sanitizeSkillLabel } from '../../../../system-skill-advisor/mcp_server/lib/render.js';
+import { canonicalFold } from '@spec-kit/shared/unicode-normalization';
+
+const INSTRUCTION_LABEL_PATTERN =
+  /^\s*(SYSTEM|INSTRUCTION|IGNORE|EXECUTE)\s*[:=]|^\s*(<!--|```)|\b(ignore\s+(previous|all)\s+instructions|system\s*:|instruction\s*:|execute\s*:|developer\s*:|assistant\s*:)/i;
+const CONTROL_CHAR_PATTERN = /[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g;
+
+export function sanitizeSkillLabel(skillLabel: string | null | undefined): string | null {
+  if (typeof skillLabel !== 'string') {
+    return null;
+  }
+  const folded = canonicalFold(skillLabel);
+  if (/[\n\r]/.test(folded)) {
+    return null;
+  }
+  const singleLine = folded
+    .replace(CONTROL_CHAR_PATTERN, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+  if (!singleLine || INSTRUCTION_LABEL_PATTERN.test(singleLine)) {
+    return null;
+  }
+  return singleLine;
+}

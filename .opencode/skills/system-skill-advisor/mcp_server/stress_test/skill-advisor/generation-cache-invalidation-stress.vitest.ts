@@ -6,15 +6,15 @@ import { dirname, join } from 'node:path';
 import {
   clearCacheInvalidationListeners,
   onCacheInvalidation,
-} from '../../skill_advisor/lib/freshness/cache-invalidation.js';
+} from '../../lib/freshness/cache-invalidation.js';
 import {
   publishSkillGraphGeneration,
   __testables as generationTestables,
-} from '../../skill_advisor/lib/freshness/generation.js';
+} from '../../lib/freshness/generation.js';
 import {
   AdvisorPromptCache,
   ADVISOR_PROMPT_CACHE_TTL_MS,
-} from '../../skill_advisor/lib/prompt-cache.js';
+} from '../../lib/prompt-cache.js';
 
 describe('sa-007 — Generation cache invalidation', () => {
   let tmpDir: string;

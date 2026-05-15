@@ -8,20 +8,20 @@ import { tmpdir } from 'node:os';
 import { dirname, join } from 'node:path';
 import { performance } from 'node:perf_hooks';
 
-import { extractDerivedMetadata } from '../../skill_advisor/lib/derived/extract.js';
+import { extractDerivedMetadata } from '../../lib/derived/extract.js';
 import {
   computeProvenanceFingerprint,
   fileDependency,
   hasFingerprintChanged,
-} from '../../skill_advisor/lib/derived/provenance.js';
+} from '../../lib/derived/provenance.js';
 import {
   sanitizeDerivedArray,
   sanitizeDerivedValue,
   sanitizeDiagnostic,
   sanitizeEnvelopeSkillLabel,
-} from '../../skill_advisor/lib/derived/sanitizer.js';
-import { syncDerivedMetadata } from '../../skill_advisor/lib/derived/sync.js';
-import { SkillDerivedV2Schema } from '../../skill_advisor/schemas/skill-derived-v2.js';
+} from '../../lib/derived/sanitizer.js';
+import { syncDerivedMetadata } from '../../lib/derived/sync.js';
+import { SkillDerivedV2Schema } from '../../schemas/skill-derived-v2.js';
 
 interface SkillFixtureOptions {
   readonly slug: string;

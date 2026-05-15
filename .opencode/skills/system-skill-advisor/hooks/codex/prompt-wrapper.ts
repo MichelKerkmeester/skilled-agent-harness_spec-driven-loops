@@ -11,7 +11,7 @@ import { fileURLToPath } from 'node:url';
 import {
   detectCodexHookPolicy,
   type CodexHookPolicy,
-} from '../../lib/codex-hook-policy.js';
+} from './lib/codex-hook-policy.js';
 import {
   DEFAULT_ADVISOR_CONFIDENCE_THRESHOLD,
   DEFAULT_ADVISOR_UNCERTAINTY_THRESHOLD,
@@ -19,13 +19,13 @@ import {
   type AdvisorHookFreshness,
   type AdvisorHookResult,
   type AdvisorHookStatus,
-} from '../../../../system-skill-advisor/mcp_server/lib/skill-advisor-brief.js';
-import { renderAdvisorBrief } from '../../../../system-skill-advisor/mcp_server/lib/render.js';
+} from '../../mcp_server/lib/skill-advisor-brief.js';
+import { renderAdvisorBrief } from '../../mcp_server/lib/render.js';
 import {
   createAdvisorHookDiagnosticRecord,
   persistAdvisorHookDiagnosticRecord,
   serializeAdvisorHookDiagnosticRecord,
-} from '../../../../system-skill-advisor/mcp_server/lib/metrics.js';
+} from '../../mcp_server/lib/metrics.js';
 import {
   codexHookTimeoutMs,
   parseCodexUserPromptSubmitInputSources,

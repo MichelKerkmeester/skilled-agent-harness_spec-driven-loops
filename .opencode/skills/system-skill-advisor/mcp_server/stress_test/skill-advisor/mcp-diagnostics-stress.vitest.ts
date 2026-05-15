@@ -7,9 +7,9 @@ import { mkdirSync, mkdtempSync, rmSync, utimesSync, writeFileSync } from 'node:
 import { tmpdir } from 'node:os';
 import { dirname, join } from 'node:path';
 
-import { handleAdvisorStatus, readAdvisorStatus } from '../../../../system-skill-advisor/mcp_server/handlers/advisor-status.js';
-import { handleAdvisorValidate } from '../../../../system-skill-advisor/mcp_server/handlers/advisor-validate.js';
-import { AdvisorStatusOutputSchema, AdvisorValidateOutputSchema } from '../../../../system-skill-advisor/mcp_server/schemas/advisor-tool-schemas.js';
+import { handleAdvisorStatus, readAdvisorStatus } from '../../handlers/advisor-status.js';
+import { handleAdvisorValidate } from '../../handlers/advisor-validate.js';
+import { AdvisorStatusOutputSchema, AdvisorValidateOutputSchema } from '../../schemas/advisor-tool-schemas.js';
 
 const BOGUS_DAEMON_PID = '999999999';
 const ADVISOR_DB_RELATIVE_PATH = '.opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sqlite';

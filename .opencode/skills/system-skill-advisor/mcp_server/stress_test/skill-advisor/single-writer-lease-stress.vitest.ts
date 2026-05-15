@@ -9,7 +9,7 @@ import {
   openLeaseDatabase,
   readLeaseSnapshot,
   type SkillGraphLease,
-} from '../../skill_advisor/lib/daemon/lease.js';
+} from '../../lib/daemon/lease.js';
 
 describe('sa-002 — Single-writer lease', () => {
   let tmpDir: string;

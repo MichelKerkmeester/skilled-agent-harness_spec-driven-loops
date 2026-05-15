@@ -4,11 +4,11 @@ import { tmpdir } from 'node:os';
 import { dirname, join } from 'node:path';
 import { performance } from 'node:perf_hooks';
 
-import { getAdvisorFreshness } from '../../skill_advisor/lib/freshness.js';
+import { getAdvisorFreshness } from '../../lib/freshness.js';
 import {
   createTrustState,
   failOpenTrustState,
-} from '../../skill_advisor/lib/freshness/trust-state.js';
+} from '../../lib/freshness/trust-state.js';
 
 describe('sa-005 — Trust-state classifier pressure', () => {
   let tmpDir: string;

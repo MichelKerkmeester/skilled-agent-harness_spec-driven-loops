@@ -4,12 +4,12 @@ import { describe, expect, it, vi } from 'vitest';
 import {
   createCodexWrappedPrompt,
   handleCodexPromptWrapper,
-} from '../hooks/codex/prompt-wrapper.js';
-import { normalizeRuntimeOutput } from '../skill_advisor/lib/normalize-adapter-output.js';
-import { renderAdvisorBrief } from '../skill_advisor/lib/render.js';
-import type { AdvisorHookResult } from '../skill_advisor/lib/skill-advisor-brief.js';
+} from '../../../hooks/codex/prompt-wrapper.js';
+import { normalizeRuntimeOutput } from '../../lib/normalize-adapter-output.js';
+import { renderAdvisorBrief } from '../../lib/render.js';
+import type { AdvisorHookResult } from '../../lib/skill-advisor-brief.js';
 
-const fixturesDir = join(import.meta.dirname, 'advisor-fixtures');
+const fixturesDir = join(import.meta.dirname, '..', 'legacy', 'advisor-fixtures');
 
 function fixture(name: string): AdvisorHookResult {
   return JSON.parse(readFileSync(join(fixturesDir, name), 'utf8')) as AdvisorHookResult;

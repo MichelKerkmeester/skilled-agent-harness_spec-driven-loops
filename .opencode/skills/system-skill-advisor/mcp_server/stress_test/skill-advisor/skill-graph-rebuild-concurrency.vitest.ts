@@ -8,7 +8,7 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { describe, expect, it, vi } from 'vitest';
 
-import { rebuildFromSource } from '../../skill_advisor/lib/freshness/rebuild-from-source.js';
+import { rebuildFromSource } from '../../lib/freshness/rebuild-from-source.js';
 
 describe('skill graph rebuild concurrency', () => {
   it('serializes concurrent corruption rebuilds for the same database path', async () => {

@@ -9,15 +9,6 @@
 ──────────────────────────────────────────────────────────────── */
 
 import { z, ZodError } from 'zod';
-import { AdvisorToolInputSchemas } from '../../../system-skill-advisor/mcp_server/schemas/advisor-tool-schemas.js';
-// F-018-D3-04 (partial): Critical advisor contracts source their parameter
-// key tuples from a shared module so ALLOWED_PARAMETERS and the JSON Schema
-// descriptors cannot drift. See advisor-contract-keys.ts header for why the
-// broader MCP-tool surface remains deferred.
-import {
-  ADVISOR_RECOMMEND_PARAMETER_KEYS,
-  ADVISOR_VALIDATE_PARAMETER_KEYS,
-} from '../../../system-skill-advisor/mcp_server/tools/advisor-contract-keys.js';
 
 import type { ZodType } from 'zod';
 
@@ -661,10 +652,6 @@ export const TOOL_SCHEMAS: Record<string, ToolInputSchema> = {
   skill_graph_query: skillGraphQuerySchema as unknown as ToolInputSchema,
   skill_graph_status: skillGraphStatusSchema as unknown as ToolInputSchema,
   skill_graph_validate: skillGraphValidateSchema as unknown as ToolInputSchema,
-  advisor_recommend: AdvisorToolInputSchemas.advisor_recommend as unknown as ToolInputSchema,
-  advisor_rebuild: AdvisorToolInputSchemas.advisor_rebuild as unknown as ToolInputSchema,
-  advisor_status: AdvisorToolInputSchemas.advisor_status as unknown as ToolInputSchema,
-  advisor_validate: AdvisorToolInputSchemas.advisor_validate as unknown as ToolInputSchema,
   deep_loop_graph_upsert: deepLoopGraphUpsertSchema as unknown as ToolInputSchema,
   deep_loop_graph_query: deepLoopGraphQuerySchema as unknown as ToolInputSchema,
   deep_loop_graph_status: deepLoopGraphStatusSchema as unknown as ToolInputSchema,
@@ -719,13 +706,6 @@ const ALLOWED_PARAMETERS: Record<string, string[]> = {
   skill_graph_query: ['queryType', 'skillId', 'sourceSkillId', 'targetSkillId', 'family', 'minInbound', 'depth', 'limit'],
   skill_graph_status: [],
   skill_graph_validate: [],
-  // F-018-D3-04 (partial): keys for these two contracts derive from the
-  // single tuple in advisor-contract-keys.ts so the descriptor and this map
-  // cannot drift.
-  advisor_recommend: [...ADVISOR_RECOMMEND_PARAMETER_KEYS],
-  advisor_rebuild: ['force'],
-  advisor_status: ['workspaceRoot'],
-  advisor_validate: [...ADVISOR_VALIDATE_PARAMETER_KEYS],
   deep_loop_graph_upsert: ['specFolder', 'loopType', 'sessionId', 'nodes', 'edges'],
   deep_loop_graph_query: ['specFolder', 'loopType', 'queryType', 'nodeId', 'sessionId', 'limit', 'maxDepth'],
   deep_loop_graph_status: ['specFolder', 'loopType', 'sessionId'],

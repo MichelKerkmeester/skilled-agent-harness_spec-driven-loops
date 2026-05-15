@@ -7,11 +7,11 @@ import {
   getSkillGraphGenerationPath,
   publishSkillGraphGeneration,
   readSkillGraphGeneration,
-} from '../../skill_advisor/lib/freshness/generation.js';
+} from '../../lib/freshness/generation.js';
 import {
   clearAdvisorGenerationMemory,
   readAdvisorGeneration,
-} from '../../skill_advisor/lib/generation.js';
+} from '../../lib/generation.js';
 
 describe('sa-004 — Generation snapshot atomicity', () => {
   let tmpDir: string;

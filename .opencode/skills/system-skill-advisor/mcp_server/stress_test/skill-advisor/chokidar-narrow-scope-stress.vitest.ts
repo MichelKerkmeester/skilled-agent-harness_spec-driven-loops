@@ -4,7 +4,7 @@ import { tmpdir } from 'node:os';
 import { dirname, join } from 'node:path';
 import { performance } from 'node:perf_hooks';
 
-import { discoverWatchTargets } from '../../skill_advisor/lib/daemon/watcher.js';
+import { discoverWatchTargets } from '../../lib/daemon/watcher.js';
 
 describe('sa-001 — Chokidar narrow-scope watcher', () => {
   let tmpDir: string;

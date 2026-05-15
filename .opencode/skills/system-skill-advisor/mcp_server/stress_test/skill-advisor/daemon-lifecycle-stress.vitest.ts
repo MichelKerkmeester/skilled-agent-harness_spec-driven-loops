@@ -4,12 +4,12 @@ import { tmpdir } from 'node:os';
 import { dirname, join } from 'node:path';
 import { performance } from 'node:perf_hooks';
 
-import { startSkillGraphDaemon } from '../../skill_advisor/lib/daemon/lifecycle.js';
-import { readSkillGraphGeneration } from '../../skill_advisor/lib/freshness/generation.js';
+import { startSkillGraphDaemon } from '../../lib/daemon/lifecycle.js';
+import { readSkillGraphGeneration } from '../../lib/freshness/generation.js';
 import {
   createSkillGraphWatcher,
   type SkillGraphFsWatcher,
-} from '../../skill_advisor/lib/daemon/watcher.js';
+} from '../../lib/daemon/watcher.js';
 
 describe('sa-003 — Daemon lifecycle restarts', () => {
   let tmpDir: string;
@@ -228,7 +228,7 @@ describe('sa-003b — Watcher flush serialization (F-001-A1-01)', () => {
       backpressure: { debounceMs: 5, stableWriteMs: 1 },
     });
 
-    const skillPath = join(tmpDir, '.opencode', 'skill', 'alpha', 'SKILL.md');
+    const skillPath = join(tmpDir, '.opencode', 'skills', 'alpha', 'SKILL.md');
 
     // Fire the first event and wait for it to enter reindexSkill.
     write('.opencode/skills/alpha/SKILL.md', readFileSync(skillPath, 'utf8') + '\n# pulse 1\n');
@@ -298,7 +298,7 @@ describe('sa-003b — Watcher flush serialization (F-001-A1-01)', () => {
       backpressure: { debounceMs: 5, stableWriteMs: 1 },
     });
 
-    const skillPath = join(tmpDir, '.opencode', 'skill', 'alpha', 'SKILL.md');
+    const skillPath = join(tmpDir, '.opencode', 'skills', 'alpha', 'SKILL.md');
     write('.opencode/skills/alpha/SKILL.md', readFileSync(skillPath, 'utf8') + '\n# kick\n');
     harness.emit('change', skillPath);
     await new Promise((resolveOnce) => setTimeout(resolveOnce, 25));

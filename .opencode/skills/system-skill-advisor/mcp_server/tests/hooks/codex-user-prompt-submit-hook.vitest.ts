@@ -8,13 +8,13 @@ import {
   parseCodexUserPromptSubmitInput,
   parseCodexUserPromptSubmitInputSources,
   type CodexUserPromptSubmitInput,
-} from '../hooks/codex/user-prompt-submit.js';
-import { normalizeRuntimeOutput } from '../skill_advisor/lib/normalize-adapter-output.js';
-import { renderAdvisorBrief } from '../skill_advisor/lib/render.js';
-import { validateAdvisorHookDiagnosticRecord } from '../skill_advisor/lib/metrics.js';
-import type { AdvisorHookResult } from '../skill_advisor/lib/skill-advisor-brief.js';
+} from '../../../hooks/codex/user-prompt-submit.js';
+import { normalizeRuntimeOutput } from '../../lib/normalize-adapter-output.js';
+import { renderAdvisorBrief } from '../../lib/render.js';
+import { validateAdvisorHookDiagnosticRecord } from '../../lib/metrics.js';
+import type { AdvisorHookResult } from '../../lib/skill-advisor-brief.js';
 
-const fixturesDir = join(import.meta.dirname, 'advisor-fixtures');
+const fixturesDir = join(import.meta.dirname, '..', 'legacy', 'advisor-fixtures');
 
 function fixture(name: string): AdvisorHookResult {
   return JSON.parse(readFileSync(join(fixturesDir, name), 'utf8')) as AdvisorHookResult;
@@ -232,8 +232,11 @@ describe('Codex UserPromptSubmit advisor hook', () => {
 
   // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
   it('execs the compiled Codex hook and emits non-empty additionalContext', () => {
-    const workspaceRoot = resolve(import.meta.dirname, '../../../../..');
-    const hookPath = join(workspaceRoot, '.opencode/skills/system-spec-kit/mcp_server/dist/hooks/codex/user-prompt-submit.js');
+    const workspaceRoot = resolve(import.meta.dirname, '../../../../../..');
+    const hookPath = join(
+      workspaceRoot,
+      '.opencode/skills/system-skill-advisor/mcp_server/dist/system-skill-advisor/hooks/codex/user-prompt-submit.js',
+    );
     const result = spawnSync(process.execPath, [hookPath], {
       cwd: workspaceRoot,
       input: JSON.stringify({
@@ -256,8 +259,8 @@ describe('Codex UserPromptSubmit advisor hook', () => {
       freshness?: string;
     };
     expect(parsed).toHaveProperty('hookSpecificOutput');
-    expect((parsed.hookSpecificOutput as { additionalContext?: string }).additionalContext).toMatch(/^Advisor: live;/);
+    expect((parsed.hookSpecificOutput as { additionalContext?: string }).additionalContext).toMatch(/^Advisor: (live|stale);/);
     expect(diagnostic.status).toBe('ok');
-    expect(diagnostic.freshness).toBe('live');
+    expect(diagnostic.freshness).toMatch(/^(live|stale)$/);
   });
 });

@@ -8,16 +8,16 @@ import { tmpdir } from 'node:os';
 import { dirname, join } from 'node:path';
 import { performance } from 'node:perf_hooks';
 
-import { applyAgeHaircutToLane, derivedAgeMultiplier } from '../../skill_advisor/lib/lifecycle/age-haircut.js';
+import { applyAgeHaircutToLane, derivedAgeMultiplier } from '../../lib/lifecycle/age-haircut.js';
 import {
   filterCorpusStatEligible,
   filterDefaultRoutable,
   routePolicyForPath,
-} from '../../skill_advisor/lib/lifecycle/archive-handling.js';
-import { rollbackDerivedBlock, rollbackGraphMetadataFile } from '../../skill_advisor/lib/lifecycle/rollback.js';
-import { backfillDerivedV2, readMixedVersion } from '../../skill_advisor/lib/lifecycle/schema-migration.js';
-import { routeSupersession } from '../../skill_advisor/lib/lifecycle/supersession.js';
-import type { SkillDerivedV2 } from '../../skill_advisor/schemas/skill-derived-v2.js';
+} from '../../lib/lifecycle/archive-handling.js';
+import { rollbackDerivedBlock, rollbackGraphMetadataFile } from '../../lib/lifecycle/rollback.js';
+import { backfillDerivedV2, readMixedVersion } from '../../lib/lifecycle/schema-migration.js';
+import { routeSupersession } from '../../lib/lifecycle/supersession.js';
+import type { SkillDerivedV2 } from '../../schemas/skill-derived-v2.js';
 
 interface CorpusEntry {
   readonly skillId: string;

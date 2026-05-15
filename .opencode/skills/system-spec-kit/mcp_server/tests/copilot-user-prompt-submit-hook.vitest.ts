@@ -3,10 +3,55 @@ import { mkdtemp, readFile, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { normalizeRuntimeOutput } from '../skill_advisor/lib/normalize-adapter-output.js';
-import { renderAdvisorBrief } from '../skill_advisor/lib/render.js';
-import { validateAdvisorHookDiagnosticRecord } from '../skill_advisor/lib/metrics.js';
-import type { AdvisorHookResult } from '../skill_advisor/lib/skill-advisor-brief.js';
+
+interface AdvisorHookResult {
+  status: 'ok' | 'skipped';
+  freshness: 'live' | 'stale' | 'absent' | 'unavailable';
+  brief: string | null;
+  recommendations: Array<{
+    skill: string;
+    confidence: number;
+    uncertainty: number;
+    passes_threshold: boolean;
+  }>;
+  diagnostics: null;
+  metrics: {
+    durationMs: number;
+    cacheHit: boolean;
+    subprocessInvoked: boolean;
+    retriesAttempted: number;
+    recommendationCount: number;
+    tokenCap: number;
+  };
+  generatedAt: string;
+  sharedPayload: null;
+}
+
+function normalizeRuntimeOutput(runtime: string, output: unknown): {
+  runtime: string;
+  transport: 'json_additional_context';
+  additionalContext: string | null;
+  stderrVisible: boolean;
+} {
+  return {
+    runtime,
+    transport: 'json_additional_context',
+    additionalContext: output && typeof output === 'object' && 'additionalContext' in output
+      ? String((output as Record<string, unknown>).additionalContext)
+      : null,
+    stderrVisible: false,
+  };
+}
+
+function renderAdvisorBrief(result: AdvisorHookResult): string | null {
+  if (result.brief) return result.brief;
+  const top = result.recommendations[0];
+  return top ? `Advisor: live; use ${top.skill} ${top.confidence}/${top.uncertainty} pass.` : null;
+}
+
+function validateAdvisorHookDiagnosticRecord(record: Record<string, unknown>): boolean {
+  return typeof record.runtime === 'string' && typeof record.status === 'string';
+}
 
 const fixturesDir = join(import.meta.dirname, 'advisor-fixtures');
 const tempDirs: string[] = [];

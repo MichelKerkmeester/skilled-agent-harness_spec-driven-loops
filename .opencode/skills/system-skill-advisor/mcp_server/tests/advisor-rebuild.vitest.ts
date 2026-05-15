@@ -6,8 +6,8 @@ import { mkdtempSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { describe, expect, it, vi } from 'vitest';
-import { rebuildAdvisorIndex } from '../skill_advisor/handlers/advisor-rebuild.js';
-import type { AdvisorStatusOutput } from '../skill_advisor/schemas/advisor-tool-schemas.js';
+import { rebuildAdvisorIndex } from '../handlers/advisor-rebuild.js';
+import type { AdvisorStatusOutput } from '../schemas/advisor-tool-schemas.js';
 
 function status(freshness: AdvisorStatusOutput['freshness'], generation: number): AdvisorStatusOutput {
   return {

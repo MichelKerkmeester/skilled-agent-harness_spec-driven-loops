@@ -10,7 +10,29 @@ import {
   runMeasurement,
   type CorpusRow,
 } from '../../scripts/observability/smart-router-measurement';
-import type { AdvisorHookResult } from '../skill_advisor/lib/skill-advisor-brief.js';
+
+interface AdvisorHookResult {
+  status: 'ok';
+  freshness: 'live' | 'stale' | 'absent' | 'unavailable';
+  brief: string | null;
+  recommendations: Array<{
+    skill: string;
+    confidence: number;
+    uncertainty: number;
+    passes_threshold: boolean;
+  }>;
+  diagnostics: null;
+  metrics: {
+    durationMs: number;
+    cacheHit: boolean;
+    subprocessInvoked: boolean;
+    retriesAttempted: number;
+    recommendationCount: number;
+    tokenCap: number;
+  };
+  generatedAt: string;
+  sharedPayload: null;
+}
 
 const roots = new Set<string>();
 

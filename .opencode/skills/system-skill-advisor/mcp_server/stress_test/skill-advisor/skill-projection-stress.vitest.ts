@@ -5,8 +5,8 @@ import { join } from 'node:path';
 import {
   createFixtureProjection,
   loadAdvisorProjection,
-} from '../../skill_advisor/lib/scorer/projection.js';
-import type { SkillEdgeProjection, SkillProjection } from '../../skill_advisor/lib/scorer/types.js';
+} from '../../lib/scorer/projection.js';
+import type { SkillEdgeProjection, SkillProjection } from '../../lib/scorer/types.js';
 
 function skillProjection(id: string): SkillProjection {
   return {
@@ -41,7 +41,7 @@ describe('sa-020 — Skill projection', () => {
   });
 
   function writeSkill(index: number): void {
-    const skillDir = join(workspaceRoot, '.opencode', 'skill', `projection-${index}`);
+    const skillDir = join(workspaceRoot, '.opencode', 'skills', `projection-${index}`);
     mkdirSync(skillDir, { recursive: true });
     writeFileSync(
       join(skillDir, 'graph-metadata.json'),

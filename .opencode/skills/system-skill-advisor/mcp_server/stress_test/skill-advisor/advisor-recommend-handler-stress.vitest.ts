@@ -6,12 +6,12 @@ const mocks = vi.hoisted(() => ({
   readAdvisorStatus: vi.fn(),
 }));
 
-vi.mock('../../skill_advisor/handlers/advisor-status.js', () => ({
+vi.mock('../../handlers/advisor-status.js', () => ({
   readAdvisorStatus: mocks.readAdvisorStatus,
 }));
 
-import { advisorPromptCache } from '../../skill_advisor/lib/prompt-cache.js';
-import { handleAdvisorRecommend } from '../../skill_advisor/handlers/advisor-recommend.js';
+import { advisorPromptCache } from '../../lib/prompt-cache.js';
+import { handleAdvisorRecommend } from '../../handlers/advisor-recommend.js';
 
 interface HandlerResponsePayload {
   readonly status: string;
@@ -82,7 +82,7 @@ describe('sa-025 — advisor_recommend MCP tool', () => {
   }
 
   function writeSkill(index: number): void {
-    const skillDir = join(workspaceRoot, '.opencode', 'skill', `recommend-${index}`);
+    const skillDir = join(workspaceRoot, '.opencode', 'skills', `recommend-${index}`);
     mkdirSync(skillDir, { recursive: true });
     writeFileSync(
       join(skillDir, 'graph-metadata.json'),

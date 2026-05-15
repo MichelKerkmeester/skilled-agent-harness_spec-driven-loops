@@ -20,7 +20,6 @@ import {
 
 import { createEmptyQueryPlan } from '../../lib/query/query-plan.js';
 import { buildSearchDecisionEnvelope } from '../../lib/search/search-decision-envelope.js';
-import type { ShadowDeltaRecord } from '../../skill_advisor/lib/shadow/shadow-sink.js';
 import {
   type SearchQualityCase,
   type SearchQualityChannel,
@@ -32,6 +31,10 @@ import {
   type SearchQualityChannelOutput,
   type SearchQualityRunners,
 } from './harness.js';
+
+interface ShadowDeltaRecord {
+  readonly [key: string]: unknown;
+}
 
 const TELEMETRY_CORPUS: SearchQualityCorpus = {
   version: 'harness-telemetry-export-test-v1',
