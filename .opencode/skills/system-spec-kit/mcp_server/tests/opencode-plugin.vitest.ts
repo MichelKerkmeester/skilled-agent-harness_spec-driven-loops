@@ -10,7 +10,7 @@ vi.mock('node:child_process', () => ({
   execFile: mockedBridge.execFile,
 }));
 
-import SpecKitCompactCodeGraphPlugin, { parseTransportPlan } from '../../../../plugins/spec-kit-compact-code-graph.js';
+import mkCodeGraphPlugin, { parseTransportPlan } from '../../../../plugins/mk-code-graph.js';
 
 function buildBridgeResponse() {
   return JSON.stringify({
@@ -67,14 +67,14 @@ function makeMessage(sessionID: string, messageID: string) {
   };
 }
 
-describe('Spec Kit compact code graph plugin', () => {
+describe('mk-code-graph plugin', () => {
   beforeEach(() => {
     vi.clearAllMocks();
     mockBridgeSuccess();
   });
 
   it('injects the startup digest into the system prompt once per cache window', async () => {
-    const hooks = await SpecKitCompactCodeGraphPlugin({ directory: process.cwd() }, { cacheTtlMs: 5000 });
+    const hooks = await mkCodeGraphPlugin({ directory: process.cwd() }, { cacheTtlMs: 5000 });
     const output = { system: [] as string[] };
 
     await hooks['experimental.chat.system.transform']?.(
@@ -90,7 +90,7 @@ describe('Spec Kit compact code graph plugin', () => {
     expect(mockedBridge.execFile).toHaveBeenCalledWith(
       'node',
       expect.arrayContaining([
-        expect.stringContaining('spec-kit-compact-code-graph-bridge.mjs'),
+        expect.stringContaining('mk-code-graph-bridge.mjs'),
         '--minimal',
       ]),
       expect.objectContaining({ cwd: process.cwd() }),
@@ -101,7 +101,7 @@ describe('Spec Kit compact code graph plugin', () => {
   });
 
   it('initializes missing host output arrays before compact injection', async () => {
-    const hooks = await SpecKitCompactCodeGraphPlugin({ directory: process.cwd() }, { cacheTtlMs: 5000 });
+    const hooks = await mkCodeGraphPlugin({ directory: process.cwd() }, { cacheTtlMs: 5000 });
     const systemOutput = {} as { system?: string[] };
     const compactOutput = { context: null } as unknown as { context: string[] };
 
@@ -121,7 +121,7 @@ describe('Spec Kit compact code graph plugin', () => {
   });
 
   it('normalizes object-shaped session IDs for compact cache keys', async () => {
-    const hooks = await SpecKitCompactCodeGraphPlugin({ directory: process.cwd() }, { cacheTtlMs: 5000 });
+    const hooks = await mkCodeGraphPlugin({ directory: process.cwd() }, { cacheTtlMs: 5000 });
     const firstOutput = { system: [] as string[] };
     const secondOutput = { system: [] as string[] };
 
@@ -140,7 +140,7 @@ describe('Spec Kit compact code graph plugin', () => {
   });
 
   it('exports the plugin function and parser contract helper', async () => {
-    const pluginModule = await import('../../../../plugins/spec-kit-compact-code-graph.js');
+    const pluginModule = await import('../../../../plugins/mk-code-graph.js');
 
     expect(Object.keys(pluginModule).sort()).toEqual(['default', 'parseTransportPlan']);
     expect(pluginModule.default).toBeTypeOf('function');
@@ -150,7 +150,7 @@ describe('Spec Kit compact code graph plugin', () => {
   it('parses the real minimal bridge stdout without a mocked transport payload', async () => {
     const { spawnSync } = await vi.importActual<typeof import('node:child_process')>('node:child_process');
     const workspaceRoot = path.resolve(process.cwd(), '../../../..');
-    const bridgePath = path.join(workspaceRoot, '.opencode/skills/system-code-graph/mcp_server/plugin_bridges/spec-kit-compact-code-graph-bridge.mjs');
+    const bridgePath = path.join(workspaceRoot, '.opencode/skills/system-code-graph/mcp_server/plugin_bridges/mk-code-graph-bridge.mjs');
 
     const result = spawnSync(process.execPath, [bridgePath, '--minimal'], {
       cwd: workspaceRoot,
@@ -171,7 +171,7 @@ describe('Spec Kit compact code graph plugin', () => {
   });
 
   it('adds schema-aligned synthetic text parts and avoids duplicates', async () => {
-    const hooks = await SpecKitCompactCodeGraphPlugin({ directory: process.cwd() }, { cacheTtlMs: 5000 });
+    const hooks = await mkCodeGraphPlugin({ directory: process.cwd() }, { cacheTtlMs: 5000 });
     const output = {
       messages: [makeMessage('s2', 'm1')],
     };
@@ -188,13 +188,13 @@ describe('Spec Kit compact code graph plugin', () => {
       text: 'OpenCode Retrieved Context\nSummary: retrieved context',
       synthetic: true,
       metadata: {
-        specKitCompactCodeGraph: 'messages:resume:0',
+        mkCodeGraph: 'messages:resume:0',
       },
     });
   });
 
   it('skips message injection for tool-bearing message anchors', async () => {
-    const hooks = await SpecKitCompactCodeGraphPlugin({ directory: process.cwd() }, { cacheTtlMs: 5000 });
+    const hooks = await mkCodeGraphPlugin({ directory: process.cwd() }, { cacheTtlMs: 5000 });
     const output = {
       messages: [{
         info: {
@@ -227,7 +227,7 @@ describe('Spec Kit compact code graph plugin', () => {
   });
 
   it('adds a compaction note and invalidates cache on session events', async () => {
-    const hooks = await SpecKitCompactCodeGraphPlugin({ directory: process.cwd() }, { cacheTtlMs: 5000 });
+    const hooks = await mkCodeGraphPlugin({ directory: process.cwd() }, { cacheTtlMs: 5000 });
     const output = { context: [] as string[] };
 
     await hooks['experimental.session.compacting']?.({ sessionID: 's3' }, output);
@@ -253,7 +253,7 @@ describe('Spec Kit compact code graph plugin', () => {
   });
 
   it('exposes a status tool for plugin diagnostics', async () => {
-    const hooks = await SpecKitCompactCodeGraphPlugin(
+    const hooks = await mkCodeGraphPlugin(
       { directory: process.cwd() },
       { cacheTtlMs: 7777, bridgeTimeoutMs: 1234, nodeBinary: 'node-custom' },
     );
@@ -261,9 +261,9 @@ describe('Spec Kit compact code graph plugin', () => {
       { sessionID: 's4', model: { id: 'test-model' } as never },
       { system: [] },
     );
-    const status = await hooks.tool?.spec_kit_compact_code_graph_status.execute({});
+    const status = await hooks.tool?.mk_code_graph_status.execute({});
 
-    expect(status).toContain('plugin_id=spec-kit-compact-code-graph');
+    expect(status).toContain('plugin_id=mk-code-graph');
     expect(status).toContain('cache_ttl_ms=7777');
     expect(status).toContain('resume_mode=minimal');
     expect(status).toContain('messages_transform_enabled=true');
@@ -279,7 +279,7 @@ describe('Spec Kit compact code graph plugin', () => {
       callback(new Error('NODE_MODULE_VERSION mismatch'), '', '');
     });
 
-    const hooks = await SpecKitCompactCodeGraphPlugin({ directory: process.cwd() }, { cacheTtlMs: 5000 });
+    const hooks = await mkCodeGraphPlugin({ directory: process.cwd() }, { cacheTtlMs: 5000 });
     const output = { system: [] as string[] };
 
     await hooks['experimental.chat.system.transform']?.(
@@ -289,7 +289,7 @@ describe('Spec Kit compact code graph plugin', () => {
 
     expect(output.system).toHaveLength(0);
 
-    const status = await hooks.tool?.spec_kit_compact_code_graph_status.execute({});
+    const status = await hooks.tool?.mk_code_graph_status.execute({});
     expect(status).toContain('runtime_ready=false');
     expect(status).toContain('last_runtime_error=NODE_MODULE_VERSION mismatch');
   });
@@ -298,7 +298,7 @@ describe('Spec Kit compact code graph plugin', () => {
     const stderrWrite = vi.spyOn(process.stderr, 'write').mockImplementation(() => true);
     mockBridgeSuccess(JSON.stringify({ status: 'ok', data: {} }));
 
-    const hooks = await SpecKitCompactCodeGraphPlugin({ directory: process.cwd() }, { cacheTtlMs: 5000 });
+    const hooks = await mkCodeGraphPlugin({ directory: process.cwd() }, { cacheTtlMs: 5000 });
     const output = { system: [] as string[] };
 
     await hooks['experimental.chat.system.transform']?.(
@@ -311,7 +311,7 @@ describe('Spec Kit compact code graph plugin', () => {
       expect.stringContaining('Bridge response missing data.opencodeTransport; plugin injection will no-op'),
     );
 
-    const status = await hooks.tool?.spec_kit_compact_code_graph_status.execute({});
+    const status = await hooks.tool?.mk_code_graph_status.execute({});
     expect(status).toContain('runtime_ready=false');
     expect(status).toContain('last_runtime_error=Bridge response missing data.opencodeTransport; plugin injection will no-op');
 

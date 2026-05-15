@@ -1,5 +1,5 @@
 // ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ Spec Kit Compact Code Graph OpenCode Plugin                              ║
+// ║ mk-code-graph OpenCode Plugin                                            ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
 'use strict';
 
@@ -33,15 +33,15 @@ import {
 // 3. CONSTANTS AND TYPES
 // ─────────────────────────────────────────────────────────────────────────────
 
-const PLUGIN_ID = 'spec-kit-compact-code-graph';
+const PLUGIN_ID = 'mk-code-graph';
 const DEFAULT_CACHE_TTL_MS = 5000;
 const DEFAULT_BRIDGE_TIMEOUT_MS = 15000;
 const DEFAULT_NODE_BINARY = 'node';
 const RESUME_MODE = 'minimal';
 const MESSAGES_TRANSFORM_ENABLED = true;
 const MESSAGES_TRANSFORM_MODE = 'schema_aligned';
-const SYNTHETIC_METADATA_KEY = 'specKitCompactCodeGraph';
-const BRIDGE_PATH = fileURLToPath(new URL('../skills/system-code-graph/mcp_server/plugin_bridges/spec-kit-compact-code-graph-bridge.mjs', import.meta.url));
+const SYNTHETIC_METADATA_KEY = 'mkCodeGraph';
+const BRIDGE_PATH = fileURLToPath(new URL('../skills/system-code-graph/mcp_server/plugin_bridges/mk-code-graph-bridge.mjs', import.meta.url));
 
 /**
  * @typedef {{
@@ -358,7 +358,7 @@ function invalidateTransportCache(sessionID, specFolder) {
  * @param {PluginOptions | undefined} rawOptions - Optional plugin overrides.
  * @returns {Promise<object>} Hook and tool registrations consumed by OpenCode.
  */
-export default async function SpecKitCompactCodeGraphPlugin(ctx, rawOptions) {
+export default async function mkCodeGraphPlugin(ctx, rawOptions) {
   const options = normalizeOptions(rawOptions);
   const projectDir = ctx?.directory || process.cwd();
 
@@ -371,8 +371,8 @@ export default async function SpecKitCompactCodeGraphPlugin(ctx, rawOptions) {
     },
 
     tool: {
-      spec_kit_compact_code_graph_status: tool({
-        description: 'Show Spec Kit compact code graph plugin cache status',
+      mk_code_graph_status: tool({
+        description: 'Show mk-code-graph plugin cache status',
         args: {},
         async execute() {
           const entries = [...transportCache.entries()]

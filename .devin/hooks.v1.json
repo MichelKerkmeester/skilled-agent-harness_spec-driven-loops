@@ -1,11 +1,19 @@
 {
+<<<<<<< HEAD
   "UserPromptSubmit": [
+=======
+  "SessionStart": [
+>>>>>>> wt-036
     {
       "matcher": "",
       "hooks": [
         {
           "type": "command",
+<<<<<<< HEAD
           "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR}\" && /opt/homebrew/bin/node .opencode/skills/system-skill-advisor/mcp_server/dist/hooks/devin/user-prompt-submit.js'",
+=======
+          "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR}\" && /opt/homebrew/bin/node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/devin/session-start.js'",
+>>>>>>> wt-036
           "timeout": 3
         }
       ]

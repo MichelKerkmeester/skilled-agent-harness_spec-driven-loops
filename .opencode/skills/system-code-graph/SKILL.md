@@ -123,8 +123,22 @@ The shared SQLite file remains the coordination boundary. The scan loop is the s
 
 ---
 
+<!-- ANCHOR:naming-note -->
+## 8. NAMING NOTE
+
+### MCP Server Name vs Plugin/Bridge Name
+
+The MCP server name is `mk-code-index` (tool prefix `mcp__mk_code_index__*`). The OpenCode plugin and CLI bridge use `mk-code-graph` / `mk-code-graph-bridge.mjs`. This asymmetry is intentional (ADR-002): the MCP server name is a stable tool contract that would break consumers if renamed, while the plugin and bridge names match the `system-code-graph` skill folder for discoverability and symmetry with the advisor pattern.
+
+### Hook Source Location
+
+SessionStart hooks (`session-prime.ts`, `session-start.ts`) live under `.opencode/skills/system-spec-kit/mcp_server/hooks/` — NOT under `system-code-graph/hooks/`. This is an intentional asymmetry vs the advisor pattern where hooks are skill-owned (ADR-001). The code-graph hook path is referenced by 110+ files, `.claude/settings.local.json` paths, and build config dependencies; migrating would be a high-risk breaking change. Hooks reach code-graph data through the stable boundary at `system-spec-kit/mcp_server/lib/code-graph-boundary.ts`. Migration is deferred to a future packet with build/config redesign scope.
+<!-- /ANCHOR:naming-note -->
+
+---
+
 <!-- ANCHOR:related-resources -->
-## 8. RELATED RESOURCES
+## 9. RELATED RESOURCES
 
 - Shared lifecycle and context docs that stayed in `system-spec-kit`: `.opencode/skills/system-spec-kit/feature_catalog/22--context-preservation/`
 - Extraction history: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/`

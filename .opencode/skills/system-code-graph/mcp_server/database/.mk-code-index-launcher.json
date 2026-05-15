@@ -1,10 +1,10 @@
 {
   "command": "mk-code-index-launcher",
-  "start": "2026-05-15T13:40:30.841Z",
-  "end": "2026-05-15T13:40:32.108Z",
+  "start": "2026-05-15T13:40:28.579Z",
+  "end": "2026-05-15T13:40:30.532Z",
   "status": "failed",
   "actions": [
     "installed dependencies and built @spec-kit/system-code-graph MCP server"
   ],
-  "error": "/opt/homebrew/Cellar/node/25.6.1/bin/node /Users/michelkerkmeester/MEGA/Development/Code_Environment/public-wt-025-advisor/.opencode/skills/system-code-graph/node_modules/typescript/bin/tsc -p tsconfig.json exited 1"
+  "error": "/opt/homebrew/Cellar/node/25.6.1/bin/node /Users/michelkerkmeester/MEGA/Development/Code_Environment/public-wt-036-codegraph/.opencode/skills/system-code-graph/node_modules/typescript/bin/tsc -p tsconfig.json exited 1"
 }

@@ -1,11 +1,11 @@
 {
   "command": "mk-spec-memory-launcher",
-  "start": "2026-05-15T13:40:30.842Z",
-  "end": "2026-05-15T13:40:32.166Z",
+  "start": "2026-05-15T13:40:28.579Z",
+  "end": "2026-05-15T13:40:29.212Z",
   "status": "failed",
   "actions": [
     "set SPECKIT_CODE_GRAPH_DB_DIR=.opencode/skills/system-code-graph/mcp_server/database for standalone system-code-graph storage",
     "installed dependencies and built @spec-kit/mcp-server plus @spec-kit/scripts"
   ],
-  "error": "npm run build --workspace=@spec-kit/mcp-server exited 1"
+  "error": "npm ci --no-audit --no-fund --silent exited 190"
 }

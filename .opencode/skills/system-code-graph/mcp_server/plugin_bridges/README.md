@@ -8,7 +8,7 @@ trigger_phrases:
   - "context compaction plugin"
 ---
 
-# Plugin Bridges: Spec-Kit Code Graph Integration
+# Plugin Bridges: Code Graph Integration
 
 > CLI bridge that initializes the code-graph runtime, calls session resume and outputs a transport payload for spec-kit plugin injection.
 
@@ -33,7 +33,7 @@ trigger_phrases:
 
 Current state:
 
-- `spec-kit-compact-code-graph-bridge.mjs` is the only file. It initializes the code-graph runtime, calls the session resume handler and outputs a JSON transport payload on stdout.
+- `mk-code-graph-bridge.mjs` is the only file. It initializes the code-graph runtime, calls the session resume handler and outputs a JSON transport payload on stdout.
 - The bridge requires a compiled MCP server. It imports from `../dist/handlers/session-resume.js`, `../dist/lib/search/vector-index.js` and `../dist/lib/session/session-manager.js`.
 - Intended to be invoked by spec-kit session resume flows during context compaction to retrieve code-graph context for injection into the compacted session.
 - The bridge supports `--minimal` and `--spec-folder` flags. Any other flag is silently ignored.
@@ -51,7 +51,7 @@ Runtime initialization must finish before the session resume call executes. The 
 
 | File | Responsibility |
 |---|---|
-| `spec-kit-compact-code-graph-bridge.mjs` | CLI entrypoint that initializes code-graph runtime, calls session resume and outputs the transport payload. Supports `--minimal` and `--spec-folder` flags. |
+| `mk-code-graph-bridge.mjs` | CLI entrypoint that initializes code-graph runtime, calls session resume and outputs the transport payload. Supports `--minimal` and `--spec-folder` flags. |
 
 <!-- /ANCHOR:key-files -->
 
@@ -76,7 +76,7 @@ Main flow:
                   │
                   ▼
 ┌──────────────────────────────────────────┐
-│ spec-kit-compact-code-graph-bridge.mjs   │
+│ mk-code-graph-bridge.mjs                   │
 │ (parse --minimal and --spec-folder)      │
 └──────────────────────────────────────────┘
                   │
@@ -110,7 +110,7 @@ Main flow:
 
 | Entrypoint | Type | Purpose |
 |---|---|---|
-| `spec-kit-compact-code-graph-bridge.mjs` | CLI | Bridges spec-kit session resume to code-graph runtime. Supports `--minimal` and `--spec-folder` flags. |
+| `mk-code-graph-bridge.mjs` | CLI | Bridges spec-kit session resume to code-graph runtime. Supports `--minimal` and `--spec-folder` flags. |
 
 <!-- /ANCHOR:entrypoints -->
 
@@ -123,7 +123,7 @@ Build the MCP server first, then exercise the bridge against a spec folder. Run 
 
 ```bash
 cd .opencode/skills/system-code-graph && npm run build
-node .opencode/skills/system-code-graph/mcp_server/plugin_bridges/spec-kit-compact-code-graph-bridge.mjs --minimal --spec-folder .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/035-code-folder-readmes
+node .opencode/skills/system-code-graph/mcp_server/plugin_bridges/mk-code-graph-bridge.mjs --minimal --spec-folder .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/035-code-folder-readmes
 ```
 
 Expected result: a single JSON document on stdout with the resume payload. Exit code 0. Any runtime initialization error exits 1 with a message on stderr.
@@ -138,5 +138,7 @@ Expected result: a single JSON document on stdout with the resume payload. Exit 
 - [Parent: mcp_server](../README.md)
 - [Skill README](../../README.md)
 - [Handlers: handlers/](../handlers/README.md)
+
+**Naming note:** The bridge file `mk-code-graph-bridge.mjs` matches the plugin name `mk-code-graph` and the skill folder `system-code-graph`. The underlying MCP server name is `mk-code-index` (tool prefix `mcp__mk_code_index__*`), intentionally kept stable — see ADR-002 in the 036 packet.
 
 <!-- /ANCHOR:related -->

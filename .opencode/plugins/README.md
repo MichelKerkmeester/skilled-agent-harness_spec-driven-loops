@@ -40,8 +40,8 @@ When OpenCode boots, every `.js` file in this folder is invoked once. To add a n
 
 | File | Role |
 |---|---|
-| `mk-skill-advisor.js` | Prompt-time Skill Advisor plugin. Surfaces a compact skill recommendation when a user prompt arrives. |
-| `spec-kit-compact-code-graph.js` | Transport-backed context and compact-code-graph plugin. Routes context requests to the colocated bridge. |
+| `mk-skill-advisor.js` | Prompt-time Skill Advisor plugin. Surfaces a compact skill recommendation when a user prompt arrives. Routes via `mk-skill-advisor-bridge.mjs`. |
+| `mk-code-graph.js` | Transport-backed code-graph context plugin (OpenCode session integration). Routes context requests via `mk-code-graph-bridge.mjs`. The underlying MCP server name stays `mk-code-index` for stable tool-prefix `mcp__mk_code_index__*` — see ADR-002 in the 036 packet for the naming asymmetry rationale. |
 
 ---
 
@@ -50,10 +50,12 @@ When OpenCode boots, every `.js` file in this folder is invoked once. To add a n
 Helper bridge modules are co-located with their owning skill, not in this folder:
 
 - **mk-skill-advisor** bridge: `.opencode/skills/system-skill-advisor/mcp_server/plugin_bridges/mk-skill-advisor-bridge.mjs`
-- **spec-kit-compact-code-graph** bridge: `.opencode/skills/system-spec-kit/mcp_server/plugin_bridges/spec-kit-compact-code-graph-bridge.mjs`
+- **mk-code-graph** bridge: `.opencode/skills/system-code-graph/mcp_server/plugin_bridges/mk-code-graph-bridge.mjs`
 - **opencode message schema**: `.opencode/skills/system-spec-kit/mcp_server/plugin_bridges/spec-kit-opencode-message-schema.mjs`
 
 This keeps plugin entrypoints minimal and lets owning skills own their bridge contracts.
+
+**Naming asymmetry note:** The plugin and bridge are named `mk-code-graph` (matching the `system-code-graph` skill folder). The underlying MCP server name remains `mk-code-index` (tool prefix `mcp__mk_code_index__*`), kept stable to avoid breaking tool consumers — see ADR-002 in the 036 packet.
 
 ---
 
