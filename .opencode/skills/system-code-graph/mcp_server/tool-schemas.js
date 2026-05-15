@@ -96,6 +96,17 @@ const codeGraphContext = {
         required: [],
     },
 };
+const codeGraphClassifyQueryIntent = {
+    name: 'code_graph_classify_query_intent',
+    description: 'Classify a natural-language query into structural code-graph intent categories (structural, semantic, hybrid) for graph-aware routing. Token Budget: 300.',
+    inputSchema: {
+        type: 'object', additionalProperties: false,
+        properties: {
+            query: { type: 'string', minLength: 1, description: 'Natural-language query to classify' },
+        },
+        required: ['query'],
+    },
+};
 const codeGraphVerify = {
     name: 'code_graph_verify',
     description: '[L7:Maintenance] Execute the persisted code-graph gold-query battery against the current index. Returns blocked when readiness is not fresh, supports category filtering, optional per-query details, fail-fast mode, and optional baseline persistence. Token Budget: 1000.',
@@ -188,6 +199,7 @@ export const CODE_GRAPH_TOOL_SCHEMAS = [
     codeGraphQuery,
     codeGraphStatus,
     codeGraphContext,
+    codeGraphClassifyQueryIntent,
     codeGraphVerify,
     codeGraphApply,
     detectChanges,

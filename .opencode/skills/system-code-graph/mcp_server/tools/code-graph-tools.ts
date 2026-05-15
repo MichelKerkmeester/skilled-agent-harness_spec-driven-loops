@@ -7,6 +7,7 @@ import {
   handleCodeGraphQuery,
   handleCodeGraphStatus,
   handleCodeGraphContext,
+  handleClassifyQueryIntent,
   handleCodeGraphVerify,
   handleCodeGraphApply,
   handleCccStatus,
@@ -27,6 +28,7 @@ export const TOOL_NAMES = new Set([
   'code_graph_query',
   'code_graph_status',
   'code_graph_context',
+  'code_graph_classify_query_intent',
   'code_graph_verify',
   'code_graph_apply',
   'detect_changes',
@@ -82,6 +84,13 @@ export async function handleTool(name: string, args: Record<string, unknown>): P
       return toMCP(await handleCodeGraphStatus());
     case 'code_graph_context':
       return toMCP(await handleCodeGraphContext(parseArgs<Parameters<typeof handleCodeGraphContext>[0]>(args)));
+    case 'code_graph_classify_query_intent': {
+      const missingKeys = getMissingRequiredStringArgs(args, ['query']);
+      if (missingKeys.length > 0) {
+        return validationError(name, missingKeys);
+      }
+      return toMCP(await handleClassifyQueryIntent(parseArgs<Parameters<typeof handleClassifyQueryIntent>[0]>(args)));
+    }
     case 'code_graph_verify':
       return toMCP(await handleCodeGraphVerify(parseArgs<Parameters<typeof handleCodeGraphVerify>[0]>(args)));
     case 'code_graph_apply':

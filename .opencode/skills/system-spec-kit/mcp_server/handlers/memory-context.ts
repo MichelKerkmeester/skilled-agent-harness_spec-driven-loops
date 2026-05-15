@@ -1434,7 +1434,7 @@ async function handleMemoryContext(args: ContextArgs): Promise<MCPResponse> {
 
     if (requested_mode !== 'resume') {
       try {
-        const classification = classifyQueryIntent(normalizedInput);
+        const classification = await classifyQueryIntent(normalizedInput);
         queryIntentMetadata = {
           queryIntent: classification.intent,
           routedBackend: classification.intent === 'structural' && classification.confidence > 0.65

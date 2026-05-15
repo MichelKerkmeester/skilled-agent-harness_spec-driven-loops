@@ -1,0 +1,19 @@
+// ----------------------------------------------------------------
+// MODULE: Query Intent Classification Handler
+// ----------------------------------------------------------------
+// MCP tool handler for code_graph_classify_query_intent.
+import { classifyQueryIntent } from '../lib/query-intent-classifier.js';
+export async function handleClassifyQueryIntent(args) {
+    const query = typeof args.query === 'string' ? args.query : '';
+    const classification = classifyQueryIntent(query);
+    return {
+        content: [{
+                type: 'text',
+                text: JSON.stringify({
+                    status: 'ok',
+                    data: classification,
+                }, null, 2),
+            }],
+    };
+}
+//# sourceMappingURL=classify-query-intent.js.map

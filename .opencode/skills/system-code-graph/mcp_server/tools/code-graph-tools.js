@@ -2,7 +2,7 @@
 // MODULE: Code Graph Tools
 // ───────────────────────────────────────────────────────────────
 // Dispatch for code graph MCP tools: scan, query, status, context, verify, apply, detect_changes.
-import { handleCodeGraphScan, handleCodeGraphQuery, handleCodeGraphStatus, handleCodeGraphContext, handleCodeGraphVerify, handleCodeGraphApply, handleCccStatus, handleCccReindex, handleCccFeedback, handleDetectChanges,
+import { handleCodeGraphScan, handleCodeGraphQuery, handleCodeGraphStatus, handleCodeGraphContext, handleClassifyQueryIntent, handleCodeGraphVerify, handleCodeGraphApply, handleCccStatus, handleCccReindex, handleCccFeedback, handleDetectChanges,
 // PHASE-002-IMPORT-SLOT: handleCodeGraphHldLld (027/002)
 // PHASE-003-IMPORT-SLOT: handleCodeGraphTrace (027/003)
 // PHASE-004-IMPORT-SLOT: handleCodeGraphImpactAnalysis (027/004)
@@ -14,6 +14,7 @@ export const TOOL_NAMES = new Set([
     'code_graph_query',
     'code_graph_status',
     'code_graph_context',
+    'code_graph_classify_query_intent',
     'code_graph_verify',
     'code_graph_apply',
     'detect_changes',
@@ -65,6 +66,13 @@ export async function handleTool(name, args) {
             return toMCP(await handleCodeGraphStatus());
         case 'code_graph_context':
             return toMCP(await handleCodeGraphContext(parseArgs(args)));
+        case 'code_graph_classify_query_intent': {
+            const missingKeys = getMissingRequiredStringArgs(args, ['query']);
+            if (missingKeys.length > 0) {
+                return validationError(name, missingKeys);
+            }
+            return toMCP(await handleClassifyQueryIntent(parseArgs(args)));
+        }
         case 'code_graph_verify':
             return toMCP(await handleCodeGraphVerify(parseArgs(args)));
         case 'code_graph_apply':

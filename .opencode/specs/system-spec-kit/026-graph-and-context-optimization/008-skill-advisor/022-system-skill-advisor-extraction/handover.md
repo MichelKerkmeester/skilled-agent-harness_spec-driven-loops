@@ -12,10 +12,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/022-system-skill-advisor-extraction"
-    last_updated_at: "2026-05-14T20:45:00Z"
+    last_updated_at: "2026-05-15T09:20:31Z"
     last_updated_by: "codex"
-    recent_action: "015 mk_skill_advisor MCP server rename verified"
-    next_safe_action: "Commit scoped rename"
+    recent_action: "021 classifier RPC surface implemented"
+    next_safe_action: "Verify and commit scoped 021 changes"
     blockers: []
     key_files:
       - "handover.md"
@@ -27,6 +27,7 @@ _memory:
       - "012-doc-alignment-sk-doc/implementation-summary.md"
       - "013-spec-kit-ref-cleanup/implementation-summary.md"
       - "015-mcp-server-rename-mk-skill-advisor/implementation-summary.md"
+      - "021-codegraph-rpc-surface/implementation-summary.md"
     session_dedup:
       fingerprint: "sha256:0130090099a06ed10c5d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d"
       session_id: "013-009-handover-2026-05-14"
@@ -230,6 +231,20 @@ Current 020 state:
 - Spec-kit runtime calls route through `mcp_server/lib/code-graph-boundary.ts`.
 - The hard import audit is clean: zero `from.*system-code-graph` matches under `system-spec-kit/mcp_server`.
 - Remaining close-out is verification, strict validation, scoped commit, and push.
+
+## 12. 021 Code-Graph Classifier RPC Surface
+
+Packet `021-codegraph-rpc-surface` closes the only named 020 deferral: `classifyQueryIntent()` now has a first-class `mk-code-index` tool surface.
+
+Current 021 state:
+
+- `mk-code-index` adds `code_graph_classify_query_intent` as the eleventh tool.
+- The new handler wraps the canonical code-graph `query-intent-classifier.ts` implementation without changing scoring logic.
+- Spec-kit `code-graph-boundary.ts` no longer contains a local keyword/pattern classifier.
+- `memory-context.ts` awaits the RPC-backed classifier before graph-context routing.
+- Focused code-graph classifier tests and spec-kit runtime-routing tests pass after rebuilding code-graph dist.
+
+Next safe action: run the broad verification matrix, strict-validate packet 021 and this parent, then commit and push scoped changes.
 
 ### 3.5 Tier 4 — Topology consolidation (DEFERRED PER 007 ADR-001)
 
@@ -632,6 +647,7 @@ Next safe action: resolve or explicitly defer those external gates, then run ful
   - `012-doc-alignment-sk-doc/implementation-summary.md`
   - `013-spec-kit-ref-cleanup/implementation-summary.md`
   - `019-spec-kit-advisor-decoupling/implementation-summary.md`
+  - `021-codegraph-rpc-surface/implementation-summary.md`
 - **Approved plan file (Session 1):** `/Users/michelkerkmeester/.claude/plans/glittery-juggling-lecun.md` — final addendum section "ADDENDUM — Implementation of phases 4, 5, 6"
 - **Approved plan file (Session 2):** `/Users/michelkerkmeester/.claude/plans/read-and-follow-handover-splendid-wall.md`
 - **Dispatch prompts archive (Session 1):** `/tmp/cli-codex-dispatches/013-009-{004,005,006}-impl-prompt.md` + `/tmp/cli-codex-dispatches/skill-graph-db-cleanup-prompt.md` (ephemeral)

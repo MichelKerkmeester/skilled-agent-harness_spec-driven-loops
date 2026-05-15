@@ -262,62 +262,31 @@ export async function getCodeGraphStatusViaRpc(): Promise<CodeGraphStatusSnapsho
   }
 }
 
-export function classifyQueryIntent(query: string): QueryIntentClassification {
-  if (!query?.trim()) {
-    return { intent: 'hybrid', confidence: 0.5, structuralScore: 0, semanticScore: 0, matchedKeywords: [] };
-  }
+function isQueryIntent(value: unknown): value is QueryIntent {
+  return value === 'structural' || value === 'semantic' || value === 'hybrid';
+}
 
-  const structuralPatterns = [
-    /\bwho\s+calls\b/i,
-    /\bwhat\s+(?:calls|imports|exports|extends|implements)\b/i,
-    /\b(?:show|list|get)\s+(?:callers|callees|dependencies|imports|exports|outline)\b/i,
-    /\b(?:impact|blast\s+radius)\s+of\b/i,
-    /\b(?:outline|structure)\s+of\b/i,
-  ];
-  const semanticPatterns = [
-    /\bsimilar\s+to\b/i,
-    /\b(?:find|search)\s+(?:code|files|implementations)\s+(?:that|for|about|related)\b/i,
-    /\b(?:examples?|patterns?|usage)\s+of\b/i,
-    /\bwhat\s+(?:is|are|does)\s+(?:the\s+)?(?:pattern|approach|concept|purpose|meaning|intent|strategy)\b/i,
-    /\bwhere\s+(?:is|are)\b.*\b(?:handled|implemented|defined|configured)\b/i,
-  ];
-  const structuralKeywords = new Set([
-    'calls', 'call', 'imports', 'exports', 'extends', 'implements', 'function',
-    'class', 'method', 'interface', 'type', 'module', 'callers', 'callees',
-    'dependencies', 'dependents', 'references', 'definition', 'declaration',
-    'outline', 'impact', 'graph', 'edges', 'nodes', 'symbols', 'hierarchy',
-  ]);
-  const semanticKeywords = new Set([
-    'similar', 'like', 'related', 'example', 'pattern', 'usage', 'approach',
-    'find', 'search', 'discover', 'locate', 'explain', 'understand', 'purpose',
-    'why', 'meaning', 'context', 'concept', 'intent',
-  ]);
-  const tokens = query.toLowerCase().split(/[\s,;:.()[\]{}'"]+/).filter(Boolean);
-  const structuralHits = tokens.filter((token) => structuralKeywords.has(token));
-  const semanticHits = tokens.filter((token) => semanticKeywords.has(token));
-  const structuralScore = structuralHits.length + structuralPatterns.filter((pattern) => pattern.test(query)).length * 2;
-  const semanticScore = semanticHits.length + semanticPatterns.filter((pattern) => pattern.test(query)).length * 2;
-  const total = structuralScore + semanticScore;
-  const matchedKeywords = [...structuralHits, ...semanticHits];
-  if (total === 0) {
-    return { intent: 'hybrid', confidence: 0.5, structuralScore, semanticScore, matchedKeywords };
-  }
-  const structuralRatio = structuralScore / total;
-  const semanticRatio = semanticScore / total;
-  const confidence = (ratio: number) => Math.min(0.95, 0.5 + ratio * 0.25 + Math.min(total, 5) * 0.05);
-  if (structuralRatio > 0.65) {
-    return { intent: 'structural', confidence: confidence(structuralRatio), structuralScore, semanticScore, matchedKeywords };
-  }
-  if (semanticRatio > 0.65) {
-    return { intent: 'semantic', confidence: confidence(semanticRatio), structuralScore, semanticScore, matchedKeywords };
+function parseQueryIntentClassification(value: unknown): QueryIntentClassification {
+  if (!isRecord(value) || !isQueryIntent(value.intent)) {
+    throw new Error('code_graph_classify_query_intent returned an invalid classification');
   }
   return {
-    intent: 'hybrid',
-    confidence: 0.5 + Math.abs(structuralRatio - semanticRatio) * 0.3,
-    structuralScore,
-    semanticScore,
-    matchedKeywords,
+    intent: value.intent,
+    confidence: Number(value.confidence ?? 0),
+    structuralScore: Number(value.structuralScore ?? 0),
+    semanticScore: Number(value.semanticScore ?? 0),
+    matchedKeywords: Array.isArray(value.matchedKeywords)
+      ? value.matchedKeywords.filter((keyword): keyword is string => typeof keyword === 'string')
+      : [],
   };
+}
+
+export async function classifyQueryIntent(query: string): Promise<QueryIntentClassification> {
+  const payload = await callCodeGraphTool('code_graph_classify_query_intent', { query });
+  if (payload.status !== 'ok') {
+    throw new Error(typeof payload.error === 'string' ? payload.error : 'code_graph_classify_query_intent failed');
+  }
+  return parseQueryIntentClassification(payload.data);
 }
 
 export function normalizeReadyAction(value: unknown): ReadyAction {
