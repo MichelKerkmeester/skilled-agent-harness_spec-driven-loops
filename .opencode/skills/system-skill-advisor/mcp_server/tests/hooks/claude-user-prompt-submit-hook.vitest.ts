@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Claude User Prompt Submit Hook tests
+// ───────────────────────────────────────────────────────────────────
+
 import { readFileSync } from 'node:fs';
 import { performance } from 'node:perf_hooks';
 import { join } from 'node:path';

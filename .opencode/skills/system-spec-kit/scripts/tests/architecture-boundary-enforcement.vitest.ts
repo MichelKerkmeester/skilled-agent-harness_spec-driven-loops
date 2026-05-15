@@ -1,4 +1,7 @@
-// TEST: Architecture Boundary Enforcement
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Architecture Boundary Enforcement Tests
+// ───────────────────────────────────────────────────────────────────
+
 import { afterEach, describe, expect, it } from 'vitest';
 import * as fs from 'node:fs';
 import * as os from 'node:os';

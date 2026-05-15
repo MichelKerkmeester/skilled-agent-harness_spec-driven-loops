@@ -1,6 +1,7 @@
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // MODULE: llama-cpp availability probe
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
+
 // Sync helpers extracted from factory.ts so profile.ts can mirror
 // the canonical Voyage -> OpenAI -> llama-cpp -> hf-local cascade
 // without creating a circular dependency

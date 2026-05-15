@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Resource Map Extractor tests
+// ───────────────────────────────────────────────────────────────────
+
 import { createRequire } from 'node:module';
 
 import { describe, expect, it } from 'vitest';

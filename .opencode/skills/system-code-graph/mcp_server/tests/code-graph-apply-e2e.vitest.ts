@@ -1,4 +1,7 @@
-// TEST: Code graph apply-mode recovery playbook scenarios
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Code graph apply-mode recovery playbook scenarios Tests
+// ───────────────────────────────────────────────────────────────────
+
 import { mkdtempSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { tmpdir } from 'node:os';

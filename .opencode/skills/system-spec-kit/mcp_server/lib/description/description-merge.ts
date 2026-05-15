@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Description Merge
+// ───────────────────────────────────────────────────────────────────
+
 import {
   DESCRIPTION_KNOWN_AUTHORED_OPTIONAL_KEYS,
   DESCRIPTION_TRACKING_KEYS,

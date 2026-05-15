@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Cleanup Helpers
+// ───────────────────────────────────────────────────────────────────
+
 import { get_error_message } from '../search/vector-index-types.js';
 
 /** Run a shutdown cleanup step and log failures without aborting the sequence. */

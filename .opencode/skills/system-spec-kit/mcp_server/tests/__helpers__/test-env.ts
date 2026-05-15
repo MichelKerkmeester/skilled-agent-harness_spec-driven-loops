@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Test Env
+// ───────────────────────────────────────────────────────────────────
+
 export function setEnv(key: string, value: string | undefined): string | undefined {
   const prior = process.env[key];
   if (value === undefined) {

@@ -1,6 +1,7 @@
-// ---------------------------------------------------------------
-// TEST: Entity Density Commit Hooks
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Entity Density Commit Hooks Tests
+// ───────────────────────────────────────────────────────────────────
+
 // Verifies that cache invalidation makes committed memory mutations visible
 // immediately instead of waiting for the entity-density 60s TTL.
 

@@ -1,4 +1,7 @@
-// TEST: ACCESS TRACKER EXTENDED
+// ───────────────────────────────────────────────────────────────────
+// MODULE: ACCESS TRACKER EXTENDED Tests
+// ───────────────────────────────────────────────────────────────────
+
 import { describe, it, expect, afterEach } from 'vitest';
 import Database from 'better-sqlite3';
 import * as mod from '../lib/storage/access-tracker';

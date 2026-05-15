@@ -1,6 +1,7 @@
-// ---------------------------------------------------------------
-// TEST: BooleanExpr — Typed YAML Predicate Grammar (S7 / M11)
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
+// MODULE: BooleanExpr — Typed YAML Predicate Grammar (S7 / M11) Tests
+// ───────────────────────────────────────────────────────────────────
+
 // Runner: `node --experimental-vm-modules .../boolean-expr.test.js` after tsc.
 // Standalone assertions (no Vitest dependency) to mirror the existing
 // quality-extractors.test.ts convention in this directory.

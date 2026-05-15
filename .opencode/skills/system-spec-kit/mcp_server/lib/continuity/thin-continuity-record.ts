@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Thin Continuity Record
+// ───────────────────────────────────────────────────────────────────
+
 export const THIN_CONTINUITY_MAX_BYTES = 2048;
 
 export type ThinContinuityErrorCode =

@@ -1,6 +1,7 @@
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // MODULE: BooleanExpr — Typed YAML Predicate Grammar (S7 / M11)
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
+
 // Canonical grammar for command-asset YAML `when:` fields that must be
 // mechanically evaluated (e.g. Step 0 intake branch decisions, intake-only
 // gate). Replaces opaque quoted-string expressions like

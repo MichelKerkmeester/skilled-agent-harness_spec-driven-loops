@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Evidence Marker Audit tests
+// ───────────────────────────────────────────────────────────────────
+
 import { readFileSync } from 'node:fs';
 
 import { describe, expect, it } from 'vitest';

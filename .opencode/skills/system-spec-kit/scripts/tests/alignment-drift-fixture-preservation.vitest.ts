@@ -1,4 +1,7 @@
-// TEST: Alignment Drift Fixture Preservation
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Alignment Drift Fixture Preservation Tests
+// ───────────────────────────────────────────────────────────────────
+
 // Keeps intentionally malformed archived JSON fixtures invalid while allowing narrow verifier exceptions
 import { spawnSync } from 'node:child_process';
 import fs from 'node:fs';

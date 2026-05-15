@@ -1,6 +1,6 @@
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Local LLM Cascade Resolution Tests
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 
 import { describe, it, expect, beforeAll, afterAll, beforeEach, afterEach, vi } from 'vitest';
 import { existsSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs';

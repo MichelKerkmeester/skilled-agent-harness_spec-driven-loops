@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Token Budget Assertions
+// ───────────────────────────────────────────────────────────────────
+
 import { expect } from 'vitest';
 
 interface TextPayloadResult {

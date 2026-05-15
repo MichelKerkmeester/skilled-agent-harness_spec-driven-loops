@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Classify Query Intent tests
+// ───────────────────────────────────────────────────────────────────
+
 import { describe, expect, it } from 'vitest';
 
 import { CODE_GRAPH_TOOL_SCHEMAS } from '../../tool-schemas.js';

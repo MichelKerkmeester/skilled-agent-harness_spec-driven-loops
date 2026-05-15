@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Description Schema
+// ───────────────────────────────────────────────────────────────────
+
 import { z, type ZodIssue } from 'zod';
 
 export const DESCRIPTION_CANONICAL_DERIVED_KEYS = [
