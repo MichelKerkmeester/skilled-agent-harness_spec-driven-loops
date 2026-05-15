@@ -31,7 +31,7 @@ _memory:
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-05-15-phase-b-025-cli-devin-skill-advisor-hook"
-      parent_session_id: "2026-05-15-phase-0-025-cli-devin-skill-advisor-hook"
+      parent_session_id: null
     completion_pct: 40
     open_questions: []
     answered_questions:
