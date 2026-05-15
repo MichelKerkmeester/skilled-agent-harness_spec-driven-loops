@@ -3,22 +3,7 @@
   "packet_id": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/013-skill-advisor-semantic-lane",
   "spec_folder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/013-skill-advisor-semantic-lane",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor",
-  "children_ids": [
-    "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/013-skill-advisor-semantic-lane/001-embed-cache-and-cosine-wiring",
-    "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/013-skill-advisor-semantic-lane/002-ablation-sweep-and-promote",
-    "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/013-skill-advisor-semantic-lane/003-weight-sweep-harness",
-    "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/013-skill-advisor-semantic-lane/004-corpus-seeded-sweep",
-    "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/013-skill-advisor-semantic-lane/005-skill-metadata-quality-audit",
-    "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/013-skill-advisor-semantic-lane/006-apply-metadata-fixes-and-resweep",
-    "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/013-skill-advisor-semantic-lane/007-harder-intent-corpus-resweep",
-    "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/013-skill-advisor-semantic-lane/008-populate-intent-signals-and-relationships",
-    "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/013-skill-advisor-semantic-lane/009-system-skill-advisor-extraction",
-    "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/013-skill-advisor-semantic-lane/010-advisor-routing-calibration",
-    "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/013-skill-advisor-semantic-lane/011-mcp-server-full-extraction",
-    "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/013-skill-advisor-semantic-lane/012-doc-alignment-sk-doc",
-    "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/013-skill-advisor-semantic-lane/013-spec-kit-ref-cleanup",
-    "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/013-skill-advisor-semantic-lane/014-manual-testing-validation"
-  ],
+  "children_ids": [],
   "migrated": false,
   "manual": {
     "depends_on": [
@@ -48,8 +33,8 @@
       "ablation-sweep"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
-    "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/013-skill-advisor-semantic-lane/014-manual-testing-validation",
+    "status": "complete",
+    "last_active_child_id": null,
     "key_files": [
       "spec.md",
       "description.json",

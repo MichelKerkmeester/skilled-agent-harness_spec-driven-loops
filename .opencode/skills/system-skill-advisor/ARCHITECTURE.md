@@ -294,6 +294,6 @@ Current doc-alignment note: the checked-in regression harness was run during thi
 - [references/legacy-tool-bridge.md](./references/legacy-tool-bridge.md)
 - [feature_catalog/feature_catalog.md](./feature_catalog/feature_catalog.md)
 - [manual_testing_playbook/manual_testing_playbook.md](./manual_testing_playbook/manual_testing_playbook.md)
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/013-skill-advisor-semantic-lane/009-system-skill-advisor-extraction/001-design-and-decision-record/decision-record.md`
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/022-system-skill-advisor-extraction/001-design-and-decision-record/decision-record.md`
 
 <!-- /ANCHOR:related -->

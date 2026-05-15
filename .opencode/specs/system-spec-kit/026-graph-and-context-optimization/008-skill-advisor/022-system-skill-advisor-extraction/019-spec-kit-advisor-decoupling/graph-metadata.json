@@ -1,0 +1,23 @@
+{
+  "schema_version": 2,
+  "spec_id": "019-spec-kit-advisor-decoupling",
+  "title": "Full spec-kit advisor import decoupling",
+  "status": "blocked",
+  "derived": {
+    "last_active_at": "2026-05-15T06:55:00Z",
+    "last_active_child_id": null,
+    "trigger_phrases": [
+      "013/009/019",
+      "spec-kit advisor decoupling",
+      "full import isolation"
+    ],
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ]
+  }
+}
