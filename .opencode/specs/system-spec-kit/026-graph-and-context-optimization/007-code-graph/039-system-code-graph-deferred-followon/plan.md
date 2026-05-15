@@ -41,8 +41,22 @@ Recommended executor: `cli-opencode --pure --model deepseek/deepseek-v4-pro` for
 
 ---
 
+<!-- ANCHOR:quality-gates -->
+## 2. QUALITY GATES
+
+- Each phase: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <packet> --strict` exits 0.
+- Phase 1B: `wc -c mcp_server/dist/index.js > 1000`.
+- Phase 1C + 1D: `npx vitest run <new-test-file>` exits 0; each new test has ≥80% branch coverage on its target module.
+- Phase 1E: `npx vitest run mcp_server/stress_test/code-graph/doctor-apply-mode-stress.vitest.ts` exits 0 (all tests pass, including restored).
+- Phase 2: each config file passes `jq empty <file>` (valid JSON) or `python3 -c "import toml; toml.load(open('.codex/config.toml'))"` (valid TOML).
+- Phase 4: full `npx tsc --noEmit -p tsconfig.json` clean from `system-code-graph/mcp_server/`; full `npx vitest run` exits 0.
+
+<!-- /ANCHOR:quality-gates -->
+
+---
+
 <!-- ANCHOR:architecture -->
-## 2. ARCHITECTURE
+## 3. ARCHITECTURE
 
 ```
 039 Phase 0 (manual): re-verify each finding via grep + read against current main
@@ -70,7 +84,7 @@ Recommended executor: `cli-opencode --pure --model deepseek/deepseek-v4-pro` for
 ---
 
 <!-- ANCHOR:phases -->
-## 3. IMPLEMENTATION PHASES
+## 4. IMPLEMENTATION PHASES
 
 ### Phase 0 — Verification sweep (manual, ~15 min)
 
@@ -124,7 +138,7 @@ Iterate through 037's iter-001..020 per-iteration markdown files; extract P2 fin
 ---
 
 <!-- ANCHOR:phase-deps -->
-## 4. PHASE DEPENDENCIES
+## L2: PHASE DEPENDENCIES
 
 - Phase 0 (verification sweep) → blocks Phase 1, 2, 3 (need STILL-OPEN list before remediation).
 - Phase 1A → blocks 1B (build needs scripts).
@@ -139,7 +153,7 @@ Iterate through 037's iter-001..020 per-iteration markdown files; extract P2 fin
 ---
 
 <!-- ANCHOR:effort -->
-## 5. EFFORT ESTIMATE
+## L2: EFFORT ESTIMATION
 
 | Phase | Wall-clock | Executor |
 |-------|-----------|----------|
@@ -154,22 +168,17 @@ Iterate through 037's iter-001..020 per-iteration markdown files; extract P2 fin
 
 ---
 
-<!-- ANCHOR:quality-gates -->
-## 6. QUALITY GATES
+<!-- ANCHOR:quality-gates-bottom -->
+## 6. LEGACY QUALITY GATES POSITION
 
-- Each phase: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <packet> --strict` exits 0.
-- Phase 1B: `wc -c mcp_server/dist/index.js > 1000`.
-- Phase 1C + 1D: `npx vitest run <new-test-file>` exits 0; each new test has ≥80% branch coverage on its target module.
-- Phase 1E: `npx vitest run mcp_server/stress_test/code-graph/doctor-apply-mode-stress.vitest.ts` exits 0 (all tests pass, including restored).
-- Phase 2: each config file passes `jq empty <file>` (valid JSON) or `python3 -c "import toml; toml.load(open('.codex/config.toml'))"` (valid TOML).
-- Phase 4: full `npx tsc --noEmit -p tsconfig.json` clean from `system-code-graph/mcp_server/`; full `npx vitest run` exits 0.
+(Section reserved; canonical Quality Gates now in §2 per Level 2 manifest order.)
 
-<!-- /ANCHOR:quality-gates -->
+<!-- /ANCHOR:quality-gates-bottom -->
 
 ---
 
 <!-- ANCHOR:testing -->
-## 7. TESTING STRATEGY
+## 5. TESTING STRATEGY
 
 - **Unit**: 2 new vitest files (1C, 1D) cover previously-untested lib modules.
 - **Stress**: skip restorations (1E) bring 2 tests back online.
@@ -183,7 +192,7 @@ Iterate through 037's iter-001..020 per-iteration markdown files; extract P2 fin
 ---
 
 <!-- ANCHOR:dependencies -->
-## 8. DEPENDENCIES
+## 6. DEPENDENCIES
 
 - Parallel agent's 058/4* SKILL/README/references commits stable (verified during Phase 0).
 - Packet 038 commits cdc56b7c1 + 6553e36da + 6b6f41214 + c8f4432c3 already on main.
@@ -194,7 +203,7 @@ Iterate through 037's iter-001..020 per-iteration markdown files; extract P2 fin
 ---
 
 <!-- ANCHOR:rollback -->
-## 9. ROLLBACK PLAN
+## 7. ROLLBACK PLAN
 
 Per-phase commits keep rollback granular:
 - Phase 1A failure: `git revert <commit>` — local-only impact (package.json scripts removed).
@@ -210,7 +219,7 @@ Per-phase commits keep rollback granular:
 ---
 
 <!-- ANCHOR:enhanced-rollback -->
-## 10. ENHANCED ROLLBACK
+## L2: ENHANCED ROLLBACK
 
 Use commit-baseline-per-phase pattern:
 - Capture `git rev-parse HEAD` before each phase → write to `scratch/baseline-phase-N.sha`.

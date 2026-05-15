@@ -65,21 +65,6 @@ Each item must be marked `[x]` with evidence (file:line, command + output excerp
 
 ---
 
-<!-- ANCHOR:fix-completeness -->
-## Fix Completeness
-
-| ID | Priority | Status | Item | Evidence |
-|----|----------|--------|------|----------|
-| CHK-005 | [P0] | [ ] | All P0 + P1 from 037 review-report.md are CLOSED (by 038 or 039) or moved to a tracked-deferral list. | per-finding map in tasks.md Phase 1 |
-| CHK-006 | [P0] | [ ] | P1-F1 (package.json scripts) shipped or documented per Open Question 1 decision. | git log + jq inspection |
-| CHK-007 | [P0] | [ ] | P1-F2 (dist materialization) confirmed: `wc -c mcp_server/dist/index.js > 1000`. | wc -c output |
-| CHK-008 | [P1] | [ ] | P1-D1 (2 new vitest files for runtime-detection + exclude-rule-classifier) shipped with ≥80% branch coverage. | vitest --coverage output |
-| CHK-009 | [P1] | [ ] | P1-D3 (skip-test restorations at doctor-apply-mode-stress:125,184) closed via mock OR it.todo + comment. | grep + diff |
-
-<!-- /ANCHOR:fix-completeness -->
-
----
-
 <!-- ANCHOR:testing -->
 ## Testing
 
@@ -92,6 +77,21 @@ Each item must be marked `[x]` with evidence (file:line, command + output excerp
 | CHK-024 | [P1] | [ ] | New test files have ≥80% branch coverage on target modules. | vitest --coverage output |
 
 <!-- /ANCHOR:testing -->
+
+---
+
+<!-- ANCHOR:fix-completeness -->
+## Fix Completeness
+
+| ID | Priority | Status | Item | Evidence |
+|----|----------|--------|------|----------|
+| CHK-005 | [P0] | [ ] | All P0 + P1 from 037 review-report.md are CLOSED (by 038 or 039) or moved to a tracked-deferral list. | per-finding map in tasks.md Phase 1 |
+| CHK-006 | [P0] | [ ] | P1-F1 (package.json scripts) shipped or documented per Open Question 1 decision. | git log + jq inspection |
+| CHK-007 | [P0] | [ ] | P1-F2 (dist materialization) confirmed: `wc -c mcp_server/dist/index.js > 1000`. | wc -c output |
+| CHK-008 | [P1] | [ ] | P1-D1 (2 new vitest files for runtime-detection + exclude-rule-classifier) shipped with ≥80% branch coverage. | vitest --coverage output |
+| CHK-009 | [P1] | [ ] | P1-D3 (skip-test restorations at doctor-apply-mode-stress:125,184) closed via mock OR it.todo + comment. | grep + diff |
+
+<!-- /ANCHOR:fix-completeness -->
 
 ---
 
