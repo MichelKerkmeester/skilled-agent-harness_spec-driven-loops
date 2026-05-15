@@ -63,6 +63,64 @@ jobs:
             exit 1
           fi
           echo "✅ No reverse-direction cross-skill imports found."
+      - name: Audit skill-advisor MCP source for system-spec-kit imports (reverse direction)
+        run: |
+          set -euo pipefail
+          MATCHES=$(rg -n "from ['\"][^'\"]*system-spec-kit" \
+            .opencode/skills/system-skill-advisor/mcp_server/ \
+            --type ts \
+            --glob '!**/dist/**' \
+            --glob '!**/node_modules/**' \
+            --glob '!**/tests/**' \
+            --glob '!**/stress_test/**' \
+            --glob '!**/lib/shared/embeddings/**' \
+            || true)
+          if [ -n "$MATCHES" ]; then
+            echo "::error::Cross-skill imports detected in skill-advisor/mcp_server/ (reverse direction)."
+            echo "$MATCHES"
+            echo ""
+            echo "Per the three-way-isolation contract (packet 040), system-skill-advisor MUST NOT"
+            echo "import from system-spec-kit at the TypeScript source level."
+            echo "Use the local utility copies under lib/shared/ instead."
+            echo "Exception: lib/shared/embeddings/ is an intentional symlink to system-spec-kit/"
+            echo "shared/embeddings/ — visible cross-skill marker per user direction."
+            exit 1
+          fi
+          echo "✅ No reverse-direction cross-skill imports in skill-advisor."
+      - name: Audit skill-advisor for @spec-kit/* workspace-alias imports
+        run: |
+          set -euo pipefail
+          MATCHES=$(rg -n "from ['\"]@spec-kit/" \
+            .opencode/skills/system-skill-advisor/mcp_server/ \
+            --type ts \
+            --glob '!**/dist/**' \
+            --glob '!**/node_modules/**' \
+            --glob '!**/tests/**' \
+            --glob '!**/stress_test/**' \
+            || true)
+          if [ -n "$MATCHES" ]; then
+            echo "::error::@spec-kit/* workspace-alias imports detected in skill-advisor production .ts."
+            echo "$MATCHES"
+            exit 1
+          fi
+          echo "✅ No @spec-kit/* workspace-alias imports in skill-advisor."
+      - name: Audit code-graph for @spec-kit/* workspace-alias imports
+        run: |
+          set -euo pipefail
+          MATCHES=$(rg -n "from ['\"]@spec-kit/" \
+            .opencode/skills/system-code-graph/mcp_server/ \
+            --type ts \
+            --glob '!**/dist/**' \
+            --glob '!**/node_modules/**' \
+            --glob '!**/tests/**' \
+            --glob '!**/stress_test/**' \
+            || true)
+          if [ -n "$MATCHES" ]; then
+            echo "::error::@spec-kit/* workspace-alias imports detected in code-graph production .ts."
+            echo "$MATCHES"
+            exit 1
+          fi
+          echo "✅ No @spec-kit/* workspace-alias imports in code-graph."
       - name: Audit spec-kit MCP source for system-skill-advisor imports
         run: |
           set -euo pipefail
