@@ -126,8 +126,6 @@ mcp_server/
 +-- tools/                   # Tool definition groups and dispatcher helpers
 +-- schemas/                 # Zod input schemas
 +-- lib/                     # Memory, search, scoring, context, and utility code
-+-- code_graph/              # Structural code graph scanner, query handlers, and tools
-+-- skill_advisor/           # Native prompt-to-skill routing package
 +-- hooks/                   # Runtime hook payload builders
 +-- formatters/              # Response shaping for MCP payloads
 +-- shared/                  # Shared algorithms and cross-package helpers
@@ -138,15 +136,15 @@ mcp_server/
 `-- README.md
 ```
 
-**Default scope is end-user repo only.** `.opencode/skills/**`, `.opencode/agents/**`, `.opencode/commands/**`, `.opencode/specs/**`, and `.opencode/plugins/**` are excluded by default; opt in via `SPECKIT_CODE_GRAPH_INDEX_*` env vars or per-call `includeSkills` / `includeAgents` / `includeCommands` / `includeSpecs` / `includePlugins` args. See [`code_graph/README.md`](code_graph/README.md#8-scan-scope) §8 SCAN SCOPE for full details and granular per-skill selection.
+**Default scope is end-user repo only.** `.opencode/skills/**`, `.opencode/agents/**`, `.opencode/commands/**`, `.opencode/specs/**`, and `.opencode/plugins/**` are excluded by default; opt in via `SPECKIT_CODE_GRAPH_INDEX_*` env vars or per-call `includeSkills` / `includeAgents` / `includeCommands` / `includeSpecs` / `includePlugins` args. See the [`system-code-graph` skill](../../system-code-graph/mcp_server/README.md) for full details and granular per-skill selection.
 
 Allowed dependency direction:
 
 ```text
 context-server.ts → tool-schemas.ts / tools/ → handlers/
-handlers/ → lib/ / code_graph/ / skill_advisor/ / formatters/
+handlers/ → lib/ / formatters/ / database adapters
 lib/ → shared/ / configs/ / database adapters
-hooks/ → lib/ / code_graph/ / skill_advisor/ read surfaces
+hooks/ → lib/ read surfaces
 tests/ → public handlers, public helpers, and package-local fixtures
 ```
 
@@ -169,7 +167,6 @@ dist/ → source imports
 ```text
 mcp_server/
 +-- api/                     # API-oriented helpers and route surfaces
-+-- code_graph/              # Structural graph indexing and MCP handlers
 +-- configs/                 # Search and cognitive configuration files
 +-- core/                    # Core package support modules
 +-- database/                # SQLite database files and local state
@@ -181,7 +178,6 @@ mcp_server/
 +-- schemas/                 # Runtime input validation schemas
 +-- scripts/                 # Package maintenance scripts
 +-- shared/                  # Shared code used across server zones
-+-- skill_advisor/           # Native Skill Advisor package
 +-- stress_test/             # Stress test support
 +-- tests/                   # Package tests
 +-- tools/                   # Tool definition and dispatcher modules
@@ -207,8 +203,6 @@ mcp_server/
 | `handlers/index.ts` | Collects handler modules for dispatcher use. |
 | `tools/` | Groups tool definitions by domain. |
 | `lib/search/` | Owns memory retrieval, vector index access, lexical search, fusion, and reranking. |
-| `code_graph/` | Owns structural scan, query, context, status, and diff attribution tools. |
-| `skill_advisor/` | Owns native skill recommendation scoring, freshness, and MCP handlers. |
 | `hooks/` | Builds runtime startup and prompt payloads. |
 | `formatters/` | Shapes search and response-profile output for clients. |
 | `ENV_REFERENCE.md` | Documents runtime environment variables. |
@@ -224,8 +218,8 @@ mcp_server/
 | Boundary | Rule |
 |---|---|
 | Public API | MCP tools are exposed through `tool-schemas.ts`, `tools/`, and `context-server.ts`. |
-| Handler logic | Handler modules may call `lib/`, `code_graph/`, `skill_advisor/`, `formatters/`, and database adapters. |
-| Domain logic | `lib/` and `code_graph/` should not import top-level handlers. |
+| Handler logic | Handler modules may call `lib/`, `formatters/`, and database adapters. |
+| Domain logic | `lib/` should not import top-level handlers. |
 | Storage | SQLite access stays behind package modules that own schema and migration rules. |
 | Build output | `dist/` is generated output and should not be a source dependency. |
 | Docs | This README documents current code layout only, not release packet history. |
@@ -254,7 +248,7 @@ Main tool flow:
                   │
                   ▼
 ┌──────────────────────────────────────────┐
-│ lib, code_graph, skill_advisor, database  │
+│ lib, database                             │
 └──────────────────────────────────────────┘
                   │
                   ▼
@@ -276,8 +270,6 @@ Main tool flow:
 | `dist/context-server.js` | Runtime artifact | Compiled MCP server used by client configuration. |
 | `tool-schemas.ts` | Module | Source of MCP tool schema definitions. |
 | `handlers/*` | Modules | Execute memory, graph, advisor, evaluation, and maintenance tools. |
-| `code_graph/handlers/*` | Modules | Execute structural graph scan, status, query, context, and diff tools. |
-| `skill_advisor/handlers/*` | Modules | Execute advisor recommend, rebuild, status, and validate tools. |
 | `hooks/*` | Modules | Produce startup, prompt, and compact-context payloads for runtime integrations. |
 | `npm run build` | Command | Builds TypeScript into `dist/`. |
 | `npm test` | Command | Runs package tests through the configured test runner. |
