@@ -9,7 +9,7 @@ import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import { mkdirSync, mkdtempSync, readFileSync, realpathSync, rmSync, statSync, symlinkSync, utimesSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { dirname, join, relative } from 'node:path';
-import { shouldIndexForCodeGraph } from '../../../system-spec-kit/mcp_server/lib/utils/index-scope.js';
+import { shouldIndexForCodeGraph } from './__fixtures__/index-scope.js';
 import {
   generateSymbolId,
   generateContentHash,

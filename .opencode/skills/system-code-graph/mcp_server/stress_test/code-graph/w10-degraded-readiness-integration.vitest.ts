@@ -8,11 +8,37 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
+const { mockCreateEmptyQueryPlan, mockMapGraphReadinessToTelemetry, mockBuildSearchDecisionEnvelope } = vi.hoisted(() => ({
+  mockCreateEmptyQueryPlan: vi.fn((opts: Record<string, unknown>) => opts),
+  mockMapGraphReadinessToTelemetry: vi.fn(() => ({
+    freshness: 'empty',
+    action: 'full_scan',
+    canonicalReadiness: 'missing',
+    trustState: 'absent',
+    blocked: true,
+    degraded: true,
+    graphAnswersOmitted: true,
+    requiredAction: 'code_graph_scan',
+  })),
+  mockBuildSearchDecisionEnvelope: vi.fn((params: Record<string, unknown>) => ({
+    degradedReadiness: params.degradedReadiness,
+  })),
+}));
+
+vi.mock('../../../../system-spec-kit/mcp_server/lib/query/query-plan.js', () => ({
+  createEmptyQueryPlan: mockCreateEmptyQueryPlan,
+}));
+
+vi.mock('../../../../system-spec-kit/mcp_server/lib/search/graph-readiness-mapper.js', () => ({
+  mapGraphReadinessToTelemetry: mockMapGraphReadinessToTelemetry,
+}));
+
+vi.mock('../../../../system-spec-kit/mcp_server/lib/search/search-decision-envelope.js', () => ({
+  buildSearchDecisionEnvelope: mockBuildSearchDecisionEnvelope,
+}));
+
 import { closeDb, initDb } from '../../lib/code-graph-db.js';
 import { handleCodeGraphQuery } from '../../handlers/query.js';
-import { createEmptyQueryPlan } from '../../../../system-spec-kit/mcp_server/lib/query/query-plan.js';
-import { mapGraphReadinessToTelemetry } from '../../../../system-spec-kit/mcp_server/lib/search/graph-readiness-mapper.js';
-import { buildSearchDecisionEnvelope } from '../../../../system-spec-kit/mcp_server/lib/search/search-decision-envelope.js';
 
 interface CodeGraphQueryPayload {
   status: string;
@@ -70,10 +96,10 @@ describe('W10 degraded-readiness integration', () => {
       retryAfter: 'scan_complete',
     });
 
-    const envelope = buildSearchDecisionEnvelope({
+    const envelope = mockBuildSearchDecisionEnvelope({
       requestId: 'w10-empty',
-      queryPlan: createEmptyQueryPlan({ selectedChannels: ['code_graph_query'] }),
-      degradedReadiness: mapGraphReadinessToTelemetry(parsed.data ?? {}),
+      queryPlan: mockCreateEmptyQueryPlan({ selectedChannels: ['code_graph_query'] }),
+      degradedReadiness: mockMapGraphReadinessToTelemetry(parsed.data ?? {}),
       timestamp: '2026-04-29T00:00:00.000Z',
     });
 

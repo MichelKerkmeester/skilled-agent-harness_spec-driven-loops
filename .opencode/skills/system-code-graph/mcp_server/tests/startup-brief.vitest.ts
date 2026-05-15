@@ -3,6 +3,28 @@
 // ───────────────────────────────────────────────────────────────
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 
+const { mockLoadMostRecentState, mockIsCocoIndexAvailable } = vi.hoisted(() => ({
+  mockLoadMostRecentState: vi.fn(() => ({
+    ok: true,
+    state: {
+      claudeSessionId: 'recent-session',
+      speckitSessionId: 'speckit-session',
+      lastSpecFolder: 'system-spec-kit/024-compact-code-graph/027-opencode-structural-priming',
+      sessionSummary: {
+        text: 'Aligned structural bootstrap contract across auto-prime and session_* handlers.',
+        extractedAt: '2026-04-02T10:01:00.000Z',
+      },
+      pendingCompactPrime: null,
+      metrics: { estimatedPromptTokens: 0, estimatedCompletionTokens: 0, lastTranscriptOffset: 0 },
+      createdAt: '2026-04-02T10:00:00.000Z',
+      updatedAt: '2026-04-02T10:01:00.000Z',
+    },
+    path: '/tmp/mock-state-file.json',
+    errors: [],
+  })),
+  mockIsCocoIndexAvailable: vi.fn(() => false),
+}));
+
 vi.mock('../lib/code-graph-db.js', () => ({
   getStats: vi.fn(() => ({
     totalFiles: 12,
@@ -29,35 +51,16 @@ vi.mock('../lib/ensure-ready.js', () => ({
 }));
 
 vi.mock('../../../system-spec-kit/mcp_server/hooks/claude/hook-state.js', () => ({
-  loadMostRecentState: vi.fn(() => ({
-    ok: true,
-    state: {
-      claudeSessionId: 'recent-session',
-      speckitSessionId: 'speckit-session',
-      lastSpecFolder: 'system-spec-kit/024-compact-code-graph/027-opencode-structural-priming',
-      sessionSummary: {
-        text: 'Aligned structural bootstrap contract across auto-prime and session_* handlers.',
-        extractedAt: '2026-04-02T10:01:00.000Z',
-      },
-      pendingCompactPrime: null,
-      metrics: { estimatedPromptTokens: 0, estimatedCompletionTokens: 0, lastTranscriptOffset: 0 },
-      createdAt: '2026-04-02T10:00:00.000Z',
-      updatedAt: '2026-04-02T10:01:00.000Z',
-    },
-    path: '/tmp/mock-state-file.json',
-    errors: [],
-  })),
+  loadMostRecentState: mockLoadMostRecentState,
 }));
 
 vi.mock('../../../system-spec-kit/mcp_server/lib/utils/cocoindex-path.js', () => ({
-  isCocoIndexAvailable: vi.fn(() => false),
+  isCocoIndexAvailable: mockIsCocoIndexAvailable,
 }));
 
 import { buildStartupBrief } from '../lib/startup-brief.js';
 import * as graphDb from '../lib/code-graph-db.js';
 import { getGraphReadinessSnapshot } from '../lib/ensure-ready.js';
-import * as hookState from '../../../system-spec-kit/mcp_server/hooks/claude/hook-state.js';
-import * as cocoIndexPath from '../../../system-spec-kit/mcp_server/lib/utils/cocoindex-path.js';
 
 describe('startup-brief', () => {
   beforeEach(() => {
@@ -83,7 +86,7 @@ describe('startup-brief', () => {
     expect(brief.sharedPayload?.kind).toBe('startup');
     expect(brief.sharedPayload?.provenance.producer).toBe('startup_brief');
     expect(brief.sharedPayload?.sections.length).toBeGreaterThan(0);
-    expect(hookState.loadMostRecentState).toHaveBeenCalledWith({
+    expect(mockLoadMostRecentState).toHaveBeenCalledWith({
       scope: {
         claudeSessionId: 'recent-session',
       },
@@ -95,7 +98,7 @@ describe('startup-brief', () => {
 
     expect(brief.sessionContinuity).toBeNull();
     expect(brief.startupSurface).toContain('- Memory: startup summary only (resume on demand)');
-    expect(hookState.loadMostRecentState).not.toHaveBeenCalled();
+    expect(mockLoadMostRecentState).not.toHaveBeenCalled();
   });
 
   // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
@@ -140,7 +143,7 @@ describe('startup-brief', () => {
   });
 
   it('reports cocoindex as available when the binary exists', () => {
-    vi.mocked(cocoIndexPath.isCocoIndexAvailable).mockReturnValueOnce(true);
+    vi.mocked(mockIsCocoIndexAvailable).mockReturnValueOnce(true);
     const brief = buildStartupBrief();
     expect(brief.cocoIndexAvailable).toBe(true);
     expect(brief.startupSurface).toContain('- CocoIndex: available');
@@ -172,7 +175,7 @@ describe('startup-brief', () => {
     vi.mocked(graphDb.getStats).mockImplementationOnce(() => {
       throw new Error('DB unavailable');
     });
-    vi.mocked(hookState.loadMostRecentState).mockReturnValueOnce({ states: [], errors: [] });
+    vi.mocked(mockLoadMostRecentState).mockReturnValueOnce({ states: [], errors: [] });
 
     const brief = buildStartupBrief();
     expect(brief.graphState).toBe('missing');

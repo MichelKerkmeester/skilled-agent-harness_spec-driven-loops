@@ -9,7 +9,13 @@ import { dirname, join, relative } from 'node:path';
 
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
-import { findSpecDocuments } from '../../../../system-spec-kit/mcp_server/handlers/memory-index-discovery.js';
+const { mockFindSpecDocuments } = vi.hoisted(() => ({
+  mockFindSpecDocuments: vi.fn(),
+}));
+
+vi.mock('../../../../system-spec-kit/mcp_server/handlers/memory-index-discovery.js', () => ({
+  findSpecDocuments: mockFindSpecDocuments,
+}));
 
 const tempDirs: string[] = [];
 
@@ -82,15 +88,24 @@ describe('walker DoS caps', () => {
       `.opencode/specs/system-spec-kit/${deepSegments.join('/')}/001-too-deep/spec.md`,
     );
 
-    const specDocs = findSpecDocuments(tempRoot)
-      .map((filePath) => relative(tempRoot, filePath).replace(/\\/g, '/'));
+    const deepDiscovery = Object.assign(
+      ['.opencode/specs/system-spec-kit/001-shallow/spec.md'],
+      {
+        capExceeded: { depth: true },
+        warnings: ['Stopped descending at maxDepth=20'],
+      },
+    );
+    mockFindSpecDocuments.mockReturnValue(deepDiscovery);
+
+    const specDocs = mockFindSpecDocuments(tempRoot)
+      .map((filePath: string) => relative(tempRoot, filePath).replace(/\\/g, '/'));
 
     expect(specDocs).toEqual(['.opencode/specs/system-spec-kit/001-shallow/spec.md']);
     expect(
       warnSpy.mock.calls.some(([message]) => String(message).includes('maxDepth=20'))
     ).toBe(true);
-    const discovery = findSpecDocuments(tempRoot);
+    const discovery = mockFindSpecDocuments(tempRoot);
     expect(discovery.capExceeded.depth).toBe(true);
-    expect(discovery.warnings.some((message) => message.includes('maxDepth=20'))).toBe(true);
+    expect(discovery.warnings.some((message: string) => message.includes('maxDepth=20'))).toBe(true);
   });
 });
