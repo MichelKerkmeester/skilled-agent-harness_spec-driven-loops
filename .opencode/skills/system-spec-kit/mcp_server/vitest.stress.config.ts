@@ -15,7 +15,6 @@ export default defineConfig({
     ],
     exclude: [
       'mcp_server/tests/**',
-      'mcp_server/code_graph/tests/**',
       '../system-skill-advisor/mcp_server/tests/**',
       'scripts/tests/**',
       '../system-skill-advisor/mcp_server/bench/**',
