@@ -91,6 +91,11 @@
         "target": "cli-devin",
         "weight": 0.7,
         "context": "routes devin delegation requests"
+      },
+      {
+        "target": "cli-opencode",
+        "weight": 0.7,
+        "context": "routes opencode delegation requests"
       }
     ],
     "siblings": [],

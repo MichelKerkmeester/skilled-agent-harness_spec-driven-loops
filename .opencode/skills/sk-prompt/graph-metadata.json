@@ -25,6 +25,11 @@
         "target": "cli-devin",
         "weight": 0.4,
         "context": "prompt quality card"
+      },
+      {
+        "target": "cli-opencode",
+        "weight": 0.4,
+        "context": "prompt quality card"
       }
     ],
     "siblings": [

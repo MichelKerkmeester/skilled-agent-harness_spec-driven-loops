@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-15T12:51:35.746458+00:00",
+  "generated_at": "2026-05-15T13:00:24.640916+00:00",
   "skill_count": 20,
   "families": {
     "cli": [
@@ -166,7 +166,8 @@
         "cli-claude-code": 0.4,
         "cli-codex": 0.4,
         "cli-gemini": 0.4,
-        "cli-devin": 0.4
+        "cli-devin": 0.4,
+        "cli-opencode": 0.4
       },
       "siblings": {
         "deep-agent-improvement": 0.4
@@ -204,7 +205,8 @@
         "deep-agent-improvement": 0.7,
         "sk-prompt": 0.7,
         "system-spec-kit": 0.7,
-        "cli-devin": 0.7
+        "cli-devin": 0.7,
+        "cli-opencode": 0.7
       }
     },
     "system-spec-kit": {
