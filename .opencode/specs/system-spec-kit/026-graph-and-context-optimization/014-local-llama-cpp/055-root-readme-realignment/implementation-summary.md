@@ -38,9 +38,11 @@ _memory:
 |-------|-------|
 | **Spec Folder** | system-spec-kit/026-graph-and-context-optimization/014-local-llama-cpp/055-root-readme-realignment |
 | **Phase** | D of 4 (final phase) |
-| **Completed** | TBD |
+| **Completed** | 2026-05-15 |
 | **Level** | 1 |
-| **Files in scope** | 1 README (./README.md) + research artifacts |
+| **Files in scope** | 1 README (./README.md) + 3 research artifacts |
+| **Commit** | `2d4086743` |
+| **Diff size** | 17 insertions + 11 deletions across 12 hunks |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -90,11 +92,13 @@ Convergence: strict-validate, git diff review for surgical-edit discipline, comm
 
 | Check | Result | Command |
 |-------|--------|---------|
-| Pass 1 drift inventory | TBD | Bundle JSON exists |
-| Pass 2 verified delta | TBD | Delta md exists |
-| Pass 3 edit evidence | TBD | Evidence md exists |
-| Surgical-edit discipline | TBD | git diff scoped to drifted sections |
-| Strict-validate packet | TBD | `validate.sh --strict` |
+| Pass 1 drift inventory | 16 claims audited (14 CURRENT, 1 DRIFTED, 1 UNVERIFIED) | `research/root-readme-context-bundle.json` |
+| Pass 2 verified delta | 12 surgical edits, Pass 1 missed 2 items (deep-ai-council skill + ambiguous scripts paths), feature-catalog count refined 294 -> 290 | `research/root-readme-delta-verified.md` |
+| Pass 3 edit evidence | 12 edits applied as specified | `research/root-readme-edit-evidence.md` |
+| Surgical-edit discipline | git diff: 17 ins / 11 del across 12 hunks; voice preserved | `git diff README.md` |
+| Strict-validate packet | PASS, 0 errors / 0 warnings | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <packet> --strict` |
+| Skill count check | 0 occurrences of "19 skills" remaining; 4 of "20 skills" | `grep -c` |
+| Feature catalog count | 0 occurrences of "294" remaining | `grep -c` |
 <!-- /ANCHOR:verification -->
 
 ---
