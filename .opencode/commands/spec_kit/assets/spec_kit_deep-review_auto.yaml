@@ -805,10 +805,14 @@ workflow:
             - "</dev/null required: opencode v1.14.39 reads stdin at startup before session creation. Without explicit closed stdin, automation that redirects stdout/stderr hangs at 0% CPU after `+60s snapshot prune cleanup`. See cli-opencode SKILL.md §4 ALWAYS rule + memory feedback_opencode_run_requires_dev_null_stdin.md."
         if_cli_devin:
           command: |
+            AGENT_CONFIG_SRC="{repo_root}/.opencode/skills/cli-devin/assets/agent-config-deep-review-iter.json"
+            AGENT_CONFIG_TMP="{state_paths.prompt_dir}/agent-config-iter-{current_iteration}.json"
+            sed "s|<repo-root>|{repo_root}|g" "$AGENT_CONFIG_SRC" > "$AGENT_CONFIG_TMP"
             devin --print \
               --prompt-file "{state_paths.prompt_dir}/iteration-{current_iteration}.md" \
               --model "{config.executor.model}" \
               --permission-mode "{resolved_permission_mode}" \
+              --agent-config "$AGENT_CONFIG_TMP" \
               2>&1 </dev/null
           working_directory: "{repo_root}"
           timeout_seconds: "{config.executor.timeoutSeconds}"
@@ -819,10 +823,19 @@ workflow:
               .opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts.
               Mapping: sandboxMode='danger-full-access' → 'dangerous', everything else → 'auto'.
               Default (sandboxMode unset): 'auto'.
+            agent_config_recipe: |
+              The review-iter recipe at .opencode/skills/cli-devin/assets/agent-config-deep-review-iter.json
+              ships with a literal "<repo-root>" placeholder. The command block substitutes it via sed at
+              dispatch time and writes the result to {state_paths.prompt_dir}/agent-config-iter-NNN.json,
+              then passes that path to devin --agent-config. The recipe pins the narrower allowed_tools
+              (Read+Grep+Glob, no Bash) and Read-only permissions.allow at Devin's strict parser.
+              Contract: .opencode/skills/cli-devin/references/deep-loop-iter-contract.md.
+              Recipe authoring: .opencode/skills/cli-devin/references/agent-config-recipes.md.
           notes:
             - "devin --prompt-file accepts a path to the rendered iteration prompt (the SKILL.md skill_reference dispatch shape)"
             - "Supported models: swe-1.6 (default), deepseek-v4, glm-5.1, kimi-k2.6 (per DEVIN_SUPPORTED_MODELS in executor-config.ts)"
             - "--permission-mode auto auto-approves read-only ops and prompts on write; dangerous auto-approves all (only for sandboxed runs)"
+            - "--agent-config pins the review-iter profile (narrower than research-iter — Read+Grep+Glob only, no Bash) at Devin's strict parser. The recipe at cli-devin/assets/agent-config-deep-review-iter.json is substituted via sed at dispatch time to resolve the <repo-root> placeholder per the recipe authoring contract."
             - "cli-devin self-invocation guard: this branch must only run from a non-Devin dispatch surface (Claude/Codex/Gemini/OpenCode/raw shell). The cli-devin skill SKILL.md §SELF-INVOCATION PROHIBITED contract is the authoritative gate."
             - "</dev/null required: family convention for non-interactive dispatch to avoid stdin-blocking edge cases across CLI versions"
             - "Cloud handoff is NOT used here — each iteration runs locally with convergence detection. See cli-devin references/cloud_handoff.md for the separate cloud-handoff route."

@@ -51,7 +51,7 @@ _memory:
 | **Phase** | 059 |
 | **Completed** | 2026-05-15 |
 | **Level** | 1 |
-| **Files in scope** | 6 modified (2 commands + 1 YAML + 2 agents + cli-devin SKILL) + 6 created (2 references + 1 iter template asset + 3 agent-config JSONs) |
+| **Files in scope** | 7 modified (2 commands + 2 YAMLs + 2 agents + cli-devin SKILL) + 6 created (2 references + 1 iter template asset + 3 agent-config JSONs) |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -64,7 +64,8 @@ cli-devin promoted to first-class deep-loop executor:
 **Modified surfaces (6 files)**
 - `.opencode/commands/spec_kit/deep-research.md`: executor enum strings updated to list all 6 validator-accepted kinds (`native | cli-codex | cli-gemini | cli-claude-code | cli-opencode | cli-devin`) at line 79, line 124, and the executor option list.
 - `.opencode/commands/spec_kit/deep-review.md`: same enum-string updates at parallel locations.
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`: `if_cli_devin:` branch ported in from `spec_kit_deep-review_auto.yaml:806-829` (25 lines at the executor switch).
+- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`: `if_cli_devin:` branch ported in from `spec_kit_deep-review_auto.yaml:806-829` (25 lines at the executor switch); follow-on edit wired `--agent-config` into the dispatch (inline `sed` substitutes `<repo-root>` and writes to a temp JSON in the prompt dir).
+- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`: `if_cli_devin:` branch (already existed before 059) wired `--agent-config` into the dispatch using the same `sed` pattern, pointing at the review-iter recipe.
 - `.opencode/agents/deep-research.md`: SWE-1.6 Iter Contract subsection added inside `## 2. ROUTING SCAN` (+16 lines).
 - `.opencode/agents/deep-review.md`: same subsection added between `### Runtime Mirror Awareness` and `## 3. REVIEW CONTRACT` (+18 lines).
 - `.opencode/skills/cli-devin/SKILL.md`: ALWAYS #13 (Deep-Loop Iter Contract) + 2 new entries in §5 References; frontmatter `version: 1.0.3.0`. Total file 471 lines (under 500 cap).
@@ -131,5 +132,5 @@ Five phases, executed across 2026-05-15:
 - Agent-config JSON smoke-test is lightweight (`-p` mode with one-line prompt) — confirms parse + dispatch but doesn't exercise full iter prompt body. Real iter use will reveal whether per-recipe `system_instructions` arrays carry enough framing.
 - The 3 JSONs capture devin 2026.5.6-8's accepted schema; future devin CLI versions may add/remove keys or tighten validation, requiring a recipe resync and a `v1.0.X.0` bump per [versioning policy](../../../../.opencode/skills/cli-devin/references/deep-loop-iter-contract.md).
 - cli-devin SKILL.md grew from 468 to 471 lines — well under the 500-LOC cap. Future iter-contract evolution that exceeds the cap must move bulk content out of SKILL.md into the reference docs.
-- The `<repo-root>` and `<packet-root>` substitution happens at dispatch time in the `if_cli_devin:` YAML branches. The YAML branches in `spec_kit_deep-research_auto.yaml` (newly ported) and `spec_kit_deep-review_auto.yaml` (existed before this packet) do not yet emit the `--agent-config` flag. Wiring `--agent-config` into the YAML dispatch wording is a follow-on packet — the recipes are authored and verified, but the dispatcher will only consume them once the YAMLs reference them explicitly.
+- The `<repo-root>` substitution happens at dispatch time in the `if_cli_devin:` YAML branches via inline `sed`. Both `spec_kit_deep-research_auto.yaml` (research-iter recipe) and `spec_kit_deep-review_auto.yaml` (review-iter recipe) now wire `--agent-config` into the dispatch wording. The synthesis recipe still requires manual dispatch (the synthesis pass is operator-driven, not loop-driven, so it does not sit in the iter dispatcher).
 <!-- /ANCHOR:limitations -->
