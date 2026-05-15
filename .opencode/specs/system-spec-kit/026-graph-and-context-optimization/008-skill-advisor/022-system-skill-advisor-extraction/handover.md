@@ -12,10 +12,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/022-system-skill-advisor-extraction"
-    last_updated_at: "2026-05-15T09:20:31Z"
+    last_updated_at: "2026-05-15T12:07:05Z"
     last_updated_by: "codex"
-    recent_action: "018 named follow-ons closed through 025"
-    next_safe_action: "Use child packet summaries for any future advisor topology work"
+    recent_action: "026 sk-code audit follow-ons closed through 030"
+    next_safe_action: "Use child packet summaries for future advisor or sk-code follow-on work"
     blockers: []
     key_files:
       - "handover.md"
@@ -44,9 +44,9 @@ _memory:
 <!-- ANCHOR:when-to-use -->
 ## WHEN TO USE THIS HANDOVER
 
-You are resuming work on `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/022-system-skill-advisor-extraction/`. Current state: 25 child packets exist. Children 001-018 completed the extraction, validation, and P2 cleanup line; 019-021 closed advisor/code-graph decoupling and classifier RPC ownership; 022-025 closed the remaining named 018 follow-ons.
+You are resuming work on `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/022-system-skill-advisor-extraction/`. Current state: 30 child packets exist. Children 001-018 completed the extraction, validation, and P2 cleanup line; 019-021 closed advisor/code-graph decoupling and classifier RPC ownership; 022-025 closed the remaining named 018 follow-ons; 026 audited code README and sk-code coverage; 027-030 closed the 121-row sk-code follow-on ledger.
 
-**Status values:** complete for the 018-named follow-on sweep. Future topology consolidation is a new packet, not hidden remaining work in this handover.
+**Status values:** complete for the extraction follow-ons and the 026 sk-code audit follow-on sweep. Future topology consolidation or broader verifier-warning cleanup is a new packet, not hidden remaining work in this handover.
 <!-- /ANCHOR:when-to-use -->
 
 ---
@@ -56,8 +56,8 @@ You are resuming work on `.opencode/specs/system-spec-kit/026-graph-and-context-
 
 - **From Session:** 022-024 follow-ons sweep / 2026-05-15 / Codex on `main`
 - **To Session:** future advisor topology work only if explicitly requested
-- **Phase Completed:** system-skill-advisor extraction through child 025
-- **Handover Time:** 2026-05-15T11:00:00Z
+- **Phase Completed:** system-skill-advisor extraction and sk-code audit follow-ons through child 030
+- **Handover Time:** 2026-05-15T12:07:05Z
 
 ### Child Packet State
 
@@ -72,6 +72,11 @@ You are resuming work on `.opencode/specs/system-spec-kit/026-graph-and-context-
 | `023` | Shipped | Explicit subprocess env allowlists for launcher, plugin bridge, and Python shim. |
 | `024` | Shipped | Persisted DF/IDF corpus cache keyed by graph-metadata mtimes. |
 | `025` | Shipped | Parent handover and metadata refresh for the 25-child state. |
+| `026` | Shipped | sk-code and code README coverage audit; 121 sk-code findings named into follow-ons. |
+| `027` | Shipped | TypeScript source header normalization: 78 fixed, 1 deleted path not applicable. |
+| `028` | Shipped | JavaScript/ESM/CJS/declaration header and strict-mode alignment: 28 findings fixed. |
+| `029` | Shipped | Python package header policy: 4 findings closed. |
+| `030` | Shipped | Any-type sweep: 10 possible-any findings reviewed as false positives, 0 explicit-any sites. |
 <!-- /ANCHOR:handover-summary -->
 
 ---
@@ -140,9 +145,9 @@ You are resuming work on `.opencode/specs/system-spec-kit/026-graph-and-context-
 ### 3.1 Recommended Starting Point
 
 - **Read this handover first:** `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/022-system-skill-advisor-extraction/handover.md`
-- **Read parent metadata:** `graph-metadata.json` should list children `001-025` and point at `025-parent-doc-drift-refresh`.
-- **Read child summaries by topic:** `019` for advisor decoupling, `020-021` for code-graph decoupling/RPC, `022-025` for the original 018 follow-ons.
-- **Do not reopen 018-named follow-ons without new evidence.** They are now closed by shipped child packets.
+- **Read parent metadata:** `graph-metadata.json` should list children `001-030` and point at `030-any-type-justification-sweep`.
+- **Read child summaries by topic:** `019` for advisor decoupling, `020-021` for code-graph decoupling/RPC, `022-025` for the original 018 follow-ons; `026-030` for the sk-code audit and follow-on closure.
+- **Do not reopen 018-named follow-ons without new evidence.** They are now closed by shipped child packets; the packet 026 sk-code ledger is likewise closed by 027-030.
 
 ### 3.2 Closed 018-Named Follow-Ons
 
@@ -156,6 +161,6 @@ You are resuming work on `.opencode/specs/system-spec-kit/026-graph-and-context-
 
 ### 3.3 Future Work Boundary
 
-Future topology consolidation, such as moving remaining `skill_graph_*` tool ownership, is a separate feature. It should not be treated as residual cleanup from packet 018 unless a new review explicitly names it.
+Future topology consolidation, such as moving remaining `skill_graph_*` tool ownership, is a separate feature. Broader alignment warnings outside packet 026 are also separate work. Neither should be treated as residual cleanup from packet 018 or the 026 audit unless a new review explicitly names it.
 
 <!-- /ANCHOR:next-session -->
