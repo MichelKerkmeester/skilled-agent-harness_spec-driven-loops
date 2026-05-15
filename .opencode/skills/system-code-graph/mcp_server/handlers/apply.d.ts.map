@@ -1,1 +1,0 @@
-{"version":3,"file":"apply.d.ts","sourceRoot":"","sources":["../../../../../../system-code-graph/mcp_server/handlers/apply.ts"],"names":[],"mappings":"AAKA,OAAO,EAEL,KAAK,kBAAkB,EACxB,MAAM,8BAA8B,CAAC;AAWtC,wBAAsB,oBAAoB,CACxC,IAAI,EAAE,kBAAkB,GACvB,OAAO,CAAC;IAAE,OAAO,EAAE,KAAK,CAAC;QAAE,IAAI,EAAE,MAAM,CAAC;QAAC,IAAI,EAAE,MAAM,CAAA;KAAE,CAAC,CAAA;CAAE,CAAC,CAa7D"}
