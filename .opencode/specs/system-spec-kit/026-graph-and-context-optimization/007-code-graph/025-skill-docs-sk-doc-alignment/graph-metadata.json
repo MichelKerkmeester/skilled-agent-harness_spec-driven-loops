@@ -2,7 +2,7 @@
   "schema_version": 1,
   "packet_id": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/025-skill-docs-sk-doc-alignment",
   "spec_folder": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/025-skill-docs-sk-doc-alignment",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/007-code-graph",
   "children_ids": [],
   "manual": {
     "depends_on": [
@@ -11,7 +11,7 @@
     "supersedes": [],
     "related_to": []
   },
-    "derived": {
+  "derived": {
     "trigger_phrases": [
       "011 skill docs sk-doc alignment",
       "system-code-graph skill docs alignment",
@@ -26,7 +26,12 @@
     ],
     "importance_tier": "important",
     "status": "complete",
-    "key_files": ["spec.md","plan.md","tasks.md","implementation-summary.md"],
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
     "entities": [
       {
         "name": "system-code-graph",
@@ -44,6 +49,13 @@
     "last_save_at": "2026-05-14T17:43:47Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "source_docs": ["spec.md","plan.md","tasks.md","implementation-summary.md"]
-  }
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ]
+  },
+  "migrated": true,
+  "migration_source": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/011-skill-docs-sk-doc-alignment"
 }

@@ -2,14 +2,14 @@
   "schema_version": 1,
   "packet_id": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/028-architecture-md",
   "spec_folder": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/028-architecture-md",
-  "parent_id": null,
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/007-code-graph",
   "children_ids": [],
   "manual": {
     "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
-    "derived": {
+  "derived": {
     "trigger_phrases": [
       "system-code-graph architecture",
       "mk-code-index architecture",
@@ -50,5 +50,7 @@
       "implementation-summary.md",
       ".opencode/skills/system-code-graph/architecture.md"
     ]
-  }
+  },
+  "migrated": true,
+  "migration_source": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/014-architecture-md"
 }

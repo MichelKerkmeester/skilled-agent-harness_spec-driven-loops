@@ -2,9 +2,9 @@
   "schema_version": 1,
   "packet_id": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/021-mcp-topology-pivot",
   "spec_folder": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/021-mcp-topology-pivot",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/007-code-graph",
   "children_ids": [],
-  "migrated": false,
+  "migrated": true,
   "manual": {
     "depends_on": [
       "system-spec-kit/026-graph-and-context-optimization/007-code-graph/015-design-and-decision-record",
@@ -67,5 +67,6 @@
       "spec.md",
       "decision-record.md"
     ]
-  }
+  },
+  "migration_source": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/007-mcp-topology-pivot"
 }
