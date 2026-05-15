@@ -97,12 +97,14 @@ async function fakeCompletedMigration() {
 describe('llama-cpp auto migration', () => {
   let tempDir: string;
   let infoSpy: ReturnType<typeof vi.spyOn>;
+  let stderrWriteSpy: ReturnType<typeof vi.spyOn>;
   let warnSpy: ReturnType<typeof vi.spyOn>;
   let errorSpy: ReturnType<typeof vi.spyOn>;
 
   beforeEach(() => {
     tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'speckit-auto-migration-'));
     infoSpy = vi.spyOn(console, 'info').mockImplementation(() => undefined);
+    stderrWriteSpy = vi.spyOn(process.stderr, 'write').mockImplementation(() => true);
     warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => undefined);
     errorSpy = vi.spyOn(console, 'error').mockImplementation(() => undefined);
     delete process.env.MEMORY_AUTO_MIGRATE_HF_TO_LLAMA;
@@ -117,6 +119,7 @@ describe('llama-cpp auto migration', () => {
       process.env.MEMORY_AUTO_MIGRATE_HF_TO_LLAMA = ORIGINAL_AUTO_MIGRATE;
     }
     infoSpy.mockRestore();
+    stderrWriteSpy.mockRestore();
     warnSpy.mockRestore();
     errorSpy.mockRestore();
     fs.rmSync(tempDir, { recursive: true, force: true });
@@ -175,7 +178,8 @@ describe('llama-cpp auto migration', () => {
     expect(fs.existsSync(`${sourcePath}-shm`)).toBe(false);
     expect(fs.existsSync(`${sourcePath}-wal`)).toBe(false);
     expect(fs.existsSync(path.join(tempDir, '.auto-migration-complete.json'))).toBe(true);
-    expect(infoSpy).toHaveBeenCalledWith(expect.stringContaining('AUTO_MIGRATION_COMPLETE'));
+    expect(stderrWriteSpy).toHaveBeenCalledWith(expect.stringContaining('AUTO_MIGRATION_COMPLETE'));
+    expect(infoSpy).not.toHaveBeenCalled();
   });
 
   it('keeps the source and returns hf-local fallback on validation failure', async () => {

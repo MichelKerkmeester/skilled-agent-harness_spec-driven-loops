@@ -364,8 +364,12 @@ interface HfLocalSourceStore {
   rows: number;
 }
 
+function logAutoMigrationDiagnostic(message: string): void {
+  process.stderr.write(`${message}\n`);
+}
+
 function logAutoMigrationSkip(reason: string): AutoMigrationResult {
-  console.info(`AUTO_MIGRATION_SKIP: ${reason}`);
+  logAutoMigrationDiagnostic(`AUTO_MIGRATION_SKIP: ${reason}`);
   return { status: 'skipped', reason };
 }
 
@@ -489,7 +493,7 @@ export async function runAutoMigrationIfNeeded(profile: EmbeddingProfile): Promi
     return logAutoMigrationSkip('target up to date; already migrated');
   }
 
-  console.info(
+  logAutoMigrationDiagnostic(
     `AUTO_MIGRATION_START: re-embedding ${source.rows} rows from ${source.path} -> ${targetPath}`,
   );
 
@@ -499,7 +503,7 @@ export async function runAutoMigrationIfNeeded(profile: EmbeddingProfile): Promi
       source: source.path,
       target: targetPath,
       validationSampleSize: 10,
-      logger: (msg: string) => console.info(`[auto-migration] ${msg}`),
+      logger: (msg: string) => logAutoMigrationDiagnostic(`[auto-migration] ${msg}`),
     });
 
     if (migration.status === 'no-op') {
@@ -524,7 +528,7 @@ export async function runAutoMigrationIfNeeded(profile: EmbeddingProfile): Promi
 
     const deletedFiles = deleteSourceStoreAndCompanions(source.path);
     writeAutoMigrationMarker(databaseDir, source.path, targetPath, source.rows, migration.wall_clock_seconds);
-    console.info(`AUTO_MIGRATION_COMPLETE: deleted ${path.basename(source.path)}; wrote marker`);
+    logAutoMigrationDiagnostic(`AUTO_MIGRATION_COMPLETE: deleted ${path.basename(source.path)}; wrote marker`);
     return {
       status: 'completed',
       sourceRows: source.rows,

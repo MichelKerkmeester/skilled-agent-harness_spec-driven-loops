@@ -8,6 +8,21 @@ Tune the OpenCode skill advisor scoring tables (TOKEN_BOOSTS, PHRASE_BOOSTS, der
 
 ---
 
+## TABLE OF CONTENTS
+
+- [0. AI-FIRST PROMPT](#0--ai-first-prompt)
+- [1. OVERVIEW](#1--overview)
+- [2. PREREQUISITES & INSTALLATION](#2--prerequisites--installation)
+- [3. QUICK TUNING (NO REBUILD REQUIRED)](#3--quick-tuning-no-rebuild-required)
+- [4. RUN](#4--run)
+- [5. WHAT IT TOUCHES](#5--what-it-touches)
+- [6. VERIFICATION](#6--verification)
+- [7. ROLLBACK](#7--rollback)
+- [8. TROUBLESHOOTING](#8--troubleshooting)
+- [9. RESOURCES](#9--resources)
+
+---
+
 ## 0. AI-FIRST PROMPT
 
 Paste this into your AI client to run a guided optimization:
@@ -37,7 +52,20 @@ Steps:
 
 ---
 
-## 1. PREREQUISITES
+## 1. OVERVIEW
+
+The Skill Advisor tunes its routing accuracy by scoring user prompts against every skill's `graph-metadata.json` + SKILL.md token/phrase/intent signals. This guide configures the advisor for your specific skill set: how to install fresh, how to add or change signals without rebuilding, how to run the full doctor flow, and how to roll back per-run.
+
+Two installation paths exist:
+
+- **Fresh clone setup** — when this is your first time configuring the advisor in a new clone or after a hard reset. Builds the MCP server and seeds the SQLite graph.
+- **Quick tuning loop** — when the MCP server is already built and you just want to add or change `intent_signals` without a TypeScript build cycle.
+
+The default workflow is the `/doctor skill-advisor` command, which gates each phase behind operator approval and writes a per-run rollback script. Use the AI-FIRST PROMPT above to drive it from your AI client, or follow the manual steps below for direct shell invocation.
+
+---
+
+## 2. PREREQUISITES & INSTALLATION
 
 **Fresh clone setup (run these FIRST):**
 
@@ -60,7 +88,7 @@ npm --prefix .opencode/skills/system-skill-advisor/mcp_server run build
 
 ---
 
-## 1.5 QUICK TUNING (no rebuild required) — recommended for external clones
+## 3. QUICK TUNING (NO REBUILD REQUIRED) — RECOMMENDED FOR EXTERNAL CLONES
 
 Most "tweak it to match my setup" needs are signal additions, not lane-weight changes. The simple path is:
 
@@ -81,13 +109,13 @@ Most "tweak it to match my setup" needs are signal additions, not lane-weight ch
 - Instant feedback (re-index is < 1 second)
 - Skill-local: edits only affect the skill you touch, no risk to other skills
 
-The full `/doctor skill-advisor` workflow (Section 2 below) is for batch optimization across all skills + lane-weight tuning. Use it after large repo restructures or when adding 5+ new skills.
+The full `/doctor skill-advisor` workflow (Section 4 below) is for batch optimization across all skills + lane-weight tuning. Use it after large repo restructures or when adding 5+ new skills.
 
 > **Critical**: The advisor reads scoring inputs from `.opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sqlite`, NOT from `graph-metadata.json` directly. Editing JSON without running `skill_graph_scan` will produce identical pre-edit scores.
 
 ---
 
-## 2. RUN
+## 4. RUN
 
 | Use case | Command |
 | --- | --- |
@@ -109,7 +137,7 @@ The command rebuilds `dist/`, runs `skill_graph_scan`, and runs the advisor test
 
 ---
 
-## 3. WHAT IT TOUCHES
+## 5. WHAT IT TOUCHES
 
 **Mutates only:**
 - `lib/scorer/lanes/explicit.ts` (TOKEN_BOOSTS, PHRASE_BOOSTS)
@@ -118,11 +146,11 @@ The command rebuilds `dist/`, runs `skill_graph_scan`, and runs the advisor test
 
 **Never touches:** any `SKILL.md` content, `weights-config.ts`, fusion scorer, daemon code.
 
-> **Indexing follow-up**: After Phase 3 mutates these files, the doctor command runs `advisor_rebuild` + `skill_graph_scan` automatically. If you edit any of these files MANUALLY (e.g. via the Quick Tuning recipe in §1.5), you MUST call `skill_graph_scan({})` yourself — the SQLite graph is the runtime source of truth.
+> **Indexing follow-up**: After Phase 3 mutates these files, the doctor command runs `advisor_rebuild` + `skill_graph_scan` automatically. If you edit any of these files MANUALLY (e.g. via the Quick Tuning recipe in §3), you MUST call `skill_graph_scan({})` yourself — the SQLite graph is the runtime source of truth.
 
 ---
 
-## 4. VERIFY AFTER RUN
+## 6. VERIFICATION
 
 ```bash
 # Tests still green
@@ -138,7 +166,7 @@ advisor_recommend({ prompt: "your test prompt", options: { topK: 3 } })
 
 ---
 
-## 5. ROLLBACK
+## 7. ROLLBACK
 
 Phase 3 generates a per-run rollback script at `<packet_scratch>/rollback-<timestamp>.sh` (under `<spec-folder>/scratch/` or `.opencode/scratch/`) listing the exact files modified. Use it for clean recovery:
 
@@ -170,13 +198,13 @@ npm --prefix .opencode/skills/system-skill-advisor/mcp_server run build
 
 ---
 
-## 6. TROUBLESHOOTING
+## 8. TROUBLESHOOTING
 
 | Problem | Fix |
 | --- | --- |
 | `"no skills found"` | Create at least one skill via `/create:sk-skill` |
 | `"graph health: missing"` | Run `skill_graph_scan({})` once, then re-run the command |
-| Build fails after apply | Rollback (see Section 5), inspect diff in `<spec-folder>/scratch/skill-advisor-proposal-*.md` (or `.opencode/scratch/...` outside a spec folder) |
+| Build fails after apply | Rollback (see Section 7), inspect diff in `<spec-folder>/scratch/skill-advisor-proposal-*.md` (or `.opencode/scratch/...` outside a spec folder) |
 | Tests fail after apply | Rollback, then re-run with `--scope=derived` only |
 | Command not found | Verify `.opencode/commands/doctor.md` exists; restart your AI client |
 | Wrong skill in `advisor_recommend` | Stale graph index — run `skill_graph_scan({})` |
@@ -187,7 +215,7 @@ npm --prefix .opencode/skills/system-skill-advisor/mcp_server run build
 
 ---
 
-## 7. RESOURCES
+## 9. RESOURCES
 
 - **Command reference:** `.opencode/commands/doctor.md`
 - **Workflow YAML:** `.opencode/commands/doctor/assets/doctor_skill-advisor_{auto,confirm}.yaml`

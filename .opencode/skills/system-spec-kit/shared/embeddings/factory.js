@@ -239,8 +239,11 @@ function countMemoryIndexRowsForModel(sqlitePath, model) {
     }
 }
 function logAutoMigrationSkip(reason) {
-    console.info(`AUTO_MIGRATION_SKIP: ${reason}`);
+    logAutoMigrationDiagnostic(`AUTO_MIGRATION_SKIP: ${reason}`);
     return { status: 'skipped', reason };
+}
+function logAutoMigrationDiagnostic(message) {
+    process.stderr.write(`${message}\n`);
 }
 function isAutoMigrationOptedOut() {
     return process.env.MEMORY_AUTO_MIGRATE_HF_TO_LLAMA?.trim().toLowerCase() === 'false';
@@ -337,14 +340,14 @@ export async function runAutoMigrationIfNeeded(profile) {
     if (targetRows !== null && targetRows >= source.rows && targetLlamaRows !== null && targetLlamaRows >= source.rows) {
         return logAutoMigrationSkip('target up to date; already migrated');
     }
-    console.info(`AUTO_MIGRATION_START: re-embedding ${source.rows} rows from ${source.path} -> ${targetPath}`);
+    logAutoMigrationDiagnostic(`AUTO_MIGRATION_START: re-embedding ${source.rows} rows from ${source.path} -> ${targetPath}`);
     try {
         const runMigration = await loadAutoMigrationRunner();
         const migration = await runMigration({
             source: source.path,
             target: targetPath,
             validationSampleSize: 10,
-            logger: (msg) => console.info(`[auto-migration] ${msg}`),
+            logger: (msg) => logAutoMigrationDiagnostic(`[auto-migration] ${msg}`),
         });
         if (migration.status === 'no-op') {
             return logAutoMigrationSkip(migration.reason || 'target already migrated');
@@ -366,7 +369,7 @@ export async function runAutoMigrationIfNeeded(profile) {
         }
         const deletedFiles = deleteSourceStoreAndCompanions(source.path);
         writeAutoMigrationMarker(databaseDir, source.path, targetPath, source.rows, migration.wall_clock_seconds);
-        console.info(`AUTO_MIGRATION_COMPLETE: deleted ${path.basename(source.path)}; wrote marker`);
+        logAutoMigrationDiagnostic(`AUTO_MIGRATION_COMPLETE: deleted ${path.basename(source.path)}; wrote marker`);
         return {
             status: 'completed',
             sourceRows: source.rows,
