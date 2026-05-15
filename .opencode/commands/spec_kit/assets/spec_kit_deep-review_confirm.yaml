@@ -780,6 +780,30 @@ workflow:
             - "--dangerously-skip-permissions enables hands-off automation; sandboxMode='read-only' is not currently honored (no opencode equivalent)"
             - "cli-opencode self-invocation guard: this branch must only run from a non-OpenCode dispatch surface (Claude/Codex/Gemini/raw shell). The cli-opencode skill SKILL.md §SELF-INVOCATION PROHIBITED contract is the authoritative gate"
             - "</dev/null required: opencode v1.14.39 reads stdin at startup before session creation. Without explicit closed stdin, automation that redirects stdout/stderr hangs at 0% CPU after `+60s snapshot prune cleanup`. See cli-opencode SKILL.md §4 ALWAYS rule + memory feedback_opencode_run_requires_dev_null_stdin.md."
+        if_cli_devin:
+          command: |
+            devin --print \
+              --prompt-file "{state_paths.prompt_dir}/iteration-{current_iteration}.md" \
+              --model "{config.executor.model}" \
+              --permission-mode "{resolved_permission_mode}" \
+              2>&1 </dev/null
+          working_directory: "{repo_root}"
+          timeout_seconds: "{config.executor.timeoutSeconds}"
+          wait_for_completion: true
+          render_hint:
+            resolved_permission_mode: |
+              Resolve via resolveDevinPermissionMode(config.executor.sandboxMode) — defined in
+              .opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts.
+              Mapping: sandboxMode='danger-full-access' → 'dangerous', everything else → 'auto'.
+              Default (sandboxMode unset): 'auto'.
+          notes:
+            - "devin --prompt-file accepts a path to the rendered iteration prompt (the SKILL.md skill_reference dispatch shape)"
+            - "Supported models: swe-1.6 (default), deepseek-v4, glm-5.1, kimi-k2.6 (per DEVIN_SUPPORTED_MODELS in executor-config.ts)"
+            - "--permission-mode auto auto-approves read-only ops and prompts on write; dangerous auto-approves all (only for sandboxed runs)"
+            - "cli-devin self-invocation guard: this branch must only run from a non-Devin dispatch surface (Claude/Codex/Gemini/OpenCode/raw shell). The cli-devin skill SKILL.md §SELF-INVOCATION PROHIBITED contract is the authoritative gate."
+            - "</dev/null required: family convention for non-interactive dispatch to avoid stdin-blocking edge cases across CLI versions"
+            - "Cloud handoff is NOT used here — each iteration runs locally with convergence detection. See cli-devin references/cloud_handoff.md for the separate cloud-handoff route."
+            - "Reasoning effort is NOT exposed by Devin's CLI surface; reasoning depth is fixed per model (e.g., swe-1.6 vs deepseek-v4). serviceTier is also N/A."
         post_dispatch_validate:
           validator: ".opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/post-dispatch-validate.ts#validateIterationOutputs"
           assert_exists: "{state_paths.iteration_pattern}"

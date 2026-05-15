@@ -4,7 +4,7 @@
 
 import { z } from 'zod';
 
-export const EXECUTOR_KINDS = ['native', 'cli-codex', 'cli-gemini', 'cli-claude-code', 'cli-opencode'] as const;
+export const EXECUTOR_KINDS = ['native', 'cli-codex', 'cli-gemini', 'cli-claude-code', 'cli-opencode', 'cli-devin'] as const;
 export type ExecutorKind = typeof EXECUTOR_KINDS[number];
 
 export const REASONING_EFFORTS = ['none', 'minimal', 'low', 'medium', 'high', 'xhigh'] as const;
@@ -40,10 +40,20 @@ export const EXECUTOR_KIND_FLAG_SUPPORT: Record<ExecutorKind, readonly (keyof Ex
   // here without a runtime branch would be a schema-runtime contract violation
   // (see packet 102 P1-028); reject it like we reject serviceTier for non-codex.
   'cli-opencode': ['model', 'reasoningEffort', 'timeoutSeconds'],
+  // cli-devin: devin --model <swe-1.6|deepseek-v4|glm-5.1|kimi-k2.6> with
+  // --permission-mode <auto|dangerous> resolved from sandboxMode. reasoningEffort is
+  // NOT supported — Devin's per-model reasoning depth is fixed at the CLI surface.
+  // serviceTier is also NOT supported. See cli-devin SKILL.md §2 for the dispatch
+  // contract and packet 037/000 for the wiring decision.
+  'cli-devin': ['model', 'sandboxMode', 'timeoutSeconds'],
 };
 
 export const GEMINI_SUPPORTED_MODELS = ['gemini-3.1-pro-preview'] as const;
 export type GeminiSupportedModel = typeof GEMINI_SUPPORTED_MODELS[number];
+
+export const DEVIN_SUPPORTED_MODELS = ['swe-1.6', 'deepseek-v4', 'glm-5.1', 'kimi-k2.6'] as const;
+export type DevinSupportedModel = typeof DEVIN_SUPPORTED_MODELS[number];
+export type DevinPermissionMode = 'auto' | 'dangerous';
 
 function normalizeSandboxMode(mode: SandboxMode | null | undefined): SandboxMode {
   return mode ?? 'workspace-write';
@@ -66,6 +76,10 @@ export function resolveClaudePermissionMode(mode: SandboxMode | null | undefined
     default:
       return 'acceptEdits';
   }
+}
+
+export function resolveDevinPermissionMode(mode: SandboxMode | null | undefined): DevinPermissionMode {
+  return normalizeSandboxMode(mode) === 'danger-full-access' ? 'dangerous' : 'auto';
 }
 
 type ExecutorConfigIssue = {
@@ -114,6 +128,11 @@ export function parseExecutorConfig(raw: unknown): ExecutorConfig {
       issues: [{ path: ['model'], message: 'model is required when kind is cli-codex' }],
     });
   }
+  if (config.kind === 'cli-devin' && config.model === null) {
+    throw new ExecutorConfigError({
+      issues: [{ path: ['model'], message: 'model is required when kind is cli-devin' }],
+    });
+  }
 
   const supportedFlags = EXECUTOR_KIND_FLAG_SUPPORT[config.kind];
   const unsupportedFields: string[] = [];
@@ -152,6 +171,21 @@ export function parseExecutorConfig(raw: unknown): ExecutorConfig {
         {
           path: ['model'],
           message: `model '${config.model}' is not a supported cli-gemini model. Supported: ${GEMINI_SUPPORTED_MODELS.join(', ')}.`,
+        },
+      ],
+    });
+  }
+
+  if (
+    config.kind === 'cli-devin' &&
+    config.model !== null &&
+    !DEVIN_SUPPORTED_MODELS.some((model) => model === config.model)
+  ) {
+    throw new ExecutorConfigError({
+      issues: [
+        {
+          path: ['model'],
+          message: `model '${config.model}' is not a supported cli-devin model. Supported: ${DEVIN_SUPPORTED_MODELS.join(', ')}.`,
         },
       ],
     });
