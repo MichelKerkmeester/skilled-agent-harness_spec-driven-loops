@@ -38,4 +38,4 @@ Runtime detection is the source of truth for hook-aware fallback. It identifies 
 ## 4. SOURCE METADATA
 - Group: Context Preservation And Code Graph
 - Canonical catalog source: `feature_catalog.md`
-- Feature file path: `22--context-preservation-and-code-graph/05-cross-runtime-fallback.md`
+- Feature file path: `22--context-preservation/05-cross-runtime-fallback.md`

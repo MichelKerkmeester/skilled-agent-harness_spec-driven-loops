@@ -146,7 +146,7 @@ Inspect `mcp_server/handlers/memory/context.ts` IntentTelemetry serializer and t
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [22--context-preservation-and-code-graph/19-query-intent-routing.md](../../feature_catalog/22--context-preservation-and-code-graph/19-query-intent-routing.md)
+- Feature catalog: [22--context-preservation/19-query-intent-routing.md](../../feature_catalog/22--context-preservation/19-query-intent-routing.md)
 
 ---
 
@@ -155,4 +155,4 @@ Inspect `mcp_server/handlers/memory/context.ts` IntentTelemetry serializer and t
 - Group: Context Preservation and Code Graph
 - Playbook ID: 264
 - Canonical root source: `manual_testing_playbook.md`
-- Feature file path: `22--context-preservation-and-code-graph/264-query-intent-routing.md`
+- Feature file path: `22--context-preservation/264-query-intent-routing.md`

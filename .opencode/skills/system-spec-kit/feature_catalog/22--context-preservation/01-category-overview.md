@@ -19,7 +19,7 @@ The shipped surface now includes hook scripts, code graph modules, MCP tools, bu
 
 For runtime-package code-graph details, see `.opencode/skills/system-code-graph/feature_catalog/feature_catalog.md`.
 
-Phase 005 split code-graph-owned category-22 docs into the sibling skill. For the code-graph feature pages that moved, see `.opencode/skills/system-code-graph/feature_catalog/22--context-preservation-and-code-graph/`; for code-graph manual scenarios, see `.opencode/skills/system-code-graph/manual_testing_playbook/22--context-preservation-and-code-graph/`. Shared hook, runtime, budget, routing, skill-graph, and coverage-graph pages remain here.
+Phase 005 split code-graph-owned category-22 docs into the sibling skill. For the code-graph feature pages that moved, see `.opencode/skills/system-code-graph/feature_catalog/22--context-preservation/`; for code-graph manual scenarios, see `.opencode/skills/system-code-graph/manual_testing_playbook/22--context-preservation/`. Shared hook, runtime, budget, routing, skill-graph, and coverage-graph pages remain here.
 
 ---
 
@@ -48,4 +48,4 @@ Phase 005 split code-graph-owned category-22 docs into the sibling skill. For th
 ## 4. SOURCE METADATA
 - Group: Context Preservation And Code Graph
 - Canonical catalog source: `feature_catalog.md`
-- Feature file path: `22--context-preservation-and-code-graph/01-category-overview.md`
+- Feature file path: `22--context-preservation/01-category-overview.md`

@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/015-extracted-skills-isolation",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/015-extracted-skills-isolation",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "extracted skills isolation",
+      "system-spec-kit code-graph decoupling",
+      "system-spec-kit skill-advisor decoupling",
+      "spec-kit zero-coupling research",
+      "code-graph skill-advisor isolation deep-research"
+    ],
+    "key_topics": [
+      "extracted",
+      "skills",
+      "isolation",
+      "system-spec-kit",
+      "code-graph",
+      "decoupling",
+      "skill-advisor",
+      "spec-kit",
+      "zero-coupling",
+      "research",
+      "deep-research",
+      "opencode"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "lib/context/opencode-transport.ts",
+      "lib/search/graph-readiness-mapper.ts",
+      "research/research.md",
+      "mcp_server/context-server.ts",
+      "mcp_server/handlers/session-bootstrap.ts",
+      "mcp_server/handlers/session-health.ts",
+      "mcp_server/handlers/session-resume.ts",
+      "mcp_server/handlers/memory-search.ts",
+      "mcp_server/handlers/memory-context.ts",
+      "mcp_server/hooks/memory-surface.ts",
+      "mcp_server/hooks/claude/compact-inject.ts",
+      "mcp_server/hooks/codex/lib/freshness-smoke-check.ts",
+      "mcp_server/lib/context/opencode-transport.ts",
+      "mcp_server/lib/search/graph-readiness-mapper.ts",
+      "mcp_server/lib/session/session-snapshot.ts",
+      "mcp_server/lib/session/context-metrics.ts",
+      "mcp_server/lib/utils/index-scope.ts",
+      ".opencode/plugins/spec-kit-skill-advisor.js",
+      ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/015-extracted-skills-isolation/spec.md"
+    ],
+    "entities": [
+      {
+        "name": "opencode-transport.ts",
+        "kind": "code",
+        "path": "lib/context/opencode-transport.ts",
+        "source": "derived"
+      },
+      {
+        "name": "graph-readiness-mapper.ts",
+        "kind": "code",
+        "path": "lib/search/graph-readiness-mapper.ts",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "context-server.ts",
+        "kind": "code",
+        "path": "mcp_server/context-server.ts",
+        "source": "derived"
+      },
+      {
+        "name": "session-bootstrap.ts",
+        "kind": "code",
+        "path": "mcp_server/handlers/session-bootstrap.ts",
+        "source": "derived"
+      },
+      {
+        "name": "session-health.ts",
+        "kind": "code",
+        "path": "mcp_server/handlers/session-health.ts",
+        "source": "derived"
+      },
+      {
+        "name": "session-resume.ts",
+        "kind": "code",
+        "path": "mcp_server/handlers/session-resume.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-search.ts",
+        "kind": "code",
+        "path": "mcp_server/handlers/memory-search.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-context.ts",
+        "kind": "code",
+        "path": "mcp_server/handlers/memory-context.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-surface.ts",
+        "kind": "code",
+        "path": "mcp_server/hooks/memory-surface.ts",
+        "source": "derived"
+      },
+      {
+        "name": "compact-inject.ts",
+        "kind": "code",
+        "path": "mcp_server/hooks/claude/compact-inject.ts",
+        "source": "derived"
+      },
+      {
+        "name": "freshness-smoke-check.ts",
+        "kind": "code",
+        "path": "mcp_server/hooks/codex/lib/freshness-smoke-check.ts",
+        "source": "derived"
+      },
+      {
+        "name": "session-snapshot.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/session/session-snapshot.ts",
+        "source": "derived"
+      },
+      {
+        "name": "context-metrics.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/session/context-metrics.ts",
+        "source": "derived"
+      },
+      {
+        "name": "index-scope.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/utils/index-scope.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec-kit-skill-advisor.js",
+        "kind": "code",
+        "path": ".opencode/plugins/spec-kit-skill-advisor.js",
+        "source": "derived"
+      },
+      {
+        "name": "ENV_REFERENCE.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/015-extracted-skills-isolation/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Extracted Skills Isolation",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Depends On",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Evidence Dir",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Research",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Code-graph was extracted to `.opencode/skills/system-code-graph/` (commit chain 50cfabb6e…) and skill-advisor to `.opencode/skills/system-skill-advisor/` (commit chain c90f1f7b6…). The extractions completed at the directory + MCP-server level, but **compile-time and documentation coupling persists inside `.opencode/skills/system-spec-kit/`**:",
+    "created_at": "2026-05-15T09:20:49.805Z",
+    "last_save_at": "2026-05-15T09:20:49.805Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "research/research.md"
+    ]
+  }
+}

@@ -39,4 +39,4 @@ Runtime-signal detection reads environment variables to identify claude-code, co
 ## 4. SOURCE METADATA
 - Group: Context Preservation And Code Graph
 - Canonical catalog source: `feature_catalog.md`
-- Feature file path: `22--context-preservation-and-code-graph/06-runtime-detection.md`
+- Feature file path: `22--context-preservation/06-runtime-detection.md`

@@ -844,6 +844,10 @@ These skills let you run **cross-CLI agent teams from any starting CLI**. Whiche
 - OpenCode CLI orchestrator. Use it when the dispatched task needs **the project's full plugin / skill / MCP / Spec Kit Memory runtime**, a one-shot `opencode run` boots every plugin in `opencode.json`, every skill under `.opencode/skills/`, every MCP server, and the memory database. Also handles **parallel detached sessions** (`--share --port N` for ablation suites, worker farms) and **cross-repo dispatch** (`--dir <path>`).
 - Three providers: `github-copilot` (default, with `gpt-5.4` default + `claude-sonnet-4.6` alternative), `opencode-go` (DeepSeek + GLM/Kimi/Qwen via gateway), `deepseek` (direct DeepSeek API).
 
+**cli-devin**
+- Devin CLI orchestrator. Use it to dispatch Cognition AI's autonomous-agent binary `devin` from any sibling CLI session, with the family's only **local-to-cloud handoff** (the live session can migrate to a Cognition cloud VM that keeps working asynchronously and returns a PR).
+- Four-model preset: `swe-1.6` default for context gathering, tool use, and simple-to-medium well-defined code tasks; `deepseek-v4` primary for complex tasks; `glm-5.1` and `kimi-k2.6` as complex-task fallbacks (agentic / large-context shape respectively).
+
 &nbsp;
 #### MCP INTEGRATION
 

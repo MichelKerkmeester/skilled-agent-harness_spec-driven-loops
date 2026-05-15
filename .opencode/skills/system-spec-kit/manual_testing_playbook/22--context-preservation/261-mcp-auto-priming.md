@@ -143,7 +143,7 @@ Check `hooks/memory-surface.ts` session-scoped priming set and session identity 
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [22--context-preservation-and-code-graph/16-mcp-auto-priming.md](../../feature_catalog/22--context-preservation-and-code-graph/16-mcp-auto-priming.md)
+- Feature catalog: [22--context-preservation/16-mcp-auto-priming.md](../../feature_catalog/22--context-preservation/16-mcp-auto-priming.md)
 
 ---
 
@@ -152,4 +152,4 @@ Check `hooks/memory-surface.ts` session-scoped priming set and session identity 
 - Group: Context Preservation and Code Graph
 - Playbook ID: 261
 - Canonical root source: `manual_testing_playbook.md`
-- Feature file path: `22--context-preservation-and-code-graph/261-mcp-auto-priming.md`
+- Feature file path: `22--context-preservation/261-mcp-auto-priming.md`

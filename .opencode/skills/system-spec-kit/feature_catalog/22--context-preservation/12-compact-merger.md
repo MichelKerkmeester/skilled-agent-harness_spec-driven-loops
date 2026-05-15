@@ -39,4 +39,4 @@ Accepts shaped results from 3 sources. Renders sections: Constitutional Rules, A
 ## 4. SOURCE METADATA
 - Group: Context Preservation And Code Graph
 - Canonical catalog source: `feature_catalog.md`
-- Feature file path: `22--context-preservation-and-code-graph/12-compact-merger.md`
+- Feature file path: `22--context-preservation/12-compact-merger.md`

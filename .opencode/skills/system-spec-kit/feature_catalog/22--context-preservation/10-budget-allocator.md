@@ -39,4 +39,4 @@ Floors: constitutional 700, code graph 1200, CocoIndex 900, triggered 400, overf
 ## 4. SOURCE METADATA
 - Group: Context Preservation And Code Graph
 - Canonical catalog source: `feature_catalog.md`
-- Feature file path: `22--context-preservation-and-code-graph/10-budget-allocator.md`
+- Feature file path: `22--context-preservation/10-budget-allocator.md`

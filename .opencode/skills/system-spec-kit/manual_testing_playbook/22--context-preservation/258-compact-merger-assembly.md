@@ -114,7 +114,7 @@ Check `deduplicateFilePaths()` and metadata construction
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [22--context-preservation-and-code-graph/12-compact-merger.md](../../feature_catalog/22--context-preservation-and-code-graph/12-compact-merger.md)
+- Feature catalog: [22--context-preservation/12-compact-merger.md](../../feature_catalog/22--context-preservation/12-compact-merger.md)
 
 ---
 
@@ -123,4 +123,4 @@ Check `deduplicateFilePaths()` and metadata construction
 - Group: Context Preservation and Code Graph
 - Playbook ID: 258
 - Canonical root source: `manual_testing_playbook.md`
-- Feature file path: `22--context-preservation-and-code-graph/258-compact-merger-assembly.md`
+- Feature file path: `22--context-preservation/258-compact-merger-assembly.md`

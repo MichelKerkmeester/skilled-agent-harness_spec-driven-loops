@@ -6,7 +6,7 @@
     "phase",
     "rename-mcp-namespace-mk-spec-memory"
   ],
-  "lastUpdated": "2026-05-15T06:34:23.182Z",
+  "lastUpdated": "2026-05-15T08:21:32.558Z",
   "specId": "052",
   "folderSlug": "mk-spec-memory-rename",
   "parentChain": [
@@ -14,8 +14,9 @@
     "026-graph-and-context-optimization",
     "014-local-llama-cpp"
   ],
-  "memorySequence": 1,
+  "memorySequence": 2,
   "memoryNameHistory": [
-    "15-05-26_07-34__closed-the-mk-spec-memory-mcp-server-rename.md"
+    "15-05-26_07-34__closed-the-mk-spec-memory-mcp-server-rename.md",
+    "15-05-26_09-21__second-half-of-session-shipped-4-additional.md"
   ]
 }

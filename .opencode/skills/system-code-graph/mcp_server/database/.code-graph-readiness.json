@@ -1,0 +1,122 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-05-15T11:51:23.786Z",
+  "producer": "mk-code-index",
+  "workspaceRoot": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public",
+  "graphFreshness": "stale",
+  "graphState": "stale",
+  "readiness": {
+    "freshness": "stale",
+    "action": "full_scan",
+    "reason": "git HEAD changed: 92ab1335 -> a23d1873; 95 stale files exceed selective threshold (50)",
+    "inlineIndexPerformed": false
+  },
+  "stats": {
+    "totalFiles": 8538,
+    "totalNodes": 55943,
+    "totalEdges": 34199,
+    "nodesByKind": {
+      "class": 38,
+      "enum": 1,
+      "export": 6523,
+      "function": 7868,
+      "import": 12766,
+      "interface": 2046,
+      "method": 220,
+      "module": 1515,
+      "parameter": 10877,
+      "type_alias": 912,
+      "variable": 13177
+    },
+    "edgesByType": {
+      "CALLS": 10848,
+      "CONTAINS": 217,
+      "EXPORTS": 5494,
+      "EXTENDS": 5,
+      "IMPLEMENTS": 7,
+      "IMPORTS": 3962,
+      "OVERRIDES": 12,
+      "TESTED_BY": 4933,
+      "TYPE_OF": 8721
+    },
+    "parseHealthSummary": {
+      "clean": 8481,
+      "recovered": 57
+    },
+    "lastScanTimestamp": "2026-05-15T06:00:47.907Z",
+    "lastGitHead": "92ab1335b416c124fc976c054cf5fb353269704e",
+    "dbFileSize": 51048448,
+    "schemaVersion": 5,
+    "graphQualitySummary": {
+      "detectorProvenanceSummary": {
+        "dominant": "ast",
+        "counts": {
+          "ast": 8942
+        }
+      },
+      "graphEdgeEnrichmentSummary": {
+        "edgeEvidenceClass": "import",
+        "numericConfidence": 1,
+        "crossFileCallResolution": {
+          "resolved": 2200,
+          "unresolved": 1143,
+          "ambiguousSkipped": 403
+        }
+      }
+    }
+  },
+  "startup": {
+    "graphOutline": "8538 files, 55943 nodes, 34199 edges.\nLast scan: 2026-05-15T06:00:47.907Z\nFreshness: stale - git HEAD changed: 92ab1335 -> a23d1873; 95 stale files exceed selective threshold (50)\nGraph quality: detector=ast (ast:8942); edge-enrichment=import (1.00)\nOrientation: use code graph highlights for structural entry points and call paths; use CocoIndex for semantic discovery when the symbol or file is still unknown.\nHighlights:\n- createMCPSuccessResponse (function) - lib/response/envelope.ts [calls: 32]\n- hookLog (function) - hooks/claude/shared.ts [calls: 30]\n- checkDatabaseUpdated (function) - mcp_server/core/db-state.ts [calls: 30]\n- initialize_db (function) - lib/search/vector-index-store.ts [calls: 30]\n- requireDb (function) - mcp_server/utils/db-helpers.ts [calls: 25]",
+    "sessionContinuity": null,
+    "graphSummary": {
+      "files": 8538,
+      "nodes": 55943,
+      "edges": 34199,
+      "lastScan": "2026-05-15T06:00:47.907Z"
+    },
+    "graphQualitySummary": {
+      "detectorProvenanceSummary": {
+        "dominant": "ast",
+        "counts": {
+          "ast": 8942
+        }
+      },
+      "graphEdgeEnrichmentSummary": {
+        "edgeEvidenceClass": "import",
+        "numericConfidence": 1,
+        "crossFileCallResolution": {
+          "resolved": 2200,
+          "unresolved": 1143,
+          "ambiguousSkipped": 403
+        }
+      }
+    },
+    "graphState": "stale",
+    "graphTrustState": "stale",
+    "cocoIndexAvailable": false,
+    "startupSurface": "Session context received. Current state:\n\n- Memory: startup summary only (resume on demand)\n- Code Graph: stale -- 8,538 files -- 55.9K nodes -- 34.2K edges (scanned today; first structural read may refresh inline)\n- CocoIndex: missing\n- Note: this is a startup snapshot; later structural reads may differ if the repo state changed.\n\nWhat would you like to work on?",
+    "sharedPayload": {
+      "kind": "startup",
+      "summary": "Startup brief with stale structural context",
+      "provenance": {
+        "producer": "startup_brief",
+        "sourceSurface": "startup",
+        "trustState": "stale",
+        "generatedAt": "2026-05-15T11:51:25.818Z",
+        "lastUpdated": "2026-05-15T06:00:47.907Z",
+        "sourceRefs": [
+          "code-graph-readiness-marker"
+        ]
+      },
+      "sections": [
+        {
+          "key": "structural-context",
+          "title": "Structural Context",
+          "content": "8538 files, 55943 nodes, 34199 edges.\nLast scan: 2026-05-15T06:00:47.907Z\nFreshness: stale - git HEAD changed: 92ab1335 -> a23d1873; 95 stale files exceed selective threshold (50)\nGraph quality: detector=ast (ast:8942); edge-enrichment=import (1.00)\nOrientation: use code graph highlights for structural entry points and call paths; use CocoIndex for semantic discovery when the symbol or file is still unknown.\nHighlights:\n- createMCPSuccessResponse (function) - lib/response/envelope.ts [calls: 32]\n- hookLog (function) - hooks/claude/shared.ts [calls: 30]\n- checkDatabaseUpdated (function) - mcp_server/core/db-state.ts [calls: 30]\n- initialize_db (function) - lib/search/vector-index-store.ts [calls: 30]\n- requireDb (function) - mcp_server/utils/db-helpers.ts [calls: 25]",
+          "source": "code-graph"
+        }
+      ]
+    },
+    "sharedPayloadTransport": "{\n  \"kind\": \"startup\",\n  \"summary\": \"Startup brief with stale structural context\",\n  \"provenance\": {\n    \"producer\": \"startup_brief\",\n    \"sourceSurface\": \"startup\",\n    \"trustState\": \"stale\",\n    \"generatedAt\": \"2026-05-15T11:51:25.818Z\",\n    \"lastUpdated\": \"2026-05-15T06:00:47.907Z\",\n    \"sourceRefs\": [\n      \"code-graph-readiness-marker\"\n    ]\n  },\n  \"sectionKeys\": [\n    \"structural-context\"\n  ]\n}"
+  }
+}

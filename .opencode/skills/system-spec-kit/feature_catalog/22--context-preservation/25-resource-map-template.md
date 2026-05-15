@@ -31,12 +31,12 @@ Generated packet `resource-map.md` output plus the discovery and classification 
 | `README.md` | Guide | Main system-spec-kit README surface describing the template architecture |
 | `references/templates/level_specifications.md` | Reference | Level-by-level and cross-cutting template reference for operators |
 | `mcp_server/lib/config/spec-doc-paths.ts` | Config | Spec-doc classification set that recognizes `resource-map.md` |
-| `feature_catalog/22--context-preservation-and-code-graph/25-resource-map-template.md` | Feature catalog | This feature entry for ongoing discovery |
-| `manual_testing_playbook/22--context-preservation-and-code-graph/270-resource-map-template.md` | Playbook | Manual verification scenario for the rollout |
+| `feature_catalog/22--context-preservation/25-resource-map-template.md` | Feature catalog | This feature entry for ongoing discovery |
+| `manual_testing_playbook/22--context-preservation/270-resource-map-template.md` | Playbook | Manual verification scenario for the rollout |
 
 ---
 
 ## 4. SOURCE METADATA
 - Group: Context Preservation And Code Graph
 - Canonical catalog source: `feature_catalog.md`
-- Feature file path: `22--context-preservation-and-code-graph/25-resource-map-template.md`
+- Feature file path: `22--context-preservation/25-resource-map-template.md`

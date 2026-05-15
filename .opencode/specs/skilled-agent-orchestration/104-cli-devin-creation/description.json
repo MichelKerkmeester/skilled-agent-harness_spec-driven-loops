@@ -1,0 +1,33 @@
+{
+  "specFolder": "104-cli-devin-creation",
+  "description": "Add fifth cli-* family skill (cli-devin) so Cognition's Devin for Terminal can be invoked as a peer executor from any sibling cli-* skill. Documents D",
+  "keywords": [
+    "add",
+    "fifth",
+    "cli",
+    "family",
+    "skill",
+    "cli-devin",
+    "cognition",
+    "devin",
+    "terminal",
+    "invoked",
+    "peer",
+    "executor",
+    "sibling",
+    "documents",
+    "devin-unique",
+    "local-to-cloud",
+    "handoff",
+    "5-check",
+    "operator-confirmation",
+    "gate"
+  ],
+  "lastUpdated": "2026-05-15T07:01:37.479Z",
+  "specId": "104",
+  "folderSlug": "cli-devin-creation",
+  "parentChain": [],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

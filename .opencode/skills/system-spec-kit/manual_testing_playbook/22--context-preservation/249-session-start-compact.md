@@ -115,7 +115,7 @@ Verify test fixture simulates missing cache state
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [22--context-preservation-and-code-graph/03-session-start-priming.md](../../feature_catalog/22--context-preservation-and-code-graph/03-session-start-priming.md)
+- Feature catalog: [22--context-preservation/03-session-start-priming.md](../../feature_catalog/22--context-preservation/03-session-start-priming.md)
 
 ---
 
@@ -124,4 +124,4 @@ Verify test fixture simulates missing cache state
 - Group: Context Preservation and Code Graph
 - Playbook ID: 249
 - Canonical root source: `manual_testing_playbook.md`
-- Feature file path: `22--context-preservation-and-code-graph/249-session-start-compact.md`
+- Feature file path: `22--context-preservation/249-session-start-compact.md`

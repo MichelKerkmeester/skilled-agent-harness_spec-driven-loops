@@ -114,7 +114,7 @@ Check byte offset calculation with `Buffer.byteLength` for UTF-8
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [22--context-preservation-and-code-graph/04-stop-token-tracking.md](../../feature_catalog/22--context-preservation-and-code-graph/04-stop-token-tracking.md)
+- Feature catalog: [22--context-preservation/04-stop-token-tracking.md](../../feature_catalog/22--context-preservation/04-stop-token-tracking.md)
 
 ---
 
@@ -123,4 +123,4 @@ Check byte offset calculation with `Buffer.byteLength` for UTF-8
 - Group: Context Preservation and Code Graph
 - Playbook ID: 251
 - Canonical root source: `manual_testing_playbook.md`
-- Feature file path: `22--context-preservation-and-code-graph/251-stop-hook-saves.md`
+- Feature file path: `22--context-preservation/251-stop-hook-saves.md`

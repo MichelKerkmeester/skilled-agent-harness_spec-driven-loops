@@ -49,4 +49,4 @@ The rest of the merged recovery payload is unchanged in shape: `memory` still co
 ## 4. SOURCE METADATA
 - Group: Context Preservation And Code Graph
 - Canonical catalog source: `feature_catalog.md`
-- Feature file path: `22--context-preservation-and-code-graph/18-session-resume-tool.md`
+- Feature file path: `22--context-preservation/18-session-resume-tool.md`

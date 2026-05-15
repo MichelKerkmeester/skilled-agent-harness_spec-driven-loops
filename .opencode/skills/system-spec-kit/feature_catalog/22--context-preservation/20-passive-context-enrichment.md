@@ -34,4 +34,4 @@ mcp_server/hooks/memory-surface.ts, mcp_server/hooks/response-hints.ts
 ## 4. SOURCE METADATA
 - Group: Context Preservation And Code Graph
 - Canonical catalog source: `feature_catalog.md`
-- Feature file path: `22--context-preservation-and-code-graph/20-passive-context-enrichment.md`
+- Feature file path: `22--context-preservation/20-passive-context-enrichment.md`

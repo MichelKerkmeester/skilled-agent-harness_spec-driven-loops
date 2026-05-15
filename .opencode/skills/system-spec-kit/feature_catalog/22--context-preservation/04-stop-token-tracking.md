@@ -39,4 +39,4 @@ mcp_server/hooks/claude/session-stop.ts
 ## 4. SOURCE METADATA
 - Group: Context Preservation And Code Graph
 - Canonical catalog source: `feature_catalog.md`
-- Feature file path: `22--context-preservation-and-code-graph/04-stop-token-tracking.md`
+- Feature file path: `22--context-preservation/04-stop-token-tracking.md`

@@ -3,11 +3,49 @@
 // ---------------------------------------------------------------
 
 import { allocateBudget, createDefaultSources, type AllocationResult } from './budget-allocator.js';
-import {
-  createSharedPayloadEnvelope,
-  type PreMergeSelectionMetadata,
-  type SharedPayloadEnvelope,
-} from './shared-payload.js';
+
+type SharedPayloadSourceKind = 'memory' | 'code-graph' | 'semantic' | 'session';
+
+export interface SharedPayloadSection {
+  key: string;
+  title: string;
+  content: string;
+  source: SharedPayloadSourceKind;
+}
+
+export interface SharedPayloadProvenance {
+  producer: 'compact_merger';
+  sourceSurface: string;
+  trustState: 'live';
+  generatedAt: string;
+  lastUpdated: string | null;
+  sourceRefs: string[];
+}
+
+export interface PreMergeSelectionMetadata {
+  strategy: 'pre-merge';
+  selectedFrom: string[];
+  fileCount: number;
+  topicCount: number;
+  attentionSignalCount: number;
+  notes: string[];
+  antiFeedbackGuards: string[];
+}
+
+export interface SharedPayloadEnvelope {
+  kind: 'compaction';
+  summary: string;
+  sections: SharedPayloadSection[];
+  provenance: SharedPayloadProvenance;
+  selection?: PreMergeSelectionMetadata;
+}
+
+function createCompactPayloadEnvelope(input: SharedPayloadEnvelope): SharedPayloadEnvelope {
+  return {
+    ...input,
+    sections: input.sections.filter((section) => section.content.trim().length > 0),
+  };
+}
 
 export interface MergeInput {
   constitutional: string;
@@ -151,7 +189,7 @@ export function mergeCompactBrief(
     text,
     sections,
     allocation,
-    payloadContract: createSharedPayloadEnvelope({
+    payloadContract: createCompactPayloadEnvelope({
       kind: 'compaction',
       sections: sections.map((section) => ({
         key: section.name.toLowerCase().replace(/[^a-z0-9]+/g, '-'),

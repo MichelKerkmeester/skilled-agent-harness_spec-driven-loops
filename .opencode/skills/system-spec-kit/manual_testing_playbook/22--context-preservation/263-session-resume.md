@@ -174,7 +174,7 @@ Check `caller-context.ts`, `context-server.ts`, and the strict-vs-permissive bra
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [22--context-preservation-and-code-graph/18-session-resume-tool.md](../../feature_catalog/22--context-preservation-and-code-graph/18-session-resume-tool.md)
+- Feature catalog: [22--context-preservation/18-session-resume-tool.md](../../feature_catalog/22--context-preservation/18-session-resume-tool.md)
 
 ---
 
@@ -183,4 +183,4 @@ Check `caller-context.ts`, `context-server.ts`, and the strict-vs-permissive bra
 - Group: Context Preservation and Code Graph
 - Playbook ID: 263
 - Canonical root source: `manual_testing_playbook.md`
-- Feature file path: `22--context-preservation-and-code-graph/263-session-resume.md`
+- Feature file path: `22--context-preservation/263-session-resume.md`

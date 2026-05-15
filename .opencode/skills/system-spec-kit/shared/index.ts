@@ -87,6 +87,24 @@ export {
   buildCodeGraphOpsContract,
   createMetadataOnlyPreview,
 } from './code-graph-contracts.js';
+export {
+  mergeCompactBrief,
+  type MergeInput,
+  type MergedBrief,
+  type SourceFreshness,
+  type SharedPayloadEnvelope,
+  type SharedPayloadProvenance,
+  type SharedPayloadSection,
+  type PreMergeSelectionMetadata,
+} from './compact-merger.js';
+export {
+  allocateBudget,
+  createDefaultSources,
+  DEFAULT_FLOORS,
+  type SourceBudget,
+  type SourceAllocation,
+  type AllocationResult,
+} from './budget-allocator.js';
 
 // DB normalization functions
 export {

@@ -33,4 +33,4 @@ The classifier exposes its output through a normalized `IntentTelemetry` envelop
 ## 4. SOURCE METADATA
 - Group: Context Preservation And Code Graph
 - Canonical catalog source: `feature_catalog.md`
-- Feature file path: `22--context-preservation-and-code-graph/14-query-intent-classifier.md`
+- Feature file path: `22--context-preservation/14-query-intent-classifier.md`

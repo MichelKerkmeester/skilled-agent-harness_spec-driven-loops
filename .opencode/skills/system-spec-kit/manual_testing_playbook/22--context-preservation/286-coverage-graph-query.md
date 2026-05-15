@@ -62,4 +62,4 @@ Tool response transcript showing coverage-gap results or an explicit empty-state
 - Group: Context Preservation and Code Graph
 - Playbook ID: 286
 - Canonical root source: `manual_testing_playbook.md`
-- Feature file path: `22--context-preservation-and-code-graph/286-coverage-graph-query.md`
+- Feature file path: `22--context-preservation/286-coverage-graph-query.md`

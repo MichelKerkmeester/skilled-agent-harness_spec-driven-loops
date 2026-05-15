@@ -51,10 +51,10 @@ Adding a skill is intentional. Every new skill goes through `sk-doc`'s scaffoldi
 
 | Metric | Value | Notes |
 | --- | --- | --- |
-| Total skill folders | 19 | Top-level non-hidden skills under `.opencode/skills/` |
-| Folders with graph metadata | 19 | Every top-level non-hidden skill folder under `.opencode/skills/` currently ships with `graph-metadata.json` |
+| Total skill folders | 20 | Top-level non-hidden skills under `.opencode/skills/` |
+| Folders with graph metadata | 20 | Every top-level non-hidden skill folder under `.opencode/skills/` currently ships with `graph-metadata.json` |
 | Graph families | 6 | `cli`, `mcp`, `sk-code`, `sk-deep`, `sk-util`, `system` |
-| CLI orchestrator skills | 4 | cli-claude-code, cli-codex, cli-gemini, cli-opencode |
+| CLI orchestrator skills | 5 | cli-claude-code, cli-codex, cli-devin, cli-gemini, cli-opencode |
 | MCP integration skills | 3 | mcp-chrome-devtools, mcp-coco-index, mcp-code-mode |
 | Code workflow and review skills | 2 | sk-code, sk-code-review |
 | Documentation, research, review, and improvement skills | 6 | deep-agent-improvement, deep-ai-council, deep-research, deep-review, sk-doc, sk-prompt |
@@ -131,7 +131,7 @@ Request -> advisor_recommend -> top match + confidence -> load SKILL.md -> follo
 
 The skill system covers four distinct workflow domains.
 
-**CLI Delegation.** The four CLI skills (cli-claude-code, cli-codex, cli-gemini, cli-opencode) let any AI assistant hand off work to an external AI binary. Each skill specifies the right binary flags, model selection, prompt formatting, and output parsing. This enables parallel execution and cross-AI validation without the calling AI needing to know binary internals.
+**CLI Delegation.** The five CLI skills (cli-claude-code, cli-codex, cli-devin, cli-gemini, cli-opencode) let any AI assistant hand off work to an external AI binary. Each skill specifies the right binary flags, model selection, prompt formatting, and output parsing. This enables parallel execution and cross-AI validation without the calling AI needing to know binary internals. cli-devin uniquely adds local-to-cloud handoff for async multi-hour work.
 
 **MCP Tool Wrapping.** The three MCP integration skills route tool calls through Code Mode or package-local MCP surfaces for token-efficient execution. mcp-code-mode is the hub for external services, mcp-chrome-devtools handles browser debugging, and mcp-coco-index adds semantic code search via vector embeddings for finding relevant implementations by concept rather than exact keyword.
 
@@ -147,6 +147,7 @@ The skill system covers four distinct workflow domains.
 | --- | --- | --- |
 | `cli-claude-code` | 1.1.1 | Invokes Claude Code CLI for deep reasoning, code editing, structured output, and agent delegation |
 | `cli-codex` | 1.3.1 | Invokes OpenAI Codex CLI for code generation, review, web research, and parallel task processing |
+| `cli-devin` | 1.0.0 | Invokes Cognition's Devin CLI for autonomous coding (SWE-1.6 default + DeepSeek v4 / GLM 5.1 / Kimi k2.6 for complex work) plus local-to-cloud handoff |
 | `cli-gemini` | 1.2.1 | Invokes Google Gemini CLI for code generation, Google Search grounding, and architecture analysis |
 | `cli-opencode` | 1.0.0 | Invokes OpenCode CLI for full plugin/skill/MCP runtime dispatch, parallel detached sessions, and cross-AI orchestration |
 
@@ -196,6 +197,7 @@ The skill system covers four distinct workflow domains.
 .opencode/skills/
 ├── cli-claude-code/        # Claude Code CLI orchestrator
 ├── cli-codex/              # OpenAI Codex CLI orchestrator
+├── cli-devin/              # Cognition Devin CLI orchestrator (+ local-to-cloud handoff)
 ├── cli-gemini/             # Google Gemini CLI orchestrator
 ├── cli-opencode/           # OpenCode CLI orchestrator
 ├── mcp-chrome-devtools/    # Browser debugging via MCP

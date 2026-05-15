@@ -19,7 +19,8 @@
     "system-spec-kit/026-graph-and-context-optimization/011-cocoindex-daemon-resilience",
     "system-spec-kit/026-graph-and-context-optimization/012-causal-graph-channel-routing",
     "system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator",
-    "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a"
+    "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a",
+    "system-spec-kit/026-graph-and-context-optimization/015-extracted-skills-isolation"
   ],
   "migrated": true,
   "migration_source": "legacy",
@@ -147,14 +148,14 @@
     ],
     "causal_summary": "Packet `026-graph-and-context-optimization` presents a 10-wrapper active navigation surface after two topical consolidation passes plus a post-push topology adjustment. The first pass (2026-04-21) collapsed 29 chronological phase folders into nine thematic wrappers with originals preserved as child packets. The second pass (2026-04-25 12:10) merged the former `006-search-routing-advisor/` into `008-skill-advisor/`, redistributed children of the former `009-hook-package/` across `007-code-graph/`, `008-skill-advisor/`, and the renamed `010-hook-parity/`. A subsequent post-push adjustment (2026-04-25 14:45) renamed `010-hook-parity/` to `009-hook-parity/` and removed the post-hoc `009-memory-causal-graph/` documentation packet (causal-graph infrastructure remains in production code; documentation lives in `010-graph-impact-and-affordance-uplift/005-memory-causal-trust-display/` from a display-layer perspective).",
     "created_at": "2026-04-12T09:02:53.443Z",
-    "last_save_at": "2026-05-11T07:55:10.356Z",
+    "last_save_at": "2026-05-15T09:20:51.849Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "resource-map.md"
     ],
-    "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/012-causal-graph-channel-routing",
-    "last_active_at": "2026-05-11T07:55:10.356Z"
+    "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/015-extracted-skills-isolation",
+    "last_active_at": "2026-05-15T09:20:51.849Z"
   }
 }

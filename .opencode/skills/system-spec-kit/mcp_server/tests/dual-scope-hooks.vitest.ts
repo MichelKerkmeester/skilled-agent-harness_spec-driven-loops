@@ -9,7 +9,7 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { performance } from 'node:perf_hooks';
 import { estimateTokenCount } from '@spec-kit/shared/utils/token-estimate';
-import { mergeCompactBrief, type MergeInput } from '../lib/context/compact-merger.js';
+import { mergeCompactBrief, type MergeInput } from '@spec-kit/shared/compact-merger';
 
 // Mock transitive DB dependencies before importing the module under test
 vi.mock('../lib/search/vector-index', () => ({

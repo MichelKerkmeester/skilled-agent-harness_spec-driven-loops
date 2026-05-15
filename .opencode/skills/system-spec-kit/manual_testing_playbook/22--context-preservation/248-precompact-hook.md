@@ -114,7 +114,7 @@ Check `hook-state.ts` for state directory path and atomic write logic
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [22--context-preservation-and-code-graph/02-precompact-hook.md](../../feature_catalog/22--context-preservation-and-code-graph/02-precompact-hook.md)
+- Feature catalog: [22--context-preservation/02-precompact-hook.md](../../feature_catalog/22--context-preservation/02-precompact-hook.md)
 
 ---
 
@@ -123,4 +123,4 @@ Check `hook-state.ts` for state directory path and atomic write logic
 - Group: Context Preservation and Code Graph
 - Playbook ID: 248
 - Canonical root source: `manual_testing_playbook.md`
-- Feature file path: `22--context-preservation-and-code-graph/248-precompact-hook.md`
+- Feature file path: `22--context-preservation/248-precompact-hook.md`

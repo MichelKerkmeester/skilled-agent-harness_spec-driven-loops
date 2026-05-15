@@ -36,4 +36,4 @@ mcp_server/context-server.ts (buildServerInstructions), mcp_server/hooks/memory-
 ## 4. SOURCE METADATA
 - Group: Context Preservation And Code Graph
 - Canonical catalog source: `feature_catalog.md`
-- Feature file path: `22--context-preservation-and-code-graph/23-tool-routing-enforcement.md`
+- Feature file path: `22--context-preservation/23-tool-routing-enforcement.md`

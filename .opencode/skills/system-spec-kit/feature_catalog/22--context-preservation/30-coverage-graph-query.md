@@ -32,6 +32,6 @@ Current runtime behavior is documented in the source files below.
 ## 4. SOURCE METADATA
 - Group: Context Preservation And Code Graph
 - Canonical catalog source: `feature_catalog.md`
-- Feature file path: `22--context-preservation-and-code-graph/30-coverage-graph-query.md`
+- Feature file path: `22--context-preservation/30-coverage-graph-query.md`
 
 <!-- /ANCHOR:source-metadata -->

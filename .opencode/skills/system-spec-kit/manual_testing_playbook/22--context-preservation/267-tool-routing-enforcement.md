@@ -151,7 +151,7 @@ Validate 267e resume/bootstrap routing contract
 
 ### Commands
 
-1. cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && rg -n "session_bootstrap|session_resume|/spec_kit:resume|SEARCH ROUTING|code_graph_query|mcp__cocoindex_code__search" .opencode/commands/spec_kit/README.txt .opencode/commands/spec_kit/resume.md .opencode/skills/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/23-tool-routing-enforcement.md
+1. cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && rg -n "session_bootstrap|session_resume|/spec_kit:resume|SEARCH ROUTING|code_graph_query|mcp__cocoindex_code__search" .opencode/commands/spec_kit/README.txt .opencode/commands/spec_kit/resume.md .opencode/skills/system-spec-kit/feature_catalog/22--context-preservation/23-tool-routing-enforcement.md
 
 ### Expected
 
@@ -172,7 +172,7 @@ Update the canonical recovery docs if one surface fell behind the others
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [22--context-preservation-and-code-graph/23-tool-routing-enforcement.md](../../feature_catalog/22--context-preservation-and-code-graph/23-tool-routing-enforcement.md)
+- Feature catalog: [22--context-preservation/23-tool-routing-enforcement.md](../../feature_catalog/22--context-preservation/23-tool-routing-enforcement.md)
 
 ---
 
@@ -181,4 +181,4 @@ Update the canonical recovery docs if one surface fell behind the others
 - Group: Context Preservation and Code Graph
 - Playbook ID: 267
 - Canonical root source: manual_testing_playbook.md
-- Feature file path: 22--context-preservation-and-code-graph/267-tool-routing-enforcement.md
+- Feature file path: 22--context-preservation/267-tool-routing-enforcement.md

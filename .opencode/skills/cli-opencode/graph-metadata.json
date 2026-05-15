@@ -21,6 +21,11 @@
         "target": "cli-gemini",
         "weight": 0.5,
         "context": "CLI orchestrator peer"
+      },
+      {
+        "target": "cli-devin",
+        "weight": 0.5,
+        "context": "CLI orchestrator peer"
       }
     ],
     "conflicts_with": [],
@@ -36,7 +41,8 @@
       "cli-gemini",
       "deep-research",
       "deep-review",
-      "mcp-code-mode"
+      "mcp-code-mode",
+      "cli-devin"
     ]
   },
   "domains": [

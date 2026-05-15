@@ -35,4 +35,4 @@ mcp_server/handlers/session-health.ts
 ## 4. SOURCE METADATA
 - Group: Context Preservation And Code Graph
 - Canonical catalog source: `feature_catalog.md`
-- Feature file path: `22--context-preservation-and-code-graph/17-session-health-tool.md`
+- Feature file path: `22--context-preservation/17-session-health-tool.md`

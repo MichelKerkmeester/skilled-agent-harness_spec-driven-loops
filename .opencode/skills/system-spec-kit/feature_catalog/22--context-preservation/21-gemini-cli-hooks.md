@@ -37,4 +37,4 @@ mcp_server/hooks/gemini/
 ## 4. SOURCE METADATA
 - Group: Context Preservation And Code Graph
 - Canonical catalog source: `feature_catalog.md`
-- Feature file path: `22--context-preservation-and-code-graph/21-gemini-cli-hooks.md`
+- Feature file path: `22--context-preservation/21-gemini-cli-hooks.md`

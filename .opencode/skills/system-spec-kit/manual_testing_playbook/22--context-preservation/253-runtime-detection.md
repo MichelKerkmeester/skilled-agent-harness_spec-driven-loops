@@ -114,7 +114,7 @@ Ensure test clears all runtime-related env vars before assertion
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [22--context-preservation-and-code-graph/06-runtime-detection.md](../../feature_catalog/22--context-preservation-and-code-graph/06-runtime-detection.md)
+- Feature catalog: [22--context-preservation/06-runtime-detection.md](../../feature_catalog/22--context-preservation/06-runtime-detection.md)
 
 ---
 
@@ -123,4 +123,4 @@ Ensure test clears all runtime-related env vars before assertion
 - Group: Context Preservation and Code Graph
 - Playbook ID: 253
 - Canonical root source: `manual_testing_playbook.md`
-- Feature file path: `22--context-preservation-and-code-graph/253-runtime-detection.md`
+- Feature file path: `22--context-preservation/253-runtime-detection.md`

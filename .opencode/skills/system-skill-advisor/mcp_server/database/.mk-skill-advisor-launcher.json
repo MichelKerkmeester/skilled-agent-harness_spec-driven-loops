@@ -1,7 +1,7 @@
 {
   "command": "mk-skill-advisor-launcher",
-  "start": "2026-05-15T06:30:14.020Z",
-  "end": "2026-05-15T06:30:14.023Z",
+  "start": "2026-05-15T11:51:23.557Z",
+  "end": "2026-05-15T11:51:23.561Z",
   "status": "ready",
   "actions": [],
   "server": ".opencode/skills/system-skill-advisor/mcp_server/dist/system-skill-advisor/mcp_server/advisor-server.js",

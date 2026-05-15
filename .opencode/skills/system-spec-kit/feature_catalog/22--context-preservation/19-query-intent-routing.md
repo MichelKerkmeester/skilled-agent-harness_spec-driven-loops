@@ -34,4 +34,4 @@ mcp_server/handlers/memory-context.ts (integration point)
 ## 4. SOURCE METADATA
 - Group: Context Preservation And Code Graph
 - Canonical catalog source: `feature_catalog.md`
-- Feature file path: `22--context-preservation-and-code-graph/19-query-intent-routing.md`
+- Feature file path: `22--context-preservation/19-query-intent-routing.md`

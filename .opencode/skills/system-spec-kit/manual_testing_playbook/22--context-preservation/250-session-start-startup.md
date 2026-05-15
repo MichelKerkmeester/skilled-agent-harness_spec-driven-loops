@@ -173,7 +173,7 @@ Check `shared.ts` SESSION_PRIME_TOKEN_BUDGET constant
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [22--context-preservation-and-code-graph/03-session-start-priming.md](../../feature_catalog/22--context-preservation-and-code-graph/03-session-start-priming.md)
+- Feature catalog: [22--context-preservation/03-session-start-priming.md](../../feature_catalog/22--context-preservation/03-session-start-priming.md)
 
 ---
 
@@ -182,4 +182,4 @@ Check `shared.ts` SESSION_PRIME_TOKEN_BUDGET constant
 - Group: Context Preservation and Code Graph
 - Playbook ID: 250
 - Canonical root source: `manual_testing_playbook.md`
-- Feature file path: `22--context-preservation-and-code-graph/250-session-start-startup.md`
+- Feature file path: `22--context-preservation/250-session-start-startup.md`

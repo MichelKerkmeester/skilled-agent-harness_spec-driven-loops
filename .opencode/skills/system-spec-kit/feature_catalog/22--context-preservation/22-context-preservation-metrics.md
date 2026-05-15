@@ -34,4 +34,4 @@ mcp_server/lib/session/context-metrics.ts
 ## 4. SOURCE METADATA
 - Group: Context Preservation And Code Graph
 - Canonical catalog source: `feature_catalog.md`
-- Feature file path: `22--context-preservation-and-code-graph/22-context-preservation-metrics.md`
+- Feature file path: `22--context-preservation/22-context-preservation-metrics.md`

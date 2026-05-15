@@ -114,7 +114,7 @@ Check compact-inject.ts buildMergedContext() codeGraph input
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [22--context-preservation-and-code-graph/11-working-set-tracker.md](../../feature_catalog/22--context-preservation-and-code-graph/11-working-set-tracker.md)
+- Feature catalog: [22--context-preservation/11-working-set-tracker.md](../../feature_catalog/22--context-preservation/11-working-set-tracker.md)
 
 ---
 
@@ -123,4 +123,4 @@ Check compact-inject.ts buildMergedContext() codeGraph input
 - Group: Context Preservation and Code Graph
 - Playbook ID: 257
 - Canonical root source: `manual_testing_playbook.md`
-- Feature file path: `22--context-preservation-and-code-graph/257-working-set-compaction.md`
+- Feature file path: `22--context-preservation/257-working-set-compaction.md`

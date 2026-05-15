@@ -114,7 +114,7 @@ Check Step 3 trim logic with reversed PRIORITY_ORDER
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [22--context-preservation-and-code-graph/10-budget-allocator.md](../../feature_catalog/22--context-preservation-and-code-graph/10-budget-allocator.md)
+- Feature catalog: [22--context-preservation/10-budget-allocator.md](../../feature_catalog/22--context-preservation/10-budget-allocator.md)
 
 ---
 
@@ -123,4 +123,4 @@ Check Step 3 trim logic with reversed PRIORITY_ORDER
 - Group: Context Preservation and Code Graph
 - Playbook ID: 256
 - Canonical root source: `manual_testing_playbook.md`
-- Feature file path: `22--context-preservation-and-code-graph/256-budget-allocator.md`
+- Feature file path: `22--context-preservation/256-budget-allocator.md`

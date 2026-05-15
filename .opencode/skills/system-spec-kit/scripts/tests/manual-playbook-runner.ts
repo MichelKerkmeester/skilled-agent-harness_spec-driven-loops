@@ -569,8 +569,8 @@ function preclassifiedUnautomatableReason(definition: ScenarioDefinition): strin
   }
 
   if (
-    definition.filePath.includes('22--context-preservation-and-code-graph/261-')
-    || definition.filePath.includes('22--context-preservation-and-code-graph/264-')
+    definition.filePath.includes('22--context-preservation/261-')
+    || definition.filePath.includes('22--context-preservation/264-')
   ) {
     return 'Scenario depends on MCP transport hooks, session priming envelopes, or populated code-graph routing beyond raw handler calls.';
   }

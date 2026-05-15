@@ -33,7 +33,7 @@ This document is the current feature inventory for the Spec Kit Memory system. I
 - [19. FEATURE FLAG REFERENCE](#19--feature-flag-reference)
 - [20. REMEDIATION REVALIDATION](#20--remediation-revalidation)
 - [21. IMPLEMENT AND REMOVE DEPRECATED FEATURES](#21--implement-and-remove-deprecated-features)
-- [22. CONTEXT PRESERVATION AND CODE GRAPH](#22--context-preservation-and-code-graph)
+- [22. CONTEXT PRESERVATION AND CODE GRAPH](#22--context-preservation)
 
 ---
 
@@ -58,7 +58,7 @@ Packet 013 code-graph hook improvements now point at the extracted `system-code-
 | 013 | Blocked/degraded `full_scan` contract on `code_graph_query` **and** `code_graph_context` | `.opencode/skills/system-code-graph/feature_catalog/feature_catalog.md`, `.opencode/skills/system-code-graph/README.md` |
 | 013 | CALLS disambiguation + `deadlineMs` + null-summary clearing | `.opencode/skills/system-code-graph/feature_catalog/feature_catalog.md` |
 | 013 | `graphQualitySummary` on status/startup surfaces | `.opencode/skills/system-code-graph/README.md`, `references/config/hook_system.md` |
-| 013 | Shared startup payload parity across Claude/Gemini/Copilot/Codex | [`18--ux-hooks/21-shared-provenance-and-copilot-compact-cache-parity.md`](18--ux-hooks/21-shared-provenance-and-copilot-compact-cache-parity.md), [`22--context-preservation-and-code-graph/03-session-start-priming.md`](22--context-preservation-and-code-graph/03-session-start-priming.md) (Claude slice), `references/config/hook_system.md` (Shared Startup Payload Parity section) |
+| 013 | Shared startup payload parity across Claude/Gemini/Copilot/Codex | [`18--ux-hooks/21-shared-provenance-and-copilot-compact-cache-parity.md`](18--ux-hooks/21-shared-provenance-and-copilot-compact-cache-parity.md), [`22--context-preservation/03-session-start-priming.md`](22--context-preservation/03-session-start-priming.md) (Claude slice), `references/config/hook_system.md` (Shared Startup Payload Parity section) |
 | 014 | `advisor_recommend`/`advisor_validate` `workspaceRoot` + `effectiveThresholds` | `system-skill-advisor/mcp_server/README.md`, `references/hooks/skill-advisor-hook.md` |
 | 014 | `advisor_validate` `thresholdSemantics` + `telemetry.outcomes.totals` | `system-skill-advisor/mcp_server/README.md`, `references/hooks/skill-advisor-hook-validation.md` |
 | 014 | Durable JSONL diagnostics sinks + cross-process readback | `references/hooks/skill-advisor-hook.md`, `references/hooks/skill-advisor-hook-validation.md` (Step 3) |
@@ -4673,6 +4673,6 @@ The active package includes a dedicated category folder with feature records for
 
 ### Source Files
 
-- Category overview: [`22--context-preservation-and-code-graph/01-category-overview.md`](22--context-preservation-and-code-graph/01-category-overview.md)
-- Latest feature: [`22--context-preservation-and-code-graph/30-coverage-graph-query.md`](22--context-preservation-and-code-graph/30-coverage-graph-query.md)
-- Playbook counterpart: [`../manual_testing_playbook/22--context-preservation-and-code-graph/`](../manual_testing_playbook/22--context-preservation-and-code-graph/)
+- Category overview: [`22--context-preservation/01-category-overview.md`](22--context-preservation/01-category-overview.md)
+- Latest feature: [`22--context-preservation/30-coverage-graph-query.md`](22--context-preservation/30-coverage-graph-query.md)
+- Playbook counterpart: [`../manual_testing_playbook/22--context-preservation/`](../manual_testing_playbook/22--context-preservation/)

@@ -41,4 +41,4 @@ The PreCompact hook runs as an external Node.js process triggered by Claude Code
 ## 4. SOURCE METADATA
 - Group: Context Preservation And Code Graph
 - Canonical catalog source: `feature_catalog.md`
-- Feature file path: `22--context-preservation-and-code-graph/02-precompact-hook.md`
+- Feature file path: `22--context-preservation/02-precompact-hook.md`

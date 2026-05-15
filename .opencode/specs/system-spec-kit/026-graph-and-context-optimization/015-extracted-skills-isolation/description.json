@@ -1,0 +1,22 @@
+{
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/015-extracted-skills-isolation",
+  "description": "Feature Specification: Extracted Skills Isolation",
+  "keywords": [
+    "feature",
+    "specification",
+    "extracted",
+    "skills",
+    "isolation"
+  ],
+  "lastUpdated": "2026-05-15T09:20:49.805Z",
+  "specId": "015",
+  "folderSlug": "extracted-skills-isolation",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "15-05-26_10-20__completed-the-entire-extracted-skills-isolation.md"
+  ]
+}
