@@ -182,7 +182,7 @@ Trigger: EACH new user message (re-evaluate even in ongoing conversations)
 
 ####  GATE 2: SKILL ROUTING [REQUIRED for non-trivial tasks]
 1. A) Primary: use the automatic Skill Advisor Hook brief already surfaced by the runtime when present. See `.opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook.md`.
-2. B) Fallback: run `python3 .opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py "[request]" --threshold 0.8` when no hook brief is present, when scripting a check, or when diagnosing hook behavior.
+2. B) Fallback: run `python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py "[request]" --threshold 0.8` when no hook brief is present, when scripting a check, or when diagnosing hook behavior.
 3. C) Cite user's explicit direction: "User specified: [exact quote]"
 - Confidence ≥ 0.8 → MUST invoke skill | < 0.8 → general approach | User names skill → cite and proceed
 - Output: `SKILL ROUTING: [result]` or `SKILL ROUTING: User directed → [name]`
@@ -348,11 +348,13 @@ Use the agent directory that matches the active runtime/provider profile:
 
 **Two systems:**
 
-1. **Native MCP servers** (`opencode.json`) - Direct tools, called natively. **Exactly 4 servers registered:**
+1. **Native MCP servers** (`opencode.json`) - Direct tools, called natively. **Exactly 6 servers registered:**
    - `sequential_thinking` — Sequential Thinking
-   - `mk-spec-memory` — Spec Kit Memory (the umbrella server; exposes a larger tool set)
-   - `code_mode` — Code Mode
+   - `mk-spec-memory` — Spec Kit Memory (umbrella server; 39 tools — memory + session + checkpoint + causal + ingest + council + deep-loop + eval). MCP namespace: `mcp__mk_spec_memory__*`
+   - `mk_skill_advisor` — Skill Advisor (8 tools — `advisor_recommend/rebuild/status/validate` + `skill_graph_scan/query/status/validate`). MCP namespace: `mcp__mk_skill_advisor__*`
+   - `mk_code_index` — Code Graph (10 tools — `code_graph_scan/query/context/status/verify/apply`, `detect_changes`, `ccc_status/reindex/feedback`). MCP namespace: `mcp__mk_code_index__*`
    - `cocoindex_code` — CocoIndex Code
+   - `code_mode` — Code Mode
 
 2. **Code Mode MCP** (`.utcp_config.json`) - External tools via `call_tool_chain()`
    - Figma, Github, ClickUp, Chrome DevTools, etc.
