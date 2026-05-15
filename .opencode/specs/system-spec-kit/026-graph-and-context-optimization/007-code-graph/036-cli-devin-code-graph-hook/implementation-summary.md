@@ -108,7 +108,8 @@ See `decision-record.md` for full ADR content with research evidence citations.
 ## Known Limitations
 
 - **Future hook-source migration (Option A)**: ADR-001 chose to KEEP code-graph hooks under `system-spec-kit/mcp_server/hooks/`. If symmetry with the advisor pattern becomes important later (e.g. multiple skills extracting their own hooks), a separate packet can migrate `system-spec-kit/mcp_server/hooks/{claude,gemini,codex,devin}/session-prime|session-start.ts` → `system-code-graph/hooks/{runtime}/`. That packet would also need to atomically update `.claude/settings.local.json:54-66` and `system-spec-kit/mcp_server/scripts/finalize-dist.mjs` build paths.
-- **`read_config_from.claude` double-fire risk** between the explicit Devin SessionStart hook and inherited Claude SessionStart hook: not observed in smoke testing; recommend live Devin TUI verification before declaring full production readiness.
+- **`read_config_from.claude` double-fire risk — RESOLVED 2026-05-15**: Phase F empirical test (advisor packet 025) confirmed Devin loads exactly 2 hooks from `.devin/hooks.v1.json` (UserPromptSubmit + SessionStart) and zero from `.claude/settings.local.json`. Devin's log: `chisel::config::hooks: Loaded 2 hooks ... Loaded 2 total hooks` — would show 4 if Claude inheritance was active. SessionStart inherits the same conclusion: no double-fire, no mitigation needed.
+- **Interactive TUI hook execution unverified**: `devin -p` non-interactive mode confirmed hooks LOAD but no execution log lines surfaced for SessionStart. Manual interactive verification via playbook scenario `DH-001` (`10--devin-hooks/025-devin-session-start.md`) — launch `devin`, run `/hooks`, observe `## Session Context` block in model context — remains the gold-standard final acceptance.
 <!-- /ANCHOR:limitations -->
 
 ---
