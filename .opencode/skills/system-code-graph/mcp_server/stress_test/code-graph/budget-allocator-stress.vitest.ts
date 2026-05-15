@@ -2,7 +2,7 @@
 // MODULE: Code Graph Budget Allocator Stress Test
 // ───────────────────────────────────────────────────────────────
 // Exercises context-preservation budget allocation from feature catalog
-// 22--context-preservation-and-code-graph/10-budget-allocator.
+// 22--context-preservation/10-budget-allocator.
 
 import { describe, expect, it } from 'vitest';
 

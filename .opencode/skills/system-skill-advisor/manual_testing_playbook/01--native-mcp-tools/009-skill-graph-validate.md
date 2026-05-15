@@ -64,4 +64,4 @@ Tool response transcript showing validation categories and severity state.
 - Group: Context Preservation and Code Graph
 - Playbook ID: 285
 - Canonical root source: `manual_testing_playbook.md`
-- Feature file path: `22--context-preservation-and-code-graph/285-skill-graph-validate.md`
+- Feature file path: `22--context-preservation/285-skill-graph-validate.md`

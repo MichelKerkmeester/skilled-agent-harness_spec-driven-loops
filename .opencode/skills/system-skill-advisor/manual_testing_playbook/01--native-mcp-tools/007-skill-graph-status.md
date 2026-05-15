@@ -64,4 +64,4 @@ Tool response transcript showing `totalSkills`, `totalEdges`, and `dbStatus`.
 - Group: Context Preservation and Code Graph
 - Playbook ID: 283
 - Canonical root source: `manual_testing_playbook.md`
-- Feature file path: `22--context-preservation-and-code-graph/283-skill-graph-status.md`
+- Feature file path: `22--context-preservation/283-skill-graph-status.md`

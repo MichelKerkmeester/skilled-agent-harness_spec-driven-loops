@@ -126,7 +126,7 @@ The shared SQLite file remains the coordination boundary. The scan loop is the s
 <!-- ANCHOR:related-resources -->
 ## 8. RELATED RESOURCES
 
-- Shared lifecycle and context docs that stayed in `system-spec-kit`: `.opencode/skills/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/`
+- Shared lifecycle and context docs that stayed in `system-spec-kit`: `.opencode/skills/system-spec-kit/feature_catalog/22--context-preservation/`
 - Extraction history: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/`
 - MCP rename packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/024-mcp-tool-rename-mk-code-index/`
 <!-- /ANCHOR:related-resources -->

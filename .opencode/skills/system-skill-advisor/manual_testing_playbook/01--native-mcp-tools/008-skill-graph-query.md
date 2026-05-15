@@ -64,4 +64,4 @@ Tool response transcript showing query metadata and result count.
 - Group: Context Preservation and Code Graph
 - Playbook ID: 284
 - Canonical root source: `manual_testing_playbook.md`
-- Feature file path: `22--context-preservation-and-code-graph/284-skill-graph-query.md`
+- Feature file path: `22--context-preservation/284-skill-graph-query.md`
