@@ -1,0 +1,174 @@
+{
+  "folder_path": ".opencode/skills/system-spec-kit/mcp_server/tests/fixtures/council-value/",
+  "folder_role": "Test fixture directory for council graph value scenarios, providing scenario fixtures and helper utilities for comparing council graph performance against baseline file reads.",
+  "file_inventory": {
+    "by_extension": {
+      ".ts": [
+        "dac-027.ts",
+        "dac-028.ts",
+        "dac-029.ts",
+        "dac-030.ts",
+        "dac-031.ts",
+        "dac-032.ts",
+        "seed-helpers.ts"
+      ],
+      ".cjs": [],
+      ".md": []
+    },
+    "directories": ["data/"],
+    "total_files": 7
+  },
+  "architecture_observation": "layered - contains 6 scenario fixture files (dac-027 through dac-032) that depend on a shared seed-helpers.ts utility module, with scenario data loaded from a data/ subdirectory, forming a fixture utility layer with data separation.",
+  "public_entrypoints": [
+    {
+      "name": "dac-027.ts",
+      "kind": "fixture",
+      "file": "dac-027.ts",
+      "purpose": "Scenario fixture for DAC-027 testing unresolved disagreements query performance against baseline file reads."
+    },
+    {
+      "name": "dac-028.ts",
+      "kind": "fixture",
+      "file": "dac-028.ts",
+      "purpose": "Scenario fixture for DAC-028 testing decision support query performance against baseline file reads."
+    },
+    {
+      "name": "dac-029.ts",
+      "kind": "fixture",
+      "file": "dac-029.ts",
+      "purpose": "Scenario fixture for DAC-029 testing convergence query performance against baseline file reads."
+    },
+    {
+      "name": "dac-030.ts",
+      "kind": "fixture",
+      "file": "dac-030.ts",
+      "purpose": "Scenario fixture for DAC-030 testing convergence blockers query performance against baseline file reads."
+    },
+    {
+      "name": "dac-031.ts",
+      "kind": "fixture",
+      "file": "dac-031.ts",
+      "purpose": "Scenario fixture for DAC-031 testing hot nodes query performance against baseline file reads."
+    },
+    {
+      "name": "dac-032.ts",
+      "kind": "fixture",
+      "file": "dac-032.ts",
+      "purpose": "Scenario fixture for DAC-032 testing council graph status performance against baseline file reads."
+    },
+    {
+      "name": "seed-helpers.ts",
+      "kind": "utility",
+      "file": "seed-helpers.ts",
+      "purpose": "Shared utility module providing database seeding, artifact tree creation, baseline file counting, and scenario building functions for council graph tests."
+    }
+  ],
+  "internal_imports": [
+    {
+      "symbol": "dac-027.ts",
+      "imported_by": ["tests/council-graph-value-scenarios.vitest.ts"]
+    },
+    {
+      "symbol": "dac-028.ts",
+      "imported_by": ["tests/council-graph-value-scenarios.vitest.ts"]
+    },
+    {
+      "symbol": "dac-029.ts",
+      "imported_by": ["tests/council-graph-value-scenarios.vitest.ts"]
+    },
+    {
+      "symbol": "dac-030.ts",
+      "imported_by": ["tests/council-graph-value-scenarios.vitest.ts"]
+    },
+    {
+      "symbol": "dac-031.ts",
+      "imported_by": ["tests/council-graph-value-scenarios.vitest.ts"]
+    },
+    {
+      "symbol": "dac-032.ts",
+      "imported_by": ["tests/council-graph-value-scenarios.vitest.ts"]
+    },
+    {
+      "symbol": "seed-helpers.ts",
+      "imported_by": [
+        "tests/council-graph-value-scenarios.vitest.ts",
+        "tests/fixtures/council-value/dac-027.ts",
+        "tests/fixtures/council-value/dac-028.ts",
+        "tests/fixtures/council-value/dac-029.ts",
+        "tests/fixtures/council-value/dac-030.ts",
+        "tests/fixtures/council-value/dac-031.ts",
+        "tests/fixtures/council-value/dac-032.ts"
+      ]
+    },
+    {
+      "symbol": "data/scenarios.cjs",
+      "imported_by": ["tests/fixtures/council-value/seed-helpers.ts"]
+    }
+  ],
+  "external_imports": [
+    {
+      "package": "node:fs",
+      "used_for": "File system operations for seeding artifact trees, reading scenario data, and cleanup"
+    },
+    {
+      "package": "node:os",
+      "used_for": "Operating system temporary directory operations"
+    },
+    {
+      "package": "node:path",
+      "used_for": "Path manipulation and resolution"
+    },
+    {
+      "package": "node:url",
+      "used_for": "URL handling for module resolution"
+    },
+    {
+      "package": "node:module",
+      "used_for": "Module creation for CommonJS interop with scenarios.cjs"
+    },
+    {
+      "package": "../../../lib/council-graph/council-graph-db.js",
+      "used_for": "Council graph database operations (initDb, closeDb, getNodes, getEdges)"
+    },
+    {
+      "package": "../../../lib/council-graph/council-graph-query.js",
+      "used_for": "Council graph query utilities (isCritical)"
+    },
+    {
+      "package": "../../../handlers/council-graph/convergence.js",
+      "used_for": "Council graph convergence handler"
+    },
+    {
+      "package": "../../../handlers/council-graph/query.js",
+      "used_for": "Council graph query handler"
+    },
+    {
+      "package": "../../../handlers/council-graph/status.js",
+      "used_for": "Council graph status handler"
+    },
+    {
+      "package": "../../../handlers/council-graph/upsert.js",
+      "used_for": "Council graph upsert handler"
+    }
+  ],
+  "integration_notes": "This folder provides test fixtures for the council graph value demonstration system, which validates that using the council graph database provides significant performance improvements over baseline file reading operations. The fixtures cover six scenarios (DAC-027 through DAC-032) representing different council graph queries: unresolved disagreements, decision support, convergence, convergence blockers, hot nodes, and status. Each scenario fixture loads test data from the data/scenarios.cjs file, which defines graph seeds (nodes and edges), artifact trees, and expected answers for both baseline and graph-based approaches. The shared seed-helpers.ts module provides utilities for creating temporary council graph databases, seeding artifact trees, running baseline file read operations, executing council graph handlers, and collecting performance metrics. The test suite compares the number of file reads required by the baseline approach against the number of MCP calls required by the graph approach, demonstrating the efficiency gains of the council graph system. The fixtures also generate a metrics report (council-graph-value-report.json) that tracks the performance ratio between baseline and graph approaches across all scenarios.",
+  "validation_commands": [
+    {
+      "command": "cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/council-graph-value-scenarios.vitest.ts",
+      "expected": "exit 0",
+      "verified": true
+    }
+  ],
+  "key_invariants": [
+    "Each dac-*.ts fixture must export a 'fixture' constant implementing the ScenarioFixture interface",
+    "Each fixture must call buildScenarioFixture with a unique scenario ID (DAC-027 through DAC-032)",
+    "The data/scenarios.cjs file must export a getScenarioData function that returns ScenarioData for each scenario ID",
+    "Scenario fixtures must include graphSeed with nodes and edges, artifactTree, baselineExpectedAnswer, and graphExpectedAnswer",
+    "The seed-helpers.ts module must provide openTempCouncilGraphDb, seedArtifactTree, upsertFixtureGraph, and buildScenarioFixture functions",
+    "Fixtures must be importable as ES modules with .js extensions in the test file",
+    "Each scenario must define both baseline runner (file-based) and graph runner (MCP-based) functions",
+    "The test suite must verify that graph.mcpCalls is less than or equal to baseline.fileReads",
+    "Scenario IDs must match between fixture files and the data/scenarios.cjs getScenarioData function",
+    "The data/ subdirectory must contain scenarios.cjs with all scenario definitions"
+  ]
+}

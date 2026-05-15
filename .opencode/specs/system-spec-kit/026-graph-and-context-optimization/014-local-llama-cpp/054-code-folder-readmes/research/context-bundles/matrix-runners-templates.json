@@ -1,0 +1,194 @@
+{
+  "folder_path": ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/templates/",
+  "folder_role": "Prompt template directory for the F1-F14 x CLI-executor matrix, providing standardized test prompts for cross-CLI feature validation.",
+  "file_inventory": {
+    "by_extension": {
+      ".md": [
+        "F1-spec-folder.md",
+        "F2-skill-advisor.md",
+        "F3-memory-search.md",
+        "F4-memory-context.md",
+        "F5-code-graph-query.md",
+        "F6-code-graph-scan.md",
+        "F7-causal-graph.md",
+        "F8-cocoindex.md",
+        "F9-continuity.md",
+        "F10-deep-loop.md",
+        "F11-hooks.md",
+        "F12-validators.md",
+        "F13-stress-cycle.md",
+        "F14-search-w3-w13.md"
+      ],
+      ".json": [],
+      ".ts": []
+    },
+    "directories": [],
+    "total_files": 14
+  },
+  "architecture_observation": "template-only - contains 14 markdown prompt templates that define standardized test payloads for matrix runner cells without any executable code or subdirectories.",
+  "public_entrypoints": [
+    {
+      "name": "F1-spec-folder.md",
+      "kind": "template",
+      "file": "F1-spec-folder.md",
+      "purpose": "Matrix cell F1 prompt template for testing spec-folder workflow across CLI executors."
+    },
+    {
+      "name": "F2-skill-advisor.md",
+      "kind": "template",
+      "file": "F2-skill-advisor.md",
+      "purpose": "Matrix cell F2 prompt template for testing skill advisor and skill graph routing."
+    },
+    {
+      "name": "F3-memory-search.md",
+      "kind": "template",
+      "file": "F3-memory-search.md",
+      "purpose": "Matrix cell F3 prompt template for testing memory_search functionality."
+    },
+    {
+      "name": "F4-memory-context.md",
+      "kind": "template",
+      "file": "F4-memory-context.md",
+      "purpose": "Matrix cell F4 prompt template for testing memory_context functionality."
+    },
+    {
+      "name": "F5-code-graph-query.md",
+      "kind": "template",
+      "file": "F5-code-graph-query.md",
+      "purpose": "Matrix cell F5 prompt template for testing code_graph_query functionality."
+    },
+    {
+      "name": "F6-code-graph-scan.md",
+      "kind": "template",
+      "file": "F6-code-graph-scan.md",
+      "purpose": "Matrix cell F6 prompt template for testing code_graph_scan and verify functionality."
+    },
+    {
+      "name": "F7-causal-graph.md",
+      "kind": "template",
+      "file": "F7-causal-graph.md",
+      "purpose": "Matrix cell F7 prompt template for testing causal graph functionality."
+    },
+    {
+      "name": "F8-cocoindex.md",
+      "kind": "template",
+      "file": "F8-cocoindex.md",
+      "purpose": "Matrix cell F8 prompt template for testing CocoIndex search functionality."
+    },
+    {
+      "name": "F9-continuity.md",
+      "kind": "template",
+      "file": "F9-continuity.md",
+      "purpose": "Matrix cell F9 prompt template for testing continuity and generate-context functionality."
+    },
+    {
+      "name": "F10-deep-loop.md",
+      "kind": "template",
+      "file": "F10-deep-loop.md",
+      "purpose": "Matrix cell F10 prompt template for testing deep-research and deep-review loops."
+    },
+    {
+      "name": "F11-hooks.md",
+      "kind": "template",
+      "file": "F11-hooks.md",
+      "purpose": "Matrix cell F11 prompt template for testing hook functionality."
+    },
+    {
+      "name": "F12-validators.md",
+      "kind": "template",
+      "file": "F12-validators.md",
+      "purpose": "Matrix cell F12 prompt template for testing validator functionality."
+    },
+    {
+      "name": "F13-stress-cycle.md",
+      "kind": "template",
+      "file": "F13-stress-cycle.md",
+      "purpose": "Matrix cell F13 prompt template for testing stress-test cycle patterns."
+    },
+    {
+      "name": "F14-search-w3-w13.md",
+      "kind": "template",
+      "file": "F14-search-w3-w13.md",
+      "purpose": "Matrix cell F14 prompt template for testing search W3-W13 features."
+    }
+  ],
+  "internal_imports": [
+    {
+      "symbol": "templates/F1-spec-folder.md",
+      "imported_by": ["matrix_runners/matrix-manifest.json", "matrix_runners/run-matrix.ts"]
+    },
+    {
+      "symbol": "templates/F2-skill-advisor.md",
+      "imported_by": ["matrix_runners/matrix-manifest.json", "matrix_runners/run-matrix.ts"]
+    },
+    {
+      "symbol": "templates/F3-memory-search.md",
+      "imported_by": ["matrix_runners/matrix-manifest.json", "matrix_runners/run-matrix.ts"]
+    },
+    {
+      "symbol": "templates/F4-memory-context.md",
+      "imported_by": ["matrix_runners/matrix-manifest.json", "matrix_runners/run-matrix.ts"]
+    },
+    {
+      "symbol": "templates/F5-code-graph-query.md",
+      "imported_by": ["matrix_runners/matrix-manifest.json", "matrix_runners/run-matrix.ts"]
+    },
+    {
+      "symbol": "templates/F6-code-graph-scan.md",
+      "imported_by": ["matrix_runners/matrix-manifest.json", "matrix_runners/run-matrix.ts"]
+    },
+    {
+      "symbol": "templates/F7-causal-graph.md",
+      "imported_by": ["matrix_runners/matrix-manifest.json", "matrix_runners/run-matrix.ts"]
+    },
+    {
+      "symbol": "templates/F8-cocoindex.md",
+      "imported_by": ["matrix_runners/matrix-manifest.json", "matrix_runners/run-matrix.ts"]
+    },
+    {
+      "symbol": "templates/F9-continuity.md",
+      "imported_by": ["matrix_runners/matrix-manifest.json", "matrix_runners/run-matrix.ts"]
+    },
+    {
+      "symbol": "templates/F10-deep-loop.md",
+      "imported_by": ["matrix_runners/matrix-manifest.json", "matrix_runners/run-matrix.ts"]
+    },
+    {
+      "symbol": "templates/F11-hooks.md",
+      "imported_by": ["matrix_runners/matrix-manifest.json", "matrix_runners/run-matrix.ts"]
+    },
+    {
+      "symbol": "templates/F12-validators.md",
+      "imported_by": ["matrix_runners/matrix-manifest.json", "matrix_runners/run-matrix.ts"]
+    },
+    {
+      "symbol": "templates/F13-stress-cycle.md",
+      "imported_by": ["matrix_runners/matrix-manifest.json", "matrix_runners/run-matrix.ts"]
+    },
+    {
+      "symbol": "templates/F14-search-w3-w13.md",
+      "imported_by": ["matrix_runners/matrix-manifest.json", "matrix_runners/run-matrix.ts"]
+    }
+  ],
+  "external_imports": [],
+  "integration_notes": "This folder is a core component of the matrix runner system that enables systematic cross-CLI testing of 14 key features (F1-F14) across 4 CLI executors (cli-codex, cli-gemini, cli-claude-code, cli-opencode). Each template defines a standardized prompt payload that is loaded by the matrix-manifest.json configuration and executed by run-matrix.ts through executor-specific adapters. The templates are referenced in the manifest's 'promptTemplate' field and are resolved relative to the matrix_runners directory. This system enables automated validation that each CLI executor can correctly handle the core system-spec-kit features, providing a matrix coverage of 56 cells (14 features × 4 executors) with selective applicability rules (e.g., F11 is marked as not applicable for cli-gemini). The templates follow a consistent pattern: they identify the matrix cell being executed, describe the inspection task, and specify the exact pass signal that the executor must output.",
+  "validation_commands": [
+    {
+      "command": "cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/matrix-adapter",
+      "expected": "exit 0",
+      "verified": true
+    }
+  ],
+  "key_invariants": [
+    "Each template file must follow the naming pattern F{N}-{feature-name}.md where N is 1-14",
+    "Each template must contain the exact pass signal 'MATRIX_CELL_PASS F{N}' where N matches the feature ID",
+    "Template filenames must match the 'promptTemplate' field references in matrix-manifest.json",
+    "Templates must be markdown files that define a clear inspection task for the target feature",
+    "Templates must not modify files - they are inspection-only test payloads",
+    "The templates directory must be located at matrix_runners/templates/ relative to the mcp_server root",
+    "Each template must be self-contained and not depend on other templates",
+    "Template content must be readable by the matrix runner's file loading mechanism",
+    "The total number of templates must match the number of distinct feature IDs in the matrix manifest (currently 14)",
+    "Templates must remain synchronized with the feature definitions in matrix-manifest.json"
+  ]
+}

@@ -1,0 +1,151 @@
+{
+  "folder_path": ".opencode/skills/system-spec-kit/mcp_server/tests/advisor-fixtures/",
+  "folder_role": "Test fixture directory for skill-advisor hook responses, providing mock advisor data for Copilot user-prompt-submit hook testing.",
+  "file_inventory": {
+    "by_extension": {
+      ".json": [
+        "ambiguousTopTwo.json",
+        "failOpenTimeout.json",
+        "livePassingSkill.json",
+        "noPassingSkill.json",
+        "promptPoisoningAdversarial.json",
+        "skipPolicyCommandOnly.json",
+        "skipPolicyEmptyPrompt.json",
+        "skippedShortCasual.json",
+        "staleHighConfidenceSkill.json",
+        "unicodeInstructionalSkillLabel.json"
+      ],
+      ".ts": [],
+      ".md": []
+    },
+    "directories": [],
+    "total_files": 10
+  },
+  "architecture_observation": "fixture-only - contains 10 JSON fixture files that mock skill-advisor hook responses for testing various advisor scenarios without any executable code or subdirectories.",
+  "public_entrypoints": [
+    {
+      "name": "ambiguousTopTwo.json",
+      "kind": "fixture",
+      "file": "ambiguousTopTwo.json",
+      "purpose": "Fixture representing advisor response with two top skills having similar confidence levels, testing ambiguity handling."
+    },
+    {
+      "name": "failOpenTimeout.json",
+      "kind": "fixture",
+      "file": "failOpenTimeout.json",
+      "purpose": "Fixture representing advisor response that failed due to timeout, testing error handling."
+    },
+    {
+      "name": "livePassingSkill.json",
+      "kind": "fixture",
+      "file": "livePassingSkill.json",
+      "purpose": "Fixture representing successful live advisor response with a passing skill recommendation, used as primary happy-path test data."
+    },
+    {
+      "name": "noPassingSkill.json",
+      "kind": "fixture",
+      "file": "noPassingSkill.json",
+      "purpose": "Fixture representing advisor response where no skills pass the confidence threshold, testing fallback behavior."
+    },
+    {
+      "name": "promptPoisoningAdversarial.json",
+      "kind": "fixture",
+      "file": "promptPoisoningAdversarial.json",
+      "purpose": "Fixture representing adversarial advisor response testing security/sanitization handling."
+    },
+    {
+      "name": "skipPolicyCommandOnly.json",
+      "kind": "fixture",
+      "file": "skipPolicyCommandOnly.json",
+      "purpose": "Fixture representing advisor response skipped due to command-only policy, testing skip policy logic."
+    },
+    {
+      "name": "skipPolicyEmptyPrompt.json",
+      "kind": "fixture",
+      "file": "skipPolicyEmptyPrompt.json",
+      "purpose": "Fixture representing advisor response skipped due to empty prompt, testing empty prompt handling."
+    },
+    {
+      "name": "skippedShortCasual.json",
+      "kind": "fixture",
+      "file": "skippedShortCasual.json",
+      "purpose": "Fixture representing advisor response skipped for short casual prompts, testing skip conditions."
+    },
+    {
+      "name": "staleHighConfidenceSkill.json",
+      "kind": "fixture",
+      "file": "staleHighConfidenceSkill.json",
+      "purpose": "Fixture representing advisor response with stale but high-confidence skill, testing freshness handling."
+    },
+    {
+      "name": "unicodeInstructionalSkillLabel.json",
+      "kind": "fixture",
+      "file": "unicodeInstructionalSkillLabel.json",
+      "purpose": "Fixture representing advisor response with unicode characters in skill labels, testing unicode handling."
+    }
+  ],
+  "internal_imports": [
+    {
+      "symbol": "ambiguousTopTwo.json",
+      "imported_by": ["tests/copilot-user-prompt-submit-hook.vitest.ts"]
+    },
+    {
+      "symbol": "failOpenTimeout.json",
+      "imported_by": ["tests/copilot-user-prompt-submit-hook.vitest.ts"]
+    },
+    {
+      "symbol": "livePassingSkill.json",
+      "imported_by": ["tests/copilot-user-prompt-submit-hook.vitest.ts"]
+    },
+    {
+      "symbol": "noPassingSkill.json",
+      "imported_by": ["tests/copilot-user-prompt-submit-hook.vitest.ts"]
+    },
+    {
+      "symbol": "promptPoisoningAdversarial.json",
+      "imported_by": ["tests/copilot-user-prompt-submit-hook.vitest.ts"]
+    },
+    {
+      "symbol": "skipPolicyCommandOnly.json",
+      "imported_by": ["tests/copilot-user-prompt-submit-hook.vitest.ts"]
+    },
+    {
+      "symbol": "skipPolicyEmptyPrompt.json",
+      "imported_by": ["tests/copilot-user-prompt-submit-hook.vitest.ts"]
+    },
+    {
+      "symbol": "skippedShortCasual.json",
+      "imported_by": ["tests/copilot-user-prompt-submit-hook.vitest.ts"]
+    },
+    {
+      "symbol": "staleHighConfidenceSkill.json",
+      "imported_by": ["tests/copilot-user-prompt-submit-hook.vitest.ts"]
+    },
+    {
+      "symbol": "unicodeInstructionalSkillLabel.json",
+      "imported_by": ["tests/copilot-user-prompt-submit-hook.vitest.ts"]
+    }
+  ],
+  "external_imports": [],
+  "integration_notes": "This folder provides test fixtures for the Copilot user-prompt-submit hook system, which integrates the skill-advisor MCP service with GitHub Copilot's custom instructions feature. The fixtures mock various advisor response scenarios to test the hook's behavior under different conditions: successful recommendations, ambiguous top skills, no passing skills, skip policies, timeout failures, and edge cases like unicode handling and adversarial content. The fixtures are loaded by the test suite through a fixture() helper function that reads and parses the JSON files. These fixtures enable comprehensive testing of the advisor hook workaround without requiring live MCP calls, ensuring the hook correctly handles advisor responses, updates Copilot instructions, respects skip policies, and maintains security by sanitizing prompt content. The test suite validates critical behaviors including CHK-008 (cache-hit performance) and CHK-012 (prompt text sanitization). Note that the test suite is conditionally skipped when compiled Copilot hook fixtures are not available.",
+  "validation_commands": [
+    {
+      "command": "cd .opencode/skills/system-spec-kit/mcp_server && npm test -- tests/copilot-user-prompt-submit-hook.vitest.ts",
+      "expected": "exit 0",
+      "verified": false,
+      "note": "Test suite is conditionally skipped when compiled Copilot hook fixtures are not available (copilot/user-prompt-submit.js and copilot/custom-instructions.js). The test structure and fixture loading logic are valid, but execution requires compiled hook artifacts."
+    }
+  ],
+  "key_invariants": [
+    "Each fixture must be valid JSON matching the AdvisorHookResult interface defined in the test file",
+    "Each fixture must contain 'status', 'freshness', 'brief', 'recommendations', 'diagnostics', 'metrics', 'generatedAt', and 'sharedPayload' fields",
+    "The 'recommendations' array must contain objects with 'skill', 'confidence', 'uncertainty', and 'passes_threshold' fields",
+    "The 'metrics' object must contain 'durationMs', 'cacheHit', 'subprocessInvoked', 'retriesAttempted', 'recommendationCount', and 'tokenCap' fields",
+    "Fixture filenames must be descriptive of the scenario they test (e.g., 'noPassingSkill.json', 'ambiguousTopTwo.json')",
+    "Fixtures must be located in tests/advisor-fixtures/ relative to the mcp_server root",
+    "The fixture() helper function in tests/copilot-user-prompt-submit-hook.vitest.ts must be able to load and parse each fixture",
+    "Fixtures must represent realistic advisor response scenarios to enable meaningful testing",
+    "The 'generatedAt' field must be in ISO 8601 format",
+    "Fixtures must not contain actual prompt content to avoid test data contamination"
+  ]
+}

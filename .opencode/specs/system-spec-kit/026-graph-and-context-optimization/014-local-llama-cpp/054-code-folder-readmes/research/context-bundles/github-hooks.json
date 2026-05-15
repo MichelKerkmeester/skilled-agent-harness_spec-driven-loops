@@ -1,0 +1,49 @@
+{
+  "folder_path": ".opencode/skills/system-spec-kit/mcp_server/.github/hooks/",
+  "folder_role": "Webhook configuration directory for Superset Copilot hook integration, defining event handlers for session lifecycle and tool use events.",
+  "file_inventory": {
+    "by_extension": {
+      ".json": ["superset-notify.json"],
+      ".ts": [],
+      ".md": [],
+      ".sh": []
+    },
+    "directories": [],
+    "total_files": 1
+  },
+  "architecture_observation": "data-only - contains a single JSON configuration file that defines webhook event routing without executable code or subdirectories.",
+  "public_entrypoints": [
+    {
+      "name": "superset-notify.json",
+      "kind": "data",
+      "file": "superset-notify.json",
+      "purpose": "Superset webhook configuration defining event handlers for sessionStart, sessionEnd, userPromptSubmitted, and postToolUse events."
+    }
+  ],
+  "internal_imports": [
+    {
+      "symbol": "superset-notify.json",
+      "imported_by": ["tests/copilot-hook-wiring.vitest.ts"]
+    }
+  ],
+  "external_imports": [],
+  "integration_notes": "This folder integrates with the broader system-spec-kit codebase through the Copilot hook wiring system. The configuration file is read by test infrastructure to verify that hook events are properly routed to Superset's copilot-hook.sh wrapper script. The hooks defined here (sessionStart, sessionEnd, userPromptSubmitted, postToolUse) correspond to lifecycle events in the Copilot/Superset integration, enabling the system to inject context, emit banners, and refresh instructions at key interaction points. The configuration is validated by tests/copilot-hook-wiring.vitest.ts to ensure the hook paths and event mappings remain correct as the system evolves.",
+  "validation_commands": [
+    {
+      "command": "cd .opencode/skills/system-spec-kit/mcp_server && npm test -- tests/copilot-hook-wiring.vitest.ts",
+      "expected": "exit 0",
+      "verified": false,
+      "note": "Test suite partially passes (2/4 tests pass). The JSON structure validation test passes, but 2 tests fail due to missing build artifacts (dist/hooks/copilot/session-prime.js and dist/hooks/copilot/user-prompt-submit.js). The core validation of the superset-notify.json configuration itself is functional."
+    }
+  ],
+  "key_invariants": [
+    "superset-notify.json must contain a 'version' field (currently set to 1)",
+    "superset-notify.json must contain a 'hooks' object with exactly four event types: sessionStart, sessionEnd, userPromptSubmitted, and postToolUse",
+    "Each hook event must be an array containing at least one command object with 'type' and 'bash' fields",
+    "The 'bash' field for each hook must point to the Superset copilot-hook.sh wrapper script with the appropriate event argument",
+    "The timeoutSec field must be set to 5 seconds for each hook command",
+    "The file path '.github/hooks/superset-notify.json' is hardcoded in tests/copilot-hook-wiring.vitest.ts and must remain stable",
+    "Hook configuration must remain synchronized with the actual hook scripts in .github/hooks/scripts/ directory",
+    "The configuration is user-specific (contains absolute path /Users/michelkerkmeester/.superset/hooks/) and may need adjustment for different environments"
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "folder_path": ".opencode/skills/system-spec-kit/mcp_server/tests/description/fixtures/",
+  "folder_role": "Test fixture directory for spec folder description.json files, providing mock description data for testing description repair and merge logic.",
+  "file_inventory": {
+    "by_extension": {
+      ".json": [
+        "017-001-infrastructure-primitives.description.json",
+        "017-002-cluster-consumers.description.json",
+        "017-review-findings-remediation.description.json"
+      ],
+      ".ts": [],
+      ".md": []
+    },
+    "directories": [],
+    "total_files": 3
+  },
+  "architecture_observation": "fixture-only - contains 3 JSON fixture files that mock spec folder description.json payloads for testing description repair and merge logic without any executable code or subdirectories.",
+  "public_entrypoints": [
+    {
+      "name": "017-001-infrastructure-primitives.description.json",
+      "kind": "fixture",
+      "file": "017-001-infrastructure-primitives.description.json",
+      "purpose": "Fixture representing Phase 017 Wave A child packet description for infrastructure primitives, testing atomic ship groups and critical path tasks."
+    },
+    {
+      "name": "017-002-cluster-consumers.description.json",
+      "kind": "fixture",
+      "file": "017-002-cluster-consumers.description.json",
+      "purpose": "Fixture representing Phase 017 Wave B child packet description for cluster consumers, testing parallel lane execution and wave scope."
+    },
+    {
+      "name": "017-review-findings-remediation.description.json",
+      "kind": "fixture",
+      "file": "017-review-findings-remediation.description.json",
+      "purpose": "Fixture representing Phase 017 review findings remediation charter, testing parent-level description structure and remediation task organization."
+    }
+  ],
+  "internal_imports": [
+    {
+      "symbol": "017-001-infrastructure-primitives.description.json",
+      "imported_by": ["tests/description/repair-specimens.vitest.ts"]
+    },
+    {
+      "symbol": "017-002-cluster-consumers.description.json",
+      "imported_by": ["tests/description/repair-specimens.vitest.ts"]
+    },
+    {
+      "symbol": "017-review-findings-remediation.description.json",
+      "imported_by": ["tests/description/repair-specimens.vitest.ts"]
+    }
+  ],
+  "external_imports": [],
+  "integration_notes": "This folder provides test fixtures for the description repair and merge system, which handles the regeneration and preservation of spec folder description.json files. The fixtures represent real-world spec folder descriptions from Phase 017 of the system-spec-kit project, including child packets for infrastructure primitives (Wave A), cluster consumers (Wave B), and the parent review findings remediation charter. These fixtures enable comprehensive testing of the mergePreserveRepair function, which intelligently merges regenerated descriptions with existing manual edits while preserving critical fields like keywords, task scopes, and atomic ship constraints. The test suite validates discriminated loading behavior, schema validation, merge safety policies, and edge cases like missing files, parse errors, and schema violations. By using realistic description payloads from actual project phases, the fixtures ensure the repair logic handles the complex metadata structures used in production, including parent chains, wave execution metadata, quality gate requirements, and task effort tracking.",
+  "validation_commands": [
+    {
+      "command": "cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/description/repair-specimens.vitest.ts",
+      "expected": "exit 0",
+      "verified": true
+    }
+  ],
+  "key_invariants": [
+    "Each fixture must be valid JSON matching the PerFolderDescription interface defined in lib/search/folder-discovery",
+    "Each fixture must contain 'specFolder', 'description', 'keywords', 'lastUpdated', 'specId', 'folderSlug', and 'parentChain' fields",
+    "Fixture filenames must follow the pattern {phase}-{specId}-{folderSlug}.description.json",
+    "Fixtures must represent realistic spec folder descriptions with proper parent chain structure",
+    "The 'lastUpdated' field must be in ISO 8601 format",
+    "Fixtures must be located in tests/description/fixtures/ relative to the mcp_server root",
+    "The readFixture() helper function in tests/description/repair-specimens.vitest.ts must be able to load and parse each fixture",
+    "Fixtures must include representative metadata for testing merge scenarios (keywords, scope, atomic ship groups, etc.)",
+    "Fixtures should reflect actual project structure to enable meaningful testing of repair logic",
+    "The FIXTURE_NAMES array in the test file must match the actual fixture filenames"
+  ]
+}
