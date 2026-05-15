@@ -4,3 +4,5 @@
 {"type":"iteration","iteration":3,"track":1,"newInfoRatio":0.00,"status":"complete","focus":"MCP server registration inventory","timestamp":"2026-05-15T14:57:11Z"}
 {"type":"iteration","iteration":4,"track":2,"newInfoRatio":0.67,"status":"complete","focus":"MCP server names + versions","timestamp":"2026-05-15T14:59:14Z"}
 {"type":"iteration","iteration":5,"track":2,"newInfoRatio":0.00,"status":"complete","focus":"file paths + env vars","timestamp":"2026-05-15T14:59:14Z"}
+{"type":"iteration","iteration":6,"track":2,"newInfoRatio":0.00,"status":"complete","focus":"install steps + Quick Start","timestamp":"2026-05-15T15:00:39Z"}
+{"type":"iteration","iteration":7,"track":3,"newInfoRatio":1.00,"status":"complete","focus":"banned HVR words","timestamp":"2026-05-15T15:00:39Z"}
