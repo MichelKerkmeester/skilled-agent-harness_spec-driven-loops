@@ -186,25 +186,6 @@ const memorySearch: ToolDefinition = {
   },
 };
 
-// E3: Simplified search — 3 params, sensible defaults, delegates to memory_search
-const memoryQuickSearch: ToolDefinition = {
-  name: 'memory_quick_search',
-  description: '[L2:Core] Simplified search — query + optional limit + optional spec folder. Delegates to memory_search with sensible defaults (intent auto-detect ON, dedup ON, content included, limit 10). Use this when you want fast search without configuring 31 parameters.',
-  inputSchema: {
-    type: 'object',
-    additionalProperties: false,
-    properties: {
-      query: { type: 'string', minLength: 2, maxLength: 1000, description: 'Natural language search query' },
-      limit: { type: 'number', default: 10, minimum: 1, maximum: 100, description: 'Maximum results (default 10)' },
-      specFolder: { type: 'string', description: 'Restrict to spec folder' },
-      tenantId: { type: 'string', description: 'Tenant boundary for governed retrieval.' },
-      userId: { type: 'string', description: 'User boundary for governed retrieval.' },
-      agentId: { type: 'string', description: 'Agent boundary for governed retrieval.' },
-    },
-    required: ['query'],
-  },
-};
-
 const memoryMatchTriggers: ToolDefinition = {
   name: 'memory_match_triggers',
   description: '[L2:Core] Fast trigger phrase matching with cognitive features. Supports attention-based decay, tiered content injection (HOT=full, WARM=summary), and co-activation of related spec-doc records. Pass session_id and turnNumber for cognitive features. Token Budget: 3500.',
@@ -430,12 +411,6 @@ const memoryCausalStats: ToolDefinition = {
   name: 'memory_causal_stats',
   description: '[L6:Analysis] Get statistics about the causal-graph node store. Shows total edges, coverage percentage, and breakdown by relationship type. Target: 60% of spec-doc records linked (CHK-065). Token Budget: 1200.',
   inputSchema: { type: 'object', additionalProperties: false, properties: {}, required: [] },
-};
-
-const memoryCausalUnlink: ToolDefinition = {
-  name: 'memory_causal_unlink',
-  description: '[L6:Analysis] Remove a causal relationship by edge ID. Use memory_drift_why to find edge IDs. Token Budget: 1200.',
-  inputSchema: { type: 'object', additionalProperties: false, properties: { edgeId: { type: 'number', minimum: 1, description: 'Edge ID to delete (required)' } }, required: ['edgeId'] },
 };
 
 const evalRunAblation: ToolDefinition = {
@@ -812,7 +787,6 @@ export const TOOL_DEFINITIONS: ToolDefinition[] = [
   sessionBootstrap,
   // L2: Core
   memorySearch,
-  memoryQuickSearch,
   memoryMatchTriggers,
   memorySave,
   // L3: Discovery
@@ -837,7 +811,6 @@ export const TOOL_DEFINITIONS: ToolDefinition[] = [
   memoryDriftWhy,
   memoryCausalLink,
   memoryCausalStats,
-  memoryCausalUnlink,
   evalRunAblation,
   evalReportingDashboard,
   // L7: Maintenance

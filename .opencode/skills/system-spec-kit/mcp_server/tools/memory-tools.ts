@@ -34,35 +34,9 @@ import type {
   RetentionSweepArgs,
 } from './types.js';
 
-function relabelResponseTool(response: MCPResponse, toolName: string): MCPResponse {
-  const firstEntry = response?.content?.[0];
-  if (!firstEntry || firstEntry.type !== 'text' || typeof firstEntry.text !== 'string') {
-    return response;
-  }
-
-  try {
-    const envelope = JSON.parse(firstEntry.text) as Record<string, unknown>;
-    const meta = envelope.meta && typeof envelope.meta === 'object'
-      ? envelope.meta as Record<string, unknown>
-      : {};
-    envelope.meta = {
-      ...meta,
-      tool: toolName,
-    };
-
-    return {
-      ...response,
-      content: [{ ...firstEntry, text: JSON.stringify(envelope, null, 2) }],
-    };
-  } catch {
-    return response;
-  }
-}
-
 /** Tool names handled by this module */
 export const TOOL_NAMES = new Set([
   'memory_search',
-  'memory_quick_search',
   'memory_match_triggers',
   'memory_save',
   'memory_list',
@@ -79,25 +53,6 @@ export const TOOL_NAMES = new Set([
 export async function handleTool(name: string, args: Record<string, unknown>): Promise<MCPResponse | null> {
   switch (name) {
     case 'memory_search':         return handleMemorySearch(parseArgs<SearchArgs>(validateToolArgs('memory_search', args)));
-    case 'memory_quick_search': {
-      // E3: Delegate to memory_search with sensible defaults
-      const validated = validateToolArgs('memory_quick_search', args);
-      const quickArgs: SearchArgs = {
-        query: validated.query as string,
-        limit: typeof validated.limit === 'number' ? validated.limit : 10,
-        specFolder: validated.specFolder as string | undefined,
-        tenantId: validated.tenantId as string | undefined,
-        userId: validated.userId as string | undefined,
-        agentId: validated.agentId as string | undefined,
-        autoDetectIntent: true,
-        enableDedup: true,
-        includeContent: true,
-        includeConstitutional: true,
-        rerank: true,
-      };
-      const response = await handleMemorySearch(quickArgs);
-      return relabelResponseTool(response, 'memory_quick_search');
-    }
     case 'memory_match_triggers': return handleMemoryMatchTriggers(parseArgs<TriggerArgs>(validateToolArgs('memory_match_triggers', args)));
     case 'memory_save':           return handleMemorySave(parseArgs<SaveArgs>(validateToolArgs('memory_save', args)));
     case 'memory_list':           return handleMemoryList(parseArgs<ListArgs>(validateToolArgs('memory_list', args)));

@@ -1019,7 +1019,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request, _extra: unknown)
 
     // REQ-014: Log follow_on_tool_use when a non-search tool is called after a recent search
     // Shadow-only: no ranking side effects. Fail-safe, never throws.
-    if (name !== 'memory_search' && name !== 'memory_context' && name !== 'memory_quick_search' && name !== 'session_health') {
+    if (name !== 'memory_search' && name !== 'memory_context' && name !== 'session_health') {
       try {
         const { logFollowOnToolUse } = await import('./lib/feedback/query-flow-tracker.js');
         const { requireDb } = await import('./utils/index.js');
