@@ -73,3 +73,32 @@ Verification results:
 - `npx vitest run tests/code-graph-boundary-env-allowlist.vitest.ts --reporter=default 2>&1 </dev/null | tail -5` passed: 7/7 tests.
 - `npx vitest run tests/code-graph-boundary-path-validation.vitest.ts --reporter=default 2>&1 </dev/null | tail -5` passed: 5/5 tests.
 - Hard import audit returned no `system-code-graph` imports from `system-spec-kit/mcp_server`.
+
+## Phase F — Structural-Contract Coverage Diff
+
+File added:
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/018-isolation-arc-remediation/review/coverage-diff.md`
+
+Finding closed:
+- P1-FINDING-003 from 017 deep-review: no verification that the rewritten `structural-contract.vitest.ts` preserves original intent.
+
+Coverage verdict:
+- **REWRITE PRESERVES INTENT - NO ACTION**
+
+Coverage counts:
+- Pre-rewrite: 16 tests at `.opencode/skills/system-code-graph/mcp_server/tests/structural-contract.vitest.ts` from `0dba8febf^` (`ff91ddfe4`), 534 LOC.
+- Post-rewrite: 16 tests at `.opencode/skills/system-spec-kit/mcp_server/tests/structural-contract.vitest.ts` from `0dba8febf`, 290 LOC.
+- Preserved: 1
+- Renamed: 6
+- Replaced: 1
+- Removed: 8 cross-skill, 0 vocabulary-drift, 0 duplicate, 0 genuine coverage loss
+- New: 8
+
+Risk classification:
+- Cross-skill scenarios: 8 removed tests covered code-graph indexer and scan-handler internals. They cannot be replicated in a pure spec-kit unit without reintroducing the dependency arc; coverage is delegated to the code-graph suite if exact regression protection is still needed.
+- Vocabulary drift: 0.
+- Duplicates: 0 exact duplicates found. Related code-graph coverage exists for incremental scan option forwarding and DB-layer duplicate symbol handling.
+- Genuine coverage loss: 0 for structural-contract intent.
+
+Full matrix:
+- `review/coverage-diff.md`
