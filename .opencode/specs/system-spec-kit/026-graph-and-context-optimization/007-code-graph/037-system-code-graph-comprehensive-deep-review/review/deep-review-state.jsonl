@@ -1,0 +1,84 @@
+{"type":"iteration","run":1,"focus":"Documentation alignment with sk-doc (README + SKILL.md + ARCHITECTURE.md + INSTALL_GUIDE.md)","findingsCount":4,"findingsP0":0,"findingsP1":4,"findingsP2":0,"newInfoRatio":1.00,"durationSec":38,"executor":"cli-devin","model":"swe-1.6","timestamp":"2026-05-15T18:48:43Z"}
+{"type":"iteration","run":,"focus":"SKILL.md routing + invariants + trigger phrases against sk-doc skill_md_template","findingsCount":7,"findingsP0":2,"findingsP1":3,"findingsP2":2,"durationSec":25,"exitCode":0,"executor":"cli-devin","model":"swe-1.6","timestamp":"2026-05-15T16:50:42Z"}
+{"type":"iteration","run":,"focus":"feature_catalog/feature_catalog.md completeness + sk-doc alignment + entry shape","findingsCount":0
+0,"findingsP0":0
+0,"findingsP1":0
+0,"findingsP2":0
+0,"durationSec":57,"exitCode":0,"executor":"cli-devin","model":"swe-1.6","timestamp":"2026-05-15T16:51:39Z"}
+{"type":"iteration","run":,"focus":"manual_testing_playbook/manual_testing_playbook.md scenario coverage + structure","findingsCount":0
+0,"findingsP0":0
+0,"findingsP1":0
+0,"findingsP2":0
+0,"durationSec":41,"exitCode":0,"executor":"cli-devin","model":"swe-1.6","timestamp":"2026-05-15T16:52:20Z"}
+{"type":"iteration","run":,"focus":"mcp_server/index.ts main entry point + server setup correctness","findingsCount":6,"findingsP0":1,"findingsP1":3,"findingsP2":2,"durationSec":16,"exitCode":0,"executor":"cli-devin","model":"swe-1.6","timestamp":"2026-05-15T16:52:36Z"}
+{"type":"iteration","run":,"focus":"code_graph_scan handler + structural-indexer.ts correctness","findingsCount":0
+0,"findingsP0":0
+0,"findingsP1":0
+0,"findingsP2":0
+0,"durationSec":46,"exitCode":0,"executor":"cli-devin","model":"swe-1.6","timestamp":"2026-05-15T16:53:22Z"}
+{"type":"iteration","run":,"focus":"code_graph_query handler + code-graph-db.ts correctness (outline, calls, imports, blast_radius operations)","findingsCount":0
+0,"findingsP0":0
+0,"findingsP1":0
+0,"findingsP2":0
+0,"durationSec":76,"exitCode":0,"executor":"cli-devin","model":"swe-1.6","timestamp":"2026-05-15T16:54:38Z"}
+{"type":"iteration","run":,"focus":"code_graph_context handler + code-graph-context.ts correctness (neighborhood retrieval)","findingsCount":0
+0,"findingsP0":0
+0,"findingsP1":0
+0,"findingsP2":0
+0,"durationSec":22,"exitCode":0,"executor":"cli-devin","model":"swe-1.6","timestamp":"2026-05-15T16:55:00Z"}
+{"type":"iteration","run":,"focus":"code_graph_status + readiness-contract.ts semantics (live/stale/absent/unavailable TrustState)","findingsCount":0
+0,"findingsP0":0
+0,"findingsP1":0
+0,"findingsP2":0
+0,"durationSec":62,"exitCode":0,"executor":"cli-devin","model":"swe-1.6","timestamp":"2026-05-15T16:56:02Z"}
+{"type":"iteration","run":,"focus":"code_graph_verify gold-query-verifier.ts correctness","findingsCount":0
+0,"findingsP0":0
+0,"findingsP1":0
+0,"findingsP2":0
+0,"durationSec":21,"exitCode":0,"executor":"cli-devin","model":"swe-1.6","timestamp":"2026-05-15T16:56:23Z"}
+{"type":"iteration","run":,"focus":"code_graph_apply recovery-mode + apply-orchestrator.ts safety gates","findingsCount":0
+0,"findingsP0":0
+0,"findingsP1":0
+0,"findingsP2":0
+0,"durationSec":23,"exitCode":0,"executor":"cli-devin","model":"swe-1.6","timestamp":"2026-05-15T16:56:46Z"}
+{"type":"iteration","run":,"focus":"detect_changes handler + diff-parser.ts diff-to-symbol mapping","findingsCount":0
+0,"findingsP0":0
+0,"findingsP1":0
+0,"findingsP2":0
+0,"durationSec":58,"exitCode":0,"executor":"cli-devin","model":"swe-1.6","timestamp":"2026-05-15T16:57:44Z"}
+{"type":"iteration","run":,"focus":"ccc_* CocoIndex bridge handlers (status/reindex/feedback)","findingsCount":7,"findingsP0":1,"findingsP1":3,"findingsP2":3,"durationSec":16,"exitCode":0,"executor":"cli-devin","model":"swe-1.6","timestamp":"2026-05-15T16:58:00Z"}
+{"type":"iteration","run":,"focus":"Launcher (.opencode/bin/mk-code-index-launcher.cjs) standalone-storage guard + maintainer-mode toggle + env loading","findingsCount":0
+0,"findingsP0":0
+0,"findingsP1":0
+0,"findingsP2":0
+0,"durationSec":18,"exitCode":0,"executor":"cli-devin","model":"swe-1.6","timestamp":"2026-05-15T16:58:18Z"}
+{"type":"iteration","run":,"focus":"Vitest test coverage adequacy across handlers + lib (count + topic coverage gaps)","findingsCount":0
+0,"findingsP0":0
+0,"findingsP1":0
+0,"findingsP2":0
+0,"durationSec":90,"exitCode":0,"executor":"cli-devin","model":"swe-1.6","timestamp":"2026-05-15T16:59:48Z"}
+{"type":"iteration","run":,"focus":"Stress test suite design + coverage (stress_test/code-graph/)","findingsCount":0
+0,"findingsP0":0
+0,"findingsP1":0
+0,"findingsP2":0
+0,"durationSec":45,"exitCode":0,"executor":"cli-devin","model":"swe-1.6","timestamp":"2026-05-15T17:00:33Z"}
+{"type":"iteration","run":,"focus":"Spec-kit isolation enforcement — zero imports from system-spec-kit, @spec-kit/shared boundary discipline, CI workflow","findingsCount":0
+0,"findingsP0":0
+0,"findingsP1":0
+0,"findingsP2":0
+0,"durationSec":30,"exitCode":0,"executor":"cli-devin","model":"swe-1.6","timestamp":"2026-05-15T17:01:03Z"}
+{"type":"iteration","run":,"focus":"tsconfig.json + package.json + dist build correctness","findingsCount":0
+0,"findingsP0":0
+0,"findingsP1":0
+0,"findingsP2":0
+0,"durationSec":39,"exitCode":0,"executor":"cli-devin","model":"swe-1.6","timestamp":"2026-05-15T17:01:42Z"}
+{"type":"iteration","run":,"focus":"/doctor code-graph route + /doctor:mcp install/debug coverage parity for mk_code_index","findingsCount":0
+0,"findingsP0":0
+0,"findingsP1":0
+0,"findingsP2":0
+0,"durationSec":45,"exitCode":0,"executor":"cli-devin","model":"swe-1.6","timestamp":"2026-05-15T17:02:27Z"}
+{"type":"iteration","run":,"focus":"Cross-runtime config registration consistency (mk_code_index in all 6 configs + master install README §10.4 + changelog/v1.0.0.0.md)","findingsCount":0
+0,"findingsP0":0
+0,"findingsP1":0
+0,"findingsP2":0
+0,"durationSec":21,"exitCode":0,"executor":"cli-devin","model":"swe-1.6","timestamp":"2026-05-15T17:02:48Z"}
