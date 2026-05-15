@@ -58,4 +58,19 @@ describe('mk_skill_advisor rename invariants', () => {
     expect(codexConfig).toMatch(/\[mcp_servers\.mk_skill_advisor\]/);
     expect(codexConfig).toContain('args = [".opencode/bin/mk-skill-advisor-launcher.cjs"]');
   });
+
+  it('keeps runtime config env blocks aligned on advisor database and hook controls', () => {
+    const configs = [
+      readRepoFile('opencode.json'),
+      readRepoFile('.claude/mcp.json'),
+      readRepoFile('.gemini/settings.json'),
+      readRepoFile('.codex/config.toml'),
+    ];
+
+    for (const config of configs) {
+      expect(config).toContain('MK_SKILL_ADVISOR_DB_DIR');
+      expect(config).toContain('SPECKIT_SKILL_ADVISOR_HOOK_DISABLED');
+      expect(config).toContain('SPECKIT_ADVISOR_SHADOW_MODE');
+    }
+  });
 });

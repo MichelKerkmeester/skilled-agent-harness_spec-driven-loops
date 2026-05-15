@@ -9,6 +9,12 @@ import {
   handleAdvisorValidate,
 } from '../handlers/index.js';
 import type { MCPCallerContext } from '../lib/context/caller-context.js';
+import { advisorRebuildTool } from './advisor-rebuild.js';
+import { advisorRecommendTool } from './advisor-recommend.js';
+import { advisorStatusTool } from './advisor-status.js';
+import { advisorValidateTool } from './advisor-validate.js';
+import { skillGraphToolDefinitions } from './skill-graph-tools.js';
+import type { ToolDefinition } from './types.js';
 
 export { advisorRecommendTool } from './advisor-recommend.js';
 export { advisorRebuildTool } from './advisor-rebuild.js';
@@ -27,6 +33,14 @@ type MCPResponse = {
   content: Array<{ type: 'text'; text: string }>;
   isError?: boolean;
 };
+
+export const TOOL_DEFINITIONS: ToolDefinition[] = [
+  advisorRecommendTool,
+  advisorRebuildTool,
+  advisorStatusTool,
+  advisorValidateTool,
+  ...skillGraphToolDefinitions,
+];
 
 function toMCP(result: { content: Array<{ type: string; text: string }> }): MCPResponse {
   return {

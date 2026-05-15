@@ -85,15 +85,19 @@ function normalizeFreshnessLabel(value: string | undefined): AdvisorFreshnessLab
   return ADVISOR_HOOK_FRESHNESS_VALUES.includes(value as AdvisorFreshnessLabel) ? value as AdvisorFreshnessLabel : null;
 }
 
-function laneRawScore(matches: readonly LaneMatch[], skillId: string): number {
-  return Math.max(0, ...matches.filter((match) => match.skillId === skillId).map((match) => match.score));
-}
+type LaneMatchIndex = Map<string, { rawScore: number; evidence: string[] }>;
 
-function laneEvidence(matches: readonly LaneMatch[], skillId: string): string[] {
-  return matches
-    .filter((match) => match.skillId === skillId)
-    .flatMap((match) => [...match.evidence])
-    .slice(0, 6);
+function buildLaneMatchIndex(matches: readonly LaneMatch[]): LaneMatchIndex {
+  const index: LaneMatchIndex = new Map();
+  for (const match of matches) {
+    const existing = index.get(match.skillId) ?? { rawScore: 0, evidence: [] };
+    existing.rawScore = Math.max(existing.rawScore, match.score);
+    if (existing.evidence.length < 6) {
+      existing.evidence.push(...match.evidence.slice(0, 6 - existing.evidence.length));
+    }
+    index.set(match.skillId, existing);
+  }
+  return index;
 }
 
 function promptMentionsSkill(promptLower: string, skill: SkillProjection): boolean {
@@ -299,6 +303,9 @@ export function scoreAdvisorPrompt(prompt: string, options: AdvisorScoringOption
   const disabled = new Set(options.disabledLanes ?? []);
   const affordances = normalize(options.affordances ?? []);
   const laneScores = buildLaneScores(prompt, projection, disabled, affordances);
+  const laneScoreIndexes = Object.fromEntries(
+    SCORER_LANES.map((lane) => [lane, buildLaneMatchIndex(laneScores[lane])]),
+  ) as Record<ScorerLane, LaneMatchIndex>;
   const liveTotal = SCORER_LANES
     .filter((lane) => !disabled.has(lane))
     .reduce((total, lane) => isLiveScorerLane(lane) ? total + weights[lane] : total, 0) || liveWeightTotal();
@@ -317,14 +324,15 @@ export function scoreAdvisorPrompt(prompt: string, options: AdvisorScoringOption
   for (const skill of projection.skills) {
     if (!isDefaultRoutable(promptLower, skill)) continue;
     const contributions: LaneContribution[] = SCORER_LANES.map((lane) => {
-      const rawScore = laneRawScore(laneScores[lane], skill.id);
+      const laneMatch = laneScoreIndexes[lane].get(skill.id);
+      const rawScore = laneMatch?.rawScore ?? 0;
       const shadowOnly = !isLiveScorerLane(lane);
       return {
         lane,
         rawScore,
         weightedScore: shadowOnly || disabled.has(lane) ? 0 : rawScore * weights[lane],
         weight: disabled.has(lane) ? 0 : weights[lane],
-        evidence: laneEvidence(laneScores[lane], skill.id),
+        evidence: laneMatch?.evidence ?? [],
         shadowOnly,
       };
     });

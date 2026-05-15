@@ -11,21 +11,10 @@ import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js'
 import { CallToolRequestSchema, ListToolsRequestSchema } from '@modelcontextprotocol/sdk/types.js';
 
 import {
-  handleAdvisorRebuild,
-  handleAdvisorRecommend,
-  handleAdvisorStatus,
-  handleAdvisorValidate,
-} from './handlers/index.js';
-import {
-  advisorRebuildTool,
-  advisorRecommendTool,
-  advisorStatusTool,
-  advisorValidateTool,
-  skillGraphToolDefinitions,
-  skillGraphTools,
+  dispatchTool,
+  TOOL_DEFINITIONS,
 } from './tools/index.js';
 
-import type { ToolDefinition } from './tools/types.js';
 import {
   closeDb as closeSkillGraphDb,
   indexSkillMetadata,
@@ -44,13 +33,7 @@ type MCPResponse = {
   isError?: boolean;
 };
 
-export const TOOL_DEFINITIONS: ToolDefinition[] = [
-  advisorRecommendTool,
-  advisorRebuildTool,
-  advisorStatusTool,
-  advisorValidateTool,
-  ...skillGraphToolDefinitions,
-];
+export { dispatchTool, TOOL_DEFINITIONS };
 
 const TOOL_NAMES = new Set(TOOL_DEFINITIONS.map((tool) => tool.name));
 
@@ -90,16 +73,14 @@ function resolveWorkspaceRoot(): string {
 
 async function loadSkillGraphWatchFactory(): Promise<(paths: string[], options: Record<string, unknown>) => SkillGraphFsWatcher> {
   const workspaceRoot = resolveWorkspaceRoot();
-  const chokidarPath = path.join(
-    workspaceRoot,
-    '.opencode',
-    'skills',
-    'system-spec-kit',
-    'mcp_server',
-    'node_modules',
-    'chokidar',
-    'index.js',
-  );
+  const candidates = [
+    path.join(workspaceRoot, '.opencode', 'skills', 'system-skill-advisor', 'mcp_server', 'node_modules', 'chokidar', 'index.js'),
+    path.join(workspaceRoot, '.opencode', 'skills', 'system-spec-kit', 'mcp_server', 'node_modules', 'chokidar', 'index.js'),
+  ];
+  const chokidarPath = candidates.find((candidate) => fs.existsSync(candidate));
+  if (!chokidarPath) {
+    throw new Error(`Unable to load chokidar; checked ${candidates.map((candidate) => path.relative(workspaceRoot, candidate)).join(', ')}`);
+  }
   const chokidarModule = await import(pathToFileURL(chokidarPath).href) as {
     default?: { watch?: (paths: string[], options: Record<string, unknown>) => SkillGraphFsWatcher };
     watch?: (paths: string[], options: Record<string, unknown>) => SkillGraphFsWatcher;
@@ -185,12 +166,6 @@ async function shutdownAdvisor(reason: string): Promise<void> {
   }
 }
 
-function toMCP(result: { content: Array<{ type: string; text: string }> }): MCPResponse {
-  return {
-    content: result.content.map((entry) => ({ type: 'text' as const, text: entry.text })),
-  };
-}
-
 function isRecord(value: unknown): value is Record<string, unknown> {
   return value !== null && typeof value === 'object' && !Array.isArray(value);
 }
@@ -212,25 +187,6 @@ function buildCallerContext(extra: unknown): MCPCallerContext {
     trusted: resolveTrustedCaller(metadata),
     metadata,
   };
-}
-
-export async function dispatchTool(
-  name: string,
-  args: Record<string, unknown>,
-  callerContext?: MCPCallerContext | null,
-): Promise<MCPResponse | null> {
-  switch (name) {
-    case 'advisor_recommend':
-      return toMCP(await handleAdvisorRecommend(args));
-    case 'advisor_rebuild':
-      return toMCP(await handleAdvisorRebuild(args));
-    case 'advisor_status':
-      return toMCP(await handleAdvisorStatus(args));
-    case 'advisor_validate':
-      return toMCP(await handleAdvisorValidate(args));
-    default:
-      return skillGraphTools.handleTool(name, args, callerContext);
-  }
 }
 
 const server = new Server(
@@ -301,7 +257,6 @@ if (isMain) {
   });
   main().catch((error: unknown) => {
     console.error('[mk-skill-advisor-launcher] Fatal error:', error);
-    closeSkillGraphDb();
-    process.exit(1);
+    void shutdownAdvisor('fatal error').finally(() => process.exit(1));
   });
 }

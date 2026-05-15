@@ -2,7 +2,7 @@
 // MODULE: Semantic Shadow Lane
 // ───────────────────────────────────────────────────────────────
 
-import { createEmbeddingsProvider } from '../../../../../system-spec-kit/shared/embeddings/factory.js';
+import { createEmbeddingsProvider } from '@spec-kit/shared/embeddings/factory.js';
 import { loadSkillEmbeddings } from '../../skill-graph/skill-graph-db.js';
 import { scoreTokenOverlap, tokenize } from '../text.js';
 import type { AdvisorProjection, LaneMatch } from '../types.js';

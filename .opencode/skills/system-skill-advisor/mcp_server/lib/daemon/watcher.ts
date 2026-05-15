@@ -113,6 +113,13 @@ const TEMP_SUFFIX_PATTERN = /(?:\.tmp|\.swp|~)$/i;
 // the public return type (readonly string[]) does not change.
 const DIAGNOSTICS_RING_BUFFER_CAP = 100;
 
+function envPositiveInt(name: string, fallback: number): number {
+  const value = process.env[name];
+  if (!value) return fallback;
+  const parsed = Number(value);
+  return Number.isInteger(parsed) && parsed > 0 ? parsed : fallback;
+}
+
 function sleep(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
@@ -382,16 +389,18 @@ export function createSkillGraphWatcher(options: SkillGraphWatcherOptions): Skil
 
   const watcher = options.watchFactory(targetPaths, {
     ignoreInitial: true,
-    awaitWriteFinish: { stabilityThreshold: options.backpressure?.stableWriteMs ?? DEFAULT_STABLE_WRITE_MS },
+    awaitWriteFinish: {
+      stabilityThreshold: options.backpressure?.stableWriteMs ?? envPositiveInt('SPECKIT_SKILL_GRAPH_STABLE_WRITE_MS', DEFAULT_STABLE_WRITE_MS),
+    },
     atomic: true,
     followSymlinks: false,
     ignored: (targetPath: string) => TEMP_SUFFIX_PATTERN.test(targetPath),
   }) as SkillGraphFsWatcher;
 
-  const debounceMs = options.backpressure?.debounceMs ?? DEFAULT_DEBOUNCE_MS;
-  const stormEventLimit = options.backpressure?.stormEventLimit ?? DEFAULT_STORM_EVENT_LIMIT;
-  const stormWindowMs = options.backpressure?.stormWindowMs ?? DEFAULT_STORM_WINDOW_MS;
-  const circuitCooldownMs = options.backpressure?.circuitCooldownMs ?? DEFAULT_CIRCUIT_COOLDOWN_MS;
+  const debounceMs = options.backpressure?.debounceMs ?? envPositiveInt('SPECKIT_SKILL_GRAPH_DEBOUNCE_MS', DEFAULT_DEBOUNCE_MS);
+  const stormEventLimit = options.backpressure?.stormEventLimit ?? envPositiveInt('SPECKIT_SKILL_GRAPH_STORM_EVENT_LIMIT', DEFAULT_STORM_EVENT_LIMIT);
+  const stormWindowMs = options.backpressure?.stormWindowMs ?? envPositiveInt('SPECKIT_SKILL_GRAPH_STORM_WINDOW_MS', DEFAULT_STORM_WINDOW_MS);
+  const circuitCooldownMs = options.backpressure?.circuitCooldownMs ?? envPositiveInt('SPECKIT_SKILL_GRAPH_CIRCUIT_COOLDOWN_MS', DEFAULT_CIRCUIT_COOLDOWN_MS);
   const busyRetryDelaysMs = options.backpressure?.busyRetryDelaysMs ?? DEFAULT_BUSY_RETRY_DELAYS_MS;
   const now = options.now ?? (() => Date.now());
   const fileHashes = new Map<string, string>();

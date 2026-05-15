@@ -31,7 +31,10 @@ export function checkSqliteIntegrity(dbPath: string): { ok: true } | { ok: false
         reason: errorMessage(error),
       };
     }
-    throw error;
+    return {
+      ok: false,
+      reason: `SQLITE_CHECK_FAILED: ${errorMessage(error)}`,
+    };
   } finally {
     db?.close();
   }
