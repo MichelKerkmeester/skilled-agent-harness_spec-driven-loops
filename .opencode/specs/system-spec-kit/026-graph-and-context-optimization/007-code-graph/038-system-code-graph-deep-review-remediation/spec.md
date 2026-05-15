@@ -292,3 +292,30 @@ Memory: practical CLI ceiling 3-4 concurrent (cli-codex); cli-opencode session-c
 4. **feature_catalog filename: keep lowercase or rename to FEATURE_CATALOG.md?** Project convention is lowercase; sk-doc template suggests uppercase. Sticking with lowercase unless user overrides.
 5. **SKILL.md version bump (Phase 8) — coordinate with parallel agent?** Either parallel agent bumps it as part of their work, or 038 makes a single-line bump at the end with explicit coordination.
 <!-- /ANCHOR:open-questions -->
+
+---
+
+## 8. VERIFICATION UPDATE (2026-05-15)
+
+After this spec was authored, packet 037 ran a 5-iter cross-AI verification pass via `cli-codex gpt-5.5 high fast` (iterations 021–025, see `037/.../review/verification-addendum.md`). Verdict counts: **15 VERIFIED · 9 PARTIAL · 0 HALLUCINATED** across 24 P0+P1 claims.
+
+**Net effect on this packet's scope: no findings DROPPED, but 9 PARTIAL findings need wording revisions before remediation.** Specifically:
+
+| Original | PARTIAL because | Revision required before remediation |
+|---|---|---|
+| P0-1 | Import counts verified (46 imports, 23 files) but category split misstated | Use corrected breakdown: 11 production `.ts` + 3 `.d.ts` + 5 tests + 4 stress tests |
+| P0-2 | Hardcoded readiness verified; `tool-schemas.ts:197-218` does NOT advertise readiness | Revise framing — either drop readiness field entirely OR define a real N/A contract |
+| P1-A4 | Structure drift verified; filename critique CONTRADICTED — `feature_catalog_template.md:29-36, :83-86` uses lowercase | Keep structure work; DROP the filename rename suggestion |
+| P1-A5 | Misclassified rows verified; Devin scenario length overstated | Fix row categorization; treat Devin scenario as cosmetic style review |
+| P1-B2 | First two sub-claims (fullReindexTriggered + filter) verified; edge counter overclaim at `structural-indexer.ts:1896-1899` | Keep first two; re-evaluate edge counter sub-claim |
+| P1-B5 | Shared trust type is **7-state** at `shared-payload.ts:34-43`, not 4-state as originally claimed | Revise canonical-type wording in the fix |
+| P1-C1 | DB path embedded confirmed; "standalone-storage guard" wording NOT FOUND in launcher | Drop the wording-claim part; keep only the path-relocation discussion |
+| P1-D1 | 2 of 4 modules verified uncovered (`runtime-detection` + `exclude-rule-classifier`); the other 2 actually have test coverage | Revise to 2 uncovered modules, not 4 |
+| P1-F2 | Dist stub claim VERIFIED (59-byte stub); `node_modules` claim FALSE — directory currently exists | Keep dist concern; drop `node_modules` claim |
+
+**Action items before Batch 1 dispatch**:
+1. Each Phase's dispatch prompt MUST cite the *corrected* finding wording (use verification-addendum.md as source-of-truth, not the original review-report.md, where they diverge).
+2. The 9 revisions above are wording-only — they don't change which phases fire or which files are touched, only how the prompts describe the defect.
+3. Previously-dismissed P0-3 (apply-orchestrator.ts:342 TS error) RECONFIRMED dismissed by cross-check: `npx tsc --noEmit -p tsconfig.json` from `system-code-graph/mcp_server/` is clean. Do not include in scope.
+
+**Status**: spec ready; awaits user dispatch authorization (still gated per `_memory.continuity.next_safe_action`).
