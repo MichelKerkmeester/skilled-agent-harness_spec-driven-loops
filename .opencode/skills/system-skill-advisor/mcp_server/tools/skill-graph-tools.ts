@@ -90,8 +90,6 @@ export const skillGraphToolDefinitions: ToolDefinition[] = [
   skillGraphPropagateEnhancesTool,
 ];
 
-export const TOOL_NAMES = new Set(skillGraphToolDefinitions.map((tool) => tool.name));
-
 function toMCP(result: { content: Array<{ type: string; text: string }> }): MCPResponse {
   return {
     content: result.content.map((entry) => ({ type: 'text' as const, text: entry.text })),

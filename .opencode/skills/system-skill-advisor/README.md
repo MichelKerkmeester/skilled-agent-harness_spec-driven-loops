@@ -35,7 +35,7 @@ trigger_phrases:
 
 Current state:
 
-- Native MCP tools are the primary runtime surface: four `advisor_*` tools plus four `skill_graph_*` tools.
+- Native MCP tools are the primary runtime surface: four `advisor_*` tools plus five `skill_graph_*` tools.
 - Python scripts remain a compatibility path for callers that cannot use MCP tools directly.
 - Public responses stay prompt-safe and expose skill labels, scores, thresholds and trust metadata.
 - Command-backed skills use explicit alias groups where command ids and skill ids are legitimate names for the same capability.
@@ -170,6 +170,7 @@ Control flow:
 | `skill_graph_query` | Skill relationship and subgraph queries. |
 | `skill_graph_status` | Skill graph health and count reporting. |
 | `skill_graph_validate` | Skill graph integrity validation. |
+| `skill_graph_propagate_enhances` | Cross-skill auto-propagation: detect missing inbound `enhances` edges; report/propose/apply modes with composite scoring. |
 | `scripts/skill_advisor.py` | CLI compatibility and hook fallback. |
 
 <!-- /ANCHOR:entrypoints -->

@@ -40,7 +40,7 @@
 
 ### What This Framework Does
 
-AI coding assistants have amnesia. Every session starts from zero. You explain your architecture Monday. By Wednesday, it is gone. Every decision, every trade-off, every carefully reasoned choice - lost the moment the conversation window closes. This framework fixes that.
+AI coding assistants have amnesia. Every session starts from zero. You explain your architecture Monday. By Wednesday, it is gone. Decisions, trade-offs, the carefully reasoned choices behind them, all lost the moment the conversation window closes. This framework fixes that.
 
 The framework adds four layers on top of the base platform:
 
@@ -128,12 +128,14 @@ Recent 038/039 work also tightened the public surface without turning this READM
 
 ### Installation
 
+**Prerequisites:** Node.js 18+ with `npm`, `git`, and a POSIX shell. The launcher binaries vendor their own dependencies on first run, so you do not need TypeScript or `tsc` installed globally.
+
 ```bash
 # 1. Clone the repository
 git clone https://github.com/MichelKerkmeester/opencode--spec-kit-skilled-agent-orchestration.git
 cd opencode--spec-kit-skilled-agent-orchestration
 
-# 2. Install root dependencies (file watchers and shared utilities)
+# 2. Install root dependencies (file watcher + shared HTTP utilities)
 npm install
 
 # 3. Boot the native MCP servers via their committed launchers
@@ -175,7 +177,7 @@ node .opencode/bin/mk-skill-advisor-launcher.cjs --help
 node .opencode/bin/mk-code-index-launcher.cjs --help
 
 # Confirm the active runtime's MCP config references the launchers
-# (only the runtime you actually use needs to exist. .codex/config.toml ships in the repo)
+# (only the runtime you use needs to exist. .codex/config.toml ships in the repo)
 grep -l 'mk-spec-memory\|mk_skill_advisor\|mk_code_index' \
   opencode.json .claude/mcp.json .codex/config.toml .gemini/settings.json 2>/dev/null
 ```
@@ -198,7 +200,7 @@ See [§4 Customizing for Your Stack](#customizing-for-your-stack) for the full c
 
 ### Code-Graph Indexing
 
-The standalone `mk_code_index` MCP server indexes **your project's production code** by default, not the framework backend. End users get this automatically through the committed config defaults. See [§4 Maintainer-Mode Code-Graph Flags](#maintainer-mode-code-graph-flags-already-disabled-for-end-users) only if you're contributing upstream.
+The standalone `mk_code_index` MCP server indexes **your project's production code** by default, not the framework backend. End users inherit this behavior automatically through the committed config defaults. See [§4 Maintainer-Mode Code-Graph Flags](#maintainer-mode-code-graph-flags-already-disabled-for-end-users) only if you're contributing upstream.
 
 <!-- /ANCHOR:quick-start -->
 
@@ -439,7 +441,7 @@ Four response modes: **quick** (top answer only), **focused** (one-topic), **dee
 
 Memories fade using **FSRS** (Free Spaced Repetition Scheduler). Decay speed varies by content type and importance tier. Critical decisions never fade. Temporary debugging notes fade within days.
 
-- **Cold-start boost** - Fresh memories (under 48h) get temporary scoring lift
+- **Cold-start boost** - Fresh memories (under 48h) receive a temporary scoring lift
 - **Interference penalty** - Suppresses near-duplicate clusters
 - **Auto-promotion** - Memories earn higher tiers through positive validation
 - **Negative feedback** - 30-day decay prevents permanent blacklisting
@@ -632,7 +634,7 @@ All of this rides inside the existing `code_edges.metadata` JSON blob, no SQLite
 
 You hand it `{ diff: string, rootDir?: string }`. It walks each diff hunk, overlaps the line ranges with stored symbols and returns `{ status, affectedSymbols[], affectedFiles[], blockedReason?, timestamp, readiness }`.
 
-Safety is non-negotiable: the tool checks the graph is fresh before parsing the diff. If the graph is stale or unavailable, it returns `status: 'blocked'` immediately, you never get a false "nothing impacted" answer from an out-of-date index. Inline indexing is explicitly disabled here, so the read-only contract is enforced.
+Safety is non-negotiable: the tool checks the graph is fresh before parsing the diff. If the graph is stale or unavailable, it returns `status: 'blocked'` immediately, so an out-of-date index never produces a false "nothing impacted" answer. Inline indexing is explicitly disabled here, so the read-only contract is enforced.
 
 Under the hood the scan runner is split into four declared phases (`find-candidates` → `parse-candidates` → `finalize` → `emit-metrics`) for clearer instrumentation, with no SQLite schema changes.
 
@@ -670,7 +672,7 @@ For the full code-graph tool and architecture reference, see the [`system-code-g
 
 ### 🎯 Skill Advisor
 
-The Skill Advisor matches what you type to the right skill before any tool runs. It is now a standalone MCP server named `mk_skill_advisor`, packaged under `.opencode/skills/system-skill-advisor/mcp_server/`. Nine tools cover the public surface (8 public + 1 internal): four `advisor_*` tools for routing, freshness, rebuild and validation, plus four `skill_graph_*` tools for scan, query, status and graph validation, plus one internal propagation tool. A small Python compatibility shim still works as a fallback when the native path is unavailable.
+The Skill Advisor matches what you type to the right skill before any tool runs. It is now a standalone MCP server named `mk_skill_advisor`, packaged under `.opencode/skills/system-skill-advisor/mcp_server/`. The server registers nine tools: eight on the public surface (four `advisor_*` tools for routing, freshness, rebuild and validation, plus four `skill_graph_*` tools for scan, query, status and graph validation), plus one internal propagation tool. A small Python compatibility shim still works as a fallback when the native path is unavailable.
 
 #### How It Works
 
@@ -722,7 +724,7 @@ The Skill Advisor matches what you type to the right skill before any tool runs.
 .opencode/skills/system-skill-advisor/mcp_server/
 ├── bench/      benchmarks
 ├── compat/     stable compatibility entry for runtimes
-├── handlers/   the eight MCP tool handlers
+├── handlers/   the nine MCP tool handlers (8 public + 1 internal)
 ├── lib/        scorer, normalizer, freshness, cache
 ├── schemas/    JSON + Zod schemas
 ├── tests/      test suite
@@ -1434,11 +1436,11 @@ A: Gate 3 blocks file modifications until a spec folder answer is provided. You 
 &nbsp;
 **Q: How does the memory system know what is relevant to my current task?**
 
-A: Packet continuity and any supporting generated context artifacts use structured frontmatter and anchored markdown so the memory engine can classify, index and retrieve them reliably. For recovery, start with `/spec_kit:resume` and the packet-local continuity ladder `handover.md` -> `_memory.continuity` -> canonical spec docs. After that, `memory_match_triggers()` can do a fast trigger/cognitive pass, while `memory_context()` and `memory_search()` handle deeper retrieval with intent routing, reranking and filtering.
+A: Packet continuity and any supporting generated context artifacts use structured frontmatter and anchored markdown so the memory engine can classify, index and retrieve them reliably. For recovery, start with `/spec_kit:resume` and the packet-local continuity ladder `handover.md` -> `_memory.continuity` -> canonical spec docs. After that, `memory_match_triggers()` runs a fast trigger/cognitive pass, while `memory_context()` and `memory_search()` handle deeper retrieval with intent routing, reranking and filtering.
 &nbsp;
 **Q: Can I use this framework without the cognitive memory features?**
 
-A: Yes. The Spec Kit documentation workflow (Gate 3, spec folders, templates) works independently of the memory MCP server. You will not have cross-session memory retrieval, but you will still get structured documentation, agent routing and skill loading.
+A: Yes. The Spec Kit documentation workflow (Gate 3, spec folders, templates) works independently of the memory MCP server. You lose cross-session memory retrieval, but structured documentation, agent routing and skill loading all still work.
 &nbsp;
 **Q: How do I add a new skill to the framework?**
 
@@ -1450,7 +1452,7 @@ A: The memory database is a SQLite file on your local machine. No session data, 
 &nbsp;
 **Q: How do I contribute a new agent definition?**
 
-A: Define the agent in `.opencode/agents/` (the source of truth), then copy the adapter to `.opencode/agents/`, `.claude/agents/`, `.codex/agents/` and `.gemini/agents/`. Use `/create:agent` to scaffold the file from the agent template.
+A: Define the agent in `.opencode/agents/` (the source of truth), then mirror the adapter into `.claude/agents/`, `.codex/agents/` and `.gemini/agents/`. Use `/create:agent` to scaffold the file from the agent template.
 &nbsp;
 **Q: How many MCP tools are there and where are they defined?**
 
@@ -1496,4 +1498,4 @@ A: The feature catalog is a 290-entry reference across 22 categories documenting
 <!-- /ANCHOR:related-documents -->
 
 
-*Documentation version: 4.11 | Last updated: 2026-05-15 | Framework: 11 agents, 20 skills, 22 commands, 69 MCP tools (39 mk-spec-memory + 9 mk_skill_advisor + 11 mk_code_index + 7 code mode + 2 CocoIndex + 1 sequential thinking. Deferred / internal-only handlers do NOT count).*
+*Documentation version: 4.12 | Last updated: 2026-05-15 | Framework: 11 agents, 20 skills, 22 commands, 69 MCP tools (39 mk-spec-memory + 9 mk_skill_advisor + 11 mk_code_index + 7 code mode + 2 CocoIndex + 1 sequential thinking. Deferred / internal-only handlers do NOT count).*

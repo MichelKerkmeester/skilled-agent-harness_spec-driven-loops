@@ -8,10 +8,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/026-cross-skill-auto-propagation"
-    last_updated_at: "2026-05-15T14:00:00Z"
-    last_updated_by: "swe-1-6"
-    recent_action: "Implement MVP"
-    next_safe_action: "Run strict validate"
+    last_updated_at: "2026-05-15T16:50:00Z"
+    last_updated_by: "claude-opus-4-7"
+    recent_action: "Close P1 findings"
+    next_safe_action: "Re-review or ship"
     blockers: []
     key_files:
       - ".opencode/skills/system-skill-advisor/mcp_server/lib/cross-skill-edges/types.ts"
@@ -83,6 +83,30 @@ New MCP tool plus a `lib/cross-skill-edges/` module that detects and (opt-in) wr
 ## How It Was Delivered
 
 Implemented per plan.md §3 architecture sketches exactly. All 5 phases completed in order: module scaffold (T001-T004), detection (T005-T009), payload inference + apply (T010-T012), MCP wiring (T013-T016), tests + verification (T017-T024). Manual smoke 1 (REQ-001) initially surfaced a real high-confidence candidate (`system-skill-advisor → deep-ai-council`, conf=0.90, all 3 rules positive) — a legitimate gap newly visible once the advisor's `enhance_when` rule was added. Applied via the tool itself (`mode: 'apply', applyAllHighConfidence: true`) — first real-world apply of the new tool. Re-ran smoke 1: 0 candidates (REQ-001 + REQ-003 satisfied). Auto-marker fields verified on the applied edge: `auto_added_at` 2026-05-15T14:10:44.259Z + `auto_added_reason: "family-inference:0.45 + asset-shape:0.30 + sibling-transitivity:0.15"`. Module separation honored: lib/cross-skill-edges/ does NOT import from lib/skill-graph/ (per codex recommendation). TypeScript compiles cleanly (exit 0). 5 vitest tests PASS (3 fixtures + edge-type filter + weight clipping). Weight clipping to [0.3, 0.7] verified. Only `enhances` edge_type emitted (hardcoded, tested).
+
+### P1 Remediation Pass (2026-05-15, post deep-review)
+
+Closed all 10 P1 findings from the 10-iteration cli-opencode + deepseek-v4-pro deep-review (`review/review-report.md`):
+
+- **F-03-001** path-boundary check added — `applyEnhanceEdge(candidate, skillsRoot?)` now resolves candidate.sourcePath and rejects writes outside trusted root (`apply-graph-metadata-patch.ts:13-22`). Public entry passes `options.skillsRoot` through.
+- **F-04-001** REQ-002 high-confidence automated test added — new fixture exercises all 3 scorers (family + asset-shape + sibling-transitivity = 0.90 composite) and asserts `confidenceLabel === 'high'`.
+- **F-04-002** REQ-004 auto-marker round-trip test added — re-reads source JSON after apply, asserts `auto_added_at` is ISO-8601 UTC + `auto_added_reason` non-empty + weight/context typed.
+- **F-05-001** spec.md REQ-008 acceptance criteria reconciled to `cli_prompt_quality_card.md` (the real filename).
+- **F-05-002** spec.md REQ-013 reworded to permit `mkdtempSync` synthetic-fixture pattern (the documented practice).
+- **F-06-004** parse errors surfaced — new `loadAllSkillMetadataWithErrors()` returns `{ records, errors }`. `propagateInboundEnhances` seeds `PropagateEnhancesResult.errors[]` with per-file parse failures. Regression test (`F-06-004 regression`) verifies a malformed sibling file appears in `errors[]`.
+- **F-07-001** null context guard — `substituteProviderName(context: string | null | undefined, ...)` now returns null when input is missing; caller (`inferEdgePayload`) treats null as blocker.
+- **F-08-001** Array.isArray guard for `skill_has_files` at both call sites (`detect-inbound-enhances.ts:146`, `context-template.ts:105`). Regression test verifies a malformed `skill_has_files: "SKILL.md"` string does not throw.
+- **F-10-001** `applyable` computed as `weight !== null && context !== null && blockers.length === 0` (`detect-inbound-enhances.ts:239`). Closes the null-weight propagation pattern across 3 paths.
+- **F-10-002** runtime guards in `metadata-loader.ts`: edge arrays validate per-element `typeof target === 'string'` + `typeof weight === 'number'`; `enhance_when` validates object-or-array-of-objects, warns and drops invalid shapes.
+
+Defense-in-depth bonuses captured opportunistically: regex escape on peer-skill-ID substitution (F-03-004 P2), `$` escape in replacement values (F-07-006 P2), dead-code removal of `allEqual`/`medianOf` in `detect-inbound-enhances.ts` (F-01-002 P2), unused `EnhanceWhenRule` import removed (F-06-002 P2), unused `TOOL_NAMES` export removed (F-06-003 P2), `tests/handlers/skill-graph-listing.vitest.ts` updated to expect 5 skill_graph_* tools (closes the listing-test regression that was masked by F-05-004 P2 "Partial").
+
+Post-remediation verification:
+- TypeScript typecheck: exit 0
+- Vitest cross-skill-edges suite: **10 PASS** (5 original + 5 new regression tests)
+- Vitest full suite: 383 pass / 1 fail / 4 skip (1 remaining failure is pre-existing `manual-testing-playbook.vitest.ts` playbook-fixture drift unrelated to this packet; second pre-existing failure `skill-graph-diagnostic-redaction.vitest.ts` imports the old plugin path `spec-kit-skill-advisor.js` renamed to `mk-skill-advisor.js` in commit f3b0384f9 — also out of scope here)
+- Live smoke against HEAD: 0 candidates, 0 errors
+- Strict spec validate: PASSED (0 errors, 0 warnings)
 <!-- /ANCHOR:how-delivered -->
 
 ---

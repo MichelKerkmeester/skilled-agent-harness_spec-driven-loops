@@ -1,0 +1,8 @@
+{
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/037-system-code-graph-comprehensive-deep-review",
+  "title": "System Code Graph Comprehensive Deep Review (20 iterations, cli-devin SWE-1.6)",
+  "description": "Twenty-iteration deep-review campaign of the standalone system-code-graph skill covering documentation alignment with sk-doc, hooks + plugins, tests + verification, runtime correctness, readiness contracts, cross-skill isolation, install + /doctor:mcp coverage. Dispatched via cli-devin executor.",
+  "trigger_phrases": ["037 system-code-graph comprehensive deep-review", "cli-devin SWE-1.6 deep-review", "code-graph release-readiness audit"],
+  "importance_tier": "important",
+  "contextType": "implementation"
+}

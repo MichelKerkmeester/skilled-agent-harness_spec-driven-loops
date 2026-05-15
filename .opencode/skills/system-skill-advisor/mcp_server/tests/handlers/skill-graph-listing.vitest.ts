@@ -11,10 +11,11 @@ const SKILL_GRAPH_TOOLS = [
   'skill_graph_query',
   'skill_graph_status',
   'skill_graph_validate',
+  'skill_graph_propagate_enhances',
 ] as const;
 
 describe('mk_skill_advisor skill_graph_* listing', () => {
-  it('lists advisor tools plus four skill_graph_* tools', () => {
+  it('lists advisor tools plus the registered skill_graph_* tools', () => {
     const toolNames = TOOL_DEFINITIONS.map((tool) => tool.name);
 
     expect(toolNames).toEqual([

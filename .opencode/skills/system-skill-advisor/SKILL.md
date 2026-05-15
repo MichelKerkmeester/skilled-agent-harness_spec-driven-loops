@@ -27,7 +27,7 @@ intent_signals:
   - "run the skill advisor hook"
 ---
 
-<!-- Keywords: system-skill-advisor, skill-advisor, advisor_recommend, advisor_status, advisor_rebuild, advisor_validate, skill_graph_scan, skill_graph_query, skill_graph_status, skill_graph_validate, gate-2-routing, standalone-mcp, legacy-tool-bridge, skill-graph -->
+<!-- Keywords: system-skill-advisor, skill-advisor, advisor_recommend, advisor_status, advisor_rebuild, advisor_validate, skill_graph_scan, skill_graph_query, skill_graph_status, skill_graph_validate, skill_graph_propagate_enhances, cross-skill-edges, gate-2-routing, standalone-mcp, legacy-tool-bridge, skill-graph -->
 
 # System Skill Advisor
 
@@ -46,7 +46,7 @@ Activation signals:
 
 - A request asks which skill should handle a task.
 - A runtime hook needs a skill recommendation before execution.
-- An operator asks about `advisor_recommend`, `advisor_status`, `advisor_rebuild`, `advisor_validate`, `skill_graph_scan`, `skill_graph_query`, `skill_graph_status`, or `skill_graph_validate`.
+- An operator asks about `advisor_recommend`, `advisor_status`, `advisor_rebuild`, `advisor_validate`, `skill_graph_scan`, `skill_graph_query`, `skill_graph_status`, `skill_graph_validate`, or `skill_graph_propagate_enhances`.
 - A packet touches the skill graph, skill metadata, advisor scorer, advisor feature catalog, or manual testing playbook.
 - A migration step references ADR-001: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/022-system-skill-advisor-extraction/001-design-and-decision-record/decision-record.md`.
 
@@ -103,6 +103,7 @@ The package owns a dedicated MCP server named `mk_skill_advisor`. Public tool id
 - `skill_graph_query`
 - `skill_graph_status`
 - `skill_graph_validate`
+- `skill_graph_propagate_enhances`
 
 The stable tool ids matter because live consumers already call them from hooks, Python compatibility shims, plugin bridges, doctor workflows, install guides, and MCP clients. Server-level namespacing supplies the boundary, so callers use the standalone server without learning a new advisor vocabulary.
 
@@ -190,7 +191,7 @@ Current package state:
 Expected consumers:
 
 - Prompt-time hooks for Claude, Codex, Gemini, and OpenCode.
-- MCP clients that call `advisor_recommend`, `advisor_status`, `advisor_rebuild`, `advisor_validate`, `skill_graph_scan`, `skill_graph_query`, `skill_graph_status`, or `skill_graph_validate`.
+- MCP clients that call `advisor_recommend`, `advisor_status`, `advisor_rebuild`, `advisor_validate`, `skill_graph_scan`, `skill_graph_query`, `skill_graph_status`, `skill_graph_validate`, or `skill_graph_propagate_enhances`.
 - Doctor workflows that validate advisor health and rebuild state.
 - Skill graph indexers and routing accuracy checks.
 

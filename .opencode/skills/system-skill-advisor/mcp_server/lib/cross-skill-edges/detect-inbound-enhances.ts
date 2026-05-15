@@ -31,28 +31,6 @@ function targetHasFile(target: SkillMetadataRecord, filePath: string): boolean {
 }
 
 /**
- * Check if all values in an array are equal.
- */
-function allEqual<T>(values: T[]): boolean {
-  if (values.length === 0) return true;
-  const first = values[0];
-  return values.every(v => v === first);
-}
-
-/**
- * Compute median of an array of numbers.
- */
-function medianOf(values: number[]): number {
-  if (values.length === 0) return 0;
-  const sorted = [...values].sort((a, b) => a - b);
-  const mid = Math.floor(sorted.length / 2);
-  if (sorted.length % 2 === 0) {
-    return (sorted[mid - 1] + sorted[mid]) / 2;
-  }
-  return sorted[mid];
-}
-
-/**
  * Check if source already has an enhance edge to target.
  */
 function hasEnhanceEdge(source: SkillMetadataRecord, targetSkillId: string): boolean {

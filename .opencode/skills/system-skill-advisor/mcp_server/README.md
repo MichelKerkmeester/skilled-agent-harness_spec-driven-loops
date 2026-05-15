@@ -23,8 +23,8 @@ The server exposes advisor routing and skill graph tools from the advisor packag
 <!-- ANCHOR:structure -->
 ## 2. STRUCTURE
 
-- `handlers/`: MCP handler implementations for `advisor_recommend`, `advisor_status`, `advisor_rebuild`, `advisor_validate`, `skill_graph_scan`, `skill_graph_query`, `skill_graph_status`, and `skill_graph_validate`.
-- `lib/`: scorer, daemon, freshness, lifecycle, compatibility, corpus, derived-metadata, auth, shadow, and utility modules.
+- `handlers/`: MCP handler implementations for `advisor_recommend`, `advisor_status`, `advisor_rebuild`, `advisor_validate`, `skill_graph_scan`, `skill_graph_query`, `skill_graph_status`, `skill_graph_validate`, and `skill_graph_propagate_enhances`.
+- `lib/`: scorer, daemon, freshness, lifecycle, compatibility, corpus, derived-metadata, auth, shadow, cross-skill-edges (inbound enhance-edge propagation), and utility modules.
 - `tools/`: advisor tool dispatch and package-local registration helpers.
 - `schemas/`: Zod contracts and compatibility schemas for advisor inputs, outputs, and derived metadata.
 - `scripts/`: Python compatibility runtime, graph compiler, routing-accuracy corpus tooling, fixtures, and generated script outputs.
@@ -49,6 +49,7 @@ The server exposes advisor routing and skill graph tools from the advisor packag
 | `skill_graph_query` | Skill graph relationship traversal |
 | `skill_graph_status` | Skill graph status and counts |
 | `skill_graph_validate` | Skill graph integrity checks |
+| `skill_graph_propagate_enhances` | Detect and (opt-in) apply missing inbound enhance edges across skills |
 
 <!-- /ANCHOR:entrypoints -->
 

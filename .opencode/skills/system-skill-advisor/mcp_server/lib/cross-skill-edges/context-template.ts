@@ -5,7 +5,7 @@
 
 import { existsSync } from 'node:fs';
 import { dirname, join } from 'node:path';
-import type { EnhanceWhenRule, SkillMetadataRecord } from './types.js';
+import type { SkillMetadataRecord } from './types.js';
 
 // ───────────────────────────────────────────────────────────────
 // 1. HELPERS
