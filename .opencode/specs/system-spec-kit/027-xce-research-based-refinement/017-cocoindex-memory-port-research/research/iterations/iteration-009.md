@@ -6,7 +6,7 @@ K2.5 asks for the final naming recommendation matrix after combining character s
 
 This is a synthesis iteration, not a new discovery pass. It closes the final open question by combining:
 
-- K2.4 migration ceiling from iteration 1: 166 `mcp__spec_kit_memory__` occurrences under the requested file-type filter.
+- K2.4 migration ceiling from iteration 1: 166 `mcp__mk_spec_memory__` occurrences under the requested file-type filter.
 - K2.1 prefix construction from iteration 7: raw MCP tool names stay separate from host-rendered prefixes.
 - K2.2 runtime constraints from iteration 8: Gemini policy parsing makes underscores in server aliases ambiguous; hyphenated `mk-memory` is clean.
 - K2.3 prefix redundancy from iteration 8: the live surface has 59 raw tool registrations, and keeping raw names unchanged is the lowest-risk first move.
@@ -20,7 +20,7 @@ This is a synthesis iteration, not a new discovery pass. It closes the final ope
 
 ## Part A - Final Naming Recommendation Matrix
 
-| Option | Server | Tools | Net char delta per tool vs current `mcp__spec_kit_memory__memory_context` | Migration callsites affected | Gemini compat | Risk level | Recommended? |
+| Option | Server | Tools | Net char delta per tool vs current `mcp__mk_spec_memory__memory_context` | Migration callsites affected | Gemini compat | Risk level | Recommended? |
 | --- | --- | --- | ---: | ---: | --- | --- | --- |
 | Status quo | `spec_kit_memory` | unchanged | 0 | 0 | AMBIGUOUS | LOW no-op | - |
 | Recommendation A: server-only rename | `mk-memory` | unchanged | -6 | 166 per K2.4 | OK | LOW | **YES** |
@@ -142,13 +142,13 @@ Primary files affected:
 - `opencode.json`
 - `.codex/config.toml`
 - `.gemini/settings.json`
-- Docs, prompts, and tests containing `mcp__spec_kit_memory__`
+- Docs, prompts, and tests containing `mcp__mk_spec_memory__`
 
 Estimated LOC: 150-300 changed lines, mostly mechanical references.
 
 Dependencies: none. Ship separately from tool renames.
 
-Test impact: runtime config loading tests, docs/examples snapshot tests, MCP tool invocation examples, prompt fixtures, and any tests matching the old fully qualified `mcp__spec_kit_memory__*` rendering.
+Test impact: runtime config loading tests, docs/examples snapshot tests, MCP tool invocation examples, prompt fixtures, and any tests matching the old fully qualified `mcp__mk_spec_memory__*` rendering.
 
 ## Part C - Convergence Signal
 

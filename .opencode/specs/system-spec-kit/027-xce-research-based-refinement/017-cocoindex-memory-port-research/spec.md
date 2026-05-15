@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: cocoindex-main → spec_kit_memory port + MCP namespace shortening (research)"
-description: "Investigate which features, principles, patterns, and code from the upstream cocoindex-main library can be ported into our non-code spec_kit_memory MCP subsystems (causal graph, memory database, automatic indexing, query intelligence, embedding pipeline); evaluate shortening the MCP tool namespace from `mcp__spec_kit_memory__*` to a `mk_*`-style scheme."
+description: "Investigate which features, principles, patterns, and code from the upstream cocoindex-main library can be ported into our non-code spec_kit_memory MCP subsystems (causal graph, memory database, automatic indexing, query intelligence, embedding pipeline); evaluate shortening the MCP tool namespace from `mcp__mk_spec_memory__*` to a `mk_*`-style scheme."
 trigger_phrases:
   - "cocoindex memory port research"
   - "cocoindex-main non-code port"
@@ -10,7 +10,7 @@ trigger_phrases:
   - "automatic indexing dependency dag"
   - "mcp tool namespace shortening"
   - "mk_memory prefix"
-  - "mcp__spec_kit_memory__ rename"
+  - "mcp__mk_spec_memory__ rename"
   - "027/013"
 importance_tier: "important"
 contextType: "research"
@@ -96,7 +96,7 @@ This is **Phase 13** of the 027 XCE Research-Based Refinement packet. Prior phas
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-Our `spec_kit_memory` MCP currently runs a **single-pass linear scan with content-hash skip** for automatic indexing (`handlers/memory-index.ts`), maintains causal edges as a **flat relational table with no lifecycle/cleanup model** (`causal_edges` in `vector-index-schema.ts`), and exposes 45 tools under a **22-character prefix** (`mcp__spec_kit_memory__*`). The upstream `cocoindex-main` library — a general-purpose ingestion/transformation framework — solved closely-adjacent problems with **canonical-fingerprint memoization**, **stable-path component tracking**, **state-diff reconciliation**, and **dependency-DAG incremental updates**. We have not systematically evaluated whether those patterns transfer to our non-code memory subsystems. Separately, the long MCP tool-name prefix adds noise to every tool reference across CLAUDE.md, all SKILL.md files, hook scripts, and docs.
+Our `spec_kit_memory` MCP currently runs a **single-pass linear scan with content-hash skip** for automatic indexing (`handlers/memory-index.ts`), maintains causal edges as a **flat relational table with no lifecycle/cleanup model** (`causal_edges` in `vector-index-schema.ts`), and exposes 45 tools under a **22-character prefix** (`mcp__mk_spec_memory__*`). The upstream `cocoindex-main` library — a general-purpose ingestion/transformation framework — solved closely-adjacent problems with **canonical-fingerprint memoization**, **stable-path component tracking**, **state-diff reconciliation**, and **dependency-DAG incremental updates**. We have not systematically evaluated whether those patterns transfer to our non-code memory subsystems. Separately, the long MCP tool-name prefix adds noise to every tool reference across CLAUDE.md, all SKILL.md files, hook scripts, and docs.
 
 ### Purpose
 Produce a research synthesis that (a) identifies concrete, ranked port opportunities from cocoindex-main into the spec_kit_memory MCP's causal graph, memory database, automatic indexing, and embedding pipeline subsystems, with explicit non-port findings for query intelligence; and (b) delivers a go/no-go decision and migration plan for shortening the MCP tool namespace to a `mk_*`-style scheme.

@@ -46,7 +46,7 @@ Parent ADR-001 kept `advisor_*` public ids stable while moving server ownership 
 
 **Summary**: Keep the four public tool ids unchanged: `skill_graph_scan`, `skill_graph_query`, `skill_graph_status`, and `skill_graph_validate`.
 
-**Details**: Primary calls move from `mcp__spec_kit_memory__skill_graph_*` to `mcp__system_skill_advisor__skill_graph_*`. The tool id after the server prefix does not change.
+**Details**: Primary calls move from `mcp__mk_spec_memory__skill_graph_*` to `mcp__system_skill_advisor__skill_graph_*`. The tool id after the server prefix does not change.
 <!-- /ANCHOR:adr-001-decision -->
 
 ### Alternatives Considered
@@ -141,7 +141,7 @@ The current handler files live under `system-spec-kit/mcp_server/handlers/skill-
 
 ### Context
 
-The server-prefix migration is a breaking caller change for any runtime, command, hook, or external script that still calls `mcp__spec_kit_memory__skill_graph_*`. 005 already established the pattern for a short compatibility proxy during advisor extraction.
+The server-prefix migration is a breaking caller change for any runtime, command, hook, or external script that still calls `mcp__mk_spec_memory__skill_graph_*`. 005 already established the pattern for a short compatibility proxy during advisor extraction.
 
 ### Decision
 
@@ -216,7 +216,7 @@ Consumers vary in blast radius. System-code-graph readiness surfaces and hooks c
 
 ### Context
 
-MCP client tool names often include the server prefix, so moving from `mcp__spec_kit_memory__skill_graph_scan` to `mcp__system_skill_advisor__skill_graph_scan` is still caller-visible even though the public tool id remains `skill_graph_scan`.
+MCP client tool names often include the server prefix, so moving from `mcp__mk_spec_memory__skill_graph_scan` to `mcp__system_skill_advisor__skill_graph_scan` is still caller-visible even though the public tool id remains `skill_graph_scan`.
 
 ### Decision
 

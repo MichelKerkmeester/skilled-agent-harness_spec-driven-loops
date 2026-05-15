@@ -1,29 +1,29 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/007-mcp-topology-pivot",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/007-mcp-topology-pivot",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/021-mcp-topology-pivot",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/021-mcp-topology-pivot",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction",
   "children_ids": [],
   "migrated": false,
   "manual": {
     "depends_on": [
-      "system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/001-design-and-decision-record",
-      "system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/002-scaffold-skill",
-      "system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/003-physical-move-and-database",
-      "system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/004-rewire-consumers-and-tool-registration",
-      "system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/005-doc-and-runtime-migration",
-      "system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/006-validation-and-cleanup"
+      "system-spec-kit/026-graph-and-context-optimization/007-code-graph/015-design-and-decision-record",
+      "system-spec-kit/026-graph-and-context-optimization/007-code-graph/016-scaffold-skill",
+      "system-spec-kit/026-graph-and-context-optimization/007-code-graph/017-physical-move-and-database",
+      "system-spec-kit/026-graph-and-context-optimization/007-code-graph/018-rewire-consumers-and-tool-registration",
+      "system-spec-kit/026-graph-and-context-optimization/007-code-graph/019-doc-and-runtime-migration",
+      "system-spec-kit/026-graph-and-context-optimization/007-code-graph/020-validation-and-cleanup"
     ],
     "supersedes": [
       {
-        "packet_id": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/001-design-and-decision-record#ADR-001-Q3",
+        "packet_id": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/015-design-and-decision-record#ADR-001-Q3",
         "reason": "User direction on 2026-05-14 reversed ADR-001 Q3 from co-resident to standalone MCP topology.",
         "source": "ADR-002",
-        "spec_folder": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/001-design-and-decision-record"
+        "spec_folder": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/015-design-and-decision-record"
       }
     ],
     "related_to": [
-      "system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/001-design-and-decision-record"
+      "system-spec-kit/026-graph-and-context-optimization/007-code-graph/015-design-and-decision-record"
     ]
   },
   "derived": {

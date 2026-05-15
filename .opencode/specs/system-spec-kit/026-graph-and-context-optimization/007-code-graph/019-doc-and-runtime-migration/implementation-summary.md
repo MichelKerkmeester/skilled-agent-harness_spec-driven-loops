@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/005-doc-and-runtime-migration"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/019-doc-and-runtime-migration"
     last_updated_at: "2026-05-14T09:13:21Z"
     last_updated_by: "claude"
     recent_action: "Recalibration backfill post-manual-reorg"
@@ -46,7 +46,7 @@ _memory:
 - Updated system-code-graph SKILL.md, README.md, feature catalog, manual testing playbook, and runtime cross-references.
 - Category-22 split: 6 feature_catalog files + 8 playbook files moved to system-code-graph's 8 new categorical subdirs (01-08); shared context/hook docs (24 + 19) remain in system-spec-kit/22--*.
 - Updated agent, command, top-level, and skill cross-references to point at system-code-graph ownership.
-- 007 extends this by updating MCP namespace grants from mcp__spec_kit_memory__* to mcp__system_code_graph__*.
+- 007 extends this by updating MCP namespace grants from mcp__mk_spec_memory__* to mcp__system_code_graph__*.
 <!-- /ANCHOR:what-built -->
 
 ---

@@ -1,6 +1,6 @@
 ---
 title: "...ion/003-code-graph-package/003-code-graph-context-and-scan-scope/research/007-deep-review-remediation-pt-04/research]"
-description: "Root-cause investigation of why mcp__spec_kit_memory__code_graph_scan returned 33 files / 809 nodes / 376 edges after packet 012, when the predicted post-exclude count was 1000-3000."
+description: "Root-cause investigation of why mcp__mk_spec_memory__code_graph_scan returned 33 files / 809 nodes / 376 edges after packet 012, when the predicted post-exclude count was 1000-3000."
 trigger_phrases:
   - "code graph scan 33 files"
   - "incremental false stale gate"
@@ -26,7 +26,7 @@ stop_reason: maxIterationsReached
 
 ## 1. Executive Summary
 
-**Problem:** After packet 012 was deployed, `mcp__spec_kit_memory__code_graph_scan({rootDir, incremental:false})` returned only 33 files / 809 nodes / 376 edges instead of the expected active-code scale of roughly 1,000–3,000 files (handover prediction).
+**Problem:** After packet 012 was deployed, `mcp__mk_spec_memory__code_graph_scan({rootDir, incremental:false})` returned only 33 files / 809 nodes / 376 edges instead of the expected active-code scale of roughly 1,000–3,000 files (handover prediction).
 
 **Root cause:** The first P0 bug is a split full-scan contract — the scan handler correctly derives `effectiveIncremental=false`, but `indexFiles()` still unconditionally applies `isFileStale()` and returns only stale files. The destructive non-incremental cleanup at `handlers/scan.ts:193-201` then treats that stale-only result as the desired complete graph and DELETEs every tracked file not in it, pruning the DB to 33. The second P0 bug is duplicate parser-generated `symbolId` values inside three indexer-self files, which trigger the `code_nodes.symbol_id` UNIQUE constraint during persistence.
 
@@ -283,7 +283,7 @@ Iteration 3 verdict: Option A's dedup is the right minimal-crash-guard; richer p
 ```
 1. Restart OpenCode (loads the rebuilt MCP server).
 2. From a fresh Claude/OpenCode session:
-     mcp__spec_kit_memory__code_graph_scan({
+     mcp__mk_spec_memory__code_graph_scan({
        rootDir: "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public",
        incremental: false
      })
@@ -294,7 +294,7 @@ Iteration 3 verdict: Option A's dedup is the right minimal-crash-guard; richer p
      fullScanRequested: true (NEW)
      effectiveIncremental: false (NEW)
      fullReindexTriggered: false (unchanged — git head didn't change)
-4. mcp__spec_kit_memory__code_graph_status to confirm totalFiles >= 1000.
+4. mcp__mk_spec_memory__code_graph_status to confirm totalFiles >= 1000.
 5. Re-run step 2 → assert same count (idempotent).
 6. Optional: VACUUM the SQLite DB at mcp_server/database/code-graph.sqlite to reclaim disk.
 ```

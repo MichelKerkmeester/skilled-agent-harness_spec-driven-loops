@@ -24,7 +24,7 @@ _memory:
       - ".gemini/settings.json"
     session_dedup:
       fingerprint: "sha256:eb972bf242e1e8011675a557c41fdf62d3c4cc379231dc666d41d4c0c0607e77"
-      session_id: "026-017-mk-spec-memory-rename-shipped"
+      session_id: "026-052-mk-spec-memory-rename-shipped"
       parent_session_id: null
     completion_pct: 100
     open_questions: []

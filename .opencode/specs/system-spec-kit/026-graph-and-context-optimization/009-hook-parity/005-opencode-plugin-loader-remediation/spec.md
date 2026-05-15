@@ -185,7 +185,7 @@ Restore OpenCode TUI startup by hardening the named parser export against legacy
 | REQ-006 | Regression guard prevents future drift                                                            | New vitest or shell test fails when a file lands in `.opencode/plugins/` without a default export                |
 | REQ-007 | a new README inside `.opencode/plugins/` documents the convention                                            | README explains "plugin entrypoints only" rule, lists current entrypoints, and points to the helper-module location |
 | REQ-008 | Parent docs updated with phase outcome                                                        | Parent docs have an entry referencing this phase with status + key decisions                                |
-| REQ-009 | No regression in `opencode.json` MCP-server bootstrap                                             | After fix: `mcp__spec_kit_memory__*` tools, `mcp__cocoindex_code__*` tools, and `mcp__code_mode__*` tools remain reachable from the TUI |
+| REQ-009 | No regression in `opencode.json` MCP-server bootstrap                                             | After fix: `mcp__mk_spec_memory__*` tools, `mcp__cocoindex_code__*` tools, and `mcp__code_mode__*` tools remain reachable from the TUI |
 
 ### P2 — Recommended
 

@@ -1,6 +1,6 @@
 ---
 title: "system-code-graph Architecture"
-description: "Architecture reference for the standalone system-code-graph skill: MCP server boundary, 10-tool surface, AST + SQLite + sqlite-vec storage, readiness state machine, integration points with spec-kit-memory and CocoIndex."
+description: "Architecture reference for the standalone system-code-graph skill: MCP server boundary, 10-tool surface, AST + SQLite + sqlite-vec storage, readiness state machine, integration points with mk-spec-memory and CocoIndex."
 trigger_phrases:
   - "system-code-graph architecture"
   - "mk-code-index architecture"
@@ -35,7 +35,7 @@ contextType: "architecture"
 <!-- ANCHOR:overview -->
 ## 2. OVERVIEW
 
-`system-code-graph` is the standalone structural-code-intelligence skill. It scans source files into a SQLite graph, answers structural relationship queries, prepares compact LLM context, and exposes recovery-safe MCP tools through the `mk-code-index` MCP server. It does NOT do semantic search (that's CocoIndex's job) or persistent continuity (that's spec-kit-memory).
+`system-code-graph` is the standalone structural-code-intelligence skill. It scans source files into a SQLite graph, answers structural relationship queries, prepares compact LLM context, and exposes recovery-safe MCP tools through the `mk-code-index` MCP server. It does NOT do semantic search (that's CocoIndex's job) or persistent continuity (that's mk-spec-memory).
 
 The skill was extracted from system-spec-kit's `mcp_server/lib/code-graph/` subtree in packet 014. It owns its own MCP server, its own SQLite databases, its own readiness state machine, and its own dist build pipeline.
 <!-- /ANCHOR:overview -->
@@ -68,7 +68,7 @@ Tree-sitter via `web-tree-sitter` + `tree-sitter-wasms` (multi-language WASM gra
 ### Storage layer (`mcp_server/lib/code-graph-db.ts` + `lib/code-graph-context-db.ts`)
 - Primary: **SQLite** via `better-sqlite3`. Tables: `code_files`, `code_nodes`, `code_edges`, `meta`, `verification_baselines`, `parser_skip_list`.
 - Optional: **sqlite-vec** virtual table for vector-based similarity (when CocoIndex seeds inject embeddings). Loaded via extension; gracefully degrades to no-vec if extension load fails.
-- Database file: `mcp_server/database/code-graph.sqlite` by default; `SPECKIT_CODE_GRAPH_DB_DIR` env var overrides (must stay inside workspace per standalone-storage guard in `spec-kit-memory-launcher.cjs`).
+- Database file: `mcp_server/database/code-graph.sqlite` by default; `SPECKIT_CODE_GRAPH_DB_DIR` env var overrides (must stay inside workspace per standalone-storage guard in `mk-spec-memory-launcher.cjs`).
 
 ### Readiness state machine (`mcp_server/lib/ensure-ready.ts`)
 Every read-path tool consults a unified readiness contract before answering:
@@ -100,11 +100,11 @@ Gated recovery operations protected by gold-query battery (run before AND after 
 - CocoIndex bridge tools (`ccc_status`, `ccc_reindex`, `ccc_feedback`) — note these are bridges, not CocoIndex itself
 
 ### What this skill does NOT own
-- **Persistent memory / continuity** — owned by `spec-kit-memory` MCP (`mcp__spec_kit_memory__*`)
+- **Persistent memory / continuity** — owned by `mk-spec-memory` MCP (`mcp__mk_spec_memory__*`)
 - **Semantic code search** — owned by CocoIndex (`mcp__cocoindex_code__*`); we only bridge it for cross-tool seeding
 - **Skill routing / advisor** — owned by `system-skill-advisor` MCP
 - **Spec folder lifecycle** — owned by `system-spec-kit`
-- **Deep-loop coverage graph tools** — `deep_loop_graph_*` lives in `spec-kit-memory` (not in `mk-code-index`); see feature_catalog footnote
+- **Deep-loop coverage graph tools** — `deep_loop_graph_*` lives in `mk-spec-memory` (not in `mk-code-index`); see feature_catalog footnote
 <!-- /ANCHOR:boundaries -->
 
 ---

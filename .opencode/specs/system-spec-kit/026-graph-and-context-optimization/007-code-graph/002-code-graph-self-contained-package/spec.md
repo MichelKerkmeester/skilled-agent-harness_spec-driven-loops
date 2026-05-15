@@ -122,7 +122,7 @@ Migrate code-graph into a parallel self-contained package at `mcp_server/code-gr
 5. **AC-5** `npm run typecheck` exit 0
 6. **AC-6** `npm run build` exit 0
 7. **AC-7** `git log --follow mcp_server/code-graph/lib/code-graph-db.ts` shows the full history from the old `lib/code-graph/` location (git mv preserved)
-8. **AC-8** MCP tool smoke test: `mcp__spec_kit_memory__code_graph_status` returns valid response (no dispatcher regression)
+8. **AC-8** MCP tool smoke test: `mcp__mk_spec_memory__code_graph_status` returns valid response (no dispatcher regression)
 
 ## 6. FILES TO CHANGE
 

@@ -69,7 +69,7 @@ Use `memory.md` as the structural template. Adjust:
 
 - Frontmatter `description`: "Diagnose and rebuild causal-edges integrity (add-only auto-link). :auto/:confirm read-only stats; :apply/:apply-confirm auto-link with confidence ≥ 0.7."
 - `argument-hint`: `[:auto|:confirm|:apply|:apply-confirm] [--confidence-threshold=0.7] [--no-snapshot] [--dry-run]`
-- `allowed-tools`: `Read, Bash, Grep, Glob, mcp__spec_kit_memory__memory_causal_stats, mcp__spec_kit_memory__memory_causal_link, mcp__spec_kit_memory__memory_drift_why, mcp__spec_kit_memory__memory_search`
+- `allowed-tools`: `Read, Bash, Grep, Glob, mcp__mk_spec_memory__memory_causal_stats, mcp__mk_spec_memory__memory_causal_link, mcp__mk_spec_memory__memory_drift_why, mcp__mk_spec_memory__memory_search`
 - `## 1. PURPOSE`: explain causal_edges drift causes (new spec docs without explicit links, ad-hoc memory_save without link suggestions, evolving decision lineage).
 - `## SUBSYSTEM CONTRACT`: per the table above.
 - `## STALENESS SIGNALS`: low coverage (<60%), orphan records (no incoming edges), divergent edge weights, stale edge `last_observed_at` timestamps.

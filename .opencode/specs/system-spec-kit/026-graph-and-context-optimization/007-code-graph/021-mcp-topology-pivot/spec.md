@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "specification"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/007-mcp-topology-pivot"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/021-mcp-topology-pivot"
     last_updated_at: "2026-05-14T09:24:15Z"
     last_updated_by: "claude"
     recent_action: "Validated ADR-002 standalone MCP topology pivot"
@@ -70,7 +70,7 @@ Ship ADR-002 and the runtime changes needed for standalone `system_code_graph` M
 - Standalone MCP infrastructure: launcher, server entrypoint, and `opencode.json` entry.
 - Tool-schema migration out of `spec_kit_memory` and into system-code-graph.
 - File ownership moves for code-graph stress tests, code-graph plugin bridge, and pure internal external tests.
-- Agent and command tool grant namespace updates from `mcp__spec_kit_memory__*` to `mcp__system_code_graph__*` for code-graph tools only.
+- Agent and command tool grant namespace updates from `mcp__mk_spec_memory__*` to `mcp__system_code_graph__*` for code-graph tools only.
 - Environment default relocation for code-graph indexing flags.
 - Path-consistency cleanup for flattened layout and doctor/update.md mutation boundaries.
 - Stale stub DB cleanup when no process holds the old path.

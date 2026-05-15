@@ -74,7 +74,7 @@ Targeted live-surface grep across the consumer families named by this packet fou
 
 | Surface | Files | Matches | Notes |
 |---------|-------|---------|-------|
-| Doctor command routing | 3 | 12 | `doctor.md`, `doctor/update.md`, `_routes.yaml` still expose `mcp__spec_kit_memory__skill_graph_*`. |
+| Doctor command routing | 3 | 12 | `doctor.md`, `doctor/update.md`, `_routes.yaml` still expose `mcp__mk_spec_memory__skill_graph_*`. |
 | Doctor YAML assets | 2 | 4 | `doctor_skill-advisor.yaml` and `doctor_update.yaml` call `skill_graph_status` or `skill_graph_scan`. |
 | Install guide | 1 | 13 | `SET-UP - Skill Advisor.md` still describes `skill_graph_*` availability and DB/source assumptions. |
 
@@ -95,7 +95,7 @@ Move primary `skill_graph_*` ownership to `system_skill_advisor`, cut known cons
 - Register `skill_graph_scan`, `skill_graph_query`, `skill_graph_status`, and `skill_graph_validate` descriptors and schemas on the `system_skill_advisor` MCP server.
 - Implement advisor-local handlers under `.opencode/skills/system-skill-advisor/mcp_server/handlers/skill-graph-*.ts` or an equivalent advisor-local `handlers/skill-graph/` layout.
 - Move or import logic from the existing system-spec-kit handler stack without duplicating long-lived behavior.
-- Retarget live callers from `mcp__spec_kit_memory__skill_graph_*` to `mcp__system_skill_advisor__skill_graph_*`.
+- Retarget live callers from `mcp__mk_spec_memory__skill_graph_*` to `mcp__system_skill_advisor__skill_graph_*`.
 - Include consumer sweep coverage for system-code-graph readiness reports, hook wrappers, plugin bridges, doctor YAMLs, install guides, feature catalogs, playbooks, and architecture docs.
 - Add a short one-window proxy in `spec_kit_memory` that forwards calls to `system_skill_advisor`, logs deprecation once, and uses a bounded timeout.
 - Remove `skill_graph_*` descriptors, schemas, and proxy registrations from `spec_kit_memory` after zero-caller grep and operator confirmation.
@@ -140,7 +140,7 @@ Move primary `skill_graph_*` ownership to `system_skill_advisor`, cut known cons
 |----|-------------|---------------------|
 | REQ-001 | All 4 `skill_graph_*` tool descriptors registered on `system_skill_advisor` MCP server. | `advisor-server.ts` and advisor schemas expose scan, query, status, and validate with unchanged public names. |
 | REQ-002 | All 4 `skill_graph_*` handlers implemented under `system-skill-advisor/mcp_server/handlers/`. | Handler source lives in advisor package and uses moved/imported logic without long-lived duplication. |
-| REQ-003 | All known consumers retargeted from `mcp__spec_kit_memory__skill_graph_*` to `mcp__system_skill_advisor__skill_graph_*`. | Consumer inventory in `plan.md` is checked off and final grep shows no live old-server callers outside proxy/historical specs. |
+| REQ-003 | All known consumers retargeted from `mcp__mk_spec_memory__skill_graph_*` to `mcp__system_skill_advisor__skill_graph_*`. | Consumer inventory in `plan.md` is checked off and final grep shows no live old-server callers outside proxy/historical specs. |
 | REQ-004 | `spec_kit_memory` exposes a one-window proxy for `skill_graph_*`. | Proxy forwards to `system_skill_advisor`, logs one bounded deprecation notice, and times out after 10 seconds. |
 | REQ-005 | `spec_kit_memory` proxy and descriptors physically removed after cutover. | `tools/index.ts`, `tool-schemas.ts`, and schema/dispatch files no longer register `skill_graph_*` after zero-caller evidence. |
 
@@ -150,7 +150,7 @@ Move primary `skill_graph_*` ownership to `system_skill_advisor`, cut known cons
 |----|-------------|---------------------|
 | REQ-006 | Four-runtime smoke matrix confirms new calls are callable. | OpenCode, Codex, Claude, and Gemini each can call `mcp__system_skill_advisor__skill_graph_*` or list the tools under that server. |
 | REQ-007 | Strict validation is green at packet 008, parent 013/009, and grandparent 013. | `validate.sh --strict` exits 0 for all required levels after implementation docs are updated. |
-| REQ-008 | No live-code grep hits remain for `mcp__spec_kit_memory__skill_graph_`. | Historical spec docs are allowed; live code, commands, hooks, plugins, and guides are clean. |
+| REQ-008 | No live-code grep hits remain for `mcp__mk_spec_memory__skill_graph_`. | Historical spec docs are allowed; live code, commands, hooks, plugins, and guides are clean. |
 | REQ-009 | Install guides, `ARCHITECTURE.md`, and feature catalogs reflect new ownership. | User-facing docs say skill graph tools are owned by `system_skill_advisor`; stale memory-server instructions are removed or marked historical. |
 <!-- /ANCHOR:requirements -->
 
@@ -278,7 +278,7 @@ Move primary `skill_graph_*` ownership to `system_skill_advisor`, cut known cons
 **As a** future agent, **I want** guides and catalogs to name `system_skill_advisor` as the owner, **so that** new work does not reintroduce memory-server coupling.
 
 **Acceptance Criteria**:
-1. Given live docs are searched, When `mcp__spec_kit_memory__skill_graph_` is grepped, Then no live instruction remains.
+1. Given live docs are searched, When `mcp__mk_spec_memory__skill_graph_` is grepped, Then no live instruction remains.
 2. Given historical ADRs mention old ownership, Then they are clearly historical or left in spec packets only.
 <!-- /ANCHOR:user-stories -->
 

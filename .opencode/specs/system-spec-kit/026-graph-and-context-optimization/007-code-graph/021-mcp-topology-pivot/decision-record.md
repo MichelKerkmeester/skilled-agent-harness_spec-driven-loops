@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "decision"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/007-mcp-topology-pivot"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/021-mcp-topology-pivot"
     last_updated_at: "2026-05-14T09:24:15Z"
     last_updated_by: "claude"
     recent_action: "Validated ADR-002 standalone MCP topology pivot"
@@ -60,7 +60,7 @@ ADR-001 Q1, Q2, Q4, Q5, Q6, Q7, and Q8 remain valid unless this ADR explicitly t
 
 ADR-001 Q2 DB shape is preserved: `code-graph.sqlite` lives in `system-code-graph/mcp_server/database/` by default, with `SPECKIT_CODE_GRAPH_DB_DIR` override. ADR-001 Q5 cross-subsystem direct imports are still preserved: system-spec-kit handlers/hooks continue reading via direct in-process imports and the shared SQLite file. The scan loop remains the single writer.
 
-Runtime namespace changes from `mcp__spec_kit_memory__code_graph_*`, `mcp__spec_kit_memory__ccc_*`, and `mcp__spec_kit_memory__detect_changes` to `mcp__system_code_graph__code_graph_*`, `mcp__system_code_graph__ccc_*`, and `mcp__system_code_graph__detect_changes`.
+Runtime namespace changes from `mcp__mk_spec_memory__code_graph_*`, `mcp__mk_spec_memory__ccc_*`, and `mcp__mk_spec_memory__detect_changes` to `mcp__system_code_graph__code_graph_*`, `mcp__system_code_graph__ccc_*`, and `mcp__system_code_graph__detect_changes`.
 <!-- /ANCHOR:adr-002-decision -->
 
 ---

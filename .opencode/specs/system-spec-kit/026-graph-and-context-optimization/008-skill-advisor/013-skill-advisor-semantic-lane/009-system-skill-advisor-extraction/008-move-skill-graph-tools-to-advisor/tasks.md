@@ -57,7 +57,7 @@ _memory:
 
 - [x] T001 Read parent handover, 001 ADR, 004/005/006 specs, 005/006 ADRs, 007 spec/summary, and this packet's docs. [30m]
   - Evidence: Required packet docs, 005 proxy summary, 003 handler move summary, existing handlers, schemas, and advisor server conventions were read before edits.
-- [x] T002 Run full live grep for `skill_graph_(scan|query|status|validate)` and `mcp__spec_kit_memory__skill_graph_`; record file and match counts. [20m]
+- [x] T002 Run full live grep for `skill_graph_(scan|query|status|validate)` and `mcp__mk_spec_memory__skill_graph_`; record file and match counts. [20m]
   - Evidence: Live old-prefix grep returned 10 matches across 4 non-spec files; D2 consumer surfaces were not edited.
 - [x] T003 Inventory current `spec_kit_memory` registration files: `tool-schemas.ts`, `schemas/tool-input-schemas.ts`, `tools/index.ts`, `tools/skill-graph-tools.ts`, and handler tests. [30m]
   - Evidence: `tool-schemas.ts` kept four bridge descriptors; `tools/index.ts` still exports `skillGraphTools`; `tools/skill-graph-tools.ts` replaced with proxy.
@@ -101,7 +101,7 @@ _memory:
 ### Cluster C - Consumer Cutover
 
 - [x] T016 Retarget system-code-graph readiness/report callers to `mcp__system_skill_advisor__skill_graph_*`. [45m] {deps: T014}
-  - Evidence: NO-OP. `rg -n 'mcp__spec_kit_memory__skill_graph_' .opencode/skills/system-code-graph .opencode/plugins` returned 0 live hits.
+  - Evidence: NO-OP. `rg -n 'mcp__mk_spec_memory__skill_graph_' .opencode/skills/system-code-graph .opencode/plugins` returned 0 live hits.
 - [x] T017 Retarget hook wrappers across OpenCode, Codex, Claude, and Gemini surfaces. [45m] {deps: T014}
   - Evidence: NO-OP. Hook/runtime grep across `.opencode/skills/system-spec-kit/mcp_server/hooks`, `.opencode/skills/system-spec-kit/references/hooks`, `.claude`, `.codex`, and `.gemini` returned 0 old-prefix hits.
 - [x] T018 Retarget plugin bridges and plugin docs. [45m] {deps: T014}
@@ -140,7 +140,7 @@ _memory:
   - Evidence: OpenCode and Codex list `system_skill_advisor`; Claude list omitted `system_skill_advisor` from visible rows; Gemini debug list showed `system_skill_advisor` connected and `spec_kit_memory` disconnected.
 - [x] T030 Run doctor/update smoke that exercises advisor-owned skill graph probes. [45m] {deps: T019}
   - Evidence: INCONCLUSIVE; slash-command execution requires an interactive runtime. Static command/YAML greps confirm advisor-owned probe text and allowed-tools.
-- [x] T031 Run final grep proving zero live `mcp__spec_kit_memory__skill_graph_` callers outside historical specs. [20m] {deps: T023, T024, T025}
+- [x] T031 Run final grep proving zero live `mcp__mk_spec_memory__skill_graph_` callers outside historical specs. [20m] {deps: T023, T024, T025}
   - Evidence: Final old-prefix grep returned one Tier 3 historical sk-code playbook hit only.
 - [x] T032 Run strict validation for packet 008. [15m] {deps: T031}
   - Evidence: `validate.sh .../008-move-skill-graph-tools-to-advisor --strict` exited 0 with 0 errors and 0 warnings.

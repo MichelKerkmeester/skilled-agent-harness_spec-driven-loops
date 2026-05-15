@@ -8,7 +8,7 @@ Questions: 5/5 answered (root cause confirmed; design questions remain) | Last f
 Last 2 ratios: N/A -> 0.88 | Stuck count: 0
 Next focus: Design minimal-diff fix for the indexer's stale-gate bug AND the parser duplicate-symbol bug; produce concrete patch-level recommendations with line-level citations and a test plan.
 
-Research Topic: Why mcp__spec_kit_memory__code_graph_scan returned 33 files / 809 nodes / 376 edges after packet 012, when expected was 1000-3000.
+Research Topic: Why mcp__mk_spec_memory__code_graph_scan returned 33 files / 809 nodes / 376 edges after packet 012, when expected was 1000-3000.
 
 Iteration 1 root-cause findings (CONFIRMED, do not re-investigate):
 - **F1 (PRIMARY)**: `indexFiles()` in `structural-indexer.ts` unconditionally calls `isFileStale()` (lines 1227, 1246, 1249) — the `incremental` flag is computed correctly in the handler but is NEVER PASSED into `indexFiles(config)` at `handlers/scan.ts:183`. So even when caller passes `incremental:false`, `indexFiles()` skips fresh files. The handler's full-scan cleanup at `handlers/scan.ts:193,196,197,199` then treats the stale-only result as the complete desired graph and DELETEs every tracked path not in that reduced set → DB pruned to 33 files.

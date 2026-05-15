@@ -30,7 +30,7 @@ This iteration bundles two complementary questions:
 
 ### Part B — K2.1: Prefix construction mechanism across 4 runtimes
 
-**Question**: Where does the `mcp__` prefix originate in tool names like `mcp__spec_kit_memory__memory_context`? Is it added by Claude Code runtime only, by each MCP host, or is it a cross-runtime MCP standard? How does the server-name segment (`spec_kit_memory`) get registered in each runtime?
+**Question**: Where does the `mcp__` prefix originate in tool names like `mcp__mk_spec_memory__memory_context`? Is it added by Claude Code runtime only, by each MCP host, or is it a cross-runtime MCP standard? How does the server-name segment (`spec_kit_memory`) get registered in each runtime?
 
 **Investigation targets:**
 1. Read `opencode.json` (project root) — how is `spec_kit_memory` registered there?

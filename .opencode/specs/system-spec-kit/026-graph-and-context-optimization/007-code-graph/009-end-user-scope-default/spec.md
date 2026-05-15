@@ -49,7 +49,7 @@ _memory:
 
 ## EXECUTIVE SUMMARY
 
-The code graph (`mcp__spec_kit_memory__code_graph_scan`) currently indexes ALL workspace code, including 1,619 files / 34,844 nodes / 17,846 edges that include hundreds of spec-kit internal files end users never query. End users querying their application code get results polluted with spec-kit internals. This packet investigates and decides: make end-user-repo-only the **default**, gate skill indexing behind a new opt-in feature flag. Deep-research will produce the implementation plan.
+The code graph (`mcp__mk_spec_memory__code_graph_scan`) currently indexes ALL workspace code, including 1,619 files / 34,844 nodes / 17,846 edges that include hundreds of spec-kit internal files end users never query. End users querying their application code get results polluted with spec-kit internals. This packet investigates and decides: make end-user-repo-only the **default**, gate skill indexing behind a new opt-in feature flag. Deep-research will produce the implementation plan.
 
 ---
 

@@ -206,7 +206,7 @@ _memory:
 <!-- ANCHOR:deploy-ready -->
 ## L3: Deployment Readiness
 
-- [x] CHK-120 [P0] Final grep shows zero live `mcp__spec_kit_memory__skill_graph_` callers.
+- [x] CHK-120 [P0] Final grep shows zero live `mcp__mk_spec_memory__skill_graph_` callers.
   - **Evidence**: Final old-prefix grep returned only `.opencode/skills/sk-code/manual_testing_playbook/.../001-advisor-probe-battery.md`, classified historical Tier 3.
 - [x] CHK-121 [P0] Strict validation passes for packet 008.
   - **Evidence**: `validate.sh .../008-move-skill-graph-tools-to-advisor --strict` exited 0 with 0 errors and 0 warnings.

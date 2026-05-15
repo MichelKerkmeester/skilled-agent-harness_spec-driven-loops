@@ -137,7 +137,7 @@ Verdict legend: **RESOLVED** (fix landed + verifiable), **STILL_ACTIVE** (claim 
 ```json
 {
   "type": "P1",
-  "claim": "All 4 `if_cli_opencode` YAML branches dispatch `opencode run` without `--pure`, which causes DeepSeek-family provider errors when the default opencode plugin loadout injects MCP tool functions whose names contain `:` (e.g. `mcp__spec_kit_memory__advisor_recommend` and `tools[23]` of similar shape). DeepSeek's API rejects these names with regex pattern `^[a-zA-Z0-9_-]+$` violation, hard-failing the dispatch before iteration work even begins. The cli-opencode dispatch path as shipped at commit e125ea341 is therefore broken end-to-end when paired with the very executor model 102 was authorized to use (`opencode-go/deepseek-v4-pro`).",
+  "claim": "All 4 `if_cli_opencode` YAML branches dispatch `opencode run` without `--pure`, which causes DeepSeek-family provider errors when the default opencode plugin loadout injects MCP tool functions whose names contain `:` (e.g. `mcp__mk_spec_memory__advisor_recommend` and `tools[23]` of similar shape). DeepSeek's API rejects these names with regex pattern `^[a-zA-Z0-9_-]+$` violation, hard-failing the dispatch before iteration work even begins. The cli-opencode dispatch path as shipped at commit e125ea341 is therefore broken end-to-end when paired with the very executor model 102 was authorized to use (`opencode-go/deepseek-v4-pro`).",
   "evidenceRefs": [
     "spec_kit_deep-research_auto.yaml:719-731 — opencode run command lacks --pure",
     "spec_kit_deep-research_confirm.yaml:651-663 — same",

@@ -71,7 +71,7 @@ The review covered all 105 files in the rename commit (`f91da9f1a`), the packet'
 ## 5. Recommendations
 
 ### Immediate (P1)
-- Create the REQ-005 changelog entry at `changelog-026-017-mk-spec-memory-rename.md`
+- Create the REQ-005 changelog entry at `changelog-026-014-052-mk-spec-memory-rename.md`
 
 ### If Time Permits (P2)
 - Fix spec.md line 122 (CLAUDE.md claim)

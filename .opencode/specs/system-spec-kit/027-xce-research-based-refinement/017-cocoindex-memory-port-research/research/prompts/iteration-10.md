@@ -106,7 +106,7 @@ Verdict: NON-PORT CONFIRMED
 - Dropping tool-level `memory_` prefix = deferred follow-on (Option B).
 
 ### 5.4 K2.4 — Migration cost (callsite count)
-- 166 raw `mcp__spec_kit_memory__` callsites across MD/TS/JSON/SH (includes packet-local prompts/spec).
+- 166 raw `mcp__mk_spec_memory__` callsites across MD/TS/JSON/SH (includes packet-local prompts/spec).
 
 ### 5.5 K2.5 — Final naming recommendation
 - **Option A (recommended): server-only rename `spec_kit_memory` → `mk-memory`** with hyphen (NOT underscore), all 59 raw tool names unchanged.
@@ -146,7 +146,7 @@ Bundle axes that compose well together:
 
 ### Packet proposal 032 — MCP namespace rename (`spec_kit_memory` → `mk-memory`)
 - Scope: K2.x (all).
-- Primary files: `opencode.json`, `.claude/mcp.json`, `.codex/config.toml`, `.gemini/settings.json`, all docs/code with `mcp__spec_kit_memory__` (166 sites).
+- Primary files: `opencode.json`, `.claude/mcp.json`, `.codex/config.toml`, `.gemini/settings.json`, all docs/code with `mcp__mk_spec_memory__` (166 sites).
 - Estimated LOC: ~10 config lines + ~166 search-and-replace text changes.
 - Dependencies: none (independent of Track 1).
 - ROI × Effort: HIGH × LOW. Should ship FIRST since it's a high-visibility, low-risk win.

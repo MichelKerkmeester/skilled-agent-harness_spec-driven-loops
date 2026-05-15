@@ -1,5 +1,5 @@
 ---
-title: "Phase Parent: Extract code-graph into dedicated `system-code-graph` skill folder"
+title: "Initial Phase: code-graph extraction strategy"
 description: "Migrate the code-graph subsystem out of system-spec-kit's MCP server into a dedicated `.opencode/skills/system-code-graph/` package with its own SKILL.md, references, manual_testing_playbook, feature_catalog, and a clean MCP server integration story."
 trigger_phrases:
   - "system code graph extraction"
@@ -30,23 +30,26 @@ _memory:
       - "ADR-001 locks: co-resident MCP, stable tool-ids, moved DB with env fallback, sibling-skill imports, moved plugin bridge, 6-phase sequence (002-006), 6-risk catalog."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 phase-parent -->
-<!-- SPECKIT_LEVEL: phase -->
-<!-- CONTENT DISCIPLINE: PHASE PARENT
-  FORBIDDEN content (do NOT author at phase-parent level):
-    - merge/migration/consolidation narratives (consolidate*, merged from, renamed from, collapsed, X→Y, reorganization history)
-    - migrated from, ported from, originally in
-    - heavy docs: plan.md, tasks.md, checklist.md, decision-record.md, implementation-summary.md — these belong in child phase folders only
-  REQUIRED content (MUST author at phase-parent level):
-    - Root purpose: what problem does this entire phased decomposition solve?
-    - Sub-phase manifest: which child phase folders exist and what each one does
-    - What needs done: the high-level outcome the phases work toward
--->
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- RESTRUCTURED 2026-05-15: children promoted to 015-034, slot converted to initial leaf phase -->
 
-# Phase Parent: Extract code-graph into dedicated `system-code-graph` skill folder
+# Initial Phase: code-graph extraction strategy
 
 ---
 
-## Root Purpose
+## 1. METADATA
+
+| Field | Value |
+|---|---|
+| **Level** | 2 |
+| **Priority** | P0 |
+| **Status** | Shipped |
+| **Created** | 2026-05-14 |
+| **Restructured** | 2026-05-15 (children promoted to 015-034) |
+
+---
+
+## 2. PROBLEM & PURPOSE
 
 Code-graph today lives at `.opencode/skills/system-spec-kit/mcp_server/code_graph/`. It is a sizeable subsystem — 108 files (29 lib TS modules, 10 MCP handlers, 2 tool registrations, 28 vitest files plus a gold-queries asset, 16 in-package feature_catalog + manual_testing_playbook docs, 23 READMEs), 12 MCP tools (`code_graph_scan`, `code_graph_query`, `code_graph_context`, `code_graph_status`, `code_graph_verify`, `code_graph_apply`, `detect_changes`, `ccc_status`, `ccc_reindex`, `ccc_feedback`, plus 2 more dispatched through `tool-schemas.ts`), backed by `mcp_server/database/code-graph.sqlite` (55 MB live index with 7 exclusive tables: code_files / code_nodes / code_edges / code_graph_metadata / parse_diagnostics / parser_skip_list / schema_version), buried 5 levels deep inside `system-spec-kit`. It is consumed by 5 cross-subsystem handlers (memory-search, session-resume, session-bootstrap, session-health, memory-context), 6 startup-injection hooks across 4 runtimes, 7 agent files, 5 commands, a plugin bridge plus 2 `.mjs` siblings, a constitutional rule, and 4 top-level project docs.
 
@@ -61,34 +64,36 @@ This phase migrates code-graph into `.opencode/skills/system-code-graph/` with i
 
 The 007 line — through `001-code-graph-upgrades`, `003-code-graph-context-and-scan-scope`, `008-code-graph-backend-resilience`, `011-broader-scope-excludes-and-granular-skills`, and `013-doctor-apply-mode-phase-b` — proved code-graph is empirically stable and well-instrumented; this is a structural cleanup, not a functional change.
 
-## Sub-Phase Control File
+## 8. FOLLOW-ON PHASES
 
-This is the phase parent. The lean trio (`spec.md`, `description.json`, `graph-metadata.json`) lives at this level. Heavy authoring lives in the children.
+All 20 children were promoted to direct `007-code-graph/` siblings on 2026-05-15 (015-034). Each has its own spec folder with full documentation.
 
-## What Needs Done
+## 3. SCOPE
 
-- Child **001-design-and-decision-record** *(complete — ADR-001 accepted)*: 3-iteration deep-research loop answered all 8 questions. ADR-001 locks: co-resident MCP topology (in-process with spec_kit_memory), stable tool-ids (code_graph_*/ccc_* preserved), DB moves to new skill with SPECKIT_CODE_GRAPH_DB_DIR env fallback, cross-subsystem consumers import from sibling skill (../../system-code-graph/mcp_server/lib/), plugin bridge moves code-graph-specific files (shared message schema stays), 6-phase implementation sequence confirmed, 6-risk catalog with detection/mitigation/rollback. Full disposition catalog in resource-map.md (~280 touchpoints: ~170 move, ~90 update, ~25 stay-and-rewire, ~5 never-move). Output artifacts: decision-record.md, resource-map.md, research/research.md.
+All work is shipped. The extraction was executed in 6 phases (now at slots 015-020 as direct 007-code-graph siblings), followed by 14 follow-on phases (021-034).
 
-- Child **002-scaffold-skill** *(complete)*: created `.opencode/skills/system-code-graph/` with SKILL.md, README.md, description.json, graph-metadata.json, package.json, tsconfig.json, vitest.config.ts, feature_catalog/, manual_testing_playbook/, database/, references/, lib/, handlers/, tools/, tests/. Empty mcp_server scaffold with tool-schemas stubs.
+- **001→015-design-and-decision-record** *(complete — ADR-001 accepted)*: 3-iteration deep-research loop answered all 8 questions. ADR-001 locks: co-resident MCP topology (in-process with spec_kit_memory), stable tool-ids (code_graph_*/ccc_* preserved), DB moves to new skill with SPECKIT_CODE_GRAPH_DB_DIR env fallback, cross-subsystem consumers import from sibling skill (../../system-code-graph/mcp_server/lib/), plugin bridge moves code-graph-specific files (shared message schema stays), 6-phase implementation sequence confirmed, 6-risk catalog with detection/mitigation/rollback. Full disposition catalog in resource-map.md (~280 touchpoints: ~170 move, ~90 update, ~25 stay-and-rewire, ~5 never-move).
 
-- Child **003-physical-move-and-database** *(complete)*: moved code_graph/ tree to new skill location. Resolved DB path from new skill config with SPECKIT_CODE_GRAPH_DB_DIR env fallback; copied code-graph.sqlite + WAL + SHM to `.opencode/skills/system-code-graph/mcp_server/database/`. Moved stress tests and updated Vitest discovery.
+- **002→016-scaffold-skill** *(complete)*: created `.opencode/skills/system-code-graph/` with SKILL.md, README.md, description.json, graph-metadata.json, package.json, tsconfig.json, vitest.config.ts, feature_catalog/, manual_testing_playbook/, database/, references/, lib/, handlers/, tools/, tests/.
 
-- Child **004-rewire-consumers-and-tool-registration** *(complete)*: updated imports in live consumers: handlers, context-server, tools/index.ts, hooks, session snapshot, external tests, and skill-advisor refs. Updated plugin BRIDGE_PATH in spec-kit-compact-code-graph.js.
+- **003→017-physical-move-and-database** *(complete)*: moved code_graph/ tree to new skill location. Resolved DB path from new skill config with SPECKIT_CODE_GRAPH_DB_DIR env fallback.
 
-- Child **005-doc-and-runtime-migration** *(complete)*: split category-22 docs (code-graph core moved, shared context/hooks stayed). Updated agent files, command docs/assets, top-level docs/config, skill cross-refs, constitutional/config/memory references, and system-code-graph skill docs.
+- **004→018-rewire-consumers-and-tool-registration** *(complete)*: updated imports in live consumers: handlers, context-server, tools/index.ts, hooks, session snapshot, external tests, and skill-advisor refs.
 
-- Child **006-validation-and-cleanup** *(complete — this packet)*: full typecheck, full system-code-graph Vitest, system-spec-kit handler smoke, gold-query verifier, DB parity probe, old DB fallback deletion, stale-reference cleanup, strict packet validation, and recursive parent validation.
+- **005→019-doc-and-runtime-migration** *(complete)*: split category-22 docs. Updated agent files, command docs/assets, top-level docs/config, skill cross-refs, constitutional/config/memory references.
 
-**The decomposition into 6 phases is locked by ADR-001.** No re-litigation needed in subsequent children.
+- **006→020-validation-and-cleanup** *(complete)*: full typecheck, full system-code-graph Vitest, system-spec-kit handler smoke, gold-query verifier, DB parity probe, stale-reference cleanup.
 
-## Out of Scope (for this phase parent)
+**The decomposition is locked by ADR-001.** All phases shipped on main.
+
+## 4. OUT OF SCOPE
 
 - Changing code-graph algorithms, parsing pipeline, scan-scope policy, query semantics, or any 007-line research/implementation work.
 - Migrating other subsystems (memory MCP server, skill-advisor, doctor command surface) out of `system-spec-kit`.
 - Changing public tool IDs without backwards-compat — preserved unless ADR-001 chooses otherwise.
 - Retroactively modifying 002-code-graph-self-contained-package's spec metadata — its disposition is encoded in 014's graph-metadata.json `manual.supersedes` only.
 
-## Dependencies
+## 7. DEPENDENCIES
 
 - `007-code-graph/008-code-graph-backend-resilience` shipped on main (backend hardening before structural extraction).
 - `007-code-graph/011-broader-scope-excludes-and-granular-skills` shipped on main (scan-scope policy stable).

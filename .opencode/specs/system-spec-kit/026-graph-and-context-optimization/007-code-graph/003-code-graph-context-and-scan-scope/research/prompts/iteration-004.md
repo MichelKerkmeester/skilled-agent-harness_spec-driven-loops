@@ -8,7 +8,7 @@ Questions: 5/5 + 3 design + 4 verification all answered. Implementation hand-off
 Last 2 ratios: 0.62 -> 0.41 | Stuck count: 0 | Trending toward convergence (avg(0.88, 0.62, 0.41) = 0.637)
 Next focus: Define the IMPLEMENTATION PLAN deliverable — which packet folder hosts the fix, sequenced tasks, risk register, post-deploy acceptance criteria. NO production code changes (research scope only).
 
-Research Topic: Why mcp__spec_kit_memory__code_graph_scan returned 33 files / 809 nodes / 376 edges after packet 012, when expected was 1000-3000.
+Research Topic: Why mcp__mk_spec_memory__code_graph_scan returned 33 files / 809 nodes / 376 edges after packet 012, when expected was 1000-3000.
 
 ## Confirmed state from iter-1, 2, 3
 
@@ -101,7 +101,7 @@ Note any gaps in acceptance coverage.
 
 ### G5 (P2): Operator runbook
 
-One-paragraph operator instructions for verifying the fix post-deploy. Include the exact `mcp__spec_kit_memory__code_graph_scan({...})` invocation and the expected response shape diff.
+One-paragraph operator instructions for verifying the fix post-deploy. Include the exact `mcp__mk_spec_memory__code_graph_scan({...})` invocation and the expected response shape diff.
 
 ## OUTPUT CONTRACT (mandatory)
 

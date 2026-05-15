@@ -13,7 +13,7 @@ Closes the highest-leverage P1 findings from 013's automation reality research v
    - List both legacy and current Codex hook contracts with dates / version notes.
 3. **F-013-011** — `.opencode/commands/memory/README.txt:271-273` maps CCC tools to `/memory:manage`, but `.opencode/commands/memory/manage.md:1-4` doesn't invoke them. Either:
    - Add CCC tool routing to `manage.md` (preferred if scope-light), OR
-   - Update `README.txt` to say "CCC tools are MCP-only; use `mcp__spec_kit_memory__ccc_*` directly".
+   - Update `README.txt` to say "CCC tools are MCP-only; use `mcp__mk_spec_memory__ccc_*` directly".
 4. **F-013-012** — `.opencode/skills/system-spec-kit/ARCHITECTURE.md:306-308` lists stale `handlers/ccc-*` paths; actual exports are at `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/index.ts:9-11`. Update ARCHITECTURE.md to point to the real paths.
 5. **F-013-018** — `AGENTS.md:334` and `.opencode/skills/system-spec-kit/SKILL.md:63` say post-write validation is required; no runtime hook fires it. Adjust wording from "auto-runs" to "workflow-required gate" with explicit `bash validate.sh --strict <packet>` invocation example.
 6. **F-013-019** — `AGENTS.md:146` says completion validation runs automatically; concrete surface is `.opencode/skills/system-spec-kit/scripts/spec/validate.sh:87`. Reword to "completion claim triggers validation requirement; operator must run validate.sh".

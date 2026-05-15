@@ -9,7 +9,7 @@ description: Session tracking for 027/013 deep research. Iteratively investigate
 
 ### Purpose
 
-Persistent brain for the 027/013 deep-research session investigating: (a) which features/principles/patterns from the upstream `cocoindex-main` library can be ported into the non-code `spec_kit_memory` MCP subsystems; (b) whether and how to shorten the MCP tool namespace from `mcp__spec_kit_memory__*` to a `mk_*`-style scheme.
+Persistent brain for the 027/013 deep-research session investigating: (a) which features/principles/patterns from the upstream `cocoindex-main` library can be ported into the non-code `spec_kit_memory` MCP subsystems; (b) whether and how to shorten the MCP tool namespace from `mcp__mk_spec_memory__*` to a `mk_*`-style scheme.
 
 ### Usage
 
@@ -20,7 +20,7 @@ Persistent brain for the 027/013 deep-research session investigating: (a) which 
 ---
 
 ## 2. TOPIC
-cocoindex-main → spec_kit_memory MCP port (causal graph, memory database, automatic indexing, embedding pipeline) + MCP tool-namespace shortening from `mcp__spec_kit_memory__*` to `mk_*`.
+cocoindex-main → spec_kit_memory MCP port (causal graph, memory database, automatic indexing, embedding pipeline) + MCP tool-namespace shortening from `mcp__mk_spec_memory__*` to `mk_*`.
 
 ---
 
@@ -35,7 +35,7 @@ cocoindex-main → spec_kit_memory MCP port (causal graph, memory database, auto
 - [x] **K2.1**: Where does the `mcp__` prefix originate (Claude Code runtime alone, or cross-runtime MCP convention)? How is the server-name segment registered across OpenCode, Codex, Gemini, Claude Code?
 - [x] **K2.2**: Does `mk_*` survive the tightest known regex constraint (alphanumeric + underscore + hyphen only) plus known provider rejections (DeepSeek/Moonshot `:`, opencode-skills `@`)?
 - [x] **K2.3**: After `spec_kit_memory → mk_memory`, full tool names remain redundant (`mcp__mk_memory__memory_context`). Should tools also drop `memory_*`? Or shorten server to bare `mk`?
-- [x] **K2.4**: What is the total callsite count for `mcp__spec_kit_memory__*` across CLAUDE.md + all SKILL.md files + hook scripts + docs + `tool-schemas.ts`? Migration cost ceiling.
+- [x] **K2.4**: What is the total callsite count for `mcp__mk_spec_memory__*` across CLAUDE.md + all SKILL.md files + hook scripts + docs + `tool-schemas.ts`? Migration cost ceiling.
 - [x] **K2.5**: What's the final naming recommendation, given chars-saved × migration-churn × runtime-risk trade-off?
 
 <!-- /ANCHOR:key-questions -->
@@ -73,7 +73,7 @@ cocoindex-main → spec_kit_memory MCP port (causal graph, memory database, auto
 - **K2.1**: Where does the `mcp__` prefix originate (Claude Code runtime alone, or cross-runtime MCP convention)? How is the server-name segment registered across OpenCode, Codex, Gemini, Claude Code?
 - **K2.2**: Does `mk_*` survive the tightest known regex constraint (alphanumeric + underscore + hyphen only) plus known provider rejections (DeepSeek/Moonshot `:`, opencode-skills `@`)?
 - **K2.3**: After `spec_kit_memory → mk_memory`, full tool names remain redundant (`mcp__mk_memory__memory_context`). Should tools also drop `memory_*`? Or shorten server to bare `mk`?
-- **K2.4**: What is the total callsite count for `mcp__spec_kit_memory__*` across CLAUDE.md + all SKILL.md files + hook scripts + docs + `tool-schemas.ts`? Migration cost ceiling.
+- **K2.4**: What is the total callsite count for `mcp__mk_spec_memory__*` across CLAUDE.md + all SKILL.md files + hook scripts + docs + `tool-schemas.ts`? Migration cost ceiling.
 - **K2.5**: What's the final naming recommendation, given chars-saved × migration-churn × runtime-risk trade-off?
 
 <!-- /ANCHOR:answered-questions -->

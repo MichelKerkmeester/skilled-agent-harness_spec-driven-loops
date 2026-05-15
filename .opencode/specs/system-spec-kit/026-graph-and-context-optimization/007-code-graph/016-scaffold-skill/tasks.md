@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "tasks"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/002-scaffold-skill"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/016-scaffold-skill"
     last_updated_at: "2026-05-14T08:00:03Z"
     last_updated_by: "codex"
     recent_action: "Completed Phase 002 scaffold"
@@ -90,6 +90,6 @@ _memory:
 ## CROSS-REFERENCES
 
 - Parent: `007-code-graph/014-system-code-graph-extraction`
-- Predecessor: `014-system-code-graph-extraction/001-design-and-decision-record`
+- Predecessor: `015-design-and-decision-record`
 - Downstream: `003-physical-move+DB`, `004-rewire-consumers`, `005-doc-migration`, `006-validation-cleanup`
 <!-- /ANCHOR:cross-refs -->

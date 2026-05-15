@@ -16,10 +16,10 @@ You are deep-research agent dispatched for iteration 1 of 5. This packet is a CO
 
 Catalog every entry-point that invokes the deep-loop graph MCP tools:
 
-- `mcp__spec_kit_memory__deep_loop_graph_query`
-- `mcp__spec_kit_memory__deep_loop_graph_upsert`
-- `mcp__spec_kit_memory__deep_loop_graph_convergence`
-- `mcp__spec_kit_memory__deep_loop_graph_status`
+- `mcp__mk_spec_memory__deep_loop_graph_query`
+- `mcp__mk_spec_memory__deep_loop_graph_upsert`
+- `mcp__mk_spec_memory__deep_loop_graph_convergence`
+- `mcp__mk_spec_memory__deep_loop_graph_status`
 
 For each tool answer:
 

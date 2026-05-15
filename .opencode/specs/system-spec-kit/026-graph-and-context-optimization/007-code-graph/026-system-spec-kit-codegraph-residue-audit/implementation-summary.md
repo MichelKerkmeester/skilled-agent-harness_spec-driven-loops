@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/012-system-spec-kit-codegraph-residue-audit"
+    packet_pointer: ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/026-system-spec-kit-codegraph-residue-audit"
     last_updated_at: "2026-05-14T17:35:44Z"
     last_updated_by: "cli-codex-gpt5.5-xhigh-fast-012"
     recent_action: "Code-graph residue audit implemented and verified; git staging blocked by sandbox"
@@ -102,12 +102,12 @@ Manual playbook redirects:
 
 Packet docs:
 
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/012-system-spec-kit-codegraph-residue-audit/spec.md`
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/012-system-spec-kit-codegraph-residue-audit/plan.md`
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/012-system-spec-kit-codegraph-residue-audit/tasks.md`
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/012-system-spec-kit-codegraph-residue-audit/implementation-summary.md`
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/012-system-spec-kit-codegraph-residue-audit/description.json`
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/012-system-spec-kit-codegraph-residue-audit/graph-metadata.json`
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/026-system-spec-kit-codegraph-residue-audit/spec.md`
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/026-system-spec-kit-codegraph-residue-audit/plan.md`
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/026-system-spec-kit-codegraph-residue-audit/tasks.md`
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/026-system-spec-kit-codegraph-residue-audit/implementation-summary.md`
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/026-system-spec-kit-codegraph-residue-audit/description.json`
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/026-system-spec-kit-codegraph-residue-audit/graph-metadata.json`
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -145,7 +145,7 @@ The work stayed on `main`, avoided editing `.opencode/skills/system-code-graph/`
 | Post-cleanup raw grep | PASS, 284 remaining matches, all categorized as historical or cross-skill. |
 | `git add -- <scoped files>` | FAIL, sandbox denied `.git/index.lock` creation with `Operation not permitted`; no 012 files were staged. |
 | `git diff --cached --name-only` | PASS for this packet, no 012 files or sibling `system-code-graph` paths staged; cached diff is empty. |
-| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/012-system-spec-kit-codegraph-residue-audit --strict` | PASS, exit 0. |
+| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/026-system-spec-kit-codegraph-residue-audit --strict` | PASS, exit 0. |
 <!-- /ANCHOR:verification -->
 
 ---

@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/009-tsconfig-references-restructure",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/023-tsconfig-references-restructure",
   "description": "TSConfig References Restructure",
   "keywords": [
     "tsconfig",

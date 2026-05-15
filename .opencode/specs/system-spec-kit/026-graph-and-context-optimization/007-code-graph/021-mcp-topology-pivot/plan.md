@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/007-mcp-topology-pivot"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/021-mcp-topology-pivot"
     last_updated_at: "2026-05-14T09:24:15Z"
     last_updated_by: "claude"
     recent_action: "Validated ADR-002 standalone MCP topology pivot"
@@ -63,7 +63,7 @@ Recalibrate 001-006 metadata, author ADR-002, move code-graph MCP schemas out of
 | MCP server | Standalone `system_code_graph` process launched by `.opencode/bin/system-code-graph-launcher.cjs`. |
 | Schemas | `CODE_GRAPH_TOOL_SCHEMAS` owned by system-code-graph. |
 | Tool IDs | Stable: `code_graph_*`, `ccc_*`, `detect_changes`. |
-| MCP namespace | Changes from `mcp__spec_kit_memory__*` to `mcp__system_code_graph__*`. |
+| MCP namespace | Changes from `mcp__mk_spec_memory__*` to `mcp__system_code_graph__*`. |
 | Direct imports | Preserved for system-spec-kit handlers/hooks/session code. |
 | Database | Preserved at system-code-graph/mcp_server/database with env override. |
 <!-- /ANCHOR:architecture -->

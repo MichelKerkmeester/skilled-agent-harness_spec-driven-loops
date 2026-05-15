@@ -32,7 +32,7 @@ This iteration produces a definitive recommendation table AND a cross-axis cohes
 
 ### Part A — Final Naming Recommendation Matrix (closes K2.5)
 
-| Option | Server | Tools | Net char delta per tool (vs current `mcp__spec_kit_memory__memory_context`) | Migration callsites affected | Gemini compat | Risk level | Recommended? |
+| Option | Server | Tools | Net char delta per tool (vs current `mcp__mk_spec_memory__memory_context`) | Migration callsites affected | Gemini compat | Risk level | Recommended? |
 |--------|--------|-------|------------------------------------------------------------------------------|-------------------------------|----------------|------------|--------------|
 | Status quo | `spec_kit_memory` | unchanged | 0 | 0 | AMBIGUOUS | LOW (no-op) | — |
 | Recommendation A: server-only rename | `mk-memory` | unchanged | -6 | 166 (per K2.4) | OK | LOW | **YES** |

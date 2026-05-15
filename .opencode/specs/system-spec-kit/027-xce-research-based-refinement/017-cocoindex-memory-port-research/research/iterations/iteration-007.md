@@ -6,7 +6,7 @@ This iteration answers two linked questions.
 
 K1.6 asks whether CocoIndex offers any portable query-intelligence layer for our five-channel memory search router. The target distinction is narrow: storage/index declaration or backend-specific lookup support does not count as router, intent classifier, RRF fusion, entity-density routing, or channel orchestration.
 
-K2.1 asks where the visible MCP tool prefix comes from in names like `mcp__spec_kit_memory__memory_context`, and whether that shape is an MCP standard or a host-specific naming convention.
+K2.1 asks where the visible MCP tool prefix comes from in names like `mcp__mk_spec_memory__memory_context`, and whether that shape is an MCP standard or a host-specific naming convention.
 
 ## Actions Taken
 
@@ -54,7 +54,7 @@ Our server follows that model. `ToolDefinition` has a raw `name: string` field (
 
 ### Host-specific naming behavior
 
-Claude Code explicitly documents `mcp__<server-name>__<tool-name>`. Its Agent SDK docs show `allowedTools: ["mcp__claude-code-docs__*"]` for a configured server (`https://code.claude.com/docs/en/agent-sdk/mcp`, lines 128-139), then state the tool naming convention directly at lines 200-202. So for Claude Code, the origin of `mcp__spec_kit_memory__memory_context` is the Claude Code host, using the server key `spec_kit_memory` from `.claude/mcp.json`.
+Claude Code explicitly documents `mcp__<server-name>__<tool-name>`. Its Agent SDK docs show `allowedTools: ["mcp__claude-code-docs__*"]` for a configured server (`https://code.claude.com/docs/en/agent-sdk/mcp`, lines 128-139), then state the tool naming convention directly at lines 200-202. So for Claude Code, the origin of `mcp__mk_spec_memory__memory_context` is the Claude Code host, using the server key `spec_kit_memory` from `.claude/mcp.json`.
 
 OpenCode registers MCP servers under `mcp` in `opencode.json`. This repo registers `spec_kit_memory` as a local server with command `node .opencode/bin/spec-kit-memory-launcher.cjs` (`opencode.json:10-24`). OpenCode docs say each MCP gets a unique config name and can be referred to by that name in prompts, and its tool-management examples show server-name prefix patterns such as `my-mcp*` and `mymcpservername_*` rather than Claude's double-underscore `mcp__...` form. Source: `https://opencode.ai/docs/mcp-servers`, lines 111-140 and 570-582.
 
@@ -66,7 +66,7 @@ Gemini registers MCP servers under `mcpServers` in `settings.json`. This repo re
 
 | Runtime | Config file | How `spec_kit_memory` registered | Prefix in displayed tool names | Tool-name regex constraint |
 |---------|-------------|----------------------------------|-------------------------------|----------------------------|
-| Claude Code | `.claude/mcp.json` | Key under `mcpServers`; command `node`, args `.opencode/bin/spec-kit-memory-launcher.cjs` (`.claude/mcp.json:1-15`) | `mcp__<server>__<tool>` per Claude host docs; example becomes `mcp__spec_kit_memory__memory_context` | MCP raw tool names should use letters/digits/underscore/hyphen/dot; Claude composed name adds host prefix. Existing memory feedback-style names with underscores are legal under MCP. |
+| Claude Code | `.claude/mcp.json` | Key under `mcpServers`; command `node`, args `.opencode/bin/spec-kit-memory-launcher.cjs` (`.claude/mcp.json:1-15`) | `mcp__<server>__<tool>` per Claude host docs; example becomes `mcp__mk_spec_memory__memory_context` | MCP raw tool names should use letters/digits/underscore/hyphen/dot; Claude composed name adds host prefix. Existing memory feedback-style names with underscores are legal under MCP. |
 | OpenCode | `opencode.json` | Key under `mcp`; local command array `["node", ".opencode/bin/spec-kit-memory-launcher.cjs"]` (`opencode.json:10-24`) | Not `mcp__...` in docs. OpenCode docs describe server-name prefixing and tool globs like `my-mcp*` / `mymcpservername_*`. Likely `<server>_<tool>` for tool management. | OpenCode docs do not state a separate regex in this pass; use MCP raw tool-name limits, plus avoid ambiguous rename choices until verified in OpenCode UI. |
 | Codex | `.codex/config.toml` and optionally `~/.codex/config.toml` | Key under `[mcp_servers.spec_kit_memory]`; command `node`, args `.opencode/bin/spec-kit-memory-launcher.cjs` in project config (`.codex/config.toml:5-13`) | Public Codex docs found here do not state a composed display format. This runtime may expose MCP tools through internal namespaces rather than Claude-style names. Treat `mcp__...` as unconfirmed for Codex. | Codex docs expose `enabled_tools` / `disabled_tools` as tool filters, apparently raw server tool names; apply MCP raw name limits until Codex source/UI confirms composition. |
 | Gemini | `.gemini/settings.json` | Key under `mcpServers`; command `node`, args `.opencode/bin/spec-kit-memory-launcher.cjs`, `cwd: "."`, `trust: true` (`.gemini/settings.json:17-49`) | `mcp_<server>_<tool>` per Gemini docs. With current name: `mcp_spec_kit_memory_memory_context`, but this is policy-ambiguous because server names with underscores are discouraged. | Gemini sanitizes names to letters, numbers, underscore, hyphen, dot, colon and truncates beyond 63 chars; it warns against underscores in MCP server names. |
@@ -75,7 +75,7 @@ Gemini registers MCP servers under `mcpServers` in `settings.json`. This repo re
 
 The `mcp__` prefix is not an MCP protocol standard. It is a Claude Code host naming convention for presenting and permissioning tools from multiple MCP servers. The server-name segment comes from each runtime's MCP configuration key: `.claude/mcp.json` `mcpServers.spec_kit_memory`, `opencode.json` `mcp.spec_kit_memory`, `.codex/config.toml` `[mcp_servers.spec_kit_memory]`, and `.gemini/settings.json` `mcpServers.spec_kit_memory`.
 
-Cross-runtime compatibility is not uniform. Claude uses `mcp__<server>__<tool>`, Gemini documents `mcp_<server>_<tool>`, OpenCode documents server-name-prefixed tool globs, and Codex's public docs confirm config and raw tool filtering but not a Claude-style displayed prefix. Any namespace-shortening plan must therefore optimize for multiple host renderings, not just `mcp__spec_kit_memory__*`.
+Cross-runtime compatibility is not uniform. Claude uses `mcp__<server>__<tool>`, Gemini documents `mcp_<server>_<tool>`, OpenCode documents server-name-prefixed tool globs, and Codex's public docs confirm config and raw tool filtering but not a Claude-style displayed prefix. Any namespace-shortening plan must therefore optimize for multiple host renderings, not just `mcp__mk_spec_memory__*`.
 
 ## Questions Answered
 

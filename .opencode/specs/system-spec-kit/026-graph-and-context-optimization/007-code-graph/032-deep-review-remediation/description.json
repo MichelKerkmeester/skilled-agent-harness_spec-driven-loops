@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/018-deep-review-remediation",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/032-deep-review-remediation",
   "description": "Addresses the 1 P1 + 13 actionable P2 findings from packet 017's deep-review of the 010-016 code-graph campaign. 3 findings deferred, 2 blocked, 1 verified-correct.",
   "keywords": [
     "deep-review",

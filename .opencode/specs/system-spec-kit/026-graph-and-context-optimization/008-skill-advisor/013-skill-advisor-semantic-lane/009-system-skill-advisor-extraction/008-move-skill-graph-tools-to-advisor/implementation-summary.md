@@ -98,7 +98,7 @@ The memory MCP build was run after source cleanup so runtime output matched the 
 
 | Check | Result |
 |-------|--------|
-| T016/T018 system-code-graph + plugins grep | PASS: `rg -n 'mcp__spec_kit_memory__skill_graph_' .opencode/skills/system-code-graph .opencode/plugins` returned 0 hits. |
+| T016/T018 system-code-graph + plugins grep | PASS: `rg -n 'mcp__mk_spec_memory__skill_graph_' .opencode/skills/system-code-graph .opencode/plugins` returned 0 hits. |
 | T017 hooks/runtime grep | PASS: old-prefix grep across hooks and `.claude`/`.codex`/`.gemini` returned 0 hits. |
 | Intermediate old-prefix grep | PASS: one historical Tier 3 sk-code playbook hit only. |
 | Final old-prefix grep | PASS: one historical Tier 3 sk-code playbook hit only. |

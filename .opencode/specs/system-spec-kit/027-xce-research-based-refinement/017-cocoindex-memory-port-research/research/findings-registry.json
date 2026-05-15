@@ -63,7 +63,7 @@
     },
     {
       "id": "question-10-k2-4-what-is-the-total-callsite-count-for-mcp-spec-kit-memory-across-claude-md-a",
-      "text": "**K2.4**: What is the total callsite count for `mcp__spec_kit_memory__*` across CLAUDE.md + all SKILL.md files + hook scripts + docs + `tool-schemas.ts`? Migration cost ceiling.",
+      "text": "**K2.4**: What is the total callsite count for `mcp__mk_spec_memory__*` across CLAUDE.md + all SKILL.md files + hook scripts + docs + `tool-schemas.ts`? Migration cost ceiling.",
       "addedAtIteration": 0,
       "resolvedAtIteration": 0
     },

@@ -228,7 +228,7 @@ ps aux | grep -E "spec-kit-memory-launcher|system-code-graph-launcher" | grep -v
 **Expected after restart:**
 - Two launcher processes running (`spec-kit-memory-launcher.cjs` + `system-code-graph-launcher.cjs`)
 - `mcp__system_code_graph__*` tools available (10: 6 code_graph_* + 3 ccc_* + detect_changes)
-- `mcp__spec_kit_memory__code_graph_*` tools NO LONGER appear (they migrated)
+- `mcp__mk_spec_memory__code_graph_*` tools NO LONGER appear (they migrated)
 - No process holds open handles on `system-spec-kit/mcp_server/database/code-graph.sqlite{,-wal,-shm}`
 
 ### 6.2 Stub DB File Cleanup (after §6.1)
@@ -286,7 +286,7 @@ git log --oneline -5  # confirm no unexpected commits
 | MCP `tools/list` includes 10 code-graph tools | From a fresh session, surface MCP tool list | 10 `code_graph_*` / `ccc_*` / `detect_changes` under `system_code_graph` namespace |
 | `code_graph_status` returns valid response | Call `mcp__system_code_graph__code_graph_status({})` | Returns JSON with `readiness`, `nodeCount`, `freshness` fields |
 | `detect_changes` works on small diff | `mcp__system_code_graph__detect_changes({diff: "…"})` | Returns symbol impact preview |
-| Memory tools still work (no regression on spec_kit_memory) | `mcp__spec_kit_memory__memory_search({query: "test"})` | Returns valid memory hits |
+| Memory tools still work (no regression on spec_kit_memory) | `mcp__mk_spec_memory__memory_search({query: "test"})` | Returns valid memory hits |
 | `session_bootstrap` payload includes graph state | Fresh session start; inspect startup brief | `graphQualitySummary` populated; freshness `live` or `stale` (not `unavailable`) |
 | Hook startup brief surfaces graph highlights | Open a new Claude Code session in repo root | Startup payload includes `Highlights:` rows from code-graph |
 | `code-graph.sqlite` lives at new location | `ls -la .opencode/skills/system-code-graph/mcp_server/database/code-graph.sqlite` | 53 MB; recent mtime |
@@ -417,7 +417,7 @@ If standalone MCP turns out to be wrong (e.g., performance regression in startup
 1. Remove `system_code_graph` entry from `opencode.json`
 2. Restore code-graph tool schemas to `system-spec-kit/mcp_server/tool-schemas.ts` (from git history at the pre-007 commit)
 3. Restore code-graph tool dispatch to `system-spec-kit/mcp_server/tools/index.ts:10`
-4. Update agent grants to use `mcp__spec_kit_memory__code_graph_*` namespace again
+4. Update agent grants to use `mcp__mk_spec_memory__code_graph_*` namespace again
 5. Document the revert in a new ADR-003 that supersedes ADR-002
 
 This reverts to ADR-001 Q3 (co-resident) behavior. Files at `system-code-graph/` stay where they are (Q5 sibling imports still work co-resident or standalone).

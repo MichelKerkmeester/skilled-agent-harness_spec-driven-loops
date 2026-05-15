@@ -19,7 +19,7 @@
       "automatic indexing dependency dag",
       "mcp tool namespace shortening",
       "mk_memory prefix",
-      "mcp__spec_kit_memory__ rename",
+      "mcp__mk_spec_memory__ rename",
       "027/013",
       "implementation",
       "plan"

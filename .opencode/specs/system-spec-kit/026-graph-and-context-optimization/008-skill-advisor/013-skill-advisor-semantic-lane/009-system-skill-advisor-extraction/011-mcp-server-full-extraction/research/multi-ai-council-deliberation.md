@@ -3182,7 +3182,7 @@ Authored via cli-codex `gpt-5.5` `reasoning_effort=high` (004/005/006) and `xhig
 - Pro: cleaner topology — all skill-related tools live under `system_skill_advisor`
 - Pro: removes the last cross-package coupling for the skill graph
 - Con: cross-cuts 014/007 code-graph extraction pattern; requires consumer migration similar to 005
-- Con: tool-name namespace decision (`mcp__spec_kit_memory__skill_graph_*` → `mcp__system_skill_advisor__skill_graph_*` would be a breaking caller change unless we also keep tool ids stable across server rename)
+- Con: tool-name namespace decision (`mcp__mk_spec_memory__skill_graph_*` → `mcp__system_skill_advisor__skill_graph_*` would be a breaking caller change unless we also keep tool ids stable across server rename)
 
 **Recommended scope if pursued:** new packet `013/009/008-move-skill-graph-tools-to-advisor/` (Level 3). Follow the same shape as 004 → 005 → 006: standalone registration + consumer cutover + cleanup. Estimated effort 4-7 hours wall via cli-codex.
 
@@ -3282,35 +3282,35 @@ exec
 /bin/zsh -lc "rg --files .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction | rg 'decision-record\\.md"'$|handover'"\\.md"'$|implementation-summary'"\\.md"'$|tasks'"\\.md"'$|plan'"\\.md"'$'"'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/handover.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/006-validation-and-cleanup/plan.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/006-validation-and-cleanup/tasks.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/006-validation-and-cleanup/implementation-summary.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/001-design-and-decision-record/decision-record.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/001-design-and-decision-record/plan.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/001-design-and-decision-record/tasks.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/001-design-and-decision-record/implementation-summary.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/004-rewire-consumers-and-tool-registration/plan.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/004-rewire-consumers-and-tool-registration/tasks.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/004-rewire-consumers-and-tool-registration/implementation-summary.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/007-mcp-topology-pivot/decision-record.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/007-mcp-topology-pivot/tasks.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/007-mcp-topology-pivot/plan.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/007-mcp-topology-pivot/implementation-summary.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/009-tsconfig-references-restructure/plan.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/002-scaffold-skill/plan.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/002-scaffold-skill/tasks.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/002-scaffold-skill/implementation-summary.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/009-tsconfig-references-restructure/implementation-summary.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/009-tsconfig-references-restructure/tasks.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/005-doc-and-runtime-migration/plan.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/005-doc-and-runtime-migration/tasks.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/005-doc-and-runtime-migration/implementation-summary.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/008-orphan-code-graph-db-cleanup/plan.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/003-physical-move-and-database/plan.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/003-physical-move-and-database/tasks.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/003-physical-move-and-database/implementation-summary.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/008-orphan-code-graph-db-cleanup/implementation-summary.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/008-orphan-code-graph-db-cleanup/tasks.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/020-validation-and-cleanup/plan.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/020-validation-and-cleanup/tasks.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/020-validation-and-cleanup/implementation-summary.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/015-design-and-decision-record/decision-record.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/015-design-and-decision-record/plan.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/015-design-and-decision-record/tasks.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/015-design-and-decision-record/implementation-summary.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/018-rewire-consumers-and-tool-registration/plan.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/018-rewire-consumers-and-tool-registration/tasks.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/018-rewire-consumers-and-tool-registration/implementation-summary.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/021-mcp-topology-pivot/decision-record.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/021-mcp-topology-pivot/tasks.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/021-mcp-topology-pivot/plan.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/021-mcp-topology-pivot/implementation-summary.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/023-tsconfig-references-restructure/plan.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/016-scaffold-skill/plan.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/016-scaffold-skill/tasks.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/016-scaffold-skill/implementation-summary.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/023-tsconfig-references-restructure/implementation-summary.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/023-tsconfig-references-restructure/tasks.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/019-doc-and-runtime-migration/plan.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/019-doc-and-runtime-migration/tasks.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/019-doc-and-runtime-migration/implementation-summary.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/022-orphan-code-graph-db-cleanup/plan.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/017-physical-move-and-database/plan.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/017-physical-move-and-database/tasks.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/017-physical-move-and-database/implementation-summary.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/022-orphan-code-graph-db-cleanup/implementation-summary.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/022-orphan-code-graph-db-cleanup/tasks.md
 
 exec
 /bin/zsh -lc "sed -n '1,340p' .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/013-skill-advisor-semantic-lane/009-system-skill-advisor-extraction/008-move-skill-graph-tools-to-advisor/decision-record.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
@@ -3363,7 +3363,7 @@ Parent ADR-001 kept `advisor_*` public ids stable while moving server ownership 
 
 **Summary**: Keep the four public tool ids unchanged: `skill_graph_scan`, `skill_graph_query`, `skill_graph_status`, and `skill_graph_validate`.
 
-**Details**: Primary calls move from `mcp__spec_kit_memory__skill_graph_*` to `mcp__system_skill_advisor__skill_graph_*`. The tool id after the server prefix does not change.
+**Details**: Primary calls move from `mcp__mk_spec_memory__skill_graph_*` to `mcp__system_skill_advisor__skill_graph_*`. The tool id after the server prefix does not change.
 <!-- /ANCHOR:adr-001-decision -->
 
 ### Alternatives Considered
@@ -3458,7 +3458,7 @@ The current handler files live under `system-spec-kit/mcp_server/handlers/skill-
 
 ### Context
 
-The server-prefix migration is a breaking caller change for any runtime, command, hook, or external script that still calls `mcp__spec_kit_memory__skill_graph_*`. 005 already established the pattern for a short compatibility proxy during advisor extraction.
+The server-prefix migration is a breaking caller change for any runtime, command, hook, or external script that still calls `mcp__mk_spec_memory__skill_graph_*`. 005 already established the pattern for a short compatibility proxy during advisor extraction.
 
 ### Decision
 
@@ -3533,7 +3533,7 @@ Consumers vary in blast radius. System-code-graph readiness surfaces and hooks c
 
 ### Context
 
-MCP client tool names often include the server prefix, so moving from `mcp__spec_kit_memory__skill_graph_scan` to `mcp__system_skill_advisor__skill_graph_scan` is still caller-visible even though the public tool id remains `skill_graph_scan`.
+MCP client tool names often include the server prefix, so moving from `mcp__mk_spec_memory__skill_graph_scan` to `mcp__system_skill_advisor__skill_graph_scan` is still caller-visible even though the public tool id remains `skill_graph_scan`.
 
 ### Decision
 
@@ -3641,7 +3641,7 @@ export interface SkillEmbeddingRefreshResult {
   failed: number;
 
 exec
-/bin/zsh -lc "sed -n '1,260p' .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/001-design-and-decision-record/decision-record.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,260p' .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/015-design-and-decision-record/decision-record.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 ---
 title: "Decision Record: Co-Resident Code-Graph MCP With Stable tool-ids"
@@ -3654,7 +3654,7 @@ importance_tier: "important"
 contextType: "decision"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/001-design-and-decision-record"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/015-design-and-decision-record"
     last_updated_at: "2026-05-14T10:00:00Z"
     last_updated_by: "claude"
     recent_action: "Accepted ADR-001 for co-resident code-graph with stable tool-ids"
@@ -3844,7 +3844,7 @@ Revert this commit. The 8 decisions then defer to a future amendment packet befo
 <!-- /ANCHOR:adr-001 -->
 
 exec
-/bin/zsh -lc "sed -n '1,260p' .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/007-mcp-topology-pivot/decision-record.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,260p' .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/021-mcp-topology-pivot/decision-record.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 ---
 title: "Decision Record: ADR-002 standalone system_code_graph MCP topology"
@@ -3857,7 +3857,7 @@ importance_tier: "important"
 contextType: "decision"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/007-mcp-topology-pivot"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/021-mcp-topology-pivot"
     last_updated_at: "2026-05-14T09:24:15Z"
     last_updated_by: "claude"
     recent_action: "Validated ADR-002 standalone MCP topology pivot"
@@ -3908,7 +3908,7 @@ ADR-001 Q1, Q2, Q4, Q5, Q6, Q7, and Q8 remain valid unless this ADR explicitly t
 
 ADR-001 Q2 DB shape is preserved: `code-graph.sqlite` lives in `system-code-graph/mcp_server/database/` by default, with `SPECKIT_CODE_GRAPH_DB_DIR` override. ADR-001 Q5 cross-subsystem direct imports are still preserved: system-spec-kit handlers/hooks continue reading via direct in-process imports and the shared SQLite file. The scan loop remains the single writer.
 
-Runtime namespace changes from `mcp__spec_kit_memory__code_graph_*`, `mcp__spec_kit_memory__ccc_*`, and `mcp__spec_kit_memory__detect_changes` to `mcp__system_code_graph__code_graph_*`, `mcp__system_code_graph__ccc_*`, and `mcp__system_code_graph__detect_changes`.
+Runtime namespace changes from `mcp__mk_spec_memory__code_graph_*`, `mcp__mk_spec_memory__ccc_*`, and `mcp__mk_spec_memory__detect_changes` to `mcp__system_code_graph__code_graph_*`, `mcp__system_code_graph__ccc_*`, and `mcp__system_code_graph__detect_changes`.
 <!-- /ANCHOR:adr-002-decision -->
 
 ---
@@ -6952,7 +6952,7 @@ The memory MCP build was run after source cleanup so runtime output matched the 
 
 | Check | Result |
 |-------|--------|
-| T016/T018 system-code-graph + plugins grep | PASS: `rg -n 'mcp__spec_kit_memory__skill_graph_' .opencode/skills/system-code-graph .opencode/plugins` returned 0 hits. |
+| T016/T018 system-code-graph + plugins grep | PASS: `rg -n 'mcp__mk_spec_memory__skill_graph_' .opencode/skills/system-code-graph .opencode/plugins` returned 0 hits. |
 | T017 hooks/runtime grep | PASS: old-prefix grep across hooks and `.claude`/`.codex`/`.gemini` returned 0 hits. |
 | Intermediate old-prefix grep | PASS: one historical Tier 3 sk-code playbook hit only. |
 | Final old-prefix grep | PASS: one historical Tier 3 sk-code playbook hit only. |

@@ -8,7 +8,7 @@ Questions: 5/5 answered, 3 design questions resolved | Last focus: minimal fix d
 Last 2 ratios: 0.88 -> 0.62 | Stuck count: 0
 Next focus: Validate the proposed fixes against all callers and edge cases; produce concrete vitest snippets; identify any leftover correctness gaps before recommending implementation.
 
-Research Topic: Why mcp__spec_kit_memory__code_graph_scan returned 33 files / 809 nodes / 376 edges after packet 012, when expected was 1000-3000.
+Research Topic: Why mcp__mk_spec_memory__code_graph_scan returned 33 files / 809 nodes / 376 edges after packet 012, when expected was 1000-3000.
 
 ## Confirmed root causes (iter-1) and proposed fixes (iter-2)
 

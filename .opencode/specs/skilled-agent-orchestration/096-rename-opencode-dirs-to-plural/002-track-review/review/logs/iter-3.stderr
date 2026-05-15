@@ -3050,7 +3050,7 @@ DEEP RESEARCH YAML SECURITY LINES
    766	          - graph_upsert_event_count: "Count mapped node and edge events"
    767	        if_graph_events_present:
    768	          mcp_tool:
-   769	            name: mcp__spec_kit_memory__deep_loop_graph_upsert
+   769	            name: mcp__mk_spec_memory__deep_loop_graph_upsert
    770	            note: "Skip silently when graphEvents is missing or empty."
    771	            parameters:
    772	              specFolder: "{spec_folder}"

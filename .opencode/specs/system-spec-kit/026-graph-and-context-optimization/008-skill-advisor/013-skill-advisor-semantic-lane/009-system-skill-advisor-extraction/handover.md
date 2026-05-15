@@ -229,7 +229,7 @@ Authored via cli-codex `gpt-5.5` `reasoning_effort=high` (004/005/006) and `xhig
 - Pro: cleaner topology — all skill-related tools live under `system_skill_advisor`
 - Pro: removes the last cross-package coupling for the skill graph
 - Con: cross-cuts 014/007 code-graph extraction pattern; requires consumer migration similar to 005
-- Con: tool-name namespace decision (`mcp__spec_kit_memory__skill_graph_*` → `mcp__system_skill_advisor__skill_graph_*` would be a breaking caller change unless we also keep tool ids stable across server rename)
+- Con: tool-name namespace decision (`mcp__mk_spec_memory__skill_graph_*` → `mcp__system_skill_advisor__skill_graph_*` would be a breaking caller change unless we also keep tool ids stable across server rename)
 
 **Recommended scope if pursued:** new packet `013/009/008-move-skill-graph-tools-to-advisor/` (Level 3). Follow the same shape as 004 → 005 → 006: standalone registration + consumer cutover + cleanup. Estimated effort 4-7 hours wall via cli-codex.
 
@@ -388,7 +388,7 @@ Operator continued with "work on open items" + "use cli codex" against the same 
 | Commit | Tier | Scope |
 |---|---|---|
 | `8447663a0` | 008 D1 | cli-codex gpt-5.5 high fast moved 7 handler files from `system-spec-kit/mcp_server/handlers/skill-graph/` to `system-skill-advisor/mcp_server/handlers/skill-graph/` (git detected as renames); registered 4 `skill_graph_*` tools on `system_skill_advisor` MCP server; added one-window stdio MCP proxy in `spec_kit_memory.tools/skill-graph-tools.ts` with deprecation log + 10s timeout. Advisor vitest 280/287 → 285/291. ADR decisions: subdir layout, Risk R-ε path 1 (direct cross-package import to `system-spec-kit/mcp_server/lib/skill-graph/skill-graph-db.js`). |
-| `a93fffb7c` | 008 D2 | cli-codex gpt-5.5 high fast retargeted 5 doctor files / 15 hits from `mcp__spec_kit_memory__skill_graph_*` → `mcp__system_skill_advisor__skill_graph_*`; added ownership notes to 9 docs (install guides + feature catalog + manual testing playbook); deleted memory-side proxy file + descriptors + tests; updated `handlers/session-bootstrap.ts`. 4-runtime smoke: OpenCode + Codex + Gemini PASS; Claude INCONCLUSIVE (CLI cache, expected per 004/006). All 3 strict-validates PASS. `completion_pct=100`. |
+| `a93fffb7c` | 008 D2 | cli-codex gpt-5.5 high fast retargeted 5 doctor files / 15 hits from `mcp__mk_spec_memory__skill_graph_*` → `mcp__system_skill_advisor__skill_graph_*`; added ownership notes to 9 docs (install guides + feature catalog + manual testing playbook); deleted memory-side proxy file + descriptors + tests; updated `handlers/session-bootstrap.ts`. 4-runtime smoke: OpenCode + Codex + Gemini PASS; Claude INCONCLUSIVE (CLI cache, expected per 004/006). All 3 strict-validates PASS. `completion_pct=100`. |
 
 ### Final state after Session 3
 

@@ -14,11 +14,11 @@ You are deep-research agent dispatched for iteration 2 of 5. Iter 1 completed (d
 
 Catalog every entry-point that invokes:
 
-- `mcp__spec_kit_memory__ccc_reindex`
-- `mcp__spec_kit_memory__ccc_feedback`
-- `mcp__spec_kit_memory__ccc_status`
-- `mcp__spec_kit_memory__eval_run_ablation`
-- `mcp__spec_kit_memory__eval_reporting_dashboard`
+- `mcp__mk_spec_memory__ccc_reindex`
+- `mcp__mk_spec_memory__ccc_feedback`
+- `mcp__mk_spec_memory__ccc_status`
+- `mcp__mk_spec_memory__eval_run_ablation`
+- `mcp__mk_spec_memory__eval_reporting_dashboard`
 
 For each tool answer:
 

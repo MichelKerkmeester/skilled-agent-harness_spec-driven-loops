@@ -3,7 +3,7 @@
 **Shipped**: 2026-05-14
 **Commit**: `f91da9f1a`
 **Deep-Review Commit**: `259886eec` (CONDITIONAL — 6 P1 / 5 P2)
-**Remediation Commit**: forthcoming (the 018 packet)
+**Remediation Commit**: forthcoming (the 053 packet)
 
 ## What Changed
 
@@ -34,7 +34,7 @@ Renamed the Spec Kit Memory MCP server alias from `spec_kit_memory` to `mk-spec-
 - JSON-RPC `initialize` returns `serverInfo.name = "mk-spec-memory"` (version 1.7.2)
 - `tools/list` returns 41 tools including `memory_context` and `memory_search`
 - `dist/context-server.js:629` advertises the new name post-rebuild
-- `validate.sh --strict` on the 017 packet: exit 0, 0 errors / 0 warnings
+- `validate.sh --strict` on the 052 packet: exit 0, 0 errors / 0 warnings
 - Operational sweep: zero `mcp__spec_kit_memory__` references outside `.opencode/specs/`, `/changelog/`, and `_sandbox/.../evidence/`
 
 ## Follow-on Work

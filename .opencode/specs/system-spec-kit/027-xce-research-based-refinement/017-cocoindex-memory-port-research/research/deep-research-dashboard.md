@@ -15,7 +15,7 @@ Reducer-generated observability surface for the active research packet.
 <!-- /ANCHOR:overview -->
 <!-- ANCHOR:status -->
 ## 2. STATUS
-- Topic: cocoindex-main → spec_kit_memory MCP port (causal graph, memory database, automatic indexing, embedding pipeline) + MCP tool-namespace shortening from mcp__spec_kit_memory__* to mk_*
+- Topic: cocoindex-main → spec_kit_memory MCP port (causal graph, memory database, automatic indexing, embedding pipeline) + MCP tool-namespace shortening from mcp__mk_spec_memory__* to mk_*
 - Started: 2026-05-13T07:30:00Z
 - Status: INITIALIZED
 - Iteration: 10 of 10
@@ -60,7 +60,7 @@ Reducer-generated observability surface for the active research packet.
 - [x] **K2.1**: Where does the `mcp__` prefix originate (Claude Code runtime alone, or cross-runtime MCP convention)? How is the server-name segment registered across OpenCode, Codex, Gemini, Claude Code?
 - [x] **K2.2**: Does `mk_*` survive the tightest known regex constraint (alphanumeric + underscore + hyphen only) plus known provider rejections (DeepSeek/Moonshot `:`, opencode-skills `@`)?
 - [x] **K2.3**: After `spec_kit_memory → mk_memory`, full tool names remain redundant (`mcp__mk_memory__memory_context`). Should tools also drop `memory_*`? Or shorten server to bare `mk`?
-- [x] **K2.4**: What is the total callsite count for `mcp__spec_kit_memory__*` across CLAUDE.md + all SKILL.md files + hook scripts + docs + `tool-schemas.ts`? Migration cost ceiling.
+- [x] **K2.4**: What is the total callsite count for `mcp__mk_spec_memory__*` across CLAUDE.md + all SKILL.md files + hook scripts + docs + `tool-schemas.ts`? Migration cost ceiling.
 - [x] **K2.5**: What's the final naming recommendation, given chars-saved × migration-churn × runtime-risk trade-off?
 
 <!-- /ANCHOR:questions -->

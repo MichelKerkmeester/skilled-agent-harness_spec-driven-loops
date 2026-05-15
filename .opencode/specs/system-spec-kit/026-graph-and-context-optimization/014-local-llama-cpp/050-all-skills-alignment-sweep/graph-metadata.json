@@ -14,36 +14,13 @@
     "key_topics": [],
     "importance_tier": "important",
     "status": "completed",
-    "key_files": [
-      "spec.md",
-      "plan.md",
-      "tasks.md",
-      "checklist.md",
-      "decision-record.md",
-      "research/skills-audit.md",
-      "implementation-summary.md"
-    ],
-    "entities": [
-      "sk-doc",
-      "system-skill-advisor",
-      "system-code-graph",
-      "system-spec-kit",
-      "mk-code-index",
-      "mcp-coco-index"
-    ],
+    "key_files": ["spec.md","plan.md","tasks.md","checklist.md","decision-record.md","research/skills-audit.md","implementation-summary.md"],
+    "entities": ["sk-doc","system-skill-advisor","system-code-graph","system-spec-kit","mk-code-index","mcp-coco-index"],
     "causal_summary": "All Skills Alignment Sweep",
     "created_at": "2026-05-14T18:47:27Z",
-    "last_save_at": "2026-05-15T06:25:52Z",
+    "last_save_at": "2026-05-15T06:25:16.000Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "source_docs": [
-      "spec.md",
-      "plan.md",
-      "tasks.md",
-      "checklist.md",
-      "decision-record.md",
-      "research/skills-audit.md",
-      "implementation-summary.md"
-    ]
+    "source_docs": ["spec.md","plan.md","tasks.md","checklist.md","decision-record.md","research/skills-audit.md","implementation-summary.md"]
   }
 }

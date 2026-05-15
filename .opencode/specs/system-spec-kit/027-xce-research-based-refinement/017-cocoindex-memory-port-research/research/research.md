@@ -4,13 +4,13 @@
 
 ## 1. Executive Summary
 
-This packet investigated two related questions. Track 1 asked which upstream `cocoindex-main` concepts should be ported into the non-code `spec_kit_memory` MCP: memoization, dependency-aware indexing, stable lifecycle tracking, state reconciliation, chunked embeddings, causal-edge derivation, and query intelligence. Track 2 asked whether the long MCP namespace `mcp__spec_kit_memory__*` should be shortened, and if so, how to do it without breaking Claude Code, OpenCode, Codex, Gemini, or provider tool-name constraints.
+This packet investigated two related questions. Track 1 asked which upstream `cocoindex-main` concepts should be ported into the non-code `spec_kit_memory` MCP: memoization, dependency-aware indexing, stable lifecycle tracking, state reconciliation, chunked embeddings, causal-edge derivation, and query intelligence. Track 2 asked whether the long MCP namespace `mcp__mk_spec_memory__*` should be shortened, and if so, how to do it without breaking Claude Code, OpenCode, Codex, Gemini, or provider tool-name constraints.
 
 The headline answer is clear: most ingestion and reconciliation ideas from CocoIndex transfer, but the implementation substrate does not. The right port is TypeScript and SQLite-native: deterministic canonical fingerprints, additive memo/dependency tables, anchor-first chunk identity, active causal-edge hard deletes with tombstone audit rows, and a typed state-diff action layer. Do not attempt to recreate Rust/PyO3 callbacks or CocoIndex's heed encoded-key storage.
 
 The negative finding is also important. CocoIndex has no portable query-intelligence layer for the current memory router. Its query surface is application/backend-local, while this MCP already owns routing across vector, FTS, BM25, graph, and degree channels. Future work should not reopen CocoIndex as a source for intent classification, channel routing, RRF-style fusion, or entity-density query orchestration unless upstream adds a new retrieval framework.
 
-For namespace shortening, the recommended move is a server-only rename from `spec_kit_memory` to `mk-memory`, preserving all 59 raw tool names. This saves about six characters per fully-qualified Claude-style reference, removes Gemini's documented underscore ambiguity, and keeps migration bounded to the 166 counted `mcp__spec_kit_memory__` callsites. Dropping `memory_` from raw tool names is real but deferred; it adds churn and weakens standalone meaning for commands such as `memory_delete`, `memory_health`, and `memory_validate`.
+For namespace shortening, the recommended move is a server-only rename from `spec_kit_memory` to `mk-memory`, preserving all 59 raw tool names. This saves about six characters per fully-qualified Claude-style reference, removes Gemini's documented underscore ambiguity, and keeps migration bounded to the 166 counted `mcp__mk_spec_memory__` callsites. Dropping `memory_` from raw tool names is real but deferred; it adds churn and weakens standalone meaning for commands such as `memory_delete`, `memory_health`, and `memory_validate`.
 
 ## 2. Research Context
 
@@ -195,7 +195,7 @@ So the action is no implementation packet. Keep retrieval intelligence in the ex
 
 ## 12. Track 2 Findings - MCP Namespace Shortening
 
-Track 2 closed all five namespace questions. The visible `mcp__spec_kit_memory__...` prefix is not emitted by the MCP server itself. Raw tools are defined without host prefixes, e.g. `memory_context`, `memory_search`, `memory_quick_search`, and `memory_match_triggers` (`tool-schemas.ts:47-56`, `tool-schemas.ts:195`, `tool-schemas.ts:214`). `ToolDefinition.name` is a raw string (`tool-schemas.ts:32-39`), and `TOOL_DEFINITIONS` aggregates the registrations (`tool-schemas.ts:1038-1110`).
+Track 2 closed all five namespace questions. The visible `mcp__mk_spec_memory__...` prefix is not emitted by the MCP server itself. Raw tools are defined without host prefixes, e.g. `memory_context`, `memory_search`, `memory_quick_search`, and `memory_match_triggers` (`tool-schemas.ts:47-56`, `tool-schemas.ts:195`, `tool-schemas.ts:214`). `ToolDefinition.name` is a raw string (`tool-schemas.ts:32-39`), and `TOOL_DEFINITIONS` aggregates the registrations (`tool-schemas.ts:1038-1110`).
 
 The server-name segment comes from each runtime config key: `.claude/mcp.json` `mcpServers.spec_kit_memory`, `opencode.json` `mcp.spec_kit_memory`, `.codex/config.toml` `[mcp_servers.spec_kit_memory]`, and `.gemini/settings.json` `mcpServers.spec_kit_memory`. Claude Code documents `mcp__<server-name>__<tool-name>`. Gemini documents `mcp_<serverName>_<toolName>` and warns not to use underscores in MCP server names because its policy parser splits after `mcp_`.
 
@@ -203,7 +203,7 @@ The live tool surface is larger than the original prompt assumed. Iteration 8 co
 
 ## 13. K2.1-K2.5 Decision Matrix
 
-| Option | Server alias | Raw tools | Char delta vs current Claude-style `mcp__spec_kit_memory__memory_context` | Migration | Gemini policy | Verdict |
+| Option | Server alias | Raw tools | Char delta vs current Claude-style `mcp__mk_spec_memory__memory_context` | Migration | Gemini policy | Verdict |
 | --- | --- | --- | ---: | ---: | --- | --- |
 | Status quo | `spec_kit_memory` | unchanged | 0 | 0 | Ambiguous | Do not keep long-term |
 | A | `mk-memory` | unchanged | -6 | 166 prefix callsites | OK | Recommended |
@@ -215,7 +215,7 @@ K2.2 rejects `mk_memory`. It saves the same six characters as `mk-memory`, but i
 
 K2.3 rejects raw tool renames for the first migration. Dropping `memory_` is the only semantically plausible family-level tool rename, but even there names such as `list`, `stats`, `health`, `delete`, `update`, and `validate` become too generic. Dropping prefixes from graph families is worse because `query`, `status`, `context`, `upsert`, and `convergence` collide across concepts.
 
-K2.4 measured the migration ceiling at 166 raw `mcp__spec_kit_memory__` occurrences across markdown, TypeScript, JSON, and shell under the requested filter. That count includes packet-local prompts/spec content and historical docs, so an implementation packet should separate active runtime references from archival examples. Still, it is bounded enough for a straight rename.
+K2.4 measured the migration ceiling at 166 raw `mcp__mk_spec_memory__` occurrences across markdown, TypeScript, JSON, and shell under the requested filter. That count includes packet-local prompts/spec content and historical docs, so an implementation packet should separate active runtime references from archival examples. Still, it is bounded enough for a straight rename.
 
 K2.5 therefore confirms Option A: rename the MCP server alias from `spec_kit_memory` to `mk-memory`, keep all 59 raw tool names unchanged, and do not ship a backward-compatible shim by default.
 
@@ -265,7 +265,7 @@ Estimated LOC: 300-500. Dependencies: 029 preferred. ROI x effort: HIGH x LOW.
 
 Scope: K2.x. Rename configured server alias `spec_kit_memory` to `mk-memory` across runtime configs and update fully-qualified documentation/code references. Keep all raw tool names unchanged.
 
-Primary files: `opencode.json`, `.claude/mcp.json`, `.codex/config.toml`, `.gemini/settings.json`, plus docs/prompts/tests containing `mcp__spec_kit_memory__`.
+Primary files: `opencode.json`, `.claude/mcp.json`, `.codex/config.toml`, `.gemini/settings.json`, plus docs/prompts/tests containing `mcp__mk_spec_memory__`.
 
 Estimated LOC: about 10 config lines plus roughly 166 search-and-replace references. Dependencies: none. ROI x effort: HIGH x LOW. This should ship first.
 

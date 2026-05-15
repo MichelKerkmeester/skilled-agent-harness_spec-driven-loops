@@ -204,5 +204,5 @@ Final DB-equivalent health check:
 
 1. **Runtime blocker.** The active llama-cpp provider cannot generate embeddings here. Metal fails with command-queue/context errors; CPU fallback needs CMake and cannot fetch it under restricted network.
 2. **Idempotence not proven after success.** The code is idempotent by selection and status re-check, but the success path did not execute because no vector was generated.
-3. **MCP health tool unavailable in this session.** Tool discovery did not expose `mcp__spec_kit_memory__memory_health`, so verification used a direct read-only SQLite status-count query.
+3. **MCP health tool unavailable in this session.** Tool discovery did not expose `mcp__mk_spec_memory__memory_health`, so verification used a direct read-only SQLite status-count query.
 <!-- /ANCHOR:limitations -->

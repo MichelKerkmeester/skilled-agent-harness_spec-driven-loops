@@ -128,7 +128,7 @@
   },
   "notes": [
     "Per user direction (2026-05-08): cli-opencode + deepseek-v4-pro is the explicit primary. Do not substitute per memory feedback_cli_executor_only_when_requested.",
-    "DeepSeek-backed opencode models may reject MCP tool names containing ':' per memory reference_opencode_provider_mcp_tool_compat. Our local MCP tool names use underscores (mcp__spec_kit_memory__*, code_graph_*) so primary should work, but fallback chain is wired in case.",
+    "DeepSeek-backed opencode models may reject MCP tool names containing ':' per memory reference_opencode_provider_mcp_tool_compat. Our local MCP tool names use underscores (mcp__mk_spec_memory__*, code_graph_*) so primary should work, but fallback chain is wired in case.",
     "Research-only packet. NO source modifications under mcp_server/. NO modifications under external/. Output writes restricted to research/ subfolder.",
     "Adoption-matrix anti-bias guard: at least 1 ADOPT + 1 DEFER + 1 SKIP verdict required for convergence. Forces honest classification rather than recency-biased ADOPT-everything.",
     "Implementation of findings deferred to downstream sub-packets keyed off sub-packet-proposals.md."

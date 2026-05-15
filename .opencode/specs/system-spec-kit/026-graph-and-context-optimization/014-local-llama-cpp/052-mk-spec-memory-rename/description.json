@@ -1,11 +1,12 @@
 {
+  "level": "1",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/014-local-llama-cpp/052-mk-spec-memory-rename",
   "description": "Phase 1: rename-mcp-namespace-mk-spec-memory",
   "keywords": [
     "phase",
     "rename-mcp-namespace-mk-spec-memory"
   ],
-  "lastUpdated": "2026-05-15T06:25:52Z",
+  "lastUpdated": "2026-05-15T06:34:23.182Z",
   "specId": "052",
   "folderSlug": "mk-spec-memory-rename",
   "parentChain": [
@@ -13,7 +14,8 @@
     "026-graph-and-context-optimization",
     "014-local-llama-cpp"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "15-05-26_07-34__closed-the-mk-spec-memory-mcp-server-rename.md"
+  ]
 }

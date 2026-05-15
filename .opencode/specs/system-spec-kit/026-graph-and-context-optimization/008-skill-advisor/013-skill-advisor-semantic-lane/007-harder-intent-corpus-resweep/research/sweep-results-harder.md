@@ -1,4 +1,4 @@
-# Harder Intent Corpus Lane Weight Sweep (2026-05-14T18:06:42.813Z)
+# Harder Intent Corpus Lane Weight Sweep (2026-05-15T06:20:10.393Z)
 
 ## Seed Status
 
@@ -8,19 +8,19 @@
 - seededSkills: 15
 - promptEmbeddings: 46
 - harderPrompts: 22
-- varianceDetected: false
+- varianceDetected: true
 
 Original-24 baseline from 015/004 V0: accuracyTotal 0.6667, todayCorrect 1.0000, intentDescribed 0.3333, flippedFromBaseline 0.
 
 | vectorLabel | weights | harder accuracyTotal | delta accuracyTotal vs original V0 | todayCorrect | delta todayCorrect vs original V0 | harder intentDescribed | delta intentDescribed vs original V0 | flippedFromBaseline | delta flippedFromBaseline vs original V0 |
 |---|---|---:|---:|---:|---:|---:|---:|---:|---:|
-| V0-baseline-015-002 | explicit=0.4200, lexical=0.2800, graph=0.1300, derived=0.1200, semantic=0.0500 | 0.2273 | -0.4394 | n/a | n/a | 0.2273 | -0.1060 | 0 | +0.0000 |
-| V1-pre-015-002 | explicit=0.4500, lexical=0.3000, graph=0.1500, derived=0.1500, semantic=0.0000 | 0.2273 | -0.4394 | n/a | n/a | 0.2273 | -0.1060 | 0 | +0.0000 |
-| V2-slightly-higher | explicit=0.4000, lexical=0.2800, graph=0.1300, derived=0.1200, semantic=0.0700 | 0.2273 | -0.4394 | n/a | n/a | 0.2273 | -0.1060 | 0 | +0.0000 |
-| V3-medium | explicit=0.3800, lexical=0.2700, graph=0.1200, derived=0.1200, semantic=0.1100 | 0.2273 | -0.4394 | n/a | n/a | 0.2273 | -0.1060 | 0 | +0.0000 |
-| V4-aggressive | explicit=0.3500, lexical=0.2500, graph=0.1200, derived=0.1300, semantic=0.1500 | 0.2273 | -0.4394 | n/a | n/a | 0.2273 | -0.1060 | 0 | +0.0000 |
-| V5-explicit-heavy | explicit=0.5000, lexical=0.2500, graph=0.1000, derived=0.1000, semantic=0.0500 | 0.2273 | -0.4394 | n/a | n/a | 0.2273 | -0.1060 | 0 | +0.0000 |
-| V6-cosine-dominant | explicit=0.3000, lexical=0.2000, graph=0.1000, derived=0.1000, semantic=0.3000 | 0.2273 | -0.4394 | n/a | n/a | 0.2273 | -0.1060 | 0 | +0.0000 |
+| V0-baseline-015-002 | explicit=0.4200, lexical=0.2800, graph=0.1300, derived=0.1200, semantic=0.0500 | 0.1818 | -0.4849 | n/a | n/a | 0.1818 | -0.1515 | 0 | +0.0000 |
+| V1-pre-015-002 | explicit=0.4500, lexical=0.3000, graph=0.1500, derived=0.1500, semantic=0.0000 | 0.1818 | -0.4849 | n/a | n/a | 0.1818 | -0.1515 | 0 | +0.0000 |
+| V2-slightly-higher | explicit=0.4000, lexical=0.2800, graph=0.1300, derived=0.1200, semantic=0.0700 | 0.1818 | -0.4849 | n/a | n/a | 0.1818 | -0.1515 | 0 | +0.0000 |
+| V3-medium | explicit=0.3800, lexical=0.2700, graph=0.1200, derived=0.1200, semantic=0.1100 | 0.2273 | -0.4394 | n/a | n/a | 0.2273 | -0.1060 | 1 | +1.0000 |
+| V4-aggressive | explicit=0.3500, lexical=0.2500, graph=0.1200, derived=0.1300, semantic=0.1500 | 0.2273 | -0.4394 | n/a | n/a | 0.2273 | -0.1060 | 1 | +1.0000 |
+| V5-explicit-heavy | explicit=0.5000, lexical=0.2500, graph=0.1000, derived=0.1000, semantic=0.0500 | 0.1818 | -0.4849 | n/a | n/a | 0.1818 | -0.1515 | 0 | +0.0000 |
+| V6-cosine-dominant | explicit=0.3000, lexical=0.2000, graph=0.1000, derived=0.1000, semantic=0.3000 | 0.2273 | -0.4394 | n/a | n/a | 0.2273 | -0.1060 | 1 | +1.0000 |
 
 ## Per-Case Routing Diff Table
 
@@ -124,13 +124,13 @@ Original-24 baseline from 015/004 V0: accuracyTotal 0.6667, todayCorrect 1.0000,
 | V4-aggressive | Inspect what the rendered page actually did after the click, including network and visual proof. | mcp-chrome-devtools | null | null | no | no | Avoids Chrome/DevTools/console while using page/network terms that overlap frontend code work. |
 | V5-explicit-heavy | Inspect what the rendered page actually did after the click, including network and visual proof. | mcp-chrome-devtools | null | null | no | no | Avoids Chrome/DevTools/console while using page/network terms that overlap frontend code work. |
 | V6-cosine-dominant | Inspect what the rendered page actually did after the click, including network and visual proof. | mcp-chrome-devtools | null | null | no | no | Avoids Chrome/DevTools/console while using page/network terms that overlap frontend code work. |
-| V0-baseline-015-002 | Ask the search-grounded external model to sweep the architecture and report what this repo is missing. | cli-gemini | cli-gemini | cli-gemini | yes | no | Search-grounded external model implies Gemini, but repo architecture terms can route to cli-codex/sk-code. |
-| V1-pre-015-002 | Ask the search-grounded external model to sweep the architecture and report what this repo is missing. | cli-gemini | cli-gemini | cli-gemini | yes | no | Search-grounded external model implies Gemini, but repo architecture terms can route to cli-codex/sk-code. |
-| V2-slightly-higher | Ask the search-grounded external model to sweep the architecture and report what this repo is missing. | cli-gemini | cli-gemini | cli-gemini | yes | no | Search-grounded external model implies Gemini, but repo architecture terms can route to cli-codex/sk-code. |
-| V3-medium | Ask the search-grounded external model to sweep the architecture and report what this repo is missing. | cli-gemini | cli-gemini | cli-gemini | yes | no | Search-grounded external model implies Gemini, but repo architecture terms can route to cli-codex/sk-code. |
-| V4-aggressive | Ask the search-grounded external model to sweep the architecture and report what this repo is missing. | cli-gemini | cli-gemini | cli-gemini | yes | no | Search-grounded external model implies Gemini, but repo architecture terms can route to cli-codex/sk-code. |
-| V5-explicit-heavy | Ask the search-grounded external model to sweep the architecture and report what this repo is missing. | cli-gemini | cli-gemini | cli-gemini | yes | no | Search-grounded external model implies Gemini, but repo architecture terms can route to cli-codex/sk-code. |
-| V6-cosine-dominant | Ask the search-grounded external model to sweep the architecture and report what this repo is missing. | cli-gemini | cli-gemini | cli-gemini | yes | no | Search-grounded external model implies Gemini, but repo architecture terms can route to cli-codex/sk-code. |
+| V0-baseline-015-002 | Ask the search-grounded external model to sweep the architecture and report what this repo is missing. | cli-gemini | cli-codex | cli-codex | no | no | Search-grounded external model implies Gemini, but repo architecture terms can route to cli-codex/sk-code. |
+| V1-pre-015-002 | Ask the search-grounded external model to sweep the architecture and report what this repo is missing. | cli-gemini | cli-codex | cli-codex | no | no | Search-grounded external model implies Gemini, but repo architecture terms can route to cli-codex/sk-code. |
+| V2-slightly-higher | Ask the search-grounded external model to sweep the architecture and report what this repo is missing. | cli-gemini | cli-codex | cli-codex | no | no | Search-grounded external model implies Gemini, but repo architecture terms can route to cli-codex/sk-code. |
+| V3-medium | Ask the search-grounded external model to sweep the architecture and report what this repo is missing. | cli-gemini | cli-codex | cli-gemini | yes | yes | Search-grounded external model implies Gemini, but repo architecture terms can route to cli-codex/sk-code. |
+| V4-aggressive | Ask the search-grounded external model to sweep the architecture and report what this repo is missing. | cli-gemini | cli-codex | cli-gemini | yes | yes | Search-grounded external model implies Gemini, but repo architecture terms can route to cli-codex/sk-code. |
+| V5-explicit-heavy | Ask the search-grounded external model to sweep the architecture and report what this repo is missing. | cli-gemini | cli-codex | cli-codex | no | no | Search-grounded external model implies Gemini, but repo architecture terms can route to cli-codex/sk-code. |
+| V6-cosine-dominant | Ask the search-grounded external model to sweep the architecture and report what this repo is missing. | cli-gemini | cli-codex | cli-gemini | yes | yes | Search-grounded external model implies Gemini, but repo architecture terms can route to cli-codex/sk-code. |
 | V0-baseline-015-002 | Use the Google-backed second opinion for a wide-context read before we decide on the design. | cli-gemini | system-spec-kit | system-spec-kit | no | no | Google-backed wide-context read describes Gemini CLI but avoids its explicit skill and CLI phrases. |
 | V1-pre-015-002 | Use the Google-backed second opinion for a wide-context read before we decide on the design. | cli-gemini | system-spec-kit | system-spec-kit | no | no | Google-backed wide-context read describes Gemini CLI but avoids its explicit skill and CLI phrases. |
 | V2-slightly-higher | Use the Google-backed second opinion for a wide-context read before we decide on the design. | cli-gemini | system-spec-kit | system-spec-kit | no | no | Google-backed wide-context read describes Gemini CLI but avoids its explicit skill and CLI phrases. |
@@ -183,9 +183,9 @@ Original-24 baseline from 015/004 V0: accuracyTotal 0.6667, todayCorrect 1.0000,
 
 ## Recommendation
 
-Recommended vector: `V0-baseline-015-002`
+Recommended vector: `V3-medium`
 
-Harder baseline intent-described accuracy: 0.2273
+Harder baseline intent-described accuracy: 0.1818
 
 Recommended intent-described accuracy: 0.2273
 
@@ -193,4 +193,4 @@ Recommended accuracy delta vs original-24 V0: -0.4394
 
 Recommended intent-described delta vs original-24 V0: -0.1060
 
-Recommended flippedFromBaseline: 0
+Recommended flippedFromBaseline: 1

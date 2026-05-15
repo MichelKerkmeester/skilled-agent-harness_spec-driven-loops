@@ -57,7 +57,7 @@ The move repeats the successful 004 to 005 to 006 shape at smaller scope: first 
 
 - [ ] `system_skill_advisor` registers all four `skill_graph_*` tools.
 - [ ] Memory-side proxy exists only during the cutover window and is then removed.
-- [ ] Consumer inventory shows zero live `mcp__spec_kit_memory__skill_graph_` callers.
+- [ ] Consumer inventory shows zero live `mcp__mk_spec_memory__skill_graph_` callers.
 - [ ] Four-runtime smoke matrix is recorded.
 - [ ] Strict validation passes for packet 008, parent 013/009, and grandparent 013.
 <!-- /ANCHOR:quality-gates -->
@@ -102,7 +102,7 @@ Advisor owns the MCP boundary and handler entrypoints. If a handler needs code t
 
 ### Phase 1 (SETUP)
 
-- Inventory all live callers of `mcp__spec_kit_memory__skill_graph_*` and plain `skill_graph_*` across live code, hooks, commands, plugin bridges, guides, catalogs, and playbooks.
+- Inventory all live callers of `mcp__mk_spec_memory__skill_graph_*` and plain `skill_graph_*` across live code, hooks, commands, plugin bridges, guides, catalogs, and playbooks.
 - Inventory existing handler dependencies for `scan`, `query`, `status`, and `validate`.
 - Capture baseline `system-skill-advisor/mcp_server` Vitest pass count.
 - Capture existing `spec_kit_memory` registration points: `tools/index.ts`, `tool-schemas.ts`, `schemas/tool-input-schemas.ts`, `tools/skill-graph-tools.ts`, handler tests, and context-server tests.
@@ -121,7 +121,7 @@ Advisor owns the MCP boundary and handler entrypoints. If a handler needs code t
 - Run system-code-graph readiness smoke and hook wrapper smoke.
 - Run OpenCode, Codex, Claude, and Gemini smoke matrix for `mcp__system_skill_advisor__skill_graph_*`.
 - Run `doctor:update` or the closest non-destructive doctor smoke that exercises skill graph probes.
-- Run final grep: no live `mcp__spec_kit_memory__skill_graph_` hits outside historical specs.
+- Run final grep: no live `mcp__mk_spec_memory__skill_graph_` hits outside historical specs.
 - Run strict validation for packet 008, parent 013/009, and grandparent 013.
 <!-- /ANCHOR:phases -->
 

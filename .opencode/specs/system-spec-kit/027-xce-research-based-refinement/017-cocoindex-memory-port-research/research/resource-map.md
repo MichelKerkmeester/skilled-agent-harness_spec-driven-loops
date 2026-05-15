@@ -1,5 +1,5 @@
 ---
-title: "Resource Map — cocoindex-main → spec_kit_memory MCP port (causal graph, memory database, automatic indexing, embedding pipeline) + MCP tool-namespace shortening from mcp__spec_kit_memory__* to mk_*"
+title: "Resource Map — cocoindex-main → spec_kit_memory MCP port (causal graph, memory database, automatic indexing, embedding pipeline) + MCP tool-namespace shortening from mcp__mk_spec_memory__* to mk_*"
 description: "Auto-generated research resource map from convergence evidence."
 ---
 # Resource Map

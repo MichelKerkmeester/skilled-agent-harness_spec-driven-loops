@@ -1,6 +1,6 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/014-local-llama-cpp/053-mk-spec-memory-rename-remediation",
-  "description": "Remediate 017 mk-spec-memory rename deep-review findings",
+  "description": "Remediate 052 mk-spec-memory rename deep-review findings",
   "keywords": [
     "mk-spec-memory",
     "rename",
@@ -8,7 +8,7 @@
     "deep-review",
     "namespace"
   ],
-  "lastUpdated": "2026-05-15T06:25:52Z",
+  "lastUpdated": "2026-05-15T06:25:16.000Z",
   "specId": "053",
   "folderSlug": "mk-spec-memory-rename-remediation",
   "parentChain": [

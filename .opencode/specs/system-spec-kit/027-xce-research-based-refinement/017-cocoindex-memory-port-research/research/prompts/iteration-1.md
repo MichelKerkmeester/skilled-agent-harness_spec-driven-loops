@@ -9,9 +9,9 @@ Segment: 1 | Iteration: 1 of 10
 Questions: 0/11 answered | Last focus: none yet
 Last 2 ratios: N/A -> N/A | Stuck count: 0
 Resource map: resource-map.md not present; skipping coverage gate.
-Next focus: Establish ground truth on both tracks in parallel before deep axis investigation. Specifically — (1) Track 1 baseline reads of `external/cocoindex-main/python/cocoindex/_internal/memo_fingerprint.py`, `rust/core/src/state/stable_path.rs`, `python/cocoindex/connectorkits/statediff.py`; (2) Track 2 baseline reads of `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts` (top 200 lines) + `rg -n 'mcp__spec_kit_memory__'` callsite count; (3) cross-check `handlers/memory-index.ts` (top 80 lines) and `lib/search/vector-index-schema.ts` (causal_edges section).
+Next focus: Establish ground truth on both tracks in parallel before deep axis investigation. Specifically — (1) Track 1 baseline reads of `external/cocoindex-main/python/cocoindex/_internal/memo_fingerprint.py`, `rust/core/src/state/stable_path.rs`, `python/cocoindex/connectorkits/statediff.py`; (2) Track 2 baseline reads of `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts` (top 200 lines) + `rg -n 'mcp__mk_spec_memory__'` callsite count; (3) cross-check `handlers/memory-index.ts` (top 80 lines) and `lib/search/vector-index-schema.ts` (causal_edges section).
 
-Research Topic: cocoindex-main → spec_kit_memory MCP port (causal graph, memory database, automatic indexing, embedding pipeline) + MCP tool-namespace shortening from mcp__spec_kit_memory__* to mk_*
+Research Topic: cocoindex-main → spec_kit_memory MCP port (causal graph, memory database, automatic indexing, embedding pipeline) + MCP tool-namespace shortening from mcp__mk_spec_memory__* to mk_*
 
 Iteration: 1 of 10
 Focus Area: Iteration-1 ground truth — read cocoindex-main canonical reference files + spec_kit_memory MCP target files; produce per-axis "what's there" + "what we have" notes so iterations 2-9 can dive into specific port hypotheses.
@@ -51,7 +51,7 @@ All paths are relative to the repo root `/Users/michelkerkmeester/MEGA/Developme
 - `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/external/cocoindex-main/python/cocoindex/connectorkits/statediff.py`
 
 ### spec_kit_memory MCP (target system — current state):
-- `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts` (top 200 lines + grep for `mcp__spec_kit_memory__` prefix)
+- `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts` (top 200 lines + grep for `mcp__mk_spec_memory__` prefix)
 - `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts` (top 80 lines)
 - `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts` (causal_edges section ~lines 600-650)
 
@@ -61,7 +61,7 @@ All paths are relative to the repo root `/Users/michelkerkmeester/MEGA/Developme
 
 ### Track 2 callsite count:
 ```bash
-rg -n 'mcp__spec_kit_memory__' --type-add 'doc:*.md' -t doc -t ts -t json -t sh -c | awk -F: '{sum+=$NF} END {print sum}'
+rg -n 'mcp__mk_spec_memory__' --type-add 'doc:*.md' -t doc -t ts -t json -t sh -c | awk -F: '{sum+=$NF} END {print sum}'
 ```
 
 ## CONSTRAINTS

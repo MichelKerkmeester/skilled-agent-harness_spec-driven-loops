@@ -1,9 +1,9 @@
 ---
-title: "Implementation Plan: Remediate 017 Deep-Review Findings"
-description: "Plan for closing the 017 mk-spec-memory rename review findings with command namespace corrections, packet metadata refresh, runtime config parity, and registry resolution."
+title: "Implementation Plan: Remediate 052 Deep-Review Findings"
+description: "Plan for closing the 052 mk-spec-memory rename review findings with command namespace corrections, packet metadata refresh, runtime config parity, and registry resolution."
 trigger_phrases:
-  - "018 remediation plan"
-  - "017 review closure plan"
+  - "053 remediation plan"
+  - "052 review closure plan"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
@@ -11,7 +11,7 @@ _memory:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-local-llama-cpp/053-mk-spec-memory-rename-remediation"
     last_updated_at: "2026-05-15T05:59:52Z"
     last_updated_by: "main_agent"
-    recent_action: "Planned scoped remediation for 017 review findings"
+    recent_action: "Planned scoped remediation for 052 review findings"
     next_safe_action: "Verify namespace grep, strict validation, and scoped git status"
     blockers: []
     key_files:
@@ -20,13 +20,13 @@ _memory:
       - "implementation-summary.md"
     session_dedup:
       fingerprint: "sha256:12f20e1ee5fc493b37d1517e7a18e91c48ddda24f847eac7eebd518c13d41fe2"
-      session_id: "main-2026-05-15-018-remediation-plan"
+      session_id: "main-2026-05-15-053-remediation-plan"
       parent_session_id: null
     completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
-# Implementation Plan: Remediate 017 Deep-Review Findings
+# Implementation Plan: Remediate 052 Deep-Review Findings
 
 <!-- SPECKIT_LEVEL: 1 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
@@ -47,7 +47,7 @@ _memory:
 
 ### Overview
 
-This remediation keeps the 017 rename intact and fixes the review fallout. The implementation is a scoped patch: move extracted tool references to `mk-code-index` or `mk-skill-advisor`, refresh stale 017 packet docs, align VS Code to the launcher, and resolve review registry entries.
+This remediation keeps the 052 rename intact and fixes the review fallout. The implementation is a scoped patch: move extracted tool references to `mk-code-index` or `mk-skill-advisor`, refresh stale 052 packet docs, align VS Code to the launcher, and resolve review registry entries.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -56,14 +56,14 @@ This remediation keeps the 017 rename intact and fixes the review fallout. The i
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [x] Gate 3 points to this 018 packet.
+- [x] Gate 3 points to this 053 packet.
 - [x] Allowed write paths are explicit.
 - [x] Review finding list is known.
 
 ### Definition of Done
 - [x] Namespace leak grep returns zero.
 - [x] New namespace greps are non-zero.
-- [x] `validate.sh --strict` passes for 017 and 018.
+- [x] `validate.sh --strict` passes for 052 and 053.
 - [x] Commit is staged by explicit allowed paths only.
 <!-- /ANCHOR:quality-gates -->
 
@@ -98,8 +98,8 @@ Command markdown exposes tool allowlists, route YAML supplies target-specific MC
 - [x] `/memory:manage ccc` entries point to `mcp__mk_code_index__ccc_*`.
 
 ### Phase 2: Packet Metadata
-- [x] Rewrite 017 `plan.md` from scaffold to actual shipped plan.
-- [x] Mark 017 spec and graph metadata complete.
+- [x] Rewrite 052 `plan.md` from scaffold to actual shipped plan.
+- [x] Mark 052 spec and graph metadata complete.
 - [x] Update resource-map counts and implementation-summary validation evidence.
 
 ### Phase 3: Verification and Commit
@@ -117,7 +117,7 @@ Command markdown exposes tool allowlists, route YAML supplies target-specific MC
 |-----------|-------|-------|
 | Static grep | Namespace ownership regressions | `grep -E`, `grep -c` |
 | JSON syntax | Runtime configs and graph metadata | `node -e` JSON parse |
-| Spec validation | 017 and 018 packet docs | `validate.sh --strict` |
+| Spec validation | 052 and 053 packet docs | `validate.sh --strict` |
 | Git scope | Allowed write set only | `git status --short` and explicit staging |
 <!-- /ANCHOR:testing -->
 
@@ -139,5 +139,5 @@ Command markdown exposes tool allowlists, route YAML supplies target-specific MC
 ## 7. ROLLBACK PLAN
 
 - **Trigger**: Strict validation fails due to packet docs or namespace corrections break command contracts.
-- **Procedure**: Revert this remediation commit only. The original 017 rename remains isolated in its prior commit.
+- **Procedure**: Revert this remediation commit only. The original 052 rename remains isolated in its prior commit.
 <!-- /ANCHOR:rollback -->

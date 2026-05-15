@@ -10,7 +10,7 @@ specFolder: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/0
 <!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
-Investigate why `mcp__spec_kit_memory__code_graph_scan({rootDir, incremental:false})` returned 33 files / 809 nodes / 376 edges after packet 012 was deployed, when the expected range per the packet 012 handover was 1000-3000 files. Determine whether this is a correct outcome (excludes are simply more aggressive than predicted), a regression in the `incremental` flag handling, a DB cleanup bug on the full-reindex path, or a different root cause entirely. Produce evidence-backed recommendation with reproduction steps and a fix plan if a regression is confirmed.
+Investigate why `mcp__mk_spec_memory__code_graph_scan({rootDir, incremental:false})` returned 33 files / 809 nodes / 376 edges after packet 012 was deployed, when the expected range per the packet 012 handover was 1000-3000 files. Determine whether this is a correct outcome (excludes are simply more aggressive than predicted), a regression in the `incremental` flag handling, a DB cleanup bug on the full-reindex path, or a different root cause entirely. Produce evidence-backed recommendation with reproduction steps and a fix plan if a regression is confirmed.
 
 ---
 

@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/004-rewire-consumers-and-tool-registration"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/018-rewire-consumers-and-tool-registration"
     last_updated_at: "2026-05-14T09:13:21Z"
     last_updated_by: "claude"
     recent_action: "Recalibration backfill post-manual-reorg"
@@ -65,7 +65,7 @@ The runtime consumer direction stays as ADR-001 Q5 intended: direct imports for 
 | Decision | Current Status |
 |----------|----------------|
 | Direct sibling imports | Preserved for code-graph library consumers. |
-| Stable tool IDs | Preserved. Namespace changes from mcp__spec_kit_memory__* to mcp__system_code_graph__*. |
+| Stable tool IDs | Preserved. Namespace changes from mcp__mk_spec_memory__* to mcp__system_code_graph__*. |
 | spec_kit_memory dispatch | Superseded by 007: code-graph tool dispatch removed from spec_kit_memory. |
 <!-- /ANCHOR:decisions -->
 

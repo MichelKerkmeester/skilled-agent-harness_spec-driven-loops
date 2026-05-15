@@ -109,7 +109,7 @@ Ordering rationale:
 
 ## Acceptance Criteria
 
-- [ ] AC-1: `mcp__spec_kit_memory__code_graph_scan({"rootDir":"/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public","incremental":false})` returns `status:"ok"` and `data.filesScanned >= 1000`.
+- [ ] AC-1: `mcp__mk_spec_memory__code_graph_scan({"rootDir":"/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public","incremental":false})` returns `status:"ok"` and `data.filesScanned >= 1000`.
 - [ ] AC-2: The scan response includes `data.fullScanRequested === true` and `data.effectiveIncremental === false`.
 - [ ] AC-3: The scan response has `data.errors.length === 0`.
 - [ ] AC-4: `code_graph_status` reports `totalFiles` in the `[1000, 3000]` range after the full scan.
@@ -131,7 +131,7 @@ Acceptance coverage gaps:
 After deployment, restart the Spec Kit Memory MCP server so compiled handler/indexer changes are loaded. Then run:
 
 ```json
-mcp__spec_kit_memory__code_graph_scan({
+mcp__mk_spec_memory__code_graph_scan({
   "rootDir": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public",
   "incremental": false
 })

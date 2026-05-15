@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "specification"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/002-scaffold-skill"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/016-scaffold-skill"
     last_updated_at: "2026-05-14T07:54:11Z"
     last_updated_by: "codex"
     recent_action: "Scaffold packet for empty system-code-graph skill folder"
@@ -73,7 +73,7 @@ ADR-001 Q3 is binding here: the new skill is not a separate MCP server process. 
 ## 3. SCOPE
 
 ### In Scope
-- Create this child packet at `014-system-code-graph-extraction/002-scaffold-skill/`.
+- Create this child packet at `016-scaffold-skill/`.
 - Create `.opencode/skills/system-code-graph/` package metadata and operator docs.
 - Create empty scaffold directories under `mcp_server/code_graph/`, `mcp_server/database/`, `feature_catalog/`, `manual_testing_playbook/`, and `references/`.
 - Update parent 014 `graph-metadata.json` to add this child and make it active.

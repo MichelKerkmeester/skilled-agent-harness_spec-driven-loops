@@ -154,7 +154,7 @@ The graph traversal uses these fields directly. Queries like "what are the child
 The cross-packet `depends_on[]` / `enhances[]` / `prerequisite_for[]` edges between siblings are NOT explicitly populated for these 6 packets. The graph only knows the parent-child relationship. If you want explicit "004 depends on 003" edges in the graph, run:
 
 ```typescript
-mcp__spec_kit_memory__memory_causal_link({
+mcp__mk_spec_memory__memory_causal_link({
   source: "system-spec-kit/.../010-template-levels/004-deferred-followups",
   target: "system-spec-kit/.../010-template-levels/003-template-greenfield-impl",
   type: "depends_on"
@@ -166,7 +166,7 @@ This is optional — most callers traverse via the parent's `children_ids` array
 ### To force immediate indexing for memory MCP visibility
 
 ```typescript
-mcp__spec_kit_memory__memory_index_scan({
+mcp__mk_spec_memory__memory_index_scan({
   specFolder: ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels"
 })
 ```
@@ -198,22 +198,22 @@ The code graph (separate from the causal graph) indexes source files. It doesn't
 ### Action
 
 ```typescript
-mcp__spec_kit_memory__code_graph_scan({ scope: "incremental" })
+mcp__mk_spec_memory__code_graph_scan({ scope: "incremental" })
 ```
 
 Or check status first to see drift:
 ```typescript
-mcp__spec_kit_memory__code_graph_status({})
+mcp__mk_spec_memory__code_graph_status({})
 ```
 
 If `staleEntries > 50` or `missedFiles > 5`, run a full rescan:
 ```typescript
-mcp__spec_kit_memory__code_graph_scan({ scope: "full" })
+mcp__mk_spec_memory__code_graph_scan({ scope: "full" })
 ```
 
 CocoIndex semantic search (`mcp__cocoindex_code__search`) maintains its own embeddings index. To refresh after a major code shape change:
 ```typescript
-mcp__spec_kit_memory__ccc_reindex({})
+mcp__mk_spec_memory__ccc_reindex({})
 ```
 
 ---
@@ -257,7 +257,7 @@ Run these in order. Each is fast (seconds, not minutes).
 ### A. Index the 010 subtree
 
 ```typescript
-mcp__spec_kit_memory__memory_index_scan({
+mcp__mk_spec_memory__memory_index_scan({
   specFolder: ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels"
 })
 ```
@@ -267,7 +267,7 @@ Expected: scan completes in <10s; 6 new/updated packet rows indexed.
 ### B. Refresh code-graph
 
 ```typescript
-mcp__spec_kit_memory__code_graph_scan({ scope: "incremental" })
+mcp__mk_spec_memory__code_graph_scan({ scope: "incremental" })
 ```
 
 Expected: 3 new TS files indexed; 50+ deleted entries cleaned. Reports `addedNodes`, `removedNodes`, `updatedNodes` counts.
@@ -275,7 +275,7 @@ Expected: 3 new TS files indexed; 50+ deleted entries cleaned. Reports `addedNod
 ### C. Optional: refresh CocoIndex semantic embeddings
 
 ```typescript
-mcp__spec_kit_memory__ccc_reindex({})
+mcp__mk_spec_memory__ccc_reindex({})
 ```
 
 Expected: re-embed changed files; runs in 30-60s depending on corpus size.
@@ -283,7 +283,7 @@ Expected: re-embed changed files; runs in 30-60s depending on corpus size.
 ### D. Health check (surfaces any new MEMORY_BLOCK_INVALID / SESSION_LINEAGE_BROKEN findings on legacy packets)
 
 ```typescript
-mcp__spec_kit_memory__memory_health({})
+mcp__mk_spec_memory__memory_health({})
 ```
 
 Expected:
@@ -296,7 +296,7 @@ If `validation.errors` rises, that's a real regression — file as a separate pa
 ### E. Verify causal graph picks up 010's new children
 
 ```typescript
-mcp__spec_kit_memory__code_graph_query({
+mcp__mk_spec_memory__code_graph_query({
   query: "010-template-levels children",
   limit: 10
 })
@@ -307,7 +307,7 @@ Expected: returns the 6 child packets with parent-child edges intact.
 ### F. Spot-check a new packet's continuity surfaces correctly
 
 ```typescript
-mcp__spec_kit_memory__memory_context({
+mcp__mk_spec_memory__memory_context({
   input: "template impl checklist",
   mode: "focused",
   includeContent: true

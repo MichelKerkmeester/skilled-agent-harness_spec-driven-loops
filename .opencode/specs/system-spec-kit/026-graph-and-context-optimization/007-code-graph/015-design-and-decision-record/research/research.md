@@ -1,6 +1,6 @@
 # Deep Research Synthesis: Code-Graph Extraction
 
-**Spec folder**: `014-system-code-graph-extraction/001-design-and-decision-record`  
+**Spec folder**: `015-design-and-decision-record`  
 **Research started**: 2026-05-14  
 **Converged**: Yes (3 iterations, all 8 questions answered)  
 **Stop reason**: All architectural questions answered; sufficient evidence for ADR-001

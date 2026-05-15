@@ -8,7 +8,7 @@ Questions: All primary questions answered. Implementation handoff complete.
 Last 2 ratios: 0.41 -> 0.34 | Stuck count: 0 | Rolling avg(0.62, 0.41, 0.34) = 0.457 (declining toward 0.05)
 Next focus: Final cross-check — verify the recommendations against the actual current dist/ build; identify any missed risks/edge cases; produce a synthesis-ready executive summary that the workflow's `phase_synthesis` can lift directly into research.md.
 
-Research Topic: Why mcp__spec_kit_memory__code_graph_scan returned 33 files / 809 nodes / 376 edges after packet 012, when expected was 1000-3000.
+Research Topic: Why mcp__mk_spec_memory__code_graph_scan returned 33 files / 809 nodes / 376 edges after packet 012, when expected was 1000-3000.
 
 ## Confirmed state from iter-1, 2, 3, 4
 

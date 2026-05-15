@@ -5,7 +5,7 @@ allowed-tools: [Bash, Edit, Glob, Grep, Read, Task, Write]
 version: 1.0.0.0
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/011-skill-docs-sk-doc-alignment"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/025-skill-docs-sk-doc-alignment"
     last_updated_at: "2026-05-14T17:43:47Z"
     last_updated_by: "codex"
     recent_action: "Aligned skill-level docs with sk-doc standards"
@@ -128,5 +128,5 @@ The shared SQLite file remains the coordination boundary. The scan loop is the s
 
 - Shared lifecycle and context docs that stayed in `system-spec-kit`: `.opencode/skills/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/`
 - Extraction history: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/`
-- MCP rename packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/010-mcp-tool-rename-mk-code-index/`
+- MCP rename packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/024-mcp-tool-rename-mk-code-index/`
 <!-- /ANCHOR:related-resources -->

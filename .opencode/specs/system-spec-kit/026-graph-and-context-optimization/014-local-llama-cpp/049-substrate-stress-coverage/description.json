@@ -10,7 +10,7 @@
     "stress",
     "coverage"
   ],
-  "lastUpdated": "2026-05-14T21:40:35.271Z",
+  "lastUpdated": "2026-05-15T06:21:30.150Z",
   "specId": "049",
   "folderSlug": "substrate-stress-coverage",
   "parentChain": [
@@ -18,6 +18,8 @@
     "026-graph-and-context-optimization",
     "014-local-llama-cpp"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": []
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "15-05-26_07-21__closed-remaining-open-items-from-the-2026-05-14.md"
+  ]
 }
