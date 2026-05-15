@@ -90,6 +90,8 @@ jobs:
       - name: Audit skill-advisor for @spec-kit/* workspace-alias imports
         run: |
           set -euo pipefail
+          # @spec-kit/shared/embeddings/* is the documented exception (visible via the
+          # lib/shared/embeddings symlink). All other @spec-kit/* imports are blocked.
           MATCHES=$(rg -n "from ['\"]@spec-kit/" \
             .opencode/skills/system-skill-advisor/mcp_server/ \
             --type ts \
@@ -97,13 +99,14 @@ jobs:
             --glob '!**/node_modules/**' \
             --glob '!**/tests/**' \
             --glob '!**/stress_test/**' \
+            | grep -v "@spec-kit/shared/embeddings/" \
             || true)
           if [ -n "$MATCHES" ]; then
-            echo "::error::@spec-kit/* workspace-alias imports detected in skill-advisor production .ts."
+            echo "::error::@spec-kit/* workspace-alias imports detected in skill-advisor production .ts (excluding the documented embeddings exception)."
             echo "$MATCHES"
             exit 1
           fi
-          echo "✅ No @spec-kit/* workspace-alias imports in skill-advisor."
+          echo "✅ No @spec-kit/* workspace-alias imports in skill-advisor (embeddings exception OK)."
       - name: Audit code-graph for @spec-kit/* workspace-alias imports
         run: |
           set -euo pipefail

@@ -2,7 +2,6 @@
   "extends": "../../system-spec-kit/mcp_server/tsconfig.json",
   "compilerOptions": {
     "ignoreDeprecations": "6.0",
-    "rootDir": ".",
     "outDir": "./dist",
     "baseUrl": ".",
     "typeRoots": [

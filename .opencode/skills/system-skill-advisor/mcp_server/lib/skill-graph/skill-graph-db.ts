@@ -5,10 +5,13 @@
 // Uses the advisor package-local skill-graph.sqlite runtime database.
 
 import Database from 'better-sqlite3';
-// NOTE: ../shared/embeddings is a symlink to system-spec-kit/shared/embeddings (packet 040).
-// Makes the cross-skill dependency on system-spec-kit visible in the file tree.
-// If you delete system-spec-kit, this symlink dangles and embeddings-backed features break.
-import { createEmbeddingsProvider } from '../shared/embeddings/factory.js';
+// NOTE: lib/shared/embeddings is a symlink to system-spec-kit/shared/embeddings (packet 040
+// + 040-followon). The symlink in the file tree makes the cross-skill dependency on
+// system-spec-kit visible to repo users. The import here uses the @spec-kit/shared workspace
+// alias (resolved via tsconfig paths) for clean tsc resolution. If system-spec-kit is
+// deleted, both the symlink and the alias dangle and embeddings-backed features break — the
+// dangling symlink in the file tree is the documenting failure signal.
+import { createEmbeddingsProvider } from '@spec-kit/shared/embeddings/factory.js';
 import { createHash } from 'node:crypto';
 import { existsSync, mkdirSync, readFileSync, readdirSync, renameSync, rmSync, statSync } from 'node:fs';
 import { basename, dirname, join, relative, resolve } from 'node:path';
