@@ -8,7 +8,7 @@
     "deferred",
     "follow-on"
   ],
-  "lastUpdated": "2026-05-15T18:08:38.450Z",
+  "lastUpdated": "2026-05-15T18:29:45.088Z",
   "specId": "039",
   "folderSlug": "system-code-graph-deferred-followon",
   "parentChain": [
@@ -16,8 +16,9 @@
     "026-graph-and-context-optimization",
     "007-code-graph"
   ],
-  "memorySequence": 1,
+  "memorySequence": 2,
   "memoryNameHistory": [
-    "15-05-26_19-08__manual-context-save.md"
+    "15-05-26_19-08__manual-context-save.md",
+    "15-05-26_19-29__manual-context-save.md"
   ]
 }

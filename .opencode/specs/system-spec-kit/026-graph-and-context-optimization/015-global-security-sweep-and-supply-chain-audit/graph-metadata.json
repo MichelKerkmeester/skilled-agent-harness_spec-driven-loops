@@ -1,0 +1,114 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/015-global-security-sweep-and-supply-chain-audit",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/015-global-security-sweep-and-supply-chain-audit",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "015 global security sweep",
+      "Mini Shai-Hulud audit",
+      "TanStack supply-chain check",
+      "Public repo security audit",
+      "dead-man switch IOC scan",
+      "post-2026-05-15 security review"
+    ],
+    "key_topics": [
+      "015",
+      "global",
+      "security",
+      "sweep",
+      "mini",
+      "shai-hulud",
+      "audit",
+      "tanstack",
+      "supply-chain",
+      "check",
+      "public",
+      "repo"
+    ],
+    "importance_tier": "critical",
+    "status": "planned",
+    "key_files": [
+      ".gemini/settings.json",
+      ".vscode/mcp.json",
+      "research/deep-research-state.jsonl",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".gemini/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "mcp.json",
+        "kind": "config",
+        "path": ".vscode/mcp.json",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/deep-research-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Global Security Sweep",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Chain Audit",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Mini Shai",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Run",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 2026-05-15 TanStack Mini Shai-Hulud disclosure is a watershed npm supply-chain event: first documented npm worm shipping with valid SLSA provenance signatures. The compromised packages' release pipeline was hijacked, and the malicious versions look 100% legitimate to standard supply-chain defenders. 2FA didn't help; SLSA didn't help. Affected ~518M computers per the disclosure. The dead-man's-switch design means revoking a stolen token TRIGGERS the payload (`rm -rf ~/`), making remediation actively dangerous.",
+    "created_at": "2026-05-15T18:27:58.266Z",
+    "last_save_at": "2026-05-15T18:27:58.266Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ]
+  }
+}
