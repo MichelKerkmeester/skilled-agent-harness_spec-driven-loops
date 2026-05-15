@@ -1,0 +1,10 @@
+{"type":"iteration","run":1,"focus":"Research output + Phase 1 skill-advisor isolation","findingsCount":2,"newInfoRatio":1.00,"timestamp":"2026-05-15T12:46:00Z"}
+{"type":"iteration","run":2,"focus":"Docs update + Phase 2+3 hybrid implementation","findingsCount":4,"newInfoRatio":0.75,"timestamp":"2026-05-15T12:46:00Z"}
+{"type":"iteration","run":3,"focus":"Phase 4 doc migration + 22-- rename + cleanup","findingsCount":1,"newInfoRatio":0.50,"timestamp":"2026-05-15T12:46:00Z"}
+{"type":"iteration","run":4,"focus":"Operator parallel work + MCP tool + README updates","findingsCount":2,"newInfoRatio":0.40,"timestamp":"2026-05-15T12:46:00Z"}
+{"type":"iteration","run":5,"focus":"Adversarial pass - boundary wrapper scenarios","findingsCount":3,"newInfoRatio":0.60,"timestamp":"2026-05-15T12:46:00Z"}
+{"type":"iteration","run":6,"focus":"Adversarial pass - readiness marker + inlined-helper equivalence","findingsCount":6,"newInfoRatio":0.50,"timestamp":"2026-05-15T12:46:00Z"}
+{"type":"iteration","run":7,"focus":"Future-coupling-resistance + cross-cutting concerns","findingsCount":2,"newInfoRatio":0.33,"timestamp":"2026-05-15T12:46:00Z"}
+{"type":"iteration","run":8,"focus":"Findings synthesis + report draft","findingsCount":0,"newInfoRatio":0.00,"timestamp":"2026-05-15T12:46:00Z"}
+{"type":"iteration","run":9,"focus":"Final report authoring","findingsCount":0,"newInfoRatio":0.00,"timestamp":"2026-05-15T12:46:00Z"}
+{"type":"convergence","run":9,"focus":"Review complete","findingsCount":17,"newInfoRatio":0.11,"timestamp":"2026-05-15T12:46:00Z"}
