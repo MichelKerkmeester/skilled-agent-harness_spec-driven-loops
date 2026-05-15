@@ -12,3 +12,6 @@
 {"type":"iteration","iteration":11,"track":4,"newInfoRatio":0.15,"status":"complete","focus":"agent network diagram","timestamp":"2026-05-15T15:05:17Z"}
 {"type":"iteration","iteration":12,"track":4,"newInfoRatio":0.00,"status":"complete","focus":"runtime arrows + extraction boundaries","timestamp":"2026-05-15T15:05:17Z"}
 {"type":"iteration","iteration":13,"track":5,"newInfoRatio":0.11,"status":"complete","focus":"NOTICE files + fork links","timestamp":"2026-05-15T15:05:17Z"}
+{"type":"iteration","iteration":14,"track":5,"newInfoRatio":0.20,"status":"complete","focus":"doc version + framework footer","timestamp":"2026-05-15T15:07:41Z"}
+{"type":"iteration","iteration":15,"track":5,"newInfoRatio":0.00,"status":"complete","focus":"Apache 2.0 + license references","timestamp":"2026-05-15T15:07:41Z"}
+{"type":"iteration","iteration":16,"track":6,"newInfoRatio":0.30,"status":"complete","focus":"FAQ Q&A accuracy","timestamp":"2026-05-15T15:07:41Z"}
