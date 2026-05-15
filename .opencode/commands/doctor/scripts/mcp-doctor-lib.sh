@@ -230,7 +230,8 @@ config_has_server() {
       " 2>/dev/null
       ;;
     toml)
-      grep -q "\[mcp_servers\.$server_key\]" "$file" 2>/dev/null
+      grep -Fq "[mcp_servers.$server_key]" "$file" 2>/dev/null \
+        || grep -Fq "[mcp_servers.\"$server_key\"]" "$file" 2>/dev/null
       ;;
     *)
       return 1

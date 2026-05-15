@@ -7,21 +7,10 @@ import { existsSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { execFileSync } from 'node:child_process';
 import * as graphDb from '../lib/code-graph-db.js';
-import { canonicalReadinessFromFreshness } from '../lib/readiness-contract.js';
+import { probeCocoIndexReadiness } from '../lib/ccc-readiness-probe.js';
 
 export interface ReindexArgs {
   full?: boolean;
-}
-
-function buildUnavailableReadiness(reason: string) {
-  return {
-    freshness: 'empty' as const,
-    action: 'none' as const,
-    inlineIndexPerformed: false,
-    reason,
-    canonicalReadiness: canonicalReadinessFromFreshness('empty'),
-    trustState: 'unavailable' as const,
-  };
 }
 
 /** Handle ccc_reindex tool call */
@@ -54,7 +43,7 @@ export async function handleCccReindex(args: ReindexArgs): Promise<{ content: Ar
       });
 
       const durationMs = Date.now() - startTime;
-      const readiness = buildUnavailableReadiness('readiness_not_applicable');
+      const readiness = await probeCocoIndexReadiness(projectRoot);
       const lastPersistedAt = graphDb.getStats().lastScanTimestamp;
 
       return {

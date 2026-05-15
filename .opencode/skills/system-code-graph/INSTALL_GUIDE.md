@@ -196,7 +196,7 @@ Current code-graph baseline:
 | TypeScript build | Exit 0 from `tsc --build` |
 | Vitest focused run | Pass on the `code-graph` suite (runtime-detection + structural-contract + handler suites) |
 | Standalone-storage guard | Launcher rejects DB paths outside the workspace |
-| Cross-skill imports | Zero `from 'system-spec-kit'` imports (CI enforced by `.github/workflows/isolation-check.yml`) |
+| Cross-skill imports | 46 imports across 23 files (11 production `.ts` + 3 generated `.d.ts` + 5 test + 4 stress-test). Full decoupling is a future arc (packet 040). Tool IDs (`code_graph_*`, `detect_changes`, `ccc_*`) are the stable surface; import-level coupling is internal to system-code-graph. Reverse imports blocked by CI. |
 
 <!-- /ANCHOR:6-native-package-checks -->
 

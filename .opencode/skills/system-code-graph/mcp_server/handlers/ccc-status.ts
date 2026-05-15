@@ -6,18 +6,7 @@
 import { existsSync, statSync } from 'node:fs';
 import { resolve } from 'node:path';
 import * as graphDb from '../lib/code-graph-db.js';
-import { canonicalReadinessFromFreshness } from '../lib/readiness-contract.js';
-
-function buildUnavailableReadiness(reason: string) {
-  return {
-    freshness: 'empty' as const,
-    action: 'none' as const,
-    inlineIndexPerformed: false,
-    reason,
-    canonicalReadiness: canonicalReadinessFromFreshness('empty'),
-    trustState: 'unavailable' as const,
-  };
-}
+import { probeCocoIndexReadiness } from '../lib/ccc-readiness-probe.js';
 
 /** Handle ccc_status tool call */
 export async function handleCccStatus(): Promise<{ content: Array<{ type: string; text: string }> }> {
@@ -34,7 +23,7 @@ export async function handleCccStatus(): Promise<{ content: Array<{ type: string
       indexExists = true;
       try { indexSize = statSync(indexDir).size; } catch { /* ok */ }
     }
-    const readiness = buildUnavailableReadiness('readiness_not_applicable');
+    const readiness = await probeCocoIndexReadiness(projectRoot);
     const lastPersistedAt = graphDb.getStats().lastScanTimestamp;
 
     return {

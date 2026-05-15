@@ -39,6 +39,18 @@ jobs:
             exit 1
           fi
           echo "✅ No cross-skill imports found."
+      # TODO(packet 040 or follow-on): flip to blocking once full decoupling lands.
+      - name: code-graph isolation: reverse-direction import audit
+        run: |
+          set -euo pipefail
+          # Audit code-graph MCP source for system-spec-kit imports.
+          # Currently non-blocking: code-graph legitimately consumes @spec-kit/shared types.
+          COUNT=$(rg -l "from ['\"]\.\./(.+/)?system-spec-kit\b" \
+            .opencode/skills/system-code-graph/mcp_server/ \
+            --type ts --type tsx | wc -l | tr -d ' ')
+          echo "code-graph→spec-kit import files: ${COUNT} (expected: 11+ production files contain @spec-kit/shared imports)"
+          echo "count=${COUNT}" >> "$GITHUB_STEP_SUMMARY"
+          echo "Non-blocking: failure to be enabled when full decoupling lands (packet 040)."
       - name: Audit spec-kit MCP source for system-skill-advisor imports
         run: |
           set -euo pipefail

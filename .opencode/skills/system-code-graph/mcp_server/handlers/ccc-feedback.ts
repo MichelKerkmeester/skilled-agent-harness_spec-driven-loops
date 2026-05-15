@@ -6,24 +6,13 @@
 import { appendFileSync, mkdirSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
 import * as graphDb from '../lib/code-graph-db.js';
-import { canonicalReadinessFromFreshness } from '../lib/readiness-contract.js';
+import { probeCocoIndexReadiness } from '../lib/ccc-readiness-probe.js';
 
 export interface FeedbackArgs {
   query: string;
   resultFile?: string;
   rating: 'helpful' | 'not_helpful' | 'partial';
   comment?: string;
-}
-
-function buildUnavailableReadiness(reason: string) {
-  return {
-    freshness: 'empty' as const,
-    action: 'none' as const,
-    inlineIndexPerformed: false,
-    reason,
-    canonicalReadiness: canonicalReadinessFromFreshness('empty'),
-    trustState: 'unavailable' as const,
-  };
 }
 
 /** Handle ccc_feedback tool call */
@@ -54,7 +43,7 @@ export async function handleCccFeedback(args: FeedbackArgs): Promise<{ content: 
       rating: args.rating,
       comment: args.comment ?? null,
     };
-    const readiness = buildUnavailableReadiness('readiness_not_applicable');
+    const readiness = await probeCocoIndexReadiness(projectRoot);
     const lastPersistedAt = graphDb.getStats().lastScanTimestamp;
 
     appendFileSync(feedbackPath, JSON.stringify(entry) + '\n', 'utf-8');
