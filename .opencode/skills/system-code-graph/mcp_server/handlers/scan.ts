@@ -360,7 +360,7 @@ export async function handleCodeGraphScan(args: ScanArgs): Promise<{ content: Ar
   const gitHeadChanged = previousGitHead !== null
     && currentGitHead !== null
     && previousGitHead !== currentGitHead;
-  const fullReindexTriggered = false;
+  const fullReindexTriggered = gitHeadChanged;
   const effectiveIncremental = incremental;
 
   if (gitHeadChanged && incremental) {
@@ -611,12 +611,8 @@ export async function handleCodeGraphScan(args: ScanArgs): Promise<{ content: Ar
   }
 
   const scanPromotable = !severeParseErrorScan && structuralErrors.length === 0;
-  const failedScanErrors = structuralErrors.length > 0
-    ? [
-        ...structuralErrors,
-        ...errors.filter((error) => !structuralErrors.includes(error)),
-      ].slice(0, 10)
-    : errors.slice(0, 10);
+  // structuralErrors is a subset of errors (both pushed together at L592-593); filter/dedup unnecessary
+  const failedScanErrors = errors.slice(0, 10);
   const failedScan = scanPromotable
     ? null
     : graphDb.recordFailedScan({

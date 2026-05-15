@@ -1332,7 +1332,7 @@ export async function handleCodeGraphQuery(args: QueryArgs): Promise<{ content: 
 
     let blastRadius;
     try {
-      blastRadius = computeBlastRadius(sourceFiles, maxDepth, limit, minConfidence, ambiguityCandidates);
+      blastRadius = graphDb.getDb().transaction(() => computeBlastRadius(sourceFiles, maxDepth, limit, minConfidence, ambiguityCandidates))();
     } catch (error) {
       const depthGroups = buildDepthGroups([], maxDepth);
       const reason = error instanceof Error ? error.message : String(error);

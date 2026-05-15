@@ -371,6 +371,7 @@ function expandAnchor(anchor: ArtifactRef, mode: QueryMode, remainingMs?: number
   switch (mode) {
     case 'neighborhood': {
       // 1-hop: CALLS + IMPORTS + CONTAINS from anchor
+      const seenNodes = new Set<string>();
       for (const edgeType of ['CALLS', 'IMPORTS', 'CONTAINS'] as const) {
         if (budgetExpired()) {
           deadlineExceeded = true;
@@ -391,7 +392,8 @@ function expandAnchor(anchor: ArtifactRef, mode: QueryMode, remainingMs?: number
             type: edge.edgeType,
             ...formatContextEdge(edge),
           });
-          if (targetNode) {
+          if (targetNode && !seenNodes.has(targetNode.fqName)) {
+            seenNodes.add(targetNode.fqName);
             nodes.push({ name: targetNode.fqName, kind: targetNode.kind, file: targetNode.filePath, line: targetNode.startLine });
           }
           processedOutgoing += 1;
@@ -413,7 +415,8 @@ function expandAnchor(anchor: ArtifactRef, mode: QueryMode, remainingMs?: number
             type: edge.edgeType,
             ...formatContextEdge(edge),
           });
-          if (sourceNode) {
+          if (sourceNode && !seenNodes.has(sourceNode.fqName)) {
+            seenNodes.add(sourceNode.fqName);
             nodes.push({ name: sourceNode.fqName, kind: sourceNode.kind, file: sourceNode.filePath, line: sourceNode.startLine });
           }
           processedIncoming += 1;

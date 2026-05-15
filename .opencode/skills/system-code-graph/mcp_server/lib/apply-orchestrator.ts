@@ -15,7 +15,6 @@ import {
 import {
   rollbackBadApply,
   snapshotKnownGoodTriplet,
-  recoverPartialScanFailure,
   recoverSqliteCorruption,
   type RecoveryProcedureResult,
 } from './recovery-procedures.js';
@@ -334,6 +333,9 @@ async function dispatchOperation(
         })
         .map((row) => row.file_path);
       if (eligible.length > 0) {
+        if (args.confirm !== true) {
+          throw new Error('repair-nodes requires confirm=true');
+        }
         await scan({ rootDir: args.rootDir, incremental: true });
       }
       return { repairNodes: { eligible } };

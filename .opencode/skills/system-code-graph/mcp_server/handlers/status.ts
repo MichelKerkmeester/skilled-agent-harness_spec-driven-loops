@@ -20,13 +20,14 @@ import {
   resolveIndexScopePolicy,
 } from '../lib/index-scope-policy.js';
 import { isRecord } from '../lib/query-result-adapter.js';
-import { buildReadinessBlock } from '../lib/readiness-contract.js';
+import { buildReadinessBlock, type SharedPayloadTrustState } from '../lib/readiness-contract.js';
 import { getSkipListSummary } from '../lib/parser-skip-list.js';
 import { getParserHealth } from '../lib/tree-sitter-parser.js';
 import { getLastApplyMetadata } from '../lib/apply-metadata.js';
 import { writeCodeGraphReadinessMarker } from '../lib/readiness-marker.js';
 
-type GoldVerificationTrust = 'live' | 'stale' | 'absent';
+/** @deprecated Use SharedPayloadTrustState from readiness-contract. */
+type GoldVerificationTrust = SharedPayloadTrustState;
 
 interface VerificationPassPolicy {
   overall_pass_rate: number;
