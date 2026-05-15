@@ -79,7 +79,7 @@ Current state:
 Run from the repository root.
 
 ```bash
-cd .opencode/skills/system-skill-advisor && npm test -- tests/scorer/lane-weight-sweep.vitest.ts
+cd .opencode/skills/system-skill-advisor/mcp_server && npm test -- tests/scorer/lane-weight-sweep.vitest.ts
 ```
 
 Expected result: exit code 0.

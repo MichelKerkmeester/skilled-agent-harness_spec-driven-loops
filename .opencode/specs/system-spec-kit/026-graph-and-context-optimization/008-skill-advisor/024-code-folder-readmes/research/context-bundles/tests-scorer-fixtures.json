@@ -126,9 +126,9 @@
   "integration_notes": "This folder provides test fixtures for the advisor scorer system. The intent prompt corpora (INTENT_PROMPT_CORPUS and HARDER_INTENT_PROMPT_CORPUS) contain curated test prompts with expected skill routing results, used to measure scorer accuracy across different lane weight configurations. The seed-skill-embeddings module provides a caching embedding seeder that generates and caches skill description vectors for lane weight sweep experiments, with environment-aware skip logic for when embedding providers are unavailable. These fixtures are consumed by the lane-weight-sweep test harness to generate sweep reports comparing different weight vector configurations.",
   "validation_commands": [
     {
-      "command": "cd .opencode/skills/system-skill-advisor && npm test -- tests/scorer/lane-weight-sweep.vitest.ts",
+      "command": "cd .opencode/skills/system-skill-advisor/mcp_server && npm test -- tests/scorer/lane-weight-sweep.vitest.ts",
       "expected": "exit 0",
-      "verified": false
+      "verified": true
     }
   ],
   "key_invariants": [
