@@ -15,9 +15,9 @@
 | 🤖 **11 Specialized Agents** | Focused roles for implementation, review, research, docs, git, and more |
 | 🎯 **20 On-Demand Skills** | Skill Advisor routing for the right workflow at the right time |
 
-Works with **OpenCode**, **Codex**, **Claude Code**, **Gemini**, and **Devin CLI**.
-Supports external CLI agent orchestration without unnecessary MCPs or proxies.
-Designed to be modular, inspectable, and easy to adapt to your own stack.
+- Works with **OpenCode**, **Codex**, **Claude Code**, **Gemini**, and **Devin CLI**
+- Supports external CLI agent orchestration without unnecessary MCPs or proxies
+- Designed to be modular, inspectable, and easy to adapt to your own stack
 
 <!-- ANCHOR:table-of-contents -->
 
