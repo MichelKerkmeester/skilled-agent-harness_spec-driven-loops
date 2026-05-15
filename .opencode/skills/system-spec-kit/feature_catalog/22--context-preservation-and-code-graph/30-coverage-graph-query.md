@@ -1,9 +1,9 @@
 ---
-title: "deep_loop_graph_query read path"
-description: "Migrated coverage-graph query read-path reference for bounded namespace-scoped coverage lookups."
+title: "Deep loop coverage graph query"
+description: "Reads deep-loop coverage graph state for uncovered questions, unverified claims, contradictions, provenance, gaps, and hot nodes."
 ---
 
-# deep_loop_graph_query read path
+# Deep loop coverage graph query
 
 <!-- ANCHOR:overview -->
 ## 1. OVERVIEW
@@ -24,14 +24,14 @@ Current runtime behavior is documented in the source files below.
 
 | File | Role |
 |------|------|
-| `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts` | Public MCP descriptor for the deep-loop coverage tools |
-| `.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/query.ts` | Handler |
+| `mcp_server/tool-schemas.ts` | Public MCP descriptor |
+| `mcp_server/handlers/coverage-graph/query.ts` | Handler |
 <!-- /ANCHOR:source-files -->
 
 <!-- ANCHOR:source-metadata -->
 ## 4. SOURCE METADATA
-- Group: Coverage graph
+- Group: Context Preservation And Code Graph
 - Canonical catalog source: `feature_catalog.md`
-- Feature file path: `05--coverage-graph/05-deep-loop-graph-query-read-path.md`
+- Feature file path: `22--context-preservation-and-code-graph/30-coverage-graph-query.md`
 
 <!-- /ANCHOR:source-metadata -->
