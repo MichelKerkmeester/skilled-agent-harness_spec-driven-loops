@@ -4,8 +4,8 @@
 // Publishes a file-based readiness snapshot for startup-critical spec-kit
 // consumers without in-process imports.
 
-import { mkdirSync, writeFileSync } from 'node:fs';
-import { dirname, resolve } from 'node:path';
+import { mkdirSync, renameSync, unlinkSync, writeFileSync } from 'node:fs';
+import path, { dirname, resolve } from 'node:path';
 import { getStats, queryStartupHighlights } from './code-graph-db.js';
 import { getGraphReadinessSnapshot } from './ensure-ready.js';
 import type {
@@ -15,10 +15,49 @@ import type {
   StartupGraphQualitySummary,
 } from '../../../system-spec-kit/shared/code-graph-contracts.js';
 
-export const CODE_GRAPH_READINESS_MARKER_PATH = resolve(
+export const CODE_GRAPH_READINESS_MARKER_BASE_DIR = resolve(
   process.cwd(),
-  '.opencode/skills/system-code-graph/mcp_server/database/.code-graph-readiness.json',
+  '.opencode/skills/system-code-graph/mcp_server/database',
 );
+export const CODE_GRAPH_READINESS_MARKER_PATH = resolve(CODE_GRAPH_READINESS_MARKER_BASE_DIR, '.code-graph-readiness.json');
+
+export function validateMarkerPath(resolved: string, baseDir: string): void {
+  const normalizedResolved = path.resolve(resolved);
+  const normalizedBase = path.resolve(baseDir);
+  if (!normalizedResolved.startsWith(normalizedBase + path.sep) && normalizedResolved !== normalizedBase) {
+    throw new Error(`Marker path traversal rejected: ${resolved} outside ${baseDir}`);
+  }
+}
+
+export function writeMarkerFileAtomic(
+  markerPath: string,
+  content: string,
+  baseDir: string = CODE_GRAPH_READINESS_MARKER_BASE_DIR,
+): boolean {
+  try {
+    validateMarkerPath(markerPath, baseDir);
+    mkdirSync(dirname(markerPath), { recursive: true });
+    const tmpPath = `${markerPath}.tmp.${process.pid}`;
+    try {
+      writeFileSync(tmpPath, content);
+      renameSync(tmpPath, markerPath);
+      return true;
+    } catch (error: unknown) {
+      try {
+        unlinkSync(tmpPath);
+      } catch {
+        // Best-effort cleanup for failed atomic marker writes.
+      }
+      const message = error instanceof Error ? error.message : String(error);
+      console.warn(`[code-graph-readiness] marker write skipped: ${message}`);
+      return false;
+    }
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : String(error);
+    console.warn(`[code-graph-readiness] ${message}`);
+    return false;
+  }
+}
 
 function compactPath(filePath: string): string {
   const parts = filePath.replace(/\\/g, '/').split('/').filter(Boolean);
@@ -225,7 +264,6 @@ export function writeCodeGraphReadinessMarker(workspaceRoot: string = process.cw
     startup: buildStartupBrief(stats, markerBase),
     ...(error ? { error } : {}),
   };
-  mkdirSync(dirname(CODE_GRAPH_READINESS_MARKER_PATH), { recursive: true });
-  writeFileSync(CODE_GRAPH_READINESS_MARKER_PATH, `${JSON.stringify(marker, null, 2)}\n`);
+  writeMarkerFileAtomic(CODE_GRAPH_READINESS_MARKER_PATH, `${JSON.stringify(marker, null, 2)}\n`);
   return marker;
 }

@@ -27,6 +27,10 @@ export type {
 } from '@spec-kit/shared/code-graph-contracts';
 
 const CODE_GRAPH_MCP_TIMEOUT_MS = 8_000;
+const MARKER_BASE_DIR = fileURLToPath(new URL(
+  '../../../system-code-graph/mcp_server/database/',
+  import.meta.url,
+));
 const MARKER_PATH = fileURLToPath(new URL(
   '../../../system-code-graph/mcp_server/database/.code-graph-readiness.json',
   import.meta.url,
@@ -65,6 +69,18 @@ function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === 'object' && value !== null && !Array.isArray(value);
 }
 
+export function validateMarkerPath(resolved: string, baseDir: string): void {
+  const normalizedResolved = path.resolve(resolved);
+  const normalizedBase = path.resolve(baseDir);
+  if (!normalizedResolved.startsWith(normalizedBase + path.sep) && normalizedResolved !== normalizedBase) {
+    throw new Error(`Marker path traversal rejected: ${resolved} outside ${baseDir}`);
+  }
+}
+
+function sleepSync(ms: number): void {
+  Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, ms);
+}
+
 function processEnv(): Record<string, string> {
   return Object.fromEntries(
     Object.entries(process.env).filter((entry): entry is [string, string] => typeof entry[1] === 'string'),
@@ -95,19 +111,41 @@ export function getCodeGraphReadinessMarkerPath(): string {
   return MARKER_PATH;
 }
 
-export function readCodeGraphReadinessMarker(): CodeGraphReadinessMarker | null {
-  if (!existsSync(MARKER_PATH)) {
+export function readCodeGraphReadinessMarkerFromPath(markerPath: string = MARKER_PATH): CodeGraphReadinessMarker | null {
+  try {
+    validateMarkerPath(markerPath, MARKER_BASE_DIR);
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : String(error);
+    console.warn(`[code-graph-boundary] ${message}`);
     return null;
   }
-  try {
-    const parsed = JSON.parse(readFileSync(MARKER_PATH, 'utf8')) as unknown;
-    if (!isRecord(parsed) || parsed.schemaVersion !== 1 || parsed.producer !== 'mk-code-index') {
+
+  if (!existsSync(markerPath)) {
+    return null;
+  }
+
+  for (let attempt = 0; attempt < 2; attempt += 1) {
+    try {
+      const raw = readFileSync(markerPath, 'utf8');
+      const parsed = JSON.parse(raw) as unknown;
+      if (!isRecord(parsed) || parsed.schemaVersion !== 1 || parsed.producer !== 'mk-code-index') {
+        return null;
+      }
+      return parsed as unknown as CodeGraphReadinessMarker;
+    } catch (error: unknown) {
+      if (attempt === 0 && error instanceof SyntaxError) {
+        sleepSync(10);
+        continue;
+      }
       return null;
     }
-    return parsed as unknown as CodeGraphReadinessMarker;
-  } catch {
-    return null;
   }
+
+  return null;
+}
+
+export function readCodeGraphReadinessMarker(): CodeGraphReadinessMarker | null {
+  return readCodeGraphReadinessMarkerFromPath();
 }
 
 function freshnessFromMarker(marker: CodeGraphReadinessMarker | null): GraphFreshness {
