@@ -130,11 +130,10 @@ Prompt-time routing is available across runtime adapters:
 
 | Runtime | Hook Surface |
 | --- | --- |
-| Claude Code | `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/user-prompt-submit.ts` |
-| Copilot CLI | `.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/user-prompt-submit.ts` |
-| Gemini CLI | `.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/user-prompt-submit.ts` |
-| Codex CLI | `.opencode/skills/system-spec-kit/mcp_server/hooks/codex/session-start.ts`, `user-prompt-submit.ts`, plus `prompt-wrapper.ts` fallback |
-| OpenCode | `.opencode/plugins/spec-kit-skill-advisor.js` plus `.opencode/skills/system-spec-kit/mcp_server/plugin_bridges/spec-kit-skill-advisor-bridge.mjs` |
+| Claude Code | `.opencode/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts` |
+| Gemini CLI | `.opencode/skills/system-skill-advisor/hooks/gemini/user-prompt-submit.ts` |
+| Codex CLI | `.opencode/skills/system-skill-advisor/hooks/codex/user-prompt-submit.ts` plus `prompt-wrapper.ts` fallback and `lib/codex-hook-policy.ts` |
+| OpenCode | `.opencode/plugins/spec-kit-skill-advisor.js` plus the cross-process gateway at `.opencode/skills/system-spec-kit/mcp_server/plugin_bridges/spec-kit-skill-advisor-bridge.mjs` |
 
 The OpenCode bridge must use the stable package entrypoint:
 
