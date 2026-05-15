@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Workspace Path
+// ───────────────────────────────────────────────────────────────────
+
 export interface CanonicalizedWorkspace {
     readonly canonicalWorkspace: string;
     readonly canonicalRootDir: string;

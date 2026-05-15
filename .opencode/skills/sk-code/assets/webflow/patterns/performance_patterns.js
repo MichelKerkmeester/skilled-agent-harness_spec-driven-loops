@@ -1,3 +1,9 @@
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ Performance Patterns                                                     ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
+
+'use strict';
+
 /**
  * PERFORMANCE PATTERNS - THROTTLE, DEBOUNCE, AND OBSERVER UTILITIES
  *
@@ -15,7 +21,6 @@
  * - No need for manual visibility management in RAF loops
  */
 
-'use strict';
 
 /* ─────────────────────────────────────────────────────────────
    1. TIMING CONSTANTS

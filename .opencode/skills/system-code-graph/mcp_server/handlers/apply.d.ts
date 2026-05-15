@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Apply
+// ───────────────────────────────────────────────────────────────────
+
 import { type CodeGraphApplyArgs } from '../lib/apply-orchestrator.js';
 export declare function handleCodeGraphApply(args: CodeGraphApplyArgs): Promise<{
     content: Array<{

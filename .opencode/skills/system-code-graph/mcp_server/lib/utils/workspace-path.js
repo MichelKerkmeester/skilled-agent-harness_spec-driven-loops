@@ -1,6 +1,9 @@
-// ───────────────────────────────────────────────────────────────
-// MODULE: Workspace Path Utilities
-// ───────────────────────────────────────────────────────────────
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ Workspace Path                                                           ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
+
+'use strict';
+
 // Shared canonicalization + workspace-containment helpers used by
 // every code-graph handler that accepts a caller-supplied path.
 import { realpathSync } from 'node:fs';

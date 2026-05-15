@@ -1,4 +1,10 @@
-'/**
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ Interaction Gate Patterns                                                ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
+
+'use strict';
+
+/**
  * INTERACTION GATE PATTERNS
  *
  * Reusable helpers for interaction-gated, viewport-gated, and idle-fallback loading.
@@ -6,7 +12,6 @@
  * script loading during performance remediation work.
  */
 
-'use strict';
 
 const script_load_cache = new Map();
 

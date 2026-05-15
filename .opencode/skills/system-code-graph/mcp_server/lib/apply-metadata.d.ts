@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Apply Metadata
+// ───────────────────────────────────────────────────────────────────
+
 export type ApplyResultStatus = 'committed' | 'rolled-back' | 'aborted' | 'dry-run' | 'noop';
 export declare const APPLY_METADATA_KEY = "last_apply";
 export declare function persistApplyMetadata(result: {

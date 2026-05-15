@@ -1,6 +1,9 @@
-// ───────────────────────────────────────────────────────────────
-// MODULE: Code Graph Apply Handler
-// ───────────────────────────────────────────────────────────────
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ Apply                                                                    ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
+
+'use strict';
+
 // MCP tool handler for code_graph_apply.
 import { applyCodeGraph, } from '../lib/apply-orchestrator.js';
 function buildResponse(payload) {

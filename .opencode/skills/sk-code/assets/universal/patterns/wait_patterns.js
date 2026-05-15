@@ -1,3 +1,9 @@
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ Wait Patterns                                                            ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
+
+'use strict';
+
 /**
  * OBSERVER-BASED WAITING PATTERNS
  *
@@ -10,7 +16,6 @@
  * - IntersectionObserver: table_of_content.js (viewport detection with RAF batching)
  */
 
-'use strict';
 
 /* ─────────────────────────────────────────────────────────────
    1. MUTATION OBSERVER PATTERNS

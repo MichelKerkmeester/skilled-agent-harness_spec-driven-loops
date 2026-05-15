@@ -1,3 +1,9 @@
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ Validation Patterns                                                      ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
+
+'use strict';
+
 /**
  * DEFENSE-IN-DEPTH VALIDATION PATTERNS
  *
@@ -5,7 +11,6 @@
  * Validates at every layer to make errors structurally impossible.
  */
 
-'use strict';
 
 /* ─────────────────────────────────────────────────────────────
    1. GENERIC VALIDATION PATTERNS

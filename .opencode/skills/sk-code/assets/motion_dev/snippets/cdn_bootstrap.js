@@ -1,3 +1,9 @@
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ CDN Bootstrap                                                            ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
+
+'use strict';
+
 /**
  * @title CDN Bootstrap
  * @description Skeleton for window.Motion CDN-bundle initialization with safety guards, mirroring the repo's guarded Webflow pattern.
@@ -5,7 +11,6 @@
  * @example Load https://cdn.jsdelivr.net/npm/motion@12.38.0/dist/motion.js before this file.
  */
 (() => {
-  "use strict";
 
   // Webflow convention: snake_case names. Other stacks may use their local convention.
   const INIT_FLAG = "__motionExampleCdnInit";

@@ -1,6 +1,9 @@
-// ───────────────────────────────────────────────────────────────
-// MODULE: Code Graph Tools
-// ───────────────────────────────────────────────────────────────
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ Code Graph Tools                                                         ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
+
+'use strict';
+
 // Dispatch for code graph MCP tools: scan, query, status, context, verify, apply, detect_changes.
 import { handleCodeGraphScan, handleCodeGraphQuery, handleCodeGraphStatus, handleCodeGraphContext, handleClassifyQueryIntent, handleCodeGraphVerify, handleCodeGraphApply, handleCccStatus, handleCccReindex, handleCccFeedback, handleDetectChanges,
 // PHASE-002-IMPORT-SLOT: handleCodeGraphHldLld (027/002)

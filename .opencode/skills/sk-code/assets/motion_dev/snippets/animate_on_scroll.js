@@ -1,3 +1,9 @@
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ Animate On Scroll                                                        ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
+
+'use strict';
+
 /**
  * @title Animate on Scroll
  * @description Use Motion scroll() with animate() to bind transform progress to document scroll. Assumes Motion is loaded as window.Motion or imports are adapted for your bundler.
@@ -5,7 +11,6 @@
  * @example Add data-motion-scroll-progress to an element and load this file after Motion.
  */
 (() => {
-  "use strict";
 
   // Webflow convention: snake_case names. Other stacks may use their local convention.
   const { animate, scroll } = window.Motion || {};

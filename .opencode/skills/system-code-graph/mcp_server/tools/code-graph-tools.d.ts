@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Code Graph Tools
+// ───────────────────────────────────────────────────────────────────
+
 import type { MCPResponse } from '../../../system-spec-kit/mcp_server/tools/types.js';
 /** Tool names handled by this module */
 export declare const TOOL_NAMES: Set<string>;
