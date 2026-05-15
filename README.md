@@ -4,6 +4,8 @@
 [![License](https://img.shields.io/github/license/MichelKerkmeester/opencode--spec-kit-skilled-agent-orchestration?style=for-the-badge&color=7bd88f&labelColor=222222)](LICENSE)
 [![Latest Release](https://img.shields.io/github/v/release/MichelKerkmeester/opencode--spec-kit-skilled-agent-orchestration?style=for-the-badge&color=5ad4e6&labelColor=222222)](https://github.com/MichelKerkmeester/opencode--spec-kit-skilled-agent-orchestration/releases)
 
+> Don't buy me unwanted coffee: https://buymeacoffee.com/michelkerkmeester
+
 | Core layer | What it adds |
 | --- | --- |
 | 📋 **Spec Kit Framework** | Structured plans, task tracking, validation gates, and handover docs |
@@ -16,8 +18,6 @@
 Works with **OpenCode**, **Codex**, **Claude Code**, **Gemini**, and **Devin CLI**.
 Supports external CLI agent orchestration without unnecessary MCPs or proxies.
 Designed to be modular, inspectable, and easy to adapt to your own stack.
-
-> Don't buy me unwanted coffee: https://buymeacoffee.com/michelkerkmeester
 
 <!-- ANCHOR:table-of-contents -->
 
