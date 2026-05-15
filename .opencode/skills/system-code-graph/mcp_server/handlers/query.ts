@@ -11,7 +11,7 @@ import {
   attachStructuralTrustFields,
   type EdgeEvidenceClass,
   type HotFileBreadcrumb,
-} from '../../../system-spec-kit/mcp_server/lib/context/shared-payload.js';
+} from '../lib/shared/shared-payload.js';
 import {
   buildQueryTrustMetadata,
   buildReadinessBlock,
