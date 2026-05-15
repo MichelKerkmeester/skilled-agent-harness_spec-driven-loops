@@ -25,9 +25,9 @@ trigger_phrases:
 
 Current state:
 
-- Provides a session resume bridge for compact code graph injection.
-- Provides message-shape helpers for safe synthetic text-part insertion.
-- Provides a skill advisor subprocess bridge with native and local fallback paths.
+- Code-graph bridge lives at `.opencode/skills/system-code-graph/mcp_server/plugin_bridges/mk-code-graph-bridge.mjs`.
+- Message-shape helpers for safe synthetic text-part insertion live here.
+- Skill advisor subprocess bridge with native and local fallback paths lives here.
 
 ---
 
@@ -35,11 +35,12 @@ Current state:
 
 ```text
 plugin_bridges/
-+-- spec-kit-compact-code-graph-bridge.mjs  # Calls session resume and emits transport JSON
 +-- spec-kit-opencode-message-schema.mjs    # Validates OpenCode message parts and markers
 +-- spec-kit-skill-advisor-bridge.mjs       # Calls advisor compat handlers over stdin and stdout
 `-- README.md
 ```
+
+Note: the code-graph bridge was relocated to `.opencode/skills/system-code-graph/mcp_server/plugin_bridges/mk-code-graph-bridge.mjs` (renamed from `spec-kit-compact-code-graph-bridge.mjs`) as part of packet 036.
 
 ---
 
@@ -47,7 +48,6 @@ plugin_bridges/
 
 | File | Responsibility |
 |---|---|
-| `spec-kit-compact-code-graph-bridge.mjs` | Initializes runtime state, calls `handleSessionResume` and writes transport text to stdout. |
 | `spec-kit-opencode-message-schema.mjs` | Defines message-anchor checks, synthetic text-part creation and unsafe part detection. |
 | `spec-kit-skill-advisor-bridge.mjs` | Reads bridge input from stdin, calls advisor compat modules and emits one JSON response. |
 
@@ -79,3 +79,4 @@ Expected result: Plugin bridge smoke tests and related advisor or message-schema
 
 - [`../README.md`](../README.md)
 - [`../skill_advisor/README.md`](../skill_advisor/README.md)
+- Code-graph bridge: `.opencode/skills/system-code-graph/mcp_server/plugin_bridges/`

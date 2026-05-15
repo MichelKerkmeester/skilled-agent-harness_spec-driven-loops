@@ -35,6 +35,7 @@ export default defineConfig({
     teardownTimeout: TEARDOWN_TIMEOUT_MS,
     alias: {
       '@lib': path.resolve(import.meta.dirname, 'lib'),
+      '@spec-kit/shared': path.resolve(import.meta.dirname, '..', 'shared'),
     },
   },
 });

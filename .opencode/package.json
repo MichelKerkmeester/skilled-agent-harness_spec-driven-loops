@@ -1,6 +1,10 @@
 {
   "type": "module",
   "dependencies": {
-    "@opencode-ai/plugin": "1.2.15"
+    "@opencode-ai/plugin": "1.15.0"
+  },
+  "devDependencies": {
+    "@types/node": "^25.8.0",
+    "vitest": "^4.1.6"
   }
 }

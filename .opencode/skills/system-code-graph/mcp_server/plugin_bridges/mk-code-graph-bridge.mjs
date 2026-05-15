@@ -103,6 +103,6 @@ async function main() {
 
 main().catch((error) => {
   const message = error instanceof Error ? error.message : String(error);
-  process.stderr.write(`[spec-kit-compact-code-graph-bridge] ${message}\n`);
+  process.stderr.write(`[mk-code-graph-bridge] ${message}\n`);
   process.exitCode = 1;
 });
