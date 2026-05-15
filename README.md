@@ -15,10 +15,11 @@
 
 
 **Reasons to try it**
-- Works with **OpenCode**, **Codex**, **Claude Code**, **Gemini**, and **Devin CLI**
+- Works with **Opencode**, **Codex**, **Claude Code**, **Gemini**, and **Devin CLI**
 - Supports external CLI agent orchestration without unnecessary MCPs or proxies
 - Designed to be modular, inspectable, and easy to adapt to your own stack
 
+---
 
 > Don't buy me unwanted coffee: https://buymeacoffee.com/michelkerkmeester
 
