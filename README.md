@@ -54,7 +54,7 @@ The framework adds four layers on top of the base platform:
 | **🤖 11 Agents**        | 11 custom specialists, multi-runtime                                                                                                                                                                                                              |
 | **🎯 19 Skills**        | Code, docs, git, prompts, MCP, research, review, improvement, cross-AI, and standalone system packages                                                                                                                                            |
 | **⌨️ 22 Commands**      | 6 spec_kit + 4 memory + 6 create + 2 improve + 3 doctor + 1 agent_router                                                                                                                                                                          |
-| **🔧 68 MCP Tools**     | mk-spec-memory (41), mk_skill_advisor (8), mk_code_index (10), code mode (7), CocoIndex (1), sequential thinking (1). See canonical count in FAQ                                                                            |
+| **🔧 66 MCP Tools**     | mk-spec-memory (39), mk_skill_advisor (8), mk_code_index (10), code mode (7), CocoIndex (1), sequential thinking (1). See canonical count in FAQ                                                                            |
 | **🔍 CocoIndex Code**   | [Forked](.opencode/skills/mcp-coco-index/NOTICE) from [cocoindex-io/cocoindex-code](https://github.com/cocoindex-io/cocoindex-code) (Apache 2.0) - semantic code search via vector embeddings and natural-language discovery across 28+ languages |
 | **🏗️ Code Graph**       | First-class skill at [`.opencode/skills/system-code-graph/`](.opencode/skills/system-code-graph/) with standalone MCP server identity `mk-code-index` and client namespace `mcp__mk_code_index__*`                                               |
 | **⚡ Runtime Coverage** | OpenCode, Codex CLI, Claude Code, Gemini CLI, plus Copilot MCP/startup support                                                                                                                                                                    |
@@ -385,16 +385,16 @@ The `mk-spec-memory` tools are organized into a layered architecture. Code graph
 | Layer  | Name            | Tools  | Token Budget | Purpose                                                                      |
 | ------ | --------------- | ------ | ------------ | ---------------------------------------------------------------------------- |
 | **L1** | Orchestration   | 3      | 2,000        | Unified context, resume, and bootstrap entry points                          |
-| **L2** | Core            | 4      | 1,500        | Search, quick search, trigger matching, save                                 |
+| **L2** | Core            | 3      | 1,500        | Search, trigger matching, save                                               |
 | **L3** | Discovery       | 4      | 800          | List, stats, health checks, and session readiness                            |
 | **L4** | Mutation        | 5      | 500          | Delete, update, validate, bulk cleanup, retention sweep                      |
 | **L5** | Lifecycle       | 4      | 600          | Checkpoints and lifecycle state                                              |
-| **L6** | Analysis        | 8      | 1,200        | Causal graph, epistemic baselines, evaluations, and dashboards               |
+| **L6** | Analysis        | 7      | 1,200        | Causal graph (link/stats/drift_why), epistemic baselines, evaluations, dashboards |
 | **L7** | Maintenance     | 5      | 1,000        | Memory index scans, async ingest, and learning history                       |
 | **L8** | Moved Surfaces  | 0      | -            | Code graph lives in `mk_code_index`; advisor and skill graph live in `mk_skill_advisor` |
 | **L9** | Coverage Graph  | 4      | 700          | Deep-loop coverage graph operations                                          |
 | **L9** | Council Graph   | 4      | 700          | Deep AI Council graph operations                                             |
-|        | **Total**       | **41** | **10,500**   |                                                                              |
+|        | **Total**       | **39** | **~10,180**  |                                                                              |
 
 Lower layers load only when needed. L1 is always available. L2 loads for any search. L3-L7 load based on the specific command being used.
 
@@ -774,7 +774,7 @@ For details, see the [Skill Advisor README](.opencode/skills/system-skill-adviso
 **system-spec-kit**
 - Mandatory orchestrator for all file modifications - activates automatically for any code file change
 - Creates numbered spec folders with manifest templates rendered through Level contracts across 4 levels (1-3+)
-- Integrates the 41-tool memory surface with constitutional-tier support, session bootstrap, and hybrid 5-channel retrieval
+- Integrates the 39-tool memory surface with constitutional-tier support, session bootstrap, and hybrid 5-channel retrieval
 - Manages the manifest template source, 20 validation rules, the spec-kit script suite, and the feature-catalog / testing-playbook documentation surfaces
 
 **sk-doc**
@@ -1195,13 +1195,13 @@ Canonical native server set:
 
 | Server                 | Tools | Purpose                                                                |
 | ---------------------- | ----- | ---------------------------------------------------------------------- |
-| `mk-spec-memory`      | 41    | Cognitive memory, session recovery, causal/eval tools, and graph loops |
+| `mk-spec-memory`      | 39    | Cognitive memory, session recovery, causal/eval tools, and graph loops |
 | `mk_skill_advisor`     | 8     | Gate 2 advisor routing plus skill-graph scan/query/status/validation   |
 | `mk_code_index`        | 10    | Structural code graph, `detect_changes`, and CocoIndex bridge helpers  |
 | `code_mode`            | 7     | External tool orchestration via TypeScript execution                   |
 | `cocoindex_code`       | 1     | Semantic code search via vector embeddings                             |
 | `sequential_thinking`  | 1     | Structured multi-step reasoning for complex problems                   |
-| **Total**              | **68** |                                                                        |
+| **Total**              | **66** |                                                                        |
 
 &nbsp;
 #### Code Mode Tools (7)
@@ -1442,7 +1442,7 @@ A: Define the agent in `.opencode/agents/` (the source of truth), then copy the 
 &nbsp;
 **Q: How many MCP tools are there and where are they defined?**
 
-A: 68 total across 6 native MCP servers, sourced from registered MCP-dispatched tools only. Breakdown: 41 `mk-spec-memory` tools from `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts`, 8 `mk_skill_advisor` tools from `.opencode/skills/system-skill-advisor/mcp_server/advisor-server.ts`, 10 `mk_code_index` tools from `.opencode/skills/system-code-graph/mcp_server/tool-schemas.ts`, 7 code mode tools, 1 semantic code search tool (`cocoindex_code`), and 1 sequential thinking tool. Canonical advisor/skill-graph docs use `mk_skill_advisor` / `mcp__mk_skill_advisor__*`; canonical code-graph docs use `mk_code_index` / `mcp__mk_code_index__*`.
+A: 66 total across 6 native MCP servers, sourced from registered MCP-dispatched tools only. Breakdown: 39 `mk-spec-memory` tools from `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts`, 8 `mk_skill_advisor` tools from `.opencode/skills/system-skill-advisor/mcp_server/advisor-server.ts`, 10 `mk_code_index` tools from `.opencode/skills/system-code-graph/mcp_server/tool-schemas.ts`, 7 code mode tools, 1 semantic code search tool (`cocoindex_code`), and 1 sequential thinking tool. Canonical advisor/skill-graph docs use `mk_skill_advisor` / `mcp__mk_skill_advisor__*`; canonical code-graph docs use `mk_code_index` / `mcp__mk_code_index__*`.
 &nbsp;
 
 **Q: What is the feature catalog?**
@@ -1484,4 +1484,4 @@ A: The feature catalog is a 294-entry reference across 22 categories documenting
 <!-- /ANCHOR:related-documents -->
 
 
-*Documentation version: 4.9 | Last updated: 2026-05-14 | Framework: 11 agents, 19 skills, 22 commands, 68 MCP tools (41 mk-spec-memory + 8 mk_skill_advisor + 10 mk_code_index + 7 code mode + 1 CocoIndex + 1 sequential thinking; deferred / internal-only handlers do NOT count).*
+*Documentation version: 4.10 | Last updated: 2026-05-15 | Framework: 11 agents, 19 skills, 22 commands, 66 MCP tools (39 mk-spec-memory + 8 mk_skill_advisor + 10 mk_code_index + 7 code mode + 1 CocoIndex + 1 sequential thinking; deferred / internal-only handlers do NOT count).*
