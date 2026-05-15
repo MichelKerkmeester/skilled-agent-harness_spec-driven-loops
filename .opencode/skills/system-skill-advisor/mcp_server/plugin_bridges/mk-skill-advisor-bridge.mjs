@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 // ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ COMPONENT: Spec Kit Skill Advisor Plugin Bridge (MJS source-of-truth)   ║
+// ║ COMPONENT: Skill Advisor Plugin Bridge (mk-skill-advisor, MJS source)   ║
 // ╠══════════════════════════════════════════════════════════════════════════╣
-// ║ PURPOSE: Subprocess bridge between `.opencode/plugins/spec-kit-skill-   ║
+// ║ PURPOSE: Subprocess bridge between `.opencode/plugins/mk-skill-         ║
 // ║          advisor.js` and the standalone mk_skill_advisor MCP       ║
 // ║          server. The plugin                                           ║
 // ║          spawns this script with stdin JSON; this script writes a      ║
@@ -237,7 +237,7 @@ async function callAdvisorTool(name, args, workspaceRoot) {
     stderr: 'pipe',
   });
   transport.stderr?.on('data', () => {});
-  const client = new Client({ name: 'spec-kit-skill-advisor-plugin-bridge', version: '0.1.0' });
+  const client = new Client({ name: 'mk-skill-advisor-bridge', version: '0.1.0' });
   try {
     await withTimeout(client.connect(transport), ADVISOR_MCP_TIMEOUT_MS, 'mk_skill_advisor initialize');
     return await withTimeout(

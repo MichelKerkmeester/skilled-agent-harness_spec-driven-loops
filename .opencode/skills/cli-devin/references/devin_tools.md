@@ -103,7 +103,7 @@ How Devin compares to the four siblings on the dimensions that drive cli-* routi
 | **Profile / agent / skill surface** | Skills + agents | `-p <profile>` | GEMINI.md | `--agent <slug>` | Rules + skills + MCP (profile-scoped) |
 | **JSON output** | No | Capture last message `-o file.txt` | `-o json` flag | `--format json` event stream | **UNVERIFIED** (claimed by web search, not in official docs) |
 | **Cross-repo dispatch** | No | No | No | `--dir <path>` | No |
-| **Hooks** | Settings-based | Native hooks via `~/.codex/hooks.json` | No | Plugin system | No (operator-side rules+skills are the analog) |
+| **Hooks** | Settings-based | Native hooks via `~/.codex/hooks.json` | No | Plugin system | Yes — Claude-Code-compatible hooks via `.devin/hooks.v1.json` (see <https://cli.devin.ai/docs/extensibility/hooks/overview>) |
 | **Self-invocation guard** | Yes | Yes | Yes | Yes (ADR-001 layered detection) | Yes (DEVIN_* env + ancestry + lockfile speculation) |
 | **Family stdin-redirect convention** | Standard | Standard (per memory) | Standard | Standard (`</dev/null` required) | Standard (`</dev/null` required) |
 

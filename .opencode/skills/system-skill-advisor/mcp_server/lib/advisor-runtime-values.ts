@@ -12,6 +12,8 @@ export const ADVISOR_RUNTIME_VALUES = [
   'gemini',
   'copilot',
   'codex',
+  'opencode',
+  'devin',
 ] as const;
 
 export type AdvisorRuntime = (typeof ADVISOR_RUNTIME_VALUES)[number];
