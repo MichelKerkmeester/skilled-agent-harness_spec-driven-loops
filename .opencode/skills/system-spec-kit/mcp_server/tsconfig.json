@@ -37,20 +37,13 @@
   "include": [
     "**/*.ts",
     "lib/eval/data/*.json",
-    "lib/routing/*.json",
-    "../../system-code-graph/mcp_server/**/*.ts",
-    "../../system-skill-advisor/mcp_server/**/*.ts"
+    "lib/routing/*.json"
   ],
   "exclude": [
     "node_modules",
     "dist",
     "../../shared",
     "../../shared/**",
-    "../../system-code-graph/mcp_server/tests/**/*.vitest.ts",
-    "../../system-code-graph/mcp_server/tests/**/*.test.ts",
-    "../../system-code-graph/mcp_server/tests/**/*.test-d.ts",
-    "../../system-code-graph/mcp_server/stress_test/**/*.vitest.ts",
-    "../../system-code-graph/mcp_server/stress_test/**/*.test.ts",
     "tests/**/*.vitest.ts",
     "tests/**/*.test.ts",
     "tests/**/*.vitest.js",
@@ -58,11 +51,6 @@
     "stress_test/**/*.test.ts",
     "tests/chunk-thinning.vitest.ts",
     "tests/layer-definitions.vitest.ts",
-    "tests/dead-code-regression.vitest.ts",
-    "../../system-skill-advisor/mcp_server/tests/**/*.ts",
-    "../../system-skill-advisor/mcp_server/stress_test/**/*.ts",
-    "../../system-skill-advisor/mcp_server/**/*.vitest.ts",
-    "../../system-skill-advisor/mcp_server/**/*.test.ts",
-    "../../system-skill-advisor/mcp_server/vitest.config.ts"
+    "tests/dead-code-regression.vitest.ts"
   ]
 }

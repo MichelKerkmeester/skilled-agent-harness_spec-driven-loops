@@ -17,15 +17,11 @@ export default defineConfig({
   test: {
     include: [
       'mcp_server/tests/**/*.{vitest,test}.ts',
-      '../system-skill-advisor/mcp_server/lib/**/*.{vitest,test}.ts',
-      '../system-skill-advisor/mcp_server/tests/**/*.{vitest,test}.ts',
       'scripts/tests/**/*.{vitest,test}.ts',
-      ...(INCLUDE_BENCHES ? ['../system-skill-advisor/mcp_server/bench/**/*.bench.ts'] : []),
     ],
     exclude: [
       'mcp_server/tests/memory-save.vitest.ts',
       'mcp_server/tests/archive/**',
-      ...(INCLUDE_BENCHES ? [] : ['../system-skill-advisor/mcp_server/bench/**/*.bench.ts']),
     ],
     setupFiles: [
       path.resolve(import.meta.dirname, 'tests', '_support', 'vitest-setup.ts'),

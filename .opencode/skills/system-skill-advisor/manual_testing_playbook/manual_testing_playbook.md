@@ -56,7 +56,7 @@ Canonical package artifacts:
 <!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
-This playbook provides 42 deterministic scenario files across 9 categories validating the Skill Advisor surface. Scenario IDs use a multi-prefix scheme: `NC` for native MCP tools, `CL` for CLI hooks and plugin behavior, `CP` for compatibility and disable controls, `OP` for operator H5 states, `AU` for auto-update daemon behavior, `AI` for auto-indexing, `LC` for lifecycle routing, `SC` for scorer fusion, and `PC` for Python compatibility.
+This playbook provides 45 deterministic scenario files across 9 categories validating the Skill Advisor surface. Scenario IDs use a multi-prefix scheme: `NC` for native MCP tools, `CL` for CLI hooks and plugin behavior, `CP` for compatibility and disable controls, `OP` for operator H5 states, `AU` for auto-update daemon behavior, `AI` for auto-indexing, `LC` for lifecycle routing, `SC` for scorer fusion, and `PC` for Python compatibility.
 
 Coverage note (2026-05-07): the prior operator scenario corpus now lives under `manual_testing_playbook/` as the canonical manual validation package. Former `SAD-NNN` IDs are deprecated and mapped to current feature files in section 18. The source root index describes 43 scenarios, but the source category tree contains 42 `NNN-*.md` scenario files and no `CL-002`; this root playbook reflects the live file inventory.
 
@@ -163,7 +163,7 @@ Scenario verdict:
 
 ### Release Readiness Rule
 
-Release is `READY` only when all 42 scenario files are `PASS` or have an approved `SKIP` with a real blocker, and no prompt-safety, rebuild, daemon, indexing, lifecycle, scorer, or compatibility failure remains unresolved.
+Release is `READY` only when all 45 scenario files are `PASS` or have an approved `SKIP` with a real blocker, and no prompt-safety, rebuild, daemon, indexing, lifecycle, scorer, or compatibility failure remains unresolved.
 
 ---
 
@@ -187,7 +187,7 @@ This section records wave planning for the canonical Skill Advisor manual test p
 
 ### Recommended Wave Plan
 
-- **Wave 1**: `NC-001..NC-006` native MCP behavior.
+- **Wave 1**: `NC-001..NC-009` native MCP behavior.
 - **Wave 2**: `CL-001`, `CL-003..CL-005` runtime hooks and plugin bridge.
 - **Wave 3**: `CP-001..CP-004` compatibility and disable controls.
 - **Wave 4**: `OP-001..OP-003` H5 operator states.
@@ -204,7 +204,7 @@ This section records wave planning for the canonical Skill Advisor manual test p
 <!-- ANCHOR:7-native-mcp-tools -->
 ## 7. NATIVE MCP TOOLS
 
-This category validates native mcp tools scenarios `NC-001..NC-006`.
+This category validates native mcp tools scenarios `NC-001..NC-009`.
 
 | ID | Scenario | File |
 |---|---|---|
@@ -214,6 +214,9 @@ This category validates native mcp tools scenarios `NC-001..NC-006`.
 | NC-004 | Ambiguous Brief Rendering | [004-ambiguous-brief-rendering.md](01--native-mcp-tools/004-ambiguous-brief-rendering.md) |
 | NC-005 | Lifecycle Redirect Metadata | [005-lifecycle-redirect-metadata.md](01--native-mcp-tools/005-lifecycle-redirect-metadata.md) |
 | NC-006 | Advisor Status and Rebuild Separation | [006-advisor-status-rebuild-separation.md](01--native-mcp-tools/006-advisor-status-rebuild-separation.md) |
+| NC-007 | Skill Graph Status | [007-skill-graph-status.md](01--native-mcp-tools/007-skill-graph-status.md) |
+| NC-008 | Skill Graph Query | [008-skill-graph-query.md](01--native-mcp-tools/008-skill-graph-query.md) |
+| NC-009 | Skill Graph Validate | [009-skill-graph-validate.md](01--native-mcp-tools/009-skill-graph-validate.md) |
 
 ---
 

@@ -43,7 +43,7 @@ The catalog covers 37 features across 7 groups. Group 1 owns daemon correctness;
 | [02--auto-indexing](./02--auto-indexing/) | 6 | Derived extraction, sanitizer, provenance, sync, anti-stuffing, DF/IDF corpus |
 | [03--lifecycle-routing](./03--lifecycle-routing/) | 5 | Age haircut, supersession, archive handling, schema migration, rollback |
 | [04--scorer-fusion](./04--scorer-fusion/) | 6 | 5-lane fusion, projection, ambiguity, attribution, ablation, weights config |
-| [06--mcp-surface](./06--mcp-surface/) | 5 | `advisor_recommend`, `advisor_rebuild`, `advisor_status`, `advisor_validate`, stable compat entrypoint |
+| [06--mcp-surface](./06--mcp-surface/) | 9 | `advisor_recommend`, `advisor_rebuild`, `advisor_status`, `advisor_validate`, stable compat entrypoint, `skill_graph_scan`, `skill_graph_query`, `skill_graph_status`, `skill_graph_validate` |
 | [07--hooks-and-plugin](./07--hooks-and-plugin/) | 5 | Claude, Copilot, Gemini, Codex hooks plus OpenCode plugin bridge |
 | [08--python-compat](./08--python-compat/) | 3 | Python CLI shim, regression suite, bench runner |
 
@@ -138,6 +138,10 @@ Baseline numbers (remediation SHA `97a318d83`):
 | `advisor_status` MCP tool | [06--mcp-surface/02-advisor-status.md](./06--mcp-surface/02-advisor-status.md) |
 | `advisor_validate` MCP tool | [06--mcp-surface/03-advisor-validate.md](./06--mcp-surface/03-advisor-validate.md) |
 | Stable `compat/index.ts` entrypoint | [06--mcp-surface/04-compat-entrypoint.md](./06--mcp-surface/04-compat-entrypoint.md) |
+| `skill_graph_scan` MCP tool | [06--mcp-surface/06-skill-graph-scan.md](./06--mcp-surface/06-skill-graph-scan.md) |
+| `skill_graph_query` MCP tool | [06--mcp-surface/07-skill-graph-query.md](./06--mcp-surface/07-skill-graph-query.md) |
+| `skill_graph_status` MCP tool | [06--mcp-surface/08-skill-graph-status.md](./06--mcp-surface/08-skill-graph-status.md) |
+| `skill_graph_validate` MCP tool | [06--mcp-surface/09-skill-graph-validate.md](./06--mcp-surface/09-skill-graph-validate.md) |
 
 ---
 

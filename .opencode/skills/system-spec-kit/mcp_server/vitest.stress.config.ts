@@ -15,9 +15,7 @@ export default defineConfig({
     ],
     exclude: [
       'mcp_server/tests/**',
-      '../system-skill-advisor/mcp_server/tests/**',
       'scripts/tests/**',
-      '../system-skill-advisor/mcp_server/bench/**',
     ],
     setupFiles: [
       path.resolve(import.meta.dirname, 'tests', '_support', 'vitest-setup.ts'),
