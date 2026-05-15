@@ -1,3 +1,8 @@
+#!/usr/bin/env python3
+# ───────────────────────────────────────────────────────────────
+# COMPONENT: COCOINDEX CODE PACKAGE
+# ───────────────────────────────────────────────────────────────
+
 """CocoIndex Code - MCP server for indexing and querying codebases."""
 
 import logging
