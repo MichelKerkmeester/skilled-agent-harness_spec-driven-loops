@@ -58,7 +58,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 
      ```
      What do you want to do with MCP servers?
-        1) Install fresh    (all 4 MCP servers from install guides)
+        1) Install fresh    (all 6 MCP servers from install guides)
         2) Debug + repair   (diagnose failures, apply guided fixes)
         X) Cancel
      ```
@@ -81,13 +81,13 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    case "$sub_action" in
      install)
        # allowed: --server <name>, --runtime <name>
-       --server <name>   → server_filter = <name>   (default: all 4 servers)
+       --server <name>   → server_filter = <name>   (default: all 6 servers)
        --runtime <name>  → runtime_filter = <name>  (default: detected runtime)
        ;;
      debug)
        # allowed: --fix, --server <name>
        --fix             → fix = true               (default: false; debug-only by default)
-       --server <name>   → server_filter = <name>   (default: all 4 servers)
+       --server <name>   → server_filter = <name>   (default: all 6 servers)
        ;;
    esac
 
@@ -112,7 +112,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 
 `/doctor:mcp` bundles two MCP infrastructure operations:
 
-- **`install`** — Fresh install (or reinstall) all 4 MCP servers (`mk-spec-memory`, `cocoindex-code`, `sequential-thinking`, `code-mode`) from their canonical install guides. Checks runtime prerequisites (Node ≥ 20.11.0, Python ≥ 3.11, npm, npx), assesses current state per server, runs install/build/configure steps, and verifies via `mcp-doctor.sh --json`.
+- **`install`** — Fresh install (or reinstall) all 6 MCP servers (`mk-spec-memory`, `mk_skill_advisor`, `mk_code_index`, `cocoindex-code`, `sequential-thinking`, `code-mode`) from their canonical install guides. Checks runtime prerequisites (Node ≥ 20.11.0, Python ≥ 3.11, npm, npx), assesses current state per server, runs install/build/configure steps, and verifies via `mcp-doctor.sh --json`.
 - **`debug`** — Diagnose and repair broken MCP servers. Runs `mcp-doctor.sh --json`, cross-references each failure with its install guide, offers targeted repair (`--fix`), re-verifies, and reports a final status.
 
 These are the only two operations on MCP infrastructure itself. Every other `/doctor*` workflow runs INSIDE the working MCP layer; if MCP is broken, run `/doctor:mcp debug --fix` first.
@@ -143,14 +143,18 @@ These are the only two operations on MCP infrastructure itself. Every other `/do
 
 ```
 # Install (fresh / reinstall)
-/doctor:mcp install                                  # Install all 4 MCP servers from scratch
+/doctor:mcp install                                  # Install all 6 MCP servers from scratch
 /doctor:mcp install --server mk-spec-memory         # Install just mk-spec-memory
+/doctor:mcp install --server mk_code_index           # Install just System Code Graph
+/doctor:mcp install --server mk_skill_advisor        # Install just Skill Advisor
 /doctor:mcp install --runtime claude                 # Install for a specific runtime
 
 # Debug (diagnose + optional repair)
 /doctor:mcp debug                                    # Run diagnostics, report findings, propose repairs
 /doctor:mcp debug --fix                              # Run diagnostics + apply guided repairs
 /doctor:mcp debug --server cocoindex-code --fix      # Repair just the cocoindex-code server
+/doctor:mcp debug --server mk_code_index --fix       # Repair just System Code Graph
+/doctor:mcp debug --server mk_skill_advisor --fix    # Repair just Skill Advisor
 
 # Interactive menu (no sub-action)
 /doctor:mcp                                          # Asks: install or debug?

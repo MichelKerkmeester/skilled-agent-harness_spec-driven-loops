@@ -10,23 +10,24 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/026-system-spec-kit-codegraph-residue-audit"
-    last_updated_at: "2026-05-14T17:35:44Z"
-    last_updated_by: "cli-codex-gpt5.5-xhigh-fast-012"
-    recent_action: "Code-graph residue audit implemented and verified; git staging blocked by sandbox"
-    next_safe_action: "Stage and commit the scoped 012 changes when git index writes are permitted"
-    blockers:
-      - "Sandbox denied git index lock creation during staging: .git/index.lock Operation not permitted"
+    last_updated_at: "2026-05-15T13:30:00Z"
+    last_updated_by: "main-agent-026-phase2"
+    recent_action: "phase2_complete_strict_validate_passed"
+    next_safe_action: "commit_phase2"
+    blockers: []
     key_files:
-      - ".opencode/skills/system-spec-kit/SKILL.md"
-      - ".opencode/skills/system-spec-kit/README.md"
-      - ".opencode/skills/system-spec-kit/ARCHITECTURE.md"
-      - ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md"
-      - ".opencode/skills/system-spec-kit/manual_testing_playbook/03--discovery/014-detect-changes-preflight.md"
+      - ".opencode/skills/system-code-graph/INSTALL_GUIDE.md"
+      - ".opencode/install_guides/README.md"
+      - ".opencode/commands/doctor/scripts/mcp-doctor.sh"
+      - ".opencode/commands/doctor/assets/doctor_mcp_install.yaml"
+      - ".opencode/commands/doctor/assets/doctor_mcp_debug.yaml"
+      - ".opencode/commands/doctor/mcp.md"
+      - ".vscode/mcp.json"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "2026-05-14-012-system-spec-kit-codegraph-residue-audit"
-      parent_session_id: null
-    completion_pct: 95
+      session_id: "2026-05-15-026-residue-audit-phase2"
+      parent_session_id: "2026-05-14-012-system-spec-kit-codegraph-residue-audit"
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -157,3 +158,45 @@ The work stayed on `main`, avoided editing `.opencode/skills/system-code-graph/`
 2. **Git commit is blocked in this sandbox.** Staging failed before commit because `.git/index.lock` could not be created. The requested commit message is not applied; report `COMMIT_SHA=uncommitted`.
 3. **Parallel packet dirt remains outside this packet.** The worktree already contained unrelated changes and pre-existing cached files. They were not modified for this audit.
 <!-- /ANCHOR:limitations -->
+
+---
+
+## Phase 2 — Install Guide + Doctor Coverage (added 2026-05-15)
+
+### Scope Delivered
+
+Authored `.opencode/skills/system-code-graph/INSTALL_GUIDE.md` (336 lines, 9 sections, `sk-doc-template: skill_reference_install_guide`) so the standalone `mk_code_index` MCP server has parity with `mcp-coco-index` and `system-skill-advisor`. Patched the master install README to include both `mk_code_index` and `mk_skill_advisor` in §7.1 Component Matrix, §7.3 Bundles, new §10.4/§10.5 Phase 3 subsections, §19 Related Documents, and reconciled aggregate counts at lines 17, 58, 60, 1573. Patched `/doctor:mcp install` and `/doctor:mcp debug` surfaces: added `diagnose_mk_code_index()` and `diagnose_mk_skill_advisor()` to `mcp-doctor.sh`, fixed the latent line-533 typo (`diagnose_mk-spec-memory` → `diagnose_mk_spec_memory`), extended `valid_values` and server-definition / repair_actions blocks in both YAML assets, and updated `mcp.md` help copy from "all 4" to "all 6 MCP servers". Fixed the broken `.vscode/mcp.json` entry that still wired `system_code_graph` → deleted `.opencode/bin/system-code-graph-launcher.cjs`; renamed to `mk_code_index` with the canonical `_NOTE_1_DB` / `_NOTE_2_TOOLS` / `_NOTE_3_INDEX_DEFAULTS` convention and inserted the previously-missing `mk_skill_advisor` block. Final server order matches the canonical `opencode.json`: sequential_thinking, mk-spec-memory, mk_skill_advisor, mk_code_index, cocoindex_code, code_mode.
+
+### Phase 2 Verification Evidence
+
+| Check | Result |
+|-------|--------|
+| `.opencode/skills/system-code-graph/INSTALL_GUIDE.md` exists with sk-doc template marker | PASS — 1 marker, balanced ANCHOR pairs |
+| `.vscode/mcp.json` no longer references `system-code-graph-launcher.cjs` | PASS — `grep -c 'system-code-graph-launcher' .vscode/mcp.json` returns 0 |
+| `.vscode/mcp.json` references `mk-code-index-launcher.cjs` and has all 6 server entries | PASS — entries: sequential_thinking, mk-spec-memory, mk_skill_advisor, mk_code_index, cocoindex_code, code_mode |
+| All 6 runtime configs reference `mk_code_index` | PASS — opencode.json(3), .claude/mcp.json(3), .codex/config.toml(4), .gemini/settings.json(3), .devin/config.json(3), .vscode/mcp.json(3) |
+| `mcp-doctor.sh` registers `diagnose_mk_code_index()` and `diagnose_mk_skill_advisor()` | PASS — `grep -cE '^diagnose_(mk_code_index\|mk_skill_advisor)\(\)'` returns 2 |
+| `mcp-doctor.sh` line-533 hyphen typo fixed | PASS — `should_run "mk-spec-memory" && diagnose_mk_spec_memory` |
+| `mcp-doctor.sh --help` lists 6 MCP servers | PASS — names line + 6 entries in Servers Checked block |
+| `mcp-doctor.sh --server mk_code_index --json` runs end-to-end | PASS — exit 0/1/2, `mk_code_index` appears in checks array |
+| `doctor_mcp_install.yaml` valid_values + servers + install_guides include both | PASS — 6 entries each |
+| `doctor_mcp_debug.yaml` valid_values + repair_actions + install_guides include both | PASS — 6 entries each |
+| `mcp.md` help copy reads "all 6 MCP servers" | PASS — lines 61, 115, 146 |
+| Master install README §7.1, §7.3, §10.4, §10.5, §19 + aggregate counts | PASS — `grep -c '"all 4 MCP"' .opencode/install_guides/README.md` returns 0 |
+| Strict packet validate | PASS — exit 0, errors 0, warnings 0 |
+
+### Phase 2 Files Changed
+
+```
+NEW    .opencode/skills/system-code-graph/INSTALL_GUIDE.md            (336 lines)
+MOD    .opencode/install_guides/README.md                             (+50 lines / -8)
+MOD    .opencode/commands/doctor/scripts/mcp-doctor.sh                (+200 lines, fixed line-533 typo)
+MOD    .opencode/commands/doctor/assets/doctor_mcp_install.yaml       (+50 lines)
+MOD    .opencode/commands/doctor/assets/doctor_mcp_debug.yaml         (+40 lines)
+MOD    .opencode/commands/doctor/mcp.md                               (+8 lines)
+MOD    .vscode/mcp.json                                               (-14 / +28 lines: rename + mk_skill_advisor insert)
+MOD    .opencode/specs/...026.../026-system-spec-kit-codegraph-residue-audit/spec.md             (Phase 2 scope block)
+MOD    .opencode/specs/...026.../026-system-spec-kit-codegraph-residue-audit/plan.md             (Phase 2 plan block)
+MOD    .opencode/specs/...026.../026-system-spec-kit-codegraph-residue-audit/tasks.md            (21 P2 tasks)
+MOD    .opencode/specs/...026.../026-system-spec-kit-codegraph-residue-audit/implementation-summary.md (this section)
+```

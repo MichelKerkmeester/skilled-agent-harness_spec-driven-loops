@@ -1,42 +1,48 @@
 ---
-title: "System Spec Kit Codegraph Residue Audit"
-description: "Audit packet for post-014 user-facing system-spec-kit documentation residue after code-graph ownership moved to the standalone system-code-graph skill."
+title: "System Spec Kit Codegraph Residue Audit + Install/Doctor Coverage"
+description: "Audit packet for post-014/024 residue: (Phase 1) user-facing system-spec-kit docs after code-graph ownership moved to system-code-graph, and (Phase 2) install-guide + master-README + /doctor:mcp install/debug + .vscode/mcp.json coverage gaps for mk_code_index and mk_skill_advisor."
 trigger_phrases:
   - "012 system spec kit codegraph residue audit"
   - "system spec kit code graph residue"
   - "post 014 code graph docs cleanup"
   - "system-code-graph extraction audit"
+  - "system-code-graph install guide"
+  - "mk-code-index doctor coverage"
+  - "vscode mcp.json broken launcher"
+  - "mk_skill_advisor doctor mcp install"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/026-system-spec-kit-codegraph-residue-audit"
-    last_updated_at: "2026-05-14T17:35:44Z"
-    last_updated_by: "cli-codex-gpt5.5-xhigh-fast-012"
-    recent_action: "Audited and validated system-spec-kit user-facing docs for stale code-graph ownership references"
-    next_safe_action: "Stage and commit the scoped 012 changes when git index writes are permitted"
-    blockers:
-      - "Sandbox denied git index lock creation during staging: .git/index.lock Operation not permitted"
+    last_updated_at: "2026-05-15T13:00:00Z"
+    last_updated_by: "main-agent-026-phase2"
+    recent_action: "phase2_patches_landed"
+    next_safe_action: "commit_when_green"
+    blockers: []
     key_files:
-      - ".opencode/skills/system-spec-kit/SKILL.md"
-      - ".opencode/skills/system-spec-kit/README.md"
-      - ".opencode/skills/system-spec-kit/ARCHITECTURE.md"
-      - ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md"
-      - ".opencode/skills/system-spec-kit/feature_catalog/03--discovery/04-detect-changes-preflight.md"
-      - ".opencode/skills/system-spec-kit/manual_testing_playbook/03--discovery/014-detect-changes-preflight.md"
+      - ".opencode/skills/system-code-graph/INSTALL_GUIDE.md"
+      - ".opencode/install_guides/README.md"
+      - ".opencode/commands/doctor/scripts/mcp-doctor.sh"
+      - ".opencode/commands/doctor/assets/doctor_mcp_install.yaml"
+      - ".opencode/commands/doctor/assets/doctor_mcp_debug.yaml"
+      - ".opencode/commands/doctor/mcp.md"
+      - ".vscode/mcp.json"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "2026-05-14-012-system-spec-kit-codegraph-residue-audit"
-      parent_session_id: null
-    completion_pct: 95
+      session_id: "2026-05-15-026-residue-audit-phase2"
+      parent_session_id: "2026-05-14-012-system-spec-kit-codegraph-residue-audit"
+    completion_pct: 90
     open_questions: []
     answered_questions:
-      - "Raw scoped grep found 312 code-graph-related matches in system-spec-kit user-facing markdown docs before cleanup."
-      - "Stale ownership/path residue was limited to root docs and catalog/playbook references that still pointed at system-spec-kit code-graph paths."
-      - "Legitimate cross-skill mentions remain where startup, resume, memory, or manual validation surfaces consume stable code_graph_* and detect_changes tool IDs."
+      - "Phase 1 (audit) closed 2026-05-14 with 312 raw matches triaged into 4 buckets."
+      - "Phase 2 added: skill-level INSTALL_GUIDE.md authored; cross-link to SET-UP - Code Graph.md."
+      - "Phase 2 added: master install README §7.1/§7.3/§10.4/§10.5/§19 patched + aggregate counts reconciled."
+      - "Phase 2 added: mcp-doctor.sh + install/debug YAML + mcp.md updated for mk_code_index + mk_skill_advisor."
+      - "Phase 2 added: .vscode/mcp.json broken launcher fixed; mk_skill_advisor block inserted."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-# Feature Specification: System Spec Kit Codegraph Residue Audit
+# Feature Specification: System Spec Kit Codegraph Residue Audit + Install/Doctor Coverage (Phase 2)
 
 <!-- SPECKIT_LEVEL: 1 -->
 
@@ -49,7 +55,7 @@ _memory:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Review |
+| **Status** | In Progress (Phase 2 added 2026-05-15) |
 | **Created** | 2026-05-14 |
 | **Branch** | `main` |
 <!-- /ANCHOR:metadata -->
@@ -152,3 +158,55 @@ Audit the scoped user-facing docs, rewrite stale ownership/path references to th
 
 None.
 <!-- /ANCHOR:questions -->
+
+---
+
+<!-- ANCHOR:phase2 -->
+## 8. PHASE 2 — INSTALL GUIDE + DOCTOR COVERAGE (added 2026-05-15)
+
+### Problem Statement
+
+Phase 1 audited user-facing docs INSIDE `system-spec-kit/` for stale code-graph ownership. A follow-on audit surfaced the inverse problem: `system-code-graph` itself plus the cross-runtime install/doctor surfaces have **gaps that prevent end users from discovering, installing, and diagnosing the `mk_code_index` MCP server**. The parallel skill `mk_skill_advisor` has the same omissions in `mcp-doctor.sh` and `.vscode/mcp.json`.
+
+### In Scope (Phase 2)
+
+- Create `.opencode/skills/system-code-graph/INSTALL_GUIDE.md` (sk-doc `skill_reference_install_guide` template; ~13 KB; cross-link to `SET-UP - Code Graph.md`).
+- Patch `.opencode/install_guides/README.md`: add `mk-code-index` and `mk_skill_advisor` to §7.1 Component Matrix, §7.3 Installation Bundles, new §10.4 + §10.5 Phase 3 subsections, §19 Setup Guides table, and reconcile aggregate counts (lines 17, 58, 73, 1440).
+- Patch `.opencode/commands/doctor/scripts/mcp-doctor.sh`: add `diagnose_mk_code_index()` + `diagnose_mk_skill_advisor()`, update enumeration and dispatch, fix line-533 hyphen typo (`diagnose_mk-spec-memory` → `diagnose_mk_spec_memory`).
+- Patch `.opencode/commands/doctor/assets/doctor_mcp_install.yaml` + `doctor_mcp_debug.yaml`: extend `valid_values`, add server-definition blocks and repair_actions, update install_guides map and report_format rows.
+- Patch `.opencode/commands/doctor/mcp.md`: update help copy from "all 4 MCP servers" to "all 6 MCP servers", add invocation examples for the two new servers.
+- Patch `.vscode/mcp.json`: rename `system_code_graph` → `mk_code_index`, fix launcher path to `mk-code-index-launcher.cjs`, replace `_NOTE_1_TOOLS` with `_NOTE_1_DB` / `_NOTE_2_TOOLS` / `_NOTE_3_INDEX_DEFAULTS` convention, insert missing `mk_skill_advisor` block. Final order: sequential_thinking, mk-spec-memory, mk_skill_advisor, mk_code_index, cocoindex_code, code_mode.
+
+### Out of Scope (Phase 2)
+
+- `.opencode/install_guides/SET-UP - Code Graph.md` content drift (separate follow-on).
+- `mk-spec-memory`, `cocoindex_code`, `code_mode`, `sequential_thinking` coverage (already complete).
+- Hook wiring for `mk_code_index` (covered by `/doctor:update`).
+- Any deep-review remediation work from prior packets.
+
+### Phase 2 Requirements
+
+#### P0 - Blockers
+
+| ID | Requirement | Acceptance Criteria |
+|----|-------------|---------------------|
+| REQ-007 | `system-code-graph` has a skill-level INSTALL_GUIDE.md with the sk-doc template marker | `test -f .opencode/skills/system-code-graph/INSTALL_GUIDE.md && grep -c '<!-- sk-doc-template: skill_reference_install_guide -->' .opencode/skills/system-code-graph/INSTALL_GUIDE.md` returns 1. |
+| REQ-008 | `.vscode/mcp.json` no longer references the deleted `system-code-graph-launcher.cjs` | `grep -c 'system-code-graph-launcher' .vscode/mcp.json` returns 0; `grep -c 'mk-code-index-launcher.cjs' .vscode/mcp.json` returns 1. |
+| REQ-009 | `/doctor:mcp install --server mk_code_index` and `--server mk_skill_advisor` pass argument validation | The `valid_values` lists in both `doctor_mcp_install.yaml` and `doctor_mcp_debug.yaml` include both names. |
+
+#### P1 - Required
+
+| ID | Requirement | Acceptance Criteria |
+|----|-------------|---------------------|
+| REQ-010 | Master install README covers `mk_code_index` in §7.1, §7.3, and a dedicated §10.x | `grep -n 'mk-code-index\|mk_code_index' .opencode/install_guides/README.md` returns hits in each of these section line ranges. |
+| REQ-011 | `bash .opencode/commands/doctor/scripts/mcp-doctor.sh --server mk_code_index --json` runs and produces JSON output | Exit code is 0/1/2 (not "Unknown option"); stdout starts with `{` or contains a `checks` array. |
+| REQ-012 | All 6 runtime configs reference `mk_code_index` | The cross-runtime grep in the verification block returns ≥1 hit for each of: opencode.json, .claude/mcp.json, .codex/config.toml, .gemini/settings.json, .devin/config.json, .vscode/mcp.json. |
+| REQ-013 | Packet validation passes | `validate.sh --strict` exits 0. |
+
+### Phase 2 Success Criteria
+
+- **SC-005**: A user reading the master install README can find an explicit `mk-code-index` Phase 3 subsection and follow it to a working installation.
+- **SC-006**: `/doctor:mcp install` and `/doctor:mcp debug` interactive menus list 6 servers and accept `mk_code_index` / `mk_skill_advisor` as `--server` values.
+- **SC-007**: Opening the project in VSCode no longer fails to start the code-graph MCP server due to the deleted launcher.
+- **SC-008**: A maintainer can run `bash .opencode/skills/system-code-graph/node_modules/.bin/tsc --build` and use `mk_code_index.code_graph_status({})` end-to-end after following only the new INSTALL_GUIDE.md.
+<!-- /ANCHOR:phase2 -->

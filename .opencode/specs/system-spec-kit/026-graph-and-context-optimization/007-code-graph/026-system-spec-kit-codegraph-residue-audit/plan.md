@@ -166,3 +166,50 @@ Scoped markdown files flow through survey, classification, edit, and verificatio
 - **Trigger**: A redirected path points at a non-existent sibling package location or a legitimate historical record is over-pruned.
 - **Procedure**: Revert the affected markdown doc edits from this commit and preserve the 012 packet as the audit record of the correction.
 <!-- /ANCHOR:rollback -->
+
+---
+
+<!-- ANCHOR:phase2-plan -->
+## 8. PHASE 2 PLAN — INSTALL GUIDE + DOCTOR COVERAGE (2026-05-15)
+
+### Order of Operations
+
+1. **A: INSTALL_GUIDE.md** — Author `.opencode/skills/system-code-graph/INSTALL_GUIDE.md` (single new file, ~13 KB, 9 sections mirroring `.opencode/skills/system-skill-advisor/INSTALL_GUIDE.md` shape).
+2. **D: .vscode/mcp.json** — Replace stale `system_code_graph` block (lines 28–41) with canonical `mk_code_index` block matching `opencode.json:52–67`; insert missing `mk_skill_advisor` block; final server order: sequential_thinking, mk-spec-memory, mk_skill_advisor, mk_code_index, cocoindex_code, code_mode.
+3. **C: `/doctor:mcp` surfaces** — Patch in order:
+    - `.opencode/commands/doctor/scripts/mcp-doctor.sh`: add `diagnose_mk_code_index()` + `diagnose_mk_skill_advisor()` functions (clone `diagnose_mk_spec_memory()` shape at lines 144–265), update enumeration at lines 16/50/58–62/501, add dispatch lines at ~534, fix line-533 typo (`diagnose_mk-spec-memory` → `diagnose_mk_spec_memory`).
+    - `.opencode/commands/doctor/assets/doctor_mcp_install.yaml`: extend `valid_values` (line 82), add server-definition blocks for both servers (after line 165 cluster), update `install_guides` keys (lines 42–46 and 95–99), update report_format rows (lines 326–334).
+    - `.opencode/commands/doctor/assets/doctor_mcp_debug.yaml`: mirror of install.yaml — `valid_values` (line 85), `repair_actions` sub-blocks (after line 149 cluster), report_format (lines 276–284).
+    - `.opencode/commands/doctor/mcp.md`: update line 60 menu prompt, line 115 PURPOSE block, line 153 examples.
+4. **B: Master install README** — `.opencode/install_guides/README.md`:
+    - §7.1 Component Matrix (lines 319–328): add `mk-code-index` and `mk_skill_advisor` rows.
+    - §7.3 Installation Bundles (lines 369–391): add both to Full bundle chain + Custom checklist; SKIP Minimal.
+    - §10 Phase 3 setup: insert new §10.4 (mk-code-index) and §10.5 (Skill Advisor) between current §10.3 Sequential Thinking and §10.4 Chrome DevTools; shift Chrome DevTools to §10.6.
+    - Phase 3 validation checklist (lines 729–739): add two items, update `grep -q` chain to include `mk_code_index` + `mk_skill_advisor`.
+    - §19 Setup Guides table (line 1450): add INSTALL_GUIDE.md cross-reference.
+    - Reconcile aggregate counts at lines 17, 58, 73, 1440.
+5. **Validate** — `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <packet> --strict` (expect exit 0).
+6. **Complete reconciliation** — fill `implementation-summary.md` Phase 2 evidence, mark `checklist.md` items, update `graph-metadata.json.derived.status` to `completed` when all checks pass.
+
+### Phase 2 Files to Change
+
+| File | Action | LOC delta |
+|------|--------|-----------|
+| `.opencode/skills/system-code-graph/INSTALL_GUIDE.md` | Create | +300 |
+| `.opencode/install_guides/README.md` | Modify | +80 |
+| `.opencode/commands/doctor/scripts/mcp-doctor.sh` | Modify | +200 (2 new functions) |
+| `.opencode/commands/doctor/assets/doctor_mcp_install.yaml` | Modify | +60 |
+| `.opencode/commands/doctor/assets/doctor_mcp_debug.yaml` | Modify | +60 |
+| `.opencode/commands/doctor/mcp.md` | Modify | +5 |
+| `.vscode/mcp.json` | Modify | +25 (block rename + mk_skill_advisor add) |
+| `spec.md` (this packet) | Modify (done) | +60 |
+| `plan.md` (this packet) | Modify (done) | +50 |
+| `tasks.md` (this packet) | Modify | +40 |
+| `checklist.md` (this packet) | Create | +40 |
+| `implementation-summary.md` (this packet) | Modify | +80 |
+
+### Phase 2 Rollback
+
+- **Trigger**: New INSTALL_GUIDE.md introduces broken cross-links, doctor patches break smoke test, master README aggregate counts misalign.
+- **Procedure**: Revert the single git commit containing Phase 2; the audit (Phase 1) and `026-system-spec-kit-codegraph-residue-audit/` packet structure remain intact since they're in earlier commits.
+<!-- /ANCHOR:phase2-plan -->

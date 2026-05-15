@@ -10,7 +10,7 @@
     "audit",
     "system-code-graph"
   ],
-  "lastUpdated": "2026-05-14T17:35:44Z",
+  "lastUpdated": "2026-05-15T14:05:48.084Z",
   "specId": "012",
   "folderSlug": "system-spec-kit-codegraph-residue-audit",
   "parentChain": [
@@ -19,6 +19,8 @@
     "007-code-graph",
     "014-system-code-graph-extraction"
   ],
-  "memorySequence": 1,
-  "memoryNameHistory": []
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "15-05-26_15-05__phase-2-of-the-026-residue-audit-packet-closed.md"
+  ]
 }

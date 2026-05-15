@@ -4,6 +4,8 @@
   "spec_folder": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/026-system-spec-kit-codegraph-residue-audit",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/007-code-graph",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
     "depends_on": [],
     "supersedes": [],
@@ -15,59 +17,209 @@
       "system spec kit code graph residue",
       "post 014 code graph docs cleanup",
       "system-code-graph extraction audit",
-      "012 codegraph residue audit summary"
+      "system-code-graph install guide",
+      "mk-code-index doctor coverage",
+      "vscode mcp.json broken launcher",
+      "mk_skill_advisor doctor mcp install",
+      "012 system spec kit codegraph residue plan",
+      "post 014 docs audit plan",
+      "code graph residue cleanup plan",
+      "012 codegraph residue audit tasks"
     ],
     "key_topics": [
       "012",
-      "system-spec-kit",
+      "system",
+      "spec",
+      "kit",
       "codegraph",
-      "code-graph",
       "residue",
       "audit",
-      "system-code-graph",
-      "post-014"
+      "code",
+      "graph",
+      "post",
+      "014",
+      "docs"
     ],
     "importance_tier": "important",
-    "status": "review",
+    "status": "complete",
     "key_files": [
       ".opencode/skills/system-spec-kit/SKILL.md",
       ".opencode/skills/system-spec-kit/README.md",
       ".opencode/skills/system-spec-kit/ARCHITECTURE.md",
       ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md",
-      "spec.md",
-      "plan.md",
-      "tasks.md",
-      "implementation-summary.md"
+      ".opencode/skills/system-spec-kit/feature_catalog/03--discovery/04-detect-changes-preflight.md",
+      ".opencode/skills/system-spec-kit/feature_catalog/04--maintenance/03-doctor-router-and-manifest-dispatch.md",
+      ".opencode/skills/system-spec-kit/feature_catalog/06--analysis/08-code-graph-edge-explanation-blast-radius-uplift.md",
+      ".opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/25-code-graph-phase-dag-runner.md",
+      ".opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/38-codex-hook-freshness-smoke-check.md",
+      ".opencode/skills/system-spec-kit/manual_testing_playbook/03--discovery/014-detect-changes-preflight.md",
+      ".opencode/skills/system-spec-kit/manual_testing_playbook/06--analysis/026-code-graph-edge-explanation-blast-radius-uplift.md",
+      ".opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/271-code-graph-phase-dag-runner.md",
+      ".opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/279-graph-degraded-stress-cell-isolation.md",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/026-system-spec-kit-codegraph-residue-audit/spec.md",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/026-system-spec-kit-codegraph-residue-audit/plan.md",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/026-system-spec-kit-codegraph-residue-audit/tasks.md",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/026-system-spec-kit-codegraph-residue-audit/implementation-summary.md",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/026-system-spec-kit-codegraph-residue-audit/description.json",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/026-system-spec-kit-codegraph-residue-audit/graph-metadata.json",
+      ".opencode/skills/system-code-graph/INSTALL_GUIDE.md",
+      ".opencode/install_guides/README.md",
+      ".opencode/commands/doctor/scripts/mcp-doctor.sh",
+      ".opencode/commands/doctor/assets/doctor_mcp_install.yaml",
+      ".opencode/commands/doctor/assets/doctor_mcp_debug.yaml",
+      ".opencode/commands/doctor/mcp.md",
+      ".vscode/mcp.json",
+      ".gemini/commands/doctor/mcp.toml"
     ],
     "entities": [
-      {
-        "name": "system-code-graph",
-        "kind": "skill",
-        "path": ".opencode/skills/system-code-graph/",
-        "source": "manual"
-      },
       {
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".opencode/skills/system-spec-kit/SKILL.md",
-        "source": "manual"
+        "source": "derived"
       },
       {
         "name": "README.md",
         "kind": "doc",
         "path": ".opencode/skills/system-spec-kit/README.md",
-        "source": "manual"
+        "source": "derived"
       },
       {
         "name": "ARCHITECTURE.md",
         "kind": "doc",
         "path": ".opencode/skills/system-spec-kit/ARCHITECTURE.md",
-        "source": "manual"
+        "source": "derived"
+      },
+      {
+        "name": "feature_catalog.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "04-detect-changes-preflight.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/feature_catalog/03--discovery/04-detect-changes-preflight.md",
+        "source": "derived"
+      },
+      {
+        "name": "03-doctor-router-and-manifest-dispatch.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/feature_catalog/04--maintenance/03-doctor-router-and-manifest-dispatch.md",
+        "source": "derived"
+      },
+      {
+        "name": "08-code-graph-edge-explanation-blast-radius-uplift.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/feature_catalog/06--analysis/08-code-graph-edge-explanation-blast-radius-uplift.md",
+        "source": "derived"
+      },
+      {
+        "name": "25-code-graph-phase-dag-runner.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/25-code-graph-phase-dag-runner.md",
+        "source": "derived"
+      },
+      {
+        "name": "38-codex-hook-freshness-smoke-check.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/38-codex-hook-freshness-smoke-check.md",
+        "source": "derived"
+      },
+      {
+        "name": "014-detect-changes-preflight.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/03--discovery/014-detect-changes-preflight.md",
+        "source": "derived"
+      },
+      {
+        "name": "026-code-graph-edge-explanation-blast-radius-uplift.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/06--analysis/026-code-graph-edge-explanation-blast-radius-uplift.md",
+        "source": "derived"
+      },
+      {
+        "name": "271-code-graph-phase-dag-runner.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/271-code-graph-phase-dag-runner.md",
+        "source": "derived"
+      },
+      {
+        "name": "279-graph-degraded-stress-cell-isolation.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/279-graph-degraded-stress-cell-isolation.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/026-system-spec-kit-codegraph-residue-audit/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/026-system-spec-kit-codegraph-residue-audit/plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/026-system-spec-kit-codegraph-residue-audit/tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/026-system-spec-kit-codegraph-residue-audit/implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "description.json",
+        "kind": "config",
+        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/026-system-spec-kit-codegraph-residue-audit/description.json",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/026-system-spec-kit-codegraph-residue-audit/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "INSTALL_GUIDE.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-code-graph/INSTALL_GUIDE.md",
+        "source": "derived"
+      },
+      {
+        "name": "System Spec Kit Codegraph Residue Audit",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Doctor Coverage",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Graph",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "Packet 014 extracted code-graph ownership to `.opencode/skills/system-code-graph/`. This packet audited system-spec-kit user-facing docs and redirected stale ownership/path references while preserving legitimate historical and cross-skill runtime mentions. Validation passed, but git staging/commit was blocked by sandbox index-lock permissions.",
+    "causal_summary": "Packet 014 moved code-graph ownership out of `system-spec-kit` into the standalone `.opencode/skills/system-code-graph/` skill. User-facing system-spec-kit docs still contained a mixture of correct cross-skill runtime mentions and stale ownership/path claims, including old `mcp_server/code_graph` paths and prose describing Code Graph as a system-spec-kit subsystem.",
     "created_at": "2026-05-14T17:35:44Z",
-    "last_save_at": "2026-05-14T17:35:44Z",
+    "last_save_at": "2026-05-15T14:05:48.084Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -76,7 +228,5 @@
       "tasks.md",
       "implementation-summary.md"
     ]
-  },
-  "migrated": true,
-  "migration_source": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/012-system-spec-kit-codegraph-residue-audit"
+  }
 }

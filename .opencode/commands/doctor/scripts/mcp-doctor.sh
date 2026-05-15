@@ -2,7 +2,7 @@
 # ───────────────────────────────────────────────────────────────
 # COMPONENT: MCP Doctor — Unified MCP Diagnostic Command
 # ───────────────────────────────────────────────────────────────
-# Diagnoses all 4 OpenCode MCP servers and checks config wiring
+# Diagnoses all 6 OpenCode MCP servers and checks config wiring
 # across all detected runtimes.
 #
 # Usage:
@@ -13,7 +13,7 @@
 #   --json              Output machine-readable JSON
 #   --fix               Attempt auto-repair for failures
 #   --server <name>     Diagnose a single server only
-#                       Names: mk-spec-memory, cocoindex_code, code_mode, sequential_thinking
+#                       Names: mk-spec-memory, mk_skill_advisor, mk_code_index, cocoindex_code, code_mode, sequential_thinking
 #   --root <path>       Override project root
 #
 # Exit Codes:
@@ -47,7 +47,7 @@ Options:
   --json              Output machine-readable JSON
   --fix               Attempt auto-repair for failures
   --server <name>     Diagnose a single server only
-                      Names: mk-spec-memory, cocoindex_code, code_mode, sequential_thinking
+                      Names: mk-spec-memory, mk_skill_advisor, mk_code_index, cocoindex_code, code_mode, sequential_thinking
   --root <path>       Override project root
 
 Exit Codes:
@@ -57,6 +57,8 @@ Exit Codes:
 
 Servers Checked:
   mk-spec-memory       Spec Kit Memory (Node.js MCP, SQLite + embeddings)
+  mk_skill_advisor      Skill Advisor (Node.js MCP, advisor_recommend + skill_graph_*)
+  mk_code_index         System Code Graph (Node.js MCP, structural AST + 10 graph tools)
   cocoindex_code        CocoIndex Code (Python MCP, semantic search)
   code_mode             Code Mode (Node.js MCP, TypeScript tool orchestration)
   sequential_thinking   Sequential Thinking (npx MCP, structured reasoning)
@@ -116,7 +118,7 @@ if check_command_exists node; then
     record_fail "prerequisites" "node" "$(node --version) < 20.11.0"
   fi
 else
-  _log log_fail "Node.js not found — 3 of 4 MCP servers require it"
+  _log log_fail "Node.js not found — 5 of 6 MCP servers require it"
   record_fail "prerequisites" "node" "not found"
 fi
 
@@ -431,6 +433,199 @@ diagnose_code_mode() {
   fi
 }
 
+# ── mk-code-index (System Code Graph) ─────────────────────────
+diagnose_mk_code_index() {
+  local srv="mk_code_index"
+  local skill_dir="$PROJECT_ROOT/.opencode/skills/system-code-graph"
+  local dist_entry="$skill_dir/mcp_server/dist/index.js"
+  local launcher="$PROJECT_ROOT/.opencode/bin/mk-code-index-launcher.cjs"
+  local db_dir="$skill_dir/mcp_server/database"
+  local needs_fix=false
+
+  _log log_header "System Code Graph (mk_code_index)"
+
+  if [[ "$HAS_NODE" != true ]]; then
+    record_skip "$srv" "all" "Node.js not available"
+    _log log_skip "Node.js not available — skipping all checks"
+    return
+  fi
+
+  # Check 1: dist/index.js exists
+  if [[ -f "$dist_entry" ]]; then
+    record_pass "$srv" "dist_exists" "$dist_entry"
+    _log log_pass "mcp_server/dist/index.js exists"
+  else
+    record_fail "$srv" "dist_exists" "File missing: $dist_entry"
+    _log log_fail "mcp_server/dist/index.js missing — needs build"
+    needs_fix=true
+  fi
+
+  # Check 2: launcher exists
+  if [[ -f "$launcher" ]]; then
+    record_pass "$srv" "launcher_exists" "$launcher"
+    _log log_pass ".opencode/bin/mk-code-index-launcher.cjs exists"
+  else
+    record_fail "$srv" "launcher_exists" "File missing: $launcher"
+    _log log_fail "launcher missing — repo state inconsistent"
+    needs_fix=true
+  fi
+
+  # Check 3: node_modules installed
+  if [[ -d "$skill_dir/node_modules" ]]; then
+    record_pass "$srv" "node_modules" "Installed"
+    _log log_pass "node_modules installed"
+  else
+    record_fail "$srv" "node_modules" "Missing"
+    _log log_fail "node_modules missing — needs npm install"
+    needs_fix=true
+  fi
+
+  # Check 4: database directory
+  if [[ -d "$db_dir" ]]; then
+    local db_file="$db_dir/code-graph.sqlite"
+    if [[ -f "$db_file" ]]; then
+      local db_size
+      db_size="$(du -h "$db_file" 2>/dev/null | cut -f1)"
+      record_pass "$srv" "database" "code-graph.sqlite exists ($db_size)"
+      _log log_pass "Database exists: code-graph.sqlite ($db_size)"
+    else
+      record_warn "$srv" "database" "Database directory exists but code-graph.sqlite not yet built"
+      _log log_warn "Database directory exists but code-graph.sqlite not yet built (created on first scan)"
+    fi
+  else
+    record_warn "$srv" "database" "Database directory not found"
+    _log log_warn "Database directory not found (created on first scan)"
+  fi
+
+  # Check 5: Server entry point loads without native errors
+  if [[ -f "$dist_entry" ]]; then
+    if timeout 5 node -e "
+      try { require('$dist_entry'); } catch(e) {
+        if (e.code === 'ERR_DLOPEN_FAILED') process.exit(2);
+        process.exit(0); // MCP server expects stdio — exiting is normal
+      }
+    " 2>/dev/null; then
+      record_pass "$srv" "server_starts" "No ERR_DLOPEN_FAILED"
+      _log log_pass "Server entry point loads without native errors"
+    else
+      local ec=$?
+      if [[ "$ec" -eq 2 ]]; then
+        record_fail "$srv" "server_starts" "ERR_DLOPEN_FAILED — native module mismatch"
+        _log log_fail "ERR_DLOPEN_FAILED — native module rebuild required"
+        needs_fix=true
+      else
+        record_pass "$srv" "server_starts" "Entry point accessible"
+        _log log_pass "Server entry point accessible"
+      fi
+    fi
+  fi
+
+  # Fix mode
+  if [[ "$FIX_MODE" == true ]] && [[ "$needs_fix" == true ]]; then
+    _log printf '\n  %sAttempting auto-repair...%s\n' "$CYAN" "$NC"
+    (cd "$skill_dir" && npm install 2>&1 | tail -3 && \
+      ./node_modules/.bin/tsc --build ./tsconfig.json 2>&1 | tail -3) || true
+    record_pass "$srv" "fix_npm" "npm install + tsc --build attempted"
+    _log log_info "Ran npm install + tsc --build"
+  fi
+}
+
+# ── mk_skill_advisor (Skill Advisor) ──────────────────────────
+diagnose_mk_skill_advisor() {
+  local srv="mk_skill_advisor"
+  local skill_dir="$PROJECT_ROOT/.opencode/skills/system-skill-advisor"
+  local dist_entry="$skill_dir/mcp_server/dist/system-skill-advisor/mcp_server/advisor-server.js"
+  local launcher="$PROJECT_ROOT/.opencode/bin/mk-skill-advisor-launcher.cjs"
+  local db_dir="$skill_dir/mcp_server/database"
+  local needs_fix=false
+
+  _log log_header "Skill Advisor (mk_skill_advisor)"
+
+  if [[ "$HAS_NODE" != true ]]; then
+    record_skip "$srv" "all" "Node.js not available"
+    _log log_skip "Node.js not available — skipping all checks"
+    return
+  fi
+
+  # Check 1: dist entry point exists
+  if [[ -f "$dist_entry" ]]; then
+    record_pass "$srv" "dist_exists" "$dist_entry"
+    _log log_pass "advisor-server.js exists"
+  else
+    record_fail "$srv" "dist_exists" "File missing: $dist_entry"
+    _log log_fail "advisor-server.js missing — needs build"
+    needs_fix=true
+  fi
+
+  # Check 2: launcher exists
+  if [[ -f "$launcher" ]]; then
+    record_pass "$srv" "launcher_exists" "$launcher"
+    _log log_pass ".opencode/bin/mk-skill-advisor-launcher.cjs exists"
+  else
+    record_fail "$srv" "launcher_exists" "File missing: $launcher"
+    _log log_fail "launcher missing — repo state inconsistent"
+    needs_fix=true
+  fi
+
+  # Check 3: mcp_server/node_modules installed
+  if [[ -d "$skill_dir/mcp_server/node_modules" ]]; then
+    record_pass "$srv" "node_modules" "Installed"
+    _log log_pass "mcp_server/node_modules installed"
+  else
+    record_fail "$srv" "node_modules" "Missing"
+    _log log_fail "mcp_server/node_modules missing — needs npm install"
+    needs_fix=true
+  fi
+
+  # Check 4: database directory + skill-graph.sqlite
+  if [[ -d "$db_dir" ]]; then
+    local db_file="$db_dir/skill-graph.sqlite"
+    if [[ -f "$db_file" ]]; then
+      local db_size
+      db_size="$(du -h "$db_file" 2>/dev/null | cut -f1)"
+      record_pass "$srv" "database" "skill-graph.sqlite exists ($db_size)"
+      _log log_pass "Database exists: skill-graph.sqlite ($db_size)"
+    else
+      record_warn "$srv" "database" "Database directory exists but skill-graph.sqlite not yet built"
+      _log log_warn "Database directory exists but skill-graph.sqlite not yet built (created on first advisor_rebuild)"
+    fi
+  else
+    record_warn "$srv" "database" "Database directory not found"
+    _log log_warn "Database directory not found (created on first advisor_rebuild)"
+  fi
+
+  # Check 5: Server entry point loads without native errors
+  if [[ -f "$dist_entry" ]]; then
+    if timeout 5 node -e "
+      try { require('$dist_entry'); } catch(e) {
+        if (e.code === 'ERR_DLOPEN_FAILED') process.exit(2);
+        process.exit(0); // MCP server expects stdio — exiting is normal
+      }
+    " 2>/dev/null; then
+      record_pass "$srv" "server_starts" "No ERR_DLOPEN_FAILED"
+      _log log_pass "Server entry point loads without native errors"
+    else
+      local ec=$?
+      if [[ "$ec" -eq 2 ]]; then
+        record_fail "$srv" "server_starts" "ERR_DLOPEN_FAILED — native module mismatch"
+        _log log_fail "ERR_DLOPEN_FAILED — native module rebuild required"
+        needs_fix=true
+      else
+        record_pass "$srv" "server_starts" "Entry point accessible"
+        _log log_pass "Server entry point accessible"
+      fi
+    fi
+  fi
+
+  # Fix mode
+  if [[ "$FIX_MODE" == true ]] && [[ "$needs_fix" == true ]]; then
+    _log printf '\n  %sAttempting auto-repair...%s\n' "$CYAN" "$NC"
+    (cd "$skill_dir/mcp_server" && npm install 2>&1 | tail -3 && npm run build 2>&1 | tail -3) || true
+    record_pass "$srv" "fix_npm" "npm install + npm run build attempted"
+    _log log_info "Ran npm install + npm run build in mcp_server/"
+  fi
+}
+
 # ── Sequential Thinking ───────────────────────────────────────
 diagnose_sequential_thinking() {
   local srv="sequential_thinking"
@@ -498,7 +693,7 @@ detect_and_check_configs() {
     ".vscode/mcp.json|json-vscode-mcp|VS Code / Copilot"
   )
 
-  local -a servers=("mk-spec-memory" "cocoindex_code" "code_mode" "sequential_thinking")
+  local -a servers=("mk-spec-memory" "mk_skill_advisor" "mk_code_index" "cocoindex_code" "code_mode" "sequential_thinking")
 
   for cfg_entry in "${config_files[@]}"; do
     IFS='|' read -r cfg_path cfg_format cfg_label <<< "$cfg_entry"
@@ -530,7 +725,9 @@ detect_and_check_configs() {
 # ══════════════════════════════════════════════════════════════
 # MAIN DISPATCH
 # ══════════════════════════════════════════════════════════════
-should_run "mk-spec-memory"      && diagnose_mk-spec-memory
+should_run "mk-spec-memory"      && diagnose_mk_spec_memory
+should_run "mk_skill_advisor"    && diagnose_mk_skill_advisor
+should_run "mk_code_index"       && diagnose_mk_code_index
 should_run "cocoindex_code"       && diagnose_cocoindex_code
 should_run "code_mode"            && diagnose_code_mode
 should_run "sequential_thinking"  && diagnose_sequential_thinking

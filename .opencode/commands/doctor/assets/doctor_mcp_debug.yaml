@@ -23,12 +23,13 @@ operating_mode:
 # MCP-DEBUG DOCTOR INVARIANT
 # ─────────────────────────────────────────────────────────────────
 mcp_debug_doctor_invariant: |
-  MCP debug workflows run the mcp-doctor.sh diagnostic script against all 4
-  MCP servers (mk-spec-memory, cocoindex-code, code-mode, sequential-thinking),
-  cross-reference each failure with its install guide, and apply guided repairs
-  ONLY when --fix is passed AND the user approves the proposed repair. No
-  silent mutation: every config edit, env change, or build step requires
-  explicit per-server approval. Post-repair re-verification is mandatory.
+  MCP debug workflows run the mcp-doctor.sh diagnostic script against all 6
+  MCP servers (mk-spec-memory, mk_skill_advisor, mk_code_index, cocoindex-code,
+  code-mode, sequential-thinking), cross-reference each failure with its
+  install guide, and apply guided repairs ONLY when --fix is passed AND the
+  user approves the proposed repair. No silent mutation: every config edit,
+  env change, or build step requires explicit per-server approval. Post-repair
+  re-verification is mandatory.
 
 # ─────────────────────────────────────────────────────────────────
 # UPSTREAM ASSETS
@@ -40,6 +41,8 @@ upstream_assets:
     decision_record: "decision-record.md"  # ADRs covering MCP server install + repair
   install_guides:
     mk-spec-memory: ".opencode/install_guides/MCP - Spec Kit Memory.md"
+    mk_skill_advisor: ".opencode/skills/system-skill-advisor/INSTALL_GUIDE.md"
+    mk_code_index: ".opencode/skills/system-code-graph/INSTALL_GUIDE.md"
     cocoindex_code: ".opencode/install_guides/MCP - CocoIndex Code.md"
     code_mode: ".opencode/install_guides/MCP - Code Mode.md"
     sequential_thinking: ".opencode/install_guides/MCP - Sequential Thinking.md"
@@ -55,7 +58,7 @@ upstream_assets:
 # ─────────────────────────────────────────────────────────────────
 user_inputs:
   fix: "[FIX] boolean"  # if true, offer guided repairs after diagnostic
-  server_filter: "[SERVER_FILTER] string|null"  # restrict to one server name; null = all 4
+  server_filter: "[SERVER_FILTER] string|null"  # restrict to one server name; null = all 6
 
 # ─────────────────────────────────────────────────────────────────
 # FIELD HANDLING
@@ -63,12 +66,12 @@ user_inputs:
 field_handling:
   defaults:
     fix_empty: "false"
-    server_filter_empty: null  # diagnose all 4 servers when unset
+    server_filter_empty: null  # diagnose all 6 servers when unset
   fix_policy:
     true: "after diagnostic, prompt per failed server for guided repair"
     false: "diagnostic only; emit recommendations without writes"
   server_filter_policy:
-    null: "diagnose all 4 MCP servers"
+    null: "diagnose all 6 MCP servers"
     set: "restrict diagnostic + repair to the named server only"
 
 # ─────────────────────────────────────────────────────────────────
@@ -82,7 +85,7 @@ arguments:
   server_filter:
     flag: "--server"
     value: "<name>"
-    valid_values: [mk-spec-memory, cocoindex_code, code_mode, sequential_thinking]
+    valid_values: [mk-spec-memory, mk_skill_advisor, mk_code_index, cocoindex_code, code_mode, sequential_thinking]
     default: null
     effect: "Only diagnose the specified server"
 
@@ -91,6 +94,8 @@ arguments:
 # ─────────────────────────────────────────────────────────────────
 install_guides:
   mk-spec-memory: .opencode/install_guides/MCP - Spec Kit Memory.md
+  mk_skill_advisor: .opencode/skills/system-skill-advisor/INSTALL_GUIDE.md
+  mk_code_index: .opencode/skills/system-code-graph/INSTALL_GUIDE.md
   cocoindex_code: .opencode/install_guides/MCP - CocoIndex Code.md
   code_mode: .opencode/install_guides/MCP - Code Mode.md
   sequential_thinking: .opencode/install_guides/MCP - Sequential Thinking.md
@@ -119,6 +124,32 @@ repair_actions:
     better_sqlite3_fail:
       command: "cd .opencode/skills/system-spec-kit/mcp_server && npm rebuild better-sqlite3"
       description: "Rebuild better-sqlite3 native binding"
+  mk_skill_advisor:
+    dist_missing:
+      command: "cd .opencode/skills/system-skill-advisor/mcp_server && npm install && npm run build"
+      description: "Install dependencies and rebuild advisor-server.js"
+    node_modules_missing:
+      command: "cd .opencode/skills/system-skill-advisor/mcp_server && npm install"
+      description: "Install node_modules"
+    launcher_missing:
+      command: "echo 'Launcher file .opencode/bin/mk-skill-advisor-launcher.cjs is missing — restore from git: git checkout .opencode/bin/mk-skill-advisor-launcher.cjs'"
+      description: "Restore launcher from git history"
+    db_dir_missing:
+      command: "mkdir -p .opencode/skills/system-skill-advisor/mcp_server/database"
+      description: "Create database directory"
+  mk_code_index:
+    dist_missing:
+      command: "cd .opencode/skills/system-code-graph && npm install && ./node_modules/.bin/tsc --build ./tsconfig.json"
+      description: "Install dependencies and rebuild dist/index.js"
+    node_modules_missing:
+      command: "cd .opencode/skills/system-code-graph && npm install"
+      description: "Install node_modules"
+    launcher_missing:
+      command: "echo 'Launcher file .opencode/bin/mk-code-index-launcher.cjs is missing — restore from git: git checkout .opencode/bin/mk-code-index-launcher.cjs'"
+      description: "Restore launcher from git history"
+    db_dir_missing:
+      command: "mkdir -p .opencode/skills/system-code-graph/mcp_server/database"
+      description: "Create database directory"
   cocoindex_code:
     binary_missing:
       command: "bash .opencode/skills/mcp-coco-index/scripts/install.sh"
@@ -279,6 +310,8 @@ workflow:
       | Server | Before | After | Status |
       |--------|--------|-------|--------|
       | Spec Kit Memory | {before} | {after} | {status} |
+      | Skill Advisor | {before} | {after} | {status} |
+      | System Code Graph | {before} | {after} | {status} |
       | CocoIndex Code | {before} | {after} | {status} |
       | Code Mode | {before} | {after} | {status} |
       | Sequential Thinking | {before} | {after} | {status} |
@@ -297,7 +330,7 @@ error_handling:
     on_fail: "STOP — diagnostic script missing. Run: bash .opencode/commands/doctor/scripts/mcp-doctor.sh --help to verify installation."
   node_not_found:
     check: "command -v node"
-    on_fail: "WARN — Node.js not found. 3 of 4 MCP servers cannot be checked. Install Node.js >=20.11.0."
+    on_fail: "WARN — Node.js not found. 5 of 6 MCP servers cannot be checked. Install Node.js >=20.11.0."
   json_parse_error:
     on_fail: "Fall back to human-readable mode: bash .opencode/commands/doctor/scripts/mcp-doctor.sh (without --json)"
   repair_fails:

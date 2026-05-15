@@ -103,3 +103,33 @@ _memory:
 - **Plan**: See `plan.md`
 - **Implementation Summary**: See `implementation-summary.md`
 <!-- /ANCHOR:cross-refs -->
+
+---
+
+<!-- ANCHOR:phase2-tasks -->
+## Phase 2 Tasks (added 2026-05-15)
+
+### Phase 2 - Install Guide + Doctor Coverage
+
+- [ ] **P2-001 — Author INSTALL_GUIDE.md** | `.opencode/skills/system-code-graph/INSTALL_GUIDE.md` | New file, 9 sections, sk-doc template marker, frontmatter (title/description/trigger_phrases), cross-link to SET-UP - Code Graph.md
+- [ ] **P2-002 — Fix .vscode/mcp.json broken launcher** | rename `system_code_graph` → `mk_code_index`, point launcher at `mk-code-index-launcher.cjs`, apply `_NOTE_1_DB`/`_NOTE_2_TOOLS`/`_NOTE_3_INDEX_DEFAULTS` convention
+- [ ] **P2-003 — Insert mk_skill_advisor block in .vscode/mcp.json** | currently absent entirely; mirror opencode.json:38–51
+- [ ] **P2-004 — Add diagnose_mk_code_index() to mcp-doctor.sh** | clone `diagnose_mk_spec_memory()` pattern at lines 144–265
+- [ ] **P2-005 — Add diagnose_mk_skill_advisor() to mcp-doctor.sh** | same pattern, system-skill-advisor paths
+- [ ] **P2-006 — Update mcp-doctor.sh enumeration + dispatch** | lines 4, 16, 50, 58–62, 501, 533–536
+- [ ] **P2-007 — Fix mcp-doctor.sh line 533 typo** | `diagnose_mk-spec-memory` → `diagnose_mk_spec_memory`
+- [ ] **P2-008 — Patch doctor_mcp_install.yaml** | valid_values (line 82), server definitions (lines 102–165), install_guides map (42–46, 95–99), report_format (326–334)
+- [ ] **P2-009 — Patch doctor_mcp_debug.yaml** | valid_values (line 85), repair_actions (111–149), install_guides map (41–46, 92–96), report_format (276–284)
+- [ ] **P2-010 — Update mcp.md help copy** | lines 60, 115, 153 — "all 4 MCP servers" → "all 6 MCP servers"
+- [ ] **P2-011 — Patch master install README §7.1 Component Matrix** | lines 319–328
+- [ ] **P2-012 — Patch master install README §7.3 Installation Bundles** | lines 369–391
+- [ ] **P2-013 — Insert master install README §10.4 mk-code-index** | between current §10.3 Sequential Thinking and §10.4 Chrome DevTools
+- [ ] **P2-014 — Insert master install README §10.5 Skill Advisor** | after new §10.4
+- [ ] **P2-015 — Update master install README Phase 3 Complete Validation** | lines 729–739, add checklist items + update grep one-liner
+- [ ] **P2-016 — Patch master install README §19 Setup Guides table** | line 1450, add INSTALL_GUIDE.md row
+- [ ] **P2-017 — Reconcile master install README aggregate counts** | lines 17, 58, 73, 1440
+- [ ] **P2-018 — Run strict validate** | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh ... --strict` (expect exit 0)
+- [ ] **P2-019 — Cross-runtime config consistency check** | grep all 6 configs for `mk_code_index`/`mk-code-index`
+- [ ] **P2-020 — Fill implementation-summary.md Phase 2 evidence**
+- [ ] **P2-021 — Update implementation-summary.md `_memory.continuity` for Phase 2 completion**
+<!-- /ANCHOR:phase2-tasks -->

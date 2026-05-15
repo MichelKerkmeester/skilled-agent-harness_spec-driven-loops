@@ -2,7 +2,7 @@
 # MCP DOCTOR: INSTALL WORKFLOW
 # ─────────────────────────────────────────────────────────────────
 role: MCP Installation Specialist
-purpose: Fresh install or reinstall all 4 MCP servers from install guides
+purpose: Fresh install or reinstall all 6 MCP servers from install guides
 action: Run 6-step guided installation with verification
 
 # ─────────────────────────────────────────────────────────────────
@@ -23,7 +23,7 @@ operating_mode:
 # MCP-INSTALL DOCTOR INVARIANT
 # ─────────────────────────────────────────────────────────────────
 mcp_install_doctor_invariant: |
-  MCP install workflows perform fresh install (or reinstall) of the 4 MCP
+  MCP install workflows perform fresh install (or reinstall) of the 6 MCP
   servers based on their install guides. Each server's install runs only after
   prerequisite check passes (Node >= 20.11.0, Python >= 3.11, npm, npx) and
   the user approves the install plan. No silent overwrite of existing installs:
@@ -41,6 +41,8 @@ upstream_assets:
     decision_record: "decision-record.md"
   install_guides:
     mk-spec-memory: ".opencode/install_guides/MCP - Spec Kit Memory.md"
+    mk_skill_advisor: ".opencode/skills/system-skill-advisor/INSTALL_GUIDE.md"
+    mk_code_index: ".opencode/skills/system-code-graph/INSTALL_GUIDE.md"
     cocoindex_code: ".opencode/install_guides/MCP - CocoIndex Code.md"
     code_mode: ".opencode/install_guides/MCP - Code Mode.md"
     sequential_thinking: ".opencode/install_guides/MCP - Sequential Thinking.md"
@@ -63,10 +65,10 @@ user_inputs:
 # ─────────────────────────────────────────────────────────────────
 field_handling:
   defaults:
-    server_filter_empty: null  # install all 4 when unset
+    server_filter_empty: null  # install all 6 when unset
     runtime_filter_empty: null  # auto-detect active runtime when unset
   server_filter_policy:
-    null: "install all 4 MCP servers"
+    null: "install all 6 MCP servers"
     set: "install only the named server"
   runtime_filter_policy:
     null: "wire MCP config into the detected active runtime"
@@ -79,7 +81,7 @@ arguments:
   server_filter:
     flag: "--server"
     value: "<name>"
-    valid_values: [mk-spec-memory, cocoindex_code, code_mode, sequential_thinking]
+    valid_values: [mk-spec-memory, mk_skill_advisor, mk_code_index, cocoindex_code, code_mode, sequential_thinking]
     default: null
     effect: "Only install the specified server"
   runtime_filter:
@@ -94,6 +96,8 @@ arguments:
 # ─────────────────────────────────────────────────────────────────
 install_guides:
   mk-spec-memory: .opencode/install_guides/MCP - Spec Kit Memory.md
+  mk_skill_advisor: .opencode/skills/system-skill-advisor/INSTALL_GUIDE.md
+  mk_code_index: .opencode/skills/system-code-graph/INSTALL_GUIDE.md
   cocoindex_code: .opencode/install_guides/MCP - CocoIndex Code.md
   code_mode: .opencode/install_guides/MCP - Code Mode.md
   sequential_thinking: .opencode/install_guides/MCP - Sequential Thinking.md
@@ -118,6 +122,37 @@ servers:
       - "cd {skill_dir} && npm run build"
       - "bash {skill_dir}/scripts/setup/rebuild-native-modules.sh"
     fallback_build: "cd {skill_dir} && npx tsc --build --noCheck --force"
+
+  mk_skill_advisor:
+    label: "Skill Advisor"
+    runtime: node
+    skill_dir: ".opencode/skills/system-skill-advisor"
+    entry_point: "mcp_server/dist/system-skill-advisor/mcp_server/advisor-server.js"
+    install_script: null
+    health_checks:
+      - { path: "mcp_server/dist/system-skill-advisor/mcp_server/advisor-server.js", type: "file_exists" }
+      - { path: ".opencode/bin/mk-skill-advisor-launcher.cjs", type: "file_exists" }
+      - { path: "mcp_server/node_modules", type: "dir_exists" }
+    install_steps:
+      - "cd {skill_dir}/mcp_server && npm install"
+      - "cd {skill_dir}/mcp_server && npm run build"
+    fallback_build: "cd {skill_dir}/mcp_server && npm install && npm run build"
+
+  mk_code_index:
+    label: "System Code Graph"
+    runtime: node
+    skill_dir: ".opencode/skills/system-code-graph"
+    entry_point: "mcp_server/dist/index.js"
+    install_script: null
+    health_checks:
+      - { path: "mcp_server/dist/index.js", type: "file_exists" }
+      - { path: ".opencode/bin/mk-code-index-launcher.cjs", type: "file_exists" }
+      - { path: "node_modules", type: "dir_exists" }
+      - { path: "mcp_server/database", type: "dir_exists" }
+    install_steps:
+      - "cd {skill_dir} && npm install"
+      - "{skill_dir}/node_modules/.bin/tsc --build {skill_dir}/tsconfig.json"
+    fallback_build: "cd {skill_dir} && npm install && ./node_modules/.bin/tsc --build ./tsconfig.json"
 
   cocoindex_code:
     label: "CocoIndex Code"
@@ -211,9 +246,9 @@ workflow:
       - "If --server flag provided, validate server name"
       - "If --runtime flag provided, validate runtime name"
     prerequisite_matrix:
-      node_20_11: { required_for: [mk-spec-memory, code_mode, sequential_thinking], check: "node --version" }
+      node_20_11: { required_for: [mk-spec-memory, mk_skill_advisor, mk_code_index, code_mode, sequential_thinking], check: "node --version" }
       python_311: { required_for: [cocoindex_code], check: "python3 --version" }
-      npm: { required_for: [mk-spec-memory, code_mode], check: "npm --version" }
+      npm: { required_for: [mk-spec-memory, mk_skill_advisor, mk_code_index, code_mode], check: "npm --version" }
       npx: { required_for: [sequential_thinking], check: "npx --version" }
     on_missing_prereq:
       action: "WARN and skip affected servers, continue with others"
@@ -236,6 +271,8 @@ workflow:
       | Server | Status | Detail |
       |--------|--------|--------|
       | Spec Kit Memory | {status} | {detail} |
+      | Skill Advisor | {status} | {detail} |
+      | System Code Graph | {status} | {detail} |
       | CocoIndex Code | {status} | {detail} |
       | Code Mode | {status} | {detail} |
       | Sequential Thinking | {status} | {detail} |
@@ -329,6 +366,8 @@ workflow:
       | Server | Before | After | Action Taken |
       |--------|--------|-------|--------------|
       | Spec Kit Memory | {before} | {after} | {action} |
+      | Skill Advisor | {before} | {after} | {action} |
+      | System Code Graph | {before} | {after} | {action} |
       | CocoIndex Code | {before} | {after} | {action} |
       | Code Mode | {before} | {after} | {action} |
       | Sequential Thinking | {before} | {after} | {action} |
