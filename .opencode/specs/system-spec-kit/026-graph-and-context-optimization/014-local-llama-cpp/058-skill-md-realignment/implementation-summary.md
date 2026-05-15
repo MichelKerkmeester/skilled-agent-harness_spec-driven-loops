@@ -37,9 +37,11 @@ _memory:
 |-------|-------|
 | **Spec Folder** | system-spec-kit/026-graph-and-context-optimization/014-local-llama-cpp/058-skill-md-realignment |
 | **Phase** | 058 |
-| **Completed** | TBD |
+| **Completed** | 2026-05-15 |
 | **Level** | 1 |
-| **Files in scope** | 6 modified (3 SKILL.md + 3 mcp_server READMEs) + 7+ created (references docs) |
+| **Files in scope** | 5 modified (3 SKILL.md + 2 mcp_server READMEs; system-code-graph mcp_server unchanged per iter 009's 0-drift finding) + 7 created (references docs) |
+| **Phase 4 batches** | A (3 SKILL.md, 20 edits), B (2 mcp_server READMEs + 1 major expansion, 12 edits + 65→361 line growth), C (7 new references, ~720 lines authored) |
+| **Phase 5 P1 patches** | 2 (ownership-boundary tool count 10→11; code-graph-readiness-check banned-word swap) |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -87,13 +89,13 @@ Drives: 20 cli-devin SWE 1.6 deep-review iterations across 8 thematic tracks, sy
 
 | Check | Result | Command |
 |-------|--------|---------|
-| 20 iter markdown files | TBD | `ls research/iterations \| wc -l` |
-| state.jsonl rows | TBD | `wc -l research/deep-research-state.jsonl` |
-| delta-verified shape | TBD | inspect |
-| Per-file sk-doc validate | TBD | `validate_document.py` |
-| audit_readmes.py | TBD | bulk sweep |
-| Strict-validate packet | TBD | `validate.sh --strict` |
-| Sonnet @markdown + @review double-check | TBD | Task tool |
+| 20 iter markdown files | PASS (20 files) | `ls research/iterations/*.md` |
+| state.jsonl rows | PASS (22 rows: config + 20 iter + converged) | `wc -l research/deep-research-state.jsonl` |
+| delta-verified shape | PASS (37 EDITs/NEW entries with iter citation) | inspect delta-verified.md |
+| Per-file sk-doc validate (13 files) | 13/13 PASS, 0 issues per file | `validate_document.py --type <skill|readme|reference>` |
+| Strict-validate packet | PASS (0 errors / 0 warnings) | `validate.sh --strict` |
+| Sonnet @markdown HVR voice check | CONDITIONAL (Phase 5 patches applied: 1 banned-word swap) | Task tool |
+| Sonnet @review factual check | CONDITIONAL post-Phase-4 (1 P1 + 3 P2 caught) → PASS post-Phase-5 patches | Task tool |
 <!-- /ANCHOR:verification -->
 
 ---

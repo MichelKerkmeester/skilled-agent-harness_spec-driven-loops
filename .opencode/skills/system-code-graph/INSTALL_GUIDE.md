@@ -40,7 +40,7 @@ This is the canonical bootstrap guide for the standalone System Code Graph MCP s
 
 System Code Graph is a TypeScript MCP server under `.opencode/skills/system-code-graph/mcp_server/` that registers the `mk-code-index` server identity. The runtime package is published privately as `@spec-kit/system-code-graph` and ships a Node launcher at `.opencode/bin/mk-code-index-launcher.cjs`. The launcher boots the compiled entrypoint at `mcp_server/dist/index.js` after loading `.env.local` overrides, applying the optional maintainer-mode flag, and guarding the database path against external locations.
 
-The server is fully standalone: it does not depend on `mk-spec-memory` being installed first, and its database (`mcp_server/database/code-graph.sqlite`) lives inside the skill package.
+The server is fully standalone: it does not depend on `mk-spec-memory` being installed first. Its database lives at `.opencode/.spec-kit/code-graph/database/code-graph.sqlite`, shared across runtimes and auto-migrated from the legacy skill-local location on first launch.
 
 Public MCP namespace: `mcp__mk_code_index__*`. Hyphens in the server name become underscores in the namespace prefix per MCP convention.
 
@@ -52,7 +52,7 @@ Public MCP namespace: `mcp__mk_code_index__*`. Hyphens in the server name become
 | Config key | `mk_code_index` |
 | Launcher | `.opencode/bin/mk-code-index-launcher.cjs` |
 | Entry point | `.opencode/skills/system-code-graph/mcp_server/dist/index.js` |
-| Database (default) | `.opencode/skills/system-code-graph/mcp_server/database/code-graph.sqlite` |
+| Database (default) | `.opencode/.spec-kit/code-graph/database/code-graph.sqlite` |
 | MCP tools | 10 (see [README.md](./README.md) §3.2) |
 
 <!-- /ANCHOR:1-overview -->
@@ -80,7 +80,7 @@ Install dependencies and build the standalone TypeScript MCP server:
 
 ```bash
 npm --prefix .opencode/skills/system-code-graph install
-.opencode/skills/system-code-graph/node_modules/.bin/tsc --build .opencode/skills/system-code-graph/tsconfig.json
+npm --prefix .opencode/skills/system-code-graph run build
 ```
 
 Verify the compiled entrypoint exists:

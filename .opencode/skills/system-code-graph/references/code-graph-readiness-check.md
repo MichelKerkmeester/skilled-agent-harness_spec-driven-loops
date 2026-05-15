@@ -75,7 +75,7 @@ The readiness check exposes six failure surfaces:
 <!-- ANCHOR:5-recovery-procedures -->
 ## 5. RECOVERY PROCEDURES
 
-Three recovery procedures handle the most disruptive failures:
+Three recovery procedures handle the most severe failures:
 
 - **CG-RP-001: SQLite corruption recovery** - `recoverSqliteCorruption()` in `mcp_server/lib/recovery-procedures.ts:160-198` copies the database triplet to a recovery directory, runs an integrity check, moves the bad copy to quarantine and triggers a full scan.
 - **CG-RP-002: Partial scan failure recovery** - `recoverPartialScanFailure()` in `mcp_server/lib/recovery-procedures.ts:200-247` runs an integrity check, queries staged files where `file_mtime_ms=0` and decides incremental vs full scan based on the stale count.
