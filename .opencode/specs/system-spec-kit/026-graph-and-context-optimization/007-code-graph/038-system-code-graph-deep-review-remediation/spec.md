@@ -11,22 +11,26 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/038-system-code-graph-deep-review-remediation"
-    last_updated_at: "2026-05-15T19:15:00Z"
-    last_updated_by: "main-agent-038-init"
-    recent_action: "packet_scaffolded_phases_planned"
-    next_safe_action: "await_user_dispatch_authorization"
-    blockers:
-      - "Parallel agent owns SKILL.md, README.md, references/ — Phase 5A blocked until parallel work completes"
+    last_updated_at: "2026-05-15T20:35:00Z"
+    last_updated_by: "main-agent-038-closeout"
+    recent_action: "all_phases_complete_v1.0.2.0_shipped"
+    next_safe_action: "monitor_query_ts_followon_in_packet_039"
+    blockers: []
     key_files:
-      - "spec.md"
-      - "review/review-report.md (037)"
+      - ".opencode/skills/system-code-graph/changelog/v1.0.2.0.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-05-15-038-remediation"
       parent_session_id: "2026-05-15-037-deep-review-cli-devin"
-    completion_pct: 5
+    completion_pct: 100
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "Path-1 vs Path-2: Both shipped — Path-1 (real refactor) at 6b6f41214 removed 13 of 14 production imports; Path-2 (honest docs + CI guardrail) at cdc56b7c1; v1.0.0.0 ERRATUM preserves audit trail."
+      - "ccc_* fake readiness: replaced with real CocoIndex probe at lib/ccc-readiness-probe.ts."
+      - "Launcher DB MOVE: shipped at 35c1892c5 — new path .opencode/.spec-kit/code-graph/database/ with auto-migration logic; all 6 runtime configs updated."
+      - "Feature catalog filename: kept lowercase per user choice."
+      - "SKILL.md version bump: deferred to parallel agent ('let them' choice). Currently still 1.0.0.0; v1.0.2.0 changelog ships independent of frontmatter version."
+      - "037 P1 query.ts:14 remaining import classified as @spec-kit/shared workspace alias (intentional cross-skill type-sharing, not a leak) per v1.0.2.0 changelog."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Feature Specification: 037 Deep-Review Remediation
