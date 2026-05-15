@@ -4,18 +4,19 @@
 
 ## Track distribution
 
-| Track | Iter | Focus | Output |
-|------:|-----:|-------|--------|
-| 1 | 001-006 | Direct-child packet inventory (6 iter, ~3-4 children each) | Each-child classification: load-bearing / merge / delete |
-| 2 | 007-010 | Phase-parent 014-local-llama-cpp deep-read (4 iter — 056-059 arc) | Per-phase summary + restructure recommendation |
-| 3 | 011-014 | Phase-parent 013-doctor-update-orchestrator deep-read (4 iter) | Per-phase summary + restructure recommendation |
-| 4 | 015-018 | Phase-parent 007-code-graph deep-read (4 iter) | Per-phase summary + restructure recommendation |
-| 5 | 019-022 | Phase-parent 009-hook-parity deep-read (4 iter) | Per-phase summary + restructure recommendation |
-| 6 | 023-026 | Cross-packet duplicate detection (4 iter) | Overlap groups (same problem, different packet) |
-| 7 | 027-030 | Stale-context detection (4 iter) | Completed-unreferenced packet list |
-| 8 | 031-034 | Naming-quality audit (4 iter) | Names that don't match actual work |
-| 9 | 035-038 | Target-state proposal (4 iter) | Consolidated phase list with names + rationale |
-| 10 | 039-040 | Resource-map structure proposal (2 iter) | Parent doc layout recommendation |
+| Track | Iter | Executor | Focus | Output |
+|------:|-----:|----------|-------|--------|
+| 1 | 001-006 | cli-devin SWE-1.6 | Direct-child packet inventory (6 iter, ~3-4 children each) | Each-child classification: load-bearing / merge / delete |
+| 2 | 007-010 | cli-devin SWE-1.6 | Phase-parent 014-local-llama-cpp deep-read (4 iter — 056-059 arc) | Per-phase summary + restructure recommendation |
+| 3 | 011-014 | cli-devin SWE-1.6 | Phase-parent 013-doctor-update-orchestrator deep-read (4 iter) | Per-phase summary + restructure recommendation |
+| 4 | 015-018 | cli-devin SWE-1.6 | Phase-parent 007-code-graph deep-read (4 iter) | Per-phase summary + restructure recommendation |
+| 5 | 019-022 | cli-devin SWE-1.6 | Phase-parent 009-hook-parity deep-read (4 iter) | Per-phase summary + restructure recommendation |
+| 6 | 023-026 | cli-devin SWE-1.6 | Cross-packet duplicate detection (4 iter) | Overlap groups (same problem, different packet) |
+| 7 | 027-030 | cli-devin SWE-1.6 | Stale-context detection (4 iter) | Completed-unreferenced packet list |
+| 8 | 031-034 | cli-devin SWE-1.6 | Naming-quality audit (4 iter) | Names that don't match actual work |
+| 9 | 035-038 | cli-devin SWE-1.6 | Target-state proposal (4 iter) | Consolidated phase list with names + rationale |
+| 10 | 039-040 | cli-devin SWE-1.6 | Resource-map structure proposal (2 iter) | Parent doc layout recommendation |
+| **11** | **041-050** | **cli-codex gpt-5.5 medium fast** | **Adversarial / cross-track / first-principles / governance overlay (10 iter)** | **Validation + integration findings to refine the SWE-1.6 corpus** |
 
 ## Per-iter RQ table
 
@@ -61,14 +62,26 @@
 | 038 | 9 | Target-state proposal: identify the highest-risk consolidations (where merging loses load-bearing context) and propose mitigation | Iter 035-037 output |
 | 039 | 10 | Resource-map structure: how should the phase-parent's spec.md + resource-map.md + graph-metadata.json be organized so resume + search + graph traversal land on the right phase first | 026/spec.md + resource-map.md |
 | 040 | 10 | Resource-map structure: sample-query proof points showing the proposed layout finds packets faster than current layout (3-5 sample queries) | Iter 039 output + prior iter |
+| 041 | 11 | Adversarial review of SWE-1.6 top-level classifications (iter 001-006) — false positives / false negatives | iter 001-006 + targeted grep |
+| 042 | 11 | Adversarial review of SWE-1.6 per-phase-parent classifications (iter 007-022) — catalog completeness, classification accuracy, overlap detection, phase-list quality | iter 007-022 + `ls` checks |
+| 043 | 11 | Cross-track integration check — find contradictions between tracks 1-5 and tracks 6-8; resolve with policy | iter 001-034 |
+| 044 | 11 | First-principles re-evaluation — design 026 from scratch; compare with SWE-1.6 track 9; identify convergent (high-confidence) vs divergent | iter 035 + 026 parent docs |
+| 045 | 11 | Cost-benefit per proposed merge — verdict PROCEED / PROCEED_AS_LOW_PRIORITY / ABORT / REDESIGN | iter 009/013/017/021/024/026/038 |
+| 046 | 11 | Strategic naming for scale — pressure-test SWE-1.6 convention under growth / split / cross-parent scenarios | iter 031/032/033/034 |
+| 047 | 11 | Phase lifecycle governance — define active / stable / stale / superseded / orphan stages + transition policy | iter 027/028/029/030/035 |
+| 048 | 11 | Blast-radius for proposed deletes — CONTAINED / SHALLOW / MEDIUM / DEEP classification per delete candidate | iter 027/028/029/030 + repo grep |
+| 049 | 11 | Restructure ordering for partial-state safety — renames → merges → deletes → parent-doc → indexes; per-wave recovery procedure | iter 035/036/045/048 |
+| 050 | 11 | Post-restructure validation proof points — query-based + graph-based + index-based assertions; pre/post measurement plan | iter 040/035/044 |
 
 ## Dispatch order recommendation
 
-- **Strict sequential** (001 → 040): iter 035-038 (target-state proposal) reference findings from 001-034, so those tracks benefit from running first. Tracks 1-8 can themselves run in any order among themselves.
-- **Parallel-safe batches** (if dispatching multiple devin sessions concurrently):
+- **Strict sequential** (001 → 050): iter 035-038 (target-state proposal) reference findings from 001-034, so those tracks benefit from running first. Tracks 1-8 can themselves run in any order among themselves.
+- **Parallel-safe batches** (if dispatching multiple sessions concurrently):
   - Batch A: iter 001-022 (tracks 1-5; each iter is independent — different packets)
   - Batch B: iter 023-034 (tracks 6-8; depend on batch A's findings but only via inference)
   - Batch C: iter 035-040 (tracks 9-10; SHOULD run after batches A+B)
+- **Track 11 (codex)** runs IN PARALLEL with tracks 1-10 (devin loop). Codex iter 041-042 read tracks 1-5 outputs; codex iter 043+ read tracks 6-10. The codex loop is rate-limit independent from the devin loop, so true concurrency.
+- Dispatcher scripts: `scripts/run-loop.sh` for tracks 1-10 (cli-devin); `scripts/run-codex-loop.sh` for track 11 (cli-codex).
 
 ## Per-iter expected output
 

@@ -6,23 +6,26 @@ You are a SWE-1.6 synthesis worker. Read every research/iterations/iteration-NNN
 
 ## Pre-planning
 
-**Goal:** Consolidate all 40 iter outputs into `research/research.md` — a single findings ledger grouped by track and theme, with per-finding iter citation.
+**Goal:** Consolidate all 50 iter outputs (40 cli-devin SWE-1.6 + 10 cli-codex gpt-5.5 medium) into `research/research.md` — a single findings ledger grouped by track and theme, with per-finding iter citation.
 
 **Steps:**
 
-1. Read every iteration-001.md through iteration-040.md.
-2. Read research/deep-research-state.jsonl (40 rows).
-3. Group findings by track (1-10) and within each track by theme.
+1. Read every iteration-001.md through iteration-050.md.
+2. Read research/deep-research-state.jsonl (up to 50 rows).
+3. Group findings by track (1-11) and within each track by theme.
 4. For each finding, cite: iter number + file:line within iter output.
-5. Resolve contradictions: when two iter outputs disagree, prefer the one with more citations.
+5. Resolve contradictions using the resolution policy:
+   - Track 11 (gpt-5.5) iter 043 may have already resolved cross-track contradictions; honor those resolutions.
+   - When track 11 (gpt-5.5) overrides track 1-10 (SWE-1.6) verdict: prefer track 11 (it had the SWE-1.6 corpus as input).
+   - When two SWE-1.6 iter disagree: prefer the one with more file:line citations.
 6. Write research/research.md with required heading structure.
 
 **Acceptance criteria per step:**
 
-- 40 iter files read
-- JSONL row count matches file count
+- All available iter files read (target 50; less if some failed)
+- JSONL row count matches file count (or close)
 - Every finding has iter citation
-- Contradictions resolved with rationale
+- Contradictions resolved with rationale; track 11 resolutions honored
 - Output file matches required heading structure
 
 **Stop condition:** Emit research/research.md then exit. Do not edit any other file.
@@ -99,6 +102,23 @@ You are a SWE-1.6 synthesis worker. Read every research/iterations/iteration-NNN
 ### Proposed parent doc layout (spec.md + resource-map.md + graph-metadata.json)
 ### Sample-query proof points
 | Query | Current hops | Proposed hops | Savings |
+
+## Track 11: Adversarial / cross-track / governance overlay (iter 041-050)
+### Findings
+- Adversarial overrides on SWE-1.6 verdicts (iter 041-042)
+- Cross-track contradictions resolved (iter 043)
+- First-principles convergent vs divergent phases (iter 044)
+- Cost-benefit verdicts per merge (iter 045)
+- Naming-convention pressure-test refinements (iter 046)
+- Phase lifecycle governance policy (iter 047)
+- Blast-radius per delete + reclassifications (iter 048)
+- Restructure ordering + per-wave recovery (iter 049)
+- Post-restructure validation proof points (iter 050)
+### Aggregate
+- Total adversarial overrides accepted: <N>
+- Cost-benefit ABORTs (merges that should NOT execute): <list>
+- Delete-list adjustments (DEEP-classified, moved out of delete): <list>
+- Recommended execution waves: 5 (renames → merges → deletes → parent-doc → indexes)
 
 ## Provenance (iter → finding mapping)
 - iter 001 → findings in tracks 1
