@@ -439,8 +439,12 @@ diagnose_mk_code_index() {
   local skill_dir="$PROJECT_ROOT/.opencode/skills/system-code-graph"
   local dist_entry="$skill_dir/mcp_server/dist/index.js"
   local launcher="$PROJECT_ROOT/.opencode/bin/mk-code-index-launcher.cjs"
-  local db_dir="$skill_dir/mcp_server/database"
+  # DB path: prefer SPECKIT_CODE_GRAPH_DB_DIR override → new standalone location →
+  # legacy skill-local fallback (auto-migrated by the launcher on first run).
+  local db_dir="${SPECKIT_CODE_GRAPH_DB_DIR:-$PROJECT_ROOT/.opencode/.spec-kit/code-graph/database}"
+  local legacy_db_dir="$skill_dir/mcp_server/database"
   local needs_fix=false
+  local needs_db_dir=false
 
   _log log_header "System Code Graph (mk_code_index)"
 
@@ -480,21 +484,27 @@ diagnose_mk_code_index() {
     needs_fix=true
   fi
 
-  # Check 4: database directory
+  # Check 4: database directory (new standalone path; legacy skill-local checked as fallback)
   if [[ -d "$db_dir" ]]; then
     local db_file="$db_dir/code-graph.sqlite"
     if [[ -f "$db_file" ]]; then
       local db_size
       db_size="$(du -h "$db_file" 2>/dev/null | cut -f1)"
-      record_pass "$srv" "database" "code-graph.sqlite exists ($db_size)"
-      _log log_pass "Database exists: code-graph.sqlite ($db_size)"
+      record_pass "$srv" "database" "code-graph.sqlite exists at $db_dir ($db_size)"
+      _log log_pass "Database exists: code-graph.sqlite at $db_dir ($db_size)"
     else
       record_warn "$srv" "database" "Database directory exists but code-graph.sqlite not yet built"
       _log log_warn "Database directory exists but code-graph.sqlite not yet built (created on first scan)"
     fi
+  elif [[ -d "$legacy_db_dir" ]] && [[ -f "$legacy_db_dir/code-graph.sqlite" ]]; then
+    record_warn "$srv" "database" "Legacy DB at $legacy_db_dir — launcher will auto-migrate on next startup"
+    _log log_warn "Legacy DB at $legacy_db_dir; will auto-migrate to $db_dir on next launcher startup"
+    needs_db_dir=true
   else
-    record_warn "$srv" "database" "Database directory not found"
-    _log log_warn "Database directory not found (created on first scan)"
+    record_warn "$srv" "database" "Database directory not found at $db_dir"
+    _log log_warn "Database directory not found at $db_dir (created on first scan; fix mode creates it)"
+    needs_db_dir=true
+    needs_fix=true
   fi
 
   # Check 5: Server entry point loads without native errors
@@ -523,6 +533,11 @@ diagnose_mk_code_index() {
   # Fix mode
   if [[ "$FIX_MODE" == true ]] && [[ "$needs_fix" == true ]]; then
     _log printf '\n  %sAttempting auto-repair...%s\n' "$CYAN" "$NC"
+    if [[ "$needs_db_dir" == true ]]; then
+      mkdir -p "$db_dir" 2>/dev/null || true
+      record_pass "$srv" "fix_db_dir" "Created database directory: $db_dir"
+      _log log_info "Created database directory: $db_dir"
+    fi
     (cd "$skill_dir" && npm install 2>&1 | tail -3 && \
       ./node_modules/.bin/tsc --build ./tsconfig.json 2>&1 | tail -3) || true
     record_pass "$srv" "fix_npm" "npm install + tsc --build attempted"
