@@ -219,6 +219,18 @@ Authored via cli-codex `gpt-5.5` `reasoning_effort=high` (004/005/006) and `xhig
 
 **Dispatch:** no code dispatch needed for any of these — they're operator-driven session/CLI actions. Document outcomes in the parent 013/009 `implementation-summary.md` if any reveal new bugs.
 
+## 11. 020 Code-Graph Decoupling
+
+Packet `020-spec-kit-codegraph-decoupling` extends the 019 advisor decoupling pattern to code graph ownership. The operator narrowed the earlier 014/007 ADR-002 allowance: system-spec-kit may no longer import system-code-graph source.
+
+Current 020 state:
+
+- Shared code-graph contracts live in `@spec-kit/shared/code-graph-contracts`.
+- Code-graph publishes a readiness marker at `.opencode/skills/system-code-graph/mcp_server/database/.code-graph-readiness.json`.
+- Spec-kit runtime calls route through `mcp_server/lib/code-graph-boundary.ts`.
+- The hard import audit is clean: zero `from.*system-code-graph` matches under `system-spec-kit/mcp_server`.
+- Remaining close-out is verification, strict validation, scoped commit, and push.
+
 ### 3.5 Tier 4 — Topology consolidation (DEFERRED PER 007 ADR-001)
 
 **Option A from 007 decision-record:** move the `skill_graph_*` MCP tools (`skill_graph_scan`, `skill_graph_query`, `skill_graph_status`, `skill_graph_validate`) from `spec_kit_memory` to `system_skill_advisor` ownership.

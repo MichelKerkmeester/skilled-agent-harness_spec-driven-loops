@@ -5,8 +5,7 @@
 // consumers without in-process imports.
 
 import { mkdirSync, writeFileSync } from 'node:fs';
-import { join } from 'node:path';
-import { DATABASE_DIR } from '../core/config.js';
+import { dirname, resolve } from 'node:path';
 import { getStats, queryStartupHighlights } from './code-graph-db.js';
 import { getGraphReadinessSnapshot } from './ensure-ready.js';
 import type {
@@ -16,7 +15,10 @@ import type {
   StartupGraphQualitySummary,
 } from '../../../system-spec-kit/shared/code-graph-contracts.js';
 
-export const CODE_GRAPH_READINESS_MARKER_PATH = join(DATABASE_DIR, '.code-graph-readiness.json');
+export const CODE_GRAPH_READINESS_MARKER_PATH = resolve(
+  process.cwd(),
+  '.opencode/skills/system-code-graph/mcp_server/database/.code-graph-readiness.json',
+);
 
 function compactPath(filePath: string): string {
   const parts = filePath.replace(/\\/g, '/').split('/').filter(Boolean);
@@ -223,7 +225,7 @@ export function writeCodeGraphReadinessMarker(workspaceRoot: string = process.cw
     startup: buildStartupBrief(stats, markerBase),
     ...(error ? { error } : {}),
   };
-  mkdirSync(DATABASE_DIR, { recursive: true });
+  mkdirSync(dirname(CODE_GRAPH_READINESS_MARKER_PATH), { recursive: true });
   writeFileSync(CODE_GRAPH_READINESS_MARKER_PATH, `${JSON.stringify(marker, null, 2)}\n`);
   return marker;
 }

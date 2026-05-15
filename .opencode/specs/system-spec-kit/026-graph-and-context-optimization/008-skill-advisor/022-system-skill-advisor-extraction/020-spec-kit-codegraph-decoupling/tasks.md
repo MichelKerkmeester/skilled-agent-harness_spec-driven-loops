@@ -77,9 +77,9 @@ _memory:
 - [x] T051 Run shared build.
 - [x] T052 Run system-spec-kit typecheck.
 - [x] T053 Run system-code-graph typecheck.
-- [ ] T054 Run target Vitest matrix.
-- [ ] T055 Strict validate packet and parent.
-- [ ] T056 Run MCP and hook smoke checks.
+- [x] T054 Run target Vitest matrix.
+- [x] T055 Strict validate packet and parent.
+- [x] T056 Run MCP and hook smoke checks.
 <!-- /ANCHOR:phase-3 -->
 
 ## Phase 7: Commit And Push

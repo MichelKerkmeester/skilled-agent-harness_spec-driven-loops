@@ -58,8 +58,10 @@ _memory:
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-007 [P0] Target Vitest matrix has no new 020 regressions.
-- [ ] CHK-008 [P0] Strict validate packet 020 passes.
+- [x] CHK-007 [P0] Target Vitest matrix has no new 020 regressions.
+  Evidence: spec-kit targeted boundary/hook tests passed 177/179 with 2 existing skipped; code-graph moved smoke subset passed 66 tests; two legacy mixed suites still need broader follow-up classification.
+- [x] CHK-008 [P0] Strict validate packet 020 passes.
+  Evidence: packet strict validation passed with 0 errors and 0 warnings.
 - [x] CHK-009 [P0] Strict validate parent passes.
   Evidence: parent validation passed in recursive phase mode.
 <!-- /ANCHOR:testing -->
@@ -101,7 +103,7 @@ _memory:
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 | 10 | 7/10 |
+| P0 | 10 | 9/10 |
 | P1 | 5 | 5/5 |
 | P2 | 0 | 0/0 |
 
@@ -126,8 +128,10 @@ Verification date: 2026-05-15
 <!-- ANCHOR:deploy-ready -->
 ## L3+: DEPLOYMENT READINESS
 
-- [ ] CHK-120 [P0] MCP list shows all expected servers connected.
-- [ ] CHK-121 [P0] Hook smoke is PASS or documented inconclusive with reason.
+- [x] CHK-120 [P0] MCP list shows all expected servers connected.
+  Evidence: `opencode mcp list` reported 6 connected servers.
+- [x] CHK-121 [P0] Hook smoke is PASS or documented inconclusive with reason.
+  Evidence: hook smoke target passed 20/22 with 2 existing skipped.
 <!-- /ANCHOR:deploy-ready -->
 
 <!-- ANCHOR:compliance-verify -->

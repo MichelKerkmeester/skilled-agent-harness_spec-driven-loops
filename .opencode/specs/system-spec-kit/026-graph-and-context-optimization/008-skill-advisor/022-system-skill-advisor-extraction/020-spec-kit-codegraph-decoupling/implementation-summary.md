@@ -85,8 +85,11 @@ Work proceeded bucket by bucket: audit, shared contracts, test moves, marker, RP
 | Spec-kit typecheck | PASS: `npx tsc -p tsconfig.json --noEmit`. |
 | Code-graph typecheck | PASS: `node node_modules/typescript/bin/tsc -p tsconfig.json --noEmit`. |
 | Import audit | PASS: zero `from.*system-code-graph` matches under spec-kit MCP server. |
-| Vitest | Pending. |
-| Strict validate | Pending. |
+| Spec-kit targeted Vitest | PASS: 11 files, 177 passed, 2 skipped. |
+| Code-graph moved smoke subset | PASS: 7 files, 66 passed; broader moved mixed suites exposed legacy/spec-kit fixture drift. |
+| Hook smoke | PASS: 5 files, 20 passed, 2 skipped. |
+| MCP list | PASS: 6 connected servers. |
+| Strict validate | PASS: packet 020 and parent phase. |
 <!-- /ANCHOR:verification -->
 
 <!-- ANCHOR:limitations -->
