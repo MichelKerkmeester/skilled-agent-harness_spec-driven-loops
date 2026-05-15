@@ -185,6 +185,31 @@ DISABLE_ADVISOR_ENV = COMPAT_CONTRACT["disabledEnv"]
 FORCE_LOCAL_ENV = COMPAT_CONTRACT["forceLocalEnv"]
 NATIVE_DEFAULT_CONFIDENCE_THRESHOLD = COMPAT_CONTRACT["defaults"]["confidenceThreshold"]
 NATIVE_DEFAULT_UNCERTAINTY_THRESHOLD = COMPAT_CONTRACT["defaults"]["uncertaintyThreshold"]
+NATIVE_BRIDGE_ENV_ALLOWLIST = {
+    "PATH",
+    "HOME",
+    "USER",
+    "LOGNAME",
+    "SHELL",
+    "TMPDIR",
+    "TEMP",
+    "TMP",
+    "LANG",
+    "LC_ALL",
+    "CI",
+    "VITEST",
+    "MK_SKILL_ADVISOR_DB_DIR",
+    "SYSTEM_SKILL_ADVISOR_DB_DIR",
+    "SPECKIT_RUNTIME",
+    "SPECKIT_ADVISOR_FRESHNESS",
+    "SPECKIT_SKILL_ADVISOR_FORCE_LOCAL",
+    "SPECKIT_CODEX_HOOK_TIMEOUT_MS",
+    "SKILL_ADVISOR_DISABLE_BUILTIN_SEMANTIC",
+    "SPECKIT_ADVISOR_WORKSPACE_ALLOWLIST",
+    "SPECKIT_ADVISOR_SHADOW_DELTA_PATH",
+    "SPECKIT_METRICS_ENABLED",
+    "SPECKIT_ADVISOR_HOOK_CACHE_HIT_P95_WARN_MS",
+}
 _RUNTIME_SPEC = None
 _runtime_module = None
 _runtime_load_error: Optional[Exception] = None
@@ -271,6 +296,23 @@ def _native_bridge_available() -> bool:
     return os.path.exists(NATIVE_ADVISOR_COMPAT) and os.path.exists(NATIVE_GENERATION_MODULE)
 
 
+def _native_bridge_env(source_env: Optional[Dict[str, str]] = None) -> Dict[str, str]:
+    """Return the explicit environment passed to the Node native bridge."""
+    source = source_env if source_env is not None else dict(os.environ)
+    return {
+        key: value
+        for key, value in source.items()
+        if key in NATIVE_BRIDGE_ENV_ALLOWLIST and isinstance(value, str)
+    }
+
+
+def _cocoindex_env(project_root: str, source_env: Optional[Dict[str, str]] = None) -> Dict[str, str]:
+    """Return the explicit environment passed to the optional ccc subprocess."""
+    env = _native_bridge_env(source_env)
+    env["COCOINDEX_CODE_ROOT_PATH"] = project_root
+    return env
+
+
 def _sanitize_native_label(value: Any) -> Optional[str]:
     """Sanitize native labels before translating public compat output."""
     if not isinstance(value, str):
@@ -311,8 +353,6 @@ def _run_native_bridge(payload: Dict[str, Any], timeout: float = NATIVE_TIMEOUT_
         }
 
     try:
-        bridge_env = os.environ.copy()
-        bridge_env.pop(DISABLE_ADVISOR_ENV, None)
         result = subprocess.run(
             ["node", "--input-type=module", "-e", _native_bridge_source()],
             input=json.dumps(payload),
@@ -320,7 +360,7 @@ def _run_native_bridge(payload: Dict[str, Any], timeout: float = NATIVE_TIMEOUT_
             text=True,
             timeout=timeout,
             cwd=REPO_ROOT,
-            env=bridge_env,
+            env=_native_bridge_env(),
         )
     except (FileNotFoundError, subprocess.TimeoutExpired, OSError) as exc:
         return {
@@ -2104,15 +2144,13 @@ def _cocoindex_search_builtin(
         return []
 
     try:
-        env = os.environ.copy()
-        env["COCOINDEX_CODE_ROOT_PATH"] = project_root
         result = subprocess.run(
             [ccc_bin, "search", query, "--limit", str(limit * 2)],
             capture_output=True,
             text=True,
             timeout=COCOINDEX_TIMEOUT,
             cwd=project_root,
-            env=env,
+            env=_cocoindex_env(project_root),
         )
         if result.returncode != 0:
             return []

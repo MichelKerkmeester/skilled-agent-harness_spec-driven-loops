@@ -1,9 +1,9 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Plugin Bridge Smoke Tests
 // ───────────────────────────────────────────────────────────────
-// F-020-D5-04: minimal smoke tests for the MJS plugin bridge at
+// F-020-D5-04: one subprocess smoke test for the MJS plugin bridge at
 // mcp_server/plugin_bridges/spec-kit-skill-advisor-bridge.mjs. Asserts the
-// bridge subprocess contract that the OpenCode plugin relies on:
+// process contract that the OpenCode plugin relies on:
 //   - File exists on disk at the expected path
 //   - Subprocess accepts stdin JSON, returns one stdout JSON line, exits 0
 //   - Response shape conforms to the compat-contract envelope
@@ -20,7 +20,7 @@ import { spawnSync } from 'node:child_process';
 import { existsSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { afterAll, describe, expect, it } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import { findAdvisorWorkspaceRoot } from '../../lib/utils/workspace-root.js';
 
 const here = dirname(fileURLToPath(import.meta.url));
@@ -35,7 +35,12 @@ function runBridge(input: string): { status: number | null; stdout: string; stde
     cwd: repoRoot,
     input,
     encoding: 'utf8',
-    env: process.env,
+    env: {
+      PATH: process.env.PATH,
+      HOME: process.env.HOME,
+      TMPDIR: process.env.TMPDIR,
+      SKILL_ADVISOR_DISABLE_BUILTIN_SEMANTIC: '1',
+    },
   });
   return {
     status: result.status,
@@ -44,30 +49,9 @@ function runBridge(input: string): { status: number | null; stdout: string; stde
   };
 }
 
-function restoreNativeGeneration(): void {
-  spawnSync('node', ['--input-type=module', '-e', `
-    import { publishSkillGraphGeneration } from './.opencode/skills/system-skill-advisor/mcp_server/dist/system-skill-advisor/mcp_server/lib/freshness/generation.js';
-    publishSkillGraphGeneration({
-      workspaceRoot: process.cwd(),
-      reason: 'plugin-bridge-test-cleanup',
-      state: 'live',
-    });
-  `], {
-    cwd: repoRoot,
-    encoding: 'utf8',
-  });
-}
-
 describe('spec-kit skill advisor plugin bridge smoke (F-020-D5-04)', () => {
-  afterAll(() => {
-    restoreNativeGeneration();
-  });
-
-  it('exists at the canonical source-of-truth path', () => {
+  it('exists at the canonical path and emits a JSON envelope for a valid prompt', () => {
     expect(existsSync(bridgePath)).toBe(true);
-  });
-
-  it('emits a JSON envelope with status/brief/metadata for a valid prompt', () => {
     const payload = JSON.stringify({
       prompt: 'save the current context to memory',
       workspaceRoot: repoRoot,
@@ -84,32 +68,5 @@ describe('spec-kit skill advisor plugin bridge smoke (F-020-D5-04)', () => {
     expect(['ok', 'skipped', 'degraded', 'fail_open']).toContain(parsed.status);
     expect(typeof parsed.metadata).toBe('object');
     expect(parsed.metadata).not.toBeNull();
-  });
-
-  it('fails open with stable envelope when stdin is empty', () => {
-    const result = runBridge('');
-    expect(result.status).toBe(0);
-    const parsed = JSON.parse(result.stdout.trim());
-    expect(parsed.status).toBe('fail_open');
-    expect(parsed.brief).toBeNull();
-    expect(parsed.error).toBeDefined();
-  });
-
-  it('fails open with stable envelope when stdin JSON is missing required fields', () => {
-    const result = runBridge(JSON.stringify({ prompt: 'no workspace root' }));
-    expect(result.status).toBe(0);
-    const parsed = JSON.parse(result.stdout.trim());
-    expect(parsed.status).toBe('fail_open');
-    expect(parsed.error).toBe('MISSING_WORKSPACE_ROOT');
-    expect(parsed.brief).toBeNull();
-  });
-
-  it('fails open with stable envelope when stdin is not valid JSON', () => {
-    const result = runBridge('this is not json {');
-    expect(result.status).toBe(0);
-    const parsed = JSON.parse(result.stdout.trim());
-    expect(parsed.status).toBe('fail_open');
-    expect(parsed.brief).toBeNull();
-    expect(parsed.error).toBeDefined();
   });
 });

@@ -58,10 +58,42 @@ const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 const now = () => new Date().toISOString();
 const BOOTSTRAP_LOCK_TIMEOUT_MS = 120000;
 const SOURCE_DIRS = ['handlers', 'lib', 'schemas', 'tools'];
+const CHILD_ENV_ALLOWLIST = new Set([
+  'PATH',
+  'HOME',
+  'USER',
+  'LOGNAME',
+  'SHELL',
+  'TMPDIR',
+  'TEMP',
+  'TMP',
+  'LANG',
+  'LC_ALL',
+  'CI',
+  'VITEST',
+  'MK_SKILL_ADVISOR_DB_DIR',
+  'SYSTEM_SKILL_ADVISOR_DB_DIR',
+  'SPECKIT_RUNTIME',
+  'SPECKIT_ADVISOR_FRESHNESS',
+  'SPECKIT_SKILL_ADVISOR_HOOK_DISABLED',
+  'SPECKIT_SKILL_ADVISOR_FORCE_LOCAL',
+  'SPECKIT_CODEX_HOOK_TIMEOUT_MS',
+  'SKILL_ADVISOR_DISABLE_BUILTIN_SEMANTIC',
+  'SPECKIT_ADVISOR_WORKSPACE_ALLOWLIST',
+  'SPECKIT_ADVISOR_SHADOW_DELTA_PATH',
+  'SPECKIT_METRICS_ENABLED',
+  'SPECKIT_ADVISOR_HOOK_CACHE_HIT_P95_WARN_MS',
+]);
 let childProcess = null;
 
 function log(message) {
   process.stderr.write(`[mk-skill-advisor-launcher] ${message}\n`);
+}
+
+function createChildEnv(sourceEnv = process.env) {
+  return Object.fromEntries(
+    Object.entries(sourceEnv).filter(([key, value]) => CHILD_ENV_ALLOWLIST.has(key) && typeof value === 'string'),
+  );
 }
 
 function refreshPaths() {
@@ -93,7 +125,7 @@ function writeState(payload) {
 function run(command, args, options = {}) {
   const result = spawnSync(command, args, {
     cwd: options.cwd || root,
-    env: process.env,
+    env: createChildEnv(),
     encoding: 'utf8',
     stdio: ['ignore', 'pipe', 'pipe'],
   });
@@ -229,7 +261,7 @@ function launchServer() {
   const server = serverEntrypoint();
   childProcess = spawn(process.execPath, [server], {
     cwd: root,
-    env: process.env,
+    env: createChildEnv(),
     stdio: 'inherit',
   });
 
@@ -324,6 +356,7 @@ module.exports = {
   acquireBootstrapLock,
   artifactsReady,
   configureLauncherPathsForTesting,
+  createChildEnv,
   latestSourceMtimeMs,
   removeStaleBootstrapLock,
 };

@@ -30,6 +30,7 @@
 // `.opencode/plugins/` so OpenCode discovers only real plugin entrypoints.
 
 import { readFileSync } from 'node:fs';
+import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { Client } from '@modelcontextprotocol/sdk/client/index.js';
@@ -43,6 +44,32 @@ const DEFAULT_CONFIDENCE_THRESHOLD = COMPAT_CONTRACT.defaults.confidenceThreshol
 const DEFAULT_UNCERTAINTY_THRESHOLD = COMPAT_CONTRACT.defaults.uncertaintyThreshold;
 const ADVISOR_LAUNCHER_PATH = fileURLToPath(new URL('../../../../bin/mk-skill-advisor-launcher.cjs', import.meta.url));
 const ADVISOR_MCP_TIMEOUT_MS = 8000;
+const CHILD_ENV_ALLOWLIST = new Set([
+  'PATH',
+  'HOME',
+  'USER',
+  'LOGNAME',
+  'SHELL',
+  'TMPDIR',
+  'TEMP',
+  'TMP',
+  'LANG',
+  'LC_ALL',
+  'CI',
+  'VITEST',
+  'MK_SKILL_ADVISOR_DB_DIR',
+  'SYSTEM_SKILL_ADVISOR_DB_DIR',
+  'SPECKIT_RUNTIME',
+  'SPECKIT_ADVISOR_FRESHNESS',
+  'SPECKIT_SKILL_ADVISOR_HOOK_DISABLED',
+  'SPECKIT_SKILL_ADVISOR_FORCE_LOCAL',
+  'SPECKIT_CODEX_HOOK_TIMEOUT_MS',
+  'SKILL_ADVISOR_DISABLE_BUILTIN_SEMANTIC',
+  'SPECKIT_ADVISOR_WORKSPACE_ALLOWLIST',
+  'SPECKIT_ADVISOR_SHADOW_DELTA_PATH',
+  'SPECKIT_METRICS_ENABLED',
+  'SPECKIT_ADVISOR_HOOK_CACHE_HIT_P95_WARN_MS',
+]);
 
 function response(args) {
   return {
@@ -147,9 +174,9 @@ function sanitizeLabel(value) {
   return cleaned;
 }
 
-function processEnv() {
+function createChildEnv(sourceEnv = process.env) {
   return Object.fromEntries(
-    Object.entries(process.env).filter((entry) => typeof entry[1] === 'string'),
+    Object.entries(sourceEnv).filter((entry) => CHILD_ENV_ALLOWLIST.has(entry[0]) && typeof entry[1] === 'string'),
   );
 }
 
@@ -206,7 +233,7 @@ async function callAdvisorTool(name, args, workspaceRoot) {
     command: process.execPath,
     args: [ADVISOR_LAUNCHER_PATH],
     cwd: workspaceRoot,
-    env: processEnv(),
+      env: createChildEnv(),
     stderr: 'pipe',
   });
   transport.stderr?.on('data', () => {});
@@ -253,8 +280,9 @@ async function loadNativeAdvisorModules() {
   };
 }
 
-async function probeNativeAdvisor(input) {
-  if (process.env[DISABLED_ENV] === '1') {
+async function probeNativeAdvisor(input, dependencies = {}) {
+  const env = dependencies.env ?? process.env;
+  if (env[DISABLED_ENV] === '1') {
     return {
       available: false,
       freshness: 'unavailable',
@@ -262,7 +290,7 @@ async function probeNativeAdvisor(input) {
       reason: 'ADVISOR_DISABLED',
     };
   }
-  if (process.env[FORCE_LOCAL_ENV] === '1' || input.forceLocal === true) {
+  if (env[FORCE_LOCAL_ENV] === '1' || input.forceLocal === true) {
     return {
       available: false,
       freshness: 'unavailable',
@@ -271,7 +299,7 @@ async function probeNativeAdvisor(input) {
     };
   }
 
-  const modules = await loadNativeAdvisorModules();
+  const modules = await (dependencies.loadNativeAdvisorModules ?? loadNativeAdvisorModules)();
   if (typeof modules.probeAdvisorDaemon === 'function') {
     return modules.probeAdvisorDaemon({ workspaceRoot: input.workspaceRoot });
   }
@@ -285,8 +313,8 @@ async function probeNativeAdvisor(input) {
   };
 }
 
-async function buildNativeBrief(input) {
-  const modules = await loadNativeAdvisorModules();
+async function buildNativeBrief(input, dependencies = {}) {
+  const modules = await (dependencies.loadNativeAdvisorModules ?? loadNativeAdvisorModules)();
   const effectiveThresholds = {
     confidenceThreshold: threshold(input.thresholdConfidence),
     uncertaintyThreshold: DEFAULT_UNCERTAINTY_THRESHOLD,
@@ -391,8 +419,9 @@ async function buildLegacyBrief(input) {
   });
 }
 
-async function buildBrief(input) {
-  if (process.env[DISABLED_ENV] === '1') {
+async function buildBrief(input, dependencies = {}) {
+  const env = dependencies.env ?? process.env;
+  if (env[DISABLED_ENV] === '1') {
     // F-006-B1-02: Silent fail-open in disabled mode. Previously this branch
     // returned a model-visible `Advisor: disabled by ...` brief, but every
     // other runtime (Codex, Claude, Copilot, Gemini) fails open silently when
@@ -411,9 +440,9 @@ async function buildBrief(input) {
   }
 
   try {
-    const probe = await probeNativeAdvisor(input);
+    const probe = await probeNativeAdvisor(input, dependencies);
     if (probe.available) {
-      return await buildNativeBrief({ ...input, probe });
+      return await buildNativeBrief({ ...input, probe }, dependencies);
     }
     if (input.forceNative === true) {
       return failOpen(probe.reason || 'NATIVE_UNAVAILABLE');
@@ -440,6 +469,18 @@ async function main() {
   process.stdout.write(JSON.stringify(payload));
 }
 
-main().catch((error) => {
-  process.stdout.write(JSON.stringify(failOpen(errorCode(error))));
-});
+if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+  main().catch((error) => {
+    process.stdout.write(JSON.stringify(failOpen(errorCode(error))));
+  });
+}
+
+export {
+  buildBrief,
+  buildLegacyBrief,
+  buildNativeBrief,
+  createChildEnv,
+  parseInput,
+  renderAdvisorBrief,
+  response,
+};

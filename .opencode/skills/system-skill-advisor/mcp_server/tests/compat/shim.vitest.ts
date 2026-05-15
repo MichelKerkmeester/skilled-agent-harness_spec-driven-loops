@@ -101,4 +101,58 @@ describe('skill_advisor.py compat shim', () => {
       }),
     ]));
   });
+
+  it('filters parent environment before spawning the native Node bridge', () => {
+    const probe = [
+      'import importlib.util, json',
+      `path = ${JSON.stringify(shimPath)}`,
+      'spec = importlib.util.spec_from_file_location("skill_advisor_for_env_test", path)',
+      'module = importlib.util.module_from_spec(spec)',
+      'spec.loader.exec_module(module)',
+      'print(json.dumps(module._native_bridge_env({',
+      '  "PATH": "/bin",',
+      '  "SPECKIT_RUNTIME": "codex",',
+      '  "SPECKIT_SKILL_ADVISOR_HOOK_DISABLED": "1",',
+      '  "SECRET_TOKEN": "should-not-leak"',
+      '}), sort_keys=True))',
+    ].join('\n');
+
+    const result = spawnSync('python3', ['-c', probe], {
+      cwd: repoRoot,
+      encoding: 'utf8',
+    });
+
+    expect(result.status, `${result.stdout}\n${result.stderr}`).toBe(0);
+    expect(parseJson(result.stdout)).toEqual({
+      PATH: '/bin',
+      SPECKIT_RUNTIME: 'codex',
+    });
+  });
+
+  it('filters parent environment before spawning built-in CocoIndex search', () => {
+    const probe = [
+      'import importlib.util, json',
+      `path = ${JSON.stringify(shimPath)}`,
+      'spec = importlib.util.spec_from_file_location("skill_advisor_for_coco_env_test", path)',
+      'module = importlib.util.module_from_spec(spec)',
+      'spec.loader.exec_module(module)',
+      'print(json.dumps(module._cocoindex_env("/repo", {',
+      '  "PATH": "/bin",',
+      '  "HOME": "/tmp/home",',
+      '  "SECRET_TOKEN": "should-not-leak"',
+      '}), sort_keys=True))',
+    ].join('\n');
+
+    const result = spawnSync('python3', ['-c', probe], {
+      cwd: repoRoot,
+      encoding: 'utf8',
+    });
+
+    expect(result.status, `${result.stdout}\n${result.stderr}`).toBe(0);
+    expect(parseJson(result.stdout)).toEqual({
+      COCOINDEX_CODE_ROOT_PATH: '/repo',
+      HOME: '/tmp/home',
+      PATH: '/bin',
+    });
+  });
 });

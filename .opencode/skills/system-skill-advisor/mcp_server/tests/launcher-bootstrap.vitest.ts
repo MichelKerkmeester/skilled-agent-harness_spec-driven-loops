@@ -13,6 +13,7 @@ const launcher = require('../../../../bin/mk-skill-advisor-launcher.cjs') as {
   acquireBootstrapLock: (options?: { staleMs?: number; timeoutMs?: number; retrySleepMs?: number }) => Promise<boolean>;
   artifactsReady: () => boolean;
   configureLauncherPathsForTesting: (paths: { mcpDir: string; dbDir: string; lockDir: string; stateFile: string }) => void;
+  createChildEnv: (sourceEnv?: NodeJS.ProcessEnv) => Record<string, string>;
 };
 
 describe('mk-skill-advisor launcher bootstrap', () => {
@@ -62,5 +63,19 @@ describe('mk-skill-advisor launcher bootstrap', () => {
     utimesSync(sourcePath, newDate, newDate);
 
     expect(launcher.artifactsReady()).toBe(false);
+  });
+
+  it('filters parent environment before spawning npm or the advisor server', () => {
+    expect(launcher.createChildEnv({
+      PATH: '/bin',
+      HOME: '/tmp/home',
+      MK_SKILL_ADVISOR_DB_DIR: '/tmp/db',
+      AWS_SECRET_ACCESS_KEY: 'should-not-leak',
+      RANDOM_PARENT_ENV: 'should-not-leak',
+    })).toEqual({
+      PATH: '/bin',
+      HOME: '/tmp/home',
+      MK_SKILL_ADVISOR_DB_DIR: '/tmp/db',
+    });
   });
 });
