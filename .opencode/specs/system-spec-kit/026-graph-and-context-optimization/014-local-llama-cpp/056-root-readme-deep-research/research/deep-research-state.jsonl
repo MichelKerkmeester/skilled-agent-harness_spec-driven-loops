@@ -9,3 +9,6 @@
 {"type":"iteration","iteration":8,"track":3,"newInfoRatio":1.00,"status":"complete","focus":"punctuation hard blockers","timestamp":"2026-05-15T15:02:28Z"}
 {"type":"iteration","iteration":9,"track":3,"newInfoRatio":0.00,"status":"complete","focus":"banned HVR phrases","timestamp":"2026-05-15T15:02:28Z"}
 {"type":"iteration","iteration":10,"track":4,"newInfoRatio":0.50,"status":"complete","focus":"native MCP topology diagram","timestamp":"2026-05-15T15:02:28Z"}
+{"type":"iteration","iteration":11,"track":4,"newInfoRatio":0.15,"status":"complete","focus":"agent network diagram","timestamp":"2026-05-15T15:05:17Z"}
+{"type":"iteration","iteration":12,"track":4,"newInfoRatio":0.00,"status":"complete","focus":"runtime arrows + extraction boundaries","timestamp":"2026-05-15T15:05:17Z"}
+{"type":"iteration","iteration":13,"track":5,"newInfoRatio":0.11,"status":"complete","focus":"NOTICE files + fork links","timestamp":"2026-05-15T15:05:17Z"}
