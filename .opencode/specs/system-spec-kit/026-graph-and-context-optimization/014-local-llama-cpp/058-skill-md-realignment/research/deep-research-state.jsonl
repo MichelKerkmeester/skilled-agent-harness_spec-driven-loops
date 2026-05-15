@@ -17,3 +17,6 @@
 {"type":"iteration","iteration":16,"track":7,"newInfoRatio":1.00,"status":"complete","focus":"tool-ids-reference spec","findings":10,"timestamp":"2026-05-15T17:31:35Z"}
 {"type":"iteration","iteration":17,"track":8,"newInfoRatio":1.00,"status":"complete","focus":"code-graph-readiness-check spec","findings":42,"timestamp":"2026-05-15T17:31:35Z"}
 {"type":"iteration","iteration":18,"track":8,"newInfoRatio":0.85,"status":"complete","focus":"ownership-boundary spec","findings":7,"timestamp":"2026-05-15T17:31:35Z"}
+{"type":"iteration","iteration":19,"track":8,"newInfoRatio":1.00,"status":"complete","focus":"database-path-policy spec","findings":5,"timestamp":"2026-05-15T17:33:55Z"}
+{"type":"iteration","iteration":20,"track":8,"newInfoRatio":0.00,"status":"complete","focus":"residual gap finder","findings":0,"timestamp":"2026-05-15T17:33:55Z"}
+{"type":"event","event":"converged","stopReason":"max_iterations_reached","run":20,"timestamp":"2026-05-15T17:33:55Z"}
