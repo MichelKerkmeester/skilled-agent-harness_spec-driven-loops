@@ -38,9 +38,13 @@ _memory:
 |-------|-------|
 | **Spec Folder** | system-spec-kit/026-graph-and-context-optimization/014-local-llama-cpp/057-root-readme-deeper-rewrite |
 | **Phase** | Deeper second-pass follow-on to 056 |
-| **Completed** | TBD |
+| **Completed** | 2026-05-15 |
 | **Level** | 1 |
-| **Files in scope** | ./README.md + edit-evidence-v2.md + optional uncovered-findings.md |
+| **Files in scope** | ./README.md + edit-evidence-v2.md + uncovered-findings.md |
+| **Phase 2 edits** | 12 surgical (closing Phase-4-missed findings across 7 of 8 tracks) |
+| **Phase 3 patches** | 1 (Oxford comma in new Prereq line, caught by sonnet @markdown double-check) |
+| **HVR score** | 94/100 — Phase 2 confirmed structural ceiling (12,836 words vs 500-3000 readme target caps `word_count_score`; H2 density 0.27 vs 2.0 target caps `heading_score`); cannot exceed without restructure violating voice-preservation contract |
+| **HVR voice violations** | 0 em dashes / 0 prose semicolons / 0 oxford commas / 0 banned HVR words |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -84,11 +88,13 @@ _memory:
 
 | Check | Result | Command |
 |-------|--------|---------|
-| ./README.md sk-doc validate | TBD | `validate_document.py --type readme` |
-| HVR score on ./README.md | TBD | `validate_document.py --type readme --json` |
-| Strict-validate packet | TBD | `validate.sh --strict` |
-| Sonnet double-check | TBD | Task tool @markdown + @review |
-| Surgical-edit discipline | TBD | `git diff README.md` |
+| ./README.md sk-doc validate | PASS (0 issues) | `validate_document.py --type readme` |
+| HVR voice on ./README.md | 0 prose violations confirmed by sonnet @markdown | independent double-check |
+| HVR score (numeric) | 94/100 — structural ceiling per readme word-count + H2 density rules | `extract_structure.py` rubric |
+| Strict-validate packet | PASS (0 errors / 0 warnings) | `validate.sh --strict` |
+| Sonnet @markdown double-check | CONDITIONAL post-Phase-2 (1 P1 Oxford comma in new Prereq line, patched same commit) | Task tool |
+| Sonnet @review factual double-check | PASS (0 P0, 0 P1, 2 P2 advisories) | Task tool |
+| Surgical-edit discipline | PASS (12 Phase 2 edits + 1 Phase 3 patch; voice preserved elsewhere) | `git diff README.md` |
 <!-- /ANCHOR:verification -->
 
 ---

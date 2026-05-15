@@ -128,7 +128,7 @@ Recent 038/039 work also tightened the public surface without turning this READM
 
 ### Installation
 
-**Prerequisites:** Node.js 18+ with `npm`, `git`, and a POSIX shell. The launcher binaries vendor their own dependencies on first run, so you do not need TypeScript or `tsc` installed globally.
+**Prerequisites:** Node.js 18+ with `npm`, `git` and a POSIX shell. The launcher binaries vendor their own dependencies on first run, so you do not need TypeScript or `tsc` installed globally.
 
 ```bash
 # 1. Clone the repository
