@@ -32,13 +32,14 @@ trigger_phrases:
 <!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
-`mcp_server/` owns the MCP server runtime for the mk-code-index system. It is the main barrel that initializes the Model Context Protocol server, registers tool schemas and dispatches tool calls to the handler subdirectory.
+`mcp_server/` owns the MCP server runtime for the mk-code-index system. It is the main barrel that initializes the Model Context Protocol server, registers tool schemas, and dispatches tool calls via `tools/` to handler modules.
 
 Current state:
 
 - `index.ts` bootstraps the MCP server with stdio transport and writes a readiness marker before serving requests.
+- `index.ts` registers two handlers: a `ListTools` handler backed by `tool-schemas.ts`, and a `CallTool` handler backed by `tools/index.js` (the dispatcher).
 - `tool-schemas.ts` defines all code graph tool schemas and re-exports validation utilities from system-spec-kit.
-- Tool calls dispatch to handler modules in `tools/` after the code graph database is confirmed ready.
+- Tool calls go through `tools/index.js` which forwards to handler modules in `handlers/` after the code graph database is confirmed ready.
 - Compiled output lives in `dist/` and is used by MCP client configurations.
 
 This package communicates via stdio transport. MCP clients register the compiled server executable and call code graph tools through the standard MCP lifecycle.
@@ -55,27 +56,30 @@ This package communicates via stdio transport. MCP clients register the compiled
 │                    MCP SERVER PACKAGE                             │
 ╰──────────────────────────────────────────────────────────────────╯
 
-┌──────────────┐      ┌──────────────────┐      ┌─────────────────┐
-│ MCP clients  │ ───▶ │ index.ts         │ ───▶ │ tool-schemas.ts │
-│ stdio / CLI  │      │ server bootstrap │      │ schema registry │
-└──────────────┘      └────────┬─────────┘      └────────┬────────┘
-                               │                         │
-                               ▼                         ▼
-                      ┌──────────────────┐      ┌─────────────────┐
-                      │ lib/             │      │ tools/          │
-                      │ readiness marker │      │ handler dispatch│
-                      └────────┬─────────┘      └────────┬────────┘
-                               │                         │
-                               ▼                         ▼
-                      ┌──────────────────┐      ┌─────────────────┐
-                      │ database/        │      │ handlers/       │
-                      │ code graph DB    │      │ tool execution  │
-                      └──────────────────┘      └─────────────────┘
+┌──────────────┐         ┌──────────────────┐
+│ MCP clients  │ ──────▶ │ index.ts         │
+│ stdio / CLI  │         │ server bootstrap │
+└──────────────┘         └────────┬─────────┘
+                                  │
+                  ┌───────────────┴───────────────┐
+                  │ (ListTools)         (CallTool)│
+                  ▼                               ▼
+       ┌──────────────────┐            ┌─────────────────┐
+       │ tool-schemas.ts  │            │ tools/          │
+       │ schema registry  │            │ dispatcher      │
+       └──────────────────┘            └────────┬────────┘
+                                                │
+                  ┌─────────────────────────────┼─────────────┐
+                  ▼                             ▼             ▼
+        ┌──────────────────┐          ┌─────────────────┐    ┌─────────────────┐
+        │ lib/             │          │ handlers/       │    │ database/       │
+        │ readiness marker │          │ tool execution  │    │ code graph DB   │
+        └──────────────────┘          └─────────────────┘    └─────────────────┘
 
 Dependency direction:
-index.ts ───▶ tool-schemas.ts ───▶ tools/ ───▶ handlers/
-index.ts ───▶ lib/ (readiness marker)
-tools/ ───▶ database/ (code graph state)
+index.ts ───▶ tool-schemas.ts (ListTools response)
+index.ts ───▶ tools/ ───▶ handlers/ ───▶ lib/ ───▶ database/
+index.ts ───▶ lib/ (readiness marker before serving)
 ```
 
 <!-- /ANCHOR:architecture -->
@@ -151,12 +155,10 @@ mcp_server/
 
 | File | Responsibility |
 |---|---|
-| `index.ts` | Bootstraps the MCP server with stdio transport, writes a readiness marker and dispatches tool calls. |
+| `index.ts` | Bootstraps the MCP server with stdio transport, writes a readiness marker, registers ListTools (backed by `tool-schemas.ts`) and CallTool (backed by `tools/index.js`). |
 | `tool-schemas.ts` | Defines all code graph tool schemas and re-exports validation utilities from system-spec-kit. |
-| `index.js` | Compiled server entrypoint used by MCP client configurations. |
-| `index.d.ts` | TypeScript declarations for the index module. |
-| `tool-schemas.js` | Compiled tool schema definitions for runtime execution. |
-| `tool-schemas.d.ts` | TypeScript declarations for the tool schemas module. |
+
+Build outputs (`index.js`, `index.d.ts`, `tool-schemas.js`, `tool-schemas.d.ts`) are not key files — they are tsc artifacts regenerated by `npm run build` and consumed by MCP client configurations through the compiled entrypoint.
 
 <!-- /ANCHOR:key-files -->
 
@@ -221,7 +223,7 @@ Main tool flow:
 | `getSchema` | function | Schema retrieval utility re-exported from system-spec-kit. |
 | `getToolSchema` | function | Tool-specific schema retrieval utility re-exported from system-spec-kit. |
 | `validateToolArgs` | function | Argument validation utility re-exported from system-spec-kit. |
-| `mk-code-index` MCP server | CLI | MCP server executable that exposes code graph tools via stdio transport. |
+| `mk-code-index` | MCP server identifier | Server name registered in `index.ts` (`{ name: 'mk-code-index', version: '1.0.0' }`). MCP clients launch the compiled `index.js` and reach the server under this name. |
 
 <!-- /ANCHOR:entrypoints -->
 

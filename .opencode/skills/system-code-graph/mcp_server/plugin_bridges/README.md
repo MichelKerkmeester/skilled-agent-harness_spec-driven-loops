@@ -1,26 +1,26 @@
 ---
-title: "plugin_bridges: CLI bridge connecting spec-kit session resume to code-graph runtime"
-description: "Initializes code-graph runtime and outputs transport payload for spec-kit plugin injection during context compaction."
+title: "Plugin Bridges: Spec-Kit Code Graph Integration"
+description: "CLI bridge that connects spec-kit session resume to the code-graph MCP server runtime, enabling plugin injection during context compaction."
 trigger_phrases:
-  - "spec-kit compact code graph bridge"
   - "code graph plugin bridge"
-  - "context compaction code graph injection"
+  - "spec-kit compact bridge"
+  - "code graph session resume"
+  - "context compaction plugin"
 ---
 
-# plugin_bridges: CLI bridge connecting spec-kit session resume to code-graph runtime
+# Plugin Bridges: Spec-Kit Code Graph Integration
+
+> CLI bridge that initializes the code-graph runtime, calls session resume and outputs a transport payload for spec-kit plugin injection.
 
 <!-- ANCHOR:table-of-contents -->
 ## TABLE OF CONTENTS
 
 - [1. OVERVIEW](#1--overview)
-- [2. ARCHITECTURE](#2--architecture)
-- [3. PACKAGE TOPOLOGY](#3--package-topology)
-- [4. DIRECTORY TREE](#4--directory-tree)
-- [5. KEY FILES](#5--key-files)
-- [6. BOUNDARIES AND FLOW](#6--boundaries-and-flow)
-- [7. ENTRYPOINTS](#7--entrypoints)
-- [8. VALIDATION](#8--validation)
-- [9. RELATED](#9--related)
+- [2. KEY FILES](#2--key-files)
+- [3. BOUNDARIES AND FLOW](#3--boundaries-and-flow)
+- [4. ENTRYPOINTS](#4--entrypoints)
+- [5. VALIDATION](#5--validation)
+- [6. RELATED](#6--related)
 
 <!-- /ANCHOR:table-of-contents -->
 
@@ -29,102 +29,114 @@ trigger_phrases:
 <!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
-This folder owns the CLI bridge that connects spec-kit session resume operations to the code-graph MCP server runtime, enabling plugin injection during context compaction.
+`mcp_server/plugin_bridges/` owns the CLI bridge that connects spec-kit session resume operations to the code-graph MCP server runtime. It lives outside the `.opencode/plugins/` directory to avoid automatic OpenCode plugin discovery while still enabling targeted plugin injection during context compaction.
 
-`spec-kit-compact-code-graph-bridge.mjs` initializes the code-graph runtime (vector index and session manager), calls the session resume handler, and outputs the transport payload on stdout. It lives outside the `.opencode/plugins/` directory to avoid OpenCode plugin discovery, serving as a targeted integration point for spec-kit context compaction workflows.
+Current state:
 
-- The bridge requires the compiled `dist/` directory from the MCP server to be present.
-- Runtime initialization must succeed before session resume is called.
-- Output is JSON text payload on stdout, errors on stderr.
-- Supports `--minimal` and `--spec-folder` flags.
+- `spec-kit-compact-code-graph-bridge.mjs` is the only file. It initializes the code-graph runtime, calls the session resume handler and outputs a JSON transport payload on stdout.
+- The bridge requires a compiled MCP server. It imports from `../dist/handlers/session-resume.js`, `../dist/lib/search/vector-index.js` and `../dist/lib/session/session-manager.js`.
+- Intended to be invoked by spec-kit session resume flows during context compaction to retrieve code-graph context for injection into the compacted session.
+- The bridge supports `--minimal` and `--spec-folder` flags. Any other flag is silently ignored.
+- Output is JSON text on stdout. Errors go to stderr.
+- All `console.*` output from runtime modules is redirected to stderr to keep stdout pure JSON.
+
+Runtime initialization must finish before the session resume call executes. The module does not import external packages beyond the MCP server runtime.
 
 <!-- /ANCHOR:overview -->
 
 ---
 
-<!-- ANCHOR:architecture -->
-## 2. ARCHITECTURE
-
-Single-file standalone CLI bridge. Initializes the code-graph runtime components (vector index and session manager), calls the session resume handler from `dist/handlers/`, and outputs the resulting transport payload as JSON. Serves as a targeted integration point for spec-kit context compaction. Lives outside the OpenCode plugin discovery path.
-
-<!-- /ANCHOR:architecture -->
-
----
-
-<!-- ANCHOR:package-topology -->
-## 3. PACKAGE TOPOLOGY
-
-Single-file folder, no internal topology. `spec-kit-compact-code-graph-bridge.mjs` is the sole file.
-
-<!-- /ANCHOR:package-topology -->
-
----
-
-<!-- ANCHOR:directory-tree -->
-## 4. DIRECTORY TREE
-
-| File | Role |
-|------|------|
-| `spec-kit-compact-code-graph-bridge.mjs` | CLI entrypoint that initializes code-graph runtime, calls session resume handler, and outputs the transport payload for spec-kit plugin injection |
-
-<!-- /ANCHOR:directory-tree -->
-
----
-
 <!-- ANCHOR:key-files -->
-## 5. KEY FILES
+## 2. KEY FILES
 
 | File | Responsibility |
-|------|---------------|
-| `spec-kit-compact-code-graph-bridge.mjs` | Initializes vector index and session manager from `dist/`, calls session resume handler, outputs JSON transport payload to stdout |
+|---|---|
+| `spec-kit-compact-code-graph-bridge.mjs` | CLI entrypoint that initializes code-graph runtime, calls session resume and outputs the transport payload. Supports `--minimal` and `--spec-folder` flags. |
 
 <!-- /ANCHOR:key-files -->
 
 ---
 
 <!-- ANCHOR:boundaries-flow -->
-## 6. BOUNDARIES AND FLOW
+## 3. BOUNDARIES AND FLOW
 
 | Boundary | Rule |
-|----------|------|
-| Internal imports | `../dist/handlers/session-resume.js`, `../dist/lib/search/vector-index.js`, `../dist/lib/session/session-manager.js` |
-| External imports | None |
-| Ownership | Owns the CLI bridge logic for spec-kit to code-graph integration during context compaction |
-| Callers | Invoked by spec-kit during context compaction to retrieve code-graph context for injection into the compacted session |
-| Exit contract | JSON transport payload on stdout. Errors on stderr. Exit code 0 on success. |
+|---|---|
+| Imports | Only imports compiled runtime from `../dist/`. Does not import source TypeScript directly. |
+| Invocation | Called by spec-kit during context compaction. Not a standalone server or daemon. |
+| Output | JSON text payload on stdout. Errors and diagnostics on stderr. |
+| Dependencies | Requires the MCP server to be built (`dist/` directory present). |
+
+Main flow:
+
+```text
+╭──────────────────────────────────────────╮
+│ spec-kit context compaction trigger      │
+╰──────────────────────────────────────────╯
+                  │
+                  ▼
+┌──────────────────────────────────────────┐
+│ spec-kit-compact-code-graph-bridge.mjs   │
+│ (parse --minimal and --spec-folder)      │
+└──────────────────────────────────────────┘
+                  │
+                  ▼
+┌──────────────────────────────────────────┐
+│ vector-index.js (initialize runtime)     │
+└──────────────────────────────────────────┘
+                  │
+                  ▼
+┌──────────────────────────────────────────┐
+│ session-manager.js (load session state)  │
+└──────────────────────────────────────────┘
+                  │
+                  ▼
+┌──────────────────────────────────────────┐
+│ session-resume.js (build context)        │
+└──────────────────────────────────────────┘
+                  │
+                  ▼
+╭──────────────────────────────────────────╮
+│ JSON transport payload on stdout         │
+╰──────────────────────────────────────────╯
+```
 
 <!-- /ANCHOR:boundaries-flow -->
 
 ---
 
 <!-- ANCHOR:entrypoints -->
-## 7. ENTRYPOINTS
+## 4. ENTRYPOINTS
 
 | Entrypoint | Type | Purpose |
-|------------|------|---------|
-| `spec-kit-compact-code-graph-bridge.mjs` | CLI | CLI executable that bridges spec-kit session resume to code-graph runtime, supporting `--minimal` and `--spec-folder` flags |
+|---|---|---|
+| `spec-kit-compact-code-graph-bridge.mjs` | CLI | Bridges spec-kit session resume to code-graph runtime. Supports `--minimal` and `--spec-folder` flags. |
 
 <!-- /ANCHOR:entrypoints -->
 
 ---
 
 <!-- ANCHOR:validation -->
-## 8. VALIDATION
+## 5. VALIDATION
+
+Build the MCP server first, then exercise the bridge against a spec folder. Run from the repository root.
 
 ```bash
-node .opencode/skills/system-code-graph/mcp_server/plugin_bridges/spec-kit-compact-code-graph-bridge.mjs --help
+cd .opencode/skills/system-code-graph && npm run build
+node .opencode/skills/system-code-graph/mcp_server/plugin_bridges/spec-kit-compact-code-graph-bridge.mjs --minimal --spec-folder .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/035-code-folder-readmes
 ```
 
-Expected: help text on stdout showing supported flags.
+Expected result: a single JSON document on stdout with the resume payload. Exit code 0. Any runtime initialization error exits 1 with a message on stderr.
 
 <!-- /ANCHOR:validation -->
 
 ---
 
 <!-- ANCHOR:related -->
-## 9. RELATED
+## 6. RELATED
 
 - [Parent: mcp_server](../README.md)
 - [Skill README](../../README.md)
-- [Handlers](../handlers/README.md)
+- [Handlers: handlers/](../handlers/README.md)
+
 <!-- /ANCHOR:related -->

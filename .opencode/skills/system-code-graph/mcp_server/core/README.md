@@ -15,11 +15,11 @@ trigger_phrases:
 <!-- ANCHOR:table-of-contents -->
 ## TABLE OF CONTENTS
 
-- [1. OVERVIEW](#1-overview)
-- [2. KEY FILES](#2-key-files)
-- [3. ENTRYPOINTS](#3-entrypoints)
-- [4. VALIDATION](#4-validation)
-- [5. RELATED](#5-related)
+- [1. OVERVIEW](#1--overview)
+- [2. KEY FILES](#2--key-files)
+- [3. ENTRYPOINTS](#3--entrypoints)
+- [4. VALIDATION](#4--validation)
+- [5. RELATED](#5--related)
 
 <!-- /ANCHOR:table-of-contents -->
 
@@ -34,10 +34,10 @@ Current state:
 
 - `config.ts` is the only file. It exports `DATABASE_DIR` after resolving the path and calling `mkdirSync` with `recursive: true`.
 - The environment variable `SPECKIT_CODE_GRAPH_DB_DIR` takes precedence over the default path.
-- Callers that need the code-graph database location import this module. The vector index and session manager both depend on it.
+- Callers that need the code-graph database location import this module. Current consumers are `lib/code-graph-db.ts`, `lib/apply-orchestrator.ts`, and `lib/recovery-procedures.ts`.
 - The module imports only `node:fs`, `node:path` and `node:url`. It has no dependencies on other MCP server code.
 
-`DATABASE_DIR` is always a valid, existing directory after the module loads. No runtime checks or guards are needed after import.
+`DATABASE_DIR` is always a valid, existing directory after the module loads. No runtime checks or guards are needed after import. Module load can throw if the resolved path cannot be created (for example, when `SPECKIT_CODE_GRAPH_DB_DIR` points to an unwritable location).
 
 <!-- /ANCHOR:overview -->
 
@@ -59,7 +59,7 @@ Current state:
 
 | Entrypoint | Type | Purpose |
 |---|---|---|
-| `DATABASE_DIR` | const | Absolute path to the code-graph database directory. Used by vector index and session manager initialization. |
+| `DATABASE_DIR` | const | Absolute path to the code-graph database directory. Imported by `lib/code-graph-db.ts`, `lib/apply-orchestrator.ts`, and `lib/recovery-procedures.ts`. |
 
 <!-- /ANCHOR:entrypoints -->
 
