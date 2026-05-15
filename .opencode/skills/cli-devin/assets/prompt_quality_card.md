@@ -42,11 +42,14 @@ devin --prompt-file /tmp/devin-prompt.md --model deepseek-v4 --permission-mode a
 
 | Framework | When | Devin Defaults |
 |-----------|------|----------------|
-| **STAR** (Situation / Task / Action / Result) | Context gathering, tool use, simple-to-medium code task | `--model swe-1.6 --permission-mode auto` |
+| **STAR** (Situation / Task / Action / Result) ★ canonical for SWE-1.6 | Context gathering, tool use, simple-to-medium code task | `--model swe-1.6 --permission-mode auto` — **REQUIRED**: dispatch through `sk-prompt` + include pre-planning block (see §4 Pattern S) |
+| **RCAF** (Role / Context / Action / Format) ★ canonical for SWE-1.6 | Clearly-scoped single-file generation | `--model swe-1.6 --permission-mode auto` — **REQUIRED**: dispatch through `sk-prompt` + include pre-planning block |
+| **BUILD** (Bounds / User-need / Implementation / Limits / Done-when) | Well-defined multi-file refactor | `--model swe-1.6 --permission-mode auto` (escalate to `deepseek-v4` if complexity grows) — **REQUIRED** for SWE-1.6: dispatch through `sk-prompt` + include pre-planning block |
 | **ATLAS** (Audit / Trace / Localize / Articulate / Suggest) | Complex security review / RCA / architecture review | `--model deepseek-v4 --permission-mode auto` (fallbacks: `glm-5.1` agentic, `kimi-k2.6` large-context) |
 | **CONTEXT** (Context / Outcome / Notes / Tasks / Examples / Xtra / Tests) | Complex refactor with cross-cutting context | `--model deepseek-v4 --permission-mode auto` (Kimi k2.6 fallback for large context) |
-| **BUILD** (Bounds / User-need / Implementation / Limits / Done-when) | Well-defined multi-file refactor | `--model swe-1.6 --permission-mode auto` (escalate to `deepseek-v4` if complexity grows) |
 | **CLOUD-HANDOFF** (Context / Termination / Return) | Async cloud session | See `references/cloud_handoff.md` |
+
+> **SWE-1.6 prompt-quality contract (v1.0.2.0+)**: Every `--model swe-1.6` dispatch MUST be composed through `sk-prompt` (one of STAR / RCAF / BUILD frameworks + CLEAR 5-check) AND include an explicit pre-planning block (ordered steps + acceptance criteria + stop conditions + verification approach). SWE-1.6 is coding-specialized but smaller than the complex-task models — the calling AI must do the structural decomposition upfront rather than asking SWE-1.6 to figure it out. Skipping this contract is the largest cause of underwhelming SWE-1.6 output. For complex tasks beyond SWE-1.6's clearly-defined zone, escalate to `deepseek-v4` rather than throwing more freeform prompt at SWE-1.6.
 
 ---
 

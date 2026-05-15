@@ -54,7 +54,7 @@ The skill includes a self-invocation guard: if the calling AI is itself a local 
 | **Permission Modes** | 2 | auto, dangerous |
 | **Slash Commands** | 10 (verified) + extras via in-TUI `/help` | `/mode`, `/plan`, `/clear`, `/fork`, `/revert`, `/steps`, `/ask`, `/model`, `/context`, `/help` |
 | **References** | 5 | cli_reference, integration_patterns, agent_delegation, devin_tools, cloud_handoff |
-| **Version** | 1.0.1.0 | 2026-05-15 — binary-accurate correction pass (auto/dangerous permission modes, deepseek-v4 model ID, real --sandbox flag, Codeium/Windsurf auth provider) |
+| **Version** | 1.0.2.0 | 2026-05-15 — wave-2 SKIP promotions (8 of 13 SKIPs now PASS) + 6 doc corrections (stdin rule, session-id slugs, --format json, mcp full lifecycle, cloud drs, mcp add separator) |
 
 ### How This Compares
 

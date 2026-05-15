@@ -54,18 +54,30 @@ Installs the `devin` binary to a location on `$PATH`. Verify with `command -v de
 | `devin auth status` | Verify current login state |
 | `devin --continue` / `-c` | Resume most recent session |
 | `devin --resume <ID>` / `-r` | Resume specific session by ID |
-| `devin list` / `devin ls` | Browse available sessions |
+| `devin list` / `devin ls` | Browse available sessions. Default mode is interactive picker; pass `--format <interactive\|json\|csv>` for parseable output (`json` is the canonical non-interactive shape) |
+| `devin list --format json` | Emit session list as JSON. Each entry has `id` (kebab-case slug like `paint-bean`), `short_id`, `working_directory`, `last_activity_at`, `last_activity_ago`, `title`. Use for programmatic session-id capture before `--resume <id>` |
 | `devin setup` | Interactive configuration wizard |
 | `devin version` | Display current CLI version |
 | `devin update [--force]` | Check for and install CLI updates |
-| `devin mcp add <name>` | Connect an MCP server |
+| `devin uninstall` | Uninstall and remove data |
+| `devin mcp add <NAME> -- <CMD> [ARGS]` | Add an MCP server. **`--` separator required** before stdio command. For HTTP transport: `devin mcp add --transport http <NAME> <URL>` or `devin mcp add <NAME> --url <URL>` |
 | `devin mcp list` | View configured MCP servers |
+| `devin mcp get <name>` | Get details for a specific MCP server |
+| `devin mcp remove <name>` | Remove an MCP server |
+| `devin mcp enable <name>` | Enable a disabled MCP server |
+| `devin mcp disable <name>` | Disable an MCP server without removing it |
 | `devin mcp login <name>` | Authenticate an MCP server via OAuth |
+| `devin mcp logout <name>` | Remove stored OAuth credentials for an MCP server |
 | `devin rules list` | Browse context/behavior rules |
 | `devin skills list` | View available skill routines |
 | `devin skills show <name>` | Display a specific skill's details |
-| `devin acp` | Run as Agent Client Protocol server |
+| `devin cloud <COMMAND>` | Manage Devin Cloud resources. Subcommands: `drs` (Declarative Repo Setup — environment blueprints, sandbox sessions, builds) |
+| `devin cloud drs` | Manage Declarative Repo Setup — environment blueprints, sandbox sessions, builds. Requires Devin Cloud entitlement |
+| `devin sandbox` | [Research Preview] Process sandboxing for the exec tool |
+| `devin acp` | Run as Agent Client Protocol server over stdio |
 | `devin shell setup` | Install shell integration (completions, helpers) |
+
+> **Session ID format**: Real session ids are human-friendly kebab-case slugs (e.g. `paint-bean`, `quick-fox`), NOT UUIDs. Inspect via `devin list --format json` and read the `id` field. Pass to `devin --resume <slug>`.
 
 ---
 
@@ -90,7 +102,7 @@ devin --prompt-file <path> --model swe-1.6 --permission-mode auto 2>&1 </dev/nul
 
 ### Stdin Handling — `</dev/null` Is Required for Non-Interactive Dispatch
 
-Same failure mode as `cli-codex` and `cli-opencode`: without `</dev/null`, the backgrounded `devin` process inherits the parent shell's stdin. If the parent is in a `while read` loop, `devin` silently consumes upcoming lines and the loop exits early. ALWAYS append `</dev/null` when redirecting stdout to a log file or running in the background.
+Family convention inherited from `cli-codex` and `cli-opencode`: append `</dev/null` for non-interactive dispatch as a portability convention. **Empirical finding (2026-05-15, devin 2026.5.6-8)**: Devin's binary does NOT exhibit the silent stdin-theft failure mode that cli-codex / cli-opencode docs describe — `while read` loops complete cleanly with or without the redirect on the tested version. The `</dev/null` redirect remains harmless and is the documented convention for cross-binary-version stability, but it is not load-bearing on the currently-tested Devin version. See `evidence/playbook-run-wave2-2026-05-15.md` for the test data.
 
 ```bash
 # Correct

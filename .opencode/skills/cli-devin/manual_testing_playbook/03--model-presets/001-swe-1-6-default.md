@@ -17,6 +17,8 @@ This scenario validates `--model swe-1.6` for `DV-008`. SWE-1.6 is Cognition's c
 
 SWE-1.6 is the load-bearing default and is sized for the fastest-feedback Devin work: read the codebase, run a tool, write a small clearly-scoped function. SKILL.md §3 names it as the zero-input model. If SWE-1.6 weren't available on the operator's install, every default dispatch in the family pattern would fall through to either an error or a silent substitution — both of which the cli-devin RULES forbid.
 
+**v1.0.2.0 — SWE-1.6 Prompt-Quality Contract**: As of v1.0.2.0, every production `--model swe-1.6` dispatch MUST be composed through `sk-prompt` (STAR / RCAF / BUILD framework + CLEAR 5-check) AND include an explicit `<pre-plan>` block (ordered steps + per-step acceptance criteria + stop conditions + verification approach). See `assets/prompt_templates.md` §2 for the canonical pre-planned template and SKILL.md ALWAYS rule #12. This scenario tests SWE-1.6's binary surface accessibility with a deliberately minimal prompt; for real-world coding work, the operator MUST use the pre-planned template — skipping it is the single largest cause of underwhelming SWE-1.6 output. If pre-planning reveals the task is more complex than SWE-1.6's clearly-defined zone, escalate to `--model deepseek-v4` rather than throw freeform prompt at SWE-1.6.
+
 ---
 
 ## 2. SCENARIO CONTRACT

@@ -17,6 +17,8 @@ This scenario validates the cloud-handoff exception to the self-invocation guard
 
 Without this exception, a local Devin session could never initiate a cloud handoff via cli-devin because the env-var probe would always trip. The exception is the load-bearing escape hatch that makes cloud-handoff orchestration work even from within Devin itself.
 
+**v1.0.2.0 SKIP RATIONALE (reaffirmed)**: This is an **operator-runnable manual test of cli-devin's smart-router logic**, NOT a shell-automatable binary test. Both the self-invocation guard (DV-019) and the cloud-handoff exception (this scenario) live in cli-devin's SKILL.md §2 pseudocode, which is executed by the calling AI loading the skill. The `devin` binary has no concept of either. Wave-2 confirmed shell automation cannot drive this — an actual orchestrator session is required to observe refuse-vs-allow under different keyword + confirmation combinations. Operators can validate manually by setting `DEVIN_SESSION_ID=test` and feeding the orchestrator a prompt with cloud-handoff keywords + explicit confirmation, then observing whether cli-devin allows the dispatch through. This SKIP is the correct disposition, not a deferred fix.
+
 ---
 
 ## 2. SCENARIO CONTRACT

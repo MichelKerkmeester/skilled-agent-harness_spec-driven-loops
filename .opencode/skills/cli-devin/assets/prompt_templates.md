@@ -15,35 +15,65 @@ This file provides copy-paste prompt templates for the most common cli-devin dis
 
 ---
 
-## 2. Default Coding Dispatch (SWE-1.6, auto mode)
+## 2. Default Coding Dispatch (SWE-1.6, auto mode) — REQUIRES sk-prompt + pre-planning
+
+> **SWE-1.6 prompt-quality contract (v1.0.2.0+)**: SWE-1.6 is coding-specialized but smaller than the complex-task models — it relies on the calling AI doing structural decomposition upfront. Every dispatch with `--model swe-1.6` MUST be composed through `sk-prompt` (one of STAR / RCAF / BUILD frameworks + CLEAR 5-check) AND include an explicit `<pre-plan>` block before the `<task>` block. The template below is the canonical pre-planned SWE-1.6 prompt shape.
+
+**Step 1 — pre-prompt through sk-prompt.** Before writing the `--prompt-file` payload, invoke `sk-prompt` with the raw task description. Pick STAR (Situation / Task / Action / Result) for the typical case, RCAF (Role / Context / Action / Format) for single-file generation, or BUILD (Bounds / User-need / Implementation / Limits / Done-when) for multi-file refactor. Run the CLEAR 5-check. If complexity ≥ 7/10 or compliance/security signals appear, dispatch `@prompt-improver` via the Task tool instead of inline composition.
+
+**Step 2 — compose the prompt with explicit pre-planning.** Use this template, filling every placeholder:
 
 ```
+<framework>STAR | RCAF | BUILD</framework>
+
 <context>
 Calling AI: <runtime + model>
 Spec folder: <path> (pre-approved, skip Gate 3) OR none
 Active surface: <stack detected by sk-code, e.g. typescript-react, python-fastapi, go-stdlib>
+Existing files in scope: <list>
 </context>
 
-<task>
-<one-line goal>
-- <concrete step 1>
-- <concrete step 2>
-- <concrete step 3>
+<pre-plan>
+Restate the task as 4 things BEFORE writing any code:
 
-Verification: <exact test or command, e.g. `npm test -- --filter <area>`>
+1. Expected outputs (exact files, function signatures, return types, behavior)
+2. Available inputs / state (existing files, dependencies, repo conventions)
+3. Ordered sequence of steps to produce the output:
+   a. <step a>
+   b. <step b>
+   c. <step c>
+4. Verification step that proves the work is done: <exact command>
+
+Now execute the plan. Stop after each step and confirm the artifact matches the plan before proceeding to the next step.
+</pre-plan>
+
+<task>
+<one-line goal — derived from step 1 of the pre-plan>
 </task>
 
 <constraints>
-- Permission mode: normal.
+- Permission mode: auto.
 - Do not modify files outside <scope>.
 - Stop and report if <stop condition>.
+- If any pre-plan step proves harder than expected (ambiguous input, surface mismatch, test that won't run), STOP and escalate — do not silently push past the plan.
 </constraints>
+
+<output>
+- Final file(s): <list>
+- Verification result: PASS or FAIL with rationale
+- Per-step status: which steps completed cleanly, which were skipped / failed and why
+</output>
 ```
 
-Dispatch:
+**Step 3 — dispatch.**
+
 ```bash
-devin --prompt-file /tmp/devin-prompt.md --model swe-1.6 --permission-mode auto 2>&1 </dev/null
+devin --prompt-file /tmp/devin-prompt.md --model swe-1.6 --permission-mode auto -p 2>&1 </dev/null
 ```
+
+**Why pre-planning matters for SWE-1.6.** Without an explicit pre-plan, SWE-1.6 will start coding on the first interpretation that fits the prompt — which is often not the right one for ambiguous tasks. With the pre-plan block, SWE-1.6 first restates expected outputs / inputs / steps / verification BEFORE writing code, surfacing ambiguity early. This is the difference between SWE-1.6 producing usable output on first try vs needing multiple retries.
+
+**When to escalate off SWE-1.6.** If the pre-planning step itself reveals the task is more complex than "context gathering / tool use / simple-to-medium well-defined" (ambiguous requirements, multi-step reasoning, large refactor scope), the calling AI should switch to `--model deepseek-v4` rather than throwing a longer freeform prompt at SWE-1.6.
 
 ---
 

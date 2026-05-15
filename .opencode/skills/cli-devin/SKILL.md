@@ -2,7 +2,7 @@
 name: cli-devin
 description: "Devin CLI orchestrator: dispatch Cognition AI's 'Devin for Terminal' for autonomous coding work with optional local-to-cloud handoff."
 allowed-tools: [Bash, Read, Glob, Grep]
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 <!-- Keywords: devin, devin-cli, devin-for-terminal, cognition, swe-1.6, deepseek-v4, glm-5.1, kimi-k2.6, cloud-handoff, autonomous-agent, cross-ai, mcp, acp, permission-modes, complex-task-fallback -->
@@ -167,7 +167,9 @@ devin auth status
 
 ### Default Invocation (Skill Default)
 
-**Default model + permission mode**: `swe-1.6` · `auto` permission mode. SWE-1.6 is Cognition's coding-specialized model and the natural default for Devin-native dispatches. `auto` is the default permission mode (asks for confirmation on risky actions, matching the Codex `--ask-for-approval on-request` analog).
+**Default model + permission mode**: `swe-1.6` · `auto` permission mode. SWE-1.6 is Cognition's coding-specialized model and the natural default for Devin-native dispatches. `auto` is the default permission mode (auto-approves read-only tools; prompts on write/exec, matching the Codex `--ask-for-approval on-request` analog).
+
+> **SWE-1.6 Prompt-Quality Contract (REQUIRED, v1.0.2.0)**: SWE-1.6 is fast and coding-specialized but smaller than the complex-task models — it relies on prompt clarity for reliable output. EVERY cli-devin dispatch with `--model swe-1.6` MUST: (1) be composed through `sk-prompt` (apply a structured framework: STAR / RCAF / BUILD; run the CLEAR 5-check) before composing the final `--prompt-file` payload, AND (2) include an explicit pre-planning block in the prompt body — the calling AI decomposes the task into ordered steps with acceptance criteria BEFORE handing it to SWE-1.6, rather than asking SWE-1.6 to figure out structure on its own. See `assets/prompt_templates.md` §2 for the canonical SWE-1.6 pre-planning template and `assets/prompt_quality_card.md` §3 for the framework selection rules. Skipping this contract is the single largest cause of underwhelming SWE-1.6 output and must be treated as a soft-block in operator review.
 
 ```bash
 # Non-interactive dispatch via prompt file (preferred for prompts >2KB or programmatic dispatch)
@@ -218,9 +220,9 @@ devin --prompt-file <path> --model <id> --permission-mode <auto|dangerous> 2>&1 
 | `--respect-workspace-trust [true\|false]` | Whether to honor VS Code workspace-trust settings. Defaults true in interactive, false in non-interactive |
 | `--agent-config <FILE>` | Declarative agent configuration (JSON/YAML) defining system instructions, tool visibility, permissions. Strict parsing — unknown fields rejected |
 
-> **Stdin handling**: For non-interactive dispatch (background, scripted, piped into a log), append `</dev/null` so the backgrounded `devin` process doesn't inherit the parent shell's stdin. Without it, Devin may block on stdin or silently consume lines from a parent `while read` loop (same failure mode documented for cli-codex and cli-opencode).
+> **Stdin handling**: For non-interactive dispatch (background, scripted, piped into a log), append `</dev/null` for consistency with the family convention. Note (2026-05-15): empirical testing against `devin 2026.5.6-8` did NOT reproduce the silent stdin-theft failure mode that cli-codex / cli-opencode docs describe — Devin's binary handles stdin differently and `while read` loops complete cleanly with or without the redirect. The `</dev/null` redirect remains harmless and recommended for cross-binary-version stability.
 
-> **Default permission behavior**: `devin` defaults to `--permission-mode auto`. **Tasks that require destructive operations (file deletion, git history rewrite, package installation) will pause for confirmation unless `dangerous` or `dangerous` is set.** For unattended dispatches, the calling AI MUST decide explicitly; never silently escalate the permission mode.
+> **Default permission behavior**: `devin` defaults to `--permission-mode auto`. **Tasks that require destructive operations (file deletion, git history rewrite, package installation) will pause for confirmation in interactive mode unless `dangerous` is set.** For unattended dispatches, the calling AI MUST decide explicitly; never silently escalate the permission mode.
 
 ### Model Selection
 
@@ -328,17 +330,18 @@ devin update
 2. Run the Provider Auth Pre-Flight (`devin auth status`) once per session before the first dispatch.
 3. Use `--permission-mode auto` for default dispatches; escalate to `dangerous` ONLY with explicit operator approval, and record the escalation in the dispatch log.
 4. **Specify model + permission-mode explicitly** in every dispatch. Default: `--model swe-1.6 --permission-mode auto` for context gathering, tool use, and clearly-defined simple-to-medium tasks. For complex tasks, use `deepseek-v4` as the primary pick; fall back to `glm-5.1` or `kimi-k2.6` when DeepSeek doesn't fit or doesn't deliver. Honor operator phrasing verbatim.
-5. **Redirect devin stdin from `/dev/null`** for non-interactive / background / scripted dispatches. Pattern: `devin --prompt-file "$PROMPT_FILE" --model swe-1.6 > "$LOG" 2>&1 </dev/null &`. Without `</dev/null`, the backgrounded `devin` process may block on stdin or consume lines from a parent `while read` loop.
+5. **Redirect devin stdin from `/dev/null`** for non-interactive / background / scripted dispatches as a portability convention. Pattern: `devin --prompt-file "$PROMPT_FILE" --model swe-1.6 -p > "$LOG" 2>&1 </dev/null &`. Empirical testing (2026-05-15, devin 2026.5.6-8) showed Devin does NOT exhibit silent stdin-theft — the redirect is harmless and recommended for cross-binary-version stability, but not load-bearing on the tested version. See `evidence/playbook-run-wave2-2026-05-15.md`.
 6. Capture stderr (`2>&1`) so auth errors, rate-limit messages, and dispatch failures surface to the calling AI.
 7. **Pass the spec folder to the delegated dispatch** in the prompt: if the calling AI has an active Gate-3 spec folder, include `Spec folder: <path> (pre-approved, skip Gate 3)`. If none, ASK the operator before delegating — Devin cannot answer Gate 3 in unattended mode.
 8. **Load `assets/prompt_quality_card.md` before building any dispatch prompt.** Apply the CLEAR 5-check, tag the framework in the Bash invocation comment, and use the returned `ENHANCED_PROMPT`. For complexity ≥ 7/10 or compliance/security signals, dispatch `@prompt-improver` via the Task tool instead of loading `sk-prompt` inline.
 9. **Operator-confirmation gate before cloud handoff.** No cli-devin invocation that mentions "cloud handoff", "hand off to cloud", or `devin cloud` proceeds without the operator's explicit confirmation in the same turn. See `references/cloud_handoff.md`.
 10. **Code Standards Loading (surface-aware contract)** — When dispatching for code generation or review, instruct the dispatched Devin session to: (1) load `sk-code`; (2) let `sk-code` emit a surface tag matching the detected stack; (3) load the selected surface resources and run its verification commands; (4) add `sk-code-review` only for formal findings-first review output. Fallback: ask for the runtime surface and verification command set if detection is ambiguous.
 11. Validate Devin-generated code (XSS, injection, eval, syntax checks, surface-specific lint/test) before merging.
+12. **SWE-1.6 Prompt-Quality Contract** (v1.0.2.0+) — EVERY dispatch with `--model swe-1.6` MUST (a) be composed through `sk-prompt` with a chosen framework (STAR / RCAF / BUILD) and a passing CLEAR 5-check, AND (b) include an explicit pre-planning block in the prompt body: ordered steps + per-step acceptance criteria + stop conditions + verification approach. SWE-1.6 is coding-specialized but smaller than the complex-task models — it relies on the calling AI doing the structural decomposition upfront. See `assets/prompt_templates.md` §2 for the canonical pre-planning template.
 
 ### ❌ NEVER
 
-1. Use `--permission-mode dangerous` or `--permission-mode dangerous` without explicit operator approval.
+1. Use `--permission-mode dangerous` without explicit operator approval.
 2. Initiate a cloud handoff without operator confirmation — cloud sessions transmit local repo state to Cognition's cloud sandbox and consume Devin units.
 3. Use Devin for tasks where context is already loaded by the calling AI — direct action is faster.
 4. Assume Devin output is correct without verification — cross-reference codebase, project standards, and the surface-specific verification commands.

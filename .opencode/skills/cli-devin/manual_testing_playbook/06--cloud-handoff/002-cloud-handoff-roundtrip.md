@@ -17,6 +17,8 @@ This scenario validates the LIVE round-trip of Devin's local-to-cloud handoff fo
 
 Cloud handoff is cli-devin's headline differentiator vs the rest of the cli-* family. This scenario proves the end-to-end pattern works on a real Devin install with cloud entitlement. Operators without cloud entitlement should SKIP with a documented blocker.
 
+**v1.0.2.0 SCOPE CLARIFICATION**: DV-018 is now explicitly the **operator-driven manual round-trip** — requires interactive TUI handoff initiation, paid cloud-VM entitlement, and a multi-hour async wait. The shell-runnable cloud-surface accessibility check (does `devin cloud --help` return the subcommand surface on this account?) was split out to the new **DV-027** scenario (`003-cloud-surface-accessibility.md`) so operators can validate basic Pro tier reachability in seconds without committing to the full async round-trip. Run DV-027 FIRST as the cheap pre-flight; only proceed to DV-018 if DV-027 passes AND the operator has time + tier + intent for the async path.
+
 ---
 
 ## 2. SCENARIO CONTRACT

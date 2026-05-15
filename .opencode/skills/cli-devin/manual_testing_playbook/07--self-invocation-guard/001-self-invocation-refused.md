@@ -17,6 +17,8 @@ This scenario validates the self-invocation guard from SKILL.md §2 for `DV-019`
 
 Self-invocation creates a circular dispatch loop, burns Devin units, and can cause silent confusion about which session output is which. The guard is the cli-devin analog of cli-opencode's ADR-001 layered detection. This scenario is on the critical-path list (§5 of the root playbook).
 
+**v1.0.2.0 SKIP RATIONALE (reaffirmed)**: This is an **operator-runnable manual test of cli-devin's smart-router logic**, NOT a shell-automatable binary test. The self-invocation guard runs at the calling-AI orchestrator layer (cli-devin's SKILL.md §2 pseudocode is executed by the AI loading the skill, not by the `devin` binary which has no concept of the guard). Wave-2 confirmed there is no shell-only way to test this — only an actual calling-AI session that loads cli-devin under simulated `DEVIN_*` env can demonstrate the refusal. Operators can validate manually by setting `DEVIN_SESSION_ID=test` in an orchestrator's environment and observing whether cli-devin refuses to load. This SKIP is the correct disposition, not a deferred fix.
+
 ---
 
 ## 2. SCENARIO CONTRACT

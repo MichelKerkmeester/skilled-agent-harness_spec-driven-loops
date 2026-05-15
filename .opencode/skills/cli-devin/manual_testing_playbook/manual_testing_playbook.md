@@ -42,7 +42,7 @@ Canonical package artifacts:
 - [9. MODEL PRESETS (`DV-008..DV-010`, `DV-026`)](#9--model-presets-dv-008dv-010-dv-026)
 - [10. DEVIN SURFACES (`DV-011..DV-013`)](#10--devin-surfaces-dv-011dv-013)
 - [11. SESSION CONTINUITY (`DV-014..DV-016`)](#11--session-continuity-dv-014dv-016)
-- [12. CLOUD HANDOFF (`DV-017..DV-018`)](#12--cloud-handoff-dv-017dv-018)
+- [12. CLOUD HANDOFF (`DV-017..DV-018`, `DV-027`)](#12--cloud-handoff-dv-017dv-018-dv-027)
 - [13. SELF-INVOCATION GUARD (`DV-019..DV-020`)](#13--self-invocation-guard-dv-019dv-020)
 - [14. CROSS-AI DISPATCH (`DV-021..DV-024`)](#14--cross-ai-dispatch-dv-021dv-024)
 - [15. ACP BRIDGE (`DV-025`)](#15--acp-bridge-dv-025)
@@ -53,7 +53,7 @@ Canonical package artifacts:
 
 ## 1. OVERVIEW
 
-This playbook provides 26 deterministic scenarios across 9 categories validating the `cli-devin` skill surface. Each feature keeps its global `DV-NNN` ID and links to a dedicated feature file with the full execution contract.
+This playbook provides 27 deterministic scenarios across 9 categories validating the `cli-devin` skill surface. Each feature keeps its global `DV-NNN` ID and links to a dedicated feature file with the full execution contract. v1.0.2.0: wave-2 run promoted 8 SKIPs to PASS, split DV-018 into shell-runnable (new DV-027 cloud surface) + manual round-trip (DV-018), and reaffirmed 3 calling-AI orchestrator-layer SKIPs (DV-017 / DV-019 / DV-020).
 
 Coverage note (2026-05-15): Covers the canonical default invocation (`swe-1.6` + `--permission-mode auto`), every documented permission mode, every model preset (SWE-1.6 default + DeepSeek v4 primary for complex + GLM 5.1 and Kimi k2.6 as complex-task fallbacks), every Devin-side surface (`devin rules`, `devin skills`, `devin mcp`), session continuity (`--continue`, `--resume <id>`, `devin list`), the Devin-unique local-to-cloud handoff with the 5-check operator-confirmation gate, the layered self-invocation guard, cross-AI dispatch from each of the four sibling cli-* runtimes, and the `devin acp` Agent Client Protocol server.
 
@@ -535,9 +535,9 @@ Desired user-visible outcome: An operator-visible session inventory the calling 
 
 ---
 
-## 12. CLOUD HANDOFF (`DV-017..DV-018`)
+## 12. CLOUD HANDOFF (`DV-017..DV-018`, `DV-027`)
 
-This category covers 2 scenario summaries while the linked feature files remain the canonical execution contract. The cloud-handoff capability is Devin's unique differentiator vs the rest of the cli-* family — see `references/cloud_handoff.md`.
+This category covers 3 scenario summaries while the linked feature files remain the canonical execution contract. The cloud-handoff capability is Devin's unique differentiator vs the rest of the cli-* family — see `references/cloud_handoff.md`. v1.0.2.0 split DV-018 into a shell-runnable surface check (new DV-027) and the operator-driven async round trip (DV-018).
 
 ### DV-017 | 5-check operator-confirmation gate (NEGATIVE)
 
@@ -774,7 +774,8 @@ There is no automated coverage for default-dispatch, permission-mode, model-pres
 ### CLOUD HANDOFF
 
 - DV-017: [5-check operator-confirmation gate (NEGATIVE)](06--cloud-handoff/001-five-check-gate-negative.md)
-- DV-018: [Cloud handoff round-trip (LIVE)](06--cloud-handoff/002-cloud-handoff-roundtrip.md)
+- DV-018: [Cloud handoff round-trip (LIVE — operator-driven manual)](06--cloud-handoff/002-cloud-handoff-roundtrip.md)
+- DV-027: [Cloud surface accessibility (shell-runnable surface check)](06--cloud-handoff/003-cloud-surface-accessibility.md)
 
 ### SELF-INVOCATION GUARD
 
