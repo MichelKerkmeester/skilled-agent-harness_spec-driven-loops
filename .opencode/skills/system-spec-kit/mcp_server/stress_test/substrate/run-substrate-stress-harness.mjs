@@ -145,7 +145,7 @@ export function normalizeArguments(toolName, args) {
 
 export function selectClientForServer(clients, server) {
   if (server === 'mk_spec_memory' || server === 'mk-spec-memory') {
-    return clients.mk_spec_memory ?? clients['mk-spec-memory'] ?? clients.memory ?? null;
+    return clients.mk_spec_memory ?? clients['mk-spec-memory'] ?? null;
   }
   if (server === 'cocoindex_code') return clients.cocoindex_code ?? clients.cocoindex ?? null;
   return null;

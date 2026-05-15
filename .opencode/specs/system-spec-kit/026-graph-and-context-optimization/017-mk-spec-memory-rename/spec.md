@@ -137,6 +137,8 @@ Rename the configured server alias to `mk-spec-memory` so Spec Kit Memory tool r
 | `.claude/mcp.json` | Modify | Rename the Claude Code MCP server key to `mk-spec-memory`. |
 | `.codex/config.toml` | Modify | Rename the Codex MCP server table to the hyphenated alias. |
 | `.gemini/settings.json` | Modify | Rename the Gemini MCP server key to avoid underscore policy ambiguity. |
+| `.mcp.json` | Modify | Rename the root MCP server key to `mk-spec-memory` and point at the renamed launcher. |
+| `.vscode/mcp.json` | Modify | Rename the VS Code MCP server key to `mk-spec-memory` and align command/args with the launcher binary (was bypassing it). |
 | `CLAUDE.md` | Modify | Update section 6 MCP routing table and any fully qualified tool examples. |
 | `AGENTS.md` | Modify | Update sibling global or project instructions that cite the old prefix. |
 | `.opencode/skills/**/SKILL.md` | Modify | Replace active skill references to the old fully qualified prefix. |
