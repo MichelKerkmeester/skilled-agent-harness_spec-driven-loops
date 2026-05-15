@@ -7,9 +7,10 @@
 **📋 Spec Kit Framework** • **🧠 Cognitive Memory** • **🤖 11 Specialized Agents** • **🎯 20 On-Demand Skills**
 **🔍 Code Index + Graph** • **⚡ 5 Runtimes** **➕ More**
 
-> Custom built, fully modular, and easy to reverse engineer for your needs.
-> Works with OpenCode, Codex, Claude Code, Gemini, and Devin CLI.
-> Also supports external CLI Agent Orchestration, without unneeded MCPs or Proxies.
+- Custom built, fully modular, and easy to reverse engineer for your needs.
+- Works with OpenCode, Codex, Claude Code, Gemini, and Devin CLI.
+- Also supports external CLI Agent Orchestration, without unneeded MCPs or Proxies.
+  
 > Don't buy me unwanted coffee: https://buymeacoffee.com/michelkerkmeester
 
 <!-- ANCHOR:table-of-contents -->
