@@ -1,5 +1,26 @@
 # Skilled Agent Orchestration w/ Custom Spec Kit 
 
+<!-- ANCHOR:table-of-contents -->
+
+## TABLE OF CONTENTS
+
+- [OVERVIEW](#1--overview)
+- [QUICK START](#2--quick-start)
+- [FEATURES](#3--features)
+  - [SPEC KIT DOCUMENTATION](#spec-kit-documentation)
+  - [MEMORY ENGINE](#memory-engine)
+  - [COCOINDEX + CODE GRAPH](#cocoindex--code-graph)
+  - [SKILL ADVISOR](#skill-advisor)
+  - [SKILLS LIBRARY](#skills-library)
+  - [AGENT NETWORK](#agent-network)
+  - [COMMANDS](#commands)
+  - [CODE MODE MCP](#code-mode-mcp)
+- [CONFIGURATION](#4--configuration)
+- [FAQ](#5--faq)
+- [RELATED DOCUMENTS](#6--related-documents)
+
+<!-- /ANCHOR:table-of-contents -->
+
 | Core layer | What it adds |
 | --- | --- |
 | 📋 **Spec Kit Framework** | Structured plans, task tracking, validation gates, and handover docs |
@@ -22,30 +43,6 @@
 > Don't buy me unwanted coffee: https://buymeacoffee.com/michelkerkmeester
 
 ---
-
-&nbsp;
-
-<!-- ANCHOR:table-of-contents -->
-
-## TABLE OF CONTENTS
-
-- [OVERVIEW](#1--overview)
-- [QUICK START](#2--quick-start)
-- [FEATURES](#3--features)
-  - [SPEC KIT DOCUMENTATION](#spec-kit-documentation)
-  - [MEMORY ENGINE](#memory-engine)
-  - [COCOINDEX + CODE GRAPH](#cocoindex--code-graph)
-  - [SKILL ADVISOR](#skill-advisor)
-  - [SKILLS LIBRARY](#skills-library)
-  - [AGENT NETWORK](#agent-network)
-  - [COMMANDS](#commands)
-  - [CODE MODE MCP](#code-mode-mcp)
-- [CONFIGURATION](#4--configuration)
-- [FAQ](#5--faq)
-- [RELATED DOCUMENTS](#6--related-documents)
-
-<!-- /ANCHOR:table-of-contents -->
-
 
 <!-- ANCHOR:overview -->
 
