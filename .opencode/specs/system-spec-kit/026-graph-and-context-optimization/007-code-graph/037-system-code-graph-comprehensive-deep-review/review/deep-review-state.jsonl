@@ -82,3 +82,8 @@
 0,"findingsP1":0
 0,"findingsP2":0
 0,"durationSec":21,"exitCode":0,"executor":"cli-devin","model":"swe-1.6","timestamp":"2026-05-15T17:02:48Z"}
+{"type":"iteration","run":21,"focus":"verification of P0-1 spec-kit isolation claim","findingsCount":1,"findingsP0":1,"findingsP1":0,"findingsP2":0,"newInfoRatio":0.45,"durationSec":120,"executor":"cli-codex","model":"gpt-5.5","reasoningEffort":"high","serviceTier":"fast","timestamp":"2026-05-15T17:20:44Z"}
+{"type":"iteration","run":22,"focus":"verification of P0-2 ccc readiness claim","findingsCount":2,"findingsP0":1,"findingsP1":0,"findingsP2":1,"newInfoRatio":0.55,"durationSec":150,"executor":"cli-codex","model":"gpt-5.5","reasoningEffort":"high","serviceTier":"fast","timestamp":"2026-05-15T17:20:44Z"}
+{"type":"iteration","run":23,"focus":"verification of P1-B runtime correctness cluster","findingsCount":7,"findingsP0":0,"findingsP1":7,"findingsP2":0,"newInfoRatio":0.35,"durationSec":210,"executor":"cli-codex","model":"gpt-5.5","reasoningEffort":"high","serviceTier":"fast","timestamp":"2026-05-15T17:20:44Z"}
+{"type":"iteration","run":24,"focus":"verification of P1-A docs and P1-H2 config claim","findingsCount":6,"findingsP0":0,"findingsP1":6,"findingsP2":0,"newInfoRatio":0.40,"durationSec":240,"executor":"cli-codex","model":"gpt-5.5","reasoningEffort":"high","serviceTier":"fast","timestamp":"2026-05-15T17:20:44Z"}
+{"type":"iteration","run":25,"focus":"synthesis and adjusted packet 038 scope","findingsCount":24,"findingsP0":2,"findingsP1":22,"findingsP2":0,"newInfoRatio":0.25,"durationSec":300,"executor":"cli-codex","model":"gpt-5.5","reasoningEffort":"high","serviceTier":"fast","timestamp":"2026-05-15T17:20:44Z"}
