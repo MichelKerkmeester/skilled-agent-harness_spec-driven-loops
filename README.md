@@ -4,8 +4,9 @@
 [![License](https://img.shields.io/github/license/MichelKerkmeester/opencode--spec-kit-skilled-agent-orchestration?style=for-the-badge&color=7bd88f&labelColor=222222)](LICENSE)
 [![Latest Release](https://img.shields.io/github/v/release/MichelKerkmeester/opencode--spec-kit-skilled-agent-orchestration?style=for-the-badge&color=5ad4e6&labelColor=222222)](https://github.com/MichelKerkmeester/opencode--spec-kit-skilled-agent-orchestration/releases)
 
-**📋 Spec Kit Framework** • **🧠 Cognitive Memory** • **🤖 11 Specialized Agents** • **🎯 20 On-Demand Skills**
-**🔍 Code Index + Graph** • **⚡ 5 Runtimes** **➕ More**
+> **📋 Spec Kit Framework** • **🧠 Cognitive Memory** • **🤖 11 Specialized Agents** • **🎯 20 On-Demand Skills**
+
+> **🔍 Code Index + Graph** • **⚡ 5 Runtimes** **➕ More**
 
 - Custom built, fully modular, and easy to reverse engineer for your needs.
 - Works with OpenCode, Codex, Claude Code, Gemini, and Devin CLI.
