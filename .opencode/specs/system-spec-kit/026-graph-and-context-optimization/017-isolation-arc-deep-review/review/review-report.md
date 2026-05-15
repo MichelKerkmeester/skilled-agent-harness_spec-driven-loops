@@ -10,9 +10,11 @@
 <!-- ANCHOR:executive-summary -->
 ## 1. Executive Summary
 
-### Verdict: CONDITIONAL
+### Verdict: PASS (CONDITIONAL → PASS after 018 remediation)
 
-**Rationale**: The isolation arc successfully achieves its primary goal (zero source-level imports from system-code-graph in system-spec-kit) but has 4 P0 security findings that must be addressed before production deployment. The architectural approach is sound, but implementation hardening is required for file path handling and concurrent access.
+**Original (CONDITIONAL) rationale**: The isolation arc successfully achieves its primary goal (zero source-level imports from system-code-graph in system-spec-kit) but had 4 P0 security findings that needed addressing before production deployment. The architectural approach was sound, but implementation hardening was required for file path handling and concurrent access.
+
+**Post-remediation (PASS, 2026-05-15)**: All 4 P0 + 5 P1 findings closed via packet `018-isolation-arc-remediation` across 5 commits. See § 7 Remediation Status below. The isolation arc is now production-ready.
 
 ### Finding Summary
 
@@ -442,3 +444,45 @@ rg "context-preservation-and-code-graph" .opencode/skills/ --glob '!**/node_modu
 ```
 
 All verification commands passed successfully.
+
+---
+
+<!-- ANCHOR:remediation-status -->
+## 7. Remediation Status (added 2026-05-15)
+
+Packet `018-isolation-arc-remediation` closed all 4 P0 + 5 P1 findings across 5 commits. Verdict flipped **CONDITIONAL → PASS**.
+
+| Finding | Severity | Closed By | Notes |
+|---|---|---|---|
+| P0-1/4 (path traversal in marker READ) | P0 | `be2646dd3` Phase A | `validateMarkerPath()` guard added; rejects paths outside expected code-graph dir |
+| P0-2/5 (directory traversal in marker WRITE) | P0 | `be2646dd3` Phase A | Same guard, applied to writer in `readiness-marker.ts` |
+| P0-3 (race condition in marker read/write) | P0 | `be2646dd3` Phase B | Atomic write (temp + rename) + read retry-once on parse error |
+| P1-2 (inlined helpers exceed trivial threshold) | P1 | `df8395f7e` (absorbed) | `compact-merger.ts` + `budget-allocator.ts` moved to `@spec-kit/shared/` |
+| P1-3 (no coverage-diff for structural-contract rewrite) | P1 | `896e788b9` Phase F | Coverage matrix authored: 1 preserved + 6 renamed + 1 replaced + 8 new + 8 removed (all cross-skill); **0 genuine coverage loss** — `018/review/coverage-diff.md` |
+| P1-4 (broad env passing to MCP subprocess) | P1 | `3f22e0c34` Phase D | `buildSubprocessEnv()` allowlist: OS basics + Node + project namespace; drops GITHUB_TOKEN/AWS_*/SSH_*/etc. |
+| P1-5 (no atomic write pattern) | P1 | `be2646dd3` Phase B | Co-closed with P0-3 via temp+rename pattern |
+| P1-6 (no automated cross-skill import prevention) | P1 | `a23d1873c` Phase C | `.github/workflows/isolation-check.yml` — PR audit fails build on `from.*system-code-graph` or `from.*system-skill-advisor` hits in spec-kit source |
+
+### P2 Findings (8) — Deferred per 017 Report §6
+
+P2-FINDING-004, P2-FINDING-005, P2-FINDING-006, P2-FINDING-009-012, P2-FINDING-013, P2-FINDING-003/007/008 (operator-parallel) — informational; no action required.
+
+### Verification (post-remediation)
+
+| Check | Result |
+|---|---|
+| Hard import audit | 0 hits for `system-code-graph` in spec-kit/mcp_server source |
+| spec-kit tsc | PASS |
+| code-graph tsc | PASS |
+| @spec-kit/shared package build | PASS |
+| Path-validation tests | 5/5 PASS |
+| Atomic-write tests | 5/5 PASS |
+| Env-allowlist tests | 7/7 PASS |
+| CI isolation-check (synthetic violation smoke) | Catches + reverts cleanly |
+| Existing regression tests (structural-contract, session-bootstrap, code-graph-boundary-path-validation) | 23/23 PASS |
+| Architectural choices revisited (boundary wrapper, marker pattern, inlined helpers, timeout) | All preserved or addressed; deviations now documented |
+
+### Final State
+
+The isolation arc is production-ready. Spec-kit's source has **zero** TypeScript imports from system-code-graph or system-skill-advisor, the boundary wrapper is hardened (path validation + atomic write + retry + env allowlist), CI prevents reintroduction, and the coverage diff confirms the structural-contract rewrite preserved test intent.
+<!-- /ANCHOR:remediation-status -->
