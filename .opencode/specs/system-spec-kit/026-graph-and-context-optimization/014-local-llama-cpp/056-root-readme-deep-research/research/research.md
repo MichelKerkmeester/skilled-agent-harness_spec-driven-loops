@@ -139,3 +139,36 @@
 
 **Topology diagram edit (Iter 010):**
 - EDIT: Add boundary notation or notes to Native MCP Topology diagram (lines 89-97)
+
+---
+
+<!-- ANCHOR:citations -->
+## Citations
+
+All findings in this consolidation trace back to specific iteration files. Reference list:
+
+- [Iter 001 — tool surface count](iterations/iteration-001.md)
+- [Iter 002 — agent + skill + command counts](iterations/iteration-002.md)
+- [Iter 003 — MCP server registration inventory](iterations/iteration-003.md)
+- [Iter 004 — MCP server names + versions](iterations/iteration-004.md)
+- [Iter 005 — file paths + env vars](iterations/iteration-005.md)
+- [Iter 006 — install steps + Quick Start](iterations/iteration-006.md)
+- [Iter 007 — banned HVR words](iterations/iteration-007.md)
+- [Iter 008 — HVR punctuation hard blockers](iterations/iteration-008.md) (183 occurrences cataloged)
+- [Iter 009 — banned HVR phrases](iterations/iteration-009.md)
+- [Iter 010 — Native MCP topology diagram](iterations/iteration-010.md)
+- [Iter 011 — Agent Network diagram](iterations/iteration-011.md)
+- [Iter 012 — runtime arrows + extraction boundaries](iterations/iteration-012.md)
+- [Iter 013 — NOTICE files + fork links](iterations/iteration-013.md)
+- [Iter 014 — doc version + framework footer](iterations/iteration-014.md)
+- [Iter 015 — Apache 2.0 + license references](iterations/iteration-015.md)
+- [Iter 016 — FAQ Q&A accuracy](iterations/iteration-016.md)
+- [Iter 017 — Quick Start install-step usability](iterations/iteration-017.md)
+- [Iter 018 — bin paths + .env example](iterations/iteration-018.md)
+- [Iter 019 — Copilot support + hook coverage per runtime](iterations/iteration-019.md)
+- [Iter 020 — residual catch-all](iterations/iteration-020.md)
+
+State machine: `research/deep-research-state.jsonl` records per-iter status + newInfoRatio + timestamp.
+Delta: `research/delta-verified.md` is the surgical edit list passed to Phase 4 sonnet @markdown.
+Evidence: `research/edit-evidence.md` is the Phase 4 before/after transcript.
+<!-- /ANCHOR:citations -->
