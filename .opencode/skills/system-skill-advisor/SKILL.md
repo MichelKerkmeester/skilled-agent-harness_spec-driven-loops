@@ -11,7 +11,6 @@ trigger_phrases:
   - "which skill should handle this"
   - "route this request to a skill"
   - "system skill advisor"
-importance_tier: critical
 keywords:
   - skill-routing
   - gate-2
@@ -186,7 +185,7 @@ Current package state:
 - `mk_skill_advisor` is registered as a standalone MCP server.
 - Advisor handlers, schemas, tools, scripts, tests, docs, and database path ownership live under this package.
 - `skill_graph_*` MCP handlers and tool descriptors live under this package.
-- `lib/skill-graph/` database/query logic remains in `system-spec-kit` until the pending packet 011 cleanup.
+- `lib/skill-graph/` database/query logic is fully migrated to `system-skill-advisor` (extraction complete).
 
 Expected consumers:
 
