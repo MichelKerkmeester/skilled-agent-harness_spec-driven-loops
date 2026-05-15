@@ -8,7 +8,10 @@ trigger_phrases:
   - "code graph runtime catalog"
 importance_tier: "important"
 ---
+
 # Code Graph: Feature Catalog
+
+<!-- Filename: lowercase per project convention; sk-doc template suggests FEATURE_CATALOG.md but lowercase is intentional. -->
 
 This catalog is the current feature inventory for `.opencode/skills/system-code-graph/mcp_server/`. Live MCP callers use the standalone `mk-code-index` namespace, exposed as `mcp__mk_code_index__*`. The stable tool IDs remain `code_graph_*`, `detect_changes` and `ccc_*`.
 
@@ -47,76 +50,290 @@ The catalog covers 17 runtime features across 8 groups. Per-feature files carry 
 
 Reality classification source: read-path freshness is half-auto because requested reads can run bounded repair, full scan/verify/status are manual, CCC tools are manual, deep-loop convergence runs automatically inside command YAML, deep-loop upsert is conditional and deep-loop query/status are manual.
 
-
 ---
 
 ## 2. READ-PATH FRESHNESS
 
-| Feature | File |
-| --- | --- |
-| Ensure code graph ready | [01--read-path-freshness/01-ensure-code-graph-ready.md](./01--read-path-freshness/01-ensure-code-graph-ready.md) |
-| Query self-heal | [01--read-path-freshness/02-query-self-heal.md](./01--read-path-freshness/02-query-self-heal.md) |
+### Ensure code graph ready
+
+#### Description
+
+Shared readiness helper that detects empty, stale, full-scan and selective-reindex states and can run bounded selective repair on read paths. Called by query, context and verification surfaces as the read-path gate.
+
+#### Current Reality
+
+Half-auto (class: half). Code graph freshness checks happen after a read invocation, not as a background watcher. Full-scan states are refused by query/context when inline full scans are disabled; the fallback is `code_graph_scan({ incremental:false })` or plain `rg`.
+
+#### Source Files
+
+See [`01--read-path-freshness/01-ensure-code-graph-ready.md`](01--read-path-freshness/01-ensure-code-graph-ready.md) for full implementation and source paths.
+
+---
+
+### Query self-heal
+
+#### Description
+
+Read-path self-heal inside `code_graph_query` that invokes the readiness helper with selective inline indexing allowed and full inline scans suppressed before answering structural queries.
+
+#### Current Reality
+
+Half-auto (class: half). Self-heal runs only inside a requested `code_graph_query` call. When stale files exceed the selective threshold or Git HEAD changed, query blocks and tells the operator to run `code_graph_scan`.
+
+#### Source Files
+
+See [`01--read-path-freshness/02-query-self-heal.md`](01--read-path-freshness/02-query-self-heal.md) for full implementation and source paths.
 
 ---
 
 ## 3. MANUAL SCAN / VERIFY / STATUS
 
-| Feature | File |
-| --- | --- |
-| code_graph_scan | [02--manual-scan-verify-status/01-code-graph-scan.md](./02--manual-scan-verify-status/01-code-graph-scan.md) |
-| code_graph_verify | [02--manual-scan-verify-status/02-code-graph-verify.md](./02--manual-scan-verify-status/02-code-graph-verify.md) |
-| code_graph_status | [02--manual-scan-verify-status/03-code-graph-status.md](./02--manual-scan-verify-status/03-code-graph-status.md) |
+### code_graph_scan
+
+#### Description
+
+Explicit maintenance tool that scans workspace files, indexes structural nodes/edges with content-hash change detection, and optionally runs the gold-query verifier after explicit full scans.
+
+#### Current Reality
+
+Manual (class: manual). Read paths may recommend it but do not run a broad full scan. `verify:true` only runs after `incremental:false`.
+
+#### Source Files
+
+See [`02--manual-scan-verify-status/01-code-graph-scan.md`](02--manual-scan-verify-status/01-code-graph-scan.md) for full implementation and source paths.
+
+---
+
+### code_graph_verify
+
+#### Description
+
+Diagnostic verification gate that runs the persisted gold-query battery against the current graph. Blocks on stale readiness and executes only when fresh.
+
+#### Current Reality
+
+Manual (class: manual). Runs as an explicit MCP maintenance call or optional verification inside a full `code_graph_scan`. The handler refuses stale graphs.
+
+#### Source Files
+
+See [`02--manual-scan-verify-status/02-code-graph-verify.md`](02--manual-scan-verify-status/02-code-graph-verify.md) for full implementation and source paths.
+
+---
+
+### code_graph_status
+
+#### Description
+
+Read-only health probe that reports readiness, graph counts, parser health, edge drift and gold verification trust without mutating graph state.
+
+#### Current Reality
+
+Manual diagnostic (class: manual). Uses a read-only readiness snapshot so status calls do not repair stale state. Does not perform scans — only reports current state.
+
+#### Source Files
+
+See [`02--manual-scan-verify-status/03-code-graph-status.md`](02--manual-scan-verify-status/03-code-graph-status.md) for full implementation and source paths.
 
 ---
 
 ## 4. DETECT-CHANGES PREFLIGHT
 
-| Feature | File |
-| --- | --- |
-| detect_changes preflight | [03--detect-changes/01-detect-changes-preflight.md](./03--detect-changes/01-detect-changes-preflight.md) |
+### detect_changes preflight
+
+#### Description
+
+Read-only diff preflight that maps unified-diff hunks to indexed symbols through line-range overlap. Refuses stale, empty, error or failed-verification graphs with `status:"blocked"` instead of false-safe empty impact.
+
+#### Current Reality
+
+Manual (class: manual). Passes `allowInlineIndex:false` so it never silently indexes on the preflight path. Run `code_graph_scan` first when blocked.
+
+#### Source Files
+
+See [`03--detect-changes/01-detect-changes-preflight.md`](03--detect-changes/01-detect-changes-preflight.md) for full implementation and source paths.
 
 ---
 
 ## 5. CONTEXT RETRIEVAL
 
-| Feature | File |
-| --- | --- |
-| code_graph_context | [04--context-retrieval/01-code-graph-context.md](./04--context-retrieval/01-code-graph-context.md) |
-| Context handler | [04--context-retrieval/02-context-handler.md](./04--context-retrieval/02-context-handler.md) |
+### code_graph_context
+
+#### Description
+
+LLM-oriented context retrieval surface that expands seeds (manual, graph, CocoIndex) into compact graph neighborhoods with neighborhood, outline and impact modes while preserving readiness and partial-output metadata.
+
+#### Current Reality
+
+Half-auto (class: half). The tool self-checks readiness on invocation but no ambient hook calls it automatically. Blocked responses omit graph answers and include `requiredAction:"code_graph_scan"`.
+
+#### Source Files
+
+See [`04--context-retrieval/01-code-graph-context.md`](04--context-retrieval/01-code-graph-context.md) for full implementation and source paths.
+
+---
+
+### Context handler
+
+#### Description
+
+Handler-level context assembly that normalizes CocoIndex/manual/graph seeds, picks a query mode, enforces deadlines and routes blocked readiness before building compact graph context.
+
+#### Current Reality
+
+Half-auto (class: half). Only triggered through `code_graph_context` dispatch. Can return partial output under deadline or budget pressure — check `metadata.partialOutput` before treating responses as complete.
+
+#### Source Files
+
+See [`04--context-retrieval/02-context-handler.md`](04--context-retrieval/02-context-handler.md) for full implementation and source paths.
 
 ---
 
 ## 6. COVERAGE GRAPH
 
-| Feature | File |
-| --- | --- |
-| deep_loop_graph_query | [05--coverage-graph/01-deep-loop-graph-query.md](./05--coverage-graph/01-deep-loop-graph-query.md) |
-| deep_loop_graph_status | [05--coverage-graph/02-deep-loop-graph-status.md](./05--coverage-graph/02-deep-loop-graph-status.md) |
-| deep_loop_graph_upsert | [05--coverage-graph/03-deep-loop-graph-upsert.md](./05--coverage-graph/03-deep-loop-graph-upsert.md) |
-| deep_loop_graph_convergence | [05--coverage-graph/04-deep-loop-graph-convergence.md](./05--coverage-graph/04-deep-loop-graph-convergence.md) |
+### deep_loop_graph_query
+
+#### Description
+
+Coverage-graph read tool for research/review deep-loop graph state. Inspects uncovered questions, unverified claims, contradictions, provenance chains, coverage gaps and hot nodes.
+
+#### Current Reality
+
+Manual (class: manual). Direct MCP call only. No YAML, bootstrap, watcher or after-tool auto-fire path. Reads are session-scoped via `specFolder`, `loopType` and `sessionId`.
+
+#### Source Files
+
+See [`05--coverage-graph/01-deep-loop-graph-query.md`](05--coverage-graph/01-deep-loop-graph-query.md) for full implementation and source paths. Tool dispatches from `mk-spec-memory`, not `mk-code-index`.
+
+---
+
+### deep_loop_graph_status
+
+#### Description
+
+Session-scoped coverage-graph health report returning node/edge counts, relation breakdowns, signals and momentum for dashboards and synthesis checks.
+
+#### Current Reality
+
+Manual (class: manual). Direct MCP call only. Empty graphs return zero counts and null signals — use upsert-enabled deep loops to populate graph events first.
+
+#### Source Files
+
+See [`05--coverage-graph/02-deep-loop-graph-status.md`](05--coverage-graph/02-deep-loop-graph-status.md) for full implementation and source paths. Tool dispatches from `mk-spec-memory`, not `mk-code-index`.
+
+---
+
+### deep_loop_graph_upsert
+
+#### Description
+
+Coverage-graph write tool that stores nodes and edges for deep research/review loops. Called conditionally by command YAML when latest iteration `graphEvents` are present.
+
+#### Current Reality
+
+Half-auto (class: half). Command-owned deep-research/deep-review YAML calls it conditionally on `graphEvents`. Direct MCP call remains available. No `graphEvents` means no upsert — the workflow skip is intentional.
+
+#### Source Files
+
+See [`05--coverage-graph/03-deep-loop-graph-upsert.md`](05--coverage-graph/03-deep-loop-graph-upsert.md) for full implementation and source paths. Tool dispatches from `mk-spec-memory`, not `mk-code-index`.
+
+---
+
+### deep_loop_graph_convergence
+
+#### Description
+
+Coverage-graph convergence tool that computes typed decisions (CONTINUE, STOP_ALLOWED, STOP_BLOCKED), signal values and blockers for deep research/review loops.
+
+#### Current Reality
+
+Auto inside command workflows (class: auto). Called by deep-research and deep-review YAML before the inline stop vote. Direct MCP calls remain explicit. Empty graphs return CONTINUE.
+
+#### Source Files
+
+See [`05--coverage-graph/04-deep-loop-graph-convergence.md`](05--coverage-graph/04-deep-loop-graph-convergence.md) for full implementation and source paths. Tool dispatches from `mk-spec-memory`, not `mk-code-index`.
 
 ---
 
 ## 7. MCP TOOL SURFACE
 
-| Feature | File |
-| --- | --- |
-| Tool registrations | [06--mcp-tool-surface/01-tool-registrations.md](./06--mcp-tool-surface/01-tool-registrations.md) |
+### Tool registrations
+
+#### Description
+
+MCP registration and dispatch surface for the `mk-code-index` runtime. Exposes `code_graph_*`, `detect_changes` and `ccc_*` names through the code graph dispatcher. Deep-loop coverage graph tools dispatch through the `mk-spec-memory` server.
+
+#### Current Reality
+
+Manual (class: manual). Tool registration is availability, not automation. Schema validation rejects malformed tool calls before handler execution for registered names.
+
+#### Source Files
+
+See [`06--mcp-tool-surface/01-tool-registrations.md`](06--mcp-tool-surface/01-tool-registrations.md) for full implementation and source paths.
 
 ---
 
 ## 8. CCC INTEGRATION
 
-| Feature | File |
-| --- | --- |
-| ccc_reindex | [07--ccc-integration/01-ccc-reindex.md](./07--ccc-integration/01-ccc-reindex.md) |
-| ccc_feedback | [07--ccc-integration/02-ccc-feedback.md](./07--ccc-integration/02-ccc-feedback.md) |
-| ccc_status | [07--ccc-integration/03-ccc-status.md](./07--ccc-integration/03-ccc-status.md) |
+### ccc_reindex
+
+#### Description
+
+Direct bridge to the CocoIndex CLI for incremental or full reindexing. Does not refresh the structural code graph.
+
+#### Current Reality
+
+Manual (class: manual). Direct MCP call only. Session/bootstrap surfaces probe availability through helpers, not this tool. Requires the local `ccc` binary.
+
+#### Source Files
+
+See [`07--ccc-integration/01-ccc-reindex.md`](07--ccc-integration/01-ccc-reindex.md) for full implementation and source paths.
+
+---
+
+### ccc_feedback
+
+#### Description
+
+Appends operator search-feedback JSONL for CocoIndex search results. Does not alter ranking immediately.
+
+#### Current Reality
+
+Manual (class: manual). Direct MCP call only. No hook, CI, session bootstrap or memory command path invokes feedback automatically. Writes to `.opencode/skills/mcp-coco-index/feedback/search-feedback.jsonl`.
+
+#### Source Files
+
+See [`07--ccc-integration/02-ccc-feedback.md`](07--ccc-integration/02-ccc-feedback.md) for full implementation and source paths.
+
+---
+
+### ccc_status
+
+#### Description
+
+CocoIndex bridge status probe reporting binary availability, index presence and next-operator-action recommendation text.
+
+#### Current Reality
+
+Manual (class: manual). Direct MCP call only. Availability does not prove search quality — pair with an actual CocoIndex search or reindex run.
+
+#### Source Files
+
+See [`07--ccc-integration/03-ccc-status.md`](07--ccc-integration/03-ccc-status.md) for full implementation and source paths.
 
 ---
 
 ## 9. DOCTOR CODE GRAPH
 
-| Feature | File |
-| --- | --- |
-| Doctor apply mode | [08--doctor-code-graph/01-doctor-apply-mode.md](./08--doctor-code-graph/01-doctor-apply-mode.md) |
+### Doctor code-graph route policy
+
+#### Description
+
+`/doctor code-graph` command-owned diagnostic and repair policy surface. The route manifest exposes mutating flags (apply, prune, repair) while the current YAML keeps Phase A diagnostic-only and writes only packet-local scratch reports.
+
+#### Current Reality
+
+Manual (class: manual). Triggered by slash command `/doctor code-graph` with flags (`--scope`, `--operation`, `--dry-run`, `--confirm`). The route manifest is marked `mutates` because it grants future apply flags, but the current YAML states Phase A is diagnostic-only.
+
+#### Source Files
+
+See [`08--doctor-code-graph/01-doctor-apply-mode.md`](08--doctor-code-graph/01-doctor-apply-mode.md) for full implementation and source paths.
