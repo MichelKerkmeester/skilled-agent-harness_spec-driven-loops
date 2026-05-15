@@ -38,9 +38,10 @@ _memory:
 |-------|-------|
 | **Spec Folder** | system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/024-code-folder-readmes |
 | **Phase** | B of 4 |
-| **Completed** | TBD |
+| **Completed** | 2026-05-15 |
 | **Level** | 1 |
 | **Files in scope** | 2 new + 5 edited = 7 total |
+| **Commits** | `814b0eff6` (initial), `94d2e38d8` (P0 patch) |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -114,12 +115,13 @@ Pre-Pass-2 verification gate transcript at `research/bundle-verification.md`.
 
 | Check | Result | Command |
 |-------|--------|---------|
-| Per-README sk-doc validate | TBD | `python3 .opencode/skills/sk-doc/scripts/validate_document.py <readme> --type readme` |
-| Per-README HVR score | TBD | `python3 .opencode/skills/sk-doc/scripts/validate_document.py <readme> --json` |
-| Anchor presence | TBD | `grep -c 'ANCHOR' <readme>` (expect >= 4 per file) |
-| Bundle verification gate | TBD | Shell grep transcript in `research/bundle-verification.md` |
-| Bulk audit | TBD | `python3 .opencode/skills/sk-doc/scripts/audit_readmes.py` |
-| Strict-validate packet | TBD | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/024-code-folder-readmes --strict` |
+| Per-README sk-doc validate (all 7 files) | 7/7 PASS | `python3 .opencode/skills/sk-doc/scripts/validate_document.py <readme> --type readme` |
+| Anchor presence | All present | `grep -c 'ANCHOR' <readme>` |
+| Bundle verification gate | PASS after corrections | 4 false-positive imports removed across both bundles; transcript in `research/bundle-verification.md` |
+| Strict-validate packet | PASS, 0 errors / 0 warnings | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/024-code-folder-readmes --strict` |
+| Sonnet @markdown structural review | PASS (0 P0 / 0 P1 / 3 P2 advisories) | Task tool dispatch |
+| Sonnet @review factual review | PASS post-patch (2 P0 caught + fixed in `94d2e38d8`; 0 P0 / 0 P1 / 3 P2 remaining) | Task tool dispatch |
+| Validation command smoke-run (post-patch) | lifecycle 16/16 PASS, scorer 3/3 PASS | `cd .opencode/skills/system-skill-advisor/mcp_server && npm test -- ...` |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -127,9 +129,14 @@ Pre-Pass-2 verification gate transcript at `research/bundle-verification.md`.
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-TBD.
-
-- Fixture folders are intentionally small; their READMEs will be compact-variant.
+- Fixture folders are intentionally small; their READMEs use the compact variant.
 - Phase B does not address the bulk of system-skill-advisor; only the 7 in-scope files.
-- TOC anchor inserts are bounded edits but do not refactor existing prose.
+- TOC anchor inserts are bounded edits and did not refactor existing prose.
+- The 5 TOC-augmented READMEs reference an audit packet path in their Key Statistics table (a soft writing-rule deviation flagged P2 by sonnet @markdown). The 2 new fixture READMEs do not. Left as-is for Phase B; could be cleaned up in a follow-on.
+- The 5 TOC-augmented files share identical boilerplate (P2 from sonnet @markdown). Acceptable for the audit-packet pattern.
+- Pre-Pass-2 grep-verification gate caught false-positive imports but did NOT smoke-run the validation commands; that gap let 2 P0 cwd errors slip through to Pass 2 output. Fixed in `94d2e38d8` and the lesson saved as memory `feedback_bundle_gate_smoke_run`. Phase C and Phase D pipeline gates will smoke-run validation commands as well as grep them.
+
+## Parallel-session interference note
+
+The 5 TOC inserts were applied twice. The first application was reverted between my Edit calls and the validation step by a parallel cli-codex dispatch working on packets 027/028/029/030 sk-code violation follow-ons. The second application succeeded and was committed atomically with the new fixture READMEs in `814b0eff6`. Lesson: under heavy parallel activity, apply edits in batches and commit immediately to lock state.
 <!-- /ANCHOR:limitations -->
