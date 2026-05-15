@@ -11,3 +11,6 @@
 {"type":"iteration","iteration":10,"track":6,"newInfoRatio":1.00,"status":"complete","focus":"system-skill-advisor/mcp_server gap analysis","findings":7,"timestamp":"2026-05-15T17:27:30Z"}
 {"type":"iteration","iteration":11,"track":6,"newInfoRatio":1.00,"status":"complete","focus":"system-skill-advisor/mcp_server target scope","findings":7,"timestamp":"2026-05-15T17:27:30Z"}
 {"type":"iteration","iteration":12,"track":6,"newInfoRatio":1.00,"status":"complete","focus":"system-skill-advisor/mcp_server draft outline","findings":9,"timestamp":"2026-05-15T17:27:30Z"}
+{"type":"iteration","iteration":13,"track":7,"newInfoRatio":0.33,"status":"complete","focus":"skill-advisor references audit","findings":1,"timestamp":"2026-05-15T17:29:47Z"}
+{"type":"iteration","iteration":14,"track":7,"newInfoRatio":1.00,"status":"complete","focus":"advisor-scorer.md new-doc spec","findings":30,"timestamp":"2026-05-15T17:29:47Z"}
+{"type":"iteration","iteration":15,"track":7,"newInfoRatio":1.00,"status":"complete","focus":"propagate-enhances + extraction plan specs","findings":8,"timestamp":"2026-05-15T17:29:47Z"}
