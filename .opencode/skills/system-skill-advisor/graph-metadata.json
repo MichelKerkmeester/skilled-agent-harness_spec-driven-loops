@@ -5,40 +5,135 @@
   "category": "system",
   "edges": {
     "depends_on": [
-      { "target": "mcp-coco-index", "weight": 0.7, "context": "semantic search routing and discovery signals" }
+      {
+        "target": "mcp-coco-index",
+        "weight": 0.7,
+        "context": "semantic search routing and discovery signals"
+      }
     ],
     "enhances": [
-      { "target": "cli-claude-code", "weight": 0.7, "context": "routes claude delegation requests" },
-      { "target": "cli-codex", "weight": 0.7, "context": "routes codex delegation requests" },
-      { "target": "cli-gemini", "weight": 0.7, "context": "routes gemini delegation requests" },
-      { "target": "mcp-chrome-devtools", "weight": 0.7, "context": "routes browser debugging requests" },
-      { "target": "mcp-coco-index", "weight": 0.7, "context": "routes semantic code search requests" },
-      { "target": "mcp-code-mode", "weight": 0.7, "context": "routes MCP orchestration requests" },
-      { "target": "sk-code", "weight": 0.7, "context": "routes frontend and system-code requests via sk-code stack detection" },
-      { "target": "sk-code-review", "weight": 0.7, "context": "routes code review requests" },
-      { "target": "deep-research", "weight": 0.7, "context": "routes autonomous research requests" },
-      { "target": "deep-review", "weight": 0.7, "context": "routes autonomous review requests" },
-      { "target": "sk-doc", "weight": 0.7, "context": "routes documentation requests" },
-      { "target": "sk-git", "weight": 0.7, "context": "routes git workflow requests" },
-      { "target": "deep-agent-improvement", "weight": 0.7, "context": "routes agent improvement requests" },
-      { "target": "sk-prompt", "weight": 0.7, "context": "routes prompt improvement requests" },
-      { "target": "system-spec-kit", "weight": 0.7, "context": "routes spec folder and memory requests" }
+      {
+        "target": "cli-claude-code",
+        "weight": 0.7,
+        "context": "routes claude delegation requests"
+      },
+      {
+        "target": "cli-codex",
+        "weight": 0.7,
+        "context": "routes codex delegation requests"
+      },
+      {
+        "target": "cli-gemini",
+        "weight": 0.7,
+        "context": "routes gemini delegation requests"
+      },
+      {
+        "target": "mcp-chrome-devtools",
+        "weight": 0.7,
+        "context": "routes browser debugging requests"
+      },
+      {
+        "target": "mcp-coco-index",
+        "weight": 0.7,
+        "context": "routes semantic code search requests"
+      },
+      {
+        "target": "mcp-code-mode",
+        "weight": 0.7,
+        "context": "routes MCP orchestration requests"
+      },
+      {
+        "target": "sk-code",
+        "weight": 0.7,
+        "context": "routes frontend and system-code requests via sk-code stack detection"
+      },
+      {
+        "target": "sk-code-review",
+        "weight": 0.7,
+        "context": "routes code review requests"
+      },
+      {
+        "target": "deep-research",
+        "weight": 0.7,
+        "context": "routes autonomous research requests"
+      },
+      {
+        "target": "deep-review",
+        "weight": 0.7,
+        "context": "routes autonomous review requests"
+      },
+      {
+        "target": "sk-doc",
+        "weight": 0.7,
+        "context": "routes documentation requests"
+      },
+      {
+        "target": "sk-git",
+        "weight": 0.7,
+        "context": "routes git workflow requests"
+      },
+      {
+        "target": "deep-agent-improvement",
+        "weight": 0.7,
+        "context": "routes agent improvement requests"
+      },
+      {
+        "target": "sk-prompt",
+        "weight": 0.7,
+        "context": "routes prompt improvement requests"
+      },
+      {
+        "target": "system-spec-kit",
+        "weight": 0.7,
+        "context": "routes spec folder and memory requests"
+      },
+      {
+        "target": "cli-devin",
+        "weight": 0.7,
+        "context": "routes devin delegation requests"
+      }
     ],
     "siblings": [],
     "conflicts_with": [],
     "prerequisite_for": []
   },
-  "domains": ["routing", "advisor", "scoring", "graph", "confidence"],
-  "intent_signals": ["skill routing", "gate 2", "which skill", "route request"],
+  "domains": [
+    "routing",
+    "advisor",
+    "scoring",
+    "graph",
+    "confidence"
+  ],
+  "intent_signals": [
+    "skill routing",
+    "gate 2",
+    "which skill",
+    "route request"
+  ],
   "derived": {
     "trigger_phrases": [
-      "skill routing", "gate 2 routing", "which skill", "route request",
-      "skill advisor", "confidence threshold", "skill discovery",
-      "regression harness", "benchmark harness", "graph compiler"
+      "skill routing",
+      "gate 2 routing",
+      "which skill",
+      "route request",
+      "skill advisor",
+      "confidence threshold",
+      "skill discovery",
+      "regression harness",
+      "benchmark harness",
+      "graph compiler"
     ],
     "key_topics": [
-      "routing", "advisor", "scoring", "graph", "confidence",
-      "calibration", "regression", "benchmark", "compiler", "discovery"
+      "routing",
+      "advisor",
+      "scoring",
+      "graph",
+      "confidence",
+      "calibration",
+      "regression",
+      "benchmark",
+      "compiler",
+      "discovery"
     ],
     "key_files": [
       ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py",
@@ -51,11 +146,36 @@
       ".opencode/skills/system-skill-advisor/mcp_server/README.md"
     ],
     "entities": [
-      { "name": "skill-advisor", "kind": "skill", "path": ".opencode/skills/system-skill-advisor/mcp_server/README.md", "source": "derived" },
-      { "name": "skill_advisor.py", "kind": "script", "path": ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py", "source": "derived" },
-      { "name": "skill_graph_compiler.py", "kind": "script", "path": ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_graph_compiler.py", "source": "derived" },
-      { "name": "skill_advisor_regression.py", "kind": "script", "path": ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor_regression.py", "source": "derived" },
-      { "name": "skill-graph.json", "kind": "config", "path": ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill-graph.json", "source": "derived" }
+      {
+        "name": "skill-advisor",
+        "kind": "skill",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill_advisor.py",
+        "kind": "script",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py",
+        "source": "derived"
+      },
+      {
+        "name": "skill_graph_compiler.py",
+        "kind": "script",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_graph_compiler.py",
+        "source": "derived"
+      },
+      {
+        "name": "skill_advisor_regression.py",
+        "kind": "script",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor_regression.py",
+        "source": "derived"
+      },
+      {
+        "name": "skill-graph.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill-graph.json",
+        "source": "derived"
+      }
     ],
     "causal_summary": "The skill advisor is the Gate 2 routing engine that scores user requests against all 19 skill descriptions using token normalization, synonym expansion, intent boosting, graph-derived transitive boosts, and confidence calibration. It returns ranked recommendations with dual-threshold filtering so the calling AI can invoke the right skill with measured certainty.",
     "source_docs": [

@@ -1,11 +1,12 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-14T16:15:44.739783+00:00",
-  "skill_count": 19,
+  "generated_at": "2026-05-15T12:51:35.746458+00:00",
+  "skill_count": 20,
   "families": {
     "cli": [
       "cli-claude-code",
       "cli-codex",
+      "cli-devin",
       "cli-gemini",
       "cli-opencode"
     ],
@@ -40,12 +41,22 @@
       "siblings": {
         "cli-codex": 0.5,
         "cli-gemini": 0.5,
-        "cli-opencode": 0.5
+        "cli-opencode": 0.5,
+        "cli-devin": 0.5
       }
     },
     "cli-codex": {
       "siblings": {
         "cli-claude-code": 0.5,
+        "cli-gemini": 0.5,
+        "cli-opencode": 0.5,
+        "cli-devin": 0.5
+      }
+    },
+    "cli-devin": {
+      "siblings": {
+        "cli-claude-code": 0.5,
+        "cli-codex": 0.5,
         "cli-gemini": 0.5,
         "cli-opencode": 0.5
       }
@@ -54,14 +65,16 @@
       "siblings": {
         "cli-claude-code": 0.5,
         "cli-codex": 0.5,
-        "cli-opencode": 0.5
+        "cli-opencode": 0.5,
+        "cli-devin": 0.5
       }
     },
     "cli-opencode": {
       "siblings": {
         "cli-claude-code": 0.5,
         "cli-codex": 0.5,
-        "cli-gemini": 0.5
+        "cli-gemini": 0.5,
+        "cli-devin": 0.5
       }
     },
     "deep-agent-improvement": {
@@ -152,7 +165,8 @@
       "enhances": {
         "cli-claude-code": 0.4,
         "cli-codex": 0.4,
-        "cli-gemini": 0.4
+        "cli-gemini": 0.4,
+        "cli-devin": 0.4
       },
       "siblings": {
         "deep-agent-improvement": 0.4
@@ -189,7 +203,8 @@
         "sk-git": 0.7,
         "deep-agent-improvement": 0.7,
         "sk-prompt": 0.7,
-        "system-spec-kit": 0.7
+        "system-spec-kit": 0.7,
+        "cli-devin": 0.7
       }
     },
     "system-spec-kit": {
@@ -217,6 +232,16 @@
       "codex cli",
       "codex exec",
       "delegate to codex"
+    ],
+    "cli-devin": [
+      "devin cli",
+      "devin for terminal",
+      "delegate to devin",
+      "cli-devin",
+      "cognition devin",
+      "deepseek-v4",
+      "glm-5.1",
+      "kimi-k2.6"
     ],
     "cli-gemini": [
       "gemini cli",
@@ -412,7 +437,9 @@
   "hub_skills": [
     "cli-claude-code",
     "cli-codex",
+    "cli-devin",
     "cli-gemini",
+    "cli-opencode",
     "sk-code",
     "sk-code-review",
     "system-spec-kit"
