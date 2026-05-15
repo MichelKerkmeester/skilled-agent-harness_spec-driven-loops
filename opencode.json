@@ -12,8 +12,7 @@
       "type": "local",
       "command": [
         "npx",
-        "-y",
-        "@modelcontextprotocol/server-sequential-thinking"
+        "@modelcontextprotocol/server-sequential-thinking@2025.12.18"
       ]
     },
     "mk-spec-memory": {

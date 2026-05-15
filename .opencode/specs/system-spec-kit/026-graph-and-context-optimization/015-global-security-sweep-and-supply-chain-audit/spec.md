@@ -1,6 +1,6 @@
 ---
-title: "Global Security Sweep + Supply-Chain Audit (20 iter cli-devin SWE-1.6 + 5 iter cli-codex gpt-5.5 xhigh fast)"
-description: "Deep-research security audit of the entire Public repo + host environment after the 2026-05-15 TanStack Mini Shai-Hulud npm worm disclosure. Specifically checks for the dead-man's-switch payload (`gh-token-monitor.sh` + LaunchAgent), broader supply-chain compromise, credential exposure, persistence mechanisms, MCP/auth surface, and CI/CD/git-hook attack vectors. 25 iterations total: 20 cli-devin SWE-1.6 primary + 5 cli-codex gpt-5.5 xhigh fast verification."
+title: "Global Security Sweep + Supply-Chain Audit (20 iter cli-devin SWE-1.6 + 5 iter cli-opencode deepseek-v4-pro)"
+description: "Deep-research security audit of the entire Public repo + host environment after the 2026-05-15 TanStack Mini Shai-Hulud npm worm disclosure. Specifically checks for the dead-man's-switch payload (`gh-token-monitor.sh` + LaunchAgent), broader supply-chain compromise, credential exposure, persistence mechanisms, MCP/auth surface, and CI/CD/git-hook attack vectors. 25 iterations total: 20 cli-devin SWE-1.6 primary + 5 cli-opencode deepseek-v4-pro verification."
 trigger_phrases:
   - "015 global security sweep"
   - "Mini Shai-Hulud audit"
@@ -52,7 +52,7 @@ _memory:
 | **Trigger event** | TanStack npm supply-chain attack disclosed 2026-05-15: "Mini Shai-Hulud" — 42 official tanstack npm packages, 84 malicious versions, dead-man's-switch payload `gh-token-monitor.sh` planted as `~/.local/bin/gh-token-monitor.sh` + LaunchAgent `com.user.gh-token-monitor` (macOS) / systemd user service (Linux). Polls `api.github.com/user` every 60s; if token revoked (HTTP 40x), runs `rm -rf ~/`. Claimed to have infected 518M computers. |
 | **Initial host IOC sweep result** | ✅ No `gh-token-monitor.sh` on this host; ✅ no `com.user.gh-token-monitor*` LaunchAgents; ✅ no `@tanstack/*` packages in the Public repo. Repo is NOT directly exposed. This packet does the BROADER sweep beyond TanStack to ensure no other supply-chain vectors are compromising the host. |
 | **Executor (primary)** | `cli-devin --print --model swe-1.6 --permission-mode dangerous` (READ-ONLY review; writes confined to `research/`) |
-| **Executor (verification)** | `cli-codex --model gpt-5.5 -c model_reasoning_effort="xhigh" -c service_tier="fast" --full-auto` |
+| **Executor (verification)** | `cli-opencode run --model deepseek/deepseek-v4-pro --pure` (per memory `feedback_opencode_pure_flag_required_for_deepseek.md` + `feedback_opencode_run_requires_dev_null_stdin.md`) |
 | **Iterations** | 20 primary + 5 verification = **25 total** |
 <!-- /ANCHOR:metadata -->
 
@@ -71,7 +71,7 @@ This is NOT a TanStack-specific incident — it's a proof-of-concept for an atta
 
 ### Purpose
 
-Run 20 cli-devin SWE-1.6 deep-research iterations across 20 distinct security dimensions, then 5 cli-codex gpt-5.5 xhigh fast verification iterations, producing a `research/review-report.md` with severity-ranked findings + actionable remediation playbook. Goal: **prove the host + repo are clean OR produce a contained incident-response plan**.
+Run 20 cli-devin SWE-1.6 deep-research iterations across 20 distinct security dimensions, then 5 cli-opencode deepseek-v4-pro verification iterations, producing a `research/review-report.md` with severity-ranked findings + actionable remediation playbook. Goal: **prove the host + repo are clean OR produce a contained incident-response plan**.
 
 <!-- /ANCHOR:problem -->
 
@@ -116,7 +116,7 @@ Run 20 cli-devin SWE-1.6 deep-research iterations across 20 distinct security di
 | REQ-002 | State JSONL captures every iteration | `research/deep-research-state.jsonl` has ≥25 records (type=iteration, run, focus, findingsCount, severity counts, executor, model, timestamp). |
 | REQ-003 | Direct TanStack IOC sweep is FIRST iteration | iter-001 covers Mini Shai-Hulud IOCs explicitly with file-existence + process-listing + LaunchAgent enumeration. |
 | REQ-004 | Final synthesis review-report.md is severity-ranked | `research/review-report.md` exists with: Executive verdict (CLEAN / INDICATORS-PRESENT / COMPROMISE-CONFIRMED), severity-ranked findings (CRITICAL / HIGH / MEDIUM / LOW / INFO), dimension-by-dimension summary, remediation playbook per finding. |
-| REQ-005 | Cross-AI verification (5 cli-codex iter) follows after the 20 cli-devin iter | Iterations 021..025 use cli-codex gpt-5.5 xhigh fast to verify highest-severity findings. |
+| REQ-005 | Cross-AI verification (5 cli-opencode + deepseek-v4-pro iter) follows after the 20 cli-devin iter | Iterations 021..025 use cli-opencode deepseek-v4-pro to verify highest-severity findings. |
 
 ### P1 - Required
 
@@ -150,11 +150,11 @@ Run 20 cli-devin SWE-1.6 deep-research iterations across 20 distinct security di
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Risk | cli-devin SWE-1.6 hallucinations on specific IOC names (e.g. "found gh-token-monitor.sh" when grep returns nothing) | False positives → remediation against non-existent threats | Cross-AI verification (5 iter cli-codex) re-checks every CRITICAL/HIGH finding with file-existence proofs. Same bundle-verification gate that caught 037's P0-3 false TS-error. |
+| Risk | cli-devin SWE-1.6 hallucinations on specific IOC names (e.g. "found gh-token-monitor.sh" when grep returns nothing) | False positives → remediation against non-existent threats | Cross-AI verification (5 iter cli-opencode + deepseek-v4-pro) re-checks every CRITICAL/HIGH finding with file-existence proofs. Same bundle-verification gate that caught 037's P0-3 false TS-error. |
 | Risk | The dead-man's-switch design means revoking a stolen token TRIGGERS `rm -rf ~/` | Active remediation could destroy data | **NEVER REVOKE any token during this audit.** Just IDENTIFY exposure and document. Remediation is a separate orchestrated step with safe sequencing. |
 | Risk | A still-running malicious process could detect the audit and trigger payload | Worst case: data loss | Audit reads are passive; if a CRITICAL IOC is found, HALT and notify operator immediately for safe remediation sequencing. |
 | Risk | 25 iterations × cli credits | Cost | Sequential dispatch; abort early if convergence reached at iter ≤15. |
-| Dependency | cli-devin SWE-1.6 + cli-codex gpt-5.5 both available + authenticated | Required for full 25-iter run | Verify at iter 001 prerequisites. |
+| Dependency | cli-devin SWE-1.6 + cli-opencode deepseek-v4-pro both available + authenticated | Required for full 25-iter run | Verify at iter 001 prerequisites. |
 
 <!-- /ANCHOR:risks -->
 
@@ -170,7 +170,8 @@ Run 20 cli-devin SWE-1.6 deep-research iterations across 20 distinct security di
 
 ---
 
-## 8. ITERATION PLAN (20 cli-devin + 5 cli-codex)
+<!-- ANCHOR:iteration-plan -->
+## 8. ITERATION PLAN (20 cli-devin + 5 cli-opencode)
 
 | # | Executor | Focus | Tier |
 |---|----------|-------|------|
@@ -194,11 +195,11 @@ Run 20 cli-devin SWE-1.6 deep-research iterations across 20 distinct security di
 | 018 | cli-devin SWE-1.6 | **External-author plugins/skills/agents**: .opencode/plugins/, .opencode/skills/, .claude/agents/ | Runtime |
 | 019 | cli-devin SWE-1.6 | **Hidden network exposure**: listening sockets, open ports, MCP servers beyond localhost | Network |
 | 020 | cli-devin SWE-1.6 | **Final synthesis + severity-ranked remediation playbook** | Synthesis |
-| 021 | cli-codex gpt-5.5 xhigh fast | **Verification: highest-severity findings from iter 001-005** (active threats) | Verification |
-| 022 | cli-codex gpt-5.5 xhigh fast | **Verification: persistence findings from iter 006-010** | Verification |
-| 023 | cli-codex gpt-5.5 xhigh fast | **Verification: runtime + auth findings from iter 011-015** | Verification |
-| 024 | cli-codex gpt-5.5 xhigh fast | **Verification: code + history + CI/network findings from iter 016-019** | Verification |
-| 025 | cli-codex gpt-5.5 xhigh fast | **Final adjudication**: VERIFIED vs HALLUCINATED vs PARTIAL counts; adjusted remediation playbook | Synthesis |
+| 021 | cli-opencode + deepseek-v4-pro | **Verification: highest-severity findings from iter 001-005** (active threats) | Verification |
+| 022 | cli-opencode + deepseek-v4-pro | **Verification: persistence findings from iter 006-010** | Verification |
+| 023 | cli-opencode + deepseek-v4-pro | **Verification: runtime + auth findings from iter 011-015** | Verification |
+| 024 | cli-opencode + deepseek-v4-pro | **Verification: code + history + CI/network findings from iter 016-019** | Verification |
+| 025 | cli-opencode + deepseek-v4-pro | **Final adjudication**: VERIFIED vs HALLUCINATED vs PARTIAL counts; adjusted remediation playbook | Synthesis |
 
 <!-- /ANCHOR:iteration-plan -->
 

@@ -4,7 +4,7 @@ approval_policy = "never"
 sandbox_mode = "danger-full-access"
 [mcp_servers.sequential_thinking]
 command = "npx"
-args = ["-y", "@modelcontextprotocol/server-sequential-thinking"]
+args = ["@modelcontextprotocol/server-sequential-thinking@2025.12.18"]
  
 [mcp_servers."mk-spec-memory"]
 command = "node"

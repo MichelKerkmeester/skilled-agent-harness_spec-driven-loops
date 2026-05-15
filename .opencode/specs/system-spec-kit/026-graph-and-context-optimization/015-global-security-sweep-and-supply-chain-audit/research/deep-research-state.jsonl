@@ -1,0 +1,32 @@
+{"type":"campaign_start","packet":"015-global-security-sweep-and-supply-chain-audit","totalIterations":25,"executors":{"1-20":"cli-devin/swe-1.6","21-25":"cli-codex/gpt-5.5/xhigh/fast"},"triggeredBy":"TanStack-Mini-Shai-Hulud-2026-05-15","startedAt":"2026-05-15T18:37:42.553981Z"}
+{"type":"iteration","run":1,"executor":"cli-devin","model":"swe-1.6","exitCode":0,"durationSec":61,"linesWritten":      21,"timestamp":"2026-05-15T18:40:26Z"}
+{"type":"iteration","run":2,"executor":"cli-devin","model":"swe-1.6","exitCode":0,"durationSec":84,"linesWritten":      18,"timestamp":"2026-05-15T18:41:53Z"}
+{"type":"iteration","run":3,"executor":"cli-devin","model":"swe-1.6","exitCode":0,"durationSec":31,"linesWritten":       8,"timestamp":"2026-05-15T18:42:27Z"}
+{"type":"iteration","run":4,"executor":"cli-devin","model":"swe-1.6","exitCode":0,"durationSec":39,"linesWritten":      14,"timestamp":"2026-05-15T18:43:09Z"}
+{"type":"iteration","run":5,"executor":"cli-devin","model":"swe-1.6","exitCode":0,"durationSec":74,"linesWritten":      16,"timestamp":"2026-05-15T18:44:26Z"}
+{"type":"iteration","run":6,"executor":"cli-devin","model":"swe-1.6","exitCode":0,"durationSec":47,"linesWritten":      10,"timestamp":"2026-05-15T18:45:16Z"}
+{"type":"iteration","run":7,"executor":"cli-devin","model":"swe-1.6","exitCode":0,"durationSec":50,"linesWritten":      14,"timestamp":"2026-05-15T18:46:09Z"}
+{"type":"iteration","run":8,"executor":"cli-devin","model":"swe-1.6","exitCode":0,"durationSec":42,"linesWritten":      14,"timestamp":"2026-05-15T18:46:54Z"}
+{"type":"iteration","run":9,"executor":"cli-devin","model":"swe-1.6","exitCode":0,"durationSec":40,"linesWritten":      22,"timestamp":"2026-05-15T18:47:37Z"}
+{"type":"iteration","run":10,"executor":"cli-devin","model":"swe-1.6","exitCode":0,"durationSec":41,"linesWritten":       8,"timestamp":"2026-05-15T18:48:21Z"}
+{"type":"iteration","run":11,"executor":"cli-devin","model":"swe-1.6","exitCode":0,"durationSec":56,"linesWritten":       9,"timestamp":"2026-05-15T18:49:20Z"}
+{"type":"iteration","run":12,"executor":"cli-devin","model":"swe-1.6","exitCode":0,"durationSec":76,"linesWritten":      18,"timestamp":"2026-05-15T18:50:39Z"}
+{"type":"iteration","run":13,"executor":"cli-devin","model":"swe-1.6","exitCode":0,"durationSec":24,"linesWritten":      11,"timestamp":"2026-05-15T18:51:06Z"}
+{"type":"iteration","run":15,"executor":"cli-devin","model":"swe-1.6","exitCode":0,"durationSec":74,"linesWritten":      19,"timestamp":"2026-05-15T18:56:52Z"}
+{"type":"iteration","run":16,"focus":"Suspicious Commit Patterns","findingsCritical":0,"findingsHigh":0,"findingsMedium":0,"findingsLow":0,"findingsInfo":7,"newInfoRatio":0.15,"executor":"cli-devin","model":"swe-1.6","durationSec":126,"timestamp":"2026-05-15T18:57:58Z"}
+{"type":"iteration","run":16,"executor":"cli-devin","model":"swe-1.6","exitCode":0,"durationSec":70,"linesWritten":      49,"timestamp":"2026-05-15T18:58:05Z"}
+{"type":"iteration","run":17,"executor":"cli-devin","model":"swe-1.6","exitCode":0,"durationSec":37,"linesWritten":      12,"timestamp":"2026-05-15T18:58:45Z"}
+{"type":"iteration","run":18,"executor":"cli-devin","model":"swe-1.6","exitCode":0,"durationSec":53,"linesWritten":      16,"timestamp":"2026-05-15T18:59:41Z"}
+{"type":"iteration","run":19,"executor":"cli-devin","model":"swe-1.6","exitCode":0,"durationSec":37,"linesWritten":       5,"timestamp":"2026-05-15T19:00:21Z"}
+{"type":"iteration","run":20,"focus":"Final Synthesis + Remediation Playbook","findingsCritical":2,"findingsHigh":8,"findingsMedium":12,"findingsLow":13,"findingsInfo":7,"newInfoRatio":0.85,"executor":"cli-devin","model":"swe-1.6","durationSec":86,"timestamp":"2026-05-15T19:01:26Z"}
+{"type":"iteration","run":20,"executor":"cli-devin","model":"swe-1.6","exitCode":0,"durationSec":78,"linesWritten":      80,"timestamp":"2026-05-15T19:01:42Z"}
+{"type":"iteration","run":21,"focus":"VERIFICATION of iter 001-005 Active Threats","findingsCritical":0,"findingsHigh":2,"findingsMedium":3,"findingsLow":2,"findingsInfo":5,"newInfoRatio":0.25,"executor":"cli-opencode","model":"deepseek/deepseek-v4-pro","durationSec":180,"timestamp":"2026-05-15T19:06:00Z"}
+{"type":"iteration","run":21,"executor":"cli-opencode","model":"deepseek/deepseek-v4-pro","exitCode":0,"durationSec":268,"linesWritten":      64,"timestamp":"2026-05-15T19:06:13Z"}
+{"type":"iteration","run":22,"focus":"VERIFICATION of iter 006-010 Persistence","findingsCritical":0,"findingsHigh":1,"findingsMedium":4,"findingsLow":2,"findingsInfo":5,"newInfoRatio":0.20,"executor":"cli-opencode","model":"deepseek/deepseek-v4-pro","durationSec":120,"timestamp":"2026-05-15T19:12:00Z"}
+{"type":"iteration","run":22,"executor":"cli-opencode","model":"deepseek/deepseek-v4-pro","exitCode":0,"durationSec":245,"linesWritten":      61,"timestamp":"2026-05-15T19:10:21Z"}
+{"type":"iteration","run":23,"focus":"VERIFICATION of iter 011-015 Runtime + Auth","findingsCritical":3,"findingsHigh":3,"findingsMedium":3,"findingsLow":2,"findingsInfo":3,"newInfoRatio":0.42,"executor":"cli-opencode","model":"deepseek/deepseek-v4-pro","durationSec":178,"timestamp":"2026-05-15T19:13:38Z"}
+{"type":"iteration","run":23,"executor":"cli-opencode","model":"deepseek/deepseek-v4-pro","exitCode":0,"durationSec":336,"linesWritten":      61,"timestamp":"2026-05-15T19:16:00Z"}
+{"type":"iteration","run":24,"focus":"VERIFICATION of iter 016-019 Code + History + CI + Network","findingsCritical":0,"findingsHigh":5,"findingsMedium":3,"findingsLow":4,"findingsInfo":8,"newInfoRatio":0.20,"executor":"cli-opencode","model":"deepseek/deepseek-v4-pro","durationSec":180,"timestamp":"2026-05-15T19:21:16Z"}
+{"type":"iteration","run":24,"executor":"cli-opencode","model":"deepseek/deepseek-v4-pro","exitCode":0,"durationSec":326,"linesWritten":      69,"timestamp":"2026-05-15T19:21:29Z"}
+{"type": "iteration", "run": 25, "focus": "FINAL ADJUDICATION", "findingsCritical": 3, "findingsHigh": 8, "findingsMedium": 8, "findingsLow": 5, "findingsInfo": 5, "newInfoRatio": 0.05, "executor": "cli-opencode", "model": "deepseek/deepseek-v4-pro", "durationSec": 210, "timestamp": "2026-05-15T19:26:55Z"}
+{"type":"iteration","run":25,"executor":"cli-opencode","model":"deepseek/deepseek-v4-pro","exitCode":0,"durationSec":347,"linesWritten":     122,"timestamp":"2026-05-15T19:27:19Z"}
