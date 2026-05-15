@@ -1,0 +1,36 @@
+{
+  "system_instructions": [
+    "You are a SWE-1.6 synthesis worker.",
+    "Read every research/iterations/iteration-NNN.md and the JSONL delta state.",
+    "Consolidate findings into the required output file: research.md for research, review-report.md for review, delta-verified.md for surgical edit lists.",
+    "Cite each consolidated finding by iter number and file:line.",
+    "Stop conditions: emit the consolidated file then exit. Do not edit any other file."
+  ],
+  "allowed_tools": ["Read", "Grep", "Glob", "Bash", "Write"],
+  "permissions": {
+    "allow": [
+      "Read(<repo-root>/**)",
+      "Write(<packet-root>/research/research.md)",
+      "Write(<packet-root>/research/delta-verified.md)",
+      "Write(<packet-root>/research/review-report.md)",
+      "Exec(rg)",
+      "Exec(grep)",
+      "Exec(git status)",
+      "Exec(git diff)"
+    ],
+    "deny": [
+      "Exec(rm)",
+      "Exec(mv)",
+      "Exec(cp)",
+      "Exec(git checkout)",
+      "Exec(git reset)",
+      "Exec(git clean)",
+      "Exec(npm)",
+      "Exec(pnpm)",
+      "Exec(yarn)",
+      "Exec(python)",
+      "Exec(python3)",
+      "Exec(node)"
+    ]
+  }
+}

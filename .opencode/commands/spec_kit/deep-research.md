@@ -76,7 +76,7 @@ PRE-BOUND SETUP ANSWERS:
   execution_mode: AUTONOMOUS  # from :auto suffix
   maxIterations: 10  # positive integer
   convergenceThreshold: 0.05  # decimal 0..1
-  executor: native  # native | cli-codex | cli-gemini | cli-claude-code
+  executor: native  # native | cli-codex | cli-gemini | cli-claude-code | cli-opencode | cli-devin
   executor_model: ""  # optional executor-specific model id
   executor_reasoning: ""  # optional reasoning effort
   executor_service_tier: ""  # optional service tier
@@ -121,7 +121,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    |-- --max-iterations=N -> maxIterations = N
    |-- --convergence=N -> convergenceThreshold = N
    |-- --spec-folder=PATH -> spec_path = PATH, omit Q1
-   |-- --executor=<type> -> config.executor.type (`native` | `cli-codex`)
+   |-- --executor=<type> -> config.executor.type (`native` | `cli-codex` | `cli-gemini` | `cli-claude-code` | `cli-opencode` | `cli-devin`)
    |-- --model=<id> -> config.executor.model (for example `gpt-5.4`)
    |-- --reasoning-effort=<level> -> config.executor.reasoningEffort (`none` | `minimal` | `low` | `medium` | `high` | `xhigh`)
    |-- --service-tier=<tier> -> config.executor.serviceTier (`priority` | `standard` | `fast`)
@@ -175,6 +175,8 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
      B) cli-codex — `codex exec` with --model X -c model_reasoning_effort -c service_tier.
      C) cli-gemini — `gemini "PROMPT" -m gemini-3.1-pro-preview -y -o text`. Single supported model currently. No reasoning-effort or service-tier.
      D) cli-claude-code — `claude -p "PROMPT" --model X --permission-mode acceptEdits` with optional --effort. No service-tier.
+     E) cli-opencode — `opencode run --model X --agent general --format json --dangerously-skip-permissions --pure --dir {repo_root} [--variant Y] "PROMPT" </dev/null`. `reasoningEffort` maps to `--variant`. No service-tier.
+     F) cli-devin — `devin --print --prompt-file ... --model X --permission-mode auto`. Default model swe-1.6. No reasoning-effort or service-tier.
 
    Reply format examples:
    - `"A, A"`

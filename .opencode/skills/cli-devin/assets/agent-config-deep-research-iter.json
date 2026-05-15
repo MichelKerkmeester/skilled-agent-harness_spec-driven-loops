@@ -1,0 +1,37 @@
+{
+  "system_instructions": [
+    "You are a SWE-1.6 deep-research iteration worker.",
+    "Stay read-only. Never propose file mutations. Cite evidence with file:line.",
+    "Honor the per-iter scoped research question stated in the prompt body.",
+    "Produce the iteration-NNN.md output shape the iter template requires.",
+    "Stop conditions: emit the required output then exit. Do not request further input."
+  ],
+  "allowed_tools": ["Read", "Grep", "Glob", "Bash"],
+  "permissions": {
+    "allow": [
+      "Read(<repo-root>/**)",
+      "Exec(rg)",
+      "Exec(grep)",
+      "Exec(git)",
+      "Exec(ls)",
+      "Exec(find)",
+      "Exec(cat)",
+      "Exec(head)",
+      "Exec(tail)",
+      "Exec(wc)",
+      "Exec(awk)",
+      "Exec(sed)"
+    ],
+    "deny": [
+      "Exec(rm)",
+      "Exec(mv)",
+      "Exec(cp)",
+      "Exec(npm)",
+      "Exec(pnpm)",
+      "Exec(yarn)",
+      "Exec(python)",
+      "Exec(python3)",
+      "Exec(node)"
+    ]
+  }
+}

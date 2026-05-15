@@ -2,7 +2,7 @@
 name: cli-devin
 description: "Devin CLI orchestrator: dispatch Cognition AI's 'Devin for Terminal' for autonomous coding work with optional local-to-cloud handoff."
 allowed-tools: [Bash, Read, Glob, Grep]
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 <!-- Keywords: devin, devin-cli, devin-for-terminal, cognition, swe-1.6, deepseek-v4, glm-5.1, kimi-k2.6, cloud-handoff, autonomous-agent, cross-ai, mcp, acp, permission-modes, complex-task-fallback -->
@@ -358,6 +358,7 @@ devin update
 10. **Code Standards Loading (surface-aware contract)** — When dispatching for code generation or review, instruct the dispatched Devin session to: (1) load `sk-code`; (2) let `sk-code` emit a surface tag matching the detected stack; (3) load the selected surface resources and run its verification commands; (4) add `sk-code-review` only for formal findings-first review output. Fallback: ask for the runtime surface and verification command set if detection is ambiguous.
 11. Validate Devin-generated code (XSS, injection, eval, syntax checks, surface-specific lint/test) before merging.
 12. **SWE-1.6 Prompt-Quality Contract** (v1.0.2.0+) — EVERY dispatch with `--model swe-1.6` MUST (a) be composed through `sk-prompt` with a chosen framework (STAR / RCAF / BUILD) and a passing CLEAR 5-check, AND (b) include an explicit pre-planning block in the prompt body: ordered steps + per-step acceptance criteria + stop conditions + verification approach. SWE-1.6 is coding-specialized but smaller than the complex-task models — it relies on the calling AI doing the structural decomposition upfront. See `assets/prompt_templates.md` §2 for the canonical pre-planning template.
+13. **Deep-Loop Iter Contract** (v1.0.3.0+) — when cli-devin is dispatched as the executor for `/spec_kit:deep-research` or `/spec_kit:deep-review` per-iter workers, ALSO pass `--agent-config <path>` pointing at one of the three pinned recipes in `assets/` (research-iter / review-iter / synthesis). The recipe enforces tool allowlist and scoped permission entries (`Read(/path/**)`, `Exec(<cmd>)`) at Devin's strict parser, so the iter cannot drift outside the read-only-research, read-only-review, or scoped-write-synthesis profile. See [`references/deep-loop-iter-contract.md`](./references/deep-loop-iter-contract.md) for the full contract and [`references/agent-config-recipes.md`](./references/agent-config-recipes.md) for per-recipe wording, allowlist rationale, and copy-paste invocations.
 
 ### ❌ NEVER
 
@@ -399,6 +400,8 @@ printf '%s' "$JSON_PAYLOAD" | node .opencode/skills/system-spec-kit/scripts/dist
 - [devin_tools.md](./references/devin_tools.md) — Unique Devin capabilities and cross-CLI comparison
 - [agent_delegation.md](./references/agent_delegation.md) — (model, permission-mode, prompt-file) routing analog
 - [cloud_handoff.md](./references/cloud_handoff.md) — Devin-unique local→cloud handoff narrative + operator-confirmation gate
+- [deep-loop-iter-contract.md](./references/deep-loop-iter-contract.md) — Deep-research / deep-review per-iter contract (model, permission-mode, agent-config recipe selection, prompt body shape)
+- [agent-config-recipes.md](./references/agent-config-recipes.md) — Canonical agent-config JSON shapes for research-iter / review-iter / synthesis dispatches
 
 ### Templates and Assets
 
