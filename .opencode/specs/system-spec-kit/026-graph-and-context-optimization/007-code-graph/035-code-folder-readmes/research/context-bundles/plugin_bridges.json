@@ -1,0 +1,26 @@
+{
+  "folder_path": ".opencode/skills/system-code-graph/mcp_server/plugin_bridges/",
+  "folder_role": "This folder owns the CLI bridge that connects spec-kit session resume operations to the code-graph MCP server runtime, enabling plugin injection during context compaction.",
+  "file_inventory": [
+    {
+      "filename": "spec-kit-compact-code-graph-bridge.mjs",
+      "extension": ".mjs",
+      "size_bytes": 3248,
+      "role": "CLI entrypoint that initializes code-graph runtime, calls session resume handler, and outputs the transport payload for spec-kit plugin injection.",
+      "exports": []
+    }
+  ],
+  "architecture_observation": "This is a standalone CLI bridge that initializes the code-graph runtime (vector index and session manager), calls the session resume handler, and outputs the transport payload. It lives outside the .opencode/plugins/ directory to avoid OpenCode plugin discovery, serving as a targeted integration point for spec-kit context compaction workflows.",
+  "public_entrypoints": [
+    {
+      "name": "spec-kit-compact-code-graph-bridge.mjs",
+      "type": "cli",
+      "purpose": "CLI executable that bridges spec-kit session resume to code-graph runtime, supporting --minimal and --spec-folder flags."
+    }
+  ],
+  "internal_imports": ["../dist/handlers/session-resume.js", "../dist/lib/search/vector-index.js", "../dist/lib/session/session-manager.js"],
+  "external_imports": [],
+  "integration_notes": "This bridge is invoked by spec-kit during context compaction to retrieve code-graph context for injection into the compacted session. It requires the MCP server to be built (dist/ directory present).",
+  "validation_commands": ["node .opencode/skills/system-code-graph/mcp_server/plugin_bridges/spec-kit-compact-code-graph-bridge.mjs --help"],
+  "key_invariants": ["Bridge requires compiled dist/ directory from the MCP server", "Runtime initialization must succeed before session resume is called", "Output is JSON text payload on stdout, errors on stderr"]
+}

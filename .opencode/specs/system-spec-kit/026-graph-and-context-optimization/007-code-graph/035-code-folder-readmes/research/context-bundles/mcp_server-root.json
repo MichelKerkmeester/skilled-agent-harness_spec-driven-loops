@@ -1,0 +1,101 @@
+{
+  "folder_path": ".opencode/skills/system-code-graph/mcp_server/",
+  "folder_role": "This folder is the MCP server entry point for the mk-code-index system, serving as the main barrel that exports tool schemas and initializes the MCP server instance with tool dispatching capabilities.",
+  "file_inventory": [
+    {
+      "filename": "index.ts",
+      "extension": ".ts",
+      "size_bytes": 1221,
+      "role": "Main MCP server entry point that initializes the Model Context Protocol server, registers tool schemas, and dispatches tool calls to the handlers.",
+      "exports": []
+    },
+    {
+      "filename": "index.js",
+      "extension": ".js",
+      "size_bytes": 899,
+      "role": "Compiled JavaScript version of the MCP server entry point for runtime execution.",
+      "exports": []
+    },
+    {
+      "filename": "index.d.ts",
+      "extension": ".d.ts",
+      "size_bytes": 66,
+      "role": "TypeScript declaration file for the index module.",
+      "exports": []
+    },
+    {
+      "filename": "tool-schemas.ts",
+      "extension": ".ts",
+      "size_bytes": 14980,
+      "role": "TypeScript source defining all code graph tool schemas and re-exporting validation utilities from system-spec-kit.",
+      "exports": ["getSchema", "getToolSchema", "validateToolArgs", "ToolDefinition", "CODE_GRAPH_TOOL_SCHEMAS", "TOOL_DEFINITIONS"]
+    },
+    {
+      "filename": "tool-schemas.js",
+      "extension": ".js",
+      "size_bytes": 15566,
+      "role": "Compiled JavaScript version of tool schemas for runtime execution.",
+      "exports": ["getSchema", "getToolSchema", "validateToolArgs", "CODE_GRAPH_TOOL_SCHEMAS", "TOOL_DEFINITIONS"]
+    },
+    {
+      "filename": "tool-schemas.d.ts",
+      "extension": ".d.ts",
+      "size_bytes": 454,
+      "role": "TypeScript declarations for tool schemas module.",
+      "exports": ["getSchema", "getToolSchema", "validateToolArgs", "ToolDefinition", "CODE_GRAPH_TOOL_SCHEMAS", "TOOL_DEFINITIONS"]
+    }
+  ],
+  "architecture_observation": "This is a barrel/index pattern folder that serves as the MCP server entry point. The architecture follows a server initialization pattern where index.ts bootstraps the MCP server, registers tool schemas from tool-schemas.ts, and dispatches calls to the tools/ subdirectory handlers. The folder acts as the public face of the mcp_server package, with implementation details delegated to sibling subdirectories (tools/, handlers/, lib/, core/, database/).",
+  "public_entrypoints": [
+    {
+      "name": "CODE_GRAPH_TOOL_SCHEMAS",
+      "type": "const",
+      "purpose": "Array of tool schema definitions for all code graph MCP tools."
+    },
+    {
+      "name": "TOOL_DEFINITIONS",
+      "type": "const",
+      "purpose": "Compatibility alias for CODE_GRAPH_TOOL_SCHEMAS."
+    },
+    {
+      "name": "getSchema",
+      "type": "function",
+      "purpose": "Schema retrieval utility re-exported from system-spec-kit."
+    },
+    {
+      "name": "getToolSchema",
+      "type": "function",
+      "purpose": "Tool-specific schema retrieval utility re-exported from system-spec-kit."
+    },
+    {
+      "name": "validateToolArgs",
+      "type": "function",
+      "purpose": "Argument validation utility re-exported from system-spec-kit."
+    },
+    {
+      "name": "mk-code-index MCP server",
+      "type": "cli",
+      "purpose": "MCP server executable that exposes code graph tools via stdio transport."
+    }
+  ],
+  "internal_imports": [
+    "./tools/index.js",
+    "./lib/readiness-marker.js"
+  ],
+  "external_imports": [
+    "@modelcontextprotocol/sdk/server/index.js",
+    "@modelcontextprotocol/sdk/server/stdio.js",
+    "@modelcontextprotocol/sdk/types.js"
+  ],
+  "integration_notes": "Callers reach this folder via direct CLI execution of index.ts as the mk-code-index MCP server, or by importing CODE_GRAPH_TOOL_SCHEMAS from tool-schemas.ts for schema introspection. The MCP server is registered in MCP client configurations and communicates via stdio transport. The readiness marker write in index.ts ensures the code graph database is initialized before serving requests.",
+  "validation_commands": [
+    "cd .opencode/skills/system-code-graph/mcp_server && node index.js --help",
+    "cd .opencode/skills/system-code-graph && npm test"
+  ],
+  "key_invariants": [
+    "index.ts MUST remain executable as the MCP server entry point with stdio transport.",
+    "CODE_GRAPH_TOOL_SCHEMAS export MUST stay backward-compatible as the public API for tool registration.",
+    "Tool schema definitions in tool-schemas.ts MUST match the actual handler implementations in tools/ subdirectory.",
+    "Re-exports from system-spec-kit schemas (getSchema, getToolSchema, validateToolArgs) MUST remain synchronized with the source."
+  ]
+}

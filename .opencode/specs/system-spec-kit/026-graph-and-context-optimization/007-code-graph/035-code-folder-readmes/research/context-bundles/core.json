@@ -1,0 +1,26 @@
+{
+  "folder_path": ".opencode/skills/system-code-graph/mcp_server/core/",
+  "folder_role": "This folder owns the configuration constants for the code-graph MCP server, specifically the database directory resolution and initialization.",
+  "file_inventory": [
+    {
+      "filename": "config.ts",
+      "extension": ".ts",
+      "size_bytes": 415,
+      "role": "Defines and exports the DATABASE_DIR constant, resolving it from environment variable or default path and ensuring the directory exists.",
+      "exports": ["DATABASE_DIR"]
+    }
+  ],
+  "architecture_observation": "This is a minimal configuration module that resolves the database directory from environment variables or defaults, creating the directory if needed. It has no dependencies on other core modules and serves as a foundational configuration layer for the MCP server.",
+  "public_entrypoints": [
+    {
+      "name": "DATABASE_DIR",
+      "type": "const",
+      "purpose": "Provides the absolute path to the code-graph database directory, used by vector index and session manager modules."
+    }
+  ],
+  "internal_imports": [],
+  "external_imports": ["node:fs", "node:path", "node:url"],
+  "integration_notes": "This module is imported by other MCP server modules that need to know the database location, particularly the vector index and session manager initialization code.",
+  "validation_commands": [],
+  "key_invariants": ["DATABASE_DIR is always a valid, existing directory after module load", "Environment variable SPECKIT_CODE_GRAPH_DB_DIR takes precedence over default path"]
+}
