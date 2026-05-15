@@ -1,1 +1,4 @@
 {"type":"config","topic":"058-skill-md-realignment","maxIterations":20,"tracks":8,"executor":"cli-devin-swe-1.6","writer":"sonnet-markdown","permission_mode":"auto","started_at":"2026-05-15T17:17:12Z","convergence":"fixed 20-iter sweep, no early stop","authority_skill_md":"/.opencode/skills/sk-doc/assets/skill/skill_md_template.md","authority_mcp_readme":"/.opencode/skills/system-spec-kit/mcp_server/README.md"}
+{"type":"iteration","iteration":1,"track":1,"newInfoRatio":0.00,"status":"complete","focus":"system-spec-kit/SKILL.md drift survey","findings":5,"timestamp":"2026-05-15T17:19:59Z"}
+{"type":"iteration","iteration":2,"track":1,"newInfoRatio":1.00,"status":"complete","focus":"system-spec-kit/SKILL.md anchor gap","findings":7,"timestamp":"2026-05-15T17:19:59Z"}
+{"type":"iteration","iteration":3,"track":1,"newInfoRatio":0.85,"status":"complete","focus":"system-spec-kit/SKILL.md content drift","findings":6,"timestamp":"2026-05-15T17:19:59Z"}
