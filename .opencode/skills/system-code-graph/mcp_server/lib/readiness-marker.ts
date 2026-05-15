@@ -17,7 +17,7 @@ import type {
 
 export const CODE_GRAPH_READINESS_MARKER_BASE_DIR = resolve(
   process.cwd(),
-  '.opencode/skills/system-code-graph/mcp_server/database',
+  process.env.SPECKIT_CODE_GRAPH_DB_DIR || '.opencode/.spec-kit/code-graph/database',
 );
 export const CODE_GRAPH_READINESS_MARKER_PATH = resolve(CODE_GRAPH_READINESS_MARKER_BASE_DIR, '.code-graph-readiness.json');
 

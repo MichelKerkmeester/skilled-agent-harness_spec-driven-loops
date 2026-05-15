@@ -1,0 +1,23 @@
+{
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/039-system-code-graph-deferred-followon",
+  "description": "Feature Specification: system-code-graph Deferred Follow-on",
+  "keywords": [
+    "feature",
+    "specification",
+    "system-code-graph",
+    "deferred",
+    "follow-on"
+  ],
+  "lastUpdated": "2026-05-15T18:08:38.450Z",
+  "specId": "039",
+  "folderSlug": "system-code-graph-deferred-followon",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "007-code-graph"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "15-05-26_19-08__manual-context-save.md"
+  ]
+}

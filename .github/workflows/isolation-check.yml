@@ -40,17 +40,29 @@ jobs:
           fi
           echo "✅ No cross-skill imports found."
       # TODO(packet 040 or follow-on): flip to blocking once full decoupling lands.
-      - name: code-graph isolation: reverse-direction import audit
+      - name: Audit code-graph MCP source for system-spec-kit imports (reverse direction)
         run: |
           set -euo pipefail
           # Audit code-graph MCP source for system-spec-kit imports.
-          # Currently non-blocking: code-graph legitimately consumes @spec-kit/shared types.
-          COUNT=$(rg -l "from ['\"]\.\./(.+/)?system-spec-kit\b" \
+          # Blocking: code-graph MUST NOT import from system-spec-kit after Path-1 isolation refactor.
+          # Only production source files are checked; tests and stress_test are excluded.
+          MATCHES=$(rg -n "from ['\"][^'\"]*system-spec-kit" \
             .opencode/skills/system-code-graph/mcp_server/ \
-            --type ts --type tsx | wc -l | tr -d ' ')
-          echo "code-graph→spec-kit import files: ${COUNT} (expected: 11+ production files contain @spec-kit/shared imports)"
-          echo "count=${COUNT}" >> "$GITHUB_STEP_SUMMARY"
-          echo "Non-blocking: failure to be enabled when full decoupling lands (packet 040)."
+            --type ts \
+            --glob '!**/dist/**' \
+            --glob '!**/node_modules/**' \
+            --glob '!**/tests/**' \
+            --glob '!**/stress_test/**' \
+            || true)
+          if [ -n "$MATCHES" ]; then
+            echo "::error::Cross-skill imports detected in code-graph/mcp_server/ (reverse direction)."
+            echo "$MATCHES"
+            echo ""
+            echo "Per the Path-1 isolation refactor, system-code-graph MUST NOT import from system-spec-kit at the TypeScript source level."
+            echo "Use the local utility copies under lib/shared/ instead."
+            exit 1
+          fi
+          echo "✅ No reverse-direction cross-skill imports found."
       - name: Audit spec-kit MCP source for system-skill-advisor imports
         run: |
           set -euo pipefail

@@ -39,13 +39,13 @@
 // deterministic for a given workspace root (process.cwd()).
 // ───────────────────────────────────────────────────────────────
 
-import { existsSync, readdirSync, statSync } from 'node:fs';
+import { existsSync, statSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
 import { resolve } from 'node:path';
 
 import { canonicalReadinessFromFreshness, queryTrustStateFromFreshness } from './readiness-contract.js';
 import type { StructuralReadiness } from './ops-hardening.js';
-import type { SharedPayloadTrustState } from '../../../system-spec-kit/mcp_server/lib/context/shared-payload.js';
+import type { SharedPayloadTrustState } from './shared/shared-payload.js';
 import type { ReadyAction } from './ensure-ready.js';
 
 // ───────────────────────────────────────────────────────────────
@@ -106,89 +106,26 @@ function buildReadiness(
 }
 
 /**
- * Find the most recent modification time (mtime) across all files in a
- * directory tree, recursively. Returns 0 if the directory does not exist
- * or is empty.
+ * Determine if the CocoIndex index is stale.
  *
- * Uses a synchronous walk capped at a reasonable scan depth to avoid
- * excessive I/O on large workspaces.
+ * Staleness is detected when the index directory's newest modification
+ * time is older than the staleness threshold (24h by default). This
+ * approximates "index is older than the most recent source-file
+ * modification" without requiring an expensive full-workspace stat walk.
+ *
+ * The 24h threshold is the same guard used by the ensure_ready.sh
+ * readiness probe and provides a pragmatic signal for long-running
+ * CI/IDE sessions where the index may drift from current source without
+ * every status call triggering an expensive source-scan comparison.
  */
-function findNewestFileMtime(dirPath: string): number {
-  let newest = 0;
-  const stack = [dirPath];
-  const MAX_DEPTH = 20;
-
-  // Breadcrumb-based depth tracking
-  const depthStack = [0];
-
-  while (stack.length > 0) {
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    const current = stack.pop()!;
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    const depth = depthStack.pop()!;
-
-    if (depth > MAX_DEPTH) continue;
-
-    try {
-      const stat = statSync(current);
-      if (stat.mtimeMs > newest) {
-        newest = stat.mtimeMs;
-      }
-
-      if (stat.isDirectory()) {
-        // Use { withFileTypes: true } for faster iteration
-        // Node's readdirSync with withFileTypes returns Dirent[]
-        const entries = require('node:fs').readdirSync(current, { withFileTypes: true }) as Array<{
-          name: string;
-          isDirectory(): boolean;
-          isFile(): boolean;
-        }>;
-        for (const entry of entries) {
-          const fullPath = resolve(current, entry.name);
-          try {
-            const entryStat = statSync(fullPath);
-            if (entryStat.mtimeMs > newest) {
-              newest = entryStat.mtimeMs;
-            }
-            if (entryStat.isDirectory()) {
-              stack.push(fullPath);
-              depthStack.push(depth + 1);
-            }
-          } catch {
-            // Permission errors, broken symlinks — skip
-          }
-        }
-      }
-    } catch {
-      // Permission errors, broken symlinks — skip
-    }
+function isIndexStale(indexDir: string): boolean {
+  try {
+    const st = statSync(indexDir);
+    const ageMs = Date.now() - st.mtimeMs;
+    return ageMs >= STALE_THRESHOLD_MS;
+  } catch {
+    return false;
   }
-
-  return newest;
-}
-
-/**
- * Determine if the CocoIndex index is stale by comparing the index
- * directory's newest mtime against the workspace source tree's newest
- * mtime.
- *
- * A staleness guard (24h threshold) prevents false-positive 'stale'
- * results when source modifications are very recent and the index
- * simply hasn't caught up yet.
- */
-function isIndexStale(workspaceRoot: string): boolean {
-  const indexDir = resolve(workspaceRoot, '.cocoindex_code');
-  if (!existsSync(indexDir)) return false;
-
-  const indexNewest = findNewestFileMtime(indexDir);
-  if (indexNewest === 0) return false;
-
-  const sourceNewest = findNewestFileMtime(workspaceRoot);
-  if (sourceNewest === 0) return false;
-
-  // Index is stale if its newest file is older than the workspace's
-  // newest file by more than the staleness threshold.
-  return (sourceNewest - indexNewest) >= STALE_THRESHOLD_MS;
 }
 
 /**
@@ -232,7 +169,7 @@ async function probeCocoIndexReadinessUncached(
   }
 
   // 4. Staleness check
-  if (isIndexStale(workspaceRoot)) {
+  if (isIndexStale(indexDir)) {
     return buildReadiness('stale', 'cocoindex_index_older_than_source');
   }
 

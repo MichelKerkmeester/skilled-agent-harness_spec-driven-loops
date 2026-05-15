@@ -107,7 +107,7 @@ Each runtime expects an MCP server entry with the same launcher invocation. The 
       "type": "local",
       "command": ["node", ".opencode/bin/mk-code-index-launcher.cjs"],
       "environment": {
-        "_NOTE_1_DB": "Database lives at .opencode/skills/system-code-graph/mcp_server/database/code-graph.sqlite by default; SPECKIT_CODE_GRAPH_DB_DIR overrides.",
+        "_NOTE_1_DB": "Database lives at .opencode/.spec-kit/code-graph/database/code-graph.sqlite by default; SPECKIT_CODE_GRAPH_DB_DIR overrides.",
         "_NOTE_2_TOOLS": "Registers 10 tools: code_graph_scan/query/context/status/verify/apply, detect_changes, ccc_status/reindex/feedback. MCP namespace: mcp__mk_code_index__*",
         "_NOTE_3_INDEX_DEFAULTS": "INDEX_* committed defaults are false (end-user safe). Maintainer mode: set SPECKIT_CODE_GRAPH_MAINTAINER_MODE=true in .env.local (gitignored); the launcher will force all 5 INDEX_* to true at startup.",
         "SPECKIT_CODE_GRAPH_INDEX_SKILLS": "false",
@@ -129,7 +129,7 @@ command = "node"
 args = [".opencode/bin/mk-code-index-launcher.cjs"]
 
 [mcp_servers.mk_code_index.env]
-_NOTE_1_DB = "Database lives at .opencode/skills/system-code-graph/mcp_server/database/code-graph.sqlite by default; SPECKIT_CODE_GRAPH_DB_DIR overrides."
+_NOTE_1_DB = "Database lives at .opencode/.spec-kit/code-graph/database/code-graph.sqlite by default; SPECKIT_CODE_GRAPH_DB_DIR overrides."
 _NOTE_2_TOOLS = "Registers 10 tools: code_graph_scan/query/context/status/verify/apply, detect_changes, ccc_status/reindex/feedback. MCP namespace: mcp__mk_code_index__*"
 SPECKIT_CODE_GRAPH_INDEX_SKILLS = "false"
 SPECKIT_CODE_GRAPH_INDEX_AGENTS = "false"
@@ -207,9 +207,13 @@ Current code-graph baseline:
 
 ### Database location
 
-Default: `.opencode/skills/system-code-graph/mcp_server/database/code-graph.sqlite`.
+Default: `.opencode/.spec-kit/code-graph/database/code-graph.sqlite`.
 
 Override with `SPECKIT_CODE_GRAPH_DB_DIR` (env var or `.env.local`). The launcher enforces a standalone-storage guard: the override must resolve inside the workspace root. External absolute paths are rejected at startup.
+
+### Migration
+
+Legacy installs (database at `.opencode/skills/system-code-graph/mcp_server/database/`) are auto-migrated to the standalone shared location on next launch. The legacy database file is preserved as a backup; the launcher copies (does not move) the SQLite triplet, readiness marker, and launcher state file.
 
 ### Indexing scope flags
 

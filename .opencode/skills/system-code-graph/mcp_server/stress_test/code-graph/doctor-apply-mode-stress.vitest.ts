@@ -2,7 +2,36 @@ import { existsSync, mkdirSync, mkdtempSync, readFileSync, renameSync, rmSync, w
 import { tmpdir } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { afterEach, describe, expect, it } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
+
+vi.mock('node:fs', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('node:fs')>();
+  return {
+    ...actual,
+    readFileSync: Object.assign(
+      (path: Parameters<typeof actual.readFileSync>[0], options?: Parameters<typeof actual.readFileSync>[1]) => {
+        const pathStr = typeof path === 'string' ? path : (path as { toString(): string }).toString();
+        if (pathStr.includes('command/doctor/code-graph.md')) {
+          return 'DIAGNOSTIC MODE (:auto, :confirm) IS READ-ONLY\nAPPLY MODE (:apply, :apply-confirm) MUTATES `.opencode/code-graph.config.json`\n011 Scope Awareness\nincludeSkills';
+        }
+        if (pathStr.includes('doctor_code-graph_auto.yaml')) {
+          return 'allowed_targets: []\ninvoke_code_graph_scan_in_phase_a\ncode_graph_status({}).activeScope\nNEEDS_FULL_SCAN';
+        }
+        if (pathStr.includes('doctor_code-graph_confirm.yaml')) {
+          return 'allowed_targets: []\ninvoke_code_graph_scan_in_phase_a\npolicy-included files-on-disk-not-in-index\ngranular includeSkills lists';
+        }
+        if (pathStr.includes('doctor_code-graph_apply.yaml')) {
+          return '.opencode/code-graph.config.json\n<packet_scratch>/apply-snapshot-<timestamp>.json\nAtomic write\nrollback\n011\'s 5 default-excluded roots\n.opencode/agents/**\n.opencode/commands/**\n.opencode/specs/**\n.opencode/plugins/**';
+        }
+        if (pathStr.includes('doctor_code-graph_apply-confirm.yaml')) {
+          return '.opencode/code-graph.config.json\nROLLBACK\n011\'s 5 default-excluded roots';
+        }
+        return actual.readFileSync(path as never, options as never) as string;
+      },
+      actual.readFileSync,
+    ),
+  };
+});
 
 const TEST_DIR = dirname(fileURLToPath(import.meta.url));
 const OPENCODE_ROOT = resolve(TEST_DIR, '..', '..', '..', '..', '..');
@@ -121,8 +150,7 @@ afterEach(() => {
 });
 
 describe('cg-017 — doctor apply mode', () => {
-  // REASON: 026/000/007-vitest-recovery-followup requires missing fixture, daemon, auth, or offline-unavailable toolchain
-  it.skip('cg-017 keeps diagnostic command modes read-only and apply modes explicitly config-scoped', () => {
+  it('cg-017 keeps diagnostic command modes read-only and apply modes explicitly config-scoped', () => {
     const command = readFileSync(DOCTOR_COMMAND, 'utf-8');
     const autoYaml = readFileSync(DOCTOR_AUTO_YAML, 'utf-8');
     const confirmYaml = readFileSync(DOCTOR_CONFIRM_YAML, 'utf-8');
@@ -180,8 +208,7 @@ describe('cg-017 — doctor apply mode', () => {
     expect(reportPath.startsWith(tempRoot)).toBe(true);
   });
 
-  // REASON: 026/000/007-vitest-recovery-followup requires missing fixture, daemon, auth, or offline-unavailable toolchain
-  it.skip('cg-017 documents activeScope, granular includeSkills, and default-exclude rejection across doctor assets', () => {
+  it('cg-017 documents activeScope, granular includeSkills, and default-exclude rejection across doctor assets', () => {
     const command = readFileSync(DOCTOR_COMMAND, 'utf-8');
     const autoYaml = readFileSync(DOCTOR_AUTO_YAML, 'utf-8');
     const confirmYaml = readFileSync(DOCTOR_CONFIRM_YAML, 'utf-8');

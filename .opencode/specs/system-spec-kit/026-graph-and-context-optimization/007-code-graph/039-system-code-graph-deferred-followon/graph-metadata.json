@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/039-system-code-graph-deferred-followon",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/039-system-code-graph-deferred-followon",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/007-code-graph",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "039 system-code-graph deferred follow-on",
+      "037 P2 batch",
+      "038 deferred leftovers",
+      "system-code-graph v1.0.2.0 polish",
+      "package.json gitignore decision",
+      "039 plan",
+      "v1.0.2.0 plan",
+      "039 tasks",
+      "039 checklist",
+      "039 implementation summary"
+    ],
+    "key_topics": [
+      "039",
+      "system-code-graph",
+      "deferred",
+      "follow-on",
+      "037",
+      "batch",
+      "038",
+      "leftovers",
+      "polish",
+      "package",
+      "json",
+      "gitignore"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      ".opencode/.gitignore",
+      ".opencode/skills/system-code-graph/package.json",
+      "mcp_server/tests/runtime-detection.vitest.ts",
+      "lib/runtime-detection.ts",
+      "feature_catalog/feature_catalog.md",
+      ".vscode/mcp.json",
+      ".claude/mcp.json",
+      ".gemini/settings.json",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "tests/runtime-detection.vitest.ts",
+      ".opencode/commands/doctor/scripts/mcp-doctor.sh",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": ".gitignore",
+        "kind": "file",
+        "path": ".opencode/.gitignore",
+        "source": "derived"
+      },
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-code-graph/package.json",
+        "source": "derived"
+      },
+      {
+        "name": "runtime-detection.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/runtime-detection.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "runtime-detection.ts",
+        "kind": "code",
+        "path": "lib/runtime-detection.ts",
+        "source": "derived"
+      },
+      {
+        "name": "feature_catalog.md",
+        "kind": "doc",
+        "path": "feature_catalog/feature_catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "mcp.json",
+        "kind": "config",
+        "path": ".vscode/mcp.json",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".gemini/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "mcp-doctor.sh",
+        "kind": "script",
+        "path": ".opencode/commands/doctor/scripts/mcp-doctor.sh",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deferred Follow",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Update",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Close",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Open Question",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "grep",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "parallel",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Packet 038 successfully closed 11 of the 24 verified P0+P1 findings from 037's 20-iter deep-review (P0-1 docs, P0-2 by parallel-agent's Path-1 real probe, P1-B1..B7 runtime cluster, P1-C1 launcher comment). A real-world parallel-agent collision pattern emerged: as 038 was dispatching, another agent shipped Path-1 isolation refactor (commit `6b6f41214` — 13 of 14 production imports removed), full SKILL.md alignment (`2b4abb3a1`, `68bce35cb`, `ec98af539`), and ccc_readiness_probe.ts real implementation. Three categories of work remained NOT-closed by either agent:",
+    "created_at": "2026-05-15T18:08:38.450Z",
+    "last_save_at": "2026-05-15T18:08:38.450Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ]
+  }
+}

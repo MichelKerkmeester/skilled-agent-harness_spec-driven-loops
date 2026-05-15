@@ -1,8 +1,11 @@
 #!/usr/bin/env node
 // [mk-code-index-launcher] MCP child-process launcher for the mk-code-index server
 // (system-code-graph). Loads project-local env overrides, applies the maintainer-mode
-// INDEX_* override when SPECKIT_CODE_GRAPH_MAINTAINER_MODE=true, ensures dist artifacts
-// are built and current, serializes concurrent starts via a filesystem bootstrap lock,
+// INDEX_* override when SPECKIT_CODE_GRAPH_MAINTAINER_MODE=true, auto-migrates the
+// code-graph database from the legacy skill-local location (mcp_server/database/) to the
+// standalone shared location (.opencode/.spec-kit/code-graph/database/), ensures dist
+// artifacts are built and current, serializes concurrent starts via a filesystem bootstrap
+// lock, sets SPECKIT_CODE_GRAPH_DB_DIR for the child process (operator override wins),
 // then spawns the code-graph MCP server child. All stderr lines are tagged with the
 // bracketed module prefix for ops grepping. See .opencode/skills/system-code-graph/ for
 // the standalone skill that owns the server source.
@@ -79,10 +82,9 @@ if (process.env.SPECKIT_CODE_GRAPH_MAINTAINER_MODE === 'true') {
 let skillsDir = path.join(opencodeDir, 'skills');
 let legacySkillDir = path.join(opencodeDir, 'skill');
 let kitDir = path.join(skillsDir, 'system-code-graph');
-let dbDir = path.join(kitDir, 'mcp_server', 'database');
-// DB path is inside the skill directory by design as of v1.0.1.0.
-// Standalone-storage relocation (e.g. .opencode/.spec-kit/code-graph/database)
-// is deferred to follow-on packet.
+// DB lives at the standalone shared location; SPECKIT_CODE_GRAPH_DB_DIR overrides.
+// Legacy location (mcp_server/database/) is auto-migrated on first startup.
+let dbDir = path.join(opencodeDir, '.spec-kit', 'code-graph', 'database');
 let lockDir = path.join(dbDir, '.mk-code-index-launcher.lockdir');
 let stateFile = path.join(dbDir, '.mk-code-index-launcher.json');
 
@@ -99,7 +101,7 @@ function refreshPaths() {
   skillsDir = path.join(opencodeDir, 'skills');
   legacySkillDir = path.join(opencodeDir, 'skill');
   kitDir = path.join(skillsDir, 'system-code-graph');
-  dbDir = path.join(kitDir, 'mcp_server', 'database');
+  dbDir = path.join(opencodeDir, '.spec-kit', 'code-graph', 'database');
   lockDir = path.join(dbDir, '.mk-code-index-launcher.lockdir');
   stateFile = path.join(dbDir, '.mk-code-index-launcher.json');
 }
@@ -249,6 +251,11 @@ async function acquireBootstrapLock() {
 }
 
 function launchServer() {
+  // Set DB dir for the child process (operator-set env var wins).
+  if (!process.env.SPECKIT_CODE_GRAPH_DB_DIR) {
+    process.env.SPECKIT_CODE_GRAPH_DB_DIR = dbDir;
+  }
+
   const server = path.join(kitDir, 'mcp_server', 'dist', 'index.js');
   childProcess = spawn(process.execPath, [server], {
     cwd: root,
@@ -290,6 +297,30 @@ for (const signal of ['SIGINT', 'SIGTERM', 'SIGHUP']) {
     refreshPaths();
     ensureLayout(actions);
     refreshPaths();
+
+    // Auto-migrate DB from legacy skill-local location to standalone shared location.
+    // The legacy DB is preserved as a backup (copy, not move).
+    const legacyDbDir = path.join(kitDir, 'mcp_server', 'database');
+    if (!exists(dbDir) && exists(path.join(legacyDbDir, 'code-graph.sqlite'))) {
+      fs.mkdirSync(dbDir, { recursive: true });
+      const dbFiles = [
+        'code-graph.sqlite',
+        'code-graph.sqlite-shm',
+        'code-graph.sqlite-wal',
+        '.code-graph-readiness.json',
+        '.mk-code-index-launcher.json',
+      ];
+      for (const file of dbFiles) {
+        const src = path.join(legacyDbDir, file);
+        const dst = path.join(dbDir, file);
+        if (exists(src)) {
+          fs.copyFileSync(src, dst);
+        }
+      }
+      process.stderr.write(
+        `[mk-code-index-launcher] migrated DB from ${rel(legacyDbDir)} to ${rel(dbDir)} (legacy preserved)\n`
+      );
+    }
 
     lockHeld = await acquireBootstrapLock();
     if (lockHeld) {
