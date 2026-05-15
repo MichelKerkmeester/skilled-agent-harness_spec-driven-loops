@@ -10,7 +10,7 @@ import { findAdvisorWorkspaceRoot } from '../../lib/utils/workspace-root.js';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const repoRoot = findAdvisorWorkspaceRoot(here);
-const bridgePath = resolve(repoRoot, '.opencode/skills/system-spec-kit/mcp_server/plugin_bridges/spec-kit-skill-advisor-bridge.mjs');
+const bridgePath = resolve(repoRoot, '.opencode/skills/system-skill-advisor/mcp_server/plugin_bridges/mk-skill-advisor-bridge.mjs');
 
 type BridgeModule = {
   buildBrief: (input: Record<string, unknown>, dependencies?: Record<string, unknown>) => Promise<{
@@ -72,7 +72,7 @@ function nativeDependencies(bridge: BridgeModule, options: {
   };
 }
 
-describe('spec-kit skill advisor plugin bridge compat path', () => {
+describe('mk-skill-advisor plugin bridge compat path', () => {
   it('publishes one effective-threshold contract for the native bridge route', async () => {
     const bridge = await loadBridge();
     const parsed = await bridge.buildBrief(

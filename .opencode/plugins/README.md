@@ -40,20 +40,20 @@ When OpenCode boots, every `.js` file in this folder is invoked once. To add a n
 
 | File | Role |
 |---|---|
-| `spec-kit-skill-advisor.js` | Prompt-time Spec Kit skill advisor plugin. Surfaces a compact skill recommendation when a user prompt arrives. |
+| `mk-skill-advisor.js` | Prompt-time Skill Advisor plugin. Surfaces a compact skill recommendation when a user prompt arrives. |
 | `spec-kit-compact-code-graph.js` | Transport-backed context and compact-code-graph plugin. Routes context requests to the colocated bridge. |
 
 ---
 
 ## 4. BRIDGE MODULES
 
-Helper bridge modules are co-located with their owning skill at `.opencode/skills/system-spec-kit/mcp_server/plugin_bridges/`, not in this folder:
+Helper bridge modules are co-located with their owning skill, not in this folder:
 
-- `spec-kit-skill-advisor-bridge.mjs`
-- `spec-kit-compact-code-graph-bridge.mjs`
-- `spec-kit-opencode-message-schema.mjs`
+- **mk-skill-advisor** bridge: `.opencode/skills/system-skill-advisor/mcp_server/plugin_bridges/mk-skill-advisor-bridge.mjs`
+- **spec-kit-compact-code-graph** bridge: `.opencode/skills/system-spec-kit/mcp_server/plugin_bridges/spec-kit-compact-code-graph-bridge.mjs`
+- **opencode message schema**: `.opencode/skills/system-spec-kit/mcp_server/plugin_bridges/spec-kit-opencode-message-schema.mjs`
 
-This keeps plugin entrypoints minimal and lets the spec-kit skill own its bridge contracts.
+This keeps plugin entrypoints minimal and lets owning skills own their bridge contracts.
 
 ---
 
@@ -71,5 +71,6 @@ When upgrading OpenCode beyond 1.3.17, rerun the 026/007/009 discovery probe:
 
 ## 6. RELATED
 
-- `.opencode/skills/system-spec-kit/mcp_server/plugin_bridges/` — bridge module home
-- `.opencode/skills/system-spec-kit/mcp_server/hooks/` — sibling hook entrypoints (different runtime contract)
+- `.opencode/skills/system-skill-advisor/mcp_server/plugin_bridges/` — advisor bridge home
+- `.opencode/skills/system-spec-kit/mcp_server/plugin_bridges/` — spec-kit bridge modules
+- `.opencode/skills/system-skill-advisor/mcp_server/hooks/` — sibling hook entrypoints (different runtime contract)

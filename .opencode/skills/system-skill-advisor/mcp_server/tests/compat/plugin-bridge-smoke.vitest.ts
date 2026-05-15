@@ -2,7 +2,7 @@
 // MODULE: Plugin Bridge Smoke Tests
 // ───────────────────────────────────────────────────────────────
 // F-020-D5-04: one subprocess smoke test for the MJS plugin bridge at
-// mcp_server/plugin_bridges/spec-kit-skill-advisor-bridge.mjs. Asserts the
+// mcp_server/plugin_bridges/mk-skill-advisor-bridge.mjs. Asserts the
 // process contract that the OpenCode plugin relies on:
 //   - File exists on disk at the expected path
 //   - Subprocess accepts stdin JSON, returns one stdout JSON line, exits 0
@@ -27,7 +27,7 @@ const here = dirname(fileURLToPath(import.meta.url));
 const repoRoot = findAdvisorWorkspaceRoot(here);
 const bridgePath = resolve(
   repoRoot,
-  '.opencode/skills/system-spec-kit/mcp_server/plugin_bridges/spec-kit-skill-advisor-bridge.mjs',
+  '.opencode/skills/system-skill-advisor/mcp_server/plugin_bridges/mk-skill-advisor-bridge.mjs',
 );
 
 function runBridge(input: string): { status: number | null; stdout: string; stderr: string } {
@@ -49,7 +49,7 @@ function runBridge(input: string): { status: number | null; stdout: string; stde
   };
 }
 
-describe('spec-kit skill advisor plugin bridge smoke (F-020-D5-04)', () => {
+describe('mk-skill-advisor plugin bridge smoke (F-020-D5-04)', () => {
   it('exists at the canonical path and emits a JSON envelope for a valid prompt', () => {
     expect(existsSync(bridgePath)).toBe(true);
     const payload = JSON.stringify({

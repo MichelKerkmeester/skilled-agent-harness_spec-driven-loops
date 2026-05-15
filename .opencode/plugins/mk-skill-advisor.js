@@ -1,5 +1,5 @@
 // ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ COMPONENT: Spec Kit Skill Advisor OpenCode Plugin                       ║
+// ║ COMPONENT: Skill Advisor OpenCode Plugin (mk-skill-advisor)              ║
 // ╠══════════════════════════════════════════════════════════════════════════╣
 // ║ PURPOSE: Inject skill advisor brief into OpenCode model context per     ║
 // ║          prompt; expose status tool; manage per-instance state,         ║
@@ -23,7 +23,7 @@ import { tool } from '@opencode-ai/plugin/tool';
 // 2. CONSTANTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-const PLUGIN_ID = 'spec-kit-skill-advisor';
+const PLUGIN_ID = 'mk-skill-advisor';
 const DEFAULT_CACHE_TTL_MS = 5 * 60 * 1000;
 const DEFAULT_THRESHOLD_CONFIDENCE = 0.8;
 const DEFAULT_MAX_TOKENS = 80;
@@ -32,9 +32,11 @@ const DEFAULT_NODE_BINARY = 'node';
 const DEFAULT_MAX_PROMPT_BYTES = 64 * 1024;
 const DEFAULT_MAX_BRIEF_CHARS = 2 * 1024;
 const DEFAULT_MAX_CACHE_ENTRIES = 1000;
-const DISABLED_ENV = 'SPECKIT_SKILL_ADVISOR_HOOK_DISABLED';
-const LEGACY_DISABLED_ENV = 'SPECKIT_SKILL_ADVISOR_PLUGIN_DISABLED';
-const BRIDGE_PATH = fileURLToPath(new URL('../skills/system-spec-kit/mcp_server/plugin_bridges/spec-kit-skill-advisor-bridge.mjs', import.meta.url));
+const DISABLED_ENV = 'MK_SKILL_ADVISOR_HOOK_DISABLED';
+const DISABLED_ENV_PLUGIN = 'MK_SKILL_ADVISOR_PLUGIN_DISABLED';
+const LEGACY_HOOK_DISABLED_ENV = 'SPECKIT_SKILL_ADVISOR_HOOK_DISABLED';
+const LEGACY_PLUGIN_DISABLED_ENV = 'SPECKIT_SKILL_ADVISOR_PLUGIN_DISABLED';
+const BRIDGE_PATH = fileURLToPath(new URL('../skills/system-skill-advisor/mcp_server/plugin_bridges/mk-skill-advisor-bridge.mjs', import.meta.url));
 // 013/009/005: cache-signature paths follow the standalone advisor package.
 // The bridge now dispatches through mk_skill_advisor instead of the old
 // memory-owned advisor compat path.
@@ -61,15 +63,24 @@ function normalizeThreshold(value) {
 }
 
 function envDisablesPlugin() {
-  return process.env[DISABLED_ENV] === '1' || process.env[LEGACY_DISABLED_ENV] === '1';
+  return process.env[DISABLED_ENV] === '1'
+    || process.env[DISABLED_ENV_PLUGIN] === '1'
+    || process.env[LEGACY_HOOK_DISABLED_ENV] === '1'
+    || process.env[LEGACY_PLUGIN_DISABLED_ENV] === '1';
 }
 
 function disabledEnvName() {
   if (process.env[DISABLED_ENV] === '1') {
     return DISABLED_ENV;
   }
-  if (process.env[LEGACY_DISABLED_ENV] === '1') {
-    return LEGACY_DISABLED_ENV;
+  if (process.env[DISABLED_ENV_PLUGIN] === '1') {
+    return DISABLED_ENV_PLUGIN;
+  }
+  if (process.env[LEGACY_HOOK_DISABLED_ENV] === '1') {
+    return LEGACY_HOOK_DISABLED_ENV;
+  }
+  if (process.env[LEGACY_PLUGIN_DISABLED_ENV] === '1') {
+    return LEGACY_PLUGIN_DISABLED_ENV;
   }
   return null;
 }
@@ -373,7 +384,7 @@ function eventTypeFrom(event) {
  * @param {string} [rawOptions.sourceSignatureOverride] - Test override for advisor source signature
  * @returns {Promise<Object>} Hooks with `event`, `experimental.chat.system.transform`, and `tool`
  */
-export default async function SpecKitSkillAdvisorPlugin(ctx, rawOptions) {
+export default async function MkSkillAdvisorPlugin(ctx, rawOptions) {
   const options = normalizeOptions(rawOptions);
   const projectDir = normalizeWorkspaceRoot(ctx?.directory);
 

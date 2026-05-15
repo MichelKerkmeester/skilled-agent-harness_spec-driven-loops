@@ -9,7 +9,7 @@ vi.mock('node:child_process', () => ({
   spawn: mockedBridge.spawn,
 }));
 
-import SpecKitSkillAdvisorPlugin from '../../../../plugins/spec-kit-skill-advisor.js';
+import MkSkillAdvisorPlugin from '../../../../plugins/mk-skill-advisor.js';
 
 const DEFAULT_MAX_PROMPT_BYTES = 64 * 1024;
 const DEFAULT_MAX_BRIEF_CHARS = 2 * 1024;
@@ -82,7 +82,7 @@ async function makePlugin(
   directory = process.cwd(),
   ctx: Record<string, unknown> = {},
 ) {
-  return await SpecKitSkillAdvisorPlugin({ directory, ...ctx }, options);
+  return await MkSkillAdvisorPlugin({ directory, ...ctx }, options);
 }
 
 async function runPrompt(
@@ -117,13 +117,13 @@ function bridgePayloadAt(index: number) {
   return String(mockedBridge.spawn.mock.results[index]?.value.stdin.end.mock.calls[0]?.[0] ?? '{}');
 }
 
-describe('Spec Kit skill advisor OpenCode plugin', () => {
+describe('mk-skill-advisor OpenCode plugin', () => {
   beforeEach(async () => {
     vi.useRealTimers();
     vi.clearAllMocks();
     delete process.env.SPECKIT_SKILL_ADVISOR_PLUGIN_DISABLED;
     delete process.env.SPECKIT_SKILL_ADVISOR_HOOK_DISABLED;
-    const resetHooks = await SpecKitSkillAdvisorPlugin({ directory: process.cwd() }, {});
+    const resetHooks = await MkSkillAdvisorPlugin({ directory: process.cwd() }, {});
     await resetHooks.event?.({
       event: {
         type: 'server.instance.disposed',
@@ -258,7 +258,7 @@ describe('Spec Kit skill advisor OpenCode plugin', () => {
 
     const status = await hooks.tool?.spec_kit_skill_advisor_status.execute({});
 
-    expect(status).toContain('plugin_id=spec-kit-skill-advisor');
+    expect(status).toContain('plugin_id=mk-skill-advisor');
     expect(status).toContain('cache_ttl_ms=7777');
     expect(status).toContain('bridge_timeout_ms=1234');
     expect(status).toContain('last_bridge_status=ok');
