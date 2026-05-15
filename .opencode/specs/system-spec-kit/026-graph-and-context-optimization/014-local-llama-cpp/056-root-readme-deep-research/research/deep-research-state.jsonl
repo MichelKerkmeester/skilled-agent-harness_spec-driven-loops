@@ -1,0 +1,2 @@
+{"type":"config","topic":"root-readme-deep-research","maxIterations":20,"tracks":7,"executor":"cli-devin-swe-1.6","writer":"sonnet-markdown","permission_mode":"auto","started_at":"2026-05-15T14:55:33Z","convergence":"fixed 20-iter sweep, no early stop"}
+{"type":"iteration","iteration":1,"track":1,"newInfoRatio":0.85,"status":"complete","focus":"tool surface count and per-server breakdown","timestamp":"2026-05-15T14:55:33Z"}
