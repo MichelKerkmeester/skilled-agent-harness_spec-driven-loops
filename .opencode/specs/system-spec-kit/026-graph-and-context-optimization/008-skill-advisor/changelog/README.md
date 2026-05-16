@@ -35,7 +35,7 @@ The skill advisor is the Gate 2 router that matches user prompts to the correct 
 | 001/R010 | 2026-04-09 | [Research: Search and Routing Tuning Pt-01](./changelog-001-research-010-search-and-routing-tuning-pt-01.md) | Legacy deep-research first wave. |
 | 001/R010 | 2026-04-10 | [Research: Search and Routing Tuning Pt-02](./changelog-001-research-010-search-and-routing-tuning-pt-02.md) | Legacy deep-research second wave. |
 | 001/R010 | 2026-04-10 | [Research: Search and Routing Tuning Pt-03](./changelog-001-research-010-search-and-routing-tuning-pt-03.md) | Legacy deep-research third wave. |
-| 002 | 2026-04-13 | [Skill Advisor Graph](./changelog-002-skill-advisor-graph.md) | 21 per-skill graph metadata files, compiled skill-graph.json, and graph-derived routing boosts. 44/44 regression cases. |
+| 002 | 2026-04-13 | [Skill Advisor Graph](./changelog-001-skill-advisor-graph.md) | 21 per-skill graph metadata files, compiled skill-graph.json, and graph-derived routing boosts. 44/44 regression cases. |
 | 003 | 2026-04-15 | [Advisor Phrase Booster Tailoring](./changelog-003-advisor-phrase-booster-tailoring.md) | 36 dead multi-word/hyphenated INTENT boosters migrated to PHRASE. 33 new phrase routes. 52/52 regression cases. |
 | 004 | 2026-04-19 | [Skill Advisor Docs and Code Alignment](./changelog-004-skill-advisor-docs-and-code-alignment.md) | Hook-first docs, sk-code-opencode audit of Phase 020 TypeScript. 9 minor fixes. 118/118 tests. |
 | 005 | 2026-04-19 | [Smart Router Remediation and OpenCode Plugin](./changelog-005-smart-router-remediation-and-opencode-plugin.md) | 6 smart-router fixes plus OpenCode plugin. ON_DEMAND hit rate 5.5% to 48.0%. Static CI check. Observe-only telemetry. |

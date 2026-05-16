@@ -6081,7 +6081,7 @@
       "lastUpdated": "2026-04-25T12:42:51.242Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-skill-advisor-graph",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-advisor-graph",
       "description": "Feature Specification: Skill Advisor Graph",
       "keywords": [
         "feature",

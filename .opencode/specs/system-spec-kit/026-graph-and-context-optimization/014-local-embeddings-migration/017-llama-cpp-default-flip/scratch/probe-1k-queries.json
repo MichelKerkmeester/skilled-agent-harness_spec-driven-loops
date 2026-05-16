@@ -52,7 +52,7 @@
     "target_doc_id": "1240"
   },
   {
-    "query": "--- title: \"Session [system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-skill-advisor-graph/handover]\" description: \"Handover for 011-skill-advisor-graph — graph system built, research-audited, P0 fixes landed, packaging in progress. \" trigger_phrases: - \"session\" - \"handover\" - \"002\" - \"skill\"",
+    "query": "--- title: \"Session [system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-advisor-graph/handover]\" description: \"Handover for 011-skill-advisor-graph — graph system built, research-audited, P0 fixes landed, packaging in progress. \" trigger_phrases: - \"session\" - \"handover\" - \"002\" - \"skill\"",
     "target_doc_id": "1606"
   },
   {

@@ -58,7 +58,7 @@ _memory:
 | **Min Top-1 Accuracy Threshold** | 0.92 (enforced by regression harness default) |
 | **Parent Spec** | ../spec.md |
 | **Parent Plan** | ../plan.md |
-| **Predecessor** | ../002-skill-advisor-graph/spec.md |
+| **Predecessor** | ../001-skill-advisor-graph/spec.md |
 | **Successor** | ../004-smart-router-context-efficacy/spec.md |
 <!-- /ANCHOR:metadata -->
 

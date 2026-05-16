@@ -38,7 +38,7 @@ PACKETS = [
 
     # 008 children (from 006 — keep numbering)
     "008-skill-advisor/001-search-and-routing-tuning",
-    "008-skill-advisor/002-skill-advisor-graph",
+    "008-skill-advisor/001-skill-advisor-graph",
     "008-skill-advisor/003-advisor-phrase-booster-tailoring",
     "008-skill-advisor/004-skill-advisor-docs-and-code-alignment",
     "008-skill-advisor/005-smart-router-remediation-and-opencode-plugin",

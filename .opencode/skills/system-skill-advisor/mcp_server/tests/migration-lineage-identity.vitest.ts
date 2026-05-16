@@ -34,8 +34,8 @@ const migrationDescriptionFolders = [
   '001-search-and-routing-tuning/003-graph-metadata-validation/005-doc-surface-alignment',
   '001-search-and-routing-tuning/003-graph-metadata-validation/006-key-file-resolution',
   '001-search-and-routing-tuning/003-graph-metadata-validation/007-entity-quality-improvements',
-  '002-skill-advisor-graph/005-repo-wide-path-migration',
-  '002-skill-advisor-graph/007-skill-graph-auto-setup',
+  '001-skill-advisor-graph/005-repo-wide-path-migration',
+  '001-skill-advisor-graph/007-skill-graph-auto-setup',
   '004-smart-router-context-efficacy/002-skill-md-intent-router-efficacy',
 ];
 

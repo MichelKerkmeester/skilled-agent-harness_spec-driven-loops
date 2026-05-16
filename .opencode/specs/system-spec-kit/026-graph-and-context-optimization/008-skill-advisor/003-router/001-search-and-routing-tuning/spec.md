@@ -39,7 +39,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify |
 | **Parent Spec** | ../spec.md |
 | **Parent Plan** | ../plan.md |
 | **Predecessor** | None |
-| **Successor** | ../002-skill-advisor-graph/spec.md |
+| **Successor** | ../001-skill-advisor-graph/spec.md |
 <!-- /ANCHOR:metadata -->
 
 ---
