@@ -223,7 +223,7 @@ describe('Context Server', () => {
       expect(sourceCode).toMatch(/tools:\s*TOOL_DEFINITIONS/)
     })
 
-    // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+    // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
     it('T11c: Tool count is current expected list length', () => {
       const sectionToolNames = (toolSchemasCode.match(/name:\s*'(\w+)'/g) || []).map((m: string) => {
         const match = m.match(/name:\s*'(\w+)'/)
@@ -244,7 +244,7 @@ describe('Context Server', () => {
     }
 
     // T13: No unexpected tools (only expected ones exist)
-    // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+    // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
     it('T13: No unexpected tools', () => {
       const sectionToolNames = (toolSchemasCode.match(/name:\s*'(\w+)'/g) || []).map((m: string) => {
         const match = m.match(/name:\s*'(\w+)'/)
@@ -319,7 +319,7 @@ describe('Context Server', () => {
     })
 
     // T303: Verify dispatchTool is used instead of switch
-    // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+    // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
     it('T16b: dispatchTool(name, args) called', () => {
       expect(sourceCode).toMatch(/dispatchTool\(name,\s*validatedArgs,\s*callerContext\)/)
     })
@@ -1238,7 +1238,7 @@ describe('Context Server', () => {
       expect(sourceCode).toMatch(/afterToolCallbacks\.push\(fn\)/)
     })
 
-    // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+    // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
     it('T000b: callbacks are triggered after dispatchTool and non-blocking', () => {
       expect(sourceCode).toMatch(/const\s+result\s*=\s*await\s+runWithCallerContext\([\s\S]*?dispatchTool\(name,\s*validatedArgs,\s*callerContext\)/)
       expect(sourceCode).toMatch(/runAfterToolCallbacks\(name,\s*callId,\s*structuredClone\(result\)\)/)
@@ -1412,7 +1412,7 @@ describe('Context Server', () => {
       expect(callbackFinished).toBe(true)
     })
 
-    // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+    // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
     it('T000e: non-memory-aware tools invoke TM-05 tool-dispatch hook at runtime', async () => {
       expect(sourceCode).toContain('autoSurfacedContext = await autoSurfaceAtToolDispatch(name, validatedArgs)')
 
@@ -1562,7 +1562,7 @@ describe('Context Server', () => {
       expect(JSON.parse((response as { content: Array<{ text: string }> }).content[0].text).meta.autoSurfacedContext).toEqual(surfaced)
     })
 
-    // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+    // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
     it('T000g: memory_context resume mode invokes TM-05 compaction hook at runtime', async () => {
       expect(sourceCode).toContain("name === 'memory_context' && validatedArgs.mode === 'resume'")
       expect(sourceCode).toContain('autoSurfaceAtCompaction(contextHint)')
@@ -1621,7 +1621,7 @@ describe('Context Server', () => {
       expect(JSON.parse((response as { content: Array<{ text: string }> }).content[0].text).meta.autoSurfacedContext).toEqual(surfaced)
     })
 
-    // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+    // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
     it('T000h: memory_context non-resume mode keeps SK-004 memory-aware path', async () => {
       expect(sourceCode).toContain("name === 'memory_context' && validatedArgs.mode === 'resume'")
       expect(sourceCode).toContain('autoSurfaceMemories(contextHint)')
@@ -2333,7 +2333,7 @@ describe('Context Server', () => {
       expect(validationOrder.test(sourceCode)).toBe(true)
     })
 
-    // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+    // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
     it('T32a: Schema validation happens at the server boundary before dispatch', () => {
       expect(sourceCode).toMatch(/const\s+validatedArgs:[\s\S]*?validateToolArgs\(name,\s*args\)/)
       expect(sourceCode).toMatch(/dispatchTool\(name,\s*validatedArgs,\s*callerContext\)/)
@@ -2790,7 +2790,7 @@ describe('Context Server', () => {
     ]
 
     for (const imp of EXPECTED_IMPORTS) {
-      // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+      // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
       it(`T67: Imports ${imp.name} from '${imp.module}'`, () => {
         const escaped = imp.module.replace(/[.*+?^${}()|[\]\\\/]/g, '\\$&')
         const importRegex = new RegExp(`import\\s+[^;]*from\\s+['"]${escaped}['"]`)

@@ -1,8 +1,8 @@
-# Changelog - 007-vitest-recovery-followup
+# Changelog - 002-vitest-recovery-followup
 
 ## 2026-05-09
 
-> Spec folder: `026-graph-and-context-optimization/000-release-cleanup/007-vitest-recovery-followup` (Level 1)
+> Spec folder: `026-graph-and-context-optimization/000-release-cleanup/002-vitest-recovery-followup` (Level 1)
 > Parent packet: `026-graph-and-context-optimization/000-release-cleanup`
 
 ### Summary

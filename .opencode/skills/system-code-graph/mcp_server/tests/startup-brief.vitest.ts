@@ -67,7 +67,7 @@ describe('startup-brief', () => {
     vi.clearAllMocks();
   });
 
-  // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
   it('builds graph outline and session continuity when data exists', () => {
     const brief = buildStartupBrief(undefined, { claudeSessionId: 'recent-session' });
 
@@ -101,7 +101,7 @@ describe('startup-brief', () => {
     expect(mockLoadMostRecentState).not.toHaveBeenCalled();
   });
 
-  // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
   it('returns empty graph state with summary but no outline for empty indexes', () => {
     vi.mocked(graphDb.getStats).mockReturnValueOnce({
       totalFiles: 0,
@@ -125,7 +125,7 @@ describe('startup-brief', () => {
     expect(brief.sharedPayload?.provenance.trustState).toBe('absent');
   });
 
-  // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
   it('reports stale graph state when freshness detection says stale even with graph counts present', () => {
     vi.mocked(getGraphReadinessSnapshot).mockReturnValueOnce({
       freshness: 'stale',
@@ -149,14 +149,14 @@ describe('startup-brief', () => {
     expect(brief.startupSurface).toContain('- CocoIndex: available');
   });
 
-  // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
   it('includes orientation note when highlights are present', () => {
     const brief = buildStartupBrief();
     expect(brief.graphOutline).toContain('Orientation:');
     expect(brief.graphOutline).toContain('CocoIndex');
   });
 
-  // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
   it('omits highlights section when queryStartupHighlights returns empty', () => {
     vi.mocked(graphDb.queryStartupHighlights).mockReturnValueOnce([]);
     const brief = buildStartupBrief();
@@ -165,7 +165,7 @@ describe('startup-brief', () => {
     expect(brief.graphOutline).not.toContain('Orientation:');
   });
 
-  // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
   it('respects custom highlightCount parameter', () => {
     const brief = buildStartupBrief(3);
     expect(graphDb.queryStartupHighlights).toHaveBeenCalledWith(3);

@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Vitest baseline recovery followup [system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/007-vitest-recovery-followup/spec]"
+title: "Feature Specification: Vitest baseline recovery followup [system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-vitest-recovery-followup/spec]"
 description: "Re-baseline and close the current vitest failure inventory after predecessor followup annotations failed to persist. Current baseline measured 11,618 passed / 197 failed / 35 skipped / 11 todo; post-recovery measured 11,657 passed / 0 failed / 232 skipped / 11 todo."
 trigger_phrases:
   - "vitest recovery followup"
@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/007-vitest-recovery-followup"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-vitest-recovery-followup"
     last_updated_at: "2026-05-09T00:00:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Closed current vitest baseline to zero failures"
@@ -52,7 +52,7 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-Sibling packet `003-vitest-baseline-recovery` (Unit F) expected 196 deferred failures to be discoverable through `// followup: 026/000/007-vitest-recovery-followup` annotations. In practice, only a small fraction of those annotations persisted, so annotation grep was not a reliable inventory source.
+Sibling packet `003-vitest-baseline-recovery` (Unit F) expected 196 deferred failures to be discoverable through `// followup: 026/000/002-vitest-recovery-followup` annotations. In practice, only a small fraction of those annotations persisted, so annotation grep was not a reliable inventory source.
 
 This packet re-baselined the live vitest suite directly. The measured current baseline was **11,618 passed / 197 failed / 35 skipped / 11 todo** across 66 failed files, plus suite-import failures that surfaced after assertion-level failures were parked.
 
@@ -117,7 +117,7 @@ Actual changed surfaces:
 ## 5. SUCCESS CRITERIA
 
 - **SC-001**: All current failures closed, skipped, or parked with classification.
-- **SC-002**: `bash validate.sh 007-vitest-recovery-followup --strict` exits 0.
+- **SC-002**: `bash validate.sh 002-vitest-recovery-followup --strict` exits 0.
 - **SC-003**: v3.4.1.0 changelog row updated to reflect the post-recovery baseline.
 <!-- /ANCHOR:success-criteria -->
 

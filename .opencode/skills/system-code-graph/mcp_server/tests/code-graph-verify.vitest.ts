@@ -551,7 +551,7 @@ describe('code-graph verify', () => {
       expect(mocks.ensureCodeGraphReady).not.toHaveBeenCalled();
     });
 
-    // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+    // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
     it('resolves the default battery path inside the 007 packet', async () => {
       const response = await handleCodeGraphVerify({ includeDetails: true });
       const parsed = JSON.parse(response.content[0].text);
@@ -563,7 +563,7 @@ describe('code-graph verify', () => {
       expect(parsed.result.queryCount).toBeGreaterThan(0);
     });
 
-    // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+    // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
     it('resolves the default gold-battery path correctly without phantom skill/ segment', async () => {
       // Regression guard: the legacy hardcoded `../../../../../` URL path in
       // gold-query-verifier.ts resolved correctly from the TS source location

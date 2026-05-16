@@ -1,5 +1,5 @@
 ---
-title: "Resource Map - Vitest recovery followup [system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/007-vitest-recovery-followup/resource-map]"
+title: "Resource Map - Vitest recovery followup [system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-vitest-recovery-followup/resource-map]"
 description: "Flat inventory of files and artifacts touched while closing the current vitest baseline."
 trigger_phrases:
   - "vitest recovery followup resource map"
@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/007-vitest-recovery-followup"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-vitest-recovery-followup"
     last_updated_at: "2026-05-09T04:30:00Z"
     last_updated_by: "codex"
     recent_action: "Mapped vitest recovery resources"

@@ -344,7 +344,7 @@ describe('027/003 native scorer units', () => {
     expect(top3.some((recommendation) => ['sk-deep-review', 'deep-agent-improvement'].includes(recommendation.skill))).toBe(false);
   });
 
-  // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
   it('065/004 canonicalizes command ids and skill ids through narrow alias groups', () => {
     expect(SKILL_ALIAS_GROUPS['deep-review']).toEqual(expect.arrayContaining([
       'spec_kit:deep-review',
@@ -409,7 +409,7 @@ describe('027/003 native scorer units', () => {
     expect(result.recommendations[0].confidence).toBeGreaterThanOrEqual(0.8);
   });
 
-  // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
   it('projects derived triggers and keywords from distinct sources via filesystem fallback', () => {
     // F-012-C2-02: derivedTriggers come from `derived.trigger_phrases` and
     // derivedKeywords come from `derived.key_topics + entities + key_files +
@@ -442,7 +442,7 @@ describe('027/003 native scorer units', () => {
     }
   });
 
-  // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
   it('falls back to filesystem projection when the SQLite graph is corrupt', () => {
     const root = mkdtempSync(join(tmpdir(), 'advisor-projection-corrupt-'));
     try {

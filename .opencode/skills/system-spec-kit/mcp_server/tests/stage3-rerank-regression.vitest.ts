@@ -67,7 +67,7 @@ describe('stage3-rerank regression (F-16)', () => {
     requireDbMock.mockReset();
   });
 
-  // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
   it('floors negative cross-encoder scores at rerank output boundary', async () => {
     rerankResultsMock.mockResolvedValue([
       { id: 1, score: -0.9, rerankerScore: -0.7 },
@@ -94,7 +94,7 @@ describe('stage3-rerank regression (F-16)', () => {
     }
   });
 
-  // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
   it('floors negative local-reranker scores at rerank output boundary', async () => {
     flagState.localReranker = true;
     rerankLocalMock.mockResolvedValue([
@@ -123,7 +123,7 @@ describe('stage3-rerank regression (F-16)', () => {
     }
   });
 
-  // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
   it('preserves attentionScore as an independent signal after reranking', async () => {
     rerankResultsMock.mockResolvedValue([
       { id: 1, score: 0.92, rerankerScore: 0.92 },
@@ -147,7 +147,7 @@ describe('stage3-rerank regression (F-16)', () => {
     expect(result.rows[0]?.attentionScore).toBe(0.17);
   });
 
-  // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
   it('skips cross-encoder reranking for 3-result candidate sets and keeps 4-result sets eligible', async () => {
     rerankResultsMock.mockResolvedValue([
       { id: 1, score: 0.91, rerankerScore: 0.91 },
@@ -176,7 +176,7 @@ describe('stage3-rerank regression (F-16)', () => {
     expect(rerankResultsMock).toHaveBeenCalledOnce();
   });
 
-  // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
   it('applies the same 4-result minimum to the local GGUF reranker path', async () => {
     flagState.localReranker = true;
     rerankLocalMock.mockResolvedValue([

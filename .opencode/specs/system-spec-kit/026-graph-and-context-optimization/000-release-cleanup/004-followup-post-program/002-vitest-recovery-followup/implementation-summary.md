@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Vitest baseline recovery followup [system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/007-vitest-recovery-followup/implementation-summary]"
+title: "Implementation Summary: Vitest baseline recovery followup [system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-vitest-recovery-followup/implementation-summary]"
 description: "Re-baselined the current vitest suite, classified assertion and suite-import failures, fixed fixture drift, then closed the Unit H parked tests to reach 11,804 passed / 0 failed / 90 skipped / 11 todo."
 trigger_phrases:
   - "vitest recovery followup implementation summary"
@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/007-vitest-recovery-followup"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-vitest-recovery-followup"
     last_updated_at: "2026-05-09T05:30:00Z"
     last_updated_by: "codex"
     recent_action: "Closed Unit H parked vitest cases and measured 11,804 passed / 0 failed / 90 skipped / 11 todo"
@@ -43,7 +43,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `026-graph-and-context-optimization/000-release-cleanup/007-vitest-recovery-followup` |
+| **Spec Folder** | `026-graph-and-context-optimization/000-release-cleanup/002-vitest-recovery-followup` |
 | **Completed** | 2026-05-09 |
 | **Level** | 1 |
 | **Status** | Complete |
@@ -71,7 +71,7 @@ Unit H revisited every `followup-actual: 026/000/007` annotation under `mcp_serv
 
 | Outcome | Count | Evidence |
 |---------|------:|----------|
-| Stale assertion -> updated | 129 | Test contracts now carry `// drift: 026/000/007-vitest-recovery-followup` comments and run normally. |
+| Stale assertion -> updated | 129 | Test contracts now carry `// drift: 026/000/002-vitest-recovery-followup` comments and run normally. |
 | Real regression -> source fixed | 8 | Documented in `scratch/p0-findings-from-h.md`; fixes covered plural index scope, missing layer mapping, and stdout-safe structural indexer logging. |
 | Test deleted / behavior retired | 1 | Documented in `scratch/deleted-tests-from-h.md`; the direct `memory-parser` context-server import check no longer matches the shipped module boundary. |
 | Genuinely blocked | 0 | No `blocked-on` annotations remain. |

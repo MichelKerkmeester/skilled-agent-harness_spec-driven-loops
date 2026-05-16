@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Vitest baseline recovery followup [system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/007-vitest-recovery-followup/tasks]"
+title: "Tasks: Vitest baseline recovery followup [system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-vitest-recovery-followup/tasks]"
 description: "Completed task list for re-baselining and closing the current vitest failure inventory."
 trigger_phrases:
   - "vitest recovery followup tasks"
@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/007-vitest-recovery-followup"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-vitest-recovery-followup"
     last_updated_at: "2026-05-09T04:30:00Z"
     last_updated_by: "codex"
     recent_action: "Completed vitest re-baseline and recovery tasks"

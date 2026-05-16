@@ -986,9 +986,9 @@
   {
     "id": "626",
     "title": "Description: Feature Specification: Vitest baseline recovery followup",
-    "file_path": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/007-vitest-recovery-followup/description.json",
-    "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/007-vitest-recovery-followup",
-    "content": "Spec folder: system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/007-vitest-recovery-followup\nDescription: Feature Specification: Vitest baseline recovery followup\nSpec id: 007\nFolder slug: vitest-recovery-followup\nParent chain: system-spec-kit > 026-graph-and-context-optimization > 000-release-cleanup\nKeywords: feature, specification, vitest, baseline, recovery, followup\nMemory sequence: 0\nLast updated: 2026-05-09T07:57:32.816Z",
+    "file_path": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-vitest-recovery-followup/description.json",
+    "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-vitest-recovery-followup",
+    "content": "Spec folder: system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-vitest-recovery-followup\nDescription: Feature Specification: Vitest baseline recovery followup\nSpec id: 007\nFolder slug: vitest-recovery-followup\nParent chain: system-spec-kit > 026-graph-and-context-optimization > 000-release-cleanup\nKeywords: feature, specification, vitest, baseline, recovery, followup\nMemory sequence: 0\nLast updated: 2026-05-09T07:57:32.816Z",
     "summary": null
   },
   {

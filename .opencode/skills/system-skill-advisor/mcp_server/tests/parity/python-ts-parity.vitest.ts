@@ -99,7 +99,7 @@ function stratifiedHoldout(rows: readonly CorpusRow[], target = 40): CorpusRow[]
 }
 
 describe('027/003 AC-1/AC-2 regression-protection parity and §11 gates', () => {
-  // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
   it('preserves all Python-correct corpus decisions while improving accuracy', () => {
     const rows = loadCorpus();
     const python = runPython(rows.map((row) => row.prompt));

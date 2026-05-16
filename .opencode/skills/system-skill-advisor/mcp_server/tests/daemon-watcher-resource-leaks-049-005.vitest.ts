@@ -138,7 +138,7 @@ afterEach(() => {
 });
 
 describe('F-003-A3-01: refreshTargets unwatches removed paths and prunes caches', () => {
-  // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
   it('calls watcher.unwatch() for paths that disappear between scans', async () => {
     const root = workspace('skill-graph-unwatch');
     writeSkill(root, 'alpha');
@@ -256,7 +256,7 @@ describe('F-003-A3-02: diagnostics ring buffer caps at 100 entries with aggregat
 });
 
 describe('F-004-A4-04: malformed graph-metadata.json records diagnostic instead of silently dropping targets', () => {
-  // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
   it('records MALFORMED_GRAPH_METADATA diagnostic when JSON.parse fails', async () => {
     const root = workspace('skill-graph-malformed-json');
     writeSkill(root, 'alpha', { malformedMetadata: 'invalid-json' });
@@ -280,7 +280,7 @@ describe('F-004-A4-04: malformed graph-metadata.json records diagnostic instead 
     await watcher.close();
   });
 
-  // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
   it('records a diagnostic when derived is the wrong shape', async () => {
     const root = workspace('skill-graph-derived-string');
     writeSkill(root, 'alpha', { malformedMetadata: 'derived-string' });
@@ -301,7 +301,7 @@ describe('F-004-A4-04: malformed graph-metadata.json records diagnostic instead 
     await watcher.close();
   });
 
-  // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
   it('discoverWatchTargets stays backward-compatible without the callback', () => {
     const root = workspace('skill-graph-discover-bc');
     writeSkill(root, 'alpha', { malformedMetadata: 'invalid-json' });

@@ -74,7 +74,7 @@ describe('check-source-dist-alignment orphan detection (F-020-D5-02)', () => {
     fs.rmSync(workRoot, { recursive: true, force: true });
   });
 
-  // followup-actual: 026/000/007-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
+  // followup-actual: 026/000/002-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
   it.fails.skip('passes when every dist *.js has a matching source .ts', () => {
     const distLib = path.join(workRoot, 'mcp_server', 'dist', 'lib');
     const sourceLib = path.join(workRoot, 'mcp_server', 'lib');

@@ -3860,7 +3860,7 @@
       "lastUpdated": "2026-05-08T08:26:57.092Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/007-vitest-recovery-followup",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-vitest-recovery-followup",
       "description": "Feature Specification: Vitest baseline recovery followup",
       "keywords": [
         "feature",

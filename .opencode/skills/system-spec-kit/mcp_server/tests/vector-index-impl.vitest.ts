@@ -836,7 +836,7 @@ describe('Vector Index Implementation [deferred - requires DB test fixtures]', (
       expect(result).toBe(false);
     });
 
-    // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+    // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
     it('delete_memory_from_database aborts the primary delete when vec cleanup fails unexpectedly', async () => {
       vi.resetModules();
       const deletePrimarySpy = vi.fn(() => ({ changes: 1 }));

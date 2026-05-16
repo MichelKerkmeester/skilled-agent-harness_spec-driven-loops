@@ -1,6 +1,6 @@
 # Unit H Deleted Tests
 
-Packet: `026/000/007-vitest-recovery-followup`
+Packet: `026/000/002-vitest-recovery-followup`
 Run: Unit H parked-test closure
 
 | File | Deleted assertion | Retiring packet / behavior | Reason |

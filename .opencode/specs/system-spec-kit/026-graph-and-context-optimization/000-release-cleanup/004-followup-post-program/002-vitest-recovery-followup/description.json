@@ -28,7 +28,7 @@
     "completion_pct": 100,
     "last_active_child_id": null
   },
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/007-vitest-recovery-followup",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-vitest-recovery-followup",
   "description": "Feature Specification: Vitest baseline recovery followup",
   "keywords": [
     "feature",

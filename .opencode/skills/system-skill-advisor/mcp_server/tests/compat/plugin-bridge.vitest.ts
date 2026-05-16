@@ -136,7 +136,7 @@ describe('mk-skill-advisor plugin bridge compat path', () => {
     expect(parsed.brief).toContain('0.86/0.23 pass.');
   });
 
-  // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
   it('fails open when the forced-local Python bridge script is unavailable', async () => {
     const bridge = await loadBridge();
     const parsed = await bridge.buildBrief(

@@ -137,7 +137,7 @@ afterEach(() => {
 });
 
 describe('027/002 derived metadata acceptance', () => {
-  // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
   it('AC-1 and B1 extract deterministic derived metadata from every approved source category', () => {
     const root = workspace('derived-extract');
     const dir = writeSkillFixture(root);
@@ -163,7 +163,7 @@ describe('027/002 derived metadata acceptance', () => {
     expect(first.keyFiles).toContain('.opencode/skills/alpha/docs/key-file.md');
   });
 
-  // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
   it('AC-1 refreshes provenance when a B1 input changes and targets only that skill', async () => {
     const root = workspace('derived-watcher');
     const dir = writeSkillFixture(root);
@@ -216,7 +216,7 @@ describe('027/002 derived metadata acceptance', () => {
     expect(betaAfter).toBe(betaBefore);
   });
 
-  // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
   it('drops absolute, escaping, and symlinked-out derived key files from extraction and provenance', () => {
     const root = workspace('derived-key-containment');
     const outsideRoot = workspace('derived-key-outside');

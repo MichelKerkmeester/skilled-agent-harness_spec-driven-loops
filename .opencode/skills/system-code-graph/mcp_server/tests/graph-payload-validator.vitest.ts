@@ -19,7 +19,7 @@ describe('code graph query trust emission', () => {
     vi.doUnmock('../../../system-spec-kit/mcp_server/lib/context/shared-payload.js');
   });
 
-  // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
   it('emits separate trust axes on code-graph payloads', async () => {
     vi.doMock('../lib/ensure-ready.js', () => ({
       ensureCodeGraphReady: vi.fn(async () => ({

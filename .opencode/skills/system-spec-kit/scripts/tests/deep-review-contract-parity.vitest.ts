@@ -24,7 +24,7 @@ function readWorkspaceFile(relativePath: string): string {
   return fs.readFileSync(path.join(WORKSPACE_ROOT, relativePath), 'utf8');
 }
 
-// REASON: 026/000/007-vitest-recovery-followup requires optional sk-deep-review runtime-capabilities fixture
+// REASON: 026/000/002-vitest-recovery-followup requires optional sk-deep-review runtime-capabilities fixture
 (reviewCapabilityModule ? describe : describe.skip)('deep-review contract parity', () => {
   const primaryDocs = [
     '.opencode/skills/sk-deep-review/SKILL.md',
