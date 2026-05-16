@@ -3,12 +3,12 @@ title: "Implementation Summary: CLI Skills Codebase-Agnostic Standards Contract"
 description: "Final state for packet 041 — 5 CLI SKILL.md files now use review.md's baseline+overlay pattern; 7 direct overlay-skill mentions replaced with codebase-agnostic phrasing."
 template_source: "SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2"
 trigger_phrases:
-  - "041-cli-skills-baseline-overlay-contract implementation"
+  - "022-cli-skills-baseline-overlay-contract implementation"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/041-cli-skills-baseline-overlay-contract"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/022-cli-skills-baseline-overlay-contract"
     last_updated_at: "2026-04-30T14:00:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "All 17 tasks complete. 5/5 CLI SKILL.md have canonical baseline+overlay rule; 7 direct overlay mentions replaced; 9/10 modified files validate (1 pre-existing quirk on hook_contract.md, out of scope)."
@@ -20,8 +20,8 @@ _memory:
       - "plan.md"
       - "tasks.md"
     session_dedup:
-      fingerprint: "sha256:041-cli-skills-baseline-overlay-contract"
-      session_id: "041-cli-skills-baseline-overlay-contract"
+      fingerprint: "sha256:022-cli-skills-baseline-overlay-contract"
+      session_id: "022-cli-skills-baseline-overlay-contract"
       parent_session_id: "026-graph-and-context-optimization"
     completion_pct: 100
     open_questions: []

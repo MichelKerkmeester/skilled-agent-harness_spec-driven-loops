@@ -3,7 +3,7 @@ title: "Spec: CLI Skills Codebase-Agnostic Standards Contract"
 description: "Update 5 CLI orchestrator skills to mirror review.md's baseline+overlay code-standards contract instead of hardcoded sk-code-review / sk-code-opencode references."
 template_source: "SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2"
 trigger_phrases:
-  - "041-cli-skills-baseline-overlay-contract spec"
+  - "022-cli-skills-baseline-overlay-contract spec"
 importance_tier: "important"
 contextType: "implementation"
 ---

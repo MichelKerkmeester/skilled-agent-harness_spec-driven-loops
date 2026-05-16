@@ -3,7 +3,7 @@ title: "Tasks: CLI Skills Codebase-Agnostic Standards Contract"
 description: "Task list for packet 041 — 10 file edits."
 template_source: "SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2"
 trigger_phrases:
-  - "041-cli-skills-baseline-overlay-contract tasks"
+  - "022-cli-skills-baseline-overlay-contract tasks"
 importance_tier: "important"
 contextType: "implementation"
 ---

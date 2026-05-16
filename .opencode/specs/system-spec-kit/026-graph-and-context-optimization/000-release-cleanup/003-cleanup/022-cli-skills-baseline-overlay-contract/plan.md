@@ -3,7 +3,7 @@ title: "Plan: CLI Skills Codebase-Agnostic Standards Contract"
 description: "Implementation plan for inserting canonical baseline+overlay rule into 5 CLI SKILL.md files and replacing 7 direct overlay-skill mentions."
 template_source: "SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2"
 trigger_phrases:
-  - "041-cli-skills-baseline-overlay-contract plan"
+  - "022-cli-skills-baseline-overlay-contract plan"
 importance_tier: "important"
 contextType: "implementation"
 ---

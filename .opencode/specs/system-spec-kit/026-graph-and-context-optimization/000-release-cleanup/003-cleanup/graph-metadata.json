@@ -25,7 +25,7 @@
     "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cleanup/019-feature-catalog-shape-realignment",
     "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cleanup/020-coco-index-feature-catalog",
     "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cleanup/021-sk-doc-conformance-sweep-and-template-cleanup",
-    "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cleanup/041-cli-skills-baseline-overlay-contract",
+    "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cleanup/022-cli-skills-baseline-overlay-contract",
     "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cleanup/047-pre-existing-test-failure-remediation",
     "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cleanup/048-iter-001-daemon-concurrency-fixes",
     "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cleanup/050-architecture-diagrams-and-topology",

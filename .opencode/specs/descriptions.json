@@ -4975,7 +4975,7 @@
       "lastUpdated": "2026-05-08T08:26:57.415Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/041-cli-skills-baseline-overlay-contract",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/022-cli-skills-baseline-overlay-contract",
       "description": "Spec: CLI Skills Codebase-Agnostic Standards Contract",
       "keywords": [
         "spec",
