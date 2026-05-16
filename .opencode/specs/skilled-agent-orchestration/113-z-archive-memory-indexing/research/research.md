@@ -6,9 +6,45 @@ trigger_phrases:
   - "z_archive propagation audit"
 importance_tier: "normal"
 contextType: "research"
+_memory:
+  continuity:
+    packet_pointer: "skilled-agent-orchestration/113-z-archive-memory-indexing"
+    last_updated_at: "2026-05-16T13:35:00Z"
+    last_updated_by: "main_agent"
+    recent_action: "Synthesized 5-iter loop"
+    next_safe_action: "Apply remediation TSV"
+    blockers: []
+    key_files:
+      - "iterations/iteration-001.md"
+      - "iterations/iteration-002.md"
+      - "iterations/iteration-003.md"
+      - "iterations/iteration-004.md"
+      - "iterations/iteration-005.md"
+      - "deep-research-state.jsonl"
+      - "remediation-plan.tsv"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000113900"
+      session_id: "113-research-synth"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
 ---
 # Research synthesis: z_archive doc/test propagation audit
 
+<!-- ANCHOR:provenance -->
+## 0. Provenance
+
+| Source | Evidence |
+|--------|----------|
+| Trigger commit | `b062b12b4` — `.opencode/skills/system-spec-kit/mcp_server/lib/utils/index-scope.ts:184-191` (removed `compileSegmentPattern('z_archive')` from `EXCLUDED_FOR_MEMORY`) |
+| Decay system | `.opencode/skills/system-spec-kit/shared/scoring/folder-scoring.ts:31-44` (`ARCHIVE_MULTIPLIERS` defines `z_archive=0.1`) |
+| Iter outputs | source: `iteration-001` through `iteration-005` in `research/iterations/` |
+| JSONL state | `research/deep-research-state.jsonl` (7 rows: 1 workflow_start + 5 iter + 1 convergence) |
+| Convergence | `iteration-005` after 4 consecutive `newInfoRatio=0.0` |
+<!-- /ANCHOR:provenance -->
+
+<!-- ANCHOR:summary -->
 ## 1. Summary
 
 5-iter cli-devin SWE-1.6 deep-research loop converged after iter-5 with 4 consecutive iters of 0.0 new-info ratio. Phase 1 parallel-Explore baseline was essentially complete; the loop added 1 mechanical detail (specific assertion form in test) and confirmed 6 other surfaces had ZERO additional propagation hits beyond baseline.
@@ -92,3 +128,4 @@ Estimated commits: 10. Estimated wall-clock: 30-45 min.
 - Phase R prompts: `/tmp/113-research/iter-*.md`
 - Dispatcher: `/tmp/113-research/dispatch.sh`
 - Convergence reason: 4 consecutive iters with newInfoRatio=0.0 after iter-1's 0.067
+<!-- /ANCHOR:summary -->
