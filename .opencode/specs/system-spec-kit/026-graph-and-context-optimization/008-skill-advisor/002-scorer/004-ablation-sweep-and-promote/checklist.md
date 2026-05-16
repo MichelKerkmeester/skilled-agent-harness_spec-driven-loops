@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "verification"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/015-ablation-sweep-and-promote"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-ablation-sweep-and-promote"
     last_updated_at: "2026-05-13T19:30:00Z"
     last_updated_by: "claude"
     recent_action: "Scaffolded checklist.md"

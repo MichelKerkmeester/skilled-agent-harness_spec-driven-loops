@@ -127,7 +127,7 @@ None. All implementation decisions were resolved in sibling children.
 
 All phases complete. Structural layout:
 - [003-embed-cache-and-cosine-wiring](003-embed-cache-and-cosine-wiring/) — embedding cache + cosine wiring
-- [015-ablation-sweep-and-promote](015-ablation-sweep-and-promote/) — ablation sweep + lane promotion
+- [004-ablation-sweep-and-promote](004-ablation-sweep-and-promote/) — ablation sweep + lane promotion
 - [016-weight-sweep-harness](016-weight-sweep-harness/) — weight sweep harness
 - [017-corpus-seeded-sweep](017-corpus-seeded-sweep/) — corpus seeded sweep
 - [003-skill-metadata-quality-audit](003-skill-metadata-quality-audit/) — metadata quality audit

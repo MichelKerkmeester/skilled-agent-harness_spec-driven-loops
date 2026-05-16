@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/015-ablation-sweep-and-promote",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/015-ablation-sweep-and-promote",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-ablation-sweep-and-promote",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-ablation-sweep-and-promote",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor",
   "children_ids": [],
   "migrated": false,

@@ -8,7 +8,7 @@
   "manual": {
     "depends_on": [
       "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/003-embed-cache-and-cosine-wiring",
-      "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/015-ablation-sweep-and-promote"
+      "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-ablation-sweep-and-promote"
     ],
     "supersedes": [],
     "related_to": [

@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/015-ablation-sweep-and-promote",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-ablation-sweep-and-promote",
   "description": "Sweep candidate lane weight vectors via eval_run_ablation; pick the best; promote the cosine lane to live in lane-registry.ts; document chosen weights as an ADR.",
   "keywords": [
     "ablation-sweep",

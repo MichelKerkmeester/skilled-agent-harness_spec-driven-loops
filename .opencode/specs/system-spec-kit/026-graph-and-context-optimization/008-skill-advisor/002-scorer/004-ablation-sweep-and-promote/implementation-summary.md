@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/015-ablation-sweep-and-promote"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-ablation-sweep-and-promote"
     last_updated_at: "2026-05-13T20:20:00Z"
     last_updated_by: "codex"
     recent_action: "Promoted semantic lane"
