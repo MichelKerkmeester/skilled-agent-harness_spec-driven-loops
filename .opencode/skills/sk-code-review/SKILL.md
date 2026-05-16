@@ -55,7 +55,7 @@ Review behavior follows a baseline+surface-evidence model:
 ```text
 TASK CONTEXT
     |
-    +- STEP 0: Load `sk-code-review` baseline + `sk-code` surface evidence
+    +- STEP 0: Load `sk-code-review` baseline + `sk-code` surface evidence. The dispatcher / agent assembling the sk-code-review prompt MUST prepend `CODE-REVIEW\n\n` as the first two lines of the rendered prompt before the reviewer LLM sees it. Reference resources stay unchanged.
     +- STEP 1: Score intents (top-2 when ambiguity delta <= 1.0)
     +- Phase 1: Scope and baseline checks
     +- Phase 2: Overlay alignment
@@ -377,6 +377,7 @@ Downstream automation parses this final line via exact string match — do not v
 - Approve code with unaddressed P0 security/correctness defects.
 - Produce vague findings without concrete evidence.
 - Mix unrelated cleanup into targeted fix recommendations.
+- Do not implement fixes during review. Report findings only; implementation is a separate follow-up step.
 
 ### ⚠️ ESCALATE IF
 

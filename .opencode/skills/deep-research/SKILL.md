@@ -304,6 +304,7 @@ Research continuity is externalized to files, each iteration starts fresh, conve
 5. **Skip convergence checks** -- Every iteration must be evaluated
 6. **Modify config after init** -- Config is read-only after initialization
 7. **Overwrite prior findings** -- Append to research/research.md, never replace
+8. **Implement fixes during research** -- Report findings only; implementation is a separate follow-up step.
 
 ### Iteration Status Enum
 

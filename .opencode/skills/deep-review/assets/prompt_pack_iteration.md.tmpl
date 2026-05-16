@@ -1,3 +1,5 @@
+DEEP-REVIEW
+
 # Deep-Review Iteration Prompt Pack
 
 This prompt pack renders the per-iteration context for the `@deep-review` LEAF agent (native executor) or a CLI executor (e.g. `codex exec`). Tokens use curly-brace syntax and are substituted by `renderPromptPack` before dispatch.
@@ -55,6 +57,7 @@ All paths are relative to the repo root.
 - Target 9 tool calls. Soft max 12, hard max 13.
 - Write ALL findings to files. Do not hold in context.
 - Review target is READ-ONLY. Do not modify reviewed files.
+- Do not implement fixes during review. Report findings only; implementation is a separate follow-up step.
 - **ALLOWED WRITE PATHS (the ONLY paths you may create, modify, or append to)**:
   - `{state_paths_iteration_pattern}` — this iteration's narrative markdown
   - `{state_paths_state_log}` — append-only JSONL state log

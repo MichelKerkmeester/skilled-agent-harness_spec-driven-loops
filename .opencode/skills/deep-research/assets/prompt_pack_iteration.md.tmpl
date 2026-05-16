@@ -1,3 +1,5 @@
+DEEP-RESEARCH
+
 # Deep-Research Iteration Prompt Pack
 
 This prompt pack renders the per-iteration context for the `@deep-research` LEAF agent (native executor) or a CLI executor (e.g. `codex exec`). Tokens use curly-brace syntax and are substituted by `renderPromptPack` before dispatch.
@@ -29,6 +31,7 @@ All paths are relative to the repo root.
 - Target 3-5 research actions. Max 12 tool calls total.
 - Write ALL findings to files. Do not hold in context.
 - The workflow reducer owns strategy machine-owned sections, registry, and dashboard synchronization.
+- Do not implement fixes during review. Report findings only; implementation is a separate follow-up step.
 - When emitting the iteration JSONL record, include an optional `graphEvents` array of `{type, id, label, relation?, source?, target?}` objects representing coverage graph nodes and edges discovered this iteration. Omit the field when no graph events are produced.
 
 ## OUTPUT CONTRACT

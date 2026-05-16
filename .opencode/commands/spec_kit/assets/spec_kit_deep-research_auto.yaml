@@ -520,6 +520,22 @@ workflow:
           raw_event_forbidden: '{"type":"event","event":"stuck_recovery"}'
           canonical_event: '{"type":"event","event":"stuckRecovery","mode":"research","run":{current_iteration},"stopReason":"stuckRecovery","fromIteration":{current_iteration},"outcome":"recovered","timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
 
+      step_marker_scan:
+        action: "H-2 loop-prevention guard: scan previous iteration's rendered prompt for nested research marker"
+        algorithm: |
+          if current_iteration > 1:
+            PREV_PROMPT_PATH = "{state_paths.prompt_dir}/iteration-{previous_iteration}.md"
+            if file_exists(PREV_PROMPT_PATH):
+              PREV_PROMPT_FIRST_LINE = head -1 of PREV_PROMPT_PATH
+              if PREV_PROMPT_FIRST_LINE matches ^(DEEP-REVIEW|DEEP-RESEARCH|CODE-REVIEW)$:
+                log "ERROR: nested research-of-review loop detected (marker found in previous iteration prompt). Aborting."
+                halt with exit code 2
+        note: |
+          False-positive prevention: only matches when the first line is exactly one of the
+          three canonical markers. Markers appearing in comments or body text are ignored.
+          True-positive triggers only when a previous iteration's rendered prompt literally
+          starts with a deep-loop marker, indicating a nested research-of-review dispatch.
+
       step_dispatch_iteration:
         action: "Dispatch one iteration via the selected executor"
         resolve_executor:

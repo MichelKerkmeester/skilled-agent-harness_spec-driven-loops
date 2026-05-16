@@ -417,6 +417,7 @@ Downstream automation (including the synthesis phase and CI gate parser) parses 
 6. **Modify config after init** — `deep-review-config.json` is read-only after initialization.
 7. **Modify files under review** — The review loop is observation-only; no code changes during audit.
 8. **Use WebFetch** — Review is code-only; no external resource fetching is permitted.
+9. **Implement fixes during review** — Report findings only; implementation is a separate follow-up step.
 
 ### Iteration Status Enum
 
