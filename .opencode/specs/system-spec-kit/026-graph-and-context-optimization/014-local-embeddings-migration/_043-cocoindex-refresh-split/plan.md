@@ -9,7 +9,7 @@ contextType: "spec"
 status: "complete"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/042-cocoindex-refresh-split"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/_043-cocoindex-refresh-split"
     last_updated_at: "2026-05-14T16:45:00Z"
     last_updated_by: "codex"
     recent_action: "Planned MCP refresh/search split"
@@ -20,7 +20,7 @@ _memory:
       - ".opencode/skills/mcp-coco-index/mcp_server/tests/test_refresh_split.py"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000042"
-      session_id: "042-cocoindex-refresh-split"
+      session_id: "_043-cocoindex-refresh-split"
       parent_session_id: null
     completion_pct: 100
     open_questions: []
