@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/006-system-skill-advisor-extraction/002-scaffold-system-skill-advisor-package",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/006-system-skill-advisor-extraction/002-scaffold-system-skill-advisor-package",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/006-system-skill-advisor-extraction/002-scaffold-advisor-package",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/006-system-skill-advisor-extraction/002-scaffold-advisor-package",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/006-system-skill-advisor-extraction",
   "children_ids": [],
   "migrated": false,

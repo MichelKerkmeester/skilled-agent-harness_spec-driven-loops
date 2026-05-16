@@ -80,7 +80,7 @@ The codex impact discussion narrowed the shape to **Standalone Advisor MCP With 
 
 - Child **001-design-and-decision-record** *(scaffolded; runs first)*: ADR-001 locks the "Standalone Advisor MCP With Legacy Tool Bridge" shape from the discussion, answers operator open questions inline, finalizes the per-runtime config update strategy. NO code moves. Output: `001-design-and-decision-record/decision-record.md`.
 
-- Child **002-scaffold-system-skill-advisor-package** *(NOT YET scaffolded; depends on 001)*: create `.opencode/skills/system-skill-advisor/` with `SKILL.md`, `README.md`, `graph-metadata.json`, `feature_catalog/`, `manual_testing_playbook/`, `references/`, and an empty `mcp_server/` scaffold. Package-local DB-path policy + install-guide stubs. **No runtime behavior moved yet.** Effort: M.
+- Child **002-scaffold-advisor-package** *(NOT YET scaffolded; depends on 001)*: create `.opencode/skills/system-skill-advisor/` with `SKILL.md`, `README.md`, `graph-metadata.json`, `feature_catalog/`, `manual_testing_playbook/`, `references/`, and an empty `mcp_server/` scaffold. Package-local DB-path policy + install-guide stubs. **No runtime behavior moved yet.** Effort: M.
 
 - Child **003-move-advisor-source-db-and-tests** *(NOT YET scaffolded; depends on 002)*: move advisor `handlers/`, `lib/`, `tools/`, `schemas/`, `scripts/`, `compat/`, tests into the new package. Move skill-graph DB code with it; switch the default DB dir to `.opencode/skills/system-skill-advisor/mcp_server/database/`. Give the package its own TypeScript/Vitest config. Leave memory-side proxy imports only if needed for 004. Effort: L.
 

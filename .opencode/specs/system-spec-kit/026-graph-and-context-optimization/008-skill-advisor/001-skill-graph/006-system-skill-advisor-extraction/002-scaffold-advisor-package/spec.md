@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "specification"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/006-system-skill-advisor-extraction/002-scaffold-system-skill-advisor-package"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/006-system-skill-advisor-extraction/002-scaffold-advisor-package"
     last_updated_at: "2026-05-14T03:30:00Z"
     last_updated_by: "claude"
     recent_action: "Scaffolded packet"
@@ -24,7 +24,7 @@ _memory:
       - "implementation-summary.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000150902"
-      session_id: "002-scaffold-system-skill-advisor-package"
+      session_id: "002-scaffold-advisor-package"
       parent_session_id: null
     completion_pct: 0
     open_questions: []
@@ -49,7 +49,7 @@ _memory:
 | **Priority** | P1 |
 | **Status** | Planned |
 | **Created** | 2026-05-14 |
-| **Branch** | `002-scaffold-system-skill-advisor-package` |
+| **Branch** | `002-scaffold-advisor-package` |
 <!-- /ANCHOR:metadata -->
 
 ---

@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/006-system-skill-advisor-extraction/002-scaffold-system-skill-advisor-package",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/006-system-skill-advisor-extraction/002-scaffold-advisor-package",
   "description": "Stand up `.opencode/skills/system-skill-advisor/` package envelope per ADR-001: author SKILL.md, graph-metadata.json, catalog/playbook/references, DB-path policy, install-guide stub, empty mcp_server/ scaffold. No runtime move.",
   "keywords": [
     "system-skill-advisor-scaffold",

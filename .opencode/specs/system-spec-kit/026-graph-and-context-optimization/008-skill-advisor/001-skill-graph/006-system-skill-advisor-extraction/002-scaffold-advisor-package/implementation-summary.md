@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/006-system-skill-advisor-extraction/002-scaffold-system-skill-advisor-package"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/006-system-skill-advisor-extraction/002-scaffold-advisor-package"
     last_updated_at: "2026-05-14T10:34:00Z"
     last_updated_by: "claude"
     recent_action: "Envelope authored; ledger filled"

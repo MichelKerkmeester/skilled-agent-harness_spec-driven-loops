@@ -144,7 +144,7 @@ The accepted shape is the only candidate that satisfies both hard constraints an
 
 This ADR adopts the locked migration sequence already listed in the parent 015/009 `spec.md` "What Needs Done" section:
 
-1. **002-scaffold-system-skill-advisor-package**: create `.opencode/skills/system-skill-advisor/` docs, metadata, feature catalog, playbook, references, DB-path policy, install-guide stubs, and empty MCP scaffold.
+1. **002-scaffold-advisor-package**: create `.opencode/skills/system-skill-advisor/` docs, metadata, feature catalog, playbook, references, DB-path policy, install-guide stubs, and empty MCP scaffold.
 2. **003-move-advisor-source-db-and-tests**: move advisor handlers, lib, tools, schemas, scripts, compat, tests, and DB path resolver into the new package.
 3. **004-standalone-mcp-launcher-and-runtime-configs**: add `skill-advisor-launcher.cjs`, standalone MCP entrypoint, and `system_skill_advisor` entries in OpenCode, Codex, Claude, and Gemini configs.
 4. **005-hooks-compat-and-consumer-cutover**: move or wrap hooks, plugin bridge, Python shim, doctor workflow, install guides, and direct consumers while keeping `advisor_*` ids.

@@ -142,7 +142,7 @@ This is the right trade: it honors the operator's hard process and DB ownership 
 
 ## 4. 5-Phase Migration Sequence (Provisional)
 
-1. **002-scaffold-system-skill-advisor-package**  
+1. **002-scaffold-advisor-package**  
    Deliverable: Create `.opencode/skills/system-skill-advisor/` with `SKILL.md`, `README.md`, `graph-metadata.json`, `feature_catalog/`, `manual_testing_playbook/`, `references/`, and an empty `mcp_server/` scaffold. Include package-local database path policy and install-guide draft stubs, but do not move runtime behavior yet.  
    Critical dependency: 001 ADR ships.  
    Effort: M.
