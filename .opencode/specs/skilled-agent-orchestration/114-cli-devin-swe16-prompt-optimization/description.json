@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "skilled-agent-orchestration/114-cli-devin-swe16-prompt-optimization",
+  "description": "Phase parent for a bespoke deep-loop that iteratively tunes cli-devin's prompt scaffolding and dispatch contract to maximize output quality from Devin's free SWE 1.6 model. Decomposes into 4 phases: council design → eval rig → eval loop → skill uplift.",
+  "keywords": [
+    "cli-devin",
+    "swe-1.6",
+    "prompt-optimization",
+    "deep-loop",
+    "ai-council",
+    "eval-rig",
+    "phase-parent"
+  ],
+  "lastUpdated": "2026-05-16T19:10:00Z",
+  "specId": "114",
+  "folderSlug": "cli-devin-swe16-prompt-optimization",
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [],
+  "phaseParent": true,
+  "phaseChildren": [
+    "001-council-design",
+    "002-eval-rig",
+    "003-eval-loop",
+    "004-skill-uplift"
+  ]
+}

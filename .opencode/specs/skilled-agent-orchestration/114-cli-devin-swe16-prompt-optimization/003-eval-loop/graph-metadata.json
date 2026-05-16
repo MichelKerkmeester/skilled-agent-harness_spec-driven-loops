@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/114-cli-devin-swe16-prompt-optimization/003-eval-loop",
+  "spec_folder": "skilled-agent-orchestration/114-cli-devin-swe16-prompt-optimization/003-eval-loop",
+  "parent_id": "skilled-agent-orchestration/114-cli-devin-swe16-prompt-optimization",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [
+      "skilled-agent-orchestration/114-cli-devin-swe16-prompt-optimization/001-council-design",
+      "skilled-agent-orchestration/114-cli-devin-swe16-prompt-optimization/002-eval-rig"
+    ],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "114/003 eval loop",
+      "cli-devin deep loop",
+      "swe 1.6 iteration run",
+      "hill-climbing convergence",
+      "3-signal weighted vote",
+      "rate-limit pause resume"
+    ],
+    "key_topics": [
+      "114",
+      "003",
+      "eval-loop",
+      "iterations",
+      "convergence",
+      "hill-climbing",
+      "synthesis",
+      "pause-resume"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "entities": [],
+    "causal_summary": "Third phase of 114 packet. Runs the bespoke deep-loop: council-seeded hill-climbing across prompt variants, real SWE 1.6 dispatches per fixture (parallel wave of 3), deterministic + grader scoring via 002 rig, 3-signal weighted-vote convergence (plateau 0.40 + mutation-exhaustion 0.35 + MAD 0.25), legal-stop bundle (coverage + quality + budget). Min 6 iterations. 7-mode failure-recovery (429, grader dispute, parse error, cache race, fixture missing, grader cache poisoning, auth expiration) with pause-sentinel for free-tier rate limits. Outputs synthesis.md ranking variants with confidence scores for 004 to apply. Depends on 001 ratified + 002 dry-run green.",
+    "created_at": "2026-05-16T19:10:00Z",
+    "last_save_at": "2026-05-16T19:10:00Z",
+    "save_lineage": "main_agent",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ]
+  }
+}

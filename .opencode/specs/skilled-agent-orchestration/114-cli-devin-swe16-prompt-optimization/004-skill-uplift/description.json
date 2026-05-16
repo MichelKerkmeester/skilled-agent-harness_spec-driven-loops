@@ -1,0 +1,22 @@
+{
+  "level": "3",
+  "specFolder": "skilled-agent-orchestration/114-cli-devin-swe16-prompt-optimization/004-skill-uplift",
+  "description": "Apply winning patterns from 003 synthesis.md to .opencode/skills/cli-devin/: SKILL.md (§2 SMART ROUTING + §4 RULES updates), assets/prompt_templates.md (winner variants), assets/prompt_quality_card.md (refined CLEAR cutoffs), changelog/v1.0.5.0.md. Strict-validate after each authored doc write.",
+  "keywords": [
+    "cli-devin-skill-update",
+    "skill-uplift",
+    "prompt-template-winners",
+    "clear-cutoff-refinement",
+    "changelog-v1.0.5.0",
+    "data-driven-defaults"
+  ],
+  "lastUpdated": "2026-05-16T19:10:00Z",
+  "specId": "004",
+  "folderSlug": "skill-uplift",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "114-cli-devin-swe16-prompt-optimization"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}
