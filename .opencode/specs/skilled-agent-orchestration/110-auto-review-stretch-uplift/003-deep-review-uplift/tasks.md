@@ -2,14 +2,14 @@
 title: "Tasks: Phase 3 H-7 + H-9 deep-review uplift"
 description: "Atomic task ledger."
 trigger_phrases:
-  - "109 phase 003-deep-rv tasks"
+  - "110 phase 003-deep-rv tasks"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/109-auto-review-stretch-uplift/003-deep-review-uplift"
+    packet_pointer: "skilled-agent-orchestration/110-auto-review-stretch-uplift/003-deep-review-uplift"
     last_updated_at: "2026-05-16T11:00:00Z"
-    last_updated_by: "claude-opus-4-7-109-scaffold"
+    last_updated_by: "claude-opus-4-7-110-scaffold"
     recent_action: "phase_tasks_authored"
     next_safe_action: "await_council"
     blockers: []
@@ -17,7 +17,7 @@ _memory:
       - "tasks.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "2026-05-16-109-003-deep-rv-tasks"
+      session_id: "2026-05-16-110-003-deep-rv-tasks"
       parent_session_id: null
     completion_pct: 5
     open_questions: []

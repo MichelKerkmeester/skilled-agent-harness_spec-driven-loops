@@ -2,7 +2,7 @@
 title: "Feature Specification: Auto-Review Stretch Uplift (phased, 4 children)"
 description: "Phase-parent packet adopting the 7 stretch teachings deferred from packet 108 (H-5 3-tier config, H-7 marker dedup, H-9 bounded evidence + M-1, M-2, M-3, M-6) from packet 106 upstream auto-review research. Grouped into 4 phase children by target surface: mk-* plugins, sk-code-review, deep-review, deep-agent-improvement. Council review by gpt-5.5 xhigh fast precedes implementation."
 trigger_phrases:
-  - "109 auto-review stretch uplift"
+  - "110 auto-review stretch uplift"
   - "auto-review stretch teachings"
   - "h5 3-tier config"
   - "h7 marker dedup"
@@ -11,9 +11,9 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/109-auto-review-stretch-uplift"
+    packet_pointer: "skilled-agent-orchestration/110-auto-review-stretch-uplift"
     last_updated_at: "2026-05-16T11:00:00Z"
-    last_updated_by: "claude-opus-4-7-109-scaffold"
+    last_updated_by: "claude-opus-4-7-110-scaffold"
     recent_action: "phase_parent_scaffolded_with_4_children_awaiting_council_review"
     next_safe_action: "dispatch_deep_ai_council_with_gpt_5_5_xhigh_fast_for_pre_implementation_review"
     blockers: []
@@ -26,7 +26,7 @@ _memory:
       - "ai-council/council-report.md (target after review)"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "2026-05-16-109-scaffold"
+      session_id: "2026-05-16-110-scaffold"
       parent_session_id: null
     completion_pct: 5
     open_questions:
@@ -51,7 +51,7 @@ _memory:
 | **Status** | Planned — awaiting council review |
 | **Created** | 2026-05-16 |
 | **Branch** | `main` |
-| **Parent Packet** | `skilled-agent-orchestration/109-auto-review-stretch-uplift` |
+| **Parent Packet** | `skilled-agent-orchestration/110-auto-review-stretch-uplift` |
 | **Active Child** | `001-mk-plugins-config-uplift` (first phase to implement post-council) |
 | **Source Findings** | `106-upstream-auto-review-research/research/review-report.md` (stretch teachings) + `108-sk-code-review-auto-review-uplift/004-stretch-goals/spec.md` (deferred list) |
 | **Pre-implementation Gate** | deep-ai-council multi-seat review using cli-codex gpt-5.5 xhigh fast → ai-council/council-report.md |
@@ -64,10 +64,10 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-Packet 108 shipped 5 quick-win teachings (H-1, H-2, H-3, H-4, H-6) from 106's auto-review research, but 7 stretch teachings remain unadopted: H-5 (3-tier config for mk-* plugins), H-7 (marker-based dedup for deep-review multi-dimensional loops), H-9 (bounded evidence interpolation for deep-review on large packets), M-1 (PR state dedup for sk-code-review), M-2 (optional min-evidence gate for sk-code-review), M-3 (mutation signature dedup for deep-agent-improvement), M-6 (async config init for mk-* plugins). The 108 packet explicitly deferred these to "packet 109 if pursued." Implementation cost is MEDIUM (3-4h) for the HIGH-impact items, LOW (~1h) for the MEDIUM-impact items — total ~10-12h.
+Packet 108 shipped 5 quick-win teachings (H-1, H-2, H-3, H-4, H-6) from 106's auto-review research, but 6 stretch teachings remain unadopted: H-5 (3-tier config for mk-* plugins), H-7 (marker-based dedup for deep-review multi-dimensional loops), M-1 (PR state dedup for sk-code-review), M-2 (optional min-evidence gate for sk-code-review), M-3 (mutation signature dedup for deep-agent-improvement), M-6 (async config init for mk-* plugins). The 108 packet deferred these to a stretch packet (now this packet 110 — number `109` was taken by parallel `109-026-restructure-execution-wave-2`). Per 110 council verdict (5/5 REQUEST-CHANGES → revisions applied), **H-9 (bounded evidence interpolation) is deferred** — current deep-review prompt packs use state/metadata pointers, not embedded file contents, so H-9's described interpolation point doesn't exist in the current architecture (H-9 may be revisited in a future packet 111+ if a real interpolation path is identified). Implementation cost (post-council revisions): MEDIUM (3-4h) for HIGH-impact items, LOW (~1h) for MEDIUM-impact items — total **~8-10h** after H-9 defer.
 
 ### Purpose
-Adopt the 7 stretch teachings via 4 implementation phases grouped by target surface (not by impact tier — keeps each child focused on a single skill/plugin). Gated by a multi-AI council review that validates phase grouping + ordering + risk profile before any code changes land. Implementation only begins after the council produces `ai-council/council-report.md` with a clear verdict (APPROVE / REQUEST-CHANGES / REJECT).
+Adopt the 6 stretch teachings via 4 implementation phases grouped by target surface (not by impact tier — keeps each child focused on a single skill/plugin). Pre-implementation council review APPROVED-WITH-REVISIONS by `ai-council/council-report.md` (5/5 unanimous REQUEST-CHANGES → all 7 spec edits applied 2026-05-16). Implementation executor: cli-opencode + deepseek-v4-pro via `opencode run --model deepseek/deepseek-v4-pro --pure`.
 <!-- /ANCHOR:problem -->
 
 ---

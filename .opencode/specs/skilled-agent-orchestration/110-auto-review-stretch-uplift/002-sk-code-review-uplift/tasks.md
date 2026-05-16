@@ -2,14 +2,14 @@
 title: "Tasks: Phase 2 M-1 + M-2 sk-code-review uplift"
 description: "Atomic task ledger."
 trigger_phrases:
-  - "109 phase 002-sk-cr tasks"
+  - "110 phase 002-sk-cr tasks"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/109-auto-review-stretch-uplift/002-sk-code-review-uplift"
+    packet_pointer: "skilled-agent-orchestration/110-auto-review-stretch-uplift/002-sk-code-review-uplift"
     last_updated_at: "2026-05-16T11:00:00Z"
-    last_updated_by: "claude-opus-4-7-109-scaffold"
+    last_updated_by: "claude-opus-4-7-110-scaffold"
     recent_action: "phase_tasks_authored"
     next_safe_action: "await_council"
     blockers: []
@@ -17,7 +17,7 @@ _memory:
       - "tasks.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "2026-05-16-109-002-sk-cr-tasks"
+      session_id: "2026-05-16-110-002-sk-cr-tasks"
       parent_session_id: null
     completion_pct: 5
     open_questions: []

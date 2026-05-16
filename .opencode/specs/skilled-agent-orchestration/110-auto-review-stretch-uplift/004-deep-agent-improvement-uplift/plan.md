@@ -2,14 +2,14 @@
 title: "Implementation Plan: Phase 4 M-3 deep-agent-improvement mutation dedup"
 description: "Add mutation-signature dedup to deep-agent-improvement mutation-coverage.cjs."
 trigger_phrases:
-  - "109 phase 004-dai plan"
+  - "110 phase 004-dai plan"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/109-auto-review-stretch-uplift/004-deep-agent-improvement-uplift"
+    packet_pointer: "skilled-agent-orchestration/110-auto-review-stretch-uplift/004-deep-agent-improvement-uplift"
     last_updated_at: "2026-05-16T11:00:00Z"
-    last_updated_by: "claude-opus-4-7-109-scaffold"
+    last_updated_by: "claude-opus-4-7-110-scaffold"
     recent_action: "phase_plan_authored"
     next_safe_action: "await_council"
     blockers:
@@ -18,7 +18,7 @@ _memory:
       - "plan.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "2026-05-16-109-004-dai-plan"
+      session_id: "2026-05-16-110-004-dai-plan"
       parent_session_id: null
     completion_pct: 5
     open_questions: []

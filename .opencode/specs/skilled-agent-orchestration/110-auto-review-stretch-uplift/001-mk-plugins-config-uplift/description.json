@@ -1,8 +1,8 @@
 {
-  "specFolder": "skilled-agent-orchestration/109-auto-review-stretch-uplift/001-mk-plugins-config-uplift",
-  "description": "109 phase 001-mk-plugins-config-uplift",
+  "specFolder": "skilled-agent-orchestration/110-auto-review-stretch-uplift/001-mk-plugins-config-uplift",
+  "description": "110 phase 001-mk-plugins-config-uplift",
   "keywords": [
-    "109",
+    "110",
     "phase",
     "001-mk-plugins-config-uplift"
   ],
@@ -11,7 +11,7 @@
   "folderSlug": "mk-plugins-config-uplift",
   "parentChain": [
     "skilled-agent-orchestration",
-    "109-auto-review-stretch-uplift"
+    "110-auto-review-stretch-uplift"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

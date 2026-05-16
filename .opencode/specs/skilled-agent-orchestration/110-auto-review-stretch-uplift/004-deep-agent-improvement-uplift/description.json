@@ -1,8 +1,8 @@
 {
-  "specFolder": "skilled-agent-orchestration/109-auto-review-stretch-uplift/004-deep-agent-improvement-uplift",
-  "description": "109 phase 004-deep-agent-improvement-uplift",
+  "specFolder": "skilled-agent-orchestration/110-auto-review-stretch-uplift/004-deep-agent-improvement-uplift",
+  "description": "110 phase 004-deep-agent-improvement-uplift",
   "keywords": [
-    "109",
+    "110",
     "phase",
     "004-deep-agent-improvement-uplift"
   ],
@@ -11,7 +11,7 @@
   "folderSlug": "deep-agent-improvement-uplift",
   "parentChain": [
     "skilled-agent-orchestration",
-    "109-auto-review-stretch-uplift"
+    "110-auto-review-stretch-uplift"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

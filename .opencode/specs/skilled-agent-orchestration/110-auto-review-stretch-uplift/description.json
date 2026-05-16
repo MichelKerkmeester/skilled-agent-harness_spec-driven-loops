@@ -1,16 +1,16 @@
 {
-  "specFolder": "skilled-agent-orchestration/109-auto-review-stretch-uplift",
+  "specFolder": "skilled-agent-orchestration/110-auto-review-stretch-uplift",
   "description": "Phase-parent for 109 auto-review stretch uplift (4 children)",
   "keywords": [
     "phase-parent",
-    "109",
+    "110",
     "auto-review",
     "stretch",
     "uplift",
     "children"
   ],
   "lastUpdated": "2026-05-16T06:47:29.107Z",
-  "specId": "109",
+  "specId": "110",
   "folderSlug": "auto-review-stretch-uplift",
   "parentChain": [
     "skilled-agent-orchestration"
