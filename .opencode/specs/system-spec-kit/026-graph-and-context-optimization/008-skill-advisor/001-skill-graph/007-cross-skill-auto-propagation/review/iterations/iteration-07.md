@@ -11,14 +11,14 @@ Correctness — context-template substitution edge cases
 - `.opencode/skills/system-skill-advisor/mcp_server/tests/cross-skill-edges.vitest.ts:1-289` (verify no substitution-specific tests)
 - `.opencode/skills/sk-prompt/graph-metadata.json:45-49` (context_template value)
 - `.opencode/skills/system-skill-advisor/graph-metadata.json:95-106, 200-207` (enhances contexts + context_template)
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/026-cross-skill-auto-propagation/spec.md:1-247` (REQ-011, REQ-012)
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/026-cross-skill-auto-propagation/plan.md:324-329` (§3 substituteTemplate sketch)
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/026-cross-skill-auto-propagation/review/iterations/iteration-01.md:1-152`
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/026-cross-skill-auto-propagation/review/iterations/iteration-02.md:1-101`
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/026-cross-skill-auto-propagation/review/iterations/iteration-03.md:1-182`
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/026-cross-skill-auto-propagation/review/iterations/iteration-04.md:1-213`
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/026-cross-skill-auto-propagation/review/iterations/iteration-05.md:1-312`
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/026-cross-skill-auto-propagation/review/iterations/iteration-06.md:1-334`
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-cross-skill-auto-propagation/spec.md:1-247` (REQ-011, REQ-012)
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-cross-skill-auto-propagation/plan.md:324-329` (§3 substituteTemplate sketch)
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-cross-skill-auto-propagation/review/iterations/iteration-01.md:1-152`
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-cross-skill-auto-propagation/review/iterations/iteration-02.md:1-101`
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-cross-skill-auto-propagation/review/iterations/iteration-03.md:1-182`
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-cross-skill-auto-propagation/review/iterations/iteration-04.md:1-213`
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-cross-skill-auto-propagation/review/iterations/iteration-05.md:1-312`
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-cross-skill-auto-propagation/review/iterations/iteration-06.md:1-334`
 
 ## Findings
 

@@ -15,13 +15,13 @@ Security — path traversal, JSON parse safety, write boundary
 - `.opencode/skills/system-skill-advisor/mcp_server/tests/cross-skill-edges.vitest.ts:1-289` (test coverage of path-sensitive operations)
 - `.opencode/skills/system-skill-advisor/graph-metadata.json:1-208` (enhance_when + auto-added edge with markers)
 - `.opencode/skills/sk-prompt/graph-metadata.json:1-178` (enhance_when field)
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/026-cross-skill-auto-propagation/spec.md:1-247` (NFR-S01, REQ-007, REQ-031/CHK-031)
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/026-cross-skill-auto-propagation/plan.md:1-603` (§3 apply patch sketch, path assumptions)
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/026-cross-skill-auto-propagation/checklist.md:1-132` (CHK-030, CHK-031, CHK-032)
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/026-cross-skill-auto-propagation/implementation-summary.md:1-132` (claimed outcomes, verification table)
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/026-cross-skill-auto-propagation/review/deep-review-strategy.md:1-53` (iteration constraints)
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/026-cross-skill-auto-propagation/review/iterations/iteration-01.md:1-152` (prior findings to avoid re-reporting)
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/026-cross-skill-auto-propagation/review/iterations/iteration-02.md:1-101` (prior findings to avoid re-reporting)
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-cross-skill-auto-propagation/spec.md:1-247` (NFR-S01, REQ-007, REQ-031/CHK-031)
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-cross-skill-auto-propagation/plan.md:1-603` (§3 apply patch sketch, path assumptions)
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-cross-skill-auto-propagation/checklist.md:1-132` (CHK-030, CHK-031, CHK-032)
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-cross-skill-auto-propagation/implementation-summary.md:1-132` (claimed outcomes, verification table)
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-cross-skill-auto-propagation/review/deep-review-strategy.md:1-53` (iteration constraints)
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-cross-skill-auto-propagation/review/iterations/iteration-01.md:1-152` (prior findings to avoid re-reporting)
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-cross-skill-auto-propagation/review/iterations/iteration-02.md:1-101` (prior findings to avoid re-reporting)
 
 ## Findings
 

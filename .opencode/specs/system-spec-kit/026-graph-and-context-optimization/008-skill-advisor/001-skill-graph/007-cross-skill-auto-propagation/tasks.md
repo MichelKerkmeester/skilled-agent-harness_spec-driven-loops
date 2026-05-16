@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/026-cross-skill-auto-propagation"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-cross-skill-auto-propagation"
     last_updated_at: "2026-05-15T15:30:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Author tasks"
@@ -85,8 +85,8 @@ _memory:
 - [ ] T022 Manual smoke 1: invoke `skill_graph_propagate_enhances` against current HEAD repo state, expect `candidates: []` (no drift today — REQ-001)
 - [ ] T023 Manual smoke 2 (synthetic-removal): temporarily remove cli-devin entry from sk-prompt's enhances[], run detector, expect 1 candidate at confidence ≥ 0.80, apply it, verify idempotent re-run returns 0 candidates, then `git restore .opencode/skills/sk-prompt/graph-metadata.json` to clean up
 - [ ] T024 Fill `implementation-summary.md` with concrete file paths, LOC counts, verification table, deviations from plan
-- [ ] T025 Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/026-cross-skill-auto-propagation --strict` — expect 0 errors / 0 warnings
-- [ ] T026 Run `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js <path> 026-cross-skill-auto-propagation` to refresh continuity + graph-metadata
+- [ ] T025 Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-cross-skill-auto-propagation --strict` — expect 0 errors / 0 warnings
+- [ ] T026 Run `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js <path> 007-cross-skill-auto-propagation` to refresh continuity + graph-metadata
 <!-- /ANCHOR:phase-3 -->
 
 ---

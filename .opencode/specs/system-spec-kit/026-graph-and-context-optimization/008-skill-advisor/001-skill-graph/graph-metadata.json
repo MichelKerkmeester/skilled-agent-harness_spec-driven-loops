@@ -10,7 +10,7 @@
     "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-graph/004-apply-metadata-fixes-and-resweep",
     "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-graph/005-populate-intent-signals-and-relationships",
     "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-graph/006-system-skill-advisor-extraction",
-    "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-graph/026-cross-skill-auto-propagation"
+    "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-graph/007-cross-skill-auto-propagation"
   ],
   "manual": {
     "depends_on": [],

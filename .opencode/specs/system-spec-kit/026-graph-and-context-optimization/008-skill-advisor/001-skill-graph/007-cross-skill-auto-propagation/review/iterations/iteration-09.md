@@ -10,14 +10,14 @@ Adversarial — auto-marker fields integrity, weight clipping boundaries
 - `.opencode/skills/system-skill-advisor/mcp_server/lib/cross-skill-edges/types.ts:26-41` (InboundEnhanceCandidate.rules + applyable contract)
 - `.opencode/skills/system-skill-advisor/mcp_server/tests/cross-skill-edges.vitest.ts:230-257` ('emits only enhances edge type' test — minConfidence 0.0, produces empty-rules candidate), `:259-288` (weight clipping test — relaxed bounds assertions)
 - `.opencode/skills/system-skill-advisor/graph-metadata.json:101-106` (applied deep-ai-council edge — all auto-marker values)
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/026-cross-skill-auto-propagation/spec.md:134` (REQ-004 auto-marker fields)
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/026-cross-skill-auto-propagation/plan.md:336-363` (§3 applyEnhanceEdge sketch)
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/026-cross-skill-auto-propagation/checklist.md:83` (CHK-FIX-004 weight clipping testimony)
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/026-cross-skill-auto-propagation/implementation-summary.md:85` (claimed auto-marker + weight clipping outcomes)
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/026-cross-skill-auto-propagation/review/iterations/iteration-01.md:1-152` (F-01-006 null weight blocker gap)
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/026-cross-skill-auto-propagation/review/iterations/iteration-02.md:1-101` (F-02-001 null weight in enhance_when path)
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/026-cross-skill-auto-propagation/review/iterations/iteration-05.md:1-312` (F-05-006 weight optionality, REQ-011 trace)
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/026-cross-skill-auto-propagation/review/iterations/iteration-08.md:1-274`
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-cross-skill-auto-propagation/spec.md:134` (REQ-004 auto-marker fields)
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-cross-skill-auto-propagation/plan.md:336-363` (§3 applyEnhanceEdge sketch)
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-cross-skill-auto-propagation/checklist.md:83` (CHK-FIX-004 weight clipping testimony)
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-cross-skill-auto-propagation/implementation-summary.md:85` (claimed auto-marker + weight clipping outcomes)
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-cross-skill-auto-propagation/review/iterations/iteration-01.md:1-152` (F-01-006 null weight blocker gap)
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-cross-skill-auto-propagation/review/iterations/iteration-02.md:1-101` (F-02-001 null weight in enhance_when path)
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-cross-skill-auto-propagation/review/iterations/iteration-05.md:1-312` (F-05-006 weight optionality, REQ-011 trace)
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-cross-skill-auto-propagation/review/iterations/iteration-08.md:1-274`
 
 ## Findings
 

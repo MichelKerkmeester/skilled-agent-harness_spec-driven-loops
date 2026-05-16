@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/026-cross-skill-auto-propagation"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-cross-skill-auto-propagation"
     last_updated_at: "2026-05-15T15:30:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Author checklist"

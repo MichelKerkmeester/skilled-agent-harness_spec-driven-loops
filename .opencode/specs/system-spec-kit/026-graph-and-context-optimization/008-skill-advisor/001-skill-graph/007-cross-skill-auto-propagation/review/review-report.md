@@ -11,7 +11,7 @@ description: 10-iteration adversarial audit of SWE-1.6 implementation. Verdict C
 |-------|-------|
 | Review target | Phase 026 — skill_graph_propagate_enhances MVP |
 | Implementation under review | SWE-1.6 via cli-devin (Devin for Terminal v2026.5.6-8) |
-| Spec folder | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/026-cross-skill-auto-propagation` |
+| Spec folder | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-cross-skill-auto-propagation` |
 | Iterations | 10 of 10 (operator-capped) |
 | Executor | `cli-opencode` + `deepseek/deepseek-v4-pro` + `reasoning=high` (`--pure --agent build`) |
 | Dimensions | Correctness (D1) ×5 iters · Security (D2) ×1 · Traceability (D3) ×2 · Maintainability (D4) ×1 · Adjudication (D5) ×1 |

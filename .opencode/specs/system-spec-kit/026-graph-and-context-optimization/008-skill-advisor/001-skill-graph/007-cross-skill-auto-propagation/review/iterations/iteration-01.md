@@ -4,11 +4,11 @@
 Correctness — composite scoring math + detection logic
 
 ## Sources Read
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/026-cross-skill-auto-propagation/spec.md` (full — REQ-001..REQ-016)
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/026-cross-skill-auto-propagation/plan.md` (full — §3 TypeScript sketches)
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/026-cross-skill-auto-propagation/checklist.md` (full — P0/P1/P2 items)
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/026-cross-skill-auto-propagation/implementation-summary.md` (full — claimed outcomes)
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/026-cross-skill-auto-propagation/review/deep-review-strategy.md` (full)
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-cross-skill-auto-propagation/spec.md` (full — REQ-001..REQ-016)
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-cross-skill-auto-propagation/plan.md` (full — §3 TypeScript sketches)
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-cross-skill-auto-propagation/checklist.md` (full — P0/P1/P2 items)
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-cross-skill-auto-propagation/implementation-summary.md` (full — claimed outcomes)
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-cross-skill-auto-propagation/review/deep-review-strategy.md` (full)
 - `.opencode/skills/system-skill-advisor/mcp_server/lib/cross-skill-edges/types.ts:1-112`
 - `.opencode/skills/system-skill-advisor/mcp_server/lib/cross-skill-edges/metadata-loader.ts:1-193`
 - `.opencode/skills/system-skill-advisor/mcp_server/lib/cross-skill-edges/detect-inbound-enhances.ts:1-246`

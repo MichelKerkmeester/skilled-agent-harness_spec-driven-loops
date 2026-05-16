@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/026-cross-skill-auto-propagation",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-cross-skill-auto-propagation",
   "description": "Feature Specification: skill_graph_propagate_enhances — cross-skill auto-propagation MVP",
   "keywords": [
     "feature",

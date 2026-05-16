@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/026-cross-skill-auto-propagation"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-cross-skill-auto-propagation"
     last_updated_at: "2026-05-15T16:50:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Close P1 findings"
@@ -41,7 +41,7 @@ _memory:
 
 || Field | Value |
 ||-------|-------|
-|| **Spec Folder** | 026-cross-skill-auto-propagation |
+|| **Spec Folder** | 007-cross-skill-auto-propagation |
 || **Completed** | 2026-05-15 |
 || **Level** | 2 |
 || **Branch** | main (no feature branch) |

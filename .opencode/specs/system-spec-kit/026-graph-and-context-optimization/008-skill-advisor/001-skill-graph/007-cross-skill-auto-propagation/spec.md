@@ -6,12 +6,12 @@ trigger_phrases:
   - "cross-skill auto-propagation"
   - "inbound enhancement edges"
   - "skill-advisor edge propagation"
-  - "026-cross-skill-auto-propagation"
+  - "007-cross-skill-auto-propagation"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/026-cross-skill-auto-propagation"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-cross-skill-auto-propagation"
     last_updated_at: "2026-05-15T15:30:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Author Level 2 spec"
@@ -54,7 +54,7 @@ _memory:
 | **Created** | 2026-05-15 |
 | **Branch** | `main` (no feature branch per operator policy) |
 | **Track** | `system-spec-kit/026-graph-and-context-optimization/008-skill-advisor` |
-| **Phase ID** | `026-cross-skill-auto-propagation` |
+| **Phase ID** | `007-cross-skill-auto-propagation` |
 <!-- /ANCHOR:metadata -->
 
 ---

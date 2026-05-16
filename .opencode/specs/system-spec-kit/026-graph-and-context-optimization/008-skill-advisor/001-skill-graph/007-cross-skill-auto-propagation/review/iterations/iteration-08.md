@@ -15,11 +15,11 @@ Adversarial — same-family avoidance, empty enhances, malformed JSON
 - `.opencode/skills/system-skill-advisor/mcp_server/tests/cross-skill-edges.vitest.ts:1-289` (full test file — verified no adversarial fixture exists for same-family skip, empty enhances family-inference, or string/non-array skill_has_files)
 - `.opencode/skills/sk-prompt/graph-metadata.json:45-49` (enhance_when single-object form)
 - `.opencode/skills/system-skill-advisor/graph-metadata.json:200-207` (enhance_when single-object form)
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/026-cross-skill-auto-propagation/spec.md:210-222` (Edge Cases section — same-family circular, empty enhances, malformed JSON, write denied)
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/026-cross-skill-auto-propagation/plan.md:199-227` (scoreFamilyInference plan sketches)
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/026-cross-skill-auto-propagation/review/iterations/iteration-01.md:1-152`
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/026-cross-skill-auto-propagation/review/iterations/iteration-06.md:1-334` (F-06-004 — silent null returns from metadata loader)
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/026-cross-skill-auto-propagation/review/iterations/iteration-07.md:1-235`
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-cross-skill-auto-propagation/spec.md:210-222` (Edge Cases section — same-family circular, empty enhances, malformed JSON, write denied)
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-cross-skill-auto-propagation/plan.md:199-227` (scoreFamilyInference plan sketches)
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-cross-skill-auto-propagation/review/iterations/iteration-01.md:1-152`
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-cross-skill-auto-propagation/review/iterations/iteration-06.md:1-334` (F-06-004 — silent null returns from metadata loader)
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-cross-skill-auto-propagation/review/iterations/iteration-07.md:1-235`
 
 ## Findings
 

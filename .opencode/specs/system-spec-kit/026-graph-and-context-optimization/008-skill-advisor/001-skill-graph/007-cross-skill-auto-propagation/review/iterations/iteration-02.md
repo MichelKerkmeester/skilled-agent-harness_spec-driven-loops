@@ -9,12 +9,12 @@ Correctness — idempotence, hashCandidate stability, edge filter
 - `.opencode/skills/system-skill-advisor/mcp_server/lib/cross-skill-edges/types.ts:1-112` (InboundEnhanceCandidate.id, edgeType literal)
 - `.opencode/skills/system-skill-advisor/mcp_server/lib/cross-skill-edges/index.ts:1-67` (batch apply orchestration, dryRun gating)
 - `.opencode/skills/system-skill-advisor/mcp_server/tests/cross-skill-edges.vitest.ts:1-289` (Fixture C idempotence, edge-type filter test, weight clipping test)
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/026-cross-skill-auto-propagation/spec.md:1-247` (REQ-003, REQ-005, REQ-015)
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/026-cross-skill-auto-propagation/plan.md:1-603` (§3 architecture sketches)
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/026-cross-skill-auto-propagation/checklist.md:1-132` (CHK-FIX-001, CHK-FIX-002)
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/026-cross-skill-auto-propagation/implementation-summary.md:1-132` (claimed outcomes)
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/026-cross-skill-auto-propagation/review/deep-review-strategy.md:1-53` (iteration constraints)
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/026-cross-skill-auto-propagation/review/iterations/iteration-01.md:1-152` (prior findings to avoid re-reporting)
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-cross-skill-auto-propagation/spec.md:1-247` (REQ-003, REQ-005, REQ-015)
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-cross-skill-auto-propagation/plan.md:1-603` (§3 architecture sketches)
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-cross-skill-auto-propagation/checklist.md:1-132` (CHK-FIX-001, CHK-FIX-002)
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-cross-skill-auto-propagation/implementation-summary.md:1-132` (claimed outcomes)
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-cross-skill-auto-propagation/review/deep-review-strategy.md:1-53` (iteration constraints)
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-cross-skill-auto-propagation/review/iterations/iteration-01.md:1-152` (prior findings to avoid re-reporting)
 
 ## Findings
 

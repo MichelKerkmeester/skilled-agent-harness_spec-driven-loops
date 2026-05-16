@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/026-cross-skill-auto-propagation",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/026-cross-skill-auto-propagation",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-cross-skill-auto-propagation",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-cross-skill-auto-propagation",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor",
   "children_ids": [],
   "manual": {
@@ -20,7 +20,7 @@
       "cross-skill auto-propagation",
       "inbound enhancement edges",
       "skill-advisor edge propagation",
-      "026-cross-skill-auto-propagation",
+      "007-cross-skill-auto-propagation",
       "enhance_when",
       "graph-metadata edges",
       "family-inference",
