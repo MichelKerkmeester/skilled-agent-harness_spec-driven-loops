@@ -5052,7 +5052,7 @@
       "lastUpdated": "2026-05-08T08:26:57.429Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/047-pre-existing-test-failure-remediation",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/023-pre-existing-test-failure-remediation",
       "description": "Feature Specification: Pre-Existing Test Failure Remediation",
       "keywords": [
         "feature",

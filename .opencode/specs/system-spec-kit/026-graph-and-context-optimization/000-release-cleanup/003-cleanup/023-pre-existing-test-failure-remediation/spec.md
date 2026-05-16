@@ -13,7 +13,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/047-pre-existing-test-failure-remediation"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/023-pre-existing-test-failure-remediation"
     last_updated_at: "2026-05-01T04:14:00Z"
     last_updated_by: "orchestrator"
     recent_action: "Diagnosed all 5 failures — 4 test-out-of-sync, 1 product cleanup (incomplete rename)"

@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/047-pre-existing-test-failure-remediation"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/023-pre-existing-test-failure-remediation"
     last_updated_at: "2026-05-01T04:14:00Z"
     last_updated_by: "orchestrator"
     recent_action: "All 5 tests green; full + stress verification in progress"
@@ -37,7 +37,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 047-pre-existing-test-failure-remediation |
+| **Spec Folder** | 023-pre-existing-test-failure-remediation |
 | **Completed** | 2026-04-30 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
