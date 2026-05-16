@@ -73,7 +73,7 @@ Pre-flight: snapshot all 55 014 children + their graph-metadata.children_ids to 
 
 ### W3.D — Resolve 014 dup-prefix pairs (main agent, 2 ops)
 
-- `_025-llm-model-runtime-inventory` + `026-post-batch-11-re-review`
+- `025-llm-model-runtime-inventory` + `026-post-batch-11-re-review`
 - `040-reset-stuck-embedding-rows` + `_041-v-rule-cross-spec-overreach`
 
 Decision rule: keep chronologically-earlier per `git log --diff-filter=A`; renumber later to next-available. Provenance → `evidence/014-dup-resolution.md`.

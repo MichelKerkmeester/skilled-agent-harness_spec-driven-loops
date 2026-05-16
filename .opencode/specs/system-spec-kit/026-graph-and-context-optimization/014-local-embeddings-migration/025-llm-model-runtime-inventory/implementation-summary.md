@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/_025-llm-model-runtime-inventory"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/025-llm-model-runtime-inventory"
     last_updated_at: "2026-05-13T17:30:00Z"
     last_updated_by: "claude"
     recent_action: "Authored variant-a and variant-b inventory docs"
@@ -34,7 +34,7 @@ _memory:
 | **Priority** | P2 |
 | **Status** | Complete |
 | **Completed** | 2026-05-13 |
-| **Branch** | `_025-llm-model-runtime-inventory` |
+| **Branch** | `025-llm-model-runtime-inventory` |
 <!-- /ANCHOR:metadata -->
 
 ---

@@ -13,7 +13,7 @@
     "supersedes": [],
     "related_to": [
       "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor",
-      "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/_025-llm-model-runtime-inventory"
+      "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/025-llm-model-runtime-inventory"
     ]
   },
   "derived": {

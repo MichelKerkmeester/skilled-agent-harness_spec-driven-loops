@@ -1,7 +1,7 @@
 # 014 Duplicate-prefix pair resolution
 
 ## Pair 1: 026-*
-- _025-llm-model-runtime-inventory -> 025-llm-model-runtime-inventory (alphabetic sort assigned earlier slot)
+- 025-llm-model-runtime-inventory -> 025-llm-model-runtime-inventory (alphabetic sort assigned earlier slot)
 - 026-post-batch-11-re-review -> 026-post-batch-11-re-review (retained)
 
 ## Pair 2: 040-*
