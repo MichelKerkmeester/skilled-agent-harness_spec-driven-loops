@@ -12,7 +12,7 @@ Finalize all session spec folders by:
 
 - `.opencode/skills/system-spec-kit/templates/resource-map.md` (the canonical template)
 - `.opencode/skills/sk-doc/references/global/evergreen_packet_id_rule.md` (resource-maps are evergreen-class — packet ID in self-reference is OK; cross-refs to OTHER packets should use feature-name + path)
-- A reference resource-map example: `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/resource-map.md`
+- A reference resource-map example: `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/resource-map.md`
 
 ### Target packets (17 total)
 

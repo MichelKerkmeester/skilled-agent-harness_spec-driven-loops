@@ -4,12 +4,12 @@ You are cli-codex (gpt-5.5 high fast) implementing remediation packet **006-full
 
 ### Goal
 
-Execute the full automation matrix design from packet 030 (`specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/030-v1-0-4-full-matrix-stress-test-design/`). Capture per-cell pass/fail/blocked evidence. Convert remaining manual-only diagnostic surfaces into either accepted manual status or scoped remediation tickets.
+Execute the full automation matrix design from packet 030 (`specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/030-v1-0-4-full-matrix-stress-test-design/`). Capture per-cell pass/fail/blocked evidence. Convert remaining manual-only diagnostic surfaces into either accepted manual status or scoped remediation tickets.
 
 ### Read these first
 
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/030-v1-0-4-full-matrix-stress-test-design/spec.md` (the matrix scope)
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/030-v1-0-4-full-matrix-stress-test-design/plan.md` (the execution architecture — Option C: each feature owns its runner; meta-aggregator reads per-cell JSONL)
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/030-v1-0-4-full-matrix-stress-test-design/spec.md` (the matrix scope)
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/030-v1-0-4-full-matrix-stress-test-design/plan.md` (the execution architecture — Option C: each feature owns its runner; meta-aggregator reads per-cell JSONL)
 - All other packet docs in 030/ (decision-record, feature-catalog-impact-audit, testing-playbook-impact-audit if present)
 - `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/017-automation-reality-supplemental-research/research/research-report.md` (Section 6 Packet 035 scope)
 
@@ -46,7 +46,7 @@ Execute the full automation matrix design from packet 030 (`specs/system-spec-ki
 
 Same 7-file structure as 031 under `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/006-full-matrix-execution-validation/`. Plus an additional `findings.md` at packet root.
 
-**Deps**: `manual.depends_on=["system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-doc-truth-pass","system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-code-graph-watcher-retraction","system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/005-memory-retention-sweep","system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/010-half-auto-upgrades","system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/030-v1-0-4-full-matrix-stress-test-design"]`.
+**Deps**: `manual.depends_on=["system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-doc-truth-pass","system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-code-graph-watcher-retraction","system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/005-memory-retention-sweep","system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/010-half-auto-upgrades","system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/030-v1-0-4-full-matrix-stress-test-design"]`.
 
 **Trigger phrases**: `["006-full-matrix-execution-validation","full matrix execution","v1-0-4 stress","matrix execution validation","feature × executor matrix"]`.
 

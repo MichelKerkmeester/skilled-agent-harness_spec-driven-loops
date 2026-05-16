@@ -59,7 +59,7 @@ If dist marker missing: re-run `npm run build`, check `tsc -b` errors. If marker
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Reference (canonical contract): `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/008-mcp-daemon-rebuild-protocol/references/mcp-rebuild-restart-protocol.md`
+- Reference (canonical contract): `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/008-mcp-daemon-rebuild-protocol/references/mcp-rebuild-restart-protocol.md`
 - Reference (probe queries): `.opencode/specs/.../008-mcp-daemon-rebuild-protocol/references/live-probe-template.md`
 - Reference (grep patterns): `.opencode/specs/.../008-mcp-daemon-rebuild-protocol/references/dist-marker-grep-cheatsheet.md`
 - Reference (verification checklist): `.opencode/specs/.../008-mcp-daemon-rebuild-protocol/references/implementation-verification-checklist.md`

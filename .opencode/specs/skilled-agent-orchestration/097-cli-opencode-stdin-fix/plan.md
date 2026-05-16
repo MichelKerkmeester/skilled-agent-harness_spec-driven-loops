@@ -61,10 +61,10 @@ Verify: each YAML still parses. Smoke-test by re-running a 30-second PONG dispat
 
 ### Phase 3: Patch 2 stress-test scripts (REQ-004)
 
-`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/015-mcp-runtime-stress-remediation/010-stress-test-rerun-v1-0-2/scripts/dispatch-cli-opencode.sh`:
+`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-mcp-runtime-stress-remediation/010-stress-test-rerun-v1-0-2/scripts/dispatch-cli-opencode.sh`:
 - Locate the `opencode run` invocation, add `</dev/null` after the prompt arg before `> ... 2> ...`.
 
-`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/015-mcp-runtime-stress-remediation/001-search-intelligence-stress-test/001-scenario-design/scripts/dispatch-cli-opencode.sh`:
+`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-mcp-runtime-stress-remediation/001-search-intelligence-stress-test/001-scenario-design/scripts/dispatch-cli-opencode.sh`:
 - Same.
 
 Verify: `bash -n` clean for each.

@@ -4012,7 +4012,7 @@
       "lastUpdated": "2026-05-08T08:26:57.136Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/015-mcp-runtime-stress-remediation",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-mcp-runtime-stress-remediation",
       "description": "Feature Specification: MCP Runtime Stress-Test Remediation",
       "keywords": [
         "feature",
@@ -4025,7 +4025,7 @@
       "lastUpdated": "2026-05-02T10:39:47.993Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/015-mcp-runtime-stress-remediation/001-search-intelligence-stress-test",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-mcp-runtime-stress-remediation/001-search-intelligence-stress-test",
       "description": "Feature Specification: Search Intelligence Stress-Test Playbook",
       "keywords": [
         "feature",
@@ -4038,7 +4038,7 @@
       "lastUpdated": "2026-05-08T08:26:57.140Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/015-mcp-runtime-stress-remediation/001-search-intelligence-stress-test/001-scenario-design",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-mcp-runtime-stress-remediation/001-search-intelligence-stress-test/001-scenario-design",
       "description": "Feature Specification: Scenario Design Sub-Phase",
       "keywords": [
         "feature",
@@ -4050,7 +4050,7 @@
       "lastUpdated": "2026-05-08T08:26:57.145Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/015-mcp-runtime-stress-remediation/001-search-intelligence-stress-test/002-scenario-execution",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-mcp-runtime-stress-remediation/001-search-intelligence-stress-test/002-scenario-execution",
       "description": "Feature Specification: Scenario Execution Sub-Phase",
       "keywords": [
         "feature",
@@ -4062,7 +4062,7 @@
       "lastUpdated": "2026-05-08T08:26:57.150Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/015-mcp-runtime-stress-remediation/002-mcp-runtime-improvement-research",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-mcp-runtime-stress-remediation/002-mcp-runtime-improvement-research",
       "description": "Feature Specification: MCP Runtime Improvement Deep Research",
       "keywords": [
         "feature",
@@ -4076,7 +4076,7 @@
       "lastUpdated": "2026-05-02T10:39:48.019Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/015-mcp-runtime-stress-remediation/003-memory-context-truncation-contract",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-mcp-runtime-stress-remediation/003-memory-context-truncation-contract",
       "description": "Feature Specification: memory_context truncation contract + token telemetry",
       "keywords": [
         "feature",
@@ -4089,7 +4089,7 @@
       "lastUpdated": "2026-05-08T08:26:57.155Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/015-mcp-runtime-stress-remediation/004-cocoindex-overfetch-dedup",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-mcp-runtime-stress-remediation/004-cocoindex-overfetch-dedup",
       "description": "Feature Specification: CocoIndex over-fetch + canonical-identity dedup + path-class rerank",
       "keywords": [
         "feature",
@@ -4104,7 +4104,7 @@
       "lastUpdated": "2026-05-02T10:39:48.045Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/015-mcp-runtime-stress-remediation/005-code-graph-fast-fail",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-mcp-runtime-stress-remediation/005-code-graph-fast-fail",
       "description": "Feature Specification: code_graph fail-fast routing with fallbackDecision",
       "keywords": [
         "feature",
@@ -4116,7 +4116,7 @@
       "lastUpdated": "2026-05-02T10:39:48.051Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/015-mcp-runtime-stress-remediation/006-causal-graph-window-metrics",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-mcp-runtime-stress-remediation/006-causal-graph-window-metrics",
       "description": "Feature Specification: causal-graph relation-window balance metrics + auto-edge caps",
       "keywords": [
         "feature",
@@ -4131,7 +4131,7 @@
       "lastUpdated": "2026-05-02T10:39:48.056Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/015-mcp-runtime-stress-remediation/007-intent-classifier-stability",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-mcp-runtime-stress-remediation/007-intent-classifier-stability",
       "description": "Feature Specification: intent classifier stability + paraphrase corpus + normalized telemetry",
       "keywords": [
         "feature",
@@ -4147,7 +4147,7 @@
       "lastUpdated": "2026-05-08T08:26:57.160Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/015-mcp-runtime-stress-remediation/008-mcp-daemon-rebuild-protocol",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-mcp-runtime-stress-remediation/008-mcp-daemon-rebuild-protocol",
       "description": "Feature Specification: MCP daemon rebuild + restart protocol",
       "keywords": [
         "feature",
@@ -4161,7 +4161,7 @@
       "lastUpdated": "2026-05-08T08:26:57.165Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/015-mcp-runtime-stress-remediation/009-memory-search-response-policy",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-mcp-runtime-stress-remediation/009-memory-search-response-policy",
       "description": "Feature Specification: memory_search hard response policy + citation policy",
       "keywords": [
         "feature",
@@ -4174,7 +4174,7 @@
       "lastUpdated": "2026-05-02T10:39:48.095Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/015-mcp-runtime-stress-remediation/010-stress-test-rerun-v1-0-2",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-mcp-runtime-stress-remediation/010-stress-test-rerun-v1-0-2",
       "description": "Feature Specification: Stress-Test Rerun v1.0.2 — close-the-loop measurement",
       "keywords": [
         "feature",
@@ -4187,7 +4187,7 @@
       "lastUpdated": "2026-05-08T08:26:57.169Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/015-mcp-runtime-stress-remediation/011-post-stress-followup-research",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-mcp-runtime-stress-remediation/011-post-stress-followup-research",
       "description": "Feature Specification: Post-Stress Follow-Up Research — refine v1.0.2 P0/P1/P2 fix proposals",
       "keywords": [
         "feature",
@@ -4202,7 +4202,7 @@
       "lastUpdated": "2026-05-08T08:26:57.173Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/015-mcp-runtime-stress-remediation/012-copilot-target-authority-helper",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-mcp-runtime-stress-remediation/012-copilot-target-authority-helper",
       "description": "Feature Specification: Copilot Target-Authority Helper — close P0 cli-copilot Gate 3 bypass",
       "keywords": [
         "feature",
@@ -4218,7 +4218,7 @@
       "lastUpdated": "2026-05-08T08:26:57.177Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/015-mcp-runtime-stress-remediation/013-graph-degraded-stress-cell",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-mcp-runtime-stress-remediation/013-graph-degraded-stress-cell",
       "description": "Feature Specification: Code Graph Degraded Stress Cell",
       "keywords": [
         "feature",
@@ -4232,7 +4232,7 @@
       "lastUpdated": "2026-05-02T10:39:48.127Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/015-mcp-runtime-stress-remediation/014-graph-status-readiness-snapshot",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-mcp-runtime-stress-remediation/014-graph-status-readiness-snapshot",
       "description": "Feature Specification: code_graph_status read-only readiness snapshot",
       "keywords": [
         "feature",
@@ -4244,7 +4244,7 @@
       "lastUpdated": "2026-05-08T08:26:57.182Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/015-mcp-runtime-stress-remediation/015-cocoindex-seed-telemetry-passthrough",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-mcp-runtime-stress-remediation/015-cocoindex-seed-telemetry-passthrough",
       "description": "Feature Specification: CocoIndex seed telemetry passthrough",
       "keywords": [
         "feature",
@@ -4257,7 +4257,7 @@
       "lastUpdated": "2026-05-08T08:26:57.186Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/015-mcp-runtime-stress-remediation/016-degraded-readiness-envelope-parity",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-mcp-runtime-stress-remediation/016-degraded-readiness-envelope-parity",
       "description": "Feature Specification: Degraded-readiness envelope parity",
       "keywords": [
         "feature",
@@ -4269,7 +4269,7 @@
       "lastUpdated": "2026-05-08T08:26:57.191Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/015-mcp-runtime-stress-remediation/017-cli-copilot-dispatch-test-parity",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-mcp-runtime-stress-remediation/017-cli-copilot-dispatch-test-parity",
       "description": "Feature Specification: cli-copilot Dispatch Test Parity — close F-004 P2 from 011 deep-review",
       "keywords": [
         "feature",
@@ -4286,7 +4286,7 @@
       "lastUpdated": "2026-05-08T08:26:57.195Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/015-mcp-runtime-stress-remediation/018-catalog-playbook-degraded-alignment",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-mcp-runtime-stress-remediation/018-catalog-playbook-degraded-alignment",
       "description": "Feature Specification: Catalog and playbook degraded-alignment",
       "keywords": [
         "feature",
@@ -4298,7 +4298,7 @@
       "lastUpdated": "2026-05-08T08:26:57.200Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/015-mcp-runtime-stress-remediation/019-search-query-rag-optimization-research",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-mcp-runtime-stress-remediation/019-search-query-rag-optimization-research",
       "description": "Feature Specification: Search Query RAG Optimization Research",
       "keywords": [
         "feature",
@@ -4312,7 +4312,7 @@
       "lastUpdated": "2026-05-02T10:39:48.174Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/015-mcp-runtime-stress-remediation/020-w3-w7-verification-and-expansion-research",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-mcp-runtime-stress-remediation/020-w3-w7-verification-and-expansion-research",
       "description": "Research Charter: W3-W7 Verification & Enterprise-Readiness Expansion",
       "keywords": [
         "research",
@@ -4325,7 +4325,7 @@
       "lastUpdated": "2026-05-08T08:26:57.204Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/015-mcp-runtime-stress-remediation/021-stress-test-v1-0-3-with-w3-w13-wiring",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-mcp-runtime-stress-remediation/021-stress-test-v1-0-3-with-w3-w13-wiring",
       "description": "Feature Specification: Stress-Test v1.0.3 with W3-W13 Wiring",
       "keywords": [
         "feature",
@@ -4337,7 +4337,7 @@
       "lastUpdated": "2026-05-08T08:26:57.209Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/015-mcp-runtime-stress-remediation/022-stress-test-results-deep-research",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-mcp-runtime-stress-remediation/022-stress-test-results-deep-research",
       "description": "Research Charter: Stress Test Results Deep Research (v1.0.3 Post-Wiring)",
       "keywords": [
         "research",
@@ -4351,7 +4351,7 @@
       "lastUpdated": "2026-05-02T10:39:48.200Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/015-mcp-runtime-stress-remediation/023-live-handler-envelope-capture-seam",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-mcp-runtime-stress-remediation/023-live-handler-envelope-capture-seam",
       "description": "Spec: Live Handler Envelope Capture Seam",
       "keywords": [
         "spec",
@@ -4364,7 +4364,7 @@
       "lastUpdated": "2026-05-08T08:26:57.213Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/015-mcp-runtime-stress-remediation/024-harness-telemetry-export-mode",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-mcp-runtime-stress-remediation/024-harness-telemetry-export-mode",
       "description": "Spec: Harness Telemetry Export Mode",
       "keywords": [
         "spec",
@@ -4376,7 +4376,7 @@
       "lastUpdated": "2026-05-08T08:26:57.217Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/015-mcp-runtime-stress-remediation/025-memory-search-degraded-readiness-wiring",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-mcp-runtime-stress-remediation/025-memory-search-degraded-readiness-wiring",
       "description": "Spec: memory_search degradedReadiness Wiring",
       "keywords": [
         "spec",
@@ -4386,7 +4386,7 @@
       "lastUpdated": "2026-05-08T08:26:57.221Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/015-mcp-runtime-stress-remediation/026-readiness-scaffolding-cleanup",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-mcp-runtime-stress-remediation/026-readiness-scaffolding-cleanup",
       "description": "Spec: Readiness Scaffolding Cleanup",
       "keywords": [
         "spec",
@@ -4397,7 +4397,7 @@
       "lastUpdated": "2026-05-08T08:26:57.225Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/015-mcp-runtime-stress-remediation/027-memory-context-structural-channel-research",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-mcp-runtime-stress-remediation/027-memory-context-structural-channel-research",
       "description": "Research Charter: memory_context Structural Channel Routing",
       "keywords": [
         "research",
@@ -4409,7 +4409,7 @@
       "lastUpdated": "2026-05-02T10:39:48.252Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/015-mcp-runtime-stress-remediation/028-deep-review-skill-contract-fixes",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-mcp-runtime-stress-remediation/028-deep-review-skill-contract-fixes",
       "description": "Spec: Deep-Review/Research Skill Contract Fixes",
       "keywords": [
         "spec",
@@ -4422,7 +4422,7 @@
       "lastUpdated": "2026-05-08T08:26:57.229Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/015-mcp-runtime-stress-remediation/029-stress-test-v1-0-4",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-mcp-runtime-stress-remediation/029-stress-test-v1-0-4",
       "description": "Spec: v1.0.4 Stress Test on Clean Infrastructure",
       "keywords": [
         "spec",
@@ -4434,7 +4434,7 @@
       "lastUpdated": "2026-05-02T10:39:48.269Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/015-mcp-runtime-stress-remediation/030-v1-0-4-full-matrix-stress-test-design",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-mcp-runtime-stress-remediation/030-v1-0-4-full-matrix-stress-test-design",
       "description": "Spec: v1.0.4 Full-Matrix Stress Test Design",
       "keywords": [
         "spec",

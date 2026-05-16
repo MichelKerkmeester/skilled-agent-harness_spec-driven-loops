@@ -5,7 +5,7 @@
 
 # === MODE: skip-after-throw ===
 # skip-after-throw loop=1 totalParses=50 ok=41 b1=9 b2=0 resets=9 heapMb=7.3
-### FIRST_B2 mode=skip-after-throw loop=9 idx=32 totalParses=433 file=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/015-mcp-runtime-stress-remediation/001-search-intelligence-stress-test/001-scenario-design/scripts/run-all.sh
+### FIRST_B2 mode=skip-after-throw loop=9 idx=32 totalParses=433 file=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-mcp-runtime-stress-remediation/001-search-intelligence-stress-test/001-scenario-design/scripts/run-all.sh
 wasm://wasm/000ba4ee:1
 
 

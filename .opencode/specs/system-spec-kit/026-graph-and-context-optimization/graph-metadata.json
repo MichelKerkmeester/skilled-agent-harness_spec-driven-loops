@@ -15,7 +15,7 @@
     "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor",
     "system-spec-kit/026-graph-and-context-optimization/009-hook-parity",
     "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/009-phase-parent-documentation",
-    "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation",
+    "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation",
     "system-spec-kit/026-graph-and-context-optimization/011-cocoindex-daemon-resilience",
     "system-spec-kit/026-graph-and-context-optimization/012-causal-graph-channel-routing",
     "system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator",

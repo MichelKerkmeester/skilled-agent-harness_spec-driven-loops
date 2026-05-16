@@ -31,8 +31,8 @@ description: "Mechanical fix packet: append `</dev/null` to all 4 deep-research/
 | `.opencode/skills/cli-opencode/CHANGELOG-2026-05-08-stdin-redirect-fix.md` | NEW FILE | Dedicated 8-section changelog for this fix (separate from the tool-name-regex-fix CHANGELOG which user kept scoped to its 2 original fixes) |
 | `barter/.opencode/skill/cli-opencode/SKILL.md` | rule 5 rewritten | Mirror of main repo's rule 5 update |
 | `barter/.opencode/skill/cli-opencode/references/integration_patterns.md` | §6 rewritten | Mirror of main repo's §6 update |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/015-mcp-runtime-stress-remediation/010-stress-test-rerun-v1-0-2/scripts/dispatch-cli-opencode.sh` | NO CHANGE | Already has `</dev/null` (line 49) — verified |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/015-mcp-runtime-stress-remediation/001-search-intelligence-stress-test/001-scenario-design/scripts/dispatch-cli-opencode.sh` | NO CHANGE | Already has `</dev/null` (line 49) — verified |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-mcp-runtime-stress-remediation/010-stress-test-rerun-v1-0-2/scripts/dispatch-cli-opencode.sh` | NO CHANGE | Already has `</dev/null` (line 49) — verified |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-mcp-runtime-stress-remediation/001-search-intelligence-stress-test/001-scenario-design/scripts/dispatch-cli-opencode.sh` | NO CHANGE | Already has `</dev/null` (line 49) — verified |
 
 **Total**: 11 files modified + 1 new file + 2 verified-already-correct = 14 files touched.
 

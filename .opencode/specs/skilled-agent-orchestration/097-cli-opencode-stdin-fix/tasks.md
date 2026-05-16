@@ -19,8 +19,8 @@ description: "Per-file task list for applying </dev/null to all 4 YAML workflows
 | T4 | Patch deep-review confirm YAML | `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | Edit: insert `</dev/null` after line 768 | [ ] |
 | T5 | Add ALWAYS rule to cli-opencode SKILL.md | `.opencode/skills/cli-opencode/SKILL.md` | Edit: append new ALWAYS rule N to §4 list with rationale + position guidance | [ ] |
 | T6 | Update integration_patterns.md §6 | `.opencode/skills/cli-opencode/references/integration_patterns.md` | Edit: generalize §6 from `while read` to all non-interactive callsites | [ ] |
-| T7 | Patch stress script (010) | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/015-mcp-runtime-stress-remediation/010-stress-test-rerun-v1-0-2/scripts/dispatch-cli-opencode.sh` | Edit: add `</dev/null` to opencode run line | [ ] |
-| T8 | Patch stress script (001-scenario-design) | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/015-mcp-runtime-stress-remediation/001-search-intelligence-stress-test/001-scenario-design/scripts/dispatch-cli-opencode.sh` | Edit: add `</dev/null` to opencode run line | [ ] |
+| T7 | Patch stress script (010) | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-mcp-runtime-stress-remediation/010-stress-test-rerun-v1-0-2/scripts/dispatch-cli-opencode.sh` | Edit: add `</dev/null` to opencode run line | [ ] |
+| T8 | Patch stress script (001-scenario-design) | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-mcp-runtime-stress-remediation/001-search-intelligence-stress-test/001-scenario-design/scripts/dispatch-cli-opencode.sh` | Edit: add `</dev/null` to opencode run line | [ ] |
 | T9 | Update CHANGELOG with §Fix 4 | `.opencode/skills/cli-opencode/CHANGELOG-2026-05-08-tool-name-regex-fix.md` | Edit: add §Fix 4 entry, update §TL;DR to "three issues", correct §Symptom B diagnosis | [ ] |
 | T10 | Mirror to Barter (conditional) | `barter/.opencode/skill/cli-opencode/SKILL.md` (if exists) | Edit: same ALWAYS rule | [ ] |
 

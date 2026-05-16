@@ -53,7 +53,7 @@ Path ledger for every file the 097 packet touched, read, or referenced. Use this
 | `.opencode/skills/cli-opencode/references/cli_reference.md` (§4 flag reference) | Located insertion point for new "Stdin handling" subsection |
 | `.opencode/skills/cli-opencode/assets/prompt_templates.md` | Located template index for top-of-file warning insertion |
 | `.opencode/skills/cli-opencode/README.md` (§2 Quick Start) | Located insertion point for new §5 Background Dispatch |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/015-mcp-runtime-stress-remediation/{010-stress-test-rerun-v1-0-2,001-search-intelligence-stress-test/001-scenario-design}/scripts/dispatch-cli-opencode.sh` | Verified already had `</dev/null` from prior packets |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-mcp-runtime-stress-remediation/{010-stress-test-rerun-v1-0-2,001-search-intelligence-stress-test/001-scenario-design}/scripts/dispatch-cli-opencode.sh` | Verified already had `</dev/null` from prior packets |
 | `barter/.opencode/skill/cli-opencode/SKILL.md` (§4 rule 5) | Mirror target |
 | `barter/.opencode/skill/cli-opencode/references/integration_patterns.md` (§6) | Mirror target |
 
@@ -106,8 +106,8 @@ Path ledger for every file the 097 packet touched, read, or referenced. Use this
 
 | Path | Status |
 |------|--------|
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/015-mcp-runtime-stress-remediation/010-stress-test-rerun-v1-0-2/scripts/dispatch-cli-opencode.sh` | Line 49 already has `</dev/null` |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/015-mcp-runtime-stress-remediation/001-search-intelligence-stress-test/001-scenario-design/scripts/dispatch-cli-opencode.sh` | Line 49 already has `</dev/null` |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-mcp-runtime-stress-remediation/010-stress-test-rerun-v1-0-2/scripts/dispatch-cli-opencode.sh` | Line 49 already has `</dev/null` |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-mcp-runtime-stress-remediation/001-search-intelligence-stress-test/001-scenario-design/scripts/dispatch-cli-opencode.sh` | Line 49 already has `</dev/null` |
 
 ### Memory entries (auto-memory)
 
@@ -177,7 +177,7 @@ $ test -f .opencode/skills/cli-opencode/CHANGELOG-2026-05-08-stdin-redirect-fix.
 present
 
 # Verify stress-test scripts already correct
-$ grep -c "</dev/null" .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/015-mcp-runtime-stress-remediation/{010-stress-test-rerun-v1-0-2,001-search-intelligence-stress-test/001-scenario-design}/scripts/dispatch-cli-opencode.sh
+$ grep -c "</dev/null" .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-mcp-runtime-stress-remediation/{010-stress-test-rerun-v1-0-2,001-search-intelligence-stress-test/001-scenario-design}/scripts/dispatch-cli-opencode.sh
 .../010-stress-test-rerun-v1-0-2/scripts/dispatch-cli-opencode.sh:1
 .../001-search-intelligence-stress-test/001-scenario-design/scripts/dispatch-cli-opencode.sh:1
 ```

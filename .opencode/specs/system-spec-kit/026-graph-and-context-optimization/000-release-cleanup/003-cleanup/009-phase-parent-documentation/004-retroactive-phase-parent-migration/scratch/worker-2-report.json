@@ -86,7 +86,7 @@
       "notes": "Synthesized missing root spec.md, refreshed parent metadata, and cleared both missing-root error rules."
     },
     {
-      "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/001-search-intelligence-stress-test",
+      "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/001-search-intelligence-stress-test",
       "category": "B",
       "pre_error_rules": [],
       "post_error_rules": [],

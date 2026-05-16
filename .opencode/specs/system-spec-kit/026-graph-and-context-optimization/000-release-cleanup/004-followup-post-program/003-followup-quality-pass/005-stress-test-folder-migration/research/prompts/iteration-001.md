@@ -15,7 +15,7 @@ Migrate the stress-test logic out of `mcp_server/tests/` into a NEW dedicated fo
 - `.opencode/skills/system-spec-kit/mcp_server/package.json` — test scripts
 - Stress-test references in:
   - `.opencode/skills/system-spec-kit/mcp_server/README.md`
-  - `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/` (any pointers to current paths)
+  - `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/` (any pointers to current paths)
   - `specs/system-spec-kit/026-graph-and-context-optimization/030-v1-0-4-full-matrix-stress-test-design/` (matrix design citations)
   - Any `*.md` files mentioning `stress-test` or `stress_test`
 
@@ -82,7 +82,7 @@ Add appropriate npm scripts. Document in stress_test/README.md.
 
 Find every reference to `tests/stress*` or `stress` in tests/ across:
 - `.opencode/skills/system-spec-kit/mcp_server/README.md`
-- All packet docs in `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/` and `030-v1-0-4-full-matrix-stress-test-design/`
+- All packet docs in `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/` and `030-v1-0-4-full-matrix-stress-test-design/`
 - Any other refs surfaced by Phase 1 discovery
 
 Update each reference to the new `stress_test/` path.

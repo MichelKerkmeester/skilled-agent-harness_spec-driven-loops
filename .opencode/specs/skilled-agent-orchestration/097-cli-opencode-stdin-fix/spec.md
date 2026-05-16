@@ -127,8 +127,8 @@ Add `</dev/null` to every non-interactive `opencode run` callsite in this repo s
 - Update `cli-opencode/references/cli_reference.md` and `cli-opencode/references/integration_patterns.md` (§6 background dispatch pattern) to document `</dev/null` requirement and the `process.stdin.isTTY` Unix gotcha.
 - Update `cli-opencode/assets/prompt_templates.md` copy-paste templates that show non-interactive dispatch.
 - Add `</dev/null` to 2 stress-test scripts:
-  - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/015-mcp-runtime-stress-remediation/010-stress-test-rerun-v1-0-2/scripts/dispatch-cli-opencode.sh`
-  - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/015-mcp-runtime-stress-remediation/001-search-intelligence-stress-test/001-scenario-design/scripts/dispatch-cli-opencode.sh`
+  - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-mcp-runtime-stress-remediation/010-stress-test-rerun-v1-0-2/scripts/dispatch-cli-opencode.sh`
+  - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-mcp-runtime-stress-remediation/001-search-intelligence-stress-test/001-scenario-design/scripts/dispatch-cli-opencode.sh`
 - If Barter sibling repo has a mirrored `cli-opencode` skill at `barter/.opencode/skill/cli-opencode/`, mirror the SKILL.md + references updates there.
 - Add CHANGELOG note in `.opencode/skills/cli-opencode/CHANGELOG-2026-05-08-tool-name-regex-fix.md` (existing — extend with the third root cause).
 - Add `feedback_opencode_run_requires_dev_null_stdin.md` memory entry (already done in main session — verify).

@@ -42,7 +42,7 @@ const REPO = findRepoRoot(__dirname);
 const MCP = resolve(REPO, '.opencode/skills/system-spec-kit/mcp_server');
 
 const FIXTURES = {
-  vitestConfig: resolve(REPO, '.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/015-mcp-runtime-stress-remediation/029-stress-test-v1-0-4/measurements/vitest.phase-k.config.ts'),
+  vitestConfig: resolve(REPO, '.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-mcp-runtime-stress-remediation/029-stress-test-v1-0-4/measurements/vitest.phase-k.config.ts'),
   cleanTs: resolve(REPO, '.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts'),
   bashScript: resolve(REPO, '.opencode/commands/doctor/scripts/mcp-doctor-lib.sh'),
   runnersCommon: resolve(REPO, '.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/016-hook-plugin-per-runtime-testing/runners/common.ts'),

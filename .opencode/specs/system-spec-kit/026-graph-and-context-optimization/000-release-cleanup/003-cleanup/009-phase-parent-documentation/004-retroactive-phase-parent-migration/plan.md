@@ -75,7 +75,7 @@ Map-reduce with hard constraints: 3 parallel workers (map) over chunks of legacy
 | Worker | Subtree | Phase parent count | Includes archived? |
 |--------|---------|-------------------:|--------------------|
 | 1 | `022-hybrid-rag-fusion/` (8) + `023-hybrid-rag-fusion-refinement/` (1) | 9 | no |
-| 2 | `00--ai-systems/` (6) + `024-compact-code-graph/` (1) + `026/015-mcp-runtime-stress-remediation/001-search-intelligence-stress-test` (1) | 8 | no |
+| 2 | `00--ai-systems/` (6) + `024-compact-code-graph/` (1) + `026/003-mcp-runtime-stress-remediation/001-search-intelligence-stress-test` (1) | 8 | no |
 | 3 | `026-graph-and-context-optimization/` C-category (3) + active 026 phase parents requiring metadata refresh + ALL z_archive/z_future entries (~7) | ~11 | yes |
 
 ### Per-Parent Procedure (mirrored across workers)

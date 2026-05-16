@@ -383,7 +383,7 @@ Explicitly NOT addressed by pt-03:
 - `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-code-graph-hld-lld/implementation-summary.md:27-40` — Phase 001 not-implemented status
 - `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-code-graph-trace/spec.md:29-88` — Phase 002 trace + role dependency
 - `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-code-graph-impact-analysis/spec.md:30-131` — Phase 003 risk signals + normalizers
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/015-mcp-runtime-stress-remediation/004-cocoindex-overfetch-dedup/implementation-summary.md:53-115` — prior coco rerank precedent + sandbox limits
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-mcp-runtime-stress-remediation/004-cocoindex-overfetch-dedup/implementation-summary.md:53-115` — prior coco rerank precedent + sandbox limits
 
 ### Resource map
 

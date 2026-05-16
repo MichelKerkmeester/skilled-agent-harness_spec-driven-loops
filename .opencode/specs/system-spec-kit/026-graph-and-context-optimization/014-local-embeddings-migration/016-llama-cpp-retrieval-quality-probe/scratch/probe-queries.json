@@ -24,7 +24,7 @@
     "target_doc_id": "1100"
   },
   {
-    "query": "--- # SPECKIT_TEMPLATE_SOURCE: plan-core | v2. 2 title: \"Implementation Plan: CocoIndex over-fetch + canonical-identity dedup + path-class rerank [system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/004-cocoindex-overfetch-dedup/plan]\"",
+    "query": "--- # SPECKIT_TEMPLATE_SOURCE: plan-core | v2. 2 title: \"Implementation Plan: CocoIndex over-fetch + canonical-identity dedup + path-class rerank [system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/004-cocoindex-overfetch-dedup/plan]\"",
     "target_doc_id": "139"
   },
   {
@@ -104,7 +104,7 @@
     "target_doc_id": "549"
   },
   {
-    "query": "Spec folder: system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/015-mcp-runtime-stress-remediation/022-stress-test-results-deep-research Description: Research Charter: Stress Test Results Deep Research (v1. 0.",
+    "query": "Spec folder: system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-mcp-runtime-stress-remediation/022-stress-test-results-deep-research Description: Research Charter: Stress Test Results Deep Research (v1. 0.",
     "target_doc_id": "804"
   },
   {

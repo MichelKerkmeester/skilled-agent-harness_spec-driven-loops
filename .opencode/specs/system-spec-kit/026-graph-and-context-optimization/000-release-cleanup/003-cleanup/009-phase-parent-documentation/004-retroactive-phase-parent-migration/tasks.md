@@ -47,7 +47,7 @@ _memory:
 > **Sub-phase A — Worker Brief Authoring + Parallel Dispatch.** 3 cli-copilot/gpt-5.4-medium workers in parallel, max 3 concurrent per memory rule.
 
 - [ ] T001 Author `/tmp/copilot-worker-1.md` (Worker 1: 022-hybrid-rag-fusion subtree (8 phase parents) + 023-hybrid-rag-fusion-refinement subtree (1 phase parent) = 9 total)
-- [ ] T002 [P] Author `/tmp/copilot-worker-2.md` (Worker 2: 00--ai-systems subtree (6) + 024-compact-code-graph subtree (1) + 026/015-mcp-runtime-stress-remediation/001-search-intelligence-stress-test (1) = 8 total)
+- [ ] T002 [P] Author `/tmp/copilot-worker-2.md` (Worker 2: 00--ai-systems subtree (6) + 024-compact-code-graph subtree (1) + 026/003-mcp-runtime-stress-remediation/001-search-intelligence-stress-test (1) = 8 total)
 - [ ] T003 [P] Author `/tmp/copilot-worker-3.md` (Worker 3: 026-graph-and-context-optimization C-category active (3-4 parents) + ALL z_archive/z_future entries (~7) = ~11 total)
 - [ ] T004 Dispatch Worker 1 in background: `nohup copilot -p "$(cat /tmp/copilot-worker-1.md)" --model gpt-5.4 --effort medium --autopilot --no-ask-user --allow-all-tools --no-color --no-custom-instructions > /tmp/copilot-worker-1.log 2>&1 &`
 - [ ] T005 [P] Dispatch Worker 2 in background (same flags) → `/tmp/copilot-worker-2.log`

@@ -173,7 +173,7 @@
       }
     },
     {
-      "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/001-search-intelligence-stress-test",
+      "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/001-search-intelligence-stress-test",
       "implementation_summaries_found": 3,
       "rows_total": 153,
       "rows_changed_from_cited": 18,

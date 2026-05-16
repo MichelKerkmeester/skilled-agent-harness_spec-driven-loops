@@ -3,7 +3,7 @@
 # cohort filtered (sh-only): 32 files
 # ext distribution: {".sh":32}
 # sh-only loop=1 totalParses=32 ok=23 b1=9 b2=0 heapMb=6.7
-### FIRST_B2 variant=sh-only loop=9 idx=14 totalParses=271 file=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/015-mcp-runtime-stress-remediation/001-search-intelligence-stress-test/001-scenario-design/scripts/run-all.sh
+### FIRST_B2 variant=sh-only loop=9 idx=14 totalParses=271 file=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-mcp-runtime-stress-remediation/001-search-intelligence-stress-test/001-scenario-design/scripts/run-all.sh
 wasm://wasm/000ba4ee:1
 
 

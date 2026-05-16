@@ -51,8 +51,8 @@ _memory:
 - **`barter/.opencode/skill/cli-opencode/references/integration_patterns.md`** — same §6 rewrite (sibling-repo mirror).
 
 ### Verified (no change required)
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/015-mcp-runtime-stress-remediation/010-stress-test-rerun-v1-0-2/scripts/dispatch-cli-opencode.sh` — already had `</dev/null` on line 49 from its original packet.
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/015-mcp-runtime-stress-remediation/001-search-intelligence-stress-test/001-scenario-design/scripts/dispatch-cli-opencode.sh` — same.
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-mcp-runtime-stress-remediation/010-stress-test-rerun-v1-0-2/scripts/dispatch-cli-opencode.sh` — already had `</dev/null` on line 49 from its original packet.
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-mcp-runtime-stress-remediation/001-search-intelligence-stress-test/001-scenario-design/scripts/dispatch-cli-opencode.sh` — same.
 
 ### Validation
 - 4 YAMLs all parse with `python3 -c "import yaml; yaml.safe_load(...)"` — OK.
