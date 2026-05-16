@@ -1,19 +1,18 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cleanup/010-half-auto-upgrades",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/010-half-auto-upgrades",
   "description": "Spec: Half-Auto Upgrades",
   "keywords": [
     "spec",
     "half-auto",
     "upgrades"
   ],
-  "lastUpdated": "2026-05-16T15:58:25.045Z",
-  "specId": "010",
+  "lastUpdated": "2026-05-08T08:26:57.255Z",
+  "specId": "021",
   "folderSlug": "half-auto-upgrades",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "000-release-cleanup",
-    "003-cleanup"
+    "000-release-cleanup"
   ],
   "memorySequence": 2,
   "memoryNameHistory": [

@@ -16,17 +16,18 @@
   "created_at": "2026-05-14T14:09:00Z",
   "updated_at": "2026-05-14T14:30:00Z",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/037-llama-cpp-embedding-worker-deep-dive",
-  "description": "Feature Specification: 037 llama-cpp embedding worker deep-dive",
+  "description": "037 — Llama-cpp Embedding Worker Deep-dive (+ Minimal Fix)",
   "keywords": [
-    "feature",
-    "specification",
     "037",
     "llama-cpp",
-    "embedding",
-    "worker",
-    "deep-dive"
+    "embedding-worker",
+    "context-size",
+    "tokenizer",
+    "GGUF",
+    "Q8_0",
+    "node-llama-cpp"
   ],
-  "lastUpdated": "2026-05-16T15:58:25.496Z",
+  "lastUpdated": "2026-05-14T14:30:00Z",
   "specId": "037",
   "folderSlug": "llama-cpp-embedding-worker-deep-dive",
   "parentChain": [

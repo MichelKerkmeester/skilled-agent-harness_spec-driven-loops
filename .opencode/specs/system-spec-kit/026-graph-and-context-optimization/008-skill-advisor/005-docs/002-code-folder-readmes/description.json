@@ -1,22 +1,22 @@
 {
-  "level": "1",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-docs/002-code-folder-readmes",
-  "description": "Phase B: sk-doc-aligned READMEs for system-skill-advisor",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-code-folder-readmes",
+  "description": "Phase B of the 4-phase code-folder README pipeline. Discovery showed actual gaps are smaller than the original plan: 2 fixture folders need new sk-doc READMEs (tests/fixtures/lifecycle, tests/scorer/fixtures), 5 existing READMEs need only a TABLE OF CONTENTS anchor block added (lib/context, lib/scorer/lanes, lib/scorer/lanes/__tests__, scripts/routing-accuracy, stress_test/search-quality). 2 of the originally-listed 9 (lib/skill-graph, stress_test/skill-advisor) already pass sk-doc validate from an earlier upgrade.",
   "keywords": [
-    "phase",
+    "code-folder-readme",
     "sk-doc-aligned",
-    "readmes",
-    "system-skill-advisor"
+    "system-skill-advisor",
+    "cli-devin-cli-opencode-pipeline",
+    "toc-anchor-fix"
   ],
-  "lastUpdated": "2026-05-16T15:58:25.315Z",
-  "specId": "002",
+  "lastUpdated": "2026-05-15T11:55:00Z",
+  "specId": "024",
   "folderSlug": "code-folder-readmes",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "008-skill-advisor",
-    "005-docs"
+    "008-skill-advisor"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": []
+  "memoryNameHistory": [],
+  "level": "1"
 }

@@ -1,0 +1,17 @@
+{
+  "specFolder": "102-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage",
+  "description": "Phase 1: sk-doc-playbook-markdown-agent-coverage",
+  "keywords": [
+    "phase",
+    "sk-doc-playbook-markdown-agent-coverage"
+  ],
+  "lastUpdated": "2026-05-11T05:27:27.585Z",
+  "specId": "004",
+  "folderSlug": "sk-doc-playbook-markdown-agent-coverage",
+  "parentChain": [
+    "102-sk-doc-skill-readme-and-structure"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

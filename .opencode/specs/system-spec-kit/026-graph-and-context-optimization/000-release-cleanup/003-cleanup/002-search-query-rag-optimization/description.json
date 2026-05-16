@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cleanup/002-search-query-rag-optimization",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-search-query-rag-optimization",
   "description": "Feature Specification: 006 Search Query RAG Optimization",
   "keywords": [
     "feature",
@@ -10,14 +10,13 @@
     "rag",
     "optimization"
   ],
-  "lastUpdated": "2026-05-16T15:58:25.020Z",
-  "specId": "002",
+  "lastUpdated": "2026-05-08T08:26:57.087Z",
+  "specId": "006",
   "folderSlug": "search-query-rag-optimization",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "000-release-cleanup",
-    "003-cleanup"
+    "000-release-cleanup"
   ],
   "memorySequence": 1,
   "memoryNameHistory": []

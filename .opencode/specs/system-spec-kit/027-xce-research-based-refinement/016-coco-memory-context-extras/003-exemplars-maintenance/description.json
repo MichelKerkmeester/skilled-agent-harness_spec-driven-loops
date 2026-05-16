@@ -1,10 +1,6 @@
 {
   "title": "003 Exemplars Maintenance",
-  "trigger_phrases": [
-    "027 011 003 exemplars maintenance",
-    "coco exemplar maintenance",
-    "exemplar_maintenance.py"
-  ],
+  "trigger_phrases": ["027 011 003 exemplars maintenance", "coco exemplar maintenance", "exemplar_maintenance.py"],
   "level": 2,
   "importance_tier": "important",
   "contextType": "implementation",
@@ -18,28 +14,14 @@
       "system-spec-kit/027-xce-research-based-refinement/013-cocoindex-complete-fork"
     ]
   },
-  "derived": {
-    "status": "draft",
-    "completion_pct": 0,
-    "last_active_child_id": null
-  },
+  "derived": {"status": "draft", "completion_pct": 0, "last_active_child_id": null},
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/016-coco-memory-context-extras/003-exemplars-maintenance",
-  "description": "Feature Specification: 003 Exemplars Maintenance",
-  "keywords": [
-    "feature",
-    "specification",
-    "003",
-    "exemplars",
-    "maintenance"
-  ],
-  "lastUpdated": "2026-05-16T15:58:25.793Z",
+  "description": "Level 2 child phase for Coco exemplar TTL, cap, reconciliation, and clear operation.",
+  "keywords": ["coco", "exemplars", "maintenance", "ttl", "reconciliation"],
+  "lastUpdated": "2026-05-12T00:00:00Z",
   "specId": "003",
   "folderSlug": "exemplars-maintenance",
-  "parentChain": [
-    "system-spec-kit",
-    "027-xce-research-based-refinement",
-    "016-coco-memory-context-extras"
-  ],
+  "parentChain": ["system-spec-kit", "027-xce-research-based-refinement", "011-coco-memory-context-extras"],
   "memorySequence": 0,
   "memoryNameHistory": []
 }

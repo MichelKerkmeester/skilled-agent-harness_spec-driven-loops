@@ -1,20 +1,21 @@
 {
-  "level": "2",
   "specFolder": "skilled-agent-orchestration/110-auto-review-stretch-uplift",
-  "description": "Feature Specification: Auto-Review Stretch Uplift",
+  "description": "Phase-parent for 110 auto-review stretch uplift (4 children)",
   "keywords": [
-    "feature",
-    "specification",
+    "phase-parent",
+    "110",
     "auto-review",
     "stretch",
-    "uplift"
+    "uplift",
+    "children"
   ],
-  "lastUpdated": "2026-05-16T15:58:24.825Z",
+  "lastUpdated": "2026-05-16T06:47:29.107Z",
   "specId": "110",
   "folderSlug": "auto-review-stretch-uplift",
   "parentChain": [
     "skilled-agent-orchestration"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": []
+  "memoryNameHistory": [],
+  "level": "2"
 }

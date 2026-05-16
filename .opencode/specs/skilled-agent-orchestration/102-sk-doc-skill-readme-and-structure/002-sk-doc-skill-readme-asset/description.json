@@ -1,0 +1,19 @@
+{
+  "level": "1",
+  "specFolder": "102-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset",
+  "description": "Phase 2: sk-doc-skill-readme-asset",
+  "keywords": [
+    "phase",
+    "sk-doc-skill-readme-asset"
+  ],
+  "lastUpdated": "2026-05-10T11:45:02.391Z",
+  "specId": "002",
+  "folderSlug": "sk-doc-skill-readme-asset",
+  "parentChain": [
+    "102-sk-doc-skill-readme-and-structure"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "10-05-26_12-45__manual-context-save.md"
+  ]
+}

@@ -12,6 +12,7 @@
   "status": "spec-scaffolded",
   "priority": "P0",
   "createdAt": "2026-05-12T07:20:00.000Z",
+  "lastUpdated": "2026-05-12T07:20:00.000Z",
   "branch": "main",
   "parent_id": "system-spec-kit/027-xce-research-based-refinement/012-feedback-reducers",
   "manual": {
@@ -28,24 +29,12 @@
     "last_active_child_id": null
   },
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/012-feedback-reducers/005-env-tests-integration",
-  "description": "Feature Specification: Feedback Reducer Env and Integration Closeout",
+  "description": "Env documentation and integration closeout for feedback reducers.",
   "keywords": [
-    "feature",
-    "specification",
-    "feedback",
-    "reducer",
     "env",
+    "tests",
     "integration",
-    "closeout"
+    "flags"
   ],
-  "lastUpdated": "2026-05-16T15:58:25.726Z",
-  "specId": "005",
-  "folderSlug": "env-tests-integration",
-  "parentChain": [
-    "system-spec-kit",
-    "027-xce-research-based-refinement",
-    "012-feedback-reducers"
-  ],
-  "memorySequence": 0,
-  "memoryNameHistory": []
+  "folderSlug": "env-tests-integration"
 }

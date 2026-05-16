@@ -12,6 +12,7 @@
   "status": "spec-scaffolded",
   "priority": "P0",
   "createdAt": "2026-05-12T07:20:00.000Z",
+  "lastUpdated": "2026-05-12T07:20:00.000Z",
   "branch": "main",
   "parent_id": "system-spec-kit/027-xce-research-based-refinement/012-feedback-reducers",
   "manual": {
@@ -25,22 +26,12 @@
     "last_active_child_id": null
   },
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/012-feedback-reducers/004-retention-reducer",
-  "description": "Feature Specification: Feedback Retention Reducer",
+  "description": "TypeScript feedback retention learning reducer.",
   "keywords": [
-    "feature",
-    "specification",
-    "feedback",
     "retention",
-    "reducer"
+    "feedback",
+    "edge-floor",
+    "shadow"
   ],
-  "lastUpdated": "2026-05-16T15:58:25.721Z",
-  "specId": "004",
-  "folderSlug": "retention-reducer",
-  "parentChain": [
-    "system-spec-kit",
-    "027-xce-research-based-refinement",
-    "012-feedback-reducers"
-  ],
-  "memorySequence": 0,
-  "memoryNameHistory": []
+  "folderSlug": "retention-reducer"
 }

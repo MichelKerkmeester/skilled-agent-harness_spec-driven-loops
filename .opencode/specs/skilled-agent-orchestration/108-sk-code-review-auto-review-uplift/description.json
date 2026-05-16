@@ -1,20 +1,20 @@
 {
-  "level": "2",
   "specFolder": "skilled-agent-orchestration/108-sk-code-review-auto-review-uplift",
-  "description": "Feature Specification: sk-code-review Auto-Review Uplift",
+  "description": "Phase-parent for sk-code-review auto-review uplift (4 children)",
   "keywords": [
-    "feature",
-    "specification",
+    "phase-parent",
     "sk-code-review",
     "auto-review",
-    "uplift"
+    "uplift",
+    "children"
   ],
-  "lastUpdated": "2026-05-16T15:58:24.799Z",
+  "lastUpdated": "2026-05-16T05:33:42.951Z",
   "specId": "108",
   "folderSlug": "sk-code-review-auto-review-uplift",
   "parentChain": [
     "skilled-agent-orchestration"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": []
+  "memoryNameHistory": [],
+  "level": "2"
 }

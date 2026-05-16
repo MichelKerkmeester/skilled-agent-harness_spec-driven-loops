@@ -24,19 +24,20 @@
     "last_active_child_id": null
   },
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/008-code-graph-trace/004-test",
-  "description": "Feature Specification: code_graph_trace Tests",
+  "description": "code-graph-trace.vitest.ts tests against the trace contract.",
   "keywords": [
-    "feature",
-    "specification",
-    "tests"
+    "trace",
+    "vitest",
+    "coverage",
+    "contract"
   ],
-  "lastUpdated": "2026-05-16T15:58:25.643Z",
+  "lastUpdated": "2026-05-12T00:00:00.000Z",
   "specId": "004",
   "folderSlug": "test",
   "parentChain": [
     "system-spec-kit",
     "027-xce-research-based-refinement",
-    "008-code-graph-trace"
+    "003-code-graph-trace"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

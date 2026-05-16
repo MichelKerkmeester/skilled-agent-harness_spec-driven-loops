@@ -1,14 +1,18 @@
 {
   "level": "3",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-hardening",
-  "description": "Phase Parent: 008-skill-advisor/004-hardening",
+  "description": "Phase parent for skill-advisor hardening and safety improvements across 4 child packets. Covers deferred remediation, telemetry measurement, plugin hardening, standards alignment, and CLI Devin integration hooks.",
   "keywords": [
-    "phase",
-    "parent",
-    "008-skill-advisor",
-    "004-hardening"
+    "hardening",
+    "004-hardening",
+    "skill-advisor",
+    "plugin-hardening",
+    "standards-alignment",
+    "deferred-remediation",
+    "telemetry",
+    "cli-devin"
   ],
-  "lastUpdated": "2026-05-16T15:58:25.294Z",
+  "lastUpdated": "2026-05-16T09:00:00Z",
   "specId": "004",
   "folderSlug": "hardening",
   "parentChain": [

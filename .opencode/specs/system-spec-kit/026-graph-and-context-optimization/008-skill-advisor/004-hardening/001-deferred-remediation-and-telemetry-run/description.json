@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-hardening/001-deferred-remediation-and-telemetry-run",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-deferred-remediation-and-telemetry-run",
   "description": "Feature Specification: Deferred Remediation + Telemetry Measurement Run",
   "keywords": [
     "feature",
@@ -10,14 +10,13 @@
     "measurement",
     "run"
   ],
-  "lastUpdated": "2026-05-16T15:58:25.298Z",
-  "specId": "001",
+  "lastUpdated": "2026-05-08T08:26:57.722Z",
+  "specId": "006",
   "folderSlug": "deferred-remediation-and-telemetry-run",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "008-skill-advisor",
-    "004-hardening"
+    "008-skill-advisor"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

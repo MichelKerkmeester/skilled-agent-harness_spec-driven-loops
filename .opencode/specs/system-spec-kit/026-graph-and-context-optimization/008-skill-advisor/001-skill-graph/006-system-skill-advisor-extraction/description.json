@@ -1,25 +1,23 @@
 {
   "level": "phase",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-graph/006-system-skill-advisor-extraction",
-  "description": "Phase Parent: Extract skill advisor into dedicated `system-skill-advisor` skill folder",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/006-system-skill-advisor-extraction",
+  "description": "Phase parent for migrating the skill advisor subsystem out of system-spec-kit into a dedicated `.opencode/skills/system-skill-advisor/` package with first-class SKILL.md, references, manual_testing_playbook, feature_catalog, and a clean MCP server integration story.",
   "keywords": [
-    "phase",
-    "parent",
-    "extract",
-    "skill",
-    "advisor",
-    "dedicated",
     "system-skill-advisor",
-    "folder"
+    "skill-advisor-extraction",
+    "advisor-package-move",
+    "mcp-server-topology",
+    "skill-folder-first-class",
+    "structural-migration"
   ],
-  "lastUpdated": "2026-05-16T15:58:25.221Z",
-  "specId": "006",
+  "lastUpdated": "2026-05-15T12:29:53.146Z",
+  "specId": "009",
   "folderSlug": "system-skill-advisor-extraction",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
     "008-skill-advisor",
-    "001-skill-graph"
+    "002-skill-advisor-semantic-lane"
   ],
   "memorySequence": 4,
   "memoryNameHistory": [

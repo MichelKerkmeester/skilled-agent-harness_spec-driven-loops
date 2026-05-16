@@ -1,23 +1,17 @@
 {
-  "level": "1",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/002-model-installation-and-compat",
-  "description": "Feature Specification: Phase 2 — Model Installation & Compatibility",
+  "specFolder": "014-local-embeddings-setup-a/002-model-installation-and-compat",
+  "description": "Phase 2: model-installation-and-compat",
   "keywords": [
-    "feature",
-    "specification",
     "phase",
-    "model",
-    "installation",
-    "compatibility"
+    "model-installation-and-compat"
   ],
-  "lastUpdated": "2026-05-16T15:58:25.378Z",
+  "lastUpdated": "2026-05-12T16:27:48.918Z",
   "specId": "002",
   "folderSlug": "model-installation-and-compat",
   "parentChain": [
-    "system-spec-kit",
-    "026-graph-and-context-optimization",
-    "014-local-embeddings-migration"
+    "014-local-embeddings-setup-a"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": []
+  "memoryNameHistory": [],
+  "level": "1"
 }

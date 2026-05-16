@@ -1,16 +1,19 @@
 {
   "level": "3",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-docs",
-  "description": "Phase Parent: 008-skill-advisor/005-docs",
+  "description": "Phase parent for skill-advisor documentation work across 3 children: docs/code alignment, code-folder READMEs, and doc/config drift fixes.",
   "keywords": [
-    "phase",
-    "parent",
-    "008-skill-advisor",
-    "005-docs"
+    "skill-advisor-docs",
+    "005-docs",
+    "code-folder-readmes",
+    "sk-doc-alignment",
+    "doc-drift",
+    "config-drift",
+    "toc-anchors"
   ],
-  "lastUpdated": "2026-05-16T15:58:25.307Z",
+  "lastUpdated": "2026-05-16T09:00:00Z",
   "specId": "005",
-  "folderSlug": "docs",
+  "folderSlug": "skill-advisor-docs",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",

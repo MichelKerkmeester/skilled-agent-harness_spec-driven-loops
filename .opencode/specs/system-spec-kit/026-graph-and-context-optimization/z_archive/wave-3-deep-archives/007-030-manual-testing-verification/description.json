@@ -1,40 +1,14 @@
 {
-  "title": "016 Manual Testing Verification",
-  "level": 1,
   "id": "016-manual-testing-verification",
+  "title": "016 Manual Testing Verification",
   "status": "complete",
+  "level": 1,
   "parent": "013-system-code-graph-extraction",
   "children": [],
-  "tags": [
-    "verification",
-    "manual-testing",
-    "mk-code-index",
-    "post-rename"
-  ],
+  "tags": ["verification", "manual-testing", "mk-code-index", "post-rename"],
   "created": "2026-05-14",
   "derived": {
     "last_active_child_id": null,
     "status": "complete"
-  },
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-3-deep-archives/007-030-manual-testing-verification",
-  "description": "Feature Specification: 016 Manual Testing Verification",
-  "keywords": [
-    "feature",
-    "specification",
-    "016",
-    "manual",
-    "testing",
-    "verification"
-  ],
-  "lastUpdated": "2026-05-16T15:58:25.565Z",
-  "specId": "007",
-  "folderSlug": "030-manual-testing-verification",
-  "parentChain": [
-    "system-spec-kit",
-    "026-graph-and-context-optimization",
-    "z_archive",
-    "wave-3-deep-archives"
-  ],
-  "memorySequence": 0,
-  "memoryNameHistory": []
+  }
 }

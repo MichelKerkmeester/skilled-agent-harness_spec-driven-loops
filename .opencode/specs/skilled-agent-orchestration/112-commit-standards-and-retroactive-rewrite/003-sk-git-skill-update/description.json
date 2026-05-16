@@ -1,21 +1,17 @@
 {
-  "level": "1",
-  "specFolder": "skilled-agent-orchestration/112-commit-standards-and-retroactive-rewrite/003-sk-git-skill-update",
-  "description": "Phase 003: sk-git Skill Update",
+  "specFolder": "112-commit-standards-and-retroactive-rewrite/003-sk-git-skill-update",
+  "description": "Phase 3: sk-git-skill-update",
   "keywords": [
     "phase",
-    "003",
-    "sk-git",
-    "skill",
-    "update"
+    "sk-git-skill-update"
   ],
-  "lastUpdated": "2026-05-16T15:58:24.872Z",
+  "lastUpdated": "2026-05-16T09:42:35.192Z",
   "specId": "003",
   "folderSlug": "sk-git-skill-update",
   "parentChain": [
-    "skilled-agent-orchestration",
     "112-commit-standards-and-retroactive-rewrite"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": []
+  "memoryNameHistory": [],
+  "level": "1"
 }

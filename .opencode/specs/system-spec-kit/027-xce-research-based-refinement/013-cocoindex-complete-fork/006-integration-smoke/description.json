@@ -1,4 +1,23 @@
 {
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/013-cocoindex-complete-fork/006-integration-smoke",
+  "description": "Wire the fork into opencode configuration and run final install, CLI, MCP, and recursive validation smoke checks.",
+  "keywords": [
+    "027",
+    "cocoindex",
+    "integration-smoke",
+    "phase",
+    "complete-fork"
+  ],
+  "lastUpdated": "2026-05-12T07:20:00Z",
+  "specId": "006",
+  "folderSlug": "integration-smoke",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement",
+    "001-cocoindex-complete-fork"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
   "level": "2",
   "manual": {
     "parent_id": "system-spec-kit/027-xce-research-based-refinement/013-cocoindex-complete-fork",
@@ -13,24 +32,5 @@
   "derived": {
     "status": "draft",
     "last_active_child_id": null
-  },
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/013-cocoindex-complete-fork/006-integration-smoke",
-  "description": "Feature Specification: Integration Smoke Test",
-  "keywords": [
-    "feature",
-    "specification",
-    "integration",
-    "smoke",
-    "test"
-  ],
-  "lastUpdated": "2026-05-16T15:58:25.762Z",
-  "specId": "006",
-  "folderSlug": "integration-smoke",
-  "parentChain": [
-    "system-spec-kit",
-    "027-xce-research-based-refinement",
-    "013-cocoindex-complete-fork"
-  ],
-  "memorySequence": 0,
-  "memoryNameHistory": []
+  }
 }

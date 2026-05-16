@@ -1,23 +1,17 @@
 {
-  "level": "2",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-graph/006-system-skill-advisor-extraction/017-p1-remediation",
-  "description": "Feature Specification: 10-iter P1 remediation",
+  "specFolder": "017-p1-remediation",
+  "description": "Close R-004 stale launcher lockdir recovery and S-004 shadow sink path containment from the 013/009 10-iteration deep review.",
   "keywords": [
-    "feature",
-    "specification",
-    "10-iter",
-    "remediation"
+    "p1-remediation",
+    "lockdir",
+    "shadow-sink",
+    "10-iter-review"
   ],
-  "lastUpdated": "2026-05-16T15:58:25.251Z",
+  "lastUpdated": "2026-05-15T06:09:08Z",
   "specId": "017",
   "folderSlug": "p1-remediation",
-  "parentChain": [
-    "system-spec-kit",
-    "026-graph-and-context-optimization",
-    "008-skill-advisor",
-    "001-skill-graph",
-    "006-system-skill-advisor-extraction"
-  ],
+  "parentChain": [],
   "memorySequence": 0,
-  "memoryNameHistory": []
+  "memoryNameHistory": [],
+  "level": "2"
 }

@@ -1,25 +1,17 @@
 {
-  "level": "2",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-graph/006-system-skill-advisor-extraction/012-doc-alignment-sk-doc",
-  "description": "Feature Specification: Advisor doc alignment with sk-doc",
+  "specFolder": "012-doc-alignment-sk-doc",
+  "description": "Align system-skill-advisor documentation with sk-doc templates and current post-013/009 advisor state.",
   "keywords": [
-    "feature",
-    "specification",
-    "advisor",
-    "doc",
-    "alignment",
-    "sk-doc"
+    "doc-alignment",
+    "sk-doc",
+    "system-skill-advisor",
+    "advisor documentation"
   ],
-  "lastUpdated": "2026-05-16T15:58:25.236Z",
+  "lastUpdated": "2026-05-14T18:45:00.000Z",
   "specId": "012",
   "folderSlug": "doc-alignment-sk-doc",
-  "parentChain": [
-    "system-spec-kit",
-    "026-graph-and-context-optimization",
-    "008-skill-advisor",
-    "001-skill-graph",
-    "006-system-skill-advisor-extraction"
-  ],
+  "parentChain": [],
   "memorySequence": 0,
-  "memoryNameHistory": []
+  "memoryNameHistory": [],
+  "level": "2"
 }

@@ -1,15 +1,17 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/105-cli-devin-effectiveness-improvements",
-  "description": "105: cli-devin v1.0.4.0 — SWE-1.6 effectiveness improvements",
+  "description": "Ship cli-devin v1.0.4.0 from packet 999 retrospective findings. Forces sequential_thinking MCP on every cli-devin dispatch, adds narrow Write scope to iter recipes (eliminates 72.5% stdout boilerplate), closes 22.5% JSONL miss rate, prevents 6h silent hangs via gtimeout + tool-rejection detection, and tightens iter prompt invariants.",
   "keywords": [
-    "105",
     "cli-devin",
-    "swe-1",
-    "effectiveness",
-    "improvements"
+    "v1.0.4.0",
+    "sequential_thinking-mandatory",
+    "swe-1.6-improvements",
+    "deep-loop-iter-contract-v2",
+    "999-retrospective",
+    "105-phase"
   ],
-  "lastUpdated": "2026-05-16T15:58:24.794Z",
+  "lastUpdated": "2026-05-16T05:50:00Z",
   "specId": "105",
   "folderSlug": "cli-devin-effectiveness-improvements",
   "parentChain": [

@@ -1,5 +1,6 @@
 {
   "title": "003 Fixtures",
+  "description": "Labeled eval task JSONL and fixture scaffolds for the code graph adoption harness.",
   "trigger_phrases": [
     "027 006 003 fixtures",
     "labeled eval tasks"
@@ -22,21 +23,19 @@
     "last_active_child_id": null
   },
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/010-code-graph-adoption-eval/003-fixtures",
-  "description": "Feature Specification: 003 Fixtures",
-  "keywords": [
-    "feature",
-    "specification",
-    "003",
-    "fixtures"
-  ],
-  "lastUpdated": "2026-05-16T15:58:25.683Z",
   "specId": "003",
   "folderSlug": "fixtures",
   "parentChain": [
     "system-spec-kit",
     "027-xce-research-based-refinement",
-    "010-code-graph-adoption-eval"
+    "006-code-graph-adoption-eval"
   ],
+  "keywords": [
+    "fixtures",
+    "jsonl",
+    "labeled-tasks"
+  ],
+  "lastUpdated": "2026-05-12T00:00:00.000Z",
   "memorySequence": 0,
   "memoryNameHistory": []
 }

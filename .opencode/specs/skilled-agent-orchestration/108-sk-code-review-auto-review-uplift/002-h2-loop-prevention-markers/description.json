@@ -1,16 +1,14 @@
 {
-  "level": "1",
   "specFolder": "skilled-agent-orchestration/108-sk-code-review-auto-review-uplift/002-h2-loop-prevention-markers",
-  "description": "Feature Specification: H-2 Loop-prevention header markers",
+  "description": "Phase 2: H-2 loop-prevention header markers",
   "keywords": [
-    "feature",
-    "specification",
+    "phase",
     "h-2",
     "loop-prevention",
     "header",
     "markers"
   ],
-  "lastUpdated": "2026-05-16T15:58:24.809Z",
+  "lastUpdated": "2026-05-16T05:33:43.145Z",
   "specId": "002",
   "folderSlug": "h2-loop-prevention-markers",
   "parentChain": [
@@ -18,5 +16,6 @@
     "108-sk-code-review-auto-review-uplift"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": []
+  "memoryNameHistory": [],
+  "level": "1"
 }

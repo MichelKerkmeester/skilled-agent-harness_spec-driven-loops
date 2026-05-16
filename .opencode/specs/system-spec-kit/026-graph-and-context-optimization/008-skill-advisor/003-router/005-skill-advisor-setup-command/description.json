@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/003-router/005-skill-advisor-setup-command",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-skill-advisor-setup-command",
   "description": "Feature Specification: Skill Advisor Setup Command",
   "keywords": [
     "feature",
@@ -9,14 +9,13 @@
     "setup",
     "command"
   ],
-  "lastUpdated": "2026-05-16T15:58:25.289Z",
-  "specId": "005",
+  "lastUpdated": "2026-05-08T08:26:57.749Z",
+  "specId": "012",
   "folderSlug": "skill-advisor-setup-command",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "008-skill-advisor",
-    "003-router"
+    "008-skill-advisor"
   ],
   "memorySequence": 3,
   "memoryNameHistory": [

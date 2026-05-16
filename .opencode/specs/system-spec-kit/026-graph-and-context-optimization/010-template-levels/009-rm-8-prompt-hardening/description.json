@@ -1,25 +1,17 @@
 {
-  "level": "1",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/010-template-levels/009-rm-8-prompt-hardening",
-  "description": "Feature Specification: 009 RM-8 deep-review iteration prompt hardening",
+  "specFolder": "010-template-levels/009-rm-8-prompt-hardening",
+  "description": "Phase 1: rm-8-prompt-hardening",
   "keywords": [
-    "feature",
-    "specification",
-    "009",
-    "rm-8",
-    "deep-review",
-    "iteration",
-    "prompt",
-    "hardening"
+    "phase",
+    "rm-8-prompt-hardening"
   ],
-  "lastUpdated": "2026-05-16T15:58:25.347Z",
+  "lastUpdated": "2026-05-11T05:45:03.650Z",
   "specId": "009",
   "folderSlug": "rm-8-prompt-hardening",
   "parentChain": [
-    "system-spec-kit",
-    "026-graph-and-context-optimization",
     "010-template-levels"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": []
+  "memoryNameHistory": [],
+  "level": "1"
 }

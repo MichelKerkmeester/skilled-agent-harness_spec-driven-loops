@@ -1,19 +1,17 @@
 {
-  "level": "1",
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/006-statediff-reconciliation-layer",
-  "description": "Statediff reconciliation layer",
+  "description": "Phase 1: statediff-reconciliation-layer",
   "keywords": [
-    "statediff",
-    "reconciliation",
-    "layer"
+    "phase",
+    "statediff-reconciliation-layer"
   ],
-  "lastUpdated": "2026-05-16T15:58:25.599Z",
+  "lastUpdated": "2026-05-13T09:00:49.639Z",
   "specId": "006",
   "folderSlug": "statediff-reconciliation-layer",
   "parentChain": [
-    "system-spec-kit",
     "027-xce-research-based-refinement"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": []
+  "memoryNameHistory": [],
+  "level": "1"
 }

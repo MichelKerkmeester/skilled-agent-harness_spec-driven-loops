@@ -46,16 +46,18 @@
     ]
   },
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/016-coco-memory-context-extras",
-  "description": "Feature Specification: Coco Memory Context Extras",
+  "description": "Phase parent for two independent presentation-layer tracks: Coco exemplars in Python and memory context curation in TypeScript. Child phases own detailed implementation plans and validation.",
   "keywords": [
-    "feature",
-    "specification",
+    "phase",
+    "parent",
     "coco",
+    "exemplars",
     "memory",
+    "curator",
     "context",
-    "extras"
+    "presentation"
   ],
-  "lastUpdated": "2026-05-16T15:58:25.780Z",
+  "lastUpdated": "2026-05-12T00:00:00Z",
   "specId": "016",
   "folderSlug": "coco-memory-context-extras",
   "parentChain": [

@@ -1,0 +1,27 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/101-deep-multi-ai-council-skill/001-deep-ai-council-skill-creation",
+  "description": "Completed phase for creating the dedicated deep-ai-council skill, renamed runtime agents, moved council assets, and advisor routing fix",
+  "keywords": [
+    "completed",
+    "phase",
+    "created",
+    "dedicated",
+    "deep-ai-council",
+    "skill",
+    "renamed",
+    "runtime",
+    "agents",
+    "advisor",
+    "routing"
+  ],
+  "lastUpdated": "2026-05-10T08:10:34.000Z",
+  "specId": "001",
+  "folderSlug": "deep-ai-council-skill-creation",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "101-deep-multi-ai-council-skill"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

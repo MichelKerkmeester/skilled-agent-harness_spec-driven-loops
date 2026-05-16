@@ -15,18 +15,18 @@
   "created_at": "2026-05-14T00:00:00Z",
   "updated_at": "2026-05-14T15:37:00Z",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/041-v-rule-cross-spec-overreach",
-  "description": "Feature Specification: 040 V-rule cross-spec overreach fix",
+  "description": "040 - V-rule Cross-spec Overreach Fix",
   "keywords": [
-    "feature",
-    "specification",
     "040",
     "v-rule",
+    "V8",
     "cross-spec",
-    "overreach",
-    "fix"
+    "ADR",
+    "decision-record",
+    "spec-folder"
   ],
-  "lastUpdated": "2026-05-16T15:58:25.502Z",
-  "specId": "041",
+  "lastUpdated": "2026-05-14T15:37:00Z",
+  "specId": "040",
   "folderSlug": "v-rule-cross-spec-overreach",
   "parentChain": [
     "system-spec-kit",

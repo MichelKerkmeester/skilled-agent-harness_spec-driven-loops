@@ -1,20 +1,17 @@
 {
-  "level": "1",
-  "specFolder": "skilled-agent-orchestration/112-commit-standards-and-retroactive-rewrite/001-prerequisites-and-baseline",
-  "description": "Phase 001: Prerequisites & Baseline",
+  "specFolder": "112-commit-standards-and-retroactive-rewrite/001-prerequisites-and-baseline",
+  "description": "Phase 1: prerequisites-and-baseline",
   "keywords": [
     "phase",
-    "001",
-    "prerequisites",
-    "baseline"
+    "prerequisites-and-baseline"
   ],
-  "lastUpdated": "2026-05-16T15:58:24.864Z",
+  "lastUpdated": "2026-05-16T09:42:33.785Z",
   "specId": "001",
   "folderSlug": "prerequisites-and-baseline",
   "parentChain": [
-    "skilled-agent-orchestration",
     "112-commit-standards-and-retroactive-rewrite"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": []
+  "memoryNameHistory": [],
+  "level": "1"
 }

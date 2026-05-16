@@ -1,16 +1,14 @@
 {
-  "level": "1",
   "specFolder": "skilled-agent-orchestration/108-sk-code-review-auto-review-uplift/001-h1-final-line-contract",
-  "description": "Feature Specification: H-1 Final-line exact-string contract",
+  "description": "Phase 1: H-1 final-line exact-string contract",
   "keywords": [
-    "feature",
-    "specification",
+    "phase",
     "h-1",
     "final-line",
     "exact-string",
     "contract"
   ],
-  "lastUpdated": "2026-05-16T15:58:24.804Z",
+  "lastUpdated": "2026-05-16T05:33:43.047Z",
   "specId": "001",
   "folderSlug": "h1-final-line-contract",
   "parentChain": [
@@ -18,5 +16,6 @@
     "108-sk-code-review-auto-review-uplift"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": []
+  "memoryNameHistory": [],
+  "level": "1"
 }

@@ -1,21 +1,17 @@
 {
-  "level": "1",
-  "specFolder": "skilled-agent-orchestration/112-commit-standards-and-retroactive-rewrite/002-commit-standards-definition",
-  "description": "Phase 002: Commit Standards Definition",
+  "specFolder": "112-commit-standards-and-retroactive-rewrite/002-commit-standards-definition",
+  "description": "Phase 2: commit-standards-definition",
   "keywords": [
     "phase",
-    "002",
-    "commit",
-    "standards",
-    "definition"
+    "commit-standards-definition"
   ],
-  "lastUpdated": "2026-05-16T15:58:24.868Z",
+  "lastUpdated": "2026-05-16T09:42:34.484Z",
   "specId": "002",
   "folderSlug": "commit-standards-definition",
   "parentChain": [
-    "skilled-agent-orchestration",
     "112-commit-standards-and-retroactive-rewrite"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": []
+  "memoryNameHistory": [],
+  "level": "1"
 }

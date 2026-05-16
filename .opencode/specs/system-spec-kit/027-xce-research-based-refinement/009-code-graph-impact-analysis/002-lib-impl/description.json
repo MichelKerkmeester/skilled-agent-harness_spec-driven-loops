@@ -25,25 +25,13 @@
     "last_active_child_id": null
   },
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/009-code-graph-impact-analysis/002-lib-impl",
-  "description": "Feature Specification: 027/004/002 Impact Analysis Library",
+  "description": "Implements code-graph-impact-analysis.ts with deterministic signals, scoring, and existing impact-mode integration.",
   "keywords": [
-    "feature",
-    "specification",
-    "027",
-    "004",
-    "002",
+    "library",
     "impact",
-    "analysis",
-    "library"
+    "risk-signals",
+    "scoring"
   ],
-  "lastUpdated": "2026-05-16T15:58:25.655Z",
-  "specId": "002",
-  "folderSlug": "lib-impl",
-  "parentChain": [
-    "system-spec-kit",
-    "027-xce-research-based-refinement",
-    "009-code-graph-impact-analysis"
-  ],
-  "memorySequence": 0,
-  "memoryNameHistory": []
+  "lastUpdated": "2026-05-12T00:00:00.000Z",
+  "folderSlug": "002-lib-impl"
 }

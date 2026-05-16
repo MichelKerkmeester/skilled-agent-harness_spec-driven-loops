@@ -1,21 +1,22 @@
 {
-  "level": "1",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/012-v3-remediation",
-  "description": "Feature Specification: Phase 12 - v3 Remediation",
+  "specFolder": "014-local-embeddings-setup-a/012-v3-remediation",
+  "description": "Phase 12 - v3 deep-review remediation. Flips memory-side hf-local dtype default to q8, adds dtype to memory DB filenames, restores launcher parity where writable, hardens CocoIndex search-only mode, and aligns Setup A docs.",
   "keywords": [
-    "feature",
-    "specification",
-    "phase",
-    "remediation"
+    "phase-12",
+    "v3-remediation",
+    "q8-default",
+    "launcher-parity",
+    "dtype-filename",
+    "voyage-guard",
+    "cocoindex-search-only"
   ],
-  "lastUpdated": "2026-05-16T15:58:25.416Z",
+  "lastUpdated": "2026-05-13T08:30:00Z",
   "specId": "012",
   "folderSlug": "v3-remediation",
   "parentChain": [
-    "system-spec-kit",
-    "026-graph-and-context-optimization",
-    "014-local-embeddings-migration"
+    "014-local-embeddings-setup-a"
   ],
   "memorySequence": 1,
-  "memoryNameHistory": []
+  "memoryNameHistory": [],
+  "level": "1"
 }

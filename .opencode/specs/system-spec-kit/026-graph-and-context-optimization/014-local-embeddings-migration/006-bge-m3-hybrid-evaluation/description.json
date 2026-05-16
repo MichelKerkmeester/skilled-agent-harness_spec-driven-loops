@@ -1,23 +1,17 @@
 {
-  "level": "1",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/006-bge-m3-hybrid-evaluation",
-  "description": "Feature Specification: Phase 6 — bge-m3 Hybrid Evaluation",
+  "specFolder": "014-local-embeddings-setup-a/006-bge-m3-hybrid-evaluation",
+  "description": "Phase 6: bge-m3-hybrid-evaluation",
   "keywords": [
-    "feature",
-    "specification",
     "phase",
-    "bge-m3",
-    "hybrid",
-    "evaluation"
+    "bge-m3-hybrid-evaluation"
   ],
-  "lastUpdated": "2026-05-16T15:58:25.392Z",
+  "lastUpdated": "2026-05-12T16:27:51.540Z",
   "specId": "006",
   "folderSlug": "bge-m3-hybrid-evaluation",
   "parentChain": [
-    "system-spec-kit",
-    "026-graph-and-context-optimization",
-    "014-local-embeddings-migration"
+    "014-local-embeddings-setup-a"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": []
+  "memoryNameHistory": [],
+  "level": "1"
 }

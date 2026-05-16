@@ -29,7 +29,7 @@
     "last_active_child_id": null
   },
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/015-retrieval-rerank-clients",
-  "description": "Feature Specification: Retrieval Rerank Clients (Shared Interfaces)",
+  "description": "Feature Specification: Retrieval Rerank Clients (Shared Interfaces) Dependency added for the Coco adapter path: Phase 001 must land before this phase modifies mcp-coco-index; the memory-only interface extraction can still be reasoned about independently.",
   "keywords": [
     "feature",
     "specification",
@@ -39,8 +39,8 @@
     "shared",
     "interfaces"
   ],
-  "lastUpdated": "2026-05-16T15:58:25.775Z",
-  "specId": "015",
+  "lastUpdated": "2026-05-10T10:05:44.449Z",
+  "specId": "009",
   "folderSlug": "retrieval-rerank-clients",
   "parentChain": [
     "system-spec-kit",

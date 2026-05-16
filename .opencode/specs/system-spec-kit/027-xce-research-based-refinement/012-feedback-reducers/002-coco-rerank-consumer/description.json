@@ -12,6 +12,7 @@
   "status": "spec-scaffolded",
   "priority": "P0",
   "createdAt": "2026-05-12T07:20:00.000Z",
+  "lastUpdated": "2026-05-12T07:20:00.000Z",
   "branch": "main",
   "parent_id": "system-spec-kit/027-xce-research-based-refinement/012-feedback-reducers",
   "manual": {
@@ -25,23 +26,13 @@
     "last_active_child_id": null
   },
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/012-feedback-reducers/002-coco-rerank-consumer",
-  "description": "Feature Specification: Coco Rerank Feedback Consumer",
+  "description": "Python coco rerank feedback consumer.",
   "keywords": [
-    "feature",
-    "specification",
     "coco",
     "rerank",
     "feedback",
-    "consumer"
+    "SQLite",
+    "Python"
   ],
-  "lastUpdated": "2026-05-16T15:58:25.712Z",
-  "specId": "002",
-  "folderSlug": "coco-rerank-consumer",
-  "parentChain": [
-    "system-spec-kit",
-    "027-xce-research-based-refinement",
-    "012-feedback-reducers"
-  ],
-  "memorySequence": 0,
-  "memoryNameHistory": []
+  "folderSlug": "coco-rerank-consumer"
 }

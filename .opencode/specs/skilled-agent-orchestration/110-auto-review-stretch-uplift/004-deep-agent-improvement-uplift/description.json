@@ -1,17 +1,12 @@
 {
-  "level": "1",
   "specFolder": "skilled-agent-orchestration/110-auto-review-stretch-uplift/004-deep-agent-improvement-uplift",
-  "description": "Feature Specification: M-3 Mutation signature dedup for deep-agent-improvement",
+  "description": "110 phase 004-deep-agent-improvement-uplift",
   "keywords": [
-    "feature",
-    "specification",
-    "m-3",
-    "mutation",
-    "signature",
-    "dedup",
-    "deep-agent-improvement"
+    "110",
+    "phase",
+    "004-deep-agent-improvement-uplift"
   ],
-  "lastUpdated": "2026-05-16T15:58:24.856Z",
+  "lastUpdated": "2026-05-16T06:47:29.556Z",
   "specId": "004",
   "folderSlug": "deep-agent-improvement-uplift",
   "parentChain": [
@@ -19,5 +14,6 @@
     "110-auto-review-stretch-uplift"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": []
+  "memoryNameHistory": [],
+  "level": "1"
 }

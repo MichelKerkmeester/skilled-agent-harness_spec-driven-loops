@@ -1,23 +1,17 @@
 {
-  "level": "2",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-graph/006-system-skill-advisor-extraction/018-p2-cleanup",
-  "description": "Feature Specification: 10-iter P2 cleanup",
+  "specFolder": "018-p2-cleanup",
+  "description": "Audit and close P2 findings from the 013/009 10-iteration deep review with surgical fixes and named follow-ons.",
   "keywords": [
-    "feature",
-    "specification",
-    "10-iter",
-    "cleanup"
+    "p2-cleanup",
+    "deep-review",
+    "dispatch",
+    "runtime-parity"
   ],
-  "lastUpdated": "2026-05-16T15:58:25.256Z",
+  "lastUpdated": "2026-05-15T06:09:08Z",
   "specId": "018",
   "folderSlug": "p2-cleanup",
-  "parentChain": [
-    "system-spec-kit",
-    "026-graph-and-context-optimization",
-    "008-skill-advisor",
-    "001-skill-graph",
-    "006-system-skill-advisor-extraction"
-  ],
+  "parentChain": [],
   "memorySequence": 0,
-  "memoryNameHistory": []
+  "memoryNameHistory": [],
+  "level": "2"
 }

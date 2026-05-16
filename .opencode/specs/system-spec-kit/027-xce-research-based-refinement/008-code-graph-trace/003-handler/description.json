@@ -24,19 +24,20 @@
     "last_active_child_id": null
   },
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/008-code-graph-trace/003-handler",
-  "description": "Feature Specification: code_graph_trace Handler",
+  "description": "handlers/trace.ts using the trace contract interface.",
   "keywords": [
-    "feature",
-    "specification",
-    "handler"
+    "trace",
+    "handler",
+    "mcp",
+    "zod"
   ],
-  "lastUpdated": "2026-05-16T15:58:25.639Z",
+  "lastUpdated": "2026-05-12T00:00:00.000Z",
   "specId": "003",
   "folderSlug": "handler",
   "parentChain": [
     "system-spec-kit",
     "027-xce-research-based-refinement",
-    "008-code-graph-trace"
+    "003-code-graph-trace"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

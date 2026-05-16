@@ -22,21 +22,21 @@
     "last_active_child_id": null
   },
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/016-coco-memory-context-extras/001-exemplars-schema",
-  "description": "Feature Specification: 001 Exemplars Schema",
+  "description": "Level 2 child phase for Coco exemplar schema and SQLite migration planning.",
   "keywords": [
-    "feature",
-    "specification",
-    "001",
+    "coco",
     "exemplars",
-    "schema"
+    "schema",
+    "sqlite",
+    "vec0"
   ],
-  "lastUpdated": "2026-05-16T15:58:25.784Z",
+  "lastUpdated": "2026-05-12T00:00:00Z",
   "specId": "001",
   "folderSlug": "exemplars-schema",
   "parentChain": [
     "system-spec-kit",
     "027-xce-research-based-refinement",
-    "016-coco-memory-context-extras"
+    "011-coco-memory-context-extras"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

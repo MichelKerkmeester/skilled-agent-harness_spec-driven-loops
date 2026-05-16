@@ -1,24 +1,22 @@
 {
-  "level": "1",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-2-merges/014-057-root-readme-deeper-rewrite",
-  "description": "057: Deeper second-pass rewrite of root README",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/057-root-readme-deeper-rewrite",
+  "description": "Deeper second-pass implementation of packet 056's deep-research findings. Sonnet @markdown consumes the 263 raw iter findings (not just 056's 30-EDIT collapsed delta) and applies anything Phase 4 missed. Targets DQI >= 98 (up from 056 Phase 4's DQI 94). Voice preserved in non-drifted prose; surgical edits only.",
   "keywords": [
-    "057",
-    "deeper",
-    "second-pass",
-    "rewrite",
-    "root",
-    "readme"
+    "root-readme",
+    "deeper-rewrite",
+    "sonnet-markdown-second-pass",
+    "hvr-rigor-push",
+    "phase-057"
   ],
-  "lastUpdated": "2026-05-16T15:58:25.539Z",
-  "specId": "014",
-  "folderSlug": "057-root-readme-deeper-rewrite",
+  "lastUpdated": "2026-05-15T14:30:00Z",
+  "specId": "057",
+  "folderSlug": "root-readme-deeper-rewrite",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "z_archive",
-    "wave-2-merges"
+    "014-local-embeddings-migration"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": []
+  "memoryNameHistory": [],
+  "level": "1"
 }

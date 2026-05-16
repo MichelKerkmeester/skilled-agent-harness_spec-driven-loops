@@ -1,23 +1,33 @@
 {
-  "level": "2",
-  "specFolder": "skilled-agent-orchestration/104-cli-devin-creation",
-  "description": "Feature Specification: cli-devin skill — Devin CLI peer executor",
+  "specFolder": "104-cli-devin-creation",
+  "description": "Add fifth cli-* family skill (cli-devin) so Cognition's Devin for Terminal can be invoked as a peer executor from any sibling cli-* skill. Documents D",
   "keywords": [
-    "feature",
-    "specification",
-    "cli-devin",
-    "skill",
-    "devin",
+    "add",
+    "fifth",
     "cli",
+    "family",
+    "skill",
+    "cli-devin",
+    "cognition",
+    "devin",
+    "terminal",
+    "invoked",
     "peer",
-    "executor"
+    "executor",
+    "sibling",
+    "documents",
+    "devin-unique",
+    "local-to-cloud",
+    "handoff",
+    "5-check",
+    "operator-confirmation",
+    "gate"
   ],
-  "lastUpdated": "2026-05-16T15:58:24.789Z",
+  "lastUpdated": "2026-05-15T07:01:37.479Z",
   "specId": "104",
   "folderSlug": "cli-devin-creation",
-  "parentChain": [
-    "skilled-agent-orchestration"
-  ],
+  "parentChain": [],
   "memorySequence": 0,
-  "memoryNameHistory": []
+  "memoryNameHistory": [],
+  "level": "2"
 }

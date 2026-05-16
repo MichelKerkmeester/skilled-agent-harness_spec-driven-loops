@@ -1,19 +1,12 @@
 {
-  "level": "1",
   "specFolder": "skilled-agent-orchestration/110-auto-review-stretch-uplift/001-mk-plugins-config-uplift",
-  "description": "Feature Specification: H-5 3-tier config + M-6 async init for mk-* plugins",
+  "description": "110 phase 001-mk-plugins-config-uplift",
   "keywords": [
-    "feature",
-    "specification",
-    "h-5",
-    "3-tier",
-    "config",
-    "m-6",
-    "async",
-    "init",
-    "plugins"
+    "110",
+    "phase",
+    "001-mk-plugins-config-uplift"
   ],
-  "lastUpdated": "2026-05-16T15:58:24.829Z",
+  "lastUpdated": "2026-05-16T06:47:29.220Z",
   "specId": "001",
   "folderSlug": "mk-plugins-config-uplift",
   "parentChain": [
@@ -21,5 +14,6 @@
     "110-auto-review-stretch-uplift"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": []
+  "memoryNameHistory": [],
+  "level": "1"
 }

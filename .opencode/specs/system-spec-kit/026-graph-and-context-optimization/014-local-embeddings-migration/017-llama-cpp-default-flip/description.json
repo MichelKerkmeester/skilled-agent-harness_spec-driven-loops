@@ -1,29 +1,26 @@
 {
+  "specId": "017",
+  "folderSlug": "llama-cpp-default-flip",
   "title": "llama-cpp default flip",
+  "description": "Completed Memory MCP llama-cpp migration with 2488 rows and zero mismatches. The 1k retrieval probe returned MILD_DIVERGENCE; the operator accepted that trade-off, so auto mode selects llama-cpp when the GGUF runtime is installed and falls back to hf-local otherwise.",
+  "parentChain": [
+    "014-local-embeddings-setup-a"
+  ],
+  "memorySequence": 17,
   "level": "2",
   "status": "complete",
   "importance_tier": "critical",
   "contextType": "implementation",
-  "created_at": "2026-05-13T11:10:00Z",
-  "last_updated_at": "2026-05-13T11:10:00Z",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/017-llama-cpp-default-flip",
-  "description": "Feature Specification: 017 llama-cpp default flip",
   "keywords": [
-    "feature",
-    "specification",
-    "017",
     "llama-cpp",
-    "default",
-    "flip"
+    "hf-local",
+    "Memory MCP",
+    "default flip",
+    "embedding migration",
+    "retrieval probe",
+    "MILD_DIVERGENCE",
+    "LLAMA_CPP_AUTO_WHEN_INSTALLED"
   ],
-  "lastUpdated": "2026-05-16T15:58:25.436Z",
-  "specId": "017",
-  "folderSlug": "llama-cpp-default-flip",
-  "parentChain": [
-    "system-spec-kit",
-    "026-graph-and-context-optimization",
-    "014-local-embeddings-migration"
-  ],
-  "memorySequence": 0,
-  "memoryNameHistory": []
+  "created_at": "2026-05-13T11:10:00Z",
+  "last_updated_at": "2026-05-13T11:10:00Z"
 }

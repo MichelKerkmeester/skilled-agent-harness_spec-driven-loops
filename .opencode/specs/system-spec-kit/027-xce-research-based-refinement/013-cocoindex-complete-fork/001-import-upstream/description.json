@@ -1,4 +1,23 @@
 {
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/013-cocoindex-complete-fork/001-import-upstream",
+  "description": "Bootstrap import of the downloaded upstream cocoindex-code v0.2.33 snapshot into the local mcp-coco-index fork root with an import manifest.",
+  "keywords": [
+    "027",
+    "cocoindex",
+    "import-upstream",
+    "phase",
+    "complete-fork"
+  ],
+  "lastUpdated": "2026-05-12T07:20:00Z",
+  "specId": "001",
+  "folderSlug": "import-upstream",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement",
+    "001-cocoindex-complete-fork"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
   "level": "3",
   "manual": {
     "parent_id": "system-spec-kit/027-xce-research-based-refinement/013-cocoindex-complete-fork",
@@ -7,24 +26,5 @@
   "derived": {
     "status": "draft",
     "last_active_child_id": null
-  },
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/013-cocoindex-complete-fork/001-import-upstream",
-  "description": "Feature Specification: Import Upstream Snapshot",
-  "keywords": [
-    "feature",
-    "specification",
-    "import",
-    "upstream",
-    "snapshot"
-  ],
-  "lastUpdated": "2026-05-16T15:58:25.735Z",
-  "specId": "001",
-  "folderSlug": "import-upstream",
-  "parentChain": [
-    "system-spec-kit",
-    "027-xce-research-based-refinement",
-    "013-cocoindex-complete-fork"
-  ],
-  "memorySequence": 0,
-  "memoryNameHistory": []
+  }
 }

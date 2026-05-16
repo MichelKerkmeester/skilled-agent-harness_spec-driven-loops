@@ -1,14 +1,18 @@
 {
   "level": "3",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-scorer",
-  "description": "Phase Parent: 008-skill-advisor/002-scorer",
+  "description": "Phase parent for skill advisor scoring optimization across 8 children: embed cache, cosine wiring, ablation/weight/corpus sweeps, and routing calibration to activate semantic similarity lanes.",
   "keywords": [
-    "phase",
-    "parent",
-    "008-skill-advisor",
-    "002-scorer"
+    "scorer",
+    "002-scorer",
+    "semantic-lane",
+    "cosine-similarity",
+    "embedding-cache",
+    "ablation-sweep",
+    "lane-weight-sweep",
+    "routing-calibration"
   ],
-  "lastUpdated": "2026-05-16T15:58:25.262Z",
+  "lastUpdated": "2026-05-16T09:00:00Z",
   "specId": "002",
   "folderSlug": "scorer",
   "parentChain": [

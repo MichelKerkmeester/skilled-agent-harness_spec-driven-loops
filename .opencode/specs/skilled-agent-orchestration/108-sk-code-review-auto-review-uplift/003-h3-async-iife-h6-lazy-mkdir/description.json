@@ -1,17 +1,15 @@
 {
-  "level": "1",
   "specFolder": "skilled-agent-orchestration/108-sk-code-review-auto-review-uplift/003-h3-async-iife-h6-lazy-mkdir",
-  "description": "Feature Specification: H-3 Async-IIFE + H-6 Lazy mkdir",
+  "description": "Phase 3: H-3 async-IIFE + H-6 lazy mkdir",
   "keywords": [
-    "feature",
-    "specification",
+    "phase",
     "h-3",
     "async-iife",
     "h-6",
     "lazy",
     "mkdir"
   ],
-  "lastUpdated": "2026-05-16T15:58:24.813Z",
+  "lastUpdated": "2026-05-16T05:33:43.245Z",
   "specId": "003",
   "folderSlug": "h3-async-iife-h6-lazy-mkdir",
   "parentChain": [
@@ -19,5 +17,6 @@
     "108-sk-code-review-auto-review-uplift"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": []
+  "memoryNameHistory": [],
+  "level": "1"
 }

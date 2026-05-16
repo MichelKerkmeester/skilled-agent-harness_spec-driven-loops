@@ -1,24 +1,17 @@
 {
-  "level": "2",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-graph/006-system-skill-advisor-extraction/010-skill-id-rename",
-  "description": "Feature Specification: Align system-skill-advisor skill id",
+  "specFolder": "010-skill-id-rename",
+  "description": "Align system-skill-advisor graph skill id with extracted folder name and close graph-health/parity failures.",
   "keywords": [
-    "feature",
-    "specification",
-    "align",
+    "skill-id-rename",
     "system-skill-advisor",
-    "skill"
+    "graph-health",
+    "advisor parity"
   ],
-  "lastUpdated": "2026-05-16T15:58:25.226Z",
+  "lastUpdated": "2026-05-14T16:14:46.828Z",
   "specId": "010",
   "folderSlug": "skill-id-rename",
-  "parentChain": [
-    "system-spec-kit",
-    "026-graph-and-context-optimization",
-    "008-skill-advisor",
-    "001-skill-graph",
-    "006-system-skill-advisor-extraction"
-  ],
+  "parentChain": [],
   "memorySequence": 0,
-  "memoryNameHistory": []
+  "memoryNameHistory": [],
+  "level": "2"
 }

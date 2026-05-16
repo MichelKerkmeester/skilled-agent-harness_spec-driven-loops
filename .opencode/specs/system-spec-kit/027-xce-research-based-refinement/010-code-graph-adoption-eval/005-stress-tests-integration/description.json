@@ -1,5 +1,6 @@
 {
   "title": "005 Stress Tests Integration",
+  "description": "Integration close child for Vitest stress coverage and stress config wiring for the code graph adoption eval harness.",
   "trigger_phrases": [
     "027 006 005 stress tests integration",
     "code graph adoption eval vitest"
@@ -25,23 +26,19 @@
     "last_active_child_id": null
   },
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/010-code-graph-adoption-eval/005-stress-tests-integration",
-  "description": "Feature Specification: 005 Stress Tests Integration",
-  "keywords": [
-    "feature",
-    "specification",
-    "005",
-    "stress",
-    "tests",
-    "integration"
-  ],
-  "lastUpdated": "2026-05-16T15:58:25.692Z",
   "specId": "005",
   "folderSlug": "stress-tests-integration",
   "parentChain": [
     "system-spec-kit",
     "027-xce-research-based-refinement",
-    "010-code-graph-adoption-eval"
+    "006-code-graph-adoption-eval"
   ],
+  "keywords": [
+    "stress-tests",
+    "integration",
+    "vitest"
+  ],
+  "lastUpdated": "2026-05-12T00:00:00.000Z",
   "memorySequence": 0,
   "memoryNameHistory": []
 }

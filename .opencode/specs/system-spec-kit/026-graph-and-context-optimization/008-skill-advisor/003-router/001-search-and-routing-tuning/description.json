@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/003-router/001-search-and-routing-tuning",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-search-and-routing-tuning",
   "description": "Feature Specification: Search and Routing Tuning Coordination Parent",
   "keywords": [
     "feature",
@@ -10,14 +10,13 @@
     "coordination",
     "parent"
   ],
-  "lastUpdated": "2026-05-16T15:58:25.280Z",
+  "lastUpdated": "2026-04-25T12:42:51.242Z",
   "specId": "001",
   "folderSlug": "search-and-routing-tuning",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "008-skill-advisor",
-    "003-router"
+    "008-skill-advisor"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

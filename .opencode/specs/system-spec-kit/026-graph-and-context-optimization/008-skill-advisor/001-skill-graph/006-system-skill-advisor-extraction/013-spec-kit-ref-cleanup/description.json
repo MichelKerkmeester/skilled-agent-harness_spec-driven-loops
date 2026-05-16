@@ -1,27 +1,17 @@
 {
-  "level": "2",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-graph/006-system-skill-advisor-extraction/013-spec-kit-ref-cleanup",
-  "description": "Feature Specification: Sweep stale advisor refs from spec-kit docs",
+  "specFolder": "013-spec-kit-ref-cleanup",
+  "description": "Audit and clean stale system-skill-advisor references from system-spec-kit operator-facing docs.",
   "keywords": [
-    "feature",
-    "specification",
-    "sweep",
-    "stale",
-    "advisor",
-    "refs",
-    "spec-kit",
-    "docs"
+    "spec-kit-ref-cleanup",
+    "system-skill-advisor",
+    "stale advisor docs",
+    "post-extraction cleanup"
   ],
-  "lastUpdated": "2026-05-16T15:58:25.241Z",
+  "lastUpdated": "2026-05-14T19:30:00.000Z",
   "specId": "013",
   "folderSlug": "spec-kit-ref-cleanup",
-  "parentChain": [
-    "system-spec-kit",
-    "026-graph-and-context-optimization",
-    "008-skill-advisor",
-    "001-skill-graph",
-    "006-system-skill-advisor-extraction"
-  ],
+  "parentChain": [],
   "memorySequence": 0,
-  "memoryNameHistory": []
+  "memoryNameHistory": [],
+  "level": "2"
 }

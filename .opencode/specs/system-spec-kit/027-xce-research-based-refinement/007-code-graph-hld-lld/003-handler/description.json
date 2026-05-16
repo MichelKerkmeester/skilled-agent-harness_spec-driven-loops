@@ -27,20 +27,21 @@
     "last_active_child_id": null
   },
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/007-code-graph-hld-lld/003-handler",
-  "description": "Feature Specification: 003 Handler",
+  "description": "MCP handler handlers/hld-lld.ts wiring the code_graph_hld_lld tool dispatch using the contract interface.",
   "keywords": [
-    "feature",
-    "specification",
-    "003",
-    "handler"
+    "hld-lld",
+    "handler",
+    "mcp",
+    "tool",
+    "dispatch"
   ],
-  "lastUpdated": "2026-05-16T15:58:25.617Z",
+  "lastUpdated": "2026-05-12T00:00:00.000Z",
   "specId": "003",
   "folderSlug": "handler",
   "parentChain": [
     "system-spec-kit",
     "027-xce-research-based-refinement",
-    "007-code-graph-hld-lld"
+    "002-code-graph-hld-lld"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

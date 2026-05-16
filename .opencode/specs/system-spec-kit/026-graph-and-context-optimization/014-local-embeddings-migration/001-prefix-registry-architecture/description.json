@@ -1,23 +1,17 @@
 {
-  "level": "1",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/001-prefix-registry-architecture",
-  "description": "Feature Specification: Phase 1 — Prefix Registry Architecture",
+  "specFolder": "014-local-embeddings-setup-a/001-prefix-registry-architecture",
+  "description": "Phase 1: prefix-registry-architecture",
   "keywords": [
-    "feature",
-    "specification",
     "phase",
-    "prefix",
-    "registry",
-    "architecture"
+    "prefix-registry-architecture"
   ],
-  "lastUpdated": "2026-05-16T15:58:25.373Z",
+  "lastUpdated": "2026-05-12T16:27:48.242Z",
   "specId": "001",
   "folderSlug": "prefix-registry-architecture",
   "parentChain": [
-    "system-spec-kit",
-    "026-graph-and-context-optimization",
-    "014-local-embeddings-migration"
+    "014-local-embeddings-setup-a"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": []
+  "memoryNameHistory": [],
+  "level": "1"
 }

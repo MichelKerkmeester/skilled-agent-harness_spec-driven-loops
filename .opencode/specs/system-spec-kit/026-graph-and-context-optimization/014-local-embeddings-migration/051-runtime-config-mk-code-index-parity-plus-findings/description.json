@@ -1,18 +1,18 @@
 {
   "level": "3",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/051-runtime-config-mk-code-index-parity-plus-findings",
-  "description": "Feature Specification: Runtime config mk-code-index parity plus findings",
+  "description": "Runtime config mk-code-index parity and bounded deep-review finding remediation",
   "keywords": [
-    "feature",
-    "specification",
     "runtime",
     "config",
     "mk-code-index",
     "parity",
-    "plus",
-    "findings"
+    "bounded",
+    "deep-review",
+    "finding",
+    "remediation"
   ],
-  "lastUpdated": "2026-05-16T15:58:25.513Z",
+  "lastUpdated": "2026-05-15T06:25:16.000Z",
   "specId": "051",
   "folderSlug": "runtime-config-mk-code-index-parity-plus-findings",
   "parentChain": [

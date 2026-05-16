@@ -1,36 +1,11 @@
 {
-  "title": "001 governance-retention-decouple (ADR-002 Option A)",
   "schema_version": 1,
   "spec_folder": "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/032-substrate-repair-followups/001-governance-retention-decouple",
   "packet_id": "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/032-substrate-repair-followups/001-governance-retention-decouple",
+  "title": "001 governance-retention-decouple (ADR-002 Option A)",
   "summary": "Remove retentionPolicy:'ephemeral' from requiresGovernedIngest() triggers; add DEFAULT_EPHEMERAL_TTL_MS; auto-populate deleteAfter when ephemeral has no explicit one. 3-case vitest coverage required.",
-  "tags": [
-    "governance",
-    "retention",
-    "ephemeral",
-    "ADR-002",
-    "scope-governance"
-  ],
+  "tags": ["governance", "retention", "ephemeral", "ADR-002", "scope-governance"],
   "created_at": "2026-05-14T11:10:00Z",
   "updated_at": "2026-05-14T11:10:00Z",
-  "status": "complete",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/032-substrate-repair-followups/001-governance-retention-decouple",
-  "description": "001 — Governance Retention Decouple",
-  "keywords": [
-    "001",
-    "governance",
-    "retention",
-    "decouple"
-  ],
-  "lastUpdated": "2026-05-16T15:58:25.460Z",
-  "specId": "001",
-  "folderSlug": "governance-retention-decouple",
-  "parentChain": [
-    "system-spec-kit",
-    "026-graph-and-context-optimization",
-    "014-local-embeddings-migration",
-    "032-substrate-repair-followups"
-  ],
-  "memorySequence": 0,
-  "memoryNameHistory": []
+  "status": "complete"
 }

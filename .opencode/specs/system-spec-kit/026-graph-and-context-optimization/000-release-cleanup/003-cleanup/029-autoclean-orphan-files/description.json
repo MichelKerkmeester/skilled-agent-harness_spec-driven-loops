@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cleanup/029-autoclean-orphan-files",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/029-autoclean-orphan-files",
   "description": "Feature Specification: 055 AutoClean Orphan Files",
   "keywords": [
     "feature",
@@ -10,14 +10,13 @@
     "orphan",
     "files"
   ],
-  "lastUpdated": "2026-05-16T15:58:25.061Z",
-  "specId": "029",
+  "lastUpdated": "2026-05-08T10:39:41.319Z",
+  "specId": "055",
   "folderSlug": "autoclean-orphan-files",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "000-release-cleanup",
-    "003-cleanup"
+    "000-release-cleanup"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []
