@@ -414,6 +414,18 @@ export function detectFrontmatter(content: string): FrontmatterDetection {
   closingRegex.lastIndex = firstLineEnd + 1;
   const closingMatch = closingRegex.exec(content);
   if (!closingMatch) {
+    const rawBlock = content.slice(firstLineEnd + 1);
+    if (/^[A-Za-z_][A-Za-z0-9_-]*\s*:/m.test(rawBlock)) {
+      return {
+        found: false,
+        malformed: true,
+        reason: 'Frontmatter opening delimiter has no closing delimiter',
+        start: -1,
+        end: -1,
+        sections: [],
+        rawBlock,
+      };
+    }
     return noFrontmatterResult;
   }
 

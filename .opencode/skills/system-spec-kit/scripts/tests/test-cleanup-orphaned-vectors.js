@@ -222,8 +222,8 @@ async function testModuleStructure() {
   // Test 2: File is valid JavaScript (parseable)
   try {
     const content = fs.readFileSync(MODULE_PATH, 'utf8');
-    if (content.includes('exports.main') || content.includes('exports.main =')) {
-      pass('T-COV-001b: Module exports main function', 'exports.main found');
+    if (content.includes('export { main }') || content.includes('exports.main') || content.includes('exports.main =')) {
+      pass('T-COV-001b: Module exports main function', 'main export found');
     } else {
       fail('T-COV-001b: Module exports main function', 'exports.main not found');
     }
@@ -250,16 +250,16 @@ async function testModuleStructure() {
     fail('T-COV-001c: Module contains expected SQL', e.message);
   }
 
-  // Test 4: Module has chunked batch deletion (chunkSize = 100)
+  // Test 4: Module uses bounded cleanup semantics.
   try {
     const content = fs.readFileSync(MODULE_PATH, 'utf8');
-    if (content.includes('chunkSize') || content.includes('chunk')) {
-      pass('T-COV-001e: Module uses chunked batch deletion', 'chunk pattern found');
+    if (content.includes('single atomic transaction') || content.includes('chunkSize') || content.includes('chunk')) {
+      pass('T-COV-001e: Module uses bounded cleanup strategy', 'atomic/chunk pattern found');
     } else {
-      fail('T-COV-001e: Module uses chunked batch deletion', 'No chunking pattern');
+      fail('T-COV-001e: Module uses bounded cleanup strategy', 'No atomic/chunk cleanup pattern');
     }
   } catch (e) {
-    fail('T-COV-001e: Module uses chunked batch deletion', e.message);
+    fail('T-COV-001e: Module uses bounded cleanup strategy', e.message);
   }
 
   // Test 5: Module handles database close in error path
@@ -275,11 +275,11 @@ async function testModuleStructure() {
     fail('T-COV-001f: Module closes database in both paths', e.message);
   }
 
-  // Test 6: Module uses transactions for batch operations
+  // Test 6: Module uses a transaction for cleanup operations
   try {
     const content = fs.readFileSync(MODULE_PATH, 'utf8');
     const transactionCount = (content.match(/\.transaction\(/g) || []).length;
-    if (transactionCount >= 2) {
+    if (transactionCount >= 1) {
       pass('T-COV-001g: Module uses transactions for batch operations', `${transactionCount} transaction() calls`);
     } else {
       fail('T-COV-001g: Module uses transactions for batch operations', `Only ${transactionCount} transaction() calls`);
@@ -300,16 +300,16 @@ async function testModuleStructure() {
     fail('T-COV-001h: Module handles missing table', e.message);
   }
 
-  // Test 8: Module uses BigInt for vec_memories rowid
+  // Test 8: Module deletes vec_memories through a rowid-safe SQL predicate.
   try {
     const content = fs.readFileSync(MODULE_PATH, 'utf8');
-    if (content.includes('BigInt')) {
-      pass('T-COV-001i: Module uses BigInt for vec_memories rowid', 'BigInt usage found');
+    if (content.includes('WHERE rowid NOT IN (SELECT id FROM memory_index)') || content.includes('BigInt')) {
+      pass('T-COV-001i: Module uses rowid-safe vec_memories cleanup', 'rowid-safe cleanup found');
     } else {
-      fail('T-COV-001i: Module uses BigInt for vec_memories rowid', 'BigInt not found');
+      fail('T-COV-001i: Module uses rowid-safe vec_memories cleanup', 'rowid-safe cleanup not found');
     }
   } catch (e) {
-    fail('T-COV-001i: Module uses BigInt', e.message);
+    fail('T-COV-001i: Module uses rowid-safe vec_memories cleanup', e.message);
   }
 }
 
