@@ -3,7 +3,7 @@ title: "Feature Specification: 051 CocoIndex Feature Catalog"
 description: "Author a complete canonical feature catalog for the mcp-coco-index semantic code search skill."
 template_source: "SPECKIT_TEMPLATE_SOURCE: level_2"
 trigger_phrases:
-  - "038-coco-index-feature-catalog"
+  - "020-coco-index-feature-catalog"
   - "mcp-coco-index feature catalog"
   - "cocoindex catalog"
   - "semantic search catalog"
@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "specification"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/038-coco-index-feature-catalog"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/020-coco-index-feature-catalog"
     last_updated_at: "2026-04-30T09:30:00+02:00"
     last_updated_by: "cli-codex"
     recent_action: "Catalog authored"
@@ -28,7 +28,7 @@ _memory:
       - "implementation-summary.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "038-coco-index-feature-catalog"
+      session_id: "020-coco-index-feature-catalog"
       parent_session_id: null
     completion_pct: 100
     open_questions: []
@@ -91,7 +91,7 @@ Create a canonical feature catalog that maps current `mcp-coco-index` capabiliti
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `.opencode/skills/mcp-coco-index/feature_catalog/` | Create | Root catalog plus per-feature snippets |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/038-coco-index-feature-catalog/` | Create | Packet docs, metadata and reports |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/020-coco-index-feature-catalog/` | Create | Packet docs, metadata and reports |
 <!-- /ANCHOR:scope -->
 
 ---

@@ -23,7 +23,7 @@ Documentation fixes, template debt, orphan management, remediation.
 - `017-hook-test-sandbox-fix`
 - `018-matrix-runners-snake-case-rename`
 - `019-feature-catalog-shape-realignment`
-- `038-coco-index-feature-catalog`
+- `020-coco-index-feature-catalog`
 - `040-sk-doc-conformance-sweep-and-template-cleanup`
 - `041-cli-skills-baseline-overlay-contract`
 - `047-pre-existing-test-failure-remediation`

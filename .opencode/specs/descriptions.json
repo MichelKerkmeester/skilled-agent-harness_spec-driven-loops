@@ -4935,7 +4935,7 @@
       "lastUpdated": "2026-05-08T08:26:57.402Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/038-coco-index-feature-catalog",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/020-coco-index-feature-catalog",
       "description": "Feature Specification: 051 CocoIndex Feature Catalog",
       "keywords": [
         "feature",

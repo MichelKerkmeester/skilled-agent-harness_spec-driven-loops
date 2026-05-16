@@ -6092,7 +6092,7 @@ END{
 ./.opencode/specs/system-spec-kit/z_archive/020-mcp-working-memory-hybrid-rag/research/136 - recommendations-working-memory-hybrid-rag-adoption.md
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/043-stress-test-gap-remediation/scratch/codex-batch-A.log
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/010-half-auto-upgrades/logs/iter-001.log
-./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/038-coco-index-feature-catalog/logs/iter-001.log
+./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/020-coco-index-feature-catalog/logs/iter-001.log
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/011-cli-matrix-adapter-runners/logs/iter-001.log
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/025-stress-test-folder-completion/logs/iter-001.log
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/014-resource-maps-and-memory-finalization/logs/iter-001.log

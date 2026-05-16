@@ -1,10 +1,10 @@
 ## Packet 051: coco-index-feature-catalog — Author full feature catalog for mcp-coco-index
 
-You are cli-codex (gpt-5.5 high fast) implementing **038-coco-index-feature-catalog**.
+You are cli-codex (gpt-5.5 high fast) implementing **020-coco-index-feature-catalog**.
 
 ### CRITICAL: Spec folder path
 
-The packet folder is: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/038-coco-index-feature-catalog/` — write ALL packet files there. Do NOT ask for the spec folder.
+The packet folder is: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/020-coco-index-feature-catalog/` — write ALL packet files there. Do NOT ask for the spec folder.
 
 ### Goal
 
@@ -145,7 +145,7 @@ Run these and capture results:
 ```bash
 # Strict validator MUST exit 0
 bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh \
-  .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/038-coco-index-feature-catalog --strict
+  .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/020-coco-index-feature-catalog --strict
 
 # Shape audit MUST show zero DRIFT for the new catalog
 for f in $(find .opencode/skills/mcp-coco-index/feature_catalog -name '*.md' -not -name 'feature_catalog.md'); do
@@ -181,7 +181,7 @@ Author `audit-findings.md` (per-category coverage decisions, exclusions with rea
 
 **Deps**: `manual.depends_on=["system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/019-feature-catalog-shape-realignment"]`.
 
-**Trigger phrases**: `["038-coco-index-feature-catalog","mcp-coco-index feature catalog","cocoindex catalog","semantic search catalog"]`.
+**Trigger phrases**: `["020-coco-index-feature-catalog","mcp-coco-index feature catalog","cocoindex catalog","semantic search catalog"]`.
 
 **Causal summary**: `"Authors a complete feature_catalog/ for .opencode/skills/mcp-coco-index/ following the canonical sk-doc 4-section snippet shape. ~30-50 per-feature snippets across ~6-9 categories with file:line citations. Root index follows feature_catalog_template. Evergreen-rule clean. Strict validator passes."`.
 
