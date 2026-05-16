@@ -1,8 +1,10 @@
 BASE_111  dbd3fbe79b48122bab02acee0d2dd15c6ddfc687  pre-scaffold
-BASE_W3A  TBD  pre-W3.A
-BASE_W3B  TBD  pre-W3.B
-BASE_W3C  TBD  pre-W3.C
-BASE_W3D  TBD  pre-W3.D
-BASE_W3E  TBD  pre-W3.E
-BASE_W3F  TBD  pre-W3.F
-BASE_W3G  TBD  pre-W3.G
+BASE_111_HEAD  fe0ce219e1bd43ead7b06ea88acf3d0ac9bb7c63  post-scaffold
+BASE_W3A  fe0ce219e1bd43ead7b06ea88acf3d0ac9bb7c63  pre-W3.A
+BASE_W3B  7771d3da05db59b98dc07f426654c09a40d7f576  post-W3.A close
+BASE_W3C  approximate (after 87 W3.B commits)
+BASE_W3D  approximate (after 20 W3.C commits)
+BASE_W3E  approximate (after 24 W3.D pass-A+B commits)
+BASE_W3F  e9cca10c3  pre-W3.E (evidence commit)
+BASE_W3G  c28112a6a  post-W3.F final sync
+BASE_111_FINAL  5951e97c3f5f27377fb4d1ce92fae6458a800f9b  post-W3.G doc rewrite

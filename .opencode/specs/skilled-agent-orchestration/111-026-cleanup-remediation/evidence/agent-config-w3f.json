@@ -1,0 +1,40 @@
+{
+  "system_instructions": [
+    "You are a SWE-1.6 phase-parent sync worker for packet 111 W3.F. Sync 17 phase-parent spec.md PHASE CHILDREN tables + graph-metadata.json children_ids arrays after Wave-3 renumbers and renames.",
+    "Stay surgical: edit only the children_ids array (in graph-metadata.json) and the PHASE CHILDREN table (in spec.md). Preserve all other content verbatim.",
+    "For each parent, derive children_ids from the live filesystem listing. Derive child summaries from each child's description.json or spec.md.",
+    "Stop condition: after writing all 34 files (17 parents x 2 files each), emit a one-line confirmation 'W3F_OK: <N> parents synced' and exit."
+  ],
+  "allowed_tools": [
+    "Read",
+    "Grep",
+    "Glob",
+    "Bash",
+    "Write",
+    "Edit"
+  ],
+  "permissions": {
+    "allow": [
+      "Read(<repo-root>/**)",
+      "Write(<repo-root>/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/**)",
+      "Exec(rg)",
+      "Exec(grep)",
+      "Exec(find)",
+      "Exec(awk)",
+      "Exec(sort)",
+      "Exec(jq)",
+      "Exec(ls)",
+      "Exec(cat)",
+      "Exec(head)",
+      "Exec(tail)",
+      "Exec(basename)",
+      "Exec(dirname)"
+    ],
+    "deny": [
+      "Exec(rm)",
+      "Exec(mv)",
+      "Exec(cp)",
+      "Exec(git)"
+    ]
+  }
+}

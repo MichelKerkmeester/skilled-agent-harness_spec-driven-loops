@@ -1,0 +1,12 @@
+014-local-embeddings-migration	025-post-remediation-v2-re-review	_024-post-remediation-v2-re-review
+014-local-embeddings-migration	026-llm-model-runtime-inventory	_025-llm-model-runtime-inventory
+014-local-embeddings-migration	040-v-rule-cross-spec-overreach	_041-v-rule-cross-spec-overreach
+014-local-embeddings-migration	041-cocoindex-ipc-observability	_042-cocoindex-ipc-observability
+014-local-embeddings-migration	042-cocoindex-refresh-split	_043-cocoindex-refresh-split
+014-local-embeddings-migration	043-suite-revalidation	_044-suite-revalidation
+014-local-embeddings-migration	044-template-contract-divergence	_045-template-contract-divergence
+014-local-embeddings-migration	045-shared-daemon-suite-runner	_046-shared-daemon-suite-runner
+014-local-embeddings-migration	046-handover-anchor-naming	_047-handover-anchor-naming
+014-local-embeddings-migration	047-v8-dominates-relaxation	_048-v8-dominates-relaxation
+014-local-embeddings-migration	056-root-readme-deep-research	_054-root-readme-deep-research
+014-local-embeddings-migration	059-cli-devin-deep-loop-alignment	_055-cli-devin-deep-loop-alignment
