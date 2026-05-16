@@ -56,7 +56,7 @@ PACKETS = [
     "007-code-graph/002-code-graph-self-contained-package",
     "007-code-graph/002-code-graph-context-and-scan-scope",
     "007-code-graph/003-code-graph-hook-improvements",
-    "007-code-graph/005-code-graph-advisor-refinement",
+    "007-code-graph/004-code-graph-advisor-refinement",
 
     # 009-hook-parity surviving children (parent_id same, packet_id renumbered)
     "009-hook-parity/001-hook-parity-remediation",

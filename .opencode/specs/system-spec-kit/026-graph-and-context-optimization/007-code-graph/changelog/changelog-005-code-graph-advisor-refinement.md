@@ -17,7 +17,7 @@ contextType: "implementation"
 
 ## 2026-04-25
 
-> Spec folder: `026-graph-and-context-optimization/007-code-graph/005-code-graph-advisor-refinement` (Level 2)
+> Spec folder: `026-graph-and-context-optimization/007-code-graph/004-code-graph-advisor-refinement` (Level 2)
 > Parent packet: `026-graph-and-context-optimization/007-code-graph`
 
 ### Summary

@@ -16,7 +16,7 @@ contextType: "review"
 
 ## 2026-04-24
 
-> Spec folder: `026-graph-and-context-optimization/007-code-graph/005-code-graph-advisor-refinement/review/015-code-graph-advisor-refinement-pt-01` (Review-only)
+> Spec folder: `026-graph-and-context-optimization/007-code-graph/004-code-graph-advisor-refinement/review/015-code-graph-advisor-refinement-pt-01` (Review-only)
 > Parent packet: `026-graph-and-context-optimization/007-code-graph`
 
 ### Summary
