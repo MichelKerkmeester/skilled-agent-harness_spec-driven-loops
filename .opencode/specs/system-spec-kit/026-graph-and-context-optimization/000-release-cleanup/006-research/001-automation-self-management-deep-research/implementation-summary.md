@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/016-automation-self-management-deep-research"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/001-automation-self-management-deep-research"
     last_updated_at: "2026-04-29T13:16:00Z"
     last_updated_by: "codex-gpt-5.5"
     recent_action: "Completed automation reality research"
@@ -33,7 +33,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 016-automation-self-management-deep-research |
+| **Spec Folder** | 001-automation-self-management-deep-research |
 | **Completed** | 2026-04-29 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
@@ -93,7 +93,7 @@ The research used direct source reads and file:line citations from project docs,
 |-------|--------|
 | Artifact completeness | PASS: 7 iteration markdown files, 7 delta JSONL files, state log events, and final report authored |
 | Source grounding | PASS: findings include file:line citations or explicitly state absence checks |
-| Strict validation | PASS: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/016-automation-self-management-deep-research --strict` exited 0 |
+| Strict validation | PASS: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/001-automation-self-management-deep-research --strict` exited 0 |
 | Git staging | WARN: non-fatal staging attempt failed because Git could not create `.git/index.lock` (`Operation not permitted`) |
 <!-- /ANCHOR:verification -->
 

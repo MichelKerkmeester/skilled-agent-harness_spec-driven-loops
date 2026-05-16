@@ -3,7 +3,7 @@ title: "Research Charter: Automation & Self-Management of Advisor, Code-Graph, s
 template_source: "SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2"
 description: "Deep research charter: how truly automated, auto-called, auto-reindexed, and auto-utilized are the skill advisor, code graph, system-spec-kit, and the database/graph/memory feature surfaces? Ground every claim in file:line evidence."
 trigger_phrases:
-  - "016-automation-self-management-deep-research"
+  - "001-automation-self-management-deep-research"
   - "automation deep research"
   - "skill advisor automation"
   - "code graph automation"
@@ -13,7 +13,7 @@ importance_tier: "important"
 contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/016-automation-self-management-deep-research"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/001-automation-self-management-deep-research"
     last_updated_at: "2026-04-29T14:10:33+02:00"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Completed automation reality research"
