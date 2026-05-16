@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/027-readmes-update"
+    packet_pointer: ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/016-readmes-update"
     last_updated_at: "2026-05-14T17:49:15Z"
     last_updated_by: "cli-codex-gpt5.5-xhigh-fast-013"
     recent_action: "Updated authored system-code-graph README files and hit git index sandbox block"
@@ -103,7 +103,7 @@ Align authored system-code-graph README files to sk-doc's skill and code-folder 
 | `.opencode/skills/system-code-graph/mcp_server/stress_test/code-graph/README.md` | Modify | Refresh stress test map, links and validation command. |
 | `.opencode/skills/system-code-graph/mcp_server/tests/README.md` | Modify | Refresh automated test map and validation command. |
 | `.opencode/skills/system-code-graph/mcp_server/tools/README.md` | Modify | Refresh MCP dispatch README, active tool list and namespace guidance. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/027-readmes-update/` | Create | Track this README-only packet. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/016-readmes-update/` | Create | Track this README-only packet. |
 <!-- /ANCHOR:scope -->
 
 ---

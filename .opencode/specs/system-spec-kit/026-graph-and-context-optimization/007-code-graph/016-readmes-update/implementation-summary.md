@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/027-readmes-update"
+    packet_pointer: ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/016-readmes-update"
     last_updated_at: "2026-05-14T17:49:15Z"
     last_updated_by: "cli-codex-gpt5.5-xhigh-fast-013"
     recent_action: "Captured README update work list, validation evidence and git staging block"
