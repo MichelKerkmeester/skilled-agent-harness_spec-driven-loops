@@ -63,7 +63,7 @@ Task IDs are stable for checklist and implementation-summary references.
 - [ ] Static-verify router/manifest YAML table.
 - [ ] Run `route-validate.sh`.
 - [ ] Run `route-validate.sh --self-test`.
-- [ ] Mark 004-router-phase completion metadata to 100.
+- [ ] Mark 003-router-phase completion metadata to 100.
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -118,7 +118,7 @@ Task IDs are stable for checklist and implementation-summary references.
 
 ### T-201 - Strict validate packets
 - [ ] **Effort:** 10-15 min
-- [ ] Validate 013 parent, 004-router-phase, and 005-cutover-phase.
+- [ ] Validate 013 parent, 003-router-phase, and 005-cutover-phase.
 
 ### T-202 - Route and inventory verification
 - [ ] **Effort:** 10 min

@@ -335,6 +335,6 @@ Each routed target's YAML expects specific `setup_vars` to be bound before Phase
 1. **Tier 1** resolves WHICH target (positional argv or interactive menu).
 2. **Tier 2** runs the target-specific flag parser (the `case "$target" in` block above) using only that target's `allowed_flags`.
 
-Per ADR-005 in `013/004-router-phase/decision-record.md`: parsing flags BEFORE target resolution is FORBIDDEN — cross-target flag schemas collide (e.g. `--scope` means different things in `code-graph` vs `deep-loop`). Target-first is the only safe order.
+Per ADR-005 in `013/003-router-phase/decision-record.md`: parsing flags BEFORE target resolution is FORBIDDEN — cross-target flag schemas collide (e.g. `--scope` means different things in `code-graph` vs `deep-loop`). Target-first is the only safe order.
 
 Per ADR-006: the `allowed-tools` frontmatter on this command is the UNION of all 7 targets' MCP tools (plus the tools `/doctor:mcp` needs). This is unavoidable per OpenCode runner (no lazy authorization). `_routes.yaml` documents the per-target subset for CI assertions via `route-validate.sh`.

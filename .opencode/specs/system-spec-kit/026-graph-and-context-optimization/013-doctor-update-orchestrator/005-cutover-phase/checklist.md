@@ -50,7 +50,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: checklist-core | v2.2 -->"
 <!-- ANCHOR:pre-impl -->
 ## PRE-IMPLEMENTATION
 
-- [ ] CHK-001 [P0]: 004-router-phase static verification table has 7/7 YAML matches.
+- [ ] CHK-001 [P0]: 003-router-phase static verification table has 7/7 YAML matches.
 - [ ] CHK-002 [P0]: `route-validate.sh` exits 0 before cutover.
 - [ ] CHK-003 [P0]: `route-validate.sh --self-test` rejects 3/3 bad fixtures.
 - [ ] CHK-004 [P0]: 013 parent `children_ids` includes `005-cutover-phase`.
@@ -126,7 +126,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: checklist-core | v2.2 -->"
 ## DOCUMENTATION
 
 - [ ] CHK-601 [P0]: 002 packet docs strict-validate with zero errors and warnings.
-- [ ] CHK-602 [P0]: 004-router-phase strict-validates after completion metadata update.
+- [ ] CHK-602 [P0]: 003-router-phase strict-validates after completion metadata update.
 - [ ] CHK-603 [P0]: 013 parent strict-validates after child metadata update.
 - [ ] CHK-604 [P1]: `implementation-summary.md` records final evidence.
 <!-- /ANCHOR:docs -->

@@ -54,7 +54,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->"
 | **Created** | 2026-05-11 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
-| **Predecessor** | `../004-router-phase/spec.md` |
+| **Predecessor** | `../003-router-phase/spec.md` |
 | **Successor** | None (closes 013's doctor command surface line) |
 <!-- /ANCHOR:metadata -->
 
@@ -133,7 +133,7 @@ Complete the locked 10 -> 3 markdown end state with a hard cutover. Delete the 9
 - **SC-005:** `route-validate.sh` exits 0 and reports 7 routes validated.
 - **SC-006:** Case-insensitive stale invocation grep over `.opencode`, `.claude`, `.gemini`, and `.codex` returns zero non-archival matches.
 - **SC-007:** Every sandbox `.sh` file under `_sandbox/23--doctor-commands/` passes `bash -n`.
-- **SC-008:** 013 parent, 004-router-phase, and 005-cutover-phase all pass strict validation with zero errors and zero warnings.
+- **SC-008:** 013 parent, 003-router-phase, and 005-cutover-phase all pass strict validation with zero errors and zero warnings.
 <!-- /ANCHOR:success-criteria -->
 
 ---

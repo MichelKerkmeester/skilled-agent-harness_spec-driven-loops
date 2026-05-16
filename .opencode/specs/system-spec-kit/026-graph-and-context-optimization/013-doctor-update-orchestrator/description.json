@@ -3,7 +3,7 @@
     "001-doctor-commands",
     "002-sandbox-testing-playbook",
     "002-rm8-013-remediation-doc-honesty-security",
-    "004-router-phase",
+    "003-router-phase",
     "005-cutover-phase"
   ],
   "specFolder": "013-doctor-update-orchestrator",

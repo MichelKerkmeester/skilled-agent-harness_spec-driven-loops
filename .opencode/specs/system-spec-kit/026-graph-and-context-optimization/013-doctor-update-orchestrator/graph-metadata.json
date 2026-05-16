@@ -7,7 +7,7 @@
     "system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/001-doctor-commands",
     "system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/002-sandbox-testing-playbook",
     "system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/002-rm8-013-remediation-doc-honesty-security",
-    "system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/004-router-phase",
+    "system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/003-router-phase",
     "system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/005-cutover-phase"
   ],
   "migrated": true,
@@ -31,7 +31,7 @@
       "001-doctor-commands",
       "002-sandbox-testing-playbook",
       "001-doctor-commands handover",
-      "004-router-phase",
+      "003-router-phase",
       "005-cutover-phase"
     ],
     "key_topics": [
@@ -71,7 +71,7 @@
       ".opencode/commands/doctor/causal-graph.md",
       ".opencode/commands/doctor/deep-loop.md",
       ".opencode/commands/doctor/cocoindex.md",
-      "004-router-phase/spec.md",
+      "003-router-phase/spec.md",
       "005-cutover-phase/spec.md"
     ],
     "entities": [

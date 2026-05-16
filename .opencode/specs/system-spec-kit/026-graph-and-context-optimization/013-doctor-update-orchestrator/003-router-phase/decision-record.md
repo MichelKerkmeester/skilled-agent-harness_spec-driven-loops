@@ -1,5 +1,5 @@
 ---
-title: "Decision Record: Doctor Router Phase 1 [system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/004-router-phase/decision-record]"
+title: "Decision Record: Doctor Router Phase 1 [system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/003-router-phase/decision-record]"
 description: "Architectural Decision Records for the /doctor router consolidation: Option C boundary, manifest-file split, argv-positional UX, two-phase rollout, flag-parsing order."
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: decision-record-core | v2.2 -->"
 ---

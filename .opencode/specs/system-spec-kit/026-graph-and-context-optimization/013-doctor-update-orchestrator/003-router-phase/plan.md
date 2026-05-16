@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Doctor Router Phase 1 [system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/004-router-phase/plan]"
+title: "Implementation Plan: Doctor Router Phase 1 [system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/003-router-phase/plan]"
 description: "Step-by-step implementation plan for shipping the additive /doctor router + /doctor:mcp infra command + _routes.yaml manifest + route-validate.sh CI assertion across 4 runtimes."
 trigger_phrases:
   - "013/004 router phase plan"
@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/004-router-phase"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/003-router-phase"
     last_updated_at: "2026-05-11T16:00:00Z"
     last_updated_by: "spec-author"
     recent_action: "Phase 1 router shipped + verified"
@@ -54,7 +54,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->"
 
 ### Definition of Ready
 
-- Phase parent lean trio exists and points at `004-router-phase`.
+- Phase parent lean trio exists and points at `003-router-phase`.
 - Level 2 packet docs are strict-template compliant before claiming completion.
 - Existing doctor YAML assets and shipped command files are treated as references only for this doc-compliance pass.
 - Scope remains limited to the Phase 1 router deliverables and packet docs.
@@ -106,7 +106,7 @@ Companion command:
 - [x] `.opencode/specs/.../013-doctor-update-orchestrator/description.json`
 - [x] `.opencode/specs/.../013-doctor-update-orchestrator/graph-metadata.json`
 
-### Step 2 — Scaffold this packet (004-router-phase Level 2 docs)
+### Step 2 — Scaffold this packet (003-router-phase Level 2 docs)
 - [x] `spec.md`
 - [ ] `plan.md` (this file)
 - [ ] `tasks.md`

@@ -58,7 +58,7 @@ _memory:
 | **Created** | 2026-05-09 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
-| **Superseded By** | ../004-router-phase/ and ../005-cutover-phase/ (router consolidation + cutover, 2026-05-11) |
+| **Superseded By** | ../003-router-phase/ and ../005-cutover-phase/ (router consolidation + cutover, 2026-05-11) |
 | **Phase** | 13 of 13 |
 | **Predecessor** | 012-causal-graph-channel-routing |
 | **Successor** | None |

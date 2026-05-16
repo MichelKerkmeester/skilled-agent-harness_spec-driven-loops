@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/004-router-phase",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/004-router-phase",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/003-router-phase",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/003-router-phase",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator",
   "children_ids": [],
   "migrated": false,

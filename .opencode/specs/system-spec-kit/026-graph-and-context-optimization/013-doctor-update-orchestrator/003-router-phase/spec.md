@@ -1,8 +1,8 @@
 ---
-title: "Feature Specification: Doctor Router Phase 1 [system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/004-router-phase/spec]"
+title: "Feature Specification: Doctor Router Phase 1 [system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/003-router-phase/spec]"
 description: "Phase 1 of the doctor command consolidation: author the new /doctor router (.opencode/commands/doctor.md), /doctor:mcp infra command (.opencode/commands/doctor/mcp.md), _routes.yaml canonical manifest, and route-validate.sh CI assertion. Ships ADDITIVELY alongside the existing 10 commands so both /doctor memory and /doctor:memory invocation forms succeed during the validation window. Mirrors land in .claude / .gemini / .codex in the same packet. No deletes, no playbook changes, no YAML modifications."
 trigger_phrases:
-  - "004-router-phase"
+  - "003-router-phase"
   - "doctor router phase 1"
   - "/doctor router"
   - "_routes.yaml"
@@ -13,7 +13,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/004-router-phase"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/003-router-phase"
     last_updated_at: "2026-05-11T16:00:00Z"
     last_updated_by: "spec-author"
     recent_action: "Phase 1 router shipped + verified"
@@ -184,7 +184,7 @@ routes:
 | Component | LOC est. | Time est. |
 |-----------|----------|-----------|
 | 013 phase parent (lean trio) | 60 | 10 min |
-| 004-router-phase Level 2 docs (spec/plan/tasks/checklist/decision-record + lean trio) | 500-600 | 30-40 min |
+| 003-router-phase Level 2 docs (spec/plan/tasks/checklist/decision-record + lean trio) | 500-600 | 30-40 min |
 | `.opencode/commands/doctor.md` (router) | 250-300 | 20-30 min |
 | `.opencode/commands/doctor/mcp.md` | 150 | 10-15 min |
 | `.opencode/commands/doctor/_routes.yaml` | 80-100 | 10 min |
