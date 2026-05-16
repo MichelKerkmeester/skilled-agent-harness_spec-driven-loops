@@ -7,7 +7,7 @@
   "manual": {
     "depends_on": [
       "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/019-feature-catalog-shape-realignment",
-      "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/005-stress-test-expansion-and-alignment"
+      "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/005-expansion-and-alignment"
     ],
     "supersedes": [],
     "related_to": [

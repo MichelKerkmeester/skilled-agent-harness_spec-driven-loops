@@ -49,7 +49,7 @@ The parent itself owns no implementation. All work lives in the children. Each c
 
 - Documentation and pattern definition: 001-mcp-stress-cycle-cleanup, 002-stress-test-pattern-documentation
 - Runtime stress remediation: 003-mcp-runtime-stress-remediation
-- Structural organization: 004-stress-test-folder-completion, 005-stress-test-expansion-and-alignment
+- Structural organization: 004-stress-test-folder-completion, 005-expansion-and-alignment
 - Coverage validation and gap closure: 006-stress-coverage-audit-and-run, 007-stress-test-gap-remediation
 
 ---

@@ -6152,10 +6152,10 @@ END{
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-system-deep-bugs-and-improvements/research/logs/iter-020.log
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-system-deep-bugs-and-improvements/research/logs/iter-008.log
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-deep-review-program/006-mcp-tool-schema-governance/logs/iter-001.log
-./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test-expansion-and-alignment/logs/iter-001.log
+./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-expansion-and-alignment/logs/iter-001.log
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-system-deep-bugs-and-improvements/research/logs/iter-009.log
-./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test-expansion-and-alignment/logs/vitest-post-alignment.log
-./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test-expansion-and-alignment/logs/vitest-post-coverage.log
+./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-expansion-and-alignment/logs/vitest-post-alignment.log
+./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-expansion-and-alignment/logs/vitest-post-coverage.log
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/019-feature-catalog-shape-realignment/logs/iter-001.log
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-system-deep-bugs-and-improvements/research/logs/iter-019.log
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-system-deep-bugs-and-improvements/research/logs/iter-018.log

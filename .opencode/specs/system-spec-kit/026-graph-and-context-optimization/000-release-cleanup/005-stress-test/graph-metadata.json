@@ -8,7 +8,7 @@
     "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/002-stress-test-pattern-documentation",
     "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/003-mcp-runtime-stress-remediation",
     "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/004-stress-test-folder-completion",
-    "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/005-stress-test-expansion-and-alignment",
+    "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/005-expansion-and-alignment",
     "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/006-stress-coverage-audit-and-run",
     "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/007-stress-test-gap-remediation"
   ],

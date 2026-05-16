@@ -171,7 +171,7 @@ Severity-tiered bounded-wave execution: foundation → parallel content rewrites
 | Spec Kit Memory MCP + generate-context.js | Internal (mcp) | Green | Memory reindex blocked; manual `memory_index_scan` fallback |
 | `code_graph_scan` MCP | Internal (mcp) | Stale (orthogonal) | Path resolution may stay stale until next session |
 | 019-feature-catalog-shape-realignment (prior packet) | Internal (sibling) | Complete | Provides catalog-shape precedent |
-| 005-stress-test-expansion-and-alignment (prior packet) | Internal (sibling) | Complete | Provides stress-test path-reference patterns |
+| 005-expansion-and-alignment (prior packet) | Internal (sibling) | Complete | Provides stress-test path-reference patterns |
 <!-- /ANCHOR:dependencies -->
 
 ---
