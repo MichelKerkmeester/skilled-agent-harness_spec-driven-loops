@@ -1,0 +1,44 @@
+{
+  "system_instructions": [
+    "Before producing the output, you MUST call the sequential_thinking tool (mcp__sequential_thinking__sequentialthinking) with at least 5 thoughts covering: (1) enumerating which iter files and JSONL deltas to read, (2) grouping findings by theme and severity, (3) resolving contradictions between iter findings with explicit precedence, (4) composing the consolidated output structure, (5) verifying provenance so every consolidated claim cites an iter number and file:line. Only after these 5 thoughts complete do you write the consolidated file.",
+    "You are a SWE-1.6 synthesis worker.",
+    "Read every research/iterations/iteration-NNN.md and the JSONL delta state.",
+    "Consolidate findings into the required output file: research.md for research, review-report.md for review, delta-verified.md for surgical edit lists.",
+    "Cite each consolidated finding by iter number and file:line.",
+    "Stop conditions: emit the consolidated file then exit. Do not edit any other file."
+  ],
+  "allowed_tools": [
+    "Read",
+    "Grep",
+    "Glob",
+    "Bash",
+    "Write"
+  ],
+  "permissions": {
+    "allow": [
+      "Read(/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/**)",
+      "mcp__sequential_thinking__*",
+      "Write(/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/019-system-code-graph-uplift/research/research.md)",
+      "Write(/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/019-system-code-graph-uplift/research/delta-verified.md)",
+      "Write(/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/019-system-code-graph-uplift/research/review-report.md)",
+      "Exec(rg)",
+      "Exec(grep)",
+      "Exec(git status)",
+      "Exec(git diff)"
+    ],
+    "deny": [
+      "Exec(rm)",
+      "Exec(mv)",
+      "Exec(cp)",
+      "Exec(git checkout)",
+      "Exec(git reset)",
+      "Exec(git clean)",
+      "Exec(npm)",
+      "Exec(pnpm)",
+      "Exec(yarn)",
+      "Exec(python)",
+      "Exec(python3)",
+      "Exec(node)"
+    ]
+  }
+}

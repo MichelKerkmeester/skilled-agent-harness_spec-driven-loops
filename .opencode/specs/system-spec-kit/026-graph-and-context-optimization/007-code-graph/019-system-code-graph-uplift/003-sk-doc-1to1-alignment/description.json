@@ -1,0 +1,22 @@
+{
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/019-system-code-graph-uplift/003-sk-doc-1to1-alignment",
+  "description": "Phase 3. Research synthesized at parent 019/research/research.md \u00a712. Exhaustive validate_document.py --type <type> exit-0 across every authored doc. Per D3, validate manually for ALL files including per-feature files under feature_catalog/01--*/*.md and per-scenario files under manual_testing_playbook/01--*/*.md (no sampling). Research \u00a75 Q7/Q8 confirmed validator does not auto-recurse; manual recursion required for both catalog and playbook subdirectories. Primary docs already type-compliant per research iter-019; this phase is verification + per-feature/per-scenario recursion.",
+  "keywords": [
+    "phase-stub",
+    "sk-doc-1to1-alignment",
+    "validate-document-exit-0",
+    "per-type-validation"
+  ],
+  "lastUpdated": "2026-05-16T09:37:48Z",
+  "specId": "003",
+  "folderSlug": "sk-doc-1to1-alignment",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "007-code-graph",
+    "019-system-code-graph-uplift"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

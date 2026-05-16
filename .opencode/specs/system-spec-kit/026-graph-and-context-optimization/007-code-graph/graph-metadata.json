@@ -21,7 +21,8 @@
     "system-spec-kit/026-graph-and-context-optimization/007-code-graph/015-mcp-topology-pivot",
     "system-spec-kit/026-graph-and-context-optimization/007-code-graph/016-readmes-update",
     "system-spec-kit/026-graph-and-context-optimization/007-code-graph/017-code-folder-readmes",
-    "system-spec-kit/026-graph-and-context-optimization/007-code-graph/018-three-way-isolation-finalize"
+    "system-spec-kit/026-graph-and-context-optimization/007-code-graph/018-three-way-isolation-finalize",
+    "system-spec-kit/026-graph-and-context-optimization/007-code-graph/019-system-code-graph-uplift"
   ],
   "migrated": true,
   "migration_source": "legacy",
