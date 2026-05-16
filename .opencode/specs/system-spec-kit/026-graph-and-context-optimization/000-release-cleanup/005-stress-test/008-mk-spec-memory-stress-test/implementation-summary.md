@@ -8,13 +8,13 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/008-mk-spec-memory-stress-test"
-    last_updated_at: "2026-05-16T22:00:00Z"
+    last_updated_at: "2026-05-16T23:00:00Z"
     last_updated_by: "main_agent"
-    recent_action: "Round 3: 23 fix commits closed 31/32 FAILs"
-    next_safe_action: "Optional: cat-04/24 via opencode runtime + 239 broad repo cleanup"
+    recent_action: "Round 4: opencode unblocked cat-04/24 + codex J fixed 52 frontmatter files"
+    next_safe_action: "Optional: 4 new cat-24 FAILs from opencode (402 synonymy, 408 compound, 409 llm-made)"
     blockers:
-      - "cat-04 + cat-24 tool-rejected (18 scenarios) — devin-incompatible"
-      - "cat-16/239 repo-wide frontmatter cleanup — broad content debt"
+      - "4 new cat-24 FAILs surfaced by opencode: local-LLM retrieval subsystem"
+      - "49 mid-batch-cut scenarios (cat-14-pipeline + cat-16 splits)"
     key_files:
       - "handover.md"
       - "tasks.md"
@@ -25,7 +25,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000008004"
       session_id: "008-summary-stub"
       parent_session_id: null
-    completion_pct: 97
+    completion_pct: 98
     open_questions: []
     answered_questions: []
 ---
@@ -41,15 +41,15 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| Status | PARTIAL (Phase 1 fully complete; Phase 2 80.6% scenario coverage with **23 fix commits** landed closing **31 of 32 FAILs**) |
+| Status | PARTIAL (Phase 1 fully complete; Phase 2 85.8% scenario coverage with **24 fix commits** + 1 cleanup commit landing **31 of 32 FAILs closed**; all 25 categories now have rows) |
 | Branch | main |
 | Baseline | post packet 113 (commit b062b12b4) |
 | Pre-sweep checkpoint | `pre-008-sweep-20260516T144620Z` (id=2, global scope, 11,426 memories, 124 MB) — intact end-to-end |
-| Wall-clock actual | ~11 hours total (Phase 0 + Phase 1 + 3 Phase 2 waves + 23 codex fix dispatches across 3 rounds) |
-| Total commits this session | 23 fix + ~7 doc + 2 deferred-followon docs |
-| FAILs closed | 31 of 32 (97%) |
-| Scenarios covered | 278 of 345 (80.6%) |
-| Remaining work | 1 partial fix tail (cat-16/239 repo-wide frontmatter cleanup as broad content debt) + 18 cat-04/cat-24 tool-rejected scenarios (Phase 4+1 follow-ons) |
+| Wall-clock actual | ~12 hours total (Phase 0 + Phase 1 + 4 Phase 2 dispatch waves [3 devin + 1 opencode] + 24 codex fix dispatches across 4 rounds) |
+| Total commits this session | 24 fix + ~8 doc + 2 deferred-followon docs + 1 frontmatter cleanup commit |
+| FAILs closed | 31 of 32 (97%) before round 4 surfaced 4 new cat-24 FAILs via opencode = 31/36 = 86% |
+| Scenarios covered | 296 of 345 (85.8%) across all 25 of 25 categories |
+| Remaining work | 49 uncovered scenarios (mix of partials in cat-14-pipeline, cat-16 splits) + 4 new cat-24 FAILs surfaced by opencode (Phase 4+1 follow-ons) |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -59,7 +59,9 @@ _memory:
 
 **Phase 1 (39 tools, fully complete):** Every mk-spec-memory MCP tool exercised via paired-parallel cli-devin SWE-1.6. Results: 35 PASS / 2 SKIP / 1 FAIL / 1 PARTIAL. 39/39 unique tools covered, 0 malformed JSONL rows. Evidence at `evidence/tool-sweep.jsonl`.
 
-**Phase 2 (345 scenarios, 80.6% complete):** Three dispatch waves via paired-parallel cli-devin. Wave 1 hit Cognition rate limit after 6 paired-batches. Wave 2 resumed after rate-limit reset and covered 14 more categories. Wave 3 (round 2) added cat-14-pipeline remainder (+11 rows) + cat-03 retry (+4 rows). Final coverage: **278/345 rows across 23 of 25 categories**. Missing: cat-04 (3 scenarios) + cat-24 (15 scenarios) blocked by persistent "tool rejected" devin guard — agent-config expansion (Write to sandbox paths + Exec mkdir/printf/touch) did NOT unlock these; cause is tool-pattern-specific, opaque from 39-byte truncated logs. Evidence at `evidence/playbook-results.jsonl`.
+**Phase 2 (345 scenarios, 85.8% complete):** Four dispatch waves. Waves 1-3 via paired-parallel cli-devin SWE-1.6 (Wave 1 hit Cognition rate limit after 6 paired-batches; Wave 2 resumed after reset and covered 14 more categories; Wave 3 added cat-14-pipeline remainder + cat-03 retry). Wave 4 via cli-opencode (default OpenAI runtime) cleared the cat-04 + cat-24 tool-rejected blockers that defeated devin: 18 scenarios processed cleanly with sandbox-aware SKIP/FAIL/PARTIAL/PASS classifications. **Final coverage: 296/345 rows across ALL 25 of 25 categories**. Remaining 49 scenarios are mid-batch cuts in cat-14-pipeline + cat-16 splits that didn't fully process under earlier rate limits. Evidence at `evidence/playbook-results.jsonl`.
+
+**Wave 4 (cli-opencode) finding**: Devin SWE-1.6 has a runtime-specific opaque tool-rejection guard. Opencode's default OpenAI runtime doesn't share it. Opencode applied content-aware safety judgment (SKIP'd scenarios that legitimately required mutating real spec-folder state outside sandbox) instead of pre-flight blocking. New cat-24 FAILs surfaced this way: 402 (synonymy retrieval), 408 (compound concept synthesis), 409 (LLM-made-memory recall) — real defects in local-LLM query intelligence subsystem that devin's gate would have hidden.
 
 **16 defect fix commits + 1 deferred-followon doc commit pushed to `main` in same session** via sequential cli-codex (gpt-5.5 reasoning_effort=high, service_tier=fast):
 
