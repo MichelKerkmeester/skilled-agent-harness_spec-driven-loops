@@ -92,7 +92,7 @@ Goal: drop the audit's HIGH count from 93 → 0 and MED count from 177 → < 50 
 
 - Today's 9 packets (022-028 + 005/009 + 005/010): they're already aligned per their own validators
 - Files in scope of `006-stale-doc-and-readme-fixes`: hand off to that packet
-- Files in scope of `012-broad-suite-vitest-honesty`: hand off
+- Files in scope of `007-broad-suite-vitest-honesty`: hand off
 - Top-level project README, license, contributor docs
 - `node_modules/`, `dist/`, `z_archive/`, `z_future/`
 - Rewriting legacy spec narrative (substantive content); only template-shape alignment

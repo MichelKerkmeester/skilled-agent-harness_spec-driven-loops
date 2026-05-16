@@ -3,14 +3,14 @@ title: "Verification Checklist: Broad-Suite Vitest Honesty"
 template_source: "SPECKIT_TEMPLATE_SOURCE: checklist | v2.2"
 description: "Verification checklist for reproducing broad Vitest behavior and correcting 026's claim."
 trigger_phrases:
-  - "012-broad-suite-vitest-honesty"
+  - "007-broad-suite-vitest-honesty"
   - "broad suite vitest checklist"
   - "F-005 verification checklist"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/012-broad-suite-vitest-honesty"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/007-broad-suite-vitest-honesty"
     last_updated_at: "2026-04-29T11:18:00Z"
     last_updated_by: "codex-gpt-5.5"
     recent_action: "Completed checklist evidence after broad Vitest investigation"
@@ -20,8 +20,8 @@ _memory:
       - ".opencode/skills/system-spec-kit/mcp_server/tests"
       - "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/026-readiness-scaffolding-cleanup/implementation-summary.md"
     session_dedup:
-      fingerprint: "sha256:012-broad-suite-vitest-honesty-checklist"
-      session_id: "012-broad-suite-vitest-honesty"
+      fingerprint: "sha256:007-broad-suite-vitest-honesty-checklist"
+      session_id: "007-broad-suite-vitest-honesty"
       parent_session_id: null
     completion_pct: 100
     open_questions: []

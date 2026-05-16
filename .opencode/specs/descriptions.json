@@ -3925,7 +3925,7 @@
       "lastUpdated": "2026-05-08T08:26:57.111Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/012-broad-suite-vitest-honesty",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/007-broad-suite-vitest-honesty",
       "description": "Spec: Broad-Suite Vitest Honesty",
       "keywords": [
         "spec",

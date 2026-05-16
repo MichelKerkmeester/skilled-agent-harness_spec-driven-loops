@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/012-broad-suite-vitest-honesty",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/012-broad-suite-vitest-honesty",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/007-broad-suite-vitest-honesty",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/007-broad-suite-vitest-honesty",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation",
   "children_ids": [],
   "migrated": false,
@@ -14,7 +14,7 @@
     "related_to": []
   },
   "derived": {
-    "trigger_phrases": ["012-broad-suite-vitest-honesty", "broad suite vitest investigation", "F-005 vitest honesty"],
+    "trigger_phrases": ["007-broad-suite-vitest-honesty", "broad suite vitest investigation", "F-005 vitest honesty"],
     "key_topics": ["vitest-honesty", "F-005", "broad-suite-failures"],
     "importance_tier": "important",
     "status": "planned",

@@ -3,14 +3,14 @@ title: "Spec: Broad-Suite Vitest Honesty (Tier 3 / F-005)"
 template_source: "SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2"
 description: "Investigate broad-suite vitest hangs/failures, document actual state honestly, either fix or scope-down 026's overstated claim. Closes 011 deep-review F-005."
 trigger_phrases:
-  - "012-broad-suite-vitest-honesty"
+  - "007-broad-suite-vitest-honesty"
   - "broad suite vitest investigation"
   - "F-005 vitest honesty"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/012-broad-suite-vitest-honesty"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/007-broad-suite-vitest-honesty"
     last_updated_at: "2026-04-29T12:25:00Z"
     last_updated_by: "codex-gpt-5.5"
     recent_action: "Completed broad Vitest investigation and corrected 026's verification claim"

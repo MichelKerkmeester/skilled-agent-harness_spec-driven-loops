@@ -10,7 +10,7 @@
     "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cleanup/004-search-rag-measurement-driven-implementation",
     "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cleanup/005-vestigial-embedding-readiness-gate-removal",
     "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cleanup/006-stale-doc-and-readme-fixes",
-    "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cleanup/012-broad-suite-vitest-honesty",
+    "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cleanup/007-broad-suite-vitest-honesty",
     "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cleanup/013-skdoc-legacy-template-debt-cleanup",
     "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cleanup/014-phase-parent-documentation",
     "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cleanup/021-half-auto-upgrades",

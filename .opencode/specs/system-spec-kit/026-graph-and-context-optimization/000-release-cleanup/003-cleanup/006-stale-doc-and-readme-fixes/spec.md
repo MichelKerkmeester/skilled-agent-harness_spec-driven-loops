@@ -70,7 +70,7 @@ Update 12 documents to match committed code. Pure documentation; no runtime chan
 
 - Runtime/test code changes
 - Older spec-folder template debt (covered by 013-skdoc-legacy-template-debt-cleanup)
-- Broad-suite vitest investigation (covered by 012-broad-suite-vitest-honesty)
+- Broad-suite vitest investigation (covered by 007-broad-suite-vitest-honesty)
 - Touching today's 9 packet's plan.md/tasks.md/checklist.md beyond the 3 stale-continuity edits listed below
 
 ### Files to Change

@@ -3,14 +3,14 @@ title: "Implementation Plan: Broad-Suite Vitest Honesty"
 template_source: "SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2"
 description: "Investigate the broad Vitest suite, classify any hangs or failures, and correct 026's verification claim to match reproducible evidence."
 trigger_phrases:
-  - "012-broad-suite-vitest-honesty"
+  - "007-broad-suite-vitest-honesty"
   - "broad suite vitest plan"
   - "F-005 vitest remediation plan"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/012-broad-suite-vitest-honesty"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/007-broad-suite-vitest-honesty"
     last_updated_at: "2026-04-29T11:15:00Z"
     last_updated_by: "codex-gpt-5.5"
     recent_action: "Created investigation plan"
@@ -20,8 +20,8 @@ _memory:
       - ".opencode/skills/system-spec-kit/mcp_server/tests"
       - "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/026-readiness-scaffolding-cleanup/implementation-summary.md"
     session_dedup:
-      fingerprint: "sha256:012-broad-suite-vitest-honesty-plan"
-      session_id: "012-broad-suite-vitest-honesty"
+      fingerprint: "sha256:007-broad-suite-vitest-honesty-plan"
+      session_id: "007-broad-suite-vitest-honesty"
       parent_session_id: null
     completion_pct: 15
     open_questions: []

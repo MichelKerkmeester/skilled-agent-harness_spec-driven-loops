@@ -115,8 +115,8 @@ _memory:
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/005-vestigial-embedding-readiness-gate-removal/plan.md` | Updated | OK | Packet-local spec artifact. |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/005-vestigial-embedding-readiness-gate-removal/spec.md` | Updated | OK | Packet-local spec artifact. |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/005-vestigial-embedding-readiness-gate-removal/tasks.md` | Updated | OK | Packet-local spec artifact. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/012-broad-suite-vitest-honesty/implementation-summary.md` | Updated | OK | Packet-local spec artifact. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/012-broad-suite-vitest-honesty/spec.md` | Updated | OK | Packet-local spec artifact. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/007-broad-suite-vitest-honesty/implementation-summary.md` | Updated | OK | Packet-local spec artifact. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/007-broad-suite-vitest-honesty/spec.md` | Updated | OK | Packet-local spec artifact. |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-memory-indexer-invariants/checklist.md` | Updated | OK | Packet-local spec artifact. |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-memory-indexer-invariants/plan.md` | Updated | OK | Packet-local spec artifact. |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-memory-indexer-invariants/review/005-memory-indexer-invariants-pt-01/deep-review-strategy.md` | Updated | OK | Review artifact captured by the packet. |
