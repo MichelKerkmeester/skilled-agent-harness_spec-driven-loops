@@ -14,7 +14,7 @@ trigger_phrases:
   - "005-smart-router-remediation-and-opencode-plugin"
   - "006-deferred-remediation-and-telemetry-run"
   - "007-skill-advisor-hook-surface"
-  - "008-skill-graph-daemon-and-advisor-unification"
+  - "002-skill-graph-daemon-and-advisor-unification"
   - "009-skill-advisor-plugin-hardening"
   - "010-skill-advisor-standards-alignment"
   - "011-skill-advisor-hook-improvements"
@@ -116,7 +116,7 @@ Keep this theme as the single active parent for the full skill advisor system. E
 | 5 | `005-smart-router-remediation-and-opencode-plugin/` | Spec Ready | Feature Specification: Smart-Router Remediation + OpenCode Plugin |
 | 6 | `006-deferred-remediation-and-telemetry-run/` | Spec Ready | Feature Specification: Deferred Remediation + Telemetry Measurement Run |
 | 7 | `007-skill-advisor-hook-surface/` | In Progress | Feature Specification: Skill-Advisor Hook Surface |
-| 8 | `008-skill-graph-daemon-and-advisor-unification/` | In Progress | Feature Specification: 027 - Skill Graph Daemon and Advisor Unification |
+| 8 | `002-skill-graph-daemon-and-advisor-unification/` | In Progress | Feature Specification: 027 - Skill Graph Daemon and Advisor Unification |
 | 9 | `009-skill-advisor-plugin-hardening/` | Complete | Feature Specification: Skill-Advisor Plugin Hardening |
 | 10 | `010-skill-advisor-standards-alignment/` | Complete | Feature Specification: Skill-Advisor Standards Alignment |
 | 11 | `011-skill-advisor-hook-improvements/` | Research Queued | Feature Specification: Skill-Advisor Hook Improvements |

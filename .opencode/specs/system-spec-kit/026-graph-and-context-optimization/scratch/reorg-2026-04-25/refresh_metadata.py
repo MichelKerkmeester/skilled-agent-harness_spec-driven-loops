@@ -46,7 +46,7 @@ PACKETS = [
 
     # 008 children (from 010 — new parent + new slot)
     "008-skill-advisor/007-skill-advisor-hook-surface",
-    "008-skill-advisor/008-skill-graph-daemon-and-advisor-unification",
+    "008-skill-advisor/002-skill-graph-daemon-and-advisor-unification",
     "008-skill-advisor/009-skill-advisor-plugin-hardening",
     "008-skill-advisor/010-skill-advisor-standards-alignment",
     "008-skill-advisor/011-skill-advisor-hook-improvements",
