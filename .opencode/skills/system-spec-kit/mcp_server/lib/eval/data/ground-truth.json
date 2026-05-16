@@ -8,7 +8,7 @@
       "category": "factual",
       "source": "seed",
       "expectedResultDescription": "Memory or spec covering search-weights.json and the MAX_TRIGGERS_PER_MEMORY constant in vector-index-impl.ts. Should surface the T000c audit or related sprint-0 documentation.",
-      "notes": "Direct factual lookup — tests whether a specific technical constant is retrievable by natural-language description of its purpose."
+      "notes": "Direct factual lookup \u2014 tests whether a specific technical constant is retrievable by natural-language description of its purpose."
     },
     {
       "id": 2,
@@ -18,7 +18,7 @@
       "category": "graph_relationship",
       "source": "seed",
       "expectedResultDescription": "Decision record or memory explaining T054 / T003 (content hash dedup) rationale. Should reference Wave 1 bug fixes and duplicate prevention.",
-      "notes": "Tests causal-edge graph retrieval — the decision to add SHA256 should be linked to prior duplicates observed."
+      "notes": "Tests causal-edge graph retrieval \u2014 the decision to add SHA256 should be linked to prior duplicates observed."
     },
     {
       "id": 3,
@@ -28,7 +28,7 @@
       "category": "cross_document",
       "source": "seed",
       "expectedResultDescription": "Should surface memories about adaptive-fusion.ts (7 intent profiles), intent-classifier.ts, and memory_context intent routing. Cross-document because the behavior spans multiple modules.",
-      "notes": "Tests whether multi-hop conceptual retrieval works — the answer requires understanding intent-classifier + adaptive-fusion + memory-context handler together."
+      "notes": "Tests whether multi-hop conceptual retrieval works \u2014 the answer requires understanding intent-classifier + adaptive-fusion + memory-context handler together."
     },
     {
       "id": 4,
@@ -58,7 +58,7 @@
       "category": "temporal",
       "source": "seed",
       "expectedResultDescription": "Should surface sprint-0 baseline measurement (T000a) which records graphHitRate=0, and any related spec memories about graph channel initialization or telemetry gaps.",
-      "notes": "Temporal query — 'recently discussed' should surface content from the last 7 days of memory creation. Tests recency boost in fix_bug / understand intent modes."
+      "notes": "Temporal query \u2014 'recently discussed' should surface content from the last 7 days of memory creation. Tests recency boost in fix_bug / understand intent modes."
     },
     {
       "id": 7,
@@ -168,7 +168,7 @@
       "category": "hard_negative",
       "source": "seed",
       "expectedResultDescription": "Should return NO relevant results. This codebase has no Python code, no billing module, and no pytest setup. A high-quality retrieval system returns empty or near-empty results.",
-      "notes": "Hard negative — completely out-of-domain query. Tests the system's ability to not hallucinate false matches on irrelevant queries."
+      "notes": "Hard negative \u2014 completely out-of-domain query. Tests the system's ability to not hallucinate false matches on irrelevant queries."
     },
     {
       "id": 18,
@@ -178,7 +178,7 @@
       "category": "hard_negative",
       "source": "seed",
       "expectedResultDescription": "Should return NO relevant results. No React, no Storybook, no frontend component system exists in this codebase.",
-      "notes": "Hard negative — completely wrong domain (frontend UI). Tests false positive rate."
+      "notes": "Hard negative \u2014 completely wrong domain (frontend UI). Tests false positive rate."
     },
     {
       "id": 19,
@@ -188,7 +188,7 @@
       "category": "hard_negative",
       "source": "seed",
       "expectedResultDescription": "Should return NO relevant results. The MCP server is a Node.js local process; there is no Kubernetes or containerization setup.",
-      "notes": "Hard negative — plausible-sounding query (it IS an MCP server!) but the deployment context does not exist. Tests whether surface-level term matches ('MCP server') cause false positives."
+      "notes": "Hard negative \u2014 plausible-sounding query (it IS an MCP server!) but the deployment context does not exist. Tests whether surface-level term matches ('MCP server') cause false positives."
     },
     {
       "id": 20,
@@ -198,7 +198,7 @@
       "category": "hard_negative",
       "source": "seed",
       "expectedResultDescription": "Should return NO relevant results. There is no OAuth, no HTTP server endpoints, no token auth in this system. API key validation is the only auth mechanism.",
-      "notes": "Hard negative — auth-adjacent query that sounds plausible but targets a completely absent subsystem. Note: SPECKIT_SKIP_API_VALIDATION exists but is for internal testing bypass, not OAuth."
+      "notes": "Hard negative \u2014 auth-adjacent query that sounds plausible but targets a completely absent subsystem. Note: SPECKIT_SKIP_API_VALIDATION exists but is for internal testing bypass, not OAuth."
     },
     {
       "id": 21,
@@ -208,7 +208,7 @@
       "category": "hard_negative",
       "source": "seed",
       "expectedResultDescription": "Should return NO relevant results. The API is MCP (Model Context Protocol) over JSON-RPC, not GraphQL. No schema definition language files exist.",
-      "notes": "Hard negative — tests whether mentions of 'memory index' cause false matches when the query context (GraphQL) is entirely wrong."
+      "notes": "Hard negative \u2014 tests whether mentions of 'memory index' cause false matches when the query context (GraphQL) is entirely wrong."
     },
     {
       "id": 22,
@@ -218,7 +218,7 @@
       "category": "factual",
       "source": "pattern_derived",
       "expectedResultDescription": "Gate 1 style terse query. Should surface memory-context.ts handler and related memories about known handler bugs or pressure policy issues.",
-      "notes": "From T007b §5a: Gate 1 passes raw user messages verbatim; terse commands should still match."
+      "notes": "From T007b \u00a75a: Gate 1 passes raw user messages verbatim; terse commands should still match."
     },
     {
       "id": 23,
@@ -358,7 +358,7 @@
       "category": "anchor_based",
       "source": "pattern_derived",
       "expectedResultDescription": "Should surface the tasks.md from 001-sprint-0-measurement-foundation with incomplete tasks listed, and any session state memory with next-steps anchor.",
-      "notes": "From T007b §6 rec 3: include queries about what remains to be done — maps to state anchor extraction."
+      "notes": "From T007b \u00a76 rec 3: include queries about what remains to be done \u2014 maps to state anchor extraction."
     },
     {
       "id": 37,
@@ -368,7 +368,7 @@
       "category": "factual",
       "source": "pattern_derived",
       "expectedResultDescription": "Should surface bm25-index.ts isBm25Enabled() function and any documentation about the BM25 feature flag.",
-      "notes": "From T007b §6 rec 7: vary query length — this is a short, targeted factual query about a specific env var."
+      "notes": "From T007b \u00a76 rec 7: vary query length \u2014 this is a short, targeted factual query about a specific env var."
     },
     {
       "id": 38,
@@ -378,7 +378,7 @@
       "category": "cross_document",
       "source": "pattern_derived",
       "expectedResultDescription": "Should surface query-expander.ts, memory-context.ts deep mode branch, and any spec about domain vocabulary expansion.",
-      "notes": "From T007b §1 step 3: multi-query expansion is specific to deep mode — cross-document query."
+      "notes": "From T007b \u00a71 step 3: multi-query expansion is specific to deep mode \u2014 cross-document query."
     },
     {
       "id": 39,
@@ -388,7 +388,7 @@
       "category": "cross_document",
       "source": "pattern_derived",
       "expectedResultDescription": "Should surface eval-logger.ts, eval-db.ts schema (eval_channel_results table), and any spec decisions about the eval framework design.",
-      "notes": "Refactor-intent query — tests that refactor intent routes to deep mode (T007b §1 step 1)."
+      "notes": "Refactor-intent query \u2014 tests that refactor intent routes to deep mode (T007b \u00a71 step 1)."
     },
     {
       "id": 40,
@@ -398,7 +398,7 @@
       "category": "cross_document",
       "source": "pattern_derived",
       "expectedResultDescription": "Should surface adaptive-fusion.ts intent profiles, intent-classifier.ts enum, and eval-metrics.ts intentMultipliers. Cross-document because the change touches 3+ files.",
-      "notes": "From T007b §5b: mode selection driven by intent classifier — add_feature routes to deep mode."
+      "notes": "From T007b \u00a75b: mode selection driven by intent classifier \u2014 add_feature routes to deep mode."
     },
     {
       "id": 41,
@@ -408,7 +408,7 @@
       "category": "factual",
       "source": "pattern_derived",
       "expectedResultDescription": "Should surface SPECKIT_SKIP_API_VALIDATION documentation, api-key-validation.ts, and any memories about the conditions under which this flag is safe to use.",
-      "notes": "Security audit intent — tests that security_audit intent routes to deep mode and surfaces relevant security content."
+      "notes": "Security audit intent \u2014 tests that security_audit intent routes to deep mode and surfaces relevant security content."
     },
     {
       "id": 42,
@@ -418,7 +418,7 @@
       "category": "temporal",
       "source": "pattern_derived",
       "expectedResultDescription": "Should surface incremental-index.ts, retry-manager.ts, and any spec memories about stale cache behavior after indexing operations.",
-      "notes": "Bug-intent with temporal aspect (\"after index rebuild\") — tests recency boosting for fix_bug intent."
+      "notes": "Bug-intent with temporal aspect (\"after index rebuild\") \u2014 tests recency boosting for fix_bug intent."
     },
     {
       "id": 43,
@@ -428,7 +428,7 @@
       "category": "cross_document",
       "source": "pattern_derived",
       "expectedResultDescription": "Should surface both memory_context (L1 unified entry) and memory_search (L2 core) tool schemas and any documentation comparing their use cases.",
-      "notes": "From T007b §2: comparing two closely related tools — requires cross-document retrieval."
+      "notes": "From T007b \u00a72: comparing two closely related tools \u2014 requires cross-document retrieval."
     },
     {
       "id": 44,
@@ -448,7 +448,7 @@
       "category": "scope_filtered",
       "source": "pattern_derived",
       "expectedResultDescription": "Should surface causal-boost.ts, search-flags.ts, and any spec memory that introduced SPECKIT_CAUSAL_BOOST.",
-      "notes": "Find-spec intent for a specific flag — tests feature flag governance retrieval."
+      "notes": "Find-spec intent for a specific flag \u2014 tests feature flag governance retrieval."
     },
     {
       "id": 46,
@@ -468,7 +468,7 @@
       "category": "graph_relationship",
       "source": "pattern_derived",
       "expectedResultDescription": "Should surface five-factor-scoring.vitest.ts, composite-scoring.ts, and any decision record about why five factors were chosen over a simpler scoring approach.",
-      "notes": "Decision archaeology for a specific design choice — tests causal graph traversal."
+      "notes": "Decision archaeology for a specific design choice \u2014 tests causal graph traversal."
     },
     {
       "id": 48,
@@ -478,7 +478,7 @@
       "category": "cross_document",
       "source": "pattern_derived",
       "expectedResultDescription": "Should surface redaction-gate.ts, path-security.ts, preflight.ts, and any spec memories about data sanitization or access control in the save flow.",
-      "notes": "Security audit of the save pipeline — requires cross-document retrieval of security-adjacent modules."
+      "notes": "Security audit of the save pipeline \u2014 requires cross-document retrieval of security-adjacent modules."
     },
     {
       "id": 49,
@@ -488,7 +488,7 @@
       "category": "temporal",
       "source": "pattern_derived",
       "expectedResultDescription": "Temporal query about a specific task milestone. Should surface memories created after T054 that reference the content hash dedup feature.",
-      "notes": "From T007b §5a: temporal queries with task-reference framing."
+      "notes": "From T007b \u00a75a: temporal queries with task-reference framing."
     },
     {
       "id": 50,
@@ -538,7 +538,7 @@
       "category": "factual",
       "source": "pattern_derived",
       "expectedResultDescription": "Should surface importance-tiers.ts, scoring.vitest.ts, and any spec about importance tier weight assignments.",
-      "notes": "Refactor intent with a specific implementation suggestion — tests refactor routing to deep mode."
+      "notes": "Refactor intent with a specific implementation suggestion \u2014 tests refactor routing to deep mode."
     },
     {
       "id": 55,
@@ -628,7 +628,7 @@
       "category": "factual",
       "source": "trigger_derived",
       "expectedResultDescription": "Should surface importance-tiers.ts, tier-classifier.ts, attention-decay.ts, and any spec memories about the 5-tier state machine.",
-      "notes": "Trigger derived from tier names — tests whether explicit state name enumeration retrieves the right docs."
+      "notes": "Trigger derived from tier names \u2014 tests whether explicit state name enumeration retrieves the right docs."
     },
     {
       "id": 64,
@@ -677,7 +677,7 @@
       "complexityTier": "simple",
       "category": "factual",
       "source": "trigger_derived",
-      "expectedResultDescription": "Should surface CLAUDE.md documentation levels table showing Level 3 requires decision-record.md for ≥500 LOC changes.",
+      "expectedResultDescription": "Should surface CLAUDE.md documentation levels table showing Level 3 requires decision-record.md for \u2265500 LOC changes.",
       "notes": "Derived from \"decision record\" and \"level 3\" trigger phrases in spec kit documentation."
     },
     {
@@ -698,7 +698,7 @@
       "category": "factual",
       "source": "trigger_derived",
       "expectedResultDescription": "Should surface pressure-monitor.ts, memory-context.ts pressure handling, and any spec about the pressure policy design decisions.",
-      "notes": "Derived from SPECKIT_PRESSURE_POLICY env var trigger phrase — overlaps with seed query 9 but phrased differently."
+      "notes": "Derived from SPECKIT_PRESSURE_POLICY env var trigger phrase \u2014 overlaps with seed query 9 but phrased differently."
     },
     {
       "id": 71,
@@ -708,7 +708,7 @@
       "category": "cross_document",
       "source": "manual",
       "expectedResultDescription": "Should surface tier-classifier.ts, attention-decay.ts, and any spec about the evidence-state lifecycle conditions.",
-      "notes": "Manual conversational phrasing — \"I want to understand how\" mimics natural user language."
+      "notes": "Manual conversational phrasing \u2014 \"I want to understand how\" mimics natural user language."
     },
     {
       "id": 72,
@@ -728,7 +728,7 @@
       "category": "factual",
       "source": "manual",
       "expectedResultDescription": "Should surface tool comparison documentation in SKILL.md or tool-schemas.ts explaining L1 vs L2 routing.",
-      "notes": "Manual decision-guidance query — realistic user confusion about which tool to use."
+      "notes": "Manual decision-guidance query \u2014 realistic user confusion about which tool to use."
     },
     {
       "id": 74,
@@ -737,8 +737,8 @@
       "complexityTier": "moderate",
       "category": "factual",
       "source": "manual",
-      "expectedResultDescription": "Should surface the constitutional memory injection behavior described in SKILL.md §3 and T007b Pattern 7.",
-      "notes": "Manual query expressing user frustration — tests whether the system surfaces the design rationale."
+      "expectedResultDescription": "Should surface the constitutional memory injection behavior described in SKILL.md \u00a73 and T007b Pattern 7.",
+      "notes": "Manual query expressing user frustration \u2014 tests whether the system surfaces the design rationale."
     },
     {
       "id": 75,
@@ -748,7 +748,7 @@
       "category": "cross_document",
       "source": "manual",
       "expectedResultDescription": "Should surface importance-tiers.ts, composite-scoring.ts, five-factor-scoring documentation, and any spec about the importance weight assignment.",
-      "notes": "Vague natural language query — tests whether broad semantic retrieval surfaces the right subsystems."
+      "notes": "Vague natural language query \u2014 tests whether broad semantic retrieval surfaces the right subsystems."
     },
     {
       "id": 76,
@@ -768,7 +768,7 @@
       "category": "graph_relationship",
       "source": "manual",
       "expectedResultDescription": "Should surface decision records or spec memories explaining the choice of SQLite + FTS5 + custom vector storage over alternatives like Pinecone or Chroma.",
-      "notes": "High-level architectural decision query — tests whether foundational design choices are preserved in memory."
+      "notes": "High-level architectural decision query \u2014 tests whether foundational design choices are preserved in memory."
     },
     {
       "id": 78,
@@ -778,7 +778,7 @@
       "category": "graph_relationship",
       "source": "manual",
       "expectedResultDescription": "Should surface early spec folder memories or constitutional documentation about why persistent AI memory was needed for the Claude Code / OpenCode workflow.",
-      "notes": "Origin-story decision query — tests deep historical retrieval."
+      "notes": "Origin-story decision query \u2014 tests deep historical retrieval."
     },
     {
       "id": 79,
@@ -798,7 +798,7 @@
       "category": "temporal",
       "source": "manual",
       "expectedResultDescription": "Should surface cross-encoder.ts and the T000c audit note that crossEncoder section is dead config, plus any decision record about its planned removal.",
-      "notes": "Manual past-tense decision query — \"was there ever a decision\" pattern."
+      "notes": "Manual past-tense decision query \u2014 \"was there ever a decision\" pattern."
     },
     {
       "id": 81,
@@ -808,7 +808,7 @@
       "category": "factual",
       "source": "manual",
       "expectedResultDescription": "Should surface memory_list handler code and any spec about the includeChunks parameter behavior.",
-      "notes": "Manual bug report phrasing — realistic user-facing issue description."
+      "notes": "Manual bug report phrasing \u2014 realistic user-facing issue description."
     },
     {
       "id": 82,
@@ -818,7 +818,7 @@
       "category": "factual",
       "source": "manual",
       "expectedResultDescription": "Should surface graph-search-fn.ts, causal-edges.ts, and the T000a baseline note about graphHitRate=0 being expected until the graph is populated.",
-      "notes": "Manual bug report for the graph channel — relates to known T000a baseline finding."
+      "notes": "Manual bug report for the graph channel \u2014 relates to known T000a baseline finding."
     },
     {
       "id": 83,
@@ -828,7 +828,7 @@
       "category": "cross_document",
       "source": "manual",
       "expectedResultDescription": "Should surface incremental-index.ts, retry-manager.ts, and any spec about the indexing latency after save operations.",
-      "notes": "Manual bug query about indexing lag — realistic user confusion about save vs. search consistency."
+      "notes": "Manual bug query about indexing lag \u2014 realistic user confusion about save vs. search consistency."
     },
     {
       "id": 84,
@@ -848,7 +848,7 @@
       "category": "factual",
       "source": "manual",
       "expectedResultDescription": "Should surface tier-classifier.ts, the constitutional tier qualification criteria, and any test coverage in tier-classifier.vitest.ts.",
-      "notes": "Manual bug report about tier promotion logic — a sensitive path given constitutional tier has special behavior."
+      "notes": "Manual bug report about tier promotion logic \u2014 a sensitive path given constitutional tier has special behavior."
     },
     {
       "id": 86,
@@ -858,7 +858,7 @@
       "category": "cross_document",
       "source": "manual",
       "expectedResultDescription": "Should surface retrieval-telemetry.ts, trace-schema.ts, and any spec about the eval logging framework (T005).",
-      "notes": "Manual add_feature intent with \"I want to\" phrasing — conversational but maps to implementation guidance."
+      "notes": "Manual add_feature intent with \"I want to\" phrasing \u2014 conversational but maps to implementation guidance."
     },
     {
       "id": 87,
@@ -878,7 +878,7 @@
       "category": "cross_document",
       "source": "manual",
       "expectedResultDescription": "Should surface the vector-store.ts interface, eval-db.ts, and the decision record about choosing SQLite. May surface the architecture layer definitions.",
-      "notes": "Manual complex add_feature question — tests retrieval of interface contracts and architecture decisions together."
+      "notes": "Manual complex add_feature question \u2014 tests retrieval of interface contracts and architecture decisions together."
     },
     {
       "id": 89,
@@ -888,7 +888,7 @@
       "category": "factual",
       "source": "manual",
       "expectedResultDescription": "Should surface the memory_list handler code (offset/limit parameters that already exist) and the tool schema definition.",
-      "notes": "Manual add_feature request that may already be partially implemented — tests whether the system surfaces the existing API."
+      "notes": "Manual add_feature request that may already be partially implemented \u2014 tests whether the system surfaces the existing API."
     },
     {
       "id": 90,
@@ -898,7 +898,7 @@
       "category": "factual",
       "source": "manual",
       "expectedResultDescription": "Should surface .opencode/skills/sk-git/SKILL.md and any spec memories about the sk-git skill functionality.",
-      "notes": "Manual \"where is\" documentation query — tests file location retrieval."
+      "notes": "Manual \"where is\" documentation query \u2014 tests file location retrieval."
     },
     {
       "id": 91,
@@ -948,7 +948,7 @@
       "category": "cross_document",
       "source": "manual",
       "expectedResultDescription": "Should surface eval-db.ts (5 tables, DDL, singleton pattern) and any spec decisions about the eval framework architecture.",
-      "notes": "Manual refactor opinion expressed as a statement — tests whether refactor intent surfaces current architecture docs."
+      "notes": "Manual refactor opinion expressed as a statement \u2014 tests whether refactor intent surfaces current architecture docs."
     },
     {
       "id": 96,
@@ -978,7 +978,7 @@
       "category": "factual",
       "source": "manual",
       "expectedResultDescription": "Should surface memory-parser.ts, chunking/anchor-chunker.ts, and any spec about large file handling or chunking strategies.",
-      "notes": "Manual performance-motivated refactor request — may surface chunking design decisions."
+      "notes": "Manual performance-motivated refactor request \u2014 may surface chunking design decisions."
     },
     {
       "id": 99,
@@ -988,7 +988,7 @@
       "category": "factual",
       "source": "manual",
       "expectedResultDescription": "Should surface path-security.ts, canonical-path.ts, preflight.ts validation, and the memory save handler input validation.",
-      "notes": "Manual security question about path traversal prevention — specific attack surface."
+      "notes": "Manual security question about path traversal prevention \u2014 specific attack surface."
     },
     {
       "id": 100,
@@ -998,7 +998,7 @@
       "category": "cross_document",
       "source": "manual",
       "expectedResultDescription": "Should surface redaction-gate.ts, memory-parser.ts (redaction handling), and any spec about sensitive data handling in the memory pipeline.",
-      "notes": "Manual security concern about data leakage — tests redaction-related content retrieval."
+      "notes": "Manual security concern about data leakage \u2014 tests redaction-related content retrieval."
     },
     {
       "id": 101,
@@ -1008,7 +1008,7 @@
       "category": "cross_document",
       "source": "manual",
       "expectedResultDescription": "Should surface eval-logger.ts (SPECKIT_EVAL_LOGGING flag, fail-safe design), eval-db.ts (local SQLite only), and any spec about the eval framework security model.",
-      "notes": "Manual adversarial security query about the eval logging system — tests whether the security design is documented."
+      "notes": "Manual adversarial security query about the eval logging system \u2014 tests whether the security design is documented."
     },
     {
       "id": 102,
@@ -1028,7 +1028,7 @@
       "category": "hard_negative",
       "source": "manual",
       "expectedResultDescription": "Should return NO relevant results. There is no Redis cache; caching is implemented with a local in-memory tool-cache.ts module only.",
-      "notes": "Hard negative — Redis is plausible for a 'store' but does not exist in this system."
+      "notes": "Hard negative \u2014 Redis is plausible for a 'store' but does not exist in this system."
     },
     {
       "id": 104,
@@ -1038,7 +1038,7 @@
       "category": "hard_negative",
       "source": "manual",
       "expectedResultDescription": "Should return NO relevant results. There is no Docker, no containerization, no compose files for this project.",
-      "notes": "Hard negative — Docker is common infrastructure but absent here. \"MCP server\" surface match is a false positive risk."
+      "notes": "Hard negative \u2014 Docker is common infrastructure but absent here. \"MCP server\" surface match is a false positive risk."
     },
     {
       "id": 105,
@@ -1047,8 +1047,8 @@
       "complexityTier": "moderate",
       "category": "hard_negative",
       "source": "manual",
-      "expectedResultDescription": "Should return NO relevant results in the sense of documented SQL injection mitigations — while SQLite is used, the queries use parameterized statements and there is no documented injection audit.",
-      "notes": "Hard negative — sounds plausible (SQLite IS used) but the specific security audit content does not exist."
+      "expectedResultDescription": "Should return NO relevant results in the sense of documented SQL injection mitigations \u2014 while SQLite is used, the queries use parameterized statements and there is no documented injection audit.",
+      "notes": "Hard negative \u2014 sounds plausible (SQLite IS used) but the specific security audit content does not exist."
     },
     {
       "id": 106,
@@ -1058,7 +1058,7 @@
       "category": "hard_negative",
       "source": "manual",
       "expectedResultDescription": "Should return NO relevant results. The system is TypeScript/Node.js only; no Java, no Spring Boot, no microservice architecture.",
-      "notes": "Hard negative — completely wrong technology stack."
+      "notes": "Hard negative \u2014 completely wrong technology stack."
     },
     {
       "id": 107,
@@ -1068,7 +1068,7 @@
       "category": "hard_negative",
       "source": "manual",
       "expectedResultDescription": "Should return NO relevant results. Embeddings are consumed from an external provider (Anthropic API); there is no training pipeline or model fine-tuning in this codebase.",
-      "notes": "Hard negative — \"embedding\" exists but \"training pipeline\" context is completely absent."
+      "notes": "Hard negative \u2014 \"embedding\" exists but \"training pipeline\" context is completely absent."
     },
     {
       "id": 108,
@@ -1078,7 +1078,7 @@
       "category": "hard_negative",
       "source": "manual",
       "expectedResultDescription": "Should return NO relevant results. The database is a local SQLite file; no infrastructure as code, no cloud provisioning.",
-      "notes": "Hard negative — infrastructure tooling that does not exist."
+      "notes": "Hard negative \u2014 infrastructure tooling that does not exist."
     },
     {
       "id": 109,
@@ -1088,7 +1088,7 @@
       "category": "factual",
       "source": "manual",
       "expectedResultDescription": "Should surface memory_bulk_delete tool schema (tier parameter, confirm safety gate), the bulk delete handler, and any spec about tier-based cleanup strategies.",
-      "notes": "Manual query about a specific administrative tool behavior — L4 Mutation layer."
+      "notes": "Manual query about a specific administrative tool behavior \u2014 L4 Mutation layer."
     },
     {
       "id": 110,
@@ -1097,8 +1097,8 @@
       "complexityTier": "moderate",
       "category": "factual",
       "source": "manual",
-      "expectedResultDescription": "Should surface the Learning Index formula (LI = KnowledgeDelta×0.4 + UncertaintyReduction×0.35 + ContextImprovement×0.25) from CLAUDE.md or memory_task_preflight tool documentation.",
-      "notes": "Manual query targeting a specific quantitative formula documented in the system — tests factual precision retrieval."
+      "expectedResultDescription": "Should surface the Learning Index formula (LI = KnowledgeDelta\u00d70.4 + UncertaintyReduction\u00d70.35 + ContextImprovement\u00d70.25) from CLAUDE.md or memory_task_preflight tool documentation.",
+      "notes": "Manual query targeting a specific quantitative formula documented in the system \u2014 tests factual precision retrieval."
     }
   ],
   "relevances": [
@@ -1699,7 +1699,7 @@
     },
     {
       "queryId": 45,
-      "memoryId": 520,
+      "memoryId": 10926,
       "relevance": 1
     },
     {
