@@ -2,7 +2,7 @@
 title: "Feature Specification: Evergreen Doc Packet ID Removal"
 description: "Add a sk-doc rule that prevents evergreen docs from citing mutable packet IDs. Audit recently touched evergreen docs and replace packet-history references with current runtime anchors where practical."
 trigger_phrases:
-  - "027-evergreen-doc-packet-id-removal"
+  - "013-evergreen-doc-packet-id-removal"
   - "evergreen doc rule"
   - "no packet ids in readmes"
   - "sk-doc evergreen rule"
@@ -12,7 +12,7 @@ contextType: "general"
 template_source_marker: "SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/027-evergreen-doc-packet-id-removal"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/013-evergreen-doc-packet-id-removal"
     last_updated_at: "2026-04-29T20:35:30+02:00"
     last_updated_by: "cli-codex"
     recent_action: "Resource map indexed"
@@ -20,10 +20,10 @@ _memory:
     blockers: []
     key_files:
       - ".opencode/skills/sk-doc/references/global/evergreen packet ID rule"
-      - "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/027-evergreen-doc-packet-id-removal/audit findings"
+      - "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/013-evergreen-doc-packet-id-removal/audit findings"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "027-evergreen-doc-packet-id-removal"
+      session_id: "013-evergreen-doc-packet-id-removal"
       parent_session_id: null
     completion_pct: 100
     open_questions: []
@@ -45,7 +45,7 @@ _memory:
 | **Priority** | P1 |
 | **Status** | Complete |
 | **Created** | 2026-04-29 |
-| **Branch** | `027-evergreen-doc-packet-id-removal` |
+| **Branch** | `013-evergreen-doc-packet-id-removal` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -86,7 +86,7 @@ Teach `sk-doc` to keep runtime docs packet-history free, then audit and fix rece
 | `.opencode/skills/sk-doc/assets/documentation/**/* markdown` | Modify | Add template reminders |
 | `.opencode/skills/system-spec-kit/**/* markdown` | Modify | Surgical evergreen wording fixes |
 | `.opencode/skills/cli-opencode/**/* markdown` | Modify | Replace example packet IDs with approved spec-folder wording |
-| `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/027-evergreen-doc-packet-id-removal/*` | Create | Packet docs and audit findings |
+| `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/013-evergreen-doc-packet-id-removal/*` | Create | Packet docs and audit findings |
 <!-- /ANCHOR:scope -->
 
 ---

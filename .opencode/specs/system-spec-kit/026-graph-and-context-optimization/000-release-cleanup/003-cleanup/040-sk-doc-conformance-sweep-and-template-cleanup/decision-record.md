@@ -62,7 +62,7 @@ We needed to resolve a phase-040 slot collision because the user picked "Use 040
 <!-- ANCHOR:adr-001-decision -->
 ### Decision
 
-**We chose**: No action required — earlier session reorganization (concurrent with `054-sk-code-merger`) already renumbered the prior 040 packet to `027-evergreen-doc-packet-id-removal/`, freeing the 040 slot.
+**We chose**: No action required — earlier session reorganization (concurrent with `054-sk-code-merger`) already renumbered the prior 040 packet to `013-evergreen-doc-packet-id-removal/`, freeing the 040 slot.
 
 **How it works**: The 005-review-remediation parent now contains 39 sequentially numbered phase children (001..039) with the 040 slot empty. We create the new packet at 040 directly without any renames or metadata churn.
 <!-- /ANCHOR:adr-001-decision -->
@@ -124,7 +124,7 @@ We needed to resolve a phase-040 slot collision because the user picked "Use 040
 
 **What changes**:
 - New packet folder: `040-sk-doc-conformance-sweep-and-template-cleanup/` (created)
-- Existing `027-evergreen-doc-packet-id-removal/`: untouched (was already renumbered)
+- Existing `013-evergreen-doc-packet-id-removal/`: untouched (was already renumbered)
 
 **How to roll back**: `rm -rf` the new 040 folder; existing 027 packet is unaffected.
 <!-- /ANCHOR:adr-001-impl -->

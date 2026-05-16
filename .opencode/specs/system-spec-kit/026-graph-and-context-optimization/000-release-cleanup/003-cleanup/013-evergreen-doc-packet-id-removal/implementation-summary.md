@@ -2,7 +2,7 @@
 title: "Implementation Summary: Evergreen Doc Packet ID Removal"
 description: "Adds sk-doc evergreen packet-ID guidance and records a targeted audit of recently touched runtime docs."
 trigger_phrases:
-  - "027-evergreen-doc-packet-id-removal"
+  - "013-evergreen-doc-packet-id-removal"
   - "evergreen doc rule"
   - "no packet ids in readmes"
   - "sk-doc evergreen rule"
@@ -12,7 +12,7 @@ contextType: "general"
 template_source_marker: "SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/027-evergreen-doc-packet-id-removal"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/013-evergreen-doc-packet-id-removal"
     last_updated_at: "2026-04-29T20:35:30+02:00"
     last_updated_by: "cli-codex"
     recent_action: "Resource map indexed"
@@ -20,10 +20,10 @@ _memory:
     blockers: []
     key_files:
       - ".opencode/skills/sk-doc/references/global/evergreen packet ID rule"
-      - "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/027-evergreen-doc-packet-id-removal/audit findings"
+      - "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/013-evergreen-doc-packet-id-removal/audit findings"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "027-evergreen-doc-packet-id-removal"
+      session_id: "013-evergreen-doc-packet-id-removal"
       parent_session_id: null
     completion_pct: 100
     open_questions: []
@@ -41,7 +41,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 027-evergreen-doc-packet-id-removal |
+| **Spec Folder** | 013-evergreen-doc-packet-id-removal |
 | **Completed** | 2026-04-29 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

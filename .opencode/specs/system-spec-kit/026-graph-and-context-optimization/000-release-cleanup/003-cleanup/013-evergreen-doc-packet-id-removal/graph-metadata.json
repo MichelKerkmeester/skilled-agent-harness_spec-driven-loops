@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/027-evergreen-doc-packet-id-removal",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/027-evergreen-doc-packet-id-removal",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/013-evergreen-doc-packet-id-removal",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/013-evergreen-doc-packet-id-removal",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization",
   "children_ids": [],
   "migrated": true,
@@ -13,16 +13,16 @@
   },
   "derived": {
     "trigger_phrases": [
-      "027-evergreen-doc-packet-id-removal",
+      "013-evergreen-doc-packet-id-removal",
       "evergreen doc rule",
       "no packet ids in readmes",
       "sk-doc evergreen rule",
       "packet id audit",
-      "027-evergreen-doc-packet-id-removal resource map",
+      "013-evergreen-doc-packet-id-removal resource map",
       "evergreen packet id removal file ledger"
     ],
     "key_topics": [
-      "027-evergreen-doc-packet-id-removal",
+      "013-evergreen-doc-packet-id-removal",
       "evergreen",
       "doc",
       "rule",

@@ -36,7 +36,7 @@ specs/system-spec-kit/026-graph-and-context-optimization/
 │   └── 006-readme-cascade-refresh/
 ├── 025-stress-test-folder-completion/
 ├── 012-code-graph-catalog-and-playbook/
-└── 027-evergreen-doc-packet-id-removal/
+└── 013-evergreen-doc-packet-id-removal/
 ```
 
 For the **037 phase parent**: emit ONE parent-aggregate map listing children's touched paths (per template's "phase-heavy packets" guidance — pick parent-aggregate mode and state it in the Scope line). The 6 children get their own per-child maps too.

@@ -4651,7 +4651,7 @@
       "lastUpdated": "2026-05-08T08:26:57.319Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/027-evergreen-doc-packet-id-removal",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/013-evergreen-doc-packet-id-removal",
       "description": "Feature Specification: Evergreen Doc Packet ID Removal",
       "keywords": [
         "feature",

@@ -6173,7 +6173,7 @@ END{
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/006-full-matrix-execution-validation/logs/feature-runs/F2-skill-advisor-plugin.log
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/006-p1-p2-stress-remediation/scratch/codex-batch-P1.log
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/006-full-matrix-execution-validation/logs/feature-runs/F6-code-graph-verify.log
-./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/027-evergreen-doc-packet-id-removal/logs/iter-001.log
+./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/013-evergreen-doc-packet-id-removal/logs/iter-001.log
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/006-full-matrix-execution-validation/logs/feature-runs/F11-hooks.log
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/006-full-matrix-execution-validation/logs/feature-runs/F7-causal-graph.log
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/006-full-matrix-execution-validation/logs/feature-runs/F8-cocoindex-calibration.log
@@ -6935,14 +6935,14 @@ spec_history_or_review_artifact: 577
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/046-system-deep-research-bugs-and-improvements/research/deep-research-config.json
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/046-system-deep-research-bugs-and-improvements/research/prompts/synthesis.md
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/015-mcp-runtime-stress-remediation/011-post-stress-followup-research/review/iterations/iteration-010.md
-./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/027-evergreen-doc-packet-id-removal/resource-map.md
+./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/013-evergreen-doc-packet-id-removal/resource-map.md
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/015-mcp-runtime-stress-remediation/011-post-stress-followup-research/review/iterations/iteration-004.md
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/015-mcp-runtime-stress-remediation/011-post-stress-followup-research/review/iterations/iteration-005.md
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/015-mcp-runtime-stress-remediation/011-post-stress-followup-research/review/iterations/iteration-006.md
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/015-mcp-runtime-stress-remediation/011-post-stress-followup-research/review/iterations/iteration-003.md
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/015-mcp-runtime-stress-remediation/011-post-stress-followup-research/review/iterations/iteration-007.md
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/015-mcp-runtime-stress-remediation/011-post-stress-followup-research/review/iterations/iteration-008.md
-./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/027-evergreen-doc-packet-id-removal/graph-metadata.json
+./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/013-evergreen-doc-packet-id-removal/graph-metadata.json
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/015-mcp-runtime-stress-remediation/011-post-stress-followup-research/review/iterations/iteration-009.md
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/015-mcp-runtime-stress-remediation/011-post-stress-followup-research/review/deltas/iter-008.jsonl
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/015-mcp-runtime-stress-remediation/011-post-stress-followup-research/review/deltas/iter-009.jsonl

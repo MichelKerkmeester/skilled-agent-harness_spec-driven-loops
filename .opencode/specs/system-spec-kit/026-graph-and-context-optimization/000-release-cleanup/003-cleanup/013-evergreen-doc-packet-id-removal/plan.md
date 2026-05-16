@@ -2,7 +2,7 @@
 title: "Implementation Plan: Evergreen Doc Packet ID Removal"
 description: "Doc-only plan for adding the sk-doc evergreen no-packet-ID rule, auditing recently touched evergreen docs, and applying surgical wording fixes."
 trigger_phrases:
-  - "027-evergreen-doc-packet-id-removal"
+  - "013-evergreen-doc-packet-id-removal"
   - "evergreen doc rule"
   - "no packet ids in readmes"
   - "sk-doc evergreen rule"
@@ -12,7 +12,7 @@ contextType: "general"
 template_source_marker: "SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/027-evergreen-doc-packet-id-removal"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/013-evergreen-doc-packet-id-removal"
     last_updated_at: "2026-04-29T20:05:00Z"
     last_updated_by: "cli-codex"
     recent_action: "Planned doc-only audit and fixes"
@@ -21,7 +21,7 @@ _memory:
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "027-evergreen-doc-packet-id-removal"
+      session_id: "013-evergreen-doc-packet-id-removal"
       parent_session_id: null
     completion_pct: 100
     open_questions: []

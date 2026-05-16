@@ -1,6 +1,6 @@
 ## Packet 040: evergreen-doc-packet-id-removal — Tier B doc rule + audit + fix
 
-You are cli-codex (gpt-5.5 high fast) implementing **027-evergreen-doc-packet-id-removal**.
+You are cli-codex (gpt-5.5 high fast) implementing **013-evergreen-doc-packet-id-removal**.
 
 ### Goal
 
@@ -97,13 +97,13 @@ If the grep is empty: PASS. If hits remain: fix or document why (e.g., a legitim
 
 ### Packet structure to create (Level 2)
 
-7-file structure under `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/027-evergreen-doc-packet-id-removal/`.
+7-file structure under `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/013-evergreen-doc-packet-id-removal/`.
 
 PLUS: `audit-findings.md` at packet root.
 
 **Deps**: `manual.depends_on=["system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/024-followup-quality-pass/004-sk-doc-template-alignment","system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/025-stress-test-folder-completion","system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/012-code-graph-catalog-and-playbook"]`. (Picks up after 038 + 039 land so it can audit their output too.)
 
-**Trigger phrases**: `["027-evergreen-doc-packet-id-removal","evergreen doc rule","no packet ids in readmes","sk-doc evergreen rule","packet id audit"]`.
+**Trigger phrases**: `["013-evergreen-doc-packet-id-removal","evergreen doc rule","no packet ids in readmes","sk-doc evergreen rule","packet id audit"]`.
 
 **Causal summary**: `"Adds the evergreen-doc no-packet-IDs rule to sk-doc skill (new reference + template hint). Audits ~30+ evergreen docs touched recently for violations; applies fixes by replacing packet-ID references with feature-name + file:line citations or removing history sections that don't belong in runtime docs."`.
 

@@ -16,7 +16,7 @@ Documentation fixes, template debt, orphan management, remediation.
 - `010-half-auto-upgrades`
 - `011-cli-matrix-adapter-runners`
 - `012-code-graph-catalog-and-playbook`
-- `027-evergreen-doc-packet-id-removal`
+- `013-evergreen-doc-packet-id-removal`
 - `028-resource-maps-and-memory-finalization`
 - `029-root-readme-refresh`
 - `030-hook-plugin-per-runtime-testing`

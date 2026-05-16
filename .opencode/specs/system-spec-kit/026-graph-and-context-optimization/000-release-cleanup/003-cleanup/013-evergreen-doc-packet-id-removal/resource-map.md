@@ -1,14 +1,14 @@
 ---
 title: "Resource Map - 040 evergreen doc packet id removal"
-description: "File ledger for 027-evergreen-doc-packet-id-removal."
+description: "File ledger for 013-evergreen-doc-packet-id-removal."
 trigger_phrases:
-  - "027-evergreen-doc-packet-id-removal resource map"
+  - "013-evergreen-doc-packet-id-removal resource map"
   - "evergreen packet id removal file ledger"
 importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/027-evergreen-doc-packet-id-removal"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/013-evergreen-doc-packet-id-removal"
     last_updated_at: "2026-04-29T20:35:30+02:00"
     last_updated_by: "codex-gpt-5.5"
     recent_action: "Resource map indexed"
@@ -32,7 +32,7 @@ _memory:
 - **Total references**: 65
 - **By category**: READMEs=0, Documents=0, Commands=0, Agents=0, Skills=57, Specs=8, Scripts=0, Tests=0, Config=0, Meta=0
 - **Missing on disk**: 0
-- **Scope**: All files created, updated, or analyzed during 027-evergreen-doc-packet-id-removal.
+- **Scope**: All files created, updated, or analyzed during 013-evergreen-doc-packet-id-removal.
 - **Generated**: 2026-04-29T20:29:34+02:00
 
 > **Action vocabulary**: `Created` · `Updated` · `Analyzed` · `Removed` · `Cited` · `Validated` · `Moved` · `Renamed`.
@@ -117,14 +117,14 @@ _memory:
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/027-evergreen-doc-packet-id-removal/audit-findings.md` | Created | OK | Packet-local spec artifact. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/027-evergreen-doc-packet-id-removal/checklist.md` | Created | OK | Packet-local spec artifact. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/027-evergreen-doc-packet-id-removal/description.json` | Created | OK | Packet discovery metadata refreshed by canonical save. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/027-evergreen-doc-packet-id-removal/graph-metadata.json` | Created | OK | Packet graph metadata refreshed by canonical save. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/027-evergreen-doc-packet-id-removal/implementation-summary.md` | Created | OK | Packet-local spec artifact. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/027-evergreen-doc-packet-id-removal/plan.md` | Created | OK | Packet-local spec artifact. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/027-evergreen-doc-packet-id-removal/spec.md` | Created | OK | Packet-local spec artifact. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/027-evergreen-doc-packet-id-removal/tasks.md` | Created | OK | Packet-local spec artifact. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/013-evergreen-doc-packet-id-removal/audit-findings.md` | Created | OK | Packet-local spec artifact. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/013-evergreen-doc-packet-id-removal/checklist.md` | Created | OK | Packet-local spec artifact. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/013-evergreen-doc-packet-id-removal/description.json` | Created | OK | Packet discovery metadata refreshed by canonical save. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/013-evergreen-doc-packet-id-removal/graph-metadata.json` | Created | OK | Packet graph metadata refreshed by canonical save. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/013-evergreen-doc-packet-id-removal/implementation-summary.md` | Created | OK | Packet-local spec artifact. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/013-evergreen-doc-packet-id-removal/plan.md` | Created | OK | Packet-local spec artifact. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/013-evergreen-doc-packet-id-removal/spec.md` | Created | OK | Packet-local spec artifact. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/013-evergreen-doc-packet-id-removal/tasks.md` | Created | OK | Packet-local spec artifact. |
 <!-- /ANCHOR:specs -->
 
 ---
