@@ -67,7 +67,7 @@ _memory:
 - [x] T006 Patch 005 validator freshness while preserving CHK-T15. Evidence: `../../../005-memory-indexer-invariants/implementation-summary.md`, `../../../005-memory-indexer-invariants/graph-metadata.json`; final 005 strict validator PASS.
 - [x] T007 Attempt 011 validator hygiene pass 1. Evidence: 011 strict validator rerun still fails; recursive validator variable leak identified at `.opencode/skills/system-spec-kit/scripts/rules/check-phase-links.sh:39`.
 - [B] T008 Attempt 011 validator hygiene pass 2 if pass 1 does not go green. Blocked: required validator-script fix is outside approved 026 write scope.
-- [x] T009 Refresh stale `derived.status` values for completed packets. Evidence: `../001-memory-indexer-storage-boundary/graph-metadata.json`, `../002-tier2-remediation/graph-metadata.json`, `../../../008-skill-advisor/002-skill-graph-daemon-and-advisor-unification/graph-metadata.json`.
+- [x] T009 Refresh stale `derived.status` values for completed packets. Evidence: `../001-memory-indexer-storage-boundary/graph-metadata.json`, `../002-tier2-remediation/graph-metadata.json`, `../../../008-skill-advisor/002-daemon-and-unification/graph-metadata.json`.
 - [x] T010 Update parent phase maps. Evidence: `../../../000-release-cleanup/spec.md`, `../../../spec.md`.
 - [x] T011 Record B1/B2 no-op decision. Evidence: `implementation-summary.md`.
 - [x] T012 Record D1/D2 verification decisions. Evidence: `implementation-summary.md`.

@@ -10,7 +10,7 @@ Final iteration. Per the memory rule "AGENTS.md updates must sync the Barter + f
 2. **Triad files exist and are correctly configured.** `AGENTS.md` (31423 bytes, regular file), `AGENTS_Barter.md` (symlink → `~/MEGA/Development/Code_Environment/Barter/coder/AGENTS.md`), `AGENTS_example_fs_enterprises.md` (31255 bytes, regular file). The symlink confirms the Barter sibling will inherit any future Public/AGENTS.md mutation automatically — no manual sync needed for Barter as long as the canonical edits stay in `~/MEGA/Development/Code_Environment/Public/AGENTS.md`. The fs-enterprises sibling is a separate file and would need manual mirror IF any AGENTS.md change emerges from the 10-PR work — but step 1 showed none does. [SOURCE: ls -la output]
 
 3. **Sibling spec folder spot-check: no actionable stale hits.** Greped all of `.opencode/specs/system-spec-kit/` (excluding 015 itself) for the same 12 vocabulary terms. Hits found in two siblings, both classified as **parity-only-mention / unaffected**:
-   - **`009-hook-package/002-skill-graph-daemon-and-advisor-unification`** uses "shadow-cycle" as ITS OWN local machinery for rag-fusion semantic-weight promotion — a DIFFERENT subsystem from the 015 advisor-brief promotion. Different domain, no name collision risk. [SOURCE: 002/research/research.md:162,297,305]
+   - **`009-hook-package/002-daemon-and-unification`** uses "shadow-cycle" as ITS OWN local machinery for rag-fusion semantic-weight promotion — a DIFFERENT subsystem from the 015 advisor-brief promotion. Different domain, no name collision risk. [SOURCE: 002/research/research.md:162,297,305]
    - **`007-deep-review-remediation/001/review/iterations/iteration-045.md`** uses `fallbackMode` as a `DegradedModeContract` field in adaptive-fusion code, NOT the V1-V5 `GraphFreshness.fallbackMode`. Same identifier, different type domain. [SOURCE: 007/iteration-045.md:75]
    - **`z_future/hybrid-rag-fusion-upgrade/*`** hits are parked future-research packets, not active. Unaffected.
    - **`009-hook-package/001-skill-advisor-hook-surface/review-archive-r01-copilot/`** is an archived review packet referencing local advisor-brief work; informational only.
@@ -36,7 +36,7 @@ None. Audit converged in one pass.
 - `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/AGENTS.md`
 - `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/AGENTS_Barter.md` (symlink)
 - `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/AGENTS_example_fs_enterprises.md`
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-hook-package/002-skill-graph-daemon-and-advisor-unification/research/research.md:162,297,305`
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-hook-package/002-daemon-and-unification/research/research.md:162,297,305`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-deep-review-remediation/001-deep-review-and-remediation/review/iterations/iteration-045.md:75`
 - Memory rule: `feedback_agents_md_sync_triad.md`
 

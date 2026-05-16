@@ -29,7 +29,7 @@ The "17" figure conflated `it()` blocks with sub-assertions or was a stale count
 
 ### F64. Sibling spec `026/009/002` describes promotion gates as DELIVERED but SEALED
 
-`spec.md` of the Phase 027 unification packet describes promotion gates as a completed child packet (`007-promotion-gates`) of a merged effort. Its non-goals explicitly state "Live semantic scoring before promotion gates pass" and its constraint is "Keep semantic live weight at 0.00 until promotion gates pass." Combined with iter-12 (semantic weight is hardcoded 0.00 with no caller path to flip it) and F61 (zero imports), this confirms the subsystem was built but never wired live and never received a path to wire live. The 002 packet is itself "Merged" status — it is historical, not a forward dependency. [SOURCE: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-hook-package/002-skill-graph-daemon-and-advisor-unification/spec.md:30,82-83,118,138,151-152,255`]
+`spec.md` of the Phase 027 unification packet describes promotion gates as a completed child packet (`007-promotion-gates`) of a merged effort. Its non-goals explicitly state "Live semantic scoring before promotion gates pass" and its constraint is "Keep semantic live weight at 0.00 until promotion gates pass." Combined with iter-12 (semantic weight is hardcoded 0.00 with no caller path to flip it) and F61 (zero imports), this confirms the subsystem was built but never wired live and never received a path to wire live. The 002 packet is itself "Merged" status — it is historical, not a forward dependency. [SOURCE: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-hook-package/002-daemon-and-unification/spec.md:30,82-83,118,138,151-152,255`]
 
 ### F65. Sibling spec `042/001` references are FALSE POSITIVES
 
@@ -96,7 +96,7 @@ None new this iteration. Confirmed and locked in:
 - `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/tests/promotion/promotion-gates.vitest.ts` (line counts + describe/it grep)
 - `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/schemas/promotion-cycle.ts:1-82`
 - `.opencode/skills/system-spec-kit/mcp_server/{tools,scripts}` and `.opencode/skills/system-spec-kit/scripts/` (cross-packet import grep, zero hits)
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-hook-package/002-skill-graph-daemon-and-advisor-unification/{spec.md,plan.md}` (sibling intent inspection)
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-hook-package/002-daemon-and-unification/{spec.md,plan.md}` (sibling intent inspection)
 - `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/001-runtime-truth-foundation/spec.md` (false-positive verification)
 - `find .../skill-advisor -type f | xargs grep -l ...` (documentation surface inventory)
 

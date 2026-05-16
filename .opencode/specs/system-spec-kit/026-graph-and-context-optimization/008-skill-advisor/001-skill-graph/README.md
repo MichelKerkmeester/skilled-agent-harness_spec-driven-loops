@@ -5,7 +5,7 @@ Metadata, structural migration, daemon/advisor unification, extraction.
 ## Children (7)
 
 - `001-skill-advisor-graph`
-- `002-skill-graph-daemon-and-advisor-unification`
+- `002-daemon-and-unification`
 - `003-skill-metadata-quality-audit`
 - `004-apply-metadata-fixes-and-resweep`
 - `005-populate-intent-signals-and-relationships`

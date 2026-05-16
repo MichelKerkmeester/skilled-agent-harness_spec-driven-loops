@@ -11,7 +11,7 @@ Scoring rubric: L (length) + R (parent-token redundancy) + G (generic-token dens
 | 001-docs-and-code-alignment | 008-skill-advisor/005-docs | 3 | 3 | 0 | 0 | 6 | 001-and-code-alignment | L=3.0, R=3 |
 | 002-automation-reality-supplemental | 000-release-cleanup/006-research | 3 | 3 | 0 | 0 | 6 | 002-automation-reality-supplemental | L=3, R=3 |
 | 002-scaffold-advisor-package | 008-skill-advisor/001-skill-graph/006-system-skill-advisor-extraction | 3 | 3 | 0 | 0 | 6 | 002-scaffold-package | L=3.0, R=3 |
-| 002-skill-graph-daemon-and-advisor-unification | 008-skill-advisor/001-skill-graph | 3 | 3 | 0 | 0 | 6 | 002-daemon-and-unification | L=3, R=3 |
+| 002-daemon-and-unification | 008-skill-advisor/001-skill-graph | 3 | 3 | 0 | 0 | 6 | 002-daemon-and-unification | L=3, R=3 |
 | 003-release-readiness-deep-review-program | 000-release-cleanup/001-release-readiness | 3 | 3 | 0 | 0 | 6 | 003-deep-review-program | L=3.0, R=3 |
 | 003-smart-router-remediation-and-opencode-plugin | 008-skill-advisor/003-router | 3 | 3 | 0 | 0 | 6 | 003-smart-remediation-and-opencode-plugin | L=3, R=3 |
 | 003-system-deep-research-bugs-and-improvements | 000-release-cleanup/006-research | 3 | 3 | 0 | 0 | 6 | 003-system-deep-bugs-and-improvements | L=3, R=3 |

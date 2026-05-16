@@ -40,7 +40,7 @@ For maintainability: daemon shutdown/restart cleanly; cache invalidation discipl
 
 ### Read also
 
-- 002-skill-graph-daemon-and-advisor-unification (parent packet history at 026/008)
+- 002-daemon-and-unification (parent packet history at 026/008)
 - 034 advisor_rebuild + freshness-smoke-check
 - 045/005 cross-runtime hook parity (overlapping concerns; cite as cross-ref)
 

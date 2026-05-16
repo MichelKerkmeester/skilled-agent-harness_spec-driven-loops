@@ -102,9 +102,9 @@ Total: 109
   2406b | Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-search-routing-advisor/001-search-and-routing-tuning/003-graph-metadata-validation/007-entity-quality-improvements/plan.md
   3287b | Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-search-routing-advisor/001-search-and-routing-tuning/003-graph-metadata-validation/007-entity-quality-improvements/spec.md
   2591b | Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-search-routing-advisor/001-search-and-routing-tuning/003-graph-metadata-validation/007-entity-quality-improvements/tasks.md
-  8640b | Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-hook-package/002-skill-graph-daemon-and-advisor-unification/003-lifecycle-and-derived-metadata/checklist.md
-  6691b | Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-hook-package/002-skill-graph-daemon-and-advisor-unification/003-lifecycle-and-derived-metadata/implementation-summary.md
-  4291b | Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-hook-package/002-skill-graph-daemon-and-advisor-unification/003-lifecycle-and-derived-metadata/tasks.md
-  6629b | Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-hook-package/002-skill-graph-daemon-and-advisor-unification/004-native-advisor-core/checklist.md
-  7545b | Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-hook-package/002-skill-graph-daemon-and-advisor-unification/004-native-advisor-core/implementation-summary.md
-  3517b | Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-hook-package/002-skill-graph-daemon-and-advisor-unification/004-native-advisor-core/tasks.md
+  8640b | Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-hook-package/002-daemon-and-unification/003-lifecycle-and-derived-metadata/checklist.md
+  6691b | Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-hook-package/002-daemon-and-unification/003-lifecycle-and-derived-metadata/implementation-summary.md
+  4291b | Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-hook-package/002-daemon-and-unification/003-lifecycle-and-derived-metadata/tasks.md
+  6629b | Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-hook-package/002-daemon-and-unification/004-native-advisor-core/checklist.md
+  7545b | Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-hook-package/002-daemon-and-unification/004-native-advisor-core/implementation-summary.md
+  3517b | Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-hook-package/002-daemon-and-unification/004-native-advisor-core/tasks.md

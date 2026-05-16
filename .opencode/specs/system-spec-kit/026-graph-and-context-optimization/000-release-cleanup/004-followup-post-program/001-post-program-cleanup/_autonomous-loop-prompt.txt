@@ -33,7 +33,7 @@ Write `review-report.md` at `specs/.../001-post-program-cleanup/review/001-post-
 
 **Specific review angles:**
 
-- **A1** Survey `derived.status` in graph-metadata.json across: 005-memory-indexer-invariants, 011-mcp-runtime-stress-remediation, 008/002-skill-graph-daemon-and-advisor-unification, 005-review-remediation/{001,002,003,004}. Flag any that don't reflect their actual completion state.
+- **A1** Survey `derived.status` in graph-metadata.json across: 005-memory-indexer-invariants, 011-mcp-runtime-stress-remediation, 008/002-daemon-and-unification, 005-review-remediation/{001,002,003,004}. Flag any that don't reflect their actual completion state.
 - **A2** Confirm 005-review-remediation/{001,004} sub-phase `derived.status` is `planned` while their `implementation-summary.md` says complete with green tests. P1 if confirmed.
 - **A3** Read `026/spec.md` PHASE DOCUMENTATION MAP. Confirm 005-review-remediation isn't listed as a child of `000-release-cleanup`. P2 traceability.
 - **A4** Run `validate.sh --strict` on `005-memory-indexer-invariants` and `011-mcp-runtime-stress-remediation`. Catalog the failure modes. Same kind of template debt as fixed in the program's hygiene pass for 7 OTHER packets.

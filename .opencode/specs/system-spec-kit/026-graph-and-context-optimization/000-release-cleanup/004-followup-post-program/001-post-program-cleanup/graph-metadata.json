@@ -10,7 +10,7 @@
     "depends_on": [
       "system-spec-kit/026-graph-and-context-optimization/005-memory-indexer-invariants",
       "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation",
-      "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-skill-graph-daemon-and-advisor-unification"
+      "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-daemon-and-unification"
     ],
     "supersedes": [],
     "related_to": [

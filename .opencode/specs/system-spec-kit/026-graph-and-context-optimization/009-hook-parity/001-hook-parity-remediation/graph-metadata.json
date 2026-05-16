@@ -9,10 +9,10 @@
   "manual": {
     "depends_on": [
       {
-        "packet_id": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-skill-graph-daemon-and-advisor-unification",
+        "packet_id": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-daemon-and-unification",
         "reason": "depends_on relationship preserved during phase consolidation",
         "source": "026-phase-consolidation",
-        "spec_folder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-skill-graph-daemon-and-advisor-unification"
+        "spec_folder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-daemon-and-unification"
       },
       {
         "packet_id": "system-spec-kit/024-compact-code-graph/030-opencode-graph-plugin",
@@ -36,10 +36,10 @@
         "spec_folder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-skill-advisor-hook-surface"
       },
       {
-        "packet_id": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-skill-graph-daemon-and-advisor-unification",
+        "packet_id": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-daemon-and-unification",
         "reason": "related_to relationship preserved during phase consolidation",
         "source": "026-phase-consolidation",
-        "spec_folder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-skill-graph-daemon-and-advisor-unification"
+        "spec_folder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-daemon-and-unification"
       }
     ]
   },

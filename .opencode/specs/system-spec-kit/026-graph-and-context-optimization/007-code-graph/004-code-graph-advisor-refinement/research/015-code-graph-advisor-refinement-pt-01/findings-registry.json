@@ -4911,7 +4911,7 @@
         "`.opencode/skills/system-spec-kit/mcp_server/skill-advisor/tests/promotion/promotion-gates.vitest.ts` (line counts + describe/it grep)",
         "`.opencode/skills/system-spec-kit/mcp_server/skill-advisor/schemas/promotion-cycle.ts:1-82`",
         "`.opencode/skills/system-spec-kit/mcp_server/{tools,scripts}` and `.opencode/skills/system-spec-kit/scripts/` (cross-packet import grep, zero hits)",
-        "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-skill-graph-daemon-and-advisor-unification/{spec.md,plan.md}` (sibling intent inspection)",
+        "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-daemon-and-unification/{spec.md,plan.md}` (sibling intent inspection)",
         "`.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/001-runtime-truth-foundation/spec.md` (false-positive verification)",
         "`find .../skill-advisor -type f | xargs grep -l ...` (documentation surface inventory)"
       ]
@@ -4926,7 +4926,7 @@
         "`.opencode/skills/system-spec-kit/mcp_server/skill-advisor/tests/promotion/promotion-gates.vitest.ts` (line counts + describe/it grep)",
         "`.opencode/skills/system-spec-kit/mcp_server/skill-advisor/schemas/promotion-cycle.ts:1-82`",
         "`.opencode/skills/system-spec-kit/mcp_server/{tools,scripts}` and `.opencode/skills/system-spec-kit/scripts/` (cross-packet import grep, zero hits)",
-        "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-skill-graph-daemon-and-advisor-unification/{spec.md,plan.md}` (sibling intent inspection)",
+        "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-daemon-and-unification/{spec.md,plan.md}` (sibling intent inspection)",
         "`.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/001-runtime-truth-foundation/spec.md` (false-positive verification)",
         "`find .../skill-advisor -type f | xargs grep -l ...` (documentation surface inventory)"
       ]
@@ -4941,7 +4941,7 @@
         "`.opencode/skills/system-spec-kit/mcp_server/skill-advisor/tests/promotion/promotion-gates.vitest.ts` (line counts + describe/it grep)",
         "`.opencode/skills/system-spec-kit/mcp_server/skill-advisor/schemas/promotion-cycle.ts:1-82`",
         "`.opencode/skills/system-spec-kit/mcp_server/{tools,scripts}` and `.opencode/skills/system-spec-kit/scripts/` (cross-packet import grep, zero hits)",
-        "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-skill-graph-daemon-and-advisor-unification/{spec.md,plan.md}` (sibling intent inspection)",
+        "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-daemon-and-unification/{spec.md,plan.md}` (sibling intent inspection)",
         "`.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/001-runtime-truth-foundation/spec.md` (false-positive verification)",
         "`find .../skill-advisor -type f | xargs grep -l ...` (documentation surface inventory)"
       ]
@@ -4956,7 +4956,7 @@
         "`.opencode/skills/system-spec-kit/mcp_server/skill-advisor/tests/promotion/promotion-gates.vitest.ts` (line counts + describe/it grep)",
         "`.opencode/skills/system-spec-kit/mcp_server/skill-advisor/schemas/promotion-cycle.ts:1-82`",
         "`.opencode/skills/system-spec-kit/mcp_server/{tools,scripts}` and `.opencode/skills/system-spec-kit/scripts/` (cross-packet import grep, zero hits)",
-        "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-skill-graph-daemon-and-advisor-unification/{spec.md,plan.md}` (sibling intent inspection)",
+        "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-daemon-and-unification/{spec.md,plan.md}` (sibling intent inspection)",
         "`.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/001-runtime-truth-foundation/spec.md` (false-positive verification)",
         "`find .../skill-advisor -type f | xargs grep -l ...` (documentation surface inventory)"
       ]
@@ -4971,7 +4971,7 @@
         "`.opencode/skills/system-spec-kit/mcp_server/skill-advisor/tests/promotion/promotion-gates.vitest.ts` (line counts + describe/it grep)",
         "`.opencode/skills/system-spec-kit/mcp_server/skill-advisor/schemas/promotion-cycle.ts:1-82`",
         "`.opencode/skills/system-spec-kit/mcp_server/{tools,scripts}` and `.opencode/skills/system-spec-kit/scripts/` (cross-packet import grep, zero hits)",
-        "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-skill-graph-daemon-and-advisor-unification/{spec.md,plan.md}` (sibling intent inspection)",
+        "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-daemon-and-unification/{spec.md,plan.md}` (sibling intent inspection)",
         "`.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/001-runtime-truth-foundation/spec.md` (false-positive verification)",
         "`find .../skill-advisor -type f | xargs grep -l ...` (documentation surface inventory)"
       ]
@@ -4986,7 +4986,7 @@
         "`.opencode/skills/system-spec-kit/mcp_server/skill-advisor/tests/promotion/promotion-gates.vitest.ts` (line counts + describe/it grep)",
         "`.opencode/skills/system-spec-kit/mcp_server/skill-advisor/schemas/promotion-cycle.ts:1-82`",
         "`.opencode/skills/system-spec-kit/mcp_server/{tools,scripts}` and `.opencode/skills/system-spec-kit/scripts/` (cross-packet import grep, zero hits)",
-        "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-skill-graph-daemon-and-advisor-unification/{spec.md,plan.md}` (sibling intent inspection)",
+        "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-daemon-and-unification/{spec.md,plan.md}` (sibling intent inspection)",
         "`.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/001-runtime-truth-foundation/spec.md` (false-positive verification)",
         "`find .../skill-advisor -type f | xargs grep -l ...` (documentation surface inventory)"
       ]
@@ -5001,7 +5001,7 @@
         "`.opencode/skills/system-spec-kit/mcp_server/skill-advisor/tests/promotion/promotion-gates.vitest.ts` (line counts + describe/it grep)",
         "`.opencode/skills/system-spec-kit/mcp_server/skill-advisor/schemas/promotion-cycle.ts:1-82`",
         "`.opencode/skills/system-spec-kit/mcp_server/{tools,scripts}` and `.opencode/skills/system-spec-kit/scripts/` (cross-packet import grep, zero hits)",
-        "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-skill-graph-daemon-and-advisor-unification/{spec.md,plan.md}` (sibling intent inspection)",
+        "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-daemon-and-unification/{spec.md,plan.md}` (sibling intent inspection)",
         "`.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/001-runtime-truth-foundation/spec.md` (false-positive verification)",
         "`find .../skill-advisor -type f | xargs grep -l ...` (documentation surface inventory)"
       ]
@@ -5016,7 +5016,7 @@
         "`.opencode/skills/system-spec-kit/mcp_server/skill-advisor/tests/promotion/promotion-gates.vitest.ts` (line counts + describe/it grep)",
         "`.opencode/skills/system-spec-kit/mcp_server/skill-advisor/schemas/promotion-cycle.ts:1-82`",
         "`.opencode/skills/system-spec-kit/mcp_server/{tools,scripts}` and `.opencode/skills/system-spec-kit/scripts/` (cross-packet import grep, zero hits)",
-        "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-skill-graph-daemon-and-advisor-unification/{spec.md,plan.md}` (sibling intent inspection)",
+        "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-daemon-and-unification/{spec.md,plan.md}` (sibling intent inspection)",
         "`.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/001-runtime-truth-foundation/spec.md` (false-positive verification)",
         "`find .../skill-advisor -type f | xargs grep -l ...` (documentation surface inventory)"
       ]
@@ -5031,7 +5031,7 @@
         "`.opencode/skills/system-spec-kit/mcp_server/skill-advisor/tests/promotion/promotion-gates.vitest.ts` (line counts + describe/it grep)",
         "`.opencode/skills/system-spec-kit/mcp_server/skill-advisor/schemas/promotion-cycle.ts:1-82`",
         "`.opencode/skills/system-spec-kit/mcp_server/{tools,scripts}` and `.opencode/skills/system-spec-kit/scripts/` (cross-packet import grep, zero hits)",
-        "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-skill-graph-daemon-and-advisor-unification/{spec.md,plan.md}` (sibling intent inspection)",
+        "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-daemon-and-unification/{spec.md,plan.md}` (sibling intent inspection)",
         "`.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/001-runtime-truth-foundation/spec.md` (false-positive verification)",
         "`find .../skill-advisor -type f | xargs grep -l ...` (documentation surface inventory)"
       ]
@@ -5046,7 +5046,7 @@
         "`.opencode/skills/system-spec-kit/mcp_server/skill-advisor/tests/promotion/promotion-gates.vitest.ts` (line counts + describe/it grep)",
         "`.opencode/skills/system-spec-kit/mcp_server/skill-advisor/schemas/promotion-cycle.ts:1-82`",
         "`.opencode/skills/system-spec-kit/mcp_server/{tools,scripts}` and `.opencode/skills/system-spec-kit/scripts/` (cross-packet import grep, zero hits)",
-        "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-skill-graph-daemon-and-advisor-unification/{spec.md,plan.md}` (sibling intent inspection)",
+        "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-daemon-and-unification/{spec.md,plan.md}` (sibling intent inspection)",
         "`.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/001-runtime-truth-foundation/spec.md` (false-positive verification)",
         "`find .../skill-advisor -type f | xargs grep -l ...` (documentation surface inventory)"
       ]
@@ -5061,7 +5061,7 @@
         "`.opencode/skills/system-spec-kit/mcp_server/skill-advisor/tests/promotion/promotion-gates.vitest.ts` (line counts + describe/it grep)",
         "`.opencode/skills/system-spec-kit/mcp_server/skill-advisor/schemas/promotion-cycle.ts:1-82`",
         "`.opencode/skills/system-spec-kit/mcp_server/{tools,scripts}` and `.opencode/skills/system-spec-kit/scripts/` (cross-packet import grep, zero hits)",
-        "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-skill-graph-daemon-and-advisor-unification/{spec.md,plan.md}` (sibling intent inspection)",
+        "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-daemon-and-unification/{spec.md,plan.md}` (sibling intent inspection)",
         "`.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/001-runtime-truth-foundation/spec.md` (false-positive verification)",
         "`find .../skill-advisor -type f | xargs grep -l ...` (documentation surface inventory)"
       ]
@@ -5076,7 +5076,7 @@
         "`.opencode/skills/system-spec-kit/mcp_server/skill-advisor/tests/promotion/promotion-gates.vitest.ts` (line counts + describe/it grep)",
         "`.opencode/skills/system-spec-kit/mcp_server/skill-advisor/schemas/promotion-cycle.ts:1-82`",
         "`.opencode/skills/system-spec-kit/mcp_server/{tools,scripts}` and `.opencode/skills/system-spec-kit/scripts/` (cross-packet import grep, zero hits)",
-        "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-skill-graph-daemon-and-advisor-unification/{spec.md,plan.md}` (sibling intent inspection)",
+        "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-daemon-and-unification/{spec.md,plan.md}` (sibling intent inspection)",
         "`.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/001-runtime-truth-foundation/spec.md` (false-positive verification)",
         "`find .../skill-advisor -type f | xargs grep -l ...` (documentation surface inventory)"
       ]
@@ -5091,7 +5091,7 @@
         "`.opencode/skills/system-spec-kit/mcp_server/skill-advisor/tests/promotion/promotion-gates.vitest.ts` (line counts + describe/it grep)",
         "`.opencode/skills/system-spec-kit/mcp_server/skill-advisor/schemas/promotion-cycle.ts:1-82`",
         "`.opencode/skills/system-spec-kit/mcp_server/{tools,scripts}` and `.opencode/skills/system-spec-kit/scripts/` (cross-packet import grep, zero hits)",
-        "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-skill-graph-daemon-and-advisor-unification/{spec.md,plan.md}` (sibling intent inspection)",
+        "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-daemon-and-unification/{spec.md,plan.md}` (sibling intent inspection)",
         "`.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/001-runtime-truth-foundation/spec.md` (false-positive verification)",
         "`find .../skill-advisor -type f | xargs grep -l ...` (documentation surface inventory)"
       ]
@@ -5106,7 +5106,7 @@
         "`.opencode/skills/system-spec-kit/mcp_server/skill-advisor/tests/promotion/promotion-gates.vitest.ts` (line counts + describe/it grep)",
         "`.opencode/skills/system-spec-kit/mcp_server/skill-advisor/schemas/promotion-cycle.ts:1-82`",
         "`.opencode/skills/system-spec-kit/mcp_server/{tools,scripts}` and `.opencode/skills/system-spec-kit/scripts/` (cross-packet import grep, zero hits)",
-        "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-skill-graph-daemon-and-advisor-unification/{spec.md,plan.md}` (sibling intent inspection)",
+        "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-daemon-and-unification/{spec.md,plan.md}` (sibling intent inspection)",
         "`.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/001-runtime-truth-foundation/spec.md` (false-positive verification)",
         "`find .../skill-advisor -type f | xargs grep -l ...` (documentation surface inventory)"
       ]
@@ -5121,7 +5121,7 @@
         "`.opencode/skills/system-spec-kit/mcp_server/skill-advisor/tests/promotion/promotion-gates.vitest.ts` (line counts + describe/it grep)",
         "`.opencode/skills/system-spec-kit/mcp_server/skill-advisor/schemas/promotion-cycle.ts:1-82`",
         "`.opencode/skills/system-spec-kit/mcp_server/{tools,scripts}` and `.opencode/skills/system-spec-kit/scripts/` (cross-packet import grep, zero hits)",
-        "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-skill-graph-daemon-and-advisor-unification/{spec.md,plan.md}` (sibling intent inspection)",
+        "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-daemon-and-unification/{spec.md,plan.md}` (sibling intent inspection)",
         "`.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/001-runtime-truth-foundation/spec.md` (false-positive verification)",
         "`find .../skill-advisor -type f | xargs grep -l ...` (documentation surface inventory)"
       ]
@@ -5136,7 +5136,7 @@
         "`.opencode/skills/system-spec-kit/mcp_server/skill-advisor/tests/promotion/promotion-gates.vitest.ts` (line counts + describe/it grep)",
         "`.opencode/skills/system-spec-kit/mcp_server/skill-advisor/schemas/promotion-cycle.ts:1-82`",
         "`.opencode/skills/system-spec-kit/mcp_server/{tools,scripts}` and `.opencode/skills/system-spec-kit/scripts/` (cross-packet import grep, zero hits)",
-        "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-skill-graph-daemon-and-advisor-unification/{spec.md,plan.md}` (sibling intent inspection)",
+        "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-daemon-and-unification/{spec.md,plan.md}` (sibling intent inspection)",
         "`.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/001-runtime-truth-foundation/spec.md` (false-positive verification)",
         "`find .../skill-advisor -type f | xargs grep -l ...` (documentation surface inventory)"
       ]
@@ -5151,7 +5151,7 @@
         "`.opencode/skills/system-spec-kit/mcp_server/skill-advisor/tests/promotion/promotion-gates.vitest.ts` (line counts + describe/it grep)",
         "`.opencode/skills/system-spec-kit/mcp_server/skill-advisor/schemas/promotion-cycle.ts:1-82`",
         "`.opencode/skills/system-spec-kit/mcp_server/{tools,scripts}` and `.opencode/skills/system-spec-kit/scripts/` (cross-packet import grep, zero hits)",
-        "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-skill-graph-daemon-and-advisor-unification/{spec.md,plan.md}` (sibling intent inspection)",
+        "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-daemon-and-unification/{spec.md,plan.md}` (sibling intent inspection)",
         "`.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/001-runtime-truth-foundation/spec.md` (false-positive verification)",
         "`find .../skill-advisor -type f | xargs grep -l ...` (documentation surface inventory)"
       ]
@@ -5166,7 +5166,7 @@
         "`.opencode/skills/system-spec-kit/mcp_server/skill-advisor/tests/promotion/promotion-gates.vitest.ts` (line counts + describe/it grep)",
         "`.opencode/skills/system-spec-kit/mcp_server/skill-advisor/schemas/promotion-cycle.ts:1-82`",
         "`.opencode/skills/system-spec-kit/mcp_server/{tools,scripts}` and `.opencode/skills/system-spec-kit/scripts/` (cross-packet import grep, zero hits)",
-        "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-skill-graph-daemon-and-advisor-unification/{spec.md,plan.md}` (sibling intent inspection)",
+        "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-daemon-and-unification/{spec.md,plan.md}` (sibling intent inspection)",
         "`.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/001-runtime-truth-foundation/spec.md` (false-positive verification)",
         "`find .../skill-advisor -type f | xargs grep -l ...` (documentation surface inventory)"
       ]
@@ -5181,7 +5181,7 @@
         "`.opencode/skills/system-spec-kit/mcp_server/skill-advisor/tests/promotion/promotion-gates.vitest.ts` (line counts + describe/it grep)",
         "`.opencode/skills/system-spec-kit/mcp_server/skill-advisor/schemas/promotion-cycle.ts:1-82`",
         "`.opencode/skills/system-spec-kit/mcp_server/{tools,scripts}` and `.opencode/skills/system-spec-kit/scripts/` (cross-packet import grep, zero hits)",
-        "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-skill-graph-daemon-and-advisor-unification/{spec.md,plan.md}` (sibling intent inspection)",
+        "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-daemon-and-unification/{spec.md,plan.md}` (sibling intent inspection)",
         "`.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/001-runtime-truth-foundation/spec.md` (false-positive verification)",
         "`find .../skill-advisor -type f | xargs grep -l ...` (documentation surface inventory)"
       ]
@@ -5196,7 +5196,7 @@
         "`.opencode/skills/system-spec-kit/mcp_server/skill-advisor/tests/promotion/promotion-gates.vitest.ts` (line counts + describe/it grep)",
         "`.opencode/skills/system-spec-kit/mcp_server/skill-advisor/schemas/promotion-cycle.ts:1-82`",
         "`.opencode/skills/system-spec-kit/mcp_server/{tools,scripts}` and `.opencode/skills/system-spec-kit/scripts/` (cross-packet import grep, zero hits)",
-        "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-skill-graph-daemon-and-advisor-unification/{spec.md,plan.md}` (sibling intent inspection)",
+        "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-daemon-and-unification/{spec.md,plan.md}` (sibling intent inspection)",
         "`.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/001-runtime-truth-foundation/spec.md` (false-positive verification)",
         "`find .../skill-advisor -type f | xargs grep -l ...` (documentation surface inventory)"
       ]
@@ -5211,7 +5211,7 @@
         "`.opencode/skills/system-spec-kit/mcp_server/skill-advisor/tests/promotion/promotion-gates.vitest.ts` (line counts + describe/it grep)",
         "`.opencode/skills/system-spec-kit/mcp_server/skill-advisor/schemas/promotion-cycle.ts:1-82`",
         "`.opencode/skills/system-spec-kit/mcp_server/{tools,scripts}` and `.opencode/skills/system-spec-kit/scripts/` (cross-packet import grep, zero hits)",
-        "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-skill-graph-daemon-and-advisor-unification/{spec.md,plan.md}` (sibling intent inspection)",
+        "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-daemon-and-unification/{spec.md,plan.md}` (sibling intent inspection)",
         "`.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/001-runtime-truth-foundation/spec.md` (false-positive verification)",
         "`find .../skill-advisor -type f | xargs grep -l ...` (documentation surface inventory)"
       ]
@@ -5226,7 +5226,7 @@
         "`.opencode/skills/system-spec-kit/mcp_server/skill-advisor/tests/promotion/promotion-gates.vitest.ts` (line counts + describe/it grep)",
         "`.opencode/skills/system-spec-kit/mcp_server/skill-advisor/schemas/promotion-cycle.ts:1-82`",
         "`.opencode/skills/system-spec-kit/mcp_server/{tools,scripts}` and `.opencode/skills/system-spec-kit/scripts/` (cross-packet import grep, zero hits)",
-        "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-skill-graph-daemon-and-advisor-unification/{spec.md,plan.md}` (sibling intent inspection)",
+        "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-daemon-and-unification/{spec.md,plan.md}` (sibling intent inspection)",
         "`.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/001-runtime-truth-foundation/spec.md` (false-positive verification)",
         "`find .../skill-advisor -type f | xargs grep -l ...` (documentation surface inventory)"
       ]
@@ -5241,7 +5241,7 @@
         "`.opencode/skills/system-spec-kit/mcp_server/skill-advisor/tests/promotion/promotion-gates.vitest.ts` (line counts + describe/it grep)",
         "`.opencode/skills/system-spec-kit/mcp_server/skill-advisor/schemas/promotion-cycle.ts:1-82`",
         "`.opencode/skills/system-spec-kit/mcp_server/{tools,scripts}` and `.opencode/skills/system-spec-kit/scripts/` (cross-packet import grep, zero hits)",
-        "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-skill-graph-daemon-and-advisor-unification/{spec.md,plan.md}` (sibling intent inspection)",
+        "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-daemon-and-unification/{spec.md,plan.md}` (sibling intent inspection)",
         "`.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/001-runtime-truth-foundation/spec.md` (false-positive verification)",
         "`find .../skill-advisor -type f | xargs grep -l ...` (documentation surface inventory)"
       ]
@@ -5256,7 +5256,7 @@
         "`.opencode/skills/system-spec-kit/mcp_server/skill-advisor/tests/promotion/promotion-gates.vitest.ts` (line counts + describe/it grep)",
         "`.opencode/skills/system-spec-kit/mcp_server/skill-advisor/schemas/promotion-cycle.ts:1-82`",
         "`.opencode/skills/system-spec-kit/mcp_server/{tools,scripts}` and `.opencode/skills/system-spec-kit/scripts/` (cross-packet import grep, zero hits)",
-        "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-skill-graph-daemon-and-advisor-unification/{spec.md,plan.md}` (sibling intent inspection)",
+        "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-daemon-and-unification/{spec.md,plan.md}` (sibling intent inspection)",
         "`.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/001-runtime-truth-foundation/spec.md` (false-positive verification)",
         "`find .../skill-advisor -type f | xargs grep -l ...` (documentation surface inventory)"
       ]
@@ -5271,7 +5271,7 @@
         "`.opencode/skills/system-spec-kit/mcp_server/skill-advisor/tests/promotion/promotion-gates.vitest.ts` (line counts + describe/it grep)",
         "`.opencode/skills/system-spec-kit/mcp_server/skill-advisor/schemas/promotion-cycle.ts:1-82`",
         "`.opencode/skills/system-spec-kit/mcp_server/{tools,scripts}` and `.opencode/skills/system-spec-kit/scripts/` (cross-packet import grep, zero hits)",
-        "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-skill-graph-daemon-and-advisor-unification/{spec.md,plan.md}` (sibling intent inspection)",
+        "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-daemon-and-unification/{spec.md,plan.md}` (sibling intent inspection)",
         "`.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/001-runtime-truth-foundation/spec.md` (false-positive verification)",
         "`find .../skill-advisor -type f | xargs grep -l ...` (documentation surface inventory)"
       ]
@@ -5286,7 +5286,7 @@
         "`.opencode/skills/system-spec-kit/mcp_server/skill-advisor/tests/promotion/promotion-gates.vitest.ts` (line counts + describe/it grep)",
         "`.opencode/skills/system-spec-kit/mcp_server/skill-advisor/schemas/promotion-cycle.ts:1-82`",
         "`.opencode/skills/system-spec-kit/mcp_server/{tools,scripts}` and `.opencode/skills/system-spec-kit/scripts/` (cross-packet import grep, zero hits)",
-        "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-skill-graph-daemon-and-advisor-unification/{spec.md,plan.md}` (sibling intent inspection)",
+        "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-daemon-and-unification/{spec.md,plan.md}` (sibling intent inspection)",
         "`.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/001-runtime-truth-foundation/spec.md` (false-positive verification)",
         "`find .../skill-advisor -type f | xargs grep -l ...` (documentation surface inventory)"
       ]
@@ -5301,7 +5301,7 @@
         "`.opencode/skills/system-spec-kit/mcp_server/skill-advisor/tests/promotion/promotion-gates.vitest.ts` (line counts + describe/it grep)",
         "`.opencode/skills/system-spec-kit/mcp_server/skill-advisor/schemas/promotion-cycle.ts:1-82`",
         "`.opencode/skills/system-spec-kit/mcp_server/{tools,scripts}` and `.opencode/skills/system-spec-kit/scripts/` (cross-packet import grep, zero hits)",
-        "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-skill-graph-daemon-and-advisor-unification/{spec.md,plan.md}` (sibling intent inspection)",
+        "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-daemon-and-unification/{spec.md,plan.md}` (sibling intent inspection)",
         "`.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/001-runtime-truth-foundation/spec.md` (false-positive verification)",
         "`find .../skill-advisor -type f | xargs grep -l ...` (documentation surface inventory)"
       ]
@@ -8384,7 +8384,7 @@
     },
     {
       "id": "finding-19-29-sibling-spec-doc-grep-no-stale-references-in-002-skill-graph-daemon-and-advisor-",
-      "text": "Sibling-spec doc grep: no stale references in `002-skill-graph-daemon-and-advisor-unification`",
+      "text": "Sibling-spec doc grep: no stale references in `002-daemon-and-unification`",
       "addedAtIteration": 19,
       "sources": [
         "`research/015-code-graph-advisor-refinement-pt-01/iterations/iteration-018.md` (F83",
@@ -8455,7 +8455,7 @@
         "`/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/AGENTS.md`",
         "`/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/AGENTS_Barter.md` (symlink)",
         "`/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/AGENTS_example_fs_enterprises.md`",
-        "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-skill-graph-daemon-and-advisor-unification/research/research.md:162,297,305`",
+        "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-daemon-and-unification/research/research.md:162,297,305`",
         "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-deep-review-remediation/001-deep-review-and-remediation/review/iterations/iteration-045.md:75`",
         "Memory rule: `feedback_agents_md_sync_triad.md`"
       ]
@@ -8468,20 +8468,20 @@
         "`/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/AGENTS.md`",
         "`/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/AGENTS_Barter.md` (symlink)",
         "`/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/AGENTS_example_fs_enterprises.md`",
-        "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-skill-graph-daemon-and-advisor-unification/research/research.md:162,297,305`",
+        "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-daemon-and-unification/research/research.md:162,297,305`",
         "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-deep-review-remediation/001-deep-review-and-remediation/review/iterations/iteration-045.md:75`",
         "Memory rule: `feedback_agents_md_sync_triad.md`"
       ]
     },
     {
-      "id": "finding-20-4-009-hook-parity-002-skill-graph-daemon-and-advisor-unification-uses-shadow-cycl",
-      "text": "**`009-hook-parity/002-skill-graph-daemon-and-advisor-unification`** uses \"shadow-cycle\" as ITS OWN local machinery for rag-fusion semantic-weight promotion — a DIFFERENT subsystem from the 015 advisor-brief promotion. Different domain, no name collision risk. [SOURCE: 002/research/research.md:162,297,305]",
+      "id": "finding-20-4-009-hook-parity-002-daemon-and-unification-uses-shadow-cycl",
+      "text": "**`009-hook-parity/002-daemon-and-unification`** uses \"shadow-cycle\" as ITS OWN local machinery for rag-fusion semantic-weight promotion — a DIFFERENT subsystem from the 015 advisor-brief promotion. Different domain, no name collision risk. [SOURCE: 002/research/research.md:162,297,305]",
       "addedAtIteration": 20,
       "sources": [
         "`/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/AGENTS.md`",
         "`/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/AGENTS_Barter.md` (symlink)",
         "`/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/AGENTS_example_fs_enterprises.md`",
-        "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-skill-graph-daemon-and-advisor-unification/research/research.md:162,297,305`",
+        "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-daemon-and-unification/research/research.md:162,297,305`",
         "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-deep-review-remediation/001-deep-review-and-remediation/review/iterations/iteration-045.md:75`",
         "Memory rule: `feedback_agents_md_sync_triad.md`"
       ]
@@ -8494,7 +8494,7 @@
         "`/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/AGENTS.md`",
         "`/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/AGENTS_Barter.md` (symlink)",
         "`/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/AGENTS_example_fs_enterprises.md`",
-        "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-skill-graph-daemon-and-advisor-unification/research/research.md:162,297,305`",
+        "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-daemon-and-unification/research/research.md:162,297,305`",
         "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-deep-review-remediation/001-deep-review-and-remediation/review/iterations/iteration-045.md:75`",
         "Memory rule: `feedback_agents_md_sync_triad.md`"
       ]
@@ -8507,7 +8507,7 @@
         "`/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/AGENTS.md`",
         "`/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/AGENTS_Barter.md` (symlink)",
         "`/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/AGENTS_example_fs_enterprises.md`",
-        "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-skill-graph-daemon-and-advisor-unification/research/research.md:162,297,305`",
+        "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-daemon-and-unification/research/research.md:162,297,305`",
         "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-deep-review-remediation/001-deep-review-and-remediation/review/iterations/iteration-045.md:75`",
         "Memory rule: `feedback_agents_md_sync_triad.md`"
       ]
@@ -8520,7 +8520,7 @@
         "`/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/AGENTS.md`",
         "`/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/AGENTS_Barter.md` (symlink)",
         "`/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/AGENTS_example_fs_enterprises.md`",
-        "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-skill-graph-daemon-and-advisor-unification/research/research.md:162,297,305`",
+        "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-daemon-and-unification/research/research.md:162,297,305`",
         "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-deep-review-remediation/001-deep-review-and-remediation/review/iterations/iteration-045.md:75`",
         "Memory rule: `feedback_agents_md_sync_triad.md`"
       ]
@@ -8533,7 +8533,7 @@
         "`/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/AGENTS.md`",
         "`/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/AGENTS_Barter.md` (symlink)",
         "`/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/AGENTS_example_fs_enterprises.md`",
-        "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-skill-graph-daemon-and-advisor-unification/research/research.md:162,297,305`",
+        "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-daemon-and-unification/research/research.md:162,297,305`",
         "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-deep-review-remediation/001-deep-review-and-remediation/review/iterations/iteration-045.md:75`",
         "Memory rule: `feedback_agents_md_sync_triad.md`"
       ]
@@ -8546,7 +8546,7 @@
         "`/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/AGENTS.md`",
         "`/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/AGENTS_Barter.md` (symlink)",
         "`/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/AGENTS_example_fs_enterprises.md`",
-        "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-skill-graph-daemon-and-advisor-unification/research/research.md:162,297,305`",
+        "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-daemon-and-unification/research/research.md:162,297,305`",
         "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-deep-review-remediation/001-deep-review-and-remediation/review/iterations/iteration-045.md:75`",
         "Memory rule: `feedback_agents_md_sync_triad.md`"
       ]
@@ -8559,7 +8559,7 @@
         "`/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/AGENTS.md`",
         "`/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/AGENTS_Barter.md` (symlink)",
         "`/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/AGENTS_example_fs_enterprises.md`",
-        "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-skill-graph-daemon-and-advisor-unification/research/research.md:162,297,305`",
+        "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-daemon-and-unification/research/research.md:162,297,305`",
         "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-deep-review-remediation/001-deep-review-and-remediation/review/iterations/iteration-045.md:75`",
         "Memory rule: `feedback_agents_md_sync_triad.md`"
       ]
@@ -8572,7 +8572,7 @@
         "`/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/AGENTS.md`",
         "`/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/AGENTS_Barter.md` (symlink)",
         "`/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/AGENTS_example_fs_enterprises.md`",
-        "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-skill-graph-daemon-and-advisor-unification/research/research.md:162,297,305`",
+        "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-daemon-and-unification/research/research.md:162,297,305`",
         "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-deep-review-remediation/001-deep-review-and-remediation/review/iterations/iteration-045.md:75`",
         "Memory rule: `feedback_agents_md_sync_triad.md`"
       ]
@@ -8585,7 +8585,7 @@
         "`/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/AGENTS.md`",
         "`/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/AGENTS_Barter.md` (symlink)",
         "`/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/AGENTS_example_fs_enterprises.md`",
-        "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-skill-graph-daemon-and-advisor-unification/research/research.md:162,297,305`",
+        "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-daemon-and-unification/research/research.md:162,297,305`",
         "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-deep-review-remediation/001-deep-review-and-remediation/review/iterations/iteration-045.md:75`",
         "Memory rule: `feedback_agents_md_sync_triad.md`"
       ]
@@ -8598,7 +8598,7 @@
         "`/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/AGENTS.md`",
         "`/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/AGENTS_Barter.md` (symlink)",
         "`/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/AGENTS_example_fs_enterprises.md`",
-        "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-skill-graph-daemon-and-advisor-unification/research/research.md:162,297,305`",
+        "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-daemon-and-unification/research/research.md:162,297,305`",
         "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-deep-review-remediation/001-deep-review-and-remediation/review/iterations/iteration-045.md:75`",
         "Memory rule: `feedback_agents_md_sync_triad.md`"
       ]
@@ -8611,7 +8611,7 @@
         "`/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/AGENTS.md`",
         "`/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/AGENTS_Barter.md` (symlink)",
         "`/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/AGENTS_example_fs_enterprises.md`",
-        "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-skill-graph-daemon-and-advisor-unification/research/research.md:162,297,305`",
+        "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-daemon-and-unification/research/research.md:162,297,305`",
         "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-deep-review-remediation/001-deep-review-and-remediation/review/iterations/iteration-045.md:75`",
         "Memory rule: `feedback_agents_md_sync_triad.md`"
       ]

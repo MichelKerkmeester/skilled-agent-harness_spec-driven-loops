@@ -14,7 +14,7 @@ contextType: "implementation"
 
 ## 2026-04-20
 
-> Spec folder: `026-graph-and-context-optimization/008-skill-advisor/002-skill-graph-daemon-and-advisor-unification/review/002-skill-graph-daemon-and-advisor-unification-pt-01` (Level 2)
+> Spec folder: `026-graph-and-context-optimization/008-skill-advisor/002-daemon-and-unification/review/002-daemon-and-unification-pt-01` (Level 2)
 > Parent packet: `026-graph-and-context-optimization/008-skill-advisor`
 
 ### Summary
@@ -35,7 +35,7 @@ None - review-only phase.
 
 ### Verification
 
-- Review report: `review/002-skill-graph-daemon-and-advisor-unification-pt-01/review-report.md`
+- Review report: `review/002-daemon-and-unification-pt-01/review-report.md`
 - 4 iteration narratives with 103 cumulative file reads
 - Findings: 0 P0, 3 P1, 15 P2
 - P1-001: `advisor_recommend` scores during unavailable freshness (can return authoritative-looking recommendations during corrupt states).

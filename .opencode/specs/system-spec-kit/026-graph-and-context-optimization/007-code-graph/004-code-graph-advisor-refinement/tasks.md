@@ -69,7 +69,7 @@ _memory:
 | T-013 | PR-3 | Delete 3 promotion bench files | `skill-advisor/bench/corpus-bench.ts`, `skill-advisor/bench/safety-bench.ts`, `skill-advisor/bench/holdout-bench.ts` | -150 | F70, F68 | Files absent from filesystem |
 | T-014 | PR-3 | Update package.json — remove `corpus-bench`, `safety-bench`, `holdout-bench` script rows | `package.json` | -6 | F68 | `jq '.scripts["corpus-bench"]' package.json` → null |
 | T-015 | PR-3 | Doc scrub — remove 12 doc file references to promotion subsystem (iter-14 list) | `*.md` doc files (12 files per iter-14 scrub list) | -195 | F37 #5, F37 #6 | `git grep -l 'lib/promotion\|promotion-cycle'` → 0 matches |
-| T-016 | PR-3 | Doc scrub — verify sibling-spec docs are clean | `002-skill-graph-daemon-and-advisor-unification/**`, `042-sk-deep-research-review-improvement-2/**` | 0 | F70 | grep for deleted module names in both sibling specs → 0 |
+| T-016 | PR-3 | Doc scrub — verify sibling-spec docs are clean | `002-daemon-and-unification/**`, `042-sk-deep-research-review-improvement-2/**` | 0 | F70 | grep for deleted module names in both sibling specs → 0 |
 | T-017 | PR-3 | Run full tsc + vitest — confirm clean after all deletions | repo root | 0 | F70, F52 | `tsc --noEmit` exit 0; `vitest run` exit 0 |
 | T-018 | PR-4 | Read 4 vocabulary source files before editing (ensure-ready, ops-hardening, startup-brief, readiness-contract) | `code-graph/lib/ensure-ready.ts`, `ops-hardening.ts`, `startup-brief.ts`, `readiness-contract.ts` | 0 | F17, F71 | File reads confirm V1-V5 divergence locations |
 | T-019 | PR-4 | Step 1: Replace local `GraphFreshness` type in ensure-ready.ts with import from ops-hardening.ts (V2 as superset) | `code-graph/lib/ensure-ready.ts:22` | +2 | F71 | tsc sees no V1 duplicate-name |

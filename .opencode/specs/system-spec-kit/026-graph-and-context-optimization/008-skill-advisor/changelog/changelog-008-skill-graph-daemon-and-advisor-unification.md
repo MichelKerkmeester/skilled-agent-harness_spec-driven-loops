@@ -15,7 +15,7 @@ contextType: "implementation"
 
 ## 2026-04-20
 
-> Spec folder: `026-graph-and-context-optimization/008-skill-advisor/002-skill-graph-daemon-and-advisor-unification` (Level 3)
+> Spec folder: `026-graph-and-context-optimization/008-skill-advisor/002-daemon-and-unification` (Level 3)
 > Parent packet: `026-graph-and-context-optimization/008-skill-advisor`
 
 ### Summary

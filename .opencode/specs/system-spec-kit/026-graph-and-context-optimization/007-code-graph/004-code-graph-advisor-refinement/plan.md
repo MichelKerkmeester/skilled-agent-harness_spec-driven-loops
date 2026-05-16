@@ -198,7 +198,7 @@ Critical path (with parallelism): ~22h (Batch A + Batch B max + Batch C max)
 - `git grep -l 'lib/promotion\|promotion-cycle\|promotion-orchestrate' -- '*.md' '*.ts' '*.json'` → ZERO matches
 - `git grep -l 'corpus-bench\|safety-bench\|holdout-bench' -- '*.json' '*.md'` → ZERO matches
 - `find .opencode/skills/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts -maxdepth 1 -print` returns the retained memory auto-promotion semantics test
-- Sibling-spec doc grep: no stale references in `002-skill-graph-daemon-and-advisor-unification` or `042-sk-deep-research-review-improvement-2`
+- Sibling-spec doc grep: no stale references in `002-daemon-and-unification` or `042-sk-deep-research-review-improvement-2`
 
 **Post-merge monitoring:** 48h watch on CI test/bench job failures + operator reports of "feature missing".
 **Revert SLO:** **1hr**. Invasive but reversible via `git revert -m 1 <merge-sha>` (restores deleted PR-3 promotion subsystem files). Plan single-commit PR so revert is clean.

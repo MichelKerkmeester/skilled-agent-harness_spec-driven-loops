@@ -65,7 +65,7 @@ Tasks are grouped by plan phase. Each lists `REQ | Status | Exit gate`. P1 tasks
 - [x] **T16** [REQ-011] Lane weight reconciliation: runtime ships 0.15 (`weights-config.ts:11`); update doc references from 0.10 to 0.15 in the decision record, implementation summary, and feature catalog. Exit: zero divergent references. Evidence: `lane-registry.ts:9`, `implementation-summary.md:121`, `01-five-lane-fusion.md:38`, `06-weights-config.md:31`.
 - [x] **T17** [REQ-012] Promotion-gate artifact: rewrite the 008/008 implementation-summary line 129 reference around real `advisor_validate` slices. Exit: reference resolves. Evidence: `implementation-summary.md:129`, `decision-record.md:158`.
 - [x] **T18** [REQ-018] Split the 008/008 decision record: keep ADR-001 umbrella + add ADR-002..ADR-007 child ADRs for freshness, schema, scorer, MCP authority, compat, promotion gates. Exit: 7 ADRs total with rationale per sub-track. Evidence: `decision-record.md:27`, `decision-record.md:65`, `decision-record.md:82`, `decision-record.md:99`, `decision-record.md:116`, `decision-record.md:133`, `decision-record.md:150`.
-- [x] **T19** [REQ-006] Strict validation: run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-skill-graph-daemon-and-advisor-unification --strict`. Exit: exit 0 OR keep as explicit operator gate with rationale. Evidence: command exit 0.
+- [x] **T19** [REQ-006] Strict validation: run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-daemon-and-unification --strict`. Exit: exit 0 OR keep as explicit operator gate with rationale. Evidence: command exit 0.
 ### Pattern Consolidation
 
 - [x] **T20** [REQ-013] Extract `mcp_server/skill_advisor/lib/daemon/state-mutation.ts` with shared busy retry. Migrate quarantine writes (`watcher.ts:239`) and other ad-hoc DB writes to use it. Exit: zero direct DB writes that bypass retry boundary. Evidence: `state-mutation.ts:17`, `watcher.ts:237`, `watcher.ts:252`, `watcher.ts:263`; daemon foundation vitest exit 0.
@@ -99,7 +99,7 @@ Tasks are grouped by plan phase. Each lists `REQ | Status | Exit gate`. P1 tasks
 <!-- ANCHOR:cross-refs -->
 ## Cross-references
 
-- Source review report: specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-skill-graph-daemon-and-advisor-unification/review/002-skill-graph-daemon-and-advisor-unification-pt-01/review-report
+- Source review report: specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-daemon-and-unification/review/002-daemon-and-unification-pt-01/review-report
 - Specification: local spec document
 - Plan: local plan document
 - Checklist: local checklist document

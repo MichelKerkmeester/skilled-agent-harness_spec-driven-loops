@@ -2,7 +2,7 @@
 
 **GATE 3 PRE-ANSWERED — A (Existing folder)**: `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/001-skill-advisor-fail-open`. The orchestrator (Claude) has authorized this folder for the entire implementation session. DO NOT re-ask Gate 3. Proceed directly to implementation.
 
-**TARGET AUTHORITY**: All write paths under that spec folder AND its declared dependency `specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-skill-graph-daemon-and-advisor-unification/` are pre-approved. You may also write runtime code under `.opencode/skills/system-spec-kit/mcp_server/`, plugin code under `.opencode/plugins/`, tests under `.opencode/skills/system-spec-kit/mcp_server/tests/`.
+**TARGET AUTHORITY**: All write paths under that spec folder AND its declared dependency `specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-daemon-and-unification/` are pre-approved. You may also write runtime code under `.opencode/skills/system-spec-kit/mcp_server/`, plugin code under `.opencode/plugins/`, tests under `.opencode/skills/system-spec-kit/mcp_server/tests/`.
 
 You are dispatched to execute the full implementation plan for **skill-advisor release remediation**. This closes 3 P1 release blockers and 15 P2 advisories from the 008/008 deep-review.
 
@@ -14,7 +14,7 @@ Read these files in order (source of truth):
 2. **Plan**: `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/001-skill-advisor-fail-open/plan.md` — 4-phase sequence with file:line guidance.
 3. **Tasks**: `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/001-skill-advisor-fail-open/tasks.md` — T1..T26.
 4. **Checklist**: `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/001-skill-advisor-fail-open/checklist.md` — verification gates.
-5. **Source review report** (READ-ONLY context): `specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-skill-graph-daemon-and-advisor-unification/review/002-skill-graph-daemon-and-advisor-unification-pt-01/review-report.md` — per-finding evidence at file:line.
+5. **Source review report** (READ-ONLY context): `specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-daemon-and-unification/review/002-daemon-and-unification-pt-01/review-report.md` — per-finding evidence at file:line.
 
 ## EXECUTION CONTRACT
 

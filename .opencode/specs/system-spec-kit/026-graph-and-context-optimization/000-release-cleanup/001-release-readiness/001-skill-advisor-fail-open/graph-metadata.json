@@ -7,7 +7,7 @@
   "migrated": false,
   "migration_source": null,
   "manual": {
-    "depends_on": ["system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-skill-graph-daemon-and-advisor-unification"],
+    "depends_on": ["system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-daemon-and-unification"],
     "supersedes": [],
     "related_to": []
   },

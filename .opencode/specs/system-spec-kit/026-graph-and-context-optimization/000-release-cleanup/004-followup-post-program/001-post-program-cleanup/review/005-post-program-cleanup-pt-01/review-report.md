@@ -62,7 +62,7 @@ Hunter -> Skeptic -> Referee:
 
 Evidence:
 
-- `008-skill-advisor/002-skill-graph-daemon-and-advisor-unification/graph-metadata.json:44` has `derived.status: "in_progress"`.
+- `008-skill-advisor/002-daemon-and-unification/graph-metadata.json:44` has `derived.status: "in_progress"`.
 - `001-skill-advisor-fail-open/implementation-summary.md:50` records completion on 2026-04-28.
 - `001-skill-advisor-fail-open/implementation-summary.md:167` records strict validator PASS for 008/008.
 

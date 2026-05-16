@@ -79,7 +79,7 @@ Format: per-PR card. SLO categories:
     returns ZERO matches (doc scrub verification)
   - `git grep -l 'corpus-bench\|safety-bench\|holdout-bench' -- '*.json' '*.md'` returns ZERO
     matches (package.json + docs)
-  - Sibling-spec doc grep: no stale references in `002-skill-graph-daemon-and-advisor-unification`
+  - Sibling-spec doc grep: no stale references in `002-daemon-and-unification`
     or `042-sk-deep-research-review-improvement-2`
 - **Post-merge monitoring**:
   - 48h watch on CI test/bench job failures

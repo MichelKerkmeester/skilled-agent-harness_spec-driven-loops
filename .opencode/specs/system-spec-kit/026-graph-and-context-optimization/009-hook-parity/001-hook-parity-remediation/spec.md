@@ -45,7 +45,7 @@ This phase closes hook parity defects discovered on 2026-04-21 across the OpenCo
 | **Created** | 2026-04-21 |
 | **Branch** | `009-hook-parity` |
 | **Parent Spec** | `../spec.md` |
-| **Predecessor** | `../../008-skill-advisor/002-skill-graph-daemon-and-advisor-unification/spec.md` |
+| **Predecessor** | `../../008-skill-advisor/002-daemon-and-unification/spec.md` |
 | **Successor** | `../002-copilot-hook-parity-remediation/spec.md` |
 <!-- /ANCHOR:metadata -->
 

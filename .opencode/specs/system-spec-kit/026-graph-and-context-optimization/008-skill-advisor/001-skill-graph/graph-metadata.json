@@ -5,7 +5,7 @@
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor",
   "children_ids": [
     "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-graph/001-skill-advisor-graph",
-    "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-graph/002-skill-graph-daemon-and-advisor-unification",
+    "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-graph/002-daemon-and-unification",
     "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-graph/003-skill-metadata-quality-audit",
     "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-graph/004-apply-metadata-fixes-and-resweep",
     "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-graph/005-populate-intent-signals-and-relationships",
