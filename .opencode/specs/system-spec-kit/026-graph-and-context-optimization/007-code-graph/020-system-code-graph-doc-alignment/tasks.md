@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-system-code-graph-doc-alignment"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/020-system-code-graph-doc-alignment"
     last_updated_at: "2026-05-16T09:01:20Z"
     last_updated_by: "main_agent"
     recent_action: "Authored task list in canonical 3-phase shape"
@@ -47,7 +47,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Scaffold packet folder (`.opencode/specs/system-spec-kit/028-system-code-graph-doc-alignment/`)
+- [x] T001 Scaffold packet folder (`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/020-system-code-graph-doc-alignment/`)
 - [x] T002 Grep all drift hits across 6 in-scope files
 - [x] T003 [P] Confirm `tool-schemas.ts` enumerates 11 tools
 <!-- /ANCHOR:phase-1 -->
@@ -65,7 +65,7 @@ _memory:
 - [x] T009 [P] README.md: "Active MCP tools | 10" → "Active MCP tools | 11" and insert classify row in §3.2 table (`.opencode/skills/system-code-graph/README.md`)
 - [x] T010 graph-metadata.json: `mcp_server_topology` co-resident → standalone, `mcp_server_host` mk-spec-memory → mk-code-index, edges depends_on context rewritten (`.opencode/skills/system-code-graph/graph-metadata.json`)
 - [x] T011 graph-metadata.json: `derived.causal_summary` rewritten to cite 11 tools + standalone server + v1.0.3.0 isolation; `derived.last_updated_at` bumped (`.opencode/skills/system-code-graph/graph-metadata.json`)
-- [x] T012 SKILL.md: frontmatter `version` 1.0.0.0 → 1.0.3.1 and `_memory.continuity` refreshed to point at packet 028 (`.opencode/skills/system-code-graph/SKILL.md`)
+- [x] T012 SKILL.md: frontmatter `version` 1.0.0.0 → 1.0.3.1 and `_memory.continuity` refreshed to point at packet 020 (`.opencode/skills/system-code-graph/SKILL.md`)
 - [x] T013 README.md: "Skill version | 1.0.0.0" → "Skill version | 1.0.3.1" (`.opencode/skills/system-code-graph/README.md`)
 <!-- /ANCHOR:phase-2 -->
 

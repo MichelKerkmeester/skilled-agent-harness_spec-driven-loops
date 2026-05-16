@@ -15,9 +15,9 @@ trigger_phrases:
 <!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
-Validate the separation between `advisor_status` and `advisor_rebuild`. `advisor_status` must report stale, absent, or unavailable state without repair side effects; `advisor_rebuild` must perform the rebuild only when explicitly called.
+Validate the separation between `advisor_status` and `advisor_rebuild`. `advisor_status` must report stale, absent or unavailable state without repair side effects; `advisor_rebuild` must perform the rebuild only when explicitly called.
 
-> Absorbed from former SAD-004 on 2026-05-07. The disposable-workspace rebuild repair-path scenario originates in the prior SAD-004 doc; cross-reference is in `manual_testing_playbook.md` §18.
+> Absorbed from former SAD-004 on 2026-05-07. The disposable-workspace rebuild repair-path scenario originates in the prior SAD-004 doc. Cross-reference is in `manual_testing_playbook.md` §18.
 
 ---
 
@@ -26,7 +26,7 @@ Validate the separation between `advisor_status` and `advisor_rebuild`. `advisor
 <!-- ANCHOR:2-scenario-contract -->
 ## 2. SCENARIO CONTRACT
 
-- **Goal**: Reproduce stale advisor state, verify status calls are diagnostic-only, and verify explicit rebuild behavior.
+- **Goal**: Reproduce stale advisor state, verify status calls are diagnostic-only and verify explicit rebuild behavior.
 - **Prerequisites**:
   - Disposable workspace copy.
   - MCP server build available.
@@ -81,9 +81,9 @@ advisor_rebuild({ "workspaceRoot": "/tmp/skill-advisor-nc-006-<timestamp>", "for
 ### Expected Output / Verification
 
 - The two initial `advisor_status` responses both report stale or degraded freshness and do not advance generation.
-- The explicit `advisor_rebuild` response reports `rebuilt: true`, `skipped: false`, `freshnessBefore`, `freshnessAfter`, `generationBefore`, `generationAfter`, and `skillCount`.
+- The explicit `advisor_rebuild` response reports `rebuilt: true`, `skipped: false`, `freshnessBefore`, `freshnessAfter`, `generationBefore`, `generationAfter` and `skillCount`.
 - Post-rebuild `advisor_status` reports healthy freshness for the copied workspace.
-- A second rebuild on live state reports `rebuilt: false`, `skipped: true`, and `reason: "status-live"`.
+- A second rebuild on live state reports `rebuilt: false`, `skipped: true` and `reason: "status-live"`.
 - `force:true` reports `rebuilt: true` and `reason: "force"`.
 
 ### Cleanup

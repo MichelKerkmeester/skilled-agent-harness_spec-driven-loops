@@ -22,7 +22,7 @@ Give OpenCode a first-class plugin that surfaces advisor output at prompt time w
 <!-- ANCHOR:current-reality -->
 ## 2. CURRENT REALITY
 
-`.opencode/plugins/mk-skill-advisor.js` exports the plugin. `.opencode/skills/system-skill-advisor/mcp_server/plugin_bridges/mk-skill-advisor-bridge.mjs` runs `buildSkillAdvisorBrief` + `renderAdvisorBrief` out-of-process via IPC. Cache TTL is 5 minutes; the live threshold pair is `confidenceThreshold: 0.8` and `uncertaintyThreshold: 0.35`; the bridge times out after 1000 ms with SIGKILL escalation. Opt-out via `MK_SKILL_ADVISOR_HOOK_DISABLED=1` or `MK_SKILL_ADVISOR_PLUGIN_DISABLED=1` (with legacy `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1` and `SPECKIT_SKILL_ADVISOR_PLUGIN_DISABLED=1` aliases), or `enabled: false` in plugin config. Compat regressions are preserved by routing through the stable `compat/index.ts` entrypoint.
+`.opencode/plugins/mk-skill-advisor.js` exports the plugin. `.opencode/skills/system-skill-advisor/mcp_server/plugin_bridges/mk-skill-advisor-bridge.mjs` runs `buildSkillAdvisorBrief` + `renderAdvisorBrief` out-of-process via IPC. Cache TTL is 5 minutes. The live threshold pair is `confidenceThreshold: 0.8` and `uncertaintyThreshold: 0.35`. The bridge times out after 1000 ms with SIGKILL escalation. Opt-out via `MK_SKILL_ADVISOR_HOOK_DISABLED=1` or `MK_SKILL_ADVISOR_PLUGIN_DISABLED=1` (with legacy `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1` and `SPECKIT_SKILL_ADVISOR_PLUGIN_DISABLED=1` aliases) or `enabled: false` in plugin config. Compat regressions are preserved by routing through the stable `compat/index.ts` entrypoint.
 
 <!-- /ANCHOR:current-reality -->
 

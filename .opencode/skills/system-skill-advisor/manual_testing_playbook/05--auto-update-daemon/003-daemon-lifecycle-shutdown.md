@@ -1,6 +1,6 @@
 ---
 title: "AU-003 Daemon Lifecycle and SIGTERM"
-description: "Manual validation that daemon boot, health reporting, and SIGTERM shutdown behave as documented in lib/daemon/lifecycle.ts."
+description: "Manual validation that daemon boot, health reporting and SIGTERM shutdown behave as documented in lib/daemon/lifecycle.ts."
 trigger_phrases:
   - "au-003"
   - "daemon lifecycle"
@@ -17,7 +17,7 @@ trigger_phrases:
 <!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
-Validate graceful boot, health reporting, and SIGTERM-based shutdown for the advisor daemon in `lib/daemon/lifecycle.ts`.
+Validate graceful boot, health reporting and SIGTERM-based shutdown for the advisor daemon in `lib/daemon/lifecycle.ts`.
 
 ---
 
@@ -38,13 +38,15 @@ Validate graceful boot, health reporting, and SIGTERM-based shutdown for the adv
 <!-- ANCHOR:3-test-execution -->
 ## 3. TEST EXECUTION
 
+> **Structure deviation note (007-deferred-final).** This scenario uses a numbered-step plus Expected Signals plus Failure Modes shape instead of the canonical Prompt/Commands/Expected/Evidence/Pass-Fail/Failure-Triage subsections. The deviation is intentional for this skill playbook category to keep scenario semantics tightly bound to runtime output checks. See `references/deferred-decisions.md` §F34 for rationale.
+
 1. Bring the daemon up:
 
 ```text
 advisor_status({"workspaceRoot":"/tmp/path-to-copy"})
 ```
 
-2. Capture PID, generation, `skillCount`, and `trustState` from the response.
+2. Capture PID, generation, `skillCount` and `trustState` from the response.
 3. Send SIGTERM to the daemon process:
 
 ```bash
@@ -56,8 +58,8 @@ kill -TERM <daemon_pid>
 
 ### Expected Signals
 
-- Step 1 response includes populated `generation`, `skillCount`, and `trustState.state = "live"` or `"stale"`.
-- SIGTERM triggers graceful shutdown; no stack trace in stderr.
+- Step 1 response includes populated `generation`, `skillCount` and `trustState.state = "live"` or `"stale"`.
+- SIGTERM triggers graceful shutdown. No stack trace in stderr.
 - Post-restart status matches pre-shutdown `skillCount` (same skills visible) and `generation` is at least equal to the prior value.
 - No raw prompt text in lifecycle logs.
 
@@ -66,8 +68,8 @@ kill -TERM <daemon_pid>
 | Symptom | Detection | Action |
 | --- | --- | --- |
 | SIGTERM ignored | Process survives signal | Inspect `lib/daemon/lifecycle.ts` signal handlers. |
-| Fresh boot reports lower skillCount | Skills missing after restart | Confirm source discovery in `lifecycle.ts`; check for source-cache corruption. |
-| Stack trace on shutdown | Stderr contains unhandled rejection | Block release; investigate teardown path. |
+| Fresh boot reports lower skillCount | Skills missing after restart | Confirm source discovery in `lifecycle.ts`. Check for source-cache corruption. |
+| Stack trace on shutdown | Stderr contains unhandled rejection | Block release. Investigate teardown path. |
 
 ---
 
@@ -76,8 +78,8 @@ kill -TERM <daemon_pid>
 <!-- ANCHOR:4-source-files -->
 ## 4. SOURCE FILES
 
-- Scenario [AU-002](./002-lease-single-writer.md) — single-writer lease reclaim.
-- Scenario [OP-001](../04--operator-h5/001-degraded-daemon.md) — degraded state detection.
+- Scenario [AU-002](./002-lease-single-writer.md), single-writer lease reclaim.
+- Scenario [OP-001](../04--operator-h5/001-degraded-daemon.md), degraded state detection.
 - Feature [`01--daemon-and-freshness/03-lifecycle.md`](../../feature_catalog/01--daemon-and-freshness/03-lifecycle.md).
 - Source: `.opencode/skills/system-skill-advisor/mcp_server/lib/daemon/lifecycle.ts`.
 

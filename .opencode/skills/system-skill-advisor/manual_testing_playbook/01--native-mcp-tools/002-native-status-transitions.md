@@ -17,7 +17,7 @@ trigger_phrases:
 <!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
-Validate that `advisor_status` reports live, stale, and absent states with the Phase 027 `skillCount` and `lastScanAt` fields.
+Validate that `advisor_status` reports live, stale and absent states with the Phase 027 `skillCount` and `lastScanAt` fields.
 
 ---
 
@@ -48,7 +48,7 @@ advisor_status({"workspaceRoot":"/absolute/path/to/repo"})
 
 ### Expected Signals
 
-- Live response includes `freshness`, `generation`, `trustState`, `lastGenerationBump`, `lastScanAt`, `skillCount`, and `laneWeights`.
+- Live response includes `freshness`, `generation`, `trustState`, `lastGenerationBump`, `lastScanAt`, `skillCount` and `laneWeights`.
 - `skillCount` is a nonzero integer that matches discovered `graph-metadata.json` files.
 - `lastScanAt` is an ISO timestamp or `null` when no scan has occurred.
 - Stale response reports `freshness: "stale"` or a stale trust-state reason such as `SOURCE_NEWER_THAN_SKILL_GRAPH`.
@@ -59,7 +59,7 @@ advisor_status({"workspaceRoot":"/absolute/path/to/repo"})
 | Symptom | Detection | Action |
 | --- | --- | --- |
 | Missing `skillCount` | Field absent from JSON | Rebuild MCP server and verify `advisor-status.ts` is current. |
-| Missing `lastScanAt` | Field absent from JSON | Rebuild and rerun; block release if still absent. |
+| Missing `lastScanAt` | Field absent from JSON | Rebuild and rerun. Block release if still absent. |
 | Transition cannot be simulated | Write sandbox prevents temp copy setup | Mark `SKIP` with sandbox evidence, not `PASS`. |
 
 ---

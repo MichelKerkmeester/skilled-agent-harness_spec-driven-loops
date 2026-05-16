@@ -12,7 +12,7 @@ description: "Runs relationship traversals over the SQLite-backed skill graph."
 
 `skill_graph_query` reads the live skill graph with query types such as
 `depends_on`, `dependents`, `enhances`, `family_members`, `transitive_path`,
-`hub_skills`, `orphans`, and `subgraph`.
+`hub_skills`, `orphans` and `subgraph`.
 <!-- /ANCHOR:overview -->
 
 <!-- ANCHOR:current-reality -->

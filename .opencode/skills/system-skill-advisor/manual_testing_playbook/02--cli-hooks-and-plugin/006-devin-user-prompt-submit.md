@@ -18,7 +18,7 @@ trigger_phrases:
 <!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
-Validate the Devin CLI `UserPromptSubmit` hook returns `hookSpecificOutput.additionalContext` for substantive prompts, returns `{}` for advisor-skipped prompts, fails open on errors, and is correctly registered in `.devin/hooks.v1.json`.
+Validate the Devin CLI `UserPromptSubmit` hook returns `hookSpecificOutput.additionalContext` for substantive prompts, returns `{}` for advisor-skipped prompts, fails open on errors and is correctly registered in `.devin/hooks.v1.json`.
 
 Architecturally the hook routes through a two-step process boundary: Devin invokes the system-spec-kit shim at `.opencode/skills/system-spec-kit/mcp_server/dist/system-spec-kit/mcp_server/hooks/devin/user-prompt-submit.js`, which `spawnSync`'s the advisor implementation at `.opencode/skills/system-skill-advisor/mcp_server/dist/system-skill-advisor/hooks/devin/user-prompt-submit.js`. The shim forwards the child's stdout/stderr and emits `{}` if the child fails non-zero (fail-open at process boundary).
 
@@ -33,7 +33,7 @@ Architecturally the hook routes through a two-step process boundary: Devin invok
 - Advisor MCP server build is current (advisor and shim dist outputs exist).
 - `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED` and `MK_SKILL_ADVISOR_HOOK_DISABLED` are unset.
 - `.devin/hooks.v1.json` exists with a `UserPromptSubmit` entry pointing at the shim path.
-- `.devin/config.json` `read_config_from.claude` setting is at its default (= true) — Devin will read `.claude/settings.local.json` too; explicit Devin registration takes precedence.
+- `.devin/config.json` `read_config_from.claude` setting is at its default (= true), Devin will read `.claude/settings.local.json` too. Explicit Devin registration takes precedence.
 - Self-invocation guard from cli-devin SKILL.md §2 must be satisfied (no `DEVIN_*` env, no `devin` in process ancestry).
 
 ---
@@ -68,7 +68,7 @@ printf '%s' '{"prompt":"implement OAuth login flow with refresh tokens and CSRF 
 echo "Exit: $?"
 ```
 
-4. Smoke-test short prompt (expect advisor skip `{}` — designed behavior):
+4. Smoke-test short prompt (expect advisor skip `{}`, designed behavior):
 
 ```bash
 printf '%s' '{"prompt":"hi","cwd":"'"$PWD"'","session_id":"cl-006","hook_event_name":"UserPromptSubmit"}' \
@@ -100,13 +100,13 @@ devin --permission-mode auto
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| CL-006 | Devin UserPromptSubmit hook | Confirm Devin prompt-time hook surfaces advisor brief via shim, skips short prompts, and fails open on malformed input | `Role: Devin operator. Context: Devin CLI installed and authenticated, .devin/hooks.v1.json registered. Action: pipe three payloads (substantive, short, malformed) through the system-spec-kit shim and inspect stdout/stderr. Format: PASS or FAIL per payload with shim forwarding behavior, advisor skip handling, and fail-open envelope.` | 1. `bash: ls <shim and advisor dist paths>` -> 2. `bash: jq '.UserPromptSubmit[0].hooks[0].command' .devin/hooks.v1.json` -> 3. `bash: printf '%s' '{"prompt":"implement OAuth...","cwd":"'"$PWD"'"}' \| node <shim> > /tmp/.../cl-006-substantive.stdout.json 2> /tmp/.../cl-006-substantive.stderr` -> 4. Repeat with short prompt -> 5. Repeat with malformed `not-json` payload | Exit code 0 in all three runs; substantive output contains `hookSpecificOutput.additionalContext` starting with `Advisor:`; short-prompt output is `{}`; malformed-stdin output is `{}`; advisor child stderr (when not fail-open) carries `runtime: "devin"`; raw prompt literal absent from stderr | Captured stdout/stderr/exit transcripts for all three payloads, plus `.devin/hooks.v1.json` jq output | PASS if (a) all three runs exit 0, (b) substantive run emits `hookSpecificOutput.additionalContext` starting `Advisor:`, (c) short-prompt + malformed runs both emit `{}`, (d) registration cites the shim path; FAIL otherwise | 1. Verify both dist artifacts exist (rebuild advisor + spec-kit if missing); 2. Check `read_config_from.claude` for double-fire interference; 3. Run `advisor_status` MCP tool; 4. Inspect cli-devin self-invocation env vars; 5. Confirm `MK_SKILL_ADVISOR_HOOK_DISABLED` / `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED` are unset |
+| CL-006 | Devin UserPromptSubmit hook | Confirm Devin prompt-time hook surfaces advisor brief via shim, skips short prompts and fails open on malformed input | `Role: Devin operator. Context: Devin CLI installed and authenticated, .devin/hooks.v1.json registered. Action: pipe three payloads (substantive, short, malformed) through the system-spec-kit shim and inspect stdout/stderr. Format: PASS or FAIL per payload with shim forwarding behavior, advisor skip handling and fail-open envelope.` | 1. `bash: ls <shim and advisor dist paths>` -> 2. `bash: jq '.UserPromptSubmit[0].hooks[0].command' .devin/hooks.v1.json` -> 3. `bash: printf '%s' '{"prompt":"implement OAuth...","cwd":"'"$PWD"'"}' \| node <shim> > /tmp/.../cl-006-substantive.stdout.json 2> /tmp/.../cl-006-substantive.stderr` -> 4. Repeat with short prompt -> 5. Repeat with malformed `not-json` payload | Exit code 0 in all three runs. Substantive output contains `hookSpecificOutput.additionalContext` starting with `Advisor:`. Short-prompt output is `{}`. Malformed-stdin output is `{}`. Advisor child stderr (when not fail-open) carries `runtime: "devin"`. Raw prompt literal absent from stderr | Captured stdout/stderr/exit transcripts for all three payloads, plus `.devin/hooks.v1.json` jq output | PASS if (a) all three runs exit 0, (b) substantive run emits `hookSpecificOutput.additionalContext` starting `Advisor:`, (c) short-prompt + malformed runs both emit `{}`, (d) registration cites the shim path. FAIL otherwise | 1. Verify both dist artifacts exist (rebuild advisor + spec-kit if missing); 2. Check `read_config_from.claude` for double-fire interference; 3. Run `advisor_status` MCP tool; 4. Inspect cli-devin self-invocation env vars; 5. Confirm `MK_SKILL_ADVISOR_HOOK_DISABLED` / `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED` are unset |
 
 ### Expected Signals
 
 - All three smoke runs exit `0`.
 - Substantive-prompt stdout: parseable JSON with `hookSpecificOutput.hookEventName == "UserPromptSubmit"` and `hookSpecificOutput.additionalContext` starting with `Advisor:`.
-- Short-prompt stdout: literal `{}` (advisor's policy-driven skip — correct, designed behavior; not a defect).
+- Short-prompt stdout: literal `{}` (advisor's policy-driven skip, correct, designed behavior. Not a defect).
 - Malformed-stdin stdout: literal `{}` (shim-level fail-open when advisor child exits non-zero).
 - Devin `/hooks` slash command lists `UserPromptSubmit` loaded from `.devin/hooks.v1.json`.
 
@@ -116,10 +116,10 @@ devin --permission-mode auto
 | --- | --- | --- |
 | Shim path missing | `ls` of shim path returns "No such file" | Run `cd .opencode/skills/system-spec-kit/mcp_server && npx tsc` and re-verify path. |
 | Advisor dist missing | `ls` of advisor dist returns "No such file" | Run `cd .opencode/skills/system-skill-advisor/mcp_server && npx tsc -p tsconfig.build.json`. |
-| Substantive prompt returns `{}` | Inspect stderr for `status: "skipped"` or freshness staleness | Run `advisor_status` MCP tool; inspect `freshness` field; run `advisor_rebuild` if stale. |
+| Substantive prompt returns `{}` | Inspect stderr for `status: "skipped"` or freshness staleness | Run `advisor_status` MCP tool. Inspect `freshness` field. Run `advisor_rebuild` if stale. |
 | Devin double-fires hook | `/hooks` shows two UserPromptSubmit entries (one from `.devin/hooks.v1.json`, one inherited from `.claude/settings.local.json`) | Either disable `read_config_from.claude` in `.devin/config.json` OR rely on Devin's own dedup (verify behavior). |
-| Prompt text in stderr | Grep captured stderr for prompt literal | Treat as privacy failure; inspect advisor diagnostic JSONL schema. |
-| Self-invocation guard fires | Any `DEVIN_*` env var set / `devin` in ancestry | Run from a non-Devin shell; clear `DEVIN_*` env before retest. |
+| Prompt text in stderr | Grep captured stderr for prompt literal | Treat as privacy failure. Inspect advisor diagnostic JSONL schema. |
+| Self-invocation guard fires | Any `DEVIN_*` env var set / `devin` in ancestry | Run from a non-Devin shell. Clear `DEVIN_*` env before retest. |
 
 ---
 

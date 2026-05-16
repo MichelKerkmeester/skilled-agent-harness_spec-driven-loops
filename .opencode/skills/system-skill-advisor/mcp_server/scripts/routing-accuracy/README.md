@@ -37,7 +37,7 @@ This README documents the code-bearing folder `.opencode/skills/system-skill-adv
 
 ### Usage
 
-Use this file to identify the folder boundary, the likely verification path, and the local source files that need sk-code conventions. Keep behavior details in source comments and higher-level workflow details in the owning `SKILL.md`.
+Use this file to identify the folder boundary, the likely verification path and the local source files that need sk-code conventions. Keep behavior details in source comments and higher-level workflow details in the owning `SKILL.md`.
 
 ### Key Statistics
 
@@ -45,7 +45,7 @@ Use this file to identify the folder boundary, the likely verification path, and
 |---|---:|
 | Code files | 2 |
 | README scope | Direct files in this folder |
-| Audit packet | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/006-system-skill-advisor-extraction/026-sk-code-and-code-readme-audit` |
+| Audit packet | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-graph/006-system-skill-advisor-extraction/026-sk-code-and-code-readme-audit` |
 
 <!-- /ANCHOR:overview -->
 
@@ -80,7 +80,7 @@ Run individual scripts from the repository root with the documented arguments.
 | Feature | What It Does |
 |---|---|
 | Folder boundary | Documents direct code files under `mcp_server/scripts/routing-accuracy`. |
-| sk-code alignment | Points reviewers at OpenCode naming, header, error-handling, and type-discipline checks. |
+| sk-code alignment | Points reviewers at OpenCode naming, header, error-handling and type-discipline checks. |
 | Verification handoff | Records the expected owner and audit packet for follow-up work. |
 
 <!-- /ANCHOR:features -->
@@ -104,7 +104,7 @@ Run individual scripts from the repository root with the documented arguments.
 
 | Setting | Default | Purpose |
 |---|---|---|
-| sk-code surface | OPENCODE | Applies OpenCode TypeScript, JavaScript, Python, Shell, and config conventions. |
+| sk-code surface | OPENCODE | Applies OpenCode TypeScript, JavaScript, Python, Shell and config conventions. |
 | README scope | Direct folder | This file documents this folder, not sibling folders. |
 
 <!-- /ANCHOR:configuration -->

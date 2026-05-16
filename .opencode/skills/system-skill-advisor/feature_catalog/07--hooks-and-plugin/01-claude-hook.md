@@ -22,7 +22,7 @@ Surface skill recommendations in Claude Code sessions at prompt time, without bl
 <!-- ANCHOR:current-reality -->
 ## 2. CURRENT REALITY
 
-`hooks/claude/user-prompt-submit.ts` reads the prompt from stdin, calls the native advisor through `compat/index.ts`, and returns a JSON envelope with `hookSpecificOutput.additionalContext`. The hook honors `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1` and fails open on any daemon-level failure. Raw prompts never appear in diagnostics. Freshness vocabulary is `live / stale / absent / unavailable`; status vocabulary is `ok / skipped / degraded / fail_open`.
+`hooks/claude/user-prompt-submit.ts` reads the prompt from stdin, calls the native advisor through `compat/index.ts` and returns a JSON envelope with `hookSpecificOutput.additionalContext`. The hook honors `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1` and fails open on any daemon-level failure. Raw prompts never appear in diagnostics. Freshness vocabulary is `live / stale / absent / unavailable`. Status vocabulary is `ok / skipped / degraded / fail_open`.
 
 <!-- /ANCHOR:current-reality -->
 

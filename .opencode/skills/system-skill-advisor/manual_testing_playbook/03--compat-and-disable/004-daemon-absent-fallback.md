@@ -17,7 +17,7 @@ trigger_phrases:
 <!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
-Validate two fallback paths: the Python shim routes to local scoring when native daemon probing is unavailable, and native `advisor_recommend` fails open with empty recommendations when freshness is absent.
+Validate two fallback paths: the Python shim routes to local scoring when native daemon probing is unavailable and native `advisor_recommend` fails open with empty recommendations when freshness is absent.
 
 ---
 
@@ -48,12 +48,12 @@ SPECKIT_SKILL_ADVISOR_FORCE_LOCAL=1 python3 .opencode/skills/system-skill-adviso
 advisor_recommend({"prompt":"help me commit my changes","options":{"topK":1,"includeAbstainReasons":true}})
 ```
 
-3. Inspect `freshness`, `trustState`, and recommendations.
+3. Inspect `freshness`, `trustState` and recommendations.
 
 ### Expected Signals
 
 - Forced-local shim returns a JSON array from the Python scorer.
-- Native absent response returns `recommendations: []`, `freshness: "absent"`, and a prompt-safe abstain reason.
+- Native absent response returns `recommendations: []`, `freshness: "absent"` and a prompt-safe abstain reason.
 - The absence path does not throw and does not block prompt handling.
 
 ### Failure Modes

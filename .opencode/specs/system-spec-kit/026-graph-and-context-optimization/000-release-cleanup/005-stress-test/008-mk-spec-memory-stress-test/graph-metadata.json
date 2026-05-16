@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/114-mk-spec-memory-stress-test",
-  "spec_folder": "skilled-agent-orchestration/114-mk-spec-memory-stress-test",
-  "parent_id": "skilled-agent-orchestration",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/008-mk-spec-memory-stress-test",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/008-mk-spec-memory-stress-test",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test",
   "children_ids": [],
   "manual": {
     "depends_on": [
@@ -15,12 +15,12 @@
   },
   "derived": {
     "trigger_phrases": [
-      "114 mk-spec-memory stress test",
+      "008 mk-spec-memory stress test",
       "manual testing playbook full run",
       "39 tool sweep"
     ],
     "key_topics": [
-      "114",
+      "008",
       "mk-spec-memory",
       "stress-test",
       "manual-testing-playbook",
@@ -36,7 +36,7 @@
       "handover.md"
     ],
     "entities": [],
-    "causal_summary": "Packet 114 scaffolds the comprehensive stress test of mk-spec-memory post packet 113's z_archive un-exclusion (commit b062b12b4). Runs all 39 MCP tools + all 345 manual_testing_playbook scenarios via cli-devin SWE-1.6 paired dispatch. Handover document targets a fresh session pickup with baseline checks, execution flow, and decision points.",
+    "causal_summary": "Phase 008 scaffolds the comprehensive stress test of mk-spec-memory post packet 113's z_archive un-exclusion (commit b062b12b4). Runs all 39 MCP tools + all 345 manual_testing_playbook scenarios via cli-devin SWE-1.6 paired dispatch. Handover document targets a fresh session pickup with baseline checks, execution flow, and decision points.",
     "created_at": "2026-05-16T13:55:00Z",
     "last_save_at": "2026-05-16T13:55:00Z",
     "save_lineage": "main_agent",

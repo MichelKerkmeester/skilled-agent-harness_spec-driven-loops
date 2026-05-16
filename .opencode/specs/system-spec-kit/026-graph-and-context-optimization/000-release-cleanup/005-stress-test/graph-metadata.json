@@ -10,7 +10,8 @@
     "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/004-stress-test-folder-completion",
     "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/005-expansion-and-alignment",
     "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/006-stress-coverage-audit-and-run",
-    "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/007-stress-test-gap-remediation"
+    "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/007-stress-test-gap-remediation",
+    "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/008-mk-spec-memory-stress-test"
   ],
   "manual": {
     "depends_on": [],
@@ -24,7 +25,7 @@
     "status": "in_progress",
     "key_files": ["spec.md"],
     "entities": [],
-    "causal_summary": "This phase parent coordinates stress testing and coverage validation across 7 child packets, addressing test pattern documentation, MCP runtime stress remediation, and structural organization. The children 006-stress-coverage-audit-and-run and 007-stress-test-gap-remediation specifically focus on coverage audit and closing 10 P0 coverage gaps.",
+    "causal_summary": "This phase parent coordinates stress testing and coverage validation across 8 child packets, addressing test pattern documentation, MCP runtime stress remediation, structural organization, and the post packet 113 mk-spec-memory comprehensive sweep. Children 006-stress-coverage-audit-and-run and 007-stress-test-gap-remediation focus on coverage audit and closing 10 P0 coverage gaps; 008-mk-spec-memory-stress-test runs all 39 mk-spec-memory tools + 345 manual_testing_playbook scenarios via cli-devin SWE-1.6 post the z_archive un-exclusion in commit b062b12b4.",
     "created_at": "2026-05-16T09:00:00Z",
     "last_save_at": "2026-05-16T11:30:00Z",
     "save_lineage": "cli-devin-swe-1.6-w3f",

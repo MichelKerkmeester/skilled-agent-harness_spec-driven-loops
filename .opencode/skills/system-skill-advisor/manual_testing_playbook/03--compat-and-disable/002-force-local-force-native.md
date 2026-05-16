@@ -67,7 +67,7 @@ python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.p
 | --- | --- | --- |
 | `--force-local` delegates native | Output has `source: "native"` | Check `FORCE_LOCAL_ENV` and CLI flag handling. |
 | `--force-native` silently falls back | Output has Python-only reason with exit `0` | Block release. |
-| Combined flags accepted | Exit code is `0` | Block release; parser guard regressed. |
+| Combined flags accepted | Exit code is `0` | Block release. Parser guard regressed. |
 
 ---
 

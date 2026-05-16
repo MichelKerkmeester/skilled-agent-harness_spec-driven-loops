@@ -1,6 +1,6 @@
 ---
 title: "advisor_recommend MCP Tool"
-description: "Native MCP tool that returns prompt-safe skill recommendations with lane attribution, lifecycle metadata, and fail-open freshness semantics."
+description: "Native MCP tool that returns prompt-safe skill recommendations with lane attribution, lifecycle metadata and fail-open freshness semantics."
 trigger_phrases:
   - "advisor_recommend"
   - "mcp recommend tool"
@@ -22,7 +22,7 @@ Expose the native scoring pipeline as an MCP tool that any runtime can call, wit
 <!-- ANCHOR:current-reality -->
 ## 2. CURRENT REALITY
 
-`handlers/advisor-recommend.ts` implements the tool. Input is validated by `schemas/advisor-tool-schemas.ts` (Zod strict). The public response always includes the resolved `workspaceRoot` plus `effectiveThresholds`, where `effectiveThresholds` publishes the active `confidenceThreshold`, `uncertaintyThreshold`, and `confidenceOnly` mode after request overrides are merged with defaults. Output also carries prompt-safe `recommendations[]`, optional `laneBreakdown[]` when `includeAttribution: true`, lifecycle redirect metadata (`redirectFrom`, `redirectTo`, `status`), `freshness`, `trustState`, `generatedAt`, `cache`, optional `warnings`, and optional `abstainReasons`. Fail-open states such as disabled or absent freshness still preserve `workspaceRoot` and `effectiveThresholds` in the envelope so callers can inspect the resolved repository scope and active routing thresholds even when no recommendations are returned. The handler enforces sanitization at the envelope boundary (see `lib/derived/sanitizer.ts`) and never echoes prompt text into response metadata. Cache behavior is tied to generation (see [`01--daemon-and-freshness/07-cache-invalidation.md`](../01--daemon-and-freshness/07-cache-invalidation.md)).
+`handlers/advisor-recommend.ts` implements the tool. Input is validated by `schemas/advisor-tool-schemas.ts` (Zod strict). The public response always includes the resolved `workspaceRoot` plus `effectiveThresholds`, where `effectiveThresholds` publishes the active `confidenceThreshold`, `uncertaintyThreshold` and `confidenceOnly` mode after request overrides are merged with defaults. Output also carries prompt-safe `recommendations[]`, optional `laneBreakdown[]` when `includeAttribution: true`, lifecycle redirect metadata (`redirectFrom`, `redirectTo`, `status`), `freshness`, `trustState`, `generatedAt`, `cache`, optional `warnings` and optional `abstainReasons`. Fail-open states such as disabled or absent freshness still preserve `workspaceRoot` and `effectiveThresholds` in the envelope so callers can inspect the resolved repository scope and active routing thresholds even when no recommendations are returned. The handler enforces sanitization at the envelope boundary (see `lib/derived/sanitizer.ts`) and never echoes prompt text into response metadata. Cache behavior is tied to generation (see [`01--daemon-and-freshness/07-cache-invalidation.md`](../01--daemon-and-freshness/07-cache-invalidation.md)).
 
 <!-- /ANCHOR:current-reality -->
 

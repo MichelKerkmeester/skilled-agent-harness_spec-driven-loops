@@ -1,6 +1,6 @@
 ---
 title: "NC-005 Lifecycle Redirect Metadata"
-description: "Manual validation that superseded, archived, future, and rolled-back lifecycle metadata surfaces through advisor_recommend."
+description: "Manual validation that superseded, archived, future and rolled-back lifecycle metadata surfaces through advisor_recommend."
 trigger_phrases:
   - "nc-005"
   - "lifecycle redirect metadata"
@@ -64,7 +64,7 @@ advisor_recommend({"prompt":"route a superseded lifecycle fixture","options":{"t
 | --- | --- | --- |
 | Redirect fields absent | Test failure or missing fields in MCP output | Inspect lifecycle projection and renderer. |
 | Invalid lifecycle status appears | Status outside `active`, `deprecated`, `archived`, `future` | Inspect schema validation. |
-| Prompt-injection text appears in labels | Unsafe label survives sanitizer | Block release; verify `sanitizeSkillLabel` at write boundaries. |
+| Prompt-injection text appears in labels | Unsafe label survives sanitizer | Block release. Verify `sanitizeSkillLabel` at write boundaries. |
 
 ---
 

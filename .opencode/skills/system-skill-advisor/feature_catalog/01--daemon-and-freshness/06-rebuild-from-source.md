@@ -22,7 +22,7 @@ Ensure the advisor never gets stuck in an unrecoverable state when SQLite storag
 <!-- ANCHOR:current-reality -->
 ## 2. CURRENT REALITY
 
-`lib/freshness/rebuild-from-source.ts` detects a corrupt or unreadable SQLite store via the daemon lifecycle, then walks `.opencode/skills/*/SKILL.md` plus each `graph-metadata.json`, applies the auto-indexing derivation pipeline, and republishes a fresh snapshot. Throughout the rebuild, readers see `unavailable` trust state and fail-open responses rather than exceptions. Rebuild is also the canonical recovery path for the H5 operator playbook.
+`lib/freshness/rebuild-from-source.ts` detects a corrupt or unreadable SQLite store via the daemon lifecycle, then walks `.opencode/skills/*/SKILL.md` plus each `graph-metadata.json`, applies the auto-indexing derivation pipeline and republishes a fresh snapshot. Throughout the rebuild, readers see `unavailable` trust state and fail-open responses rather than exceptions. Rebuild is also the canonical recovery path for the H5 operator playbook.
 
 <!-- /ANCHOR:current-reality -->
 
@@ -55,5 +55,5 @@ Related references:
 
 - [05-trust-state.md](./05-trust-state.md).
 - [07-cache-invalidation.md](./07-cache-invalidation.md).
-- [`02--auto-indexing/01-derived-extraction.md`](../02--auto-indexing/01-derived-extraction.md) — source extraction pipeline consumed during rebuild.
+- [`02--auto-indexing/01-derived-extraction.md`](../02--auto-indexing/01-derived-extraction.md), source extraction pipeline consumed during rebuild.
 <!-- /ANCHOR:source-metadata -->

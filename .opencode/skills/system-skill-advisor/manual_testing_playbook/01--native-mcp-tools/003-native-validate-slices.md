@@ -1,6 +1,6 @@
 ---
 title: "NC-003 Native advisor_validate Slice Bundle"
-description: "Manual validation that advisor_validate returns the full prompt-safe native contract: measured slices, threshold semantics, telemetry diagnostics, and recorded outcome totals."
+description: "Manual validation that advisor_validate returns the full prompt-safe native contract: measured slices, threshold semantics, telemetry diagnostics and recorded outcome totals."
 trigger_phrases:
   - "nc-003"
   - "native advisor_validate slice bundle"
@@ -59,24 +59,24 @@ advisor_validate({
 })
 ```
 
-5. Compare `data.telemetry.outcomes` from step 4 against the baseline snapshot from step 1. In an isolated workspace, `scope.kind` should flip to `skill`, `scope.skillSlug` should be `system-spec-kit`, and `accepted`, `corrected`, and `ignored` totals should each increase by exactly 1.
+5. Compare `data.telemetry.outcomes` from step 4 against the baseline snapshot from step 1. In an isolated workspace, `scope.kind` should flip to `skill`, `scope.skillSlug` should be `system-spec-kit` and `accepted`, `corrected` and `ignored` totals should each increase by exactly 1.
 
 ### Expected Signals
 
 - Envelope has `status: "ok"`.
-- `data.thresholdSemantics.aggregateValidation` includes `fullCorpusTop1`, `holdoutTop1`, `perSkillTop1`, and `unknownCountTargetMax`.
-- `data.thresholdSemantics.runtimeRouting` includes the live `confidenceThreshold`, `uncertaintyThreshold`, and `confidenceOnly` values used by runtime routing.
-- `data.slices.corpus.full_corpus_top1` includes `percentage`, `passed`, `threshold`, and `count`.
+- `data.thresholdSemantics.aggregateValidation` includes `fullCorpusTop1`, `holdoutTop1`, `perSkillTop1` and `unknownCountTargetMax`.
+- `data.thresholdSemantics.runtimeRouting` includes the live `confidenceThreshold`, `uncertaintyThreshold` and `confidenceOnly` values used by runtime routing.
+- `data.slices.corpus.full_corpus_top1` includes `percentage`, `passed`, `threshold` and `count`.
 - `data.slices.corpus.unknown_count.value` is present with `targetMax: 10`.
 - `data.slices.holdout.holdout_top1` is present.
 - `data.slices.parity.explicit_skill_top1_regression.regressions` is an array.
 - `data.slices.safety.adversarial_stuffing_blocked.passed` is present.
-- `data.slices.latency.regression_suite_status` includes `p0PassRate`, `failedCount`, `commandBridgeFalsePositiveRate`, `cacheHitP95Ms`, and `uncachedP95Ms`.
-- `data.telemetry.diagnostics` includes `recordsPath`, `recordsRetained`, `rollingCacheHitRate`, `rollingP95Ms`, and `rollingFailOpenRate`.
+- `data.slices.latency.regression_suite_status` includes `p0PassRate`, `failedCount`, `commandBridgeFalsePositiveRate`, `cacheHitP95Ms` and `uncachedP95Ms`.
+- `data.telemetry.diagnostics` includes `recordsPath`, `recordsRetained`, `rollingCacheHitRate`, `rollingP95Ms` and `rollingFailOpenRate`.
 - The focused step-4 response sets `data.telemetry.outcomes.recordedThisRun` to `3`.
 - `data.telemetry.outcomes.scope.kind` is `skill` for the focused call, with `scope.skillSlug: "system-spec-kit"`.
-- `data.telemetry.outcomes.totals` includes integer totals for `accepted`, `corrected`, and `ignored`; in an isolated workspace those totals increase by exactly `+1` each after the step-4 call.
-- Current Phase 027 baseline is 80.5% full corpus, 77.5% holdout, UNKNOWN at or below 10, and zero regressions on Python-correct prompts.
+- `data.telemetry.outcomes.totals` includes integer totals for `accepted`, `corrected` and `ignored`. In an isolated workspace those totals increase by exactly `+1` each after the step-4 call.
+- Current Phase 027 baseline is 80.5% full corpus, 77.5% holdout, UNKNOWN at or below 10 and zero regressions on Python-correct prompts.
 
 ### Failure Modes
 

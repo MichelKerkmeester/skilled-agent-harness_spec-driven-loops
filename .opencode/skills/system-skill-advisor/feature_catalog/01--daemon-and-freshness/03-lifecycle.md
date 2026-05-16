@@ -1,6 +1,6 @@
 ---
 title: "Daemon Lifecycle and Health Reporting"
-description: "Daemon boot, shutdown, SIGTERM handling, and health reporting that make daemon state observable without coupling readers to writer state."
+description: "Daemon boot, shutdown, SIGTERM handling and health reporting that make daemon state observable without coupling readers to writer state."
 trigger_phrases:
   - "daemon lifecycle"
   - "daemon boot shutdown"
@@ -15,14 +15,14 @@ trigger_phrases:
 <!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
-Give operators a predictable daemon lifecycle: graceful boot, graceful SIGTERM shutdown, and always-available health reporting exposed through `advisor_status`.
+Give operators a predictable daemon lifecycle: graceful boot, graceful SIGTERM shutdown and always-available health reporting exposed through `advisor_status`.
 
 <!-- /ANCHOR:overview -->
 
 <!-- ANCHOR:current-reality -->
 ## 2. CURRENT REALITY
 
-`lib/daemon/lifecycle.ts` orchestrates daemon boot by acquiring the workspace lease, starting the watcher, warming freshness state, and exposing `trustState` to readers. Shutdown responds to SIGTERM, flushes any pending reindex, releases the lease, and drains the watcher. `advisor_status` returns `generation`, `skillCount`, `lastScanAt`, `trustState`, and `laneWeights` regardless of whether the daemon has a live writer.
+`lib/daemon/lifecycle.ts` orchestrates daemon boot by acquiring the workspace lease, starting the watcher, warming freshness state and exposing `trustState` to readers. Shutdown responds to SIGTERM, flushes any pending reindex, releases the lease and drains the watcher. `advisor_status` returns `generation`, `skillCount`, `lastScanAt`, `trustState` and `laneWeights` regardless of whether the daemon has a live writer.
 
 <!-- /ANCHOR:current-reality -->
 

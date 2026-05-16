@@ -1,6 +1,6 @@
 ---
 title: "PC-001 Python Shim --stdin Round-Trip"
-description: "Manual validation that skill_advisor.py reads exactly one prompt from stdin, routes through native-first compatibility, and returns the legacy JSON-array shape."
+description: "Manual validation that skill_advisor.py reads exactly one prompt from stdin, routes through native-first compatibility and returns the legacy JSON-array shape."
 trigger_phrases:
   - "pc-001"
   - "python shim stdin"
@@ -17,7 +17,7 @@ trigger_phrases:
 <!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
-Validate that `scripts/skill_advisor.py --stdin` reads exactly one prompt from stdin, delegates to the native advisor when available, and emits the legacy JSON-array shape that pre-027 consumers expect.
+Validate that `scripts/skill_advisor.py --stdin` reads exactly one prompt from stdin, delegates to the native advisor when available and emits the legacy JSON-array shape that pre-027 consumers expect.
 
 ---
 
@@ -26,7 +26,7 @@ Validate that `scripts/skill_advisor.py --stdin` reads exactly one prompt from s
 <!-- ANCHOR:2-scenario-contract -->
 ## 2. SCENARIO CONTRACT
 
-- Repo root; Python 3 available.
+- Repo root. Python 3 available.
 - MCP server built so the native daemon can be probed.
 - `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED` unset.
 
@@ -68,8 +68,8 @@ printf '%s' "save this conversation context to memory" | python3 .opencode/skill
 <!-- ANCHOR:4-source-files -->
 ## 4. SOURCE FILES
 
-- Scenario [CP-001](../03--compat-and-disable/001-python-shim-stdin.md) — original shim stdin scenario.
-- Scenario [PC-002](./002-force-native-force-local.md) — force toggles.
+- Scenario [CP-001](../03--compat-and-disable/001-python-shim-stdin.md), original shim stdin scenario.
+- Scenario [PC-002](./002-force-native-force-local.md), force toggles.
 - Feature [`08--python-compat/01-cli-shim.md`](../../feature_catalog/08--python-compat/01-cli-shim.md).
 - Source: `.opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py`.
 

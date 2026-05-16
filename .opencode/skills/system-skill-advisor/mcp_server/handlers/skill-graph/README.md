@@ -1,6 +1,6 @@
 ---
 title: "Skill Graph Handlers: MCP Tool Responses"
-description: "Handlers for skill graph scan, query, status, and validation MCP tools."
+description: "Handlers for skill graph scan, query, status and validation MCP tools."
 trigger_phrases:
   - "skill graph handlers"
   - "skill graph MCP tools"
@@ -23,14 +23,14 @@ trigger_phrases:
 <!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
-`handlers/skill-graph/` owns the `mk_skill_advisor` MCP-facing handlers for the SQLite-backed skill graph. The handlers parse tool arguments, call skill graph libraries, and return redacted JSON response envelopes.
+`handlers/skill-graph/` owns the `mk_skill_advisor` MCP-facing handlers for the SQLite-backed skill graph. The handlers parse tool arguments, call skill graph libraries and return redacted JSON response envelopes.
 
 Moved from `system-spec-kit/mcp_server/handlers/skill-graph/` in 013/009/008. Packet 013/009/011 moved the SQLite DB/query layer into this package so handlers and lifecycle share one owner.
 
 Current state:
 
 - Supports scanning skill metadata into the graph store.
-- Supports relationship queries, graph status, and validation checks.
+- Supports relationship queries, graph status and validation checks.
 - Redacts diagnostic paths before returning responses to callers.
 
 <!-- /ANCHOR:1-overview -->
@@ -42,9 +42,9 @@ Current state:
 |---|---|
 | `index.ts` | Re-exports the skill graph handler entrypoints. |
 | `scan.ts` | Handles `skill_graph_scan` and publishes advisor freshness after indexing. |
-| `query.ts` | Handles relationship traversal queries such as dependencies, subgraphs, hubs, and orphans. |
-| `status.ts` | Reports graph counts, schema versions, source staleness, and validation summary. |
-| `validate.ts` | Checks schema versions, broken edges, cycles, weight bands, symmetry, and orphan skills. |
+| `query.ts` | Handles relationship traversal queries such as dependencies, subgraphs, hubs and orphans. |
+| `status.ts` | Reports graph counts, schema versions, source staleness and validation summary. |
+| `validate.ts` | Checks schema versions, broken edges, cycles, weight bands, symmetry and orphan skills. |
 | `response-envelope.ts` | Formats success and error payloads and redacts local paths. |
 
 <!-- /ANCHOR:2-key-files -->

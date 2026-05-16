@@ -50,6 +50,8 @@ Validate the rebuild-from-source recovery path in `lib/freshness/rebuild-from-so
 <!-- ANCHOR:3-test-execution -->
 ## 3. TEST EXECUTION
 
+> **Structure deviation note (007-deferred-final).** This scenario uses a numbered-step plus Expected Signals plus Failure Modes shape instead of the canonical Prompt/Commands/Expected/Evidence/Pass-Fail/Failure-Triage subsections. The deviation is intentional for this skill playbook category to keep scenario semantics tightly bound to runtime output checks. See `references/deferred-decisions.md` §F34 for rationale.
+
 1. In the disposable copy, replace `skill-graph.sqlite` with invalid bytes:
 
 ```bash
@@ -74,14 +76,14 @@ skill_graph_scan({})
 
 - Step 2 status shows `freshness: "unavailable"` or an explicit trust reason citing DB failure.
 - Step 3 scan completes without uncaught exceptions.
-- Step 4 post-rebuild status is `live` or `stale`, and `advisor_recommend` returns recommendations for the touchstone prompt.
+- Step 4 post-rebuild status is `live` or `stale` and `advisor_recommend` returns recommendations for the touchstone prompt.
 - No stack trace in stderr and no prompt leakage in diagnostics.
 
 ### Failure Modes
 
 | Symptom | Detection | Action |
 | --- | --- | --- |
-| Runtime crashes on corruption | Stack trace reaches user | Block release — rebuild must fail open. |
+| Runtime crashes on corruption | Stack trace reaches user | Block release, rebuild must fail open. |
 | Rebuild never succeeds | Status stays `unavailable` after scan | Inspect `lib/freshness/rebuild-from-source.ts` source-discovery path and file permissions. |
 | Cache serves stale recommendations | Post-rebuild results still match pre-corruption cache | Verify `lib/freshness/cache-invalidation.ts` fires on generation reset. |
 
@@ -92,8 +94,8 @@ skill_graph_scan({})
 <!-- ANCHOR:4-source-files -->
 ## 4. SOURCE FILES
 
-- Scenario [OP-003](../04--operator-h5/003-unavailable-daemon.md) — operator recovery flow.
-- Scenario [AU-004](./004-generation-publication.md) — generation publication after rebuild.
+- Scenario [OP-003](../04--operator-h5/003-unavailable-daemon.md), operator recovery flow.
+- Scenario [AU-004](./004-generation-publication.md), generation publication after rebuild.
 - Feature [`01--daemon-and-freshness/06-rebuild-from-source.md`](../../feature_catalog/01--daemon-and-freshness/06-rebuild-from-source.md).
 - Source: `.opencode/skills/system-skill-advisor/mcp_server/lib/freshness/rebuild-from-source.ts`.
 

@@ -15,7 +15,7 @@ trigger_phrases:
 <!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
-Drive release-readiness decisions from real measurements. Consolidate corpus, holdout, parity, safety, and latency slices behind one tool call, while also exposing the threshold contract and prompt-safe telemetry summaries operators need to interpret the run.
+Drive release-readiness decisions from real measurements. Consolidate corpus, holdout, parity, safety and latency slices behind one tool call, while also exposing the threshold contract and prompt-safe telemetry summaries operators need to interpret the run.
 
 <!-- /ANCHOR:overview -->
 
@@ -29,7 +29,7 @@ Drive release-readiness decisions from real measurements. Consolidate corpus, ho
 | `workspaceRoot` / `skillSlug` | The resolved workspace plus optional skill-scoped validation target. |
 | `thresholdSemantics` | Separates aggregate release-gate thresholds from prompt-time routing thresholds. |
 | `overallAccuracy` / `perSkill` | Aggregate top-1 results for the active corpus selection. |
-| `slices` | Corpus, holdout, parity, safety, and latency slice payloads. |
+| `slices` | Corpus, holdout, parity, safety and latency slice payloads. |
 | `telemetry` | Prompt-safe diagnostics and durable outcome rollups. |
 | `generatedAt` | Run timestamp for the validation envelope. |
 
@@ -58,7 +58,7 @@ Telemetry is published as prompt-safe rollups rather than raw prompt content:
 | `telemetry.diagnostics` | `recordsPath`, `recordsRetained`, `rollingCacheHitRate`, `rollingP95Ms`, `rollingFailOpenRate` |
 | `telemetry.outcomes` | `recordsPath`, `recordedThisRun`, `totals` |
 
-`telemetry.outcomes.totals` reports durable outcome counts, and `recordedThisRun` reflects any `outcomeEvents` supplied on the validating call.
+`telemetry.outcomes.totals` reports durable outcome counts and `recordedThisRun` reflects any `outcomeEvents` supplied on the validating call.
 
 <!-- /ANCHOR:current-reality -->
 

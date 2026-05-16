@@ -1,6 +1,6 @@
 ---
 title: "AU-001 Chokidar Watcher Narrow Scope"
-description: "Manual validation that the daemon Chokidar watcher subscribes only to SKILL.md, graph-metadata.json, and derived.key_files paths and does not fire on unrelated file changes."
+description: "Manual validation that the daemon Chokidar watcher subscribes only to SKILL.md, graph-metadata.json and derived.key_files paths and does not fire on unrelated file changes."
 trigger_phrases:
   - "au-001"
   - "watcher scope"
@@ -17,7 +17,7 @@ trigger_phrases:
 <!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
-Validate that the daemon watcher in `lib/daemon/watcher.ts` subscribes only to `SKILL.md`, `graph-metadata.json`, and dynamic `derived.key_files` paths, and that unrelated file writes under `.opencode/` or repo root do not trigger a reindex.
+Validate that the daemon watcher in `lib/daemon/watcher.ts` subscribes only to `SKILL.md`, `graph-metadata.json` and dynamic `derived.key_files` paths and that unrelated file writes under `.opencode/` or repo root do not trigger a reindex.
 
 ---
 
@@ -38,6 +38,8 @@ Validate that the daemon watcher in `lib/daemon/watcher.ts` subscribes only to `
 
 <!-- ANCHOR:3-test-execution -->
 ## 3. TEST EXECUTION
+
+> **Structure deviation note (007-deferred-final).** This scenario uses a numbered-step plus Expected Signals plus Failure Modes shape instead of the canonical Prompt/Commands/Expected/Evidence/Pass-Fail/Failure-Triage subsections. The deviation is intentional for this skill playbook category to keep scenario semantics tightly bound to runtime output checks. See `references/deferred-decisions.md` §F34 for rationale.
 
 1. Capture baseline generation:
 
@@ -77,7 +79,7 @@ touch .opencode/skills/sk-doc/SKILL.md
 | Symptom | Detection | Action |
 | --- | --- | --- |
 | Watcher fires on unrelated paths | Generation increments after plugin touch | Inspect `lib/daemon/watcher.ts` glob patterns for over-subscription. |
-| Watcher misses tracked paths | Generation unchanged after SKILL.md touch | Confirm Chokidar is active; inspect lease and lifecycle logs. |
+| Watcher misses tracked paths | Generation unchanged after SKILL.md touch | Confirm Chokidar is active. Inspect lease and lifecycle logs. |
 | Stale trust state after touch | `freshness` remains `stale` beyond debounce window | Check `lib/freshness/cache-invalidation.ts` hook-up to generation bumps. |
 
 ---
@@ -87,8 +89,8 @@ touch .opencode/skills/sk-doc/SKILL.md
 <!-- ANCHOR:4-source-files -->
 ## 4. SOURCE FILES
 
-- Scenario [AU-002](./002-lease-single-writer.md) — single-writer lease semantics.
-- Scenario [AU-004](./004-generation-publication.md) — generation bump publication.
+- Scenario [AU-002](./002-lease-single-writer.md), single-writer lease semantics.
+- Scenario [AU-004](./004-generation-publication.md), generation bump publication.
 - Feature [`01--daemon-and-freshness/01-watcher.md`](../../feature_catalog/01--daemon-and-freshness/01-watcher.md).
 - Source: `.opencode/skills/system-skill-advisor/mcp_server/lib/daemon/watcher.ts`.
 

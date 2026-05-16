@@ -32,6 +32,7 @@ This phase parent coordinates stress testing and coverage validation work across
 | 005 | expansion-and-alignment | 052 Stress Test Expansion and Alignment |
 | 006 | stress-coverage-audit-and-run | Stress-Test Coverage Audit and Run |
 | 007 | stress-test-gap-remediation | Stress-Test Gap Remediation - Close 10 P0 Coverage Gaps |
+| 008 | mk-spec-memory-stress-test | mk-spec-memory comprehensive stress test post packet 113 z_archive un-exclusion: all 39 MCP tools + 345 manual_testing_playbook scenarios via cli-devin SWE-1.6 |
 
 ---
 

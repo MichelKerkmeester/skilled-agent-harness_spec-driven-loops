@@ -15,14 +15,14 @@ trigger_phrases:
 <!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
-Support Codex CLI sessions with native startup-context and prompt-time advisor injection when `[features].codex_hooks = true` is enabled. Older deployments, missing hook configs, or restricted hosts can still use the prompt-wrapper fallback for the advisor path.
+Support Codex CLI sessions with native startup-context and prompt-time advisor injection when `[features].codex_hooks = true` is enabled. Older deployments, missing hook configs or restricted hosts can still use the prompt-wrapper fallback for the advisor path.
 
 <!-- /ANCHOR:overview -->
 
 <!-- ANCHOR:current-reality -->
 ## 2. CURRENT REALITY
 
-`hooks/codex/session-start.ts` handles native `SessionStart` startup, resume, and clear events and returns `hookSpecificOutput.additionalContext`. `hooks/codex/user-prompt-submit.ts` handles native `UserPromptSubmit` advisor briefs. User-level `~/.codex/hooks.json` registers the compiled `SessionStart` and `UserPromptSubmit` entries alongside Superset `notify.sh`, and `~/.codex/config.toml` must enable `codex_hooks = true`. `hooks/codex/prompt-wrapper.ts` remains the fallback prompt-wrapper path for Codex deployments that do not expose the hook surface. `.codex/policy.json` ships the Bash denylist. The native prompt hook and wrapper share failure semantics and the global disable flag.
+`hooks/codex/session-start.ts` handles native `SessionStart` startup, resume and clear events and returns `hookSpecificOutput.additionalContext`. `hooks/codex/user-prompt-submit.ts` handles native `UserPromptSubmit` advisor briefs. User-level `~/.codex/hooks.json` registers the compiled `SessionStart` and `UserPromptSubmit` entries alongside Superset `notify.sh` and `~/.codex/config.toml` must enable `codex_hooks = true`. `hooks/codex/prompt-wrapper.ts` remains the fallback prompt-wrapper path for Codex deployments that do not expose the hook surface. `.codex/policy.json` ships the Bash denylist. The native prompt hook and wrapper share failure semantics and the global disable flag.
 
 <!-- /ANCHOR:current-reality -->
 

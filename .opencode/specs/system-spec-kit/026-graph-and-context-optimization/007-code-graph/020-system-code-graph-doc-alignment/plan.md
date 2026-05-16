@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-system-code-graph-doc-alignment"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/020-system-code-graph-doc-alignment"
     last_updated_at: "2026-05-16T09:01:20Z"
     last_updated_by: "main_agent"
     recent_action: "Authored Level-1 plan in canonical template shape"

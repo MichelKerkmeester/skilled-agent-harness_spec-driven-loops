@@ -26,7 +26,7 @@ Combine evidence from five independent lanes into a single routing score with do
 
 | Lane | Weight | Source |
 | --- | --- | --- |
-| `explicit_author` | 0.42 | Author-declared signals via `intent_signals`, trigger_phrases, and explicit mentions. |
+| `explicit_author` | 0.42 | Author-declared signals via `intent_signals`, trigger_phrases and explicit mentions. |
 | `lexical` | 0.28 | Token overlap weighted by IDF from the active corpus. |
 | `graph_causal` | 0.13 | Graph-edge evidence projected through skill_nodes and skill_edges. |
 | `derived_generated` | 0.12 | Auto-extracted derived entries under trust-lane control. |

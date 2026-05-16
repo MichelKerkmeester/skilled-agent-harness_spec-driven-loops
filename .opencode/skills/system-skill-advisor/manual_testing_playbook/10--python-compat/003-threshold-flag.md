@@ -26,7 +26,7 @@ Validate that `--threshold <value>` adjusts the confidence cutoff applied by the
 <!-- ANCHOR:2-scenario-contract -->
 ## 2. SCENARIO CONTRACT
 
-- Repo root; Python 3 available.
+- Repo root. Python 3 available.
 - MCP server built.
 - A prompt known to produce a middle-tier confidence candidate (for example around 0.7).
 
@@ -79,8 +79,8 @@ python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.p
 <!-- ANCHOR:4-source-files -->
 ## 4. SOURCE FILES
 
-- Scenario [PC-002](./002-force-native-force-local.md) — force toggles.
-- Scenario [PC-004](./004-regression-suite.md) — regression suite coverage of threshold behavior.
+- Scenario [PC-002](./002-force-native-force-local.md), force toggles.
+- Scenario [PC-004](./004-regression-suite.md), regression suite coverage of threshold behavior.
 - Feature [`08--python-compat/01-cli-shim.md`](../../feature_catalog/08--python-compat/01-cli-shim.md).
 - Source: `.opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py`.
 

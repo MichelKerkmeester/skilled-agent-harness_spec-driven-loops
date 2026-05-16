@@ -17,7 +17,7 @@ trigger_phrases:
 <!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
-Validate that `lib/scorer/ablation.ts` supports ablation protocols where each lane can be disabled in isolation to measure contribution, and that ablation runs do not mutate the live weights or persist across calls.
+Validate that `lib/scorer/ablation.ts` supports ablation protocols where each lane can be disabled in isolation to measure contribution and that ablation runs do not mutate the live weights or persist across calls.
 
 ---
 
@@ -26,7 +26,7 @@ Validate that `lib/scorer/ablation.ts` supports ablation protocols where each la
 <!-- ANCHOR:2-scenario-contract -->
 ## 2. SCENARIO CONTRACT
 
-- Repo root; MCP server built.
+- Repo root. MCP server built.
 - `advisor_validate` exposes ablation slices or direct ablation entry is available via internal harness.
 - Capture the canonical full-corpus baseline (80.5%).
 
@@ -36,6 +36,8 @@ Validate that `lib/scorer/ablation.ts` supports ablation protocols where each la
 
 <!-- ANCHOR:3-test-execution -->
 ## 3. TEST EXECUTION
+
+> **Structure deviation note (007-deferred-final).** This scenario uses a numbered-step plus Expected Signals plus Failure Modes shape instead of the canonical Prompt/Commands/Expected/Evidence/Pass-Fail/Failure-Triage subsections. The deviation is intentional for this skill playbook category to keep scenario semantics tightly bound to runtime output checks. See `references/deferred-decisions.md` §F34 for rationale.
 
 1. Capture baseline:
 
@@ -58,7 +60,7 @@ advisor_validate({"skillSlug":null})
 
 | Symptom | Detection | Action |
 | --- | --- | --- |
-| Ablation mutates live weights | `advisor_status` differs post-run | Block release; ablation must be side-effect-free. |
+| Ablation mutates live weights | `advisor_status` differs post-run | Block release. Ablation must be side-effect-free. |
 | Ablation numbers match baseline exactly | Disabling a lane has no effect | Inspect `ablation.ts` weight override wiring. |
 | Ablation crashes | Runtime exception | Treat as HALT and audit ablation path. |
 
@@ -69,7 +71,7 @@ advisor_validate({"skillSlug":null})
 <!-- ANCHOR:4-source-files -->
 ## 4. SOURCE FILES
 
-- Scenario [SC-001](./001-five-lane-fusion.md) — fusion baseline.
+- Scenario [SC-001](./001-five-lane-fusion.md), fusion baseline.
 - Feature [`04--scorer-fusion/05-ablation.md`](../../feature_catalog/04--scorer-fusion/05-ablation.md).
 - Source: `.opencode/skills/system-skill-advisor/mcp_server/lib/scorer/ablation.ts`.
 

@@ -25,8 +25,8 @@ Avoid silently picking a single winner when two candidates are tied or near-tied
 
 `lib/scorer/ambiguity.ts` evaluates a **dual-margin OR** predicate against the top-1 candidate. A candidate joins the ambiguity cluster when the gap on EITHER axis is within 0.05:
 
-- `AMBIGUITY_MARGIN = 0.05` on aggregate `score` (keeps cluster aligned with the score-based fusion ranking — F-012-C2-04 invariant).
-- `AMBIGUITY_CONFIDENCE_MARGIN = 0.05` on `confidence` (catches user-visible near-ties when score gap just exceeds margin — Packet 084, SAD-002 fix).
+- `AMBIGUITY_MARGIN = 0.05` on aggregate `score` (keeps cluster aligned with the score-based fusion ranking, F-012-C2-04 invariant).
+- `AMBIGUITY_CONFIDENCE_MARGIN = 0.05` on `confidence` (catches user-visible near-ties when score gap just exceeds margin, Packet 084, SAD-002 fix).
 
 If either gap is within margin, the response carries an ambiguity signal that the render path surfaces as an ambiguous brief. A candidate is unambiguously ranked only when **both** gaps exceed margin.
 

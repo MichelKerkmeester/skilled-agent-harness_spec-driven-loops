@@ -1,6 +1,6 @@
 ---
 title: "Skill graph status"
-description: "Reports skill graph health, staleness, families, categories, schema versions, and DB status."
+description: "Reports skill graph health, staleness, families, categories, schema versions and DB status."
 ---
 
 # Skill graph status
@@ -11,7 +11,7 @@ description: "Reports skill graph health, staleness, families, categories, schem
 ## 1. OVERVIEW
 
 `skill_graph_status` is the read-only health surface for the SQLite skill graph.
-It reports totals, family/category breakdowns, staleness, validation status, and
+It reports totals, family/category breakdowns, staleness, validation status and
 database availability.
 <!-- /ANCHOR:overview -->
 

@@ -1,6 +1,6 @@
 ---
 title: "System Skill Advisor MCP Server"
-description: "Standalone package home for skill-advisor handlers, libraries, schemas, scripts, tests, benchmarks, and database ownership."
+description: "Standalone package home for skill-advisor handlers, libraries, schemas, scripts, tests, benchmarks and database ownership."
 trigger_phrases:
   - "system skill advisor mcp server"
   - "advisor mcp server"
@@ -9,7 +9,7 @@ trigger_phrases:
 
 # System Skill Advisor MCP Server
 
-> Standalone MCP runtime for skill recommendation routing, freshness tracking, and skill graph relationship queries.
+> Standalone MCP runtime for skill recommendation routing, freshness tracking and skill graph relationship queries.
 
 <!-- ANCHOR:table-of-contents -->
 ## TABLE OF CONTENTS
@@ -35,14 +35,14 @@ trigger_phrases:
 
 Current state:
 
-- `advisor-server.ts` (262 lines) is the MCP transport entrypoint. It registers tools, manages daemon lifecycle, and triggers skill metadata indexing on startup.
+- `advisor-server.ts` (262 lines) is the MCP transport entrypoint. It registers tools, manages daemon lifecycle and triggers skill metadata indexing on startup.
 - `tools/` defines tool descriptors and dispatches calls. `tools/index.ts:37-43` registers `TOOL_DEFINITIONS` with 4 advisor tools plus the spread of skill-graph tools.
 - `handlers/` owns orchestration for advisor tools (recommend, rebuild, status, validate) and skill-graph subhandlers (scan, query, status, validate, propagate_enhances).
-- `lib/` carries the runtime helpers across 11 subdirectories: `scorer/`, `daemon/`, `freshness/`, `lifecycle/`, `derived/`, `compat/`, `auth/`, `corpus/`, `cross-skill-edges/`, `context/`, and `shadow/`, plus several flat modules.
-- `database/skill-graph.sqlite` stores skill metadata, relationships, and derived signals. Schema initialization and prepared queries live in `lib/skill-graph/skill-graph-db.ts` and `lib/skill-graph/skill-graph-queries.ts`.
+- `lib/` carries the runtime helpers across 11 subdirectories: `scorer/`, `daemon/`, `freshness/`, `lifecycle/`, `derived/`, `compat/`, `auth/`, `corpus/`, `cross-skill-edges/`, `context/` and `shadow/`, plus several flat modules.
+- `database/skill-graph.sqlite` stores skill metadata, relationships and derived signals. Schema initialization and prepared queries live in `lib/skill-graph/skill-graph-db.ts` and `lib/skill-graph/skill-graph-queries.ts`.
 - Packet 013/009/011 moved the skill graph DB/query library and startup lifecycle under this package. Extraction is complete.
 
-This package is local-first. It reads repository-local skill metadata, writes package-local SQLite state, and communicates with MCP clients via stdio transport.
+This package is local-first. It reads repository-local skill metadata, writes package-local SQLite state and communicates with MCP clients via stdio transport.
 
 <!-- /ANCHOR:overview -->
 
@@ -231,12 +231,12 @@ mcp_server/
 |---|---|
 | `advisor-server.ts` (lines 1-262) | MCP transport entrypoint, tool registration, daemon startup, skill graph indexing via `indexSkillMetadata`. |
 | `tools/index.ts` (lines 1-70) | Tool descriptor registry (`TOOL_DEFINITIONS` at lines 37-43) and dispatch router for 9 public tools. |
-| `tools/skill-graph-tools.ts` (lines 1-143) | Skill graph tool definitions for scan, query, status, validate, and propagate_enhances. |
+| `tools/skill-graph-tools.ts` (lines 1-143) | Skill graph tool definitions for scan, query, status, validate and propagate_enhances. |
 | `handlers/index.ts` | Re-exports handler entrypoints for advisor and skill-graph operations. |
-| `lib/skill-graph/skill-graph-db.ts` | SQLite schema initialization, metadata indexing, stats, and row mapping. |
+| `lib/skill-graph/skill-graph-db.ts` | SQLite schema initialization, metadata indexing, stats and row mapping. |
 | `lib/skill-graph/skill-graph-queries.ts` | Prepared graph relationship queries (depends_on, dependents, enhances, hubs). |
 | `lib/scorer/` | Native scoring implementation with lane-based attribution and calibration. |
-| `lib/daemon/lifecycle.ts` | Advisor daemon startup, shutdown, and lifecycle orchestration. |
+| `lib/daemon/lifecycle.ts` | Advisor daemon startup, shutdown and lifecycle orchestration. |
 | `database/skill-graph.sqlite` | Local SQLite database for skill metadata and relationships. |
 
 <!-- /ANCHOR:key-files -->
@@ -248,9 +248,9 @@ mcp_server/
 
 | Boundary | Rule |
 |---|---|
-| Public API | MCP tools are exposed through `advisor-server.ts`, `tools/`, and `handlers/`. |
+| Public API | MCP tools are exposed through `advisor-server.ts`, `tools/` and `handlers/`. |
 | Transport → Tools | `advisor-server.ts` imports and dispatches through `tools/index.ts`. |
-| Handler logic | Handlers may call `lib/`, schemas, and database adapters. |
+| Handler logic | Handlers may call `lib/`, schemas and database adapters. |
 | Domain logic | `lib/` modules should not import handlers or MCP tool registration code. |
 | Storage | SQLite access stays behind `lib/skill-graph/` adapters that own schema and migration rules. |
 | Schemas | `schemas/` are contracts only. They do not orchestrate handlers. |
@@ -308,12 +308,12 @@ The server registers 9 public tools (4 advisor + 5 skill_graph) defined in `tool
 | `advisor-server.ts` | MCP server | Main MCP server entrypoint, registers tools, manages daemon lifecycle. |
 | `advisor_recommend` | Tool | Returns skill recommendations for a given prompt. |
 | `advisor_rebuild` | Tool | Rebuilds the advisor index from skill metadata. |
-| `advisor_status` | Tool | Reports advisor health, daemon state, freshness, generation, and trust status. |
+| `advisor_status` | Tool | Reports advisor health, daemon state, freshness, generation and trust status. |
 | `advisor_validate` | Tool | Validates advisor configuration and routing bundle. |
 | `skill_graph_scan` | Tool | Indexes or re-indexes skill metadata into SQLite. |
 | `skill_graph_query` | Tool | Queries skill graph relationships (dependencies, enhances, hubs). |
 | `skill_graph_status` | Tool | Reports skill graph health and counts. |
-| `skill_graph_validate` | Tool | Validates skill graph for schema drift, broken edges, and cycles. |
+| `skill_graph_validate` | Tool | Validates skill graph for schema drift, broken edges and cycles. |
 | `skill_graph_propagate_enhances` | Tool | Detects and (opt-in) applies missing inbound enhance edges across skills. |
 | `npm run build` | Command | Builds TypeScript into `dist/`. |
 | `npm test` | Command | Runs Vitest and Python test coverage. |
@@ -339,7 +339,7 @@ python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sy
 python3 .opencode/skills/sk-doc/scripts/extract_structure.py .opencode/skills/system-skill-advisor/mcp_server/README.md
 ```
 
-Expected result: build and tests exit 0, README validation reports no blocking issues, and structure extraction returns a README document profile.
+Expected result: build and tests exit 0, README validation reports no blocking issues and structure extraction returns a README document profile.
 
 <!-- /ANCHOR:validation -->
 

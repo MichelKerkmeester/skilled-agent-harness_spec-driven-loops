@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-system-code-graph-doc-alignment"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/020-system-code-graph-doc-alignment"
     last_updated_at: "2026-05-16T09:01:20Z"
     last_updated_by: "main_agent"
     recent_action: "Scaffolded 028 packet for system-code-graph doc-drift alignment"
@@ -50,7 +50,7 @@ _memory:
 | **Status** | In Progress |
 | **Created** | 2026-05-16 |
 | **Branch** | `main` |
-| **Parent** | `system-spec-kit` |
+| **Parent** | `system-spec-kit/026-graph-and-context-optimization/007-code-graph` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -73,7 +73,7 @@ Land a single doc-only packet that aligns all four surfaces with the runtime sou
 ### In Scope
 - Update tool count from `10`/`12` to `11` in all authored docs, citing `tool-schemas.ts` as source-of-truth.
 - Update `graph-metadata.json` topology to `standalone`; remove or update `mcp_server_host`; rewrite `derived.causal_summary` to drop "12 MCP tools" + "co-resident".
-- Refresh `SKILL.md._memory.continuity` block to point at packet 028.
+- Refresh `SKILL.md._memory.continuity` block to point at packet 020.
 - Bump SKILL.md frontmatter `version` and README "Skill version" row from `1.0.0.0` to `1.0.3.1`.
 
 ### Out of Scope
@@ -105,9 +105,9 @@ Land a single doc-only packet that aligns all four surfaces with the runtime sou
 |----|-------------|---------------------|
 | REQ-001 | Tool count reconciled to 11 across all authored docs | `grep -nE "10 (tools\|MCP tools)\|12 MCP tools" .opencode/skills/system-code-graph/**/*.md graph-metadata.json` returns no hits in scope files |
 | REQ-002 | `graph-metadata.json` reflects standalone topology | `mcp_server_topology == "standalone"`; `mcp_server_host` absent or `null`; `causal_summary` no longer says "12 MCP tools" or "co-resident" |
-| REQ-003 | `SKILL.md._memory.continuity` refreshed | `packet_pointer == "system-spec-kit/028-system-code-graph-doc-alignment"`; `last_updated_at` ≥ 2026-05-16 |
+| REQ-003 | `SKILL.md._memory.continuity` refreshed | `packet_pointer == "system-spec-kit/026-graph-and-context-optimization/007-code-graph/020-system-code-graph-doc-alignment"`; `last_updated_at` ≥ 2026-05-16 |
 | REQ-004 | Version aligned to 1.0.3.1 | SKILL.md frontmatter `version: 1.0.3.1`; README "Skill version" row shows `1.0.3.1` |
-| REQ-005 | Packet strict-validate passes | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/028-system-code-graph-doc-alignment --strict` exits 0 |
+| REQ-005 | Packet strict-validate passes | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/020-system-code-graph-doc-alignment --strict` exits 0 |
 <!-- /ANCHOR:requirements -->
 
 ---

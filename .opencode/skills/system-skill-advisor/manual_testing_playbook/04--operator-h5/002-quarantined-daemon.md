@@ -1,6 +1,6 @@
 ---
 title: "OP-002 Quarantined Daemon"
-description: "H5 operator playbook for malformed SKILL.md quarantine detection, repair, and revert."
+description: "H5 operator playbook for malformed SKILL.md quarantine detection, repair and revert."
 trigger_phrases:
   - "op-002"
   - "quarantined daemon"

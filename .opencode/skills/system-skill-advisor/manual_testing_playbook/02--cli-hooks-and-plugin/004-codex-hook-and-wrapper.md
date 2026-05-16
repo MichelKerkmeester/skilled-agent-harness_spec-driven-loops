@@ -1,6 +1,6 @@
 ---
 title: "CL-004 Codex CLI Native Hooks And Wrapper Fallback"
-description: "Manual validation for Codex SessionStart startup context, UserPromptSubmit advisor brief injection, and prompt-wrapper fallback."
+description: "Manual validation for Codex SessionStart startup context, UserPromptSubmit advisor brief injection and prompt-wrapper fallback."
 trigger_phrases:
   - "cl-004"
   - "codex cli hook and prompt wrapper"
@@ -17,7 +17,7 @@ trigger_phrases:
 <!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
-Validate native Codex `SessionStart` startup-context injection, native `UserPromptSubmit` advisor brief injection, stdin-over-argv parsing, and the wrapper fallback used only when native hooks are unavailable.
+Validate native Codex `SessionStart` startup-context injection, native `UserPromptSubmit` advisor brief injection, stdin-over-argv parsing and the wrapper fallback used only when native hooks are unavailable.
 
 ---
 
@@ -76,7 +76,7 @@ codex features list | rg 'codex_hooks'
 
 - SessionStart exits `0` and returns `hookSpecificOutput.additionalContext` with startup context.
 - UserPromptSubmit exits `0` and returns `{}` or `hookSpecificOutput.additionalContext` with the compact advisor brief.
-- Wrapper exits `0` and returns `{}` unless hook policy reports unavailable; when active it returns `promptWrapper` and `wrappedPrompt`.
+- Wrapper exits `0` and returns `{}` unless hook policy reports unavailable. When active it returns `promptWrapper` and `wrappedPrompt`.
 - `codex_hooks` reports `true` in live Codex feature output when the feature is enabled.
 - Diagnostics use `runtime: "codex"`.
 - Stdin JSON is canonical when stdin and argv both contain JSON.
@@ -86,8 +86,8 @@ codex features list | rg 'codex_hooks'
 | Symptom | Detection | Action |
 | --- | --- | --- |
 | Wrapper always rewrites | Output contains wrapper when hook policy is available | Inspect `detectCodexHookPolicy`. |
-| SessionStart returns `{}` in a live smoke | No `additionalContext` in stdout | Check `~/.codex/config.toml`, hook command path, and build output. |
-| Argv beats stdin | Diagnostic source or output reflects argv prompt | Block release; parser precedence regressed. |
+| SessionStart returns `{}` in a live smoke | No `additionalContext` in stdout | Check `~/.codex/config.toml`, hook command path and build output. |
+| Argv beats stdin | Diagnostic source or output reflects argv prompt | Block release. Parser precedence regressed. |
 | Prompt text in diagnostics | Grep stderr | Block release. |
 
 ---

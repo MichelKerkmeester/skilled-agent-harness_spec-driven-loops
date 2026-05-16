@@ -28,7 +28,7 @@ Validate that `skill_advisor.py --stdin` reads exactly one prompt from stdin and
 
 - Repo root is the working directory.
 - Python 3 is available.
-- Native build exists; fallback is acceptable only when native status is unavailable.
+- Native build exists. Fallback is acceptable only when native status is unavailable.
 
 ---
 
@@ -61,7 +61,7 @@ printf '%s' "save this conversation context to memory" | python3 .opencode/skill
 | Symptom | Detection | Action |
 | --- | --- | --- |
 | Empty stdin ignored | Result routes argv or errors unexpectedly | Check stdin mode parser. |
-| Native required fails | JSON error says native unavailable | Run `advisor_status`; if unavailable, record environment blocker. |
+| Native required fails | JSON error says native unavailable | Run `advisor_status`. If unavailable, record environment blocker. |
 | Prompt leak | Prompt literal appears outside expected command transcript | Block release. |
 
 ---

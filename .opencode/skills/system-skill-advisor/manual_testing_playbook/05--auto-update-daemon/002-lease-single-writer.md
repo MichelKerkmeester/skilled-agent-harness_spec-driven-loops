@@ -38,6 +38,8 @@ Validate that only one daemon holds the workspace lease at a time and that a sta
 <!-- ANCHOR:3-test-execution -->
 ## 3. TEST EXECUTION
 
+> **Structure deviation note (007-deferred-final).** This scenario uses a numbered-step plus Expected Signals plus Failure Modes shape instead of the canonical Prompt/Commands/Expected/Evidence/Pass-Fail/Failure-Triage subsections. The deviation is intentional for this skill playbook category to keep scenario semantics tightly bound to runtime output checks. See `references/deferred-decisions.md` §F34 for rationale.
+
 1. In shell A, trigger a daemon bring-up via an MCP status call:
 
 ```text
@@ -52,7 +54,7 @@ advisor_status({"workspaceRoot":"/tmp/path-to-copy"})
 
 ### Expected Signals
 
-- Step 3 concurrent call returns trust metadata consistent with a single owner; no two writers advance generation at the same timestamp.
+- Step 3 concurrent call returns trust metadata consistent with a single owner. No two writers advance generation at the same timestamp.
 - Step 6 call after stale heartbeat succeeds and the new daemon acquires the lease.
 - `trustState.state` transitions from `stale` or `absent` back to `live` after reclaim.
 - No raw prompt text or workspace paths other than the documented `workspaceRoot` appear in diagnostics.
@@ -63,7 +65,7 @@ advisor_status({"workspaceRoot":"/tmp/path-to-copy"})
 | --- | --- | --- |
 | Duplicate writers | Generation advances twice with near-identical timestamps | Inspect `lib/daemon/lease.ts` acquire path and heartbeat table. |
 | Stale lease never reclaimed | Shell B remains `absent` after 90s | Verify heartbeat TTL and reclaim interval in `lease.ts`. |
-| Lease corruption | Daemon crashes on acquire | Treat as HALT; quarantine DB and run rebuild-from-source per OP-003. |
+| Lease corruption | Daemon crashes on acquire | Treat as HALT. Quarantine DB and run rebuild-from-source per OP-003. |
 
 ---
 
@@ -72,8 +74,8 @@ advisor_status({"workspaceRoot":"/tmp/path-to-copy"})
 <!-- ANCHOR:4-source-files -->
 ## 4. SOURCE FILES
 
-- Scenario [AU-003](./003-daemon-lifecycle-shutdown.md) — graceful shutdown and SIGTERM.
-- Scenario [OP-003](../04--operator-h5/003-unavailable-daemon.md) — recovery from unreadable DB.
+- Scenario [AU-003](./003-daemon-lifecycle-shutdown.md), graceful shutdown and SIGTERM.
+- Scenario [OP-003](../04--operator-h5/003-unavailable-daemon.md), recovery from unreadable DB.
 - Feature [`01--daemon-and-freshness/02-lease.md`](../../feature_catalog/01--daemon-and-freshness/02-lease.md).
 - Source: `.opencode/skills/system-skill-advisor/mcp_server/lib/daemon/lease.ts`.
 

@@ -1,15 +1,15 @@
 ---
-title: "Handover: mk-spec-memory comprehensive stress test (post-113 z_archive reindex)"
+title: "008: Handover — mk-spec-memory comprehensive stress test (post-113 z_archive reindex)"
 description: "Pick up a fresh session here. Stress test all 39 mk-spec-memory tools and run all 345 manual_testing_playbook scenarios via cli-devin SWE-1.6. Baseline state captured post commit b062b12b4."
 trigger_phrases:
-  - "114 handover"
+  - "008 handover"
   - "mk-spec-memory stress test"
   - "manual testing playbook full run"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/114-mk-spec-memory-stress-test"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/008-mk-spec-memory-stress-test"
     last_updated_at: "2026-05-16T13:55:00Z"
     last_updated_by: "main_agent"
     recent_action: "Authored handover for new-session pickup"
@@ -19,8 +19,8 @@ _memory:
       - "spec.md"
       - "handover.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000114001"
-      session_id: "114-handover-author"
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000008001"
+      session_id: "008-handover-author"
       parent_session_id: null
     completion_pct: 5
     open_questions:
@@ -30,7 +30,7 @@ _memory:
       - "Q0: scope — 39 tools + 345 scenarios. Confirmed by operator."
       - "Q0: executor — cli-devin SWE-1.6. Confirmed by operator."
 ---
-# Handover: mk-spec-memory comprehensive stress test
+# 008: Handover — mk-spec-memory comprehensive stress test
 
 <!-- SPECKIT_TEMPLATE_SOURCE: handover | v1.0 -->
 
@@ -145,11 +145,11 @@ Scenarios under `01--retrieval`, `04--maintenance`, `13--memory-quality-and-inde
 
 ```bash
 gtimeout 600 devin -p \
-  --prompt-file /tmp/114-XYZ/prompt-NNN.md \
+  --prompt-file /tmp/008-XYZ/prompt-NNN.md \
   --model swe-1.6 \
   --permission-mode dangerous \
-  --agent-config /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/114-mk-spec-memory-stress-test/evidence/agent-config-w14.json \
-  > /tmp/114-XYZ/logs/NNN.log 2>&1 </dev/null
+  --agent-config /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/008-mk-spec-memory-stress-test/evidence/agent-config-008.json \
+  > /tmp/008-XYZ/logs/NNN.log 2>&1 </dev/null
 ```
 
 Key flags:
@@ -172,7 +172,7 @@ Key flags:
 **Phase 0 — Baseline + scaffold (30 min, main agent)**
 
 1. Run the 5 baseline checks in §2 above.
-2. Author the missing 114 L1 docs (spec.md, plan.md, tasks.md, implementation-summary.md, description.json, graph-metadata.json) following packet 113's shape.
+2. Author the missing 008 L1 docs (spec.md, plan.md, tasks.md, implementation-summary.md, description.json, graph-metadata.json) following packet 113's shape.
 3. Create `evidence/` subdir with the cli-devin agent-config + results TSV scaffold.
 4. Commit scaffold.
 
@@ -208,7 +208,7 @@ For scenarios flagged PARTIAL due to z_archive count change:
 
 - Aggregate `evidence/tool-sweep.jsonl` + `evidence/playbook-results.jsonl`
 - Author `implementation-summary.md` with: total PASS / FAIL / SKIP / UNAUTOMATABLE / PARTIAL counts + per-category breakdown + z_archive-impact section
-- strict-validate 114 packet
+- strict-validate 008 packet
 - Memory save
 
 ### Decision points the new session needs to confirm
@@ -246,10 +246,10 @@ Before declaring Phase 4 complete:
 - [ ] Phase 2: every one of 345 playbook scenarios has a JSONL row in `evidence/playbook-results.jsonl`
 - [ ] Phase 3: every scenario flagged PARTIAL due to z_archive has been reclassified to PASS or FAIL
 - [ ] Phase 4: `implementation-summary.md` aggregates totals + per-category breakdown
-- [ ] `validate.sh --strict` on 114 packet exits 0
+- [ ] `validate.sh --strict` on 008 packet exits 0
 - [ ] z_archive rows in DB still ≥ 2618 (no inadvertent purge)
 - [ ] Decay multiplier 0.1 still returned by `getArchiveMultiplier()`
-- [ ] Git log shows 114 commits on main (estimated 30–50 commits)
+- [ ] Git log shows 008 commits on main (estimated 30–50 commits)
 - [ ] Memory save run via `/memory:save` after Phase 4
 <!-- /ANCHOR:validation-checklist -->
 

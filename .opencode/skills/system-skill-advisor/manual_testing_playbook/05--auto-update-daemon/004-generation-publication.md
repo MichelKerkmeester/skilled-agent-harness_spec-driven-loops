@@ -17,7 +17,7 @@ trigger_phrases:
 <!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
-Validate that generation counter increments are atomic, persisted through temp-file rename, and that post-commit snapshot publication exposes the new generation to `advisor_status` readers without partial-write leakage.
+Validate that generation counter increments are atomic, persisted through temp-file rename and that post-commit snapshot publication exposes the new generation to `advisor_status` readers without partial-write leakage.
 
 ---
 
@@ -29,7 +29,7 @@ Validate that generation counter increments are atomic, persisted through temp-f
 - Repo root as working directory.
 - MCP server built.
 - Daemon reachable via `advisor_status`.
-- Disposable workspace copy if destructive simulation is needed; step 3 touches a live skill file.
+- Disposable workspace copy if destructive simulation is needed. Step 3 touches a live skill file.
 
 ---
 
@@ -37,6 +37,8 @@ Validate that generation counter increments are atomic, persisted through temp-f
 
 <!-- ANCHOR:3-test-execution -->
 ## 3. TEST EXECUTION
+
+> **Structure deviation note (007-deferred-final).** This scenario uses a numbered-step plus Expected Signals plus Failure Modes shape instead of the canonical Prompt/Commands/Expected/Evidence/Pass-Fail/Failure-Triage subsections. The deviation is intentional for this skill playbook category to keep scenario semantics tightly bound to runtime output checks. See `references/deferred-decisions.md` §F34 for rationale.
 
 1. Capture baseline generation:
 
@@ -82,8 +84,8 @@ advisor_status({"workspaceRoot":"/absolute/path/to/repo"})
 <!-- ANCHOR:4-source-files -->
 ## 4. SOURCE FILES
 
-- Scenario [AU-001](./001-watcher-narrow-scope.md) — watcher scope.
-- Scenario [AU-005](./005-rebuild-from-source.md) — recovery when snapshot unreadable.
+- Scenario [AU-001](./001-watcher-narrow-scope.md), watcher scope.
+- Scenario [AU-005](./005-rebuild-from-source.md), recovery when snapshot unreadable.
 - Feature [`01--daemon-and-freshness/04-generation.md`](../../feature_catalog/01--daemon-and-freshness/04-generation.md).
 - Source: `.opencode/skills/system-skill-advisor/mcp_server/lib/freshness/generation.ts`.
 

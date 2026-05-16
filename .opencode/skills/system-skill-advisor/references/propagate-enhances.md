@@ -16,7 +16,7 @@ trigger_phrases:
 <!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
-`skill_graph_propagate_enhances` is an internal MCP tool that detects and optionally applies missing inbound `enhances` edges across skills. It is the ninth skill-graph tool and is gated behind trusted-caller authentication.
+`skill_graph_propagate_enhances` is an internal MCP tool that detects and optionally applies missing inbound `enhances` edges across skills. It is the internal trusted-caller tool in the `mk_skill_advisor` MCP server. See [tool-ids-reference.md](./tool-ids-reference.md) §4 for the canonical list of all 8 public plus 1 internal tools. It is gated behind trusted-caller authentication.
 
 The tool combines three weighted detection rules into a composite confidence score in the range 0 to 1. Higher confidence values indicate stronger evidence that a missing edge should exist. The tool is not invoked by other handlers automatically.
 
@@ -50,7 +50,7 @@ Three modes control read-write behavior:
 - `propose` - Returns candidates without making any changes. Functionally an alias for `report`.
 - `apply` - Writes selected candidates to source `graph-metadata.json` files.
 
-`apply` mode only writes candidates that are explicitly selected by ID, or selected through `applyAllHighConfidence=true` for candidates above `minConfidence` (default 0.75). `dryRun` defaults to true so a fresh `apply` call without explicit `dryRun:false` still produces a no-write preview.
+`apply` mode only writes candidates that are explicitly selected by ID or selected through `applyAllHighConfidence=true` for candidates above `minConfidence` (default 0.75). `dryRun` defaults to true so a fresh `apply` call without explicit `dryRun:false` still produces a no-write preview.
 
 ---
 

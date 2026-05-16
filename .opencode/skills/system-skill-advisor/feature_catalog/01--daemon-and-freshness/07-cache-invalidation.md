@@ -15,7 +15,7 @@ trigger_phrases:
 <!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
-Prevent stale cache reads after a graph reindex. Every cache entry is tagged with the generation under which it was computed; a generation bump atomically invalidates affected entries without blowing away the whole cache.
+Prevent stale cache reads after a graph reindex. Every cache entry is tagged with the generation under which it was computed. A generation bump atomically invalidates affected entries without blowing away the whole cache.
 
 <!-- /ANCHOR:overview -->
 

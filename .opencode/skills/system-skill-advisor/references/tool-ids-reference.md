@@ -17,7 +17,7 @@ trigger_phrases:
 <!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
-The `system-skill-advisor` MCP server exposes nine public tools and one internal tool. Public tools split into four advisor tools and five skill-graph tools. The internal tool is `skill_graph_propagate_enhances`, gated behind trusted-caller authentication.
+The `system-skill-advisor` MCP server exposes eight public tools plus one internal trusted-caller tool (9 total). Public tools split into four advisor tools and four skill-graph tools. The internal tool is `skill_graph_propagate_enhances`, gated behind trusted-caller authentication.
 
 All tools use snake_case names. All public tools are reachable through the `mk_skill_advisor` MCP namespace. Stable advisor tool IDs are preserved across the standalone migration (see [legacy-tool-bridge.md](./legacy-tool-bridge.md)).
 

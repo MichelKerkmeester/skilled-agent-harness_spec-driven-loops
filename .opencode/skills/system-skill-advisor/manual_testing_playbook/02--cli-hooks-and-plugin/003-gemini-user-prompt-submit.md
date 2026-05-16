@@ -62,7 +62,7 @@ printf '%s' '{"request":{"prompt":"create a flowchart for the auth process","cwd
 
 | Symptom | Detection | Action |
 | --- | --- | --- |
-| Unknown schema | Diagnostic `errorDetails: "GEMINI_UNKNOWN_SCHEMA"` | Update payload shape to include `prompt`, `userPrompt`, or `request.prompt`. |
+| Unknown schema | Diagnostic `errorDetails: "GEMINI_UNKNOWN_SCHEMA"` | Update payload shape to include `prompt`, `userPrompt` or `request.prompt`. |
 | No advisor output | `{}` with skipped status | Confirm prompt policy and status freshness. |
 | Prompt leaks | Prompt literal in stderr | Block release. |
 

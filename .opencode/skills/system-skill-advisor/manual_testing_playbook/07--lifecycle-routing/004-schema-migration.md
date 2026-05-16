@@ -1,6 +1,6 @@
 ---
 title: "LC-004 Schema v1 to v2 Additive Backfill"
-description: "Manual validation that schema migration from v1 to v2 is additive, preserves existing data, and supports rollback without data loss."
+description: "Manual validation that schema migration from v1 to v2 is additive, preserves existing data and supports rollback without data loss."
 trigger_phrases:
   - "lc-004"
   - "schema migration"
@@ -29,7 +29,7 @@ trigger_phrases:
 <!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
-Validate that `lib/lifecycle/schema-migration.ts` performs additive backfill from the v1 schema to v2 without dropping or mutating existing fields, and that a rollback to v1 leaves original data intact.
+Validate that `lib/lifecycle/schema-migration.ts` performs additive backfill from the v1 schema to v2 without dropping or mutating existing fields and that a rollback to v1 leaves original data intact.
 
 ---
 
@@ -48,6 +48,8 @@ Validate that `lib/lifecycle/schema-migration.ts` performs additive backfill fro
 
 <!-- ANCHOR:3-test-execution -->
 ## 3. TEST EXECUTION
+
+> **Structure deviation note (007-deferred-final).** This scenario uses a numbered-step plus Expected Signals plus Failure Modes shape instead of the canonical Prompt/Commands/Expected/Evidence/Pass-Fail/Failure-Triage subsections. The deviation is intentional for this skill playbook category to keep scenario semantics tightly bound to runtime output checks. See `references/deferred-decisions.md` §F34 for rationale.
 
 1. Snapshot the v1 state:
 
@@ -75,7 +77,7 @@ advisor_status({"workspaceRoot":"/tmp/path-to-copy"})
 
 | Symptom | Detection | Action |
 | --- | --- | --- |
-| Data loss during migration | v1 field missing in post state | Block release; migration must be additive. |
+| Data loss during migration | v1 field missing in post state | Block release. Migration must be additive. |
 | Rollback leaves v2 residue | Rollback state contains v2 columns | Audit rollback path in `lib/lifecycle/rollback.ts`. |
 | Migration errors surface to user | Error echoed in envelope | Confirm migration runs internally and fails open. |
 
@@ -86,8 +88,8 @@ advisor_status({"workspaceRoot":"/tmp/path-to-copy"})
 <!-- ANCHOR:4-source-files -->
 ## 4. SOURCE FILES
 
-- Scenario [LC-005](./005-rollback-lifecycle.md) — lifecycle rollback.
-- Scenario [AU-005](../05--auto-update-daemon/005-rebuild-from-source.md) — rebuild-from-source.
+- Scenario [LC-005](./005-rollback-lifecycle.md), lifecycle rollback.
+- Scenario [AU-005](../05--auto-update-daemon/005-rebuild-from-source.md), rebuild-from-source.
 - Feature [`03--lifecycle-routing/04-schema-migration.md`](../../feature_catalog/03--lifecycle-routing/04-schema-migration.md).
 - Source: `.opencode/skills/system-skill-advisor/mcp_server/lib/lifecycle/schema-migration.ts`.
 

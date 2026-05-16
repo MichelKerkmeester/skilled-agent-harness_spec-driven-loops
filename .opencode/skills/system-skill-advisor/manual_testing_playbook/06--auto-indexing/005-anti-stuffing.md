@@ -1,6 +1,6 @@
 ---
 title: "AI-005 Anti-Stuffing and Cardinality Caps"
-description: "Manual validation that derived lane anti-stuffing enforces cardinality caps, demotes repetition-dense tokens, and rejects adversarial fixtures."
+description: "Manual validation that derived lane anti-stuffing enforces cardinality caps, demotes repetition-dense tokens and rejects adversarial fixtures."
 trigger_phrases:
   - "ai-005"
   - "anti stuffing"
@@ -17,7 +17,7 @@ trigger_phrases:
 <!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
-Validate that `lib/derived/anti-stuffing.ts` enforces cardinality caps on derived entries, demotes tokens with suspicious repetition density, and rejects adversarial fixtures designed to stuff the routing surface.
+Validate that `lib/derived/anti-stuffing.ts` enforces cardinality caps on derived entries, demotes tokens with suspicious repetition density and rejects adversarial fixtures designed to stuff the routing surface.
 
 ---
 
@@ -28,7 +28,7 @@ Validate that `lib/derived/anti-stuffing.ts` enforces cardinality caps on derive
 
 - Disposable workspace copy.
 - MCP server built.
-- Pre-built adversarial fixtures under `scripts/fixtures/` or equivalent; otherwise generate a SKILL.md with >500 repeated trigger phrases as an isolated fixture.
+- Pre-built adversarial fixtures under `scripts/fixtures/` or equivalent. Otherwise generate a SKILL.md with >500 repeated trigger phrases as an isolated fixture.
 
 ---
 
@@ -36,6 +36,8 @@ Validate that `lib/derived/anti-stuffing.ts` enforces cardinality caps on derive
 
 <!-- ANCHOR:3-test-execution -->
 ## 3. TEST EXECUTION
+
+> **Structure deviation note (007-deferred-final).** This scenario uses a numbered-step plus Expected Signals plus Failure Modes shape instead of the canonical Prompt/Commands/Expected/Evidence/Pass-Fail/Failure-Triage subsections. The deviation is intentional for this skill playbook category to keep scenario semantics tightly bound to runtime output checks. See `references/deferred-decisions.md` §F34 for rationale.
 
 1. Copy an existing active skill into the disposable copy and duplicate a trigger phrase 1000 times in its body.
 2. Add a second fixture where a single n-gram is repeated with only punctuation variation.
@@ -46,7 +48,7 @@ touch /tmp/path-to-copy/.opencode/skills/adversarial-fixture/SKILL.md
 ```
 
 4. Read the fixture's `graph-metadata.json.derived` block.
-5. Call `advisor_recommend` with a prompt that would match the stuffed n-gram; compare the fixture's derived lane score against a normal skill.
+5. Call `advisor_recommend` with a prompt that would match the stuffed n-gram. Compare the fixture's derived lane score against a normal skill.
 
 ### Expected Signals
 
@@ -61,7 +63,7 @@ touch /tmp/path-to-copy/.opencode/skills/adversarial-fixture/SKILL.md
 | --- | --- | --- |
 | Cardinality cap ineffective | Derived list is unbounded | Inspect `lib/derived/anti-stuffing.ts` cap enforcement. |
 | No repetition demotion | Stuffed fixture outranks normals | Audit density-weighted scoring. |
-| Adversarial fixture routed | Fixture slug appears as top-1 | Block release; update rejection list. |
+| Adversarial fixture routed | Fixture slug appears as top-1 | Block release. Update rejection list. |
 
 ---
 
@@ -70,7 +72,7 @@ touch /tmp/path-to-copy/.opencode/skills/adversarial-fixture/SKILL.md
 <!-- ANCHOR:4-source-files -->
 ## 4. SOURCE FILES
 
-- Scenario [AI-002](./002-sanitizer-boundaries.md) — sanitizer at write boundaries.
+- Scenario [AI-002](./002-sanitizer-boundaries.md), sanitizer at write boundaries.
 - Feature [`02--auto-indexing/05-anti-stuffing.md`](../../feature_catalog/02--auto-indexing/05-anti-stuffing.md).
 - Source: `.opencode/skills/system-skill-advisor/mcp_server/lib/derived/anti-stuffing.ts`.
 

@@ -15,14 +15,14 @@ trigger_phrases:
 <!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
-Keep malformed or malicious skill labels out of every surface that touches trust: SQLite rows, graph-metadata derived writes, response envelopes, and adapter diagnostics. A single sanitizer, applied at every boundary, is the routing surface's anti-injection line.
+Keep malformed or malicious skill labels out of every surface that touches trust: SQLite rows, graph-metadata derived writes, response envelopes and adapter diagnostics. A single sanitizer, applied at every boundary, is the routing surface's anti-injection line.
 
 <!-- /ANCHOR:overview -->
 
 <!-- ANCHOR:current-reality -->
 ## 2. CURRENT REALITY
 
-`lib/derived/sanitizer.ts` normalizes skill labels to the slug shape `[a-z0-9][a-z0-9-]*` and rejects control characters, path separators, and prompt-shaped content. It runs at four write boundaries:
+`lib/derived/sanitizer.ts` normalizes skill labels to the slug shape `[a-z0-9][a-z0-9-]*` and rejects control characters, path separators and prompt-shaped content. It runs at four write boundaries:
 
 1. SQLite persistence writes from the daemon.
 2. `graph-metadata.json.derived` writes from `lib/derived/sync.ts`.

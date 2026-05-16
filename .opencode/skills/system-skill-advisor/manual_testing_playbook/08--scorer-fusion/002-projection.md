@@ -27,7 +27,7 @@ Validate that `lib/scorer/projection.ts` projects `skill_nodes` and `skill_edges
 ## 2. SCENARIO CONTRACT
 
 - Read-only inspection against the live repo or disposable copy.
-- MCP server built; daemon reachable.
+- MCP server built. Daemon reachable.
 - Access to runtime diagnostics where projection output can be observed (for example via `advisor_validate` slices or internal test harness).
 
 ---
@@ -36,6 +36,8 @@ Validate that `lib/scorer/projection.ts` projects `skill_nodes` and `skill_edges
 
 <!-- ANCHOR:3-test-execution -->
 ## 3. TEST EXECUTION
+
+> **Structure deviation note (007-deferred-final).** This scenario uses a numbered-step plus Expected Signals plus Failure Modes shape instead of the canonical Prompt/Commands/Expected/Evidence/Pass-Fail/Failure-Triage subsections. The deviation is intentional for this skill playbook category to keep scenario semantics tightly bound to runtime output checks. See `references/deferred-decisions.md` §F34 for rationale.
 
 1. Trigger a recommend call that exercises the graph_causal lane:
 
@@ -69,8 +71,8 @@ advisor_recommend({"prompt":"help me commit my changes","options":{"includeAttri
 <!-- ANCHOR:4-source-files -->
 ## 4. SOURCE FILES
 
-- Scenario [SC-001](./001-five-lane-fusion.md) — fusion weights.
-- Scenario [NC-003](../01--native-mcp-tools/003-native-validate-slices.md) — validate slices.
+- Scenario [SC-001](./001-five-lane-fusion.md), fusion weights.
+- Scenario [NC-003](../01--native-mcp-tools/003-native-validate-slices.md), validate slices.
 - Feature [`04--scorer-fusion/02-projection.md`](../../feature_catalog/04--scorer-fusion/02-projection.md).
 - Source: `.opencode/skills/system-skill-advisor/mcp_server/lib/scorer/projection.ts`.
 

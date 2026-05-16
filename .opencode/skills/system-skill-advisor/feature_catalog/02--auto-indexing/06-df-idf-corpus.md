@@ -53,7 +53,7 @@ Feed the lexical lane with corpus-aware statistics so common tokens are discount
 
 Related references:
 
-- [`03--lifecycle-routing/03-archive-handling.md`](../03--lifecycle-routing/03-archive-handling.md) — archive exclusion.
+- [`03--lifecycle-routing/03-archive-handling.md`](../03--lifecycle-routing/03-archive-handling.md), archive exclusion.
 - [`04--scorer-fusion/01-five-lane-fusion.md`](../04--scorer-fusion/01-five-lane-fusion.md).
 - [01-derived-extraction.md](./01-derived-extraction.md).
 <!-- /ANCHOR:source-metadata -->

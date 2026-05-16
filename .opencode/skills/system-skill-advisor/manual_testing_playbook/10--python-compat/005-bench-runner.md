@@ -17,7 +17,7 @@ trigger_phrases:
 <!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
-Validate that `scripts/skill_advisor_bench.py` runs the performance bench, measures latency for shim-driven calls, and emits results within the documented envelope (cache-hit p95 <= 50 ms, uncached p95 <= 60 ms at the native level).
+Validate that `scripts/skill_advisor_bench.py` runs the performance bench, measures latency for shim-driven calls and emits results within the documented envelope (cache-hit p95 <= 50 ms, uncached p95 <= 60 ms at the native level).
 
 ---
 
@@ -26,7 +26,7 @@ Validate that `scripts/skill_advisor_bench.py` runs the performance bench, measu
 <!-- ANCHOR:2-scenario-contract -->
 ## 2. SCENARIO CONTRACT
 
-- Repo root; Python 3 available.
+- Repo root. Python 3 available.
 - MCP server built.
 - System load low enough for stable latency measurement (no heavy concurrent jobs).
 
@@ -58,7 +58,7 @@ python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor_b
 
 | Symptom | Detection | Action |
 | --- | --- | --- |
-| p95 exceeds budget | Summary shows latency over threshold | Investigate regression; block release if repeatable. |
+| p95 exceeds budget | Summary shows latency over threshold | Investigate regression. Block release if repeatable. |
 | Bench hangs | No output after expected runtime | Check daemon health per AU-003 and OP-003. |
 | Cache-hit missing | All runs show uncached latency | Verify prompt cache wiring in `lib/prompt-cache.ts`. |
 
@@ -69,8 +69,8 @@ python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor_b
 <!-- ANCHOR:4-source-files -->
 ## 4. SOURCE FILES
 
-- Scenario [PC-004](./004-regression-suite.md) — regression suite.
-- Scenario [NC-003](../01--native-mcp-tools/003-native-validate-slices.md) — native validate latency slice.
+- Scenario [PC-004](./004-regression-suite.md), regression suite.
+- Scenario [NC-003](../01--native-mcp-tools/003-native-validate-slices.md), native validate latency slice.
 - Feature [`08--python-compat/03-bench-runner.md`](../../feature_catalog/08--python-compat/03-bench-runner.md).
 - Source: `.opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor_bench.py`.
 

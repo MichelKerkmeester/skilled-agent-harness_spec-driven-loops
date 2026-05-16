@@ -25,7 +25,7 @@ The server owns:
 - Tool handlers.
 - Scorer and projection code.
 - Skill graph database path resolution.
-- Advisor tests, fixtures, playbook, and feature catalog.
+- Advisor tests, fixtures, playbook and feature catalog.
 
 ---
 
@@ -38,7 +38,7 @@ The standalone boundary is a process boundary, not only a folder move.
 
 ```text
 mk_skill_advisor -> advisor tools and skill graph DB
-mk-spec-memory      -> memory, continuity, and spec-kit tools
+mk-spec-memory      -> memory, continuity and spec-kit tools
 ```
 
 The memory MCP server may keep a temporary bridge for legacy `advisor_*` calls during migration. It must not remain the long-term owner of advisor implementation modules or database writes.

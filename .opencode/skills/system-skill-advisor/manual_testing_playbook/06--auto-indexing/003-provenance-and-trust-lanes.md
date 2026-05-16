@@ -17,7 +17,7 @@ trigger_phrases:
 <!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
-Validate that `lib/derived/provenance.ts` writes provenance fingerprints for each derived entry and that `lib/derived/trust-lanes.ts` assigns the correct lane among `author`, `frontmatter`, `body`, `examples`, `local_docs`, and `derived_local`.
+Validate that `lib/derived/provenance.ts` writes provenance fingerprints for each derived entry and that `lib/derived/trust-lanes.ts` assigns the correct lane among `author`, `frontmatter`, `body`, `examples`, `local_docs` and `derived_local`.
 
 ---
 
@@ -27,8 +27,8 @@ Validate that `lib/derived/provenance.ts` writes provenance fingerprints for eac
 ## 2. SCENARIO CONTRACT
 
 - Disposable workspace copy or read-only inspection against the live repo.
-- MCP server built; daemon reachable.
-- A target skill with content spanning multiple lane sources (frontmatter, body, a fenced example, and a local references/ or assets/ doc).
+- MCP server built. Daemon reachable.
+- A target skill with content spanning multiple lane sources (frontmatter, body, a fenced example and a local references/ or assets/ doc).
 
 ---
 
@@ -36,6 +36,8 @@ Validate that `lib/derived/provenance.ts` writes provenance fingerprints for eac
 
 <!-- ANCHOR:3-test-execution -->
 ## 3. TEST EXECUTION
+
+> **Structure deviation note (007-deferred-final).** This scenario uses a numbered-step plus Expected Signals plus Failure Modes shape instead of the canonical Prompt/Commands/Expected/Evidence/Pass-Fail/Failure-Triage subsections. The deviation is intentional for this skill playbook category to keep scenario semantics tightly bound to runtime output checks. See `references/deferred-decisions.md` §F34 for rationale.
 
 1. Read the target skill's `graph-metadata.json.derived` block for the current state.
 2. Identify at least one derived entry per lane source present in the target.
@@ -70,8 +72,8 @@ touch .opencode/skills/sk-doc/SKILL.md
 <!-- ANCHOR:4-source-files -->
 ## 4. SOURCE FILES
 
-- Scenario [AI-001](./001-derived-extraction.md) — deterministic extraction.
-- Scenario [SC-004](../08--scorer-fusion/004-lane-attribution.md) — lane attribution on the read side.
+- Scenario [AI-001](./001-derived-extraction.md), deterministic extraction.
+- Scenario [SC-004](../08--scorer-fusion/004-lane-attribution.md), lane attribution on the read side.
 - Feature [`02--auto-indexing/03-provenance-and-trust-lanes.md`](../../feature_catalog/02--auto-indexing/03-provenance-and-trust-lanes.md).
 - Source: `.opencode/skills/system-skill-advisor/mcp_server/lib/derived/provenance.ts` and `lib/derived/trust-lanes.ts`.
 

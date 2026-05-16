@@ -1,6 +1,6 @@
 ---
 title: "Lane Contribution Attribution"
-description: "Attribution metadata that returns per-lane rawScore, weight, weightedScore, and shadowOnly fields without leaking prompt text."
+description: "Attribution metadata that returns per-lane rawScore, weight, weightedScore and shadowOnly fields without leaking prompt text."
 trigger_phrases:
   - "lane attribution"
   - "includeAttribution"
@@ -22,7 +22,7 @@ Make the fusion score auditable by exposing each lane's contribution per recomme
 <!-- ANCHOR:current-reality -->
 ## 2. CURRENT REALITY
 
-`lib/scorer/attribution.ts` builds the `laneBreakdown` array when `includeAttribution: true` is passed to `advisor_recommend`. Each entry carries exactly `lane`, `rawScore`, `weight`, `weightedScore`, and `shadowOnly`. The semantic lane always reports `shadowOnly: true`. Prompt substrings are never copied into attribution.
+`lib/scorer/attribution.ts` builds the `laneBreakdown` array when `includeAttribution: true` is passed to `advisor_recommend`. Each entry carries exactly `lane`, `rawScore`, `weight`, `weightedScore` and `shadowOnly`. The semantic lane always reports `shadowOnly: true`. Prompt substrings are never copied into attribution.
 
 <!-- /ANCHOR:current-reality -->
 

@@ -27,7 +27,7 @@ Validate that `lib/lifecycle/archive-handling.ts` keeps `z_archive/` and `z_futu
 ## 2. SCENARIO CONTRACT
 
 - Workspace containing at least one skill under `z_archive/` and one under `z_future/`.
-- MCP server built; daemon reachable.
+- MCP server built. Daemon reachable.
 
 ---
 
@@ -35,6 +35,8 @@ Validate that `lib/lifecycle/archive-handling.ts` keeps `z_archive/` and `z_futu
 
 <!-- ANCHOR:3-test-execution -->
 ## 3. TEST EXECUTION
+
+> **Structure deviation note (007-deferred-final).** This scenario uses a numbered-step plus Expected Signals plus Failure Modes shape instead of the canonical Prompt/Commands/Expected/Evidence/Pass-Fail/Failure-Triage subsections. The deviation is intentional for this skill playbook category to keep scenario semantics tightly bound to runtime output checks. See `references/deferred-decisions.md` §F34 for rationale.
 
 1. Call `advisor_status` and capture `skillCount`:
 
@@ -48,7 +50,7 @@ advisor_status({"workspaceRoot":"/absolute/path/to/repo"})
 
 ### Expected Signals
 
-- `advisor_status.skillCount` includes archived and future skills for visibility purposes, or is documented to exclude them if `skillCount` is defined as active-only.
+- `advisor_status.skillCount` includes archived and future skills for visibility purposes or is documented to exclude them if `skillCount` is defined as active-only.
 - Archived and future skill slugs do not appear in `recommendations[]` under `advisor_recommend`.
 - IDF computed by `lib/corpus/df-idf.ts` uses the active corpus only (see AI-004).
 - Lifecycle metadata on archived entries is available via inspection tools.
@@ -57,9 +59,9 @@ advisor_status({"workspaceRoot":"/absolute/path/to/repo"})
 
 | Symptom | Detection | Action |
 | --- | --- | --- |
-| Archived skill routed | Slug appears in recommendations | Block release; audit `archive-handling.ts` filter. |
+| Archived skill routed | Slug appears in recommendations | Block release. Audit `archive-handling.ts` filter. |
 | Archived skill not indexed | Inspection tool cannot find slug | Verify indexing policy allows archive discovery without routing. |
-| Future skill routed prematurely | `z_future/` slug appears as top-1 | Block release; future gating must hold until activation. |
+| Future skill routed prematurely | `z_future/` slug appears as top-1 | Block release. Future gating must hold until activation. |
 
 ---
 
@@ -68,8 +70,8 @@ advisor_status({"workspaceRoot":"/absolute/path/to/repo"})
 <!-- ANCHOR:4-source-files -->
 ## 4. SOURCE FILES
 
-- Scenario [AI-004](../06--auto-indexing/004-corpus-df-idf.md) — active-only corpus.
-- Scenario [LC-002](./002-supersession.md) — supersession routing.
+- Scenario [AI-004](../06--auto-indexing/004-corpus-df-idf.md), active-only corpus.
+- Scenario [LC-002](./002-supersession.md), supersession routing.
 - Feature [`03--lifecycle-routing/03-archive-handling.md`](../../feature_catalog/03--lifecycle-routing/03-archive-handling.md).
 - Source: `.opencode/skills/system-skill-advisor/mcp_server/lib/lifecycle/archive-handling.ts`.
 

@@ -61,7 +61,7 @@ advisor_status({"workspaceRoot":"/absolute/path/to/repo"})
 
 | Symptom | Detection | Action |
 | --- | --- | --- |
-| Status hides stale state | Sources newer than DB but freshness remains live | Block release; freshness probe is incorrect. |
+| Status hides stale state | Sources newer than DB but freshness remains live | Block release. Freshness probe is incorrect. |
 | Logs contain prompt text | Search logs for test prompt | Block release. |
 | Scan cannot repair | Freshness remains stale | Inspect file permissions and daemon lease. |
 

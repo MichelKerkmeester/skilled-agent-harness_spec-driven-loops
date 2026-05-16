@@ -17,7 +17,7 @@ trigger_phrases:
 <!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
-Validate that `includeAttribution: true` returns per-lane `lane`, `rawScore`, `weight`, `weightedScore`, and `shadowOnly` metadata via `lib/scorer/attribution.ts` and that no prompt text or prompt-derived evidence snippets appear in the attribution output.
+Validate that `includeAttribution: true` returns per-lane `lane`, `rawScore`, `weight`, `weightedScore` and `shadowOnly` metadata via `lib/scorer/attribution.ts` and that no prompt text or prompt-derived evidence snippets appear in the attribution output.
 
 ---
 
@@ -26,7 +26,7 @@ Validate that `includeAttribution: true` returns per-lane `lane`, `rawScore`, `w
 <!-- ANCHOR:2-scenario-contract -->
 ## 2. SCENARIO CONTRACT
 
-- Repo root; MCP server built.
+- Repo root. MCP server built.
 - Any prompt that routes to a known skill.
 
 ---
@@ -35,6 +35,8 @@ Validate that `includeAttribution: true` returns per-lane `lane`, `rawScore`, `w
 
 <!-- ANCHOR:3-test-execution -->
 ## 3. TEST EXECUTION
+
+> **Structure deviation note (007-deferred-final).** This scenario uses a numbered-step plus Expected Signals plus Failure Modes shape instead of the canonical Prompt/Commands/Expected/Evidence/Pass-Fail/Failure-Triage subsections. The deviation is intentional for this skill playbook category to keep scenario semantics tightly bound to runtime output checks. See `references/deferred-decisions.md` §F34 for rationale.
 
 1. Call with attribution enabled:
 
@@ -57,7 +59,7 @@ advisor_recommend({"prompt":"review this pull request","options":{"topK":1,"incl
 
 | Symptom | Detection | Action |
 | --- | --- | --- |
-| Extra fields in attribution | Evidence snippets or triggers present | Block release; attribution is contribution-only. |
+| Extra fields in attribution | Evidence snippets or triggers present | Block release. Attribution is contribution-only. |
 | Prompt substring in attribution | Grep hits | Block release as privacy failure. |
 | shadowOnly missing from semantic | `semantic_shadow` lacks flag | Audit `attribution.ts` lane tagging. |
 
@@ -68,8 +70,8 @@ advisor_recommend({"prompt":"review this pull request","options":{"topK":1,"incl
 <!-- ANCHOR:4-source-files -->
 ## 4. SOURCE FILES
 
-- Scenario [SC-001](./001-five-lane-fusion.md) — fusion weights sanity.
-- Scenario [SC-005](./005-ablation.md) — ablation protocol.
+- Scenario [SC-001](./001-five-lane-fusion.md), fusion weights sanity.
+- Scenario [SC-005](./005-ablation.md), ablation protocol.
 - Feature [`04--scorer-fusion/04-attribution.md`](../../feature_catalog/04--scorer-fusion/04-attribution.md).
 - Source: `.opencode/skills/system-skill-advisor/mcp_server/lib/scorer/attribution.ts`.
 

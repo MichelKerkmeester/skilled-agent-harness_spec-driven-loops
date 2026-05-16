@@ -15,14 +15,14 @@ trigger_phrases:
 <!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
-Give every consumer (native MCP tools, CLI hooks, plugin bridge, Python shim) a single shared vocabulary for describing whether advisor state is current, aged, missing, or unreadable, without ever blocking the reader.
+Give every consumer (native MCP tools, CLI hooks, plugin bridge, Python shim) a single shared vocabulary for describing whether advisor state is current, aged, missing or unreadable, without ever blocking the reader.
 
 <!-- /ANCHOR:overview -->
 
 <!-- ANCHOR:current-reality -->
 ## 2. CURRENT REALITY
 
-`lib/freshness/trust-state.ts` classifies state into `live`, `stale`, `absent`, or `unavailable`. The semantics are:
+`lib/freshness/trust-state.ts` classifies state into `live`, `stale`, `absent` or `unavailable`. The semantics are:
 
 | State | Meaning |
 | --- | --- |
@@ -31,7 +31,7 @@ Give every consumer (native MCP tools, CLI hooks, plugin bridge, Python shim) a 
 | `absent` | No snapshot exists for the workspace. |
 | `unavailable` | Underlying storage is unreadable (corruption, permissions). |
 
-All consumers fail open: a `stale`, `absent`, or `unavailable` state never crashes; the caller gets an explicit state and can decide whether to proceed.
+All consumers fail open: a `stale`, `absent` or `unavailable` state never crashes. The caller gets an explicit state and can decide whether to proceed.
 
 <!-- /ANCHOR:current-reality -->
 

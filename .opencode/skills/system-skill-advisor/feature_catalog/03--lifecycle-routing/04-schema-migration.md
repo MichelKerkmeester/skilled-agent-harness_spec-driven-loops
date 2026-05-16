@@ -22,7 +22,7 @@ Evolve graph metadata without breaking existing snapshots. Additive-only migrati
 <!-- ANCHOR:current-reality -->
 ## 2. CURRENT REALITY
 
-`lib/lifecycle/schema-migration.ts` upgrades v1 graph-metadata to v2 by adding new fields (such as lifecycle lanes and derived provenance) while leaving v1 fields byte-identical. Rollback restores the pre-migration state cleanly so downgrades do not leak v2 residue. The migration runs internally during daemon bring-up; errors fail open without exposing stack traces to MCP consumers.
+`lib/lifecycle/schema-migration.ts` upgrades v1 graph-metadata to v2 by adding new fields (such as lifecycle lanes and derived provenance) while leaving v1 fields byte-identical. Rollback restores the pre-migration state cleanly so downgrades do not leak v2 residue. The migration runs internally during daemon bring-up. Errors fail open without exposing stack traces to MCP consumers.
 
 <!-- /ANCHOR:current-reality -->
 

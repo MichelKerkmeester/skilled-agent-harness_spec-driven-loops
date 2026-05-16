@@ -37,6 +37,8 @@ Validate that `lib/lifecycle/rollback.ts` can revert lifecycle changes (superses
 <!-- ANCHOR:3-test-execution -->
 ## 3. TEST EXECUTION
 
+> **Structure deviation note (007-deferred-final).** This scenario uses a numbered-step plus Expected Signals plus Failure Modes shape instead of the canonical Prompt/Commands/Expected/Evidence/Pass-Fail/Failure-Triage subsections. The deviation is intentional for this skill playbook category to keep scenario semantics tightly bound to runtime output checks. See `references/deferred-decisions.md` §F34 for rationale.
+
 1. Capture a pre-mutation snapshot of lifecycle metadata.
 2. Apply a lifecycle mutation (example: mark a skill as superseded by another in graph-metadata or via admin path).
 3. Trigger rollback through the documented lifecycle rollback entry point.
@@ -54,7 +56,7 @@ Validate that `lib/lifecycle/rollback.ts` can revert lifecycle changes (superses
 
 | Symptom | Detection | Action |
 | --- | --- | --- |
-| Partial rollback | Some fields revert, others retain mutation | Block release; rollback must be atomic. |
+| Partial rollback | Some fields revert, others retain mutation | Block release. Rollback must be atomic. |
 | Rollback leaves residue in derived | Graph-metadata derived block still reflects mutation | Audit derived-sync integration with lifecycle rollback. |
 | Rollback fails silently | State does not change | Confirm rollback entry point is wired to lifecycle subsystem. |
 
@@ -65,7 +67,7 @@ Validate that `lib/lifecycle/rollback.ts` can revert lifecycle changes (superses
 <!-- ANCHOR:4-source-files -->
 ## 4. SOURCE FILES
 
-- Scenario [LC-004](./004-schema-migration.md) — schema migration rollback.
+- Scenario [LC-004](./004-schema-migration.md), schema migration rollback.
 - Feature [`03--lifecycle-routing/05-rollback.md`](../../feature_catalog/03--lifecycle-routing/05-rollback.md).
 - Source: `.opencode/skills/system-skill-advisor/mcp_server/lib/lifecycle/rollback.ts`.
 

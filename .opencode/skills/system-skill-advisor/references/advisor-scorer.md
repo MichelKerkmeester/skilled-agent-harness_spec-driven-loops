@@ -31,15 +31,19 @@ The scorer combines lane-specific evidence, text matching, age policy, ambiguity
 
 Five lanes participate in scoring. Each carries a fixed weight in the live fusion total. Lane attribution filters shadow-only lanes from dominant lane detection but keeps them in reason strings.
 
-| Lane | Weight | Source |
-|---|---|---|
-| explicit_author | 0.42 | Curated token and phrase boosts |
-| lexical | 0.28 | Token matching with synonym expansion |
-| graph_causal | 0.13 | Skill graph edge propagation |
-| derived_generated | 0.12 | Derived trigger metadata |
-| semantic_shadow | 0.05 | Embedding cosine similarity (shadow only) |
+| Lane | Live Weight | Shadow Weight | Source |
+|---|---|---|---|
+| explicit_author | 0.42 | 0.40 | Curated token and phrase boosts |
+| lexical | 0.28 | 0.25 | Token matching with synonym expansion |
+| graph_causal | 0.13 | 0.20 | Skill graph edge propagation |
+| derived_generated | 0.12 | 0.10 | Derived trigger metadata |
+| semantic_shadow | 0.05 | 0.05 | Embedding cosine similarity (shadow only) |
 
-Lane weights live in `mcp_server/lib/scorer/lane-registry.ts:7-19`. The derived-dominant check fires when derived lane evidence exceeds combined explicit and lexical evidence, triggering a confidence ceiling (`mcp_server/lib/scorer/attribution.ts:26-34`).
+Lane weights live in `mcp_server/lib/scorer/lane-registry.ts:7-19`. The derived-dominant check fires when derived lane evidence exceeds combined explicit plus lexical evidence, triggering a confidence ceiling (`mcp_server/lib/scorer/attribution.ts:26-34`).
+
+### Shadow vs live weight mechanics
+
+Shadow weights live alongside live weights as `DEFAULT_SHADOW_SCORER_LANE_WEIGHTS` in `mcp_server/lib/scorer/lane-registry.ts:32-38`. Shadow mode (set via `SPECKIT_ADVISOR_SHADOW_MODE=1`) routes scoring through the shadow weights for evaluation runs without affecting the live ranking. The shadow lane (`semantic_shadow`) carries `shadowOnly=true` so it contributes to reasoning trails but is filtered out of dominant-lane detection in live mode.
 
 ---
 
@@ -103,9 +107,32 @@ Age-policy haircut reduces derived scores based on projection age and skill life
 <!-- ANCHOR:8-score-fusion-and-confidence-calibration -->
 ## 8. SCORE FUSION AND CONFIDENCE CALIBRATION
 
-Fusion combines weighted lane contributions into a final score, then applies confidence assembly based on live normalization, direct evidence and intent signals. Confidence uses `liveNormalized` (`score/liveTotal`) as the primary ramp with `baseConstant=0.52` plus `liveNormalizedRampCoefficient=0.43` (`mcp_server/lib/scorer/scoring-constants.ts:141-144`).
+Fusion combines weighted lane contributions into a final score, then applies confidence assembly based on live normalization, direct evidence plus intent signals. Confidence uses `liveNormalized` (`score/liveTotal`) as the primary ramp with `baseConstant=0.52` plus `liveNormalizedRampCoefficient=0.43` (`mcp_server/lib/scorer/scoring-constants.ts:141-144`).
 
 The derived-dominant short-circuit pins confidence to 0.72 when the derived lane dominates and `directScore < 0.2` (`mcp_server/lib/scorer/scoring-constants.ts:146-147`). A task-intent floor of 0.82 applies when `directScore >= 0.18` or `liveNormalized >= 0.2`, with a dispersion guard against token-stuffing (`mcp_server/lib/scorer/scoring-constants.ts:149-156`).
+
+### Confidence calibration constants (full reference)
+
+| Constant | Default | Behavior |
+|---|---|---|
+| `baseConstant` | 0.52 | Confidence floor for any non-zero score. |
+| `liveNormalizedRampCoefficient` | 0.43 | Coefficient on `liveNormalized` (score/liveTotal). |
+| `liveNormalizedRampGain` | 1.25 | Additional gain applied beyond base ramp. |
+| `readOnlyExplainerFloor` | 0.25 | Floor for read-only explainer cases. |
+| `readOnlyRouteAllowedFloor` | 0.82 | Floor for read-only routes that pass intent checks. |
+| `derivedDominantConfidence` | 0.72 | Pinned ceiling when derived lane dominates and `directScore < 0.2`. |
+| `taskIntentFloor` | 0.82 | Floor when `directScore >= 0.18` or `liveNormalized >= 0.2`. |
+| `directScoreFloor` | 0.82 | Floor when `directScore >= 0.75`. |
+| `hardCeiling` | 0.95 | Maximum confidence regardless of inputs. |
+| `noEvidenceFloor` | 0.42 | Uncertainty floor when no evidence is present. |
+| `someEvidenceFloor` | 0.30 | Uncertainty floor when only weak evidence is present. |
+| `mediumEvidenceFloor` | 0.22 | Uncertainty floor for moderate evidence. |
+| `highEvidenceFloor` | 0.18 | Uncertainty floor for high evidence. |
+| `directEvidenceDiscount` | -0.06 | Discount applied to uncertainty when `directScore >= 0.75`. |
+| `lowConfidencePenalty` | +0.08 | Penalty added to uncertainty when `confidence < 0.8`. |
+| `ambiguityMargin` | 0.05 | Score-gap and confidence-gap margin for cluster detection. |
+
+All 16 constants live in `mcp_server/lib/scorer/scoring-constants.ts:141-170` under the `ConfidenceCalibration` interface. Changes require measured evidence plus a synchronized update across this doc, the feature catalog, plus the manual playbook.
 
 ---
 

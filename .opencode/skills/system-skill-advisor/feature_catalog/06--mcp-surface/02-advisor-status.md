@@ -1,6 +1,6 @@
 ---
 title: "advisor_status MCP Tool"
-description: "Diagnostic-only native MCP tool that reports advisor freshness, generation, trust state, skillCount, lastScanAt, and canonical lane weights without rebuilding stale state."
+description: "Diagnostic-only native MCP tool that reports advisor freshness, generation, trust state, skillCount, lastScanAt and canonical lane weights without rebuilding stale state."
 trigger_phrases:
   - "advisor_status"
   - "mcp status tool"
@@ -22,9 +22,9 @@ Give operators and runtimes a single diagnostic read that summarizes whether adv
 <!-- ANCHOR:current-reality -->
 ## 2. CURRENT REALITY
 
-`handlers/advisor-status.ts` returns `freshness`, `generation`, `trustState` (with `state` and optional `reason`), `skillCount`, `lastScanAt`, and `laneWeights` (the canonical 5-lane configuration). Freshness vocabulary is `live / stale / absent / unavailable`. The call is fail-open: even when the daemon is absent, status returns a well-formed envelope describing the shortfall.
+`handlers/advisor-status.ts` returns `freshness`, `generation`, `trustState` (with `state` and optional `reason`), `skillCount`, `lastScanAt` and `laneWeights` (the canonical 5-lane configuration). Freshness vocabulary is `live / stale / absent / unavailable`. The call is fail-open: even when the daemon is absent, status returns a well-formed envelope describing the shortfall.
 
-`readAdvisorStatus()` is strictly diagnostic. It reports stale, absent, or unavailable advisor state and does not repair it. Operators should call `advisor_rebuild` when status reports stale state or when a forced rebuild is needed.
+`readAdvisorStatus()` is strictly diagnostic. It reports stale, absent or unavailable advisor state and does not repair it. Operators should call `advisor_rebuild` when status reports stale state or when a forced rebuild is needed.
 
 <!-- /ANCHOR:current-reality -->
 

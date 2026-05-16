@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/030-mcp-shared-dependency-startup-fix"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/015-mcp-shared-dependency-startup-fix"
     last_updated_at: "2026-05-16T10:18:19Z"
     last_updated_by: "main_agent"
     recent_action: "Patched dependencies and prevention docs"
@@ -40,7 +40,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `system-spec-kit/030-mcp-shared-dependency-startup-fix` |
+| **Spec Folder** | `system-spec-kit/026-graph-and-context-optimization/015-mcp-shared-dependency-startup-fix` |
 | **Completed** | 2026-05-16 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
@@ -75,7 +75,7 @@ The two MCP servers that were crashing at Codex startup can now resolve `@spec-k
 | `.opencode/commands/doctor/assets/doctor_mcp_debug.yaml` | Modified | Adds shared dependency repair actions and failure triage guidance. |
 | `.opencode/skills/system-skill-advisor/INSTALL_GUIDE.md` | Modified | Documents shared dependency verification and `ERR_MODULE_NOT_FOUND` recovery. |
 | `.opencode/skills/system-code-graph/INSTALL_GUIDE.md` | Modified | Clarifies standalone runtime semantics and documents shared dependency recovery. |
-| `.opencode/specs/system-spec-kit/030-mcp-shared-dependency-startup-fix/*` | Created | Tracks scope and verification evidence. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/015-mcp-shared-dependency-startup-fix/*` | Created | Tracks scope and verification evidence. |
 <!-- /ANCHOR:what-built -->
 
 ---

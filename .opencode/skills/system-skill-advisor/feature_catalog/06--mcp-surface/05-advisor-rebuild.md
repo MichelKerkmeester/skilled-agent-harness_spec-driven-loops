@@ -1,6 +1,6 @@
 ---
 title: "advisor_rebuild MCP Tool"
-description: "Explicit operator MCP tool that rebuilds the native advisor skill graph from checked-in skill metadata when advisor_status reports stale, absent, or unavailable state."
+description: "Explicit operator MCP tool that rebuilds the native advisor skill graph from checked-in skill metadata when advisor_status reports stale, absent or unavailable state."
 trigger_phrases:
   - "advisor_rebuild"
   - "advisor rebuild"
@@ -15,7 +15,7 @@ trigger_phrases:
 <!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
-Give operators an explicit repair path for stale, absent, or unavailable advisor state without hiding rebuild side effects inside `advisor_status`.
+Give operators an explicit repair path for stale, absent or unavailable advisor state without hiding rebuild side effects inside `advisor_status`.
 
 <!-- /ANCHOR:overview -->
 
@@ -24,9 +24,9 @@ Give operators an explicit repair path for stale, absent, or unavailable advisor
 
 `advisor_rebuild` is the explicit MCP repair tool that keeps rebuild behavior out of `advisor_status`. The handler reads the current status first. If status is `live` and `force` is not true, it skips the rebuild and returns a diagnostic telling the caller to pass `force:true` when a live rebuild is intentional.
 
-When rebuild proceeds, it indexes `.opencode/skills/`, publishes a fresh skill-graph generation with `reason: "advisor_rebuild"`, rereads status, and returns freshness before/after, generation before/after, skill count, indexing summary, and warnings. `advisor_status` remains diagnostic-only and never repairs stale state.
+When rebuild proceeds, it indexes `.opencode/skills/`, publishes a fresh skill-graph generation with `reason: "advisor_rebuild"`, rereads status and returns freshness before/after, generation before/after, skill count, indexing summary and warnings. `advisor_status` remains diagnostic-only and never repairs stale state.
 
-The tool descriptor and dispatcher register `advisor_rebuild` alongside `advisor_recommend`, `advisor_status`, and `advisor_validate`. The standalone advisor server currently exposes eight public tools: four `advisor_*` tools and four `skill_graph_*` tools.
+The tool descriptor and dispatcher register `advisor_rebuild` alongside `advisor_recommend`, `advisor_status` and `advisor_validate`. The standalone advisor server currently exposes eight public tools: four `advisor_*` tools and four `skill_graph_*` tools.
 
 <!-- /ANCHOR:current-reality -->
 
@@ -37,7 +37,7 @@ The tool descriptor and dispatcher register `advisor_rebuild` alongside `advisor
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/system-skill-advisor/mcp_server/handlers/advisor-rebuild.ts:46-101` | Handler core | Reads status, skips live non-forced rebuilds, indexes skills, publishes generation, and returns before/after diagnostics |
+| `.opencode/skills/system-skill-advisor/mcp_server/handlers/advisor-rebuild.ts:46-101` | Handler core | Reads status, skips live non-forced rebuilds, indexes skills, publishes generation and returns before/after diagnostics |
 | `.opencode/skills/system-skill-advisor/mcp_server/handlers/advisor-rebuild.ts:103-115` | MCP handler | Serializes the rebuild output and exports the snake_case compatibility alias |
 | `.opencode/skills/system-skill-advisor/mcp_server/handlers/advisor-status.ts:89-94` | Handler contract | Documents that status is diagnostic-only and points repair callers to `advisor_rebuild` |
 | `.opencode/skills/system-skill-advisor/mcp_server/tools/advisor-rebuild.ts:8-17` | Tool descriptor | Declares the MCP tool and `force` option |
@@ -48,7 +48,7 @@ The tool descriptor and dispatcher register `advisor_rebuild` alongside `advisor
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/system-spec-kit/mcp_server/tests/advisor-rebuild.vitest.ts` | Vitest | Covers skip, forced rebuild, stale rebuild, and output schema behavior |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/advisor-rebuild.vitest.ts` | Vitest | Covers skip, forced rebuild, stale rebuild and output schema behavior |
 | `.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts` | Vitest | Validates strict tool input schemas for registered MCP tools |
 
 ---

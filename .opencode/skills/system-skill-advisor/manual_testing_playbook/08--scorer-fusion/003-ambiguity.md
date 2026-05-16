@@ -26,7 +26,7 @@ Validate that `lib/scorer/ambiguity.ts` returns an ambiguous brief when the top 
 <!-- ANCHOR:2-scenario-contract -->
 ## 2. SCENARIO CONTRACT
 
-- Repo root; MCP server built.
+- Repo root. MCP server built.
 - A curated prompt known to produce near-tied candidates (from routing-accuracy corpus ambiguous set).
 - `includeAttribution: true` and `topK: 2`.
 
@@ -36,6 +36,8 @@ Validate that `lib/scorer/ambiguity.ts` returns an ambiguous brief when the top 
 
 <!-- ANCHOR:3-test-execution -->
 ## 3. TEST EXECUTION
+
+> **Structure deviation note (007-deferred-final).** This scenario uses a numbered-step plus Expected Signals plus Failure Modes shape instead of the canonical Prompt/Commands/Expected/Evidence/Pass-Fail/Failure-Triage subsections. The deviation is intentional for this skill playbook category to keep scenario semantics tightly bound to runtime output checks. See `references/deferred-decisions.md` §F34 for rationale.
 
 1. Call `advisor_recommend` with the ambiguous prompt:
 
@@ -60,7 +62,7 @@ advisor_recommend({"prompt":"<ambiguous prompt from corpus>","options":{"topK":2
 | --- | --- | --- |
 | Ambiguity missed | Delta <= 0.05 but single top-1 returned | Inspect `ambiguity.ts` delta check. |
 | Ambiguity over-triggered | Delta > 0.05 flagged as ambiguous | Verify threshold constant. |
-| Ambiguity hides top-1 | Both candidates suppressed | Rendering bug; confirm `lib/render.ts`. |
+| Ambiguity hides top-1 | Both candidates suppressed | Rendering bug. Confirm `lib/render.ts`. |
 
 ---
 
@@ -69,8 +71,8 @@ advisor_recommend({"prompt":"<ambiguous prompt from corpus>","options":{"topK":2
 <!-- ANCHOR:4-source-files -->
 ## 4. SOURCE FILES
 
-- Scenario [NC-004](../01--native-mcp-tools/004-ambiguous-brief-rendering.md) — ambiguous brief rendering.
-- Scenario [SC-004](./004-lane-attribution.md) — lane attribution.
+- Scenario [NC-004](../01--native-mcp-tools/004-ambiguous-brief-rendering.md), ambiguous brief rendering.
+- Scenario [SC-004](./004-lane-attribution.md), lane attribution.
 - Feature [`04--scorer-fusion/03-ambiguity.md`](../../feature_catalog/04--scorer-fusion/03-ambiguity.md).
 - Source: `.opencode/skills/system-skill-advisor/mcp_server/lib/scorer/ambiguity.ts`.
 

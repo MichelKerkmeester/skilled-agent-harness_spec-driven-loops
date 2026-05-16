@@ -39,17 +39,17 @@ Routes non-trivial user requests to the right skill through the standalone Skill
 <!-- ANCHOR:1-when-to-use -->
 ## 1. WHEN TO USE
 
-Use this skill when the work is about skill selection, Gate 2 routing, advisor MCP tools, prompt-time skill-advisor hooks, skill graph freshness, or the standalone advisor package.
+Use this skill when the work is about skill selection, Gate 2 routing, advisor MCP tools, prompt-time skill-advisor hooks, skill graph freshness or the standalone advisor package.
 
 Activation signals:
 
 - A request asks which skill should handle a task.
 - A runtime hook needs a skill recommendation before execution.
-- An operator asks about `advisor_recommend`, `advisor_status`, `advisor_rebuild`, `advisor_validate`, `skill_graph_scan`, `skill_graph_query`, `skill_graph_status`, `skill_graph_validate`, or `skill_graph_propagate_enhances`.
-- A packet touches the skill graph, skill metadata, advisor scorer, advisor feature catalog, or manual testing playbook.
-- A migration step references ADR-001: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/006-system-skill-advisor-extraction/001-design-and-decision-record/decision-record.md`.
+- An operator asks about `advisor_recommend`, `advisor_status`, `advisor_rebuild`, `advisor_validate`, `skill_graph_scan`, `skill_graph_query`, `skill_graph_status`, `skill_graph_validate` or `skill_graph_propagate_enhances`.
+- A packet touches the skill graph, skill metadata, advisor scorer, advisor feature catalog or manual testing playbook.
+- A migration step references ADR-001: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-graph/006-system-skill-advisor-extraction/001-design-and-decision-record/decision-record.md`.
 
-Do not use this skill as a replacement for the recommended target skill. For example, route code implementation to `sk-code`, documentation authoring to `sk-doc`, git work to `sk-git`, and MCP orchestration to `mcp-code-mode` after the advisor has made the recommendation.
+Do not use this skill as a replacement for the recommended target skill. For example, route code implementation to `sk-code`, documentation authoring to `sk-doc`, git work to `sk-git` and MCP orchestration to `mcp-code-mode` after the advisor has made the recommendation.
 
 ---
 
@@ -58,7 +58,7 @@ Do not use this skill as a replacement for the recommended target skill. For exa
 <!-- ANCHOR:2-smart-routing -->
 ## 2. SMART ROUTING
 
-This package is mandatory context for non-trivial Gate 2 routing. The advisor scores the prompt against skill metadata, hook signals, graph-derived relations, and manual intent declarations, then returns calibrated recommendations.
+This package is mandatory context for non-trivial Gate 2 routing. The advisor scores the prompt against skill metadata, hook signals, graph-derived relations and manual intent declarations, then returns calibrated recommendations.
 
 Routing model:
 
@@ -79,19 +79,68 @@ user prompt
 Resource domains:
 
 - `feature_catalog/` documents current advisor capabilities and source-of-truth feature references.
-- `manual_testing_playbook/` documents deterministic operator scenarios for advisor tools, hooks, compatibility, daemon behavior, and skill graph flows.
+- `manual_testing_playbook/` documents deterministic operator scenarios for advisor tools, hooks, compatibility, daemon behavior and skill graph flows.
 - `references/` contains package policies and architectural summaries used by extraction and maintenance work.
-- `mcp_server/` owns handlers, schemas, tools, scripts, tests, library modules, and the package-local SQLite database.
+- `mcp_server/` owns handlers, schemas, tools, scripts, tests, library modules and the package-local SQLite database.
 
 ### Routing key
 
-The routing key is the prompt's intent class, scored by `advisor_recommend` against indexed skill metadata, hook signals and graph-derived relations. Operators may override the advisor by naming a skill explicitly in the prompt.
+The routing key is the prompt's intent class, scored by `advisor_recommend` against indexed skill metadata, hook signals plus graph-derived relations. Operators may override the advisor by naming a skill explicitly in the prompt.
+
+### Smart router pseudocode
+
+This pseudocode captures the canonical advisor routing contract callers must follow. See [`references/advisor-scorer.md`](./references/advisor-scorer.md) for the actual scorer mechanics.
+
+```python
+# Pattern 1: Runtime skill discovery
+# The advisor reads .opencode/skills/*/SKILL.md at every call.
+# Do not cache the inventory in caller code.
+INVENTORY = discover_skills(root=".opencode/skills")  # MCP-side, not caller-side
+
+# Pattern 2: Existence check before route
+# Always call advisor_status first when freshness matters.
+status = mcp__mk_skill_advisor__advisor_status({})
+if status["trustState"] in ("absent", "unavailable"):
+    return UNAVAILABLE_FALLBACK  # see Pattern 4
+
+# Pattern 3: Extensible routing key (the prompt itself)
+# The prompt IS the routing key. Caller passes it through unchanged.
+def get_routing_key(prompt: str) -> str:
+    return prompt.strip()
+
+# Pattern 4: Multi-tier graceful fallback
+recommendations = mcp__mk_skill_advisor__advisor_recommend({
+    "prompt": get_routing_key(user_prompt),
+    "options": {"topK": 5, "includeAttribution": True}
+})
+
+# Tier 1: ambiguous top scores (within 0.1 of each other), surface candidates
+if is_ambiguous(recommendations):
+    return SURFACE_CANDIDATES(recommendations[:3])
+
+# Tier 2: low confidence (top score below threshold), request disambiguation
+if recommendations[0]["score"] < CONFIDENCE_THRESHOLD:
+    return UNKNOWN_FALLBACK_CHECKLIST
+
+# Tier 3: happy path, invoke the recommended skill
+return invoke_skill(recommendations[0]["skill_id"])
+```
 
 ### Fallback contract
 
-- **Low confidence (top score below the configured threshold):** surface the top 3 candidates with their scores, request disambiguation and load no skill until the operator picks one.
-- **Advisor MCP unavailable:** fall back to keyword matching against each skill's frontmatter `trigger_phrases`, then announce the degraded mode.
+- **Low confidence (top score below the configured threshold):** surface the top 3 candidates with their scores, request disambiguation, load no skill until the operator picks one.
+- **Ambiguous top scores (within 0.1 of each other):** surface both candidates instead of routing silently.
+- **Advisor MCP unavailable:** fall back to Python `skill_advisor.py` shim, then to keyword matching against each skill's frontmatter `trigger_phrases`. Announce the degraded mode in the response.
 - **Empty result:** never route silently. Always emit a "no candidate above threshold" notice with a disambiguation checklist.
+
+```python
+UNKNOWN_FALLBACK_CHECKLIST = [
+    "Confirm the runtime surface where the request originated",
+    "Confirm the intent (file modification, research, debugging, planning)",
+    "Provide one concrete input, error or expected output",
+    "Confirm the verification command set before completion",
+]
+```
 
 ### Anti-patterns
 
@@ -123,11 +172,11 @@ Public (8):
 
 Internal trusted-caller (1):
 
-- `skill_graph_propagate_enhances` — gated behind trusted-caller auth (see `references/tool-ids-reference.md` §4)
+- `skill_graph_propagate_enhances`, gated behind trusted-caller auth (see `references/tool-ids-reference.md` §4)
 
-The stable tool ids matter because live consumers already call them from hooks, Python compatibility shims, plugin bridges, doctor workflows, install guides, and MCP clients. Server-level namespacing supplies the boundary, so callers use the standalone server without learning a new advisor vocabulary.
+The stable tool ids matter because live consumers already call them from hooks, Python compatibility shims, plugin bridges, doctor workflows, install guides and MCP clients. Server-level namespacing supplies the boundary, so callers use the standalone server without learning a new advisor vocabulary.
 
-The advisor implementation, skill-graph library, and package-local database now live under this skill package, while memory remains focused on memory tools.
+The advisor implementation, skill-graph library and package-local database now live under this skill package, while memory remains focused on memory tools.
 
 ---
 
@@ -166,9 +215,9 @@ Escalate if:
 
 Primary contract:
 
-- ADR-001: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/006-system-skill-advisor-extraction/001-design-and-decision-record/decision-record.md`
-- Extraction survey: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/006-system-skill-advisor-extraction/001-design-and-decision-record/research/extraction-survey.md`
-- Standalone MCP discussion: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/006-system-skill-advisor-extraction/001-design-and-decision-record/research/standalone-mcp-discussion.md`
+- ADR-001: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-graph/006-system-skill-advisor-extraction/001-design-and-decision-record/decision-record.md`
+- Extraction survey: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-graph/006-system-skill-advisor-extraction/001-design-and-decision-record/research/extraction-survey.md`
+- Standalone MCP discussion: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-graph/006-system-skill-advisor-extraction/001-design-and-decision-record/research/standalone-mcp-discussion.md`
 
 Package references:
 
@@ -190,7 +239,7 @@ This skill is healthy when:
 
 - `SKILL.md` frontmatter and `graph-metadata.json` parse cleanly.
 - Skill discovery sees `system-skill-advisor` as a first-class critical system skill.
-- Advisor routing requests resolve to this package without displacing target execution skills such as `sk-code`, `sk-doc`, or `system-spec-kit`.
+- Advisor routing requests resolve to this package without displacing target execution skills such as `sk-code`, `sk-doc` or `system-spec-kit`.
 - `advisor_*` and `skill_graph_*` public ids remain documented as stable.
 - The package-local database path is documented consistently.
 
@@ -204,14 +253,14 @@ This skill is healthy when:
 Current package state:
 
 - `mk_skill_advisor` is registered as a standalone MCP server.
-- Advisor handlers, schemas, tools, scripts, tests, docs, and database path ownership live under this package.
+- Advisor handlers, schemas, tools, scripts, tests, docs and database path ownership live under this package.
 - `skill_graph_*` MCP handlers and tool descriptors live under this package.
 - `lib/skill-graph/` database/query logic is fully migrated to `system-skill-advisor` (extraction complete).
 
 Expected consumers:
 
-- Prompt-time hooks for Claude, Codex, Gemini, and OpenCode.
-- MCP clients that call `advisor_recommend`, `advisor_status`, `advisor_rebuild`, `advisor_validate`, `skill_graph_scan`, `skill_graph_query`, `skill_graph_status`, `skill_graph_validate`, or `skill_graph_propagate_enhances`.
+- Prompt-time hooks for Claude, Codex, Gemini and OpenCode.
+- MCP clients that call `advisor_recommend`, `advisor_status`, `advisor_rebuild`, `advisor_validate`, `skill_graph_scan`, `skill_graph_query`, `skill_graph_status`, `skill_graph_validate` or `skill_graph_propagate_enhances`.
 - Doctor workflows that validate advisor health and rebuild state.
 - Skill graph indexers and routing accuracy checks.
 
@@ -224,8 +273,8 @@ Expected consumers:
 
 Related skills:
 
-- `system-spec-kit` owns spec folders, memory, validation, and packet governance.
-- `sk-doc` owns skill documentation, feature catalogs, install guides, and playbooks.
+- `system-spec-kit` owns spec folders, memory, validation and packet governance.
+- `sk-doc` owns skill documentation, feature catalogs, install guides and playbooks.
 - `sk-code` owns implementation once routing selects a code surface.
 - `mcp-code-mode` owns external MCP orchestration workflows.
 - `mcp-coco-index` is a peer semantic-search route for code discovery, not a replacement for advisor routing.

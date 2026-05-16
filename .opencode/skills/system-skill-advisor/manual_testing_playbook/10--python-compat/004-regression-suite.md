@@ -26,7 +26,7 @@ Validate that `scripts/skill_advisor_regression.py` runs the P0 regression datas
 <!-- ANCHOR:2-scenario-contract -->
 ## 2. SCENARIO CONTRACT
 
-- Repo root; Python 3 available.
+- Repo root. Python 3 available.
 - MCP server built so the shim has a native option to delegate to where relevant.
 - Regression dataset present at the fixture path.
 
@@ -60,7 +60,7 @@ python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor_r
 | Symptom | Detection | Action |
 | --- | --- | --- |
 | Fewer than 52 cases | Dataset loaded partial | Verify JSONL integrity. |
-| Regressions reported | One or more cases FAIL | Triage per case; block release until resolved. |
+| Regressions reported | One or more cases FAIL | Triage per case. Block release until resolved. |
 | Non-zero exit but zero failures | Suite exits abnormally | Inspect runner and post-run hooks. |
 
 ---
@@ -70,8 +70,8 @@ python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor_r
 <!-- ANCHOR:4-source-files -->
 ## 4. SOURCE FILES
 
-- Scenario [PC-005](./005-bench-runner.md) — bench runner.
-- Scenario [NC-003](../01--native-mcp-tools/003-native-validate-slices.md) — native validate.
+- Scenario [PC-005](./005-bench-runner.md), bench runner.
+- Scenario [NC-003](../01--native-mcp-tools/003-native-validate-slices.md), native validate.
 - Feature [`08--python-compat/02-regression-suite.md`](../../feature_catalog/08--python-compat/02-regression-suite.md).
 - Source: `.opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor_regression.py` and `scripts/fixtures/skill_advisor_regression_cases.jsonl`.
 

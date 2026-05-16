@@ -12,7 +12,7 @@ importance_tier: "important"
 
 # MCP Server: Spec Kit Memory Runtime
 
-> Local MCP runtime for memory retrieval, hooks, persistence, and diagnostics.
+> The local MCP runtime behind Spec Kit's memory. Every save, every search, every session-resume payload flows through this package.
 
 <!-- ANCHOR:table-of-contents -->
 ## TABLE OF CONTENTS
@@ -34,41 +34,47 @@ importance_tier: "important"
 <!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
-`mcp_server/` owns the Spec Kit Memory MCP runtime. It exposes tools for memory search, context recovery, checkpoints, evaluation, and maintenance.
+### What This Runtime Does
 
-Current state:
+Spec Kit's memory is not a feature flag. It is a running MCP server that you can stop, restart, swap out, or roll back without touching the rest of the framework. That server lives here.
 
-- `context-server.ts` is the server entrypoint for MCP transport and tool dispatch.
-- `tool-schemas.ts`, `schemas/`, and `tools/` define the public tool surface and input contracts.
-- `handlers/` and `lib/` own the shared runtime behavior behind the tools.
-- `database/` stores local SQLite state for indexed memory.
-- Runtime hooks under `hooks/` prepare startup, prompt, and compact-context payloads for supported clients.
-- Embedding provider selection is controlled by `EMBEDDINGS_PROVIDER`. The default `auto` cascade is Voyage when `VOYAGE_API_KEY` is set, then OpenAI when `OPENAI_API_KEY` is set, then `llama-cpp` when the local GGUF runtime is available, then `hf-local` as the local fallback.
+Every `/memory:save` you trigger flows through `context-server.ts`, gets schema-validated, lands in a handler, fans out across 5 retrieval channels (vector, FTS5, BM25, causal graph, degree), and writes into a local SQLite store next to the rest of your repo. Every `/spec_kit:resume` reads from the same store and rebuilds your last session's context. Every prompt-submit hook in Claude, Codex, Gemini, OpenCode, and Copilot calls into this package for its startup brief.
 
-This package is local-first. It reads and writes repository-local databases, generated build output, and hook payloads, while keeping authored spec docs outside the server package.
+The package is local-first by design. No cloud round-trip. No vendor lock-in. The database, the indexes, the migration state, and the hook payloads all live inside the repository so they travel with the code.
 
-### llama-cpp embeddings
+### How You Use It
 
-`llama-cpp` routes Memory MCP embeddings through `node-llama-cpp` and a local Q8_0 GGUF EmbeddingGemma file. Fresh clones need no manual migration: after the model is installed, `EMBEDDINGS_PROVIDER=auto` resolves to `llama-cpp` after cloud providers.
+You rarely touch this server directly. Six surfaces drive it for you:
+
+- **Slash commands.** `/memory:save`, `/memory:search`, `/memory:learn`, `/memory:manage`, `/spec_kit:resume` are the everyday entrypoints.
+- **Runtime hooks.** Each supported CLI ships a hook that injects the session brief at startup or prompt-submit time, populated by handlers in `hooks/`.
+- **The `mcp_*` tool surface.** Direct MCP callers (other agents, scripts, tests) reach the tools through `mcp__mk_spec_memory__*` after the server registers them.
+- **The plugin bridge.** OpenCode routes through a plugin entrypoint that calls into the same handlers.
+- **CLI scripts.** Maintenance, evaluation, and migration scripts live under `scripts/`.
+- **The compiled artifact.** `dist/context-server.js` is the entry your MCP client config points at after `npm run build`.
+
+### Embedding Provider Cascade
+
+The runtime resolves an embedding provider on every cold start. The default `auto` cascade tries Voyage first when `VOYAGE_API_KEY` is set, then OpenAI when `OPENAI_API_KEY` is set, then a local `llama-cpp` runtime running an `EmbeddingGemma` GGUF, then `hf-local` ONNX as the final fallback. Pin one explicitly with `EMBEDDINGS_PROVIDER` if you want deterministic behavior.
+
+The `llama-cpp` path keeps a separate vector index profile (`llama-cpp__unsloth-embeddinggemma-300m-gguf__768__q8`) so its embeddings never mix with `hf-local` results. Install it with:
 
 ```bash
 bash .opencode/skills/system-spec-kit/scripts/install-llama-cpp.sh
 ```
 
-The provider keeps a separate profile slug (`llama-cpp__unsloth-embeddinggemma-300m-gguf__768__q8`) so its vector index does not mix with `hf-local`.
+### Auto-Migration From `hf-local`
 
-### Migration
+Old `hf-local` installations migrate themselves on first daemon startup. The server detects the largest `context-index__hf-local__*.sqlite`, re-embeds every row into the `llama-cpp` store, validates row counts plus a sample-vector check, deletes the source sqlite (and any `-shm` / `-wal` companions), then drops `.auto-migration-complete.json` into `database/` so the migration never runs twice.
 
-Fresh clones do not need any migration work. Upgrades from a prior `hf-local` install are handled on the first Memory MCP daemon startup: the server detects the largest `context-index__hf-local__*.sqlite`, re-embeds rows into the `llama-cpp` store, validates matching row counts plus the sample-vector check, deletes the source sqlite and any `-shm`/`-wal` companions, then writes `.opencode/skills/system-spec-kit/mcp_server/database/.auto-migration-complete.json`.
-
-Use this opt-out to preserve the old warning-plus-manual-script behavior:
+Opt out by setting `MEMORY_AUTO_MIGRATE_HF_TO_LLAMA=false` and running the migration script manually:
 
 ```bash
 MEMORY_AUTO_MIGRATE_HF_TO_LLAMA=false
 npx tsx .opencode/skills/system-spec-kit/scripts/migrate-embeddings-to-llama-cpp.ts
 ```
 
-Use `EMBEDDINGS_PROVIDER=hf-local` when a host cannot load the GGUF runtime or when you intentionally want the canonical fallback provider for that run.
+Use `EMBEDDINGS_PROVIDER=hf-local` directly when a host cannot load the GGUF runtime, or when you want the canonical fallback for a specific run.
 
 <!-- /ANCHOR:overview -->
 

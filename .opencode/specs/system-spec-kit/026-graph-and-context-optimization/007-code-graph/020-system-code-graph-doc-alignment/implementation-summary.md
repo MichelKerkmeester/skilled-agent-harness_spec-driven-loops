@@ -7,11 +7,11 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-system-code-graph-doc-alignment"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/020-system-code-graph-doc-alignment"
     last_updated_at: "2026-05-16T09:01:20Z"
     last_updated_by: "main_agent"
-    recent_action: "Closed packet 028 with grep + validate evidence"
-    next_safe_action: "Commit on main citing packet 028"
+    recent_action: "Closed packet 020 with grep + validate evidence"
+    next_safe_action: "Commit on main citing packet 020"
     blockers: []
     key_files:
       - "spec.md"
@@ -38,7 +38,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 028-system-code-graph-doc-alignment |
+| **Spec Folder** | 020-system-code-graph-doc-alignment |
 | **Completed** | 2026-05-16 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
@@ -48,7 +48,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-The `system-code-graph` skill docs now match the runtime. Before this packet, three different tool counts circulated (10 in five files, 12 in `graph-metadata.json`), the metadata still claimed a pre-extraction `co-resident` topology with `mk-spec-memory` as host, the SKILL.md continuity pointer was 14 days stale, and the version string lagged the changelog by three releases. After this packet, every authored doc agrees on 11 tools, the metadata declares the standalone `mk-code-index` server, the continuity block points at packet 028, and the version row reads `1.0.3.1`.
+The `system-code-graph` skill docs now match the runtime. Before this packet, three different tool counts circulated (10 in five files, 12 in `graph-metadata.json`), the metadata still claimed a pre-extraction `co-resident` topology with `mk-spec-memory` as host, the SKILL.md continuity pointer was 14 days stale, and the version string lagged the changelog by three releases. After this packet, every authored doc agrees on 11 tools, the metadata declares the standalone `mk-code-index` server, the continuity block points at packet 020, and the version row reads `1.0.3.1`.
 
 ### Tool count alignment
 
@@ -60,7 +60,7 @@ You can now grep for tool count across the skill and get one answer. `tool-schem
 
 ### Continuity refresh
 
-SKILL.md `_memory.continuity` points at packet 028 with current timestamp and the active `key_files` list. The next `/spec_kit:resume` invocation lands the operator on this work instead of the older 025 sk-doc-alignment packet.
+SKILL.md `_memory.continuity` points at packet 020 with current timestamp and the active `key_files` list. The next `/spec_kit:resume` invocation lands the operator on this work instead of the older 025 sk-doc-alignment packet.
 
 ### Version bump
 
@@ -76,7 +76,7 @@ SKILL.md frontmatter and README key-stats both read `1.0.3.1`. This is a doc-onl
 | `.opencode/skills/system-code-graph/INSTALL_GUIDE.md` | Modified | `_NOTE_2_TOOLS` JSON + TOML stanzas |
 | `.opencode/skills/system-code-graph/feature_catalog/feature_catalog.md` | Modified | Line 38 tool count |
 | `.opencode/skills/system-code-graph/graph-metadata.json` | Modified | topology, host, edges context, causal_summary, last_updated_at |
-| `.opencode/specs/system-spec-kit/028-system-code-graph-doc-alignment/` | Created | This packet (6 files) |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/020-system-code-graph-doc-alignment/` | Created | This packet (6 files) |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -109,7 +109,7 @@ Twelve direct Edit-tool patches, one grep sweep, one strict-validate. No source-
 | Check | Result |
 |-------|--------|
 | Post-edit grep `10 (tools\|MCP tools)\|12 MCP tools` across 6 scope files | PASS (exit 1, no matches) |
-| `validate.sh --strict` on packet 028 | PASS (exit 0) |
+| `validate.sh --strict` on packet 020 | PASS (exit 0) |
 | `tool-schemas.ts` enumeration count | PASS (11 names) |
 | `graph-metadata.json` topology field | PASS (`standalone`) |
 | SKILL.md frontmatter version | PASS (`1.0.3.1`) |

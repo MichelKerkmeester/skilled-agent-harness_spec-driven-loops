@@ -10,25 +10,25 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/030-mcp-shared-dependency-startup-fix"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/015-mcp-shared-dependency-startup-fix"
     last_updated_at: "2026-05-16T10:18:19Z"
     last_updated_by: "main_agent"
-    recent_action: "Completed MCP shared dependency startup fix and doctor/install-guide prevention updates"
-    next_safe_action: "Monitor next Codex startup for unrelated MCP failures"
+    recent_action: "Completed startup-fix and prevention doc updates"
+    next_safe_action: "Monitor next startup for unrelated MCP issues"
     blockers: []
     key_files:
       - ".opencode/skills/system-skill-advisor/mcp_server/package.json"
       - ".opencode/skills/system-code-graph/package.json"
-      - ".opencode/specs/system-spec-kit/030-mcp-shared-dependency-startup-fix/spec.md"
+      - ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/015-mcp-shared-dependency-startup-fix/spec.md"
     session_dedup:
       fingerprint: "sha256:0300000000000000000000000000000000000000000000000000000000000001"
-      session_id: "030-mcp-shared-dependency-startup-fix"
+      session_id: "015-mcp-shared-dependency-startup-fix"
       parent_session_id: null
     completion_pct: 100
     open_questions: []
     answered_questions:
       - "Root cause: Node runtime resolution cannot find @spec-kit/shared for two MCP packages."
-      - "Spec placement: .opencode/specs/system-spec-kit/030-mcp-shared-dependency-startup-fix."
+      - "Spec placement: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/015-mcp-shared-dependency-startup-fix."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Feature Specification: MCP Shared Dependency Startup Fix
@@ -47,8 +47,8 @@ _memory:
 | **Status** | Complete |
 | **Created** | 2026-05-16 |
 | **Branch** | `main` |
-| **Parent Packet** | `system-spec-kit` |
-| **Spec Folder** | `.opencode/specs/system-spec-kit/030-mcp-shared-dependency-startup-fix` |
+| **Parent Packet** | `system-spec-kit/026-graph-and-context-optimization` |
+| **Spec Folder** | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/015-mcp-shared-dependency-startup-fix` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -93,7 +93,7 @@ Make the two MCP packages resolve `@spec-kit/shared` at runtime so Codex can sta
 | `.opencode/commands/doctor/assets/doctor_mcp_debug.yaml` | Modify | Add shared dependency repair actions and debug guidance. |
 | `.opencode/skills/system-skill-advisor/INSTALL_GUIDE.md` | Modify | Document shared dependency verification and recovery. |
 | `.opencode/skills/system-code-graph/INSTALL_GUIDE.md` | Modify | Document shared dependency verification and standalone semantics. |
-| `.opencode/specs/system-spec-kit/030-mcp-shared-dependency-startup-fix/*` | Create/Modify | Track scope, plan, tasks, checklist, and implementation evidence. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/015-mcp-shared-dependency-startup-fix/*` | Create/Modify | Track scope, plan, tasks, checklist, and implementation evidence. |
 <!-- /ANCHOR:scope -->
 
 ---

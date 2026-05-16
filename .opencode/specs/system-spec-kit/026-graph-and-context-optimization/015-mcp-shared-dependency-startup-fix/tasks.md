@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/030-mcp-shared-dependency-startup-fix"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/015-mcp-shared-dependency-startup-fix"
     last_updated_at: "2026-05-16T10:18:19Z"
     last_updated_by: "main_agent"
     recent_action: "Added doctor and install-guide prevention coverage"
@@ -51,7 +51,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Create Level 2 spec folder (`.opencode/specs/system-spec-kit/030-mcp-shared-dependency-startup-fix`)
+- [x] T001 Create Level 2 spec folder (`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/015-mcp-shared-dependency-startup-fix`)
 - [x] T002 Capture root-cause evidence from Codex startup logs (`/Users/michelkerkmeester/.codex/log/codex-tui.log`)
 - [x] T003 [P] Inventory package manifests and local `node_modules` state (`.opencode/skills/system-skill-advisor`, `.opencode/skills/system-code-graph`)
 <!-- /ANCHOR:phase-1 -->

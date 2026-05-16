@@ -1,13 +1,13 @@
 ---
 title: "Skill Advisor Install + Setup Guide"
-description: "Bootstrap, verification, runtime hooks, compatibility shim, rollback, operator notes, and reference commands for the native advisor_recommend architecture (merged INSTALL_GUIDE + SET-UP_GUIDE)."
+description: "Bootstrap, verification, runtime hooks, compatibility shim, rollback, operator notes and reference commands for the native advisor_recommend architecture (merged INSTALL_GUIDE + SET-UP_GUIDE)."
 ---
 
 # Skill Advisor Install + Setup Guide
 
 <!-- sk-doc-template: skill_reference_install_guide -->
 
-This is the canonical install + setup guide for the standalone Skill Advisor MCP server. The advisor runs as `mk_skill_advisor`, separate from `mk-spec-memory`, while preserving the public tool ids `advisor_recommend`, `advisor_rebuild`, `advisor_status`, `advisor_validate`, `skill_graph_scan`, `skill_graph_query`, `skill_graph_status`, and `skill_graph_validate`. This document merges the previously-separate `SET-UP_GUIDE.md` (runtime hooks, rollback CLI, operator states, reference commands) into the install bootstrap so there is a single source of truth.
+This is the canonical install + setup guide for the standalone Skill Advisor MCP server. The advisor runs as `mk_skill_advisor`, separate from `mk-spec-memory`. It preserves the public tool ids `advisor_recommend`, `advisor_rebuild`, `advisor_status`, `advisor_validate`, `skill_graph_scan`, `skill_graph_query`, `skill_graph_status`, `skill_graph_validate` plus one internal trusted-caller tool `skill_graph_propagate_enhances`. This document merges the previously-separate `SET-UP_GUIDE.md` (runtime hooks, rollback CLI, operator states, reference commands) into the install bootstrap so there is a single source of truth.
 
 ---
 
@@ -34,7 +34,7 @@ This is the canonical install + setup guide for the standalone Skill Advisor MCP
 <!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
-The native advisor is a TypeScript package under `.opencode/skills/system-skill-advisor/mcp_server/` with the public MCP tools `advisor_recommend`, `advisor_rebuild`, `advisor_status`, `advisor_validate`, `skill_graph_scan`, `skill_graph_query`, `skill_graph_status`, and `skill_graph_validate`. The standalone MCP server owns the advisor handlers, schemas, launcher, and package-local SQLite DB at `.opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sqlite`. The Python `skill_advisor.py` shim remains as the compatibility surface for scripts and prompt hooks.
+The native advisor is a TypeScript package under `.opencode/skills/system-skill-advisor/mcp_server/`. It exposes 8 public MCP tools (`advisor_recommend`, `advisor_rebuild`, `advisor_status`, `advisor_validate`, `skill_graph_scan`, `skill_graph_query`, `skill_graph_status`, `skill_graph_validate`) plus 1 internal trusted-caller tool (`skill_graph_propagate_enhances`, gated behind auth). The standalone MCP server owns the advisor handlers, schemas, launcher, plus the package-local SQLite DB at `.opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sqlite`. The Python `skill_advisor.py` shim remains as the compatibility surface for scripts and prompt hooks.
 
 ---
 
@@ -94,10 +94,10 @@ Also verify the active runtime lists both MCP servers: `mk-spec-memory` for memo
 
 Expected:
 
-- `advisor_status` returns `freshness`, `generation`, `trustState`, `lastGenerationBump`, `lastScanAt`, `skillCount`, and `laneWeights`.
-- `advisor_recommend` returns prompt-safe `recommendations[]`, cache state, lifecycle redirect metadata, and freshness trust.
-- `advisor_rebuild` rebuilds stale, absent, or unavailable advisor state and returns before/after freshness diagnostics.
-- `advisor_validate` returns real corpus, holdout, parity, safety, and latency measurements.
+- `advisor_status` returns `freshness`, `generation`, `trustState`, `lastGenerationBump`, `lastScanAt`, `skillCount` and `laneWeights`.
+- `advisor_recommend` returns prompt-safe `recommendations[]`, cache state, lifecycle redirect metadata and freshness trust.
+- `advisor_rebuild` rebuilds stale, absent or unavailable advisor state and returns before/after freshness diagnostics.
+- `advisor_validate` returns real corpus, holdout, parity, safety and latency measurements.
 
 ---
 
@@ -173,7 +173,7 @@ Mode meanings:
 
 | Mode | Behavior |
 | --- | --- |
-| default | Probe native; use native if live/stale; otherwise local Python fallback. |
+| default | Probe native. Use native if live/stale. Otherwise local Python fallback. |
 | `--stdin` | Read one prompt from stdin. |
 | `--force-native` | Require native routing and fail prompt-safely when unavailable. |
 | `--force-local` | Bypass native routing and run local Python scoring. |
@@ -208,7 +208,8 @@ Use rollback only long enough to diagnose or recover the native path.
 
 | Control | Scope |
 | --- | --- |
-| `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1` | Disables prompt-time advisor surfaces and native recommendations. |
+| `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1` | Disables prompt-time advisor surfaces and native recommendations across Claude, Codex, Gemini, OpenCode hooks. |
+| `MK_SKILL_ADVISOR_HOOK_DISABLED=1` | **Devin-specific disable flag.** The Devin hook checks this variable first, then falls back to `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED`. Set both when disabling all runtimes including Devin. |
 | `SPECKIT_SKILL_ADVISOR_FORCE_LOCAL=1` | Forces Python fallback in shim or plugin bridge diagnostics. |
 | `--force-local` | CLI-only Python scorer path. |
 | `--force-native` | CLI-only native-required path. |
@@ -238,7 +239,7 @@ unset SPECKIT_SKILL_ADVISOR_FORCE_LOCAL
 <!-- ANCHOR:9-operator-checks -->
 ## 9. OPERATOR CHECKS
 
-`skill_graph_*` tools are owned by the `mk_skill_advisor` MCP server as of `013/009/008`; public tool ids remain unchanged.
+`skill_graph_*` tools are owned by the `mk_skill_advisor` MCP server as of `013/009/008`. Public tool ids remain unchanged.
 
 Use `advisor_status` as the prompt-safe health source:
 
@@ -265,7 +266,7 @@ Manual recovery scenarios live at:
 
 ### Indexer scan-vs-index counts
 
-`skill_graph_scan` reports two numbers: `scannedFiles` (every `graph-metadata.json` discovered) and `indexedFiles` (real skills indexed into SQLite). The delta is normally 1–2: the indexer skips `scripts/test-fixtures/*/graph-metadata.json` (test scaffolding) and emits a `NON-SKILL-METADATA: skipped …` warning. A larger delta means real skills are being filtered — inspect the warning list.
+`skill_graph_scan` reports two numbers: `scannedFiles` (every `graph-metadata.json` discovered) and `indexedFiles` (real skills indexed into SQLite). The delta is normally 1 or 2 files. The indexer skips `scripts/test-fixtures/*/graph-metadata.json` (test scaffolding) and emits a `NON-SKILL-METADATA: skipped` warning. A larger delta means real skills are being filtered, so inspect the warning list.
 
 H5 operator scenarios live in the manual playbook under `04--operator-h5/`.
 
@@ -279,7 +280,7 @@ H5 operator scenarios live in the manual playbook under `04--operator-h5/`.
 | What You See | Cause | Fix |
 | --- | --- | --- |
 | MCP startup logs show `ERR_MODULE_NOT_FOUND` for `@spec-kit/shared` from `semantic-shadow.js` | The advisor package was built, but its local shared package link is missing from `mcp_server/node_modules`. | Run `npm --prefix .opencode/skills/system-skill-advisor/mcp_server install` and `npm --prefix .opencode/skills/system-skill-advisor/mcp_server run build`, then restart `mk_skill_advisor`. |
-| `/doctor:mcp debug --server mk_skill_advisor` fails `shared_dependency` or `shared_import` | Doctor detected the same missing local package link before runtime startup. | Run `/doctor:mcp debug --server mk_skill_advisor --fix`, or run the commands above manually. |
+| `/doctor:mcp debug --server mk_skill_advisor` fails `shared_dependency` or `shared_import` | Doctor detected the same missing local package link before runtime startup. | Run `/doctor:mcp debug --server mk_skill_advisor --fix` or run the commands above manually. |
 
 ---
 
@@ -324,7 +325,7 @@ python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor_r
 | --- | --- |
 | [README.md](./README.md) | Operator overview, quick start, runtime integrations. |
 | [ARCHITECTURE.md](./ARCHITECTURE.md) | Package-local architecture and public API entrypoints. |
-| [Hook reference](../../references/hooks/skill-advisor-hook.md) | Claude, Copilot, Gemini, Codex, Devin, and OpenCode plugin hook contract. |
-| [Manual testing playbook](./mcp_server/manual_testing_playbook/manual_testing_playbook.md) | OP-001 / OP-002 operator scenarios + indexer edge cases. |
+| [Hook reference](./references/hooks/skill-advisor-hook.md) | Claude, Copilot, Gemini, Codex, Devin and OpenCode plugin hook contract. |
+| [Manual testing playbook](./manual_testing_playbook/manual_testing_playbook.md) | OP-001 / OP-002 operator scenarios + indexer edge cases. |
 
 <!-- /ANCHOR:12-related-resources -->

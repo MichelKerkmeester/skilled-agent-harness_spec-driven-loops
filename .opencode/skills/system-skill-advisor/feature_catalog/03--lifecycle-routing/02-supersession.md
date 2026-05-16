@@ -22,7 +22,7 @@ Let the advisor forward queries from a superseded skill to its successor without
 <!-- ANCHOR:current-reality -->
 ## 2. CURRENT REALITY
 
-`lib/lifecycle/supersession.ts` reads supersession fields from each skill's `graph-metadata.json`, demotes the superseded skill, and exposes redirect metadata on responses: `lifecycle.redirect_to` on matches against the superseded slug, and `lifecycle.redirect_from` on the successor's own responses. The redirect is asymmetric — the successor does not redirect back. `lib/compat/redirect-metadata.ts` adapts the lifecycle data into the stable envelope consumed by callers.
+`lib/lifecycle/supersession.ts` reads supersession fields from each skill's `graph-metadata.json`, demotes the superseded skill and exposes redirect metadata on responses: `lifecycle.redirect_to` on matches against the superseded slug and `lifecycle.redirect_from` on the successor's own responses. The redirect is asymmetric, the successor does not redirect back. `lib/compat/redirect-metadata.ts` adapts the lifecycle data into the stable envelope consumed by callers.
 
 <!-- /ANCHOR:current-reality -->
 

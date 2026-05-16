@@ -1,6 +1,6 @@
 ---
 title: "Skill Advisor: Feature Catalog"
-description: "Current feature inventory for the native-first skill advisor, covering daemon freshness, auto-indexing, lifecycle routing, 5-lane scorer fusion, MCP surface, runtime hooks, plugin bridge, and Python compatibility."
+description: "Current feature inventory for the native-first skill advisor, covering daemon freshness, auto-indexing, lifecycle routing, 5-lane scorer fusion, MCP surface, runtime hooks, plugin bridge and Python compatibility."
 trigger_phrases:
   - "skill advisor catalog"
   - "advisor feature catalog"
@@ -35,7 +35,9 @@ This catalog is the current inventory for the skill advisor. The package source 
 <!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
-The catalog covers 37 features across 7 groups. Group 1 owns daemon correctness; groups 2-3 own the index and lifecycle surface that feeds the scorer; group 4 owns scoring; group 5 exposes the MCP tools; groups 6-7 cover runtime integrations and Python compatibility.
+The catalog covers 37 features across 7 groups. Group 01 owns daemon correctness. Groups 02-03 own the index and lifecycle surface that feeds the scorer. Group 04 owns scoring. Group 06 exposes the MCP tools. Groups 07-08 cover runtime integrations plus Python compatibility.
+
+> **Numbering note (gap-05).** The directory layout skips slot `05--*` between `04--scorer-fusion` and `06--mcp-surface`. This is an intentional historical reservation from initial scaffold design that marked the boundary between the core scoring pipeline (groups 01-04) and the integration layer (groups 06-08). The gap is preserved to keep spec-folder cross-reference stability across packets. Do not renumber.
 
 | Group | Count | Scope |
 | --- | --- | --- |

@@ -93,7 +93,7 @@ scorer/
 | Imports | May import derived metadata, corpus weighting and schema types needed for scoring. |
 | Exports | Export scorer functions and types, not handler response formatting. |
 | Ownership | Put scoring and attribution here. Put prompt-safe rendering in `../render.ts` and handler orchestration in `../../handlers/`. |
-| Aliases | Keep command/skill aliases fixed and explicit; do not use fuzzy or prefix matching. |
+| Aliases | Keep command/skill aliases fixed and explicit. Do not use fuzzy or prefix matching. |
 
 Main flow:
 

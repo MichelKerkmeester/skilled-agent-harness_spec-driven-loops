@@ -51,14 +51,14 @@ skill-graph.sqlite-shm
 <!-- ANCHOR:2-rationale -->
 ## 3. RATIONALE
 
-ADR-001 constraint A requires DB-local ownership for the extracted advisor. The database is the advisor's runtime state, so it belongs with the skill that reads, writes, validates, and rebuilds it.
+ADR-001 constraint A requires DB-local ownership for the extracted advisor. The database is the advisor's runtime state, so it belongs with the skill that reads, writes, validates and rebuilds it.
 
 This separation gives cleaner mutation scope:
 
 - `/doctor:update` and future repair flows can reason per skill package.
 - The advisor MCP server can be the single writer for `skill-graph.sqlite`.
 - `system-spec-kit` keeps memory and spec packet state without owning advisor runtime data.
-- Backups, cleanup, and integrity checks can target the advisor package directly.
+- Backups, cleanup and integrity checks can target the advisor package directly.
 
 ---
 

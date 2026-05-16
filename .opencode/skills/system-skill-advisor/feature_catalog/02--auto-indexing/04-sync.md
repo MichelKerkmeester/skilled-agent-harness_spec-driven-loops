@@ -22,7 +22,7 @@ Persist derived extraction so the scorer and rebuild-from-source pipeline can bo
 <!-- ANCHOR:current-reality -->
 ## 2. CURRENT REALITY
 
-`lib/derived/sync.ts` takes the output of `lib/derived/extract.ts`, routes it through `lib/derived/sanitizer.ts`, and writes only the `derived` block of each skill's `graph-metadata.json`. Non-derived metadata in the same file is preserved byte-for-byte. Partial writes are avoided by writing through a temp file plus atomic rename. SKILL.md is never touched.
+`lib/derived/sync.ts` takes the output of `lib/derived/extract.ts`, routes it through `lib/derived/sanitizer.ts` and writes only the `derived` block of each skill's `graph-metadata.json`. Non-derived metadata in the same file is preserved byte-for-byte. Partial writes are avoided by writing through a temp file plus atomic rename. SKILL.md is never touched.
 
 <!-- /ANCHOR:current-reality -->
 

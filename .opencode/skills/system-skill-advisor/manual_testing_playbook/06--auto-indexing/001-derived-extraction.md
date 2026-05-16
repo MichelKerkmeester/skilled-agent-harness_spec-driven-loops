@@ -1,6 +1,6 @@
 ---
 title: "AI-001 Deterministic Derived Extraction"
-description: "Manual validation that derived/extract.ts produces deterministic n-gram and pattern extractions from SKILL.md frontmatter, body, examples, references, assets, intent_signals, source_docs, and key_files."
+description: "Manual validation that derived/extract.ts produces deterministic n-gram and pattern extractions from SKILL.md frontmatter, body, examples, references, assets, intent_signals, source_docs and key_files."
 trigger_phrases:
   - "ai-001"
   - "derived extraction"
@@ -17,7 +17,7 @@ trigger_phrases:
 <!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
-Validate that derived extraction in `lib/derived/extract.ts` produces deterministic, stable output from SKILL.md frontmatter, body, fenced examples, `references/**`, `assets/**`, `intent_signals`, `source_docs`, and declared `key_files`, and that `lib/derived/sync.ts` writes the result only to `graph-metadata.json.derived` without mutating SKILL.md.
+Validate that derived extraction in `lib/derived/extract.ts` produces deterministic, stable output from SKILL.md frontmatter, body, fenced examples, `references/**`, `assets/**`, `intent_signals`, `source_docs` and declared `key_files` and that `lib/derived/sync.ts` writes the result only to `graph-metadata.json.derived` without mutating SKILL.md.
 
 ---
 
@@ -37,6 +37,8 @@ Validate that derived extraction in `lib/derived/extract.ts` produces determinis
 
 <!-- ANCHOR:3-test-execution -->
 ## 3. TEST EXECUTION
+
+> **Structure deviation note (007-deferred-final).** This scenario uses a numbered-step plus Expected Signals plus Failure Modes shape instead of the canonical Prompt/Commands/Expected/Evidence/Pass-Fail/Failure-Triage subsections. The deviation is intentional for this skill playbook category to keep scenario semantics tightly bound to runtime output checks. See `references/deferred-decisions.md` §F34 for rationale.
 
 1. Capture pre-state of the target skill:
 
@@ -63,17 +65,17 @@ cp .opencode/skills/sk-doc/graph-metadata.json /tmp/post-derived.json
 
 ### Expected Signals
 
-- `graph-metadata.json.derived` section is populated with n-grams, patterns, and provenance fingerprints.
+- `graph-metadata.json.derived` section is populated with n-grams, patterns and provenance fingerprints.
 - Two consecutive touches produce identical derived output for unchanged source content (deterministic).
 - `SKILL.md` is byte-identical pre vs post (never mutated by derived extraction).
-- Extracted tokens are scoped to the configured inputs: frontmatter, body, examples, `references/**`, `assets/**`, `intent_signals`, `source_docs`, and `derived.key_files`.
+- Extracted tokens are scoped to the configured inputs: frontmatter, body, examples, `references/**`, `assets/**`, `intent_signals`, `source_docs` and `derived.key_files`.
 
 ### Failure Modes
 
 | Symptom | Detection | Action |
 | --- | --- | --- |
 | Non-deterministic output | Diff shows shuffled arrays or timestamps | Inspect `extract.ts` sort order and provenance fingerprints. |
-| SKILL.md mutated | `SKILL.md` byte diff non-empty | Block release; derived writes must never touch SKILL.md. |
+| SKILL.md mutated | `SKILL.md` byte diff non-empty | Block release. Derived writes must never touch SKILL.md. |
 | Unexpected inputs scraped | Tokens include paths outside allowed inputs | Audit `extract.ts` input enumeration. |
 
 ---
@@ -83,8 +85,8 @@ cp .opencode/skills/sk-doc/graph-metadata.json /tmp/post-derived.json
 <!-- ANCHOR:4-source-files -->
 ## 4. SOURCE FILES
 
-- Scenario [AI-002](./002-sanitizer-boundaries.md) — A7 sanitizer boundary enforcement.
-- Scenario [AI-003](./003-provenance-and-trust-lanes.md) — provenance and trust lane tagging.
+- Scenario [AI-002](./002-sanitizer-boundaries.md), A7 sanitizer boundary enforcement.
+- Scenario [AI-003](./003-provenance-and-trust-lanes.md), provenance and trust lane tagging.
 - Feature [`02--auto-indexing/01-derived-extraction.md`](../../feature_catalog/02--auto-indexing/01-derived-extraction.md).
 - Source: `.opencode/skills/system-skill-advisor/mcp_server/lib/derived/extract.ts` and `lib/derived/sync.ts`.
 

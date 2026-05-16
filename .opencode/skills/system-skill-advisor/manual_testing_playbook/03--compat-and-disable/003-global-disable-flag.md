@@ -17,7 +17,7 @@ trigger_phrases:
 <!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
-Validate the common disable flag across native MCP, Python shim, runtime hooks, and plugin bridge.
+Validate the common disable flag across native MCP, Python shim, runtime hooks and plugin bridge.
 
 ---
 
@@ -63,7 +63,7 @@ printf '%s' '{"prompt":"help me commit my changes","cwd":"'"$PWD"'"}' | SPECKIT_
 
 ### Expected Signals
 
-- Native `advisor_recommend` returns `recommendations: []`, `freshness: "unavailable"`, and `ADVISOR_DISABLED`.
+- Native `advisor_recommend` returns `recommendations: []`, `freshness: "unavailable"` and `ADVISOR_DISABLED`.
 - Python shim returns `[]` or prompt-safe disabled output without native scoring.
 - Plugin bridge returns disabled/skipped output.
 - Hook adapter returns `{}` with skipped diagnostic.

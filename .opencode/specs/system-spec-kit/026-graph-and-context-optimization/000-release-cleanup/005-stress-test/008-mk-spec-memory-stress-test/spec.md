@@ -1,25 +1,25 @@
 ---
-title: "114: mk-spec-memory comprehensive stress test"
+title: "008: mk-spec-memory comprehensive stress test"
 description: "Exercise all 39 mk-spec-memory MCP tools and execute all 345 manual_testing_playbook scenarios via cli-devin SWE-1.6 to validate behavior post-113 z_archive un-exclusion."
 trigger_phrases:
-  - "114 spec"
+  - "008 spec"
   - "mk-spec-memory stress test"
   - "manual testing playbook full run"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/114-mk-spec-memory-stress-test"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/008-mk-spec-memory-stress-test"
     last_updated_at: "2026-05-16T13:55:00Z"
     last_updated_by: "main_agent"
-    recent_action: "Scaffolded packet 114 with handover"
+    recent_action: "Scaffolded 008 phase with handover"
     next_safe_action: "Run baseline checks then dispatch Phase 1"
     blockers: []
     key_files:
       - "handover.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000114000"
-      session_id: "114-spec-scaffold"
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000008000"
+      session_id: "008-spec-scaffold"
       parent_session_id: null
     completion_pct: 5
     open_questions: []
@@ -28,7 +28,7 @@ _memory:
       - "Scope: 39 tools + 345 scenarios"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-# 114: mk-spec-memory comprehensive stress test
+# 008: mk-spec-memory comprehensive stress test
 
 <!-- SPECKIT_LEVEL: 1 -->
 
@@ -81,9 +81,9 @@ Packet 113 un-excluded z_archive from `EXCLUDED_FOR_MEMORY` (commit b062b12b4). 
 |------|--------|-------------|
 | `evidence/tool-sweep.jsonl` | Create | Per-tool result row |
 | `evidence/playbook-results.jsonl` | Create | Per-scenario result row |
-| `evidence/agent-config-w14.json` | Create | cli-devin recipe override |
+| `evidence/agent-config-008.json` | Create | cli-devin recipe override |
 | `implementation-summary.md` | Create | Aggregated report |
-| Manual testing playbook scenarios with z_archive assertions | Update | Reclassify in-place if assertion drifted (with packet 114 attribution) |
+| Manual testing playbook scenarios with z_archive assertions | Update | Reclassify in-place if assertion drifted (with packet 008 attribution) |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -105,7 +105,7 @@ Packet 113 un-excluded z_archive from `EXCLUDED_FOR_MEMORY` (commit b062b12b4). 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-005 | All PARTIAL classifications have a z_archive-impact note | grep "z_archive" in PARTIAL rows returns ≥1 hit per row |
-| REQ-006 | Pre-sweep checkpoint exists | `checkpoint_list` shows a `pre-114-sweep-<timestamp>` entry |
+| REQ-006 | Pre-sweep checkpoint exists | `checkpoint_list` shows a `pre-008-sweep-<timestamp>` entry |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -115,7 +115,7 @@ Packet 113 un-excluded z_archive from `EXCLUDED_FOR_MEMORY` (commit b062b12b4). 
 
 - **SC-001**: Aggregate PASS ratio reported (target ≥ 80% across both surfaces)
 - **SC-002**: All genuine FAILs documented with reproduction evidence
-- **SC-003**: 114 strict-validate exit 0
+- **SC-003**: 008 strict-validate exit 0
 - **SC-004**: Follow-on packet list (115+) generated for any regressions
 <!-- /ANCHOR:success-criteria -->
 
@@ -139,7 +139,7 @@ Packet 113 un-excluded z_archive from `EXCLUDED_FOR_MEMORY` (commit b062b12b4). 
 
 - Dispatch cadence (paired vs sequential) — defaults to paired per packet 113 precedent
 - Stop-on-first-fail vs run-to-completion — recommend run-to-completion
-- Memory baseline checkpoint name — suggest `pre-114-sweep-<UTC>`
+- Memory baseline checkpoint name — suggest `pre-008-sweep-<UTC>`
 
 Full handover for the new session: see `handover.md`.
 <!-- /ANCHOR:questions -->

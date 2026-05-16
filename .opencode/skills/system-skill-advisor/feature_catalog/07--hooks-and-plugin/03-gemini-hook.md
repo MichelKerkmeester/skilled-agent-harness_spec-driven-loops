@@ -22,7 +22,7 @@ Integrate the advisor into Gemini CLI sessions without introducing a Gemini-spec
 <!-- ANCHOR:current-reality -->
 ## 2. CURRENT REALITY
 
-`hooks/gemini/user-prompt-submit.ts` mirrors the Claude hook's envelope, reading prompt stdin and returning `hookSpecificOutput.additionalContext`. It shares failure semantics (fail-open), disable flag handling, and privacy rules with the other hooks. Output passes through the same render path (`lib/render.ts`) so text is identical across runtimes (see `lib/normalize-adapter-output.ts`).
+`hooks/gemini/user-prompt-submit.ts` mirrors the Claude hook's envelope, reading prompt stdin and returning `hookSpecificOutput.additionalContext`. It shares failure semantics (fail-open), disable flag handling and privacy rules with the other hooks. Output passes through the same render path (`lib/render.ts`) so text is identical across runtimes (see `lib/normalize-adapter-output.ts`).
 
 <!-- /ANCHOR:current-reality -->
 

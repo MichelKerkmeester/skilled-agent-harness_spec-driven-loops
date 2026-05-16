@@ -22,7 +22,7 @@ Automatically generate routing-ready derived entries for every skill without han
 <!-- ANCHOR:current-reality -->
 ## 2. CURRENT REALITY
 
-`lib/derived/extract.ts` reads frontmatter, SKILL.md body, fenced examples, `references/**`, `assets/**`, `intent_signals`, `source_docs`, and declared `derived.key_files`. It emits n-grams and triggered patterns with stable sort order. `lib/derived/sync.ts` writes the result into `graph-metadata.json.derived` only; SKILL.md is never mutated. The extraction pipeline is the same path consumed by rebuild-from-source (see [`01--daemon-and-freshness/06-rebuild-from-source.md`](../01--daemon-and-freshness/06-rebuild-from-source.md)).
+`lib/derived/extract.ts` reads frontmatter, SKILL.md body, fenced examples, `references/**`, `assets/**`, `intent_signals`, `source_docs` and declared `derived.key_files`. It emits n-grams and triggered patterns with stable sort order. `lib/derived/sync.ts` writes the result into `graph-metadata.json.derived` only. SKILL.md is never mutated. The extraction pipeline is the same path consumed by rebuild-from-source (see [`01--daemon-and-freshness/06-rebuild-from-source.md`](../01--daemon-and-freshness/06-rebuild-from-source.md)).
 
 <!-- /ANCHOR:current-reality -->
 

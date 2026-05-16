@@ -1,6 +1,6 @@
 ---
 title: "Anti-Stuffing and Cardinality Caps"
-description: "Cardinality caps, repetition-density demotions, and adversarial-fixture rejection that prevent routing abuse through derived-lane stuffing."
+description: "Cardinality caps, repetition-density demotions and adversarial-fixture rejection that prevent routing abuse through derived-lane stuffing."
 trigger_phrases:
   - "anti-stuffing"
   - "cardinality cap derived"

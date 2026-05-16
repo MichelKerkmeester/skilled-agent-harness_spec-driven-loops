@@ -23,7 +23,7 @@ trigger_phrases:
 
 `plugin_bridges/` contains the Node `.mjs` subprocess bridge between `.opencode/plugins/mk-skill-advisor.js` and the standalone `mk_skill_advisor` MCP server.
 
-The bridge reads stdin JSON (prompt, workspaceRoot, thresholdConfidence), probes the advisor daemon, calls `advisor_recommend`, renders a brief, and emits a single stdout JSON envelope (`{ status, brief, metadata }`). It fails open on all errors so the OpenCode plugin never blocks on advisor unavailability.
+The bridge reads stdin JSON (prompt, workspaceRoot, thresholdConfidence), probes the advisor daemon, calls `advisor_recommend`, renders a brief and emits a single stdout JSON envelope (`{ status, brief, metadata }`). It fails open on all errors so the OpenCode plugin never blocks on advisor unavailability.
 
 This bridge was moved from `.opencode/skills/system-spec-kit/mcp_server/plugin_bridges/` (pre-extraction legacy) to proper advisor ownership per ADR-003.
 
@@ -42,8 +42,8 @@ This bridge was moved from `.opencode/skills/system-spec-kit/mcp_server/plugin_b
 
 | Boundary | Rule |
 |---|---|
-| Imports | May import MCP SDK client, `compat-contract.json`, and the advisor launcher path. Does not import TypeScript source. |
-| Exports | `buildBrief`, `buildLegacyBrief`, `buildNativeBrief`, `createChildEnv`, `parseInput`, `renderAdvisorBrief`, `response` — exported for testability. |
+| Imports | May import MCP SDK client, `compat-contract.json` and the advisor launcher path. Does not import TypeScript source. |
+| Exports | `buildBrief`, `buildLegacyBrief`, `buildNativeBrief`, `createChildEnv`, `parseInput`, `renderAdvisorBrief`, `response`, exported for testability. |
 | Ownership | Owned by `system-skill-advisor`. The bridge is the sole subprocess entrypoint the plugin uses. |
 
 ---

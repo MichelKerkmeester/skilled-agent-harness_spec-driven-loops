@@ -22,7 +22,7 @@ Quantify each lane's contribution to accuracy so lane weights can be reasoned ab
 <!-- ANCHOR:current-reality -->
 ## 2. CURRENT REALITY
 
-`lib/scorer/ablation.ts` drives the ablation protocol: it reads the active lane weight configuration, runs the corpus with each non-zero lane set to zero in turn, and emits per-lane accuracy deltas. The live `laneWeights` (exposed via `advisor_status`) are unchanged after ablation. Results feed into `advisor_validate` ablation slices.
+`lib/scorer/ablation.ts` drives the ablation protocol: it reads the active lane weight configuration, runs the corpus with each non-zero lane set to zero in turn and emits per-lane accuracy deltas. The live `laneWeights` (exposed via `advisor_status`) are unchanged after ablation. Results feed into `advisor_validate` ablation slices.
 
 <!-- /ANCHOR:current-reality -->
 

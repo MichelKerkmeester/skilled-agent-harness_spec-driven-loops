@@ -1,13 +1,13 @@
 ---
 title: "Skill Advisor: Manual Testing Playbook"
-description: "Canonical sk-doc manual testing playbook for the Skill Advisor manual scenario corpus across native MCP tools, runtime hooks, compatibility, daemon state, indexing, lifecycle, scorer, and Python compatibility workflows."
+description: "Canonical sk-doc manual testing playbook for the Skill Advisor manual scenario corpus across native MCP tools, runtime hooks, compatibility, daemon state, indexing, lifecycle, scorer and Python compatibility workflows."
 ---
 
 # Skill Advisor: Manual Testing Playbook
 
 <!-- sk-doc-template: manual_testing_playbook -->
 
-This document combines the canonical manual-validation contract for the `skill_advisor` package into a single reference. The root playbook acts as the operator directory, review protocol, and orchestration guide while the per-feature files carry scenario-specific execution truth.
+This document combines the canonical manual-validation contract for the `skill_advisor` package into a single reference. The root playbook acts as the operator directory, review protocol and orchestration guide while the per-feature files carry scenario-specific execution truth.
 
 ---
 
@@ -56,16 +56,18 @@ Canonical package artifacts:
 <!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
-This playbook provides 46 deterministic scenario files across 9 categories validating the Skill Advisor surface. Scenario IDs use a multi-prefix scheme: `NC` for native MCP tools, `CL` for CLI hooks and plugin behavior, `CP` for compatibility and disable controls, `OP` for operator H5 states, `AU` for auto-update daemon behavior, `AI` for auto-indexing, `LC` for lifecycle routing, `SC` for scorer fusion, and `PC` for Python compatibility.
+This playbook provides 46 deterministic scenario files across 9 categories validating the Skill Advisor surface. Scenario IDs use a multi-prefix scheme: `NC` for native MCP tools, `CL` for CLI hooks plus plugin behavior, `CP` for compatibility plus disable controls, `OP` for operator H5 states, `AU` for auto-update daemon behavior, `AI` for auto-indexing, `LC` for lifecycle routing, `SC` for scorer fusion, plus `PC` for Python compatibility.
 
-Coverage note (2026-05-07): the prior operator scenario corpus now lives under `manual_testing_playbook/` as the canonical manual validation package. Former `SAD-NNN` IDs are deprecated and mapped to current feature files in section 18. The source root index describes 43 scenarios, but the source category tree contains 42 `NNN-*.md` scenario files and no `CL-002`; this root playbook reflects the live file inventory.
+> **Numbering note (gap-09).** The directory layout skips slot `09--*` between `08--scorer-fusion` and `10--python-compat`. This mirrors the `feature_catalog/` 05-gap pattern and is an intentional historical reservation from initial scaffold design. The gap is preserved to keep spec-folder cross-reference stability across packets. Do not renumber.
+
+Coverage note (2026-05-07): the prior operator scenario corpus now lives under `manual_testing_playbook/` as the canonical manual validation package. Former `SAD-NNN` IDs are deprecated plus mapped to current feature files in section 18. The source root index describes 43 scenarios, but the source category tree contains 42 `NNN-*.md` scenario files plus no `CL-002`. This root playbook reflects the live file inventory.
 
 ### Realistic Test Model
 
 1. A realistic user request is given to an operator or runtime.
-2. The operator decides whether to call the native MCP tool, run a prompt-time hook, execute compatibility shims, or inspect daemon/indexing behavior.
-3. The operator captures command transcripts, MCP envelopes, hook stdout/stderr, and final verdicts.
-4. The scenario passes only when observed output is prompt-safe, user-visible, and consistent with the documented feature contract.
+2. The operator decides whether to call the native MCP tool, run a prompt-time hook, execute compatibility shims or inspect daemon/indexing behavior.
+3. The operator captures command transcripts, MCP envelopes, hook stdout/stderr and final verdicts.
+4. The scenario passes only when observed output is prompt-safe, user-visible and consistent with the documented feature contract.
 
 ### What Each Feature File Should Explain
 
@@ -73,7 +75,7 @@ Coverage note (2026-05-07): the prior operator scenario corpus now lives under `
 - The deterministic setup and execution steps.
 - The expected signals and failure modes.
 - The desired user-visible outcome.
-- The implementation, automated test, or catalog anchors that justify the scenario.
+- The implementation, automated test or catalog anchors that justify the scenario.
 
 ---
 
@@ -108,7 +110,7 @@ npm --prefix .opencode/skills/system-spec-kit/mcp_server run build
 - Exit code for shell commands.
 - Hook stdout and stderr captured separately when hook scripts are involved.
 - Final user-facing verdict with rationale.
-- Triage notes for every `FAIL`, `PARTIAL`, or `SKIP`.
+- Triage notes for every `FAIL`, `PARTIAL` or `SKIP`.
 
 ---
 
@@ -146,14 +148,14 @@ For each executed scenario, check:
 2. Prompt and command sequence were executed as written.
 3. Expected signals are present in the captured output.
 4. Evidence is complete and readable.
-5. Raw prompt text is not leaked into diagnostics, attribution, cache metadata, or trust-state fields unless the scenario explicitly validates input echo behavior.
+5. Raw prompt text is not leaked into diagnostics, attribution, cache metadata or trust-state fields unless the scenario explicitly validates input echo behavior.
 6. Outcome rationale is explicit and references the user-visible behavior.
 
 Scenario verdict:
 - `PASS`: all acceptance checks true.
 - `PARTIAL`: core behavior works but non-critical evidence or metadata is incomplete.
-- `FAIL`: expected behavior missing, contradictory output appears, prompt text leaks, or a critical check failed.
-- `SKIP`: a real sandbox, dependency, or runtime blocker prevents execution and is documented.
+- `FAIL`: expected behavior missing, contradictory output appears, prompt text leaks or a critical check failed.
+- `SKIP`: a real sandbox, dependency or runtime blocker prevents execution and is documented.
 
 ### Feature Verdict Rules
 
@@ -163,7 +165,7 @@ Scenario verdict:
 
 ### Release Readiness Rule
 
-Release is `READY` only when all 46 scenario files are `PASS` or have an approved `SKIP` with a real blocker, and no prompt-safety, rebuild, daemon, indexing, lifecycle, scorer, or compatibility failure remains unresolved.
+Release is `READY` only when all 46 scenario files are `PASS` or have an approved `SKIP` with a real blocker and no prompt-safety, rebuild, daemon, indexing, lifecycle, scorer or compatibility failure remains unresolved.
 
 ---
 
@@ -182,7 +184,7 @@ This section records wave planning for the canonical Skill Advisor manual test p
 2. Run native MCP scenarios before hook scenarios so runtime failures can be separated from scorer or tool failures.
 3. Run rebuild and daemon scenarios in disposable workspaces when validating repair or generated state.
 4. Assign explicit scenario IDs before parallel execution.
-5. Keep stdout, stderr, and MCP JSON evidence in scenario-specific files under `/tmp/skill-advisor-playbook/`.
+5. Keep stdout, stderr and MCP JSON evidence in scenario-specific files under `/tmp/skill-advisor-playbook/`.
 6. After each wave, record verdicts and blockers before starting the next wave.
 
 ### Recommended Wave Plan
@@ -358,14 +360,14 @@ This category validates python compat scenarios `PC-001..PC-005`.
 <!-- ANCHOR:16-automated-test-cross-reference -->
 ## 16. AUTOMATED TEST CROSS-REFERENCE
 
-The active inventory check lives at `.opencode/skills/system-skill-advisor/mcp_server/tests/manual-testing-playbook.vitest.ts`. It verifies the root playbook rows, the live per-feature file inventory, and the 42-scenario package count.
+The active inventory check lives at `.opencode/skills/system-skill-advisor/mcp_server/tests/manual-testing-playbook.vitest.ts`. It verifies the root playbook rows, the live per-feature file inventory and the 42-scenario package count.
 
 | Area | Automated test anchors |
 |---|---|
 | Native MCP tools | `.opencode/skills/system-skill-advisor/mcp_server/tests/handlers/advisor-recommend.vitest.ts`; `.opencode/skills/system-spec-kit/mcp_server/tests/advisor-rebuild.vitest.ts` |
 | Hooks and plugin | `.opencode/skills/system-skill-advisor/mcp_server/tests/hooks/settings-driven-invocation-parity.vitest.ts`; `.opencode/skills/system-skill-advisor/mcp_server/tests/legacy/advisor-runtime-parity.vitest.ts` |
 | Compatibility and Python entrypoints | `.opencode/skills/system-skill-advisor/mcp_server/tests/manual-testing-playbook.vitest.ts`; `.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts` |
-| Scoring, lifecycle, indexing, and daemon state | `.opencode/skills/system-skill-advisor/mcp_server/tests/handlers/advisor-recommend.vitest.ts`; `.opencode/skills/system-skill-advisor/mcp_server/tests/legacy/advisor-privacy.vitest.ts` |
+| Scoring, lifecycle, indexing and daemon state | `.opencode/skills/system-skill-advisor/mcp_server/tests/handlers/advisor-recommend.vitest.ts`; `.opencode/skills/system-skill-advisor/mcp_server/tests/legacy/advisor-privacy.vitest.ts` |
 
 Validator limitation: `validate_document.py` validates this root document and per-feature documents individually, but it does not prove that every command can execute in the current sandbox. Operators must capture execution evidence during release review.
 
@@ -388,7 +390,25 @@ Validator limitation: `validate_document.py` validates this root document and pe
 | SC | Scorer fusion | `08--scorer-fusion/` |
 | PC | Python compat | `10--python-compat/` |
 
-Per-feature files include SOURCE FILES sections with implementation, catalog, and test anchors where the source scenario provided them.
+Per-feature files include SOURCE FILES sections with implementation, catalog and test anchors where the source scenario provided them.
+
+### 17.5 Catalog group ↔ playbook category mapping (F37 cross-reference)
+
+The catalog uses 7 groups; the playbook uses 9 categories. Mapping is intentionally asymmetric, not 1:1. This table documents the relationships so operators can navigate between surfaces without surprise.
+
+| Feature catalog group | Maps to playbook category | Notes |
+|---|---|---|
+| `01--daemon-and-freshness` | `05--auto-update-daemon` (primary) plus `04--operator-h5` (operator state subset) | Catalog group split across 2 playbook categories: daemon mechanics in 05, operator-facing trust-state scenarios in 04 |
+| `02--auto-indexing` | `06--auto-indexing` | 1:1 mapping |
+| `03--lifecycle-routing` | `07--lifecycle-routing` | 1:1 mapping |
+| `04--scorer-fusion` | `08--scorer-fusion` | 1:1 mapping |
+| `06--mcp-surface` | `01--native-mcp-tools` plus `02--cli-hooks-and-plugin` | Catalog group split across 2 playbook categories: native MCP tool scenarios in 01, CLI hook plus plugin invocation scenarios in 02 |
+| `07--hooks-and-plugin` | `02--cli-hooks-and-plugin` (primary) plus `03--compat-and-disable` (rollback states) | Catalog group split across 2 playbook categories: happy-path hook behavior in 02, disable plus rollback flags in 03 |
+| `08--python-compat` | `10--python-compat` | 1:1 mapping (note gap-09 is intentional per playbook §1) |
+| (none) | `03--compat-and-disable` | Compat plus disable flags cut across multiple catalog groups; no single catalog group owns them |
+| (none) | `04--operator-h5` | H5 operator state scenarios cut across catalog groups; no single catalog group owns them |
+
+**Why asymmetric**: catalog groups model feature ownership (what the code does), while playbook categories model operator workflow (what an operator validates in one sitting). A single feature group can require multiple operator scenarios that span different runtime contexts (native MCP vs CLI hook vs compat shim). The asymmetry is documented here rather than removed by renumbering because renumbering would break checked-in inventory tests plus deep cross-references in earlier packets.
 
 ---
 

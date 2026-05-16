@@ -64,10 +64,10 @@ advisor_status({"workspaceRoot":"/tmp/path-to-copy"})
 
 | Symptom | Detection | Action |
 | --- | --- | --- |
-| Runtime crashes on corrupt DB | MCP server exits or throws raw SQLite stack to user | Block release; recovery must fail open. |
+| Runtime crashes on corrupt DB | MCP server exits or throws raw SQLite stack to user | Block release. Recovery must fail open. |
 | Rebuild uses stale JSON only | Status remains absent/unavailable after scan | Inspect rebuild-from-source path and file permissions. |
 | Live DB corrupted | Real repo status remains unavailable | Restore from backup or rebuild immediately before other tests. |
-| Untrusted scan mutates graph | `skill_graph_scan({})` succeeds without trusted context | Block release; trusted-caller gate must reject before indexing. |
+| Untrusted scan mutates graph | `skill_graph_scan({})` succeeds without trusted context | Block release. Trusted-caller gate must reject before indexing. |
 
 ---
 

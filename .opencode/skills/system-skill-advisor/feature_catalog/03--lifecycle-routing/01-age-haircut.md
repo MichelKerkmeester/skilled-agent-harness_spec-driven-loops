@@ -22,7 +22,7 @@ Keep routing sensitive to currency without discounting author-declared signals. 
 <!-- ANCHOR:current-reality -->
 ## 2. CURRENT REALITY
 
-`lib/lifecycle/age-haircut.ts` reads each skill's source modification time and applies a documented decay curve to the derived lane only. The `explicit_author`, `lexical`, `graph_causal`, and `semantic_shadow` lanes are untouched. The haircut shows up as a gap between `rawScore` and `weightedScore` in lane attribution for the derived lane.
+`lib/lifecycle/age-haircut.ts` reads each skill's source modification time and applies a documented decay curve to the derived lane only. The `explicit_author`, `lexical`, `graph_causal` and `semantic_shadow` lanes are untouched. The haircut shows up as a gap between `rawScore` and `weightedScore` in lane attribution for the derived lane.
 
 <!-- /ANCHOR:current-reality -->
 

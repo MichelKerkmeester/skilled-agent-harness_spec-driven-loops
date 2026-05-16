@@ -9,11 +9,11 @@ description: "Manual scenario for validating skill_graph_validate diagnostics."
 
 ## 1. OVERVIEW
 
-This scenario validates skill graph diagnostics for `285`. It focuses on confirming that `skill_graph_validate` reports schema, edge, relation-weight, symmetry, and cycle checks with a readable pass/warn/error state.
+This scenario validates skill graph diagnostics for `285`. It focuses on confirming that `skill_graph_validate` reports schema, edge, relation-weight, symmetry and cycle checks with a readable pass/warn/error state.
 
 ### Why This Matters
 
-Validation output is the operator's first signal when graph quality drifts. This scenario catches diagnostic regressions where categories are missing, severity state is unclear, or an internal validation error escapes as an unhandled exception.
+Validation output is the operator's first signal when graph quality drifts. This scenario catches diagnostic regressions where categories are missing, severity state is unclear or an internal validation error escapes as an unhandled exception.
 
 ---
 
@@ -23,7 +23,7 @@ Validation output is the operator's first signal when graph quality drifts. This
 - Objective: Confirm validation diagnostics are operator-readable.
 - Real user request: `Please validate Skill graph validate against the documented validation surface and tell me whether the expected signals are present: Tool response reports validation categories and pass/warn/error state.`
 - Prompt: `Validate skill graph validation categories and pass/warn/error state against the documented validation surface.`
-- Expected execution process: Execute the documented validation request against the documented validation surface, capture the response and evidence, compare it against the expected signals, and return the pass/fail verdict.
+- Expected execution process: Execute the documented validation request against the documented validation surface, capture the response and evidence, compare it against the expected signals and return the pass/fail verdict.
 - Expected signals: Tool response reports validation categories and pass/warn/error state
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
 - Pass/fail: PASS when diagnostics are present without an unhandled exception.
@@ -59,7 +59,16 @@ Tool response transcript showing validation categories and severity state.
 
 ---
 
-## 4. SOURCE METADATA
+## 4. SOURCE FILES
+
+- `.opencode/skills/system-skill-advisor/mcp_server/handlers/skill-graph/validate.ts`
+- `.opencode/skills/system-skill-advisor/mcp_server/tools/skill-graph-tools.ts`
+- `.opencode/skills/system-skill-advisor/mcp_server/tests/skill-graph-handlers.vitest.ts`
+- `.opencode/skills/system-skill-advisor/mcp_server/tests/skill-graph-db.vitest.ts`
+
+---
+
+## 5. SOURCE METADATA
 
 - Group: Context Preservation and Code Graph
 - Playbook ID: 285

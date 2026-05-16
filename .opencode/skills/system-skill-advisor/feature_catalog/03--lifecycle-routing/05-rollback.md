@@ -15,14 +15,14 @@ trigger_phrases:
 <!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
-Keep lifecycle mutations reversible so operators can experiment with supersession, archival, and schema changes without fear of leaving the routing surface in a half-applied state.
+Keep lifecycle mutations reversible so operators can experiment with supersession, archival and schema changes without fear of leaving the routing surface in a half-applied state.
 
 <!-- /ANCHOR:overview -->
 
 <!-- ANCHOR:current-reality -->
 ## 2. CURRENT REALITY
 
-`lib/lifecycle/rollback.ts` reverts lifecycle metadata changes atomically. It coordinates with `lib/lifecycle/supersession.ts` and `lib/lifecycle/archive-handling.ts` so that redirect metadata, derived entries, and archive classification all snap back together. Readers never observe a partial rollback; either the rollback commits fully or the prior state remains in effect.
+`lib/lifecycle/rollback.ts` reverts lifecycle metadata changes atomically. It coordinates with `lib/lifecycle/supersession.ts` and `lib/lifecycle/archive-handling.ts` so that redirect metadata, derived entries and archive classification all snap back together. Readers never observe a partial rollback. Either the rollback commits fully or the prior state remains in effect.
 
 <!-- /ANCHOR:current-reality -->
 
