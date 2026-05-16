@@ -36,6 +36,8 @@ Current state:
 
 - The folder contains two active rule files: `gate-enforcement.md` and `gate-tool-routing.md`.
 - Rule files use frontmatter with `importanceTier: constitutional` and trigger phrases.
+- Constitutional rules are fixed-visibility records: `searchBoost: 3.0`, `alwaysSurface: true`, `decay: false`, `autoExpireDays: null`, and `maxTokens: 2000`.
+- Constitutional rules are permanent until edited or removed from this folder. They are not temporary memories and must not age out through decay.
 - Constitutional rules support agent safety and retrieval routing. They do not replace packet recovery from `handover.md`, `_memory.continuity` and canonical spec docs.
 
 <!-- /ANCHOR:overview -->
@@ -131,6 +133,8 @@ Do not document `.DS_Store` or other local machine artifacts as part of the pack
 | Exports | Indexed records surface through memory search and trigger matching. |
 | Ownership | This folder owns global always-surface rules only. Packet-specific decisions stay in spec folders. |
 | Rule language | Use direct MUST, STOP and REQUIRED language only when the rule is an actual hard constraint. |
+| Visibility budget | Keep each constitutional rule lean enough for the `maxTokens: 2000` budget in `importance-tiers.ts`. |
+| Verification | After rule edits, validate the README and re-index the changed rule file so fixed-priority surfacing is refreshed. |
 
 Main flow:
 
