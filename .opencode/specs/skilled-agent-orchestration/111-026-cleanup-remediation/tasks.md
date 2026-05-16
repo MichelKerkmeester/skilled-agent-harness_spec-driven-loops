@@ -1,6 +1,6 @@
 ---
-title: "111: Tasks — 026 cleanup remediation"
-description: "Numbered execution checklist for Wave 3, mapped 1:1 to plan.md sub-waves."
+title: "Tasks: 111 026 cleanup remediation"
+description: "Numbered execution checklist for Wave 3 sub-waves W3.A through W3.G."
 trigger_phrases:
   - "111 tasks"
 importance_tier: "normal"
@@ -8,81 +8,113 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/111-026-cleanup-remediation"
-    last_updated_at: "2026-05-16T09:00:00Z"
+    last_updated_at: "2026-05-16T11:30:00Z"
     last_updated_by: "main_agent"
-    recent_action: "Authored tasks.md"
-    next_safe_action: "Capture baselines, dispatch W3.A"
+    recent_action: "Rewrote tasks.md against canonical L1 template"
+    next_safe_action: "Final validation gate"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000113"
-      session_id: "111-tasks-scaffold"
+      session_id: "111-tasks-rewrite"
       parent_session_id: null
-    completion_pct: 5
+    completion_pct: 95
     open_questions: []
     answered_questions: []
 ---
-<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
-# 111: Tasks — 026 cleanup remediation
+# Tasks: 111 026 cleanup remediation
 
 <!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
 
 ---
 
-## Phase 0 — Scaffold
+<!-- ANCHOR:notation -->
+## 1. TASK NOTATION
+
+- `[x]` = completed
+- `[ ]` = pending
+- TID prefix per phase (T0/T3A/T3B/.../T3G)
+- Per-rename atomic commit means one logical operation per git commit.
+<!-- /ANCHOR:notation -->
+
+---
+
+<!-- ANCHOR:phase-1 -->
+## 2. PHASE 1: SETUP
 
 - [x] T0.1: Create `.opencode/specs/skilled-agent-orchestration/111-026-cleanup-remediation/`
-- [x] T0.2: Author L1 docs (spec/plan/tasks/impl-summary)
-- [ ] T0.3: Author description.json + graph-metadata.json
-- [ ] T0.4: Capture BASE_111 baseline
-- [ ] T0.5: Commit scaffold on main
+- [x] T0.2: Author 6 L1 docs (spec/plan/tasks/impl-summary/description/graph-metadata)
+- [x] T0.3: Capture BASE_111 baseline + commit scaffold
+<!-- /ANCHOR:phase-1 -->
 
-## Phase W3.A — Author 33 sub-phase base files (cli-devin × 11)
+---
 
-- [ ] T3A.1: Dispatch 11 parallel cli-devin SWE-1.6 agents
-- [ ] T3A.2: For each: commit 3 files per sub-phase
-- [ ] T3A.3: `validate_document.py` exit 0 on all 33
+<!-- ANCHOR:phase-2 -->
+## 3. PHASE 2: IMPLEMENTATION
 
-## Phase W3.B — Renumber 86 sub-phase children
+### W3.A — Author 33 base files (cli-devin × 11)
+- [x] T3A.1: Generate 11 prompt files
+- [x] T3A.2: Dispatch 10 sub-phases in pairs + 1 solo
+- [x] T3A.3: Validate per-sub-phase output + commit 11 atomic
 
-- [ ] T3B.1: 000/001-release-readiness — 6 renumbers
-- [ ] T3B.2: 000/002-audit — 8 renumbers (two-pass for `008` dup)
-- [ ] T3B.3: 000/003-cleanup — 31 renumbers (two-pass for `006` dup)
-- [ ] T3B.4: 000/004-followup-post-program — 4 renumbers
-- [ ] T3B.5: 000/005-stress-test — 7 renumbers
-- [ ] T3B.6: 000/006-research — 4 renumbers
-- [ ] T3B.7: 008/001-skill-graph — 7 renumbers
-- [ ] T3B.8: 008/002-scorer — 8 renumbers
-- [ ] T3B.9: 008/003-router — 5 renumbers
-- [ ] T3B.10: 008/004-hardening — 4 renumbers
-- [ ] T3B.11: 008/005-docs — 2 renumbers
+### W3.B — Renumber 86 sub-phase children
+- [x] T3B.1: Generate rename plan TSV (85 renames after skip-same)
+- [x] T3B.2: Apply renames atomically (per-rename: rg + sed + git mv + commit)
 
-## Phase W3.C — Renumber 22 children in 007/013/014
+### W3.C — Renumber 22 children in 007/013/014
+- [x] T3C.1: Generate rename plans (20 single-pass for 007/013, 12 two-pass for 014)
+- [x] T3C.2: Apply 007 + 013 single-pass (20 commits)
 
-- [ ] T3C.1: Pre-flight snapshot 014's 55 children → `evidence/pre-flight-014-children.txt`
-- [ ] T3C.2: 007-code-graph — 16 renumbers
-- [ ] T3C.3: 013-doctor-update-orchestrator — 3 renumbers
-- [ ] T3C.4: 014-local-embeddings-migration — 3 gap-fix renumbers
+### W3.D — Resolve 014 dup-prefix pairs
+- [x] T3D.1: Pass-A: rename to `_NNN-` temp (12 commits, alphabetic sort for dups)
+- [x] T3D.2: Pass-B: strip underscore (12 commits)
 
-## Phase W3.D — Resolve 014 dup-prefix pairs (2 ops)
+### W3.E — Verbose name cleanup
+- [x] T3E.1: Build list of 88 active verbose names
+- [x] T3E.2: Dispatch cli-devin scorer (proposed-renames.md output)
+- [x] T3E.3: Apply 14 main-agent-approved renames atomically
 
-- [ ] T3D.1: 026-dup pair resolution + provenance
-- [ ] T3D.2: 040-dup pair resolution + provenance
+### W3.F — Sync 17 phase-parent docs
+- [x] T3F.1: Dispatch cli-devin for 13 parents (sub-phases + grandparents)
+- [x] T3F.2: Main agent syncs 4 remaining parents (007/013/014/root) via jq
+<!-- /ANCHOR:phase-2 -->
 
-## Phase W3.E — Verbose name cleanup
+---
 
-- [ ] T3E.1: Dispatch cli-devin scorer → `evidence/proposed-renames.md`
-- [ ] T3E.2: Apply approved renames (~25)
+<!-- ANCHOR:phase-3 -->
+## 4. PHASE 3: VERIFICATION
 
-## Phase W3.F — Parent-doc sync
-
-- [ ] T3F.1: Dispatch cli-devin parent-sync agent
-- [ ] T3F.2: Verify children_ids match filesystem for 17 parents
-
-## Phase W3.G — Final validation gate
-
-- [ ] T3G.1: `validate_document.py` on 111 + 33 + 17
-- [ ] T3G.2: `validate.sh 026 --strict` exit 0
-- [ ] T3G.3: Orphan-ref check = 0
+### W3.G — Final validation gate
+- [ ] T3G.1: `validate.sh --strict --recursive` on 026 phase parent (exit 0)
+- [ ] T3G.2: `validate.sh --strict` on packet 111 (exit 0)
+- [ ] T3G.3: Orphan-ref check returns 0
 - [ ] T3G.4: Backfill implementation-summary.md
-- [ ] T3G.5: Final commit + memory save
+- [ ] T3G.5: Memory save via `/memory:save`
+<!-- /ANCHOR:phase-3 -->
+
+---
+
+<!-- ANCHOR:completion -->
+## 5. COMPLETION CRITERIA
+
+- All 7 sub-waves complete with their commits on main.
+- strict-validate exit 0 on packet 111.
+- strict-validate exit 0 on 026 phase parent.
+- 0 orphan references for any renamed name on active surface.
+- implementation-summary.md backfilled with actuals.
+<!-- /ANCHOR:completion -->
+
+---
+
+<!-- ANCHOR:cross-refs -->
+## 6. CROSS-REFERENCES
+
+- spec.md — feature specification, scope, requirements.
+- plan.md — sequenced execution waves.
+- evidence/ — proposed-renames.md, agent-configs, per-wave baselines, 014 dup resolution.
+- 107 packet — Wave 1 execution.
+- 109 packet — Wave 2 execution.
+- 998 packet — research backing the restructure.
+- cli-devin SKILL.md — recipe + dispatch contract.
+<!-- /ANCHOR:cross-refs -->
