@@ -1,0 +1,20 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/114-mk-spec-memory-stress-test",
+  "description": "Comprehensive stress test of mk-spec-memory MCP server post packet 113 z_archive un-exclusion. Exercise all 39 mk-spec-memory tools and run all 345 manual_testing_playbook scenarios via cli-devin SWE-1.6. Includes z_archive-aware reclassification pass.",
+  "keywords": [
+    "114-mk-spec-memory-stress",
+    "mk-spec-memory-stress-test",
+    "manual-testing-playbook",
+    "39-tool-sweep",
+    "345-scenario-sweep",
+    "z-archive-validation",
+    "cli-devin-swe-1-6"
+  ],
+  "lastUpdated": "2026-05-16T13:55:00Z",
+  "specId": "114",
+  "folderSlug": "mk-spec-memory-stress-test",
+  "parentChain": ["skilled-agent-orchestration"],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}
