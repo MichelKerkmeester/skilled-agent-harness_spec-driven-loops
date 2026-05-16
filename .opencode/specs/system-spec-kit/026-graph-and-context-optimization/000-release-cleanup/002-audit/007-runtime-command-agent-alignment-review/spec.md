@@ -3,7 +3,7 @@ title: "Feature Specification: 049 Runtime Command Agent Alignment Review"
 description: "Audit supported runtime command and agent definitions for current-reality drift after the recent graph, hook, matrix, and schema changes. Apply doc-level fixes where safe, and record blocked runtime-specific drift honestly."
 template_source: "SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2"
 trigger_phrases:
-  - "036-runtime-command-agent-alignment-review"
+  - "007-runtime-command-agent-alignment-review"
   - "runtime command audit"
   - "agent alignment review"
   - "cross-runtime agent consistency"
@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "specification"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/036-runtime-command-agent-alignment-review"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/007-runtime-command-agent-alignment-review"
     last_updated_at: "2026-04-30T07:45:00+02:00"
     last_updated_by: "cli-codex"
     recent_action: "Audit scoped"
@@ -24,7 +24,7 @@ _memory:
       - "cross-runtime-diff.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "036-runtime-command-agent-alignment-review"
+      session_id: "007-runtime-command-agent-alignment-review"
       parent_session_id: null
     completion_pct: 100
     open_questions: []
@@ -46,7 +46,7 @@ _memory:
 | **Priority** | P1 |
 | **Status** | Complete |
 | **Created** | 2026-04-30 |
-| **Branch** | `036-runtime-command-agent-alignment-review` |
+| **Branch** | `007-runtime-command-agent-alignment-review` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -90,7 +90,7 @@ Make command and agent definitions reflect current runtime reality, with a durab
 | `.claude/agents/*.md` | Modify | Align equivalent agent claims |
 | `.gemini/agents/*.md` | Modify | Align equivalent agent claims |
 | `.codex/agents/*.toml` | Audit | Drift recorded; writes blocked by sandbox |
-| `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/036-runtime-command-agent-alignment-review/*` | Create | Packet docs and audit reports |
+| `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/007-runtime-command-agent-alignment-review/*` | Create | Packet docs and audit reports |
 <!-- /ANCHOR:scope -->
 
 ---

@@ -10,7 +10,7 @@
     "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-audit/004-code-graph-watcher-retraction",
     "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-audit/005-memory-retention-sweep",
     "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-audit/006-full-matrix-execution-validation",
-    "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-audit/036-runtime-command-agent-alignment-review",
+    "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-audit/007-runtime-command-agent-alignment-review",
     "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-audit/045-drift-finding-fixes"
   ],
   "manual": {
@@ -25,7 +25,7 @@
     "status": "in_progress",
     "key_files": ["spec.md"],
     "entities": [],
-    "causal_summary": "Coordinate system-wide audits, validation sweeps, and compliance checks to ensure runtime wiring correctness, security posture, and agent alignment. This phase parent binds together 8 children including 002-w3-w7-runtime-wiring-and-audit for runtime infrastructure validation and 036-runtime-command-agent-alignment-review for cross-runtime agent consistency, providing comprehensive validation coverage for the release cleanup effort.",
+    "causal_summary": "Coordinate system-wide audits, validation sweeps, and compliance checks to ensure runtime wiring correctness, security posture, and agent alignment. This phase parent binds together 8 children including 002-w3-w7-runtime-wiring-and-audit for runtime infrastructure validation and 007-runtime-command-agent-alignment-review for cross-runtime agent consistency, providing comprehensive validation coverage for the release cleanup effort.",
     "created_at": "2026-05-16T09:00:00Z",
     "last_save_at": "2026-05-16T09:00:00Z",
     "save_lineage": "cli-devin-swe-1.6-w3a",

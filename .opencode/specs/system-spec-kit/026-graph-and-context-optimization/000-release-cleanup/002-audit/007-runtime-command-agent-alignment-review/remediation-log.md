@@ -2,7 +2,7 @@
 title: "Remediation Log: 049 Runtime Command Agent Alignment Review"
 description: "Per-finding fix log for runtime command and agent alignment."
 trigger_phrases:
-  - "036-runtime-command-agent-alignment-review"
+  - "007-runtime-command-agent-alignment-review"
   - "runtime command audit"
   - "agent alignment review"
   - "cross-runtime agent consistency"

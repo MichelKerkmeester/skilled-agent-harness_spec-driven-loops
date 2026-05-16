@@ -1,10 +1,10 @@
 ## Packet 049: runtime-command-agent-alignment-review — Tier B audit + apply
 
-You are cli-codex (gpt-5.5 high fast) implementing **036-runtime-command-agent-alignment-review**.
+You are cli-codex (gpt-5.5 high fast) implementing **007-runtime-command-agent-alignment-review**.
 
 ### CRITICAL: Spec folder path
 
-The packet folder is: `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/036-runtime-command-agent-alignment-review/` — write ALL packet files there. Do NOT ask for the spec folder.
+The packet folder is: `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/007-runtime-command-agent-alignment-review/` — write ALL packet files there. Do NOT ask for the spec folder.
 
 ### Goal
 
@@ -87,7 +87,7 @@ For agents that exist in BOTH `.opencode/agents/` AND `.claude/agents/`:
 
 #### Phase 4: Verification
 
-- `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/036-runtime-command-agent-alignment-review --strict` — must exit 0
+- `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/007-runtime-command-agent-alignment-review --strict` — must exit 0
 - Self-check: run the evergreen-rule grep across all touched command/agent files; goal is zero unexempted hits
 - For any command with a YAML asset: confirm strict validator on the wrapper packet (if applicable) still passes
 
@@ -99,7 +99,7 @@ PLUS: `audit-findings.md` (per-file classifications), `remediation-log.md` (per-
 
 **Deps**: `manual.depends_on=["system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/029-root-readme-refresh","system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/034-matrix-runners-snake-case-rename","system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/005-remaining-p1-p2-remediation"]`.
 
-**Trigger phrases**: `["036-runtime-command-agent-alignment-review","runtime command audit","agent alignment review","cross-runtime agent consistency"]`.
+**Trigger phrases**: `["007-runtime-command-agent-alignment-review","runtime command audit","agent alignment review","cross-runtime agent consistency"]`.
 
 **Causal summary**: `"Audits all commands in .opencode/commands/ and agents in .opencode/agents/, .claude/agents/, .codex/agents/, .gemini/agents/ for current-reality alignment after 031-048. Surfaces tool/path/count/capability drift; applies fixes; cross-checks runtime-equivalent agents for consistency."`.
 

@@ -10,7 +10,7 @@ Runtime wiring, compliance checks, alignment reviews, sweeps. Hosts the absorbed
 - `004-code-graph-watcher-retraction`
 - `005-memory-retention-sweep`
 - `006-full-matrix-execution-validation`
-- `036-runtime-command-agent-alignment-review`
+- `007-runtime-command-agent-alignment-review`
 - `045-drift-finding-fixes`
 
 ## Provenance

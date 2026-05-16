@@ -2,7 +2,7 @@
 title: "Cross-Runtime Diff: 049 Runtime Command Agent Alignment Review"
 description: "Consistency report for equivalent agents across OpenCode, Claude, Codex, and Gemini runtime directories."
 trigger_phrases:
-  - "036-runtime-command-agent-alignment-review"
+  - "007-runtime-command-agent-alignment-review"
   - "runtime command audit"
   - "agent alignment review"
   - "cross-runtime agent consistency"

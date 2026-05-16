@@ -4907,7 +4907,7 @@
       "lastUpdated": "2026-05-08T08:26:57.394Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/036-runtime-command-agent-alignment-review",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/007-runtime-command-agent-alignment-review",
       "description": "Feature Specification: 049 Runtime Command Agent Alignment Review",
       "keywords": [
         "feature",

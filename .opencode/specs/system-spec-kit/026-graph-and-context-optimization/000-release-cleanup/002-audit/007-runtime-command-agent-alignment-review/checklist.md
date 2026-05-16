@@ -3,7 +3,7 @@ title: "Verification Checklist: 049 Runtime Command Agent Alignment Review"
 description: "Verification checklist for the runtime command and agent alignment audit."
 template_source: "SPECKIT_TEMPLATE_SOURCE: checklist | v2.2"
 trigger_phrases:
-  - "036-runtime-command-agent-alignment-review"
+  - "007-runtime-command-agent-alignment-review"
   - "runtime command audit"
   - "agent alignment review"
   - "cross-runtime agent consistency"
@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "checklist"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/036-runtime-command-agent-alignment-review"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/007-runtime-command-agent-alignment-review"
     last_updated_at: "2026-04-30T07:45:00+02:00"
     last_updated_by: "cli-codex"
     recent_action: "Checklist verified"
@@ -22,7 +22,7 @@ _memory:
       - "checklist.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "036-runtime-command-agent-alignment-review"
+      session_id: "007-runtime-command-agent-alignment-review"
       parent_session_id: null
     completion_pct: 100
     open_questions: []
@@ -123,5 +123,5 @@ _memory:
 
 - `git diff --name-only | rg '^(\\.opencode/command|\\.opencode/agent|\\.claude/agents|\\.gemini/agents)' | xargs rg -n "matrix-runners|tests/search-quality|node >= 18|Node\\.js 18\\+|Phase 008|Phase 005|packet 026|packet 011|packet 012"`: PASS, no output
 - `rg -n "memory_retention_sweep|advisor_rebuild|runtime startup/bootstrap|Runtime Directory Resolution|Evergreen Rule" ...`: PASS, expected updated references present
-- `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/036-runtime-command-agent-alignment-review --strict`: PASS
+- `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/007-runtime-command-agent-alignment-review --strict`: PASS
 <!-- /ANCHOR:summary -->
