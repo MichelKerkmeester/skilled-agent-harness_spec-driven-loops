@@ -4,6 +4,8 @@
 **Research Scope:** Consolidate 50 iteration outputs (40 cli-devin SWE-1.6 + 10 cli-codex gpt-5.5) from the 026 graph and context optimization restructure research into a single findings ledger.
 **Contradiction Resolution Policy:** Track 11 (gpt-5.5) overrides Track 1-10 (SWE-1.6) verdicts when conflicts exist, as Track 11 had the SWE-1.6 corpus as input.
 
+**Source citations:** Every claim cites the source iter file path `research/iterations/iteration-NNN.md` (NNN ∈ 001-040 SWE-1.6 + 041-050 gpt-5.5) plus an optional `:LINE` anchor. iter 029 missing from the corpus (mid-run fail); track-7 coverage compensated by iter 027/028/030 + iter 048.
+
 ---
 
 ## Executive Summary
