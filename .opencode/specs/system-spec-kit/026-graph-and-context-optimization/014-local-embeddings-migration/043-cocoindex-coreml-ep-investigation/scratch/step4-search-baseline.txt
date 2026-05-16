@@ -1,18 +1,0 @@
-# Step 4 - CocoIndex search baseline
-# captured_at=2026-05-14T16:15:42Z
-
-$ ccc status
-Error: Failed to connect to daemon: [Errno 1] Operation not permitted: '/Users/michelkerkmeester/.cocoindex_code/daemon.spawn-lock'
-exit=1
-
-$ in-process equivalent of ccc search where is the embedder created --limit 1
-Loading weights:   0%|          | 0/314 [00:00<?, ?it/s]Loading weights: 100%|██████████| 314/314 [00:00<00:00, 7927.88it/s]
-trial=1 latency_ms=3850.9 results=1
-trial=1 first=.gemini/skills/mcp-coco-index/mcp_server/cocoindex_code/shared.py:69-91 score=0.479
-trial=2 latency_ms=80.4 results=1
-trial=2 first=.gemini/skills/mcp-coco-index/mcp_server/cocoindex_code/shared.py:69-91 score=0.479
-trial=3 latency_ms=79.5 results=1
-trial=3 first=.gemini/skills/mcp-coco-index/mcp_server/cocoindex_code/shared.py:69-91 score=0.479
-avg_latency_ms=1337.0
-median_latency_ms=80.4
-exit=0

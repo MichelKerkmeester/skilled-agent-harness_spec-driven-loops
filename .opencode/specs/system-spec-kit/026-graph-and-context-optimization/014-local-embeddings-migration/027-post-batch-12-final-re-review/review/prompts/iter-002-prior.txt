@@ -1,7 +1,0 @@
-
-PRIOR ITERATIONS FINDINGS (avoid duplicate flags — these are already covered):
-
---- iteration-001.md ---
-| L-001-001 | P1 | correctness | .opencode/skills/system-spec-kit/shared/embeddings.ts:769 | "case 'hf-local': default: return providerInfo.config.HF_EMBEDDINGS_MODEL \|\| DEFAULT_MODEL_NAME;" | confirmed-residue | Add an explicit `llama-cpp` branch in `detectConfiguredModelName()` returning `LLAMA_CPP_EMBEDDINGS_MODEL` or `unsloth/embeddinggemma-300m-GGUF`, so pre-initialization `MODEL_NAME` matches the canonical auto-selected local provider. |
-| L-001-002 | P2 | correctness | .opencode/skills/system-spec-kit/shared/embeddings.ts:765 | "(process.env.VOYAGE_API_KEY ? 'voyage-4' : DEFAULT_MODEL_NAME);" | confirmed-residue | Make cloud provider model defaults provider-native regardless of key presence: `voyage` should default to `voyage-4` and `openai` to `text-embedding-3-small`; API-key validity should stay separate from model identity. |
-| L-001-003 | P2 | correctness | .opencode/skills/system-spec-kit/scripts/tests/test-embeddings-behavioral.js:242 | "assertEqual(emb.MODEL_NAME, 'onnx-community/embeddinggemma-300m-ONNX', 'EB-003: MODEL_NAME is EmbeddingGemma default');" | confirmed-residue | Update this behavioral assertion to cover the canonical auto cascade: expect llama-cpp when the GGUF runtime is available, otherwise hf-local, and add a pre-init llama-cpp assertion to prevent L-001-001 from recurring. |
