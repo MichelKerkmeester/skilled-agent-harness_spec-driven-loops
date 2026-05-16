@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/_045-template-contract-divergence",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/045-template-contract-divergence",
   "description": "Align memory_save template-contract enforcement with strict validation for canonical V2.2 spec docs.",
   "keywords": [
     "memory_save",

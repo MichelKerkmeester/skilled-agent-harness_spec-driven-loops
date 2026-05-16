@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/_045-template-contract-divergence",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/_045-template-contract-divergence",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/045-template-contract-divergence",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/045-template-contract-divergence",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration",
   "children_ids": [],
   "manual": {
@@ -33,11 +33,11 @@
     "key_files": [
       ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts",
       ".opencode/skills/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/_045-template-contract-divergence/spec.md",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/_045-template-contract-divergence/plan.md",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/_045-template-contract-divergence/tasks.md",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/_045-template-contract-divergence/checklist.md",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/_045-template-contract-divergence/implementation-summary.md"
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/045-template-contract-divergence/spec.md",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/045-template-contract-divergence/plan.md",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/045-template-contract-divergence/tasks.md",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/045-template-contract-divergence/checklist.md",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/045-template-contract-divergence/implementation-summary.md"
     ],
     "entities": [
       "memory_save",

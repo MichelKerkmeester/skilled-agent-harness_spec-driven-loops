@@ -11,7 +11,7 @@ contextType: "implementation"
 status: "complete"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/_045-template-contract-divergence"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/045-template-contract-divergence"
     last_updated_at: "2026-05-14T16:49:00Z"
     last_updated_by: "codex"
     recent_action: "All 044 implementation and verification tasks completed"

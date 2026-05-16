@@ -11,7 +11,7 @@ contextType: "implementation"
 status: "complete"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/_045-template-contract-divergence"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/045-template-contract-divergence"
     last_updated_at: "2026-05-14T16:49:00Z"
     last_updated_by: "codex"
     recent_action: "Reproduced and fixed memory_save versus strict-validate contract divergence"
@@ -80,7 +80,7 @@ Make `memory_save` and strict validation agree for canonical spec documents with
 |-----------|-------------|-------------|
 | `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts` | Modify | Bypass generated-memory template-contract blocking for valid canonical spec docs. |
 | `.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts` | Modify | Add regression for `memory_save` dry-run acceptance of a canonical spec doc. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/_045-template-contract-divergence/` | Create | Level 2 packet documentation and verification evidence. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/045-template-contract-divergence/` | Create | Level 2 packet documentation and verification evidence. |
 <!-- /ANCHOR:scope -->
 
 ---
