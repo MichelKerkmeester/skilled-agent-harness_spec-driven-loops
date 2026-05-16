@@ -621,8 +621,8 @@ file_path	match_count	area	phase
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-advisor-phrase-booster-tailoring/scratch/baseline-queries.md	1	spec-folder-active	003
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-advisor-phrase-booster-tailoring/scratch/phrase-boost-delta.md	11	spec-folder-active	003
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-advisor-phrase-booster-tailoring/spec.md	2	spec-folder-active	003
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/003-smart-router-remediation-and-opencode-plugin/graph-metadata.json	2	spec-folder-active	003
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/003-smart-router-remediation-and-opencode-plugin/implementation-summary.md	4	spec-folder-active	003
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/003-smart-remediation-and-opencode-plugin/graph-metadata.json	2	spec-folder-active	003
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/003-smart-remediation-and-opencode-plugin/implementation-summary.md	4	spec-folder-active	003
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-skill-advisor-hook-surface/handover.md	2	spec-folder-active	003
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-daemon-and-unification/research/iterations/iteration-002.md	8	spec-folder-active	003
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-daemon-and-unification/research/iterations/iteration-006.md	1	spec-folder-active	003
@@ -1281,8 +1281,8 @@ specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-a
 specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-advisor-phrase-booster-tailoring/scratch/baseline-queries.md	1	spec-folder-active	003
 specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-advisor-phrase-booster-tailoring/scratch/phrase-boost-delta.md	11	spec-folder-active	003
 specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-advisor-phrase-booster-tailoring/spec.md	2	spec-folder-active	003
-specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/003-smart-router-remediation-and-opencode-plugin/graph-metadata.json	2	spec-folder-active	003
-specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/003-smart-router-remediation-and-opencode-plugin/implementation-summary.md	4	spec-folder-active	003
+specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/003-smart-remediation-and-opencode-plugin/graph-metadata.json	2	spec-folder-active	003
+specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/003-smart-remediation-and-opencode-plugin/implementation-summary.md	4	spec-folder-active	003
 specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-skill-advisor-hook-surface/handover.md	2	spec-folder-active	003
 specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-daemon-and-unification/research/iterations/iteration-002.md	8	spec-folder-active	003
 specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-daemon-and-unification/research/iterations/iteration-006.md	1	spec-folder-active	003

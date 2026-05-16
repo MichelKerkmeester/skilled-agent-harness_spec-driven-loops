@@ -40,7 +40,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify |
 | **Created** | 2026-04-19 |
 | **Parent Spec** | ../spec.md |
 | **Parent Plan** | ../plan.md |
-| **Predecessor** | ../003-smart-router-remediation-and-opencode-plugin/spec.md |
+| **Predecessor** | ../003-smart-remediation-and-opencode-plugin/spec.md |
 | **Successor** | None |
 <!-- /ANCHOR:metadata -->
 
@@ -241,7 +241,7 @@ What we CANNOT close without live AI sessions: empirical proof that AIs skip SKI
 
 ### Related Documents
 
-- Predecessors: `../../008-skill-advisor/004-skill-advisor-hook-surface/` and `../003-smart-router-remediation-and-opencode-plugin/`
+- Predecessors: `../../008-skill-advisor/004-skill-advisor-hook-surface/` and `../003-smart-remediation-and-opencode-plugin/`
 - Research inputs:
   - `../004-smart-router-context-efficacy/001-initial-research/research/research.md` (V4/V7 open)
   - `../004-smart-router-context-efficacy/002-skill-md-intent-router-efficacy/research/research.md` (V3/V4/V5/V9 open)

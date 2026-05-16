@@ -6,7 +6,7 @@ Search-and-routing tuning, phrase booster, smart router, hook surface, setup com
 
 - `001-search-and-routing-tuning`
 - `002-advisor-phrase-booster-tailoring`
-- `003-smart-router-remediation-and-opencode-plugin`
+- `003-smart-remediation-and-opencode-plugin`
 - `004-skill-advisor-hook-surface`
 - `005-skill-advisor-setup-command`
 

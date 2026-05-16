@@ -1,5 +1,5 @@
 ---
-title: ".../026-graph-and-context-optimization/008-skill-advisor/003-smart-router-remediation-and-opencode-plugin/plan]"
+title: ".../026-graph-and-context-optimization/008-skill-advisor/003-smart-remediation-and-opencode-plugin/plan]"
 description: "Implements the six research recommendations from 021/002 and the 021/001 V8/V9 OpenCode plugin proposal. The plan keeps Phase 020 runtime code unchanged while adding router validation, telemetry, plugin integration, tests, and phase documentation."
 trigger_phrases:
   - "023 smart router remediation plan"
@@ -8,14 +8,14 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/003-smart-router-remediation-and-opencode-plugin"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/003-smart-remediation-and-opencode-plugin"
     last_updated_at: "2026-04-19T00:00:00Z"
     last_updated_by: "codex"
     recent_action: "Initialized Phase 023 implementation plan"
     next_safe_action: "Execute Area A stale path remediation first, then Area D checker"
     blockers: []
     key_files:
-      - ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/003-smart-router-remediation-and-opencode-plugin/spec.md"
+      - ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/003-smart-remediation-and-opencode-plugin/spec.md"
       - ".opencode/plugins/spec-kit-compact-code-graph.js"
       - ".opencode/skills/system-spec-kit/mcp_server/lib/skill-advisor/skill-advisor-brief.ts"
     completion_pct: 5

@@ -1,5 +1,5 @@
 ---
-title: ".../026-graph-and-context-optimization/008-skill-advisor/003-smart-router-remediation-and-opencode-plugin/spec]"
+title: ".../026-graph-and-context-optimization/008-skill-advisor/003-smart-remediation-and-opencode-plugin/spec]"
 description: "Act on all 6 recommendations from 021/002 Smart-Router research + build spec-kit-skill-advisor OpenCode plugin per 021/001 V8/V9. Scope: fix stale paths, tune ON_DEMAND keywords, replace CLI silent fallbacks, build CI check, ship observe-only telemetry harness, ship advisor plugin."
 trigger_phrases:
   - "023 smart router remediation"
@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/003-smart-router-remediation-and-opencode-plugin"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/003-smart-remediation-and-opencode-plugin"
     last_updated_at: "2026-04-19T19:55:00Z"
     last_updated_by: "claude-opus-4.7-1m"
     recent_action: "Phase 023 scaffolded — acts on all 021/001+021/002 research recommendations"

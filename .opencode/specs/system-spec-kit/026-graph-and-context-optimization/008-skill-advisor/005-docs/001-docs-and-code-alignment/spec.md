@@ -42,7 +42,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify |
 | **Parent Spec** | ../spec.md |
 | **Parent Plan** | ../plan.md |
 | **Predecessor** | ../004-smart-router-context-efficacy/spec.md |
-| **Successor** | ../003-smart-router-remediation-and-opencode-plugin/spec.md |
+| **Successor** | ../003-smart-remediation-and-opencode-plugin/spec.md |
 <!-- /ANCHOR:metadata -->
 
 ---

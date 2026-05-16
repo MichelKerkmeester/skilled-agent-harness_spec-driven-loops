@@ -14325,8 +14325,8 @@ exec
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/implementation-summary.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-skill-advisor-hook-surface/implementation-summary.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-skill-advisor-hook-surface/spec.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/003-smart-router-remediation-and-opencode-plugin/implementation-summary.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/003-smart-router-remediation-and-opencode-plugin/spec.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/003-smart-remediation-and-opencode-plugin/implementation-summary.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/003-smart-remediation-and-opencode-plugin/spec.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-advisor-phrase-booster-tailoring/implementation-summary.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-advisor-phrase-booster-tailoring/spec.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-deferred-remediation-and-telemetry-run/implementation-summary.md

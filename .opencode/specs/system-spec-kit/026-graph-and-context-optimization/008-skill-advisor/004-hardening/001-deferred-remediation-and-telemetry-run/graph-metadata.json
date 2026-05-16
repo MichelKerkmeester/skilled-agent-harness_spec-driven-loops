@@ -15,10 +15,10 @@
         "spec_folder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-skill-advisor-hook-surface/008-codex-integration-and-hook-policy"
       },
       {
-        "packet_id": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/003-smart-router-remediation-and-opencode-plugin",
+        "packet_id": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/003-smart-remediation-and-opencode-plugin",
         "reason": "depends_on relationship preserved during phase consolidation",
         "source": "026-phase-consolidation",
-        "spec_folder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/003-smart-router-remediation-and-opencode-plugin"
+        "spec_folder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/003-smart-remediation-and-opencode-plugin"
       }
     ],
     "supersedes": [],

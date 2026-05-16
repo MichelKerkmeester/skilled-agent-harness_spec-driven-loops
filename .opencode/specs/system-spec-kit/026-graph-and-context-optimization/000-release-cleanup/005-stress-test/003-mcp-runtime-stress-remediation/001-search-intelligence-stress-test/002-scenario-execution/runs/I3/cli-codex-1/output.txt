@@ -2562,8 +2562,8 @@ exec
 exec
 /bin/zsh -lc "find .opencode/specs/system-spec-kit/026-graph-and-context-optimization -maxdepth 3 -type d | sed 's#"'^#/#'"' | rg '/(003|005)-|/003/|/005/'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/003-smart-router-remediation-and-opencode-plugin
-/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/003-smart-router-remediation-and-opencode-plugin/scratch
+/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/003-smart-remediation-and-opencode-plugin
+/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/003-smart-remediation-and-opencode-plugin/scratch
 /.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-advisor-phrase-booster-tailoring
 /.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-advisor-phrase-booster-tailoring/research
 /.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-advisor-phrase-booster-tailoring/scratch
@@ -2622,7 +2622,7 @@ exec
 exec
 /bin/zsh -lc "find .opencode/specs/system-spec-kit/026-graph-and-context-optimization -maxdepth 4 -type f \\( -name tasks.md -o -name spec.md -o -name implementation-summary.md \\) | xargs rg -n \"T101|T-101|PREFLIGHT|preflight\"" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/003-smart-router-remediation-and-opencode-plugin/tasks.md:83:- [x] T101 Run Phase 020 advisor/hook regression tests and record pass count. [Evidence: 19 files / 118 tests passed.]
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/003-smart-remediation-and-opencode-plugin/tasks.md:83:- [x] T101 Run Phase 020 advisor/hook regression tests and record pass count. [Evidence: 19 files / 118 tests passed.]
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-runtime-executor-hardening/003-system-hardening/implementation-summary.md:187:**Rank 3 anchor parity:** `check-anchors.sh` rejects duplicate opening anchor IDs (matching `preflight.ts`).
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-runtime-executor-hardening/001-foundational-runtime/tasks.md:131:**Files**: `mcp_server/handlers/save/reconsolidation-bridge.ts:228-234`, `lib/storage/lineage-state.ts:198-204`, `handlers/save/types.ts:348-352`, `lib/validation/preflight.ts:440-444`
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-runtime-executor-hardening/001-foundational-runtime/implementation-summary.md:112:- `b923623cc` (T-SCP-01): new `normalizeScopeValue(value: unknown): string | null` canonical export in `lib/governance/scope-governance.ts`. 4 local duplicates collapsed (`reconsolidation-bridge.ts:228`, `lineage-state.ts:198`, `save/types.ts:348`, `preflight.ts:440`). Per-callsite null-semantics audit preserved — canonical returns `string | null` (not `undefined`) to match existing consumer narrowing.
