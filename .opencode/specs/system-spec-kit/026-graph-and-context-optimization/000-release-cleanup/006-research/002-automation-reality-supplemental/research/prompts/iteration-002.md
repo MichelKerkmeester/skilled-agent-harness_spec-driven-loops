@@ -5,7 +5,7 @@ You are deep-research agent dispatched for iteration 2 of 5. Iter 1 completed (d
 ### State summary
 
 - Segment: 1 | Iteration: 2 of 5
-- Read prior iter 1 findings from `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-automation-reality-supplemental-research/research/iterations/iteration-001.md` to avoid duplicate ground.
+- Read prior iter 1 findings from `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-automation-reality-supplemental/research/iterations/iteration-001.md` to avoid duplicate ground.
 - Next focus: CCC + eval reporting + ablation runner reality
 
 ### Iteration 2 focus
@@ -54,7 +54,7 @@ Specifically watch for:
 
 ### Output contract — write EXACTLY these files
 
-#### 1. `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-automation-reality-supplemental-research/research/iterations/iteration-002.md`
+#### 1. `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-automation-reality-supplemental/research/iterations/iteration-002.md`
 
 Markdown file with these sections:
 
@@ -87,7 +87,7 @@ For each "documented but absent" finding, give a 2-3 sentence justification + se
 What iteration 3 should drill into.
 ```
 
-#### 2. `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-automation-reality-supplemental-research/research/deltas/iter-002.jsonl`
+#### 2. `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-automation-reality-supplemental/research/deltas/iter-002.jsonl`
 
 One-line JSONL records, MUST contain at least one record where `type === "iteration"`:
 
@@ -96,7 +96,7 @@ One-line JSONL records, MUST contain at least one record where `type === "iterat
 {"type":"finding","run":2,"id":"F-013-NNN","kind":"reality_map_row","tool":"<tool>","class":"<class>","severity":"<sev>","fileRef":"<file:line>","summary":"<one-line>"}
 ```
 
-#### 3. Append ONE line to `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-automation-reality-supplemental-research/research/deep-research-state.jsonl`
+#### 3. Append ONE line to `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-automation-reality-supplemental/research/deep-research-state.jsonl`
 
 ```jsonl
 {"event":"iteration_complete","at":"<ISO 8601 NOW>","iter":2,"focus":"CCC + eval + ablation reality","newInfoRatio":<0.0-1.0>,"status":"insight"}

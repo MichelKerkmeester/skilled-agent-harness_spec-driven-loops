@@ -11,7 +11,7 @@ Execute the full automation matrix design from packet 030 (`specs/system-spec-ki
 - `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/030-v1-0-4-full-matrix-stress-test-design/spec.md` (the matrix scope)
 - `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/030-v1-0-4-full-matrix-stress-test-design/plan.md` (the execution architecture — Option C: each feature owns its runner; meta-aggregator reads per-cell JSONL)
 - All other packet docs in 030/ (decision-record, feature-catalog-impact-audit, testing-playbook-impact-audit if present)
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-automation-reality-supplemental-research/research/research-report.md` (Section 6 Packet 035 scope)
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-automation-reality-supplemental/research/research-report.md` (Section 6 Packet 035 scope)
 
 ### Implementation
 

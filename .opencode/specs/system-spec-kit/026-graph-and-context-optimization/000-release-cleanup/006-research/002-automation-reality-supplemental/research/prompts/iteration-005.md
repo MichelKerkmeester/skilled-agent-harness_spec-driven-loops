@@ -6,7 +6,7 @@ You are deep-research agent dispatched for iteration 5 of 5 — the SYNTHESIS it
 
 - Segment: 1 | Iteration: 5 of 5 (FINAL SYNTHESIS)
 - Read all prior iterations:
-  - `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-automation-reality-supplemental-research/research/iterations/iteration-001.md` (deep-loop graph)
+  - `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-automation-reality-supplemental/research/iterations/iteration-001.md` (deep-loop graph)
   - `iteration-002.md` (CCC + eval + ablation)
   - `iteration-003.md` (validator auto-fire)
   - `iteration-004.md` (adversarial 4-P1 + NEW gaps)
@@ -72,7 +72,7 @@ If the iter 4 retest changes priorities (e.g., promotes a P1 to P0 or demotes P1
 
 ### Output contract — write EXACTLY these files
 
-#### 1. `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-automation-reality-supplemental-research/research/iterations/iteration-005.md`
+#### 1. `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-automation-reality-supplemental/research/iterations/iteration-005.md`
 
 ```markdown
 # Iteration 5: Synthesis + Sequenced Remediation Backlog
@@ -128,7 +128,7 @@ Synthesis + sequenced remediation backlog (packets 031-035)
 Final synthesis iter, expect low (e.g., 0.10-0.20).
 ```
 
-#### 2. ALSO write the FINAL `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-automation-reality-supplemental-research/research/research-report.md`
+#### 2. ALSO write the FINAL `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-automation-reality-supplemental/research/research-report.md`
 
 This OVERWRITES the stub. 7-section structure:
 
@@ -190,14 +190,14 @@ Brief recap: 012 produced 50-row map (14 auto / 14 half / 18 manual / 4 P1 aspir
 - newInfoRatio sequence: ...
 ```
 
-#### 3. Append synthesis_complete event to `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-automation-reality-supplemental-research/research/deep-research-state.jsonl`
+#### 3. Append synthesis_complete event to `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-automation-reality-supplemental/research/deep-research-state.jsonl`
 
 ```jsonl
 {"event":"iteration_complete","at":"<ISO 8601 NOW>","iter":5,"focus":"Synthesis + remediation backlog","newInfoRatio":<final>,"status":"converged"}
 {"event":"synthesis_complete","at":"<ISO 8601 NOW>","totalIters":5,"stopReason":"<reason>"}
 ```
 
-#### 4. Write `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-automation-reality-supplemental-research/research/deltas/iter-005.jsonl`
+#### 4. Write `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-automation-reality-supplemental/research/deltas/iter-005.jsonl`
 
 ```jsonl
 {"type":"iteration","run":5,"focus":"Synthesis + remediation backlog","status":"converged","findingsCount":<N>,"newInfoRatio":<final>,"timestamp":"<ISO 8601 NOW>"}

@@ -35,7 +35,7 @@ _memory:
 | **Created** | 2026-04-29 |
 | **Branch** | `main` |
 | **Parent** | `026-graph-and-context-optimization` |
-| **Depends On** | `002-automation-reality-supplemental-research` |
+| **Depends On** | `002-automation-reality-supplemental` |
 | **Related** | `001-automation-self-management-deep` |
 | **Mode** | Doc-only remediation |
 <!-- /ANCHOR:metadata -->
@@ -49,11 +49,11 @@ _memory:
 
 The 013 supplemental research found that several operator-facing docs describe automation more broadly than the implementation supports. The highest-leverage Tier A fixes are documentation-only:
 
-1. Copilot hook docs conflict: shared hook docs still mention a stale Claude-style wrapper, while the Copilot-local README says Copilot does not use `.claude/settings.local.json`. [EVIDENCE: `../002-automation-reality-supplemental-research/research/research-report.md:41`; `../../../../.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/README.md:27-34`]
-2. Codex hook docs blur repo examples with live registration: the current user runtime has `~/.codex/hooks.json` plus `[features].codex_hooks = true`, while repo `.codex/settings.json` is only an example template. [EVIDENCE: `../002-automation-reality-supplemental-research/research/iterations/iteration-004.md:85-89`]
-3. CCC command docs and architecture docs point to stale homes or stale paths. [EVIDENCE: `../002-automation-reality-supplemental-research/research/research-report.md:93-94`]
-4. Validation docs use "automatic" wording where the real contract is a workflow-required gate backed by `validate.sh`. [EVIDENCE: `../002-automation-reality-supplemental-research/research/research-report.md:95-96`]
-5. Broad automation docs lack a trigger column, making manual, half-auto, and runtime-hooked behavior easy to conflate. [EVIDENCE: `../002-automation-reality-supplemental-research/research/research-report.md:11-49`]
+1. Copilot hook docs conflict: shared hook docs still mention a stale Claude-style wrapper, while the Copilot-local README says Copilot does not use `.claude/settings.local.json`. [EVIDENCE: `../002-automation-reality-supplemental/research/research-report.md:41`; `../../../../.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/README.md:27-34`]
+2. Codex hook docs blur repo examples with live registration: the current user runtime has `~/.codex/hooks.json` plus `[features].codex_hooks = true`, while repo `.codex/settings.json` is only an example template. [EVIDENCE: `../002-automation-reality-supplemental/research/iterations/iteration-004.md:85-89`]
+3. CCC command docs and architecture docs point to stale homes or stale paths. [EVIDENCE: `../002-automation-reality-supplemental/research/research-report.md:93-94`]
+4. Validation docs use "automatic" wording where the real contract is a workflow-required gate backed by `validate.sh`. [EVIDENCE: `../002-automation-reality-supplemental/research/research-report.md:95-96`]
+5. Broad automation docs lack a trigger column, making manual, half-auto, and runtime-hooked behavior easy to conflate. [EVIDENCE: `../002-automation-reality-supplemental/research/research-report.md:11-49`]
 
 ### Purpose
 

@@ -91,6 +91,6 @@ _memory:
 - **Specification**: `spec.md`
 - **Plan**: `plan.md`
 - **Checklist**: `checklist.md`
-- **Source research**: `../002-automation-reality-supplemental-research/research/research-report.md`
+- **Source research**: `../002-automation-reality-supplemental/research/research-report.md`
 - **Baseline research**: `../001-automation-self-management-deep/research/research-report.md`
 <!-- /ANCHOR:cross-refs -->

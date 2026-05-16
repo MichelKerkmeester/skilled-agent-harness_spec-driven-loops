@@ -52,7 +52,7 @@ This plan implements Packet 032's Tier B-beta path. The README will stop implyin
 ### Definition of Ready
 
 - [x] Packet folder identified. [EVIDENCE: user requested `004-code-graph-watcher-retraction`]
-- [x] Source research identified. [EVIDENCE: `../002-automation-reality-supplemental-research/research/research-report.md:84`]
+- [x] Source research identified. [EVIDENCE: `../002-automation-reality-supplemental/research/research-report.md:84`]
 - [x] Runtime-code exclusion clear. [EVIDENCE: user constraint: DOC-ONLY]
 
 ### Definition of Done

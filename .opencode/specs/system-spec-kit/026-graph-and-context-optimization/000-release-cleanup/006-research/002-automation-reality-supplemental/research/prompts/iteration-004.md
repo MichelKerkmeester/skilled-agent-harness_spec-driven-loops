@@ -76,7 +76,7 @@ Hunt for gaps in surfaces 012 didn't reach:
 
 ### Output contract — write EXACTLY these files
 
-#### 1. `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-automation-reality-supplemental-research/research/iterations/iteration-004.md`
+#### 1. `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-automation-reality-supplemental/research/iterations/iteration-004.md`
 
 ```markdown
 # Iteration 4: Adversarial 4-P1 Retest + NEW Gap Hunt
@@ -130,7 +130,7 @@ Adversarial Hunter→Skeptic→Referee on 012's 4 P1 findings + NEW gap hunt
 Iteration 5 — synthesis + sequenced remediation backlog
 ```
 
-#### 2. `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-automation-reality-supplemental-research/research/deltas/iter-004.jsonl`
+#### 2. `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-automation-reality-supplemental/research/deltas/iter-004.jsonl`
 
 ```jsonl
 {"type":"iteration","run":4,"focus":"Adversarial 4-P1 retest + NEW gap hunt","status":"insight","findingsCount":<N>,"newInfoRatio":<0.0-1.0>,"timestamp":"<ISO 8601 NOW>"}
@@ -138,7 +138,7 @@ Iteration 5 — synthesis + sequenced remediation backlog
 ... (one record per P1 finding + per NEW gap)
 ```
 
-#### 3. Append ONE line to `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-automation-reality-supplemental-research/research/deep-research-state.jsonl`
+#### 3. Append ONE line to `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-automation-reality-supplemental/research/deep-research-state.jsonl`
 
 ```jsonl
 {"event":"iteration_complete","at":"<ISO 8601 NOW>","iter":4,"focus":"Adversarial 4-P1 retest + NEW gap hunt","newInfoRatio":<0.0-1.0>,"status":"insight"}

@@ -37,7 +37,7 @@ _memory:
 | **Branch** | `main` |
 | **Parent** | `026-graph-and-context-optimization` |
 | **Depends On** | `003-doc-truth-pass` |
-| **Related** | `002-automation-reality-supplemental-research` |
+| **Related** | `002-automation-reality-supplemental` |
 | **Mode** | Tier B-alpha implementation |
 <!-- /ANCHOR:metadata -->
 
@@ -48,7 +48,7 @@ _memory:
 
 ### Problem Statement
 
-The 013 supplemental research validated P1-2: governed memory ingest persists `delete_after`, but no cleanup path consumes it. Session cleanup is real but targets session-state tables, and `memory_bulk_delete` filters by tier/spec/date rather than `delete_after`. [EVIDENCE: `../002-automation-reality-supplemental-research/research/research-report.md:40`; `../002-automation-reality-supplemental-research/research/iterations/iteration-004.md:73-76`]
+The 013 supplemental research validated P1-2: governed memory ingest persists `delete_after`, but no cleanup path consumes it. Session cleanup is real but targets session-state tables, and `memory_bulk_delete` filters by tier/spec/date rather than `delete_after`. [EVIDENCE: `../002-automation-reality-supplemental/research/research-report.md:40`; `../002-automation-reality-supplemental/research/iterations/iteration-004.md:73-76`]
 
 ### Purpose
 

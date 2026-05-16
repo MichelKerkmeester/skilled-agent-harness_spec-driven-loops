@@ -33,7 +33,7 @@ _memory:
 | **Created** | 2026-04-29 |
 | **Status** | Complete |
 | **Level** | 2 |
-| **Depends On** | 002-automation-reality-supplemental-research |
+| **Depends On** | 002-automation-reality-supplemental |
 <!-- /ANCHOR:metadata -->
 
 ---

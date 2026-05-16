@@ -6185,12 +6185,12 @@ END{
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/006-full-matrix-execution-validation/logs/feature-runs/F9-generate-context.log
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/008-drift-finding-fixes/logs/stress-run-20260501-033447Z.log
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/008-drift-finding-fixes/logs/stress-run-20260501-033955Z.log
-./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-automation-reality-supplemental-research/research/logs/iter-001.log
-./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-automation-reality-supplemental-research/research/logs/iter-002.log
+./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-automation-reality-supplemental/research/logs/iter-001.log
+./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-automation-reality-supplemental/research/logs/iter-002.log
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-doc-truth-pass/logs/iter-001.log
-./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-automation-reality-supplemental-research/research/logs/iter-003.log
-./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-automation-reality-supplemental-research/research/logs/iter-004.log
-./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-automation-reality-supplemental-research/research/logs/iter-005.log
+./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-automation-reality-supplemental/research/logs/iter-003.log
+./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-automation-reality-supplemental/research/logs/iter-004.log
+./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-automation-reality-supplemental/research/logs/iter-005.log
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/017-hook-test-sandbox-fix/logs/iter-001.log
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-code-graph-watcher-retraction/logs/iter-001.log
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/015-root-readme-refresh/logs/iter-001.log
@@ -6918,7 +6918,7 @@ spec_history_or_review_artifact: 577
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-search-and-routing-tuning/review/010-search-and-routing-tuning-pt-03/deep-review-findings-registry.json
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-search-and-routing-tuning/review/010-search-and-routing-tuning-pt-03/deep-review-strategy.md
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-search-and-routing-tuning/review/010-search-and-routing-tuning-pt-03/review-report.md
-./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-automation-reality-supplemental-research/research/iterations/iteration-001.md
+./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-automation-reality-supplemental/research/iterations/iteration-001.md
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/009-phase-parent-documentation/004-retroactive-phase-parent-migration/scratch/rm-worker-A-report.json
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/009-phase-parent-documentation/004-retroactive-phase-parent-migration/scratch/rm2-worker-A-report.json
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-mcp-runtime-stress-remediation/030-v1-0-4-full-matrix-stress-test-design/spec.md

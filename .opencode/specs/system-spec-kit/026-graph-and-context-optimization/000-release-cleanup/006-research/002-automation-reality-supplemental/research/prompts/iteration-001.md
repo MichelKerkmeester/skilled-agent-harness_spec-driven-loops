@@ -47,7 +47,7 @@ For each tool answer:
 
 ### Output contract — write EXACTLY these files
 
-#### 1. `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-automation-reality-supplemental-research/research/iterations/iteration-001.md`
+#### 1. `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-automation-reality-supplemental/research/iterations/iteration-001.md`
 
 Markdown file with these sections:
 
@@ -81,7 +81,7 @@ For any "auto-fires" claim: was the trigger actually live in production, or only
 What iteration 2 should drill into.
 ```
 
-#### 2. `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-automation-reality-supplemental-research/research/deltas/iter-001.jsonl`
+#### 2. `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-automation-reality-supplemental/research/deltas/iter-001.jsonl`
 
 One-line JSONL records, MUST contain at least one record where `type === "iteration"`:
 
@@ -91,7 +91,7 @@ One-line JSONL records, MUST contain at least one record where `type === "iterat
 ... (more findings as discovered)
 ```
 
-#### 3. Append ONE line to `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-automation-reality-supplemental-research/research/deep-research-state.jsonl`
+#### 3. Append ONE line to `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-automation-reality-supplemental/research/deep-research-state.jsonl`
 
 ```jsonl
 {"event":"iteration_complete","at":"<ISO 8601 NOW>","iter":1,"focus":"Deep-loop graph automation reality","newInfoRatio":<0.0-1.0>,"status":"insight"}

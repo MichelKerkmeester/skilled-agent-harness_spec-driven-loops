@@ -50,7 +50,7 @@ Implementation:
 
 ### Read these first
 
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-automation-reality-supplemental-research/research/research-report.md` (Section 6 Packet 034 scope)
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-automation-reality-supplemental/research/research-report.md` (Section 6 Packet 034 scope)
 - `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/001-automation-self-management-deep/research/research-report.md` (RQ1 Copilot/Codex freshness rows; RQ4 feature flags)
 - `.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/user-prompt-submit.ts`
 - `.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/custom-instructions.ts`

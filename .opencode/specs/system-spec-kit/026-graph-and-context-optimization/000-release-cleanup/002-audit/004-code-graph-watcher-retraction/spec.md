@@ -39,7 +39,7 @@ _memory:
 | **Branch** | `main` |
 | **Parent** | `026-graph-and-context-optimization` |
 | **Depends On** | `003-doc-truth-pass` |
-| **Related** | `002-automation-reality-supplemental-research` |
+| **Related** | `002-automation-reality-supplemental` |
 | **Mode** | Doc-only remediation |
 <!-- /ANCHOR:metadata -->
 
@@ -50,7 +50,7 @@ _memory:
 
 ### Problem Statement
 
-013 validated P1-1: the MCP server README had claimed real-time structural code-graph watching, but the adversarial retest found only markdown/spec-doc and skill-graph watcher paths. The actual code-graph contract is read-path selective repair plus operator-triggered full repair. [EVIDENCE: `../002-automation-reality-supplemental-research/research/research-report.md:84`; `../002-automation-reality-supplemental-research/research/iterations/iteration-004.md:67-72`]
+013 validated P1-1: the MCP server README had claimed real-time structural code-graph watching, but the adversarial retest found only markdown/spec-doc and skill-graph watcher paths. The actual code-graph contract is read-path selective repair plus operator-triggered full repair. [EVIDENCE: `../002-automation-reality-supplemental/research/research-report.md:84`; `../002-automation-reality-supplemental/research/iterations/iteration-004.md:67-72`]
 
 ### Purpose
 

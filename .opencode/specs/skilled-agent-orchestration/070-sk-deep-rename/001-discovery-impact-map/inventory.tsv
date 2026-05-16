@@ -370,7 +370,7 @@ file_path	match_count	area	phase
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-mcp-runtime-stress-remediation/review_archive/011-mcp-runtime-stress-remediation-pt-01/iterations/iteration-003.md	5	spec-folder-active	003
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-mcp-runtime-stress-remediation/review_archive/011-mcp-runtime-stress-remediation-pt-01/prompts/iteration-1.md	1	spec-folder-active	003
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-mcp-runtime-stress-remediation/testing-playbook-impact-audit.md	20	spec-folder-active	003
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-automation-reality-supplemental-research/research/iterations/iteration-001.md	4	spec-folder-active	003
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-automation-reality-supplemental/research/iterations/iteration-001.md	4	spec-folder-active	003
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-followup-quality-pass/002-feature-catalog-trio/discovery-notes.md	4	spec-folder-active	003
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-followup-quality-pass/003-testing-playbook-trio/discovery-notes.md	2	spec-folder-active	003
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/013-evergreen-doc-packet-id-removal/graph-metadata.json	3	spec-folder-active	003
@@ -1030,7 +1030,7 @@ specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003
 specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-mcp-runtime-stress-remediation/review_archive/011-mcp-runtime-stress-remediation-pt-01/iterations/iteration-003.md	5	spec-folder-active	003
 specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-mcp-runtime-stress-remediation/review_archive/011-mcp-runtime-stress-remediation-pt-01/prompts/iteration-1.md	1	spec-folder-active	003
 specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-mcp-runtime-stress-remediation/testing-playbook-impact-audit.md	20	spec-folder-active	003
-specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-automation-reality-supplemental-research/research/iterations/iteration-001.md	4	spec-folder-active	003
+specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-automation-reality-supplemental/research/iterations/iteration-001.md	4	spec-folder-active	003
 specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-followup-quality-pass/002-feature-catalog-trio/discovery-notes.md	4	spec-folder-active	003
 specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-followup-quality-pass/003-testing-playbook-trio/discovery-notes.md	2	spec-folder-active	003
 specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/013-evergreen-doc-packet-id-removal/graph-metadata.json	3	spec-folder-active	003

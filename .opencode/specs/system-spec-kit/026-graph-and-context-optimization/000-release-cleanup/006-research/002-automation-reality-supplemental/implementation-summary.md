@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-automation-reality-supplemental-research"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-automation-reality-supplemental"
     last_updated_at: "2026-04-29T20:35:30+02:00"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Resource map indexed"
@@ -33,7 +33,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 002-automation-reality-supplemental-research |
+| **Spec Folder** | 002-automation-reality-supplemental |
 | **Created** | 2026-04-29 |
 | **Status** | Complete (5 iters converged, validator green) |
 | **Level** | 2 |
@@ -109,7 +109,7 @@ Runtime code stays read-only; every write stays inside this packet folder and it
 |-------|--------------------|--------|
 | Artifact completeness | `find research/iterations -name 'iteration-*.md' \| wc -l` | PASS: 5 iter files + 5 delta files + research-report.md (226 lines) |
 | Source grounding | grep file:line citations across iteration markdown | PASS: every reality-map row + adversarial verdict cites file:line |
-| Strict validation | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-automation-reality-supplemental-research --strict` | PASS: 0 errors, 0 warnings, RESULT: PASSED |
+| Strict validation | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-automation-reality-supplemental --strict` | PASS: 0 errors, 0 warnings, RESULT: PASSED |
 | Memory index refresh | `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js` | PENDING: phase save step |
 <!-- /ANCHOR:verification -->
 

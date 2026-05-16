@@ -50,7 +50,7 @@ This plan implements packet 031 from the 013 remediation backlog. It rewrites ho
 ### Definition of Ready
 
 - [x] Packet folder identified. [EVIDENCE: user requested `003-doc-truth-pass`]
-- [x] Source research identified. [EVIDENCE: `../002-automation-reality-supplemental-research/research/research-report.md` sections 2 and 5]
+- [x] Source research identified. [EVIDENCE: `../002-automation-reality-supplemental/research/research-report.md` sections 2 and 5]
 - [x] Runtime-code exclusion clear. [EVIDENCE: user constraint: no `.ts` / `.js` / `.py` changes]
 
 ### Definition of Done

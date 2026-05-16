@@ -10,8 +10,8 @@ Per the 013 research-report's recommendation, the **α path** (audit-worthy) is 
 
 ### Read these first
 
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-automation-reality-supplemental-research/research/research-report.md` (Section 4 P1-2 verdict; Section 6 Packet 033 scope)
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-automation-reality-supplemental-research/research/iterations/iteration-004.md` (Hunter→Skeptic→Referee detail for P1-2)
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-automation-reality-supplemental/research/research-report.md` (Section 4 P1-2 verdict; Section 6 Packet 033 scope)
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-automation-reality-supplemental/research/iterations/iteration-004.md` (Hunter→Skeptic→Referee detail for P1-2)
 - `.opencode/skills/system-spec-kit/mcp_server/lib/scope-governance.ts` (specifically lines 225-333 — the `delete_after` persistence path)
 - `.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts` (specifically lines 202-257 cleanup intervals; lines 737-840 sweep target tables)
 - `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts` (existing bulk-delete handler)
@@ -56,7 +56,7 @@ Per the 013 research-report's recommendation, the **α path** (audit-worthy) is 
 
 Same 7-file structure as 031 under `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/005-memory-retention-sweep/`. Use 013's packet as template.
 
-**Deps**: `manual.depends_on=["system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-doc-truth-pass"]`, `manual.related_to=["system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-automation-reality-supplemental-research"]`.
+**Deps**: `manual.depends_on=["system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-doc-truth-pass"]`, `manual.related_to=["system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-automation-reality-supplemental"]`.
 
 **Trigger phrases**: `["005-memory-retention-sweep","memory retention sweep","delete_after sweep","retention enforcement"]`.
 

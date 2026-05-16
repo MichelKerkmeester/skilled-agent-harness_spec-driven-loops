@@ -42,7 +42,7 @@ Generated: 2026-04-29T20:41:19+02:00
 
 | Packet | Resource map bytes | Index exit | description.json refreshed | graph-metadata.json refreshed | Validator exit | Status |
 |--------|--------------------|------------|----------------------------|-------------------------------|----------------|--------|
-| `002-automation-reality-supplemental-research` | 8262 | 0 | OK | OK | 0 | OK |
+| `002-automation-reality-supplemental` | 8262 | 0 | OK | OK | 0 | OK |
 | `003-doc-truth-pass` | 5149 | 0 | OK | OK | 0 | OK |
 | `004-code-graph-watcher-retraction` | 4350 | 0 | OK | OK | 0 | OK |
 | `005-memory-retention-sweep` | 5781 | 0 | OK | OK | 0 | OK |
