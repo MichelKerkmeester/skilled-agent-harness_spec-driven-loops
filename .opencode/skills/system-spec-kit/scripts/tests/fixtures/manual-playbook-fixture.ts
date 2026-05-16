@@ -349,7 +349,6 @@ export async function createManualPlaybookFixture(specFolder: string): Promise<F
   const {
     handleCheckpointCreate,
     handleMemoryCausalLink,
-    setEmbeddingModelReady,
   } = await import('../../../mcp_server/dist/handlers/index.js');
   const vectorIndex = await import('../../../mcp_server/dist/lib/search/vector-index.js') as VectorIndexModule;
   const { init: initDbState } = await import('../../../mcp_server/dist/core/index.js') as { init: InitDbStateFn };
@@ -389,7 +388,6 @@ export async function createManualPlaybookFixture(specFolder: string): Promise<F
     coActivation,
     sessionManager,
   );
-  await setEmbeddingModelReady(true);
 
   const packetPointer = 'system-spec-kit/026-graph-and-context-optimization/006-canonical-continuity-refactor';
   writeFile(
@@ -808,7 +806,6 @@ export async function createManualPlaybookFixture(specFolder: string): Promise<F
       coActivation,
       sessionManager,
     );
-    await setEmbeddingModelReady(true);
   };
 
   const cleanup = (): void => {

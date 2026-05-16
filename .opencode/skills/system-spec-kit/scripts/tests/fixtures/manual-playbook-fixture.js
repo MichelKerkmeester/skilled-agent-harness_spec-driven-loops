@@ -214,7 +214,7 @@ export async function createManualPlaybookFixture(specFolder) {
     fs.mkdirSync(dbDir, { recursive: true });
     applyFixtureEnv(rootDir, dbDir, dbPath);
     const { indexMemoryFile } = await import('../../../mcp_server/dist/handlers/memory-save.js');
-    const { handleCheckpointCreate, handleMemoryCausalLink, setEmbeddingModelReady, } = await import('../../../mcp_server/dist/handlers/index.js');
+    const { handleCheckpointCreate, handleMemoryCausalLink, } = await import('../../../mcp_server/dist/handlers/index.js');
     const vectorIndex = await import('../../../mcp_server/dist/lib/search/vector-index.js');
     const { init: initDbState } = await import('../../../mcp_server/dist/core/index.js');
     const checkpoints = await import('../../../mcp_server/dist/lib/storage/checkpoints.js');
@@ -234,7 +234,6 @@ export async function createManualPlaybookFixture(specFolder) {
         throw new Error('Fixture database did not initialize');
     }
     initializeHandlerRuntime(database, vectorIndex, initDbState, checkpoints, accessTracker, hybridSearch, sessionBoost, causalBoost, workingMemory, attentionDecay, coActivation, sessionManager);
-    await setEmbeddingModelReady(true);
     const packetPointer = 'system-spec-kit/026-graph-and-context-optimization/006-canonical-continuity-refactor';
     writeFile(path.join(targetSpecAbsolute, 'handover.md'), buildSpecDoc('Gate I Fixture Handover', 'Fixture handover for canonical resume tests.', [
         {
@@ -561,7 +560,6 @@ export async function createManualPlaybookFixture(specFolder) {
             throw new Error('Fixture database did not reinitialize during reset');
         }
         initializeHandlerRuntime(databaseAfterReset, vectorIndex, initDbState, checkpoints, accessTracker, hybridSearch, sessionBoost, causalBoost, workingMemory, attentionDecay, coActivation, sessionManager);
-        await setEmbeddingModelReady(true);
     };
     const cleanup = () => {
         try {
