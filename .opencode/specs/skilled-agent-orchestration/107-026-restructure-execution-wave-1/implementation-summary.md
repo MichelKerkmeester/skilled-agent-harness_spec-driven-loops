@@ -44,14 +44,26 @@ _memory:
 
 <!-- ANCHOR:what-built -->
 ## What Was Built
-(Filled post-Wave-5.) Wave 1 of the 026 restructure: planned to rename 4 top-level packets (014, 015, 006, 002), execute 7 PROCEED merges (M2-M7 + M11) per resource-map §3.3, delete 8 CONTAINED packets, archive 28 DEEP packets to z_archive/wave-1/, rewrite the 3 parent-doc files atomically (026/spec.md + resource-map.md + graph-metadata.json), and refresh cocoindex + memory_index_scan.
+Wave 1-5 of the 026 restructure shipped on main:
+
+- **W1 (4 renames)**: 002 → resource-map-deep-loop-fix; 006 → external-project-adoption; 014 → local-embeddings-migration; 015 → tanstack-security-audit
+- **W2 (7 merges)**: M2 (057→056), M3 (007/002→007/014), M4 (007/016-020→007/014 — 5 packets), M5 (004→003 with 3 nested children preserved as 003/007-009 + decision record), M6 (009/006+007→009/002), M7 (013/002→013/001), M11 (5 documentation alignment artifacts archived)
+- **W3 (8 deletes + 14 archives)**: 8 CONTAINED packets deleted from 014/*; 14 DEEP packets from 007/* archived to z_archive/wave-3-deep-archives/
+- **W4 (parent-doc refresh)**: 026/spec.md + resource-map.md + graph-metadata.json updated atomically with post-restructure state notes
+- **W5 (validate)**: strict-validate PASSED on all 4 renamed packets; 026 parent has pre-existing frontmatter warning unrelated to this packet's work
+
+Deferred to follow-on (per council 2026-05-16): M1, M8, M9, M10, 18 SHALLOW + MEDIUM deletes, 008 internal phases, iter 039 full parent-doc restructure, phase lifecycle governance.
 <!-- /ANCHOR:what-built -->
 
 ---
 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
-(Filled post-Wave-5.) 5 waves on main with per-operation immediate commit. Renames + deletes + archives executed directly by main agent (mechanical). Merges + parent-doc rewrites dispatched via cli-opencode + deepseek-v4-pro per implementation-dispatch.md. Per-wave HEAD baseline captured for rollback.
+5 waves on main with per-operation immediate commit. All operations executed directly by main agent (mechanical) — the originally planned cli-opencode deepseek-v4-pro dispatches were not needed since the council-approved reduced variant work was straightforward enough for direct execution. Per-wave HEAD baselines captured (107-wave-{1,2,3,4,5}-baseline files in /tmp/).
+
+Commits: a181682b6 (107 scaffold) → 2f7cd0a17 (W1.1) → a5dbc939d (W1.2) → 0bda0afdd (W1.3) → 8efc6241e (W1.4) → ab0e1663e/b9a86b09e (M2 mixed with parallel 108 work) → ca1a1d718 (M3) → d007e5f05/01084ea27 (M4) → 744d4a17d (M5) → f33855fb4 (M6) → c22210c1e (M7) → 107a40d37 (M11/W2 done) → W3.1 (8 deletes) → 1f99fdda3 (W3.2 archives) → bf6f45f6e (W4 parent doc).
+
+Note: a parallel agent committing 108 packet work interleaved with my W2/M2 commit; M2 changes ARE shipped (in b9a86b09e) but the commit message is misattributed. Functionally correct.
 <!-- /ANCHOR:how-delivered -->
 
 ---
