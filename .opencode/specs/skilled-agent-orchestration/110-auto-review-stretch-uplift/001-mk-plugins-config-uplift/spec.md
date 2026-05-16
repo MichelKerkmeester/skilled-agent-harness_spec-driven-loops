@@ -87,7 +87,7 @@ Add 3-tier config resolution + async config init to both mk-* plugins. File tier
 - Documenting all possible config fields exhaustively — start with high-value overrides (debug flag, paths) and iterate
 - Migrating existing operators to file-based config — env + defaults remain default
 - Plugin restart automation for config changes — manual restart required
-- Touching mk-spec-memory plugin bridge or other plugins (out of 109 scope)
+- Touching mk-spec-memory plugin bridge or other plugins (out of 110 scope)
 
 ### Files to Change
 

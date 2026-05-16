@@ -1,0 +1,18 @@
+# 008-skill-advisor / 002-scorer: Scoring system
+
+Embed cache, cosine wiring, ablation/weight/corpus sweeps, calibration.
+
+## Children (8)
+
+- `011-skill-advisor-hook-improvements`
+- `013-skill-advisor-semantic-lane`
+- `014-embed-cache-and-cosine-wiring`
+- `015-ablation-sweep-and-promote`
+- `016-weight-sweep-harness`
+- `017-corpus-seeded-sweep`
+- `020-harder-intent-corpus-resweep`
+- `023-advisor-routing-calibration`
+
+## Provenance
+
+Sub-phase created by packet 109 Wave 2.D per 998 iter-005 clustering.

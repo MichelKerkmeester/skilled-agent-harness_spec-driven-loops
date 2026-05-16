@@ -1,0 +1,15 @@
+# 008-skill-advisor / 003-router: Intent routing
+
+Search-and-routing tuning, phrase booster, smart router, hook surface, setup command.
+
+## Children (5)
+
+- `001-search-and-routing-tuning`
+- `003-advisor-phrase-booster-tailoring`
+- `005-smart-router-remediation-and-opencode-plugin`
+- `007-skill-advisor-hook-surface`
+- `012-skill-advisor-setup-command`
+
+## Provenance
+
+Sub-phase created by packet 109 Wave 2.D per 998 iter-005 clustering.

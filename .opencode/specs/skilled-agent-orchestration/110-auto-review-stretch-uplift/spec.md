@@ -89,12 +89,12 @@ Adopt the 6 stretch teachings via 4 implementation phases grouped by target surf
 
 ### Phase-to-Teaching Mapping
 
-| Phase | Child | Teachings | Target surface | Effort |
-|-------|-------|-----------|----------------|--------|
-| 1 | `001-mk-plugins-config-uplift` | H-5 (3-tier config: file > env > default) + M-6 (async config init) | `.opencode/plugins/mk-skill-advisor.js` + `.opencode/plugins/mk-code-graph.js` | ~3-4h |
-| 2 | `002-sk-code-review-uplift` | M-1 (PR state dedup) + M-2 (optional min-evidence gate) | `.opencode/skills/sk-code-review/SKILL.md` + state metadata | ~2-3h |
-| 3 | `003-deep-review-uplift` | H-7 (marker-based dedup for findings) + H-9 (bounded evidence interpolation) | `.opencode/commands/spec_kit/assets/spec_kit_deep-review_*.yaml` + prompt template | ~3-4h |
-| 4 | `004-deep-agent-improvement-uplift` | M-3 (mutation signature dedup) | `.opencode/skills/deep-agent-improvement/scripts/mutation-coverage.cjs` + state metadata | ~2h |
+| Phase | Child | Teachings | Target surface | Effort (council-revised) |
+|-------|-------|-----------|----------------|--------------------------|
+| 1 | `001-mk-plugins-config-uplift` | H-5 (4-tier config: **rawOptions** > file > env > defaults — per council §10.2) + M-6 (await config promise before option-readers; factories ALREADY async per council §6) | `.opencode/plugins/mk-skill-advisor.js` (rawOptions normalization at lines 107-127, env handling at 35-39, async factory at 387) + `.opencode/plugins/mk-code-graph.js` (lines 122-142 + 361-363) | ~3-4h |
+| 2 | `002-sk-code-review-uplift` | M-1 (PR-state content-hash dedup) + M-2 (opt-in min-evidence gate with conservative skip taxonomy per council §10.3) | `.opencode/skills/sk-code-review/SKILL.md` + state metadata | ~2-3h |
+| 3 | `003-deep-review-uplift` | H-7 (extend EXISTING file:line+normalized_title dedup at `spec_kit_deep-review_auto.yaml:1115-1124` per council §10.4) — **H-9 DEFERRED to packet 111+** per council §10.5 | `.opencode/commands/spec_kit/assets/spec_kit_deep-review_{auto,confirm}.yaml` synthesis dedup step | ~2-3h (revised down after H-9 defer) |
+| 4 | `004-deep-agent-improvement-uplift` | M-3 (mutation signature dedup; signatures live in `mutation-coverage.json` per council §10.6 — reducer at `reduce-state.cjs` updated) | `.opencode/skills/deep-agent-improvement/scripts/mutation-coverage.cjs` + `scripts/reduce-state.cjs` + `mutation-coverage.json` schema | ~2-4h (council §10.7 expanded estimate) |
 <!-- /ANCHOR:scope -->
 
 ---

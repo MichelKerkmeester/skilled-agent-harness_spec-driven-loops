@@ -1,0 +1,17 @@
+# 000-release-cleanup / 005-stress-test: Stress testing + coverage
+
+Test pattern documentation, coverage validation, gap remediation.
+
+## Children (7)
+
+- `002-mcp-stress-cycle-cleanup`
+- `009-stress-test-pattern-documentation`
+- `015-mcp-runtime-stress-remediation`
+- `025-stress-test-folder-completion`
+- `039-stress-test-expansion-and-alignment`
+- `042-stress-coverage-audit-and-run`
+- `043-stress-test-gap-remediation`
+
+## Provenance
+
+Sub-phase created by packet 109 Wave 2.B per 998 iter-003 classification rules.

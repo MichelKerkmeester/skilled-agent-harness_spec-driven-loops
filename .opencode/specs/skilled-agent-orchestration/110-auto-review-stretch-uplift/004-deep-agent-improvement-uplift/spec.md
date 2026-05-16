@@ -58,7 +58,7 @@ _memory:
 deep-agent-improvement evaluates candidate agent mutations across 5 dimensions × multiple mutation types per dimension. Without dedup, the same mutation (e.g. "expand error-handling rule in PROCESS dimension targeting Phase-2-execution section") can be re-attempted in subsequent iterations even after a prior iteration already tried and rejected it. This wastes evaluation compute and pollutes the candidate ranking with redundant attempts.
 
 ### Purpose
-Adopt upstream auto-review's marker-based dedup pattern (same family as 109/003 H-7) but applied to mutation signatures: `sha256(dimension + mutationType + targetSection + truncated_body_64chars)`. Track signatures in `agent-improvement-state.jsonl` per-iteration. Skip mutation types whose signature already appears in prior iterations of the SAME packet (not cross-packet).
+Adopt upstream auto-review's marker-based dedup pattern (same family as 110/003 H-7) but applied to mutation signatures: `sha256(dimension + mutationType + targetSection + truncated_body_64chars)`. Track signatures in `agent-improvement-state.jsonl` per-iteration. Skip mutation types whose signature already appears in prior iterations of the SAME packet (not cross-packet).
 <!-- /ANCHOR:problem -->
 
 ---
