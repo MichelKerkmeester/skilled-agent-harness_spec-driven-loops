@@ -17,7 +17,7 @@ Cite concrete evidence (file path + line number, commit SHA, grep output) for ev
 ## ACTION (your output schema)
 
 Write ONE markdown file to:
-`/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/_054-root-readme-deep-research/research/iterations/iteration-{ITER_NUM}.md`
+`/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/054-root-readme-deep-research/research/iterations/iteration-{ITER_NUM}.md`
 
 Schema:
 
@@ -60,7 +60,7 @@ What the next iter in Track {TRACK} should focus on, if any.
 ```
 
 Append ONE row to the JSONL state file at:
-`/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/_054-root-readme-deep-research/research/deep-research-state.jsonl`
+`/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/054-root-readme-deep-research/research/deep-research-state.jsonl`
 
 Row shape:
 ```json

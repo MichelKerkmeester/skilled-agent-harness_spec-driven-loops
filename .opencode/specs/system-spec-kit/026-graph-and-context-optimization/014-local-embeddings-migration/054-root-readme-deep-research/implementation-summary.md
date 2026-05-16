@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/_054-root-readme-deep-research"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/054-root-readme-deep-research"
     last_updated_at: "2026-05-15T13:35:00Z"
     last_updated_by: "main_agent"
     recent_action: "Authored impl-summary stub"
@@ -36,7 +36,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/_054-root-readme-deep-research |
+| **Spec Folder** | system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/054-root-readme-deep-research |
 | **Phase** | Deep-research follow-on to Phase D (055) |
 | **Completed** | 2026-05-15 |
 | **Level** | 1 |

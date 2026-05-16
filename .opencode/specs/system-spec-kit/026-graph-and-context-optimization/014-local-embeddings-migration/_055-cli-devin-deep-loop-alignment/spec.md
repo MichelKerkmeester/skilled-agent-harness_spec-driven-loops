@@ -208,6 +208,6 @@ Make cli-devin a first-class deep-loop executor across the codebase. Future pack
 - **Implementation Plan**: See `plan.md`
 - **Task Breakdown**: See `tasks.md`
 - **Resource Map**: See `resource-map.md`
-- **Predecessors**: `../058-skill-md-realignment/`, `../_054-root-readme-deep-research/`
+- **Predecessors**: `../058-skill-md-realignment/`, `../054-root-readme-deep-research/`
 - **Retrospective source**: this conversation's 056 + 058 retrospective (to be captured in `research/retrospective.md` Phase 1)
 <!-- /ANCHOR:related-docs -->
