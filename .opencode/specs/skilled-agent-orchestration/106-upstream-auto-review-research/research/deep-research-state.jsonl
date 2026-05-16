@@ -1,0 +1,1 @@
+{"type":"campaign_start","packet":"106-upstream-auto-review-research","totalIterations":20,"executors":{"1-20":"cli-devin/swe-1.6"},"triggeredBy":"operator-research-request-2026-05-16","upstreamRepo":"dzianisv/opencode-plugins","upstreamBranch":"issue-136-package-auto-review","upstreamPath":"packages/auto-review","startedAt":"2026-05-16T00:00:00Z"}
