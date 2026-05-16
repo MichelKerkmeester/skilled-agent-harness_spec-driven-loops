@@ -31,7 +31,7 @@ Documentation fixes, template debt, orphan management, remediation.
 - `025-architecture-diagrams-and-topology`
 - `026-readme-code-template`
 - `027-missing-code-readmes-resource-map`
-- `053-doc-alignment-and-readme-filling`
+- `028-doc-alignment-and-readme-filling`
 - `055-autoclean-orphan-files`
 - `056-test-fixture-singular-to-plural-sweep`
 - `057-cocoindex-voyage-only-this-machine`

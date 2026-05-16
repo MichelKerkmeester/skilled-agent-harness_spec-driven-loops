@@ -47,7 +47,7 @@ _memory:
 | **Branch** | `main` (no feature branch — operational cleanup) |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 54 of 54 |
-| **Predecessor** | 053-doc-alignment-and-readme-filling |
+| **Predecessor** | 028-doc-alignment-and-readme-filling |
 | **Successor** | None |
 | **Handoff Criteria** | Resolver fix landed; FTS/vec gap diagnosed (repair OR documented as accepted); deprecated tier deleted with audit. |
 <!-- /ANCHOR:metadata -->

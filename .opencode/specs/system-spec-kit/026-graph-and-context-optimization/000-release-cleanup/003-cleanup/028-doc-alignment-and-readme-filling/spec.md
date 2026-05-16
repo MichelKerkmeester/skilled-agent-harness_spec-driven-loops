@@ -13,20 +13,20 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/053-doc-alignment-and-readme-filling"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/028-doc-alignment-and-readme-filling"
     last_updated_at: "2026-05-07T11:00:00Z"
     last_updated_by: "claude-opus-4.7"
     recent_action: "Authored spec, resource-map, decision-record"
     next_safe_action: "Dispatch Wave A via cli-codex"
     blockers: []
     key_files:
-      - "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/053-doc-alignment-and-readme-filling/spec.md"
-      - "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/053-doc-alignment-and-readme-filling/resource-map.md"
-      - "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/053-doc-alignment-and-readme-filling/decision-record.md"
+      - "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/028-doc-alignment-and-readme-filling/spec.md"
+      - "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/028-doc-alignment-and-readme-filling/resource-map.md"
+      - "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/028-doc-alignment-and-readme-filling/decision-record.md"
     completion_pct: 5
     open_questions: []
     answered_questions:
-      - "Packet name: 053-doc-alignment-and-readme-filling (user-specified)"
+      - "Packet name: 028-doc-alignment-and-readme-filling (user-specified)"
       - "Merge scope: preserve all 43 operator_runbook scenarios; absorb 4 SAD overlaps"
       - "ID prefix scheme: keep multi-prefix NC/CL/CP/OP/AU/AI/LC/SC/PC"
 ---

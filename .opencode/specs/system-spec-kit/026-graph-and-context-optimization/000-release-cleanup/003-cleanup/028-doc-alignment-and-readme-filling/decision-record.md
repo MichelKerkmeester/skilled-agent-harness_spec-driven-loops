@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/053-doc-alignment-and-readme-filling"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/028-doc-alignment-and-readme-filling"
     last_updated_at: "2026-05-07T11:00:00Z"
     last_updated_by: "claude-opus-4.7"
     recent_action: "Recorded ADRs D-1, D-2, D-3"

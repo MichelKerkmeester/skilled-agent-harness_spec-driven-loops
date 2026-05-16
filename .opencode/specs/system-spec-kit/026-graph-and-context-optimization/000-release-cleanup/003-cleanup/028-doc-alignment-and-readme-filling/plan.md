@@ -9,14 +9,14 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/053-doc-alignment-and-readme-filling"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/028-doc-alignment-and-readme-filling"
     last_updated_at: "2026-05-07T11:00:00Z"
     last_updated_by: "claude-opus-4.7"
     recent_action: "Authored plan.md alongside spec and decision-record"
     next_safe_action: "Dispatch Wave A via cli-codex"
     blockers: []
     key_files:
-      - "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/053-doc-alignment-and-readme-filling/plan.md"
+      - "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/028-doc-alignment-and-readme-filling/plan.md"
     completion_pct: 10
     open_questions: []
     answered_questions: []
@@ -62,7 +62,7 @@ Detailed source/target paths in `resource-map.md` (the canonical dispatch refere
 ```
 codex exec -c service_tier="fast" -m gpt-5.5 -r medium <<'EOF'
 Read the resource-map.md for phase 053:
-  specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/053-doc-alignment-and-readme-filling/resource-map.md
+  specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/028-doc-alignment-and-readme-filling/resource-map.md
 Find the WB-N anchor section. Execute exactly the modifications listed there.
 
 Template (read-only): <template path>
