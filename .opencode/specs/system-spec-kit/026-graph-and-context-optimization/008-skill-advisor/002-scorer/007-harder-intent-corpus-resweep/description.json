@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/020-harder-intent-corpus-resweep",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-harder-intent-corpus-resweep",
   "description": "Author 15-25 lexical-mis-route prompts in a sibling fixture, extend sweep test, re-run, document whether the cosine lane lifts recall on harder cases.",
   "keywords": [
     "harder-intent-corpus",

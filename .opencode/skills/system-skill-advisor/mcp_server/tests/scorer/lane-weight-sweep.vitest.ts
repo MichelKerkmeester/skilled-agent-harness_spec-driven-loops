@@ -42,7 +42,7 @@ const HARDER_PACKET_RELATIVE_PATH = join(
   'system-spec-kit',
   '026-graph-and-context-optimization',
   '008-skill-advisor',
-  '020-harder-intent-corpus-resweep',
+  '007-harder-intent-corpus-resweep',
 );
 
 const ORIGINAL_24_BASELINE = {

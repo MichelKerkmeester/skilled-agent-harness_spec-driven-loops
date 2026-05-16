@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/020-harder-intent-corpus-resweep"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-harder-intent-corpus-resweep"
     last_updated_at: "2026-05-14T01:30:00Z"
     last_updated_by: "claude"
     recent_action: "Scaffolded packet"
@@ -85,7 +85,7 @@ Implemented directly in the 015/007 packet without subagents. The default embedd
 
 | Gate | Status | Evidence |
 |------|--------|----------|
-| Strict spec validation | Pass | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/020-harder-intent-corpus-resweep --strict` -> RESULT: PASSED |
+| Strict spec validation | Pass | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-harder-intent-corpus-resweep --strict` -> RESULT: PASSED |
 | Parent strict validation | Pass | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-skill-advisor-semantic-lane --strict` -> RESULT: PASSED |
 | Typecheck | Pass | `npm run typecheck` from `mcp_server/` -> PASS |
 | Vitest skill_advisor | Pass with known baseline | `npm exec --workspace=@spec-kit/mcp-server -- vitest run skill_advisor` -> 42 files, 303 tests, 1 known `plugin-bridge.vitest.ts` failure |

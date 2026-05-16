@@ -57,7 +57,7 @@ Moved Claude, Codex, and Gemini advisor prompt hook implementations to `system-s
 
 ### Test And Stress Ownership
 
-Moved advisor-owned unit tests, hook tests, rebuild tests, and stress tests into `system-skill-advisor/mcp_server`. Added advisor stress config coverage and fixed the moved lane-weight sweep fixture paths to the current `006-corpus-seeded-sweep` and `020-harder-intent-corpus-resweep` packets.
+Moved advisor-owned unit tests, hook tests, rebuild tests, and stress tests into `system-skill-advisor/mcp_server`. Added advisor stress config coverage and fixed the moved lane-weight sweep fixture paths to the current `006-corpus-seeded-sweep` and `007-harder-intent-corpus-resweep` packets.
 
 ### Spec-Kit Boundary Cleanup
 

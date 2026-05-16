@@ -10,7 +10,7 @@
     "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-scorer/004-ablation-sweep-and-promote",
     "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-scorer/005-weight-sweep-harness",
     "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-scorer/006-corpus-seeded-sweep",
-    "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-scorer/020-harder-intent-corpus-resweep",
+    "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-scorer/007-harder-intent-corpus-resweep",
     "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-scorer/023-advisor-routing-calibration"
   ],
   "manual": {
