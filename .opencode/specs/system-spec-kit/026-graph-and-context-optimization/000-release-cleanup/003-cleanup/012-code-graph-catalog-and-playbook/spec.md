@@ -2,7 +2,7 @@
 title: "Feature Specification: 039 code-graph-catalog-and-playbook"
 description: "Adds a runtime-package feature catalog and manual testing playbook for code_graph, mirroring skill_advisor's package shape and cross-linking root docs."
 trigger_phrases:
-  - "026-code-graph-catalog-and-playbook"
+  - "012-code-graph-catalog-and-playbook"
   - "code_graph feature catalog"
   - "code_graph manual testing playbook"
   - "code_graph runtime catalog"
@@ -11,7 +11,7 @@ contextType: "general"
 template_source_marker: "SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/026-code-graph-catalog-and-playbook"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/012-code-graph-catalog-and-playbook"
     last_updated_at: "2026-04-29T20:35:30+02:00"
     last_updated_by: "cli-codex"
     recent_action: "Resource map indexed"
@@ -22,7 +22,7 @@ _memory:
       - ".opencode/skills/system-spec-kit/mcp_server/code_graph/manual_testing_playbook/"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "026-code-graph-catalog-and-playbook"
+      session_id: "012-code-graph-catalog-and-playbook"
       parent_session_id: null
     completion_pct: 100
     open_questions: []

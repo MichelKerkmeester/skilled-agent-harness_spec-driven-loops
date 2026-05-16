@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/026-code-graph-catalog-and-playbook",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/026-code-graph-catalog-and-playbook",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/012-code-graph-catalog-and-playbook",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/012-code-graph-catalog-and-playbook",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization",
   "children_ids": [],
   "migrated": true,
@@ -13,15 +13,15 @@
   },
   "derived": {
     "trigger_phrases": [
-      "026-code-graph-catalog-and-playbook",
+      "012-code-graph-catalog-and-playbook",
       "code_graph feature catalog",
       "code_graph manual testing playbook",
       "code_graph runtime catalog",
-      "026-code-graph-catalog-and-playbook resource map",
+      "012-code-graph-catalog-and-playbook resource map",
       "code graph catalog playbook file ledger"
     ],
     "key_topics": [
-      "026-code-graph-catalog-and-playbook",
+      "012-code-graph-catalog-and-playbook",
       "feature",
       "catalog",
       "manual",

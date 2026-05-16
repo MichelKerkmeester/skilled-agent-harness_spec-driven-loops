@@ -4640,7 +4640,7 @@
       "lastUpdated": "2026-05-08T08:26:57.314Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/026-code-graph-catalog-and-playbook",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/012-code-graph-catalog-and-playbook",
       "description": "Feature Specification: 039 code-graph-catalog-and-playbook",
       "keywords": [
         "feature",

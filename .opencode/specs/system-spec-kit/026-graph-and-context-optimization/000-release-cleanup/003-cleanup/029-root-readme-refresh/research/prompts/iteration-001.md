@@ -105,7 +105,7 @@ Use Edit tool surgically. Don't rewrite paragraphs that are already current.
 
 PLUS: `verification-notes.md` and `audit-findings.md` at packet root.
 
-**Deps**: `manual.depends_on=["system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/027-evergreen-doc-packet-id-removal","system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/025-stress-test-folder-completion","system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/026-code-graph-catalog-and-playbook"]`.
+**Deps**: `manual.depends_on=["system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/027-evergreen-doc-packet-id-removal","system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/025-stress-test-folder-completion","system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/012-code-graph-catalog-and-playbook"]`.
 
 **Trigger phrases**: `["029-root-readme-refresh","root readme update","framework readme refresh","tool count refresh"]`.
 

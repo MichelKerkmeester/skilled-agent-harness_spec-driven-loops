@@ -2,7 +2,7 @@
 title: "Implementation Summary: 039 code-graph-catalog-and-playbook"
 description: "Implementation summary for the code_graph runtime catalog/playbook packet."
 trigger_phrases:
-  - "026-code-graph-catalog-and-playbook"
+  - "012-code-graph-catalog-and-playbook"
   - "code_graph feature catalog"
   - "code_graph manual testing playbook"
   - "code_graph runtime catalog"
@@ -11,7 +11,7 @@ contextType: "general"
 template_source_marker: "SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/026-code-graph-catalog-and-playbook"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/012-code-graph-catalog-and-playbook"
     last_updated_at: "2026-04-29T20:35:30+02:00"
     last_updated_by: "cli-codex"
     recent_action: "Resource map indexed"
@@ -22,7 +22,7 @@ _memory:
       - ".opencode/skills/system-spec-kit/mcp_server/code_graph/manual_testing_playbook/"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "026-code-graph-catalog-and-playbook"
+      session_id: "012-code-graph-catalog-and-playbook"
       parent_session_id: null
     completion_pct: 100
     open_questions: []
@@ -41,7 +41,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 026-code-graph-catalog-and-playbook |
+| **Spec Folder** | 012-code-graph-catalog-and-playbook |
 | **Completed** | 2026-04-29 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
@@ -71,7 +71,7 @@ Created `mcp_server/code_graph/manual_testing_playbook/` with 8 groups and 15 de
 | `.opencode/skills/system-spec-kit/mcp_server/README.md` | Modified | Link code_graph runtime docs |
 | `.opencode/skills/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/01-category-overview.md` | Modified | Link runtime catalog |
 | `.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/254-code-graph-scan-query.md` | Modified | Link runtime playbook |
-| `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/026-code-graph-catalog-and-playbook/` | Created | Level 2 packet docs |
+| `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/012-code-graph-catalog-and-playbook/` | Created | Level 2 packet docs |
 <!-- /ANCHOR:what-built -->
 
 ---

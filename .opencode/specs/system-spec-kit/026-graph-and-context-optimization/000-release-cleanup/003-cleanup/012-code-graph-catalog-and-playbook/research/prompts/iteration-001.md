@@ -1,6 +1,6 @@
 ## Packet 039: code-graph-catalog-and-playbook — Tier B doc creation
 
-You are cli-codex (gpt-5.5 high fast) implementing **026-code-graph-catalog-and-playbook**.
+You are cli-codex (gpt-5.5 high fast) implementing **012-code-graph-catalog-and-playbook**.
 
 ### Goal
 
@@ -151,11 +151,11 @@ The parent `manual_testing_playbook.md` is an index linking to the 8 groups.
 
 ### Packet structure to create (Level 2)
 
-7-file structure under `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/026-code-graph-catalog-and-playbook/`.
+7-file structure under `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/012-code-graph-catalog-and-playbook/`.
 
 **Deps**: `manual.depends_on=["system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/024-followup-quality-pass/002-feature-catalog-trio","system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/024-followup-quality-pass/003-testing-playbook-trio"]`. (Picks up where the trio left off — code_graph runtime-package catalog/playbook were missing from those.)
 
-**Trigger phrases**: `["026-code-graph-catalog-and-playbook","code_graph feature catalog","code_graph manual testing playbook","code_graph runtime catalog"]`.
+**Trigger phrases**: `["012-code-graph-catalog-and-playbook","code_graph feature catalog","code_graph manual testing playbook","code_graph runtime catalog"]`.
 
 **Causal summary**: `"Adds feature_catalog/ and manual_testing_playbook/ to mcp_server/code_graph/ — mirroring the skill_advisor pattern. 8 feature groups + ~15 playbook entries. Cross-linked from runtime + root skill catalogs/playbooks."`.
 

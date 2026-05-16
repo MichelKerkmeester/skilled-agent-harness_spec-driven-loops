@@ -35,7 +35,7 @@ specs/system-spec-kit/026-graph-and-context-optimization/
 │   ├── 005-stress-test-folder-migration/
 │   └── 006-readme-cascade-refresh/
 ├── 025-stress-test-folder-completion/
-├── 026-code-graph-catalog-and-playbook/
+├── 012-code-graph-catalog-and-playbook/
 └── 027-evergreen-doc-packet-id-removal/
 ```
 

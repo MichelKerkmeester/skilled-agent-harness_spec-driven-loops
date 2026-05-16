@@ -6,7 +6,7 @@
   "children_ids": [],
   "manual": {
     "depends_on": [
-      "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/026-code-graph-catalog-and-playbook",
+      "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/012-code-graph-catalog-and-playbook",
       "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/005-remaining-p1-p2-remediation"
     ],
     "supersedes": [],

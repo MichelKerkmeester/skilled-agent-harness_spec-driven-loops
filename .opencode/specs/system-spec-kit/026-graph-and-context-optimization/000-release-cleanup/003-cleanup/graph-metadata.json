@@ -15,7 +15,7 @@
     "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cleanup/009-phase-parent-documentation",
     "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cleanup/010-half-auto-upgrades",
     "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cleanup/011-cli-matrix-adapter-runners",
-    "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cleanup/026-code-graph-catalog-and-playbook",
+    "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cleanup/012-code-graph-catalog-and-playbook",
     "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cleanup/027-evergreen-doc-packet-id-removal",
     "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cleanup/028-resource-maps-and-memory-finalization",
     "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cleanup/029-root-readme-refresh",
