@@ -10,7 +10,7 @@
     "related_to": [
       "system-spec-kit/026-graph-and-context-optimization/007-code-graph/013-system-code-graph-extraction",
       "system-spec-kit/026-graph-and-context-optimization/007-code-graph/025-skill-docs-sk-doc-alignment",
-      "system-spec-kit/026-graph-and-context-optimization/007-code-graph/040-three-way-isolation-finalize"
+      "system-spec-kit/026-graph-and-context-optimization/007-code-graph/018-three-way-isolation-finalize"
     ]
   },
   "derived": {

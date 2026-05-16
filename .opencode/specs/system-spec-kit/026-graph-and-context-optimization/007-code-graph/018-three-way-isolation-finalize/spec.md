@@ -5,7 +5,7 @@ importance_tier: "critical"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/040-three-way-isolation-finalize"
+    packet_pointer: ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/018-three-way-isolation-finalize"
     last_updated_at: "2026-05-15T20:50:00Z"
     last_updated_by: "main-agent-040-init"
     recent_action: "audit_complete_dispatch_ready"
