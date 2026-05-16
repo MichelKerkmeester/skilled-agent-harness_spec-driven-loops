@@ -5,7 +5,7 @@ Deep review programs, synthesis of readiness findings, P1/P2 remediation.
 ## Children (6)
 
 - `001-skill-advisor-fail-open`
-- `004-tier2-remediation`
+- `002-tier2-remediation`
 - `032-release-readiness-deep-review-program`
 - `033-release-readiness-synthesis-and-remediation`
 - `035-remaining-p1-p2-remediation`

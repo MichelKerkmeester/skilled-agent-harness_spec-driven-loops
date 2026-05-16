@@ -3,7 +3,7 @@ title: "Feature Specification: Tier 2 Remediation"
 template_source: "SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2"
 description: "Close 8 P1 + 7 P2 findings from the Tier 2 deep-review program (D 008/007, E 009/005, F 009/002, G 006/008). Tier 2 H (006/001 license audit P0) is deferred to human verification — cannot auto-remediate canonical-text substitution gap."
 trigger_phrases:
-  - "004-tier2-remediation"
+  - "002-tier2-remediation"
   - "tier 2 review remediation"
   - "copilot hook current turn"
   - "plugin loader doc drift"
@@ -12,7 +12,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-tier2-remediation"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-tier2-remediation"
     last_updated_at: "2026-04-28T19:30:00Z"
     last_updated_by: "codex-gpt-5-hygiene-pass"
     recent_action: "Hygiene pass - validator structure"

@@ -4,14 +4,14 @@ template_source: "SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2"
 description: "Closed Tier 2 D/E/F/G findings; H remains deferred for human license verification."
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-tier2-remediation"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-tier2-remediation"
     last_updated_at: "2026-04-28T19:30:00Z"
     last_updated_by: "codex-gpt-5-hygiene-pass"
     recent_action: "Hygiene pass - validator structure"
     next_safe_action: "Keep validators green"
     completion_pct: 100
 trigger_phrases:
-  - "004-tier2-remediation"
+  - "002-tier2-remediation"
   - "validator hygiene"
 importance_tier: "normal"
 contextType: "implementation"
@@ -29,7 +29,7 @@ contextType: "implementation"
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 004-tier2-remediation |
+| **Spec Folder** | 002-tier2-remediation |
 | **Completed** | 2026-04-28 |
 | **Level** | 2 |
 
@@ -116,7 +116,7 @@ Broad `npm --prefix .opencode/skills/system-spec-kit/mcp_server run test -- ...`
 - H remains blocked on human verification of actual `external/LICENSE`.
 - Copilot remains next-prompt freshness by design until upstream supports prompt mutation or stable ACP context injection.
 - Strict validators did not pass. The focused implementation tests and build are green, but validator runs failed on structural/template debt:
-  - `004-tier2-remediation`: custom task/checklist/summary section shape lacks the current Level 2 template anchors.
+  - `002-tier2-remediation`: custom task/checklist/summary section shape lacks the current Level 2 template anchors.
   - `008/007`: second attempt had 0 errors but strict mode failed on warnings (evidence wording, extra historical summary heading, stale continuity timestamp).
   - `009/005`: second attempt failed on parent-doc reference drift, then the stale parent reference was removed; residual strict continuity warning was not rerun because the halt rule applies after repeated validator failures.
   - `009/002`: failed on pre-existing Level 3 template/anchor/spec-doc-integrity debt.

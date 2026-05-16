@@ -4,14 +4,14 @@ template_source: "SPECKIT_TEMPLATE_SOURCE: checklist-core + level2-verify | v2.2
 description: "P0/P1/P2 gates for closing 15 Tier 2 D/E/F/G findings."
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-tier2-remediation"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-tier2-remediation"
     last_updated_at: "2026-04-28T19:30:00Z"
     last_updated_by: "codex-gpt-5-hygiene-pass"
     recent_action: "Strict-validator closure pass"
     next_safe_action: "Keep validators green"
     completion_pct: 100
 trigger_phrases:
-  - "004-tier2-remediation"
+  - "002-tier2-remediation"
   - "validator hygiene"
 importance_tier: "normal"
 contextType: "verification"
