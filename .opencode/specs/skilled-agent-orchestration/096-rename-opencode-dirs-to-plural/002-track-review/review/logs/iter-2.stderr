@@ -6077,9 +6077,9 @@ END{
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-hook-parity/002-copilot-hook-parity-remediation/research/007-deep-review-remediation-pt-03/logs/iter-008.log
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/018-matrix-runners-snake-case-rename/logs/iter-001.log
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/012-code-graph-catalog-and-playbook/logs/iter-001.log
-./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/042-stress-coverage-audit-and-run/logs/stress-run-20260430-181807Z.log
-./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/042-stress-coverage-audit-and-run/scratch/codex-synthesis-2.log
-./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/042-stress-coverage-audit-and-run/scratch/codex-synthesis-1.log
+./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/006-stress-coverage-audit-and-run/logs/stress-run-20260430-181807Z.log
+./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/006-stress-coverage-audit-and-run/scratch/codex-synthesis-2.log
+./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/006-stress-coverage-audit-and-run/scratch/codex-synthesis-1.log
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-graph-impact-and-affordance-uplift/008-deep-research-review/research/008-deep-research-review-pt-01/logs/iteration-001.log
 ./.opencode/specs/system-spec-kit/z_archive/022-hybrid-rag-fusion/008-hydra-db-based-features/research/002 - recommendations-turso-migration-and-hydradb-inspired-roadmap.md
 ./.opencode/specs/system-spec-kit/z_archive/022-hybrid-rag-fusion/008-hydra-db-based-features/research/001 - analysis-hydradb-architecture-and-turso-fit.md

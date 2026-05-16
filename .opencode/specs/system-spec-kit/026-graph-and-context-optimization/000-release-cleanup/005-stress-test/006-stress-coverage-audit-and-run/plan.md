@@ -3,12 +3,12 @@ title: "Plan: Stress-Test Coverage Audit and Run"
 description: "Two cli-codex synthesis dispatches plus one foreground stress run, producing a coverage matrix, narrative audit, and run report under a Level 2 packet."
 template_source: "SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2"
 trigger_phrases:
-  - "042-stress-coverage-audit-and-run plan"
+  - "006-stress-coverage-audit-and-run plan"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/042-stress-coverage-audit-and-run"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/006-stress-coverage-audit-and-run"
     last_updated_at: "2026-04-30T18:10:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Plan authored from approved spec"
@@ -172,7 +172,7 @@ This packet does NOT add tests. It observes the existing suite.
 ## 7. ROLLBACK PLAN
 
 - **Trigger**: User rejects matrix classifications, OR validator fails irreparably
-- **Procedure**: `rm -rf .../042-stress-coverage-audit-and-run/`; this packet creates no product code, so deletion is fully reversible.
+- **Procedure**: `rm -rf .../006-stress-coverage-audit-and-run/`; this packet creates no product code, so deletion is fully reversible.
 <!-- /ANCHOR:rollback -->
 
 ---
@@ -221,7 +221,7 @@ Phases 2 and 3 are parallelizable in principle, but 2 depends on cli-codex which
 - [x] No monitoring alerts needed
 
 ### Rollback Procedure
-1. `rm -rf .../042-stress-coverage-audit-and-run/`
+1. `rm -rf .../006-stress-coverage-audit-and-run/`
 2. Update parent `005-review-remediation/graph-metadata.json` if it references the packet
 3. No notification needed (no user-facing changes)
 

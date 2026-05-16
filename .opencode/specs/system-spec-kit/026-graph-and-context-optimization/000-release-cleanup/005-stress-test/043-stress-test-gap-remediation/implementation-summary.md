@@ -21,7 +21,7 @@ _memory:
       - "tasks.md"
       - "checklist.md"
       - "logs/stress-run-20260430-190737Z.log"
-      - "../042-stress-coverage-audit-and-run/coverage-matrix.csv"
+      - "../006-stress-coverage-audit-and-run/coverage-matrix.csv"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "043-summary-final"
@@ -94,9 +94,9 @@ The Python `skill_advisor_bench.py` runner (sa-037) is now exercised via a Vites
 | `mcp_server/stress_test/skill-advisor/anti-stuffing-cardinality-stress.vitest.ts` | Created | sa-012 |
 | `mcp_server/stress_test/skill-advisor/df-idf-corpus-stress.vitest.ts` | Created | sa-013 |
 | `mcp_server/stress_test/skill-advisor/python-bench-runner-stress.vitest.ts` | Created | sa-037 |
-| `../042-stress-coverage-audit-and-run/coverage-matrix.csv` | Modified | 10 P0 rows updated to `gap_classification=none` |
-| `../042-stress-coverage-audit-and-run/coverage-audit.md` | Modified | §4.1 "Closed by packet 043" subsection added |
-| `../042-stress-coverage-audit-and-run/implementation-summary.md` | Modified | §Limitations item 4 updated |
+| `../006-stress-coverage-audit-and-run/coverage-matrix.csv` | Modified | 10 P0 rows updated to `gap_classification=none` |
+| `../006-stress-coverage-audit-and-run/coverage-audit.md` | Modified | §4.1 "Closed by packet 043" subsection added |
+| `../006-stress-coverage-audit-and-run/implementation-summary.md` | Modified | §Limitations item 4 updated |
 <!-- /ANCHOR:what-built -->
 
 ---

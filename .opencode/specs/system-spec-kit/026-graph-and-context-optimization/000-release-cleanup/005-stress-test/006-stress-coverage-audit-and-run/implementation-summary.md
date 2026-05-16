@@ -3,13 +3,13 @@ title: "Implementation Summary: Stress-Test Coverage Audit and Run"
 description: "Audit produced 54-row coverage matrix (10 P0, 6 P1, 30 P2 gaps); npm run stress passed 28/28 files and 69/69 tests; recommends follow-on packet 043 for the P0 gaps."
 template_source: "SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2"
 trigger_phrases:
-  - "042-stress-coverage-audit-and-run summary"
+  - "006-stress-coverage-audit-and-run summary"
   - "stress coverage audit summary"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/042-stress-coverage-audit-and-run"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/006-stress-coverage-audit-and-run"
     last_updated_at: "2026-04-30T18:25:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Authored final docs"
@@ -45,7 +45,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 042-stress-coverage-audit-and-run |
+| **Spec Folder** | 006-stress-coverage-audit-and-run |
 | **Completed** | 2026-04-30 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

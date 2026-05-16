@@ -9,7 +9,7 @@
     "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/003-mcp-runtime-stress-remediation",
     "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/004-stress-test-folder-completion",
     "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/005-stress-test-expansion-and-alignment",
-    "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/042-stress-coverage-audit-and-run",
+    "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/006-stress-coverage-audit-and-run",
     "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/043-stress-test-gap-remediation"
   ],
   "manual": {
@@ -24,7 +24,7 @@
     "status": "in_progress",
     "key_files": ["spec.md"],
     "entities": [],
-    "causal_summary": "This phase parent coordinates stress testing and coverage validation across 7 child packets, addressing test pattern documentation, MCP runtime stress remediation, and structural organization. The children 042-stress-coverage-audit-and-run and 043-stress-test-gap-remediation specifically focus on coverage audit and closing 10 P0 coverage gaps.",
+    "causal_summary": "This phase parent coordinates stress testing and coverage validation across 7 child packets, addressing test pattern documentation, MCP runtime stress remediation, and structural organization. The children 006-stress-coverage-audit-and-run and 043-stress-test-gap-remediation specifically focus on coverage audit and closing 10 P0 coverage gaps.",
     "created_at": "2026-05-16T09:00:00Z",
     "last_save_at": "2026-05-16T09:00:00Z",
     "save_lineage": "cli-devin-swe-1.6-w3a",

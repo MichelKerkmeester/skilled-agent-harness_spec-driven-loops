@@ -3,12 +3,12 @@ title: "Checklist: Stress-Test Coverage Audit and Run"
 description: "Verification gates for packet 042 — matrix completeness, run reproducibility, packet integrity."
 template_source: "SPECKIT_TEMPLATE_SOURCE: checklist | v2.2"
 trigger_phrases:
-  - "042-stress-coverage-audit-and-run checklist"
+  - "006-stress-coverage-audit-and-run checklist"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/042-stress-coverage-audit-and-run"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/006-stress-coverage-audit-and-run"
     last_updated_at: "2026-04-30T18:10:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Checklist authored"
@@ -83,7 +83,7 @@ _memory:
 <!-- ANCHOR:security -->
 ## Security
 
-- [x] CHK-030 [P0] No product code modified in this packet [EVIDENCE: `git status` shows changes only under `042-stress-coverage-audit-and-run/` and unrelated pre-existing modifications]
+- [x] CHK-030 [P0] No product code modified in this packet [EVIDENCE: `git status` shows changes only under `006-stress-coverage-audit-and-run/` and unrelated pre-existing modifications]
 - [x] CHK-031 [P0] No feature catalogs modified [EVIDENCE: catalogs accessed read-only by cli-codex; `git status` confirms no diff in `mcp_server/code_graph/feature_catalog/` or `mcp_server/skill_advisor/feature_catalog/`]
 - [x] CHK-032 [P0] Stayed on `main` branch (no auto-branch from create.sh) [EVIDENCE: `git branch --show-current` returned `main` after scaffold and after each cli-codex dispatch]
 <!-- /ANCHOR:security -->
@@ -93,7 +93,7 @@ _memory:
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [x] CHK-040 [P1] `implementation-summary.md` filled (no `[###-feature-name]` placeholder) [EVIDENCE: Spec Folder metadata = `042-stress-coverage-audit-and-run`; SPEC_DOC_INTEGRITY validator passed]
+- [x] CHK-040 [P1] `implementation-summary.md` filled (no `[###-feature-name]` placeholder) [EVIDENCE: Spec Folder metadata = `006-stress-coverage-audit-and-run`; SPEC_DOC_INTEGRITY validator passed]
 - [x] CHK-041 [P1] `description.json` + `graph-metadata.json` regenerated post-run [EVIDENCE: refreshed via `generate-context.js` during memory:save flow; CANONICAL_SAVE_PACKET_IDENTITY_NORMALIZED validator passed]
 - [ ] CHK-042 [P2] Spec/plan/tasks/checklist cross-references are bidirectional — evidence: each file references siblings
 <!-- /ANCHOR:docs -->

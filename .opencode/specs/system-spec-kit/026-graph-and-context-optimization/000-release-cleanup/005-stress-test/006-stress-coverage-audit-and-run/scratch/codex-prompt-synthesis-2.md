@@ -4,7 +4,7 @@ You are parsing the captured `npm run stress` log for spec-kit packet 042. Repos
 
 ## Packet folder
 
-`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/042-stress-coverage-audit-and-run/`
+`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/006-stress-coverage-audit-and-run/`
 
 ## Inputs (read-only)
 

@@ -4,7 +4,7 @@ You are producing two artifacts for spec-kit packet 042. Repository root: `/User
 
 ## Packet folder (write outputs HERE)
 
-`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/042-stress-coverage-audit-and-run/`
+`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/006-stress-coverage-audit-and-run/`
 
 ## Inputs (read-only)
 

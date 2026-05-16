@@ -3,12 +3,12 @@ title: "Tasks: Stress-Test Coverage Audit and Run"
 description: "Task tracker for packet 042 — scaffold, synthesis, run, finalize."
 template_source: "SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2"
 trigger_phrases:
-  - "042-stress-coverage-audit-and-run tasks"
+  - "006-stress-coverage-audit-and-run tasks"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/042-stress-coverage-audit-and-run"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/006-stress-coverage-audit-and-run"
     last_updated_at: "2026-04-30T18:10:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Tasks authored"

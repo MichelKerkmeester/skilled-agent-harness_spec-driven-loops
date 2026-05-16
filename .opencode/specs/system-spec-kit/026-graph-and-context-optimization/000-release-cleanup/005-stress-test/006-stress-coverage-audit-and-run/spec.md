@@ -3,7 +3,7 @@ title: "Spec: Stress-Test Coverage Audit and Run for code_graph and skill_adviso
 description: "Audit whether stress_test/ covers every documented feature in the code_graph (17) and skill_advisor (37) feature catalogs, then run npm run stress and report results."
 template_source: "SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2"
 trigger_phrases:
-  - "042-stress-coverage-audit-and-run spec"
+  - "006-stress-coverage-audit-and-run spec"
   - "stress test coverage audit"
   - "code_graph stress coverage"
   - "skill_advisor stress coverage"
@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/042-stress-coverage-audit-and-run"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/006-stress-coverage-audit-and-run"
     last_updated_at: "2026-04-30T18:10:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Spec authored from approved plan"
@@ -85,17 +85,17 @@ Produce a coverage matrix (54 rows × locked column schema), a narrative audit w
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/specs/.../042-stress-coverage-audit-and-run/spec.md` | Create | This file |
-| `.opencode/specs/.../042-stress-coverage-audit-and-run/plan.md` | Create | Execution plan |
-| `.opencode/specs/.../042-stress-coverage-audit-and-run/tasks.md` | Create | Task tracker |
-| `.opencode/specs/.../042-stress-coverage-audit-and-run/checklist.md` | Create | Verification gates |
-| `.opencode/specs/.../042-stress-coverage-audit-and-run/coverage-matrix.csv` | Create | 54-row matrix |
-| `.opencode/specs/.../042-stress-coverage-audit-and-run/coverage-audit.md` | Create | Audit narrative |
-| `.opencode/specs/.../042-stress-coverage-audit-and-run/stress-run-report.md` | Create | Run results |
-| `.opencode/specs/.../042-stress-coverage-audit-and-run/logs/stress-run-*.log` | Create | Raw vitest output |
-| `.opencode/specs/.../042-stress-coverage-audit-and-run/implementation-summary.md` | Update | Post-run synthesis |
-| `.opencode/specs/.../042-stress-coverage-audit-and-run/description.json` | Generate | via generate-context.js |
-| `.opencode/specs/.../042-stress-coverage-audit-and-run/graph-metadata.json` | Generate | via generate-context.js |
+| `.opencode/specs/.../006-stress-coverage-audit-and-run/spec.md` | Create | This file |
+| `.opencode/specs/.../006-stress-coverage-audit-and-run/plan.md` | Create | Execution plan |
+| `.opencode/specs/.../006-stress-coverage-audit-and-run/tasks.md` | Create | Task tracker |
+| `.opencode/specs/.../006-stress-coverage-audit-and-run/checklist.md` | Create | Verification gates |
+| `.opencode/specs/.../006-stress-coverage-audit-and-run/coverage-matrix.csv` | Create | 54-row matrix |
+| `.opencode/specs/.../006-stress-coverage-audit-and-run/coverage-audit.md` | Create | Audit narrative |
+| `.opencode/specs/.../006-stress-coverage-audit-and-run/stress-run-report.md` | Create | Run results |
+| `.opencode/specs/.../006-stress-coverage-audit-and-run/logs/stress-run-*.log` | Create | Raw vitest output |
+| `.opencode/specs/.../006-stress-coverage-audit-and-run/implementation-summary.md` | Update | Post-run synthesis |
+| `.opencode/specs/.../006-stress-coverage-audit-and-run/description.json` | Generate | via generate-context.js |
+| `.opencode/specs/.../006-stress-coverage-audit-and-run/graph-metadata.json` | Generate | via generate-context.js |
 <!-- /ANCHOR:scope -->
 
 ---

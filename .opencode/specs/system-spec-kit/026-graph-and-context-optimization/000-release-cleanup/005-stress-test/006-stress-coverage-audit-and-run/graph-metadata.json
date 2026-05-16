@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/042-stress-coverage-audit-and-run",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/042-stress-coverage-audit-and-run",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/006-stress-coverage-audit-and-run",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/006-stress-coverage-audit-and-run",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation",
   "children_ids": [],
   "manual": {
@@ -11,18 +11,18 @@
   },
   "derived": {
     "trigger_phrases": [
-      "042-stress-coverage-audit-and-run spec",
+      "006-stress-coverage-audit-and-run spec",
       "stress test coverage audit",
       "code_graph stress coverage",
       "skill_advisor stress coverage",
-      "042-stress-coverage-audit-and-run plan",
-      "042-stress-coverage-audit-and-run tasks",
-      "042-stress-coverage-audit-and-run checklist",
-      "042-stress-coverage-audit-and-run summary",
+      "006-stress-coverage-audit-and-run plan",
+      "006-stress-coverage-audit-and-run tasks",
+      "006-stress-coverage-audit-and-run checklist",
+      "006-stress-coverage-audit-and-run summary",
       "stress coverage audit summary"
     ],
     "key_topics": [
-      "042-stress-coverage-audit-and-run",
+      "006-stress-coverage-audit-and-run",
       "spec",
       "stress",
       "test",

@@ -106,13 +106,13 @@ _memory:
 - **Plan**: `plan.md`
 - **Checklist**: `checklist.md`
 - **Inputs (read-only)**:
-  - `../042-stress-coverage-audit-and-run/coverage-matrix.csv`
+  - `../006-stress-coverage-audit-and-run/coverage-matrix.csv`
   - `mcp_server/code_graph/`, `mcp_server/skill_advisor/lib/`
   - `mcp_server/stress_test/{code-graph,skill-advisor}/` existing patterns
 - **Outputs**:
   - New `.vitest.ts` files under `stress_test/code-graph/` and `stress_test/skill-advisor/`
-  - Updated `../042-stress-coverage-audit-and-run/coverage-matrix.csv`
-  - Updated `../042-stress-coverage-audit-and-run/coverage-audit.md`
+  - Updated `../006-stress-coverage-audit-and-run/coverage-matrix.csv`
+  - Updated `../006-stress-coverage-audit-and-run/coverage-audit.md`
   - `stress-test-synthesis.md` — comprehensive coverage report
 <!-- /ANCHOR:cross-refs -->
 

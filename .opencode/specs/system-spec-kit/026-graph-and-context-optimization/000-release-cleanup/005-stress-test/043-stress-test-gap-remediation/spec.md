@@ -17,7 +17,7 @@ _memory:
     next_safe_action: "Dispatch cli-codex Batch A"
     blockers: []
     key_files:
-      - "../042-stress-coverage-audit-and-run/coverage-matrix.csv"
+      - "../006-stress-coverage-audit-and-run/coverage-matrix.csv"
       - ".opencode/skills/system-spec-kit/mcp_server/stress_test/code-graph/"
       - ".opencode/skills/system-spec-kit/mcp_server/stress_test/skill-advisor/"
     session_dedup:

@@ -20,7 +20,7 @@ _memory:
       - "plan.md"
       - "logs/stress-run-20260430-200010Z.log"
       - "stress-test-synthesis.md"
-      - "../042-stress-coverage-audit-and-run/coverage-matrix.csv"
+      - "../006-stress-coverage-audit-and-run/coverage-matrix.csv"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "044-summary-final"
@@ -99,9 +99,9 @@ You can now run direct stress against `code_graph_scan` (cg-003), `code_graph_co
 | `logs/stress-run-20260430-200010Z.log` | Created | Full `npm run stress` capture |
 | `stress-test-synthesis.md` | Created | Comprehensive coverage report (every file in stress_test/) |
 | 18 new `.vitest.ts` files under `mcp_server/stress_test/` | Created | The 36 P1+P2 closures |
-| `../042-stress-coverage-audit-and-run/coverage-matrix.csv` | Modified | 36 rows updated to `gap_classification=none` |
-| `../042-stress-coverage-audit-and-run/coverage-audit.md` | Modified | §4.2 "Closed by 044" subsection added |
-| `../042-stress-coverage-audit-and-run/implementation-summary.md` | Modified | §Limitations item 4 updated |
+| `../006-stress-coverage-audit-and-run/coverage-matrix.csv` | Modified | 36 rows updated to `gap_classification=none` |
+| `../006-stress-coverage-audit-and-run/coverage-audit.md` | Modified | §4.2 "Closed by 044" subsection added |
+| `../006-stress-coverage-audit-and-run/implementation-summary.md` | Modified | §Limitations item 4 updated |
 <!-- /ANCHOR:what-built -->
 
 ---

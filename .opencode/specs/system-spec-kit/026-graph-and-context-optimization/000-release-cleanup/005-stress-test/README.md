@@ -9,7 +9,7 @@ Test pattern documentation, coverage validation, gap remediation.
 - `003-mcp-runtime-stress-remediation`
 - `004-stress-test-folder-completion`
 - `005-stress-test-expansion-and-alignment`
-- `042-stress-coverage-audit-and-run`
+- `006-stress-coverage-audit-and-run`
 - `043-stress-test-gap-remediation`
 
 ## Provenance
