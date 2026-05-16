@@ -1,6 +1,7 @@
 {
+  "level": "phase",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-docs/004-docs-quality-refactor",
-  "description": "Feature Specification: 004-docs-quality-refactor (phase parent) \u2014 coordinated docs-quality refactor of system-skill-advisor across 5 children: audit, bug-fixes, marketing README, sk-doc 1:1 alignment, content additions.",
+  "description": "Phase parent: docs-quality refactor — coordinated docs-quality work for system-skill-advisor across 8 children: audit, bug-fixes, marketing README, sk-doc 1:1 alignment, content additions, deferred-cleanup, deferred-final, tier-d-execution.",
   "keywords": [
     "skill-advisor",
     "docs-quality",
@@ -13,16 +14,17 @@
     "phase-parent",
     "cli-devin"
   ],
-  "lastUpdated": "2026-05-16T00:00:00Z",
+  "lastUpdated": "2026-05-16T12:23:49.343Z",
   "specId": "004",
-  "folderSlug": "004-docs-quality-refactor",
+  "folderSlug": "docs-quality-refactor",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
     "008-skill-advisor",
     "005-docs"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "phase"
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "16-05-26_13-23__spec-folder-moved-from-top-level-opencode-specs.md"
+  ]
 }

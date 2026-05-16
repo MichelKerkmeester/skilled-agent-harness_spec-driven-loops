@@ -13,7 +13,7 @@ Goal: INSTALL_GUIDE.md command-by-command smoke vs reality
 Steps:
 1. Read these evidence files with file:line citations: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/INSTALL_GUIDE.md, /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/hooks/claude/, /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/hooks/codex/, /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/hooks/gemini/, /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/mcp_server/package.json
 2. Run targeted greps for these patterns: rg -nE 'npm|node|bash|devin|codex' /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/INSTALL_GUIDE.md; rg -nE '\.opencode/skills/' /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/INSTALL_GUIDE.md; find /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/hooks -type f -name 'install*' 2>/dev/null
-3. Cross-reference against prior iters at /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/004-docs-quality-refactor/001-audit-and-research/research/iterations/iteration-001.md through iteration-003.md. Cite each prior iter you reference by number.
+3. Cross-reference against prior iters at /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-docs/004-docs-quality-refactor/001-audit-and-research/research/iterations/iteration-001.md through iteration-003.md. Cite each prior iter you reference by number.
 4. Identify gaps prior iters missed; tag findings drift|bug|gap|HVR-violation|alignment-miss with severity P0|P1|P2 and impact-rank 1-10.
 5. Group findings by sub-phase target: 002-bug-fixes, 003-readme-marketing-rewrite, 004-sk-doc-1to1-alignment, 005-content-additions-and-hvr.
 
@@ -34,7 +34,7 @@ Do the commands documented in INSTALL_GUIDE.md actually work? Which paths/flags 
 
 ## Output contract
 
-Write to: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/004-docs-quality-refactor/001-audit-and-research/research/iterations/iteration-004.md
+Write to: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-docs/004-docs-quality-refactor/001-audit-and-research/research/iterations/iteration-004.md
 
 Required heading structure:
 - # Iter 004 — INSTALL_GUIDE.md command-by-command smoke vs reality
@@ -44,8 +44,8 @@ Required heading structure:
 - ## Gaps for next iter
 - ## JSONL delta row
 
-Also append the JSONL delta row to: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/004-docs-quality-refactor/001-audit-and-research/research/deltas/iter-004.jsonl
-Also append the same row to canonical state log: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/004-docs-quality-refactor/001-audit-and-research/research/deep-research-state.jsonl
+Also append the JSONL delta row to: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-docs/004-docs-quality-refactor/001-audit-and-research/research/deltas/iter-004.jsonl
+Also append the same row to canonical state log: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-docs/004-docs-quality-refactor/001-audit-and-research/research/deep-research-state.jsonl
 
 Required JSONL fields:
 - type=iteration

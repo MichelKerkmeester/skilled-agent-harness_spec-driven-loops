@@ -53,42 +53,22 @@ This skill ships three layers on top of the base MCP server:
 2. **Graph-aware query tools** -- `code_graph_query` and `code_graph_context` answer relationship questions (callers, imports, outline, blast radius) and assemble compact LLM-ready neighborhoods around a seed file or symbol.
 3. **A readiness contract that refuses to lie** -- every read path consults a freshness gate. Stale, empty, or scope-mismatched indexes return `status:"blocked"` with an explicit `requiredAction`. No silent empty arrays, no plausible-but-wrong answers.
 
-### Key Statistics
-
-| Field | Value |
-|---|---|
-| Active MCP tools | 11 |
-| MCP server name | `mk-code-index` (config key `mk_code_index`, client namespace `mcp__mk_code_index__*`) |
-| Runtime package | `@spec-kit/system-code-graph` |
-| Skill version | `1.0.3.1` |
-| Storage | SQLite via better-sqlite3, optional `sqlite-vec` extension for vector similarity |
-| Default database | `.opencode/.spec-kit/code-graph/database/code-graph.sqlite` (workspace-pinned by launcher guard) |
-| Parser stack | `web-tree-sitter` + `tree-sitter-wasms` (TypeScript, JavaScript, Python, Go, Rust, plus the rest of the tree-sitter-wasms set) |
-| Readiness states | `fresh`, `stale`, `empty`, `error`, `absent` |
-| Single-writer invariant | Only `code_graph_scan` writes; every other tool is read-only |
-
 ### How This Compares
 
-| Question | Manual grep | Semantic search (CocoIndex) | System Code Graph |
-|---|---|---|---|
-| **Search precision** | Exact strings only. Misses renames and aliases. | Conceptual matches by embedding. Surfaces "similar" not "connected". | Exact symbol resolution via AST. Tracks renames inside the same scan. |
-| **Cross-file relationships** | None. Each file is text. | None. Returns ranked files, not edges. | First-class. Callers, imports, definitions, references as graph edges. |
-| **Blast radius for a refactor** | `grep` the symbol, hope you find every call site. | Cannot answer the question. | Reverse impact set with one tool call. |
-| **Readiness guarantees** | Always answers, even when stale. | Always answers, even when stale. | Refuses to answer when stale. Returns `blocked` with `requiredAction`. |
-| **Index freshness** | Out of band. | Out of band. | First-class. `code_graph_status` reports it. `code_graph_scan` refreshes. |
+Manual grep matches exact strings only. It misses renames and aliases, and it cannot answer cross-file relationship questions. Semantic search surfaces conceptually similar code via embeddings but cannot tell you what is structurally connected. Both alternatives always return an answer, even when their index is stale.
+
+System Code Graph resolves symbols exactly through tree-sitter AST parsing. Callers, imports, definitions, and references become first-class graph edges. Blast radius for a refactor is one tool call. The readiness contract refuses to answer on stale state and returns `status:"blocked"` with an explicit `requiredAction` instead of silent empty arrays. `code_graph_status` reports freshness as a first-class field.
 
 ### Cross-Skill Integration
 
-System Code Graph owns the structural index. It deliberately does not own the surfaces below:
+System Code Graph owns the structural index. It deliberately leaves four surfaces to siblings:
 
-| Surface | Owner | Notes |
-|---|---|---|
-| Spec folders, memory, resume, hooks | `system-spec-kit` | `/spec_kit:resume`, `_memory.continuity`, lifecycle hooks. |
-| Semantic code search | `mcp-coco-index` (with `ccc_*` bridges here) | `code_graph_context` can accept CocoIndex seeds to mix semantic and structural lookups. |
-| Skill routing | `system-skill-advisor` | Routes `code graph` / `blast radius` / `outline` requests here. |
-| Deep-loop research and review | `system-spec-kit` (deep-loop coverage graph tools) | Tools `deep_loop_graph_*` live in `mk-spec-memory`, not in `mk-code-index`. |
+- **Spec folders, memory, resume, hooks**. Owned by the spec-kit runtime. The `/spec_kit:resume` flow, `_memory.continuity` blocks, and lifecycle hooks live there.
+- **Semantic code search**. Owned by a separate semantic-index runtime. `code_graph_context` can accept its seeds to mix semantic and structural lookups, exposed here as `ccc_*` bridge tools.
+- **Skill routing**. Owned by a separate routing runtime that picks the right skill for a prompt.
+- **Deep-loop research and review tools**. Owned by the spec-kit runtime where the iteration state machine lives, not by this skill.
 
-The shared SQLite file is the coordination boundary between in-process imports from `system-spec-kit` and external MCP callers. The single-writer invariant prevents corruption.
+The shared SQLite file is the coordination boundary between in-process imports from adjacent runtimes and external MCP callers. The single-writer invariant prevents corruption.
 
 <!-- /ANCHOR:overview -->
 

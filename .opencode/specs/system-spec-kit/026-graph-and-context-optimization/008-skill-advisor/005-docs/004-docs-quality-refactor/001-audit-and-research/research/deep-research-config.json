@@ -7,7 +7,7 @@
   "maxToolCallsPerIteration": 12,
   "maxMinutesPerIteration": 10,
   "progressiveSynthesis": true,
-  "specFolder": ".opencode/specs/004-docs-quality-refactor/001-audit-and-research",
+  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-docs/004-docs-quality-refactor/001-audit-and-research",
   "createdAt": "2026-05-16T09:56:00.000Z",
   "status": "initialized",
   "executionMode": "auto",

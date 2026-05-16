@@ -38,11 +38,6 @@
     "last_save_at": "2026-05-16T00:00:00Z",
     "save_lineage": "scaffold",
     "last_accessed_at": null,
-    "source_docs": [
-      "spec.md",
-      "plan.md",
-      "tasks.md",
-      "implementation-summary.md"
-    ]
+    "source_docs": ["spec.md", "plan.md", "tasks.md", "implementation-summary.md"]
   }
 }

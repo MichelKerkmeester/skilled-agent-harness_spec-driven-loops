@@ -13,7 +13,7 @@ Goal: HVR compliance sweep across all 6 doc surfaces
 Steps:
 1. Read these evidence files with file:line citations: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/SKILL.md, /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/README.md, /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/ARCHITECTURE.md, /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/INSTALL_GUIDE.md, /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-doc/references/global/hvr_rules.md
 2. Run targeted greps for these patterns: rg -niE '\b(delve|embark|leverage|foster|empower|disrupt|robust|seamless|holistic|synergy|utilize|tapestry|elucidate|unveil|illuminate|game-changer|cutting-edge)\b' /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/; rg -niE "(it's important to|moving forward|when it comes to|dive into|in a world where|that being said)" /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/; rg -nE '—' /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/ --glob '*.md'; rg -nE '\b\w+; \w+\b' /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/ --glob '*.md'
-3. Cross-reference against prior iters at /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/004-docs-quality-refactor/001-audit-and-research/research/iterations/iteration-001.md through iteration-014.md. Cite each prior iter you reference by number.
+3. Cross-reference against prior iters at /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-docs/004-docs-quality-refactor/001-audit-and-research/research/iterations/iteration-001.md through iteration-014.md. Cite each prior iter you reference by number.
 4. Identify gaps prior iters missed; tag findings drift|bug|gap|HVR-violation|alignment-miss with severity P0|P1|P2 and impact-rank 1-10.
 5. Group findings by sub-phase target: 002-bug-fixes, 003-readme-marketing-rewrite, 004-sk-doc-1to1-alignment, 005-content-additions-and-hvr.
 
@@ -34,7 +34,7 @@ Which doc surfaces fail HVR compliance (hard-blocker words, phrase blockers, em 
 
 ## Output contract
 
-Write to: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/004-docs-quality-refactor/001-audit-and-research/research/iterations/iteration-015.md
+Write to: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-docs/004-docs-quality-refactor/001-audit-and-research/research/iterations/iteration-015.md
 
 Required heading structure:
 - # Iter 015 — HVR compliance sweep across all 6 doc surfaces
@@ -44,8 +44,8 @@ Required heading structure:
 - ## Gaps for next iter
 - ## JSONL delta row
 
-Also append the JSONL delta row to: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/004-docs-quality-refactor/001-audit-and-research/research/deltas/iter-015.jsonl
-Also append the same row to canonical state log: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/004-docs-quality-refactor/001-audit-and-research/research/deep-research-state.jsonl
+Also append the JSONL delta row to: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-docs/004-docs-quality-refactor/001-audit-and-research/research/deltas/iter-015.jsonl
+Also append the same row to canonical state log: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-docs/004-docs-quality-refactor/001-audit-and-research/research/deep-research-state.jsonl
 
 Required JSONL fields:
 - type=iteration

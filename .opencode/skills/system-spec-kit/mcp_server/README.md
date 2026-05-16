@@ -1,18 +1,18 @@
 ---
 title: "MCP Server: Spec Kit Memory Runtime"
-description: "Model Context Protocol server package for memory retrieval, code graph context, skill routing, hooks, persistence, and diagnostics."
+description: "Model Context Protocol server package for memory retrieval, hooks, persistence, and diagnostics."
 trigger_phrases:
   - "MCP server"
   - "spec kit memory"
   - "memory_context"
-  - "code_graph_query"
-  - "advisor_recommend"
+  - "memory_save"
+  - "memory_search"
 importance_tier: "important"
 ---
 
 # MCP Server: Spec Kit Memory Runtime
 
-> Local MCP runtime for memory retrieval, code graph context, skill routing, hooks, persistence, and diagnostics.
+> Local MCP runtime for memory retrieval, hooks, persistence, and diagnostics.
 
 <!-- ANCHOR:table-of-contents -->
 ## TABLE OF CONTENTS
@@ -34,14 +34,14 @@ importance_tier: "important"
 <!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
-`mcp_server/` owns the Spec Kit Memory MCP runtime. It exposes tools for memory search, context recovery, code graph analysis, CocoIndex status, skill advisor routing, checkpoints, evaluation, and maintenance.
+`mcp_server/` owns the Spec Kit Memory MCP runtime. It exposes tools for memory search, context recovery, checkpoints, evaluation, and maintenance.
 
 Current state:
 
 - `context-server.ts` is the server entrypoint for MCP transport and tool dispatch.
 - `tool-schemas.ts`, `schemas/`, and `tools/` define the public tool surface and input contracts.
-- `handlers/`, `code_graph/`, `lib/`, and `skill_advisor/` own the runtime behavior behind those tools.
-- `database/` stores local SQLite state for indexed memory and code graph data.
+- `handlers/` and `lib/` own the shared runtime behavior behind the tools.
+- `database/` stores local SQLite state for indexed memory.
 - Runtime hooks under `hooks/` prepare startup, prompt, and compact-context payloads for supported clients.
 - Embedding provider selection is controlled by `EMBEDDINGS_PROVIDER`. The default `auto` cascade is Voyage when `VOYAGE_API_KEY` is set, then OpenAI when `OPENAI_API_KEY` is set, then `llama-cpp` when the local GGUF runtime is available, then `hf-local` as the local fallback.
 
@@ -98,15 +98,9 @@ Use `EMBEDDINGS_PROVIDER=hf-local` when a host cannot load the GGUF runtime or w
                       │ lib/             │ ───▶ │ database/       │
                       │ search + memory  │      │ SQLite stores   │
                       └────────┬─────────┘      └─────────────────┘
-                               │
-                               ▼
-                      ┌──────────────────┐
-                      │ code_graph/      │
-                      │ structural index │
-                      └──────────────────┘
 
 Dependency direction:
-transport ───▶ schemas/tools ───▶ handlers ───▶ lib/code_graph/shared
+transport ───▶ schemas/tools ───▶ handlers ───▶ lib/shared
 handlers ───▶ database and filesystem adapters
 hooks ───▶ shared payload builders and read-only status helpers
 ```
@@ -136,7 +130,7 @@ mcp_server/
 `-- README.md
 ```
 
-**Default scope is end-user repo only.** `.opencode/skills/**`, `.opencode/agents/**`, `.opencode/commands/**`, `.opencode/specs/**`, and `.opencode/plugins/**` are excluded by default; opt in via `SPECKIT_CODE_GRAPH_INDEX_*` env vars or per-call `includeSkills` / `includeAgents` / `includeCommands` / `includeSpecs` / `includePlugins` args. See the [`system-code-graph` skill](../../system-code-graph/mcp_server/README.md) for full details and granular per-skill selection.
+**Default scope is end-user repo only.** `.opencode/skills/**`, `.opencode/agents/**`, `.opencode/commands/**`, `.opencode/specs/**`, and `.opencode/plugins/**` are excluded by default.
 
 Allowed dependency direction:
 
@@ -309,6 +303,5 @@ Expected result: build and tests exit 0, README validation reports no blocking i
 - [`configs/README.md`](./configs/README.md)
 - [`hooks/README.md`](./hooks/README.md)
 - [`lib/search/README.md`](./lib/search/README.md)
-- [`skill_advisor/README.md`](./skill_advisor/README.md)
 
 <!-- /ANCHOR:related -->

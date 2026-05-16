@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: 004-docs-quality-refactor (phase parent)"
+title: "Feature Specification: system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-docs/004-docs-quality-refactor (phase parent)"
 description: "Coordinated docs-quality refactor of .opencode/skills/system-skill-advisor: marketing-style README, 1:1 sk-doc template alignment, audit-confirmed bug fixes, and content gap closure across 5 children."
 trigger_phrases:
   - "skill-advisor docs quality refactor"
@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-docs/004-docs-quality-refactor"
+    packet_pointer: "top-level/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-docs/004-docs-quality-refactor"
     last_updated_at: "2026-05-16T00:00:00Z"
     last_updated_by: "claude-opus-4-7-1m"
     recent_action: "Scaffolded phase-parent + 5 children"
@@ -44,7 +44,7 @@ _memory:
     - What needs done: the high-level outcome the phases work toward
 -->
 
-# Feature Specification: 004-docs-quality-refactor (phase parent)
+# Feature Specification: system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-docs/004-docs-quality-refactor (phase parent)
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
@@ -127,12 +127,15 @@ Drive system-skill-advisor to docs-quality parity with the sk-doc baseline: mark
 | 003 | `003-readme-marketing-rewrite/` | Full README.md rewrite: marketing-style, HVR-compliant, ~2000 words, 9 numbered sections, peer-anchored on system-code-graph/README.md. | Pending |
 | 004 | `004-sk-doc-1to1-alignment/` | Per-file 1:1 sk-doc template alignment across SKILL.md, ARCHITECTURE.md, INSTALL_GUIDE.md, references/*, feature_catalog/*, manual_testing_playbook/*. | Pending |
 | 005 | `005-content-additions-and-hvr/` | 5 new reference docs (lane-weight tuning, query cookbook, validation baselines, daemon lease, skill-graph drift) + canonical hook-reference copy + HVR sweep. | Pending |
+| 006 | `006-deferred-cleanup/` | Tier A (F30 cross-links + F33 SOURCE FILES) + Tier B (F23/F24/F44 re-verify) + Tier C (bulk Oxford comma sweep 943→0). Closes the deferred backlog that ships without architectural decisions. | Complete |
+| 007 | `007-deferred-final/` | Final-pass closure: semicolon HVR sweep (137→30 prose), F34 playbook deviation notes (20 files), 4 new ref docs (query-cookbook, validation-baselines, daemon-lease-contract, skill-graph-drift), deferred-decisions.md for Tier D. cli-opencode dispatch attempted but failed on InstanceRef (v1.15.1 vs v1.3.17 baseline drift); executed in-session instead. | Complete |
+| 008 | `008-tier-d-execution/` | Tier D execution: F4 `.devin/hooks.v1.json` migration (UserPromptSubmit→system-skill-advisor, SessionStart→system-code-graph with conceptual-ownership pivot), F6 deprecation banners on 4 OLD hook READMEs with 90-day window, F37 catalog/playbook §17.5 cross-reference table. F35/F36 stay status-quo per deferred-decisions.md recommendations. | Complete |
 
 ### Phase Transition Rules
 
 - Each phase MUST pass `validate.sh --strict` independently before the next phase begins
 - Parent spec tracks aggregate progress via this map
-- Use `/spec_kit:resume .opencode/specs/004-docs-quality-refactor/[NNN-phase]/` to resume a specific phase
+- Use `/spec_kit:resume .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-docs/004-docs-quality-refactor/[NNN-phase]/` to resume a specific phase
 - Run `validate.sh --recursive` on parent to validate all phases as integrated unit
 - Phases 003 and 004 may execute in parallel after 002 lands; 005 runs last
 

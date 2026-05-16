@@ -13,7 +13,7 @@ Goal: references cross-link integrity (legacy-tool-bridge, tool-ids-reference, p
 Steps:
 1. Read these evidence files with file:line citations: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/references/legacy-tool-bridge.md, /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/references/tool-ids-reference.md, /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/references/propagate-enhances.md, /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/references/skill-graph-extraction-plan.md
 2. Run targeted greps for these patterns: rg -oE '\]\([^)]+\)' /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/references/{legacy-tool-bridge,tool-ids-reference,propagate-enhances,skill-graph-extraction-plan}.md; rg -E 'system-spec-kit|008-skill-advisor|001-skill-graph' /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/references/
-3. Cross-reference against prior iters at /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/004-docs-quality-refactor/001-audit-and-research/research/iterations/iteration-001.md through iteration-006.md. Cite each prior iter you reference by number.
+3. Cross-reference against prior iters at /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-docs/004-docs-quality-refactor/001-audit-and-research/research/iterations/iteration-001.md through iteration-006.md. Cite each prior iter you reference by number.
 4. Identify gaps prior iters missed; tag findings drift|bug|gap|HVR-violation|alignment-miss with severity P0|P1|P2 and impact-rank 1-10.
 5. Group findings by sub-phase target: 002-bug-fixes, 003-readme-marketing-rewrite, 004-sk-doc-1to1-alignment, 005-content-additions-and-hvr.
 
@@ -34,7 +34,7 @@ Do the 4 remaining references/*.md files cross-link correctly to each other and 
 
 ## Output contract
 
-Write to: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/004-docs-quality-refactor/001-audit-and-research/research/iterations/iteration-007.md
+Write to: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-docs/004-docs-quality-refactor/001-audit-and-research/research/iterations/iteration-007.md
 
 Required heading structure:
 - # Iter 007 — references cross-link integrity (legacy-tool-bridge, tool-ids-reference, propagate-enhances, skill-graph-extraction-plan)
@@ -44,8 +44,8 @@ Required heading structure:
 - ## Gaps for next iter
 - ## JSONL delta row
 
-Also append the JSONL delta row to: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/004-docs-quality-refactor/001-audit-and-research/research/deltas/iter-007.jsonl
-Also append the same row to canonical state log: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/004-docs-quality-refactor/001-audit-and-research/research/deep-research-state.jsonl
+Also append the JSONL delta row to: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-docs/004-docs-quality-refactor/001-audit-and-research/research/deltas/iter-007.jsonl
+Also append the same row to canonical state log: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-docs/004-docs-quality-refactor/001-audit-and-research/research/deep-research-state.jsonl
 
 Required JSONL fields:
 - type=iteration

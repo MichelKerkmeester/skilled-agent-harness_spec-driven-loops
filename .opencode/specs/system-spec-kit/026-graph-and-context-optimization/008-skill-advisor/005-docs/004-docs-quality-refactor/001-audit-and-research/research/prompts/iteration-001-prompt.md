@@ -34,7 +34,7 @@ Does `.opencode/skills/system-skill-advisor/SKILL.md` conform 1:1 to the sk-doc 
 
 ## Output contract
 
-Write to: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/004-docs-quality-refactor/001-audit-and-research/research/iterations/iteration-001.md`
+Write to: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-docs/004-docs-quality-refactor/001-audit-and-research/research/iterations/iteration-001.md`
 
 Required heading structure:
 - `# Iter 001 — SKILL.md anchor coverage + smart-router conformance`
@@ -44,7 +44,7 @@ Required heading structure:
 - `## Gaps for next iter`
 - `## JSONL delta row` (paste the appended row at the end for verification)
 
-Also append the JSONL delta row to: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/004-docs-quality-refactor/001-audit-and-research/research/deltas/iter-001.jsonl`
+Also append the JSONL delta row to: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-docs/004-docs-quality-refactor/001-audit-and-research/research/deltas/iter-001.jsonl`
 
 Required JSONL fields:
 - `type=iteration`
@@ -61,4 +61,4 @@ Required JSONL fields:
 
 Every claim in the Findings or Evidence sections MUST be followed by a `<ref_file file="<absolute-path>" lines="N-M" />` tag. Inline prose-only claims are non-compliant. Aim for ≥ 3 ref_file tags per finding, ≥ 1 per evidence row.
 
-After write, also append the JSONL row to the canonical state log: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/004-docs-quality-refactor/001-audit-and-research/research/deep-research-state.jsonl`
+After write, also append the JSONL row to the canonical state log: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-docs/004-docs-quality-refactor/001-audit-and-research/research/deep-research-state.jsonl`

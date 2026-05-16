@@ -1,21 +1,18 @@
 ---
 title: "Architecture: system-spec-kit"
-description: "Current package architecture for scripts, MCP runtime, shared modules, sibling skill-advisor integration, code-graph subsystem, hook integration matrix, and canonical continuity flows."
+description: "Current package architecture for system-spec-kit: scripts, MCP runtime, shared modules, canonical continuity flows, hook matrix, validators."
 trigger_phrases:
   - "system spec kit architecture"
+  - "spec kit architecture"
   - "canonical continuity architecture"
   - "resume ladder"
-  - "content router"
-  - "skill-advisor architecture"
-  - "code-graph architecture"
-  - "5-lane fusion"
-  - "advisor daemon"
+  - "spec-kit runtime subsystems"
 importance_tier: "important"
 ---
 
 # Architecture: system-spec-kit
 
-> Current-reality architecture for the `system-spec-kit` package: authored code lives in `scripts/`, `mcp_server/`, and `shared/`; the sibling `system-skill-advisor` skill owns advisor routing, while `mcp_server/` hosts memory runtime, hooks, the code-graph subsystem, matrix runners, and opt-in stress tests. Packet continuity is rebuilt through `/spec_kit:resume` and canonical spec documents.
+> Current-reality architecture for the `system-spec-kit` package. Authored code lives in `scripts/`, `mcp_server/`, and `shared/`. Continuity is rebuilt through `/spec_kit:resume` and canonical spec documents.
 
 <!-- ANCHOR:table-of-contents -->
 ## TABLE OF CONTENTS
@@ -24,99 +21,66 @@ importance_tier: "important"
 - [2. PACKAGE TOPOLOGY](#2--package-topology)
 - [3. CANONICAL CONTINUITY FLOWS](#3--canonical-continuity-flows)
 - [4. RUNTIME SUBSYSTEMS](#4--runtime-subsystems)
-- [5. SKILL-ADVISOR SUBSYSTEM](#5--skill-advisor-subsystem)
-- [6. CODE-GRAPH SUBSYSTEM](#6--code-graph-subsystem)
-- [7. HOOK AND PLUGIN INTEGRATION](#7--hook-and-plugin-integration)
-- [8. ENFORCEMENT AND VERIFICATION](#8--enforcement-and-verification)
-- [9. DECISION RECORDS](#9--decision-records)
-- [10. RELATED](#10--related)
+- [5. HOOK AND PLUGIN INTEGRATION](#5--hook-and-plugin-integration)
+- [6. ENFORCEMENT AND VERIFICATION](#6--enforcement-and-verification)
+- [7. DECISION RECORDS](#7--decision-records)
+- [8. RELATED](#8--related)
 
 <!-- /ANCHOR:table-of-contents -->
+
+---
 
 <!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 `system-spec-kit` is split into three authored zones plus generated build output:
 
-| Zone | Purpose | Source of Truth |
-|---|---|---|
-| `scripts/` | CLI generation, validation, indexing, evals, and packet tooling | TypeScript and shell under `scripts/` |
-| `mcp_server/` | Runtime MCP server, handlers, storage, search, hooks, routing, and consumed subsystems | TypeScript under `mcp_server/` |
-| `shared/` | Neutral modules imported by both scripts and runtime | TypeScript under `shared/` |
-| `dist/` | Built JavaScript entrypoints | Generated output only |
+- `scripts/` owns CLI generation, validation, indexing, evals, and packet tooling. TypeScript and shell.
+- `mcp_server/` owns the runtime MCP server, handlers, storage, search, hooks, and matrix runners. TypeScript.
+- `shared/` owns neutral modules imported by both scripts and runtime. TypeScript.
+- `dist/` carries generated JavaScript entrypoints only. Not authored.
 
-The extracted advisor is a sibling skill, while code graph remains a first-class self-contained package under `mcp_server/`. Adjacent operator-runner folders still live in spec-kit for the quality matrix and opt-in stress validation:
+The package's operator-facing recovery surface is `/spec_kit:resume`. The recovery chain reads `handover.md`, then `_memory.continuity`, then canonical spec docs (`implementation-summary.md`, `tasks.md`, `plan.md`, `spec.md`). Generated memory artifacts are supporting context only, not the primary continuity record.
 
-- `../system-skill-advisor/mcp_server/` — Native skill routing advisor owned by the sibling `system-skill-advisor` skill. Houses its own `lib/`, `handlers/`, `tools/`, `tests/`, `scripts/`, `bench/`, `compat/`, `schemas/`, operator docs (`README.md`, `INSTALL_GUIDE.md`, `SET-UP_GUIDE.md`), plus `feature_catalog/` and `manual_testing_playbook/` packages.
-- `mcp_server/code_graph/` — Structural code graph + coco-index facade. Houses its own `lib/`, `handlers/`, `tools/`, `tests/`.
-- `mcp_server/matrix_runners/` — Packet-036 F1-F14 x CLI adapter manifest, five per-CLI adapters, and meta-runner for external executor cells.
-- `mcp_server/stress_test/` — Opt-in stress/load/degraded-state suites, excluded from default `npm test` and run through `npm run stress`.
-
-The advisor sibling ships its own `SKILL.md`; spec-kit docs reference it only as a sibling runtime dependency. The code-graph package is still consumed inside spec-kit and does not ship a separate `SKILL.md`.
-
-The package no longer treats generated memory notes as the primary continuity artifact. The operator-facing recovery surface is `/spec_kit:resume`, and the recovery chain is:
-
-1. `handover.md`
-2. `_memory.continuity`
-3. canonical spec docs such as `implementation-summary.md`, `tasks.md`, `plan.md`, and `spec.md`
-
-Generated memory artifacts are supporting context only.
-
-### Architecture Diagram
+### Architecture diagram
 
 ```
-┌─────────────────────────────────────────────────────────────────────┐
-│                    SYSTEM-SPEC-KIT PACKAGE                          │
-├─────────────────────────────────────────────────────────────────────┤
-│                                                                     │
-│  ┌──────────────────┐     ┌─────────────────┐     ┌───────────────┐ │
-│  │   CLI Runtimes   │     │    Plugins      │     │  AI Agents    │ │
-│  │Claude/Gemini/    │────▶│skill-advisor.js │────▶│(Gate 2/Skill  │ │
-│  │Copilot/Codex     │     │code-graph.js    │     │ Routing)      │ │
-│  └────────┬─────────┘     └────────┬────────┘     └───────────────┘ │
-│           │                        │                                │
-│  ┌────────▼────────────────────────▼──────────────────────────────┐ │
-│  │                        mcp_server/                             │ │
-│  │  ┌──────────┐ ┌──────────┐ ┌───────────────────────────────────│ │
-│  │  │ hooks/   │ │handlers/ │ │           lib/                    │ │
-│  │  │ claude/  │ │save/     │ │ ┌──────────┐ ┌─────────────┐      │ │
-│  │  │ gemini/  │ │resume/   │ │ │ search/  │ │ resume/     │      │ │
-│  │  │ copilot/ │ │search/   │ │ │ graph/   │ │ routing/    │      │ │
-│  │  │ codex/   │ │context/  │ │ │ merge/   │ │ continuity/ │      │ │
-│  │  └──────────┘ └──────────┘ │ └──────────┘ └─────────────┘      │ │
-│  │  ┌─────────────────────────┴─────────────────────────────┐     │ │
-│  │  │              Runtime Subsystems                       │     │ │
-│  │  │ ┌────────────────────┐ ┌────────────────────────────┐ │     │ │
-│  │  │ │ sibling advisor    │ │     code_graph/            │ │     │ │
-│  │  │ │ ┌────────────────┐ │ │ ┌────────────────────────┐ │ │     │ │
-│  │  │ │ │5-lane fusion   │ │ │ │indexer, readiness,     │ │ │     │ │
-│  │  │ │ │scorer daemon   │ │ │ │seed resolver, budget   │ │ │     │ │
-│  │  │ │ │compat bridge   │ │ │ │Tree-sitter, CCC facade │ │ │     │ │
-│  │  │ │ └────────────────┘ │ │ └────────────────────────┘ │ │     │ │
-│  │  │ └────────────────────┘ └────────────────────────────┘ │     │ │
-│  │  │   matrix_runners/       stress_test/                  │     │ │
-│  │  └───────────────────────────────────────────────────────┘     │ │
-│  └────────────────────────────────────────────────────────────────┘ │
-│           ▲                       ▲                                 │
-│  ┌────────┴────────┐     ┌────────┴────────┐                        │
-│  │   scripts/      │     │    shared/      │                        │
-│  │ ┌──────────────┐│     │ ┌──────────────┐│                        │
-│  │ │ create.sh    ││────▶│ │ embeddings.ts││◄─────────────────      │
-│  │ │ validate.sh  ││     │ │ trigger-     ││                        │
-│  │ │ generate-    ││     │ │ extractor.ts ││                        │
-│  │ │ context.ts   ││     │ │ chunking.ts  ││                        │
-│  │ │ evals/       ││     │ │ algorithms/  ││                        │
-│  │ └──────────────┘│     │ │ parsing/     ││                        │
-│  │(import via api) │     │ │ scoring/     ││                        │
-│  └─────────────────┘     │ └──────────────┘│                        │
-│                          └─────────────────┘                        │
-│                                                                     │
-│  Dependency direction: scripts/ ──▶ mcp_server/api/                 │
-│                         mcp_server/ ──▶ shared/                     │
-│                         scripts/ ──▶ shared/                        │
-│                         Plugin ──▶ ../system-skill-advisor/compat/            │
-│                                                                     │
-└─────────────────────────────────────────────────────────────────────┘
+┌─────────────────────────────────────────────────────────────────┐
+│                  SYSTEM-SPEC-KIT PACKAGE                        │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                 │
+│  ┌──────────────────┐     ┌──────────────────────┐              │
+│  │   CLI Runtimes   │     │      AI Agents       │              │
+│  │ Claude / Gemini  │────▶│  (Gate 1/2/3 flow)   │              │
+│  │ Copilot / Codex  │     │                      │              │
+│  └────────┬─────────┘     └──────────────────────┘              │
+│           │                                                     │
+│  ┌────────▼──────────────────────────────────────────────────┐  │
+│  │                       mcp_server/                         │  │
+│  │  ┌──────────┐ ┌──────────┐ ┌──────────────────────────┐   │  │
+│  │  │ hooks/   │ │handlers/ │ │           lib/           │   │  │
+│  │  │ claude/  │ │save/     │ │ search / resume / merge  │   │  │
+│  │  │ gemini/  │ │resume/   │ │ graph / continuity       │   │  │
+│  │  │ copilot/ │ │search/   │ │                          │   │  │
+│  │  │ codex/   │ │context/  │ │                          │   │  │
+│  │  └──────────┘ └──────────┘ └──────────────────────────┘   │  │
+│  │  matrix_runners/        stress_test/                      │  │
+│  └─────────────────────────┬─────────────────────────────────┘  │
+│                            │                                    │
+│  ┌────────────────┐     ┌──┴──────────────┐                     │
+│  │   scripts/     │     │    shared/      │                     │
+│  │ create.sh      │────▶│ embeddings.ts   │                     │
+│  │ validate.sh    │     │ trigger-extract │                     │
+│  │ generate-      │     │ chunking.ts     │                     │
+│  │ context.ts     │     │ algorithms/     │                     │
+│  │ evals/         │     │ scoring/        │                     │
+│  └────────────────┘     └─────────────────┘                     │
+│                                                                 │
+│  Dependency direction: scripts/ ──▶ mcp_server/api/             │
+│                        mcp_server/ ──▶ shared/                  │
+│                        scripts/ ──▶ shared/                     │
+│                                                                 │
+└─────────────────────────────────────────────────────────────────┘
 ```
 
 <!-- /ANCHOR:overview -->
@@ -128,51 +92,36 @@ Generated memory artifacts are supporting context only.
 
 ```text
 system-spec-kit/
-├── scripts/                        # CLI generation, validation, eval, and packet tooling
-├── mcp_server/                     # MCP runtime
-│   ├── handlers/                   # Tool handlers and save orchestration
-│   ├── hooks/                      # Claude, Gemini, Copilot, Codex lifecycle hooks
-│   ├── lib/                        # Runtime subsystems
-│   │   ├── continuity/             # _memory.continuity contract helpers
-│   │   ├── resume/                 # Resume ladder resolution
-│   │   ├── routing/                # Content router for canonical saves
-│   │   ├── merge/                  # Anchor-scoped spec-doc merge operations
-│   │   ├── search/                 # Hybrid search pipeline
-│   │   ├── graph/                  # Causal graph signals
-│   │   ├── coverage-graph/         # Deep-loop research/review coverage graphs
-│   │   ├── feedback/               # Implicit feedback and shadow evaluation
-│   │   └── ...                     # storage, validation, governance, response, etc.
-│   ├── api/                        # Stable import boundary for non-runtime callers
-│   ├── tests/                      # Runtime Vitest suites and fixtures
-│   ├── scripts/                    # Compatibility wrappers only
-│   ├── matrix_runners/             # F1-F14 x CLI adapter runners
-│   ├── stress_test/                # Opt-in stress/load/degraded-state suites
-│   └── code_graph/                 # Self-contained code-graph package (see §6)
-│       ├── lib/                    # indexer, readiness contract, seed resolver, coco-index integration
-│       ├── handlers/               # code_graph_* + ccc_* (coco-index facade)
-│       ├── tools/                  # MCP tool registrations
-│       └── tests/                  # 7 files / 52 tests
-├── ../system-skill-advisor/         # Sibling skill that owns advisor routing (see §5)
-│   ├── SKILL.md / README.md / INSTALL_GUIDE.md / SET-UP_GUIDE.md
-│   ├── feature_catalog/ / manual_testing_playbook/
-│   └── mcp_server/                  # advisor MCP server, handlers, tools, compat, tests, scripts
-├── shared/                         # Neutral cross-package modules
-└── specs/ / .opencode/specs/       # Packet docs and continuity artifacts
+├── scripts/                # CLI generation, validation, indexing, evals
+├── mcp_server/             # Runtime MCP server
+│   ├── context-server.ts   # MCP transport entrypoint
+│   ├── tool-schemas.ts     # Public tool schema registry
+│   ├── handlers/           # Top-level MCP tool handlers
+│   ├── tools/              # Tool dispatcher and group helpers
+│   ├── schemas/            # Zod input schemas
+│   ├── lib/                # Search, scoring, context, continuity, resume
+│   ├── hooks/              # Startup / prompt / compact-context hook payload builders
+│   ├── formatters/         # MCP response shaping
+│   ├── shared/             # Shared algorithms inside the runtime
+│   ├── configs/            # Runtime tuning data
+│   ├── scripts/            # Maintenance and evaluation scripts
+│   ├── database/           # Local SQLite stores
+│   ├── tests/              # Vitest + integration coverage
+│   ├── matrix_runners/     # Packet-036 F1-F14 x CLI adapter manifest
+│   └── stress_test/        # Opt-in stress / load / degraded-state suites
+├── shared/                 # Neutral modules importable by scripts + runtime
+├── dist/                   # Generated build output
+└── tests/                  # Spec-folder test fixtures
 ```
 
-### Dependency direction
+Allowed dependency direction:
 
-| From | To | Status |
-|---|---|---|
-| `scripts/` | `shared/` | Allowed |
-| `scripts/` | `mcp_server/api/*` | Allowed and preferred |
-| `scripts/` | `mcp_server/lib/*` | Disallowed unless explicitly allowlisted |
-| `mcp_server/` | `shared/` | Allowed |
-| `mcp_server/lib/*` | `mcp_server/api/*` | Disallowed |
-| External plugin | `system-skill-advisor/mcp_server/compat/index.ts` | Allowed (stable public API) |
-| External plugin | `system-skill-advisor/mcp_server/lib/*` | Disallowed (private internals) |
+- `scripts/ ──▶ mcp_server/api/`
+- `mcp_server/ ──▶ shared/`
+- `scripts/ ──▶ shared/`
+- `mcp_server/ ──▶ database/`
 
-This keeps the runtime internals private while still exposing a stable boundary for tooling and external plugins.
+Reverse imports are blocked by lint and CI.
 
 <!-- /ANCHOR:topology -->
 
@@ -181,54 +130,26 @@ This keeps the runtime internals private while still exposing a stable boundary 
 <!-- ANCHOR:continuity-flows -->
 ## 3. CANONICAL CONTINUITY FLOWS
 
-### Read / resume path
+Spec-kit treats canonical spec documents as the durable continuity record. Generated memory indexes are search/recall surfaces over that record, not the record itself.
 
-The runtime rebuilds continuity through `lib/resume/resume-ladder.ts`.
+**Read path (`/spec_kit:resume`):**
 
-```text
-/spec_kit:resume
-  -> session-bootstrap / session-resume handlers
-  -> lib/resume/resume-ladder.ts
-  -> handover.md
-  -> _memory.continuity
-  -> canonical spec docs
-  -> supporting search and graph evidence
-```
+1. Look for `handover.md` at the spec folder root.
+2. Fall back to `_memory.continuity` frontmatter blocks inside `implementation-summary.md`.
+3. Fall back to canonical spec docs in this order: `implementation-summary.md`, `tasks.md`, `plan.md`, `spec.md`.
+4. Surface graph-metadata pointers (`derived.last_active_child_id`, `derived.last_active_at`) for phase parents.
 
-Key runtime modules:
+**Write path (`/memory:save`):**
 
-- `mcp_server/lib/resume/resume-ladder.ts`
-- `mcp_server/lib/continuity/thin-continuity-record.ts`
-- `mcp_server/handlers/session-resume.ts`
-- `mcp_server/handlers/session-bootstrap.ts`
-- `mcp_server/handlers/memory-context.ts`
+1. AI composes structured JSON describing session context.
+2. `generate-context.js` routes content into the right canonical doc (`implementation-summary.md`, `decision-record.md`, `handover.md`) and refreshes `description.json` + `graph-metadata.json`.
+3. The indexed-continuity store re-indexes the touched docs for hybrid retrieval.
 
-### Write / save path
+**Key modules:**
 
-Canonical save routing is no longer "always write a generated memory file first." The runtime classifies content, chooses a canonical target, and only then performs a bounded merge or supporting artifact write.
-
-```text
-memory_save
-  -> handlers/memory-save.ts
-  -> handlers/save/*
-  -> lib/routing/content-router.ts
-  -> lib/merge/anchor-merge-operation.ts
-  -> spec doc or continuity target
-  -> index / metadata update
-```
-
-Key runtime modules:
-
-- `mcp_server/handlers/memory-save.ts`
-- `mcp_server/lib/routing/content-router.ts`
-- `mcp_server/lib/merge/anchor-merge-operation.ts`
-- `mcp_server/lib/continuity/thin-continuity-record.ts`
-
-The live canonical writer uses an 8-category router: `narrative_progress`, `narrative_delivery`, `decision`, `handover_state`, `research_finding`, `task_update`, `metadata_only`, and `drop`. Tier 1 handles structured and heuristic matches, Tier 2 compares against routing prototypes, and Tier 3 is wired into the save handler by default (the configured LLM endpoint is available). Delivery routing keys off sequencing, gating, rollout, and verification cues instead of generic implementation verbs; the handover/drop boundary separates hard transcript or telemetry wrappers from softer operational language like `git diff`. `routeAs` can force a category for operator-directed saves, and the router context derives `packet_kind` from spec metadata first (`type`, `title`, `description`) with parent-phase fallback only when metadata is silent.
-
-### Supporting artifacts
-
-Generated memory files still matter for search, traceability, and evidence capture, but they are supporting artifacts rather than the canonical operator-facing session state.
+- `mcp_server/lib/resume/` owns the read path.
+- `scripts/dist/memory/generate-context.js` owns the write path.
+- `mcp_server/lib/continuity/` owns the indexing layer.
 
 <!-- /ANCHOR:continuity-flows -->
 
@@ -237,271 +158,80 @@ Generated memory files still matter for search, traceability, and evidence captu
 <!-- ANCHOR:runtime-subsystems -->
 ## 4. RUNTIME SUBSYSTEMS
 
-### Search and retrieval
+The MCP server is composed of focused subsystems that share the transport layer and the SQLite store.
 
-`mcp_server/lib/search/` is the hybrid retrieval subsystem. It provides vector, BM25, FTS5, graph, and structural graph channels, then fuses them in a staged ranking pipeline. Retrieval is subordinate to the resume ladder for packet recovery.
+**Search.** The 5-channel hybrid retrieval pipeline (Vector, FTS5, BM25, Causal Graph, Degree) lives in `lib/search/`. The four pipeline stages are Gather → Score → Rerank → Filter. Reciprocal Rank Fusion combines channel outputs. Response shaping happens in `formatters/`.
 
-The adaptive fusion profile for continuity-oriented retrieval lives with the other runtime weight profiles in `.opencode/skills/system-spec-kit/shared/algorithms/adaptive-fusion.ts`, using `semantic 0.52`, `keyword 0.18`, `recency 0.07`, and `graph 0.23`. Stage 3 keeps the complementary continuity-specific MMR lambda in `mcp_server/lib/search/intent-classifier.ts` at `0.65`, so resume-style searches stay semantic-first while preserving graph support.
+**Memory and continuity.** `lib/memory/` owns the indexed-continuity store schema and persistence. `lib/continuity/` owns the canonical-doc routing. `database/` carries the SQLite files (`memory.db`, `embeddings.db`, plus auxiliary stores).
 
-Reranking behavior is owned by `mcp_server/lib/search/pipeline/stage3-rerank.ts` and `mcp_server/lib/search/cross-encoder.ts`: the pipeline waits for at least 4 candidates before invoking the reranker, the legacy `applyLengthPenalty` option is retained as a compatibility no-op (`1.0` multiplier for every document), and `getRerankerStatus()` reports latency plus cache hits, misses, stale hits, and evictions for the shared reranker cache.
+**Save pipeline.** `handlers/save/` runs the 3-layer save gate (intake validation, content router, post-save quality review). DQI scoring runs on every save.
 
-### Graph systems
+**Hook orchestrator.** `hooks/{claude,gemini,copilot,codex}/` produce per-runtime startup, prompt-submit, and compact-context payloads. The payloads share a common builder in `lib/hooks/`.
 
-Three graph systems now coexist:
+**Matrix runners.** `matrix_runners/` houses the F1-F14 evaluation harness and per-CLI adapters used by the quality matrix.
 
-| Graph | Purpose | Primary Modules |
-|---|---|---|
-| Causal memory graph | Search boosts, causal lineage, community signals | `lib/graph/`, `lib/search/graph-search-fn.ts` |
-| Coverage graph | Deep research/review convergence and gap tracking | `lib/coverage-graph/`, `handlers/coverage-graph/` |
-| Code graph | Structural code parsing + coco-index facade | `mcp_server/code_graph/` (see §6) |
-
-### Feedback and evaluation
-
-`mcp_server/lib/feedback/` stores feedback events and shadow-scoring helpers. `lib/eval/` and `scripts/evals/` provide reporting, ablations, and boundary checks.
-
-### Skill advisor
-
-The skill advisor is a self-contained subsystem at `system-skill-advisor/mcp_server/`; see §5 for package internals, §7 for hook integration.
+**Stress tests.** `stress_test/` carries opt-in load + degraded-state suites, excluded from default `npm test` and run through `npm run stress`.
 
 <!-- /ANCHOR:runtime-subsystems -->
 
 ---
 
-<!-- ANCHOR:skill-advisor -->
-## 5. SKILL-ADVISOR SUBSYSTEM
-
-The current self-contained package produces the compact skill recommendation brief that Gate 2 (skill routing) consumes.
-
-### Package layout
-
-`system-skill-advisor/mcp_server/` is a first-class self-contained package. Its `lib/` tree contains:
-
-| Subfolder | Purpose |
-|---|---|
-| `lib/scorer/` | 5-lane fusion engine plus narrow command/skill alias canonicalization (see weights below) |
-| `lib/scorer/lanes/` | Per-lane scorers: `explicit.ts`, `lexical.ts`, `graph-causal.ts`, `derived.ts`, `semantic-shadow.ts` |
-| `lib/daemon/` | Long-running writer: `lease.ts`, `lifecycle.ts`, `watcher.ts` |
-| `lib/freshness/` | `trust-state.ts`, `cache-invalidation.ts`, `generation.ts`, `rebuild-from-source.ts` |
-| `lib/derived/` | Auto-derived keyword + trigger generation |
-| `lib/lifecycle/` | Lifecycle state machine |
-| `lib/compat/` | Python parity shims |
-| `lib/corpus/` | Golden corpus + holdout fixtures |
-
-### 5-lane analytical fusion
-
-Defined in `system-skill-advisor/mcp_server/lib/scorer/weights-config.ts:8-19` and exercised through `system-skill-advisor/mcp_server/lib/scorer/fusion.ts`:
-
-| Lane | Weight | Role |
-|---|---|---|
-| `explicit_author` | `0.45` | Author-declared keywords / manifest triggers |
-| `lexical` | `0.30` | BM25-style lexical overlap |
-| `graph_causal` | `0.15` | Causal graph lineage signal |
-| `derived_generated` | `0.10` | Auto-derived keyword lane (bounded) |
-| `semantic_shadow` | `0.00` | Shadow-only channel; scored but inert |
-
-`semantic_shadow` is locked at `0.00` live weight (ADR-006). The semantic lane is scored shadow-only and inert until a future weight rebalance is justified by measured live-corpus evidence; no automated promotion subsystem is wired today.
-
-Alias canonicalization lives in `system-skill-advisor/mcp_server/lib/scorer/aliases.ts`. It is intentionally narrow: command-backed skills may list exact accepted ids such as `deep-review`, `spec_kit:deep-review`, `/spec_kit:deep-review`, and `command-spec-kit-deep-review`, but unrelated ids never compare equal through fuzzy or prefix matching.
-
-### Daemon + freshness + trust states
-
-- **Daemon**: Chokidar-based watcher with narrow scope; idle budget ≤1% CPU / <20MB RSS (verified via `bench/watcher-benchmark.ts`).
-- **Trust states** (`lib/freshness/trust-state.ts:5`): `live` | `stale` | `absent` | `unavailable`. Consumers treat `live` and `stale` as queryable; `absent` and `unavailable` trigger rebuild-from-source or graceful degradation.
-- **Track H hardening**: reindex-storm back-pressure, malformed SKILL.md quarantine, partial-write resilience.
-
-### MCP tools
-
-Four tools, registered under `system-skill-advisor/mcp_server/tools/`:
-
-| Tool | Handler | Purpose |
-|---|---|---|
-| `advisor_recommend` | `handlers/advisor-recommend.ts` | Produce ranked skill brief for a prompt |
-| `advisor_rebuild` | `handlers/advisor-rebuild.ts` | Explicitly rebuild advisor state, optionally forced |
-| `advisor_status` | `handlers/advisor-status.ts` | Daemon / freshness / trust-state readout |
-| `advisor_validate` | `handlers/advisor-validate.ts` | Validate skill manifest + derived metadata |
-
-### Compatibility surfaces
-
-- **Python compat shim**: `system-skill-advisor/mcp_server/scripts/skill_advisor.py` with daemon-probe → native fallback → local fallback.
-- **Stable public API**: `system-skill-advisor/mcp_server/compat/index.ts`. Plugin bridges import from here, never from `lib/*`.
-- **Gate 2 fallback path**: `python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py`.
-
-### Accuracy benchmarks
-
-| Metric | Value |
-|---|---|
-| Full corpus accuracy | 80.5% |
-| Holdout accuracy | 77.5% |
-| UNKNOWN rate (abstentions) | ≤10 |
-| Python-correct regressions | 0 (ADR-007 regression-protection parity) |
-
-Regression suite: `system-skill-advisor/mcp_server/scripts/skill_advisor_regression.py` — 52/52 P0 cases pass.
-
-### Test surfaces
-
-`system-skill-advisor/mcp_server/tests/` — Vitest suites across `scorer/`, `handlers/`, `parity/`, `compat/`, `legacy/` (11 advisor-*.vitest.ts files relocated from `mcp_server/tests/`), and `python/`.
-
-<!-- /ANCHOR:skill-advisor -->
-
----
-
-<!-- ANCHOR:code-graph -->
-## 6. CODE-GRAPH SUBSYSTEM
-
-The code-graph subsystem is now a self-contained package under `mcp_server/code_graph/` rather than scattered across runtime `lib`, `handlers`, `tools`, and test suites.
-
-### Package layout
-
-| Subfolder | Purpose |
-|---|---|
-| `lib/` | Indexer, readiness contract, seed resolver, budget allocator, runtime detection, tree-sitter parser, coco-index integration |
-| `handlers/` | MCP tool handlers (9 tools total; see below) |
-| `tools/` | MCP tool registrations (`code-graph-tools.ts`, `index.ts`) |
-| `tests/` | 7 files / 52 tests |
-
-### MCP tools
-
-Nine tools are registered from the code-graph package:
-
-| Tool | Kind | Handler |
-|---|---|---|
-| `code_graph_scan` | Structural graph | `handlers/scan.ts` |
-| `code_graph_query` | Structural graph | `handlers/query.ts` |
-| `code_graph_context` | Structural graph | `handlers/context.ts` |
-| `code_graph_status` | Structural graph | `handlers/status.ts` |
-| `code_graph_verify` | Structural graph | `handlers/verify.ts` |
-| `detect_changes` | Structural graph preflight | `handlers/detect-changes.ts` |
-| `ccc_reindex` | coco-index facade | `mcp_server/code_graph/handlers/ccc-reindex.ts` (exported from `mcp_server/code_graph/handlers/index.ts`) |
-| `ccc_status` | coco-index facade | `mcp_server/code_graph/handlers/ccc-status.ts` (exported from `mcp_server/code_graph/handlers/index.ts`) |
-| `ccc_feedback` | coco-index facade | `mcp_server/code_graph/handlers/ccc-feedback.ts` (exported from `mcp_server/code_graph/handlers/index.ts`) |
-
-### coco-index facade pattern
-
-The `ccc_*` handlers are TypeScript facades that spawn the coco-index CLI binary from `.opencode/skills/mcp-coco-index/mcp_server/.venv/bin/ccc` — specifically the spec-kit fork at version `0.2.3+spec-kit-fork.0.2.0`, NOT a vanilla upstream `cocoindex-code` install. This isolates the Python-based semantic index behind a uniform MCP interface without pulling it into the TypeScript process boundary. Because the binary is the fork, search results emit fork-specific telemetry fields (`dedupedAliases`, `uniqueResultCount`, `rankingSignals`, etc.) that the facade layer passes through verbatim. Schema details: `.opencode/skills/mcp-coco-index/references/tool_reference.md` §7.
-
-### Readiness contract
-
-Defined in `mcp_server/code_graph/lib/readiness-contract.ts`. Trust values align with the skill-advisor trust vocabulary (§5):
-
-- `live` — fresh index, queryable
-- `stale` — indexed but needs rebuild
-- `absent` — not yet indexed
-- `unavailable` — subsystem offline (binary missing, daemon down, etc.)
-
-The contract normalizes `ensure-ready` freshness (`fresh|stale|empty`) onto the shared-payload trust axis (`live|stale|absent`) and exposes `unavailable` for full-subsystem failures. See `readiness-contract.ts:5` for the canonical `SkillGraphTrustState` export.
-
-<!-- /ANCHOR:code-graph -->
-
----
-
 <!-- ANCHOR:hook-integration -->
-## 7. HOOK AND PLUGIN INTEGRATION
+## 5. HOOK AND PLUGIN INTEGRATION
 
-### Hook integration matrix
+Spec-kit ships a runtime hook surface that wires into each AI client's session lifecycle. The hooks emit compact context payloads at `SessionStart`, `UserPromptSubmit`, and (where supported) `Compact`.
 
-`mcp_server/hooks/` contains per-runtime lifecycle integrations. Each runtime has its own subfolder with prompt-submit, session-prime or session-start, and (where applicable) compact-inject / compact-cache / session-stop entry points.
+**Hook matrix.** Claude Code and Gemini CLI inject prompt-time briefs directly. Codex CLI supports native `SessionStart` and `UserPromptSubmit` hooks when `[features].codex_hooks = true` in `~/.codex/config.toml` and `~/.codex/hooks.json` is wired. OpenCode delivers context through a plugin bridge under `.opencode/plugins/`. Copilot CLI refreshes a managed block in `$HOME/.copilot/copilot-instructions.md` because Copilot hook stdout is not prompt-mutating.
 
-| Runtime | Hook folder | Prompt-submit | Session-prime | Compact handling | Other |
-|---|---|---|---|---|---|
-| Claude Code | `hooks/claude/` | `user-prompt-submit.ts` | `session-prime.ts` | `compact-inject.ts` | `claude-transcript.ts`, `session-stop.ts` |
-| Gemini CLI | `hooks/gemini/` | `user-prompt-submit.ts` | `session-prime.ts` | `compact-inject.ts`, `compact-cache.ts` | `session-stop.ts` |
-| Copilot CLI | `hooks/copilot/` | `user-prompt-submit.ts` refreshes `$HOME/.copilot/copilot-instructions.md` via `custom-instructions.ts` | `session-prime.ts` refreshes startup context in the same managed custom-instructions file | `compact-cache.ts` | `custom-instructions.ts` |
-| Codex CLI | `hooks/codex/` | `user-prompt-submit.ts` | `session-start.ts` | — | `pre-tool-use.ts`, `prompt-wrapper.ts` |
+**Plugin bridges.** OpenCode plugin entrypoints live under `.opencode/plugins/`. Each plugin imports a thin bridge that calls into `mcp_server/lib/hooks/` and emits a payload back to the runtime.
 
-Shared infrastructure: `hooks/index.ts`, `hooks/memory-surface.ts`, `hooks/mutation-feedback.ts`, `hooks/response-hints.ts`, `hooks/shared-provenance.ts`.
-
-All hooks surface startup or compaction context, but they point operators back to the canonical resume chain instead of inventing an alternate source of truth. Copilot is the exception in transport shape only: `user-prompt-submit.ts` and `session-prime.ts` call `custom-instructions.ts` to refresh a managed block in `$HOME/.copilot/copilot-instructions.md`, and the hook responses remain informational or empty rather than acting as a prompt-mutation channel.
-
-### OpenCode plugin bridge
-
-For runtimes without native hook support, the plugin bridge provides native-first delegation:
-
-- **Bridge entry**: `.opencode/plugins/spec-kit-skill-advisor.js` (OpenCode plugin ESM entrypoint with a default-export factory)
-- **Bridge runtime**: `.opencode/plugins/spec-kit-skill-advisor-bridge.mjs` (delegation logic)
-- **Import target**: `system-skill-advisor/mcp_server/compat/index.ts` (stable public API — never `lib/*`)
-
-Delegation order:
-
-1. Daemon probe → if live, return brief from daemon state.
-2. Native fallback → invoke `compat/index.ts` inline.
-3. Python shim fallback → spawn `system-skill-advisor/mcp_server/scripts/skill_advisor.py`.
-
-The bridge keeps runtime state inside each plugin instance, dedups concurrent identical in-flight requests before spawning a second bridge call, caps prompt stdin / rendered brief / cache entry sizes, and evicts the oldest cached entry when the configured cache cap is exceeded.
-
-A companion bridge `spec-kit-compact-code-graph-bridge.mjs` + `spec-kit-compact-code-graph.js` wires the code-graph compaction surface.
+**Payload shape.** Hooks share the same compact JSON payload (`bootstrap.json` style) across runtimes so callers can rely on consistent fields regardless of transport.
 
 <!-- /ANCHOR:hook-integration -->
 
 ---
 
 <!-- ANCHOR:enforcement -->
-## 8. ENFORCEMENT AND VERIFICATION
+## 6. ENFORCEMENT AND VERIFICATION
 
-The architecture is enforced by code, tests, and scripts, not by docs alone.
+Spec-kit's quality gates run at three layers.
 
-Key checks:
+**Spec folder validation.** `scripts/spec/validate.sh` enforces 20 rules across required files, anchor structure, frontmatter shape, template source markers, continuity freshness, and phase-parent detection. Strict mode treats warnings as failures.
 
-- `scripts/evals/check-no-mcp-lib-imports.ts`
-- `scripts/evals/check-no-mcp-lib-imports-ast.ts`
-- `scripts/evals/check-handler-cycles-ast.ts`
-- `scripts/evals/check-architecture-boundaries.ts`
-- workspace typechecks for `@spec-kit/mcp-server` and `@spec-kit/scripts`
-- targeted Vitest suites for save, resume, routing, public API, and docs parity
-- skill-advisor test surface: `system-skill-advisor/mcp_server/tests/` — 23 files / 167 tests
-- code-graph test surface: `mcp_server/code_graph/tests/` — 7 files / 52 tests
-- Python regression: `system-skill-advisor/mcp_server/scripts/skill_advisor_regression.py` — 52/52 P0 cases
+**Save gate.** Every `/memory:save` runs through 3 layers: intake validation (input schema + duplicate detection), content router (places content in the right canonical doc), and post-save quality review (DQI scoring + structural lint).
 
-### Practical rule set
-
-- Edit authored `.ts`, `.md`, and shell sources, not `dist/`.
-- Use `mcp_server/api/` as the import boundary from `scripts/`.
-- External plugins import only from `system-skill-advisor/mcp_server/compat/index.ts`, never from `lib/*`.
-- Keep packet recovery anchored on `/spec_kit:resume`.
-- Treat `handover.md`, `_memory.continuity`, and spec docs as the continuity backbone.
-- Skill-advisor and code-graph are consumed subsystems of `system-spec-kit`; neither ships a `SKILL.md`.
+**Test surfaces.** Default `npm test` runs unit + integration suites under `mcp_server/tests/` and `scripts/tests/`. Stress suites are opt-in via `npm run stress`. Matrix runner evaluation is opt-in via the runner-specific commands under `matrix_runners/`.
 
 <!-- /ANCHOR:enforcement -->
 
 ---
 
 <!-- ANCHOR:decision-records -->
-## 9. DECISION RECORDS
+## 7. DECISION RECORDS
 
-Architectural decisions for the skill-advisor and code-graph subsystems are
-captured in the runtime source anchors under `system-skill-advisor/mcp_server/` and
-`mcp_server/code_graph/`, with package-level rationale in the subsystem docs.
-
-| ADR | Subject |
-|---|---|
-| ADR-001 | Chokidar + hash-aware SQLite indexer as daemon substrate |
-| ADR-002 | Self-contained `system-skill-advisor/mcp_server/` package layout |
-| ADR-003 | 5-lane analytical fusion weights (`0.45 / 0.30 / 0.15 / 0.10 / 0.00`) |
-| ADR-004 | Daemon lease model (long-running writer) |
-| ADR-005 | Migration from split `lib/` + `scripts/` layout to self-contained package |
-| ADR-006 | Semantic live weight stays `0.00` through first promotion wave; bounded learned/adaptive live influence eligible first |
-| ADR-007 | Python parity means regression protection, not byte-for-byte behavioral freeze |
-
-Cross-ADR flow: ADR-001 → ADR-004 (lease needs a long-running writer); ADR-002 is applied by ADR-003 / ADR-005 / ADR-006; ADR-003 is the load-bearing decision ADR-006 protects; ADR-007 clarifies that ADR-006 gates preserve Python-correct behavior while allowing measured native improvements.
+| ADR | Subject | Status |
+|---|---|---|
+| ADR-001 | Canonical continuity surfaces own the durable record; generated memory is search-only | Accepted |
+| ADR-002 | Phase parents validate as the lean trio (spec + description + graph-metadata) | Accepted |
+| ADR-003 | Hybrid retrieval fuses 5 channels via Reciprocal Rank Fusion | Accepted |
+| ADR-004 | FSRS power-law forgetting curve, tuned by content type and importance | Accepted |
+| ADR-005 | 4-level documentation contract (Levels 1, 2, 3, 3+) with manifest templates | Accepted |
+| ADR-006 | Save gate runs 3 layers (intake, router, quality review) on every save | Accepted |
+| ADR-007 | Embedding provider auto-cascade: Voyage → OpenAI → llama-cpp → hf-local | Accepted |
 
 <!-- /ANCHOR:decision-records -->
 
 ---
 
 <!-- ANCHOR:related -->
-## 10. RELATED
+## 8. RELATED
 
-- `mcp_server/README.md`
-- `mcp_server/lib/README.md`
-- `mcp_server/handlers/README.md`
-- `mcp_server/hooks/README.md`
-- `../system-skill-advisor/mcp_server/README.md`
-- `../system-skill-advisor/mcp_server/INSTALL_GUIDE.md`
-- `../system-skill-advisor/mcp_server/SET-UP_GUIDE.md`
-- `mcp_server/matrix_runners/README.md`
-- `mcp_server/stress_test/README.md`
-- `mcp_server/code_graph/lib/README.md`
-- `mcp_server/code_graph/handlers/README.md`
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/027-skill-graph-daemon-and-advisor-unification/decision-record.md`
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/028-code-graph-self-contained-package/implementation-summary.md`
+- [README.md](./README.md): Human-facing package overview
+- [SKILL.md](./SKILL.md): Runtime routing and invariants
+- [INSTALL_GUIDE.md](./INSTALL_GUIDE.md): Native bootstrap and per-runtime configuration
+- [feature_catalog/feature_catalog.md](./feature_catalog/feature_catalog.md): Current feature inventory
+- [manual_testing_playbook/manual_testing_playbook.md](./manual_testing_playbook/manual_testing_playbook.md): Operator validation scenarios
+- [mcp_server/README.md](./mcp_server/README.md): MCP server package details
+- [references/](./references/): Workflow contracts, hook references, validation playbooks
 
 <!-- /ANCHOR:related -->

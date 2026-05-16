@@ -49,90 +49,35 @@ trigger_phrases:
 
 System Spec Kit solves two problems that every AI-assisted project runs into.
 
-First, AI conversations that modify files leave no paper trail. A feature gets built, the session ends and the reasoning behind every decision vanishes. Spec Kit fixes this by creating a **spec folder** for every file-modifying conversation -- a numbered directory with a specification, plan, task list and implementation summary that documents what changed and why.
+First, AI conversations that modify files leave no paper trail. A feature gets built, the session ends and the reasoning behind every decision vanishes. Spec Kit fixes this by creating a **spec folder** for every file-modifying conversation. The folder is a numbered directory with a specification, plan, task list and implementation summary that documents what changed and why.
 
-Second, AI assistants have amnesia. Every conversation starts from a blank slate. You explain your architecture on Monday and by Wednesday the assistant has forgotten everything. Spec Kit fixes this with a **persistent memory system** -- an MCP server that stores decisions, context and project history in a local SQLite database so the next session can pick up where the last one left off, regardless of which AI model or tool you use.
+Second, AI assistants have amnesia. Every conversation starts from a blank slate. You explain your architecture on Monday and by Wednesday the assistant has forgotten everything. Spec Kit fixes this with a **persistent memory system**. An MCP server stores decisions, context and project history in a local SQLite database so the next session can pick up where the last one left off, regardless of which AI model or tool you use.
 
-Together, these two halves form a documentation-and-memory loop: spec folders capture what happened, the indexed-continuity store makes it searchable and the next session benefits from everything that came before.
+Together, these two halves form a documentation-and-memory loop. Spec folders capture what happened, the indexed-continuity store makes it searchable, and the next session benefits from everything that came before.
 
-> Note: When this skill says "memory," it means our local indexed-continuity store — the SQLite-backed spec-doc record index that ships with this skill. It is **not** Anthropic Claude Memory (the managed product surfaced in claude.ai) and it is **not** the MCP reference `memory` server (the upstream community example). Identifiers (`memory_*` MCP tools, `/memory:*` slash commands, `memory_*` SQL tables, `memory-*.ts` handlers, `references/memory/`, `MEMORY_*` constants, `_memory:` frontmatter) are frozen by REQ-001; the disambiguation lives in operator-facing prose only.
-
-### Key Statistics
-
-| Category                    | Count                | Details                                                                                         |
-| --------------------------- | -------------------- | ----------------------------------------------------------------------------------------------- |
-| **MCP Tools**               | 54                   | Canonical count from `TOOL_DEFINITIONS` in `mcp_server/tool-schemas.ts`. Spans Spec Kit Memory, Skill Advisor, CocoIndex bridge, and deep-loop surfaces. Structural code-graph tool ownership is documented by the sibling `.opencode/skills/system-code-graph/` skill. Internal helper handlers and any deferred / not-yet-wired handlers are intentionally excluded. |
-| **Commands**                | 13                   | 9 spec_kit + 4 memory                                                                           |
-| **Documentation Levels**    | 4                    | Levels 1, 2, 3, 3+                                                                              |
-| **Feature Catalog Entries** | 294                  | Across 22 categories                                                                            |
-| **Search Channels**         | 5 core + CocoIndex bridge | Vector, FTS5, BM25, Causal Graph, Degree, plus CocoIndex for semantic code discovery       |
-| **Pipeline Stages**         | 4                    | Gather, Score, Rerank, Filter                                                                   |
-| **Importance Tiers**        | 6                    | constitutional through deprecated                                                               |
-| **Memory States**           | 4 active | HOT, WARM, COLD, DORMANT |
-| **Template Architecture**   | Manifest + resolver + renderer | Level contract output shared by scaffolding and validation                                      |
-| **Script Modules**          | 12 spec + 10 memory  | TypeScript, JavaScript and Bash                                                                 |
-| **Requirements**            | Node.js 18+          | TypeScript 5.0+, Bash 4.0+                                                                      |
+> Note: When this skill says "memory," it means our local indexed-continuity store. The SQLite-backed spec-doc record index ships with this skill. It is **not** Anthropic Claude Memory (the managed product surfaced in claude.ai). It is **not** the MCP reference `memory` server (the upstream community example). Identifiers (`memory_*` MCP tools, `/memory:*` slash commands, `memory_*` SQL tables, `memory-*.ts` handlers, `references/memory/`, `MEMORY_*` constants, `_memory:` frontmatter) are frozen by REQ-001. The disambiguation lives in operator-facing prose only.
 
 ### How This Compares
 
-| Capability                  | Manual Documentation           | Basic RAG              | System Spec Kit                                           |
-| --------------------------- | ------------------------------ | ---------------------- | --------------------------------------------------------- |
-| **Documentation**           | Ad hoc, inconsistent structure | None                   | Templated spec folders at 4 levels with validation        |
-| **Search**                  | Ctrl+F in files                | Vector similarity only | 5-channel hybrid search fused with Reciprocal Rank Fusion |
-| **Context across sessions** | Copy-paste from notes          | Stateless              | Persistent semantic memory with session recovery          |
-| **Quality control**         | Human review only              | Accept everything      | 3-layer save gate, 20-rule validation, DQI scoring        |
-| **"Why" queries**           | Grep through commit messages   | Not possible           | Causal graph with 6 relationship types                    |
-| **Forgetting curve**        | Everything treated equally     | None or exponential    | FSRS power-law decay tuned by content type and importance |
-| **Access control**          | Filesystem permissions         | None                   | Shared memory with deny-by-default membership             |
+Manual documentation is ad hoc and inconsistent. Basic RAG offers vector similarity over a stateless index. System Spec Kit replaces both with templated spec folders at 4 levels, validated structure, and a 5-channel hybrid search fused via Reciprocal Rank Fusion.
+
+Context survives across sessions through persistent semantic memory and session recovery rather than copy-paste from notes. Quality control runs through a 3-layer save gate, 20-rule validation and DQI scoring instead of relying on human review alone. "Why" queries are answered by a causal graph with 6 relationship types instead of grepping commit messages. Forgetting follows an FSRS power-law decay tuned by content type and importance, not a flat "remember everything" or naive exponential. Access control uses shared memory with deny-by-default membership instead of filesystem permissions alone.
 
 ### Key Features at a Glance
 
-| Feature                       | What It Does                                                                                                                                                                                                   |
-| ----------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Spec Folder Workflow**      | Creates mandatory documentation for every file-modifying conversation, scaled to 4 levels based on scope and risk, with packet-local changelog closeout for packet roots and child phases                      |
-| **Level Contract Templates** | Manifest template architecture where each level resolves the files and sections it needs                                                                                                                       |
-| **Spec Kit Memory MCP**       | 54-tool MCP server providing persistent semantic memory, causal/degree retrieval, and session orchestration across sessions, models and tools                                                              |
-| **Startup / Recovery Surfaces** | `/spec_kit:resume` is the canonical operator-facing recovery surface. Under the hood, startup and recovery rebuild active context from `handover.md`, then `_memory.continuity`, then canonical spec docs |
-| **Cross-Skill Code Graph Integration** | Startup and recovery surfaces can report structural-readiness state from the sibling `system-code-graph` skill while Spec Kit keeps ownership of spec folders, memory, and lifecycle hooks                 |
-| **Skill Advisor**             | Native routing package with `advisor_recommend`, `advisor_status`, `advisor_validate`, 5-lane fusion, Python compatibility shim, runtime hooks, and OpenCode plugin bridge                    |
-| **Session Continuity**        | `generate-context.js` updates canonical continuity surfaces and refreshes packet metadata on every `/memory:save` invocation so `/spec_kit:resume` can rebuild the next session from packet-local sources     |
-| **Validation Scripts**        | 20-rule validation, continuity freshness checks, and strict EVIDENCE-marker linting for spec folders                                                                                                          |
-| **Phase Decomposition**       | Parent/child spec folder structure for multi-session, multi-phase work                                                                                                                                         |
-| **Constitutional Memory**     | Always-surface rules with a 3.0x boost that never decay -- like pinned notes that show up in every search                                                                                                      |
-| **Shared Memory**             | Controlled knowledge sharing with deny-by-default access for teams and multi-agent setups                                                                                                                      |
-
-### Cross-Skill Structural Context
-
-Spec Kit can surface structural-readiness state during startup and recovery, but the structural indexer, graph database, and `code_graph_*` / `detect_changes` package documentation are owned by `.opencode/skills/system-code-graph/`.
-
-| Surface | Owner | Notes |
-| ------------------- | ------------------- | ------------------- |
-| Spec folders, memory, resume, hooks | `system-spec-kit` | Canonical continuity, `/spec_kit:resume`, and lifecycle transport stay here. |
-| Structural graph tools | `system-code-graph` (MCP namespace: `mcp__mk_code_index__*`) | `code_graph_scan`, `code_graph_query`, `code_graph_status`, `code_graph_context`, `code_graph_verify`, `code_graph_apply`, and `detect_changes` are documented in the sibling skill. |
-| CocoIndex bridge | Current MCP runtime | Semantic code-search lifecycle surfaces such as `ccc_status`, `ccc_reindex`, and `ccc_feedback` remain cross-skill integration points. |
-
-Startup payload parity still transports the same compact shared payload across Claude, Gemini, Copilot, and Codex. When that payload includes graph freshness or `graphQualitySummary`, treat it as imported structural context from `system-code-graph`, not as system-spec-kit implementation ownership.
-
-For package-level structural details, see `.opencode/skills/system-code-graph/README.md` and `.opencode/skills/system-code-graph/mcp_server/tool-schemas.ts`.
-
-### Skill Advisor
-
-Gate 2 skill routing now lives in the native MCP server package at `system-skill-advisor/mcp_server/`. The public tools are `advisor_recommend`, `advisor_status`, and `advisor_validate`; the Python script under `.opencode/skills/system-skill-advisor/mcp_server/scripts/` remains a compatibility shim, while runtime hook briefs are the primary surface when the active runtime supports them. The shipped baseline is 80.5% full-corpus accuracy, 77.5% holdout accuracy, UNKNOWN <= 10, and zero regressions on Python-correct prompts. Runtime capability is intentionally split by transport: Claude Code and Gemini CLI inject prompt-time briefs directly, Codex supports native `SessionStart` and `UserPromptSubmit` hooks when `[features].codex_hooks = true` in `~/.codex/config.toml` and `~/.codex/hooks.json` is wired, OpenCode delivers advisor context through the plugin bridge, and Copilot CLI refreshes a Spec Kit managed block in `$HOME/.copilot/copilot-instructions.md` for next-prompt freshness because Copilot hook stdout is not prompt-mutating. When native hooks are unavailable, fall back to `/spec_kit:resume` for recovery or the Python shim for scripted checks.
-
-**Advisor public contract:** `advisor_recommend` and `advisor_validate` accept explicit `workspaceRoot`; both outputs surface the resolved `workspaceRoot` and `effectiveThresholds` used for routing. `advisor_validate` additionally publishes `thresholdSemantics` (aggregate vs runtime) plus a prompt-safe `telemetry.outcomes.totals` block (`accepted` / `corrected` / `ignored`). Hook diagnostics persist to bounded JSONL sinks under the temp metrics root so `advisor_validate` can read them back across processes. OpenCode routes the advisor through `.opencode/plugins/spec-kit-skill-advisor.js` + `.opencode/plugins/spec-kit-skill-advisor-bridge.mjs` against the native compat entrypoint, with a default prompt-time threshold contract of `0.8` / `0.35`. Codex and OpenCode share the same `renderAdvisorBrief(...)` invariants and the same builder/timeout/threshold contract.
-
-**Affordance evidence (012/004):** `advisor_recommend` accepts structured tool/resource hints (`skillId`, `name`, `triggers[]`, `category`, plus existing relation fields `dependsOn[]` / `enhances[]` / `siblings[]` / `prerequisiteFor[]` / `conflictsWith[]`). An allowlist normalizer at `system-skill-advisor/mcp_server/lib/affordance-normalizer.ts` strips URLs, emails, token-shaped fragments, control characters, and instruction-shaped strings before the scorer ever sees them; free-form `description` text is intentionally ignored as a trigger source. Sanitized affordance triggers contribute through the existing `derived_generated` lane with reduced weight, and normalized affordance relations become temporary edges in the existing `graph_causal` lane reusing the existing edge multipliers. No new scoring lane, no new `entity_kind`, no raw matched phrases in recommendation payloads — evidence labels stay as stable `affordance:<skillId>:<index>` identifiers. The Python graph compiler (`skill_graph_compiler.py`) compiles `derived.affordances[]` into `signals` and sparse adjacency without changing `ALLOWED_ENTITY_KINDS` (ADR-012-006).
-
-For install and API details, see [Skill Advisor Native Package README](../system-skill-advisor/mcp_server/README.md). For runtime wiring and operator checks, see the [Skill Advisor hook reference](references/hooks/skill-advisor-hook.md), the [validation playbook](references/hooks/skill-advisor-hook-validation.md), and the [hook system matrix](references/config/hook_system.md).
+- **Spec Folder Workflow**. Creates mandatory documentation for every file-modifying conversation, scaled to 4 levels based on scope and risk, with packet-local changelog closeout for packet roots and child phases.
+- **Level Contract Templates**. Manifest template architecture where each level resolves the files and sections it needs.
+- **Spec Kit Memory MCP**. 54-tool MCP server providing persistent semantic memory, causal and degree retrieval, and session orchestration across sessions, models and tools.
+- **Startup and Recovery Surfaces**. `/spec_kit:resume` is the canonical operator-facing recovery surface. Under the hood, startup and recovery rebuild active context from `handover.md`, then `_memory.continuity`, then canonical spec docs.
+- **Session Continuity**. `generate-context.js` updates canonical continuity surfaces and refreshes packet metadata on every `/memory:save` invocation so `/spec_kit:resume` can rebuild the next session from packet-local sources.
+- **Validation Scripts**. 20-rule validation, continuity freshness checks, and strict EVIDENCE-marker linting for spec folders.
+- **Phase Decomposition**. Parent and child spec folder structure for multi-session, multi-phase work.
+- **Constitutional Memory**. Always-surface rules with a 3.0x boost that never decay, like pinned notes that show up in every search.
+- **Shared Memory**. Controlled knowledge sharing with deny-by-default access for teams and multi-agent setups.
 
 ### Requirements
 
-| Requirement   | Minimum                  | Notes                                  |
-| ------------- | ------------------------ | -------------------------------------- |
-| Node.js       | 18+                      | Required for scripts and MCP server    |
-| TypeScript    | 5.0+                     | Source compiled to `dist/` directories |
-| Bash          | 4.0+                     | Spec management shell scripts          |
-| Embedding API | None for local fallback | Auto-cascade uses Voyage/OpenAI when keys are set, then llama-cpp when the GGUF runtime is installed, then HF Local ONNX. |
+Requires Node.js 18+, TypeScript 5.0+, and Bash 4.0+. Embedding access is optional. Without a key the runtime falls back to local embedding cascade: Voyage and OpenAI when keys are set, then llama-cpp when the GGUF runtime is installed, then HF Local ONNX as the final tier.
 
 Workspace module profile:
 
@@ -282,7 +227,7 @@ specs/<###-feature-name>/
 
 `generate-context.js` updates the packet's continuity state for `/spec_kit:resume`, refreshes `description.json.lastUpdated`, and rewrites `graph-metadata.json` derived fields on every canonical save; recovery then rebuilds context from `handover.md`, `_memory.continuity`, and the packet docs.
 
-**Phase parents** are an exception. When a folder contains phase children (matching `^[0-9]{3}-[a-z0-9-]+$` with their own `spec.md` or `description.json`), the parent only requires the **lean trio**: `spec.md`, `description.json`, `graph-metadata.json`. Heavy docs (`plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md`) live exclusively in the children where they stay accurate to that phase's actual work. The parent's `spec.md` carries a Phase Documentation Map; the parent's `graph-metadata.json` carries `derived.last_active_child_id` + `derived.last_active_at` pointer fields that the generator atomically updates on every save (parent saves write `null`; child saves bubble up the child's `packet_id`). `/spec_kit:resume` reads the pointer first when the target is a phase parent — fresh pointer (<24h) recurses directly into the active child; stale or missing pointer falls back to listing children with statuses. Detection is a single source of truth: `is_phase_parent()` (shell) and `isPhaseParent()` (ESM JS) MUST agree.
+**Phase parents** are an exception. When a folder contains phase children (matching `^[0-9]{3}-[a-z0-9-]+$` with their own `spec.md` or `description.json`), the parent only requires the **lean trio**: `spec.md`, `description.json`, `graph-metadata.json`. Heavy docs (`plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md`) live exclusively in the children where they stay accurate to that phase's actual work. The parent's `spec.md` carries a Phase Documentation Map; the parent's `graph-metadata.json` carries `derived.last_active_child_id` + `derived.last_active_at` pointer fields that the generator atomically updates on every save (parent saves write `null`; child saves bubble up the child's `packet_id`). `/spec_kit:resume` reads the pointer first when the target is a phase parent. A fresh pointer (<24h) recurses directly into the active child. A stale or missing pointer falls back to listing children with statuses. Detection is a single source of truth: `is_phase_parent()` (shell) and `isPhaseParent()` (ESM JS) MUST agree.
 
 #### Checklist Priority System (Level 2+)
 
@@ -408,7 +353,7 @@ Six relationship types: `caused`, `enabled`, `supersedes`, `contradicts`, `deriv
 | `orphan` | `true` when the result has no incoming causal edges |
 | `weightHistoryChanged` | `true` when any connected edge has a `weight_history` row |
 
-The formatter at `mcp_server/formatters/search-results.ts` batch-derives the badges from existing causal-edge tables, fails open when the DB handle or `weight_history` table is unavailable, and preserves any precomputed `trustBadges` payload a caller already supplied. Response-profile shaping in `mcp_server/lib/response/profile-formatters.ts` preserves the badge payload through `quick`, `research`, and `resume` outputs on `results[]` and `topResult` rather than dropping it. Display only — no schema change, no new relation types, no new storage of code/process/tool facts (ADR-012-005).
+The formatter at `mcp_server/formatters/search-results.ts` batch-derives the badges from existing causal-edge tables, fails open when the DB handle or `weight_history` table is unavailable, and preserves any precomputed `trustBadges` payload a caller already supplied. Response-profile shaping in `mcp_server/lib/response/profile-formatters.ts` preserves the badge payload through `quick`, `research`, and `resume` outputs on `results[]` and `topResult` rather than dropping it. Display only: no schema change, no new relation types, no new storage of code/process/tool facts (ADR-012-005).
 
 #### Save Intelligence
 
@@ -1023,7 +968,7 @@ A: The indexed-continuity store can index any markdown file, beyond spec folder 
 
 **Q: What is the difference between this README and the MCP server README?**
 
-A: This README covers the whole skill: spec folders, documentation levels, commands, templates, scripts and a high-level summary of the indexed-continuity store. The MCP server README (`mcp_server/README.md`) goes deep on the indexed-continuity store: the 54-tool API reference, 5 core retrieval channels plus the CocoIndex bridge, session lifecycle tooling, canonical resume/bootstrap behavior, save pipeline, causal graph, query intelligence and evaluation infrastructure. Structural code-graph package details live in `.opencode/skills/system-code-graph/`.
+A: This README covers the whole skill: spec folders, documentation levels, commands, templates, scripts and a high-level summary of the indexed-continuity store. The MCP server README (`mcp_server/README.md`) goes deep on the indexed-continuity store: the 54-tool API reference, 5 core retrieval channels, session lifecycle tooling, canonical resume and bootstrap behavior, save pipeline, causal graph, query intelligence and evaluation infrastructure.
 
 ---
 

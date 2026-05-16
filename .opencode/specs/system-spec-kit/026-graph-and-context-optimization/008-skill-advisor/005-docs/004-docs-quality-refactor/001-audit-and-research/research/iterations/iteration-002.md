@@ -52,9 +52,9 @@ Where does `.opencode/skills/system-skill-advisor/README.md` fall short of the p
 - System-code-graph uses direct address in TROUBLESHOOTING: "What You See | Cause | Fix" <ref_file file="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-code-graph/README.md" lines="239-248" />
 
 **Evidence 7: Prior iteration cross-reference**
-- Iteration-001 focused on SKILL.md anchor coverage and smart-router conformance, not README marketing voice <ref_file file="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/004-docs-quality-refactor/001-audit-and-research/research/iterations/iteration-001.md" lines="1-77" />
-- Iteration-001 found missing canonical smart-router pseudocode (P0) and anchor coverage gaps (P1) in SKILL.md <ref_file file="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/004-docs-quality-refactor/001-audit-and-research/research/iterations/iteration-001.md" lines="35-61" />
-- Iteration-001 did NOT audit README marketing voice or compare against peer benchmarks <ref_file file="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/004-docs-quality-refactor/001-audit-and-research/research/iterations/iteration-001.md" lines="1-77" />
+- Iteration-001 focused on SKILL.md anchor coverage and smart-router conformance, not README marketing voice <ref_file file="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-docs/004-docs-quality-refactor/001-audit-and-research/research/iterations/iteration-001.md" lines="1-77" />
+- Iteration-001 found missing canonical smart-router pseudocode (P0) and anchor coverage gaps (P1) in SKILL.md <ref_file file="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-docs/004-docs-quality-refactor/001-audit-and-research/research/iterations/iteration-001.md" lines="35-61" />
+- Iteration-001 did NOT audit README marketing voice or compare against peer benchmarks <ref_file file="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-docs/004-docs-quality-refactor/001-audit-and-research/research/iterations/iteration-001.md" lines="1-77" />
 
 ## Findings (numbered, severity-tagged P0|P1|P2, impact-ranked 1-10, sub-phase-targeted 002|003|004|005)
 

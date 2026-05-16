@@ -1,6 +1,6 @@
 ---
-title: "Resource Map: 004-docs-quality-refactor (parent-aggregate)"
-description: "Aggregated path catalog across children 001-005 of 004-docs-quality-refactor: all paths analyzed during the audit phase and slated for modification in subsequent phases."
+title: "Resource Map: system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-docs/004-docs-quality-refactor (parent-aggregate)"
+description: "Aggregated path catalog across children 001-005 of system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-docs/004-docs-quality-refactor: all paths analyzed during the audit phase and slated for modification in subsequent phases."
 trigger_phrases:
   - "resource map skill-advisor docs quality"
   - "skill-advisor path catalog"
@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-docs/004-docs-quality-refactor"
+    packet_pointer: "top-level/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-docs/004-docs-quality-refactor"
     last_updated_at: "2026-05-16T00:00:00Z"
     last_updated_by: "claude-opus-4-7-1m"
     recent_action: "Scaffolded resource-map"
@@ -44,7 +44,7 @@ This map operates in **parent-aggregate mode**: one map at the phase parent aggr
 - **Total references**: 38 (initial; expanded as 001 deep-research surfaces additional paths)
 - **By category**: READMEs=11, Documents=14, Skills=4, Specs=12, Config=1, Meta=0
 - **Missing on disk**: 0 (initial); 5 PLANNED (new reference docs in child 005)
-- **Scope**: All files analyzed or touched across children 001-005 of 004-docs-quality-refactor (aggregated). Initial set seeded from Phase 1 audit findings; will be expanded post-001 synthesis.
+- **Scope**: All files analyzed or touched across children 001-005 of system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-docs/004-docs-quality-refactor (aggregated). Initial set seeded from Phase 1 audit findings; will be expanded post-001 synthesis.
 - **Generated**: 2026-05-16T00:00:00Z
 
 > **Action vocabulary**: `Created` · `Updated` · `Analyzed` · `Removed` · `Cited` · `Validated` · `Moved` · `Renamed`.
@@ -114,16 +114,16 @@ This map operates in **parent-aggregate mode**: one map at the phase parent aggr
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| `.opencode/specs/004-docs-quality-refactor/spec.md` | Created | OK | Phase-parent spec (this file) |
-| `.opencode/specs/004-docs-quality-refactor/description.json` | Created | OK | Parent metadata |
-| `.opencode/specs/004-docs-quality-refactor/graph-metadata.json` | Created | OK | Parent graph metadata |
-| `.opencode/specs/004-docs-quality-refactor/resource-map.md` | Created | OK | This file |
-| `.opencode/specs/004-docs-quality-refactor/001-audit-and-research/` | Created | OK | Deep-research child |
-| `.opencode/specs/004-docs-quality-refactor/001-audit-and-research/research/` | Created | PLANNED | Deep-research artifact root (created by /spec_kit:deep-research init) |
-| `.opencode/specs/004-docs-quality-refactor/002-bug-fixes/` | Created | OK | Bug-fixes child |
-| `.opencode/specs/004-docs-quality-refactor/003-readme-marketing-rewrite/` | Created | OK | README rewrite child |
-| `.opencode/specs/004-docs-quality-refactor/004-sk-doc-1to1-alignment/` | Created | OK | Per-file alignment child |
-| `.opencode/specs/004-docs-quality-refactor/005-content-additions-and-hvr/` | Created | OK | Content additions child |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-docs/004-docs-quality-refactor/spec.md` | Created | OK | Phase-parent spec (this file) |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-docs/004-docs-quality-refactor/description.json` | Created | OK | Parent metadata |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-docs/004-docs-quality-refactor/graph-metadata.json` | Created | OK | Parent graph metadata |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-docs/004-docs-quality-refactor/resource-map.md` | Created | OK | This file |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-docs/004-docs-quality-refactor/001-audit-and-research/` | Created | OK | Deep-research child |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-docs/004-docs-quality-refactor/001-audit-and-research/research/` | Created | PLANNED | Deep-research artifact root (created by /spec_kit:deep-research init) |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-docs/004-docs-quality-refactor/002-bug-fixes/` | Created | OK | Bug-fixes child |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-docs/004-docs-quality-refactor/003-readme-marketing-rewrite/` | Created | OK | README rewrite child |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-docs/004-docs-quality-refactor/004-sk-doc-1to1-alignment/` | Created | OK | Per-file alignment child |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-docs/004-docs-quality-refactor/005-content-additions-and-hvr/` | Created | OK | Content additions child |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-docs/003-doc-and-config-drift-fixes/` | Cited | OK | Predecessor packet |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-graph/006-system-skill-advisor-extraction/001-design-and-decision-record/decision-record.md` | Cited | OK | ADR-001 (canonical path; fix needed in skill docs) |
 <!-- /ANCHOR:specs -->

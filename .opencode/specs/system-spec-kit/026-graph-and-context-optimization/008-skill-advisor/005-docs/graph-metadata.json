@@ -7,7 +7,8 @@
     "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-docs/001-docs-and-code-alignment",
     "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-docs/002-code-folder-readmes",
     "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-docs/003-doc-and-config-drift-fixes",
-    "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-docs/004-docs-quality-refactor"
+    "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-docs/004-docs-quality-refactor",
+    "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-docs/005-cross-skill-decoupling"
   ],
   "manual": {
     "depends_on": [],
