@@ -111,6 +111,6 @@ _memory:
 - **Specification**: See `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/spec.md`
 - **Plan**: See `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/plan.md`
 - **Parent Spec**: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/spec.md`
-- **Sibling implementation**: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-doctor-command/spec.md`
+- **Sibling implementation**: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/005-code-graph-doctor-command/spec.md`
 - **Pattern source**: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-graph-impact-and-affordance-uplift/008-deep-research-review/` (deep-research loop pattern)
 <!-- /ANCHOR:cross-refs -->

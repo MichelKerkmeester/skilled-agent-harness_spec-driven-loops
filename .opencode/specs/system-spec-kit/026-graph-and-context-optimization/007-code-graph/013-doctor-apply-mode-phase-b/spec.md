@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: /doctor:code-graph apply-mode (Phase B) [system-spec-kit/026-graph-and-context-optimization/007-code-graph/013-doctor-apply-mode-phase-b/spec]"
-description: "Ship Phase B (apply-mode auto-fix operations) for /doctor:code-graph. Phase A (diagnostic-only) shipped in 007-code-graph/006-code-graph-doctor-command. The four prerequisite artifacts from research packet 007 (gold-query battery, staleness model, recovery playbook, exclude-rule confidence tiers) are all available; this packet wires them into a verification-battery-gated apply pipeline with rollback semantics."
+description: "Ship Phase B (apply-mode auto-fix operations) for /doctor:code-graph. Phase A (diagnostic-only) shipped in 007-code-graph/005-code-graph-doctor-command. The four prerequisite artifacts from research packet 007 (gold-query battery, staleness model, recovery playbook, exclude-rule confidence tiers) are all available; this packet wires them into a verification-battery-gated apply pipeline with rollback semantics."
 trigger_phrases:
   - "doctor code graph apply mode"
   - "doctor code graph phase b"
@@ -43,7 +43,7 @@ _memory:
 
 ## EXECUTIVE SUMMARY
 
-Phase A (diagnostic-only `/doctor:code-graph`) shipped in `007-code-graph/006-code-graph-doctor-command/`, gated Phase B behind four artifacts from research packet `007-code-graph-resilience-research`. All four artifacts are now in place: a 28-query gold battery (`assets/code-graph-gold-queries.json`), a 3-state staleness model (`assets/staleness-model.md`), three recovery procedures (`assets/recovery-playbook.md`), and 3-tier exclude-rule confidence (`assets/exclude-rule-confidence.json`). Phase B wires them into an apply-mode workflow that runs the gold battery as a pre/post-flight verification gate, executes the appropriate recovery procedure based on staleness state, and rolls back if verification fails.
+Phase A (diagnostic-only `/doctor:code-graph`) shipped in `007-code-graph/005-code-graph-doctor-command/`, gated Phase B behind four artifacts from research packet `007-code-graph-resilience-research`. All four artifacts are now in place: a 28-query gold battery (`assets/code-graph-gold-queries.json`), a 3-state staleness model (`assets/staleness-model.md`), three recovery procedures (`assets/recovery-playbook.md`), and 3-tier exclude-rule confidence (`assets/exclude-rule-confidence.json`). Phase B wires them into an apply-mode workflow that runs the gold battery as a pre/post-flight verification gate, executes the appropriate recovery procedure based on staleness state, and rolls back if verification fails.
 
 **Key Decisions**: gate every apply action on the gold battery (90% overall / 80% edge-focus pass floors); confine self-healing to `soft-stale` states with bounded scope (≤50 stale files, no Git HEAD drift); require operator confirmation for `hard-stale` recovery (CG-RP-001 SQLite corruption, CG-RP-003 bad-apply rollback).
 
@@ -61,7 +61,7 @@ Phase A (diagnostic-only `/doctor:code-graph`) shipped in `007-code-graph/006-co
 | **Status** | In Progress |
 | **Created** | 2026-05-08 |
 | **Branch** | `main` |
-| **Predecessor** | `006-code-graph-doctor-command/` (Phase A shipped); `007-code-graph-resilience-research/` (4 prerequisite artifacts) |
+| **Predecessor** | `005-code-graph-doctor-command/` (Phase A shipped); `007-code-graph-resilience-research/` (4 prerequisite artifacts) |
 | **Successor** | None planned |
 <!-- /ANCHOR:metadata -->
 
@@ -72,7 +72,7 @@ Phase A (diagnostic-only `/doctor:code-graph`) shipped in `007-code-graph/006-co
 
 ### Problem Statement
 
-`/doctor:code-graph` shipped Phase A (diagnostic-only `auto` and `confirm` modes) in packet `006-code-graph-doctor-command/`, with apply-mode explicitly deferred behind the resilience research deliverables. Today operators can ASK the doctor what is wrong with the graph (it reports parser status, scan freshness, scope coverage, known stale areas), but they cannot ASK the doctor to FIX what it finds. Manual remediation requires walking the recovery-playbook procedures by hand against an already-degraded graph state.
+`/doctor:code-graph` shipped Phase A (diagnostic-only `auto` and `confirm` modes) in packet `005-code-graph-doctor-command/`, with apply-mode explicitly deferred behind the resilience research deliverables. Today operators can ASK the doctor what is wrong with the graph (it reports parser status, scan freshness, scope coverage, known stale areas), but they cannot ASK the doctor to FIX what it finds. Manual remediation requires walking the recovery-playbook procedures by hand against an already-degraded graph state.
 
 ### Purpose
 
@@ -313,7 +313,7 @@ Implement Phase B: an apply-mode workflow that runs verification-gated auto-fix 
 
 ## RELATED DOCUMENTS
 
-- **Predecessor (Phase A)**: `../006-code-graph-doctor-command/spec.md`, `…/implementation-summary.md`
+- **Predecessor (Phase A)**: `../005-code-graph-doctor-command/spec.md`, `…/implementation-summary.md`
 - **Research artifacts**: `../007-code-graph-resilience-research/assets/code-graph-gold-queries.json`, `…/staleness-model.md`, `…/recovery-playbook.md`, `…/exclude-rule-confidence.json`
 - **Phase 012/007 (parser_skip_list)**: `../012-real-world-usefulness-test/007-tree-sitter-parser-resilience/`
 - **Sibling packet (CocoIndex daemon)**: `../../011-cocoindex-daemon-resilience/`

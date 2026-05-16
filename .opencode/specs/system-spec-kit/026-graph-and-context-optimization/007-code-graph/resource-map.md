@@ -199,11 +199,11 @@ _memory:
 | .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-advisor-refinement/review/015-code-graph-advisor-refinement-pt-01/review-report.md | Cited | OK | phase child |
 | .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-advisor-refinement/spec.md | Cited | OK | phase child |
 | .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-advisor-refinement/tasks.md | Cited | OK | phase child |
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-doctor-command/checklist.md | Updated | OK | phase child |
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-doctor-command/implementation-summary.md | Created | OK | phase child |
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-doctor-command/plan.md | Updated | OK | phase child |
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-doctor-command/spec.md | Updated | OK | phase child |
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-doctor-command/tasks.md | Updated | OK | phase child |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/005-code-graph-doctor-command/checklist.md | Updated | OK | phase child |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/005-code-graph-doctor-command/implementation-summary.md | Created | OK | phase child |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/005-code-graph-doctor-command/plan.md | Updated | OK | phase child |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/005-code-graph-doctor-command/spec.md | Updated | OK | phase child |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/005-code-graph-doctor-command/tasks.md | Updated | OK | phase child |
 | .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/assets/recovery-playbook.md | Created | OK | phase child |
 | .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/assets/staleness-model.md | Created | OK | phase child |
 | .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/checklist.md | Updated | OK | phase child |
@@ -292,8 +292,8 @@ _memory:
 | .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-advisor-refinement/graph-metadata.json | Cited | OK | phase child |
 | .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-advisor-refinement/research/015-code-graph-advisor-refinement-pt-01/iterations/description.json | Cited | OK | phase child |
 | .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-advisor-refinement/research/015-code-graph-advisor-refinement-pt-01/iterations/graph-metadata.json | Cited | OK | phase child |
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-doctor-command/description.json | Cited | OK | phase child |
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-doctor-command/graph-metadata.json | Cited | OK | phase child |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/005-code-graph-doctor-command/description.json | Cited | OK | phase child |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/005-code-graph-doctor-command/graph-metadata.json | Cited | OK | phase child |
 | .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/description.json | Cited | OK | phase child |
 | .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/graph-metadata.json | Cited | OK | phase child |
 | .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/008-code-graph-backend-resilience/description.json | Cited | OK | phase child |

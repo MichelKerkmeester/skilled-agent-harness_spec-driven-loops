@@ -1,16 +1,16 @@
 ---
-title: "Implementation Summary: Code Graph Doctor Command [system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-doctor-command/implementation-summary]"
+title: "Implementation Summary: Code Graph Doctor Command [system-spec-kit/026-graph-and-context-optimization/007-code-graph/005-code-graph-doctor-command/implementation-summary]"
 description: "Phase A diagnostic-only /doctor:code-graph command shipped: command markdown + auto + confirm YAML workflows + user-facing install guide + Doctor Commands section update. Phase B (apply mode) explicitly gated on research packet 007."
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->"
 trigger_phrases:
   - "code graph doctor command implementation"
   - "/doctor:code-graph implementation"
-  - "006-code-graph-doctor-command implementation summary"
+  - "005-code-graph-doctor-command implementation summary"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-doctor-command"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/005-code-graph-doctor-command"
     last_updated_at: "2026-04-25T20:55:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Phase A diagnostic-only command shipped"
@@ -26,7 +26,7 @@ _memory:
       - "description.json"
     session_dedup:
       fingerprint: "sha256:0260000000007006000000000000000000000000000000000000000000000099"
-      session_id: "006-code-graph-doctor-command-impl"
+      session_id: "005-code-graph-doctor-command-impl"
       parent_session_id: "026-phase-root-flatten-2026-04-21"
     completion_pct: 100
     open_questions:
@@ -49,7 +49,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 006-code-graph-doctor-command |
+| **Spec Folder** | 005-code-graph-doctor-command |
 | **Completed** | 2026-04-25 (Phase A only) |
 | **Level** | 2 |
 | **Phase A status** | Shipped |
@@ -88,11 +88,11 @@ Both YAML files in `.opencode/commands/doctor/assets/` describe the same 3-phase
 | `.opencode/commands/doctor/assets/doctor_code-graph_confirm.yaml` | Created | Interactive workflow with one pre_phase_2 approval gate |
 | `.opencode/install_guides/SET-UP - Code Graph.md` | Created | User-facing diagnostic guide |
 | `.opencode/README.md` | Modified | Doctor Commands section: 3 → 4 commands; counts 22/30 → 23/32 |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-doctor-command/spec.md` | Modified | Initial create + checkbox completion + reference path normalization |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-doctor-command/plan.md` | Modified | Initial create + checkbox completion |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-doctor-command/tasks.md` | Modified | All 15 tasks marked `[x]` |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-doctor-command/checklist.md` | Modified | All 19 checklist items marked `[x]` |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-doctor-command/implementation-summary.md` | Created | This file |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/005-code-graph-doctor-command/spec.md` | Modified | Initial create + checkbox completion + reference path normalization |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/005-code-graph-doctor-command/plan.md` | Modified | Initial create + checkbox completion |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/005-code-graph-doctor-command/tasks.md` | Modified | All 15 tasks marked `[x]` |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/005-code-graph-doctor-command/checklist.md` | Modified | All 19 checklist items marked `[x]` |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/005-code-graph-doctor-command/implementation-summary.md` | Created | This file |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -128,7 +128,7 @@ Authoring happened in parallel with the sibling research packet 007 deep-researc
 | Both YAML workflows parse via `python3 yaml.safe_load` | PASS |
 | Command markdown frontmatter parses (description, argument-hint, allowed-tools) | PASS |
 | Command appears in runtime skill list as `doctor:code-graph` | PASS — visible in skills list after creation |
-| Strict spec-folder validation on `006-code-graph-doctor-command/` | PASS — 0 errors, 0 warnings |
+| Strict spec-folder validation on `005-code-graph-doctor-command/` | PASS — 0 errors, 0 warnings |
 | `mutation_boundaries.allowed_targets` is empty `[]` in both YAMLs | PASS — Phase A invariant |
 | `description.json` + `graph-metadata.json` present | PASS |
 | Cross-references to research packet 007 present in spec, plan, command markdown | PASS |

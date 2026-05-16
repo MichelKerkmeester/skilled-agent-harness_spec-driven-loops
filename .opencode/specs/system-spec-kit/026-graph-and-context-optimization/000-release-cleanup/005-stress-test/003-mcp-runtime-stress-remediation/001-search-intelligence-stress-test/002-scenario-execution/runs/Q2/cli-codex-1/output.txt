@@ -14357,8 +14357,8 @@ exec
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-advisor-refinement/spec.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/001-code-graph-upgrades/implementation-summary.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/001-code-graph-upgrades/spec.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-doctor-command/implementation-summary.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-doctor-command/spec.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/005-code-graph-doctor-command/implementation-summary.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/005-code-graph-doctor-command/spec.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/002-code-graph-self-contained-package/implementation-summary.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/002-code-graph-self-contained-package/spec.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/spec.md

@@ -30,7 +30,7 @@ The code-graph is the SQLite-backed index of every symbol (functions, classes, v
 | 005/R015 | 2026-04-23 | [Advisor Refinement Deep Research](./changelog-005-research-015-code-graph-advisor-refinement-pt-01.md) | 20-iteration deep-research sweep. Produced 35 findings across advisor daemon, shim, confidence calibration, and cross-packet contracts. |
 | 005 | 2026-04-25 | [Code Graph and Skill Advisor Refinement](./changelog-004-code-graph-advisor-refinement.md) | 10 PRs across 5 fix-up batches (B1-B5) plus F35 calibration bench. All 35 findings closed. |
 | 005/V015 | 2026-04-24 | [Advisor Refinement Deep Review](./changelog-005-review-015-code-graph-advisor-refinement-pt-01.md) | 7-iteration review cycle validated the B1-B5 implementation. 7 findings addressed in batch B6. |
-| 006 | 2026-04-25 | [Doctor Command](./changelog-006-code-graph-doctor-command.md) | Phase A diagnostic-only /doctor:code-graph shipped. Phase B gated on research packet 007. |
+| 006 | 2026-04-25 | [Doctor Command](./changelog-005-code-graph-doctor-command.md) | Phase A diagnostic-only /doctor:code-graph shipped. Phase B gated on research packet 007. |
 | 007 | 2026-04-25 | [Resilience Research](./changelog-007-code-graph-resilience-research.md) | Produced the verification battery, staleness model, recovery playbook, and exclude-rule confidence tiers for /doctor:code-graph Phase B. |
 | 008 | 2026-04-25 | [Backend Resilience](./changelog-008-code-graph-backend-resilience.md) | 15 tasks across 5 backend streams. Deep-review found 5 P0 + 12 P1. Audit found 1 P0 + 10 P1. All closed. Tests at 99.8%. |
 | 009 | 2026-05-02 | [End-user scope by default](./changelog-009-end-user-scope-default.md) | Default scans now index your code only. Framework internals are opt-in. |

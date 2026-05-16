@@ -1,15 +1,15 @@
 ---
-title: "Tasks: Code Graph Doctor Command [system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-doctor-command/tasks]"
+title: "Tasks: Code Graph Doctor Command [system-spec-kit/026-graph-and-context-optimization/007-code-graph/005-code-graph-doctor-command/tasks]"
 description: "Task record for creating the diagnostic-only /doctor:code-graph command (Phase A)."
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->"
 trigger_phrases:
   - "code graph doctor command tasks"
-  - "006-code-graph-doctor-command tasks"
+  - "005-code-graph-doctor-command tasks"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-doctor-command"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/005-code-graph-doctor-command"
     last_updated_at: "2026-04-25T20:30:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Created tasks.md"
@@ -21,7 +21,7 @@ _memory:
       - "tasks.md"
     session_dedup:
       fingerprint: "sha256:0260000000007006000000000000000000000000000000000000000000000002"
-      session_id: "006-code-graph-doctor-command"
+      session_id: "005-code-graph-doctor-command"
       parent_session_id: "026-graph-and-context-optimization"
     completion_pct: 0
     open_questions: []
@@ -103,8 +103,8 @@ _memory:
 <!-- ANCHOR:cross-refs -->
 ## Cross-References
 
-- **Specification**: See `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-doctor-command/spec.md`
-- **Plan**: See `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-doctor-command/plan.md`
+- **Specification**: See `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/005-code-graph-doctor-command/spec.md`
+- **Plan**: See `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/005-code-graph-doctor-command/plan.md`
 - **Parent Spec**: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/spec.md`
 - **Sibling research dependency**: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/spec.md`
 - **Pattern source**: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-skill-advisor-setup-command/`

@@ -5853,7 +5853,7 @@
       "lastUpdated": "2026-05-08T08:26:57.646Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-doctor-command",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/005-code-graph-doctor-command",
       "description": "Feature Specification: Code Graph Doctor Command",
       "keywords": [
         "feature",

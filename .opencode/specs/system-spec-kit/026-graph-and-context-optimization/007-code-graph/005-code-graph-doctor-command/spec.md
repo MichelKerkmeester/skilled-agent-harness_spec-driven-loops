@@ -1,17 +1,17 @@
 ---
-title: "Feature Specification: Code Graph Doctor Command [system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-doctor-command/spec]"
+title: "Feature Specification: Code Graph Doctor Command [system-spec-kit/026-graph-and-context-optimization/007-code-graph/005-code-graph-doctor-command/spec]"
 description: "New /doctor:code-graph slash command (diagnostic-first) that audits code graph index health, detects stale + missed files, recommends exclude rules and language filters, and optionally applies them after research-packet 007-code-graph-resilience-research validates the verification battery."
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->"
 trigger_phrases:
   - "code graph doctor command"
   - "/doctor:code-graph"
   - "code graph doctor setup"
-  - "006-code-graph-doctor-command"
+  - "005-code-graph-doctor-command"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-doctor-command"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/005-code-graph-doctor-command"
     last_updated_at: "2026-04-25T20:30:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Created spec.md"
@@ -21,7 +21,7 @@ _memory:
       - "spec.md"
     session_dedup:
       fingerprint: "sha256:0260000000007006000000000000000000000000000000000000000000000000"
-      session_id: "006-code-graph-doctor-command"
+      session_id: "005-code-graph-doctor-command"
       parent_session_id: "026-graph-and-context-optimization"
     completion_pct: 0
     open_questions: []

@@ -7,7 +7,7 @@
   "manual": {
     "depends_on": [
       {
-        "packet_id": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-doctor-command",
+        "packet_id": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/005-code-graph-doctor-command",
         "reason": "Predecessor packet (migrated from legacy string-array; original reason not preserved)",
         "source": "manual"
       },

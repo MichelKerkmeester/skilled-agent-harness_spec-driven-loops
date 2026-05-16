@@ -1,15 +1,15 @@
 ---
-title: "Verification Checklist: Code Graph Doctor Command [system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-doctor-command/checklist]"
+title: "Verification Checklist: Code Graph Doctor Command [system-spec-kit/026-graph-and-context-optimization/007-code-graph/005-code-graph-doctor-command/checklist]"
 description: "Verification Date: pending"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->"
 trigger_phrases:
   - "code graph doctor command checklist"
-  - "006-code-graph-doctor-command checklist"
+  - "005-code-graph-doctor-command checklist"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-doctor-command"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/005-code-graph-doctor-command"
     last_updated_at: "2026-04-25T20:30:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Created checklist.md"
@@ -22,7 +22,7 @@ _memory:
       - "checklist.md"
     session_dedup:
       fingerprint: "sha256:0260000000007006000000000000000000000000000000000000000000000003"
-      session_id: "006-code-graph-doctor-command"
+      session_id: "005-code-graph-doctor-command"
       parent_session_id: "026-graph-and-context-optimization"
     completion_pct: 0
     open_questions: []

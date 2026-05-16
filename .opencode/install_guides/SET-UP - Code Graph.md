@@ -159,7 +159,7 @@ When Phase B ships, this entire flow (apply → verify → rollback if regressed
 
 - **Command reference:** `.opencode/commands/doctor.md`
 - **Workflow YAML:** `.opencode/commands/doctor/assets/doctor_code-graph_{auto,confirm}.yaml`
-- **Spec packet:** `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-doctor-command/`
+- **Spec packet:** `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/005-code-graph-doctor-command/`
 - **Research packet (gates Phase B):** `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/`
 - **Sibling doctor commands:** `/doctor:mcp install`, `/doctor:mcp debug`, `/doctor skill-advisor`
 - **Related guides:** [SET-UP - Skill Advisor](./SET-UP%20-%20Skill%20Advisor.md) (sibling 5-phase doctor command pattern)

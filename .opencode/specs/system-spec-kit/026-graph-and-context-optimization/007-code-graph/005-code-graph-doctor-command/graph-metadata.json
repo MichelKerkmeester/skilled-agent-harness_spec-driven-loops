@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-doctor-command",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-doctor-command",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/005-code-graph-doctor-command",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/005-code-graph-doctor-command",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/007-code-graph",
   "children_ids": [],
   "migrated": true,
@@ -16,13 +16,13 @@
       "code graph doctor command",
       "/doctor:code-graph",
       "code graph doctor setup",
-      "006-code-graph-doctor-command",
+      "005-code-graph-doctor-command",
       "code graph doctor command plan",
-      "006-code-graph-doctor-command plan",
+      "005-code-graph-doctor-command plan",
       "code graph doctor command tasks",
-      "006-code-graph-doctor-command tasks",
+      "005-code-graph-doctor-command tasks",
       "code graph doctor command checklist",
-      "006-code-graph-doctor-command checklist",
+      "005-code-graph-doctor-command checklist",
       "code graph doctor command implementation",
       "/doctor:code-graph implementation"
     ],
@@ -33,7 +33,7 @@
       "command",
       "code-graph",
       "setup",
-      "006-code-graph-doctor-command",
+      "005-code-graph-doctor-command",
       "plan",
       "tasks",
       "checklist",
@@ -48,11 +48,11 @@
       ".opencode/README.md",
       ".opencode/commands/doctor/assets/doctor_code-graph_auto.yaml",
       ".opencode/commands/doctor/assets/doctor_code-graph_confirm.yaml",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-doctor-command/spec.md",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-doctor-command/plan.md",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-doctor-command/tasks.md",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-doctor-command/checklist.md",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-doctor-command/implementation-summary.md",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/005-code-graph-doctor-command/spec.md",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/005-code-graph-doctor-command/plan.md",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/005-code-graph-doctor-command/tasks.md",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/005-code-graph-doctor-command/checklist.md",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/005-code-graph-doctor-command/implementation-summary.md",
       ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/assets/exclude-rule-confidence.json",
       ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/assets/staleness-model.md",
       ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/assets/code-graph-gold-queries.json",
@@ -98,31 +98,31 @@
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-doctor-command/spec.md",
+        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/005-code-graph-doctor-command/spec.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
-        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-doctor-command/plan.md",
+        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/005-code-graph-doctor-command/plan.md",
         "source": "derived"
       },
       {
         "name": "tasks.md",
         "kind": "doc",
-        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-doctor-command/tasks.md",
+        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/005-code-graph-doctor-command/tasks.md",
         "source": "derived"
       },
       {
         "name": "checklist.md",
         "kind": "doc",
-        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-doctor-command/checklist.md",
+        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/005-code-graph-doctor-command/checklist.md",
         "source": "derived"
       },
       {
         "name": "implementation-summary.md",
         "kind": "doc",
-        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-doctor-command/implementation-summary.md",
+        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/005-code-graph-doctor-command/implementation-summary.md",
         "source": "derived"
       },
       {

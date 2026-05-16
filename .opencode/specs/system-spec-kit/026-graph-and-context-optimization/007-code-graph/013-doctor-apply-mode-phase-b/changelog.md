@@ -4,7 +4,7 @@
 
 > Spec folder: `026-graph-and-context-optimization/007-code-graph/013-doctor-apply-mode-phase-b` (Level 3)
 > Parent packet: `026-graph-and-context-optimization/007-code-graph`
-> Predecessor: `006-code-graph-doctor-command/` (Phase A); `007-code-graph-resilience-research/` (4 prerequisite artifacts)
+> Predecessor: `005-code-graph-doctor-command/` (Phase A); `007-code-graph-resilience-research/` (4 prerequisite artifacts)
 
 ### Summary
 
