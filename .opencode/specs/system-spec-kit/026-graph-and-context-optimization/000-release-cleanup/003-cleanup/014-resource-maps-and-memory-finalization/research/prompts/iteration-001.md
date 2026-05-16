@@ -27,7 +27,7 @@ specs/system-spec-kit/026-graph-and-context-optimization/
 ├── 010-half-auto-upgrades/
 ├── 006-full-matrix-execution-validation/
 ├── 011-cli-matrix-adapter-runners/
-├── 024-followup-quality-pass/                          ← phase parent
+├── 003-followup-quality-pass/                          ← phase parent
 │   ├── 001-sk-code-opencode-audit/
 │   ├── 002-feature-catalog-trio/
 │   ├── 003-testing-playbook-trio/
@@ -90,7 +90,7 @@ Action vocabulary (per template): Created, Updated, Analyzed, Removed, Cited, Va
 Status vocabulary: OK / MISSING / PLANNED.
 
 For the **037 phase parent map**:
-- Scope line: "Parent-aggregate map across the 6 children of 024-followup-quality-pass"
+- Scope line: "Parent-aggregate map across the 6 children of 003-followup-quality-pass"
 - Aggregate paths from all 6 children
 - Don't duplicate the per-child entries verbatim — summarize at the parent level
 

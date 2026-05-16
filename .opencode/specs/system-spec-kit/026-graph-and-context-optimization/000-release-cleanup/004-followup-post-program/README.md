@@ -6,7 +6,7 @@ Quality passes, post-program cleanup, iterative improvements.
 
 - `001-post-program-cleanup`
 - `002-vitest-recovery-followup`
-- `024-followup-quality-pass`
+- `003-followup-quality-pass`
 - `054-runtime-cleanup-followups`
 
 ## Provenance

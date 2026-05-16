@@ -163,7 +163,7 @@ Create accurate resource maps for the target packets and run canonical memory in
 - Missing paths are marked `MISSING` instead of silently dropped.
 
 ### Phase Parent
-- The `024-followup-quality-pass` parent map uses parent-aggregate mode while child maps remain per-child as requested.
+- The `003-followup-quality-pass` parent map uses parent-aggregate mode while child maps remain per-child as requested.
 <!-- /ANCHOR:edge-cases -->
 
 ---

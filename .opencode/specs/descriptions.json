@@ -4536,7 +4536,7 @@
       "lastUpdated": "2026-05-08T08:26:57.265Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/024-followup-quality-pass",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-followup-quality-pass",
       "description": "Phase Parent: Follow-up Quality Pass",
       "keywords": [
         "phase",
@@ -4548,7 +4548,7 @@
       "lastUpdated": "2026-05-08T08:26:57.269Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/024-followup-quality-pass/001-sk-code-opencode-audit",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-followup-quality-pass/001-sk-code-opencode-audit",
       "description": "Feature Specification: 037/001 sk-code-opencode Audit",
       "keywords": [
         "feature",
@@ -4561,7 +4561,7 @@
       "lastUpdated": "2026-05-08T08:26:57.273Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/024-followup-quality-pass/002-feature-catalog-trio",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-followup-quality-pass/002-feature-catalog-trio",
       "description": "Feature Specification: 037/002 feature-catalog-trio",
       "keywords": [
         "feature",
@@ -4573,7 +4573,7 @@
       "lastUpdated": "2026-05-08T08:26:57.278Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/024-followup-quality-pass/003-testing-playbook-trio",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-followup-quality-pass/003-testing-playbook-trio",
       "description": "Spec: Testing Playbook Trio",
       "keywords": [
         "spec",
@@ -4584,7 +4584,7 @@
       "lastUpdated": "2026-05-02T10:39:48.387Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/024-followup-quality-pass/004-sk-doc-template-alignment",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-followup-quality-pass/004-sk-doc-template-alignment",
       "description": "Feature Specification: 037/004 sk-doc Template Alignment",
       "keywords": [
         "feature",
@@ -4598,7 +4598,7 @@
       "lastUpdated": "2026-05-08T08:26:57.284Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/024-followup-quality-pass/005-stress-test-folder-migration",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-followup-quality-pass/005-stress-test-folder-migration",
       "description": "Feature Specification: 037/005 Stress Test Folder Migration",
       "keywords": [
         "feature",
@@ -4613,7 +4613,7 @@
       "lastUpdated": "2026-05-08T08:26:57.288Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/024-followup-quality-pass/006-readme-cascade-refresh",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-followup-quality-pass/006-readme-cascade-refresh",
       "description": "Feature Specification: 037/006 README Cascade Refresh",
       "keywords": [
         "feature",

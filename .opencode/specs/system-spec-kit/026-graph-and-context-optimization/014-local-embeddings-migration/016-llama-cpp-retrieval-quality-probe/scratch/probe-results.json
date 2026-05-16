@@ -223,7 +223,7 @@
       "spearman_rho_top10": 0.866667
     },
     {
-      "query": "Packet: system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/024-followup-quality-pass/005-stress-test-folder-migration Spec Folder:",
+      "query": "Packet: system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-followup-quality-pass/005-stress-test-folder-migration Spec Folder:",
       "target_doc_id": "2278",
       "hf_local_top5": [
         {

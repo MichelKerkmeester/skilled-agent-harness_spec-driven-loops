@@ -190,7 +190,7 @@ Question answers:
 Commands and results:
 - Detector parity: Node imported `.opencode/skills/system-spec-kit/scripts/dist/spec/is-phase-parent.js` and shell-sourced `.opencode/skills/system-spec-kit/scripts/lib/shell-common.sh`; checked 1,550 candidates, found 94 phase parents, 0 divergences.
 - Phase-parent strict sample: `validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/009-phase-parent-documentation --strict --no-recursive` failed with `SPEC_DOC_INTEGRITY` and warnings.
-- 037/004 strict sample: `validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/024-followup-quality-pass/004-sk-doc-template-alignment --strict --quiet` passed.
+- 037/004 strict sample: `validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-followup-quality-pass/004-sk-doc-template-alignment --strict --quiet` passed.
 - `.opencode/specs` representative sample: `.opencode/specs/00--ai-systems/001-global-shared/001-hvr-refinement-repo-analysis` failed strict with anchor and sufficiency issues, showing legacy folders are not uniformly strict-clean.
 - Frontmatter probe: narrative `recent_action` failed FRONTMATTER_MEMORY_BLOCK.
 - Fenced structure probe: malformed Level 2 packet passed strict with 0 errors and 0 warnings.

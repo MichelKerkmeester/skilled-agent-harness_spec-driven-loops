@@ -140,7 +140,7 @@ llama-cpp top-5:
 
 ### Example 5
 
-Query: Packet: system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/024-followup-quality-pass/005-stress-test-folder-migration Spec Folder:
+Query: Packet: system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-followup-quality-pass/005-stress-test-folder-migration Spec Folder:
 
 Target doc: 2278
 
