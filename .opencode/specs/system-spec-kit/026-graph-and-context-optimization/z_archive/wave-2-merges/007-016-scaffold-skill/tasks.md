@@ -90,6 +90,6 @@ _memory:
 ## CROSS-REFERENCES
 
 - Parent: `007-code-graph/013-system-code-graph-extraction`
-- Predecessor: `015-design-and-decision-record`
+- Predecessor: `014-design-and-decision-record`
 - Downstream: `003-physical-move+DB`, `004-rewire-consumers`, `005-doc-migration`, `006-validation-cleanup`
 <!-- /ANCHOR:cross-refs -->

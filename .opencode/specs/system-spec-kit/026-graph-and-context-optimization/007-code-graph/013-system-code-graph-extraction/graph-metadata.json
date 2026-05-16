@@ -7,7 +7,7 @@
   "migrated": false,
   "manual": {
     "depends_on": [
-      "system-spec-kit/026-graph-and-context-optimization/007-code-graph/015-design-and-decision-record",
+      "system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-design-and-decision-record",
       "system-spec-kit/026-graph-and-context-optimization/007-code-graph/016-scaffold-skill"
     ],
     "supersedes": [

@@ -7,7 +7,7 @@
   "migrated": true,
   "manual": {
     "depends_on": [
-      "system-spec-kit/026-graph-and-context-optimization/007-code-graph/015-design-and-decision-record",
+      "system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-design-and-decision-record",
       "system-spec-kit/026-graph-and-context-optimization/007-code-graph/016-scaffold-skill",
       "system-spec-kit/026-graph-and-context-optimization/007-code-graph/017-physical-move-and-database",
       "system-spec-kit/026-graph-and-context-optimization/007-code-graph/018-rewire-consumers-and-tool-registration",
@@ -16,14 +16,14 @@
     ],
     "supersedes": [
       {
-        "packet_id": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/015-design-and-decision-record#ADR-001-Q3",
+        "packet_id": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-design-and-decision-record#ADR-001-Q3",
         "reason": "User direction on 2026-05-14 reversed ADR-001 Q3 from co-resident to standalone MCP topology.",
         "source": "ADR-002",
-        "spec_folder": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/015-design-and-decision-record"
+        "spec_folder": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-design-and-decision-record"
       }
     ],
     "related_to": [
-      "system-spec-kit/026-graph-and-context-optimization/007-code-graph/015-design-and-decision-record"
+      "system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-design-and-decision-record"
     ]
   },
   "derived": {

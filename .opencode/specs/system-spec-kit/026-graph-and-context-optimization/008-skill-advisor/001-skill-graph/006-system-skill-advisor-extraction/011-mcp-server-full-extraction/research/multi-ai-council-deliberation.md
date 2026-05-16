@@ -3285,10 +3285,10 @@ exec
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/020-validation-and-cleanup/plan.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/020-validation-and-cleanup/tasks.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/020-validation-and-cleanup/implementation-summary.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/015-design-and-decision-record/decision-record.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/015-design-and-decision-record/plan.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/015-design-and-decision-record/tasks.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/015-design-and-decision-record/implementation-summary.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-design-and-decision-record/decision-record.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-design-and-decision-record/plan.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-design-and-decision-record/tasks.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-design-and-decision-record/implementation-summary.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/018-rewire-consumers-and-tool-registration/plan.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/018-rewire-consumers-and-tool-registration/tasks.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/018-rewire-consumers-and-tool-registration/implementation-summary.md
@@ -3641,7 +3641,7 @@ export interface SkillEmbeddingRefreshResult {
   failed: number;
 
 exec
-/bin/zsh -lc "sed -n '1,260p' .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/015-design-and-decision-record/decision-record.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,260p' .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-design-and-decision-record/decision-record.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 ---
 title: "Decision Record: Co-Resident Code-Graph MCP With Stable tool-ids"
@@ -3654,7 +3654,7 @@ importance_tier: "important"
 contextType: "decision"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/015-design-and-decision-record"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-design-and-decision-record"
     last_updated_at: "2026-05-14T10:00:00Z"
     last_updated_by: "claude"
     recent_action: "Accepted ADR-001 for co-resident code-graph with stable tool-ids"

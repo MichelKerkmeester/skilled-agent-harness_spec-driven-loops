@@ -1,6 +1,6 @@
 {
   "research_topic": "Code-graph extraction from system-spec-kit into standalone system-code-graph skill",
-  "spec_folder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/015-design-and-decision-record",
+  "spec_folder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-design-and-decision-record",
   "execution_mode": "AUTONOMOUS",
   "max_iterations": 10,
   "convergence_threshold": 0.05,

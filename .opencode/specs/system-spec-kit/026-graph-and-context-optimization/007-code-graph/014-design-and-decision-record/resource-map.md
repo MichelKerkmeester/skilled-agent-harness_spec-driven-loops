@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "reference"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/015-design-and-decision-record"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-design-and-decision-record"
     last_updated_at: "2026-05-14T10:00:00Z"
     last_updated_by: "claude"
     recent_action: "Finalized resource map with ADR-001 dispositions"
@@ -124,7 +124,7 @@ Final disposition catalog. All `tbd` markers resolved by ADR-001. Disposition co
 
 | Path | Category | Disposition | Notes |
 |------|----------|-------------|-------|
-| This packet (015-design-and-decision-record/) | spec | n/a | the research packet itself |
+| This packet (014-design-and-decision-record/) | spec | n/a | the research packet itself |
 | `007-code-graph/002-code-graph-self-contained-package/` | spec | n/a | superseded by 014 |
 | `007-code-graph/` (parent) | spec | update | phase map appends 014 row |
 
@@ -175,7 +175,7 @@ Final disposition catalog. All `tbd` markers resolved by ADR-001. Disposition co
 | `.../013-system-code-graph-extraction/spec.md` | meta | n/a | parent manifest |
 | `.../013-system-code-graph-extraction/description.json` | meta | n/a | parent description |
 | `.../013-system-code-graph-extraction/graph-metadata.json` | meta | n/a | parent graph metadata |
-| `.../015-design-and-decision-record/{spec,plan,tasks,checklist}.md` | meta | n/a | child packet docs |
+| `.../014-design-and-decision-record/{spec,plan,tasks,checklist}.md` | meta | n/a | child packet docs |
 
 ## Cross-subsystem integration handlers (stay in system-spec-kit; re-wire imports)
 
