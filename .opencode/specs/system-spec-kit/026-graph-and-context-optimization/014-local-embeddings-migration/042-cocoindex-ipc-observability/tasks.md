@@ -9,7 +9,7 @@ contextType: "spec"
 status: "complete"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/_042-cocoindex-ipc-observability"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/042-cocoindex-ipc-observability"
     last_updated_at: "2026-05-14T16:20:00Z"
     last_updated_by: "main-agent"
     recent_action: "Completed CocoIndex observability tasks"
@@ -18,7 +18,7 @@ _memory:
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000041"
-      session_id: "_042-cocoindex-ipc-observability-tasks"
+      session_id: "042-cocoindex-ipc-observability-tasks"
       parent_session_id: null
     completion_pct: 100
     open_questions: []
@@ -47,7 +47,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Scaffold Level 2 phase packet at `_042-cocoindex-ipc-observability`.
+- [x] T001 Scaffold Level 2 phase packet at `042-cocoindex-ipc-observability`.
 - [x] T002 Read packet 035 `spec.md` and `implementation-summary.md`.
 - [x] T003 Inspect CocoIndex source tree and Python test conventions.
 <!-- /ANCHOR:phase-1 -->

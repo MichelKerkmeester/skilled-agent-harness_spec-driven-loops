@@ -9,7 +9,7 @@ contextType: "spec"
 status: "complete"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/_042-cocoindex-ipc-observability"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/042-cocoindex-ipc-observability"
     last_updated_at: "2026-05-14T16:20:00Z"
     last_updated_by: "main-agent"
     recent_action: "Verified CocoIndex observability packet"
@@ -18,7 +18,7 @@ _memory:
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000041"
-      session_id: "_042-cocoindex-ipc-observability-checklist"
+      session_id: "042-cocoindex-ipc-observability-checklist"
       parent_session_id: null
     completion_pct: 100
     open_questions: []

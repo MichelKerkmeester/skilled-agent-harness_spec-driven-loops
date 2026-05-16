@@ -11,7 +11,7 @@ contextType: "spec"
 status: "complete"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/_042-cocoindex-ipc-observability"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/042-cocoindex-ipc-observability"
     last_updated_at: "2026-05-14T16:20:00Z"
     last_updated_by: "main-agent"
     recent_action: "Added CocoIndex IPC observability and configurable MCP timeout"
@@ -27,7 +27,7 @@ _memory:
       - ".opencode/skills/mcp-coco-index/mcp_server/tests/test_observability.py"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000041"
-      session_id: "_042-cocoindex-ipc-observability"
+      session_id: "042-cocoindex-ipc-observability"
       parent_session_id: null
     completion_pct: 100
     open_questions:
@@ -48,7 +48,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/_042-cocoindex-ipc-observability` |
+| **Spec Folder** | `system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/042-cocoindex-ipc-observability` |
 | **Started** | 2026-05-14 |
 | **Completed** | 2026-05-14 |
 | **Level** | 2 |
@@ -148,7 +148,7 @@ The implementation followed the code path mapped by packet 035: FastMCP wrapper,
 | Editable build | PASS | `.venv/bin/python -m pip install -e . --no-deps --no-build-isolation` exit 0. Isolated build failed first because network is restricted and pip tried to fetch `setuptools>=61`. |
 | CLI health check | PASS | `.venv/bin/ccc --help` listed `init`, `index`, `search`, `status`, `reset`, `mcp`, and `daemon`. No `.opencode/bin` CocoIndex launcher was found. |
 | OpenCode alignment | PASS | `python3 .opencode/skills/sk-code/assets/scripts/verify_alignment_drift.py --root .opencode/skills/mcp-coco-index/mcp_server` exit 0 with non-blocking package-wide shebang/docstring warnings. |
-| Strict validate | PASS | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/_042-cocoindex-ipc-observability --strict` -> `RESULT: PASSED`. |
+| Strict validate | PASS | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/042-cocoindex-ipc-observability --strict` -> `RESULT: PASSED`. |
 <!-- /ANCHOR:verification -->
 
 ---
