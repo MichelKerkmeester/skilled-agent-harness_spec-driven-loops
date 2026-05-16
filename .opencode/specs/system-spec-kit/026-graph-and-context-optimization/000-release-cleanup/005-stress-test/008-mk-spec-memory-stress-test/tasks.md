@@ -8,17 +8,18 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/008-mk-spec-memory-stress-test"
-    last_updated_at: "2026-05-16T14:30:00Z"
+    last_updated_at: "2026-05-16T14:47:00Z"
     last_updated_by: "main_agent"
-    recent_action: "T2.1: 24→25 categories + heavy-cat split guidance"
-    next_safe_action: "Future session executes Phase 0 baseline"
+    recent_action: "Phase 0 complete: baseline 5/5 PASS + global checkpoint"
+    next_safe_action: "Scaffold evidence/ subdir + agent-config-008.json then dispatch Phase 1"
     blockers: []
-    key_files: []
+    key_files:
+      - "handover.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000008003"
       session_id: "008-tasks"
       parent_session_id: null
-    completion_pct: 5
+    completion_pct: 25
     open_questions: []
     answered_questions: []
 ---
@@ -44,12 +45,12 @@ _memory:
 ## 2. PHASE 1: SETUP
 
 ### Baseline
-- [ ] T0.1: Verify git HEAD includes packet 113 commits
-- [ ] T0.2: `cli.js stats` shows ≥ 11201 memories, schema v27
-- [ ] T0.3: z_archive row count ≥ 2618 in `memory_index`
-- [ ] T0.4: `getArchiveMultiplier('/foo/z_archive/bar')` returns 0.1
-- [ ] T0.5: vitest 159/159 on the 2 targeted files
-- [ ] T0.6: `checkpoint_create` named `pre-008-sweep-<UTC>`
+- [x] T0.1: Verify git HEAD includes packet 113 commits — 7/8 listed hits in ancestry (956595dbd, 58e3f3646, aaf509797, 296e64b2d, 3909f8202, 12302d853, b062b12b4); `280fe4888` subject is "config:" so grep missed but commit is present; bonus `37daeb8cb 113 W4: backfill...` also in ancestry
+- [x] T0.2: `cli.js stats` shows ≥ 11201 memories, schema v27 — actual: 11426 memories, schema v27
+- [x] T0.3: z_archive row count ≥ 2618 in `memory_index` — actual: 2786 (+168 ambient growth since handover authored; handover §2 explicitly allows "give or take")
+- [x] T0.4: `getArchiveMultiplier('/foo/z_archive/bar')` returns 0.1 — actual: 0.1
+- [x] T0.5: vitest 159/159 on the 2 targeted files — actual: 159/159 passed in 732ms
+- [x] T0.6: `checkpoint_create` named `pre-008-sweep-<UTC>` — created `pre-008-sweep-20260516T144620Z` (id=2, global scope, 11426 memories, 124 MB snapshot at 2026-05-16T14:46:52Z)
 
 ### 39-tool inventory sweep
 - [ ] T1.1: Generate 39 cli-devin prompts (one per mk-spec-memory tool)
