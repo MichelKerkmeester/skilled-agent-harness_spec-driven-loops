@@ -1,10 +1,10 @@
 ## Packet 048: remaining-p1-p2-remediation — Tier C bulk remediation
 
-You are cli-codex (gpt-5.5 high fast) implementing **035-remaining-p1-p2-remediation**.
+You are cli-codex (gpt-5.5 high fast) implementing **005-remaining-p1-p2-remediation**.
 
 ### CRITICAL: Spec folder path
 
-The packet folder is: `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/035-remaining-p1-p2-remediation/` — write ALL packet files there. Do NOT ask for the spec folder.
+The packet folder is: `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/005-remaining-p1-p2-remediation/` — write ALL packet files there. Do NOT ask for the spec folder.
 
 ### Goal
 
@@ -97,7 +97,7 @@ PLUS: `decision-record.md` (Tier γ defaults), `remediation-log.md` (per-finding
 
 **Deps**: `manual.depends_on=["system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-release-readiness-synthesis-and-remediation"]`.
 
-**Trigger phrases**: `["035-remaining-p1-p2-remediation","P1 P2 backlog","release polish","conservative defaults pass"]`.
+**Trigger phrases**: `["005-remaining-p1-p2-remediation","P1 P2 backlog","release polish","conservative defaults pass"]`.
 
 **Causal summary**: `"Works through the 24 P1 + 15 P2 findings remaining after 046. Tier β.5 + β.6 doc fixes applied directly; Tier γ design calls apply documented conservative defaults; Tier δ engineering work applied surgically. Operator action 005-P1-1 deferred to non-sandboxed shell run. P2 cleanups applied where safe."`.
 

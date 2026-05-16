@@ -2,7 +2,7 @@
 title: "Deferred P2 Items: 048 Remaining Remediation"
 description: "P2 findings deferred because they require a design call, larger code changes, normal-shell evidence, or protected config edits."
 trigger_phrases:
-  - "035-remaining-p1-p2-remediation"
+  - "005-remaining-p1-p2-remediation"
   - "deferred P2"
   - "P2 backlog"
 importance_tier: "important"

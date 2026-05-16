@@ -2,7 +2,7 @@
 title: "Remediation Log: 048 Remaining P1/P2 Remediation"
 description: "Per-finding outcome log for the remaining P1/P2 backlog after packet 046."
 trigger_phrases:
-  - "035-remaining-p1-p2-remediation"
+  - "005-remaining-p1-p2-remediation"
   - "P1 P2 backlog"
   - "release polish"
   - "remediation log"

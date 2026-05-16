@@ -1,14 +1,14 @@
 {
   "title": "048 Remaining P1/P2 Remediation",
   "trigger_phrases": [
-    "035-remaining-p1-p2-remediation",
+    "005-remaining-p1-p2-remediation",
     "P1 P2 backlog",
     "release polish",
     "conservative defaults pass"
   ],
   "contextType": "implementation",
   "importance_tier": "important",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/035-remaining-p1-p2-remediation",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-remaining-p1-p2-remediation",
   "description": "Feature Specification: 048 Remaining P1/P2 Remediation",
   "keywords": [
     "feature",

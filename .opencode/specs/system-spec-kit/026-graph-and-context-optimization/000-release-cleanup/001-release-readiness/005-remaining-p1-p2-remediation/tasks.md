@@ -3,7 +3,7 @@ title: "Tasks: 048 Remaining P1/P2 Remediation"
 description: "Task list for the remaining P1/P2 remediation packet."
 template_source: "SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2"
 trigger_phrases:
-  - "035-remaining-p1-p2-remediation"
+  - "005-remaining-p1-p2-remediation"
   - "P1 P2 backlog"
   - "release polish"
   - "conservative defaults pass"
@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "tasks"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/035-remaining-p1-p2-remediation"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/005-remaining-p1-p2-remediation"
     last_updated_at: "2026-04-30T00:00:00+02:00"
     last_updated_by: "codex"
     recent_action: "Completed verification"
@@ -22,7 +22,7 @@ _memory:
       - "checklist.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "035-remaining-p1-p2-remediation"
+      session_id: "005-remaining-p1-p2-remediation"
       parent_session_id: null
     completion_pct: 100
     open_questions: []

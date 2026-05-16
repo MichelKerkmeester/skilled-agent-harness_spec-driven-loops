@@ -4895,7 +4895,7 @@
       "lastUpdated": "2026-05-08T08:26:57.390Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/035-remaining-p1-p2-remediation",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-remaining-p1-p2-remediation",
       "description": "Feature Specification: 048 Remaining P1/P2 Remediation",
       "keywords": [
         "feature",

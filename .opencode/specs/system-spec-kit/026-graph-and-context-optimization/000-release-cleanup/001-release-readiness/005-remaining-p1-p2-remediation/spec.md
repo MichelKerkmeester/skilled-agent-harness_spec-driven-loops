@@ -3,7 +3,7 @@ title: "Feature Specification: 048 Remaining P1/P2 Remediation"
 description: "Works through the remaining P1 and P2 release-readiness findings after packet 046. Applies conservative fixes where scope is clear, records Tier gamma defaults, and defers operator-only or larger P2 work."
 template_source: "SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2"
 trigger_phrases:
-  - "035-remaining-p1-p2-remediation"
+  - "005-remaining-p1-p2-remediation"
   - "P1 P2 backlog"
   - "release polish"
   - "conservative defaults pass"
@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "specification"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/035-remaining-p1-p2-remediation"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/005-remaining-p1-p2-remediation"
     last_updated_at: "2026-04-30T00:00:00+02:00"
     last_updated_by: "codex"
     recent_action: "Completed packet"
@@ -23,7 +23,7 @@ _memory:
       - "decision-record.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "035-remaining-p1-p2-remediation"
+      session_id: "005-remaining-p1-p2-remediation"
       parent_session_id: null
     completion_pct: 100
     open_questions: []
@@ -46,7 +46,7 @@ _memory:
 | **Priority** | P1 |
 | **Status** | Complete |
 | **Created** | 2026-04-30 |
-| **Branch** | `035-remaining-p1-p2-remediation` |
+| **Branch** | `005-remaining-p1-p2-remediation` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -98,7 +98,7 @@ the packet scope.
 | `.opencode/plugins/spec-kit-skill-advisor.js` | Modify | OpenCode missing-prompt diagnostic |
 | `README.md` | Modify | Broken local release-note link repair |
 | `specs/.../005-memory-indexer-invariants/graph-metadata.json` | Modify | Legacy grandfather flag |
-| `specs/.../035-remaining-p1-p2-remediation/` | Create | Packet docs and ledgers |
+| `specs/.../005-remaining-p1-p2-remediation/` | Create | Packet docs and ledgers |
 <!-- /ANCHOR:scope -->
 
 ---
