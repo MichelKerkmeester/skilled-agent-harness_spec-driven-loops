@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/020-memory-retention-sweep",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/020-memory-retention-sweep",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/005-memory-retention-sweep",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/005-memory-retention-sweep",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization",
   "children_ids": [],
   "migrated": true,
@@ -13,7 +13,7 @@
   },
   "derived": {
     "trigger_phrases": [
-      "020-memory-retention-sweep",
+      "005-memory-retention-sweep",
       "memory retention sweep",
       "delete_after sweep",
       "retention enforcement",
@@ -27,7 +27,7 @@
       "memory retention sweep summary"
     ],
     "key_topics": [
-      "020-memory-retention-sweep",
+      "005-memory-retention-sweep",
       "memory",
       "retention",
       "sweep",
@@ -62,7 +62,7 @@
       ".opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts",
       "tools/memory-tools.ts",
       "tools/types.ts",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/020-memory-retention-sweep/checklist.md"
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/005-memory-retention-sweep/checklist.md"
     ],
     "entities": [
       {
@@ -86,7 +86,7 @@
       {
         "name": "checklist.md",
         "kind": "doc",
-        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/020-memory-retention-sweep/checklist.md",
+        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/005-memory-retention-sweep/checklist.md",
         "source": "derived"
       },
       {

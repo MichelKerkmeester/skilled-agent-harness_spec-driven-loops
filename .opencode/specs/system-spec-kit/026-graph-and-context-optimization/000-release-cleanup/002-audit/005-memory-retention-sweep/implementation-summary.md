@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/020-memory-retention-sweep"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/005-memory-retention-sweep"
     last_updated_at: "2026-04-29T20:35:30+02:00"
     last_updated_by: "cli-codex"
     recent_action: "Resource map indexed"
@@ -29,7 +29,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 020-memory-retention-sweep |
+| **Spec Folder** | 005-memory-retention-sweep |
 | **Created** | 2026-04-29 |
 | **Status** | Complete |
 | **Level** | 2 |
@@ -107,7 +107,7 @@ Phase 1 initialized the Level 2 packet files. Phase 2 added the shared sweep, MC
 |-------|--------------------|--------|
 | Targeted retention test | `npx vitest run memory-retention-sweep` | PASS: 1 file, 6 tests |
 | TypeScript build | `npm run build` | PASS: exit 0 |
-| Strict validation | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/020-memory-retention-sweep --strict` | PASS: final run exits 0 |
+| Strict validation | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/005-memory-retention-sweep --strict` | PASS: final run exits 0 |
 <!-- /ANCHOR:verification -->
 
 ---

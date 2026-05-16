@@ -3,7 +3,7 @@ title: "Spec: Memory Retention Sweep"
 template_source: "SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2"
 description: "Tier B-alpha implementation for governed memory retention enforcement over memory_index.delete_after."
 trigger_phrases:
-  - "020-memory-retention-sweep"
+  - "005-memory-retention-sweep"
   - "memory retention sweep"
   - "delete_after sweep"
   - "retention enforcement"
@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/020-memory-retention-sweep"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/005-memory-retention-sweep"
     last_updated_at: "2026-04-29T20:35:30+02:00"
     last_updated_by: "cli-codex"
     recent_action: "Resource map indexed"

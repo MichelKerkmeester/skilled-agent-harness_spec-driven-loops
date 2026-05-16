@@ -56,7 +56,7 @@ llama-cpp top-5:
 
 ### Example 2
 
-Query: Spec folder: system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/020-memory-retention-sweep Description: Spec: Memory Retention Sweep Spec id: 020 Folder slug: memory-retention-sweep Parent chain: system-spec-kit > 026-graph-and-context-optimization > 000-release-cleanup Keywords: spec, memory,
+Query: Spec folder: system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-memory-retention-sweep Description: Spec: Memory Retention Sweep Spec id: 020 Folder slug: memory-retention-sweep Parent chain: system-spec-kit > 026-graph-and-context-optimization > 000-release-cleanup Keywords: spec, memory,
 
 Target doc: 885
 

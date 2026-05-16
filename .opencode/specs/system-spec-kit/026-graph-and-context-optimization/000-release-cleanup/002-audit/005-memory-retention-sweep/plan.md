@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/020-memory-retention-sweep"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/005-memory-retention-sweep"
     last_updated_at: "2026-04-29T14:03:15Z"
     last_updated_by: "cli-codex"
     recent_action: "Retention sweep complete"
@@ -49,7 +49,7 @@ Implement one retention sweep core used by both manual MCP invocation and the sc
 
 ### Definition of Ready
 
-- [x] Packet folder identified. [EVIDENCE: user requested `020-memory-retention-sweep`]
+- [x] Packet folder identified. [EVIDENCE: user requested `005-memory-retention-sweep`]
 - [x] Source research identified. [EVIDENCE: `../017-automation-reality-supplemental-research/research/research-report.md:149-161`]
 - [x] Deletion path identified. [EVIDENCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:575-623`]
 

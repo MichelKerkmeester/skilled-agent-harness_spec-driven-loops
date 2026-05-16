@@ -23,7 +23,7 @@ specs/system-spec-kit/026-graph-and-context-optimization/
 ├── 017-automation-reality-supplemental-research/
 ├── 003-doc-truth-pass/
 ├── 004-code-graph-watcher-retraction/
-├── 020-memory-retention-sweep/
+├── 005-memory-retention-sweep/
 ├── 021-half-auto-upgrades/
 ├── 022-full-matrix-execution-validation/
 ├── 023-cli-matrix-adapter-runners/
@@ -49,7 +49,7 @@ For each packet, derive the touched paths from git history filtered to that pack
 
 ```bash
 # Find commits matching packet ID
-PACKET=020-memory-retention-sweep
+PACKET=005-memory-retention-sweep
 COMMIT=$(git --no-pager log --oneline --grep="$PACKET" | tail -1 | awk '{print $1}')
 # Use commit SHA reference to extract files
 git --no-pager show --name-only --format='' "$COMMIT" | sort -u

@@ -55,7 +55,7 @@ Other playbook directories found included `cli-codex`, `cli-gemini`, `cli-claude
 | Packet | Evidence Used |
 |--------|---------------|
 | 032 | `../../004-code-graph-watcher-retraction/spec.md`, `plan.md`, and `implementation-summary.md` document read-path/manual freshness. |
-| 033 | `../../020-memory-retention-sweep/spec.md` and MCP README document `memory_retention_sweep`. |
+| 033 | `../../005-memory-retention-sweep/spec.md` and MCP README document `memory_retention_sweep`. |
 | 034 | `../../021-half-auto-upgrades/spec.md` and Skill Advisor handlers document diagnostic `advisor_status` plus explicit `advisor_rebuild`. |
 | 035 | `022-full-matrix-execution-validation/logs/feature-runs/F5-code-graph-query.log`, `F6-code-graph-verify.log`, `F7-causal-graph.log`, `F8-cocoindex-calibration.log`, plus F5-F8 JSONL result files. |
 | 036 | `.opencode/skills/system-spec-kit/mcp_server/matrix_runners/README.md`, `matrix-manifest.json`, adapters, and matrix adapter tests. |

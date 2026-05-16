@@ -1,14 +1,14 @@
 ---
 title: "Resource Map - 033 memory retention sweep"
-description: "File ledger for 020-memory-retention-sweep."
+description: "File ledger for 005-memory-retention-sweep."
 trigger_phrases:
-  - "020-memory-retention-sweep resource map"
+  - "005-memory-retention-sweep resource map"
   - "memory retention sweep file ledger"
 importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/020-memory-retention-sweep"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/005-memory-retention-sweep"
     last_updated_at: "2026-04-29T20:35:30+02:00"
     last_updated_by: "codex-gpt-5.5"
     recent_action: "Resource map indexed"
@@ -32,7 +32,7 @@ _memory:
 - **Total references**: 19
 - **By category**: READMEs=0, Documents=0, Commands=0, Agents=0, Skills=11, Specs=8, Scripts=0, Tests=0, Config=0, Meta=0
 - **Missing on disk**: 0
-- **Scope**: All files created, updated, or analyzed during 020-memory-retention-sweep.
+- **Scope**: All files created, updated, or analyzed during 005-memory-retention-sweep.
 - **Generated**: 2026-04-29T20:29:34+02:00
 
 > **Action vocabulary**: `Created` · `Updated` · `Analyzed` · `Removed` · `Cited` · `Validated` · `Moved` · `Renamed`.
@@ -71,14 +71,14 @@ _memory:
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/020-memory-retention-sweep/checklist.md` | Created | OK | Packet-local spec artifact. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/020-memory-retention-sweep/description.json` | Created | OK | Packet discovery metadata refreshed by canonical save. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/020-memory-retention-sweep/graph-metadata.json` | Created | OK | Packet graph metadata refreshed by canonical save. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/020-memory-retention-sweep/implementation-summary.md` | Created | OK | Packet-local spec artifact. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/020-memory-retention-sweep/plan.md` | Created | OK | Packet-local spec artifact. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/020-memory-retention-sweep/research/prompts/iteration-001.md` | Created | OK | Research or prompt artifact captured by the packet. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/020-memory-retention-sweep/spec.md` | Created | OK | Packet-local spec artifact. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/020-memory-retention-sweep/tasks.md` | Created | OK | Packet-local spec artifact. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/005-memory-retention-sweep/checklist.md` | Created | OK | Packet-local spec artifact. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/005-memory-retention-sweep/description.json` | Created | OK | Packet discovery metadata refreshed by canonical save. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/005-memory-retention-sweep/graph-metadata.json` | Created | OK | Packet graph metadata refreshed by canonical save. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/005-memory-retention-sweep/implementation-summary.md` | Created | OK | Packet-local spec artifact. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/005-memory-retention-sweep/plan.md` | Created | OK | Packet-local spec artifact. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/005-memory-retention-sweep/research/prompts/iteration-001.md` | Created | OK | Research or prompt artifact captured by the packet. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/005-memory-retention-sweep/spec.md` | Created | OK | Packet-local spec artifact. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/005-memory-retention-sweep/tasks.md` | Created | OK | Packet-local spec artifact. |
 <!-- /ANCHOR:specs -->
 
 ---

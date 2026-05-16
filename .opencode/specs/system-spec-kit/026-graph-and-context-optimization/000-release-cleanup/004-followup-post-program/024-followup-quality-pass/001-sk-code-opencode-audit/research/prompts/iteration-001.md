@@ -100,7 +100,7 @@ For each VIOLATION in the findings: apply the minimal fix using Edit. Re-audit t
 - spec.md, plan.md, tasks.md, checklist.md, implementation-summary.md, description.json, graph-metadata.json
 - PLUS: audit-findings.md at packet root
 
-**Deps**: `manual.depends_on=["system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/020-memory-retention-sweep","system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/021-half-auto-upgrades","system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/023-cli-matrix-adapter-runners"]` (036 may not exist yet at audit-time — that's OK, audit what's present).
+**Deps**: `manual.depends_on=["system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/005-memory-retention-sweep","system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/021-half-auto-upgrades","system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/023-cli-matrix-adapter-runners"]` (036 may not exist yet at audit-time — that's OK, audit what's present).
 
 **Trigger phrases**: `["037-001-sk-code-opencode-audit","sk-code-opencode audit","audit 033 034 036","standards alignment audit"]`.
 

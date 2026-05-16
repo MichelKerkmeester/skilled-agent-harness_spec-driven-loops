@@ -6084,7 +6084,7 @@ END{
 ./.opencode/specs/system-spec-kit/z_archive/022-hybrid-rag-fusion/008-hydra-db-based-features/research/002 - recommendations-turso-migration-and-hydradb-inspired-roadmap.md
 ./.opencode/specs/system-spec-kit/z_archive/022-hybrid-rag-fusion/008-hydra-db-based-features/research/001 - analysis-hydradb-architecture-and-turso-fit.md
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-graph-impact-and-affordance-uplift/008-deep-research-review/research/008-deep-research-review-pt-01/logs/iteration-002.log
-./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/020-memory-retention-sweep/logs/iter-001.log
+./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-memory-retention-sweep/logs/iter-001.log
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/043-stress-test-gap-remediation/logs/stress-run-20260430-190737Z.log
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/043-stress-test-gap-remediation/scratch/codex-batch-B.log
 ./.opencode/specs/system-spec-kit/z_archive/020-mcp-working-memory-hybrid-rag/research/136 - analysis-working-memory-hybrid-rag-systems.md

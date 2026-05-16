@@ -8,7 +8,7 @@ Runtime wiring, compliance checks, alignment reviews, sweeps. Hosts the absorbed
 - `002-w3-w7-runtime-wiring-and-audit`
 - `003-doc-truth-pass`
 - `004-code-graph-watcher-retraction`
-- `020-memory-retention-sweep`
+- `005-memory-retention-sweep`
 - `022-full-matrix-execution-validation`
 - `036-runtime-command-agent-alignment-review`
 - `045-drift-finding-fixes`

@@ -4492,7 +4492,7 @@
       "lastUpdated": "2026-05-08T08:26:57.251Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/020-memory-retention-sweep",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-memory-retention-sweep",
       "description": "Spec: Memory Retention Sweep",
       "keywords": [
         "spec",

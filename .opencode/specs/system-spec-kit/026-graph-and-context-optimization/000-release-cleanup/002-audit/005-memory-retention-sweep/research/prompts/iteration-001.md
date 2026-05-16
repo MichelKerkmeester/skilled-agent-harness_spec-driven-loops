@@ -1,6 +1,6 @@
 ## Packet 033: memory-retention-sweep — Tier B-α implementation
 
-You are cli-codex (gpt-5.5 high fast) implementing remediation packet **020-memory-retention-sweep**.
+You are cli-codex (gpt-5.5 high fast) implementing remediation packet **005-memory-retention-sweep**.
 
 ### Goal
 
@@ -54,11 +54,11 @@ Per the 013 research-report's recommendation, the **α path** (audit-worthy) is 
 
 ### Packet structure to create (Level 2)
 
-Same 7-file structure as 031 under `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/020-memory-retention-sweep/`. Use 013's packet as template.
+Same 7-file structure as 031 under `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/005-memory-retention-sweep/`. Use 013's packet as template.
 
 **Deps**: `manual.depends_on=["system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-doc-truth-pass"]`, `manual.related_to=["system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/017-automation-reality-supplemental-research"]`.
 
-**Trigger phrases**: `["020-memory-retention-sweep","memory retention sweep","delete_after sweep","retention enforcement"]`.
+**Trigger phrases**: `["005-memory-retention-sweep","memory retention sweep","delete_after sweep","retention enforcement"]`.
 
 **Causal summary**: `"Tier B-α implementation: adds retention sweep over memory_index.delete_after; new MCP tool memory_retention_sweep, env flags, audit logging, and tests. Closes 013 P1-2."`.
 

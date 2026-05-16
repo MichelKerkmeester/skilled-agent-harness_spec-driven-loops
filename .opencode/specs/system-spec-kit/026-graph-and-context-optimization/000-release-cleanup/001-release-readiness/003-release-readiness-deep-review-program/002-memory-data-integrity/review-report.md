@@ -95,7 +95,7 @@ Audit dimensions:
 - `.opencode/skills/system-spec-kit/mcp_server/lib/governance/memory-retention-sweep.ts:132` selects candidates before the deletion transaction.
 - `.opencode/skills/system-spec-kit/mcp_server/lib/governance/memory-retention-sweep.ts:152` through `.opencode/skills/system-spec-kit/mcp_server/lib/governance/memory-retention-sweep.ts:196` deletes each candidate in one transaction and writes history/audit/ledger records.
 - `.opencode/skills/system-spec-kit/mcp_server/tests/memory-retention-sweep.vitest.ts:180` through `.opencode/skills/system-spec-kit/mcp_server/tests/memory-retention-sweep.vitest.ts:193` claims interleaving coverage, but both operations use `Promise.resolve().then(...)` over the same synchronous `better-sqlite3` connection.
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/020-memory-retention-sweep/checklist.md:68` records interleaving coverage as complete, which now overstates the fixture's concurrency strength.
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/005-memory-retention-sweep/checklist.md:68` records interleaving coverage as complete, which now overstates the fixture's concurrency strength.
 
 **Fix:** Add a file-backed SQLite fixture with two independent DB handles and explicit barriers. Start a sweep after candidate selection, run `memory_save` or equivalent insert from another handle, then release deletion and assert `memory_index`, `memory_fts`, `vec_memories`, active projections, causal refs, governance audit rows, and health consistency. Include a second case where a row becomes expired during the sweep and must be handled by the next sweep, not the current candidate set.
 
@@ -216,7 +216,7 @@ Non-goals:
 - `.opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts`
 - `.opencode/skills/system-spec-kit/mcp_server/tests/memory-retention-sweep.vitest.ts`
 - `.opencode/skills/system-spec-kit/mcp_server/tests/embedding-cache.vitest.ts`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/020-memory-retention-sweep/`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/005-memory-retention-sweep/`
 
 ### Positive Controls
 

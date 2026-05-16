@@ -65,4 +65,4 @@ The MCP schema registers the tool under L4 mutation and the memory-tool dispatch
 - Canonical catalog source: `feature_catalog.md`
 - Feature file path: `02--mutation/12-memory-retention-sweep.md`
 
-- Packet source: `020-memory-retention-sweep`
+- Packet source: `005-memory-retention-sweep`
