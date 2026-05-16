@@ -1,0 +1,8 @@
+BASE_111  dbd3fbe79b48122bab02acee0d2dd15c6ddfc687  pre-scaffold
+BASE_W3A  TBD  pre-W3.A
+BASE_W3B  TBD  pre-W3.B
+BASE_W3C  TBD  pre-W3.C
+BASE_W3D  TBD  pre-W3.D
+BASE_W3E  TBD  pre-W3.E
+BASE_W3F  TBD  pre-W3.F
+BASE_W3G  TBD  pre-W3.G
