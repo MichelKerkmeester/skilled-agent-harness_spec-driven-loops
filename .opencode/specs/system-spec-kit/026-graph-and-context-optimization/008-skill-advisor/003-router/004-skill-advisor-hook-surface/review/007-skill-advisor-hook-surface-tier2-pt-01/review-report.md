@@ -15,7 +15,7 @@ The P1 findings require a remediation packet because they cross runtime contract
 ```json
 {
   "planningPacket": {
-    "suggestedSpecFolder": "specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-skill-advisor-hook-surface/010-copilot-current-turn-contract",
+    "suggestedSpecFolder": "specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-skill-advisor-hook-surface/010-copilot-current-turn-contract",
     "trigger": "Copilot advisor hook current-turn semantics and release evidence drift",
     "verdict": "CONDITIONAL",
     "p0": 0,

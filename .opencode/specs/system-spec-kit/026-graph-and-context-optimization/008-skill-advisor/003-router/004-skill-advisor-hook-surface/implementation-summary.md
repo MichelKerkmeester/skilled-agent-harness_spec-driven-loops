@@ -1,5 +1,5 @@
 ---
-title: "...-kit/026-graph-and-context-optimization/008-skill-advisor/007-skill-advisor-hook-surface/implementation-summary]"
+title: "...-kit/026-graph-and-context-optimization/008-skill-advisor/004-skill-advisor-hook-surface/implementation-summary]"
 description: "Phase 020 complete: cross-runtime advisor hook surface shipped across Claude/Gemini/Copilot/Codex with 4-runtime parity, 200/200 corpus parity, cache-hit p95 0.016ms, hit rate 66.7%, DQI 97 reference doc."
 template_source: "SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2"
 trigger_phrases:
@@ -9,7 +9,7 @@ importance_tier: "critical"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-skill-advisor-hook-surface"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-skill-advisor-hook-surface"
     last_updated_at: "2026-04-28T19:30:00Z"
     last_updated_by: "codex-gpt-5-hygiene-pass"
     recent_action: "Hygiene pass - validator structure"
@@ -33,7 +33,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 --
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 007-skill-advisor-hook-surface |
+| **Spec Folder** | 004-skill-advisor-hook-surface |
 | **Completed** | 2026-04-19 |
 | **Level** | 3 |
 | **Child Layout** | `001-initial-research` (converged); `002-shared-payload-advisor-contract`; `003-advisor-freshness-and-source-cache`; `004-advisor-brief-producer-cache-policy`; `005-advisor-renderer-and-regression-harness` (HARD GATE); `006-claude-hook-wiring`; `007-gemini-copilot-hook-wiring`; `008-codex-integration-and-hook-policy`; `009-documentation-and-release-contract` |

@@ -1,5 +1,5 @@
 ---
-title: "Ver [system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-skill-advisor-hook-surface/checklist]"
+title: "Ver [system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-skill-advisor-hook-surface/checklist]"
 description: "Level 3 umbrella verification checklist for 020."
 trigger_phrases:
   - "020 checklist"
@@ -7,7 +7,7 @@ importance_tier: "critical"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-skill-advisor-hook-surface"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-skill-advisor-hook-surface"
     last_updated_at: "2026-04-28T19:30:00Z"
     last_updated_by: "codex-gpt-5-hygiene-pass"
     recent_action: "Hygiene pass - validator structure"

@@ -45,7 +45,7 @@ PACKETS = [
     "008-skill-advisor/006-deferred-remediation-and-telemetry-run",
 
     # 008 children (from 010 — new parent + new slot)
-    "008-skill-advisor/007-skill-advisor-hook-surface",
+    "008-skill-advisor/004-skill-advisor-hook-surface",
     "008-skill-advisor/002-skill-graph-daemon-and-advisor-unification",
     "008-skill-advisor/009-skill-advisor-plugin-hardening",
     "008-skill-advisor/010-skill-advisor-standards-alignment",

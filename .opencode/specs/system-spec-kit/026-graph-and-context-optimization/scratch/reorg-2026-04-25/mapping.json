@@ -9,7 +9,7 @@
     "scratch/manual-test-prompts-029-hooks"
   ],
   "moves": [
-    { "kind": "move", "old": "010-hook-package/001-skill-advisor-hook-surface", "new": "008-skill-advisor/007-skill-advisor-hook-surface", "topic": "skill-advisor" },
+    { "kind": "move", "old": "010-hook-package/001-skill-advisor-hook-surface", "new": "008-skill-advisor/004-skill-advisor-hook-surface", "topic": "skill-advisor" },
     { "kind": "move", "old": "010-hook-package/002-skill-graph-daemon-and-advisor-unification", "new": "008-skill-advisor/002-skill-graph-daemon-and-advisor-unification", "topic": "skill-advisor" },
     { "kind": "move", "old": "010-hook-package/008-skill-advisor-plugin-hardening", "new": "008-skill-advisor/009-skill-advisor-plugin-hardening", "topic": "skill-advisor" },
     { "kind": "move", "old": "010-hook-package/009-skill-advisor-standards-alignment", "new": "008-skill-advisor/010-skill-advisor-standards-alignment", "topic": "skill-advisor" },
@@ -36,7 +36,7 @@
   ],
   "substitutions_ordered": [
     "Order: longest-prefix-first. Apply in sequence; do not reorder.",
-    { "old": "026-graph-and-context-optimization/010-hook-package/001-skill-advisor-hook-surface", "new": "026-graph-and-context-optimization/008-skill-advisor/007-skill-advisor-hook-surface" },
+    { "old": "026-graph-and-context-optimization/010-hook-package/001-skill-advisor-hook-surface", "new": "026-graph-and-context-optimization/008-skill-advisor/004-skill-advisor-hook-surface" },
     { "old": "026-graph-and-context-optimization/010-hook-package/002-skill-graph-daemon-and-advisor-unification", "new": "026-graph-and-context-optimization/008-skill-advisor/002-skill-graph-daemon-and-advisor-unification" },
     { "old": "026-graph-and-context-optimization/010-hook-package/008-skill-advisor-plugin-hardening", "new": "026-graph-and-context-optimization/008-skill-advisor/009-skill-advisor-plugin-hardening" },
     { "old": "026-graph-and-context-optimization/010-hook-package/009-skill-advisor-standards-alignment", "new": "026-graph-and-context-optimization/008-skill-advisor/010-skill-advisor-standards-alignment" },
@@ -51,7 +51,7 @@
     { "old": "026-graph-and-context-optimization/010-hook-package/010-copilot-wrapper-schema-fix", "new": "026-graph-and-context-optimization/010-hook-parity/006-copilot-wrapper-schema-fix" },
     { "old": "026-graph-and-context-optimization/010-hook-package/011-copilot-writer-wiring", "new": "026-graph-and-context-optimization/010-hook-parity/007-copilot-writer-wiring" },
     { "old": "026-graph-and-context-optimization/010-hook-package/012-docs-impact-remediation", "new": "026-graph-and-context-optimization/010-hook-parity/008-docs-impact-remediation" },
-    { "old": "026-graph-and-context-optimization/009-hook-package/001-skill-advisor-hook-surface", "new": "026-graph-and-context-optimization/008-skill-advisor/007-skill-advisor-hook-surface" },
+    { "old": "026-graph-and-context-optimization/009-hook-package/001-skill-advisor-hook-surface", "new": "026-graph-and-context-optimization/008-skill-advisor/004-skill-advisor-hook-surface" },
     { "old": "026-graph-and-context-optimization/009-hook-package/002-skill-graph-daemon-and-advisor-unification", "new": "026-graph-and-context-optimization/008-skill-advisor/002-skill-graph-daemon-and-advisor-unification" },
     { "old": "026-graph-and-context-optimization/009-hook-package/008-skill-advisor-plugin-hardening", "new": "026-graph-and-context-optimization/008-skill-advisor/009-skill-advisor-plugin-hardening" },
     { "old": "026-graph-and-context-optimization/009-hook-package/009-skill-advisor-standards-alignment", "new": "026-graph-and-context-optimization/008-skill-advisor/010-skill-advisor-standards-alignment" },

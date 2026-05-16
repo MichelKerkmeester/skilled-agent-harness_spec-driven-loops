@@ -30,10 +30,10 @@
     "supersedes": [],
     "related_to": [
       {
-        "packet_id": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-skill-advisor-hook-surface",
+        "packet_id": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-skill-advisor-hook-surface",
         "reason": "related_to relationship preserved during phase consolidation",
         "source": "026-phase-consolidation",
-        "spec_folder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-skill-advisor-hook-surface"
+        "spec_folder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-skill-advisor-hook-surface"
       },
       {
         "packet_id": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-skill-graph-daemon-and-advisor-unification",

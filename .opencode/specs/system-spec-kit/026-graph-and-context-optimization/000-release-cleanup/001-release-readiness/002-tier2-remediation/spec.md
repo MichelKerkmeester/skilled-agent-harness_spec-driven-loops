@@ -93,8 +93,8 @@ Close the 15 actionable Tier 2 findings to move D/E/F/G from CONDITIONAL toward 
 | File | Change Type | Source finding |
 |------|-------------|----------------|
 | `mcp_server/skill_advisor/lib/hook/copilot/` (or wrapper) | Modify | D-P1-001 (current-turn semantic fix) |
-| 008-skill-advisor/007-skill-advisor-hook-surface/checklist.md | Modify | D-P1-002 (mark items + evidence) |
-| 008-skill-advisor/007-skill-advisor-hook-surface/spec.md | Modify | D-P1-001 (document Copilot limitation if accepting) |
+| 008-skill-advisor/004-skill-advisor-hook-surface/checklist.md | Modify | D-P1-002 (mark items + evidence) |
+| 008-skill-advisor/004-skill-advisor-hook-surface/spec.md | Modify | D-P1-001 (document Copilot limitation if accepting) |
 | `mcp_server/lib/deep-loop/executor-config.ts` (or related) | Verify | D-P2-001 (`@path` behavior) |
 | 009-hook-parity/005-opencode-plugin-loader-remediation/spec.md | Modify | E-P1-001 (path correction) |
 | 009-hook-parity/005-opencode-plugin-loader-remediation/decision-record.md | Modify | E-P1-001 |
@@ -183,7 +183,7 @@ Close the 15 actionable Tier 2 findings to move D/E/F/G from CONDITIONAL toward 
 <!-- /ANCHOR:questions -->
 ### Related Documents
 
-- **Tier 2 D review report**: `../../../008-skill-advisor/007-skill-advisor-hook-surface/review/007-skill-advisor-hook-surface-tier2-pt-01/review-report.md`
+- **Tier 2 D review report**: `../../../008-skill-advisor/004-skill-advisor-hook-surface/review/004-skill-advisor-hook-surface-tier2-pt-01/review-report.md`
 - **Tier 2 E review report**: `../../../009-hook-parity/005-opencode-plugin-loader-remediation/review/005-opencode-plugin-loader-remediation-tier2-pt-01/review-report.md`
 - **Tier 2 F review report**: `../../../009-hook-parity/002-copilot-hook-parity-remediation/review/002-copilot-hook-parity-remediation-tier2-pt-01/review-report.md`
 - **Tier 2 G review report**: `../../../006-graph-impact-and-affordance-uplift/008-deep-research-review/review/008-deep-research-review-tier2-pt-01/review-report.md`

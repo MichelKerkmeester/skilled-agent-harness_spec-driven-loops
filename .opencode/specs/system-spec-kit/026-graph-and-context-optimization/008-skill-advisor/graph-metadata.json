@@ -30,7 +30,7 @@
       "004-skill-advisor-docs-and-code-alignment",
       "003-smart-router-remediation-and-opencode-plugin",
       "006-deferred-remediation-and-telemetry-run",
-      "007-skill-advisor-hook-surface"
+      "004-skill-advisor-hook-surface"
     ],
     "key_topics": [
       "008-skill-advisor",

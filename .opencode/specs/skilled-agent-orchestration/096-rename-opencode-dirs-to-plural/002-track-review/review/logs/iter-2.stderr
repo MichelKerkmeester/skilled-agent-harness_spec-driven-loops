@@ -6904,7 +6904,7 @@ spec_history_or_review_artifact: 577
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/003-smart-router-remediation-and-opencode-plugin/implementation-summary.md
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/003-smart-router-remediation-and-opencode-plugin/graph-metadata.json
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-mcp-runtime-stress-remediation/002-mcp-runtime-improvement-research/plan.md
-./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-skill-advisor-hook-surface/handover.md
+./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-skill-advisor-hook-surface/handover.md
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-mcp-runtime-stress-remediation/002-mcp-runtime-improvement-research/research/research.md
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-search-and-routing-tuning/review/003-graph-metadata-validation-prompts/deep-research-prompt.md
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-mcp-runtime-stress-remediation/002-mcp-runtime-improvement-research/research/007-mcp-runtime-improvement-research-pt-01/deep-research-config.json

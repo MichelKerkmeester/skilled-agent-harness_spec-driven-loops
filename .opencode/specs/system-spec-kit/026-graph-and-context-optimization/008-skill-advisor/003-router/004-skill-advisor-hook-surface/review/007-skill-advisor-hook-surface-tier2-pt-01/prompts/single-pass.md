@@ -1,6 +1,6 @@
 # Single-Pass Deep Review — 008/007 Skill-Advisor Hook Surface
 
-**GATE 3 PRE-ANSWERED — A**: `specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-skill-advisor-hook-surface`. Pre-approved. Proceed directly.
+**GATE 3 PRE-ANSWERED — A**: `specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-skill-advisor-hook-surface`. Pre-approved. Proceed directly.
 
 You are dispatched as a deep-review agent. This is a SINGLE-PASS review of the **skill-advisor hook surface** packet. Cover all 4 dimensions (correctness, security, traceability, maintainability) in one pass.
 
@@ -16,7 +16,7 @@ Note: this packet has prior review archives at `review-archive-r01-copilot/` and
 ## YOUR TASK
 
 1. **Read inputs**:
-   - `specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-skill-advisor-hook-surface/{spec,plan,tasks,checklist,implementation-summary,decision-record,handover,battle-plan}.md`
+   - `specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-skill-advisor-hook-surface/{spec,plan,tasks,checklist,implementation-summary,decision-record,handover,battle-plan}.md`
    - Sample 1-2 prior review reports under `review-archive-*/` to see what's already known
    - Code under `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/hook/` and `.opencode/plugins/spec-kit-skill-advisor.js` (Copilot SDK fallback paths)
 
@@ -26,7 +26,7 @@ Note: this packet has prior review archives at `review-archive-r01-copilot/` and
    - **D3 Traceability**: REQ-* → code; checklist evidence quality; do prior review archives' findings still apply or have they been closed?
    - **D4 Maintainability**: Pattern consistency for adding a new runtime adapter (Codex SDK arrives, etc.).
 
-3. **Output review-report.md** at `specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-skill-advisor-hook-surface/review/007-skill-advisor-hook-surface-tier2-pt-01/review-report.md`
+3. **Output review-report.md** at `specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-skill-advisor-hook-surface/review/004-skill-advisor-hook-surface-tier2-pt-01/review-report.md`
 
 ## REPORT STRUCTURE (9 sections + Planning Packet)
 

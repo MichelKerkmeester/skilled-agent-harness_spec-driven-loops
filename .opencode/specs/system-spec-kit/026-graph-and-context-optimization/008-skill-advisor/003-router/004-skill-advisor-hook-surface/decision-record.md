@@ -1,5 +1,5 @@
 ---
-title: "...em-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-skill-advisor-hook-surface/decision-record]"
+title: "...em-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-skill-advisor-hook-surface/decision-record]"
 description: "Architectural decisions for 020 — cross-runtime proactive skill-advisor hook."
 trigger_phrases:
   - "020 adr"
@@ -8,7 +8,7 @@ importance_tier: "critical"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-skill-advisor-hook-surface"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-skill-advisor-hook-surface"
     last_updated_at: "2026-04-28T19:30:00Z"
     last_updated_by: "codex-gpt-5-hygiene-pass"
     recent_action: "Hygiene pass - validator structure"

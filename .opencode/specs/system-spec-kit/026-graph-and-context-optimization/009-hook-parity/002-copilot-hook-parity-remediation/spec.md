@@ -303,7 +303,7 @@ None for this closure pass. Historical investigation questions were answered by 
 - **Parent packet**: `../spec.md`, ../plan.md, ../implementation-summary.md
 - **Predecessor phase**: `../001-hook-parity-remediation/`
 - **Successor phase**: `../003-codex-hook-parity-remediation/`
-- **Referenced spec**: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-skill-advisor-hook-surface/` — established the Claude hook wiring this phase aims to parity-match
+- **Referenced spec**: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-skill-advisor-hook-surface/` — established the Claude hook wiring this phase aims to parity-match
 - **Referenced skill**: `.opencode/skills/cli-copilot/` — target of the documentation updates
 - **Reference implementation**: `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/user-prompt-submit.ts`
 

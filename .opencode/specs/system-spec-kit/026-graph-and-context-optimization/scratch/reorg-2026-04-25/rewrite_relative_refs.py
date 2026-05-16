@@ -52,7 +52,7 @@ INTERNAL_RENUMBER = {
         "007-deferred-remediation-and-telemetry-run":        "006-deferred-remediation-and-telemetry-run",
         # 010-hook-package advisor children → 008 with new slots 007-011.
         # Old slot referenced via ../001-skill-advisor-hook-surface (when sibling INSIDE 010).
-        "001-skill-advisor-hook-surface":                    "007-skill-advisor-hook-surface",
+        "001-skill-advisor-hook-surface":                    "004-skill-advisor-hook-surface",
         "002-skill-graph-daemon-and-advisor-unification":    "002-skill-graph-daemon-and-advisor-unification",
         "008-skill-advisor-plugin-hardening":                "009-skill-advisor-plugin-hardening",
         "009-skill-advisor-standards-alignment":             "010-skill-advisor-standards-alignment",
@@ -69,7 +69,7 @@ INTERNAL_RENUMBER = {
 # refs to it from inside 010-hook-parity must traverse up two levels.
 # Map: old child name → (new wrapper, new child name)
 ADVISOR_RELOCATIONS = {
-    "001-skill-advisor-hook-surface":                    ("008-skill-advisor", "007-skill-advisor-hook-surface"),
+    "001-skill-advisor-hook-surface":                    ("008-skill-advisor", "004-skill-advisor-hook-surface"),
     "002-skill-graph-daemon-and-advisor-unification":    ("008-skill-advisor", "002-skill-graph-daemon-and-advisor-unification"),
     "008-skill-advisor-plugin-hardening":                ("008-skill-advisor", "009-skill-advisor-plugin-hardening"),
     "009-skill-advisor-standards-alignment":             ("008-skill-advisor", "010-skill-advisor-standards-alignment"),
@@ -106,7 +106,7 @@ QUALIFIED_RELOCATIONS = [
     ("../../010-hook-parity/011-copilot-writer-wiring/",              "../../010-hook-parity/007-copilot-writer-wiring/"),
     ("../../010-hook-parity/012-docs-impact-remediation/",            "../../010-hook-parity/008-docs-impact-remediation/"),
     # 010-hook-parity slots that MOVED OUT to 008/007.
-    ("../../010-hook-parity/001-skill-advisor-hook-surface/",         "../../008-skill-advisor/007-skill-advisor-hook-surface/"),
+    ("../../010-hook-parity/001-skill-advisor-hook-surface/",         "../../008-skill-advisor/004-skill-advisor-hook-surface/"),
     ("../../010-hook-parity/002-skill-graph-daemon-and-advisor-unification/", "../../008-skill-advisor/002-skill-graph-daemon-and-advisor-unification/"),
     ("../../010-hook-parity/008-skill-advisor-plugin-hardening/",     "../../008-skill-advisor/009-skill-advisor-plugin-hardening/"),
     ("../../010-hook-parity/009-skill-advisor-standards-alignment/",  "../../008-skill-advisor/010-skill-advisor-standards-alignment/"),
@@ -150,7 +150,7 @@ CROSS_TREE_FROM_008 = {
 
 CROSS_TREE_FROM_007 = {
     # Files in 007-code-graph/004 or /005 (came from 010) referencing old 010 siblings.
-    "001-skill-advisor-hook-surface":         ("008-skill-advisor", "007-skill-advisor-hook-surface"),
+    "001-skill-advisor-hook-surface":         ("008-skill-advisor", "004-skill-advisor-hook-surface"),
     "002-skill-graph-daemon-and-advisor-unification": ("008-skill-advisor", "002-skill-graph-daemon-and-advisor-unification"),
     "008-skill-advisor-plugin-hardening":     ("008-skill-advisor", "009-skill-advisor-plugin-hardening"),
     "009-skill-advisor-standards-alignment":  ("008-skill-advisor", "010-skill-advisor-standards-alignment"),

@@ -77,7 +77,7 @@ _memory:
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-advisor-hook-improvements/resource-map.md` | Updated | OK | Packet resource map. |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-advisor-hook-improvements/applied/` | Cited | MISSING | Packet-local applied directory reference. |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-hook-parity/spec.md` | Analyzed | OK | Parent packet spec. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-skill-advisor-hook-surface/` | Cited | OK | Related sibling packet. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-skill-advisor-hook-surface/` | Cited | OK | Related sibling packet. |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/009-skill-advisor-plugin-hardening/` | Cited | OK | Related sibling packet. |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/010-skill-advisor-standards-alignment/` | Cited | OK | Related sibling packet. |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-deep-review-remediation/006-integrity-parity-closure/applied/CF-019.md` | Cited | OK | Upstream parity remediation report. |

@@ -271,7 +271,7 @@ This is Level 3 because the change spans runtime hooks, live user configuration,
 
 - **Parent packet**: `../spec.md`, `../plan.md`, `../implementation-summary.md`
 - **Sibling phase**: `../002-copilot-hook-parity-remediation/` — same user-visible symptom, different root cause, investigation-heavy
-- **Referenced spec**: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-skill-advisor-hook-surface/` — Claude reference implementation this phase parity-matches
+- **Referenced spec**: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-skill-advisor-hook-surface/` — Claude reference implementation this phase parity-matches
 - **Referenced skill**: `.opencode/skills/cli-codex/` — target of documentation updates
 - **Reference implementation**: `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/user-prompt-submit.ts`
 - **Evidence of hook support**: `~/.codex/hooks.json` (inspected 2026-04-22)

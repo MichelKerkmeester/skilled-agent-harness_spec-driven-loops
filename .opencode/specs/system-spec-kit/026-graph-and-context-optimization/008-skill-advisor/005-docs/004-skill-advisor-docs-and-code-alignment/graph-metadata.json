@@ -9,10 +9,10 @@
   "manual": {
     "depends_on": [
       {
-        "packet_id": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-skill-advisor-hook-surface",
+        "packet_id": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-skill-advisor-hook-surface",
         "reason": "depends_on relationship preserved during phase consolidation",
         "source": "026-phase-consolidation",
-        "spec_folder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-skill-advisor-hook-surface"
+        "spec_folder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-skill-advisor-hook-surface"
       }
     ],
     "supersedes": [],

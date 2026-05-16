@@ -1,5 +1,5 @@
 ---
-title: "Hand [system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-skill-advisor-hook-surface/handover]"
+title: "Hand [system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-skill-advisor-hook-surface/handover]"
 description: "Post-patch handover. Wave-3 P0 (005 impossible cache-hit gate) + all 9 P1 patches applied across 003/004/005/007/008/009. All 6 children pass validate.sh strict. Ready for /spec_kit:implement :auto 020/002 dispatch."
 trigger_phrases:
   - "020 handover"
@@ -10,7 +10,7 @@ importance_tier: "critical"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-skill-advisor-hook-surface"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-skill-advisor-hook-surface"
     last_updated_at: "2026-04-28T19:30:00Z"
     last_updated_by: "codex-gpt-5-hygiene-pass"
     recent_action: "Hygiene pass - validator structure"
@@ -95,10 +95,10 @@ All patches are landed. The critical path is now:
 
 ```
 # Child 002 (first, must land before any other)
-/spec_kit:implement :auto "Implement 020/002-shared-payload-advisor-contract per spec.md/plan.md/tasks.md" --executor=cli-codex --model=gpt-5.4 --reasoning-effort=high --service-tier=fast --spec-folder=.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-skill-advisor-hook-surface/002-shared-payload-advisor-contract
+/spec_kit:implement :auto "Implement 020/002-shared-payload-advisor-contract per spec.md/plan.md/tasks.md" --executor=cli-codex --model=gpt-5.4 --reasoning-effort=high --service-tier=fast --spec-folder=.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-skill-advisor-hook-surface/002-shared-payload-advisor-contract
 
 # Fallback if cli-codex fails mid-run
-/spec_kit:implement :auto "Resume 020/002 implementation" --executor=cli-copilot --model=gpt-5.4 --reasoning-effort=high --spec-folder=.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-skill-advisor-hook-surface/002-shared-payload-advisor-contract
+/spec_kit:implement :auto "Resume 020/002 implementation" --executor=cli-copilot --model=gpt-5.4 --reasoning-effort=high --spec-folder=.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-skill-advisor-hook-surface/002-shared-payload-advisor-contract
 ```
 
 Repeat pattern for 003-009; each command targets its own child spec folder.

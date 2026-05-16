@@ -10,7 +10,7 @@ importance_tier: "critical"
 contextType: "plan"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-skill-advisor-hook-surface"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-skill-advisor-hook-surface"
     last_updated_at: "2026-04-28T19:30:00Z"
     last_updated_by: "codex-gpt-5-hygiene-pass"
     recent_action: "Hygiene pass - validator structure"
@@ -95,7 +95,7 @@ Each campaign below follows this 6-phase template. Where a child has unique rule
 Before dispatching, manual check:
 ```
 bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh \
-  .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-skill-advisor-hook-surface/<child-folder> \
+  .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-skill-advisor-hook-surface/<child-folder> \
   --strict --no-recursive
 ```
 Must return 0 errors. Warnings from RELATED DOCUMENTS / implementation-summary baseline are expected and acceptable.
@@ -108,14 +108,14 @@ Also verify: predecessor child's `checklist.md` has every P0 item marked `[x]` w
 ```
 /spec_kit:implement :auto "Implement 020/<child-folder> per spec.md/plan.md/tasks.md" \
   --executor=cli-codex --model=gpt-5.4 --reasoning-effort=high --service-tier=fast \
-  --spec-folder=.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-skill-advisor-hook-surface/<child-folder>
+  --spec-folder=.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-skill-advisor-hook-surface/<child-folder>
 ```
 
 **Fallback** (if cli-codex fails mid-run or exhausts budget):
 ```
 /spec_kit:implement :auto "Resume 020/<child-folder> implementation" \
   --executor=cli-copilot --model=gpt-5.4 --reasoning-effort=high \
-  --spec-folder=.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-skill-advisor-hook-surface/<child-folder>
+  --spec-folder=.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-skill-advisor-hook-surface/<child-folder>
 ```
 
 Note: cli-copilot does not accept `--service-tier` via CLI; the copilot runtime uses its own default. Do not pass the flag.
@@ -138,7 +138,7 @@ After implementation converges, dispatch an **autonomous deep-review pass** (one
 /spec_kit:deep-review :auto "Review 020/<child-folder> implementation against spec.md requirements; surface P0/P1/P2 findings across security/correctness/maintainability/observability dimensions" \
   --executor=cli-copilot --model=gpt-5.4 --reasoning-effort=high \
   --max-iterations=10 --convergence=0.05 \
-  --spec-folder=.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-skill-advisor-hook-surface/<child-folder>
+  --spec-folder=.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-skill-advisor-hook-surface/<child-folder>
 ```
 
 Why cli-copilot here (not cli-codex): review benefits from a different executor than implementation — catches blind spots. cli-codex implements; cli-copilot reviews. This is the opposite of the wave-1/wave-2 pairing and gives a genuine cross-tool audit.
@@ -186,7 +186,7 @@ Once all 6 criteria are true, the child is **signed off** and the next campaign 
 ```
 /spec_kit:implement :auto "Implement 020/002-shared-payload-advisor-contract per spec.md/plan.md/tasks.md" \
   --executor=cli-codex --model=gpt-5.4 --reasoning-effort=high --service-tier=fast \
-  --spec-folder=.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-skill-advisor-hook-surface/002-shared-payload-advisor-contract
+  --spec-folder=.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-skill-advisor-hook-surface/002-shared-payload-advisor-contract
 ```
 
 ### Validation gate (Phase C + D)
@@ -214,7 +214,7 @@ Commit message: `feat(020/002): shared-payload advisor contract + envelope typin
 ```
 /spec_kit:implement :auto "Implement 020/003-advisor-freshness-and-source-cache per spec.md/plan.md/tasks.md including wave-3 P1 generation.json malformed recovery (REQ-013/014, AS9/AS10)" \
   --executor=cli-codex --model=gpt-5.4 --reasoning-effort=high --service-tier=fast \
-  --spec-folder=.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-skill-advisor-hook-surface/003-advisor-freshness-and-source-cache
+  --spec-folder=.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-skill-advisor-hook-surface/003-advisor-freshness-and-source-cache
 ```
 
 ### Validation gate
@@ -242,7 +242,7 @@ Commit: `feat(020/003): advisor freshness + source cache + generation.json recov
 ```
 /spec_kit:implement :auto "Implement 020/004-advisor-brief-producer-cache-policy per spec.md/plan.md/tasks.md. Wave-3 P1 scope: SkillAdvisorBriefOptions does NOT include semanticModeEnabled; token caps are 80 default / 120 ambiguity (no 60-token floor); non-live freshness branches map per §3 posture table" \
   --executor=cli-codex --model=gpt-5.4 --reasoning-effort=high --service-tier=fast \
-  --spec-folder=.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-skill-advisor-hook-surface/004-advisor-brief-producer-cache-policy
+  --spec-folder=.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-skill-advisor-hook-surface/004-advisor-brief-producer-cache-policy
 ```
 
 ### Validation gate
@@ -278,7 +278,7 @@ Commit: `feat(020/004): buildSkillAdvisorBrief producer + HMAC cache + fail-open
 ```
 /spec_kit:implement :auto "Implement 020/005-advisor-renderer-and-regression-harness per spec.md/plan.md/tasks.md. CRITICAL: the replay gate uses the corrected trace of 10 unique prompts + 20 repeats = 20/30 = 66.7% hits nominal (do NOT use the old impossible 20u+10r trace). Latency gate is cache-hit-lane-only; cold/warm/miss lanes are measured but NOT hard-gated. Include all 10 fixtures (baseline + skipPolicyEmptyPrompt + skipPolicyCommandOnly + promptPoisoningAdversarial). Observability contract is exact per §3.6 (metric table, JSONL schema, alert thresholds)" \
   --executor=cli-codex --model=gpt-5.4 --reasoning-effort=high --service-tier=fast \
-  --spec-folder=.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-skill-advisor-hook-surface/005-advisor-renderer-and-regression-harness
+  --spec-folder=.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-skill-advisor-hook-surface/005-advisor-renderer-and-regression-harness
 ```
 
 ### Hard-gate go/no-go decision matrix
@@ -304,7 +304,7 @@ Every row must be **GO** before 005 is signed off. A single NO-GO blocks all dow
 /spec_kit:deep-review :auto "Review 005 implementation focusing on: (a) renderer purity (no side effects, deterministic output), (b) label sanitization completeness (canonical-fold + single-line + instruction-regex + label-denylist), (c) privacy audit (no raw prompt in any serialized surface), (d) cache-key derivation correctness (HMAC, source signature, runtime, threshold config), (e) 200-prompt corpus parity edge cases (whitespace-only prompts, Unicode edge cases, commands)" \
   --executor=cli-copilot --model=gpt-5.4 --reasoning-effort=high \
   --max-iterations=10 --convergence=0.05 \
-  --spec-folder=.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-skill-advisor-hook-surface/005-advisor-renderer-and-regression-harness
+  --spec-folder=.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-skill-advisor-hook-surface/005-advisor-renderer-and-regression-harness
 ```
 
 **Pass 2** — performance + observability:
@@ -312,7 +312,7 @@ Every row must be **GO** before 005 is signed off. A single NO-GO blocks all dow
 /spec_kit:deep-review :auto "Review 005 implementation focusing on: (a) timing-harness methodology correctness (50 invocations per lane, p50/p95/p99 calculation, warm-up handling), (b) corrected 10u+20r replay pattern (verify 66.7% nominal hit rate, no off-by-one in pattern generation), (c) observability metric emission correctness (label cardinality, closed-enum enforcement, alert threshold configurability via env), (d) JSONL diagnostic schema (no forbidden fields, exact ISO 8601 timestamp), (e) cold/warm/miss lane measurement honesty (these are diagnostic only, not hard-gated — verify harness does not accidentally gate on them)" \
   --executor=cli-gemini --model=gemini-3.1-pro-preview \
   --max-iterations=10 --convergence=0.05 \
-  --spec-folder=.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-skill-advisor-hook-surface/005-advisor-renderer-and-regression-harness
+  --spec-folder=.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-skill-advisor-hook-surface/005-advisor-renderer-and-regression-harness
 ```
 
 Two executors (copilot + gemini) = maximum cross-tool coverage on the gate.
@@ -338,7 +338,7 @@ Additional sign-off requirement: add a row to 020/implementation-summary.md `Chi
 ```
 /spec_kit:implement :auto "Implement 020/006-claude-hook-wiring per spec.md/plan.md/tasks.md" \
   --executor=cli-codex --model=gpt-5.4 --reasoning-effort=high --service-tier=fast \
-  --spec-folder=.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-skill-advisor-hook-surface/006-claude-hook-wiring
+  --spec-folder=.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-skill-advisor-hook-surface/006-claude-hook-wiring
 ```
 
 ### Validation gate
@@ -370,7 +370,7 @@ After T5 lands, T6 and T7 **may run in parallel**. Both depend on 006's parity b
 ```
 /spec_kit:implement :auto "Implement 020/007-gemini-copilot-hook-wiring per spec.md/plan.md/tasks.md. Wave-3 P1 scope: Copilot SDK proof IS A MERGE GATE — commit a runtime-capture fixture proving onUserPromptSubmitted return-object path lands model-visible text; wrapper-fallback-only ship is not acceptable. Include Gemini schema-version fixture matrix (≥ v1 + v2). Implement brief:null no-emit rule per runtime. Wrapper-fallback rewritten prompt lives only in memory; never logged or persisted" \
   --executor=cli-codex --model=gpt-5.4 --reasoning-effort=high --service-tier=fast \
-  --spec-folder=.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-skill-advisor-hook-surface/007-gemini-copilot-hook-wiring
+  --spec-folder=.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-skill-advisor-hook-surface/007-gemini-copilot-hook-wiring
 ```
 
 ### T7 dispatch (008 Codex) — after 007 converges
@@ -378,7 +378,7 @@ After T5 lands, T6 and T7 **may run in parallel**. Both depend on 006's parity b
 ```
 /spec_kit:implement :auto "Implement 020/008-codex-integration-and-hook-policy per spec.md/plan.md/tasks.md. Wave-3 P1 scope: include PostToolUse audit/repair slice (non-enforcement; §3.5); implement stdin-vs-argv precedence rule (stdin wins when both present; §3.6); replace hard-coded hookPolicy:'unavailable' with dynamic detector. Bash-only PreToolUse deny stays narrow. Extend advisor-runtime-parity.vitest.ts to 4 runtimes" \
   --executor=cli-codex --model=gpt-5.4 --reasoning-effort=high --service-tier=fast \
-  --spec-folder=.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-skill-advisor-hook-surface/008-codex-integration-and-hook-policy
+  --spec-folder=.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-skill-advisor-hook-surface/008-codex-integration-and-hook-policy
 ```
 
 ### Validation gate (T6 + T7)
@@ -411,14 +411,14 @@ Commits (in order):
 ```
 /spec_kit:implement :auto "Implement 020/009-documentation-and-release-contract per spec.md/plan.md/tasks.md. Create skill-advisor-hook.md (11 sections) + skill-advisor-hook-validation.md (8 manual steps) + troubleshooting table (5 top symptoms). Update CLAUDE.md §Gate 2. Update 4 cross-runtime READMEs. Populate 020 parent Release Prep checklist with evidence links" \
   --executor=cli-codex --model=gpt-5.4 --reasoning-effort=high --service-tier=fast \
-  --spec-folder=.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-skill-advisor-hook-surface/009-documentation-and-release-contract
+  --spec-folder=.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-skill-advisor-hook-surface/009-documentation-and-release-contract
 ```
 
 Alternate executor (doc-heavy work): **cli-claude-code with Opus 4.7** may be preferred for documentation quality. If cli-codex's output needs polish, re-dispatch with:
 ```
 /spec_kit:implement :auto "Polish 020/009 reference doc for DQI ≥ 0.85 via sk-doc" \
   --executor=cli-claude-code --model=claude-opus-4-7 --effort=high \
-  --spec-folder=.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-skill-advisor-hook-surface/009-documentation-and-release-contract
+  --spec-folder=.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-skill-advisor-hook-surface/009-documentation-and-release-contract
 ```
 
 ### Validation gate
@@ -457,7 +457,7 @@ After all 8 children are signed off individually, run the integration gauntlet:
 3. **Parent validation (recursive)**:
    ```
    bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh \
-     .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-skill-advisor-hook-surface \
+     .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-skill-advisor-hook-surface \
      --strict
    ```
    Expect: 0 errors across all 8 children + parent.
@@ -477,7 +477,7 @@ For each of Claude / Gemini / Copilot / Codex:
 
 After T9 passes all checks:
 ```
-node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js --json '{"specFolder":"system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-skill-advisor-hook-surface","sessionSummary":"Phase 020 shipped: 8 children converged, all runtime adapters green, 200/200 corpus parity, hard gate lifted, release documentation published"}'
+node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js --json '{"specFolder":"system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-skill-advisor-hook-surface","sessionSummary":"Phase 020 shipped: 8 children converged, all runtime adapters green, 200/200 corpus parity, hard gate lifted, release documentation published"}'
 ```
 
 ---
@@ -604,51 +604,51 @@ Detection of stuck runs:
 
 ```bash
 # T1 — 002
-/spec_kit:implement :auto "Implement 020/002-shared-payload-advisor-contract per spec.md/plan.md/tasks.md" --executor=cli-codex --model=gpt-5.4 --reasoning-effort=high --service-tier=fast --spec-folder=.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-skill-advisor-hook-surface/002-shared-payload-advisor-contract
+/spec_kit:implement :auto "Implement 020/002-shared-payload-advisor-contract per spec.md/plan.md/tasks.md" --executor=cli-codex --model=gpt-5.4 --reasoning-effort=high --service-tier=fast --spec-folder=.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-skill-advisor-hook-surface/002-shared-payload-advisor-contract
 
 # T2 — 003
-/spec_kit:implement :auto "Implement 020/003-advisor-freshness-and-source-cache per spec.md/plan.md/tasks.md including wave-3 P1 generation.json malformed recovery" --executor=cli-codex --model=gpt-5.4 --reasoning-effort=high --service-tier=fast --spec-folder=.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-skill-advisor-hook-surface/003-advisor-freshness-and-source-cache
+/spec_kit:implement :auto "Implement 020/003-advisor-freshness-and-source-cache per spec.md/plan.md/tasks.md including wave-3 P1 generation.json malformed recovery" --executor=cli-codex --model=gpt-5.4 --reasoning-effort=high --service-tier=fast --spec-folder=.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-skill-advisor-hook-surface/003-advisor-freshness-and-source-cache
 
 # T3 — 004
-/spec_kit:implement :auto "Implement 020/004-advisor-brief-producer-cache-policy per spec.md/plan.md/tasks.md. NO semanticModeEnabled; token caps 80/120 (no 60-floor); non-live posture per §3 table" --executor=cli-codex --model=gpt-5.4 --reasoning-effort=high --service-tier=fast --spec-folder=.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-skill-advisor-hook-surface/004-advisor-brief-producer-cache-policy
+/spec_kit:implement :auto "Implement 020/004-advisor-brief-producer-cache-policy per spec.md/plan.md/tasks.md. NO semanticModeEnabled; token caps 80/120 (no 60-floor); non-live posture per §3 table" --executor=cli-codex --model=gpt-5.4 --reasoning-effort=high --service-tier=fast --spec-folder=.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-skill-advisor-hook-surface/004-advisor-brief-producer-cache-policy
 
 # T4 — 005 HARD GATE
-/spec_kit:implement :auto "Implement 020/005-advisor-renderer-and-regression-harness per spec.md/plan.md/tasks.md. Corrected replay trace is 10u+20r (NOT 20u+10r). 50ms gate is cache-hit-lane-only. 10 fixtures. Exact observability contract per §3.6" --executor=cli-codex --model=gpt-5.4 --reasoning-effort=high --service-tier=fast --spec-folder=.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-skill-advisor-hook-surface/005-advisor-renderer-and-regression-harness
+/spec_kit:implement :auto "Implement 020/005-advisor-renderer-and-regression-harness per spec.md/plan.md/tasks.md. Corrected replay trace is 10u+20r (NOT 20u+10r). 50ms gate is cache-hit-lane-only. 10 fixtures. Exact observability contract per §3.6" --executor=cli-codex --model=gpt-5.4 --reasoning-effort=high --service-tier=fast --spec-folder=.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-skill-advisor-hook-surface/005-advisor-renderer-and-regression-harness
 
 # T5 — 006 (Claude)
-/spec_kit:implement :auto "Implement 020/006-claude-hook-wiring per spec.md/plan.md/tasks.md" --executor=cli-codex --model=gpt-5.4 --reasoning-effort=high --service-tier=fast --spec-folder=.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-skill-advisor-hook-surface/006-claude-hook-wiring
+/spec_kit:implement :auto "Implement 020/006-claude-hook-wiring per spec.md/plan.md/tasks.md" --executor=cli-codex --model=gpt-5.4 --reasoning-effort=high --service-tier=fast --spec-folder=.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-skill-advisor-hook-surface/006-claude-hook-wiring
 
 # T6 — 007 (Gemini + Copilot)
-/spec_kit:implement :auto "Implement 020/007-gemini-copilot-hook-wiring per spec.md/plan.md/tasks.md. Copilot SDK proof IS a merge gate. Gemini schema matrix v1+v2. brief:null no-emit rules per runtime. Wrapper-fallback in-memory-only" --executor=cli-codex --model=gpt-5.4 --reasoning-effort=high --service-tier=fast --spec-folder=.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-skill-advisor-hook-surface/007-gemini-copilot-hook-wiring
+/spec_kit:implement :auto "Implement 020/007-gemini-copilot-hook-wiring per spec.md/plan.md/tasks.md. Copilot SDK proof IS a merge gate. Gemini schema matrix v1+v2. brief:null no-emit rules per runtime. Wrapper-fallback in-memory-only" --executor=cli-codex --model=gpt-5.4 --reasoning-effort=high --service-tier=fast --spec-folder=.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-skill-advisor-hook-surface/007-gemini-copilot-hook-wiring
 
 # T7 — 008 (Codex)
-/spec_kit:implement :auto "Implement 020/008-codex-integration-and-hook-policy per spec.md/plan.md/tasks.md. Include PostToolUse audit slice + stdin-vs-argv precedence (stdin wins). Dynamic hookPolicy detector replaces hard-coded unavailable" --executor=cli-codex --model=gpt-5.4 --reasoning-effort=high --service-tier=fast --spec-folder=.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-skill-advisor-hook-surface/008-codex-integration-and-hook-policy
+/spec_kit:implement :auto "Implement 020/008-codex-integration-and-hook-policy per spec.md/plan.md/tasks.md. Include PostToolUse audit slice + stdin-vs-argv precedence (stdin wins). Dynamic hookPolicy detector replaces hard-coded unavailable" --executor=cli-codex --model=gpt-5.4 --reasoning-effort=high --service-tier=fast --spec-folder=.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-skill-advisor-hook-surface/008-codex-integration-and-hook-policy
 
 # T8 — 009 (Documentation)
-/spec_kit:implement :auto "Implement 020/009-documentation-and-release-contract per spec.md/plan.md/tasks.md. Create skill-advisor-hook.md (11 sections) + skill-advisor-hook-validation.md (8 steps). Update CLAUDE.md + 4 runtime READMEs" --executor=cli-codex --model=gpt-5.4 --reasoning-effort=high --service-tier=fast --spec-folder=.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-skill-advisor-hook-surface/009-documentation-and-release-contract
+/spec_kit:implement :auto "Implement 020/009-documentation-and-release-contract per spec.md/plan.md/tasks.md. Create skill-advisor-hook.md (11 sections) + skill-advisor-hook-validation.md (8 steps). Update CLAUDE.md + 4 runtime READMEs" --executor=cli-codex --model=gpt-5.4 --reasoning-effort=high --service-tier=fast --spec-folder=.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-skill-advisor-hook-surface/009-documentation-and-release-contract
 ```
 
 ### Deep-review dispatches (one per child, Phase D)
 
 Template (substitute `<child-folder>` and review focus):
 ```bash
-/spec_kit:deep-review :auto "Review 020/<child-folder> implementation against spec.md requirements; surface P0/P1/P2 findings across security/correctness/maintainability/observability dimensions" --executor=cli-copilot --model=gpt-5.4 --reasoning-effort=high --max-iterations=10 --convergence=0.05 --spec-folder=.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-skill-advisor-hook-surface/<child-folder>
+/spec_kit:deep-review :auto "Review 020/<child-folder> implementation against spec.md requirements; surface P0/P1/P2 findings across security/correctness/maintainability/observability dimensions" --executor=cli-copilot --model=gpt-5.4 --reasoning-effort=high --max-iterations=10 --convergence=0.05 --spec-folder=.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-skill-advisor-hook-surface/<child-folder>
 ```
 
 ### Fallback dispatch (any child)
 
 ```bash
-/spec_kit:implement :auto "Resume 020/<child-folder> implementation" --executor=cli-copilot --model=gpt-5.4 --reasoning-effort=high --spec-folder=.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-skill-advisor-hook-surface/<child-folder>
+/spec_kit:implement :auto "Resume 020/<child-folder> implementation" --executor=cli-copilot --model=gpt-5.4 --reasoning-effort=high --spec-folder=.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-skill-advisor-hook-surface/<child-folder>
 ```
 
 ### Validation commands
 
 ```bash
 # Single child, strict
-bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-skill-advisor-hook-surface/<child-folder> --strict --no-recursive
+bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-skill-advisor-hook-surface/<child-folder> --strict --no-recursive
 
 # Full umbrella (recursive)
-bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-skill-advisor-hook-surface --strict
+bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-skill-advisor-hook-surface --strict
 
 # TypeScript + tests
 cd .opencode/skills/system-spec-kit/mcp_server && npx tsc --noEmit && npx vitest run

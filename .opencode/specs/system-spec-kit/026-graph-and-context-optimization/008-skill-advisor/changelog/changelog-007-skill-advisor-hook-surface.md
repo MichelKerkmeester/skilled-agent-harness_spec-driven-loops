@@ -15,7 +15,7 @@ contextType: "implementation"
 
 ## 2026-04-19
 
-> Spec folder: `026-graph-and-context-optimization/008-skill-advisor/007-skill-advisor-hook-surface` (Level 3)
+> Spec folder: `026-graph-and-context-optimization/008-skill-advisor/004-skill-advisor-hook-surface` (Level 3)
 > Parent packet: `026-graph-and-context-optimization/008-skill-advisor`
 
 ### Summary

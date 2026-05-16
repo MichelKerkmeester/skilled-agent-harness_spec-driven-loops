@@ -6147,7 +6147,7 @@
       "lastUpdated": "2026-05-08T08:26:57.722Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-skill-advisor-hook-surface",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-skill-advisor-hook-surface",
       "description": "Feature Specification: Skill-Advisor Hook Surface",
       "keywords": [
         "feature",
