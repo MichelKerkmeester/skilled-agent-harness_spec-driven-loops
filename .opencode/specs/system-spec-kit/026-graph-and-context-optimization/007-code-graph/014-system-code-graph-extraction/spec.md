@@ -100,3 +100,9 @@ All work is shipped. The extraction was executed in 6 phases (now at slots 015-0
 - `010-template-levels` shipped (template foundations for the new skill's documentation).
 - `015-skill-advisor-semantic-lane/009-system-skill-advisor-extraction` precedent (in_progress; provides the design pattern this packet mirrors exactly).
 - Acknowledgement: `007-code-graph/002-code-graph-self-contained-package` is superseded by 014 (scope strictly extended from intra-skill self-containment to standalone sibling-skill extraction; 002's partial work landed on disk during the 003-008 train and is reused as the starting point).
+
+---
+
+## Consolidation (2026-05-16, packet 107 W2.3 / M4)
+
+Five extraction-phase packets (007/016, 007/017, 007/018, 007/019, 007/020) absorbed into this packet per resource-map.md §3.3 M4 (PROCEED). All five archived to z_archive/wave-2-merges/.
