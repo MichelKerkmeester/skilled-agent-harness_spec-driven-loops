@@ -1,0 +1,20 @@
+{
+  "level": "1",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/998-aggressive-restructure-research",
+  "description": "Deeper second-pass restructure research targeting Wave 1 deferred items (M1, M8, M9, M10, SHALLOW+MEDIUM deletes, 008 internal phases, 000 recatalog). 20 cli-devin SWE-1.6 iter with v1.0.4.1 recipe (sequential_thinking mandatory).",
+  "keywords": [
+    "998-aggressive-restructure",
+    "post-wave-1-followup",
+    "20-iter-sweep",
+    "cli-devin-swe-1.6-v1.0.4.1"
+  ],
+  "lastUpdated": "2026-05-16T07:30:00Z",
+  "specId": "998",
+  "folderSlug": "aggressive-restructure-research",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}
