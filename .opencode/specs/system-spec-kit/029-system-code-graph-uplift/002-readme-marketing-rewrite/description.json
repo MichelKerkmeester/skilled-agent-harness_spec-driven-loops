@@ -1,0 +1,20 @@
+{
+  "specFolder": "system-spec-kit/029-system-code-graph-uplift/002-readme-marketing-rewrite",
+  "description": "Phase 2 stub. Awaiting research synthesis at parent 029/research/research.md. Will then receive full spec.md/plan.md/tasks.md covering the README.md rewrite in hybrid voice: mimic Public root README + system-spec-kit README problem-first arc, with HVR-clean prose (no em dashes, no banned words, score >= 85).",
+  "keywords": [
+    "phase-stub",
+    "readme-marketing-rewrite",
+    "hvr-clean",
+    "problem-first-arc"
+  ],
+  "lastUpdated": "2026-05-16T09:37:48Z",
+  "specId": "002",
+  "folderSlug": "readme-marketing-rewrite",
+  "parentChain": [
+    "system-spec-kit",
+    "029-system-code-graph-uplift"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

@@ -1,0 +1,2 @@
+{"type":"iteration","iteration":6,"newInfoRatio":0.8,"status":"insight","focus":"Q10 worst-case HVR pitfalls in root README + system-spec-kit README to avoid","graphEvents":[]}
+{"type":"question_resolved","questionId":"Q10","resolvedAtIteration":6,"answer":"3 worst-case HVR pitfalls: (1) Oxford commas - 43 instances in system-spec-kit README, hard blocker -5pts each; (2) Em dashes - 4 instances in system-spec-kit README, hard blocker -5pts each; (3) Context-dependent banned words - 'harness' appears in technical contexts in both READMEs, requires careful evaluation"}

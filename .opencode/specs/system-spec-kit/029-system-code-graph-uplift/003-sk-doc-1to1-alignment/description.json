@@ -1,0 +1,20 @@
+{
+  "specFolder": "system-spec-kit/029-system-code-graph-uplift/003-sk-doc-1to1-alignment",
+  "description": "Phase 3 stub. Awaiting research synthesis at parent 029/research/research.md. Will then receive full spec.md/plan.md/tasks.md covering exhaustive validate_document.py --type <type> exit-0 across every authored doc in system-code-graph: SKILL.md, README.md, ARCHITECTURE.md, INSTALL_GUIDE.md, feature_catalog/feature_catalog.md, manual_testing_playbook/manual_testing_playbook.md, references/*.md, mcp_server/**/README.md.",
+  "keywords": [
+    "phase-stub",
+    "sk-doc-1to1-alignment",
+    "validate-document-exit-0",
+    "per-type-validation"
+  ],
+  "lastUpdated": "2026-05-16T09:37:48Z",
+  "specId": "003",
+  "folderSlug": "sk-doc-1to1-alignment",
+  "parentChain": [
+    "system-spec-kit",
+    "029-system-code-graph-uplift"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

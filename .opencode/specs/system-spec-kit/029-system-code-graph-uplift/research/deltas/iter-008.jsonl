@@ -1,0 +1,3 @@
+{"type":"iteration","iteration":8,"newInfoRatio":0.85,"status":"insight","focus":"Q7+Q8 feature_catalog and manual_testing_playbook validation as playbook types","graphEvents":[]}
+{"type":"question_resolved","questionId":"Q7","resolvedAtIteration":8,"answer":"feature_catalog does NOT validate as --type playbook (no feature_catalog type in template_rules.json); per-feature files are NOT discoverable via per-type contract; both require manual recursion following their own contract"}
+{"type":"question_resolved","questionId":"Q8","resolvedAtIteration":8,"answer":"manual_testing_playbook index DOES validate as --type playbook; per-scenario files ARE discoverable as playbook_feature type via path pattern detection; both require manual recursion due to validator limitation"}

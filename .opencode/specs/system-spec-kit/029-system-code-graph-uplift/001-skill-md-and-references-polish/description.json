@@ -1,0 +1,20 @@
+{
+  "specFolder": "system-spec-kit/029-system-code-graph-uplift/001-skill-md-and-references-polish",
+  "description": "Phase 1 stub. Awaiting research synthesis at parent 029/research/research.md. Will then receive full spec.md/plan.md/tasks.md covering: SKILL.md problem-hook framing, references/ HVR pass, mcp_server per-folder README usefulness audit, and INSTALL_GUIDE drift fixes (lines 49/56/195).",
+  "keywords": [
+    "phase-stub",
+    "skill-md-polish",
+    "references-hvr",
+    "install-guide-drift"
+  ],
+  "lastUpdated": "2026-05-16T09:37:48Z",
+  "specId": "001",
+  "folderSlug": "skill-md-and-references-polish",
+  "parentChain": [
+    "system-spec-kit",
+    "029-system-code-graph-uplift"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

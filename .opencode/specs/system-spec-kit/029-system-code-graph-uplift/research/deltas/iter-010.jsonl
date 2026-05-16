@@ -1,0 +1,13 @@
+{"type":"iteration","iteration":10,"focus":"Q1 deep dive: bugs/drift/weak prose beyond known INSTALL_GUIDE drifts","newInfoRatio":0.85,"status":"insight","graphEvents":[]}
+{"type":"finding","iteration":10,"category":"drift","file":"INSTALL_GUIDE.md","line":49,"issue":"Version drift: 1.0.0.0 should be 1.0.3.1","severity":"medium"}
+{"type":"finding","iteration":10,"category":"drift","file":"INSTALL_GUIDE.md","line":56,"issue":"Tool count drift: 10 should be 11","severity":"medium"}
+{"type":"finding","iteration":10,"category":"drift","file":"INSTALL_GUIDE.md","line":195,"issue":"Tool count drift: 10 should be 11","severity":"medium"}
+{"type":"finding","iteration":10,"category":"drift","file":"ARCHITECTURE.md","line":29,"issue":"Date drift: all three dates are identical (2026-05-14), reconstruction date should differ","severity":"low"}
+{"type":"finding","iteration":10,"category":"drift","file":"ARCHITECTURE.md","line":72,"issue":"Database path drift: references old default mcp_server/database/code-graph.sqlite instead of .opencode/.spec-kit/code-graph/database/code-graph.sqlite","severity":"medium"}
+{"type":"finding","iteration":10,"category":"bug","file":"ARCHITECTURE.md","line":72,"issue":"Launcher reference bug: references mk-spec-memory-launcher.cjs instead of mk-code-index-launcher.cjs","severity":"medium"}
+{"type":"finding","iteration":10,"category":"drift","file":"plugin_bridges/README.md","line":37,"issue":"Import path drift: references session-resume.js, vector-index.js, session-manager.js which no longer exist in code-graph package post-extraction","severity":"medium"}
+{"type":"finding","iteration":10,"category":"drift","file":"plugin_bridges/README.md","line":85,"issue":"Flow diagram drift: references vector-index.js for runtime initialization (module does not exist in code-graph)","severity":"medium"}
+{"type":"finding","iteration":10,"category":"drift","file":"plugin_bridges/README.md","line":90,"issue":"Flow diagram drift: references session-manager.js for session state (module does not exist in code-graph)","severity":"medium"}
+{"type":"finding","iteration":10,"category":"weak_prose","file":"SKILL.md","line":56,"issue":"Weak reference notation: 'n/a (no dedicated reference)' could reference implementation location","severity":"low"}
+{"type":"finding","iteration":10,"category":"weak_prose","file":"SKILL.md","line":90,"issue":"Unclear boundary explanation: could clarify WHY deep-loop tools live in system-spec-kit","severity":"low"}
+{"type":"finding","iteration":10,"category":"weak_prose","file":"ARCHITECTURE.md","line":38,"issue":"Redundant conversational phrasing in parentheticals","severity":"low"}

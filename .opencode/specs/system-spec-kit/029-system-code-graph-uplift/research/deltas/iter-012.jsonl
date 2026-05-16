@@ -1,0 +1,8 @@
+{"type":"iteration","iteration":12,"newInfoRatio":0.75,"status":"insight","focus":"Q1 deep dive: 4 additional bugs/drift beyond iter-011 findings plus weak prose; core authored docs audit complete","graphEvents":[]}
+{"type":"bug_drift","iteration":12,"file":"INSTALL_GUIDE.md","line":17,"severity":"drift","description":"Tool list drift in prose: lists 10 tools but missing code_graph_classify_query_intent (the 11th tool)"}
+{"type":"bug_drift","iteration":12,"file":"INSTALL_GUIDE.md","line":56,"severity":"drift","description":"Tool count drift: MCP tools | 10 should be 11 (known from iter-010, confirmed again)"}
+{"type":"bug_drift","iteration":12,"file":"INSTALL_GUIDE.md","line":111,"severity":"inconsistency","description":"Internal inconsistency with line 56: correctly states 11 tools but line 56 table says 10"}
+{"type":"bug_drift","iteration":12,"file":"INSTALL_GUIDE.md","line":195,"severity":"drift","description":"Tool count drift: Active MCP tools | 10 should be 11 (known from iter-010, confirmed again)"}
+{"type":"weak_prose","iteration":12,"file":"mcp_server/README.md","line":40,"severity":"minor","description":"Passive voice: Compiled output lives in dist and is used by MCP client configurations"}
+{"type":"weak_prose","iteration":12,"file":"mcp_server/README.md","line":158,"severity":"minor","description":"Redundant phrasing: Build outputs explanation repeats information across two sentences"}
+{"type":"weak_prose","iteration":12,"file":"references/database-path-policy.md","line":80,"severity":"minor","description":"Dense sentence structure: Launcher enforcement explanation could be split for clarity"}
