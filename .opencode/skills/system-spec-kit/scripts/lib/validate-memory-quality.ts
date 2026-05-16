@@ -225,6 +225,7 @@ const NUMERIC_PREFIX_NON_SPEC_SUFFIXES = new Set([
   'min',
 ]);
 const HIGH_CROSS_REFERENCE_DOC_BASENAMES = new Set([
+  'spec.md',
   'decision-record.md',
   'handover.md',
   'implementation-summary.md',

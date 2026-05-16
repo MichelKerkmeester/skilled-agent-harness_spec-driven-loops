@@ -186,6 +186,24 @@ const memorySearch: ToolDefinition = {
   },
 };
 
+const memoryQuickSearch: ToolDefinition = {
+  name: 'memory_quick_search',
+  description: '[L2:Core] Lightweight wrapper around memory_search for query-only retrieval. Applies the quick-search defaults used by the runtime dispatcher: intent detection, deduplication, constitutional context, reranking, and inline content. Token Budget: 3500.',
+  inputSchema: {
+    type: 'object',
+    additionalProperties: false,
+    properties: {
+      query: { type: 'string', minLength: 2, maxLength: 1000, description: 'Natural language search query' },
+      limit: { type: 'number', default: 10, minimum: 1, maximum: 100, description: 'Maximum number of results to return (1-100)' },
+      specFolder: { type: 'string', description: 'Limit search to a specific spec folder or descendants' },
+      tenantId: { type: 'string', description: 'Tenant boundary for governed retrieval.' },
+      userId: { type: 'string', description: 'User boundary for governed retrieval.' },
+      agentId: { type: 'string', description: 'Agent boundary for governed retrieval.' },
+    },
+    required: ['query'],
+  },
+};
+
 const memoryMatchTriggers: ToolDefinition = {
   name: 'memory_match_triggers',
   description: '[L2:Core] Fast trigger phrase matching with cognitive features. Supports attention-based decay, tiered content injection (HOT=full, WARM=summary), and co-activation of related spec-doc records. Pass session_id and turnNumber for cognitive features. Token Budget: 3500.',
@@ -787,6 +805,7 @@ export const TOOL_DEFINITIONS: ToolDefinition[] = [
   sessionBootstrap,
   // L2: Core
   memorySearch,
+  memoryQuickSearch,
   memoryMatchTriggers,
   memorySave,
   // L3: Discovery

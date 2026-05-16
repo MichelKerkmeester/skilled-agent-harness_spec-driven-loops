@@ -37,6 +37,7 @@ import type {
 /** Tool names handled by this module */
 export const TOOL_NAMES = new Set([
   'memory_search',
+  'memory_quick_search',
   'memory_match_triggers',
   'memory_save',
   'memory_list',
@@ -53,6 +54,27 @@ export const TOOL_NAMES = new Set([
 export async function handleTool(name: string, args: Record<string, unknown>): Promise<MCPResponse | null> {
   switch (name) {
     case 'memory_search':         return handleMemorySearch(parseArgs<SearchArgs>(validateToolArgs('memory_search', args)));
+    case 'memory_quick_search': {
+      const validatedArgs = validateToolArgs('memory_quick_search', args);
+      const response = await handleMemorySearch(parseArgs<SearchArgs>({
+        ...validatedArgs,
+        autoDetectIntent: true,
+        enableDedup: true,
+        includeContent: true,
+        includeConstitutional: true,
+        rerank: true,
+      }));
+      if (response.content?.[0]?.text) {
+        try {
+          const payload = JSON.parse(response.content[0].text) as { meta?: Record<string, unknown> };
+          payload.meta = { ...(payload.meta ?? {}), tool: 'memory_quick_search' };
+          response.content[0].text = JSON.stringify(payload);
+        } catch {
+          // Non-JSON responses are returned unchanged.
+        }
+      }
+      return response;
+    }
     case 'memory_match_triggers': return handleMemoryMatchTriggers(parseArgs<TriggerArgs>(validateToolArgs('memory_match_triggers', args)));
     case 'memory_save':           return handleMemorySave(parseArgs<SaveArgs>(validateToolArgs('memory_save', args)));
     case 'memory_list':           return handleMemoryList(parseArgs<ListArgs>(validateToolArgs('memory_list', args)));

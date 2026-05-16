@@ -319,7 +319,7 @@ describe('R9: Stage 1 spec-folder forwarding — multi-concept channel', () => {
     expect(callOptions?.specFolder == null).toBe(true);
   });
 
-  it('R9-06b: multi-concept rejects more than 5 concepts', async () => {
+  it('R9-06b: multi-concept fail-closes when more than 5 concepts are provided', async () => {
     const input: Stage1Input = {
       config: makePipelineConfig({
         searchType: 'multi-concept',
@@ -328,7 +328,11 @@ describe('R9: Stage 1 spec-folder forwarding — multi-concept channel', () => {
       }),
     };
 
-    await expect(executeStage1(input)).rejects.toThrow(/Maximum 5 concepts/);
+    const output = await executeStage1(input);
+
+    expect(output.candidates).toEqual([]);
+    expect(output.metadata.candidateCount).toBe(0);
+    expect(mockMultiConceptSearchCalls).toHaveLength(0);
   });
 });
 
@@ -497,6 +501,7 @@ describe('R9: structuralSearch (fallback Tier 3) respects specFolder', () => {
     testDb = createTestDb();
     seedRows(testDb, [
       { title: 'Alpha Auth',  spec_folder: 'specs/001-auth',   importance_tier: 'critical',  importance_weight: 0.9 },
+      { title: 'Alpha Auth Child', spec_folder: 'specs/001-auth/002-child', importance_tier: 'critical', importance_weight: 0.8 },
       { title: 'Beta Config', spec_folder: 'specs/002-config', importance_tier: 'important', importance_weight: 0.7 },
       { title: 'Alpha Notes', spec_folder: 'specs/001-auth',   importance_tier: 'normal',    importance_weight: 0.5 },
     ]);
@@ -510,14 +515,20 @@ describe('R9: structuralSearch (fallback Tier 3) respects specFolder', () => {
   it('R9-13: with specFolder — returns only memories from that folder', () => {
     const results = structuralSearch({ specFolder: 'specs/001-auth', limit: 10 });
 
-    expect(results.length).toBe(2);
-    expect(results.every((r) => r.spec_folder === 'specs/001-auth')).toBe(true);
+    expect(results.length).toBe(3);
+    expect(results.every((r) => r.spec_folder === 'specs/001-auth' || r.spec_folder === 'specs/001-auth/002-child')).toBe(true);
+  });
+
+  it('R9-13b: specFolder scope includes descendant folders', () => {
+    const results = structuralSearch({ specFolder: 'specs/001-auth', limit: 10 });
+
+    expect(results.map((r) => r.spec_folder)).toContain('specs/001-auth/002-child');
   });
 
   it('R9-14: without specFolder — returns memories from all folders', () => {
     const results = structuralSearch({ limit: 10 });
 
-    expect(results.length).toBe(3);
+    expect(results.length).toBe(4);
     const folders = new Set(results.map((r) => r.spec_folder));
     expect(folders.has('specs/001-auth')).toBe(true);
     expect(folders.has('specs/002-config')).toBe(true);

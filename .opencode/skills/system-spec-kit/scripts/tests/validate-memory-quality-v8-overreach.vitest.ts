@@ -128,6 +128,17 @@ Finally, 903-gamma-packet appears as a follow-up reference.
     expect(notesV8?.message).toContain('body-scattered:901-alpha-packet x1');
   });
 
+  it('allows limited predecessor and follow-on references in spec.md', () => {
+    const content = memoryFixture(`
+This packet follows 113-z-archive-memory-indexing as predecessor context.
+It may create a 345-scenario sweep report as a follow-on artifact.
+The current packet remains focused on 041-v-rule-cross-spec-overreach.
+`);
+
+    const specPath = `.opencode/specs/${currentSpecFolder}/spec.md`;
+    expect(v8Result(content, specPath)?.passed).toBe(true);
+  });
+
   it('T040-05 preserves scattered-foreign detection for generic spec docs', () => {
     const content = memoryFixture(`
 The generic plan should still fail when it drifts across 901-alpha-packet.

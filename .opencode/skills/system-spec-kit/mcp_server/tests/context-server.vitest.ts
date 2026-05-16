@@ -163,6 +163,7 @@ describe('Context Server', () => {
     const EXPECTED_TOOLS = [
       'memory_context',
       'memory_search',
+      'memory_quick_search',
       'memory_match_triggers',
       'memory_save',
       'memory_list',
@@ -288,7 +289,7 @@ describe('Context Server', () => {
   // =================================================================
   describe('Group 3: Tool Dispatch Coverage', () => {
     const EXPECTED_CASES = [
-      'memory_context', 'memory_search', 'memory_match_triggers',
+      'memory_context', 'memory_search', 'memory_quick_search', 'memory_match_triggers',
       'memory_delete', 'memory_update', 'memory_bulk_delete', 'memory_list', 'memory_stats',
       'checkpoint_create', 'checkpoint_list', 'checkpoint_restore', 'checkpoint_delete',
       'memory_validate', 'memory_save', 'memory_index_scan', 'memory_health',

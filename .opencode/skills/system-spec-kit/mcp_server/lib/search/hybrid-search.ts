@@ -1872,8 +1872,8 @@ function structuralSearch(
     const params: unknown[] = [];
 
     if (options.specFolder) {
-      conditions.push(`spec_folder = ?`);
-      params.push(options.specFolder);
+      conditions.push(`(spec_folder = ? OR spec_folder LIKE ?)`);
+      params.push(options.specFolder, `${options.specFolder}/%`);
     }
 
     const whereClause = conditions.join(' AND ');

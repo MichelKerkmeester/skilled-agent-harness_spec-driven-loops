@@ -634,11 +634,11 @@ export function get_constitutional_memories(
       JOIN active_memory_projection p ON p.active_memory_id = m.id
       WHERE m.importance_tier = 'constitutional'
         AND m.embedding_status = 'success'
-        ${spec_folder ? 'AND m.spec_folder = ?' : ''}
+        ${spec_folder ? 'AND (m.spec_folder = ? OR m.spec_folder LIKE ?)' : ''}
       ORDER BY m.importance_weight DESC, m.created_at DESC
     `;
 
-    const params = spec_folder ? [spec_folder] : [];
+    const params = spec_folder ? [spec_folder, `${spec_folder}/%`] : [];
     let results = database.prepare(constitutional_sql).all(...params) as MemoryRow[];
 
     const MAX_CONSTITUTIONAL_TOKENS = 2000;
