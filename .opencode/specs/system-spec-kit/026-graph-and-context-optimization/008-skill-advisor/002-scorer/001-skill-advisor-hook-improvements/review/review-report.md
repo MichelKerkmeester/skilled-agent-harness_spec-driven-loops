@@ -22,12 +22,12 @@ This review followed the packet docs in the requested order, then audited every 
 
 ### P1
 
-- `F-001` `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/011-skill-advisor-hook-improvements/spec.md:3`, `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/011-skill-advisor-hook-improvements/spec.md:82`
+- `F-001` `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-advisor-hook-improvements/spec.md:3`, `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-advisor-hook-improvements/spec.md:82`
   Evidence: the governing spec still says the packet is research-only and excludes implementation, while the same folder now claims completed implementation and verification.
   Recommended fix: update the governing spec/metadata or move the implementation record under a packet whose spec authorizes it.
   Target files: `spec.md`, `implementation-summary.md`, `checklist.md`, `resource-map.md`
 
-- `F-002` `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/011-skill-advisor-hook-improvements/checklist.md:46`, `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/011-skill-advisor-hook-improvements/resource-map.md:116`
+- `F-002` `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-advisor-hook-improvements/checklist.md:46`, `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-advisor-hook-improvements/resource-map.md:116`
   Evidence: checklist and resource-map both cite `applied/T-###.md`, but no `applied/` directory exists under the packet.
   Recommended fix: restore the missing evidence or correct the docs to stop claiming it exists.
   Target files: `checklist.md`, `implementation-summary.md`, `resource-map.md`
@@ -37,7 +37,7 @@ This review followed the packet docs in the requested order, then audited every 
   Recommended fix: make the builder derive `brief` and shared payload content from the shared renderer.
   Target files: `lib/skill-advisor-brief.ts`, `lib/render.ts`, `tests/legacy/advisor-brief-producer.vitest.ts`
 
-- `F-005` `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/011-skill-advisor-hook-improvements/implementation-summary.md:94`, `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/011-skill-advisor-hook-improvements/checklist.md:75`
+- `F-005` `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-advisor-hook-improvements/implementation-summary.md:94`, `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-advisor-hook-improvements/checklist.md:75`
   Evidence: packet-local Codex verification only documents fail-open `{}` smokes and missing `applied/T-013.md` evidence, not the successful shared-brief path.
   Recommended fix: replace those claims with packet-local success-path evidence or explicit references to the real codex tests that were rerun.
   Target files: `implementation-summary.md`, `checklist.md`, `resource-map.md`
@@ -54,7 +54,7 @@ This review followed the packet docs in the requested order, then audited every 
 
 ### P2
 
-- `F-008` `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/011-skill-advisor-hook-improvements/resource-map.md:24`, `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/011-skill-advisor-hook-improvements/resource-map.md:121`
+- `F-008` `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-advisor-hook-improvements/resource-map.md:24`, `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-advisor-hook-improvements/resource-map.md:121`
   Evidence: the resource map claims to be paths-only but includes narrative and unresolved `NEEDS VERIFICATION` notes, while also preserving stale research lineage.
   Recommended fix: regenerate the resource map as a factual ledger only.
   Target files: `resource-map.md`
@@ -95,10 +95,10 @@ This review followed the packet docs in the requested order, then audited every 
 
 ## References
 
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/011-skill-advisor-hook-improvements/spec.md`
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/011-skill-advisor-hook-improvements/implementation-summary.md`
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/011-skill-advisor-hook-improvements/checklist.md`
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/011-skill-advisor-hook-improvements/resource-map.md`
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-advisor-hook-improvements/spec.md`
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-advisor-hook-improvements/implementation-summary.md`
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-advisor-hook-improvements/checklist.md`
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-advisor-hook-improvements/resource-map.md`
 - `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-recommend.ts`
 - `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/prompt-cache.ts`
 - `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/skill-advisor-brief.ts`

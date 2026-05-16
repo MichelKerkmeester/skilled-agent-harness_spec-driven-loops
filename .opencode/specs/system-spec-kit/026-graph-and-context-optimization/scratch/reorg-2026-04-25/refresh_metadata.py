@@ -49,7 +49,7 @@ PACKETS = [
     "008-skill-advisor/002-skill-graph-daemon-and-advisor-unification",
     "008-skill-advisor/009-skill-advisor-plugin-hardening",
     "008-skill-advisor/010-skill-advisor-standards-alignment",
-    "008-skill-advisor/011-skill-advisor-hook-improvements",
+    "008-skill-advisor/001-skill-advisor-hook-improvements",
 
     # 007 children (existing 001-003 + the 2 newcomers from 010)
     "007-code-graph/001-code-graph-upgrades",

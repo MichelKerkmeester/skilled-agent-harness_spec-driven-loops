@@ -11,17 +11,17 @@
       "summary": "Packet 014's governing spec still defines the work as research-only and out-of-scope for implementation, but the packet now claims completed implementation and verification inside the same folder.",
       "evidence": [
         "review/iterations/iteration-01.md#findings",
-        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/011-skill-advisor-hook-improvements/spec.md:3",
-        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/011-skill-advisor-hook-improvements/spec.md:52",
-        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/011-skill-advisor-hook-improvements/spec.md:82",
-        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/011-skill-advisor-hook-improvements/implementation-summary.md:34"
+        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-advisor-hook-improvements/spec.md:3",
+        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-advisor-hook-improvements/spec.md:52",
+        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-advisor-hook-improvements/spec.md:82",
+        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-advisor-hook-improvements/implementation-summary.md:34"
       ],
       "recommended_fix": "Either update packet 014's governing spec and metadata to describe the shipped implementation, or move this implementation summary/checklist under a follow-up child packet whose spec explicitly authorizes the code changes.",
       "target_files": [
-        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/011-skill-advisor-hook-improvements/spec.md",
-        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/011-skill-advisor-hook-improvements/implementation-summary.md",
-        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/011-skill-advisor-hook-improvements/checklist.md",
-        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/011-skill-advisor-hook-improvements/resource-map.md"
+        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-advisor-hook-improvements/spec.md",
+        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-advisor-hook-improvements/implementation-summary.md",
+        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-advisor-hook-improvements/checklist.md",
+        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-advisor-hook-improvements/resource-map.md"
       ],
       "related_findings": [
         "F-002",
@@ -36,16 +36,16 @@
       "summary": "The packet marks T-001 through T-015 complete and cites `applied/T-###.md` evidence, but no `applied/` directory exists, so the verification ledger is missing.",
       "evidence": [
         "review/iterations/iteration-02.md#findings",
-        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/011-skill-advisor-hook-improvements/checklist.md:46",
-        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/011-skill-advisor-hook-improvements/checklist.md:96",
-        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/011-skill-advisor-hook-improvements/checklist.md:104",
-        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/011-skill-advisor-hook-improvements/resource-map.md:116"
+        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-advisor-hook-improvements/checklist.md:46",
+        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-advisor-hook-improvements/checklist.md:96",
+        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-advisor-hook-improvements/checklist.md:104",
+        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-advisor-hook-improvements/resource-map.md:116"
       ],
       "recommended_fix": "Restore the missing `applied/T-###.md` evidence set or correct the checklist, implementation summary, and resource map so they only claim evidence that actually exists on disk.",
       "target_files": [
-        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/011-skill-advisor-hook-improvements/checklist.md",
-        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/011-skill-advisor-hook-improvements/implementation-summary.md",
-        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/011-skill-advisor-hook-improvements/resource-map.md"
+        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-advisor-hook-improvements/checklist.md",
+        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-advisor-hook-improvements/implementation-summary.md",
+        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-advisor-hook-improvements/resource-map.md"
       ],
       "related_findings": [
         "F-001",
@@ -108,16 +108,16 @@
       "summary": "The packet's Codex verification narrative only proves fail-open `{}` behavior and missing packet-local evidence, not the successful shared-brief path the implementation claims to normalize.",
       "evidence": [
         "review/iterations/iteration-05.md#findings",
-        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/011-skill-advisor-hook-improvements/implementation-summary.md:44",
-        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/011-skill-advisor-hook-improvements/implementation-summary.md:94",
-        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/011-skill-advisor-hook-improvements/checklist.md:75",
+        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-advisor-hook-improvements/implementation-summary.md:44",
+        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-advisor-hook-improvements/implementation-summary.md:94",
+        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-advisor-hook-improvements/checklist.md:75",
         ".opencode/skills/system-spec-kit/mcp_server/tests/codex-user-prompt-submit-hook.vitest.ts:69"
       ],
       "recommended_fix": "Replace the packet-local Codex smoke claims with explicit success-path evidence or a restored `applied/T-013.md` ledger that shows which hook and prompt-wrapper scenarios actually ran for packet 014.",
       "target_files": [
-        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/011-skill-advisor-hook-improvements/implementation-summary.md",
-        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/011-skill-advisor-hook-improvements/checklist.md",
-        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/011-skill-advisor-hook-improvements/resource-map.md"
+        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-advisor-hook-improvements/implementation-summary.md",
+        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-advisor-hook-improvements/checklist.md",
+        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-advisor-hook-improvements/resource-map.md"
       ],
       "related_findings": [
         "F-002",
@@ -178,14 +178,14 @@
       "summary": "The packet resource map is no longer a clean ledger: it mixes narrative and unresolved `NEEDS VERIFICATION` notes with stale research lineage, and it also reports non-existent artifacts as present.",
       "evidence": [
         "review/iterations/iteration-08.md#findings",
-        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/011-skill-advisor-hook-improvements/resource-map.md:24",
-        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/011-skill-advisor-hook-improvements/resource-map.md:36",
-        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/011-skill-advisor-hook-improvements/resource-map.md:121",
-        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/011-skill-advisor-hook-improvements/resource-map.md:127"
+        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-advisor-hook-improvements/resource-map.md:24",
+        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-advisor-hook-improvements/resource-map.md:36",
+        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-advisor-hook-improvements/resource-map.md:121",
+        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-advisor-hook-improvements/resource-map.md:127"
       ],
       "recommended_fix": "Regenerate the resource map as a purely factual path ledger, reconcile the canonical research lineage, and remove inline audit judgments from the file.",
       "target_files": [
-        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/011-skill-advisor-hook-improvements/resource-map.md"
+        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-advisor-hook-improvements/resource-map.md"
       ],
       "related_findings": [
         "F-001",

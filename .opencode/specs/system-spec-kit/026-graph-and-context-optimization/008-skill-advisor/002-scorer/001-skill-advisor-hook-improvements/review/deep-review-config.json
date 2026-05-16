@@ -1,6 +1,6 @@
 {
   "review_topic": "Implementation review for 014",
-  "spec_folder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/011-skill-advisor-hook-improvements",
+  "spec_folder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-advisor-hook-improvements",
   "max_iterations": 10,
   "convergence_threshold": 0.05,
   "stuck_threshold": 3,

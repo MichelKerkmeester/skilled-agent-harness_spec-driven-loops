@@ -4,7 +4,7 @@ Embed cache, cosine wiring, ablation/weight/corpus sweeps, calibration.
 
 ## Children (8)
 
-- `011-skill-advisor-hook-improvements`
+- `001-skill-advisor-hook-improvements`
 - `013-skill-advisor-semantic-lane`
 - `014-embed-cache-and-cosine-wiring`
 - `015-ablation-sweep-and-promote`

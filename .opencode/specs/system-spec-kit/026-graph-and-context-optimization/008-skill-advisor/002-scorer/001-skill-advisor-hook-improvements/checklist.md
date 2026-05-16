@@ -1,5 +1,5 @@
 ---
-title: "...tem-spec-kit/026-graph-and-context-optimization/008-skill-advisor/011-skill-advisor-hook-improvements/checklist]"
+title: "...tem-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-advisor-hook-improvements/checklist]"
 description: "Evidence-backed implementation checklist for packet 014 skill-advisor runtime parity, MCP surface normalization, and telemetry durability."
 trigger_phrases:
   - "014 skill-advisor checklist"
@@ -9,7 +9,7 @@ contextType: "implementation"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: checklist-core + level2-verify | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/011-skill-advisor-hook-improvements"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-advisor-hook-improvements"
     last_updated_at: "2026-04-24T10:44:39Z"
     last_updated_by: "codex-gpt-5"
     recent_action: "rg-019-codex-evidence-relinked"
@@ -96,7 +96,7 @@ Packet-local `applied/T-###.md` reports are not present in this checkout. The ta
 ## File Organization
 <!-- ANCHOR:file-org -->
 
-- [x] Packet-local `applied/T-###.md` reports are absent in this checkout, so verification depends on `tasks.md`, `implementation-summary.md`, and this checklist instead of a per-task ledger. [Evidence: `resource-map.md` Specs entry for `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/011-skill-advisor-hook-improvements/applied/` marked `MISSING`.]
+- [x] Packet-local `applied/T-###.md` reports are absent in this checkout, so verification depends on `tasks.md`, `implementation-summary.md`, and this checklist instead of a per-task ledger. [Evidence: `resource-map.md` Specs entry for `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-advisor-hook-improvements/applied/` marked `MISSING`.]
 - [x] Packet implementation summary was written. [Evidence: `implementation-summary.md`]
 - [x] Packet verification checklist was written. [Evidence: this file]
 <!-- /ANCHOR:file-org -->
@@ -104,6 +104,6 @@ Packet-local `applied/T-###.md` reports are not present in this checkout. The ta
 ## Verification Summary
 <!-- ANCHOR:summary -->
 
-- [x] Packet closeout docs still map work across T-001 through T-015 via `tasks.md` plus the surviving implementation summary sections, but not via packet-local applied reports. [Evidence: `tasks.md`; `implementation-summary.md` What Was Built, Files Changed, and Verification sections; `resource-map.md` Specs entry for the missing `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/011-skill-advisor-hook-improvements/applied/`.]
+- [x] Packet closeout docs still map work across T-001 through T-015 via `tasks.md` plus the surviving implementation summary sections, but not via packet-local applied reports. [Evidence: `tasks.md`; `implementation-summary.md` What Was Built, Files Changed, and Verification sections; `resource-map.md` Specs entry for the missing `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-advisor-hook-improvements/applied/`.]
 - [x] The remaining validation failure is documented as packet-external and outside the allowed edit scope (`spec.md`, `plan.md`, `tasks.md`). [Evidence: `implementation-summary.md` Verification row `Full package build`.]
 <!-- /ANCHOR:summary -->

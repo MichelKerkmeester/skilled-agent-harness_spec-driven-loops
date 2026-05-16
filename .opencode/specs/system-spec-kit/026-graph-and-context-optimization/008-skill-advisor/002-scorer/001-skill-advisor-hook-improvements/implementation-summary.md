@@ -1,5 +1,5 @@
 ---
-title: "...026-graph-and-context-optimization/008-skill-advisor/011-skill-advisor-hook-improvements/implementation-summary]"
+title: "...026-graph-and-context-optimization/008-skill-advisor/001-skill-advisor-hook-improvements/implementation-summary]"
 description: "Completed packet-02-derived implementation for packet 014: OpenCode threshold/render parity, Codex shared-brief normalization, public MCP workspace/threshold semantics, and durable prompt-safe telemetry with outcome capture."
 trigger_phrases:
   - "014 skill-advisor hook improvements complete"
@@ -9,7 +9,7 @@ contextType: "implementation"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/011-skill-advisor-hook-improvements"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-advisor-hook-improvements"
     last_updated_at: "2026-04-24T10:44:39Z"
     last_updated_by: "codex-gpt-5"
     recent_action: "rg-019-codex-verification-evidence-remediated"

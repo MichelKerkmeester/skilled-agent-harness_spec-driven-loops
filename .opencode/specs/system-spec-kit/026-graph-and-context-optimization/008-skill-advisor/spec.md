@@ -17,7 +17,7 @@ trigger_phrases:
   - "002-skill-graph-daemon-and-advisor-unification"
   - "009-skill-advisor-plugin-hardening"
   - "010-skill-advisor-standards-alignment"
-  - "011-skill-advisor-hook-improvements"
+  - "001-skill-advisor-hook-improvements"
   - "012-skill-advisor-setup-command"
   - "/doctor:skill-advisor"
 importance_tier: "important"
@@ -119,7 +119,7 @@ Keep this theme as the single active parent for the full skill advisor system. E
 | 8 | `002-skill-graph-daemon-and-advisor-unification/` | In Progress | Feature Specification: 027 - Skill Graph Daemon and Advisor Unification |
 | 9 | `009-skill-advisor-plugin-hardening/` | Complete | Feature Specification: Skill-Advisor Plugin Hardening |
 | 10 | `010-skill-advisor-standards-alignment/` | Complete | Feature Specification: Skill-Advisor Standards Alignment |
-| 11 | `011-skill-advisor-hook-improvements/` | Research Queued | Feature Specification: Skill-Advisor Hook Improvements |
+| 11 | `001-skill-advisor-hook-improvements/` | Research Queued | Feature Specification: Skill-Advisor Hook Improvements |
 | 12 | `012-skill-advisor-setup-command/` | Implemented | Feature Specification: Skill Advisor Setup Command |
 <!-- /ANCHOR:phase-map -->
 

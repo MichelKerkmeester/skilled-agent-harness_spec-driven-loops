@@ -56,7 +56,7 @@ INTERNAL_RENUMBER = {
         "002-skill-graph-daemon-and-advisor-unification":    "002-skill-graph-daemon-and-advisor-unification",
         "008-skill-advisor-plugin-hardening":                "009-skill-advisor-plugin-hardening",
         "009-skill-advisor-standards-alignment":             "010-skill-advisor-standards-alignment",
-        "014-skill-advisor-hook-improvements":               "011-skill-advisor-hook-improvements",
+        "014-skill-advisor-hook-improvements":               "001-skill-advisor-hook-improvements",
     },
     "007-code-graph": {
         # 010 → 007 children get new slots 004 and 005. Internal sibling refs to those.
@@ -73,7 +73,7 @@ ADVISOR_RELOCATIONS = {
     "002-skill-graph-daemon-and-advisor-unification":    ("008-skill-advisor", "002-skill-graph-daemon-and-advisor-unification"),
     "008-skill-advisor-plugin-hardening":                ("008-skill-advisor", "009-skill-advisor-plugin-hardening"),
     "009-skill-advisor-standards-alignment":             ("008-skill-advisor", "010-skill-advisor-standards-alignment"),
-    "014-skill-advisor-hook-improvements":               ("008-skill-advisor", "011-skill-advisor-hook-improvements"),
+    "014-skill-advisor-hook-improvements":               ("008-skill-advisor", "001-skill-advisor-hook-improvements"),
     "013-code-graph-hook-improvements":                  ("007-code-graph", "004-code-graph-hook-improvements"),
     "015-code-graph-advisor-refinement":                 ("007-code-graph", "005-code-graph-advisor-refinement"),
 }
@@ -110,7 +110,7 @@ QUALIFIED_RELOCATIONS = [
     ("../../010-hook-parity/002-skill-graph-daemon-and-advisor-unification/", "../../008-skill-advisor/002-skill-graph-daemon-and-advisor-unification/"),
     ("../../010-hook-parity/008-skill-advisor-plugin-hardening/",     "../../008-skill-advisor/009-skill-advisor-plugin-hardening/"),
     ("../../010-hook-parity/009-skill-advisor-standards-alignment/",  "../../008-skill-advisor/010-skill-advisor-standards-alignment/"),
-    ("../../010-hook-parity/014-skill-advisor-hook-improvements/",    "../../008-skill-advisor/011-skill-advisor-hook-improvements/"),
+    ("../../010-hook-parity/014-skill-advisor-hook-improvements/",    "../../008-skill-advisor/001-skill-advisor-hook-improvements/"),
     ("../../010-hook-parity/013-code-graph-hook-improvements/",       "../../007-code-graph/004-code-graph-hook-improvements/"),
     ("../../010-hook-parity/015-code-graph-advisor-refinement/",      "../../007-code-graph/005-code-graph-advisor-refinement/"),
     # 008-skill-advisor close-the-gap renumber for 006-children (005→004, 006→005, 007→006).
@@ -154,7 +154,7 @@ CROSS_TREE_FROM_007 = {
     "002-skill-graph-daemon-and-advisor-unification": ("008-skill-advisor", "002-skill-graph-daemon-and-advisor-unification"),
     "008-skill-advisor-plugin-hardening":     ("008-skill-advisor", "009-skill-advisor-plugin-hardening"),
     "009-skill-advisor-standards-alignment":  ("008-skill-advisor", "010-skill-advisor-standards-alignment"),
-    "014-skill-advisor-hook-improvements":    ("008-skill-advisor", "011-skill-advisor-hook-improvements"),
+    "014-skill-advisor-hook-improvements":    ("008-skill-advisor", "001-skill-advisor-hook-improvements"),
     "003-hook-parity-remediation":            ("010-hook-parity", "001-hook-parity-remediation"),
     "004-copilot-hook-parity-remediation":    ("010-hook-parity", "002-copilot-hook-parity-remediation"),
     "005-codex-hook-parity-remediation":      ("010-hook-parity", "003-codex-hook-parity-remediation"),

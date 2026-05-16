@@ -12,7 +12,7 @@ importance_tier: "normal"
 contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/011-skill-advisor-hook-improvements/research/014-skill-advisor-hook-improvements-pt-02"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-advisor-hook-improvements/research/014-skill-advisor-hook-improvements-pt-02"
     last_updated_at: "2026-04-24T15:25:01Z"
     last_updated_by: "backfill-memory-block"
     recent_action: "Backfilled _memory block (repo-wide frontmatter sweep)"
@@ -29,7 +29,7 @@ Packet-02 confirmed that the remaining skill-advisor improvement work is no long
 
 In scope:
 
-- Recommendation quality and threshold drift across shared hooks, OpenCode bridge paths, and validator surfaces [.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/011-skill-advisor-hook-improvements/spec.md:56-63].
+- Recommendation quality and threshold drift across shared hooks, OpenCode bridge paths, and validator surfaces [.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-advisor-hook-improvements/spec.md:56-63].
 - Cross-runtime brief parity for Claude, Gemini, Copilot, Codex, and OpenCode hook/bridge delivery paths [iterations/iteration-03.md#findings] [iterations/iteration-04.md#findings].
 - Public MCP tool-surface behavior for `advisor_status`, `advisor_recommend`, and `advisor_validate` [iterations/iteration-05.md#findings].
 - Prompt-safe telemetry, health, and recommendation-feedback surfaces beyond the already-closed CF-019 defect [iterations/iteration-07.md#findings].
@@ -179,8 +179,8 @@ Novelty trended as `0.32, 0.24, 0.19, 0.15, 0.12, 0.09, 0.08, 0.07, 0.06, 0.04`.
 
 ## Related Work
 
-- Pt-01 packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/011-skill-advisor-hook-improvements/research/029-skill-advisor-hook-improvements-pt-01/`.
-- Originating packet spec: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/011-skill-advisor-hook-improvements/spec.md`.
+- Pt-01 packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-advisor-hook-improvements/research/029-skill-advisor-hook-improvements-pt-01/`.
+- Originating packet spec: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-advisor-hook-improvements/spec.md`.
 - Applied closure baseline: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-deep-review-remediation/006-integrity-parity-closure/applied/CF-019.md`.
 - Relevant sibling implementation packets: `001-skill-advisor-hook-surface`, `008-skill-advisor-plugin-hardening`, `009-skill-advisor-standards-alignment`.
 
@@ -194,10 +194,10 @@ Novelty trended as `0.32, 0.24, 0.19, 0.15, 0.12, 0.09, 0.08, 0.07, 0.06, 0.04`.
 
 ## References
 
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/011-skill-advisor-hook-improvements/spec.md`
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-advisor-hook-improvements/spec.md`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-deep-review-remediation/006-integrity-parity-closure/applied/CF-019.md`
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/011-skill-advisor-hook-improvements/research/029-skill-advisor-hook-improvements-pt-01/research.md`
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/011-skill-advisor-hook-improvements/research/029-skill-advisor-hook-improvements-pt-01/findings-registry.json`
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-advisor-hook-improvements/research/029-skill-advisor-hook-improvements-pt-01/research.md`
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-advisor-hook-improvements/research/029-skill-advisor-hook-improvements-pt-01/findings-registry.json`
 - `.opencode/plugins/spec-kit-skill-advisor.js`
 - `.opencode/plugin-helpers/spec-kit-skill-advisor-bridge.mjs`
 - `.opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook.md`
