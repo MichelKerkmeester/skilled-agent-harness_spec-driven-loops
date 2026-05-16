@@ -2,7 +2,7 @@
 title: "Remediation Log: 046 Release Readiness"
 description: "Chronological remediation log for P0 and Tier beta P1 fixes applied during packet 046."
 trigger_phrases:
-  - "033-release-readiness-synthesis-and-remediation"
+  - "004-release-readiness-synthesis-and-remediation"
   - "P0 fixes implementation"
   - "release blocker remediation"
 importance_tier: "important"
@@ -34,7 +34,7 @@ contextType: "implementation"
 |---------|--------|
 | `npx vitest run tests/tool-input-schema.vitest.ts tests/ensure-ready.vitest.ts tests/advisor-rebuild.vitest.ts` | PASS: 3 files, 98 tests |
 | `npm run build` | PASS: TypeScript build exited 0 |
-| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/033-release-readiness-synthesis-and-remediation --strict` | PASS: 0 errors, 0 warnings |
+| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-release-readiness-synthesis-and-remediation --strict` | PASS: 0 errors, 0 warnings |
 | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/014-phase-parent-documentation --strict --no-recursive` | SPEC_DOC_INTEGRITY PASS; strict still fails due unrelated legacy phase-link warnings |
 
 ## Deferred Items

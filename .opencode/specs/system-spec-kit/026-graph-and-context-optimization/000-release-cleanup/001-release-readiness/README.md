@@ -7,7 +7,7 @@ Deep review programs, synthesis of readiness findings, P1/P2 remediation.
 - `001-skill-advisor-fail-open`
 - `002-tier2-remediation`
 - `003-release-readiness-deep-review-program`
-- `033-release-readiness-synthesis-and-remediation`
+- `004-release-readiness-synthesis-and-remediation`
 - `035-remaining-p1-p2-remediation`
 - `044-p1-p2-stress-remediation`
 
