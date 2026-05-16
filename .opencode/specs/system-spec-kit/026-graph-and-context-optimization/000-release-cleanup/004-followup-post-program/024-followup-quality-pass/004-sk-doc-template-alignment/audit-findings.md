@@ -99,12 +99,12 @@ Additional integrity checks covered balanced `<!-- ANCHOR:slug -->` markers and 
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/006-full-matrix-execution-validation/research/prompts/iteration-001.md` | PASS | No blocking sk-doc issue in applicable spec checks |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/006-full-matrix-execution-validation/spec.md` | PASS | No blocking sk-doc issue in applicable spec checks |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/006-full-matrix-execution-validation/tasks.md` | PASS | No blocking sk-doc issue in applicable spec checks |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/023-cli-matrix-adapter-runners/checklist.md` | PASS | No blocking sk-doc issue in applicable spec checks |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/023-cli-matrix-adapter-runners/implementation-summary.md` | PASS | No blocking sk-doc issue in applicable spec checks |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/023-cli-matrix-adapter-runners/plan.md` | PASS | No blocking sk-doc issue in applicable spec checks |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/023-cli-matrix-adapter-runners/research/prompts/iteration-001.md` | PASS | No blocking sk-doc issue in applicable spec checks |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/023-cli-matrix-adapter-runners/spec.md` | PASS | No blocking sk-doc issue in applicable spec checks |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/023-cli-matrix-adapter-runners/tasks.md` | PASS | No blocking sk-doc issue in applicable spec checks |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/011-cli-matrix-adapter-runners/checklist.md` | PASS | No blocking sk-doc issue in applicable spec checks |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/011-cli-matrix-adapter-runners/implementation-summary.md` | PASS | No blocking sk-doc issue in applicable spec checks |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/011-cli-matrix-adapter-runners/plan.md` | PASS | No blocking sk-doc issue in applicable spec checks |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/011-cli-matrix-adapter-runners/research/prompts/iteration-001.md` | PASS | No blocking sk-doc issue in applicable spec checks |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/011-cli-matrix-adapter-runners/spec.md` | PASS | No blocking sk-doc issue in applicable spec checks |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/011-cli-matrix-adapter-runners/tasks.md` | PASS | No blocking sk-doc issue in applicable spec checks |
 | `AGENTS.md` | DEFERRED | Governance template, not README; emoji/header drift existed before packets 031 through 036 |
 
 ## Re-audit Results

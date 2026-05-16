@@ -1,6 +1,6 @@
 ## Packet 036: cli-matrix-adapter-runners — Tier B follow-on to 035
 
-You are cli-codex (gpt-5.5 high fast) implementing remediation packet **023-cli-matrix-adapter-runners**.
+You are cli-codex (gpt-5.5 high fast) implementing remediation packet **011-cli-matrix-adapter-runners**.
 
 ### Goal
 
@@ -124,12 +124,12 @@ CLI entry: `npx tsx mcp_server/matrix_runners/run-matrix.ts --output <dir> [--fi
 
 ### Packet structure to create (Level 2)
 
-7-file structure under `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/023-cli-matrix-adapter-runners/`:
+7-file structure under `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/011-cli-matrix-adapter-runners/`:
 - spec.md, plan.md, tasks.md, checklist.md, implementation-summary.md, description.json, graph-metadata.json
 
 **Deps**: `manual.depends_on=["system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/006-full-matrix-execution-validation","system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/030-v1-0-4-full-matrix-stress-test-design"]`.
 
-**Trigger phrases**: `["023-cli-matrix-adapter-runners","CLI matrix adapter","matrix runner adapters","cli-codex adapter","cli-copilot adapter","cli-gemini adapter"]`.
+**Trigger phrases**: `["011-cli-matrix-adapter-runners","CLI matrix adapter","matrix runner adapters","cli-codex adapter","cli-copilot adapter","cli-gemini adapter"]`.
 
 **Causal summary**: `"Builds per-CLI adapter runners (cli-codex/cli-copilot/cli-gemini/cli-claude-code/cli-opencode) for the F1-F14 × executor matrix. 5 adapters + manifest + meta-runner + 5 smoke tests. Converts 42 RUNNER_MISSING cells into executable cells. Closes the biggest gap surfaced by 035's CONDITIONAL verdict."`.
 

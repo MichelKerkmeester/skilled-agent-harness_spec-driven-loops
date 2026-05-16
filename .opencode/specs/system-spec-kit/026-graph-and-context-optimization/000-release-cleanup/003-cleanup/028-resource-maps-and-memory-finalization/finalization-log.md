@@ -48,7 +48,7 @@ Generated: 2026-04-29T20:41:19+02:00
 | `005-memory-retention-sweep` | 5781 | 0 | OK | OK | 0 | OK |
 | `010-half-auto-upgrades` | 7172 | 0 | OK | OK | 0 | OK |
 | `006-full-matrix-execution-validation` | 23560 | 0 | OK | OK | 0 | OK |
-| `023-cli-matrix-adapter-runners` | 8647 | 0 | OK | OK | 0 | OK |
+| `011-cli-matrix-adapter-runners` | 8647 | 0 | OK | OK | 0 | OK |
 | `024-followup-quality-pass` | 5719 | 0 | OK | OK | 0 | OK |
 | `024-followup-quality-pass/001-sk-code-opencode-audit` | 9109 | 0 | OK | OK | 0 | OK |
 | `024-followup-quality-pass/002-feature-catalog-trio` | 5904 | 0 | OK | OK | 0 | OK |

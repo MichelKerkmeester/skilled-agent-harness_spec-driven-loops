@@ -54,7 +54,7 @@ Surfaces likely affected:
 - `.opencode/skills/system-spec-kit/SKILL.md`, `ARCHITECTURE.md` — top-level skill docs
 - Root `README.md` — was just updated in 042; check for matrix_runners refs
 - `AGENTS.md` — if it references matrix_runners
-- Spec docs in `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/023-cli-matrix-adapter-runners/` — update path refs in implementation-summary.md, plan.md, etc.
+- Spec docs in `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/011-cli-matrix-adapter-runners/` — update path refs in implementation-summary.md, plan.md, etc.
 - Spec docs in `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/006-full-matrix-execution-validation/` and `030-hook-plugin-per-runtime-testing/` — may reference matrix_runners
 - The 045/006-mcp-tool-schema-governance and 045/007-deep-loop-workflow-integrity review-reports may also cite the path
 
@@ -82,7 +82,7 @@ grep -rln 'matrix_runners' .opencode/ specs/ AGENTS.md CLAUDE.md README.md 2>/de
 
 Goal: zero remaining references to `matrix_runners` (kebab-case). If grep returns hits, fix them.
 
-Note: spec packet folder names (e.g., `023-cli-matrix-adapter-runners/`) keep their kebab-case slug — that's the spec folder convention, separate from runtime code dir convention. Do NOT rename the packet folder. Only the runtime code dir at `mcp_server/matrix_runners` and its references should change.
+Note: spec packet folder names (e.g., `011-cli-matrix-adapter-runners/`) keep their kebab-case slug — that's the spec folder convention, separate from runtime code dir convention. Do NOT rename the packet folder. Only the runtime code dir at `mcp_server/matrix_runners` and its references should change.
 
 ### Packet structure to create (Level 2)
 
@@ -90,7 +90,7 @@ Note: spec packet folder names (e.g., `023-cli-matrix-adapter-runners/`) keep th
 
 PLUS: `rename-log.md` at packet root listing all files updated + total references replaced.
 
-**Deps**: `manual.depends_on=["system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/023-cli-matrix-adapter-runners","system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-release-readiness-synthesis-and-remediation"]`.
+**Deps**: `manual.depends_on=["system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/011-cli-matrix-adapter-runners","system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-release-readiness-synthesis-and-remediation"]`.
 
 **Trigger phrases**: `["047-matrix_runners-snake-case-rename","matrix_runners rename","kebab-to-snake convention","mcp_server folder convention"]`.
 

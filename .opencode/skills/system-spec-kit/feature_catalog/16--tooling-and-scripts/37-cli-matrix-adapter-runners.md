@@ -70,4 +70,4 @@ Each adapter maps a normalized `AdapterInput` into the target CLI's argv/stdin c
 - Canonical catalog source: `feature_catalog.md`
 - Feature file path: `16--tooling-and-scripts/37-cli-matrix-adapter-runners.md`
 
-- Packet source: `023-cli-matrix-adapter-runners`
+- Packet source: `011-cli-matrix-adapter-runners`

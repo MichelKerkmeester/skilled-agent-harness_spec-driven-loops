@@ -3,7 +3,7 @@ title: "Spec: CLI Matrix Adapter Runners"
 template_source: "SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify | v2.2"
 description: "Level 2 remediation packet that adds CLI adapter runners, a 70-cell manifest, meta-runner, docs, and mocked smoke tests for packet 030's F1-F14 x CLI matrix."
 trigger_phrases:
-  - "023-cli-matrix-adapter-runners"
+  - "011-cli-matrix-adapter-runners"
   - "CLI matrix adapter"
   - "matrix runner adapters"
   - "cli-codex adapter"
@@ -13,7 +13,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/023-cli-matrix-adapter-runners"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/011-cli-matrix-adapter-runners"
     last_updated_at: "2026-04-29T20:35:30+02:00"
     last_updated_by: "cli-codex"
     recent_action: "Resource map indexed"
@@ -92,7 +92,7 @@ Build the external CLI adapter layer for `cli-codex`, `cli-gemini`, `cli-claude-
 | `.opencode/skills/system-spec-kit/mcp_server/tests/matrix-adapter-test-utils.ts` | Create | Test spawn mock helper |
 | `.opencode/skills/system-spec-kit/mcp_server/matrix_runners/README.md` | Create | Quickstart and manifest docs |
 | `.opencode/skills/system-spec-kit/mcp_server/README.md` | Update | Structure reference for matrix runners |
-| `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/023-cli-matrix-adapter-runners/*` | Create | Packet documentation and metadata |
+| `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/011-cli-matrix-adapter-runners/*` | Create | Packet documentation and metadata |
 <!-- /ANCHOR:scope -->
 
 ---

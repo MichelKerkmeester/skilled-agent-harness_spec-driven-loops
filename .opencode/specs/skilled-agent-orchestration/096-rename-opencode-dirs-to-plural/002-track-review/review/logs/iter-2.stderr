@@ -6093,7 +6093,7 @@ END{
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/043-stress-test-gap-remediation/scratch/codex-batch-A.log
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/010-half-auto-upgrades/logs/iter-001.log
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/038-coco-index-feature-catalog/logs/iter-001.log
-./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/023-cli-matrix-adapter-runners/logs/iter-001.log
+./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/011-cli-matrix-adapter-runners/logs/iter-001.log
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/025-stress-test-folder-completion/logs/iter-001.log
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/028-resource-maps-and-memory-finalization/logs/iter-001.log
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-graph-impact-and-affordance-uplift/008-deep-research-review/research/008-deep-research-review-pt-01/logs/iteration-003.log

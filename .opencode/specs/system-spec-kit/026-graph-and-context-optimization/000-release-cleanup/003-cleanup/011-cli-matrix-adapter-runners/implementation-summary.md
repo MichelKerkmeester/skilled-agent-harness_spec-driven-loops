@@ -3,7 +3,7 @@ title: "Implementation Summary: CLI Matrix Adapter Runners"
 template_source: "SPECKIT_TEMPLATE_SOURCE: implementation-summary | v2.2"
 description: "Completion summary for packet 036 CLI matrix adapter runners."
 trigger_phrases:
-  - "023-cli-matrix-adapter-runners"
+  - "011-cli-matrix-adapter-runners"
   - "CLI matrix adapter"
   - "matrix runner adapters"
   - "cli-codex adapter"
@@ -13,7 +13,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/023-cli-matrix-adapter-runners"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/011-cli-matrix-adapter-runners"
     last_updated_at: "2026-04-29T20:35:30+02:00"
     last_updated_by: "cli-codex"
     recent_action: "Resource map indexed"
@@ -39,7 +39,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 023-cli-matrix-adapter-runners |
+| **Spec Folder** | 011-cli-matrix-adapter-runners |
 | **Completed** | 2026-04-29 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
@@ -112,7 +112,7 @@ The implementation stayed inside the MCP server package and the packet 036 docs.
 | `node -e "<manifest sanity check>"` | `70`, `14`, `5`, `F11-cli-gemini` |
 | `cd .opencode/skills/system-spec-kit/mcp_server && npm run build` | Exit 0 |
 | `cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run matrix-adapter` | Exit 0; 5 files passed; 10 tests passed |
-| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/023-cli-matrix-adapter-runners --strict` | Exit 0 |
+| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/011-cli-matrix-adapter-runners --strict` | Exit 0 |
 <!-- /ANCHOR:verification -->
 
 ---

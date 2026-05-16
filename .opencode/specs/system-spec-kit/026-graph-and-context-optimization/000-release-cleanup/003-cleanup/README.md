@@ -14,7 +14,7 @@ Documentation fixes, template debt, orphan management, remediation.
 - `008-skdoc-legacy-template-debt-cleanup`
 - `009-phase-parent-documentation`
 - `010-half-auto-upgrades`
-- `023-cli-matrix-adapter-runners`
+- `011-cli-matrix-adapter-runners`
 - `026-code-graph-catalog-and-playbook`
 - `027-evergreen-doc-packet-id-removal`
 - `028-resource-maps-and-memory-finalization`
