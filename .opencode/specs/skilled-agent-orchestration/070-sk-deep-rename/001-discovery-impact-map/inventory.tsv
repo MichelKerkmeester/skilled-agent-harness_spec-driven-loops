@@ -375,7 +375,7 @@ file_path	match_count	area	phase
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/024-followup-quality-pass/003-testing-playbook-trio/discovery-notes.md	2	spec-folder-active	003
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/013-evergreen-doc-packet-id-removal/graph-metadata.json	3	spec-folder-active	003
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/013-evergreen-doc-packet-id-removal/resource-map.md	2	spec-folder-active	003
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/029-root-readme-refresh/research/prompts/iteration-001.md	2	spec-folder-active	003
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/015-root-readme-refresh/research/prompts/iteration-001.md	2	spec-folder-active	003
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-release-readiness-deep-review-program/001-workflow-correctness/plan.md	1	spec-folder-active	003
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-release-readiness-deep-review-program/001-workflow-correctness/research/prompts/iteration-001.md	3	spec-folder-active	003
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-release-readiness-deep-review-program/001-workflow-correctness/review-report.md	1	spec-folder-active	003
@@ -1035,7 +1035,7 @@ specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/024
 specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/024-followup-quality-pass/003-testing-playbook-trio/discovery-notes.md	2	spec-folder-active	003
 specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/013-evergreen-doc-packet-id-removal/graph-metadata.json	3	spec-folder-active	003
 specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/013-evergreen-doc-packet-id-removal/resource-map.md	2	spec-folder-active	003
-specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/029-root-readme-refresh/research/prompts/iteration-001.md	2	spec-folder-active	003
+specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/015-root-readme-refresh/research/prompts/iteration-001.md	2	spec-folder-active	003
 specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-release-readiness-deep-review-program/001-workflow-correctness/plan.md	1	spec-folder-active	003
 specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-release-readiness-deep-review-program/001-workflow-correctness/research/prompts/iteration-001.md	3	spec-folder-active	003
 specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-release-readiness-deep-review-program/001-workflow-correctness/review-report.md	1	spec-folder-active	003

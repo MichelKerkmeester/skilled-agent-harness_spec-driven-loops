@@ -2,7 +2,7 @@
 title: "Verification Notes: 042 root README refresh"
 description: "Canonical count evidence for the root README refresh."
 trigger_phrases:
-  - "029-root-readme-refresh"
+  - "015-root-readme-refresh"
   - "tool count refresh"
 importance_tier: "normal"
 contextType: "general"

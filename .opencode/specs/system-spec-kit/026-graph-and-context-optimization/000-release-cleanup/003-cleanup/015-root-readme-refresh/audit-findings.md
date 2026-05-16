@@ -2,7 +2,7 @@
 title: "Audit Findings: 042 root README refresh"
 description: "Evergreen packet-ID grep findings for README.md."
 trigger_phrases:
-  - "029-root-readme-refresh"
+  - "015-root-readme-refresh"
   - "evergreen audit"
 importance_tier: "normal"
 contextType: "general"

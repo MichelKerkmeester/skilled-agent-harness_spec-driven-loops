@@ -1,6 +1,6 @@
 ## Packet 042: root-readme-refresh — Tier B doc-only
 
-You are cli-codex (gpt-5.5 high fast) implementing **029-root-readme-refresh**.
+You are cli-codex (gpt-5.5 high fast) implementing **015-root-readme-refresh**.
 
 ### Goal
 
@@ -101,13 +101,13 @@ Use Edit tool surgically. Don't rewrite paragraphs that are already current.
 
 ### Packet structure to create (Level 2)
 
-7-file structure under `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/029-root-readme-refresh/`.
+7-file structure under `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-root-readme-refresh/`.
 
 PLUS: `verification-notes.md` and `audit-findings.md` at packet root.
 
 **Deps**: `manual.depends_on=["system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/013-evergreen-doc-packet-id-removal","system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/025-stress-test-folder-completion","system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/012-code-graph-catalog-and-playbook"]`.
 
-**Trigger phrases**: `["029-root-readme-refresh","root readme update","framework readme refresh","tool count refresh"]`.
+**Trigger phrases**: `["015-root-readme-refresh","root readme update","framework readme refresh","tool count refresh"]`.
 
 **Causal summary**: `"Refreshes root README.md after this session's 18+ commits. Verifies tool/agent/skill/command counts against canonical sources. Adds brief mentions of memory_retention_sweep, advisor_rebuild, freshness-smoke-check, matrix_runners, stress_test/, code_graph runtime catalog/playbook. Fixes one evergreen-rule violation (packet-folder hardlink at L514)."`.
 

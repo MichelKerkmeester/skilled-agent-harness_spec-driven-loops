@@ -3,7 +3,7 @@ title: "Verification Checklist: 042 root README refresh"
 template_source: "SPECKIT_TEMPLATE_SOURCE: checklist | v2.2"
 description: "Verification checklist for count accuracy, evergreen compliance, and packet validation."
 trigger_phrases:
-  - "029-root-readme-refresh"
+  - "015-root-readme-refresh"
   - "root readme update"
   - "framework readme refresh"
   - "tool count refresh"
@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/029-root-readme-refresh"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-root-readme-refresh"
     last_updated_at: "2026-04-29T20:52:18+02:00"
     last_updated_by: "codex-gpt-5.5"
     recent_action: "Strict validation passed"

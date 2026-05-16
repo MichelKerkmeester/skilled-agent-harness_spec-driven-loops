@@ -18,7 +18,7 @@ Documentation fixes, template debt, orphan management, remediation.
 - `012-code-graph-catalog-and-playbook`
 - `013-evergreen-doc-packet-id-removal`
 - `014-resource-maps-and-memory-finalization`
-- `029-root-readme-refresh`
+- `015-root-readme-refresh`
 - `030-hook-plugin-per-runtime-testing`
 - `031-hook-test-sandbox-fix`
 - `034-matrix-runners-snake-case-rename`

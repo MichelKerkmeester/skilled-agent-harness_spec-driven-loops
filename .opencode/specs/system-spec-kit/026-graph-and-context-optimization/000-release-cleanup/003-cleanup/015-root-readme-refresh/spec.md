@@ -3,7 +3,7 @@ title: "Feature Specification: 042 root README refresh"
 template_source: "SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify | v2.2"
 description: "Refresh root README.md after the latest runtime commits, with verified counts, brief feature mentions, and evergreen packet-ID compliance."
 trigger_phrases:
-  - "029-root-readme-refresh"
+  - "015-root-readme-refresh"
   - "root readme update"
   - "framework readme refresh"
   - "tool count refresh"
@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/029-root-readme-refresh"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-root-readme-refresh"
     last_updated_at: "2026-04-29T20:52:18+02:00"
     last_updated_by: "codex-gpt-5.5"
     recent_action: "Strict validation passed"
@@ -78,15 +78,15 @@ Update the root README so it reflects the current runtime surface, cites canonic
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `README.md` | Modify | Refresh counts, feature mentions, footer, and evergreen compliance. |
-| `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/029-root-readme-refresh/spec.md` | Create | Packet specification. |
-| `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/029-root-readme-refresh/plan.md` | Create | Execution plan. |
-| `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/029-root-readme-refresh/tasks.md` | Create | Task ledger. |
-| `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/029-root-readme-refresh/checklist.md` | Create | Verification checklist. |
-| `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/029-root-readme-refresh/implementation-summary.md` | Create | Completion narrative. |
-| `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/029-root-readme-refresh/description.json` | Create | Packet metadata. |
-| `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/029-root-readme-refresh/graph-metadata.json` | Create | Packet graph metadata and dependencies. |
-| `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/029-root-readme-refresh/verification-notes.md` | Create | Count verification notes. |
-| `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/029-root-readme-refresh/audit-findings.md` | Create | Evergreen grep audit findings. |
+| `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-root-readme-refresh/spec.md` | Create | Packet specification. |
+| `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-root-readme-refresh/plan.md` | Create | Execution plan. |
+| `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-root-readme-refresh/tasks.md` | Create | Task ledger. |
+| `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-root-readme-refresh/checklist.md` | Create | Verification checklist. |
+| `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-root-readme-refresh/implementation-summary.md` | Create | Completion narrative. |
+| `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-root-readme-refresh/description.json` | Create | Packet metadata. |
+| `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-root-readme-refresh/graph-metadata.json` | Create | Packet graph metadata and dependencies. |
+| `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-root-readme-refresh/verification-notes.md` | Create | Count verification notes. |
+| `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-root-readme-refresh/audit-findings.md` | Create | Evergreen grep audit findings. |
 <!-- /ANCHOR:scope -->
 
 ---

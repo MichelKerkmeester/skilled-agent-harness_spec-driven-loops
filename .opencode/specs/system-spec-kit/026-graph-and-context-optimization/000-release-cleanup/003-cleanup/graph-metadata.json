@@ -18,7 +18,7 @@
     "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cleanup/012-code-graph-catalog-and-playbook",
     "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cleanup/013-evergreen-doc-packet-id-removal",
     "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cleanup/014-resource-maps-and-memory-finalization",
-    "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cleanup/029-root-readme-refresh",
+    "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cleanup/015-root-readme-refresh",
     "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cleanup/030-hook-plugin-per-runtime-testing",
     "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cleanup/031-hook-test-sandbox-fix",
     "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cleanup/034-matrix-runners-snake-case-rename",
