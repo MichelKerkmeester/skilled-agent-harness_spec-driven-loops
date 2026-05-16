@@ -184,7 +184,15 @@ function installSignalHandlers(): void {
 // 4. SPEC FOLDER VALIDATION
 // ───────────────────────────────────────────────────────────────
 function isUnderApprovedSpecsRoot(normalizedInput: string): boolean {
-  return validateFilePath(path.resolve(CONFIG.PROJECT_ROOT, normalizedInput), getSpecsDirectories()) !== null;
+  const resolved = path.resolve(CONFIG.PROJECT_ROOT, normalizedInput);
+  if (fsSync.existsSync(resolved)) {
+    return validateFilePath(resolved, getSpecsDirectories()) !== null;
+  }
+
+  return getSpecsDirectories().some((specsDir) => {
+    const relative = path.relative(specsDir, resolved);
+    return relative.length > 0 && !relative.startsWith('..') && !path.isAbsolute(relative);
+  });
 }
 
 function isValidSpecFolder(folderPath: string): SpecFolderValidation {

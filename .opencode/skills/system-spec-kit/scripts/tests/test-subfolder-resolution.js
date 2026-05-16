@@ -1,10 +1,14 @@
 // TEST: SUBFOLDER RESOLUTION
 // Focus: SPEC_FOLDER_PATTERN, SPEC_FOLDER_BASIC_PATTERN,
 //        FindChildFolderSync, findChildFolderAsync, core/index re-exports
-'use strict';
+import { createRequire } from 'node:module';
+import { fileURLToPath } from 'node:url';
 
+const require = createRequire(import.meta.url);
+const __filename = fileURLToPath(import.meta.url);
 const path = require('path');
 const fs = require('fs');
+const __dirname = path.dirname(__filename);
 
 /* ─────────────────────────────────────────────────────────────
    1. CONFIGURATION
@@ -1052,22 +1056,19 @@ async function main() {
   log('═══════════════════════════════════════════════════════════════');
 
   // Category A: SPEC_FOLDER_PATTERN
-  log('\n── Category A: SPEC_FOLDER_PATTERN ──
-');
+  log('\n── Category A: SPEC_FOLDER_PATTERN ──');
   await testSpecFolderPatternValid();
   await testSpecFolderPatternInvalid();
   await testSpecFolderPatternEdgeCases();
 
   // Category B: SPEC_FOLDER_BASIC_PATTERN
-  log('\n── Category B: SPEC_FOLDER_BASIC_PATTERN ──
-');
+  log('\n── Category B: SPEC_FOLDER_BASIC_PATTERN ──');
   await testSpecFolderBasicPatternValid();
   await testSpecFolderBasicPatternInvalid();
   await testBasicPatternIsLessStrict();
 
   // Category C: findChildFolderSync
-  log('\n── Category C: findChildFolderSync ──
-');
+  log('\n── Category C: findChildFolderSync ──');
   await testFindChildFolderSyncExisting();
   await testFindChildFolderSyncSecondChild();
   await testFindChildFolderSyncNonexistent();
@@ -1076,8 +1077,7 @@ async function main() {
   await testFindChildFolderSyncAmbiguous();
 
   // Category D: findChildFolderAsync
-  log('\n── Category D: findChildFolderAsync ──
-');
+  log('\n── Category D: findChildFolderAsync ──');
   await testFindChildFolderAsyncExisting();
   await testFindChildFolderAsyncNonexistent();
   await testFindChildFolderAsyncReturnsPromise();
@@ -1086,39 +1086,33 @@ async function main() {
   await testFindChildFolderAsyncAmbiguous();
 
   // Category E: core/index.js re-exports
-  log('\n── Category E: core/index.js Re-exports ──
-');
+  log('\n── Category E: core/index.js Re-exports ──');
   await testCoreIndexReExports();
   await testCoreIndexPatternsAreRegExp();
   await testCoreIndexFunctionsWork();
 
   // Category F: CATEGORY_FOLDER_PATTERN
-  log('\n── Category F: CATEGORY_FOLDER_PATTERN ──
-');
+  log('\n── Category F: CATEGORY_FOLDER_PATTERN ──');
   await testCategoryFolderPatternValid();
   await testCategoryFolderPatternInvalid();
 
   // Category G: Deep nesting (category/parent/child)
-  log('\n── Category G: Deep Nesting ──
-');
+  log('\n── Category G: Deep Nesting ──');
   await testFindChildFolderSyncDeepNesting();
 
   // Category H: SEARCH_MAX_DEPTH boundary
-  log('\n── Category H: SEARCH_MAX_DEPTH Boundary ──
-');
+  log('\n── Category H: SEARCH_MAX_DEPTH Boundary ──');
   await testSearchMaxDepthExported();
   await testFindChildFolderSyncAtMaxDepth();
   await testFindChildFolderSyncBeyondMaxDepth();
 
   // Category I: isValidSpecFolder multi-segment
-  log('\n── Category I: isValidSpecFolder Multi-Segment ──
-');
+  log('\n── Category I: isValidSpecFolder Multi-Segment ──');
   await testIsValidSpecFolderMultiSegment();
   await testIsValidSpecFolderRejectsSymlinkEscape();
 
   // Category J: FindChildOptions (onAmbiguity callback)
-  log('\n── Category J: FindChildOptions ──
-');
+  log('\n── Category J: FindChildOptions ──');
   await testFindChildFolderSyncAmbiguityCallback();
 
   // Results summary
