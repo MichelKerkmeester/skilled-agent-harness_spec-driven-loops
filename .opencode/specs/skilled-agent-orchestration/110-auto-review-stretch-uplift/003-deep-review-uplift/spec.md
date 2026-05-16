@@ -60,10 +60,10 @@ Two efficiency gaps in deep-review's multi-dimensional iteration model:
 1. **H-7 finding duplication**: When `/spec_kit:deep-review` runs across multiple dimensions (security, correctness, performance, etc.), the same finding (e.g. `auth.ts:42 missing input validation`) can be re-emitted by multiple dimensions. The reviewer doesn't realize the finding is already in state from a prior dimension.
 2. **H-9 evidence bloat**: For very large packets (>10MB total code under review), the prompt's evidence interpolation can blow past context windows. Truncating naively loses critical signal.
 
-### Purpose
-Adopt upstream auto-review's marker-based dedup pattern + bounded-evidence approach:
-- **H-7**: Track finding signatures (`sha256(file_path + line_number + finding_type + brief_description)`) in `deep-review-state.jsonl`. Before each dimension dispatch, scan prior findings; if a candidate finding's signature matches a previous emission, skip with `DUPLICATE: <signature>` note.
-- **H-9**: When total evidence (sum of file contents) exceeds 10MB threshold, switch to bounded interpolation: include only changed-region context windows (±20 lines around each finding's file:line), not whole files. Below threshold, behavior unchanged (full evidence).
+### Purpose (REVISED per council §10.4-5)
+
+- **H-7 (KEPT, extends existing dedup)**: deep-review synthesis at `spec_kit_deep-review_auto.yaml:1115-1124` ALREADY deduplicates by `file:line + normalized_title` — H-7 must EXTEND this contract, not invent a parallel sha256 path. Add a content-hash column to the existing dedup state so cross-dimension matches (same finding emitted by 2 dimensions) collapse to one entry with `dimensions: [security, correctness]` rather than 2 separate entries. Authoritative dedup happens in synthesis/reducer state, not in prompt hints to the reviewer.
+- **H-9 (DEFERRED per council §10.5)**: Current deep-review prompt packs use **state/metadata pointers** at `prompt_pack_iteration.md.tmpl:7-17`, not embedded file contents. The "bound the interpolation around candidate file:line" wording assumed an interpolation point that doesn't exist in the current architecture. Council §10.5: defer until a real evidence interpolation path is identified. Track as a follow-on in packet 111 if pursued.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -71,19 +71,20 @@ Adopt upstream auto-review's marker-based dedup pattern + bounded-evidence appro
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
 
-### In Scope
+### In Scope (REVISED per council §10.4 + §10.5)
 
-**H-7 finding-signature dedup**:
-- Add finding-signature tracking to `deep-review-state.jsonl` per-iteration record
-- Signature: `sha256(normalized_file_path + line_range + finding_type + truncated_description_80chars)`
-- Pre-dispatch step in `spec_kit_deep-review_auto.yaml` + `spec_kit_deep-review_confirm.yaml`: read prior iteration findings, build signature set, pass to dispatch prompt as "previously-emitted signatures — DO NOT re-emit"
-- If reviewer emits a duplicate (signature already in prior set), mark it `DUPLICATE-FROM: iter-NNN` in synthesis, don't count as a new finding
+**H-7 finding-signature dedup — EXTEND existing synthesis dedup**:
+- The synthesis YAML at `spec_kit_deep-review_auto.yaml:1115-1124` (and confirm mirror) ALREADY deduplicates by `file:line + normalized_title`. H-7 extends this contract:
+  - Add a `content_hash` field to each finding record in `deep-review-state.jsonl`: `sha256(file_path + line_range + finding_type + normalized_description_80chars)`
+  - Synthesis step uses `content_hash` as the dedup primary key, with `file:line + normalized_title` as fallback for legacy records lacking the hash field
+  - When the same content_hash appears across iterations from different dimensions, collapse to ONE entry with `dimensions: [<list>]` rather than emitting multiple records
+  - Prior signatures MAY be passed to the next dimension as prompt-level hints (reviewer-side awareness), but authoritative dedup happens in synthesis/reducer state, not in prompt hints
+- Backward compatibility: missing `content_hash` field in legacy state records → fall back to existing `file:line + normalized_title` dedup behavior (no regression)
 
-**H-9 bounded evidence interpolation**:
-- Add 10MB threshold check in the deep-review iteration prompt-rendering step (currently in `prompt_pack_iteration.md.tmpl` or its dispatcher)
-- If `total_evidence_bytes > 10_000_000`: switch to ±20-line context windows around each candidate file:line; document in prompt prefix `MODE: bounded-evidence (threshold exceeded: <N>MB > 10MB)`
-- Below threshold: behavior unchanged
-- Make threshold operator-configurable via env var `DEEP_REVIEW_EVIDENCE_THRESHOLD_BYTES` (default 10000000)
+**H-9 bounded evidence interpolation — DEFERRED to packet 111+** (council §10.5)
+- Current deep-review prompts at `prompt_pack_iteration.md.tmpl:7-17` use state/metadata pointers (file paths + line ranges as state references), not embedded file contents
+- The "candidate file:line context windows" approach in the original spec would require an evidence-interpolation step that does not exist
+- H-9 is removed from packet 110 scope; track in a future packet 111+ if a real interpolation point is identified during normal deep-review usage
 
 ### Out of Scope
 - Cross-packet finding dedup (out of scope — each packet's deep-review is independent)

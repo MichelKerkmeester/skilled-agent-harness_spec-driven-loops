@@ -67,21 +67,32 @@ Add 3-tier config resolution + async config init to both mk-* plugins. File tier
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
 
-### In Scope
+### In Scope (REVISED per council §10.2 + §6)
 
-**H-5 — 3-tier config resolution**:
+**H-5 — 4-tier config resolution (council-mandated precedence)**:
 - Add `loadConfig()` async function to each plugin that reads `~/.config/opencode/plugin/<plugin-name>.json` and returns `{}` on any error
-- Resolve each config field via `config.X ?? process.env.<PREFIX>_X ?? default`
+- **Precedence (4 tiers, highest wins)**: `rawOptions (existing plugin-level options) > config file > env vars > defaults`
+- Resolve each config field via: `rawOptions.X ?? config.X ?? process.env.<PREFIX>_X ?? default`
+- Why include `rawOptions`: council §6 verified both plugins ALREADY consume plugin-level options through a normalization layer — `mk-skill-advisor.js:107-127` and `mk-code-graph.js:122-142`. Without including this tier, file-tier would silently override explicit plugin-level options.
 - Plugin name → config-file path mapping:
   - `mk-skill-advisor.js` → `~/.config/opencode/plugin/mk-skill-advisor.json`
   - `mk-code-graph.js` → `~/.config/opencode/plugin/mk-code-graph.json`
 - Env-var prefixes: `MK_SKILL_ADVISOR_*` and `MK_CODE_GRAPH_*` respectively
-- Define each plugin's overridable fields (likely debug flag, log path, index refresh interval, etc.) — exact fields determined at implementation time after reading current source
+- **Preserve existing env-var disable handling** at `mk-skill-advisor.js:35-39` (no regression)
+- Define each plugin's overridable fields after reading the current `rawOptions` shape; document each field's tier behavior
 
-**M-6 — Async config init**:
-- Load config at plugin module init via `const configPromise = loadConfig()`
-- Inside the exported plugin factory: `const config = await configPromise;`
+**M-6 — Await config promise BEFORE option-readers (council §6 reframe)**:
+- Both plugin factories are ALREADY async (`mk-skill-advisor.js:387`, `mk-code-graph.js:361`). M-6 is NOT "make factory async" — it is "load a config promise at module-init time and await it before any code reads options."
+- Implementation: `const configPromise = loadConfig();` at module init (top-level), then `const config = await configPromise;` inside the factory BEFORE any option-normalization runs.
 - All field reads happen after the await — no synchronous fallback path required
+
+### Required Tests (council §10.2)
+- (a) No config file present → behavior unchanged (env + defaults)
+- (b) Malformed config file (invalid JSON) → silent fall-through to env + defaults
+- (c) Env-only configuration → behavior unchanged
+- (d) `rawOptions`-only (no file, no env) → explicit plugin options win
+- (e) File-plus-env → file overrides env where field is present in both
+- (f) `rawOptions`-plus-file → `rawOptions` wins (operator-explicit beats file-tier)
 
 ### Out of Scope
 - Documenting all possible config fields exhaustively — start with high-value overrides (debug flag, paths) and iterate

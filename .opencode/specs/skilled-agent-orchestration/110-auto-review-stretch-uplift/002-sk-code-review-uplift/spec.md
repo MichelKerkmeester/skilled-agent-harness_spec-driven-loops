@@ -63,9 +63,19 @@ Two waste vectors in sk-code-review:
 ### Purpose
 Add two opt-in efficiency gates to sk-code-review:
 - **M-1 PR state dedup**: signature = sha256(commit_subject + diff_content_hash). If signature unchanged since last review, skip with `Review status: COMMENTED (no changes since last review at <prev-sha>)`.
-- **M-2 min-evidence gate**: opt-in threshold (env var `SK_CODE_REVIEW_MIN_CHANGED_LINES`, default 0 = disabled). If diff has < threshold changed lines, skip with `Review status: COMMENTED (skipped: diff below evidence threshold)`.
+- **M-2 min-evidence gate** (REVISED per council §10.3): opt-in threshold (env var `SK_CODE_REVIEW_MIN_CHANGED_LINES`, default 0 = disabled) with **conservative skip taxonomy**. If diff has < threshold changed lines AND the diff does NOT touch sensitive paths, skip with `Review status: COMMENTED (skipped: diff below evidence threshold)`. Otherwise full review runs regardless of size.
 
-Both report `COMMENTED` rather than `APPROVED` so downstream tooling knows the review was a no-op skip, not an active green-light.
+**M-2 NEVER skip when the diff touches**:
+- Security/authentication/authorization (`auth*`, `*-auth-*`, `*permission*`, `*credential*`, `*token*`, `*secret*`)
+- Config files (`*.config.*`, `*config*.json`, `*config*.yaml`, `*config*.toml`, `*.env*`)
+- Persistence layer (`*.sql`, `*migration*`, `*schema*`, `*db*.ts`, `*repository*`, files under `/db/` or `/migrations/`)
+- Dependency manifests (`package.json`, `package-lock.json`, `Cargo.toml`, `pyproject.toml`, `*.lock`)
+- Sandboxing / process boundaries (`*sandbox*`, `*subprocess*`, `*exec*`)
+- Public-facing responses (`*.handler.ts`, `*-api*`, `*-route*`, files under `/handlers/` or `/routes/`)
+
+**M-2 changed-line counting command**: `git diff --numstat <base-ref>...HEAD | awk '{added+=$1; removed+=$2} END {print added+removed}'` (sums add+remove across all changed files; binary files contribute 0).
+
+Both gates report `COMMENTED` rather than `APPROVED` so downstream tooling knows the review was a no-op skip, not an active green-light.
 <!-- /ANCHOR:problem -->
 
 ---

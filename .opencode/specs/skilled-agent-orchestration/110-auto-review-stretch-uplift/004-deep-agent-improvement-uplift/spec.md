@@ -57,8 +57,11 @@ _memory:
 ### Problem Statement
 deep-agent-improvement evaluates candidate agent mutations across 5 dimensions × multiple mutation types per dimension. Without dedup, the same mutation (e.g. "expand error-handling rule in PROCESS dimension targeting Phase-2-execution section") can be re-attempted in subsequent iterations even after a prior iteration already tried and rejected it. This wastes evaluation compute and pollutes the candidate ranking with redundant attempts.
 
-### Purpose
-Adopt upstream auto-review's marker-based dedup pattern (same family as 110/003 H-7) but applied to mutation signatures: `sha256(dimension + mutationType + targetSection + truncated_body_64chars)`. Track signatures in `agent-improvement-state.jsonl` per-iteration. Skip mutation types whose signature already appears in prior iterations of the SAME packet (not cross-packet).
+### Purpose (REVISED per council §10.6)
+
+Adopt upstream auto-review's marker-based dedup pattern (same family as 110/003 H-7) but applied to mutation signatures: `sha256(dimension + mutationType + targetSection + normalized_body_64chars)`. **Authoritative storage: `mutation-coverage.json`** (where the existing `mutations` + `exhausted` arrays live per council §6 evidence at `mutation-coverage.cjs:59-67` and `:80-92`). The reducer at `reduce-state.cjs` MUST be updated to handle the new signature field; `manual_testing_playbook/07--runtime-truth/034-replay-consumer.md` MUST be updated to verify the replay consumer respects signatures.
+
+Skip mutation types whose signature already appears in prior iterations of the SAME packet (not cross-packet).
 <!-- /ANCHOR:problem -->
 
 ---
@@ -66,12 +69,15 @@ Adopt upstream auto-review's marker-based dedup pattern (same family as 110/003 
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
 
-### In Scope
+### In Scope (REVISED per council §10.6)
+
 - Modify `.opencode/skills/deep-agent-improvement/scripts/mutation-coverage.cjs` to:
   - Compute mutation signature at proposal time
-  - Append signature to per-iteration record in `agent-improvement-state.jsonl`
+  - **Append signature to the existing `mutations` array entries in `mutation-coverage.json`** (NOT `agent-improvement-state.jsonl` — council §10.6: signature lives where coverage data lives)
   - Before proposing a new mutation, check prior signatures — skip if duplicate, with skip-reason `EXHAUSTED-FROM: iter-NNN`
-- Document signature scheme in deep-agent-improvement SKILL.md
+- **Modify reducer `.opencode/skills/deep-agent-improvement/scripts/reduce-state.cjs`** to recognize the new signature field when consuming `mutation-coverage.json`
+- Update `.opencode/skills/deep-agent-improvement/manual_testing_playbook/07--runtime-truth/034-replay-consumer.md` to verify replay consumer respects signature dedup
+- Document signature scheme in `.opencode/skills/deep-agent-improvement/SKILL.md`
 - Add env-var `DEEP_AGENT_IMPROVEMENT_SKIP_DEDUP=1` to disable dedup for forced re-evaluation
 
 ### Out of Scope
@@ -83,8 +89,10 @@ Adopt upstream auto-review's marker-based dedup pattern (same family as 110/003 
 
 | File | Change Type | Description |
 |------|-------------|-------------|
-| `.opencode/skills/deep-agent-improvement/scripts/mutation-coverage.cjs` | Modify | Add signature compute + state-check + skip-with-reason |
-| `.opencode/skills/deep-agent-improvement/SKILL.md` | Modify | Document signature scheme + env-var bypass + skip-reason format |
+| `.opencode/skills/deep-agent-improvement/scripts/mutation-coverage.cjs` | Modify | Add signature compute + state-check + skip-with-reason; signature stored in `mutation-coverage.json` mutations array |
+| `.opencode/skills/deep-agent-improvement/scripts/reduce-state.cjs` | Modify | Recognize new signature field when consuming `mutation-coverage.json` |
+| `.opencode/skills/deep-agent-improvement/SKILL.md` | Modify | Document signature scheme + env-var bypass + skip-reason format + authoritative storage location |
+| `.opencode/skills/deep-agent-improvement/manual_testing_playbook/07--runtime-truth/034-replay-consumer.md` | Modify | Verify replay consumer respects signature dedup |
 <!-- /ANCHOR:scope -->
 
 ---
