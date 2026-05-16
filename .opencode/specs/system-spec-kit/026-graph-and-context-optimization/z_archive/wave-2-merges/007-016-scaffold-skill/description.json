@@ -13,6 +13,6 @@
   "specId": "002",
   "folderSlug": "scaffold-skill",
   "parentChain": [
-    "014-system-code-graph-extraction"
+    "013-system-code-graph-extraction"
   ]
 }

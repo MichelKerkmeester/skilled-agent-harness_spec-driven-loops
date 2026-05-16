@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/013-system-code-graph-extraction"
     last_updated_at: "2026-05-14T13:25:00Z"
     last_updated_by: "claude"
     recent_action: "Repaired build; fixed 014-scoped vitest regressions; reconciled docs"
@@ -84,7 +84,7 @@ This handover is the **canonical resume surface** for any future session continu
 
 | Bucket | Count | Path |
 |--------|-------|------|
-| Spec packet (014 phase parent + 7 children) | 56 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/` |
+| Spec packet (014 phase parent + 7 children) | 56 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/013-system-code-graph-extraction/` |
 | New skill `system-code-graph/` core | ≈15 | `.opencode/skills/system-code-graph/` (SKILL.md, README.md, package.json, tsconfig.json, vitest.config.ts, .gitignore, ARCHITECTURE.md, …) |
 | Skill code (flattened) | ≈73 | `mcp_server/{lib,handlers,tools,tests,core,stress_test/code-graph,plugin_bridges,database}/` |
 | Skill docs (cat-22 split) | 14 | `feature_catalog/01-08/` (6) + `manual_testing_playbook/01-08/` (8) |
@@ -148,7 +148,7 @@ Full report: `review/review-report.md` at this packet root.
 - **Doc to read first:** this handover (§5 priorities, §6 post-restart steps, §7 test plan)
 - **Key reference:** `007-mcp-topology-pivot/decision-record.md` for the final architecture (standalone MCP)
 - **Resource map:** `001-design-and-decision-record/resource-map.md` for the full touchpoint catalog
-- **Recovery surface:** `/spec_kit:resume system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/`
+- **Recovery surface:** `/spec_kit:resume system-spec-kit/026-graph-and-context-optimization/007-code-graph/013-system-code-graph-extraction/`
 
 ### 4.2 Priority Tasks Remaining
 
@@ -376,7 +376,7 @@ Spawn a fresh session in each runtime and verify startup-brief includes code-gra
 
 ```bash
 bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh \
-  .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction \
+  .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/013-system-code-graph-extraction \
   --strict --recursive
 ```
 

@@ -95,7 +95,7 @@ _memory:
 <!-- ANCHOR:cross-refs -->
 ## CROSS-REFERENCES
 
-- Parent: `007-code-graph/014-system-code-graph-extraction`
+- Parent: `007-code-graph/013-system-code-graph-extraction`
 - Superseded decision: `014/001-design-and-decision-record/decision-record.md` ADR-001 Q3 only
 - Active decision: `014/007-mcp-topology-pivot/decision-record.md` ADR-002
 <!-- /ANCHOR:cross-refs -->

@@ -87,7 +87,7 @@ _memory:
 <!-- ANCHOR:cross-refs -->
 ## CROSS-REFERENCES
 
-- Parent: `007-code-graph/014-system-code-graph-extraction`
+- Parent: `007-code-graph/013-system-code-graph-extraction`
 - Predecessor: `014/005-doc-and-runtime-migration`
 - New skill: `.opencode/skills/system-code-graph/`
 <!-- /ANCHOR:cross-refs -->

@@ -61,5 +61,5 @@
       "plan.md"
     ]
   },
-  "migration_source": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/004-rewire-consumers-and-tool-registration"
+  "migration_source": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/013-system-code-graph-extraction/004-rewire-consumers-and-tool-registration"
 }

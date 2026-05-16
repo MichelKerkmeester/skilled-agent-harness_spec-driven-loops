@@ -45,7 +45,7 @@ _memory:
 | **Status** | Complete |
 | **Created** | 2026-05-14 |
 | **Branch** | `main` |
-| **Parent Chain** | `system-spec-kit` -> `026-graph-and-context-optimization` -> `007-code-graph` -> `014-system-code-graph-extraction` |
+| **Parent Chain** | `system-spec-kit` -> `026-graph-and-context-optimization` -> `007-code-graph` -> `013-system-code-graph-extraction` |
 <!-- /ANCHOR:metadata -->
 
 ---

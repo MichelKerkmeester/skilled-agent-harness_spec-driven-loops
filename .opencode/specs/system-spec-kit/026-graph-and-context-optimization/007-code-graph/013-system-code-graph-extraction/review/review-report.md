@@ -5,19 +5,19 @@ importance_tier: "important"
 contextType: "review"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/013-system-code-graph-extraction"
     last_updated_at: "2026-05-14T11:00:00Z"
     last_updated_by: "opencode"
     recent_action: "Deep review converged; review-report.md written"
     blockers: ["P0: stale DB claim mismatch; P1: dead stress-test imports"]
     session_dedup:
-      session_id: "014-system-code-graph-extraction-review"
+      session_id: "013-system-code-graph-extraction-review"
     completion_pct: 100
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: review-report | v2.2 -->
 # Deep Review Report: 014 system-code-graph extraction phase parent
 
-**Target**: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction` (phase parent, 7 children)
+**Target**: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/013-system-code-graph-extraction` (phase parent, 7 children)
 
 **Review scope**: ADR-001 + ADR-002 correctness, file move completeness, tool schema migration, opencode.json mutations, launcher correctness, MCP entrypoint, cross-subsystem imports, doctor/update.md path consistency, recalibration metadata, cleanup completeness.
 

@@ -12,5 +12,5 @@
   "packet_id": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/030-manual-testing-verification",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/007-code-graph",
   "migrated": true,
-  "migration_source": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/016-manual-testing-verification"
+  "migration_source": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/013-system-code-graph-extraction/016-manual-testing-verification"
 }

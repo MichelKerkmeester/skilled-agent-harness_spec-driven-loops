@@ -97,7 +97,7 @@ _memory:
 <!-- ANCHOR:cross-refs -->
 ## CROSS-REFERENCES
 
-- Parent: `007-code-graph/014-system-code-graph-extraction`
+- Parent: `007-code-graph/013-system-code-graph-extraction`
 - Previous child: `014/004-rewire-consumers-and-tool-registration`
 - ADR source: `014/001-design-and-decision-record/decision-record.md`
 - Target skill: `.opencode/skills/system-code-graph/`

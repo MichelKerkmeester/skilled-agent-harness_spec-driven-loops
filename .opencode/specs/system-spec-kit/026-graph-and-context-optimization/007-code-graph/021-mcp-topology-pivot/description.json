@@ -13,6 +13,6 @@
   "specId": "007",
   "folderSlug": "mcp-topology-pivot",
   "parentChain": [
-    "014-system-code-graph-extraction"
+    "013-system-code-graph-extraction"
   ]
 }

@@ -74,7 +74,7 @@ The contract boundary is the readiness marker, the MCP tool interface and the sh
 <!-- ANCHOR:5-extraction-history -->
 ## 5. EXTRACTION HISTORY
 
-The boundary emerged from an extraction packet under `system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/`. The packet executed a six-phase migration covering child phases 015 through 020 with 14 follow-on phases 021 through 034.
+The boundary emerged from an extraction packet under `system-spec-kit/026-graph-and-context-optimization/007-code-graph/013-system-code-graph-extraction/`. The packet executed a six-phase migration covering child phases 015 through 020 with 14 follow-on phases 021 through 034.
 
 ADR-001 locked the early decisions: stable tool IDs, database move and sibling imports. ADR-002 superseded the original co-resident-MCP question and moved the code graph to a standalone MCP topology. The migration moved 108 code-graph files. Deep-loop and coverage-graph were explicitly excluded from the move.
 

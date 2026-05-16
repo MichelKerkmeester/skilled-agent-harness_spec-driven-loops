@@ -57,7 +57,7 @@ This is a thinking exercise — no source code is modified. You may read code fr
 | Orphan dir | `system-spec-kit/mcp_server/handlers/skill-graph/` (empty) |
 
 **Reference template — code-graph extraction:**
-- Packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/`
+- Packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/013-system-code-graph-extraction/`
 - ADR-002 reversed initial co-resident topology → standalone MCP server `system_code_graph`.
 - All code-graph lib code moved physically (108 files); spec-kit retains only sibling-imports to `.../system-code-graph/mcp_server/lib/code-graph-db.js` for tight consumers.
 - Database moved. No deprecation proxy period.
@@ -98,8 +98,8 @@ For each Q, every seat states: **YES / NO / CONDITIONAL** + one-line rationale.
 
 ## Required reading
 
-1. `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/spec.md` — canonical template
-2. `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/decision-record.md` — ADR-002 pivot rationale
+1. `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/013-system-code-graph-extraction/spec.md` — canonical template
+2. `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/013-system-code-graph-extraction/decision-record.md` — ADR-002 pivot rationale
 3. `.opencode/specs/.../013/009/handover.md` — full Sessions 1-3 context
 4. `.opencode/specs/.../013/009/008-move-skill-graph-tools-to-advisor/decision-record.md` — recent ADRs informing this work
 5. `.opencode/skills/system-spec-kit/mcp_server/lib/skill-graph/skill-graph-db.ts` — head + key public APIs (read first 60 lines)
@@ -2839,7 +2839,7 @@ The advisor should recommend these skills. It should not absorb their implementa
 codex
 The live advisor routing confirms `deep-ai-council`, `system-skill-advisor`, and `sk-code` are the relevant lenses. Next I’m reading the canonical code-graph extraction packet, the current handover/ADR trail, and the live import/lifecycle code the verdict depends on.
 exec
-/bin/zsh -lc "sed -n '1,260p' .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/spec.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,260p' .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/013-system-code-graph-extraction/spec.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 ---
 title: "Phase Parent: Extract code-graph into dedicated `system-code-graph` skill folder"
@@ -2853,7 +2853,7 @@ importance_tier: "important"
 contextType: "specification"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/013-system-code-graph-extraction"
     last_updated_at: "2026-05-14T09:17:09Z"
     last_updated_by: "codex"
     recent_action: "All 7 sub-phases complete; standalone MCP topology shipped (ADR-002)"
@@ -2865,7 +2865,7 @@ _memory:
       - "graph-metadata.json"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000007140014"
-      session_id: "014-system-code-graph-extraction"
+      session_id: "013-system-code-graph-extraction"
       parent_session_id: null
     open_questions: []
     completion_pct: 100
@@ -2940,9 +2940,9 @@ This is the phase parent. The lean trio (`spec.md`, `description.json`, `graph-m
 - Acknowledgement: `007-code-graph/002-code-graph-self-contained-package` is superseded by 014 (scope strictly extended from intra-skill self-containment to standalone sibling-skill extraction; 002's partial work landed on disk during the 003-008 train and is reused as the starting point).
 
 exec
-/bin/zsh -lc "sed -n '1,280p' .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/decision-record.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,280p' .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/013-system-code-graph-extraction/decision-record.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  exited 1 in 0ms:
-sed: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/decision-record.md: No such file or directory
+sed: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/013-system-code-graph-extraction/decision-record.md: No such file or directory
 
 exec
 /bin/zsh -lc "rg --files .opencode/specs | rg '/013/.*/009/.*/handover\\.md"'$|/013/.*/009/handover'"\\.md"'$|/013/009/handover'"\\.md"'$|013.*009.*handover'"\\.md"'$'"'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
@@ -3279,9 +3279,9 @@ ADR-004 in 006 ("delete live stale refs, annotate historical") includes a catch-
 - These are ephemeral (`/tmp` clears on reboot). If a fresh session needs the template, lift the structure from this handover §5.
 
 exec
-/bin/zsh -lc "rg --files .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction | rg 'decision-record\\.md"'$|handover'"\\.md"'$|implementation-summary'"\\.md"'$|tasks'"\\.md"'$|plan'"\\.md"'$'"'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "rg --files .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/013-system-code-graph-extraction | rg 'decision-record\\.md"'$|handover'"\\.md"'$|implementation-summary'"\\.md"'$|tasks'"\\.md"'$|plan'"\\.md"'$'"'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/handover.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/013-system-code-graph-extraction/handover.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/020-validation-and-cleanup/plan.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/020-validation-and-cleanup/tasks.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/020-validation-and-cleanup/implementation-summary.md

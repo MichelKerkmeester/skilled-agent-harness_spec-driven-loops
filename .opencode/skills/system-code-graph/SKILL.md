@@ -162,6 +162,6 @@ SessionStart hooks (`session-prime.ts`, `session-start.ts`) live under `.opencod
 ## 9. RELATED RESOURCES
 
 - Shared lifecycle and context docs that stayed in `system-spec-kit`: `.opencode/skills/system-spec-kit/feature_catalog/22--context-preservation/`
-- Extraction history: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/`
+- Extraction history: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/013-system-code-graph-extraction/`
 - MCP rename packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/024-mcp-tool-rename-mk-code-index/`
 <!-- /ANCHOR:related-resources -->

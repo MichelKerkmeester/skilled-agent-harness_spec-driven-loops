@@ -32,7 +32,7 @@ _memory:
 <!-- ANCHOR:protocol -->
 ## Verification Protocol
 - [x] CHK-200 [P0] Strict validate 007 packet. Evidence: `validate.sh .../007-mcp-topology-pivot --strict` final exit recorded as 0.
-- [x] CHK-201 [P0] Recursive strict validate 014 parent. Evidence: `validate.sh .../014-system-code-graph-extraction --strict --recursive` final exit recorded as 0.
+- [x] CHK-201 [P0] Recursive strict validate 014 parent. Evidence: `validate.sh .../013-system-code-graph-extraction --strict --recursive` final exit recorded as 0.
 - [x] CHK-202 [P0] Typecheck system-spec-kit. Evidence: `npx tsc --noEmit -p mcp_server/tsconfig.json` exit 0.
 - [x] CHK-203 [P0] Typecheck system-code-graph. Evidence: local TypeScript binary ran `tsc --noEmit -p tsconfig.json` exit 0.
 - [x] CHK-204 [P1] Smoke Vitest at new system-code-graph test location. Evidence: `vitest run mcp_server/tests/code-graph-scan.vitest.ts` passed 39 tests.

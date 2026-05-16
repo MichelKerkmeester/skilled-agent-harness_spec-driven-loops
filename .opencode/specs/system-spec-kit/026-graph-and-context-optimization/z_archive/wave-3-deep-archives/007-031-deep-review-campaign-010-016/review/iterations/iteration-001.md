@@ -20,7 +20,7 @@ D1 Correctness — Verifying the MCP server rename from `system_code_graph` to `
 
 ### P2 — Suggestion
 
-- **F003**: Residual `system-code-graph` references in SKILL.md are intentional package/directory references — `.opencode/skills/system-code-graph/SKILL.md:116` references `system-code-graph/mcp_server/lib/*` as a direct import path (the actual directory name). `.SKILL.md:128-129` reference the spec packet path `014-system-code-graph-extraction/` which is a historical spec folder name. These are directory/path references, not MCP namespace references, and are technically correct. However, a reader not aware of the rename might confuse these with the old MCP server namespace.
+- **F003**: Residual `system-code-graph` references in SKILL.md are intentional package/directory references — `.opencode/skills/system-code-graph/SKILL.md:116` references `system-code-graph/mcp_server/lib/*` as a direct import path (the actual directory name). `.SKILL.md:128-129` reference the spec packet path `013-system-code-graph-extraction/` which is a historical spec folder name. These are directory/path references, not MCP namespace references, and are technically correct. However, a reader not aware of the rename might confuse these with the old MCP server namespace.
 
 - **F004**: system-spec-kit README.md references `system-code-graph` as a skill/package name — `.opencode/skills/system-spec-kit/README.md:111` says "Structural graph tools | `system-code-graph` | `code_graph_scan`, `code_graph_query`..." and `README.md:114` says "imported structural context from `system-code-graph`". These reference the skill directory name, not the MCP server name, but they should clarify the MCP namespace is `mk-code-index` for discoverability.
 

@@ -48,5 +48,5 @@
     "save_lineage": "main_agent"
   },
   "migrated": true,
-  "migration_source": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/019-deferred-fix-followup"
+  "migration_source": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/013-system-code-graph-extraction/019-deferred-fix-followup"
 }

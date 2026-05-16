@@ -139,7 +139,7 @@ The work stayed on `main`, avoided editing `.opencode/skills/system-code-graph/`
 
 | Check | Result |
 |-------|--------|
-| Pre-check `ls .../014-system-code-graph-extraction/ \| grep '^012-'` | PASS, no existing `012-*` folder. |
+| Pre-check `ls .../013-system-code-graph-extraction/ \| grep '^012-'` | PASS, no existing `012-*` folder. |
 | `git branch --show-current` | PASS, `main`. |
 | Initial scoped raw grep | PASS, 312 raw matches classified. |
 | Stale-residue grep for old paths, namespace, and "code-graph subsystem" wording | PASS, exit 1 with no scoped markdown matches. |

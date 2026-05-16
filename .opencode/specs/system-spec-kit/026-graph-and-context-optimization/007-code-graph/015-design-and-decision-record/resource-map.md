@@ -172,9 +172,9 @@ Final disposition catalog. All `tbd` markers resolved by ADR-001. Disposition co
 
 | Path | Category | Disposition | Notes |
 |------|----------|-------------|-------|
-| `.../014-system-code-graph-extraction/spec.md` | meta | n/a | parent manifest |
-| `.../014-system-code-graph-extraction/description.json` | meta | n/a | parent description |
-| `.../014-system-code-graph-extraction/graph-metadata.json` | meta | n/a | parent graph metadata |
+| `.../013-system-code-graph-extraction/spec.md` | meta | n/a | parent manifest |
+| `.../013-system-code-graph-extraction/description.json` | meta | n/a | parent description |
+| `.../013-system-code-graph-extraction/graph-metadata.json` | meta | n/a | parent graph metadata |
 | `.../015-design-and-decision-record/{spec,plan,tasks,checklist}.md` | meta | n/a | child packet docs |
 
 ## Cross-subsystem integration handlers (stay in system-spec-kit; re-wire imports)

@@ -13,6 +13,6 @@
   "specId": "003",
   "folderSlug": "physical-move-and-database",
   "parentChain": [
-    "014-system-code-graph-extraction"
+    "013-system-code-graph-extraction"
   ]
 }

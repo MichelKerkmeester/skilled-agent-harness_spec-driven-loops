@@ -2,7 +2,7 @@
   "id": "017-deep-review-campaign-010-016",
   "title": "017: Deep-Review Campaign 010-016",
   "status": "complete",
-  "parentPhase": "014-system-code-graph-extraction",
+  "parentPhase": "013-system-code-graph-extraction",
   "derived": {
     "last_active_child_id": null,
     "phase_count": 0,
@@ -23,5 +23,5 @@
   "packet_id": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/031-deep-review-campaign-010-016",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/007-code-graph",
   "migrated": true,
-  "migration_source": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/017-deep-review-campaign-010-016"
+  "migration_source": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/013-system-code-graph-extraction/017-deep-review-campaign-010-016"
 }

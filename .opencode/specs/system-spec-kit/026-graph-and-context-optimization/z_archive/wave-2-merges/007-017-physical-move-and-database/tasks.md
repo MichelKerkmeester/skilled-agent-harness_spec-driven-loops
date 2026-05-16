@@ -86,7 +86,7 @@ _memory:
 <!-- ANCHOR:cross-refs -->
 ## CROSS-REFERENCES
 
-- Parent: `007-code-graph/014-system-code-graph-extraction`
+- Parent: `007-code-graph/013-system-code-graph-extraction`
 - Predecessor: `014/002-scaffold-skill`
 - Atomic sibling: `014/004-rewire-consumers-and-tool-registration`
 - ADR: `014/001-design-and-decision-record/decision-record.md`

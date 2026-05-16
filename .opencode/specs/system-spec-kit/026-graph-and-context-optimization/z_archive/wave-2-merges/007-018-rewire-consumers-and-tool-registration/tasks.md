@@ -87,7 +87,7 @@ _memory:
 <!-- ANCHOR:cross-refs -->
 ## CROSS-REFERENCES
 
-- Parent: `007-code-graph/014-system-code-graph-extraction`
+- Parent: `007-code-graph/013-system-code-graph-extraction`
 - Atomic sibling: `014/003-physical-move-and-database`
 - ADR: `014/001-design-and-decision-record/decision-record.md`
 <!-- /ANCHOR:cross-refs -->

@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "specification"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/013-system-code-graph-extraction"
     last_updated_at: "2026-05-14T09:17:09Z"
     last_updated_by: "codex"
     recent_action: "All 7 sub-phases complete; standalone MCP topology shipped (ADR-002)"
@@ -22,7 +22,7 @@ _memory:
       - "graph-metadata.json"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000007140014"
-      session_id: "014-system-code-graph-extraction"
+      session_id: "013-system-code-graph-extraction"
       parent_session_id: null
     open_questions: []
     completion_pct: 100

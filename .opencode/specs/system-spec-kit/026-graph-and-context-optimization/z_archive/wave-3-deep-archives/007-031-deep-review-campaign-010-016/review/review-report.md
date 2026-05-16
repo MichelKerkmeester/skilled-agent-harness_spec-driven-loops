@@ -2,7 +2,7 @@
 
 **Session:** rvw-2026-05-14T18-33-47Z  
 **Topic:** MCP rename (system_code_graph → mk-code-index), documentation alignment, verification  
-**Scope:** 7 packets (010-016) under 014-system-code-graph-extraction  
+**Scope:** 7 packets (010-016) under 013-system-code-graph-extraction  
 **Iterations:** 10  
 **Verdict:** **CONDITIONAL** — 0 P0, 1 P1, 19 P2
 

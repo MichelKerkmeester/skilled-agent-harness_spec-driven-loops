@@ -15,6 +15,6 @@
   "specId": "001",
   "folderSlug": "design-and-decision-record",
   "parentChain": [
-    "014-system-code-graph-extraction"
+    "013-system-code-graph-extraction"
   ]
 }

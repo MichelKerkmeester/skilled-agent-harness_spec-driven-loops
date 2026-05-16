@@ -16,7 +16,7 @@
     "system-spec-kit",
     "026-graph-and-context-optimization",
     "007-code-graph",
-    "014-system-code-graph-extraction"
+    "013-system-code-graph-extraction"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

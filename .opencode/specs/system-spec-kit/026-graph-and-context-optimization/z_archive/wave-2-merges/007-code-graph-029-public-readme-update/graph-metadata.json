@@ -6,7 +6,7 @@
   "children_ids": [],
   "manual": {
     "depends_on": [
-      "system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction"
+      "system-spec-kit/026-graph-and-context-optimization/007-code-graph/013-system-code-graph-extraction"
     ],
     "supersedes": [],
     "related_to": [
@@ -72,5 +72,5 @@
     ]
   },
   "migrated": true,
-  "migration_source": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/015-public-readme-update"
+  "migration_source": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/013-system-code-graph-extraction/015-public-readme-update"
 }

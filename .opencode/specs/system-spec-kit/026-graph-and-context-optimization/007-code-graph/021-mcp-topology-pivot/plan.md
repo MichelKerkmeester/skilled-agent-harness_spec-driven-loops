@@ -47,7 +47,7 @@ Recalibrate 001-006 metadata, author ADR-002, move code-graph MCP schemas out of
 
 ### Definition of Done
 - [x] 007 strict validation passes. Evidence: final `validate.sh 007-mcp-topology-pivot --strict` exit recorded in implementation-summary.md.
-- [x] Recursive 014 validation passes. Evidence: final `validate.sh 014-system-code-graph-extraction --strict --recursive` exit recorded in implementation-summary.md.
+- [x] Recursive 014 validation passes. Evidence: final `validate.sh 013-system-code-graph-extraction --strict --recursive` exit recorded in implementation-summary.md.
 - [x] Typecheck passes for system-spec-kit and system-code-graph. Evidence: `npx tsc --noEmit -p mcp_server/tsconfig.json` and local `tsc --noEmit -p tsconfig.json` exit 0.
 - [x] Smoke Vitest passes at new system-code-graph location. Evidence: `vitest run mcp_server/tests/code-graph-scan.vitest.ts` passed 39 tests.
 - [x] Final metrics emitted. Evidence: Required dispatch metrics are recorded in implementation-summary.md and final response.
