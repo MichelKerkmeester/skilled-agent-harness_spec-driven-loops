@@ -12491,9 +12491,9 @@ exec
 .opencode/specs/system-spec-kit/023-hybrid-rag-fusion-refinement/006-review-remediation/implementation-summary.md
 .opencode/specs/system-spec-kit/023-hybrid-rag-fusion-refinement/006-review-remediation/plan.md
 .opencode/specs/system-spec-kit/023-hybrid-rag-fusion-refinement/006-review-remediation/spec.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/010-skill-advisor-standards-alignment/implementation-summary.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/010-skill-advisor-standards-alignment/plan.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/010-skill-advisor-standards-alignment/spec.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/003-skill-advisor-standards-alignment/implementation-summary.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/003-skill-advisor-standards-alignment/plan.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/003-skill-advisor-standards-alignment/spec.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-advisor-graph/implementation-summary.md
 
 exec
@@ -14312,8 +14312,8 @@ exec
 exec
 /bin/zsh -lc "find .opencode/specs/system-spec-kit/026-graph-and-context-optimization -maxdepth 4 \\( -name 'implementation-summary.md' -o -name 'spec.md' \\) | rg 'graph|context|coco|fts|search|routing|cascade|optimization' | head -80" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/010-skill-advisor-standards-alignment/implementation-summary.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/010-skill-advisor-standards-alignment/spec.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/003-skill-advisor-standards-alignment/implementation-summary.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/003-skill-advisor-standards-alignment/spec.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-advisor-graph/implementation-summary.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-advisor-graph/spec.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-search-and-routing-tuning/implementation-summary.md

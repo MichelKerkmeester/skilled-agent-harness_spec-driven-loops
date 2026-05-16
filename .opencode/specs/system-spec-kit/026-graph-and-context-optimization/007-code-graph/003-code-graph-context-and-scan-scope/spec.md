@@ -51,7 +51,7 @@ Code-graph scale investigation surfaced three concerns. This packet addresses al
 | **Parent** | `026-graph-and-context-optimization/007-code-graph/` |
 | **Parent Spec** | `../spec.md` |
 | **Predecessor** | `../002-code-graph-self-contained-package/spec.md` |
-| **Related** | `../../008-skill-advisor/002-skill-advisor-plugin-hardening/`, `../../008-skill-advisor/010-skill-advisor-standards-alignment/` |
+| **Related** | `../../008-skill-advisor/002-skill-advisor-plugin-hardening/`, `../../008-skill-advisor/003-skill-advisor-standards-alignment/` |
 <!-- /ANCHOR:metadata -->
 
 ---

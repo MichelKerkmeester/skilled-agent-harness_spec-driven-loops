@@ -613,10 +613,10 @@ _memory:
 | .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-skill-advisor-plugin-hardening/plan.md | Cited | OK | phase child |
 | .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-skill-advisor-plugin-hardening/spec.md | Cited | OK | phase child |
 | .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-skill-advisor-plugin-hardening/tasks.md | Cited | OK | phase child |
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/010-skill-advisor-standards-alignment/implementation-summary.md | Cited | OK | phase child |
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/010-skill-advisor-standards-alignment/plan.md | Cited | OK | phase child |
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/010-skill-advisor-standards-alignment/spec.md | Cited | OK | phase child |
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/010-skill-advisor-standards-alignment/tasks.md | Cited | OK | phase child |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/003-skill-advisor-standards-alignment/implementation-summary.md | Cited | OK | phase child |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/003-skill-advisor-standards-alignment/plan.md | Cited | OK | phase child |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/003-skill-advisor-standards-alignment/spec.md | Cited | OK | phase child |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/003-skill-advisor-standards-alignment/tasks.md | Cited | OK | phase child |
 | .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-advisor-hook-improvements/checklist.md | Cited | OK | phase child |
 | .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-advisor-hook-improvements/implementation-summary.md | Cited | OK | phase child |
 | .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-advisor-hook-improvements/plan.md | Cited | OK | phase child |
@@ -738,8 +738,8 @@ _memory:
 | .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-skill-graph-daemon-and-advisor-unification/graph-metadata.json | Cited | OK | phase child |
 | .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-skill-advisor-plugin-hardening/description.json | Cited | OK | phase child |
 | .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-skill-advisor-plugin-hardening/graph-metadata.json | Cited | OK | phase child |
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/010-skill-advisor-standards-alignment/description.json | Cited | OK | phase child |
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/010-skill-advisor-standards-alignment/graph-metadata.json | Cited | OK | phase child |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/003-skill-advisor-standards-alignment/description.json | Cited | OK | phase child |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/003-skill-advisor-standards-alignment/graph-metadata.json | Cited | OK | phase child |
 | .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-advisor-hook-improvements/description.json | Cited | OK | phase child |
 | .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-advisor-hook-improvements/graph-metadata.json | Cited | OK | phase child |
 | .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-skill-advisor-setup-command/description.json | Created | OK | phase child |

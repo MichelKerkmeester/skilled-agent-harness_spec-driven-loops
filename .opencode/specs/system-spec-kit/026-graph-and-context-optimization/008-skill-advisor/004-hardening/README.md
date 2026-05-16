@@ -6,7 +6,7 @@ Deferred remediation, telemetry, plugin hardening, standards alignment.
 
 - `001-deferred-remediation-and-telemetry-run`
 - `002-skill-advisor-plugin-hardening`
-- `010-skill-advisor-standards-alignment`
+- `003-skill-advisor-standards-alignment`
 - `025-cli-devin-skill-advisor-hook`
 
 ## Provenance

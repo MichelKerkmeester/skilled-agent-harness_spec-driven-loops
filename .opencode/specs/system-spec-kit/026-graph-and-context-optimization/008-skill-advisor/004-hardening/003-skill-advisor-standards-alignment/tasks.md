@@ -1,5 +1,5 @@
 ---
-title: "...ystem-spec-kit/026-graph-and-context-optimization/008-skill-advisor/010-skill-advisor-standards-alignment/tasks]"
+title: "...ystem-spec-kit/026-graph-and-context-optimization/008-skill-advisor/003-skill-advisor-standards-alignment/tasks]"
 description: "Tasks T-01..T-08: standards exemption, plugin file alignment, verification."
 trigger_phrases:
   - "026/009/009 tasks"
@@ -9,7 +9,7 @@ contextType: "implementation"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/010-skill-advisor-standards-alignment"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/003-skill-advisor-standards-alignment"
     last_updated_at: "2026-04-23T10:52:00Z"
     last_updated_by: "codex-gpt-5"
     recent_action: "Completed documentation/cosmetic standards alignment"

@@ -34,7 +34,7 @@ _memory:
 | **Created** | 2026-04-22 |
 | **Parent** | `026-graph-and-context-optimization/009-hook-parity/` |
 | **Parent Spec** | `../spec.md` |
-| **Predecessor** | `../../008-skill-advisor/010-skill-advisor-standards-alignment/spec.md` |
+| **Predecessor** | `../../008-skill-advisor/003-skill-advisor-standards-alignment/spec.md` |
 | **Successor** | `../007-copilot-writer-wiring/spec.md` |
 | **Research** | `../../research/007-deep-review-remediation-pt-03/research.md` |
 

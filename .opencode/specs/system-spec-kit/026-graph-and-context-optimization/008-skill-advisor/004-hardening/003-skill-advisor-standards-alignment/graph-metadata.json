@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/010-skill-advisor-standards-alignment",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/010-skill-advisor-standards-alignment",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/003-skill-advisor-standards-alignment",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/003-skill-advisor-standards-alignment",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor",
   "children_ids": [],
   "migrated": true,

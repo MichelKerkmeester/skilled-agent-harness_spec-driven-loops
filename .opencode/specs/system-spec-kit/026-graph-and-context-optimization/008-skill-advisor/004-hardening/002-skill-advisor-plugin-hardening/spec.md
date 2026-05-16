@@ -56,7 +56,7 @@ This packet addresses all three in a single focused pass. The change is single-f
 | **Parent**   | `026-graph-and-context-optimization/009-hook-parity/` |
 | **Parent Spec** | `../spec.md` |
 | **Predecessor** | `../../009-hook-parity/005-opencode-plugin-loader-remediation/spec.md` |
-| **Successor** | `../010-skill-advisor-standards-alignment/spec.md` |
+| **Successor** | `../003-skill-advisor-standards-alignment/spec.md` |
 | **Sibling**  | `007-opencode-plugin-loader-remediation/` (deferred these items in ADR-005) |
 <!-- /ANCHOR:metadata -->
 
