@@ -1,3 +1,8 @@
+---
+title: "Devin CLI — Deep-Loop Iter Prompt Template (SWE-1.6)"
+description: "Copy-paste prompt-body skeletons for cli-devin iter dispatches when /spec_kit:deep-research or /spec_kit:deep-review resolves the executor to cli-devin. Three stage-specific skeletons (research iter, review iter, synthesis) paired with the matching --agent-config recipe at .opencode/skills/cli-devin/assets/."
+---
+
 # Deep-Loop Iter Prompt Template (cli-devin, SWE-1.6)
 
 > Copy-paste skeleton for `--prompt-file` payloads when `/spec_kit:deep-research` or `/spec_kit:deep-review` resolves the executor to `cli-devin`. Pair this template with the matching `--agent-config` recipe from `.opencode/skills/cli-devin/assets/`. The recipe locks tools and permissions at parse time; this template carries the prompt-body contract (framework tag, pre-planning block, scoped RQ or review angle, output contract).
