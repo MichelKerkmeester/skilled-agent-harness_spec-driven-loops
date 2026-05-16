@@ -15,7 +15,7 @@ trigger_phrases:
   - "001-deferred-remediation-and-telemetry-run"
   - "004-skill-advisor-hook-surface"
   - "002-skill-graph-daemon-and-advisor-unification"
-  - "009-skill-advisor-plugin-hardening"
+  - "002-skill-advisor-plugin-hardening"
   - "010-skill-advisor-standards-alignment"
   - "001-skill-advisor-hook-improvements"
   - "005-skill-advisor-setup-command"
@@ -117,7 +117,7 @@ Keep this theme as the single active parent for the full skill advisor system. E
 | 6 | `001-deferred-remediation-and-telemetry-run/` | Spec Ready | Feature Specification: Deferred Remediation + Telemetry Measurement Run |
 | 7 | `004-skill-advisor-hook-surface/` | In Progress | Feature Specification: Skill-Advisor Hook Surface |
 | 8 | `002-skill-graph-daemon-and-advisor-unification/` | In Progress | Feature Specification: 027 - Skill Graph Daemon and Advisor Unification |
-| 9 | `009-skill-advisor-plugin-hardening/` | Complete | Feature Specification: Skill-Advisor Plugin Hardening |
+| 9 | `002-skill-advisor-plugin-hardening/` | Complete | Feature Specification: Skill-Advisor Plugin Hardening |
 | 10 | `010-skill-advisor-standards-alignment/` | Complete | Feature Specification: Skill-Advisor Standards Alignment |
 | 11 | `001-skill-advisor-hook-improvements/` | Research Queued | Feature Specification: Skill-Advisor Hook Improvements |
 | 12 | `005-skill-advisor-setup-command/` | Implemented | Feature Specification: Skill Advisor Setup Command |

@@ -1,5 +1,5 @@
 ---
-title: "Feat [system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/009-skill-advisor-plugin-hardening/spec]"
+title: "Feat [system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-skill-advisor-plugin-hardening/spec]"
 description: "Address the three P2 follow-ups deferred from packet 007 Phase 5: refactor module-global plugin state to per-instance, add in-flight bridge subprocess dedup, and add prompt/brief size caps + cache LRU eviction. Single-file edit in .opencode/plugins/spec-kit-skill-advisor.js plus focused vitest coverage."
 trigger_phrases:
   - "skill advisor plugin hardening"
@@ -13,7 +13,7 @@ contextType: "implementation"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/009-skill-advisor-plugin-hardening"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-skill-advisor-plugin-hardening"
     last_updated_at: "2026-04-23T08:35:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Implemented plugin hardening and verified focused tests/build"

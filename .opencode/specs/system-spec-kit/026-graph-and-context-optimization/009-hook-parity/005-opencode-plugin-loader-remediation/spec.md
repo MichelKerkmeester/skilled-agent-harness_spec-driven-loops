@@ -82,7 +82,7 @@ The direct crash fix is the `parseTransportPlan` hardening: non-string input now
 | **Parent**   | `026-graph-and-context-optimization/009-hook-parity/` |
 | **Parent Spec** | `../spec.md` |
 | **Predecessor** | `../004-claude-hook-findings-remediation/spec.md` |
-| **Successor** | `../../008-skill-advisor/009-skill-advisor-plugin-hardening/spec.md` |
+| **Successor** | `../../008-skill-advisor/002-skill-advisor-plugin-hardening/spec.md` |
 | **Related hook packets** | `../002-copilot-hook-parity-remediation/`, `../003-codex-hook-parity-remediation/` (migrated to hook-daemon parity; different runtimes) |
 <!-- /ANCHOR:metadata -->
 

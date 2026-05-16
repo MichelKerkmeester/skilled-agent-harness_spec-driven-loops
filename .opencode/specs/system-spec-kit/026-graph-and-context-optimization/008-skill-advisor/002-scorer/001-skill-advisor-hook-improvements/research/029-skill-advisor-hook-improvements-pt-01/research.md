@@ -90,7 +90,7 @@ The packet did not early-stop because new information stayed above the `0.05` th
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-advisor-hook-improvements/spec.md`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-deep-review-remediation/006-integrity-parity-closure/applied/CF-019.md`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-skill-advisor-hook-surface/implementation-summary.md`
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/009-skill-advisor-plugin-hardening/implementation-summary.md`
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-skill-advisor-plugin-hardening/implementation-summary.md`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/010-skill-advisor-standards-alignment/implementation-summary.md`
 - `.opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook.md`
 - `.opencode/skills/system-spec-kit/references/config/hook_system.md`

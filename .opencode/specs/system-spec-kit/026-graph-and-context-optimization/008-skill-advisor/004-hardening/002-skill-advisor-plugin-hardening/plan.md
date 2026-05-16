@@ -1,5 +1,5 @@
 ---
-title: "Impl [system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/009-skill-advisor-plugin-hardening/plan]"
+title: "Impl [system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-skill-advisor-plugin-hardening/plan]"
 description: "Single focused pass: state refactor → in-flight dedup → size caps + LRU. One plugin file edit + one test file extension. Phase 5 baseline (23 tests) is the regression guard."
 trigger_phrases:
   - "026/009/008 plan"
@@ -9,7 +9,7 @@ contextType: "planning"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/009-skill-advisor-plugin-hardening"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-skill-advisor-plugin-hardening"
     last_updated_at: "2026-04-23T08:35:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Implemented plugin hardening and verified focused tests/build"

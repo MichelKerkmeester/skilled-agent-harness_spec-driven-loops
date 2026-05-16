@@ -1,5 +1,5 @@
 ---
-title: ".../026-graph-and-context-optimization/008-skill-advisor/009-skill-advisor-plugin-hardening/implementation-summary]"
+title: ".../026-graph-and-context-optimization/008-skill-advisor/002-skill-advisor-plugin-hardening/implementation-summary]"
 description: "Completed packet 008: per-instance skill-advisor plugin state, in-flight bridge dedup, bounded prompt/brief payloads, cache LRU eviction, and focused Vitest coverage."
 trigger_phrases:
   - "skill advisor hardening complete"
@@ -9,7 +9,7 @@ contextType: "implementation"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/009-skill-advisor-plugin-hardening"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-skill-advisor-plugin-hardening"
     last_updated_at: "2026-04-23T08:13:46Z"
     last_updated_by: "codex-gpt-5"
     recent_action: "Implemented plugin hardening and verified focused tests/build"

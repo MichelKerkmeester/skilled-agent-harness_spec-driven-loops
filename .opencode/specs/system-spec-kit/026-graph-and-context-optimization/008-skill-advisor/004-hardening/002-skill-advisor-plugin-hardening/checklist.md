@@ -1,5 +1,5 @@
 ---
-title: "...stem-spec-kit/026-graph-and-context-optimization/008-skill-advisor/009-skill-advisor-plugin-hardening/checklist]"
+title: "...stem-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-skill-advisor-plugin-hardening/checklist]"
 description: "Evidence-backed checklist for the 3 deferred P2 items: per-instance state, in-flight dedup, size caps + LRU."
 trigger_phrases:
   - "026/009/008 checklist"
@@ -9,7 +9,7 @@ contextType: "implementation"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: checklist-core + level2-verify | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/009-skill-advisor-plugin-hardening"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-skill-advisor-plugin-hardening"
     last_updated_at: "2026-04-23T08:35:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Implemented plugin hardening and verified focused tests/build"
