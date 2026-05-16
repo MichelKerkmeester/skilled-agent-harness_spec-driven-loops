@@ -16,7 +16,7 @@ contextType: "implementation"
 
 ## 2026-05-06
 
-> Spec folder: `026-graph-and-context-optimization/007-code-graph/012-real-world-usefulness-test` (Level 2, Phase Parent)
+> Spec folder: `026-graph-and-context-optimization/007-code-graph/011-real-world-usefulness-test` (Level 2, Phase Parent)
 
 ### Summary
 
@@ -74,13 +74,13 @@ The 012 track has 7 child phases. Each has its own changelog:
 
 | File | What changed |
 |------|--------------|
-| `012-real-world-usefulness-test/001-execution/` | Sandbox usefulness trials and synthesis |
-| `012-real-world-usefulness-test/002-native-rerun/` | Native rerun protocol and backlog fixes |
-| `012-real-world-usefulness-test/003-deep-research-issues/` | 10-iteration deep-research sweep |
-| `012-real-world-usefulness-test/004-remediation/` | P0 zero-node scan rejection |
-| `012-real-world-usefulness-test/005-scope-guard/` | P1 scope-change force flag |
-| `012-real-world-usefulness-test/006-cluster-a-to-e/` | Medium-priority cluster polish |
-| `012-real-world-usefulness-test/007-tree-sitter-parser-resilience/` | Parser skip-list and quarantine sentinel |
+| `011-real-world-usefulness-test/001-execution/` | Sandbox usefulness trials and synthesis |
+| `011-real-world-usefulness-test/002-native-rerun/` | Native rerun protocol and backlog fixes |
+| `011-real-world-usefulness-test/003-deep-research-issues/` | 10-iteration deep-research sweep |
+| `011-real-world-usefulness-test/004-remediation/` | P0 zero-node scan rejection |
+| `011-real-world-usefulness-test/005-scope-guard/` | P1 scope-change force flag |
+| `011-real-world-usefulness-test/006-cluster-a-to-e/` | Medium-priority cluster polish |
+| `011-real-world-usefulness-test/007-tree-sitter-parser-resilience/` | Parser skip-list and quarantine sentinel |
 
 ### Follow-Ups
 

@@ -1,0 +1,39 @@
+{
+  "title": "Code Graph + Advisor + Hooks Polish",
+  "trigger_phrases": [
+    "026/007/012/006",
+    "cluster a to e",
+    "code graph advisor hooks polish",
+    "read-path auto-rescan",
+    "glob-aware fingerprint"
+  ],
+  "level": 2,
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/011-real-world-usefulness-test/006-cluster-a-to-e",
+  "status": "in_progress",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/011-real-world-usefulness-test",
+  "importance_tier": "critical",
+  "created_at": "2026-05-06T09:35:00Z",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/011-real-world-usefulness-test/006-cluster-a-to-e",
+  "description": "Feature Specification: Code Graph + Advisor + Hooks Polish",
+  "keywords": [
+    "feature",
+    "specification",
+    "code",
+    "graph",
+    "advisor",
+    "hooks",
+    "polish"
+  ],
+  "lastUpdated": "2026-05-08T08:26:57.697Z",
+  "specId": "006",
+  "folderSlug": "cluster-a-to-e",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "007-code-graph",
+    "011-real-world-usefulness-test"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

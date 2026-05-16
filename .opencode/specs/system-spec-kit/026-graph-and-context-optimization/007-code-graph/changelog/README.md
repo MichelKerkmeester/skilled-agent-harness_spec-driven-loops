@@ -43,7 +43,7 @@ The code-graph is the SQLite-backed index of every symbol (functions, classes, v
 | 012/005 | 2026-05-06 | [Scope changes need explicit consent](./changelog-012-005-scope-guard.md) | Scoping a smaller scan over a larger index used to silently shrink it. Now scope changes require an explicit flag. |
 | 012/006 | 2026-05-06 | [Cluster A to E polish](./changelog-012-006-cluster-a-to-e.md) | Five medium-priority findings closed, including diagnostics surfacing, auto-rescan policy, and a verify endpoint that pointed at a non-existent path. |
 | 012/007 | 2026-05-06 | [Tree-sitter parser resilience](./changelog-012-007-tree-sitter-parser-resilience.md) | Broad-scope scans crashed on 17.5% of files. After a 7-iteration deep research and a skip-list fix, the rate dropped to 0.72%. |
-| 012 | 2026-05-06 | [Real-World Usefulness Test (Parent)](./changelog-012-real-world-usefulness-test.md) | Phase parent rollup for the 7-child usefulness campaign. Summary of scope, children, and cross-cutting verdict. |
+| 012 | 2026-05-06 | [Real-World Usefulness Test (Parent)](./changelog-011-real-world-usefulness-test.md) | Phase parent rollup for the 7-child usefulness campaign. Summary of scope, children, and cross-cutting verdict. |
 
 ## How to read these
 

@@ -315,5 +315,5 @@ Implement Phase B: an apply-mode workflow that runs verification-gated auto-fix 
 
 - **Predecessor (Phase A)**: `../005-code-graph-doctor-command/spec.md`, `…/implementation-summary.md`
 - **Research artifacts**: `../006-code-graph-resilience-research/assets/code-graph-gold-queries.json`, `…/staleness-model.md`, `…/recovery-playbook.md`, `…/exclude-rule-confidence.json`
-- **Phase 012/007 (parser_skip_list)**: `../012-real-world-usefulness-test/007-tree-sitter-parser-resilience/`
+- **Phase 012/007 (parser_skip_list)**: `../011-real-world-usefulness-test/007-tree-sitter-parser-resilience/`
 - **Sibling packet (CocoIndex daemon)**: `../../011-cocoindex-daemon-resilience/`
