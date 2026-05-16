@@ -116,3 +116,19 @@ Bypassed `/spec_kit:deep-research` command because cli-devin is not natively wir
 - Sonnet @markdown applies HVR rigorously but the final HVR score depends on the existing root README's baseline voice. If baseline scores < 70 pre-edit, achieving >= 85 may require broader rewriting than the surgical-edit policy allows.
 - cli-devin SWE 1.6 is optimized for code research, not prose audit. Track 3 (HVR voice) may benefit from a follow-on pass with a prose-specialist model if iter-quality is uneven.
 <!-- /ANCHOR:limitations -->
+
+---
+
+<!-- ANCHOR:consolidation -->
+## Consolidation (2026-05-16, packet 107 W2.1 / M2)
+
+Packet `057-root-readme-deeper-rewrite` was absorbed into this packet (056) per council-approved resource-map §3.3 M2 (verdict PROCEED). Reasons:
+
+- Same arc: 057 was the deeper second-pass implementation consuming 056's research raw findings
+- Iter 028 supersession evidence
+- Iter 045 cost-benefit verdict: PROCEED
+
+The 057 packet content is preserved at `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/z_archive/wave-2-merges/014-057-root-readme-deeper-rewrite/` (read-access intact).
+
+Cross-references to 057 in this packet's graph-metadata.json have been retained as historical record; live graph traversal points at 056.
+<!-- /ANCHOR:consolidation -->

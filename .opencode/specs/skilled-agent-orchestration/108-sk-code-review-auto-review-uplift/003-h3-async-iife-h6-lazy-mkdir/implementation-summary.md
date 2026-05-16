@@ -44,7 +44,12 @@ _memory:
 
 <!-- ANCHOR:what-built -->
 ## What Was Built
-Placeholder.
+
+Placeholder pending implementation. Target files awaiting edit:
+- `.opencode/skills/system-skill-advisor/mcp_server/lib/metrics.ts:218-220` (lazy mkdir flag — closure-scoped dirReady)
+- `.opencode/skills/system-skill-advisor/mcp_server/lib/metrics.ts:243-248` (writeFileSync to async-IIFE wrapper + SKILL_ADVISOR_DEBUG enable gate)
+- `.opencode/skills/system-code-graph/mcp_server/handlers/ccc-feedback.ts:49-50` (lazy mkdir)
+- `.opencode/skills/system-code-graph/mcp_server/handlers/ccc-feedback.ts:63` (appendFileSync to async-IIFE + CODE_GRAPH_DEBUG enable gate + safe stringify fallback)
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -65,7 +70,13 @@ Placeholder.
 
 <!-- ANCHOR:verification -->
 ## Verification
-Placeholder.
+
+Pending verification commands:
+- `npm --prefix .opencode/skills/system-skill-advisor/mcp_server run typecheck` (exit 0)
+- `npm --prefix .opencode/skills/system-code-graph/mcp_server run typecheck` (exit 0)
+- `npm --prefix .opencode/skills/system-skill-advisor/mcp_server test` (vitest green)
+- `npm --prefix .opencode/skills/system-code-graph/mcp_server test` (vitest green)
+- Latency smoke-test: time 100 sync writes vs 100 async-IIFE writes; async should complete in <1ms per call vs 50-200ms for sync on slow filesystems
 <!-- /ANCHOR:verification -->
 
 ---

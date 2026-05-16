@@ -46,7 +46,13 @@ _memory:
 
 <!-- ANCHOR:what-built -->
 ## What Was Built
-Placeholder. Fill with file:line diff summary post-implementation.
+
+Placeholder pending implementation. Target files awaiting edit:
+- `.opencode/skills/sk-code-review/references/*.md` (prepend CODE-REVIEW marker as first line)
+- `.opencode/skills/deep-review/SKILL.md` / prompt template (add DEEP-REVIEW header)
+- `.opencode/skills/deep-research/SKILL.md` / prompt template (add DEEP-RESEARCH header)
+- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` (add marker-scan dispatcher step)
+- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` (mirror)
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -67,7 +73,11 @@ Placeholder.
 
 <!-- ANCHOR:verification -->
 ## Verification
-Placeholder. Pending smoke tests + strict validate.
+
+Pending verification commands:
+- `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <packet> --strict` (exit 0 expected)
+- False-positive smoke: prompt body containing CODE-REVIEW substring does NOT trigger dispatcher skip
+- True-positive smoke: previous iteration starting with marker as first line DOES trigger skip with error matching `nested .* loop detected`
 <!-- /ANCHOR:verification -->
 
 ---
