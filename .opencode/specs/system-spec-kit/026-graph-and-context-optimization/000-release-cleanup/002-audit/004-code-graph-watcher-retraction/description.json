@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-code-graph-watcher-retraction",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-audit/004-code-graph-watcher-retraction",
   "description": "Spec: Code Graph Watcher Retraction",
   "keywords": [
     "spec",
@@ -8,13 +8,14 @@
     "watcher",
     "retraction"
   ],
-  "lastUpdated": "2026-05-08T08:26:57.251Z",
-  "specId": "019",
+  "lastUpdated": "2026-05-16T15:58:25.007Z",
+  "specId": "004",
   "folderSlug": "code-graph-watcher-retraction",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "000-release-cleanup"
+    "000-release-cleanup",
+    "002-audit"
   ],
   "memorySequence": 2,
   "memoryNameHistory": [

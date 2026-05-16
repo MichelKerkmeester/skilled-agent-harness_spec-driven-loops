@@ -1,0 +1,25 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/z_archive/101-deep-multi-ai-council-skill/001-deep-ai-council-skill-creation",
+  "description": "Feature Specification: 101/001 Deep AI Council Skill Creation",
+  "keywords": [
+    "feature",
+    "specification",
+    "101",
+    "001",
+    "deep",
+    "council",
+    "skill",
+    "creation"
+  ],
+  "lastUpdated": "2026-05-16T15:58:24.917Z",
+  "specId": "001",
+  "folderSlug": "deep-ai-council-skill-creation",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "101-deep-multi-ai-council-skill"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

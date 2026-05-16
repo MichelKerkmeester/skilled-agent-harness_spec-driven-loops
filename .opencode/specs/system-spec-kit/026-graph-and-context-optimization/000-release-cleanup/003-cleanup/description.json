@@ -1,20 +1,16 @@
 {
   "level": "3",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cleanup",
-  "description": "Phase parent for general cleanup and technical debt remediation across documentation, templates, test infrastructure, code graph, and resource management. 31 children address orphan files, template debt, README alignment, test fixture management, and daemon concurrency fixes.",
+  "description": "Phase Parent: 000-release-cleanup/003-cleanup",
   "keywords": [
-    "cleanup-omnibus",
-    "003-cleanup",
-    "documentation",
-    "template-debt",
-    "test-infrastructure",
-    "code-graph",
-    "resource-maps",
-    "remediation"
+    "phase",
+    "parent",
+    "000-release-cleanup",
+    "003-cleanup"
   ],
-  "lastUpdated": "2026-05-16T09:00:00Z",
+  "lastUpdated": "2026-05-16T15:58:25.015Z",
   "specId": "003",
-  "folderSlug": "cleanup-omnibus",
+  "folderSlug": "cleanup",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",

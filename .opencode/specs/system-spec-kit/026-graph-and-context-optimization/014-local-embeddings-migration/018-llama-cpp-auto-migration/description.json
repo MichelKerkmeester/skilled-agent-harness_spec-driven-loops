@@ -1,25 +1,28 @@
 {
-  "specId": "018",
-  "folderSlug": "llama-cpp-auto-migration",
   "title": "llama-cpp auto-migration",
-  "description": "Upgrade Memory MCP startup from warn-only hf-local migration detection to synchronous llama-cpp auto-migrate, validate, delete, and fallback behavior with MEMORY_AUTO_MIGRATE_HF_TO_LLAMA=false opt-out.",
-  "parentChain": [
-    "014-local-embeddings-setup-a"
-  ],
-  "memorySequence": 18,
   "level": "2",
   "status": "complete",
   "importance_tier": "critical",
   "contextType": "implementation",
-  "keywords": [
-    "llama-cpp",
-    "hf-local",
-    "Memory MCP",
-    "auto migration",
-    "MEMORY_AUTO_MIGRATE_HF_TO_LLAMA",
-    "AUTO_MIGRATION_START",
-    "AUTO_MIGRATION_COMPLETE"
-  ],
   "created_at": "2026-05-13T12:01:28Z",
-  "last_updated_at": "2026-05-13T12:01:28Z"
+  "last_updated_at": "2026-05-13T12:01:28Z",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/018-llama-cpp-auto-migration",
+  "description": "Feature Specification: 018 llama-cpp auto-migration",
+  "keywords": [
+    "feature",
+    "specification",
+    "018",
+    "llama-cpp",
+    "auto-migration"
+  ],
+  "lastUpdated": "2026-05-16T15:58:25.442Z",
+  "specId": "018",
+  "folderSlug": "llama-cpp-auto-migration",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "014-local-embeddings-migration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
 }

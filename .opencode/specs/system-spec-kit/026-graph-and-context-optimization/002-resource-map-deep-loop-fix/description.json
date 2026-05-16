@@ -21,9 +21,9 @@
     "map",
     "template"
   ],
-  "lastUpdated": "2026-05-08T08:26:57.573Z",
+  "lastUpdated": "2026-05-16T15:58:25.152Z",
   "specId": "002",
-  "folderSlug": "resource-map-template",
+  "folderSlug": "resource-map-deep-loop-fix",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization"

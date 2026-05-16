@@ -25,21 +25,21 @@
     "last_active_child_id": null
   },
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/007-code-graph-hld-lld/002-lib-impl",
-  "description": "code-graph-hld-lld.ts implementation conforming to the published HldLldClassifier contract.",
+  "description": "Feature Specification: 002 Library Implementation",
   "keywords": [
-    "hld-lld",
+    "feature",
+    "specification",
+    "002",
     "library",
-    "typescript",
-    "implementation",
-    "classifier"
+    "implementation"
   ],
-  "lastUpdated": "2026-05-12T00:00:00.000Z",
+  "lastUpdated": "2026-05-16T15:58:25.613Z",
   "specId": "002",
   "folderSlug": "lib-impl",
   "parentChain": [
     "system-spec-kit",
     "027-xce-research-based-refinement",
-    "002-code-graph-hld-lld"
+    "007-code-graph-hld-lld"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

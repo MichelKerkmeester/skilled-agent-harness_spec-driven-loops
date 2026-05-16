@@ -1,22 +1,4 @@
 {
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/013-cocoindex-complete-fork",
-  "description": "Phase parent for complete CocoIndex MCP fork topical decomposition across import, scripts, tests, docs, attribution, and integration smoke.",
-  "keywords": [
-    "027",
-    "cocoindex",
-    "complete-fork",
-    "phase-parent",
-    "v0.2.33"
-  ],
-  "lastUpdated": "2026-05-12T07:20:00Z",
-  "specId": "013",
-  "folderSlug": "cocoindex-complete-fork",
-  "parentChain": [
-    "system-spec-kit",
-    "027-xce-research-based-refinement"
-  ],
-  "memorySequence": 0,
-  "memoryNameHistory": [],
   "level": "2",
   "manual": {
     "children": [
@@ -31,5 +13,24 @@
   "derived": {
     "status": "phase-parent",
     "last_active_child_id": null
-  }
+  },
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/013-cocoindex-complete-fork",
+  "description": "Feature Specification: Complete CocoIndex MCP Fork",
+  "keywords": [
+    "feature",
+    "specification",
+    "complete",
+    "cocoindex",
+    "mcp",
+    "fork"
+  ],
+  "lastUpdated": "2026-05-16T15:58:25.730Z",
+  "specId": "013",
+  "folderSlug": "cocoindex-complete-fork",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
 }

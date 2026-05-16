@@ -24,13 +24,24 @@
     "last_active_child_id": null
   },
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/009-code-graph-impact-analysis/004-test",
-  "description": "Defines Vitest correctness fixtures for code_graph_impact_analysis.",
+  "description": "Feature Specification: 027/004/004 Impact Analysis Tests",
   "keywords": [
-    "tests",
-    "vitest",
-    "fixtures",
-    "impact"
+    "feature",
+    "specification",
+    "027",
+    "004",
+    "impact",
+    "analysis",
+    "tests"
   ],
-  "lastUpdated": "2026-05-12T00:00:00.000Z",
-  "folderSlug": "004-test"
+  "lastUpdated": "2026-05-16T15:58:25.665Z",
+  "specId": "004",
+  "folderSlug": "test",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement",
+    "009-code-graph-impact-analysis"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
 }

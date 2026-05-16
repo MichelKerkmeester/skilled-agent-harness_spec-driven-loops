@@ -1,18 +1,25 @@
 {
-  "specFolder": "016-p2-remediation-015-deep-review",
-  "description": "Close 015 deep-review P2 advisories and document D2b shared seam decisions for mk_skill_advisor cleanup.",
+  "level": "2",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-graph/006-system-skill-advisor-extraction/016-p2-remediation-015-deep-review",
+  "description": "Feature Specification: P2 remediation for 015 deep-review advisories",
   "keywords": [
-    "p2-remediation",
-    "015-deep-review",
-    "mk-skill-advisor",
-    "rename-invariants",
-    "shared-seams"
+    "feature",
+    "specification",
+    "remediation",
+    "015",
+    "deep-review",
+    "advisories"
   ],
-  "lastUpdated": "2026-05-14T21:42:00.000Z",
+  "lastUpdated": "2026-05-16T15:58:25.246Z",
   "specId": "016",
   "folderSlug": "p2-remediation-015-deep-review",
-  "parentChain": [],
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "008-skill-advisor",
+    "001-skill-graph",
+    "006-system-skill-advisor-extraction"
+  ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

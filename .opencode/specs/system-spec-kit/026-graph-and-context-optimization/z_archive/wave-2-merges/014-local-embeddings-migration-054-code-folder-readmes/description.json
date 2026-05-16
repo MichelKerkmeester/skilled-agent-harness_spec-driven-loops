@@ -1,22 +1,22 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/054-code-folder-readmes",
-  "description": "Phase C of the 4-phase code-folder README pipeline. Discovery showed actual scope is far smaller than the original plan estimated: 8 git-tracked folders in system-spec-kit/mcp_server need new sk-doc READMEs (96 of 116 already pass validate from prior packets, 12 are gitignored noise). Target folders are fixture and config dirs: .github/hooks, .opencode/skills/system-spec-kit/mcp_server/data, matrix_runners/templates, tests/advisor-fixtures, tests/description/fixtures, tests/fixtures/council-value, tests/fixtures/council-value/data, tests/validation/fixtures.",
+  "level": "1",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-2-merges/014-local-embeddings-migration-054-code-folder-readmes",
+  "description": "Phase C: sk-doc-aligned READMEs for system-spec-kit",
   "keywords": [
-    "code-folder-readme",
+    "phase",
     "sk-doc-aligned",
-    "system-spec-kit",
-    "cli-devin-cli-opencode-pipeline",
-    "fixture-readmes"
+    "readmes",
+    "system-spec-kit"
   ],
-  "lastUpdated": "2026-05-15T12:30:00Z",
-  "specId": "054",
-  "folderSlug": "code-folder-readmes",
+  "lastUpdated": "2026-05-16T15:58:25.543Z",
+  "specId": "014",
+  "folderSlug": "local-embeddings-migration-054-code-folder-readmes",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "014-local-embeddings-migration"
+    "z_archive",
+    "wave-2-merges"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

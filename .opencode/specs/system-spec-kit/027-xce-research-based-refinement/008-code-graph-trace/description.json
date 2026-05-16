@@ -33,14 +33,14 @@
     "last_active_child_id": null
   },
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/008-code-graph-trace",
-  "description": "Lean phase-parent control file for the contract-first decomposition of code_graph_trace.",
+  "description": "Feature Specification: code_graph_trace Phase Parent",
   "keywords": [
-    "phase-parent",
-    "code-graph",
-    "trace",
-    "contract-first"
+    "feature",
+    "specification",
+    "phase",
+    "parent"
   ],
-  "lastUpdated": "2026-05-12T00:00:00.000Z",
+  "lastUpdated": "2026-05-16T15:58:25.625Z",
   "specId": "008",
   "folderSlug": "code-graph-trace",
   "parentChain": [

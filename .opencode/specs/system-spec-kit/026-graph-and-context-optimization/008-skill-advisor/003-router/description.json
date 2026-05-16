@@ -1,18 +1,14 @@
 {
   "level": "3",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/003-router",
-  "description": "Phase parent for intent routing optimization across the skill advisor system. Coordinates 5 children covering search-and-routing tuning, phrase booster tailoring, smart router remediation, hook surface integration, and setup command infrastructure.",
+  "description": "Phase Parent: 008-skill-advisor/003-router",
   "keywords": [
-    "router",
-    "003-router",
-    "intent-routing",
-    "skill-advisor",
-    "search-tuning",
-    "phrase-booster",
-    "smart-router",
-    "hook-surface"
+    "phase",
+    "parent",
+    "008-skill-advisor",
+    "003-router"
   ],
-  "lastUpdated": "2026-05-16T09:00:00Z",
+  "lastUpdated": "2026-05-16T15:58:25.275Z",
   "specId": "003",
   "folderSlug": "router",
   "parentChain": [

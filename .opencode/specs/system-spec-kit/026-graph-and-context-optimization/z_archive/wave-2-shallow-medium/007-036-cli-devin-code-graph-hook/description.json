@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/036-cli-devin-code-graph-hook",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-2-shallow-medium/007-036-cli-devin-code-graph-hook",
   "description": "Feature Specification: CLI Devin Code Graph SessionStart Hook + Plugin Rename + Post-Extraction Audit",
   "keywords": [
     "feature",
@@ -15,13 +15,14 @@
     "post-extraction",
     "audit"
   ],
-  "lastUpdated": "2026-05-15T13:06:00.454Z",
-  "specId": "036",
-  "folderSlug": "cli-devin-code-graph-hook",
+  "lastUpdated": "2026-05-16T15:58:25.556Z",
+  "specId": "007",
+  "folderSlug": "036-cli-devin-code-graph-hook",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "007-code-graph"
+    "z_archive",
+    "wave-2-shallow-medium"
   ],
   "memorySequence": 1,
   "memoryNameHistory": [

@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-deep-research-finding-remediation/009-test-reliability",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/006-research/004-deep-research-finding-remediation/009-test-reliability",
   "description": "Feature Specification: 009 Test Reliability Remediation",
   "keywords": [
     "feature",
@@ -9,13 +9,14 @@
     "reliability",
     "remediation"
   ],
-  "lastUpdated": "2026-05-08T08:26:57.477Z",
+  "lastUpdated": "2026-05-16T15:58:25.142Z",
   "specId": "009",
   "folderSlug": "test-reliability",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
     "000-release-cleanup",
+    "006-research",
     "004-deep-research-finding-remediation"
   ],
   "memorySequence": 1,

@@ -1,15 +1,17 @@
 {
-  "specFolder": "015-mcp-shared-dependency-startup-fix",
-  "description": "Fix mk_skill_advisor and mk_code_index MCP startup crashes by declaring @spec-kit/shared as a local runtime dependency in the packages that import it.",
+  "level": "2",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/015-mcp-shared-dependency-startup-fix",
+  "description": "Feature Specification: MCP Shared Dependency Startup Fix",
   "keywords": [
-    "mcp-startup",
-    "mk-skill-advisor",
-    "mk-code-index",
-    "err-module-not-found",
-    "spec-kit-shared",
-    "runtime-dependency"
+    "feature",
+    "specification",
+    "mcp",
+    "shared",
+    "dependency",
+    "startup",
+    "fix"
   ],
-  "lastUpdated": "2026-05-16T10:03:53.711Z",
+  "lastUpdated": "2026-05-16T15:58:25.519Z",
   "specId": "015",
   "folderSlug": "mcp-shared-dependency-startup-fix",
   "parentChain": [
@@ -17,6 +19,5 @@
     "026-graph-and-context-optimization"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

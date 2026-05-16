@@ -106,7 +106,7 @@ Per `.claude/mcp.json` mk-spec-memory NOTE_2_TOOLS:
 | deep-loop graph | 4 | deep_loop_graph_query / status / upsert / convergence |
 | eval | 2 | eval_run_ablation / reporting_dashboard |
 
-Tool schemas: `.opencode/skills/system-spec-kit/mcp_server/lib/handlers/tool-schemas.ts` (or compiled at `dist/tool-schemas.js`). Full namespace: `mcp__mk_spec_memory__<tool>`.
+Tool schemas: `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts` (TS source) or `.opencode/skills/system-spec-kit/mcp_server/dist/tool-schemas.js` (compiled, 63 KB). Note: a duplicate transpiled copy lives at `dist/system-spec-kit/mcp_server/tool-schemas.js` from a nested tsconfig outDir — the canonical compiled file is the flat `dist/tool-schemas.js`. Full MCP namespace: `mcp__mk_spec_memory__<tool>`.
 
 ### Playbook scope (345 scenarios, 25 category dirs)
 

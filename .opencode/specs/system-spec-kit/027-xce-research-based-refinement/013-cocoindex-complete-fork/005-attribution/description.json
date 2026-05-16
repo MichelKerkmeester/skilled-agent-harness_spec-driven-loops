@@ -1,23 +1,4 @@
 {
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/013-cocoindex-complete-fork/005-attribution",
-  "description": "Update NOTICE, CHANGELOG, and package metadata for Apache-2.0 upstream plus spec-kit modifications.",
-  "keywords": [
-    "027",
-    "cocoindex",
-    "attribution",
-    "phase",
-    "complete-fork"
-  ],
-  "lastUpdated": "2026-05-12T07:20:00Z",
-  "specId": "005",
-  "folderSlug": "attribution",
-  "parentChain": [
-    "system-spec-kit",
-    "027-xce-research-based-refinement",
-    "001-cocoindex-complete-fork"
-  ],
-  "memorySequence": 0,
-  "memoryNameHistory": [],
   "level": "2",
   "manual": {
     "parent_id": "system-spec-kit/027-xce-research-based-refinement/013-cocoindex-complete-fork",
@@ -28,5 +9,24 @@
   "derived": {
     "status": "draft",
     "last_active_child_id": null
-  }
+  },
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/013-cocoindex-complete-fork/005-attribution",
+  "description": "Feature Specification: Update Attribution Metadata",
+  "keywords": [
+    "feature",
+    "specification",
+    "update",
+    "attribution",
+    "metadata"
+  ],
+  "lastUpdated": "2026-05-16T15:58:25.757Z",
+  "specId": "005",
+  "folderSlug": "attribution",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement",
+    "013-cocoindex-complete-fork"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
 }

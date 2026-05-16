@@ -1,12 +1,19 @@
 {
+  "level": "1",
   "specFolder": "skilled-agent-orchestration/110-auto-review-stretch-uplift/003-deep-review-uplift",
-  "description": "110 phase 003-deep-review-uplift",
+  "description": "Feature Specification: H-7 finding dedup + H-9 bounded evidence for deep-review",
   "keywords": [
-    "110",
-    "phase",
-    "003-deep-review-uplift"
+    "feature",
+    "specification",
+    "h-7",
+    "finding",
+    "dedup",
+    "h-9",
+    "bounded",
+    "evidence",
+    "deep-review"
   ],
-  "lastUpdated": "2026-05-16T06:47:29.450Z",
+  "lastUpdated": "2026-05-16T15:58:24.851Z",
   "specId": "003",
   "folderSlug": "deep-review-uplift",
   "parentChain": [
@@ -14,6 +21,5 @@
     "110-auto-review-stretch-uplift"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

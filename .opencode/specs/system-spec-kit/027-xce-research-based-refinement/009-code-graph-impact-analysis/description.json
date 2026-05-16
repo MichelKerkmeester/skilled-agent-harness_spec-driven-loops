@@ -33,15 +33,19 @@
     "last_active_child_id": null
   },
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/009-code-graph-impact-analysis",
-  "description": "Phase-parent control spec for contract-first implementation of risk-scored code graph impact analysis.",
+  "description": "Feature Specification: 027/004 Code Graph Impact Analysis",
   "keywords": [
-    "phase-parent",
-    "risk-scored",
+    "feature",
+    "specification",
+    "027",
+    "004",
+    "code",
+    "graph",
     "impact",
-    "analysis",
-    "code-graph"
+    "analysis"
   ],
-  "lastUpdated": "2026-05-12T00:00:00.000Z",
+  "lastUpdated": "2026-05-16T15:58:25.647Z",
+  "specId": "009",
   "folderSlug": "code-graph-impact-analysis",
   "parentChain": [
     "system-spec-kit",

@@ -1,21 +1,22 @@
 {
-  "specFolder": "014-local-embeddings-setup-a/011-embeddinggemma-unification",
-  "description": "Phase 11 - EmbeddingGemma Unification. Makes EmbeddingGemma the default for Spec Kit Memory and CocoIndex, updates committed runtime/default docs, purges active Qwen3 current-state references, and records the CocoIndex query-prompt/doc-prompt asymmetry.",
+  "level": "1",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/011-embeddinggemma-unification",
+  "description": "Feature Specification: Phase 11 - EmbeddingGemma Unification",
   "keywords": [
-    "phase-11",
-    "embeddinggemma-unification",
-    "google-embeddinggemma-300m",
-    "onnx-community-embeddinggemma",
-    "qwen3-purge",
-    "sentence-transformers"
+    "feature",
+    "specification",
+    "phase",
+    "embeddinggemma",
+    "unification"
   ],
-  "lastUpdated": "2026-05-13T07:35:00Z",
+  "lastUpdated": "2026-05-16T15:58:25.411Z",
   "specId": "011",
   "folderSlug": "embeddinggemma-unification",
   "parentChain": [
-    "014-local-embeddings-setup-a"
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "014-local-embeddings-migration"
   ],
   "memorySequence": 1,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

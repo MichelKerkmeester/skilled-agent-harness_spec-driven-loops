@@ -1,27 +1,25 @@
 {
-  "specFolder": "014-onnx-cross-platform-backend",
-  "description": "Opt-in ONNX Runtime embedding backend for cocoindex with cross-platform execution-provider selection (CoreML / DirectML / CUDA / OpenVINO / CPU).",
+  "level": "2",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/014-onnx-cross-platform-backend",
+  "description": "Feature Specification: 014/014 ONNX Runtime cross-platform embedding backend",
   "keywords": [
-    "onnxruntime",
+    "feature",
+    "specification",
+    "014",
+    "onnx",
+    "runtime",
     "cross-platform",
-    "coreml",
-    "directml",
-    "cuda",
-    "openvino",
-    "neural-engine",
-    "embedding-backend",
-    "embeddinggemma",
-    "cocoindex",
-    "parity-gate",
-    "ep-selection"
+    "embedding",
+    "backend"
   ],
-  "lastUpdated": "2026-05-13T10:15:00Z",
+  "lastUpdated": "2026-05-16T15:58:25.421Z",
   "specId": "014",
   "folderSlug": "onnx-cross-platform-backend",
   "parentChain": [
-    "014-local-embeddings-setup-a"
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "014-local-embeddings-migration"
   ],
   "memorySequence": 14,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

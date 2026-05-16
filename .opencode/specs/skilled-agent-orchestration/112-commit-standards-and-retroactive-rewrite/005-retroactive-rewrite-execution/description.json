@@ -1,17 +1,21 @@
 {
-  "specFolder": "112-commit-standards-and-retroactive-rewrite/005-retroactive-rewrite-execution",
-  "description": "Phase 5: retroactive-rewrite-execution",
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/112-commit-standards-and-retroactive-rewrite/005-retroactive-rewrite-execution",
+  "description": "Phase 005: Retroactive Rewrite Execution",
   "keywords": [
     "phase",
-    "retroactive-rewrite-execution"
+    "005",
+    "retroactive",
+    "rewrite",
+    "execution"
   ],
-  "lastUpdated": "2026-05-16T09:42:36.573Z",
+  "lastUpdated": "2026-05-16T15:58:24.880Z",
   "specId": "005",
   "folderSlug": "retroactive-rewrite-execution",
   "parentChain": [
+    "skilled-agent-orchestration",
     "112-commit-standards-and-retroactive-rewrite"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

@@ -1,12 +1,18 @@
 {
+  "level": "1",
   "specFolder": "skilled-agent-orchestration/110-auto-review-stretch-uplift/002-sk-code-review-uplift",
-  "description": "110 phase 002-sk-code-review-uplift",
+  "description": "Feature Specification: M-1 PR dedup + M-2 min-evidence gate for sk-code-review",
   "keywords": [
-    "110",
-    "phase",
-    "002-sk-code-review-uplift"
+    "feature",
+    "specification",
+    "m-1",
+    "dedup",
+    "m-2",
+    "min-evidence",
+    "gate",
+    "sk-code-review"
   ],
-  "lastUpdated": "2026-05-16T06:47:29.329Z",
+  "lastUpdated": "2026-05-16T15:58:24.834Z",
   "specId": "002",
   "folderSlug": "sk-code-review-uplift",
   "parentChain": [
@@ -14,6 +20,5 @@
     "110-auto-review-stretch-uplift"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

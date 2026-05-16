@@ -1,0 +1,22 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/z_archive/103-spec-kit-auto-mode-noninteractive-contract/002-auto-mode-contract-generalization-to-all-commands",
+  "description": "Feature Specification: auto-mode-contract generalization to all commands",
+  "keywords": [
+    "feature",
+    "specification",
+    "auto-mode-contract",
+    "generalization",
+    "commands"
+  ],
+  "lastUpdated": "2026-05-16T15:58:24.970Z",
+  "specId": "002",
+  "folderSlug": "auto-mode-contract-generalization-to-all-commands",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "103-spec-kit-auto-mode-noninteractive-contract"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

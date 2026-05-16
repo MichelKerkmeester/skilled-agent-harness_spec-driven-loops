@@ -28,21 +28,20 @@
     "last_active_child_id": null
   },
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/007-code-graph-hld-lld/004-test",
-  "description": "code-graph-hld-lld.vitest.ts test suite verifying classifier behavior against the published contract.",
+  "description": "Feature Specification: 004 Tests",
   "keywords": [
-    "hld-lld",
-    "test",
-    "vitest",
-    "verification",
-    "fixtures"
+    "feature",
+    "specification",
+    "004",
+    "tests"
   ],
-  "lastUpdated": "2026-05-12T00:00:00.000Z",
+  "lastUpdated": "2026-05-16T15:58:25.621Z",
   "specId": "004",
   "folderSlug": "test",
   "parentChain": [
     "system-spec-kit",
     "027-xce-research-based-refinement",
-    "002-code-graph-hld-lld"
+    "007-code-graph-hld-lld"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

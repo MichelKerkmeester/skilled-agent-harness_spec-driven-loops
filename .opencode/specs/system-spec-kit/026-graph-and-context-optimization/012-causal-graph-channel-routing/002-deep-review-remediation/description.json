@@ -1,22 +1,27 @@
 {
   "level": "3",
-  "specFolder": "026-graph-and-context-optimization/012-causal-graph-channel-routing/002-deep-review-remediation",
-  "description": "Level 3 plan to close 3 P1 + 39 P2 deep-review findings from 2026-05-11 (cli-opencode + deepseek/deepseek-v4-pro). 21 batches across 4 tiers; implementation via cli-codex gpt-5.5 reasoning=high service_tier=fast.",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/012-causal-graph-channel-routing/002-deep-review-remediation",
+  "description": "Feature Specification: 002 Deep-Review Remediation for 012 Causal Graph Channel Routing",
   "keywords": [
-    "002-deep-review-remediation",
-    "012 deep-review remediation",
-    "P1-C-001 invalidateEntityDensityCache wiring",
-    "resource-map drift fix 012",
-    "entity-density cache invalidation hooks",
-    "ADV-001 env-flag tightening",
-    "routing-telemetry remediation",
-    "012 P2 polish"
+    "feature",
+    "specification",
+    "002",
+    "deep-review",
+    "remediation",
+    "012",
+    "causal",
+    "graph",
+    "channel",
+    "routing"
   ],
-  "lastUpdated": "2026-05-11T10:35:00Z",
+  "lastUpdated": "2026-05-16T15:58:25.356Z",
   "specId": "002",
   "folderSlug": "deep-review-remediation",
   "parentChain": [
+    "system-spec-kit",
     "026-graph-and-context-optimization",
     "012-causal-graph-channel-routing"
-  ]
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
 }

@@ -1,21 +1,27 @@
 {
   "level": "phase",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-skill-advisor-semantic-lane",
-  "description": "Phase parent for activating the skill advisor's dormant semantic_shadow lane as a real cosine-similarity lane using local EmbeddingGemma, with weight rebalance gated behind an ablation sweep.",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-scorer/002-skill-advisor-semantic-lane",
+  "description": "Initial Phase: Skill Advisor semantic lane (Gemma local embeddings)",
   "keywords": [
-    "skill-advisor",
-    "semantic-lane",
-    "cosine-similarity",
-    "embeddinggemma",
-    "ablation-sweep",
-    "lane-weight-rebalance"
+    "initial",
+    "phase",
+    "skill",
+    "advisor",
+    "semantic",
+    "lane",
+    "gemma",
+    "local",
+    "embeddings"
   ],
-  "lastUpdated": "2026-05-13T19:30:00Z",
-  "specId": "013",
+  "lastUpdated": "2026-05-16T15:58:25.271Z",
+  "specId": "002",
   "folderSlug": "skill-advisor-semantic-lane",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "008-skill-advisor"
-  ]
+    "008-skill-advisor",
+    "002-scorer"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
 }

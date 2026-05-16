@@ -1,7 +1,7 @@
 {
   "level": "2",
   "status": "complete",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/026-readme-code-template",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cleanup/026-readme-code-template",
   "description": "Feature Specification: README code template governance",
   "keywords": [
     "feature",
@@ -11,13 +11,14 @@
     "template",
     "governance"
   ],
-  "lastUpdated": "2026-05-08T08:26:57.509Z",
-  "specId": "051",
+  "lastUpdated": "2026-05-16T15:58:25.055Z",
+  "specId": "026",
   "folderSlug": "readme-code-template",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "000-release-cleanup"
+    "000-release-cleanup",
+    "003-cleanup"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

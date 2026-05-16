@@ -26,7 +26,7 @@
     "last_active_child_id": null
   },
   "lastUpdatedAt": "2026-05-08T23:20:00Z",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-vitest-baseline-recovery",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cleanup/003-vitest-baseline-recovery",
   "description": "Feature Specification: Vitest baseline recovery",
   "keywords": [
     "feature",
@@ -35,13 +35,14 @@
     "baseline",
     "recovery"
   ],
-  "lastUpdated": "2026-05-09T07:57:32.807Z",
-  "specId": "006",
+  "lastUpdated": "2026-05-16T15:58:25.025Z",
+  "specId": "003",
   "folderSlug": "vitest-baseline-recovery",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "000-release-cleanup"
+    "000-release-cleanup",
+    "003-cleanup"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

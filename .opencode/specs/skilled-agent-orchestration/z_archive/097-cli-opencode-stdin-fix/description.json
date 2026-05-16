@@ -24,7 +24,7 @@
     "completion_pct": 0,
     "last_active_child_id": null
   },
-  "specFolder": "skilled-agent-orchestration/097-cli-opencode-stdin-fix",
+  "specFolder": "skilled-agent-orchestration/z_archive/097-cli-opencode-stdin-fix",
   "description": "Feature Specification: cli-opencode `</dev/null` Stdin-Redirect Fix",
   "keywords": [
     "feature",
@@ -35,11 +35,12 @@
     "stdin-redirect",
     "fix"
   ],
-  "lastUpdated": "2026-05-09T07:57:32.766Z",
+  "lastUpdated": "2026-05-16T15:58:24.907Z",
   "specId": "097",
   "folderSlug": "cli-opencode-stdin-fix",
   "parentChain": [
-    "skilled-agent-orchestration"
+    "skilled-agent-orchestration",
+    "z_archive"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

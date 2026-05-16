@@ -1,23 +1,4 @@
 {
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/013-cocoindex-complete-fork/004-docs",
-  "description": "Author skill, README, install guide, and reference docs for the complete local fork.",
-  "keywords": [
-    "027",
-    "cocoindex",
-    "docs",
-    "phase",
-    "complete-fork"
-  ],
-  "lastUpdated": "2026-05-12T07:20:00Z",
-  "specId": "004",
-  "folderSlug": "docs",
-  "parentChain": [
-    "system-spec-kit",
-    "027-xce-research-based-refinement",
-    "001-cocoindex-complete-fork"
-  ],
-  "memorySequence": 0,
-  "memoryNameHistory": [],
   "level": "2",
   "manual": {
     "parent_id": "system-spec-kit/027-xce-research-based-refinement/013-cocoindex-complete-fork",
@@ -28,5 +9,24 @@
   "derived": {
     "status": "draft",
     "last_active_child_id": null
-  }
+  },
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/013-cocoindex-complete-fork/004-docs",
+  "description": "Feature Specification: Author Fork Documentation",
+  "keywords": [
+    "feature",
+    "specification",
+    "author",
+    "fork",
+    "documentation"
+  ],
+  "lastUpdated": "2026-05-16T15:58:25.749Z",
+  "specId": "004",
+  "folderSlug": "docs",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement",
+    "013-cocoindex-complete-fork"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
 }

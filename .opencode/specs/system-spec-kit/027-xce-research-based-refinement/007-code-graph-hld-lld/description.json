@@ -1,7 +1,6 @@
 {
   "title": "Phase Parent: 027/002 Code Graph HLD/LLD",
-  "name": "027/002 Code Graph HLD/LLD Phase Parent",
-  "purpose": "Coordinate four contract-first child phases that deliver the deterministic HLD/LLD narrative layer for code_graph.",
+  "type": "phase-parent",
   "trigger_phrases": [
     "027 phase 002",
     "code-graph hld-lld",
@@ -9,10 +8,11 @@
     "code_graph_hld_lld"
   ],
   "level": 2,
+  "name": "027/002 Code Graph HLD/LLD Phase Parent",
+  "purpose": "Coordinate four contract-first child phases that deliver the deterministic HLD/LLD narrative layer for code_graph.",
   "importance_tier": "important",
   "contextType": "implementation",
   "status": "phase-parent",
-  "type": "phase-parent",
   "priority": "P1",
   "createdAt": "2026-05-08T15:00:00Z",
   "branch": "main",
@@ -33,16 +33,20 @@
     "last_active_child_id": null
   },
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/007-code-graph-hld-lld",
-  "description": "Phase parent for deterministic HLD/LLD narrative generation over code_graph data.",
+  "description": "Feature Specification: 027/002 Code Graph HLD/LLD Phase Parent",
   "keywords": [
-    "phase-parent",
-    "deterministic",
+    "feature",
+    "specification",
+    "027",
+    "002",
+    "code",
+    "graph",
     "hld",
     "lld",
-    "narrative",
-    "code_graph"
+    "phase",
+    "parent"
   ],
-  "lastUpdated": "2026-05-12T00:00:00.000Z",
+  "lastUpdated": "2026-05-16T15:58:25.604Z",
   "specId": "007",
   "folderSlug": "code-graph-hld-lld",
   "parentChain": [

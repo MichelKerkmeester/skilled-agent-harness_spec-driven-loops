@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-vestigial-embedding-readiness-gate-removal",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cleanup/005-vestigial-embedding-readiness-gate-removal",
   "description": "Spec: Delete Vestigial Embedding-Readiness Gate",
   "keywords": [
     "spec",
@@ -8,13 +8,14 @@
     "embedding-readiness",
     "gate"
   ],
-  "lastUpdated": "2026-05-08T08:26:57.107Z",
-  "specId": "010",
+  "lastUpdated": "2026-05-16T15:58:25.029Z",
+  "specId": "005",
   "folderSlug": "vestigial-embedding-readiness-gate-removal",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "000-release-cleanup"
+    "000-release-cleanup",
+    "003-cleanup"
   ],
   "memorySequence": 1,
   "memoryNameHistory": []

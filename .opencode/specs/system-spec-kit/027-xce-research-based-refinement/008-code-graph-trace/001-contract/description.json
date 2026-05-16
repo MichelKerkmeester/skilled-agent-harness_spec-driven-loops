@@ -24,20 +24,19 @@
     "last_active_child_id": null
   },
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/008-code-graph-trace/001-contract",
-  "description": "TraceTool and trace-result TypeScript interfaces.",
+  "description": "Feature Specification: code_graph_trace Contract",
   "keywords": [
-    "trace",
-    "contract",
-    "typescript",
-    "interface"
+    "feature",
+    "specification",
+    "contract"
   ],
-  "lastUpdated": "2026-05-12T00:00:00.000Z",
+  "lastUpdated": "2026-05-16T15:58:25.630Z",
   "specId": "001",
   "folderSlug": "contract",
   "parentChain": [
     "system-spec-kit",
     "027-xce-research-based-refinement",
-    "003-code-graph-trace"
+    "008-code-graph-trace"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

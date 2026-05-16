@@ -13,7 +13,6 @@
   "status": "phase-parent",
   "priority": "P0",
   "createdAt": "2026-05-09T11:00:00Z",
-  "lastUpdated": "2026-05-12T07:20:00.000Z",
   "branch": "main",
   "parent_track": "027-xce-research-based-refinement",
   "parent_id": "system-spec-kit/027-xce-research-based-refinement",
@@ -39,16 +38,15 @@
     "last_active_child_id": null
   },
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/012-feedback-reducers",
-  "description": "Phase-parent control packet for post-012 learning feedback reducers.",
+  "description": "Phase Parent: 009 Feedback Reducers",
   "keywords": [
-    "phase-parent",
+    "phase",
+    "parent",
+    "009",
     "feedback",
-    "reducers",
-    "aggregation",
-    "coco",
-    "causal",
-    "retention"
+    "reducers"
   ],
+  "lastUpdated": "2026-05-16T15:58:25.702Z",
   "specId": "012",
   "folderSlug": "feedback-reducers",
   "parentChain": [

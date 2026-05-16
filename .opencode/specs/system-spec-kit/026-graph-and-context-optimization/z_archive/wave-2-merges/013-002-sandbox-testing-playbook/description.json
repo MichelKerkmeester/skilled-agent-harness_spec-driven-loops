@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/002-sandbox-testing-playbook",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-2-merges/013-002-sandbox-testing-playbook",
   "description": "Feature Specification: Sandbox Testing Playbook",
   "keywords": [
     "feature",
@@ -8,13 +8,14 @@
     "testing",
     "playbook"
   ],
-  "lastUpdated": "2026-05-11T08:39:15.670Z",
-  "specId": "002",
-  "folderSlug": "sandbox-testing-playbook",
+  "lastUpdated": "2026-05-16T15:58:25.533Z",
+  "specId": "013",
+  "folderSlug": "002-sandbox-testing-playbook",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "013-doctor-update-orchestrator"
+    "z_archive",
+    "wave-2-merges"
   ],
   "memorySequence": 6,
   "memoryNameHistory": [
