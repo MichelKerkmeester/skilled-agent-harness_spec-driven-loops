@@ -33,20 +33,20 @@ Last 3 Iterations Summary:
 
 ## STATE FILES
 
-- Config: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/001-template-consolidation-investigation/research/deep-research-config.json
-- State Log: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/001-template-consolidation-investigation/research/deep-research-state.jsonl
-- Strategy: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/001-template-consolidation-investigation/research/deep-research-strategy.md
-- Registry: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/001-template-consolidation-investigation/research/findings-registry.json
-- Prior iterations: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/001-template-consolidation-investigation/research/iterations/iteration-001.md through iteration-007.md
-- Write iteration narrative to: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/001-template-consolidation-investigation/research/iterations/iteration-008.md
-- Write per-iteration delta file to: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/001-template-consolidation-investigation/research/deltas/iter-008.jsonl
+- Config: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/001-consolidation-investigation/research/deep-research-config.json
+- State Log: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/001-consolidation-investigation/research/deep-research-state.jsonl
+- Strategy: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/001-consolidation-investigation/research/deep-research-strategy.md
+- Registry: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/001-consolidation-investigation/research/findings-registry.json
+- Prior iterations: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/001-consolidation-investigation/research/iterations/iteration-001.md through iteration-007.md
+- Write iteration narrative to: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/001-consolidation-investigation/research/iterations/iteration-008.md
+- Write per-iteration delta file to: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/001-consolidation-investigation/research/deltas/iter-008.jsonl
 
 ## CONSTRAINTS
 
 - LEAF agent. No sub-agents. Max 12 tool calls.
 - Read iteration-006.md AND iteration-007.md FIRST (Phase 1 punch list, resolver contract, performance numbers).
 - DO NOT use `.../` ellipsis paths. Always full repo-relative paths.
-- Stay within `010-template-levels/001-template-consolidation-investigation/research/` for writes.
+- Stay within `010-template-levels/001-consolidation-investigation/research/` for writes.
 
 ## OUTPUT CONTRACT
 

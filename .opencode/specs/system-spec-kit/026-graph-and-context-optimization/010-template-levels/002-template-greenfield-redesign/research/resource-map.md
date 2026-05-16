@@ -106,7 +106,7 @@ Research packet sources and cross-validation context.
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/002-template-greenfield-redesign/research/prompts/iteration-14.codex-stdout.log` - cli-codex stdout log for iteration 14.
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/002-template-greenfield-redesign/research/prompts/iteration-14.codex-stderr.log` - cli-codex stderr log for iteration 14.
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/002-template-greenfield-redesign/research/research.md` - canonical synthesis.
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/001-template-consolidation-investigation/research/cross-validation/copilot-response.md` - independent cross-validation framing.
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/001-consolidation-investigation/research/cross-validation/copilot-response.md` - independent cross-validation framing.
 
 ## Scripts
 

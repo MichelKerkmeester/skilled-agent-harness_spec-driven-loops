@@ -39,10 +39,10 @@ Last 3 Iterations Summary:
 
 ## STATE FILES
 
-- Config / State Log / Strategy / Registry: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/001-template-consolidation-investigation/research/{deep-research-config.json,deep-research-state.jsonl,deep-research-strategy.md,findings-registry.json}`
+- Config / State Log / Strategy / Registry: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/001-consolidation-investigation/research/{deep-research-config.json,deep-research-state.jsonl,deep-research-strategy.md,findings-registry.json}`
 - Prior iterations: iteration-001.md, iteration-002.md, iteration-003.md, iteration-004.md
-- Write iteration narrative to: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/001-template-consolidation-investigation/research/iterations/iteration-005.md`
-- Write per-iteration delta file to: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/001-template-consolidation-investigation/research/deltas/iter-005.jsonl`
+- Write iteration narrative to: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/001-consolidation-investigation/research/iterations/iteration-005.md`
+- Write per-iteration delta file to: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/001-consolidation-investigation/research/deltas/iter-005.jsonl`
 
 ## CONSTRAINTS
 

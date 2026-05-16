@@ -112,7 +112,7 @@ Investigate consolidating the system-spec-kit templates folder: can we remove th
 <!-- MACHINE-OWNED: END -->
 ## 12. KNOWN CONTEXT
 
-### Prior research from packet spec (010-template-levels/001-template-consolidation-investigation/spec.md)
+### Prior research from packet spec (010-template-levels/001-consolidation-investigation/spec.md)
 
 - Templates folder: 83 .md files / ~13K LOC
 - Architecture: CORE + ADDENDUM v2.2 (already composable)

@@ -135,7 +135,7 @@ The 010 phase parent's `graph-metadata.json` was updated by each child packet's 
 
 ```json
 "children_ids": [
-  "system-spec-kit/026-graph-and-context-optimization/010-template-levels/001-template-consolidation-investigation",
+  "system-spec-kit/026-graph-and-context-optimization/010-template-levels/001-consolidation-investigation",
   "system-spec-kit/026-graph-and-context-optimization/010-template-levels/002-template-greenfield-redesign",
   "system-spec-kit/026-graph-and-context-optimization/010-template-levels/003-template-greenfield-impl",
   "system-spec-kit/026-graph-and-context-optimization/010-template-levels/004-deferred-followups",

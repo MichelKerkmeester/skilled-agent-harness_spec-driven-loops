@@ -33,7 +33,7 @@ Four sub-tasks:
    14. Dry-Run Verification (3 presets from iter 8 with intermediate state)
    15. File/LOC Deltas (86 → 15 source files; per-level dirs deleted; addon stubs eliminated)
    16. Open Items / Future Work (carry the 3 unresolved iter-8 questions + manifest-version migration adapter design)
-   17. Appendices (A: graph from iter 1-8 nodes/edges; B: commands run; C: cross-validation summary linking to ../001-template-consolidation-investigation/001-template-consolidation-investigation/research/cross-validation/copilot-response.md)
+   17. Appendices (A: graph from iter 1-8 nodes/edges; B: commands run; C: cross-validation summary linking to ../001-consolidation-investigation/001-consolidation-investigation/research/cross-validation/copilot-response.md)
 
 2. **Emit `research/resource-map.md`**:
    Path: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/002-template-greenfield-redesign/research/resource-map.md`

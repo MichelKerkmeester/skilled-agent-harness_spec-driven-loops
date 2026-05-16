@@ -1,7 +1,7 @@
-# Deep Review Strategy: 001-template-consolidation-investigation
+# Deep Review Strategy: 001-consolidation-investigation
 
 ## Review Target
-- **Target**: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/001-template-consolidation-investigation
+- **Target**: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/001-consolidation-investigation
 - **Type**: spec_folder (investigation-only packet; deep-research loop completed)
 - **Scope Note**: This packet authored no code changes. Review focuses on the system-spec-kit implementation artifacts (templates, scripts, validators) that were investigated, auditing their current quality against the packet's research findings and recommendations.
 

@@ -4,7 +4,7 @@
   "spec_folder": "system-spec-kit/026-graph-and-context-optimization/010-template-levels",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization",
   "children_ids": [
-    "system-spec-kit/026-graph-and-context-optimization/010-template-levels/001-template-consolidation-investigation",
+    "system-spec-kit/026-graph-and-context-optimization/010-template-levels/001-consolidation-investigation",
     "system-spec-kit/026-graph-and-context-optimization/010-template-levels/002-template-greenfield-redesign",
     "system-spec-kit/026-graph-and-context-optimization/010-template-levels/003-template-greenfield-impl",
     "system-spec-kit/026-graph-and-context-optimization/010-template-levels/004-deferred-followups",

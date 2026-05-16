@@ -634,8 +634,8 @@ file_path	match_count	area	phase
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-daemon-and-unification/review/iterations/iteration-024.md	2	spec-folder-active	003
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-hook-parity/002-copilot-hook-parity-remediation/research/007-deep-review-remediation-pt-01/deep-research-config.json	1	spec-folder-active	003
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-hook-parity/003-codex-hook-parity-remediation/implementation-summary.md	1	spec-folder-active	003
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/001-template-consolidation-investigation/research/cross-validation/copilot-response.md	1	spec-folder-active	003
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/001-template-consolidation-investigation/research/deep-research-config.json	4	spec-folder-active	003
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/001-consolidation-investigation/research/cross-validation/copilot-response.md	1	spec-folder-active	003
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/001-consolidation-investigation/research/deep-research-config.json	4	spec-folder-active	003
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/002-template-greenfield-redesign/research/deep-research-config.json	4	spec-folder-active	003
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/002-template-greenfield-redesign/research/iterations/iteration-001.md	2	spec-folder-active	003
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/002-template-greenfield-redesign/research/iterations/iteration-002.md	2	spec-folder-active	003
@@ -1294,8 +1294,8 @@ specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-d
 specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-daemon-and-unification/review/iterations/iteration-024.md	2	spec-folder-active	003
 specs/system-spec-kit/026-graph-and-context-optimization/009-hook-parity/002-copilot-hook-parity-remediation/research/007-deep-review-remediation-pt-01/deep-research-config.json	1	spec-folder-active	003
 specs/system-spec-kit/026-graph-and-context-optimization/009-hook-parity/003-codex-hook-parity-remediation/implementation-summary.md	1	spec-folder-active	003
-specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/001-template-consolidation-investigation/research/cross-validation/copilot-response.md	1	spec-folder-active	003
-specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/001-template-consolidation-investigation/research/deep-research-config.json	4	spec-folder-active	003
+specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/001-consolidation-investigation/research/cross-validation/copilot-response.md	1	spec-folder-active	003
+specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/001-consolidation-investigation/research/deep-research-config.json	4	spec-folder-active	003
 specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/002-template-greenfield-redesign/research/deep-research-config.json	4	spec-folder-active	003
 specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/002-template-greenfield-redesign/research/iterations/iteration-001.md	2	spec-folder-active	003
 specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/002-template-greenfield-redesign/research/iterations/iteration-002.md	2	spec-folder-active	003

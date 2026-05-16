@@ -90,7 +90,7 @@ Design the simplest greenfield template backend that:
 ### Out of Scope (this packet)
 - Implementing the redesign — this packet ends with a chosen design + concrete plan; implementation is a follow-on packet
 - Migrating existing 868 spec folders — they are immutable history, no migration needed (provenance markers are descriptive comments)
-- The PARTIAL plan from `010-template-levels/001-template-consolidation-investigation/research/research.md` — that framing is REJECTED
+- The PARTIAL plan from `010-template-levels/001-consolidation-investigation/research/research.md` — that framing is REJECTED
 
 ### Files Under Investigation
 
@@ -280,6 +280,6 @@ Existing 868 packets stay valid as git history. Their `<!-- SPECKIT_TEMPLATE_SOU
 - **Verification Checklist**: See `checklist.md`
 - **Decision Record**: See `decision-record.md`
 - **Research Artifacts**: See `research/research.md` (produced by `/spec_kit:deep-research`)
-- **Prior framing (REJECTED)**: `../001-template-consolidation-investigation/001-template-consolidation-investigation/research/research.md`
-- **Cross-validation analysis**: `../001-template-consolidation-investigation/001-template-consolidation-investigation/research/cross-validation/copilot-response.md`
+- **Prior framing (REJECTED)**: `../001-consolidation-investigation/001-consolidation-investigation/research/research.md`
+- **Cross-validation analysis**: `../001-consolidation-investigation/001-consolidation-investigation/research/cross-validation/copilot-response.md`
 - **Parent Spec**: `../spec.md` (026-graph-and-context-optimization theme)

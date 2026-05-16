@@ -17,7 +17,7 @@ contextType: "implementation"
 
 ## 2026-05-01
 
-> Spec folder: `026-graph-and-context-optimization/010-template-levels/001-template-consolidation-investigation` (Level 3)
+> Spec folder: `026-graph-and-context-optimization/010-template-levels/001-consolidation-investigation` (Level 3)
 > Parent packet: `026-graph-and-context-optimization/010-template-levels`
 
 ### Summary
@@ -54,18 +54,18 @@ The user subsequently rejected the PARTIAL framing because it prioritized backwa
 
 | File | What changed |
 |------|--------------|
-| `001-template-consolidation-investigation/spec.md` | Investigation spec with 10 requirements, 5 user stories |
-| `001-template-consolidation-investigation/plan.md` | 4-phase gated plan (byte-equivalence, resolver, consumer migration, optional deletion) |
-| `001-template-consolidation-investigation/tasks.md` | 16 tasks across 3 phases |
-| `001-template-consolidation-investigation/decision-record.md` | ADR-001: PARTIAL recommendation |
-| `001-template-consolidation-investigation/checklist.md` | Verification checklist |
-| `001-template-consolidation-investigation/implementation-summary.md` | Investigation outcomes summary |
-| `001-template-consolidation-investigation/research/research.md` | 29.7 KB synthesized findings (17 sections) |
-| `001-template-consolidation-investigation/research/resource-map.md` | Source-file inventory |
-| `001-template-consolidation-investigation/research/iterations/` (10 files) | Iterative research output |
-| `001-template-consolidation-investigation/research/prompts/` (10 files) | Iteration prompts |
-| `001-template-consolidation-investigation/research/deltas/` (10 files) | Delta records |
-| `001-template-consolidation-investigation/review/` (5 iterations + report) | Deep review of research |
+| `001-consolidation-investigation/spec.md` | Investigation spec with 10 requirements, 5 user stories |
+| `001-consolidation-investigation/plan.md` | 4-phase gated plan (byte-equivalence, resolver, consumer migration, optional deletion) |
+| `001-consolidation-investigation/tasks.md` | 16 tasks across 3 phases |
+| `001-consolidation-investigation/decision-record.md` | ADR-001: PARTIAL recommendation |
+| `001-consolidation-investigation/checklist.md` | Verification checklist |
+| `001-consolidation-investigation/implementation-summary.md` | Investigation outcomes summary |
+| `001-consolidation-investigation/research/research.md` | 29.7 KB synthesized findings (17 sections) |
+| `001-consolidation-investigation/research/resource-map.md` | Source-file inventory |
+| `001-consolidation-investigation/research/iterations/` (10 files) | Iterative research output |
+| `001-consolidation-investigation/research/prompts/` (10 files) | Iteration prompts |
+| `001-consolidation-investigation/research/deltas/` (10 files) | Delta records |
+| `001-consolidation-investigation/review/` (5 iterations + report) | Deep review of research |
 
 Three commits touched this phase: `e933c152a7`, `79e97aec92`, `bdb739d973`.
 

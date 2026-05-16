@@ -71,7 +71,7 @@ This parent spec lists no files directly. Per-phase blast radius:
 
 | Phase | Folder | Authoritative file ledger |
 |-------|--------|---------------------------|
-| 001 | `001-template-consolidation-investigation/` | `001/research/research.md` (29.7 KB, PARTIAL recommendation, REJECTED) |
+| 001 | `001-consolidation-investigation/` | `001/research/research.md` (29.7 KB, PARTIAL recommendation, REJECTED) |
 | 002 | `002-template-greenfield-redesign/` | `002/research/research.md` (51.4 KB, C+F hybrid recommendation, ACCEPTED) |
 | 003 | `003-template-greenfield-impl/` | `003/resource-map.md` (~95 file references, the authoritative implementation ledger) |
 <!-- /ANCHOR:scope -->
@@ -85,7 +85,7 @@ This parent spec lists no files directly. Per-phase blast radius:
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 001 | `001-template-consolidation-investigation` | Initial 10-iter deep-research loop on consolidating templates with backward-compat preservation | Complete (PARTIAL recommendation, REJECTED by user) |
+| 001 | `001-consolidation-investigation` | Initial 10-iter deep-research loop on consolidating templates with backward-compat preservation | Complete (PARTIAL recommendation, REJECTED by user) |
 | 002 | `002-template-greenfield-redesign` | 14-iter deep-research loop on greenfield redesign + workflow-invariance constraint + 5 ADRs | Complete (C+F hybrid manifest-driven greenfield, ACCEPTED) |
 | 003 | `003-template-greenfield-impl` | 4-phase implementation plan with file-by-file blast radius (`resource-map.md`) and gated phases | Plan ready; awaiting implementation session |
 
@@ -120,7 +120,7 @@ This parent spec lists no files directly. Per-phase blast radius:
 
 ## RELATED DOCUMENTS
 
-- **Phase children**: `001-template-consolidation-investigation/`, `002-template-greenfield-redesign/`, `003-template-greenfield-impl/`
+- **Phase children**: `001-consolidation-investigation/`, `002-template-greenfield-redesign/`, `003-template-greenfield-impl/`
 - **Parent Spec**: `../spec.md` (026-graph-and-context-optimization)
 - **Graph Metadata**: `graph-metadata.json` (this folder; `derived.last_active_child_id` pointer)
 - **Headline design**: `002-template-greenfield-redesign/research/research.md` (51.4 KB synthesis)

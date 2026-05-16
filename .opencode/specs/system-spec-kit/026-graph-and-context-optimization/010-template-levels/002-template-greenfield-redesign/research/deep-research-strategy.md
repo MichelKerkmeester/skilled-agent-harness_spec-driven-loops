@@ -114,8 +114,8 @@ Start the follow-on implementation packet. Phase 1 should add the manifest loade
 
 ### Inputs to this loop
 
-- **Sibling packet 010 synthesis**: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/001-template-consolidation-investigation/research/research.md` — full prior analysis with PARTIAL recommendation (REJECTED for framing reasons; many factual findings still useful)
-- **Independent gpt-5.5 analysis (cli-copilot)**: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/001-template-consolidation-investigation/research/cross-validation/copilot-response.md` — proposed 7 candidate designs, called out 3 critical risks, identified the addon-ownership-lifecycle question
+- **Sibling packet 010 synthesis**: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/001-consolidation-investigation/research/research.md` — full prior analysis with PARTIAL recommendation (REJECTED for framing reasons; many factual findings still useful)
+- **Independent gpt-5.5 analysis (cli-copilot)**: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/001-consolidation-investigation/research/cross-validation/copilot-response.md` — proposed 7 candidate designs, called out 3 critical risks, identified the addon-ownership-lifecycle question
 - **Sequential-thinking analysis (claude-opus-4-7)**: documented in conversation; converged on Trait-gated section composition with kind presets, then revised after copilot input to favor minimal-scaffold + lazy command-owned addons
 
 ### Carry-over facts from 010

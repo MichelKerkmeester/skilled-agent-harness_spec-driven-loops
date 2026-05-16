@@ -18,7 +18,7 @@ Eight phases shipped between 2026-05-01 and 2026-05-02 that together replaced th
 
 | Phase | Date | Title | One-line story |
 |-------|------|-------|----------------|
-| 010/001 | 2026-05-01 | [Template consolidation investigation](./changelog-001-template-consolidation-investigation.md) | A 10-iteration deep-research loop analyzed the 86-file template system and recommended PARTIAL consolidation. The user rejected this framing. |
+| 010/001 | 2026-05-01 | [Template consolidation investigation](./changelog-001-consolidation-investigation.md) | A 10-iteration deep-research loop analyzed the 86-file template system and recommended PARTIAL consolidation. The user rejected this framing. |
 | 010/002 | 2026-05-01 | [Template greenfield redesign](./changelog-002-template-greenfield-redesign.md) | A 9-iteration loop converged on the C+F hybrid manifest-driven design with 5 ADRs, eliminating the level taxonomy. |
 | 010/003 | 2026-05-01 | [Template greenfield implementation](./changelog-003-template-greenfield-impl.md) | Executed the 4-phase plan: added manifest/resolver/renderer/CI-test, modified scaffolder, modified validators, deleted 51 legacy files. Source surface: 86 to 13. |
 | 010/004 | 2026-05-01 | [Deferred followups](./changelog-004-deferred-followups.md) | Implemented 10 Gate 7 items: validation orchestrator, manifest template versions, exit-code taxonomy, save lock, batch renderer, and 5 ADRs. |

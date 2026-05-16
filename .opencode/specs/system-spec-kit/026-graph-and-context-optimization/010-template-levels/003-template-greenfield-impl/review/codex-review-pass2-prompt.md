@@ -39,7 +39,7 @@ For context, also skim:
 
 ### P1 — Should-be-right
 
-6. **Cross-reference paths post-reorg.** Internal references like `../001-template-consolidation-investigation/` in 003's docs — do they all resolve to existing files?
+6. **Cross-reference paths post-reorg.** Internal references like `../001-consolidation-investigation/` in 003's docs — do they all resolve to existing files?
 7. **Task-ID gap.** T-420 was marked "superseded by T-430". Is the renumbering clean or confusing?
 8. **Audit-D `capability-flags.ts` source-path question.** Audit-D flagged that some banned-vocabulary occurrences are in source-path names (`capability-flags.ts`). Does the plan address this — either rename the source file or add a CI exemption?
 9. **§2.5 audit-trail provenance.** All 4 audit responses should be linked from §2.5. Verify links exist.

@@ -1,7 +1,7 @@
-# Deep Review Report: 001-template-consolidation-investigation
+# Deep Review Report: 001-consolidation-investigation
 
 **Date**: 2026-05-04
-**Spec Folder**: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/001-template-consolidation-investigation`
+**Spec Folder**: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/001-consolidation-investigation`
 **Review Mode**: auto (5 iterations, all dimensions covered)
 **Stop Reason**: max_iterations_reached (5 of 5)
 **Lineage**: new (generation 1)

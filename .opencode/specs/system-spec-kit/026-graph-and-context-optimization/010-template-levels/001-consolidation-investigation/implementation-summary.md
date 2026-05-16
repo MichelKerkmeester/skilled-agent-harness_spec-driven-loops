@@ -37,7 +37,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 001-template-consolidation-investigation |
+| **Spec Folder** | 001-consolidation-investigation |
 | **Completed** | 2026-05-01 (deep-research loop converged) |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->

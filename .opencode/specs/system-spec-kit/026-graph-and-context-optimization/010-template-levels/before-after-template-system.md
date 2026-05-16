@@ -244,7 +244,7 @@ Total session: ~6.5 hours of autonomous codex execution, supervised by a single 
 
 ## 9. Related Documents
 
-- `001-template-consolidation-investigation/` — the original 10-iteration deep research (PARTIAL recommendation, rejected by user)
+- `001-consolidation-investigation/` — the original 10-iteration deep research (PARTIAL recommendation, rejected by user)
 - `002-template-greenfield-redesign/` — the 14-iteration redesign loop that produced the C+F hybrid + 5 ADRs
 - `003-template-greenfield-impl/` — the 6-phase implementation packet with checklist Gates 1-7
 - `004-deferred-followups/` — orchestrator + exit codes + version field + 5 more ADRs

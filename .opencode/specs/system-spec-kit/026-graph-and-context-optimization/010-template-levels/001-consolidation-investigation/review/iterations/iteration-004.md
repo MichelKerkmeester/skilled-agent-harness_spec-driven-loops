@@ -27,7 +27,7 @@
 $ validate.sh --strict --verbose /target/spec-folder
 
 Spec Folder Validation v3.0.0
-  Folder: .../001-template-consolidation-investigation
+  Folder: .../001-consolidation-investigation
   Level: 3
 
 + FILE_EXISTS: All required files present for Level 3

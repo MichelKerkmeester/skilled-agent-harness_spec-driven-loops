@@ -20,7 +20,7 @@ Focus Area: **Close synthesis gaps + write the canonical research.md draft.** Th
 
 2. **Close gap B — per-level vs Phase-4 deletion-budget distinction**: in iter 8 finding f-iter008-004, the deletion budget was approximate ("about 60 .md files, ~7K LOC"). Run actual `find .opencode/skills/system-spec-kit/templates/level_1 .opencode/skills/system-spec-kit/templates/level_2 .opencode/skills/system-spec-kit/templates/level_3 .opencode/skills/system-spec-kit/templates/level_3+ -type f -name '*.md' | wc -l` and `wc -l` on those files to get the EXACT deletion budget. Replace approximate numbers with measured ones.
 
-3. **Write the canonical research.md draft** at `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/001-template-consolidation-investigation/research/research.md`. Use the 17-section outline from iter 8. Populate every section with iter-001 through iter-008 findings. This is the headline deliverable; iter 10 will polish.
+3. **Write the canonical research.md draft** at `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/001-consolidation-investigation/research/research.md`. Use the 17-section outline from iter 8. Populate every section with iter-001 through iter-008 findings. This is the headline deliverable; iter 10 will polish.
 
 This iteration may produce a high-volume narrative; that is expected.
 
@@ -33,21 +33,21 @@ Last 3 Iterations Summary:
 
 ## STATE FILES
 
-- Config: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/001-template-consolidation-investigation/research/deep-research-config.json
-- State Log: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/001-template-consolidation-investigation/research/deep-research-state.jsonl
-- Strategy: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/001-template-consolidation-investigation/research/deep-research-strategy.md
-- Registry: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/001-template-consolidation-investigation/research/findings-registry.json
-- Prior iterations: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/001-template-consolidation-investigation/research/iterations/iteration-001.md through iteration-008.md
-- Write iteration narrative to: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/001-template-consolidation-investigation/research/iterations/iteration-009.md
-- Write per-iteration delta file to: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/001-template-consolidation-investigation/research/deltas/iter-009.jsonl
-- **Write canonical synthesis to: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/001-template-consolidation-investigation/research/research.md** (this is THE headline deliverable)
+- Config: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/001-consolidation-investigation/research/deep-research-config.json
+- State Log: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/001-consolidation-investigation/research/deep-research-state.jsonl
+- Strategy: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/001-consolidation-investigation/research/deep-research-strategy.md
+- Registry: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/001-consolidation-investigation/research/findings-registry.json
+- Prior iterations: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/001-consolidation-investigation/research/iterations/iteration-001.md through iteration-008.md
+- Write iteration narrative to: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/001-consolidation-investigation/research/iterations/iteration-009.md
+- Write per-iteration delta file to: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/001-consolidation-investigation/research/deltas/iter-009.jsonl
+- **Write canonical synthesis to: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/001-consolidation-investigation/research/research.md** (this is THE headline deliverable)
 
 ## CONSTRAINTS
 
 - LEAF agent. No sub-agents. Max 12 tool calls.
 - Read iteration-008.md FIRST for the 17-section outline + ranked risk register + LOC deltas.
 - DO NOT use `.../` ellipsis paths. Always full repo-relative paths.
-- Stay within `010-template-levels/001-template-consolidation-investigation/research/` for writes; templates folder reads only.
+- Stay within `010-template-levels/001-consolidation-investigation/research/` for writes; templates folder reads only.
 
 ## OUTPUT CONTRACT
 

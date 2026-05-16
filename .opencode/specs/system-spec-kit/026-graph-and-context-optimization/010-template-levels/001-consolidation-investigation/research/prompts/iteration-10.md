@@ -16,9 +16,9 @@ Iteration: 10 of 10 — **FINAL POLISH PASS**
 
 Focus Area: **Final consistency pass on research.md + emit resource-map.md + write closing iteration narrative.** Three sub-tasks:
 
-1. **Polish research.md**: re-read `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/001-template-consolidation-investigation/research/research.md` end-to-end. Fix any: (a) stale numbers (cross-check file/LOC deltas, marker count 868, perf numbers 433ms/<500ms NFR-P01), (b) inconsistent recommendation language (must consistently say PARTIAL throughout, never drift to CONSOLIDATE/STATUS QUO mid-document), (c) broken/missing internal references (Q1-Q10, Phase 1-4, risk IDs), (d) tighten the TL;DR to 5 bullets max, (e) ensure the 4-Phase plan has explicit go/no-go gates between phases, (f) ensure each risk row has a concrete mitigation (not just "mitigate this").
+1. **Polish research.md**: re-read `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/001-consolidation-investigation/research/research.md` end-to-end. Fix any: (a) stale numbers (cross-check file/LOC deltas, marker count 868, perf numbers 433ms/<500ms NFR-P01), (b) inconsistent recommendation language (must consistently say PARTIAL throughout, never drift to CONSOLIDATE/STATUS QUO mid-document), (c) broken/missing internal references (Q1-Q10, Phase 1-4, risk IDs), (d) tighten the TL;DR to 5 bullets max, (e) ensure the 4-Phase plan has explicit go/no-go gates between phases, (f) ensure each risk row has a concrete mitigation (not just "mitigate this").
 
-2. **Emit resource-map.md** at `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/001-template-consolidation-investigation/research/resource-map.md`. Catalog every file path referenced in research.md (templates/, scripts/, mcp_server/, command/, agent/, skill/, specs/, tests/). Group by section: READMEs, Documents, Commands, Agents, Skills, Specs, Scripts, Tests, Config, Meta. One-line theme summary per section.
+2. **Emit resource-map.md** at `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/001-consolidation-investigation/research/resource-map.md`. Catalog every file path referenced in research.md (templates/, scripts/, mcp_server/, command/, agent/, skill/, specs/, tests/). Group by section: READMEs, Documents, Commands, Agents, Skills, Specs, Scripts, Tests, Config, Meta. One-line theme summary per section.
 
 3. **Write closing iteration-010.md narrative**: state the loop is converging or has converged; declare the final recommendation (PARTIAL); list the 3 follow-on packets implied by the 4-Phase plan; close with a "ready for /spec_kit:plan" pointer.
 
@@ -33,15 +33,15 @@ Last 3 Iterations Summary:
 
 ## STATE FILES
 
-- Config: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/001-template-consolidation-investigation/research/deep-research-config.json
-- State Log: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/001-template-consolidation-investigation/research/deep-research-state.jsonl
-- Strategy: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/001-template-consolidation-investigation/research/deep-research-strategy.md
-- Registry: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/001-template-consolidation-investigation/research/findings-registry.json
-- Prior iterations: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/001-template-consolidation-investigation/research/iterations/iteration-001.md through iteration-009.md
-- Canonical synthesis: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/001-template-consolidation-investigation/research/research.md (DRAFT — POLISH THIS)
-- Write iteration narrative to: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/001-template-consolidation-investigation/research/iterations/iteration-010.md
-- Write per-iteration delta file to: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/001-template-consolidation-investigation/research/deltas/iter-010.jsonl
-- **Write resource map to: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/001-template-consolidation-investigation/research/resource-map.md** (NEW THIS ITER)
+- Config: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/001-consolidation-investigation/research/deep-research-config.json
+- State Log: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/001-consolidation-investigation/research/deep-research-state.jsonl
+- Strategy: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/001-consolidation-investigation/research/deep-research-strategy.md
+- Registry: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/001-consolidation-investigation/research/findings-registry.json
+- Prior iterations: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/001-consolidation-investigation/research/iterations/iteration-001.md through iteration-009.md
+- Canonical synthesis: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/001-consolidation-investigation/research/research.md (DRAFT — POLISH THIS)
+- Write iteration narrative to: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/001-consolidation-investigation/research/iterations/iteration-010.md
+- Write per-iteration delta file to: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/001-consolidation-investigation/research/deltas/iter-010.jsonl
+- **Write resource map to: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/001-consolidation-investigation/research/resource-map.md** (NEW THIS ITER)
 
 ## CONSTRAINTS
 

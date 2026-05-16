@@ -401,8 +401,8 @@ Full per-finding detail with replacement guidance lives in:
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/002-template-greenfield-redesign/research/research.md` | The 51.4 KB synthesis driving this implementation |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/002-template-greenfield-redesign/decision-record.md` | ADR-001 through ADR-005 |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/002-template-greenfield-redesign/plan.md` | The 4-phase plan structure inherited by this packet |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/001-template-consolidation-investigation/research/research.md` | Prior PARTIAL-recommendation framing (REJECTED but cited for factual carryover) |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/001-template-consolidation-investigation/research/cross-validation/copilot-response.md` | Independent gpt-5.5 analysis that materially refined the design |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/001-consolidation-investigation/research/research.md` | Prior PARTIAL-recommendation framing (REJECTED but cited for factual carryover) |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/001-consolidation-investigation/research/cross-validation/copilot-response.md` | Independent gpt-5.5 analysis that materially refined the design |
 
 ---
 
