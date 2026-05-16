@@ -3,7 +3,7 @@ title: "Feature Specification: Stress Test Pattern Documentation"
 template_source: "SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2"
 description: "Document the stress test cycle pattern that emerged from 011's v1.0.1/v1.0.2/v1.0.3 cycles. Author feature catalog entry + manual testing playbook entry + JSON schema template so future cycles don't re-discover the format."
 trigger_phrases:
-  - "009-stress-test-pattern-documentation"
+  - "002-stress-test-pattern-documentation"
   - "stress test feature catalog"
   - "stress test manual playbook"
   - "stress test rubric template"
@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "documentation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/009-stress-test-pattern-documentation"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-stress-test-pattern-documentation"
     last_updated_at: "2026-04-29T07:00:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Authored sub-phase scaffolding for stress-test pattern documentation (A+B+C)"

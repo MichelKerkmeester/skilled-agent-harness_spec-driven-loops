@@ -2,12 +2,12 @@
 title: "Resource Map: 009 Stress Test Pattern Documentation"
 description: "Path ledger for the stress-test pattern docs A+B+C: feature catalog, manual playbook, JSON schema templates, plus packet docs and 011-cross-track see-also additions."
 trigger_phrases:
-  - "009-stress-test-pattern-documentation resource map"
+  - "002-stress-test-pattern-documentation resource map"
 importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/009-stress-test-pattern-documentation"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-stress-test-pattern-documentation"
     last_updated_at: "2026-04-29T10:15:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Authored lean resource-map for today batch"
@@ -26,7 +26,7 @@ _memory:
 - **Total references**: 19
 - **By category**: READMEs=2, Documents=8, Specs=6, Scripts=0, Meta=3
 - **Missing on disk**: 0
-- **Scope**: All files created or updated during packet `026/000/005/009-stress-test-pattern-documentation` (commit `b1489f1b2`).
+- **Scope**: All files created or updated during packet `026/000/005/002-stress-test-pattern-documentation` (commit `b1489f1b2`).
 - **Generated**: 2026-04-29T10:10:00+02:00
 
 ---

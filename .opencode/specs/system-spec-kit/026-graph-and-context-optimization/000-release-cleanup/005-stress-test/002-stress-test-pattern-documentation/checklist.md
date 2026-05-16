@@ -3,13 +3,13 @@ title: "Verification Checklist: Stress Test Pattern Documentation"
 description: "DQI-focused verification checklist for the stress test cycle pattern documentation packet."
 trigger_phrases:
   - "stress test pattern documentation checklist"
-  - "009-stress-test-pattern-documentation checklist"
+  - "002-stress-test-pattern-documentation checklist"
 importance_tier: "important"
 contextType: "documentation"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/009-stress-test-pattern-documentation"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-stress-test-pattern-documentation"
     last_updated_at: "2026-04-29T07:55:00Z"
     last_updated_by: "codex-gpt-5.5"
     recent_action: "Authored Level 2 DQI checklist for stress test pattern documentation"
@@ -63,7 +63,7 @@ _memory:
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [x] CHK-020 [P0] Strict validator passes: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/009-stress-test-pattern-documentation --strict`. [Evidence: exit 0, 0 errors, 0 warnings.]
+- [x] CHK-020 [P0] Strict validator passes: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-stress-test-pattern-documentation --strict`. [Evidence: exit 0, 0 errors, 0 warnings.]
 - [x] CHK-021 [P0] Seven A/B/C files exist. [Evidence: shell existence loop returned `seven files exist`.]
 - [x] CHK-022 [P1] One markdown file spot-checked after authoring. [Evidence: opened the feature catalog entry after creation.]
 - [x] CHK-023 [P1] Modified historical packets validate or any validation warnings are documented. [Evidence: 001 parent passed with `--no-recursive`; 010 and 021 passed strict; 001 recursive strict has pre-existing child template-header warnings.]

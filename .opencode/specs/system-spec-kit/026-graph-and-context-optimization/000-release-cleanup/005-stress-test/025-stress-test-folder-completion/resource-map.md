@@ -110,7 +110,7 @@ _memory:
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-w3-w7-runtime-wiring-and-audit/implementation-summary.md` | Updated | OK | Packet-local spec artifact. |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-w3-w7-runtime-wiring-and-audit/spec.md` | Updated | OK | Packet-local spec artifact. |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-w3-w7-runtime-wiring-and-audit/tasks.md` | Updated | OK | Packet-local spec artifact. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/009-stress-test-pattern-documentation/spec.md` | Updated | OK | Packet-local spec artifact. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-stress-test-pattern-documentation/spec.md` | Updated | OK | Packet-local spec artifact. |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/005-vestigial-embedding-readiness-gate-removal/implementation-summary.md` | Updated | OK | Packet-local spec artifact. |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/005-vestigial-embedding-readiness-gate-removal/plan.md` | Updated | OK | Packet-local spec artifact. |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/005-vestigial-embedding-readiness-gate-removal/spec.md` | Updated | OK | Packet-local spec artifact. |

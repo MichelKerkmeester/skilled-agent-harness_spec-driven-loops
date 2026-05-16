@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/009-stress-test-pattern-documentation",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/009-stress-test-pattern-documentation",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-stress-test-pattern-documentation",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-stress-test-pattern-documentation",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation",
   "children_ids": [],
   "migrated": false,
@@ -16,7 +16,7 @@
     "related_to": []
   },
   "derived": {
-    "trigger_phrases": ["009-stress-test-pattern-documentation", "stress test feature catalog", "stress test manual playbook", "stress test rubric template"],
+    "trigger_phrases": ["002-stress-test-pattern-documentation", "stress test feature catalog", "stress test manual playbook", "stress test rubric template"],
     "key_topics": ["stress-test", "documentation", "feature-catalog", "manual-testing-playbook", "templates"],
     "importance_tier": "important",
     "status": "planned",
