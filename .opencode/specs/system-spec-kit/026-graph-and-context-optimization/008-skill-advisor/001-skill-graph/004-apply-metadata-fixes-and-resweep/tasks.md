@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "tasks"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/019-apply-metadata-fixes-and-resweep"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-apply-metadata-fixes-and-resweep"
     last_updated_at: "2026-05-14T01:00:00Z"
     last_updated_by: "claude"
     recent_action: "Scaffolded packet"

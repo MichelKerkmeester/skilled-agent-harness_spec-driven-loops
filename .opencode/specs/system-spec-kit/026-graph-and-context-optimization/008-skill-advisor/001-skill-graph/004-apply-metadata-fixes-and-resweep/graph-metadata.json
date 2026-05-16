@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/019-apply-metadata-fixes-and-resweep",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/019-apply-metadata-fixes-and-resweep",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-apply-metadata-fixes-and-resweep",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-apply-metadata-fixes-and-resweep",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor",
   "children_ids": [],
   "migrated": false,
