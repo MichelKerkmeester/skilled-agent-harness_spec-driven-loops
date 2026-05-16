@@ -61,7 +61,7 @@ This document proposes the target-state architecture for the 026-graph-and-conte
 | Metric | Current | Proposed | Reduction |
 |--------|--------:|---------:|----------:|
 | Top-level 026 children | 16 | 11 phases (10 active + 1 meta) | -31% |
-| 014-local-llama-cpp nested | 63 | 10 phases | -84% |
+| 014-local-embeddings-migration nested | 63 | 10 phases | -84% |
 | 007-code-graph nested | 40 | 7 phases (4 active + 3 archive) | -83% |
 | 009-hook-parity nested | 8 | 3 phases | -63% |
 | 013-doctor-update-orchestrator nested | 5 | 4 phases | -20% |
@@ -96,7 +96,7 @@ Source: iter 001-006 (SWE-1.6 classifications) + iter 041 (gpt-5.5 adversarial r
 | 011-cocoindex-daemon-resilience | leaf packet | complete | — | load-bearing | iter 004:99-101 |
 | 012-causal-graph-channel-routing | phase parent | complete | 2 | load-bearing | iter 005:20-29 |
 | 013-doctor-update-orchestrator | phase parent | mixed | 5 | load-bearing | iter 005:48-52 |
-| 014-local-llama-cpp | phase parent | active | **63** (not 60 per iter 042) | load-bearing (severe naming mismatch) | iter 006:23, iter 031, iter 042 |
+| 014-local-embeddings-migration | phase parent | active | **63** (not 60 per iter 042) | load-bearing (severe naming mismatch) | iter 006:23, iter 031, iter 042 |
 | 015-global-security-sweep-and-supply-chain-audit | phase parent | in_progress | — | load-bearing (verbose name) | iter 006:95-99 |
 
 ### 2.2 Nested packets summary
@@ -105,7 +105,7 @@ Source: iter 007-022 (per-phase-parent deep-reads).
 
 | Parent | Nested count | Classification breakdown |
 |--------|-------------:|--------------------------|
-| 014-local-llama-cpp | 63 | 20 load-bearing + 20 delete + 23 to-classify; 2 empty placeholder dirs (045, 048) |
+| 014-local-embeddings-migration | 63 | 20 load-bearing + 20 delete + 23 to-classify; 2 empty placeholder dirs (045, 048) |
 | 008-skill-advisor | ~26 | Mixed; track-9 deferred internal phase analysis to follow-on |
 | 007-code-graph | 40 | 16 load-bearing + 6 merge + 18 delete (with 28 reclassified to archive by iter 048) |
 | 009-hook-parity | 8 | All 8 load-bearing; 1 merge pair (006+007 → 006) |
@@ -153,7 +153,7 @@ Source: iter 035 (initial 13-phase proposal) + iter 038 (revised to 11 after rem
 | 009 | `cocoindex-daemon-resilience` | CocoIndex daemon defense-in-depth: socket-unlink, BrokenPipeError, lifecycle robustness | Current 011-cocoindex-daemon-resilience (unchanged) | Standalone leaf packet, no restructure churn (iter 001) | leaf packet |
 | 010 | `causal-graph-channel-routing` | Graph-channel routing override + post-deep-review remediation | Current 012-causal-graph-channel-routing (unchanged) | All 2 nested children load-bearing; no restructure churn (iter 005) | phase parent |
 | 011 | `doctor-and-repair-orchestration` | Doctor command consolidation: router + sandbox testing + RM-8 remediation + cutover | Current 013-doctor-update-orchestrator (5 children → 4 phases per iter 045 PROCEED merge of 001+002) | Iter 045 PROCEED merge: 013/001+002 → 013/001 (both superseded by 004+005); iter 014 conservative consolidation (iter 014:49-77) | phase parent |
-| 012 | `local-embeddings-migration` (rename from `local-llama-cpp`) | Local embeddings migration: Voyage → OpenAI → llama-cpp → hf-local provider migration arc | Current 014-local-llama-cpp reduced from 63 → 10 internal phases (iter 045 + iter 048 cleanup) | Severe naming mismatch resolved (iter 031:25-30, iter 033 rank-1 HIGH impact, iter 046 refined: setup-a → migration); iter 045 PROCEED merges 014/052+053 + 014/056+057 + cross-parent docs merge | phase parent |
+| 012 | `local-embeddings-migration` (rename from `local-llama-cpp`) | Local embeddings migration: Voyage → OpenAI → llama-cpp → hf-local provider migration arc | Current 014-local-embeddings-migration reduced from 63 → 10 internal phases (iter 045 + iter 048 cleanup) | Severe naming mismatch resolved (iter 031:25-30, iter 033 rank-1 HIGH impact, iter 046 refined: setup-a → migration); iter 045 PROCEED merges 014/052+053 + 014/056+057 + cross-parent docs merge | phase parent |
 
 **Phase removed from initial proposal:**
 
@@ -169,7 +169,7 @@ Source: iter 033 (top-N rename proposals) + iter 046 (scale-pressure-test refine
 
 | Current name | Proposed name | Recall impact | Iter |
 |--------------|---------------|--------------:|------|
-| `014-local-llama-cpp` | `014-local-embeddings-migration` | HIGH | iter 033 rank-1, iter 046 refined |
+| `014-local-embeddings-migration` | `014-local-embeddings-migration` | HIGH | iter 033 rank-1, iter 046 refined |
 | `015-global-security-sweep-and-supply-chain-audit` | `015-tanstack-security-audit` (or absorb into 000 as nested child) | MEDIUM-HIGH | iter 033 rank-2 |
 | `006-graph-impact-and-affordance-uplift` | `006-external-project-adoption` | MEDIUM | iter 033 rank-3 |
 | `002-resource-map-template` | `002-resource-map-deep-loop-fix` | MEDIUM | iter 033 rank-4 |
@@ -272,7 +272,7 @@ Renames are cheapest and most reversible. Execute first so subsequent merges wor
 
 | Op | Action | Risk |
 |----|--------|------|
-| W1.1 | `git mv 014-local-llama-cpp 014-local-embeddings-migration` + update graph-metadata.json `manual.depends_on` references | Low |
+| W1.1 | `git mv 014-local-embeddings-migration 014-local-embeddings-migration` + update graph-metadata.json `manual.depends_on` references | Low |
 | W1.2 | `git mv 015-global-security-sweep-and-supply-chain-audit 015-tanstack-security-audit` (or skip if absorbing into 000 in W2) | Low |
 | W1.3 | `git mv 006-graph-impact-and-affordance-uplift 006-external-project-adoption` | Low |
 | W1.4 | `git mv 002-resource-map-template 002-resource-map-deep-loop-fix` | Low |

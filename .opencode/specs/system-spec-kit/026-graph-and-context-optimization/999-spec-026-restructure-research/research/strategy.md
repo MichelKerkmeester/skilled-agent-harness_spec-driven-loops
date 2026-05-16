@@ -44,7 +44,7 @@ Produce a verified restructure proposal that consolidates the 22 children curren
 011-cocoindex-daemon-resilience
 012-causal-graph-channel-routing
 013-doctor-update-orchestrator              (phase parent)
-014-local-llama-cpp                         (phase parent — hosts 056-059 arc)
+014-local-embeddings-migration                         (phase parent — hosts 056-059 arc)
 015-global-security-sweep-and-supply-chain-audit
 ```
 
@@ -67,7 +67,7 @@ Across 2026-04 / 2026-05, ~60+ packets shipped against 026. Many were narrow fol
 | Track | Iter range | Focus |
 |------:|-----------:|-------|
 | 1 | 001-006 | Direct-child packet inventory (6 iter spread across 22 children) |
-| 2 | 007-010 | Phase-parent 014-local-llama-cpp deep-read (4 iter — most active arc) |
+| 2 | 007-010 | Phase-parent 014-local-embeddings-migration deep-read (4 iter — most active arc) |
 | 3 | 011-014 | Phase-parent 013-doctor-update-orchestrator deep-read (4 iter) |
 | 4 | 015-018 | Phase-parent 007-code-graph deep-read (4 iter) |
 | 5 | 019-022 | Phase-parent 009-hook-parity deep-read (4 iter) |

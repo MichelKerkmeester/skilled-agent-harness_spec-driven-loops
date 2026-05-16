@@ -12,8 +12,8 @@
     "related_to": [
       "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/038-coco-index-feature-catalog",
       "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/039-stress-test-expansion-and-alignment",
-      "system-spec-kit/026-graph-and-context-optimization/014-local-llama-cpp/038-embedding-error-propagation",
-      "system-spec-kit/026-graph-and-context-optimization/014-local-llama-cpp/039-token-aware-chunking"
+      "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/038-embedding-error-propagation",
+      "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/039-token-aware-chunking"
     ]
   },
   "derived": {

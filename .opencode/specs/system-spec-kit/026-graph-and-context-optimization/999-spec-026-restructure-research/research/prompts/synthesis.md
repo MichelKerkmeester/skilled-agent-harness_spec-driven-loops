@@ -54,7 +54,7 @@ You are a SWE-1.6 synthesis worker. Read every research/iterations/iteration-NNN
 - Cross-iter patterns
 ### Open gaps from this track
 
-## Track 2: 014-local-llama-cpp deep-read (iter 007-010)
+## Track 2: 014-local-embeddings-migration deep-read (iter 007-010)
 ### Findings
 - Catalog + classification + overlap + proposed 014 phase-list
 - Each item cites source iter

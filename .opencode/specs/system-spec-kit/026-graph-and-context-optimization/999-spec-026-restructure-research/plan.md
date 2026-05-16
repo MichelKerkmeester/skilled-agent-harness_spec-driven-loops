@@ -118,7 +118,7 @@ PRE-BOUND SETUP ANSWERS:
 | Track | Iter share | Focus |
 |------:|-----------:|-------|
 | 1 | 6 | Direct-child packet inventory: read every 026/NNN-name/ folder, classify status + size + last activity |
-| 2 | 4 | Phase-parent (014-local-llama-cpp) deep-read: read every nested child under 014 since that's where the 056-059 arc lives |
+| 2 | 4 | Phase-parent (014-local-embeddings-migration) deep-read: read every nested child under 014 since that's where the 056-059 arc lives |
 | 3 | 4 | Phase-parent (013-doctor-update-orchestrator) deep-read: doctor consolidation arc |
 | 4 | 4 | Phase-parent (007-code-graph) deep-read: code-graph extraction arc |
 | 5 | 4 | Phase-parent (009-hook-parity) deep-read: hook-parity arc |

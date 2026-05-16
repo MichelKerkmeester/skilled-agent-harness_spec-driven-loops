@@ -65,7 +65,7 @@ Per resource-map §3-§4. This packet documents execution; does not modify the p
 ## 4. IMPLEMENTATION PHASES
 
 ### Wave 1 — Renames (mechanical)
-- W1.1: 014-local-llama-cpp → 014-local-embeddings-migration
+- W1.1: 014-local-embeddings-migration → 014-local-embeddings-migration
 - W1.2: 015-global-security-sweep-and-supply-chain-audit → 015-tanstack-security-audit
 - W1.3: 006-graph-impact-and-affordance-uplift → 006-external-project-adoption
 - W1.4: 002-resource-map-template → 002-resource-map-deep-loop-fix

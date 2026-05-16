@@ -1,0 +1,228 @@
+# System Probes
+
+Captured: 2026-05-14T15:18:02Z
+Working directory: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+
+## Pre-check
+
+Command:
+ls .opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/ | grep '^041-'
+
+Exit: 1
+Output: none
+
+## Node
+
+Command:
+node --version
+
+Output:
+v25.6.1
+
+Command:
+node -p 'process.versions'
+
+Output:
+{
+  node: '25.6.1',
+  acorn: '8.15.0',
+  ada: '3.4.2',
+  amaro: '1.1.7',
+  ares: '1.34.6',
+  brotli: '1.2.0',
+  cldr: '48.0',
+  icu: '78.2',
+  lief: '0.17.0',
+  llhttp: '9.3.1',
+  merve: '1.0.0',
+  modules: '141',
+  napi: '10',
+  nbytes: '0.1.1',
+  ncrypto: '0.0.1',
+  nghttp2: '1.68.0',
+  nghttp3: '',
+  ngtcp2: '',
+  openssl: '3.6.1',
+  simdjson: '4.2.4',
+  simdutf: '7.3.3',
+  sqlite: '3.51.2',
+  tz: '2025c',
+  undici: '7.21.0',
+  unicode: '17.0',
+  uv: '1.52.0',
+  uvwasi: '0.0.23',
+  v8: '14.1.146.11-node.19',
+  zlib: '1.2.12',
+  zstd: '1.5.7'
+}
+
+## OS
+
+Command:
+uname -a
+
+Output:
+Darwin M633Zg24 25.4.0 Darwin Kernel Version 25.4.0: Thu Mar 19 19:33:50 PDT 2026; root:xnu-12377.101.15~1/RELEASE_ARM64_T6050 arm64
+
+Command:
+sw_vers
+
+Output:
+ProductName:		macOS
+ProductVersion:		26.4
+BuildVersion:		25E246
+
+## Xcode
+
+Command:
+xcode-select -p
+
+Output:
+/Applications/Xcode.app/Contents/Developer
+
+Command:
+xcodebuild -version 2>&1 || true
+
+Output:
+Xcode 26.2
+Build version 17C52
+
+## Environment Variables
+
+Command:
+printenv NODE_LLAMA_CPP_GPU
+
+Exit: 1
+Output: unset
+
+Command:
+printenv LLAMA_CPP_EMBEDDINGS_GPU_LAYERS
+
+Exit: 1
+Output: unset
+
+Command:
+printenv LLAMA_CPP_EMBEDDINGS_MODEL_PATH
+
+Exit: 1
+Output: unset
+
+## node-llama-cpp Package
+
+Command:
+ls -la mcp_server/node_modules/node-llama-cpp/package.json
+
+Exit: 1
+Output:
+ls: mcp_server/node_modules/node-llama-cpp/package.json: No such file or directory
+
+Command:
+find . -path '*/node-llama-cpp/package.json' -print
+
+Output:
+./.opencode/skills/system-spec-kit/mcp_server/node_modules/node-llama-cpp/package.json
+
+Command:
+ls -la .opencode/skills/system-spec-kit/mcp_server/node_modules/node-llama-cpp/package.json
+
+Output:
+-rw-r--r--@ 1 michelkerkmeester  staff  7695 May 14 13:59 .opencode/skills/system-spec-kit/mcp_server/node_modules/node-llama-cpp/package.json
+
+Package fields read from package.json:
+- name: node-llama-cpp
+- version: 3.17.1
+- engines.node: >=20.0.0
+- optional dependency @node-llama-cpp/mac-arm64-metal: 3.17.1
+
+Command:
+ls -la .opencode/skills/system-spec-kit/mcp_server/node_modules/node-llama-cpp/llama/build/release/
+
+Exit: 1
+Output:
+ls: .opencode/skills/system-spec-kit/mcp_server/node_modules/node-llama-cpp/llama/build/release/: No such file or directory
+
+## Metal Binary Presence
+
+Command:
+find .opencode/skills/system-spec-kit/mcp_server/node_modules/node-llama-cpp/node_modules/@node-llama-cpp/mac-arm64-metal -maxdepth 4 -type f -print
+
+Output:
+.opencode/skills/system-spec-kit/mcp_server/node_modules/node-llama-cpp/node_modules/@node-llama-cpp/mac-arm64-metal/LICENSE
+.opencode/skills/system-spec-kit/mcp_server/node_modules/node-llama-cpp/node_modules/@node-llama-cpp/mac-arm64-metal/dist/index.js
+.opencode/skills/system-spec-kit/mcp_server/node_modules/node-llama-cpp/node_modules/@node-llama-cpp/mac-arm64-metal/bins/mac-arm64-metal/libggml-cpu.so
+.opencode/skills/system-spec-kit/mcp_server/node_modules/node-llama-cpp/node_modules/@node-llama-cpp/mac-arm64-metal/bins/mac-arm64-metal/libllama.metal.b8179.dylib
+.opencode/skills/system-spec-kit/mcp_server/node_modules/node-llama-cpp/node_modules/@node-llama-cpp/mac-arm64-metal/bins/mac-arm64-metal/libggml-base.dylib
+.opencode/skills/system-spec-kit/mcp_server/node_modules/node-llama-cpp/node_modules/@node-llama-cpp/mac-arm64-metal/bins/mac-arm64-metal/libggml-blas.so
+.opencode/skills/system-spec-kit/mcp_server/node_modules/node-llama-cpp/node_modules/@node-llama-cpp/mac-arm64-metal/bins/mac-arm64-metal/llama-addon.node
+.opencode/skills/system-spec-kit/mcp_server/node_modules/node-llama-cpp/node_modules/@node-llama-cpp/mac-arm64-metal/bins/mac-arm64-metal/_nlcBuildMetadata.json
+.opencode/skills/system-spec-kit/mcp_server/node_modules/node-llama-cpp/node_modules/@node-llama-cpp/mac-arm64-metal/bins/mac-arm64-metal/libggml.metal.b8179.dylib
+.opencode/skills/system-spec-kit/mcp_server/node_modules/node-llama-cpp/node_modules/@node-llama-cpp/mac-arm64-metal/bins/mac-arm64-metal/libggml-metal.so
+.opencode/skills/system-spec-kit/mcp_server/node_modules/node-llama-cpp/node_modules/@node-llama-cpp/mac-arm64-metal/README.md
+.opencode/skills/system-spec-kit/mcp_server/node_modules/node-llama-cpp/node_modules/@node-llama-cpp/mac-arm64-metal/package.json
+
+Command:
+ls -la .opencode/skills/system-spec-kit/mcp_server/node_modules/node-llama-cpp/node_modules/@node-llama-cpp/mac-arm64-metal/bins/mac-arm64-metal
+
+Output:
+total 10200
+drwxr-xr-x@ 10 michelkerkmeester  staff      320 Mar  5 08:00 .
+drwxr-xr-x@  3 michelkerkmeester  staff       96 Mar  5 08:00 ..
+-rw-r--r--@  1 michelkerkmeester  staff      218 Mar  5 08:00 _nlcBuildMetadata.json
+-rw-r--r--@  1 michelkerkmeester  staff   652624 Mar  5 08:00 libggml-base.dylib
+-rw-r--r--@  1 michelkerkmeester  staff    58704 Mar  5 08:00 libggml-blas.so
+-rw-r--r--@  1 michelkerkmeester  staff   899968 Mar  5 08:00 libggml-cpu.so
+-rw-r--r--@  1 michelkerkmeester  staff   783248 Mar  5 08:00 libggml-metal.so
+-rw-r--r--@  1 michelkerkmeester  staff    76840 Mar  5 08:00 libggml.metal.b8179.dylib
+-rw-r--r--@  1 michelkerkmeester  staff  2163080 Mar  5 08:00 libllama.metal.b8179.dylib
+-rw-r--r--@  1 michelkerkmeester  staff   567056 Mar  5 08:00 llama-addon.node
+
+Command:
+sed -n '1,120p' .opencode/skills/system-spec-kit/mcp_server/node_modules/node-llama-cpp/node_modules/@node-llama-cpp/mac-arm64-metal/bins/mac-arm64-metal/_nlcBuildMetadata.json
+
+Output:
+{"buildOptions":{"customCmakeOptions":{},"progressLogs":true,"platform":"mac","platformInfo":{"name":"macOS","version":"25.3.0"},"arch":"arm64","gpu":"metal","llamaCpp":{"repo":"ggml-org/llama.cpp","release":"b8179"}}}
+
+Command:
+sed -n '1,120p' .opencode/skills/system-spec-kit/mcp_server/node_modules/node-llama-cpp/llama/binariesGithubRelease.json
+
+Output:
+{
+    "release": "b8179"
+}
+
+Command:
+file .opencode/skills/system-spec-kit/mcp_server/node_modules/node-llama-cpp/node_modules/@node-llama-cpp/mac-arm64-metal/bins/mac-arm64-metal/llama-addon.node .opencode/skills/system-spec-kit/mcp_server/node_modules/node-llama-cpp/node_modules/@node-llama-cpp/mac-arm64-metal/bins/mac-arm64-metal/libggml-metal.so .opencode/skills/system-spec-kit/mcp_server/node_modules/node-llama-cpp/node_modules/@node-llama-cpp/mac-arm64-metal/bins/mac-arm64-metal/libllama.metal.b8179.dylib
+
+Output:
+.opencode/skills/system-spec-kit/mcp_server/node_modules/node-llama-cpp/node_modules/@node-llama-cpp/mac-arm64-metal/bins/mac-arm64-metal/llama-addon.node:           Mach-O 64-bit dynamically linked shared library arm64
+.opencode/skills/system-spec-kit/mcp_server/node_modules/node-llama-cpp/node_modules/@node-llama-cpp/mac-arm64-metal/bins/mac-arm64-metal/libggml-metal.so:           Mach-O 64-bit bundle arm64
+.opencode/skills/system-spec-kit/mcp_server/node_modules/node-llama-cpp/node_modules/@node-llama-cpp/mac-arm64-metal/bins/mac-arm64-metal/libllama.metal.b8179.dylib: Mach-O 64-bit dynamically linked shared library arm64
+
+## Provider Read
+
+File:
+.opencode/skills/system-spec-kit/shared/embeddings/providers/llama-cpp.ts
+
+Relevant findings:
+- `resolveGpuLayers()` returns `0` when `LLAMA_CPP_EMBEDDINGS_GPU_LAYERS` is unset.
+- `loadRuntime()` calls `const llama = await llamaModule.getLlama();` with no backend options.
+- `loadRuntime()` calls `llama.loadModel({ modelPath, embedding: true, gpuLayers: resolveGpuLayers() })`.
+
+node-llama-cpp API read:
+- `getLlama()` defaults GPU to auto.
+- `getLlama({ gpu: false })` disables GPU support.
+- In this install, `getLlama({ gpu: false, build: "never" })` has no CPU prebuilt binary.
+
+## GGUF Variant Metadata
+
+Command:
+stat -f '%N\t%z bytes\t%Sm' ~/.cache/huggingface/gguf/embeddinggemma-300m/*.gguf
+
+Output:
+/Users/michelkerkmeester/.cache/huggingface/gguf/embeddinggemma-300m/embeddinggemma-300M-BF16.gguf	612429792 bytes	May 13 11:50:39 2026
+/Users/michelkerkmeester/.cache/huggingface/gguf/embeddinggemma-300m/embeddinggemma-300M-F32.gguf	1217982432 bytes	May 13 11:51:35 2026
+/Users/michelkerkmeester/.cache/huggingface/gguf/embeddinggemma-300m/embeddinggemma-300M-Q8_0.gguf	328577056 bytes	May 13 11:44:15 2026
+
+## External Notes
+
+Recent macOS Darwin 25.4.0 release notes mentioning Metal or tensor API changes were not fetched because network access is disabled. This must be checked externally in a future packet.

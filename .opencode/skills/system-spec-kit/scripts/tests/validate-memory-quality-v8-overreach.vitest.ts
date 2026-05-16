@@ -8,8 +8,8 @@ import {
   validateMemoryQualityContent,
 } from '../lib/validate-memory-quality';
 
-const currentSpecFolder = 'system-spec-kit/026-graph-and-context-optimization/014-local-llama-cpp/040-v-rule-cross-spec-overreach';
-const dominatesSpecFolder = 'system-spec-kit/026-graph-and-context-optimization/014-local-llama-cpp/042-dominates-current';
+const currentSpecFolder = 'system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/040-v-rule-cross-spec-overreach';
+const dominatesSpecFolder = 'system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/042-dominates-current';
 const tempRoots: string[] = [];
 
 function memoryFixture(body: string, specFolder = currentSpecFolder): string {
@@ -92,7 +92,7 @@ The adr-003-context-size-decision title follows the same decision-record convent
   });
 
   it('T040-03 derives the current spec from the last numbered segment of a nested file path', () => {
-    const decisionRecordPath = '.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-llama-cpp/037-llama-cpp-embedding-worker-deep-dive/decision-record.md';
+    const decisionRecordPath = '.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/037-llama-cpp-embedding-worker-deep-dive/decision-record.md';
     const content = `---
 title: "ADR-003 llama-cpp token budget"
 trigger_phrases:
@@ -183,7 +183,7 @@ ${repeatedSpecReference('038-bar', 5)}
     const repoRoot = path.resolve(__dirname, '../../../../..');
     const handoverPath = path.join(
       repoRoot,
-      '.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-llama-cpp/handover.md',
+      '.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/handover.md',
     );
     const content = fs.readFileSync(handoverPath, 'utf-8');
     const result = validateMemoryQualityContent(content, { filePath: handoverPath });

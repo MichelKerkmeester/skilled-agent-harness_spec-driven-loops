@@ -166,7 +166,7 @@ Produce a verified restructure proposal that consolidates 026 into a smaller set
 ## 8. EDGE CASES
 
 - **Child has no spec.md** (legacy child or scratch): iter logs the absence and moves on; the resource-map proposal must classify how to handle these
-- **Child is a phase parent itself** (e.g. 014-local-llama-cpp): iter must recurse into nested children when scoring the parent
+- **Child is a phase parent itself** (e.g. 014-local-embeddings-migration): iter must recurse into nested children when scoring the parent
 - **Empty / orphan packets** (created but never populated): classify as delete-candidate by default
 - **In-progress packets** (status=in_progress per graph-metadata): mark as "preserve as-is" until they complete; restructure proposal must not assume completion
 <!-- /ANCHOR:edge-cases -->

@@ -51,7 +51,7 @@
     "source_docs": [
       "description.json"
     ],
-    "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/014-local-llama-cpp/038-embedding-error-propagation",
+    "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/038-embedding-error-propagation",
     "last_active_at": "2026-05-14T14:34:37.933Z"
   }
 }

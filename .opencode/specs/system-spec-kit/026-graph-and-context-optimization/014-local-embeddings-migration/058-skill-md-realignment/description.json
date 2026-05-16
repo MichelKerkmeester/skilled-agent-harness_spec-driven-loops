@@ -1,0 +1,25 @@
+{
+  "level": "1",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/058-skill-md-realignment",
+  "description": "Realign 3 SKILL.md files (system-spec-kit, system-code-graph, system-skill-advisor) toward the sk-doc skill_md_template.md authority. Author the under-built system-skill-advisor/mcp_server/README.md to match system-spec-kit/mcp_server/README.md style. Audit + add reference docs for system-skill-advisor (4 new) and system-code-graph (3-4 new). 20 cli-devin SWE 1.6 deep-review iterations across 8 thematic tracks drive surgical sonnet @markdown rewrites.",
+  "keywords": [
+    "skill-md-realignment",
+    "mcp-server-readme",
+    "references-audit",
+    "20-iter-deep-review",
+    "cli-devin-sonnet-markdown",
+    "phase-058"
+  ],
+  "lastUpdated": "2026-05-15T18:27:20.005Z",
+  "specId": "058",
+  "folderSlug": "skill-md-realignment",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "014-local-embeddings-migration"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "15-05-26_19-27__packet-058-closed-plus-two-follow-on-edit.md"
+  ]
+}

@@ -6,7 +6,7 @@
   "children_ids": [],
   "manual": {
     "depends_on": [
-      "system-spec-kit/026-graph-and-context-optimization/014-local-llama-cpp/059-cli-devin-deep-loop-alignment"
+      "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/059-cli-devin-deep-loop-alignment"
     ],
     "supersedes": [],
     "related_to": []

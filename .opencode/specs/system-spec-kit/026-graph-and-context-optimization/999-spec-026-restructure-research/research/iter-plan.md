@@ -7,7 +7,7 @@
 | Track | Iter | Executor | Focus | Output |
 |------:|-----:|----------|-------|--------|
 | 1 | 001-006 | cli-devin SWE-1.6 | Direct-child packet inventory (6 iter, ~3-4 children each) | Each-child classification: load-bearing / merge / delete |
-| 2 | 007-010 | cli-devin SWE-1.6 | Phase-parent 014-local-llama-cpp deep-read (4 iter — 056-059 arc) | Per-phase summary + restructure recommendation |
+| 2 | 007-010 | cli-devin SWE-1.6 | Phase-parent 014-local-embeddings-migration deep-read (4 iter — 056-059 arc) | Per-phase summary + restructure recommendation |
 | 3 | 011-014 | cli-devin SWE-1.6 | Phase-parent 013-doctor-update-orchestrator deep-read (4 iter) | Per-phase summary + restructure recommendation |
 | 4 | 015-018 | cli-devin SWE-1.6 | Phase-parent 007-code-graph deep-read (4 iter) | Per-phase summary + restructure recommendation |
 | 5 | 019-022 | cli-devin SWE-1.6 | Phase-parent 009-hook-parity deep-read (4 iter) | Per-phase summary + restructure recommendation |
@@ -27,8 +27,8 @@
 | 003 | 1 | Classify 026/007-code-graph (phase parent only) + 008-skill-advisor | 2 packet dirs |
 | 004 | 1 | Classify 026/009-hook-parity (parent only) + 010-template-levels (parent only) + 011-cocoindex-daemon-resilience | 3 packet dirs |
 | 005 | 1 | Classify 026/012-causal-graph-channel-routing + 013-doctor-update-orchestrator (parent only) | 2 packet dirs |
-| 006 | 1 | Classify 026/014-local-llama-cpp (parent only) + 015-global-security-sweep-and-supply-chain-audit | 2 packet dirs |
-| 007 | 2 | Map all children of 014-local-llama-cpp and identify the natural grouping (research arc, deep-loop arc, SKILL realignment arc) | 014/* |
+| 006 | 1 | Classify 026/014-local-embeddings-migration (parent only) + 015-global-security-sweep-and-supply-chain-audit | 2 packet dirs |
+| 007 | 2 | Map all children of 014-local-embeddings-migration and identify the natural grouping (research arc, deep-loop arc, SKILL realignment arc) | 014/* |
 | 008 | 2 | For each 014 child packet (056, 057, 058, 059, plus any 0NN children), classify load-bearing / merge / delete | 014/* |
 | 009 | 2 | Identify duplicate / overlapping packets within 014 (e.g. 057 vs 056) and propose merges | 014/* |
 | 010 | 2 | Propose the consolidated 014 phase-list (post-restructure) with names + which current children map into each | 014/* |

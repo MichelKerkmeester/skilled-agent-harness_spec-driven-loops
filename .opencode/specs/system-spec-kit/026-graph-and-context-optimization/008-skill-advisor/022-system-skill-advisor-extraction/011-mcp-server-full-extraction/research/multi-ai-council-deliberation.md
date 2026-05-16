@@ -3233,7 +3233,7 @@ Open at handover:
 
 - **Stay on main, no feature branches** — all 4 commits on `main`, no branching.
 - **DELETE not archive** — proxy code deleted in 006 (not `.bak`/`.old`/commented out); old-path `skill-graph.sqlite` deleted in 007 (not archived).
-- **Worktree cleanliness is never a blocker** — parallel-session dirty files (014-local-llama-cpp/*, _sandbox/, etc.) ignored throughout.
+- **Worktree cleanliness is never a blocker** — parallel-session dirty files (014-local-embeddings-migration/*, _sandbox/, etc.) ignored throughout.
 - **Codex CLI fast mode must be explicit** — every dispatch passed `-c service_tier="fast"`.
 - **Stop over-confirming with A/B/C/D menus** — user's "Work on phase 4, 5 and 6" was treated as standing approval through 006; ADR-003 operator confirmation in 006 derived from the same directive.
 - **`:auto` mode means ask only when uncertain** — no clarification prompts issued during the 5 dispatches.

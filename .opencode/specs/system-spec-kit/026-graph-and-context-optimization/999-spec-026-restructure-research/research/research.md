@@ -12,10 +12,10 @@
 
 This research ledger consolidates findings from 50 iterations across 11 tracks analyzing the 026 graph and context optimization spec folder structure. The research identified significant consolidation opportunities:
 
-- **Top-level packet structure:** 16 direct children under 026, with 4 phase parents containing nested children (007-code-graph: 40 packets, 008-skill-advisor: ~26 packets, 009-hook-parity: 8 packets, 013-doctor-update-orchestrator: 5 packets, 014-local-llama-cpp: 63 packets)
+- **Top-level packet structure:** 16 direct children under 026, with 4 phase parents containing nested children (007-code-graph: 40 packets, 008-skill-advisor: ~26 packets, 009-hook-parity: 8 packets, 013-doctor-update-orchestrator: 5 packets, 014-local-embeddings-migration: 63 packets)
 - **Proposed consolidation:** Phase parent restructuring would reduce nested packets by 60-83% (007: 40→7 phases, 014: 63→10 phases, 009: 8→3 phases, 013: 5→4 phases)
 - **Delete candidates:** 55 packets identified for deletion (42 pure delete, 13 merge/delete candidates), with 28 flagged as DEEP blast radius requiring archival instead of deletion (iter 048)
-- **Naming issues:** 1 severe mismatch (014-local-llama-cpp should be 014-local-embeddings-setup-a) and 4 mild mismatches identified (iter 031)
+- **Naming issues:** 1 severe mismatch (014-local-embeddings-migration should be 014-local-embeddings-setup-a) and 4 mild mismatches identified (iter 031)
 - **Target state:** 11-phase structure proposed (down from 13 after removing phantom packet and reclassifying meta-phase), with first-principles domain decomposition supporting surface-based organization (iter 044)
 
 Track 11 (gpt-5.5 adversarial review) resolved cross-track contradictions and provided cost-benefit analysis for 25 proposed merges, recommending 11 PROCEED, 4 PROCEED_AS_LOW_PRIORITY, 3 ABORT, and 7 REDESIGN (iter 045).
@@ -44,7 +44,7 @@ Track 11 (gpt-5.5 adversarial review) resolved cross-track contradictions and pr
 | 011-cocoindex-daemon-resilience | load-bearing | 7-patch defense-in-depth for socket-unlink cascade, BrokenPipeError loop, and daemon lifecycle robustness (17 files) | iter 004:99-101 |
 | 012-causal-graph-channel-routing | load-bearing | Phase parent for graph-channel routing override (001 initial-delivery) and post-deep-review remediation (002) (59 files) | iter 005:20-29 |
 | 013-doctor-update-orchestrator | load-bearing | Phase parent for doctor command consolidation with 5 children | iter 005:48-52 |
-| 014-local-llama-cpp | load-bearing (confidence-weak) | Phase parent for local embeddings migration with 63 children (not 60 as initially reported); naming incoherence identified | iter 006:23, iter 042:10 |
+| 014-local-embeddings-migration | load-bearing (confidence-weak) | Phase parent for local embeddings migration with 63 children (not 60 as initially reported); naming incoherence identified | iter 006:23, iter 042:10 |
 | 015-global-security-sweep-and-supply-chain-audit | load-bearing | 25-iteration deep-research security audit of Public repo + host environment after TanStack Mini Shai-Hulud disclosure (57 files) | iter 006:95-99 |
 
 **Track 11 Adversarial Review (iter 041):**
@@ -60,7 +60,7 @@ Track 11 (gpt-5.5 adversarial review) resolved cross-track contradictions and pr
 
 ---
 
-## Track 2: 014-local-llama-cpp Deep-Read (iterations 007-010)
+## Track 2: 014-local-embeddings-migration Deep-Read (iterations 007-010)
 
 ### Findings
 
@@ -312,7 +312,7 @@ Track 11 (gpt-5.5 adversarial review) resolved cross-track contradictions and pr
 
 **Top-Level Naming Mismatches (iter 031):**
 - 5 mismatches found among 16 top-level 026 children:
-  - 1 severe: 014-local-llama-cpp — name focuses only on llama-cpp (one backend), but work is multi-provider embeddings migration (Voyage → OpenAI → llama-cpp → hf-local) — proposed: 014-local-embeddings-setup-a
+  - 1 severe: 014-local-embeddings-migration — name focuses only on llama-cpp (one backend), but work is multi-provider embeddings migration (Voyage → OpenAI → llama-cpp → hf-local) — proposed: 014-local-embeddings-setup-a
   - 4 mild: 015 (overly verbose, misses triggering event), 004 (doesn't signal consolidation artifact status), 006 (abstract name doesn't surface External Project adoption), 002 (name focuses only on template, missing deep-loop fix scope)
 
 **Nested-Child Naming Audit (iter 032):**
@@ -325,7 +325,7 @@ Track 11 (gpt-5.5 adversarial review) resolved cross-track contradictions and pr
 
 **Top-N Rename Proposals (iter 033):**
 - Ranked by recall impact:
-  1. 014-local-llama-cpp → 014-local-embeddings-setup-a (HIGH impact)
+  1. 014-local-embeddings-migration → 014-local-embeddings-setup-a (HIGH impact)
   2. 015-global-security-sweep-and-supply-chain-audit → 015-tanstack-security-audit (MEDIUM-HIGH impact)
   3. 006-graph-impact-and-affordance-uplift → 006-external-project-adoption (MEDIUM impact)
   4. 002-resource-map-template → 002-resource-map-and-deep-loop-fix (MEDIUM impact)
@@ -649,7 +649,7 @@ Every finding in this ledger cites the specific iteration number and file:line w
 4. **Apply top-4 renames from iter 033/046:**
    - 002-resource-map-template → 002-resource-map-deep-loop-fix (iter 033:28-29, iter 046:58)
    - 006-graph-impact-and-affordance-uplift → 006-external-project-adoption (iter 033:27-28)
-   - 014-local-llama-cpp → 014-local-embeddings-migration (iter 046:55)
+   - 014-local-embeddings-migration → 014-local-embeddings-migration (iter 046:55)
    - 015-global-security-sweep-and-supply-chain-audit → 015-tanstack-security-audit (iter 033:26-27)
 
 5. **Update parent documentation per iter 039:** Apply proposed structures to spec.md, resource-map.md, and graph-metadata.json (iter 039:30-52).

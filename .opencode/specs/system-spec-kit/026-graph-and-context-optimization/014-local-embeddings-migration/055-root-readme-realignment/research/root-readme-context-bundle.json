@@ -1,0 +1,149 @@
+{
+  "readme_path": "./README.md",
+  "readme_line_count": 1491,
+  "audit_date": "2026-05-15",
+  "drift_areas": [
+    {
+      "section_in_readme": "Overview table (lines 54-60)",
+      "claim": "🎯 19 Skills",
+      "status": "DRIFTED",
+      "evidence_for_current_truth": "20 skills found in .opencode/skills/ with SKILL.md files. cli-devin skill added in commit df8395f7e2",
+      "drift_description": "The README claims 19 skills, but there are now 20 skills. The cli-devin skill was introduced in commit df8395f7e2 'feat(cli-devin): Introduce Devin CLI orchestrator skill for autonomous coding' and is not reflected in the README count.",
+      "suggested_rewrite": "🎯 20 Skills"
+    },
+    {
+      "section_in_readme": "Overview table (lines 54-60)",
+      "claim": "mk-spec-memory (39) tools",
+      "status": "CURRENT",
+      "evidence_for_current_truth": ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts TOOL_DEFINITIONS array contains 39 tools. Commit 602e4c031 dropped 2 redundant tools (memory_quick_search + memory_causal_unlink) from 41 to 39.",
+      "drift_description": "",
+      "suggested_rewrite": ""
+    },
+    {
+      "section_in_readme": "Overview table (lines 54-60)",
+      "claim": "mk_skill_advisor (8) tools",
+      "status": "CURRENT",
+      "evidence_for_current_truth": ".codex/config.toml line 38 states 'Registers 8 tools: advisor_recommend/rebuild/status/validate plus skill_graph_scan/query/status/validate'",
+      "drift_description": "",
+      "suggested_rewrite": ""
+    },
+    {
+      "section_in_readme": "Overview table (lines 54-60)",
+      "claim": "mk_code_index (10) tools",
+      "status": "CURRENT",
+      "evidence_for_current_truth": ".codex/config.toml line 49 states 'Registers 10 tools: code_graph_scan/query/context/status/verify/apply, detect_changes, ccc_status/reindex/feedback'",
+      "drift_description": "",
+      "suggested_rewrite": ""
+    },
+    {
+      "section_in_readme": "Overview table (line 59)",
+      "claim": "Code Graph - First-class skill at .opencode/skills/system-code-graph/ with standalone MCP server identity mk-code-index",
+      "status": "CURRENT",
+      "evidence_for_current_truth": ".opencode/skills/system-code-graph/SKILL.md confirms standalone MCP server name is mk-code-index. Commit 50cfabb6e renamed system_code_graph to mk-code-index.",
+      "drift_description": "",
+      "suggested_rewrite": ""
+    },
+    {
+      "section_in_readme": "Native MCP Topology diagram (lines 89-97)",
+      "claim": "mk-spec-memory, mk_skill_advisor, mk_code_index as MCP server names",
+      "status": "CURRENT",
+      "evidence_for_current_truth": ".codex/config.toml confirms these are the registered MCP server names. Commits f91da9f1a (mk-spec-memory rename), 493328487 (mk_skill_advisor rename), 50cfabb6e (mk_code_index rename).",
+      "drift_description": "",
+      "suggested_rewrite": ""
+    },
+    {
+      "section_in_readme": "Quick Start - Set Up Embedding Provider (lines 153-169)",
+      "claim": "Default when no cloud keys are set: llama-cpp when the GGUF runtime is installed",
+      "status": "CURRENT",
+      "evidence_for_current_truth": ".codex/config.toml lines 13-24 confirm auto-cascade: VOYAGE_API_KEY -> OPENAI_API_KEY -> llama-cpp -> hf-local. 014-local-embeddings-migration packets migrated to local llama-cpp + embeddinggemma.",
+      "drift_description": "",
+      "suggested_rewrite": ""
+    },
+    {
+      "section_in_readme": "Quick Start - Installation step 4 (lines 137-139)",
+      "claim": "Build the standalone skill-advisor server at .opencode/skills/system-skill-advisor/mcp_server",
+      "status": "CURRENT",
+      "evidence_for_current_truth": ".opencode/skills/system-skill-advisor/SKILL.md confirms standalone MCP package. Commit ff526411f completed skill-advisor isolation from system-spec-kit.",
+      "drift_description": "",
+      "suggested_rewrite": ""
+    },
+    {
+      "section_in_readme": "Quick Start - Installation step 5 (lines 141-143)",
+      "claim": "Build the standalone code-graph package at .opencode/skills/system-code-graph",
+      "status": "CURRENT",
+      "evidence_for_current_truth": ".opencode/skills/system-code-graph/SKILL.md confirms standalone skill. Commit 50cfabb6e renamed MCP server to mk-code-index.",
+      "drift_description": "",
+      "suggested_rewrite": ""
+    },
+    {
+      "section_in_readme": "Features - Memory Engine Layered MCP Surface (lines 383-397)",
+      "claim": "Total 39 tools in mk-spec-memory",
+      "status": "CURRENT",
+      "evidence_for_current_truth": "Table sums to 39 tools. tool-schemas.ts TOOL_DEFINITIONS array has 39 entries. Commit 602e4c031 dropped 2 tools from 41 to 39.",
+      "drift_description": "",
+      "suggested_rewrite": ""
+    },
+    {
+      "section_in_readme": "Features - CocoIndex + Code Graph (lines 548-593)",
+      "claim": "Code Graph is owned by .opencode/skills/system-code-graph/ and registered as standalone mk-code-index MCP server",
+      "status": "CURRENT",
+      "evidence_for_current_truth": ".opencode/skills/system-code-graph/SKILL.md lines 59-60 confirm standalone MCP server name is mk-code-index. Commit 014 system-code-graph extraction moved code graph to standalone skill.",
+      "drift_description": "",
+      "suggested_rewrite": ""
+    },
+    {
+      "section_in_readme": "Features - Skill Advisor (lines 669-748)",
+      "claim": "Skill Advisor is now a standalone MCP server named mk_skill_advisor, packaged under .opencode/skills/system-skill-advisor/mcp_server/",
+      "status": "CURRENT",
+      "evidence_for_current_truth": ".opencode/skills/system-skill-advisor/SKILL.md lines 96-97 confirm standalone MCP server named mk_skill_advisor. Commit 493328487 renamed system_skill_advisor to mk_skill_advisor.",
+      "drift_description": "",
+      "suggested_rewrite": ""
+    },
+    {
+      "section_in_readme": "FAQ - MCP tool count question (lines 1447-1449)",
+      "claim": "66 total across 6 native MCP servers. Breakdown: 39 mk-spec-memory, 8 mk_skill_advisor, 10 mk_code_index, 7 code mode, 1 cocoindex_code, 1 sequential thinking",
+      "status": "CURRENT",
+      "evidence_for_current_truth": ".codex/config.toml confirms tool counts: mk-spec-memory (39, line 23), mk_skill_advisor (8, line 38), mk_code_index (10, line 49), code_mode (7 tools in mcp_code-mode), cocoindex_code (1 tool), sequential_thinking (1 tool). Sum: 39+8+10+7+1+1=66.",
+      "drift_description": "",
+      "suggested_rewrite": ""
+    },
+    {
+      "section_in_readme": "FAQ - Feature catalog question (line 1454)",
+      "claim": "294-entry reference across 22 categories documenting every capability of the memory system",
+      "status": "UNVERIFIED",
+      "evidence_for_current_truth": "Feature catalog file exists at .opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md (4678 lines). Entry count requires manual verification.",
+      "drift_description": "The claim of 294 entries across 22 categories needs manual verification against the actual feature catalog file.",
+      "suggested_rewrite": ""
+    },
+    {
+      "section_in_readme": "Quick Start - Verify Installation (line 178)",
+      "claim": "Check MCP registrations across opencode.json .claude/mcp.json .codex/config.toml .gemini/settings.json",
+      "status": "CURRENT",
+      "evidence_for_current_truth": "All four config files exist: opencode.json, .claude/mcp.json, .codex/config.toml, .gemini/settings.json",
+      "drift_description": "",
+      "suggested_rewrite": ""
+    },
+    {
+      "section_in_readme": "Quick Start - Installation step 3 (lines 133-135)",
+      "claim": "Build the memory server scripts at .opencode/skills/system-spec-kit/mcp_server",
+      "status": "CURRENT",
+      "evidence_for_current_truth": ".opencode/skills/system-spec-kit/mcp_server/dist/context-server.js exists and builds correctly",
+      "drift_description": "",
+      "suggested_rewrite": ""
+    },
+    {
+      "section_in_readme": "Configuration - Memory Engine Configuration (line 1308)",
+      "claim": "Default database path: .opencode/skills/system-spec-kit/mcp_server/database/context-index__llama-cpp__unsloth-embeddinggemma-300m-gguf__768__q8.sqlite",
+      "status": "CURRENT",
+      "evidence_for_current_truth": ".codex/config.toml line 16 confirms this auto-derived DB path format for llama-cpp provider",
+      "drift_description": "",
+      "suggested_rewrite": ""
+    }
+  ],
+  "summary": {
+    "total_claims_audited": 16,
+    "current": 14,
+    "drifted": 1,
+    "unverified": 1
+  }
+}

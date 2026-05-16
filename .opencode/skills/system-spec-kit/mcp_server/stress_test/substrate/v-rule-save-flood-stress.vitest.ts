@@ -9,7 +9,7 @@ import {
   validateMemoryQualityContent,
 } from '../../../scripts/lib/validate-memory-quality';
 
-const currentSpecFolder = 'system-spec-kit/026-graph-and-context-optimization/014-local-llama-cpp/049-substrate-stress-coverage';
+const currentSpecFolder = 'system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/049-substrate-stress-coverage';
 const tempRoots: string[] = [];
 
 function repeatedSpecReference(specId: string, count: number): string {
@@ -46,7 +46,7 @@ function v8Result(content: string, filePath?: string) {
 function createParentSpecFixture(): string {
   const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'substrate-v8-parent-'));
   tempRoots.push(tempRoot);
-  const parentSpecFolder = path.join(tempRoot, '014-local-llama-cpp');
+  const parentSpecFolder = path.join(tempRoot, '014-local-embeddings-migration');
   fs.mkdirSync(path.join(parentSpecFolder, '045-shared-daemon-suite-runner'), { recursive: true });
   fs.mkdirSync(path.join(parentSpecFolder, '049-substrate-stress-coverage'), { recursive: true });
   fs.writeFileSync(path.join(parentSpecFolder, 'spec.md'), '# Parent spec\n');
@@ -117,7 +117,7 @@ The 049-substrate-stress-coverage packet remains the active canonical doc.
     const results = Array.from({ length: 50 }, (_value, index) => {
       const content = memoryFixture(`
 Attempt ${index + 1} records canonical substrate stress evidence.
-Current packet 049-substrate-stress-coverage remains dominant and references parent 014-local-llama-cpp.
+Current packet 049-substrate-stress-coverage remains dominant and references parent 014-local-embeddings-migration.
 `);
       return validateMemoryQualityContent(content, {
         filePath: `.opencode/specs/${currentSpecFolder}/implementation-summary.md`,
