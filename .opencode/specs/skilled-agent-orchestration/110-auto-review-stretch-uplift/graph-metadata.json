@@ -25,18 +25,19 @@
     ],
     "key_topics": ["110", "auto-review-stretch", "h5", "h7", "h9", "m1", "m2", "m3", "m6", "council-gate"],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "001-mk-plugins-config-uplift/spec.md",
       "002-sk-code-review-uplift/spec.md",
       "003-deep-review-uplift/spec.md",
-      "004-deep-agent-improvement-uplift/spec.md"
+      "004-deep-agent-improvement-uplift/spec.md",
+      "ai-council/council-report.md"
     ],
     "entities": [],
-    "causal_summary": "Phase-parent adopting 7 stretch teachings deferred from packet 108 (H-5 3-tier config, H-7 marker dedup, H-9 bounded evidence, M-1 PR dedup, M-2 min-evidence gate, M-3 mutation dedup, M-6 async config init). Grouped into 4 phase children by target surface: mk-* plugins, sk-code-review, deep-review, deep-agent-improvement. Pre-implementation gate: deep-ai-council multi-seat review via cli-codex gpt-5.5 xhigh fast.",
+    "causal_summary": "Implemented 6 of 7 council-approved teachings (H-9 deferred to packet 111+): Phase 1 H-5 4-tier config + M-6 await config promise in mk-* plugins. Phase 2 M-1 PR-state content-hash dedup + M-2 opt-in min-evidence gate in sk-code-review. Phase 3 H-7 extends existing deep-review synthesis dedup with content_hash (H-9 deferred). Phase 4 M-3 mutation signature dedup in mutation-coverage.json + reducer update.",
     "created_at": "2026-05-16T11:00:00Z",
-    "last_save_at": "2026-05-16T11:00:00Z",
-    "last_active_child_id": "001-mk-plugins-config-uplift"
+    "last_save_at": "2026-05-16T13:00:00Z",
+    "last_active_child_id": "004-deep-agent-improvement-uplift"
   }
 }
