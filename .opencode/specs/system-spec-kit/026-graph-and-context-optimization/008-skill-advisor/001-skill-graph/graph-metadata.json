@@ -6,7 +6,7 @@
   "children_ids": [
     "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-graph/001-skill-advisor-graph",
     "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-graph/002-skill-graph-daemon-and-advisor-unification",
-    "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-graph/018-skill-metadata-quality-audit",
+    "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-graph/003-skill-metadata-quality-audit",
     "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-graph/019-apply-metadata-fixes-and-resweep",
     "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-graph/021-populate-intent-signals-and-relationships",
     "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-graph/022-system-skill-advisor-extraction",
@@ -24,7 +24,7 @@
     "status": "in_progress",
     "key_files": ["spec.md"],
     "entities": [],
-    "causal_summary": "Build skill graph infrastructure through metadata quality auditing and structural migration. The 018-skill-metadata-quality-audit packet establishes advisor lane quality standards, while 022-system-skill-advisor-extraction migrates the skill advisor subsystem to a first-class package.",
+    "causal_summary": "Build skill graph infrastructure through metadata quality auditing and structural migration. The 003-skill-metadata-quality-audit packet establishes advisor lane quality standards, while 022-system-skill-advisor-extraction migrates the skill advisor subsystem to a first-class package.",
     "created_at": "2026-05-16T09:00:00Z",
     "last_save_at": "2026-05-16T09:00:00Z",
     "save_lineage": "cli-devin-swe-1.6-w3a",

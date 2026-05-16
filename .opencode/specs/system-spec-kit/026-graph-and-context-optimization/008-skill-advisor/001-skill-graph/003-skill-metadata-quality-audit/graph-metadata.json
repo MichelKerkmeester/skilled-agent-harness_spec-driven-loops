@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/018-skill-metadata-quality-audit",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/018-skill-metadata-quality-audit",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/003-skill-metadata-quality-audit",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/003-skill-metadata-quality-audit",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor",
   "children_ids": [],
   "migrated": false,

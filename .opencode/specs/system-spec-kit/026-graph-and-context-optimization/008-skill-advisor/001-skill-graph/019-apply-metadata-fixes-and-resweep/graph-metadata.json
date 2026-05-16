@@ -8,7 +8,7 @@
   "manual": {
     "depends_on": [
       "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/017-corpus-seeded-sweep",
-      "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/018-skill-metadata-quality-audit"
+      "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/003-skill-metadata-quality-audit"
     ],
     "supersedes": [],
     "related_to": [

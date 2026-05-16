@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/018-skill-metadata-quality-audit",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/003-skill-metadata-quality-audit",
   "description": "Audit each active skill's graph-metadata.json and SKILL.md description, score on dimensions that affect lexical/derived/cosine advisor lanes, recommend per-skill improvements; research only, no skill files modified.",
   "keywords": [
     "skill-metadata-audit",

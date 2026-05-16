@@ -6,7 +6,7 @@ Metadata, structural migration, daemon/advisor unification, extraction.
 
 - `001-skill-advisor-graph`
 - `002-skill-graph-daemon-and-advisor-unification`
-- `018-skill-metadata-quality-audit`
+- `003-skill-metadata-quality-audit`
 - `019-apply-metadata-fixes-and-resweep`
 - `021-populate-intent-signals-and-relationships`
 - `022-system-skill-advisor-extraction`
