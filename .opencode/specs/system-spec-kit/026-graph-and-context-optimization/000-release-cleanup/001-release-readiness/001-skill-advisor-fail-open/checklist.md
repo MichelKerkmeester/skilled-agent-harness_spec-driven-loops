@@ -3,13 +3,13 @@ title: "Verification Checklist: Skill-Advisor Release Remediation"
 template_source: "SPECKIT_TEMPLATE_SOURCE: checklist-core + level2-verify | v2.2"
 description: "Verification gates for closing 3 P1 blockers and 15 P2 advisories in the skill-advisor remediation packet."
 trigger_phrases:
-  - "003-skill-advisor-fail-open checklist"
+  - "001-skill-advisor-fail-open checklist"
   - "skill-advisor remediation verification"
 importance_tier: "important"
 contextType: "verification"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-skill-advisor-fail-open"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/001-skill-advisor-fail-open"
     last_updated_at: "2026-04-28T16:13:26Z"
     last_updated_by: "codex-gpt-5"
     recent_action: "Completed remediation verification checklist"

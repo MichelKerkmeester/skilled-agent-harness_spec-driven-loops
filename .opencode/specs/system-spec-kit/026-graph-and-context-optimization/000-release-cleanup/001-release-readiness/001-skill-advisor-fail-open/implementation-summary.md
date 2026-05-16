@@ -3,7 +3,7 @@ title: "Implementation Summary: Skill-Advisor Release Remediation"
 template_source: "SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2"
 description: "Completed the release remediation packet for the 008/008 skill-advisor deep review, closing 3 P1 blockers and 15 P2 advisories with runtime fixes, regression tests, documentation cleanup, and pattern consolidation."
 trigger_phrases:
-  - "003-skill-advisor-fail-open implementation"
+  - "001-skill-advisor-fail-open implementation"
   - "skill-advisor release remediation complete"
   - "advisor unavailable fail-open summary"
   - "008/008 remediation disposition"
@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-skill-advisor-fail-open"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/001-skill-advisor-fail-open"
     last_updated_at: "2026-04-28T16:13:26Z"
     last_updated_by: "codex-gpt-5"
     recent_action: "Remediation complete"
@@ -24,8 +24,8 @@ _memory:
       - ".opencode/skills/system-spec-kit/mcp_server/handlers/skill-graph/response-envelope.ts"
       - "specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/008-skill-graph-daemon-and-advisor-unification/decision-record"
     session_dedup:
-      fingerprint: "sha256:003-skill-advisor-fail-open-2026-04-28"
-      session_id: "003-skill-advisor-fail-open-remediation"
+      fingerprint: "sha256:001-skill-advisor-fail-open-2026-04-28"
+      session_id: "001-skill-advisor-fail-open-remediation"
       parent_session_id: "008-skill-graph-daemon-and-advisor-unification-review"
     completion_pct: 100
     open_questions: []
@@ -46,7 +46,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 003-skill-advisor-fail-open |
+| **Spec Folder** | 001-skill-advisor-fail-open |
 | **Completed** | 2026-04-28 |
 | **Level** | 2 |
 | **Source Review** | `specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/008-skill-graph-daemon-and-advisor-unification/review/008-skill-graph-daemon-and-advisor-unification-pt-01/review-report` |
@@ -165,7 +165,7 @@ Phase 4 reduced drift risk in repeated patterns. Lane metadata, compatibility de
 | `npm run typecheck` | PASS, exit 0. |
 | `npm run build` | PASS, exit 0. |
 | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/008-skill-graph-daemon-and-advisor-unification --strict` | PASS, exit 0. |
-| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-skill-advisor-fail-open --strict` | PASS, exit 0. |
+| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/001-skill-advisor-fail-open --strict` | PASS, exit 0. |
 ### Per-Finding Disposition
 
 | Finding | Severity | Disposition | Evidence |

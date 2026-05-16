@@ -3,13 +3,13 @@ title: "Tasks: Skill-Advisor Release Remediation"
 template_source: "SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2"
 description: "Task list driving 3 P1 closures + 15 P2 advisories from the 008/008 deep review."
 trigger_phrases:
-  - "003-skill-advisor-fail-open tasks"
+  - "001-skill-advisor-fail-open tasks"
   - "skill-advisor remediation tasks"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-skill-advisor-fail-open"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/001-skill-advisor-fail-open"
     last_updated_at: "2026-04-28T15:50:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Completed remediation task list"
@@ -80,7 +80,7 @@ Tasks are grouped by plan phase. Each lists `REQ | Status | Exit gate`. P1 tasks
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [x] **T25** Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-skill-advisor-fail-open --strict`. Exit: exit 0. Evidence: final validator exit 0.
+- [x] **T25** Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/001-skill-advisor-fail-open --strict`. Exit: exit 0. Evidence: final validator exit 0.
 - [x] **T26** Author implementation summary with disposition for each of the 18 source findings. Exit: every F-* / DR-008-* finding has a closed/closed-by-deferral note. Evidence: implementation summary disposition table.
 <!-- /ANCHOR:phase-3 -->
 

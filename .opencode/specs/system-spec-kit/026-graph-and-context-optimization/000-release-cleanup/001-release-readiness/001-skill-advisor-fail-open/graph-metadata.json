@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-skill-advisor-fail-open",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-skill-advisor-fail-open",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/001-skill-advisor-fail-open",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/001-skill-advisor-fail-open",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation",
   "children_ids": [],
   "migrated": false,
@@ -12,7 +12,7 @@
     "related_to": []
   },
   "derived": {
-    "trigger_phrases": ["003-skill-advisor-fail-open", "advisor_recommend unavailable fail-open", "skill-graph daemon remediation", "008/008 review remediation"],
+    "trigger_phrases": ["001-skill-advisor-fail-open", "advisor_recommend unavailable fail-open", "skill-graph daemon remediation", "008/008 review remediation"],
     "key_topics": ["skill-advisor", "fail-open", "advisor-recommend", "remediation"],
     "importance_tier": "important",
     "status": "complete",

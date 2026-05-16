@@ -1,6 +1,6 @@
-# Implementation Prompt — 003-skill-advisor-fail-open
+# Implementation Prompt — 001-skill-advisor-fail-open
 
-**GATE 3 PRE-ANSWERED — A (Existing folder)**: `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-skill-advisor-fail-open`. The orchestrator (Claude) has authorized this folder for the entire implementation session. DO NOT re-ask Gate 3. Proceed directly to implementation.
+**GATE 3 PRE-ANSWERED — A (Existing folder)**: `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/001-skill-advisor-fail-open`. The orchestrator (Claude) has authorized this folder for the entire implementation session. DO NOT re-ask Gate 3. Proceed directly to implementation.
 
 **TARGET AUTHORITY**: All write paths under that spec folder AND its declared dependency `specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/008-skill-graph-daemon-and-advisor-unification/` are pre-approved. You may also write runtime code under `.opencode/skills/system-spec-kit/mcp_server/`, plugin code under `.opencode/plugins/`, tests under `.opencode/skills/system-spec-kit/mcp_server/tests/`.
 
@@ -10,10 +10,10 @@ You are dispatched to execute the full implementation plan for **skill-advisor r
 
 Read these files in order (source of truth):
 
-1. **Spec**: `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-skill-advisor-fail-open/spec.md` — REQ-001..REQ-018, scope, files to change.
-2. **Plan**: `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-skill-advisor-fail-open/plan.md` — 4-phase sequence with file:line guidance.
-3. **Tasks**: `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-skill-advisor-fail-open/tasks.md` — T1..T26.
-4. **Checklist**: `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-skill-advisor-fail-open/checklist.md` — verification gates.
+1. **Spec**: `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/001-skill-advisor-fail-open/spec.md` — REQ-001..REQ-018, scope, files to change.
+2. **Plan**: `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/001-skill-advisor-fail-open/plan.md` — 4-phase sequence with file:line guidance.
+3. **Tasks**: `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/001-skill-advisor-fail-open/tasks.md` — T1..T26.
+4. **Checklist**: `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/001-skill-advisor-fail-open/checklist.md` — verification gates.
 5. **Source review report** (READ-ONLY context): `specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/008-skill-graph-daemon-and-advisor-unification/review/008-skill-graph-daemon-and-advisor-unification-pt-01/review-report.md` — per-finding evidence at file:line.
 
 ## EXECUTION CONTRACT
@@ -25,9 +25,9 @@ Execute Phase 1 → Phase 2 → Phase 3 → Phase 4 from the plan sequentially. 
 
 After all tasks complete:
 
-3. Author `implementation-summary.md` at `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-skill-advisor-fail-open/implementation-summary.md` using the L2 template. Include: What Was Built, How It Was Delivered (Phase 1/2/3/4), Key Decisions, Verification (commands + exit codes), Per-finding disposition table for all 18 source findings.
+3. Author `implementation-summary.md` at `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/001-skill-advisor-fail-open/implementation-summary.md` using the L2 template. Include: What Was Built, How It Was Delivered (Phase 1/2/3/4), Key Decisions, Verification (commands + exit codes), Per-finding disposition table for all 18 source findings.
 4. Update `_memory.continuity.recent_action` and `completion_pct` in spec.md frontmatter.
-5. Run final validator: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-skill-advisor-fail-open --strict`. Capture exit code.
+5. Run final validator: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/001-skill-advisor-fail-open --strict`. Capture exit code.
 
 ## CRITICAL RULES
 

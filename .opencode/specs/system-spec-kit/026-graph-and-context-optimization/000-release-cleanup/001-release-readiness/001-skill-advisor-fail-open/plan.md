@@ -3,14 +3,14 @@ title: "Implementation Plan: Skill-Advisor Release Remediation"
 template_source: "SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2"
 description: "Four-phase plan for closing skill-advisor release blockers: P1 runtime fixes, recovery/concurrency hardening, documentation and diagnostic cleanup, and pattern consolidation."
 trigger_phrases:
-  - "003-skill-advisor-fail-open plan"
+  - "001-skill-advisor-fail-open plan"
   - "skill-advisor remediation plan"
   - "advisor unavailable fail-open"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-skill-advisor-fail-open"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/001-skill-advisor-fail-open"
     last_updated_at: "2026-04-28T16:13:26Z"
     last_updated_by: "codex-gpt-5"
     recent_action: "Completed four-phase remediation plan"

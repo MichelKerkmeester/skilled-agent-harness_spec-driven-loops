@@ -3,7 +3,7 @@ title: "Feature Specification: Skill-Advisor Release Remediation"
 template_source: "SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2"
 description: "Close 3 P1 release blockers and 15 P2 advisories from the 008-skill-graph-daemon-and-advisor-unification deep review: advisor unavailable fail-open, public scan caller-authority gate, missing regression coverage for active invariants."
 trigger_phrases:
-  - "003-skill-advisor-fail-open"
+  - "001-skill-advisor-fail-open"
   - "advisor_recommend unavailable fail-open"
   - "skill_graph_scan caller authority"
   - "skill-advisor regression coverage"
@@ -12,7 +12,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-skill-advisor-fail-open"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/001-skill-advisor-fail-open"
     last_updated_at: "2026-04-28T16:13:26Z"
     last_updated_by: "codex-gpt-5"
     recent_action: "Completed skill-advisor remediation"
