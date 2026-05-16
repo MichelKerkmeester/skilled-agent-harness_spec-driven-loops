@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-followup-post-program",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-followup-post-program",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup",
+  "children_ids": [
+    "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-followup-post-program/005-post-program-cleanup",
+    "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-followup-post-program/007-vitest-recovery-followup",
+    "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-followup-post-program/024-followup-quality-pass",
+    "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-followup-post-program/054-runtime-cleanup-followups"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": ["000-release-cleanup/004-followup-post-program", "followup-post-program"],
+    "key_topics": ["post-program-cleanup", "quality-pass", "runtime-cleanup", "vitest-recovery", "followup-work", "iterative-improvements", "release-cleanup"],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": ["spec.md"],
+    "entities": [],
+    "causal_summary": "Coordinates followup and post-program work across quality passes, runtime cleanup, test recovery, and iterative improvements. The sub-phase includes 007-vitest-recovery-followup for test baseline recovery and 054-runtime-cleanup-followups for packet 096 followups including workspace root hardening and memory health diagnostics.",
+    "created_at": "2026-05-16T09:00:00Z",
+    "last_save_at": "2026-05-16T09:00:00Z",
+    "save_lineage": "cli-devin-swe-1.6-w3a",
+    "last_accessed_at": null,
+    "source_docs": ["spec.md", "README.md"]
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "level": "3",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-followup-post-program",
+  "description": "Phase parent for post-program cleanup and followup quality work across 4 child packets. Covers quality passes, runtime cleanup, test recovery, and iterative improvements after major releases.",
+  "keywords": [
+    "followup-post-program",
+    "004-followup-post-program",
+    "post-program-cleanup",
+    "quality-pass",
+    "runtime-cleanup",
+    "vitest-recovery",
+    "iterative-improvements"
+  ],
+  "lastUpdated": "2026-05-16T09:00:00Z",
+  "specId": "004",
+  "folderSlug": "followup-post-program",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "000-release-cleanup"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}
