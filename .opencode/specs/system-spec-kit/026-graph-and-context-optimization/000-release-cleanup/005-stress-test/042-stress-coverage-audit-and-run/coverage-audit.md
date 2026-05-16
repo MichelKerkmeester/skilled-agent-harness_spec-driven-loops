@@ -204,7 +204,7 @@ P1 (6 features) and P2 (30 features) gaps remain — they roll into the normal r
 
 ### §4.2 — Closed by packet 044 (2026-04-30)
 
-Packet `044-p1-p2-stress-remediation` closed all remaining 6 P1 + 30 P2 gaps on the same day. The matrix now reads `gap_classification=none` for every one of the 54 features. Eighteen new stress files were added (some consolidated where features share a natural test surface):
+Packet `006-p1-p2-stress-remediation` closed all remaining 6 P1 + 30 P2 gaps on the same day. The matrix now reads `gap_classification=none` for every one of the 54 features. Eighteen new stress files were added (some consolidated where features share a natural test surface):
 
 | Subsystem | Consolidated test files added |
 |-----------|--------------------------------|

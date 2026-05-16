@@ -3,13 +3,13 @@ title: "Implementation Summary: P1 + P2 Stress-Test Remediation"
 description: "Closed all remaining 36 P1+P2 stress gaps from packet 042; suite is now 56/56 files and 159/159 tests passing; coverage backlog is clear."
 template_source: "SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2"
 trigger_phrases:
-  - "044-p1-p2-stress-remediation summary"
+  - "006-p1-p2-stress-remediation summary"
   - "P1 P2 remediation summary"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/044-p1-p2-stress-remediation"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/006-p1-p2-stress-remediation"
     last_updated_at: "2026-04-30T20:05:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Authored final docs"
@@ -45,7 +45,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 044-p1-p2-stress-remediation |
+| **Spec Folder** | 006-p1-p2-stress-remediation |
 | **Completed** | 2026-04-30 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

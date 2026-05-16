@@ -3,12 +3,12 @@ title: "Verification Checklist: P1 + P2 Stress-Test Remediation"
 description: "Verify 36 features now stress-covered; cross-packet 042 update; strict validator pass."
 template_source: "SPECKIT_TEMPLATE_SOURCE: checklist | v2.2"
 trigger_phrases:
-  - "044-p1-p2-stress-remediation checklist"
+  - "006-p1-p2-stress-remediation checklist"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/044-p1-p2-stress-remediation"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/006-p1-p2-stress-remediation"
     last_updated_at: "2026-04-30T19:25:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Checklist authored"

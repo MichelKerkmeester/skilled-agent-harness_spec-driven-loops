@@ -3,7 +3,7 @@
 You are producing a comprehensive synthesis report covering EVERY test file in the stress test folder. Output destination: `<PACKET_044>/stress-test-synthesis.md`.
 
 Repository root: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public`.
-Packet 044 path: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/044-p1-p2-stress-remediation/`
+Packet 044 path: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/006-p1-p2-stress-remediation/`
 
 ## Inputs (read-only)
 

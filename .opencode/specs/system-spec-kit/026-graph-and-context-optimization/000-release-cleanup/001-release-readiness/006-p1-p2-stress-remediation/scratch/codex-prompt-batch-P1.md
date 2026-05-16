@@ -81,4 +81,4 @@ If anything fails, fix it. If real product behavior under stress requires invest
 
 ## IMPORTANT: Spec folder context
 
-This work is part of spec-kit packet `044-p1-p2-stress-remediation`. If asked about spec folder, the answer is: **continuing existing packet 044**. Do not block on Gate 3.
+This work is part of spec-kit packet `006-p1-p2-stress-remediation`. If asked about spec folder, the answer is: **continuing existing packet 044**. Do not block on Gate 3.

@@ -3,12 +3,12 @@ title: "Plan: P1 + P2 Stress-Test Remediation"
 description: "Four cli-codex synthesis batches produce stress tests for 36 P1+P2 features; full npm run stress validates green; 042 matrix is cross-updated."
 template_source: "SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2"
 trigger_phrases:
-  - "044-p1-p2-stress-remediation plan"
+  - "006-p1-p2-stress-remediation plan"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/044-p1-p2-stress-remediation"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/006-p1-p2-stress-remediation"
     last_updated_at: "2026-04-30T19:25:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Plan authored"

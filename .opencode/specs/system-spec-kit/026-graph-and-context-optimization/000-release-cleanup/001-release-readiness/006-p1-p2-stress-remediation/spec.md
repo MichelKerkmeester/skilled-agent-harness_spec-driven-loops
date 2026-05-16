@@ -3,13 +3,13 @@ title: "Spec: P1 + P2 Stress-Test Remediation — Close 36 Remaining Coverage Ga
 description: "Close 6 P1 + 30 P2 stress coverage gaps surfaced by 042 audit; tests must pass under npm run stress; consolidation allowed where natural."
 template_source: "SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2"
 trigger_phrases:
-  - "044-p1-p2-stress-remediation spec"
+  - "006-p1-p2-stress-remediation spec"
   - "P1 P2 stress remediation"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/044-p1-p2-stress-remediation"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/006-p1-p2-stress-remediation"
     last_updated_at: "2026-04-30T19:25:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Spec authored from 042 P1+P2 inventory"

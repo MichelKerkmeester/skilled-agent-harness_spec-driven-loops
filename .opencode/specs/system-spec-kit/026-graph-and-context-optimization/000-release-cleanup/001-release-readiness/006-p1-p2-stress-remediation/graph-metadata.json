@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/044-p1-p2-stress-remediation",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/044-p1-p2-stress-remediation",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/006-p1-p2-stress-remediation",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/006-p1-p2-stress-remediation",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation",
   "children_ids": [],
   "manual": {
@@ -11,16 +11,16 @@
   },
   "derived": {
     "trigger_phrases": [
-      "044-p1-p2-stress-remediation spec",
+      "006-p1-p2-stress-remediation spec",
       "P1 P2 stress remediation",
-      "044-p1-p2-stress-remediation plan",
-      "044-p1-p2-stress-remediation tasks",
-      "044-p1-p2-stress-remediation checklist",
-      "044-p1-p2-stress-remediation summary",
+      "006-p1-p2-stress-remediation plan",
+      "006-p1-p2-stress-remediation tasks",
+      "006-p1-p2-stress-remediation checklist",
+      "006-p1-p2-stress-remediation summary",
       "P1 P2 remediation summary"
     ],
     "key_topics": [
-      "044-p1-p2-stress-remediation",
+      "006-p1-p2-stress-remediation",
       "spec",
       "stress",
       "remediation",
