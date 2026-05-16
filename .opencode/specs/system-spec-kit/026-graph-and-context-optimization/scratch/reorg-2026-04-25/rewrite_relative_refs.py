@@ -47,7 +47,7 @@ INTERNAL_RENUMBER = {
     },
     "008-skill-advisor": {
         # 006-search-routing-advisor children: only renumber those that closed the gap at 004.
-        "005-skill-advisor-docs-and-code-alignment":         "004-skill-advisor-docs-and-code-alignment",
+        "005-skill-advisor-docs-and-code-alignment":         "001-skill-advisor-docs-and-code-alignment",
         "006-smart-router-remediation-and-opencode-plugin":  "003-smart-router-remediation-and-opencode-plugin",
         "007-deferred-remediation-and-telemetry-run":        "001-deferred-remediation-and-telemetry-run",
         # 010-hook-package advisor children → 008 with new slots 007-011.
@@ -114,7 +114,7 @@ QUALIFIED_RELOCATIONS = [
     ("../../010-hook-parity/013-code-graph-hook-improvements/",       "../../007-code-graph/004-code-graph-hook-improvements/"),
     ("../../010-hook-parity/015-code-graph-advisor-refinement/",      "../../007-code-graph/005-code-graph-advisor-refinement/"),
     # 008-skill-advisor close-the-gap renumber for 006-children (005→004, 006→005, 007→006).
-    ("../../008-skill-advisor/005-skill-advisor-docs-and-code-alignment/",      "../../008-skill-advisor/004-skill-advisor-docs-and-code-alignment/"),
+    ("../../008-skill-advisor/005-skill-advisor-docs-and-code-alignment/",      "../../008-skill-advisor/001-skill-advisor-docs-and-code-alignment/"),
     ("../../008-skill-advisor/006-smart-router-remediation-and-opencode-plugin/", "../../008-skill-advisor/003-smart-router-remediation-and-opencode-plugin/"),
     ("../../008-skill-advisor/007-deferred-remediation-and-telemetry-run/",      "../../008-skill-advisor/001-deferred-remediation-and-telemetry-run/"),
     # Top-level wrapper renames at fully-qualified depth.

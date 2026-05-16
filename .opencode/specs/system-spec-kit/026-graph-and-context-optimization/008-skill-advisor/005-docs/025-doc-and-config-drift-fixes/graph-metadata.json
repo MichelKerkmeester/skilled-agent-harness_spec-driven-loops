@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-docs/025-doc-and-config-drift-fixes",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-docs/025-doc-and-config-drift-fixes",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-docs",
+  "children_ids": [],
+  "migrated": false,
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": [
+      {
+        "packet_id": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-docs/001-skill-advisor-docs-and-code-alignment",
+        "reason": "sibling docs-alignment packet under same 005-docs phase parent",
+        "source": "manual",
+        "spec_folder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-docs/001-skill-advisor-docs-and-code-alignment"
+      }
+    ]
+  },
+  "derived": {
+    "trigger_phrases": [
+      "skill-advisor build failure",
+      "ignoreDeprecations TS5103",
+      "skill-advisor doc drift",
+      "advisor tool count",
+      "opencode.json registration comment",
+      "025 drift fix"
+    ],
+    "key_topics": [
+      "skill-advisor",
+      "tsconfig",
+      "ignoreDeprecations",
+      "TS5103",
+      "tool-count",
+      "opencode.json",
+      "doc-drift",
+      "config-drift"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/system-skill-advisor/mcp_server/tsconfig.json",
+      ".opencode/skills/system-skill-advisor/SKILL.md",
+      ".opencode/skills/system-skill-advisor/ARCHITECTURE.md",
+      ".opencode/skills/system-skill-advisor/README.md",
+      ".opencode/skills/system-skill-advisor/INSTALL_GUIDE.md",
+      "opencode.json",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [],
+    "causal_summary": "Maintenance pass on system-skill-advisor surfaced three drift issues: TS5103 build failure (ignoreDeprecations=6.0 vs TS 5.9.3), 8-vs-9 tool count phrasing across SKILL.md and ARCHITECTURE.md, and a stale opencode.json registration comment self-flagged in ARCHITECTURE.md §6.",
+    "created_at": "2026-05-16T00:00:00Z",
+    "last_save_at": "2026-05-16T00:00:00Z",
+    "save_lineage": "scaffold",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ]
+  }
+}
