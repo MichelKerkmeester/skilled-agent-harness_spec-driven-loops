@@ -2,22 +2,7 @@
 name: system-code-graph
 description: "Structural code indexing and mk-code-index MCP workflows for graph readiness, impact queries, context retrieval and CCC checks."
 allowed-tools: [Bash, Edit, Glob, Grep, Read, Task, Write]
-version: 1.0.3.1
-_memory:
-  continuity:
-    packet_pointer: "system-spec-kit/029-system-code-graph-uplift/001-skill-md-and-references-polish"
-    last_updated_at: "2026-05-16T10:40:00Z"
-    last_updated_by: "main_agent"
-    recent_action: "Added why-structural-matters primer, glossary, situational triggers; fixed weak boundary explanation, weak reference notation, HVR violations"
-    next_safe_action: "Proceed to Batch 2 INSTALL_GUIDE drift fixes"
-    blockers: []
-    key_files:
-      - "SKILL.md"
-      - "README.md"
-      - "ARCHITECTURE.md"
-      - "INSTALL_GUIDE.md"
-      - "feature_catalog/feature_catalog.md"
-      - "graph-metadata.json"
+version: 1.0.3.2
 ---
 
 <!-- Keywords: code-graph, code graph, structural code indexing, mk-code-index, impact analysis, code_graph_scan, code_graph_query, code_graph_context, code_graph_status, ccc_status, detect_changes -->
@@ -71,7 +56,36 @@ Use this skill for:
 <!-- ANCHOR:smart-routing -->
 ## 2. SMART ROUTING
 
-Use this routing before choosing a tool or reference:
+### Primary Detection Signal
+
+This skill is **tool-keyed**, not folder-keyed. The router picks a tool, not a `references/<key>/` subfolder. Two signals drive the choice:
+
+1. **Operator-named tool** wins. If the prompt names a `code_graph_*`, `detect_changes`, or `ccc_*` tool, route there directly.
+2. **Classifier-derived intent** otherwise. Call `code_graph_classify_query_intent` to map natural language to one of `{structural, semantic, hybrid}`. Structural → this skill. Semantic → `mcp-coco-index`. Hybrid → use both: CocoIndex seeds → `code_graph_context`.
+
+### Phase Detection
+
+```text
+QUERY ARRIVES
+   |
+   +- STEP 0: Operator named a tool? -- YES --> Route to that tool
+   |                                |
+   |                                NO
+   |                                v
+   +- STEP 1: Classify intent (code_graph_classify_query_intent)
+   |          structural / semantic / hybrid
+   |
+   +- STEP 2: Check readiness (code_graph_status)
+   |          fresh? -- NO --> code_graph_scan, then retry
+   |          fresh? -- YES --> proceed
+   |
+   +- STEP 3: Pick tool from Resource Domains table below
+   +- STEP 4: Verify before completion (code_graph_verify on critical paths)
+```
+
+### Resource Domains
+
+The router selects from these tool intents. The table is the authoritative map; `mcp_server/tool-schemas.ts` `CODE_GRAPH_TOOL_SCHEMAS` is the source of truth for the schemas themselves.
 
 | Intent | Primary Surface | Reference |
 |--------|-----------------|-----------|
@@ -83,10 +97,18 @@ Use this routing before choosing a tool or reference:
 | Validate graph quality with gold queries | `mcp__mk_code_index__code_graph_verify` | `feature_catalog/02--manual-scan-verify-status/02-code-graph-verify.md` |
 | Inspect changed symbols from a diff | `mcp__mk_code_index__detect_changes` | `feature_catalog/03--detect-changes/01-detect-changes-preflight.md` |
 | Execute verification-gated apply-mode recovery operations | `mcp__mk_code_index__code_graph_apply` | `feature_catalog/08--doctor-code-graph/01-doctor-apply-mode.md` |
-| Bridge CocoIndex status, reindexing and feedback | `mcp__mk_code_index__ccc_status`, `mcp__mk_code_index__ccc_reindex`, `mcp__mk_code_index__ccc_feedback` | `feature_catalog/07--ccc-integration/` |
+| Bridge CocoIndex status, reindexing and feedback | `mcp__mk_code_index__ccc_status`, `mcp__mk_code_index__ccc_reindex`, `mcp__mk_code_index__ccc_feedback` | `references/ccc-bridge-integration.md` |
 | Review doctor code-graph apply policy | `/doctor code-graph` | `feature_catalog/08--doctor-code-graph/01-doctor-apply-mode.md` |
 
-The standalone MCP server name is `mk-code-index`. Tool IDs stay stable as `code_graph_*`, `detect_changes` and `ccc_*`.
+The standalone MCP server name is `mk-code-index`. Tool IDs stay stable as `code_graph_*`, `detect_changes`, and `ccc_*`.
+
+### Resource Loading Levels
+
+| Level | When to Load | Resources |
+| --- | --- | --- |
+| ALWAYS | Every invocation (after status check) | `references/code-graph-readiness-check.md`, `references/tool-surface.md` |
+| CONDITIONAL | On scope-change, scan-related, or readiness-blocked queries | `references/readiness-and-scope-fingerprint.md`, `references/database-path-policy.md` |
+| ON_DEMAND | Cross-skill questions, naming questions, ownership questions | `references/naming-conventions.md`, `references/ownership-boundary.md`, `references/ccc-bridge-integration.md` |
 
 ### Routing key
 
@@ -103,6 +125,8 @@ The routing key is the natural-language intent class returned by `code_graph_cla
 - Hardcoded tool lists in router code. Consult `mcp_server/tool-schemas.ts` `CODE_GRAPH_TOOL_SCHEMAS` as the source of truth.
 - Using `code_graph_query` for unclassified queries. Classify intent first so the right tool runs.
 - Treating `detect_changes` as a general query tool. It is diff-driven impact analysis with a fixed schema, not a query surface.
+
+> **Router authority:** tool selection is driven by `mcp_server/tool-schemas.ts` (`CODE_GRAPH_TOOL_SCHEMAS`) and `mcp_server/lib/query-intent-classifier.ts`. The table above is documentation; the schema array is canonical.
 
 <!-- /ANCHOR:smart-routing -->
 
@@ -123,10 +147,25 @@ The deep-loop coverage graph tools remain in `system-spec-kit` because the resea
 <!-- ANCHOR:rules -->
 ## 4. RULES
 
-- MCP tools are registered under the standalone `mk-code-index` server.
-- MCP callers use `mcp__mk_code_index__code_graph_*`, `mcp__mk_code_index__ccc_*` and `mcp__mk_code_index__detect_changes`.
-- Direct library consumers in system-spec-kit handlers/hooks continue to use in-process imports.
-- Keep shared lifecycle and memory surfaces in `system-spec-kit`. Move only code-graph-owned docs/source here.
+### ALWAYS
+
+1. **ALWAYS register MCP tools under the standalone `mk-code-index` server.** Tool IDs (`code_graph_*`, `detect_changes`, `ccc_*`) are the stable surface contract.
+2. **ALWAYS use the `mcp__mk_code_index__*` namespace** for MCP-side tool calls. Direct library consumers in `system-spec-kit` handlers and hooks use in-process imports through `system-spec-kit/mcp_server/lib/code-graph-boundary.ts`.
+3. **ALWAYS check readiness before answering structural questions.** `code_graph_status` first; if `readiness !== "fresh"`, return the `blocked` payload from the tool rather than a stale result.
+4. **ALWAYS treat `mcp_server/tool-schemas.ts` `CODE_GRAPH_TOOL_SCHEMAS` as the authoritative tool list.** Docs are documentation; the schema array is canonical.
+
+### NEVER
+
+1. **NEVER move shared lifecycle, memory, or hook surfaces into `system-code-graph`.** Those belong in `system-spec-kit`. Only code-graph-owned docs and source live here.
+2. **NEVER return a stale, empty, or scope-mismatched graph answer as if it were authoritative.** Read-path tools (`code_graph_query`, `code_graph_context`, `detect_changes`) refuse with `status: "blocked"` instead of false-safe empty results — preserve that contract end-to-end.
+3. **NEVER fall back to text search when MCP is unavailable.** Structural queries must report the unavailable state and stop. Ambiguous text-search results mislead more than they help.
+4. **NEVER hardcode tool lists or namespace prefixes in router or caller code.** Consult `tool-schemas.ts` at runtime; rely on the `mcp__mk_code_index__` prefix from MCP discovery.
+
+### ESCALATE IF
+
+1. **ESCALATE IF the scope fingerprint differs from the stored baseline** and the requested scan would replace an established graph without operator opt-in. Surface the fingerprint delta and ask for confirmation (`forceScopeChange: true`).
+2. **ESCALATE IF readiness is `blocked` and the required action is destructive** (zero-node reset, full re-scan on a populated graph). Ask before issuing the destructive flag.
+3. **ESCALATE IF the classifier returns low-confidence intent** on a high-stakes query (refactor preflight, blast-radius audit). Request one concrete file path, symbol, or error message before guessing.
 <!-- /ANCHOR:rules -->
 
 ---
@@ -156,38 +195,36 @@ The deep-loop coverage graph tools remain in `system-spec-kit` because the resea
 <!-- ANCHOR:integration-points -->
 ## 7. INTEGRATION POINTS
 
-**Naming convention.** The skill directory and SKILL.md `name` field use `system-code-graph` (filesystem slug). The MCP server name and client namespace use `mk-code-index` (runtime identity, namespaced as `mcp__mk_code_index__*` because MCP converts hyphens to underscores in tool namespace prefixes). Both names are intentional and correct in their respective scopes. Directory paths under `.opencode/skills/system-code-graph/` always use the skill slug. MCP-facing identifiers always use `mk-code-index` or `mk_code_index`.
-
 Cross-subsystem consumers use two intentional paths:
 
 | Consumer Type | Integration |
 |---------------|-------------|
-| system-spec-kit handlers/hooks/session surfaces | Direct in-process imports from `system-code-graph/mcp_server/lib/*` for shared readiness, startup and context helpers. |
-| MCP callers, agents and commands | Standalone `mk-code-index` MCP namespace: `mcp__mk_code_index__code_graph_*`, `mcp__mk_code_index__ccc_*` and `mcp__mk_code_index__detect_changes`. |
+| `system-spec-kit` handlers / hooks / session surfaces | Direct in-process imports from `system-code-graph/mcp_server/lib/*` for shared readiness, startup, and context helpers via `system-spec-kit/mcp_server/lib/code-graph-boundary.ts`. |
+| MCP callers (agents, commands, runtimes) | Standalone `mk-code-index` MCP namespace: `mcp__mk_code_index__code_graph_*`, `mcp__mk_code_index__ccc_*`, and `mcp__mk_code_index__detect_changes`. |
 
-The shared SQLite file remains the coordination boundary. The scan loop is the single writer.
+The shared SQLite file at `.opencode/.spec-kit/code-graph/database/code-graph.sqlite` remains the coordination boundary. The scan loop is the single writer.
+
+**Naming asymmetries.** Five identifiers refer to this skill across runtime layers — skill folder slug (`system-code-graph`), MCP server name (`mk-code-index`), MCP config key (`mk_code_index`), launcher / plugin file names, and the shared data directory. Each is correct in its own scope. See [`references/naming-conventions.md`](references/naming-conventions.md) for the full map plus the rationale for the hook-location asymmetry (hooks remain under `system-spec-kit/mcp_server/hooks/`).
 <!-- /ANCHOR:integration-points -->
 
 ---
 
-<!-- ANCHOR:naming-note -->
-## 8. NAMING NOTE
-
-### MCP Server Name vs Plugin/Bridge Name
-
-The MCP server name is `mk-code-index` (tool prefix `mcp__mk_code_index__*`). The OpenCode plugin and CLI bridge use `mk-code-graph` / `mk-code-graph-bridge.mjs`. This asymmetry is intentional (ADR-002): the MCP server name is a stable tool contract that would break consumers if renamed, while the plugin and bridge names match the `system-code-graph` skill folder for discoverability and symmetry with the advisor pattern.
-
-### Hook Source Location
-
-SessionStart hooks (`session-prime.ts`, `session-start.ts`) live under `.opencode/skills/system-spec-kit/mcp_server/hooks/`, NOT under `system-code-graph/hooks/`. This is an intentional asymmetry vs the advisor pattern where hooks are skill-owned (ADR-001). The code-graph hook path is referenced by 110+ files, `.claude/settings.local.json` paths, and build config dependencies. Migrating would be a high-risk breaking change. Hooks reach code-graph data through the stable boundary at `system-spec-kit/mcp_server/lib/code-graph-boundary.ts`. Migration is deferred to a future packet with build/config redesign scope.
-<!-- /ANCHOR:naming-note -->
-
----
-
 <!-- ANCHOR:related-resources -->
-## 9. RELATED RESOURCES
+## 8. REFERENCES AND RELATED RESOURCES
+
+### Core references (this skill)
+
+- [`references/tool-surface.md`](references/tool-surface.md) — 11 MCP tools mapped to handler files, primary purpose, and preconditions.
+- [`references/readiness-and-scope-fingerprint.md`](references/readiness-and-scope-fingerprint.md) — readiness state machine (`fresh`/`stale`/`blocked`/`empty`/`absent`) and the scan-scope fingerprint contract.
+- [`references/code-graph-readiness-check.md`](references/code-graph-readiness-check.md) — `ensureCodeGraphReady()` gates, preconditions, recovery procedures.
+- [`references/ccc-bridge-integration.md`](references/ccc-bridge-integration.md) — when to use `ccc_status` / `ccc_reindex` / `ccc_feedback` and how they coordinate with CocoIndex.
+- [`references/database-path-policy.md`](references/database-path-policy.md) — canonical database path policy and override rules.
+- [`references/naming-conventions.md`](references/naming-conventions.md) — name map across skill folder, MCP server, launcher, plugin bridge, and hook location.
+- [`references/ownership-boundary.md`](references/ownership-boundary.md) — what stays in `system-spec-kit` vs `system-code-graph` after extraction.
+
+### Cross-skill references
 
 - Shared lifecycle and context docs that stayed in `system-spec-kit`: `.opencode/skills/system-spec-kit/feature_catalog/22--context-preservation/`
 - Extraction history: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/013-system-code-graph-extraction/`
-- MCP rename packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/024-mcp-tool-rename-mk-code-index/`
+- Latest uplift packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/019-system-code-graph-uplift/`
 <!-- /ANCHOR:related-resources -->

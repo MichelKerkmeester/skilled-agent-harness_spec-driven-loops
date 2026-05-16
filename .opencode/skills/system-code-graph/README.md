@@ -334,9 +334,13 @@ No. Those files belong to third-party packages. Keep sk-doc template alignment t
 | [INSTALL_GUIDE.md](./INSTALL_GUIDE.md) | Native bootstrap and per-runtime configuration. |
 | [feature_catalog/feature_catalog.md](./feature_catalog/feature_catalog.md) | Current feature inventory. |
 | [manual_testing_playbook/manual_testing_playbook.md](./manual_testing_playbook/manual_testing_playbook.md) | Operator validation scenario index. |
+| [references/tool-surface.md](./references/tool-surface.md) | All 11 MCP tools mapped to handler, purpose, preconditions, token budget. |
+| [references/readiness-and-scope-fingerprint.md](./references/readiness-and-scope-fingerprint.md) | Readiness state machine, trust state, and scope-fingerprint contract. |
 | [references/code-graph-readiness-check.md](./references/code-graph-readiness-check.md) | Readiness contract primer. |
+| [references/ccc-bridge-integration.md](./references/ccc-bridge-integration.md) | When to use `ccc_status` / `ccc_reindex` / `ccc_feedback` with CocoIndex. |
+| [references/naming-conventions.md](./references/naming-conventions.md) | Name map across skill folder, MCP server, launcher, plugin bridge, hook location. |
 | [references/ownership-boundary.md](./references/ownership-boundary.md) | Why some graph-related code stayed in `system-spec-kit`. |
-| [references/database-path-policy.md](./references/database-path-policy.md) | Workspace containment guarantees for the SQLite database. |
+| [references/database-path-policy.md](./references/database-path-policy.md) | Canonical database path and override rules. |
 | [mcp_server/handlers/README.md](./mcp_server/handlers/README.md) | Handler-layer package topology. |
 | [mcp_server/lib/README.md](./mcp_server/lib/README.md) | Core graph implementation topology. |
 | [mcp_server/tools/README.md](./mcp_server/tools/README.md) | MCP dispatch surface. |

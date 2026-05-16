@@ -224,6 +224,9 @@ Package references:
 - `references/db-path-policy.md`
 - `references/standalone-mcp-shape.md`
 - `references/legacy-tool-bridge.md`
+- `references/skill-graph-drift.md` — detect and reconcile SQLite drift from source files.
+- `references/skill-graph-extraction-plan.md` — extraction history and completion record.
+- `references/deferred-decisions.md` — Tier D decision records (F4 Devin hooks, F6 deprecation banners).
 - `ARCHITECTURE.md`
 - `mcp_server/README.md`
 - `mcp_server/tools/README.md`

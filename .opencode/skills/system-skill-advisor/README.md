@@ -323,6 +323,8 @@ A: See [references/hooks/skill-advisor-hook.md](./references/hooks/skill-advisor
 | [references/legacy-tool-bridge.md](./references/legacy-tool-bridge.md) | Stable tool id bridge policy across the standalone migration. |
 | [references/propagate-enhances.md](./references/propagate-enhances.md) | Cross-skill enhances auto-propagation contract. |
 | [references/skill-graph-extraction-plan.md](./references/skill-graph-extraction-plan.md) | Skill-graph extraction history and plan. |
+| [references/skill-graph-drift.md](./references/skill-graph-drift.md) | Detect and reconcile SQLite drift from source files. |
+| [references/deferred-decisions.md](./references/deferred-decisions.md) | Tier D decision records (F4 Devin hooks, F6 deprecation banners). |
 | [references/hooks/skill-advisor-hook.md](./references/hooks/skill-advisor-hook.md) | Runtime hook contract for Claude, Codex, Gemini, Devin, OpenCode. |
 | [feature_catalog/feature_catalog.md](./feature_catalog/feature_catalog.md) | Current feature inventory. |
 | [manual_testing_playbook/manual_testing_playbook.md](./manual_testing_playbook/manual_testing_playbook.md) | Manual validation scenario index. |

@@ -108,6 +108,7 @@ Keep this phase-parent packet validator-compliant as a lean manifest that preser
 | 8 | `007-code-graph-backend-resilience/` | Code Graph Backend Resilience | complete |
 | 9 | `013-system-code-graph-extraction/` | System Code Graph Extraction | complete |
 
+| 21 | 021-cross-skill-doc-polish/ | [Phase 21 scope] | Pending |
 ### Phase Transition Rules
 
 - Each phase MUST pass `validate.sh` independently before the next phase begins.
@@ -127,6 +128,7 @@ Keep this phase-parent packet validator-compliant as a lean manifest that preser
 | `005-code-graph-doctor-command` | `006-code-graph-resilience-research` | `005-code-graph-doctor-command` remains discoverable and its successor relationship stays explicit in the parent manifest | Parent `spec.md` phase map and `graph-metadata.json` child list both include `006-code-graph-resilience-research` |
 | `006-code-graph-resilience-research` | `007-code-graph-backend-resilience` | `006-code-graph-resilience-research` remains discoverable and its successor relationship stays explicit in the parent manifest | Parent `spec.md` phase map and `graph-metadata.json` child list both include `007-code-graph-backend-resilience` |
 | 007-code-graph-backend-resilience | 013-system-code-graph-extraction | 007-code-graph-backend-resilience remains discoverable and its successor relationship stays explicit in the parent manifest | Parent spec.md phase map and graph-metadata.json child list both include 013-system-code-graph-extraction |
+| 020-system-code-graph-doc-alignment | 021-cross-skill-doc-polish | [Criteria TBD] | [Verification TBD] |
 <!-- /ANCHOR:phase-map -->
 
 ---
