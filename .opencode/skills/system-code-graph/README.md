@@ -45,11 +45,11 @@ Use this README when you need a human map of the skill. Use [SKILL.md](./SKILL.m
 
 | Metric | Value |
 |---|---|
-| Skill version | `1.0.0.0` |
+| Skill version | `1.0.3.1` |
 | Runtime package | `@spec-kit/system-code-graph` |
 | MCP server name | `mk-code-index` (config key `mk_code_index` — MCP converts hyphens to underscores for namespace prefixes) |
 | Client namespace | `mcp__mk_code_index__*` |
-| Active MCP tools | 10 |
+| Active MCP tools | 11 |
 | Storage | SQLite files under `mcp_server/database/` |
 | Database path override | `SPECKIT_CODE_GRAPH_DB_DIR` env var (default: `.opencode/skills/system-code-graph/mcp_server/database/`). Override only to point at an alternate canonical directory; the path must stay inside the workspace for the launcher's standalone-storage guard to permit it. |
 | Primary docs | `feature_catalog/`, `manual_testing_playbook/`, `mcp_server/**/README.md`, `ARCHITECTURE.md` |
@@ -130,6 +130,7 @@ Graph reads are deliberately false-safe. When the database is stale, missing or 
 |---|---|---|
 | `code_graph_scan` | Build or refresh graph state. | `mcp_server/handlers/scan.ts`, `mcp_server/lib/structural-indexer.ts` |
 | `code_graph_query` | Read outlines, calls, imports and blast radius. | `mcp_server/handlers/query.ts`, `mcp_server/lib/code-graph-db.ts` |
+| `code_graph_classify_query_intent` | Classify natural-language queries into structural/semantic/hybrid intent before routing. | `mcp_server/handlers/classify-query-intent.ts`, `mcp_server/lib/query-intent-classifier.ts` |
 | `code_graph_status` | Report graph health and readiness. | `mcp_server/handlers/status.ts`, `mcp_server/lib/readiness-contract.ts` |
 | `code_graph_context` | Build compact graph neighborhoods. | `mcp_server/handlers/context.ts`, `mcp_server/lib/code-graph-context.ts` |
 | `code_graph_verify` | Run the gold-query verification battery. | `mcp_server/handlers/verify.ts`, `mcp_server/lib/gold-query-verifier.ts` |

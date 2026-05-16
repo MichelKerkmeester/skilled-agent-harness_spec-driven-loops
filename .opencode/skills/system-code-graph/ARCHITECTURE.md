@@ -46,13 +46,14 @@ The skill was extracted from system-spec-kit's `mcp_server/lib/code-graph/` subt
 ## 3. COMPONENTS
 
 ### MCP server (`mcp_server/index.ts`)
-Entry point. Loads the 10 tool schemas from `mcp_server/tool-schemas.ts`, wires handlers from `mcp_server/handlers/`, opens stdio transport, advertises tools to the client. Server name registered as `mk-code-index`; clients see namespace `mcp__mk_code_index__*`.
+Entry point. Loads the 11 tool schemas from `mcp_server/tool-schemas.ts`, wires handlers from `mcp_server/handlers/`, opens stdio transport, advertises tools to the client. Server name registered as `mk-code-index`; clients see namespace `mcp__mk_code_index__*`.
 
-### Tool surface (10 tools)
+### Tool surface (11 tools)
 | Tool | Purpose |
 |------|---------|
 | `code_graph_scan` | Walk workspace, parse files via tree-sitter, persist file/symbol/edge rows |
 | `code_graph_query` | Structural queries: `outline`, `calls_from`, `calls_to`, `imports_from`, `imports_to`, `blast_radius` (with optional multi-subject union) |
+| `code_graph_classify_query_intent` | Classify natural-language queries into structural/semantic/hybrid intent before routing |
 | `code_graph_context` | Compact graph neighborhoods for LLM context windows; accepts seeds from CocoIndex, manual input, or graph lookups |
 | `code_graph_status` | Health/readiness report: file/node/edge counts, freshness, trust state, parser health |
 | `code_graph_verify` | Run gold-query battery against current index; supports category filtering and baseline persistence |
@@ -170,7 +171,7 @@ Change-detection path:
 | Consumer | Path | Purpose |
 |----------|------|---------|
 | `system-spec-kit` handlers/hooks | In-process imports from `system-code-graph/mcp_server/lib/*` | Shared readiness, startup briefs, context helpers |
-| MCP clients (Claude, Codex, Gemini, OpenCode) | Standalone `mk-code-index` MCP server | All 10 tools via `mcp__mk_code_index__*` namespace |
+| MCP clients (Claude, Codex, Gemini, OpenCode) | Standalone `mk-code-index` MCP server | All 11 tools via `mcp__mk_code_index__*` namespace |
 | Doctor command suite | `_routes.yaml` registers `code-graph` as a route | Diagnostic + apply-mode dispatch |
 | Skill advisor | Reads SKILL.md and metadata | Routes "code graph" / "blast radius" / "outline" requests here |
 
@@ -182,5 +183,5 @@ The shared SQLite file is the coordination boundary between in-process imports a
 <!-- ANCHOR:open-questions -->
 ## 9. OPEN QUESTIONS
 
-None. The prior stale tool-count question is resolved: the live surface is 10 tools, enumerated in §3 Components above. Reconstructed in packet 019 after the original was lost to a force-push.
+None. The prior stale tool-count question is resolved: the live surface is 11 tools, enumerated in §3 Components above. Reconstructed in packet 019 after the original was lost to a force-push; tool count reconciled to 11 in packet 028 after `code_graph_classify_query_intent` was added to the schema.
 <!-- /ANCHOR:open-questions -->

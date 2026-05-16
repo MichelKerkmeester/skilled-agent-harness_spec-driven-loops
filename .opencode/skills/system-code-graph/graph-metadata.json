@@ -3,14 +3,14 @@
   "skill_id": "system-code-graph",
   "family": "system",
   "category": "system",
-  "mcp_server_topology": "co-resident",
-  "mcp_server_host": "mk-spec-memory",
+  "mcp_server_topology": "standalone",
+  "mcp_server_host": "mk-code-index",
   "edges": {
     "depends_on": [
       {
         "target": "system-spec-kit",
         "weight": 0.8,
-        "context": "co-resident MCP registration and extraction parent"
+        "context": "extraction parent (014); shared in-process lib imports survive after standalone MCP split"
       }
     ],
     "enhances": [
@@ -108,12 +108,12 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Code-graph subsystem skill for structural AST indexing, SQLite-backed graph storage, and 12 MCP tools used for impact analysis, graph context retrieval, readiness reporting, and change detection. Extracted from system-spec-kit per ADR-001 while preserving co-resident MCP topology under mk-spec-memory.",
+    "causal_summary": "Code-graph subsystem skill for structural AST indexing, SQLite-backed graph storage, and 11 MCP tools used for impact analysis, graph context retrieval, readiness reporting, query-intent classification, and change detection. Extracted from system-spec-kit per ADR-001 (packet 014) and finalized as a standalone mk-code-index MCP server in v1.0.3.0 (packet 040 three-way isolation).",
     "source_docs": [
       "SKILL.md",
       "README.md"
     ],
     "created_at": "2026-05-14T07:54:11Z",
-    "last_updated_at": "2026-05-14T07:54:11Z"
+    "last_updated_at": "2026-05-16T09:01:20Z"
   }
 }

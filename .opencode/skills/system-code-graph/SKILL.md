@@ -2,19 +2,22 @@
 name: system-code-graph
 description: "Structural code indexing and mk-code-index MCP workflows for graph readiness, impact queries, context retrieval and CCC checks."
 allowed-tools: [Bash, Edit, Glob, Grep, Read, Task, Write]
-version: 1.0.0.0
+version: 1.0.3.1
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/025-skill-docs-sk-doc-alignment"
-    last_updated_at: "2026-05-14T17:43:47Z"
-    last_updated_by: "codex"
-    recent_action: "Aligned skill-level docs with sk-doc standards"
-    next_safe_action: "Use mk-code-index namespace in live MCP references"
+    packet_pointer: "system-spec-kit/028-system-code-graph-doc-alignment"
+    last_updated_at: "2026-05-16T09:01:20Z"
+    last_updated_by: "main_agent"
+    recent_action: "Reconciled tool count (10/12 → 11), graph-metadata topology (co-resident → standalone), and version (1.0.0.0 → 1.0.3.1) across SKILL.md, README.md, ARCHITECTURE.md, INSTALL_GUIDE.md, feature_catalog.md, and graph-metadata.json"
+    next_safe_action: "Run strict-validate on packet 028, then commit on main"
     blockers: []
     key_files:
       - "SKILL.md"
+      - "README.md"
+      - "ARCHITECTURE.md"
+      - "INSTALL_GUIDE.md"
       - "feature_catalog/feature_catalog.md"
-      - "manual_testing_playbook/manual_testing_playbook.md"
+      - "graph-metadata.json"
 ---
 
 <!-- Keywords: code-graph, code graph, structural code indexing, mk-code-index, impact analysis, code_graph_scan, code_graph_query, code_graph_context, code_graph_status, ccc_status, detect_changes -->

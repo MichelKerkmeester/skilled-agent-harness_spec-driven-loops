@@ -35,7 +35,7 @@ This catalog is the current feature inventory for `.opencode/skills/system-code-
 
 The catalog covers 17 runtime features across 8 groups. Per-feature files carry the implementation surface, trigger path, current automation class, fallback and cross-references.
 
-**Feature-to-tool granularity (F013/F014).** The 17 features map to **10 MCP tools** in the `mk-code-index` server because individual features often compose multiple operations on the same tool (e.g. `code_graph_query` provides multiple query operations — `outline`, `calls_from`, `calls_to`, `imports_from`, `imports_to`, `blast_radius` — each catalogued as its own feature). Additionally, the **coverage-graph deep-loop tools** (`deep_loop_graph_*`) live in the **mk-spec-memory** MCP server (`mcp__mk_spec_memory__deep_loop_graph_*`), not in `mk-code-index`. They appear in this catalog for cross-skill discoverability since they share the structural-graph workflow surface.
+**Feature-to-tool granularity (F013/F014).** The 17 features map to **11 MCP tools** in the `mk-code-index` server because individual features often compose multiple operations on the same tool (e.g. `code_graph_query` provides multiple query operations — `outline`, `calls_from`, `calls_to`, `imports_from`, `imports_to`, `blast_radius` — each catalogued as its own feature). Additionally, the **coverage-graph deep-loop tools** (`deep_loop_graph_*`) live in the **mk-spec-memory** MCP server (`mcp__mk_spec_memory__deep_loop_graph_*`), not in `mk-code-index`. They appear in this catalog for cross-skill discoverability since they share the structural-graph workflow surface.
 
 | Group | Count | Scope |
 | --- | ---: | --- |

@@ -108,7 +108,7 @@ Each runtime expects an MCP server entry with the same launcher invocation. The 
       "command": ["node", ".opencode/bin/mk-code-index-launcher.cjs"],
       "environment": {
         "_NOTE_1_DB": "Database lives at .opencode/.spec-kit/code-graph/database/code-graph.sqlite by default; SPECKIT_CODE_GRAPH_DB_DIR overrides.",
-        "_NOTE_2_TOOLS": "Registers 10 tools: code_graph_scan/query/context/status/verify/apply, detect_changes, ccc_status/reindex/feedback. MCP namespace: mcp__mk_code_index__*",
+        "_NOTE_2_TOOLS": "Registers 11 tools: code_graph_scan/query/classify_query_intent/context/status/verify/apply, detect_changes, ccc_status/reindex/feedback. MCP namespace: mcp__mk_code_index__*",
         "_NOTE_3_INDEX_DEFAULTS": "INDEX_* committed defaults are false (end-user safe). Maintainer mode: set SPECKIT_CODE_GRAPH_MAINTAINER_MODE=true in .env.local (gitignored); the launcher will force all 5 INDEX_* to true at startup.",
         "SPECKIT_CODE_GRAPH_INDEX_SKILLS": "false",
         "SPECKIT_CODE_GRAPH_INDEX_AGENTS": "false",
@@ -130,7 +130,7 @@ args = [".opencode/bin/mk-code-index-launcher.cjs"]
 
 [mcp_servers.mk_code_index.env]
 _NOTE_1_DB = "Database lives at .opencode/.spec-kit/code-graph/database/code-graph.sqlite by default; SPECKIT_CODE_GRAPH_DB_DIR overrides."
-_NOTE_2_TOOLS = "Registers 10 tools: code_graph_scan/query/context/status/verify/apply, detect_changes, ccc_status/reindex/feedback. MCP namespace: mcp__mk_code_index__*"
+_NOTE_2_TOOLS = "Registers 11 tools: code_graph_scan/query/classify_query_intent/context/status/verify/apply, detect_changes, ccc_status/reindex/feedback. MCP namespace: mcp__mk_code_index__*"
 SPECKIT_CODE_GRAPH_INDEX_SKILLS = "false"
 SPECKIT_CODE_GRAPH_INDEX_AGENTS = "false"
 SPECKIT_CODE_GRAPH_INDEX_COMMANDS = "false"
