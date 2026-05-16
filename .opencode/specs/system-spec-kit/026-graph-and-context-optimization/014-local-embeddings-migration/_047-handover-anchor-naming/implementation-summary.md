@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/046-handover-anchor-naming"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/_047-handover-anchor-naming"
     last_updated_at: "2026-05-14T16:53:14Z"
     last_updated_by: "codex"
     recent_action: "Completed handover anchor alignment"
@@ -21,7 +21,7 @@ _memory:
       - ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "046-handover-anchor-naming-summary"
+      session_id: "_047-handover-anchor-naming-summary"
       parent_session_id: null
     completion_pct: 100
     open_questions: []
@@ -42,7 +42,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 046-handover-anchor-naming |
+| **Spec Folder** | _047-handover-anchor-naming |
 | **Completed** | 2026-05-14 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
