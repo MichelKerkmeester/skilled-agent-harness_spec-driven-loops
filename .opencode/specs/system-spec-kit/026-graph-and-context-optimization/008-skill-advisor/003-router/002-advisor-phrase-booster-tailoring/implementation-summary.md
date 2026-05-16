@@ -1,5 +1,5 @@
 ---
-title: "...raph-and-context-optimization/008-skill-advisor/003-advisor-phrase-booster-tailoring/implementation-summary]"
+title: "...raph-and-context-optimization/008-skill-advisor/002-advisor-phrase-booster-tailoring/implementation-summary]"
 description: "Migrated 24 tokenizer-broken multi-word INTENT_BOOSTERS entries to PHRASE_INTENT_BOOSTERS, added 15 new phrase routes, fixed hyphenated-token bug. Regression held at 1.0 top-1 and p0. Headline uplift: 5-dimension agent scoring now routes to sk-improve-agent at 0.95 instead of misrouting to sk-improve-prompt at 0.77."
 trigger_phrases:
   - "advisor phrase booster implementation"
@@ -9,7 +9,7 @@ contextType: "general"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/003-advisor-phrase-booster-tailoring"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-advisor-phrase-booster-tailoring"
     last_updated_at: "2026-04-15T12:14:00Z"
     last_updated_by: "memory-save-post-followup"
     recent_action: "Same-session follow-up completed — 12 hyphenated INTENT keys migrated (10 to PHRASE, 2 duplicate-removes). Cumulative: 36 INTENT deleted, 33 PHRASE added. Final invariant: zero multi-char keys in INTENT_BOOSTERS. Regression held at 1.0 top1/p0 across all 3 checkpoints (pre-Phase-2, post-Phase-2, post-follow-up)."
@@ -18,8 +18,8 @@ _memory:
     key_files:
       - ".opencode/skills/skill-advisor/scripts/skill_advisor.py"
       - ".opencode/skills/skill-advisor/scripts/fixtures/skill_advisor_regression_cases.jsonl"
-      - ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/003-advisor-phrase-booster-tailoring/scratch/phrase-boost-delta.md"
-      - ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/003-advisor-phrase-booster-tailoring/research/research.md"
+      - ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-advisor-phrase-booster-tailoring/scratch/phrase-boost-delta.md"
+      - ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-advisor-phrase-booster-tailoring/research/research.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "memory-save-013-2026-04-15T12-14"
@@ -46,7 +46,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/003-advisor-phrase-booster-tailoring` |
+| **Spec Folder** | `system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-advisor-phrase-booster-tailoring` |
 | **Completed** | 2026-04-15 |
 | **Level** | 2 |
 | **Primary Driver** | cli-copilot `gpt-5.4` (Phase 2 migration) |

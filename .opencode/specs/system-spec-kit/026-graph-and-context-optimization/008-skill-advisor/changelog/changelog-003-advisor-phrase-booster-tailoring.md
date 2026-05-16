@@ -15,7 +15,7 @@ contextType: "implementation"
 
 ## 2026-04-15
 
-> Spec folder: `026-graph-and-context-optimization/008-skill-advisor/003-advisor-phrase-booster-tailoring` (Level 2)
+> Spec folder: `026-graph-and-context-optimization/008-skill-advisor/002-advisor-phrase-booster-tailoring` (Level 2)
 > Parent packet: `026-graph-and-context-optimization/008-skill-advisor`
 
 ### Summary

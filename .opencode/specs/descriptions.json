@@ -6093,7 +6093,7 @@
       "lastUpdated": "2026-05-08T08:26:57.706Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/003-advisor-phrase-booster-tailoring",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-advisor-phrase-booster-tailoring",
       "description": "Feature Specification: Advisor Phrase-Booster Tailoring",
       "keywords": [
         "feature",

@@ -9,7 +9,7 @@ trigger_phrases:
   - "search/routing tuning, skill graph and advisor unification, advisor docs and standards, smart-router, hook surface, plugin hardening, and hook improvements"
   - "001-search-and-routing-tuning"
   - "001-skill-advisor-graph"
-  - "003-advisor-phrase-booster-tailoring"
+  - "002-advisor-phrase-booster-tailoring"
   - "004-skill-advisor-docs-and-code-alignment"
   - "005-smart-router-remediation-and-opencode-plugin"
   - "006-deferred-remediation-and-telemetry-run"
@@ -111,7 +111,7 @@ Keep this theme as the single active parent for the full skill advisor system. E
 |-------|--------|--------|-------------|
 | 1 | `001-search-and-routing-tuning/` | Complete | Feature Specification: Search and Routing Tuning Coordination Parent |
 | 2 | `001-skill-advisor-graph/` | Implemented | Feature Specification: Skill Advisor Graph |
-| 3 | `003-advisor-phrase-booster-tailoring/` | Draft | Feature Specification: Advisor Phrase-Booster Tailoring |
+| 3 | `002-advisor-phrase-booster-tailoring/` | Draft | Feature Specification: Advisor Phrase-Booster Tailoring |
 | 4 | `004-skill-advisor-docs-and-code-alignment/` | Spec Ready | Feature Specification: Skill-Advisor Docs + Phase 020 Code Alignment |
 | 5 | `005-smart-router-remediation-and-opencode-plugin/` | Spec Ready | Feature Specification: Smart-Router Remediation + OpenCode Plugin |
 | 6 | `006-deferred-remediation-and-telemetry-run/` | Spec Ready | Feature Specification: Deferred Remediation + Telemetry Measurement Run |

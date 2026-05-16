@@ -1,5 +1,5 @@
 ---
-title: "...tem-spec-kit/026-graph-and-context-optimization/008-skill-advisor/003-advisor-phrase-booster-tailoring/spec]"
+title: "...tem-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-advisor-phrase-booster-tailoring/spec]"
 description: "The advisor's INTENT_BOOSTERS has 24 multi-word keys that the tokenizer splits on whitespace, turning them into no-ops. PHRASE_INTENT_BOOSTERS exists but is under-used. Migrate tokenizer-broken entries, add missing phrase routes, hold ≥0.92 top-1 accuracy on regression fixture."
 trigger_phrases:
   - "advisor phrase booster"
@@ -12,7 +12,7 @@ contextType: "general"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/003-advisor-phrase-booster-tailoring"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-advisor-phrase-booster-tailoring"
     last_updated_at: "2026-04-15T00:00:00Z"
     last_updated_by: "spec-kit-start"
     recent_action: "Authored Level 2 spec for PHRASE_INTENT_BOOSTERS migration + Barter-context additions"

@@ -2564,9 +2564,9 @@ exec
  succeeded in 0ms:
 /.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-smart-router-remediation-and-opencode-plugin
 /.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-smart-router-remediation-and-opencode-plugin/scratch
-/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/003-advisor-phrase-booster-tailoring
-/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/003-advisor-phrase-booster-tailoring/research
-/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/003-advisor-phrase-booster-tailoring/scratch
+/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-advisor-phrase-booster-tailoring
+/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-advisor-phrase-booster-tailoring/research
+/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-advisor-phrase-booster-tailoring/scratch
 /.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-runtime-executor-hardening/003-system-hardening
 /.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/005-code-graph-advisor-refinement
 /.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/005-code-graph-advisor-refinement/research

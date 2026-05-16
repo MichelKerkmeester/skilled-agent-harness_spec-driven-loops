@@ -1,5 +1,5 @@
 ---
-title: "...tem-spec-kit/026-graph-and-context-optimization/008-skill-advisor/003-advisor-phrase-booster-tailoring/plan]"
+title: "...tem-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-advisor-phrase-booster-tailoring/plan]"
 description: "Single-file advisor edit in 3 phases — audit multi-word INTENT_BOOSTERS entries, migrate to PHRASE_INTENT_BOOSTERS, prove via regression fixture. Canonical Public repo advisor; Barter sync deferred."
 trigger_phrases:
   - "advisor phrase booster plan"
@@ -9,7 +9,7 @@ contextType: "general"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/003-advisor-phrase-booster-tailoring"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-advisor-phrase-booster-tailoring"
     last_updated_at: "2026-04-15T00:00:00Z"
     last_updated_by: "spec-kit-start"
     recent_action: "Authored Level 2 plan with 3-phase migration + regression gate"

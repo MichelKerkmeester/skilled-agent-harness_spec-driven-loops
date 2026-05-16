@@ -1,5 +1,5 @@
 ---
-title: "...em-spec-kit/026-graph-and-context-optimization/008-skill-advisor/003-advisor-phrase-booster-tailoring/tasks]"
+title: "...em-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-advisor-phrase-booster-tailoring/tasks]"
 description: "3-phase serial task list: baseline + audit, migrate + add, regress + deliver"
 trigger_phrases:
   - "advisor phrase booster tasks"
@@ -9,7 +9,7 @@ contextType: "general"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/003-advisor-phrase-booster-tailoring"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-advisor-phrase-booster-tailoring"
     last_updated_at: "2026-04-15T00:00:00Z"
     last_updated_by: "spec-kit-start"
     recent_action: "Authored Level 2 task list (17 tasks, 3 phases, serial)"

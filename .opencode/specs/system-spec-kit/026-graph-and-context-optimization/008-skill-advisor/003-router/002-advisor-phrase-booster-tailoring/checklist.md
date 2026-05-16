@@ -1,5 +1,5 @@
 ---
-title: "...pec-kit/026-graph-and-context-optimization/008-skill-advisor/003-advisor-phrase-booster-tailoring/checklist]"
+title: "...pec-kit/026-graph-and-context-optimization/008-skill-advisor/002-advisor-phrase-booster-tailoring/checklist]"
 description: "Regression harness is the P0 gate. Top-1 accuracy ≥0.92, zero P0 fixture regressions."
 trigger_phrases:
   - "advisor phrase booster checklist"
@@ -8,7 +8,7 @@ contextType: "general"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/003-advisor-phrase-booster-tailoring"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-advisor-phrase-booster-tailoring"
     last_updated_at: "2026-04-15T00:00:00Z"
     last_updated_by: "spec-kit-start"
     recent_action: "Authored Level 2 checklist with regression threshold gates"
