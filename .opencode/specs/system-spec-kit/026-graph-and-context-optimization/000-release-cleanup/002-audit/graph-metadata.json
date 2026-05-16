@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-audit",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-audit",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup",
+  "children_ids": [
+    "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-audit/008-tanstack-security-audit",
+    "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-audit/008-w3-w7-runtime-wiring-and-audit",
+    "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-audit/018-doc-truth-pass",
+    "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-audit/019-code-graph-watcher-retraction",
+    "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-audit/020-memory-retention-sweep",
+    "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-audit/022-full-matrix-execution-validation",
+    "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-audit/036-runtime-command-agent-alignment-review",
+    "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-audit/045-drift-finding-fixes"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": ["000-release-cleanup/002-audit", "audit-and-remediation"],
+    "key_topics": ["audit", "validation", "runtime-wiring", "security-audit", "compliance-checks", "sweeps", "alignment-review", "drift-fixes"],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": ["spec.md"],
+    "entities": [],
+    "causal_summary": "Coordinate system-wide audits, validation sweeps, and compliance checks to ensure runtime wiring correctness, security posture, and agent alignment. This phase parent binds together 8 children including 008-w3-w7-runtime-wiring-and-audit for runtime infrastructure validation and 036-runtime-command-agent-alignment-review for cross-runtime agent consistency, providing comprehensive validation coverage for the release cleanup effort.",
+    "created_at": "2026-05-16T09:00:00Z",
+    "last_save_at": "2026-05-16T09:00:00Z",
+    "save_lineage": "cli-devin-swe-1.6-w3a",
+    "last_accessed_at": null,
+    "source_docs": ["spec.md", "README.md"]
+  }
+}
