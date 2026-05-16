@@ -73,7 +73,7 @@ This packet adds a canonical substrate stress gate under `.opencode/skills/syste
 | `.opencode/skills/system-spec-kit/mcp_server/stress_test/README.md` | Updated | Added substrate suite directory, key file, validation, and entrypoint docs. |
 | `.opencode/skills/system-spec-kit/mcp_server/package.json` | Updated | Added `stress:substrate`. |
 | `.opencode/skills/system-spec-kit/mcp_server/vitest.stress.config.ts` | Updated | Raised stress timeout to `240_000`. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/045-shared-daemon-suite-runner/implementation-summary.md` | Updated | Added 049 canonical gate cross-reference. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/_046-shared-daemon-suite-runner/implementation-summary.md` | Updated | Added 049 canonical gate cross-reference. |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/049-substrate-stress-coverage/` | Created | Level 2 packet docs and metadata. |
 <!-- /ANCHOR:what-built -->
 

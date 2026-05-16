@@ -1,5 +1,5 @@
 {
-  "specFolder": "045-shared-daemon-suite-runner",
+  "specFolder": "_046-shared-daemon-suite-runner",
   "description": "Direct MCP shared-daemon runner for the 24-- local LLM query intelligence suite, closing 043's per-child daemon contention gap for memory and CocoIndex scenarios.",
   "keywords": [
     "shared-daemon",

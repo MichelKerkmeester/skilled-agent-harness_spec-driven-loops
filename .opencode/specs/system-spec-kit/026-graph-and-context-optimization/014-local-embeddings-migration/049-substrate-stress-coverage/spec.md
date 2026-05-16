@@ -37,7 +37,7 @@ _memory:
 | **Branch** | main |
 | **Parent Spec** | `../spec.md` (`014-local-embeddings-migration`) |
 | **Phase** | 049 |
-| **Depends On** | `../045-shared-daemon-suite-runner/` |
+| **Depends On** | `../_046-shared-daemon-suite-runner/` |
 | **Complexity** | 50/70 |
 <!-- /ANCHOR:metadata -->
 
@@ -85,7 +85,7 @@ Promote the 045 runner into `mcp_server/stress_test/substrate/` and add pure-log
 | `.opencode/skills/system-spec-kit/mcp_server/stress_test/README.md` | Update | Document substrate suite and entrypoint. |
 | `.opencode/skills/system-spec-kit/mcp_server/package.json` | Update | Add `stress:substrate` script. |
 | `.opencode/skills/system-spec-kit/mcp_server/vitest.stress.config.ts` | Update | Set stress timeout to 240 seconds. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/045-shared-daemon-suite-runner/implementation-summary.md` | Update | Add 049 promotion cross-reference. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/_046-shared-daemon-suite-runner/implementation-summary.md` | Update | Add 049 promotion cross-reference. |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/049-substrate-stress-coverage/` | Create | Level 2 packet docs and generated metadata. |
 <!-- /ANCHOR:scope -->
 
@@ -207,6 +207,6 @@ Promote the 045 runner into `mcp_server/stress_test/substrate/` and add pure-log
 - **Implementation Plan**: See `plan.md`
 - **Task Breakdown**: See `tasks.md`
 - **Verification Checklist**: See `checklist.md`
-- **Prior Runner**: See `../045-shared-daemon-suite-runner/implementation-summary.md`
+- **Prior Runner**: See `../_046-shared-daemon-suite-runner/implementation-summary.md`
 
 <!-- /ANCHOR:related-docs -->

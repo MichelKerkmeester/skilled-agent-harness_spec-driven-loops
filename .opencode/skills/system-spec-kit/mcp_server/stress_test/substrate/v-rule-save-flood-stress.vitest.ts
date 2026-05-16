@@ -47,7 +47,7 @@ function createParentSpecFixture(): string {
   const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'substrate-v8-parent-'));
   tempRoots.push(tempRoot);
   const parentSpecFolder = path.join(tempRoot, '014-local-embeddings-migration');
-  fs.mkdirSync(path.join(parentSpecFolder, '045-shared-daemon-suite-runner'), { recursive: true });
+  fs.mkdirSync(path.join(parentSpecFolder, '_046-shared-daemon-suite-runner'), { recursive: true });
   fs.mkdirSync(path.join(parentSpecFolder, '049-substrate-stress-coverage'), { recursive: true });
   fs.writeFileSync(path.join(parentSpecFolder, 'spec.md'), '# Parent spec\n');
   return parentSpecFolder;
@@ -80,7 +80,7 @@ describe('V-rule save flood stress', () => {
   it('applies parent-child ancestry allowlisting without false-positive scatter trips', () => {
     const parentSpecFolder = createParentSpecFixture();
     const content = memoryFixture(`
-${repeatedSpecReference('045-shared-daemon-suite-runner', 5)}
+${repeatedSpecReference('_046-shared-daemon-suite-runner', 5)}
 ${repeatedSpecReference('049-substrate-stress-coverage', 5)}
 `, parentSpecFolder);
 

@@ -43,7 +43,7 @@ _memory:
 ## Phase 1: Setup
 
 - [x] T001 Read Level 2 templates (`templates/examples/level_2/`) [10m]
-- [x] T002 Read 045 spec and implementation summary (`045-shared-daemon-suite-runner/`) [15m]
+- [x] T002 Read 045 spec and implementation summary (`_046-shared-daemon-suite-runner/`) [15m]
 - [x] T003 Copy 045 runner to substrate harness (`stress_test/substrate/run-substrate-stress-harness.mjs`) [15m]
 - [x] T004 Adjust harness repo-root and sandbox evidence paths (`run-substrate-stress-harness.mjs`) [15m]
 - [x] T005 Add daemon harness Vitest wrapper (`substrate-runner-harness.vitest.ts`) [20m]
@@ -61,7 +61,7 @@ _memory:
 - [x] T010 Update stress suite README (`stress_test/README.md`) [10m]
 - [x] T011 Add npm script (`package.json`) [5m]
 - [x] T012 Bump stress timeout (`vitest.stress.config.ts`) [5m]
-- [x] T013 Add 045 cross-reference (`045-shared-daemon-suite-runner/implementation-summary.md`) [10m]
+- [x] T013 Add 045 cross-reference (`_046-shared-daemon-suite-runner/implementation-summary.md`) [10m]
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -98,6 +98,6 @@ _memory:
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
 - **Checklist**: See `checklist.md`
-- **045 Runner**: See `../045-shared-daemon-suite-runner/implementation-summary.md`
+- **045 Runner**: See `../_046-shared-daemon-suite-runner/implementation-summary.md`
 
 <!-- /ANCHOR:cross-refs -->

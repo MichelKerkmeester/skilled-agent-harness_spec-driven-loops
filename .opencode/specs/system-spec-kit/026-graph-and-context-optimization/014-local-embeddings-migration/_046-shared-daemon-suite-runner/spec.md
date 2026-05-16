@@ -11,7 +11,7 @@ contextType: "spec"
 status: "complete"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/045-shared-daemon-suite-runner"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/_046-shared-daemon-suite-runner"
     last_updated_at: "2026-05-14T17:53:33Z"
     last_updated_by: "cli-codex-gpt-5-5-high"
     recent_action: "Wired second cocoindex_code MCP client; 403/404/407/410 PASS via shared daemon"
@@ -22,12 +22,12 @@ _memory:
       - "_sandbox/24--local-llm-query-intelligence/evidence/run-2026-05-14-shared-daemon.summary.tsv"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000045"
-      session_id: "045-shared-daemon-suite-runner"
+      session_id: "_046-shared-daemon-suite-runner"
       parent_session_id: null
     completion_pct: 100
     open_questions: []
     answered_questions:
-      - "Gate 3: E - phase folder 045-shared-daemon-suite-runner"
+      - "Gate 3: E - phase folder _046-shared-daemon-suite-runner"
       - "Branch: main; no branches and no commits"
       - "SpawnAgent forbidden and not used"
       - "CocoIndex execution is handled by a second shared StdioClientTransport to cocoindex_code, while memory scenarios stay on spec_kit_memory."
@@ -93,7 +93,7 @@ Create a direct Node MCP client runner that starts shared Spec Kit Memory and Co
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/045-shared-daemon-suite-runner/` | Create | Level 2 packet docs and metadata. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/_046-shared-daemon-suite-runner/` | Create | Level 2 packet docs and metadata. |
 | `_sandbox/24--local-llm-query-intelligence/evidence/run-mcp-direct.mjs` | Create | Direct MCP suite runner using shared memory and CocoIndex daemons. |
 | `_sandbox/24--local-llm-query-intelligence/evidence/run-2026-05-14-shared-daemon.summary.tsv` | Generate | Smoke and suite summary rows. |
 | `_sandbox/24--local-llm-query-intelligence/410/workload.json` | Generate | Canned 50-query latency workload. |
