@@ -50,7 +50,7 @@ _memory:
 | **Branch** | `scaffold/051-readme-code-template` |
 | **Parent Spec** | `../spec.md` |
 | **Phase** | 051 of `000-release-cleanup` |
-| **Predecessor** | `050-architecture-diagrams-and-topology` |
+| **Predecessor** | `025-architecture-diagrams-and-topology` |
 | **Successor** | None |
 <!-- /ANCHOR:metadata -->
 

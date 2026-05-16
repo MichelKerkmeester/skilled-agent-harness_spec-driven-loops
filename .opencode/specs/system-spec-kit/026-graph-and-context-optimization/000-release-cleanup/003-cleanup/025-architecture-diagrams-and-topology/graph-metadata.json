@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/050-architecture-diagrams-and-topology",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/050-architecture-diagrams-and-topology",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/025-architecture-diagrams-and-topology",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/025-architecture-diagrams-and-topology",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup",
   "children_ids": [],
   "manual": {

@@ -5229,7 +5229,7 @@
       "lastUpdated": "2026-05-08T08:26:57.481Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/050-architecture-diagrams-and-topology",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/025-architecture-diagrams-and-topology",
       "description": "Add ASCII box-art architecture diagrams and directory topology trees to all code-folder READMEs and ARCHITECTURE.md",
       "keywords": [
         "architecture",

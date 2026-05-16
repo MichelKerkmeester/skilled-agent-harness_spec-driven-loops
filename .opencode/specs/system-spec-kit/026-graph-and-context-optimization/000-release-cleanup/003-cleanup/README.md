@@ -28,7 +28,7 @@ Documentation fixes, template debt, orphan management, remediation.
 - `022-cli-skills-baseline-overlay-contract`
 - `023-pre-existing-test-failure-remediation`
 - `024-iter-001-daemon-concurrency-fixes`
-- `050-architecture-diagrams-and-topology`
+- `025-architecture-diagrams-and-topology`
 - `051-readme-code-template`
 - `052-missing-code-readmes-resource-map`
 - `053-doc-alignment-and-readme-filling`
