@@ -323,3 +323,29 @@ The 026 phase parent underwent its first restructure wave per `999-spec-026-rest
 - iter 039 full parent-doc restructure (20-section spec.md proposal)
 - 008-skill-advisor internal phase restructuring
 - Phase lifecycle governance (iter 047)
+
+
+---
+
+## Wave 2 Restructure Complete (2026-05-16, packet 109)
+
+Wave 2 executed per `998-aggressive-restructure-research/resource-map.md`.
+
+### Changes shipped (W2.A → W2.F)
+
+- **W2.A graph-metadata sync**: 000 children_ids 7→59→6 sub-phases; 008 children_ids 13→26→5 sub-phases; 026 parent gained `phase_sequence`, `meta_phase_ids`, `phase_parent_flag`, `phase_renames`, `resume_priority` derived fields per iter 015.
+- **W2.B 000 recatalog**: 59 flat children → 6 sub-phases (001-release-readiness/002-audit/003-cleanup/004-followup-post-program/005-stress-test/006-research) per 998 iter-003 keyword rules.
+- **W2.C M10 unblock**: 015-tanstack-security-audit absorbed → 000/002-audit/008-tanstack-security-audit. 015 top-level slot freed.
+- **W2.D 008 5 sub-phases**: 26 children → skill-graph 7 / scorer 8 / router 5 / hardening 4 / docs 2 per 998 iter-005.
+
+### Active top-level children (post-Wave-2)
+
+14 active children: 000, 001, 002, 003, 005, 006, 007, 008, 009, 010, 011, 012, 013, 014. (Plus 998 + 999 temporary research packets.)
+
+### Deferred to follow-on packet
+
+- W2.E SHALLOW+MEDIUM archive (per-packet ref-count proof needed; many already Wave-1-archived)
+- 998 + 999 packet deletion (after operator confirmation)
+- iter 029 orphan-detection re-dispatch
+- 003 ↔ 005 merge (Surface 3 consolidation; REDESIGN-flagged)
+- 008 INTERNAL phase content migration (only STRUCTURE shipped in W2.D)

@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/109-auto-review-stretch-uplift",
+  "spec_folder": "skilled-agent-orchestration/109-auto-review-stretch-uplift",
+  "parent_id": "skilled-agent-orchestration",
+  "children_ids": [
+    "skilled-agent-orchestration/109-auto-review-stretch-uplift/001-mk-plugins-config-uplift",
+    "skilled-agent-orchestration/109-auto-review-stretch-uplift/002-sk-code-review-uplift",
+    "skilled-agent-orchestration/109-auto-review-stretch-uplift/003-deep-review-uplift",
+    "skilled-agent-orchestration/109-auto-review-stretch-uplift/004-deep-agent-improvement-uplift"
+  ],
+  "manual": {
+    "depends_on": [
+      "skilled-agent-orchestration/108-sk-code-review-auto-review-uplift",
+      "skilled-agent-orchestration/106-upstream-auto-review-research"
+    ],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "109 auto-review stretch uplift",
+      "auto-review stretch teachings",
+      "h5 h7 h9 m1 m2 m3 m6 adoption"
+    ],
+    "key_topics": ["109", "auto-review-stretch", "h5", "h7", "h9", "m1", "m2", "m3", "m6", "council-gate"],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "001-mk-plugins-config-uplift/spec.md",
+      "002-sk-code-review-uplift/spec.md",
+      "003-deep-review-uplift/spec.md",
+      "004-deep-agent-improvement-uplift/spec.md"
+    ],
+    "entities": [],
+    "causal_summary": "Phase-parent adopting 7 stretch teachings deferred from packet 108 (H-5 3-tier config, H-7 marker dedup, H-9 bounded evidence, M-1 PR dedup, M-2 min-evidence gate, M-3 mutation dedup, M-6 async config init). Grouped into 4 phase children by target surface: mk-* plugins, sk-code-review, deep-review, deep-agent-improvement. Pre-implementation gate: deep-ai-council multi-seat review via cli-codex gpt-5.5 xhigh fast.",
+    "created_at": "2026-05-16T11:00:00Z",
+    "last_save_at": "2026-05-16T11:00:00Z",
+    "last_active_child_id": "001-mk-plugins-config-uplift"
+  }
+}
