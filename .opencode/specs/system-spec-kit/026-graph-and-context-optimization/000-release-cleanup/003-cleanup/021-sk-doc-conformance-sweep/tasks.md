@@ -3,12 +3,12 @@ title: "Tasks: sk-doc Conformance Sweep and Template Cleanup"
 description: "Numbered task list mapped to plan.md Tier 1-4 sub-phases; cli-codex parallel dispatches enumerated per wave."
 template_source: "SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2"
 trigger_phrases:
-  - "021-sk-doc-conformance-sweep-and-template-cleanup tasks"
+  - "021-sk-doc-conformance-sweep tasks"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/021-sk-doc-conformance-sweep-and-template-cleanup"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/021-sk-doc-conformance-sweep"
     last_updated_at: "2026-04-30T08:15:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Tasks doc rewritten to Level 3 canonical"
@@ -18,8 +18,8 @@ _memory:
       - "tasks.md"
       - "checklist.md"
     session_dedup:
-      fingerprint: "sha256:021-sk-doc-conformance-sweep-and-template-cleanup"
-      session_id: "021-sk-doc-conformance-sweep-and-template-cleanup"
+      fingerprint: "sha256:021-sk-doc-conformance-sweep"
+      session_id: "021-sk-doc-conformance-sweep"
       parent_session_id: "026-graph-and-context-optimization"
     completion_pct: 8
     open_questions: []
@@ -53,7 +53,7 @@ _memory:
 ### Tier 1 — Foundation (sequential)
 
 - [x] T-001 SP-001 Phase 040 collision resolved naturally (prior 040 renumbered to 027 in earlier session reorganization)
-- [x] T-002 SP-002 Create 040 spec folder shell at `021-sk-doc-conformance-sweep-and-template-cleanup/`
+- [x] T-002 SP-002 Create 040 spec folder shell at `021-sk-doc-conformance-sweep/`
 - [x] T-003 Write spec.md
 - [x] T-004 Write plan.md
 - [x] T-005 Write tasks.md (this file)

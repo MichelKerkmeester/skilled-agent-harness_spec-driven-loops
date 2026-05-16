@@ -3,12 +3,12 @@ title: "Verification Checklist: sk-doc Conformance Sweep and Template Cleanup"
 description: "Verification Date: 2026-04-30 (target). P0 items block completion claim; P1 items required absent user-approved deferral; P2 items optional."
 template_source: "SPECKIT_TEMPLATE_SOURCE: checklist | v2.2"
 trigger_phrases:
-  - "021-sk-doc-conformance-sweep-and-template-cleanup checklist"
+  - "021-sk-doc-conformance-sweep checklist"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/021-sk-doc-conformance-sweep-and-template-cleanup"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/021-sk-doc-conformance-sweep"
     last_updated_at: "2026-04-30T08:15:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Checklist doc rewritten to Level 3 canonical"
@@ -17,8 +17,8 @@ _memory:
     key_files:
       - "checklist.md"
     session_dedup:
-      fingerprint: "sha256:021-sk-doc-conformance-sweep-and-template-cleanup"
-      session_id: "021-sk-doc-conformance-sweep-and-template-cleanup"
+      fingerprint: "sha256:021-sk-doc-conformance-sweep"
+      session_id: "021-sk-doc-conformance-sweep"
       parent_session_id: "026-graph-and-context-optimization"
     completion_pct: 8
     open_questions: []

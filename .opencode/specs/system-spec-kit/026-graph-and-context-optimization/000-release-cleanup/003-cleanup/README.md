@@ -24,7 +24,7 @@ Documentation fixes, template debt, orphan management, remediation.
 - `018-matrix-runners-snake-case-rename`
 - `019-feature-catalog-shape-realignment`
 - `020-coco-index-feature-catalog`
-- `021-sk-doc-conformance-sweep-and-template-cleanup`
+- `021-sk-doc-conformance-sweep`
 - `022-cli-skills-baseline-overlay-contract`
 - `023-pre-existing-test-failure-remediation`
 - `024-iter-001-daemon-concurrency-fixes`

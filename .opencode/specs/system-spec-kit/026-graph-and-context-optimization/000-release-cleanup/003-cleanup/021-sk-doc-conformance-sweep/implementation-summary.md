@@ -3,12 +3,12 @@ title: "Implementation Summary: sk-doc Conformance Sweep and Template Cleanup"
 description: "Pre-implementation placeholder. Filled post-Tier-4 with final state, evidence, and lessons learned."
 template_source: "SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2"
 trigger_phrases:
-  - "021-sk-doc-conformance-sweep-and-template-cleanup implementation"
+  - "021-sk-doc-conformance-sweep implementation"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/021-sk-doc-conformance-sweep-and-template-cleanup"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/021-sk-doc-conformance-sweep"
     last_updated_at: "2026-04-30T11:42:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "ALL TIER 1-4 SUBSTANTIVELY COMPLETE. 17/17 modified root surfaces pass validate_document.py 0 issues. handover.md authored. generate-context.js full save indexed packet 040. Pre-existing strict-mode validator quirks (1 error + 3 warnings) documented as known limitations from session start, content unaffected."
@@ -18,8 +18,8 @@ _memory:
       - "implementation-summary.md"
       - "tasks.md"
     session_dedup:
-      fingerprint: "sha256:021-sk-doc-conformance-sweep-and-template-cleanup"
-      session_id: "021-sk-doc-conformance-sweep-and-template-cleanup"
+      fingerprint: "sha256:021-sk-doc-conformance-sweep"
+      session_id: "021-sk-doc-conformance-sweep"
       parent_session_id: "026-graph-and-context-optimization"
     completion_pct: 95
     open_questions: []
@@ -38,7 +38,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 021-sk-doc-conformance-sweep-and-template-cleanup |
+| **Spec Folder** | 021-sk-doc-conformance-sweep |
 | **Completed** | TBD (target 2026-04-30) |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->

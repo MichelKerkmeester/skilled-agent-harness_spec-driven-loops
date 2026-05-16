@@ -3,13 +3,13 @@ title: "Implementation Plan: sk-doc Conformance Sweep and Template Cleanup"
 description: "Tiered execution plan: Tier 1 foundation, Tier 2 parallel cli-codex content rewrites, Tier 3 deterministic renames + path sweep, Tier 4 validation."
 template_source: "SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2"
 trigger_phrases:
-  - "021-sk-doc-conformance-sweep-and-template-cleanup plan"
+  - "021-sk-doc-conformance-sweep plan"
   - "sk-doc conformance plan"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/021-sk-doc-conformance-sweep-and-template-cleanup"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/021-sk-doc-conformance-sweep"
     last_updated_at: "2026-04-30T08:15:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Plan doc rewritten to Level 3 canonical"
@@ -20,8 +20,8 @@ _memory:
       - "tasks.md"
       - "checklist.md"
     session_dedup:
-      fingerprint: "sha256:021-sk-doc-conformance-sweep-and-template-cleanup"
-      session_id: "021-sk-doc-conformance-sweep-and-template-cleanup"
+      fingerprint: "sha256:021-sk-doc-conformance-sweep"
+      session_id: "021-sk-doc-conformance-sweep"
       parent_session_id: "026-graph-and-context-optimization"
     completion_pct: 8
     open_questions: []
@@ -104,7 +104,7 @@ Severity-tiered bounded-wave execution: foundation → parallel content rewrites
 
 ### Phase 1: Setup (Tier 1 — Foundation)
 - [x] T-001 SP-001 Phase 040 collision resolved naturally (prior 040 renumbered to 027)
-- [x] T-002 SP-002 Spec folder shell created at 021-sk-doc-conformance-sweep-and-template-cleanup/
+- [x] T-002 SP-002 Spec folder shell created at 021-sk-doc-conformance-sweep/
 - [x] T-003..T-005 spec.md, plan.md, tasks.md written
 - [x] T-006 checklist.md written
 - [x] T-007 decision-record.md written

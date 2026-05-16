@@ -2,7 +2,7 @@
 title: "Audit Findings: sk-doc Conformance Sweep"
 description: "Per-surface audit verdicts from 7 parallel cli-codex gpt-5.5 high fast agents covering 15 manual_testing_playbook directories, 7 feature_catalog directories, 33 system-spec-kit references, and 8 sk-code-review references."
 trigger_phrases:
-  - "021-sk-doc-conformance-sweep-and-template-cleanup audit findings"
+  - "021-sk-doc-conformance-sweep audit findings"
   - "sk-doc audit findings"
 importance_tier: "important"
 contextType: "implementation"

@@ -6,7 +6,7 @@ Scoring rubric: L (length) + R (parent-token redundancy) + G (generic-token dens
 
 | Current name | Parent path | L | R | G | I | Score | Proposed | Rationale |
 |--------------|-------------|---|---|---|---|------:|----------|-----------|
-| 021-sk-doc-conformance-sweep-and-template-cleanup | 000-release-cleanup/003-cleanup | 3 | 3 | 1 | 0 | 7 | 021-sk-doc-conformance-sweep | L=3, R=3, G=1 |
+| 021-sk-doc-conformance-sweep | 000-release-cleanup/003-cleanup | 3 | 3 | 1 | 0 | 7 | 021-sk-doc-conformance-sweep | L=3, R=3, G=1 |
 | 001-automation-self-management-deep-research | 000-release-cleanup/006-research | 3 | 3 | 0 | 0 | 6 | 001-automation-self-management-deep | L=3, R=3 |
 | 001-skill-advisor-docs-and-code-alignment | 008-skill-advisor/005-docs | 3 | 3 | 0 | 0 | 6 | 001-and-code-alignment | L=3.0, R=3 |
 | 002-automation-reality-supplemental-research | 000-release-cleanup/006-research | 3 | 3 | 0 | 0 | 6 | 002-automation-reality-supplemental | L=3, R=3 |

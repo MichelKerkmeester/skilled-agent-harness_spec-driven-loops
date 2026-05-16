@@ -3,12 +3,12 @@ title: "Decision Record: sk-doc Conformance Sweep and Template Cleanup"
 description: "Architecture Decision Records (ADRs) for the sk-doc conformance sweep — phase-040 collision, skill_advisor reclassification, canonical full remediation, templates/changelog alignment, execution model, stay-on-main."
 template_source: "SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2"
 trigger_phrases:
-  - "021-sk-doc-conformance-sweep-and-template-cleanup decisions"
+  - "021-sk-doc-conformance-sweep decisions"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/021-sk-doc-conformance-sweep-and-template-cleanup"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/021-sk-doc-conformance-sweep"
     last_updated_at: "2026-04-30T08:15:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Decision record rewritten to Level 3 canonical"
@@ -17,8 +17,8 @@ _memory:
     key_files:
       - "decision-record.md"
     session_dedup:
-      fingerprint: "sha256:021-sk-doc-conformance-sweep-and-template-cleanup"
-      session_id: "021-sk-doc-conformance-sweep-and-template-cleanup"
+      fingerprint: "sha256:021-sk-doc-conformance-sweep"
+      session_id: "021-sk-doc-conformance-sweep"
       parent_session_id: "026-graph-and-context-optimization"
     completion_pct: 8
     open_questions: []
@@ -123,7 +123,7 @@ We needed to resolve a phase-040 slot collision because the user picked "Use 040
 ### Implementation
 
 **What changes**:
-- New packet folder: `021-sk-doc-conformance-sweep-and-template-cleanup/` (created)
+- New packet folder: `021-sk-doc-conformance-sweep/` (created)
 - Existing `013-evergreen-doc-packet-id-removal/`: untouched (was already renumbered)
 
 **How to roll back**: `rm -rf` the new 040 folder; existing 027 packet is unaffected.

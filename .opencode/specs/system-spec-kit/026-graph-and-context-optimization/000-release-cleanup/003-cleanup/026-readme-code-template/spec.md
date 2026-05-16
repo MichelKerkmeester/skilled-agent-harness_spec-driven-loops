@@ -67,7 +67,7 @@ This phase records the README code template work under `system-spec-kit/026-grap
 - Parent phase packet: `../spec.md`
 - Task #5 final template revision and verification evidence
 - Task #9 diagram styling correction evidence
-- Prior related child: `021-sk-doc-conformance-sweep-and-template-cleanup/`
+- Prior related child: `021-sk-doc-conformance-sweep/`
 
 **Deliverables**:
 - Phase docs reflecting the completed README template work and diagram styling correction

@@ -3,7 +3,7 @@ title: "Feature Specification: sk-doc Conformance Sweep and Template Cleanup"
 description: "Multiple sk-doc-governed surfaces have drifted from canonical format and the templates folder needs legacy cleanup; this packet runs a coordinated conformance sweep so sk-doc remains the single source-of-truth for documentation shape."
 template_source: "SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch | v2.2"
 trigger_phrases:
-  - "021-sk-doc-conformance-sweep-and-template-cleanup"
+  - "021-sk-doc-conformance-sweep"
   - "sk-doc conformance sweep"
   - "manual testing playbook conformance"
   - "feature catalog conformance"
@@ -13,7 +13,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/021-sk-doc-conformance-sweep-and-template-cleanup"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/021-sk-doc-conformance-sweep"
     last_updated_at: "2026-04-30T08:15:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Spec docs rewritten to Level 3 canonical"
@@ -27,8 +27,8 @@ _memory:
       - "decision-record.md"
       - "audit-findings.md"
     session_dedup:
-      fingerprint: "sha256:021-sk-doc-conformance-sweep-and-template-cleanup"
-      session_id: "021-sk-doc-conformance-sweep-and-template-cleanup"
+      fingerprint: "sha256:021-sk-doc-conformance-sweep"
+      session_id: "021-sk-doc-conformance-sweep"
       parent_session_id: "026-graph-and-context-optimization"
     completion_pct: 8
     open_questions: []

@@ -4961,7 +4961,7 @@
       "lastUpdated": "2026-05-08T08:26:57.411Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/021-sk-doc-conformance-sweep-and-template-cleanup",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/021-sk-doc-conformance-sweep",
       "description": "Feature Specification: sk-doc Conformance Sweep and Template Cleanup",
       "keywords": [
         "feature",

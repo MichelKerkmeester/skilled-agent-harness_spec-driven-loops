@@ -3,12 +3,12 @@ title: "Handover: sk-doc Conformance Sweep and Template Cleanup"
 description: "Cross-session handover for packet 040. Captures final state, validation evidence, and the small set of pre-existing strict-mode warnings documented as out-of-scope."
 template_source: "SPECKIT_TEMPLATE_SOURCE: handover-core | v2.2"
 trigger_phrases:
-  - "021-sk-doc-conformance-sweep-and-template-cleanup handover"
+  - "021-sk-doc-conformance-sweep handover"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/021-sk-doc-conformance-sweep-and-template-cleanup"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/021-sk-doc-conformance-sweep"
     last_updated_at: "2026-04-30T11:35:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "All Tier 1-4 work substantively complete. 17/17 modified root surfaces pass validate_document.py 0 issues. validate.sh --strict still fails on 1 error + 3 warnings — documented pre-existing strict-mode quirks unrelated to this packet's scope."
@@ -20,8 +20,8 @@ _memory:
       - "tasks.md"
       - "checklist.md"
     session_dedup:
-      fingerprint: "sha256:021-sk-doc-conformance-sweep-and-template-cleanup"
-      session_id: "021-sk-doc-conformance-sweep-and-template-cleanup"
+      fingerprint: "sha256:021-sk-doc-conformance-sweep"
+      session_id: "021-sk-doc-conformance-sweep"
       parent_session_id: "026-graph-and-context-optimization"
     completion_pct: 95
     open_questions: []
