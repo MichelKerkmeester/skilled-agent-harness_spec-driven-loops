@@ -41,7 +41,7 @@ PACKETS = [
     "008-skill-advisor/001-skill-advisor-graph",
     "008-skill-advisor/002-advisor-phrase-booster-tailoring",
     "008-skill-advisor/004-skill-advisor-docs-and-code-alignment",
-    "008-skill-advisor/005-smart-router-remediation-and-opencode-plugin",
+    "008-skill-advisor/003-smart-router-remediation-and-opencode-plugin",
     "008-skill-advisor/006-deferred-remediation-and-telemetry-run",
 
     # 008 children (from 010 — new parent + new slot)

@@ -5357,7 +5357,7 @@ exec
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/spec.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-skill-advisor-docs-and-code-alignment/spec.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-skill-advisor-hook-surface/spec.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-smart-router-remediation-and-opencode-plugin/spec.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/003-smart-router-remediation-and-opencode-plugin/spec.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-advisor-phrase-booster-tailoring/spec.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/006-deferred-remediation-and-telemetry-run/spec.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/009-skill-advisor-plugin-hardening/spec.md
