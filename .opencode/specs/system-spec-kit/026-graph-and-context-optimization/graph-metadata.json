@@ -16,7 +16,8 @@
     "system-spec-kit/026-graph-and-context-optimization/011-cocoindex-daemon-resilience",
     "system-spec-kit/026-graph-and-context-optimization/012-causal-graph-channel-routing",
     "system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator",
-    "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration"
+    "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration",
+    "system-spec-kit/026-graph-and-context-optimization/015-mcp-shared-dependency-startup-fix"
   ],
   "migrated": true,
   "migration_source": "legacy",
@@ -190,7 +191,7 @@
       "015-global-security-sweep-and-supply-chain-audit": "015-tanstack-security-audit",
       "006-graph-impact-and-affordance-uplift": "006-external-project-adoption",
       "002-resource-map-template": "002-resource-map-deep-loop-fix",
-      "004-runtime-executor-hardening": "→absorbed-into-003"
+      "004-runtime-executor-hardening": "\u2192absorbed-into-003"
     },
     "resume_priority": [
       "999",
