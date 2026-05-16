@@ -7,7 +7,7 @@
   "manual": {
     "depends_on": ["system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/046-system-deep-research-bugs-and-improvements"],
     "supersedes": [],
-    "related_to": ["system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/048-iter-001-daemon-concurrency-fixes"]
+    "related_to": ["system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/024-iter-001-daemon-concurrency-fixes"]
   },
   "derived": {
     "trigger_phrases": ["F-007-B2","cli orchestrator drift","cli-opencode subagent contract","cli-copilot effort flag","cli prompt templates"],

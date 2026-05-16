@@ -5065,7 +5065,7 @@
       "lastUpdated": "2026-05-08T08:26:57.434Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/048-iter-001-daemon-concurrency-fixes",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/024-iter-001-daemon-concurrency-fixes",
       "description": "Feature Specification: Iteration-001 Daemon Concurrency Fixes",
       "keywords": [
         "feature",

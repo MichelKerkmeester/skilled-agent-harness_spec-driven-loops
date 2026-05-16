@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/048-iter-001-daemon-concurrency-fixes"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/024-iter-001-daemon-concurrency-fixes"
     last_updated_at: "2026-05-01T04:15:00Z"
     last_updated_by: "remediation-orchestrator"
     recent_action: "Implementation complete; all tests green"
@@ -44,7 +44,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 048-iter-001-daemon-concurrency-fixes |
+| **Spec Folder** | 024-iter-001-daemon-concurrency-fixes |
 | **Completed** | 2026-04-30 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
@@ -82,7 +82,7 @@ Every acquisition of `acquireGenerationLock()` now writes a 32-character random 
 | `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/freshness/cache-invalidation.ts` | Modified | Drop events whose `generation` is strictly older than `lastInvalidation.generation` before listener fan-out |
 | `.opencode/skills/system-spec-kit/mcp_server/stress_test/skill-advisor/daemon-lifecycle-stress.vitest.ts` | Modified | Add `sa-003b` describe block: 2 mutex tests (timer drain serialization, close-awaits-flush) for F-001-A1-01 |
 | `.opencode/skills/system-spec-kit/mcp_server/stress_test/skill-advisor/generation-cache-invalidation-stress.vitest.ts` | Modified | Add `sa-007b` describe block: 2 token-ownership tests for F-001-A1-03 |
-| `.opencode/specs/.../048-iter-001-daemon-concurrency-fixes/` | Created | Level 2 packet (spec, plan, tasks, checklist, implementation-summary, README) |
+| `.opencode/specs/.../024-iter-001-daemon-concurrency-fixes/` | Created | Level 2 packet (spec, plan, tasks, checklist, implementation-summary, README) |
 <!-- /ANCHOR:what-built -->
 
 ---
