@@ -1759,9 +1759,9 @@ done' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-runtime-executor-hardening/research/findings-registry.json
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-runtime-executor-hardening/research/research.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-memory-indexer-invariants/review/005-memory-indexer-invariants-pt-01/deep-review-config.json
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-context-and-scan-scope/research/deep-research-config.json
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-context-and-scan-scope/research/deep-research-strategy.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-context-and-scan-scope/research/research.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/002-code-graph-context-and-scan-scope/research/deep-research-config.json
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/002-code-graph-context-and-scan-scope/research/deep-research-strategy.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/002-code-graph-context-and-scan-scope/research/research.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/spec.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/005-code-graph-advisor-refinement/plan.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/005-code-graph-advisor-refinement/research/015-code-graph-advisor-refinement-pt-01/deep-research-config.json

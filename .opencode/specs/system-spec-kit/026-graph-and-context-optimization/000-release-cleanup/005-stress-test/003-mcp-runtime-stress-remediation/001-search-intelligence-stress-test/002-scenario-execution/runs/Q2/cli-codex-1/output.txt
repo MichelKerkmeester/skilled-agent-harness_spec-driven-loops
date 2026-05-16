@@ -14362,8 +14362,8 @@ exec
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/002-code-graph-self-contained-package/implementation-summary.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/002-code-graph-self-contained-package/spec.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/spec.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-context-and-scan-scope/implementation-summary.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-context-and-scan-scope/spec.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/002-code-graph-context-and-scan-scope/implementation-summary.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/002-code-graph-context-and-scan-scope/spec.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/implementation-summary.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/002-codesight/implementation-summary.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/002-codesight/spec.md

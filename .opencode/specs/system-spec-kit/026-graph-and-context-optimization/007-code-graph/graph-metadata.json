@@ -6,7 +6,7 @@
   "children_ids": [
     "system-spec-kit/026-graph-and-context-optimization/007-code-graph/001-code-graph-upgrades",
     "system-spec-kit/026-graph-and-context-optimization/007-code-graph/002-code-graph-self-contained-package",
-    "system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-context-and-scan-scope",
+    "system-spec-kit/026-graph-and-context-optimization/007-code-graph/002-code-graph-context-and-scan-scope",
     "system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements",
     "system-spec-kit/026-graph-and-context-optimization/007-code-graph/005-code-graph-advisor-refinement",
     "system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-doctor-command",
@@ -55,10 +55,10 @@
         "spec_folder": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/002-code-graph-self-contained-package"
       },
       {
-        "packet_id": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-context-and-scan-scope",
+        "packet_id": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/002-code-graph-context-and-scan-scope",
         "reason": "supersedes relationship preserved during phase consolidation",
         "source": "026-phase-consolidation",
-        "spec_folder": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-context-and-scan-scope"
+        "spec_folder": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/002-code-graph-context-and-scan-scope"
       }
     ],
     "related_to": []
@@ -69,7 +69,7 @@
       "code graph upgrades and self-contained package migration",
       "001-code-graph-upgrades",
       "002-code-graph-self-contained-package",
-      "003-code-graph-context-and-scan-scope",
+      "002-code-graph-context-and-scan-scope",
       "006-code-graph-doctor-command",
       "007-code-graph-resilience-research",
       "/doctor:code-graph"
@@ -84,7 +84,7 @@
       "migration",
       "001-code-graph-upgrades",
       "002-code-graph-self-contained-package",
-      "003-code-graph-context-and-scan-scope",
+      "002-code-graph-context-and-scan-scope",
       "006-code-graph-doctor-command",
       "007-code-graph-resilience-research"
     ],

@@ -5344,13 +5344,13 @@ exec
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/research/agent-outputs/stateless-research/audit-QA1-O02-collect-session-data.md
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/research/agent-outputs/stateless-research/R10-integration-architecture.md
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/research/agent-outputs/stateless-research/audit-QA9-C15-fs-security.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-context-and-scan-scope/spec.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-context-and-scan-scope/plan.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-context-and-scan-scope/checklist.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-context-and-scan-scope/tasks.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-context-and-scan-scope/description.json
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-context-and-scan-scope/implementation-summary.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-context-and-scan-scope/graph-metadata.json
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/002-code-graph-context-and-scan-scope/spec.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/002-code-graph-context-and-scan-scope/plan.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/002-code-graph-context-and-scan-scope/checklist.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/002-code-graph-context-and-scan-scope/tasks.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/002-code-graph-context-and-scan-scope/description.json
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/002-code-graph-context-and-scan-scope/implementation-summary.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/002-code-graph-context-and-scan-scope/graph-metadata.json
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/research/deep-research-state.jsonl
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-search-and-routing-tuning/research/010-search-and-routing-tuning-pt-01/deep-research-state.jsonl
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-skill-graph-daemon-and-advisor-unification/research/prompts/README.md
@@ -5446,7 +5446,7 @@ exec
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-search-and-routing-tuning/research/010-search-and-routing-tuning-pt-01/deep-research-dashboard.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-search-and-routing-tuning/research/010-search-and-routing-tuning-pt-01/findings-registry.json
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-search-and-routing-tuning/research/010-search-and-routing-tuning-pt-03/deep-research-strategy.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-context-and-scan-scope/research/deep-research-strategy.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/002-code-graph-context-and-scan-scope/research/deep-research-strategy.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/001-cache-warning-hooks/review/iterations/iteration-001.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/001-cache-warning-hooks/review/iterations/iteration-022.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/001-cache-warning-hooks/review/iterations/iteration-002.md
@@ -5491,11 +5491,11 @@ exec
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/001-cache-warning-hooks/graph-metadata.json
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/plan.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/tasks.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-context-and-scan-scope/research/iterations/iteration-004.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-context-and-scan-scope/research/iterations/iteration-005.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-context-and-scan-scope/research/iterations/iteration-001.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-context-and-scan-scope/research/iterations/iteration-002.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-context-and-scan-scope/research/iterations/iteration-003.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/002-code-graph-context-and-scan-scope/research/iterations/iteration-004.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/002-code-graph-context-and-scan-scope/research/iterations/iteration-005.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/002-code-graph-context-and-scan-scope/research/iterations/iteration-001.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/002-code-graph-context-and-scan-scope/research/iterations/iteration-002.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/002-code-graph-context-and-scan-scope/research/iterations/iteration-003.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-search-and-routing-tuning/review/006-search-routing-advisor-003-graph-metadata-validation-pt-02/deep-review-impl-state.jsonl
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-search-and-routing-tuning/review/006-search-routing-advisor-003-graph-metadata-validation-pt-02/review-impl-report.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-search-and-routing-tuning/review/006-search-routing-advisor-003-graph-metadata-validation-pt-02/deep-review-impl-config.json
@@ -5632,13 +5632,13 @@ exec
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-search-and-routing-tuning/research/010-search-and-routing-tuning-pt-03/deep-research-config.json
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-search-and-routing-tuning/research/010-search-and-routing-tuning-pt-03/deep-research-dashboard.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-search-and-routing-tuning/research/010-search-and-routing-tuning-pt-03/deep-research-state.jsonl
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-context-and-scan-scope/research/prompts/iteration-004.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-context-and-scan-scope/research/prompts/iteration-005.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-context-and-scan-scope/research/prompts/iteration-001.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-context-and-scan-scope/research/prompts/iteration-002.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-context-and-scan-scope/research/prompts/iteration-003.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-context-and-scan-scope/research/prompts/implement-012-003.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-context-and-scan-scope/research/prompts/implement-codex.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/002-code-graph-context-and-scan-scope/research/prompts/iteration-004.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/002-code-graph-context-and-scan-scope/research/prompts/iteration-005.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/002-code-graph-context-and-scan-scope/research/prompts/iteration-001.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/002-code-graph-context-and-scan-scope/research/prompts/iteration-002.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/002-code-graph-context-and-scan-scope/research/prompts/iteration-003.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/002-code-graph-context-and-scan-scope/research/prompts/implement-012-003.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/002-code-graph-context-and-scan-scope/research/prompts/implement-codex.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/007-external-project/research/007-external-project-pt-02/prompts/iteration-4.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/007-external-project/research/007-external-project-pt-02/prompts/iteration-5.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/007-external-project/research/007-external-project-pt-02/prompts/iteration-1.md
@@ -5686,7 +5686,7 @@ exec
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-search-and-routing-tuning/review/006-search-routing-advisor-003-graph-metadata-validation-pt-02/deltas/iter-002.jsonl
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-search-and-routing-tuning/review/006-search-routing-advisor-003-graph-metadata-validation-pt-02/deltas/iter-004.jsonl
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-search-and-routing-tuning/review/006-search-routing-advisor-003-graph-metadata-validation-pt-02/deltas/iter-006.jsonl
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-context-and-scan-scope/research/research.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/002-code-graph-context-and-scan-scope/research/research.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-memory-terminology/phrasing-audit.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-memory-terminology/spec.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/002-memory-quality-remediation/review/deep-review-config.json
@@ -5752,11 +5752,11 @@ exec
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-advisor-phrase-booster-tailoring/research/research.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-advisor-phrase-booster-tailoring/research/deep-research-config.json
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-advisor-phrase-booster-tailoring/research/deep-research-state.jsonl
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-context-and-scan-scope/research/deltas/iter-001.jsonl
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-context-and-scan-scope/research/deltas/iter-003.jsonl
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-context-and-scan-scope/research/deltas/iter-005.jsonl
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-context-and-scan-scope/research/deltas/iter-002.jsonl
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-context-and-scan-scope/research/deltas/iter-004.jsonl
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/002-code-graph-context-and-scan-scope/research/deltas/iter-001.jsonl
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/002-code-graph-context-and-scan-scope/research/deltas/iter-003.jsonl
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/002-code-graph-context-and-scan-scope/research/deltas/iter-005.jsonl
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/002-code-graph-context-and-scan-scope/research/deltas/iter-002.jsonl
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/002-code-graph-context-and-scan-scope/research/deltas/iter-004.jsonl
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-search-and-routing-tuning/review/010-search-and-routing-tuning-pt-07/iterations/iteration-010.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-search-and-routing-tuning/review/010-search-and-routing-tuning-pt-07/iterations/iteration-004.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-search-and-routing-tuning/review/010-search-and-routing-tuning-pt-07/iterations/iteration-005.md
@@ -5772,9 +5772,9 @@ exec
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-search-and-routing-tuning/review/010-search-and-routing-tuning-pt-07/deep-review-findings-registry.json
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-search-and-routing-tuning/review/010-search-and-routing-tuning-pt-07/deep-review-strategy.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-search-and-routing-tuning/review/010-search-and-routing-tuning-pt-07/review-report.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-context-and-scan-scope/research/deep-research-config.json
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-context-and-scan-scope/research/findings-registry.json
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-context-and-scan-scope/research/deep-research-state.jsonl
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/002-code-graph-context-and-scan-scope/research/deep-research-config.json
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/002-code-graph-context-and-scan-scope/research/findings-registry.json
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/002-code-graph-context-and-scan-scope/research/deep-research-state.jsonl
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/context-index.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/spec.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/plan.md
@@ -9717,12 +9717,12 @@ exec
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/004-graphify/implementation-summary.md:125:1. **codex parallel-job API contention is unmitigated.** The iter 2 starvation incident proved that codex-cli sequential dispatch is the safe pattern for this loop. Parallel codex dispatches across iterations are NOT supported by this workflow. Workaround: dispatch iterations sequentially, log `engine_switch` events when fallback is needed.
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-runtime-executor-hardening/001-foundational-runtime/spec.md:79:- **Cluster E — runtime-specific observability gap** (R52-P1-002): The Copilot hook runtime is missing both `compact-cache.ts` (absent file) and `shared.ts` (absent file). Its `session-prime.ts` does not read `payloadContract?.provenance.trustState`. Copilot-driven sessions lose trust provenance across compaction — directly impacting Phase 017's autonomous-execution plan (Copilot-fallback runtime limited to 3 parallel dispatches per `feedback_copilot_concurrency_override` (user memory)).
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-runtime-executor-hardening/001-foundational-runtime/spec.md:303:**Copilot-primary autonomous execution blocker**: Per `feedback_copilot_concurrency_override` (user memory) and `feedback_phase_018_autonomous` (user memory), Phase 017 plans to use cli-copilot as the Codex-fallback runtime. Cluster E (T-W1-HOK-01 + T-W1-HOK-02) MUST land before autonomous Copilot iteration launches — otherwise H-56-4 observability blind spot activates during Phase 017 itself.
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-context-and-scan-scope/tasks.md:63:- [x] **T-12** Run `validate.sh --strict` on this packet, then `generate-context.js` for canonical save. Update implementation-summary.md (replace placeholder) and parent handover.md with phase outcome. [EVIDENCE: implementation summary replaced; parent handover row added; strict validation passed 0 errors / 0 warnings; `generate-context.js --json ...` exited 0 with deferred embedding fallback due network fetch failures.]
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/002-code-graph-context-and-scan-scope/tasks.md:63:- [x] **T-12** Run `validate.sh --strict` on this packet, then `generate-context.js` for canonical save. Update implementation-summary.md (replace placeholder) and parent handover.md with phase outcome. [EVIDENCE: implementation summary replaced; parent handover row added; strict validation passed 0 errors / 0 warnings; `generate-context.js --json ...` exited 0 with deferred embedding fallback due network fetch failures.]
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/004-graphify/plan.md:335:- [ ] cli-codex CLI is reachable (`which codex`) OR claude-opus-direct fallback is available
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-runtime-executor-hardening/001-foundational-runtime/plan.md:119:- cli-copilot gpt-5.4 high (fallback, 3-concurrent max)
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-runtime-executor-hardening/001-foundational-runtime/plan.md:133:**Execution mode**: Per `feedback_phase_018_autonomous` (user memory), each wave runs under cli-codex primary + cli-copilot fallback (3 concurrent max). After each wave's code-complete, dispatch `/spec_kit:deep-review :auto` ×7 before proceeding to the next wave.
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-context-and-scan-scope/implementation-summary.md:79:`npm install --save ignore --package-lock=false` was attempted first but could not complete under the restricted registry/cache environment. `ignore` was added to `mcp_server/package.json` as a direct dependency (`^5.3.2`), and the runtime code prefers that direct dependency. A fallback to the local ESLint transitive copy keeps this sandbox verifiable until dependencies are refreshed normally.
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-context-and-scan-scope/implementation-summary.md:108:| Canonical save | `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js --json ...` | Exit 0; embedding calls deferred because network fetch failed, BM25/FTS indexing path used |
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/002-code-graph-context-and-scan-scope/implementation-summary.md:79:`npm install --save ignore --package-lock=false` was attempted first but could not complete under the restricted registry/cache environment. `ignore` was added to `mcp_server/package.json` as a direct dependency (`^5.3.2`), and the runtime code prefers that direct dependency. A fallback to the local ESLint transitive copy keeps this sandbox verifiable until dependencies are refreshed normally.
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/002-code-graph-context-and-scan-scope/implementation-summary.md:108:| Canonical save | `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js --json ...` | Exit 0; embedding calls deferred because network fetch failed, BM25/FTS indexing path used |
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/002-codesight/spec.md:30:Phase 2 of `001-research-graph-context-systems` is a read-only audit of the codesight external Node.js/TypeScript skill (zero-runtime-dependency CLI that scans a project root and generates AI-assistant context artifacts) to translate its detector architecture, MCP tool design, profile generation, scanner heuristics, and blast-radius analysis into concrete improvements for `Code_Environment/Public`'s existing structural retrieval stack (Code Graph MCP, CocoIndex, Spec Kit Memory). The deliverable is an evidence-backed Adopt/Adapt/Reject table plus late-session adoption synthesis grounded in specific `external/src/` file:line citations across 20 deep-research iterations, not a generic feature inventory. No source files outside this spec folder are modified during the research phase.
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/002-codesight/spec.md:32:**Key Decisions**: Run the packet to 20 total iterations across three segments: original charter (iters 1-5), first continuation charter (iters 6-10), and a `completed-continue` extension (iters 11-20) covering watch/hook automation, middleware/libs/config detectors, formatter lifecycle, MCP cache/error semantics, AI-config write safety, HTML projection, scanner heuristics, and final adoption synthesis. Iterations 1-3 and 6-10 used cli-codex `gpt-5.4` high reasoning effort, iters 4-5 used native fallback after codex stalls, and iters 11-20 executed directly in the active Codex session because self-invoking cli-codex from Codex would be circular. The packet keeps the 22-row Adopt/Adapt/Reject matrix and extends it with the 20-iteration synthesis.
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/002-codesight/spec.md:60:`Code_Environment/Public` already has CocoIndex semantic search, Code Graph MCP for structural queries, and Spec Kit Memory for context preservation, but it lacks Codesight-style automated `CLAUDE.md` / `.cursorrules` / `codex.md` / `AGENTS.md` generation from a single project scan, per-AI-tool profile generation, and a blast-radius command built around reverse-import BFS. Without an evidence-grounded survey of Codesight's actual implementation (separated from its README marketing claims), any port would risk importing the wrong patterns, the wrong claims, and the wrong risks.

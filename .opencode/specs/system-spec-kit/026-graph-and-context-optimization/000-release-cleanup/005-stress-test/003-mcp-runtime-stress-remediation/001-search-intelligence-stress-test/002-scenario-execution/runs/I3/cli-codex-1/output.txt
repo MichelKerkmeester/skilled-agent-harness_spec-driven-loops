@@ -2572,8 +2572,8 @@ exec
 /.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/005-code-graph-advisor-refinement/research
 /.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/005-code-graph-advisor-refinement/applied
 /.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/005-code-graph-advisor-refinement/review
-/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-context-and-scan-scope
-/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-context-and-scan-scope/research
+/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/002-code-graph-context-and-scan-scope
+/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/002-code-graph-context-and-scan-scope/research
 /.opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/005-claudest
 /.opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/005-claudest/scratch
 /.opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/005-claudest/external

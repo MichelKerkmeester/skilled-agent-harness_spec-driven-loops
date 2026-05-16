@@ -54,7 +54,7 @@ PACKETS = [
     # 007 children (existing 001-003 + the 2 newcomers from 010)
     "007-code-graph/001-code-graph-upgrades",
     "007-code-graph/002-code-graph-self-contained-package",
-    "007-code-graph/003-code-graph-context-and-scan-scope",
+    "007-code-graph/002-code-graph-context-and-scan-scope",
     "007-code-graph/004-code-graph-hook-improvements",
     "007-code-graph/005-code-graph-advisor-refinement",
 

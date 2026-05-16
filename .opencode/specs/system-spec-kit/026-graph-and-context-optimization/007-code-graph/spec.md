@@ -7,7 +7,7 @@ trigger_phrases:
   - "code graph upgrades and self-contained package migration"
   - "001-code-graph-upgrades"
   - "002-code-graph-self-contained-package"
-  - "003-code-graph-context-and-scan-scope"
+  - "002-code-graph-context-and-scan-scope"
   - "006-code-graph-doctor-command"
   - "007-code-graph-resilience-research"
   - "/doctor:code-graph"
@@ -62,7 +62,7 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-This parent packet coordinates the phased work under `Code Graph Package` so the child packets stay discoverable and the root purpose remains clear while implementation details live below the parent level. The current child surface includes 001-code-graph-upgrades, 002-code-graph-self-contained-package, 003-code-graph-context-and-scan-scope, and other child phases.
+This parent packet coordinates the phased work under `Code Graph Package` so the child packets stay discoverable and the root purpose remains clear while implementation details live below the parent level. The current child surface includes 001-code-graph-upgrades, 002-code-graph-self-contained-package, 002-code-graph-context-and-scan-scope, and other child phases.
 
 ### Purpose
 Keep this phase-parent packet validator-compliant as a lean manifest that preserves the original purpose, lists the child phases, and leaves detailed planning, execution, and verification in the child folders.
@@ -100,7 +100,7 @@ Keep this phase-parent packet validator-compliant as a lean manifest that preser
 |-------|--------|-------|--------|
 | 1 | `001-code-graph-upgrades/` | Code Graph Upgrades | complete |
 | 2 | `002-code-graph-self-contained-package/` | 028 — Code-Graph Self-Contained Package Migration | in_progress |
-| 3 | `003-code-graph-context-and-scan-scope/` | Code Graph Context + Scan Scope Remediation | complete |
+| 3 | `002-code-graph-context-and-scan-scope/` | Code Graph Context + Scan Scope Remediation | complete |
 | 4 | `004-code-graph-hook-improvements/` | Code-Graph System + Hooks Improvement Investigation | complete |
 | 5 | `005-code-graph-advisor-refinement/` | Code Graph and Skill Advisor Refinement Research | complete |
 | 6 | `006-code-graph-doctor-command/` | Code Graph Doctor Command | complete |
@@ -120,8 +120,8 @@ Keep this phase-parent packet validator-compliant as a lean manifest that preser
 | From | To | Criteria | Verification |
 |------|-----|----------|--------------|
 | `001-code-graph-upgrades` | `002-code-graph-self-contained-package` | `001-code-graph-upgrades` remains discoverable and its successor relationship stays explicit in the parent manifest | Parent `spec.md` phase map and `graph-metadata.json` child list both include `002-code-graph-self-contained-package` |
-| `002-code-graph-self-contained-package` | `003-code-graph-context-and-scan-scope` | `002-code-graph-self-contained-package` remains discoverable and its successor relationship stays explicit in the parent manifest | Parent `spec.md` phase map and `graph-metadata.json` child list both include `003-code-graph-context-and-scan-scope` |
-| `003-code-graph-context-and-scan-scope` | `004-code-graph-hook-improvements` | `003-code-graph-context-and-scan-scope` remains discoverable and its successor relationship stays explicit in the parent manifest | Parent `spec.md` phase map and `graph-metadata.json` child list both include `004-code-graph-hook-improvements` |
+| `002-code-graph-self-contained-package` | `002-code-graph-context-and-scan-scope` | `002-code-graph-self-contained-package` remains discoverable and its successor relationship stays explicit in the parent manifest | Parent `spec.md` phase map and `graph-metadata.json` child list both include `002-code-graph-context-and-scan-scope` |
+| `002-code-graph-context-and-scan-scope` | `004-code-graph-hook-improvements` | `002-code-graph-context-and-scan-scope` remains discoverable and its successor relationship stays explicit in the parent manifest | Parent `spec.md` phase map and `graph-metadata.json` child list both include `004-code-graph-hook-improvements` |
 | `004-code-graph-hook-improvements` | `005-code-graph-advisor-refinement` | `004-code-graph-hook-improvements` remains discoverable and its successor relationship stays explicit in the parent manifest | Parent `spec.md` phase map and `graph-metadata.json` child list both include `005-code-graph-advisor-refinement` |
 | `005-code-graph-advisor-refinement` | `006-code-graph-doctor-command` | `005-code-graph-advisor-refinement` remains discoverable and its successor relationship stays explicit in the parent manifest | Parent `spec.md` phase map and `graph-metadata.json` child list both include `006-code-graph-doctor-command` |
 | `006-code-graph-doctor-command` | `007-code-graph-resilience-research` | `006-code-graph-doctor-command` remains discoverable and its successor relationship stays explicit in the parent manifest | Parent `spec.md` phase map and `graph-metadata.json` child list both include `007-code-graph-resilience-research` |

@@ -1,5 +1,5 @@
 ---
-title: "...6-graph-and-context-optimization/003-code-graph-package/003-code-graph-context-and-scan-scope/implementation-summary]"
+title: "...6-graph-and-context-optimization/003-code-graph-package/002-code-graph-context-and-scan-scope/implementation-summary]"
 description: "Stale code-graph snapshots now include highlights, default scan scope excludes archived/future/coco-index server paths, scans honor .gitignore, and the two context surfaces are documented."
 trigger_phrases:
   - "code graph context complete"
@@ -9,7 +9,7 @@ contextType: "implementation"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-context-and-scan-scope"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/002-code-graph-context-and-scan-scope"
     last_updated_at: "2026-04-23T14:30:00Z"
     last_updated_by: "codex-gpt-5"
     recent_action: "Full-scan readiness reopened pending recovery rerun"
@@ -47,7 +47,7 @@ template_source_marker: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 003-code-graph-context-and-scan-scope |
+| **Spec Folder** | 002-code-graph-context-and-scan-scope |
 | **Completed** | 2026-04-23 |
 | **Level** | 2 |
 | **Outcome** | Code and docs landed, but authoritative full-scan readiness remains blocked until the recovery rerun is recorded |
@@ -104,7 +104,7 @@ The implementation stayed inside the approved source/test/doc scope. I read the 
 | Build | `npm run build` in `mcp_server` | Passed |
 | Focused Vitest | `./node_modules/.bin/vitest run tests/structural-contract.vitest.ts tests/tree-sitter-parser.vitest.ts` | 20 tests passed |
 | Surface doc | `.opencode/skills/system-spec-kit/mcp_server/code-graph/SURFACES.md` | Created |
-| Strict validation | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .../003-code-graph-context-and-scan-scope --strict` | Passed with 0 errors / 0 warnings |
+| Strict validation | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .../002-code-graph-context-and-scan-scope --strict` | Passed with 0 errors / 0 warnings |
 | Canonical save | `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js --json ...` | Exit 0; embedding calls deferred because network fetch failed, BM25/FTS indexing path used |
 <!-- /ANCHOR:verification -->
 
