@@ -6,7 +6,10 @@
   "children_ids": [],
   "manual": {
     "depends_on": [],
-    "supersedes": [],
+    "supersedes": [
+      "system-spec-kit/026-graph-and-context-optimization/009-hook-parity/006-copilot-wrapper-schema-fix",
+      "system-spec-kit/026-graph-and-context-optimization/009-hook-parity/007-copilot-writer-wiring"
+    ],
     "related_to": []
   },
   "derived": {

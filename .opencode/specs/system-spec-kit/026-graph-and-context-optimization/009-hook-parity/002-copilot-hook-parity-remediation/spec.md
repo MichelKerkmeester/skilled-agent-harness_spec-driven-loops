@@ -306,3 +306,9 @@ None for this closure pass. Historical investigation questions were answered by 
 - **Referenced spec**: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-skill-advisor-hook-surface/` — established the Claude hook wiring this phase aims to parity-match
 - **Referenced skill**: `.opencode/skills/cli-copilot/` — target of the documentation updates
 - **Reference implementation**: `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/user-prompt-submit.ts`
+
+---
+
+## Consolidation (2026-05-16, packet 107 W2.5 / M6)
+
+Packets 009/006-copilot-wrapper-schema-fix and 009/007-copilot-writer-wiring absorbed into this packet (009/002) per resource-map.md §3.3 M6 PROCEED (council-corrected target 002, not 006). 3-packet copilot thematic cluster. Both sources archived to z_archive/wave-2-merges/.
