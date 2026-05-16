@@ -8,6 +8,7 @@
 // Bulk normalizes markdown frontmatter for templates, spec docs, and memories.
 
 import * as fs from 'fs';
+import * as os from 'os';
 import * as path from 'path';
 import {
   buildFrontmatterContent,
@@ -87,7 +88,7 @@ function resolveProjectRoot(): string {
   ];
 
   for (const candidate of candidates) {
-    const templates = path.join(candidate, '.opencode', 'skill', 'system-spec-kit', 'templates');
+    const templates = path.join(candidate, '.opencode', 'skills', 'system-spec-kit', 'templates');
     if (fs.existsSync(templates)) {
       return candidate;
     }
@@ -97,7 +98,28 @@ function resolveProjectRoot(): string {
 }
 
 const PROJECT_ROOT = resolveProjectRoot();
-const TEMPLATES_ROOT = path.join(PROJECT_ROOT, '.opencode', 'skill', 'system-spec-kit', 'templates');
+const TEMPLATES_ROOT = path.join(PROJECT_ROOT, '.opencode', 'skills', 'system-spec-kit', 'templates');
+
+function osTmpDir(): string {
+  return fs.realpathSync(os.tmpdir());
+}
+
+function isAllowedTmpPath(filePath: string): boolean {
+  const tmpRoots = new Set([
+    os.tmpdir(),
+    osTmpDir(),
+    path.resolve('/tmp'),
+  ]);
+
+  for (const tmpRoot of tmpRoots) {
+    const relative = path.relative(tmpRoot, filePath);
+    if (!relative.startsWith('..') && !path.isAbsolute(relative)) {
+      return true;
+    }
+  }
+
+  return false;
+}
 
 const HELP_TEXT = `
 backfill-frontmatter — Normalize markdown frontmatter for templates/spec docs/memory files
@@ -183,7 +205,7 @@ function parseArgs(argv: string[]): CliOptions {
         .map((entry) => {
           const resolved = path.resolve(PROJECT_ROOT, entry);
           const relative = path.relative(PROJECT_ROOT, resolved);
-          if (relative.startsWith('..') || path.isAbsolute(relative)) {
+          if (!isAllowedTmpPath(resolved) && (relative.startsWith('..') || path.isAbsolute(relative))) {
             throw new Error(`Path ${entry} is outside project boundary`);
           }
           return resolved;
@@ -199,7 +221,7 @@ function parseArgs(argv: string[]): CliOptions {
       i += 1;
       const resolvedReport = path.resolve(PROJECT_ROOT, value);
       const relative = path.relative(PROJECT_ROOT, resolvedReport);
-      if (relative.startsWith('..') || path.isAbsolute(relative)) {
+      if (!isAllowedTmpPath(resolvedReport) && (relative.startsWith('..') || path.isAbsolute(relative))) {
         throw new Error(`Path ${value} is outside project boundary`);
       }
       reportPath = resolvedReport;

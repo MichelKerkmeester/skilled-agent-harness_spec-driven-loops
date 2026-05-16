@@ -4,10 +4,14 @@
 // ╠══════════════════════════════════════════════════════════════════════════╣
 // ║ PURPOSE: Verify /spec_kit:phase and --phase-folder command contracts.   ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
-'use strict';
+import { createRequire } from 'node:module';
+import { fileURLToPath } from 'node:url';
 
+const require = createRequire(import.meta.url);
+const __filename = fileURLToPath(import.meta.url);
 const fs = require('fs');
 const path = require('path');
+const __dirname = path.dirname(__filename);
 
 const REPO_ROOT = path.resolve(__dirname, '..', '..', '..', '..', '..');
 const COMMAND_ROOT = path.join(REPO_ROOT, '.opencode', 'command', 'spec_kit');
