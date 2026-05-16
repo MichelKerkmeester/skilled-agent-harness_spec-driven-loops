@@ -1,17 +1,17 @@
 ---
-title: "Decision Record: Code-Graph Resilience Thresholds and Asset Set [system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/decision-record]"
+title: "Decision Record: Code-Graph Resilience Thresholds and Asset Set [system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research/decision-record]"
 description: "Decisions from final synthesis of the code-graph resilience deep-research loop."
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->"
 trigger_phrases:
   - "code graph resilience decision record"
   - "code graph staleness thresholds"
   - "exclude rule confidence tiers"
-  - "007-code-graph-resilience-research decisions"
+  - "006-code-graph-resilience-research decisions"
 importance_tier: "important"
 contextType: "decision"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research"
     last_updated_at: "2026-04-25T21:08:09+02:00"
     last_updated_by: "copilot-gpt-5.5"
     recent_action: "Created final synthesis decision record for code-graph resilience thresholds and tiers"
@@ -26,7 +26,7 @@ _memory:
       - "decision-record.md"
     session_dedup:
       fingerprint: "sha256:0260000000007007000000000000000000000000000000000000000000000007"
-      session_id: "007-code-graph-resilience-research"
+      session_id: "006-code-graph-resilience-research"
       parent_session_id: "026-graph-and-context-optimization"
     completion_pct: 100
     open_questions: []

@@ -1,17 +1,17 @@
 ---
-title: "Feature Specification: Code Graph Resilience Research [system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/spec]"
+title: "Feature Specification: Code Graph Resilience Research [system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research/spec]"
 description: "Research packet investigating how to make the code graph index less sensitive to errors and staleness. Outputs a verification battery, recovery playbook, and exclude-rule confidence model that gates Phase B of the /doctor:code-graph command (006 sibling)."
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->"
 trigger_phrases:
   - "code graph resilience research"
   - "code graph staleness research"
   - "code graph error resilience"
-  - "007-code-graph-resilience-research"
+  - "006-code-graph-resilience-research"
 importance_tier: "important"
 contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research"
     last_updated_at: "2026-04-25T20:30:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Created spec.md"
@@ -21,7 +21,7 @@ _memory:
       - "spec.md"
     session_dedup:
       fingerprint: "sha256:0260000000007007000000000000000000000000000000000000000000000000"
-      session_id: "007-code-graph-resilience-research"
+      session_id: "006-code-graph-resilience-research"
       parent_session_id: "026-graph-and-context-optimization"
     completion_pct: 0
     open_questions: []

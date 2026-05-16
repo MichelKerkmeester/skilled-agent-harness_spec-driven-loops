@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/007-code-graph",
   "children_ids": [],
   "migrated": true,
@@ -16,13 +16,13 @@
       "code graph resilience research",
       "code graph staleness research",
       "code graph error resilience",
-      "007-code-graph-resilience-research",
+      "006-code-graph-resilience-research",
       "code graph resilience research plan",
-      "007-code-graph-resilience-research plan",
+      "006-code-graph-resilience-research plan",
       "code graph resilience research tasks",
-      "007-code-graph-resilience-research tasks",
+      "006-code-graph-resilience-research tasks",
       "code graph resilience research checklist",
-      "007-code-graph-resilience-research checklist",
+      "006-code-graph-resilience-research checklist",
       "code graph resilience decision record",
       "code graph staleness thresholds"
     ],
@@ -33,7 +33,7 @@
       "research",
       "staleness",
       "error",
-      "007-code-graph-resilience-research",
+      "006-code-graph-resilience-research",
       "plan",
       "tasks",
       "checklist",
@@ -60,8 +60,8 @@
       ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/spec.md",
       "research/deep-research-config.json",
       ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/context-index.md",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/spec.md",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/plan.md",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research/spec.md",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research/plan.md",
       ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/005-code-graph-doctor-command/spec.md"
     ],
     "entities": [
@@ -164,13 +164,13 @@
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/spec.md",
+        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research/spec.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
-        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/plan.md",
+        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research/plan.md",
         "source": "derived"
       },
       {

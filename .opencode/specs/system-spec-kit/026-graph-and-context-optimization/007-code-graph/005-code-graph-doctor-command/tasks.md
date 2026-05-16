@@ -67,7 +67,7 @@ _memory:
 - [x] T006 Update parent `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/context-index.md` — add 006 row to child phase map
 - [x] T007 Update parent `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/spec.md` — add 006 entry to phase documentation map
 - [x] T008 Update parent `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/tasks.md` — add T-NNN entry tracking the 006 child packet
-- [x] T009 Cross-reference 007-code-graph-resilience-research packet in spec.md + plan.md (Phase B dependency)
+- [x] T009 Cross-reference 006-code-graph-resilience-research packet in spec.md + plan.md (Phase B dependency)
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -106,6 +106,6 @@ _memory:
 - **Specification**: See `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/005-code-graph-doctor-command/spec.md`
 - **Plan**: See `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/005-code-graph-doctor-command/plan.md`
 - **Parent Spec**: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/spec.md`
-- **Sibling research dependency**: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/spec.md`
+- **Sibling research dependency**: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research/spec.md`
 - **Pattern source**: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-skill-advisor-setup-command/`
 <!-- /ANCHOR:cross-refs -->

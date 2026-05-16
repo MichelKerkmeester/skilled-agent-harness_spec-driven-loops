@@ -43,7 +43,7 @@ _memory:
 
 ## EXECUTIVE SUMMARY
 
-Phase A (diagnostic-only `/doctor:code-graph`) shipped in `007-code-graph/005-code-graph-doctor-command/`, gated Phase B behind four artifacts from research packet `007-code-graph-resilience-research`. All four artifacts are now in place: a 28-query gold battery (`assets/code-graph-gold-queries.json`), a 3-state staleness model (`assets/staleness-model.md`), three recovery procedures (`assets/recovery-playbook.md`), and 3-tier exclude-rule confidence (`assets/exclude-rule-confidence.json`). Phase B wires them into an apply-mode workflow that runs the gold battery as a pre/post-flight verification gate, executes the appropriate recovery procedure based on staleness state, and rolls back if verification fails.
+Phase A (diagnostic-only `/doctor:code-graph`) shipped in `007-code-graph/005-code-graph-doctor-command/`, gated Phase B behind four artifacts from research packet `006-code-graph-resilience-research`. All four artifacts are now in place: a 28-query gold battery (`assets/code-graph-gold-queries.json`), a 3-state staleness model (`assets/staleness-model.md`), three recovery procedures (`assets/recovery-playbook.md`), and 3-tier exclude-rule confidence (`assets/exclude-rule-confidence.json`). Phase B wires them into an apply-mode workflow that runs the gold battery as a pre/post-flight verification gate, executes the appropriate recovery procedure based on staleness state, and rolls back if verification fails.
 
 **Key Decisions**: gate every apply action on the gold battery (90% overall / 80% edge-focus pass floors); confine self-healing to `soft-stale` states with bounded scope (≤50 stale files, no Git HEAD drift); require operator confirmation for `hard-stale` recovery (CG-RP-001 SQLite corruption, CG-RP-003 bad-apply rollback).
 
@@ -61,7 +61,7 @@ Phase A (diagnostic-only `/doctor:code-graph`) shipped in `007-code-graph/005-co
 | **Status** | In Progress |
 | **Created** | 2026-05-08 |
 | **Branch** | `main` |
-| **Predecessor** | `005-code-graph-doctor-command/` (Phase A shipped); `007-code-graph-resilience-research/` (4 prerequisite artifacts) |
+| **Predecessor** | `005-code-graph-doctor-command/` (Phase A shipped); `006-code-graph-resilience-research/` (4 prerequisite artifacts) |
 | **Successor** | None planned |
 <!-- /ANCHOR:metadata -->
 
@@ -190,7 +190,7 @@ Implement Phase B: an apply-mode workflow that runs verification-gated auto-fix 
 | Risk | Rollback to known-good leaves operator with stale graph if no good snapshot exists | Med | Initialize from-scratch path documented in CG-RP-003: when no known-good copy exists, allow init to recreate schema and run incremental:false scan. |
 | Risk | Self-healing boundary too tight → operators forced into manual recovery for common cases | Low | Boundary calibrated against staleness-model thresholds (≤ 50 stale files, no Git HEAD drift). Tighten only on data. |
 | Risk | Repair-nodes operation re-parses files known to crash, regressing parser fix | High | Gate strictly on `crashRootCauseAddressed` config flag (default false); operator must opt in after confirming the underlying parser fix. |
-| Dependency | All 4 research-packet-007 artifacts shipped | High | Confirmed by Explore: gold-queries.json, staleness-model.md, recovery-playbook.md, exclude-rule-confidence.json all present in `…/007-code-graph-resilience-research/assets/`. |
+| Dependency | All 4 research-packet-007 artifacts shipped | High | Confirmed by Explore: gold-queries.json, staleness-model.md, recovery-playbook.md, exclude-rule-confidence.json all present in `…/006-code-graph-resilience-research/assets/`. |
 | Dependency | Phase A diagnostic surface stable | High | Phase A shipped; auto/confirm YAMLs frozen. Apply-mode is additive only. |
 | Dependency | `parser_skip_list` quarantine table from phase 012/007 | Med | Already in production; repair-nodes operation reads from it but does not mutate the quarantine logic. |
 <!-- /ANCHOR:risks -->
@@ -314,6 +314,6 @@ Implement Phase B: an apply-mode workflow that runs verification-gated auto-fix 
 ## RELATED DOCUMENTS
 
 - **Predecessor (Phase A)**: `../005-code-graph-doctor-command/spec.md`, `…/implementation-summary.md`
-- **Research artifacts**: `../007-code-graph-resilience-research/assets/code-graph-gold-queries.json`, `…/staleness-model.md`, `…/recovery-playbook.md`, `…/exclude-rule-confidence.json`
+- **Research artifacts**: `../006-code-graph-resilience-research/assets/code-graph-gold-queries.json`, `…/staleness-model.md`, `…/recovery-playbook.md`, `…/exclude-rule-confidence.json`
 - **Phase 012/007 (parser_skip_list)**: `../012-real-world-usefulness-test/007-tree-sitter-parser-resilience/`
 - **Sibling packet (CocoIndex daemon)**: `../../011-cocoindex-daemon-resilience/`

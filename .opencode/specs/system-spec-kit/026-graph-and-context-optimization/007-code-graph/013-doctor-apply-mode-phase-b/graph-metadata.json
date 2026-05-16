@@ -12,7 +12,7 @@
         "source": "manual"
       },
       {
-        "packet_id": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research",
+        "packet_id": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research",
         "reason": "Predecessor packet (migrated from legacy string-array; original reason not preserved)",
         "source": "manual"
       }

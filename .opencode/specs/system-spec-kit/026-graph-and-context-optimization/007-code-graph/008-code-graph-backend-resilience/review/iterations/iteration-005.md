@@ -28,8 +28,8 @@
 
 ## Files Reviewed
 
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/assets/code-graph-gold-queries.json:1-80`
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/research/iterations/iteration-012.md:28-46,61-64`
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research/assets/code-graph-gold-queries.json:1-80`
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research/research/iterations/iteration-012.md:28-46,61-64`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/008-code-graph-backend-resilience/spec.md:103-104,136,204`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/008-code-graph-backend-resilience/implementation-summary.md:68,155`
 - `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/gold-query-verifier.ts:1-460`

@@ -9,7 +9,7 @@ Survey existing deep-research and deep-review iteration logs across the repo for
 - Q3: Failure modes in scan logs — what classes of scan failure recur?
 
 ## Required reads
-1. Strategy: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/research/deep-research-strategy.md`
+1. Strategy: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research/research/deep-research-strategy.md`
 2. Existing iteration logs (sample broadly, prefer those mentioning code_graph_scan or code_graph_status):
    - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-graph-impact-and-affordance-uplift/008-deep-research-review/research/008-deep-research-review-pt-01/logs/iteration-*.log`
    - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-skill-advisor-setup-command/review/logs/iteration-*.log`
@@ -28,7 +28,7 @@ Survey existing deep-research and deep-review iteration logs across the repo for
 ## Outputs (MANDATORY — produce all three)
 
 ### 1. Iteration markdown
-Path: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/research/iterations/iteration-001.md`
+Path: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research/research/iterations/iteration-001.md`
 
 Structure:
 ```
@@ -59,7 +59,7 @@ Structure:
 ```
 
 ### 2. Delta JSON
-Path: `.opencode/specs/.../007-code-graph-resilience-research/research/deltas/iteration-001.json`
+Path: `.opencode/specs/.../006-code-graph-resilience-research/research/deltas/iteration-001.json`
 
 Schema:
 ```json
@@ -76,7 +76,7 @@ Schema:
 ```
 
 ### 3. State log append
-Append one JSONL line to `.opencode/specs/.../007-code-graph-resilience-research/research/deep-research-state.jsonl`:
+Append one JSONL line to `.opencode/specs/.../006-code-graph-resilience-research/research/deep-research-state.jsonl`:
 ```json
 {"type":"iteration","iteration":1,"research_questions":["Q3"],"filesReviewed":[...],"newFindingsCount":N,"newFindingsRatio":...,"timestamp":"..."}
 ```

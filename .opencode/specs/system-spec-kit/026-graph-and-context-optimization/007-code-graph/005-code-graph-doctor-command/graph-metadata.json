@@ -53,15 +53,15 @@
       ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/005-code-graph-doctor-command/tasks.md",
       ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/005-code-graph-doctor-command/checklist.md",
       ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/005-code-graph-doctor-command/implementation-summary.md",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/assets/exclude-rule-confidence.json",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/assets/staleness-model.md",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/assets/code-graph-gold-queries.json",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research/assets/exclude-rule-confidence.json",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research/assets/staleness-model.md",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research/assets/code-graph-gold-queries.json",
       ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/spec.md",
       ".opencode/commands/doctor/mcp_install.md",
       ".opencode/commands/doctor/skill-advisor.md",
       ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/context-index.md",
       ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/tasks.md",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/spec.md",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research/spec.md",
       "spec.md"
     ],
     "entities": [
@@ -128,19 +128,19 @@
       {
         "name": "exclude-rule-confidence.json",
         "kind": "config",
-        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/assets/exclude-rule-confidence.json",
+        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research/assets/exclude-rule-confidence.json",
         "source": "derived"
       },
       {
         "name": "staleness-model.md",
         "kind": "doc",
-        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/assets/staleness-model.md",
+        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research/assets/staleness-model.md",
         "source": "derived"
       },
       {
         "name": "code-graph-gold-queries.json",
         "kind": "config",
-        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/assets/code-graph-gold-queries.json",
+        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research/assets/code-graph-gold-queries.json",
         "source": "derived"
       },
       {

@@ -30,7 +30,7 @@
 
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/008-code-graph-backend-resilience/spec.md:100-109,143,192`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/008-code-graph-backend-resilience/implementation-summary.md:64,123,142`
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/research/iterations/iteration-010.md:61-77,125,127-150,194-200`
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research/research/iterations/iteration-010.md:61-77,125,127-150,194-200`
 - `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/indexer-types.ts:18-29,87-95,133-140`
 - `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:914-925,962-965,979-982,993-995,1006-1009,1022-1025,1055-1058,1658-1666,1742-1745`
 - `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/edge-drift.ts:1-74`

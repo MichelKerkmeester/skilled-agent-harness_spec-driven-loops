@@ -16124,7 +16124,7 @@ exec
 .opencode/skills/system-spec-kit/mcp_server/lib/search/query-router.ts:134: * @param query - The search query to classify and route
 .opencode/skills/system-spec-kit/mcp_server/code_graph/lib/gold-query-verifier.ts:18: * Canonical on-disk path to the v1 gold battery shipped under the 007 research
 .opencode/skills/system-spec-kit/mcp_server/code_graph/lib/gold-query-verifier.ts:21: * REQ-014: keep in sync if the asset moves under the 007 research packet.
-.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/gold-query-verifier.ts:24:  '../../../../../specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/assets/code-graph-gold-queries.json',
+.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/gold-query-verifier.ts:24:  '../../../../../specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research/assets/code-graph-gold-queries.json',
 .opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-crud.vitest.ts:6:import * as vectorIndex from '../lib/search/vector-index';
 .opencode/skills/system-spec-kit/mcp_server/tests/integration-causal-graph.vitest.ts:7:import * as vectorIndex from '../lib/search/vector-index';
 .opencode/skills/system-spec-kit/mcp_server/tests/embedding-expansion.vitest.ts:22:} from '../lib/search/embedding-expansion';
@@ -18077,7 +18077,7 @@ exec
 .opencode/skills/system-spec-kit/mcp_server/tests/handler-eval-reporting.vitest.ts:412:      expect(data.queriesUsed).toEqual(['hybrid retrieval graph diagnosis']);
 .opencode/skills/system-spec-kit/mcp_server/tests/hook-session-start.vitest.ts:259:            '- CocoIndex: available',
 .opencode/skills/system-spec-kit/mcp_server/tests/hook-session-start.vitest.ts:409:        recommendedAction: 'Use code_graph_query for structural lookups.',
-.opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-verify.vitest.ts:62:  '../../../../../specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/assets/code-graph-gold-queries.json',
+.opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-verify.vitest.ts:62:  '../../../../../specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research/assets/code-graph-gold-queries.json',
 .opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:4:// Feature catalog: Hybrid search pipeline
 .opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:5:// Split from vector-index-store.ts — contains ALL query/search functions,
 .opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:30:  search_weights,
@@ -23850,18 +23850,18 @@ exec
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/025-mcp-runtime-hardening/README.md
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/025-mcp-runtime-hardening/implementation-summary.md
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/025-mcp-runtime-hardening/graph-metadata.json
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/assets/code-graph-gold-queries.json
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/assets/recovery-playbook.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/assets/exclude-rule-confidence.json
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/assets/staleness-model.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/decision-record.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/spec.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/plan.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/checklist.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/tasks.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/description.json
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/implementation-summary.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/graph-metadata.json
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research/assets/code-graph-gold-queries.json
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research/assets/recovery-playbook.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research/assets/exclude-rule-confidence.json
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research/assets/staleness-model.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research/decision-record.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research/spec.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research/plan.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research/checklist.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research/tasks.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research/description.json
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research/implementation-summary.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research/graph-metadata.json
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/015-manual-testing-per-playbook/002-mutation/spec.md
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/015-manual-testing-per-playbook/002-mutation/plan.md
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/015-manual-testing-per-playbook/002-mutation/checklist.md
@@ -23927,7 +23927,7 @@ exec
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-phase-parent-documentation/spec.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/graph-metadata.json
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/010-template-compliance-enforcement/research/deep-research-strategy.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/research/deep-research-strategy.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research/research/deep-research-strategy.md
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/015-manual-testing-per-playbook/019-feature-flag-reference/spec.md
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/015-manual-testing-per-playbook/019-feature-flag-reference/plan.md
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/015-manual-testing-per-playbook/019-feature-flag-reference/checklist.md
@@ -24002,18 +24002,18 @@ exec
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/010-template-compliance-enforcement/research/research.md
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/010-template-compliance-enforcement/research/deep-research-config.json
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/010-template-compliance-enforcement/research/deep-research-state.jsonl
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/research/iterations/iteration-010.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/research/iterations/iteration-004.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/research/iterations/iteration-005.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/research/iterations/iteration-001.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/research/iterations/iteration-011.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/research/iterations/iteration-006.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/research/iterations/iteration-002.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/research/iterations/iteration-012.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/research/iterations/iteration-003.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/research/iterations/iteration-007.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/research/iterations/iteration-008.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/research/iterations/iteration-009.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research/research/iterations/iteration-010.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research/research/iterations/iteration-004.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research/research/iterations/iteration-005.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research/research/iterations/iteration-001.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research/research/iterations/iteration-011.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research/research/iterations/iteration-006.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research/research/iterations/iteration-002.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research/research/iterations/iteration-012.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research/research/iterations/iteration-003.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research/research/iterations/iteration-007.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research/research/iterations/iteration-008.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research/research/iterations/iteration-009.md
 .opencode/specs/system-spec-kit/z_archive/020-mcp-working-memory-hybrid-rag/scratch/graphrag-hybrid/src/utils/query_utils.py
 .opencode/specs/system-spec-kit/z_archive/020-mcp-working-memory-hybrid-rag/scratch/graphrag-hybrid/src/utils/qdrant_utils.py
 .opencode/specs/system-spec-kit/z_archive/020-mcp-working-memory-hybrid-rag/scratch/graphrag-hybrid/src/utils/__init__.py
@@ -24077,18 +24077,18 @@ exec
 .opencode/specs/system-spec-kit/z_archive/020-mcp-working-memory-hybrid-rag/scratch/graphrag-hybrid/src/database/qdrant_manager.py
 .opencode/specs/system-spec-kit/z_archive/020-mcp-working-memory-hybrid-rag/scratch/graphrag-hybrid/src/database/neo4j_manager.py
 .opencode/specs/system-spec-kit/z_archive/020-mcp-working-memory-hybrid-rag/scratch/graphrag-hybrid/src/database/__init__.py
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/research/prompts/iteration-010.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/research/prompts/iteration-004.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/research/prompts/iteration-005.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/research/prompts/iteration-001.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/research/prompts/iteration-011.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/research/prompts/iteration-006.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/research/prompts/iteration-002.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/research/prompts/iteration-012.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/research/prompts/iteration-003.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/research/prompts/iteration-007.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/research/prompts/iteration-008.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/research/prompts/iteration-009.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research/research/prompts/iteration-010.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research/research/prompts/iteration-004.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research/research/prompts/iteration-005.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research/research/prompts/iteration-001.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research/research/prompts/iteration-011.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research/research/prompts/iteration-006.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research/research/prompts/iteration-002.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research/research/prompts/iteration-012.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research/research/prompts/iteration-003.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research/research/prompts/iteration-007.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research/research/prompts/iteration-008.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research/research/prompts/iteration-009.md
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/015-manual-testing-per-playbook/016-tooling-and-scripts/spec.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/008-code-graph-backend-resilience/review/deltas/iteration-007.json
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/008-code-graph-backend-resilience/review/deltas/iteration-010.json
@@ -24195,8 +24195,8 @@ exec
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/research/prompts/iteration-002.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/research/prompts/iteration-003.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/research/prompts/iteration-007.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/research/research.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/research/runner.sh
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research/research/research.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research/research/runner.sh
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/015-manual-testing-per-playbook/021-remediation-revalidation/spec.md
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/015-manual-testing-per-playbook/021-remediation-revalidation/plan.md
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/015-manual-testing-per-playbook/021-remediation-revalidation/checklist.md
@@ -24348,21 +24348,21 @@ exec
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/scratch/codex-audit-consolidated-review-report.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/description.json
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/005-architecture-audit/scratch/z-archive-prior-audit/legacy-memory-quarantine/06-03-26_11-58__phase-8-architecture-boundaries.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/research/deltas/iteration-007.json
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/research/deltas/iteration-011.json
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/research/deltas/iteration-010.json
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/research/deltas/iteration-006.json
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/research/deltas/iteration-001.json
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/research/deltas/iteration-003.json
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/research/deltas/iteration-002.json
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/research/deltas/iteration-005.json
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/research/deltas/iteration-009.json
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/research/deltas/iteration-008.json
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/research/deltas/iteration-004.json
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/research/deltas/iteration-012.json
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/research/deep-research-config.json
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/research/runner-extend.sh
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/research/deep-research-state.jsonl
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research/research/deltas/iteration-007.json
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research/research/deltas/iteration-011.json
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research/research/deltas/iteration-010.json
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research/research/deltas/iteration-006.json
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research/research/deltas/iteration-001.json
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research/research/deltas/iteration-003.json
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research/research/deltas/iteration-002.json
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research/research/deltas/iteration-005.json
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research/research/deltas/iteration-009.json
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research/research/deltas/iteration-008.json
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research/research/deltas/iteration-004.json
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research/research/deltas/iteration-012.json
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research/research/deep-research-config.json
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research/research/runner-extend.sh
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research/research/deep-research-state.jsonl
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/scratch/manual-test-prompts-029-hooks/opencode-plugin.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/scratch/manual-test-prompts-029-hooks/code-graph-hooks.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/scratch/manual-test-prompts-029-hooks/skill-advisor-hooks.md

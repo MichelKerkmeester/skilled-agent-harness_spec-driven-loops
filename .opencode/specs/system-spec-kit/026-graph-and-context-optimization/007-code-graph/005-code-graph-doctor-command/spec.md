@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Code Graph Doctor Command [system-spec-kit/026-graph-and-context-optimization/007-code-graph/005-code-graph-doctor-command/spec]"
-description: "New /doctor:code-graph slash command (diagnostic-first) that audits code graph index health, detects stale + missed files, recommends exclude rules and language filters, and optionally applies them after research-packet 007-code-graph-resilience-research validates the verification battery."
+description: "New /doctor:code-graph slash command (diagnostic-first) that audits code graph index health, detects stale + missed files, recommends exclude rules and language filters, and optionally applies them after research-packet 006-code-graph-resilience-research validates the verification battery."
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->"
 trigger_phrases:
   - "code graph doctor command"
@@ -45,7 +45,7 @@ _memory:
 | **Created** | 2026-04-25 |
 | **Parent** | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/` |
 | **Parent Spec** | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/spec.md` |
-| **Related** | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/` (research dependency), `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-skill-advisor-setup-command/` (pattern source) |
+| **Related** | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research/` (research dependency), `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-skill-advisor-setup-command/` (pattern source) |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -59,7 +59,7 @@ Code graph operations have no doctor surface. When the index goes stale or bloat
 
 ### Purpose
 
-Deliver a diagnostic-first `/doctor:code-graph` command that audits index health, computes a stale/missed file delta, proposes exclude rules + language filters, and optionally applies them after the resilience-research packet (007-code-graph-resilience-research) has produced the verification battery needed to detect closure regressions. Initial release is **Phase A: diagnostic-only** (no mutations); Phase B promotes to apply mode once the verification battery exists.
+Deliver a diagnostic-first `/doctor:code-graph` command that audits index health, computes a stale/missed file delta, proposes exclude rules + language filters, and optionally applies them after the resilience-research packet (006-code-graph-resilience-research) has produced the verification battery needed to detect closure regressions. Initial release is **Phase A: diagnostic-only** (no mutations); Phase B promotes to apply mode once the verification battery exists.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -84,7 +84,7 @@ Deliver a diagnostic-first `/doctor:code-graph` command that audits index health
 - Phase 3 Apply step that writes to a `code-graph-config.json` (or equivalent) and triggers re-scan
 - Mutation_boundaries.validator on the config file path (mirrors skill-advisor)
 - Per-run rollback script generation
-- Verification battery (gold-set query that must still resolve after re-scan) — sourced from 007-code-graph-resilience-research
+- Verification battery (gold-set query that must still resolve after re-scan) — sourced from 006-code-graph-resilience-research
 
 ### Out of Scope
 
@@ -127,7 +127,7 @@ Deliver a diagnostic-first `/doctor:code-graph` command that audits index health
 | REQ-006 | Diagnostic report written to packet-local scratch | `<packet_scratch>/code-graph-diagnostic-<timestamp>.md` with discovery + analysis + proposal sections |
 | REQ-007 | Bloat-dir detection covers common patterns | Detects `node_modules/`, `dist/`, `__pycache__/`, `.git/`, `.opencode/scripts/dist/`, `.opencode/skills/system-spec-kit/mcp_server/dist/`, `tmp/` at minimum |
 | REQ-008 | Confirm mode pauses at `pre_phase_2 (Proposal)` gate | User can review the analysis before the proposal is generated |
-| REQ-009 | Phase B gating documented | YAML refers to 007-code-graph-resilience-research as the prerequisite for promotion to apply mode |
+| REQ-009 | Phase B gating documented | YAML refers to 006-code-graph-resilience-research as the prerequisite for promotion to apply mode |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -152,7 +152,7 @@ Deliver a diagnostic-first `/doctor:code-graph` command that audits index health
 |------|------|--------|------------|
 | Dependency | `code_graph_status` MCP tool | High | Verify tool availability in Phase 0; degrade to `code_graph_scan --status` CLI fallback if unavailable |
 | Dependency | `detect_changes` MCP tool | High | Same — fallback to git status + glob comparison |
-| Dependency | 007-code-graph-resilience-research findings (verification battery) | Medium | Phase B gated; Phase A ships diagnostic-only and is fully usable without the battery |
+| Dependency | 006-code-graph-resilience-research findings (verification battery) | Medium | Phase B gated; Phase A ships diagnostic-only and is fully usable without the battery |
 | Risk | Bloat-dir detection over-flags valid dirs (e.g., user has a legitimate `dist/`) | Medium | Surface as proposals, not auto-applies; confirm mode lets user reject |
 | Risk | Stale-file detection mistakes (filesystem vs index timestamp drift) | Medium | Use file content hash, not just mtime |
 <!-- /ANCHOR:risks -->

@@ -5,7 +5,7 @@
 set -uo pipefail
 
 REPO_ROOT="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public"
-PACKET="$REPO_ROOT/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research"
+PACKET="$REPO_ROOT/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research"
 RESEARCH="$PACKET/research"
 PROMPTS="$RESEARCH/prompts"
 LOGS="$RESEARCH/logs"
@@ -15,7 +15,7 @@ START_ITER=8
 END_ITER=12
 
 GATE3_PREAMBLE='GATE 3 PRE-ANSWERED: A (existing spec folder)
-Spec folder for this run: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/
+Spec folder for this run: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research/
 You may write the required iteration markdown + delta JSON + state.jsonl entry into this packet directly. Do NOT ask for spec folder confirmation. Skill routing: sk-deep-research is preselected. Proceed immediately to executing the research instructions below.
 
 ==========

@@ -84,10 +84,10 @@ All consumed by this packet's implementation, none modified:
 
 | Path | Role |
 |------|------|
-| `../007-code-graph-resilience-research/assets/code-graph-gold-queries.json` | 28-query battery, pass-policy 90% overall / 80% edge-focus. |
-| `../007-code-graph-resilience-research/assets/staleness-model.md` | 3-state staleness model (fresh, soft-stale, hard-stale). |
-| `../007-code-graph-resilience-research/assets/recovery-playbook.md` | 3 recovery procedures (CG-RP-001 / 002 / 003). |
-| `../007-code-graph-resilience-research/assets/exclude-rule-confidence.json` | 3-tier exclude-rule confidence (high/medium/low). |
+| `../006-code-graph-resilience-research/assets/code-graph-gold-queries.json` | 28-query battery, pass-policy 90% overall / 80% edge-focus. |
+| `../006-code-graph-resilience-research/assets/staleness-model.md` | 3-state staleness model (fresh, soft-stale, hard-stale). |
+| `../006-code-graph-resilience-research/assets/recovery-playbook.md` | 3 recovery procedures (CG-RP-001 / 002 / 003). |
+| `../006-code-graph-resilience-research/assets/exclude-rule-confidence.json` | 3-tier exclude-rule confidence (high/medium/low). |
 
 ## Verification surfaces
 

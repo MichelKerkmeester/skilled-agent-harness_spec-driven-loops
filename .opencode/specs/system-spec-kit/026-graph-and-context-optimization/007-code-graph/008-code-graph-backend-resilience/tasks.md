@@ -131,6 +131,6 @@ _memory:
 
 - **Specification**: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/008-code-graph-backend-resilience/spec.md`
 - **Plan**: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/008-code-graph-backend-resilience/plan.md`
-- **Source roadmap**: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/research/iterations/iteration-012.md`
+- **Source roadmap**: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research/research/iterations/iteration-012.md`
 - **Per-stream patch detail**: iter-008.md (T08), iter-009.md (T09-T10), iter-010.md (T11-T12), iter-011.md (T13), iter-012.md (T01-T07, T14-T15)
 <!-- /ANCHOR:cross-refs -->

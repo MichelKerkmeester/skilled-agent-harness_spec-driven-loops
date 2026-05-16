@@ -7,7 +7,7 @@ set -uo pipefail
 
 REPO_ROOT="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public"
 PKT="$REPO_ROOT/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/008-code-graph-backend-resilience"
-PKT_007="$REPO_ROOT/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research"
+PKT_007="$REPO_ROOT/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research"
 LOGS="$PKT/scratch/codex-logs"
 RUNNER_LOG="$PKT/scratch/runner.log"
 MCP="$REPO_ROOT/.opencode/skills/system-spec-kit/mcp_server"

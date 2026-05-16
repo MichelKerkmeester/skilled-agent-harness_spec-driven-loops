@@ -165,7 +165,7 @@ User invokes /doctor:code-graph [:auto|:confirm] [--scope=N]
 | `code_graph_status` MCP tool | Internal | Green | Phase 0 falls back to filesystem-only |
 | `detect_changes` MCP tool | Internal | Green | Phase 1 falls back to git status + glob |
 | `code_graph_query` MCP tool | Internal | Green (Phase B only) | Phase B verification battery |
-| 007-code-graph-resilience-research packet | Internal | Pending (sibling) | Phase B blocked until research output stabilizes |
+| 006-code-graph-resilience-research packet | Internal | Pending (sibling) | Phase B blocked until research output stabilizes |
 | Existing `/doctor:skill-advisor` pattern | Internal | Green | Reference for 5-phase YAML structure |
 <!-- /ANCHOR:dependencies -->
 

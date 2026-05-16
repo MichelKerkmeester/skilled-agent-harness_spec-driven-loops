@@ -57,12 +57,12 @@ contextType: "general"
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/assets/code-graph-gold-queries.json` | Cited | OK | Gold battery asset referenced by verifier review |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/research/iterations/iteration-008.md` | Cited | OK | Hash-predicate design source |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/research/iterations/iteration-009.md` | Cited | OK | Resolver and type-only edge design source |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/research/iterations/iteration-010.md` | Cited | OK | Drift/baseline design source |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/research/iterations/iteration-011.md` | Cited | OK | Detect-changes hard-block design source |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/research/iterations/iteration-012.md` | Cited | OK | Final packet roadmap and verifier contract source |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research/assets/code-graph-gold-queries.json` | Cited | OK | Gold battery asset referenced by verifier review |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research/research/iterations/iteration-008.md` | Cited | OK | Hash-predicate design source |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research/research/iterations/iteration-009.md` | Cited | OK | Resolver and type-only edge design source |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research/research/iterations/iteration-010.md` | Cited | OK | Drift/baseline design source |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research/research/iterations/iteration-011.md` | Cited | OK | Detect-changes hard-block design source |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research/research/iterations/iteration-012.md` | Cited | OK | Final packet roadmap and verifier contract source |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/008-code-graph-backend-resilience/checklist.md` | Cited | OK | Traceability evidence target |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/008-code-graph-backend-resilience/implementation-summary.md` | Cited | OK | Known limitations and implementation claims |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/008-code-graph-backend-resilience/plan.md` | Cited | OK | Packet plan and stream definitions |

@@ -1,15 +1,15 @@
 ---
-title: "Verification Checklist: Code Graph Resilience Research [system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/checklist]"
+title: "Verification Checklist: Code Graph Resilience Research [system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research/checklist]"
 description: "Verification Date: 2026-04-25"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->"
 trigger_phrases:
   - "code graph resilience research checklist"
-  - "007-code-graph-resilience-research checklist"
+  - "006-code-graph-resilience-research checklist"
 importance_tier: "important"
 contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research"
     last_updated_at: "2026-04-25T21:17:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "All 26 checklist items verified after 7-iteration deep-research convergence"
@@ -22,7 +22,7 @@ _memory:
       - "checklist.md"
     session_dedup:
       fingerprint: "sha256:0260000000007007000000000000000000000000000000000000000000000003"
-      session_id: "007-code-graph-resilience-research"
+      session_id: "006-code-graph-resilience-research"
       parent_session_id: "026-graph-and-context-optimization"
     completion_pct: 100
     open_questions: []

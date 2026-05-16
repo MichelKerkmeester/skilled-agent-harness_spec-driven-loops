@@ -48,7 +48,7 @@ _memory:
 | **Level** | 2 |
 | **Created** | 2026-04-25 |
 | **Status** | Draft |
-| **Upstream** | 007-code-graph-resilience-research |
+| **Upstream** | 006-code-graph-resilience-research |
 | **Sibling** | 005-code-graph-doctor-command |
 <!-- /ANCHOR:metadata -->
 
@@ -174,7 +174,7 @@ The 007 resilience-research packet identified five concrete backend resilience g
 
 ### Dependencies
 
-- **Upstream:** `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/`
+- **Upstream:** `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research/`
 - **Sibling:** `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/005-code-graph-doctor-command/`
 - **Backend target:** `.opencode/skills/system-spec-kit/mcp_server/code_graph/`
 - **No external deps**

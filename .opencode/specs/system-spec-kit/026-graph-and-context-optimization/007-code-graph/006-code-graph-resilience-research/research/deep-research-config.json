@@ -1,6 +1,6 @@
 {
   "research_topic": "Code-graph resilience: staleness signals, error modes, recovery playbook, exclude-rule confidence",
-  "spec_folder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research",
+  "spec_folder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research",
   "max_iterations": 7,
   "convergence_threshold": 0.10,
   "stuck_threshold": 3,

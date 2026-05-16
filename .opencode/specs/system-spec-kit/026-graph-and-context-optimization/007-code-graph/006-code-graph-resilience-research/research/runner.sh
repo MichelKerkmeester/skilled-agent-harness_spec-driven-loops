@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Sequential cli-copilot deep-research runner for 007-code-graph-resilience-research
+# Sequential cli-copilot deep-research runner for 006-code-graph-resilience-research
 # Runs 7 iterations investigating code-graph resilience.
 # Per-iteration: writes iteration-NNN.md + delta-NNN.json, appends state.jsonl.
 # Iteration 7 also materializes the 4 asset files + research.md + decision-record.md.
@@ -10,7 +10,7 @@
 set -uo pipefail
 
 REPO_ROOT="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public"
-PACKET="$REPO_ROOT/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research"
+PACKET="$REPO_ROOT/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research"
 RESEARCH="$PACKET/research"
 PROMPTS="$RESEARCH/prompts"
 LOGS="$RESEARCH/logs"

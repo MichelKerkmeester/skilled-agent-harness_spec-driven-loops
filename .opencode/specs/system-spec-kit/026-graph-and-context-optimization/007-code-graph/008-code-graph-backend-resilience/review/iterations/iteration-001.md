@@ -29,7 +29,7 @@
 
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/008-code-graph-backend-resilience/spec.md:72-95,202`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/008-code-graph-backend-resilience/plan.md:89-125`
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/research/iterations/iteration-008.md:1-260`
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research/research/iterations/iteration-008.md:1-260`
 - `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:7-10,117-130,413-474`
 - `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:236-243`
 - `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/indexer-types.ts:112-114`

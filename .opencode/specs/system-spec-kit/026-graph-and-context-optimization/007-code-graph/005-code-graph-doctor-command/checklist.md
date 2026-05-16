@@ -96,7 +96,7 @@ _memory:
 
 - [x] CHK-040 [P1] Install guide `SET-UP - Code Graph.md` follows established pattern (AI-first prompt, sections 1-7+) (verified)
 - [x] CHK-041 [P1] Spec, plan, tasks synchronized with no contradictions (verified)
-- [x] CHK-042 [P1] Cross-references to 007-code-graph-resilience-research packet present in spec + plan (verified)
+- [x] CHK-042 [P1] Cross-references to 006-code-graph-resilience-research packet present in spec + plan (verified)
 - [x] CHK-043 [P2] Parent context-index updated with 006 phase entry
 <!-- /ANCHOR:docs -->
 

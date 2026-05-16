@@ -9,7 +9,7 @@ trigger_phrases:
   - "002-code-graph-self-contained-package"
   - "002-code-graph-context-and-scan-scope"
   - "005-code-graph-doctor-command"
-  - "007-code-graph-resilience-research"
+  - "006-code-graph-resilience-research"
   - "/doctor:code-graph"
 importance_tier: "important"
 contextType: "implementation"
@@ -104,7 +104,7 @@ Keep this phase-parent packet validator-compliant as a lean manifest that preser
 | 4 | `003-code-graph-hook-improvements/` | Code-Graph System + Hooks Improvement Investigation | complete |
 | 5 | `004-code-graph-advisor-refinement/` | Code Graph and Skill Advisor Refinement Research | complete |
 | 6 | `005-code-graph-doctor-command/` | Code Graph Doctor Command | complete |
-| 7 | `007-code-graph-resilience-research/` | Code Graph Resilience Research | complete |
+| 7 | `006-code-graph-resilience-research/` | Code Graph Resilience Research | complete |
 | 8 | `008-code-graph-backend-resilience/` | Code Graph Backend Resilience | complete |
 | 9 | `014-system-code-graph-extraction/` | System Code Graph Extraction | complete |
 
@@ -124,8 +124,8 @@ Keep this phase-parent packet validator-compliant as a lean manifest that preser
 | `002-code-graph-context-and-scan-scope` | `003-code-graph-hook-improvements` | `002-code-graph-context-and-scan-scope` remains discoverable and its successor relationship stays explicit in the parent manifest | Parent `spec.md` phase map and `graph-metadata.json` child list both include `003-code-graph-hook-improvements` |
 | `003-code-graph-hook-improvements` | `004-code-graph-advisor-refinement` | `003-code-graph-hook-improvements` remains discoverable and its successor relationship stays explicit in the parent manifest | Parent `spec.md` phase map and `graph-metadata.json` child list both include `004-code-graph-advisor-refinement` |
 | `004-code-graph-advisor-refinement` | `005-code-graph-doctor-command` | `004-code-graph-advisor-refinement` remains discoverable and its successor relationship stays explicit in the parent manifest | Parent `spec.md` phase map and `graph-metadata.json` child list both include `005-code-graph-doctor-command` |
-| `005-code-graph-doctor-command` | `007-code-graph-resilience-research` | `005-code-graph-doctor-command` remains discoverable and its successor relationship stays explicit in the parent manifest | Parent `spec.md` phase map and `graph-metadata.json` child list both include `007-code-graph-resilience-research` |
-| `007-code-graph-resilience-research` | `008-code-graph-backend-resilience` | `007-code-graph-resilience-research` remains discoverable and its successor relationship stays explicit in the parent manifest | Parent `spec.md` phase map and `graph-metadata.json` child list both include `008-code-graph-backend-resilience` |
+| `005-code-graph-doctor-command` | `006-code-graph-resilience-research` | `005-code-graph-doctor-command` remains discoverable and its successor relationship stays explicit in the parent manifest | Parent `spec.md` phase map and `graph-metadata.json` child list both include `006-code-graph-resilience-research` |
+| `006-code-graph-resilience-research` | `008-code-graph-backend-resilience` | `006-code-graph-resilience-research` remains discoverable and its successor relationship stays explicit in the parent manifest | Parent `spec.md` phase map and `graph-metadata.json` child list both include `008-code-graph-backend-resilience` |
 | 008-code-graph-backend-resilience | 014-system-code-graph-extraction | 008-code-graph-backend-resilience remains discoverable and its successor relationship stays explicit in the parent manifest | Parent spec.md phase map and graph-metadata.json child list both include 014-system-code-graph-extraction |
 <!-- /ANCHOR:phase-map -->
 

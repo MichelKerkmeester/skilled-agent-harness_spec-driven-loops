@@ -1,16 +1,16 @@
 ---
-title: "Implementation Summary: Code Graph Resilience Research [system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/implementation-summary]"
+title: "Implementation Summary: Code Graph Resilience Research [system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research/implementation-summary]"
 description: "7-iteration cli-copilot gpt-5.5 high deep-research loop converged with 10/10 questions answered and 4/4 mandatory assets materialized. Outputs unblock 006 Phase B (apply mode) for /doctor:code-graph."
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->"
 trigger_phrases:
   - "code graph resilience research implementation"
-  - "007-code-graph-resilience-research implementation summary"
+  - "006-code-graph-resilience-research implementation summary"
   - "code graph staleness model implementation"
 importance_tier: "important"
 contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research"
     last_updated_at: "2026-04-25T21:18:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Synthesis written"
@@ -30,7 +30,7 @@ _memory:
       - "assets/exclude-rule-confidence.json"
     session_dedup:
       fingerprint: "sha256:0260000000007007000000000000000000000000000000000000000000000099"
-      session_id: "007-code-graph-resilience-research-impl"
+      session_id: "006-code-graph-resilience-research-impl"
       parent_session_id: "026-phase-root-flatten-2026-04-21"
     completion_pct: 100
     open_questions:
@@ -58,7 +58,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 007-code-graph-resilience-research |
+| **Spec Folder** | 006-code-graph-resilience-research |
 | **Completed** | 2026-04-25 |
 | **Level** | 2 |
 | **Iterations** | 7/7 (rc=0 each) |

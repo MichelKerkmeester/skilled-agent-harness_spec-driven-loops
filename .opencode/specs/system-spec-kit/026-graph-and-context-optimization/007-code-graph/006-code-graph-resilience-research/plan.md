@@ -1,15 +1,15 @@
 ---
-title: "Implementation Plan: Code Graph Resilience Research [system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/plan]"
+title: "Implementation Plan: Code Graph Resilience Research [system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research/plan]"
 description: "Research-loop plan: 7 iterations of /spec_kit:deep-research:auto investigating code-graph staleness, error resilience, exclude-rule confidence, and recovery playbooks. Outputs feed Phase B of the 006 doctor packet."
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->"
 trigger_phrases:
   - "code graph resilience research plan"
-  - "007-code-graph-resilience-research plan"
+  - "006-code-graph-resilience-research plan"
 importance_tier: "important"
 contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research"
     last_updated_at: "2026-04-25T20:30:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Created plan.md"
@@ -20,7 +20,7 @@ _memory:
       - "plan.md"
     session_dedup:
       fingerprint: "sha256:0260000000007007000000000000000000000000000000000000000000000001"
-      session_id: "007-code-graph-resilience-research"
+      session_id: "006-code-graph-resilience-research"
       parent_session_id: "026-graph-and-context-optimization"
     completion_pct: 0
     open_questions: []
@@ -116,7 +116,7 @@ Deep-research loop with externalized JSONL state + iterative agent dispatch (mir
 ### Phase 1: Setup
 - [ ] Create research packet docs (this packet's spec, plan, tasks, checklist)
 - [ ] Create description.json + graph-metadata.json
-- [ ] Update parent `007-code-graph/{context-index, spec, tasks}.md` with 007-code-graph-resilience-research entry
+- [ ] Update parent `007-code-graph/{context-index, spec, tasks}.md` with 006-code-graph-resilience-research entry
 
 ### Phase 2: Run Deep-Research Loop
 - [ ] Invoke `/spec_kit:deep-research:auto` against this packet with the 7-iteration plan above

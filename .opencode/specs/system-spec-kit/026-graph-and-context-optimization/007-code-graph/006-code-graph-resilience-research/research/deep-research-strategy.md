@@ -1,4 +1,4 @@
-# Strategy - 007-code-graph-resilience-research
+# Strategy - 006-code-graph-resilience-research
 
 ## Goal
 
