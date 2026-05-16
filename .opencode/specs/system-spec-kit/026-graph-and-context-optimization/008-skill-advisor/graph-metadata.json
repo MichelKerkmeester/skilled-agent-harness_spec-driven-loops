@@ -4,32 +4,11 @@
   "spec_folder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization",
   "children_ids": [
-    "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-search-and-routing-tuning",
-    "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-skill-advisor-graph",
-    "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/003-advisor-phrase-booster-tailoring",
-    "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-skill-advisor-docs-and-code-alignment",
-    "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-smart-router-remediation-and-opencode-plugin",
-    "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/006-deferred-remediation-and-telemetry-run",
-    "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-skill-advisor-hook-surface",
-    "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/008-skill-graph-daemon-and-advisor-unification",
-    "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/009-skill-advisor-plugin-hardening",
-    "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/010-skill-advisor-standards-alignment",
-    "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/011-skill-advisor-hook-improvements",
-    "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command",
-    "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/013-skill-advisor-semantic-lane",
-    "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/014-embed-cache-and-cosine-wiring",
-    "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/015-ablation-sweep-and-promote",
-    "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/016-weight-sweep-harness",
-    "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/017-corpus-seeded-sweep",
-    "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/018-skill-metadata-quality-audit",
-    "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/019-apply-metadata-fixes-and-resweep",
-    "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/020-harder-intent-corpus-resweep",
-    "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/021-populate-intent-signals-and-relationships",
-    "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/022-system-skill-advisor-extraction",
-    "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/023-advisor-routing-calibration",
-    "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/024-code-folder-readmes",
-    "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/025-cli-devin-skill-advisor-hook",
-    "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/026-cross-skill-auto-propagation"
+    "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-graph",
+    "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-scorer",
+    "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/003-router",
+    "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-hardening",
+    "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-docs"
   ],
   "migrated": true,
   "migration_source": "legacy",
@@ -224,7 +203,7 @@
     ],
     "causal_summary": "Skill advisor work was scattered across two phase wrappers (`008-skill-advisor/` for search/routing/graph/smart-router, and parts of `009-hook-parity/` for hook surface, daemon unification, plugin hardening, standards alignment, and hook improvements). The split made it hard to see the advisor system as one coherent surface and forced cross-wrapper navigation when reasoning about advisor changes.",
     "created_at": "2026-04-21T13:00:00Z",
-    "last_save_at": "2026-05-16T09:00:00Z",
+    "last_save_at": "2026-05-16T09:25:00Z",
     "save_lineage": "main_agent",
     "last_accessed_at": null,
     "source_docs": [
@@ -234,6 +213,14 @@
       "implementation-summary.md"
     ],
     "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/025-cli-devin-skill-advisor-hook",
-    "last_active_at": "2026-05-15T13:05:19.646Z"
+    "last_active_at": "2026-05-15T13:05:19.646Z",
+    "restructure_note": "Wave 2.D (packet 109): 26 flat children \u2192 5 sub-phases per 998 iter-005 clustering.",
+    "sub_phases": {
+      "001-skill-graph": 7,
+      "002-scorer": 8,
+      "003-router": 5,
+      "004-hardening": 4,
+      "005-docs": 2
+    }
   }
 }
