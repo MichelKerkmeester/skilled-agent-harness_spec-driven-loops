@@ -114,7 +114,7 @@ Make broad-scope scans usable by either (a) eliminating the parser crash at the 
 |----|-------------|---------------------|
 | REQ-005 | Root cause documented in `decision-record.md` | At least one of the three hypotheses (version, WASM, content) is confirmed or rejected with citable evidence |
 | REQ-006 | Telemetry round-trips through MCP boundary | A status query after a broad-scope scan returns the new fields without breaking existing JSON shape |
-| REQ-007 | Recommended scope policy documented | `references/end-user-scope-recommendation.md` (or analog under 009-end-user-scope-default) updated with the new guidance |
+| REQ-007 | Recommended scope policy documented | `references/end-user-scope-recommendation.md` (or analog under 008-end-user-scope-default) updated with the new guidance |
 <!-- /ANCHOR:requirements -->
 
 ---

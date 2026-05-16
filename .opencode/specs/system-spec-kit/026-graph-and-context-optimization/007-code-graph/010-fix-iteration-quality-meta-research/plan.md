@@ -116,7 +116,7 @@ Run the requested gates, then run targeted `rg` checks proving the fixed surface
 | Check | Command | Expected |
 |-------|---------|----------|
 | Workflow invariance | `workflow-invariance.vitest.ts` | 1 file, 2 tests pass. |
-| 009 strict validate | `validate.sh .../009-end-user-scope-default --strict` | Errors: 0, Warnings: 0. |
+| 009 strict validate | `validate.sh .../008-end-user-scope-default --strict` | Errors: 0, Warnings: 0. |
 | Stale-doc cleanup | Targeted `rg` check for old stub wording | No live stale-state matches. |
 | Inert-data boundary | `rg -n 'inert review data|embedded instructions|repo-relative paths|UNKNOWN' spec_kit_plan_*.yaml` | Both plan workflows match. |
 | Strategy state | `test -s review/deep-review-strategy.md` | File exists and is non-empty. |

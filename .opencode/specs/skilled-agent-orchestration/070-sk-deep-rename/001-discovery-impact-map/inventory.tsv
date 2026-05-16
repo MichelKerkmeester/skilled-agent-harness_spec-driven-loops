@@ -547,7 +547,7 @@ file_path	match_count	area	phase
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-backend-resilience/review/prompts/iteration-009.md	1	spec-folder-active	003
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-backend-resilience/review/prompts/iteration-010.md	1	spec-folder-active	003
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-backend-resilience/review/resource-map.md	2	spec-folder-active	003
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/009-end-user-scope-default/research/resource-map.md	3	spec-folder-active	003
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/008-end-user-scope-default/research/resource-map.md	3	spec-folder-active	003
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/010-fix-iteration-quality-meta-research/description.json	1	spec-folder-active	003
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/010-fix-iteration-quality-meta-research/research/deep-research-strategy.md	3	spec-folder-active	003
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/010-fix-iteration-quality-meta-research/research/iterations/iteration-003.md	1	spec-folder-active	003
@@ -1207,7 +1207,7 @@ specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code
 specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-backend-resilience/review/prompts/iteration-009.md	1	spec-folder-active	003
 specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-backend-resilience/review/prompts/iteration-010.md	1	spec-folder-active	003
 specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-backend-resilience/review/resource-map.md	2	spec-folder-active	003
-specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/009-end-user-scope-default/research/resource-map.md	3	spec-folder-active	003
+specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/008-end-user-scope-default/research/resource-map.md	3	spec-folder-active	003
 specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/010-fix-iteration-quality-meta-research/description.json	1	spec-folder-active	003
 specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/010-fix-iteration-quality-meta-research/research/deep-research-strategy.md	3	spec-folder-active	003
 specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/010-fix-iteration-quality-meta-research/research/iterations/iteration-003.md	1	spec-folder-active	003

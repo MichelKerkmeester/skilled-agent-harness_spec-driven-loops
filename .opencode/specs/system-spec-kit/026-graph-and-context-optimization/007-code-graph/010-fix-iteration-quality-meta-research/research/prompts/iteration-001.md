@@ -14,10 +14,10 @@ Iter 1 — Empirical analysis of the 009 4-round trajectory.
 
 Mandatory reading (in order):
 1. .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/010-fix-iteration-quality-meta-research/spec.md — research charter, 5 failure modes, 7 questions
-2. ../009-end-user-scope-default/review_archive/run-001-converged-at-6-*/review-report.md + iteration-001..006.md
-3. ../009-end-user-scope-default/review_archive/run-002-v2-conditional-*/review-report.md + iteration-001..010.md
-4. ../009-end-user-scope-default/review_archive/run-003-v3-fail-1p0-*/review-report.md + iteration-001..005.md
-5. ../009-end-user-scope-default/review/review-report.md (run-4 clean PASS)
+2. ../008-end-user-scope-default/review_archive/run-001-converged-at-6-*/review-report.md + iteration-001..006.md
+3. ../008-end-user-scope-default/review_archive/run-002-v2-conditional-*/review-report.md + iteration-001..010.md
+4. ../008-end-user-scope-default/review_archive/run-003-v3-fail-1p0-*/review-report.md + iteration-001..005.md
+5. ../008-end-user-scope-default/review/review-report.md (run-4 clean PASS)
 6. Fix commit messages: `git log --pretty=format:'%h %s%n%b' c8ee2e819 03d873276 79e97aec9 -- .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/010-fix-iteration-quality-meta-research | head -200`
 
 Build a **finding-cause-fix matrix** in iteration-001.md:
