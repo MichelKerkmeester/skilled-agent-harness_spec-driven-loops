@@ -107,6 +107,9 @@ function flushTierDowngradeAudits(
 ----------------------------------------------------------------*/
 
 const MAX_CHECKPOINTS = 10;
+const CHECKPOINT_CREATE_MAX_ATTEMPTS = 3;
+const CHECKPOINT_CREATE_RETRY_MIN_DELAY_MS = 50;
+const CHECKPOINT_CREATE_RETRY_MAX_DELAY_MS = 200;
 
 const CHECKPOINT_MANIFEST = Object.freeze({
   snapshot: [
@@ -212,6 +215,33 @@ interface CreateCheckpointOptions {
   scope?: ScopeContext;
 }
 
+type CheckpointCreateErrorCode =
+  | 'CHECKPOINT_CREATE_SQLITE_BUSY'
+  | 'CHECKPOINT_CREATE_SQLITE_LOCKED'
+  | 'CHECKPOINT_CREATE_DUPLICATE_NAME'
+  | 'CHECKPOINT_CREATE_PERMISSION_DENIED'
+  | 'CHECKPOINT_CREATE_FAILED';
+
+class CheckpointCreateError extends Error {
+  public readonly code: CheckpointCreateErrorCode;
+  public readonly originalCode: string | null;
+  public readonly details: Record<string, unknown>;
+
+  constructor(
+    code: CheckpointCreateErrorCode,
+    message: string,
+    details: Record<string, unknown> = {},
+    cause?: unknown,
+  ) {
+    super(message, { cause });
+    Object.setPrototypeOf(this, CheckpointCreateError.prototype);
+    this.name = 'CheckpointCreateError';
+    this.code = code;
+    this.originalCode = typeof details.originalCode === 'string' ? details.originalCode : null;
+    this.details = details;
+  }
+}
+
 interface RestoreResult {
   restored: number;
   skipped: number;
@@ -310,6 +340,96 @@ function init(database: Database.Database): void {
 function getDatabase(): Database.Database {
   if (!db) throw new Error('Database not initialized. The checkpoints module requires the MCP server to be running. Restart the MCP server and retry.');
   return db;
+}
+
+function getErrorCode(error: unknown): string | null {
+  if (typeof error === 'object' && error !== null && 'code' in error) {
+    const code = (error as { code?: unknown }).code;
+    return typeof code === 'string' ? code : null;
+  }
+  return null;
+}
+
+function isCheckpointBusyError(error: unknown): boolean {
+  const code = getErrorCode(error);
+  const message = toErrorMessage(error);
+  return code === 'SQLITE_BUSY'
+    || code === 'SQLITE_LOCKED'
+    || /\bSQLITE_BUSY\b|\bSQLITE_LOCKED\b|database is locked/i.test(message);
+}
+
+function classifyCheckpointCreateError(
+  error: unknown,
+  context: Record<string, unknown> = {},
+): CheckpointCreateError {
+  if (error instanceof CheckpointCreateError) {
+    return error;
+  }
+
+  const originalCode = getErrorCode(error);
+  const message = toErrorMessage(error);
+  const details = {
+    ...context,
+    ...(originalCode ? { originalCode } : {}),
+    originalMessage: message,
+  };
+
+  if (originalCode === 'SQLITE_BUSY' || /\bSQLITE_BUSY\b|database is locked/i.test(message)) {
+    return new CheckpointCreateError(
+      'CHECKPOINT_CREATE_SQLITE_BUSY',
+      'Checkpoint creation failed because the SQLite database was busy. Retry after current writes finish.',
+      details,
+      error,
+    );
+  }
+
+  if (originalCode === 'SQLITE_LOCKED' || /\bSQLITE_LOCKED\b/i.test(message)) {
+    return new CheckpointCreateError(
+      'CHECKPOINT_CREATE_SQLITE_LOCKED',
+      'Checkpoint creation failed because the SQLite database was locked by another operation.',
+      details,
+      error,
+    );
+  }
+
+  if (/UNIQUE constraint failed: checkpoints\.name|constraint failed/i.test(message)) {
+    return new CheckpointCreateError(
+      'CHECKPOINT_CREATE_DUPLICATE_NAME',
+      'Checkpoint creation failed because a checkpoint with this name already exists.',
+      details,
+      error,
+    );
+  }
+
+  if (
+    originalCode === 'EACCES'
+    || originalCode === 'EPERM'
+    || originalCode === 'SQLITE_READONLY'
+    || /permission denied|readonly|read-only/i.test(message)
+  ) {
+    return new CheckpointCreateError(
+      'CHECKPOINT_CREATE_PERMISSION_DENIED',
+      'Checkpoint creation failed because the database path is not writable.',
+      details,
+      error,
+    );
+  }
+
+  return new CheckpointCreateError(
+    'CHECKPOINT_CREATE_FAILED',
+    `Checkpoint creation failed: ${message}`,
+    details,
+    error,
+  );
+}
+
+function checkpointRetryDelayMs(): number {
+  return CHECKPOINT_CREATE_RETRY_MIN_DELAY_MS
+    + Math.floor(Math.random() * (CHECKPOINT_CREATE_RETRY_MAX_DELAY_MS - CHECKPOINT_CREATE_RETRY_MIN_DELAY_MS + 1));
+}
+
+function sleepSync(ms: number): void {
+  Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, ms);
 }
 
 function isRestoreInProgress(): boolean {
@@ -1392,7 +1512,7 @@ function validateMemoryRow(
    7. CHECKPOINT OPERATIONS
 ----------------------------------------------------------------*/
 
-function createCheckpoint(options: CreateCheckpointOptions = {}): CheckpointInfo | null {
+function createCheckpoint(options: CreateCheckpointOptions = {}): CheckpointInfo {
   const database = getDatabase();
 
   const {
@@ -1404,113 +1524,149 @@ function createCheckpoint(options: CreateCheckpointOptions = {}): CheckpointInfo
   } = options;
 
   try {
-    // Wrap snapshot SELECTs + INSERT + overflow DELETE in a transaction for atomicity
-    const checkpointInfo = database.transaction(() => {
-      const {
-        memories,
+    try {
+      database.pragma('busy_timeout = 1000');
+    } catch (_pragmaError: unknown) {
+      // Non-fatal: older/mocked better-sqlite3 handles may not expose pragma.
+    }
+
+    const {
+      memories,
+      memoryIds: scopedMemoryIds,
+      normalizedScope,
+    } = getScopedMemories(database, specFolder, scope);
+    const tables: Record<string, TableSnapshot> = {};
+
+    for (const tableName of CHECKPOINT_MANIFEST.snapshot) {
+      if (!_includeEmbeddings && (tableName === 'vec_memories' || tableName === 'vec_metadata')) {
+        continue;
+      }
+
+      const tableSnapshot = createTableSnapshot(database, tableName, {
+        specFolder,
         memoryIds: scopedMemoryIds,
-        normalizedScope,
-      } = getScopedMemories(database, specFolder, scope);
-      const tables: Record<string, TableSnapshot> = {};
+        scope: normalizedScope,
+      });
+      if (!tableSnapshot) {
+        continue;
+      }
+      tables[tableName] = tableSnapshot;
+    }
 
-      for (const tableName of CHECKPOINT_MANIFEST.snapshot) {
-        if (!_includeEmbeddings && (tableName === 'vec_memories' || tableName === 'vec_metadata')) {
-          continue;
-        }
+    const vectorRows = tables.vec_memories?.rows ?? [];
+    const workingMemorySnapshot = tables.working_memory?.rows ?? [];
+    const causalEdgesSnapshot = tables.causal_edges?.rows ?? [];
+    const vectors = vectorRows.map((row) => ({
+      rowid: Number(row.rowid),
+      embedding: toBuffer(row.embedding),
+    })).filter((row) => Number.isFinite(row.rowid));
 
-        const tableSnapshot = createTableSnapshot(database, tableName, {
+    const manifest = buildCheckpointManifest();
+    const snapshot: CheckpointSnapshot = {
+      manifest,
+      tables,
+      memories,
+      workingMemory: workingMemorySnapshot,
+      vectors,
+      causalEdges: causalEdgesSnapshot,
+      timestamp: new Date().toISOString(),
+    };
+
+    const snapshotJson = JSON.stringify(snapshot);
+    const compressed = zlib.gzipSync(Buffer.from(snapshotJson));
+    const gitBranch = getGitBranch();
+    const now = new Date().toISOString();
+    const checkpointMetadata = {
+      ...metadata,
+      ...(normalizedScope.tenantId ? { tenantId: normalizedScope.tenantId } : {}),
+      ...(normalizedScope.userId ? { userId: normalizedScope.userId } : {}),
+      ...(normalizedScope.agentId ? { agentId: normalizedScope.agentId } : {}),
+      memoryCount: memories.length,
+      vectorCount: vectors.length,
+      includeEmbeddings: _includeEmbeddings,
+      manifest,
+    };
+
+    const writeCheckpoint = (): CheckpointInfo => {
+      return database.transaction(() => {
+        const result = (database.prepare(`
+          INSERT INTO checkpoints (name, created_at, spec_folder, git_branch, memory_snapshot, metadata)
+          VALUES (?, ?, ?, ?, ?, ?)
+        `) as Database.Statement).run(
+          name,
+          now,
           specFolder,
-          memoryIds: scopedMemoryIds,
-          scope: normalizedScope,
-        });
-        if (!tableSnapshot) {
-          continue;
+          gitBranch,
+          compressed,
+          JSON.stringify(checkpointMetadata),
+        );
+
+        // Enforce max checkpoints
+        const checkpointCount = (database.prepare(
+          'SELECT COUNT(*) as count FROM checkpoints'
+        ) as Database.Statement).get() as { count: number };
+
+        if (checkpointCount.count > MAX_CHECKPOINTS) {
+          database.prepare(`
+            DELETE FROM checkpoints WHERE id IN (
+              SELECT id FROM checkpoints ORDER BY created_at ASC LIMIT ?
+            )
+          `).run(checkpointCount.count - MAX_CHECKPOINTS);
         }
-        tables[tableName] = tableSnapshot;
+
+        return {
+          id: (result as { lastInsertRowid: number | bigint }).lastInsertRowid as number,
+          name,
+          createdAt: now,
+          specFolder,
+          gitBranch,
+          snapshotSize: compressed.length,
+          metadata: {
+            ...metadata,
+            ...(normalizedScope.tenantId ? { tenantId: normalizedScope.tenantId } : {}),
+            ...(normalizedScope.userId ? { userId: normalizedScope.userId } : {}),
+            ...(normalizedScope.agentId ? { agentId: normalizedScope.agentId } : {}),
+            memoryCount: memories.length,
+          },
+        };
+      })();
+    };
+
+    let lastError: unknown;
+    for (let attempt = 1; attempt <= CHECKPOINT_CREATE_MAX_ATTEMPTS; attempt += 1) {
+      try {
+        const checkpointInfo = writeCheckpoint();
+        if (attempt > 1) {
+          console.warn(`[checkpoints] createCheckpoint succeeded after ${attempt} attempts for "${name}"`);
+        }
+        console.error(`[checkpoints] Created checkpoint "${name}" (${checkpointInfo.snapshotSize} bytes compressed)`);
+        return checkpointInfo;
+      } catch (error: unknown) {
+        lastError = error;
+        if (!isCheckpointBusyError(error) || attempt >= CHECKPOINT_CREATE_MAX_ATTEMPTS) {
+          break;
+        }
+
+        const delayMs = checkpointRetryDelayMs();
+        console.warn(
+          `[checkpoints] createCheckpoint write busy for "${name}" on attempt ${attempt}; retrying in ${delayMs}ms`,
+        );
+        sleepSync(delayMs);
       }
+    }
 
-      const vectorRows = tables.vec_memories?.rows ?? [];
-      const workingMemorySnapshot = tables.working_memory?.rows ?? [];
-      const causalEdgesSnapshot = tables.causal_edges?.rows ?? [];
-      const vectors = vectorRows.map((row) => ({
-        rowid: Number(row.rowid),
-        embedding: toBuffer(row.embedding),
-      })).filter((row) => Number.isFinite(row.rowid));
-
-      const snapshot: CheckpointSnapshot = {
-        manifest: buildCheckpointManifest(),
-        tables,
-        memories,
-        workingMemory: workingMemorySnapshot,
-        vectors,
-        causalEdges: causalEdgesSnapshot,
-        timestamp: new Date().toISOString(),
-      };
-
-      const snapshotJson = JSON.stringify(snapshot);
-      const compressed = zlib.gzipSync(Buffer.from(snapshotJson));
-
-      const gitBranch = getGitBranch();
-      const now = new Date().toISOString();
-
-      const result = (database.prepare(`
-        INSERT INTO checkpoints (name, created_at, spec_folder, git_branch, memory_snapshot, metadata)
-        VALUES (?, ?, ?, ?, ?, ?)
-      `) as Database.Statement).run(
-        name,
-        now,
-        specFolder,
-        gitBranch,
-        compressed,
-        JSON.stringify({
-          ...metadata,
-          ...(normalizedScope.tenantId ? { tenantId: normalizedScope.tenantId } : {}),
-          ...(normalizedScope.userId ? { userId: normalizedScope.userId } : {}),
-          ...(normalizedScope.agentId ? { agentId: normalizedScope.agentId } : {}),
-          memoryCount: memories.length,
-          vectorCount: vectors.length,
-          includeEmbeddings: _includeEmbeddings,
-          manifest: buildCheckpointManifest(),
-        })
-      );
-
-      // Enforce max checkpoints
-      const checkpointCount = (database.prepare(
-        'SELECT COUNT(*) as count FROM checkpoints'
-      ) as Database.Statement).get() as { count: number };
-
-      if (checkpointCount.count > MAX_CHECKPOINTS) {
-        database.prepare(`
-          DELETE FROM checkpoints WHERE id IN (
-            SELECT id FROM checkpoints ORDER BY created_at ASC LIMIT ?
-          )
-        `).run(checkpointCount.count - MAX_CHECKPOINTS);
-      }
-
-      return {
-        id: (result as { lastInsertRowid: number | bigint }).lastInsertRowid as number,
-        name,
-        createdAt: now,
-        specFolder,
-        gitBranch,
-        snapshotSize: compressed.length,
-        metadata: {
-          ...metadata,
-          ...(normalizedScope.tenantId ? { tenantId: normalizedScope.tenantId } : {}),
-          ...(normalizedScope.userId ? { userId: normalizedScope.userId } : {}),
-          ...(normalizedScope.agentId ? { agentId: normalizedScope.agentId } : {}),
-          memoryCount: memories.length,
-        },
-      };
-    })();
-
-    console.error(`[checkpoints] Created checkpoint "${name}" (${checkpointInfo.snapshotSize} bytes compressed)`);
-
-    return checkpointInfo;
+    throw classifyCheckpointCreateError(lastError, {
+      name,
+      specFolder,
+      attempts: CHECKPOINT_CREATE_MAX_ATTEMPTS,
+    });
   } catch (error: unknown) {
-    const msg = toErrorMessage(error);
-    console.warn(`[checkpoints] createCheckpoint error: ${msg}`);
-    return null;
+    const typedError = classifyCheckpointCreateError(error, {
+      name,
+      specFolder,
+    });
+    console.warn(`[checkpoints] createCheckpoint error: ${typedError.code}: ${typedError.message}`);
+    throw typedError;
   }
 }
 
@@ -1950,6 +2106,7 @@ export {
   getCheckpoint,
   restoreCheckpoint,
   deleteCheckpoint,
+  CheckpointCreateError,
   RESTORE_IN_PROGRESS_ERROR_CODE,
   RESTORE_IN_PROGRESS_ERROR_MESSAGE,
   // F-005-A5-06: snapshot schema exposed for direct shape testing.
@@ -1962,6 +2119,7 @@ export {
 export type {
   CheckpointEntry,
   CheckpointInfo,
+  CheckpointCreateErrorCode,
   CreateCheckpointOptions,
   RestoreResult,
 };

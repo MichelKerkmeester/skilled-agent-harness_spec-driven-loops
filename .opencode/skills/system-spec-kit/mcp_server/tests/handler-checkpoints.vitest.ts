@@ -116,12 +116,38 @@ describe('Handler Checkpoints (T521, T102) [deferred - requires DB test fixtures
     });
 
     it('T521-C5: Returns MCP error response when checkpoint storage create fails', async () => {
-      const spy = vi.spyOn(checkpointStorageMod, 'createCheckpoint').mockReturnValue(null);
+      const spy = vi.spyOn(checkpointStorageMod, 'createCheckpoint').mockReturnValue(null as never);
       try {
         const result = await handler.handleCheckpointCreate({ name: 'create-failure-test' });
         expect(result.isError).toBe(true);
         const parsed = JSON.parse(result.content[0].text);
         expect(parsed.data?.code).toBe('CHECKPOINT_CREATE_FAILED');
+      } finally {
+        spy.mockRestore();
+      }
+    });
+
+    it('T521-C5b: Maps typed storage SQLITE_BUSY errors into actionable MCP response', async () => {
+      const error = new checkpointStorageMod.CheckpointCreateError(
+        'CHECKPOINT_CREATE_SQLITE_BUSY',
+        'Checkpoint creation failed because the SQLite database was busy. Retry after current writes finish.',
+        {
+          name: 'busy-checkpoint',
+          originalCode: 'SQLITE_BUSY',
+          originalMessage: 'SQLITE_BUSY: database is locked',
+          attempts: 3,
+        },
+      );
+      const spy = vi.spyOn(checkpointStorageMod, 'createCheckpoint').mockImplementation(() => {
+        throw error;
+      });
+      try {
+        const result = await handler.handleCheckpointCreate({ name: 'busy-checkpoint' });
+        expect(result.isError).toBe(true);
+        const parsed = JSON.parse(result.content[0].text);
+        expect(parsed.data?.code).toBe('CHECKPOINT_CREATE_SQLITE_BUSY');
+        expect(parsed.data?.details?.underlyingCode).toBe('SQLITE_BUSY');
+        expect(parsed.hints).toContain('Retry checkpoint_create after concurrent memory writes complete');
       } finally {
         spy.mockRestore();
       }

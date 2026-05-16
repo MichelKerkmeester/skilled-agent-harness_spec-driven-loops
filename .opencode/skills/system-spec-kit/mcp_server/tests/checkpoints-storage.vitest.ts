@@ -1,5 +1,5 @@
 // TEST: CHECKPOINTS STORAGE
-import { describe, it, expect, beforeAll, afterAll, beforeEach, afterEach } from 'vitest';
+import { describe, it, expect, vi, beforeAll, afterAll, beforeEach, afterEach } from 'vitest';
 
 import * as mod from '../lib/storage/checkpoints';
 import type { CheckpointInfo } from '../lib/storage/checkpoints';
@@ -307,6 +307,51 @@ describe('Checkpoints Storage (T503)', () => {
 
       expect(createdCheckpoint.name).toBe('test-checkpoint-1');
       expect(createdCheckpoint.id).toBeGreaterThan(0);
+    });
+
+    it('T503-01b: Retries transient SQLITE_BUSY write transaction before succeeding', () => {
+      const database = getTestDb();
+      const originalTransaction = database.transaction.bind(database);
+      let attempts = 0;
+      const waitSpy = vi.spyOn(Atomics, 'wait').mockReturnValue('timed-out');
+      const transactionSpy = vi
+        .spyOn(database, 'transaction')
+        .mockImplementation(((fn: () => unknown) => {
+          attempts += 1;
+          if (attempts === 1) {
+            return () => {
+              const busyError = Object.assign(new Error('SQLITE_BUSY: database is locked'), {
+                code: 'SQLITE_BUSY',
+              });
+              throw busyError;
+            };
+          }
+          return originalTransaction(fn);
+        }) as typeof database.transaction);
+
+      try {
+        const checkpoint = mod.createCheckpoint({ name: 'busy-retry-checkpoint' });
+
+        expect(checkpoint.name).toBe('busy-retry-checkpoint');
+        expect(attempts).toBe(2);
+        expect(waitSpy).toHaveBeenCalledTimes(1);
+      } finally {
+        transactionSpy.mockRestore();
+        waitSpy.mockRestore();
+      }
+    });
+
+    it('T503-01c: Throws typed duplicate-name checkpoint create errors', () => {
+      mod.createCheckpoint({ name: 'duplicate-checkpoint' });
+
+      expect(() => mod.createCheckpoint({ name: 'duplicate-checkpoint' })).toThrow(mod.CheckpointCreateError);
+
+      try {
+        mod.createCheckpoint({ name: 'duplicate-checkpoint' });
+      } catch (error: unknown) {
+        expect(error).toBeInstanceOf(mod.CheckpointCreateError);
+        expect((error as mod.CheckpointCreateError).code).toBe('CHECKPOINT_CREATE_DUPLICATE_NAME');
+      }
     });
   });
 

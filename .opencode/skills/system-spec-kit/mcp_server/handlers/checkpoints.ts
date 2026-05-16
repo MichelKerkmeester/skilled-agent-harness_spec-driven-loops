@@ -290,6 +290,79 @@ function createCheckpointScopeValidationError(
   });
 }
 
+function createCheckpointCreateFailureResponse(
+  error: unknown,
+  context: { name: string; specFolder: string | null },
+  startTime: number,
+): MCPResponse {
+  const typedError = error instanceof checkpoints.CheckpointCreateError ? error : null;
+  const code = typedError?.code ?? 'CHECKPOINT_CREATE_FAILED';
+  const message = typedError?.message ?? `Checkpoint creation failed: ${toErrorMessage(error)}`;
+
+  const recoveryByCode: Record<string, { hint: string; actions: string[]; severity: string }> = {
+    CHECKPOINT_CREATE_SQLITE_BUSY: {
+      hint: 'SQLite was busy while creating the checkpoint. Retry after active writes finish.',
+      actions: [
+        'Retry checkpoint_create after concurrent memory writes complete',
+        'For sweep harnesses, prefer specFolder-scoped checkpoints or includeEmbeddings=false when rollback semantics allow',
+        'Run checkpoint_list() to confirm checkpoint state before destructive operations',
+      ],
+      severity: 'medium',
+    },
+    CHECKPOINT_CREATE_SQLITE_LOCKED: {
+      hint: 'SQLite was locked by another operation while creating the checkpoint.',
+      actions: [
+        'Wait for the active lifecycle operation to finish, then retry',
+        'Serialize global checkpoint_create calls in parallel sweep harnesses',
+        'Run checkpoint_list() to confirm checkpoint state before destructive operations',
+      ],
+      severity: 'medium',
+    },
+    CHECKPOINT_CREATE_DUPLICATE_NAME: {
+      hint: 'A checkpoint with this name already exists.',
+      actions: [
+        'Use a unique checkpoint name',
+        'Run checkpoint_list() to inspect existing names',
+        'Delete the existing checkpoint only if rollback policy allows it',
+      ],
+      severity: 'low',
+    },
+    CHECKPOINT_CREATE_PERMISSION_DENIED: {
+      hint: 'The checkpoint database path is not writable.',
+      actions: [
+        'Verify database directory permissions',
+        'Confirm the MCP server has write access to the SQLite database',
+        'Run node dist/cli.js stats to check startup/database access',
+      ],
+      severity: 'high',
+    },
+    CHECKPOINT_CREATE_FAILED: {
+      hint: 'Checkpoint creation failed before a row was persisted.',
+      actions: [
+        'Inspect the underlying error details',
+        'Run memory_health() or node dist/cli.js stats to check database availability',
+        'Run checkpoint_list() to confirm checkpoint state before destructive operations',
+      ],
+      severity: 'medium',
+    },
+  };
+  const recovery = recoveryByCode[code] ?? recoveryByCode.CHECKPOINT_CREATE_FAILED;
+
+  return createMCPErrorResponse({
+    tool: 'checkpoint_create',
+    error: message,
+    code,
+    details: {
+      name: context.name,
+      specFolder: context.specFolder,
+      ...(typedError?.originalCode ? { underlyingCode: typedError.originalCode } : {}),
+      ...(typedError?.details ? { storage: typedError.details } : {}),
+    },
+    recovery,
+    startTime,
+  });
+}
+
 /* ───────────────────────────────────────────────────────────────
    3. CHECKPOINT CREATE HANDLER
 ──────────────────────────────────────────────────────────────── */
@@ -315,12 +388,24 @@ async function handleCheckpointCreate(args: CheckpointCreateArgs): Promise<MCPRe
     throw new Error('specFolder must be a string');
   }
 
-  const result = checkpoints.createCheckpoint({
-    name,
-    specFolder: spec_folder,
-    metadata: mergeCheckpointScopeMetadata(metadata, scope),
-    scope,
-  });
+  // Global embedding-inclusive checkpoints are expensive serialized lifecycle
+  // operations. Parallel sweep harnesses should prefer specFolder-scoped
+  // checkpoints or includeEmbeddings=false when rollback semantics allow it.
+  let result: checkpoints.CheckpointInfo | null;
+  try {
+    result = checkpoints.createCheckpoint({
+      name,
+      specFolder: spec_folder,
+      metadata: mergeCheckpointScopeMetadata(metadata, scope),
+      scope,
+    });
+  } catch (error: unknown) {
+    return createCheckpointCreateFailureResponse(
+      error,
+      { name, specFolder: spec_folder ?? null },
+      startTime,
+    );
+  }
 
   if (!result) {
     return createMCPErrorResponse({
