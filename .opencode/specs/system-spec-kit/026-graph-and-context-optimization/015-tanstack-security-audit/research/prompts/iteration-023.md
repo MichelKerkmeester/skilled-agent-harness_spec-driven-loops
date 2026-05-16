@@ -22,7 +22,7 @@ Audit the verification of runtime and auth findings from iterations 011-015 dime
 Run these commands exactly or document any command that is unavailable on this host. Each command produces evidence. Redact secret values, but preserve filenames, permissions, line numbers, process names, command exit codes, and safe metadata.
 
 ```bash
-cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/015-global-security-sweep-and-supply-chain-audit && for f in research/iterations/iteration-0{11..15}.md; do echo "## $f"; test -s "$f" && rg -n "(CRITICAL|HIGH|MEDIUM|Evidence|Remediation|Convergence|COMPROMISE|INDICATORS|CLEAN)" "$f" || echo "MISSING_OR_EMPTY $f"; done 2>&1
+cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/015-tanstack-security-audit && for f in research/iterations/iteration-0{11..15}.md; do echo "## $f"; test -s "$f" && rg -n "(CRITICAL|HIGH|MEDIUM|Evidence|Remediation|Convergence|COMPROMISE|INDICATORS|CLEAN)" "$f" || echo "MISSING_OR_EMPTY $f"; done 2>&1
 cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && find . ~/.config ~/.claude ~/.codex ~/.gemini -maxdepth 4 \( -name "mcp.json" -o -name "*.mcp.json" -o -name "settings.json" -o -name "config.toml" -o -name "config.json" -o -name ".utcp_config.json" \) -print 2>&1 | sort
 find ~/.claude ~/.codex ~/.config/devin ~/.local/share/devin ~/.gemini ~/.config/gh -maxdepth 4 -type f 2>&1 | grep -Ei "(auth|credential|token|secret|key|host|config|json|toml|yaml|yml|db)$" | xargs -I {} stat -f "%Sp %Su:%Sg %Sm %N" -t "%Y-%m-%dT%H:%M:%S%z" {} 2>&1
 gh auth status 2>&1; gh api user -q "{login: .login, id: .id}" 2>&1

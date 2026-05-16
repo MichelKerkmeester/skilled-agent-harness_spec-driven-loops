@@ -6,7 +6,7 @@
   "children_ids": [],
   "manual": {
     "depends_on": [
-      "system-spec-kit/026-graph-and-context-optimization/015-global-security-sweep-and-supply-chain-audit"
+      "system-spec-kit/026-graph-and-context-optimization/015-tanstack-security-audit"
     ],
     "supersedes": [],
     "related_to": [

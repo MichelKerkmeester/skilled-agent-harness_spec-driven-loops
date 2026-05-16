@@ -97,7 +97,7 @@ Source: iter 001-006 (SWE-1.6 classifications) + iter 041 (gpt-5.5 adversarial r
 | 012-causal-graph-channel-routing | phase parent | complete | 2 | load-bearing | iter 005:20-29 |
 | 013-doctor-update-orchestrator | phase parent | mixed | 5 | load-bearing | iter 005:48-52 |
 | 014-local-embeddings-migration | phase parent | active | **63** (not 60 per iter 042) | load-bearing (severe naming mismatch) | iter 006:23, iter 031, iter 042 |
-| 015-global-security-sweep-and-supply-chain-audit | phase parent | in_progress | — | load-bearing (verbose name) | iter 006:95-99 |
+| 015-tanstack-security-audit | phase parent | in_progress | — | load-bearing (verbose name) | iter 006:95-99 |
 
 ### 2.2 Nested packets summary
 
@@ -161,7 +161,7 @@ Source: iter 035 (initial 13-phase proposal) + iter 038 (revised to 11 after rem
 
 **Meta-phase outside sequence:**
 
-- **000-release-cleanup** absorbs **015-global-security-sweep-and-supply-chain-audit** as a nested child (release-time security audit). Iter 047 phase-lifecycle governance supports this grouping (Stable / Stale / Archive transitions all touch release work).
+- **000-release-cleanup** absorbs **015-tanstack-security-audit** as a nested child (release-time security audit). Iter 047 phase-lifecycle governance supports this grouping (Stable / Stale / Archive transitions all touch release work).
 
 ### 3.2 Renames in scope (4 top-level)
 
@@ -170,7 +170,7 @@ Source: iter 033 (top-N rename proposals) + iter 046 (scale-pressure-test refine
 | Current name | Proposed name | Recall impact | Iter |
 |--------------|---------------|--------------:|------|
 | `014-local-embeddings-migration` | `014-local-embeddings-migration` | HIGH | iter 033 rank-1, iter 046 refined |
-| `015-global-security-sweep-and-supply-chain-audit` | `015-tanstack-security-audit` (or absorb into 000 as nested child) | MEDIUM-HIGH | iter 033 rank-2 |
+| `015-tanstack-security-audit` | `015-tanstack-security-audit` (or absorb into 000 as nested child) | MEDIUM-HIGH | iter 033 rank-2 |
 | `006-graph-impact-and-affordance-uplift` | `006-external-project-adoption` | MEDIUM | iter 033 rank-3 |
 | `002-resource-map-template` | `002-resource-map-deep-loop-fix` | MEDIUM | iter 033 rank-4 |
 
@@ -273,7 +273,7 @@ Renames are cheapest and most reversible. Execute first so subsequent merges wor
 | Op | Action | Risk |
 |----|--------|------|
 | W1.1 | `git mv 014-local-embeddings-migration 014-local-embeddings-migration` + update graph-metadata.json `manual.depends_on` references | Low |
-| W1.2 | `git mv 015-global-security-sweep-and-supply-chain-audit 015-tanstack-security-audit` (or skip if absorbing into 000 in W2) | Low |
+| W1.2 | `git mv 015-tanstack-security-audit 015-tanstack-security-audit` (or skip if absorbing into 000 in W2) | Low |
 | W1.3 | `git mv 006-graph-impact-and-affordance-uplift 006-external-project-adoption` | Low |
 | W1.4 | `git mv 002-resource-map-template 002-resource-map-deep-loop-fix` | Low |
 
@@ -359,7 +359,7 @@ Source: iter 040 (SWE-1.6 proof points) + iter 050 (gpt-5.5 validation design) +
 | "How was the doctor command consolidation done?" | 013-doctor-update-orchestrator → scan 5 packets → consolidation packet | 3 | 011-doctor-and-repair-orchestration → 4 internal phases → consolidation packet | 3 | 0 |
 | "How does skill-advisor route to a skill?" (council Q6) | 008-skill-advisor → scan 26 packets (no clear entry point) | 4-5 | 007-skill-advisor-and-routing → routing-and-intent phase | 3 | 1-2 |
 | "When did memory-indexer-invariants land?" (council Q7) | 005-memory-indexer-invariants directly (correct first pick today) | 2 | 004-memory-indexer-invariants (renumbered) | 2 | 0 |
-| "Where is the TanStack security audit?" (council Q8) | 015-global-security-sweep-and-supply-chain-audit (verbose name) | 3 | 015-tanstack-security-audit OR 000-release-cleanup/<NN>-tanstack-security-audit (post-recatalog) | 2-3 | 0-1 |
+| "Where is the TanStack security audit?" (council Q8) | 015-tanstack-security-audit (verbose name) | 3 | 015-tanstack-security-audit OR 000-release-cleanup/<NN>-tanstack-security-audit (post-recatalog) | 2-3 | 0-1 |
 | "What was the template-levels work and how did it split?" (council Q9) | 010-template-levels (single bucket; can't tell what survives vs rehomes) | 4 | 010-template-levels (parent retained for templates 001/002/003) + cross-refs to 007-skill-advisor (005, 009) + 011-doctor (006) | 2 | 2 |
 
 **Aggregate (revised with council 4 queries)**: ~6-8 hops saved across 9 sample queries; 4-5/9 first-pick correctness improvement; 1 known regression (resource map query — accepted).

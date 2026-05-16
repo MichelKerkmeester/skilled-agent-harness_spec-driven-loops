@@ -12,7 +12,7 @@ importance_tier: "critical"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/015-global-security-sweep-and-supply-chain-audit"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/015-tanstack-security-audit"
     last_updated_at: "2026-05-15T18:30:00Z"
     last_updated_by: "claude-opus-4-7-015-scaffold"
     recent_action: "packet_scaffolded_post_tanstack_shai_hulud_disclosure"

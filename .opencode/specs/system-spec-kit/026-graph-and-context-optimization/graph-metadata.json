@@ -21,7 +21,7 @@
     "system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator",
     "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a",
     "system-spec-kit/026-graph-and-context-optimization/015-extracted-skills-isolation",
-    "system-spec-kit/026-graph-and-context-optimization/015-global-security-sweep-and-supply-chain-audit"
+    "system-spec-kit/026-graph-and-context-optimization/015-tanstack-security-audit"
   ],
   "migrated": true,
   "migration_source": "legacy",
@@ -156,7 +156,7 @@
       "spec.md",
       "resource-map.md"
     ],
-    "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/015-global-security-sweep-and-supply-chain-audit",
+    "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/015-tanstack-security-audit",
     "last_active_at": "2026-05-15T18:27:59.589Z"
   }
 }

@@ -90,7 +90,7 @@ sed -n '1,200p' .opencode/specs/skilled-agent-orchestration/106-upstream-auto-re
 
 # Reference local cost data
 rg -nC2 'cost|price|tokens|wall.clock|elapsed' \
-  .opencode/specs/system-spec-kit/026-graph-and-context-optimization/015-global-security-sweep-and-supply-chain-audit/implementation-summary.md 2>&1 | head -20
+  .opencode/specs/system-spec-kit/026-graph-and-context-optimization/015-tanstack-security-audit/implementation-summary.md 2>&1 | head -20
 ```
 
 ## CONSTRAINTS

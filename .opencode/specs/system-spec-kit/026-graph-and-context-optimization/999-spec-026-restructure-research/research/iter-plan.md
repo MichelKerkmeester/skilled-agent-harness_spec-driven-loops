@@ -27,7 +27,7 @@
 | 003 | 1 | Classify 026/007-code-graph (phase parent only) + 008-skill-advisor | 2 packet dirs |
 | 004 | 1 | Classify 026/009-hook-parity (parent only) + 010-template-levels (parent only) + 011-cocoindex-daemon-resilience | 3 packet dirs |
 | 005 | 1 | Classify 026/012-causal-graph-channel-routing + 013-doctor-update-orchestrator (parent only) | 2 packet dirs |
-| 006 | 1 | Classify 026/014-local-embeddings-migration (parent only) + 015-global-security-sweep-and-supply-chain-audit | 2 packet dirs |
+| 006 | 1 | Classify 026/014-local-embeddings-migration (parent only) + 015-tanstack-security-audit | 2 packet dirs |
 | 007 | 2 | Map all children of 014-local-embeddings-migration and identify the natural grouping (research arc, deep-loop arc, SKILL realignment arc) | 014/* |
 | 008 | 2 | For each 014 child packet (056, 057, 058, 059, plus any 0NN children), classify load-bearing / merge / delete | 014/* |
 | 009 | 2 | Identify duplicate / overlapping packets within 014 (e.g. 057 vs 056) and propose merges | 014/* |

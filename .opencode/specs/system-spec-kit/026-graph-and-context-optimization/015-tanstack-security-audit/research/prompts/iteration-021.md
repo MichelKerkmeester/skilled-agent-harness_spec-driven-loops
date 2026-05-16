@@ -22,7 +22,7 @@ Audit the verification of active-threat findings from iterations 001-005 dimensi
 Run these commands exactly or document any command that is unavailable on this host. Each command produces evidence. Redact secret values, but preserve filenames, permissions, line numbers, process names, command exit codes, and safe metadata.
 
 ```bash
-cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/015-global-security-sweep-and-supply-chain-audit && for f in research/iterations/iteration-00{1..5}.md; do echo "## $f"; test -s "$f" && rg -n "(CRITICAL|HIGH|MEDIUM|Evidence|Remediation|Convergence|COMPROMISE|INDICATORS|CLEAN)" "$f" || echo "MISSING_OR_EMPTY $f"; done 2>&1
+cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/015-tanstack-security-audit && for f in research/iterations/iteration-00{1..5}.md; do echo "## $f"; test -s "$f" && rg -n "(CRITICAL|HIGH|MEDIUM|Evidence|Remediation|Convergence|COMPROMISE|INDICATORS|CLEAN)" "$f" || echo "MISSING_OR_EMPTY $f"; done 2>&1
 ls -la ~/.local/bin/gh-token-monitor.sh ~/Library/LaunchAgents/com.user.gh-token-monitor* ~/.config/systemd/user/gh-token-monitor* 2>&1
 pgrep -fa "gh-token|token-monitor|api.github.com/user" 2>&1
 cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && rg -n "@tanstack/|gh-token-monitor|api.github.com/user|NPM_TOKEN|github_pat_|ghp_|npm_" . --hidden --glob "!.git/**" --glob "!**/*.sqlite*" 2>&1

@@ -1,4 +1,4 @@
-{"type":"campaign_start","packet":"015-global-security-sweep-and-supply-chain-audit","totalIterations":25,"executors":{"1-20":"cli-devin/swe-1.6","21-25":"cli-codex/gpt-5.5/xhigh/fast"},"triggeredBy":"TanStack-Mini-Shai-Hulud-2026-05-15","startedAt":"2026-05-15T18:37:42.553981Z"}
+{"type":"campaign_start","packet":"015-tanstack-security-audit","totalIterations":25,"executors":{"1-20":"cli-devin/swe-1.6","21-25":"cli-codex/gpt-5.5/xhigh/fast"},"triggeredBy":"TanStack-Mini-Shai-Hulud-2026-05-15","startedAt":"2026-05-15T18:37:42.553981Z"}
 {"type":"iteration","run":1,"executor":"cli-devin","model":"swe-1.6","exitCode":0,"durationSec":61,"linesWritten":      21,"timestamp":"2026-05-15T18:40:26Z"}
 {"type":"iteration","run":2,"executor":"cli-devin","model":"swe-1.6","exitCode":0,"durationSec":84,"linesWritten":      18,"timestamp":"2026-05-15T18:41:53Z"}
 {"type":"iteration","run":3,"executor":"cli-devin","model":"swe-1.6","exitCode":0,"durationSec":31,"linesWritten":       8,"timestamp":"2026-05-15T18:42:27Z"}

@@ -124,7 +124,7 @@ sed -n '1,200p' .opencode/specs/skilled-agent-orchestration/106-upstream-auto-re
 sed -n '1,300p' .opencode/specs/skilled-agent-orchestration/106-upstream-auto-review-research/research/iterations/iteration-005.md
 
 # Local cross-AI pattern references
-rg -l 'cli-devin|cli-opencode|cli-codex' .opencode/specs/system-spec-kit/026-graph-and-context-optimization/015-global-security-sweep-and-supply-chain-audit/spec.md 2>&1
+rg -l 'cli-devin|cli-opencode|cli-codex' .opencode/specs/system-spec-kit/026-graph-and-context-optimization/015-tanstack-security-audit/spec.md 2>&1
 rg -l 'cli-devin|cli-codex' .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/037-system-code-graph-comprehensive-deep-review/ 2>&1 | head -5
 ```
 

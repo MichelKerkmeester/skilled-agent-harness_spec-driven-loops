@@ -107,5 +107,5 @@ _memory:
 - `implementation-summary.md` — post-synthesis fill target
 - `research/prompts/iteration-{001..020}.md` — dispatch-ready prompts
 - `research/review-report.md` — final synthesis target
-- Pattern reference: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/015-global-security-sweep-and-supply-chain-audit/` (proven 25-iter workflow)
+- Pattern reference: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/015-tanstack-security-audit/` (proven 25-iter workflow)
 <!-- /ANCHOR:cross-refs -->

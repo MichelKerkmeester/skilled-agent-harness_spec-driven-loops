@@ -9,7 +9,7 @@ importance_tier: "critical"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/015-global-security-sweep-and-supply-chain-audit"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/015-tanstack-security-audit"
     last_updated_at: "2026-05-15T18:37:42.553981Z"
     last_updated_by: "cli-opencode-015-scaffold"
     recent_action: "authored_atomic_tasks_for_security_sweep_dispatch"
@@ -53,7 +53,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T1.1 Confirm Gate 3 authorized packet scope (`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/015-global-security-sweep-and-supply-chain-audit/`).
+- [x] T1.1 Confirm Gate 3 authorized packet scope (`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/015-tanstack-security-audit/`).
 - [x] T1.2 Read `spec.md` as the campaign source of truth.
 - [x] T1.3 Read Level 1 plan/tasks/implementation-summary templates.
 - [x] T1.4 Read canonical 037 iteration prompt reference.

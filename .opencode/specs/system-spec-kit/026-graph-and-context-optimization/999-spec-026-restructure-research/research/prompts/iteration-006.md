@@ -6,7 +6,7 @@ You are a SWE-1.6 deep-research iteration worker. Stay read-only. Cite evidence 
 
 ## Pre-planning
 
-**Goal:** Classify two direct children: `014-local-llama-cpp` (phase parent — top-level only) and `015-global-security-sweep-and-supply-chain-audit` (single packet).
+**Goal:** Classify two direct children: `014-local-llama-cpp` (phase parent — top-level only) and `015-tanstack-security-audit` (single packet).
 
 **Important:** `014-local-llama-cpp` is the MOST ACTIVE phase parent — hosts the 056-059 arc (root README refresh, SKILL.md realignment, cli-devin deep-loop alignment). This iter does the top level only. 014 nested children are deep-read in track 2 (iter 007-010).
 
@@ -28,7 +28,7 @@ You are a SWE-1.6 deep-research iteration worker. Stay read-only. Cite evidence 
 
 ## Research Question (scoped)
 
-For `026/014-local-llama-cpp` (top-level) and `026/015-global-security-sweep-and-supply-chain-audit`:
+For `026/014-local-llama-cpp` (top-level) and `026/015-tanstack-security-audit`:
 
 1. What is 014's overall arc? Is the local-llama-cpp grouping coherent given the 056-059 deep-loop work that landed under it?
 2. List 014's nested children

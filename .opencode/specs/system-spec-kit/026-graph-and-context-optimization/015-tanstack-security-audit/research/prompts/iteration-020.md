@@ -22,11 +22,11 @@ Audit the primary synthesis and remediation playbook dimension. Produce findings
 Run these commands exactly or document any command that is unavailable on this host. Each command produces evidence. Redact secret values, but preserve filenames, permissions, line numbers, process names, command exit codes, and safe metadata.
 
 ```bash
-cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/015-global-security-sweep-and-supply-chain-audit && ls -la research/iterations 2>&1
-cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/015-global-security-sweep-and-supply-chain-audit && for f in research/iterations/iteration-{001..019}.md; do [ -f "$f" ] && rg -n "^(### (CRITICAL|HIGH|MEDIUM|LOW|INFO)|## Summary|## Convergence Signal|COMPROMISE-CONFIRMED|INDICATORS-PRESENT|CLEAN)" "$f" || echo "MISSING $f"; done 2>&1
-cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/015-global-security-sweep-and-supply-chain-audit && tail -n 25 research/deep-research-state.jsonl 2>&1
-cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/015-global-security-sweep-and-supply-chain-audit && rg -n "(CRITICAL|HIGH|MEDIUM|LOW|INFO|VERIFIED-CLEAN|COMPROMISE-CONFIRMED|INDICATORS-PRESENT|CLEAN|HALLUCINATED|PARTIAL)" research/iterations/iteration-0*.md 2>&1
-cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/015-global-security-sweep-and-supply-chain-audit && rg -n "(file:line|Evidence|Remediation|None|VERIFIED-CLEAN)" research/iterations/iteration-0*.md 2>&1 | sed -n "1,300p"
+cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/015-tanstack-security-audit && ls -la research/iterations 2>&1
+cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/015-tanstack-security-audit && for f in research/iterations/iteration-{001..019}.md; do [ -f "$f" ] && rg -n "^(### (CRITICAL|HIGH|MEDIUM|LOW|INFO)|## Summary|## Convergence Signal|COMPROMISE-CONFIRMED|INDICATORS-PRESENT|CLEAN)" "$f" || echo "MISSING $f"; done 2>&1
+cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/015-tanstack-security-audit && tail -n 25 research/deep-research-state.jsonl 2>&1
+cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/015-tanstack-security-audit && rg -n "(CRITICAL|HIGH|MEDIUM|LOW|INFO|VERIFIED-CLEAN|COMPROMISE-CONFIRMED|INDICATORS-PRESENT|CLEAN|HALLUCINATED|PARTIAL)" research/iterations/iteration-0*.md 2>&1
+cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/015-tanstack-security-audit && rg -n "(file:line|Evidence|Remediation|None|VERIFIED-CLEAN)" research/iterations/iteration-0*.md 2>&1 | sed -n "1,300p"
 ```
 
 ## CONSTRAINTS

@@ -11,7 +11,7 @@ contextType: "review"
 
 # Security Sweep Review Report
 
-**Packet**: `015-global-security-sweep-and-supply-chain-audit`
+**Packet**: `015-tanstack-security-audit`
 **Trigger**: 2026-05-15 TanStack Mini Shai-Hulud npm worm disclosure (dead-man's-switch payload: `~/.local/bin/gh-token-monitor.sh` + LaunchAgent `com.user.gh-token-monitor` + 518M reported infections)
 **Iterations**: 20 cli-devin SWE-1.6 primary + 5 cli-opencode + deepseek-v4-pro verification = 25 total
 **Date**: 2026-05-15

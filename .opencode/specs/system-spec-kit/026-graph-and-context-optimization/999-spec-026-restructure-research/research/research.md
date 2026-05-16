@@ -45,7 +45,7 @@ Track 11 (gpt-5.5 adversarial review) resolved cross-track contradictions and pr
 | 012-causal-graph-channel-routing | load-bearing | Phase parent for graph-channel routing override (001 initial-delivery) and post-deep-review remediation (002) (59 files) | iter 005:20-29 |
 | 013-doctor-update-orchestrator | load-bearing | Phase parent for doctor command consolidation with 5 children | iter 005:48-52 |
 | 014-local-embeddings-migration | load-bearing (confidence-weak) | Phase parent for local embeddings migration with 63 children (not 60 as initially reported); naming incoherence identified | iter 006:23, iter 042:10 |
-| 015-global-security-sweep-and-supply-chain-audit | load-bearing | 25-iteration deep-research security audit of Public repo + host environment after TanStack Mini Shai-Hulud disclosure (57 files) | iter 006:95-99 |
+| 015-tanstack-security-audit | load-bearing | 25-iteration deep-research security audit of Public repo + host environment after TanStack Mini Shai-Hulud disclosure (57 files) | iter 006:95-99 |
 
 **Track 11 Adversarial Review (iter 041):**
 - Overrode SWE-1.6 classification for 004-runtime-executor-hardening: false-positive-merge, grep found 339 non-research exact-packet matches including downstream dependencies
@@ -326,7 +326,7 @@ Track 11 (gpt-5.5 adversarial review) resolved cross-track contradictions and pr
 **Top-N Rename Proposals (iter 033):**
 - Ranked by recall impact:
   1. 014-local-embeddings-migration → 014-local-embeddings-setup-a (HIGH impact)
-  2. 015-global-security-sweep-and-supply-chain-audit → 015-tanstack-security-audit (MEDIUM-HIGH impact)
+  2. 015-tanstack-security-audit → 015-tanstack-security-audit (MEDIUM-HIGH impact)
   3. 006-graph-impact-and-affordance-uplift → 006-external-project-adoption (MEDIUM impact)
   4. 002-resource-map-template → 002-resource-map-and-deep-loop-fix (MEDIUM impact)
 - 4 mild mismatches deferred due to verbosity-only issues
@@ -650,7 +650,7 @@ Every finding in this ledger cites the specific iteration number and file:line w
    - 002-resource-map-template → 002-resource-map-deep-loop-fix (iter 033:28-29, iter 046:58)
    - 006-graph-impact-and-affordance-uplift → 006-external-project-adoption (iter 033:27-28)
    - 014-local-embeddings-migration → 014-local-embeddings-migration (iter 046:55)
-   - 015-global-security-sweep-and-supply-chain-audit → 015-tanstack-security-audit (iter 033:26-27)
+   - 015-tanstack-security-audit → 015-tanstack-security-audit (iter 033:26-27)
 
 5. **Update parent documentation per iter 039:** Apply proposed structures to spec.md, resource-map.md, and graph-metadata.json (iter 039:30-52).
 

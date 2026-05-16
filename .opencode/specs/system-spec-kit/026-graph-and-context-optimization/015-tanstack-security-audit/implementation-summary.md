@@ -10,7 +10,7 @@ importance_tier: "critical"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/015-global-security-sweep-and-supply-chain-audit"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/015-tanstack-security-audit"
     last_updated_at: "2026-05-15T20:00:00Z"
     last_updated_by: "claude-opus-4-7-015-close"
     recent_action: "remediation_applied_10_mcp_pins_3_memory_entries_packet_closed"
@@ -49,7 +49,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/015-global-security-sweep-and-supply-chain-audit` |
+| **Spec Folder** | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/015-tanstack-security-audit` |
 | **Completed** | 2026-05-15 |
 | **Level** | 1 |
 | **Verdict** | **COMPROMISE-CONFIRMED** (host) / **CLEAN** (repo) |

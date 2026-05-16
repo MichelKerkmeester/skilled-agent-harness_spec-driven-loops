@@ -9,7 +9,7 @@ importance_tier: "critical"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/015-global-security-sweep-and-supply-chain-audit"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/015-tanstack-security-audit"
     last_updated_at: "2026-05-15T19:30:00Z"
     last_updated_by: "claude-opus-4-7-015-synthesis"
     recent_action: "campaign_complete_25_iterations_synthesized_to_review_report"
@@ -47,7 +47,7 @@ _memory:
 |--------|-------|
 | **Language/Stack** | Markdown prompts, shell verification commands, JSONL state |
 | **Framework** | system-spec-kit Level 1 packet + deep-research dispatch loop |
-| **Storage** | Packet-local files under `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/015-global-security-sweep-and-supply-chain-audit/` |
+| **Storage** | Packet-local files under `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/015-tanstack-security-audit/` |
 | **Testing** | Strict spec validation plus prompt inventory checks |
 
 ### Overview
@@ -131,12 +131,12 @@ research/prompts/iteration-001.md ... iteration-025.md
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/015-global-security-sweep-and-supply-chain-audit/spec.md` | Source of truth for dimensions and campaign contract | Read only | Fully read before scaffold generation |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/015-global-security-sweep-and-supply-chain-audit/plan.md` | Level 1 execution plan | Create | Packet validation + direct file inventory |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/015-global-security-sweep-and-supply-chain-audit/tasks.md` | Atomic dispatch task ledger | Create | Packet validation + direct file inventory |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/015-global-security-sweep-and-supply-chain-audit/implementation-summary.md` | Placeholder summary for post-synthesis completion | Create | Template marker present |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/015-global-security-sweep-and-supply-chain-audit/research/prompts/` | Iteration prompt queue | Create 25 files | Count equals 25; iteration-001 has >=60 lines |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/015-global-security-sweep-and-supply-chain-audit/research/deep-research-state.jsonl` | Campaign state | Initialize | Single campaign_start JSON object |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/015-tanstack-security-audit/spec.md` | Source of truth for dimensions and campaign contract | Read only | Fully read before scaffold generation |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/015-tanstack-security-audit/plan.md` | Level 1 execution plan | Create | Packet validation + direct file inventory |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/015-tanstack-security-audit/tasks.md` | Atomic dispatch task ledger | Create | Packet validation + direct file inventory |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/015-tanstack-security-audit/implementation-summary.md` | Placeholder summary for post-synthesis completion | Create | Template marker present |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/015-tanstack-security-audit/research/prompts/` | Iteration prompt queue | Create 25 files | Count equals 25; iteration-001 has >=60 lines |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/015-tanstack-security-audit/research/deep-research-state.jsonl` | Campaign state | Initialize | Single campaign_start JSON object |
 <!-- /ANCHOR:affected-surfaces -->
 
 ---
@@ -200,6 +200,6 @@ research/prompts/iteration-001.md ... iteration-025.md
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: Rollback is only needed if scaffold generation writes outside `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/015-global-security-sweep-and-supply-chain-audit/` or corrupts existing packet metadata.
+- **Trigger**: Rollback is only needed if scaffold generation writes outside `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/015-tanstack-security-audit/` or corrupts existing packet metadata.
 - **Procedure**: Delete or repair only the generated packet-local scaffold files, then re-run strict packet validation. The audit and dispatch loop are read-only; no rollback is needed for host or source-code state unless an iteration violates its read-only constraint.
 <!-- /ANCHOR:rollback -->

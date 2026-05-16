@@ -22,7 +22,7 @@ Audit the verification of persistence findings from iterations 006-010 dimension
 Run these commands exactly or document any command that is unavailable on this host. Each command produces evidence. Redact secret values, but preserve filenames, permissions, line numbers, process names, command exit codes, and safe metadata.
 
 ```bash
-cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/015-global-security-sweep-and-supply-chain-audit && for f in research/iterations/iteration-0{06..10}.md; do echo "## $f"; test -s "$f" && rg -n "(CRITICAL|HIGH|MEDIUM|Evidence|Remediation|Convergence|COMPROMISE|INDICATORS|CLEAN)" "$f" || echo "MISSING_OR_EMPTY $f"; done 2>&1
+cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/015-tanstack-security-audit && for f in research/iterations/iteration-0{06..10}.md; do echo "## $f"; test -s "$f" && rg -n "(CRITICAL|HIGH|MEDIUM|Evidence|Remediation|Convergence|COMPROMISE|INDICATORS|CLEAN)" "$f" || echo "MISSING_OR_EMPTY $f"; done 2>&1
 find ~/Library/LaunchAgents /Library/LaunchAgents /Library/LaunchDaemons ~/.config/systemd/user -maxdepth 2 -type f -print 2>&1 | sort
 crontab -l 2>&1; find /etc/cron.d /etc/cron.daily /etc/cron.hourly /etc/cron.weekly /etc/cron.monthly -maxdepth 2 -type f -print 2>&1
 for f in ~/.zshrc ~/.zprofile ~/.zshenv ~/.bashrc ~/.bash_profile ~/.profile; do [ -f "$f" ] && rg -n "(curl|wget|eval|base64|launchctl|systemctl|crontab|PATH=|alias |function )" "$f" 2>&1; done

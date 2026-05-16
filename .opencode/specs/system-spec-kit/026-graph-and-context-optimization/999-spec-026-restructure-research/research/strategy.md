@@ -45,7 +45,7 @@ Produce a verified restructure proposal that consolidates the 22 children curren
 012-causal-graph-channel-routing
 013-doctor-update-orchestrator              (phase parent)
 014-local-embeddings-migration                         (phase parent — hosts 056-059 arc)
-015-global-security-sweep-and-supply-chain-audit
+015-tanstack-security-audit
 ```
 
 Plus phase-parent metadata at `026/`: spec.md, resource-map.md, description.json, graph-metadata.json, scratch/, changelog/.
