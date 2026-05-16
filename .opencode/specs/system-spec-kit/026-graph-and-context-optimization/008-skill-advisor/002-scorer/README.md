@@ -6,7 +6,7 @@ Embed cache, cosine wiring, ablation/weight/corpus sweeps, calibration.
 
 - `001-skill-advisor-hook-improvements`
 - `002-skill-advisor-semantic-lane`
-- `014-embed-cache-and-cosine-wiring`
+- `003-embed-cache-and-cosine-wiring`
 - `015-ablation-sweep-and-promote`
 - `016-weight-sweep-harness`
 - `017-corpus-seeded-sweep`

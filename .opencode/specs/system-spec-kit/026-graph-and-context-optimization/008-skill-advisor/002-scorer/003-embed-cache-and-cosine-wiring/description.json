@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/014-embed-cache-and-cosine-wiring",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/003-embed-cache-and-cosine-wiring",
   "description": "Add per-skill embedding cache to skill-graph.sqlite, embed prompts at recommend-time, surface cosine score as a shadow-only lane (no live behavior change).",
   "keywords": [
     "skill-embedding-cache",

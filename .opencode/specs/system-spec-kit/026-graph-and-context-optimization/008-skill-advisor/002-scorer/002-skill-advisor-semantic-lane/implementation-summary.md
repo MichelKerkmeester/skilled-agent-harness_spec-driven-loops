@@ -41,7 +41,7 @@ _memory:
 ## What Was Built
 
 This packet is the strategy/rationale root. Implementation was shipped in 10 sibling phases:
-- 014-embed-cache-and-cosine-wiring — embedding cache + cosine lane shadow wiring
+- 003-embed-cache-and-cosine-wiring — embedding cache + cosine lane shadow wiring
 - 015-ablation-sweep-and-promote — ablation sweep + lane promotion
 - 016-weight-sweep-harness — weight sweep harness
 - 017-corpus-seeded-sweep — corpus seeded sweep

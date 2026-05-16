@@ -49,7 +49,7 @@ This initial phase defines the strategy. All implementation work was shipped in 
 ## ARCHITECTURE
 
 This packet is the root strategy document. Implementation is in sibling phases:
-- 014-embed-cache-and-cosine-wiring — embedding infrastructure
+- 003-embed-cache-and-cosine-wiring — embedding infrastructure
 - 015-ablation-sweep-and-promote — lane weight optimization
 - 016-023 — follow-on optimization lifecycle
 <!-- /ANCHOR:architecture -->

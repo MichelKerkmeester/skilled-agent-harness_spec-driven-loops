@@ -14,7 +14,7 @@ _memory:
     last_updated_at: "2026-05-15T00:00:00Z"
     last_updated_by: "opencode-deepseek"
     recent_action: "Restructured: children promoted to siblings 014-023, slot converted to initial leaf phase"
-    next_safe_action: "Resume at child 014-embed-cache-and-cosine-wiring"
+    next_safe_action: "Resume at child 003-embed-cache-and-cosine-wiring"
     blockers: []
     key_files:
       - "spec.md"
@@ -126,7 +126,7 @@ None. All implementation decisions were resolved in sibling children.
 ## 8. FOLLOW-ON PHASES
 
 All phases complete. Structural layout:
-- [014-embed-cache-and-cosine-wiring](014-embed-cache-and-cosine-wiring/) — embedding cache + cosine wiring
+- [003-embed-cache-and-cosine-wiring](003-embed-cache-and-cosine-wiring/) — embedding cache + cosine wiring
 - [015-ablation-sweep-and-promote](015-ablation-sweep-and-promote/) — ablation sweep + lane promotion
 - [016-weight-sweep-harness](016-weight-sweep-harness/) — weight sweep harness
 - [017-corpus-seeded-sweep](017-corpus-seeded-sweep/) — corpus seeded sweep
