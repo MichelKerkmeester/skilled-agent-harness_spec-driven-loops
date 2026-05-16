@@ -8,7 +8,7 @@ importance_tier: "high"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "013-doctor-update-orchestrator/003-rm8-013-remediation-doc-honesty-security"
+    packet_pointer: "013-doctor-update-orchestrator/002-rm8-013-remediation-doc-honesty-security"
     last_updated_at: "2026-05-11T08:05:00Z"
     last_updated_by: "main-claude-opus-4.7"
     recent_action: "Authored plan from spec.md"

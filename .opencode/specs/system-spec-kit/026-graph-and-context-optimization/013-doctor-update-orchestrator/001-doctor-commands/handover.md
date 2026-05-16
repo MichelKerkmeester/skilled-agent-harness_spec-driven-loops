@@ -124,7 +124,7 @@ _memory:
   - `.opencode/specs/.../001-doctor-commands/decision-record.md` (10 ADRs including ADR-010 mode reduction)
   - `.opencode/specs/.../001-doctor-commands/implementation-summary.md` (13 fixes inventory + dispatch results)
   - `.opencode/specs/.../002-sandbox-testing-playbook/handover.md` (sibling's state — sandbox harness + fixtures ready)
-  - `.opencode/specs/.../003-rm8-013-remediation-doc-honesty-security/implementation-summary.md` (what changed in 001 during RM-8 remediation)
+  - `.opencode/specs/.../002-rm8-013-remediation-doc-honesty-security/implementation-summary.md` (what changed in 001 during RM-8 remediation)
 
 ### 3.2 Priority Tasks Remaining
 
@@ -151,7 +151,7 @@ _memory:
 - [ ] Memory: most-recent `/memory:save` was on 2026-05-11 covering both 013 remediation + re-review packets
 - [ ] Spec packet: `001-doctor-commands` (Level 2, REQ-001..REQ-023, ADR-001..ADR-010)
 - [ ] Sibling packet: `002-sandbox-testing-playbook` (Level 3, REQ-001..REQ-043, sandbox harness + v3-3 + v3-4 fixtures wired)
-- [ ] Sibling packet: `003-rm8-013-remediation-doc-honesty-security` (Level 2, RM-8 remediation + cross-runtime mirror + security hardening)
+- [ ] Sibling packet: `002-rm8-013-remediation-doc-honesty-security` (Level 2, RM-8 remediation + cross-runtime mirror + security hardening)
 - [ ] Phase parent: `013-doctor-update-orchestrator` (lean trio; all 3 children Complete; verdict PASS hasAdvisories=true per re-review commit 76daa9ef0)
 - [ ] Memory rules in CLAUDE.md: "Stay on main, no feature branches" + "DELETE not archive" + "Stop over-confirming" + "Codex parallel dispatch unreliability" + "Codex CLI fast mode must be explicit"
 - [ ] `cli-opencode/references/destructive_scope_violations.md`: RM-8 four-layer mitigation MUST be applied for any cli-opencode deep-loop dispatch (prompt hardening + worktree + commit baseline + model awareness)

@@ -51,7 +51,7 @@ _memory:
 
 ### One-paragraph rationale
 
-The 10-iteration adversarial re-review confirms that the 003-rm8-013-remediation-doc-honesty-security packet (commit `495fdd282`) closed all 30 P1 findings cleanly, with **zero P1 regressions**. All 10 finding clusters (A–J) from the original review pass closure verification on disk. The remediation introduced 2 minor P2 cosmetic regressions (parent description.json identity drift, one malformed Phase Map row). 2 pre-existing minor drift issues surfaced (002 handover.md completion_pct stale, 001 missing handover.md). 4 P2 advisories total — none block release. **013 phase parent is shippable.**
+The 10-iteration adversarial re-review confirms that the 002-rm8-013-remediation-doc-honesty-security packet (commit `495fdd282`) closed all 30 P1 findings cleanly, with **zero P1 regressions**. All 10 finding clusters (A–J) from the original review pass closure verification on disk. The remediation introduced 2 minor P2 cosmetic regressions (parent description.json identity drift, one malformed Phase Map row). 2 pre-existing minor drift issues surfaced (002 handover.md completion_pct stale, 001 missing handover.md). 4 P2 advisories total — none block release. **013 phase parent is shippable.**
 
 ---
 
@@ -105,7 +105,7 @@ Four P2 advisories surfaced during re-review. None merit elevation to P1 under a
 ### P2-RG-001 — Malformed PHASE DOCUMENTATION MAP row
 
 - **File**: `spec.md:106`
-- **Symptom**: Row 3 of the Phase Documentation Map table reads `| 002-sandbox-testing-playbook | 003-rm8-013-remediation-doc-honesty-security | [Criteria TBD] | [Verification TBD] |` — no phase number, remediation packet in folder column, TBD fields.
+- **Symptom**: Row 3 of the Phase Documentation Map table reads `| 002-sandbox-testing-playbook | 002-rm8-013-remediation-doc-honesty-security | [Criteria TBD] | [Verification TBD] |` — no phase number, remediation packet in folder column, TBD fields.
 - **Cause**: Batch A added a placeholder row when updating the table; never filled in.
 - **Recommended fix**: delete row 3, OR fill in proper phase-3 entry for the 003 remediation packet (phase number, status COMPLETE, description).
 - **Severity rationale (P2)**: documentation formatting. Rows 1-2 are correct and complete.

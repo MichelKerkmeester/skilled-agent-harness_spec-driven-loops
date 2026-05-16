@@ -8,7 +8,7 @@ importance_tier: "high"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "013-doctor-update-orchestrator/003-rm8-013-remediation-doc-honesty-security"
+    packet_pointer: "013-doctor-update-orchestrator/002-rm8-013-remediation-doc-honesty-security"
     last_updated_at: "2026-05-11T08:15:00Z"
     last_updated_by: "main-claude-opus-4.7"
     recent_action: "Authored Level-2 checklist with one row per finding"
@@ -149,4 +149,4 @@ Each finding ID below corresponds to the `R<iter>-<sev>-<seq>` IDs in `../review
 - [ ] All P1 above marked `[x]` with `file:line` evidence
 - [ ] All P2 above marked `[x]` (resolved) or `[~]` (deferred with note)
 - [ ] `validate.sh --strict` exits 0
-- [ ] 013 phase parent metadata: `derived.status == in_progress` (or `done`) and `derived.last_active_child_id == 003-rm8-013-remediation-doc-honesty-security`
+- [ ] 013 phase parent metadata: `derived.status == in_progress` (or `done`) and `derived.last_active_child_id == 002-rm8-013-remediation-doc-honesty-security`

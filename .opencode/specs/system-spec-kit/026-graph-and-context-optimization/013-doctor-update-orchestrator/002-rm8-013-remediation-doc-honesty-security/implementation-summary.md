@@ -8,7 +8,7 @@ importance_tier: "high"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "013-doctor-update-orchestrator/003-rm8-013-remediation-doc-honesty-security"
+    packet_pointer: "013-doctor-update-orchestrator/002-rm8-013-remediation-doc-honesty-security"
     last_updated_at: "2026-05-11T09:05:00Z"
     last_updated_by: "main-claude-opus-4.7-via-cli-codex-gpt-5.5-high-fast"
     recent_action: "Completed all 4 batches (A/B/C/D); zero agent-driven scope violations across ~20 min total cli-codex dispatch time"
@@ -49,7 +49,7 @@ _memory:
 - Parent: `spec.md`, `description.json`, `graph-metadata.json`, `resource-map.md`
 - 001-doctor-commands: `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md`, `resource-map.md`, `description.json`, `graph-metadata.json`
 - 002-sandbox-testing-playbook: `spec.md`, `plan.md` (unchanged), `tasks.md` (unchanged), `checklist.md`, `decision-record.md`, `implementation-summary.md`, `resource-map.md`, `description.json`, `graph-metadata.json`, `handover.md`
-- 003-rm8-013-remediation-doc-honesty-security: all this packet's own scaffolding + scratch summaries
+- 002-rm8-013-remediation-doc-honesty-security: all this packet's own scaffolding + scratch summaries
 
 ### Doctor command surface (cluster I — cross-runtime mirror)
 

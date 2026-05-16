@@ -8,7 +8,7 @@ importance_tier: "high"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "013-doctor-update-orchestrator/003-rm8-013-remediation-doc-honesty-security"
+    packet_pointer: "013-doctor-update-orchestrator/002-rm8-013-remediation-doc-honesty-security"
     last_updated_at: "2026-05-11T08:10:00Z"
     last_updated_by: "main-claude-opus-4.7"
     recent_action: "Authored tasks from plan.md"
@@ -92,7 +92,7 @@ _memory:
 
 ## Final Verification + Close-Out
 
-- [ ] T-V01 `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/003-rm8-013-remediation-doc-honesty-security --strict` exits 0
+- [ ] T-V01 `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/002-rm8-013-remediation-doc-honesty-security --strict` exits 0
 - [ ] T-V02 `checklist.md` shows all P1 + P2 items resolved (`[x]`) or formally deferred (`[~]`)
 - [ ] T-V03 `implementation-summary.md` filled with batch-by-batch outcomes; `completion_pct: 100`
 - [ ] T-V04 `git status -- .opencode/specs/.../013-doctor-update-orchestrator/` shows only intentional review-related changes; no rogue writes outside Batch A-D scope

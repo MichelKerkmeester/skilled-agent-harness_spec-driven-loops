@@ -2,7 +2,7 @@
   "childTopology": [
     "001-doctor-commands",
     "002-sandbox-testing-playbook",
-    "003-rm8-013-remediation-doc-honesty-security",
+    "002-rm8-013-remediation-doc-honesty-security",
     "004-router-phase",
     "005-cutover-phase"
   ],

@@ -1,7 +1,7 @@
 # Batch B Summary - Security Hardening
 
 Spec folder:
-`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/003-rm8-013-remediation-doc-honesty-security/`
+`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/002-rm8-013-remediation-doc-honesty-security/`
 
 Scope:
 - Cluster G: `R4-P1-002`, `R4-P1-004`
@@ -57,7 +57,7 @@ Note: warnings are non-blocking by default. Use --fail-on-warn to make warnings 
 ```
 
 ```text
-$ bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/003-rm8-013-remediation-doc-honesty-security --strict
+$ bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/002-rm8-013-remediation-doc-honesty-security --strict
 RESULT: FAILED
 
 Errors:

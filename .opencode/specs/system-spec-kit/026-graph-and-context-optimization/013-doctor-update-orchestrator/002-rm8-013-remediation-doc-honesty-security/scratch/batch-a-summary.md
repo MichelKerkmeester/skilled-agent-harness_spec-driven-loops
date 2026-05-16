@@ -18,7 +18,7 @@
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/002-sandbox-testing-playbook/implementation-summary.md`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/002-sandbox-testing-playbook/resource-map.md`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/002-sandbox-testing-playbook/spec.md`
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/003-rm8-013-remediation-doc-honesty-security/scratch/batch-a-summary.md`
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/002-rm8-013-remediation-doc-honesty-security/scratch/batch-a-summary.md`
 
 ### T-A-VERIFY Results
 
@@ -40,6 +40,6 @@
 
 ### Additional Validation
 
-- `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .../003-rm8-013-remediation-doc-honesty-security --strict` exited 2.
+- `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .../002-rm8-013-remediation-doc-honesty-security --strict` exited 2.
 - Reported errors: `TEMPLATE_HEADERS` 14 issues, `ANCHORS_VALID` 21 issues, `FRONTMATTER_MEMORY_BLOCK` 5 issues.
 - Reported warning: `PRIORITY_TAGS` 61 non-standard checklist tags.

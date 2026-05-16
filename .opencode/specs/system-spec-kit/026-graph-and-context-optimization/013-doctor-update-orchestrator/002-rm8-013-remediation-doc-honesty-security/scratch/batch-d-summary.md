@@ -2,7 +2,7 @@
 
 ### Scope
 
-- Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/003-rm8-013-remediation-doc-honesty-security/`
+- Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/002-rm8-013-remediation-doc-honesty-security/`
 - Timestamp used for checks: `2026-05-11T09:00:27Z`
 - Banned operations avoided: no `rm`, `git rm`, or `mv`; no writes to `.opencode/commands/doctor/*`, `.claude/`, `.codex/`, or `.gemini/`.
 

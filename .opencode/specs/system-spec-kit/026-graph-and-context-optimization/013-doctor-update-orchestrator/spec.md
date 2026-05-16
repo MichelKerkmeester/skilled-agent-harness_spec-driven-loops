@@ -13,7 +13,7 @@ trigger_phrases:
   - "spec-kit version migration"
   - "001-doctor-commands"
   - "002-sandbox-testing-playbook"
-  - "003-rm8-013-remediation-doc-honesty-security"
+  - "002-rm8-013-remediation-doc-honesty-security"
   - "004-router-phase"
   - "005-cutover-phase"
 importance_tier: "important"
@@ -30,7 +30,7 @@ _memory:
       - "001-doctor-commands/spec.md"
       - "001-doctor-commands/decision-record.md"
       - "002-sandbox-testing-playbook/spec.md"
-      - "003-rm8-013-remediation-doc-honesty-security/spec.md"
+      - "002-rm8-013-remediation-doc-honesty-security/spec.md"
       - "004-router-phase/spec.md"
       - "005-cutover-phase/spec.md"
     session_dedup:
@@ -110,7 +110,7 @@ Group the complete doctor command surface timeline under one phase root so the s
 |-------|--------|--------|-------------|
 | 1 | `001-doctor-commands/` | Complete | Feature Specification: 5 isolated `/doctor:*` commands (memory, causal-graph, deep-loop, cocoindex) + unified `/doctor:update` orchestrator implementing the council 10-line spec, plus the migration manifest for 3.3.0.0 → 3.4.1.0. Authored via cli-codex gpt-5.5 high fast across 5 sequential dispatch tracks; 23 deliverables total (5 cmds + 10 yamls + 1 manifest + 7 packet docs). G1+G2 verification gates passed. |
 | 2 | `002-sandbox-testing-playbook/` | Complete | Feature Specification: Docker sandbox + 23-scenario manual testing playbook covering all 5 doctor commands and the version-migration end-to-end. Adds new playbook category `23--doctor-commands/` (IDs 323-347 with gaps at 337 and 343) plus `_sandbox/23--doctor-commands/` with Dockerfile, docker-compose.yml, fixture-fetch script, 4 harness scripts, and 23 per-scenario shell wrappers. |
-| 3 | `003-rm8-013-remediation-doc-honesty-security/` | Complete | RM-8 doc-honesty + security hardening + cross-runtime mirror remediation that closed 30/30 P1 and 28/30 P2 findings from the original deep-review (commit `8d794afad`). 4 sequential cli-codex (gpt-5.5 high fast) batches: A doc honesty, B security (`flock(2)` + `--no-audit` drop + cap_drop), C cross-runtime mirror (10 doctor commands × 4 runtimes), D P2 cleanup. Verdict moved CONDITIONAL → PASS (hasAdvisories=true) per re-review commit `76daa9ef0`. |
+| 3 | `002-rm8-013-remediation-doc-honesty-security/` | Complete | RM-8 doc-honesty + security hardening + cross-runtime mirror remediation that closed 30/30 P1 and 28/30 P2 findings from the original deep-review (commit `8d794afad`). 4 sequential cli-codex (gpt-5.5 high fast) batches: A doc honesty, B security (`flock(2)` + `--no-audit` drop + cap_drop), C cross-runtime mirror (10 doctor commands × 4 runtimes), D P2 cleanup. Verdict moved CONDITIONAL → PASS (hasAdvisories=true) per re-review commit `76daa9ef0`. |
 | 4 | `004-router-phase/` | Complete | Router consolidation (was packet 014 Phase 1, dissolved into 013): authored `.opencode/commands/doctor.md` (argv-positional router) + `doctor/mcp.md` + `_routes.yaml` manifest + route-validate.sh CI assertion. 4-runtime mirrors (.claude / .gemini / .codex). Additive ship — old 10 `.md` commands still present during this phase. |
 | 5 | `005-cutover-phase/` | Complete | Hard cutover (was packet 014 Phase 2, dissolved into 013): DELETED 9 legacy `/doctor:<name>.md` files across `.opencode` + `.gemini`; sed-updated 23 manual playbook scenarios + 28 sandbox shell scripts + 5 YAML assets + 3 install guides + sk-doc references + feature catalog + 013 historical spec docs (94 substitutions across 15 files); advisor reindex via `advisor_rebuild`. Final state: 3 `.md` files (router + mcp + update) per runtime; 10 unchanged YAML workflows. |
 <!-- /ANCHOR:phase-map -->

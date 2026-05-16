@@ -52,7 +52,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->"
 | **Created** | 2026-05-11 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
-| **Predecessor** | `../003-rm8-013-remediation-doc-honesty-security/spec.md` |
+| **Predecessor** | `../002-rm8-013-remediation-doc-honesty-security/spec.md` |
 | **Successor** | `../005-cutover-phase/spec.md` |
 <!-- /ANCHOR:metadata -->
 

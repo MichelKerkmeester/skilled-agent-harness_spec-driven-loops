@@ -11,7 +11,7 @@ importance_tier: "high"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "013-doctor-update-orchestrator/003-rm8-013-remediation-doc-honesty-security"
+    packet_pointer: "013-doctor-update-orchestrator/002-rm8-013-remediation-doc-honesty-security"
     last_updated_at: "2026-05-11T08:00:00Z"
     last_updated_by: "main-claude-opus-4.7"
     recent_action: "Authored spec from 013 review-report.md findings"
@@ -193,7 +193,7 @@ Approximate list (final list confirmed at each batch dispatch):
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/003-rm8-013-remediation-doc-honesty-security --strict` exits 0.
+- **SC-001**: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/002-rm8-013-remediation-doc-honesty-security --strict` exits 0.
 - **SC-002**: Re-run of `/spec_kit:deep-review:auto` on `013-doctor-update-orchestrator` (post-remediation, optional) emits a PASS or PASS-with-advisories verdict, with the 30 P1 findings closed.
 - **SC-003**: `001-doctor-commands/checklist.md` and `002-sandbox-testing-playbook/checklist.md` show `[x]` on items with disk evidence; no `[ ]` items where evidence exists.
 - **SC-004**: `find .opencode .claude .codex .gemini -path '*/commands/doctor/*'` shows 5 commands × 4 runtimes = 20 files.
