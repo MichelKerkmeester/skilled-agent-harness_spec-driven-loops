@@ -3,10 +3,13 @@
 // ╠══════════════════════════════════════════════════════════════════════════╣
 // ║ PURPOSE: Validate session selection behavior in detectSpecFolder()       ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
+import { createRequire } from 'node:module';
+import { fileURLToPath } from 'node:url';
 
-'use strict';
-
+const require = createRequire(import.meta.url);
+const __filename = fileURLToPath(import.meta.url);
 const path = require('path');
+const __dirname = path.dirname(__filename);
 const fs = require('fs');
 const os = require('os');
 
@@ -939,7 +942,7 @@ async function testConfigProjectRootAlignment() {
     // Test 2: DB path from PROJECT_ROOT matches expected location
     const constructedDbPath = path.join(
       CONFIG.PROJECT_ROOT,
-      'skill/system-spec-kit/mcp_server/database/context-index__<provider>__<safe-model>__<dim>__<dtype>.sqlite'
+      '.opencode/skills/system-spec-kit/mcp_server/database/context-index__<provider>__<safe-model>__<dim>__<dtype>.sqlite'
     );
     if (constructedDbPath === REAL_DB_PATH || path.resolve(constructedDbPath) === path.resolve(REAL_DB_PATH)) {
       pass('T-FD08b: Constructed DB path matches expected', path.basename(constructedDbPath));
@@ -951,7 +954,7 @@ async function testConfigProjectRootAlignment() {
     // Test 3: better-sqlite3 path from PROJECT_ROOT resolves
     const constructedSqlitePath = path.join(
       CONFIG.PROJECT_ROOT,
-      'skill/system-spec-kit/mcp_server/node_modules/better-sqlite3'
+      '.opencode/skills/system-spec-kit/mcp_server/node_modules/better-sqlite3'
     );
     try {
       require.resolve(constructedSqlitePath);
