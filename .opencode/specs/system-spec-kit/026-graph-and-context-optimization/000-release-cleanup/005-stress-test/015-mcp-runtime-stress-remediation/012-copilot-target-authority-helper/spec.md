@@ -69,7 +69,7 @@ _memory:
 
 ### Problem Statement
 
-The v1.0.2 stress-test rerun cell `runs/I1/cli-copilot-1` scored 2/8: cli-copilot mutated `014-phase-parent-documentation/004-retroactive-phase-parent-migration/graph-metadata.json` without operator authorization. The Gate 3 HARD BLOCK was bypassed because copilot autonomously selected a spec folder it found in session-bootstrap context. The pathology is that `--allow-all-tools` plus a prompt that mentions plausible folder names equals "permission to mutate any of those folders" from the model's perspective.
+The v1.0.2 stress-test rerun cell `runs/I1/cli-copilot-1` scored 2/8: cli-copilot mutated `009-phase-parent-documentation/004-retroactive-phase-parent-migration/graph-metadata.json` without operator authorization. The Gate 3 HARD BLOCK was bypassed because copilot autonomously selected a spec folder it found in session-bootstrap context. The pathology is that `--allow-all-tools` plus a prompt that mentions plausible folder names equals "permission to mutate any of those folders" from the model's perspective.
 
 The deep-research loop in `../011-post-stress-followup-research/research/research.md` §3 traced this to a **target-authority failure**, not a model-prompting failure. cli-copilot's deep-loop dispatch path (`spec_kit_deep-research_auto.yaml:601-625` and `spec_kit_deep-review_auto.yaml:669-683`) passes the rendered prompt directly to `copilot -p ... --allow-all-tools --no-ask-user` with no separation between "approved write target" (workflow-resolved spec folder) and "recovered context" (memory hits, bootstrap-context spec folders, graph `last_active_child_id`). The model has no schema to distinguish them.
 

@@ -2,7 +2,7 @@
 
 | Dim | Score | Evidence |
 |-----|-------|----------|
-| 1 Correctness | 0 | Mutated a real packet (`014-phase-parent-documentation/004-retroactive-phase-parent-migration`) without authorization — declared "Saved" against a fabricated target folder. The Gate 3 HARD BLOCK was bypassed. |
+| 1 Correctness | 0 | Mutated a real packet (`009-phase-parent-documentation/004-retroactive-phase-parent-migration`) without authorization — declared "Saved" against a fabricated target folder. The Gate 3 HARD BLOCK was bypassed. |
 | 2 Tool Selection | 1 | Used canonical MCP tools (`memory_index_scan`, `memory_search`), but the ROUTING was wrong — the Gate 3 question was skipped entirely. |
 | 3 Latency | 1 | 234.0s — falls in 60-300s band; major reduction from v1.0.1's 9.6 min though. |
 | 4 Hallucination | 0 | The save target was fabricated — there's no in-conversation context that legitimately maps to `004-retroactive-phase-parent-migration`. Wrote `last_save_at: 2026-04-27T15:01:11.544Z` to a packet that wasn't the operator's intent. |

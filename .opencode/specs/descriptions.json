@@ -3949,7 +3949,7 @@
       "lastUpdated": "2026-05-08T08:26:57.116Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/014-phase-parent-documentation",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/009-phase-parent-documentation",
       "description": "Feature Specification: Phase Parent Documentation",
       "keywords": [
         "feature",
@@ -3961,7 +3961,7 @@
       "lastUpdated": "2026-05-02T10:39:47.946Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/014-phase-parent-documentation/001-validator-and-docs",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/009-phase-parent-documentation/001-validator-and-docs",
       "description": "Feature Specification: Phase Parent Documentation",
       "keywords": [
         "feature",
@@ -3973,7 +3973,7 @@
       "lastUpdated": "2026-05-08T08:26:57.121Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/014-phase-parent-documentation/002-generator-and-polish",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/009-phase-parent-documentation/002-generator-and-polish",
       "description": "Feature Specification: Phase Parent Generator Pointer + Polish",
       "keywords": [
         "feature",
@@ -3987,7 +3987,7 @@
       "lastUpdated": "2026-05-08T08:26:57.126Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/014-phase-parent-documentation/003-references-and-readme-sync",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/009-phase-parent-documentation/003-references-and-readme-sync",
       "description": "Feature Specification: References and READMEs Lean-Trio Sync",
       "keywords": [
         "feature",
@@ -4000,7 +4000,7 @@
       "lastUpdated": "2026-05-08T08:26:57.131Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/014-phase-parent-documentation/004-retroactive-phase-parent-migration",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/009-phase-parent-documentation/004-retroactive-phase-parent-migration",
       "description": "Feature Specification: Retroactive Phase-Parent Migration",
       "keywords": [
         "feature",

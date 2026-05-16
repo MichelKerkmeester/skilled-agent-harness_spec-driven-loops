@@ -6919,8 +6919,8 @@ spec_history_or_review_artifact: 577
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-search-and-routing-tuning/review/010-search-and-routing-tuning-pt-03/deep-review-strategy.md
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-search-and-routing-tuning/review/010-search-and-routing-tuning-pt-03/review-report.md
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/017-automation-reality-supplemental-research/research/iterations/iteration-001.md
-./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/014-phase-parent-documentation/004-retroactive-phase-parent-migration/scratch/rm-worker-A-report.json
-./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/014-phase-parent-documentation/004-retroactive-phase-parent-migration/scratch/rm2-worker-A-report.json
+./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/009-phase-parent-documentation/004-retroactive-phase-parent-migration/scratch/rm-worker-A-report.json
+./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/009-phase-parent-documentation/004-retroactive-phase-parent-migration/scratch/rm2-worker-A-report.json
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/015-mcp-runtime-stress-remediation/030-v1-0-4-full-matrix-stress-test-design/spec.md
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/029-root-readme-refresh/research/prompts/iteration-001.md
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-search-and-routing-tuning/review/001-search-fusion-tuning-prompts/deep-research-prompt.md

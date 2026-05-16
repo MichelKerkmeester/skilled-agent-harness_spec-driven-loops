@@ -61,7 +61,7 @@ _memory:
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/spec.md` | Created (rewritten v2) | OK | Phase-parent spec at Level 2; rewritten from a Level-1 carve-out narrative to the lean phase-parent template per `014-phase-parent-documentation/`. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/spec.md` | Created (rewritten v2) | OK | Phase-parent spec at Level 2; rewritten from a Level-1 carve-out narrative to the lean phase-parent template per `009-phase-parent-documentation/`. |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/description.json` | Created + Updated | OK | Phase-parent discovery metadata; child manifest reflects renumbered children. |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/graph-metadata.json` | Created + Updated | OK | Phase-parent graph metadata; `children_ids` tracks the current 001-018 child rollup. |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/001-search-intelligence-stress-test/` | Moved + Renamed | OK | From `003-…/006-search-intelligence-stress-test/`. v1.0.1 rubric + 30-cell sweep. |

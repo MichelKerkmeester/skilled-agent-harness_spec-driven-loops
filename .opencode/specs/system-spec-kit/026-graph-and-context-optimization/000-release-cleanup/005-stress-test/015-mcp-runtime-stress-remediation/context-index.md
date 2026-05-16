@@ -104,5 +104,5 @@ The carve-out + renumber rewrite swept all path-form references across the moved
 | `./spec.md` | Phase parent root: purpose, sub-phase manifest, what needs done. Does **not** contain migration narrative. |
 | `./HANDOVER-deferred.md` | Four still-open follow-ups (re-run 001 sweep, tune 006 production cap, ship 007 v2, layer client-side hallucination guard). |
 | `./resource-map.md` | Parent-aggregate file ledger covering both the carve-out and the renumber. |
-| `../014-phase-parent-documentation/spec.md` | Predecessor packet that defined the lean phase-parent contract this folder follows. |
+| `../009-phase-parent-documentation/spec.md` | Predecessor packet that defined the lean phase-parent contract this folder follows. |
 | `../003-continuity-memory-runtime/spec.md` | Original phase parent whose mid-phase scaffolding produced this carve-out. |

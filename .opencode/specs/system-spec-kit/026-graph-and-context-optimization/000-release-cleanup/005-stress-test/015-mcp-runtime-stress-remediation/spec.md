@@ -62,7 +62,7 @@ _memory:
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |
 | **Parent Packet** | `026-graph-and-context-optimization` |
-| **Predecessor** | `014-phase-parent-documentation` |
+| **Predecessor** | `009-phase-parent-documentation` |
 | **Successor** | None (current tail of 026 active surface) |
 | **Handoff Criteria** | All 9 phases have a graph-metadata `derived.status` of `complete` (or explicitly deferred per HANDOVER-deferred), and the post-fix sweep re-run from phase 001 has produced a v1.0.2 findings amendment. |
 <!-- /ANCHOR:metadata -->
