@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup",
+  "children_ids": [
+    "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/002-mcp-stress-cycle-cleanup",
+    "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/009-stress-test-pattern-documentation",
+    "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/015-mcp-runtime-stress-remediation",
+    "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/025-stress-test-folder-completion",
+    "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/039-stress-test-expansion-and-alignment",
+    "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/042-stress-coverage-audit-and-run",
+    "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/043-stress-test-gap-remediation"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": ["000-release-cleanup/005-stress-test", "stress-test"],
+    "key_topics": ["stress-test", "coverage", "remediation", "mcp-runtime", "documentation", "pattern", "audit", "gap"],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": ["spec.md"],
+    "entities": [],
+    "causal_summary": "This phase parent coordinates stress testing and coverage validation across 7 child packets, addressing test pattern documentation, MCP runtime stress remediation, and structural organization. The children 042-stress-coverage-audit-and-run and 043-stress-test-gap-remediation specifically focus on coverage audit and closing 10 P0 coverage gaps.",
+    "created_at": "2026-05-16T09:00:00Z",
+    "last_save_at": "2026-05-16T09:00:00Z",
+    "save_lineage": "cli-devin-swe-1.6-w3a",
+    "last_accessed_at": null,
+    "source_docs": ["spec.md", "README.md"]
+  }
+}
