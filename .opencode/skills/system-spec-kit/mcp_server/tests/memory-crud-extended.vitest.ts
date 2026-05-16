@@ -1475,6 +1475,71 @@ describe('handleMemoryHealth - Happy Path', () => {
     }
   });
 
+  it('EXT-H12a: autoRepair without confirmation returns planned actions and does not execute cleanup', async (ctx) => {
+    if (!handler?.handleMemoryHealth || !vectorIndex || !embeddingsSourceMod || !triggerMatcherMod?.refreshTriggerCache) {
+      ctx.skip();
+      return;
+    }
+
+    const execMock = vi.fn();
+    const fakeDb = {
+      prepare: (sql: string) => ({
+        get: () => {
+          if (sql.includes('FROM memory_index')) return { count: 42 };
+          if (sql.includes('FROM memory_fts')) return { count: 2 };
+          return null;
+        },
+        all: () => [],
+      }),
+      exec: execMock,
+    };
+
+    vi.mocked(vectorIndex.getDb).mockImplementation(() => fakeDb as any);
+    vi.mocked(vectorIndex.isVectorSearchAvailable).mockImplementation(() => true);
+    vi.mocked(vectorIndex.verifyIntegrity).mockImplementation(() => ({
+      totalMemories: 42,
+      totalVectors: 42,
+      orphanedVectors: 0,
+      missingVectors: 0,
+      orphanedFiles: [],
+      orphanedChunks: 0,
+      isConsistent: true,
+    }));
+    vi.mocked(embeddingsSourceMod.getProviderMetadata).mockImplementation(() => ({
+      provider: 'test',
+      model: 'test-model',
+      healthy: true,
+    }));
+    vi.mocked(embeddingsSourceMod.getEmbeddingProfile).mockImplementation(() => ({
+      dim: 768,
+      getDatabasePath: (base: string) => `${base}/test.db`,
+    }));
+    const refreshSpy = vi.spyOn(triggerMatcherMod, 'refreshTriggerCache').mockImplementation(() => undefined as never);
+
+    try {
+      const result = await handler.handleMemoryHealth({ reportMode: 'full', autoRepair: true });
+      const parsed = parseResponse(result);
+
+      expect(parsed?.summary).toContain('Confirmation required');
+      expect(parsed?.data).toMatchObject({
+        autoRepairRequested: true,
+        needsConfirmation: true,
+      });
+      expect(parsed?.data?.actions).toEqual(expect.arrayContaining([
+        'fts_rebuild',
+        'trigger_cache_refresh',
+        'orphan_edges_cleanup',
+        'orphan_vector_cleanup',
+        'orphan_chunks_cleanup',
+      ]));
+      expect(parsed?.hints?.some((hint: string) => hint.includes('confirmed:true'))).toBe(true);
+      expect(execMock).not.toHaveBeenCalled();
+      expect(refreshSpy).not.toHaveBeenCalled();
+    } finally {
+      refreshSpy.mockRestore();
+    }
+  });
+
   it('EXT-H13: autoRepair marks partial success when FTS mismatch remains but orphan cleanup succeeds', async (ctx) => {
     if (
       !handler?.handleMemoryHealth ||
