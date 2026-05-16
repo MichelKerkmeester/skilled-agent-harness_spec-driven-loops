@@ -1,5 +1,4 @@
 ---
-# SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2
 title: "Implementation Plan: memory_context truncation contract + token telemetry [system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/003-memory-context-truncation-contract/plan]"
 description: "Add preEnforcementTokens / returnedTokens / droppedAllResultsReason to meta.tokenBudgetEnforcement and assert payload/count invariant. Backward-compatible additive change to memory_context wrapper."
 template_source: "SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2"

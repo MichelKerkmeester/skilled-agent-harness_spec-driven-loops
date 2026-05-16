@@ -1,5 +1,4 @@
 ---
-# SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2
 title: "Tasks: Stress-Test Rerun v1.0.2"
 template_source: "SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2"
 description: "Task ledger for the v1.0.2 stress-test re-run: Setup phase covers pre-flight + dispatch script mirroring + I2 weak-quality preamble; Implementation phase covers 30-cell dispatch + per-cell scoring with fork-telemetry assertions and delta classification; Verification phase covers findings synthesis + frozen-baseline forward pointer + memory re-index."

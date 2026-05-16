@@ -1,5 +1,4 @@
 ---
-# SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2
 title: "Feature Specification: MCP daemon rebuild + restart protocol [system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/008-mcp-daemon-rebuild-protocol/spec]"
 description: "Meta-fix packet for the 005 phantom-fix problem. Documents the canonical 4-part rebuild + restart contract: source diff -> targeted tests -> npm run build + dist marker check -> MCP-owning client/runtime restart -> live MCP tool probe. No source code changes; documentation + verification protocol only."
 template_source: "SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify | v2.2"

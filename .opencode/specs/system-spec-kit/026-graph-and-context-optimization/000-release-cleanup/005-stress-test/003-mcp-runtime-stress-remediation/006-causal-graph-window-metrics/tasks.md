@@ -1,5 +1,4 @@
 ---
-# SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2
 title: "Tasks: causal-graph window metrics + auto-edge caps [system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/006-causal-graph-window-metrics/tasks]"
 description: "Per-REQ work units for relation-window balance stats + per-relation per-window auto-edge caps."
 template_source: "SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2"

@@ -1,5 +1,4 @@
 ---
-# SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2
 title: "Implementation Summary [system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/001-search-intelligence-stress-test/002-scenario-execution/implementation-summary]"
 description: "Sub-phase 002 outcome: execution scaffold shipped (pre-flight + dispatch + scoring + aggregation contracts). Actual runs deferred to a dedicated execution session."
 template_source: "SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2"

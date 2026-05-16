@@ -1,5 +1,4 @@
 ---
-# SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2
 title: "Feature Specification: code_graph fail-fast routing with fallbackDecision [system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/005-code-graph-fast-fail/spec]"
 description: "Remediation packet for 005/REQ-017 + 007/Q6. Promotes structural code-graph readiness from advisory hint to binding routing contract. Adds fallbackDecision.nextTool to blocked/degraded read payloads so callers run code_graph_scan before grep fallback. Preserves allowInlineFullScan:false boundary."
 template_source: "SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify | v2.2"

@@ -1,5 +1,4 @@
 ---
-# SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2
 title: "Tasks: MCP daemon rebuild + restart protocol [system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/008-mcp-daemon-rebuild-protocol/tasks]"
 description: "Author the 4 reference docs that codify the canonical rebuild + restart verification contract."
 template_source: "SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2"

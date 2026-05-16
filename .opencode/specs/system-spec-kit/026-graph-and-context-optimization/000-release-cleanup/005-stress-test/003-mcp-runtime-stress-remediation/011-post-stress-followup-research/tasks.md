@@ -1,5 +1,4 @@
 ---
-# SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2
 title: "Tasks: Post-Stress Follow-Up Research"
 template_source: "SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2"
 description: "T001-T204 task ledger covering scaffold (Phase 1), invocation (Phase 2), iteration loop (Phase 3), synthesis (Phase 4), verification (Phase 5)."

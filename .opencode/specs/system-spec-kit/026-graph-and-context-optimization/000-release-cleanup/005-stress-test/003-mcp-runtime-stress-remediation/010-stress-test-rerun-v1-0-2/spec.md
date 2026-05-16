@@ -1,5 +1,4 @@
 ---
-# SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify | v2.2
 title: "Feature Specification: Stress-Test Rerun v1.0.2 — close-the-loop measurement"
 template_source: "SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify | v2.2"
 description: "Re-run the v1.0.1 30-cell stress-test sweep against the post-fix dist (fork v0.2.3+spec-kit-fork.0.2.0; remediation packets 003-009 landed). Score under the same 4-dim rubric, classify per-cell deltas as WIN / NEUTRAL / REGRESSION, and produce a per-packet verdict so we know whether each fix actually moved the needle."
@@ -26,7 +25,6 @@ _memory:
       - "tasks.md"
       - "checklist.md"
     session_dedup:
-      fingerprint: null
       session_id: "010-stress-test-rerun-v1-0-2-scaffold-2026-04-27"
       parent_session_id: null
     completion_pct: 5

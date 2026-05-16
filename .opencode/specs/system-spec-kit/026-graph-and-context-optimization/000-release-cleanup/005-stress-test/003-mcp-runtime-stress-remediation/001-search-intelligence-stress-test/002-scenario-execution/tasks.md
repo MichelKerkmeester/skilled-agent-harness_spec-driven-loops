@@ -1,5 +1,4 @@
 ---
-# SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2
 title: "Tasks: Scenario Execution [system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/001-search-intelligence-stress-test/002-scenario-execution/tasks]"
 description: "Per-scenario + per-CLI run tasks + scoring tasks + findings synthesis. Most are deferred to a dedicated execution session."
 template_source: "SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2"

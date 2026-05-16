@@ -1,5 +1,4 @@
 ---
-# SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2
 title: "Implementation Summary: memory_context truncation contract + token telemetry [system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/003-memory-context-truncation-contract/implementation-summary]"
 description: "Implemented memory_context token telemetry contract with preEnforcementTokens, returnedTokens, droppedAllResultsReason, payload/count invariant tests, build output, and restart caveat."
 template_source: "SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2"

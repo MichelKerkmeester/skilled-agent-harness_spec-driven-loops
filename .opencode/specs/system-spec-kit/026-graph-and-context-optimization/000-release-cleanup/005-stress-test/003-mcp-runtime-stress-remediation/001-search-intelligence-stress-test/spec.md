@@ -1,5 +1,4 @@
 ---
-# SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2
 title: "Feature Specification: Search Intelligence Stress-Test Playbook"
 description: "Feature Specification: Search Intelligence Stress-Test Playbook"
 trigger_phrases:

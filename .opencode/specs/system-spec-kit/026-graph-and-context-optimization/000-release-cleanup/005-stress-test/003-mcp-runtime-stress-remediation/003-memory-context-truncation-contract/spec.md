@@ -1,5 +1,4 @@
 ---
-# SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2
 title: "Feature Specification: memory_context truncation contract + token telemetry [system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/003-memory-context-truncation-contract/spec]"
 description: "Remediation packet for 005/REQ-002 + 007/Q5 — adds preEnforcementTokens / returnedTokens / droppedAllResultsReason fields, asserts payload/count invariant, and forbids the post-fallback zero-fill envelope from masquerading as a normal truncated response."
 template_source: "SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify | v2.2"

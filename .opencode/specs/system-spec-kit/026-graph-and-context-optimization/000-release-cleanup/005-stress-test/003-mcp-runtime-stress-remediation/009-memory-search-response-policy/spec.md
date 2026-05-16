@@ -1,5 +1,4 @@
 ---
-# SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2
 title: "Feature Specification: memory_search hard response policy + citation policy [system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/009-memory-search-response-policy/spec]"
 description: "Remediation packet for 007/Q4 (and 006 cli-opencode I2 hallucination). Adds responsePolicy.requiredAction / noCanonicalPathClaims / citationRequiredForPaths and citationPolicy fields to memory_search response so weak retrieval becomes a binding refusal contract instead of advisory metadata."
 template_source: "SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify | v2.2"

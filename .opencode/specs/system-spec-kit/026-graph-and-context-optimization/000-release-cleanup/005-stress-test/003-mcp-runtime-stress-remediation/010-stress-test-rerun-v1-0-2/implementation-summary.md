@@ -1,5 +1,4 @@
 ---
-# SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2
 title: "Implementation Summary: Stress-Test Rerun v1.0.2"
 template_source: "SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2"
 description: "Scaffold-stage placeholder. The packet exists in draft state — spec, plan, tasks, and checklist are authored; sweep execution and findings synthesis happen in a follow-on session per the Phase 1-3 task ledger. This file will be populated with the Verification table once T304 + T305 complete."

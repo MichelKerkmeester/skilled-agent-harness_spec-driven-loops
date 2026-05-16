@@ -1,5 +1,4 @@
 ---
-# SPECKIT_TEMPLATE_SOURCE: plan-core + level2-verify | v2.2
 title: "Implementation Plan: Stress-Test Rerun v1.0.2"
 template_source: "SPECKIT_TEMPLATE_SOURCE: plan-core + level2-verify | v2.2"
 description: "Pre-flight attestation → 30-cell dispatch → score under v1.0.1 rubric → per-packet verdict synthesis. Reuses v1.0.1 corpus + rubric + dispatch matrix verbatim; adds fork-telemetry assertions + delta classification."

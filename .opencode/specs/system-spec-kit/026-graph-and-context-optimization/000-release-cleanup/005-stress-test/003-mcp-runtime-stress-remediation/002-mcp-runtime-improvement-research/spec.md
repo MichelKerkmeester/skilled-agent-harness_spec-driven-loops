@@ -1,5 +1,4 @@
 ---
-# SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2
 title: "Feature Specification [system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/002-mcp-runtime-improvement-research/spec]"
 description: "10-iteration deep research packet investigating root causes and remediation for MCP server, memory layer, code graph, and back-end defects surfaced by 005 (17 defects + REQ-018/019 candidates) and 006 (cross-AI stress-test, model-side hallucination class)."
 template_source: "SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify | v2.2"

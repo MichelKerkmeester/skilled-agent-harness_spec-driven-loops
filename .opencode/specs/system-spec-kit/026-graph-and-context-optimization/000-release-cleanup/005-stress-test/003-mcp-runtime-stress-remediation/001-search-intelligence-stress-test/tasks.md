@@ -1,5 +1,4 @@
 ---
-# SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2
 title: "Tasks: Search Intelligence Stress-Test Playbook [system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/001-search-intelligence-stress-test/tasks]"
 description: "Work units for the root packet — design, scaffold, validate. Sub-phase tasks live in their own packet's tasks.md."
 template_source: "SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2"

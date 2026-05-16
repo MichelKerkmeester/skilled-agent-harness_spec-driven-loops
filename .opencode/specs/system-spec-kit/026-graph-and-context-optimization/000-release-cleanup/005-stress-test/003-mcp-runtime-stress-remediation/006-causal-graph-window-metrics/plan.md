@@ -1,5 +1,4 @@
 ---
-# SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2
 title: "Implementation Plan: causal-graph relation-window balance metrics + auto-edge caps [system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/006-causal-graph-window-metrics/plan]"
 description: "Add deltaByRelation/balanceStatus/remediationHint to causal-stats; per-relation per-window caps on auto-edge inserts."
 template_source: "SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2"

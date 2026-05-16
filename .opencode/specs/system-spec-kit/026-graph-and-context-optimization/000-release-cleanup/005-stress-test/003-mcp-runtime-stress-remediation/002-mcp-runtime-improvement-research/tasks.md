@@ -1,5 +1,4 @@
 ---
-# SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2
 title: "Tasks: MCP Runtime Improvement Deep Research [system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/002-mcp-runtime-improvement-research/tasks]"
 description: "Work units for the 10-iteration deep research run on MCP runtime defects. Phase 1 scaffolds, Phase 2 dispatches the skill, Phase 3 synthesizes."
 template_source: "SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2"

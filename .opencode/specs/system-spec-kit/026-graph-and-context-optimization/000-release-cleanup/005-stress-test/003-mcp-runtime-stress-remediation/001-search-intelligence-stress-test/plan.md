@@ -1,5 +1,4 @@
 ---
-# SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2
 title: "Implementation Plan: Search Intelligence Stress-Test Playbook [system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/001-search-intelligence-stress-test/plan]"
 description: "Two-sub-phase architecture (001-scenario-design, 002-scenario-execution) for stress-testing system-spec-kit Search/Query/Intelligence features via cross-AI dispatch."
 template_source: "SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2"

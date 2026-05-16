@@ -1,5 +1,4 @@
 ---
-# SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2
 title: "Implementation Plan: MCP daemon rebuild + restart protocol [system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/008-mcp-daemon-rebuild-protocol/plan]"
 description: "Documentation-only packet authoring the canonical 4-part verification contract for MCP TypeScript fixes."
 template_source: "SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2"

@@ -1,5 +1,4 @@
 ---
-# SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2
 title: "Implementation Plan: Post-Stress Follow-Up Research deep-research loop"
 template_source: "SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2"
 description: "10-iteration /spec_kit:deep-research:auto loop with cli-codex (gpt-5.5 high fast) refining 4 v1.0.2 follow-ups + 1 light architectural touch."

@@ -1,5 +1,4 @@
 ---
-# SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2
 title: "Implementation Summary: Post-Stress Follow-Up Research"
 template_source: "SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2"
 description: "Scaffold-stage placeholder. The packet exists in draft state — spec, plan, tasks, checklist, description.json, graph-metadata.json are authored; the deep-research loop runs as Phase 2 work and writes its own state into research/. This file will be populated with the Verification table once T303 + T304 complete."

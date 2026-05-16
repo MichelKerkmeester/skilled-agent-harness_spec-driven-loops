@@ -1,5 +1,4 @@
 ---
-# SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2
 title: "Tasks: intent classifier stability [system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/007-intent-classifier-stability/tasks]"
 description: "Per-REQ work units for IntentTelemetry normalized schema + paraphrase stability corpus."
 template_source: "SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2"

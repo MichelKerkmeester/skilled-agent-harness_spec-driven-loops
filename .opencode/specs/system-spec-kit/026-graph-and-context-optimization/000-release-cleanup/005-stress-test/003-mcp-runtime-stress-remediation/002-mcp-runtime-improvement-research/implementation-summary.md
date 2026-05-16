@@ -1,5 +1,4 @@
 ---
-# SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2
 title: "Implementation Summary [system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/002-mcp-runtime-improvement-research/implementation-summary]"
 description: "10-iteration deep research packet investigating MCP runtime defect root causes from 005 and 006 findings. Outcomes feed downstream remediation packets 008+."
 template_source: "SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2"

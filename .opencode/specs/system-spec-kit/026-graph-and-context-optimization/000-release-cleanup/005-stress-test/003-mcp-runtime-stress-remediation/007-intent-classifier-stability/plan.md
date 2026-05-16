@@ -1,5 +1,4 @@
 ---
-# SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2
 title: "Implementation Plan: intent classifier stability [system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/007-intent-classifier-stability/plan]"
 description: "Normalized IntentTelemetry schema + paired paraphrase corpus + cross-CLI drift metric."
 template_source: "SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2"

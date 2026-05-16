@@ -1,5 +1,4 @@
 ---
-# SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2
 title: "Feature Specification: Post-Stress Follow-Up Research — refine v1.0.2 P0/P1/P2 fix proposals"
 template_source: "SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2"
 description: "10-iteration deep-research loop refining actionable fix proposals for the four follow-ups surfaced by the v1.0.2 stress-test rerun (cli-copilot /memory:save Gate 3 bypass, code-graph fast-fail not testable, file-watcher debounce, CocoIndex fork telemetry leverage), plus a light architectural touch on the broader intelligence-system stack."
@@ -26,9 +25,7 @@ _memory:
       - "tasks.md"
       - "checklist.md"
     session_dedup:
-      fingerprint: null
       session_id: "011-post-stress-followup-research-scaffold-2026-04-27"
-      parent_session_id: "010-stress-test-rerun-v1-0-2-2026-04-27"
     completion_pct: 5
     open_questions: []
     answered_questions: []

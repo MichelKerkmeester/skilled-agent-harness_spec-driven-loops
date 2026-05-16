@@ -1,5 +1,4 @@
 ---
-# SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2
 title: "Feature Specification: causal-graph relation-window balance metrics + auto-edge caps [system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/006-causal-graph-window-metrics/spec]"
 description: "Remediation packet for 005/REQ-005+REQ-006+REQ-010 + 007/Q7. Adds deltaByRelation / dominantRelationShare / balanceStatus to causal-stats response, auto-edge caps for prediction-error supersession bursts, and zero-fills missing relation types."
 template_source: "SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify | v2.2"
