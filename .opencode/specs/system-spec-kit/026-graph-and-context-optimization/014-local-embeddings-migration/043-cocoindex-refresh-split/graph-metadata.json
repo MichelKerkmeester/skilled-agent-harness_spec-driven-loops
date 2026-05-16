@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/_043-cocoindex-refresh-split",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/_043-cocoindex-refresh-split",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/043-cocoindex-refresh-split",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/043-cocoindex-refresh-split",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration",
   "children_ids": [],
   "manual": {

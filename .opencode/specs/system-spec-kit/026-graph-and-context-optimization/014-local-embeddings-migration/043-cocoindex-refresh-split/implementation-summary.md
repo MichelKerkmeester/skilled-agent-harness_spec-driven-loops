@@ -9,7 +9,7 @@ contextType: "spec"
 status: "complete"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/_043-cocoindex-refresh-split"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/043-cocoindex-refresh-split"
     last_updated_at: "2026-05-14T16:45:00Z"
     last_updated_by: "codex"
     recent_action: "Completed MCP refresh/search split"
@@ -21,7 +21,7 @@ _memory:
       - ".opencode/skills/mcp-coco-index/references/tool_reference.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000042"
-      session_id: "_043-cocoindex-refresh-split"
+      session_id: "043-cocoindex-refresh-split"
       parent_session_id: null
     completion_pct: 100
     open_questions:
@@ -45,7 +45,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/_043-cocoindex-refresh-split` |
+| **Spec Folder** | `system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/043-cocoindex-refresh-split` |
 | **Started** | 2026-05-14 |
 | **Completed** | 2026-05-14 |
 | **Level** | 3 |
@@ -127,7 +127,7 @@ The patch stayed at the FastMCP wrapper layer because the existing refresh call 
 | Editable build | PASS | `.venv/bin/python -m pip install -e . --no-build-isolation --no-deps` exit 0. |
 | Requested pytest | PASS | `PYTHONPYCACHEPREFIX=/tmp/cocoindex-pycache .venv/bin/python -m pytest tests/test_observability.py tests/test_e2e_daemon.py -v` -> `9 passed, 3 skipped in 3.69s`. |
 | New refresh split pytest | PASS | `.venv/bin/python -m pytest tests/test_refresh_split.py -v` -> `3 passed in 0.20s`. |
-| Strict validate | PASS | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/_043-cocoindex-refresh-split --strict` -> `RESULT: PASSED`. |
+| Strict validate | PASS | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/043-cocoindex-refresh-split --strict` -> `RESULT: PASSED`. |
 <!-- /ANCHOR:verification -->
 
 ---

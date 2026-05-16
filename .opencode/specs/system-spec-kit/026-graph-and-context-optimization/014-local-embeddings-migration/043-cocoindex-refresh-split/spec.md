@@ -11,7 +11,7 @@ contextType: "spec"
 status: "complete"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/_043-cocoindex-refresh-split"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/043-cocoindex-refresh-split"
     last_updated_at: "2026-05-14T16:45:00Z"
     last_updated_by: "codex"
     recent_action: "Implemented explicit CocoIndex MCP refresh split"
@@ -23,12 +23,12 @@ _memory:
       - ".opencode/skills/mcp-coco-index/references/tool_reference.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000042"
-      session_id: "_043-cocoindex-refresh-split"
+      session_id: "043-cocoindex-refresh-split"
       parent_session_id: null
     completion_pct: 100
     open_questions: []
     answered_questions:
-      - "Gate 3: E - phase folder _043-cocoindex-refresh-split"
+      - "Gate 3: E - phase folder 043-cocoindex-refresh-split"
       - "Branch: main; no commits"
       - "Memory MCP and SpawnAgent: forbidden"
 ---
@@ -115,7 +115,7 @@ Make search predictable by default, make refresh explicit and scriptable, and pr
 | `.opencode/skills/mcp-coco-index/feature_catalog/02--mcp-server/01-search-tool-contract.md` | Modify | Update search contract feature entry. |
 | `.opencode/skills/mcp-coco-index/feature_catalog/02--mcp-server/02-refresh-index-default.md` | Modify | Update refresh default feature entry. |
 | `.opencode/skills/mcp-coco-index/scripts/common.sh` | Modify | Update readiness success guidance string. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/_043-cocoindex-refresh-split/` | Create | Packet docs and metadata. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/043-cocoindex-refresh-split/` | Create | Packet docs and metadata. |
 <!-- /ANCHOR:scope -->
 
 ---

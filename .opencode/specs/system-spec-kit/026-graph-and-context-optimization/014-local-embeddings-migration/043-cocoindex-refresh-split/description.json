@@ -1,5 +1,5 @@
 {
-  "specFolder": "_043-cocoindex-refresh-split",
+  "specFolder": "043-cocoindex-refresh-split",
   "description": "Changes CocoIndex MCP search to default refresh_index=false and adds explicit cocoindex_refresh_index for refresh without search.",
   "keywords": [
     "cocoindex",
