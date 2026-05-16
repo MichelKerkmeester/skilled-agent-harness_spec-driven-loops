@@ -3,7 +3,7 @@ title: "Tasks: Hook Plugin Per Runtime Testing"
 template_source: "SPECKIT_TEMPLATE_SOURCE: tasks | v2.2"
 description: "Task ledger for live per-runtime hook and plugin validation."
 trigger_phrases:
-  - "030-hook-plugin-per-runtime-testing"
+  - "016-hook-plugin-per-runtime-testing"
   - "runtime hook tests"
   - "per-runtime hook validation"
   - "cli skill hook tests"
@@ -12,7 +12,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/030-hook-plugin-per-runtime-testing"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/016-hook-plugin-per-runtime-testing"
     last_updated_at: "2026-04-29T21:12:00+02:00"
     last_updated_by: "cli-codex"
     recent_action: "Tasks complete"

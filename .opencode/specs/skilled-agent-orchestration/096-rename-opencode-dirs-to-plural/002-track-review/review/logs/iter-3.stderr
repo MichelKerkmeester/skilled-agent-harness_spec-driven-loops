@@ -817,11 +817,11 @@ HOOK CONFIG FILES
 .opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook.md
 .opencode/skills/system-spec-kit/scripts/core/config.ts
 .opencode/skills/system-spec-kit/shared/config.ts
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/030-hook-plugin-per-runtime-testing/runners/run-all-runtime-hooks.ts
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/030-hook-plugin-per-runtime-testing/runners/test-claude-hooks.ts
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/030-hook-plugin-per-runtime-testing/runners/test-codex-hooks.ts
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/030-hook-plugin-per-runtime-testing/runners/test-copilot-hooks.ts
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/030-hook-plugin-per-runtime-testing/runners/test-gemini-hooks.ts
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/016-hook-plugin-per-runtime-testing/runners/run-all-runtime-hooks.ts
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/016-hook-plugin-per-runtime-testing/runners/test-claude-hooks.ts
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/016-hook-plugin-per-runtime-testing/runners/test-codex-hooks.ts
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/016-hook-plugin-per-runtime-testing/runners/test-copilot-hooks.ts
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/016-hook-plugin-per-runtime-testing/runners/test-gemini-hooks.ts
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/001-cache-warning-hooks/checklist.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/001-cache-warning-hooks/decision-record.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/001-cache-warning-hooks/description.json

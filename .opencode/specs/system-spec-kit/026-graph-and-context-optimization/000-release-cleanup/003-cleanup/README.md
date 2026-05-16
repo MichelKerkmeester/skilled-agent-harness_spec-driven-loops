@@ -19,7 +19,7 @@ Documentation fixes, template debt, orphan management, remediation.
 - `013-evergreen-doc-packet-id-removal`
 - `014-resource-maps-and-memory-finalization`
 - `015-root-readme-refresh`
-- `030-hook-plugin-per-runtime-testing`
+- `016-hook-plugin-per-runtime-testing`
 - `031-hook-test-sandbox-fix`
 - `034-matrix-runners-snake-case-rename`
 - `037-feature-catalog-shape-realignment`

@@ -1,6 +1,6 @@
 ## Packet 043: hook-plugin-per-runtime-testing — Tier C live runtime testing
 
-You are cli-codex (gpt-5.5 high fast) implementing **030-hook-plugin-per-runtime-testing**.
+You are cli-codex (gpt-5.5 high fast) implementing **016-hook-plugin-per-runtime-testing**.
 
 ### Goal
 
@@ -34,7 +34,7 @@ The 5 supported runtimes:
 
 #### Phase 1: Test scaffolding
 
-Create `030-hook-plugin-per-runtime-testing/runners/` with a per-runtime test harness:
+Create `016-hook-plugin-per-runtime-testing/runners/` with a per-runtime test harness:
 
 ```
 043/runners/
@@ -93,13 +93,13 @@ If FAIL cases surface a real contract bug between docs and runtime behavior, app
 
 ### Packet structure to create (Level 2)
 
-7-file structure under `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/030-hook-plugin-per-runtime-testing/`.
+7-file structure under `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/016-hook-plugin-per-runtime-testing/`.
 
 PLUS: `findings.md`, `runners/`, `results/` at packet root.
 
 **Deps**: `manual.depends_on=["system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/011-cli-matrix-adapter-runners","system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-doc-truth-pass","system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/010-half-auto-upgrades","system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/013-evergreen-doc-packet-id-removal"]`.
 
-**Trigger phrases**: `["030-hook-plugin-per-runtime-testing","runtime hook tests","per-runtime hook validation","cli skill hook tests","hook live testing"]`.
+**Trigger phrases**: `["016-hook-plugin-per-runtime-testing","runtime hook tests","per-runtime hook validation","cli skill hook tests","hook live testing"]`.
 
 **Causal summary**: `"Live tests hook + plugin wiring for each of 5 supported runtimes (Claude/Codex/Copilot/Gemini/OpenCode-plugin). Uses existing per-CLI skills (cli-codex/cli-copilot/cli-gemini/cli-claude-code/cli-opencode) plus the matrix_runners adapter helpers. Captures per-cell PASS/FAIL/SKIPPED with evidence; produces signed-off matrix + remediation tickets for any cells that fail."`.
 

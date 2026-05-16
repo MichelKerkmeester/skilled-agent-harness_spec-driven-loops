@@ -3,7 +3,7 @@
 [P1.alone-vitest] OK rootKind=program hasError=false
 exit=0
 ===== PROBE 2 =====
-[P2.alone-runners] file=030-hook-plugin-per-runtime-testing/runners/common.ts bytes=11284
+[P2.alone-runners] file=016-hook-plugin-per-runtime-testing/runners/common.ts bytes=11284
 [P2.alone-runners] OK rootKind=program hasError=false
 exit=0
 ===== PROBE 3 =====

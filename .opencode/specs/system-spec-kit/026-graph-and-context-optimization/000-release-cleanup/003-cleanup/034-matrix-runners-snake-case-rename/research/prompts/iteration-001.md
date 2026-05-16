@@ -55,7 +55,7 @@ Surfaces likely affected:
 - Root `README.md` — was just updated in 042; check for matrix_runners refs
 - `AGENTS.md` — if it references matrix_runners
 - Spec docs in `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/011-cli-matrix-adapter-runners/` — update path refs in implementation-summary.md, plan.md, etc.
-- Spec docs in `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/006-full-matrix-execution-validation/` and `030-hook-plugin-per-runtime-testing/` — may reference matrix_runners
+- Spec docs in `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/006-full-matrix-execution-validation/` and `016-hook-plugin-per-runtime-testing/` — may reference matrix_runners
 - The 045/006-mcp-tool-schema-governance and 045/007-deep-loop-workflow-integrity review-reports may also cite the path
 
 For each file: replace `matrix_runners` → `matrix_runners` literally. Use Edit/MultiEdit/sed surgically.

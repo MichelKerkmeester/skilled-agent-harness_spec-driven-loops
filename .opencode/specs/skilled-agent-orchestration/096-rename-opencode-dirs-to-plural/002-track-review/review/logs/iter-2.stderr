@@ -1285,7 +1285,7 @@ exec
     "test": "npm run test:core && npm run test:file-watcher",
     "test:core": "vitest run --exclude tests/file-watcher.vitest.ts",
     "test:file-watcher": "vitest run tests/file-watcher.vitest.ts",
-    "hook-tests": "node --import ../scripts/node_modules/tsx/dist/loader.mjs ../../../../specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/030-hook-plugin-per-runtime-testing/runners/run-all-runtime-hooks.ts",
+    "hook-tests": "node --import ../scripts/node_modules/tsx/dist/loader.mjs ../../../../specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/016-hook-plugin-per-runtime-testing/runners/run-all-runtime-hooks.ts",
     "stress": "vitest run --config vitest.stress.config.ts",
     "stress:harness": "vitest run --config vitest.stress.config.ts mcp_server/stress_test/search-quality",
     "stress:matrix": "vitest run --config vitest.stress.config.ts mcp_server/stress_test/matrix",
@@ -6138,7 +6138,7 @@ END{
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-release-readiness-deep-review-program/002-memory-data-integrity/logs/iter-001.log
 ./.opencode/specs/system-spec-kit/z_archive/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/scratch/agent-output-iter-003-copilot-A2.md.log
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/046-system-deep-research-bugs-and-improvements/research/logs/iter-006.log
-./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/030-hook-plugin-per-runtime-testing/logs/iter-001.log
+./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/016-hook-plugin-per-runtime-testing/logs/iter-001.log
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-graph-impact-and-affordance-uplift/005-memory-causal-trust-display/review/dispatch.log
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/046-system-deep-research-bugs-and-improvements/research/logs/iter-010.log
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/046-system-deep-research-bugs-and-improvements/research/logs/iter-004.log

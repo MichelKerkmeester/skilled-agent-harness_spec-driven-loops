@@ -3,7 +3,7 @@ title: "Implementation Summary: Hook Plugin Per Runtime Testing"
 template_source: "SPECKIT_TEMPLATE_SOURCE: implementation-summary | v2.2"
 description: "Completion summary for live per-runtime hook and plugin validation."
 trigger_phrases:
-  - "030-hook-plugin-per-runtime-testing"
+  - "016-hook-plugin-per-runtime-testing"
   - "runtime hook tests"
   - "per-runtime hook validation"
   - "cli skill hook tests"
@@ -12,7 +12,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/030-hook-plugin-per-runtime-testing"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/016-hook-plugin-per-runtime-testing"
     last_updated_at: "2026-04-29T21:12:00+02:00"
     last_updated_by: "cli-codex"
     recent_action: "Findings matrix complete"
@@ -38,7 +38,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 030-hook-plugin-per-runtime-testing |
+| **Spec Folder** | 016-hook-plugin-per-runtime-testing |
 | **Completed** | 2026-04-29 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
@@ -97,7 +97,7 @@ The implementation stayed packet-local. Runtime configs were only read for evide
 |---------|--------|
 | `node --experimental-strip-types specs/.../runners/run-all-runtime-hooks.ts` | Exit 0; 5 cells classified |
 | `rg <secret patterns> specs/.../results` | Exit 0; no unredacted key-like values found |
-| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/.../030-hook-plugin-per-runtime-testing --strict` | Exit 0 |
+| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/.../016-hook-plugin-per-runtime-testing --strict` | Exit 0 |
 <!-- /ANCHOR:verification -->
 
 ---

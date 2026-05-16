@@ -28,13 +28,13 @@ Equivalent direct runner:
 
 ```bash
 node --import ./.opencode/skills/system-spec-kit/scripts/node_modules/tsx/dist/loader.mjs \
-  specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/030-hook-plugin-per-runtime-testing/runners/run-all-runtime-hooks.ts
+  specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/016-hook-plugin-per-runtime-testing/runners/run-all-runtime-hooks.ts
 ```
 
 Results are written as JSONL under:
 
 ```text
-specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/030-hook-plugin-per-runtime-testing/run-output/latest/
+specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/016-hook-plugin-per-runtime-testing/run-output/latest/
 ```
 
 The original `results/*.jsonl` files are preserved as historical evidence from

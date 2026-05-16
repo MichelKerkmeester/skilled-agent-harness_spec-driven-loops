@@ -2439,7 +2439,7 @@ rg -n 'ts-node|tsx|context-server\\.ts|dist/context-server\\.js' opencode.json .
     24	    "test": "npm run test:core && npm run test:file-watcher",
     25	    "test:core": "vitest run --exclude tests/file-watcher.vitest.ts",
     26	    "test:file-watcher": "vitest run tests/file-watcher.vitest.ts",
-    27	    "hook-tests": "node --import ../scripts/node_modules/tsx/dist/loader.mjs ../../../../specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/030-hook-plugin-per-runtime-testing/runners/run-all-runtime-hooks.ts",
+    27	    "hook-tests": "node --import ../scripts/node_modules/tsx/dist/loader.mjs ../../../../specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/016-hook-plugin-per-runtime-testing/runners/run-all-runtime-hooks.ts",
     28	    "stress": "vitest run --config vitest.stress.config.ts",
     29	    "stress:harness": "vitest run --config vitest.stress.config.ts mcp_server/stress_test/search-quality",
     30	    "stress:matrix": "vitest run --config vitest.stress.config.ts mcp_server/stress_test/matrix",
@@ -2476,7 +2476,7 @@ rg -n 'ts-node|tsx|context-server\\.ts|dist/context-server\\.js' opencode.json .
 .opencode/skills/system-spec-kit/mcp_server/package.json:9:    "./server": "./dist/context-server.js",
 .opencode/skills/system-spec-kit/mcp_server/package.json:14:    "context-server": "./dist/context-server.js",
 .opencode/skills/system-spec-kit/mcp_server/package.json:20:    "start": "node dist/context-server.js",
-.opencode/skills/system-spec-kit/mcp_server/package.json:27:    "hook-tests": "node --import ../scripts/node_modules/tsx/dist/loader.mjs ../../../../specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/030-hook-plugin-per-runtime-testing/runners/run-all-runtime-hooks.ts",
+.opencode/skills/system-spec-kit/mcp_server/package.json:27:    "hook-tests": "node --import ../scripts/node_modules/tsx/dist/loader.mjs ../../../../specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/016-hook-plugin-per-runtime-testing/runners/run-all-runtime-hooks.ts",
 .gemini/settings.json:29:        ".opencode/skills/system-spec-kit/mcp_server/dist/context-server.js"
 opencode.json:23:        ".opencode/skills/system-spec-kit/mcp_server/dist/context-server.js"
 .codex/config.toml:11:args = [".opencode/skills/system-spec-kit/mcp_server/dist/context-server.js"]

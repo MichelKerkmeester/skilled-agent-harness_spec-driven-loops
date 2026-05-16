@@ -2,7 +2,7 @@
 title: "Findings: Hook Plugin Per Runtime Testing"
 description: "Live runtime hook and plugin matrix with JSONL evidence."
 trigger_phrases:
-  - "030-hook-plugin-per-runtime-testing"
+  - "016-hook-plugin-per-runtime-testing"
   - "runtime hook tests"
   - "per-runtime hook validation"
   - "cli skill hook tests"

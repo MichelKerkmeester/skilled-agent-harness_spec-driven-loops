@@ -3,7 +3,7 @@ title: "Implementation Plan: Hook Plugin Per Runtime Testing"
 template_source: "SPECKIT_TEMPLATE_SOURCE: plan-core + level2-verify | v2.2"
 description: "Plan and verification record for live hook and plugin testing across five runtimes."
 trigger_phrases:
-  - "030-hook-plugin-per-runtime-testing"
+  - "016-hook-plugin-per-runtime-testing"
   - "runtime hook tests"
   - "per-runtime hook validation"
   - "cli skill hook tests"
@@ -12,7 +12,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/030-hook-plugin-per-runtime-testing"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/016-hook-plugin-per-runtime-testing"
     last_updated_at: "2026-04-29T21:12:00+02:00"
     last_updated_by: "cli-codex"
     recent_action: "Plan executed"
@@ -152,5 +152,5 @@ runtime runner -> CLI subprocess -> hook/plugin observable -> classify -> JSONL
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-Remove the packet-local files added under `030-hook-plugin-per-runtime-testing/`. Runtime hook configs were not modified, so rollback does not require restoring Claude, Codex, Copilot, Gemini, or OpenCode settings.
+Remove the packet-local files added under `016-hook-plugin-per-runtime-testing/`. Runtime hook configs were not modified, so rollback does not require restoring Claude, Codex, Copilot, Gemini, or OpenCode settings.
 <!-- /ANCHOR:rollback -->

@@ -3,7 +3,7 @@ title: "Spec: Hook Plugin Per Runtime Testing"
 template_source: "SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify | v2.2"
 description: "Level 2 packet for live runtime hook and plugin validation across Claude, Codex, Copilot, Gemini, and OpenCode."
 trigger_phrases:
-  - "030-hook-plugin-per-runtime-testing"
+  - "016-hook-plugin-per-runtime-testing"
   - "runtime hook tests"
   - "per-runtime hook validation"
   - "cli skill hook tests"
@@ -12,7 +12,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/030-hook-plugin-per-runtime-testing"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/016-hook-plugin-per-runtime-testing"
     last_updated_at: "2026-04-29T21:12:00+02:00"
     last_updated_by: "cli-codex"
     recent_action: "Live runtime matrix captured"

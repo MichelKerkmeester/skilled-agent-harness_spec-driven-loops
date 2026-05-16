@@ -8,7 +8,7 @@
   "migration_source": "manual",
   "manual": {
     "depends_on": [
-      "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/030-hook-plugin-per-runtime-testing"
+      "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/016-hook-plugin-per-runtime-testing"
     ],
     "supersedes": [],
     "related_to": []
@@ -47,13 +47,13 @@
       {
         "name": "detectSandbox",
         "kind": "function",
-        "path": "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/030-hook-plugin-per-runtime-testing/runners/common.ts",
+        "path": "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/016-hook-plugin-per-runtime-testing/runners/common.ts",
         "source": "manual"
       },
       {
         "name": "SKIPPED_SANDBOX",
         "kind": "status",
-        "path": "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/030-hook-plugin-per-runtime-testing/runners/common.ts",
+        "path": "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/016-hook-plugin-per-runtime-testing/runners/common.ts",
         "source": "manual"
       },
       {
