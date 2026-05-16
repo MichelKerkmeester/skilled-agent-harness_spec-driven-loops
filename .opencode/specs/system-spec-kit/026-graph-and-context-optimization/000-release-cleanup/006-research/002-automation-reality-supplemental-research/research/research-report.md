@@ -2,7 +2,7 @@
 
 ## 1. Supplemental scope vs 012 baseline
 
-012 produced a 50-row automation reality map with **Auto 14**, **Half 14**, **Manual 18**, and **Aspirational 4** (`specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/001-automation-self-management-deep-research/research/research-report.md:5`). It stopped on max_iterations with newInfoRatio=0.18, after surfacing four active P1 aspirational findings: structural code graph watcher overclaim, memory retention sweep missing, Copilot hook docs conflict, and Codex hook readiness mismatch (`research-report.md:123-136` in 012).
+012 produced a 50-row automation reality map with **Auto 14**, **Half 14**, **Manual 18**, and **Aspirational 4** (`specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/001-automation-self-management-deep/research/research-report.md:5`). It stopped on max_iterations with newInfoRatio=0.18, after surfacing four active P1 aspirational findings: structural code graph watcher overclaim, memory retention sweep missing, Copilot hook docs conflict, and Codex hook readiness mismatch (`research-report.md:123-136` in 012).
 
 This supplemental packet extends that baseline only with new rows and reclassifications from iterations 1-4, then synthesizes a sequenced remediation backlog for packets 031-035. It does not repeat the 50 baseline rows.
 

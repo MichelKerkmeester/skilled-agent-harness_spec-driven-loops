@@ -9,7 +9,7 @@ Supplemental automation reality research extending 012's 7-iteration baseline (5
 - Parent session: 012 (sessionId 2026-04-29T13:15:00.000Z)
 - This session: 013 (sessionId 2026-04-29T14:35:00.000Z)
 - lineageMode: `continuation`
-- continuedFromRun: 001-automation-self-management-deep-research
+- continuedFromRun: 001-automation-self-management-deep
 
 ## Executor
 

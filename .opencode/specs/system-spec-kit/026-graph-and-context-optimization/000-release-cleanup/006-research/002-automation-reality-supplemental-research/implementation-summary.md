@@ -37,7 +37,7 @@ _memory:
 | **Created** | 2026-04-29 |
 | **Status** | Complete (5 iters converged, validator green) |
 | **Level** | 2 |
-| **Continuation Of** | 001-automation-self-management-deep-research |
+| **Continuation Of** | 001-automation-self-management-deep |
 <!-- /ANCHOR:metadata -->
 
 ---

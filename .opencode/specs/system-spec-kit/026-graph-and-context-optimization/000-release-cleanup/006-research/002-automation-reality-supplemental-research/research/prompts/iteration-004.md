@@ -6,7 +6,7 @@ You are deep-research agent dispatched for iteration 4 of 5. Iters 1-3 completed
 
 - Segment: 1 | Iteration: 4 of 5
 - Read prior iters: iteration-001.md, iteration-002.md, iteration-003.md to avoid duplicate ground
-- Read 012's research-report.md at `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/001-automation-self-management-deep-research/research/research-report.md` for the 4 P1 aspirational findings
+- Read 012's research-report.md at `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/001-automation-self-management-deep/research/research-report.md` for the 4 P1 aspirational findings
 - Next focus: Adversarial Hunter→Skeptic→Referee on 012's 4 P1 findings + NEW gap hunt
 
 ### Iteration 4 focus
@@ -56,7 +56,7 @@ Hunt for gaps in surfaces 012 didn't reach:
 
 ### Source files to read (representative)
 
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/001-automation-self-management-deep-research/research/research-report.md` (012's findings)
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/001-automation-self-management-deep/research/research-report.md` (012's findings)
 - `.opencode/skills/system-spec-kit/mcp_server/lib/session-manager.ts`
 - `.opencode/skills/system-spec-kit/mcp_server/lib/scope-governance.ts`
 - `.opencode/skills/system-spec-kit/mcp_server/code_graph/` (entire dir for watcher hunt)

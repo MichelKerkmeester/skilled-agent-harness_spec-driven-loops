@@ -4,7 +4,7 @@
   "parentSessionId": "2026-04-29T13:15:00.000Z",
   "lineageMode": "continuation",
   "generation": 1,
-  "continuedFromRun": "001-automation-self-management-deep-research",
+  "continuedFromRun": "001-automation-self-management-deep",
   "maxIterations": 5,
   "convergenceThreshold": 0.10,
   "stuckThreshold": 2,

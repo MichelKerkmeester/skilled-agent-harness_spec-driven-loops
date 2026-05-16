@@ -36,7 +36,7 @@ _memory:
 | **Branch** | `main` |
 | **Parent** | `026-graph-and-context-optimization` |
 | **Depends On** | `002-automation-reality-supplemental-research` |
-| **Related** | `001-automation-self-management-deep-research` |
+| **Related** | `001-automation-self-management-deep` |
 | **Mode** | Doc-only remediation |
 <!-- /ANCHOR:metadata -->
 

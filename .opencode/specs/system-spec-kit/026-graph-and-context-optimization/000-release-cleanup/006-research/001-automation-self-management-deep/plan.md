@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/001-automation-self-management-deep-research"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/001-automation-self-management-deep"
     last_updated_at: "2026-04-29T13:16:00Z"
     last_updated_by: "codex-gpt-5.5"
     recent_action: "Planned packet-local deep research artifact production and validation"
@@ -169,7 +169,7 @@ Phase 1 (Evidence Setup) -> Phase 2 (Iterative Research) -> Phase 3 (Synthesis a
 ### Pre-deployment Checklist
 - [x] Runtime code remains read-only. [EVIDENCE: no runtime files modified]
 - [x] Writes are restricted to packet-local docs and `research/`. [EVIDENCE: git diff scoped to packet folder]
-- [x] Final staging targets the packet directory only. [EVIDENCE: requested `git add specs/.../001-automation-self-management-deep-research`]
+- [x] Final staging targets the packet directory only. [EVIDENCE: requested `git add specs/.../001-automation-self-management-deep`]
 
 ### Rollback Procedure
 1. Remove or revert the packet-local research artifacts created in this run.

@@ -96,5 +96,5 @@ _memory:
 - **Plan**: See `plan.md`
 - **Checklist**: See `checklist.md`
 - **Report**: See `research/research-report.md` (created by synthesis phase)
-- **Parent research**: 001-automation-self-management-deep-research
+- **Parent research**: 001-automation-self-management-deep
 <!-- /ANCHOR:cross-refs -->

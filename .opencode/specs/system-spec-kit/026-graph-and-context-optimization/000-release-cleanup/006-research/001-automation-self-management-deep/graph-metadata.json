@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/001-automation-self-management-deep-research",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/001-automation-self-management-deep-research",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/001-automation-self-management-deep",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/001-automation-self-management-deep",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization",
   "children_ids": [],
   "migrated": false,
@@ -16,7 +16,7 @@
     ]
   },
   "derived": {
-    "trigger_phrases": ["001-automation-self-management-deep-research", "automation deep research", "skill advisor automation", "code graph automation", "system-spec-kit automation", "memory automation deep research"],
+    "trigger_phrases": ["001-automation-self-management-deep", "automation deep research", "skill advisor automation", "code graph automation", "system-spec-kit automation", "memory automation deep research"],
     "key_topics": ["automation", "self-management", "skill-advisor", "code-graph", "system-spec-kit", "memory", "reality-map"],
     "importance_tier": "important",
     "status": "planned",

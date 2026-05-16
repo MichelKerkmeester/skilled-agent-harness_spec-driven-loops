@@ -38,7 +38,7 @@ _memory:
 | **Created** | 2026-04-29 |
 | **Branch** | `main` |
 | **Parent** | `026-graph-and-context-optimization` |
-| **Continuation Of** | `001-automation-self-management-deep-research` (sessionId 2026-04-29T13:15:00.000Z) |
+| **Continuation Of** | `001-automation-self-management-deep` (sessionId 2026-04-29T13:15:00.000Z) |
 | **Mode** | Deep research (`/spec_kit:deep-research:auto`) |
 | **Iterations** | 5 (max); convergence threshold 0.10 |
 | **Executor** | cli-codex `gpt-5.5` reasoning=`xhigh` service-tier=`fast` |
@@ -235,7 +235,7 @@ Run a 5-iteration supplemental loop that:
 - Q2: Should remediation packet 031 be Level 1, 2, or 3? **Default**: Level 2 (Tier A doc-truth pass); upgrade if scope grows.
 - Q3: Should the supplemental research re-run validation across CLAUDE.md, SKILL.md, README, references/? **Default**: yes — RQ3 covers validator auto-fire claims across these surfaces.
 
-This packet is a CONTINUATION of 001-automation-self-management-deep-research. It supplements (does NOT replace) 012's findings. The 4-class taxonomy (auto / half / manual / aspirational) and 50-row baseline reality map carry forward; this packet adds rows and challenges the 4 P1 aspirational findings with adversarial rigor.
+This packet is a CONTINUATION of 001-automation-self-management-deep. It supplements (does NOT replace) 012's findings. The 4-class taxonomy (auto / half / manual / aspirational) and 50-row baseline reality map carry forward; this packet adds rows and challenges the 4 P1 aspirational findings with adversarial rigor.
 
 <!-- BEGIN GENERATED: deep-research/spec-findings -->
 Findings will be populated by the synthesis phase.
