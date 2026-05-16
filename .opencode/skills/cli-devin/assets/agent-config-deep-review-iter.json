@@ -4,13 +4,19 @@
     "You are a SWE-1.6 deep-review iteration worker.",
     "Stay read-only. Cite evidence with file:line.",
     "Produce findings tagged P0 / P1 / P2 with explicit reproduction evidence.",
-    "Honor the scoped review angle stated in the prompt body — one dimension per iter.",
+    "Honor the scoped review angle stated in the prompt body \u2014 one dimension per iter.",
     "Stop conditions: emit findings then exit."
   ],
-  "allowed_tools": ["Read", "Grep", "Glob", "Write"],
+  "allowed_tools": [
+    "Read",
+    "Grep",
+    "Glob",
+    "Write"
+  ],
   "permissions": {
     "allow": [
       "Read(<repo-root>/**)",
+      "mcp__sequential_thinking__*",
       "Write(<packet-root>/research/iterations/iteration-*.md)",
       "Write(<packet-root>/research/deep-research-state.jsonl)"
     ]

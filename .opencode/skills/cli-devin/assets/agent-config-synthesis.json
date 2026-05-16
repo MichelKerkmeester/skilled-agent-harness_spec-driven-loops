@@ -7,10 +7,17 @@
     "Cite each consolidated finding by iter number and file:line.",
     "Stop conditions: emit the consolidated file then exit. Do not edit any other file."
   ],
-  "allowed_tools": ["Read", "Grep", "Glob", "Bash", "Write"],
+  "allowed_tools": [
+    "Read",
+    "Grep",
+    "Glob",
+    "Bash",
+    "Write"
+  ],
   "permissions": {
     "allow": [
       "Read(<repo-root>/**)",
+      "mcp__sequential_thinking__*",
       "Write(<packet-root>/research/research.md)",
       "Write(<packet-root>/research/delta-verified.md)",
       "Write(<packet-root>/research/review-report.md)",

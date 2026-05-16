@@ -7,10 +7,17 @@
     "Produce the iteration-NNN.md output shape the iter template requires.",
     "Stop conditions: emit the required output then exit. Do not request further input."
   ],
-  "allowed_tools": ["Read", "Grep", "Glob", "Bash", "Write"],
+  "allowed_tools": [
+    "Read",
+    "Grep",
+    "Glob",
+    "Bash",
+    "Write"
+  ],
   "permissions": {
     "allow": [
       "Read(<repo-root>/**)",
+      "mcp__sequential_thinking__*",
       "Write(<packet-root>/research/iterations/iteration-*.md)",
       "Write(<packet-root>/research/deep-research-state.jsonl)",
       "Exec(rg)",
