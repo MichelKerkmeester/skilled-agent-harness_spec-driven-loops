@@ -217,7 +217,7 @@ function createIndexScopeExcludedResponse(
     },
     recovery: {
       hint: 'Move the file into an indexable spec folder or constitutional rule path before retrying.',
-      actions: ['Verify the path is not under z_future/, z_archive/, or external/'],
+      actions: ['Verify the path is not under z_future/ or external/'],
       severity: 'warning',
     },
   });

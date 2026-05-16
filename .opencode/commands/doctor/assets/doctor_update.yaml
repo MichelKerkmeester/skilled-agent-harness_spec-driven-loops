@@ -313,7 +313,10 @@ workflow:
         command: |
           # FIX-13: --active-only skips z_archive/z_future paths that the script's path-validator
           # rejects with "Spec folder is not under a supported specs root" — those archive trees
-          # are intentionally outside graph-traversal anyway.
+          # are outside graph-metadata backfill's traversal contract. Note: this is separate from
+          # the memory index scope. Per packet 113 (commit b062b12b4), z_archive content IS
+          # indexed into the memory DB and deprioritized via ARCHIVE_MULTIPLIERS 0.1; only
+          # graph-metadata backfill's path-validator skips it.
           node .opencode/skills/system-spec-kit/scripts/dist/graph/backfill-graph-metadata.js --active-only 2>&1 \
             | tee .opencode/skills/system-spec-kit/mcp_server/database/.doctor-update.backfill-graph.log
         timeout_seconds: 300
