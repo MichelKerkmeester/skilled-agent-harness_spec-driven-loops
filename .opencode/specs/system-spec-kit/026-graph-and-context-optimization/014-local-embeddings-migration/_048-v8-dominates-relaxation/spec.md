@@ -13,7 +13,7 @@ contextType: "spec"
 status: "complete"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/047-v8-dominates-relaxation"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/_048-v8-dominates-relaxation"
     last_updated_at: "2026-05-14T17:15:00Z"
     last_updated_by: "codex"
     recent_action: "Completed V8 dominance relaxation and verified live handover"
@@ -83,7 +83,7 @@ Keep V8's dominance signal for real contamination while allowing high-cross-refe
 |-----------|-------------|-------------|
 | `.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts` | Modify | Add dominance thresholds and cached direct-child allowlist enumeration. |
 | `.opencode/skills/system-spec-kit/scripts/tests/validate-memory-quality-v8-overreach.vitest.ts` | Modify | Add T047-01 through T047-05 coverage. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/047-v8-dominates-relaxation/*` | Create | Level-2 packet docs and metadata. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/_048-v8-dominates-relaxation/*` | Create | Level-2 packet docs and metadata. |
 <!-- /ANCHOR:scope -->
 
 ---

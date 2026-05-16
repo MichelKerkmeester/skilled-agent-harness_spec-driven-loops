@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/047-v8-dominates-relaxation",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/_048-v8-dominates-relaxation",
   "description": "Relax V8 foreign-spec dominance detection for high-cross-reference docs and parent handovers while preserving strict generic-doc detection.",
   "keywords": [
     "v8",
