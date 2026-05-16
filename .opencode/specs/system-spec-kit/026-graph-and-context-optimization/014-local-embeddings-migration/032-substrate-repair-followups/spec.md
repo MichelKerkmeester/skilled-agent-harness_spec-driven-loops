@@ -45,7 +45,7 @@ Each follow-up gets a dedicated child packet + a fresh cli-codex agent (gpt-5.5 
 
 **Wave 2** — 2 sequential codex dispatches (after Wave 1 implementation-summaries are filled):
 - 002-rerun-24-scenarios-suite
-- 005-substrate-stability-instrumentation
+- 005-stability-instrumentation
 
 ## Parent-level invariants
 

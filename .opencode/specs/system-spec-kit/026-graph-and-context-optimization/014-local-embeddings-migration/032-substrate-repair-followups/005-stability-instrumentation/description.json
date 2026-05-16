@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/032-substrate-repair-followups/005-substrate-stability-instrumentation",
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/032-substrate-repair-followups/005-substrate-stability-instrumentation",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/032-substrate-repair-followups/005-stability-instrumentation",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/032-substrate-repair-followups/005-stability-instrumentation",
   "title": "005 substrate-stability-instrumentation",
   "summary": "Add memory_health.process.rss_mb, memory_health.embeddingRetry.flapping, daemon-startup RSS log, and a resource-map.md documenting kill-switch thresholds. Observability only, no behavior change.",
   "tags": ["observability", "instrumentation", "memory-health", "rss", "circuit-flap"],

@@ -51,7 +51,7 @@ _memory:
 
 ### Problem Statement
 
-The memory quality validator rejects ADR-like content with `V-rule hard block: V8 (cross-spec-contamination)`. A direct run against `037-llama-cpp-embedding-worker-deep-dive/decision-record.md` reports scattered foreign IDs such as `768-dimension`, `142-line`, `002-decouple-retention-from-governance`, and `005-substrate-stability-instrumentation`.
+The memory quality validator rejects ADR-like content with `V-rule hard block: V8 (cross-spec-contamination)`. A direct run against `037-llama-cpp-embedding-worker-deep-dive/decision-record.md` reports scattered foreign IDs such as `768-dimension`, `142-line`, `002-decouple-retention-from-governance`, and `005-stability-instrumentation`.
 
 Four independent overreach modes cause the false block:
 

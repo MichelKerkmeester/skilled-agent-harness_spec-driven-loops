@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/032-substrate-repair-followups/005-substrate-stability-instrumentation"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/032-substrate-repair-followups/005-stability-instrumentation"
     last_updated_at: "2026-05-14T11:25:36Z"
     last_updated_by: "cli-codex"
     recent_action: "Completed instrumentation and docs"
@@ -19,10 +19,10 @@ _memory:
       - ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts"
       - ".opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts"
       - ".opencode/skills/system-spec-kit/mcp_server/context-server.ts"
-      - ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/032-substrate-repair-followups/005-substrate-stability-instrumentation/resource-map.md"
+      - ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/032-substrate-repair-followups/005-stability-instrumentation/resource-map.md"
     session_dedup:
       fingerprint: "sha256:8888888888888888888888888888888888888888888888888888888888888888"
-      session_id: "cli-codex-005-substrate-stability-instrumentation"
+      session_id: "cli-codex-005-stability-instrumentation"
       parent_session_id: null
     completion_pct: 95
     open_questions: []
@@ -42,7 +42,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/032-substrate-repair-followups/005-substrate-stability-instrumentation` |
+| **Spec Folder** | `system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/032-substrate-repair-followups/005-stability-instrumentation` |
 | **Completed** | 2026-05-14 |
 | **Level** | 2 |
 | **Runtime Verification** | Deferred until Memory MCP daemon respawn |

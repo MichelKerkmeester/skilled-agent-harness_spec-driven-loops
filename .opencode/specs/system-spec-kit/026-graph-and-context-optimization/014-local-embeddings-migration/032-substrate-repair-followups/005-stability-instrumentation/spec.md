@@ -11,7 +11,7 @@ contextType: "general"
 status: "complete"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/032-substrate-repair-followups/005-substrate-stability-instrumentation"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/032-substrate-repair-followups/005-stability-instrumentation"
     last_updated_at: "2026-05-14T00:00:00Z"
     last_updated_by: "cli-codex"
     recent_action: "Completed substrate stability instrumentation"
@@ -23,7 +23,7 @@ _memory:
       - ".opencode/skills/system-spec-kit/mcp_server/context-server.ts"
     session_dedup:
       fingerprint: "sha256:0050050050050050050050050050050050050050050050050050050050050050"
-      session_id: "cli-codex-005-substrate-stability-instrumentation"
+      session_id: "cli-codex-005-stability-instrumentation"
       parent_session_id: null
     completion_pct: 100
     open_questions: []
@@ -46,7 +46,7 @@ _memory:
 | Priority | P0 |
 | Status | Complete |
 | Created | 2026-05-14 |
-| Branch | `032-substrate-repair-followups/005-substrate-stability-instrumentation` |
+| Branch | `032-substrate-repair-followups/005-stability-instrumentation` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -92,7 +92,7 @@ Surface lightweight substrate stability metrics in `memory_health` and daemon st
 | `.opencode/skills/system-spec-kit/mcp_server/dist/handlers/memory-crud-health.js` | Modify | Dist mirror of health response fields |
 | `.opencode/skills/system-spec-kit/mcp_server/dist/lib/providers/retry-manager.js` | Modify | Dist mirror of circuit flap telemetry |
 | `.opencode/skills/system-spec-kit/mcp_server/dist/context-server.js` | Modify | Dist mirror of startup RSS log |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/032-substrate-repair-followups/005-substrate-stability-instrumentation/resource-map.md` | Create | Document five substrate stability thresholds |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/032-substrate-repair-followups/005-stability-instrumentation/resource-map.md` | Create | Document five substrate stability thresholds |
 <!-- /ANCHOR:scope -->
 
 ---

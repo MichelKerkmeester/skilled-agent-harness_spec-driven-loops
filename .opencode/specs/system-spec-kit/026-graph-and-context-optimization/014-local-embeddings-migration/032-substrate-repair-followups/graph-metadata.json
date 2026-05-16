@@ -8,7 +8,7 @@
     "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/032-substrate-repair-followups/002-rerun-24-scenarios-suite",
     "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/032-substrate-repair-followups/003-mcp-server-build-fix",
     "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/032-substrate-repair-followups/004-failed-embedding-cleanup",
-    "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/032-substrate-repair-followups/005-substrate-stability-instrumentation"
+    "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/032-substrate-repair-followups/005-stability-instrumentation"
   ],
   "migrated": true,
   "migration_source": "legacy",

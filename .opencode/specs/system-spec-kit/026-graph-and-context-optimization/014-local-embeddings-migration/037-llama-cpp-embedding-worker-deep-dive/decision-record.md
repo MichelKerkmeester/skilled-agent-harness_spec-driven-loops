@@ -206,7 +206,7 @@ Concrete changes (already in the working tree as of session 2026-05-14):
 
 - ADR-002 — Decouple `retentionPolicy: "ephemeral"` from governed-ingest enforcement (`../032-substrate-repair-followups/.../adr-002-decouple-retention-from-governance.md`).
 - 022 ai-council post-execution follow-up — root-cause analysis that surfaced governance H4 and flagged the embedding worker as a separate issue.
-- 032/005-substrate-stability-instrumentation — added `embeddingRetry.flapping` flag and `process.rss_mb` to `memory_health`.
+- 032/005-stability-instrumentation — added `embeddingRetry.flapping` flag and `process.rss_mb` to `memory_health`.
 - `node-llama-cpp@3.17.1` `LlamaModel.d.ts:181` — `tokenize(text: string, specialTokens?: boolean, options?: "trimLeadingSpace"): Token[]` API.
 - Phase 1 evidence files in `_sandbox/37--llama-cpp-context-size/`.
 

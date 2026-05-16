@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/032-substrate-repair-followups/005-substrate-stability-instrumentation"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/032-substrate-repair-followups/005-stability-instrumentation"
     last_updated_at: "2026-05-14T11:25:36Z"
     last_updated_by: "cli-codex"
     recent_action: "Tracked implementation tasks"
@@ -21,7 +21,7 @@ _memory:
       - ".opencode/skills/system-spec-kit/mcp_server/context-server.ts"
     session_dedup:
       fingerprint: "sha256:6666666666666666666666666666666666666666666666666666666666666666"
-      session_id: "cli-codex-005-substrate-stability-instrumentation"
+      session_id: "cli-codex-005-stability-instrumentation"
       parent_session_id: null
     completion_pct: 95
     open_questions: []

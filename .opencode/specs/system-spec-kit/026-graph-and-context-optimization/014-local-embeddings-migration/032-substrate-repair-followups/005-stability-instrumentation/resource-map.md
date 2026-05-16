@@ -8,17 +8,17 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/032-substrate-repair-followups/005-substrate-stability-instrumentation"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/032-substrate-repair-followups/005-stability-instrumentation"
     last_updated_at: "2026-05-14T00:00:00Z"
     last_updated_by: "cli-codex"
     recent_action: "Documented substrate stability thresholds"
     next_safe_action: "Use these thresholds when triaging memory_health degradation"
     blockers: []
     key_files:
-      - ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/032-substrate-repair-followups/005-substrate-stability-instrumentation/resource-map.md"
+      - ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/032-substrate-repair-followups/005-stability-instrumentation/resource-map.md"
     session_dedup:
       fingerprint: "sha256:0050050050050050050050050050050050050050050050050050050050050050"
-      session_id: "cli-codex-005-substrate-stability-instrumentation"
+      session_id: "cli-codex-005-stability-instrumentation"
       parent_session_id: null
     completion_pct: 100
     open_questions: []
