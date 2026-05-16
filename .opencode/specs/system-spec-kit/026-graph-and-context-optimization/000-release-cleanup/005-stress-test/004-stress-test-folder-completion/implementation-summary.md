@@ -3,7 +3,7 @@ title: "Implementation Summary: Stress Test Folder Completion"
 template_source: "SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2"
 description: "Packet 038 completes the stress-test folder migration that 037/005 started too narrowly."
 trigger_phrases:
-  - "025-stress-test-folder-completion"
+  - "004-stress-test-folder-completion"
   - "stress test full migration"
   - "search-quality harness move"
   - "content-based stress migration"
@@ -12,7 +12,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/025-stress-test-folder-completion"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-stress-test-folder-completion"
     last_updated_at: "2026-04-29T20:35:30+02:00"
     last_updated_by: "codex"
     recent_action: "Resource map indexed"
@@ -39,7 +39,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 --
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 025-stress-test-folder-completion |
+| **Spec Folder** | 004-stress-test-folder-completion |
 | **Completed** | 2026-04-29 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

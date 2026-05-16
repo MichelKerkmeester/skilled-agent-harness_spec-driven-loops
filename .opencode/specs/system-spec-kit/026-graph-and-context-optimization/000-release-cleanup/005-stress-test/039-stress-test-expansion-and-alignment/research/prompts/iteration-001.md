@@ -134,7 +134,7 @@ cd .opencode/skills/system-spec-kit/mcp_server && npx tsc --noEmit 2>&1 | tail -
 
 ### Packet meta
 
-**Deps**: `manual.depends_on=["system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/025-stress-test-folder-completion","system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/019-feature-catalog-shape-realignment"]`.
+**Deps**: `manual.depends_on=["system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-stress-test-folder-completion","system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/019-feature-catalog-shape-realignment"]`.
 
 **Trigger phrases**: `["039-stress-test-expansion-and-alignment","stress test alignment","stress test coverage","sk-code-opencode stress test"]`.
 

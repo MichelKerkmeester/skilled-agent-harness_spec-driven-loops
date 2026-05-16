@@ -1,14 +1,14 @@
 ---
 title: "Resource Map - 038 stress test folder completion"
-description: "File ledger for 025-stress-test-folder-completion."
+description: "File ledger for 004-stress-test-folder-completion."
 trigger_phrases:
-  - "025-stress-test-folder-completion resource map"
+  - "004-stress-test-folder-completion resource map"
   - "stress test folder completion file ledger"
 importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/025-stress-test-folder-completion"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-stress-test-folder-completion"
     last_updated_at: "2026-04-29T20:35:30+02:00"
     last_updated_by: "codex-gpt-5.5"
     recent_action: "Resource map indexed"
@@ -32,7 +32,7 @@ _memory:
 - **Total references**: 135
 - **By category**: READMEs=0, Documents=0, Commands=0, Agents=0, Skills=32, Specs=103, Scripts=0, Tests=0, Config=0, Meta=0
 - **Missing on disk**: 2
-- **Scope**: All files created, updated, or analyzed during 025-stress-test-folder-completion.
+- **Scope**: All files created, updated, or analyzed during 004-stress-test-folder-completion.
 - **Generated**: 2026-04-29T20:29:34+02:00
 
 > **Action vocabulary**: `Created` · `Updated` · `Analyzed` · `Removed` · `Cited` · `Validated` · `Moved` · `Renamed`.
@@ -186,15 +186,15 @@ _memory:
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/review/iterations/iteration-009.md` | Updated | OK | Review artifact captured by the packet. |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/review/resource-map.md` | Updated | OK | This file. |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/review/review-report.md` | Updated | OK | Review artifact captured by the packet. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/025-stress-test-folder-completion/checklist.md` | Created | OK | Packet-local spec artifact. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/025-stress-test-folder-completion/description.json` | Created | OK | Packet discovery metadata refreshed by canonical save. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/025-stress-test-folder-completion/graph-metadata.json` | Created | OK | Packet graph metadata refreshed by canonical save. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/025-stress-test-folder-completion/implementation-summary.md` | Created | OK | Packet-local spec artifact. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/025-stress-test-folder-completion/migration-plan.md` | Created | OK | Packet-local spec artifact. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/025-stress-test-folder-completion/plan.md` | Created | OK | Packet-local spec artifact. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/025-stress-test-folder-completion/research/prompts/iteration-001.md` | Created | OK | Research or prompt artifact captured by the packet. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/025-stress-test-folder-completion/spec.md` | Created | OK | Packet-local spec artifact. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/025-stress-test-folder-completion/tasks.md` | Created | OK | Packet-local spec artifact. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-stress-test-folder-completion/checklist.md` | Created | OK | Packet-local spec artifact. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-stress-test-folder-completion/description.json` | Created | OK | Packet discovery metadata refreshed by canonical save. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-stress-test-folder-completion/graph-metadata.json` | Created | OK | Packet graph metadata refreshed by canonical save. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-stress-test-folder-completion/implementation-summary.md` | Created | OK | Packet-local spec artifact. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-stress-test-folder-completion/migration-plan.md` | Created | OK | Packet-local spec artifact. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-stress-test-folder-completion/plan.md` | Created | OK | Packet-local spec artifact. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-stress-test-folder-completion/research/prompts/iteration-001.md` | Created | OK | Research or prompt artifact captured by the packet. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-stress-test-folder-completion/spec.md` | Created | OK | Packet-local spec artifact. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-stress-test-folder-completion/tasks.md` | Created | OK | Packet-local spec artifact. |
 <!-- /ANCHOR:specs -->
 
 ---

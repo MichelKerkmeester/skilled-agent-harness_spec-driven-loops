@@ -1,6 +1,6 @@
 ## Packet 038: stress-test-folder-completion — Tier C content-based migration
 
-You are cli-codex (gpt-5.5 high fast) implementing **025-stress-test-folder-completion**.
+You are cli-codex (gpt-5.5 high fast) implementing **004-stress-test-folder-completion**.
 
 ### CRITICAL CONTEXT — read this first
 
@@ -135,13 +135,13 @@ If the broad `npm test` hits pre-existing hangs (memory feedback notes this), do
 
 ### Packet structure to create (Level 2)
 
-7-file structure under `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/025-stress-test-folder-completion/`.
+7-file structure under `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-stress-test-folder-completion/`.
 
 PLUS: `migration-plan.md` at packet root listing every classified file.
 
 **Deps**: `manual.depends_on=["system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-followup-quality-pass/005-stress-test-folder-migration"]`. (037/005 was a partial first pass; 038 completes it.)
 
-**Trigger phrases**: `["025-stress-test-folder-completion","stress test full migration","search-quality harness move","content-based stress migration","stress folder reorganization"]`.
+**Trigger phrases**: `["004-stress-test-folder-completion","stress test full migration","search-quality harness move","content-based stress migration","stress folder reorganization"]`.
 
 **Causal summary**: `"Completes the stress-test folder migration that 037/005 only partially executed. Moves the search-quality harness directory, harness consumers, stress patterns, and matrix-cell tests into mcp_server/stress_test/ organized by subsystem (search-quality, memory, skill-advisor, code-graph, session, matrix). Content-based discovery (not name-based). Updates imports, vitest config, package.json, all doc references."`.
 

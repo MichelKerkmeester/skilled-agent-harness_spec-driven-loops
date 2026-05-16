@@ -3,7 +3,7 @@ title: "Verification Checklist: Stress Test Folder Completion"
 template_source: "SPECKIT_TEMPLATE_SOURCE: checklist | v2.2"
 description: "Verification Date: 2026-04-29"
 trigger_phrases:
-  - "025-stress-test-folder-completion"
+  - "004-stress-test-folder-completion"
   - "stress test full migration"
   - "search-quality harness move"
   - "content-based stress migration"
@@ -12,7 +12,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/025-stress-test-folder-completion"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-stress-test-folder-completion"
     last_updated_at: "2026-04-29T18:45:00Z"
     last_updated_by: "codex"
     recent_action: "Verification recorded."

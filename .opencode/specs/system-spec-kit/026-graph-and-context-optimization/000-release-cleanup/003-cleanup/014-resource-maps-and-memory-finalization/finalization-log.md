@@ -56,7 +56,7 @@ Generated: 2026-04-29T20:41:19+02:00
 | `003-followup-quality-pass/004-sk-doc-template-alignment` | 6269 | 0 | OK | OK | 0 | OK |
 | `003-followup-quality-pass/005-stress-test-folder-migration` | 10398 | 0 | OK | OK | 0 | OK |
 | `003-followup-quality-pass/006-readme-cascade-refresh` | 7660 | 0 | OK | OK | 0 | OK |
-| `025-stress-test-folder-completion` | 29787 | 0 | OK | OK | 0 | OK |
+| `004-stress-test-folder-completion` | 29787 | 0 | OK | OK | 0 | OK |
 | `012-code-graph-catalog-and-playbook` | 11537 | 0 | OK | OK | 0 | OK |
 | `013-evergreen-doc-packet-id-removal` | 13706 | 0 | OK | OK | 0 | OK |
 

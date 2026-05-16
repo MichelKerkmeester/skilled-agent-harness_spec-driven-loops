@@ -7,7 +7,7 @@
   "manual": {
     "depends_on": [
       "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/013-evergreen-doc-packet-id-removal",
-      "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/025-stress-test-folder-completion",
+      "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-stress-test-folder-completion",
       "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/012-code-graph-catalog-and-playbook"
     ],
     "supersedes": [],

@@ -3,7 +3,7 @@
 title: "Migration Plan: Stress Test Folder Completion"
 description: "Content-based classification ledger for packet 038 stress-test folder migration."
 trigger_phrases:
-  - "025-stress-test-folder-completion"
+  - "004-stress-test-folder-completion"
   - "stress test full migration"
   - "search-quality harness move"
   - "content-based stress migration"

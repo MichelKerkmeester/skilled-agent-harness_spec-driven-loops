@@ -34,7 +34,7 @@ specs/system-spec-kit/026-graph-and-context-optimization/
 │   ├── 004-sk-doc-template-alignment/
 │   ├── 005-stress-test-folder-migration/
 │   └── 006-readme-cascade-refresh/
-├── 025-stress-test-folder-completion/
+├── 004-stress-test-folder-completion/
 ├── 012-code-graph-catalog-and-playbook/
 └── 013-evergreen-doc-packet-id-removal/
 ```

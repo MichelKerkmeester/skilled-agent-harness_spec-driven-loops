@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/025-stress-test-folder-completion",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/025-stress-test-folder-completion",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-stress-test-folder-completion",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-stress-test-folder-completion",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization",
   "children_ids": [],
   "migrated": true,
@@ -13,16 +13,16 @@
   },
   "derived": {
     "trigger_phrases": [
-      "025-stress-test-folder-completion",
+      "004-stress-test-folder-completion",
       "stress test full migration",
       "search-quality harness move",
       "content-based stress migration",
       "stress folder reorganization",
-      "025-stress-test-folder-completion resource map",
+      "004-stress-test-folder-completion resource map",
       "stress test folder completion file ledger"
     ],
     "key_topics": [
-      "025-stress-test-folder-completion",
+      "004-stress-test-folder-completion",
       "stress",
       "test",
       "full",

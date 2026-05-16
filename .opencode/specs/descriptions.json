@@ -4627,7 +4627,7 @@
       "lastUpdated": "2026-05-08T08:26:57.309Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/025-stress-test-folder-completion",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-stress-test-folder-completion",
       "description": "Feature Specification: Stress Test Folder Completion",
       "keywords": [
         "feature",
