@@ -36,7 +36,7 @@ Whole-repo read-only survey of the code-graph surface (source + consumers + tool
 ## QUALITY GATES
 
 ### Definition of Ready
-- [x] 008-code-graph-backend-resilience shipped on main.
+- [x] 007-code-graph-backend-resilience shipped on main.
 - [x] 011-broader-scope-excludes-and-granular-skills shipped on main.
 - [x] 010-template-levels available for downstream skill-folder scaffold reference.
 
@@ -113,7 +113,7 @@ Whole-repo read-only survey of the code-graph surface (source + consumers + tool
 <!-- ANCHOR:dependencies -->
 ## DEPENDENCIES
 
-- 008-code-graph-backend-resilience shipped.
+- 007-code-graph-backend-resilience shipped.
 - 011-broader-scope-excludes-and-granular-skills shipped.
 - 010-template-levels for downstream skill-folder scaffold template knowledge.
 - Whole-repo read access.

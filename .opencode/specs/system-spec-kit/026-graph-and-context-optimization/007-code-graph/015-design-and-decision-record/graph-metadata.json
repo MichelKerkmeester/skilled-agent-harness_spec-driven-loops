@@ -7,7 +7,7 @@
   "migrated": true,
   "manual": {
     "depends_on": [
-      "system-spec-kit/026-graph-and-context-optimization/007-code-graph/008-code-graph-backend-resilience",
+      "system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-backend-resilience",
       "system-spec-kit/026-graph-and-context-optimization/007-code-graph/011-broader-scope-excludes-and-granular-skills"
     ],
     "supersedes": [],

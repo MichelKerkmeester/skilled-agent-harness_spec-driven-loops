@@ -104,7 +104,7 @@ These files were investigated during research or are adjacent to the behavior, b
 | `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/ccc-reindex.ts` | Untouched | OK | CocoIndex uses its own binary and index; follow-up only. |
 | `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/ccc-status.ts` | Untouched | OK | CocoIndex readiness is separate and not part of this packet. |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/002-template-greenfield-redesign/decision-record.md` | Cited | OK | ADR-005 workflow invariance source; no edit. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/008-code-graph-backend-resilience/` | Cited | OK | Regression validation target; no edit. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-backend-resilience/` | Cited | OK | Regression validation target; no edit. |
 | `opencode.json` | Untouched | OK | Env var can be documented without changing local runtime config in this packet. |
 
 ## §5. PHASE-BY-PHASE FILE COUNT SUMMARY

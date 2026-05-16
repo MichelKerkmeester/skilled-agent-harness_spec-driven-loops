@@ -206,7 +206,7 @@ End-user-repo-only is the **default**. Skill code indexing becomes opt-in via fe
 
 ## 13. RELATED DOCUMENTS
 
-- Sibling packet: `008-code-graph-backend-resilience/` (resilience research that may inform exclude-rule confidence tiers)
+- Sibling packet: `007-code-graph-backend-resilience/` (resilience research that may inform exclude-rule confidence tiers)
 - Sibling packet: `002-code-graph-context-and-scan-scope/` (earlier scope work)
 - Parent: `007-code-graph/spec.md`
 - Architecture: `010-template-levels/002-template-greenfield-redesign/decision-record.md` (ADR-005 workflow invariance applies here)

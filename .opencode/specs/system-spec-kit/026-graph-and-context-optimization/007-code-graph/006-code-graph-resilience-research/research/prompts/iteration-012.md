@@ -5,7 +5,7 @@ You are running iteration 12 of 12 in a deep-research loop on code-graph resilie
 ## Goal
 
 1. Design the runtime harness that executes `assets/code-graph-gold-queries.json` against the live `code_graph_query` MCP tool and produces a pass/fail report
-2. Synthesize iterations 8-11 into a single implementation roadmap that the next packet (008-code-graph-backend-resilience) can consume directly
+2. Synthesize iterations 8-11 into a single implementation roadmap that the next packet (007-code-graph-backend-resilience) can consume directly
 
 ## Research Questions
 - Q15A: Where should the gold-battery harness live? (new MCP tool `code_graph_verify`? new CLI script? part of scan handler?)
@@ -34,7 +34,7 @@ Required sections:
 - **Harness Design** (location, signature, execution flow)
 - **Wiring Points** (where harness is called from)
 - **Per-Iteration Patch Index** (8/9/10/11/12 — cross-reference table of all patch points across iterations)
-- **Implementation Roadmap** (ordered task list ready for 008-code-graph-backend-resilience packet — minimum 10 ordered tasks with dependencies)
+- **Implementation Roadmap** (ordered task list ready for 007-code-graph-backend-resilience packet — minimum 10 ordered tasks with dependencies)
 - **Risk Register** (per-task risk + mitigation)
 - **Files Reviewed**
 - **Convergence Signals** (final iteration verdict)

@@ -62,7 +62,7 @@
   "convergence_signals": {
     "final_iteration": true,
     "implementation_ready": true,
-    "remaining_work_packet": "008-code-graph-backend-resilience",
+    "remaining_work_packet": "007-code-graph-backend-resilience",
     "evidence_gap": "research/iterations/iteration-008.md through iteration-011.md were absent; prompts and earlier grounded findings were used instead"
   },
   "status": "complete",

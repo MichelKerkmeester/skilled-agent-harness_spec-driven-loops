@@ -272,7 +272,7 @@ Per research §14, this packet does not change Gate 3, spec level wording, valid
 PACKET=.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/009-end-user-scope-default
 bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "$PACKET" --strict
 (cd .opencode/skills/system-spec-kit && node mcp_server/node_modules/vitest/vitest.mjs run scripts/tests/workflow-invariance.vitest.ts --root . --config mcp_server/vitest.config.ts)
-bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/008-code-graph-backend-resilience --strict
+bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-backend-resilience --strict
 ```
 <!-- /ANCHOR:phases -->
 

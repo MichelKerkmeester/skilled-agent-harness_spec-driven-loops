@@ -144,7 +144,7 @@ Phase 1 added the scope helper, config defaults, walker guard, scan/schema wirin
 | Resource-map drift | PASS: Gate E diff returned no output. |
 | Workflow invariance | PASS: `scripts/tests/workflow-invariance.vitest.ts`; 1 file, 2 tests passed. |
 | Strict validation 009 | PASS: `validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/009-end-user-scope-default --strict`; Errors: 0, Warnings: 0. |
-| Strict validation 008 | PASS: `validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/008-code-graph-backend-resilience --strict`; Errors: 0, Warnings: 0. |
+| Strict validation 008 | PASS: `validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-backend-resilience --strict`; Errors: 0, Warnings: 0. |
 | Sentinel validation | PASS: `validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/003-template-greenfield-impl --strict`; Errors: 0, Warnings: 0. |
 | Performance baseline | PASS: local DB count changed from 1,619 files / 34,850 nodes / 16,530 edges to 48 files / 646 nodes / 1,231 edges after default full scan. |
 <!-- /ANCHOR:verification -->

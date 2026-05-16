@@ -22,7 +22,7 @@
     "related_to": [
       "system-spec-kit/026-graph-and-context-optimization/007-code-graph/001-code-graph-upgrades",
       "system-spec-kit/026-graph-and-context-optimization/007-code-graph/002-code-graph-context-and-scan-scope",
-      "system-spec-kit/026-graph-and-context-optimization/007-code-graph/008-code-graph-backend-resilience",
+      "system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-backend-resilience",
       "system-spec-kit/026-graph-and-context-optimization/007-code-graph/011-broader-scope-excludes-and-granular-skills"
     ]
   },

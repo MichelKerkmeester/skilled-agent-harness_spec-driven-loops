@@ -103,7 +103,7 @@ _memory:
 - [x] T-305 [S] Run focused Vitest command for schema, indexer, and readiness/status suites (`.opencode/skills/system-spec-kit`) — acceptance: CHK-G3-05
 - [x] T-306 [S] Run workflow-invariance Vitest (`.opencode/skills/system-spec-kit/scripts/tests/workflow-invariance.vitest.ts`) — acceptance: CHK-G3-06
 - [x] T-307 [S] Run strict validation for packet 009 (`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/009-end-user-scope-default`) — acceptance: CHK-G3-07
-- [x] T-308 [S] Run strict validation for sibling 008 (`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/008-code-graph-backend-resilience`) — acceptance: CHK-G3-07
+- [x] T-308 [S] Run strict validation for sibling 008 (`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-backend-resilience`) — acceptance: CHK-G3-07
 - [x] T-309 [P] Run full-fleet sample regression and record any inherited failures separately (`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/`) — acceptance: CHK-G3-08
 - [x] T-310 [S] Measure pre/post graph file-node-edge counts after a default full scan (`.opencode/skills/system-spec-kit/mcp_server/code_graph/`) — acceptance: CHK-G3-08
 - [x] T-311 [S] Update `implementation-summary.md` with final implementation, evidence, and performance baseline (`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/009-end-user-scope-default/implementation-summary.md`) — acceptance: CHK-G3-08
