@@ -11,7 +11,7 @@
     ],
     "supersedes": [],
     "related_to": [
-      "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/025-cli-devin-skill-advisor-hook"
+      "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-cli-devin-skill-advisor-hook"
     ]
   },
   "derived": {
@@ -72,7 +72,7 @@
       ],
       "enhances": [],
       "siblings": [
-        { "target": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/025-cli-devin-skill-advisor-hook", "weight": 0.4, "context": "adjacent skill-advisor phase" }
+        { "target": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-cli-devin-skill-advisor-hook", "weight": 0.4, "context": "adjacent skill-advisor phase" }
       ],
       "conflicts_with": [],
       "prerequisite_for": []

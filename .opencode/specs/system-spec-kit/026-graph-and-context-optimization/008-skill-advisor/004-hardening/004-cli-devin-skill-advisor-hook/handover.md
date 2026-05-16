@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/025-cli-devin-skill-advisor-hook"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-cli-devin-skill-advisor-hook"
     last_updated_at: "2026-05-15T17:30:00Z"
     last_updated_by: "cli-codex-phase-b"
     recent_action: "Phase B synthesis complete"
@@ -94,17 +94,17 @@ _memory:
 ### 3.3 Template Dispatch Commands, Not Executed
 
 ```bash
-devin run --model swe-1.6 --prompt-file specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/025-cli-devin-skill-advisor-hook/research/dispatch-prompt.md </dev/null
+devin run --model swe-1.6 --prompt-file specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-cli-devin-skill-advisor-hook/research/dispatch-prompt.md </dev/null
 ```
 
 ```bash
-opencode run --model deepseek-v4-pro-max --pure --prompt-file specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/025-cli-devin-skill-advisor-hook/dispatch-prompt.md </dev/null > specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/025-cli-devin-skill-advisor-hook/logs/implementation.log 2>&1 &
+opencode run --model deepseek-v4-pro-max --pure --prompt-file specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-cli-devin-skill-advisor-hook/dispatch-prompt.md </dev/null > specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-cli-devin-skill-advisor-hook/logs/implementation.log 2>&1 &
 ```
 
 ### 3.4 Parent Paths
 
 - Advisor phase parent: `specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/`
-- Packet: `specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/025-cli-devin-skill-advisor-hook/`
+- Packet: `specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-cli-devin-skill-advisor-hook/`
 
 ### 3.5 Convergence Criteria
 

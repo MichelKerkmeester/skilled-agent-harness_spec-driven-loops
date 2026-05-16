@@ -9,12 +9,12 @@ trigger_phrases:
   - "plugin rename"
   - "mk-skill-advisor"
   - "post-extraction audit"
-  - "025-cli-devin-skill-advisor-hook"
+  - "004-cli-devin-skill-advisor-hook"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/025-cli-devin-skill-advisor-hook"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-cli-devin-skill-advisor-hook"
     last_updated_at: "2026-05-15T17:30:00Z"
     last_updated_by: "cli-codex-phase-b"
     recent_action: "Phase B synthesis complete"
@@ -30,7 +30,7 @@ _memory:
       - "resource-map.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "2026-05-15-phase-b-025-cli-devin-skill-advisor-hook"
+      session_id: "2026-05-15-phase-b-004-cli-devin-skill-advisor-hook"
       parent_session_id: null
     completion_pct: 40
     open_questions: []

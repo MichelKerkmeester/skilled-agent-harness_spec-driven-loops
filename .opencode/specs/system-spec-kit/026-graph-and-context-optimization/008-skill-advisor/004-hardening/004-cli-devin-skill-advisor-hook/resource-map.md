@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/025-cli-devin-skill-advisor-hook"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-cli-devin-skill-advisor-hook"
     last_updated_at: "2026-05-15T17:30:00Z"
     last_updated_by: "cli-codex-phase-b"
     recent_action: "Phase B synthesis complete"
@@ -64,9 +64,9 @@ Status vocabulary: `OK`, `MISSING`, `PLANNED`.
 | `.opencode/skills/system-skill-advisor/feature_catalog/07--hooks-and-plugin/*` | Updated | OK | Current feature catalog plugin refs per F009/Q9. |
 | `.opencode/skills/system-skill-advisor/manual_testing_playbook/02--cli-hooks-and-plugin/*` | Updated | OK | Manual hook/plugin smoke entries per F009/Q9. |
 | `.opencode/skills/cli-devin/references/devin_tools.md` | Updated | OK | Hooks row line 106: `No` to `Yes - Claude-compatible hooks`. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/025-cli-devin-skill-advisor-hook/research/research.md` | Analyzed | OK | Frozen Phase A synthesis, 200 lines. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/025-cli-devin-skill-advisor-hook/research/iterations/iteration-01.md` | Analyzed | OK | Devin context injection uncertainty. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/025-cli-devin-skill-advisor-hook/research/iterations/iteration-05.md` | Analyzed | OK | Bridge duplicate audit. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-cli-devin-skill-advisor-hook/research/research.md` | Analyzed | OK | Frozen Phase A synthesis, 200 lines. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-cli-devin-skill-advisor-hook/research/iterations/iteration-01.md` | Analyzed | OK | Devin context injection uncertainty. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-cli-devin-skill-advisor-hook/research/iterations/iteration-05.md` | Analyzed | OK | Bridge duplicate audit. |
 <!-- /ANCHOR:documents -->
 
 ---
@@ -93,16 +93,16 @@ Status vocabulary: `OK`, `MISSING`, `PLANNED`.
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/025-cli-devin-skill-advisor-hook/spec.md` | Updated | OK | Phase B planning-complete spec. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/025-cli-devin-skill-advisor-hook/plan.md` | Updated | OK | Phase A-E plan. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/025-cli-devin-skill-advisor-hook/tasks.md` | Updated | OK | 25 atomic tasks. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/025-cli-devin-skill-advisor-hook/decision-record.md` | Updated | OK | ADR-001..003 accepted. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/025-cli-devin-skill-advisor-hook/checklist.md` | Updated | OK | Phase D verification slots. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/025-cli-devin-skill-advisor-hook/handover.md` | Updated | OK | Continuity completion_pct 40. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/025-cli-devin-skill-advisor-hook/resource-map.md` | Created | OK | This file. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/025-cli-devin-skill-advisor-hook/implementation-summary.md` | Analyzed | OK | Left placeholder by design. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/025-cli-devin-skill-advisor-hook/description.json` | Analyzed | OK | Metadata untouched in Phase B. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/025-cli-devin-skill-advisor-hook/graph-metadata.json` | Analyzed | OK | Metadata untouched in Phase B. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-cli-devin-skill-advisor-hook/spec.md` | Updated | OK | Phase B planning-complete spec. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-cli-devin-skill-advisor-hook/plan.md` | Updated | OK | Phase A-E plan. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-cli-devin-skill-advisor-hook/tasks.md` | Updated | OK | 25 atomic tasks. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-cli-devin-skill-advisor-hook/decision-record.md` | Updated | OK | ADR-001..003 accepted. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-cli-devin-skill-advisor-hook/checklist.md` | Updated | OK | Phase D verification slots. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-cli-devin-skill-advisor-hook/handover.md` | Updated | OK | Continuity completion_pct 40. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-cli-devin-skill-advisor-hook/resource-map.md` | Created | OK | This file. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-cli-devin-skill-advisor-hook/implementation-summary.md` | Analyzed | OK | Left placeholder by design. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-cli-devin-skill-advisor-hook/description.json` | Analyzed | OK | Metadata untouched in Phase B. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-cli-devin-skill-advisor-hook/graph-metadata.json` | Analyzed | OK | Metadata untouched in Phase B. |
 <!-- /ANCHOR:specs -->
 
 ---

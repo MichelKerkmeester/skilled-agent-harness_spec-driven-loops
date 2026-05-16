@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/025-cli-devin-skill-advisor-hook"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-cli-devin-skill-advisor-hook"
     last_updated_at: "2026-05-15T17:30:00Z"
     last_updated_by: "cli-codex-phase-b"
     recent_action: "Phase B synthesis complete"
@@ -83,7 +83,7 @@ _memory:
 | T3.3 | Run strict TypeScript check with `tsc --noEmit`; it must pass. | F008/Q8 |
 | T3.4 | Run `vitest run` on touched advisor test files; all must be green. | F008/Q8 |
 | T3.5 | Run sk-doc DQI rescore on all touched authored advisor docs; target >= 4.0 each. | F009/Q9 |
-| T3.6 | Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/025-cli-devin-skill-advisor-hook --strict`; exit 0 required unless only reviewed placeholder warnings appear before implementation summary fill. | F010/Q10 |
+| T3.6 | Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-cli-devin-skill-advisor-hook --strict`; exit 0 required unless only reviewed placeholder warnings appear before implementation summary fill. | F010/Q10 |
 
 ## Phase 4 - Verification (Phase D)
 

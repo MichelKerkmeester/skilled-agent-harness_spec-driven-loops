@@ -188,7 +188,7 @@ This section records wave planning for the canonical Skill Advisor manual test p
 ### Recommended Wave Plan
 
 - **Wave 1**: `NC-001..NC-009` native MCP behavior.
-- **Wave 2**: `CL-001`, `CL-003..CL-006` runtime hooks and plugin bridge (CL-006 covers the Devin CLI variant added in packet 025-cli-devin-skill-advisor-hook).
+- **Wave 2**: `CL-001`, `CL-003..CL-006` runtime hooks and plugin bridge (CL-006 covers the Devin CLI variant added in packet 004-cli-devin-skill-advisor-hook).
 - **Wave 3**: `CP-001..CP-004` compatibility and disable controls.
 - **Wave 4**: `OP-001..OP-003` H5 operator states.
 - **Wave 5**: `AU-001..AU-005` auto-update daemon behavior.

@@ -4,14 +4,14 @@ description: "Phase 0/A/B/C/D delivery record for the advisor Devin hook, mk-ski
 trigger_phrases:
   - "implementation"
   - "summary"
-  - "025-cli-devin-skill-advisor-hook"
+  - "004-cli-devin-skill-advisor-hook"
   - "mk-skill-advisor"
   - "devin hook"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/025-cli-devin-skill-advisor-hook"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-cli-devin-skill-advisor-hook"
     last_updated_at: "2026-05-15T16:25:00Z"
     last_updated_by: "claude-opus-4-7-phase-e"
     recent_action: "Phase D verification + Phase E reconciliation complete"
@@ -53,7 +53,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `025-cli-devin-skill-advisor-hook` |
+| **Spec Folder** | `004-cli-devin-skill-advisor-hook` |
 | **Completed** | 2026-05-15 |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->
@@ -104,7 +104,7 @@ See `decision-record.md` for full ADR content with research evidence citations.
 <!-- ANCHOR:verification -->
 ## Verification
 
-- **Strict validate (packet)**: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/025-cli-devin-skill-advisor-hook --strict` → exit 0, 0 errors, 0 warnings.
+- **Strict validate (packet)**: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-cli-devin-skill-advisor-hook --strict` → exit 0, 0 errors, 0 warnings.
 - **Devin hook smoke test (shim)**: `echo '{"prompt":"...","session_id":"test"}' | node .opencode/skills/system-spec-kit/mcp_server/dist/system-spec-kit/mcp_server/hooks/devin/user-prompt-submit.js` → returns `{"hookSpecificOutput":{"hookEventName":"UserPromptSubmit","additionalContext":"Advisor: ..."}}`, exit 0.
 - **Devin hook smoke test (direct)**: `echo '...' | node .opencode/skills/system-skill-advisor/mcp_server/dist/system-skill-advisor/hooks/devin/user-prompt-submit.js` → emits proper advisor brief, exit 0.
 - **Plugin rename grep**: 0 hits for `spec-kit-skill-advisor` in current code/docs (excluding z_archive + changelogs).
