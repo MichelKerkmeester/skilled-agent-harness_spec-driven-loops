@@ -489,4 +489,40 @@ The router discovers reference, asset, and script docs dynamically. Start with `
 
 Scripts: `scripts/reduce-state.cjs`, `scripts/runtime-capabilities.cjs`.
 
+---
+
+## 9. FINDING DEDUP (Packet 110, H-7)
+
+### 9.1 Two-Tier Deduplication
+
+Finding dedup uses a two-tier match at synthesis time:
+
+1. **PRIMARY: content_hash** — `sha256(file_path + "\u001f" + line_range + "\u001f" + finding_type + "\u001f" + normalized_description_80chars)`
+   - `file_path`: repo-relative path of the finding
+   - `line_range`: e.g., `"42"` or `"42-56"`
+   - `finding_type`: one of `security`, `correctness`, `performance`, `maintainability`, `test_quality`, `contract_safety`, `removal`
+   - `normalized_description_80chars`: first 80 characters of the finding description, whitespace-collapsed and lowercased
+
+2. **FALLBACK (legacy records): file:line + normalized_title**
+   - Applied when one or both records lack a `content_hash` field
+   - Preserves the existing behavior unchanged
+
+### 9.2 Synthesis Behavior
+
+When the same `content_hash` appears across iterations from different dimensions, the synthesis step collapses them to **ONE entry** with `dimensions: [<list of all dimensions that emitted this finding>]` rather than emitting multiple records.
+
+Backward compatibility: state records without `content_hash` field fall back to the existing `file:line + normalized_title` behavior. No migration is required for existing JSONL state files.
+
+### 9.3 Emission Requirement
+
+Every finding emitted into the JSONL delta (field `findingDetails[]`) MUST include a `content_hash` field computed per §9.1. The reducer (`reduce-state.cjs`) reads this field for synthesis dedup.
+
+---
+
+## 10. H-9 DEFERRED
+
+H-9 (bounded evidence interpolation) is **deferred to packet 111+**. Current deep-review prompts point agents at files and state rather than embedding all evidence inline. When H-9 is implemented, it must name the exact evidence interpolation path and variables to bound before describing candidate file:line windows.
+
+---
+
 Related skills: `deep-research` for investigation loops, `sk-code-review` for single-pass review doctrine, and `system-spec-kit` for command-owned state and continuity saves.

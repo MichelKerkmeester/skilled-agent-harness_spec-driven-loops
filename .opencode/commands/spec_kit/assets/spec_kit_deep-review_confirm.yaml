@@ -1090,17 +1090,25 @@ workflow:
       step_build_finding_registry:
         action: "Build deduplicated finding registry from all iterations"
         algorithm: |
-          1. Extract all findings from iteration files
-          2. Deduplicate by key: file:line + normalized_title
-             - Same file:line, multiple dimensions → single finding, multiple dimension tags
-             - Keep highest severity on duplicates
-          3. Track finding lifecycle:
+          1. Extract all findings from iteration JSONL delta files
+          2. Compute content_hash for each finding (emission requirement):
+             content_hash = sha256(file_path + "\u001f" + line_range + "\u001f" + finding_type + "\u001f" + normalized_description_80chars)
+             Normalized description = whitespace-collapsed, lowercased, first 80 chars of the finding description.
+          3. Two-tier dedup:
+             PRIMARY: group by content_hash field
+               - Same content_hash, multiple dimensions → single finding, merged `dimensions: [<all>]` array
+               - Keep highest severity on duplicates
+             FALLBACK (legacy records lacking content_hash): file:line + normalized_title
+               - Same file:line, multiple dimensions → single finding, multiple dimension tags
+               - Keep highest severity on duplicates
+          4. Track finding lifecycle:
              - status: active | duplicate | upgraded | downgraded | contested | resolved_false_positive
              - Record first_seen, upgraded_in, previous_severity for severity changes
-          4. Resolve contradictions:
+             - Record dimensions array reflecting all dimensions that emitted this finding
+          5. Resolve contradictions:
              - Findings marked contested across iterations → referee pass
              - Determine final severity and status
-          5. Count only 'active' findings for totals
+          6. Count only 'active' findings for totals
         outputs:
           - finding_registry: "Deduplicated list of all findings with metadata"
           - active_p0: "Count of active P0 findings"
