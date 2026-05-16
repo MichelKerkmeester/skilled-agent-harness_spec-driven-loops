@@ -8,14 +8,13 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/008-mk-spec-memory-stress-test"
-    last_updated_at: "2026-05-16T17:35:00Z"
+    last_updated_at: "2026-05-16T20:10:00Z"
     last_updated_by: "main_agent"
-    recent_action: "Phase 2 PARTIAL: 139/345 rows; devin rate-limited at batch 6"
-    next_safe_action: "Wait for devin rate-limit reset; resume Phase 2 batches 7-14"
+    recent_action: "Phase 2 263/345 + 3 codex fix commits (checkpoint_create, vitest, trace+priming)"
+    next_safe_action: "Wait for codex D pipeline fix; then E V-rule bridge; then final synthesis"
     blockers:
-      - "Devin rate limit blocks Phase 2 resume"
-      - "cat-04 tool-rejected error needs agent-config audit"
-      - "checkpoint_create FAIL pending Phase 4 remediation"
+      - "cat-04 + cat-24 persistent tool-rejected error"
+      - "cat-16 tooling 10 FAILs heterogeneous (each needs own investigation)"
     key_files:
       - "handover.md"
       - "evidence/tool-sweep.jsonl"
@@ -25,7 +24,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000008003"
       session_id: "008-tasks"
       parent_session_id: null
-    completion_pct: 65
+    completion_pct: 80
     open_questions: []
     answered_questions: []
 ---
@@ -84,19 +83,25 @@ _memory:
 
 ### 345-scenario playbook sweep
 - [x] T2.1: Generate 25 category prompts — 27 produced (24 cats single + cat-16 split into 3 parts); see `/tmp/008-batch-20260516T155606Z/phase2-prompts/`
-- [~] T2.2: Dispatch paired-parallel — **PARTIAL: 6/14 batches executed before devin hit `Permission denied: Reached overall message rate limit`** at ~17:31Z. Batches 7-13 returned in ~4s each. cat-04 had separate "tool rejected" error.
-- [~] T2.3: Verify every scenario has a row — **PARTIAL: 139/345 (40.3%)** across 11 of 25 categories
+- [~] T2.2: Dispatch paired-parallel — **PARTIAL: 14/16 categories executed across 2 dispatch waves**. Wave 1 (initial): 6/14 batches before devin hit rate limit at ~17:31Z. Wave 2 (resume after rate-limit reset at ~17:58Z): 8 paired-batches across 14 missing categories. cat-04 + cat-24 still blocked by persistent "tool rejected" agent-config error.
+- [~] T2.3: Verify every scenario has a row — **PARTIAL: 263/345 (76.2%)** across 23 of 25 categories. Missing: cat-04 (3 scenarios, persistent tool-rejected) + cat-24 (15 scenarios, same).
 - [x] T2.4: Commit Phase 2 evidence — strict-scope commit pattern (per `feedback_git_add_not_scope_strict`)
 
-### Phase 2 results (139 rows, 11 categories)
-- **PASS: 15** (10.8%) | **FAIL: 11** (7.9%) | **SKIP: 31** (22.3%) | **UNAUTOMATABLE: 80** (57.6%) | **PARTIAL: 2** (1.4%)
-- 80 UNAUTOMATABLE rows are themselves a finding: playbook scenarios assume slash-commands + multi-MCP orchestration that devin lacks
-- 11 real Phase 2 FAILs concentrated in cat-14-pipeline (1), cat-15 (1), cat-18 (4), cat-20 (3), cat-22 (2)
+### Phase 2 results (263 rows, 23 categories)
+- **PASS: 27** (10.3%) | **FAIL: 28** (10.6%) | **SKIP: 39** (14.8%) | **UNAUTOMATABLE: 157** (59.7%) | **PARTIAL: 12** (4.6%)
+- 157 UNAUTOMATABLE rows are themselves a finding: playbook scenarios assume slash-commands + multi-MCP orchestration that devin lacks
+- 28 real Phase 2 FAILs distributed across cat-01 (2), cat-02 (1), cat-14-pipeline (1), cat-15 (1), cat-16-tooling (10), cat-17 (1), cat-18 (4), cat-20 (3), cat-21 (3), cat-22 (2)
+
+### Phase 1+2 fixes committed in same session (parallel cli-codex gpt-5.5 fast)
+- `2c75a0030 fix(spec-kit/mcp_server): checkpoint_create typed errors + SQLITE_BUSY retry (008 P1 RCA)` — closes the Phase 1 FAIL
+- `0a574812c fix(spec-kit/mcp_server): context-server.vitest tool count 51→39 (008 P2 cluster)` — closes cat-18 scenarios 214/215/216 + cat-21 228/229 (cascade)
+- `1700ef85b fix(spec-kit/mcp_server): trace gating + priming hint + session_health baseline (008 P2 cat-15/22 cluster)` — closes cat-15/096 + cat-22/261 + cat-22/262
 
 ### Phase 2 blockers (carry to future session)
-1. **Devin rate limit** — Cognition API "Reached overall message rate limit" hit at ~17:31Z. Reset duration unknown. Resume requires pre-flight devin probe + likely serial cadence.
-2. **cat-04 tool-rejected** — agent-config-008.json allow-list missing something cat-04 needs. Audit before retry.
-3. **70+ UNAUTOMATABLE rate** — playbook scope mismatch with cli-devin runtime. Real packet 113 follow-on concern.
+1. **cat-04 + cat-24 persistent "tool rejected"** — agent-config-008.json allow-list missing something both categories need. Verbose log inspection blocked by 39-byte truncated error. Audit specific scenario tools before retry.
+2. **70+ UNAUTOMATABLE rate** — playbook scope mismatch with cli-devin runtime. Real packet 113 follow-on concern.
+3. **cat-16 tooling 10 FAILs are heterogeneous** — each fix needs its own investigation (vitest config drift, ES module/require mismatch, missing CLI files, "stay on main" guard collision with scenarios that expect feature branches, etc.). Too varied for a single codex fix.
+4. **cat-21 228/229 should now PASS after `0a574812c`** — re-run those scenarios to confirm cascade fix is complete (the original FAILs cited "expected 51 tools" which codex B addressed).
 
 ### z_archive revalidation (T2.5-T2.7) — DEFERRED
 0 PARTIAL rows cite z_archive impact in current sweep (all z_archive-sensitive scenarios landed SKIP/UNAUTOMATABLE). Defer reclassification to post-rate-limit-reset retry.
