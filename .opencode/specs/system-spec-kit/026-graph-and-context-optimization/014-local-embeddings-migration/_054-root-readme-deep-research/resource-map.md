@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/056-root-readme-deep-research"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/_054-root-readme-deep-research"
     last_updated_at: "2026-05-15T13:35:00Z"
     last_updated_by: "main_agent"
     recent_action: "Inventoried input files + assets"

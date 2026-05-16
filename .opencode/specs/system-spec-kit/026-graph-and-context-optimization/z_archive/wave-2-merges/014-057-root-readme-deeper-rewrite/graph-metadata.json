@@ -6,7 +6,7 @@
   "children_ids": [],
   "manual": {
     "depends_on": [
-      "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/056-root-readme-deep-research"
+      "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/_054-root-readme-deep-research"
     ],
     "supersedes": [],
     "related_to": [

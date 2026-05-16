@@ -43,10 +43,10 @@ This resource map lists the input files the sonnet @markdown second-pass consume
 | File | Role |
 |------|------|
 | `./README.md` | The audit target, post-Phase-4 state (1499 lines) |
-| `../056-root-readme-deep-research/research/research.md` | 263 findings ledger from 056 |
-| `../056-root-readme-deep-research/research/delta-verified.md` | 056's 30 collapsed EDITs (reference) |
-| `../056-root-readme-deep-research/research/edit-evidence.md` | 056 Phase 4 record (avoid duplicate edits) |
-| `../056-root-readme-deep-research/research/iterations/iteration-001.md` ... `iteration-020.md` | 20 raw iter findings |
+| `../_054-root-readme-deep-research/research/research.md` | 263 findings ledger from 056 |
+| `../_054-root-readme-deep-research/research/delta-verified.md` | 056's 30 collapsed EDITs (reference) |
+| `../_054-root-readme-deep-research/research/edit-evidence.md` | 056 Phase 4 record (avoid duplicate edits) |
+| `../_054-root-readme-deep-research/research/iterations/iteration-001.md` ... `iteration-020.md` | 20 raw iter findings |
 | `.opencode/skills/sk-doc/references/global/hvr_rules.md` | HVR voice contract |
 | `.opencode/skills/sk-doc/assets/readme/readme_code_template.md` | Reference shape (for context only) |
 <!-- /ANCHOR:input-files -->

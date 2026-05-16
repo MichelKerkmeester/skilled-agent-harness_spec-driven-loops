@@ -17,7 +17,7 @@ _memory:
     blockers: []
     key_files:
       - "README.md"
-      - ".opencode/specs/.../056-root-readme-deep-research/research/research.md"
+      - ".opencode/specs/.../_054-root-readme-deep-research/research/research.md"
     session_dedup:
       fingerprint: "sha256:354b39616b2b3450c6d32ad48820ffc68cce9efb703394d6fcfc31738c2a4ab7"
       session_id: "057-spec-scaffolded"
@@ -47,7 +47,7 @@ _memory:
 | **Created** | 2026-05-15 |
 | **Branch** | `main` |
 | **Parent** | `system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration` |
-| **Depends on** | `056-root-readme-deep-research` (shipped) |
+| **Depends on** | `_054-root-readme-deep-research` (shipped) |
 | **Successor** | None |
 | **Handoff Criteria** | ./README.md HVR score >= 95 (target >= 98), all Phase-4-missed iter findings addressed, packet strict-validate PASS, single primary commit on main |
 <!-- /ANCHOR:metadata -->
@@ -197,6 +197,6 @@ None. Scope, executor, target metric all clarified at planning time.
 - **Implementation Plan**: See `plan.md`
 - **Task Breakdown**: See `tasks.md`
 - **Resource Map**: See `resource-map.md`
-- **056 predecessor**: `../056-root-readme-deep-research/`
+- **056 predecessor**: `../_054-root-readme-deep-research/`
 - **055 grandfather**: `../055-root-readme-realignment/`
 <!-- /ANCHOR:related-docs -->
