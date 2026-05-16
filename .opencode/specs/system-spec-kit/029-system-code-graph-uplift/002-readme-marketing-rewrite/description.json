@@ -1,6 +1,6 @@
 {
   "specFolder": "system-spec-kit/029-system-code-graph-uplift/002-readme-marketing-rewrite",
-  "description": "Phase 2 stub. Awaiting research synthesis at parent 029/research/research.md. Will then receive full spec.md/plan.md/tasks.md covering the README.md rewrite in hybrid voice: mimic Public root README + system-spec-kit README problem-first arc, with HVR-clean prose (no em dashes, no banned words, score >= 85).",
+  "description": "Phase 2. Research synthesized at parent 029/research/research.md §11. README.md rewrite in marketing voice: mimic Public root README + system-spec-kit README problem-first arc (OVERVIEW hook -> solution -> stats -> QUICK START -> FEATURES -> CONFIGURATION -> FAQ -> RELATED). Per D1, accept resemblance to exemplars; do not enforce strict HVR pass-bar. Avoid the 3 worst-case carries per research §6.4: semicolons in technical sentences, Oxford commas in lists, em dashes for emphasis. Use periods, commas, and parentheses instead.",
   "keywords": [
     "phase-stub",
     "readme-marketing-rewrite",

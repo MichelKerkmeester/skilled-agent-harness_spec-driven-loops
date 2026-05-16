@@ -12,8 +12,8 @@ _memory:
     packet_pointer: "system-spec-kit/029-system-code-graph-uplift"
     last_updated_at: "2026-05-16T10:27:00Z"
     last_updated_by: "main_agent"
-    recent_action: "20-iter cli-devin deep-research converged with 939 findings and 17-section research.md"
-    next_safe_action: "Scaffold 001/002/003 plans from research.md recommendations"
+    recent_action: "Locked 5 post-research decisions D1-D5 in spec.md §5"
+    next_safe_action: "Start child 001 plan from research.md §10 + D2 + D4"
     blockers: []
     key_files:
       - "spec.md"
@@ -142,9 +142,26 @@ Land a single phased uplift that fixes the remaining drift, rewrites the README 
 <!-- ANCHOR:questions -->
 ## 4. OPEN QUESTIONS
 
-- Will deep-research surface a need to rewrite ARCHITECTURE.md or just patch HVR? Research convergence decides.
-- Do per-folder mcp_server READMEs need a new template variant or do they pass as `--type readme`? Research clarifies.
+None at parent level. Five post-research operating decisions are locked in §5 below.
 <!-- /ANCHOR:questions -->
+
+---
+
+## 5. POST-RESEARCH DECISIONS LOCKED
+
+These parameters were confirmed by the operator after research synthesis and govern all three children:
+
+| # | Question | Decision | Applies To |
+|---|----------|----------|------------|
+| D1 | Marketing voice strictness vs HVR ≥85 floor | Accept resemblance to exemplar READMEs. Allow stylistic carries from Public root + system-spec-kit READMEs even where they nick HVR. Do not enforce strict HVR pass-bar on the marketing rewrite. | Child 002 |
+| D2 | plugin_bridges/README.md rewrite scope | Targeted alignment, not full rewrite. Make it work and ensure 100% alignment with current source code. Patch the drifted import paths and any factual inaccuracies; preserve existing structure. | Child 001 |
+| D3 | Per-feature + per-scenario validation depth | Validate manually for ALL files. Every `feature_catalog/01--*/*.md` and `manual_testing_playbook/01--*/*.md` per-feature/per-scenario doc gets `validate_document.py` run against it. No sampling. | Child 003 |
+| D4 | Useful-gap primer size budget | Match the scale set by similar docs in `system-spec-kit/`. Check sibling primers/glossaries in system-spec-kit references and feature_catalog for the right length. Do not invent a new budget. | Child 001 (SKILL.md hook, references gaps) |
+| D5 | Child execution order | Sequentially: 001 → 002 → 003. Each ships and validates before the next begins. No parallel dispatches. | All children |
+
+---
+
+<!-- /ANCHOR:questions placeholder removed; questions anchor pair closed above -->
 
 ---
 
