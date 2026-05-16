@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Vitest baseline recovery [system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/006-vitest-baseline-recovery/spec]"
+title: "Feature Specification: Vitest baseline recovery [system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-vitest-baseline-recovery/spec]"
 description: "Triage and remediate the 198 vitest failures across 166 files surfaced after Unit A's full-repo run (11,587 / 11,829 passing vs the v3.4.1.0 baseline-claim of 11,606 / 0 net regressions). Sampled failures all sit in skill_advisor scorer, hooks, scaffold, alignment, and code-graph subsystems — outside Unit A's surface — and pre-date this packet. Goal: classify each failure (pre-existing baseline drift / fixture stale / runtime regression), fix what is reasonably fixable, document the rest as accepted baseline drift with a path to closure."
 trigger_phrases:
   - "vitest baseline recovery"
@@ -12,7 +12,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/006-vitest-baseline-recovery"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-vitest-baseline-recovery"
     last_updated_at: "2026-05-08T21:35:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Scaffolded Level 2 spec; baseline drift scoped to advisor/hook/scaffold/alignment/code-graph"
@@ -145,7 +145,7 @@ Exact failure inventory generated at triage time.
 
 - **SC-001**: Post-recovery `pnpm vitest run` reports zero NEW failures vs the triage baseline.
 - **SC-002**: All 198 failures are classified, and either fixed, skipped-with-reason, or escalated-with-pointer.
-- **SC-003**: `bash validate.sh 006-vitest-baseline-recovery --strict` exits 0.
+- **SC-003**: `bash validate.sh 003-vitest-baseline-recovery --strict` exits 0.
 - **SC-004**: v3.4.1.0 changelog row updated; reader can trust it.
 <!-- /ANCHOR:success-criteria -->
 

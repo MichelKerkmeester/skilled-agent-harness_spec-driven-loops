@@ -1,8 +1,8 @@
-# Changelog — 006-vitest-baseline-recovery
+# Changelog — 003-vitest-baseline-recovery
 
 ## 2026-05-08
 
-> Spec folder: `026-graph-and-context-optimization/000-release-cleanup/006-vitest-baseline-recovery` (Level 2)
+> Spec folder: `026-graph-and-context-optimization/000-release-cleanup/003-vitest-baseline-recovery` (Level 2)
 > Parent packet: `026-graph-and-context-optimization/000-release-cleanup`
 
 ### Summary

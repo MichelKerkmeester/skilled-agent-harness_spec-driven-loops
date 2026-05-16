@@ -136,7 +136,7 @@ Performance: ~2-4h wall-clock. Atomic per-op commits.
 <!-- ANCHOR:edge-cases -->
 ## 8. EDGE CASES
 
-- 000 dup-prefixed packets (006-vitest-baseline-recovery vs 002-search-query-rag-optimization; 007-search-rag-measurement-driven-implementation vs 007-vitest-recovery-followup): rename via -alt suffix before sub-phase move
+- 000 dup-prefixed packets (003-vitest-baseline-recovery vs 002-search-query-rag-optimization; 007-search-rag-measurement-driven-implementation vs 007-vitest-recovery-followup): rename via -alt suffix before sub-phase move
 - 008 children straddling clusters: default to LARGER cluster
 - 014/008 + 014/023 reclassified from MEDIUM to SHALLOW: exclude from W2.E
 <!-- /ANCHOR:edge-cases -->

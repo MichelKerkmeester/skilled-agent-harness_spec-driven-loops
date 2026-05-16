@@ -16,8 +16,8 @@ _memory:
     next_safe_action: "Use classification inventory for future runtime-regression repairs"
     blockers: []
     key_files:
-      - "../006-vitest-baseline-recovery/scratch/triage-inventory.json"
-      - "../006-vitest-baseline-recovery/changelog.md"
+      - "../003-vitest-baseline-recovery/scratch/triage-inventory.json"
+      - "../003-vitest-baseline-recovery/changelog.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "vitest-recovery-followup-placeholder-2026-05-09"
@@ -43,7 +43,7 @@ _memory:
 | **Status** | Complete |
 | **Created** | 2026-05-09 |
 | **Branch** | `main` |
-| **Predecessor** | `006-vitest-baseline-recovery/` |
+| **Predecessor** | `003-vitest-baseline-recovery/` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -52,7 +52,7 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-Sibling packet `006-vitest-baseline-recovery` (Unit F) expected 196 deferred failures to be discoverable through `// followup: 026/000/007-vitest-recovery-followup` annotations. In practice, only a small fraction of those annotations persisted, so annotation grep was not a reliable inventory source.
+Sibling packet `003-vitest-baseline-recovery` (Unit F) expected 196 deferred failures to be discoverable through `// followup: 026/000/007-vitest-recovery-followup` annotations. In practice, only a small fraction of those annotations persisted, so annotation grep was not a reliable inventory source.
 
 This packet re-baselined the live vitest suite directly. The measured current baseline was **11,618 passed / 197 failed / 35 skipped / 11 todo** across 66 failed files, plus suite-import failures that surfaced after assertion-level failures were parked.
 
@@ -130,7 +130,7 @@ Actual changed surfaces:
 |------|------|--------|------------|
 | Risk | A surface cluster turns out to be a real regression hidden behind fixture drift | High | Bucket-by-surface review; never paper-over a real bug by updating the fixture. |
 | Risk | Broad runtime regressions are too large for one packet | Med | Parked with `it.fails.skip` plus `// followup-actual:` annotations. |
-| Dependency | `006-vitest-baseline-recovery/scratch/triage-inventory.json` | High | Source of truth for which test goes in which bucket. |
+| Dependency | `003-vitest-baseline-recovery/scratch/triage-inventory.json` | High | Source of truth for which test goes in which bucket. |
 <!-- /ANCHOR:risks -->
 
 ---

@@ -44,4 +44,4 @@ Closes the 13 P1/P2 defects deferred from phase 005's audit (REQ-005 through REQ
 
 ### Known caveats
 
-Full-repo `pnpm vitest run` reports 198 failures across 166 files at this packet's ship time. Sampled failures sit entirely in skill_advisor scorer / hooks / scaffold / alignment / code-graph subsystems — outside this packet's surface. Codex fixed 10 packet-adjacent failures during its run. The remaining 198 are pre-existing baseline drift addressed by sibling packet `026/000/006-vitest-baseline-recovery` (Unit F).
+Full-repo `pnpm vitest run` reports 198 failures across 166 files at this packet's ship time. Sampled failures sit entirely in skill_advisor scorer / hooks / scaffold / alignment / code-graph subsystems — outside this packet's surface. Codex fixed 10 packet-adjacent failures during its run. The remaining 198 are pre-existing baseline drift addressed by sibling packet `026/000/003-vitest-baseline-recovery` (Unit F).

@@ -6,7 +6,7 @@ Documentation fixes, template debt, orphan management, remediation.
 
 - `001-memory-indexer-storage-boundary`
 - `002-search-query-rag-optimization`
-- `006-vitest-baseline-recovery`
+- `003-vitest-baseline-recovery`
 - `007-search-rag-measurement-driven-implementation`
 - `010-vestigial-embedding-readiness-gate-removal`
 - `011-stale-doc-and-readme-fixes`

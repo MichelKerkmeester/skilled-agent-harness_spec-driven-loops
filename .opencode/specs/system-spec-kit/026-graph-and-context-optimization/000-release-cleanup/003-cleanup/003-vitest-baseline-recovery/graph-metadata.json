@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/006-vitest-baseline-recovery",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/006-vitest-baseline-recovery",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-vitest-baseline-recovery",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-vitest-baseline-recovery",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup",
   "children_ids": [],
   "manual": {

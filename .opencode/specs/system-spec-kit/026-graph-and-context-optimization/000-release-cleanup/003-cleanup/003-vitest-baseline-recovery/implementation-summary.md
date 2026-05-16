@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/006-vitest-baseline-recovery"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-vitest-baseline-recovery"
     last_updated_at: "2026-05-08T00:00:00Z"
     last_updated_by: "codex"
     recent_action: "Authored implementation-summary placeholder"
@@ -31,7 +31,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/006-vitest-baseline-recovery` |
+| **Spec Folder** | `system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-vitest-baseline-recovery` |
 | **Completed** | Not complete |
 | **Level** | 2 |
 | **Actual Effort** | Partial triage and baseline capture |

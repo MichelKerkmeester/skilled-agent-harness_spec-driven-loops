@@ -7,7 +7,7 @@
   "manual": {
     "depends_on": [
       {
-        "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/006-vitest-baseline-recovery",
+        "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-vitest-baseline-recovery",
         "reason": "Predecessor packet (migrated from legacy string-array; original reason not preserved)",
         "source": "manual"
       }
@@ -34,8 +34,8 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "../006-vitest-baseline-recovery/scratch/triage-inventory.json",
-      "../006-vitest-baseline-recovery/changelog.md"
+      "../003-vitest-baseline-recovery/scratch/triage-inventory.json",
+      "../003-vitest-baseline-recovery/changelog.md"
     ],
     "entities": [
       {

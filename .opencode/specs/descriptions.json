@@ -3834,7 +3834,7 @@
       "lastUpdated": "2026-05-08T08:26:57.087Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/006-vitest-baseline-recovery",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-vitest-baseline-recovery",
       "description": "Feature Specification: Vitest baseline recovery",
       "keywords": [
         "feature",

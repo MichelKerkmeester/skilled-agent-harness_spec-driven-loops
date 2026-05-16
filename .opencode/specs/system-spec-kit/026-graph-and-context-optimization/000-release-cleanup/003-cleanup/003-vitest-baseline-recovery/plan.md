@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/006-vitest-baseline-recovery"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-vitest-baseline-recovery"
     last_updated_at: "2026-05-08T21:00:00Z"
     last_updated_by: "codex"
     recent_action: "Authored baseline recovery plan"
@@ -32,7 +32,7 @@ _memory:
 |--------|-------|
 | **Surface** | OPENCODE system-spec-kit MCP server tests |
 | **Runner** | Vitest via `pnpm vitest run` |
-| **Packet Root** | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/006-vitest-baseline-recovery/` |
+| **Packet Root** | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-vitest-baseline-recovery/` |
 | **Baseline Input** | `/tmp/vitest-baseline-pre-recovery.json` copied into packet scratch |
 | **Baseline Output** | `/tmp/vitest-baseline-post-recovery.json` copied into packet scratch |
 

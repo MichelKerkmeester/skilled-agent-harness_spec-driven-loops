@@ -51,7 +51,7 @@ _memory:
 ## Phase 1: Setup
 
 - [x] T001 Re-baseline current vitest failures with JSON reporter. Evidence: `scratch/vitest-current-baseline.json`.
-- [x] T002 Compare against predecessor inventory. Evidence: `../006-vitest-baseline-recovery/scratch/triage-inventory.json` was read; current JSON superseded incomplete annotations.
+- [x] T002 Compare against predecessor inventory. Evidence: `../003-vitest-baseline-recovery/scratch/triage-inventory.json` was read; current JSON superseded incomplete annotations.
 - [x] T003 Classify current assertion failures and suite-import failures into the 4-bucket taxonomy. Evidence: `scratch/classification-inventory.json`.
 <!-- /ANCHOR:phase-1 -->
 
@@ -99,7 +99,7 @@ _memory:
 <!-- ANCHOR:cross-refs -->
 ## Cross-References
 
-- **Predecessor**: `../006-vitest-baseline-recovery/`.
+- **Predecessor**: `../003-vitest-baseline-recovery/`.
 - **Current baseline**: `scratch/vitest-current-baseline.json`.
 - **Classification**: `scratch/classification-inventory.json`.
 - **Post-recovery baseline**: `scratch/vitest-postfix.json`.
