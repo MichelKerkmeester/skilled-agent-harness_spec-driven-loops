@@ -147,6 +147,49 @@ describe('stage3-rerank regression (F-16)', () => {
     expect(result.rows[0]?.attentionScore).toBe(0.17);
   });
 
+  it('pins exact trigger matches ahead of cross-encoder reranked rows', async () => {
+    rerankResultsMock.mockResolvedValue([
+      { id: 2, score: 0.95, rerankerScore: 0.95 },
+      { id: 1, score: 0.88, rerankerScore: 0.88 },
+      { id: 4, score: 0.71, rerankerScore: 0.71 },
+      { id: 3, score: 0.12, rerankerScore: 0.12 },
+    ]);
+
+    const result = await executeStage3({
+      scored: [
+        { id: 1, score: 0.9, content: 'semantic hit' },
+        { id: 2, score: 0.8, content: 'lexical hit' },
+        { id: 3, score: 0.7, triggerScore: 1, exactTriggerMatch: true, content: 'exact trigger hit' },
+        { id: 4, score: 0.6, content: 'other hit' },
+      ],
+      config: {
+        query: 'exact trigger phrase',
+        searchType: 'hybrid',
+        limit: 5,
+        includeArchived: false,
+        includeConstitutional: false,
+        includeContent: false,
+        minState: 'WARM',
+        applyStateLimits: false,
+        useDecay: true,
+        rerank: true,
+        applyLengthPenalty: false,
+        enableDedup: false,
+        enableSessionBoost: false,
+        enableCausalBoost: false,
+        trackAccess: false,
+        detectedIntent: null,
+        intentConfidence: 0,
+        intentWeights: null,
+        queryPlan: RERANK_OPTIONS.queryPlan,
+      },
+    });
+
+    expect(rerankResultsMock).toHaveBeenCalledOnce();
+    expect(result.reranked.map((row) => row.id)).toEqual([3, 2, 1, 4]);
+    expect(result.reranked[0]?.score).toBe(0.7);
+  });
+
   // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
   it('skips cross-encoder reranking for 3-result candidate sets and keeps 4-result sets eligible', async () => {
     rerankResultsMock.mockResolvedValue([

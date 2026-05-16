@@ -157,7 +157,7 @@ export async function executeStage3(input: Stage3Input): Promise<Stage3Output> {
     userId: config.userId,
     agentId: config.agentId,
   });
-  results = rerankResult.rows;
+  results = preserveExactTriggerMatches(results, rerankResult.rows);
   rerankApplied = rerankResult.applied;
   rerankProvider = rerankResult.provider;
   rerankGateDecision = rerankResult.gateDecision;
@@ -293,6 +293,36 @@ export async function executeStage3(input: Stage3Input): Promise<Stage3Output> {
     reranked: results,
     metadata,
   };
+}
+
+function isExactTriggerMatch(row: PipelineRow): boolean {
+  if (row.exactTriggerMatch === true) return true;
+  return typeof row.triggerScore === 'number' && row.triggerScore >= 0.94;
+}
+
+function preserveExactTriggerMatches(before: PipelineRow[], after: PipelineRow[]): PipelineRow[] {
+  const pinned = before.filter(isExactTriggerMatch);
+  if (pinned.length === 0 || after === before) {
+    return after;
+  }
+
+  const pinnedIds = new Set(pinned.map((row) => row.id));
+  const rerankedById = new Map(after.map((row) => [row.id, row]));
+  const pinnedRows = pinned.map((row) => {
+    const reranked = rerankedById.get(row.id);
+    return reranked
+      ? {
+        ...reranked,
+        score: resolveEffectiveScore(row),
+        rrfScore: resolveEffectiveScore(row),
+        intentAdjustedScore: resolveEffectiveScore(row),
+        stage2Score: row.score,
+      }
+      : row;
+  });
+  const remaining = after.filter((row) => !pinnedIds.has(row.id));
+
+  return [...pinnedRows, ...remaining];
 }
 
 // -- Internal: Cross-Encoder Reranking -------------------------

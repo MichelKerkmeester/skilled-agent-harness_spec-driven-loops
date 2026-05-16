@@ -65,6 +65,27 @@ const BM25_FIELD_WEIGHTS: Record<string, number> = {
   body: BM25_FTS5_WEIGHTS[3],
 };
 
+const LEXICAL_QUERY_SYNONYMS: Record<string, string[]> = {
+  ephemeral: ['temporary', 'short-term', 'transient'],
+  temporary: ['ephemeral', 'short-term', 'transient'],
+  transient: ['ephemeral', 'temporary', 'short-term'],
+  short: ['ephemeral', 'temporary'],
+  term: ['ephemeral', 'temporary'],
+  constitutional: ['always-surface', 'pinned', 'critical'],
+  always: ['constitutional', 'pinned', 'critical'],
+  surface: ['constitutional', 'pinned', 'critical'],
+  pinned: ['constitutional', 'always-surface'],
+  critical: ['constitutional', 'always-surface'],
+  tier: ['importance', 'priority'],
+  importance: ['tier', 'priority'],
+  priority: ['tier', 'importance'],
+  memory: ['context', 'knowledge'],
+  memories: ['memory', 'context', 'knowledge'],
+  retrieval: ['search', 'query'],
+  search: ['retrieval', 'query'],
+  query: ['search', 'retrieval'],
+};
+
 /**
  * Check whether the in-memory BM25 index is enabled.
  *
@@ -563,13 +584,17 @@ interface NormalizedLexicalQueryTokens {
 function normalizeLexicalQueryTokens(query: string): NormalizedLexicalQueryTokens {
   const sharedTokens = sanitizeQueryTokens(query)
     .flatMap((token) => splitLexicalFragments(token));
+  const expandedTokens = Array.from(new Set([
+    ...sharedTokens,
+    ...sharedTokens.flatMap((token) => LEXICAL_QUERY_SYNONYMS[token] ?? []),
+  ]));
   const phraseToken = sharedTokens.length >= 2
     ? [`"${sharedTokens.join(' ')}"`]
     : [];
 
   return {
-    fts: [...sharedTokens, ...phraseToken],
-    bm25: sharedTokens
+    fts: [...expandedTokens, ...phraseToken],
+    bm25: expandedTokens
       .filter((token) => token.length >= 2 && !STOP_WORDS.has(token))
       .map(simpleStem),
   };

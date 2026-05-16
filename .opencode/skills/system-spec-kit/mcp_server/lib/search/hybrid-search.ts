@@ -54,6 +54,7 @@ import {
   enrichResultsWithFolderScores,
   twoPhaseRetrieval,
 } from './folder-relevance.js';
+import { parse_trigger_phrases } from './vector-index-types.js';
 
 import { collapseAndReassembleChunkResults } from '../scoring/mpab-aggregation.js';
 
@@ -514,6 +515,123 @@ function combinedLexicalSearch(
   return Array.from(merged.values())
     .sort((a, b) => b.score - a.score)
     .slice(0, options.limit || DEFAULT_LIMIT);
+}
+
+function normalizeTriggerText(value: string): string {
+  return value
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function triggerQueryTokens(query: string): string[] {
+  return Array.from(new Set(
+    normalizeTriggerText(query)
+      .split(/\s+/)
+      .filter((token) => token.length >= 2)
+  ));
+}
+
+function computeTriggerMatchScore(query: string, phrase: string): number {
+  const normalizedQuery = normalizeTriggerText(query);
+  const normalizedPhrase = normalizeTriggerText(phrase);
+  if (!normalizedQuery || !normalizedPhrase) return 0;
+  if (normalizedPhrase === normalizedQuery) return 1.0;
+
+  const queryTokens = triggerQueryTokens(normalizedQuery);
+  const phraseTokens = new Set(triggerQueryTokens(normalizedPhrase));
+  if (phraseTokens.size < 2) return 0;
+  if (normalizedPhrase.includes(normalizedQuery)) return 0.94;
+  if (normalizedQuery.includes(normalizedPhrase)) return 0.88;
+  if (queryTokens.length === 0) return 0;
+  const overlap = queryTokens.filter((token) => phraseTokens.has(token)).length;
+  const coverage = overlap / queryTokens.length;
+  return coverage >= 0.8 ? coverage * 0.75 : 0;
+}
+
+function timestampBoost(value: unknown): number {
+  if (typeof value !== 'string' || value.length === 0) return 0;
+  const parsed = Date.parse(value);
+  if (!Number.isFinite(parsed)) return 0;
+  const ageDays = Math.max(0, (Date.now() - parsed) / 86_400_000);
+  return 1 / (1 + ageDays / 30);
+}
+
+function exactTriggerSearch(
+  query: string,
+  options: { limit?: number; specFolder?: string; includeArchived?: boolean } = {}
+): HybridSearchResult[] {
+  if (!db) return [];
+
+  const tokens = triggerQueryTokens(query).filter((token) => token.length >= 3).slice(0, 8);
+  if (tokens.length === 0) return [];
+
+  const { limit = DEFAULT_LIMIT, specFolder } = options;
+  const normalizedQuery = normalizeTriggerText(query);
+  const exactPhraseLike = `%${normalizedQuery}%`;
+  const candidateLimit = Math.max(200, Math.min(1000, limit * 100));
+  const conditions = [
+    `m.trigger_phrases IS NOT NULL`,
+    `m.trigger_phrases != ''`,
+    `m.trigger_phrases != '[]'`,
+    `(m.importance_tier IS NULL OR m.importance_tier != 'deprecated')`,
+    `(m.expires_at IS NULL OR m.expires_at > datetime('now'))`,
+    `(${tokens.map(() => 'LOWER(m.trigger_phrases) LIKE ?').join(' OR ')})`,
+  ];
+  const params: unknown[] = tokens.map((token) => `%${token}%`);
+
+  if (specFolder) {
+    conditions.push(`(m.spec_folder = ? OR m.spec_folder LIKE ?)`);
+    params.push(specFolder, `${specFolder}/%`);
+  }
+
+  try {
+    const rows = db.prepare(`
+      SELECT m.*
+      FROM memory_index m
+      JOIN active_memory_projection p ON p.active_memory_id = m.id
+      WHERE ${conditions.join(' AND ')}
+      ORDER BY
+        CASE WHEN LOWER(m.trigger_phrases) LIKE ? THEN 0 ELSE 1 END,
+        COALESCE(m.updated_at, m.created_at, '') DESC
+      LIMIT ${candidateLimit}
+    `).all(...params, exactPhraseLike) as Array<Record<string, unknown>>;
+
+    return rows
+      .map((row): HybridSearchResult | null => {
+        const phrases = parse_trigger_phrases(row.trigger_phrases as string | string[] | null | undefined);
+        const matchScore = Math.max(0, ...phrases.map((phrase) => computeTriggerMatchScore(query, phrase)));
+        if (matchScore <= 0) return null;
+
+        const importance = typeof row.importance_weight === 'number' && Number.isFinite(row.importance_weight)
+          ? Math.max(0, Math.min(1, row.importance_weight))
+          : 0.5;
+        const recency = timestampBoost(row.updated_at ?? row.created_at);
+        const score = Math.min(1, matchScore + importance * 0.03 + recency * 0.04);
+
+        return {
+          ...row,
+          id: row.id as number,
+          score,
+          triggerScore: matchScore,
+          source: 'trigger',
+        };
+      })
+      .filter((row): row is HybridSearchResult => row !== null)
+      .sort((a, b) => {
+        const scoreDelta = b.score - a.score;
+        if (scoreDelta !== 0) return scoreDelta;
+        const bTime = Date.parse(String(b.updated_at ?? b.created_at ?? '')) || 0;
+        const aTime = Date.parse(String(a.updated_at ?? a.created_at ?? '')) || 0;
+        return bTime - aTime;
+      })
+      .slice(0, limit);
+  } catch (error: unknown) {
+    const msg = error instanceof Error ? error.message : String(error);
+    console.warn(`[hybrid-search] Trigger phrase search failed: ${msg}`);
+    return [];
+  }
 }
 
 type RawChannelList = {
@@ -1081,6 +1199,7 @@ async function collectAndFuseHybridResults(
     let semanticResults: Array<{ id: number | string; source: string; [key: string]: unknown }> = [];
     let ftsChannelResults: HybridSearchResult[] = [];
     let bm25ChannelResults: HybridSearchResult[] = [];
+    let triggerChannelResults: HybridSearchResult[] = [];
     const vectorEmbeddingCache = new Map<number, Float32Array>();
 
     // All channels use synchronous better-sqlite3; sequential execution
@@ -1137,6 +1256,11 @@ async function collectAndFuseHybridResults(
         // Has less precise scoring than SQLite FTS5 BM25; kept for coverage breadth.
         lists.push({ source: 'bm25', results: bm25ChannelResults, weight: 0.6 });
       }
+    }
+
+    triggerChannelResults = exactTriggerSearch(query, options);
+    if (triggerChannelResults.length > 0) {
+      lists.push({ source: 'trigger', results: triggerChannelResults, weight: 1.4 });
     }
 
     // Graph channel — gated by query-complexity routing
@@ -1263,10 +1387,17 @@ async function collectAndFuseHybridResults(
       ? getAdaptiveWeights(intent, documentType)
       : { semanticWeight: 1.0, keywordWeight: 1.0, recencyWeight: 0 };
     const { semanticWeight, keywordWeight, graphWeight: adaptiveGraphWeight } = fusionWeights;
-    const keywordFusionResults = keywordResults.map((result) => ({
-      ...result,
-      source: 'keyword',
-    }));
+    const keywordFusionResults = keywordResults.map((result) => {
+      const originalSource = typeof result.source === 'string' ? result.source : null;
+      const existingSources = Array.isArray((result as Record<string, unknown>).sources)
+        ? ((result as Record<string, unknown>).sources as unknown[]).filter((source): source is string => typeof source === 'string')
+        : [];
+      return {
+        ...result,
+        source: 'keyword',
+        sources: Array.from(new Set([...existingSources, ...(originalSource ? [originalSource] : []), 'keyword'])),
+      };
+    });
     const fusionLists = lists
       .filter((list) => list.source !== 'fts' && list.source !== 'bm25')
       .map((list) => {
@@ -1310,7 +1441,46 @@ async function collectAndFuseHybridResults(
       )
       : fuseResultsMulti(fusionLists);
 
+    const keywordSourceMap = new Map<string, string[]>();
+    for (const result of keywordFusionResults) {
+      const sources = Array.isArray((result as Record<string, unknown>).sources)
+        ? ((result as Record<string, unknown>).sources as unknown[]).filter((source): source is string => typeof source === 'string')
+        : [];
+      if (sources.length > 0) {
+        keywordSourceMap.set(canonicalResultId(result.id as number | string), sources);
+      }
+    }
+    const triggerScoreMap = new Map<string, number>();
+    for (const result of triggerChannelResults) {
+      if (typeof result.triggerScore === 'number' && Number.isFinite(result.triggerScore)) {
+        triggerScoreMap.set(canonicalResultId(result.id), result.triggerScore);
+      }
+    }
+
     const fusedResults = fused.map(toHybridResult).map((row) => {
+      const keywordSources = keywordSourceMap.get(canonicalResultId(row.id));
+      if (keywordSources && keywordSources.length > 0) {
+        const rowSources = Array.isArray(row.sources)
+          ? row.sources.filter((source): source is string => typeof source === 'string')
+          : [];
+        const sources = Array.from(new Set([...rowSources, ...keywordSources]));
+        row = {
+          ...row,
+          sources,
+          channelAttribution: sources,
+          source: row.source === 'keyword'
+            ? (keywordSources.find((source) => source !== 'keyword') ?? row.source)
+            : row.source,
+        };
+      }
+      const triggerScore = triggerScoreMap.get(canonicalResultId(row.id));
+      if (triggerScore !== undefined && typeof row.triggerScore !== 'number') {
+        row = {
+          ...row,
+          triggerScore,
+          exactTriggerMatch: triggerScore >= 0.94,
+        };
+      }
       const rowRecord = row as Record<string, unknown>;
       if (rowRecord.parentMemoryId !== undefined) return row;
       const normalizedParentMemoryId = rowRecord.parent_id ?? rowRecord.parentId;
@@ -1423,7 +1593,7 @@ async function enrichFusedResults(
     );
 
     if (enforcementResult.enforcement.applied) {
-      fusedHybridResults = enforcementResult.results as HybridSearchResult[];
+      fusedHybridResults = dedupeResultsByCanonicalId(enforcementResult.results as HybridSearchResult[]);
       s3meta.enforcement = {
         applied: true,
         promotedCount: enforcementResult.enforcement.promotedCount,
@@ -2053,6 +2223,17 @@ function injectContextualTree(row: HybridSearchResult, descCache: Map<string, st
     ...row,
     content: `${header}\n${content}`,
   };
+}
+
+function dedupeResultsByCanonicalId(results: HybridSearchResult[]): HybridSearchResult[] {
+  const deduped = new Map<string, HybridSearchResult>();
+  for (const result of results) {
+    const key = canonicalResultId(result.id);
+    if (!deduped.has(key)) {
+      deduped.set(key, result);
+    }
+  }
+  return Array.from(deduped.values());
 }
 
 /** Apply caller limit after merges that can expand result count. */

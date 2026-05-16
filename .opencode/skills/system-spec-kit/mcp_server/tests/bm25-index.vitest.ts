@@ -218,6 +218,15 @@ describe('BM25 Index Tests (T031-T039)', () => {
       expect(index.getStats().documentCount).toBe(1);
     });
 
+    it('T034.1b: search query expansion bridges local-memory vocabulary synonyms', () => {
+      index.addDocument('doc1', 'Tier 1 ephemeral memories should be retrieved for short lived temporary context');
+      index.addDocument('doc2', 'Unrelated deployment cache configuration document');
+
+      const results = index.search('short-term temporary memories', 5);
+
+      expect(results[0]?.id).toBe('doc1');
+    });
+
     it('T034.2: Document stored and searchable', () => {
       index.addDocument('doc1', 'memory search retrieval document indexing testing vector semantic hybrid bm25');
       const searchResult = index.search('memory', 1);

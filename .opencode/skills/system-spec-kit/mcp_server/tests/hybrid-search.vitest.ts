@@ -187,6 +187,50 @@ function createCoactivationPromotionDb(): Database.Database {
   } as unknown as Database.Database;
 }
 
+function createTriggerPhraseMockDb(): Database.Database {
+  const rows = [
+    {
+      id: 101,
+      title: 'Older trigger row',
+      trigger_phrases: JSON.stringify(['exact recall phrase']),
+      importance_tier: 'normal',
+      importance_weight: 0.5,
+      updated_at: '2026-05-01T00:00:00.000Z',
+      created_at: '2026-05-01T00:00:00.000Z',
+      spec_folder: 'specs/trigger',
+    },
+    {
+      id: 202,
+      title: 'Current trigger row',
+      trigger_phrases: JSON.stringify(['exact recall phrase']),
+      importance_tier: 'normal',
+      importance_weight: 0.5,
+      updated_at: '2026-05-15T00:00:00.000Z',
+      created_at: '2026-05-15T00:00:00.000Z',
+      spec_folder: 'specs/trigger',
+    },
+  ];
+
+  return {
+    prepare(sql: string) {
+      return {
+        get() {
+          if (sql.includes('memory_fts')) {
+            return { count: 1 };
+          }
+          return null;
+        },
+        all() {
+          if (sql.includes('FROM memory_index m') && sql.includes('active_memory_projection')) {
+            return rows;
+          }
+          return [];
+        },
+      };
+    },
+  } as unknown as Database.Database;
+}
+
 function approxEqual(a: number, b: number, epsilon: number = 0.0001): boolean {
   return Math.abs(a - b) < epsilon;
 }
@@ -644,6 +688,37 @@ describe('Hybrid Search Unit Tests (T031+)', () => {
       expect(() => {
         hybridSearch.searchWithFallback('authentication', null, { limit: 5 });
       }).not.toThrow();
+    });
+
+    it('T031-FALL-03: exact trigger phrase lane promotes matching memory rows', async () => {
+      const originalSearchFallback = process.env.SPECKIT_SEARCH_FALLBACK;
+      process.env.SPECKIT_SEARCH_FALLBACK = 'false';
+      hybridSearch.init(createTriggerPhraseMockDb(), () => [], null);
+
+      try {
+        const results = await hybridSearch.searchWithFallback(
+          'exact recall phrase',
+          mockEmbedding,
+          {
+            limit: 3,
+            useVector: false,
+            useFts: false,
+            useBm25: false,
+            useGraph: false,
+            includeConstitutional: false,
+            evaluationMode: true,
+          },
+        );
+
+        expect(results.map((result) => Number(result.id))).toEqual([202, 101]);
+        expect(results[0].sources).toContain('trigger');
+      } finally {
+        if (originalSearchFallback === undefined) {
+          delete process.env.SPECKIT_SEARCH_FALLBACK;
+        } else {
+          process.env.SPECKIT_SEARCH_FALLBACK = originalSearchFallback;
+        }
+      }
     });
   });
 

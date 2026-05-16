@@ -179,7 +179,7 @@ function fts5Bm25Search(
   }
 
   const folderFilter = specFolder
-    ? 'AND (m.spec_folder = ? OR m.spec_folder LIKE ? || "/%")'
+    ? "AND (m.spec_folder = ? OR m.spec_folder LIKE ? || '/%')"
     : '';
   const deprecatedTierFilter =
     "AND (m.importance_tier IS NULL OR m.importance_tier != 'deprecated')";
