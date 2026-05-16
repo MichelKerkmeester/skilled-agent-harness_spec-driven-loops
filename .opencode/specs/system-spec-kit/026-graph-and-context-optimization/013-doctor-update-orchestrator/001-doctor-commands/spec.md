@@ -351,3 +351,9 @@ CORE + L2 SPEC (~280 lines)
 - Council anchor: operational safety; 7 ADRs in decision-record.md
 - Implementation: doc + command-yaml + manifest; no new MCP server code
 -->
+
+---
+
+## Consolidation (2026-05-16, packet 107 W2.6 / M7)
+
+Packet 013/002-sandbox-testing-playbook absorbed into 013/001-doctor-commands per resource-map.md §3.3 M7. Both were superseded by 013/004 + 013/005 (router + cutover phases). Source archived to z_archive/wave-2-merges/.

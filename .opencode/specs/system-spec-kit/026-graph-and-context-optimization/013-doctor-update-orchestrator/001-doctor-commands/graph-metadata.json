@@ -6,7 +6,9 @@
   "children_ids": [],
   "manual": {
     "depends_on": [],
-    "supersedes": [],
+    "supersedes": [
+      "system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/002-sandbox-testing-playbook"
+    ],
     "related_to": []
   },
   "derived": {
