@@ -9,6 +9,7 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 SOURCE_SCRIPTS_DIR="${SCRIPT_DIR}/../spec"
 SOURCE_LIB_DIR="${SCRIPT_DIR}/../lib"
+SOURCE_SCRIPT_TEMPLATES_DIR="${SCRIPT_DIR}/../templates"
 SOURCE_TEMPLATES_DIR="${SCRIPT_DIR}/../../templates"
 
 PASS=0
@@ -48,15 +49,16 @@ make_temp_repo() {
 
   mkdir -p "$temp_repo/.opencode/skills/system-spec-kit/scripts/spec"
   mkdir -p "$temp_repo/.opencode/skills/system-spec-kit/scripts/lib"
+  mkdir -p "$temp_repo/.opencode/skills/system-spec-kit/scripts/templates"
   mkdir -p "$temp_repo/.opencode/skills/system-spec-kit/templates"
 
   cp "$SOURCE_SCRIPTS_DIR/create.sh" "$temp_repo/.opencode/skills/system-spec-kit/scripts/spec/create.sh"
   cp "$SOURCE_LIB_DIR/shell-common.sh" "$temp_repo/.opencode/skills/system-spec-kit/scripts/lib/shell-common.sh"
   cp "$SOURCE_LIB_DIR/git-branch.sh" "$temp_repo/.opencode/skills/system-spec-kit/scripts/lib/git-branch.sh"
   cp "$SOURCE_LIB_DIR/template-utils.sh" "$temp_repo/.opencode/skills/system-spec-kit/scripts/lib/template-utils.sh"
+  cp "$SOURCE_SCRIPT_TEMPLATES_DIR/inline-gate-renderer.sh" "$temp_repo/.opencode/skills/system-spec-kit/scripts/templates/inline-gate-renderer.sh"
 
-  cp -R "$SOURCE_TEMPLATES_DIR/level_1" "$temp_repo/.opencode/skills/system-spec-kit/templates/"
-  cp -R "$SOURCE_TEMPLATES_DIR/addendum" "$temp_repo/.opencode/skills/system-spec-kit/templates/"
+  cp -R "$SOURCE_TEMPLATES_DIR"/. "$temp_repo/.opencode/skills/system-spec-kit/templates/"
 
   echo "$temp_repo"
 }

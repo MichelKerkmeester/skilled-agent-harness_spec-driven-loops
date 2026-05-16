@@ -240,6 +240,29 @@ resolve_level_contract() {
     local loader="$skill_root/scripts/node_modules/tsx/dist/loader.mjs"
     local resolver="$skill_root/mcp_server/lib/templates/level-contract-resolver.ts"
 
+    if [[ ! -f "$loader" || ! -f "$resolver" ]]; then
+        local manifest="$skill_root/templates/manifest/spec-kit-docs.json"
+        node - "$level" "$manifest" <<'NODE'
+const fs = require('fs');
+const [level, manifestPath] = process.argv.slice(2);
+try {
+  const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+  const contract = manifest.levels?.[level];
+  if (!contract) {
+    throw new Error(`Unknown Level contract: ${level}`);
+  }
+  process.stdout.write(JSON.stringify({
+    requiredCoreDocs: contract.requiredCoreDocs || [],
+    requiredAddonDocs: contract.requiredAddonDocs || [],
+  }));
+} catch (error) {
+  console.error(error instanceof Error ? error.message : String(error));
+  process.exit(3);
+}
+NODE
+        return
+    fi
+
     node --import "$loader" --input-type=module - "$level" "$resolver" <<'NODE'
 import { pathToFileURL } from 'node:url';
 

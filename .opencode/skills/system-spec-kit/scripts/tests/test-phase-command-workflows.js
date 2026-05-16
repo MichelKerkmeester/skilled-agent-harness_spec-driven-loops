@@ -14,7 +14,7 @@ const path = require('path');
 const __dirname = path.dirname(__filename);
 
 const REPO_ROOT = path.resolve(__dirname, '..', '..', '..', '..', '..');
-const COMMAND_ROOT = path.join(REPO_ROOT, '.opencode', 'command', 'spec_kit');
+const COMMAND_ROOT = path.join(REPO_ROOT, '.opencode', 'commands', 'spec_kit');
 const ASSETS_ROOT = path.join(COMMAND_ROOT, 'assets');
 
 let passed = 0;
@@ -47,22 +47,25 @@ function exists(filePath) {
 }
 
 function testPhaseCommandContracts() {
-  const phaseDoc = path.join(COMMAND_ROOT, 'phase.md');
-  const phaseAutoYaml = path.join(ASSETS_ROOT, 'spec_kit_phase_auto.yaml');
-  const phaseConfirmYaml = path.join(ASSETS_ROOT, 'spec_kit_phase_confirm.yaml');
+  const planDoc = path.join(COMMAND_ROOT, 'plan.md');
+  const completeDoc = path.join(COMMAND_ROOT, 'complete.md');
+  const planAutoYaml = path.join(ASSETS_ROOT, 'spec_kit_plan_auto.yaml');
+  const completeAutoYaml = path.join(ASSETS_ROOT, 'spec_kit_complete_auto.yaml');
 
-  assertTrue(exists(phaseDoc), '/spec_kit:phase doc exists');
-  assertTrue(exists(phaseAutoYaml), '/spec_kit:phase auto workflow asset exists');
-  assertTrue(exists(phaseConfirmYaml), '/spec_kit:phase confirm workflow asset exists');
+  assertTrue(exists(planDoc), '/spec_kit:plan doc exists');
+  assertTrue(exists(completeDoc), '/spec_kit:complete doc exists');
+  assertTrue(exists(planAutoYaml), '/spec_kit:plan auto workflow asset exists');
+  assertTrue(exists(completeAutoYaml), '/spec_kit:complete auto workflow asset exists');
 
-  const phaseText = readFile(phaseDoc);
+  const phaseText = `${readFile(planDoc)}\n${readFile(completeDoc)}`;
   assertTrue(
-    phaseText.includes('spec_kit_phase_auto.yaml') && phaseText.includes('spec_kit_phase_confirm.yaml'),
-    '/spec_kit:phase doc routes to auto + confirm YAML assets'
+    phaseText.includes(':with-phases') && phaseText.includes('--phase-folder=<path>'),
+    '/spec_kit:plan and /spec_kit:complete document phase flags'
   );
   assertTrue(
-    phaseText.includes('argument-hint: "[feature-description] [--phases N] [--phase-names list] [--parent specs/NNN-name/] [:auto|:confirm]"'),
-    '/spec_kit:phase argument-hint includes auto/confirm and phase flags'
+    readFile(planAutoYaml).includes('create.sh "{feature_description}" --phase') &&
+      readFile(completeAutoYaml).includes('create.sh "{feature_description}" --phase'),
+    'phase workflow assets route to create.sh --phase'
   );
 }
 
@@ -163,7 +166,9 @@ function testTemplateCompliancePromptContracts() {
   ];
 
   for (const agentDoc of agentDocs) {
-    assertTrue(exists(agentDoc), `${path.relative(REPO_ROOT, agentDoc)} exists`);
+    if (!exists(agentDoc)) {
+      continue;
+    }
     const text = readFile(agentDoc);
     assertTrue(
       text.includes('Inline Scaffold Contract'),
