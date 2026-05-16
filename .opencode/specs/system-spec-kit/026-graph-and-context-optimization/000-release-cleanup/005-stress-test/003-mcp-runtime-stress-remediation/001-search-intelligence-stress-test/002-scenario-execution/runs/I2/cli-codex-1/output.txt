@@ -6194,9 +6194,9 @@ exec
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-memory-terminology/research_archive/rename-pivot-2026-04-26-pt-01/001-memory-terminology-pt-01/iterations/iteration-007.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-memory-terminology/research_archive/rename-pivot-2026-04-26-pt-01/001-memory-terminology-pt-01/iterations/iteration-008.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-memory-terminology/research_archive/rename-pivot-2026-04-26-pt-01/001-memory-terminology-pt-01/iterations/iteration-009.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/resource-map.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/spec.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/plan.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/resource-map.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/spec.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/plan.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/008-code-graph-backend-resilience/review/prompts/iteration-010.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/008-code-graph-backend-resilience/review/prompts/iteration-004.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/008-code-graph-backend-resilience/review/prompts/iteration-005.md
@@ -6241,7 +6241,7 @@ exec
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-search-and-routing-tuning/review/010-search-and-routing-tuning-pt-11/deep-review-strategy.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-search-and-routing-tuning/review/010-search-and-routing-tuning-pt-11/review-report.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/research/runner.sh
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/review/deep-review-config.json
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/review/deep-review-config.json
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/005-code-graph-advisor-refinement/applied/B4.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/005-code-graph-advisor-refinement/applied/B5.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/005-code-graph-advisor-refinement/applied/B1.md
@@ -6257,11 +6257,11 @@ exec
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-release-cleanup-playbooks/research/deep-research-dashboard.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-release-cleanup-playbooks/research/research.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/research/research.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/tasks.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/description.json
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/implementation-summary.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/graph-metadata.json
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/code-graph-zero-calls-investigation.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/tasks.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/description.json
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/implementation-summary.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/graph-metadata.json
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/code-graph-zero-calls-investigation.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/011-mcp-runtime-stress-remediation/001-search-intelligence-stress-test/002-scenario-execution/runs/Q2/cli-copilot-1/meta.json
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/011-mcp-runtime-stress-remediation/001-search-intelligence-stress-test/002-scenario-execution/runs/Q2/cli-copilot-1/output.txt
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/011-mcp-runtime-stress-remediation/001-search-intelligence-stress-test/002-scenario-execution/runs/Q2/cli-copilot-1/prompt.md
@@ -6277,17 +6277,17 @@ exec
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/002-memory-quality-remediation/research/archive/research-v1-iter010-snapshot.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/002-memory-quality-remediation/research/archive/strategy-v1-iter010.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/description.json
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/review/iterations/iteration-05.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/review/iterations/iteration-01.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/review/deep-review-state.jsonl
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/review/iterations/iteration-06.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/review/iterations/iteration-02.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/review/iterations/iteration-03.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/review/iterations/iteration-07.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/review/iterations/iteration-08.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/review/iterations/iteration-09.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/review/iterations/iteration-10.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/review/iterations/iteration-04.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/review/iterations/iteration-05.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/review/iterations/iteration-01.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/review/deep-review-state.jsonl
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/review/iterations/iteration-06.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/review/iterations/iteration-02.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/review/iterations/iteration-03.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/review/iterations/iteration-07.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/review/iterations/iteration-08.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/review/iterations/iteration-09.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/review/iterations/iteration-10.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/review/iterations/iteration-04.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-graph-impact-and-affordance-uplift/008-deep-research-review/spec.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-graph-impact-and-affordance-uplift/008-deep-research-review/description.json
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-graph-impact-and-affordance-uplift/008-deep-research-review/graph-metadata.json
@@ -6310,20 +6310,20 @@ exec
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/research/deltas/iteration-004.json
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/research/deltas/iteration-012.json
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-release-cleanup-playbooks/review/006-continuity-refactor-gates-pt-01/010-remove-shared-memory/deep-review-config.json
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/review/deltas/iter-09.jsonl
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/review/deltas/iter-10.jsonl
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/review/deltas/iter-08.jsonl
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/review/deltas/iter-02.jsonl
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/review/deltas/iter-04.jsonl
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/review/deltas/iter-06.jsonl
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/review/deltas/iter-01.jsonl
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/review/deltas/iter-03.jsonl
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/review/deltas/iter-07.jsonl
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/review/deltas/iter-05.jsonl
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/review/deep-review-findings-registry.json
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/review/deep-review-strategy.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/review/review-report.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/checklist.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/review/deltas/iter-09.jsonl
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/review/deltas/iter-10.jsonl
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/review/deltas/iter-08.jsonl
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/review/deltas/iter-02.jsonl
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/review/deltas/iter-04.jsonl
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/review/deltas/iter-06.jsonl
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/review/deltas/iter-01.jsonl
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/review/deltas/iter-03.jsonl
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/review/deltas/iter-07.jsonl
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/review/deltas/iter-05.jsonl
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/review/deep-review-findings-registry.json
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/review/deep-review-strategy.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/review/review-report.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/checklist.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-memory-terminology/research_archive/rename-pivot-2026-04-26-pt-01/001-memory-terminology-pt-01/deltas/iter-008.jsonl
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-memory-terminology/research_archive/rename-pivot-2026-04-26-pt-01/001-memory-terminology-pt-01/deltas/iter-009.jsonl
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-memory-terminology/research_archive/rename-pivot-2026-04-26-pt-01/001-memory-terminology-pt-01/deltas/iter-010.jsonl
@@ -6338,7 +6338,7 @@ exec
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-memory-terminology/research_archive/rename-pivot-2026-04-26-pt-01/001-memory-terminology-pt-01/deep-research-dashboard.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-memory-terminology/research_archive/rename-pivot-2026-04-26-pt-01/001-memory-terminology-pt-01/findings-registry.json
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-memory-terminology/research_archive/rename-pivot-2026-04-26-pt-01/001-memory-terminology-pt-01/deep-research-state.jsonl
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/research/030-code-graph-gap-investigation-pt-01/deep-research-strategy.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/research/030-code-graph-gap-investigation-pt-01/deep-research-strategy.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-release-cleanup-playbooks/review/006-continuity-refactor-gates-pt-01/010-remove-shared-memory/iterations/iteration-014.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-release-cleanup-playbooks/review/006-continuity-refactor-gates-pt-01/010-remove-shared-memory/iterations/iteration-007.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-release-cleanup-playbooks/review/006-continuity-refactor-gates-pt-01/010-remove-shared-memory/iterations/iteration-008.md
@@ -6369,11 +6369,11 @@ exec
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/005-code-graph-advisor-refinement/research/015-code-graph-advisor-refinement-pt-01/iterations/iteration-018.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/005-code-graph-advisor-refinement/research/015-code-graph-advisor-refinement-pt-01/iterations/iteration-009.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/005-code-graph-advisor-refinement/research/015-code-graph-advisor-refinement-pt-01/iterations/iteration-019.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/research/013-code-graph-hook-improvements-pt-02/deep-research-strategy.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/research/013-code-graph-hook-improvements-pt-02/deep-research-strategy.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/011-mcp-runtime-stress-remediation/001-search-intelligence-stress-test/002-scenario-execution/runs/Q2/cli-opencode-1/meta.json
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/011-mcp-runtime-stress-remediation/001-search-intelligence-stress-test/002-scenario-execution/runs/Q2/cli-opencode-1/output.txt
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/011-mcp-runtime-stress-remediation/001-search-intelligence-stress-test/002-scenario-execution/runs/Q2/cli-opencode-1/prompt.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/research/013-code-graph-zero-calls-pt-03/deep-research-strategy.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/research/013-code-graph-zero-calls-pt-03/deep-research-strategy.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-graph-impact-and-affordance-uplift/008-deep-research-review/research/008-deep-research-review-pt-01/iterations/iteration-010.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-graph-impact-and-affordance-uplift/008-deep-research-review/research/008-deep-research-review-pt-01/iterations/iteration-004.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-graph-impact-and-affordance-uplift/008-deep-research-review/research/008-deep-research-review-pt-01/iterations/iteration-005.md
@@ -6385,34 +6385,34 @@ exec
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-graph-impact-and-affordance-uplift/008-deep-research-review/research/008-deep-research-review-pt-01/iterations/iteration-008.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-graph-impact-and-affordance-uplift/008-deep-research-review/research/008-deep-research-review-pt-01/iterations/iteration-009.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-graph-impact-and-affordance-uplift/008-deep-research-review/research/008-deep-research-review-pt-01/strategy.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/research/030-code-graph-gap-investigation-pt-01/iterations/iteration-02.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/research/030-code-graph-gap-investigation-pt-01/iterations/iteration-03.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/research/030-code-graph-gap-investigation-pt-01/iterations/iteration-04.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/research/030-code-graph-gap-investigation-pt-01/iterations/iteration-01.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/research/030-code-graph-gap-investigation-pt-01/research.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/research/030-code-graph-gap-investigation-pt-01/deep-research-config.json
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/research/030-code-graph-gap-investigation-pt-01/findings-registry.json
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/research/030-code-graph-gap-investigation-pt-01/deep-research-state.jsonl
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/research/030-code-graph-gap-investigation-pt-01/iterations/iteration-02.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/research/030-code-graph-gap-investigation-pt-01/iterations/iteration-03.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/research/030-code-graph-gap-investigation-pt-01/iterations/iteration-04.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/research/030-code-graph-gap-investigation-pt-01/iterations/iteration-01.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/research/030-code-graph-gap-investigation-pt-01/research.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/research/030-code-graph-gap-investigation-pt-01/deep-research-config.json
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/research/030-code-graph-gap-investigation-pt-01/findings-registry.json
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/research/030-code-graph-gap-investigation-pt-01/deep-research-state.jsonl
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/005-code-graph-advisor-refinement/research/015-code-graph-advisor-refinement-pt-01/prompts/iteration-5.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/005-code-graph-advisor-refinement/research/015-code-graph-advisor-refinement-pt-01/prompts/iteration-1.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/005-code-graph-advisor-refinement/research/015-code-graph-advisor-refinement-pt-01/prompts/iteration-6.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/005-code-graph-advisor-refinement/research/015-code-graph-advisor-refinement-pt-01/prompts/iteration-7.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/005-code-graph-advisor-refinement/research/015-code-graph-advisor-refinement-pt-01/research.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/research/013-code-graph-hook-improvements-pt-02/iterations/iteration-06.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/research/013-code-graph-hook-improvements-pt-02/iterations/iteration-02.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/research/013-code-graph-hook-improvements-pt-02/iterations/iteration-03.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/research/013-code-graph-hook-improvements-pt-02/iterations/iteration-07.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/research/013-code-graph-hook-improvements-pt-02/iterations/iteration-08.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/research/013-code-graph-hook-improvements-pt-02/iterations/iteration-09.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/research/013-code-graph-hook-improvements-pt-02/iterations/iteration-10.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/research/013-code-graph-hook-improvements-pt-02/iterations/iteration-04.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/research/013-code-graph-hook-improvements-pt-02/iterations/iteration-05.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/research/013-code-graph-hook-improvements-pt-02/iterations/iteration-01.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/research/013-code-graph-hook-improvements-pt-02/research.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/research/013-code-graph-hook-improvements-pt-02/deep-research-config.json
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/research/013-code-graph-hook-improvements-pt-02/deep-research-dashboard.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/research/013-code-graph-hook-improvements-pt-02/findings-registry.json
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/research/013-code-graph-hook-improvements-pt-02/deep-research-state.jsonl
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/research/013-code-graph-hook-improvements-pt-02/iterations/iteration-06.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/research/013-code-graph-hook-improvements-pt-02/iterations/iteration-02.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/research/013-code-graph-hook-improvements-pt-02/iterations/iteration-03.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/research/013-code-graph-hook-improvements-pt-02/iterations/iteration-07.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/research/013-code-graph-hook-improvements-pt-02/iterations/iteration-08.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/research/013-code-graph-hook-improvements-pt-02/iterations/iteration-09.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/research/013-code-graph-hook-improvements-pt-02/iterations/iteration-10.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/research/013-code-graph-hook-improvements-pt-02/iterations/iteration-04.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/research/013-code-graph-hook-improvements-pt-02/iterations/iteration-05.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/research/013-code-graph-hook-improvements-pt-02/iterations/iteration-01.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/research/013-code-graph-hook-improvements-pt-02/research.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/research/013-code-graph-hook-improvements-pt-02/deep-research-config.json
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/research/013-code-graph-hook-improvements-pt-02/deep-research-dashboard.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/research/013-code-graph-hook-improvements-pt-02/findings-registry.json
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/research/013-code-graph-hook-improvements-pt-02/deep-research-state.jsonl
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-release-cleanup-playbooks/research/iterations/iteration-06.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-release-cleanup-playbooks/research/iterations/iteration-02.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-release-cleanup-playbooks/research/iterations/iteration-03.md
@@ -6426,14 +6426,14 @@ exec
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/011-mcp-runtime-stress-remediation/001-search-intelligence-stress-test/002-scenario-execution/description.json
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/011-mcp-runtime-stress-remediation/001-search-intelligence-stress-test/002-scenario-execution/implementation-summary.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/011-mcp-runtime-stress-remediation/001-search-intelligence-stress-test/002-scenario-execution/graph-metadata.json
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/research/013-code-graph-zero-calls-pt-03/iterations/iteration-02.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/research/013-code-graph-zero-calls-pt-03/iterations/iteration-03.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/research/013-code-graph-zero-calls-pt-03/iterations/iteration-01.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/research/013-code-graph-zero-calls-pt-03/research.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/research/013-code-graph-zero-calls-pt-03/deep-research-config.json
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/research/013-code-graph-zero-calls-pt-03/deep-research-dashboard.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/research/013-code-graph-zero-calls-pt-03/findings-registry.json
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/research/013-code-graph-zero-calls-pt-03/deep-research-state.jsonl
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/research/013-code-graph-zero-calls-pt-03/iterations/iteration-02.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/research/013-code-graph-zero-calls-pt-03/iterations/iteration-03.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/research/013-code-graph-zero-calls-pt-03/iterations/iteration-01.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/research/013-code-graph-zero-calls-pt-03/research.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/research/013-code-graph-zero-calls-pt-03/deep-research-config.json
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/research/013-code-graph-zero-calls-pt-03/deep-research-dashboard.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/research/013-code-graph-zero-calls-pt-03/findings-registry.json
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/research/013-code-graph-zero-calls-pt-03/deep-research-state.jsonl
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-graph-impact-and-affordance-uplift/008-deep-research-review/research/008-deep-research-review-pt-01/prompts/iteration-010.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-graph-impact-and-affordance-uplift/008-deep-research-review/research/008-deep-research-review-pt-01/prompts/iteration-004.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-graph-impact-and-affordance-uplift/008-deep-research-review/research/008-deep-research-review-pt-01/prompts/iteration-005.md
@@ -6472,20 +6472,20 @@ exec
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/011-mcp-runtime-stress-remediation/001-search-intelligence-stress-test/002-scenario-execution/runs/I2/cli-codex-1/output.txt
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/011-mcp-runtime-stress-remediation/001-search-intelligence-stress-test/002-scenario-execution/runs/I2/cli-codex-1/prompt.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/research/deep-research-strategy.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/research/028-code-graph-hook-improvements-pt-01/iterations/iteration-06.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/research/028-code-graph-hook-improvements-pt-01/iterations/iteration-02.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/research/028-code-graph-hook-improvements-pt-01/iterations/iteration-03.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/research/028-code-graph-hook-improvements-pt-01/iterations/iteration-07.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/research/028-code-graph-hook-improvements-pt-01/iterations/iteration-08.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/research/028-code-graph-hook-improvements-pt-01/iterations/iteration-09.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/research/028-code-graph-hook-improvements-pt-01/iterations/iteration-10.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/research/028-code-graph-hook-improvements-pt-01/iterations/iteration-04.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/research/028-code-graph-hook-improvements-pt-01/iterations/iteration-05.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/research/028-code-graph-hook-improvements-pt-01/iterations/iteration-01.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/research/028-code-graph-hook-improvements-pt-01/research.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/research/028-code-graph-hook-improvements-pt-01/deep-research-dashboard.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/research/028-code-graph-hook-improvements-pt-01/findings-registry.json
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/research/028-code-graph-hook-improvements-pt-01/deep-research-state.jsonl
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/research/028-code-graph-hook-improvements-pt-01/iterations/iteration-06.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/research/028-code-graph-hook-improvements-pt-01/iterations/iteration-02.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/research/028-code-graph-hook-improvements-pt-01/iterations/iteration-03.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/research/028-code-graph-hook-improvements-pt-01/iterations/iteration-07.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/research/028-code-graph-hook-improvements-pt-01/iterations/iteration-08.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/research/028-code-graph-hook-improvements-pt-01/iterations/iteration-09.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/research/028-code-graph-hook-improvements-pt-01/iterations/iteration-10.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/research/028-code-graph-hook-improvements-pt-01/iterations/iteration-04.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/research/028-code-graph-hook-improvements-pt-01/iterations/iteration-05.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/research/028-code-graph-hook-improvements-pt-01/iterations/iteration-01.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/research/028-code-graph-hook-improvements-pt-01/research.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/research/028-code-graph-hook-improvements-pt-01/deep-research-dashboard.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/research/028-code-graph-hook-improvements-pt-01/findings-registry.json
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/research/028-code-graph-hook-improvements-pt-01/deep-research-state.jsonl
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-graph-impact-and-affordance-uplift/003-code-graph-edge-explanation-and-impact-uplift/graph-metadata.json
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-graph-impact-and-affordance-uplift/003-code-graph-edge-explanation-and-impact-uplift/implementation-summary.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-graph-impact-and-affordance-uplift/008-deep-research-review/research/008-deep-research-review-pt-01/deep-research-config.json
@@ -9819,10 +9819,10 @@ exec
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-advisor-docs-and-code-alignment/plan.md:27:      - "Preserve direct Python advisor as fallback"
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-advisor-docs-and-code-alignment/plan.md:91:Runtime prompt-submit hooks call `buildSkillAdvisorBrief()`, render a model-visible advisor brief when threshold and freshness allow it, write prompt-free diagnostics, and otherwise return `{}` or wrapper no-op output. The direct Python CLI remains a fallback for raw advisor JSON and troubleshooting.
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-advisor-docs-and-code-alignment/plan.md:108:- [x] Add README hook-primary section and direct CLI fallback label
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/spec.md:58:3. Which code-graph tools, events, or signals are under-used by downstream consumers (memory search, CocoIndex bridge, session bootstrap)?
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/spec.md:70:- Parser adapters (tree-sitter WASM + regex fallback) and the `SPECKIT_PARSER` env knob.
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/spec.md:72:- CocoIndex ↔ code-graph bridge: seed resolution, neighborhood expansion.
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/spec.md:79:- CocoIndex's own indexing pipeline (covered by 026 phase 006 research instead).
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/spec.md:58:3. Which code-graph tools, events, or signals are under-used by downstream consumers (memory search, CocoIndex bridge, session bootstrap)?
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/spec.md:70:- Parser adapters (tree-sitter WASM + regex fallback) and the `SPECKIT_PARSER` env knob.
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/spec.md:72:- CocoIndex ↔ code-graph bridge: seed resolution, neighborhood expansion.
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/spec.md:79:- CocoIndex's own indexing pipeline (covered by 026 phase 006 research instead).
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-skill-advisor-hook-surface/spec.md:48:**Key Decisions**: Research-first — no implementation child created until `001-initial-research` produces actionable findings on hook trigger points, cache invalidation model, and context budget curves. Each finding cluster becomes a sibling child (`020/002-*`, `020/003-*`). The umbrella packet owns sequencing; cluster-local behavior stays in each child.
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-skill-advisor-hook-surface/spec.md:201:- [ ] Documentation: new hook-surface reference doc covers contract, failure modes, cache invalidation, cross-runtime semantics (location under `.opencode/skills/system-spec-kit/references/hooks/`, created by 020/009)
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/008-code-graph-backend-resilience/review/review-report.md:11:The backend resilience work added the intended streams, but the evidence and safety story did not land cleanly. The strongest implementation issues are inconsistent workspace containment on the new verify/resolver paths, resolver fallback gaps, malformed-baseline drift handling, and verifier contract mismatches. The strongest release blocker is simpler: too many claimed requirements are still verified indirectly, with synthetic helpers or mock-only shapes instead of direct executable proof.
@@ -9830,7 +9830,7 @@ exec
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/008-code-graph-backend-resilience/review/review-report.md:41:- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:281-289`, `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/status.ts:40-76,155-214`, `.opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-indexer.vitest.ts:219-225`, `.opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-scan.vitest.ts:138-332`, `.opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-siblings-readiness.vitest.ts:302-322` — `REQ-007`, `REQ-008`, and `REQ-009` lack direct tests for edge weights, baseline persistence, drift thresholds, and status fallback behavior. Fix: add `edge-drift.ts` unit tests plus scan/status coverage for baseline persistence and thresholded drift summaries.
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/008-code-graph-backend-resilience/review/review-report.md:48:- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:531-559` — the regex fallback still drops resolver metadata required for type-only and re-export resolution. Fix: emit `moduleSpecifier`, `importKind`, and `exportKind` on the regex path too.
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/008-code-graph-backend-resilience/review/review-report.md:81:4. Bring resolver behavior up to the packet contract: full tsconfig `extends` traversal with cycle protection, per-specifier type-only import tagging, and regex fallback metadata parity.
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/plan.md:87:CALLS-oriented queries first resolve a subject node in `query.ts`, then execute graph reads that must either return implementation-focused results or an explicit blocked/degraded contract when readiness demands a full scan (`013-ZC-F-001`, `013-F-001`). Context requests carry richer CocoIndex seed metadata and bounded-work deadline state through `seed-resolver.ts` and `code-graph-context.ts` (`013-F-002`, `013-F-006`), while scans persist metadata that status/startup readers can surface without leaving stale summaries behind (`013-F-003`, `013-F-004`, `013-F-005`).
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/plan.md:87:CALLS-oriented queries first resolve a subject node in `query.ts`, then execute graph reads that must either return implementation-focused results or an explicit blocked/degraded contract when readiness demands a full scan (`013-ZC-F-001`, `013-F-001`). Context requests carry richer CocoIndex seed metadata and bounded-work deadline state through `seed-resolver.ts` and `code-graph-context.ts` (`013-F-002`, `013-F-006`), while scans persist metadata that status/startup readers can surface without leaving stale summaries behind (`013-F-003`, `013-F-004`, `013-F-005`).
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-search-and-routing-tuning/review/010-search-and-routing-tuning-pt-02/archive-invalid-2026-04-13T16-59-27Z/review-report.md:66:- CocoIndex semantic discovery could not be used in this session because each attempted query returned a cancelled-tool response.
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-skill-advisor-hook-surface/plan.md:149:- [ ] 007-gemini-copilot-hook-wiring (Gemini JSON `additionalContext` + Copilot SDK + wrapper fallback)
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-advisor-docs-and-code-alignment/tasks.md:41:- [x] T005 [P0] Update `../../../../skill/skill-advisor/README.md` — add §Hook Invocation section (primary path); preserve explicit CLI fallback [Evidence: README §2 and §3]
@@ -9857,17 +9857,17 @@ exec
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-advisor-hook-improvements/implementation-summary.md:57:| `.opencode/skills/system-spec-kit/mcp_server/hooks/codex/prompt-wrapper.ts` | Codex fallback parity + durable diagnostics |
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-advisor-hook-improvements/implementation-summary.md:80:- Kept OpenCode’s native bridge route, but forced it through the same threshold object and shared renderer as the fallback path instead of preserving a custom formatter.
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-advisor-hook-improvements/implementation-summary.md:105:- The current workspace reports stale advisor freshness during direct hook/bridge smokes, so the verification evidence exercised prompt-safe stale/fallback behavior rather than a live daemon path.
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/implementation-summary.md:55:The packet hardened code-graph CALLS resolution so ambiguous `handle*` subjects now select callable implementation nodes instead of wrapper shadows, and it made query/context reads fail explicitly when readiness requires a suppressed full scan. It also preserved CocoIndex ranking fidelity through seed resolution, cleared stale edge-enrichment summaries on null-summary scans, surfaced `graphQualitySummary` through status/startup readers, transported a compact startup shared-payload contract through Claude, Gemini, Copilot, and Codex runtime hooks, and turned `deadlineMs` plus `partialOutput` into real context response metadata.
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/implementation-summary.md:63:| `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/seed-resolver.ts` | CocoIndex score/snippet/range/provider preservation and ranking |
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/implementation-summary.md:94:- Preserved CocoIndex semantic score as the primary seed-ordering signal and graph confidence as the fallback/tie-break layer.
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/implementation-summary.md:55:The packet hardened code-graph CALLS resolution so ambiguous `handle*` subjects now select callable implementation nodes instead of wrapper shadows, and it made query/context reads fail explicitly when readiness requires a suppressed full scan. It also preserved CocoIndex ranking fidelity through seed resolution, cleared stale edge-enrichment summaries on null-summary scans, surfaced `graphQualitySummary` through status/startup readers, transported a compact startup shared-payload contract through Claude, Gemini, Copilot, and Codex runtime hooks, and turned `deadlineMs` plus `partialOutput` into real context response metadata.
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/implementation-summary.md:63:| `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/seed-resolver.ts` | CocoIndex score/snippet/range/provider preservation and ranking |
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/implementation-summary.md:94:- Preserved CocoIndex semantic score as the primary seed-ordering signal and graph confidence as the fallback/tie-break layer.
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/001-code-graph-upgrades/implementation-summary.md:85:| Defer lexical fallback cascades, clustering, and export work | `code_graph_query` has no lexical fallback cascade today, and ADR-003 keeps clustering and export work prototype-later so the adopt-now lane stays bounded. |
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/001-code-graph-upgrades/implementation-summary.md:106:1. `code_graph_query` still has no lexical fallback cascade, so Lane F stayed not applicable in this run. If a lexical fallback is added later, it still needs its own capability selector and forced-degrade matrix.
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/008-code-graph-backend-resilience/tasks.md:84:- [x] T09 [P0] Capture resolver metadata: extend `RawCapture` at `mcp_server/code_graph/lib/structural-indexer.ts:113-126` with `moduleSpecifier?: string`, `importKind?: 'value'|'type'`, `exportKind?: 'named'|'star'|'declaration'`. Update import/export captures in `mcp_server/code_graph/lib/tree-sitter-parser.ts:340-397` and `:399-465` to record these fields. Preserve regex-fallback source in `structural-indexer.ts:485-502`. Deps: T08. (verified)
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/review/review-report.md:31:Evidence: CocoIndex fidelity survives only when callers send `seed.file`; `seed.filePath` falls through the generic seed path and drops provider-specific metadata.
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/review/review-report.md:32:Recommended fix: treat `filePath` as equivalent to `file` for CocoIndex seeds and add a regression for that public input shape.
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/review/review-report.md:101:3. Fix `F-002` and `F-003` together: complete the new context contract by accepting `filePath` CocoIndex seeds and correcting `omittedAnchors`.
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/review/review-report.md:31:Evidence: CocoIndex fidelity survives only when callers send `seed.file`; `seed.filePath` falls through the generic seed path and drops provider-specific metadata.
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/review/review-report.md:32:Recommended fix: treat `filePath` as equivalent to `file` for CocoIndex seeds and add a regression for that public input shape.
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/review/review-report.md:101:3. Fix `F-002` and `F-003` together: complete the new context contract by accepting `filePath` CocoIndex seeds and correcting `omittedAnchors`.
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-deferred-remediation-and-telemetry-run/spec.md:17:    dispatch_policy: "cli-codex gpt-5.4 high fast primary; cli-copilot gpt-5.4 high fallback"
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/tasks.md:72:- [ ] T008 P1 Address `013-F-002` by preserving CocoIndex `score`, `snippet`, and range fidelity in `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/seed-resolver.ts` and `.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/context.ts`, with ranking coverage in `.opencode/skills/system-spec-kit/mcp_server/code-graph/tests/code-graph-context-handler.vitest.ts`
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/tasks.md:72:- [ ] T008 P1 Address `013-F-002` by preserving CocoIndex `score`, `snippet`, and range fidelity in `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/seed-resolver.ts` and `.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/context.ts`, with ranking coverage in `.opencode/skills/system-spec-kit/mcp_server/code-graph/tests/code-graph-context-handler.vitest.ts`
 
 exec
 /bin/zsh -lc "find .opencode/specs -path '*search*' -maxdepth 8 -type f \\( -name 'spec.md' -o -name 'plan.md' -o -name 'tasks.md' -o -name 'implementation-summary.md' -o -name 'review-report.md' -o -name 'agent-brief*.md' \\)" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public

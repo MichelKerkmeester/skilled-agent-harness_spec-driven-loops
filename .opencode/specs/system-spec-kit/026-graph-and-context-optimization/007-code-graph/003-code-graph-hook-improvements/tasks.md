@@ -1,5 +1,5 @@
 ---
-title: "Tasks [system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/tasks]"
+title: "Tasks [system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/tasks]"
 description: "Task plan for implementing the code-graph resolver, scan, startup, and bounded-context fixes defined by packet 013 research and merged Bucket A synthesis."
 trigger_phrases:
   - "tasks"
@@ -11,7 +11,7 @@ contextType: "implementation"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements"
     last_updated_at: "2026-04-24T00:00:00Z"
     last_updated_by: "codex"
     recent_action: "Level 2 task list created"
@@ -84,7 +84,7 @@ template_source_marker: "tasks-core | v2.2"
 
 - [ ] T014 Run targeted Vitest regression suites for `013-ZC-F-001`, `013-ZC-F-002`, `013-ZC-F-003`, `013-ZC-F-004`, `013-F-001`, `013-F-002`, `013-F-003`, `013-F-005`, and `013-F-006` using `.opencode/skills/system-spec-kit/mcp_server/code-graph/tests/code-graph-query-handler.vitest.ts`, `.opencode/skills/system-spec-kit/mcp_server/code-graph/tests/code-graph-context-handler.vitest.ts`, `.opencode/skills/system-spec-kit/mcp_server/code-graph/tests/code-graph-scan.vitest.ts`, `.opencode/skills/system-spec-kit/mcp_server/tests/hook-session-start.vitest.ts`, and `.opencode/skills/system-spec-kit/mcp_server/tests/codex-session-start-hook.vitest.ts`
 - [ ] T015 [P] Run cross-consistency `rg` checks for `013-ZC-F-002`, `013-F-004`, `013-F-005`, and `013-F-006` across `.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/query.ts`, `.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/status.ts`, `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/startup-brief.ts`, `.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/context.ts`, and `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/code-graph-context.ts`
-- [ ] T016 Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements --strict` to verify packet-doc alignment for `013-ZC-F-001`, `013-F-001`, `013-F-003`, and `013-F-005`
+- [ ] T016 Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements --strict` to verify packet-doc alignment for `013-ZC-F-001`, `013-F-001`, `013-F-003`, and `013-F-005`
 <!-- /ANCHOR:phase-3 -->
 
 ---

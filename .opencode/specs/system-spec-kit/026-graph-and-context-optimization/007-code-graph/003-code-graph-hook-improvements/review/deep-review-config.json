@@ -1,6 +1,6 @@
 {
   "review_topic": "Implementation review for 013",
-  "spec_folder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements",
+  "spec_folder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements",
   "max_iterations": 10,
   "convergence_threshold": 0.05,
   "stuck_threshold": 3,

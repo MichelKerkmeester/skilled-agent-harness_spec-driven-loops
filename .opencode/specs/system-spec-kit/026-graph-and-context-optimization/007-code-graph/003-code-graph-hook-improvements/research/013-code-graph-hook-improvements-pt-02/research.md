@@ -14,7 +14,7 @@ importance_tier: "normal"
 contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/research/013-code-graph-hook-improvements-pt-02"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/research/013-code-graph-hook-improvements-pt-02"
     last_updated_at: "2026-04-24T15:25:01Z"
     last_updated_by: "backfill-memory-block"
     recent_action: "Backfilled _memory block (repo-wide frontmatter sweep)"
@@ -31,14 +31,14 @@ This packet deepened the code-graph and hook investigation beyond pt-01 by focus
 
 In scope:
 
-- Code-graph read, readiness, scan, context, and startup surfaces named by the parent packet [.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/spec.md:54-74].
-- CocoIndex-to-code-graph seed resolution and neighborhood expansion behavior [.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/spec.md:67-74].
+- Code-graph read, readiness, scan, context, and startup surfaces named by the parent packet [.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/spec.md:54-74].
+- CocoIndex-to-code-graph seed resolution and neighborhood expansion behavior [.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/spec.md:67-74].
 - Runtime startup hook transport and operator-facing docs/tests tied to code-graph priming [.opencode/skills/system-spec-kit/references/config/hook_system.md:35-45,64-78].
 
 Out of scope:
 
 - Reopening already-applied CF-002, CF-009, CF-010, CF-013, or CF-014 as if they were still unfixed [.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-deep-review-remediation/006-integrity-parity-closure/applied/CF-009.md:5-12; .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-deep-review-remediation/006-integrity-parity-closure/applied/CF-010.md:5-13; .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-deep-review-remediation/006-integrity-parity-closure/applied/CF-014.md:5-13].
-- CocoIndex indexing internals, broad memory-system work, storage-engine rewrites, or the dedicated zero-calls lane [.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/spec.md:76-81].
+- CocoIndex indexing internals, broad memory-system work, storage-engine rewrites, or the dedicated zero-calls lane [.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/spec.md:76-81].
 
 ## Methodology
 
@@ -134,7 +134,7 @@ The packet ran 10 iterations and stopped at the configured cap rather than early
 - CF-009's staged-persistence fix remains a valid closure; pt-02 did not find evidence that file/node/edge writes reverted to pre-fix behavior [.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-deep-review-remediation/006-integrity-parity-closure/applied/CF-009.md:5-12].
 - CF-010's trust-mapping unification remains valid for the query path; pt-02 focused on other surfaces that still bypass or fail to transport the shared contract [.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-deep-review-remediation/006-integrity-parity-closure/applied/CF-010.md:5-13].
 - CF-014's artifact-root correction remains valid; packet-local research artifact placement was not a live problem in this run [.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-deep-review-remediation/006-integrity-parity-closure/applied/CF-014.md:5-13].
-- The subtree-root scan deletion and readiness debounce invalidation issues from pt-01 still matter, but this packet did not need to promote them again to justify its own synthesis [.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/research/028-code-graph-hook-improvements-pt-01/research.md:3-4,13-20].
+- The subtree-root scan deletion and readiness debounce invalidation issues from pt-01 still matter, but this packet did not need to promote them again to justify its own synthesis [.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/research/028-code-graph-hook-improvements-pt-01/research.md:3-4,13-20].
 
 ## Cross-Cutting Themes
 
@@ -173,9 +173,9 @@ Iterations 02-07 produced the decisive evidence. Iteration 02 established the re
 
 ## Related Work
 
-- Parent packet spec: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/spec.md`
-- Prior packet synthesis: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/research/028-code-graph-hook-improvements-pt-01/research.md`
-- Prior packet registry: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/research/028-code-graph-hook-improvements-pt-01/findings-registry.json`
+- Parent packet spec: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/spec.md`
+- Prior packet synthesis: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/research/028-code-graph-hook-improvements-pt-01/research.md`
+- Prior packet registry: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/research/028-code-graph-hook-improvements-pt-01/findings-registry.json`
 - Closed closure notes used as boundaries: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-deep-review-remediation/006-integrity-parity-closure/applied/CF-009.md`, `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-deep-review-remediation/006-integrity-parity-closure/applied/CF-010.md`, `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-deep-review-remediation/006-integrity-parity-closure/applied/CF-014.md`
 - Startup/runtime reference docs: `.opencode/skills/system-spec-kit/references/config/hook_system.md`, `.opencode/skills/system-spec-kit/mcp_server/hooks/codex/README.md`
 
@@ -191,9 +191,9 @@ Iterations 02-07 produced the decisive evidence. Iteration 02 established the re
 
 ### Prior Research and Spec Packets
 
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/research/028-code-graph-hook-improvements-pt-01/research.md`
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/research/028-code-graph-hook-improvements-pt-01/findings-registry.json`
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/spec.md`
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/research/028-code-graph-hook-improvements-pt-01/research.md`
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/research/028-code-graph-hook-improvements-pt-01/findings-registry.json`
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/spec.md`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-deep-review-remediation/006-integrity-parity-closure/applied/CF-009.md`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-deep-review-remediation/006-integrity-parity-closure/applied/CF-010.md`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-deep-review-remediation/006-integrity-parity-closure/applied/CF-014.md`

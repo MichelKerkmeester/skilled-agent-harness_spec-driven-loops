@@ -5824,7 +5824,7 @@
       "lastUpdated": "2026-05-08T08:26:57.638Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements",
       "description": "Feature Specification: Code-Graph System + Hooks Improvement Investigation",
       "keywords": [
         "feature",

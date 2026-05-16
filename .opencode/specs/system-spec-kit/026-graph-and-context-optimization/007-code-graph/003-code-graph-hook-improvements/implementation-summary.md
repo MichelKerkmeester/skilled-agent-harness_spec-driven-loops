@@ -1,5 +1,5 @@
 ---
-title: "...it/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/implementation-summary]"
+title: "...it/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/implementation-summary]"
 description: "Packet 013 implementation closeout for resolver correctness, blocked-read handling, graph-quality observability, startup payload parity, and bounded context contracts."
 trigger_phrases:
   - "013 implementation summary"
@@ -9,7 +9,7 @@ contextType: "implementation"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: implementation-summary-core | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements"
     last_updated_at: "2026-04-24T10:09:30Z"
     last_updated_by: "codex"
     recent_action: "packet-closeout-complete"

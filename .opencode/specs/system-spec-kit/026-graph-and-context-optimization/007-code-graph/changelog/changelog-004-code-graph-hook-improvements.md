@@ -18,7 +18,7 @@ contextType: "implementation"
 
 ## 2026-04-24
 
-> Spec folder: `026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements` (Level 2)
+> Spec folder: `026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements` (Level 2)
 > Parent packet: `026-graph-and-context-optimization/007-code-graph`
 
 ### Summary

@@ -1,5 +1,5 @@
 ---
-title: "Implem [system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/plan]"
+title: "Implem [system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/plan]"
 description: "Implements the code-graph query, scan, startup, and context contract fixes defined by packet 013 research. The plan sequences zero-calls remediation, blocked-read handling, metadata lifecycle cleanup, and startup/context parity work using the existing code-graph and hook surfaces."
 trigger_phrases:
   - "implementation plan"
@@ -11,7 +11,7 @@ contextType: "planning"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements"
     last_updated_at: "2026-04-24T00:00:00Z"
     last_updated_by: "codex"
     recent_action: "Created Level 2 implementation plan from pt-02 findings and merged Bucket A synthesis"
@@ -106,7 +106,7 @@ CALLS-oriented queries first resolve a subject node in `query.ts`, then execute 
 ### Phase 3: Verification
 - [ ] Run targeted Vitest suites for query/context behavior, scan metadata clearing, and startup transport parity across `.opencode/skills/system-spec-kit/mcp_server/code-graph/tests/code-graph-query-handler.vitest.ts`, `.opencode/skills/system-spec-kit/mcp_server/code-graph/tests/code-graph-context-handler.vitest.ts`, `.opencode/skills/system-spec-kit/mcp_server/code-graph/tests/code-graph-scan.vitest.ts`, `.opencode/skills/system-spec-kit/mcp_server/tests/hook-session-start.vitest.ts`, and `.opencode/skills/system-spec-kit/mcp_server/tests/codex-session-start-hook.vitest.ts` (`013-ZC-F-001`, `013-ZC-F-002`, `013-ZC-F-003`, `013-ZC-F-004`, `013-F-001`, `013-F-002`, `013-F-003`, `013-F-005`, `013-F-006`).
 - [ ] Run cross-consistency greps for `full_scan`, selected-candidate metadata, graph-quality summary readers, `sharedPayload`, `deadlineMs`, and partial-output markers so all handler and adapter surfaces expose the same contract vocabulary (`013-ZC-F-002`, `013-F-004`, `013-F-005`, `013-F-006`).
-- [ ] Re-run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements --strict` before closeout so packet docs and implementation evidence stay aligned to the spec boundary (`013-ZC-F-001`, `013-F-001`, `013-F-003`, `013-F-005`).
+- [ ] Re-run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements --strict` before closeout so packet docs and implementation evidence stay aligned to the spec boundary (`013-ZC-F-001`, `013-F-001`, `013-F-003`, `013-F-005`).
 <!-- /ANCHOR:phases -->
 
 ---

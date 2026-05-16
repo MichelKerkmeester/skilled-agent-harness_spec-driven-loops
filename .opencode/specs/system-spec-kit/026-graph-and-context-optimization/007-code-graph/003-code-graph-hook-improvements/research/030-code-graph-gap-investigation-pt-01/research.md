@@ -14,7 +14,7 @@ importance_tier: "normal"
 contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/research/030-code-graph-gap-investigation-pt-01"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/research/030-code-graph-gap-investigation-pt-01"
     last_updated_at: "2026-04-24T15:25:01Z"
     last_updated_by: "backfill-memory-block"
     recent_action: "Backfilled _memory block (repo-wide frontmatter sweep)"
@@ -62,7 +62,7 @@ Because `graphQualitySummary`, `selectedCandidate`, blocked read payloads, start
 
 ## Recommended Resource Map Updates
 
-Add the following as `Cited` or `Analyzed` entries to packet `013`’s [`resource-map.md`](../../007-code-graph/004-code-graph-hook-improvements/resource-map.md):
+Add the following as `Cited` or `Analyzed` entries to packet `013`’s [`resource-map.md`](../../007-code-graph/003-code-graph-hook-improvements/resource-map.md):
 
 - `.opencode/skills/system-spec-kit/mcp_server/README.md`
 - `.opencode/skills/system-spec-kit/mcp_server/code-graph/README.md`
@@ -106,10 +106,10 @@ Convergence was reached by iteration 4. New information dropped from `0.64` to `
 
 ## References
 
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/resource-map.md`
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/spec.md`
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/tasks.md`
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/implementation-summary.md`
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/resource-map.md`
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/spec.md`
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/tasks.md`
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/implementation-summary.md`
 - `.opencode/skills/system-spec-kit/mcp_server/README.md`
 - `.opencode/skills/system-spec-kit/mcp_server/code-graph/README.md`
 - `.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md`

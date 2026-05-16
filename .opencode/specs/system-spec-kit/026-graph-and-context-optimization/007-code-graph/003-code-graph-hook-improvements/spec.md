@@ -1,5 +1,5 @@
 ---
-title: "Featur [system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/spec]"
+title: "Featur [system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/spec]"
 description: "Deep-research investigation into how the code-graph package and its hook wiring can be improved beyond the state delivered by 009-hook-parity and 012-docs-impact-remediation. Research-only packet — output is findings + recommendations, no implementation in this sub-phase."
 trigger_phrases:
   - "code-graph hook improvements"
@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements"
     last_updated_at: "2026-04-24T01:10:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Research packet spec scaffolded; sk-deep-research with 10 iterations queued"

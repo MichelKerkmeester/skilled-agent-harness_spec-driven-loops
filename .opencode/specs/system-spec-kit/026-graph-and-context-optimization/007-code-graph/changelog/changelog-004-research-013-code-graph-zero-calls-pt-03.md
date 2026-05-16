@@ -16,7 +16,7 @@ contextType: "research"
 
 ## 2026-04-22
 
-> Spec folder: `026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/research/013-code-graph-zero-calls-pt-03` (Research-only)
+> Spec folder: `026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/research/013-code-graph-zero-calls-pt-03` (Research-only)
 > Parent packet: `026-graph-and-context-optimization/007-code-graph`
 
 ### Summary

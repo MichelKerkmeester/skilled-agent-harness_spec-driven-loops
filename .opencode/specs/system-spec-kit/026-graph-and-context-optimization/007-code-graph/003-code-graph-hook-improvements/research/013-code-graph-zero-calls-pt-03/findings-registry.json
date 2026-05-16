@@ -11,7 +11,7 @@
       "summary": "The zero-edge result came from querying the wrong node: the prior symbolId mapped to the lazy re-export in handlers/index.ts, while the real handleMemoryContext function in memory-context.ts currently has persisted CALLS edges.",
       "evidence": [
         "iterations/iteration-02.md#evidence",
-        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/code-graph-zero-calls-investigation.md:11-21",
+        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/code-graph-zero-calls-investigation.md:11-21",
         ".opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:310-311",
         ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1196-1205",
         ".opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/query.ts:115-126",

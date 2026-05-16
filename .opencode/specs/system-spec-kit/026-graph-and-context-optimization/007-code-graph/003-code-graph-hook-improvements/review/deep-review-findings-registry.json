@@ -97,17 +97,17 @@
       "summary": "The packet claims packet-local `applied/T-*.md` evidence throughout the closeout docs, but those files are not present under the packet path, so the implementation cannot be fully audited from this checkout.",
       "evidence": [
         "review/iterations/iteration-06.md#Findings",
-        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/implementation-summary.md:28",
-        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/checklist.md:36",
-        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/checklist.md:90",
-        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/resource-map.md:100",
-        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/resource-map.md:115"
+        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/implementation-summary.md:28",
+        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/checklist.md:36",
+        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/checklist.md:90",
+        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/resource-map.md:100",
+        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/resource-map.md:115"
       ],
       "recommended_fix": "Restore the missing packet-local applied reports or replace every evidence reference with proof that is actually present inside the packet.",
       "target_files": [
-        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/implementation-summary.md",
-        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/checklist.md",
-        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/resource-map.md"
+        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/implementation-summary.md",
+        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/checklist.md",
+        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/resource-map.md"
       ],
       "related_findings": [
         "F-007"
@@ -121,17 +121,17 @@
       "summary": "Startup parity is claimed across four runtimes, but the packet's direct test inventory only records startup hook regressions for Claude and Codex.",
       "evidence": [
         "review/iterations/iteration-05.md#Findings",
-        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/implementation-summary.md:67",
-        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/implementation-summary.md:99",
-        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/tasks.md:74",
-        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/resource-map.md:164",
-        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/resource-map.md:168"
+        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/implementation-summary.md:67",
+        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/implementation-summary.md:99",
+        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/tasks.md:74",
+        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/resource-map.md:164",
+        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/resource-map.md:168"
       ],
       "recommended_fix": "Add packet-local Gemini and Copilot startup hook regressions, or narrow the closeout language to the runtimes with direct assertions.",
       "target_files": [
         ".opencode/skills/system-spec-kit/mcp_server/tests/",
-        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/implementation-summary.md",
-        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/resource-map.md"
+        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/implementation-summary.md",
+        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/resource-map.md"
       ],
       "related_findings": [],
       "negative_if_ruled_out": null
@@ -143,13 +143,13 @@
       "summary": "`implementation-summary.md` omits `hooks/codex/session-start.ts` from `Files Changed` even though the task list and resource map both treat it as part of the startup-parity implementation.",
       "evidence": [
         "review/iterations/iteration-07.md#Findings",
-        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/tasks.md:74",
-        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/implementation-summary.md:57",
-        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/resource-map.md:144"
+        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/tasks.md:74",
+        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/implementation-summary.md:57",
+        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/resource-map.md:144"
       ],
       "recommended_fix": "Add the missing Codex runtime adapter row to `implementation-summary.md` so the closeout inventory matches the actual blast radius.",
       "target_files": [
-        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/implementation-summary.md"
+        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/implementation-summary.md"
       ],
       "related_findings": [
         "F-005"

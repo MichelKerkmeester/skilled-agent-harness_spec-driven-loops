@@ -1,5 +1,5 @@
 ---
-title: "V [system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/checklist]"
+title: "V [system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/checklist]"
 description: "Level 2 closeout checklist for packet 013."
 trigger_phrases:
   - "013 checklist"
@@ -9,7 +9,7 @@ contextType: "implementation"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: checklist-core | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements"
     last_updated_at: "2026-04-24T10:09:30Z"
     last_updated_by: "codex"
     recent_action: "checklist-complete"

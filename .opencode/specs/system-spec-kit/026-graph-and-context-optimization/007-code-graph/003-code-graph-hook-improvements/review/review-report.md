@@ -42,19 +42,19 @@ Evidence: fresh files are filtered before `handleCodeGraphScan()` sees them, so 
 Recommended fix: separate pre-parse skip accounting from persistence results and only clear summaries when a replacement graph state is actually persisted.
 Target files: `structural-indexer.ts`, `scan.ts`, `code-graph-scan.vitest.ts`
 
-- `F-005` `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/implementation-summary.md:28`, `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/checklist.md:36`, `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/resource-map.md:100`
+- `F-005` `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/implementation-summary.md:28`, `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/checklist.md:36`, `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/resource-map.md:100`
 Evidence: the packet claims packet-local `applied/T-*.md` evidence, but those files are not present under this packet path.
 Recommended fix: restore the missing evidence reports or rewrite the closeout/checklist/resource-map references to evidence that actually exists in this packet.
 Target files: `implementation-summary.md`, `checklist.md`, `resource-map.md`
 
 ### P2
 
-- `F-006` `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/implementation-summary.md:67`, `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/resource-map.md:164`
+- `F-006` `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/implementation-summary.md:67`, `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/resource-map.md:164`
 Evidence: startup parity is claimed across Claude/Gemini/Copilot/Codex, but the packet's direct test inventory only records Claude and Codex startup regressions.
 Recommended fix: add Gemini and Copilot startup regressions, or narrow the closeout language to the runtimes with direct test evidence.
 Target files: runtime startup tests plus packet closeout docs
 
-- `F-007` `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/tasks.md:74`, `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/implementation-summary.md:57`, `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/resource-map.md:144`
+- `F-007` `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/tasks.md:74`, `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/implementation-summary.md:57`, `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/resource-map.md:144`
 Evidence: `implementation-summary.md` omits `hooks/codex/session-start.ts` from `Files Changed` even though T011 and the resource map both treat it as part of the implementation blast radius.
 Recommended fix: add the missing Codex adapter row to `Files Changed`.
 Target files: `implementation-summary.md`
@@ -110,12 +110,12 @@ Target files: `code-graph-scan.vitest.ts`
 
 ## References
 
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/spec.md`
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/plan.md`
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/tasks.md`
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/implementation-summary.md`
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/checklist.md`
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/resource-map.md`
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/spec.md`
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/plan.md`
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/tasks.md`
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/implementation-summary.md`
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/checklist.md`
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/resource-map.md`
 - `.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/query.ts`
 - `.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/context.ts`
 - `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/seed-resolver.ts`

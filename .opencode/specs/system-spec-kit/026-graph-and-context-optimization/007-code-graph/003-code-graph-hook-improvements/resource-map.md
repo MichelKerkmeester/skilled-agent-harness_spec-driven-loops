@@ -9,7 +9,7 @@ importance_tier: "high"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements"
     last_updated_at: "2026-04-24T11:27:02+02:00"
     last_updated_by: "codex"
     recent_action: "Authored packet resource map"
@@ -91,23 +91,23 @@ No standalone skill-package docs outside the implementation/test/doc surfaces al
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/spec.md` | Analyzed | OK | Scope and requirements input. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/plan.md` | Analyzed | OK | Architecture, phases, and dependency input. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/tasks.md` | Analyzed | OK | Task-to-finding mapping input. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/implementation-summary.md` | Created | OK | Packet closeout and verification ledger; packet-local audit evidence now points at present docs only. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/checklist.md` | Created | OK | Verification closeout doc rewritten to cite only present packet artifacts. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/code-graph-zero-calls-investigation.md` | Analyzed | OK | Packet-local zero-calls incident note cited by research. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/review/review-report.md` | Cited | OK | Packet-local audit report used to anchor the present closeout evidence trail. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/review/deep-review-findings-registry.json` | Cited | OK | Packet-local findings registry used to confirm the missing `applied/` ledger and surviving follow-up gaps. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/research/013-code-graph-hook-improvements-pt-02/research.md` | Analyzed | OK | Primary implementation research input. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/spec.md` | Analyzed | OK | Scope and requirements input. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/plan.md` | Analyzed | OK | Architecture, phases, and dependency input. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/tasks.md` | Analyzed | OK | Task-to-finding mapping input. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/implementation-summary.md` | Created | OK | Packet closeout and verification ledger; packet-local audit evidence now points at present docs only. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/checklist.md` | Created | OK | Verification closeout doc rewritten to cite only present packet artifacts. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/code-graph-zero-calls-investigation.md` | Analyzed | OK | Packet-local zero-calls incident note cited by research. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/review/review-report.md` | Cited | OK | Packet-local audit report used to anchor the present closeout evidence trail. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/review/deep-review-findings-registry.json` | Cited | OK | Packet-local findings registry used to confirm the missing `applied/` ledger and surviving follow-up gaps. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/research/013-code-graph-hook-improvements-pt-02/research.md` | Analyzed | OK | Primary implementation research input. |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/research/013-014-pt-02-merged-synthesis.md` | Analyzed | OK | Bucket A merged synthesis input cited by `tasks.md` and `plan.md`. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/research/028-code-graph-hook-improvements-pt-01/research.md` | Analyzed | OK | Prior packet synthesis used as boundary context. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/research/013-code-graph-zero-calls-pt-03/research.md` | Analyzed | OK | Zero-calls root-cause research folded into packet tasks. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/research/028-code-graph-hook-improvements-pt-01/research.md` | Analyzed | OK | Prior packet synthesis used as boundary context. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/research/013-code-graph-zero-calls-pt-03/research.md` | Analyzed | OK | Zero-calls root-cause research folded into packet tasks. |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-deep-review-remediation/006-integrity-parity-closure/applied/CF-009.md` | Cited | OK | Closed freshness boundary referenced by plan and research. |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-deep-review-remediation/006-integrity-parity-closure/applied/CF-010.md` | Cited | OK | Closed readiness-contract boundary referenced by plan and research. |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-deep-review-remediation/006-integrity-parity-closure/applied/CF-013.md` | Cited | OK | Historical adjacent fix cited by zero-calls research. |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-deep-review-remediation/006-integrity-parity-closure/applied/CF-014.md` | Cited | OK | Closed artifact-root boundary referenced by plan and research. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/resource-map.md` | Created | OK | Packet path ledger generated from canonical template. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/resource-map.md` | Created | OK | Packet path ledger generated from canonical template. |
 
 ---
 
@@ -162,12 +162,12 @@ No standalone skill-package docs outside the implementation/test/doc surfaces al
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/description.json` | Cited | OK | Packet metadata present alongside closeout docs. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/graph-metadata.json` | Cited | OK | Packet graph metadata present alongside closeout docs. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/research/013-code-graph-hook-improvements-pt-02/findings-registry.json` | Analyzed | OK | Primary finding registry for implementation packet 013. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/description.json` | Cited | OK | Packet metadata present alongside closeout docs. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/graph-metadata.json` | Cited | OK | Packet graph metadata present alongside closeout docs. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/research/013-code-graph-hook-improvements-pt-02/findings-registry.json` | Analyzed | OK | Primary finding registry for implementation packet 013. |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/research/013-014-pt-02-merged-findings.json` | Analyzed | OK | Merged Bucket A findings input cited by `tasks.md`. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/research/028-code-graph-hook-improvements-pt-01/findings-registry.json` | Analyzed | OK | Prior packet finding registry used as boundary context. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/research/013-code-graph-zero-calls-pt-03/findings-registry.json` | Analyzed | OK | Zero-calls finding registry folded into packet scope. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/research/028-code-graph-hook-improvements-pt-01/findings-registry.json` | Analyzed | OK | Prior packet finding registry used as boundary context. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/research/013-code-graph-zero-calls-pt-03/findings-registry.json` | Analyzed | OK | Zero-calls finding registry folded into packet scope. |
 
 ---
 

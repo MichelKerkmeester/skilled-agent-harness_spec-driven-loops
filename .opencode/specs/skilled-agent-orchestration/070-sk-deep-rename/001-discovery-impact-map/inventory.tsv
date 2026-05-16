@@ -523,7 +523,7 @@ file_path	match_count	area	phase
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/002-code-graph-context-and-scan-scope/research/deep-research-strategy.md	3	spec-folder-active	003
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/002-code-graph-context-and-scan-scope/research/iterations/iteration-004.md	1	spec-folder-active	003
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/002-code-graph-context-and-scan-scope/research/research.md	1	spec-folder-active	003
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/spec.md	5	spec-folder-active	003
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/spec.md	5	spec-folder-active	003
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/005-code-graph-advisor-refinement/plan.md	1	spec-folder-active	003
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/005-code-graph-advisor-refinement/research/015-code-graph-advisor-refinement-pt-01/deep-research-config.json	4	spec-folder-active	003
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/005-code-graph-advisor-refinement/research/015-code-graph-advisor-refinement-pt-01/deep-research-strategy.md	1	spec-folder-active	003
@@ -1183,7 +1183,7 @@ specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/002-code
 specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/002-code-graph-context-and-scan-scope/research/deep-research-strategy.md	3	spec-folder-active	003
 specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/002-code-graph-context-and-scan-scope/research/iterations/iteration-004.md	1	spec-folder-active	003
 specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/002-code-graph-context-and-scan-scope/research/research.md	1	spec-folder-active	003
-specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/spec.md	5	spec-folder-active	003
+specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/spec.md	5	spec-folder-active	003
 specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/005-code-graph-advisor-refinement/plan.md	1	spec-folder-active	003
 specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/005-code-graph-advisor-refinement/research/015-code-graph-advisor-refinement-pt-01/deep-research-config.json	4	spec-folder-active	003
 specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/005-code-graph-advisor-refinement/research/015-code-graph-advisor-refinement-pt-01/deep-research-strategy.md	1	spec-folder-active	003
