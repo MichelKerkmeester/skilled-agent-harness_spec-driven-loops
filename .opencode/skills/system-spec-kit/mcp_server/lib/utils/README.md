@@ -105,6 +105,26 @@ Excluded-from-index rule: the constitutional `README.md` at `.opencode/skills/sy
 
 Operator maintenance CLI for pre-existing pollution: `scripts/dist/memory/cleanup-index-scope-violations.js` with `--apply` / `--verify`. Target verify counts: `constitutional_total=2`, `z_future_rows=0`, `external_rows=0`, `invalid_constitutional_rows=0`.
 
+#### Index scope vs scoring decay (SSOT)
+
+Two distinct mechanisms govern how content surfaces in retrieval. Reasoning about them as one mechanism is the bug that packet 113 fixed.
+
+| Mechanism | Defined in | Behavior |
+|-----------|------------|----------|
+| Scope exclusion | `index-scope.ts:EXCLUDED_FOR_MEMORY` | Binary: a path is either admissible for indexing or absent from the index entirely. Cannot be retrieved at any score. |
+| Scoring decay | `shared/scoring/folder-scoring.ts:ARCHIVE_MULTIPLIERS` | Multiplicative penalty on indexed content. Path stays in the index but its score is multiplied by 0.05-0.2 before ranking. |
+
+Path placement is intentional and not interchangeable:
+
+| Path | Mechanism | Reason |
+|------|-----------|--------|
+| `z_future/` | scope-excluded | Speculative content with no decay multiplier defined; indexing at 1.0 would surface unproven ideas as authoritative |
+| `external/` | scope-excluded | Vendor / third-party content outside this repo's authority; indexing pollutes the spec-doc surface |
+| `z_archive/` | decay-only (0.1) | Shipped-but-archived spec content. Retrievable for pattern lookup, historical context, and continuity recovery — but deprioritized 10× so it doesn't drown current packets |
+| `scratch/`, `temp/`, `research/iterations/`, `review/iterations/`, `prototype/`, `*-test*/` | decay-only (0.2) | Working artifacts, iter outputs, prototypes. Indexed for discovery but penalized 5× |
+
+Packet 113 (commit `b062b12b4`) removed a redundant `z_archive` entry from `EXCLUDED_FOR_MEMORY` that was overriding the decay design. The SSOT rule going forward: if a path category has a multiplier in `ARCHIVE_MULTIPLIERS`, it stays out of `EXCLUDED_FOR_MEMORY`. Adding both makes the decay unreachable and removes archived content from retrieval entirely.
+
 ### Path Security (`path-security.ts`)
 
 Re-exports from `@spec-kit/shared/utils/path-security`:
