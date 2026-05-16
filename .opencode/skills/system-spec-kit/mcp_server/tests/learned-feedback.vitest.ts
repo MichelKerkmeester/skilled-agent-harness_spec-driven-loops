@@ -68,6 +68,14 @@ import {
   NEGATIVE_PENALTY_PER_VALIDATION,
   RECOVERY_HALF_LIFE_MS,
 } from '../lib/scoring/negative-feedback';
+import {
+  initEvalDb,
+  closeEvalDb,
+} from '../lib/eval/eval-db';
+import {
+  recordUserSelection,
+  getSelectionHistory,
+} from '../lib/eval/ground-truth-feedback';
 
 /* ───────────────────────────────────────────────────────────────
    HELPERS
@@ -469,6 +477,29 @@ describe('Learned Feedback Core Operations', () => {
     expect(result3.reason).toBe('top_3_exclusion');
   });
 
+  it('R11-CO02b: learned-feedback behavior is explicitly bounded by term, age, and rank safeguards', () => {
+    expect(MAX_TERMS_PER_SELECTION).toBe(3);
+    expect(MAX_TERMS_PER_MEMORY).toBe(8);
+    expect(MIN_MEMORY_AGE_MS).toBe(72 * 60 * 60 * 1000);
+    expect(TOP_N_EXCLUSION).toBe(3);
+    expect(LEARNED_TERM_TTL_MS).toBe(30 * 24 * 60 * 60 * 1000);
+
+    const extracted = extractLearnableTerms(
+      ['alpha-term', 'beta-term', 'gamma-term', 'delta-term', 'epsilon-term'],
+      [],
+    );
+    expect(extracted).toHaveLength(MAX_TERMS_PER_SELECTION);
+
+    const result = recordSelection(
+      'q-bounded',
+      1,
+      ['alpha-term', 'beta-term', 'gamma-term', 'delta-term', 'epsilon-term'],
+      TOP_N_EXCLUSION + 1,
+      testDb,
+    );
+    expect(result.terms.length).toBeLessThanOrEqual(MAX_TERMS_PER_SELECTION);
+  });
+
   it('R11-CO03: recordSelection rejects <72h memories (Safeguard #7)', () => {
     const result = recordSelection('q1', 3, ['authentication'], 5, testDb);
     expect(result.applied).toBe(false);
@@ -699,6 +730,48 @@ describe('Learned Feedback Audit Log (Safeguard #10)', () => {
     const entry = audit.find((a) => a.source === 'q-shadow');
     expect(entry).toBeDefined();
     expect(entry!.shadowMode).toBe(true);
+  });
+});
+
+describe('Ground Truth Feedback Capture (T027a)', () => {
+  let evalDir = '';
+
+  beforeEach(() => {
+    evalDir = fs.mkdtempSync(path.join(os.tmpdir(), 'ground-truth-feedback-'));
+    initEvalDb(evalDir);
+  });
+
+  afterEach(() => {
+    closeEvalDb();
+    if (evalDir && fs.existsSync(evalDir)) {
+      fs.rmSync(evalDir, { recursive: true, force: true });
+    }
+  });
+
+  it('R11-GT01: user selections persist bounded ground-truth context fields', () => {
+    const id = recordUserSelection('query-gt-1', 42, {
+      searchMode: 'search',
+      intent: 'debug',
+      selectedRank: 4,
+      totalResultsShown: 9,
+      sessionId: 'session-gt-1',
+      notes: 'validated result',
+    });
+
+    expect(id).toBeGreaterThan(0);
+    const [selection] = getSelectionHistory('query-gt-1');
+    expect(selection).toMatchObject({
+      queryId: 'query-gt-1',
+      memoryId: 42,
+      context: {
+        searchMode: 'search',
+        intent: 'debug',
+        selectedRank: 4,
+        totalResultsShown: 9,
+        sessionId: 'session-gt-1',
+        notes: 'validated result',
+      },
+    });
   });
 });
 

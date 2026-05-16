@@ -1,5 +1,6 @@
 // TEST: MCP INPUT VALIDATION
 import { describe, it, expect } from 'vitest';
+import * as fs from 'fs';
 
 import * as handlers from '../handlers/index';
 
@@ -263,6 +264,17 @@ describe('MCP Protocol Input Validation (T534) [deferred - requires DB test fixt
           expect(error).toBeDefined();
         }
       });
+    });
+  });
+
+  describe('memory_validate feedback contract', () => {
+    it('T534-feedback: adaptive writes stay best-effort and validation feedback fields remain surfaced', () => {
+      const source = fs.readFileSync(new URL('../handlers/checkpoints.ts', import.meta.url), 'utf8');
+
+      expect(source).toContain('recordAdaptiveSignal');
+      expect(source).toMatch(/catch\s*\(_error: unknown\)\s*\{\s*\/\/ Adaptive signals are best-effort only\s*\}/s);
+      expect(source).toContain('learnedFeedback');
+      expect(source).toContain('groundTruthSelectionId');
     });
   });
 });
