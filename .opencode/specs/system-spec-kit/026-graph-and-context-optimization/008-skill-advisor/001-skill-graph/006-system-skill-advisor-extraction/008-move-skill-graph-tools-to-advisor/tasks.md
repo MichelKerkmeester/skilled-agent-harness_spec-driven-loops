@@ -145,7 +145,7 @@ _memory:
 - [x] T032 Run strict validation for packet 008. [15m] {deps: T031}
   - Evidence: `validate.sh .../008-move-skill-graph-tools-to-advisor --strict` exited 0 with 0 errors and 0 warnings.
 - [x] T033 Run strict validation for parent 013/009 and grandparent 013. [20m] {deps: T032}
-  - Evidence: `validate.sh .../009-system-skill-advisor-extraction --strict` and `validate.sh .../013-skill-advisor-semantic-lane --strict` both exited 0 with 0 errors and 0 warnings.
+  - Evidence: `validate.sh .../009-system-skill-advisor-extraction --strict` and `validate.sh .../002-skill-advisor-semantic-lane --strict` both exited 0 with 0 errors and 0 warnings.
 - [x] T034 Update `implementation-summary.md`, `checklist.md`, and metadata with evidence without marking complete until all P0/P1 gates pass. [45m] {deps: T026, T027, T028, T029, T030, T031, T032, T033}
   - Evidence: Packet docs updated with D2 evidence and completion metadata; strict validation gates are run after doc reconciliation.
 <!-- /ANCHOR:phase-3 -->

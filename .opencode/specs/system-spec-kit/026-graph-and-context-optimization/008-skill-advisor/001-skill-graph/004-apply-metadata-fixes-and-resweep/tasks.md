@@ -84,7 +84,7 @@ _memory:
 <!-- ANCHOR:cross-refs -->
 ## CROSS-REFERENCES
 
-- Parent: `013-skill-advisor-semantic-lane`
+- Parent: `002-skill-advisor-semantic-lane`
 - Audit source: `005-skill-metadata-quality-audit/research/audit-report.md`
 - Baseline: `004-corpus-seeded-sweep/implementation-summary.md`
 - Test reused: `mcp_server/skill_advisor/tests/scorer/lane-weight-sweep.vitest.ts`

@@ -211,7 +211,7 @@ _memory:
 - [x] CHK-121 [P0] Strict validation passes for packet 008.
   - **Evidence**: `validate.sh .../008-move-skill-graph-tools-to-advisor --strict` exited 0 with 0 errors and 0 warnings.
 - [x] CHK-122 [P1] Strict validation passes for parent 013/009 and grandparent 013.
-  - **Evidence**: `validate.sh .../009-system-skill-advisor-extraction --strict` and `validate.sh .../013-skill-advisor-semantic-lane --strict` both exited 0 with 0 errors and 0 warnings.
+  - **Evidence**: `validate.sh .../009-system-skill-advisor-extraction --strict` and `validate.sh .../002-skill-advisor-semantic-lane --strict` both exited 0 with 0 errors and 0 warnings.
 - [x] CHK-123 [P1] Implementation summary records test results and residual risks.
   - **Evidence**: D1 evidence, test counts, smokes, scope anomaly, and D2 next action recorded in `implementation-summary.md`.
 <!-- /ANCHOR:deploy-ready -->

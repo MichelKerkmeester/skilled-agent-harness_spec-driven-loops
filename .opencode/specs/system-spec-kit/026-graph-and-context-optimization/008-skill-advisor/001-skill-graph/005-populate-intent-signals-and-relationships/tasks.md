@@ -84,7 +84,7 @@ _memory:
 <!-- ANCHOR:cross-refs -->
 ## CROSS-REFERENCES
 
-- Parent: `013-skill-advisor-semantic-lane`
+- Parent: `002-skill-advisor-semantic-lane`
 - Reference: `005-skill-metadata-quality-audit/research/audit-report.md`
 - Predecessor: `006-apply-metadata-fixes-and-resweep` (already touched description + trigger_phrases + key_topics)
 - Sibling parallel: `007-harder-intent-corpus-resweep`

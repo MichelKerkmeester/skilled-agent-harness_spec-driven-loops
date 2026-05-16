@@ -84,7 +84,7 @@ _memory:
 <!-- ANCHOR:cross-refs -->
 ## CROSS-REFERENCES
 
-- Parent: `013-skill-advisor-semantic-lane`
+- Parent: `002-skill-advisor-semantic-lane`
 - Advisory: `015/scratch/next-steps-advisory.md`
 - Sweep harness: `015/003-weight-sweep-harness`
 - Seed helper: `015/004-corpus-seeded-sweep`

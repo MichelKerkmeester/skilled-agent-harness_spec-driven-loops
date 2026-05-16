@@ -82,7 +82,7 @@ _memory:
 <!-- ANCHOR:cross-refs -->
 ## CROSS-REFERENCES
 
-- Parent: `013-skill-advisor-semantic-lane`
+- Parent: `002-skill-advisor-semantic-lane`
 - Predecessor baselines: `004-corpus-seeded-sweep`, `006-apply-metadata-fixes-and-resweep`
 - Sibling parallel packet: `008-populate-intent-signals-and-relationships`
 <!-- /ANCHOR:cross-refs -->

@@ -98,5 +98,5 @@ The codex impact discussion narrowed the shape to **Standalone Advisor MCP With 
 
 ## Dependencies
 
-- `013-skill-advisor-semantic-lane` shipped (commit `48d5470bc` and earlier on main). The 015 line stabilized advisor behavior so a structural migration is safe.
+- `002-skill-advisor-semantic-lane` shipped (commit `48d5470bc` and earlier on main). The 015 line stabilized advisor behavior so a structural migration is safe.
 - `010-template-levels` shipped (template foundations for the new skill's documentation).

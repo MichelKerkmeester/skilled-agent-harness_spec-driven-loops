@@ -54,7 +54,7 @@ _memory:
 The advisor source tree and this spec packet were moved outside git tracking before this run. The physical source move was already complete, but references still pointed at the old packet lineage and parts of the bridge still imported advisor modules from the deleted source location. The standalone advisor package also needed local TypeScript/Vitest/package metadata and its DB resolver still defaulted to the old Spec Kit database directory.
 
 ### Purpose
-Finish the partial move safely: rewrite old spec lineage references to the new `008-skill-advisor/013-skill-advisor-semantic-lane` nesting, recalibrate bridge imports to the landed `system-skill-advisor/mcp_server` tree, route advisor SQLite ownership to the new package with `SYSTEM_SKILL_ADVISOR_DB_DIR` override support, and leave validation evidence in this packet.
+Finish the partial move safely: rewrite old spec lineage references to the new `008-skill-advisor/002-skill-advisor-semantic-lane` nesting, recalibrate bridge imports to the landed `system-skill-advisor/mcp_server` tree, route advisor SQLite ownership to the new package with `SYSTEM_SKILL_ADVISOR_DB_DIR` override support, and leave validation evidence in this packet.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -63,7 +63,7 @@ Finish the partial move safely: rewrite old spec lineage references to the new `
 ## 3. SCOPE
 
 ### In Scope
-- Rewrite moved spec references from the old `015-skill-advisor-semantic-lane` lineage to the new `008-skill-advisor/013-skill-advisor-semantic-lane` lineage.
+- Rewrite moved spec references from the old `015-skill-advisor-semantic-lane` lineage to the new `008-skill-advisor/002-skill-advisor-semantic-lane` lineage.
 - Refresh `graph-metadata.json` and `description.json` for the moved `013` tree and add `013` to the `008-skill-advisor` parent graph.
 - Repoint bridge imports in `system-spec-kit/mcp_server` to the landed `system-skill-advisor/mcp_server` modules.
 - Update package-local advisor DB defaults and add `SYSTEM_SKILL_ADVISOR_DB_DIR`.
@@ -83,7 +83,7 @@ Finish the partial move safely: rewrite old spec lineage references to the new `
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/specs/.../008-skill-advisor/013-skill-advisor-semantic-lane/**` | Modify | Packet path and metadata recalibration |
+| `.opencode/specs/.../008-skill-advisor/002-skill-advisor-semantic-lane/**` | Modify | Packet path and metadata recalibration |
 | `.opencode/specs/.../008-skill-advisor/graph-metadata.json` | Modify | Add moved `013` child |
 | `.opencode/specs/.../007-code-graph/.../graph-metadata.json` | Modify | Rewrite cross references to moved packet |
 | `.opencode/skills/system-spec-kit/mcp_server/**` | Modify | Bridge imports, schemas/tool descriptors, config paths |
@@ -98,7 +98,7 @@ Finish the partial move safely: rewrite old spec lineage references to the new `
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-001 | Old moved spec path rewritten | Required rename sweep returns zero hits for the retired `015` lineage |
-| REQ-002 | Moved packet metadata is canonical | `013` graph ids point under `008-skill-advisor/013-skill-advisor-semantic-lane`; parent `008` lists the child |
+| REQ-002 | Moved packet metadata is canonical | `013` graph ids point under `008-skill-advisor/002-skill-advisor-semantic-lane`; parent `008` lists the child |
 | REQ-003 | Bridge imports resolve | `npm run typecheck` from `system-spec-kit/mcp_server` exits 0 |
 | REQ-004 | Advisor DB defaults to the new package | Projection/status use `system-skill-advisor/mcp_server/database/skill-graph.sqlite` absent env override |
 | REQ-005 | DB env override exists | `SYSTEM_SKILL_ADVISOR_DB_DIR` routes to `<override>/skill-graph.sqlite` |

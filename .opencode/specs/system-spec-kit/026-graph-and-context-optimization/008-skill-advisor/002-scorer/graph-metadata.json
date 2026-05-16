@@ -5,7 +5,7 @@
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor",
   "children_ids": [
     "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-scorer/001-skill-advisor-hook-improvements",
-    "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-scorer/013-skill-advisor-semantic-lane",
+    "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-scorer/002-skill-advisor-semantic-lane",
     "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-scorer/014-embed-cache-and-cosine-wiring",
     "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-scorer/015-ablation-sweep-and-promote",
     "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-scorer/016-weight-sweep-harness",

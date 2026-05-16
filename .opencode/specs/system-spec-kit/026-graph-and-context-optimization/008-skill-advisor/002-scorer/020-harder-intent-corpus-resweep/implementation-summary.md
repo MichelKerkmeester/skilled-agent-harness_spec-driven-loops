@@ -86,7 +86,7 @@ Implemented directly in the 015/007 packet without subagents. The default embedd
 | Gate | Status | Evidence |
 |------|--------|----------|
 | Strict spec validation | Pass | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/020-harder-intent-corpus-resweep --strict` -> RESULT: PASSED |
-| Parent strict validation | Pass | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/013-skill-advisor-semantic-lane --strict` -> RESULT: PASSED |
+| Parent strict validation | Pass | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-skill-advisor-semantic-lane --strict` -> RESULT: PASSED |
 | Typecheck | Pass | `npm run typecheck` from `mcp_server/` -> PASS |
 | Vitest skill_advisor | Pass with known baseline | `npm exec --workspace=@spec-kit/mcp-server -- vitest run skill_advisor` -> 42 files, 303 tests, 1 known `plugin-bridge.vitest.ts` failure |
 | Sweep harder run | Pass | `EMBEDDINGS_PROVIDER=hf-local LANE_WEIGHT_SWEEP_REPORT_FALLBACK_DIR=/tmp/015007-sweep npm exec -- vitest run skill_advisor/tests/scorer/lane-weight-sweep.vitest.ts --reporter dot` -> 1 file, 3 tests passed |

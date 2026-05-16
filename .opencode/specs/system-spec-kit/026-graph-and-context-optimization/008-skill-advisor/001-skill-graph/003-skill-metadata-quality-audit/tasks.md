@@ -80,7 +80,7 @@ _memory:
 <!-- ANCHOR:cross-refs -->
 ## CROSS-REFERENCES
 
-- Parent: `013-skill-advisor-semantic-lane`
+- Parent: `002-skill-advisor-semantic-lane`
 - Sibling driving signal: `004-corpus-seeded-sweep` (variance was zero with current metadata)
 - Source files: `.opencode/skills/<skill>/graph-metadata.json` + `.opencode/skills/<skill>/SKILL.md` for each active skill
 <!-- /ANCHOR:cross-refs -->

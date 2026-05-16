@@ -89,7 +89,7 @@ _memory:
 <!-- ANCHOR:cross-refs -->
 ## CROSS-REFERENCES
 
-- Parent phase: `013-skill-advisor-semantic-lane`
+- Parent phase: `002-skill-advisor-semantic-lane`
 - Sibling phase: `002-ablation-sweep-and-promote` (depends on this packet shipping)
 - Source files: `skill_advisor/lib/scorer/lane-registry.ts`, `scorer/lanes/semantic-shadow.ts`, `scorer/fusion.ts`, `shared/embeddings/factory.ts`
 <!-- /ANCHOR:cross-refs -->

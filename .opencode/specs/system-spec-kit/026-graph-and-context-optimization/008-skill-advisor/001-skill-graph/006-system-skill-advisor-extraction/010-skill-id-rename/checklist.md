@@ -112,7 +112,7 @@ _memory:
 - [x] CHK-040 [P1] Level 2 packet docs authored.
   - **Evidence**: `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, and `implementation-summary.md` filled.
 - [x] CHK-041 [P1] Strict validation passes.
-  - **Evidence**: Strict validation passes for `010-skill-id-rename`, parent `009-system-skill-advisor-extraction`, and lane parent `013-skill-advisor-semantic-lane`.
+  - **Evidence**: Strict validation passes for `010-skill-id-rename`, parent `009-system-skill-advisor-extraction`, and lane parent `002-skill-advisor-semantic-lane`.
 <!-- /ANCHOR:docs -->
 
 ---

@@ -107,7 +107,7 @@ No new helper, abstraction, variable rename, or scoring logic is introduced. The
 - Run strict validation at:
   - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/006-system-skill-advisor-extraction/009-fix-script-fs-scope`
   - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/006-system-skill-advisor-extraction`
-  - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/013-skill-advisor-semantic-lane`
+  - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-skill-advisor-semantic-lane`
 - Parse `description.json` and `graph-metadata.json` with Node.
 - Grep advisor scripts for any other `'..', '..', '..', '..'` chains as a note-only check. Do not fix unrelated chains in this packet.
 <!-- /ANCHOR:phases -->

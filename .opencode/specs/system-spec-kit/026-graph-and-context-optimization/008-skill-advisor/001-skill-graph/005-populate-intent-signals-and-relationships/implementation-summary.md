@@ -109,7 +109,7 @@ To be filled. Plan: cli-codex gpt-5.5 high reads each skill's SKILL.md + existin
 | Vitest skill_advisor | Pass with known baseline | `npm exec -- vitest run skill_advisor` from `mcp_server/`: 42 files, 303 tests; 1 failed known plugin-bridge test (`plugin-bridge.vitest.ts:97` expected `fail_open`, received `ok`). |
 | Dist rebuild | Pass | `npx tsc --build` from `system-spec-kit/` exited 0. |
 | Strict packet validation | Pass | `validate.sh 008-populate-intent-signals-and-relationships --strict`: RESULT PASSED, 0 errors, 0 warnings. |
-| Strict parent validation | Pass | `validate.sh 013-skill-advisor-semantic-lane --strict`: RESULT PASSED, 0 errors, 0 warnings. |
+| Strict parent validation | Pass | `validate.sh 002-skill-advisor-semantic-lane --strict`: RESULT PASSED, 0 errors, 0 warnings. |
 <!-- /ANCHOR:verification -->
 
 ---

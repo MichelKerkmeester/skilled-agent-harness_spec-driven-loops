@@ -48,5 +48,5 @@
       "plan.md"
     ]
   },
-  "migration_source": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/013-skill-advisor-semantic-lane/002-ablation-sweep-and-promote"
+  "migration_source": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-skill-advisor-semantic-lane/002-ablation-sweep-and-promote"
 }

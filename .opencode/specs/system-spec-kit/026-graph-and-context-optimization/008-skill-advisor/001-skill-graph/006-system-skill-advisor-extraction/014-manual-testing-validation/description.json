@@ -12,7 +12,7 @@
   "specId": "014",
   "folderSlug": "manual-testing-validation",
   "parentChain": [
-    "013-skill-advisor-semantic-lane",
+    "002-skill-advisor-semantic-lane",
     "009-system-skill-advisor-extraction"
   ],
   "memorySequence": 0,

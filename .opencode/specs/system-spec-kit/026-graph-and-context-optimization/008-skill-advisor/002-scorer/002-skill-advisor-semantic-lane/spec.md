@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "specification"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/013-skill-advisor-semantic-lane"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-skill-advisor-semantic-lane"
     last_updated_at: "2026-05-15T00:00:00Z"
     last_updated_by: "opencode-deepseek"
     recent_action: "Restructured: children promoted to siblings 014-023, slot converted to initial leaf phase"
@@ -24,7 +24,7 @@ _memory:
       - "implementation-summary.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000515"
-      session_id: "013-skill-advisor-semantic-lane"
+      session_id: "002-skill-advisor-semantic-lane"
       parent_session_id: null
     completion_pct: 100
     open_questions: []

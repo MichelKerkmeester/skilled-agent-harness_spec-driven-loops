@@ -48,7 +48,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-- Rewrote moved packet references from the old `015` lineage to `008-skill-advisor/013-skill-advisor-semantic-lane`.
+- Rewrote moved packet references from the old `015` lineage to `008-skill-advisor/002-skill-advisor-semantic-lane`.
 - Canonicalized moved `graph-metadata.json` and `description.json` files for the `013` tree.
 - Added the moved `013` packet to the `008-skill-advisor` parent graph.
 - Repaired Spec Kit bridge imports to load advisor modules from `system-skill-advisor/mcp_server`.
@@ -110,7 +110,7 @@ Step A used a scoped mechanical rewrite plus structured JSON metadata repair. St
 | Vitest | Recorded | Requested `npx vitest run skill_advisor` found no test files after the move; fail count 0 |
 | Strict validation 003 | Pass | `validate.sh .../003 --strict` exited 0 |
 | Strict validation 009 | Pass | `validate.sh .../009-system-skill-advisor-extraction --strict` exited 0 |
-| Strict validation 013 | Pass | `validate.sh .../013-skill-advisor-semantic-lane --strict` exited 0 |
+| Strict validation 013 | Pass | `validate.sh .../002-skill-advisor-semantic-lane --strict` exited 0 |
 | Strict validation 008 | Pass | `validate.sh .../008-skill-advisor --strict` exited 0 |
 <!-- /ANCHOR:verification -->
 

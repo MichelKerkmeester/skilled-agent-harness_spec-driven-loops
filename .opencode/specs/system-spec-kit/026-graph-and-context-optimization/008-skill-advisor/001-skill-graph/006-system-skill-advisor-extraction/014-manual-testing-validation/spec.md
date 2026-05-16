@@ -109,7 +109,7 @@ Validate the live advisor surface using native `mcp__system_skill_advisor__*` an
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-005 | Plugin bridge vitest regression is classified. | Both plugin bridge compat suites pass after restoring the expected spec-kit workspace dependency install. |
-| REQ-006 | Parent and lane validation are not regressed. | Strict validation passes for parent `009-system-skill-advisor-extraction` and lane `013-skill-advisor-semantic-lane`. |
+| REQ-006 | Parent and lane validation are not regressed. | Strict validation passes for parent `009-system-skill-advisor-extraction` and lane `002-skill-advisor-semantic-lane`. |
 | REQ-007 | Scope remains within the dispatch whitelist. | Staged changes include only the authorized packet docs and any authorized regression evidence. |
 <!-- /ANCHOR:requirements -->
 

@@ -13,7 +13,7 @@
   "specId": "015",
   "folderSlug": "mcp-server-rename-mk-skill-advisor",
   "parentChain": [
-    "013-skill-advisor-semantic-lane",
+    "002-skill-advisor-semantic-lane",
     "009-system-skill-advisor-extraction"
   ],
   "memorySequence": 1,

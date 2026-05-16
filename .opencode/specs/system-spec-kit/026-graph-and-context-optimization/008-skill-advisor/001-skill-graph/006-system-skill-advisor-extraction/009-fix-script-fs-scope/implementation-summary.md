@@ -114,7 +114,7 @@ No branch, commit, push, archive file, fixture edit, sibling packet edit, or par
 | Vitest after | Fail expected, improved | `280 passed / 287 total`, 4 failed, 3 skipped. |
 | Packet 009 strict validation | Pass | `validate.sh .../009-fix-script-fs-scope --strict` exits 0. |
 | Parent 013/009 strict validation | Pass | `validate.sh .../009-system-skill-advisor-extraction --strict` exits 0. |
-| Grandparent 013 strict validation | Pass | `validate.sh .../013-skill-advisor-semantic-lane --strict` exits 0. |
+| Grandparent 013 strict validation | Pass | `validate.sh .../002-skill-advisor-semantic-lane --strict` exits 0. |
 | `description.json` parse | Pass | Node `JSON.parse` exits 0. |
 | `graph-metadata.json` parse | Pass | Node `JSON.parse` exits 0. |
 | Similar deep path-chain grep | Pass | No remaining advisor-script `..`, `..`, `..`, `..` chain reported. |

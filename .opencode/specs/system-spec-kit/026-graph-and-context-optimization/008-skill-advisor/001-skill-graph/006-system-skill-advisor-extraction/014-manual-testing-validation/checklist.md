@@ -82,7 +82,7 @@ _memory:
 - [x] CHK-024 [P0] Packet 014 strict validation passes.
   - **Evidence**: `validate.sh .../014-manual-testing-validation --strict` reports 0 errors and 0 warnings.
 - [x] CHK-025 [P1] Parent and lane strict validation pass.
-  - **Evidence**: Parent `009-system-skill-advisor-extraction` and lane `013-skill-advisor-semantic-lane` strict validation both pass.
+  - **Evidence**: Parent `009-system-skill-advisor-extraction` and lane `002-skill-advisor-semantic-lane` strict validation both pass.
 <!-- /ANCHOR:testing -->
 
 ---

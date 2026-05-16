@@ -138,7 +138,7 @@ _memory:
 - [x] CHK-061 [P1] Parent 013/009 strict validation passes.
   - **Evidence**: `validate.sh .../009-system-skill-advisor-extraction --strict` exits 0.
 - [x] CHK-062 [P1] Grandparent 013 strict validation passes.
-  - **Evidence**: `validate.sh .../013-skill-advisor-semantic-lane --strict` exits 0.
+  - **Evidence**: `validate.sh .../002-skill-advisor-semantic-lane --strict` exits 0.
 <!-- /ANCHOR:validation -->
 
 ---

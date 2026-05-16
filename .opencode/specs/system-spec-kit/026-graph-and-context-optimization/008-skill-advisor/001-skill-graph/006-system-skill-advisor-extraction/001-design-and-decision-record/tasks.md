@@ -87,6 +87,6 @@ _memory:
 ## CROSS-REFERENCES
 
 - Parent: `006-system-skill-advisor-extraction`
-- Predecessor stability: `013-skill-advisor-semantic-lane` (8 sub-packets shipped)
+- Predecessor stability: `002-skill-advisor-semantic-lane` (8 sub-packets shipped)
 - Downstream packets gated on this: `016/002-scaffold-new-skill-folder` (not yet scaffolded), `016/003-move-source-and-tests`, `016/004-update-consumers`, `016/005-validation-and-cleanup`
 <!-- /ANCHOR:cross-refs -->

@@ -85,7 +85,7 @@ _memory:
 <!-- ANCHOR:cross-refs -->
 ## CROSS-REFERENCES
 
-- Parent phase: `013-skill-advisor-semantic-lane`
+- Parent phase: `002-skill-advisor-semantic-lane`
 - Sibling phases: `001-embed-cache-and-cosine-wiring`, `002-ablation-sweep-and-promote`, `003-weight-sweep-harness`
 - Source files: `skill_advisor/lib/scorer/lanes/semantic-shadow.ts` (loadSkillEmbeddings call site), `tests/scorer/lane-weight-sweep.vitest.ts`, `tests/scorer/fixtures/intent-prompt-corpus.ts`
 <!-- /ANCHOR:cross-refs -->
