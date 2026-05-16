@@ -1,5 +1,5 @@
 ---
-title: "Decision Record: Doctor Cutover Phase 2 [system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/005-cutover-phase/decision-record]"
+title: "Decision Record: Doctor Cutover Phase 2 [system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/004-cutover-phase/decision-record]"
 description: "Architectural Decision Records for the hard cutover phase: delete strategy, sed strategy, advisor rebuild order, historical annotation scope, and runtime mirror boundaries."
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: decision-record-core | v2.2 -->"
 ---

@@ -13,7 +13,7 @@ _memory:
     last_updated_at: "2026-05-11T16:00:00Z"
     last_updated_by: "spec-author"
     recent_action: "Phase 1 router shipped + verified"
-    next_safe_action: "Phase 2 lives in 005-cutover-phase"
+    next_safe_action: "Phase 2 lives in 004-cutover-phase"
     blockers: []
     key_files:
       - "spec.md"
@@ -187,7 +187,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: checklist-core | v2.2 -->"
 
 - [ ] CHK-901 [P1]: `generate-context.js` run for this packet; updated `description.json` + `graph-metadata.json`.
 - [ ] CHK-902 [P1]: Phase-parent `graph-metadata.json` `derived.last_active_child_id` = `003-router-phase`.
-- [ ] CHK-903 [P2]: Phase-parent `_memory.continuity.next_safe_action` updated to `Scaffold 005-cutover-phase`.
+- [ ] CHK-903 [P2]: Phase-parent `_memory.continuity.next_safe_action` updated to `Scaffold 004-cutover-phase`.
 - [ ] CHK-904 [P1]: `_memory.continuity.completion_pct` on this packet = 100.
 <!-- /ANCHOR:docs -->
 

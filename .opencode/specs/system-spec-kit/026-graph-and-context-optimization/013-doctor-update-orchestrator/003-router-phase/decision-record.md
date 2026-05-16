@@ -108,7 +108,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: decision-record-core | v2.2
 
 **Consequences:**
 - This packet (Phase 1) creates new files only; no deletes, no playbook touch, no advisor reindex.
-- Phase 2 (`005-cutover-phase`, planned) handles all the destructive + sync work atomically once Phase 1 is validated.
+- Phase 2 (`004-cutover-phase`, planned) handles all the destructive + sync work atomically once Phase 1 is validated.
 
 ---
 

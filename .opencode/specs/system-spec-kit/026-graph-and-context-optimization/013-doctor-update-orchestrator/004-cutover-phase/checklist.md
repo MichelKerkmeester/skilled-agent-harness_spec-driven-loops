@@ -1,5 +1,5 @@
 ---
-title: "Checklist: Doctor Cutover Phase 2 [system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/005-cutover-phase/checklist]"
+title: "Checklist: Doctor Cutover Phase 2 [system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/004-cutover-phase/checklist]"
 description: "Verification gates and completion criteria for the doctor command hard cutover: deletes, sed correctness, advisor rebuild, file counts, grep gates, and strict validation."
 trigger_phrases:
   - "013/005 cutover phase checklist"
@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/005-cutover-phase"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/004-cutover-phase"
     last_updated_at: "2026-05-11T17:00:00Z"
     last_updated_by: "spec-author"
     recent_action: "Phase 2 cutover shipped + verified"
@@ -53,9 +53,9 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: checklist-core | v2.2 -->"
 - [ ] CHK-001 [P0]: 003-router-phase static verification table has 7/7 YAML matches.
 - [ ] CHK-002 [P0]: `route-validate.sh` exits 0 before cutover.
 - [ ] CHK-003 [P0]: `route-validate.sh --self-test` rejects 3/3 bad fixtures.
-- [ ] CHK-004 [P0]: 013 parent `children_ids` includes `005-cutover-phase`.
-- [ ] CHK-005 [P0]: 005-cutover-phase has full Level 2 doc set.
-- [ ] CHK-006 [P0]: 005-cutover-phase passes strict validation before destructive deletes.
+- [ ] CHK-004 [P0]: 013 parent `children_ids` includes `004-cutover-phase`.
+- [ ] CHK-005 [P0]: 004-cutover-phase has full Level 2 doc set.
+- [ ] CHK-006 [P0]: 004-cutover-phase passes strict validation before destructive deletes.
 <!-- /ANCHOR:pre-impl -->
 
 ---

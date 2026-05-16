@@ -1,8 +1,8 @@
 ---
-title: "Feature Specification: Doctor Cutover Phase 2 [system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/005-cutover-phase/spec]"
+title: "Feature Specification: Doctor Cutover Phase 2 [system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/004-cutover-phase/spec]"
 description: "Phase 2 of the doctor command consolidation: hard cutover from legacy /doctor:* files to the shipped /doctor router by deleting old command files, updating playbook and harness invocations, refreshing advisor indices, and closing the 013 phase parent."
 trigger_phrases:
-  - "005-cutover-phase"
+  - "004-cutover-phase"
   - "doctor cutover phase 2"
   - "hard cutover"
   - "delete old doctor commands"
@@ -13,7 +13,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/005-cutover-phase"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/004-cutover-phase"
     last_updated_at: "2026-05-11T17:00:00Z"
     last_updated_by: "spec-author"
     recent_action: "Phase 2 cutover shipped + verified"
@@ -133,7 +133,7 @@ Complete the locked 10 -> 3 markdown end state with a hard cutover. Delete the 9
 - **SC-005:** `route-validate.sh` exits 0 and reports 7 routes validated.
 - **SC-006:** Case-insensitive stale invocation grep over `.opencode`, `.claude`, `.gemini`, and `.codex` returns zero non-archival matches.
 - **SC-007:** Every sandbox `.sh` file under `_sandbox/23--doctor-commands/` passes `bash -n`.
-- **SC-008:** 013 parent, 003-router-phase, and 005-cutover-phase all pass strict validation with zero errors and zero warnings.
+- **SC-008:** 013 parent, 003-router-phase, and 004-cutover-phase all pass strict validation with zero errors and zero warnings.
 <!-- /ANCHOR:success-criteria -->
 
 ---

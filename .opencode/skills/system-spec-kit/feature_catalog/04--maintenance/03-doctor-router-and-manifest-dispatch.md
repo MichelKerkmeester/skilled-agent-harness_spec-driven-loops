@@ -65,7 +65,7 @@ The router itself never mutates anything. Each YAML workflow declares its own mu
 |------|------|
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/spec.md` | Phase parent (lean trio) |
 | `.../013-doctor-update-orchestrator/003-router-phase/` | Phase 4 / former packet 014 Phase 1 (additive router) — Level 2 docs |
-| `.../013-doctor-update-orchestrator/005-cutover-phase/` | Phase 5 / former packet 014 Phase 2 (hard cutover) — Level 2 docs |
+| `.../013-doctor-update-orchestrator/004-cutover-phase/` | Phase 5 / former packet 014 Phase 2 (hard cutover) — Level 2 docs |
 
 ---
 

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/005-cutover-phase",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/005-cutover-phase",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/004-cutover-phase",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/004-cutover-phase",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator",
   "children_ids": [],
   "migrated": true,

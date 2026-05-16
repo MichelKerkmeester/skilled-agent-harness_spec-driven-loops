@@ -17,7 +17,7 @@ _memory:
     last_updated_at: "2026-05-11T16:00:00Z"
     last_updated_by: "spec-author"
     recent_action: "Phase 1 router shipped + verified"
-    next_safe_action: "Phase 2 lives in 005-cutover-phase"
+    next_safe_action: "Phase 2 lives in 004-cutover-phase"
     blockers: []
     key_files:
       - "spec.md"
@@ -53,7 +53,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->"
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
 | **Predecessor** | `../002-rm8-013-remediation-doc-honesty-security/spec.md` |
-| **Successor** | `../005-cutover-phase/spec.md` |
+| **Successor** | `../004-cutover-phase/spec.md` |
 <!-- /ANCHOR:metadata -->
 
 ---

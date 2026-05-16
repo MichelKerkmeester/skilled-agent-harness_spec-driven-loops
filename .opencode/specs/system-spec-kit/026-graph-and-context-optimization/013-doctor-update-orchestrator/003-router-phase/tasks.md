@@ -13,7 +13,7 @@ _memory:
     last_updated_at: "2026-05-11T16:00:00Z"
     last_updated_by: "spec-author"
     recent_action: "Phase 1 router shipped + verified"
-    next_safe_action: "Phase 2 lives in 005-cutover-phase"
+    next_safe_action: "Phase 2 lives in 004-cutover-phase"
     blockers: []
     key_files:
       - "spec.md"
@@ -149,7 +149,7 @@ Each task keeps its original `T-###` identifier so references from `plan.md`, `c
 - [ ] **Effort:** 5 min
 - [ ] Run `generate-context.js` for this packet.
 - [ ] Update `description.json` + `graph-metadata.json`.
-- [ ] Update phase-parent `_memory.continuity.next_safe_action` to `Scaffold 005-cutover-phase`.
+- [ ] Update phase-parent `_memory.continuity.next_safe_action` to `Scaffold 004-cutover-phase`.
 <!-- /ANCHOR:phase-3 -->
 
 ---

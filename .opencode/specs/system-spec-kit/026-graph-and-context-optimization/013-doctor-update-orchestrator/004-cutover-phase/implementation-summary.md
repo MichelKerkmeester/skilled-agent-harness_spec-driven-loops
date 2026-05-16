@@ -10,7 +10,7 @@ contextType: "implementation"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/005-cutover-phase"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/004-cutover-phase"
     last_updated_at: "2026-05-11T17:00:00Z"
     last_updated_by: "spec-author"
     recent_action: "Phase 2 cutover shipped + verified"
@@ -30,7 +30,7 @@ _memory:
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-# Implementation Summary: [005-cutover-phase]
+# Implementation Summary: [004-cutover-phase]
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- STATUS: PLACEHOLDER - fill after implementation -->
@@ -42,10 +42,10 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/005-cutover-phase` |
+| **Spec Folder** | `system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/004-cutover-phase` |
 | **Status** | Placeholder |
 | **Level** | 2 |
-| **Phase** | [005-cutover-phase] |
+| **Phase** | [004-cutover-phase] |
 | **Implementation State** | [pending] |
 | **Completion Condition** | [pending verification evidence] |
 <!-- /ANCHOR:metadata -->

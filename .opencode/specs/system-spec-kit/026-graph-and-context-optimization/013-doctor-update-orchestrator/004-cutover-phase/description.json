@@ -1,6 +1,6 @@
 {
   "childTopology": [],
-  "specFolder": "005-cutover-phase",
+  "specFolder": "004-cutover-phase",
   "description": "Phase 2 of the doctor command consolidation: hard cutover from legacy /doctor:* commands to the shipped /doctor router. Deletes 9 old .opencode markdown files and 9 old .gemini TOML files, rewrites manual playbook and sandbox invocations, annotates 013 historical records, rebuilds advisor indexing, and closes the 013 parent.",
   "keywords": [
     "cutover-phase",

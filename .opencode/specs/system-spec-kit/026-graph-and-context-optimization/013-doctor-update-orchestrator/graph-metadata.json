@@ -8,7 +8,7 @@
     "system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/002-sandbox-testing-playbook",
     "system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/002-rm8-013-remediation-doc-honesty-security",
     "system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/003-router-phase",
-    "system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/005-cutover-phase"
+    "system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/004-cutover-phase"
   ],
   "migrated": true,
   "migration_source": "legacy",
@@ -32,7 +32,7 @@
       "002-sandbox-testing-playbook",
       "001-doctor-commands handover",
       "003-router-phase",
-      "005-cutover-phase"
+      "004-cutover-phase"
     ],
     "key_topics": [
       "013-doctor-update-orchestrator",
@@ -72,7 +72,7 @@
       ".opencode/commands/doctor/deep-loop.md",
       ".opencode/commands/doctor/cocoindex.md",
       "003-router-phase/spec.md",
-      "005-cutover-phase/spec.md"
+      "004-cutover-phase/spec.md"
     ],
     "entities": [
       {
@@ -230,7 +230,7 @@
       "handover.md",
       "resource-map.md"
     ],
-    "last_active_child_id": "005-cutover-phase",
+    "last_active_child_id": "004-cutover-phase",
     "last_active_at": "2026-05-12T04:55:46Z"
   }
 }

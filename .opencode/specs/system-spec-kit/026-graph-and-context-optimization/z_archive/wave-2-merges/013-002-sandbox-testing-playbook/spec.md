@@ -65,7 +65,7 @@ This packet adds the validation layer for sibling `001-doctor-commands`: 23 manu
 | **Created** | 2026-05-09 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
-| **Superseded By** | ../003-router-phase/ and ../005-cutover-phase/ (router consolidation + cutover, 2026-05-11) |
+| **Superseded By** | ../003-router-phase/ and ../004-cutover-phase/ (router consolidation + cutover, 2026-05-11) |
 | **Sibling** | 001-doctor-commands (Complete) |
 | **Predecessor** | 001-doctor-commands |
 | **Successor** | None |
