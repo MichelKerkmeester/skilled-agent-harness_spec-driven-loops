@@ -47,7 +47,7 @@ Activation signals:
 - A runtime hook needs a skill recommendation before execution.
 - An operator asks about `advisor_recommend`, `advisor_status`, `advisor_rebuild`, `advisor_validate`, `skill_graph_scan`, `skill_graph_query`, `skill_graph_status`, `skill_graph_validate`, or `skill_graph_propagate_enhances`.
 - A packet touches the skill graph, skill metadata, advisor scorer, advisor feature catalog, or manual testing playbook.
-- A migration step references ADR-001: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/022-system-skill-advisor-extraction/001-design-and-decision-record/decision-record.md`.
+- A migration step references ADR-001: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/006-system-skill-advisor-extraction/001-design-and-decision-record/decision-record.md`.
 
 Do not use this skill as a replacement for the recommended target skill. For example, route code implementation to `sk-code`, documentation authoring to `sk-doc`, git work to `sk-git`, and MCP orchestration to `mcp-code-mode` after the advisor has made the recommendation.
 
@@ -108,7 +108,9 @@ The routing key is the prompt's intent class, scored by `advisor_recommend` agai
 
 ADR-001 locks the target shape as **Standalone Advisor MCP With Legacy Tool Bridge**.
 
-The package owns a dedicated MCP server named `mk_skill_advisor`. Public tool ids stay stable:
+The package owns a dedicated MCP server named `mk_skill_advisor`. It registers **8 public tools plus 1 internal trusted-caller tool** (9 total). The tool ids stay stable:
+
+Public (8):
 
 - `advisor_recommend`
 - `advisor_rebuild`
@@ -118,7 +120,10 @@ The package owns a dedicated MCP server named `mk_skill_advisor`. Public tool id
 - `skill_graph_query`
 - `skill_graph_status`
 - `skill_graph_validate`
-- `skill_graph_propagate_enhances`
+
+Internal trusted-caller (1):
+
+- `skill_graph_propagate_enhances` — gated behind trusted-caller auth (see `references/tool-ids-reference.md` §4)
 
 The stable tool ids matter because live consumers already call them from hooks, Python compatibility shims, plugin bridges, doctor workflows, install guides, and MCP clients. Server-level namespacing supplies the boundary, so callers use the standalone server without learning a new advisor vocabulary.
 
@@ -161,9 +166,9 @@ Escalate if:
 
 Primary contract:
 
-- ADR-001: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/022-system-skill-advisor-extraction/001-design-and-decision-record/decision-record.md`
-- Extraction survey: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/022-system-skill-advisor-extraction/001-design-and-decision-record/research/extraction-survey.md`
-- Standalone MCP discussion: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/022-system-skill-advisor-extraction/001-design-and-decision-record/research/standalone-mcp-discussion.md`
+- ADR-001: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/006-system-skill-advisor-extraction/001-design-and-decision-record/decision-record.md`
+- Extraction survey: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/006-system-skill-advisor-extraction/001-design-and-decision-record/research/extraction-survey.md`
+- Standalone MCP discussion: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/006-system-skill-advisor-extraction/001-design-and-decision-record/research/standalone-mcp-discussion.md`
 
 Package references:
 

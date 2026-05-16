@@ -9,7 +9,7 @@ Metadata, structural migration, daemon/advisor unification, extraction.
 - `003-skill-metadata-quality-audit`
 - `004-apply-metadata-fixes-and-resweep`
 - `005-populate-intent-signals-and-relationships`
-- `022-system-skill-advisor-extraction`
+- `006-system-skill-advisor-extraction`
 - `026-cross-skill-auto-propagation`
 
 ## Provenance

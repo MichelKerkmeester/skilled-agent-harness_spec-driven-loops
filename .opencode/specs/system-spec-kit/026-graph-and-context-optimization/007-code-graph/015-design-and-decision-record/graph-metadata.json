@@ -13,7 +13,7 @@
     "supersedes": [],
     "related_to": [
       "system-spec-kit/026-graph-and-context-optimization/010-template-levels",
-      "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/022-system-skill-advisor-extraction/001-design-and-decision-record"
+      "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/006-system-skill-advisor-extraction/001-design-and-decision-record"
     ]
   },
   "derived": {

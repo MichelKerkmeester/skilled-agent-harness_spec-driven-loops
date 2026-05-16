@@ -14,7 +14,7 @@
     "supersedes": [],
     "related_to": [
       "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/020-harder-intent-corpus-resweep",
-      "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/022-system-skill-advisor-extraction"
+      "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/006-system-skill-advisor-extraction"
     ]
   },
   "derived": {

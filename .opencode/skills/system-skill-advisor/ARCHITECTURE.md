@@ -39,12 +39,13 @@ Current-reality architecture for the standalone Skill Advisor package. The packa
 
 `system-skill-advisor` is the standalone Gate 2 routing subsystem. It recommends the right skill for non-trivial prompts, reports advisor freshness, validates routing quality, rebuilds advisor state, and exposes the SQLite-backed skill graph through the same MCP server namespace.
 
-The current server id is `mk_skill_advisor`. It is registered as a native MCP server and exposes eight public tools:
+The current server id is `mk_skill_advisor`. It is registered as a native MCP server and exposes **8 public tools plus 1 internal trusted-caller tool** (9 total):
 
-| Tool family | Tools |
-|---|---|
-| Advisor routing | `advisor_recommend`, `advisor_rebuild`, `advisor_status`, `advisor_validate` |
-| Skill graph | `skill_graph_scan`, `skill_graph_query`, `skill_graph_status`, `skill_graph_validate` |
+| Tool family | Tools | Visibility |
+|---|---|---|
+| Advisor routing | `advisor_recommend`, `advisor_rebuild`, `advisor_status`, `advisor_validate` | public |
+| Skill graph | `skill_graph_scan`, `skill_graph_query`, `skill_graph_status`, `skill_graph_validate` | public |
+| Skill graph (trusted) | `skill_graph_propagate_enhances` | internal — trusted-caller auth (see `references/tool-ids-reference.md` §4) |
 
 The public `advisor_*` ids remain stable from the original extraction ADR. The `skill_graph_*` ids moved under this server in packet 013/009/008. The package docs intentionally describe current state, not the early child-002 envelope.
 
@@ -223,8 +224,9 @@ Runtime trust states use the shared vocabulary:
 | `skill_graph_query` | `handlers/skill-graph/query.ts` | Traverse dependencies, families, subgraphs, hubs, conflicts, and related graph views |
 | `skill_graph_status` | `handlers/skill-graph/status.ts` | Report graph counts, families, categories, staleness, and DB status |
 | `skill_graph_validate` | `handlers/skill-graph/validate.ts` | Validate graph schema drift, broken edges, reciprocal symmetry, and dependency-cycle issues |
+| `skill_graph_propagate_enhances` | `handlers/skill-graph/propagate-enhances.ts` | (Internal, trusted-caller) Detect, report, and optionally apply missing inbound `enhances` edges across skills |
 
-`opencode.json` still contains a note saying the server registers four tools. That note is stale relative to the current tool descriptors and packet 013/009/008. This doc follows the source surface in `mcp_server/tools/index.ts` and `mcp_server/tools/skill-graph-tools.ts`.
+`opencode.json` `_NOTE_2_TOOLS` reflects this surface as "9 tools (8 public + 1 internal trusted-caller)" — kept in sync as of packet 025. This doc follows the source surface in `mcp_server/tools/index.ts` and `mcp_server/tools/skill-graph-tools.ts`.
 
 <!-- /ANCHOR:mcp-surface -->
 
@@ -274,7 +276,6 @@ Current doc-alignment note: the checked-in regression harness was run during thi
 ## 9. FUTURE WORK
 
 - Packet 011: move or settle the `lib/skill-graph/` library location so handlers no longer depend on the `system-spec-kit` runtime tree.
-- Refresh `opencode.json` notes so MCP registration comments mention all eight `mk_skill_advisor` tools.
 - Reconcile regression-fixture totals and expected ids with the current command/skill naming model.
 - Promote any lane-weight changes only with measured validation evidence and synchronized docs.
 
@@ -292,6 +293,6 @@ Current doc-alignment note: the checked-in regression harness was run during thi
 - [references/legacy-tool-bridge.md](./references/legacy-tool-bridge.md)
 - [feature_catalog/feature_catalog.md](./feature_catalog/feature_catalog.md)
 - [manual_testing_playbook/manual_testing_playbook.md](./manual_testing_playbook/manual_testing_playbook.md)
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/022-system-skill-advisor-extraction/001-design-and-decision-record/decision-record.md`
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/006-system-skill-advisor-extraction/001-design-and-decision-record/decision-record.md`
 
 <!-- /ANCHOR:related -->
