@@ -81,7 +81,7 @@ The following protected scopes were not remediated by the bulk pass:
 - `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/028-deep-review-skill-contract-fixes/`
 - `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/009-stress-test-pattern-documentation/`
 - `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/005-vestigial-embedding-readiness-gate-removal/`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/011-stale-doc-and-readme-fixes/`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/006-stale-doc-and-readme-fixes/`
 - `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/012-broad-suite-vitest-honesty/`
 - `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/013-skdoc-legacy-template-debt-cleanup/` for audit bulk edits only. Packet docs were updated as required by this packet.
 

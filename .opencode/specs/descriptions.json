@@ -3912,7 +3912,7 @@
       "lastUpdated": "2026-05-08T08:26:57.107Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/011-stale-doc-and-readme-fixes",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/006-stale-doc-and-readme-fixes",
       "description": "Spec: Stale Doc + README Fixes (Tier 1+2)",
       "keywords": [
         "spec",

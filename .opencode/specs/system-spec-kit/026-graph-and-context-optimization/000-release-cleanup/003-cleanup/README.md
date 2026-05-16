@@ -9,7 +9,7 @@ Documentation fixes, template debt, orphan management, remediation.
 - `003-vitest-baseline-recovery`
 - `004-search-rag-measurement-driven-implementation`
 - `005-vestigial-embedding-readiness-gate-removal`
-- `011-stale-doc-and-readme-fixes`
+- `006-stale-doc-and-readme-fixes`
 - `012-broad-suite-vitest-honesty`
 - `013-skdoc-legacy-template-debt-cleanup`
 - `014-phase-parent-documentation`

@@ -3,25 +3,25 @@ title: "Tasks: Stale Doc + README Fixes"
 template_source: "SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2"
 description: "Task ledger for the 12 scoped stale documentation updates from 011 deep-review findings F-001/002/004/006 and the README staleness audit."
 trigger_phrases:
-  - "011-stale-doc-and-readme-fixes tasks"
+  - "006-stale-doc-and-readme-fixes tasks"
   - "stale doc readme remediation tasks"
   - "readme staleness audit tasks"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/011-stale-doc-and-readme-fixes"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/006-stale-doc-and-readme-fixes"
     last_updated_at: "2026-04-29T11:12:30Z"
     last_updated_by: "codex-gpt-5.5"
     recent_action: "Closed 12 stale doc/README findings"
     next_safe_action: "Re-run README staleness audit to confirm 0 STALE-HIGH"
     blockers: []
     key_files:
-      - "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/011-stale-doc-and-readme-fixes/spec.md"
-      - "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/011-stale-doc-and-readme-fixes/plan.md"
+      - "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/006-stale-doc-and-readme-fixes/spec.md"
+      - "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/006-stale-doc-and-readme-fixes/plan.md"
     session_dedup:
-      fingerprint: "sha256:011-stale-doc-and-readme-fixes-tasks"
-      session_id: "011-stale-doc-and-readme-fixes"
+      fingerprint: "sha256:006-stale-doc-and-readme-fixes-tasks"
+      session_id: "006-stale-doc-and-readme-fixes"
       parent_session_id: null
     completion_pct: 100
     open_questions: []

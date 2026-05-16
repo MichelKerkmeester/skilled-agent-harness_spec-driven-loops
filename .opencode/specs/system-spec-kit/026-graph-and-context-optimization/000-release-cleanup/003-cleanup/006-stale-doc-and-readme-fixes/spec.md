@@ -3,14 +3,14 @@ title: "Spec: Stale Doc + README Fixes (Tier 1+2)"
 template_source: "SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2"
 description: "Tier 1+2 remediation from 011 deep-review + README staleness audit: 12 stale doc/README updates surfaced by today's 022-028 + cross-track work. Pure documentation; no runtime change."
 trigger_phrases:
-  - "011-stale-doc-and-readme-fixes"
+  - "006-stale-doc-and-readme-fixes"
   - "tier 1 stale doc fixes"
   - "readme staleness remediation"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/011-stale-doc-and-readme-fixes"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/006-stale-doc-and-readme-fixes"
     last_updated_at: "2026-04-29T11:12:30Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Closed 12 stale doc/README findings (F-001/002/004/006 + README audit HIGH+MED)"

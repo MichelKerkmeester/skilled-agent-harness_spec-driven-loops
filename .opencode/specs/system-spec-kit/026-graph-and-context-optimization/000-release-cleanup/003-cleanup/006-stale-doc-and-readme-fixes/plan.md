@@ -3,25 +3,25 @@ title: "Implementation Plan: Stale Doc + README Fixes"
 template_source: "SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2"
 description: "Plan for retiring 12 stale documentation findings from the 011 deep-review and README staleness audit without changing runtime or test code."
 trigger_phrases:
-  - "011-stale-doc-and-readme-fixes plan"
+  - "006-stale-doc-and-readme-fixes plan"
   - "stale doc readme remediation plan"
   - "readme staleness remediation"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/011-stale-doc-and-readme-fixes"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/006-stale-doc-and-readme-fixes"
     last_updated_at: "2026-04-29T11:12:30Z"
     last_updated_by: "codex-gpt-5.5"
     recent_action: "Closed 12 stale doc/README findings"
     next_safe_action: "Re-run README staleness audit to confirm 0 STALE-HIGH"
     blockers: []
     key_files:
-      - "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/011-stale-doc-and-readme-fixes/spec.md"
+      - "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/006-stale-doc-and-readme-fixes/spec.md"
       - "/tmp/audit-readme-staleness-report.md"
     session_dedup:
-      fingerprint: "sha256:011-stale-doc-and-readme-fixes-plan"
-      session_id: "011-stale-doc-and-readme-fixes"
+      fingerprint: "sha256:006-stale-doc-and-readme-fixes-plan"
+      session_id: "006-stale-doc-and-readme-fixes"
       parent_session_id: null
     completion_pct: 100
     open_questions: []
