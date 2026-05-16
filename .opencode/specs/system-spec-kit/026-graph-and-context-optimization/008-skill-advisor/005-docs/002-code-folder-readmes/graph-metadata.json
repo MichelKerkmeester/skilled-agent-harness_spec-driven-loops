@@ -6,7 +6,7 @@
   "children_ids": [],
   "manual": {
     "depends_on": [
-      "system-spec-kit/026-graph-and-context-optimization/007-code-graph/035-code-folder-readmes"
+      "system-spec-kit/026-graph-and-context-optimization/007-code-graph/017-code-folder-readmes"
     ],
     "supersedes": [],
     "related_to": [

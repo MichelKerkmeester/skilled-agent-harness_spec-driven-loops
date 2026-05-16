@@ -78,7 +78,7 @@ This resource map enumerates the 9 candidate folders from the original Phase B p
 | Bulk auditor | `.opencode/skills/sk-doc/scripts/audit_readmes.py` | System-skill-advisor sweep |
 | Full-scaffold exemplar | `.opencode/skills/system-code-graph/mcp_server/README.md` | Phase A precedent, full 9-section shape |
 | Compact exemplar | `.opencode/skills/system-code-graph/mcp_server/core/README.md` | Phase A precedent, compact shape |
-| Phase A packet | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/035-code-folder-readmes/` | Predecessor pipeline proof |
+| Phase A packet | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/017-code-folder-readmes/` | Predecessor pipeline proof |
 | Strict validator | `.opencode/skills/system-spec-kit/scripts/spec/validate.sh` | Packet-level validation |
 <!-- /ANCHOR:assets -->
 

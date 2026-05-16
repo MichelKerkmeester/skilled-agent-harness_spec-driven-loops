@@ -123,7 +123,7 @@ Build the MCP server first, then exercise the bridge against a spec folder. Run 
 
 ```bash
 cd .opencode/skills/system-code-graph && npm run build
-node .opencode/skills/system-code-graph/mcp_server/plugin_bridges/mk-code-graph-bridge.mjs --minimal --spec-folder .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/035-code-folder-readmes
+node .opencode/skills/system-code-graph/mcp_server/plugin_bridges/mk-code-graph-bridge.mjs --minimal --spec-folder .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/017-code-folder-readmes
 ```
 
 Expected result: a single JSON document on stdout with the resume payload. Exit code 0. Any runtime initialization error exits 1 with a message on stderr.

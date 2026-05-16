@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/035-code-folder-readmes"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/017-code-folder-readmes"
     last_updated_at: "2026-05-15T08:50:00Z"
     last_updated_by: "main_agent"
     recent_action: "Placeholder created; awaiting Pass 1 + Pass 2 + validation"
@@ -35,7 +35,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | system-spec-kit/026-graph-and-context-optimization/007-code-graph/035-code-folder-readmes |
+| **Spec Folder** | system-spec-kit/026-graph-and-context-optimization/007-code-graph/017-code-folder-readmes |
 | **Completed** | TBD |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
@@ -82,7 +82,7 @@ Placeholder.
 | Per-README HVR score | TBD | `python3 .opencode/skills/sk-doc/scripts/validate_document.py <readme> --json` |
 | Anchor presence | TBD | `grep -c 'ANCHOR' <readme>` (expect >= 4) |
 | Bulk audit | TBD | `python3 .opencode/skills/sk-doc/scripts/audit_readmes.py` |
-| Strict-validate packet | TBD | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/035-code-folder-readmes --strict` |
+| Strict-validate packet | TBD | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/017-code-folder-readmes --strict` |
 <!-- /ANCHOR:verification -->
 
 ---

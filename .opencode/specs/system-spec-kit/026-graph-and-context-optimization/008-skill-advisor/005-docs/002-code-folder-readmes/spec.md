@@ -53,7 +53,7 @@ _memory:
 | **Branch** | `main` |
 | **Parent** | `system-spec-kit/026-graph-and-context-optimization/008-skill-advisor` |
 | **Phase** | B of 4 |
-| **Predecessor** | `007-code-graph/035-code-folder-readmes` (Phase A, shipped) |
+| **Predecessor** | `007-code-graph/017-code-folder-readmes` (Phase A, shipped) |
 | **Successor** | `014-local-embeddings-migration/054-code-folder-readmes` (Phase C) |
 | **Handoff Criteria** | 2 new `README.md` files in fixture folders + TOC anchor blocks added to 5 existing READMEs, each sk-doc validate exit 0, strict-validate on this packet exit 0 |
 <!-- /ANCHOR:metadata -->
@@ -227,5 +227,5 @@ None. Scope, dispatch, and verification questions resolved at planning time.
 - **Implementation Plan**: See `plan.md`
 - **Task Breakdown**: See `tasks.md`
 - **Resource Map**: See `resource-map.md`
-- **Phase A predecessor**: `../../007-code-graph/035-code-folder-readmes/`
+- **Phase A predecessor**: `../../007-code-graph/017-code-folder-readmes/`
 <!-- /ANCHOR:related-docs -->

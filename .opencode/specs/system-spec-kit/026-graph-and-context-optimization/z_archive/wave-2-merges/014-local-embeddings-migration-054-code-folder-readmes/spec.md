@@ -54,7 +54,7 @@ _memory:
 | **Branch** | `main` |
 | **Parent** | `system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration` |
 | **Phase** | C of 4 |
-| **Predecessors** | `007-code-graph/035-code-folder-readmes` (Phase A), `008-skill-advisor/002-code-folder-readmes` (Phase B) |
+| **Predecessors** | `007-code-graph/017-code-folder-readmes` (Phase A), `008-skill-advisor/002-code-folder-readmes` (Phase B) |
 | **Successor** | `014-local-embeddings-migration/055-root-readme-realignment` (Phase D) |
 | **Handoff Criteria** | 8 new `README.md` files in scope folders, each sk-doc validate exit 0, strict-validate on this packet exit 0 |
 <!-- /ANCHOR:metadata -->
@@ -226,5 +226,5 @@ None. Scope and verification questions resolved at planning time.
 - **Implementation Plan**: See `plan.md`
 - **Task Breakdown**: See `tasks.md`
 - **Resource Map**: See `resource-map.md`
-- **Predecessors**: `../../007-code-graph/035-code-folder-readmes/`, `../../008-skill-advisor/002-code-folder-readmes/`
+- **Predecessors**: `../../007-code-graph/017-code-folder-readmes/`, `../../008-skill-advisor/002-code-folder-readmes/`
 <!-- /ANCHOR:related-docs -->
