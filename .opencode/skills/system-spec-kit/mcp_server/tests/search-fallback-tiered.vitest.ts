@@ -4,6 +4,7 @@
 // Tests: Feature flag gating, tier progression, structuralSearch,
 // Degradation metadata, result merging, R15 invariant
 
+import { readFileSync } from 'node:fs';
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 
 import {
@@ -35,6 +36,9 @@ beforeEach(() => {
 });
 
 afterEach(() => {
+  __testables.setEnrichFusedResultsObserver(null);
+  vi.restoreAllMocks();
+
   for (const [key, val] of Object.entries(envBackup)) {
     if (val === undefined) {
       delete process.env[key];
@@ -43,6 +47,42 @@ afterEach(() => {
     }
   }
 });
+
+function extractFunctionBody(source: string, functionName: string): string {
+  const signatureIndex = source.indexOf(`function ${functionName}(`);
+  expect(signatureIndex).toBeGreaterThanOrEqual(0);
+
+  let parameterDepth = 0;
+  let sawParameters = false;
+  let bodyStart = -1;
+  for (let index = signatureIndex; index < source.length; index += 1) {
+    const char = source[index];
+    if (char === '(') {
+      parameterDepth += 1;
+      sawParameters = true;
+    }
+    if (char === ')') {
+      parameterDepth -= 1;
+    }
+    if (sawParameters && parameterDepth === 0) {
+      bodyStart = source.indexOf('{', index);
+      break;
+    }
+  }
+  expect(bodyStart).toBeGreaterThanOrEqual(0);
+
+  let depth = 0;
+  for (let index = bodyStart; index < source.length; index += 1) {
+    const char = source[index];
+    if (char === '{') depth += 1;
+    if (char === '}') depth -= 1;
+    if (depth === 0) {
+      return source.slice(bodyStart + 1, index);
+    }
+  }
+
+  throw new Error(`Unable to extract ${functionName} body`);
+}
 
 /* --- HELPER: in-memory DB with memory_index table --- */
 
@@ -365,6 +405,66 @@ describe('PI-A2: Regression guards', () => {
     const limited = __testables.applyResultLimit(rows, 3);
     expect(limited).toHaveLength(3);
     expect(limited.map(r => r.id)).toEqual([1, 2, 3]);
+  });
+
+  it('T045-17e: searchWithFallbackTiered has one enrichment handoff after tier merging', () => {
+    const source = readFileSync(
+      new URL('../lib/search/hybrid-search.ts', import.meta.url),
+      'utf8',
+    );
+    const body = extractFunctionBody(source, 'searchWithFallbackTiered');
+    const enrichmentCalls = body.match(/\benrichFusedResults\(/g) ?? [];
+
+    expect(enrichmentCalls).toHaveLength(1);
+  });
+
+  it('T045-17f: traversing all fallback tiers calls enrichFusedResults once', async () => {
+    process.env.SPECKIT_SEARCH_FALLBACK = 'true';
+    const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+    const testDb = createTestDb();
+    seedTestDb(testDb, [
+      { title: 'Structural One', file_path: '/specs/test/memory/one.md', importance_tier: 'normal', importance_weight: 0.5 },
+      { title: 'Structural Two', file_path: '/specs/test/memory/two.md', importance_tier: 'normal', importance_weight: 0.4 },
+      { title: 'Structural Three', file_path: '/specs/test/memory/three.md', importance_tier: 'normal', importance_weight: 0.3 },
+    ]);
+
+    init(testDb, (_embedding, vectorOptions) => {
+      const minSimilarity = typeof vectorOptions.minSimilarity === 'number'
+        ? vectorOptions.minSimilarity
+        : 0;
+      return [{
+        id: minSimilarity >= 30 ? 9001 : 9002,
+        score: 0.01,
+        similarity: minSimilarity,
+        title: `Vector tier ${minSimilarity}`,
+        file_path: `/specs/test/memory/vector-${minSimilarity}.md`,
+      }];
+    });
+
+    let enrichmentCalls = 0;
+    __testables.setEnrichFusedResultsObserver(() => {
+      enrichmentCalls += 1;
+    });
+
+    try {
+      const results = await searchWithFallback(
+        'single enrichment regression',
+        new Float32Array([0.1, 0.2]),
+        {
+          limit: 5,
+          useFts: false,
+          useBm25: false,
+          useGraph: false,
+          evaluationMode: true,
+        },
+      );
+
+      expect(results.length).toBeGreaterThan(0);
+      expect(errorSpy).toHaveBeenCalledTimes(2);
+      expect(enrichmentCalls).toBe(1);
+    } finally {
+      testDb.close();
+    }
   });
 });
 

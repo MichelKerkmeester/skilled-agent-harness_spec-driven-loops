@@ -260,6 +260,7 @@ const CONTEXT_HEADER_TOKEN_OVERHEAD = Math.ceil(
 let db: Database.Database | null = null;
 let vectorSearchFn: VectorSearchFn | null = null;
 let graphSearchFn: GraphSearchFn | null = null;
+let enrichFusedResultsObserver: (() => void) | null = null;
 
 // 6. GRAPH CHANNEL METRICS (T008)
 
@@ -1343,6 +1344,8 @@ async function enrichFusedResults(
   options: HybridSearchOptions = {},
   initialResults: HybridSearchResult[] = execution.fusedResults
 ): Promise<HybridSearchResult[]> {
+  enrichFusedResultsObserver?.();
+
   const {
     evaluationMode,
     intent,
@@ -2182,65 +2185,50 @@ async function searchWithFallbackTiered(
   const tier1Stage = stages[0];
   const tier2Stage = stages[1];
   let results = tier1Stage?.results ?? [];
+  let enrichmentExecution = tier1Stage?.execution ?? null;
+  let enrichmentOptions = tier1Stage?.options ?? options;
 
   const tier1Trigger = checkDegradation(results);
-  if (!tier1Trigger) {
-    const finalTier1 = tier1Stage?.execution
-      ? await enrichFusedResults(query, tier1Stage.execution, tier1Stage.options, results)
-      : applyResultLimit(results, options.limit);
-    // Tier 1 passed quality thresholds — attach empty degradation metadata
-    Object.defineProperty(finalTier1, '_degradation', {
-      value: degradationEvents,
-      enumerable: false,
-      configurable: true,
+  if (tier1Trigger) {
+    // TIER 2: Widen search — lower similarity, force all channels
+    const tier1CountBefore = results.length;
+
+    console.error(`[hybrid-search] Tier 1→2 degradation: ${tier1Trigger.reason} (topScore=${tier1Trigger.topScore.toFixed(3)}, count=${tier1Trigger.resultCount})`);
+
+    const tier2Results = tier2Stage?.results ?? [];
+    results = mergeResults(results, tier2Results);
+    if (tier2Stage?.execution) {
+      enrichmentExecution = tier2Stage.execution;
+      enrichmentOptions = tier2Stage.options;
+    }
+    degradationEvents.push({
+      tier: 1,
+      trigger: tier1Trigger,
+      resultCountBefore: tier1CountBefore,
+      resultCountAfter: results.length,
     });
-    return finalTier1;
+
+    const tier2Trigger = checkDegradation(results);
+    if (tier2Trigger) {
+      // TIER 3: Structural search (pure SQL last-resort)
+      const tier2CountBefore = results.length;
+
+      console.error(`[hybrid-search] Tier 2→3 degradation: ${tier2Trigger.reason} (topScore=${tier2Trigger.topScore.toFixed(3)}, count=${tier2Trigger.resultCount})`);
+
+      const tier3Results = structuralSearch({ specFolder: options.specFolder, limit: options.limit });
+      const calibratedTier3 = calibrateTier3Scores(results, tier3Results);
+      results = mergeResults(results, calibratedTier3);
+      degradationEvents.push({
+        tier: 2,
+        trigger: tier2Trigger,
+        resultCountBefore: tier2CountBefore,
+        resultCountAfter: results.length,
+      });
+    }
   }
 
-  // TIER 2: Widen search — lower similarity, force all channels
-  const tier1CountBefore = results.length;
-
-  console.error(`[hybrid-search] Tier 1→2 degradation: ${tier1Trigger.reason} (topScore=${tier1Trigger.topScore.toFixed(3)}, count=${tier1Trigger.resultCount})`);
-
-  const tier2Results = tier2Stage?.results ?? [];
-  results = mergeResults(results, tier2Results);
-  degradationEvents.push({
-    tier: 1,
-    trigger: tier1Trigger,
-    resultCountBefore: tier1CountBefore,
-    resultCountAfter: results.length,
-  });
-
-  const tier2Trigger = checkDegradation(results);
-  if (!tier2Trigger) {
-    const finalTier2 = tier2Stage?.execution
-      ? await enrichFusedResults(query, tier2Stage.execution, tier2Stage.options, results)
-      : applyResultLimit(results, options.limit);
-    Object.defineProperty(finalTier2, '_degradation', {
-      value: degradationEvents,
-      enumerable: false,
-      configurable: true,
-    });
-    return finalTier2;
-  }
-
-  // TIER 3: Structural search (pure SQL last-resort)
-  const tier2CountBefore = results.length;
-
-  console.error(`[hybrid-search] Tier 2→3 degradation: ${tier2Trigger.reason} (topScore=${tier2Trigger.topScore.toFixed(3)}, count=${tier2Trigger.resultCount})`);
-
-  const tier3Results = structuralSearch({ specFolder: options.specFolder, limit: options.limit });
-  const calibratedTier3 = calibrateTier3Scores(results, tier3Results);
-  results = mergeResults(results, calibratedTier3);
-  degradationEvents.push({
-    tier: 2,
-    trigger: tier2Trigger,
-    resultCountBefore: tier2CountBefore,
-    resultCountAfter: results.length,
-  });
-
-  const finalResults = tier2Stage?.execution
-    ? await enrichFusedResults(query, tier2Stage.execution, tier2Stage.options, results)
+  const finalResults = enrichmentExecution
+    ? await enrichFusedResults(query, enrichmentExecution, enrichmentOptions, results)
     : applyResultLimit(results, options.limit);
 
   Object.defineProperty(finalResults, '_degradation', {
@@ -2516,6 +2504,9 @@ export const __testables = {
   checkDegradation,
   mergeResults,
   mergeRawCandidate,
+  setEnrichFusedResultsObserver(observer: (() => void) | null): void {
+    enrichFusedResultsObserver = observer;
+  },
 };
 
 export {
