@@ -239,7 +239,7 @@ export function computeQualityScore(): QualityScore {
   );
 
   let level: QualityLevel;
-  if (score > 0.7) level = 'healthy';
+  if (score >= 0.6) level = 'healthy';
   else if (score > 0.4) level = 'degraded';
   else level = 'critical';
 

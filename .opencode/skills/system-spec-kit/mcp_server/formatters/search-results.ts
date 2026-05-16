@@ -774,6 +774,11 @@ export async function formatSearchResults(
 ): Promise<MCPResponse> {
   const startMs = startTime || Date.now();
   const includeContent = include_content;
+  const safeExtraData: Record<string, unknown> = { ...(extraData ?? {}) };
+  if (!includeTrace) {
+    delete safeExtraData.retrievalTrace;
+    delete safeExtraData.sessionTransition;
+  }
 
   if (!results || results.length === 0) {
     // REQ-D5-001: Attach recovery payload when flag is enabled
@@ -799,8 +804,8 @@ export async function formatSearchResults(
         searchType: searchType,
         constitutionalCount: 0,
         ...(requestQualityData ?? {}),
-        // Always spread caller-provided extraData (pipeline trace, timing, evidence gaps, etc.)
-        ...(extraData ?? {}),
+        // Preserve caller metadata, but keep trace-only fields opt-in.
+        ...safeExtraData,
         // REQ-D5-001: Attach recovery payload (additive, only when flag enabled)
         ...(recoveryPayload !== null ? { recovery: recoveryPayload } : {}),
         citationPolicy,
@@ -1041,7 +1046,7 @@ export async function formatSearchResults(
     const recoveryCtx = {
       query,
       hasSpecFolderFilter: specFolder !== null && specFolder.length > 0,
-      evidenceGap: Boolean(extraData?.evidenceGap),
+      evidenceGap: Boolean(safeExtraData?.evidenceGap),
       resultCount: formatted.length,
       avgConfidence,
     };
@@ -1107,9 +1112,9 @@ export async function formatSearchResults(
     citationPolicy,
     ...(responsePolicy !== null ? { responsePolicy } : {}),
   };
-  // Always spread caller-provided extraData (pipeline trace, timing, evidence gaps, etc.).
+  // Preserve caller metadata, but keep trace-only fields opt-in.
   // Spread extraData first, then re-assert canonical keys to prevent overwrites.
-  if (extraData && Object.keys(extraData).length > 0) {
+  if (Object.keys(safeExtraData).length > 0) {
     const {
       searchType: _s,
       count: _c,
@@ -1118,7 +1123,7 @@ export async function formatSearchResults(
       citationPolicy: _cp,
       responsePolicy: _rp,
       ...safeExtra
-    } = extraData as Record<string, unknown>;
+    } = safeExtraData as Record<string, unknown>;
     Object.assign(responseData, safeExtra);
   }
 

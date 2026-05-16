@@ -98,6 +98,13 @@ describe('context-metrics', () => {
       expect(score.factors.recency).toBeGreaterThan(0);
     });
 
+    it('keeps a fresh active session healthy at the no-recovery baseline', () => {
+      recordMetricEvent({ kind: 'tool_call' });
+      const score = computeQualityScore();
+      expect(score.score).toBeGreaterThanOrEqual(0.6);
+      expect(score.level).toBe('healthy');
+    });
+
     it('has recovery = 1.0 after memory recovery', () => {
       recordMetricEvent({ kind: 'memory_recovery' });
       const score = computeQualityScore();

@@ -326,7 +326,12 @@ describe('Context Server', () => {
     it('T16e: session tracking falls back to CODEX_THREAD_ID when request session ids are absent', () => {
       expect(sourceCode).toMatch(/function\s+resolveSessionTrackingId\s*\(/)
       expect(sourceCode).toMatch(/process\.env\.CODEX_THREAD_ID/)
-      expect(sourceCode).toMatch(/return explicitSessionId \?\? transportSessionId \?\? codexThreadId \?\? undefined;/)
+      expect(sourceCode).toMatch(/FALLBACK_SESSION_TRACKING_ID/)
+      expect(sourceCode).toMatch(/return explicitSessionId \?\? transportSessionId \?\? codexThreadId \?\? FALLBACK_SESSION_TRACKING_ID;/)
+    })
+
+    it('T16f: first-call priming exposes a structured primePackage hint', () => {
+      expect(sourceCode).toContain('primePackage: available in meta.sessionPriming.primePackage')
     })
 
     // T17: All tools dispatched via tool modules

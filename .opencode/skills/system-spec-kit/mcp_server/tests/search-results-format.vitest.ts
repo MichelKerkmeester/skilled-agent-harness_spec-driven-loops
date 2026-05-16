@@ -147,13 +147,22 @@ describe('formatSearchResults', () => {
     expect(envelope.data.results).toEqual([]);
   });
 
-  it('C2b: Empty array preserves extraData payload', async () => {
+  it('C2b: Empty array gates retrievalTrace behind includeTrace', async () => {
     const res = await formatSearchResults([], 'semantic', false, null, null, null, {
       retrievalTrace: { stages: [{ stage: 'routing', metadata: { channel: 'vector' } }] },
       evidenceGapWarning: 'No supporting evidence found',
     });
     const envelope = parseEnvelope(res);
     expect(envelope.data.evidenceGapWarning).toBe('No supporting evidence found');
+    expect(envelope.data.retrievalTrace).toBeUndefined();
+  });
+
+  it('C2c: Empty array preserves retrievalTrace when includeTrace=true', async () => {
+    const res = await formatSearchResults([], 'semantic', false, null, null, null, {
+      retrievalTrace: { stages: [{ stage: 'routing', metadata: { channel: 'vector' } }] },
+      evidenceGapWarning: 'No supporting evidence found',
+    }, true);
+    const envelope = parseEnvelope(res);
     expect(envelope.data.retrievalTrace).toEqual({
       stages: [{ stage: 'routing', metadata: { channel: 'vector' } }],
     });
@@ -258,13 +267,13 @@ describe('formatSearchResults', () => {
     expect(hasBroadenHint).toBe(true);
   });
 
-  it('C10b: Empty response preserves extraData for trace-aware callers', async () => {
+  it('C10b: Empty response omits retrievalTrace when includeTrace=false', async () => {
     const res = await formatSearchResults([], 'semantic', false, null, null, null, {
       retrievalTrace: { stages: [{ stage: 'router' }] },
       appliedBoosts: { session: true },
     });
     const envelope = parseEnvelope(res);
-    expect(envelope.data.retrievalTrace).toEqual({ stages: [{ stage: 'router' }] });
+    expect(envelope.data.retrievalTrace).toBeUndefined();
     expect(envelope.data.appliedBoosts).toEqual({ session: true });
   });
 

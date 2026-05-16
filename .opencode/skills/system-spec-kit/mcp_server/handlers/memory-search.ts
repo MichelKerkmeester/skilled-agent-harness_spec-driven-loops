@@ -1176,7 +1176,7 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
       countsBySourceKind: canonicalFilter.stats.bySourceKind,
     };
 
-    if (pipelineResult.trace) {
+    if (includeTrace && pipelineResult.trace) {
       extraData.retrievalTrace = pipelineResult.trace;
     }
     const cocoindexCalibration = calibrateCocoIndexOverfetch({

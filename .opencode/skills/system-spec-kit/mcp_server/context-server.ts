@@ -279,6 +279,7 @@ function isMutationStatus(status: string | undefined): boolean {
 }
 
 let generatedCallIdCounter = 0;
+const FALLBACK_SESSION_TRACKING_ID = `stdio-session-${process.pid}`;
 // F-017-D2-03: `getDetectedRuntime` was previously exported from this module
 // but had zero live consumers (only its own definition + the generated
 // `dist/context-server.d.ts` declaration). The variable still drives the
@@ -368,7 +369,7 @@ function resolveSessionTrackingId(
     ? process.env.CODEX_THREAD_ID.trim()
     : null;
 
-  return explicitSessionId ?? transportSessionId ?? codexThreadId ?? undefined;
+  return explicitSessionId ?? transportSessionId ?? codexThreadId ?? FALLBACK_SESSION_TRACKING_ID;
 }
 
 // REQ-014: Sticky session for follow_on_tool_use correlation.
@@ -676,6 +677,7 @@ function injectSessionPrimeHints(
   // T018: Include Prime Package hints for non-hook CLIs
   const pkg = sessionPrimeContext.primePackage;
   if (pkg) {
+    hints.push('primePackage: available in meta.sessionPriming.primePackage');
     if (pkg.specFolder) {
       hints.push(`Active spec folder: ${pkg.specFolder}`);
     }
