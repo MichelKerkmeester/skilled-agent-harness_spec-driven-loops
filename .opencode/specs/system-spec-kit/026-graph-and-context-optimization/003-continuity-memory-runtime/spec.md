@@ -182,3 +182,12 @@ Deep-research is active for this packet (session `dr-002cmr-20260423-200456`). C
 **Source iter**: 045:179-184, 037, 038. **Council**: 2026-05-16 PROCEED.
 
 **Rationale**: Runtime/memory infrastructure consolidation — iter 044 first-principles agrees (convergent). Iter 045 cost-benefit verdict PROCEED. High-risk mitigation: 004's nested children PRESERVED (not deleted) so the original work is recoverable.
+
+
+---
+
+## Consolidation (2026-05-16, packet 109 M22/Surface-3)
+
+Packet 005-memory-indexer-invariants absorbed as nested child 003/010-memory-indexer-invariants. Resource-map.md §3.6 had this as REDESIGN-flagged in 998; resolved as moving (not full merge) — 005 keeps its full content under 003 as a nested phase. Original Top-level 005 slot freed.
+
+Source: 998 iter-017:21-34 (Surface 3 consolidation per iter 044 first-principles).
