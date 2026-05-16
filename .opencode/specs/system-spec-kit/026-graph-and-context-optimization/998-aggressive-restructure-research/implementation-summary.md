@@ -44,14 +44,14 @@ _memory:
 
 <!-- ANCHOR:what-built -->
 ## What Was Built
-Planned outputs: 20 iter files at research/iterations/iteration-001-020.md, synthesis at research/research.md, Wave 2 target-state at resource-map.md. Per-iter immediate commit lineage on main.
+20 iter files at research/iterations/iteration-001-020.md (all 20 committed clean, zero stdout-fallback boilerplate, 100% JSONL row present — vs 999's 72.5% boilerplate + 22.5% JSONL miss). Synthesis at research/research.md (39942 bytes, all-iter provenance). Wave 2 target-state at resource-map.md (4 NEW PROCEED operations + 5 REDESIGN/ABORT verdicts). Sequential_thinking visible in all 20 outcomes=clean per v1.0.4.1 recipe.
 <!-- /ANCHOR:what-built -->
 
 ---
 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
-(Filled post-synthesis.) 20 cli-devin SWE-1.6 dispatches with v1.0.4.1 recipe (sequential_thinking mandatory, narrow Write, mcp__sequential_thinking__* permission). Background loop via run-loop.sh. Synthesis pass with synthesis recipe. Main-agent authors resource-map.md from research.md.
+20 cli-devin SWE-1.6 dispatches with v1.0.4.1 recipe + background run-loop.sh. Total ~33 min wall-clock. Synthesis pass with synthesis recipe. Main-agent authored resource-map.md from research.md (Wave 2 PROCEED/DEFER per iter 020 verdicts). All commits on main; auto-committed per-iter.
 <!-- /ANCHOR:how-delivered -->
 
 ---

@@ -4,7 +4,8 @@
   "spec_folder": "system-spec-kit",
   "parent_id": null,
   "children_ids": [
-    "system-spec-kit/026-graph-and-context-optimization"
+    "system-spec-kit/026-graph-and-context-optimization",
+    "system-spec-kit/028-mcp-startup-stdio-fix"
   ],
   "manual": {
     "depends_on": [],
@@ -46,12 +47,12 @@
     "entities": [],
     "causal_summary": "Two-bug fix to mcp-coco-index daemon: (1) idempotent start_daemon() prevents leaked-zombie duplicates, (2) BrokenPipeError-safe error handler stops CP",
     "created_at": "2026-05-07T09:13:37.743Z",
-    "last_save_at": "2026-05-14T15:06:22.190317Z",
+    "last_save_at": "2026-05-16T06:18:22.242Z",
     "last_accessed_at": null,
     "source_docs": [
       "description.json"
     ],
-    "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/038-embedding-error-propagation",
-    "last_active_at": "2026-05-14T14:34:37.933Z"
+    "last_active_child_id": "system-spec-kit/028-mcp-startup-stdio-fix",
+    "last_active_at": "2026-05-16T06:18:22.242Z"
   }
 }

@@ -1,7 +1,7 @@
 {
   "command": "mk-skill-advisor-launcher",
-  "start": "2026-05-15T20:53:52.515Z",
-  "end": "2026-05-15T20:53:58.386Z",
+  "start": "2026-05-16T06:15:36.375Z",
+  "end": "2026-05-16T06:15:41.789Z",
   "status": "failed",
   "actions": [
     "installed dependencies and built @spec-kit/system-skill-advisor MCP server"
