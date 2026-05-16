@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/051-readme-code-template"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/026-readme-code-template"
     last_updated_at: "2026-05-02T13:05:00Z"
     last_updated_by: "general"
     recent_action: "Recorded Task #31 final P1 README cleanup evidence"
@@ -55,7 +55,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Confirm active phase packet (`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/051-readme-code-template`) [Evidence: user-provided scope]
+- [x] T001 Confirm active phase packet (`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/026-readme-code-template`) [Evidence: user-provided scope]
 - [x] T002 Confirm documentation-only boundary [Evidence: no `sk-doc` template edits in Task #6]
 - [x] T003 [P] Read existing phase docs before editing [Evidence: spec.md, plan.md, tasks.md, checklist.md, implementation-summary.md, description.json, graph-metadata.json]
 <!-- /ANCHOR:phase-1 -->

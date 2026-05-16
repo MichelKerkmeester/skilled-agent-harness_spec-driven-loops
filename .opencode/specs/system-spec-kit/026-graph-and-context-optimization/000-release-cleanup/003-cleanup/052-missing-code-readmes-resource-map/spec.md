@@ -46,7 +46,7 @@ _memory:
 | **Branch** | `scaffold/052-missing-code-readmes-resource-map` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 52 of 52 |
-| **Predecessor** | 051-readme-code-template |
+| **Predecessor** | 026-readme-code-template |
 | **Successor** | None |
 | **Handoff Criteria** | Exact 65-folder manifest is documented, all 65 target README files exist, per-file README validation passes, and strict validation exits 0 or 1. |
 <!-- /ANCHOR:metadata -->

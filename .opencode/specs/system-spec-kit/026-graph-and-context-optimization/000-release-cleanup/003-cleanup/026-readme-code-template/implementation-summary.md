@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/051-readme-code-template"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/026-readme-code-template"
     last_updated_at: "2026-05-02T13:05:00Z"
     last_updated_by: "general"
     recent_action: "Recorded Task #31 final P1 README cleanup evidence"
@@ -45,7 +45,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/051-readme-code-template` |
+| **Spec Folder** | `system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/026-readme-code-template` |
 | **Completed** | 2026-05-02 |
 | **Level** | 2 |
 | **Status** | Complete |
@@ -105,15 +105,15 @@ This manifest is the recovery source for Task #28 final review. It complements t
 |------|--------|---------|
 | `.opencode/skills/sk-doc/assets/documentation/readme_template.md` | Modified in Task #5 | Expanded general README template for skill/project README alignment. |
 | `.opencode/skills/sk-doc/assets/documentation/readme_code_template.md` | Modified in Task #5 and corrected in Task #9 | Added architecture, topology, dependency, tree, key-file, and control-flow guidance, then corrected diagram styling to sk-doc Unicode box drawing style. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/051-readme-code-template/spec.md` | Modified in Task #6 | Recorded final revision scope and punctuation cleanup requirements. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/051-readme-code-template/plan.md` | Modified in Task #6 | Recorded the documentation-only delivery plan. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/051-readme-code-template/tasks.md` | Modified in Task #6 | Marked phase tasks complete with final evidence. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/051-readme-code-template/checklist.md` | Modified in Task #6 | Marked verification checklist complete with final evidence and punctuation cleanup. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/051-readme-code-template/implementation-summary.md` | Modified in Task #6 | Captured delivery state, final verification results, and punctuation cleanup. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/051-readme-code-template/spec.md` through `implementation-summary.md` | Modified in Task #10 | Recorded Task #9 diagram styling correction evidence and validator limitation. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/051-readme-code-template/spec.md` through `graph-metadata.json` | Modified in Task #25 | Recorded code-folder README P1/P2 batch evidence, validation summaries, known exceptions, and metadata. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/051-readme-code-template/spec.md` through `graph-metadata.json` | Modified in Task #28 | Recorded explicit README sweep manifest and final remediation evidence. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/051-readme-code-template/tasks.md`, `checklist.md`, `implementation-summary.md`, `description.json`, `graph-metadata.json` | Modified in Task #31 | Recorded final P1 cleanup evidence for code graph and stress test README validation. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/026-readme-code-template/spec.md` | Modified in Task #6 | Recorded final revision scope and punctuation cleanup requirements. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/026-readme-code-template/plan.md` | Modified in Task #6 | Recorded the documentation-only delivery plan. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/026-readme-code-template/tasks.md` | Modified in Task #6 | Marked phase tasks complete with final evidence. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/026-readme-code-template/checklist.md` | Modified in Task #6 | Marked verification checklist complete with final evidence and punctuation cleanup. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/026-readme-code-template/implementation-summary.md` | Modified in Task #6 | Captured delivery state, final verification results, and punctuation cleanup. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/026-readme-code-template/spec.md` through `implementation-summary.md` | Modified in Task #10 | Recorded Task #9 diagram styling correction evidence and validator limitation. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/026-readme-code-template/spec.md` through `graph-metadata.json` | Modified in Task #25 | Recorded code-folder README P1/P2 batch evidence, validation summaries, known exceptions, and metadata. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/026-readme-code-template/spec.md` through `graph-metadata.json` | Modified in Task #28 | Recorded explicit README sweep manifest and final remediation evidence. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/026-readme-code-template/tasks.md`, `checklist.md`, `implementation-summary.md`, `description.json`, `graph-metadata.json` | Modified in Task #31 | Recorded final P1 cleanup evidence for code graph and stress test README validation. |
 <!-- /ANCHOR:what-built -->
 
 ---

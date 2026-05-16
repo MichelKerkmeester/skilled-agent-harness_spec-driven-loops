@@ -29,7 +29,7 @@ Documentation fixes, template debt, orphan management, remediation.
 - `023-pre-existing-test-failure-remediation`
 - `024-iter-001-daemon-concurrency-fixes`
 - `025-architecture-diagrams-and-topology`
-- `051-readme-code-template`
+- `026-readme-code-template`
 - `052-missing-code-readmes-resource-map`
 - `053-doc-alignment-and-readme-filling`
 - `055-autoclean-orphan-files`

@@ -121,7 +121,7 @@ Keep this phase-parent packet validator-compliant as a lean manifest that preser
 | `002-sk-code-opencode-alignment` | `003-dead-code-audit` | `sk-code-opencode` standards alignment is planned before later cleanup packets rely on those standards | Parent phase map and graph metadata child list both include `003-dead-code-audit` |
 | `003-dead-code-audit` | `004-dead-code-pruning` | `003-dead-code-audit` ships the audit report with 13 high-confidence deletes; pruning packet applies them | Parent phase map and graph metadata child list both include `004-dead-code-pruning` |
 | `004-dead-code-pruning` | `005-review-remediation` | Release-readiness review remediation follows cleanup/pruning so source-packet findings can be closed against current topology | Parent phase map and graph metadata child list both include `005-review-remediation` |
-| `051-readme-code-template` | `052-missing-code-readmes-resource-map` | README template guidance exists before implementing remaining code-folder README coverage | Phase 052 strict validation exits 0 and the exact 65 target README files validate cleanly |
+| `026-readme-code-template` | `052-missing-code-readmes-resource-map` | README template guidance exists before implementing remaining code-folder README coverage | Phase 052 strict validation exits 0 and the exact 65 target README files validate cleanly |
 | 052-missing-code-readmes-resource-map | 053-doc-alignment-and-readme-filling | [Criteria TBD] | [Verification TBD] |
 | 053-doc-alignment-and-readme-filling | 054-runtime-cleanup-followups | [Criteria TBD] | [Verification TBD] |
 | 054-runtime-cleanup-followups | 055-autoclean-orphan-files | [Criteria TBD] | [Verification TBD] |

@@ -1813,7 +1813,7 @@ exec
 .opencode/skills/system-spec-kit/references/templates/template_guide.md:783:bash .opencode/skills/system-spec-kit/scripts/spec/create.sh --level 1 --path specs/042-feature --name feature-name
 .opencode/skills/system-spec-kit/references/templates/template_guide.md:1111:.opencode/skills/system-spec-kit/scripts/spec/create.sh \
 .opencode/skills/system-spec-kit/mcp_server/tests/content-router.vitest.ts:549:      const prototype = library.categories[expectation.category].find((entry) => entry.id === expectation.id);
-.opencode/skills/system-spec-kit/scripts/rules/README.md:176:.opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/051-readme-code-template --strict
+.opencode/skills/system-spec-kit/scripts/rules/README.md:176:.opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/026-readme-code-template --strict
 .opencode/skills/system-spec-kit/scripts/rules/README.md:177:python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/system-spec-kit/scripts/rules/README.md
 .opencode/skills/system-spec-kit/references/templates/level_specifications.md:550:.opencode/skills/system-spec-kit/scripts/spec/check-placeholders.sh specs/042-feature/
 .opencode/skills/system-spec-kit/references/templates/level_specifications.md:755:- Use `/memory:save` or `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js --json '{"specFolder":"...","sessionSummary":"..."}' specs/###-folder/`

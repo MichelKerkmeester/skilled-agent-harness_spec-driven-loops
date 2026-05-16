@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/051-readme-code-template"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/026-readme-code-template"
     last_updated_at: "2026-05-02T12:40:00Z"
     last_updated_by: "general"
     recent_action: "Recorded the documentation-only delivery plan for Task #28 manifest and remediation evidence"
@@ -95,7 +95,7 @@ Task #5, Task #9, Task #25, and Task #28 verification results are captured in `i
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Scope Capture
-- [x] Identify active phase folder [Path: `051-readme-code-template`]
+- [x] Identify active phase folder [Path: `026-readme-code-template`]
 - [x] Confirm documentation-only boundary [Scope: do not edit `sk-doc` template files]
 
 ### Phase 2: Packet Documentation
@@ -110,7 +110,7 @@ Task #5, Task #9, Task #25, and Task #28 verification results are captured in `i
 - [x] Synchronize tasks and checklist [Files: tasks.md, checklist.md]
 
 ### Phase 3: Verification
-- [x] Run strict phase validation [Command: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/051-readme-code-template --strict`]
+- [x] Run strict phase validation [Command: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/026-readme-code-template --strict`]
 - [x] Report blockers or warnings [Output: final task response]
 <!-- /ANCHOR:phases -->
 
