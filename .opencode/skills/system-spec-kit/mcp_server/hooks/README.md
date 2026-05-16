@@ -105,7 +105,7 @@ mcp_server/hooks/
 | `codex/` | Codex native hook scripts plus prompt-wrapper fallback. |
 | `index.ts` | Public export barrel for in-process helper modules. |
 | `memory-surface.ts` | Extracts context hints and surfaces constitutional or triggered memory. |
-| `mutation-feedback.ts` | Maps mutation hook results into public response payloads. |
+| `mutation-feedback.ts` | Maps `MutationHookResult` values into public `postMutationHooks` response payloads. |
 | `response-hints.ts` | Adds auto-surface hints and token counts to MCP JSON envelopes. |
 | `shared-provenance.ts` | Wraps hook transport with provenance metadata. |
 
@@ -123,6 +123,7 @@ mcp_server/hooks/
 | Startup transport | Use startup hooks for compact context priming, not prompt-time advisor delivery. |
 | Prompt advice | Use prompt-time hooks or the OpenCode plugin bridge for advisor briefs. |
 | Mutation feedback | Read mutation results from `../handlers/mutation-hooks.ts` before building public payloads. |
+| Response contract | Expose post-mutation UX state through the `postMutationHooks` field, preserving the `MutationHookResult` cache-clearing and error fields. |
 
 Main flow:
 
