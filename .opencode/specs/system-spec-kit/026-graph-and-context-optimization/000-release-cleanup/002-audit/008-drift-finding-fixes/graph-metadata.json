@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/045-drift-finding-fixes",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/045-drift-finding-fixes",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/008-drift-finding-fixes",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/008-drift-finding-fixes",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation",
   "children_ids": [],
   "manual": {
@@ -11,15 +11,15 @@
   },
   "derived": {
     "trigger_phrases": [
-      "045-drift-finding-fixes spec",
+      "008-drift-finding-fixes spec",
       "drift finding remediation",
-      "045-drift-finding-fixes plan",
-      "045-drift-finding-fixes tasks",
-      "045-drift-finding-fixes checklist",
-      "045-drift-finding-fixes summary"
+      "008-drift-finding-fixes plan",
+      "008-drift-finding-fixes tasks",
+      "008-drift-finding-fixes checklist",
+      "008-drift-finding-fixes summary"
     ],
     "key_topics": [
-      "045-drift-finding-fixes",
+      "008-drift-finding-fixes",
       "spec",
       "drift",
       "finding",

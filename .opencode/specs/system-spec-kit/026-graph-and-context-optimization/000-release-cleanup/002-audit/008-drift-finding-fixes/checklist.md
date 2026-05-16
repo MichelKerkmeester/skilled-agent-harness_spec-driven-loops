@@ -3,12 +3,12 @@ title: "Verification Checklist: Drift Finding Fixes"
 description: "Per-finding verification + regression check + strict validator pass."
 template_source: "SPECKIT_TEMPLATE_SOURCE: checklist | v2.2"
 trigger_phrases:
-  - "045-drift-finding-fixes checklist"
+  - "008-drift-finding-fixes checklist"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/045-drift-finding-fixes"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/008-drift-finding-fixes"
     last_updated_at: "2026-05-01T05:40:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Checklist authored"

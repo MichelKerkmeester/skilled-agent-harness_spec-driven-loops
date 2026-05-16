@@ -11,7 +11,7 @@ Runtime wiring, compliance checks, alignment reviews, sweeps. Hosts the absorbed
 - `005-memory-retention-sweep`
 - `006-full-matrix-execution-validation`
 - `007-runtime-command-agent-alignment-review`
-- `045-drift-finding-fixes`
+- `008-drift-finding-fixes`
 
 ## Provenance
 

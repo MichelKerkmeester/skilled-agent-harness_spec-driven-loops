@@ -3,12 +3,12 @@ title: "Implementation Summary: Drift Finding Fixes"
 description: "Fixed 1 real product bug (sa-011 non-idempotent derived sync) plus 3 catalog/test alignments (sa-004, sa-036, sa-037); 56/56 files and 159/159 tests still passing."
 template_source: "SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2"
 trigger_phrases:
-  - "045-drift-finding-fixes summary"
+  - "008-drift-finding-fixes summary"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/045-drift-finding-fixes"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/008-drift-finding-fixes"
     last_updated_at: "2026-05-01T05:45:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Authored final docs"
@@ -42,7 +42,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 045-drift-finding-fixes |
+| **Spec Folder** | 008-drift-finding-fixes |
 | **Completed** | 2026-05-01 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
@@ -86,9 +86,9 @@ Catalog `08--python-compat/03-bench-runner.md` documented `cache-hit p95 ≤ 50 
 | `mcp_server/stress_test/skill-advisor/auto-indexing-derived-sync-stress.vitest.ts` | Modified | sa-011 FIXME removed; tightened to assert `changed=false` on second pass |
 | `mcp_server/stress_test/skill-advisor/generation-snapshot-stress.vitest.ts` | Modified | sa-004 FIXME removed; assertion anchored to catalog quote |
 | `mcp_server/stress_test/skill-advisor/python-bench-runner-stress.vitest.ts` | Modified | sa-037 FIXME replaced with catalog-pointer comment |
-| `045-drift-finding-fixes/{spec,plan,tasks,checklist,implementation-summary}.md` | Created | Packet docs |
-| `045-drift-finding-fixes/{description,graph-metadata}.json` | Generated | Lean-trio metadata |
-| `045-drift-finding-fixes/logs/stress-run-*.log` | Created | Full `npm run stress` capture |
+| `008-drift-finding-fixes/{spec,plan,tasks,checklist,implementation-summary}.md` | Created | Packet docs |
+| `008-drift-finding-fixes/{description,graph-metadata}.json` | Generated | Lean-trio metadata |
+| `008-drift-finding-fixes/logs/stress-run-*.log` | Created | Full `npm run stress` capture |
 <!-- /ANCHOR:what-built -->
 
 ---

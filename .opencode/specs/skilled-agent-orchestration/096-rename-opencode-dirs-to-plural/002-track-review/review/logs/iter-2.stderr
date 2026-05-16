@@ -6183,8 +6183,8 @@ END{
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/006-full-matrix-execution-validation/logs/feature-runs/F3-memory-search.log
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-release-readiness-synthesis-and-remediation/logs/iter-001.log
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/006-full-matrix-execution-validation/logs/feature-runs/F9-generate-context.log
-./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/045-drift-finding-fixes/logs/stress-run-20260501-033447Z.log
-./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/045-drift-finding-fixes/logs/stress-run-20260501-033955Z.log
+./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/008-drift-finding-fixes/logs/stress-run-20260501-033447Z.log
+./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/008-drift-finding-fixes/logs/stress-run-20260501-033955Z.log
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/017-automation-reality-supplemental-research/research/logs/iter-001.log
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/017-automation-reality-supplemental-research/research/logs/iter-002.log
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-doc-truth-pass/logs/iter-001.log

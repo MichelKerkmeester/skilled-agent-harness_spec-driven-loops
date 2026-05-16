@@ -3,13 +3,13 @@ title: "Spec: Drift Finding Fixes (4 catalog/code divergences)"
 description: "Fix 4 drift findings surfaced by packets 042-044: sa-011 non-idempotent derived sync (real bug), sa-004 corruption recovery (test correction), sa-036 catalog count drift, sa-037 bench wording."
 template_source: "SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2"
 trigger_phrases:
-  - "045-drift-finding-fixes spec"
+  - "008-drift-finding-fixes spec"
   - "drift finding remediation"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/045-drift-finding-fixes"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/008-drift-finding-fixes"
     last_updated_at: "2026-05-01T05:40:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Spec authored"

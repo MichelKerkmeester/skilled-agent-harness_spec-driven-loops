@@ -5028,7 +5028,7 @@
       "lastUpdated": "2026-04-30T20:13:02.895Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/045-drift-finding-fixes",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/008-drift-finding-fixes",
       "description": "Spec: Drift Finding Fixes",
       "keywords": [
         "spec",
