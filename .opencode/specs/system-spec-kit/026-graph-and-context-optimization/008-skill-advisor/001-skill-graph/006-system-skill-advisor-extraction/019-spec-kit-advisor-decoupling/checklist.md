@@ -60,7 +60,7 @@ _memory:
 
 - [x] CHK-010 [P0] Exact advisor import audit returns zero `from.*system-skill-advisor` imports in `system-spec-kit/mcp_server`.
 - [x] CHK-011 [P0] Spec-kit hook paths remain process-boundary stubs, not in-process advisor imports.
-- [x] CHK-012 [P1] Advisor lane sweep fixture paths now point to current packets `017-corpus-seeded-sweep` and `020-harder-intent-corpus-resweep`.
+- [x] CHK-012 [P1] Advisor lane sweep fixture paths now point to current packets `006-corpus-seeded-sweep` and `020-harder-intent-corpus-resweep`.
 - [x] CHK-013 [P1] Plugin bridge remains a process gateway and is not treated as a forbidden source import.
 <!-- /ANCHOR:code-quality -->
 

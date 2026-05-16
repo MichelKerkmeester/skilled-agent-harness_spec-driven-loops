@@ -33,7 +33,7 @@ const PACKET_RELATIVE_PATH = join(
   'system-spec-kit',
   '026-graph-and-context-optimization',
   '008-skill-advisor',
-  '017-corpus-seeded-sweep',
+  '006-corpus-seeded-sweep',
 );
 
 const HARDER_PACKET_RELATIVE_PATH = join(

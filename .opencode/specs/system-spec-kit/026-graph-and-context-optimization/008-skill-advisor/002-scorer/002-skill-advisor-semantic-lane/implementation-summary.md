@@ -44,7 +44,7 @@ This packet is the strategy/rationale root. Implementation was shipped in 10 sib
 - 003-embed-cache-and-cosine-wiring — embedding cache + cosine lane shadow wiring
 - 004-ablation-sweep-and-promote — ablation sweep + lane promotion
 - 005-weight-sweep-harness — weight sweep harness
-- 017-corpus-seeded-sweep — corpus seeded sweep
+- 006-corpus-seeded-sweep — corpus seeded sweep
 - 003-skill-metadata-quality-audit — metadata quality audit
 - 004-apply-metadata-fixes-and-resweep — metadata fixes + resweep
 - 020-harder-intent-corpus-resweep — harder intent corpus resweep

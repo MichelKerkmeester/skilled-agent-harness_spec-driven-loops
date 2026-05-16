@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/017-corpus-seeded-sweep",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/006-corpus-seeded-sweep",
   "description": "Seed cosine embeddings into the lane-weight sweep test fixture so the sweep can finally measure cosine-lane effects, then emit a numbers-driven weight recommendation.",
   "keywords": [
     "corpus-seeded-sweep",

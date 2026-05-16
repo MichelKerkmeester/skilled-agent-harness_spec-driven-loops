@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "tasks"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/017-corpus-seeded-sweep"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/006-corpus-seeded-sweep"
     last_updated_at: "2026-05-14T00:00:00Z"
     last_updated_by: "claude"
     recent_action: "Scaffolded packet"

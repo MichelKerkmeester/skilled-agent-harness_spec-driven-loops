@@ -9,7 +9,7 @@ Embed cache, cosine wiring, ablation/weight/corpus sweeps, calibration.
 - `003-embed-cache-and-cosine-wiring`
 - `004-ablation-sweep-and-promote`
 - `005-weight-sweep-harness`
-- `017-corpus-seeded-sweep`
+- `006-corpus-seeded-sweep`
 - `020-harder-intent-corpus-resweep`
 - `023-advisor-routing-calibration`
 
