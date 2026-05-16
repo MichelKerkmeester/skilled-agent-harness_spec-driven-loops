@@ -1,5 +1,5 @@
 {
-  "specFolder": "043-suite-revalidation",
+  "specFolder": "_044-suite-revalidation",
   "description": "Post-substrate-wave revalidation of the 24-- local LLM query intelligence scenario suite, comparing scenarios 401-415 against the 032/002 baseline.",
   "keywords": [
     "suite-revalidation",

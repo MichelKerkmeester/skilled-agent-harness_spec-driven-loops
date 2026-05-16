@@ -10,7 +10,7 @@ contextType: "spec"
 status: "fail"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/043-suite-revalidation"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/_044-suite-revalidation"
     last_updated_at: "2026-05-14T16:35:00Z"
     last_updated_by: "main-agent"
     recent_action: "Runner executed all 15 scenario attempts but child codex startup failed"
@@ -21,7 +21,7 @@ _memory:
       - "_sandbox/24--local-llm-query-intelligence/evidence/run-2026-05-14-post-wave.sh"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000043"
-      session_id: "043-suite-revalidation-plan"
+      session_id: "_044-suite-revalidation-plan"
       parent_session_id: null
     completion_pct: 100
     open_questions: []
@@ -213,7 +213,7 @@ Scaffold packet -> Author runner -> Run scenarios -> Aggregate TSV -> Compare ba
 1. Remove `_sandbox/24--local-llm-query-intelligence/evidence/run-2026-05-14-post-wave.sh`.
 2. Remove `_sandbox/24--local-llm-query-intelligence/evidence/run-2026-05-14-post-wave.summary.tsv`.
 3. Remove `_sandbox/24--local-llm-query-intelligence/evidence/per-scenario-logs-post-wave/` if raw logs should not be retained.
-4. Remove `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/043-suite-revalidation/`.
+4. Remove `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/_044-suite-revalidation/`.
 
 ### Data Reversal
 

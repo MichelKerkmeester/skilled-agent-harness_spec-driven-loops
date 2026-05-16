@@ -10,7 +10,7 @@ contextType: "spec"
 status: "fail"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/043-suite-revalidation"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/_044-suite-revalidation"
     last_updated_at: "2026-05-14T16:35:00Z"
     last_updated_by: "main-agent"
     recent_action: "Captured failed post-wave suite attempt caused by nested codex exec startup"
@@ -22,7 +22,7 @@ _memory:
       - "_sandbox/24--local-llm-query-intelligence/evidence/per-scenario-logs-post-wave/"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000043"
-      session_id: "043-suite-revalidation"
+      session_id: "_044-suite-revalidation"
       parent_session_id: null
     completion_pct: 100
     open_questions: []
@@ -42,7 +42,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/043-suite-revalidation` |
+| **Spec Folder** | `system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/_044-suite-revalidation` |
 | **Started** | 2026-05-14 |
 | **Completed** | 2026-05-14 |
 | **Level** | 2 |
@@ -67,7 +67,7 @@ The runner lives at `_sandbox/24--local-llm-query-intelligence/evidence/run-2026
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/043-suite-revalidation/` | Created | Level 2 packet docs and metadata. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/_044-suite-revalidation/` | Created | Level 2 packet docs and metadata. |
 | `_sandbox/24--local-llm-query-intelligence/evidence/run-2026-05-14-post-wave.sh` | Created | Sequential scenario runner. |
 | `_sandbox/24--local-llm-query-intelligence/evidence/run-2026-05-14-post-wave.summary.tsv` | Created | Aggregated scenario verdicts. |
 | `_sandbox/24--local-llm-query-intelligence/evidence/per-scenario-logs-post-wave/` | Created | Raw logs for scenarios 401-415. |
@@ -110,7 +110,7 @@ The runner was executed twice. The first run showed the same launcher failure in
 | Summary TSV | PASS: `_sandbox/24--local-llm-query-intelligence/evidence/run-2026-05-14-post-wave.summary.tsv` has 15 data rows. |
 | Verdict distribution | FAIL result: 0 PASS / 0 PARTIAL / 15 FAIL / 0 SKIP. |
 | Baseline comparison | PASS: table below records each scenario delta. |
-| Strict validate | PASS: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/043-suite-revalidation --strict` returned `RESULT: PASSED` with 0 errors and 0 warnings. |
+| Strict validate | PASS: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/_044-suite-revalidation --strict` returned `RESULT: PASSED` with 0 errors and 0 warnings. |
 <!-- /ANCHOR:verification -->
 
 ---
