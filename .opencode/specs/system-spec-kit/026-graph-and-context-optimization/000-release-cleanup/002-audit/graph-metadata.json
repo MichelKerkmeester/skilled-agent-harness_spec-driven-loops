@@ -4,7 +4,7 @@
   "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-audit",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup",
   "children_ids": [
-    "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-audit/008-tanstack-security-audit",
+    "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-audit/001-tanstack-security-audit",
     "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-audit/008-w3-w7-runtime-wiring-and-audit",
     "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-audit/018-doc-truth-pass",
     "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-audit/019-code-graph-watcher-retraction",
