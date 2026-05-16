@@ -88,7 +88,7 @@ _memory:
 ## CROSS-REFERENCES
 
 - Parent: `007-code-graph/014-system-code-graph-extraction`
-- Predecessor stability: `007-code-graph/007-code-graph-backend-resilience`, `007-code-graph/011-broader-scope-excludes-and-granular-skills`
+- Predecessor stability: `007-code-graph/007-code-graph-backend-resilience`, `007-code-graph/010-broader-scope-excludes-and-granular-skills`
 - Precedent: `015-skill-advisor-semantic-lane/009-system-skill-advisor-extraction/001-design-and-decision-record`
 - Downstream packets gated on this: `014/002-scaffold-new-skill-folder` (not yet scaffolded), `014/003-move-source-and-database`, `014/004-rewire-consumers-and-tool-registration`, `014/005-doc-and-runtime-migration`, `014/006-validation-and-cleanup`
 <!-- /ANCHOR:cross-refs -->

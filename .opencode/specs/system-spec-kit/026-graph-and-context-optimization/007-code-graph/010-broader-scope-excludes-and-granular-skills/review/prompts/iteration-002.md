@@ -1,11 +1,11 @@
-# Deep-Review v1 Iter 5/5 — 011 broader excludes + granular skills
+# Deep-Review v1 Iter 2/5 — 011 broader excludes + granular skills
 
 Mode: review (RUN 1 on 011 implementation)
-Dimension: correctness
+Dimension: security
 SessionId: 2026-05-03T04:12:23Z
 
 ## Focus
-Iter 5 — cross-cutting: end-to-end. Run code_graph_scan({includeSkills: ['sk-code-review'], includeAgents: true}) → does the resulting DB contain only sk-code-review files + all .opencode/agents/** files + zero from other 4 default-excluded dirs? Does code_graph_status.activeScope show the correct values? Does fingerprint v2 round-trip cleanly?
+Iter 2 — security: granular includeSkills list. Try adversarial values: ['../sk-x'] (path traversal), ['sk-../../etc'], ['sk-' + '\x00' + 'evil'], ['sk-x; rm -rf'], very long names, unicode, empty list, list with duplicates. Does the regex ^sk-[a-z0-9-]+$ catch all the dangerous cases? Could a malicious skill name leak filesystem access?
 
 ## What 011 modified
 
@@ -31,10 +31,10 @@ Docs:
 Read `.opencode/skills/sk-code-review/references/fix-completeness-checklist.md` first.
 
 ## Output
-Write narrative to: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/011-broader-scope-excludes-and-granular-skills/review/iterations/iteration-005.md`
+Write narrative to: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/010-broader-scope-excludes-and-granular-skills/review/iterations/iteration-002.md`
 
 Iteration narrative structure:
-- ## Dimension: correctness
+- ## Dimension: security
 - ## Files Reviewed (path:line list)
 - ## Findings by Severity (### P0 / ### P1 / ### P2 — say "None." if empty)
 - ## Verdict — PASS / CONDITIONAL / FAIL with one-line reason

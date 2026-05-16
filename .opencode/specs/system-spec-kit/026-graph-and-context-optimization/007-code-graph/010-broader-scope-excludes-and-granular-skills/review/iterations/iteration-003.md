@@ -3,9 +3,9 @@
 ## Files Reviewed
 
 - `.claude/skills/sk-code-review/references/fix-completeness-checklist.md`:14-34,36-71,73-84
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/011-broader-scope-excludes-and-granular-skills/spec.md`:70-76,108-122,155-164,169-183
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/011-broader-scope-excludes-and-granular-skills/implementation-summary.md`:52-64,68-82,88-90,98-103,111-116,122-125
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/011-broader-scope-excludes-and-granular-skills/checklist.md`:58-60,69-72,80-87,94-96,104-107
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/010-broader-scope-excludes-and-granular-skills/spec.md`:70-76,108-122,155-164,169-183
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/010-broader-scope-excludes-and-granular-skills/implementation-summary.md`:52-64,68-82,88-90,98-103,111-116,122-125
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/010-broader-scope-excludes-and-granular-skills/checklist.md`:58-60,69-72,80-87,94-96,104-107
 - `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/index-scope-policy.ts`:5-20,44-51,71-99,101-160,162-189,191-235
 - `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/indexer-types.ts`:139-171
 - `.opencode/skills/system-spec-kit/mcp_server/lib/utils/index-scope.ts`:18-29,37-46,48-65,72-90
@@ -34,7 +34,7 @@ None.
 
 ### P2
 
-1. `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/011-broader-scope-excludes-and-granular-skills/implementation-summary.md`:111-116 — Verification claims are not fully replayable from the summary.
+1. `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/010-broader-scope-excludes-and-granular-skills/implementation-summary.md`:111-116 — Verification claims are not fully replayable from the summary.
    - The implementation summary records Gate A-D results and counts, but does not include the exact commands or log/artifact pointers needed to independently reproduce Gate B, Gate C, or Gate D from the summary itself.
    - This is a traceability/documentation gap, not an implementation blocker: the focused Gate A claim was re-run successfully as 4 files / 174 tests, and the checklist separately attests the broader gate evidence.
    - Fix class: `matrix/evidence`.

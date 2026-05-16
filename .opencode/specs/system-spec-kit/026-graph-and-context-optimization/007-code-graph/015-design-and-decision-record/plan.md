@@ -37,7 +37,7 @@ Whole-repo read-only survey of the code-graph surface (source + consumers + tool
 
 ### Definition of Ready
 - [x] 007-code-graph-backend-resilience shipped on main.
-- [x] 011-broader-scope-excludes-and-granular-skills shipped on main.
+- [x] 010-broader-scope-excludes-and-granular-skills shipped on main.
 - [x] 010-template-levels available for downstream skill-folder scaffold reference.
 
 ### Definition of Done
@@ -114,7 +114,7 @@ Whole-repo read-only survey of the code-graph surface (source + consumers + tool
 ## DEPENDENCIES
 
 - 007-code-graph-backend-resilience shipped.
-- 011-broader-scope-excludes-and-granular-skills shipped.
+- 010-broader-scope-excludes-and-granular-skills shipped.
 - 010-template-levels for downstream skill-folder scaffold template knowledge.
 - Whole-repo read access.
 <!-- /ANCHOR:dependencies -->

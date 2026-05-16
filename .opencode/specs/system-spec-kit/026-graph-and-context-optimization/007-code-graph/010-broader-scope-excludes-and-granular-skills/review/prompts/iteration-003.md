@@ -1,11 +1,11 @@
-# Deep-Review v1 Iter 2/5 — 011 broader excludes + granular skills
+# Deep-Review v1 Iter 3/5 — 011 broader excludes + granular skills
 
 Mode: review (RUN 1 on 011 implementation)
-Dimension: security
+Dimension: traceability
 SessionId: 2026-05-03T04:12:23Z
 
 ## Focus
-Iter 2 — security: granular includeSkills list. Try adversarial values: ['../sk-x'] (path traversal), ['sk-../../etc'], ['sk-' + '\x00' + 'evil'], ['sk-x; rm -rf'], very long names, unicode, empty list, list with duplicates. Does the regex ^sk-[a-z0-9-]+$ catch all the dangerous cases? Could a malicious skill name leak filesystem access?
+Iter 3 — traceability: cross-check 011 spec.md scope claims against code. Is every Functional Requirement (F1-F5) implemented? Is every claim in implementation-summary.md verifiable? resource-map drift?
 
 ## What 011 modified
 
@@ -31,10 +31,10 @@ Docs:
 Read `.opencode/skills/sk-code-review/references/fix-completeness-checklist.md` first.
 
 ## Output
-Write narrative to: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/011-broader-scope-excludes-and-granular-skills/review/iterations/iteration-002.md`
+Write narrative to: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/010-broader-scope-excludes-and-granular-skills/review/iterations/iteration-003.md`
 
 Iteration narrative structure:
-- ## Dimension: security
+- ## Dimension: traceability
 - ## Files Reviewed (path:line list)
 - ## Findings by Severity (### P0 / ### P1 / ### P2 — say "None." if empty)
 - ## Verdict — PASS / CONDITIONAL / FAIL with one-line reason

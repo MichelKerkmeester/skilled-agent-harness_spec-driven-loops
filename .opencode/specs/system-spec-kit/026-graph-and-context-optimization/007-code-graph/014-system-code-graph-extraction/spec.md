@@ -62,7 +62,7 @@ That coupling makes it harder to:
 
 This phase migrates code-graph into `.opencode/skills/system-code-graph/` with its own first-class SKILL.md, graph-metadata.json, references/, manual_testing_playbook/, feature_catalog/, and a clean MCP server integration story.
 
-The 007 line — through `001-code-graph-upgrades`, `002-code-graph-context-and-scan-scope`, `007-code-graph-backend-resilience`, `011-broader-scope-excludes-and-granular-skills`, and `013-doctor-apply-mode-phase-b` — proved code-graph is empirically stable and well-instrumented; this is a structural cleanup, not a functional change.
+The 007 line — through `001-code-graph-upgrades`, `002-code-graph-context-and-scan-scope`, `007-code-graph-backend-resilience`, `010-broader-scope-excludes-and-granular-skills`, and `013-doctor-apply-mode-phase-b` — proved code-graph is empirically stable and well-instrumented; this is a structural cleanup, not a functional change.
 
 ## 8. FOLLOW-ON PHASES
 
@@ -96,7 +96,7 @@ All work is shipped. The extraction was executed in 6 phases (now at slots 015-0
 ## 7. DEPENDENCIES
 
 - `007-code-graph/007-code-graph-backend-resilience` shipped on main (backend hardening before structural extraction).
-- `007-code-graph/011-broader-scope-excludes-and-granular-skills` shipped on main (scan-scope policy stable).
+- `007-code-graph/010-broader-scope-excludes-and-granular-skills` shipped on main (scan-scope policy stable).
 - `010-template-levels` shipped (template foundations for the new skill's documentation).
 - `015-skill-advisor-semantic-lane/009-system-skill-advisor-extraction` precedent (in_progress; provides the design pattern this packet mirrors exactly).
 - Acknowledgement: `007-code-graph/002-code-graph-self-contained-package` is superseded by 014 (scope strictly extended from intra-skill self-containment to standalone sibling-skill extraction; 002's partial work landed on disk during the 003-008 train and is reused as the starting point).

@@ -3,8 +3,8 @@
 ## Files Reviewed (path:line list)
 
 - `.claude/skills/sk-code-review/references/fix-completeness-checklist.md:1-85`
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/011-broader-scope-excludes-and-granular-skills/spec.md:58-123`
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/011-broader-scope-excludes-and-granular-skills/implementation-summary.md:50-125`
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/010-broader-scope-excludes-and-granular-skills/spec.md:58-123`
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/010-broader-scope-excludes-and-granular-skills/implementation-summary.md:50-125`
 - `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/index-scope-policy.ts:14-235`
 - `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/indexer-types.ts:139-172`
 - `.opencode/skills/system-spec-kit/mcp_server/lib/utils/index-scope.ts:31-91`

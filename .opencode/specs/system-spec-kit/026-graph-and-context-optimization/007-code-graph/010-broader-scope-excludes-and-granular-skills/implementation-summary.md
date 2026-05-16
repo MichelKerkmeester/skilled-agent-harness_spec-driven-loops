@@ -51,7 +51,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 011-broader-scope-excludes-and-granular-skills |
+| **Spec Folder** | 010-broader-scope-excludes-and-granular-skills |
 | **Completed** | 2026-05-02 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

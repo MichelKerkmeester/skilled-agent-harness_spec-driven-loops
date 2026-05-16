@@ -1,11 +1,11 @@
-# Deep-Review v1 Iter 4/5 — 011 broader excludes + granular skills
+# Deep-Review v1 Iter 5/5 — 011 broader excludes + granular skills
 
 Mode: review (RUN 1 on 011 implementation)
-Dimension: maintainability
+Dimension: correctness
 SessionId: 2026-05-03T04:12:23Z
 
 ## Focus
-Iter 4 — maintainability: 011 added 5 env var constants (existing pattern + 4 new). Are they consistent? Same casing? Same default value handling? Schema regex ^sk-[a-z0-9-]+$ — too permissive (allows non-existent skill names)? Could a typo silently include nothing?
+Iter 5 — cross-cutting: end-to-end. Run code_graph_scan({includeSkills: ['sk-code-review'], includeAgents: true}) → does the resulting DB contain only sk-code-review files + all .opencode/agents/** files + zero from other 4 default-excluded dirs? Does code_graph_status.activeScope show the correct values? Does fingerprint v2 round-trip cleanly?
 
 ## What 011 modified
 
@@ -31,10 +31,10 @@ Docs:
 Read `.opencode/skills/sk-code-review/references/fix-completeness-checklist.md` first.
 
 ## Output
-Write narrative to: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/011-broader-scope-excludes-and-granular-skills/review/iterations/iteration-004.md`
+Write narrative to: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/010-broader-scope-excludes-and-granular-skills/review/iterations/iteration-005.md`
 
 Iteration narrative structure:
-- ## Dimension: maintainability
+- ## Dimension: correctness
 - ## Files Reviewed (path:line list)
 - ## Findings by Severity (### P0 / ### P1 / ### P2 — say "None." if empty)
 - ## Verdict — PASS / CONDITIONAL / FAIL with one-line reason
