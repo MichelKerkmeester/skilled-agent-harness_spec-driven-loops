@@ -1,5 +1,5 @@
 {
-  "specFolder": "041-cocoindex-ipc-observability",
+  "specFolder": "_042-cocoindex-ipc-observability",
   "description": "Adds CocoIndex MCP/daemon IPC request correlation, structured timing and size logs, gated msgspec decode metadata, disconnect counting, and a configurable MCP request timeout.",
   "keywords": [
     "cocoindex",

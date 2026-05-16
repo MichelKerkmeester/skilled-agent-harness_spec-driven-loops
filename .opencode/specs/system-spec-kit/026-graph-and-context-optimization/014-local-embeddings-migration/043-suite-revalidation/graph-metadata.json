@@ -11,7 +11,7 @@
       "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/038-embedding-error-propagation",
       "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/039-token-aware-chunking",
       "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/_041-v-rule-cross-spec-overreach",
-      "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/041-cocoindex-ipc-observability"
+      "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/_042-cocoindex-ipc-observability"
     ],
     "supersedes": [],
     "related_to": [

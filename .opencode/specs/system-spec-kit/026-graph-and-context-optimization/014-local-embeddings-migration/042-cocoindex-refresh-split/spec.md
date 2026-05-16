@@ -60,7 +60,7 @@ MCP `search` now defaults `refresh_index=false`, so a normal semantic query no l
 | **Branch** | main (no branch, no commit per dispatch) |
 | **Parent Spec** | `../spec.md` (`014-local-embeddings-migration`) |
 | **Phase** | 042 |
-| **Predecessors** | `035-cocoindex-mcp-reliability`, `041-cocoindex-ipc-observability` |
+| **Predecessors** | `035-cocoindex-mcp-reliability`, `_042-cocoindex-ipc-observability` |
 | **Level Note** | ADR required by dispatch makes strict validation Level 3; implementation scope is Level 2 sized. |
 <!-- /ANCHOR:metadata -->
 

@@ -11,7 +11,7 @@ contextType: "spec"
 status: "complete"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/041-cocoindex-ipc-observability"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/_042-cocoindex-ipc-observability"
     last_updated_at: "2026-05-14T16:20:00Z"
     last_updated_by: "main-agent"
     recent_action: "Implemented CocoIndex MCP/daemon IPC observability and timeout configuration"
@@ -26,13 +26,13 @@ _memory:
       - ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/protocol.py"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000041"
-      session_id: "041-cocoindex-ipc-observability"
+      session_id: "_042-cocoindex-ipc-observability"
       parent_session_id: null
     completion_pct: 100
     open_questions:
       - "Should a follow-on packet default MCP refresh_index to false or split refresh from search?"
     answered_questions:
-      - "Gate 3: E - phase folder 041-cocoindex-ipc-observability"
+      - "Gate 3: E - phase folder _042-cocoindex-ipc-observability"
       - "Branch: main; no commits"
       - "Memory MCP and SpawnAgent: forbidden"
 ---

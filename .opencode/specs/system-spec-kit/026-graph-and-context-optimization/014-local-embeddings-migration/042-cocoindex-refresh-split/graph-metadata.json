@@ -7,7 +7,7 @@
   "manual": {
     "depends_on": [
       "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/035-cocoindex-mcp-reliability",
-      "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/041-cocoindex-ipc-observability"
+      "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/_042-cocoindex-ipc-observability"
     ],
     "supersedes": [],
     "related_to": []
