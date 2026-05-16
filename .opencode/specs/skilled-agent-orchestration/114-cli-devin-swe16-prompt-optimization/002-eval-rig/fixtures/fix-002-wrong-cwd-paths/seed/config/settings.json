@@ -1,0 +1,12 @@
+{
+  "api_endpoint": "https://api.example.com/v1",
+  "retry": {
+    "max_attempts": 3,
+    "backoff_ms": 500
+  },
+  "features": [
+    "auth",
+    "rate-limit",
+    "cache"
+  ]
+}
