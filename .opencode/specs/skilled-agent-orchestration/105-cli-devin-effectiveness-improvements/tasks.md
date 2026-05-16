@@ -102,5 +102,5 @@ _memory:
 - Spec: spec.md
 - Plan: plan.md
 - Retrospective driver: ../../../system-spec-kit/026-graph-and-context-optimization/999-spec-026-restructure-research/
-- cli-devin v1.0.3.0 baseline: packet 059 (.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/_055-cli-devin-deep-loop-alignment/)
+- cli-devin v1.0.3.0 baseline: packet 059 (.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/055-cli-devin-deep-loop-alignment/)
 <!-- /ANCHOR:cross-refs -->

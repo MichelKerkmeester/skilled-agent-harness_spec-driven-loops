@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/_055-cli-devin-deep-loop-alignment"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/055-cli-devin-deep-loop-alignment"
     last_updated_at: "2026-05-15T19:00:00Z"
     last_updated_by: "main_agent"
     recent_action: "Wrote 5-phase plan"

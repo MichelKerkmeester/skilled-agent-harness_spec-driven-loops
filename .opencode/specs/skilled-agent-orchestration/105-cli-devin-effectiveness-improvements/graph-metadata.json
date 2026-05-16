@@ -7,7 +7,7 @@
   "manual": {
     "depends_on": [
       "skilled-agent-orchestration/104-cli-devin-creation",
-      "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/_055-cli-devin-deep-loop-alignment",
+      "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/055-cli-devin-deep-loop-alignment",
       "system-spec-kit/026-graph-and-context-optimization/999-spec-026-restructure-research"
     ],
     "supersedes": [],
