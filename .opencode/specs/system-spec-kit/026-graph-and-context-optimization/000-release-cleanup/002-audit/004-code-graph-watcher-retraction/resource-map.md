@@ -1,14 +1,14 @@
 ---
 title: "Resource Map - 032 code graph watcher retraction"
-description: "File ledger for 019-code-graph-watcher-retraction."
+description: "File ledger for 004-code-graph-watcher-retraction."
 trigger_phrases:
-  - "019-code-graph-watcher-retraction resource map"
+  - "004-code-graph-watcher-retraction resource map"
   - "code graph watcher retraction file ledger"
 importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/019-code-graph-watcher-retraction"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-code-graph-watcher-retraction"
     last_updated_at: "2026-04-29T20:35:30+02:00"
     last_updated_by: "codex-gpt-5.5"
     recent_action: "Resource map indexed"
@@ -32,7 +32,7 @@ _memory:
 - **Total references**: 9
 - **By category**: READMEs=0, Documents=0, Commands=0, Agents=0, Skills=1, Specs=8, Scripts=0, Tests=0, Config=0, Meta=0
 - **Missing on disk**: 0
-- **Scope**: All files created, updated, or analyzed during 019-code-graph-watcher-retraction.
+- **Scope**: All files created, updated, or analyzed during 004-code-graph-watcher-retraction.
 - **Generated**: 2026-04-29T20:29:34+02:00
 
 > **Action vocabulary**: `Created` · `Updated` · `Analyzed` · `Removed` · `Cited` · `Validated` · `Moved` · `Renamed`.
@@ -61,14 +61,14 @@ _memory:
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/019-code-graph-watcher-retraction/checklist.md` | Created | OK | Packet-local spec artifact. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/019-code-graph-watcher-retraction/description.json` | Created | OK | Packet discovery metadata refreshed by canonical save. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/019-code-graph-watcher-retraction/graph-metadata.json` | Created | OK | Packet graph metadata refreshed by canonical save. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/019-code-graph-watcher-retraction/implementation-summary.md` | Created | OK | Packet-local spec artifact. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/019-code-graph-watcher-retraction/plan.md` | Created | OK | Packet-local spec artifact. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/019-code-graph-watcher-retraction/research/prompts/iteration-001.md` | Created | OK | Research or prompt artifact captured by the packet. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/019-code-graph-watcher-retraction/spec.md` | Created | OK | Packet-local spec artifact. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/019-code-graph-watcher-retraction/tasks.md` | Created | OK | Packet-local spec artifact. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-code-graph-watcher-retraction/checklist.md` | Created | OK | Packet-local spec artifact. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-code-graph-watcher-retraction/description.json` | Created | OK | Packet discovery metadata refreshed by canonical save. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-code-graph-watcher-retraction/graph-metadata.json` | Created | OK | Packet graph metadata refreshed by canonical save. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-code-graph-watcher-retraction/implementation-summary.md` | Created | OK | Packet-local spec artifact. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-code-graph-watcher-retraction/plan.md` | Created | OK | Packet-local spec artifact. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-code-graph-watcher-retraction/research/prompts/iteration-001.md` | Created | OK | Research or prompt artifact captured by the packet. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-code-graph-watcher-retraction/spec.md` | Created | OK | Packet-local spec artifact. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-code-graph-watcher-retraction/tasks.md` | Created | OK | Packet-local spec artifact. |
 <!-- /ANCHOR:specs -->
 
 ---

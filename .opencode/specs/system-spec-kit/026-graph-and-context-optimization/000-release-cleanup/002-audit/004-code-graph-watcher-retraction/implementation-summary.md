@@ -3,7 +3,7 @@ title: "Implementation Summary: Code Graph Watcher Retraction"
 template_source: "SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2"
 description: "Implementation summary for packet 032 structural code-graph watcher retraction."
 trigger_phrases:
-  - "019-code-graph-watcher-retraction"
+  - "004-code-graph-watcher-retraction"
   - "code-graph watcher retraction"
   - "structural watcher doc fix"
   - "read-path graph freshness"
@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/019-code-graph-watcher-retraction"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-code-graph-watcher-retraction"
     last_updated_at: "2026-04-29T20:35:30+02:00"
     last_updated_by: "cli-codex"
     recent_action: "Resource map indexed"
@@ -31,7 +31,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 019-code-graph-watcher-retraction |
+| **Spec Folder** | 004-code-graph-watcher-retraction |
 | **Created** | 2026-04-29 |
 | **Status** | Complete |
 | **Level** | 2 |
@@ -91,7 +91,7 @@ Phase 1 initialized packet docs and metadata at `completion_pct: 5`. Phase 2 pat
 | README freshness model | `.opencode/skills/system-spec-kit/mcp_server/README.md:517-529` | PASS: read-path self-heal, manual scan, status diagnostic, and required-action behavior documented |
 | Related doc sweep | targeted `rg` over README, system-spec-kit skill guide, CLAUDE.md, and hook reference | PASS: no current false structural watcher claim found |
 | Runtime-code scope | targeted diff review | PASS: no runtime code files edited |
-| Strict validation | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/019-code-graph-watcher-retraction --strict` | PASS: RESULT PASSED, 0 errors, 0 warnings |
+| Strict validation | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-code-graph-watcher-retraction --strict` | PASS: RESULT PASSED, 0 errors, 0 warnings |
 <!-- /ANCHOR:verification -->
 
 ---

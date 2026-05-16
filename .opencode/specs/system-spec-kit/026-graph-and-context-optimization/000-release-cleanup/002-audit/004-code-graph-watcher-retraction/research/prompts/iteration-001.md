@@ -1,6 +1,6 @@
 ## Packet 032: code-graph-watcher-retraction — Tier B-β doc retraction
 
-You are cli-codex (gpt-5.5 high fast) implementing remediation packet **019-code-graph-watcher-retraction**.
+You are cli-codex (gpt-5.5 high fast) implementing remediation packet **004-code-graph-watcher-retraction**.
 
 ### Goal
 
@@ -34,11 +34,11 @@ Per the 013 research-report's recommendation, the **β path** (cheaper option) i
 
 ### Packet structure to create (Level 2)
 
-Same 7-file structure as 031 (spec/plan/tasks/checklist/implementation-summary/description.json/graph-metadata.json) under `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/019-code-graph-watcher-retraction/`. Use 013's packet as template.
+Same 7-file structure as 031 (spec/plan/tasks/checklist/implementation-summary/description.json/graph-metadata.json) under `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-code-graph-watcher-retraction/`. Use 013's packet as template.
 
 **Deps**: `manual.depends_on=["system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-doc-truth-pass"]`, `manual.related_to=["system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/017-automation-reality-supplemental-research"]`.
 
-**Trigger phrases**: `["019-code-graph-watcher-retraction","code-graph watcher retraction","structural watcher doc fix","read-path graph freshness"]`.
+**Trigger phrases**: `["004-code-graph-watcher-retraction","code-graph watcher retraction","structural watcher doc fix","read-path graph freshness"]`.
 
 **Causal summary**: `"Tier B-β doc retraction: removes README claim of real-time structural code-graph watcher; documents actual read-path/manual contract via ensure-ready.ts + code_graph_scan."`.
 

@@ -3,7 +3,7 @@ title: "Spec: Code Graph Watcher Retraction"
 template_source: "SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2"
 description: "Tier B-beta doc retraction for the structural code-graph watcher overclaim."
 trigger_phrases:
-  - "019-code-graph-watcher-retraction"
+  - "004-code-graph-watcher-retraction"
   - "code-graph watcher retraction"
   - "structural watcher doc fix"
   - "read-path graph freshness"
@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/019-code-graph-watcher-retraction"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-code-graph-watcher-retraction"
     last_updated_at: "2026-04-29T20:35:30+02:00"
     last_updated_by: "cli-codex"
     recent_action: "Resource map indexed"
@@ -68,7 +68,7 @@ Retract the structural watcher claim and document the real freshness model: `ens
 - Targeted checks in `.opencode/skills/system-spec-kit/SKILL.md`
 - Targeted checks in `CLAUDE.md`
 - Targeted checks in `.opencode/skills/system-spec-kit/references/config/hook_system.md`
-- Packet-local docs under this `019-code-graph-watcher-retraction/` folder
+- Packet-local docs under this `004-code-graph-watcher-retraction/` folder
 
 ### Out of Scope
 
@@ -127,7 +127,7 @@ Retract the structural watcher claim and document the real freshness model: `ens
 | Risk | Historical research artifacts still mention the old claim | Treat them as evidence records, not current operator docs |
 | Risk | README over-corrects and hides selective read-path repair | Name both selective self-heal and manual full repair |
 | Dependency | 013 research report | Use section 4 P1-1 and section 6 Packet 032 as source-of-truth |
-| Dependency | Strict validator | Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/019-code-graph-watcher-retraction --strict` |
+| Dependency | Strict validator | Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-code-graph-watcher-retraction --strict` |
 <!-- /ANCHOR:risks -->
 
 ---

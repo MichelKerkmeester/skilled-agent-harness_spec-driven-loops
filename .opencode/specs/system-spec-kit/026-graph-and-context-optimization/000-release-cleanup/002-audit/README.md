@@ -7,7 +7,7 @@ Runtime wiring, compliance checks, alignment reviews, sweeps. Hosts the absorbed
 - `001-tanstack-security-audit`
 - `002-w3-w7-runtime-wiring-and-audit`
 - `003-doc-truth-pass`
-- `019-code-graph-watcher-retraction`
+- `004-code-graph-watcher-retraction`
 - `020-memory-retention-sweep`
 - `022-full-matrix-execution-validation`
 - `036-runtime-command-agent-alignment-review`

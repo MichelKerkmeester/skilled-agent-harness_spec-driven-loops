@@ -3,7 +3,7 @@ title: "Plan: Code Graph Watcher Retraction"
 template_source: "SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2"
 description: "Level 2 plan for retracting structural code-graph watcher documentation."
 trigger_phrases:
-  - "019-code-graph-watcher-retraction"
+  - "004-code-graph-watcher-retraction"
   - "code-graph watcher retraction"
   - "structural watcher doc fix"
   - "read-path graph freshness"
@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/019-code-graph-watcher-retraction"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-code-graph-watcher-retraction"
     last_updated_at: "2026-04-29T13:58:12Z"
     last_updated_by: "cli-codex"
     recent_action: "Watcher claim retracted"
@@ -51,7 +51,7 @@ This plan implements Packet 032's Tier B-beta path. The README will stop implyin
 
 ### Definition of Ready
 
-- [x] Packet folder identified. [EVIDENCE: user requested `019-code-graph-watcher-retraction`]
+- [x] Packet folder identified. [EVIDENCE: user requested `004-code-graph-watcher-retraction`]
 - [x] Source research identified. [EVIDENCE: `../017-automation-reality-supplemental-research/research/research-report.md:84`]
 - [x] Runtime-code exclusion clear. [EVIDENCE: user constraint: DOC-ONLY]
 

@@ -33,7 +33,7 @@ _memory:
 | **Created** | 2026-04-29 |
 | **Status** | Complete |
 | **Level** | 2 |
-| **Depends On** | 003-doc-truth-pass, 019-code-graph-watcher-retraction, 020-memory-retention-sweep |
+| **Depends On** | 003-doc-truth-pass, 004-code-graph-watcher-retraction, 020-memory-retention-sweep |
 <!-- /ANCHOR:metadata -->
 
 ---
