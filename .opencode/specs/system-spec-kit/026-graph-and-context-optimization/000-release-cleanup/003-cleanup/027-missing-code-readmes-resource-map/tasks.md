@@ -9,14 +9,14 @@ importance_tier: "normal"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/052-missing-code-readmes-resource-map"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/027-missing-code-readmes-resource-map"
     last_updated_at: "2026-05-02T16:15:00Z"
     last_updated_by: "gpt-5.5"
     recent_action: "Created all 65 target README files from the exact manifest"
     next_safe_action: "Review git diff and summarize completed README implementation"
     blockers: []
     key_files:
-      - ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/052-missing-code-readmes-resource-map/resource-map.md"
+      - ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/027-missing-code-readmes-resource-map/resource-map.md"
     completion_pct: 100
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
@@ -44,7 +44,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Create phase child under release-cleanup parent (`052-missing-code-readmes-resource-map/`)
+- [x] T001 Create phase child under release-cleanup parent (`027-missing-code-readmes-resource-map/`)
 - [x] T002 [P] Add Level 2 checklist from manifest-backed template (`checklist.md`)
 - [x] T003 [P] Add resource-map from manifest-backed template (`resource-map.md`)
 <!-- /ANCHOR:phase-1 -->

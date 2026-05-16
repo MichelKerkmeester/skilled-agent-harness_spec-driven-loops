@@ -11,14 +11,14 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/052-missing-code-readmes-resource-map"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/027-missing-code-readmes-resource-map"
     last_updated_at: "2026-05-02T16:15:00Z"
     last_updated_by: "gpt-5.5"
     recent_action: "Created all 65 target README files from the corrected manifest"
     next_safe_action: "Run final manifest verification and strict phase validation"
     blockers: []
     key_files:
-      - ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/052-missing-code-readmes-resource-map/resource-map.md"
+      - ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/027-missing-code-readmes-resource-map/resource-map.md"
     completion_pct: 95
     open_questions: []
     answered_questions:
@@ -43,7 +43,7 @@ _memory:
 | **Priority** | P1 |
 | **Status** | Implemented, final validation pending |
 | **Created** | 2026-05-02 |
-| **Branch** | `scaffold/052-missing-code-readmes-resource-map` |
+| **Branch** | `scaffold/027-missing-code-readmes-resource-map` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 52 of 52 |
 | **Predecessor** | 026-readme-code-template |
@@ -107,14 +107,14 @@ Create a validated Level 2 phase that preserves the exact 65-target manifest and
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/052-missing-code-readmes-resource-map/spec.md` | Modify | Correct scope, requirements, and audit facts to the 65-folder manifest. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/052-missing-code-readmes-resource-map/plan.md` | Modify | Align the documentation-only plan to the exact manifest. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/052-missing-code-readmes-resource-map/tasks.md` | Modify | Track manifest correction and validation tasks. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/052-missing-code-readmes-resource-map/checklist.md` | Modify | Verify manifest counts and boundary controls. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/052-missing-code-readmes-resource-map/resource-map.md` | Modify | Store the exact 65-folder manifest and B01-B17 batches. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/052-missing-code-readmes-resource-map/implementation-summary.md` | Modify | Record the corrected manifest outcome and next safe action. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/052-missing-code-readmes-resource-map/description.json` | Modify | Refresh metadata keywords and timestamp. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/052-missing-code-readmes-resource-map/graph-metadata.json` | Modify | Refresh derived topics and key files. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/027-missing-code-readmes-resource-map/spec.md` | Modify | Correct scope, requirements, and audit facts to the 65-folder manifest. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/027-missing-code-readmes-resource-map/plan.md` | Modify | Align the documentation-only plan to the exact manifest. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/027-missing-code-readmes-resource-map/tasks.md` | Modify | Track manifest correction and validation tasks. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/027-missing-code-readmes-resource-map/checklist.md` | Modify | Verify manifest counts and boundary controls. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/027-missing-code-readmes-resource-map/resource-map.md` | Modify | Store the exact 65-folder manifest and B01-B17 batches. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/027-missing-code-readmes-resource-map/implementation-summary.md` | Modify | Record the corrected manifest outcome and next safe action. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/027-missing-code-readmes-resource-map/description.json` | Modify | Refresh metadata keywords and timestamp. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/027-missing-code-readmes-resource-map/graph-metadata.json` | Modify | Refresh derived topics and key files. |
 | `65 target README.md files from resource-map.md` | Create | Add concise code-folder orientation READMEs for the exact manifest targets. |
 <!-- /ANCHOR:scope -->
 
@@ -127,7 +127,7 @@ Create a validated Level 2 phase that preserves the exact 65-target manifest and
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | Create the next available child phase under the release-cleanup parent. | Folder `052-missing-code-readmes-resource-map/` exists under the parent. |
+| REQ-001 | Create the next available child phase under the release-cleanup parent. | Folder `027-missing-code-readmes-resource-map/` exists under the parent. |
 | REQ-002 | Preserve the target-only boundary. | Only README files listed in `resource-map.md` are created; target folders are not created or moved. |
 | REQ-003 | Document the corrected manifest counts. | `spec.md` and `resource-map.md` state: 65 unique folders, 0 existing READMEs, 0 missing paths, and 3 file-path mappings to `mcp_server/lib/description`. |
 | REQ-007 | Create target READMEs. | All 65 target folders have a `README.md` file after implementation. |

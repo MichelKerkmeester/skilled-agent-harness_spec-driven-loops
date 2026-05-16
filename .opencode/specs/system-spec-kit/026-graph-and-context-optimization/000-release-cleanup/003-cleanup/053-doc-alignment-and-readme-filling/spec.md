@@ -49,7 +49,7 @@ _memory:
 | **Branch** | `main` (stay-on-main per project memory) |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 53 of 53 |
-| **Predecessor** | 052-missing-code-readmes-resource-map |
+| **Predecessor** | 027-missing-code-readmes-resource-map |
 | **Successor** | None |
 | **Handoff Criteria** | All five work-blocks pass sk-doc DQI validation, strict spec validate exits 0 or 1, operator_runbook directory deleted, no stale `operator_runbook` or `SAD-00[1-4]` references remain. |
 <!-- /ANCHOR:metadata -->

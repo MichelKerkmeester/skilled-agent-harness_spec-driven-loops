@@ -9,14 +9,14 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/052-missing-code-readmes-resource-map"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/027-missing-code-readmes-resource-map"
     last_updated_at: "2026-05-02T16:15:00Z"
     last_updated_by: "gpt-5.5"
     recent_action: "Created all 65 target README files from the exact manifest"
     next_safe_action: "Review git diff and summarize completed README implementation"
     blockers: []
     key_files:
-      - ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/052-missing-code-readmes-resource-map/resource-map.md"
+      - ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/027-missing-code-readmes-resource-map/resource-map.md"
     completion_pct: 100
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
@@ -85,7 +85,7 @@ Task #36 target entries are normalized into `spec.md`, then converted into the g
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Scaffold
-- [x] Create child phase `052-missing-code-readmes-resource-map/`.
+- [x] Create child phase `027-missing-code-readmes-resource-map/`.
 - [x] Add Level 2 checklist and resource-map surfaces.
 
 ### Phase 2: Manifest Correction
