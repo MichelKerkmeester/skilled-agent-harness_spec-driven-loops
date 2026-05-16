@@ -68,10 +68,14 @@ Adopt the upstream auto-review pattern: end every review output with exactly one
 ## 3. SCOPE
 
 ### In Scope
-- Edit `sk-code-review` SKILL.md Phase 4 output contract (lines 302-329) to add exact-string status line: `**Review status**: [APPROVED | REQUESTED_CHANGES | COMMENTED]`
-- Edit `deep-review` YAML synthesis step (`spec_kit_deep-review_auto.yaml` + `spec_kit_deep-review_confirm.yaml`) to emit `Review verdict: [PASS/CONDITIONAL/FAIL]` as the final line of `iteration-NNN.md`
+- Edit `sk-code-review` SKILL.md Phase 4 output contract (lines 302-329) to add exact-string status line in **PLAIN TEXT** (no Markdown bold): `Review status: APPROVED` (or `REQUESTED_CHANGES` or `COMMENTED`). Council §10.4 directive — plain text simpler to parse than `**Review status**: ...` bold form.
+- Edit `deep-review` YAML synthesis step (`spec_kit_deep-review_auto.yaml` + `spec_kit_deep-review_confirm.yaml`) to emit `Review verdict: PASS` (or `CONDITIONAL` or `FAIL`) in plain text as the final line of `iteration-NNN.md`
 - Map verdict logic for deep-review: PASS if no P0/P1 findings, CONDITIONAL if P1 present, FAIL if P0 present
-- Add a brief example output block to each skill's SKILL.md showing the new final-line shape
+- Add a brief example output block to each skill's SKILL.md showing the new plain-text final-line shape
+
+### Final-line exact strings (canonical — DO NOT vary):
+- sk-code-review: exactly `Review status: APPROVED` / `Review status: REQUESTED_CHANGES` / `Review status: COMMENTED`
+- deep-review: exactly `Review verdict: PASS` / `Review verdict: CONDITIONAL` / `Review verdict: FAIL`
 
 ### Out of Scope
 - Migrating downstream consumers (PR bots, CI checks) to parse the new format — that's a follow-on packet
@@ -132,8 +136,8 @@ Adopt the upstream auto-review pattern: end every review output with exactly one
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-1. **Q1**: Final-line for sk-code-review should be Markdown bold (`**Review status**: ...`) or plain text (`Review status: ...`)? Council to advise.
-2. **Q2**: Should deep-review emit verdict per-iteration (current scope) OR per-packet (synthesis summary)? Council to advise.
+1. **Q1**: ~~Markdown bold vs plain text?~~ ✅ RESOLVED by council §10.4 — plain text (`Review status: APPROVED`).
+2. **Q2**: ~~Per-iteration vs per-packet verdict?~~ ✅ RESOLVED by council §6 — per-iteration final line (matches existing iteration-NNN.md output contract).
 <!-- /ANCHOR:questions -->
 
 ---

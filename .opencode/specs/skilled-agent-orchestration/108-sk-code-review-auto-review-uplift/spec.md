@@ -165,12 +165,12 @@ Adopt the 5 quick-win teachings via 3 implementation phases (MVP) + 1 stretch-go
 
 | Phase | Child | Teachings | Target surfaces | Effort | Status |
 |-------|-------|-----------|-----------------|--------|--------|
-| 1 | `001-h1-final-line-contract` | H-1 | sk-code-review, deep-review | 2-3 h | Planned |
-| 2 | `002-h2-loop-prevention-markers` | H-2 | sk-code-review, deep-review, deep-research | 1-2 h | Planned |
-| 3 | `003-h3-async-iife-h6-lazy-mkdir` | H-3, H-6 | skill-advisor hooks, code-graph feedback handler | 2-3 h | Planned |
-| 4 | `004-stretch-goals` (OPTIONAL) | H-4, H-5, H-7, H-8, H-9, M-1..M-6 | Various | 8-12 h | Planned (gated on capacity) |
+| 1 | `001-h1-final-line-contract` | H-1 (plain text final lines, no Markdown bold) | sk-code-review, deep-review | 2-3 h | Planned (council-approved) |
+| 2 | `002-h2-loop-prevention-markers` | H-2 + H-4 (anti-repetition moved into MVP) | sk-code-review, deep-review, deep-research — at RENDERED-PROMPT BOUNDARY, not in reference frontmatter | 2-3 h | Planned (council-approved) |
+| 3 | `003-h3-async-iife-h6-lazy-mkdir` | H-3 (diagnostic-only), H-6 | skill-advisor metrics.ts (PRESERVE bounded retention) + code-graph ccc-feedback.ts (awaited async, NOT fire-and-forget) | 2-3 h | Planned (council-approved with revised semantics) |
+| 4 | `004-stretch-goals` (BACKLOG-ONLY) | H-5, H-7, H-9, M-1..M-6 (H-4 promoted to Phase 2; H-8 dropped — duplicates H-1) | Various | n/a | BACKLOG-ONLY — no implementation in packet 108. Future packet 109 if pursued. |
 
-**Pre-implementation gate**: deep-ai-council multi-seat review via cli-codex gpt-5.5 xhigh fast. Council artifact persists to `ai-council/council-report.md` with verdict + ≥ 3 seat deliberations.
+**Pre-implementation gate**: deep-ai-council multi-seat review via cli-codex gpt-5.5 xhigh fast. ✅ Council COMPLETE at `ai-council/council-report.md` — verdict REQUEST-CHANGES (5/5 unanimous, HIGH confidence). 7 spec edits applied 2026-05-16 per Recommended Plan §10. Implementation executor: cli-opencode + deepseek-v4-pro via `opencode run --model deepseek/deepseek-v4-pro --pure`.
 <!-- /ANCHOR:iteration-plan -->
 
 ---

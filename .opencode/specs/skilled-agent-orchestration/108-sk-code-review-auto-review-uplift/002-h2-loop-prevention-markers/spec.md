@@ -1,6 +1,6 @@
 ---
-title: "Phase 2: Loop-prevention header markers (H-2) for sk-code-review + deep-review + deep-research"
-description: "Add 'CODE-REVIEW' / 'DEEP-REVIEW' / 'DEEP-RESEARCH' header markers to review prompt templates and have dispatchers scan for them as the first line before dispatching another iteration. Layer-1 of upstream's 3-layer loop-prevention combinator. Defends against review-of-review recursion."
+title: "Phase 2: Loop-prevention header markers (H-2) + Anti-repetition rule (H-4)"
+description: "Add 'CODE-REVIEW' / 'DEEP-REVIEW' / 'DEEP-RESEARCH' header markers at the RENDERED-PROMPT BOUNDARY (prompt_pack templates + dispatcher prompt-assembly), NOT in reference markdown files (would corrupt YAML frontmatter). Plus add the H-4 anti-repetition rule ('Do not implement fixes during review') to all 3 review prompts. Promoted from Phase 4 to MVP per council §5.2 because source ranks H-4 HIGH-impact LOW-cost."
 trigger_phrases:
   - "h2 loop-prevention markers"
   - "review marker header"
@@ -68,11 +68,17 @@ Adopt the upstream auto-review pattern of injecting a unique header marker at th
 ## 3. SCOPE
 
 ### In Scope
-- Add `CODE-REVIEW\n\n` header to all `sk-code-review` review prompt templates (`references/code_quality_checklist.md`, `references/security_checklist.md`, etc.)
-- Add `DEEP-REVIEW\n\n` header to `deep-review` `prompt_pack_iteration.md.tmpl`
-- Add `DEEP-RESEARCH\n\n` header to `deep-research` `prompt_pack_iteration.md.tmpl`
-- Update `spec_kit_deep-review_auto.yaml` + `spec_kit_deep-research_auto.yaml` dispatcher to scan first 5 lines of the previous iteration's input for marker; skip dispatch + emit "nested loop detected" error if found
-- Use first-line-of-prompt match (not contains-check) to avoid false positives (e.g. comment legitimately mentioning "CODE-REVIEW")
+
+**H-2 — Marker headers (RENDERED-PROMPT BOUNDARY only)**:
+- Add `DEEP-REVIEW\n\n` header at the TOP of `deep-review` `prompt_pack_iteration.md.tmpl` (rendered template, not a reference resource)
+- Add `DEEP-RESEARCH\n\n` header at the TOP of `deep-research` `prompt_pack_iteration.md.tmpl`
+- For `sk-code-review`: marker injection happens at the DISPATCHER prompt-assembly layer (wherever sk-code-review prompts are assembled into the final user-facing prompt), NOT prepended above the YAML frontmatter of reference files like `references/code_quality_checklist.md` (which would corrupt MD parsing). Council §10.5 directive.
+- Update `spec_kit_deep-review_auto.yaml` + `spec_kit_deep-research_auto.yaml` dispatcher to scan first 5 lines of the previous iteration's rendered prompt for marker; skip dispatch + emit "nested loop detected" error if found
+- Use first-line-of-rendered-prompt anchor match (`^MARKER` regex), not contains-check, to avoid false positives
+
+**H-4 — Anti-repetition rule (promoted from Phase 4 to MVP)**:
+- Add exactly one line to each of the 3 review prompts (sk-code-review SKILL.md Phase 3 rules section, deep-review prompt_pack_iteration.md.tmpl, deep-research prompt_pack_iteration.md.tmpl): `Do not implement fixes during review. Report findings only; implementation is a separate follow-up step.`
+- Justification: source 106 ranks H-4 HIGH-impact LOW-cost (~30 min total); council §5.2 + §7 unanimously recommend MVP promotion.
 
 ### Out of Scope
 - Layers 2 (session-set) + 3 (dedup map) — those require child-session model which our LEAF skills don't have

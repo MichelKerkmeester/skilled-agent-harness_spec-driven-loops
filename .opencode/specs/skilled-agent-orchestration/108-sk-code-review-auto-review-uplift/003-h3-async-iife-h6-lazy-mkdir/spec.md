@@ -55,11 +55,23 @@ _memory:
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
-### Problem Statement
-Our hook diagnostic-log writers use synchronous file operations (`writeFileSync` in `skill-advisor` `metrics.ts:243-248`, `appendFileSync` in `code-graph` `ccc-feedback.ts:63`). Each write blocks the caller's execution; on slow filesystems or network-mounted directories this adds 50-200ms latency PER hook invocation. Across many hooks per session, latency compounds and becomes user-perceptible. Additionally, current implementation calls `mkdirSync` on every write rather than tracking dir-readiness via a closure flag (wasted work even if idempotent).
+### Problem Statement (REVISED per council §6 + §10.1-2)
 
-### Purpose
-Adopt the upstream auto-review pattern: fire-and-forget async-IIFE wrapper `;(async () => { try { await appendFile(...) } catch {} })()` for non-blocking writes, plus closure-based lazy mkdir flag (`dirReady`). Add env-var enable gates so logging is opt-in in production (`SKILL_ADVISOR_DEBUG=1`, `CODE_GRAPH_DEBUG=1`).
+The original phase scope conflated two different concerns:
+- `metrics.ts:233-247` is **bounded-retention diagnostic logging** — reads existing JSONL, appends one record, rewrites the last N records. Naive append-only would break retention semantics.
+- `ccc-feedback.ts:18-72` is **authoritative MCP-handler persistence** that returns an error on write failure (lines 64-72). Fire-and-forget would silently drop user feedback and break the error contract.
+
+Both are sync but they need DIFFERENT refactors. Mistreating either as "diagnostic fire-and-forget" would introduce bugs the council flagged as HIGH-severity.
+
+### Purpose (REVISED)
+
+Apply targeted refactors that preserve existing semantics while removing only the sync-blocking-on-disk-I/O latency:
+
+1. **`metrics.ts` (diagnostic, bounded retention)**: Convert `mkdirSync`+`writeFileSync` to awaited `mkdir`+`writeFile` using `fs/promises`. Keep the read-append-rewrite-last-N pattern intact. Add closure-based `dirReady` flag for lazy mkdir. Add env-var enable gate `SKILL_ADVISOR_DEBUG=1` for the write path (default disabled in production). Refactor must remain awaited because retention requires the read-then-write ordering.
+
+2. **`ccc-feedback.ts` (authoritative persistence)**: Convert `appendFileSync` to **awaited** `appendFile` from `fs/promises` (NOT fire-and-forget). Preserve the error-return contract at lines 64-72. Add lazy mkdir via closure flag. Safe-stringify fallback for circular objects. NO enable gate — this is user-facing feedback persistence, must always run.
+
+The upstream pattern is "non-blocking diagnostic logging." `ccc-feedback.ts` is NOT diagnostic logging — it's a documented MCP handler with an error contract. The council unanimously called the original phase "lossy fire-and-forget on user data." Revised scope eliminates that risk.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -67,13 +79,23 @@ Adopt the upstream auto-review pattern: fire-and-forget async-IIFE wrapper `;(as
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
 
-### In Scope
-- Refactor `metrics.ts:243-248` (skill-advisor): replace `writeFileSync` with async-IIFE wrapper
-- Refactor `ccc-feedback.ts:63` (code-graph): replace `appendFileSync` with async-IIFE wrapper
-- Add closure-scoped `dirReady` flag in both files; only call `mkdir` on first write
-- Add env-var enable gate at start of each logging function (early-return if disabled)
-- Add safe stringify fallback (try JSON.stringify, fall back to String) for circular objects
-- Smoke-test on a network-mounted dir to verify latency improvement
+### In Scope (REVISED per council §10.1-2)
+
+**`metrics.ts` (skill-advisor, diagnostic logging with bounded retention)**:
+- Keep the read-then-rewrite-last-N pattern at lines 233-247 (do NOT replace with naive append-only)
+- Replace `mkdirSync` (line 219) + `writeFileSync` (line 247) with awaited `mkdir`/`writeFile` from `fs/promises`
+- Add closure-scoped `dirReady` flag (lazy mkdir)
+- Add env-var enable gate `SKILL_ADVISOR_DEBUG=1` early-return if disabled (diagnostic logging is opt-in in production)
+- Smoke-test: write more than `maxRecords` lines, verify last-N retention still works
+
+**`ccc-feedback.ts` (code-graph, authoritative persistence)**:
+- Replace `appendFileSync` (line 63) with **awaited** `await appendFile(...)` from `fs/promises` — NOT fire-and-forget
+- Replace `mkdirSync` (line 50) with awaited `await mkdir(...)`
+- Add closure-scoped `dirReady` flag (lazy mkdir)
+- Preserve existing error-return contract at lines 64-72 (catch errors and return MCP error response, do NOT silently swallow)
+- Add safe-stringify fallback for circular objects (`try JSON.stringify catch { String(arg) }`)
+- NO env-var enable gate — this is user-facing feedback persistence, must always run
+- Smoke-test: confirm error contract intact when write fails (mock `fs.promises.appendFile` to throw, verify MCP error response returned)
 
 ### Out of Scope
 - Migrating deep-* skill JSONL state writes (they're not in hot hook paths; less performance-critical)

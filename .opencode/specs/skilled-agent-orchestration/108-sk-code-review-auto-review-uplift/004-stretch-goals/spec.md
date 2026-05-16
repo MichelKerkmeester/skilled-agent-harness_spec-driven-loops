@@ -1,6 +1,6 @@
 ---
-title: "Phase 4 (OPTIONAL): Stretch goals — H-4, H-5, H-7, H-8, H-9 + M-1..M-6"
-description: "Optional follow-up phase covering anti-repetition rule (H-4), 3-tier config (H-5), marker-based dedup (H-7), per-iteration verdict (H-8), bounded evidence (H-9), plus 6 MEDIUM-impact teachings. Packet declared complete after Phases 1-3 MVP; this phase gated on capacity."
+title: "Phase 4 (BACKLOG-ONLY, per council §10.7): Stretch goals — H-5, H-7, H-9 + M-1..M-6"
+description: "BACKLOG-ONLY parking lot inside packet 108 — no implementation work happens here. H-4 promoted to Phase 2 MVP. H-8 dropped (duplicates H-1's deep-review verdict per council §10.6). Remaining stretch teachings: H-5 3-tier config, H-7 marker-based dedup, H-9 bounded evidence + M-1..M-6. If pursued in future, lift this content into a fresh packet 109 — do NOT implement inside packet 108."
 trigger_phrases:
   - "108 phase 4 stretch goals"
   - "h4-h9 medium teachings"
@@ -69,19 +69,19 @@ Provide a planned home for the stretch teachings so they don't fall off the rada
 
 ### In Scope (à la carte — operator picks which to adopt)
 
-| Teaching | Surface | Cost | Adopt? (operator decides at Phase 4 start) |
-|----------|---------|------|--------------------------------------------|
-| H-4 anti-repetition rule | sk-code-review, deep-review, deep-research prompts | LOW | TBD |
-| H-5 3-tier config (file > env > default) | mk-skill-advisor, mk-code-graph plugins | MEDIUM | TBD |
-| H-7 marker-based dedup for findings | deep-review multi-dimensional loops | MEDIUM | TBD |
-| H-8 PASS/FAIL/UNKNOWN per-iteration verdict | deep-review YAML synthesis | MEDIUM | TBD |
-| H-9 bounded evidence interpolation | deep-review for large packets | LOW | TBD |
-| M-1 PR state dedup | sk-code-review | MEDIUM | TBD |
-| M-2 min-evidence gate (opt-in) | sk-code-review | LOW | TBD |
-| M-3 mutation signature dedup | deep-agent-improvement | MEDIUM | TBD |
-| M-4 enable gate for diagnostic logging | skill-advisor, code-graph (likely overlaps with Phase 3) | LOW | TBD |
-| M-5 safe stringify fallback | code-graph (likely overlaps with Phase 3) | LOW | TBD |
-| M-6 async config init | mk-skill-advisor, mk-code-graph | LOW | TBD |
+| Teaching | Surface | Cost | Status |
+|----------|---------|------|--------|
+| ~~H-4 anti-repetition rule~~ | ~~prompts~~ | ~~LOW~~ | **PROMOTED to Phase 2 MVP** (council §5.2 + §10.3) |
+| H-5 3-tier config (file > env > default) | mk-skill-advisor, mk-code-graph plugins | MEDIUM | BACKLOG (packet 109 if pursued) |
+| H-7 marker-based dedup for findings | deep-review multi-dimensional loops | MEDIUM | BACKLOG |
+| ~~H-8 PASS/FAIL/UNKNOWN per-iteration verdict~~ | ~~deep-review~~ | ~~MEDIUM~~ | **DROPPED — duplicates H-1's deep-review verdict** (council §10.6) |
+| H-9 bounded evidence interpolation | deep-review for large packets | LOW | BACKLOG |
+| M-1 PR state dedup | sk-code-review | MEDIUM | BACKLOG |
+| M-2 min-evidence gate (opt-in) | sk-code-review | LOW | BACKLOG |
+| M-3 mutation signature dedup | deep-agent-improvement | MEDIUM | BACKLOG |
+| M-4 enable gate for diagnostic logging | skill-advisor (overlaps Phase 3) | LOW | BACKLOG (likely absorbed by Phase 3) |
+| M-5 safe stringify fallback | code-graph (overlaps Phase 3) | LOW | BACKLOG (likely absorbed by Phase 3) |
+| M-6 async config init | mk-skill-advisor, mk-code-graph | LOW | BACKLOG |
 
 ### Out of Scope
 - Any LOW-impact teaching (L-1, L-2, L-3) — these are architectural mismatches per 106's reject list
