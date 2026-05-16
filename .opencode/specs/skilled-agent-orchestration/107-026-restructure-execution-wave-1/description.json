@@ -1,0 +1,20 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/107-026-restructure-execution-wave-1",
+  "description": "Execute the council-approved Wave 1 of the 026 graph-and-context-optimization restructure: 4 top-level renames + 7 PROCEED merges + 8 CONTAINED deletes + 28 DEEP archives + 3 parent-doc rewrites + 3 index refreshes. Reduced variant captures ~75% of recall benefit at ~40% effort vs full plan per council 2026-05-16.",
+  "keywords": [
+    "107-restructure-wave-1",
+    "026-execution",
+    "council-approved-reduced-variant",
+    "deepseek-v4-pro-execution",
+    "renames-merges-archives"
+  ],
+  "lastUpdated": "2026-05-16T06:51:00Z",
+  "specId": "107",
+  "folderSlug": "026-restructure-execution-wave-1",
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}
