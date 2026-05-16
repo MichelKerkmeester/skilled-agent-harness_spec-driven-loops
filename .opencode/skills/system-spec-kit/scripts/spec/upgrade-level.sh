@@ -1396,6 +1396,11 @@ perform_single_upgrade() {
 
     info "Upgrading L${from_level} → L${to_level}"
 
+    if [[ "$DRY_RUN" == "true" ]]; then
+        info "DRY RUN: Would execute upgrade steps for L${from_level} → L${to_level}"
+        return 0
+    fi
+
     # Step 1: Create new files (checklist.md for L1→L2, decision-record.md for L2→L3)
     verbose "Step 1/5: Creating new files for L${from_level} → L${to_level}"
     if ! create_new_files "$from_level" "$to_level"; then
