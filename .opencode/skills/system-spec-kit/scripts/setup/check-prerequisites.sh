@@ -108,6 +108,18 @@ fi
 # ───────────────────────────────────────────────────────────────
 
 if [[ ! -d "$FEATURE_DIR" ]]; then
+    if [[ "$CURRENT_BRANCH" =~ ^(main|master|trunk)$ ]]; then
+        if $JSON_MODE; then
+            printf '{"FEATURE_DIR":"","AVAILABLE_DOCS":[],"VALIDATION":"skipped","REASON":"%s"}\n' \
+                "$(json_escape "No active feature spec folder for branch $CURRENT_BRANCH")"
+        else
+            echo "FEATURE_DIR:"
+            echo "AVAILABLE_DOCS:"
+            echo "VALIDATION: skipped (no active feature spec folder for branch $CURRENT_BRANCH)"
+        fi
+        exit 0
+    fi
+
     echo "ERROR: Feature directory not found: $FEATURE_DIR" >&2
     echo "Run /spec_kit:complete or /spec_kit:plan first to create the feature structure." >&2
     exit 1

@@ -86,9 +86,13 @@ check_feature_branch() {
         return 0
     fi
 
+    if [[ "$branch" == "main" || "$branch" == "master" || "$branch" == "trunk" ]]; then
+        return 0
+    fi
+
     if [[ ! "$branch" =~ ^[0-9]{3}- ]]; then
         echo "ERROR: Not on a feature branch. Current: $branch" >&2
-        echo "Feature branches should be: 001-feature-name" >&2
+        echo "Feature branches should be: 001-feature-name (or main/master/trunk for trunk-based operators)" >&2
         return 1
     fi
     return 0
