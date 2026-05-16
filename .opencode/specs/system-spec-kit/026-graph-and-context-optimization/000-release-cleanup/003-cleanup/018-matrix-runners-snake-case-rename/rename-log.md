@@ -2,7 +2,7 @@
 title: "Rename Log: 047 matrix_runners Snake Case Rename"
 description: "Ledger for the matrix_runners runtime directory rename and literal reference replacement."
 trigger_phrases:
-  - "034-matrix-runners-snake-case-rename"
+  - "018-matrix-runners-snake-case-rename"
   - "matrix_runners rename"
   - "kebab-to-snake convention"
   - "mcp_server folder convention"
@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/034-matrix-runners-snake-case-rename"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/018-matrix-runners-snake-case-rename"
     last_updated_at: "2026-04-29T22:47:36+02:00"
     last_updated_by: "codex"
     recent_action: "Logged rename"
@@ -20,7 +20,7 @@ _memory:
       - ".opencode/skills/system-spec-kit/mcp_server/matrix_runners"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "034-matrix-runners-snake-case-rename"
+      session_id: "018-matrix-runners-snake-case-rename"
       parent_session_id: null
     completion_pct: 100
     open_questions: []
@@ -130,6 +130,6 @@ cd .opencode/skills/system-spec-kit/mcp_server
 npm run build
 npx vitest run matrix-adapter
 cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
-bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/034-matrix-runners-snake-case-rename --strict
+bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/018-matrix-runners-snake-case-rename --strict
 grep -rln '<old-folder-fragment>' .opencode/ specs/ AGENTS.md CLAUDE.md README.md 2>/dev/null
 ```

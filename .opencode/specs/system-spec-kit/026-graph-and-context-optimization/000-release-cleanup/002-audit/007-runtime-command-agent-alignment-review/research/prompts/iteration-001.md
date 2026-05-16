@@ -97,7 +97,7 @@ For agents that exist in BOTH `.opencode/agents/` AND `.claude/agents/`:
 
 PLUS: `audit-findings.md` (per-file classifications), `remediation-log.md` (per-finding fix log), `cross-runtime-diff.md` (consistency report between OpenCode/Claude/Codex/Gemini agent definitions).
 
-**Deps**: `manual.depends_on=["system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-root-readme-refresh","system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/034-matrix-runners-snake-case-rename","system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/005-remaining-p1-p2-remediation"]`.
+**Deps**: `manual.depends_on=["system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-root-readme-refresh","system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/018-matrix-runners-snake-case-rename","system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/005-remaining-p1-p2-remediation"]`.
 
 **Trigger phrases**: `["007-runtime-command-agent-alignment-review","runtime command audit","agent alignment review","cross-runtime agent consistency"]`.
 

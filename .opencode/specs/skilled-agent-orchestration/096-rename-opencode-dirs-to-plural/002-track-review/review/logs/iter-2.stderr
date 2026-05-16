@@ -6075,7 +6075,7 @@ END{
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-hook-parity/002-copilot-hook-parity-remediation/research/007-deep-review-remediation-pt-03/logs/iter-007.log
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-hook-parity/002-copilot-hook-parity-remediation/research/007-deep-review-remediation-pt-03/logs/iter-004.log
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-hook-parity/002-copilot-hook-parity-remediation/research/007-deep-review-remediation-pt-03/logs/iter-008.log
-./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/034-matrix-runners-snake-case-rename/logs/iter-001.log
+./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/018-matrix-runners-snake-case-rename/logs/iter-001.log
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/012-code-graph-catalog-and-playbook/logs/iter-001.log
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/042-stress-coverage-audit-and-run/logs/stress-run-20260430-181807Z.log
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/042-stress-coverage-audit-and-run/scratch/codex-synthesis-2.log

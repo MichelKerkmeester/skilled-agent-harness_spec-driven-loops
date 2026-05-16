@@ -21,7 +21,7 @@ Documentation fixes, template debt, orphan management, remediation.
 - `015-root-readme-refresh`
 - `016-hook-plugin-per-runtime-testing`
 - `017-hook-test-sandbox-fix`
-- `034-matrix-runners-snake-case-rename`
+- `018-matrix-runners-snake-case-rename`
 - `037-feature-catalog-shape-realignment`
 - `038-coco-index-feature-catalog`
 - `040-sk-doc-conformance-sweep-and-template-cleanup`

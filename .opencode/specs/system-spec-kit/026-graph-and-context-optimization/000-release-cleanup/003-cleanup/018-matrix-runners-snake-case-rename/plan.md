@@ -3,7 +3,7 @@ title: "Implementation Plan: 047 matrix_runners Snake Case Rename"
 template_source: "SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2"
 description: "Move the matrix runner runtime folder to snake_case, update literal references, and verify imports with build plus targeted Vitest smoke tests."
 trigger_phrases:
-  - "034-matrix-runners-snake-case-rename"
+  - "018-matrix-runners-snake-case-rename"
   - "matrix_runners rename"
   - "kebab-to-snake convention"
   - "mcp_server folder convention"
@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/034-matrix-runners-snake-case-rename"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/018-matrix-runners-snake-case-rename"
     last_updated_at: "2026-04-29T22:47:36+02:00"
     last_updated_by: "codex"
     recent_action: "Planned rename"
@@ -22,7 +22,7 @@ _memory:
       - "rename-log.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "034-matrix-runners-snake-case-rename"
+      session_id: "018-matrix-runners-snake-case-rename"
       parent_session_id: null
     completion_pct: 90
     open_questions: []

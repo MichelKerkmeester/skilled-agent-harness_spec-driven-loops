@@ -3,7 +3,7 @@ title: "Implementation Summary: 047 matrix_runners Snake Case Rename"
 template_source: "SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2"
 description: "The CLI matrix runner runtime folder now follows the MCP server snake_case convention. Imports, docs, feature catalog entries, and historical spec evidence point at `matrix_runners`."
 trigger_phrases:
-  - "034-matrix-runners-snake-case-rename"
+  - "018-matrix-runners-snake-case-rename"
   - "matrix_runners rename"
   - "kebab-to-snake convention"
   - "mcp_server folder convention"
@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/034-matrix-runners-snake-case-rename"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/018-matrix-runners-snake-case-rename"
     last_updated_at: "2026-04-29T22:47:36+02:00"
     last_updated_by: "codex"
     recent_action: "Completed rename"
@@ -23,7 +23,7 @@ _memory:
       - "rename-log.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "034-matrix-runners-snake-case-rename"
+      session_id: "018-matrix-runners-snake-case-rename"
       parent_session_id: null
     completion_pct: 100
     open_questions: []
@@ -43,7 +43,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 034-matrix-runners-snake-case-rename |
+| **Spec Folder** | 018-matrix-runners-snake-case-rename |
 | **Completed** | 2026-04-29 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
