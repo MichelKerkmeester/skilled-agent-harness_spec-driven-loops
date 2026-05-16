@@ -14,8 +14,8 @@ contextType: "review"
 
 | Field | Value |
 |-------|-------|
-| Packet | `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/005-post-program-cleanup` |
-| Review path | `review/005-post-program-cleanup-pt-01/review-report.md` |
+| Packet | `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/001-post-program-cleanup` |
+| Review path | `review/001-post-program-cleanup-pt-01/review-report.md` |
 | Date | 2026-04-28 |
 | Scope | Tiers A, B, D |
 | Out of scope | Tier C: `006/001` license audit P0 and CHK-T15 live MCP rescan |
@@ -44,9 +44,9 @@ Evidence:
 
 - `001-memory-indexer-storage-boundary/graph-metadata.json:18` has `derived.status: "planned"`.
 - `001-memory-indexer-storage-boundary/implementation-summary.md:36` records `Completed: 2026-04-28`.
-- `004-tier2-remediation/graph-metadata.json:23` has `derived.status: "planned"`.
-- `004-tier2-remediation/implementation-summary.md:33` records `Completed: 2026-04-28`.
-- `004-tier2-remediation/implementation-summary.md:43` says actionable D/E/F/G findings are complete and Tier H is intentionally deferred.
+- `002-tier2-remediation/graph-metadata.json:23` has `derived.status: "planned"`.
+- `002-tier2-remediation/implementation-summary.md:33` records `Completed: 2026-04-28`.
+- `002-tier2-remediation/implementation-summary.md:43` says actionable D/E/F/G findings are complete and Tier H is intentionally deferred.
 
 Impact: resume/status tooling will present completed remediation as unstarted, which can misroute the next session into already-closed work.
 
@@ -63,8 +63,8 @@ Hunter -> Skeptic -> Referee:
 Evidence:
 
 - `008-skill-advisor/008-skill-graph-daemon-and-advisor-unification/graph-metadata.json:44` has `derived.status: "in_progress"`.
-- `003-skill-advisor-fail-open/implementation-summary.md:50` records completion on 2026-04-28.
-- `003-skill-advisor-fail-open/implementation-summary.md:167` records strict validator PASS for 008/008.
+- `001-skill-advisor-fail-open/implementation-summary.md:50` records completion on 2026-04-28.
+- `001-skill-advisor-fail-open/implementation-summary.md:167` records strict validator PASS for 008/008.
 
 Impact: source-packet status contradicts the green remediation closure, so memory graph status remains stale after the program.
 

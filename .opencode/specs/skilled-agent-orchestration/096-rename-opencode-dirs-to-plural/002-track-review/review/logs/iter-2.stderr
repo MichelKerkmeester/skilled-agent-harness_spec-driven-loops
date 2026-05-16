@@ -6973,7 +6973,7 @@ spec_history_or_review_artifact: 577
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/015-mcp-runtime-stress-remediation/011-post-stress-followup-research/research/iterations/iteration-003.md
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/015-mcp-runtime-stress-remediation/011-post-stress-followup-research/research/iterations/iteration-007.md
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/015-mcp-runtime-stress-remediation/011-post-stress-followup-research/research/iterations/iteration-009.md
-./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-post-program-cleanup/tasks.md
+./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-post-program-cleanup/tasks.md
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/015-mcp-runtime-stress-remediation/011-post-stress-followup-research/research/deltas/iter-009.jsonl
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/015-mcp-runtime-stress-remediation/011-post-stress-followup-research/research/deltas/iter-010.jsonl
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/015-mcp-runtime-stress-remediation/011-post-stress-followup-research/research/deltas/iter-001.jsonl

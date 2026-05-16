@@ -9,7 +9,7 @@ importance_tier: "high"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/005-post-program-cleanup"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/001-post-program-cleanup"
     last_updated_at: "2026-04-28T19:26:58Z"
     last_updated_by: "codex"
     recent_action: "Planned cleanup phases"
@@ -20,8 +20,8 @@ _memory:
       - "tasks.md"
       - "checklist.md"
     session_dedup:
-      fingerprint: "sha256:005-post-program-cleanup-plan-20260428"
-      session_id: "005-post-program-cleanup-20260428"
+      fingerprint: "sha256:001-post-program-cleanup-plan-20260428"
+      session_id: "001-post-program-cleanup-20260428"
       parent_session_id: "026-post-program-deep-review"
     completion_pct: 40
     open_questions: []

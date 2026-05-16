@@ -9,7 +9,7 @@ importance_tier: "high"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/005-post-program-cleanup"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/001-post-program-cleanup"
     last_updated_at: "2026-04-28T19:26:58Z"
     last_updated_by: "codex"
     recent_action: "Halted on 011 validator bug"
@@ -20,8 +20,8 @@ _memory:
       - "tasks.md"
       - "checklist.md"
     session_dedup:
-      fingerprint: "sha256:005-post-program-cleanup-summary-20260428"
-      session_id: "005-post-program-cleanup-20260428"
+      fingerprint: "sha256:001-post-program-cleanup-summary-20260428"
+      session_id: "001-post-program-cleanup-20260428"
       parent_session_id: "026-post-program-deep-review"
     completion_pct: 90
     open_questions: []
@@ -40,7 +40,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 005-post-program-cleanup |
+| **Spec Folder** | 001-post-program-cleanup |
 | **Completed** | Halted with known limitation on 2026-04-28 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
@@ -56,7 +56,7 @@ This packet closed the bounded post-program cleanup work that can be done inside
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `review/005-post-program-cleanup-pt-01/review-report.md` | Created | Records Phase 1 findings and planning packet. |
+| `review/001-post-program-cleanup-pt-01/review-report.md` | Created | Records Phase 1 findings and planning packet. |
 | `spec.md` | Created | Defines cleanup scope, requirements, and acceptance scenarios. |
 | `plan.md` | Created | Defines implementation phases and verification strategy. |
 | `tasks.md` | Created | Tracks atomic tasks. |
@@ -65,7 +65,7 @@ This packet closed the bounded post-program cleanup work that can be done inside
 | `graph-metadata.json` | Created | Adds packet graph metadata. |
 | `../../../005-memory-indexer-invariants/*` | Modified | Refreshed strict-validator freshness and template-header hygiene without closing CHK-T15. |
 | `../001-memory-indexer-storage-boundary/graph-metadata.json` | Modified | Marked completed sub-phase status as `complete`. |
-| `../004-tier2-remediation/graph-metadata.json` | Modified | Marked completed sub-phase status as `complete`. |
+| `../002-tier2-remediation/graph-metadata.json` | Modified | Marked completed sub-phase status as `complete`. |
 | `../../../008-skill-advisor/008-skill-graph-daemon-and-advisor-unification/graph-metadata.json` | Modified | Marked validator-green source packet status as `complete`. |
 | `../../../000-release-cleanup/spec.md` | Modified | Added `005-review-remediation` to the phase map. |
 | `../../../spec.md` | Modified | Refreshed root row for `000-release-cleanup/`. |

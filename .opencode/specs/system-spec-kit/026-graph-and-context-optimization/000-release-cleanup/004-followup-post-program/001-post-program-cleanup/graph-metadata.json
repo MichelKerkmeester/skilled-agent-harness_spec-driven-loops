@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/005-post-program-cleanup",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/005-post-program-cleanup",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/001-post-program-cleanup",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/001-post-program-cleanup",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation",
   "children_ids": [],
   "migrated": false,
@@ -16,13 +16,13 @@
     "related_to": [
       "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/001-memory-indexer-storage-boundary",
       "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-mcp-stress-cycle-cleanup",
-      "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-skill-advisor-fail-open",
-      "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-tier2-remediation"
+      "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/001-skill-advisor-fail-open",
+      "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-tier2-remediation"
     ]
   },
   "derived": {
     "trigger_phrases": [
-      "005-post-program-cleanup",
+      "001-post-program-cleanup",
       "026 validator hygiene",
       "post-program status drift"
     ],
@@ -39,7 +39,7 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "review/005-post-program-cleanup-pt-01/review-report.md"
+      "review/001-post-program-cleanup-pt-01/review-report.md"
     ],
     "entities": [],
     "causal_summary": "Post-program cleanup packet for 026 release remediation status drift, validator hygiene, phase-map traceability, helper/fixture integration audit, and rubric replay verification.",
@@ -51,7 +51,7 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "review/005-post-program-cleanup-pt-01/review-report.md"
+      "review/001-post-program-cleanup-pt-01/review-report.md"
     ]
   }
 }

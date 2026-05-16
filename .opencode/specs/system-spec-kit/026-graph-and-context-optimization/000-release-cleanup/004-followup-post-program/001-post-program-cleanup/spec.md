@@ -10,7 +10,7 @@ importance_tier: "high"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/005-post-program-cleanup"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/001-post-program-cleanup"
     last_updated_at: "2026-04-28T19:26:58Z"
     last_updated_by: "codex"
     recent_action: "Planned post-program cleanup"
@@ -22,8 +22,8 @@ _memory:
       - "tasks.md"
       - "checklist.md"
     session_dedup:
-      fingerprint: "sha256:005-post-program-cleanup-20260428"
-      session_id: "005-post-program-cleanup-20260428"
+      fingerprint: "sha256:001-post-program-cleanup-20260428"
+      session_id: "001-post-program-cleanup-20260428"
       parent_session_id: "026-post-program-deep-review"
     completion_pct: 40
     open_questions: []
@@ -84,7 +84,7 @@ Make the post-program state auditable, traceable, and validator-clean where the 
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `review/005-post-program-cleanup-pt-01/review-report.md` | Create | Phase 1 audit findings and planning packet. |
+| `review/001-post-program-cleanup-pt-01/review-report.md` | Create | Phase 1 audit findings and planning packet. |
 | `spec.md` | Create/Modify | L2 cleanup specification and continuity. |
 | `plan.md` | Create | Implementation plan and quality gates. |
 | `tasks.md` | Create/Modify | Atomic task ledger with evidence. |
@@ -93,7 +93,7 @@ Make the post-program state auditable, traceable, and validator-clean where the 
 | `description.json` | Create | Packet metadata for graph/memory discovery. |
 | `graph-metadata.json` | Create | Packet graph metadata and derived status. |
 | `../../001-memory-indexer-storage-boundary/graph-metadata.json` | Modify | Refresh stale `planned` status. |
-| `../../004-tier2-remediation/graph-metadata.json` | Modify | Refresh stale `planned` status. |
+| `../../002-tier2-remediation/graph-metadata.json` | Modify | Refresh stale `planned` status. |
 | `../../../008-skill-advisor/008-skill-graph-daemon-and-advisor-unification/graph-metadata.json` | Modify | Refresh stale source-packet status. |
 | `../../../005-memory-indexer-invariants/implementation-summary.md` | Modify | Refresh continuity freshness without closing CHK-T15. |
 | `../../../005-memory-indexer-invariants/graph-metadata.json` | Modify | Refresh metadata save timestamp while preserving CHK-T15 status. |
@@ -120,7 +120,7 @@ Make the post-program state auditable, traceable, and validator-clean where the 
 | REQ-002 | Bring 005 strict validation to green without closing CHK-T15. | `validate.sh .../005-memory-indexer-invariants --strict` exits 0 or a known limitation records the exact residual after two attempts. |
 | REQ-003 | Attempt to bring 011 strict validation to green. | `validate.sh .../015-mcp-runtime-stress-remediation --strict` exits 0 or implementation-summary records the exact residual after two attempts. |
 | REQ-004 | Refresh stale completion metadata. | 001 and 004 remediation sub-phases and 008/008 source packet carry status matching actual completion evidence. |
-| REQ-005 | Keep this cleanup packet validator-clean. | `validate.sh .../005-post-program-cleanup --strict` exits 0. |
+| REQ-005 | Keep this cleanup packet validator-clean. | `validate.sh .../001-post-program-cleanup --strict` exits 0. |
 
 ### P2 - Advisory
 

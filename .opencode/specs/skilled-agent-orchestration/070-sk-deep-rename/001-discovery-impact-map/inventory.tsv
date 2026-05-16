@@ -311,7 +311,7 @@ file_path	match_count	area	phase
 .opencode/specs/skilled-agent-orchestration/070-sk-deep-rename/resource-map.md	16	spec-folder-active	003
 .opencode/specs/skilled-agent-orchestration/070-sk-deep-rename/spec.md	12	spec-folder-active	003
 .opencode/specs/skilled-agent-orchestration/071-sk-doc-router-stress-test/001-scenario-author/spec.md	2	spec-folder-active	003
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-post-program-cleanup/tasks.md	1	spec-folder-active	003
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-post-program-cleanup/tasks.md	1	spec-folder-active	003
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/006-stale-doc-and-readme-fixes/implementation-summary.md	4	spec-folder-active	003
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/006-stale-doc-and-readme-fixes/spec.md	5	spec-folder-active	003
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/008-skdoc-legacy-template-debt-cleanup/spec.md	2	spec-folder-active	003
@@ -971,7 +971,7 @@ specs/skilled-agent-orchestration/070-sk-deep-rename/graph-metadata.json	4	spec-
 specs/skilled-agent-orchestration/070-sk-deep-rename/resource-map.md	16	spec-folder-active	003
 specs/skilled-agent-orchestration/070-sk-deep-rename/spec.md	12	spec-folder-active	003
 specs/skilled-agent-orchestration/071-sk-doc-router-stress-test/001-scenario-author/spec.md	2	spec-folder-active	003
-specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-post-program-cleanup/tasks.md	1	spec-folder-active	003
+specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-post-program-cleanup/tasks.md	1	spec-folder-active	003
 specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/006-stale-doc-and-readme-fixes/implementation-summary.md	4	spec-folder-active	003
 specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/006-stale-doc-and-readme-fixes/spec.md	5	spec-folder-active	003
 specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/008-skdoc-legacy-template-debt-cleanup/spec.md	2	spec-folder-active	003

@@ -4,7 +4,7 @@
   "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-followup-post-program",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup",
   "children_ids": [
-    "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-followup-post-program/005-post-program-cleanup",
+    "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-followup-post-program/001-post-program-cleanup",
     "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-followup-post-program/007-vitest-recovery-followup",
     "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-followup-post-program/024-followup-quality-pass",
     "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-followup-post-program/054-runtime-cleanup-followups"

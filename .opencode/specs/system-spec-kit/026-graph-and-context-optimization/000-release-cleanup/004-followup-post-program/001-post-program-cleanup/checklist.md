@@ -9,7 +9,7 @@ importance_tier: "high"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/005-post-program-cleanup"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/001-post-program-cleanup"
     last_updated_at: "2026-04-28T19:26:58Z"
     last_updated_by: "codex"
     recent_action: "Initialized checklist"
@@ -19,8 +19,8 @@ _memory:
       - "tasks.md"
       - "implementation-summary.md"
     session_dedup:
-      fingerprint: "sha256:005-post-program-cleanup-checklist-20260428"
-      session_id: "005-post-program-cleanup-20260428"
+      fingerprint: "sha256:001-post-program-cleanup-checklist-20260428"
+      session_id: "001-post-program-cleanup-20260428"
       parent_session_id: "026-post-program-deep-review"
     completion_pct: 40
     open_questions: []
@@ -100,7 +100,7 @@ _memory:
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [x] CHK-050 [P1] Review report lives under `review/005-post-program-cleanup-pt-01/`. [EVIDENCE: review/005-post-program-cleanup-pt-01/review-report.md]
+- [x] CHK-050 [P1] Review report lives under `review/001-post-program-cleanup-pt-01/`. [EVIDENCE: review/001-post-program-cleanup-pt-01/review-report.md]
 - [x] CHK-051 [P1] No writes outside 026 phase parent and declared dependencies. [EVIDENCE: implementation-summary.md]
 <!-- /ANCHOR:file-org -->
 

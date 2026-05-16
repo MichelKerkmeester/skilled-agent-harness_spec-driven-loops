@@ -1,6 +1,6 @@
 # Autonomous Review → Synthesize → Implement Loop — 005 Post-Program Cleanup
 
-**GATE 3 PRE-ANSWERED — A**: `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/005-post-program-cleanup` is pre-approved for the entire 3-phase autonomous workflow. DO NOT re-ask Gate 3.
+**GATE 3 PRE-ANSWERED — A**: `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/001-post-program-cleanup` is pre-approved for the entire 3-phase autonomous workflow. DO NOT re-ask Gate 3.
 
 **TARGET AUTHORITY**: All write paths in this prompt are pre-approved under that spec folder + the 13 declared dependencies (every packet in 026 that received remediation). NO writes outside the 026 phase parent.
 
@@ -29,7 +29,7 @@ Execute 3 phases sequentially in this single dispatch:
 
 Audit the post-program state across Tiers A/B/D. Tier C is OUT OF SCOPE (deferred). Surface findings as P0/P1/P2 with file:line evidence.
 
-Write `review-report.md` at `specs/.../005-post-program-cleanup/review/005-post-program-cleanup-pt-01/review-report.md` using the standard 9-section structure + Planning Packet. Adversarial Hunter→Skeptic→Referee on any P0/P1.
+Write `review-report.md` at `specs/.../001-post-program-cleanup/review/001-post-program-cleanup-pt-01/review-report.md` using the standard 9-section structure + Planning Packet. Adversarial Hunter→Skeptic→Referee on any P0/P1.
 
 **Specific review angles:**
 
@@ -52,7 +52,7 @@ Write `review-report.md` at `specs/.../005-post-program-cleanup/review/005-post-
 
 ### PHASE 2 — SYNTHESIZE
 
-Compile a Planning Packet from the review findings. Author spec.md + plan.md + tasks.md + checklist.md at `specs/.../005-post-program-cleanup/`. Use the established L2 template structure:
+Compile a Planning Packet from the review findings. Author spec.md + plan.md + tasks.md + checklist.md at `specs/.../001-post-program-cleanup/`. Use the established L2 template structure:
 
 - ANCHOR HTML comments around all required sections
 - `_memory.continuity` blocks in plan.md and tasks.md frontmatter
@@ -96,8 +96,8 @@ Execute the plan you authored in Phase 2. Each task in tasks.md is atomic; mark 
 
 After all 3 phases complete, the output deliverables are:
 
-1. `005-post-program-cleanup/review/.../review-report.md` (9-section + Planning Packet)
-2. `005-post-program-cleanup/{spec,plan,tasks,checklist,implementation-summary}.md` + description.json + graph-metadata.json
+1. `001-post-program-cleanup/review/.../review-report.md` (9-section + Planning Packet)
+2. `001-post-program-cleanup/{spec,plan,tasks,checklist,implementation-summary}.md` + description.json + graph-metadata.json
 3. Modified files in dependent packets per the implementation
 4. Strict-validator green status for this sub-phase + 005 + 011 + any newly-touched packet
 5. Final summary in implementation-summary.md with full disposition table

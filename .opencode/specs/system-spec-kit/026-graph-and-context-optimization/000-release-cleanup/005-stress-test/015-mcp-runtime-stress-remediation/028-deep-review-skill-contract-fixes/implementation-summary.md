@@ -111,5 +111,5 @@ Inline implementation while three other packets (025/026/027) ran in parallel vi
 
 - Existing `pt-01` folders for previously-reviewed phases stay as-is. The new flat-first convention applies only to NEW reviews. Both shapes are simultaneously valid; the resolver handles either at lookup time.
 - The `git add {artifact_dir}` step runs unconditionally. If an operator has staged unrelated changes inside the artifact directory, those get included. Mitigated by skill-owned ownership (operators shouldn't put unrelated files there) and by the `git restore --staged` escape hatch.
-- This packet does NOT migrate any historical missing-iterations folder (e.g., `005-post-program-cleanup-pt-01/` from commit `6a8095907`). That's a separate cleanup decision — historical incomplete artifacts stay incomplete; new runs benefit from the fix.
+- This packet does NOT migrate any historical missing-iterations folder (e.g., `001-post-program-cleanup-pt-01/` from commit `6a8095907`). That's a separate cleanup decision — historical incomplete artifacts stay incomplete; new runs benefit from the fix.
 <!-- /ANCHOR:limitations -->

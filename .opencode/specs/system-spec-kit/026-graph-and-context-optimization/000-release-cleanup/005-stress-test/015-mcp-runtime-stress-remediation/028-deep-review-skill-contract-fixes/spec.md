@@ -36,7 +36,7 @@ _memory:
 | **Created** | 2026-04-29 |
 | **Branch** | `main` |
 | **Parent** | `015-mcp-runtime-stress-remediation` |
-| **Source** | Direct user observations of (a) `005-post-program-cleanup/review/005-post-program-cleanup-pt-01/` shipped without iteration trail in commit `6a8095907` and (b) unnecessary `pt-01` wrapper on first-run reviews |
+| **Source** | Direct user observations of (a) `001-post-program-cleanup/review/001-post-program-cleanup-pt-01/` shipped without iteration trail in commit `6a8095907` and (b) unnecessary `pt-01` wrapper on first-run reviews |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -52,7 +52,7 @@ Two contract violations in the deep-review/deep-research skill output:
 
 Root cause: the deep-review YAML at `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:1142-1149` declares the `git add` for iteration files in a `reference_only_appendix` block with the explicit note "Checkpoint commits are intentionally excluded from workflow.steps." So the workflow never stages iteration files. Operators who do `git add review-report.md` (the obvious target file) miss everything else.
 
-**Bug 2 — Always-pt-NN wrapper for child phases on first run**: `resolveArtifactRoot` (`.opencode/skills/system-spec-kit/shared/review-research-paths.cjs:199-224`) always wraps child-phase artifacts in a `{phaseSlug}-pt-NN` subfolder, even on first run. This produces unnecessary nesting like `005-post-program-cleanup/review/005-post-program-cleanup-pt-01/` when the parent's `review/` folder is empty. The `pt-NN` convention should only kick in when there's already prior content (re-review scenarios), not on every first run.
+**Bug 2 — Always-pt-NN wrapper for child phases on first run**: `resolveArtifactRoot` (`.opencode/skills/system-spec-kit/shared/review-research-paths.cjs:199-224`) always wraps child-phase artifacts in a `{phaseSlug}-pt-NN` subfolder, even on first run. This produces unnecessary nesting like `001-post-program-cleanup/review/001-post-program-cleanup-pt-01/` when the parent's `review/` folder is empty. The `pt-NN` convention should only kick in when there's already prior content (re-review scenarios), not on every first run.
 
 ### Purpose
 

@@ -9,18 +9,18 @@ importance_tier: "high"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/005-post-program-cleanup"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/001-post-program-cleanup"
     last_updated_at: "2026-04-28T19:26:58Z"
     last_updated_by: "codex"
     recent_action: "Initialized task ledger"
     next_safe_action: "Mark tasks with evidence"
     blockers: []
     key_files:
-      - "review/005-post-program-cleanup-pt-01/review-report.md"
+      - "review/001-post-program-cleanup-pt-01/review-report.md"
       - "implementation-summary.md"
     session_dedup:
-      fingerprint: "sha256:005-post-program-cleanup-tasks-20260428"
-      session_id: "005-post-program-cleanup-20260428"
+      fingerprint: "sha256:001-post-program-cleanup-tasks-20260428"
+      session_id: "001-post-program-cleanup-20260428"
       parent_session_id: "026-post-program-deep-review"
     completion_pct: 40
     open_questions: []
@@ -53,8 +53,8 @@ _memory:
 ## Phase 1: Setup
 
 - [x] T001 Read applicable workflows and templates. Evidence: `sk-deep-review/SKILL.md:1`, `system-spec-kit/SKILL.md:1`.
-- [x] T002 Audit Tier A status/phase-map/validator state. Evidence: `review/005-post-program-cleanup-pt-01/review-report.md`.
-- [x] T003 Audit Tier B helpers and fixtures. Evidence: `review/005-post-program-cleanup-pt-01/review-report.md`.
+- [x] T002 Audit Tier A status/phase-map/validator state. Evidence: `review/001-post-program-cleanup-pt-01/review-report.md`.
+- [x] T003 Audit Tier B helpers and fixtures. Evidence: `review/001-post-program-cleanup-pt-01/review-report.md`.
 - [x] T004 Audit Tier D implementation summaries and rubric replay. Evidence: `findings-rubric.json` replay returned 30 cells and score sum 201.
 <!-- /ANCHOR:phase-1 -->
 
@@ -67,7 +67,7 @@ _memory:
 - [x] T006 Patch 005 validator freshness while preserving CHK-T15. Evidence: `../../../005-memory-indexer-invariants/implementation-summary.md`, `../../../005-memory-indexer-invariants/graph-metadata.json`; final 005 strict validator PASS.
 - [x] T007 Attempt 011 validator hygiene pass 1. Evidence: 011 strict validator rerun still fails; recursive validator variable leak identified at `.opencode/skills/system-spec-kit/scripts/rules/check-phase-links.sh:39`.
 - [B] T008 Attempt 011 validator hygiene pass 2 if pass 1 does not go green. Blocked: required validator-script fix is outside approved 026 write scope.
-- [x] T009 Refresh stale `derived.status` values for completed packets. Evidence: `../001-memory-indexer-storage-boundary/graph-metadata.json`, `../004-tier2-remediation/graph-metadata.json`, `../../../008-skill-advisor/008-skill-graph-daemon-and-advisor-unification/graph-metadata.json`.
+- [x] T009 Refresh stale `derived.status` values for completed packets. Evidence: `../001-memory-indexer-storage-boundary/graph-metadata.json`, `../002-tier2-remediation/graph-metadata.json`, `../../../008-skill-advisor/008-skill-graph-daemon-and-advisor-unification/graph-metadata.json`.
 - [x] T010 Update parent phase maps. Evidence: `../../../000-release-cleanup/spec.md`, `../../../spec.md`.
 - [x] T011 Record B1/B2 no-op decision. Evidence: `implementation-summary.md`.
 - [x] T012 Record D1/D2 verification decisions. Evidence: `implementation-summary.md`.
@@ -103,5 +103,5 @@ _memory:
 
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
-- **Review**: See `review/005-post-program-cleanup-pt-01/review-report.md`
+- **Review**: See `review/001-post-program-cleanup-pt-01/review-report.md`
 <!-- /ANCHOR:cross-refs -->
