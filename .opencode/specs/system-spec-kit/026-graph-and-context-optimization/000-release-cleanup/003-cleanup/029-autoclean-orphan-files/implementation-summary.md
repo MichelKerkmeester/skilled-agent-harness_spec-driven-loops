@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "scaffold/055-autoclean-orphan-files"
+    packet_pointer: "scaffold/029-autoclean-orphan-files"
     last_updated_at: "2026-05-08T10:21:45Z"
     last_updated_by: "template-author"
     recent_action: "Initialize continuity block"
@@ -19,7 +19,7 @@ _memory:
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/055-autoclean-orphan-files"
+      session_id: "scaffold-scaffold/029-autoclean-orphan-files"
       parent_session_id: null
     completion_pct: 0
     open_questions: []
@@ -38,7 +38,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 055-autoclean-orphan-files |
+| **Spec Folder** | 029-autoclean-orphan-files |
 | **Completed** | 2026-05-08 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

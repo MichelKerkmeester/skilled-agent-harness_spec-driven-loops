@@ -2,14 +2,14 @@
 title: "Implementation Plan: 055 AutoClean Orphan Files"
 description: "Add cleanFiles option to verify_integrity, thread it through the Vectorindex wrapper, memory_health handler, and schema; gated behind autoRepair+confirmed; uses delete_memory_from_database for ancillary cleanup."
 trigger_phrases:
-  - "055-autoclean-orphan-files plan"
+  - "029-autoclean-orphan-files plan"
   - "verify_integrity cleanFiles plan"
   - "memory_health autoRepair cleanFiles plan"
 importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/055-autoclean-orphan-files"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/029-autoclean-orphan-files"
     last_updated_at: "2026-05-08T10:25:00Z"
     last_updated_by: "spec-author"
     recent_action: "Author plan for cleanFiles enhancement"
@@ -22,7 +22,7 @@ _memory:
       - ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-055-autoclean-orphan-files"
+      session_id: "scaffold-029-autoclean-orphan-files"
       parent_session_id: null
     completion_pct: 0
     open_questions: []

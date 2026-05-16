@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/055-autoclean-orphan-files",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/055-autoclean-orphan-files",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/029-autoclean-orphan-files",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/029-autoclean-orphan-files",
   "parent_id": null,
   "children_ids": [],
   "manual": {

@@ -2,13 +2,13 @@
 title: "Tasks: 055 AutoClean Orphan Files"
 description: "Task list for the cleanFiles enhancement: lib change, wrapper, schema, handler, tests, build, live-DB run, doc updates."
 trigger_phrases:
-  - "055-autoclean-orphan-files tasks"
+  - "029-autoclean-orphan-files tasks"
   - "verify_integrity cleanFiles tasks"
 importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/055-autoclean-orphan-files"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/029-autoclean-orphan-files"
     last_updated_at: "2026-05-08T10:25:00Z"
     last_updated_by: "spec-author"
     recent_action: "Author task list for cleanFiles enhancement"
@@ -18,7 +18,7 @@ _memory:
       - ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-055-autoclean-orphan-files"
+      session_id: "scaffold-029-autoclean-orphan-files"
       parent_session_id: null
     completion_pct: 0
     open_questions: []

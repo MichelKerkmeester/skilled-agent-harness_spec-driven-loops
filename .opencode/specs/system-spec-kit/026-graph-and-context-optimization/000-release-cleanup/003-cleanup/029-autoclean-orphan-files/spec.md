@@ -2,7 +2,7 @@
 title: "Feature Specification: 055 AutoClean Orphan Files"
 description: "Extend verify_integrity with a cleanFiles option that deletes memory_index rows whose file_path no longer exists on disk, and expose it through memory_health autoRepair so the runtime can self-heal orphan-file drift."
 trigger_phrases:
-  - "055-autoclean-orphan-files"
+  - "029-autoclean-orphan-files"
   - "verify_integrity cleanFiles"
   - "memory_health autoRepair cleanFiles"
   - "orphan files autoclean"
@@ -12,7 +12,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/055-autoclean-orphan-files"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/029-autoclean-orphan-files"
     last_updated_at: "2026-05-08T10:25:00Z"
     last_updated_by: "spec-author"
     recent_action: "Author spec for cleanFiles enhancement to verify_integrity + memory_health autoRepair"
@@ -25,7 +25,7 @@ _memory:
       - ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-055-autoclean-orphan-files"
+      session_id: "scaffold-029-autoclean-orphan-files"
       parent_session_id: null
     completion_pct: 0
     open_questions: []
