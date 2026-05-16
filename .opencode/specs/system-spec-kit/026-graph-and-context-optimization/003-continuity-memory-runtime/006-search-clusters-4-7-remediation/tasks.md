@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/006-memory-search-clusters-4-7-remediation"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/006-search-clusters-4-7-remediation"
     last_updated_at: "2026-05-08T21:25:00Z"
     last_updated_by: "codex-gpt-5.5"
     recent_action: "Implemented Clusters 4-7 remediation and ran packet-focused verification"
@@ -92,7 +92,7 @@ _memory:
 - [x] T022 [P] Add CocoIndex daemon probe test (`mcp_server/tests/cocoindex-daemon-probe.vitest.ts`)
 - [x] T023 Run TypeScript compile (`node ../node_modules/typescript/lib/tsc.js --noEmit --composite false -p tsconfig.json`; requested `pnpm tsc --noEmit` wrapper failed because `tsc` is not linked in `mcp_server/node_modules/.bin`)
 - [x] T024 Run full Vitest suite (`pnpm vitest run`; executed and failed on repo-wide baseline failures, see `implementation-summary.md`)
-- [x] T025 Run strict spec validation (`validate.sh .../006-memory-search-clusters-4-7-remediation --strict`)
+- [x] T025 Run strict spec validation (`validate.sh .../006-search-clusters-4-7-remediation --strict`)
 - [x] T026 Author implementation summary (`implementation-summary.md`)
 - [x] T027 Update packet metadata to complete (`description.json`, `graph-metadata.json`)
 <!-- /ANCHOR:phase-3 -->

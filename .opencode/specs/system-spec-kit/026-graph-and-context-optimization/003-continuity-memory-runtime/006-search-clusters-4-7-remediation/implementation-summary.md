@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/006-memory-search-clusters-4-7-remediation"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/006-search-clusters-4-7-remediation"
     last_updated_at: "2026-05-08T21:15:00Z"
     last_updated_by: "codex-gpt-5.5"
     recent_action: "Implemented Clusters 4-7 remediation and captured verification evidence"
@@ -45,7 +45,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/006-memory-search-clusters-4-7-remediation` |
+| **Spec Folder** | `system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/006-search-clusters-4-7-remediation` |
 | **Completed** | 2026-05-08 |
 | **Level** | 2 |
 | **Requirements Closed** | 13/13 |
@@ -125,7 +125,7 @@ The implementation stayed additive around existing handler contracts: no causal 
 | `node ../node_modules/typescript/lib/tsc.js --noEmit --composite false -p tsconfig.json` | PASS |
 | Focused packet and adjacent memory-search tests | PASS: 11 files, 114 tests (`intent-classifier-corpus`, `causal-stats-output`, `folder-discovery-threshold`, `cocoindex-daemon-probe`, `query-router`, `handler-causal-graph`, `integration-causal-graph`, `memory-search-ux-hooks`, Gate D search pipeline, Gate D embedding search, `memory-search-eval-channels`) |
 | `pnpm vitest run` | FAIL: full run reported 6 failed suites and 208 failed tests across repo-wide advisor, hook, scaffold, alignment, code-graph, and fixture areas. Packet-adjacent failures found in that run were fixed and rerun green in the focused battery. |
-| Strict packet validation | PASS: `validate.sh .../006-memory-search-clusters-4-7-remediation --strict` exited 0 |
+| Strict packet validation | PASS: `validate.sh .../006-search-clusters-4-7-remediation --strict` exited 0 |
 <!-- /ANCHOR:verification -->
 
 ---

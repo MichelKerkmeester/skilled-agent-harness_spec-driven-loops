@@ -1,5 +1,5 @@
 ---
-title: "Resource Map — Memory search Clusters 4-7 remediation [system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/006-memory-search-clusters-4-7-remediation/resource-map]"
+title: "Resource Map — Memory search Clusters 4-7 remediation [system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/006-search-clusters-4-7-remediation/resource-map]"
 description: "Flat inventory of files this packet touched. Implementation by cli-codex gpt-5.5 high fast on 2026-05-08."
 trigger_phrases:
   - "memory clusters 4-7 resource map"

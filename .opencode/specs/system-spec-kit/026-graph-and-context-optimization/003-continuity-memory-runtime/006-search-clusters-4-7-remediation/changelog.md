@@ -1,8 +1,8 @@
-# Changelog — 006-memory-search-clusters-4-7-remediation
+# Changelog — 006-search-clusters-4-7-remediation
 
 ## 2026-05-08
 
-> Spec folder: `026-graph-and-context-optimization/003-continuity-memory-runtime/006-memory-search-clusters-4-7-remediation` (Level 2)
+> Spec folder: `026-graph-and-context-optimization/003-continuity-memory-runtime/006-search-clusters-4-7-remediation` (Level 2)
 > Parent packet: `026-graph-and-context-optimization/003-continuity-memory-runtime`
 > Predecessor: `005-memory-search-runtime-bugs/`
 

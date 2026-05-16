@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Memory search Clusters 4-7 remediation [system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/006-memory-search-clusters-4-7-remediation/spec]"
+title: "Feature Specification: Memory search Clusters 4-7 remediation [system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/006-search-clusters-4-7-remediation/spec]"
 description: "Close the 13 P1/P2 defects catalogued by phase 005 (REQ-005..017) under Clusters 4-7: causal-stats output hygiene, state hygiene, folder discovery + channel health, quality fallback + edge growth. Add CocoIndex daemon health probe (REQ-012) to memory_health and formalize the 20-paraphrase intent-classifier stability corpus (REQ-016). Three Cluster 1-3 P0 fixes already shipped in 005."
 trigger_phrases:
   - "memory search clusters 4-7 remediation"
@@ -14,7 +14,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/006-memory-search-clusters-4-7-remediation"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/006-search-clusters-4-7-remediation"
     last_updated_at: "2026-05-08T21:00:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Scaffolded Level 2 spec; 13 deferred reqs mapped to 4 clusters with file-path change surfaces"
@@ -165,7 +165,7 @@ Close all 13 deferred P1/P2 defects systematically, surface CocoIndex daemon hea
 - **SC-001**: All 13 P1/P2 reqs above pass their acceptance criteria via probe-based verification (re-run the spec §8 probes from 005 and confirm clean output on every cluster).
 - **SC-002**: New test files pass: `intent-classifier-corpus.vitest.ts`, `causal-stats-output.vitest.ts`, `folder-discovery-threshold.vitest.ts`, `cocoindex-daemon-probe.vitest.ts`.
 - **SC-003**: Full vitest baseline (currently 11,606 passing) holds with new tests added, zero net regressions.
-- **SC-004**: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh 006-memory-search-clusters-4-7-remediation --strict` exits 0.
+- **SC-004**: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh 006-search-clusters-4-7-remediation --strict` exits 0.
 - **SC-005**: Live `/memory:search` smoke probe against the running MCP daemon returns clean output for the canonical 7 query intents (`find_decision`, `find_spec`, `understand`, `fix_bug`, `add_feature`, `refactor`, `analyze`).
 <!-- /ANCHOR:success-criteria -->
 

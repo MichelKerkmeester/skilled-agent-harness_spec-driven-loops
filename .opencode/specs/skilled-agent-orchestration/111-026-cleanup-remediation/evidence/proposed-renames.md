@@ -16,7 +16,7 @@ Scoring rubric: L (length) + R (parent-token redundancy) + G (generic-token dens
 | 003-smart-remediation-and-opencode-plugin | 008-skill-advisor/003-router | 3 | 3 | 0 | 0 | 6 | 003-smart-remediation-and-opencode-plugin | L=3, R=3 |
 | 003-system-deep-bugs-and-improvements | 000-release-cleanup/006-research | 3 | 3 | 0 | 0 | 6 | 003-system-deep-bugs-and-improvements | L=3, R=3 |
 | 004-synthesis-and-remediation | 000-release-cleanup/001-release-readiness | 3 | 3 | 0 | 0 | 6 | 004-synthesis-and-remediation | L=3, R=3 |
-| 006-memory-search-clusters-4-7-remediation | 003-continuity-memory-runtime | 3 | 3 | 0 | 0 | 6 | 006-search-clusters-4-7-remediation | L=3, R=3 |
+| 006-search-clusters-4-7-remediation | 003-continuity-memory-runtime | 3 | 3 | 0 | 0 | 6 | 006-search-clusters-4-7-remediation | L=3, R=3 |
 | 001-template-consolidation-investigation | 010-template-levels | 2.5 | 3 | 0 | 0 | 6 | 001-consolidation-investigation | L=2.5, R=3 |
 | 005-stress-test-expansion-and-alignment | 000-release-cleanup/005-stress-test | 2 | 3 | 0 | 0 | 5 | 005-expansion-and-alignment | L=2.0, R=3 |
 | 005-substrate-stability-instrumentation | 014-local-embeddings-migration/032-substrate-repair-followups | 2 | 3 | 0 | 0 | 5 | 005-stability-instrumentation | L=2.0, R=3 |
