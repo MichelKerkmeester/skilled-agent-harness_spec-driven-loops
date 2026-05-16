@@ -3,7 +3,8 @@
 // ───────────────────────────────────────────────────────────────
 
 import { createHash } from 'node:crypto';
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
+import { mkdir, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
 
@@ -150,6 +151,7 @@ const MAX_HEALTH_RECORDS = 30;
 const MAX_DURABLE_DIAGNOSTIC_RECORDS = 200;
 const MAX_DURABLE_OUTCOME_RECORDS = 200;
 const DURABLE_METRICS_ROOT = join(tmpdir(), 'speckit-skill-advisor-metrics');
+let dirReady = false;
 
 // ───────────────────────────────────────────────────────────────
 // 3. HELPERS
@@ -215,8 +217,11 @@ function envNumber(name: string, fallback: number): number {
   return Number.isFinite(parsed) ? parsed : fallback;
 }
 
-function ensureParentDir(path: string): void {
-  mkdirSync(dirname(path), { recursive: true });
+async function ensureParentDir(path: string): Promise<void> {
+  if (!dirReady) {
+    await mkdir(dirname(path), { recursive: true });
+    dirReady = true;
+  }
 }
 
 function workspaceHash(workspaceRoot: string): string {
@@ -240,11 +245,12 @@ function readJsonlLines(path: string): string[] {
     .filter((line) => line.length > 0);
 }
 
-function writeBoundedJsonl(path: string, line: string, maxRecords: number): void {
-  ensureParentDir(path);
+async function writeBoundedJsonl(path: string, line: string, maxRecords: number): Promise<void> {
+  if (!process.env.SKILL_ADVISOR_DEBUG) return;
+  await ensureParentDir(path);
   const lines = readJsonlLines(path);
   lines.push(line);
-  writeFileSync(path, `${lines.slice(-maxRecords).join('\n')}\n`, 'utf8');
+  await writeFile(path, `${lines.slice(-maxRecords).join('\n')}\n`, 'utf8');
 }
 
 function tryParseJsonLine(line: string): unknown | null {
@@ -334,12 +340,12 @@ export function serializeAdvisorHookDiagnosticRecord(record: AdvisorHookDiagnost
   return JSON.stringify(record);
 }
 
-export function persistAdvisorHookDiagnosticRecord(
+export async function persistAdvisorHookDiagnosticRecord(
   workspaceRoot: string,
   record: AdvisorHookDiagnosticRecord,
-): string {
+): Promise<string> {
   const path = durableMetricsPath(workspaceRoot, 'diagnostics');
-  writeBoundedJsonl(path, serializeAdvisorHookDiagnosticRecord(record), MAX_DURABLE_DIAGNOSTIC_RECORDS);
+  await writeBoundedJsonl(path, serializeAdvisorHookDiagnosticRecord(record), MAX_DURABLE_DIAGNOSTIC_RECORDS);
   return path;
 }
 
@@ -408,12 +414,12 @@ export function validateAdvisorHookOutcomeRecord(value: unknown): value is Advis
     && (record.correctedSkillLabel === undefined || typeof record.correctedSkillLabel === 'string');
 }
 
-export function persistAdvisorHookOutcomeRecord(
+export async function persistAdvisorHookOutcomeRecord(
   workspaceRoot: string,
   record: AdvisorHookOutcomeRecord,
-): string {
+): Promise<string> {
   const path = durableMetricsPath(workspaceRoot, 'outcomes');
-  writeBoundedJsonl(path, JSON.stringify(record), MAX_DURABLE_OUTCOME_RECORDS);
+  await writeBoundedJsonl(path, JSON.stringify(record), MAX_DURABLE_OUTCOME_RECORDS);
   return path;
 }
 

@@ -3,16 +3,22 @@
 // ───────────────────────────────────────────────────────────────
 // MCP tool handler for ccc_feedback — accepts search result quality feedback.
 
-import { appendFileSync, mkdirSync } from 'node:fs';
+import { appendFile, mkdir } from 'node:fs/promises';
 import { resolve, dirname } from 'node:path';
 import * as graphDb from '../lib/code-graph-db.js';
 import { probeCocoIndexReadiness } from '../lib/ccc-readiness-probe.js';
+
+let dirReady = false;
 
 export interface FeedbackArgs {
   query: string;
   resultFile?: string;
   rating: 'helpful' | 'not_helpful' | 'partial';
   comment?: string;
+}
+
+function safeStringify(arg: unknown): string {
+  try { return JSON.stringify(arg); } catch { return String(arg); }
 }
 
 /** Handle ccc_feedback tool call */
@@ -46,8 +52,11 @@ export async function handleCccFeedback(args: FeedbackArgs): Promise<{ content: 
     const projectRoot = process.cwd();
     const feedbackPath = resolve(projectRoot, '.opencode/skills/mcp-coco-index/feedback/search-feedback.jsonl');
 
-    // Ensure feedback directory exists
-    mkdirSync(dirname(feedbackPath), { recursive: true });
+    // Ensure feedback directory exists (async, closure-scoped dirReady guard)
+    if (!dirReady) {
+      await mkdir(dirname(feedbackPath), { recursive: true });
+      dirReady = true;
+    }
 
     const entry = {
       timestamp: new Date().toISOString(),
@@ -60,7 +69,7 @@ export async function handleCccFeedback(args: FeedbackArgs): Promise<{ content: 
     const lastPersistedAt = graphDb.getStats().lastScanTimestamp;
 
     try {
-      appendFileSync(feedbackPath, JSON.stringify(entry) + '\n', 'utf-8');
+      await appendFile(feedbackPath, safeStringify(entry) + '\n', 'utf-8');
     } catch (writeErr: unknown) {
       return {
         content: [{
