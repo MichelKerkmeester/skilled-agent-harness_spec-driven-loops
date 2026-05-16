@@ -1,6 +1,6 @@
 ## Packet 044: hook-test-sandbox-fix — Tier B methodology + amend 043
 
-You are cli-codex (gpt-5.5 high fast) implementing **031-hook-test-sandbox-fix**.
+You are cli-codex (gpt-5.5 high fast) implementing **017-hook-test-sandbox-fix**.
 
 ### Background
 
@@ -106,13 +106,13 @@ DO NOT delete the original "Verdict" section — preserve it as historical recor
 
 ### Packet structure to create (Level 2)
 
-7-file structure under `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/031-hook-test-sandbox-fix/`.
+7-file structure under `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/017-hook-test-sandbox-fix/`.
 
 PLUS: `methodology-correction.md` at packet root with the full root-cause analysis (sandbox stripping access to user state).
 
 **Deps**: `manual.depends_on=["system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/016-hook-plugin-per-runtime-testing"]`.
 
-**Trigger phrases**: `["031-hook-test-sandbox-fix","hook test methodology","sandbox detection","BLOCKED_BY_TEST_SANDBOX","operator-run-outside-sandbox"]`.
+**Trigger phrases**: `["017-hook-test-sandbox-fix","hook test methodology","sandbox detection","BLOCKED_BY_TEST_SANDBOX","operator-run-outside-sandbox"]`.
 
 **Causal summary**: `"Fixes the test methodology that 043 used. Adds sandbox detection to runners; introduces SKIPPED_SANDBOX status for live-CLI cells when running inside a sandbox; documents operator-run-outside-sandbox as the canonical live-test mode. Amends 043 findings.md to reclassify the FAIL verdicts as BLOCKED_BY_TEST_SANDBOX with the real cause and operator remediation. Hook+plugin code itself is unchanged; only test methodology + verdict classification."`.
 

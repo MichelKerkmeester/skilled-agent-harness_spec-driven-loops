@@ -20,7 +20,7 @@ Documentation fixes, template debt, orphan management, remediation.
 - `014-resource-maps-and-memory-finalization`
 - `015-root-readme-refresh`
 - `016-hook-plugin-per-runtime-testing`
-- `031-hook-test-sandbox-fix`
+- `017-hook-test-sandbox-fix`
 - `034-matrix-runners-snake-case-rename`
 - `037-feature-catalog-shape-realignment`
 - `038-coco-index-feature-catalog`

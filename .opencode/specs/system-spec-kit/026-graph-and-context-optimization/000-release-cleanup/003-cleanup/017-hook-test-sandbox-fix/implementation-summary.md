@@ -3,7 +3,7 @@ title: "Implementation Summary: Hook Test Sandbox Fix"
 template_source: "SPECKIT_TEMPLATE_SOURCE: implementation-summary | v2.2"
 description: "Sandbox-aware runtime hook tests now separate deterministic direct smokes from live CLI verdicts."
 trigger_phrases:
-  - "031-hook-test-sandbox-fix"
+  - "017-hook-test-sandbox-fix"
   - "hook test methodology"
   - "sandbox detection"
   - "BLOCKED_BY_TEST_SANDBOX"
@@ -12,7 +12,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/031-hook-test-sandbox-fix"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/017-hook-test-sandbox-fix"
     last_updated_at: "2026-04-29T21:45:00Z"
     last_updated_by: "cli-codex"
     recent_action: "Implemented sandbox-aware runner"
@@ -24,7 +24,7 @@ _memory:
       - "methodology-correction.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "031-hook-test-sandbox-fix"
+      session_id: "017-hook-test-sandbox-fix"
       parent_session_id: null
     completion_pct: 100
     open_questions: []
@@ -43,7 +43,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 031-hook-test-sandbox-fix |
+| **Spec Folder** | 017-hook-test-sandbox-fix |
 | **Completed** | 2026-04-29 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
@@ -109,7 +109,7 @@ inside the current sandbox.
 |---------|--------|
 | `npm --prefix .opencode/skills/system-spec-kit/mcp_server run hook-tests` | PASS: 5 direct-smoke PASS cells, 5 live-cli `SKIPPED_SANDBOX` cells. |
 | `npm --prefix .opencode/skills/system-spec-kit/mcp_server run build` | PASS |
-| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/031-hook-test-sandbox-fix --strict` | PASS |
+| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/017-hook-test-sandbox-fix --strict` | PASS |
 <!-- /ANCHOR:verification -->
 
 ---

@@ -20,7 +20,7 @@
     "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cleanup/014-resource-maps-and-memory-finalization",
     "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cleanup/015-root-readme-refresh",
     "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cleanup/016-hook-plugin-per-runtime-testing",
-    "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cleanup/031-hook-test-sandbox-fix",
+    "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cleanup/017-hook-test-sandbox-fix",
     "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cleanup/034-matrix-runners-snake-case-rename",
     "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cleanup/037-feature-catalog-shape-realignment",
     "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cleanup/038-coco-index-feature-catalog",

@@ -3,7 +3,7 @@ title: "Tasks: Hook Test Sandbox Fix"
 template_source: "SPECKIT_TEMPLATE_SOURCE: tasks | v2.2"
 description: "Task list for the sandbox-aware runtime hook test methodology correction."
 trigger_phrases:
-  - "031-hook-test-sandbox-fix"
+  - "017-hook-test-sandbox-fix"
   - "hook test methodology"
   - "sandbox detection"
   - "BLOCKED_BY_TEST_SANDBOX"
@@ -12,7 +12,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/031-hook-test-sandbox-fix"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/017-hook-test-sandbox-fix"
     last_updated_at: "2026-04-29T21:45:00Z"
     last_updated_by: "cli-codex"
     recent_action: "Completed task list"

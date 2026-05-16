@@ -2,7 +2,7 @@
 title: "Methodology Correction: Hook Test Sandbox Fix"
 description: "Root-cause analysis for the sandboxed live runtime hook test failures and the corrected operator-run methodology."
 trigger_phrases:
-  - "031-hook-test-sandbox-fix"
+  - "017-hook-test-sandbox-fix"
   - "hook test methodology"
   - "sandbox detection"
   - "BLOCKED_BY_TEST_SANDBOX"

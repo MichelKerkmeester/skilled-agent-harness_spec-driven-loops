@@ -3,7 +3,7 @@ title: "Plan: Hook Test Sandbox Fix"
 template_source: "SPECKIT_TEMPLATE_SOURCE: plan-core + level2-verify | v2.2"
 description: "Implementation plan for sandbox-aware runtime hook tests and corrected findings."
 trigger_phrases:
-  - "031-hook-test-sandbox-fix"
+  - "017-hook-test-sandbox-fix"
   - "hook test methodology"
   - "sandbox detection"
   - "BLOCKED_BY_TEST_SANDBOX"
@@ -12,7 +12,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/031-hook-test-sandbox-fix"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/017-hook-test-sandbox-fix"
     last_updated_at: "2026-04-29T21:45:00Z"
     last_updated_by: "cli-codex"
     recent_action: "Planned runner split"
@@ -117,7 +117,7 @@ JSONL output under `run-output/latest`, and prints status counts plus verdict.
 |------|---------|----------|
 | Sandboxed runner | `npm --prefix .opencode/skills/system-spec-kit/mcp_server run hook-tests` | 5 PASS, 5 SKIPPED_SANDBOX |
 | Build | `npm --prefix .opencode/skills/system-spec-kit/mcp_server run build` | exit 0 |
-| Strict validation | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/031-hook-test-sandbox-fix --strict` | exit 0 |
+| Strict validation | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/017-hook-test-sandbox-fix --strict` | exit 0 |
 <!-- /ANCHOR:testing -->
 
 ---

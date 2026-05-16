@@ -6191,7 +6191,7 @@ END{
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/017-automation-reality-supplemental-research/research/logs/iter-003.log
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/017-automation-reality-supplemental-research/research/logs/iter-004.log
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/017-automation-reality-supplemental-research/research/logs/iter-005.log
-./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/031-hook-test-sandbox-fix/logs/iter-001.log
+./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/017-hook-test-sandbox-fix/logs/iter-001.log
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-code-graph-watcher-retraction/logs/iter-001.log
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/015-root-readme-refresh/logs/iter-001.log
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/015-mcp-runtime-stress-remediation/010-stress-test-rerun-v1-0-2/runs/preflight.log

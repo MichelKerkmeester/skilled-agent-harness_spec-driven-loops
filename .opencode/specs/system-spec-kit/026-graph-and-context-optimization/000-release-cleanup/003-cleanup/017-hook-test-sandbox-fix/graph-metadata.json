@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/031-hook-test-sandbox-fix",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/031-hook-test-sandbox-fix",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/017-hook-test-sandbox-fix",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/017-hook-test-sandbox-fix",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization",
   "children_ids": [],
   "migrated": false,
@@ -15,7 +15,7 @@
   },
   "derived": {
     "trigger_phrases": [
-      "031-hook-test-sandbox-fix",
+      "017-hook-test-sandbox-fix",
       "hook test methodology",
       "sandbox detection",
       "BLOCKED_BY_TEST_SANDBOX",

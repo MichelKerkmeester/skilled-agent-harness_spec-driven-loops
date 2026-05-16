@@ -4704,7 +4704,7 @@
       "lastUpdated": "2026-05-02T10:39:48.458Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/031-hook-test-sandbox-fix",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/017-hook-test-sandbox-fix",
       "description": "Spec: Hook Test Sandbox Fix",
       "keywords": [
         "spec",
