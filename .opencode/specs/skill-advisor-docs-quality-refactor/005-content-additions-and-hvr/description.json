@@ -1,0 +1,11 @@
+{
+  "specFolder": "skill-advisor-docs-quality-refactor/005-content-additions-and-hvr",
+  "description": "Feature Specification: 005-content-additions-and-hvr (skeleton, pre-synthesis) — 5 new reference docs + canonical hook-reference copy + HVR sweep",
+  "keywords": ["skill-advisor", "content-additions", "lane-weight-tuning", "query-cookbook", "validation-baselines", "daemon-lease", "skill-graph-drift", "hvr"],
+  "lastUpdated": "2026-05-16T00:00:00Z",
+  "specId": "005",
+  "folderSlug": "content-additions-and-hvr",
+  "parentChain": ["skill-advisor-docs-quality-refactor"],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

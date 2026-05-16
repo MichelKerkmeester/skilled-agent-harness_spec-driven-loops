@@ -1,0 +1,17 @@
+{
+  "specFolder": "112-commit-standards-and-retroactive-rewrite/005-retroactive-rewrite-execution",
+  "description": "Phase 5: retroactive-rewrite-execution",
+  "keywords": [
+    "phase",
+    "retroactive-rewrite-execution"
+  ],
+  "lastUpdated": "2026-05-16T09:42:36.573Z",
+  "specId": "005",
+  "folderSlug": "retroactive-rewrite-execution",
+  "parentChain": [
+    "112-commit-standards-and-retroactive-rewrite"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

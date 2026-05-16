@@ -1,0 +1,23 @@
+{
+  "specFolder": "skill-advisor-docs-quality-refactor",
+  "description": "Feature Specification: skill-advisor-docs-quality-refactor (phase parent) — coordinated docs-quality refactor of system-skill-advisor across 5 children: audit, bug-fixes, marketing README, sk-doc 1:1 alignment, content additions.",
+  "keywords": [
+    "skill-advisor",
+    "docs-quality",
+    "refactor",
+    "marketing-readme",
+    "sk-doc-alignment",
+    "bug-fixes",
+    "hvr",
+    "content-additions",
+    "phase-parent",
+    "cli-devin"
+  ],
+  "lastUpdated": "2026-05-16T00:00:00Z",
+  "specId": "skill-advisor-docs-quality-refactor",
+  "folderSlug": "skill-advisor-docs-quality-refactor",
+  "parentChain": [],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "phase"
+}

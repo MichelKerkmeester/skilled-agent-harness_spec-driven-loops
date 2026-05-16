@@ -1,0 +1,17 @@
+{
+  "specFolder": "112-commit-standards-and-retroactive-rewrite/002-commit-standards-definition",
+  "description": "Phase 2: commit-standards-definition",
+  "keywords": [
+    "phase",
+    "commit-standards-definition"
+  ],
+  "lastUpdated": "2026-05-16T09:42:34.484Z",
+  "specId": "002",
+  "folderSlug": "commit-standards-definition",
+  "parentChain": [
+    "112-commit-standards-and-retroactive-rewrite"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

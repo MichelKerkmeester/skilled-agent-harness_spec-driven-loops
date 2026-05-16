@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "packet_id": "112-commit-standards-and-retroactive-rewrite",
+  "spec_folder": "112-commit-standards-and-retroactive-rewrite",
+  "parent_id": null,
+  "children_ids": [
+    "112-commit-standards-and-retroactive-rewrite/001-prerequisites-and-baseline",
+    "112-commit-standards-and-retroactive-rewrite/002-commit-standards-definition",
+    "112-commit-standards-and-retroactive-rewrite/003-sk-git-skill-update",
+    "112-commit-standards-and-retroactive-rewrite/004-cli-devin-rewrite-prompts",
+    "112-commit-standards-and-retroactive-rewrite/005-retroactive-rewrite-execution"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": [
+      ".opencode/skills/sk-git",
+      ".opencode/skills/cli-devin",
+      ".opencode/skills/deep-research",
+      ".opencode/skills/deep-review"
+    ]
+  },
+  "derived": {
+    "trigger_phrases": [
+      "112-commit-standards-and-retroactive-rewrite",
+      "commit standards",
+      "retroactive commit rewrite",
+      "sk-git standards update",
+      "cli-devin commit rewrite",
+      "git filter-repo message rewrite"
+    ],
+    "key_topics": [
+      "commit-message-standards",
+      "conventional-commits",
+      "retroactive-rewrite",
+      "git-filter-repo",
+      "sk-git",
+      "cli-devin",
+      "deep-loop-pattern"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "last_active_child_id": "112-commit-standards-and-retroactive-rewrite/003-sk-git-skill-update",
+    "key_files": [
+      "spec.md",
+      "001-prerequisites-and-baseline/spec.md",
+      "002-commit-standards-definition/spec.md",
+      "003-sk-git-skill-update/spec.md",
+      "004-cli-devin-rewrite-prompts/spec.md",
+      "005-retroactive-rewrite-execution/spec.md"
+    ],
+    "entities": [
+      "sk-git",
+      "cli-devin",
+      "git-filter-repo",
+      "deep-research",
+      "deep-review",
+      "sequential_thinking"
+    ],
+    "causal_summary": "Phase 002 closed 2026-05-16: 7 ADRs Accepted, commit-standards.md + derivation-heuristics.md + hand-sample-validation.md (20/20 deterministic) shipped. Phase 003 (sk-git skill update) next. Local-only HEAD-only rewrite.",
+    "created_at": "2026-05-16T09:42:32Z",
+    "last_save_at": "2026-05-16T09:42:32Z",
+    "save_lineage": "scaffold_with_manual_curation",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "/Users/michelkerkmeester/.claude/plans/create-a-new-phased-synchronous-mitten.md"
+    ]
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "specFolder": "112-commit-standards-and-retroactive-rewrite/001-prerequisites-and-baseline",
+  "description": "Phase 1: prerequisites-and-baseline",
+  "keywords": [
+    "phase",
+    "prerequisites-and-baseline"
+  ],
+  "lastUpdated": "2026-05-16T09:42:33.785Z",
+  "specId": "001",
+  "folderSlug": "prerequisites-and-baseline",
+  "parentChain": [
+    "112-commit-standards-and-retroactive-rewrite"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

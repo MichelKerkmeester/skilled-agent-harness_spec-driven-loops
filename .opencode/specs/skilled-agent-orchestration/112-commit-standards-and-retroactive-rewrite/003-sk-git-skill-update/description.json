@@ -1,0 +1,17 @@
+{
+  "specFolder": "112-commit-standards-and-retroactive-rewrite/003-sk-git-skill-update",
+  "description": "Phase 3: sk-git-skill-update",
+  "keywords": [
+    "phase",
+    "sk-git-skill-update"
+  ],
+  "lastUpdated": "2026-05-16T09:42:35.192Z",
+  "specId": "003",
+  "folderSlug": "sk-git-skill-update",
+  "parentChain": [
+    "112-commit-standards-and-retroactive-rewrite"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

@@ -131,6 +131,9 @@ repair_actions:
     node_modules_missing:
       command: "cd .opencode/skills/system-skill-advisor/mcp_server && npm install"
       description: "Install node_modules"
+    shared_dependency_missing:
+      command: "cd .opencode/skills/system-skill-advisor/mcp_server && npm install && npm run build"
+      description: "Restore the local @spec-kit/shared file dependency and rebuild compiled imports"
     launcher_missing:
       command: "echo 'Launcher file .opencode/bin/mk-skill-advisor-launcher.cjs is missing — restore from git: git checkout .opencode/bin/mk-skill-advisor-launcher.cjs'"
       description: "Restore launcher from git history"
@@ -144,6 +147,9 @@ repair_actions:
     node_modules_missing:
       command: "cd .opencode/skills/system-code-graph && npm install"
       description: "Install node_modules"
+    shared_dependency_missing:
+      command: "cd .opencode/skills/system-code-graph && npm install && ./node_modules/.bin/tsc --build ./tsconfig.json"
+      description: "Restore the local @spec-kit/shared file dependency and rebuild compiled imports"
     launcher_missing:
       command: "echo 'Launcher file .opencode/bin/mk-code-index-launcher.cjs is missing — restore from git: git checkout .opencode/bin/mk-code-index-launcher.cjs'"
       description: "Restore launcher from git history"
@@ -259,6 +265,7 @@ workflow:
         - "Read the full install guide for the failing server"
         - "Read the relevant config file and check for syntax errors"
         - "Read the server's entry point file to check for import errors"
+        - "If the detail mentions ERR_MODULE_NOT_FOUND and @spec-kit/shared, use the server's shared_dependency_missing repair action"
         - "Check if node_modules or .venv exists and has expected contents"
         - "Formulate a custom repair plan and present to user"
     outputs:

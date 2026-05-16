@@ -35,7 +35,7 @@ trigger_phrases:
 
 Current state:
 
-- Native MCP tools are the primary runtime surface: four `advisor_*` tools plus five `skill_graph_*` tools.
+- Native MCP tools are the primary runtime surface: four `advisor_*` tools plus five `skill_graph_*` tools (8 public + 1 internal trusted-caller — see [Tool IDs Reference](./references/tool-ids-reference.md) for the public/internal split).
 - Python scripts remain a compatibility path for callers that cannot use MCP tools directly.
 - Public responses stay prompt-safe and expose skill labels, scores, thresholds and trust metadata.
 - Command-backed skills use explicit alias groups where command ids and skill ids are legitimate names for the same capability.

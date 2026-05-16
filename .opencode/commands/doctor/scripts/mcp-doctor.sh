@@ -438,6 +438,8 @@ diagnose_mk_code_index() {
   local srv="mk_code_index"
   local skill_dir="$PROJECT_ROOT/.opencode/skills/system-code-graph"
   local dist_entry="$skill_dir/mcp_server/dist/index.js"
+  local shared_dep="$skill_dir/node_modules/@spec-kit/shared"
+  local shared_import_probe="$skill_dir/dist/system-spec-kit/mcp_server/lib/utils/skill-label-sanitizer.js"
   local launcher="$PROJECT_ROOT/.opencode/bin/mk-code-index-launcher.cjs"
   # DB path: prefer SPECKIT_CODE_GRAPH_DB_DIR override → new standalone location →
   # legacy skill-local fallback (auto-migrated by the launcher on first run).
@@ -484,7 +486,38 @@ diagnose_mk_code_index() {
     needs_fix=true
   fi
 
-  # Check 4: database directory (new standalone path; legacy skill-local checked as fallback)
+  # Check 4: @spec-kit/shared local package link
+  if [[ -e "$shared_dep" ]]; then
+    record_pass "$srv" "shared_dependency" "@spec-kit/shared resolved"
+    _log log_pass "@spec-kit/shared dependency link present"
+  else
+    record_fail "$srv" "shared_dependency" "Missing $shared_dep — run cd $skill_dir && npm install"
+    _log log_fail "@spec-kit/shared dependency link missing — needs npm install"
+    needs_fix=true
+  fi
+
+  # Check 5: shared import probe catches ERR_MODULE_NOT_FOUND before MCP startup
+  if [[ -f "$shared_import_probe" ]]; then
+    local shared_import_output
+    if shared_import_output="$(node -e "import(process.argv[1])" "$shared_import_probe" 2>&1)"; then
+      record_pass "$srv" "shared_import" "Compiled shared import resolved"
+      _log log_pass "Compiled shared import resolves"
+    else
+      if [[ "$shared_import_output" == *"@spec-kit/shared"* ]] || [[ "$shared_import_output" == *"ERR_MODULE_NOT_FOUND"* ]]; then
+        record_fail "$srv" "shared_import" "$shared_import_output"
+        _log log_fail "Compiled shared import failed — run npm install + build"
+        needs_fix=true
+      else
+        record_warn "$srv" "shared_import" "$shared_import_output"
+        _log log_warn "Compiled shared import probe returned a non-startup warning"
+      fi
+    fi
+  else
+    record_skip "$srv" "shared_import" "Probe file not found: $shared_import_probe"
+    _log log_skip "Compiled shared import probe not found"
+  fi
+
+  # Check 6: database directory (new standalone path; legacy skill-local checked as fallback)
   if [[ -d "$db_dir" ]]; then
     local db_file="$db_dir/code-graph.sqlite"
     if [[ -f "$db_file" ]]; then
@@ -507,7 +540,7 @@ diagnose_mk_code_index() {
     needs_fix=true
   fi
 
-  # Check 5: Server entry point loads without native errors
+  # Check 7: Server entry point loads without native errors
   if [[ -f "$dist_entry" ]]; then
     if timeout 5 node -e "
       try { require('$dist_entry'); } catch(e) {
@@ -550,6 +583,8 @@ diagnose_mk_skill_advisor() {
   local srv="mk_skill_advisor"
   local skill_dir="$PROJECT_ROOT/.opencode/skills/system-skill-advisor"
   local dist_entry="$skill_dir/mcp_server/dist/system-skill-advisor/mcp_server/advisor-server.js"
+  local shared_dep="$skill_dir/mcp_server/node_modules/@spec-kit/shared"
+  local shared_import_probe="$skill_dir/mcp_server/dist/system-skill-advisor/mcp_server/lib/scorer/lanes/semantic-shadow.js"
   local launcher="$PROJECT_ROOT/.opencode/bin/mk-skill-advisor-launcher.cjs"
   local db_dir="$skill_dir/mcp_server/database"
   local needs_fix=false
@@ -592,7 +627,38 @@ diagnose_mk_skill_advisor() {
     needs_fix=true
   fi
 
-  # Check 4: database directory + skill-graph.sqlite
+  # Check 4: @spec-kit/shared local package link
+  if [[ -e "$shared_dep" ]]; then
+    record_pass "$srv" "shared_dependency" "@spec-kit/shared resolved"
+    _log log_pass "@spec-kit/shared dependency link present"
+  else
+    record_fail "$srv" "shared_dependency" "Missing $shared_dep — run cd $skill_dir/mcp_server && npm install"
+    _log log_fail "@spec-kit/shared dependency link missing — needs npm install"
+    needs_fix=true
+  fi
+
+  # Check 5: shared import probe catches ERR_MODULE_NOT_FOUND before MCP startup
+  if [[ -f "$shared_import_probe" ]]; then
+    local shared_import_output
+    if shared_import_output="$(node -e "import(process.argv[1])" "$shared_import_probe" 2>&1)"; then
+      record_pass "$srv" "shared_import" "Compiled shared import resolved"
+      _log log_pass "Compiled shared import resolves"
+    else
+      if [[ "$shared_import_output" == *"@spec-kit/shared"* ]] || [[ "$shared_import_output" == *"ERR_MODULE_NOT_FOUND"* ]]; then
+        record_fail "$srv" "shared_import" "$shared_import_output"
+        _log log_fail "Compiled shared import failed — run npm install + build"
+        needs_fix=true
+      else
+        record_warn "$srv" "shared_import" "$shared_import_output"
+        _log log_warn "Compiled shared import probe returned a non-startup warning"
+      fi
+    fi
+  else
+    record_skip "$srv" "shared_import" "Probe file not found: $shared_import_probe"
+    _log log_skip "Compiled shared import probe not found"
+  fi
+
+  # Check 6: database directory + skill-graph.sqlite
   if [[ -d "$db_dir" ]]; then
     local db_file="$db_dir/skill-graph.sqlite"
     if [[ -f "$db_file" ]]; then
@@ -609,7 +675,7 @@ diagnose_mk_skill_advisor() {
     _log log_warn "Database directory not found (created on first advisor_rebuild)"
   fi
 
-  # Check 5: Server entry point loads without native errors
+  # Check 7: Server entry point loads without native errors
   if [[ -f "$dist_entry" ]]; then
     if timeout 5 node -e "
       try { require('$dist_entry'); } catch(e) {

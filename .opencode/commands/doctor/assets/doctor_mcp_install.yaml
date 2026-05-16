@@ -133,6 +133,8 @@ servers:
       - { path: "mcp_server/dist/system-skill-advisor/mcp_server/advisor-server.js", type: "file_exists" }
       - { path: ".opencode/bin/mk-skill-advisor-launcher.cjs", type: "file_exists" }
       - { path: "mcp_server/node_modules", type: "dir_exists" }
+      - { path: "mcp_server/node_modules/@spec-kit/shared", type: "dir_exists" }
+      - { probe: "node -e \"import('./{skill_dir}/mcp_server/dist/system-skill-advisor/mcp_server/lib/scorer/lanes/semantic-shadow.js')\"", type: "command_succeeds" }
     install_steps:
       - "cd {skill_dir}/mcp_server && npm install"
       - "cd {skill_dir}/mcp_server && npm run build"
@@ -148,6 +150,8 @@ servers:
       - { path: "mcp_server/dist/index.js", type: "file_exists" }
       - { path: ".opencode/bin/mk-code-index-launcher.cjs", type: "file_exists" }
       - { path: "node_modules", type: "dir_exists" }
+      - { path: "node_modules/@spec-kit/shared", type: "dir_exists" }
+      - { probe: "node -e \"import('./{skill_dir}/dist/system-spec-kit/mcp_server/lib/utils/skill-label-sanitizer.js')\"", type: "command_succeeds" }
       - { path: "mcp_server/database", type: "dir_exists" }
     install_steps:
       - "cd {skill_dir} && npm install"

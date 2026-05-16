@@ -181,10 +181,13 @@ function resolveIndexScopePolicy(input: ResolveIndexScopePolicyInput = {}): Inde
   };
 }
 
+// z_archive intentionally NOT excluded: archived spec content stays in the
+// memory index and is deprioritized by ARCHIVE_MULTIPLIERS (0.1) in
+// shared/scoring/folder-scoring.ts. Excluding it here would override the
+// decay design and remove archived content from search entirely.
 export const EXCLUDED_FOR_MEMORY = [
   compileSegmentPattern('z_future'),
   compileSegmentPattern('external'),
-  compileSegmentPattern('z_archive'),
 ] as const;
 
 export const EXCLUDED_FOR_CODE_GRAPH = [

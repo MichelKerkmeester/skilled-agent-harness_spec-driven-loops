@@ -1,0 +1,17 @@
+{
+  "specFolder": "112-commit-standards-and-retroactive-rewrite/004-cli-devin-rewrite-prompts",
+  "description": "Phase 4: cli-devin-rewrite-prompts",
+  "keywords": [
+    "phase",
+    "cli-devin-rewrite-prompts"
+  ],
+  "lastUpdated": "2026-05-16T09:42:35.847Z",
+  "specId": "004",
+  "folderSlug": "cli-devin-rewrite-prompts",
+  "parentChain": [
+    "112-commit-standards-and-retroactive-rewrite"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

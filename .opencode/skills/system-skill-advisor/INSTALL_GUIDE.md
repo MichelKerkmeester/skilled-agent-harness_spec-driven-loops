@@ -23,8 +23,9 @@ This is the canonical install + setup guide for the standalone Skill Advisor MCP
 - [7. COMPAT SHIMS](#7--compat-shims)
 - [8. ROLLBACK](#8--rollback)
 - [9. OPERATOR CHECKS](#9--operator-checks)
-- [10. REFERENCE COMMANDS](#10--reference-commands)
-- [11. RELATED RESOURCES](#11--related-resources)
+- [10. TROUBLESHOOTING](#10--troubleshooting)
+- [11. REFERENCE COMMANDS](#11--reference-commands)
+- [12. RELATED RESOURCES](#12--related-resources)
 
 ---
 
@@ -46,6 +47,7 @@ The native advisor is a TypeScript package under `.opencode/skills/system-skill-
 - Repository root as the working directory.
 - Runtime MCP configuration includes both `mk-spec-memory` and `mk_skill_advisor`.
 - `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED` is unset unless intentionally testing rollback.
+- The local shared package at `.opencode/skills/system-spec-kit/shared` is present; `npm install` links it into `mcp_server/node_modules/@spec-kit/shared`.
 
 ---
 
@@ -59,6 +61,12 @@ Install dependencies and build the advisor MCP server:
 ```bash
 npm --prefix .opencode/skills/system-skill-advisor/mcp_server install
 npm --prefix .opencode/skills/system-skill-advisor/mcp_server run build
+```
+
+Verify the local shared package link exists. Missing this link causes MCP startup to fail with `ERR_MODULE_NOT_FOUND` for `@spec-kit/shared`.
+
+```bash
+test -e .opencode/skills/system-skill-advisor/mcp_server/node_modules/@spec-kit/shared && echo "shared dependency linked"
 ```
 
 Start or refresh the `mk_skill_advisor` MCP server in the active runtime. The launcher is:
@@ -103,6 +111,7 @@ Run before declaring bootstrap complete:
 ```bash
 npm --prefix .opencode/skills/system-skill-advisor/mcp_server run typecheck
 npm --prefix .opencode/skills/system-skill-advisor/mcp_server run build
+node -e "import('./.opencode/skills/system-skill-advisor/mcp_server/dist/system-skill-advisor/mcp_server/lib/scorer/lanes/semantic-shadow.js')"
 npm --prefix .opencode/skills/system-skill-advisor/mcp_server run test -- tests/compat/plugin-bridge-smoke.vitest.ts tests/handlers/advisor-recommend.vitest.ts --reporter=default
 ```
 
@@ -264,8 +273,20 @@ H5 operator scenarios live in the manual playbook under `04--operator-h5/`.
 
 <!-- /ANCHOR:9-operator-checks -->
 
-<!-- ANCHOR:10-reference-commands -->
-## 10. REFERENCE COMMANDS
+<!-- ANCHOR:10-troubleshooting -->
+## 10. TROUBLESHOOTING
+
+| What You See | Cause | Fix |
+| --- | --- | --- |
+| MCP startup logs show `ERR_MODULE_NOT_FOUND` for `@spec-kit/shared` from `semantic-shadow.js` | The advisor package was built, but its local shared package link is missing from `mcp_server/node_modules`. | Run `npm --prefix .opencode/skills/system-skill-advisor/mcp_server install` and `npm --prefix .opencode/skills/system-skill-advisor/mcp_server run build`, then restart `mk_skill_advisor`. |
+| `/doctor:mcp debug --server mk_skill_advisor` fails `shared_dependency` or `shared_import` | Doctor detected the same missing local package link before runtime startup. | Run `/doctor:mcp debug --server mk_skill_advisor --fix`, or run the commands above manually. |
+
+---
+
+<!-- /ANCHOR:10-troubleshooting -->
+
+<!-- ANCHOR:11-reference-commands -->
+## 11. REFERENCE COMMANDS
 
 ```bash
 # Build native package
@@ -294,10 +315,10 @@ python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor_r
 
 ---
 
-<!-- /ANCHOR:10-reference-commands -->
+<!-- /ANCHOR:11-reference-commands -->
 
-<!-- ANCHOR:11-related-resources -->
-## 11. RELATED RESOURCES
+<!-- ANCHOR:12-related-resources -->
+## 12. RELATED RESOURCES
 
 | Document | Purpose |
 | --- | --- |
@@ -306,4 +327,4 @@ python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor_r
 | [Hook reference](../../references/hooks/skill-advisor-hook.md) | Claude, Copilot, Gemini, Codex, Devin, and OpenCode plugin hook contract. |
 | [Manual testing playbook](./mcp_server/manual_testing_playbook/manual_testing_playbook.md) | OP-001 / OP-002 operator scenarios + indexer edge cases. |
 
-<!-- /ANCHOR:11-related-resources -->
+<!-- /ANCHOR:12-related-resources -->

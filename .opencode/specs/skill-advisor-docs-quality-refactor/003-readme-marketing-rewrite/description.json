@@ -1,0 +1,11 @@
+{
+  "specFolder": "skill-advisor-docs-quality-refactor/003-readme-marketing-rewrite",
+  "description": "Feature Specification: 003-readme-marketing-rewrite (skeleton, pre-synthesis) — marketing-style README rewrite for system-skill-advisor",
+  "keywords": ["skill-advisor", "readme", "marketing", "rewrite", "hvr", "skill_readme"],
+  "lastUpdated": "2026-05-16T00:00:00Z",
+  "specId": "003",
+  "folderSlug": "readme-marketing-rewrite",
+  "parentChain": ["skill-advisor-docs-quality-refactor"],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

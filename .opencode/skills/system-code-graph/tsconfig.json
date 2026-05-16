@@ -13,7 +13,7 @@
     ],
     "paths": {
       "@spec-kit/shared/*": [
-        "../system-spec-kit/shared/*"
+        "../system-spec-kit/shared/dist/*"
       ],
       "better-sqlite3": [
         "../system-spec-kit/node_modules/@types/better-sqlite3/index.d.ts"
@@ -34,7 +34,6 @@
     "../system-spec-kit/mcp_server/**/*.ts",
     "../system-spec-kit/mcp_server/lib/eval/data/*.json",
     "../system-spec-kit/mcp_server/lib/routing/*.json",
-    "../system-spec-kit/shared/**/*.ts",
     "../system-skill-advisor/mcp_server/**/*.ts"
   ],
   "exclude": [
@@ -46,6 +45,8 @@
     "../system-spec-kit/mcp_server/stress_test/**/*.ts",
     "../system-spec-kit/mcp_server/**/__tests__/**/*.ts",
     "../system-spec-kit/mcp_server/**/tests/**/*.ts",
+    "../system-skill-advisor/mcp_server/lib/shared/embeddings",
+    "../system-skill-advisor/mcp_server/lib/shared/embeddings/**/*.ts",
     "../system-skill-advisor/mcp_server/tests/**/*.ts",
     "../system-skill-advisor/mcp_server/stress_test/**/*.ts",
     "../system-skill-advisor/mcp_server/**/*.vitest.ts",

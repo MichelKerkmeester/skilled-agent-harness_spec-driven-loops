@@ -3,8 +3,6 @@ title: Prompt Quality Card
 description: Fast-path framework selection and CLEAR checks for OpenCode CLI prompt construction.
 ---
 
-<!-- sync: 9d3a5fd2 -->
-
 # Prompt Quality Card
 
 Fast-path prompt-quality guidance for OpenCode CLI dispatches. Use this asset before building a routine `opencode run` prompt so the router stays lightweight while still applying framework selection and a quick CLEAR pass.
