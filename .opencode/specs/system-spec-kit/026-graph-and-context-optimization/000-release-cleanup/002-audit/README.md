@@ -5,7 +5,7 @@ Runtime wiring, compliance checks, alignment reviews, sweeps. Hosts the absorbed
 ## Children (8)
 
 - `001-tanstack-security-audit`
-- `008-w3-w7-runtime-wiring-and-audit`
+- `002-w3-w7-runtime-wiring-and-audit`
 - `018-doc-truth-pass`
 - `019-code-graph-watcher-retraction`
 - `020-memory-retention-sweep`

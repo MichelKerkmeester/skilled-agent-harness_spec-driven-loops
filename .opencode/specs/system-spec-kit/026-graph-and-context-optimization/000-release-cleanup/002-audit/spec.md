@@ -51,7 +51,7 @@ The parent itself owns no implementation. All work lives in the children. Each c
 
 **Thematic groupings:**
 - **Security and supply-chain**: 001-tanstack-security-audit
-- **Runtime infrastructure**: 008-w3-w7-runtime-wiring-and-audit, 036-runtime-command-agent-alignment-review
+- **Runtime infrastructure**: 002-w3-w7-runtime-wiring-and-audit, 036-runtime-command-agent-alignment-review
 - **Documentation and graph**: 018-doc-truth-pass, 019-code-graph-watcher-retraction
 - **System validation and cleanup**: 020-memory-retention-sweep, 022-full-matrix-execution-validation, 045-drift-finding-fixes
 

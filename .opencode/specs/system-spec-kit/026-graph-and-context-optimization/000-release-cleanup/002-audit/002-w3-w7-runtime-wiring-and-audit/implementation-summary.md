@@ -10,7 +10,7 @@ importance_tier: "high"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/008-w3-w7-runtime-wiring-and-audit"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-w3-w7-runtime-wiring-and-audit"
     last_updated_at: "2026-04-29T05:10:00Z"
     last_updated_by: "codex"
     recent_action: "Completed runtime wiring"
@@ -25,8 +25,8 @@ _memory:
       - "mcp_server/lib/search/search-decision-envelope.ts"
       - "mcp_server/lib/search/decision-audit.ts"
     session_dedup:
-      fingerprint: "sha256:008-w3-w7-runtime-wiring-and-audit-summary-20260429-complete"
-      session_id: "008-w3-w7-runtime-wiring-and-audit-20260429"
+      fingerprint: "sha256:002-w3-w7-runtime-wiring-and-audit-summary-20260429-complete"
+      session_id: "002-w3-w7-runtime-wiring-and-audit-20260429"
       parent_session_id: "005-review-remediation"
     completion_pct: 100
     open_questions: []
@@ -46,7 +46,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 008-w3-w7-runtime-wiring-and-audit |
+| **Spec Folder** | 002-w3-w7-runtime-wiring-and-audit |
 | **Completed** | 2026-04-29 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
@@ -122,7 +122,7 @@ The implementation kept the behavior boundary narrow. W8 landed first as a pure 
 | `npx vitest run stress_test/search-quality/*.vitest.ts tests/query-plan-emission.vitest.ts skill_advisor/tests/shadow-sink.vitest.ts skill_advisor/tests/compat/python-compat.vitest.ts` | PASS, exit 0, 17 files and 32 tests. |
 | `npm run typecheck` | PASS, exit 0. |
 | `npm run build` | PASS, exit 0. |
-| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/008-w3-w7-runtime-wiring-and-audit --strict` | PASS, exit 0. |
+| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-w3-w7-runtime-wiring-and-audit --strict` | PASS, exit 0. |
 | `rg "buildTrustTree|calibrateCocoIndexOverfetch|recordShadowDelta|recordSearchDecision"` | PASS, production consumers found. |
 | Empty directory audit | PASS, both target directories removed and follow-up `find` returned no paths. |
 <!-- /ANCHOR:verification -->

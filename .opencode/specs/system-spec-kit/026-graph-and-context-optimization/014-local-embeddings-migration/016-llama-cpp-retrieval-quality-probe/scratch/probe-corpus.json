@@ -793,10 +793,10 @@
   },
   {
     "id": "2222",
-    "title": "Graph Metadata: system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/008-w3-w7-runtime-wiring-and-audit",
-    "file_path": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/008-w3-w7-runtime-wiring-and-audit/graph-metadata.json",
-    "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/008-w3-w7-runtime-wiring-and-audit",
-    "content": "Packet: system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/008-w3-w7-runtime-wiring-and-audit\nSpec Folder: system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/008-w3-w7-runtime-wiring-and-audit\nStatus: complete\nImportance Tier: normal\nSummary: Phase G remediates Phase F W3-W7 runtime wiring gaps through telemetry-first envelopes and audit sinks.\nParent: system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation\nMigrated: true\nMigration Source: legacy\nTrigger Phrases: system-spec-kit, 026-graph-and-context-optimization, 000-release-cleanup, 005-review-remediation, 008-w3-w7-runtime-wiring-and-audit, phase, remediates, w3-w7",
+    "title": "Graph Metadata: system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-w3-w7-runtime-wiring-and-audit",
+    "file_path": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-w3-w7-runtime-wiring-and-audit/graph-metadata.json",
+    "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-w3-w7-runtime-wiring-and-audit",
+    "content": "Packet: system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-w3-w7-runtime-wiring-and-audit\nSpec Folder: system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-w3-w7-runtime-wiring-and-audit\nStatus: complete\nImportance Tier: normal\nSummary: Phase G remediates Phase F W3-W7 runtime wiring gaps through telemetry-first envelopes and audit sinks.\nParent: system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation\nMigrated: true\nMigration Source: legacy\nTrigger Phrases: system-spec-kit, 026-graph-and-context-optimization, 000-release-cleanup, 005-review-remediation, 002-w3-w7-runtime-wiring-and-audit, phase, remediates, w3-w7",
     "summary": null
   },
   {

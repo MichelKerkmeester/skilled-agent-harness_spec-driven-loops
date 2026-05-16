@@ -11,7 +11,7 @@ importance_tier: "high"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/008-w3-w7-runtime-wiring-and-audit"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-w3-w7-runtime-wiring-and-audit"
     last_updated_at: "2026-04-29T04:45:00Z"
     last_updated_by: "codex"
     recent_action: "Initialized Phase G telemetry-first runtime wiring packet from Phase F research findings"
@@ -23,8 +23,8 @@ _memory:
       - "tasks.md"
       - "checklist.md"
     session_dedup:
-      fingerprint: "sha256:008-w3-w7-runtime-wiring-and-audit-20260429"
-      session_id: "008-w3-w7-runtime-wiring-and-audit-20260429"
+      fingerprint: "sha256:002-w3-w7-runtime-wiring-and-audit-20260429"
+      session_id: "002-w3-w7-runtime-wiring-and-audit-20260429"
       parent_session_id: "005-review-remediation"
     completion_pct: 0
     open_questions: []
