@@ -13,7 +13,7 @@ contextType: "spec"
 status: "in_progress"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/_041-v-rule-cross-spec-overreach"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/041-v-rule-cross-spec-overreach"
     last_updated_at: "2026-05-14T00:00:00Z"
     last_updated_by: "main-agent"
     recent_action: "Scaffolded 040 packet and began V8 source patch"
@@ -90,7 +90,7 @@ Make V8 precise enough to block real cross-spec contamination while allowing leg
 |-----------|-------------|-------------|
 | `.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts` | Modify | Tighten V8 candidate extraction, ADR context filtering, nested current-spec path extraction, and doc-type scatter threshold |
 | `.opencode/skills/system-spec-kit/scripts/tests/validate-memory-quality-v8-overreach.vitest.ts` | Create | Add T040-01 through T040-05 regression coverage |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/_041-v-rule-cross-spec-overreach/*` | Create | Level-2 packet docs |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/041-v-rule-cross-spec-overreach/*` | Create | Level-2 packet docs |
 <!-- /ANCHOR:scope -->
 
 ---

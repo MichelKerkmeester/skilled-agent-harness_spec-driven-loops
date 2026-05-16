@@ -39,7 +39,7 @@ _memory:
 | **Status** | Complete |
 | **Created** | 2026-05-14 |
 | **Branch** | `main` |
-| **Depends On** | `_041-v-rule-cross-spec-overreach` |
+| **Depends On** | `041-v-rule-cross-spec-overreach` |
 <!-- /ANCHOR:metadata -->
 
 ---

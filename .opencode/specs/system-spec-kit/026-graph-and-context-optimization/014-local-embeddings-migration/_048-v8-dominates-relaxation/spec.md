@@ -7,7 +7,7 @@ trigger_phrases:
   - "parent handover V8"
   - "direct child spec allowlist"
 related_specs:
-  - "_041-v-rule-cross-spec-overreach"
+  - "041-v-rule-cross-spec-overreach"
 importance_tier: "critical"
 contextType: "spec"
 status: "complete"
@@ -39,7 +39,7 @@ _memory:
 | **Created** | 2026-05-14 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |
-| **Depends On** | `_041-v-rule-cross-spec-overreach` |
+| **Depends On** | `041-v-rule-cross-spec-overreach` |
 <!-- /ANCHOR:metadata -->
 
 ---
