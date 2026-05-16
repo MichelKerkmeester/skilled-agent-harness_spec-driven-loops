@@ -1,7 +1,7 @@
 ---
 title: "Spec: Readiness Scaffolding Cleanup"
 template_source: "SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2"
-description: "Mechanical cleanup of vestigial embedding-readiness scaffolding remaining after 010-vestigial-embedding-readiness-gate-removal: remove db-state.ts exports, context-server.ts callers, and 8 test mock files."
+description: "Mechanical cleanup of vestigial embedding-readiness scaffolding remaining after 005-vestigial-embedding-readiness-gate-removal: remove db-state.ts exports, context-server.ts callers, and 8 test mock files."
 trigger_phrases:
   - "026-readiness-scaffolding-cleanup"
   - "readiness scaffolding cleanup"
@@ -37,7 +37,7 @@ _memory:
 | **Created** | 2026-04-29 |
 | **Branch** | `main` |
 | **Parent** | `015-mcp-runtime-stress-remediation` |
-| **Source** | Known-limitation follow-up after `010-vestigial-embedding-readiness-gate-removal` commit `e91d2c7c2` |
+| **Source** | Known-limitation follow-up after `005-vestigial-embedding-readiness-gate-removal` commit `e91d2c7c2` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -47,7 +47,7 @@ _memory:
 
 ### Problem Statement
 
-Packet `010-vestigial-embedding-readiness-gate-removal` (commit `e91d2c7c2`) deleted the readiness gate at `memory-search.ts:927-932` but kept the surrounding scaffolding untouched as out-of-scope:
+Packet `005-vestigial-embedding-readiness-gate-removal` (commit `e91d2c7c2`) deleted the readiness gate at `memory-search.ts:927-932` but kept the surrounding scaffolding untouched as out-of-scope:
 
 - `db-state.ts:84` `let embeddingModelReady: boolean = false;`
 - `db-state.ts:559` `export function isEmbeddingModelReady(): boolean`
@@ -170,7 +170,7 @@ Pre-flight grep found these additional runtime and test references outside the o
 |------|------|------------|
 | Risk | A test outside the known 8 references the scaffolding indirectly | Pre-flight: full grep before deletion; if extra refs found, document and include in scope |
 | Risk | Dist files retain stale references and confuse downstream consumers | REQ-004 covers full rebuild |
-| Dependency | `010-vestigial-embedding-readiness-gate-removal` (e91d2c7c2) merged | Already on main |
+| Dependency | `005-vestigial-embedding-readiness-gate-removal` (e91d2c7c2) merged | Already on main |
 <!-- /ANCHOR:risks -->
 
 ---

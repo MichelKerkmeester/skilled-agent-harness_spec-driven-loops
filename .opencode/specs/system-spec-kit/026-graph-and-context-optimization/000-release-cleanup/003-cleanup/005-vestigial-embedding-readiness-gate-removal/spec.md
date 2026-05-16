@@ -3,7 +3,7 @@ title: "Spec: Delete Vestigial Embedding-Readiness Gate"
 template_source: "SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2"
 description: "Delete the vestigial isEmbeddingModelReady/waitForEmbeddingModel gate from memory-search.ts that became dead code after T016-T019 lazy-loading migration. The gate blocks any in-process probe outside full server bootstrap, surfaced as the v1.0.3 stress test live-handler probe failure."
 trigger_phrases:
-  - "010-vestigial-embedding-readiness-gate-removal"
+  - "005-vestigial-embedding-readiness-gate-removal"
   - "embedding readiness gate removal"
   - "memory-search readiness gate"
   - "vestigial embedding gate"
@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/010-vestigial-embedding-readiness-gate-removal"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/005-vestigial-embedding-readiness-gate-removal"
     last_updated_at: "2026-04-29T08:30:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Authored Level 1 spec for vestigial embedding-readiness gate removal"

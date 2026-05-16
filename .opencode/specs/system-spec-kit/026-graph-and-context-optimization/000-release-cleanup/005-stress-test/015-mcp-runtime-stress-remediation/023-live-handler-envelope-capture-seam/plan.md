@@ -135,7 +135,7 @@ The test calls `handleMemorySearch` with a representative query and scoped tenan
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| `010-vestigial-embedding-readiness-gate-removal` | Internal | Green | Direct handler tests would time out without it |
+| `005-vestigial-embedding-readiness-gate-removal` | Internal | Green | Direct handler tests would time out without it |
 | `executePipeline` mock boundary | Internal | Green | Keeps test deterministic without asserting retrieval correctness |
 | `SPECKIT_SEARCH_DECISION_AUDIT_PATH` | Runtime env | Green | Required to prove handler audit emission without touching default data files |
 | `degradedReadiness` memory_search wiring | Internal | Yellow | Current handler does not pass degraded readiness into the envelope; test must not fake this with builder mocks |

@@ -3,13 +3,13 @@ title: "Implementation Summary: Delete Vestigial Embedding-Readiness Gate"
 template_source: "SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2"
 description: "Single-file delete of vestigial readiness gate at memory-search.ts:927-932 plus the corresponding import on line 61. Unblocks any in-process probe that imports handleMemorySearch without running the full server bootstrap."
 trigger_phrases:
-  - "010-vestigial-embedding-readiness-gate-removal complete"
+  - "005-vestigial-embedding-readiness-gate-removal complete"
   - "embedding readiness gate deleted"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/010-vestigial-embedding-readiness-gate-removal"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/005-vestigial-embedding-readiness-gate-removal"
     last_updated_at: "2026-04-29T08:30:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Deleted vestigial embedding-readiness gate; tests + build + validator green"
@@ -31,7 +31,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 010-vestigial-embedding-readiness-gate-removal |
+| **Spec Folder** | 005-vestigial-embedding-readiness-gate-removal |
 | **Completed** | 2026-04-29 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

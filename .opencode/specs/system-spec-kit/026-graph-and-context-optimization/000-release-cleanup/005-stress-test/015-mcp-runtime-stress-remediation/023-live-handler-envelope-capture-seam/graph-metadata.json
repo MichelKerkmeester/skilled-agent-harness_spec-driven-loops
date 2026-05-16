@@ -9,7 +9,7 @@
   "manual": {
     "depends_on": [
       "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/022-stress-test-results-deep-research",
-      "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/010-vestigial-embedding-readiness-gate-removal"
+      "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/005-vestigial-embedding-readiness-gate-removal"
     ],
     "supersedes": [],
     "related_to": []
@@ -21,7 +21,7 @@
     "status": "planned",
     "key_files": ["spec.md"],
     "entities": [],
-    "causal_summary": "Level 1 implementation of behavioral test exercising handleMemorySearch end-to-end with seeded fixtures, proving SearchDecisionEnvelope + decision-audit JSONL emission from live handler path. PP-1 from Phase J Planning Packet. Unblocked by 010-vestigial-embedding-readiness-gate-removal.",
+    "causal_summary": "Level 1 implementation of behavioral test exercising handleMemorySearch end-to-end with seeded fixtures, proving SearchDecisionEnvelope + decision-audit JSONL emission from live handler path. PP-1 from Phase J Planning Packet. Unblocked by 005-vestigial-embedding-readiness-gate-removal.",
     "created_at": "2026-04-29T08:45:00.000Z",
     "last_save_at": "2026-04-29T08:45:00.000Z",
     "save_lineage": "new",

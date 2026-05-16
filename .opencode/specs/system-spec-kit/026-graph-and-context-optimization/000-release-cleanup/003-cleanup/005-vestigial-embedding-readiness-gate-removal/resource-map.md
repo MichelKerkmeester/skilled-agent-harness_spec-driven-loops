@@ -2,12 +2,12 @@
 title: "Resource Map: 010 Vestigial Embedding-Readiness Gate Removal"
 description: "Path ledger for the surgical 6-line gate delete in memory-search.ts plus packet docs."
 trigger_phrases:
-  - "010-vestigial-embedding-readiness-gate-removal resource map"
+  - "005-vestigial-embedding-readiness-gate-removal resource map"
 importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/010-vestigial-embedding-readiness-gate-removal"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/005-vestigial-embedding-readiness-gate-removal"
     last_updated_at: "2026-04-29T10:15:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Authored lean resource-map for today batch"
@@ -26,7 +26,7 @@ _memory:
 - **Total references**: 8
 - **By category**: Specs=5, Tests=0, Scripts=1, Meta=2
 - **Missing on disk**: 0
-- **Scope**: Files touched during packet `026/000/005/010-vestigial-embedding-readiness-gate-removal` (commit `e91d2c7c2`).
+- **Scope**: Files touched during packet `026/000/005/005-vestigial-embedding-readiness-gate-removal` (commit `e91d2c7c2`).
 - **Generated**: 2026-04-29T10:10:00+02:00
 
 > Single-file production change (gate delete + import reduce). Packet itself is borderline for resource-map threshold (~8 files) but included for symmetry with sibling 009.

@@ -1,7 +1,7 @@
 ---
 title: "Spec: Live Handler Envelope Capture Seam"
 template_source: "SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2"
-description: "Behavioral test that exercises handleMemorySearch end-to-end with seeded fixtures and proves SearchDecisionEnvelope + decision-audit + shadow JSONL emission from the live handler path. Closes the v1.0.3 stress test live-handler probe gap (now unblocked by 010-vestigial-embedding-readiness-gate-removal)."
+description: "Behavioral test that exercises handleMemorySearch end-to-end with seeded fixtures and proves SearchDecisionEnvelope + decision-audit + shadow JSONL emission from the live handler path. Closes the v1.0.3 stress test live-handler probe gap (now unblocked by 005-vestigial-embedding-readiness-gate-removal)."
 trigger_phrases:
   - "023-live-handler-envelope-capture-seam"
   - "live handler envelope capture"
@@ -38,7 +38,7 @@ _memory:
 | **Branch** | `main` |
 | **Parent** | `015-mcp-runtime-stress-remediation` |
 | **Source** | Phase J research PP-1 (`../022-stress-test-results-deep-research/research/research-report.md`) |
-| **Dependency** | `005-review-remediation/010-vestigial-embedding-readiness-gate-removal` (already merged on main; readiness gate gone) |
+| **Dependency** | `005-review-remediation/005-vestigial-embedding-readiness-gate-removal` (already merged on main; readiness gate gone) |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -134,7 +134,7 @@ Add a single behavioral vitest at `mcp_server/tests/handler-memory-search-live-e
 |------|------|------------|
 | Risk | Pipeline execution requires too much fixture setup for one test | Mock `executePipeline` if needed; document layer in test comment per REQ-004 |
 | Risk | Audit path env-var has process-wide side effects | Use `vi.stubEnv` (or equivalent) and restore in `afterEach` |
-| Dependency | `010-vestigial-embedding-readiness-gate-removal` already merged | Verified on main |
+| Dependency | `005-vestigial-embedding-readiness-gate-removal` already merged | Verified on main |
 <!-- /ANCHOR:risks -->
 
 ---

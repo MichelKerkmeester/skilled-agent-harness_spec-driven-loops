@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/010-vestigial-embedding-readiness-gate-removal",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-vestigial-embedding-readiness-gate-removal",
   "description": "Spec: Delete Vestigial Embedding-Readiness Gate",
   "keywords": [
     "spec",

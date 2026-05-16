@@ -3,12 +3,12 @@ title: "Tasks: Delete Vestigial Embedding-Readiness Gate"
 template_source: "SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2"
 description: "Task breakdown for vestigial embedding-readiness gate removal. Single-file delete; 3 phases (Setup / Implementation / Verification)."
 trigger_phrases:
-  - "010-vestigial-embedding-readiness-gate-removal tasks"
+  - "005-vestigial-embedding-readiness-gate-removal tasks"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/010-vestigial-embedding-readiness-gate-removal"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/005-vestigial-embedding-readiness-gate-removal"
     last_updated_at: "2026-04-29T08:30:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Authored Level 1 tasks"

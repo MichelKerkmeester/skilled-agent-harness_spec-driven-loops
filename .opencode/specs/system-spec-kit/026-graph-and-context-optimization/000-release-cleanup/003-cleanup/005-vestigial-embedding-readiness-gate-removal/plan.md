@@ -3,12 +3,12 @@ title: "Implementation Plan: Delete Vestigial Embedding-Readiness Gate"
 template_source: "SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2"
 description: "Single-file surgical delete of vestigial readiness gate at memory-search.ts:927-932 plus the corresponding import on line 61. Conservative scope keeps adjacent dead-code scaffolding untouched for a follow-up packet."
 trigger_phrases:
-  - "010-vestigial-embedding-readiness-gate-removal plan"
+  - "005-vestigial-embedding-readiness-gate-removal plan"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/010-vestigial-embedding-readiness-gate-removal"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/005-vestigial-embedding-readiness-gate-removal"
     last_updated_at: "2026-04-29T08:30:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Authored Level 1 plan"

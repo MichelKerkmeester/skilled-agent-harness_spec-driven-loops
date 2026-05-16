@@ -54,7 +54,7 @@ The v1.0.3 stress test (Phase H, packet 021) produced a CONDITIONAL verdict with
 3. **`degradedReadiness` always undefined** — handler didn't populate the envelope's degraded-readiness field
 
 Today's batch closed all three:
-- Caveat 1 → fixed by `010-vestigial-embedding-readiness-gate-removal` (`e91d2c7c2`)
+- Caveat 1 → fixed by `005-vestigial-embedding-readiness-gate-removal` (`e91d2c7c2`)
 - Caveat 2 → fixed by `024-harness-telemetry-export-mode` PP-2 (`c4f738b1d`)
 - Caveat 3 → fixed by `025-memory-search-degraded-readiness-wiring` Option C (`bd0de4b6b`)
 

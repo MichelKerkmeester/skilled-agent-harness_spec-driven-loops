@@ -126,7 +126,7 @@ Embedding generation remains lazy and self-initializing on first use. Health and
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| `010-vestigial-embedding-readiness-gate-removal` | Internal packet | Green | Cleanup assumes the active search gate is already gone |
+| `005-vestigial-embedding-readiness-gate-removal` | Internal packet | Green | Cleanup assumes the active search gate is already gone |
 | T016-T019 lazy-loading migration | Runtime behavior | Green | Embedding model self-initializes on first use |
 <!-- /ANCHOR:dependencies -->
 

@@ -12,7 +12,7 @@
 | Commit | Packet | Type |
 |---|---|---|
 | `b1489f1b2` | `005-review-remediation/009-stress-test-pattern-documentation` | docs (sk-doc 14--stress-testing) |
-| `e91d2c7c2` | `005-review-remediation/010-vestigial-embedding-readiness-gate-removal` | fix (gate delete) |
+| `e91d2c7c2` | `005-review-remediation/005-vestigial-embedding-readiness-gate-removal` | fix (gate delete) |
 | `746afa266` | `011/022-stress-test-results-deep-research` | research (5-iter on v1.0.3) |
 | `af22aa045` | `011/023-live-handler-envelope-capture-seam` | test (PP-1 behavioral) |
 | `c4f738b1d` | `011/024-harness-telemetry-export-mode` | test (PP-2 harness types) |
