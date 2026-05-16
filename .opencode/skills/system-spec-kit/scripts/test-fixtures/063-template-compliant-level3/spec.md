@@ -23,6 +23,7 @@ This fixture provides a structurally compliant Level 3 spec folder for validator
 
 ---
 
+<!-- ANCHOR:metadata -->
 ## 1. METADATA
 
 | Field | Value |
@@ -32,6 +33,7 @@ This fixture provides a structurally compliant Level 3 spec folder for validator
 | **Status** | Complete |
 | **Created** | 2026-03-16 |
 | **Branch** | `063-level3-fixture` |
+<!-- /ANCHOR:metadata -->
 
 ---
 

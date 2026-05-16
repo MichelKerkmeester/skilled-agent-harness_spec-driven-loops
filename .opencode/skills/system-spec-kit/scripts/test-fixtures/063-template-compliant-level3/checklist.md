@@ -57,6 +57,20 @@ contextType: "general"
 
 ---
 
+<!-- ANCHOR:fix-completeness -->
+## Fix Completeness
+
+- [x] CHK-FIX-001 [P0] Each actionable finding has a finding class [EVIDENCE: fixture-only]
+- [x] CHK-FIX-002 [P0] Same-class producer inventory completed [EVIDENCE: fixture-only]
+- [x] CHK-FIX-003 [P0] Consumer inventory completed [EVIDENCE: validator fixture]
+- [x] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests [EVIDENCE: not applicable]
+- [x] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed [EVIDENCE: not applicable]
+- [x] CHK-FIX-006 [P1] Hostile env/global-state variant executed when relevant [EVIDENCE: not applicable]
+- [x] CHK-FIX-007 [P1] Evidence is pinned to fixture state [EVIDENCE: local fixture]
+<!-- /ANCHOR:fix-completeness -->
+
+---
+
 <!-- ANCHOR:security -->
 ## Security
 

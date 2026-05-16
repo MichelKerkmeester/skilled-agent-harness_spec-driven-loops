@@ -1,0 +1,14 @@
+{
+  "version": "1.0",
+  "generated_at": "2026-03-08T00:00:00.000Z",
+  "folder": "valid-phase",
+  "title": "Valid Phase Fixture",
+  "description": "Test fixture for a correctly formed phase parent spec folder.",
+  "keywords": [
+    "valid",
+    "phase",
+    "fixture"
+  ],
+  "status": "in_progress",
+  "document_count": 3
+}

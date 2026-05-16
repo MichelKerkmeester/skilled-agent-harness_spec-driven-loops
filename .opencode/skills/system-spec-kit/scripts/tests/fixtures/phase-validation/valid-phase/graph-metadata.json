@@ -1,0 +1,13 @@
+{
+  "schemaVersion": "1.0.0",
+  "generatedAt": "2026-03-08T00:00:00.000Z",
+  "specFolder": "valid-phase",
+  "status": "in_progress",
+  "derived": {
+    "status": "in_progress",
+    "last_active_child_id": "001-design"
+  },
+  "entities": [],
+  "relationships": [],
+  "packets": []
+}
