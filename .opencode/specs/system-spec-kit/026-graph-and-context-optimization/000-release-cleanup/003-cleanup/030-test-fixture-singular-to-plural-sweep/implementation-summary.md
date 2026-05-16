@@ -2,12 +2,12 @@
 title: "Implementation Summary: 056 Test Fixture Singular→Plural Sweep"
 description: "Two-pass perl sweep replaced 30 singular `.opencode/skill` references with `.opencode/skills` across 7 advisor test files; advisor-suite failure count dropped from 37 to 4 (residual 4 are unrelated to path rename)."
 trigger_phrases:
-  - "056-test-fixture-singular-to-plural-sweep summary"
+  - "030-test-fixture-singular-to-plural-sweep summary"
 importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/056-test-fixture-singular-to-plural-sweep"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/030-test-fixture-singular-to-plural-sweep"
     last_updated_at: "2026-05-08T11:00:00Z"
     last_updated_by: "implementer"
     recent_action: "Two-pass perl sweep landed; build green; failure count dropped 33"
@@ -18,7 +18,7 @@ _memory:
       - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/handlers/advisor-status.vitest.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "implement-056-test-fixture-singular-to-plural-sweep"
+      session_id: "implement-030-test-fixture-singular-to-plural-sweep"
       parent_session_id: null
     completion_pct: 95
     open_questions:
@@ -37,7 +37,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 056-test-fixture-singular-to-plural-sweep |
+| **Spec Folder** | 030-test-fixture-singular-to-plural-sweep |
 | **Completed** | 2026-05-08 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

@@ -2,12 +2,12 @@
 title: "Tasks: 056 Test Fixture Singular→Plural Sweep"
 description: "Mechanical task list for the singular→plural sweep across 7 advisor test files."
 trigger_phrases:
-  - "056-test-fixture-singular-to-plural-sweep tasks"
+  - "030-test-fixture-singular-to-plural-sweep tasks"
 importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/056-test-fixture-singular-to-plural-sweep"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/030-test-fixture-singular-to-plural-sweep"
     last_updated_at: "2026-05-08T10:55:00Z"
     last_updated_by: "spec-author"
     recent_action: "Author task list"
@@ -16,7 +16,7 @@ _memory:
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-056-test-fixture-singular-to-plural-sweep"
+      session_id: "scaffold-030-test-fixture-singular-to-plural-sweep"
       parent_session_id: null
     completion_pct: 0
     open_questions: []

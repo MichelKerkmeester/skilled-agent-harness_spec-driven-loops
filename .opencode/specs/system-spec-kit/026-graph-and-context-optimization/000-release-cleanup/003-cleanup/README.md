@@ -33,7 +33,7 @@ Documentation fixes, template debt, orphan management, remediation.
 - `027-missing-code-readmes-resource-map`
 - `028-doc-alignment-and-readme-filling`
 - `029-autoclean-orphan-files`
-- `056-test-fixture-singular-to-plural-sweep`
+- `030-test-fixture-singular-to-plural-sweep`
 - `057-cocoindex-voyage-only-this-machine`
 
 ## Provenance

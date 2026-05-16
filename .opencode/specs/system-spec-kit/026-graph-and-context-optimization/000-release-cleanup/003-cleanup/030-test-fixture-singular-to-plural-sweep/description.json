@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/056-test-fixture-singular-to-plural-sweep",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/030-test-fixture-singular-to-plural-sweep",
   "description": "Feature Specification: 056 Test Fixture Singular→Plural Sweep",
   "keywords": [
     "feature",

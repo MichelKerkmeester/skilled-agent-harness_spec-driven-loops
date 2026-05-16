@@ -2,12 +2,12 @@
 title: "Implementation Plan: 056 Test Fixture Singular→Plural Sweep"
 description: "Two-pass perl sweep across 7 advisor test files: single-line `.opencode', 'skill'` and multi-line split form, then verify advisor-suite failure count drops."
 trigger_phrases:
-  - "056-test-fixture-singular-to-plural-sweep plan"
+  - "030-test-fixture-singular-to-plural-sweep plan"
 importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/056-test-fixture-singular-to-plural-sweep"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/030-test-fixture-singular-to-plural-sweep"
     last_updated_at: "2026-05-08T10:55:00Z"
     last_updated_by: "spec-author"
     recent_action: "Author plan for two-pass perl sweep"
@@ -16,7 +16,7 @@ _memory:
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-056-test-fixture-singular-to-plural-sweep"
+      session_id: "scaffold-030-test-fixture-singular-to-plural-sweep"
       parent_session_id: null
     completion_pct: 0
     open_questions: []

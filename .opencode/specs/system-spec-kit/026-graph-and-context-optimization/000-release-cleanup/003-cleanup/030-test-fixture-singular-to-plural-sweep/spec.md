@@ -2,7 +2,7 @@
 title: "Feature Specification: 056 Test Fixture Singular→Plural Sweep"
 description: "Mechanical rename of singular `.opencode/skill/` paths in 7 advisor-test fixtures to plural `.opencode/skills/`, closing the 37 pre-existing test failures left from packet 096's path-residue rename."
 trigger_phrases:
-  - "056-test-fixture-singular-to-plural-sweep"
+  - "030-test-fixture-singular-to-plural-sweep"
   - "advisor test 37 failures"
   - "test fixture singular skill"
   - "tempDir singular plural"
@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/056-test-fixture-singular-to-plural-sweep"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/030-test-fixture-singular-to-plural-sweep"
     last_updated_at: "2026-05-08T10:55:00Z"
     last_updated_by: "spec-author"
     recent_action: "Author spec for the test-fixture singular→plural sweep"
@@ -21,7 +21,7 @@ _memory:
       - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/handlers/advisor-status.vitest.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-056-test-fixture-singular-to-plural-sweep"
+      session_id: "scaffold-030-test-fixture-singular-to-plural-sweep"
       parent_session_id: null
     completion_pct: 0
     open_questions: []
