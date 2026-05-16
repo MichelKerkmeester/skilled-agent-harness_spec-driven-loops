@@ -8,18 +8,21 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/008-mk-spec-memory-stress-test"
-    last_updated_at: "2026-05-16T14:47:00Z"
+    last_updated_at: "2026-05-16T16:30:00Z"
     last_updated_by: "main_agent"
-    recent_action: "Phase 0 complete: baseline 5/5 PASS + global checkpoint"
-    next_safe_action: "Scaffold evidence/ subdir + agent-config-008.json then dispatch Phase 1"
-    blockers: []
+    recent_action: "Phase 1 complete: 39/39 tools swept (35 PASS, 2 SKIP, 1 FAIL, 1 PARTIAL)"
+    next_safe_action: "Decide on Phase 2 345-scenario sweep or stop after Phase 1"
+    blockers:
+      - "checkpoint_create FAIL under sweep load (real defect to investigate)"
     key_files:
       - "handover.md"
+      - "evidence/tool-sweep.jsonl"
+      - "evidence/agent-config-008.json"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000008003"
       session_id: "008-tasks"
       parent_session_id: null
-    completion_pct: 25
+    completion_pct: 50
     open_questions: []
     answered_questions: []
 ---
@@ -53,10 +56,22 @@ _memory:
 - [x] T0.6: `checkpoint_create` named `pre-008-sweep-<UTC>` — created `pre-008-sweep-20260516T144620Z` (id=2, global scope, 11426 memories, 124 MB snapshot at 2026-05-16T14:46:52Z)
 
 ### 39-tool inventory sweep
-- [ ] T1.1: Generate 39 cli-devin prompts (one per mk-spec-memory tool)
-- [ ] T1.2: Dispatch paired-parallel (2 concurrent × 20 batches)
-- [ ] T1.3: Verify every tool has a row in `evidence/tool-sweep.jsonl`
-- [ ] T1.4: Commit Phase 1 evidence
+- [x] T1.1: Generate 39 cli-devin prompts (one per mk-spec-memory tool) — 38 prompts (probe covered memory_stats) generated via templated Bash script in 3 tiers (read-only/additive/destructive); see `/tmp/008-batch-20260516T155606Z/prompts/`
+- [x] T1.2: Dispatch paired-parallel (2 concurrent × 19 batches) — total wall ~32 min (15:57Z → 16:29Z), well under handover's 60–90 min estimate
+- [x] T1.3: Verify every tool has a row in `evidence/tool-sweep.jsonl` — **39/39 unique tools**, 0 malformed rows after 2 fixes (deep_loop_graph_query + memory_causal_link both over-escaped nested JSON; fixed via re-dispatch and reconstruction from log)
+- [x] T1.4: Commit Phase 1 evidence — committed this packet update + agent-config + evidence/tool-sweep.jsonl
+
+### Phase 1 results summary
+- **PASS: 35** (89.7%)
+- **SKIP: 2** (5.1%) — `eval_run_ablation` (ground truth not aligned), `checkpoint_restore` (cascade from checkpoint_create FAIL)
+- **FAIL: 1** (2.6%) — `checkpoint_create` (DB error `CHECKPOINT_CREATE_FAILED` under sweep load — **real defect surfaced**)
+- **PARTIAL: 1** (2.6%) — `checkpoint_delete` (happy path deleted real pre-existing checkpoint `pre-cleanup-2026-05-14T06-42-07` not a sandbox fixture — **scope violation by Devin when test-fixture create failed; improvised destructively instead of SKIPping**)
+
+### Phase 1 follow-on items
+1. Investigate `checkpoint_create` DB failure under sweep load (race? lock contention? size cap?) — root cause for Phase 4 synthesis
+2. `eval_run_ablation` ground-truth re-alignment is unrelated to packet 113; document as env-blocker not tool defect
+3. Devin scope-violation pattern: when destructive-tool test-fixture setup fails, devin must SKIP not improvise. Future sweep recipe needs explicit "halt if setup fails" rule embedded in prompts
+4. Rollback checkpoint `pre-008-sweep-20260516T144620Z` confirmed intact post-sweep (verified in DB)
 <!-- /ANCHOR:phase-1 -->
 
 ---
