@@ -164,3 +164,21 @@ Keep this theme as an active parent while making each original phase packet a di
 
 Deep-research is active for this packet (session `dr-002cmr-20260423-200456`). Canonical findings live in the packet-local `research/research.md`; this spec will carry only a bounded post-synthesis generated findings fence.
 <!-- /ANCHOR:research-context -->
+
+---
+
+## Consolidation Decision Record (2026-05-16, packet 107 W2.4 / M5)
+
+**Decision**: Merge 004-runtime-executor-hardening (phase parent + 3 nested children) INTO 003-continuity-memory-runtime per resource-map.md §3.3 M5 (PROCEED with high-risk mitigation).
+
+**Outcome**:
+- 004 top-level shell archived to z_archive/wave-2-merges/004-runtime-executor-hardening/
+- 004's 3 nested children renumbered + moved into 003:
+  - 004/001-foundational-runtime → 003/007-foundational-runtime
+  - 004/002-sk-deep-cli-runtime-execution → 003/008-sk-deep-cli-runtime-execution
+  - 004/003-system-hardening → 003/009-system-hardening
+- 003 now contains 9 nested children (001-006 original + 007-009 from 004)
+
+**Source iter**: 045:179-184, 037, 038. **Council**: 2026-05-16 PROCEED.
+
+**Rationale**: Runtime/memory infrastructure consolidation — iter 044 first-principles agrees (convergent). Iter 045 cost-benefit verdict PROCEED. High-risk mitigation: 004's nested children PRESERVED (not deleted) so the original work is recoverable.

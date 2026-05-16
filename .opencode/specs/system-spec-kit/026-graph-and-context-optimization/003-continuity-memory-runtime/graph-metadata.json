@@ -37,7 +37,8 @@
         "reason": "supersedes relationship preserved during phase consolidation",
         "source": "026-phase-consolidation",
         "spec_folder": "system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/004-memory-save-rewrite"
-      }
+      },
+      "system-spec-kit/026-graph-and-context-optimization/004-runtime-executor-hardening"
     ],
     "related_to": []
   },
