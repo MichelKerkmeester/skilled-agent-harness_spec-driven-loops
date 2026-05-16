@@ -4,7 +4,7 @@
   "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-release-readiness",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup",
   "children_ids": [
-    "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-release-readiness/003-skill-advisor-fail-open",
+    "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-release-readiness/001-skill-advisor-fail-open",
     "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-release-readiness/004-tier2-remediation",
     "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-release-readiness/032-release-readiness-deep-review-program",
     "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-release-readiness/033-release-readiness-synthesis-and-remediation",
