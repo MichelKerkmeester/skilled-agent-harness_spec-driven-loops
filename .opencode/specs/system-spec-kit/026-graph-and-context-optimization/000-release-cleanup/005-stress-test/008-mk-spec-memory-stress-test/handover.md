@@ -10,10 +10,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/008-mk-spec-memory-stress-test"
-    last_updated_at: "2026-05-16T13:55:00Z"
+    last_updated_at: "2026-05-16T14:30:00Z"
     last_updated_by: "main_agent"
-    recent_action: "Authored handover for new-session pickup"
-    next_safe_action: "New session: read this file, then run baseline check"
+    recent_action: "Pre-flight patch: 24→25 categories + multi-prompt JSONL row rule + revised wall-clock"
+    next_safe_action: "Run Phase 0 baseline checks (5 commands in §2)"
     blockers: []
     key_files:
       - "spec.md"
@@ -43,7 +43,7 @@ _memory:
 
 **Two test surfaces:**
 1. **All 39 mk-spec-memory MCP tools** — exercise each tool through its happy path + at least one edge case. Confirm tool advertises in `/mcp` and the handler returns a well-formed MCP response.
-2. **All 345 manual_testing_playbook scenarios** under `.opencode/skills/system-spec-kit/manual_testing_playbook/` (24 category groups). Each scenario MUST be executed for real, not mocked (playbook execution policy).
+2. **All 345 manual_testing_playbook scenarios** under `.opencode/skills/system-spec-kit/manual_testing_playbook/` (**25 category dirs** — `14--pipeline-architecture` and `14--stress-testing` share the `14--` prefix). Each scenario MUST be executed for real, not mocked (playbook execution policy).
 
 **Why now:** Commit `b062b12b4` (packet 113) un-excluded z_archive from `EXCLUDED_FOR_MEMORY`. 2618 archived rows are now indexed with 0.1 decay multiplier. Behavior under load + scoring fidelity needs validation against the 345-scenario corpus. The fix shipped tests + docs cleanly (packet 113 strict-validate PASS, vitest 159/159), but only narrow surface coverage. The 345-scenario sweep is the real-traffic equivalent.
 
@@ -53,7 +53,7 @@ _memory:
 - Decay `getArchiveMultiplier('/foo/z_archive/bar')` returns 0.1 (verified).
 - `.mcp.json` symlink to `.claude/mcp.json` shipped (commit `280fe4888`); fresh sessions will see all 6 servers in `/mcp`.
 
-**Estimated wall-clock:** 4–6 hours autonomous (5–8 min per playbook category × 24 + tool-by-tool sweep). Per memory note "CLI dispatch unreliability under heavy parallelism", default to **paired parallel dispatch** (2 cli-devin processes concurrent, NOT 11 — that flaked in packet 111 W3.A retries).
+**Estimated wall-clock:** 4–6 hours autonomous (5–8 min per playbook category × 25 + tool-by-tool sweep; revised estimate after pre-flight inspection: heavy category 16 with 55 scenarios likely needs ~3 sub-batches, so Phase 2 lands closer to 27 dispatches / ~13 paired-batches / ~70–110 min if no widespread regressions surface). Per memory note "CLI dispatch unreliability under heavy parallelism", default to **paired parallel dispatch** (2 cli-devin processes concurrent, NOT 11 — that flaked in packet 111 W3.A retries).
 <!-- /ANCHOR:handover-summary -->
 
 ---
@@ -108,7 +108,7 @@ Per `.claude/mcp.json` mk-spec-memory NOTE_2_TOOLS:
 
 Tool schemas: `.opencode/skills/system-spec-kit/mcp_server/lib/handlers/tool-schemas.ts` (or compiled at `dist/tool-schemas.js`). Full namespace: `mcp__mk_spec_memory__<tool>`.
 
-### Playbook scope (345 scenarios, 24 categories)
+### Playbook scope (345 scenarios, 25 category dirs)
 
 Root index: `.opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md`.
 
@@ -159,7 +159,7 @@ Key flags:
 
 **Devin lacks sequential_thinking MCP registration** (per memory note). The recipe's mandate becomes prompt-level only; that's acceptable.
 
-**Parallelism ceiling: 2 concurrent.** Per memory note `feedback_cli_dispatch_unreliability`, beyond 2 concurrent dispatches the failure rate climbs. Default to paired pairs across 12 batches (24 categories) or sequential 24 dispatches.
+**Parallelism ceiling: 2 concurrent.** Per memory note `feedback_cli_dispatch_unreliability`, beyond 2 concurrent dispatches the failure rate climbs. Default to paired pairs across ~13 batches (25 categories, one odd) or sequential 25 dispatches.
 <!-- /ANCHOR:context-transfer -->
 
 ---
@@ -188,14 +188,15 @@ Dispatch paired (2 concurrent) × ~20 batches. Tools that need state setup (chec
 
 **Phase 2 — Playbook category sweeps (3–4h, paired cli-devin per category)**
 
-For each of 24 categories:
+For each of 25 categories:
 - Generate 1 cli-devin prompt covering ALL scenarios in that category
 - Prompt reads each `.md` scenario file under the category dir
 - Executes the scenario per its embedded contract (real, not mocked)
 - Records per-scenario JSONL: `{category, scenario_id, classification, evidence}` to `evidence/playbook-results.jsonl`
-- Categories with > 30 scenarios may need to be split into 2–3 batches
+- **Multi-prompt scenario files**: many scenario `.md` files contain >1 `### Prompt` block (e.g. `01--retrieval/001-unified-context-retrieval-memory-context.md` has 2 — basic `memory_context` + token-budget envelope contract). Row contract: **one row per scenario file**; `classification` = WORST outcome across blocks (any FAIL → FAIL; any PARTIAL with all-else PASS → PARTIAL; etc.); the `evidence` field captures sub-block per-prompt results so detail is preserved. Floor of ≥345 rows (per `spec.md` REQ-002) is the FILE count, not the prompt-block count.
+- Categories with > 30 scenarios may need to be split into 2–3 batches (concretely: cat 16 has 55, cats 13/14-pipeline have 29/26)
 
-Dispatch paired (2 categories concurrent) × 12 batches.
+Dispatch paired (2 categories concurrent) × ~13 batches.
 
 **Phase 3 — z_archive-specific revalidation (30 min, main agent + cli-devin)**
 

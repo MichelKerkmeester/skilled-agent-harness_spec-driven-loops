@@ -8,10 +8,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/008-mk-spec-memory-stress-test"
-    last_updated_at: "2026-05-16T14:05:00Z"
+    last_updated_at: "2026-05-16T14:30:00Z"
     last_updated_by: "main_agent"
-    recent_action: "Authored pre-execution stub"
-    next_safe_action: "Future session backfills after Phase 4 synthesis"
+    recent_action: "Pre-flight patch: 24→25 categories + multi-prompt-per-file row rule across 4 packet docs"
+    next_safe_action: "Run Phase 0 baseline checks (5 commands in handover §2)"
     blockers: []
     key_files: []
     session_dedup:
@@ -63,7 +63,7 @@ Primary deliverable so far: handover.md ready for fresh-session pickup.
 Pre-execution. Pickup via handover.md §3 4-phase flow:
 1. Phase 0 baseline + scaffold
 2. Phase 1 paired-parallel cli-devin × 39 prompts
-3. Phase 2 paired-parallel cli-devin × 24 category prompts
+3. Phase 2 paired-parallel cli-devin × 25 category prompts (heavy cats split into sub-batches)
 4. Phase 3 z_archive PARTIAL reclassification
 5. Phase 4 aggregate + synthesis report
 <!-- /ANCHOR:how-delivered -->

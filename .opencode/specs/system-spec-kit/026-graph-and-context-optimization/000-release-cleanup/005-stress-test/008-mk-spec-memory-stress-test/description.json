@@ -11,10 +11,17 @@
     "z-archive-validation",
     "cli-devin-swe-1-6"
   ],
-  "lastUpdated": "2026-05-16T13:55:00Z",
+  "lastUpdated": "2026-05-16T14:18:42.975Z",
   "specId": "008",
   "folderSlug": "mk-spec-memory-stress-test",
-  "parentChain": ["system-spec-kit", "026-graph-and-context-optimization", "000-release-cleanup", "005-stress-test"],
-  "memorySequence": 1,
-  "memoryNameHistory": []
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "000-release-cleanup",
+    "005-stress-test"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "16-05-26_15-18__resumed-the-008-mk-spec-memory-stress-test-packet.md"
+  ]
 }

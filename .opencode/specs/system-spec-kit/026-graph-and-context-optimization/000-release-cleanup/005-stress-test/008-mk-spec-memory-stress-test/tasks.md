@@ -8,9 +8,9 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/008-mk-spec-memory-stress-test"
-    last_updated_at: "2026-05-16T14:05:00Z"
+    last_updated_at: "2026-05-16T14:30:00Z"
     last_updated_by: "main_agent"
-    recent_action: "Authored tasks stub"
+    recent_action: "T2.1: 24→25 categories + heavy-cat split guidance"
     next_safe_action: "Future session executes Phase 0 baseline"
     blockers: []
     key_files: []
@@ -64,7 +64,7 @@ _memory:
 ## 3. PHASE 2: IMPLEMENTATION
 
 ### 345-scenario playbook sweep
-- [ ] T2.1: Generate 24 category prompts (large categories split into batches)
+- [ ] T2.1: Generate 25 category prompts (cat 16 with 55 scenarios → ~3 sub-batches; cats 13/14-pipeline near 30 may need 2)
 - [ ] T2.2: Dispatch paired-parallel
 - [ ] T2.3: Verify every scenario has a row in `evidence/playbook-results.jsonl`
 - [ ] T2.4: Commit Phase 2 evidence
