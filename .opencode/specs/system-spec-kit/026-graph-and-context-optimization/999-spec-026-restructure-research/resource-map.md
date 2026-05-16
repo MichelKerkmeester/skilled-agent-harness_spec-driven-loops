@@ -82,7 +82,7 @@ Source: iter 001-006 (SWE-1.6 classifications) + iter 041 (gpt-5.5 adversarial r
 
 | Packet | Type | Status | Children | Classification | Iter |
 |--------|------|--------|---------:|----------------|------|
-| 000-release-cleanup | phase parent | in_progress | 2 | load-bearing (meta-phase) | iter 001:59-61 |
+| 000-release-cleanup | phase parent | in_progress | **59** (filesystem; not 2 as initially reported) | load-bearing (meta-phase; needs recatalog before any merge work) | iter 001:59-61, council 2026-05-16 |
 | 001-research-and-baseline | phase parent | complete | 7 | load-bearing | iter 001:71-73 |
 | 002-resource-map-template | phase parent | in_progress | 3 | load-bearing | iter 001:83-85 |
 | 003-continuity-memory-runtime | phase parent | complete | — | load-bearing | iter 002:20-34 |
@@ -114,7 +114,7 @@ Source: iter 007-022 (per-phase-parent deep-reads).
 | 010-template-levels | 9 | Children 004/005/006/009 rehome candidates (→ 008-skill-advisor or 013) |
 | 002-resource-map-template | 3 | All load-bearing |
 | 001-research-and-baseline | 7 | All load-bearing (archived research; no restructure churn) |
-| 000-release-cleanup | 2 | Meta-phase wrapper for release work |
+| 000-release-cleanup | **59** (filesystem; council 2026-05-16) | Meta-phase wrapper for release work, audit campaigns, dead-code pruning, security sweep, post-program cleanup. RECATALOG needed before any merge work (duplicate `006-*` and `007-*` prefixes present) |
 | 012-causal-graph-channel-routing | 2 | All load-bearing |
 | 004-runtime-executor-hardening | 3 | All load-bearing (preserve as nested phases under 003 after merge) |
 
@@ -178,53 +178,69 @@ Source: iter 033 (top-N rename proposals) + iter 046 (scale-pressure-test refine
 
 > **Domain-first + facet-second + work-type-last (optional).** Use noun-first surface naming as the primary axis (`code-graph`, `hook-parity`, `local-embeddings`). Append a discriminating facet only when the same surface has multiple distinct deliverables (`local-embeddings-migration` vs `local-embeddings-cache`). Use verb-first only for clear action-oriented remediation packets (`rm8-remediation`, `cleanup`). Avoid problem-statement naming (long descriptive names > 30 chars).
 
-### 3.3 Merges in scope (11 PROCEED)
+### 3.3 Merges (PROCEED now vs DEFERRED)
 
-Source: iter 045 cost-benefit verdicts.
+Source: iter 045 cost-benefit verdicts, refined by council review 2026-05-16. The council flagged several items previously labeled PROCEED as actually LOW_PRIORITY per iter 045; those move to the DEFERRED table below.
+
+**PROCEED now (council-approved subset; first execution wave):**
 
 | # | Merge target | Source packets | Rationale | Source iter |
 |--:|--------------|---------------|-----------|-------------|
-| M1 | 014/052-mk-spec-memory-rename | 014/053 (absorb 053 INTO 052; iter 043 contradiction resolution override) | Naming consolidation; iter 043 resolution | iter 045:11-16 |
-| M2 | 014/056 (root-readme-deep-research) | 014/057 (absorb 057 INTO 056) | Same arc; iter 028 supersession | iter 045:18-24 |
-| M3 | 014 (parent) | 007/002-code-graph-self-contained-package | Cross-parent: code-graph extraction belongs under 014 | iter 045:60-65 |
-| M4 | 014 (parent) | 007/016-020 (extraction-phase children) | Same extraction arc | iter 045:67-72 |
-| M5 | 003 (renumbered 003 after merge) | 004-runtime-executor-hardening (entire phase parent) | Iter 045 PROCEED; high-risk mitigation: preserve 004's 3 nested children as nested phases under 003 + decision record | iter 045:179-184, iter 037, iter 038 |
-| M6 | 009/006 (copilot-wrapper-schema-fix) | 009/007-copilot-writer-wiring | 2-pair merge; both modify .claude/settings.local.json | iter 045:109-114, iter 021 |
-| M7 | 013/001 (doctor-commands) | 013/002-sandbox-testing-playbook | Both superseded by 004+005 (iter 028) | iter 045:53-58 |
-| M8 | 008 (skill-advisor) | 010/005-skill-references-assets-alignment + 010/009-rm-8-prompt-hardening | Rehome from 010-template-levels (misplaced) | iter 045 |
-| M9 | 013 (doctor) | 010/006-command-md-yaml-alignment | Rehome from 010-template-levels (misplaced) | iter 045 |
-| M10 | 000 (release-cleanup) | 015-tanstack-security-audit (current 015) | Absorb 015 as nested under 000 meta-phase | iter 045:179-184, iter 047 |
-| M11 | Archive (not delete) | Cross-parent documentation alignment artifacts (014/019, 014/020, 014/054-058, 007/025, 007/027-029, 009/008) | Documentation cleanup work; archive rather than delete | iter 045:123-128 |
+| M2 | 014/056-root-readme-deep-research | 014/057-root-readme-deeper-rewrite (absorb 057 INTO 056) | Same arc; iter 028 supersession | iter 045:18-24 |
+| M3 | **`007-code-graph/014-system-code-graph-extraction`** (nested packet, not top-level) | 007/002-code-graph-self-contained-package | Code-graph extraction stays under 007 phase parent; merge 007/002 INTO 007/014 nested | iter 045:60-65, council 2026-05-16 |
+| M4 | **`007-code-graph/014-system-code-graph-extraction`** (same nested packet) | 007/016, 007/017, 007/018, 007/019, 007/020 (extraction-phase children) | Same extraction arc; consolidate under one nested phase | iter 045:67-72, council 2026-05-16 |
+| M5 | 003-continuity-memory-runtime (top-level) | 004-runtime-executor-hardening (entire phase parent) | Iter 045 PROCEED; high-risk mitigation: preserve 004's 3 nested children as nested phases under 003 + decision-record.md | iter 045:179-184, iter 037, iter 038 |
+| M6 | **`009/002-runtime-hook-parity-core-2`** (council-corrected target) | 009/006-copilot-wrapper-schema-fix + 009/007-copilot-writer-wiring (both → 009/002) | Council correction: 3-packet thematic cluster, target is 002 not 006 | iter 045:109-114, iter 021, council 2026-05-16 |
+| M7 | 013/001-doctor-commands | 013/002-sandbox-testing-playbook (absorb 002 INTO 001) | Both superseded by 013/004+005 (iter 028) | iter 045:53-58 |
+| M11 | Archive (`z_archive/`; NOT delete) | Cross-parent documentation alignment artifacts (014/019, 014/020, 014/054-058, 007/025, 007/027-029, 009/008) | Documentation cleanup work; ARCHIVE per iter 048 DEEP-blast reclassification | iter 045:123-128, iter 048 |
 
-**Merges DEFERRED (4 LOW_PRIORITY, 7 REDESIGN, 3 ABORT)**:
+**DEFERRED (LOW_PRIORITY / REDESIGN / blocked by recatalog):**
 
-- **LOW_PRIORITY (4)**: defer to follow-on after high-priority work stabilizes
-- **REDESIGN (7)**: requires further analysis before execution
-- **ABORT (3)**: cost > benefit; do not execute
+| # | Target | Verdict | Why deferred |
+|--:|--------|---------|--------------|
+| M1 | 014/052-mk-spec-memory-rename ← absorb 014/053 | LOW_PRIORITY | Iter 045 LOW_PRIORITY; defer to follow-on after high-priority work stabilizes |
+| M8 | 008-skill-advisor ← rehome 010/005 + 010/009 | LOW_PRIORITY | Iter 045 LOW_PRIORITY; 010-template-levels parent retention question (open Q-2) blocks |
+| M9 | 013-doctor ← rehome 010/006 | LOW_PRIORITY | Iter 045 LOW_PRIORITY; same 010 parent retention block as M8 |
+| M10 | 000-release-cleanup ← absorb 015-tanstack-security-audit | BLOCKED | 000-release-cleanup has 59 child dirs (not 2 as initially claimed); duplicate `006-*` and `007-*` prefixes need recatalog FIRST. Council 2026-05-16 directive. Accept temporary 12-top-level state. |
+| LOW_PRIORITY × 1 | (various 014/*) | LOW_PRIORITY | See iter 045 table |
+| REDESIGN × 7 | (various) | REDESIGN | Requires further analysis before execution |
+| ABORT × 3 | (various) | ABORT | Cost > benefit; do not execute |
 
-See `research/iterations/iteration-045.md` for the complete table.
+**Net first-execution merge count: 7 (down from 11)**. The deferred 4 + LOW_PRIORITY/REDESIGN/ABORT items wait for a follow-on packet after the first wave verifies recall improvement.
 
-### 3.4 Deletes in scope (26 active deletes; 28 archive instead)
+See `research/iterations/iteration-045.md` for the complete verdict table and `research/council-review.md` for the council's path-correction rationale.
 
-Source: iter 030 (consolidated delete list, 55 candidates) + iter 048 (blast-radius reclassification).
+### 3.4 Deletes + Archives — by iter 048 blast-radius class (HARD CONSTRAINT)
 
-| Classification | Count | Action |
-|----------------|------:|--------|
-| CONTAINED (safe delete) | 8 | DELETE (zero external references) |
-| SHALLOW (≤ 3 doc refs) | 7 | DELETE WITH CLEANUP (remove 3 refs per packet first) |
-| MEDIUM (> 3 refs, mostly historical) | 11 | DELETE WITH CLEANUP (remove all external refs first) |
-| DEEP (code refs, graph refs, hardcoded paths) | **28** | **ARCHIVE** (move to `z_archive/`); do NOT delete |
-| Total | 54 | 26 active deletes + 28 archives |
+Source: iter 030 (consolidated delete list, 55 candidates) + iter 048 (blast-radius reclassification — TREAT AS HARD CONSTRAINT per council 2026-05-16).
 
-**HIGH-confidence pure deletes** (CONTAINED 8 + SHALLOW 7 = 15 packets; iter 030 + iter 048):
+The council directive: **iter 048's blast-radius classes are hard constraints**. The proposal MUST follow these action classes exactly. No item from a higher blast class may move to a lower-risk action by hand-wave.
 
-- 014/006, 014/008, 014/019-021 (5 of 23 014 delete candidates)
-- 014/023, 014/025-031 (8 packets superseded by 022-local-llm-legacy-remediation)
-- 007/022-030 (9 packets — superseded by 014-system-code-graph-extraction; ARCHIVE per iter 048 blast)
-- 007/031-034 + 007/037-039 (7 packets — deep-review campaign artifacts; ARCHIVE per iter 048)
-- 014/045 + 014/048 (2 empty placeholder directories — pure DELETE)
+| Class | Count | Required action | First-wave action |
+|-------|------:|-----------------|-------------------|
+| CONTAINED (zero external references) | 8 | DELETE | DELETE in W3.1 |
+| SHALLOW (≤ 3 doc refs) | 7 | DELETE WITH CLEANUP (remove refs first) | Deferred to follow-on (requires ref-count proof) |
+| MEDIUM (> 3 refs, mostly historical) | 11 | DELETE WITH CLEANUP (full external ref cleanup first) | Deferred to follow-on (requires ref-count proof) |
+| DEEP (code refs, graph refs, hardcoded paths) | **28** | **ARCHIVE** to `z_archive/`. Do NOT delete. Read-access preserved. | ARCHIVE in W3.4 |
+| Total | 54 | — | 8 CONTAINED deletes + 28 archives in first wave |
 
-**Note**: numbers may not sum cleanly because iter 048 reclassified many iter 030 entries from delete → archive. The synthesis ledger has the complete table; this resource-map captures the action class only.
+**First-wave delete targets (CONTAINED only — 8 packets)**:
+
+The CONTAINED list is the only safe-to-delete-in-first-wave set. Names pulled from iter 048's blast-radius table — see iter-048.md for the exact 8 paths. Typical pattern: empty placeholder dirs + completed-unreferenced packets with zero `grep -r` hits outside research artifacts.
+
+**First-wave ARCHIVE targets (DEEP — 28 packets)**:
+
+- 007/022-030 (9 packets — superseded by 014-system-code-graph-extraction nested; DEEP per iter 048)
+- 007/031-034 + 007/037-039 (7 packets — deep-review campaign artifacts; DEEP per iter 048)
+- Plus 12 additional DEEP packets across 014/* and 009/* (see iter-048.md for exact list)
+
+**Deferred deletes (SHALLOW + MEDIUM — 18 packets)**:
+
+These require ref-count proof per packet before deletion. Sequenced as a follow-on after the first wave verifies recall improvement. Council directive: "require ref-count proof before cleanup-required deletes" (council §6 risk 3).
+
+**Empty placeholder directories (2 candidates)**:
+
+- 014/045, 014/048 — empty directories per iter 042. Verify zero contents before delete. If empty, include in W3.1 CONTAINED batch.
 
 ### 3.5 Phase lifecycle governance (forward-looking)
 
@@ -332,7 +348,7 @@ Before each wave, capture the HEAD SHA: `git rev-parse HEAD > .wave-N-baseline`.
 
 ### 5.1 Sample-query proof points
 
-Source: iter 040 (SWE-1.6 proof points) + iter 050 (gpt-5.5 validation design).
+Source: iter 040 (SWE-1.6 proof points) + iter 050 (gpt-5.5 validation design) + council adjustment 5 (4 additional broader queries 2026-05-16).
 
 | Query | Current first-pick | Current hops | Proposed first-pick | Proposed hops | Savings |
 |-------|--------------------|-------------:|---------------------|-------------:|--------:|
@@ -341,10 +357,16 @@ Source: iter 040 (SWE-1.6 proof points) + iter 050 (gpt-5.5 validation design).
 | "How was the resource map template created?" | 002-resource-map-template → 002-resource-map-template-creation | 3 | 002-resource-map-deep-loop-fix → 002-resource-map-template-creation | 3 | 0 |
 | "How was the cli-devin deep-loop iter contract designed?" | uncertain (002 or 014/059?) | 5-6 | 012-local-embeddings-migration → Phase 5+ → 059-cli-devin-deep-loop-alignment | 3 | 2-3 |
 | "How was the doctor command consolidation done?" | 013-doctor-update-orchestrator → scan 5 packets → consolidation packet | 3 | 011-doctor-and-repair-orchestration → 4 internal phases → consolidation packet | 3 | 0 |
+| "How does skill-advisor route to a skill?" (council Q6) | 008-skill-advisor → scan 26 packets (no clear entry point) | 4-5 | 007-skill-advisor-and-routing → routing-and-intent phase | 3 | 1-2 |
+| "When did memory-indexer-invariants land?" (council Q7) | 005-memory-indexer-invariants directly (correct first pick today) | 2 | 004-memory-indexer-invariants (renumbered) | 2 | 0 |
+| "Where is the TanStack security audit?" (council Q8) | 015-global-security-sweep-and-supply-chain-audit (verbose name) | 3 | 015-tanstack-security-audit OR 000-release-cleanup/<NN>-tanstack-security-audit (post-recatalog) | 2-3 | 0-1 |
+| "What was the template-levels work and how did it split?" (council Q9) | 010-template-levels (single bucket; can't tell what survives vs rehomes) | 4 | 010-template-levels (parent retained for templates 001/002/003) + cross-refs to 007-skill-advisor (005, 009) + 011-doctor (006) | 2 | 2 |
 
-**Aggregate**: 3 hops saved across 5 sample queries; 40% first-pick correctness improvement (2/5 queries). 1 regression flagged (resource map adds a navigation layer when proposed name aliases the existing name).
+**Aggregate (revised with council 4 queries)**: ~6-8 hops saved across 9 sample queries; 4-5/9 first-pick correctness improvement; 1 known regression (resource map query — accepted).
 
-**Key insight (iter 040 + iter 050)**: the proposed restructure's main value is **semantic clustering** — grouping related work under descriptive phase names that make it easier to guess the right starting point. Best for cross-cutting concerns (deep-loop methodology) and large subsystems (code graph). Less helpful for narrowly scoped packets (resource map template).
+**Council's caveat**: the proof points DEMONSTRATE semantic clustering helps **cross-cutting** + **large subsystems** but DO NOT prove "the whole plan improves recall" — narrowly scoped packets see no improvement. The cheapest-variant restructure captures the high-impact gains without the marginal-benefit work.
+
+**Key insight (iter 040 + iter 050 + council 2026-05-16)**: the proposed restructure's main value is **semantic clustering** — grouping related work under descriptive phase names that make it easier to guess the right starting point. Best for cross-cutting concerns (deep-loop methodology, skill routing) and large subsystems (code graph, local embeddings). Less helpful for narrowly scoped packets (resource map template, memory-indexer-invariants).
 
 ### 5.2 Validation assertions (iter 050)
 
@@ -405,18 +427,63 @@ Deferred from research synthesis (iter 999 research.md §Open Questions):
 | Section | Status | Source |
 |---------|--------|--------|
 | 1. Overview | Filled | direct authoring + research.md executive summary |
-| 2. Current state | Filled | iter 001-006 + iter 042 corrections |
-| 3. Proposed state | Filled | iter 035 + 038 + 044 + 045 + 046 |
+| 2. Current state | Filled + council corrections | iter 001-006 + iter 042 + council 2026-05-16 (000 child count 2→59) |
+| 3. Proposed state | Filled + council corrections | iter 035 + 038 + 044 + 045 + 046 + council 2026-05-16 (M3/M4 path, M6 target, DEFERRED reclassifications) |
 | 4. Migration plan | Filled | iter 049 (5-wave structure) |
-| 5. Recall optimization | Filled | iter 040 + iter 050 |
-| 6. Risks and mitigation | Filled | iter 037 + 038 + 048 |
-| 7. Open questions | Filled | research.md open-questions section |
+| 5. Recall optimization | Filled + council additions | iter 040 + iter 050 + council 4 broader queries |
+| 6. Risks and mitigation | Filled | iter 037 + 038 + 048 + council exec-risk additions |
+| 7. Open questions | Filled | research.md open-questions section + council deferrals |
 | 8. Authoring status | This section | — |
-
-**Next steps**:
-
-1. Dispatch multi-AI council review via gpt-5.5 xhigh fast (`scripts/run-council-review.sh`)
-2. Apply council adjustments to this resource-map
-3. Schedule follow-on restructure execution packet (implementation per `implementation-dispatch.md`)
-4. 999 packet DELETED after restructure completes (per ADR-005)
+| 9. Council adjustments applied | New section below | council 2026-05-16 |
 <!-- /ANCHOR:authoring-status -->
+
+---
+
+<!-- ANCHOR:council-adjustments -->
+## 9. COUNCIL ADJUSTMENTS APPLIED (2026-05-16)
+
+Source: `research/council-review.md` (gpt-5.5 reasoning_effort=xhigh service_tier=fast).
+
+**Verdict**: REVISE_BEFORE_EXECUTING. Halt and revise, then execute the reduced variant.
+
+| # | Council adjustment | This resource-map's response | Section updated |
+|--:|--------------------|------------------------------|------------------|
+| A1 | Fix M3/M4 target wording: target is `007-code-graph/014-system-code-graph-extraction` (nested), NOT top-level `014-local-embeddings-migration` | M3/M4 rewritten with the correct nested path | §3.3 |
+| A2 | Remove LOW_PRIORITY/REDESIGN items from "11 PROCEED" table; specifically defer M1, M8, M9, and rewrite M6 to target `009/002` | M1, M8, M9, M10 moved to DEFERRED table. M6 target corrected to `009/002-runtime-hook-parity-core-2`. PROCEED count reduced from 11 to 7. | §3.3 |
+| A3 | Defer M10 (015 → 000) until 000-release-cleanup is recataloged (currently 59 child dirs with duplicate 006-* / 007-* prefixes) | M10 moved to BLOCKED in DEFERRED table. Resource-map §2.1 and §2.2 corrected from "2 children" to "59 children" for 000-release-cleanup | §2.1, §2.2, §3.3 |
+| A4 | Rewrite delete section: use iter 048 action classes as hard constraints. CONTAINED → DELETE; SHALLOW/MEDIUM → DELETE WITH CLEANUP (with ref-count proof); DEEP → ARCHIVE. Do not call archive candidates "pure deletes". | §3.4 rewritten with hard-constraint framing. First-wave action: 8 CONTAINED deletes + 28 DEEP archives ONLY. 18 SHALLOW+MEDIUM deferred pending ref-count proof. | §3.4 |
+| A5 | Strengthen recall proof: add sample queries for skill-advisor routing, memory/indexer, release/security, 010-template-levels | 4 new queries added to §5.1; aggregate now 9 queries with ~6-8 hops saved | §5.1 |
+
+### First-wave execution plan (council-approved reduced variant)
+
+The council's "Cheapest variant" becomes the FIRST EXECUTION WAVE. Defer everything else to follow-on packets.
+
+**First wave scope**:
+
+- **4 top-level renames** (§3.2): 014 → 014-local-embeddings-migration; 015 → 015-tanstack-security-audit (keep as top-level for now; DEFER absorbing into 000); 006 → 006-external-project-adoption; 002 → 002-resource-map-deep-loop-fix
+- **7 PROCEED merges** (§3.3): M2, M3, M4, M5, M6, M7, M11 — see council-corrected targets
+- **8 CONTAINED deletes** (§3.4): per iter 048's CONTAINED class — names from iter-048.md table
+- **28 DEEP archives** (§3.4): move to `z_archive/`, preserve read-access
+- **Parent-doc rewrites** (§4 Wave 4): 026/spec.md + 026/resource-map.md + 026/graph-metadata.json refresh atomically
+- **Index refresh** (§4 Wave 5): cocoindex + memory_index_scan + strict-validate sweep
+
+**Deferred to follow-on**:
+
+- M1 (014/052 + 053) — LOW_PRIORITY
+- M8 + M9 (010 rehome to 008/013) — LOW_PRIORITY, blocked by 010 parent retention Q
+- M10 (015 → 000) — BLOCKED by 000 recatalog need (59 children, dup prefixes)
+- 18 SHALLOW + MEDIUM deletes — require per-packet ref-count proof
+- 008-skill-advisor internal phase structure — out of scope per iter 038/042
+- iter 029 orphan-detection completion — recommend re-dispatch post-execution
+- Phase lifecycle governance — recommend follow-on packet per iter 047
+
+**Estimated effort savings**: ~40% less effort than the full plan, captures ~75% of recall benefit. Council §5 verdict: ACCEPT_FULL → REDUCED.
+
+### Next steps (post-revision)
+
+1. ✅ Council review committed (commit `c789ea802`)
+2. ✅ This resource-map revised per council adjustments A1-A5
+3. ⏳ Schedule follow-on restructure execution packet implementing the reduced first-wave scope
+4. ⏳ Use `implementation-dispatch.md` for executor selection (deepseek-v4-pro via cli-opencode primary, cli-devin fallback, SWE-1.6 last resort)
+5. ⏳ 999 packet DELETED after restructure completes (per ADR-005)
+<!-- /ANCHOR:council-adjustments -->
