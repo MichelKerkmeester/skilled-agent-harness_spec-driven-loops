@@ -37,7 +37,7 @@ _memory:
 | Status | Accepted |
 | Date | 2026-05-15 |
 | Deciders | Operator, Codex |
-| Supersedes | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/021-mcp-topology-pivot/decision-record.md` ADR-002 |
+| Supersedes | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/015-mcp-topology-pivot/decision-record.md` ADR-002 |
 
 <!-- ANCHOR:adr-001-context -->
 ### Context

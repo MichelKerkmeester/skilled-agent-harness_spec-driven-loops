@@ -3292,10 +3292,10 @@ exec
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/018-rewire-consumers-and-tool-registration/plan.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/018-rewire-consumers-and-tool-registration/tasks.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/018-rewire-consumers-and-tool-registration/implementation-summary.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/021-mcp-topology-pivot/decision-record.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/021-mcp-topology-pivot/tasks.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/021-mcp-topology-pivot/plan.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/021-mcp-topology-pivot/implementation-summary.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/015-mcp-topology-pivot/decision-record.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/015-mcp-topology-pivot/tasks.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/015-mcp-topology-pivot/plan.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/015-mcp-topology-pivot/implementation-summary.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/023-tsconfig-references-restructure/plan.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/016-scaffold-skill/plan.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/016-scaffold-skill/tasks.md
@@ -3844,7 +3844,7 @@ Revert this commit. The 8 decisions then defer to a future amendment packet befo
 <!-- /ANCHOR:adr-001 -->
 
 exec
-/bin/zsh -lc "sed -n '1,260p' .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/021-mcp-topology-pivot/decision-record.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,260p' .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/015-mcp-topology-pivot/decision-record.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 ---
 title: "Decision Record: ADR-002 standalone system_code_graph MCP topology"
@@ -3857,7 +3857,7 @@ importance_tier: "important"
 contextType: "decision"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/021-mcp-topology-pivot"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/015-mcp-topology-pivot"
     last_updated_at: "2026-05-14T09:24:15Z"
     last_updated_by: "claude"
     recent_action: "Validated ADR-002 standalone MCP topology pivot"

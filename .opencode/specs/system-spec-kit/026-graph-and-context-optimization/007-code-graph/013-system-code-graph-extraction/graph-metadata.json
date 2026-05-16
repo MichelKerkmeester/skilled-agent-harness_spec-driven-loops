@@ -43,7 +43,7 @@
     ],
     "importance_tier": "important",
     "status": "complete",
-    "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/021-mcp-topology-pivot",
+    "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/015-mcp-topology-pivot",
     "key_files": [
       "spec.md",
       "description.json",

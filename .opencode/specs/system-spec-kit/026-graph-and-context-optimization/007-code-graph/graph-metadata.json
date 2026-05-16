@@ -20,7 +20,7 @@
     "system-spec-kit/026-graph-and-context-optimization/007-code-graph/018-rewire-consumers-and-tool-registration",
     "system-spec-kit/026-graph-and-context-optimization/007-code-graph/019-doc-and-runtime-migration",
     "system-spec-kit/026-graph-and-context-optimization/007-code-graph/020-validation-and-cleanup",
-    "system-spec-kit/026-graph-and-context-optimization/007-code-graph/021-mcp-topology-pivot",
+    "system-spec-kit/026-graph-and-context-optimization/007-code-graph/015-mcp-topology-pivot",
     "system-spec-kit/026-graph-and-context-optimization/007-code-graph/022-orphan-code-graph-db-cleanup",
     "system-spec-kit/026-graph-and-context-optimization/007-code-graph/023-tsconfig-references-restructure",
     "system-spec-kit/026-graph-and-context-optimization/007-code-graph/024-mcp-tool-rename-mk-code-index",

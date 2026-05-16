@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/021-mcp-topology-pivot"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/015-mcp-topology-pivot"
     last_updated_at: "2026-05-14T13:25:00Z"
     last_updated_by: "claude"
     recent_action: "Repaired build, fixed vitest regressions, reconciled docs"
