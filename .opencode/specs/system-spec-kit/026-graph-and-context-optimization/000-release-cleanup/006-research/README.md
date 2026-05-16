@@ -5,7 +5,7 @@ Investigations, automation-self research, supplemental research.
 ## Children (4)
 
 - `001-automation-self-management-deep-research`
-- `017-automation-reality-supplemental-research`
+- `002-automation-reality-supplemental-research`
 - `046-system-deep-research-bugs-and-improvements`
 - `049-deep-research-finding-remediation`
 

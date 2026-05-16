@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/017-automation-reality-supplemental-research",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/017-automation-reality-supplemental-research",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-automation-reality-supplemental-research",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-automation-reality-supplemental-research",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization",
   "children_ids": [],
   "migrated": true,
@@ -13,7 +13,7 @@
   },
   "derived": {
     "trigger_phrases": [
-      "017-automation-reality-supplemental-research",
+      "002-automation-reality-supplemental-research",
       "automation reality supplemental",
       "deep-loop graph automation",
       "CCC eval ablation reality",
@@ -27,7 +27,7 @@
       "013 automation supplemental checklist"
     ],
     "key_topics": [
-      "017-automation-reality-supplemental-research",
+      "002-automation-reality-supplemental-research",
       "automation",
       "reality",
       "supplemental",
@@ -59,10 +59,10 @@
       ".opencode/skills/system-spec-kit/mcp_server/README.md",
       ".opencode/skills/system-spec-kit/references/config/hook_system.md",
       ".opencode/skills/system-spec-kit/mcp_server/hooks/copilot/README.md",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/017-automation-reality-supplemental-research/checklist.md",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/017-automation-reality-supplemental-research/description.json",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/017-automation-reality-supplemental-research/graph-metadata.json",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/017-automation-reality-supplemental-research/implementation-summary.md"
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-automation-reality-supplemental-research/checklist.md",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-automation-reality-supplemental-research/description.json",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-automation-reality-supplemental-research/graph-metadata.json",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-automation-reality-supplemental-research/implementation-summary.md"
     ],
     "entities": [
       {
@@ -98,13 +98,13 @@
       {
         "name": "checklist.md",
         "kind": "doc",
-        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/017-automation-reality-supplemental-research/checklist.md",
+        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-automation-reality-supplemental-research/checklist.md",
         "source": "derived"
       },
       {
         "name": "implementation-summary.md",
         "kind": "doc",
-        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/017-automation-reality-supplemental-research/implementation-summary.md",
+        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-automation-reality-supplemental-research/implementation-summary.md",
         "source": "derived"
       },
       {
@@ -158,13 +158,13 @@
       {
         "name": "description.json",
         "kind": "config",
-        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/017-automation-reality-supplemental-research/description.json",
+        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-automation-reality-supplemental-research/description.json",
         "source": "derived"
       },
       {
         "name": "graph-metadata.json",
         "kind": "config",
-        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/017-automation-reality-supplemental-research/graph-metadata.json",
+        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-automation-reality-supplemental-research/graph-metadata.json",
         "source": "derived"
       },
       {

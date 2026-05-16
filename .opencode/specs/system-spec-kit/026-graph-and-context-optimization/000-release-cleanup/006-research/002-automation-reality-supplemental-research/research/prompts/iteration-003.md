@@ -5,7 +5,7 @@ You are deep-research agent dispatched for iteration 3 of 5. Iters 1-2 completed
 ### State summary
 
 - Segment: 1 | Iteration: 3 of 5
-- Read prior iterations from `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/017-automation-reality-supplemental-research/research/iterations/iteration-001.md` and `iteration-002.md` to avoid duplicate ground.
+- Read prior iterations from `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-automation-reality-supplemental-research/research/iterations/iteration-001.md` and `iteration-002.md` to avoid duplicate ground.
 - Next focus: Validator auto-fire surface
 
 ### Iteration 3 focus
@@ -48,7 +48,7 @@ For each finding:
 
 ### Output contract — write EXACTLY these files
 
-#### 1. `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/017-automation-reality-supplemental-research/research/iterations/iteration-003.md`
+#### 1. `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-automation-reality-supplemental-research/research/iterations/iteration-003.md`
 
 Markdown file with these sections:
 
@@ -85,14 +85,14 @@ If different runtime configs claim different validation behaviors, surface the c
 What iteration 4 should drill into.
 ```
 
-#### 2. `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/017-automation-reality-supplemental-research/research/deltas/iter-003.jsonl`
+#### 2. `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-automation-reality-supplemental-research/research/deltas/iter-003.jsonl`
 
 ```jsonl
 {"type":"iteration","run":3,"focus":"Validator auto-fire surface","status":"insight","findingsCount":<N>,"newInfoRatio":<0.0-1.0>,"timestamp":"<ISO 8601 NOW>"}
 {"type":"finding","run":3,"id":"F-013-NNN","kind":"reality_map_row","tool":"<tool>","class":"<class>","severity":"<sev>","fileRef":"<file:line>","summary":"<one-line>"}
 ```
 
-#### 3. Append ONE line to `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/017-automation-reality-supplemental-research/research/deep-research-state.jsonl`
+#### 3. Append ONE line to `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-automation-reality-supplemental-research/research/deep-research-state.jsonl`
 
 ```jsonl
 {"event":"iteration_complete","at":"<ISO 8601 NOW>","iter":3,"focus":"Validator auto-fire surface","newInfoRatio":<0.0-1.0>,"status":"insight"}

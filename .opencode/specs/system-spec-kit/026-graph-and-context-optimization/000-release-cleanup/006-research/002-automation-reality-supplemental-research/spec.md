@@ -3,7 +3,7 @@ title: "Research Charter: Automation Reality Supplemental — Continuation of 01
 template_source: "SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2"
 description: "5-iter supplemental deep research extending 012's automation reality map. Deepens the 4 P1 aspirational findings via adversarial Hunter→Skeptic→Referee, probes under-covered surfaces (deep-loop graph, CCC + eval + ablation, validator auto-fire), and outputs a sequenced remediation backlog (packets 031-035)."
 trigger_phrases:
-  - "017-automation-reality-supplemental-research"
+  - "002-automation-reality-supplemental-research"
   - "automation reality supplemental"
   - "deep-loop graph automation"
   - "CCC eval ablation reality"
@@ -13,7 +13,7 @@ importance_tier: "important"
 contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/017-automation-reality-supplemental-research"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-automation-reality-supplemental-research"
     last_updated_at: "2026-04-29T20:35:30+02:00"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Resource map indexed"

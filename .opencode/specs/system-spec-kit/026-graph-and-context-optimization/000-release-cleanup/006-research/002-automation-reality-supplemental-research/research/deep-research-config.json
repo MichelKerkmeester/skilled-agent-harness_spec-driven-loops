@@ -9,7 +9,7 @@
   "convergenceThreshold": 0.10,
   "stuckThreshold": 2,
   "maxDurationMinutes": 90,
-  "specFolder": "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/017-automation-reality-supplemental-research",
+  "specFolder": "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-automation-reality-supplemental-research",
   "createdAt": "2026-04-29T14:35:00.000Z",
   "status": "initialized",
   "executionMode": "auto",
