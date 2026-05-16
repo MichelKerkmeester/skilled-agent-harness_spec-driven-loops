@@ -665,39 +665,39 @@ _memory:
 | .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-advisor-hook-improvements/review/review-report.md | Cited | OK | phase child |
 | .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-advisor-hook-improvements/spec.md | Cited | OK | phase child |
 | .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-advisor-hook-improvements/tasks.md | Cited | OK | phase child |
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/checklist.md | Updated | OK | phase child |
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/implementation-summary.md | Created | OK | phase child |
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/plan.md | Updated | OK | phase child |
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/review-pt-02/closure-report.md | Cited | OK | phase child |
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/review-pt-02/deep-review-strategy.md | Cited | OK | phase child |
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/review-pt-02/iterations/iteration-001.md | Cited | OK | phase child |
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/review-pt-02/iterations/iteration-002.md | Cited | OK | phase child |
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/review-pt-02/iterations/iteration-003.md | Cited | OK | phase child |
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/review-pt-02/iterations/iteration-004.md | Cited | OK | phase child |
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/review-pt-02/iterations/iteration-005.md | Cited | OK | phase child |
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/review-pt-02/prompts/iteration-001.md | Cited | OK | phase child |
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/review-pt-02/prompts/iteration-002.md | Cited | OK | phase child |
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/review-pt-02/prompts/iteration-003.md | Cited | OK | phase child |
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/review-pt-02/prompts/iteration-004.md | Cited | OK | phase child |
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/review-pt-02/prompts/iteration-005.md | Cited | OK | phase child |
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/review/deep-review-strategy.md | Cited | OK | phase child |
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/review/iterations/iteration-001.md | Cited | OK | phase child |
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/review/iterations/iteration-002.md | Cited | OK | phase child |
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/review/iterations/iteration-003.md | Cited | OK | phase child |
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/review/iterations/iteration-004.md | Cited | OK | phase child |
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/review/iterations/iteration-005.md | Cited | OK | phase child |
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/review/iterations/iteration-006.md | Cited | OK | phase child |
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/review/iterations/iteration-007.md | Cited | OK | phase child |
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/review/prompts/iteration-001.md | Cited | OK | phase child |
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/review/prompts/iteration-002.md | Cited | OK | phase child |
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/review/prompts/iteration-003.md | Cited | OK | phase child |
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/review/prompts/iteration-004.md | Cited | OK | phase child |
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/review/prompts/iteration-005.md | Cited | OK | phase child |
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/review/prompts/iteration-006.md | Cited | OK | phase child |
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/review/prompts/iteration-007.md | Cited | OK | phase child |
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/review/review-report.md | Cited | OK | phase child |
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/spec.md | Updated | OK | phase child |
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/tasks.md | Updated | OK | phase child |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-skill-advisor-setup-command/checklist.md | Updated | OK | phase child |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-skill-advisor-setup-command/implementation-summary.md | Created | OK | phase child |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-skill-advisor-setup-command/plan.md | Updated | OK | phase child |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-skill-advisor-setup-command/review-pt-02/closure-report.md | Cited | OK | phase child |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-skill-advisor-setup-command/review-pt-02/deep-review-strategy.md | Cited | OK | phase child |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-skill-advisor-setup-command/review-pt-02/iterations/iteration-001.md | Cited | OK | phase child |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-skill-advisor-setup-command/review-pt-02/iterations/iteration-002.md | Cited | OK | phase child |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-skill-advisor-setup-command/review-pt-02/iterations/iteration-003.md | Cited | OK | phase child |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-skill-advisor-setup-command/review-pt-02/iterations/iteration-004.md | Cited | OK | phase child |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-skill-advisor-setup-command/review-pt-02/iterations/iteration-005.md | Cited | OK | phase child |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-skill-advisor-setup-command/review-pt-02/prompts/iteration-001.md | Cited | OK | phase child |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-skill-advisor-setup-command/review-pt-02/prompts/iteration-002.md | Cited | OK | phase child |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-skill-advisor-setup-command/review-pt-02/prompts/iteration-003.md | Cited | OK | phase child |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-skill-advisor-setup-command/review-pt-02/prompts/iteration-004.md | Cited | OK | phase child |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-skill-advisor-setup-command/review-pt-02/prompts/iteration-005.md | Cited | OK | phase child |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-skill-advisor-setup-command/review/deep-review-strategy.md | Cited | OK | phase child |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-skill-advisor-setup-command/review/iterations/iteration-001.md | Cited | OK | phase child |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-skill-advisor-setup-command/review/iterations/iteration-002.md | Cited | OK | phase child |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-skill-advisor-setup-command/review/iterations/iteration-003.md | Cited | OK | phase child |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-skill-advisor-setup-command/review/iterations/iteration-004.md | Cited | OK | phase child |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-skill-advisor-setup-command/review/iterations/iteration-005.md | Cited | OK | phase child |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-skill-advisor-setup-command/review/iterations/iteration-006.md | Cited | OK | phase child |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-skill-advisor-setup-command/review/iterations/iteration-007.md | Cited | OK | phase child |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-skill-advisor-setup-command/review/prompts/iteration-001.md | Cited | OK | phase child |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-skill-advisor-setup-command/review/prompts/iteration-002.md | Cited | OK | phase child |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-skill-advisor-setup-command/review/prompts/iteration-003.md | Cited | OK | phase child |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-skill-advisor-setup-command/review/prompts/iteration-004.md | Cited | OK | phase child |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-skill-advisor-setup-command/review/prompts/iteration-005.md | Cited | OK | phase child |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-skill-advisor-setup-command/review/prompts/iteration-006.md | Cited | OK | phase child |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-skill-advisor-setup-command/review/prompts/iteration-007.md | Cited | OK | phase child |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-skill-advisor-setup-command/review/review-report.md | Cited | OK | phase child |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-skill-advisor-setup-command/spec.md | Updated | OK | phase child |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-skill-advisor-setup-command/tasks.md | Updated | OK | phase child |
 | .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/spec.md | Updated | OK | phase parent root |
 <!-- /ANCHOR:documents -->
 
@@ -742,8 +742,8 @@ _memory:
 | .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/010-skill-advisor-standards-alignment/graph-metadata.json | Cited | OK | phase child |
 | .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-advisor-hook-improvements/description.json | Cited | OK | phase child |
 | .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-advisor-hook-improvements/graph-metadata.json | Cited | OK | phase child |
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/description.json | Created | OK | phase child |
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/graph-metadata.json | Created | OK | phase child |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-skill-advisor-setup-command/description.json | Created | OK | phase child |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-skill-advisor-setup-command/graph-metadata.json | Created | OK | phase child |
 | .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/description.json | Cited | OK | phase parent root |
 | .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/graph-metadata.json | Cited | OK | phase parent root |
 <!-- /ANCHOR:specs -->
@@ -757,8 +757,8 @@ _memory:
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/review-pt-02/runner.sh | Cited | OK | phase child |
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/review/runner.sh | Cited | OK | phase child |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-skill-advisor-setup-command/review-pt-02/runner.sh | Cited | OK | phase child |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-skill-advisor-setup-command/review/runner.sh | Cited | OK | phase child |
 <!-- /ANCHOR:scripts -->
 
 ---
@@ -997,34 +997,34 @@ _memory:
 | .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-advisor-hook-improvements/review/deltas/iter-08.jsonl | Cited | OK | phase child |
 | .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-advisor-hook-improvements/review/deltas/iter-09.jsonl | Cited | OK | phase child |
 | .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-advisor-hook-improvements/review/deltas/iter-10.jsonl | Cited | OK | phase child |
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/review-pt-02/deep-review-config.json | Cited | OK | phase child |
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/review-pt-02/deep-review-state.jsonl | Cited | OK | phase child |
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/review-pt-02/deltas/iteration-001.json | Cited | OK | phase child |
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/review-pt-02/deltas/iteration-002.json | Cited | OK | phase child |
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/review-pt-02/deltas/iteration-003.json | Cited | OK | phase child |
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/review-pt-02/deltas/iteration-004.json | Cited | OK | phase child |
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/review-pt-02/deltas/iteration-005.json | Cited | OK | phase child |
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/review-pt-02/logs/iteration-001.log | Cited | OK | phase child |
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/review-pt-02/logs/iteration-002.log | Cited | OK | phase child |
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/review-pt-02/logs/iteration-003.log | Cited | OK | phase child |
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/review-pt-02/logs/iteration-004.log | Cited | OK | phase child |
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/review-pt-02/logs/iteration-005.log | Cited | OK | phase child |
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/review-pt-02/logs/runner.log | Cited | OK | phase child |
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/review/deep-review-config.json | Cited | OK | phase child |
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/review/deep-review-state.jsonl | Cited | OK | phase child |
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/review/deltas/iteration-001.json | Cited | OK | phase child |
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/review/deltas/iteration-002.json | Cited | OK | phase child |
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/review/deltas/iteration-004.json | Cited | OK | phase child |
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/review/deltas/iteration-005.json | Cited | OK | phase child |
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/review/deltas/iteration-007.json | Cited | OK | phase child |
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/review/logs/iteration-001.log | Cited | OK | phase child |
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/review/logs/iteration-002.log | Cited | OK | phase child |
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/review/logs/iteration-003.log | Cited | OK | phase child |
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/review/logs/iteration-004.log | Cited | OK | phase child |
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/review/logs/iteration-005.log | Cited | OK | phase child |
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/review/logs/iteration-006.log | Cited | OK | phase child |
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/review/logs/iteration-007.log | Cited | OK | phase child |
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/review/logs/runner.log | Cited | OK | phase child |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-skill-advisor-setup-command/review-pt-02/deep-review-config.json | Cited | OK | phase child |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-skill-advisor-setup-command/review-pt-02/deep-review-state.jsonl | Cited | OK | phase child |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-skill-advisor-setup-command/review-pt-02/deltas/iteration-001.json | Cited | OK | phase child |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-skill-advisor-setup-command/review-pt-02/deltas/iteration-002.json | Cited | OK | phase child |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-skill-advisor-setup-command/review-pt-02/deltas/iteration-003.json | Cited | OK | phase child |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-skill-advisor-setup-command/review-pt-02/deltas/iteration-004.json | Cited | OK | phase child |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-skill-advisor-setup-command/review-pt-02/deltas/iteration-005.json | Cited | OK | phase child |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-skill-advisor-setup-command/review-pt-02/logs/iteration-001.log | Cited | OK | phase child |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-skill-advisor-setup-command/review-pt-02/logs/iteration-002.log | Cited | OK | phase child |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-skill-advisor-setup-command/review-pt-02/logs/iteration-003.log | Cited | OK | phase child |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-skill-advisor-setup-command/review-pt-02/logs/iteration-004.log | Cited | OK | phase child |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-skill-advisor-setup-command/review-pt-02/logs/iteration-005.log | Cited | OK | phase child |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-skill-advisor-setup-command/review-pt-02/logs/runner.log | Cited | OK | phase child |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-skill-advisor-setup-command/review/deep-review-config.json | Cited | OK | phase child |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-skill-advisor-setup-command/review/deep-review-state.jsonl | Cited | OK | phase child |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-skill-advisor-setup-command/review/deltas/iteration-001.json | Cited | OK | phase child |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-skill-advisor-setup-command/review/deltas/iteration-002.json | Cited | OK | phase child |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-skill-advisor-setup-command/review/deltas/iteration-004.json | Cited | OK | phase child |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-skill-advisor-setup-command/review/deltas/iteration-005.json | Cited | OK | phase child |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-skill-advisor-setup-command/review/deltas/iteration-007.json | Cited | OK | phase child |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-skill-advisor-setup-command/review/logs/iteration-001.log | Cited | OK | phase child |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-skill-advisor-setup-command/review/logs/iteration-002.log | Cited | OK | phase child |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-skill-advisor-setup-command/review/logs/iteration-003.log | Cited | OK | phase child |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-skill-advisor-setup-command/review/logs/iteration-004.log | Cited | OK | phase child |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-skill-advisor-setup-command/review/logs/iteration-005.log | Cited | OK | phase child |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-skill-advisor-setup-command/review/logs/iteration-006.log | Cited | OK | phase child |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-skill-advisor-setup-command/review/logs/iteration-007.log | Cited | OK | phase child |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-skill-advisor-setup-command/review/logs/runner.log | Cited | OK | phase child |
 <!-- /ANCHOR:config -->
 
 ---

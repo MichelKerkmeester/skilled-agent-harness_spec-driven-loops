@@ -45,7 +45,7 @@ _memory:
 | **Created** | 2026-04-25 |
 | **Parent** | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/` |
 | **Parent Spec** | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/spec.md` |
-| **Related** | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/` (research dependency), `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/` (pattern source) |
+| **Related** | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/` (research dependency), `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-skill-advisor-setup-command/` (pattern source) |
 <!-- /ANCHOR:metadata -->
 
 ---

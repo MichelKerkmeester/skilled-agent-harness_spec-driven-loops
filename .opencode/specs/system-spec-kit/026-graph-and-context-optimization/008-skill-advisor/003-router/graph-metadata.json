@@ -8,7 +8,7 @@
     "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/003-router/002-advisor-phrase-booster-tailoring",
     "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/003-router/003-smart-router-remediation-and-opencode-plugin",
     "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/003-router/004-skill-advisor-hook-surface",
-    "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/003-router/012-skill-advisor-setup-command"
+    "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/003-router/005-skill-advisor-setup-command"
   ],
   "manual": {
     "depends_on": [],

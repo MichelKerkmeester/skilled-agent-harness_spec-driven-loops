@@ -18,7 +18,7 @@ trigger_phrases:
   - "009-skill-advisor-plugin-hardening"
   - "010-skill-advisor-standards-alignment"
   - "001-skill-advisor-hook-improvements"
-  - "012-skill-advisor-setup-command"
+  - "005-skill-advisor-setup-command"
   - "/doctor:skill-advisor"
 importance_tier: "important"
 contextType: "implementation"
@@ -120,7 +120,7 @@ Keep this theme as the single active parent for the full skill advisor system. E
 | 9 | `009-skill-advisor-plugin-hardening/` | Complete | Feature Specification: Skill-Advisor Plugin Hardening |
 | 10 | `010-skill-advisor-standards-alignment/` | Complete | Feature Specification: Skill-Advisor Standards Alignment |
 | 11 | `001-skill-advisor-hook-improvements/` | Research Queued | Feature Specification: Skill-Advisor Hook Improvements |
-| 12 | `012-skill-advisor-setup-command/` | Implemented | Feature Specification: Skill Advisor Setup Command |
+| 12 | `005-skill-advisor-setup-command/` | Implemented | Feature Specification: Skill Advisor Setup Command |
 <!-- /ANCHOR:phase-map -->
 
 ---

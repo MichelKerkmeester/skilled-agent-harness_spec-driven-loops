@@ -50,7 +50,7 @@ The skill advisor is the Gate 2 router that matches user prompts to the correct 
 | 011/R014 | 2026-04-24 | [Research 011/014: Hook Improvements Pt-02](./changelog-011-research-014-skill-advisor-hook-improvements-pt-02.md) | 10-iteration research. Parity and observability drift confirmed. CF-019 closed. |
 | 011/R029 | 2026-04-24 | [Research 011/029: Hook Improvements Pt-01](./changelog-011-research-029-skill-advisor-hook-improvements-pt-01.md) | 10-iteration research. 5 P1: threshold split, cache drift, Codex bypass, static weights, write-only telemetry. |
 | 011/R031 | 2026-04-24 | [Research 011/031: Gap Investigation Pt-01](./changelog-011-research-031-skill-advisor-gap-investigation-pt-01.md) | Gap investigation. 8 missed files: downstream docs, playbooks, and test gaps. 6 P1, 2 P2. |
-| 008-012 | 2026-04-24 | [Skill Advisor Setup Command](./changelog-008-012-skill-advisor-setup-command.md) | Legacy setup-command changelog from the earlier numbering. |
+| 008-012 | 2026-04-24 | [Skill Advisor Setup Command](./changelog-008-005-skill-advisor-setup-command.md) | Legacy setup-command changelog from the earlier numbering. |
 
 ## How to read these
 

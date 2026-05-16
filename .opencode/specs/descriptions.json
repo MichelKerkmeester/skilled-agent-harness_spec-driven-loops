@@ -6210,7 +6210,7 @@
       "lastUpdated": "2026-05-08T08:26:57.744Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-skill-advisor-setup-command",
       "description": "Feature Specification: Skill Advisor Setup Command",
       "keywords": [
         "feature",
