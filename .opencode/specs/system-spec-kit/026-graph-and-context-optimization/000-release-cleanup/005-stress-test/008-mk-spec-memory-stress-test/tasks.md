@@ -11,10 +11,10 @@ _memory:
     last_updated_at: "2026-05-16T20:10:00Z"
     last_updated_by: "main_agent"
     recent_action: "Phase 2 263/345 + 3 codex fix commits (checkpoint_create, vitest, trace+priming)"
-    next_safe_action: "Wait for codex D pipeline fix; then E V-rule bridge; then final synthesis"
+    next_safe_action: "Phase 4 follow-ons for deferred cat-16 state/env/tooling gaps, then final synthesis"
     blockers:
       - "cat-04 + cat-24 persistent tool-rejected error"
-      - "cat-16 tooling 10 FAILs heterogeneous (each needs own investigation)"
+      - "cat-16 tooling remaining deferred: 002, 235, 236, 238, 239, 242 tail, 243"
     key_files:
       - "handover.md"
       - "evidence/tool-sweep.jsonl"
@@ -100,8 +100,16 @@ _memory:
 ### Phase 2 blockers (carry to future session)
 1. **cat-04 + cat-24 persistent "tool rejected"** — agent-config-008.json allow-list missing something both categories need. Verbose log inspection blocked by 39-byte truncated error. Audit specific scenario tools before retry.
 2. **70+ UNAUTOMATABLE rate** — playbook scope mismatch with cli-devin runtime. Real packet 113 follow-on concern.
-3. **cat-16 tooling 10 FAILs are heterogeneous** — each fix needs its own investigation (vitest config drift, ES module/require mismatch, missing CLI files, "stay on main" guard collision with scenarios that expect feature branches, etc.). Too varied for a single codex fix.
-4. **cat-21 228/229 should now PASS after `0a574812c`** — re-run those scenarios to confirm cascade fix is complete (the original FAILs cited "expected 51 tools" which codex B addressed).
+3. **cat-16 tooling triage outcome (2026-05-16)** — fixed the small shared roots: root Vitest config no longer imports `vitest/config`, scripts/core `CONFIG.PROJECT_ROOT` points at the repo root, legacy JS runner files define ESM-safe `require`/`__dirname`, `upgrade-level.sh --dry-run` no longer validates missing addendum templates, `backfill-frontmatter` accepts temp roots/report paths, and `generate-context` preserves explicit `.opencode/specs/...` targets. Targeted evidence: `test-upgrade-level.sh` 14/14, scenario 240 exact Vitest command 3 files/24 tests, scenario 241 loader + enrichment suites, and `test-folder-detector-functional.js` 30 pass/0 fail.
+4. **cat-16 Phase 4 follow-ons**:
+   - 002 phase-folder-creation — defer classification review; evidence shows parent/child linkage passes but generated levels are L2/L1 instead of the scenario's Level 3 expectation, so this needs scenario expectation alignment rather than a script hotfix.
+   - 235 eval-runner-cli — defer as environment/data blocker; active DB ground-truth IDs are stale, same class as Phase 1 `eval_run_ablation` SKIP.
+   - 236 phase-system-knowledge-node — defer fixture/runtime isolation; `test-phase-system.sh` still references retired `templates/level_1`/`addendum` paths while current scaffolding depends on manifest templates plus the TS inline renderer.
+   - 238 spec-validation-rule-engine — defer validator/fixture audit; failures span compliant fixture strictness, recursive metadata requirements, missing `run-ts-fixture.mjs`, and unresolved `mcp_server/vitest.config.ts`.
+   - 239 memory-maintenance-and-migration-clis — partial only; temp path and ESM runner roots fixed, but broad dry-run still exits nonzero on 114 malformed existing files and cleanup-vector structural assertions still fail.
+   - 242 spec-folder-detection-and-description — partial only; folder detector runner fixed, but playbook still references missing `test-alignment-validator.js`, `test-subfolder-resolution.js` has a syntax error, and the explicit description path targets an archived/moved folder.
+   - 243 setup/native-module/MCP installation — defer as policy + installer follow-on; branch check conflicts with "stay on main" and `install.sh` still sources missing `_utils.sh`.
+5. **cat-21 228/229 should now PASS after `0a574812c`** — re-run those scenarios to confirm cascade fix is complete (the original FAILs cited "expected 51 tools" which codex B addressed).
 
 ### z_archive revalidation (T2.5-T2.7) — DEFERRED
 0 PARTIAL rows cite z_archive impact in current sweep (all z_archive-sensitive scenarios landed SKIP/UNAUTOMATABLE). Defer reclassification to post-rate-limit-reset retry.
