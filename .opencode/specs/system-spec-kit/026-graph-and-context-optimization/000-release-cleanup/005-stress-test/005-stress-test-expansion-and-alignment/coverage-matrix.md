@@ -1,9 +1,9 @@
 ---
-title: "Audit Findings: 052 Stress Test Expansion and Alignment"
-description: "Inventory, alignment findings, and coverage matrix for stress_test expansion."
+title: "Coverage Matrix: 052 Stress Test Expansion and Alignment"
+description: "Full feature catalog to stress_test coverage mapping."
 template_source: "SPECKIT_TEMPLATE_SOURCE: level_2 | v2.2"
 trigger_phrases:
-  - "039-stress-test-expansion-and-alignment"
+  - "005-stress-test-expansion-and-alignment"
   - "stress test alignment"
   - "stress test coverage"
   - "sk-code-opencode stress test"
@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/039-stress-test-expansion-and-alignment"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/005-stress-test-expansion-and-alignment"
     last_updated_at: "2026-04-30T09:20:00+02:00"
     last_updated_by: "cli-codex"
     recent_action: "Stress alignment verified"
@@ -23,83 +23,21 @@ _memory:
       - "remediation-log.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "039-stress-test-expansion-and-alignment"
+      session_id: "005-stress-test-expansion-and-alignment"
       parent_session_id: null
     completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
 
-# Audit Findings: 052 Stress Test Expansion and Alignment
+# Coverage Matrix: 052 Stress Test Expansion and Alignment
 
 <!-- SPECKIT_LEVEL: 2 -->
-<!-- SPECKIT_TEMPLATE_SOURCE: audit-findings | v2.2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: coverage-matrix | v2.2 -->
 
-## Section 1: Existing Stress Test Inventory
+## Scope
 
-Final inventory after coverage additions: 32 TypeScript files, 28 vitest files, 69 tests.
-
-| File | Subsystem | Test count | Behaviors covered |
-|---|---|---:|---|
-| `code-graph/budget-allocator-stress.vitest.ts` | code-graph | 2 | redistributes unused source floors to higher-priority context sources; trims low-priority overflow before protected context floors exceed the cap |
-| `code-graph/code-graph-degraded-sweep.vitest.ts` | code-graph | 5 | routes empty-graph reads to code_graph_scan via fallbackDecision; routes broad-stale graphs to code_graph_scan via fallbackDecision; routes readiness exceptions to rg via fallbackDecision; emits no fallbackDecision when the graph is fresh |
-| `code-graph/walker-dos-caps.vitest.ts` | code-graph | 2 | skips oversized .gitignore files with a warning instead of reading them whole; stops descending spec discovery past the configured max depth and keeps shallower packets indexable |
-| `matrix/shadow-comparison.vitest.ts` | matrix | 21 | T1: corpus contains at least 50 queries; T2: corpus has exactly 20 simple queries; T3: corpus has exactly 20 moderate queries; T4: corpus has exactly 20 complex queries |
-| `memory/gate-d-benchmark-memory-search.vitest.ts` | memory | 1 | keeps canonical memory-search across 7 intents under the Gate D latency budget |
-| `memory/gate-d-benchmark-trigger-fast-path.vitest.ts` | memory | 1 | keeps the canonical trigger fast path under the Gate D latency budget |
-| `memory/gate-d-trigger-perf-benchmark.vitest.ts` | memory | 1 | reports p50/p95/p99 for the canonical trigger-only fast path |
-| `search-quality/baseline.vitest.ts` | search-quality | 1 | runs deterministic corpus and captures required quality dimensions |
-| `search-quality/corpus.ts` | search-quality | 0 | Utility support module used by stress tests |
-| `search-quality/harness-telemetry-export.vitest.ts` | search-quality | 3 | preserves runner telemetry on channel captures and case results; writes envelope, audit, and shadow rows to sibling JSONL files; does not create JSONL files when telemetry export is omitted |
-| `search-quality/harness.ts` | search-quality | 0 | Utility support module used by stress tests |
-| `search-quality/measurement-fixtures.ts` | search-quality | 0 | Utility support module used by stress tests |
-| `search-quality/measurement-output.vitest.ts` | search-quality | 1 | runs the extended measurement corpus and optionally writes JSON output |
-| `search-quality/metrics.ts` | search-quality | 0 | Utility support module used by stress tests |
-| `search-quality/query-surrogates-stress.vitest.ts` | search-quality | 2 | generates aliases, headings, summary, and recall-oriented questions for rich content; matches indirect recall queries and returns null when the feature flag is disabled |
-| `search-quality/w10-degraded-readiness-integration.vitest.ts` | search-quality | 1 | captures actual empty code_graph_query degraded readiness in SearchDecisionEnvelope |
-| `search-quality/w11-cocoindex-calibration-telemetry.vitest.ts` | search-quality | 1 | emits recommended multiplier into the envelope without applying adaptive overfetch |
-| `search-quality/w13-decision-audit.vitest.ts` | search-quality | 2 | writes one JSONL audit row per envelope; computes SLA metrics from decision envelopes |
-| `search-quality/w3-trust-tree.vitest.ts` | search-quality | 2 | composes response policy, graph, advisor, CocoIndex, and causal contradiction signals; improves W3 citation-quality in the variant fixture |
-| `search-quality/w4-conditional-rerank.vitest.ts` | search-quality | 4 | reranks ambiguous multi-channel queries when triggers are present; skips rerank when no ambiguity or disagreement triggers fire; passes real QueryPlan into Stage 3 rerank gate telemetry; improves ambiguous-query precision in the variant fixture |
-| `search-quality/w5-shadow-learned-weights.vitest.ts` | search-quality | 3 | keeps live weights fixed and exposes a separate shadow vector; accepts advisor_recommend output with _shadow diagnostics; improves advisor diagnostic citation-quality in the variant fixture |
-| `search-quality/w6-cocoindex-calibration.vitest.ts` | search-quality | 2 | reports duplicate density and applies 4x overfetch only when flagged; improves duplicate-heavy precision in the variant fixture |
-| `search-quality/w7-degraded-empty.vitest.ts` | search-quality | 1 | preserves harness metrics for empty fallback envelopes |
-| `search-quality/w7-degraded-full-scan.vitest.ts` | search-quality | 1 | preserves harness metrics for full-scan-required fallback envelopes |
-| `search-quality/w7-degraded-stale.vitest.ts` | search-quality | 1 | preserves harness metrics for stale fallback envelopes |
-| `search-quality/w7-degraded-unavailable.vitest.ts` | search-quality | 1 | preserves harness metrics for unavailable rg fallback envelopes |
-| `search-quality/w8-search-decision-envelope.vitest.ts` | search-quality | 3 | builds an empty versioned envelope with request identity and QueryPlan; composes trust tree, rerank decision, shadow deltas, calibration, and degraded readiness; supports partial attach composition without mutating the original envelope |
-| `session/gate-d-benchmark-session-resume.vitest.ts` | session | 1 | keeps the 3-level happy-path resume ladder under the Gate D latency budget |
-| `session/gate-d-resume-perf.vitest.ts` | session | 1 | measures session-resume happy path using the canonical 3-level ladder |
-| `session/session-manager-stress.vitest.ts` | session | 2 | keeps interleaved inserts within maxCapacity tolerance; cleanupOldSessions removes expired sessions and preserves CURRENT_TIMESTAMP entries |
-| `skill-advisor/scorer-fusion-stress.vitest.ts` | skill-advisor | 2 | keeps explicit workflow evidence ahead of weaker lexical candidates; marks tied high-confidence candidates as ambiguous instead of hiding the tie |
-| `skill-advisor/skill-graph-rebuild-concurrency.vitest.ts` | skill-advisor | 1 | serializes concurrent corruption rebuilds for the same database path |
-
-### Subsystem Totals
-
-| Subsystem | Test count |
-|---|---:|
-| code-graph | 9 |
-| matrix | 21 |
-| memory | 3 |
-| search-quality | 29 |
-| session | 4 |
-| skill-advisor | 3 |
-
-## Section 2: sk-code-opencode Alignment Findings
-
-| File:line | Severity | Finding | Proposed fix | Status |
-|---|---|---|---|---|
-| stress_test/**/*.vitest.ts:1 | P1 | Missing subsystem behavior headers in many vitest files. | Add MODULE headers. | Fixed |
-| memory/gate-d-benchmark-memory-search.vitest.ts:184 | P1 | JSON payload used Record<string, any>. | Add narrowed envelope parser. | Fixed |
-| memory/gate-d-benchmark-trigger-fast-path.vitest.ts:186 | P1 | JSON payload used Record<string, any>. | Add narrowed envelope parser. | Fixed |
-| session/gate-d-benchmark-session-resume.vitest.ts:143 | P1 | JSON payload used Record<string, any>. | Add narrowed resume parser. | Fixed |
-| memory/gate-d-trigger-perf-benchmark.vitest.ts:148 | P1 | better-sqlite3 used require(). | Replace with ESM import. | Fixed |
-| memory/session benchmark files | P1 | Bare benchmark console.log output. | Gate with DEBUG_STRESS_TEST. | Fixed |
-| Remaining fixture casts | P2 | Bounded SQL row, tuple, and as const fixture assertions. | Defer with rationale. | Deferred |
-
-## Section 3: Coverage Matrix
-
-Mapped 166 catalog entries across the requested focus categories plus code_graph and skill_advisor catalogs.
+Maps the requested stress-test-relevant system-spec-kit categories plus the full code_graph and skill_advisor catalogs. Handler-only, CLI-only, compatibility, and documentation-only features are marked out-of-scope where stress_test is not the right layer.
 
 | Status | Count |
 |---|---:|

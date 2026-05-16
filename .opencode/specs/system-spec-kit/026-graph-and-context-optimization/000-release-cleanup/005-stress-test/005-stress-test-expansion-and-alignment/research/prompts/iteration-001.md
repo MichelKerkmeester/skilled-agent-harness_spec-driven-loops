@@ -1,10 +1,10 @@
 ## Packet 052: stress-test-expansion-and-alignment — sk-code-opencode alignment + coverage gap fill
 
-You are cli-codex (gpt-5.5 high fast) implementing **039-stress-test-expansion-and-alignment**.
+You are cli-codex (gpt-5.5 high fast) implementing **005-stress-test-expansion-and-alignment**.
 
 ### CRITICAL: Spec folder path
 
-The packet folder is: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/039-stress-test-expansion-and-alignment/` — write ALL packet files there. Do NOT ask for the spec folder.
+The packet folder is: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/005-stress-test-expansion-and-alignment/` — write ALL packet files there. Do NOT ask for the spec folder.
 
 ### Goal
 
@@ -111,7 +111,7 @@ Continuity frontmatter MUST be valid (`recent_action`, `next_safe_action` < 80 c
 ```bash
 # Strict validator MUST exit 0
 bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh \
-  .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/039-stress-test-expansion-and-alignment --strict
+  .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/005-stress-test-expansion-and-alignment --strict
 
 # Build + vitest pass
 cd .opencode/skills/system-spec-kit/mcp_server && npm run build
@@ -136,7 +136,7 @@ cd .opencode/skills/system-spec-kit/mcp_server && npx tsc --noEmit 2>&1 | tail -
 
 **Deps**: `manual.depends_on=["system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-stress-test-folder-completion","system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/019-feature-catalog-shape-realignment"]`.
 
-**Trigger phrases**: `["039-stress-test-expansion-and-alignment","stress test alignment","stress test coverage","sk-code-opencode stress test"]`.
+**Trigger phrases**: `["005-stress-test-expansion-and-alignment","stress test alignment","stress test coverage","sk-code-opencode stress test"]`.
 
 **Causal summary**: `"Aligns all .ts files under .opencode/skills/system-spec-kit/mcp_server/stress_test/ with sk-code-opencode standards (~29 files audited, P0/P1 fixes applied). Cross-references 3 mcp_server feature catalogs (system-spec-kit + code_graph + skill_advisor) against existing stress_test coverage and authors new tests for high-value uncovered features. Build + vitest + strict validator all pass."`.
 

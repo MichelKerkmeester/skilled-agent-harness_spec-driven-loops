@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/039-stress-test-expansion-and-alignment",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/039-stress-test-expansion-and-alignment",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/005-stress-test-expansion-and-alignment",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/005-stress-test-expansion-and-alignment",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization",
   "children_ids": [],
   "manual": {
@@ -14,7 +14,7 @@
   },
   "derived": {
     "trigger_phrases": [
-      "039-stress-test-expansion-and-alignment",
+      "005-stress-test-expansion-and-alignment",
       "stress test alignment",
       "stress test coverage",
       "sk-code-opencode stress test"

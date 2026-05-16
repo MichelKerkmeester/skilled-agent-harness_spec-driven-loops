@@ -3,7 +3,7 @@ title: "Feature Specification: 052 Stress Test Expansion and Alignment"
 description: "Align stress_test TypeScript with sk-code-opencode and close high-value feature catalog coverage gaps."
 template_source: "SPECKIT_TEMPLATE_SOURCE: level_2 | v2.2"
 trigger_phrases:
-  - "039-stress-test-expansion-and-alignment"
+  - "005-stress-test-expansion-and-alignment"
   - "stress test alignment"
   - "stress test coverage"
   - "sk-code-opencode stress test"
@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/039-stress-test-expansion-and-alignment"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/005-stress-test-expansion-and-alignment"
     last_updated_at: "2026-04-30T09:25:00+02:00"
     last_updated_by: "cli-codex"
     recent_action: "Strict template repaired"
@@ -23,7 +23,7 @@ _memory:
       - "remediation-log.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "039-stress-test-expansion-and-alignment"
+      session_id: "005-stress-test-expansion-and-alignment"
       parent_session_id: null
     completion_pct: 100
     open_questions: []
@@ -67,7 +67,7 @@ Make stress_test auditable as a standards-aligned, catalog-aware regression suit
 | File Path | Change Type | Description |
 |---|---|---|
 | .opencode/skills/system-spec-kit/mcp_server/stress_test/**/*.ts | Modify/Create | Alignment fixes and new tests. |
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/039-stress-test-expansion-and-alignment/ | Create | Packet docs and logs. |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/005-stress-test-expansion-and-alignment/ | Create | Packet docs and logs. |
 <!-- /ANCHOR:scope -->
 
 <!-- ANCHOR:requirements -->
