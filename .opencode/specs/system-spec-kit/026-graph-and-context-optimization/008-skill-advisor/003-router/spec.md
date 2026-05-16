@@ -25,11 +25,11 @@ Optimize intent routing across the skill advisor system through coordinated impr
 
 | ID | Slug | Summary |
 |----|------|---------|
-| 001 | search-and-routing-tuning | Search and routing tuning coordination parent |
-| 003 | advisor-phrase-booster-tailoring | Advisor phrase-booster tailoring for improved intent matching |
-| 005 | smart-router-remediation-and-opencode-plugin | Smart-router remediation plus OpenCode plugin integration |
-| 007 | skill-advisor-hook-surface | Skill-advisor hook surface for runtime integration |
-| 012 | skill-advisor-setup-command | Skill advisor setup command for infrastructure provisioning |
+| 001 | search-and-routing-tuning | Search and Routing Tuning Coordination Parent |
+| 002 | advisor-phrase-booster-tailoring | Advisor Phrase-Booster Tailoring |
+| 003 | smart-remediation-and-opencode-plugin | Smart-Router Remediation + OpenCode Plugin |
+| 004 | skill-advisor-hook-surface | Skill-Advisor Hook Surface |
+| 005 | skill-advisor-setup-command | Skill Advisor Setup Command |
 
 ---
 

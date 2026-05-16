@@ -26,9 +26,9 @@ Coordinate documentation quality and alignment work across the skill-advisor sys
 
 | ID | Slug | Summary |
 |----|------|---------|
-| 004 | skill-advisor-docs-and-code-alignment | Feature specification for skill-advisor docs + phase 020 code alignment |
-| 024 | code-folder-readmes | Phase B of 4-phase code-folder README pipeline: TOC anchors and fixture folder READMEs |
-| 025 | doc-and-config-drift-fixes | Doc + config drift fixes: TS5103 build, 8-vs-9 tool count, stale opencode.json comment |
+| 001 | docs-and-code-alignment | Skill-Advisor Docs + Phase 020 Code Alignment |
+| 002 | code-folder-readmes | Phase B of 4-phase code-folder README pipeline: TOC anchors and fixture folder READMEs |
+| 003 | doc-and-config-drift-fixes | system-skill-advisor doc + config drift fixes - TS5103 build, 8-vs-9 tool count, stale opencode.json comment |
 
 ---
 

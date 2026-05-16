@@ -25,10 +25,10 @@ Strengthen the skill-advisor system through deferred remediation, telemetry meas
 
 | ID | Slug | Summary |
 |----|------|---------|
-| 006 | deferred-remediation-and-telemetry-run | Deferred remediation and telemetry measurement run |
-| 009 | skill-advisor-plugin-hardening | Skill-advisor plugin hardening |
-| 010 | skill-advisor-standards-alignment | Skill-advisor standards alignment |
-| 025 | cli-devin-skill-advisor-hook | CLI Devin skill advisor UserPromptSubmit hook + plugin rename + post-extraction audit |
+| 001 | deferred-remediation-and-telemetry-run | Deferred Remediation + Telemetry Measurement Run |
+| 002 | skill-advisor-plugin-hardening | Skill-Advisor Plugin Hardening |
+| 003 | skill-advisor-standards-alignment | Skill-Advisor Standards Alignment |
+| 004 | cli-devin-skill-advisor-hook | CLI Devin Skill Advisor UserPromptSubmit Hook + Plugin Rename + Post-Extraction Audit |
 
 ---
 

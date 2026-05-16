@@ -27,8 +27,8 @@
     "entities": [],
     "causal_summary": "Optimize the skill advisor's scoring system by activating semantic similarity lanes through embedding cache infrastructure and systematic weight tuning. The progressive evaluation pipeline spans from shadow-only cosine lane deployment in 003-embed-cache-and-cosine-wiring through ablation sweeps in 004-ablation-sweep-and-promote, corpus-seeded evaluation in 006-corpus-seeded-sweep, to final routing calibration in 008-advisor-routing-calibration, enabling data-driven lane weight selection that lifts recall on intent-described prompts without regressing today-correct baseline accuracy.",
     "created_at": "2026-05-16T09:00:00Z",
-    "last_save_at": "2026-05-16T09:00:00Z",
-    "save_lineage": "cli-devin-swe-1.6-w3a",
+    "last_save_at": "2026-05-16T11:30:00Z",
+    "save_lineage": "cli-devin-swe-1.6-w3f",
     "last_accessed_at": null,
     "source_docs": ["spec.md", "README.md"]
   }

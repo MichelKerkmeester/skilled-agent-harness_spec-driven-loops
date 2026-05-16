@@ -25,13 +25,13 @@ Build and maintain the skill graph infrastructure that powers the skill advisor 
 
 | ID | Slug | Summary |
 |----|------|---------|
-| 002 | skill-advisor-graph | Feature specification for Skill Advisor Graph core structures |
-| 008 | skill-graph-daemon-and-advisor-unification | Feature spec for skill graph daemon and advisor unification (027) |
-| 018 | skill-metadata-quality-audit | Audit graph-metadata.json and SKILL.md descriptions for advisor lane quality |
-| 019 | apply-metadata-fixes-and-resweep | Apply audit recommendations and re-run seeded embedding sweep |
-| 021 | populate-intent-signals-and-relationships | Populate derived.intent_signals and manual relationship fields |
-| 022 | system-skill-advisor-extraction | Phase parent for migrating skill advisor to dedicated .opencode/skills package |
-| 026 | cross-skill-auto-propagation | Feature spec for cross-skill auto-propagation MVP |
+| 001 | skill-advisor-graph | Skill Advisor Graph |
+| 002 | daemon-and-unification | 027 - Skill Graph Daemon and Advisor Unification |
+| 003 | skill-metadata-quality-audit | Audit graph-metadata.json and SKILL.md descriptions for advisor lane quality |
+| 004 | apply-metadata-fixes-and-resweep | Apply audit recommendations and re-run seeded embedding sweep |
+| 005 | populate-intent-signals-and-relationships | Populate derived.intent_signals and manual relationship fields |
+| 006 | system-skill-advisor-extraction | Phase parent for migrating skill advisor to dedicated .opencode/skills package |
+| 007 | cross-skill-auto-propagation | skill_graph_propagate_enhances - cross-skill auto-propagation MVP |
 
 ---
 

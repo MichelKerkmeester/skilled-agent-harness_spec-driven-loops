@@ -25,10 +25,10 @@ This sub-phase groups deep research charters and remediation work for automation
 
 | ID | Slug | Summary |
 |----|------|---------|
-| 016 | automation-self-management-deep-research | Research Charter: Automation & Self-Management |
-| 017 | automation-reality-supplemental-research | Research Charter: Automation Reality Supplemental |
-| 046 | system-deep-research-bugs-and-improvements | Research Charter: System Deep Research — Bugs and Improvements |
-| 049 | deep-research-finding-remediation | Feature Specification: 049 Deep-Research Finding Remediation (Phase Parent) |
+| 001 | automation-self-management-deep | Research Charter: Automation & Self-Management |
+| 002 | automation-reality-supplemental | Research Charter: Automation Reality Supplemental |
+| 003 | system-deep-bugs-and-improvements | Research Charter: System Deep Research - Bugs and Improvements |
+| 004 | deep-research-finding-remediation | 049 Deep-Research Finding Remediation (Phase Parent) |
 
 ---
 

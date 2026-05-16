@@ -25,10 +25,10 @@ Coordinate followup and post-program work across quality passes, runtime cleanup
 
 | ID | Slug | Summary |
 |----|------|---------|
-| 005 | post-program-cleanup | Feature specification for post-program cleanup tasks |
-| 007 | vitest-recovery-followup | Vitest baseline recovery followup - closed Unit H parked vitest cases and measured 11,804 passed / 0 failed / 90 skipped / 11 todo |
-| 024 | followup-quality-pass | Phase parent for follow-up quality pass work |
-| 054 | runtime-cleanup-followups | Three follow-on cleanups after packet 096: harden findAdvisorWorkspaceRoot against false sentinels, diagnose 50 FTS/vec mismatched IDs in memory_health, bulk-delete 2,751 deprecated-tier records |
+| 001 | post-program-cleanup | 005 Post-Program Cleanup |
+| 002 | vitest-recovery-followup | Vitest baseline recovery followup |
+| 003 | followup-quality-pass | Follow-up Quality Pass |
+| 004 | runtime-cleanup-followups | Three follow-on cleanups after packet 096: harden findAdvisorWorkspaceRoot against false sentinels, diagnose 50 FTS/vec mismatched IDs in memory_health, bulk-delete 2,751 deprecated-tier records |
 
 ---
 

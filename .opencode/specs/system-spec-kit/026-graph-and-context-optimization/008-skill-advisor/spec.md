@@ -82,6 +82,18 @@ Keep this theme as the single active parent for the full skill advisor system. E
 
 ---
 
+## 2. PHASE CHILDREN
+
+| ID | Slug | Summary |
+|----|------|---------|
+| 001 | skill-graph | Skill graph infrastructure covering metadata quality, structural migration, daemon/advisor unification, and extraction across 7 children |
+| 002 | scorer | Skill advisor scoring optimization across 8 children: embed cache, cosine wiring, ablation/weight/corpus sweeps, and routing calibration |
+| 003 | router | Intent routing optimization across 5 children: search-and-routing tuning, phrase booster tailoring, smart router remediation, hook surface integration, and setup command |
+| 004 | hardening | Skill-advisor hardening and safety improvements across 4 children: deferred remediation, telemetry measurement, plugin hardening, standards alignment, and CLI Devin integration |
+| 005 | docs | Skill-advisor documentation work across 3 children: docs/code alignment, code-folder READMEs, and doc/config drift fixes |
+
+---
+
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
 

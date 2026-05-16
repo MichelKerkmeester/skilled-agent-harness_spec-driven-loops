@@ -70,6 +70,19 @@ Keep this phase-parent packet validator-compliant as a lean manifest that preser
 
 ---
 
+## 2. PHASE CHILDREN
+
+| ID | Slug | Summary |
+|----|------|---------|
+| 001 | release-readiness | Release readiness validation across 6 children: deep review, synthesis, P1/P2 remediation |
+| 002 | audit | System audits, validation sweeps, and compliance checks across 8 children |
+| 003 | cleanup | General cleanup and technical debt remediation across 31 children |
+| 004 | followup-post-program | Post-program cleanup and followup quality work across 4 children |
+| 005 | stress-test | Stress testing and coverage validation across 7 children |
+| 006 | research | Deep research charters covering automation and system improvements across 4 children |
+
+---
+
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
 

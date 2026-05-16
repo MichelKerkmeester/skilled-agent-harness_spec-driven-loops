@@ -25,12 +25,12 @@ Validate release readiness through deep review programs, synthesis of findings, 
 
 | ID | Slug | Summary |
 |----|------|---------|
-| 003 | skill-advisor-fail-open | Skill-Advisor release remediation for fail-open behavior |
-| 004 | tier2-remediation | Tier 2 remediation for release-blocking issues |
-| 032 | release-readiness-deep-review-program | Deep-review program for release readiness validation |
-| 033 | release-readiness-synthesis-and-remediation | Synthesis of readiness findings and coordinated remediation |
-| 035 | remaining-p1-p2-remediation | Remaining P1/P2 backlog cleanup and release polish |
-| 044 | p1-p2-stress-remediation | Stress-test remediation closing 36 remaining coverage gaps |
+| 001 | skill-advisor-fail-open | Skill-Advisor Release Remediation |
+| 002 | tier2-remediation | Tier 2 Remediation |
+| 003 | deep-review-program | Release-Readiness Deep-Review Program |
+| 004 | synthesis-and-remediation | 046 Release Readiness Synthesis and Remediation |
+| 005 | remaining-p1-p2-remediation | 048 Remaining P1/P2 Remediation |
+| 006 | p1-p2-stress-remediation | P1 + P2 Stress-Test Remediation - Close 36 Remaining Coverage Gaps |
 
 ---
 

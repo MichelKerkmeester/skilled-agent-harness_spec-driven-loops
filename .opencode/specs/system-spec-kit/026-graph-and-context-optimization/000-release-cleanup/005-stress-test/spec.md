@@ -25,13 +25,13 @@ This phase parent coordinates stress testing and coverage validation work across
 
 | ID | Slug | Summary |
 |----|------|---------|
-| 002 | mcp-stress-cycle-cleanup | MCP Stress-Cycle Doc/Observability Cleanup |
-| 009 | stress-test-pattern-documentation | Stress Test Pattern Documentation |
-| 015 | mcp-runtime-stress-remediation | MCP Runtime Stress-Test Remediation |
-| 025 | stress-test-folder-completion | Stress Test Folder Completion |
-| 039 | stress-test-expansion-and-alignment | Stress Test Expansion and Alignment |
-| 042 | stress-coverage-audit-and-run | Stress-Test Coverage Audit and Run |
-| 043 | stress-test-gap-remediation | Stress-Test Gap Remediation — Close 10 P0 Coverage Gaps |
+| 001 | mcp-stress-cycle-cleanup | MCP Stress-Cycle Doc/Observability Cleanup |
+| 002 | stress-test-pattern-documentation | Stress Test Pattern Documentation |
+| 003 | mcp-runtime-stress-remediation | MCP Runtime Stress-Test Remediation |
+| 004 | stress-test-folder-completion | Stress Test Folder Completion |
+| 005 | expansion-and-alignment | 052 Stress Test Expansion and Alignment |
+| 006 | stress-coverage-audit-and-run | Stress-Test Coverage Audit and Run |
+| 007 | stress-test-gap-remediation | Stress-Test Gap Remediation - Close 10 P0 Coverage Gaps |
 
 ---
 

@@ -23,8 +23,8 @@
     "entities": [],
     "causal_summary": "Coordinates followup and post-program work across quality passes, runtime cleanup, test recovery, and iterative improvements. The sub-phase includes 002-vitest-recovery-followup for test baseline recovery and 004-runtime-cleanup-followups for packet 096 followups including workspace root hardening and memory health diagnostics.",
     "created_at": "2026-05-16T09:00:00Z",
-    "last_save_at": "2026-05-16T09:00:00Z",
-    "save_lineage": "cli-devin-swe-1.6-w3a",
+    "last_save_at": "2026-05-16T11:30:00Z",
+    "save_lineage": "cli-devin-swe-1.6-w3f",
     "last_accessed_at": null,
     "source_docs": ["spec.md", "README.md"]
   }

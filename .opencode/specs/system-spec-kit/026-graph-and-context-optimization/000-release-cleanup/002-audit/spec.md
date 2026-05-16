@@ -26,14 +26,14 @@ Coordinate system-wide audits, validation sweeps, and compliance checks to ensur
 
 | ID | Slug | Summary |
 |----|------|---------|
-| 008 | tanstack-security-audit | Global Security Sweep + Supply-Chain Audit |
-| 008 | w3-w7-runtime-wiring-and-audit | W3-W7 Runtime Wiring and Audit |
-| 018 | doc-truth-pass | Doc Truth Pass |
-| 019 | code-graph-watcher-retraction | Code Graph Watcher Retraction |
-| 020 | memory-retention-sweep | Memory Retention Sweep |
-| 022 | full-matrix-execution-validation | Full-Matrix Execution Validation |
-| 036 | runtime-command-agent-alignment-review | Runtime Command Agent Alignment Review |
-| 045 | drift-finding-fixes | Drift Finding Fixes |
+| 001 | tanstack-security-audit | Global Security Sweep + Supply-Chain Audit |
+| 002 | w3-w7-runtime-wiring-and-audit | 008 W3-W7 Runtime Wiring and Audit |
+| 003 | doc-truth-pass | Doc Truth Pass |
+| 004 | code-graph-watcher-retraction | Code Graph Watcher Retraction |
+| 005 | memory-retention-sweep | Memory Retention Sweep |
+| 006 | full-matrix-execution-validation | Full-Matrix Execution Validation |
+| 007 | runtime-command-agent-alignment-review | 049 Runtime Command Agent Alignment Review |
+| 008 | drift-finding-fixes | Drift Finding Fixes |
 
 ---
 

@@ -12,7 +12,7 @@
     "config-drift",
     "025"
   ],
-  "lastUpdated": "2026-05-16T00:00:00Z",
+  "lastUpdated": "2026-05-16T09:12:00.324Z",
   "specId": "025",
   "folderSlug": "doc-and-config-drift-fixes",
   "parentChain": [
@@ -21,6 +21,9 @@
     "008-skill-advisor",
     "005-docs"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": []
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "16-05-26_10-11__issues-drift-create-spec-folder-for-it.md",
+    "16-05-26_10-12__issues-drift-create-spec-folder-for-it.md"
+  ]
 }

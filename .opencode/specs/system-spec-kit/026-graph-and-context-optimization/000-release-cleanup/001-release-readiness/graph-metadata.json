@@ -25,8 +25,8 @@
     "entities": [],
     "causal_summary": "Validate release readiness through deep review programs and systematic P1/P2 remediation. The phase parent coordinates 003-deep-review-program for deep-review execution and 006-p1-p2-stress-remediation for closing 36 remaining coverage gaps, alongside component-specific remediation for skill-advisor fail-open and tier2 issues.",
     "created_at": "2026-05-16T09:00:00Z",
-    "last_save_at": "2026-05-16T09:00:00Z",
-    "save_lineage": "cli-devin-swe-1.6-w3a",
+    "last_save_at": "2026-05-16T11:30:00Z",
+    "save_lineage": "cli-devin-swe-1.6-w3f",
     "last_accessed_at": null,
     "source_docs": ["spec.md", "README.md"]
   }

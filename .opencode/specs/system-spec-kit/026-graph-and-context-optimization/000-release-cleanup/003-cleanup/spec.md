@@ -26,37 +26,37 @@ This sub-phase owns general cleanup and technical debt remediation across the sy
 
 | ID | Slug | Summary |
 |----|------|---------|
-| 001 | memory-indexer-storage-boundary | Memory-indexer storage-boundary remediation |
-| 006 | search-query-rag-optimization | Search query RAG optimization |
-| 006 | vitest-baseline-recovery | Vitest baseline recovery (198 failures fixed) |
-| 007 | search-rag-measurement-driven-implementation | Search RAG measurement-driven implementation |
-| 010 | vestigial-embedding-readiness-gate-removal | Delete vestigial embedding-readiness gate |
-| 011 | stale-doc-and-readme-fixes | Stale doc + README fixes (Tier 1+2) |
-| 012 | broad-suite-vitest-honesty | Broad-suite vitest honesty |
-| 013 | skdoc-legacy-template-debt-cleanup | sk-doc legacy template debt cleanup |
-| 014 | phase-parent-documentation | Phase parent documentation |
-| 021 | half-auto-upgrades | Half-auto upgrades |
-| 023 | cli-matrix-adapter-runners | CLI matrix adapter runners |
-| 026 | code-graph-catalog-and-playbook | Code-graph catalog and playbook |
-| 027 | evergreen-doc-packet-id-removal | Evergreen doc packet ID removal |
-| 028 | resource-maps-and-memory-finalization | Resource maps and memory finalization |
-| 029 | root-readme-refresh | Root README refresh |
-| 030 | hook-plugin-per-runtime-testing | Hook plugin per runtime testing |
-| 031 | hook-test-sandbox-fix | Hook test sandbox fix |
-| 034 | matrix-runners-snake-case-rename | Matrix runners snake case rename |
-| 037 | feature-catalog-shape-realignment | Feature catalog shape realignment |
-| 038 | coco-index-feature-catalog | CocoIndex feature catalog |
-| 040 | sk-doc-conformance-sweep-and-template-cleanup | sk-doc conformance sweep and template cleanup |
-| 041 | cli-skills-baseline-overlay-contract | CLI skills codebase-agnostic standards contract |
-| 047 | pre-existing-test-failure-remediation | Pre-existing test failure remediation |
-| 048 | iter-001-daemon-concurrency-fixes | Iteration-001 daemon concurrency fixes |
-| 050 | architecture-diagrams-and-topology | Architecture diagrams and topology |
-| 051 | readme-code-template | README code template governance |
-| 052 | missing-code-readmes-resource-map | Missing code READMEs resource map |
-| 053 | doc-alignment-and-readme-filling | Doc-alignment and missing-README fill-in |
-| 055 | autoclean-orphan-files | AutoClean orphan files |
-| 056 | test-fixture-singular-to-plural-sweep | Test fixture singular-to-plural sweep |
-| 057 | cocoindex-voyage-only-this-machine | CocoIndex voyage-only on local machine |
+| 001 | memory-indexer-storage-boundary | Memory-Indexer Storage-Boundary Remediation |
+| 002 | search-query-rag-optimization | 006 Search Query RAG Optimization |
+| 003 | vitest-baseline-recovery | Vitest baseline recovery |
+| 004 | search-rag-measurement-driven-implementation | 007 Search RAG Measurement-Driven Implementation |
+| 005 | vestigial-embedding-readiness-gate-removal | Delete Vestigial Embedding-Readiness Gate |
+| 006 | stale-doc-and-readme-fixes | Stale Doc + README Fixes (Tier 1+2) |
+| 007 | broad-suite-vitest-honesty | Broad-Suite Vitest Honesty |
+| 008 | skdoc-legacy-template-debt-cleanup | Sk-doc Legacy Template Debt Cleanup |
+| 009 | phase-parent-documentation | Phase Parent Documentation |
+| 010 | half-auto-upgrades | Half-Auto Upgrades |
+| 011 | cli-matrix-adapter-runners | CLI Matrix Adapter Runners |
+| 012 | code-graph-catalog-and-playbook | 039 code-graph-catalog-and-playbook |
+| 013 | evergreen-doc-packet-id-removal | Evergreen Doc Packet ID Removal |
+| 014 | resource-maps-and-memory-finalization | 041 Resource Maps and Memory Finalization |
+| 015 | root-readme-refresh | 042 Root README Refresh |
+| 016 | hook-plugin-per-runtime-testing | Hook Plugin Per Runtime Testing |
+| 017 | hook-test-sandbox-fix | Hook Test Sandbox Fix |
+| 018 | matrix-runners-snake-case-rename | 047 matrix_runners Snake Case Rename |
+| 019 | feature-catalog-shape-realignment | 050 Feature Catalog Shape Realignment |
+| 020 | coco-index-feature-catalog | 051 CocoIndex Feature Catalog |
+| 021 | sk-doc-conformance-sweep | sk-doc Conformance Sweep and Template Cleanup |
+| 022 | cli-skills-baseline-overlay-contract | CLI Skills Codebase-Agnostic Standards Contract |
+| 023 | pre-existing-test-failure-remediation | Pre-Existing Test Failure Remediation |
+| 024 | iter-001-daemon-concurrency-fixes | Iteration-001 Daemon Concurrency Fixes |
+| 025 | architecture-diagrams-and-topology | Architecture diagrams and topology trees |
+| 026 | readme-code-template | README code template governance |
+| 027 | missing-code-readmes-resource-map | Missing Code READMEs Resource Map |
+| 028 | doc-alignment-and-readme-filling | Doc-alignment and missing-README fill-in |
+| 029 | autoclean-orphan-files | 055 AutoClean Orphan Files |
+| 030 | test-fixture-singular-to-plural-sweep | 056 Test Fixture Singular-to-Plural Sweep |
+| 031 | cocoindex-voyage-only-this-machine | 057 CocoIndex Voyage-Only on Local Machine |
 
 ---
 

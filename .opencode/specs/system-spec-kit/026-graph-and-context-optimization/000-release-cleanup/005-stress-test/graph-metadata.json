@@ -26,8 +26,8 @@
     "entities": [],
     "causal_summary": "This phase parent coordinates stress testing and coverage validation across 7 child packets, addressing test pattern documentation, MCP runtime stress remediation, and structural organization. The children 006-stress-coverage-audit-and-run and 007-stress-test-gap-remediation specifically focus on coverage audit and closing 10 P0 coverage gaps.",
     "created_at": "2026-05-16T09:00:00Z",
-    "last_save_at": "2026-05-16T09:00:00Z",
-    "save_lineage": "cli-devin-swe-1.6-w3a",
+    "last_save_at": "2026-05-16T11:30:00Z",
+    "save_lineage": "cli-devin-swe-1.6-w3f",
     "last_accessed_at": null,
     "source_docs": ["spec.md", "README.md"]
   }

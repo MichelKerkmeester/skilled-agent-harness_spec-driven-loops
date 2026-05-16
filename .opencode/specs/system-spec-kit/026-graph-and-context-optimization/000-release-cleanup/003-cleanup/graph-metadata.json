@@ -50,8 +50,8 @@
     "entities": [],
     "causal_summary": "General cleanup and technical debt remediation across documentation, templates, test infrastructure, code graph, and resource management. The 31 children address orphan files, template debt, README alignment, test fixture management, and daemon concurrency fixes, with 003-cleanup/008-skdoc-legacy-template-debt-cleanup targeting template debt and 003-cleanup/003-vitest-baseline-recovery fixing 198 vitest failures.",
     "created_at": "2026-05-16T09:00:00Z",
-    "last_save_at": "2026-05-16T09:00:00Z",
-    "save_lineage": "cli-devin-swe-1.6-w3a",
+    "last_save_at": "2026-05-16T11:30:00Z",
+    "save_lineage": "cli-devin-swe-1.6-w3f",
     "last_accessed_at": null,
     "source_docs": ["spec.md", "README.md"]
   }
