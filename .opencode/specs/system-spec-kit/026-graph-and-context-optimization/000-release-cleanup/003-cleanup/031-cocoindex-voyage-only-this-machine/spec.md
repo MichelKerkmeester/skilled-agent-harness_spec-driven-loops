@@ -2,7 +2,7 @@
 title: "Feature Specification: 057 CocoIndex Voyage-Only on Local Machine"
 description: "Daemon was leaking 2.1 GB RAM running an unwanted local sentence-transformers model and had filled rotated logs to 7.3 GB; switch this machine to Voyage-only via per-user config + make the local-LLM stack an opt-in install extra so the fork stays cross-machine compatible."
 trigger_phrases:
-  - "057-cocoindex-voyage-only-this-machine"
+  - "031-cocoindex-voyage-only-this-machine"
   - "cocoindex voyage local llm"
   - "ccc run-daemon ram leak"
   - "daemon.log.1 7.3GB"
@@ -12,7 +12,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/057-cocoindex-voyage-only-this-machine"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/031-cocoindex-voyage-only-this-machine"
     last_updated_at: "2026-05-10T12:35:00Z"
     last_updated_by: "spec-author"
     recent_action: "Retroactive Level 2 spec authoring after live remediation"
@@ -25,7 +25,7 @@ _memory:
       - "~/.cocoindex_code/global_settings.yml"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "057-cocoindex-voyage-only-this-machine"
+      session_id: "031-cocoindex-voyage-only-this-machine"
       parent_session_id: null
     completion_pct: 100
     open_questions: []

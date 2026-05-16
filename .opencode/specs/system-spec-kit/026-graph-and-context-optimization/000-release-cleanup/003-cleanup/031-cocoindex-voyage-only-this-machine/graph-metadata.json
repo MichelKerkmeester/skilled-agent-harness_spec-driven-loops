@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/057-cocoindex-voyage-only-this-machine",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/057-cocoindex-voyage-only-this-machine",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/031-cocoindex-voyage-only-this-machine",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/031-cocoindex-voyage-only-this-machine",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup",
   "children_ids": [],
   "manual": {
@@ -11,7 +11,7 @@
   },
   "derived": {
     "trigger_phrases": [
-      "057-cocoindex-voyage-only-this-machine",
+      "031-cocoindex-voyage-only-this-machine",
       "cocoindex voyage local llm",
       "ccc run-daemon ram leak",
       "daemon.log.1 7.3GB",
@@ -25,7 +25,7 @@
       "cocoindex voyage tasks"
     ],
     "key_topics": [
-      "057-cocoindex-voyage-only-this-machine",
+      "031-cocoindex-voyage-only-this-machine",
       "cocoindex",
       "voyage",
       "local",

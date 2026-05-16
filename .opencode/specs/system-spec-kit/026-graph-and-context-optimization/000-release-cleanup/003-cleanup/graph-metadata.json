@@ -34,7 +34,7 @@
     "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cleanup/028-doc-alignment-and-readme-filling",
     "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cleanup/029-autoclean-orphan-files",
     "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cleanup/030-test-fixture-singular-to-plural-sweep",
-    "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cleanup/057-cocoindex-voyage-only-this-machine"
+    "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cleanup/031-cocoindex-voyage-only-this-machine"
   ],
   "manual": {
     "depends_on": [],

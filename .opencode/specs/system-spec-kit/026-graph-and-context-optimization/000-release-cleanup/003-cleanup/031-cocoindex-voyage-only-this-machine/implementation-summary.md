@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/057-cocoindex-voyage-only-this-machine"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/031-cocoindex-voyage-only-this-machine"
     last_updated_at: "2026-05-10T12:35:00Z"
     last_updated_by: "spec-author"
     recent_action: "Author implementation-summary.md"
@@ -21,7 +21,7 @@ _memory:
       - ".opencode/skills/mcp-coco-index/scripts/install.sh"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "057-cocoindex-voyage-only-this-machine"
+      session_id: "031-cocoindex-voyage-only-this-machine"
       parent_session_id: null
     completion_pct: 100
     open_questions: []
@@ -39,7 +39,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 057-cocoindex-voyage-only-this-machine |
+| **Spec Folder** | 031-cocoindex-voyage-only-this-machine |
 | **Completed** | 2026-05-10 |
 | **Level** | 2 |
 | **Actual Effort** | ~21 min (estimated 22 min) |

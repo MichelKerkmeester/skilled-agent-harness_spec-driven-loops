@@ -34,7 +34,7 @@ Documentation fixes, template debt, orphan management, remediation.
 - `028-doc-alignment-and-readme-filling`
 - `029-autoclean-orphan-files`
 - `030-test-fixture-singular-to-plural-sweep`
-- `057-cocoindex-voyage-only-this-machine`
+- `031-cocoindex-voyage-only-this-machine`
 
 ## Provenance
 

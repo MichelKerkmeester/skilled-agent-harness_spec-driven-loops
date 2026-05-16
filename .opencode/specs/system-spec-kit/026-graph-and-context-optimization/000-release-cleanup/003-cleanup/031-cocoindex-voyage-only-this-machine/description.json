@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/057-cocoindex-voyage-only-this-machine",
+  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/031-cocoindex-voyage-only-this-machine",
   "description": "Feature Specification: 057 CocoIndex Voyage-Only on Local Machine",
   "keywords": [
     "feature",
