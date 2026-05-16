@@ -47,7 +47,7 @@ INTERNAL_RENUMBER = {
     },
     "008-skill-advisor": {
         # 006-search-routing-advisor children: only renumber those that closed the gap at 004.
-        "005-skill-advisor-docs-and-code-alignment":         "001-skill-advisor-docs-and-code-alignment",
+        "005-skill-advisor-docs-and-code-alignment":         "001-docs-and-code-alignment",
         "006-smart-router-remediation-and-opencode-plugin":  "003-smart-router-remediation-and-opencode-plugin",
         "007-deferred-remediation-and-telemetry-run":        "001-deferred-remediation-and-telemetry-run",
         # 010-hook-package advisor children → 008 with new slots 007-011.
@@ -61,7 +61,7 @@ INTERNAL_RENUMBER = {
     "007-code-graph": {
         # 010 → 007 children get new slots 004 and 005. Internal sibling refs to those.
         "013-code-graph-hook-improvements":                  "003-code-graph-hook-improvements",
-        "015-code-graph-advisor-refinement":                 "005-code-graph-advisor-refinement",
+        "015-code-graph-advisor-refinement":                 "004-code-graph-advisor-refinement",
     },
 }
 
@@ -75,7 +75,7 @@ ADVISOR_RELOCATIONS = {
     "009-skill-advisor-standards-alignment":             ("008-skill-advisor", "003-skill-advisor-standards-alignment"),
     "014-skill-advisor-hook-improvements":               ("008-skill-advisor", "001-skill-advisor-hook-improvements"),
     "013-code-graph-hook-improvements":                  ("007-code-graph", "003-code-graph-hook-improvements"),
-    "015-code-graph-advisor-refinement":                 ("007-code-graph", "005-code-graph-advisor-refinement"),
+    "015-code-graph-advisor-refinement":                 ("007-code-graph", "004-code-graph-advisor-refinement"),
 }
 
 # Top-level wrapper renumbering applied across all trees (from user's first-pass renumber that wasn't reflected in cross-refs).
@@ -112,9 +112,9 @@ QUALIFIED_RELOCATIONS = [
     ("../../010-hook-parity/009-skill-advisor-standards-alignment/",  "../../008-skill-advisor/003-skill-advisor-standards-alignment/"),
     ("../../010-hook-parity/014-skill-advisor-hook-improvements/",    "../../008-skill-advisor/001-skill-advisor-hook-improvements/"),
     ("../../010-hook-parity/013-code-graph-hook-improvements/",       "../../007-code-graph/003-code-graph-hook-improvements/"),
-    ("../../010-hook-parity/015-code-graph-advisor-refinement/",      "../../007-code-graph/005-code-graph-advisor-refinement/"),
+    ("../../010-hook-parity/015-code-graph-advisor-refinement/",      "../../007-code-graph/004-code-graph-advisor-refinement/"),
     # 008-skill-advisor close-the-gap renumber for 006-children (005→004, 006→005, 007→006).
-    ("../../008-skill-advisor/005-skill-advisor-docs-and-code-alignment/",      "../../008-skill-advisor/001-skill-advisor-docs-and-code-alignment/"),
+    ("../../008-skill-advisor/005-skill-advisor-docs-and-code-alignment/",      "../../008-skill-advisor/001-docs-and-code-alignment/"),
     ("../../008-skill-advisor/006-smart-router-remediation-and-opencode-plugin/", "../../008-skill-advisor/003-smart-router-remediation-and-opencode-plugin/"),
     ("../../008-skill-advisor/007-deferred-remediation-and-telemetry-run/",      "../../008-skill-advisor/001-deferred-remediation-and-telemetry-run/"),
     # Top-level wrapper renames at fully-qualified depth.
@@ -145,7 +145,7 @@ CROSS_TREE_FROM_008 = {
     "012-docs-impact-remediation":           ("010-hook-parity", "008-docs-impact-remediation"),
     # And to 007-code-graph for code-graph slots that were in 010:
     "013-code-graph-hook-improvements":      ("007-code-graph", "003-code-graph-hook-improvements"),
-    "015-code-graph-advisor-refinement":     ("007-code-graph", "005-code-graph-advisor-refinement"),
+    "015-code-graph-advisor-refinement":     ("007-code-graph", "004-code-graph-advisor-refinement"),
 }
 
 CROSS_TREE_FROM_007 = {

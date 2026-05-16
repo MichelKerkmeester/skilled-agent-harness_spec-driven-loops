@@ -6105,7 +6105,7 @@
       "lastUpdated": "2026-05-08T08:26:57.710Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-advisor-docs-and-code-alignment",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-docs-and-code-alignment",
       "description": "Feature Specification: Skill-Advisor Docs + Phase 020 Code Alignment",
       "keywords": [
         "feature",

@@ -1,5 +1,5 @@
 ---
-title: "...ec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-advisor-docs-and-code-alignment/tasks]"
+title: "...ec-kit/026-graph-and-context-optimization/008-skill-advisor/001-docs-and-code-alignment/tasks]"
 description: "Task list for 022 — 3 doc updates + sk-code-opencode audit + remediations."
 trigger_phrases:
   - "022 tasks"
@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-advisor-docs-and-code-alignment"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-docs-and-code-alignment"
     last_updated_at: "2026-04-19T18:40:00Z"
     last_updated_by: "claude-opus-4.7-1m"
     recent_action: "Tasks scaffolded"
@@ -83,7 +83,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->"
 
 - [x] T018 [P0] Run `npx vitest run advisor shared-payload-advisor claude-user-prompt-submit gemini-user-prompt-submit copilot-user-prompt-submit codex` — MUST PASS 118/118 [Evidence: targeted Phase 020 command returned 19 files / 118 tests passed]
 - [x] T019 [P0] Run `npx tsc --noEmit` clean [Evidence: `npx tsc --noEmit` in `mcp_server` exited 0]
-- [x] T020 [P0] Run `validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-advisor-docs-and-code-alignment --strict --no-recursive` clean [Evidence: strict validation returned errors=0, warnings=0]
+- [x] T020 [P0] Run `validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-docs-and-code-alignment --strict --no-recursive` clean [Evidence: strict validation returned errors=0, warnings=0]
 - [x] T021 [P0] Mark all P0 checklist items `[x]` with evidence [Evidence: `checklist.md` has 15/15 P0 items verified]
 - [x] T022 [P0] Update implementation-summary.md with audit findings + remediations + verification [Evidence: `implementation-summary.md` populated]
 <!-- /ANCHOR:phase-3 -->

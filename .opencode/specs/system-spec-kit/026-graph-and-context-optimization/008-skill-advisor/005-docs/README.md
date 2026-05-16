@@ -4,7 +4,7 @@ Code-folder readmes, docs/code alignment.
 
 ## Children (2)
 
-- `001-skill-advisor-docs-and-code-alignment`
+- `001-docs-and-code-alignment`
 - `002-code-folder-readmes`
 
 ## Provenance

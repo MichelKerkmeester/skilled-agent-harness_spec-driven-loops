@@ -14320,8 +14320,8 @@ exec
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-search-and-routing-tuning/spec.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-skill-advisor-setup-command/implementation-summary.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-skill-advisor-setup-command/spec.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-advisor-docs-and-code-alignment/implementation-summary.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-advisor-docs-and-code-alignment/spec.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-docs-and-code-alignment/implementation-summary.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-docs-and-code-alignment/spec.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/implementation-summary.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-skill-advisor-hook-surface/implementation-summary.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-skill-advisor-hook-surface/spec.md

@@ -40,7 +40,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify |
 | **Created** | 2026-04-19 |
 | **Parent Spec** | ../spec.md |
 | **Parent Plan** | ../plan.md |
-| **Predecessor** | ../001-skill-advisor-docs-and-code-alignment/spec.md |
+| **Predecessor** | ../001-docs-and-code-alignment/spec.md |
 | **Successor** | ../001-deferred-remediation-and-telemetry-run/spec.md |
 <!-- /ANCHOR:metadata -->
 

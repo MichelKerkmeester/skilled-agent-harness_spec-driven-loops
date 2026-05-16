@@ -48,7 +48,7 @@ _memory:
 | **Created** | 2026-04-25 |
 | **Parent** | `026-graph-and-context-optimization/008-skill-advisor/` |
 | **Parent Spec** | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/spec.md` |
-| **Related** | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-advisor-phrase-booster-tailoring/`, `001-skill-advisor-docs-and-code-alignment/`, `002-skill-graph-daemon-and-advisor-unification/` |
+| **Related** | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-advisor-phrase-booster-tailoring/`, `001-docs-and-code-alignment/`, `002-skill-graph-daemon-and-advisor-unification/` |
 <!-- /ANCHOR:metadata -->
 
 ---

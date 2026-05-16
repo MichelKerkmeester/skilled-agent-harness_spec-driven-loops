@@ -1,5 +1,5 @@
 ---
-title: "...pec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-advisor-docs-and-code-alignment/spec]"
+title: "...pec-kit/026-graph-and-context-optimization/008-skill-advisor/001-docs-and-code-alignment/spec]"
 description: "Update skill-advisor feature catalog, manual testing playbook, and README with Phase 020 hook surface additions. Verify all Phase 020 lib + hook code aligns with sk-code-opencode standards."
 trigger_phrases:
   - "022 skill-advisor docs alignment"
@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-advisor-docs-and-code-alignment"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-docs-and-code-alignment"
     last_updated_at: "2026-04-19T18:40:00Z"
     last_updated_by: "claude-opus-4.7-1m"
     recent_action: "Phase 022 scaffolded"

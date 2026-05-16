@@ -1,5 +1,5 @@
 ---
-title: "...pec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-advisor-docs-and-code-alignment/plan]"
+title: "...pec-kit/026-graph-and-context-optimization/008-skill-advisor/001-docs-and-code-alignment/plan]"
 description: "Plan for updating skill-advisor docs to present the Phase 020 hook surface as primary and auditing Phase 020 TypeScript files against sk-code-opencode standards."
 trigger_phrases:
   - "022 implementation plan"
@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-advisor-docs-and-code-alignment"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-docs-and-code-alignment"
     last_updated_at: "2026-04-19T18:10:00Z"
     last_updated_by: "codex-gpt-5.4"
     recent_action: "Plan populated during implementation"

@@ -8,7 +8,7 @@ Scoring rubric: L (length) + R (parent-token redundancy) + G (generic-token dens
 |--------------|-------------|---|---|---|---|------:|----------|-----------|
 | 021-sk-doc-conformance-sweep | 000-release-cleanup/003-cleanup | 3 | 3 | 1 | 0 | 7 | 021-sk-doc-conformance-sweep | L=3, R=3, G=1 |
 | 001-automation-self-management-deep | 000-release-cleanup/006-research | 3 | 3 | 0 | 0 | 6 | 001-automation-self-management-deep | L=3, R=3 |
-| 001-skill-advisor-docs-and-code-alignment | 008-skill-advisor/005-docs | 3 | 3 | 0 | 0 | 6 | 001-and-code-alignment | L=3.0, R=3 |
+| 001-docs-and-code-alignment | 008-skill-advisor/005-docs | 3 | 3 | 0 | 0 | 6 | 001-and-code-alignment | L=3.0, R=3 |
 | 002-automation-reality-supplemental-research | 000-release-cleanup/006-research | 3 | 3 | 0 | 0 | 6 | 002-automation-reality-supplemental | L=3, R=3 |
 | 002-scaffold-system-skill-advisor-package | 008-skill-advisor/001-skill-graph/006-system-skill-advisor-extraction | 3 | 3 | 0 | 0 | 6 | 002-scaffold-package | L=3.0, R=3 |
 | 002-skill-graph-daemon-and-advisor-unification | 008-skill-advisor/001-skill-graph | 3 | 3 | 0 | 0 | 6 | 002-daemon-and-unification | L=3, R=3 |

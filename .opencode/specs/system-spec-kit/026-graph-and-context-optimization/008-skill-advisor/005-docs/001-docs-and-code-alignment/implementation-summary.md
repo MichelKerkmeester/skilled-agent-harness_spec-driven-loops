@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-advisor-docs-and-code-alignment"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-docs-and-code-alignment"
     last_updated_at: "2026-04-19T18:10:00Z"
     last_updated_by: "codex-gpt-5.4"
     recent_action: "Docs updated, audit remediations applied, all verification passed"
@@ -19,7 +19,7 @@ _memory:
       - "../../../../skill/skill-advisor/README.md"
       - "../../../../skill/skill-advisor/feature_catalog/feature_catalog.md"
       - "../../../../skill/skill-advisor/manual_testing_playbook/manual_testing_playbook.md"
-      - ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-advisor-docs-and-code-alignment/scratch/audit-findings.md"
+      - ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-docs-and-code-alignment/scratch/audit-findings.md"
     completion_pct: 100
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->"
 ---
