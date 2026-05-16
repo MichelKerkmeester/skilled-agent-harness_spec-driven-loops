@@ -64,7 +64,7 @@ Run the owning package test command from the nearest package boundary.
 | Feature | What It Does |
 |---|---|
 | Folder boundary | Documents direct code files under `mcp_server/tests/handlers`. |
-| sk-code alignment | Points reviewers at OpenCode naming, header, error-handling, and type-discipline checks. |
+| sk-code alignment | Points reviewers at OpenCode naming, header, error-handling and type-discipline checks. |
 | Verification handoff | Records the expected owner and audit packet for follow-up work. |
 
 <!-- /ANCHOR:features -->
@@ -87,7 +87,7 @@ Run the owning package test command from the nearest package boundary.
 
 | Setting | Default | Purpose |
 |---|---|---|
-| sk-code surface | OPENCODE | Applies OpenCode TypeScript, JavaScript, Python, Shell, and config conventions. |
+| sk-code surface | OPENCODE | Applies OpenCode TypeScript, JavaScript, Python, Shell and config conventions. |
 | README scope | Direct folder | This file documents this folder, not sibling folders. |
 
 <!-- /ANCHOR:configuration -->

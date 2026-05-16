@@ -47,11 +47,11 @@ Use this README when you need a human map of the skill. Use [SKILL.md](./SKILL.m
 |---|---|
 | Skill version | `1.0.3.1` |
 | Runtime package | `@spec-kit/system-code-graph` |
-| MCP server name | `mk-code-index` (config key `mk_code_index` — MCP converts hyphens to underscores for namespace prefixes) |
+| MCP server name | `mk-code-index` (config key `mk_code_index`. MCP converts hyphens to underscores for namespace prefixes) |
 | Client namespace | `mcp__mk_code_index__*` |
 | Active MCP tools | 11 |
 | Storage | SQLite files under `mcp_server/database/` |
-| Database path override | `SPECKIT_CODE_GRAPH_DB_DIR` env var (default: `.opencode/skills/system-code-graph/mcp_server/database/`). Override only to point at an alternate canonical directory; the path must stay inside the workspace for the launcher's standalone-storage guard to permit it. |
+| Database path override | `SPECKIT_CODE_GRAPH_DB_DIR` env var (default: `.opencode/.spec-kit/code-graph/database/`). Override only to point at an alternate canonical directory. The path must stay inside the workspace for the launcher's standalone-storage guard to permit it. |
 | Primary docs | `feature_catalog/`, `manual_testing_playbook/`, `mcp_server/**/README.md`, `ARCHITECTURE.md` |
 
 ### How This Compares

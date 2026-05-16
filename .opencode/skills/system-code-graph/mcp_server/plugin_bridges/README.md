@@ -33,14 +33,20 @@ trigger_phrases:
 
 Current state:
 
-- `mk-code-graph-bridge.mjs` is the only file. It initializes the code-graph runtime, calls the session resume handler and outputs a JSON transport payload on stdout.
-- The bridge requires a compiled MCP server. It imports from `../dist/handlers/session-resume.js`, `../dist/lib/search/vector-index.js` and `../dist/lib/session/session-manager.js`.
-- Intended to be invoked by spec-kit session resume flows during context compaction to retrieve code-graph context for injection into the compacted session.
+- `mk-code-graph-bridge.mjs` is the only file. Intended to initialize the code-graph runtime, call the session resume handler, and output a JSON transport payload on stdout.
 - The bridge supports `--minimal` and `--spec-folder` flags. Any other flag is silently ignored.
 - Output is JSON text on stdout. Errors go to stderr.
 - All `console.*` output from runtime modules is redirected to stderr to keep stdout pure JSON.
 
-Runtime initialization must finish before the session resume call executes. The module does not import external packages beyond the MCP server runtime.
+**Post-extraction drift status:** The bridge's `import` statements currently point at modules that moved to `system-spec-kit` during the three-way isolation refactor (v1.0.3.0). The three import targets are:
+
+| Bridge expects (broken) | Actual current location |
+|---|---|
+| `../dist/handlers/session-resume.js` | `.opencode/skills/system-spec-kit/mcp_server/dist/handlers/session-resume.js` |
+| `../dist/lib/search/vector-index.js` | `.opencode/skills/system-spec-kit/mcp_server/dist/lib/search/vector-index.js` |
+| `../dist/lib/session/session-manager.js` | `.opencode/skills/system-spec-kit/mcp_server/dist/lib/session/session-manager.js` |
+
+The session-resume + context-compaction handlers stayed in `system-spec-kit` (per ADR-001 ownership boundary). The bridge needs either a cross-skill import rewrite (with the appropriate compile-time and runtime guarantees) or full retirement. Until then, the bridge is non-functional. Active callers should route through `system-spec-kit` handlers directly. Follow-on packet TBD.
 
 <!-- /ANCHOR:overview -->
 
@@ -62,7 +68,7 @@ Runtime initialization must finish before the session resume call executes. The 
 
 | Boundary | Rule |
 |---|---|
-| Imports | Only imports compiled runtime from `../dist/`. Does not import source TypeScript directly. |
+| Imports | Currently points at `../dist/` paths that no longer exist post-extraction. See §1 Post-extraction drift status. |
 | Invocation | Called by spec-kit during context compaction. Not a standalone server or daemon. |
 | Output | JSON text payload on stdout. Errors and diagnostics on stderr. |
 | Dependencies | Requires the MCP server to be built (`dist/` directory present). |
@@ -139,6 +145,6 @@ Expected result: a single JSON document on stdout with the resume payload. Exit 
 - [Skill README](../../README.md)
 - [Handlers: handlers/](../handlers/README.md)
 
-**Naming note:** The bridge file `mk-code-graph-bridge.mjs` matches the plugin name `mk-code-graph` and the skill folder `system-code-graph`. The underlying MCP server name is `mk-code-index` (tool prefix `mcp__mk_code_index__*`), intentionally kept stable — see ADR-002 in the 036 packet.
+**Naming note:** The bridge file `mk-code-graph-bridge.mjs` matches the plugin name `mk-code-graph` and the skill folder `system-code-graph`. The underlying MCP server name is `mk-code-index` (tool prefix `mcp__mk_code_index__*`), intentionally kept stable. See ADR-002 in the 036 packet.
 
 <!-- /ANCHOR:related -->

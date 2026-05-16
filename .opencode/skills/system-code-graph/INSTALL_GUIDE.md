@@ -14,7 +14,7 @@ trigger_phrases:
 
 <!-- sk-doc-template: skill_reference_install_guide -->
 
-This is the canonical bootstrap guide for the standalone System Code Graph MCP server. The server runs as `mk_code_index` (filesystem key `mk-code-index`), separate from `mk-spec-memory` and `mk_skill_advisor`, while exposing the public tool ids `code_graph_scan`, `code_graph_query`, `code_graph_status`, `code_graph_context`, `code_graph_verify`, `code_graph_apply`, `detect_changes`, `ccc_status`, `ccc_reindex`, and `ccc_feedback`.
+This is the canonical bootstrap guide for the standalone System Code Graph MCP server. The server runs as `mk_code_index` (filesystem key `mk-code-index`), separate from `mk-spec-memory` and `mk_skill_advisor`, while exposing the public tool ids `code_graph_scan`, `code_graph_query`, `code_graph_classify_query_intent`, `code_graph_status`, `code_graph_context`, `code_graph_verify`, `code_graph_apply`, `detect_changes`, `ccc_status`, `ccc_reindex`, and `ccc_feedback`.
 
 ---
 
@@ -46,14 +46,14 @@ Public MCP namespace: `mcp__mk_code_index__*`. Hyphens in the server name become
 
 | Field | Value |
 |---|---|
-| Skill version | `1.0.0.0` |
+| Skill version | `1.0.3.1` |
 | Runtime package | `@spec-kit/system-code-graph` |
 | Server name | `mk-code-index` |
 | Config key | `mk_code_index` |
 | Launcher | `.opencode/bin/mk-code-index-launcher.cjs` |
 | Entry point | `.opencode/skills/system-code-graph/mcp_server/dist/index.js` |
 | Database (default) | `.opencode/.spec-kit/code-graph/database/code-graph.sqlite` |
-| MCP tools | 10 (see [README.md](./README.md) §3.2) |
+| MCP tools | 11 (see [README.md](./README.md) §3.2) |
 
 <!-- /ANCHOR:1-overview -->
 
@@ -194,7 +194,7 @@ Current code-graph baseline:
 
 | Metric | Expected |
 | --- | --- |
-| Active MCP tools | 10 |
+| Active MCP tools | 11 |
 | TypeScript build | Exit 0 from `tsc --build` |
 | Vitest focused run | Pass on the `code-graph` suite (runtime-detection + structural-contract + handler suites) |
 | Standalone-storage guard | Launcher rejects DB paths outside the workspace |
@@ -237,7 +237,7 @@ Maintainers who index the full repo set:
 echo 'SPECKIT_CODE_GRAPH_MAINTAINER_MODE=true' >> .env.local
 ```
 
-`.env.local` is gitignored. The launcher reads it on startup, and when the flag is `true` it forces all 5 `SPECKIT_CODE_GRAPH_INDEX_*` flags to `true` before spawning the server — overriding any committed `false` values from the runtime config. Per-call scan args still override.
+`.env.local` is gitignored. The launcher reads it on startup, and when the flag is `true` it forces all 5 `SPECKIT_CODE_GRAPH_INDEX_*` flags to `true` before spawning the server, overriding any committed `false` values from the runtime config. Per-call scan args still override.
 
 <!-- /ANCHOR:7-database-and-maintainer-mode -->
 

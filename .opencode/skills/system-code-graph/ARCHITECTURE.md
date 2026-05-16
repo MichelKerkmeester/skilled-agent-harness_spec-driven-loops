@@ -69,7 +69,7 @@ Tree-sitter via `web-tree-sitter` + `tree-sitter-wasms` (multi-language WASM gra
 ### Storage layer (`mcp_server/lib/code-graph-db.ts` + `lib/code-graph-context-db.ts`)
 - Primary: **SQLite** via `better-sqlite3`. Tables: `code_files`, `code_nodes`, `code_edges`, `meta`, `verification_baselines`, `parser_skip_list`.
 - Optional: **sqlite-vec** virtual table for vector-based similarity (when CocoIndex seeds inject embeddings). Loaded via extension; gracefully degrades to no-vec if extension load fails.
-- Database file: `mcp_server/database/code-graph.sqlite` by default; `SPECKIT_CODE_GRAPH_DB_DIR` env var overrides (must stay inside workspace per standalone-storage guard in `mk-spec-memory-launcher.cjs`).
+- Database file: `.opencode/.spec-kit/code-graph/database/code-graph.sqlite` by default. `SPECKIT_CODE_GRAPH_DB_DIR` env var overrides (must stay inside workspace per standalone-storage guard in `mk-code-index-launcher.cjs`).
 
 ### Readiness state machine (`mcp_server/lib/ensure-ready.ts`)
 Every read-path tool consults a unified readiness contract before answering:
@@ -82,7 +82,7 @@ Every read-path tool consults a unified readiness contract before answering:
 | `error` | DB corruption or read failure | Tools return blocked; recommend `code_graph_apply` recovery |
 | `absent` | DB file missing | Tools return blocked; auto-create on first scan |
 
-The readiness contract is a hard refuse, not a soft degrade — explicitly to avoid serving incorrect structural answers.
+The readiness contract is a hard refuse, not a soft degrade. The intent is to avoid serving incorrect structural answers.
 
 ### Apply-mode recovery (`mcp_server/lib/apply-mode/`)
 Gated recovery operations protected by gold-query battery (run before AND after each apply). Soft-stale self-healing has bounded scope. Audit log written to JSONL. Rollback-bad-apply restores from the last known-good baseline.
@@ -98,14 +98,14 @@ Gated recovery operations protected by gold-query battery (run before AND after 
 - The SQLite code-graph database lifecycle (open, scan, persist, close)
 - The readiness state machine
 - Apply-mode recovery operations
-- CocoIndex bridge tools (`ccc_status`, `ccc_reindex`, `ccc_feedback`) — note these are bridges, not CocoIndex itself
+- CocoIndex bridge tools (`ccc_status`, `ccc_reindex`, `ccc_feedback`). Note these are bridges, not CocoIndex itself.
 
 ### What this skill does NOT own
-- **Persistent memory / continuity** — owned by `mk-spec-memory` MCP (`mcp__mk_spec_memory__*`)
-- **Semantic code search** — owned by CocoIndex (`mcp__cocoindex_code__*`); we only bridge it for cross-tool seeding
-- **Skill routing / advisor** — owned by `system-skill-advisor` MCP
-- **Spec folder lifecycle** — owned by `system-spec-kit`
-- **Deep-loop coverage graph tools** — `deep_loop_graph_*` lives in `mk-spec-memory` (not in `mk-code-index`); see feature_catalog footnote
+- **Persistent memory / continuity**: owned by `mk-spec-memory` MCP (`mcp__mk_spec_memory__*`)
+- **Semantic code search**: owned by CocoIndex (`mcp__cocoindex_code__*`). We only bridge it for cross-tool seeding.
+- **Skill routing / advisor**: owned by `system-skill-advisor` MCP
+- **Spec folder lifecycle**: owned by `system-spec-kit`
+- **Deep-loop coverage graph tools**: `deep_loop_graph_*` lives in `mk-spec-memory` (not in `mk-code-index`). See feature_catalog footnote.
 <!-- /ANCHOR:boundaries -->
 
 ---
@@ -145,7 +145,7 @@ Change-detection path:
 ## 6. INVARIANTS
 
 1. **Single-writer scan loop.** Only `code_graph_scan` writes to the SQLite DB. All other tools are read-only. This eliminates write contention.
-2. **Readiness is a hard refuse, not a soft degrade.** Stale / empty / error states block read paths with explicit `status:"blocked"` payloads — never silent empty arrays.
+2. **Readiness is a hard refuse, not a soft degrade.** Stale / empty / error states block read paths with explicit `status:"blocked"` payloads, never silent empty arrays.
 3. **No semantic search inside this skill.** Semantic intent maps to CocoIndex; structural queries map here. The `code_graph_context` tool accepts CocoIndex seeds but does not re-implement search.
 4. **Storage stays inside the workspace.** The launcher's standalone-storage guard refuses to point the DB outside the workspace tree.
 5. **Apply-mode is gold-query-gated.** Every recovery operation runs the verification battery before AND after. Failures roll back to last known-good baseline.
@@ -157,10 +157,10 @@ Change-detection path:
 <!-- ANCHOR:extension-points -->
 ## 7. EXTENSION POINTS
 
-- **New language support** — add a tree-sitter WASM grammar to `tree-sitter-wasms` dependency and register in the parser map.
-- **New query operation** — add to `code_graph_query` operation enum + handler dispatch + tool-schema description.
-- **New apply operation** — add to `code_graph_apply` operation enum + gated handler + audit-log writer.
-- **CocoIndex bridge expansion** — new `ccc_*` tools can be added alongside the existing 3; they remain thin pass-throughs to the CocoIndex binary.
+- **New language support**: add a tree-sitter WASM grammar to `tree-sitter-wasms` dependency and register in the parser map.
+- **New query operation**: add to `code_graph_query` operation enum + handler dispatch + tool-schema description.
+- **New apply operation**: add to `code_graph_apply` operation enum + gated handler + audit-log writer.
+- **CocoIndex bridge expansion**: new `ccc_*` tools can be added alongside the existing 3. They remain thin pass-throughs to the CocoIndex binary.
 <!-- /ANCHOR:extension-points -->
 
 ---

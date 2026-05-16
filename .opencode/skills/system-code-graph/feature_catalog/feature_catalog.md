@@ -35,7 +35,7 @@ This catalog is the current feature inventory for `.opencode/skills/system-code-
 
 The catalog covers 17 runtime features across 8 groups. Per-feature files carry the implementation surface, trigger path, current automation class, fallback and cross-references.
 
-**Feature-to-tool granularity (F013/F014).** The 17 features map to **11 MCP tools** in the `mk-code-index` server because individual features often compose multiple operations on the same tool (e.g. `code_graph_query` provides multiple query operations — `outline`, `calls_from`, `calls_to`, `imports_from`, `imports_to`, `blast_radius` — each catalogued as its own feature). Additionally, the **coverage-graph deep-loop tools** (`deep_loop_graph_*`) live in the **mk-spec-memory** MCP server (`mcp__mk_spec_memory__deep_loop_graph_*`), not in `mk-code-index`. They appear in this catalog for cross-skill discoverability since they share the structural-graph workflow surface.
+**Feature-to-tool granularity (F013/F014).** The 17 features map to **11 MCP tools** in the `mk-code-index` server because individual features often compose multiple operations on the same tool. For example, `code_graph_query` provides multiple query operations (`outline`, `calls_from`, `calls_to`, `imports_from`, `imports_to`, `blast_radius`), each catalogued as its own feature. Additionally, the **coverage-graph deep-loop tools** (`deep_loop_graph_*`) live in the **mk-spec-memory** MCP server (`mcp__mk_spec_memory__deep_loop_graph_*`), not in `mk-code-index`. They appear in this catalog for cross-skill discoverability since they share the structural-graph workflow surface.
 
 | Group | Count | Scope |
 | --- | ---: | --- |
@@ -128,7 +128,7 @@ Read-only health probe that reports readiness, graph counts, parser health, edge
 
 #### Current Reality
 
-Manual diagnostic (class: manual). Uses a read-only readiness snapshot so status calls do not repair stale state. Does not perform scans — only reports current state.
+Manual diagnostic (class: manual). Uses a read-only readiness snapshot so status calls do not repair stale state. Does not perform scans, only reports current state.
 
 #### Source Files
 
@@ -180,7 +180,7 @@ Handler-level context assembly that normalizes CocoIndex/manual/graph seeds, pic
 
 #### Current Reality
 
-Half-auto (class: half). Only triggered through `code_graph_context` dispatch. Can return partial output under deadline or budget pressure — check `metadata.partialOutput` before treating responses as complete.
+Half-auto (class: half). Only triggered through `code_graph_context` dispatch. Can return partial output under deadline or budget pressure, so check `metadata.partialOutput` before treating responses as complete.
 
 #### Source Files
 
@@ -214,7 +214,7 @@ Session-scoped coverage-graph health report returning node/edge counts, relation
 
 #### Current Reality
 
-Manual (class: manual). Direct MCP call only. Empty graphs return zero counts and null signals — use upsert-enabled deep loops to populate graph events first.
+Manual (class: manual). Direct MCP call only. Empty graphs return zero counts and null signals, so use upsert-enabled deep loops to populate graph events first.
 
 #### Source Files
 
@@ -230,7 +230,7 @@ Coverage-graph write tool that stores nodes and edges for deep research/review l
 
 #### Current Reality
 
-Half-auto (class: half). Command-owned deep-research/deep-review YAML calls it conditionally on `graphEvents`. Direct MCP call remains available. No `graphEvents` means no upsert — the workflow skip is intentional.
+Half-auto (class: half). Command-owned deep-research/deep-review YAML calls it conditionally on `graphEvents`. Direct MCP call remains available. No `graphEvents` means no upsert, and the workflow skip is intentional.
 
 #### Source Files
 
@@ -314,7 +314,7 @@ CocoIndex bridge status probe reporting binary availability, index presence and 
 
 #### Current Reality
 
-Manual (class: manual). Direct MCP call only. Availability does not prove search quality — pair with an actual CocoIndex search or reindex run.
+Manual (class: manual). Direct MCP call only. Availability does not prove search quality. Pair with an actual CocoIndex search or reindex run.
 
 #### Source Files
 
