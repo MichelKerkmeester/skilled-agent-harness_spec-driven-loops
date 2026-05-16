@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/_047-handover-anchor-naming"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/047-handover-anchor-naming"
     last_updated_at: "2026-05-14T16:53:14Z"
     last_updated_by: "codex"
     recent_action: "Completed implementation tasks"
@@ -20,7 +20,7 @@ _memory:
       - ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "_047-handover-anchor-naming-tasks"
+      session_id: "047-handover-anchor-naming-tasks"
       parent_session_id: null
     completion_pct: 100
     open_questions: []
@@ -51,7 +51,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Scaffold Level 2 packet at `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/_047-handover-anchor-naming`.
+- [x] T001 Scaffold Level 2 packet at `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/047-handover-anchor-naming`.
 - [x] T002 Inspect handover template anchors.
 - [x] T003 Inspect live handover anchors in `.opencode/specs`.
 - [x] T004 Locate `session-log` references in router, tests, and docs.
