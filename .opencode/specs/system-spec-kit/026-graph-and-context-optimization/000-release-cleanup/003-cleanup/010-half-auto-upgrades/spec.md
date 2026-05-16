@@ -3,7 +3,7 @@ title: "Spec: Half-Auto Upgrades"
 template_source: "SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2"
 description: "Tier C remediation for four half-automated surfaces: Copilot freshness, Codex timeout fallback, feature-flag defaults, and advisor rebuild."
 trigger_phrases:
-  - "021-half-auto-upgrades"
+  - "010-half-auto-upgrades"
   - "Copilot freshness"
   - "Codex cold-start"
   - "feature-flag table"
@@ -13,7 +13,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/021-half-auto-upgrades"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/010-half-auto-upgrades"
     last_updated_at: "2026-04-29T20:35:30+02:00"
     last_updated_by: "cli-codex"
     recent_action: "Resource map indexed"
@@ -74,7 +74,7 @@ Upgrade each surface to either fully automated behavior or a mechanically honest
 - Codex timeout fallback marker, warning, smoke helper, docs, and test
 - Feature flags reference table in the MCP server ENV reference
 - `advisor_status` diagnostic-only docs and new explicit `advisor_rebuild` MCP tool
-- Packet-local docs under this `021-half-auto-upgrades/` folder
+- Packet-local docs under this `010-half-auto-upgrades/` folder
 
 ### Out of Scope
 

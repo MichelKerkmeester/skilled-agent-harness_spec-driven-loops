@@ -168,12 +168,12 @@ Verification:
 
 ### Packet 034: half-auto-upgrades (Tier C)
 
-Packet: 021-half-auto-upgrades
+Packet: 010-half-auto-upgrades
 Tier: C
 Class: hybrid
 Effort estimate: 16-24 hours of cli-codex work plus 2-4 human design hours for runtime behavior choices
 Dependencies: [003-doc-truth-pass, 032-code-graph-watcher-decision, 005-memory-retention-sweep]
-Operator triggers: [`/spec_kit:plan specs/system-spec-kit/026-graph-and-context-optimization/021-half-auto-upgrades`, `/spec_kit:implement specs/system-spec-kit/026-graph-and-context-optimization/021-half-auto-upgrades`]
+Operator triggers: [`/spec_kit:plan specs/system-spec-kit/026-graph-and-context-optimization/010-half-auto-upgrades`, `/spec_kit:implement specs/system-spec-kit/026-graph-and-context-optimization/010-half-auto-upgrades`]
 Maps to findings: [F1.CopilotFreshness, F1.CodexFreshness, F4.FeatureFlags, NEW-013-003, NEW-013-006]
 Scope:
 - Improve Copilot freshness from next-prompt-only where feasible, or make next-prompt semantics mechanically visible.
@@ -193,7 +193,7 @@ Packet: 006-full-matrix-execution-validation
 Tier: D
 Class: hybrid
 Effort estimate: 10-16 hours of cli-codex work
-Dependencies: [003-doc-truth-pass, 032-code-graph-watcher-decision, 005-memory-retention-sweep, 021-half-auto-upgrades, external: 030 matrix design]
+Dependencies: [003-doc-truth-pass, 032-code-graph-watcher-decision, 005-memory-retention-sweep, 010-half-auto-upgrades, external: 030 matrix design]
 Operator triggers: [`/spec_kit:plan specs/system-spec-kit/026-graph-and-context-optimization/006-full-matrix-execution-validation`, `/spec_kit:implement specs/system-spec-kit/026-graph-and-context-optimization/006-full-matrix-execution-validation`]
 Maps to findings: [all supplemental P1/P2 findings, NEW-013-004, NEW-013-005, NEW-013-008]
 Scope:

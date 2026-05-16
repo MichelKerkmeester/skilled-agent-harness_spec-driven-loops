@@ -3,13 +3,13 @@ title: "Implementation Summary: Half-Auto Upgrades"
 template_source: "SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2"
 description: "Implementation summary for packet 034 half-auto upgrade remediation."
 trigger_phrases:
-  - "021-half-auto-upgrades"
+  - "010-half-auto-upgrades"
   - "half-auto upgrade summary"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/021-half-auto-upgrades"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/010-half-auto-upgrades"
     last_updated_at: "2026-04-29T20:35:30+02:00"
     last_updated_by: "cli-codex"
     recent_action: "Resource map indexed"
@@ -29,7 +29,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 021-half-auto-upgrades |
+| **Spec Folder** | 010-half-auto-upgrades |
 | **Created** | 2026-04-29 |
 | **Status** | Complete |
 | **Level** | 2 |
@@ -101,7 +101,7 @@ Phase 1 created packet docs. Phase 2 applied sub-tasks in the requested order. P
 |-------|--------------------|--------|
 | Codex/advisor targeted tests | `npm --prefix .opencode/skills/system-spec-kit/mcp_server exec -- vitest run --config .opencode/skills/system-spec-kit/mcp_server/vitest.config.ts mcp_server/tests/hooks-codex-freshness.vitest.ts mcp_server/tests/advisor-rebuild.vitest.ts --reporter=default` | PASS: 2 files, 4 tests |
 | TypeScript build | `npm --prefix .opencode/skills/system-spec-kit/mcp_server run build` | PASS |
-| Strict validation | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/021-half-auto-upgrades --strict` | PASS |
+| Strict validation | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/010-half-auto-upgrades --strict` | PASS |
 | Scope check | `git status --short` | PASS: unrelated `.opencode/specs/...` changes observed and left untouched |
 <!-- /ANCHOR:verification -->
 

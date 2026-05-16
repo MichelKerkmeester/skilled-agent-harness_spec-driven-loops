@@ -24,7 +24,7 @@ specs/system-spec-kit/026-graph-and-context-optimization/
 ├── 003-doc-truth-pass/
 ├── 004-code-graph-watcher-retraction/
 ├── 005-memory-retention-sweep/
-├── 021-half-auto-upgrades/
+├── 010-half-auto-upgrades/
 ├── 006-full-matrix-execution-validation/
 ├── 023-cli-matrix-adapter-runners/
 ├── 024-followup-quality-pass/                          ← phase parent

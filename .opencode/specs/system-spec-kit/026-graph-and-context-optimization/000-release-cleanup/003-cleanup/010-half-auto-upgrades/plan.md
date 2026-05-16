@@ -3,13 +3,13 @@ title: "Plan: Half-Auto Upgrades"
 template_source: "SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2"
 description: "Level 2 implementation plan for packet 034 half-auto upgrade remediation."
 trigger_phrases:
-  - "021-half-auto-upgrades"
+  - "010-half-auto-upgrades"
   - "half-auto upgrade plan"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/021-half-auto-upgrades"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/010-half-auto-upgrades"
     last_updated_at: "2026-04-29T14:15:00Z"
     last_updated_by: "cli-codex"
     recent_action: "Half-auto upgrades complete"
@@ -49,7 +49,7 @@ This plan implements packet 034 from the 013 remediation backlog. It makes Copil
 
 ### Definition of Ready
 
-- [x] Packet folder identified. [EVIDENCE: user requested `021-half-auto-upgrades`]
+- [x] Packet folder identified. [EVIDENCE: user requested `010-half-auto-upgrades`]
 - [x] Source research read. [EVIDENCE: 012 and 013 reports loaded before edits]
 - [x] Target source files read before editing. [EVIDENCE: Copilot, Codex, search flags, advisor status, and env reference inspected]
 - [x] Scope locked to four sub-tasks. [EVIDENCE: no runtime feature-flag behavior changes]

@@ -3,13 +3,13 @@ title: "Checklist: Half-Auto Upgrades"
 template_source: "SPECKIT_TEMPLATE_SOURCE: checklist | v2.2"
 description: "Verification checklist for packet 034 half-auto upgrade remediation."
 trigger_phrases:
-  - "021-half-auto-upgrades"
+  - "010-half-auto-upgrades"
   - "half-auto upgrade checklist"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/021-half-auto-upgrades"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/010-half-auto-upgrades"
     last_updated_at: "2026-04-29T14:15:00Z"
     last_updated_by: "cli-codex"
     recent_action: "Half-auto upgrades complete"

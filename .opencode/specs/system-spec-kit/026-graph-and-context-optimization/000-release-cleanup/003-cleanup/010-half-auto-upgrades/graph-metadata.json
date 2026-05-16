@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/021-half-auto-upgrades",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/021-half-auto-upgrades",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/010-half-auto-upgrades",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/010-half-auto-upgrades",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization",
   "children_ids": [],
   "migrated": true,
@@ -13,7 +13,7 @@
   },
   "derived": {
     "trigger_phrases": [
-      "021-half-auto-upgrades",
+      "010-half-auto-upgrades",
       "Copilot freshness",
       "Codex cold-start",
       "feature-flag table",
@@ -23,11 +23,11 @@
       "half-auto upgrade tasks",
       "half-auto upgrade checklist",
       "half-auto upgrade summary",
-      "021-half-auto-upgrades resource map",
+      "010-half-auto-upgrades resource map",
       "half auto upgrades file ledger"
     ],
     "key_topics": [
-      "021-half-auto-upgrades",
+      "010-half-auto-upgrades",
       "copilot",
       "freshness",
       "codex",

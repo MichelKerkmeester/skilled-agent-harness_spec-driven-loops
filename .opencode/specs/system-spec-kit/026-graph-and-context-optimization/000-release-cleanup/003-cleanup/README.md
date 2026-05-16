@@ -13,7 +13,7 @@ Documentation fixes, template debt, orphan management, remediation.
 - `007-broad-suite-vitest-honesty`
 - `008-skdoc-legacy-template-debt-cleanup`
 - `009-phase-parent-documentation`
-- `021-half-auto-upgrades`
+- `010-half-auto-upgrades`
 - `023-cli-matrix-adapter-runners`
 - `026-code-graph-catalog-and-playbook`
 - `027-evergreen-doc-packet-id-removal`

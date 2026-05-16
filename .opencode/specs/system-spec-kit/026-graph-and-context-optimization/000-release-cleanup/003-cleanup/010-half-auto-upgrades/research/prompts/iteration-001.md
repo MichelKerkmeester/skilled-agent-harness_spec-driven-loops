@@ -1,6 +1,6 @@
 ## Packet 034: half-auto-upgrades — Tier C 4 sub-tasks
 
-You are cli-codex (gpt-5.5 high fast) implementing remediation packet **021-half-auto-upgrades**.
+You are cli-codex (gpt-5.5 high fast) implementing remediation packet **010-half-auto-upgrades**.
 
 ### Goal
 
@@ -61,11 +61,11 @@ Implementation:
 
 ### Packet structure to create (Level 2)
 
-Same 7-file structure as 031 under `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/021-half-auto-upgrades/`. Use 013's packet as template.
+Same 7-file structure as 031 under `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/010-half-auto-upgrades/`. Use 013's packet as template.
 
 **Deps**: `manual.depends_on=["system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-doc-truth-pass","system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-code-graph-watcher-retraction","system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/005-memory-retention-sweep"]`.
 
-**Trigger phrases**: `["021-half-auto-upgrades","Copilot freshness","Codex cold-start","feature-flag table","advisor rebuild","half-auto upgrades"]`.
+**Trigger phrases**: `["010-half-auto-upgrades","Copilot freshness","Codex cold-start","feature-flag table","advisor rebuild","half-auto upgrades"]`.
 
 **Causal summary**: `"Tier C: 4 sub-tasks. (1) Copilot next-prompt freshness wording + visible header. (2) Codex cold-start fallback marker + smoke check. (3) Feature-flag default-state table. (4) advisor_status diagnostic-only + new advisor_rebuild tool."`.
 

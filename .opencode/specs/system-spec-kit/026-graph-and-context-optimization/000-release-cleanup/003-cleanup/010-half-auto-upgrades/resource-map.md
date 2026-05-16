@@ -1,14 +1,14 @@
 ---
 title: "Resource Map - 034 half auto upgrades"
-description: "File ledger for 021-half-auto-upgrades."
+description: "File ledger for 010-half-auto-upgrades."
 trigger_phrases:
-  - "021-half-auto-upgrades resource map"
+  - "010-half-auto-upgrades resource map"
   - "half auto upgrades file ledger"
 importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/021-half-auto-upgrades"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/010-half-auto-upgrades"
     last_updated_at: "2026-04-29T20:35:30+02:00"
     last_updated_by: "codex-gpt-5.5"
     recent_action: "Resource map indexed"
@@ -32,7 +32,7 @@ _memory:
 - **Total references**: 28
 - **By category**: READMEs=0, Documents=0, Commands=0, Agents=0, Skills=20, Specs=8, Scripts=0, Tests=0, Config=0, Meta=0
 - **Missing on disk**: 0
-- **Scope**: All files created, updated, or analyzed during 021-half-auto-upgrades.
+- **Scope**: All files created, updated, or analyzed during 010-half-auto-upgrades.
 - **Generated**: 2026-04-29T20:29:34+02:00
 
 > **Action vocabulary**: `Created` · `Updated` · `Analyzed` · `Removed` · `Cited` · `Validated` · `Moved` · `Renamed`.
@@ -80,14 +80,14 @@ _memory:
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/021-half-auto-upgrades/checklist.md` | Created | OK | Packet-local spec artifact. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/021-half-auto-upgrades/description.json` | Created | OK | Packet discovery metadata refreshed by canonical save. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/021-half-auto-upgrades/graph-metadata.json` | Created | OK | Packet graph metadata refreshed by canonical save. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/021-half-auto-upgrades/implementation-summary.md` | Created | OK | Packet-local spec artifact. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/021-half-auto-upgrades/plan.md` | Created | OK | Packet-local spec artifact. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/021-half-auto-upgrades/research/prompts/iteration-001.md` | Created | OK | Research or prompt artifact captured by the packet. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/021-half-auto-upgrades/spec.md` | Created | OK | Packet-local spec artifact. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/021-half-auto-upgrades/tasks.md` | Created | OK | Packet-local spec artifact. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/010-half-auto-upgrades/checklist.md` | Created | OK | Packet-local spec artifact. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/010-half-auto-upgrades/description.json` | Created | OK | Packet discovery metadata refreshed by canonical save. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/010-half-auto-upgrades/graph-metadata.json` | Created | OK | Packet graph metadata refreshed by canonical save. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/010-half-auto-upgrades/implementation-summary.md` | Created | OK | Packet-local spec artifact. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/010-half-auto-upgrades/plan.md` | Created | OK | Packet-local spec artifact. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/010-half-auto-upgrades/research/prompts/iteration-001.md` | Created | OK | Research or prompt artifact captured by the packet. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/010-half-auto-upgrades/spec.md` | Created | OK | Packet-local spec artifact. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/010-half-auto-upgrades/tasks.md` | Created | OK | Packet-local spec artifact. |
 <!-- /ANCHOR:specs -->
 
 ---
