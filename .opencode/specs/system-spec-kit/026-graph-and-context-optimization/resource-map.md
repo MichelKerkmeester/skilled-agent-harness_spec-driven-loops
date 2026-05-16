@@ -193,3 +193,12 @@ _memory:
 
 <!-- TODO: backfill with real content; stub added by Tier 4 alignment -->
 <!-- /ANCHOR:when-to-use -->
+
+
+---
+
+## Post-Restructure Note (2026-05-16, packet 107)
+
+This resource-map predates the Wave 1-3 restructure shipped by packet 107. The active 026 top-level children are now 15 (down from 16; 004 absorbed into 003). Renamed packets: 002, 006, 014, 015. Full target-state map: see `999-spec-026-restructure-research/resource-map.md` §3 (council-approved reduced variant).
+
+A follow-on packet will refresh THIS resource-map per iter 039's proposed 14-section structure with PHASE-TO-ARTIFACT MAP and DOMAIN-TO-PHASE CROSS-REFERENCE.

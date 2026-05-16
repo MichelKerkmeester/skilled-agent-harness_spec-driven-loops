@@ -149,14 +149,15 @@
     ],
     "causal_summary": "Packet `026-graph-and-context-optimization` presents a 10-wrapper active navigation surface after two topical consolidation passes plus a post-push topology adjustment. The first pass (2026-04-21) collapsed 29 chronological phase folders into nine thematic wrappers with originals preserved as child packets. The second pass (2026-04-25 12:10) merged the former `006-search-routing-advisor/` into `008-skill-advisor/`, redistributed children of the former `009-hook-package/` across `007-code-graph/`, `008-skill-advisor/`, and the renamed `010-hook-parity/`. A subsequent post-push adjustment (2026-04-25 14:45) renamed `010-hook-parity/` to `009-hook-parity/` and removed the post-hoc `009-memory-causal-graph/` documentation packet (causal-graph infrastructure remains in production code; documentation lives in `010-graph-impact-and-affordance-uplift/005-memory-causal-trust-display/` from a display-layer perspective).",
     "created_at": "2026-04-12T09:02:53.443Z",
-    "last_save_at": "2026-05-15T18:27:59.589Z",
-    "save_lineage": "same_pass",
+    "last_save_at": "2026-05-16T05:42:13Z",
+    "save_lineage": "main_agent",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "resource-map.md"
     ],
     "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/015-tanstack-security-audit",
-    "last_active_at": "2026-05-15T18:27:59.589Z"
+    "last_active_at": "2026-05-15T18:27:59.589Z",
+    "restructure_note": "Post-restructure Wave 1-3 (packet 107): 4 renames, 7 merges, 8 deletes, 22+ archives. See z_archive/wave-2-merges/ + wave-3-deep-archives/. Active top-level children: 15 (+ 999 research packet)."
   }
 }

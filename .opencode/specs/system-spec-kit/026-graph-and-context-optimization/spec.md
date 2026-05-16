@@ -296,3 +296,30 @@ Research convergence in the archived `001-research-and-baseline` corpus means sy
 - **Task Breakdown**: See `tasks.md`
 - **Verification Checklist**: See `checklist.md`
 - **Decision Records**: See `decision-record.md`
+
+
+---
+
+## Post-Restructure State (2026-05-16, packet 107)
+
+The 026 phase parent underwent its first restructure wave per `999-spec-026-restructure-research/resource-map.md` (council-approved reduced variant).
+
+### Changes shipped (Wave 1-3)
+
+- **4 renames** (W1): `002-resource-map-template` → `002-resource-map-deep-loop-fix`; `006-graph-impact-and-affordance-uplift` → `006-external-project-adoption`; `014-local-llama-cpp` → `014-local-embeddings-migration`; `015-global-security-sweep-and-supply-chain-audit` → `015-tanstack-security-audit`
+- **7 PROCEED merges** (W2/M2-M7+M11): `057→056`, `007/002→007/014`, `007/016-020→007/014`, `004→003 (with nested children preserved)`, `009/006+007→009/002`, `013/002→013/001`, 5 documentation alignment artifacts archived
+- **8 CONTAINED deletes** (W3.1): 014/* re-review artifacts with zero external references
+- **14 DEEP archives** (W3.2): 007/* post-extraction cleanup + deep-review campaign artifacts moved to `z_archive/wave-3-deep-archives/`
+
+### Active children count
+
+15 top-level NNN-name children (+ 999 research packet). `004-runtime-executor-hardening` absorbed into 003.
+
+### Deferred to follow-on (per council 2026-05-16)
+
+- M1, M8, M9 (LOW_PRIORITY)
+- M10 (`015 → 000`, BLOCKED on 000 recatalog — 000 has 59 children with duplicate 006/007 prefixes)
+- 18 SHALLOW + MEDIUM deletes (require per-packet ref-count proof)
+- iter 039 full parent-doc restructure (20-section spec.md proposal)
+- 008-skill-advisor internal phase restructuring
+- Phase lifecycle governance (iter 047)
