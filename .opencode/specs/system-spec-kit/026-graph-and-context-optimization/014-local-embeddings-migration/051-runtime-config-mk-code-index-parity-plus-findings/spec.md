@@ -101,8 +101,8 @@ Bring runtime config identity into parity and leave a traceable ledger for every
 | `_sandbox/24--local-llm-query-intelligence/evidence/run-mcp-direct.mjs` | Modify | Broaden shared-daemon error response detection. |
 | `.opencode/skills/system-spec-kit/mcp_server/tests/shared-daemon-runner-helpers.vitest.ts` | Modify | Exercise primary `spec_kit_memory` and `cocoindex_code` client keys. |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/HANDOVER-2026-05-14-evening.md` | Modify | Reconcile 045 handover state with shipped CocoIndex wiring. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/_046-shared-daemon-suite-runner/spec.md` | Modify | Add two-client requirements and success criteria. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/_046-shared-daemon-suite-runner/implementation-summary.md` | Modify | Document the two-transport trade-off. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/046-shared-daemon-suite-runner/spec.md` | Modify | Add two-client requirements and success criteria. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/046-shared-daemon-suite-runner/implementation-summary.md` | Modify | Document the two-transport trade-off. |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/051-runtime-config-mk-code-index-parity-plus-findings/` | Create | Packet docs and metadata. |
 <!-- /ANCHOR:scope -->
 

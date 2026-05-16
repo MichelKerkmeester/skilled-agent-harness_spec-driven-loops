@@ -9,7 +9,7 @@ contextType: "spec"
 status: "complete"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/_046-shared-daemon-suite-runner"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/046-shared-daemon-suite-runner"
     last_updated_at: "2026-05-14T17:53:33Z"
     last_updated_by: "cli-codex-gpt-5-5-high"
     recent_action: "Wired second cocoindex_code MCP client; 403/404/407/410 PASS via shared daemon"
@@ -20,7 +20,7 @@ _memory:
       - "_sandbox/24--local-llm-query-intelligence/evidence/run-mcp-direct.mjs"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000045"
-      session_id: "_046-shared-daemon-suite-runner"
+      session_id: "046-shared-daemon-suite-runner"
       parent_session_id: null
     completion_pct: 100
     open_questions: []
@@ -52,7 +52,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Scaffold Level 2 packet (`_046-shared-daemon-suite-runner/`).
+- [x] T001 Scaffold Level 2 packet (`046-shared-daemon-suite-runner/`).
 - [x] T002 Inspect 043 failure evidence (`../044-suite-revalidation/implementation-summary.md`).
 - [x] T003 [P] Inspect memory launcher stdio binding (`.opencode/bin/spec-kit-memory-launcher.cjs`).
 - [x] T004 [P] Inspect MCP SDK version and client API (`mcp_server/node_modules/@modelcontextprotocol/sdk`).
@@ -83,7 +83,7 @@ _memory:
 - [x] T013 Run helper unit test (`npx vitest run tests/shared-daemon-runner-helpers.vitest.ts`).
 - [x] T014 Run smoke scenarios 403 and 410 (`node run-mcp-direct.mjs --scenarios 403,410`).
 - [x] T015 Capture summary TSV (`run-2026-05-14-shared-daemon.summary.tsv`).
-- [x] T016 Run strict packet validation (`validate.sh .../_046-shared-daemon-suite-runner --strict`).
+- [x] T016 Run strict packet validation (`validate.sh .../046-shared-daemon-suite-runner --strict`).
 - [x] T017 Fill implementation summary with architecture, smoke result, run recipe, and limitations.
 - [x] T020 Run shared Memory+CocoIndex smoke (`node run-mcp-direct.mjs --scenarios 403,404,407,410`). Evidence: 403 PASS, 404 PASS, 407 PASS, 410 PASS.
 <!-- /ANCHOR:phase-3 -->

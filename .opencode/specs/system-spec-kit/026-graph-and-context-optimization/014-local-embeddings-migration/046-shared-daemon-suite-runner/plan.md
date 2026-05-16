@@ -10,7 +10,7 @@ contextType: "spec"
 status: "complete"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/_046-shared-daemon-suite-runner"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/046-shared-daemon-suite-runner"
     last_updated_at: "2026-05-14T17:53:33Z"
     last_updated_by: "cli-codex-gpt-5-5-high"
     recent_action: "Wired second cocoindex_code MCP client; 403/404/407/410 PASS via shared daemon"
@@ -20,7 +20,7 @@ _memory:
       - "_sandbox/24--local-llm-query-intelligence/evidence/run-mcp-direct.mjs"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000045"
-      session_id: "_046-shared-daemon-suite-runner"
+      session_id: "046-shared-daemon-suite-runner"
       parent_session_id: null
     completion_pct: 100
     open_questions: []

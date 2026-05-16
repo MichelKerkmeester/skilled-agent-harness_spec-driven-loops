@@ -10,7 +10,7 @@ contextType: "spec"
 status: "complete"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/_046-shared-daemon-suite-runner"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/046-shared-daemon-suite-runner"
     last_updated_at: "2026-05-14T17:53:33Z"
     last_updated_by: "cli-codex-gpt-5-5-high"
     recent_action: "Wired second cocoindex_code MCP client; 403/404/407/410 PASS via shared daemon"
@@ -22,7 +22,7 @@ _memory:
       - ".opencode/skills/system-spec-kit/mcp_server/tests/shared-daemon-runner-helpers.vitest.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000045"
-      session_id: "_046-shared-daemon-suite-runner"
+      session_id: "046-shared-daemon-suite-runner"
       parent_session_id: null
     completion_pct: 100
     open_questions: []
@@ -45,7 +45,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/_046-shared-daemon-suite-runner` |
+| **Spec Folder** | `system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/046-shared-daemon-suite-runner` |
 | **Started** | 2026-05-14 |
 | **Completed** | 2026-05-14 |
 | **Level** | 2 |
@@ -95,7 +95,7 @@ Discovery showed the launcher starts `.opencode/skills/system-spec-kit/mcp_serve
 | `_sandbox/24--local-llm-query-intelligence/evidence/run-2026-05-14-shared-daemon.cocoindex.stderr.log` | Generated | Capped CocoIndex daemon stderr evidence. |
 | `_sandbox/24--local-llm-query-intelligence/410/workload.json` | Generated | Reproducible 50-query workload for 410. |
 | `.opencode/skills/system-spec-kit/mcp_server/tests/shared-daemon-runner-helpers.vitest.ts` | Updated | Unit coverage for parser and routing helpers. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/_046-shared-daemon-suite-runner/` | Updated | Level 2 packet docs and metadata. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/046-shared-daemon-suite-runner/` | Updated | Level 2 packet docs and metadata. |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -145,7 +145,7 @@ The command exited 0. It did not crash either daemon, and it wrote one TSV row f
 | Parser and routing unit test | PASS: `npx vitest run tests/shared-daemon-runner-helpers.vitest.ts` exited 0 with 1 file / 2 tests passing. |
 | Smoke 403/404/407/410 | PASS: command exited 0; 403 PASS; 404 PASS; 407 PASS; 410 PASS. |
 | Smoke TSV | PASS: `_sandbox/24--local-llm-query-intelligence/evidence/run-2026-05-14-shared-daemon.summary.tsv` written. |
-| Strict validate | PASS: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/_046-shared-daemon-suite-runner --strict` exited 0 with 0 errors and 0 warnings. |
+| Strict validate | PASS: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/046-shared-daemon-suite-runner --strict` exited 0 with 0 errors and 0 warnings. |
 
 ### Smoke Rows
 

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/_046-shared-daemon-suite-runner",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/_046-shared-daemon-suite-runner",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/046-shared-daemon-suite-runner",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/046-shared-daemon-suite-runner",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration",
   "children_ids": [],
   "manual": {

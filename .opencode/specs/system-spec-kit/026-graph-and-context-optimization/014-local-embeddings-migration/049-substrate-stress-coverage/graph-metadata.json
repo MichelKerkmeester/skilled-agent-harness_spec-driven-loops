@@ -49,7 +49,7 @@
       ".opencode/skills/system-spec-kit/mcp_server/stress_test/README.md",
       ".opencode/skills/system-spec-kit/mcp_server/package.json",
       ".opencode/skills/system-spec-kit/mcp_server/vitest.stress.config.ts",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/_046-shared-daemon-suite-runner/implementation-summary.md",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/046-shared-daemon-suite-runner/implementation-summary.md",
       "mcp_server/stress_test/substrate/run-substrate-stress-harness.mjs",
       "mcp_server/stress_test/substrate/README.md",
       "stress_test/substrate/README.md",

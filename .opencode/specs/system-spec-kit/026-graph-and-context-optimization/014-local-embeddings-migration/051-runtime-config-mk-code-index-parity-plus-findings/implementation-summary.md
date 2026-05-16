@@ -99,7 +99,7 @@ Work landed in logical commits. `2ad7f79fa` handles runtime config parity. `b74e
 | Launcher syntax | PASS: `node --check .opencode/bin/mk-code-index-launcher.cjs`. |
 | Runner syntax | PASS: `node --check _sandbox/24--local-llm-query-intelligence/evidence/run-mcp-direct.mjs`. |
 | Focused helper test | PASS: `npx vitest run tests/shared-daemon-runner-helpers.vitest.ts` from `mcp_server`, 1 file / 2 tests. |
-| 045 strict validation | PASS: `validate.sh .../_046-shared-daemon-suite-runner --strict`, 0 errors and 0 warnings. |
+| 045 strict validation | PASS: `validate.sh .../046-shared-daemon-suite-runner --strict`, 0 errors and 0 warnings. |
 | 016 strict validation | PASS after packet close-out. |
 <!-- /ANCHOR:verification -->
 
