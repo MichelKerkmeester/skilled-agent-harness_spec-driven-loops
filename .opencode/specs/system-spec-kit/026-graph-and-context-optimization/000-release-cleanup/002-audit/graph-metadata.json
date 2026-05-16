@@ -9,7 +9,7 @@
     "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-audit/003-doc-truth-pass",
     "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-audit/004-code-graph-watcher-retraction",
     "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-audit/005-memory-retention-sweep",
-    "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-audit/022-full-matrix-execution-validation",
+    "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-audit/006-full-matrix-execution-validation",
     "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-audit/036-runtime-command-agent-alignment-review",
     "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-audit/045-drift-finding-fixes"
   ],

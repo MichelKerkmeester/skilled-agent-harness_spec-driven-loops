@@ -10,9 +10,9 @@ Closes the highest-leverage gap surfaced by packet 035's CONDITIONAL verdict: **
 
 - `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/030-v1-0-4-full-matrix-stress-test-design/spec.md` (matrix design source)
 - `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/030-v1-0-4-full-matrix-stress-test-design/plan.md` (Option C architecture: per-feature runners + meta-aggregator)
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/022-full-matrix-execution-validation/findings.md` (current pass/fail/blocked/runner_missing matrix; per-cell evidence)
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/022-full-matrix-execution-validation/results/` (per-cell JSONL evidence files)
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/022-full-matrix-execution-validation/logs/feature-runs/` (existing runner output examples)
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/006-full-matrix-execution-validation/findings.md` (current pass/fail/blocked/runner_missing matrix; per-cell evidence)
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/006-full-matrix-execution-validation/results/` (per-cell JSONL evidence files)
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/006-full-matrix-execution-validation/logs/feature-runs/` (existing runner output examples)
 - Existing CLI invocation patterns from packet 013 + this session — see how cli-codex / cli-copilot / cli-gemini / cli-claude-code / cli-opencode are invoked elsewhere in the repo
 
 ### Implementation
@@ -127,7 +127,7 @@ CLI entry: `npx tsx mcp_server/matrix_runners/run-matrix.ts --output <dir> [--fi
 7-file structure under `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/023-cli-matrix-adapter-runners/`:
 - spec.md, plan.md, tasks.md, checklist.md, implementation-summary.md, description.json, graph-metadata.json
 
-**Deps**: `manual.depends_on=["system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/022-full-matrix-execution-validation","system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/030-v1-0-4-full-matrix-stress-test-design"]`.
+**Deps**: `manual.depends_on=["system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/006-full-matrix-execution-validation","system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/030-v1-0-4-full-matrix-stress-test-design"]`.
 
 **Trigger phrases**: `["023-cli-matrix-adapter-runners","CLI matrix adapter","matrix runner adapters","cli-codex adapter","cli-copilot adapter","cli-gemini adapter"]`.
 

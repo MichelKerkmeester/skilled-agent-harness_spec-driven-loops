@@ -47,7 +47,7 @@ Generated: 2026-04-29T20:41:19+02:00
 | `004-code-graph-watcher-retraction` | 4350 | 0 | OK | OK | 0 | OK |
 | `005-memory-retention-sweep` | 5781 | 0 | OK | OK | 0 | OK |
 | `021-half-auto-upgrades` | 7172 | 0 | OK | OK | 0 | OK |
-| `022-full-matrix-execution-validation` | 23560 | 0 | OK | OK | 0 | OK |
+| `006-full-matrix-execution-validation` | 23560 | 0 | OK | OK | 0 | OK |
 | `023-cli-matrix-adapter-runners` | 8647 | 0 | OK | OK | 0 | OK |
 | `024-followup-quality-pass` | 5719 | 0 | OK | OK | 0 | OK |
 | `024-followup-quality-pass/001-sk-code-opencode-audit` | 9109 | 0 | OK | OK | 0 | OK |

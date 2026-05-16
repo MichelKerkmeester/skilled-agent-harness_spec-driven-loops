@@ -116,7 +116,7 @@ Find every reference to old paths (e.g., `stress_test/search-quality/...`, `stre
 - `.opencode/skills/system-spec-kit/mcp_server/tests/README.md`
 - All packet docs in `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/**` (the stress-cycle packets that cite harness paths)
 - `specs/system-spec-kit/026-graph-and-context-optimization/030-v1-0-4-full-matrix-stress-test-design/**`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/022-full-matrix-execution-validation/**`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/006-full-matrix-execution-validation/**`
 - `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/024-followup-quality-pass/005-stress-test-folder-migration/migration-plan.md` (note that 038 supersedes the partial migration)
 
 Use a scoped grep over moved stress-test path stems in `.opencode/` and `specs/`

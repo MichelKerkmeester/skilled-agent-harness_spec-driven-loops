@@ -189,12 +189,12 @@ Verification:
 
 ### Packet 035: full-matrix-execution-validation (Tier D)
 
-Packet: 022-full-matrix-execution-validation
+Packet: 006-full-matrix-execution-validation
 Tier: D
 Class: hybrid
 Effort estimate: 10-16 hours of cli-codex work
 Dependencies: [003-doc-truth-pass, 032-code-graph-watcher-decision, 005-memory-retention-sweep, 021-half-auto-upgrades, external: 030 matrix design]
-Operator triggers: [`/spec_kit:plan specs/system-spec-kit/026-graph-and-context-optimization/022-full-matrix-execution-validation`, `/spec_kit:implement specs/system-spec-kit/026-graph-and-context-optimization/022-full-matrix-execution-validation`]
+Operator triggers: [`/spec_kit:plan specs/system-spec-kit/026-graph-and-context-optimization/006-full-matrix-execution-validation`, `/spec_kit:implement specs/system-spec-kit/026-graph-and-context-optimization/006-full-matrix-execution-validation`]
 Maps to findings: [all supplemental P1/P2 findings, NEW-013-004, NEW-013-005, NEW-013-008]
 Scope:
 - Execute packet 030's full automation matrix design across supported runtimes and command/tool surfaces.

@@ -1,6 +1,6 @@
 ## Packet 035: full-matrix-execution-validation — Tier D
 
-You are cli-codex (gpt-5.5 high fast) implementing remediation packet **022-full-matrix-execution-validation**.
+You are cli-codex (gpt-5.5 high fast) implementing remediation packet **006-full-matrix-execution-validation**.
 
 ### Goal
 
@@ -44,11 +44,11 @@ Execute the full automation matrix design from packet 030 (`specs/system-spec-ki
 
 ### Packet structure to create (Level 2)
 
-Same 7-file structure as 031 under `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/022-full-matrix-execution-validation/`. Plus an additional `findings.md` at packet root.
+Same 7-file structure as 031 under `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/006-full-matrix-execution-validation/`. Plus an additional `findings.md` at packet root.
 
 **Deps**: `manual.depends_on=["system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-doc-truth-pass","system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-code-graph-watcher-retraction","system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/005-memory-retention-sweep","system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/021-half-auto-upgrades","system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/030-v1-0-4-full-matrix-stress-test-design"]`.
 
-**Trigger phrases**: `["022-full-matrix-execution-validation","full matrix execution","v1-0-4 stress","matrix execution validation","feature × executor matrix"]`.
+**Trigger phrases**: `["006-full-matrix-execution-validation","full matrix execution","v1-0-4 stress","matrix execution validation","feature × executor matrix"]`.
 
 **Causal summary**: `"Tier D: execute 030's full-matrix design across feature × executor cells. Capture per-cell pass/fail/blocked. Produce signed-off matrix + remediation tickets for cells that failed or had runner_missing. New baseline; not comparable to v1.0.2/v1.0.3/029."`.
 

@@ -25,7 +25,7 @@ specs/system-spec-kit/026-graph-and-context-optimization/
 ├── 004-code-graph-watcher-retraction/
 ├── 005-memory-retention-sweep/
 ├── 021-half-auto-upgrades/
-├── 022-full-matrix-execution-validation/
+├── 006-full-matrix-execution-validation/
 ├── 023-cli-matrix-adapter-runners/
 ├── 024-followup-quality-pass/                          ← phase parent
 │   ├── 001-sk-code-opencode-audit/

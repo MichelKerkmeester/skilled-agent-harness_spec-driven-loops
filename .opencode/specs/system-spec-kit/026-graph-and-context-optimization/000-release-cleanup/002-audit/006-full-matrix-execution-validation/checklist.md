@@ -3,7 +3,7 @@ title: "Checklist: Full-Matrix Execution Validation"
 template_source: "SPECKIT_TEMPLATE_SOURCE: checklist | v2.2"
 description: "Verification checklist for packet 035 matrix execution validation."
 trigger_phrases:
-  - "022-full-matrix-execution-validation"
+  - "006-full-matrix-execution-validation"
   - "full matrix execution"
   - "v1-0-4 stress"
   - "matrix execution validation"
@@ -13,7 +13,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/022-full-matrix-execution-validation"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/006-full-matrix-execution-validation"
     last_updated_at: "2026-04-29T14:45:00Z"
     last_updated_by: "cli-codex"
     recent_action: "Checklist complete"
