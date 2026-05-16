@@ -8,6 +8,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 const fs = require('node:fs');
 const path = require('node:path');
+const crypto = require('node:crypto');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -34,6 +35,13 @@ const MIN_TRAJECTORY_POINTS = 3;
  */
 const DEFAULT_STABILITY_DELTA = 2;
 
+/**
+ * Env var to bypass mutation signature dedup (Packet 110, M-3).
+ * Set to "1" to force re-evaluation of previously seen signatures.
+ * @type {boolean}
+ */
+const SKIP_DEDUP = process.env.DEEP_AGENT_IMPROVEMENT_SKIP_DEDUP === '1';
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. HELPERS
 // ─────────────────────────────────────────────────────────────────────────────
@@ -50,6 +58,33 @@ function readJsonSafe(filePath) {
 function writeJson(filePath, data) {
   fs.mkdirSync(path.dirname(filePath), { recursive: true });
   fs.writeFileSync(filePath, JSON.stringify(data, null, 2) + '\n', 'utf8');
+}
+
+/**
+ * Compute mutation signature for dedup (Packet 110, M-3).
+ * Signature: sha256(dimension + "\u001f" + mutationType + "\u001f" + targetSection + "\u001f" + normalizedBody64)
+ * where normalizedBody64 = whitespace-collapsed, lowercased, first 64 chars of mutation body.
+ *
+ * @param {object} mutation - Mutation record with { dimension, mutationType, targetSection, body }
+ * @returns {string} sha256 hex signature
+ */
+function computeMutationSignature(mutation) {
+  const dimension = (mutation.dimension || '').trim();
+  const mutationType = (mutation.mutationType || '').trim();
+  const targetSection = (mutation.targetSection || '').trim();
+  const rawBody = (mutation.body || '').trim();
+  const normalizedBody64 = rawBody.replace(/\s+/g, ' ').toLowerCase().slice(0, 64);
+
+  return crypto
+    .createHash('sha256')
+    .update(dimension)
+    .update('\u001f')
+    .update(mutationType)
+    .update('\u001f')
+    .update(targetSection)
+    .update('\u001f')
+    .update(normalizedBody64)
+    .digest('hex');
 }
 
 /**
@@ -83,13 +118,17 @@ function recordMutation(coveragePath, mutation) {
     graph = createCoverageGraph();
   }
 
+  const signature = computeMutationSignature(mutation);
+
   graph.mutations.push({
     ...mutation,
+    signature,
     timestamp: new Date().toISOString(),
   });
   graph.updatedAt = new Date().toISOString();
 
   writeJson(coveragePath, graph);
+  return signature;
 }
 
 /**
@@ -113,7 +152,7 @@ function getExhaustedMutations(coveragePath) {
  * @param {string} dimension - Dimension name
  * @param {string} mutationType - Mutation type that has been fully explored
  */
-function markExhausted(coveragePath, dimension, mutationType) {
+function markExhausted(coveragePath, dimension, mutationType, options = {}) {
   let graph = readJsonSafe(coveragePath);
   if (!graph) {
     graph = createCoverageGraph();
@@ -124,11 +163,18 @@ function markExhausted(coveragePath, dimension, mutationType) {
   );
 
   if (!alreadyExhausted) {
-    graph.exhausted.push({
+    const entry = {
       dimension,
       mutationType,
       exhaustedAt: new Date().toISOString(),
-    });
+    };
+    if (options.signature) {
+      entry.signature = options.signature;
+    }
+    if (options.reason) {
+      entry.reason = options.reason;
+    }
+    graph.exhausted.push(entry);
   }
 
   graph.updatedAt = new Date().toISOString();
@@ -136,6 +182,44 @@ function markExhausted(coveragePath, dimension, mutationType) {
 }
 
 /**
+ * Check if a mutation signature is already present in mutations[]
+ * or exhausted[] arrays (Packet 110, M-3 dedup).
+ *
+ * Respects DEEP_AGENT_IMPROVEMENT_SKIP_DEDUP=1 bypass.
+ *
+ * @param {string} coveragePath - Path to the coverage graph JSON file
+ * @param {string} signature - Computed mutation signature
+ * @returns {{ seen: boolean, reason?: string }} Whether signature is seen and why
+ */
+function isSignatureSeen(coveragePath, signature) {
+  if (SKIP_DEDUP) {
+    return { seen: false };
+  }
+
+  const graph = readJsonSafe(coveragePath);
+  if (!graph) {
+    return { seen: false };
+  }
+
+  const inMutations = (graph.mutations || []).some(
+    (m) => m.signature === signature
+  );
+  if (inMutations) {
+    return { seen: true, reason: 'DUPLICATE_SIGNATURE_IN_MUTATIONS' };
+  }
+
+  const exhausted = (graph.exhausted || []).find(
+    (e) => e.signature === signature
+  );
+  if (exhausted) {
+    return { seen: true, reason: exhausted.reason || 'EXHAUSTED-FROM: prior' };
+  }
+
+  return { seen: false };
+}
+
+/**
+ * Get coverage statistics per dimension (REQ-AI-006).
  * Get coverage statistics per dimension (REQ-AI-006).
  *
  * @param {string} coveragePath - Path to the coverage graph JSON file
@@ -280,10 +364,13 @@ module.exports = {
   LOOP_TYPE,
   MIN_TRAJECTORY_POINTS,
   DEFAULT_STABILITY_DELTA,
+  SKIP_DEDUP,
   createCoverageGraph,
+  computeMutationSignature,
   recordMutation,
   getExhaustedMutations,
   markExhausted,
+  isSignatureSeen,
   getMutationCoverage,
   recordTrajectory,
   getTrajectory,

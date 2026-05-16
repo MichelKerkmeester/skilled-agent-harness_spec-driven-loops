@@ -317,6 +317,31 @@ If the long-form lineage feature is implemented later, it will arrive with first
 
 Tracks explored dimensions, tried mutation types per dimension, and exhausted mutation sets using `loop_type: "improvement"` namespace isolation (ADR-002). The orchestrator skips mutation types already in the exhausted log.
 
+#### Mutation Signature Dedup (Packet 110, M-3)
+
+Each mutation entry in `mutation-coverage.json` carries a `signature` field computed as:
+
+```
+signature = sha256(dimension + "\u001f" + mutationType + "\u001f" + targetSection + "\u001f" + normalizedBody64)
+```
+
+Where `normalizedBody64` = whitespace-collapsed, lowercased, first 64 characters of the mutation body.
+
+**Dedup behavior:**
+- Before proposing a new mutation, `isSignatureSeen()` scans existing `mutations[]` and `exhausted[]` arrays
+- If the signature matches, the candidate is skipped with `reason: "EXHAUSTED-FROM: iter-NNN"` recorded in `exhausted[]`
+- The `EXHAUSTED-FROM` format references the iteration where the original mutation was tried
+
+**Bypass:**
+```bash
+export DEEP_AGENT_IMPROVEMENT_SKIP_DEDUP=1  # Force re-evaluation of previously seen signatures
+```
+When set, `isSignatureSeen()` always returns `{ seen: false }` — every mutation is considered fresh.
+
+**Backward compatibility:** Legacy `mutation-coverage.json` entries without `signature` field fall back to the existing `dimension::mutationType` dedup in the reducer. No migration required.
+
+**Authoritative storage:** `mutation-coverage.json` `mutations[]` array — `signature` is written by `recordMutation()` and read by `isSignatureSeen()` and `reduce-state.cjs`.
+
 ### Dimension Trajectory
 
 Trajectory data records per-iteration dimension scores. Convergence requires minimum 3 data points (ADR-003) with all dimension deltas within +/-2 across the last 3 points.

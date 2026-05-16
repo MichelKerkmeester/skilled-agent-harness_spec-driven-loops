@@ -315,6 +315,11 @@ function buildMutationCoverageKey(entry) {
     return null;
   }
 
+  // Packet 110 M-3: prefer signature when available for richer dedup
+  if (typeof entry.signature === 'string' && entry.signature.trim()) {
+    return entry.signature;
+  }
+
   const dimension = typeof entry.dimension === 'string' ? entry.dimension : null;
   const mutationType = typeof entry.mutationType === 'string' ? entry.mutationType : null;
   if (!dimension || !mutationType) {

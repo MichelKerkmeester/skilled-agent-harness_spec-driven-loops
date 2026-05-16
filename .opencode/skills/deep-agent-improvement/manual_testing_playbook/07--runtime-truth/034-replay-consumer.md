@@ -82,3 +82,64 @@ Output excerpt:
 - Playbook ID: RT-034
 - Canonical root source: `manual_testing_playbook.md`
 - Feature file path: `07--runtime-truth/034-replay-consumer.md`
+
+---
+
+## 6. M-3 SIGNATURE DEDUP SMOKE TEST (Packet 110)
+
+Verify that `mutation-coverage.cjs` computes, stores, and respects mutation signatures for deduplication.
+
+### Scenario: Signature dedup prevents duplicate mutation recording
+
+**Given:** A disposable mutation coverage file with one mutation already recorded.
+**When:** The same logical mutation is submitted again via `recordMutation`.
+**Then:** `isSignatureSeen()` returns `{ seen: true }` for the duplicate signature.
+
+**Smoke command sequence:**
+
+```bash
+# Create disposable coverage file
+TMPFILE=$(mktemp /tmp/mutation-coverage-XXXXXX.json)
+node -e "
+  const mc = require('./.opencode/skills/deep-agent-improvement/scripts/mutation-coverage.cjs');
+  // Record first mutation
+  mc.recordMutation('$TMPFILE', {
+    dimension: 'structural',
+    mutationType: 'add_error_handling',
+    targetSection: 'promotion-gate',
+    body: 'Wraps the promotion gate in a try/catch and logs failures'
+  });
+  // Compute expected signature for same mutation
+  const sig = mc.computeMutationSignature({
+    dimension: 'structural',
+    mutationType: 'add_error_handling',
+    targetSection: 'promotion-gate',
+    body: 'Wraps the promotion gate in a try/catch and logs failures'
+  });
+  const result = mc.isSignatureSeen('$TMPFILE', sig);
+  console.log(JSON.stringify(result));
+  // Should return { seen: true, reason: 'DUPLICATE_SIGNATURE_IN_MUTATIONS' }
+"
+
+# Verify bypass works
+DEEP_AGENT_IMPROVEMENT_SKIP_DEDUP=1 node -e "
+  const mc = require('./.opencode/skills/deep-agent-improvement/scripts/mutation-coverage.cjs');
+  const sig = mc.computeMutationSignature({
+    dimension: 'structural',
+    mutationType: 'add_error_handling',
+    targetSection: 'promotion-gate',
+    body: 'Wraps the promotion gate in a try/catch and logs failures'
+  });
+  const result = mc.isSignatureSeen('$TMPFILE', sig);
+  console.log(JSON.stringify(result));
+  // Should return { seen: false } when SKIP_DEDUP=1
+"
+
+rm -f "$TMPFILE"
+```
+
+**Expected signals:**
+- First call: `{"seen":true,"reason":"DUPLICATE_SIGNATURE_IN_MUTATIONS"}`
+- Second call (with `SKIP_DEDUP=1`): `{"seen":false}`
+
+**Pass/Fail:** Both expected signals match exactly. Exit code 0 for all commands.
