@@ -159,11 +159,10 @@ describe('Context Server', () => {
   // =================================================================
   // GROUP 2: Tool Definition Completeness
   // =================================================================
-  describe('Group 2: Tool Definitions (55 tools)', () => {
+  describe('Group 2: Tool Definitions (39 tools)', () => {
     const EXPECTED_TOOLS = [
       'memory_context',
       'memory_search',
-      'memory_quick_search',
       'memory_match_triggers',
       'memory_save',
       'memory_list',
@@ -183,7 +182,6 @@ describe('Context Server', () => {
       'memory_drift_why',
       'memory_causal_link',
       'memory_causal_stats',
-      'memory_causal_unlink',
       'eval_run_ablation',
       'eval_reporting_dashboard',
       'memory_index_scan',
@@ -191,16 +189,6 @@ describe('Context Server', () => {
       'memory_ingest_start',
       'memory_ingest_status',
       'memory_ingest_cancel',
-      'code_graph_scan',
-      'code_graph_query',
-      'code_graph_status',
-      'code_graph_context',
-      'code_graph_verify',
-      'code_graph_apply',
-      'detect_changes',
-      'ccc_status',
-      'ccc_reindex',
-      'ccc_feedback',
       'session_health',
       'session_resume',
       'session_bootstrap',
@@ -300,17 +288,19 @@ describe('Context Server', () => {
   // =================================================================
   describe('Group 3: Tool Dispatch Coverage', () => {
     const EXPECTED_CASES = [
-      'memory_context', 'memory_search', 'memory_quick_search', 'memory_match_triggers',
+      'memory_context', 'memory_search', 'memory_match_triggers',
       'memory_delete', 'memory_update', 'memory_bulk_delete', 'memory_list', 'memory_stats',
       'checkpoint_create', 'checkpoint_list', 'checkpoint_restore', 'checkpoint_delete',
       'memory_validate', 'memory_save', 'memory_index_scan', 'memory_health',
       'task_preflight', 'task_postflight', 'memory_get_learning_history',
       'memory_ingest_start', 'memory_ingest_status', 'memory_ingest_cancel',
-      'memory_drift_why', 'memory_causal_link', 'memory_causal_stats', 'memory_causal_unlink',
+      'memory_drift_why', 'memory_causal_link', 'memory_causal_stats',
       'eval_run_ablation', 'eval_reporting_dashboard',
-      'code_graph_scan', 'code_graph_query', 'code_graph_status', 'code_graph_context',
-      'ccc_status', 'ccc_reindex', 'ccc_feedback',
-      'session_health', 'session_resume',
+      'session_health', 'session_resume', 'session_bootstrap',
+      'deep_loop_graph_upsert', 'deep_loop_graph_query', 'deep_loop_graph_status',
+      'deep_loop_graph_convergence',
+      'council_graph_upsert', 'council_graph_query', 'council_graph_status',
+      'council_graph_convergence',
     ]
 
     // T16: CallToolRequestSchema handler exists
@@ -346,7 +336,7 @@ describe('Context Server', () => {
         path.join(SERVER_DIR, 'code_graph', 'tools'),
       ];
       let allToolModulesCode = '';
-      for (const moduleDir of moduleDirs) {
+      for (const moduleDir of moduleDirs.filter((dir) => fs.existsSync(dir))) {
         const toolFiles = fs.readdirSync(moduleDir).filter((f: string) => f.endsWith('.ts') && f !== 'types.ts');
         for (const file of toolFiles) {
           allToolModulesCode += fs.readFileSync(path.join(moduleDir, file), 'utf8') + '\n';
@@ -1466,7 +1456,7 @@ describe('Context Server', () => {
             lastKnownSessionId = sessionTrackingId
           }
 
-          if (name !== 'memory_search' && name !== 'memory_context' && name !== 'memory_quick_search' && name !== 'session_health') {
+          if (name !== 'memory_search' && name !== 'memory_context' && name !== 'session_health') {
             const followOnSessionId = sessionTrackingId ?? lastKnownSessionId
             if (followOnSessionId) {
               logFollowOnToolUseMock({}, followOnSessionId)
@@ -2433,10 +2423,10 @@ describe('Context Server', () => {
   // =================================================================
   describe('Group 9: Server Configuration', () => {
     // T35: Server name
-    it('T35: Server name is "context-server"', () => {
+    it('T35: Server name is "mk-spec-memory"', () => {
       const serverName = sourceCode.match(/name:\s*'([^']+)'/)
       expect(serverName).not.toBeNull()
-      expect(serverName![1]).toBe('context-server')
+      expect(serverName![1]).toBe('mk-spec-memory')
     })
 
     // T36: Server version format
@@ -2628,7 +2618,6 @@ describe('Context Server', () => {
       'memory_drift_why': '[L6:Analysis]',
       'memory_causal_link': '[L6:Analysis]',
       'memory_causal_stats': '[L6:Analysis]',
-      'memory_causal_unlink': '[L6:Analysis]',
       'eval_run_ablation': '[L6:Analysis]',
       'eval_reporting_dashboard': '[L6:Analysis]',
       'memory_index_scan': '[L7:Maintenance]',
@@ -2636,6 +2625,17 @@ describe('Context Server', () => {
       'memory_ingest_start': '[L7:Maintenance]',
       'memory_ingest_status': '[L7:Maintenance]',
       'memory_ingest_cancel': '[L7:Maintenance]',
+      'session_health': '[L3:Discovery]',
+      'session_resume': '[L1:Orchestration]',
+      'session_bootstrap': '[L1:Orchestration]',
+      'deep_loop_graph_upsert': '[L9:CoverageGraph]',
+      'deep_loop_graph_query': '[L9:CoverageGraph]',
+      'deep_loop_graph_status': '[L9:CoverageGraph]',
+      'deep_loop_graph_convergence': '[L9:CoverageGraph]',
+      'council_graph_upsert': '[L9:CouncilGraph]',
+      'council_graph_query': '[L9:CouncilGraph]',
+      'council_graph_status': '[L9:CouncilGraph]',
+      'council_graph_convergence': '[L9:CouncilGraph]',
     }
 
     // T61: Tool descriptions include layer prefix
