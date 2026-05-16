@@ -37,18 +37,7 @@ When the review hands control back to general packet work, `/spec_kit:resume` st
 
 ### Key Statistics
 
-| Metric                        | Value                                                                                     |
-| ----------------------------- | ----------------------------------------------------------------------------------------- |
-| Default max iterations        | 7                                                                                         |
-| Default convergence threshold | 0.10                                                                                      |
-| Stuck threshold               | 3 consecutive no-progress iterations                                                      |
-| Review dimensions             | 4 (Correctness, Security, Traceability, Maintainability)                                  |
-| Finding severities            | P0 (critical), P1 (important), P2 (minor)                                                 |
-| Quality gates                 | 3 binary (evidence, scope, coverage)                                                      |
-| Verdicts                      | PASS, CONDITIONAL, FAIL                                                                   |
-| State files                   | 7 primary (config, JSONL, findings registry, strategy, dashboard, pause sentinel, report) |
-| Tool budget per iteration     | 9-12 (max 13)                                                                             |
-| Output document               | `{spec_folder}/review/review-report.md` (9-section findings-first report)                 |
+Default configuration includes a maximum of 7 iterations with a convergence threshold of 0.10. The system detects stuck states after 3 consecutive no-progress iterations. Review spans 4 dimensions (Correctness, Security, Traceability, Maintainability) with findings classified as P0 (critical), P1 (important), or P2 (minor). Three binary quality gates (evidence, scope, coverage) must pass before convergence. Verdicts are PASS, CONDITIONAL, or FAIL. State management uses 7 primary files (config, JSONL, findings registry, strategy, dashboard, pause sentinel, report). Tool budget per iteration is 9-12 with a maximum of 13. Output is a 9-section findings-first report at `{spec_folder}/review/review-report.md`.
 
 ### When to Use
 
@@ -64,17 +53,6 @@ Do not use `deep-review` when:
 - A quick informal check is sufficient (use `@review` agent directly)
 - The target is a research topic, not a code artifact (use `deep-research`)
 - No spec folder is available to anchor review state
-
-### How This Compares
-
-| sk-code-review (single-pass)           | deep-review (iterative multi-pass)                |
-| --------------------------------------- | ---------------------------------------------------- |
-| One review cycle                        | Multiple iterations until convergence                |
-| Context window shared across all checks | Fresh context per iteration, state on disk           |
-| No convergence or coverage tracking     | 3-signal convergence with dimension coverage vote    |
-| No adversarial self-check on findings   | Adversarial Hunter/Skeptic/Referee check on every P0 |
-| No release readiness verdict            | Three-way verdict: PASS, CONDITIONAL, FAIL           |
-| Best for quick feedback                 | Best for release gates and thorough audits           |
 
 ---
 
@@ -106,6 +84,17 @@ grep "Release Readiness Verdict" {spec_folder}/review/review-report.md
 ### Iterative Multi-Pass Review with Dimension Coverage
 
 Each iteration focuses on one or more of the four review dimensions (Correctness, Security, Traceability, Maintainability). The dimension coverage signal contributes 0.45 weight to the convergence vote. Convergence cannot fire until all required dimensions are covered and at least one stabilization pass confirms no new dimension findings.
+
+### Comparison to sk-code-review
+
+| sk-code-review (single-pass)           | deep-review (iterative multi-pass)                |
+| --------------------------------------- | ---------------------------------------------------- |
+| One review cycle                        | Multiple iterations until convergence                |
+| Context window shared across all checks | Fresh context per iteration, state on disk           |
+| No convergence or coverage tracking     | 3-signal convergence with dimension coverage vote    |
+| No adversarial self-check on findings   | Adversarial Hunter/Skeptic/Referee check on every P0 |
+| No release readiness verdict            | Three-way verdict: PASS, CONDITIONAL, FAIL           |
+| Best for quick feedback                 | Best for release gates and thorough audits           |
 
 ### Severity-Weighted Convergence
 
@@ -251,6 +240,21 @@ Created under the resolved `{artifact_dir}` during initialization. First runs wi
 | `--spec-folder`    | auto-detected | Target spec folder for state and output files                                                           |
 | `--dimensions`     | all           | Comma-separated list to restrict active review dimensions                                               |
 
+### Default Configuration
+
+| Metric                        | Value                                                                                     |
+| ----------------------------- | ----------------------------------------------------------------------------------------- |
+| Default max iterations        | 7                                                                                         |
+| Default convergence threshold | 0.10                                                                                      |
+| Stuck threshold               | 3 consecutive no-progress iterations                                                      |
+| Review dimensions             | 4 (Correctness, Security, Traceability, Maintainability)                                  |
+| Finding severities            | P0 (critical), P1 (important), P2 (minor)                                                 |
+| Quality gates                 | 3 binary (evidence, scope, coverage)                                                      |
+| Verdicts                      | PASS, CONDITIONAL, FAIL                                                                   |
+| State files                   | 7 primary (config, JSONL, findings registry, strategy, dashboard, pause sentinel, report) |
+| Tool budget per iteration     | 9-12 (max 13)                                                                             |
+| Output document               | `{spec_folder}/review/review-report.md` (9-section findings-first report)                 |
+
 ### Review Dimensions
 
 | Priority | ID                | Label           | Checks                                                                                      |
@@ -362,7 +366,7 @@ A: `sk-code-review` is a single-pass review. `deep-review` is iterative: it runs
 A: Yes. Specify target type as `files` and pass the explicit file list at invocation. The review loop scopes all findings and cross-reference checks to the declared file set plus their immediate cross-references.
 
 **Q: What triggers a P0 override?**
-A: Any new P0 finding within an iteration sets `newFindingsRatio >= 0.50` regardless of other signals. This forces at least one more iteration. The override cannot be suppressed — it is a hard convergence guard.
+A: Any new P0 finding within an iteration sets `newFindingsRatio >= 0.50` regardless of other signals. This forces at least one more iteration. The override cannot be suppressed (it is a hard convergence guard).
 
 **Q: Does the review modify the target code?**
 A: No. The `@deep-review` agent is strictly read-only with respect to the review target. It writes only to the dedicated `{spec_folder}/review/` packet: strategy, JSONL state, dashboard, iteration files, and the final report.

@@ -23,6 +23,7 @@ trigger_phrases:
 - [3. FEATURES](#3--features)
   - [3.1 FEATURE HIGHLIGHTS](#31--feature-highlights)
   - [3.2 FEATURE REFERENCE](#32--feature-reference)
+  - [3.3 CLI COMPARISON](#33--cli-comparison)
 - [4. STRUCTURE](#4--structure)
 - [5. CONFIGURATION](#5--configuration)
 - [6. USAGE EXAMPLES](#6--usage-examples)
@@ -51,45 +52,21 @@ The skill includes a self-invocation guard: if you are already running inside Ge
 
 ### Key Statistics
 
-| Category | Value | Details |
-|----------|-------|---------|
-| **Models** | 1 | gemini-3.1-pro-preview |
-| **Built-in Tools** | 3 | google_web_search, codebase_investigator, save_memory |
-| **Free Tier** | 60 req/min, 1000 req/day | Google OAuth authentication |
-| **Context Window** | 1M+ tokens | Largest context of any CLI agent |
-| **References** | 4 | cli_reference, gemini_tools, agent_delegation, integration_patterns |
-| **Version** | 1.2.1 | |
-
-### How This Compares
-
-| Capability | Claude Code CLI | Codex CLI | Copilot CLI | Gemini CLI |
-|------------|-----------------|-----------|-------------|------------|
-| **Web search** | No | `--search` (browsing) | No | Google Search grounding (native tool) |
-| **Architecture analysis** | Agent-based | Manual | Explore agent | `codebase_investigator` (native tool) |
-| **Context window** | Standard | Standard | Standard | 1M+ tokens |
-| **Cost** | API key required | API key or OAuth | Subscription | Free tier available |
-| **Open source** | No | No | No | Yes (Apache 2.0) |
-| **Models** | 3 (Anthropic) | 2 (OpenAI) | 5 (3 providers) | 1 (Google) |
+Gemini CLI supports one model (gemini-3.1-pro-preview) and provides three built-in tools: google_web_search, codebase_investigator, and save_memory. The free tier offers 60 requests per minute and 1000 requests per day with Google OAuth authentication. The context window supports 1M+ tokens, the largest of any CLI agent. Version 1.2.1 includes four key references: cli_reference, gemini_tools, agent_delegation, and integration_patterns.
 
 ### Key Features at a Glance
 
-| Feature | What It Does |
-|---------|-------------|
-| **Google Search Grounding** | Real-time web search results integrated into responses via `google_web_search` |
-| **Codebase Investigator** | Deep architecture analysis mapping file relationships and dependencies |
-| **Save Memory** | Persistent cross-session context via `save_memory` tool |
-| **1M+ Context** | Process entire codebases without chunking or summarization |
-| **Free Tier** | 60 req/min and 1000 req/day with Google OAuth, no API key required |
-| **Open Source** | Apache 2.0 licensed, community-extensible |
-| **Spec Kit handoff** | Return packet recovery through `/spec_kit:resume` with packet docs as the continuity source |
+- **Google Search Grounding**: Real-time web search results integrated into responses via `google_web_search`
+- **Codebase Investigator**: Deep architecture analysis mapping file relationships and dependencies
+- **Save Memory**: Persistent cross-session context via `save_memory` tool
+- **1M+ Context**: Process entire codebases without chunking or summarization
+- **Free Tier**: 60 req/min and 1000 req/day with Google OAuth, no API key required
+- **Open Source**: Apache 2.0 licensed, community-extensible
+- **Spec Kit handoff**: Return packet recovery through `/spec_kit:resume` with packet docs as the continuity source
 
 ### Requirements
 
-| Requirement | Value | Notes |
-|-------------|-------|-------|
-| **CLI** | `@google/gemini-cli` | Install via `npm install -g @google/gemini-cli` |
-| **Auth** | Google OAuth (free) | Or `GEMINI_API_KEY` or Vertex AI for enterprise |
-| **Node.js** | 18+ | Required for npm installation |
+Install the `@google/gemini-cli` package via npm. Authentication uses Google OAuth for free tier access, or `GEMINI_API_KEY` and Vertex AI for enterprise use. Node.js 18 or higher is required for npm installation.
 
 <!-- /ANCHOR:overview -->
 
@@ -184,6 +161,17 @@ The free tier removes the cost barrier for exploratory use. Google OAuth gives y
 | `@deep-research` | Technical research | `gemini "As @deep-research agent: Research X" -o text` |
 | `@debug` | Fresh-perspective debugging via Task-tool dispatch | `gemini "As @debug agent: Debug error X" -o text` |
 | `@multi-ai-council` | Multi-strategy planning | `gemini "As @multi-ai-council agent: Plan redesign" -o text` |
+
+### 3.3 CLI COMPARISON
+
+| Capability | Claude Code CLI | Codex CLI | Copilot CLI | Gemini CLI |
+|------------|-----------------|-----------|-------------|------------|
+| **Web search** | No | `--search` (browsing) | No | Google Search grounding (native tool) |
+| **Architecture analysis** | Agent-based | Manual | Explore agent | `codebase_investigator` (native tool) |
+| **Context window** | Standard | Standard | Standard | 1M+ tokens |
+| **Cost** | API key required | API key or OAuth | Subscription | Free tier available |
+| **Open source** | No | No | No | Yes (Apache 2.0) |
+| **Models** | 3 (Anthropic) | 2 (OpenAI) | 5 (3 providers) | 1 (Google) |
 
 <!-- /ANCHOR:features -->
 

@@ -46,42 +46,36 @@ When a git workflow needs packet context, `/spec_kit:resume` is still the canoni
 
 ### Key Statistics
 
-| Metric | Value |
-|--------|-------|
-| Version | 1.1.0.0 |
-| Phases | 3 (Workspace Setup, Work and Commit, Complete and Integrate) |
-| Sub-skills | 3 (git-worktrees, git-commit, git-finish) |
-| Reference documents | 6 (worktree, commit, finish, shared patterns, quick reference, GitHub MCP) |
-| Asset templates | 3 (worktree checklist, commit message template, PR template) |
-| Quality gates | 4 (pre-commit, pre-merge, pre-PR, post-merge) |
-| Commit type options | 8 (merge, release, docs, fix, feat, refactor, test, chore) |
-| Allowed tools | Read, Bash, mcp__code_mode__call_tool_chain |
+- Version: 1.1.0.0
+- Phases: 3 (Workspace Setup, Work and Commit, Complete and Integrate)
+- Sub-skills: 3 (git-worktrees, git-commit, git-finish)
+- Reference documents: 6 (worktree, commit, finish, shared patterns, quick reference, GitHub MCP)
+- Asset templates: 3 (worktree checklist, commit message template, PR template)
+- Quality gates: 4 (pre-commit, pre-merge, pre-PR, post-merge)
+- Commit type options: 8 (merge, release, docs, fix, feat, refactor, test, chore)
+- Allowed tools: Read, Bash, mcp__code_mode__call_tool_chain
 
 ### How This Compares
 
-| Without sk-git | With sk-git |
-|----------------|-------------|
-| AI autonomously picks branch strategy, often wrong | User explicitly confirms worktree vs. current branch before any git command runs |
-| Inconsistent commit messages across sessions | Deterministic first-match type/scope logic produces identical subjects for identical diffs |
-| Build artifacts and coverage reports end up committed | Artifact filtering runs before staging, excluding non-public outputs |
-| No gate between development and integration | Pre-merge test gate blocks integration until tests pass |
-| Branches and worktrees accumulate indefinitely | Post-merge cleanup step removes local and remote feature branches and worktree directories |
-| GitHub operations require manual CLI assembly | GitHub MCP integration provides programmatic PR, issue, and CI/CD access |
+- AI autonomously picks branch strategy, often wrong → User explicitly confirms worktree vs. current branch before any git command runs
+- Inconsistent commit messages across sessions → Deterministic first-match type/scope logic produces identical subjects for identical diffs
+- Build artifacts and coverage reports end up committed → Artifact filtering runs before staging, excluding non-public outputs
+- No gate between development and integration → Pre-merge test gate blocks integration until tests pass
+- Branches and worktrees accumulate indefinitely → Post-merge cleanup step removes local and remote feature branches and worktree directories
+- GitHub operations require manual CLI assembly → GitHub MCP integration provides programmatic PR, issue, and CI/CD access
 
 ### Key Features
 
-| Feature | Description |
-|---------|-------------|
-| 3-phase lifecycle | Workspace Setup, Work and Commit, Complete and Integrate with clear phase transitions |
-| Workspace choice enforcement | Always asks the user before choosing git worktree or current branch |
-| Worktree-only branch creation | New branches created only via `git worktree add -b ...`, never directly |
-| Deterministic commit logic | First-match type and scope inference. Same diff produces the same subject every time. |
-| Artifact filtering | Excludes build files, coverage, and non-public outputs before staging |
-| 4 quality gates | Pre-commit, pre-merge, pre-PR, and post-merge checkpoints |
-| GitHub MCP integration | Programmatic access to PRs, issues, and CI/CD via Code Mode |
-| Parallel work support | Multiple worktrees for simultaneous feature development |
-| Session persistence | Remembers workspace preference for the duration of the session |
-| Smart routing | Loads only the references relevant to the detected phase |
+- 3-phase lifecycle: Workspace Setup, Work and Commit, Complete and Integrate with clear phase transitions
+- Workspace choice enforcement: Always asks the user before choosing git worktree or current branch
+- Worktree-only branch creation: New branches created only via `git worktree add -b ...`, never directly
+- Deterministic commit logic: First-match type and scope inference. Same diff produces the same subject every time.
+- Artifact filtering: Excludes build files, coverage, and non-public outputs before staging
+- 4 quality gates: Pre-commit, pre-merge, pre-PR, and post-merge checkpoints
+- GitHub MCP integration: Programmatic access to PRs, issues, and CI/CD via Code Mode
+- Parallel work support: Multiple worktrees for simultaneous feature development
+- Session persistence: Remembers workspace preference for the duration of the session
+- Smart routing: Loads only the references relevant to the detected phase
 
 <!-- /ANCHOR:overview -->
 

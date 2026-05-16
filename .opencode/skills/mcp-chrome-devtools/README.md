@@ -48,40 +48,7 @@ For browser work tied back to a Spec Kit packet, `/spec_kit:resume` remains the 
 
 ### Key Statistics
 
-| Attribute | Value |
-| --- | --- |
-| Version | 1.0.7.0 |
-| CDP domains covered (bdg) | 53 |
-| CDP methods accessible (bdg) | 300+ |
-| MCP isolated instances (parallel) | Unlimited (register as many as needed) |
-| Session startup time target | < 5 seconds |
-| Screenshot capture time target | < 2 seconds |
-| Console log retrieval target | < 1 second |
-| Supported platforms (CLI) | macOS, Linux, WSL (Windows) |
-
-### How This Compares
-
-| Approach | Setup | Token Cost | CDP Access | Best For |
-| --- | --- | --- | --- | --- |
-| CLI (bdg) | `npm install -g browser-debugger-cli@alpha` | Lowest (self-documenting) | 300+ methods, 53 domains | Debugging, inspection, CI scripts |
-| MCP (Code Mode) | MCP config + `--isolated=true` server | Medium | MCP-exposed subset | Multi-tool workflows, parallel testing |
-| Puppeteer / Playwright | Heavy dependencies | Highest (verbose) | Full but complex | Complex UI testing, cross-browser |
-
-### Key Features
-
-| Feature | CLI Command | MCP Tool |
-| --- | --- | --- |
-| Navigate to URL | `bdg <url>` | `navigate_page` |
-| Capture screenshot | `bdg dom screenshot <path>` | `take_screenshot` |
-| Export HAR trace | `bdg network har <path>` | N/A |
-| Read console logs | `bdg console --list` | `list_console_messages` |
-| Query DOM | `bdg dom query "<selector>"` | N/A |
-| Execute JavaScript | `bdg dom eval "<expression>"` | `fill`, `click` |
-| Get cookies | `bdg network getCookies` | N/A |
-| Set cookies | `bdg cdp Network.setCookie` | N/A |
-| Discover CDP methods | `bdg cdp --list`, `--describe`, `--search` | `search_tools()` |
-| Set viewport size | `bdg cdp Emulation.setDeviceMetricsOverride` | `resize_page` |
-| Close session | `bdg stop` | `close_page` |
+The current version is 1.0.7.0. The bdg CLI covers 53 CDP domains with access to 300+ CDP methods. The MCP path supports unlimited parallel isolated browser instances. Performance targets include session startup in under 5 seconds, screenshot capture in under 2 seconds, and console log retrieval in under 1 second. The CLI supports macOS, Linux, and WSL (Windows).
 
 <!-- /ANCHOR:overview -->
 
@@ -209,6 +176,30 @@ The three example scripts in `examples/` represent production patterns for CI/CD
 | INSTALL | 4 | install, setup, not installed, command -v bdg | troubleshooting.md |
 | TROUBLESHOOT | 4 | error, failed, troubleshoot, session issue | troubleshooting.md |
 | AUTOMATION | 3 | ci, pipeline, automation, production | examples/README.md |
+
+**Approach Comparison**
+
+| Approach | Setup | Token Cost | CDP Access | Best For |
+| --- | --- | --- | --- | --- |
+| CLI (bdg) | `npm install -g browser-debugger-cli@alpha` | Lowest (self-documenting) | 300+ methods, 53 domains | Debugging, inspection, CI scripts |
+| MCP (Code Mode) | MCP config + `--isolated=true` server | Medium | MCP-exposed subset | Multi-tool workflows, parallel testing |
+| Puppeteer / Playwright | Heavy dependencies | Highest (verbose) | Full but complex | Complex UI testing, cross-browser |
+
+**Feature Mapping: CLI to MCP**
+
+| Feature | CLI Command | MCP Tool |
+| --- | --- | --- |
+| Navigate to URL | `bdg <url>` | `navigate_page` |
+| Capture screenshot | `bdg dom screenshot <path>` | `take_screenshot` |
+| Export HAR trace | `bdg network har <path>` | N/A |
+| Read console logs | `bdg console --list` | `list_console_messages` |
+| Query DOM | `bdg dom query "<selector>"` | N/A |
+| Execute JavaScript | `bdg dom eval "<expression>"` | `fill`, `click` |
+| Get cookies | `bdg network getCookies` | N/A |
+| Set cookies | `bdg cdp Network.setCookie` | N/A |
+| Discover CDP methods | `bdg cdp --list`, `--describe`, `--search` | `search_tools()` |
+| Set viewport size | `bdg cdp Emulation.setDeviceMetricsOverride` | `resize_page` |
+| Close session | `bdg stop` | `close_page` |
 
 <!-- /ANCHOR:features -->
 

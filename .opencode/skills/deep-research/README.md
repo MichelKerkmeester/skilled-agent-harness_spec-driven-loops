@@ -36,7 +36,7 @@ trigger_phrases:
 
 `deep-research` is research-only. It runs repeated investigation cycles through `/spec_kit:deep-research`, dispatching a fresh `@deep-research` agent for each iteration while keeping continuity in packet files instead of live conversation memory.
 
-The packet is now lineage-aware. Every run carries `sessionId`, `parentSessionId`, `lineageMode`, `generation`, and `continuedFromRun`, so the workflow can distinguish an active resume from a restart. `fork` and `completed-continue` are reserved for a future release and are not runtime-supported today — see `references/loop_protocol.md §Lifecycle Branches` for the canonical one-session contract.
+The packet is now lineage-aware. Every run carries `sessionId`, `parentSessionId`, `lineageMode`, `generation`, and `continuedFromRun`, so the workflow can distinguish an active resume from a restart. `fork` and `completed-continue` are reserved for a future release and are not runtime-supported today. See `references/loop_protocol.md §Lifecycle Branches` for the canonical one-session contract.
 
 The packet is also reducer-synchronized. The agent writes the iteration file plus the JSONL record. The workflow reducer then updates the machine-owned packet surfaces so `deep-research-strategy.md`, `findings-registry.json`, `deep-research-dashboard.md`, and synthesis metadata cannot drift apart.
 
@@ -78,27 +78,25 @@ The artifact directory always lives under the target spec's local `research/` fo
 <!-- ANCHOR:features -->
 ## 3. FEATURES
 
-| Feature | Description |
-|---------|-------------|
-| Fresh context per iteration | Each iteration uses a fresh LEAF agent dispatch. |
-| Lineage-aware lifecycle | Supports `new`, `resume`, and `restart`. `fork` and `completed-continue` are deferred — see `references/loop_protocol.md §Lifecycle Branches`. |
-| Reducer synchronization | Strategy, dashboard, registry, and synthesis metadata are updated from canonical iteration outputs. |
-| Packet-first recovery | Hook and non-hook runtimes derive the same next action from packet files. |
-| Runtime capability matrix | One documented and machine-readable source of truth for provider quirks and parity expectations. |
-| `spec.md` anchoring | Late INIT follows `references/spec_check_protocol.md` to seed or sync bounded packet context before LOOP begins. |
-| Folder-state contract | `folder_state` resolves to `no-spec`, `spec-present`, `spec-just-created-by-this-run`, or `conflict-detected` before any `spec.md` mutation branch runs. |
-| Advisory lock + generated fence | The workflow holds `research/.deep-research.lock` through synthesis and replaces one `BEGIN/END GENERATED` findings block in `spec.md`. |
-| Progressive synthesis | `research.md` can be updated incrementally and is finalized during synthesis. |
-| Negative knowledge | Ruled-out directions and dead ends are preserved as first-class outputs. |
-| Quality guards | Source diversity, focus alignment, and weak-source checks must pass before STOP is accepted. |
-| 3-signal convergence model | Composite stop decision uses three weighted signals: Rolling Average (0.45), MAD Noise Floor (0.30), and Coverage/Age (0.25). STOP requires weighted score > 0.60 threshold. |
-| Graph-aware legal-stop checks | When `graphEvents` exist, structural graph signals add extra STOP-blocking evidence on top of the standard convergence math. |
-| Semantic coverage graph | Each iteration emits `graphEvents` (nodes + edges) in JSONL, building an in-memory coverage graph with relation types (ANSWERS, SUPPORTS, CONTRADICTS, SUPERSEDES, DERIVED_FROM, COVERS, CITES). |
-| Graph convergence guards | STOP-blocking guards: sourceDiversity (>= 0.4) and evidenceDepth (>= 1.5) must pass before convergence is accepted, preventing premature termination from single-source or shallow-evidence research. |
-| Question coverage tracking | Graph tracks which research questions have ANSWERS edges, computing an answerCoverage ratio that contributes to the convergence score. |
-| Fail-closed corruption handling | The reducer throws a structured error before writing any derived files when JSONL corruption is detected in non-lenient mode. |
-| Graph convergence fallback | When `blendedScore` is absent from `graph_convergence` events, the reducer uses a numeric fallback instead of collapsing to zero. |
-| Terminal stop metadata | The reducer parses `synthesis_complete` events to derive authoritative dashboard status rather than relying on stale config. |
+- Fresh context per iteration: Each iteration uses a fresh LEAF agent dispatch.
+- Lineage-aware lifecycle: Supports `new`, `resume`, and `restart`. `fork` and `completed-continue` are deferred. See `references/loop_protocol.md §Lifecycle Branches`.
+- Reducer synchronization: Strategy, dashboard, registry, and synthesis metadata are updated from canonical iteration outputs.
+- Packet-first recovery: Hook and non-hook runtimes derive the same next action from packet files.
+- Runtime capability matrix: One documented and machine-readable source of truth for provider quirks and parity expectations.
+- `spec.md` anchoring: Late INIT follows `references/spec_check_protocol.md` to seed or sync bounded packet context before LOOP begins.
+- Folder-state contract: `folder_state` resolves to `no-spec`, `spec-present`, `spec-just-created-by-this-run`, or `conflict-detected` before any `spec.md` mutation branch runs.
+- Advisory lock + generated fence: The workflow holds `research/.deep-research.lock` through synthesis and replaces one `BEGIN/END GENERATED` findings block in `spec.md`.
+- Progressive synthesis: `research.md` can be updated incrementally and is finalized during synthesis.
+- Negative knowledge: Ruled-out directions and dead ends are preserved as first-class outputs.
+- Quality guards: Source diversity, focus alignment, and weak-source checks must pass before STOP is accepted.
+- 3-signal convergence model: Composite stop decision uses three weighted signals. Rolling Average (0.45), MAD Noise Floor (0.30), and Coverage/Age (0.25). STOP requires weighted score > 0.60 threshold.
+- Graph-aware legal-stop checks: When `graphEvents` exist, structural graph signals add extra STOP-blocking evidence on top of the standard convergence math.
+- Semantic coverage graph: Each iteration emits `graphEvents` (nodes + edges) in JSONL, building an in-memory coverage graph with relation types (ANSWERS, SUPPORTS, CONTRADICTS, SUPERSEDES, DERIVED_FROM, COVERS, CITES).
+- Graph convergence guards: STOP-blocking guards. sourceDiversity (>= 0.4) and evidenceDepth (>= 1.5) must pass before convergence is accepted, preventing premature termination from single-source or shallow-evidence research.
+- Question coverage tracking: Graph tracks which research questions have ANSWERS edges, computing an answerCoverage ratio that contributes to the convergence score.
+- Fail-closed corruption handling: The reducer throws a structured error before writing any derived files when JSONL corruption is detected in non-lenient mode.
+- Graph convergence fallback: When `blendedScore` is absent from `graph_convergence` events, the reducer uses a numeric fallback instead of collapsing to zero.
+- Terminal stop metadata: The reducer parses `synthesis_complete` events to derive authoritative dashboard status rather than relying on stale config.
 <!-- /ANCHOR:features -->
 
 ---
@@ -165,8 +163,8 @@ Ownership model:
 | `new` | First run against this spec folder. No prior state. |
 | `resume` | Continue the active lineage with the same `sessionId`. Persisted as a `resumed` JSONL event. |
 | `restart` | Start a new generation with explicit parent linkage and archive the prior `research/` tree under `research_archive/{timestamp}/`. Persisted as a `restarted` JSONL event. |
-| `fork` (deferred) | Reserved. Earlier drafts described this as a sibling-lineage branch; the runtime does not emit lineage events for `fork` today. Do not expose it in user-facing workflows. |
-| `completed-continue` (deferred) | Reserved. Earlier drafts described snapshotting the prior synthesis as immutable `synthesis-v{generation}.md`; the runtime does not emit lineage events for `completed-continue` today. |
+| `fork` (deferred) | Reserved. Earlier drafts described this as a sibling-lineage branch. the runtime does not emit lineage events for `fork` today. Do not expose it in user-facing workflows. |
+| `completed-continue` (deferred) | Reserved. Earlier drafts described snapshotting the prior synthesis as immutable `synthesis-v{generation}.md`. the runtime does not emit lineage events for `completed-continue` today. |
 
 See `references/loop_protocol.md §Lifecycle Branches` for the canonical event contract. Legacy artifact names remain read-only migration aliases for a 4-week window. The workflow writes only canonical `deep-research-*` names and emits migration events when it consumes a legacy alias.
 <!-- /ANCHOR:lifecycle-modes -->
@@ -212,16 +210,16 @@ Read `.opencode/skills/deep-research/references/capability_matrix.md` for the pa
 A: Not as the source of truth. The reducer owns the machine-managed sections so packet state stays synchronized.
 
 **Q: What is the difference between `resume` and `restart`?**
-A: `resume` continues the same `sessionId` and generation, leaving the `research/` tree in place; the workflow appends a `resumed` JSONL event. `restart` archives the existing `research/` tree under `research_archive/{timestamp}/`, mints a fresh `sessionId`, increments `generation`, and appends a `restarted` JSONL event. Both events share the full lineage-contract field set documented in `references/loop_protocol.md §Lifecycle Branches`.
+A: `resume` continues the same `sessionId` and generation, leaving the `research/` tree in place. the workflow appends a `resumed` JSONL event. `restart` archives the existing `research/` tree under `research_archive/{timestamp}/`, mints a fresh `sessionId`, increments `generation`, and appends a `restarted` JSONL event. Both events share the full lineage-contract field set documented in `references/loop_protocol.md §Lifecycle Branches`.
 
 **Q: What happened to `fork` and `completed-continue`?**
-A: Both were described in earlier drafts but never shipped as runtime branches. They are deferred and the workflow no longer exposes them as options. If the long-form lineage feature is implemented later it will arrive with first-class event emission, reducer ancestry handling, and replay fixtures; until then treat each run as a standalone session or use `restart` to archive the prior one.
+A: Both were described in earlier drafts but never shipped as runtime branches. They are deferred and the workflow no longer exposes them as options. If the long-form lineage feature is implemented later it will arrive with first-class event emission, reducer ancestry handling, and replay fixtures. until then treat each run as a standalone session or use `restart` to archive the prior one.
 
 **Q: Can non-hook runtimes use the same workflow safely?**
 A: Yes. Packet files are the authority. Hooks only improve startup ergonomics.
 
 **Q: What can `/spec_kit:deep-research` change in `spec.md`?**
-A: Only the bounded mutations in `references/spec_check_protocol.md`: seed markers or pre-init context during INIT, plus one machine-owned `BEGIN GENERATED` / `END GENERATED` findings block during SYNTHESIS.
+A: Only the bounded mutations in `references/spec_check_protocol.md`. seed markers or pre-init context during INIT, plus one machine-owned `BEGIN GENERATED` / `END GENERATED` findings block during SYNTHESIS.
 
 **Q: Where should review work go now?**
 A: Use `deep-review` and `/spec_kit:deep-review`.

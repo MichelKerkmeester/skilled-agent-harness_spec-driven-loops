@@ -49,43 +49,20 @@ For Spec Kit packet recovery, this skill treats `/spec_kit:resume` as the canoni
 
 ### Key Statistics
 
-| Metric | Value |
-| --- | --- |
-| Skill version | 1.5.0.0 |
-| Operating modes | 5 |
-| Script count | 6 automation scripts |
-| Template count | 10+ templates across 4 asset categories |
-| Reference files | 12 (6 global, 6 creation guides) |
-| Flowchart patterns | 7 core patterns |
-| DQI scale | 0-100 (four quality bands) |
-
-### How This Compares
-
-| Capability | sk-doc | system-spec-kit | sk-git |
-| --- | --- | --- | --- |
-| Markdown quality enforcement | Yes | No | No |
-| DQI scoring | Yes | No | No |
-| Skill/Agent/Command creation | Yes | No | No |
-| Spec folder lifecycle | No | Yes | No |
-| ASCII flowcharts | Yes | No | No |
-| Install guides | Yes | No | No |
-| Feature catalogs and playbooks | Yes | No | No |
-| Git workflow orchestration | No | No | Yes |
+The skill runs version 1.5.0.0 with five operating modes. It includes six automation scripts, over ten templates across four asset categories, and twelve reference files (six global and six creation guides). The flowchart system provides seven core patterns. The DQI scale ranges from 0 to 100 across four quality bands.
 
 ### Key Features
 
-| Feature | Description |
-| --- | --- |
-| DQI scoring | 0-100 score across Structure (40), Content (30), Style (30) |
-| Document type detection | Auto-detects README, SKILL, Knowledge, Command, Spec, playbook_feature, Generic |
-| HVR enforcement | Human Voice Rules applied to all output, with score deduction for violations |
-| Component scaffolding | `init_skill.py` creates properly structured skill directories |
-| Packaging and validation | `package_skill.py` runs full validation before distribution |
-| Smart routing | Intent-scored resource loading, avoids loading irrelevant templates |
-| 7 flowchart patterns | Linear, decision, parallel, nested, approval gate, loop, pipeline |
-| Install guide phases | 5-phase template with per-phase validation checkpoints |
-| Feature catalogs | Rooted inventory with numbered categories and per-feature files |
-| Manual testing playbooks | 9-column scenario tables, deterministic prompts, cross-reference index |
+- DQI scoring: 0-100 score across Structure (40), Content (30), Style (30)
+- Document type detection: Auto-detects README, SKILL, Knowledge, Command, Spec, playbook_feature, Generic
+- HVR enforcement: Human Voice Rules applied to all output, with score deduction for violations
+- Component scaffolding: `init_skill.py` creates properly structured skill directories
+- Packaging and validation: `package_skill.py` runs full validation before distribution
+- Smart routing: Intent-scored resource loading, avoids loading irrelevant templates
+- 7 flowchart patterns: Linear, decision, parallel, nested, approval gate, loop, pipeline
+- Install guide phases: 5-phase template with per-phase validation checkpoints
+- Feature catalogs: Rooted inventory with numbered categories and per-feature files
+- Manual testing playbooks: 9-column scenario tables, deterministic prompts, cross-reference index
 
 <!-- /ANCHOR:overview -->
 
@@ -142,57 +119,70 @@ Feature Catalog and Manual Testing Playbook creation handle package-level docume
 
 **Document Quality (Mode 1)**
 
-| Feature | Detail |
-| --- | --- |
-| DQI scoring | Structure 40 pts, Content 30 pts, Style 30 pts |
-| Quality bands | Excellent (90-100), Good (75-89), Acceptable (60-74), Needs Work (<60) |
-| Document types | README, SKILL, Knowledge, Command, Spec, playbook_feature, Generic |
-| Enforcement levels | Strict (SKILL/Command), Flexible (README), Moderate (Knowledge), Loose (Spec) |
-| Safe auto-fixes | H2 case, section separators, filename convention |
-| Critical violations | Missing frontmatter, wrong section order (escalate, do not auto-fix) |
-| HVR compliance | Style score deduction for banned words, em dashes, semicolons |
+||| Feature | Detail |
+||| --- | --- |
+||| DQI scoring | Structure 40 pts, Content 30 pts, Style 30 pts |
+||| Quality bands | Excellent (90-100), Good (75-89), Acceptable (60-74), Needs Work (<60) |
+||| Document types | README, SKILL, Knowledge, Command, Spec, playbook_feature, Generic |
+||| Enforcement levels | Strict (SKILL/Command), Flexible (README), Moderate (Knowledge), Loose (Spec) |
+||| Safe auto-fixes | H2 case, section separators, filename convention |
+||| Critical violations | Missing frontmatter, wrong section order (escalate, do not auto-fix) |
+||| HVR compliance | Style score deduction for banned words, em dashes, semicolons |
 
 `playbook_feature` applies to per-feature scenario files under `manual_testing_playbook/NN--category/`; root playbook documents keep their package-level document contract.
 
 **Component Creation (Mode 2)**
 
-| Component | Key Rule | Scaffolding Tool |
-| --- | --- | --- |
-| Skill | SKILL.md must stay under 5k words | `init_skill.py` |
-| Skill | Must have a REFERENCES section for packaging | `package_skill.py` |
-| Agent | Explicit true/false tool permissions required | `agent_template.md` |
-| Agent | CORE WORKFLOW and ANTI-PATTERNS sections required | `agent_template.md` |
-| Command | Frontmatter required for discovery | `command_template.md` |
-| Command | Trigger phrases must be unique | Manual validation |
+||| Component | Key Rule | Scaffolding Tool |
+||| --- | --- | --- |
+||| Skill | SKILL.md must stay under 5k words | `init_skill.py` |
+||| Skill | Must have a REFERENCES section for packaging | `package_skill.py` |
+||| Agent | Explicit true/false tool permissions required | `agent_template.md` |
+||| Agent | CORE WORKFLOW and ANTI-PATTERNS sections required | `agent_template.md` |
+||| Command | Frontmatter required for discovery | `command_template.md` |
+||| Command | Trigger phrases must be unique | Manual validation |
 
 **Flowchart Creation (Mode 3)**
 
-| Pattern | Use Case | Reference File |
-| --- | --- | --- |
-| 1: Linear Sequential | Step-by-step without branching | `simple_workflow.md` |
-| 2: Decision Branch | Binary or multi-way decisions | `decision_tree_flow.md` |
-| 3: Parallel | Multiple tasks run together | `parallel_execution.md` |
-| 4: Nested | Embedded sub-workflows | `user_onboarding.md` |
-| 5: Approval Gate | Review/approval required | `approval_workflow_loops.md` |
-| 6: Loop/Iteration | Repeat until condition met | `approval_workflow_loops.md` |
-| 7: Pipeline | Sequential stages with gates | `system_architecture_swimlane.md` |
+||| Pattern | Use Case | Reference File |
+||| --- | --- | --- |
+||| 1: Linear Sequential | Step-by-step without branching | `simple_workflow.md` |
+||| 2: Decision Branch | Binary or multi-way decisions | `decision_tree_flow.md` |
+||| 3: Parallel | Multiple tasks run together | `parallel_execution.md` |
+||| 4: Nested | Embedded sub-workflows | `user_onboarding.md` |
+||| 5: Approval Gate | Review/approval required | `approval_workflow_loops.md` |
+||| 6: Loop/Iteration | Repeat until condition met | `approval_workflow_loops.md` |
+||| 7: Pipeline | Sequential stages with gates | `system_architecture_swimlane.md` |
 
 **Install Guide Creation (Mode 4)**
 
-| Phase | Purpose | Validation |
-| --- | --- | --- |
-| Prerequisites | List and verify dependencies | Checklist checkpoint |
-| Installation | Step-by-step install commands | Checklist checkpoint |
-| Configuration | Platform-specific config blocks | Checklist checkpoint |
-| Verification | Confirm install works | Checklist checkpoint |
-| Troubleshooting | Error/Cause/Fix entries | Checklist checkpoint |
+||| Phase | Purpose | Validation |
+||| --- | --- | --- |
+||| Prerequisites | List and verify dependencies | Checklist checkpoint |
+||| Installation | Step-by-step install commands | Checklist checkpoint |
+||| Configuration | Platform-specific config blocks | Checklist checkpoint |
+||| Verification | Confirm install works | Checklist checkpoint |
+||| Troubleshooting | Error/Cause/Fix entries | Checklist checkpoint |
 
 **Catalog and Playbook Creation (Mode 5)**
 
-| Artifact | Root Document | Per-Feature Files |
-| --- | --- | --- |
-| Feature Catalog | `FEATURE_CATALOG.md` | One file per catalog entry, numbered categories |
-| Testing Playbook | `manual_testing_playbook.md` | One file per Feature ID, numbered categories |
+||| Artifact | Root Document | Per-Feature Files |
+||| --- | --- | --- |
+||| Feature Catalog | `FEATURE_CATALOG.md` | One file per catalog entry, numbered categories |
+||| Testing Playbook | `manual_testing_playbook.md` | One file per Feature ID, numbered categories |
+
+### 3.3 SKILL COMPARISON
+
+||| Capability | sk-doc | system-spec-kit | sk-git |
+||| --- | --- | --- | --- |
+||| Markdown quality enforcement | Yes | No | No |
+||| DQI scoring | Yes | No | No |
+||| Skill/Agent/Command creation | Yes | No | No |
+||| Spec folder lifecycle | No | Yes | No |
+||| ASCII flowcharts | Yes | No | No |
+||| Install guides | Yes | No | No |
+||| Feature catalogs and playbooks | Yes | No | No |
+||| Git workflow orchestration | No | No | Yes |
 
 <!-- /ANCHOR:features -->
 
@@ -264,14 +254,14 @@ No configuration is required to use this skill. Document type detection is autom
 
 **Enforcement levels by document type**
 
-| Document Type | Enforcement | Frontmatter | Notes |
-| --- | --- | --- | --- |
-| SKILL.md | Strict | Required | No structural checklist failures permitted |
-| README.md | Flexible | None | Focus on quick-start usability |
-| Knowledge file | Moderate | Forbidden | Consistent, scannable reference format |
-| Command | Strict | Required | Must be executable and discoverable |
-| Spec | Loose | Optional | Working docs, avoid blocking on violations |
-| Generic | Flexible | Optional | Best-effort structure enforcement |
+||| Document Type | Enforcement | Frontmatter | Notes |
+||| --- | --- | --- | --- |
+||| SKILL.md | Strict | Required | No structural checklist failures permitted |
+||| README.md | Flexible | None | Focus on quick-start usability |
+||| Knowledge file | Moderate | Forbidden | Consistent, scannable reference format |
+||| Command | Strict | Required | Must be executable and discoverable |
+||| Spec | Loose | Optional | Working docs, avoid blocking on violations |
+||| Generic | Flexible | Optional | Best-effort structure enforcement |
 
 Template enforcement rules are defined in `assets/template_rules.json`. This file governs which checklist items are required, advisory, or skipped per document type. Modify this file to adjust enforcement for custom document types.
 
@@ -287,49 +277,49 @@ Template enforcement rules are defined in `assets/template_rules.json`. This fil
 **Score a document and review recommendations**
 
 ```bash
-# Run extract_structure.py and parse the JSON output
+|# Run extract_structure.py and parse the JSON output
 python3 .opencode/skills/sk-doc/scripts/extract_structure.py path/to/document.md
 
-# Example output (truncated):
-# {
-#   "dqi": { "total": 82, "band": "good", "components": { "structure": 35, "content": 22, "style": 25 } },
-#   "checklist": { "passed": 9, "failed": 2, "skipped": 1 },
-#   "documentType": "README",
-#   "violations": ["missing_toc_anchor", "h2_missing_emoji"]
-# }
+|# Example output (truncated):
+|# {
+|#   "dqi": { "total": 82, "band": "good", "components": { "structure": 35, "content": 22, "style": 25 } },
+|#   "checklist": { "passed": 9, "failed": 2, "skipped": 1 },
+|#   "documentType": "README",
+|#   "violations": ["missing_toc_anchor", "h2_missing_emoji"]
+|# }
 ```
 
 **Scaffold, populate, and package a new skill**
 
 ```bash
-# Step 1: scaffold the directory
+|# Step 1: scaffold the directory
 python3 .opencode/skills/sk-doc/scripts/init_skill.py my-skill --path .opencode/skill
 
-# Step 2: populate SKILL.md and bundled resources using templates
-# assets/skill/skill_md_template.md  →  .opencode/skills/my-skill/SKILL.md
-# assets/skill/skill_reference_template.md  →  references/
-# assets/skill/skill_asset_template.md      →  assets/
+|# Step 2: populate SKILL.md and bundled resources using templates
+|# assets/skill/skill_md_template.md  →  .opencode/skills/my-skill/SKILL.md
+|# assets/skill/skill_reference_template.md  →  references/
+|# assets/skill/skill_asset_template.md      →  assets/
 
-# Step 3: run quick validation during editing
+|# Step 3: run quick validation during editing
 python3 .opencode/skills/sk-doc/scripts/quick_validate.py .opencode/skills/my-skill --json
 
-# Step 4: package and validate for distribution
+|# Step 4: package and validate for distribution
 python3 .opencode/skills/sk-doc/scripts/package_skill.py .opencode/skills/my-skill
 
-# Step 5: final DQI check on SKILL.md
+|# Step 5: final DQI check on SKILL.md
 python3 .opencode/skills/sk-doc/scripts/extract_structure.py .opencode/skills/my-skill/SKILL.md
 ```
 
 **Validate a README before delivery**
 
 ```bash
-# validate_document.py checks TOC anchors, H2 emojis, required sections
+|# validate_document.py checks TOC anchors, H2 emojis, required sections
 python3 .opencode/skills/sk-doc/scripts/validate_document.py README.md
 
-# Exit codes:
-# 0 = valid, proceed to delivery
-# 1 = blocking errors (fix and re-run)
-# 2 = file read or parse error (check path and input)
+|# Exit codes:
+|# 0 = valid, proceed to delivery
+|# 1 = blocking errors (fix and re-run)
+|# 2 = file read or parse error (check path and input)
 ```
 
 <!-- /ANCHOR:usage-examples -->
@@ -373,7 +363,7 @@ Fix: Run `extract_structure.py` on SKILL.md first to identify the specific failu
 
 What you see: The Style component score is lower than expected. The checklist flags `hvr_banned_words`, `hvr_em_dash`, or `hvr_semicolon` violations.
 
-Common causes: Writing that uses banned words (leverage, robust, seamless, utilize, delve, cutting-edge, and others), em dashes used as clause separators, semicolons between independent clauses, or passive-voice constructions.
+Common causes: Writing that uses prohibited words (robust, seamless, utilize, delve, cutting-edge, and others), em dashes used as clause separators, semicolons between independent clauses, or passive-voice constructions.
 
 Fix: Read `references/global/hvr_rules.md` for the complete banned word list and prohibited punctuation patterns. Search the document for each violation type using Grep, then rewrite affected sentences. Replace em dashes with commas or parentheses. Replace semicolons with periods or commas. Replace banned words with plain alternatives.
 
@@ -403,23 +393,23 @@ A: A feature catalog documents current behavior. It inventories what a skill or 
 <!-- ANCHOR:related-documents -->
 ## 9. RELATED DOCUMENTS
 
-| Resource | Path | Purpose |
-| --- | --- | --- |
-| SKILL.md | `.opencode/skills/sk-doc/SKILL.md` | Entry point with routing logic and mode rules |
-| HVR rules | `references/global/hvr_rules.md` | Complete Human Voice Rules ruleset |
-| Validation rules | `references/global/validation.md` | DQI scoring criteria and blocking rules |
-| Core standards | `references/global/core_standards.md` | Filename conventions and structure rules |
-| Workflows | `references/global/workflows.md` | Execution workflows by mode |
-| Quick reference | `references/global/quick_reference.md` | One-page command and gate cheat sheet |
-| Skill creation guide | `references/skill_creation.md` | 6-step skill creation workflow |
-| Agent creation guide | `references/agent_creation.md` | Agent authority, permissions, creation workflow |
-| README creation guide | `references/readme_creation.md` | README creation workflow |
-| Install guide creation | `references/install_guide_creation.md` | Install guide standards and workflow |
-| Feature catalog creation | `references/feature_catalog_creation.md` | Catalog package standards and workflow |
-| Playbook creation | `references/manual_testing_playbook_creation.md` | Playbook standards and workflow |
-| system-spec-kit | `.opencode/skills/system-spec-kit/SKILL.md` | Spec folder lifecycle and context preservation |
-| sk-git | `.opencode/skills/sk-git/SKILL.md` | Git workflow orchestration |
-| CommonMark spec | https://spec.commonmark.org/ | Markdown rendering standard |
-| llms.txt spec | https://llmstxt.org/ | LLM navigation format |
+||| Resource | Path | Purpose |
+||| --- | --- | --- |
+||| SKILL.md | `.opencode/skills/sk-doc/SKILL.md` | Entry point with routing logic and mode rules |
+||| HVR rules | `references/global/hvr_rules.md` | Complete Human Voice Rules ruleset |
+||| Validation rules | `references/global/validation.md` | DQI scoring criteria and blocking rules |
+||| Core standards | `references/global/core_standards.md` | Filename conventions and structure rules |
+||| Workflows | `references/global/workflows.md` | Execution workflows by mode |
+||| Quick reference | `references/global/quick_reference.md` | One-page command and gate cheat sheet |
+||| Skill creation guide | `references/skill_creation.md` | 6-step skill creation workflow |
+||| Agent creation guide | `references/agent_creation.md` | Agent authority, permissions, creation workflow |
+||| README creation guide | `references/readme_creation.md` | README creation workflow |
+||| Install guide creation | `references/install_guide_creation.md` | Install guide standards and workflow |
+||| Feature catalog creation | `references/feature_catalog_creation.md` | Catalog package standards and workflow |
+||| Playbook creation | `references/manual_testing_playbook_creation.md` | Playbook standards and workflow |
+||| system-spec-kit | `.opencode/skills/system-spec-kit/SKILL.md` | Spec folder lifecycle and context preservation |
+||| sk-git | `.opencode/skills/sk-git/SKILL.md` | Git workflow orchestration |
+||| CommonMark spec | https://spec.commonmark.org/ | Markdown rendering standard |
+||| llms.txt spec | https://llmstxt.org/ | LLM navigation format |
 
 <!-- /ANCHOR:related-documents -->

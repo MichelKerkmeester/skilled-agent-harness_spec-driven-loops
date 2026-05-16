@@ -19,20 +19,18 @@ trigger_phrases:
 
 This skill bundles a soft-fork of [`cocoindex-code`](https://github.com/cocoindex-io/cocoindex-code) (Apache 2.0).
 
-| Field | Value |
-|-------|-------|
-| Upstream version forked | 0.2.3 |
-| Current fork version | 0.2.3+spec-kit-fork.0.2.0 |
-| License | Apache License, Version 2.0 (see [LICENSE](./LICENSE)) |
-| Attribution + modifications | [NOTICE](./NOTICE) |
-| Changelog | [changelog/CHANGELOG.md](./changelog/CHANGELOG.md) |
-| Source location | [`mcp_server/cocoindex_code/`](./mcp_server/cocoindex_code/) |
+- Upstream version forked: 0.2.3
+- Current fork version: 0.2.3+spec-kit-fork.0.2.0
+- License: Apache License, Version 2.0 (see [LICENSE](./LICENSE))
+- Attribution + modifications: [NOTICE](./NOTICE)
+- Changelog: [changelog/CHANGELOG.md](./changelog/CHANGELOG.md)
+- Source location: [`mcp_server/cocoindex_code/`](./mcp_server/cocoindex_code/)
 
 Modifications are limited to the `cocoindex_code` Python wrapper. The Rust-based upstream `cocoindex` package is NOT forked - it is still pulled from PyPI as a dependency.
 
-Patches landed per the spec packet at `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/004-cocoindex-overfetch-dedup/` (the cocoindex-overfetch-dedup packet — currently numbered `004` in the renumbered phase tree, tracked as `009` during research and in commit history such as `1b62e976d`): mirror-folder duplicate suppression, canonical path identity, path-class reranking for implementation-intent queries, and ranking telemetry.
+Patches landed per the spec packet at `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/004-cocoindex-overfetch-dedup/` (the cocoindex-overfetch-dedup packet, currently numbered `004` in the renumbered phase tree, tracked as `009` during research and in commit history such as `1b62e976d`): mirror-folder duplicate suppression, canonical path identity, path-class reranking for implementation-intent queries, and ranking telemetry.
 
-**Vanilla cocoindex-code returns** per result: `file`, `lines`, `snippet`, `score`, `language`. **This fork additionally returns:** `source_realpath`, `content_hash`, `path_class` (chunk-level identity + taxonomy), `dedupedAliases`, `uniqueResultCount` (mirror-folder dedup signals), `raw_score` (pre-rerank score), and `rankingSignals` (per-result rerank breakdown). Callers writing client code against this MCP/CLI must account for the extended shape — see [`references/tool_reference.md` §7 Fork-Specific Output Telemetry](references/tool_reference.md#-7-fork-specific-output-telemetry) for the full schema, types, and reading guidance.
+**Vanilla cocoindex-code returns** per result: `file`, `lines`, `snippet`, `score`, `language`. **This fork additionally returns:** `source_realpath`, `content_hash`, `path_class` (chunk-level identity + taxonomy), `dedupedAliases`, `uniqueResultCount` (mirror-folder dedup signals), `raw_score` (pre-rerank score), and `rankingSignals` (per-result rerank breakdown). Callers writing client code against this MCP/CLI must account for the extended shape. See [`references/tool_reference.md` §7 Fork-Specific Output Telemetry](references/tool_reference.md#-7-fork-specific-output-telemetry) for the full schema, types, and reading guidance.
 
 ---
 
@@ -68,42 +66,19 @@ If that exploration feeds into Spec Kit packet recovery, `/spec_kit:resume` rema
 
 ### Key Statistics
 
-| Property | Value |
-|---|---|
-| Version | 1.0.0 |
-| MCP tools exposed | 2 (`search`, `cocoindex_refresh_index`) |
-| Supported languages | 28+ |
-| Default embedding model | `google/embeddinggemma-300m` via sentence-transformers (768-dim bf16, local, no API key, Metal/MPS accelerated on Apple Silicon) |
-| Unified with Memory MCP | Yes (both use the EmbeddingGemma 768d model family) |
-| Vector storage | SQLite via sqlite-vec |
-| Chunk size | 1000 chars, 250 char minimum, 150 char overlap |
-| Similarity metric | Cosine similarity (0.0 to 1.0) |
-
-### How This Compares
-
-| Tool | Use When | Limitation |
-|---|---|---|
-| `ccc search` (CocoIndex) | You know what code does but not where it lives | Approximate, needs verification |
-| `code_graph_query` | You need exact callers, imports, or structural dependencies | Requires the structural graph to be indexed first |
-| `Grep` | You know the exact text, symbol, or regex pattern | Cannot find conceptual matches |
-| `Glob` | You know the file name or extension pattern | Cannot search file contents |
-| `Read` | You know the exact file path | No search capability |
-
-Code Graph implementation and package docs live under `.opencode/skills/system-code-graph/`; the MCP tool IDs stay `code_graph_*`, `ccc_*`, and `detect_changes`.
+This skill runs version 1.0.0 and exposes 2 MCP tools (search and cocoindex_refresh_index). It supports 28+ programming languages and uses the google/embeddinggemma-300m embedding model by default via sentence-transformers (768-dim bf16, local, no API key, Metal/MPS accelerated on Apple Silicon). The model is unified with the Memory MCP, both using the EmbeddingGemma 768d model family. Vector storage uses SQLite via sqlite-vec, with a chunk size of 1000 characters (250 char minimum, 150 char overlap) and cosine similarity (0.0 to 1.0) as the similarity metric.
 
 ### Key Features
 
-| Feature | Description |
-|---|---|
-| Semantic search | Query by concept or intent, not exact text |
-| CLI and MCP modes | `ccc` for terminal use, `ccc mcp` for AI agent integration |
-| Language filters | `--lang` (CLI) or `languages` (MCP) narrows results by language |
-| Path filters | `--path` (CLI) or `paths` (MCP) scopes results to a directory |
-| Incremental indexing | Only re-embeds changed files on subsequent runs |
-| Daemon architecture | Auto-starts, auto-restarts on version or settings change |
-| Spec Kit integration | Companion lifecycle tools (`ccc_status`, `ccc_reindex`, `ccc_feedback`) and code-graph/session integration are available through system-spec-kit |
-| EmbeddingGemma default | Unified 768d local model shared with Memory MCP, no API key, Metal/MPS accelerated |
-| 28+ languages | Language-aware chunk splitting preserves function and class boundaries |
+- Semantic search: Query by concept or intent, not exact text
+- CLI and MCP modes: `ccc` for terminal use, `ccc mcp` for AI agent integration
+- Language filters: `--lang` (CLI) or `languages` (MCP) narrows results by language
+- Path filters: `--path` (CLI) or `paths` (MCP) scopes results to a directory
+- Incremental indexing: Only re-embeds changed files on subsequent runs
+- Daemon architecture: Auto-starts, auto-restarts on version or settings change
+- Spec Kit integration: Companion lifecycle tools (`ccc_status`, `ccc_reindex`, `ccc_feedback`) and code-graph/session integration are available through system-spec-kit
+- EmbeddingGemma default: Unified 768d local model shared with Memory MCP, no API key, Metal/MPS accelerated
+- 28+ languages: Language-aware chunk splitting preserves function and class boundaries
 
 In the broader system-spec-kit stack, CocoIndex is the semantic half of a three-system retrieval model: CocoIndex finds conceptually similar code, Code Graph answers structural questions, and session bootstrap surfaces CocoIndex readiness during recovery. The companion lifecycle helpers exposed through system-spec-kit are `ccc_status`, `ccc_reindex`, and `ccc_feedback`.
 
@@ -227,6 +202,16 @@ The CLI and MCP interfaces are complementary, not redundant. The CLI handles ind
 | 0.4 - 0.6 | Moderate match | Scan for usefulness |
 | 0.0 - 0.4 | Weak match | Usually skip |
 
+### 3.3 TOOL COMPARISON
+
+Code Graph implementation and package docs live under `.opencode/skills/system-code-graph/`; the MCP tool IDs stay `code_graph_*`, `ccc_*`, and `detect_changes`.
+
+- `ccc search` (CocoIndex): Use when you know what code does but not where it lives. Limitation: Approximate, needs verification.
+- `code_graph_query`: Use when you need exact callers, imports, or structural dependencies. Limitation: Requires the structural graph to be indexed first.
+- `Grep`: Use when you know the exact text, symbol, or regex pattern. Limitation: Cannot find conceptual matches.
+- `Glob`: Use when you know the file name or extension pattern. Limitation: Cannot search file contents.
+- `Read`: Use when you know the exact file path. Limitation: No search capability.
+
 <!-- /ANCHOR:features -->
 
 ---
@@ -235,7 +220,7 @@ The CLI and MCP interfaces are complementary, not redundant. The CLI handles ind
 ## 4. STRUCTURE
 
 ```text
-mcp-coco-index/
+|mcp-coco-index/
   SKILL.md                         AI agent instructions and routing logic
   README.md                        This file
   INSTALL_GUIDE.md                 Installation and initial setup guide

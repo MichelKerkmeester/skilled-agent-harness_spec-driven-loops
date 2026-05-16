@@ -41,47 +41,21 @@ trigger_phrases:
 
 sk-code-review is the findings-first code review baseline. Every review starts with findings rather than summaries. Findings carry severity labels (`P0` critical / `P1` high / `P2` advisory), file:line evidence, a risk statement, a user-impact statement, and a recommended fix. The format is designed for reviewers who need to know what blocks shipping immediately, with detail available on demand.
 
-The skill is stack-agnostic by design. It enforces universal review rules — security minimums (auth, input validation, secret handling, dependency posture), correctness minimums (error handling, edge cases, logic faults), code quality (KISS, DRY, complexity, SOLID adherence), and test quality (coverage of new behavior, no flaky tests introduced) — and delegates stack-specific standards to sk-code. When sk-code has detected a code surface, sk-code-review uses `sk-code:<surface>` as standards evidence; when the surface is unclear, sk-code-review proceeds baseline-only and discloses the uncertainty in the output's "Review Context" footer.
+The skill is stack-agnostic by design. It enforces universal review rules (security minimums (auth, input validation, secret handling, dependency posture), correctness minimums (error handling, edge cases, logic faults), code quality (KISS, DRY, complexity, SOLID adherence), and test quality (coverage of new behavior, no flaky tests introduced)) and delegates stack-specific standards to sk-code. When sk-code has detected a code surface, sk-code-review uses `sk-code:<surface>` as standards evidence. When the surface is unclear, sk-code-review proceeds baseline-only and discloses the uncertainty in the output's "Review Context" footer.
 
 This replaces the old `sk-code-*` per-stack overlay model. There is no longer a per-stack review skill (e.g., `sk-code-review-go`, `sk-code-review-react`). Review now uses the single baseline + sk-code surface evidence pattern: `sk-code-review baseline → sk-code surface evidence → findings-first output`. The transition simplifies maintenance (one review skill instead of N) and makes the surface-vs-review concerns properly separated.
 
-### Key Statistics
-
-| Metric | Value |
-| --- | --- |
-| Skill version | 1.2.0.0 |
-| SKILL.md size | 406 LOC |
-| Severity tiers | 3 (`P0` critical, `P1` high, `P2` advisory) |
-| Mandatory minimums | Security + correctness (cannot be skipped) |
-| Reference files | 9 (review_core, review_ux_single_pass, security_checklist, code_quality_checklist, solid_checklist, test_quality_checklist, removal_plan, fix-completeness-checklist, quick_reference) |
-| Surface evidence source | `sk-code` (delegated) |
-| Output contract | Findings-first markdown with Review Context footer |
-
-### How This Compares
-
-| Capability | sk-code-review | sk-code | sk-doc |
-| --- | --- | --- | --- |
-| Findings-first review | Yes (P0/P1/P2) | No | No |
-| Severity labels with evidence | Yes | No | No |
-| Security minimums enforced | Yes (mandatory) | No | No |
-| Surface-aware standards | Delegated to sk-code | Yes (native) | No |
-| Code implementation | No | Yes | No |
-| Documentation quality | No | No | Yes |
-| Old per-stack overlay model | Replaced | n/a | n/a |
-
 ### Key Features
 
-| Feature | Description |
-| --- | --- |
-| Findings-first format | Reviews lead with findings (P0/P1/P2), not summaries |
-| Three-tier severity | `P0` critical (blocks merge), `P1` high (must fix soon), `P2` advisory (optional) |
-| Mandatory security minimums | Auth, input validation, secret handling, dependency posture — cannot be skipped |
-| Mandatory correctness minimums | Error handling, edge cases, logic faults |
-| Stack-agnostic baseline | Universal rules apply to every code surface |
-| sk-code surface delegation | Standards evidence comes from sk-code's detected surface |
-| Single-pass UX | One review pass produces the full findings list (no incremental drip) |
-| Removal plan support | Findings can include code-removal recommendations with dependency analysis |
-| Output contract | Standardized markdown structure with Review Context footer |
+- **Findings-first format**: Reviews lead with findings (P0/P1/P2), not summaries
+- **Three-tier severity**: `P0` critical (blocks merge), `P1` high (must fix soon), `P2` advisory (optional)
+- **Mandatory security minimums**: Auth, input validation, secret handling, dependency posture (cannot be skipped)
+- **Mandatory correctness minimums**: Error handling, edge cases, logic faults
+- **Stack-agnostic baseline**: Universal rules apply to every code surface
+- **sk-code surface delegation**: Standards evidence comes from sk-code's detected surface
+- **Single-pass UX**: One review pass produces the full findings list (no incremental drip)
+- **Removal plan support**: Findings can include code-removal recommendations with dependency analysis
+- **Output contract**: Standardized markdown structure with Review Context footer
 <!-- /ANCHOR:overview -->
 
 ---
@@ -137,11 +111,11 @@ Every review follows the canonical output contract:
 
 ### 3.1 FEATURE HIGHLIGHTS
 
-The findings-first format is the central convention. A code review's most valuable output is the list of issues that block merge, not a narrative summary. Reviewers reading the output should see, in the first 30 seconds, which findings need action and which can ship as-is. The P0/P1/P2 severity tiers make this scannable: `P0` is "blocks merge — must fix before approval," `P1` is "must fix soon — track and address," `P2` is "advisory — optional, would improve the code." Each finding carries `file:line` evidence so reviewers can jump directly to the source.
+The findings-first format is the central convention. A code review's most valuable output is the list of issues that block merge, not a narrative summary. Reviewers reading the output should see, in the first 30 seconds, which findings need action and which can ship as-is. The P0/P1/P2 severity tiers make this scannable: `P0` is "blocks merge. Must fix before approval," `P1` is "must fix soon. Track and address," `P2` is "advisory. Optional, would improve the code." Each finding carries `file:line` evidence so reviewers can jump directly to the source.
 
 The mandatory minimums are non-negotiable. Every review checks security (authentication, input validation, secret handling, dependency posture per `security_checklist.md`) and correctness (error handling, edge cases, logic faults per `code_quality_checklist.md`). The minimums apply baseline-only if no surface evidence is available. Skipping the minimums to deliver a faster review is a violation. The minimums catalog is concrete (specific checks, not vague advice) so the agent knows what to verify.
 
-The surface delegation pattern is the cleanest way to keep review stack-agnostic while still applying stack-specific standards. sk-code-review owns the universal rules (security, correctness, KISS, DRY, SOLID, test quality). sk-code owns the per-surface idioms (e.g., WEBFLOW Webflow Designer conventions, OPENCODE per-language standards). When both are loaded, the review applies universal + surface; when only baseline is loaded, the review applies universal and discloses the uncertainty.
+The surface delegation pattern is the cleanest way to keep review stack-agnostic while still applying stack-specific standards. sk-code-review owns the universal rules (security, correctness, KISS, DRY, SOLID, test quality). sk-code owns the per-surface idioms (e.g., WEBFLOW Webflow Designer conventions, OPENCODE per-language standards). When both are loaded, the review applies universal + surface. When only baseline is loaded, the review applies universal and discloses the uncertainty.
 
 The single-pass UX rule (per `review_ux_single_pass.md`) means the agent produces the complete findings list in one output rather than drip-feeding findings across multiple turns. Drip-feeding produces a poor reviewer experience because the human waits between findings and may close the session before the full set arrives. Single-pass means the agent collects all findings, organizes by severity, then emits the full list in one message.
 
@@ -174,7 +148,7 @@ Removal plan support handles the special case of "this code should not exist" fi
 | `sk-code:webflow` | sk-code detected WEBFLOW surface |
 | `sk-code:opencode` | sk-code detected OPENCODE surface |
 | `sk-code:motion_dev` | Motion.dev intent active over WEBFLOW |
-| `baseline-only` | Surface unclear; review uses universal rules only |
+| `baseline-only` | Surface unclear. Review uses universal rules only |
 
 **Output Contract** (every review must follow)
 
@@ -202,6 +176,30 @@ Removal plan support handles the special case of "this code should not exist" fi
 | `removal_plan.md` | Code-removal dependency analysis |
 | `fix-completeness-checklist.md` | Verifies a fix is complete (no half-fixes) |
 | `quick_reference.md` | One-page severity + minimums cheat sheet |
+
+### 3.3 SKILL STATISTICS
+
+| Metric | Value |
+| --- | --- |
+| Skill version | 1.2.0.0 |
+| SKILL.md size | 406 LOC |
+| Severity tiers | 3 (`P0` critical, `P1` high, `P2` advisory) |
+| Mandatory minimums | Security + correctness (cannot be skipped) |
+| Reference files | 9 (review_core, review_ux_single_pass, security_checklist, code_quality_checklist, solid_checklist, test_quality_checklist, removal_plan, fix-completeness-checklist, quick_reference) |
+| Surface evidence source | `sk-code` (delegated) |
+| Output contract | Findings-first markdown with Review Context footer |
+
+### 3.4 COMPARISON WITH RELATED SKILLS
+
+| Capability | sk-code-review | sk-code | sk-doc |
+| --- | --- | --- | --- |
+| Findings-first review | Yes (P0/P1/P2) | No | No |
+| Severity labels with evidence | Yes | No | No |
+| Security minimums enforced | Yes (mandatory) | No | No |
+| Surface-aware standards | Delegated to sk-code | Yes (native) | No |
+| Code implementation | No | Yes | No |
+| Documentation quality | No | No | Yes |
+| Old per-stack overlay model | Replaced | n/a | n/a |
 <!-- /ANCHOR:features -->
 
 ---
@@ -235,13 +233,13 @@ No configuration is required. The findings-first format and mandatory minimums a
 
 **Allowed-tools array** (frontmatter, do not modify)
 
-`[Read, Write, Edit, Bash, Glob, Grep]` — read-mostly with controlled write surfaces for review-doc creation. The skill does not modify reviewed code; it only reads and produces findings.
+`[Read, Write, Edit, Bash, Glob, Grep]`. Read-mostly with controlled write surfaces for review-doc creation. The skill does not modify reviewed code. It only reads and produces findings.
 
 **Severity tier rules** are non-overridable. `P0`, `P1`, `P2` definitions live in `review_core.md`. Reviewers should not invent new tiers or remap existing ones per review.
 
 **Mandatory minimums** apply to every review. Skipping security or correctness checks to produce a faster review is a violation. The minimums apply even when surface evidence is unavailable (`baseline-only` mode).
 
-**Surface evidence** is delegated to sk-code. sk-code-review does not detect surfaces itself; it consumes whatever surface sk-code has resolved. When sk-code is not loaded or the surface is UNKNOWN, the review proceeds in `baseline-only` mode and discloses the uncertainty in the Review Context footer.
+**Surface evidence** is delegated to sk-code. sk-code-review does not detect surfaces itself. It consumes whatever surface sk-code has resolved. When sk-code is not loaded or the surface is UNKNOWN, the review proceeds in `baseline-only` mode and discloses the uncertainty in the Review Context footer.
 <!-- /ANCHOR:configuration -->
 
 ---
@@ -260,13 +258,13 @@ sk-code-review:
   Produces:
     ## Findings
     ### P0 - Critical
-    1. src/2_javascript/auth.js:42 — Auth token logged to console
+    1. src/2_javascript/auth.js:42. Auth token logged to console
        - Risk: secret leakage in browser console
        - User impact: any user with DevTools open sees the token
        - Recommended fix: remove the console.log; use Sentry breadcrumbs without the token
 
     ### P1 - High
-    1. src/2_javascript/scroll.js:88 — Scroll handler not debounced
+    1. src/2_javascript/scroll.js:88. Scroll handler not debounced
        - Risk: 60+ events/sec under fast scroll
        - User impact: jank on low-end devices
        - Recommended fix: wrap in lodash.debounce(handler, 16)
@@ -295,7 +293,7 @@ Diff: removes the old auth helper, adds a new session manager
 sk-code-review:
   Findings (excerpt):
     ### P1 - High
-    1. src/auth/legacy_helper.js:1 — Removed code still imported by 3 callers
+    1. src/auth/legacy_helper.js:1. Removed code still imported by 3 callers
        - Risk: build break in callers
        - User impact: deploy failure
        - Recommended fix: see Removal/Iteration Plan below
@@ -327,7 +325,7 @@ Fix: Re-read SKILL.md §4 RULES and the output contract. Every finding must carr
 
 **Mandatory minimums skipped**
 
-What you see: The review covers the diff's surface area but doesn't address security or correctness — the Review Context footer claims the minimums were checked but no security or correctness findings appear, and the diff actually has visible security or correctness issues.
+What you see: The review covers the diff's surface area but doesn't address security or correctness. The Review Context footer claims the minimums were checked but no security or correctness findings appear, and the diff actually has visible security or correctness issues.
 
 Common causes: The agent treated the minimums as advisory rather than mandatory, or the agent ran out of context budget before checking the minimums, or the agent assumed the minimums were "covered by other tooling."
 
@@ -351,7 +349,7 @@ What you see: The Review Context footer says `sk-code:webflow` but sk-code wasn'
 
 Common causes: The agent assumed surface evidence based on prompt vocabulary rather than sk-code's detection output, or sk-code was loaded but resolved to UNKNOWN and the agent claimed a surface anyway.
 
-Fix: Use `baseline-only` in the Review Context footer when sk-code is not loaded or resolved to UNKNOWN. Never fabricate surface evidence — the Review Context is part of the audit trail, and false claims undermine reviewer trust.
+Fix: Use `baseline-only` in the Review Context footer when sk-code is not loaded or resolved to UNKNOWN. Never fabricate surface evidence. The Review Context is part of the audit trail, and false claims undermine reviewer trust.
 <!-- /ANCHOR:troubleshooting -->
 
 ---
@@ -361,15 +359,15 @@ Fix: Use `baseline-only` in the Review Context footer when sk-code is not loaded
 
 **Q: Why is the review findings-first instead of summary-first?**
 
-A: A review's most valuable signal is "what blocks merge?" — that's a finding, not a summary. Reviewers reading a summary first have to read the whole thing before they know what action to take. Reviewers reading findings first see the action items immediately and can scan the rest on demand. The format prioritizes reviewer time over narrative completeness.
+A: A review's most valuable signal is "what blocks merge?" That's a finding, not a summary. Reviewers reading a summary first have to read the whole thing before they know what action to take. Reviewers reading findings first see the action items immediately and can scan the rest on demand. The format prioritizes reviewer time over narrative completeness.
 
 **Q: When should I use baseline-only vs. surface evidence?**
 
-A: Use surface evidence when sk-code has resolved a surface (WEBFLOW, OPENCODE, or MOTION_DEV intent over WEBFLOW). Use baseline-only when sk-code returned UNKNOWN, when sk-code wasn't loaded, or when the review covers a code snippet without repo context. Always disclose which mode you used in the Review Context footer — the audit trail matters.
+A: Use surface evidence when sk-code has resolved a surface (WEBFLOW, OPENCODE, or MOTION_DEV intent over WEBFLOW). Use baseline-only when sk-code returned UNKNOWN, when sk-code wasn't loaded, or when the review covers a code snippet without repo context. Always disclose which mode you used in the Review Context footer. The audit trail matters.
 
 **Q: What replaced the old `sk-code-*` overlay model?**
 
-A: Per-stack review skills (`sk-code-review-go`, `sk-code-review-react`, etc.) are gone. The new pattern is single baseline + surface delegation: `sk-code-review baseline → sk-code:<surface> evidence → findings-first output`. Stack-specific standards live in sk-code's per-surface references; review rules live here in sk-code-review. The split keeps review stack-agnostic while still applying stack-specific standards.
+A: Per-stack review skills (`sk-code-review-go`, `sk-code-review-react`, etc.) are gone. The new pattern is single baseline + surface delegation: `sk-code-review baseline → sk-code:<surface> evidence → findings-first output`. Stack-specific standards live in sk-code's per-surface references. Review rules live here in sk-code-review. The split keeps review stack-agnostic while still applying stack-specific standards.
 
 **Q: Can I add a new severity tier?**
 
@@ -377,7 +375,7 @@ A: No. P0/P1/P2 are fixed. Adding tiers (e.g., "P3", "blocker", "nit") fragments
 
 **Q: Are the security and correctness minimums really mandatory?**
 
-A: Yes. The `security_checklist.md` and `code_quality_checklist.md` reference files apply to every review. Skipping them produces a review that may miss high-impact issues. The minimums apply even in baseline-only mode — they are the universal rules that don't depend on surface knowledge.
+A: Yes. The `security_checklist.md` and `code_quality_checklist.md` reference files apply to every review. Skipping them produces a review that may miss high-impact issues. The minimums apply even in baseline-only mode. They are the universal rules that don't depend on surface knowledge.
 <!-- /ANCHOR:faq -->
 
 ---

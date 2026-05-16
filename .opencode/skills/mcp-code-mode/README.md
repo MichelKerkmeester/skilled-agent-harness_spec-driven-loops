@@ -21,6 +21,10 @@ trigger_phrases:
 - [1. OVERVIEW](#1--overview)
 - [2. QUICK START](#2--quick-start)
 - [3. FEATURES](#3--features)
+  - [3.1 Feature Highlights](#31-feature-highlights)
+  - [3.2 Feature Reference](#32-feature-reference)
+  - [3.3 Performance Statistics](#33-performance-statistics)
+  - [3.4 Approach Comparison](#34-approach-comparison)
 - [4. STRUCTURE](#4--structure)
 - [5. CONFIGURATION](#5--configuration)
 - [6. USAGE EXAMPLES](#6--usage-examples)
@@ -45,36 +49,7 @@ The core Code Mode surface is four meta-tools: `call_tool_chain` executes arbitr
 
 When Code Mode work hands back into a Spec Kit packet, `/spec_kit:resume` remains the canonical recovery surface. Continuity still rebuilds from `handover.md`, then `_memory.continuity`, then the remaining spec docs, while generated memory artifacts stay supporting only.
 
-### Key Statistics
-
-| Metric | Traditional | Code Mode | Improvement |
-|--------|-------------|-----------|-------------|
-| Version | 1.0.7.0 | | |
-| Context tokens (47 tools) | 141k | 1.6k | 98.7% reduction |
-| Execution time (4 tools) | ~2000ms | ~300ms | 60% faster |
-| API round trips | 15+ | 1 | 93% reduction |
-| Simple workflows (2-3 tools) | 3 iterations | 1 execution | 67% faster |
-| Complex workflows (8+ tools) | 16 iterations | 1 execution | 88% faster |
-
-### How This Compares
-
-| Approach | Context Cost | Multi-tool State | Tool Discovery |
-|----------|-------------|-----------------|----------------|
-| Direct tool calling | High (all schemas loaded) | None (each call independent) | Manual |
-| Code Mode | Minimal (1.6k tokens) | Full (variables persist) | Progressive via search_tools |
-| Native MCP tools | Low (per-tool) | N/A (single tool calls) | Not applicable |
-
-### Key Features
-
-| Feature | Description |
-|---------|-------------|
-| Progressive discovery | Tools loaded on demand, zero upfront cost |
-| State persistence | Variables flow naturally between tool calls in a single execution |
-| Type safety | Full TypeScript support with autocomplete via tool_info |
-| Built-in observability | console.log output captured automatically and returned |
-| Configurable timeouts | 30s default, extendable to 120s+ for complex workflows |
-| Parallel execution | Promise.all and Promise.allSettled supported natively |
-| Error isolation | try/catch prevents one failing tool from crashing the workflow |
+Key features include progressive discovery (tools loaded on demand with zero upfront cost), state persistence (variables flow naturally between tool calls in a single execution), type safety (full TypeScript support with autocomplete via tool_info), built-in observability (console.log output captured automatically and returned), configurable timeouts (30s default, extendable to 120s+ for complex workflows), parallel execution (Promise.all and Promise.allSettled supported natively), and error isolation (try/catch prevents one failing tool from crashing the workflow).
 
 <!-- /ANCHOR:overview -->
 
@@ -192,6 +167,29 @@ Environment variable handling has one non-obvious rule. Code Mode prefixes all e
 | `Promise.all()` | All operations must succeed | `const [a, b] = await Promise.all([fnA(), fnB()])` |
 | `Promise.allSettled()` | Partial success acceptable | `const results = await Promise.allSettled([...])` |
 | Sequential with state | Each step depends on previous | Standard async/await chain |
+
+### 3.3 PERFORMANCE STATISTICS
+
+**Key Statistics Comparison**
+
+| Metric | Traditional | Code Mode | Improvement |
+|--------|-------------|-----------|-------------|
+| Version | 1.0.7.0 | | |
+| Context tokens (47 tools) | 141k | 1.6k | 98.7% reduction |
+| Execution time (4 tools) | ~2000ms | ~300ms | 60% faster |
+| API round trips | 15+ | 1 | 93% reduction |
+| Simple workflows (2-3 tools) | 3 iterations | 1 execution | 67% faster |
+| Complex workflows (8+ tools) | 16 iterations | 1 execution | 88% faster |
+
+### 3.4 APPROACH COMPARISON
+
+**How This Compares**
+
+| Approach | Context Cost | Multi-tool State | Tool Discovery |
+|----------|-------------|-----------------|----------------|
+| Direct tool calling | High (all schemas loaded) | None (each call independent) | Manual |
+| Code Mode | Minimal (1.6k tokens) | Full (variables persist) | Progressive via search_tools |
+| Native MCP tools | Low (per-tool) | N/A (single tool calls) | Not applicable |
 
 <!-- /ANCHOR:features -->
 

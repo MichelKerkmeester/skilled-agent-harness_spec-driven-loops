@@ -49,50 +49,23 @@ The skill includes a layered self-invocation guard. Three checks (env var lookup
 
 ### Key Statistics
 
-| Category | Value | Details |
-|----------|-------|---------|
-| **Use cases** | 3 | External runtime, in-OpenCode parallel detached, cross-AI handback |
-| **Self-invocation layers** | 3 | Env var, process ancestry, lock-file probe |
-| **Default invocation** | `--model opencode-go/deepseek-v4-pro --agent general --variant high --format json` | Pinned shape for routine dispatches; OpenCode Go is the default provider — routes DeepSeek and other open models through one API gateway |
-| **Supported providers** | 3 | `opencode-go` (DEFAULT), `deepseek`, `openai` |
-| **References** | 4 | cli_reference, integration_patterns, opencode_tools, agent_delegation |
-| **Assets** | 2 | prompt_quality_card, prompt_templates (13 templates) |
-| **Version baseline** | opencode v1.3.17 | Pinned in cli_reference §9 |
-| **Skill version** | 1.0.0 | Initial release |
-
-### How This Compares
-
-| Capability | Claude Code CLI | Codex CLI | Copilot CLI | Gemini CLI | OpenCode CLI |
-|------------|-----------------|-----------|-------------|------------|--------------|
-| **Plugin runtime** | None (raw Claude) | None (raw Codex) | Limited | None | Full project plugins |
-| **Skill runtime** | Native via SKILL.md inside Claude Code only | None | None | None | Full project skills |
-| **MCP runtime** | None (per-session config) | Native via `codex mcp` | Limited | None | Full project MCP servers |
-| **Spec Kit Memory** | None (no project-aware DB) | None | None | None | Full project DB |
-| **Parallel detached sessions** | No | Session fork | Cloud delegation | No | `--share --port N` |
-| **Agent dispatch** | `--agent` (Claude agents) | `-p` profile | Built-in | None | `--agent` (project agents) |
-| **Cross-repo dispatch** | No | No | Cloud only | No | `--dir <path>` |
+The skill documents three orthogonal use cases: external runtime to OpenCode, in-OpenCode parallel detached sessions, and cross-AI handback. It includes a three-layer self-invocation guard (env var lookup, process ancestry, lock-file probe). The default invocation is `--model opencode-go/deepseek-v4-pro --agent general --variant high --format json`, with OpenCode Go as the default provider. It routes DeepSeek and other open models through one API gateway. Three providers are supported: opencode-go (DEFAULT), deepseek, and openai. Four references are documented: cli_reference, integration_patterns, opencode_tools, and agent_delegation. Two assets are included: prompt_quality_card and prompt_templates (13 templates). The version baseline is opencode v1.3.17, and this is skill version 1.0.0.
 
 ### Key Features at a Glance
 
-| Feature | What It Does |
-|---------|-------------|
-| **Full plugin runtime** | Dispatched session loads every project plugin from `opencode.json` |
-| **Full skill runtime** | All skills under `.opencode/skills/` become accessible inside the dispatched session |
-| **Full MCP runtime** | Spec Kit Memory's 40+ tools, CocoIndex semantic search, Code Mode, sequential thinking — all callable |
-| **Parallel detached sessions** | `--share --port N` spawns a separate session id with independent state |
-| **Structured event stream** | `--format json` emits typed JSON events the calling AI parses incrementally |
-| **Agent dispatch** | `--agent <slug>` loads project agents (deep-research, deep-review, review, multi-ai-council, etc.) |
-| **Cross-repo dispatch** | `--dir <path>` targets a different repo's plugin / skill / MCP runtime |
-| **Self-invocation guard** | Three-layer detection refuses circular dispatch when already inside OpenCode |
-| **Memory handback** | `MEMORY_HANDBACK` delimiters preserve session context through `generate-context.js` |
+- Full plugin runtime: Dispatched session loads every project plugin from `opencode.json`
+- Full skill runtime: All skills under `.opencode/skills/` become accessible inside the dispatched session
+- Full MCP runtime: Spec Kit Memory's 40+ tools, CocoIndex semantic search, Code Mode, and sequential thinking are all callable
+- Parallel detached sessions: `--share --port N` spawns a separate session id with independent state
+- Structured event stream: `--format json` emits typed JSON events the calling AI parses incrementally
+- Agent dispatch: `--agent <slug>` loads project agents (deep-research, deep-review, review, multi-ai-council, etc.)
+- Cross-repo dispatch: `--dir <path>` targets a different repo's plugin / skill / MCP runtime
+- Self-invocation guard: Three-layer detection refuses circular dispatch when already inside OpenCode
+- Memory handback: `MEMORY_HANDBACK` delimiters preserve session context through `generate-context.js`
 
 ### Requirements
 
-| Requirement | Value | Notes |
-|-------------|-------|-------|
-| **CLI** | OpenCode v1.3.17+ | `brew install opencode` (macOS) or `curl -fsSL https://opencode.ai/install \| bash` |
-| **Auth** | Per-provider via `opencode providers login <provider>` | `opencode-go` (api), `deepseek` (api), `openai` (api) |
-| **Node.js** | 18+ | Required for the npm install path |
+Requirements include OpenCode v1.3.17 or later, installable via brew install opencode (macOS) or curl -fsSL https://opencode.ai/install | bash. Authentication is per-provider via opencode providers login <provider>, supporting opencode-go (api), deepseek (api), and openai (api). Node.js 18+ is required for the npm install path.
 
 <!-- /ANCHOR:overview -->
 
@@ -146,7 +119,7 @@ opencode run --share --port 4096 \
 > **⚠️ Critical:** opencode v1.14.39 reads stdin at startup before session creation. Any non-interactive dispatch that redirects stdout/stderr MUST also redirect stdin from `/dev/null`, or the process hangs at 0% CPU after the `+60s snapshot prune cleanup` log line. Foreground `| tail` accidentally bypasses the bug because the upstream pipe stage is empty; `> stdout.log 2> stderr.log` does not.
 
 ```bash
-# RIGHT — automation pattern with explicit closed stdin
+# RIGHT: automation pattern with explicit closed stdin
 timeout 720 opencode run \
   --model deepseek/deepseek-v4-pro \
   --variant high \
@@ -175,7 +148,7 @@ The full project runtime is the headline capability. Sibling cli-* dispatches se
 
 Parallel detached sessions matter for ablation suites, worker farms, and parallel research. `opencode run --share --port N` spawns a separate session id with its own state directory under `~/.opencode/state/<session_id>/`. The original session continues unaffected. The new session can publish a `--share` URL for browser inspection. This pattern is unique to cli-opencode because the four sibling binaries do not have an equivalent of OpenCode's session model.
 
-Cross-repo dispatch via `--dir <path>` lets a session in repo A target repo B's plugin / skill / MCP runtime. Combined with `--attach <url>`, it can reach a remote OpenCode server. The four siblings have no equivalent — their CWD is wherever the calling AI lives.
+Cross-repo dispatch via `--dir <path>` lets a session in repo A target repo B's plugin / skill / MCP runtime. Combined with `--attach <url>`, it can reach a remote OpenCode server. The four siblings have no equivalent. Their CWD is wherever the calling AI lives.
 
 The skill is built around a self-invocation guard that protects against circular dispatch. Three layers of detection (env var lookup, process ancestry probe, lock-file check) trip when the orchestrator is already running inside OpenCode. The smart router then refuses unless the prompt explicitly names a parallel detached session.
 
@@ -189,20 +162,32 @@ The skill is built around a self-invocation guard that protects against circular
 | **In-OpenCode parallel detached** | OpenCode itself (TUI / web / serve / acp) | New OpenCode session via `--share --port N` | No (different session id) |
 | **Cross-AI orchestration handback** | Codex / Copilot / Gemini | OpenCode for spec-kit specific workflows | No |
 
+#### Comparison with Sibling CLIs
+
+| Capability | Claude Code CLI | Codex CLI | Copilot CLI | Gemini CLI | OpenCode CLI |
+|------------|-----------------|-----------|-------------|------------|--------------|
+| **Plugin runtime** | None (raw Claude) | None (raw Codex) | Limited | None | Full project plugins |
+| **Skill runtime** | Native via SKILL.md inside Claude Code only | None | None | None | Full project skills |
+| **MCP runtime** | None (per-session config) | Native via `codex mcp` | Limited | None | Full project MCP servers |
+| **Spec Kit Memory** | None (no project-aware DB) | None | None | None | Full project DB |
+| **Parallel detached sessions** | No | Session fork | Cloud delegation | No | `--share --port N` |
+| **Agent dispatch** | `--agent` (Claude agents) | `-p` profile | Built-in | None | `--agent` (project agents) |
+| **Cross-repo dispatch** | No | No | Cloud only | No | `--dir <path>` |
+
 #### Models
 
-The skill ships with three providers — `opencode-go` (DEFAULT), `deepseek`, and `openai`. Run `opencode models [provider]` for the full live list per install.
+The skill ships with three providers: `opencode-go` (DEFAULT), `deepseek`, and `openai`. Run `opencode models [provider]` for the full live list per install.
 
 | Provider | Model id | Variant range | Default for cli-opencode? |
 |----------|----------|---------------|---------------------------|
-| opencode-go | `opencode-go/deepseek-v4-pro` | provider-specific (variant flag accepted) | YES (DEFAULT — DeepSeek via the OpenCode Go gateway) |
+| opencode-go | `opencode-go/deepseek-v4-pro` | provider-specific (variant flag accepted) | YES (DEFAULT: DeepSeek via the OpenCode Go gateway) |
 | opencode-go | `opencode-go/deepseek-v4-flash` | same | No (lower-tier sibling for cost/latency) |
 | opencode-go | `opencode-go/glm-5.1`, `opencode-go/kimi-k2.6`, `opencode-go/qwen3.6-plus` | provider-specific | No (alternative open models) |
-| deepseek | `deepseek/deepseek-v4-pro` | reasoning effort accepted | No (direct DeepSeek API — bypasses opencode-go) |
+| deepseek | `deepseek/deepseek-v4-pro` | reasoning effort accepted | No (direct DeepSeek API, which bypasses opencode-go) |
 | deepseek | `deepseek/deepseek-v4-flash` | non-reasoning | No (latency-optimized) |
-| openai | `openai/gpt-5.5` | reasoning effort accepted (low/medium/high) | No (standard premium paid alternative — direct OpenAI API) |
-| openai | `openai/gpt-5.5-pro` | reasoning effort accepted (low/medium/high) | No (top-tier OpenAI for complex dispatches — paid) |
-| openai | `openai/gpt-5.5-fast` | reasoning effort accepted | No (latency-optimized OpenAI tier — paid) |
+| openai | `openai/gpt-5.5` | reasoning effort accepted (low/medium/high) | No (standard premium paid alternative, which is a direct OpenAI API) |
+| openai | `openai/gpt-5.5-pro` | reasoning effort accepted (low/medium/high) | No (top-tier OpenAI for complex dispatches, which is paid) |
+| openai | `openai/gpt-5.5-fast` | reasoning effort accepted | No (latency-optimized OpenAI tier, which is paid) |
 
 #### Core Flags
 
@@ -227,13 +212,13 @@ The skill ships with three providers — `opencode-go` (DEFAULT), `deepseek`, an
 | Agent | Purpose | Constraint |
 |-------|---------|------------|
 | `general` | Default subagent | None |
-| `context` | Codebase exploration | LEAF — read-only, no sub-dispatches |
+| `context` | Codebase exploration | LEAF: read-only, no sub-dispatches |
 | `orchestrate` | Multi-agent coordination | None |
 | `write` | Documentation generation | None |
 | `review` | Code review | READ-ONLY |
 | `debug` | Fresh-perspective debugging | Exclusive write access for `debug-delegation.md` |
-| `deep-research` | Iterative research loop | LEAF — single iteration |
-| `deep-review` | Iterative code review loop | LEAF — single iteration |
+| `deep-research` | Iterative research loop | LEAF: single iteration |
+| `deep-review` | Iterative code review loop | LEAF: single iteration |
 | `multi-ai-council` | Multi-strategy planning | PLANNING-ONLY |
 | `deep-agent-improvement` | Agent improvement proposals | Proposal-only |
 
@@ -277,7 +262,7 @@ OpenCode resolves credentials through configured providers. Use `opencode provid
 
 ### Model Defaults
 
-cli-opencode defaults to `opencode-go/deepseek-v4-pro --variant high` for cross-AI dispatches. OpenCode Go is the default provider — it routes DeepSeek and other open models through a single API key, and `deepseek-v4-pro` provides elevated reasoning at low cost for routine dispatches. Direct `deepseek/*` and `openai/*` (e.g. `openai/gpt-5.5-pro --variant high` for premium paid dispatches) remain available when explicitly requested. Override per invocation:
+cli-opencode defaults to `opencode-go/deepseek-v4-pro --variant high` for cross-AI dispatches. OpenCode Go is the default provider. It routes DeepSeek and other open models through a single API key, and `deepseek-v4-pro` provides elevated reasoning at low cost for routine dispatches. Direct `deepseek/*` and `openai/*` (e.g. `openai/gpt-5.5-pro --variant high` for premium paid dispatches) remain available when explicitly requested. Override per invocation:
 
 ```bash
 # Use a lower-tier opencode-go sibling
@@ -351,7 +336,7 @@ opencode run --share --port 4096 \
 ### Cross-AI Handback (Use Case 3)
 
 ```bash
-# Calling AI is Codex / Copilot / Gemini — needs OpenCode for spec-kit workflow
+# Calling AI is Codex / Copilot / Gemini, which needs OpenCode for spec-kit workflow
 opencode run \
   --model opencode-go/deepseek-v4-pro \
   --agent general \
@@ -424,7 +409,7 @@ wait
 
 **What you see**: `MODULE_NOT_FOUND` or plugin-loader stack trace at session start.
 **Common causes**: A plugin path is wrong or a dependency is missing.
-**Fix**: Rerun with `--pure` to bypass plugins. The dispatched session will not have full project runtime — surface the underlying issue as a separate task.
+**Fix**: Rerun with `--pure` to bypass plugins. The dispatched session will not have full project runtime. Surface the underlying issue as a separate task.
 
 ### Version Drift
 
@@ -445,7 +430,7 @@ wait
 A: Use cli-opencode when the task needs the project's full plugin / skill / MCP / Spec Kit Memory runtime, when you want a parallel detached session for ablation or worker farms, or when a non-Anthropic CLI needs OpenCode-specific plugins. For raw model dispatches, use the appropriate sibling.
 
 **Q: Can OpenCode CLI search the web?**
-A: Indirectly — the dispatched session can call Code Mode (mcp-code-mode) to reach external services / ClickUp / Figma / Chrome DevTools, or call CocoIndex for semantic code search, but there is no first-class `--search` flag. For Google Search grounding use cli-gemini; for Codex's `--search` use cli-codex.
+A: Indirectly: the dispatched session can call Code Mode (mcp-code-mode) to reach external services / ClickUp / Figma / Chrome DevTools, or call CocoIndex for semantic code search, but there is no first-class `--search` flag. For Google Search grounding use cli-gemini; for Codex's `--search` use cli-codex.
 
 **Q: How does the self-invocation guard work?**
 A: Three layers (per ADR-001). Layer 1 checks for any `OPENCODE_*` env var. Layer 2 walks the process ancestry looking for `opencode`. Layer 3 probes `~/.opencode/state/<id>/lock`. ANY positive trips the guard. The router then refuses unless the prompt has explicit parallel-session keywords.
@@ -456,10 +441,10 @@ A: Three layers (per ADR-001). Layer 1 checks for any `OPENCODE_*` env var. Laye
 A: `opencode-go/deepseek-v4-pro` with `--variant high`. cli-opencode dispatches typically benefit from elevated reasoning because the dispatched session has full project context.
 
 **Q: Which providers does this skill support?**
-A: Two: `opencode-go` (default — DeepSeek and other open models via the OpenCode Go gateway) and `deepseek` (direct DeepSeek API). Run `opencode models <provider>` to enumerate the live model list per install.
+A: Two: `opencode-go` (default: DeepSeek and other open models via the OpenCode Go gateway) and `deepseek` (direct DeepSeek API). Run `opencode models <provider>` to enumerate the live model list per install.
 
 **Q: What if the default provider isn't logged in on this machine?**
-A: The skill runs a Provider Auth Pre-Flight (`opencode providers list`) once per session before the first dispatch. If `opencode-go` isn't configured, the AI asks you before falling back — three options: (A) use `deepseek/deepseek-v4-pro` if direct DeepSeek is configured, (B) run `opencode providers login opencode-go` first then retry, or (C) name a different `--model <provider/model>`. If neither provider is configured, the skill surfaces the login commands and waits — it never dispatches with a substituted model you didn't approve. See SKILL.md §3 "Provider Auth Pre-Flight (Smart Fallback)" and references/cli_reference.md §4 for the full decision tree.
+A: The skill runs a Provider Auth Pre-Flight (`opencode providers list`) once per session before the first dispatch. If `opencode-go` isn't configured, the AI asks you before falling back. Three options: (A) use `deepseek/deepseek-v4-pro` if direct DeepSeek is configured, (B) run `opencode providers login opencode-go` first then retry, or (C) name a different `--model <provider/model>`. If neither provider is configured, the skill surfaces the login commands and waits. It never dispatches with a substituted model you didn't approve. See SKILL.md §3 "Provider Auth Pre-Flight (Smart Fallback)" and references/cli_reference.md §4 for the full decision tree.
 
 ### Sessions
 
@@ -475,7 +460,7 @@ A: `--continue` resumes the last session in the project. `--session <id>` resume
 A: Match the task type to the agent roster in Section 3.2. For routine work, use `general`. For research loops, `deep-research`. For code review, `review`. For multi-strategy planning, `multi-ai-council`.
 
 **Q: Can the dispatched session spawn its own sub-agents?**
-A: Yes via the dispatched session's native Task tool — but NOT via nested `opencode run` invocations. Nested CLI calls break the orchestration tree. Use `--agent orchestrate` for the entry-point dispatch and let the orchestrator handle sub-agent dispatch internally.
+A: Yes via the dispatched session's native Task tool, but NOT via nested `opencode run` invocations. Nested CLI calls break the orchestration tree. Use `--agent orchestrate` for the entry-point dispatch and let the orchestrator handle sub-agent dispatch internally.
 
 <!-- /ANCHOR:faq -->
 

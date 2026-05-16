@@ -49,28 +49,24 @@ When prompt work feeds back into a Spec Kit packet, `/spec_kit:resume` is the ca
 
 ### Key Statistics
 
-| Category | Value | Details |
-| --- | --- | --- |
-| Frameworks | 7 | RCAF, COSTAR, RACE, CIDI, TIDD-EC, CRISPE, CRAFT |
-| Operating Modes | 8 | Interactive, Text, Short, Improve, Refine, JSON, YAML, Raw |
-| CLEAR Score Dimensions | 5 | Correctness, Logic, Expression, Arrangement, Reusability |
-| Output Formats | 3 | Markdown (default), JSON, YAML |
-| DEPTH Phases | 5 | Discover, Engineer, Prototype, Test, Harmonize |
-| CLEAR Pass Threshold | 40/50 | Applied to all modes except `$raw` |
-| Max DEPTH Rounds | 10 | Standard modes (3 for `$short`, 0 for `$raw`) |
+- Frameworks: 7 (RCAF, COSTAR, RACE, CIDI, TIDD-EC, CRISPE, CRAFT)
+- Operating Modes: 8 (Interactive, Text, Short, Improve, Refine, JSON, YAML, Raw)
+- CLEAR Score Dimensions: 5 (Correctness, Logic, Expression, Arrangement, Reusability)
+- Output Formats: 3 (Markdown (default), JSON, YAML)
+- DEPTH Phases: 5 (Discover, Engineer, Prototype, Test, Harmonize)
+- CLEAR Pass Threshold: 40/50 (Applied to all modes except $raw)
+- Max DEPTH Rounds: 10 (Standard modes (3 for $short, 0 for $raw))
 
 ### Key Features
 
-| Feature | Description |
-| --- | --- |
-| Framework Auto-Selection | Scores 7 frameworks against task characteristics and selects the best fit automatically |
-| DEPTH Processing | 5-phase iterative refinement (Discover, Engineer, Prototype, Test, Harmonize) |
-| CLEAR Scoring | 50-point quality scale with per-dimension floors and a 40+ delivery threshold |
-| RICCE Validation | Checks Role, Instructions, Context, Constraints, and Examples before delivery |
-| Multi-Format Output | Delivers structured prompts in Markdown, JSON, or YAML |
-| Transparency Report | Every output includes mode, framework, perspective count, and score breakdown |
-| Smart Routing | Command prefix detection with keyword-weighted fallback and disambiguation checklist |
-| Framework Fusion | Supports advanced combinations (RCAF + CoT, COSTAR + ReAct, TIDD-EC + Few-Shot) |
+- Framework Auto-Selection: Scores 7 frameworks against task characteristics and selects the best fit automatically
+- DEPTH Processing: 5-phase iterative refinement (Discover, Engineer, Prototype, Test, Harmonize)
+- CLEAR Scoring: 50-point quality scale with per-dimension floors and a 40+ delivery threshold
+- RICCE Validation: Checks Role, Instructions, Context, Constraints, and Examples before delivery
+- Multi-Format Output: Delivers structured prompts in Markdown, JSON, or YAML
+- Transparency Report: Every output includes mode, framework, perspective count, and score breakdown
+- Smart Routing: Command prefix detection with keyword-weighted fallback and disambiguation checklist
+- Framework Fusion: Supports advanced combinations (RCAF + CoT, COSTAR + ReAct, TIDD-EC + Few-Shot)
 
 <!-- /ANCHOR:overview -->
 

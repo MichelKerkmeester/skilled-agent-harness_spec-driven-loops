@@ -23,8 +23,10 @@ trigger_phrases:
 - [3. FEATURES](#3--features)
   - [3.1 FEATURE HIGHLIGHTS](#31--feature-highlights)
   - [3.2 FEATURE REFERENCE](#32--feature-reference)
+  - [3.3 CLI COMPARISON](#33--cli-comparison)
 - [4. STRUCTURE](#4--structure)
 - [5. CONFIGURATION](#5--configuration)
+  - [5.1 KEY STATISTICS](#51--key-statistics)
 - [6. USAGE EXAMPLES](#6--usage-examples)
 - [7. TROUBLESHOOTING](#7--troubleshooting)
 - [8. FAQ](#8--faq)
@@ -41,56 +43,26 @@ trigger_phrases:
 
 This skill lets any AI assistant invoke OpenAI's Codex CLI for tasks that benefit from a second perspective, real-time web information, or parallel code generation. The calling AI stays the conductor, delegating specific jobs to Codex and integrating the results.
 
-Codex CLI runs on **GPT-5.5** at `medium` reasoning on the `fast` service tier — a balanced pick for code generation, standard review, implementation, documentation, architecture, and research. Callers can tune reasoning effort with explicit phrasing like "Use gpt 5.5 high fast" (deeper analysis) or "Use gpt 5.5 low" (lighter lookups). Only the reasoning-effort dimension varies; the model stays on `gpt-5.5` and the service tier stays on `fast`.
+Codex CLI runs on **GPT-5.5** at `medium` reasoning on the `fast` service tier (a balanced pick for code generation, standard review, implementation, documentation, architecture, and research). Callers can tune reasoning effort with explicit phrasing like "Use gpt 5.5 high fast" (deeper analysis) or "Use gpt 5.5 low" (lighter lookups). Only the reasoning-effort dimension varies; the model stays on `gpt-5.5` and the service tier stays on `fast`.
 
 Three capabilities set Codex apart from other CLIs. The `--search` flag gives the agent live web browsing during execution, useful for checking library versions or finding community solutions. The built-in `/review` command runs diff-aware code review directly in the TUI. And configurable sandbox modes (read-only, workspace-write, full-access) let you match permissions to task risk.
 
 The skill includes a self-invocation guard: if you are already running inside Codex CLI, activation is blocked to prevent circular delegation.
 
-### Key Statistics
-
-| Category | Value | Details |
-|----------|-------|---------|
-| **Model** | 1 | GPT-5.5 (balanced, used for every delegation) |
-| **Default Dispatch** | `gpt-5.5` · `medium` · `fast` | Zero-input default; user can override explicitly ("Use gpt 5.5 high fast") |
-| **Sandbox Modes** | 3 | read-only, workspace-write, danger-full-access |
-| **Reasoning Levels** | 6 | none, minimal, low, medium, high, xhigh |
-| **Agent Profiles** | 7 | review, context, research, write, debug, multi-ai-council, speckit |
-| **References** | 4 | cli_reference, codex_tools, agent_delegation, integration_patterns |
-| **Version** | 1.4.0.0 | |
-
-### How This Compares
-
-| Capability | Claude Code CLI | Gemini CLI | Copilot CLI | Codex CLI |
-|------------|-----------------|------------|-------------|-----------|
-| **Web search** | No | Google Search | No | `--search` live browsing |
-| **Code review** | Agent-based | Manual prompt | PR-oriented | Built-in `/review` with diff awareness |
-| **Sandbox control** | Permission modes | `--yolo` flag | `--allow-all-tools` | 3 sandbox modes + approval policies |
-| **Image input** | No | No | No | `--image` flag for visual context |
-| **Session management** | Continue/resume | Memory tool | Repo memory | Resume, fork, session history |
-| **Spec Kit handoff** | Packet docs via `/spec_kit:resume` | Canonical packet continuity | Supporting artifacts only | `handover.md -> _memory.continuity -> spec docs` |
-| **Cloud execution** | No | No | Cloud delegation | `codex cloud` subcommand |
-
 ### Key Features at a Glance
 
-| Feature | What It Does |
-|---------|-------------|
-| **Web Search** | `--search` enables live web browsing during task execution for current information |
-| **Diff-Aware Review** | `/review` command analyzes code changes with full diff context |
-| **Sandbox Modes** | Three levels of filesystem access control matching task risk |
-| **Reasoning Effort** | Six levels from `none` to `xhigh` for tuning depth vs speed |
-| **Image Input** | `--image` flag attaches screenshots or designs as visual context |
-| **Session Fork** | Branch from any prior session to explore alternative approaches |
-| **Agent Profiles** | TOML-based profiles in `config.toml` with model and sandbox overrides |
-| **Native Hooks** | `SessionStart` startup context and `UserPromptSubmit` advisor briefs via `~/.codex/hooks.json` |
+- **Web Search**: `--search` enables live web browsing during task execution for current information
+- **Diff-Aware Review**: `/review` command analyzes code changes with full diff context
+- **Sandbox Modes**: Three levels of filesystem access control matching task risk
+- **Reasoning Effort**: Six levels from `none` to `xhigh` for tuning depth vs speed
+- **Image Input**: `--image` flag attaches screenshots or designs as visual context
+- **Session Fork**: Branch from any prior session to explore alternative approaches
+- **Agent Profiles**: TOML-based profiles in `config.toml` with model and sandbox overrides
+- **Native Hooks**: `SessionStart` startup context and `UserPromptSubmit` advisor briefs via `~/.codex/hooks.json`
 
 ### Requirements
 
-| Requirement | Value | Notes |
-|-------------|-------|-------|
-| **CLI** | `@openai/codex` | Install via `npm i -g @openai/codex` or `brew install --cask codex` |
-| **Auth** | `OPENAI_API_KEY` or ChatGPT OAuth | API key for programmatic use, `codex login` for interactive |
-| **Node.js** | 18+ | Required for npm installation |
+The CLI requires `@openai/codex`, which can be installed via `npm i -g @openai/codex` or `brew install --cask codex`. Authentication uses either `OPENAI_API_KEY` for programmatic use or ChatGPT OAuth via `codex login` for interactive sessions. Node.js 18+ is required for npm installation.
 
 <!-- /ANCHOR:overview -->
 
@@ -139,14 +111,14 @@ codex exec "Add error handling to src/api.ts" \
 ### 5. User-Override Examples
 
 ```bash
-# "Use gpt 5.5 high fast" — deeper reasoning for architecture/security
+# "Use gpt 5.5 high fast" (deeper reasoning for architecture/security)
 codex exec "Review src/auth.ts for edge cases" \
   --model gpt-5.5 \
   -c model_reasoning_effort="high" \
   -c service_tier="fast" \
   --sandbox read-only 2>&1
 
-# "Use gpt 5.5 low" — trivial lookups or formatting
+# "Use gpt 5.5 low" (trivial lookups or formatting)
 codex exec "List all exported functions in src/" \
   --model gpt-5.5 \
   -c model_reasoning_effort="low" \
@@ -183,7 +155,7 @@ The reasoning effort system adds another dimension. GPT-5.5 supports six effort 
 |-------|----|----------|---------------|
 | **GPT-5.5** ★ skill default | `gpt-5.5` | Balanced default for code generation, standard review, implementation, docs, most delegations | **medium** (configurable; `fast` service tier) |
 
-> **Default dispatch**: `codex exec --model gpt-5.5 -c model_reasoning_effort="medium" -c service_tier="fast"`. Caller may override reasoning effort — e.g. "Use gpt 5.5 high fast" → `-c model_reasoning_effort="high"`. Model and service tier stay fixed.
+> **Default dispatch**: `codex exec --model gpt-5.5 -c model_reasoning_effort="medium" -c service_tier="fast"`. Caller may override reasoning effort (e.g. "Use gpt 5.5 high fast" → `-c model_reasoning_effort="high"`). Model and service tier stay fixed.
 
 #### Core Flags
 
@@ -219,6 +191,18 @@ The reasoning effort system adds another dimension. GPT-5.5 supports six effort 
 | `debug` | Fresh-perspective debugging | `codex exec -p debug "Debug error: X" -m gpt-5.5` |
 | `multi-ai-council` | Multi-strategy planning | `codex exec -p multi-ai-council "Plan redesign" -m gpt-5.5` |
 | `speckit` | Spec documentation | `codex exec -p speckit "Create spec folder" -m gpt-5.5` |
+
+### 3.3 CLI COMPARISON
+
+| Capability | Claude Code CLI | Gemini CLI | Copilot CLI | Codex CLI |
+|------------|-----------------|------------|-------------|-----------|
+| **Web search** | No | Google Search | No | `--search` live browsing |
+| **Code review** | Agent-based | Manual prompt | PR-oriented | Built-in `/review` with diff awareness |
+| **Sandbox control** | Permission modes | `--yolo` flag | `--allow-all-tools` | 3 sandbox modes + approval policies |
+| **Image input** | No | No | No | `--image` flag for visual context |
+| **Session management** | Continue/resume | Memory tool | Repo memory | Resume, fork, session history |
+| **Spec Kit handoff** | Packet docs via `/spec_kit:resume` | Canonical packet continuity | Supporting artifacts only | `handover.md -> _memory.continuity -> spec docs` |
+| **Cloud execution** | No | No | Cloud delegation | `codex cloud` subcommand |
 
 <!-- /ANCHOR:features -->
 
@@ -298,6 +282,18 @@ Spec Kit Memory registers two model-visible hooks in `~/.codex/hooks.json`:
 existing Superset `notify.sh` entries in place; append Spec Kit Memory entries
 beside them. See [hook_contract.md](./references/hook_contract.md) for the
 stdin/stdout schema, exit semantics, and smoke checks.
+
+### 5.1 KEY STATISTICS
+
+| Category | Value | Details |
+|----------|-------|---------|
+| **Model** | 1 | GPT-5.5 (balanced, used for every delegation) |
+| **Default Dispatch** | `gpt-5.5` · `medium` · `fast` | Zero-input default; user can override explicitly ("Use gpt 5.5 high fast") |
+| **Sandbox Modes** | 3 | read-only, workspace-write, danger-full-access |
+| **Reasoning Levels** | 6 | none, minimal, low, medium, high, xhigh |
+| **Agent Profiles** | 7 | review, context, research, write, debug, multi-ai-council, speckit |
+| **References** | 4 | cli_reference, codex_tools, agent_delegation, integration_patterns |
+| **Version** | 1.4.0.0 | |
 
 <!-- /ANCHOR:configuration -->
 
@@ -380,7 +376,7 @@ wait
 A: Use Codex for tasks requiring live web search (`--search`), diff-aware code review (`/review`), image input, or when you need graduated sandbox control. For deep extended thinking, use Claude Code instead.
 
 **Q: Which model does the skill use, and can I choose a different one?**
-A: Every delegation runs on `gpt-5.5`. The only tunable dimension is reasoning effort — `medium` by default, or explicitly override with phrasing like "Use gpt 5.5 high fast" (for deeper analysis) or "Use gpt 5.5 low" (for lighter lookups). The service tier stays on `fast`.
+A: Every delegation runs on `gpt-5.5`. The only tunable dimension is reasoning effort (`medium` by default), or explicitly override with phrasing like "Use gpt 5.5 high fast" (for deeper analysis) or "Use gpt 5.5 low" (for lighter lookups). The service tier stays on `fast`.
 
 ### Configuration
 
@@ -403,8 +399,8 @@ A: Yes. The `codex cloud` subcommand offloads execution to remote infrastructure
 
 ### Voice Personalization (Codex CLI Global)
 
-**Q: How do I make Codex CLI sound more like Claude Opus — calibrated, diplomatically honest, scope-disciplined, no filler?**
-A: It's already configured at `<repo>/.codex/AGENTS.md` (symlinked to `~/.codex/AGENTS.md`). Codex CLI loads that file at every session start and combines it with the project-level `AGENTS.md` framework. The global file contains voice, tone, and reasoning-visibility guidance only — scope/gates/memory rules come from the project-level file.
+**Q: How do I make Codex CLI sound more like Claude Opus (calibrated, diplomatically honest, scope-disciplined, no filler)?**
+A: It's already configured at `<repo>/.codex/AGENTS.md` (symlinked to `~/.codex/AGENTS.md`). Codex CLI loads that file at every session start and combines it with the project-level `AGENTS.md` framework. The global file contains voice, tone, and reasoning-visibility guidance only, while scope/gates/memory rules come from the project-level file.
 
 For the **Codex APP chat UI** (not CLI), the same content can be pasted into the app's custom-instructions field directly; the source prose is in `<repo>/.codex/AGENTS.md`.
 
@@ -412,7 +408,7 @@ For the **Codex APP chat UI** (not CLI), the same content can be pasted into the
 A: **No.** The global voice file is for the user's own Codex CLI sessions. When an AI delegates a task to Codex, the calling AI's own system instructions already govern voice. Injecting `~/.codex/AGENTS.md` contents into a delegated prompt would add redundant or conflicting guidance and inflate token cost. SKILL.md §4 RULE #10 formalizes this: voice is the calling AI's responsibility, not Codex's.
 
 **Q: Does this conflict with the project-level `AGENTS.md` framework?**
-A: No — they're complementary. The project `AGENTS.md` is authoritative for gates, scope, and memory; the global voice file only shapes how responses sound. The global file's header explicitly defers to the project file for anything framework-level.
+A: No. They're complementary. The project `AGENTS.md` is authoritative for gates, scope, and memory; the global voice file only shapes how responses sound. The global file's header explicitly defers to the project file for anything framework-level.
 
 <!-- /ANCHOR:faq -->
 
@@ -427,15 +423,3 @@ A: No — they're complementary. The project `AGENTS.md` is authoritative for ga
 - [codex_tools.md](./references/codex_tools.md): Unique capabilities and cross-CLI comparison
 - [hook_contract.md](./references/hook_contract.md): Native hook contract and startup/advisor parity wiring
 - [agent_delegation.md](./references/agent_delegation.md): Agent profiles, routing, and invocation patterns
-- [integration_patterns.md](./references/integration_patterns.md): Cross-AI orchestration workflows
-- [prompt_templates.md](./assets/prompt_templates.md): Copy-paste ready prompts
-- [prompt_quality_card.md](./assets/prompt_quality_card.md): Framework-per-task selector and CLEAR 5-check
-
-### User-Level Voice Configuration (outside this skill)
-- `<repo>/.codex/AGENTS.md` (symlinked to `~/.codex/AGENTS.md`) — global voice, tone, and reasoning-visibility instructions loaded by Codex CLI at every session start. Origin: spec `046-cli-codex-tone-of-voice`.
-
-### Related Skills
-- [cli-claude-code](../cli-claude-code/): Anthropic Claude Code CLI orchestrator
-- [cli-gemini](../cli-gemini/): Google Gemini CLI orchestrator
-
-<!-- /ANCHOR:related-documents -->

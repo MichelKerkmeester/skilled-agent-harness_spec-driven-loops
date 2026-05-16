@@ -33,42 +33,32 @@ Evaluator-first workflow for improving agents across their full integration surf
 
 ## 1. OVERVIEW
 
-`deep-agent-improvement` helps operators improve agent surfaces safely by proving improvement before mutation. It treats agent improvement as a measurable optimization problem — not ad-hoc prompt tweaking — by scanning integration surfaces, deriving scoring profiles, and maintaining an append-only evidence trail.
+`deep-agent-improvement` helps operators improve agent surfaces safely by proving improvement before mutation. It treats agent improvement as a measurable optimization problem (not ad-hoc prompt tweaking) by scanning integration surfaces, deriving scoring profiles, and maintaining an append-only evidence trail.
 
 For packet recovery around an improvement run, `/spec_kit:resume` remains the canonical surface. Continuity still comes from `handover.md`, then `_memory.continuity`, then the remaining spec docs, while generated memory artifacts remain supporting only.
 
-| Item | Value |
-| --- | --- |
-| Primary mode | Proposal-only by default |
-| Evaluation | 5-dimension integration-aware scoring |
-| Target support | Any agent in `.opencode/agents/` (dynamic profiling is the only mode) |
-| Runtime area | `{spec_folder}/improvement/` |
-| Evidence style | Append-only JSONL ledger + reducer dashboard |
+The skill operates in proposal-only mode by default, uses 5-dimension integration-aware scoring, supports any agent in `.opencode/agents/` (dynamic profiling is the only mode), runs in the `{spec_folder}/improvement/` runtime area, and produces append-only JSONL ledger evidence with a reducer dashboard.
 
 ### What Changes With This Skill
 
-| Without deep-agent-improvement | With deep-agent-improvement |
-| --- | --- |
-| Prompt edits are ad hoc and untracked | Every candidate is packet-local and evidence-backed |
-| Quality is judged by reading the prompt file | Quality is scored across 5 deterministic dimensions |
-| Integration drift goes undetected | Scanner checks mirrors, commands, skills, and routing |
-| Promotion risk is hard to audit | Promotion, rollback, and drift review produce explicit artifacts |
-| Only specific agents can be evaluated | Any agent can be evaluated via dynamic profiling |
+- Without deep-agent-improvement, prompt edits are ad hoc and untracked. With deep-agent-improvement, every candidate is packet-local and evidence-backed.
+- Without deep-agent-improvement, quality is judged by reading the prompt file. With deep-agent-improvement, quality is scored across 5 deterministic dimensions.
+- Without deep-agent-improvement, integration drift goes undetected. With deep-agent-improvement, scanner checks mirrors, commands, skills, and routing.
+- Without deep-agent-improvement, promotion risk is hard to audit. With deep-agent-improvement, promotion, rollback, and drift review produce explicit artifacts.
+- Without deep-agent-improvement, only specific agents can be evaluated. With deep-agent-improvement, any agent can be evaluated via dynamic profiling.
 
 ### Key Capabilities
 
-| Capability | What It Gives You |
-| --- | --- |
-| Integration scanning | Maps every surface an agent touches across the repo |
-| Dynamic profiling | Derives scoring rules from any agent's own ALWAYS/NEVER/ESCALATE IF sections |
-| 5-dimension scoring | Measures structural integrity, rule coherence, integration consistency, output quality, and system fitness |
-| Fixture benchmarks | Output-based proof using target-specific fixture sets |
-| Dimensional tracking | Per-dimension progress in dashboard with plateau detection |
-| Mutation coverage graph | Tracks explored dimensions and tried mutation types via a coverage graph with `loop_type: "improvement"` namespace, preventing re-exploration of exhausted mutations |
-| Trade-off detection | Detects when a mutation improves one dimension at the cost of another, using Pareto-aware analysis with configurable thresholds and minimum 3 data points |
-| Candidate lineage | Maintains a directed graph of candidate proposals across iterations, tracking session-id, wave-index, spawning mutation type, and parent references |
-| Guarded promotion | Canonical mutation only after approval and passing evidence |
-| Rollback | Explicit restore with post-rollback dimensional verification |
+- Integration scanning: Maps every surface an agent touches across the repo
+- Dynamic profiling: Derives scoring rules from any agent's own ALWAYS/NEVER/ESCALATE IF sections
+- 5-dimension scoring: Measures structural integrity, rule coherence, integration consistency, output quality, and system fitness
+- Fixture benchmarks: Output-based proof using target-specific fixture sets
+- Dimensional tracking: Per-dimension progress in dashboard with plateau detection
+- Mutation coverage graph: Tracks explored dimensions and tried mutation types via a coverage graph with `loop_type: "improvement"` namespace, preventing re-exploration of exhausted mutations
+- Trade-off detection: Detects when a mutation improves one dimension at the cost of another, using Pareto-aware analysis with configurable thresholds and minimum 3 data points
+- Candidate lineage: Maintains a directed graph of candidate proposals across iterations, tracking session-id, wave-index, spawning mutation type, and parent references
+- Guarded promotion: Canonical mutation only after approval and passing evidence
+- Rollback: Explicit restore with post-rollback dimensional verification
 
 ### Requirements
 
@@ -161,7 +151,7 @@ The reducer tracks per-dimension scores across iterations, rendering a Dimension
 
 ### 3.8 LEGAL-STOP EVENTS AND SESSION-BOUNDARY GATE
 
-Both auto and confirm workflows now emit `legal_stop_evaluated` and `blocked_stop` events to the JSONL ledger, matching the deep-research and deep-review runtime-truth contract. A session-boundary gate enforces fresh-session isolation before initialization — if prior improvement state exists, the workflow halts until the operator archives, resumes, or aborts.
+Both auto and confirm workflows now emit `legal_stop_evaluated` and `blocked_stop` events to the JSONL ledger, matching the deep-research and deep-review runtime-truth contract. A session-boundary gate enforces fresh-session isolation before initialization. If prior improvement state exists, the workflow halts until the operator archives, resumes, or aborts.
 
 ### 3.9 PLATEAU STOP REASON
 
@@ -175,7 +165,7 @@ Runtime mirrors are downstream packaging surfaces. The skill treats them as foll
 
 ## 4. 5-DIMENSION EVALUATION
 
-The scorer evaluates candidates across 5 weighted dimensions. All checks are deterministic (regex, string matching, file existence) — no LLM-as-judge scoring.
+The scorer evaluates candidates across 5 weighted dimensions. All checks are deterministic (regex, string matching, file existence), with no LLM-as-judge scoring.
 
 | Dimension | Weight | What It Measures | How |
 | --- | --- | --- | --- |
@@ -210,36 +200,36 @@ A weighted score >= 70 produces a `candidate-acceptable` recommendation. Below 7
 |-- SKILL.md                          Skill router and core instructions
 |-- README.md                         Human-facing overview (this file)
 |-- references/
-|   |-- quick_reference.md            Command and dimension reminder
-|   |-- loop_protocol.md              End-to-end operator workflow
-|   |-- evaluator_contract.md         Scoring and benchmark contract
-|   |-- benchmark_operator_guide.md   Fixture benchmark execution
-|   |-- promotion_rules.md            Keep, reject, promote decisions
-|   |-- rollback_runbook.md           Promotion rollback procedure
-|   |-- mirror_drift_policy.md        Mirror packaging policy
-|   |-- no_go_conditions.md           Stop and expansion blockers
-|   |-- target_onboarding.md          Adding new bounded targets
-|   `-- integration_scanning.md       Integration scanner documentation
+   |-- quick_reference.md            Command and dimension reminder
+   |-- loop_protocol.md              End-to-end operator workflow
+   |-- evaluator_contract.md         Scoring and benchmark contract
+   |-- benchmark_operator_guide.md   Fixture benchmark execution
+   |-- promotion_rules.md            Keep, reject, promote decisions
+   |-- rollback_runbook.md           Promotion rollback procedure
+   |-- mirror_drift_policy.md        Mirror packaging policy
+   |-- no_go_conditions.md           Stop and expansion blockers
+   |-- target_onboarding.md          Adding new bounded targets
+   `-- integration_scanning.md       Integration scanner documentation
 |-- assets/
-|   |-- improvement_charter.md        Fixed policy charter template
-|   |-- improvement_strategy.md       Mutable runtime strategy template
-|   |-- improvement_config.json       Runtime configuration
-|   |-- improvement_config_reference.md  Config field documentation
-|   `-- target_manifest.jsonc         Surface classification manifest
+   |-- improvement_charter.md        Fixed policy charter template
+   |-- improvement_strategy.md       Mutable runtime strategy template
+   |-- improvement_config.json       Runtime configuration
+   |-- improvement_config_reference.md  Config field documentation
+   `-- target_manifest.jsonc         Surface classification manifest
 |-- scripts/
-|   |-- scan-integration.cjs          Integration surface scanner
-|   |-- generate-profile.cjs          Dynamic target profile generator
-|   |-- score-candidate.cjs           5-dimension candidate scorer
-|   |-- run-benchmark.cjs             Fixture + integration benchmark runner
-|   |-- reduce-state.cjs              Ledger reducer + dimensional dashboard
-|   |-- promote-candidate.cjs         Guarded canonical promotion
-|   |-- rollback-candidate.cjs        Canonical rollback helper
-|   `-- check-mirror-drift.cjs        Mirror drift report
+   |-- scan-integration.cjs          Integration surface scanner
+   |-- generate-profile.cjs          Dynamic target profile generator
+   |-- score-candidate.cjs           5-dimension candidate scorer
+   |-- run-benchmark.cjs             Fixture + integration benchmark runner
+   |-- reduce-state.cjs              Ledger reducer + dimensional dashboard
+   |-- promote-candidate.cjs         Guarded canonical promotion
+   |-- rollback-candidate.cjs        Canonical rollback helper
+   `-- check-mirror-drift.cjs        Mirror drift report
 |-- feature_catalog/
-|   |-- feature_catalog.md            Root catalog (subsection format)
-|   |-- 01--evaluation-loop/          Init, candidates, scoring, promotion, rollback
-|   |-- 02--integration-scanning/     Surface discovery, runtime mirrors, dispatch
-|   `-- 03--scoring-system/           5-dim rubric, dynamic profiling, plateau detection
+   |-- feature_catalog.md            Root catalog (subsection format)
+   |-- 01--evaluation-loop/          Init, candidates, scoring, promotion, rollback
+   |-- 02--integration-scanning/     Surface discovery, runtime mirrors, dispatch
+   `-- 03--scoring-system/           5-dim rubric, dynamic profiling, plateau detection
 `-- manual_testing_playbook/
     |-- manual_testing_playbook.md     Test matrix root (37 scenarios)
     |-- 01--integration-scanner/       Scanner test scenarios (4)
@@ -319,9 +309,9 @@ Produces a 5-dimension score for the review agent without initializing a full im
 ### Example 4: Inspect Runtime Evidence
 
 After running the loop, inspect:
-- `{spec_folder}/improvement/agent-improvement-dashboard.md` — Dimensional progress and stop status
-- `{spec_folder}/improvement/experiment-registry.json` — Per-profile metrics and best-known state
-- `{spec_folder}/improvement/integration-report.json` — Integration surface inventory
+- `{spec_folder}/improvement/agent-improvement-dashboard.md`: Dimensional progress and stop status
+- `{spec_folder}/improvement/experiment-registry.json`: Per-profile metrics and best-known state
+- `{spec_folder}/improvement/integration-report.json`: Integration surface inventory
 
 ---
 
@@ -387,25 +377,25 @@ Each dimension score (0-100) is multiplied by its weight, then summed: `structur
 
 ### Core References
 
-- [SKILL.md](./SKILL.md) — Skill router and core instructions
-- [feature_catalog.md](./feature_catalog/feature_catalog.md) — Canonical feature inventory across evaluation loop, integration scanning, and scoring system
-- [quick_reference.md](./references/quick_reference.md) — Short command and dimension reminder
-- [loop_protocol.md](./references/loop_protocol.md) — End-to-end operator workflow
-- [evaluator_contract.md](./references/evaluator_contract.md) — 5-dimension scoring and benchmark contract
+- [SKILL.md](./SKILL.md): Skill router and core instructions
+- [feature_catalog.md](./feature_catalog/feature_catalog.md): Canonical feature inventory across evaluation loop, integration scanning, and scoring system
+- [quick_reference.md](./references/quick_reference.md): Short command and dimension reminder
+- [loop_protocol.md](./references/loop_protocol.md): End-to-end operator workflow
+- [evaluator_contract.md](./references/evaluator_contract.md): 5-dimension scoring and benchmark contract
 
 ### Operations
 
-- [benchmark_operator_guide.md](./references/benchmark_operator_guide.md) — Fixture benchmark execution
-- [promotion_rules.md](./references/promotion_rules.md) — Keep, reject, promote decisions
-- [rollback_runbook.md](./references/rollback_runbook.md) — Promotion and rollback procedure
-- [mirror_drift_policy.md](./references/mirror_drift_policy.md) — Mirror packaging policy
+- [benchmark_operator_guide.md](./references/benchmark_operator_guide.md): Fixture benchmark execution
+- [promotion_rules.md](./references/promotion_rules.md): Keep, reject, promote decisions
+- [rollback_runbook.md](./references/rollback_runbook.md): Promotion and rollback procedure
+- [mirror_drift_policy.md](./references/mirror_drift_policy.md): Mirror packaging policy
 
 ### Onboarding
 
-- [target_onboarding.md](./references/target_onboarding.md) — Adding new bounded targets
-- [integration_scanning.md](./references/integration_scanning.md) — Integration scanner documentation
-- [improvement_config_reference.md](./assets/improvement_config_reference.md) — Config field documentation
+- [target_onboarding.md](./references/target_onboarding.md): Adding new bounded targets
+- [integration_scanning.md](./references/integration_scanning.md): Integration scanner documentation
+- [improvement_config_reference.md](./assets/improvement_config_reference.md): Config field documentation
 
 ### Testing
 
-- [manual_testing_playbook.md](./manual_testing_playbook/manual_testing_playbook.md) — 37-scenario validation matrix (incl. CP-040..045 agent-discipline stress battery in §08)
+- [manual_testing_playbook.md](./manual_testing_playbook/manual_testing_playbook.md): 37-scenario validation matrix (incl. CP-040..045 agent-discipline stress battery in §08)

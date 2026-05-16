@@ -67,14 +67,12 @@ node .opencode/skills/deep-ai-council/scripts/advise-council-completion.cjs <pac
 
 ## 3. FEATURES
 
-| Capability | Description |
-| --- | --- |
-| Multi-seat deliberation | Runs 2-3 seats with distinct strategy lenses and mandates. |
-| Seat diversity | Encourages different AI vantage targets when they actually run. |
-| Append-only state | Records council events in `ai-council-state.jsonl`. |
-| Two-of-three convergence | Declares convergence when 2 of 3 seats agree and critique finds no blocker. |
-| Rollback forensics | Preserves failed round artifacts under `failed/round-NNN-<timestamp>/`. |
-| Schema-evolution policy | Adds fields/events only; old state rows are never rewritten. |
+- Multi-seat deliberation: Runs 2-3 seats with distinct strategy lenses and mandates.
+- Seat diversity: Encourages different AI vantage targets when they actually run.
+- Append-only state: Records council events in `ai-council-state.jsonl`.
+- Two-of-three convergence: Declares convergence when 2 of 3 seats agree and critique finds no blocker.
+- Rollback forensics: Preserves failed round artifacts under `failed/round-NNN-<timestamp>/`.
+- Schema-evolution policy: Adds fields/events only; old state rows are never rewritten.
 
 ---
 

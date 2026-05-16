@@ -49,47 +49,23 @@ The skill includes a self-invocation guard: if you are already running inside Cl
 
 ### Key Statistics
 
-| Category | Value | Details |
-|----------|-------|---------|
-| **Models** | 3 | Opus 4.6, Sonnet 4.6, Haiku 4.5 |
-| **Agents** | 9 | context, debug, handover, orchestrate, research, review, speckit, multi-ai-council, write |
-| **Permission Modes** | 3 | plan (read-only), default (ask), bypassPermissions (auto-approve) |
-| **Output Formats** | 3 | text, json, stream-json |
-| **References** | 4 | cli_reference, claude_tools, agent_delegation, integration_patterns |
-| **Version** | 1.1.1 | |
-
-### How This Compares
-
-| Capability | Codex CLI | Gemini CLI | Copilot CLI | Claude Code CLI |
-|------------|-----------|------------|-------------|-----------------|
-| **Deep reasoning** | Configurable effort | Standard | Configurable effort | Extended thinking with chain-of-thought |
-| **Code editing** | Sandbox-based | File writes | Autopilot | Surgical diff-based Edit tool |
-| **Structured output** | Standard JSON | JSON mode | Standard JSON | Schema-validated `--json-schema` |
-| **Agent system** | Profile-based TOML | Markdown agents | Explore/Task agents | 9 specialized agents with routing |
-| **Session continuity** | Resume/fork | Memory tool | Repo memory | `--continue` / `--resume` with full context |
-| **Cost control** | Token limits | Free tier | Subscription | `--max-budget-usd` per session |
+The skill supports 3 models (Opus 4.6, Sonnet 4.6, Haiku 4.5), 9 specialized agents (context, debug, handover, orchestrate, research, review, speckit, multi-ai-council, write), 3 permission modes (plan for read-only, default for interactive approval, bypassPermissions for auto-approve), 3 output formats (text, json, stream-json), 4 reference documents (cli_reference, claude_tools, agent_delegation, integration_patterns), and is at version 1.1.1.
 
 ### Key Features at a Glance
 
-| Feature | What It Does |
-|---------|-------------|
-| **Extended Thinking** | Deep chain-of-thought reasoning via `--effort high` with Opus for complex trade-off analysis |
-| **Edit Tool** | Surgical diff-based code editing that modifies specific lines without rewriting files |
-| **Structured Output** | Schema-validated JSON via `--json-schema` for pipeline integration |
-| **Agent Delegation** | 9 agents (review, debug, context, write, etc.) routed via `--agent` flag |
-| **Permission Modes** | Read-only exploration (`plan`), interactive approval (`default`), or full auto (`bypassPermissions`) |
-| **Session Continuity** | Resume prior conversations with `--continue` or `--resume SESSION_ID` |
-| **Cost Control** | Hard budget cap per session via `--max-budget-usd` |
-| **Skills System** | On-demand specialized workflows loaded via SKILL.md files |
-| **Spec Kit handoff** | Return packet recovery through `/spec_kit:resume` and canonical packet docs |
+- **Extended Thinking**: Deep chain-of-thought reasoning via `--effort high` with Opus for complex trade-off analysis
+- **Edit Tool**: Surgical diff-based code editing that modifies specific lines without rewriting files
+- **Structured Output**: Schema-validated JSON via `--json-schema` for pipeline integration
+- **Agent Delegation**: 9 agents (review, debug, context, write, etc.) routed via `--agent` flag
+- **Permission Modes**: Read-only exploration (`plan`), interactive approval (`default`), or full auto (`bypassPermissions`)
+- **Session Continuity**: Resume prior conversations with `--continue` or `--resume SESSION_ID`
+- **Cost Control**: Hard budget cap per session via `--max-budget-usd`
+- **Skills System**: On-demand specialized workflows loaded via SKILL.md files
+- **Spec Kit handoff**: Return packet recovery through `/spec_kit:resume` and canonical packet docs
 
 ### Requirements
 
-| Requirement | Value | Notes |
-|-------------|-------|-------|
-| **CLI** | `@anthropic-ai/claude-code` | Install via `npm install -g @anthropic-ai/claude-code` |
-| **Auth** | `ANTHROPIC_API_KEY` or OAuth | API key for programmatic use, OAuth for interactive |
-| **Node.js** | 18+ | Required for npm installation |
+Requirements include the `@anthropic-ai/claude-code` CLI (install via `npm install -g @anthropic-ai/claude-code`), authentication via `ANTHROPIC_API_KEY` or OAuth (API key for programmatic use, OAuth for interactive), and Node.js 18+ (required for npm installation).
 
 <!-- /ANCHOR:overview -->
 
@@ -141,6 +117,17 @@ The Edit tool changes how code gets modified. Instead of regenerating entire fil
 Structured output through `--json-schema` fills a gap that other CLIs handle loosely. You define a JSON schema, and Claude Code validates its response against it before returning. The output either matches the schema or the request fails. No parsing surprises, no malformed JSON. This makes Claude Code a reliable node in data pipelines where downstream systems expect exact formats.
 
 The agent system adds specialization on top of these foundations. Nine agents cover distinct domains: `context` for codebase exploration, `review` for security audits, `debug` for root cause analysis, `write` for documentation, and five more. Each agent loads domain-specific instructions that shape how Claude Code approaches the task.
+
+#### Comparison with Other AI CLIs
+
+| Capability | Codex CLI | Gemini CLI | Copilot CLI | Claude Code CLI |
+|------------|-----------|------------|-------------|-----------------|
+| **Deep reasoning** | Configurable effort | Standard | Configurable effort | Extended thinking with chain-of-thought |
+| **Code editing** | Sandbox-based | File writes | Autopilot | Surgical diff-based Edit tool |
+| **Structured output** | Standard JSON | JSON mode | Standard JSON | Schema-validated `--json-schema` |
+| **Agent system** | Profile-based TOML | Markdown agents | Explore/Task agents | 9 specialized agents with routing |
+| **Session continuity** | Resume/fork | Memory tool | Repo memory | `--continue` / `--resume` with full context |
+| **Cost control** | Token limits | Free tier | Subscription | `--max-budget-usd` per session |
 
 ### 3.2 FEATURE REFERENCE
 
