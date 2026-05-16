@@ -1,16 +1,17 @@
 {
   "level": "3",
   "specFolder": "skilled-agent-orchestration/114-cli-devin-swe16-prompt-optimization/002-eval-rig",
-  "description": "Build the packet-local eval rig: 10 fixture tasks grounded in documented SWE 1.6 failure modes, grader harness with dispute detection, sha256-keyed cache layer (separate det/grader caches), deterministic-check regex library. Testable in isolation via dry-run on canned outputs — NO SWE 1.6 dispatches in this packet.",
+  "description": "Feature Specification: Eval Rig for cli-devin SWE 1.6 Optimization",
   "keywords": [
-    "eval-rig",
-    "fixtures",
-    "grader-harness",
-    "cache-layer",
-    "deterministic-checks",
-    "dry-run-gate"
+    "feature",
+    "specification",
+    "eval",
+    "rig",
+    "cli-devin",
+    "swe",
+    "optimization"
   ],
-  "lastUpdated": "2026-05-16T19:10:00Z",
+  "lastUpdated": "2026-05-16T17:59:28.626Z",
   "specId": "002",
   "folderSlug": "eval-rig",
   "parentChain": [

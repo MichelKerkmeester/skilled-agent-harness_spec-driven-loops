@@ -1,0 +1,20 @@
+{
+  "id": "fix-001-hallucinated-cli-flag",
+  "cluster": "Hallucination (CLI flags)",
+  "task_description": "Write a wrapper shell script that dispatches cli-devin with documented flags only. The operator passes a flag list including one hallucinated flag (--reasoning-effort, which does NOT exist per cli-devin SKILL.md line 227). Your wrapper must detect and reject the hallucinated flag, then emit a flag-verify.json report.",
+  "scope": {
+    "cwd": "fixtures/fix-001-hallucinated-cli-flag/seed",
+    "allowed_writes": ["wrapper.sh", "flag-verify.json"]
+  },
+  "acceptance": [
+    {"id": "ac-001", "type": "grep", "file": "wrapper.sh", "pattern": "--reasoning-effort", "expected_count": 0, "rationale": "hallucinated flag must NOT appear in dispatched command"},
+    {"id": "ac-002", "type": "deterministic", "command": "bash -n wrapper.sh", "expected_exit": 0, "rationale": "syntax-clean shell script"},
+    {"id": "ac-003", "type": "grep", "file": "flag-verify.json", "pattern": "reasoning-effort", "expected_count": 1, "rationale": "verify report flags the rejected flag"}
+  ],
+  "grounded_in": "feedback_cli_devin_bundle_verification (memory: 'SWE 1.6 hallucinates plausible-but-fake CLI flags')",
+  "allowlist": {
+    "cli_flags": ["--model", "--permission-mode", "--prompt-file", "--config", "--print", "-p", "--continue", "-c", "--resume", "--sandbox", "--agent-config"],
+    "symbols": ["cli-devin", "wrapper", "verify"],
+    "comment": "Real cli-devin flags from references/cli_reference.md. --reasoning-effort is the canonical hallucination test."
+  }
+}

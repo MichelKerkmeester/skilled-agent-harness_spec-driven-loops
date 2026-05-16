@@ -1,0 +1,20 @@
+{
+  "id": "fix-007-baseline-pure-function",
+  "cluster": "Baseline diagnostic",
+  "task_description": "Add a pure function formatBytes(n: number): string to src/utils/format.ts returning '1.5 MB' style. Include 3 vitest cases: happy path (1500000 → '1.5 MB'), zero (0 → '0 B'), and large (1.5e9 → '1.5 GB').",
+  "scope": {
+    "cwd": "fixtures/fix-007-baseline-pure-function/seed",
+    "allowed_writes": ["src/utils/format.ts", "src/utils/format.test.ts"]
+  },
+  "acceptance": [
+    {"id": "ac-001", "type": "deterministic", "command": "npx vitest run src/utils/format.test.ts", "expected_exit": 0, "rationale": "3 vitest cases pass"},
+    {"id": "ac-002", "type": "grep", "file": "src/utils/format.ts", "pattern": "export\\s+function\\s+formatBytes|export\\s+const\\s+formatBytes", "expected_count": 1, "rationale": "formatBytes exported"},
+    {"id": "ac-003", "type": "grep", "file": "src/utils/format.test.ts", "pattern": "describe|test|it", "expected_count": ">= 3", "rationale": "3 test cases present"}
+  ],
+  "grounded_in": "Optimizer seat O-1 (baseline diagnostic — if a variant fails this, deep problem unrelated to specific failure modes)",
+  "allowlist": {
+    "cli_flags": [],
+    "symbols": ["formatBytes", "Math", "Number", "toFixed", "describe", "test", "it", "expect", "Array", "String"],
+    "comment": "Standard math + test framework. Should be effectively impossible to hallucinate on this fixture."
+  }
+}

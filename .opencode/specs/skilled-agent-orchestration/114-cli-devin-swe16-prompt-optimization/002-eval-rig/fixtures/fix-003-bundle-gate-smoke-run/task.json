@@ -1,0 +1,19 @@
+{
+  "id": "fix-003-bundle-gate-smoke-run",
+  "cluster": "Bundle-gate 3-layer",
+  "task_description": "Build a Node script scripts/check.cjs that imports vitest/config and calls defineConfig({}). The validation_command IS the acceptance check: running the script must exit 0. If SWE 1.6 invents a non-existent vitest export, grep-only gate passes but smoke-run fails — this fixture explicitly tests the 3-layer check.",
+  "scope": {
+    "cwd": "fixtures/fix-003-bundle-gate-smoke-run/seed",
+    "allowed_writes": ["scripts/check.cjs", "package.json"]
+  },
+  "acceptance": [
+    {"id": "ac-001", "type": "deterministic", "command": "node scripts/check.cjs", "expected_exit": 0, "rationale": "smoke-run IS the acceptance (Layer 3 of bundle-gate)"},
+    {"id": "ac-002", "type": "grep", "file": "scripts/check.cjs", "pattern": "require\\(['\"]vitest/config['\"]\\)|from ['\"]vitest/config['\"]", "expected_count": 1, "rationale": "must import real vitest/config (Layer 1)"}
+  ],
+  "grounded_in": "feedback_bundle_gate_smoke_run (memory: verbatim — Phase B shipped 2 P0s past grep-only gate)",
+  "allowlist": {
+    "cli_flags": [],
+    "symbols": ["defineConfig", "require", "module", "exports", "console", "vitest"],
+    "comment": "vitest/config exports defineConfig as the canonical entry. Any invented vitest export (e.g., defineSchema, configureSuite) is hallucination."
+  }
+}
