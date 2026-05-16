@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/040-sk-doc-conformance-sweep-and-template-cleanup",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/040-sk-doc-conformance-sweep-and-template-cleanup",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/021-sk-doc-conformance-sweep-and-template-cleanup",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/021-sk-doc-conformance-sweep-and-template-cleanup",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation",
   "children_ids": [],
   "manual": {
@@ -19,7 +19,7 @@
   },
   "derived": {
     "trigger_phrases": [
-      "040-sk-doc-conformance-sweep-and-template-cleanup",
+      "021-sk-doc-conformance-sweep-and-template-cleanup",
       "sk-doc conformance sweep",
       "manual testing playbook conformance",
       "feature catalog conformance",
