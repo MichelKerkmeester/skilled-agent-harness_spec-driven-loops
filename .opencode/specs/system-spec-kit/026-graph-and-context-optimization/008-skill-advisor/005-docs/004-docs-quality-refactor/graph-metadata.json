@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-docs/004-docs-quality-refactor",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-docs/004-docs-quality-refactor",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-docs",
+  "children_ids": [
+    "004-docs-quality-refactor/001-audit-and-research",
+    "004-docs-quality-refactor/002-bug-fixes",
+    "004-docs-quality-refactor/003-readme-marketing-rewrite",
+    "004-docs-quality-refactor/004-sk-doc-1to1-alignment",
+    "004-docs-quality-refactor/005-content-additions-and-hvr"
+  ],
+  "migrated": false,
+  "manual": {
+    "depends_on": [
+      {
+        "packet_id": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-docs/003-doc-and-config-drift-fixes",
+        "reason": "Predecessor single-shot drift-fix packet; this phase-parent coordinates the broader docs-quality work",
+        "source": "manual",
+        "spec_folder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-docs/003-doc-and-config-drift-fixes"
+      }
+    ],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "last_active_child_id": "004-docs-quality-refactor/001-audit-and-research",
+    "status": "in_progress",
+    "importance_tier": "important",
+    "trigger_phrases": [
+      "skill-advisor docs quality refactor",
+      "marketing readme skill-advisor",
+      "sk-doc 1:1 alignment skill-advisor",
+      "skill-advisor audit phased",
+      "system-skill-advisor docs refactor",
+      "phase parent skill-advisor docs"
+    ],
+    "key_topics": [
+      "skill-advisor",
+      "docs-quality",
+      "marketing-readme",
+      "sk-doc-alignment",
+      "bug-fixes",
+      "hvr",
+      "content-additions",
+      "phase-parent",
+      "cli-devin",
+      "deep-research"
+    ],
+    "key_files": [
+      ".opencode/skills/system-skill-advisor/SKILL.md",
+      ".opencode/skills/system-skill-advisor/README.md",
+      ".opencode/skills/system-skill-advisor/ARCHITECTURE.md",
+      ".opencode/skills/system-skill-advisor/INSTALL_GUIDE.md",
+      "spec.md",
+      "description.json",
+      "graph-metadata.json",
+      "resource-map.md"
+    ],
+    "entities": [],
+    "causal_summary": "Coordinated docs-quality refactor of system-skill-advisor across 5 children. Child 001 runs 20-iter deep-research via cli-devin SWE 1.6 to produce a ranked findings ledger. Children 002-005 consume the synthesis to fix bugs, rewrite README in marketing style, align all 6 doc surfaces 1:1 to sk-doc templates, add 5 new reference docs, and pass HVR compliance.",
+    "created_at": "2026-05-16T00:00:00Z",
+    "last_save_at": "2026-05-16T00:00:00Z",
+    "save_lineage": "scaffold",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "resource-map.md"
+    ]
+  }
+}

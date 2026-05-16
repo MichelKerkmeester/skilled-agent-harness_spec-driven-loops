@@ -8,8 +8,7 @@
     "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-scorer",
     "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/003-router",
     "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-hardening",
-    "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-docs",
-    "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/006-docs-quality-refactor"
+    "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-docs"
   ],
   "migrated": true,
   "migration_source": "legacy",
