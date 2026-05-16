@@ -29,6 +29,19 @@ Every iter prompt MUST include these four blocks in this exact order. The dispat
 
 ---
 
+## 2.5. Sequential_thinking pre-output (mandatory v1.0.4.0+)
+
+Every iter prompt must mention: "Sequential_thinking is mandatory before output." The recipe's `mcp_servers` + `system_instructions` enforce this at the runtime layer.
+
+Per-stage thought minimum (5 thoughts):
+- Research iter: pre-planning / evidence / findings / gaps / JSONL row
+- Review iter: pre-planning / reading / dimension check / findings tag / JSONL row
+- Synthesis: inventory / grouping / contradictions / output / provenance
+
+Add a one-line marker near the top of the prompt body so the model sees it: "Apply sequential_thinking with ≥ 5 thoughts BEFORE emitting the output."
+
+---
+
 ## 3. RESEARCH-ITER SKELETON
 
 ```markdown
@@ -37,6 +50,8 @@ Framework: BUILD
 # Iter NNN — Research
 
 ## Pre-planning
+
+**Sequential_thinking mandatory**: call mcp__sequential_thinking__sequentialthinking with ≥ 5 thoughts before producing the output. The recipe's mcp_servers + system_instructions enforce this — do not skip.
 
 Goal: <one-line goal scoped to this iter — must fit on one line>
 
@@ -74,6 +89,8 @@ Required heading structure:
 
 Required JSONL fields:
 - iter_id, timestamp_utc, executor=cli-devin, model=swe-1.6, status, findings_count, gaps_count, primary_evidence_files
+
+Every claim in the Findings or Evidence sections MUST be followed by a `<ref_file file="<absolute-path>" lines="N-M" />` tag. Inline prose-only claims are non-compliant. Aim for ≥ 3 ref_file tags per finding, ≥ 1 per evidence row.
 ```
 
 ---
@@ -86,6 +103,8 @@ Framework: STAR
 # Iter NNN — Review
 
 ## Pre-planning
+
+**Sequential_thinking mandatory**: call mcp__sequential_thinking__sequentialthinking with ≥ 5 thoughts before producing the output. The recipe's mcp_servers + system_instructions enforce this — do not skip.
 
 Goal: audit <packet-path> on dimension <dimension-name>.
 
@@ -127,6 +146,8 @@ Required heading structure:
 
 Required JSONL fields:
 - iter_id, timestamp_utc, executor=cli-devin, model=swe-1.6, dimension, P0_count, P1_count, P2_count, primary_evidence_files
+
+Every claim in the Findings or Evidence sections MUST be followed by a `<ref_file file="<absolute-path>" lines="N-M" />` tag. Inline prose-only claims are non-compliant. Aim for ≥ 3 ref_file tags per finding, ≥ 1 per evidence row.
 ```
 
 ---
@@ -139,6 +160,8 @@ Framework: BUILD
 # Synthesis — <research or review or delta-verified>
 
 ## Pre-planning
+
+**Sequential_thinking mandatory**: call mcp__sequential_thinking__sequentialthinking with ≥ 5 thoughts before producing the output. The recipe's mcp_servers + system_instructions enforce this — do not skip.
 
 Goal: consolidate N iter outputs into the canonical synthesis file.
 
@@ -189,6 +212,8 @@ Required heading structure (delta-verified):
 - ## EDIT entries (file:line + FROM/TO/REASON/ITER)
 - ## NEW-FILE entries (path + intent + ITER source)
 - ## DELETE entries (file:reason + ITER)
+
+Every claim in the Findings or Evidence sections MUST be followed by a `<ref_file file="<absolute-path>" lines="N-M" />` tag. Inline prose-only claims are non-compliant. Aim for ≥ 3 ref_file tags per finding, ≥ 1 per evidence row.
 ```
 
 ---
@@ -199,6 +224,9 @@ Required heading structure (delta-verified):
 - Always cite acceptance criteria per step. SWE-1.6 truncates work when the stop condition is implicit.
 - Always state the JSONL delta row requirement explicitly. Without it, ~30% of iters skip the row.
 - Always state the output path. Without it, SWE-1.6 sometimes writes to a `_drafts/` subdir that the synthesis pass cannot find.
+- Sequential_thinking is mandatory pre-output. Recipe's mcp_servers + system_instructions enforce; iter must comply or the dispatch is non-conforming.
+- JSONL delta row is REQUIRED at the end of every iter output. Format inlined per prompt — do NOT back-reference "Same as iter NNN".
+- Output begins at `# Iter NNN`. No preamble. The dispatcher captures stdout, which becomes the iter file directly (v1.0.4.0+ recipes have narrow Write scope that may obviate this, but the convention holds for compatibility).
 
 ## 7. RELATED
 

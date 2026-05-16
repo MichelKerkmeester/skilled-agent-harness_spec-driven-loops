@@ -49,7 +49,58 @@ Each recipe pins `system_instructions` (array), `allowed_tools` (tool name list)
 
 ---
 
-## 4. RESEARCH-ITER RECIPE
+## 4. SEQUENTIAL_THINKING REQUIREMENT (v1.0.4.0+)
+
+Every cli-devin dispatch — research-iter, review-iter, or synthesis — MUST enforce `sequential_thinking` MCP via two layers, since the recipe-level `mcp_servers` field is reserved-but-not-wired in Devin 2026.5.6+.
+
+### Two-layer enforcement (v1.0.4.0)
+
+**Layer 1 — User-scope MCP registration** (operator runs once per machine):
+
+```bash
+devin mcp add sequential_thinking npx @modelcontextprotocol/server-sequential-thinking@2025.12.18
+devin mcp list | grep sequential_thinking   # verify registration
+```
+
+Devin loads the server for every session on the user profile.
+
+**Layer 2 — `system_instructions` mandate** (in every recipe JSON):
+
+```json
+"system_instructions": [
+  "Before producing the output, you MUST call mcp__sequential_thinking__sequentialthinking with at least 5 thoughts...",
+  ... existing instructions ...
+]
+```
+
+The recipe-level `mcp_servers` field is NOT set in v1.0.4.0 — the Devin binary currently rejects every shape with "untagged enum McpServer" and self-logs `ACP: agent_config mcp_servers are not yet supported in the ACP path and will be ignored`. Re-introduce the field once Devin lands `--agent-config mcp_servers` support.
+
+### Why
+
+SWE-1.6 (default model for the loop) is fast but smaller than complex-task models. Empirical data from packet 999's 40-iter run showed:
+- iter that benefit from structured pre-thought produce 30-60% denser citations
+- iter without pre-thought tend to start with stdout-fallback boilerplate, miss the JSONL state row, or produce prose without `<ref_file>` tags
+
+Forcing sequential_thinking adds ~10s per iter but eliminates the failure modes above.
+
+### Per-stage thought structure
+
+- **Research iter**: 5 thoughts = pre-planning / evidence reading / finding extraction / gap analysis / JSONL row composition
+- **Review iter**: 5 thoughts = pre-planning / packet reading / dimension-specific check / finding tagging (P0/P1/P2) / JSONL row composition
+- **Synthesis**: 5 thoughts = iter inventory / theme grouping / contradiction resolution / output structure / provenance verification
+
+### Pre-flight check
+
+Operators verify after registration:
+```bash
+devin mcp list | grep sequential_thinking
+```
+
+Expected: `sequential_thinking ... npx @modelcontextprotocol/server-sequential-thinking@2025.12.18` (or current version).
+
+---
+
+## 5. RESEARCH-ITER RECIPE
 
 ### Model and permission mode
 
@@ -82,7 +133,7 @@ The system_instructions array is the recipe's contract floor — per-iter prompt
 
 ---
 
-## 5. REVIEW-ITER RECIPE
+## 6. REVIEW-ITER RECIPE
 
 ### Model and permission mode
 
@@ -113,7 +164,7 @@ Review iter is stricter than research iter because review surfaces ship straight
 
 ---
 
-## 6. SYNTHESIS RECIPE
+## 7. SYNTHESIS RECIPE
 
 ### Model and permission mode
 
@@ -141,20 +192,21 @@ The `Write` allow list is the only place a Devin iter can mutate the tree. The n
 
 ---
 
-## 7. PROMPT BODY SHAPE
+## 8. PROMPT BODY SHAPE
 
-Each iter prompt MUST include four blocks, in this order:
+Each iter prompt MUST include five blocks, in this order:
 
 1. **STAR / RCAF / BUILD framework tag** — the first line states which framework the prompt uses (`Framework: BUILD`).
 2. **Pre-planning block** — ordered steps, per-step acceptance criteria, stop conditions, verification approach.
 3. **Scoped RQ or review angle** — one research question per research iter, one review dimension per review iter, one consolidation directive per synthesis pass.
-4. **Output contract** — exact heading structure for `iteration-NNN.md` / `findings.md` / consolidated output; required fields for the JSONL delta row.
+4. **Sequential_thinking invocation marker** — the prompt must include a line: "Sequential_thinking is mandatory before output." The recipe's `mcp_servers` and `system_instructions` enforce this at the runtime layer; the prompt body reinforces visually.
+5. **Output contract** — exact heading structure for `iteration-NNN.md` / `findings.md` / consolidated output; required fields for the JSONL delta row.
 
-The cli-devin SKILL.md §4 ALWAYS #12 (general SWE-1.6 contract) governs framework selection and CLEAR 5-check. The deep-loop contract layers the four-block shape on top.
+The cli-devin SKILL.md §4 ALWAYS #12 (general SWE-1.6 contract) governs framework selection and CLEAR 5-check. The deep-loop contract layers the five-block shape on top.
 
 ---
 
-## 8. DISPATCH SHAPE
+## 9. DISPATCH SHAPE
 
 ```bash
 devin -p \
@@ -169,7 +221,7 @@ The dispatcher (one of `spec_kit_deep-research_auto.yaml` or `spec_kit_deep-revi
 
 ---
 
-## 9. WHY STRICT PARSING MATTERS
+## 10. WHY STRICT PARSING MATTERS
 
 Devin's `--agent-config` flag uses strict parsing — unknown fields are rejected at load time. This is load-bearing for the deep-loop contract:
 
@@ -181,7 +233,7 @@ Strict parsing converts the contract from a soft norm into a parse-time check.
 
 ---
 
-## 10. VERSIONING
+## 11. VERSIONING
 
 This contract is versioned at the cli-devin SKILL.md frontmatter level. Bumping the contract requires:
 
@@ -195,7 +247,7 @@ Current version: `v1.0.3.0` (packet 059, 2026-05-15).
 
 ---
 
-## 11. RELATED
+## 12. RELATED
 
 - [SKILL.md](../SKILL.md) §4 ALWAYS #12 (SWE-1.6 Prompt-Quality Contract) + #13 (Deep-Loop Iter Contract pointer)
 - [agent-config-recipes.md](./agent-config-recipes.md) — per-recipe wording and rationale

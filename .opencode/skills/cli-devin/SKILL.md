@@ -2,7 +2,7 @@
 name: cli-devin
 description: "Devin CLI orchestrator: dispatch Cognition AI's 'Devin for Terminal' for autonomous coding work with optional local-to-cloud handoff."
 allowed-tools: [Bash, Read, Glob, Grep]
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 <!-- Keywords: devin, devin-cli, devin-for-terminal, cognition, swe-1.6, deepseek-v4, glm-5.1, kimi-k2.6, cloud-handoff, autonomous-agent, cross-ai, mcp, acp, permission-modes, complex-task-fallback -->
@@ -359,6 +359,7 @@ devin update
 11. Validate Devin-generated code (XSS, injection, eval, syntax checks, surface-specific lint/test) before merging.
 12. **SWE-1.6 Prompt-Quality Contract** (v1.0.2.0+) — EVERY dispatch with `--model swe-1.6` MUST (a) be composed through `sk-prompt` with a chosen framework (STAR / RCAF / BUILD) and a passing CLEAR 5-check, AND (b) include an explicit pre-planning block in the prompt body: ordered steps + per-step acceptance criteria + stop conditions + verification approach. SWE-1.6 is coding-specialized but smaller than the complex-task models — it relies on the calling AI doing the structural decomposition upfront. See `assets/prompt_templates.md` §2 for the canonical pre-planning template.
 13. **Deep-Loop Iter Contract** (v1.0.3.0+) — when cli-devin is dispatched as the executor for `/spec_kit:deep-research` or `/spec_kit:deep-review` per-iter workers, ALSO pass `--agent-config <path>` pointing at one of the three pinned recipes in `assets/` (research-iter / review-iter / synthesis). The recipe enforces tool allowlist and scoped permission entries (`Read(/path/**)`, `Exec(<cmd>)`) at Devin's strict parser, so the iter cannot drift outside the read-only-research, read-only-review, or scoped-write-synthesis profile. See [`references/deep-loop-iter-contract.md`](./references/deep-loop-iter-contract.md) for the full contract and [`references/agent-config-recipes.md`](./references/agent-config-recipes.md) for per-recipe wording, allowlist rationale, and copy-paste invocations.
+14. **Sequential_thinking MCP is mandatory pre-output** (v1.0.4.0+) — EVERY cli-devin dispatch regardless of model (SWE-1.6, DeepSeek v4, GLM 5.1, Kimi k2.6) MUST configure the `sequential_thinking` MCP server via the `--agent-config` recipe's `mcp_servers` field AND include a `system_instructions` mandate that the model invokes `mcp__sequential_thinking__sequentialthinking` with at least 5 thoughts before producing the structured output. This requirement applies to research-iter / review-iter / synthesis recipes and any future cli-devin recipe. See `references/deep-loop-iter-contract.md` §SEQUENTIAL_THINKING for the contract and `references/agent-config-recipes.md` §2 SCHEMA for the recipe field.
 
 ### ❌ NEVER
 
@@ -402,6 +403,7 @@ printf '%s' "$JSON_PAYLOAD" | node .opencode/skills/system-spec-kit/scripts/dist
 - [cloud_handoff.md](./references/cloud_handoff.md) — Devin-unique local→cloud handoff narrative + operator-confirmation gate
 - [deep-loop-iter-contract.md](./references/deep-loop-iter-contract.md) — Deep-research / deep-review per-iter contract (model, permission-mode, agent-config recipe selection, prompt body shape)
 - [agent-config-recipes.md](./references/agent-config-recipes.md) — Canonical agent-config JSON shapes for research-iter / review-iter / synthesis dispatches
+- [retrospective findings driving v1.0.4.0](../../specs/skilled-agent-orchestration/105-cli-devin-effectiveness-improvements/research/retrospective.md) — 999 packet's 40-iter SWE-1.6 run analysis that justifies sequential_thinking + Write-scope additions
 
 ### Templates and Assets
 

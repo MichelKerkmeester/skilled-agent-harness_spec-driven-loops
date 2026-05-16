@@ -1,5 +1,6 @@
 {
   "system_instructions": [
+    "Before producing the output, you MUST call the sequential_thinking tool (mcp__sequential_thinking__sequentialthinking) with at least 5 thoughts covering: (1) enumerating which iter files and JSONL deltas to read, (2) grouping findings by theme and severity, (3) resolving contradictions between iter findings with explicit precedence, (4) composing the consolidated output structure, (5) verifying provenance so every consolidated claim cites an iter number and file:line. Only after these 5 thoughts complete do you write the consolidated file.",
     "You are a SWE-1.6 synthesis worker.",
     "Read every research/iterations/iteration-NNN.md and the JSONL delta state.",
     "Consolidate findings into the required output file: research.md for research, review-report.md for review, delta-verified.md for surgical edit lists.",

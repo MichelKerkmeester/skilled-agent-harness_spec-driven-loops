@@ -22,9 +22,11 @@ DRIVER_LOG="${LOG_DIR}/run-loop.log"
 START_ITER="${1:-1}"
 END_ITER="${2:-40}"
 
-# Substitute <repo-root> in the research-iter recipe once
+# Substitute <repo-root> and <packet-root> in the research-iter recipe once.
+# v1.0.4.0: recipe ships with both placeholders so the narrow Write scope can be
+# pinned to the active packet directory. <packet-root> resolves to ${PACKET}.
 AGENT_CONFIG_TMP="/tmp/agent-config-999-research-iter.json"
-sed "s|<repo-root>|${REPO_ROOT}|g" \
+sed -e "s|<repo-root>|${REPO_ROOT}|g" -e "s|<packet-root>|${PACKET}|g" \
   "${REPO_ROOT}/.opencode/skills/cli-devin/assets/agent-config-deep-research-iter.json" \
   > "${AGENT_CONFIG_TMP}"
 
@@ -59,8 +61,10 @@ for n in $(seq "${START_ITER}" "${END_ITER}"); do
   # Devin stdout is the iter content; stderr is dispatch noise / errors.
   # The research-iter recipe is read-only, so devin can't Write the iter file itself —
   # the dispatcher captures stdout directly to OUTPUT.
+  # v1.0.4.0: gtimeout 900 caps every iter at 15 min to prevent silent hangs
+  # (packet 999 iter 039 originally ran 6h before manual kill).
   cd "${REPO_ROOT}"
-  devin --print \
+  gtimeout 900 devin --print \
     --prompt-file "${PROMPT}" \
     --model swe-1.6 \
     --permission-mode auto \
@@ -72,8 +76,21 @@ for n in $(seq "${START_ITER}" "${END_ITER}"); do
   END_TS=$(date +%s)
   DURATION=$((END_TS - START_TS))
 
+  # v1.0.4.0: classify the iter outcome before deciding fail / partial / continue.
+  # Same taxonomy as the spec_kit_deep-*_auto.yaml if_cli_devin branches.
+  if [[ "${EXIT_CODE}" -eq 124 ]]; then
+    ITER_OUTCOME="timeout"
+  elif grep -q "A tool was rejected by the user" "${LOG}" 2>/dev/null; then
+    ITER_OUTCOME="tool_rejected"
+  elif grep -qE "(I cannot write|read-only mode|permission errors when attempting to write)" "${OUTPUT}" 2>/dev/null; then
+    ITER_OUTCOME="degraded_stdout_fallback"
+  else
+    ITER_OUTCOME="clean"
+  fi
+  log "[${NNN}] outcome=${ITER_OUTCOME}"
+
   if [[ "${EXIT_CODE}" -ne 0 ]]; then
-    log "[${NNN}] FAIL — devin exit ${EXIT_CODE} after ${DURATION}s — stderr: ${LOG}"
+    log "[${NNN}] FAIL — devin exit ${EXIT_CODE} after ${DURATION}s (outcome=${ITER_OUTCOME}) — stderr: ${LOG}"
     # Move partial output aside if it exists, for inspection
     [[ -f "${OUTPUT}" ]] && mv "${OUTPUT}" "${OUTPUT}.failed"
     continue

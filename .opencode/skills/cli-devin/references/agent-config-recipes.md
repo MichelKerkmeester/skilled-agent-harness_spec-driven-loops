@@ -36,7 +36,7 @@ Devin's `--agent-config` accepts JSON or YAML. The accepted top-level keys (veri
 | `system_instructions` (or `system-instructions`) | array of strings | The system-prompt floor for the dispatched session |
 | `allowed_tools` (or `allowed-tools`) | array of tool names | The tool allowlist (e.g. `["Read", "Grep", "Glob", "Bash"]`) |
 | `permissions` | object with `allow` / `deny` / `ask` | Scoped permission entries (tool names or scope expressions) |
-| `mcp_servers` (or `mcp-servers`) | array | MCP server allowlist (not used by deep-loop recipes) |
+| `mcp_servers` (or `mcp-servers`) | object map | MCP server registry (Devin 2026.5.6+ schema). DEFERRED in v1.0.4.0 — the binary currently rejects every shape with "untagged enum McpServer" and self-logs `ACP: agent_config mcp_servers are not yet supported in the ACP path and will be ignored`. Enforce sequential_thinking via user-scope registration (`devin mcp add sequential_thinking ...`) PLUS the `system_instructions` mandate. Re-introduce this field once Devin lands `--agent-config mcp_servers` support |
 | `extensions` | array | Extension allowlist (not used by deep-loop recipes) |
 
 ### Permission entry syntax
@@ -62,16 +62,26 @@ Bash commands enter permission scopes as `Exec(<cmd>)`, NOT `Bash(<cmd>)`. The e
 ```json
 [
   "You are a SWE-1.6 deep-research iteration worker.",
-  "Stay read-only. Never propose file mutations. Cite evidence with file:line.",
+  "Before producing the output, you MUST call mcp__sequential_thinking__sequentialthinking with at least 5 thoughts.",
+  "Stay read-only EXCEPT for the iter output file. Cite evidence with file:line.",
   "Honor the per-iter scoped research question stated in the prompt body.",
   "Produce the iteration-NNN.md output shape the iter template requires.",
   "Stop conditions: emit the required output then exit. Do not request further input."
 ]
 ```
 
+### MCP servers (deferred)
+
+Sequential_thinking enforcement in v1.0.4.0 lives at TWO layers:
+
+1. **User-scope MCP registration** (operator runs `devin mcp add sequential_thinking npx @modelcontextprotocol/server-sequential-thinking@2025.12.18` once). The server appears in `devin mcp list` and Devin loads it for every session on the profile.
+2. **`system_instructions` mandate** in this recipe (see the JSON above) that requires the model to call `mcp__sequential_thinking__sequentialthinking` with ≥ 5 thoughts before producing output.
+
+The recipe-level `mcp_servers` field is RESERVED but not yet wired by the Devin binary. Smoke-testing every documented shape against `devin 2026.5.6-8` returned the rejection "untagged enum McpServer", and the binary itself logs `ACP: agent_config mcp_servers are not yet supported in the ACP path and will be ignored`. The 2-layer enforcement above is the working pattern. Re-introduce the recipe-level field once Devin lands `--agent-config mcp_servers` support. See [`deep-loop-iter-contract.md`](./deep-loop-iter-contract.md) §4 for the full contract.
+
 ### Tool allowlist rationale
 
-`["Read", "Grep", "Glob", "Bash"]` — research iter needs to read evidence (`Read`), pattern-match across the tree (`Grep`, `Glob`), and run inspection-only shell commands (`Bash` constrained by the permissions `Exec` allowlist below).
+`["Read", "Grep", "Glob", "Bash", "Write"]` — research iter needs to read evidence (`Read`), pattern-match across the tree (`Grep`, `Glob`), run inspection-only shell commands (`Bash` constrained by the permissions `Exec` allowlist below), and write the iter output file (`Write` scoped narrowly to `research/iterations/iteration-NNN.md`, new in v1.0.4.0+; previously the iter relied on stdout-capture which empirical data showed dropped the JSONL row in 22.5% of iters).
 
 ### Permissions
 
@@ -103,16 +113,26 @@ The deny list is defense in depth — even though `Write(*)` is not granted, the
 ```json
 [
   "You are a SWE-1.6 deep-review iteration worker.",
-  "Stay read-only. Cite evidence with file:line.",
+  "Before producing the output, you MUST call mcp__sequential_thinking__sequentialthinking with at least 5 thoughts.",
+  "Stay read-only EXCEPT for the iter output file. Cite evidence with file:line.",
   "Produce findings tagged P0 / P1 / P2 with explicit reproduction evidence.",
   "Honor the scoped review angle stated in the prompt body — one dimension per iter.",
   "Stop conditions: emit findings then exit."
 ]
 ```
 
+### MCP servers (deferred)
+
+Sequential_thinking enforcement in v1.0.4.0 lives at TWO layers:
+
+1. **User-scope MCP registration** (operator runs `devin mcp add sequential_thinking npx @modelcontextprotocol/server-sequential-thinking@2025.12.18` once). The server appears in `devin mcp list` and Devin loads it for every session on the profile.
+2. **`system_instructions` mandate** in this recipe (see the JSON above) that requires the model to call `mcp__sequential_thinking__sequentialthinking` with ≥ 5 thoughts before producing output.
+
+The recipe-level `mcp_servers` field is RESERVED but not yet wired by the Devin binary. Smoke-testing every documented shape against `devin 2026.5.6-8` returned the rejection "untagged enum McpServer", and the binary itself logs `ACP: agent_config mcp_servers are not yet supported in the ACP path and will be ignored`. The 2-layer enforcement above is the working pattern. Re-introduce the recipe-level field once Devin lands `--agent-config mcp_servers` support. See [`deep-loop-iter-contract.md`](./deep-loop-iter-contract.md) §4 for the full contract.
+
 ### Tool allowlist rationale
 
-`["Read", "Grep", "Glob"]` — narrower than research iter. No `Bash`. Review surfaces ship straight to a `review-report.md` that drives remediation packets, so false-positive risk from shell-mediated evidence gathering is unacceptable.
+`["Read", "Grep", "Glob", "Write"]` — narrower than research iter. No `Bash`. Review surfaces ship straight to a `review-report.md` that drives remediation packets, so false-positive risk from shell-mediated evidence gathering is unacceptable. `Write` is scoped narrowly to `research/iterations/iteration-NNN.md` (new in v1.0.4.0+; previously the iter relied on stdout-capture which empirical data showed dropped the JSONL row in 22.5% of iters).
 
 ### Permissions
 
@@ -135,12 +155,22 @@ Review iter finds problems. Research iter finds answers. A research iter that ru
 ```json
 [
   "You are a SWE-1.6 synthesis worker.",
+  "Before producing the output, you MUST call mcp__sequential_thinking__sequentialthinking with at least 5 thoughts.",
   "Read every research/iterations/iteration-NNN.md and the JSONL delta state.",
   "Consolidate findings into the required output file: research.md for research, review-report.md for review, delta-verified.md for surgical edit lists.",
   "Cite each consolidated finding by iter number and file:line.",
   "Stop conditions: emit the consolidated file then exit. Do not edit any other file."
 ]
 ```
+
+### MCP servers (deferred)
+
+Sequential_thinking enforcement in v1.0.4.0 lives at TWO layers:
+
+1. **User-scope MCP registration** (operator runs `devin mcp add sequential_thinking npx @modelcontextprotocol/server-sequential-thinking@2025.12.18` once). The server appears in `devin mcp list` and Devin loads it for every session on the profile.
+2. **`system_instructions` mandate** in this recipe (see the JSON above) that requires the model to call `mcp__sequential_thinking__sequentialthinking` with ≥ 5 thoughts before producing output.
+
+The recipe-level `mcp_servers` field is RESERVED but not yet wired by the Devin binary. Smoke-testing every documented shape against `devin 2026.5.6-8` returned the rejection "untagged enum McpServer", and the binary itself logs `ACP: agent_config mcp_servers are not yet supported in the ACP path and will be ignored`. The 2-layer enforcement above is the working pattern. Re-introduce the recipe-level field once Devin lands `--agent-config mcp_servers` support. See [`deep-loop-iter-contract.md`](./deep-loop-iter-contract.md) §4 for the full contract.
 
 ### Tool allowlist rationale
 
@@ -253,6 +283,15 @@ devin -p \
   --permission-mode auto \
   -- "say ok then stop" </dev/null
 # Expected: "ok" then exit 0. Any "Failed to parse agent config" output means the recipe has drifted.
+
+# 3. Sequential_thinking MCP server registration check (v1.0.4.0+)
+devin mcp list | grep sequential_thinking
+# Expected: sequential_thinking row present. If empty, register: devin mcp add sequential_thinking
+
+# 4. Trace-level invocation check (when devin's print mode surfaces tool calls)
+# After substitution + smoke, expect the smoke output to show `mcp__sequential_thinking__sequentialthinking`
+# invocation in the trace. If the trace does not surface tool calls, fall back to JSONL row presence
+# in the iter output as the proxy signal.
 ```
 
 A drift event (devin updates and tightens schema) is the trigger for a `v1.0.X.0` bump in `SKILL.md` frontmatter and a changelog entry under `changelog/`.
