@@ -21,7 +21,7 @@ Session-touched spec folders that need resource-map.md:
 ```
 specs/system-spec-kit/026-graph-and-context-optimization/
 ├── 017-automation-reality-supplemental-research/
-├── 018-doc-truth-pass/
+├── 003-doc-truth-pass/
 ├── 019-code-graph-watcher-retraction/
 ├── 020-memory-retention-sweep/
 ├── 021-half-auto-upgrades/

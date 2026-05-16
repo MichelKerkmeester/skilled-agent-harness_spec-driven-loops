@@ -125,7 +125,7 @@ Operator invokes `code_graph_query` or `code_graph_context`. The read path calls
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| 018-doc-truth-pass | Internal | Complete | Provides prior trigger-table cleanup |
+| 003-doc-truth-pass | Internal | Complete | Provides prior trigger-table cleanup |
 | 013 research report | Internal | Available | Source-of-truth for P1-1 verdict |
 | MCP README | Internal | Available | Primary current operator doc to patch |
 | Spec validator | Internal | Available | Required completion gate |

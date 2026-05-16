@@ -104,7 +104,7 @@ The audit used sk-doc rules, frontmatter templates, README standards, feature ca
 | `validate_document.py` on edited READMEs and reference | PASS |
 | Active target anchor and fence audit | PASS |
 | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/024-followup-quality-pass/004-sk-doc-template-alignment --strict` | PASS |
-| Strict validator on `.opencode/specs/.../018-doc-truth-pass` through `023-cli-matrix-adapter-runners` | PASS |
+| Strict validator on `.opencode/specs/.../003-doc-truth-pass` through `023-cli-matrix-adapter-runners` | PASS |
 <!-- /ANCHOR:verification -->
 
 ---

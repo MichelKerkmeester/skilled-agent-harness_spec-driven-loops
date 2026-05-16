@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/018-doc-truth-pass"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-doc-truth-pass"
     last_updated_at: "2026-04-29T13:50:55Z"
     last_updated_by: "cli-codex"
     recent_action: "Doc truth pass complete"
@@ -49,7 +49,7 @@ This plan implements packet 031 from the 013 remediation backlog. It rewrites ho
 
 ### Definition of Ready
 
-- [x] Packet folder identified. [EVIDENCE: user requested `018-doc-truth-pass`]
+- [x] Packet folder identified. [EVIDENCE: user requested `003-doc-truth-pass`]
 - [x] Source research identified. [EVIDENCE: `../017-automation-reality-supplemental-research/research/research-report.md` sections 2 and 5]
 - [x] Runtime-code exclusion clear. [EVIDENCE: user constraint: no `.ts` / `.js` / `.py` changes]
 

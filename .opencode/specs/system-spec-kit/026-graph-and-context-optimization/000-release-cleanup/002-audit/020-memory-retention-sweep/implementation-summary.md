@@ -33,7 +33,7 @@ _memory:
 | **Created** | 2026-04-29 |
 | **Status** | Complete |
 | **Level** | 2 |
-| **Depends On** | 018-doc-truth-pass |
+| **Depends On** | 003-doc-truth-pass |
 <!-- /ANCHOR:metadata -->
 
 ---

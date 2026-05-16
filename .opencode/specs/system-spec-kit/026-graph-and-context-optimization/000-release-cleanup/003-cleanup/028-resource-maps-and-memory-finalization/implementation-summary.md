@@ -62,7 +62,7 @@ Each target folder received a resource map file generated from git-history path 
 | File | Action | Purpose |
 |------|--------|---------|
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/017-automation-reality-supplemental-research/resource-map.md` | Created | Resource map for supplemental automation research. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/018-doc-truth-pass/resource-map.md` | Created | Resource map for doc truth pass. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-doc-truth-pass/resource-map.md` | Created | Resource map for doc truth pass. |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/019-code-graph-watcher-retraction/resource-map.md` | Created | Resource map for code-graph watcher retraction. |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/020-memory-retention-sweep/resource-map.md` | Created | Resource map for memory retention sweep. |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/021-half-auto-upgrades/resource-map.md` | Created | Resource map for half-auto upgrades. |

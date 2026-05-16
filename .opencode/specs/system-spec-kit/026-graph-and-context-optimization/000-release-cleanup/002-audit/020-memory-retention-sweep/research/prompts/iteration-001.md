@@ -56,7 +56,7 @@ Per the 013 research-report's recommendation, the **α path** (audit-worthy) is 
 
 Same 7-file structure as 031 under `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/020-memory-retention-sweep/`. Use 013's packet as template.
 
-**Deps**: `manual.depends_on=["system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/018-doc-truth-pass"]`, `manual.related_to=["system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/017-automation-reality-supplemental-research"]`.
+**Deps**: `manual.depends_on=["system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-doc-truth-pass"]`, `manual.related_to=["system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/017-automation-reality-supplemental-research"]`.
 
 **Trigger phrases**: `["020-memory-retention-sweep","memory retention sweep","delete_after sweep","retention enforcement"]`.
 

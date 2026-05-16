@@ -38,7 +38,7 @@ _memory:
 | **Created** | 2026-04-29 |
 | **Branch** | `main` |
 | **Parent** | `026-graph-and-context-optimization` |
-| **Depends On** | `018-doc-truth-pass` |
+| **Depends On** | `003-doc-truth-pass` |
 | **Related** | `017-automation-reality-supplemental-research` |
 | **Mode** | Doc-only remediation |
 <!-- /ANCHOR:metadata -->

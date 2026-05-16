@@ -3,14 +3,14 @@ title: "Spec: Doc Truth Pass"
 template_source: "SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2"
 description: "Tier A doc-only remediation for automation truth: hook contracts, CCC docs, handler paths, validation wording, and trigger columns."
 trigger_phrases:
-  - "018-doc-truth-pass"
+  - "003-doc-truth-pass"
   - "doc truth pass"
   - "automation doc fixes"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/018-doc-truth-pass"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-doc-truth-pass"
     last_updated_at: "2026-04-29T20:35:30+02:00"
     last_updated_by: "cli-codex"
     recent_action: "Resource map indexed"
@@ -74,7 +74,7 @@ Patch the docs so automation claims name their real trigger: runtime hook, slash
 - `CLAUDE.md`
 - System-spec-kit skill guide
 - `.opencode/skills/system-spec-kit/mcp_server/README.md`
-- Packet-local docs under this `018-doc-truth-pass/` folder
+- Packet-local docs under this `003-doc-truth-pass/` folder
 
 ### Out of Scope
 
@@ -137,7 +137,7 @@ Patch the docs so automation claims name their real trigger: runtime hook, slash
 | Risk | Multiple docs contain duplicate hook matrices | Patch the shared reference and the broad summaries that repeat it |
 | Risk | User-level Codex config can expose local-only state | Cite paths and contract shape only; do not copy secrets or unrelated config |
 | Dependency | 013 research report | Use sections 2 and 5 as source-of-truth for triggers and findings |
-| Dependency | Strict validator | Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/018-doc-truth-pass --strict` |
+| Dependency | Strict validator | Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-doc-truth-pass --strict` |
 <!-- /ANCHOR:risks -->
 
 ---

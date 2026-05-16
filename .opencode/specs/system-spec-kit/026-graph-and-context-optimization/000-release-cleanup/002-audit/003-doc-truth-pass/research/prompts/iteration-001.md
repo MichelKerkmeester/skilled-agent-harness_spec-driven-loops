@@ -1,6 +1,6 @@
 ## Packet 031: doc-truth-pass — Tier A doc-only remediation
 
-You are cli-codex (gpt-5.5 high fast) implementing remediation packet **018-doc-truth-pass**.
+You are cli-codex (gpt-5.5 high fast) implementing remediation packet **003-doc-truth-pass**.
 
 ### Goal
 
@@ -27,7 +27,7 @@ Closes the highest-leverage P1 findings from 013's automation reality research v
 
 ### Packet structure to create (Level 2)
 
-You MUST create ALL of these files under `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/018-doc-truth-pass/`:
+You MUST create ALL of these files under `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-doc-truth-pass/`:
 
 1. **spec.md** — Level 2 spec contract using template_source `spec-core | v2.2`. Use anchors metadata, problem, scope, requirements, success-criteria, risks, nfr, edge-cases, complexity, questions. Adapt 013's spec.md style.
 2. **plan.md** — Level 2 plan using template_source `plan-core | v2.2`. Use anchors summary, quality-gates, architecture, phases, testing, dependencies, rollback, phase-deps, effort, enhanced-rollback.
@@ -35,7 +35,7 @@ You MUST create ALL of these files under `specs/system-spec-kit/026-graph-and-co
 4. **checklist.md** — Level 2 using template_source `checklist | v2.2`. Use anchors protocol, pre-impl, code-quality, testing, security, docs, file-org, summary.
 5. **implementation-summary.md** — Level 2 using template_source `impl-summary-core | v2.2`. Use anchors metadata, what-built, how-delivered, decisions, verification, limitations.
 6. **description.json** — `specFolder`, `description`, `keywords`, `lastUpdated`, `specId="031"`, `folderSlug="doc-truth-pass"`, `parentChain=["system-spec-kit","026-graph-and-context-optimization"]`, `memorySequence=1`.
-7. **graph-metadata.json** — `schema_version=1`, `packet_id`, `parent_id="system-spec-kit/026-graph-and-context-optimization"`, `manual.depends_on=["system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/017-automation-reality-supplemental-research"]`, `manual.related_to=["system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/016-automation-self-management-deep-research"]`, `derived.trigger_phrases=["018-doc-truth-pass","doc truth pass","automation doc fixes","Copilot hook docs fix","Codex hook docs fix"]`, `derived.key_topics=["doc-fix","automation","hook-docs","CCC","trigger-column"]`, `derived.importance_tier="important"`, `derived.status="planned"`, `derived.causal_summary="Tier A doc-only remediation: fix Copilot/Codex hook docs, CCC command-home doc, ARCHITECTURE handler paths, validation auto-fire wording, and add Trigger column to broad auto-claims."`.
+7. **graph-metadata.json** — `schema_version=1`, `packet_id`, `parent_id="system-spec-kit/026-graph-and-context-optimization"`, `manual.depends_on=["system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/017-automation-reality-supplemental-research"]`, `manual.related_to=["system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/016-automation-self-management-deep-research"]`, `derived.trigger_phrases=["003-doc-truth-pass","doc truth pass","automation doc fixes","Copilot hook docs fix","Codex hook docs fix"]`, `derived.key_topics=["doc-fix","automation","hook-docs","CCC","trigger-column"]`, `derived.importance_tier="important"`, `derived.status="planned"`, `derived.causal_summary="Tier A doc-only remediation: fix Copilot/Codex hook docs, CCC command-home doc, ARCHITECTURE handler paths, validation auto-fire wording, and add Trigger column to broad auto-claims."`.
 
 **FRONTMATTER RULES (CRITICAL):**
 - Every spec doc gets frontmatter with `_memory.continuity` block
@@ -48,7 +48,7 @@ You MUST create ALL of these files under `specs/system-spec-kit/026-graph-and-co
 
 1. **Phase 1: Setup** — Create all 7 packet files using template_source markers above. Initial completion_pct=5.
 2. **Phase 2: Implementation** — Apply the 7 doc fixes above. Use Edit/MultiEdit to be surgical. Each finding maps to specific file:line refs above.
-3. **Phase 3: Validation** — Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/018-doc-truth-pass --strict` and verify it exits 0. Update implementation-summary.md to "complete" state (completion_pct=100; recent_action="Doc truth pass complete"; next_safe_action="Plan packet 032 next").
+3. **Phase 3: Validation** — Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-doc-truth-pass --strict` and verify it exits 0. Update implementation-summary.md to "complete" state (completion_pct=100; recent_action="Doc truth pass complete"; next_safe_action="Plan packet 032 next").
 
 ### Constraints
 

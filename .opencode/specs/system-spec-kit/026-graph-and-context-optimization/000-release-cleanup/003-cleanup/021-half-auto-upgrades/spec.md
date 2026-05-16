@@ -38,7 +38,7 @@ _memory:
 | **Created** | 2026-04-29 |
 | **Branch** | `main` |
 | **Parent** | `026-graph-and-context-optimization` |
-| **Depends On** | `018-doc-truth-pass`, `019-code-graph-watcher-retraction`, `020-memory-retention-sweep` |
+| **Depends On** | `003-doc-truth-pass`, `019-code-graph-watcher-retraction`, `020-memory-retention-sweep` |
 | **Related** | `016-automation-self-management-deep-research`, `017-automation-reality-supplemental-research` |
 | **Mode** | Hybrid code and documentation remediation |
 <!-- /ANCHOR:metadata -->

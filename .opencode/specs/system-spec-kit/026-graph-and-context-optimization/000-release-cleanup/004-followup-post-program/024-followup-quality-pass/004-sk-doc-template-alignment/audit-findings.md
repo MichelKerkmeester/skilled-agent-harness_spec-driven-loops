@@ -67,12 +67,12 @@ Additional integrity checks covered balanced `<!-- ANCHOR:slug -->` markers and 
 | `.opencode/skills/system-spec-kit/mcp_server/matrix_runners/templates/F9-continuity.md` | DEFERRED | Raw prompt-template asset. Adding README sections would alter matrix prompt payloads |
 | `.opencode/skills/system-spec-kit/references/config/hook_system.md` | FIX_APPLIED | Reference frontmatter, numbered sections and anchors added |
 | `.opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook.md` | FIX_APPLIED | `importance_tier` metadata added |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/018-doc-truth-pass/checklist.md` | PASS | No blocking sk-doc issue in applicable spec checks |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/018-doc-truth-pass/implementation-summary.md` | PASS | No blocking sk-doc issue in applicable spec checks |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/018-doc-truth-pass/plan.md` | PASS | No blocking sk-doc issue in applicable spec checks |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/018-doc-truth-pass/research/prompts/iteration-001.md` | PASS | No blocking sk-doc issue in applicable spec checks |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/018-doc-truth-pass/spec.md` | PASS | No blocking sk-doc issue in applicable spec checks |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/018-doc-truth-pass/tasks.md` | PASS | No blocking sk-doc issue in applicable spec checks |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-doc-truth-pass/checklist.md` | PASS | No blocking sk-doc issue in applicable spec checks |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-doc-truth-pass/implementation-summary.md` | PASS | No blocking sk-doc issue in applicable spec checks |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-doc-truth-pass/plan.md` | PASS | No blocking sk-doc issue in applicable spec checks |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-doc-truth-pass/research/prompts/iteration-001.md` | PASS | No blocking sk-doc issue in applicable spec checks |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-doc-truth-pass/spec.md` | PASS | No blocking sk-doc issue in applicable spec checks |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-doc-truth-pass/tasks.md` | PASS | No blocking sk-doc issue in applicable spec checks |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/019-code-graph-watcher-retraction/checklist.md` | PASS | No blocking sk-doc issue in applicable spec checks |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/019-code-graph-watcher-retraction/implementation-summary.md` | PASS | No blocking sk-doc issue in applicable spec checks |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/019-code-graph-watcher-retraction/plan.md` | PASS | No blocking sk-doc issue in applicable spec checks |

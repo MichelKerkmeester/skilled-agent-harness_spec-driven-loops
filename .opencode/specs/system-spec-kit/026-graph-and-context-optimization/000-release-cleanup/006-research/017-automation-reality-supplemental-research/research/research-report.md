@@ -108,12 +108,12 @@ The remediation order should start with doc truth, then decide whether the two v
 
 ### Packet 031: doc-truth-pass (Tier A)
 
-Packet: 018-doc-truth-pass
+Packet: 003-doc-truth-pass
 Tier: A
 Class: doc-fix
 Effort estimate: 6-10 hours of cli-codex work
 Dependencies: []
-Operator triggers: [`/spec_kit:plan specs/system-spec-kit/026-graph-and-context-optimization/018-doc-truth-pass`, `/spec_kit:implement specs/system-spec-kit/026-graph-and-context-optimization/018-doc-truth-pass`]
+Operator triggers: [`/spec_kit:plan specs/system-spec-kit/026-graph-and-context-optimization/003-doc-truth-pass`, `/spec_kit:implement specs/system-spec-kit/026-graph-and-context-optimization/003-doc-truth-pass`]
 Maps to findings: [F-013-011, F-013-012, F-013-018, F-013-019, F-013-015, P1-3/F5.CopilotDocs, P1-4/F5.CodexConfig]
 Scope:
 - Patch Copilot and Codex hook contract docs so the authoritative config surfaces are explicit.
@@ -132,7 +132,7 @@ Packet: 032-code-graph-watcher-decision
 Tier: B
 Class: hybrid
 Effort estimate: 4-8 hours for doc retraction, or 14-22 hours of cli-codex work for a scoped watcher implementation
-Dependencies: [018-doc-truth-pass]
+Dependencies: [003-doc-truth-pass]
 Operator triggers: [`/spec_kit:plan specs/system-spec-kit/026-graph-and-context-optimization/032-code-graph-watcher-decision`, `/spec_kit:implement specs/system-spec-kit/026-graph-and-context-optimization/032-code-graph-watcher-decision`]
 Maps to findings: [P1-1/F2.9, NEW-013-002, NEW-013-007]
 Scope:
@@ -152,7 +152,7 @@ Packet: 020-memory-retention-sweep
 Tier: B
 Class: hybrid
 Effort estimate: 3-5 hours for docs downgrade, or 12-18 hours of cli-codex work for sweep implementation
-Dependencies: [018-doc-truth-pass]
+Dependencies: [003-doc-truth-pass]
 Operator triggers: [`/spec_kit:plan specs/system-spec-kit/026-graph-and-context-optimization/020-memory-retention-sweep`, `/spec_kit:implement specs/system-spec-kit/026-graph-and-context-optimization/020-memory-retention-sweep`]
 Maps to findings: [P1-2/F4.11, NEW-013-001]
 Scope:
@@ -172,7 +172,7 @@ Packet: 021-half-auto-upgrades
 Tier: C
 Class: hybrid
 Effort estimate: 16-24 hours of cli-codex work plus 2-4 human design hours for runtime behavior choices
-Dependencies: [018-doc-truth-pass, 032-code-graph-watcher-decision, 020-memory-retention-sweep]
+Dependencies: [003-doc-truth-pass, 032-code-graph-watcher-decision, 020-memory-retention-sweep]
 Operator triggers: [`/spec_kit:plan specs/system-spec-kit/026-graph-and-context-optimization/021-half-auto-upgrades`, `/spec_kit:implement specs/system-spec-kit/026-graph-and-context-optimization/021-half-auto-upgrades`]
 Maps to findings: [F1.CopilotFreshness, F1.CodexFreshness, F4.FeatureFlags, NEW-013-003, NEW-013-006]
 Scope:
@@ -193,7 +193,7 @@ Packet: 022-full-matrix-execution-validation
 Tier: D
 Class: hybrid
 Effort estimate: 10-16 hours of cli-codex work
-Dependencies: [018-doc-truth-pass, 032-code-graph-watcher-decision, 020-memory-retention-sweep, 021-half-auto-upgrades, external: 030 matrix design]
+Dependencies: [003-doc-truth-pass, 032-code-graph-watcher-decision, 020-memory-retention-sweep, 021-half-auto-upgrades, external: 030 matrix design]
 Operator triggers: [`/spec_kit:plan specs/system-spec-kit/026-graph-and-context-optimization/022-full-matrix-execution-validation`, `/spec_kit:implement specs/system-spec-kit/026-graph-and-context-optimization/022-full-matrix-execution-validation`]
 Maps to findings: [all supplemental P1/P2 findings, NEW-013-004, NEW-013-005, NEW-013-008]
 Scope:

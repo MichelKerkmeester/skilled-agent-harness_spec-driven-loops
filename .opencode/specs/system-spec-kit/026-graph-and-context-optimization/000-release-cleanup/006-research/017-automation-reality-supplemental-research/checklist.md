@@ -13,7 +13,7 @@ _memory:
     last_updated_at: "2026-04-29T15:15:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "All 21 checklist items verified"
-    next_safe_action: "Plan packet 018-doc-truth-pass first"
+    next_safe_action: "Plan packet 003-doc-truth-pass first"
     blockers: []
     key_files:
       - "research/research-report.md"
