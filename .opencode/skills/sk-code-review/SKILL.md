@@ -433,4 +433,74 @@ The router discovers reference, asset, and script docs dynamically. Start with `
 
 Manual testing scenarios for this skill live in `manual_testing_playbook/manual_testing_playbook.md` (root index) plus 18 per-feature sub-files under `manual_testing_playbook/<NN>--<topic>/<NNN>-<scenario>.md`. Run scenarios via `bash .opencode/skills/sk-doc/scripts/validate_document.py manual_testing_playbook/manual_testing_playbook.md` for structural validation; execute scenarios in opencode/Claude/Codex sessions for behavioral verification.
 
+---
+
+## 9. PR-STATE EFFICIENCY GATES (Packet 110)
+
+### 9.1 M-1: PR-State Content-Hash Dedup
+
+Prevents redundant re-reviews when a PR has not changed since the last review.
+
+**Signature computation:**
+```
+diff_content_hash = sha256(git diff <base-ref>...HEAD)
+signature         = sha256(commit_subject + "\u001f" + diff_content_hash)
+```
+Where `commit_subject` is the first line of `git log <base-ref>...HEAD --format=%s` (latest commit subject).
+
+**Cache storage:**
+- Path: `.opencode/.sk-code-review-cache/<repo-ref>.jsonl`
+- `<repo-ref>` is computed as `sha256(git remote get-url origin).slice(0, 12)`
+- Each line is a JSON object: `{"signature": "<sha256-hex>", "timestamp": "<ISO-8601>", "prev_sha": "<commit-sha>"}`
+- Retention: keep last **100 entries** per repo-ref, prune older entries on write
+
+**Skip behavior:**
+When the current signature matches a prior cache entry, the review emits:
+```
+Review status: COMMENTED (no changes since last review at <prev_sha>)
+```
+No full review analysis runs. Automation may treat `COMMENTED` as a pass (no new findings).
+
+**Cache write:** After each full review completes, write the current signature + timestamp + HEAD SHA to the cache file.
+
+### 9.2 M-2: Opt-In Minimum Evidence Gate
+
+Skips full review for trivially small diffs to save compute, with a conservative taxonomy that **never skips** high-risk changes.
+
+**Enable gate:**
+```bash
+export SK_CODE_REVIEW_MIN_CHANGED_LINES=50  # >0 enables; default 0 = disabled
+```
+
+**Changed-line counting command:**
+```bash
+git diff --numstat <base-ref>...HEAD | awk '{added+=$1; removed+=$2} END {print added+removed}'
+```
+
+**Conservative skip taxonomy — NEVER skip when diff touches:**
+
+| Risk Class | Path/File Patterns | Rationale |
+|---|---|---|
+| Security / Authentication / Authorization | `auth*`, `*-auth-*`, `*permission*`, `*credential*`, `*token*`, `*secret*`, `*oauth*`, `*sso*`, `*login*`, `*session*` | Compromised auth defeats everything |
+| Config files | `*.config.*`, `*config*.json`, `*config*.yaml`, `*config*.toml`, `*.env*`, `*.ini`, `*.cfg` | One-line config change can break production |
+| Persistence | `*.sql`, `*migration*`, `*schema*`, `*db*.ts`, `*repository*`, paths under `/db/` or `/migrations/` | Schema changes risk data loss |
+| Dependency manifests | `package.json`, `package-lock.json`, `Cargo.toml`, `Cargo.lock`, `pyproject.toml`, `poetry.lock`, `requirements.txt`, `*.lock`, `Gemfile`, `Gemfile.lock` | Transitive dependency changes are high-risk |
+| Sandboxing / Subprocess | `*sandbox*`, `*subprocess*`, `*exec*`, `*spawn*`, `*eval*` | Arbitrary code execution boundaries |
+| Public-facing responses | `*.handler.ts`, `*-api*`, `*-route*`, `*-controller*`, paths under `/handlers/`, `/routes/`, `/api/` | User-visible behavior changes |
+
+**Skip behavior:**
+When `SK_CODE_REVIEW_MIN_CHANGED_LINES > 0`, total changed lines < threshold, AND no sensitive paths are touched:
+```
+Review status: COMMENTED (skipped: diff below evidence threshold of N lines, no sensitive paths touched)
+```
+If sensitive paths ARE touched, the full review runs regardless of line count.
+
+**Gate is ALWAYS opt-in.** Without `SK_CODE_REVIEW_MIN_CHANGED_LINES` set, M-2 has zero effect — all diffs receive full reviews.
+
+---
+
+## 10. REFERENCES: EFFICIENCY GATES
+
+- [pr_state_dedup.md](./references/pr_state_dedup.md) — Detailed M-1 signature scheme, cache format, and retention rules.
+
 Related skills: `sk-doc` for skill authoring and packaging standards, `sk-code` for surface-aware standards, and `system-spec-kit` for packet-governed review workflows.
