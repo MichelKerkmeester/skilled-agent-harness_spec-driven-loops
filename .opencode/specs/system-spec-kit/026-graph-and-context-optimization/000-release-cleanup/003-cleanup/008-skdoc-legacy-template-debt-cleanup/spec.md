@@ -3,14 +3,14 @@ title: "Spec: sk-doc Legacy Template Debt Cleanup (Tier 4)"
 template_source: "SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2"
 description: "Address 93 HIGH + 177 MED findings from sk-doc template alignment audit on older spec folders. Pre-existing legacy debt; not regression-driven. Bulk fix via grouped pattern remediation."
 trigger_phrases:
-  - "013-skdoc-legacy-template-debt-cleanup"
+  - "008-skdoc-legacy-template-debt-cleanup"
   - "tier 4 legacy template cleanup"
   - "sk-doc audit remediation"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/013-skdoc-legacy-template-debt-cleanup"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/008-skdoc-legacy-template-debt-cleanup"
     last_updated_at: "2026-04-29T11:05:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Completed eligible Tier 4 sk-doc template alignment cleanup"

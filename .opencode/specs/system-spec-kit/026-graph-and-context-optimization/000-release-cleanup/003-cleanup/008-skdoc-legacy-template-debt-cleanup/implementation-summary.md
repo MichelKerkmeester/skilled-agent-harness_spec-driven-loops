@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/013-skdoc-legacy-template-debt-cleanup"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/008-skdoc-legacy-template-debt-cleanup"
     last_updated_at: "2026-04-29T11:10:00Z"
     last_updated_by: "codex-gpt-5.5"
     recent_action: "Completed eligible Tier 4 sk-doc template-alignment remediation"
@@ -36,7 +36,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 013-skdoc-legacy-template-debt-cleanup |
+| **Spec Folder** | 008-skdoc-legacy-template-debt-cleanup |
 | **Completed** | 2026-04-29 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
@@ -83,7 +83,7 @@ The following protected scopes were not remediated by the bulk pass:
 - `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/005-vestigial-embedding-readiness-gate-removal/`
 - `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/006-stale-doc-and-readme-fixes/`
 - `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/007-broad-suite-vitest-honesty/`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/013-skdoc-legacy-template-debt-cleanup/` for audit bulk edits only. Packet docs were updated as required by this packet.
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/008-skdoc-legacy-template-debt-cleanup/` for audit bulk edits only. Packet docs were updated as required by this packet.
 
 ### Re-audit Results
 
@@ -133,7 +133,7 @@ The remediation used the audit report as the playbook, then applied a protected-
 | `validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/028-deep-review-skill-contract-fixes --strict` | PASS, exit 0. |
 | `validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/009-stress-test-pattern-documentation --strict` | PASS, exit 0. |
 | `validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/005-vestigial-embedding-readiness-gate-removal --strict` | PASS, exit 0. |
-| `validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/013-skdoc-legacy-template-debt-cleanup --strict` | PASS, exit 0. |
+| `validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/008-skdoc-legacy-template-debt-cleanup --strict` | PASS, exit 0. |
 <!-- /ANCHOR:verification -->
 
 ---

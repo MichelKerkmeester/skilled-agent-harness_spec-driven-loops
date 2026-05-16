@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/013-skdoc-legacy-template-debt-cleanup",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/013-skdoc-legacy-template-debt-cleanup",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/008-skdoc-legacy-template-debt-cleanup",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/008-skdoc-legacy-template-debt-cleanup",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation",
   "children_ids": [],
   "migrated": false,
@@ -15,7 +15,7 @@
     ]
   },
   "derived": {
-    "trigger_phrases": ["013-skdoc-legacy-template-debt-cleanup", "tier 4 legacy template cleanup", "sk-doc audit remediation"],
+    "trigger_phrases": ["008-skdoc-legacy-template-debt-cleanup", "tier 4 legacy template cleanup", "sk-doc audit remediation"],
     "key_topics": ["legacy-debt", "sk-doc-cleanup", "tier-4", "template-alignment"],
     "importance_tier": "important",
     "status": "complete",

@@ -11,7 +11,7 @@ Documentation fixes, template debt, orphan management, remediation.
 - `005-vestigial-embedding-readiness-gate-removal`
 - `006-stale-doc-and-readme-fixes`
 - `007-broad-suite-vitest-honesty`
-- `013-skdoc-legacy-template-debt-cleanup`
+- `008-skdoc-legacy-template-debt-cleanup`
 - `014-phase-parent-documentation`
 - `021-half-auto-upgrades`
 - `023-cli-matrix-adapter-runners`

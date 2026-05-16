@@ -314,7 +314,7 @@ file_path	match_count	area	phase
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-post-program-cleanup/tasks.md	1	spec-folder-active	003
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/006-stale-doc-and-readme-fixes/implementation-summary.md	4	spec-folder-active	003
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/006-stale-doc-and-readme-fixes/spec.md	5	spec-folder-active	003
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/013-skdoc-legacy-template-debt-cleanup/spec.md	2	spec-folder-active	003
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/008-skdoc-legacy-template-debt-cleanup/spec.md	2	spec-folder-active	003
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/014-phase-parent-documentation/004-retroactive-phase-parent-migration/scratch/rm-worker-A-report.json	2	spec-folder-active	003
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/014-phase-parent-documentation/004-retroactive-phase-parent-migration/scratch/rm2-worker-A-report.json	2	spec-folder-active	003
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/015-mcp-runtime-stress-remediation/001-search-intelligence-stress-test/002-scenario-execution/runs/I2/cli-codex-1/output.txt	2240	spec-folder-active	003
@@ -974,7 +974,7 @@ specs/skilled-agent-orchestration/071-sk-doc-router-stress-test/001-scenario-aut
 specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-post-program-cleanup/tasks.md	1	spec-folder-active	003
 specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/006-stale-doc-and-readme-fixes/implementation-summary.md	4	spec-folder-active	003
 specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/006-stale-doc-and-readme-fixes/spec.md	5	spec-folder-active	003
-specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/013-skdoc-legacy-template-debt-cleanup/spec.md	2	spec-folder-active	003
+specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/008-skdoc-legacy-template-debt-cleanup/spec.md	2	spec-folder-active	003
 specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/014-phase-parent-documentation/004-retroactive-phase-parent-migration/scratch/rm-worker-A-report.json	2	spec-folder-active	003
 specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/014-phase-parent-documentation/004-retroactive-phase-parent-migration/scratch/rm2-worker-A-report.json	2	spec-folder-active	003
 specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/015-mcp-runtime-stress-remediation/001-search-intelligence-stress-test/002-scenario-execution/runs/I2/cli-codex-1/output.txt	2240	spec-folder-active	003

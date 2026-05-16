@@ -69,7 +69,7 @@ Update 12 documents to match committed code. Pure documentation; no runtime chan
 ### Out of Scope
 
 - Runtime/test code changes
-- Older spec-folder template debt (covered by 013-skdoc-legacy-template-debt-cleanup)
+- Older spec-folder template debt (covered by 008-skdoc-legacy-template-debt-cleanup)
 - Broad-suite vitest investigation (covered by 007-broad-suite-vitest-honesty)
 - Touching today's 9 packet's plan.md/tasks.md/checklist.md beyond the 3 stale-continuity edits listed below
 

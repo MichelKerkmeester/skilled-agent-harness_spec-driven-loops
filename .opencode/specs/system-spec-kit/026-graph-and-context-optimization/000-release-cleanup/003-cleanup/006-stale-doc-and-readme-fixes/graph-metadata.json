@@ -11,7 +11,7 @@
     "supersedes": [],
     "related_to": [
       "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/007-broad-suite-vitest-honesty",
-      "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/013-skdoc-legacy-template-debt-cleanup"
+      "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/008-skdoc-legacy-template-debt-cleanup"
     ]
   },
   "derived": {

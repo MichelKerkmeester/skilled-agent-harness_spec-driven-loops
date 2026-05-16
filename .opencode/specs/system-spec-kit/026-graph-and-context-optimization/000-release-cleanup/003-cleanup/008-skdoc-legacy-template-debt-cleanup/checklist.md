@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/013-skdoc-legacy-template-debt-cleanup"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/008-skdoc-legacy-template-debt-cleanup"
     last_updated_at: "2026-04-29T11:10:00Z"
     last_updated_by: "codex-gpt-5.5"
     recent_action: "Completed Level 2 checklist for sk-doc legacy template remediation"
