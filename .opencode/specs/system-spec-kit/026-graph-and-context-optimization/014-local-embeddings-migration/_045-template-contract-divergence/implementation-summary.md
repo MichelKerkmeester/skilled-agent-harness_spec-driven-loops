@@ -11,7 +11,7 @@ contextType: "implementation"
 status: "complete"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/044-template-contract-divergence"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/_045-template-contract-divergence"
     last_updated_at: "2026-05-14T16:49:00Z"
     last_updated_by: "codex"
     recent_action: "Patched memory_save template-contract bypass and verified 040 dry-run acceptance"
@@ -35,7 +35,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/044-template-contract-divergence` |
+| **Spec Folder** | `system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/_045-template-contract-divergence` |
 | **Completed** | 2026-05-14 |
 | **Level** | 2 |
 | **Depends On** | `_041-v-rule-cross-spec-overreach` |
@@ -62,7 +62,7 @@ _memory:
 |------|--------|---------|
 | `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts` | Modified | Added canonical spec-doc document types to the template-contract bypass predicate and wired spec-doc health/document type through all call sites. |
 | `.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts` | Modified | Added a dry-run regression proving canonical spec docs can pass despite generated-memory wrapper violations. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/044-template-contract-divergence/` | Created | Captures the packet, contract map, verification evidence, and binding trace. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/_045-template-contract-divergence/` | Created | Captures the packet, contract map, verification evidence, and binding trace. |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -101,7 +101,7 @@ The 040 implementation summary reproduced the exact split: strict validation pas
 | MCP server typecheck | PASS: `npm run typecheck --workspace=@spec-kit/mcp-server`. |
 | Strict validate 037 | PASS: `validate.sh .../037-llama-cpp-embedding-worker-deep-dive --strict`: 0 errors, 0 warnings. |
 | Strict validate 040 | PASS: `validate.sh .../_041-v-rule-cross-spec-overreach --strict`: 0 errors, 0 warnings. |
-| Strict validate 044 | PASS: `validate.sh .../044-template-contract-divergence --strict`: 0 errors, 0 warnings. |
+| Strict validate 044 | PASS: `validate.sh .../_045-template-contract-divergence --strict`: 0 errors, 0 warnings. |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -124,7 +124,7 @@ The 040 implementation summary reproduced the exact split: strict validation pas
 | AGENT_RECEIVED | yes |
 | SPAWN_AGENT_USED | no |
 | GATE_3_ANSWER | E-Phase-044 |
-| PACKET_PATH | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/044-template-contract-divergence` |
+| PACKET_PATH | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/_045-template-contract-divergence` |
 | DIAGNOSTIC_STATUS | reproduced |
 | ROOT_CAUSE | `memory_save` ran `validateMemoryTemplateContract()` against canonical spec docs and treated generated-memory wrapper sections as blocking even when `evaluateSpecDocHealth()` passed. `validate.sh --strict` correctly validated the V2.2 spec-doc anchors, so the two tools were enforcing different document-class contracts. |
 | PROPOSED_FIX | Implemented Path B: keep strict validation unchanged and loosen the `memory_save` manual-fallback template-contract gate only for recognized canonical spec-doc document types with passing sufficiency and `specDocHealth.pass=true`. |
