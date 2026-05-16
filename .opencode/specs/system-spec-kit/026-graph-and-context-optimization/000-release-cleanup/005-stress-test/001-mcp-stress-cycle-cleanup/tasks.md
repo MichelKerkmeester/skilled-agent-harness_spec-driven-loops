@@ -3,13 +3,13 @@ title: "Tasks: MCP Stress-Cycle Doc Cleanup"
 template_source: "SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2"
 description: "Six-task list driving the 6 P2 advisory closures from the 011 deep-review."
 trigger_phrases:
-  - "002-mcp-stress-cycle-cleanup"
+  - "001-mcp-stress-cycle-cleanup"
   - "validator hygiene"
 importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-mcp-stress-cycle-cleanup"
+    packet_pointer: "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/001-mcp-stress-cycle-cleanup"
     last_updated_at: "2026-04-28T19:30:00Z"
     last_updated_by: "codex-gpt-5-hygiene-pass"
     recent_action: "Strict-validator closure pass"

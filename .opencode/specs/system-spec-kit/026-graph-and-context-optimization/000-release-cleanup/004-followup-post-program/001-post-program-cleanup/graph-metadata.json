@@ -15,7 +15,7 @@
     "supersedes": [],
     "related_to": [
       "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/001-memory-indexer-storage-boundary",
-      "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-mcp-stress-cycle-cleanup",
+      "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/001-mcp-stress-cycle-cleanup",
       "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/001-skill-advisor-fail-open",
       "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-tier2-remediation"
     ]

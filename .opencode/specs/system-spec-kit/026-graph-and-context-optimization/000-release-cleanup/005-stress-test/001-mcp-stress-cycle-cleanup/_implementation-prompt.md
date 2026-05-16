@@ -1,6 +1,6 @@
-# Implementation Prompt — 002-mcp-stress-cycle-cleanup
+# Implementation Prompt — 001-mcp-stress-cycle-cleanup
 
-**GATE 3 PRE-ANSWERED — A (Existing folder)**: `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-mcp-stress-cycle-cleanup`. The orchestrator has authorized this folder. DO NOT re-ask Gate 3. Proceed directly to implementation.
+**GATE 3 PRE-ANSWERED — A (Existing folder)**: `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/001-mcp-stress-cycle-cleanup`. The orchestrator has authorized this folder. DO NOT re-ask Gate 3. Proceed directly to implementation.
 
 **TARGET AUTHORITY**: All write paths under that spec folder AND its declared dependency `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/` are pre-approved. No runtime code changes — docs and JSON sidecars only.
 
@@ -10,9 +10,9 @@ You are dispatched to execute the full implementation plan for the **MCP stress-
 
 Read in order:
 
-1. **Spec**: .../002-mcp-stress-cycle-cleanup/spec.md — REQ-001..REQ-006.
-2. **Plan**: .../002-mcp-stress-cycle-cleanup/plan.md — single-batch doc cleanup, 6 steps.
-3. **Tasks**: .../002-mcp-stress-cycle-cleanup/tasks.md — T1..T9.
+1. **Spec**: .../001-mcp-stress-cycle-cleanup/spec.md — REQ-001..REQ-006.
+2. **Plan**: .../001-mcp-stress-cycle-cleanup/plan.md — single-batch doc cleanup, 6 steps.
+3. **Tasks**: .../001-mcp-stress-cycle-cleanup/tasks.md — T1..T9.
 4. **Source review report** (READ-ONLY context): `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/review/011-mcp-runtime-stress-remediation-pt-01/review-report.md` — F-001..F-006 with file:line.
 
 ## EXECUTION CONTRACT
@@ -23,10 +23,10 @@ Execute T1..T9 from `tasks.md`. Each task is an atomic doc edit (or one JSON sid
 
 After all tasks:
 
-2. Author `implementation-summary.md` at .../002-mcp-stress-cycle-cleanup/implementation-summary.md (L1 template — Status, What Was Built, Verification).
+2. Author `implementation-summary.md` at .../001-mcp-stress-cycle-cleanup/implementation-summary.md (L1 template — Status, What Was Built, Verification).
 3. Update `_memory.continuity.recent_action` and `completion_pct` in spec.md frontmatter to 100.
 4. Run validator: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation --strict`. Capture exit code.
-5. ALSO run validator for THIS sub-phase: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-mcp-stress-cycle-cleanup --strict`.
+5. ALSO run validator for THIS sub-phase: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/001-mcp-stress-cycle-cleanup --strict`.
 
 ## CRITICAL RULES
 

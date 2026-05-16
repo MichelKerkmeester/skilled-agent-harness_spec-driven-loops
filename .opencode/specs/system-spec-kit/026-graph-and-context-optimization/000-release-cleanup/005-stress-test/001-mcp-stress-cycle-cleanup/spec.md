@@ -3,7 +3,7 @@ title: "Feature Specification: MCP Stress-Cycle Doc/Observability Cleanup"
 template_source: "SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2"
 description: "Close the 6 P2 advisories surfaced by the 015-mcp-runtime-stress-remediation deep review (PASS verdict, hasAdvisories=true). Doc drift, navigation, and verdict-replayability fixes only — no runtime code change."
 trigger_phrases:
-  - "002-mcp-stress-cycle-cleanup"
+  - "001-mcp-stress-cycle-cleanup"
   - "011 review remediation"
   - "stress cycle doc drift"
   - "v1.0.2 verdict replayability"
@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-mcp-stress-cycle-cleanup"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/001-mcp-stress-cycle-cleanup"
     last_updated_at: "2026-04-28T19:30:00Z"
     last_updated_by: "codex-gpt-5-hygiene-pass"
     recent_action: "Hygiene pass - validator structure"

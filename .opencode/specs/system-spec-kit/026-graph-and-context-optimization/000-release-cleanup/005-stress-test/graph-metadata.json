@@ -4,7 +4,7 @@
   "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup",
   "children_ids": [
-    "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/002-mcp-stress-cycle-cleanup",
+    "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/001-mcp-stress-cycle-cleanup",
     "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/009-stress-test-pattern-documentation",
     "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/015-mcp-runtime-stress-remediation",
     "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/025-stress-test-folder-completion",

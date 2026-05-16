@@ -3,7 +3,7 @@ title: "Implementation Summary: MCP Stress-Cycle Doc/Observability Cleanup"
 template_source: "SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2"
 description: "Closed the 6 P2 advisories from the 011 MCP runtime stress-remediation deep review with documentation reconciliation and a replayable v1.0.2 rubric sidecar."
 trigger_phrases:
-  - "002-mcp-stress-cycle-cleanup"
+  - "001-mcp-stress-cycle-cleanup"
   - "011 review remediation"
   - "stress cycle doc drift"
   - "v1.0.2 verdict replayability"
@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-mcp-stress-cycle-cleanup"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/001-mcp-stress-cycle-cleanup"
     last_updated_at: "2026-04-28T19:30:00Z"
     last_updated_by: "codex-gpt-5-hygiene-pass"
     recent_action: "Hygiene pass - validator structure"
@@ -25,7 +25,7 @@ _memory:
       - "../../../015-mcp-runtime-stress-remediation/010-stress-test-rerun-v1-0-2/findings-rubric.json"
     session_dedup:
       fingerprint: null
-      session_id: "002-mcp-stress-cycle-cleanup-2026-04-28"
+      session_id: "001-mcp-stress-cycle-cleanup-2026-04-28"
       parent_session_id: null
     completion_pct: 100
     open_questions: []
@@ -43,7 +43,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 002-mcp-stress-cycle-cleanup |
+| **Spec Folder** | 001-mcp-stress-cycle-cleanup |
 | **Completed** | 2026-04-28 |
 | **Level** | 1 |
 
@@ -78,8 +78,8 @@ This cleanup turns the 011 stress-cycle review from PASS-with-advisories into a 
 | 015-mcp-runtime-stress-remediation/context-index.md | Modified | Add cycle-phase navigator. |
 | `010-stress-test-rerun-v1-0-2/findings-rubric.json` | Created | Make the 83.8% verdict recomputable from machine-readable data. |
 | 010-stress-test-rerun-v1-0-2/findings.md | Modified | Link the replayability sidecar. |
-| 002-mcp-stress-cycle-cleanup/spec.md | Modified | Mark complete and update continuity. |
-| 002-mcp-stress-cycle-cleanup/tasks.md | Modified | Mark task evidence. |
+| 001-mcp-stress-cycle-cleanup/spec.md | Modified | Mark complete and update continuity. |
+| 001-mcp-stress-cycle-cleanup/tasks.md | Modified | Mark task evidence. |
 
 ---
 
@@ -107,7 +107,7 @@ The implementation was delivered as a docs/JSON-only pass. Source review finding
 |-------|--------|
 | JSON parse for `findings-rubric.json` | PASS: parsed successfully; 30 cells; score sum 201; rounded percent 83.8. |
 | Parent validator: `validate.sh .../015-mcp-runtime-stress-remediation --strict` | FAIL: exit 2. Recursive run reported 21 errors / 33 warnings. Dominant failures are inherited `EVIDENCE_MARKER_LINT` ENOENT crashes across existing child packets plus historical doc-reference integrity issues in parent audit docs. |
-| Cleanup packet validator: `validate.sh .../002-mcp-stress-cycle-cleanup --strict` | PASS after strict-validator closure pass; final exit code recorded in temporary hygiene summary. |
+| Cleanup packet validator: `validate.sh .../001-mcp-stress-cycle-cleanup --strict` | PASS after strict-validator closure pass; final exit code recorded in temporary hygiene summary. |
 
 <!-- /ANCHOR:verification -->
 <!-- ANCHOR:limitations -->

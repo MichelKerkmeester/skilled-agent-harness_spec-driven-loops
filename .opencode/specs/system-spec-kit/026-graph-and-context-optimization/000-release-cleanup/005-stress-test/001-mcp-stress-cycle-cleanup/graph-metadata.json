@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-mcp-stress-cycle-cleanup",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-mcp-stress-cycle-cleanup",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/001-mcp-stress-cycle-cleanup",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/001-mcp-stress-cycle-cleanup",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation",
   "children_ids": [],
   "migrated": false,
@@ -12,7 +12,7 @@
     "related_to": []
   },
   "derived": {
-    "trigger_phrases": ["002-mcp-stress-cycle-cleanup", "011 review remediation", "stress cycle doc drift", "v1.0.2 verdict replayability"],
+    "trigger_phrases": ["001-mcp-stress-cycle-cleanup", "011 review remediation", "stress cycle doc drift", "v1.0.2 verdict replayability"],
     "key_topics": ["mcp-runtime-stress", "doc-cleanup", "advisory", "P2", "remediation"],
     "importance_tier": "normal",
     "status": "complete",

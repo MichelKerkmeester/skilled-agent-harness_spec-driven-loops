@@ -158,7 +158,7 @@ The remediation used the audit report as the playbook, then applied a protected-
 | G1 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-dead-code-pruning/plan.md` | HVR prose rewrite, em dash cleanup. |
 | G1 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-dead-code-pruning/spec.md` | HVR prose rewrite, em dash cleanup. |
 | G1 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-dead-code-pruning/tasks.md` | HVR prose rewrite, em dash cleanup. |
-| G1 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-mcp-stress-cycle-cleanup/spec.md` | HVR prose rewrite, em dash cleanup. |
+| G1 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/001-mcp-stress-cycle-cleanup/spec.md` | HVR prose rewrite, em dash cleanup. |
 | G1 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/009-phase-parent-documentation/001-validator-and-docs/checklist.md` | HVR prose rewrite, em dash cleanup. |
 | G1 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/009-phase-parent-documentation/001-validator-and-docs/implementation-summary.md` | HVR prose rewrite, em dash cleanup. |
 | G1 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/009-phase-parent-documentation/001-validator-and-docs/plan.md` | HVR prose rewrite, em dash cleanup. |
