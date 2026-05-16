@@ -125,7 +125,7 @@ The new test file lives at `mcp_server/skill_advisor/tests/scorer/advisor-qualit
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-- Source of truth: `003-system-deep-research-bugs-and-improvements/research/research.md` §6 (B1), §12 (C2), §13 (C3)
+- Source of truth: `003-system-deep-bugs-and-improvements/research/research.md` §6 (B1), §12 (C2), §13 (C3)
 - Validate script: `.opencode/skills/system-spec-kit/scripts/spec/validate.sh`
 - Existing scorer modules: `lanes/`, `fusion.ts`, `ambiguity.ts`, `projection.ts` — boundaries preserved
 - Sub-phase 006 (NOT YET RUN) will refactor scorer module structure; this packet must NOT pre-empt that work

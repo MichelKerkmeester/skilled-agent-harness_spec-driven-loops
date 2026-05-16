@@ -199,7 +199,7 @@ Close all six findings with surgical edits that keep behavior backward-compatibl
 | Bridge smoke test starts a real `node` subprocess and hits the advisor compat path | Test uses fail-open paths (empty stdin, missing fields, malformed JSON) where the advisor is not invoked. The single valid-payload case uses the prompt the existing bridge test already exercises. |
 
 Dependencies:
-- Source of truth: `003-system-deep-research-bugs-and-improvements/research/research.md` D4 (phase topology) + D5 (build/dist boundary)
+- Source of truth: `003-system-deep-bugs-and-improvements/research/research.md` D4 (phase topology) + D5 (build/dist boundary)
 - Validate: `.opencode/skills/system-spec-kit/scripts/spec/validate.sh`
 - No other packet dependencies.
 <!-- /ANCHOR:risks -->

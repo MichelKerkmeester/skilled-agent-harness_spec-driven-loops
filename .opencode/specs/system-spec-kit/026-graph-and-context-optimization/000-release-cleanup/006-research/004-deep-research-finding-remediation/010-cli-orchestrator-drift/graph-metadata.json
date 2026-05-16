@@ -5,7 +5,7 @@
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-deep-research-finding-remediation",
   "children_ids": [],
   "manual": {
-    "depends_on": ["system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-system-deep-research-bugs-and-improvements"],
+    "depends_on": ["system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-system-deep-bugs-and-improvements"],
     "supersedes": [],
     "related_to": ["system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/024-iter-001-daemon-concurrency-fixes"]
   },

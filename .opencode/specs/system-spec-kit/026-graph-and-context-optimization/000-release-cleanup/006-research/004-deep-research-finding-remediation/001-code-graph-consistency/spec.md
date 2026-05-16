@@ -179,7 +179,7 @@ Close all nine findings with surgical changes that keep behavior backward-compat
 | Doctor YAML behavior change affects /doctor:code-graph callers | The YAML already had a fallback to git-status + index-timestamp comparison (line 103). The change makes that the primary path. Output shape unchanged. |
 
 Dependencies:
-- Source of truth: `003-system-deep-research-bugs-and-improvements/research/research.md` §2 (consistency), §14 (resilience), §4 (silent-error)
+- Source of truth: `003-system-deep-bugs-and-improvements/research/research.md` §2 (consistency), §14 (resilience), §4 (silent-error)
 - Validate: `.opencode/skills/system-spec-kit/scripts/spec/validate.sh`
 - Worked-pilot: sibling sub-phase `004-validation-and-memory/` (commit `1822a1e69`)
 - No cross-packet dependencies.

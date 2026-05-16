@@ -82,7 +82,7 @@ _memory:
 <!-- ANCHOR:cross-refs -->
 ## Cross-References
 
-- Source of truth: `../003-system-deep-research-bugs-and-improvements/research/research.md` §B5 and `019-*/research/research.md` §D4
+- Source of truth: `../003-system-deep-bugs-and-improvements/research/research.md` §B5 and `019-*/research/research.md` §D4
 - Worked-pilot pattern: `../010-cli-orchestrator-drift/` (commit 889d1ee08)
 - Parent packet: `../spec.md` (049 phase parent — manifest)
 <!-- /ANCHOR:cross-refs -->

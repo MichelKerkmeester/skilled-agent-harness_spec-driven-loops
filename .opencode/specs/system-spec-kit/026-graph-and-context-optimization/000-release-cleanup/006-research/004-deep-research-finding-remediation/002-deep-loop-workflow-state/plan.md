@@ -102,7 +102,7 @@ YAML changes have no direct unit-test surface (the workflow assets are interpret
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-- Source of truth: `003-system-deep-research-bugs-and-improvements/research/research.md` §B5 and `019-*/research/research.md` §D4
+- Source of truth: `003-system-deep-bugs-and-improvements/research/research.md` §B5 and `019-*/research/research.md` §D4
 - Canonical iteration schema: `.opencode/skills/sk-deep-research/references/state_format.md`
 - Validate script: `.opencode/skills/system-spec-kit/scripts/spec/validate.sh`
 - Test harness: `.opencode/skills/system-spec-kit/scripts/tests/phase-parent-pointer.vitest.ts` (existing, extended)

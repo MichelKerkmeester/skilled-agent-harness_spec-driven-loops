@@ -116,7 +116,7 @@ For each new behavior in TypeScript: add a vitest in the matching `tests/` direc
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-- Source of truth: `003-system-deep-research-bugs-and-improvements/research/research.md` §3 (resource leaks) + §4 (silent errors)
+- Source of truth: `003-system-deep-bugs-and-improvements/research/research.md` §3 (resource leaks) + §4 (silent errors)
 - Validate script: `.opencode/skills/system-spec-kit/scripts/spec/validate.sh`
 - Stress runner: `cd mcp_server && npm run stress`
 - Sub-phase 003 (commit `f5b815c7e`) had no overlapping line edits in projection.ts; F-004-A4-01's fallback fix lives below 003's derived-trigger/keyword split.

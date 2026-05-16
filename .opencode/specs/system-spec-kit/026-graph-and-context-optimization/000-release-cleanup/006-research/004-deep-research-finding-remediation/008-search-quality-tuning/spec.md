@@ -160,7 +160,7 @@ Land five surgical fixes that close F-011-C1-01..05 without disturbing the exist
 | NDCG/MRR addition breaks summary contract | Additive only — existing fields preserved; new fields added at end of summary object |
 
 Dependencies:
-- Source of truth: `003-system-deep-research-bugs-and-improvements/research/research.md` §11 (C1: search quality)
+- Source of truth: `003-system-deep-bugs-and-improvements/research/research.md` §11 (C1: search quality)
 - Existing W3-W13 stress harness must keep passing
 - Validate: `.opencode/skills/system-spec-kit/scripts/spec/validate.sh`
 - No other packet dependencies

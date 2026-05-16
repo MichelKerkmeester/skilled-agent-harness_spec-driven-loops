@@ -40,7 +40,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 [P2] Re-read packet 046 §16/§17/§18 to confirm finding IDs and cited line ranges (`.opencode/specs/.../003-system-deep-research-bugs-and-improvements/research/research.md`)
+- [x] T001 [P2] Re-read packet 046 §16/§17/§18 to confirm finding IDs and cited line ranges (`.opencode/specs/.../003-system-deep-bugs-and-improvements/research/research.md`)
 - [x] T002 [P2] Verify each cited file:line still matches research.md claim before editing (15 target files)
 - [x] T003 [P2] Pull latest from origin main to ensure latest watcher.ts (sub-phase 005 changes integrated)
 <!-- /ANCHOR:phase-1 -->
@@ -112,7 +112,7 @@ _memory:
 <!-- ANCHOR:cross-refs -->
 ## Cross-References
 
-- Source of truth: `../003-system-deep-research-bugs-and-improvements/research/research.md` §16, §17, §18
+- Source of truth: `../003-system-deep-bugs-and-improvements/research/research.md` §16, §17, §18
 - Parent packet: `../spec.md` (049 phase parent — manifest)
 - Worked-pilot patterns: `../004-validation-and-memory/` (commit `1822a1e69`, 13 findings) and `../001-code-graph-consistency/` (commit `57abfc553`, 9 findings)
 <!-- /ANCHOR:cross-refs -->

@@ -182,7 +182,7 @@ Land eight surgical fixes that close F-006-B1-01..03, F-012-C2-01..04, and F-013
 | Fixture change breaks `advisor_validate` corpus accuracy threshold | Single-row fixture change; corpus accuracy threshold (`FULL_CORPUS_THRESHOLD=0.75`) easily absorbs one row swap. |
 
 Dependencies:
-- Source of truth: `003-system-deep-research-bugs-and-improvements/research/research.md` §6 (B1: advisor formatting drift), §12 (C2: scorer math), §13 (C3: regression fixture)
+- Source of truth: `003-system-deep-bugs-and-improvements/research/research.md` §6 (B1: advisor formatting drift), §12 (C2: scorer math), §13 (C3: regression fixture)
 - Existing W3-W13 stress harness must keep passing
 - Validate: `.opencode/skills/system-spec-kit/scripts/spec/validate.sh`
 - No other packet dependencies; sub-phase 003 is independent of 002 and 004

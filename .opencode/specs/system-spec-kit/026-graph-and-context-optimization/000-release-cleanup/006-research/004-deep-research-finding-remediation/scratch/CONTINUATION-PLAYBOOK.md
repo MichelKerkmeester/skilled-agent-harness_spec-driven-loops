@@ -30,7 +30,7 @@ Goal: Close the findings assigned to sub-phase NNN of packet 049 deep-research-f
 
 Your packet path: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-deep-research-finding-remediation/NNN-<name>/
 
-Source of truth for findings: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-system-deep-research-bugs-and-improvements/research/research.md
+Source of truth for findings: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-system-deep-bugs-and-improvements/research/research.md
 
 Your assigned findings: <list IDs from the table in 049/spec.md §5>
 
@@ -83,7 +83,7 @@ After Wave 3 completes:
 
 ## Key file paths
 
-- Source of truth for findings: `003-system-deep-research-bugs-and-improvements/research/research.md`
+- Source of truth for findings: `003-system-deep-bugs-and-improvements/research/research.md`
 - Validate script: `.opencode/skills/system-spec-kit/scripts/spec/validate.sh`
 - Stress script: `cd .opencode/skills/system-spec-kit/mcp_server && npm run stress`
 - Memory save: `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js --json '<inline-json>' <spec-folder>`

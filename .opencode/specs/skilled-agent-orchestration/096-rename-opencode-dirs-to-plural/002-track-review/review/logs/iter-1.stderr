@@ -1217,7 +1217,7 @@ specdocs 25
 ./.opencode/skills/system-spec-kit/mcp_server/.opencode/skill
 ./.opencode/specs/skilled-agent-orchestration/080-multi-ai-council-output-protocol/.opencode/skill
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-mcp-runtime-stress-remediation/001-search-intelligence-stress-test/.opencode/skill
-./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-system-deep-research-bugs-and-improvements/research/iterations/.opencode/skill
+./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-system-deep-bugs-and-improvements/research/iterations/.opencode/skill
 ./.opencode/specs/system-spec-kit/z_archive/024-compact-code-graph/.opencode/skill
 ./.opencode/specs/z_future/agentic-system-upgrade/001-research-agentic-systems/001-agent-lightning-main/external/contrib/agentlightning/contrib/agent
 ./.opencode/specs/z_future/agentic-system-upgrade/001-research-agentic-systems/001-agent-lightning-main/external/contrib/recipes/webshop/src/agent

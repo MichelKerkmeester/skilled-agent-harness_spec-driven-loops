@@ -108,7 +108,7 @@ For each TS change: extend or add a vitest under `mcp_server/code_graph/tests/`.
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-- Source of truth: `003-system-deep-research-bugs-and-improvements/research/research.md` §2 (consistency), §14 (resilience), §4 (silent-error)
+- Source of truth: `003-system-deep-bugs-and-improvements/research/research.md` §2 (consistency), §14 (resilience), §4 (silent-error)
 - Validate script: `.opencode/skills/system-spec-kit/scripts/spec/validate.sh`
 - Stress runner: `cd mcp_server && npm run stress`
 - Worked-pilot: sibling sub-phase `004-validation-and-memory/` (commit `1822a1e69`)

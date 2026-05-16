@@ -107,7 +107,7 @@ No new automated tests are added because the helper is exercised end-to-end by t
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-- Source of truth: `003-system-deep-research-bugs-and-improvements/research/research.md` §C5 (test reliability)
+- Source of truth: `003-system-deep-bugs-and-improvements/research/research.md` §C5 (test reliability)
 - Validate script: `.opencode/skills/system-spec-kit/scripts/spec/validate.sh`
 - Vitest >= 1.x (project default; provides `vi.useFakeTimers`, `vi.setSystemTime`)
 - No other packet dependencies. Sub-phase 009 is independent within Wave 1.

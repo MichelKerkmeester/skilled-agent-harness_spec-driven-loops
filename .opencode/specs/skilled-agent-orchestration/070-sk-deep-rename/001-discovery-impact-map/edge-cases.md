@@ -270,7 +270,7 @@ Snippet: `L3: "packet_id": "skilled-agent-orchestration/070-sk-deep-rename",`
 
 Snippet: `L48: ".opencode/skills/sk-deep-research/feature_catalog/feature_catalog.md",`
 
-### `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-system-deep-research-bugs-and-improvements/graph-metadata.json`
+### `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-system-deep-bugs-and-improvements/graph-metadata.json`
 
 Snippet: `L56: ".opencode/skills/sk-deep-research/SKILL.md"`
 
@@ -346,7 +346,7 @@ Snippet: `L3: "packet_id": "skilled-agent-orchestration/070-sk-deep-rename",`
 
 Snippet: `L48: ".opencode/skills/sk-deep-research/feature_catalog/feature_catalog.md",`
 
-### `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-system-deep-research-bugs-and-improvements/graph-metadata.json`
+### `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-system-deep-bugs-and-improvements/graph-metadata.json`
 
 Snippet: `L56: ".opencode/skills/sk-deep-research/SKILL.md"`
 

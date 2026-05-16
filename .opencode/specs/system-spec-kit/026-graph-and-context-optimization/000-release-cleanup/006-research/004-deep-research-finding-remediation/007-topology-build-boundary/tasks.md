@@ -39,7 +39,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 [P2] Re-read packet 046 D4 (phase topology) and D5 (build/dist boundary) sections to confirm finding IDs and cited line ranges (`.opencode/specs/.../003-system-deep-research-bugs-and-improvements/research/research.md`)
+- [x] T001 [P2] Re-read packet 046 D4 (phase topology) and D5 (build/dist boundary) sections to confirm finding IDs and cited line ranges (`.opencode/specs/.../003-system-deep-bugs-and-improvements/research/research.md`)
 - [x] T002 [P2] Verify each cited file:line still matches research.md claim before editing (6 target files)
 - [x] T003 [P2] Capture entering stress baseline (58 files / 195 tests / exit 0)
 <!-- /ANCHOR:phase-1 -->
@@ -87,7 +87,7 @@ _memory:
 <!-- ANCHOR:cross-refs -->
 ## Cross-References
 
-- Source of truth: `../003-system-deep-research-bugs-and-improvements/research/research.md` D4 (phase topology, F-019) + D5 (build/dist boundary, F-020)
+- Source of truth: `../003-system-deep-bugs-and-improvements/research/research.md` D4 (phase topology, F-019) + D5 (build/dist boundary, F-020)
 - Parent packet: `../spec.md` (049 phase parent — manifest)
 - Worked-pilot pattern: `../004-validation-and-memory/` (commit `1822a1e69`) and `../010-cli-orchestrator-drift/` (commit `889d1ee08`)
 <!-- /ANCHOR:cross-refs -->

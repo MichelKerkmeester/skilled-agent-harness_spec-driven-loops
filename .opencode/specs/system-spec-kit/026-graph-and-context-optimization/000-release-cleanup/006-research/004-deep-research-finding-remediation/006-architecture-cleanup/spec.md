@@ -208,7 +208,7 @@ Close all fifteen findings with surgical refactors that preserve every public AP
 | Stress regression | Each refactor is a re-export or internal-class extraction; no behavior change. Verified via full `npm run stress` post-change. |
 
 Dependencies:
-- Source of truth: `003-system-deep-research-bugs-and-improvements/research/research.md` §16, §17, §18
+- Source of truth: `003-system-deep-bugs-and-improvements/research/research.md` §16, §17, §18
 - Validate: `.opencode/skills/system-spec-kit/scripts/spec/validate.sh`
 - No other packet dependencies.
 <!-- /ANCHOR:risks -->

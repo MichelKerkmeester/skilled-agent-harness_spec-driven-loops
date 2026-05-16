@@ -115,7 +115,7 @@ NDCG/MRR additions must not change the baseline test (`baseline.vitest.ts`) — 
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-- Source of truth: `003-system-deep-research-bugs-and-improvements/research/research.md` §11 (C1: search quality findings)
+- Source of truth: `003-system-deep-bugs-and-improvements/research/research.md` §11 (C1: search quality findings)
 - Validate script: `.opencode/skills/system-spec-kit/scripts/spec/validate.sh`
 - Existing search-quality stress files: `baseline`, `w3`, `w4`, `w5`, `w6`, `w7-*`, `w8`, `w10`, `w11`, `w13` — all must remain green
 - No other packet dependencies; sub-phase 008 is independent within Wave 1

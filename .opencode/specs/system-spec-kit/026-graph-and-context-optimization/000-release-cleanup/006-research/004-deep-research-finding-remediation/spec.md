@@ -18,7 +18,7 @@ _memory:
     next_safe_action: "Author each child spec.md, then execute sub-phases in waves (Wave 1: 002,004,008,009,010 / Wave 2: 001,003,005,007 / Wave 3: 006)"
     blockers: []
     key_files:
-      - ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-system-deep-research-bugs-and-improvements/research/research.md"
+      - ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-system-deep-bugs-and-improvements/research/research.md"
       - ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/024-iter-001-daemon-concurrency-fixes/implementation-summary.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"

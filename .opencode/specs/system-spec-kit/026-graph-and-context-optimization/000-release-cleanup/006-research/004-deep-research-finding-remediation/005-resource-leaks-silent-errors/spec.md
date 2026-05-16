@@ -166,7 +166,7 @@ Plug all three leaks and surface both silent errors with surgical changes that p
 | Sub-phase 006 watcher refactor merge conflict | Changes stay surgical: no helpers extracted, no module structure changed. F-003-A3-* edits live inside existing functions and the new `pushDiagnostic` helper is local-scope only. F-004-A4-04 adds an optional callback parameter, no rename. |
 
 Dependencies:
-- Source of truth: `003-system-deep-research-bugs-and-improvements/research/research.md` §3 (resource leaks) and §4 (silent errors)
+- Source of truth: `003-system-deep-bugs-and-improvements/research/research.md` §3 (resource leaks) and §4 (silent errors)
 - Validate: `.opencode/skills/system-spec-kit/scripts/spec/validate.sh`
 - Stress: `cd .opencode/skills/system-spec-kit/mcp_server && npm run stress`
 - Sub-phase 003 (commit `f5b815c7e`) shifted projection.ts line numbers; F-004-A4-01 fix lives at the new `loadAdvisorProjection()` location, not the original 237-240. No conflict because 003's change touched lines 137-145 (`derivedTriggers`/`derivedKeywords` split) and the fallback catch lives below.

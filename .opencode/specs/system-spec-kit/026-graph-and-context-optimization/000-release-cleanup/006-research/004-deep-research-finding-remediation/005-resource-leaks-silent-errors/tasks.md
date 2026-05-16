@@ -39,7 +39,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 [P1] Re-read packet 046 §3/§4 to confirm finding IDs and cited line ranges (`.opencode/specs/.../003-system-deep-research-bugs-and-improvements/research/research.md`)
+- [x] T001 [P1] Re-read packet 046 §3/§4 to confirm finding IDs and cited line ranges (`.opencode/specs/.../003-system-deep-bugs-and-improvements/research/research.md`)
 - [x] T002 [P1] Verify each cited file:line still matches research.md claim before editing (3 target files: watcher.ts, file-watcher.ts, projection.ts)
 - [x] T003 [P1] Confirm sub-phase 003's projection.ts changes (commit `f5b815c7e`) do not conflict with F-004-A4-01's fallback fix line range
 <!-- /ANCHOR:phase-1 -->
@@ -85,7 +85,7 @@ _memory:
 <!-- ANCHOR:cross-refs -->
 ## Cross-References
 
-- Source of truth: `../003-system-deep-research-bugs-and-improvements/research/research.md` §3, §4
+- Source of truth: `../003-system-deep-bugs-and-improvements/research/research.md` §3, §4
 - Parent packet: `../spec.md` (049 phase parent — manifest)
 - Worked-pilot pattern: `../004-validation-and-memory/` (commit `1822a1e69`)
 - Predecessor: `../003-advisor-quality/` (commit `f5b815c7e`) — preserves projection.ts coexistence

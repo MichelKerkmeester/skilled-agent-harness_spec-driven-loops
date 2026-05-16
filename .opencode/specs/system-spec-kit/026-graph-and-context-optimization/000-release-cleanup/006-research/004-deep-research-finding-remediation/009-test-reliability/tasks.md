@@ -45,7 +45,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 [P1] Re-read packet 046 §C5 (test reliability) to confirm finding IDs and cited line ranges (`.opencode/specs/.../003-system-deep-research-bugs-and-improvements/research/research.md`)
+- [x] T001 [P1] Re-read packet 046 §C5 (test reliability) to confirm finding IDs and cited line ranges (`.opencode/specs/.../003-system-deep-bugs-and-improvements/research/research.md`)
 - [x] T002 [P1] Verify each cited file:line still matches research.md claim before editing (six target files)
 - [x] T003 [P1] Author spec.md, plan.md, tasks.md, checklist.md, implementation-summary.md mirroring sub-phase 010 worked-pilot pattern
 <!-- /ANCHOR:phase-1 -->
@@ -87,7 +87,7 @@ _memory:
 <!-- ANCHOR:cross-refs -->
 ## Cross-References
 
-- Source of truth: `../003-system-deep-research-bugs-and-improvements/research/research.md` §C5
+- Source of truth: `../003-system-deep-bugs-and-improvements/research/research.md` §C5
 - Parent packet: `../spec.md` (049 phase parent — manifest)
 - Worked-pilot pattern: sub-phase 010-cli-orchestrator-drift (committed as `889d1ee08`)
 <!-- /ANCHOR:cross-refs -->

@@ -92,7 +92,7 @@ No automated tests for doc-only changes. Verification is:
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-- Source of truth: `003-system-deep-research-bugs-and-improvements/research/research.md` §6
+- Source of truth: `003-system-deep-bugs-and-improvements/research/research.md` §6
 - Validate script: `.opencode/skills/system-spec-kit/scripts/spec/validate.sh`
 - No other packet dependencies. Sub-phase 010 is independent within Wave 1.
 <!-- /ANCHOR:dependencies -->

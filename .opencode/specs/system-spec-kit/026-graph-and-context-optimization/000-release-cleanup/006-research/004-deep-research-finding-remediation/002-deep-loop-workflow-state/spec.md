@@ -145,7 +145,7 @@ Land five surgical fixes so the deep-loop state machine is internally consistent
 | Parent metadata refresh creates a write race with concurrent child saves | The existing `updatePhaseParentPointersAfterSave` already runs read-modify-write atomically via `atomicWriteJson`; we extend the same pattern, and the existing concurrent-save test already checks eventual consistency |
 
 Dependencies:
-- Source of truth: `003-system-deep-research-bugs-and-improvements/research/research.md` §B5 (deep-loop workflow) and `019-*/research/research.md` §D4 (graph metadata)
+- Source of truth: `003-system-deep-bugs-and-improvements/research/research.md` §B5 (deep-loop workflow) and `019-*/research/research.md` §D4 (graph metadata)
 - Validate: `.opencode/skills/system-spec-kit/scripts/spec/validate.sh`
 - Test harness: `.opencode/skills/system-spec-kit/scripts/tests/phase-parent-pointer.vitest.ts`
 - No other packet dependencies. Sub-phase 002 is independent within Wave 1.

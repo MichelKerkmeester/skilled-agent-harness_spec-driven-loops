@@ -44,7 +44,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 [P1] Re-read packet 046 §6 (CLI orchestrator skills) to confirm finding IDs and cited line ranges (`.opencode/specs/.../003-system-deep-research-bugs-and-improvements/research/research.md`)
+- [x] T001 [P1] Re-read packet 046 §6 (CLI orchestrator skills) to confirm finding IDs and cited line ranges (`.opencode/specs/.../003-system-deep-bugs-and-improvements/research/research.md`)
 - [x] T002 [P1] Verify each cited file:line still matches research.md claim before editing (`*` six target files)
 <!-- /ANCHOR:phase-1 -->
 
@@ -80,7 +80,7 @@ _memory:
 <!-- ANCHOR:cross-refs -->
 ## Cross-References
 
-- Source of truth: `../003-system-deep-research-bugs-and-improvements/research/research.md` §6
+- Source of truth: `../003-system-deep-bugs-and-improvements/research/research.md` §6
 - Parent packet: `../spec.md` (049 phase parent — manifest)
 - Worked-pilot pattern: this packet itself; future sub-phases use this Level 2 doc shape
 <!-- /ANCHOR:cross-refs -->

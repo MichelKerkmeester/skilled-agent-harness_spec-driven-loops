@@ -143,7 +143,7 @@ Land six surgical doc edits so each CLI skill states one consistent dispatch con
 | Live CLI flag drift | Each fix references the SKILL.md's documented version baseline; future CLI version bumps are tracked separately |
 
 Dependencies:
-- Source of truth: `003-system-deep-research-bugs-and-improvements/research/research.md` §6
+- Source of truth: `003-system-deep-bugs-and-improvements/research/research.md` §6
 - Validate: `.opencode/skills/system-spec-kit/scripts/spec/validate.sh`
 - No other packet dependencies
 <!-- /ANCHOR:risks -->

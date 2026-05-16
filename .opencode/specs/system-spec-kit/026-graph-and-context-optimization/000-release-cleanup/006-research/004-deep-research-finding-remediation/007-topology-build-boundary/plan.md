@@ -117,7 +117,7 @@ For TS edits: vitest cases live next to existing test patterns (`mcp_server/test
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-- Source of truth: `003-system-deep-research-bugs-and-improvements/research/research.md` D4 (phase topology, §F-019) + D5 (build/dist boundary, §F-020)
+- Source of truth: `003-system-deep-bugs-and-improvements/research/research.md` D4 (phase topology, §F-019) + D5 (build/dist boundary, §F-020)
 - Validate script: `.opencode/skills/system-spec-kit/scripts/spec/validate.sh`
 - Alignment checker: `.opencode/skills/system-spec-kit/scripts/evals/check-source-dist-alignment.ts` (modified by this packet)
 - Stress runner: `cd mcp_server && npm run stress`

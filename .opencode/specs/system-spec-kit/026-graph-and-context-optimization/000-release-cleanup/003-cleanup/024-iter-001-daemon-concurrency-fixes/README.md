@@ -78,7 +78,7 @@ Level 2 remediation packet that fixes the four daemon concurrency findings (F-00
 ## 4. SOURCE
 <!-- ANCHOR:source -->
 
-- Findings table: `../003-system-deep-research-bugs-and-improvements/research/iterations/iteration-001.md` (Findings section)
+- Findings table: `../003-system-deep-bugs-and-improvements/research/iterations/iteration-001.md` (Findings section)
 - Parent remediation series: `005-review-remediation/`
 
 <!-- /ANCHOR:source -->

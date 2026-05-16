@@ -150,7 +150,7 @@ For the watcher refactor (F-016-D1-06): rely on the existing watcher test suite 
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-- Source of truth: `003-system-deep-research-bugs-and-improvements/research/research.md` §16 (boundary discipline), §17 (dependency graph), §18 (schema duplication)
+- Source of truth: `003-system-deep-bugs-and-improvements/research/research.md` §16 (boundary discipline), §17 (dependency graph), §18 (schema duplication)
 - Validate script: `.opencode/skills/system-spec-kit/scripts/spec/validate.sh`
 - Stress runner: `cd mcp_server && npm run stress`
 - Existing package: `zod-to-json-schema` (already in `mcp_server/package.json` per dependency check)

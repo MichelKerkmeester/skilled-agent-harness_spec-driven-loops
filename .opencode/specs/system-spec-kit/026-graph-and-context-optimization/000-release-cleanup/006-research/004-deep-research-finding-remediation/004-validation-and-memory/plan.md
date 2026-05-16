@@ -119,7 +119,7 @@ For shell rule changes (B4-01 through B4-05): add fixture markdown files under `
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-- Source of truth: `003-system-deep-research-bugs-and-improvements/research/research.md` §5 (advisor + checkpoints), §8 (memory + causal links), §9 (validators)
+- Source of truth: `003-system-deep-bugs-and-improvements/research/research.md` §5 (advisor + checkpoints), §8 (memory + causal links), §9 (validators)
 - Validate script: `.opencode/skills/system-spec-kit/scripts/spec/validate.sh`
 - Stress runner: `cd mcp_server && npm run stress`
 - No cross-packet dependencies; sub-phase 004 is independent within Wave 1.

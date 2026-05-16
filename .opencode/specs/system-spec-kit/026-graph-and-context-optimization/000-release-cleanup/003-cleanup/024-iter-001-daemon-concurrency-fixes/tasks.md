@@ -54,7 +54,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Read packet 046 iteration-001 findings table (`.opencode/specs/.../003-system-deep-research-bugs-and-improvements/research/iterations/iteration-001.md`)
+- [x] T001 Read packet 046 iteration-001 findings table (`.opencode/specs/.../003-system-deep-bugs-and-improvements/research/iterations/iteration-001.md`)
 - [x] T002 [P] Read product files: `watcher.ts`, `lifecycle.ts`, `generation.ts`, `cache-invalidation.ts`
 - [x] T003 [P] Read existing test files: `daemon-freshness-foundation.vitest.ts`, `daemon-lifecycle-stress.vitest.ts`, `chokidar-narrow-scope-stress.vitest.ts`, `generation-cache-invalidation-stress.vitest.ts`
 - [x] T004 Scaffold packet 048 via `create.sh --subfolder ... --topic iter-001-daemon-concurrency-fixes --level 2 --skip-branch`
@@ -107,7 +107,7 @@ _memory:
 
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
-- **Source findings**: `../003-system-deep-research-bugs-and-improvements/research/iterations/iteration-001.md`
+- **Source findings**: `../003-system-deep-bugs-and-improvements/research/iterations/iteration-001.md`
 <!-- /ANCHOR:cross-refs -->
 
 ---

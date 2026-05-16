@@ -157,7 +157,7 @@ Land six surgical test-only edits so each finding is fixed with the minimum code
 | mkdtemp fixture root breaks tests that hard-code paths inside FIXTURE_ROOT | Read each fixture-using test; verify all path references go through the FIXTURE_ROOT constant; no string-literal collisions |
 
 Dependencies:
-- Source of truth: `003-system-deep-research-bugs-and-improvements/research/research.md` §C5 (test reliability findings)
+- Source of truth: `003-system-deep-bugs-and-improvements/research/research.md` §C5 (test reliability findings)
 - Validate: `.opencode/skills/system-spec-kit/scripts/spec/validate.sh`
 - No other packet dependencies
 <!-- /ANCHOR:risks -->

@@ -192,7 +192,7 @@ Close all thirteen findings with surgical changes that keep behavior backward-co
 | Stress regression | Each change is local; expected impact 0. Verified via full `npm run stress` post-change. |
 
 Dependencies:
-- Source of truth: `003-system-deep-research-bugs-and-improvements/research/research.md` §5, §8, §9
+- Source of truth: `003-system-deep-bugs-and-improvements/research/research.md` §5, §8, §9
 - Validate: `.opencode/skills/system-spec-kit/scripts/spec/validate.sh`
 - No other packet dependencies.
 <!-- /ANCHOR:risks -->
