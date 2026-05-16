@@ -51,7 +51,7 @@ _memory:
 | **Branch** | main |
 | **Parent Spec** | `../spec.md` (`014-local-embeddings-migration`) |
 | **Phase** | 045 |
-| **Depends On** | `../_044-suite-revalidation/` |
+| **Depends On** | `../044-suite-revalidation/` |
 | **Evidence Dir** | `_sandbox/24--local-llm-query-intelligence/evidence/` |
 <!-- /ANCHOR:metadata -->
 

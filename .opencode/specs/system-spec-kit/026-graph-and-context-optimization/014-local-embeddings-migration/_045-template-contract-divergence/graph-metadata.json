@@ -11,7 +11,7 @@
     "supersedes": [],
     "related_to": [
       "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/037-llama-cpp-embedding-worker-deep-dive",
-      "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/_044-suite-revalidation"
+      "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/044-suite-revalidation"
     ]
   },
   "derived": {

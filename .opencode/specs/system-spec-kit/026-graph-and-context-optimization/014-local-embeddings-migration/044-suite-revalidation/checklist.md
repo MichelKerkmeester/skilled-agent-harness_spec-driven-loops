@@ -10,7 +10,7 @@ contextType: "spec"
 status: "fail"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/_044-suite-revalidation"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/044-suite-revalidation"
     last_updated_at: "2026-05-14T16:35:00Z"
     last_updated_by: "main-agent"
     recent_action: "Filled verification evidence for failed nested codex startup"
@@ -21,7 +21,7 @@ _memory:
       - "implementation-summary.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000043"
-      session_id: "_044-suite-revalidation-checklist"
+      session_id: "044-suite-revalidation-checklist"
       parent_session_id: null
     completion_pct: 100
     open_questions: []
@@ -108,7 +108,7 @@ _memory:
 - [x] CHK-040 [P1] Spec/plan/tasks/checklist initialized.
 - [x] CHK-041 [P1] Implementation summary includes baseline delta table. Evidence: `implementation-summary.md`.
 - [x] CHK-042 [P2] Final binding trace fields are recoverable from docs and evidence. Evidence: implementation summary and TSV.
-- [x] CHK-043 [P1] Strict packet validation passes. Evidence: `validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/_044-suite-revalidation --strict` returned `RESULT: PASSED`.
+- [x] CHK-043 [P1] Strict packet validation passes. Evidence: `validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/044-suite-revalidation --strict` returned `RESULT: PASSED`.
 <!-- /ANCHOR:docs -->
 
 ---

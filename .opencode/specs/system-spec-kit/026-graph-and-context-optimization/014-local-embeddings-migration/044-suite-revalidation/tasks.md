@@ -10,7 +10,7 @@ contextType: "spec"
 status: "fail"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/_044-suite-revalidation"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/044-suite-revalidation"
     last_updated_at: "2026-05-14T16:35:00Z"
     last_updated_by: "main-agent"
     recent_action: "Recorded failed scenario attempts caused by nested codex exec startup"
@@ -24,7 +24,7 @@ _memory:
       - "implementation-summary.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000043"
-      session_id: "_044-suite-revalidation-tasks"
+      session_id: "044-suite-revalidation-tasks"
       parent_session_id: null
     completion_pct: 100
     open_questions: []
@@ -55,7 +55,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Scaffold Level 2 packet at `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/_044-suite-revalidation/`.
+- [x] T001 Scaffold Level 2 packet at `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/044-suite-revalidation/`.
 - [x] T002 [P] Locate playbook files 401-415.
 - [x] T003 [P] Identify baseline TSV at `_sandbox/24--local-llm-query-intelligence/evidence/run-2026-05-14b-post-032.summary.tsv`.
 - [x] T004 [P] Confirm dispatch constraints: main branch, no commits, no SpawnAgent, no playbook/source edits.

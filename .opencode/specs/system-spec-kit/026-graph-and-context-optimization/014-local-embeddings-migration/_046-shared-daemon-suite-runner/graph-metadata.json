@@ -6,7 +6,7 @@
   "children_ids": [],
   "manual": {
     "depends_on": [
-      "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/_044-suite-revalidation"
+      "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/044-suite-revalidation"
     ],
     "supersedes": [],
     "related_to": [

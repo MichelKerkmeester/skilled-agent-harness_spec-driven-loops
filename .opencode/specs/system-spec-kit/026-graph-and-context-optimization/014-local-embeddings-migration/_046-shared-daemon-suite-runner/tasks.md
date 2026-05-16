@@ -53,7 +53,7 @@ _memory:
 ## Phase 1: Setup
 
 - [x] T001 Scaffold Level 2 packet (`_046-shared-daemon-suite-runner/`).
-- [x] T002 Inspect 043 failure evidence (`../_044-suite-revalidation/implementation-summary.md`).
+- [x] T002 Inspect 043 failure evidence (`../044-suite-revalidation/implementation-summary.md`).
 - [x] T003 [P] Inspect memory launcher stdio binding (`.opencode/bin/spec-kit-memory-launcher.cjs`).
 - [x] T004 [P] Inspect MCP SDK version and client API (`mcp_server/node_modules/@modelcontextprotocol/sdk`).
 - [x] T005 [P] Inspect playbook scenarios 403 and 410.
@@ -107,5 +107,5 @@ _memory:
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
 - **Implementation Summary**: See `implementation-summary.md`
-- **Dependency Packet**: See `../_044-suite-revalidation/implementation-summary.md`
+- **Dependency Packet**: See `../044-suite-revalidation/implementation-summary.md`
 <!-- /ANCHOR:cross-refs -->

@@ -11,7 +11,7 @@ contextType: "spec"
 status: "fail"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/_044-suite-revalidation"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/044-suite-revalidation"
     last_updated_at: "2026-05-14T16:35:00Z"
     last_updated_by: "main-agent"
     recent_action: "Attempted all 15 scenarios; nested codex exec failed before scenario execution"
@@ -23,12 +23,12 @@ _memory:
       - "_sandbox/24--local-llm-query-intelligence/evidence/run-2026-05-14-post-wave.summary.tsv"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000043"
-      session_id: "_044-suite-revalidation"
+      session_id: "044-suite-revalidation"
       parent_session_id: null
     completion_pct: 100
     open_questions: []
     answered_questions:
-      - "Gate 3: E - phase folder _044-suite-revalidation"
+      - "Gate 3: E - phase folder 044-suite-revalidation"
       - "Branch: main; no branches and no commits"
       - "SpawnAgent forbidden; codex exec child processes allowed"
 ---
@@ -94,7 +94,7 @@ Re-run the same 15-scenario suite through fresh `codex exec` child processes and
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/_044-suite-revalidation/` | Create | Level 2 packet docs and metadata. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/044-suite-revalidation/` | Create | Level 2 packet docs and metadata. |
 | `_sandbox/24--local-llm-query-intelligence/evidence/run-2026-05-14-post-wave.sh` | Create | Sequential `codex exec` scenario runner. |
 | `_sandbox/24--local-llm-query-intelligence/evidence/run-2026-05-14-post-wave.summary.tsv` | Generate | Scenario verdict summary. |
 | `_sandbox/24--local-llm-query-intelligence/evidence/per-scenario-logs-post-wave/` | Generate | Raw child-process logs for scenarios 401-415. |
