@@ -18,7 +18,7 @@ contextType: "research"
 
 ## 2026-05-02
 
-> Spec folder: `026-graph-and-context-optimization/007-code-graph/010-fix-iteration-quality-meta-research` (Level 3)
+> Spec folder: `026-graph-and-context-optimization/007-code-graph/009-fix-iteration-quality-meta-research` (Level 3)
 > Parent packet: `026-graph-and-context-optimization/007-code-graph`
 
 ### Summary

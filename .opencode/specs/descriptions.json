@@ -5907,7 +5907,7 @@
       "lastUpdated": "2026-05-08T08:26:57.663Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/010-fix-iteration-quality-meta-research",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/009-fix-iteration-quality-meta-research",
       "description": "Feature Specification: Fix-Iteration Quality Meta-Research",
       "keywords": [
         "feature",
