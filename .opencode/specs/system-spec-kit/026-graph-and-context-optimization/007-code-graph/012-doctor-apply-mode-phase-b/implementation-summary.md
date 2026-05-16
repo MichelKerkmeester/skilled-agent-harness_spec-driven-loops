@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: /doctor:code-graph apply-mode Phase B [system-spec-kit/026-graph-and-context-optimization/007-code-graph/013-doctor-apply-mode-phase-b/implementation-summary]"
+title: "Implementation Summary: /doctor:code-graph apply-mode Phase B [system-spec-kit/026-graph-and-context-optimization/007-code-graph/012-doctor-apply-mode-phase-b/implementation-summary]"
 description: "Phase B apply-mode shipped: code_graph_apply MCP tool, verification-battery gating, staleness-state dispatch, typed recovery procedures, rollback, JSONL audit logging, status metrics, command docs, and targeted tests."
 trigger_phrases:
   - "doctor code graph apply implementation"
@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/013-doctor-apply-mode-phase-b"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/012-doctor-apply-mode-phase-b"
     last_updated_at: "2026-05-08T22:50:00Z"
     last_updated_by: "codex"
     recent_action: "Implemented Phase B apply-mode and verified targeted gates"
@@ -44,7 +44,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `013-doctor-apply-mode-phase-b` |
+| **Spec Folder** | `012-doctor-apply-mode-phase-b` |
 | **Completed** | 2026-05-08 |
 | **Level** | 3 |
 | **Status** | Complete |

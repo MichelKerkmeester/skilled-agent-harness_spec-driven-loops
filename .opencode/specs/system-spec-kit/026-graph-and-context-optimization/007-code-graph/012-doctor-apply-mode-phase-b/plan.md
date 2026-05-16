@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: /doctor:code-graph apply-mode Phase B [system-spec-kit/026-graph-and-context-optimization/007-code-graph/013-doctor-apply-mode-phase-b/plan]"
+title: "Implementation Plan: /doctor:code-graph apply-mode Phase B [system-spec-kit/026-graph-and-context-optimization/007-code-graph/012-doctor-apply-mode-phase-b/plan]"
 description: "Plan for Phase B apply-mode: verification-gated code-graph repair, typed recovery procedures, rollback semantics, audit logging, and MCP exposure through code_graph_apply."
 trigger_phrases:
   - "doctor code graph apply plan"
@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/013-doctor-apply-mode-phase-b"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/012-doctor-apply-mode-phase-b"
     last_updated_at: "2026-05-08T22:45:00Z"
     last_updated_by: "codex"
     recent_action: "Authored Level 3 implementation plan for Phase B apply-mode"

@@ -1,5 +1,5 @@
 ---
-title: "Resource Map — Doctor apply-mode (Phase B) [system-spec-kit/026-graph-and-context-optimization/007-code-graph/013-doctor-apply-mode-phase-b/resource-map]"
+title: "Resource Map — Doctor apply-mode (Phase B) [system-spec-kit/026-graph-and-context-optimization/007-code-graph/012-doctor-apply-mode-phase-b/resource-map]"
 description: "Flat inventory of files this packet touched. Implementation by cli-codex gpt-5.5 high fast on 2026-05-08."
 trigger_phrases:
   - "doctor apply-mode resource map"

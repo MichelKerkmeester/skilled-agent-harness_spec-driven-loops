@@ -1,5 +1,5 @@
 ---
-title: "Decision Record: /doctor:code-graph apply-mode Phase B [system-spec-kit/026-graph-and-context-optimization/007-code-graph/013-doctor-apply-mode-phase-b/decision-record]"
+title: "Decision Record: /doctor:code-graph apply-mode Phase B [system-spec-kit/026-graph-and-context-optimization/007-code-graph/012-doctor-apply-mode-phase-b/decision-record]"
 description: "Architectural decisions for verification gating, recovery workflow translation, rollback semantics, and self-healing boundaries."
 trigger_phrases:
   - "doctor code graph apply ADR"
@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "decision"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/013-doctor-apply-mode-phase-b"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/012-doctor-apply-mode-phase-b"
     last_updated_at: "2026-05-08T22:45:00Z"
     last_updated_by: "codex"
     recent_action: "Authored ADRs for Phase B apply-mode"

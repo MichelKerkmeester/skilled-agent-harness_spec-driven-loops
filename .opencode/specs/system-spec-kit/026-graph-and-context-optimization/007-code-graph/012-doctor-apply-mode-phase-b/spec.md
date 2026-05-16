@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: /doctor:code-graph apply-mode (Phase B) [system-spec-kit/026-graph-and-context-optimization/007-code-graph/013-doctor-apply-mode-phase-b/spec]"
+title: "Feature Specification: /doctor:code-graph apply-mode (Phase B) [system-spec-kit/026-graph-and-context-optimization/007-code-graph/012-doctor-apply-mode-phase-b/spec]"
 description: "Ship Phase B (apply-mode auto-fix operations) for /doctor:code-graph. Phase A (diagnostic-only) shipped in 007-code-graph/005-code-graph-doctor-command. The four prerequisite artifacts from research packet 007 (gold-query battery, staleness model, recovery playbook, exclude-rule confidence tiers) are all available; this packet wires them into a verification-battery-gated apply pipeline with rollback semantics."
 trigger_phrases:
   - "doctor code graph apply mode"
@@ -12,7 +12,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/013-doctor-apply-mode-phase-b"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/012-doctor-apply-mode-phase-b"
     last_updated_at: "2026-05-08T21:30:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Scaffolded Level 3 spec; 4 prerequisite artifacts confirmed shipped from research packet 007"
@@ -174,7 +174,7 @@ Implement Phase B: an apply-mode workflow that runs verification-gated auto-fix 
 
 - **SC-001**: All 14 reqs above pass acceptance criteria.
 - **SC-002**: New 4 vitest files pass; baseline holds (currently 11,587 / 11,829 passing — Unit F is recovering the 198-failure baseline drift in parallel).
-- **SC-003**: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh 013-doctor-apply-mode-phase-b --strict` exits 0.
+- **SC-003**: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh 012-doctor-apply-mode-phase-b --strict` exits 0.
 - **SC-004**: Live smoke: `/doctor:code-graph apply` against a soft-stale graph completes successfully and emits an audit log; against a hard-stale graph requires explicit confirm prompt; against a fresh graph is a no-op with battery-pass log.
 - **SC-005**: All 12 recovery-playbook scenarios E2E pass on a sandbox DB.
 <!-- /ANCHOR:success-criteria -->

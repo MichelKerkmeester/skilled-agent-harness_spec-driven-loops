@@ -1,8 +1,8 @@
-# Changelog — 013-doctor-apply-mode-phase-b
+# Changelog — 012-doctor-apply-mode-phase-b
 
 ## 2026-05-08
 
-> Spec folder: `026-graph-and-context-optimization/007-code-graph/013-doctor-apply-mode-phase-b` (Level 3)
+> Spec folder: `026-graph-and-context-optimization/007-code-graph/012-doctor-apply-mode-phase-b` (Level 3)
 > Parent packet: `026-graph-and-context-optimization/007-code-graph`
 > Predecessor: `005-code-graph-doctor-command/` (Phase A); `006-code-graph-resilience-research/` (4 prerequisite artifacts)
 
