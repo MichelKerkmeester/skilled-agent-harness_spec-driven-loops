@@ -8,7 +8,7 @@ import {
   validateMemoryQualityContent,
 } from '../lib/validate-memory-quality';
 
-const currentSpecFolder = 'system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/040-v-rule-cross-spec-overreach';
+const currentSpecFolder = 'system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/_041-v-rule-cross-spec-overreach';
 const dominatesSpecFolder = 'system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/042-dominates-current';
 const tempRoots: string[] = [];
 

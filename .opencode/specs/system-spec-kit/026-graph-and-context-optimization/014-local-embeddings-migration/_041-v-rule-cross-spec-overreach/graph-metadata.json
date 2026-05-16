@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/040-v-rule-cross-spec-overreach",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/040-v-rule-cross-spec-overreach",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/_041-v-rule-cross-spec-overreach",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/_041-v-rule-cross-spec-overreach",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration",
   "children_ids": [],
   "manual": {

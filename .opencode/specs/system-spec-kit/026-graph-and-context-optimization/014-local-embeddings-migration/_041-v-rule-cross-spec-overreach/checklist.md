@@ -9,7 +9,7 @@ contextType: "spec"
 status: "partial"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/040-v-rule-cross-spec-overreach"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/_041-v-rule-cross-spec-overreach"
     last_updated_at: "2026-05-14T15:37:00Z"
     last_updated_by: "main-agent"
     recent_action: "Recorded verification evidence; build remains blocked by EPERM writes"
@@ -41,7 +41,7 @@ Evidence column conventions: command exit code, test count, stdout summary, or f
 ## Pre-Implementation
 
 - [x] CHK-001 [P0] Gate 3 answer captured as 040 phase folder
-  - Evidence: User pre-bound `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/040-v-rule-cross-spec-overreach/`.
+  - Evidence: User pre-bound `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/_041-v-rule-cross-spec-overreach/`.
 - [x] CHK-002 [P0] Source read before edit
   - Evidence: `validate-memory-quality.ts` V8 helpers and rule body inspected.
 - [x] CHK-003 [P0] Existing V8 test read before adding new coverage
@@ -141,7 +141,7 @@ Evidence column conventions: command exit code, test count, stdout summary, or f
 ## File Organization
 
 - [x] CHK-070 [P0] 040 docs live in the pre-bound phase folder
-  - Evidence: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/040-v-rule-cross-spec-overreach/`.
+  - Evidence: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/_041-v-rule-cross-spec-overreach/`.
 - [x] CHK-071 [P0] `description.json` uses specId `040`
   - Evidence: JSON `specId`.
 - [x] CHK-072 [P0] `graph-metadata.json` packet_id uses full nested path

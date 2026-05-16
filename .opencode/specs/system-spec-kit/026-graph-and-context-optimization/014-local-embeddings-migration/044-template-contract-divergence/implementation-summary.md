@@ -38,7 +38,7 @@ _memory:
 | **Spec Folder** | `system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/044-template-contract-divergence` |
 | **Completed** | 2026-05-14 |
 | **Level** | 2 |
-| **Depends On** | `040-v-rule-cross-spec-overreach` |
+| **Depends On** | `_041-v-rule-cross-spec-overreach` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -93,14 +93,14 @@ The 040 implementation summary reproduced the exact split: strict validation pas
 
 | Check | Result |
 |-------|--------|
-| Pre-fix 040 strict validate | PASS: `validate.sh .../040-v-rule-cross-spec-overreach --strict` returned 0 errors and 0 warnings. |
+| Pre-fix 040 strict validate | PASS: `validate.sh .../_041-v-rule-cross-spec-overreach --strict` returned 0 errors and 0 warnings. |
 | Pre-fix 040 dry-run | REPRODUCED: `would_pass=false`; `templateContract.valid=false`; violations were `missing_blank_line_after_frontmatter` plus missing `continue-session`, `canonical-docs`, `overview`, `evidence`, `recovery-hints`, and `memory-metadata`. |
 | Post-fix 040 dry-run | PASS: `would_pass=true`; summary `Dry-run would pass in manual-fallback mode with deferred indexing.` |
 | Focused regression | PASS: `env -u EMBEDDINGS_PROVIDER npx vitest run tests/memory-save-pipeline-enforcement.vitest.ts --testNamePattern "dry-run accepts canonical spec docs"` |
 | Full save-pipeline regression | PASS: `env -u EMBEDDINGS_PROVIDER npx vitest run tests/memory-save-pipeline-enforcement.vitest.ts`: 59 tests passed. |
 | MCP server typecheck | PASS: `npm run typecheck --workspace=@spec-kit/mcp-server`. |
 | Strict validate 037 | PASS: `validate.sh .../037-llama-cpp-embedding-worker-deep-dive --strict`: 0 errors, 0 warnings. |
-| Strict validate 040 | PASS: `validate.sh .../040-v-rule-cross-spec-overreach --strict`: 0 errors, 0 warnings. |
+| Strict validate 040 | PASS: `validate.sh .../_041-v-rule-cross-spec-overreach --strict`: 0 errors, 0 warnings. |
 | Strict validate 044 | PASS: `validate.sh .../044-template-contract-divergence --strict`: 0 errors, 0 warnings. |
 <!-- /ANCHOR:verification -->
 

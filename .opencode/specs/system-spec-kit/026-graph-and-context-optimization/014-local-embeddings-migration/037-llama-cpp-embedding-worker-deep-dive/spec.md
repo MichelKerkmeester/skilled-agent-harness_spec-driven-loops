@@ -15,7 +15,7 @@ related_specs:
   - "036-failed-embedding-cleanup-retry"
   - "038-embedding-error-propagation"
   - "039-token-aware-chunking"
-  - "040-v-rule-cross-spec-overreach"
+  - "_041-v-rule-cross-spec-overreach"
 importance_tier: "important"
 contextType: "spec"
 status: "in_progress"

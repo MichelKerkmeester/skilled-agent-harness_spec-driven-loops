@@ -9,7 +9,7 @@ contextType: "spec"
 status: "partial"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/040-v-rule-cross-spec-overreach"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/_041-v-rule-cross-spec-overreach"
     last_updated_at: "2026-05-14T15:37:00Z"
     last_updated_by: "main-agent"
     recent_action: "V8 source patch and tests pass; build is blocked by EPERM writes in mcp_server/dist"
@@ -30,7 +30,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/040-v-rule-cross-spec-overreach` |
+| **Spec Folder** | `system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/_041-v-rule-cross-spec-overreach` |
 | **Started** | 2026-05-14 |
 | **Completed** | Partial - build blocked by local EPERM writes |
 | **Level** | 2 |
@@ -81,7 +81,7 @@ Single autonomous Codex dispatch on `main`, with no branch and no commit. No MCP
 | New V8 overreach Vitest | PASS | `env -u EMBEDDINGS_PROVIDER npx vitest run ../scripts/tests/validate-memory-quality-v8-overreach.vitest.ts`: 1 file passed, 5 tests passed. |
 | Existing V8 regex-narrow Vitest | PASS | `env -u EMBEDDINGS_PROVIDER npx vitest run ../scripts/tests/validate-memory-quality-v8-regex-narrow.vitest.ts`: 1 file passed, 3 tests passed. |
 | Live validate 037 ADR-003 | PASS | `node .opencode/skills/system-spec-kit/scripts/dist/memory/validate-memory-quality.js .../037-llama-cpp-embedding-worker-deep-dive/decision-record.md`: `QUALITY_GATE_PASS`, `matchesFound: []`, `current_spec:037-llama-cpp-embedding-worker-deep-dive`. |
-| Strict validate 040 packet | PASS | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .../040-v-rule-cross-spec-overreach --strict`: `RESULT: PASSED`, errors 0, warnings 0. |
+| Strict validate 040 packet | PASS | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .../_041-v-rule-cross-spec-overreach --strict`: `RESULT: PASSED`, errors 0, warnings 0. |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -104,7 +104,7 @@ Single autonomous Codex dispatch on `main`, with no branch and no commit. No MCP
 | AGENT_RECEIVED | yes |
 | SPAWN_AGENT_USED | no |
 | GATE_3_ANSWER | E-Phase-040 |
-| PACKET_PATH | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/040-v-rule-cross-spec-overreach` |
+| PACKET_PATH | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/_041-v-rule-cross-spec-overreach` |
 | SOURCE_FILE | `.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts` |
 | TEST_FILE | `.opencode/skills/system-spec-kit/scripts/tests/validate-memory-quality-v8-overreach.vitest.ts` |
 | VITEST_RESULT | PASS: new overreach Vitest 5/5; existing regex-narrow Vitest 3/3 |

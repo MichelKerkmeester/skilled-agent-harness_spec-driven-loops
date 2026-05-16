@@ -97,5 +97,5 @@ _memory:
 - **Plan**: `plan.md`
 - **Checklist**: `checklist.md`
 - **Implementation Summary**: `implementation-summary.md`
-- **Dependency**: `../040-v-rule-cross-spec-overreach/`
+- **Dependency**: `../_041-v-rule-cross-spec-overreach/`
 <!-- /ANCHOR:cross-refs -->

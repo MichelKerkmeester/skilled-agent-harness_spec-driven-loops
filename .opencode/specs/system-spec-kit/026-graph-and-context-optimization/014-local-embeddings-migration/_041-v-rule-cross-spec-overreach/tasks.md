@@ -9,7 +9,7 @@ contextType: "spec"
 status: "partial"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/040-v-rule-cross-spec-overreach"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/_041-v-rule-cross-spec-overreach"
     last_updated_at: "2026-05-14T15:37:00Z"
     last_updated_by: "main-agent"
     recent_action: "Verification complete except build blocked by mcp_server/dist EPERM writes"
