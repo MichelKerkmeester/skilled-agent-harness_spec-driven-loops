@@ -1,0 +1,44 @@
+{
+  "title": "Upgrade Safety Operability Deep Review",
+  "trigger_phrases": [
+    "045-010-upgrade-safety-operability",
+    "upgrade safety audit",
+    "operability review",
+    "install guide review",
+    "doctor mcp install review"
+  ],
+  "level": 2,
+  "status": "complete",
+  "importance": "important",
+  "contextType": "review",
+  "key_files": [
+    "review-report.md",
+    "spec.md",
+    "plan.md",
+    "tasks.md",
+    "checklist.md",
+    "implementation-summary.md"
+  ],
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-deep-review-program/010-upgrade-safety-operability",
+  "description": "Feature Specification: Upgrade Safety Operability Deep Review",
+  "keywords": [
+    "feature",
+    "specification",
+    "upgrade",
+    "safety",
+    "operability",
+    "deep",
+    "review"
+  ],
+  "lastUpdated": "2026-05-08T08:26:57.381Z",
+  "specId": "010",
+  "folderSlug": "upgrade-safety-operability",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "000-release-cleanup",
+    "003-deep-review-program"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

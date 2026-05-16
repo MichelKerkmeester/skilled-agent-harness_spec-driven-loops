@@ -115,12 +115,12 @@ _memory:
 - `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-root-readme-refresh/research/prompts/iteration-001.md`
 - `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/016-hook-plugin-per-runtime-testing/graph-metadata.json`
 - `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/016-hook-plugin-per-runtime-testing/research/prompts/iteration-001.md`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-release-readiness-deep-review-program/009-documentation-truth/research/prompts/iteration-001.md`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-release-readiness-deep-review-program/010-upgrade-safety-operability/graph-metadata.json`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-release-readiness-deep-review-program/010-upgrade-safety-operability/plan.md`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-release-readiness-deep-review-program/010-upgrade-safety-operability/research/prompts/iteration-001.md`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-release-readiness-deep-review-program/010-upgrade-safety-operability/review-report.md`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-release-readiness-deep-review-program/010-upgrade-safety-operability/tasks.md`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-deep-review-program/009-documentation-truth/research/prompts/iteration-001.md`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-deep-review-program/010-upgrade-safety-operability/graph-metadata.json`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-deep-review-program/010-upgrade-safety-operability/plan.md`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-deep-review-program/010-upgrade-safety-operability/research/prompts/iteration-001.md`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-deep-review-program/010-upgrade-safety-operability/review-report.md`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-deep-review-program/010-upgrade-safety-operability/tasks.md`
 - Current packet `research/prompts/iteration-001.md`
 
 ## Verification Commands

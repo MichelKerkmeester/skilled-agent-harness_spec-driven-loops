@@ -15,7 +15,7 @@ Work through the 24 remaining P1 findings + 15 P2 findings from 046's synthesis 
 - `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-release-readiness-synthesis-and-remediation/synthesis.md` (full P1 + P2 registries)
 - `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-release-readiness-synthesis-and-remediation/remediation-log.md` (what 046 already fixed; do NOT re-do)
 - `.opencode/skills/sk-doc/references/global/evergreen_packet_id_rule.md` (honor)
-- All 10 review-reports under `003-release-readiness-deep-review-program/00X-*/review-report.md` for full context
+- All 10 review-reports under `003-deep-review-program/00X-*/review-report.md` for full context
 
 ### Already fixed in 046 (do NOT re-do)
 

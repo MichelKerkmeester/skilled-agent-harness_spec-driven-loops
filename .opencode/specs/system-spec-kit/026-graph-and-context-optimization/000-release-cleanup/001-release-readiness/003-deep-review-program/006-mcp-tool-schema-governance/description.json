@@ -1,0 +1,25 @@
+{
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-deep-review-program/006-mcp-tool-schema-governance",
+  "description": "Feature Specification: MCP Tool Schema Governance Release-Readiness Audit",
+  "keywords": [
+    "feature",
+    "specification",
+    "mcp",
+    "tool",
+    "schema",
+    "governance",
+    "release-readiness",
+    "audit"
+  ],
+  "lastUpdated": "2026-05-08T08:26:57.354Z",
+  "specId": "006",
+  "folderSlug": "mcp-tool-schema-governance",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "000-release-cleanup",
+    "003-deep-review-program"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}

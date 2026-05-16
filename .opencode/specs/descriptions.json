@@ -4716,7 +4716,7 @@
       "lastUpdated": "2026-05-08T08:26:57.333Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-release-readiness-deep-review-program",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-deep-review-program",
       "description": "Phase Parent: Release-Readiness Deep-Review Program",
       "keywords": [
         "phase",
@@ -4728,7 +4728,7 @@
       "lastUpdated": "2026-05-08T08:26:57.338Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-release-readiness-deep-review-program/001-workflow-correctness",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-deep-review-program/001-workflow-correctness",
       "description": "Feature Specification: Workflow Correctness Release-Readiness Audit",
       "keywords": [
         "feature",
@@ -4741,7 +4741,7 @@
       "lastUpdated": "2026-05-02T10:39:48.489Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-release-readiness-deep-review-program/002-memory-data-integrity",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-deep-review-program/002-memory-data-integrity",
       "description": "Feature Specification: Memory Data Integrity Release-Readiness Audit",
       "keywords": [
         "feature",
@@ -4755,7 +4755,7 @@
       "lastUpdated": "2026-05-02T10:39:48.500Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-release-readiness-deep-review-program/003-skill-advisor-freshness",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-deep-review-program/003-skill-advisor-freshness",
       "description": "Feature Specification: Skill Advisor Freshness Release-Readiness Audit",
       "keywords": [
         "feature",
@@ -4769,7 +4769,7 @@
       "lastUpdated": "2026-05-08T08:26:57.342Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-release-readiness-deep-review-program/004-code-graph-readiness",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-deep-review-program/004-code-graph-readiness",
       "description": "Feature Specification: Code Graph Readiness Release-Readiness Audit",
       "keywords": [
         "feature",
@@ -4783,7 +4783,7 @@
       "lastUpdated": "2026-05-08T08:26:57.346Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-release-readiness-deep-review-program/005-cross-runtime-hook-parity",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-deep-review-program/005-cross-runtime-hook-parity",
       "description": "Feature Specification: Cross-Runtime Hook Parity Release-Readiness Audit",
       "keywords": [
         "feature",
@@ -4797,7 +4797,7 @@
       "lastUpdated": "2026-05-08T08:26:57.350Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-release-readiness-deep-review-program/006-mcp-tool-schema-governance",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-deep-review-program/006-mcp-tool-schema-governance",
       "description": "Feature Specification: MCP Tool Schema Governance Release-Readiness Audit",
       "keywords": [
         "feature",
@@ -4812,7 +4812,7 @@
       "lastUpdated": "2026-05-08T08:26:57.354Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-release-readiness-deep-review-program/007-deep-loop-workflow-integrity",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-deep-review-program/007-deep-loop-workflow-integrity",
       "description": "Feature Specification: Deep Loop Workflow Integrity Release-Readiness Audit",
       "keywords": [
         "feature",
@@ -4827,7 +4827,7 @@
       "lastUpdated": "2026-05-08T08:26:57.359Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-release-readiness-deep-review-program/008-validator-spec-doc-integrity",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-deep-review-program/008-validator-spec-doc-integrity",
       "description": "Feature Specification: 045-008 Validator Spec Doc Integrity",
       "keywords": [
         "feature",
@@ -4841,7 +4841,7 @@
       "lastUpdated": "2026-05-08T08:26:57.364Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-release-readiness-deep-review-program/009-documentation-truth",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-deep-review-program/009-documentation-truth",
       "description": "Feature Specification: Documentation Truth Deep Review",
       "keywords": [
         "feature",
@@ -4854,7 +4854,7 @@
       "lastUpdated": "2026-05-08T08:26:57.370Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-release-readiness-deep-review-program/010-upgrade-safety-operability",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-deep-review-program/010-upgrade-safety-operability",
       "description": "Feature Specification: Upgrade Safety Operability Deep Review",
       "keywords": [
         "feature",

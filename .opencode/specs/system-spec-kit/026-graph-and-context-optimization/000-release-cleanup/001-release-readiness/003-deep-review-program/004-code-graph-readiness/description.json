@@ -1,0 +1,24 @@
+{
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-deep-review-program/004-code-graph-readiness",
+  "description": "Feature Specification: Code Graph Readiness Release-Readiness Audit",
+  "keywords": [
+    "feature",
+    "specification",
+    "code",
+    "graph",
+    "readiness",
+    "release-readiness",
+    "audit"
+  ],
+  "lastUpdated": "2026-05-08T08:26:57.346Z",
+  "specId": "004",
+  "folderSlug": "code-graph-readiness",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "000-release-cleanup",
+    "003-deep-review-program"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}

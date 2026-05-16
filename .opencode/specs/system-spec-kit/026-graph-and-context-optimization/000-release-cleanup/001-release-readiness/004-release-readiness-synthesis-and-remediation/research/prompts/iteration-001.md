@@ -14,16 +14,16 @@ Two-phase packet:
 
 ### Read these first (the 10 review-reports)
 
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-release-readiness-deep-review-program/001-workflow-correctness/review-report.md`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-release-readiness-deep-review-program/002-memory-data-integrity/review-report.md`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-release-readiness-deep-review-program/003-skill-advisor-freshness/review-report.md`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-release-readiness-deep-review-program/004-code-graph-readiness/review-report.md`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-release-readiness-deep-review-program/005-cross-runtime-hook-parity/review-report.md`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-release-readiness-deep-review-program/006-mcp-tool-schema-governance/review-report.md`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-release-readiness-deep-review-program/007-deep-loop-workflow-integrity/review-report.md`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-release-readiness-deep-review-program/008-validator-spec-doc-integrity/review-report.md`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-release-readiness-deep-review-program/009-documentation-truth/review-report.md`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-release-readiness-deep-review-program/010-upgrade-safety-operability/review-report.md`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-deep-review-program/001-workflow-correctness/review-report.md`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-deep-review-program/002-memory-data-integrity/review-report.md`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-deep-review-program/003-skill-advisor-freshness/review-report.md`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-deep-review-program/004-code-graph-readiness/review-report.md`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-deep-review-program/005-cross-runtime-hook-parity/review-report.md`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-deep-review-program/006-mcp-tool-schema-governance/review-report.md`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-deep-review-program/007-deep-loop-workflow-integrity/review-report.md`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-deep-review-program/008-validator-spec-doc-integrity/review-report.md`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-deep-review-program/009-documentation-truth/review-report.md`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-deep-review-program/010-upgrade-safety-operability/review-report.md`
 
 Plus:
 - `.opencode/skills/sk-deep-review/SKILL.md` (severity rubric reference)
@@ -87,7 +87,7 @@ After applying fixes:
 - spec.md, plan.md, tasks.md, checklist.md, implementation-summary.md, description.json, graph-metadata.json
 - PLUS: `synthesis.md` and `remediation-log.md` at packet root
 
-**Deps**: `manual.depends_on=["system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-release-readiness-deep-review-program"]`.
+**Deps**: `manual.depends_on=["system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-deep-review-program"]`.
 
 **Trigger phrases**: `["004-release-readiness-synthesis-and-remediation","release-readiness aggregate","P0 fixes implementation","release blocker remediation"]`.
 
