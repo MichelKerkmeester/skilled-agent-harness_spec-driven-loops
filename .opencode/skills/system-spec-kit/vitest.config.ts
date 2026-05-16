@@ -1,11 +1,10 @@
-import { defineConfig } from 'vitest/config';
-
-export default defineConfig({
+export default {
   test: {
     include: [
+      'tests/**/*.vitest.ts',
       'scripts/tests/**/*.vitest.ts',
       'mcp_server/tests/**/*.vitest.ts',
     ],
     globals: true,
   },
-});
+};

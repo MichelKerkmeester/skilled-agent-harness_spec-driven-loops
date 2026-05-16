@@ -287,6 +287,10 @@ function resolveCliSpecFolderReference(rawArg: string): string | null {
       resolvedNestedPath = explicitProjectScopedPath;
     }
 
+    if (!resolvedNestedPath && explicitProjectScopedPath) {
+      resolvedNestedPath = explicitProjectScopedPath;
+    }
+
     const segments = cleaned.split('/');
     if (!resolvedNestedPath && segments.length >= 2) {
       for (const specsDir of getSpecsDirectories()) {
@@ -303,6 +307,7 @@ function resolveCliSpecFolderReference(rawArg: string): string | null {
         }
       }
     }
+
   }
 
   if (resolvedNestedPath) {
