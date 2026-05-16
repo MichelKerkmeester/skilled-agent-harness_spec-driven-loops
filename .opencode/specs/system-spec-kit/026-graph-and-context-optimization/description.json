@@ -14,7 +14,7 @@
   "childTopology": [
     "000-release-cleanup-playbooks",
     "001-research-and-baseline",
-    "002-resource-map-template",
+    "002-resource-map-deep-loop-fix",
     "003-continuity-memory-runtime",
     "004-runtime-executor-hardening",
     "005-memory-indexer-invariants",

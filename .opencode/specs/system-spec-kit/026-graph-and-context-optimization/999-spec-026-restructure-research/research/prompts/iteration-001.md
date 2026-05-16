@@ -6,7 +6,7 @@ You are a SWE-1.6 deep-research iteration worker. Stay read-only. Cite evidence 
 
 ## Pre-planning
 
-**Goal:** Classify the first four direct children of `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/` — namely `000-release-cleanup`, `001-research-and-baseline`, `002-resource-map-template`, `003-continuity-memory-runtime` — on three axes: still-load-bearing / merge-candidate / delete-candidate.
+**Goal:** Classify the first four direct children of `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/` — namely `000-release-cleanup`, `001-research-and-baseline`, `002-resource-map-deep-loop-fix`, `003-continuity-memory-runtime` — on three axes: still-load-bearing / merge-candidate / delete-candidate.
 
 **Steps:**
 
@@ -28,7 +28,7 @@ You are a SWE-1.6 deep-research iteration worker. Stay read-only. Cite evidence 
 
 ## Research Question (scoped)
 
-For each of `026/000-release-cleanup`, `026/001-research-and-baseline`, `026/002-resource-map-template`, `026/003-continuity-memory-runtime`:
+For each of `026/000-release-cleanup`, `026/001-research-and-baseline`, `026/002-resource-map-deep-loop-fix`, `026/003-continuity-memory-runtime`:
 
 1. What problem did the packet solve?
 2. Is the solution still load-bearing (referenced by current code or active packets)?
@@ -61,7 +61,7 @@ For each of `026/000-release-cleanup`, `026/001-research-and-baseline`, `026/002
 ### 001-research-and-baseline
 <same structure>
 
-### 002-resource-map-template
+### 002-resource-map-deep-loop-fix
 <same structure>
 
 ### 003-continuity-memory-runtime

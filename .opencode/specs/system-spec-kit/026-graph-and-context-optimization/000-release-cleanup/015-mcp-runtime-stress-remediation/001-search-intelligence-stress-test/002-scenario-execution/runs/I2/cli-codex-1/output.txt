@@ -4616,7 +4616,7 @@ exec
 .opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/027-memory-plugin-and-refinement/001-memory-repo-analysis/plan.md
 .opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/027-memory-plugin-and-refinement/001-memory-repo-analysis/checklist.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-hook-parity/002-copilot-hook-parity-remediation/research/007-deep-review-remediation-pt-03/deep-research-strategy.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-template/003-resource-map-deep-loop-integration/research/deep-research-strategy.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-deep-loop-fix/003-resource-map-deep-loop-integration/research/deep-research-strategy.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-runtime-executor-hardening/001-foundational-runtime/research/deep-research-strategy.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/006-research-memory-redundancy/decision-record.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/006-research-memory-redundancy/spec.md
@@ -4665,17 +4665,17 @@ exec
 .opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/027-memory-plugin-and-refinement/001-memory-repo-analysis/scratch/legacy-memory-quarantine/17-12-25_14-08__roampal-analysis.md
 .opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/027-memory-plugin-and-refinement/001-memory-repo-analysis/scratch/legacy-memory-quarantine/17-12-25_14-37__roampal-analysis.md
 .opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/027-memory-plugin-and-refinement/001-memory-repo-analysis/scratch/legacy-memory-quarantine/17-12-25_14-00__roampal-analysis.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-template/003-resource-map-deep-loop-integration/research/iterations/iteration-004.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-deep-loop-fix/003-resource-map-deep-loop-integration/research/iterations/iteration-004.md
 .opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/027-memory-plugin-and-refinement/001-memory-repo-analysis/tasks.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-template/003-resource-map-deep-loop-integration/research/iterations/iteration-005.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-template/003-resource-map-deep-loop-integration/research/iterations/iteration-001.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-deep-loop-fix/003-resource-map-deep-loop-integration/research/iterations/iteration-005.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-deep-loop-fix/003-resource-map-deep-loop-integration/research/iterations/iteration-001.md
 .opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/027-memory-plugin-and-refinement/001-memory-repo-analysis/description.json
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-template/003-resource-map-deep-loop-integration/research/iterations/iteration-006.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-deep-loop-fix/003-resource-map-deep-loop-integration/research/iterations/iteration-006.md
 .opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/027-memory-plugin-and-refinement/001-memory-repo-analysis/graph-metadata.json
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-template/003-resource-map-deep-loop-integration/research/iterations/iteration-002.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-template/003-resource-map-deep-loop-integration/research/iterations/iteration-003.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-template/003-resource-map-deep-loop-integration/research/iterations/iteration-007.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-template/003-resource-map-deep-loop-integration/research/research.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-deep-loop-fix/003-resource-map-deep-loop-integration/research/iterations/iteration-002.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-deep-loop-fix/003-resource-map-deep-loop-integration/research/iterations/iteration-003.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-deep-loop-fix/003-resource-map-deep-loop-integration/research/iterations/iteration-007.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-deep-loop-fix/003-resource-map-deep-loop-integration/research/research.md
 .opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/067-voyage-4-upgrade/scratch/legacy-memory-quarantine/15-01-26_19-02__voyage-4-upgrade.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-runtime-executor-hardening/001-foundational-runtime/research/deep-research-config.json
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-runtime-executor-hardening/001-foundational-runtime/research/deep-research-dashboard.md
@@ -4708,13 +4708,13 @@ exec
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/scratch/iteration-6-prompt.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/scratch/iteration-11-prompt.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/scratch/copilot-phase-1-audit-prompt.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-template/003-resource-map-deep-loop-integration/research/deltas/iter-001.jsonl
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-template/003-resource-map-deep-loop-integration/research/deltas/iter-003.jsonl
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-template/003-resource-map-deep-loop-integration/research/deltas/iter-007.jsonl
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-template/003-resource-map-deep-loop-integration/research/deltas/iter-005.jsonl
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-template/003-resource-map-deep-loop-integration/research/deltas/iter-002.jsonl
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-template/003-resource-map-deep-loop-integration/research/deltas/iter-004.jsonl
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-template/003-resource-map-deep-loop-integration/research/deltas/iter-006.jsonl
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-deep-loop-fix/003-resource-map-deep-loop-integration/research/deltas/iter-001.jsonl
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-deep-loop-fix/003-resource-map-deep-loop-integration/research/deltas/iter-003.jsonl
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-deep-loop-fix/003-resource-map-deep-loop-integration/research/deltas/iter-007.jsonl
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-deep-loop-fix/003-resource-map-deep-loop-integration/research/deltas/iter-005.jsonl
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-deep-loop-fix/003-resource-map-deep-loop-integration/research/deltas/iter-002.jsonl
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-deep-loop-fix/003-resource-map-deep-loop-integration/research/deltas/iter-004.jsonl
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-deep-loop-fix/003-resource-map-deep-loop-integration/research/deltas/iter-006.jsonl
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/scratch/spec-doc-phase-3-validation.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/scratch/deep-research-prompt-master-consolidation.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/scratch/iteration-14-prompt.md
@@ -4722,10 +4722,10 @@ exec
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/scratch/phase3-final-audit.json
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/scratch/iteration-5-prompt.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/scratch/iteration-12-prompt.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-template/003-resource-map-deep-loop-integration/research/deep-research-config.json
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-template/003-resource-map-deep-loop-integration/research/deep-research-dashboard.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-template/003-resource-map-deep-loop-integration/research/findings-registry.json
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-template/003-resource-map-deep-loop-integration/research/deep-research-state.jsonl
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-deep-loop-fix/003-resource-map-deep-loop-integration/research/deep-research-config.json
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-deep-loop-fix/003-resource-map-deep-loop-integration/research/deep-research-dashboard.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-deep-loop-fix/003-resource-map-deep-loop-integration/research/findings-registry.json
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-deep-loop-fix/003-resource-map-deep-loop-integration/research/deep-research-state.jsonl
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-hook-parity/002-copilot-hook-parity-remediation/research/007-deep-review-remediation-pt-03/research.md
 .opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/027-memory-plugin-and-refinement/003-memory-plugin-debugging/spec.md
 .opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/027-memory-plugin-and-refinement/003-memory-plugin-debugging/plan.md
@@ -4831,14 +4831,14 @@ exec
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/tasks.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/description.json
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/context-index.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-template/001-reverse-parent-research-review-folders/resource-map.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-template/001-reverse-parent-research-review-folders/spec.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-template/001-reverse-parent-research-review-folders/plan.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-template/001-reverse-parent-research-review-folders/checklist.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-template/001-reverse-parent-research-review-folders/tasks.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-template/001-reverse-parent-research-review-folders/description.json
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-template/001-reverse-parent-research-review-folders/implementation-summary.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-template/001-reverse-parent-research-review-folders/graph-metadata.json
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-deep-loop-fix/001-reverse-parent-research-review-folders/resource-map.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-deep-loop-fix/001-reverse-parent-research-review-folders/spec.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-deep-loop-fix/001-reverse-parent-research-review-folders/plan.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-deep-loop-fix/001-reverse-parent-research-review-folders/checklist.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-deep-loop-fix/001-reverse-parent-research-review-folders/tasks.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-deep-loop-fix/001-reverse-parent-research-review-folders/description.json
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-deep-loop-fix/001-reverse-parent-research-review-folders/implementation-summary.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-deep-loop-fix/001-reverse-parent-research-review-folders/graph-metadata.json
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/scratch/rigorous-memory-contract-final/manifest.json
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/scratch/rigorous-memory-contract-final/summary.md
 .opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/027-memory-plugin-and-refinement/003-memory-plugin-debugging/scratch/legacy-memory-quarantine/16-02-26_14-50__implementation-summary-v2.md
@@ -9385,9 +9385,9 @@ exec
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-hook-parity/004-claude-hook-findings-remediation/plan.md:137:| `skill_graph_scan` MCP tool | Internal | Green | Can't verify SC-001 without it; fallback: direct `node scripts/scan.js` if exposed |
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-hook-parity/004-claude-hook-findings-remediation/plan.md:138:| Claude Code CLI `--include-hook-events` | External | Green (verified 2.1.118 on 2026-04-23) | Can't verify REQ-004 hook count; fallback: instrument dist/hooks/claude/* with counter |
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-hook-parity/002-copilot-hook-parity-remediation/spec.md:87:Both Copilot behaviors are silent: there is no error, no log entry, no fallback notice. The hook simply does not fire because the transport was never wired for Copilot.
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-template/003-resource-map-deep-loop-integration/spec.md:152:| REQ-008 | Extractor correctly categorizes paths using the phase-012 ten-category skeleton. | Snapshot tests cover: README, Documents, Commands, Agents, Skills, Specs, Scripts, Tests, Config, Meta. Unknown extensions land in a deterministic fallback category. |
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-template/002-resource-map-template-creation/implementation-summary.md:93:The packet authored its own Level 2 spec docs inline (structured against the Level 2 template shapes) and created the new template file directly, then dispatched cli-codex gpt-5.4 high fast with service_tier fast to execute the coordinated surface-wiring pass across the other ~12 files. cli-copilot was staged as fallback but not needed — codex returned clean edits, a typecheck exit 0, and grep coverage on every target file on the first pass.
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-template/002-resource-map-template-creation/plan.md:127:| cli-codex (with cli-copilot fallback) | External executor | Green | Surface-wiring pass cannot run autonomously; manual edits still possible |
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-deep-loop-fix/003-resource-map-deep-loop-integration/spec.md:152:| REQ-008 | Extractor correctly categorizes paths using the phase-012 ten-category skeleton. | Snapshot tests cover: README, Documents, Commands, Agents, Skills, Specs, Scripts, Tests, Config, Meta. Unknown extensions land in a deterministic fallback category. |
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-deep-loop-fix/002-resource-map-deep-loop-fix-creation/implementation-summary.md:93:The packet authored its own Level 2 spec docs inline (structured against the Level 2 template shapes) and created the new template file directly, then dispatched cli-codex gpt-5.4 high fast with service_tier fast to execute the coordinated surface-wiring pass across the other ~12 files. cli-copilot was staged as fallback but not needed — codex returned clean edits, a typecheck exit 0, and grep coverage on every target file on the first pass.
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-deep-loop-fix/002-resource-map-deep-loop-fix-creation/plan.md:127:| cli-codex (with cli-copilot fallback) | External executor | Green | Surface-wiring pass cannot run autonomously; manual edits still possible |
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-graph-impact-and-affordance-uplift/spec.md:90:- 003 — Code Graph edge `reason`/`step` display + blast_radius uplift (risk levels, min-confidence filter, ambiguity candidates, structured failure-fallback)
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-graph-impact-and-affordance-uplift/004-skill-advisor-affordance-evidence/spec.md:196:- Unknown relation: skipped instead of assigned a fallback multiplier.
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-memory-indexer-invariants/spec.md:145:| `mcp_server/lib/utils/canonical-path.ts` | B | Create | `resolveCanonicalPath()` wrapper around `fs.realpathSync` with fail-open fallback |
@@ -9401,7 +9401,7 @@ exec
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-memory-indexer-invariants/implementation-summary.md:200:| README reversal delete | exit `0`; deleted memory `11672` plus `memory_history=1`, `memory_lineage=1`, `vec_memories=1`, `active_memory_projection=1`; `memory_index` handled FTS via trigger |
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-graph-impact-and-affordance-uplift/007-review-remediation/spec.md:112:| R-007-12 | 005 | T-A | Memory_search cache invalidation on causal-edge mutations (causal-edge generation in cache key) |
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-graph-impact-and-affordance-uplift/007-review-remediation/spec.md:132:| R-007-P2-6 | 003 | T-D | Failure-fallback emits stable `code` + log/metric (operator visibility) |
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-template/003-resource-map-deep-loop-integration/implementation-summary.md:70:| `.opencode/skills/system-spec-kit/scripts/resource-map/README.md` | Created | Documents the extractor input/output contract and fallback behavior. |
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-deep-loop-fix/003-resource-map-deep-loop-integration/implementation-summary.md:70:| `.opencode/skills/system-spec-kit/scripts/resource-map/README.md` | Created | Documents the extractor input/output contract and fallback behavior. |
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-graph-impact-and-affordance-uplift/plan.md:53:- **Goal:** Add `reason`/`step` to edge metadata + display; enrich `blast_radius` with depth groups, risk levels, min-confidence filter, ambiguity candidates, structured failure-fallback.
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-hook-parity/008-docs-impact-remediation/spec.md:76:| 1 | `.opencode/README.md` | 01, 02, 07 | Rewrite Gate 2 and directory-structure prose: hook brief primary, `skill_advisor.py` as fallback; advisor surface now lives in `mcp_server/skill-advisor/`. |
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-hook-parity/008-docs-impact-remediation/spec.md:77:| 2 | `.opencode/install_guides/SET-UP - AGENTS.md` | 02, 07 | Gate 2 setup teaches runtime hook brief first; `skill_advisor.py` as diagnostic fallback; add native-tool/bootstrap verification + `--force-native` / `--force-local` / disable-flag notes. |
@@ -9955,10 +9955,10 @@ exec
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/005-memory-search-runtime-bugs/tasks.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/005-memory-search-runtime-bugs/plan.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/005-memory-search-runtime-bugs/spec.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-template/001-reverse-parent-research-review-folders/implementation-summary.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-template/001-reverse-parent-research-review-folders/tasks.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-template/001-reverse-parent-research-review-folders/plan.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-template/001-reverse-parent-research-review-folders/spec.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-deep-loop-fix/001-reverse-parent-research-review-folders/implementation-summary.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-deep-loop-fix/001-reverse-parent-research-review-folders/tasks.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-deep-loop-fix/001-reverse-parent-research-review-folders/plan.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-deep-loop-fix/001-reverse-parent-research-review-folders/spec.md
 .opencode/specs/system-spec-kit/z_future/agentic-system-upgrade/001-research-agentic-systems/009-xethryon/implementation-summary.md
 .opencode/specs/system-spec-kit/z_future/agentic-system-upgrade/001-research-agentic-systems/009-xethryon/tasks.md
 .opencode/specs/system-spec-kit/z_future/agentic-system-upgrade/001-research-agentic-systems/009-xethryon/plan.md

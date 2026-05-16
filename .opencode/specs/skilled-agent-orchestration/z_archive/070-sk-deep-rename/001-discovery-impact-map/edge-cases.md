@@ -290,15 +290,15 @@ Snippet: `L49: ".opencode/skills/sk-deep-research/scripts/reduce-state.cjs",`
 
 Snippet: `L51: ".opencode/skills/sk-deep-research/scripts/reduce-state.cjs",`
 
-### `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-template/001-reverse-parent-research-review-folders/graph-metadata.json`
+### `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-deep-loop-fix/001-reverse-parent-research-review-folders/graph-metadata.json`
 
 Snippet: `L48: ".opencode/skills/sk-deep-research/scripts/reduce-state.cjs",`
 
-### `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-template/003-resource-map-deep-loop-integration/graph-metadata.json`
+### `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-deep-loop-fix/003-resource-map-deep-loop-integration/graph-metadata.json`
 
 Snippet: `L49: ".opencode/skills/sk-deep-review/scripts/reduce-state.cjs",`
 
-### `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-template/graph-metadata.json`
+### `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-deep-loop-fix/graph-metadata.json`
 
 Snippet: `L55: ".opencode/skills/sk-deep-review/scripts/reduce-state.cjs",`
 
@@ -366,15 +366,15 @@ Snippet: `L49: ".opencode/skills/sk-deep-research/scripts/reduce-state.cjs",`
 
 Snippet: `L51: ".opencode/skills/sk-deep-research/scripts/reduce-state.cjs",`
 
-### `specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-template/001-reverse-parent-research-review-folders/graph-metadata.json`
+### `specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-deep-loop-fix/001-reverse-parent-research-review-folders/graph-metadata.json`
 
 Snippet: `L48: ".opencode/skills/sk-deep-research/scripts/reduce-state.cjs",`
 
-### `specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-template/003-resource-map-deep-loop-integration/graph-metadata.json`
+### `specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-deep-loop-fix/003-resource-map-deep-loop-integration/graph-metadata.json`
 
 Snippet: `L49: ".opencode/skills/sk-deep-review/scripts/reduce-state.cjs",`
 
-### `specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-template/graph-metadata.json`
+### `specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-deep-loop-fix/graph-metadata.json`
 
 Snippet: `L55: ".opencode/skills/sk-deep-review/scripts/reduce-state.cjs",`
 

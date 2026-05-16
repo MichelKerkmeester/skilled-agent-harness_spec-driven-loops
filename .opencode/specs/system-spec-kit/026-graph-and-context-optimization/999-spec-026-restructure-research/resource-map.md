@@ -84,7 +84,7 @@ Source: iter 001-006 (SWE-1.6 classifications) + iter 041 (gpt-5.5 adversarial r
 |--------|------|--------|---------:|----------------|------|
 | 000-release-cleanup | phase parent | in_progress | **59** (filesystem; not 2 as initially reported) | load-bearing (meta-phase; needs recatalog before any merge work) | iter 001:59-61, council 2026-05-16 |
 | 001-research-and-baseline | phase parent | complete | 7 | load-bearing | iter 001:71-73 |
-| 002-resource-map-template | phase parent | in_progress | 3 | load-bearing | iter 001:83-85 |
+| 002-resource-map-deep-loop-fix | phase parent | in_progress | 3 | load-bearing | iter 001:83-85 |
 | 003-continuity-memory-runtime | phase parent | complete | — | load-bearing | iter 002:20-34 |
 | 004-runtime-executor-hardening | phase parent | complete | 3 | **merge → 003** (override per iter 041) | iter 002:20-34, iter 041 |
 | 005-memory-indexer-invariants | leaf packet | code_complete_pending_track_a | — | load-bearing | iter 002:79-81 |
@@ -112,7 +112,7 @@ Source: iter 007-022 (per-phase-parent deep-reads).
 | 013-doctor-update-orchestrator | 5 | 001+002 merge candidates; 003/004/005 load-bearing |
 | 006-graph-impact-and-affordance-uplift | 8 | Confidence-weak; potential draft state |
 | 010-template-levels | 9 | Children 004/005/006/009 rehome candidates (→ 008-skill-advisor or 013) |
-| 002-resource-map-template | 3 | All load-bearing |
+| 002-resource-map-deep-loop-fix | 3 | All load-bearing |
 | 001-research-and-baseline | 7 | All load-bearing (archived research; no restructure churn) |
 | 000-release-cleanup | **59** (filesystem; council 2026-05-16) | Meta-phase wrapper for release work, audit campaigns, dead-code pruning, security sweep, post-program cleanup. RECATALOG needed before any merge work (duplicate `006-*` and `007-*` prefixes present) |
 | 012-causal-graph-channel-routing | 2 | All load-bearing |
@@ -143,7 +143,7 @@ Source: iter 035 (initial 13-phase proposal) + iter 038 (revised to 11 after rem
 |--:|--------------|-------------|---------------------|-----------|------|
 | 000 | `release-cleanup` | Meta-phase wrapper for release alignment, audit campaigns, dead-code pruning, security sweep, post-program cleanup. Outside the linear phase sequence | Current 000-release-cleanup nested children + 015-global-security-sweep relocated as nested child | Meta-phase pattern: release governance work spans the project; doesn't fit linear phase ordering (iter 038, iter 044, iter 047) | meta-phase |
 | 001 | `research-and-baseline` | External research, adoption decisions, baseline measurements | Current 001-research-and-baseline (unchanged) | All 7 nested research children preserved as archived corpus; no restructure churn (iter 035:14-15) | phase parent |
-| 002 | `resource-map-deep-loop-fix` (rename from `resource-map-template`) | Resource map template + deep-loop integration + reverse parent folder restoration | Current 002-resource-map-template (renamed) | Name surface broadened to include the deep-loop fix scope; iter 033 ranked rank-4 recall impact (iter 033:28-29) | phase parent |
+| 002 | `resource-map-deep-loop-fix` (rename from `resource-map-template`) | Resource map template + deep-loop integration + reverse parent folder restoration | Current 002-resource-map-deep-loop-fix (renamed) | Name surface broadened to include the deep-loop fix scope; iter 033 ranked rank-4 recall impact (iter 033:28-29) | phase parent |
 | 003 | `runtime-and-memory` (merged from 003 + 004) | Continuity memory runtime + executor hardening (cache hooks, indexer invariants, executor matrix, hook injection contracts) | Current 003-continuity-memory-runtime + nested children of 004-runtime-executor-hardening preserved as nested phases | Iter 045 PROCEED merge (cost < benefit); iter 044 first-principles also groups these (convergent); decision record needed for the merge (iter 037 weak-rationale flag, iter 038 mitigation) | phase parent (post-merge) |
 | 004 | `memory-indexer-invariants` (current 005 promoted) | Memory indexer lineage invariants + index-scope/constitutional-tier invariants (Track A + Track B) | Current 005-memory-indexer-invariants (no nested) | Standalone leaf packet earned its own phase slot; iter 044 first-principles also separates this (convergent) | leaf packet |
 | 005 | `external-project-adoption` (rename from `graph-impact-and-affordance-uplift`) | External project pt-01 + pt-02 adoption: clean-room license audit, graph impact, affordance uplift | Current 006-graph-impact-and-affordance-uplift (renamed) | Original name abstract; new name surfaces External Project adoption (iter 033:27-28, iter 046 holds for now) | phase parent |
@@ -172,7 +172,7 @@ Source: iter 033 (top-N rename proposals) + iter 046 (scale-pressure-test refine
 | `014-local-embeddings-migration` | `014-local-embeddings-migration` | HIGH | iter 033 rank-1, iter 046 refined |
 | `015-tanstack-security-audit` | `015-tanstack-security-audit` (or absorb into 000 as nested child) | MEDIUM-HIGH | iter 033 rank-2 |
 | `006-graph-impact-and-affordance-uplift` | `006-external-project-adoption` | MEDIUM | iter 033 rank-3 |
-| `002-resource-map-template` | `002-resource-map-deep-loop-fix` | MEDIUM | iter 033 rank-4 |
+| `002-resource-map-deep-loop-fix` | `002-resource-map-deep-loop-fix` | MEDIUM | iter 033 rank-4 |
 
 **Naming convention lock-in** (iter 034 + iter 046):
 
@@ -275,7 +275,7 @@ Renames are cheapest and most reversible. Execute first so subsequent merges wor
 | W1.1 | `git mv 014-local-embeddings-migration 014-local-embeddings-migration` + update graph-metadata.json `manual.depends_on` references | Low |
 | W1.2 | `git mv 015-tanstack-security-audit 015-tanstack-security-audit` (or skip if absorbing into 000 in W2) | Low |
 | W1.3 | `git mv 006-graph-impact-and-affordance-uplift 006-external-project-adoption` | Low |
-| W1.4 | `git mv 002-resource-map-template 002-resource-map-deep-loop-fix` | Low |
+| W1.4 | `git mv 002-resource-map-deep-loop-fix 002-resource-map-deep-loop-fix` | Low |
 
 Per-wave verification: every renamed packet's strict-validate exits 0; grep -r for old names returns 0 outside the rename's own metadata.
 
@@ -354,7 +354,7 @@ Source: iter 040 (SWE-1.6 proof points) + iter 050 (gpt-5.5 validation design) +
 |-------|--------------------|-------------:|---------------------|-------------:|--------:|
 | "How was hook parity testing built?" | 009-hook-parity → 001-hook-parity-remediation | 3 | 008-hook-parity-remediation → 001-runtime-hook-parity-core | 3 | 0 |
 | "Where is the code-graph extraction history?" | 007-code-graph → scan 40 packets → 014-system-code-graph-extraction | 4 | 006-code-graph-capability → Phase 2 or 3 → extraction packet | 3 | 1 |
-| "How was the resource map template created?" | 002-resource-map-template → 002-resource-map-template-creation | 3 | 002-resource-map-deep-loop-fix → 002-resource-map-template-creation | 3 | 0 |
+| "How was the resource map template created?" | 002-resource-map-deep-loop-fix → 002-resource-map-deep-loop-fix-creation | 3 | 002-resource-map-deep-loop-fix → 002-resource-map-deep-loop-fix-creation | 3 | 0 |
 | "How was the cli-devin deep-loop iter contract designed?" | uncertain (002 or 014/059?) | 5-6 | 012-local-embeddings-migration → Phase 5+ → 059-cli-devin-deep-loop-alignment | 3 | 2-3 |
 | "How was the doctor command consolidation done?" | 013-doctor-update-orchestrator → scan 5 packets → consolidation packet | 3 | 011-doctor-and-repair-orchestration → 4 internal phases → consolidation packet | 3 | 0 |
 | "How does skill-advisor route to a skill?" (council Q6) | 008-skill-advisor → scan 26 packets (no clear entry point) | 4-5 | 007-skill-advisor-and-routing → routing-and-intent phase | 3 | 1-2 |

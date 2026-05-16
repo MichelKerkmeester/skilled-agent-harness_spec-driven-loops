@@ -32,7 +32,7 @@ Produce a verified restructure proposal that consolidates the 22 children curren
 ```
 000-release-cleanup                         (phase parent, in_progress)
 001-research-and-baseline
-002-resource-map-template
+002-resource-map-deep-loop-fix
 003-continuity-memory-runtime
 004-runtime-executor-hardening
 005-memory-indexer-invariants

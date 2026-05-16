@@ -48,7 +48,7 @@ _memory:
 |------|--------|--------|------|
 | .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/spec.md | Cited | OK | phase child root (nested phase parent) |
 | .opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/spec.md | Cited | OK | phase child root (nested phase parent) |
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-template/spec.md | Cited | OK | phase child root (nested phase parent) |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-deep-loop-fix/spec.md | Cited | OK | phase child root (nested phase parent) |
 | .opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/spec.md | Cited | OK | phase child root (nested phase parent) |
 | .opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-runtime-executor-hardening/spec.md | Cited | OK | phase child root (nested phase parent) |
 | .opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-memory-indexer-invariants/checklist.md | Cited | OK | phase child |
@@ -82,8 +82,8 @@ _memory:
 | .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/graph-metadata.json | Cited | OK | phase child root (nested phase parent) |
 | .opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/description.json | Cited | OK | phase child root (nested phase parent) |
 | .opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/graph-metadata.json | Cited | OK | phase child root (nested phase parent) |
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-template/description.json | Cited | OK | phase child root (nested phase parent) |
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-template/graph-metadata.json | Cited | OK | phase child root (nested phase parent) |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-deep-loop-fix/description.json | Cited | OK | phase child root (nested phase parent) |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-deep-loop-fix/graph-metadata.json | Cited | OK | phase child root (nested phase parent) |
 | .opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/description.json | Cited | OK | phase child root (nested phase parent) |
 | .opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/graph-metadata.json | Cited | OK | phase child root (nested phase parent) |
 | .opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-runtime-executor-hardening/description.json | Cited | OK | phase child root (nested phase parent) |
@@ -117,7 +117,7 @@ _memory:
 |------|--------|--------|------|
 | .opencode/specs/system-spec-kit/026-graph-and-context-optimization/.DS_Store | Cited | OK | phase parent root |
 | .opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/.DS_Store | Cited | OK | phase child root (nested phase parent) |
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-template/.DS_Store | Cited | OK | phase child root (nested phase parent) |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-deep-loop-fix/.DS_Store | Cited | OK | phase child root (nested phase parent) |
 | .opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/.DS_Store | Cited | OK | phase child root (nested phase parent) |
 | .opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-hook-parity/.DS_Store | Cited | OK | phase child root (nested phase parent) |
 <!-- /ANCHOR:config -->

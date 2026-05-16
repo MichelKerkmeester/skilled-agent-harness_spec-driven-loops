@@ -61,7 +61,7 @@
       }
     },
     {
-      "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-template",
+      "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-deep-loop-fix",
       "implementation_summaries_found": 3,
       "rows_total": 80,
       "rows_changed_from_cited": 0,

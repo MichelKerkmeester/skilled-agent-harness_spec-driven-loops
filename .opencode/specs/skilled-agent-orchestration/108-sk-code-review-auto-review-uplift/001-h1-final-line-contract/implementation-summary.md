@@ -83,7 +83,10 @@ Placeholder. Likely entries:
 <!-- ANCHOR:verification -->
 ## Verification
 
-Placeholder. Pending: 6 smoke tests + CI-gate parser + strict validate.
+Pending verification commands:
+- `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <packet> --strict` (exit 0 expected)
+- CI-gate parser smoke: `tail -1 <review-output> | grep -E '^(Review status|Review verdict):'` distinguishes all 3 verdict states
+- `npm --prefix .opencode/skills/system-spec-kit/mcp_server test` (test suite green post-edits, if any tests reference review-output format)
 <!-- /ANCHOR:verification -->
 
 ---

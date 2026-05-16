@@ -5405,9 +5405,9 @@ exec
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/001-cache-warning-hooks/spec.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/spec.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/003-continuity-refactor-gates/spec.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-template/001-reverse-parent-research-review-folders/spec.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-template/002-resource-map-template-creation/spec.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-template/spec.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-deep-loop-fix/001-reverse-parent-research-review-folders/spec.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-deep-loop-fix/002-resource-map-deep-loop-fix-creation/spec.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-deep-loop-fix/spec.md
 
 codex
 I found the current memory system surfaces. The short version: **Spec Kit Memory is packet-first now**. Saves no longer write active `specs/.../memory/*.md` notes; recovery goes through `handover.md -> _memory.continuity -> spec docs`, with indexed retrieval layered on top.

@@ -32,7 +32,7 @@ Track 11 (gpt-5.5 adversarial review) resolved cross-track contradictions and pr
 |--------|--------------|-----------|----------|
 | 000-release-cleanup | load-bearing | Phase parent for release cleanup work with 2 nested children (014-phase-parent-documentation, 015-mcp-runtime-stress-remediation) | iter 001:59-61 |
 | 001-research-and-baseline | load-bearing | Master research packet for v2 cross-phase synthesis, adoption decisions, and downstream sequencing (214 files) | iter 001:71-73 |
-| 002-resource-map-template | load-bearing | Resource map template creation, local-owner deep-loop artifact placement restoration, and deep-loop integration (71 files) | iter 001:83-85 |
+| 002-resource-map-deep-loop-fix | load-bearing | Resource map template creation, local-owner deep-loop artifact placement restoration, and deep-loop integration (71 files) | iter 001:83-85 |
 | 003-continuity-memory-runtime | load-bearing | Phase parent for cache hooks, memory quality, continuity refactor, and memory-save rewrite (253 files) | iter 002:20-34 |
 | 004-runtime-executor-hardening | merge candidate (into 003) | Minimal implementation evidence (14 code search matches), consolidation artifact with identical problem statement to 003 | iter 002:20-34 |
 | 005-memory-indexer-invariants | load-bearing | Memory indexer invariant fixes: Track A (lineage/concurrency) and Track B (index-scope/constitutional tier) (23 files) | iter 002:79-81 |
@@ -328,7 +328,7 @@ Track 11 (gpt-5.5 adversarial review) resolved cross-track contradictions and pr
   1. 014-local-embeddings-migration → 014-local-embeddings-setup-a (HIGH impact)
   2. 015-tanstack-security-audit → 015-tanstack-security-audit (MEDIUM-HIGH impact)
   3. 006-graph-impact-and-affordance-uplift → 006-external-project-adoption (MEDIUM impact)
-  4. 002-resource-map-template → 002-resource-map-and-deep-loop-fix (MEDIUM impact)
+  4. 002-resource-map-deep-loop-fix → 002-resource-map-and-deep-loop-fix (MEDIUM impact)
 - 4 mild mismatches deferred due to verbosity-only issues
 
 **Naming Convention Lock-In (iter 034):**
@@ -647,7 +647,7 @@ Every finding in this ledger cites the specific iteration number and file:line w
    - Treat 000 as meta-phase (iter 045:179-184)
 
 4. **Apply top-4 renames from iter 033/046:**
-   - 002-resource-map-template → 002-resource-map-deep-loop-fix (iter 033:28-29, iter 046:58)
+   - 002-resource-map-deep-loop-fix → 002-resource-map-deep-loop-fix (iter 033:28-29, iter 046:58)
    - 006-graph-impact-and-affordance-uplift → 006-external-project-adoption (iter 033:27-28)
    - 014-local-embeddings-migration → 014-local-embeddings-migration (iter 046:55)
    - 015-tanstack-security-audit → 015-tanstack-security-audit (iter 033:26-27)

@@ -22,7 +22,7 @@
 
 | Iter | Track | RQ (one-line) | Primary input |
 |-----:|------:|---------------|---------------|
-| 001 | 1 | Classify 026/000-release-cleanup + 001-research-and-baseline + 002-resource-map-template + 003-continuity-memory-runtime | 4 packet dirs |
+| 001 | 1 | Classify 026/000-release-cleanup + 001-research-and-baseline + 002-resource-map-deep-loop-fix + 003-continuity-memory-runtime | 4 packet dirs |
 | 002 | 1 | Classify 026/004-runtime-executor-hardening + 005-memory-indexer-invariants + 006-graph-impact-and-affordance-uplift | 3 packet dirs |
 | 003 | 1 | Classify 026/007-code-graph (phase parent only) + 008-skill-advisor | 2 packet dirs |
 | 004 | 1 | Classify 026/009-hook-parity (parent only) + 010-template-levels (parent only) + 011-cocoindex-daemon-resilience | 3 packet dirs |

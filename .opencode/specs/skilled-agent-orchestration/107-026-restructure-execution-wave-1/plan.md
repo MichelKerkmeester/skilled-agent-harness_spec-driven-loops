@@ -68,7 +68,7 @@ Per resource-map §3-§4. This packet documents execution; does not modify the p
 - W1.1: 014-local-embeddings-migration → 014-local-embeddings-migration
 - W1.2: 015-tanstack-security-audit → 015-tanstack-security-audit
 - W1.3: 006-graph-impact-and-affordance-uplift → 006-external-project-adoption
-- W1.4: 002-resource-map-template → 002-resource-map-deep-loop-fix
+- W1.4: 002-resource-map-deep-loop-fix → 002-resource-map-deep-loop-fix
 
 ### Wave 2 — Merges (deepseek-v4-pro via cli-opencode)
 Per resource-map §3.3 PROCEED table: M2, M3, M4, M5, M6, M7, M11.

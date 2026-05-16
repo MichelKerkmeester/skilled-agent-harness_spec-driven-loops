@@ -149,8 +149,8 @@ Generated on 2026-05-05 by cli-codex. Scope includes active text files under `.o
 | `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/015-mcp-runtime-stress-remediation/001-search-intelligence-stress-test/002-scenario-execution/runs/Q2/cli-codex-1/output.txt` | 685 | 109 | 576 | 003 |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/015-mcp-runtime-stress-remediation/010-stress-test-rerun-v1-0-2/runs/Q2/cli-codex-1/output.txt` | 673 | 16 | 657 | 003 |
 | `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/015-mcp-runtime-stress-remediation/010-stress-test-rerun-v1-0-2/runs/Q2/cli-codex-1/output.txt` | 673 | 16 | 657 | 003 |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-template/003-resource-map-deep-loop-integration/research/findings-registry.json` | 214 | 96 | 118 | 003 |
-| `specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-template/003-resource-map-deep-loop-integration/research/findings-registry.json` | 214 | 96 | 118 | 003 |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-deep-loop-fix/003-resource-map-deep-loop-integration/research/findings-registry.json` | 214 | 96 | 118 | 003 |
+| `specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-deep-loop-fix/003-resource-map-deep-loop-integration/research/findings-registry.json` | 214 | 96 | 118 | 003 |
 | `.opencode/specs/z_future/hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/research/research.md` | 159 | 44 | 115 | 003 |
 | `specs/z_future/hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/research/research.md` | 159 | 44 | 115 | 003 |
 ### runtime-claude

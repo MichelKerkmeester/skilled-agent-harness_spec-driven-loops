@@ -5418,7 +5418,7 @@
       "lastUpdated": "2026-04-24T15:56:56.017Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/002-resource-map-template",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/002-resource-map-deep-loop-fix",
       "description": "Feature Specification: Resource Map Template",
       "keywords": [
         "feature",
@@ -5430,7 +5430,7 @@
       "lastUpdated": "2026-05-08T08:26:57.573Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/002-resource-map-template/001-reverse-parent-research-review-folders",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/002-resource-map-deep-loop-fix/001-reverse-parent-research-review-folders",
       "description": "Feature Specification: Reverse Parent Research/Review Folder Placement",
       "keywords": [
         "feature",
@@ -5445,7 +5445,7 @@
       "lastUpdated": "2026-05-08T08:26:57.578Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/002-resource-map-template/002-resource-map-template-creation",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/002-resource-map-deep-loop-fix/002-resource-map-deep-loop-fix-creation",
       "description": "Feature Specification: Resource Map Template",
       "keywords": [
         "feature",
@@ -5457,7 +5457,7 @@
       "lastUpdated": "2026-05-08T08:26:57.582Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/002-resource-map-template/003-resource-map-deep-loop-integration",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/002-resource-map-deep-loop-fix/003-resource-map-deep-loop-integration",
       "description": "Feature Specification: Resource Map Integration for sk-deep-review and sk-deep-research",
       "keywords": [
         "feature",
