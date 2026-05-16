@@ -159,5 +159,5 @@ The child folder was scaffolded with the system-spec-kit Level 3 contract, popul
 1. **Embedding runtime code was not changed.** The only runtime code change is the targeted code graph scan remediation documented above.
 2. **Some older model names remain as documented alternatives.** `all-MiniLM-L6-v2` and `voyage-code-3` references are valid when clearly framed as alternatives, not current defaults.
 3. **Two further code-graph fixes await an MCP restart.** The parser-skip-list-to-warnings routing and the memory_index_scan rejection-reason surfacing are present in `mcp_server/dist/` but the running MCP process loaded its handlers before those edits landed. Restart picks them up.
-4. **Code Graph and Skill Advisor remain non-impact for embedding-provider defaults.** They were not edited for embedding-provider defaults because they do not own those defaults. The 026 packet (`026-llm-model-runtime-inventory`) documents which subsystems use the quantized vs CocoIndex Gemma variants vs no embeddings.
+4. **Code Graph and Skill Advisor remain non-impact for embedding-provider defaults.** They were not edited for embedding-provider defaults because they do not own those defaults. The 026 packet (`_025-llm-model-runtime-inventory`) documents which subsystems use the quantized vs CocoIndex Gemma variants vs no embeddings.
 <!-- /ANCHOR:limitations -->

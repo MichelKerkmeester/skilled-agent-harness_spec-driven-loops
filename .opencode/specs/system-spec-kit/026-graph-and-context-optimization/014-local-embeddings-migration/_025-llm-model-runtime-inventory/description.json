@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "026-llm-model-runtime-inventory",
+  "specFolder": "_025-llm-model-runtime-inventory",
   "description": "Level 1 inventory packet documenting which subsystems use the quantized EmbeddingGemma runtime (Variant A) vs the CocoIndex sentence-transformers runtime (Variant B) vs no embedding model at all.",
   "keywords": [
     "embeddinggemma",

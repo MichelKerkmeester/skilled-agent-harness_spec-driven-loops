@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/026-llm-model-runtime-inventory",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/026-llm-model-runtime-inventory",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/_025-llm-model-runtime-inventory",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/_025-llm-model-runtime-inventory",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a",
   "children_ids": [],
   "migrated": false,
