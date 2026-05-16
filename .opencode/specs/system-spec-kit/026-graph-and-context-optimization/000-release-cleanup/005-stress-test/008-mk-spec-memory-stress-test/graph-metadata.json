@@ -8,7 +8,7 @@
   "migration_source": "legacy",
   "manual": {
     "depends_on": [
-      "skilled-agent-orchestration/113-z-archive-memory-indexing"
+      "system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/011-z-archive-memory-indexing"
     ],
     "supersedes": [],
     "related_to": [

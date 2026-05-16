@@ -7,7 +7,8 @@
     "system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/001-cache-warning-hooks",
     "system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/002-memory-quality-remediation",
     "system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/003-continuity-refactor-gates",
-    "system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/004-memory-save-rewrite"
+    "system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/004-memory-save-rewrite",
+    "system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/011-z-archive-memory-indexing"
   ],
   "migrated": true,
   "migration_source": "legacy",

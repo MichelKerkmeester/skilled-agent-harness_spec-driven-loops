@@ -1,13 +1,13 @@
 ---
-title: "Implementation Summary: 113 z_archive memory indexing"
+title: "Implementation Summary: 026/003/011 z_archive memory indexing"
 description: "Actuals for the 1-line scope fix + 5-iter deep-research audit + 4-commit doc/test propagation."
 trigger_phrases:
-  - "113 summary"
+  - "026/003/011 summary"
 importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/113-z-archive-memory-indexing"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/011-z-archive-memory-indexing"
     last_updated_at: "2026-05-16T13:25:00Z"
     last_updated_by: "main_agent"
     recent_action: "Backfilled post-execution"
@@ -22,7 +22,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Implementation Summary: 113 z_archive memory indexing
+# Implementation Summary: 026/003/011 z_archive memory indexing
 
 <!-- SPECKIT_LEVEL: 1 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: implementation-summary-core | v2.2 -->

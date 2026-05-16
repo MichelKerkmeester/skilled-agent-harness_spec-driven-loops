@@ -1,13 +1,13 @@
 ---
-title: "Implementation Plan: 113 z_archive memory indexing"
+title: "Implementation Plan: 026/003/011 z_archive memory indexing"
 description: "Two-phase plan: un-exclude z_archive from EXCLUDED_FOR_MEMORY (W1, done) + propagate doc/test updates (W2-W4)."
 trigger_phrases:
-  - "113 plan"
+  - "026/003/011 plan"
 importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/113-z-archive-memory-indexing"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/011-z-archive-memory-indexing"
     last_updated_at: "2026-05-16T13:25:00Z"
     last_updated_by: "main_agent"
     recent_action: "Authored plan.md"
@@ -22,7 +22,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Implementation Plan: 113 z_archive memory indexing
+# Implementation Plan: 026/003/011 z_archive memory indexing
 
 <!-- SPECKIT_LEVEL: 1 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->

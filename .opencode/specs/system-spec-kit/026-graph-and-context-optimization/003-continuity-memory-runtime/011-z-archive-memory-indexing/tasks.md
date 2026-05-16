@@ -1,13 +1,13 @@
 ---
-title: "Tasks: 113 z_archive memory indexing"
+title: "Tasks: 026/003/011 z_archive memory indexing"
 description: "Numbered execution checklist for un-exclusion fix + doc/test propagation."
 trigger_phrases:
-  - "113 tasks"
+  - "026/003/011 tasks"
 importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/113-z-archive-memory-indexing"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/011-z-archive-memory-indexing"
     last_updated_at: "2026-05-16T13:25:00Z"
     last_updated_by: "main_agent"
     recent_action: "Authored tasks.md"
@@ -22,7 +22,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Tasks: 113 z_archive memory indexing
+# Tasks: 026/003/011 z_archive memory indexing
 
 <!-- SPECKIT_LEVEL: 1 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->

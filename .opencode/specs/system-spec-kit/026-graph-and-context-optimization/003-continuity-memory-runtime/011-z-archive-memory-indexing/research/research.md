@@ -2,13 +2,13 @@
 title: "Research synthesis: z_archive doc/test propagation audit"
 description: "Consolidated inventory of every doc, test, config, and command surface affected by commit b062b12b4 (z_archive un-excluded from memory index)."
 trigger_phrases:
-  - "113 research"
+  - "026/003/011 research"
   - "z_archive propagation audit"
 importance_tier: "normal"
 contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/113-z-archive-memory-indexing"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/011-z-archive-memory-indexing"
     last_updated_at: "2026-05-16T13:35:00Z"
     last_updated_by: "main_agent"
     recent_action: "Synthesized 5-iter loop"

@@ -1,15 +1,15 @@
 ---
-title: "113: z_archive memory indexing fix"
+title: "026/003/011: z_archive memory indexing fix"
 description: "Un-exclude z_archive from memory index. ARCHIVE_MULTIPLIERS already penalizes z_archive content with multiplier 0.1 in scoring; the redundant EXCLUDED_FOR_MEMORY block contradicts that decay design by removing archived content from the index entirely."
 trigger_phrases:
-  - "113 spec"
+  - "026/003/011 spec"
   - "z_archive indexing"
   - "memory exclusion fix"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/113-z-archive-memory-indexing"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/011-z-archive-memory-indexing"
     last_updated_at: "2026-05-16T12:00:00Z"
     last_updated_by: "main_agent"
     recent_action: "Scaffolded packet 113"
@@ -28,7 +28,7 @@ _memory:
       - "Decay: z_archive keeps existing ARCHIVE_MULTIPLIERS 0.1 multiplier"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-# 113: z_archive memory indexing fix
+# 026/003/011: z_archive memory indexing fix
 
 <!-- SPECKIT_LEVEL: 1 -->
 

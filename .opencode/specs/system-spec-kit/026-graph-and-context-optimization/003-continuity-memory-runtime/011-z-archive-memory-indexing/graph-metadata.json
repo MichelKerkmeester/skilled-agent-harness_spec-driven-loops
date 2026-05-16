@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/011-z-archive-memory-indexing",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/011-z-archive-memory-indexing",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime",
+  "children_ids": [],
+  "migration": {
+    "moved_at": "2026-05-16T19:00:00Z",
+    "source_spec_folder": "skilled-agent-orchestration/113-z-archive-memory-indexing",
+    "reason": "thematic alignment with 003/010-memory-indexer-invariants (same module, same SSOT)",
+    "aliases": [
+      "skilled-agent-orchestration/113-z-archive-memory-indexing"
+    ]
+  },
+  "manual": {
+    "depends_on": [
+      "system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/010-memory-indexer-invariants"
+    ],
+    "supersedes": [],
+    "related_to": [
+      "skilled-agent-orchestration/111-026-cleanup-remediation"
+    ]
+  },
+  "derived": {
+    "trigger_phrases": [
+      "026/003/011 z archive memory indexing",
+      "z archive un exclusion",
+      "excluded for memory z archive",
+      "z_archive indexing",
+      "memory exclusion fix"
+    ],
+    "key_topics": [
+      "026",
+      "003",
+      "011",
+      "z-archive",
+      "memory-index",
+      "archive-multipliers",
+      "decay-not-exclusion",
+      "single-source-of-truth"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "entities": [],
+    "causal_summary": "Packet 113 removed compileSegmentPattern('z_archive') from EXCLUDED_FOR_MEMORY in mcp_server/lib/utils/index-scope.ts (commit b062b12b4). The pre-existing 0.1 multiplier in ARCHIVE_MULTIPLIERS handles deprioritization via scoring. cli-devin SWE-1.6 5-iter deep-research loop converged with 4 consecutive 0.0 new-info ratios; 4 BREAKING test assertions + 5 STALE-INVARIANT docs + 2 STALE-DESCRIPTIVE drift fixes + 1 new SSOT section applied across 9 surfaces. Relocated 2026-05-16 from skilled-agent-orchestration/113 → 026/003/011 to align with 003/010-memory-indexer-invariants (same module: index-scope.ts; same SSOT: EXCLUDED_FOR_MEMORY).",
+    "created_at": "2026-05-16T13:35:00Z",
+    "last_save_at": "2026-05-16T19:00:00Z",
+    "save_lineage": "main_agent",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ]
+  }
+}
