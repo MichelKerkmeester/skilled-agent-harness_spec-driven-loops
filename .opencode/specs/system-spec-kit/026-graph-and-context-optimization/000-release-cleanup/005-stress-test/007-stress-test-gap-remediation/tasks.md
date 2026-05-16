@@ -3,12 +3,12 @@ title: "Tasks: Stress-Test Gap Remediation"
 description: "Task tracker for packet 043 — 3 cli-codex batches, verify, cross-update 042."
 template_source: "SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2"
 trigger_phrases:
-  - "043-stress-test-gap-remediation tasks"
+  - "007-stress-test-gap-remediation tasks"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/043-stress-test-gap-remediation"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/007-stress-test-gap-remediation"
     last_updated_at: "2026-04-30T18:35:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Tasks authored"

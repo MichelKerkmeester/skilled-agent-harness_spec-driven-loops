@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/043-stress-test-gap-remediation",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/043-stress-test-gap-remediation",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/007-stress-test-gap-remediation",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/007-stress-test-gap-remediation",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation",
   "children_ids": [],
   "manual": {
@@ -11,17 +11,17 @@
   },
   "derived": {
     "trigger_phrases": [
-      "043-stress-test-gap-remediation spec",
+      "007-stress-test-gap-remediation spec",
       "P0 stress remediation",
       "close stress gaps",
-      "043-stress-test-gap-remediation plan",
-      "043-stress-test-gap-remediation tasks",
-      "043-stress-test-gap-remediation checklist",
-      "043-stress-test-gap-remediation summary",
+      "007-stress-test-gap-remediation plan",
+      "007-stress-test-gap-remediation tasks",
+      "007-stress-test-gap-remediation checklist",
+      "007-stress-test-gap-remediation summary",
       "stress gap remediation summary"
     ],
     "key_topics": [
-      "043-stress-test-gap-remediation",
+      "007-stress-test-gap-remediation",
       "spec",
       "stress",
       "remediation",

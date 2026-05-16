@@ -12,7 +12,7 @@ Packet 044 path: `.opencode/specs/system-spec-kit/026-graph-and-context-optimiza
 3. **Coverage matrix from 042** — `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/006-stress-coverage-audit-and-run/coverage-matrix.csv` — to map files to feature_ids.
 4. **Earlier run logs** for trajectory:
    - `.opencode/specs/.../006-stress-coverage-audit-and-run/logs/stress-run-20260430-181807Z.log` (28/28, 69/69, 26s)
-   - `.opencode/specs/.../043-stress-test-gap-remediation/logs/stress-run-20260430-190737Z.log` (38/38, 94/94, 29s)
+   - `.opencode/specs/.../007-stress-test-gap-remediation/logs/stress-run-20260430-190737Z.log` (38/38, 94/94, 29s)
 
 ## Output structure (LOCKED order)
 

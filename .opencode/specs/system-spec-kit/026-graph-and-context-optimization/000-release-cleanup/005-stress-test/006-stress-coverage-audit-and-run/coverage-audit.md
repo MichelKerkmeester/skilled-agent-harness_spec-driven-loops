@@ -179,11 +179,11 @@ Python compat has one required gap. The CLI shim and regression suite are compat
 
 ## §4 — Follow-on Recommendation
 
-RECOMMEND opening packet `043-stress-test-gap-remediation` to write missing tests for the P0 features above. Do not auto-create — the user must approve scope.
+RECOMMEND opening packet `007-stress-test-gap-remediation` to write missing tests for the P0 features above. Do not auto-create — the user must approve scope.
 
 ### §4.1 — Closed by packet 043 (2026-04-30)
 
-Packet `043-stress-test-gap-remediation` was opened and completed on the same day. All 10 P0 features above now have direct stress coverage:
+Packet `007-stress-test-gap-remediation` was opened and completed on the same day. All 10 P0 features above now have direct stress coverage:
 
 | feature_id | New stress test file |
 |------------|----------------------|

@@ -3,12 +3,12 @@ title: "Verification Checklist: Stress-Test Gap Remediation"
 description: "Per-feature gap-closure verification + cross-packet 042 update + strict validator pass."
 template_source: "SPECKIT_TEMPLATE_SOURCE: checklist | v2.2"
 trigger_phrases:
-  - "043-stress-test-gap-remediation checklist"
+  - "007-stress-test-gap-remediation checklist"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/043-stress-test-gap-remediation"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/007-stress-test-gap-remediation"
     last_updated_at: "2026-04-30T18:35:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Checklist authored"

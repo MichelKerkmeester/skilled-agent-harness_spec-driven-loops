@@ -5000,7 +5000,7 @@
       "lastUpdated": "2026-05-08T08:26:57.420Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/043-stress-test-gap-remediation",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/007-stress-test-gap-remediation",
       "description": "Spec: Stress-Test Gap Remediation — Close 10 P0 Coverage Gaps",
       "keywords": [
         "spec",

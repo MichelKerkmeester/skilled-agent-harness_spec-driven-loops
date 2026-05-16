@@ -10,7 +10,7 @@ Test pattern documentation, coverage validation, gap remediation.
 - `004-stress-test-folder-completion`
 - `005-stress-test-expansion-and-alignment`
 - `006-stress-coverage-audit-and-run`
-- `043-stress-test-gap-remediation`
+- `007-stress-test-gap-remediation`
 
 ## Provenance
 

@@ -3,12 +3,12 @@ title: "Plan: Stress-Test Gap Remediation"
 description: "Three cli-codex synthesis batches produce 10 new stress tests; full npm run stress validates green; packet 042 matrix is cross-updated."
 template_source: "SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2"
 trigger_phrases:
-  - "043-stress-test-gap-remediation plan"
+  - "007-stress-test-gap-remediation plan"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/043-stress-test-gap-remediation"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/007-stress-test-gap-remediation"
     last_updated_at: "2026-04-30T18:35:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Plan authored"
