@@ -149,7 +149,7 @@ The packet landed in five stages:
 | Track B Constitutional README excluded | User-directed invariant — README is human-facing overview, not a runtime rule surface |
 | Wave-1 Enforce at the storage layer | `memory_update` and `checkpoint_restore` bypassed the handler-only check; SQL-layer downgrade + atomic restore validation is the only place shared by both user-facing and internal mutation paths |
 | Wave-2 Keep cleanup audits durable | Bulk-downgrade without audit rows made the cleanup path invisible to forensic review |
-| Wave-2 Spec-doc exclusions stay additive around SSOT | Duplicated exclusion arrays caused `z_archive` drift; additive overlays keep packet-specific walker behavior without forking the invariant |
+| Wave-2 Spec-doc exclusions stay additive around SSOT | Duplicated exclusion arrays caused drift; additive overlays keep packet-specific walker behavior without forking the invariant. (Post-113 note: `z_archive` was later un-excluded from `EXCLUDED_FOR_MEMORY` per commit b062b12b4 since the `ARCHIVE_MULTIPLIERS` 0.1 decay already deprioritizes archived content; the SSOT pattern itself remains correct.) |
 | Wave-2 Realpath over `path.resolve()` | Symlinks into `z_future/` could bypass string-normalized checks |
 | Wave-2 Cleanup plan on transaction snapshot | Pre-transaction plan + mutating apply opened a TOCTOU window where a concurrent write could leave a violating row behind |
 | Root merge into single packet | Both tracks share the same runtime surface, evaluation tests, and operator-facing invariant surface; one packet beats two sibling phases for discoverability |

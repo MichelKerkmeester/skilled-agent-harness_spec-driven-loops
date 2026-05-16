@@ -24,7 +24,7 @@ The parser and discovery code treat `constitutional/README.md` as non-indexable,
 
 Evidence:
 
-- `.opencode/skills/system-spec-kit/mcp_server/lib/utils/index-scope.ts:25` excludes `z_future`, `external`, and `z_archive`, but not constitutional README paths.
+- `.opencode/skills/system-spec-kit/mcp_server/lib/utils/index-scope.ts:25` excludes `z_future`, `external`, and `z_archive`, but not constitutional README paths. (Historical: at the time this iter was written. Per packet 113 commit b062b12b4 on 2026-05-16, `z_archive` was removed from `EXCLUDED_FOR_MEMORY` since `ARCHIVE_MULTIPLIERS` 0.1 already deprioritizes archived content via scoring.)
 - `.opencode/skills/system-spec-kit/mcp_server/lib/utils/index-scope.ts:50` implements `isConstitutionalPath()` as a segment-only check.
 - `.opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:967` shows intended behavior by requiring constitutional markdown files to have `basename !== 'readme.md'`.
 - `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts:223` applies the same README exclusion during constitutional file discovery.

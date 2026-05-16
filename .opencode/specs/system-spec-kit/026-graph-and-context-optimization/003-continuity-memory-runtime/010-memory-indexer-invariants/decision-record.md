@@ -124,6 +124,8 @@ After A2 landed, live acceptance on `026/009` showed `E_LINEAGE` → `0` but `ca
 
 Memory discovery, spec-doc classification, `isMemoryFile()`, direct saves, and code-graph scans each had their own exclusion logic. Drift caused `z_archive` to be excluded in some places, `z_future` in some but not all, and `/external/` never enforced across both scanning systems.
 
+**Post-113 note (commit b062b12b4):** Per a 2026-05-16 design clarification, `z_archive` is intentionally NOT excluded from memory indexing. The `ARCHIVE_MULTIPLIERS` 0.1 decay in `shared/scoring/folder-scoring.ts` already deprioritizes archived content during scoring; adding it to `EXCLUDED_FOR_MEMORY` would override the decay design and remove archived content from retrieval entirely. `z_future` + `external/` remain excluded as before.
+
 ### Constraints
 - Preserve existing exclusions (`node_modules`, `.git`, `dist`, `vendor`, `mcp-coco-index/mcp_server`).
 - Do not change unrelated save semantics or refactor Track A work.

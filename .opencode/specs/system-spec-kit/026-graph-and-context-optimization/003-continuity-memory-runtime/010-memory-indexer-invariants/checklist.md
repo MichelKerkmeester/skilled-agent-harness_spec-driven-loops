@@ -70,7 +70,7 @@ template_source_marker: "<!-- SPECKIT_TEMPLATE_SOURCE: checklist-core + level2-v
 
 ### Track B — Index Scope and Constitutional Tier
 
-- [x] **CHK-B01** [P0] Shared helper enforces memory exclusions for `z_future`, `external`, and `z_archive`. [EVIDENCE: `lib/utils/index-scope.ts` + wiring in `memory-index-discovery.ts`, `spec-doc-paths.ts`, `memory-parser.ts`.]
+- [x] **CHK-B01** [P0] Shared helper enforces memory exclusions for `z_future` and `external`. `z_archive` is indexed with 0.1 decay multiplier via `ARCHIVE_MULTIPLIERS` (packet 113 commit b062b12b4). [EVIDENCE: `lib/utils/index-scope.ts` + wiring in `memory-index-discovery.ts`, `spec-doc-paths.ts`, `memory-parser.ts`.]
 - [x] **CHK-B02** [P0] Shared helper enforces code-graph exclusions for `external` plus existing default excludes. [EVIDENCE: `code_graph/lib/indexer-types.ts` preserves legacy excludes; `structural-indexer.ts` consults `shouldIndexForCodeGraph()`.]
 - [x] **CHK-B03** [P0] Save-time guard rejects excluded paths and downgrades invalid constitutional tiers. [EVIDENCE: `handlers/memory-save.ts` rejects helper-excluded paths and downgrades non-constitutional constitutional saves to `important` before DB writes.]
 - [x] **CHK-B04** [P1] Constitutional README stays excluded while constitutional rule files remain indexable. [EVIDENCE: `memory-index-discovery.ts` and `memory-parser.ts` reject README under the constitutional folder; `handler-memory-index`, `memory-parser-extended`, `full-spec-doc-indexing`, `gate-d-regression-constitutional-memory` all pass.]

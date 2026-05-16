@@ -78,7 +78,7 @@ The cleanup CLI (`scripts/memory/cleanup-index-scope-violations.ts`) is the one-
 |------|---------------|
 | Track A Fix A | `tasks.md` vs sibling `checklist.md` regression falls through to `CREATE` and never calls `updateExistingMemory` or `reinforceExistingMemory` |
 | Track A Fix B | `fromScan` propagation test passes and the non-scan control still hits the transactional recheck |
-| Track B SSOT | `shouldIndexForMemory()` rejects `z_future`, `external`, `z_archive`, `.git`, `node_modules`; `shouldIndexForCodeGraph()` rejects `external` plus legacy defaults |
+| Track B SSOT | `shouldIndexForMemory()` rejects `z_future`, `external`, `.git`, `node_modules`. `z_archive` is indexed with 0.1 decay multiplier (packet 113 commit b062b12b4). `shouldIndexForCodeGraph()` rejects `external` plus legacy defaults |
 | Track B Defense-in-depth | SQL-layer update, post-insert metadata, and checkpoint restore all downgrade invalid constitutional tiers and emit `governance_audit` rows |
 | Track B Cleanup | Dry-run, apply, and verify all exit `0`; verify counts land at `constitutional_total=2`, `z_future_rows=0`, `external_rows=0`, `invalid_constitutional_rows=0` |
 | Build & Typecheck | `mcp_server` and `scripts` both exit `0` on `npm run typecheck` and `npm run build` |
