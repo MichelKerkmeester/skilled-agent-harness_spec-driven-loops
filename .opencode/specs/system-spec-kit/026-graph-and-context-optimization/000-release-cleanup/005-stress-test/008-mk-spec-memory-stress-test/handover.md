@@ -259,6 +259,15 @@ Before declaring Phase 4 complete:
 <!-- ANCHOR:session-notes -->
 ## 5. Session Notes
 
+### Known sharp edges from THIS session (2026-05-16 partial sweep)
+
+- **Devin rate limit (Cognition API) is the hard ceiling on autonomous Phase 2 throughput.** Hit "Reached overall message rate limit. Please try again later." at ~17:31Z UTC after ~15-20 successful dispatches over ~35 min (39-tool Phase 1 + Phase 2 batches 1-6). Every subsequent call returned in ~4s with the same error. Reset duration unknown. **Resume protocol**: pre-flight a single quick devin probe to confirm rate limit clear; consider serial (1-concurrent) dispatch instead of paired; or pivot to opencode/claude runtime for remaining scenarios.
+- **`agent-config-008.json` "tool rejected" error on cat-04.** Devin tried a tool not in the allow-list (39-byte log, no detail). Audit cat-04 scenario .md files to identify the offending tool before retry.
+- **`checkpoint_create` FAIL under sweep load is a real lifecycle defect.** Surfaced Phase 1; root-cause analyzed by cli-codex (gpt-5.5 fast, parallel during Phase 2 dispatch). Full RCA at `evidence/checkpoint-create-rca.md`. Severity P1. Remediation: typed errors instead of null collapse, SQLITE_BUSY retry with jitter, move snapshot prep outside the write transaction.
+- **`_meta` field in agent-config JSON is rejected by devin's strict parser.** Use commit message or sibling doc for metadata, not JSON.
+- **JSON over-escape in devin output.** Two Phase 1 rows had `\\\"` (4 backslashes) where `\"` was expected, breaking `json.loads`. Add explicit "do not double-escape" rule to prompts AND test-parse each row at dispatch time.
+- **70+ UNAUTOMATABLE classification rate (57.6% of Phase 2 rows)** indicates playbook scope mismatch with cli-devin runtime. Many scenarios assume slash commands + multi-MCP orchestration cli-devin lacks. Future sweeps need either a richer runtime (opencode/claude) or playbook runtime-tagged variants.
+
 ### Known sharp edges from packet 113
 
 - **`devin -p` in non-interactive mode silently writes a TUI "Scrollback error: io error" stream when stdin/stdout aren't fully redirected.** Always pair with `</dev/null` and `> log 2>&1`. Packet 113 dispatcher proved this.
