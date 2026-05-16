@@ -16,7 +16,8 @@
         "reason": "scope strictly extended from intra-skill self-containment to standalone sibling-skill extraction; 002 partial work landed on disk during 003-008 train, reused as starting point",
         "source": "014-system-code-graph-extraction",
         "spec_folder": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/002-code-graph-self-contained-package"
-      }
+      },
+      "system-spec-kit/026-graph-and-context-optimization/007-code-graph/002-code-graph-self-contained-package"
     ],
     "related_to": [
       "system-spec-kit/026-graph-and-context-optimization/007-code-graph/001-code-graph-upgrades",
