@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/021-populate-intent-signals-and-relationships",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-populate-intent-signals-and-relationships",
   "description": "Populate derived.intent_signals + manual.depends_on + manual.related_to in graph-metadata.json across all 17 active skills so the lexical, derived, and graph_causal advisor lanes have skill-side structured signal.",
   "keywords": [
     "intent-signals-populate",

@@ -9,7 +9,7 @@
     "depends_on": [
       "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/016-weight-sweep-harness",
       "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/017-corpus-seeded-sweep",
-      "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/021-populate-intent-signals-and-relationships"
+      "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-populate-intent-signals-and-relationships"
     ],
     "supersedes": [],
     "related_to": [

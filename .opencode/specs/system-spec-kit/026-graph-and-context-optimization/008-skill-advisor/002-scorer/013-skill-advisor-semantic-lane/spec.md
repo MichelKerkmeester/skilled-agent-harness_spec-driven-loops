@@ -133,7 +133,7 @@ All phases complete. Structural layout:
 - [003-skill-metadata-quality-audit](003-skill-metadata-quality-audit/) — metadata quality audit
 - [004-apply-metadata-fixes-and-resweep](004-apply-metadata-fixes-and-resweep/) — metadata fixes + resweep
 - [020-harder-intent-corpus-resweep](020-harder-intent-corpus-resweep/) — harder intent corpus resweep
-- [021-populate-intent-signals-and-relationships](021-populate-intent-signals-and-relationships/) — intent signals + relationships
+- [005-populate-intent-signals-and-relationships](005-populate-intent-signals-and-relationships/) — intent signals + relationships
 - [022-system-skill-advisor-extraction](022-system-skill-advisor-extraction/) — skill advisor extraction (phase parent)
 - [023-advisor-routing-calibration](023-advisor-routing-calibration/) — advisor routing calibration
 <!-- /ANCHOR:nfr -->
