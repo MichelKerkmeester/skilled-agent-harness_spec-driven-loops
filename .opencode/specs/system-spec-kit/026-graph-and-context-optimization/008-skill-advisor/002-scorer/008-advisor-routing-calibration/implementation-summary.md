@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/023-advisor-routing-calibration"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/008-advisor-routing-calibration"
     last_updated_at: "2026-05-14T07:06:20Z"
     last_updated_by: "codex"
     recent_action: "Implemented damping sweep"

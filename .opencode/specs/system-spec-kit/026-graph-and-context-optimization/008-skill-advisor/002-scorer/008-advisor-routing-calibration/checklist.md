@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "verification"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/023-advisor-routing-calibration"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/008-advisor-routing-calibration"
     last_updated_at: "2026-05-14T02:15:00Z"
     last_updated_by: "claude"
     recent_action: "Scaffolded packet"

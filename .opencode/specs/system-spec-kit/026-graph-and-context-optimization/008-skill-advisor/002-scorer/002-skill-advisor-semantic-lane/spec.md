@@ -135,7 +135,7 @@ All phases complete. Structural layout:
 - [007-harder-intent-corpus-resweep](007-harder-intent-corpus-resweep/) — harder intent corpus resweep
 - [005-populate-intent-signals-and-relationships](005-populate-intent-signals-and-relationships/) — intent signals + relationships
 - [006-system-skill-advisor-extraction](006-system-skill-advisor-extraction/) — skill advisor extraction (phase parent)
-- [023-advisor-routing-calibration](023-advisor-routing-calibration/) — advisor routing calibration
+- [008-advisor-routing-calibration](008-advisor-routing-calibration/) — advisor routing calibration
 <!-- /ANCHOR:nfr -->
 
 ---

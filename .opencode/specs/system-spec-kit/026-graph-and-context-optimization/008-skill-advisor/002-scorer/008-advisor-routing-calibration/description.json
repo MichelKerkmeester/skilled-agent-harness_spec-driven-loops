@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/023-advisor-routing-calibration",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/008-advisor-routing-calibration",
   "description": "Damp explicit/lexical lane contributions when their evidence is weak; sweep damping configurations against the 24-prompt + 22-harder corpora using the 015/003 harness; recommend a damping config that lifts harder-corpus intent-described accuracy without regressing the today-correct baseline.",
   "keywords": [
     "advisor-routing-calibration",

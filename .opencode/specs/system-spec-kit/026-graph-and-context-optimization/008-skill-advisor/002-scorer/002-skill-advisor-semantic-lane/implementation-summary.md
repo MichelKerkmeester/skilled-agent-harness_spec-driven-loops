@@ -50,7 +50,7 @@ This packet is the strategy/rationale root. Implementation was shipped in 10 sib
 - 007-harder-intent-corpus-resweep — harder intent corpus resweep
 - 005-populate-intent-signals-and-relationships — intent signals + relationships
 - 006-system-skill-advisor-extraction — MCP extraction (phase parent)
-- 023-advisor-routing-calibration — routing calibration
+- 008-advisor-routing-calibration — routing calibration
 <!-- /ANCHOR:what-built -->
 
 ---
