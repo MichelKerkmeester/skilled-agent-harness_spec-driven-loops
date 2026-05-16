@@ -3,7 +3,7 @@ title: "Feature Specification: 041 resource maps and memory finalization"
 template_source: "SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify | v2.2"
 description: "Spec-local packet for finalizing resource maps and memory indexing across session-touched folders."
 trigger_phrases:
-  - "028-resource-maps-and-memory-finalization"
+  - "014-resource-maps-and-memory-finalization"
   - "resource maps cycle"
   - "memory finalization"
   - "session packet indexing"
@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/028-resource-maps-and-memory-finalization"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/014-resource-maps-and-memory-finalization"
     last_updated_at: "2026-04-29T20:43:11+02:00"
     last_updated_by: "codex-gpt-5.5"
     recent_action: "Resource maps indexed"
@@ -75,12 +75,12 @@ Create accurate resource maps for the target packets and run canonical memory in
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | target packet resource map files | Create | Resource maps for the target packets. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/028-resource-maps-and-memory-finalization/spec.md` | Create | Finalization packet spec. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/028-resource-maps-and-memory-finalization/plan.md` | Create | Finalization execution plan. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/028-resource-maps-and-memory-finalization/tasks.md` | Create | Finalization task ledger. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/028-resource-maps-and-memory-finalization/checklist.md` | Create | Verification checklist. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/028-resource-maps-and-memory-finalization/implementation-summary.md` | Create | Completion narrative and evidence. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/028-resource-maps-and-memory-finalization/finalization-log.md` | Create | Per-packet finalization evidence. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/014-resource-maps-and-memory-finalization/spec.md` | Create | Finalization packet spec. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/014-resource-maps-and-memory-finalization/plan.md` | Create | Finalization execution plan. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/014-resource-maps-and-memory-finalization/tasks.md` | Create | Finalization task ledger. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/014-resource-maps-and-memory-finalization/checklist.md` | Create | Verification checklist. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/014-resource-maps-and-memory-finalization/implementation-summary.md` | Create | Completion narrative and evidence. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/014-resource-maps-and-memory-finalization/finalization-log.md` | Create | Per-packet finalization evidence. |
 | Target packet `description.json` / `graph-metadata.json` | Update | Canonical save metadata refresh. |
 <!-- /ANCHOR:scope -->
 

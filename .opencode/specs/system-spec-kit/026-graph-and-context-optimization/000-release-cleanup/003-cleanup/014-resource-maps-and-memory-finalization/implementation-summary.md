@@ -3,7 +3,7 @@ title: "Implementation Summary: 041 resource maps and memory finalization"
 template_source: "SPECKIT_TEMPLATE_SOURCE: impl-summary-core + level2-verify | v2.2"
 description: "Completion summary for the resource-map generation and canonical memory indexing cycle."
 trigger_phrases:
-  - "028-resource-maps-and-memory-finalization"
+  - "014-resource-maps-and-memory-finalization"
   - "resource maps cycle"
   - "memory finalization"
   - "session packet indexing"
@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/028-resource-maps-and-memory-finalization"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/014-resource-maps-and-memory-finalization"
     last_updated_at: "2026-04-29T20:43:11+02:00"
     last_updated_by: "codex-gpt-5.5"
     recent_action: "Resource maps indexed"
@@ -37,7 +37,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 028-resource-maps-and-memory-finalization |
+| **Spec Folder** | 014-resource-maps-and-memory-finalization |
 | **Completed** | 2026-04-29 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
@@ -72,7 +72,7 @@ Each target folder received a resource map file generated from git-history path 
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/025-stress-test-folder-completion/resource-map.md` | Created | Resource map for stress-test folder completion. |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/012-code-graph-catalog-and-playbook/resource-map.md` | Created | Resource map for code-graph catalog/playbook. |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/013-evergreen-doc-packet-id-removal/resource-map.md` | Created | Resource map for evergreen packet-ID removal. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/028-resource-maps-and-memory-finalization/finalization-log.md` | Created | Per-packet finalization evidence. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/014-resource-maps-and-memory-finalization/finalization-log.md` | Created | Per-packet finalization evidence. |
 <!-- /ANCHOR:what-built -->
 
 ---

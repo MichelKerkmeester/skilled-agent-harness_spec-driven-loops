@@ -1,6 +1,6 @@
 ## Packet 041: resource-maps-and-memory-finalization — Tier B finalization
 
-You are cli-codex (gpt-5.5 high fast) implementing **028-resource-maps-and-memory-finalization**.
+You are cli-codex (gpt-5.5 high fast) implementing **014-resource-maps-and-memory-finalization**.
 
 ### Goal
 
@@ -128,13 +128,13 @@ For each packet:
 
 ### Packet structure to create (Level 2)
 
-7-file structure under `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/028-resource-maps-and-memory-finalization/`.
+7-file structure under `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/014-resource-maps-and-memory-finalization/`.
 
 PLUS: `finalization-log.md` at packet root showing per-packet status (resource-map size + indexing exit code + validator result).
 
 **Deps**: depends on all 17 target packets (013, 031-036, 037 + 6 children, 038, 039, 040). For brevity in graph-metadata, list only the most recent 3-4.
 
-**Trigger phrases**: `["028-resource-maps-and-memory-finalization","resource maps cycle","memory finalization","session packet indexing"]`.
+**Trigger phrases**: `["014-resource-maps-and-memory-finalization","resource maps cycle","memory finalization","session packet indexing"]`.
 
 **Causal summary**: `"Generates resource-map.md for 17 session-touched spec folders + indexes each via generate-context.js. Refreshes description.json + graph-metadata.json across all packets. Closes the session's memory finalization."`.
 

@@ -4664,7 +4664,7 @@
       "lastUpdated": "2026-05-08T08:26:57.323Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/028-resource-maps-and-memory-finalization",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/014-resource-maps-and-memory-finalization",
       "description": "Feature Specification: 041 Resource Maps and Memory Finalization",
       "keywords": [
         "feature",
