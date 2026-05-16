@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/016-weight-sweep-harness",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-weight-sweep-harness",
   "description": "Extend scoring core with laneWeightsOverride, add runLaneWeightSweep, author 20-30 prompt corpus split today-correct vs intent-described, sweep candidate vectors, emit a recommendation markdown.",
   "keywords": [
     "lane-weight-sweep",

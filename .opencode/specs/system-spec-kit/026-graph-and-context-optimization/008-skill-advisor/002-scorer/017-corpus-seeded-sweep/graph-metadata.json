@@ -8,7 +8,7 @@
   "manual": {
     "depends_on": [
       "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/003-embed-cache-and-cosine-wiring",
-      "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/016-weight-sweep-harness"
+      "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-weight-sweep-harness"
     ],
     "supersedes": [],
     "related_to": [
