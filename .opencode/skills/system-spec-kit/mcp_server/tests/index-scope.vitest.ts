@@ -41,15 +41,19 @@ afterEach(() => {
 
 describe('index-scope helper', () => {
   it('exports the expected memory and code-graph exclusion patterns', () => {
-    expect(EXCLUDED_FOR_MEMORY.length).toBeGreaterThanOrEqual(3);
+    // Packet 113 (commit b062b12b4) removed z_archive from EXCLUDED_FOR_MEMORY.
+    // z_archive content stays indexed and is deprioritized via ARCHIVE_MULTIPLIERS
+    // in shared/scoring/folder-scoring.ts (0.1 multiplier).
+    expect(EXCLUDED_FOR_MEMORY.length).toBeGreaterThanOrEqual(2);
     expect(EXCLUDED_FOR_CODE_GRAPH.length).toBeGreaterThanOrEqual(7);
   });
 
-  it('rejects z_future, external, and z_archive for memory indexing', () => {
+  it('rejects z_future and external for memory indexing; z_archive stays indexed', () => {
     expect(shouldIndexForMemory('/workspace/.opencode/specs/system-spec-kit/001-active/spec.md')).toBe(true);
     expect(shouldIndexForMemory('/workspace/.opencode/specs/system-spec-kit/z_future/001-research/spec.md')).toBe(false);
     expect(shouldIndexForMemory('/workspace/.opencode/specs/system-spec-kit/001-active/external/spec.md')).toBe(false);
-    expect(shouldIndexForMemory('/workspace/.opencode/specs/system-spec-kit/z_archive/001-old/spec.md')).toBe(false);
+    // z_archive is INDEXED (not excluded); decay is applied at scoring time, not at index time
+    expect(shouldIndexForMemory('/workspace/.opencode/specs/system-spec-kit/z_archive/001-old/spec.md')).toBe(true);
   });
 
   it('rejects external plus existing default code-graph exclusions', () => {
@@ -71,7 +75,7 @@ describe('index-scope helper', () => {
 });
 
 describe('memory discovery respects index scope invariants', () => {
-  it('skips z_future, external, and z_archive spec docs and graph metadata', () => {
+  it('skips z_future and external spec docs and graph metadata; discovers z_archive', () => {
     const tempRoot = createTempRoot();
     writeFixture(tempRoot, '.opencode/specs/system-spec-kit/001-active/spec.md');
     writeFixture(tempRoot, '.opencode/specs/system-spec-kit/001-active/graph-metadata.json', '{"packet_id":"001-active"}\n');
@@ -82,11 +86,18 @@ describe('memory discovery respects index scope invariants', () => {
     writeFixture(tempRoot, '.opencode/specs/system-spec-kit/z_archive/001-old/spec.md');
     writeFixture(tempRoot, '.opencode/specs/system-spec-kit/z_archive/001-old/graph-metadata.json', '{"packet_id":"001-old"}\n');
 
-    const specDocs = findSpecDocuments(tempRoot).map(filePath => relative(tempRoot, filePath).replace(/\\/g, '/'));
-    const graphFiles = findGraphMetadataFiles(tempRoot).map(filePath => relative(tempRoot, filePath).replace(/\\/g, '/'));
+    const specDocs = findSpecDocuments(tempRoot).map(filePath => relative(tempRoot, filePath).replace(/\\/g, '/')).sort();
+    const graphFiles = findGraphMetadataFiles(tempRoot).map(filePath => relative(tempRoot, filePath).replace(/\\/g, '/')).sort();
 
-    expect(specDocs).toEqual(['.opencode/specs/system-spec-kit/001-active/spec.md']);
-    expect(graphFiles).toEqual(['.opencode/specs/system-spec-kit/001-active/graph-metadata.json']);
+    // z_archive content IS discovered post packet-113; deprioritization happens at scoring time via ARCHIVE_MULTIPLIERS.
+    expect(specDocs).toEqual([
+      '.opencode/specs/system-spec-kit/001-active/spec.md',
+      '.opencode/specs/system-spec-kit/z_archive/001-old/spec.md',
+    ]);
+    expect(graphFiles).toEqual([
+      '.opencode/specs/system-spec-kit/001-active/graph-metadata.json',
+      '.opencode/specs/system-spec-kit/z_archive/001-old/graph-metadata.json',
+    ]);
   });
 });
 

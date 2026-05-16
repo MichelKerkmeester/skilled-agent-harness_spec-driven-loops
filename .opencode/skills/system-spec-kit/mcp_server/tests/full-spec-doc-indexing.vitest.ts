@@ -278,8 +278,12 @@ describe('Spec 126 Phase 4: Parser Enhancements', () => {
       expect(isMemoryFile('/p/.opencode/specs/003/100/scratch/spec.md')).toBe(false);
     });
 
-    it('Rejects spec.md in /z_archive/ directory', () => {
-      expect(isMemoryFile('/p/.opencode/specs/003/100/z_archive/spec.md')).toBe(false);
+    it('Accepts spec.md in /z_archive/<packet>/ subtree (decay applied at scoring time)', () => {
+      // Per packet 113 (commit b062b12b4), z_archive content stays indexed.
+      // Deprioritization happens via ARCHIVE_MULTIPLIERS (0.1) in shared/scoring/folder-scoring.ts.
+      // Path must follow the canonical /specs/<...>/z_archive/<NNN-packet>/spec.md shape;
+      // a bare /z_archive/spec.md with no packet-leaf parent does not classify as a spec doc.
+      expect(isMemoryFile('/p/.opencode/specs/003/100/z_archive/001-old-packet/spec.md')).toBe(true);
     });
 
     it('Rejects spec.md in /z_future/ directory', () => {
