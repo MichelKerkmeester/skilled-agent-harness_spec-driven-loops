@@ -39,7 +39,7 @@ interface SearchQualityCorpus {
 }
 
 const SEARCH_QUALITY_CORPUS: SearchQualityCorpus = {
-  version: '006-search-query-rag-optimization-baseline-v1',
+  version: '002-search-query-rag-optimization-baseline-v1',
   cases: [
     {
       id: 'v101-weak-retrieval-refusal',

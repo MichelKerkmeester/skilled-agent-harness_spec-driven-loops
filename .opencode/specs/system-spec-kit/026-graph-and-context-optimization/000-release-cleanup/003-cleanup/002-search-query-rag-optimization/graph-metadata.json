@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/006-search-query-rag-optimization",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/006-search-query-rag-optimization",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-search-query-rag-optimization",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-search-query-rag-optimization",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation",
   "children_ids": [],
   "migrated": false,
@@ -17,7 +17,7 @@
   },
   "derived": {
     "trigger_phrases": [
-      "006-search-query-rag-optimization",
+      "002-search-query-rag-optimization",
       "search quality harness",
       "query plan telemetry",
       "rag optimization measurement"

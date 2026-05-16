@@ -5,7 +5,7 @@
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup",
   "children_ids": [
     "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cleanup/001-memory-indexer-storage-boundary",
-    "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cleanup/006-search-query-rag-optimization",
+    "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cleanup/002-search-query-rag-optimization",
     "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cleanup/006-vitest-baseline-recovery",
     "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cleanup/007-search-rag-measurement-driven-implementation",
     "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cleanup/010-vestigial-embedding-readiness-gate-removal",

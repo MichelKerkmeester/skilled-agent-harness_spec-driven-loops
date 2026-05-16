@@ -10,7 +10,7 @@ importance_tier: "high"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/006-search-query-rag-optimization"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-search-query-rag-optimization"
     last_updated_at: "2026-04-28T21:10:07Z"
     last_updated_by: "codex"
     recent_action: "Completed harness and query-plan telemetry remediation"
@@ -24,8 +24,8 @@ _memory:
       - ".opencode/skills/system-spec-kit/mcp_server/lib/query/query-plan.ts"
       - ".opencode/skills/system-spec-kit/mcp_server/tests/query-plan-emission.vitest.ts"
     session_dedup:
-      fingerprint: "sha256:006-search-query-rag-optimization-summary-20260428"
-      session_id: "006-search-query-rag-optimization-20260428"
+      fingerprint: "sha256:002-search-query-rag-optimization-summary-20260428"
+      session_id: "002-search-query-rag-optimization-20260428"
       parent_session_id: "019-search-query-rag-optimization-research"
     completion_pct: 100
     open_questions: []
@@ -46,7 +46,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 006-search-query-rag-optimization |
+| **Spec Folder** | 002-search-query-rag-optimization |
 | **Completed** | 2026-04-28 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

@@ -11,7 +11,7 @@ importance_tier: "high"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/006-search-query-rag-optimization"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-search-query-rag-optimization"
     last_updated_at: "2026-04-28T21:02:24Z"
     last_updated_by: "codex"
     recent_action: "Completed search-quality harness and telemetry-only QueryPlan implementation"
@@ -25,8 +25,8 @@ _memory:
       - ".opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/"
       - ".opencode/skills/system-spec-kit/mcp_server/lib/query/query-plan.ts"
     session_dedup:
-      fingerprint: "sha256:006-search-query-rag-optimization-20260428"
-      session_id: "006-search-query-rag-optimization-20260428"
+      fingerprint: "sha256:002-search-query-rag-optimization-20260428"
+      session_id: "002-search-query-rag-optimization-20260428"
       parent_session_id: "019-search-query-rag-optimization-research"
     completion_pct: 100
     open_questions: []
@@ -75,7 +75,7 @@ Create measurement infrastructure and telemetry-only query planning so future RA
 ### In Scope
 - Workstream 1: Search-quality harness and corpus covering v1.0.1/v1.0.2 stress-cell themes plus ambiguous and paraphrase queries.
 - Workstream 2: Explicit query-plan contract with telemetry-only emission from query complexity, routing, and intent classification surfaces.
-- Update parent PHASE MANIFEST to list this `006-search-query-rag-optimization/` child.
+- Update parent PHASE MANIFEST to list this `002-search-query-rag-optimization/` child.
 - Focused Vitest coverage for the harness baseline and query-plan emission.
 - Typecheck and build verification for the additive TypeScript changes.
 

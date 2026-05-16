@@ -38,7 +38,7 @@ _memory:
 | **Branch** | `main` |
 | **Parent** | `015-mcp-runtime-stress-remediation` |
 | **Predecessor** | `019-search-query-rag-optimization-research` (Phase C, converged) |
-| **Implementation reviewed** | `005-review-remediation/{006-search-query-rag-optimization, 007-search-rag-measurement-driven-implementation}` |
+| **Implementation reviewed** | `005-review-remediation/{002-search-query-rag-optimization, 007-search-rag-measurement-driven-implementation}` |
 | **Mode** | Deep research (`/spec_kit:deep-research:auto` pattern) |
 | **Iterations** | 10 (max); convergence allowed earlier |
 | **Executor** | cli-codex `gpt-5.5` reasoning=`xhigh` service-tier=default (normal) |
@@ -92,7 +92,7 @@ Run a 10-iteration deep research loop covering these four threads, externalize s
 - `mcp_server/lib/query/query-plan.ts`
 - `mcp_server/stress_test/search-quality/{harness,corpus,metrics,baseline.vitest}.ts`
 - `mcp_server/stress_test/search-quality/w*.vitest.ts`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/{006-search-query-rag-optimization,007-search-rag-measurement-driven-implementation}/{spec,plan,tasks,checklist,implementation-summary}.md`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/{002-search-query-rag-optimization,007-search-rag-measurement-driven-implementation}/{spec,plan,tasks,checklist,implementation-summary}.md`
 - `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/019-search-query-rag-optimization-research/research/research-report.md`
 - Whole `.opencode/skills/system-spec-kit/` tree for empty-folder audit
 <!-- /ANCHOR:scope -->

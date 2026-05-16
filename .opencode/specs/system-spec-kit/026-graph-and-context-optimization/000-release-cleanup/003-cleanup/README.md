@@ -5,7 +5,7 @@ Documentation fixes, template debt, orphan management, remediation.
 ## Children (31)
 
 - `001-memory-indexer-storage-boundary`
-- `006-search-query-rag-optimization`
+- `002-search-query-rag-optimization`
 - `006-vitest-baseline-recovery`
 - `007-search-rag-measurement-driven-implementation`
 - `010-vestigial-embedding-readiness-gate-removal`
