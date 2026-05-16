@@ -3,13 +3,13 @@ title: "Verification Checklist: 046 Release Readiness Synthesis and Remediation"
 template_source: "SPECKIT_TEMPLATE_SOURCE: checklist | v2.2"
 description: "Verification checklist for aggregate synthesis, P0 remediation, P1 quick wins, build, tests, and strict validators."
 trigger_phrases:
-  - "004-release-readiness-synthesis-and-remediation"
+  - "004-synthesis-and-remediation"
   - "release-readiness aggregate"
 importance_tier: "important"
 contextType: "verification"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-release-readiness-synthesis-and-remediation"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-synthesis-and-remediation"
     last_updated_at: "2026-04-29T22:45:00+02:00"
     last_updated_by: "codex"
     recent_action: "Opened verification checklist"
@@ -20,7 +20,7 @@ _memory:
       - "remediation-log.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "004-release-readiness-synthesis-and-remediation"
+      session_id: "004-synthesis-and-remediation"
       parent_session_id: null
     completion_pct: 70
     open_questions: []
@@ -71,7 +71,7 @@ _memory:
 
 - [x] CHK-020 [P0] Affected tests passed. [EVIDENCE: `npx vitest run tests/tool-input-schema.vitest.ts tests/ensure-ready.vitest.ts tests/advisor-rebuild.vitest.ts` passed]
 - [x] CHK-021 [P0] Final build passed. [EVIDENCE: `npm run build` exited 0]
-- [x] CHK-022 [P1] Strict validators passed. [EVIDENCE: `validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-release-readiness-synthesis-and-remediation --strict` exited 0]
+- [x] CHK-022 [P1] Strict validators passed. [EVIDENCE: `validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-synthesis-and-remediation --strict` exited 0]
 - [x] CHK-023 [P1] Error scenarios validated. [EVIDENCE: tests cover single delete without confirm, stale graph recheck, advisor workspace rebuild, and unknown schema fields]
 <!-- /ANCHOR:testing -->
 

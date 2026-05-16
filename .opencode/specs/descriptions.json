@@ -4868,7 +4868,7 @@
       "lastUpdated": "2026-05-08T08:26:57.381Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-release-readiness-synthesis-and-remediation",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-synthesis-and-remediation",
       "description": "Feature Specification: 046 Release Readiness Synthesis and Remediation",
       "keywords": [
         "feature",

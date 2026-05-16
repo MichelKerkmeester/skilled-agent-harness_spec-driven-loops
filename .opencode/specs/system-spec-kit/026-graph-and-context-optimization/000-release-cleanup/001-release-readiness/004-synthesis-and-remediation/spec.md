@@ -3,7 +3,7 @@ title: "Feature Specification: 046 Release Readiness Synthesis and Remediation"
 template_source: "SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2"
 description: "Aggregate packet 045 release-readiness findings and remediate release blockers plus feasible P1 quick wins. The packet produces a ranked backlog, fix log, and strict validation evidence."
 trigger_phrases:
-  - "004-release-readiness-synthesis-and-remediation"
+  - "004-synthesis-and-remediation"
   - "release-readiness aggregate"
   - "P0 fixes implementation"
   - "release blocker remediation"
@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-release-readiness-synthesis-and-remediation"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-synthesis-and-remediation"
     last_updated_at: "2026-04-29T22:45:00+02:00"
     last_updated_by: "codex"
     recent_action: "Remediated release blockers"
@@ -24,7 +24,7 @@ _memory:
       - ".opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "004-release-readiness-synthesis-and-remediation"
+      session_id: "004-synthesis-and-remediation"
       parent_session_id: null
     completion_pct: 80
     open_questions: []
@@ -47,7 +47,7 @@ _memory:
 | **Priority** | P0 |
 | **Status** | Complete |
 | **Created** | 2026-04-29 |
-| **Branch** | `004-release-readiness-synthesis-and-remediation` |
+| **Branch** | `004-synthesis-and-remediation` |
 <!-- /ANCHOR:metadata -->
 
 ---

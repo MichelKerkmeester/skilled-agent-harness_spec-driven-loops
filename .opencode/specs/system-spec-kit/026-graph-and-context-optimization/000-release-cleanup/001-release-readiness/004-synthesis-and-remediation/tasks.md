@@ -3,13 +3,13 @@ title: "Tasks: 046 Release Readiness Synthesis and Remediation"
 template_source: "SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2"
 description: "Task list for aggregating packet 045 findings, applying P0/P1 fixes, and validating the release-readiness remediation packet."
 trigger_phrases:
-  - "004-release-readiness-synthesis-and-remediation"
+  - "004-synthesis-and-remediation"
   - "release blocker remediation"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-release-readiness-synthesis-and-remediation"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-synthesis-and-remediation"
     last_updated_at: "2026-04-29T22:45:00+02:00"
     last_updated_by: "codex"
     recent_action: "Tracked remediation tasks"
@@ -20,7 +20,7 @@ _memory:
       - "checklist.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "004-release-readiness-synthesis-and-remediation"
+      session_id: "004-synthesis-and-remediation"
       parent_session_id: null
     completion_pct: 80
     open_questions: []

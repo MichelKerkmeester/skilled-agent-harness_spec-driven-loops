@@ -90,7 +90,7 @@ Note: spec packet folder names (e.g., `011-cli-matrix-adapter-runners/`) keep th
 
 PLUS: `rename-log.md` at packet root listing all files updated + total references replaced.
 
-**Deps**: `manual.depends_on=["system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/011-cli-matrix-adapter-runners","system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-release-readiness-synthesis-and-remediation"]`.
+**Deps**: `manual.depends_on=["system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/011-cli-matrix-adapter-runners","system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-synthesis-and-remediation"]`.
 
 **Trigger phrases**: `["047-matrix_runners-snake-case-rename","matrix_runners rename","kebab-to-snake convention","mcp_server folder convention"]`.
 

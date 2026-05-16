@@ -6181,7 +6181,7 @@ END{
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/006-full-matrix-execution-validation/logs/feature-runs/F4-memory-context.log
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/006-full-matrix-execution-validation/logs/feature-runs/F5-code-graph-query.log
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/006-full-matrix-execution-validation/logs/feature-runs/F3-memory-search.log
-./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-release-readiness-synthesis-and-remediation/logs/iter-001.log
+./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-synthesis-and-remediation/logs/iter-001.log
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/006-full-matrix-execution-validation/logs/feature-runs/F9-generate-context.log
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/008-drift-finding-fixes/logs/stress-run-20260501-033447Z.log
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/008-drift-finding-fixes/logs/stress-run-20260501-033955Z.log
@@ -6946,7 +6946,7 @@ spec_history_or_review_artifact: 577
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-mcp-runtime-stress-remediation/011-post-stress-followup-research/review/iterations/iteration-009.md
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-mcp-runtime-stress-remediation/011-post-stress-followup-research/review/deltas/iter-008.jsonl
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-mcp-runtime-stress-remediation/011-post-stress-followup-research/review/deltas/iter-009.jsonl
-./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-release-readiness-synthesis-and-remediation/research/prompts/iteration-001.md
+./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-synthesis-and-remediation/research/prompts/iteration-001.md
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-mcp-runtime-stress-remediation/011-post-stress-followup-research/review/deltas/iter-010.jsonl
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-mcp-runtime-stress-remediation/011-post-stress-followup-research/review/deltas/iter-003.jsonl
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/007-runtime-command-agent-alignment-review/cross-runtime-diff.md

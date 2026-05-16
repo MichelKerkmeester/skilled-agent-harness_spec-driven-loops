@@ -2,7 +2,7 @@
 title: "Synthesis: 046 Release Readiness Aggregate"
 description: "Aggregate verdict and remediation backlog for packet 045's ten release-readiness review reports."
 trigger_phrases:
-  - "004-release-readiness-synthesis-and-remediation"
+  - "004-synthesis-and-remediation"
   - "release-readiness aggregate"
   - "P0 fixes implementation"
   - "release blocker remediation"

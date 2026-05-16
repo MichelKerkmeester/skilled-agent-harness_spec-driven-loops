@@ -394,7 +394,7 @@ file_path	match_count	area	phase
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-deep-review-program/009-documentation-truth/plan.md	1	spec-folder-active	003
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-deep-review-program/010-upgrade-safety-operability/plan.md	1	spec-folder-active	003
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-deep-review-program/spec.md	2	spec-folder-active	003
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-release-readiness-synthesis-and-remediation/research/prompts/iteration-001.md	1	spec-folder-active	003
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-synthesis-and-remediation/research/prompts/iteration-001.md	1	spec-folder-active	003
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/007-runtime-command-agent-alignment-review/cross-runtime-diff.md	2	spec-folder-active	003
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/007-runtime-command-agent-alignment-review/research/prompts/iteration-001.md	2	spec-folder-active	003
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/019-feature-catalog-shape-realignment/audit-findings.md	4	spec-folder-active	003
@@ -1054,7 +1054,7 @@ specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003
 specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-deep-review-program/009-documentation-truth/plan.md	1	spec-folder-active	003
 specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-deep-review-program/010-upgrade-safety-operability/plan.md	1	spec-folder-active	003
 specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-deep-review-program/spec.md	2	spec-folder-active	003
-specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-release-readiness-synthesis-and-remediation/research/prompts/iteration-001.md	1	spec-folder-active	003
+specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-synthesis-and-remediation/research/prompts/iteration-001.md	1	spec-folder-active	003
 specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/007-runtime-command-agent-alignment-review/cross-runtime-diff.md	2	spec-folder-active	003
 specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/007-runtime-command-agent-alignment-review/research/prompts/iteration-001.md	2	spec-folder-active	003
 specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/019-feature-catalog-shape-realignment/audit-findings.md	4	spec-folder-active	003

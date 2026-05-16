@@ -12,8 +12,8 @@ Work through the 24 remaining P1 findings + 15 P2 findings from 046's synthesis 
 
 ### Read these first
 
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-release-readiness-synthesis-and-remediation/synthesis.md` (full P1 + P2 registries)
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-release-readiness-synthesis-and-remediation/remediation-log.md` (what 046 already fixed; do NOT re-do)
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-synthesis-and-remediation/synthesis.md` (full P1 + P2 registries)
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-synthesis-and-remediation/remediation-log.md` (what 046 already fixed; do NOT re-do)
 - `.opencode/skills/sk-doc/references/global/evergreen_packet_id_rule.md` (honor)
 - All 10 review-reports under `003-deep-review-program/00X-*/review-report.md` for full context
 
@@ -95,7 +95,7 @@ Walk P2 list; apply safe ones; document deferred ones.
 
 PLUS: `decision-record.md` (Tier γ defaults), `remediation-log.md` (per-finding fix log), `deferred-p2.md` (P2 items not auto-applied).
 
-**Deps**: `manual.depends_on=["system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-release-readiness-synthesis-and-remediation"]`.
+**Deps**: `manual.depends_on=["system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-synthesis-and-remediation"]`.
 
 **Trigger phrases**: `["005-remaining-p1-p2-remediation","P1 P2 backlog","release polish","conservative defaults pass"]`.
 

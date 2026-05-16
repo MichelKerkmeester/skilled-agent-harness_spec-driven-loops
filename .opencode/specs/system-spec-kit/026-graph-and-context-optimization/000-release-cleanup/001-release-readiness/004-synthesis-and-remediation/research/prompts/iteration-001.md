@@ -1,10 +1,10 @@
 ## Packet 046: release-readiness-synthesis-and-remediation — Tier B synthesis + Tier C implementation
 
-You are cli-codex (gpt-5.5 high fast) implementing **004-release-readiness-synthesis-and-remediation**.
+You are cli-codex (gpt-5.5 high fast) implementing **004-synthesis-and-remediation**.
 
 ### CRITICAL: Spec folder path
 
-The packet folder is: `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-release-readiness-synthesis-and-remediation/` — write ALL packet files there. Do NOT ask for the spec folder.
+The packet folder is: `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-synthesis-and-remediation/` — write ALL packet files there. Do NOT ask for the spec folder.
 
 ### Goal
 
@@ -89,7 +89,7 @@ After applying fixes:
 
 **Deps**: `manual.depends_on=["system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-deep-review-program"]`.
 
-**Trigger phrases**: `["004-release-readiness-synthesis-and-remediation","release-readiness aggregate","P0 fixes implementation","release blocker remediation"]`.
+**Trigger phrases**: `["004-synthesis-and-remediation","release-readiness aggregate","P0 fixes implementation","release blocker remediation"]`.
 
 **Causal summary**: `"Synthesizes the 10 review-reports from 045 into aggregate verdict + sequenced remediation backlog. Implements P0 fixes + Tier β P1 quick wins. Documents open questions for operator decision on Tier γ items."`.
 
