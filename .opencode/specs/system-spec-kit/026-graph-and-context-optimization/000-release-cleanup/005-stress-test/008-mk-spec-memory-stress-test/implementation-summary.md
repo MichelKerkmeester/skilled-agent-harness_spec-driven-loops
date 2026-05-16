@@ -8,13 +8,11 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/008-mk-spec-memory-stress-test"
-    last_updated_at: "2026-05-16T23:00:00Z"
+    last_updated_at: "2026-05-17T00:00:00Z"
     last_updated_by: "main_agent"
-    recent_action: "Round 4: opencode unblocked cat-04/24 + codex J fixed 52 frontmatter files"
-    next_safe_action: "Optional: 4 new cat-24 FAILs from opencode (402 synonymy, 408 compound, 409 llm-made)"
-    blockers:
-      - "4 new cat-24 FAILs surfaced by opencode: local-LLM retrieval subsystem"
-      - "49 mid-batch-cut scenarios (cat-14-pipeline + cat-16 splits)"
+    recent_action: "Round 5: 100% coverage achieved — 345/345 scenarios all 25 categories"
+    next_safe_action: "Phase 4+1: triage 19 newly-surfaced FAILs across cat-16/22/09/24/14"
+    blockers: []
     key_files:
       - "handover.md"
       - "tasks.md"
@@ -25,7 +23,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000008004"
       session_id: "008-summary-stub"
       parent_session_id: null
-    completion_pct: 98
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -41,15 +39,16 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| Status | PARTIAL (Phase 1 fully complete; Phase 2 85.8% scenario coverage with **24 fix commits** + 1 cleanup commit landing **31 of 32 FAILs closed**; all 25 categories now have rows) |
+| Status | COMPLETE coverage (345/345 = **100%**); 31 of 32 original FAILs closed via 24 fix commits; 19 newly-surfaced FAILs documented as Phase 4+1 follow-ons |
 | Branch | main |
 | Baseline | post packet 113 (commit b062b12b4) |
 | Pre-sweep checkpoint | `pre-008-sweep-20260516T144620Z` (id=2, global scope, 11,426 memories, 124 MB) — intact end-to-end |
-| Wall-clock actual | ~12 hours total (Phase 0 + Phase 1 + 4 Phase 2 dispatch waves [3 devin + 1 opencode] + 24 codex fix dispatches across 4 rounds) |
-| Total commits this session | 24 fix + ~8 doc + 2 deferred-followon docs + 1 frontmatter cleanup commit |
-| FAILs closed | 31 of 32 (97%) before round 4 surfaced 4 new cat-24 FAILs via opencode = 31/36 = 86% |
-| Scenarios covered | 296 of 345 (85.8%) across all 25 of 25 categories |
-| Remaining work | 49 uncovered scenarios (mix of partials in cat-14-pipeline, cat-16 splits) + 4 new cat-24 FAILs surfaced by opencode (Phase 4+1 follow-ons) |
+| Wall-clock actual | ~14 hours total (Phase 0 + Phase 1 + 5 Phase 2 dispatch waves [3 devin + 4 opencode] + 25 codex fix dispatches across 5 rounds) |
+| Total commits this session | 25 fix + ~10 doc + 2 deferred-followon docs + 1 frontmatter cleanup commit |
+| FAILs closed | 31 of 32 original (97%); 19 new FAILs surfaced by deeper coverage = 50 FAILs total, 31 closed (62%) |
+| Scenarios covered | **345 of 345 (100%) across all 25 of 25 categories** |
+| Final classification | 57 PASS / 51 FAIL / 23 PARTIAL / 59 SKIP / 155 UNAUTOMATABLE |
+| Remaining work | 19 newly-surfaced FAILs documented for Phase 4+1 (cat-16 parts 2/3 surfaced 8 + cat-22 retry surfaced 6 + cat-09 retry 1 + cat-24 4 + final-13 batch 2 + final-1 1) |
 <!-- /ANCHOR:metadata -->
 
 ---
