@@ -330,6 +330,35 @@ Required output contract:
 
 After reporting findings, request explicit next action before any implementation follow-up.
 
+### Final-line exact-string contract (MANDATORY)
+
+Every review MUST end with exactly one of the following plain-text lines as the **absolute final line** of the output (no trailing whitespace, no variation):
+
+```
+Review status: APPROVED
+```
+
+```
+Review status: REQUESTED_CHANGES
+```
+
+```
+Review status: COMMENTED
+```
+
+**Example output bottom:**
+
+```
+...
+## Next Steps
+1. Fix the null-deref at src/foo.ts:42
+2. Add input validation for the `/api/bar` endpoint
+
+Review status: REQUESTED_CHANGES
+```
+
+Downstream automation parses this final line via exact string match — do not vary the format, add trailing punctuation, or wrap in Markdown formatting.
+
 ---
 
 ## 4. RULES

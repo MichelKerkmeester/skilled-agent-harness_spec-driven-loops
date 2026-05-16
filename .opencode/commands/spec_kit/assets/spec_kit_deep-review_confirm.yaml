@@ -1036,6 +1036,28 @@ workflow:
           - last_3_summaries: "Summarize the latest 3 iteration records"
           - reason: "Use the latest stop reason if present, else the frozen default 'converged'. (Must be a member of the STOP_REASONS enum: converged, maxIterationsReached, blockedStop, stuckRecovery, error, manualStop, userPaused.)"
 
+      # H-1 verdict derivation: parse findings JSONL, map highest severity to verdict
+      # - PASS: no P0 or P1 findings (P2-only or clean)
+      # - CONDITIONAL: any P1 findings (no P0)
+      # - FAIL: any P0 findings
+      # Final line of iteration-NNN.md MUST be exactly: "Review verdict: PASS" / "Review verdict: CONDITIONAL" / "Review verdict: FAIL"
+      step_derive_verdict:
+        action: "Derive review verdict from accumulated findings"
+        algorithm: |
+          if p0_count > 0:
+            verdict = "FAIL"
+          elif p1_count > 0:
+            verdict = "CONDITIONAL"
+          else:
+            verdict = "PASS"
+          has_advisories = (verdict == "PASS" and p2_count > 0)
+        outputs:
+          - verdict: "PASS | CONDITIONAL | FAIL"
+          - has_advisories: "Boolean true when verdict is PASS and any active P2 findings exist"
+        contract: |
+          Every iteration-NNN.md must end with exactly: "Review verdict: PASS" (or CONDITIONAL or FAIL).
+          Downstream automation parses this final line via exact string match — do not vary the format.
+
       # ─── APPROVAL GATE: Pre-Synthesis ───
       gate_pre_synthesis:
         type: approval_gate

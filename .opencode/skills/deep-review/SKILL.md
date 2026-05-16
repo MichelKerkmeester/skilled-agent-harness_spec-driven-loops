@@ -371,6 +371,26 @@ Review mode is lineage-aware. Supported lifecycle modes are `new`, `resume`, and
 | **CONDITIONAL** | P1 findings present; remediation plan included in report |
 | **FAIL** | Any P0 finding confirmed after adversarial self-check |
 
+### Iteration Final-Line Contract (MANDATORY)
+
+Every `iteration-NNN.md` MUST end with exactly one of the following plain-text lines as the **absolute final line** (no trailing whitespace, no variation):
+
+```
+Review verdict: PASS
+```
+
+```
+Review verdict: CONDITIONAL
+```
+
+```
+Review verdict: FAIL
+```
+
+**Mapping rule:** PASS if no P0 or P1 findings in this iteration; CONDITIONAL if any P1 (but no P0) findings; FAIL if any P0 findings. P2-only findings → PASS.
+
+Downstream automation (including the synthesis phase and CI gate parser) parses this final line via exact string match — do not vary the format.
+
 ---
 
 ## 4. RULES
