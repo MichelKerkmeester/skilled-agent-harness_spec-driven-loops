@@ -19,6 +19,9 @@
 
 import { randomUUID } from 'node:crypto';
 import { execFile } from 'node:child_process';
+import { readFile } from 'node:fs/promises';
+import { homedir } from 'node:os';
+import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { tool } from '@opencode-ai/plugin/tool';
@@ -42,6 +45,18 @@ const MESSAGES_TRANSFORM_ENABLED = true;
 const MESSAGES_TRANSFORM_MODE = 'schema_aligned';
 const SYNTHETIC_METADATA_KEY = 'mkCodeGraph';
 const BRIDGE_PATH = fileURLToPath(new URL('../skills/system-code-graph/mcp_server/plugin_bridges/mk-code-graph-bridge.mjs', import.meta.url));
+
+async function loadConfig() {
+  const path = join(homedir(), '.config', 'opencode', 'plugin', 'mk-code-graph.json');
+  try {
+    const raw = await readFile(path, 'utf-8');
+    return JSON.parse(raw);
+  } catch {
+    return {};
+  }
+}
+
+const configPromise = loadConfig();
 
 /**
  * @typedef {{
@@ -120,25 +135,29 @@ function normalizeSessionID(value) {
 }
 
 function normalizeOptions(rawOptions) {
+  const envCacheTTLMs = Number(process.env.MK_CODE_GRAPH_CACHE_TTL_MS);
+  const envNodeBinary = process.env.MK_CODE_GRAPH_NODE_BINARY;
+  const envBridgeTimeoutMs = Number(process.env.MK_CODE_GRAPH_BRIDGE_TIMEOUT_MS);
+
   if (!rawOptions || typeof rawOptions !== 'object') {
     return {
-      cacheTtlMs: DEFAULT_CACHE_TTL_MS,
-      specFolder: undefined,
-      nodeBinary: process.env.SPEC_KIT_PLUGIN_NODE_BINARY || DEFAULT_NODE_BINARY,
-      bridgeTimeoutMs: DEFAULT_BRIDGE_TIMEOUT_MS,
+      cacheTtlMs: normalizePositiveInt(envCacheTTLMs, DEFAULT_CACHE_TTL_MS),
+      specFolder: process.env.MK_CODE_GRAPH_SPEC_FOLDER || undefined,
+      nodeBinary: envNodeBinary || process.env.SPEC_KIT_PLUGIN_NODE_BINARY || DEFAULT_NODE_BINARY,
+      bridgeTimeoutMs: normalizePositiveInt(envBridgeTimeoutMs, DEFAULT_BRIDGE_TIMEOUT_MS),
     };
   }
 
   const options = /** @type {PluginOptions} */ (rawOptions);
   return {
-    cacheTtlMs: normalizePositiveInt(options.cacheTtlMs, DEFAULT_CACHE_TTL_MS),
+    cacheTtlMs: normalizePositiveInt(options.cacheTtlMs, normalizePositiveInt(envCacheTTLMs, DEFAULT_CACHE_TTL_MS)),
     specFolder: typeof options.specFolder === 'string' && options.specFolder.trim()
       ? options.specFolder.trim()
-      : undefined,
+      : (process.env.MK_CODE_GRAPH_SPEC_FOLDER || undefined),
     nodeBinary: typeof options.nodeBinary === 'string' && options.nodeBinary.trim()
       ? options.nodeBinary.trim()
-      : (process.env.SPEC_KIT_PLUGIN_NODE_BINARY || DEFAULT_NODE_BINARY),
-    bridgeTimeoutMs: normalizePositiveInt(options.bridgeTimeoutMs, DEFAULT_BRIDGE_TIMEOUT_MS),
+      : (envNodeBinary || process.env.SPEC_KIT_PLUGIN_NODE_BINARY || DEFAULT_NODE_BINARY),
+    bridgeTimeoutMs: normalizePositiveInt(options.bridgeTimeoutMs, normalizePositiveInt(envBridgeTimeoutMs, DEFAULT_BRIDGE_TIMEOUT_MS)),
   };
 }
 
@@ -359,7 +378,9 @@ function invalidateTransportCache(sessionID, specFolder) {
  * @returns {Promise<object>} Hook and tool registrations consumed by OpenCode.
  */
 export default async function mkCodeGraphPlugin(ctx, rawOptions) {
-  const options = normalizeOptions(rawOptions);
+  const fileConfig = await configPromise;
+  const merged = { ...fileConfig, ...rawOptions };
+  const options = normalizeOptions(merged);
   const projectDir = ctx?.directory || process.cwd();
 
   return {

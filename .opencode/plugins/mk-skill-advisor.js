@@ -15,6 +15,9 @@ import { createHash } from 'node:crypto';
 import { spawn } from 'node:child_process';
 import { statSync } from 'node:fs';
 import { resolve as resolvePath } from 'node:path';
+import { readFile } from 'node:fs/promises';
+import { homedir } from 'node:os';
+import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { tool } from '@opencode-ai/plugin/tool';
@@ -46,6 +49,18 @@ const ADVISOR_SOURCE_PATHS = [
   fileURLToPath(new URL('../skills/system-skill-advisor/mcp_server/advisor-server.ts', import.meta.url)),
   fileURLToPath(new URL('../skills/system-skill-advisor/mcp_server/dist/system-skill-advisor/mcp_server/advisor-server.js', import.meta.url)),
 ];
+
+async function loadConfig() {
+  const path = join(homedir(), '.config', 'opencode', 'plugin', 'mk-skill-advisor.json');
+  try {
+    const raw = await readFile(path, 'utf-8');
+    return JSON.parse(raw);
+  } catch {
+    return {};
+  }
+}
+
+const configPromise = loadConfig();
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. PURE UTILITIES
@@ -109,18 +124,26 @@ function normalizeOptions(rawOptions) {
   const configuredTtl = options.cacheTTLMs ?? options.cacheTtlMs;
   const enabled = options.enabled !== false && !envDisablesPlugin();
 
+  const envCacheTTLMs = Number(process.env.MK_SKILL_ADVISOR_CACHE_TTL_MS);
+  const envThreshold = Number(process.env.MK_SKILL_ADVISOR_THRESHOLD_CONFIDENCE);
+  const envMaxTokens = Number(process.env.MK_SKILL_ADVISOR_MAX_TOKENS);
+  const envBridgeTimeoutMs = Number(process.env.MK_SKILL_ADVISOR_BRIDGE_TIMEOUT_MS);
+  const envMaxPromptBytes = Number(process.env.MK_SKILL_ADVISOR_MAX_PROMPT_BYTES);
+  const envMaxBriefChars = Number(process.env.MK_SKILL_ADVISOR_MAX_BRIEF_CHARS);
+  const envMaxCacheEntries = Number(process.env.MK_SKILL_ADVISOR_MAX_CACHE_ENTRIES);
+
   return {
     enabled,
-    cacheTTLMs: normalizePositiveInt(configuredTtl, DEFAULT_CACHE_TTL_MS),
-    thresholdConfidence: normalizeThreshold(options.thresholdConfidence),
-    maxTokens: normalizePositiveInt(options.maxTokens, DEFAULT_MAX_TOKENS),
+    cacheTTLMs: normalizePositiveInt(configuredTtl, normalizePositiveInt(envCacheTTLMs, DEFAULT_CACHE_TTL_MS)),
+    thresholdConfidence: normalizeThreshold(options.thresholdConfidence ?? (Number.isFinite(envThreshold) ? envThreshold : undefined)),
+    maxTokens: normalizePositiveInt(options.maxTokens, normalizePositiveInt(envMaxTokens, DEFAULT_MAX_TOKENS)),
     nodeBinary: typeof options.nodeBinaryOverride === 'string' && options.nodeBinaryOverride.trim()
       ? options.nodeBinaryOverride.trim()
-      : (process.env.SPEC_KIT_PLUGIN_NODE_BINARY || DEFAULT_NODE_BINARY),
-    bridgeTimeoutMs: normalizePositiveInt(options.bridgeTimeoutMs, DEFAULT_BRIDGE_TIMEOUT_MS),
-    maxPromptBytes: normalizePositiveInt(options.maxPromptBytes, DEFAULT_MAX_PROMPT_BYTES),
-    maxBriefChars: normalizePositiveInt(options.maxBriefChars, DEFAULT_MAX_BRIEF_CHARS),
-    maxCacheEntries: normalizePositiveInt(options.maxCacheEntries, DEFAULT_MAX_CACHE_ENTRIES),
+      : (process.env.MK_SKILL_ADVISOR_NODE_BINARY || process.env.SPEC_KIT_PLUGIN_NODE_BINARY || DEFAULT_NODE_BINARY),
+    bridgeTimeoutMs: normalizePositiveInt(options.bridgeTimeoutMs, normalizePositiveInt(envBridgeTimeoutMs, DEFAULT_BRIDGE_TIMEOUT_MS)),
+    maxPromptBytes: normalizePositiveInt(options.maxPromptBytes, normalizePositiveInt(envMaxPromptBytes, DEFAULT_MAX_PROMPT_BYTES)),
+    maxBriefChars: normalizePositiveInt(options.maxBriefChars, normalizePositiveInt(envMaxBriefChars, DEFAULT_MAX_BRIEF_CHARS)),
+    maxCacheEntries: normalizePositiveInt(options.maxCacheEntries, normalizePositiveInt(envMaxCacheEntries, DEFAULT_MAX_CACHE_ENTRIES)),
     sourceSignatureOverride: typeof options.sourceSignatureOverride === 'string'
       ? options.sourceSignatureOverride
       : null,
@@ -385,7 +408,9 @@ function eventTypeFrom(event) {
  * @returns {Promise<Object>} Hooks with `event`, `experimental.chat.system.transform`, and `tool`
  */
 export default async function MkSkillAdvisorPlugin(ctx, rawOptions) {
-  const options = normalizeOptions(rawOptions);
+  const fileConfig = await configPromise;
+  const merged = { ...fileConfig, ...rawOptions };
+  const options = normalizeOptions(merged);
   const projectDir = normalizeWorkspaceRoot(ctx?.directory);
 
   // per-instance state (packet 010 — see ../sibling 009 ADR-005). Two plugin instances loaded in the same process maintain independent caches/metrics.

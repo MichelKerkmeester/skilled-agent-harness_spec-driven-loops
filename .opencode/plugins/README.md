@@ -15,8 +15,9 @@ OpenCode 1.3.17+ auto-loads JavaScript files in `.opencode/plugins/` at session 
 - [2. QUICK START](#2--quick-start)
 - [3. CURRENT ENTRYPOINTS](#3--current-entrypoints)
 - [4. BRIDGE MODULES](#4--bridge-modules)
-- [5. UPGRADE NOTES](#5--upgrade-notes)
-- [6. RELATED](#6--related)
+- [5. CONFIGURATION (Packet 110)](#5-configuration-packet-110)
+- [6. UPGRADE NOTES](#6--upgrade-notes)
+- [7. RELATED](#7--related)
 
 ---
 
@@ -59,7 +60,72 @@ This keeps plugin entrypoints minimal and lets owning skills own their bridge co
 
 ---
 
-## 5. UPGRADE NOTES
+## 5. CONFIGURATION (Packet 110)
+
+Both plugins support a **4-tier configuration precedence** (highest to lowest):
+
+1. **Raw plugin options** (passed programmatically at plugin registration)
+2. **Config file** (`~/.config/opencode/plugin/<plugin-name>.json`)
+3. **Environment variables** (plugin-specific prefix, see tables below)
+4. **Defaults** (hardcoded in each plugin)
+
+### 5.1 mk-skill-advisor config
+
+| Config File Path | `~/.config/opencode/plugin/mk-skill-advisor.json` |
+|---|---|
+
+| Field | Env Var | Default | Description |
+|---|---|---|---|
+| `cacheTTLMs` | `MK_SKILL_ADVISOR_CACHE_TTL_MS` | `300000` (5 min) | Advisor cache TTL in ms |
+| `thresholdConfidence` | `MK_SKILL_ADVISOR_THRESHOLD_CONFIDENCE` | `0.8` | Minimum advisor confidence |
+| `maxTokens` | `MK_SKILL_ADVISOR_MAX_TOKENS` | `80` | Maximum brief tokens |
+| `nodeBinaryOverride` | `MK_SKILL_ADVISOR_NODE_BINARY` | `node` (falls back to `SPEC_KIT_PLUGIN_NODE_BINARY`) | Node binary for bridge subprocess |
+| `bridgeTimeoutMs` | `MK_SKILL_ADVISOR_BRIDGE_TIMEOUT_MS` | `1000` | Bridge subprocess timeout in ms |
+| `maxPromptBytes` | `MK_SKILL_ADVISOR_MAX_PROMPT_BYTES` | `65536` (64 KiB) | Maximum bridge prompt payload bytes |
+| `maxBriefChars` | `MK_SKILL_ADVISOR_MAX_BRIEF_CHARS` | `2048` (2 KiB) | Maximum injected brief character count |
+| `maxCacheEntries` | `MK_SKILL_ADVISOR_MAX_CACHE_ENTRIES` | `1000` | Maximum advisor cache entries |
+| `enabled` | — (use `MK_SKILL_ADVISOR_HOOK_DISABLED=1` / `MK_SKILL_ADVISOR_PLUGIN_DISABLED=1`) | `true` | Plugin enabled state |
+
+Config file fields use the **camelCase** option names shown above. Example:
+
+```json
+{
+  "cacheTTLMs": 600000,
+  "thresholdConfidence": 0.7,
+  "maxTokens": 120
+}
+```
+
+### 5.2 mk-code-graph config
+
+| Config File Path | `~/.config/opencode/plugin/mk-code-graph.json` |
+|---|---|
+
+| Field | Env Var | Default | Description |
+|---|---|---|---|
+| `cacheTtlMs` | `MK_CODE_GRAPH_CACHE_TTL_MS` | `5000` | Transport cache TTL in ms |
+| `specFolder` | `MK_CODE_GRAPH_SPEC_FOLDER` | _(auto-detect)_ | Override spec folder |
+| `nodeBinary` | `MK_CODE_GRAPH_NODE_BINARY` | `node` (falls back to `SPEC_KIT_PLUGIN_NODE_BINARY`) | Node binary for bridge subprocess |
+| `bridgeTimeoutMs` | `MK_CODE_GRAPH_BRIDGE_TIMEOUT_MS` | `15000` | Bridge subprocess timeout in ms |
+
+Example config file:
+
+```json
+{
+  "cacheTtlMs": 10000,
+  "specFolder": "my-feature-foldername"
+}
+```
+
+### 5.3 Failure Modes
+
+- **No config file**: Behavior is unchanged (env + defaults apply).
+- **Malformed config file** (invalid JSON): Silent fall-through — `loadConfig()` returns `{}` and the plugin proceeds with env + defaults.
+- All disable env vars (`MK_SKILL_ADVISOR_HOOK_DISABLED=1`, `MK_SKILL_ADVISOR_PLUGIN_DISABLED=1`, legacy `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1`, `SPECKIT_SKILL_ADVISOR_PLUGIN_DISABLED=1`) are **preserved unchanged**.
+
+---
+
+## 6. UPGRADE NOTES
 
 When upgrading OpenCode beyond 1.3.17, rerun the 026/007/009 discovery probe:
 
@@ -71,7 +137,7 @@ When upgrading OpenCode beyond 1.3.17, rerun the 026/007/009 discovery probe:
 
 ---
 
-## 6. RELATED
+## 7. RELATED
 
 - `.opencode/skills/system-skill-advisor/mcp_server/plugin_bridges/` — advisor bridge home
 - `.opencode/skills/system-spec-kit/mcp_server/plugin_bridges/` — spec-kit bridge modules
