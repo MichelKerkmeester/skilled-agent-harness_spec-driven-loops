@@ -179,7 +179,7 @@ Author `audit-findings.md` (per-category coverage decisions, exclusions with rea
 
 ### Packet meta
 
-**Deps**: `manual.depends_on=["system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/037-feature-catalog-shape-realignment"]`.
+**Deps**: `manual.depends_on=["system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/019-feature-catalog-shape-realignment"]`.
 
 **Trigger phrases**: `["038-coco-index-feature-catalog","mcp-coco-index feature catalog","cocoindex catalog","semantic search catalog"]`.
 

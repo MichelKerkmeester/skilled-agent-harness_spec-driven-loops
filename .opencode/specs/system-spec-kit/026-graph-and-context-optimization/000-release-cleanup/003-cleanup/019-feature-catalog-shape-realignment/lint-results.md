@@ -2,7 +2,7 @@
 title: "Lint Results: 050 Feature Catalog Shape Realignment"
 description: "Final lint and verification results for feature catalog snippet shape alignment."
 trigger_phrases:
-  - "037-feature-catalog-shape-realignment"
+  - "019-feature-catalog-shape-realignment"
   - "feature catalog shape audit"
   - "sk-doc snippet template alignment"
   - "catalog OVERVIEW canonical"

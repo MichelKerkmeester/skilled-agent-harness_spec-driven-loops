@@ -3,7 +3,7 @@ title: "Verification Checklist: 050 Feature Catalog Shape Realignment"
 description: "Verification checklist for the feature catalog shape realignment packet."
 template_source: "SPECKIT_TEMPLATE_SOURCE: checklist | v2.2"
 trigger_phrases:
-  - "037-feature-catalog-shape-realignment"
+  - "019-feature-catalog-shape-realignment"
   - "feature catalog shape audit"
   - "sk-doc snippet template alignment"
   - "catalog OVERVIEW canonical"
@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "checklist"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/037-feature-catalog-shape-realignment"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/019-feature-catalog-shape-realignment"
     last_updated_at: "2026-04-30T08:40:00+02:00"
     last_updated_by: "cli-codex"
     recent_action: "Checklist verified"
@@ -22,7 +22,7 @@ _memory:
       - "lint-results.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "037-feature-catalog-shape-realignment"
+      session_id: "019-feature-catalog-shape-realignment"
       parent_session_id: null
     completion_pct: 100
     open_questions: []
@@ -124,5 +124,5 @@ _memory:
 - Six-root shape audit: PASS, no `DRIFT` lines.
 - Structural Node audit: PASS, no output.
 - Evergreen grep on touched feature catalog files: PASS after stable manual playbook IDs and one retained published filename false positive were classified.
-- `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/037-feature-catalog-shape-realignment --strict`: PASS.
+- `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/019-feature-catalog-shape-realignment --strict`: PASS.
 <!-- /ANCHOR:summary -->

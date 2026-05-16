@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/037-feature-catalog-shape-realignment",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/037-feature-catalog-shape-realignment",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/019-feature-catalog-shape-realignment",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/019-feature-catalog-shape-realignment",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization",
   "children_ids": [],
   "manual": {
@@ -14,7 +14,7 @@
   },
   "derived": {
     "trigger_phrases": [
-      "037-feature-catalog-shape-realignment",
+      "019-feature-catalog-shape-realignment",
       "feature catalog shape audit",
       "sk-doc snippet template alignment",
       "catalog OVERVIEW canonical"

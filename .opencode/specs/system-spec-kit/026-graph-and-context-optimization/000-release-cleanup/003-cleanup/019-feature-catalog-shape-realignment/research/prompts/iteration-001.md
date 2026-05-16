@@ -1,10 +1,10 @@
 ## Packet 050: feature-catalog-shape-realignment — Tier B doc realignment
 
-You are cli-codex (gpt-5.5 high fast) implementing **037-feature-catalog-shape-realignment**.
+You are cli-codex (gpt-5.5 high fast) implementing **019-feature-catalog-shape-realignment**.
 
 ### CRITICAL: Spec folder path
 
-The packet folder is: `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/037-feature-catalog-shape-realignment/` — write ALL packet files there. Do NOT ask for the spec folder.
+The packet folder is: `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/019-feature-catalog-shape-realignment/` — write ALL packet files there. Do NOT ask for the spec folder.
 
 ### Goal
 
@@ -148,7 +148,7 @@ PLUS: `audit-findings.md` (per-catalog drift list before+after), `remediation-lo
 
 **Deps**: `manual.depends_on=["system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/012-code-graph-catalog-and-playbook","system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/005-remaining-p1-p2-remediation"]`.
 
-**Trigger phrases**: `["037-feature-catalog-shape-realignment","feature catalog shape audit","sk-doc snippet template alignment","catalog OVERVIEW canonical"]`.
+**Trigger phrases**: `["019-feature-catalog-shape-realignment","feature catalog shape audit","sk-doc snippet template alignment","catalog OVERVIEW canonical"]`.
 
 **Causal summary**: `"Audits all 6 feature_catalog directories in repo. Lints 4 conformant catalogs (350 files). Realigns skill_advisor (37 files: PURPOSE→OVERVIEW, merge TEST COVERAGE/RELATED into SOURCE FILES/SOURCE METADATA) and code_graph (17 files: rebuild SURFACE/TRIGGER/CLASS/CAVEATS into canonical OVERVIEW/CURRENT REALITY/SOURCE FILES/SOURCE METADATA). 54 file edits + lint sweep across 350 conformant files. Doc-only; no code or schema changes."`.
 

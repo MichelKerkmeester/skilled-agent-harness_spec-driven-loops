@@ -3,7 +3,7 @@ title: "Tasks: 050 Feature Catalog Shape Realignment"
 description: "Task list for catalog linting, section realignment, report creation, and strict validation."
 template_source: "SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2"
 trigger_phrases:
-  - "037-feature-catalog-shape-realignment"
+  - "019-feature-catalog-shape-realignment"
   - "feature catalog shape audit"
   - "sk-doc snippet template alignment"
   - "catalog OVERVIEW canonical"
@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "tasks"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/037-feature-catalog-shape-realignment"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/019-feature-catalog-shape-realignment"
     last_updated_at: "2026-04-30T08:40:00+02:00"
     last_updated_by: "cli-codex"
     recent_action: "Tasks complete"
@@ -22,7 +22,7 @@ _memory:
       - "checklist.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "037-feature-catalog-shape-realignment"
+      session_id: "019-feature-catalog-shape-realignment"
       parent_session_id: null
     completion_pct: 100
     open_questions: []

@@ -3,7 +3,7 @@ title: "Feature Specification: 050 Feature Catalog Shape Realignment"
 description: "Realign per-feature catalog snippets to the canonical sk-doc four-section shape while preserving current-reality content and source references."
 template_source: "SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2"
 trigger_phrases:
-  - "037-feature-catalog-shape-realignment"
+  - "019-feature-catalog-shape-realignment"
   - "feature catalog shape audit"
   - "sk-doc snippet template alignment"
   - "catalog OVERVIEW canonical"
@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "specification"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/037-feature-catalog-shape-realignment"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/019-feature-catalog-shape-realignment"
     last_updated_at: "2026-04-30T08:40:00+02:00"
     last_updated_by: "cli-codex"
     recent_action: "Shape realigned"
@@ -23,7 +23,7 @@ _memory:
       - "lint-results.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "037-feature-catalog-shape-realignment"
+      session_id: "019-feature-catalog-shape-realignment"
       parent_session_id: null
     completion_pct: 100
     open_questions: []
@@ -45,7 +45,7 @@ _memory:
 | **Priority** | P1 |
 | **Status** | Complete |
 | **Created** | 2026-04-30 |
-| **Branch** | `037-feature-catalog-shape-realignment` |
+| **Branch** | `019-feature-catalog-shape-realignment` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -91,7 +91,7 @@ Make every per-feature file in the six real feature catalogs present the same fo
 | `.opencode/skills/system-spec-kit/feature_catalog/**/*.md` | Modify | Fix lint-discovered per-feature shape drift |
 | `.opencode/skills/system-spec-kit/mcp_server/code_graph/feature_catalog/**/*.md` | Modify | Rebuild per-feature files into canonical shape |
 | `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/feature_catalog/**/*.md` | Modify | Rebuild per-feature files into canonical shape |
-| `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/037-feature-catalog-shape-realignment/*` | Create | Packet docs, audit findings, remediation log, and lint results |
+| `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/019-feature-catalog-shape-realignment/*` | Create | Packet docs, audit findings, remediation log, and lint results |
 <!-- /ANCHOR:scope -->
 
 ---
