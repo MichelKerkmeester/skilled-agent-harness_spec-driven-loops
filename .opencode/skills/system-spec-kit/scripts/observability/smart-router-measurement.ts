@@ -8,17 +8,32 @@
 
 import * as fs from 'node:fs';
 import * as path from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 
-import {
-  buildSkillAdvisorBrief,
-} from '../../../system-skill-advisor/mcp_server/lib/skill-advisor-brief.js';
 import {
   readSmartRouterComplianceJsonl,
   recordSmartRouterCompliance,
   type ComplianceClass,
   type ComplianceRecord,
 } from './smart-router-telemetry.js';
+
+interface AdvisorRecommendation {
+  readonly skill: string;
+  readonly confidence: number;
+  readonly uncertainty: number;
+}
+
+interface AdvisorHookResult {
+  readonly status: string;
+  readonly freshness: string;
+  readonly brief: string | null;
+  readonly recommendations: readonly AdvisorRecommendation[];
+}
+
+type BuildSkillAdvisorBrief = (
+  prompt: string,
+  options: { readonly workspaceRoot: string; readonly runtime: string },
+) => Promise<AdvisorHookResult>;
 
 export interface CorpusRow {
   readonly id: string;
@@ -91,7 +106,7 @@ export interface MeasurementOptions {
   readonly recordTelemetry?: boolean;
   readonly liveStream?: boolean;
   readonly telemetryOutputPath?: string;
-  readonly buildBrief?: typeof buildSkillAdvisorBrief;
+  readonly buildBrief?: BuildSkillAdvisorBrief;
 }
 
 export interface LiveReadinessSummary {
@@ -208,6 +223,28 @@ function readTextIfExists(filePath: string): string | null {
   } catch {
     return null;
   }
+}
+
+async function loadDefaultBuildBrief(): Promise<BuildSkillAdvisorBrief> {
+  const candidatePaths = [
+    path.resolve(import.meta.dirname, '../../../system-skill-advisor/mcp_server/lib/skill-advisor-brief.js'),
+    path.resolve(import.meta.dirname, '../../../../system-skill-advisor/mcp_server/lib/skill-advisor-brief.js'),
+  ];
+
+  let lastError: unknown;
+  for (const modulePath of candidatePaths) {
+    try {
+      const mod = await import(pathToFileURL(modulePath).href) as { buildSkillAdvisorBrief?: BuildSkillAdvisorBrief };
+      if (typeof mod.buildSkillAdvisorBrief !== 'function') {
+        throw new Error(`Missing buildSkillAdvisorBrief export from ${modulePath}`);
+      }
+      return mod.buildSkillAdvisorBrief;
+    } catch (error) {
+      lastError = error;
+    }
+  }
+
+  throw lastError instanceof Error ? lastError : new Error(String(lastError));
 }
 
 function markdownTreeBytes(skillDir: string): number {
@@ -644,7 +681,7 @@ export async function runMeasurement(options: MeasurementOptions = {}): Promise<
   const liveTelemetryPath = path.resolve(workspaceRoot, DEFAULT_LIVE_COMPLIANCE_PATH);
   const rows = (options.corpusRows ? [...options.corpusRows] : loadCorpus(corpusPath))
     .slice(0, options.limit ?? undefined);
-  const buildBrief = options.buildBrief ?? buildSkillAdvisorBrief;
+  const buildBrief = options.buildBrief ?? await loadDefaultBuildBrief();
   const shouldRecordTelemetry = options.recordTelemetry ?? true;
   const results: MeasurementPromptResult[] = [];
 

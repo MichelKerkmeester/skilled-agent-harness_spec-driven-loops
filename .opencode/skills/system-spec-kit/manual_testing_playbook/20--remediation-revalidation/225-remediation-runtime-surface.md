@@ -37,7 +37,7 @@ Validate runtime remediation, revalidation, and auto-repair against cd .opencode
 ### Commands
 
 1. `cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/memory-save-ux-regressions.vitest.ts tests/memory-crud-extended.vitest.ts tests/mcp-input-validation.vitest.ts`
-2. `cd .opencode/skills/system-spec-kit/mcp_server && node -e "const fs=require('fs'); const path=require('path'); const p=path.resolve(process.cwd(),'handlers','../../../scripts/dist/memory/validate-memory-quality.js'); console.log(p); console.log(fs.existsSync(p) ? 'exists' : 'missing')"`
+2. `cd .opencode/skills/system-spec-kit && npm run build && node -e "import('./mcp_server/dist/handlers/v-rule-bridge.js').then((m)=>{ const available=m.isVRuleBridgeAvailable(); console.log(available ? 'v-rule-bridge:available' : 'v-rule-bridge:missing'); process.exit(available ? 0 : 1); }).catch((error)=>{ console.error(error); process.exit(1); })"`
 3. inspect assertions covering `memory_save` preflight, V-rule disposition handling, quality-loop rejection or repair, and downstream save-quality-gate outcomes
 4. inspect assertions covering `memory_health` confirmation-required auto-repair and bounded repair metadata
 5. inspect assertions covering `memory_validate` and checkpoint pathways that preserve revalidation or rollback signals
