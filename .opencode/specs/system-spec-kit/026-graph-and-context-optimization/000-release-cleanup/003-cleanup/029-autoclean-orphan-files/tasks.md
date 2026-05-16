@@ -101,7 +101,7 @@ _memory:
 
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
-- **Predecessor diagnosis**: `../054-runtime-cleanup-followups/scratch/fts-vec-diagnosis.md`
+- **Predecessor diagnosis**: `../004-runtime-cleanup-followups/scratch/fts-vec-diagnosis.md`
 <!-- /ANCHOR:cross-refs -->
 
 ---

@@ -50,7 +50,7 @@ _memory:
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 55 of 55 |
-| **Predecessor** | 054-runtime-cleanup-followups |
+| **Predecessor** | 004-runtime-cleanup-followups |
 | **Successor** | None |
 | **Handoff Criteria** | autoClean+cleanFiles run drops orphan_files count to 0 (or < 5) and memory_health.consistency.status === 'healthy' |
 <!-- /ANCHOR:metadata -->

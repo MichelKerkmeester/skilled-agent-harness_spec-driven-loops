@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/054-runtime-cleanup-followups",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/054-runtime-cleanup-followups",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-runtime-cleanup-followups",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-runtime-cleanup-followups",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup",
   "children_ids": [],
   "migrated": true,
@@ -13,7 +13,7 @@
   },
   "derived": {
     "trigger_phrases": [
-      "054-runtime-cleanup-followups",
+      "004-runtime-cleanup-followups",
       "advisor resolver false sentinel",
       "fts vec mismatch",
       "memory bulk delete deprecated",
@@ -27,7 +27,7 @@
       "runtime cleanup followups tasks"
     ],
     "key_topics": [
-      "054-runtime-cleanup-followups",
+      "004-runtime-cleanup-followups",
       "advisor",
       "resolver",
       "false",
@@ -59,7 +59,7 @@
       "spec.md",
       "plan.md",
       ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/graph-metadata.json",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/054-runtime-cleanup-followups/implementation-summary.md",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-runtime-cleanup-followups/implementation-summary.md",
       "tasks.md",
       "handover.md"
     ],
@@ -115,7 +115,7 @@
       {
         "name": "implementation-summary.md",
         "kind": "doc",
-        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/054-runtime-cleanup-followups/implementation-summary.md",
+        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-runtime-cleanup-followups/implementation-summary.md",
         "source": "derived"
       },
       {

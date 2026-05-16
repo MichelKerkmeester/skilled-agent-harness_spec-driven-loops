@@ -5281,7 +5281,7 @@
       "lastUpdated": "2026-05-08T08:26:57.546Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/054-runtime-cleanup-followups",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-runtime-cleanup-followups",
       "description": "Three follow-on cleanups after packet 096: harden findAdvisorWorkspaceRoot against false sentinels, diagnose 50 FTS/vec mismatched IDs in memory_health, bulk-delete 2,751 deprecated-tier records.",
       "keywords": [
         "advisor",

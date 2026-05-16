@@ -12,7 +12,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/054-runtime-cleanup-followups"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-runtime-cleanup-followups"
     last_updated_at: "2026-05-08T09:15:00Z"
     last_updated_by: "implementer"
     recent_action: "REQ-001 + REQ-003 implemented; REQ-002 root-caused and deferred"
@@ -26,7 +26,7 @@ _memory:
       - "scratch/pre-bulk-delete-stats.json"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "implementation-054-runtime-cleanup-followups"
+      session_id: "implementation-004-runtime-cleanup-followups"
       parent_session_id: null
     completion_pct: 100
     open_questions:
@@ -48,7 +48,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 054-runtime-cleanup-followups |
+| **Spec Folder** | 004-runtime-cleanup-followups |
 | **Completed** | 2026-05-08 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

@@ -2,7 +2,7 @@
 title: "Feature Specification: 054 Runtime Cleanup Followups"
 description: "Three follow-on cleanups after packet 096 path-residue fix: harden advisor workspace-root resolver, repair FTS/vec consistency gap, bulk-delete deprecated-tier records."
 trigger_phrases:
-  - "054-runtime-cleanup-followups"
+  - "004-runtime-cleanup-followups"
   - "advisor resolver false sentinel"
   - "fts vec mismatch"
   - "memory bulk delete deprecated"
@@ -12,7 +12,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/054-runtime-cleanup-followups"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-runtime-cleanup-followups"
     last_updated_at: "2026-05-08T08:36:14Z"
     last_updated_by: "spec-author"
     recent_action: "Initialize packet for three runtime cleanup follow-ons"
@@ -22,7 +22,7 @@ _memory:
       - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/utils/workspace-root.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-054-runtime-cleanup-followups"
+      session_id: "scaffold-004-runtime-cleanup-followups"
       parent_session_id: null
     completion_pct: 0
     open_questions: []

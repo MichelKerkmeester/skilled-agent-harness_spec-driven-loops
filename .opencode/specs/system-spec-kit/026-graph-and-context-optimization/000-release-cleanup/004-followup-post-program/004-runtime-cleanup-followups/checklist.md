@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/054-runtime-cleanup-followups"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-runtime-cleanup-followups"
     last_updated_at: "2026-05-08T09:15:00Z"
     last_updated_by: "verifier"
     recent_action: "Marked all CHK items [x] with evidence"
@@ -22,7 +22,7 @@ _memory:
       - "implementation-summary.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "verifier-054-runtime-cleanup-followups"
+      session_id: "verifier-004-runtime-cleanup-followups"
       parent_session_id: null
     completion_pct: 100
     open_questions: []
@@ -131,7 +131,7 @@ _memory:
 
 - [x] CHK-040 [P1] spec.md, plan.md, tasks.md, checklist.md synchronized with final state — Evidence: all four updated this session; cross-references intact.
 - [x] CHK-041 [P1] `implementation-summary.md` filled (no template placeholders) post-implementation — Evidence: full narrative + metrics table + open follow-ups + rollback evidence.
-- [x] CHK-042 [P1] Parent `graph-metadata.json.derived.last_active_child_id` updated to `054-runtime-cleanup-followups` — Evidence: parent file at `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/graph-metadata.json` line 75 now points at `.../054-runtime-cleanup-followups`; last_active_at bumped to 2026-05-08T09:15:00Z.
+- [x] CHK-042 [P1] Parent `graph-metadata.json.derived.last_active_child_id` updated to `004-runtime-cleanup-followups` — Evidence: parent file at `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/graph-metadata.json` line 75 now points at `.../004-runtime-cleanup-followups`; last_active_at bumped to 2026-05-08T09:15:00Z.
 <!-- /ANCHOR:docs -->
 
 ---

@@ -104,7 +104,7 @@ Keep this phase-parent packet validator-compliant as a lean manifest that preser
 
 | 52 | `027-missing-code-readmes-resource-map/` | Implement exact missing code README manifest: 65 target README files created and validated from B01-B17. | complete |
 | 53 | 028-doc-alignment-and-readme-filling/ | [Phase 53 scope] | Pending |
-| 54 | 054-runtime-cleanup-followups/ | [Phase 54 scope] | Pending |
+| 54 | 004-runtime-cleanup-followups/ | [Phase 54 scope] | Pending |
 | 55 | 029-autoclean-orphan-files/ | [Phase 55 scope] | Pending |
 ### Phase Transition Rules
 
@@ -123,8 +123,8 @@ Keep this phase-parent packet validator-compliant as a lean manifest that preser
 | `004-dead-code-pruning` | `005-review-remediation` | Release-readiness review remediation follows cleanup/pruning so source-packet findings can be closed against current topology | Parent phase map and graph metadata child list both include `005-review-remediation` |
 | `026-readme-code-template` | `027-missing-code-readmes-resource-map` | README template guidance exists before implementing remaining code-folder README coverage | Phase 052 strict validation exits 0 and the exact 65 target README files validate cleanly |
 | 027-missing-code-readmes-resource-map | 028-doc-alignment-and-readme-filling | [Criteria TBD] | [Verification TBD] |
-| 028-doc-alignment-and-readme-filling | 054-runtime-cleanup-followups | [Criteria TBD] | [Verification TBD] |
-| 054-runtime-cleanup-followups | 029-autoclean-orphan-files | [Criteria TBD] | [Verification TBD] |
+| 028-doc-alignment-and-readme-filling | 004-runtime-cleanup-followups | [Criteria TBD] | [Verification TBD] |
+| 004-runtime-cleanup-followups | 029-autoclean-orphan-files | [Criteria TBD] | [Verification TBD] |
 <!-- /ANCHOR:phase-map -->
 
 ---

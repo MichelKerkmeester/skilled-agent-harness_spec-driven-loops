@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/054-runtime-cleanup-followups"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-runtime-cleanup-followups"
     last_updated_at: "2026-05-08T08:36:14Z"
     last_updated_by: "spec-author"
     recent_action: "Author task list for three follow-on fixes"
@@ -21,7 +21,7 @@ _memory:
       - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/utils/workspace-root.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-054-runtime-cleanup-followups"
+      session_id: "scaffold-004-runtime-cleanup-followups"
       parent_session_id: null
     completion_pct: 0
     open_questions: []
@@ -94,8 +94,8 @@ Three independent fixes. REQ-001 is lowest-risk and unblocks fastest verificatio
 - [ ] T017 Snapshot post-state: `memory_stats` + verify `tierBreakdown.deprecated === 0`; record delta vs pre-state
 - [ ] T018 Fill `implementation-summary.md` with actual results (no template placeholders)
 - [ ] T019 Mark all `checklist.md` items `[x]` with evidence
-- [ ] T020 Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/054-runtime-cleanup-followups --strict` (must exit 0)
-- [ ] T021 Update parent `graph-metadata.json.derived.last_active_child_id` to `054-runtime-cleanup-followups`
+- [ ] T020 Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-runtime-cleanup-followups --strict` (must exit 0)
+- [ ] T021 Update parent `graph-metadata.json.derived.last_active_child_id` to `004-runtime-cleanup-followups`
 - [ ] T022 Save context via `/memory:save` so the indexed-continuity store reflects this packet
 <!-- /ANCHOR:phase-3 -->
 
