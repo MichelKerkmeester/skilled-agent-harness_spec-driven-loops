@@ -5078,7 +5078,7 @@
       "lastUpdated": "2026-05-10T07:31:25.833Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/049-deep-research-finding-remediation",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-deep-research-finding-remediation",
       "description": "Feature Specification: 049 Deep-Research Finding Remediation (Phase Parent)",
       "keywords": [
         "feature",
@@ -5093,7 +5093,7 @@
       "lastUpdated": "2026-05-08T08:26:57.438Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/049-deep-research-finding-remediation/001-code-graph-consistency",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-deep-research-finding-remediation/001-code-graph-consistency",
       "description": "Feature Specification: 001 Code-Graph Consistency Remediation",
       "keywords": [
         "feature",
@@ -5106,7 +5106,7 @@
       "lastUpdated": "2026-05-08T08:26:57.442Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/049-deep-research-finding-remediation/002-deep-loop-workflow-state",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-deep-research-finding-remediation/002-deep-loop-workflow-state",
       "description": "Feature Specification: 002 Deep-Loop Workflow State-Machine Remediation",
       "keywords": [
         "feature",
@@ -5120,7 +5120,7 @@
       "lastUpdated": "2026-05-08T08:26:57.446Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/049-deep-research-finding-remediation/003-advisor-quality",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-deep-research-finding-remediation/003-advisor-quality",
       "description": "Feature Specification: 003 Advisor Quality",
       "keywords": [
         "feature",
@@ -5132,7 +5132,7 @@
       "lastUpdated": "2026-05-08T08:26:57.450Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/049-deep-research-finding-remediation/004-validation-and-memory",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-deep-research-finding-remediation/004-validation-and-memory",
       "description": "Feature Specification: 004 Validation And Memory Remediation",
       "keywords": [
         "feature",
@@ -5145,7 +5145,7 @@
       "lastUpdated": "2026-05-08T08:26:57.454Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/049-deep-research-finding-remediation/005-resource-leaks-silent-errors",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-deep-research-finding-remediation/005-resource-leaks-silent-errors",
       "description": "Feature Specification: 005 Resource Leaks And Silent Errors Remediation",
       "keywords": [
         "feature",
@@ -5160,7 +5160,7 @@
       "lastUpdated": "2026-05-08T08:26:57.459Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/049-deep-research-finding-remediation/006-architecture-cleanup",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-deep-research-finding-remediation/006-architecture-cleanup",
       "description": "Feature Specification: 006 Architecture Cleanup Remediation",
       "keywords": [
         "feature",
@@ -5173,7 +5173,7 @@
       "lastUpdated": "2026-05-08T08:26:57.464Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/049-deep-research-finding-remediation/007-topology-build-boundary",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-deep-research-finding-remediation/007-topology-build-boundary",
       "description": "Feature Specification: 007 Topology And Build/Dist Boundary Remediation",
       "keywords": [
         "feature",
@@ -5188,7 +5188,7 @@
       "lastUpdated": "2026-05-08T08:26:57.468Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/049-deep-research-finding-remediation/008-search-quality-tuning",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-deep-research-finding-remediation/008-search-quality-tuning",
       "description": "Feature Specification: 008 Search Quality Tuning",
       "keywords": [
         "feature",
@@ -5201,7 +5201,7 @@
       "lastUpdated": "2026-05-08T08:26:57.472Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/049-deep-research-finding-remediation/009-test-reliability",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-deep-research-finding-remediation/009-test-reliability",
       "description": "Feature Specification: 009 Test Reliability Remediation",
       "keywords": [
         "feature",
@@ -5214,7 +5214,7 @@
       "lastUpdated": "2026-05-08T08:26:57.477Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/049-deep-research-finding-remediation/010-cli-orchestrator-drift",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-deep-research-finding-remediation/010-cli-orchestrator-drift",
       "description": "Feature Specification: 010 CLI Orchestrator Skill Doc Drift",
       "keywords": [
         "feature",

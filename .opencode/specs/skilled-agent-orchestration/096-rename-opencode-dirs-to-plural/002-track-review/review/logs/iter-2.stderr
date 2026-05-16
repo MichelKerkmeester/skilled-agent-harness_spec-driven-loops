@@ -6957,12 +6957,12 @@ spec_history_or_review_artifact: 577
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/007-runtime-command-agent-alignment-review/research/prompts/iteration-001.md
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-mcp-runtime-stress-remediation/011-post-stress-followup-research/review/deltas/iter-006.jsonl
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-mcp-runtime-stress-remediation/011-post-stress-followup-research/tasks.md
-./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/049-deep-research-finding-remediation/002-deep-loop-workflow-state/plan.md
+./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-deep-research-finding-remediation/002-deep-loop-workflow-state/plan.md
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/003-contextador/spec.md
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-mcp-runtime-stress-remediation/011-post-stress-followup-research/research/deep-research-strategy.md
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/003-contextador/plan.md
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/003-contextador/checklist.md
-./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/049-deep-research-finding-remediation/002-deep-loop-workflow-state/graph-metadata.json
+./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-deep-research-finding-remediation/002-deep-loop-workflow-state/graph-metadata.json
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-mcp-runtime-stress-remediation/011-post-stress-followup-research/research/iterations/iteration-010.md
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/003-contextador/tasks.md
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-mcp-runtime-stress-remediation/011-post-stress-followup-research/research/iterations/iteration-004.md

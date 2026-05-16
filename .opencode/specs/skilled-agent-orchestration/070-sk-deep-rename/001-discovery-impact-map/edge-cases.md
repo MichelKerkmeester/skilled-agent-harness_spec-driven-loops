@@ -274,7 +274,7 @@ Snippet: `L48: ".opencode/skills/sk-deep-research/feature_catalog/feature_catalo
 
 Snippet: `L56: ".opencode/skills/sk-deep-research/SKILL.md"`
 
-### `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/049-deep-research-finding-remediation/002-deep-loop-workflow-state/graph-metadata.json`
+### `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-deep-research-finding-remediation/002-deep-loop-workflow-state/graph-metadata.json`
 
 Snippet: `L49: ".opencode/skills/sk-deep-research/references/state_format.md",`
 
@@ -350,7 +350,7 @@ Snippet: `L48: ".opencode/skills/sk-deep-research/feature_catalog/feature_catalo
 
 Snippet: `L56: ".opencode/skills/sk-deep-research/SKILL.md"`
 
-### `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/049-deep-research-finding-remediation/002-deep-loop-workflow-state/graph-metadata.json`
+### `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-deep-research-finding-remediation/002-deep-loop-workflow-state/graph-metadata.json`
 
 Snippet: `L49: ".opencode/skills/sk-deep-research/references/state_format.md",`
 

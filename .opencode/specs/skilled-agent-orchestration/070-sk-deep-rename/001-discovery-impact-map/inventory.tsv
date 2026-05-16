@@ -416,8 +416,8 @@ file_path	match_count	area	phase
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-system-deep-research-bugs-and-improvements/research/prompts/synthesis.md	1	spec-folder-active	003
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-system-deep-research-bugs-and-improvements/spec.md	1	spec-folder-active	003
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-system-deep-research-bugs-and-improvements/tasks.md	1	spec-folder-active	003
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/049-deep-research-finding-remediation/002-deep-loop-workflow-state/graph-metadata.json	2	spec-folder-active	003
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/049-deep-research-finding-remediation/002-deep-loop-workflow-state/plan.md	1	spec-folder-active	003
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-deep-research-finding-remediation/002-deep-loop-workflow-state/graph-metadata.json	2	spec-folder-active	003
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-deep-research-finding-remediation/002-deep-loop-workflow-state/plan.md	1	spec-folder-active	003
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/002-codesight/checklist.md	1	spec-folder-active	003
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/002-codesight/graph-metadata.json	2	spec-folder-active	003
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/002-codesight/plan.md	4	spec-folder-active	003
@@ -1076,8 +1076,8 @@ specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003
 specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-system-deep-research-bugs-and-improvements/research/prompts/synthesis.md	1	spec-folder-active	003
 specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-system-deep-research-bugs-and-improvements/spec.md	1	spec-folder-active	003
 specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-system-deep-research-bugs-and-improvements/tasks.md	1	spec-folder-active	003
-specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/049-deep-research-finding-remediation/002-deep-loop-workflow-state/graph-metadata.json	2	spec-folder-active	003
-specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/049-deep-research-finding-remediation/002-deep-loop-workflow-state/plan.md	1	spec-folder-active	003
+specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-deep-research-finding-remediation/002-deep-loop-workflow-state/graph-metadata.json	2	spec-folder-active	003
+specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-deep-research-finding-remediation/002-deep-loop-workflow-state/plan.md	1	spec-folder-active	003
 specs/system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/002-codesight/checklist.md	1	spec-folder-active	003
 specs/system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/002-codesight/graph-metadata.json	2	spec-folder-active	003
 specs/system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/002-codesight/plan.md	4	spec-folder-active	003
