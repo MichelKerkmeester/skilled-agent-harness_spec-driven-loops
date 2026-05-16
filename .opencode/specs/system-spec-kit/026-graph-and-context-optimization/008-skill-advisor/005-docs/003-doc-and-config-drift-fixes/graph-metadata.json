@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-docs/025-doc-and-config-drift-fixes",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-docs/025-doc-and-config-drift-fixes",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-docs/003-doc-and-config-drift-fixes",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-docs/003-doc-and-config-drift-fixes",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-docs",
   "children_ids": [],
   "migrated": false,
