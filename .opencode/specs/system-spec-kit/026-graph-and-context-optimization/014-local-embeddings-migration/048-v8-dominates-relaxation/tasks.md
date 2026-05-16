@@ -9,7 +9,7 @@ contextType: "spec"
 status: "complete"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/_048-v8-dominates-relaxation"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/048-v8-dominates-relaxation"
     last_updated_at: "2026-05-14T17:15:00Z"
     last_updated_by: "codex"
     recent_action: "Completed all implementation and verification tasks"

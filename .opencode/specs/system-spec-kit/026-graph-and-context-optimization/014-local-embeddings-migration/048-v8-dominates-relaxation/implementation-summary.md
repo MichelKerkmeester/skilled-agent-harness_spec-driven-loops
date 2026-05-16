@@ -9,7 +9,7 @@ contextType: "spec"
 status: "complete"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/_048-v8-dominates-relaxation"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/048-v8-dominates-relaxation"
     last_updated_at: "2026-05-14T17:15:00Z"
     last_updated_by: "codex"
     recent_action: "Verified V8 dominance patch with build, tests, live validator, and strict validation"
@@ -29,7 +29,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/_048-v8-dominates-relaxation` |
+| **Spec Folder** | `system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/048-v8-dominates-relaxation` |
 | **Started** | 2026-05-14 |
 | **Completed** | 2026-05-14 |
 | **Level** | 2 |
@@ -77,7 +77,7 @@ Single autonomous Codex dispatch on `main`, with no branch, no commit, no networ
 | Targeted V8 Vitest | PASS | `npx vitest run ../scripts/tests/validate-memory-quality-v8-overreach.vitest.ts ../scripts/tests/validate-memory-quality-v8-regex-narrow.vitest.ts`: 2 files passed, 13 tests passed. |
 | `npm run build` from scripts package | PASS | `npm run build` from `.opencode/skills/system-spec-kit/scripts`: `tsc --build` exit 0. |
 | Live validate 014 parent handover | PASS | `node .opencode/skills/system-spec-kit/scripts/dist/memory/validate-memory-quality.js .../014-local-embeddings-migration/handover.md`: `QUALITY_GATE_PASS`, `matchesFound: []`, `current_spec:014-local-embeddings-migration`. |
-| Strict validate 047 packet | PASS | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .../_048-v8-dominates-relaxation --strict`: `RESULT: PASSED`, errors 0, warnings 0. |
+| Strict validate 047 packet | PASS | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .../048-v8-dominates-relaxation --strict`: `RESULT: PASSED`, errors 0, warnings 0. |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -99,7 +99,7 @@ Single autonomous Codex dispatch on `main`, with no branch, no commit, no networ
 | AGENT_RECEIVED | yes |
 | SPAWN_AGENT_USED | no |
 | GATE_3_ANSWER | E-Phase-047 |
-| PACKET_PATH | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/_048-v8-dominates-relaxation` |
+| PACKET_PATH | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/048-v8-dominates-relaxation` |
 | SOURCE_FILE | `.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts` |
 | TEST_FILE | `.opencode/skills/system-spec-kit/scripts/tests/validate-memory-quality-v8-overreach.vitest.ts` |
 | VITEST_RESULT | PASS: 13/13 targeted V8 tests |
