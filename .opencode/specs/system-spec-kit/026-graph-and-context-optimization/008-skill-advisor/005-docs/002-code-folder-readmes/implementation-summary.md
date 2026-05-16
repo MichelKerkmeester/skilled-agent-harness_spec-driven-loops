@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/024-code-folder-readmes"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-code-folder-readmes"
     last_updated_at: "2026-05-15T11:55:00Z"
     last_updated_by: "main_agent"
     recent_action: "Authored impl-summary stub"
@@ -36,7 +36,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/024-code-folder-readmes |
+| **Spec Folder** | system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-code-folder-readmes |
 | **Phase** | B of 4 |
 | **Completed** | 2026-05-15 |
 | **Level** | 1 |
@@ -118,7 +118,7 @@ Pre-Pass-2 verification gate transcript at `research/bundle-verification.md`.
 | Per-README sk-doc validate (all 7 files) | 7/7 PASS | `python3 .opencode/skills/sk-doc/scripts/validate_document.py <readme> --type readme` |
 | Anchor presence | All present | `grep -c 'ANCHOR' <readme>` |
 | Bundle verification gate | PASS after corrections | 4 false-positive imports removed across both bundles; transcript in `research/bundle-verification.md` |
-| Strict-validate packet | PASS, 0 errors / 0 warnings | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/024-code-folder-readmes --strict` |
+| Strict-validate packet | PASS, 0 errors / 0 warnings | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-code-folder-readmes --strict` |
 | Sonnet @markdown structural review | PASS (0 P0 / 0 P1 / 3 P2 advisories) | Task tool dispatch |
 | Sonnet @review factual review | PASS post-patch (2 P0 caught + fixed in `94d2e38d8`; 0 P0 / 0 P1 / 3 P2 remaining) | Task tool dispatch |
 | Validation command smoke-run (post-patch) | lifecycle 16/16 PASS, scorer 3/3 PASS | `cd .opencode/skills/system-skill-advisor/mcp_server && npm test -- ...` |

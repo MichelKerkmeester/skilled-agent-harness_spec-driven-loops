@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/024-code-folder-readmes"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-code-folder-readmes"
     last_updated_at: "2026-05-15T11:55:00Z"
     last_updated_by: "main_agent"
     recent_action: "Created task list"

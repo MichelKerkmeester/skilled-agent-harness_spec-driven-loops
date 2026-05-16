@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/024-code-folder-readmes",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-code-folder-readmes",
   "description": "Phase B of the 4-phase code-folder README pipeline. Discovery showed actual gaps are smaller than the original plan: 2 fixture folders need new sk-doc READMEs (tests/fixtures/lifecycle, tests/scorer/fixtures), 5 existing READMEs need only a TABLE OF CONTENTS anchor block added (lib/context, lib/scorer/lanes, lib/scorer/lanes/__tests__, scripts/routing-accuracy, stress_test/search-quality). 2 of the originally-listed 9 (lib/skill-graph, stress_test/skill-advisor) already pass sk-doc validate from an earlier upgrade.",
   "keywords": [
     "code-folder-readme",

@@ -7,7 +7,7 @@
   "manual": {
     "depends_on": [
       "system-spec-kit/026-graph-and-context-optimization/007-code-graph/035-code-folder-readmes",
-      "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/024-code-folder-readmes"
+      "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-code-folder-readmes"
     ],
     "supersedes": [],
     "related_to": [

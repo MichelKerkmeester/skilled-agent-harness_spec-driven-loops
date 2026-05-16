@@ -8,7 +8,7 @@
     "depends_on": [],
     "supersedes": [],
     "related_to": [
-      "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/024-code-folder-readmes",
+      "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-code-folder-readmes",
       "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/054-code-folder-readmes",
       "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/055-root-readme-realignment"
     ]

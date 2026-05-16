@@ -67,7 +67,7 @@ This resource map lists the 8 git-tracked folders in `system-spec-kit/mcp_server
 | Phase B fixture exemplar | `.opencode/skills/system-skill-advisor/mcp_server/tests/fixtures/lifecycle/README.md` | Reference for fixture folders |
 | Phase B fixture exemplar | `.opencode/skills/system-skill-advisor/mcp_server/tests/scorer/fixtures/README.md` | Reference for multi-file fixture folders |
 | Phase A packet | `../../007-code-graph/035-code-folder-readmes/` | Precedent 1 |
-| Phase B packet | `../../008-skill-advisor/024-code-folder-readmes/` | Precedent 2 |
+| Phase B packet | `../../008-skill-advisor/002-code-folder-readmes/` | Precedent 2 |
 | Strict validator | `.opencode/skills/system-spec-kit/scripts/spec/validate.sh` | Packet validation |
 <!-- /ANCHOR:assets -->
 

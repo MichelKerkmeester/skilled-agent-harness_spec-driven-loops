@@ -48,7 +48,7 @@ _memory:
 | **Branch** | `main` |
 | **Parent** | `system-spec-kit/026-graph-and-context-optimization/007-code-graph` |
 | **Phase** | A of 4 (proof-of-concept) |
-| **Successor** | `008-skill-advisor/024-code-folder-readmes` |
+| **Successor** | `008-skill-advisor/002-code-folder-readmes` |
 | **Handoff Criteria** | 3 new `README.md` files in scope folders, each sk-doc-compliant per `validate_document.py --type readme` exit 0, strict-validate on this packet exits 0 |
 <!-- /ANCHOR:metadata -->
 
