@@ -361,11 +361,11 @@ _memory:
 | .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/003-smart-router-remediation-and-opencode-plugin/scratch/area-f-notes.md | Cited | OK | phase child |
 | .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/003-smart-router-remediation-and-opencode-plugin/spec.md | Cited | OK | phase child |
 | .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/003-smart-router-remediation-and-opencode-plugin/tasks.md | Created | OK | phase child |
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/006-deferred-remediation-and-telemetry-run/checklist.md | Created | OK | phase child |
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/006-deferred-remediation-and-telemetry-run/implementation-summary.md | Created | OK | phase child |
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/006-deferred-remediation-and-telemetry-run/plan.md | Created | OK | phase child |
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/006-deferred-remediation-and-telemetry-run/spec.md | Cited | OK | phase child |
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/006-deferred-remediation-and-telemetry-run/tasks.md | Created | OK | phase child |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-deferred-remediation-and-telemetry-run/checklist.md | Created | OK | phase child |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-deferred-remediation-and-telemetry-run/implementation-summary.md | Created | OK | phase child |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-deferred-remediation-and-telemetry-run/plan.md | Created | OK | phase child |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-deferred-remediation-and-telemetry-run/spec.md | Cited | OK | phase child |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-deferred-remediation-and-telemetry-run/tasks.md | Created | OK | phase child |
 | .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-skill-advisor-hook-surface/battle-plan.md | Cited | OK | phase child |
 | .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-skill-advisor-hook-surface/checklist.md | Cited | OK | phase child |
 | .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-skill-advisor-hook-surface/decision-record.md | Cited | OK | phase child |
@@ -730,8 +730,8 @@ _memory:
 | .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-skill-advisor-docs-and-code-alignment/graph-metadata.json | Cited | OK | phase child |
 | .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/003-smart-router-remediation-and-opencode-plugin/description.json | Cited | OK | phase child |
 | .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/003-smart-router-remediation-and-opencode-plugin/graph-metadata.json | Cited | OK | phase child |
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/006-deferred-remediation-and-telemetry-run/description.json | Cited | OK | phase child |
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/006-deferred-remediation-and-telemetry-run/graph-metadata.json | Cited | OK | phase child |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-deferred-remediation-and-telemetry-run/description.json | Cited | OK | phase child |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-deferred-remediation-and-telemetry-run/graph-metadata.json | Cited | OK | phase child |
 | .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-skill-advisor-hook-surface/description.json | Cited | OK | phase child |
 | .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-skill-advisor-hook-surface/graph-metadata.json | Cited | OK | phase child |
 | .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-skill-graph-daemon-and-advisor-unification/description.json | Cited | OK | phase child |

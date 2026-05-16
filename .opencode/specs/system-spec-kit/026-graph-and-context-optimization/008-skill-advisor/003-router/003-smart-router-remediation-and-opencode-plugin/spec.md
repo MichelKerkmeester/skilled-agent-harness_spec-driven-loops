@@ -41,7 +41,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify |
 | **Parent Spec** | ../spec.md |
 | **Parent Plan** | ../plan.md |
 | **Predecessor** | ../004-skill-advisor-docs-and-code-alignment/spec.md |
-| **Successor** | ../006-deferred-remediation-and-telemetry-run/spec.md |
+| **Successor** | ../001-deferred-remediation-and-telemetry-run/spec.md |
 <!-- /ANCHOR:metadata -->
 
 ---

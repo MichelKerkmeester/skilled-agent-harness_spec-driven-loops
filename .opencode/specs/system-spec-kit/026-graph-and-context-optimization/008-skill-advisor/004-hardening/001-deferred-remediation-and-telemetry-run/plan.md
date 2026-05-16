@@ -1,5 +1,5 @@
 ---
-title: "...ec-kit/026-graph-and-context-optimization/008-skill-advisor/006-deferred-remediation-and-telemetry-run/plan]"
+title: "...ec-kit/026-graph-and-context-optimization/008-skill-advisor/001-deferred-remediation-and-telemetry-run/plan]"
 description: "Delivery plan for Phase 024: Codex registration, static predicted-route measurement, live-session wrapper and analyzer."
 trigger_phrases:
   - "024 plan"
@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/006-deferred-remediation-and-telemetry-run"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-deferred-remediation-and-telemetry-run"
     last_updated_at: "2026-04-19T18:10:00Z"
     last_updated_by: "codex"
     recent_action: "Plan aligned with Level 2 template"

@@ -6133,7 +6133,7 @@
       "lastUpdated": "2026-05-08T08:26:57.718Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/006-deferred-remediation-and-telemetry-run",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-deferred-remediation-and-telemetry-run",
       "description": "Feature Specification: Deferred Remediation + Telemetry Measurement Run",
       "keywords": [
         "feature",

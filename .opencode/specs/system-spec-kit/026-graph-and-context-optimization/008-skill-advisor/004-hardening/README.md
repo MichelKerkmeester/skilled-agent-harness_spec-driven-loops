@@ -4,7 +4,7 @@ Deferred remediation, telemetry, plugin hardening, standards alignment.
 
 ## Children (4)
 
-- `006-deferred-remediation-and-telemetry-run`
+- `001-deferred-remediation-and-telemetry-run`
 - `009-skill-advisor-plugin-hardening`
 - `010-skill-advisor-standards-alignment`
 - `025-cli-devin-skill-advisor-hook`

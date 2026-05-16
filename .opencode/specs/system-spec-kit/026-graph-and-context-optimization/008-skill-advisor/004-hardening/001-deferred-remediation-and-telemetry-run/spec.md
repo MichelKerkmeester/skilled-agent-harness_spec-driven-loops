@@ -1,5 +1,5 @@
 ---
-title: "...ec-kit/026-graph-and-context-optimization/008-skill-advisor/006-deferred-remediation-and-telemetry-run/spec]"
+title: "...ec-kit/026-graph-and-context-optimization/008-skill-advisor/001-deferred-remediation-and-telemetry-run/spec]"
 description: "Address the consolidated deferred items across Phases 020-023. Scope: (1) apply .codex settings + policy registration; (2) build static corpus measurement harness; (3) build live-session instrumentation wrapper; (4) run 019/004 corpus through harness and emit compliance report; (5) answer what can be answered without live AI (advisor top-1 accuracy, savings ceiling, predicted vs labeled)."
 trigger_phrases:
   - "024 deferred remediation"
@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/006-deferred-remediation-and-telemetry-run"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-deferred-remediation-and-telemetry-run"
     last_updated_at: "2026-04-19T20:15:00Z"
     last_updated_by: "claude-opus-4.7-1m"
     recent_action: "Phase 024 scaffolded — closes 020/021/022/023 deferrals"

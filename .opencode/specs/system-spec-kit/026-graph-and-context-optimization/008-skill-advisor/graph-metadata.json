@@ -29,7 +29,7 @@
       "002-advisor-phrase-booster-tailoring",
       "004-skill-advisor-docs-and-code-alignment",
       "003-smart-router-remediation-and-opencode-plugin",
-      "006-deferred-remediation-and-telemetry-run",
+      "001-deferred-remediation-and-telemetry-run",
       "004-skill-advisor-hook-surface"
     ],
     "key_topics": [
