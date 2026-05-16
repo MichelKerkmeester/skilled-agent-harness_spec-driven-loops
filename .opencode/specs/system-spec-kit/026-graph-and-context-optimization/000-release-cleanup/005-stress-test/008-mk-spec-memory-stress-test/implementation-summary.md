@@ -8,13 +8,13 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/008-mk-spec-memory-stress-test"
-    last_updated_at: "2026-05-16T21:25:00Z"
+    last_updated_at: "2026-05-16T22:00:00Z"
     last_updated_by: "main_agent"
-    recent_action: "Phase 2 278/345 + 16 codex fixes closed 24/29 FAILs"
-    next_safe_action: "Phase 4 follow-ons: cat-04/24 tool-rejected + cat-16 Tier C tail"
+    recent_action: "Round 3: 23 fix commits closed 31/32 FAILs"
+    next_safe_action: "Optional: cat-04/24 via opencode runtime + 239 broad repo cleanup"
     blockers:
-      - "cat-04 + cat-24 tool-rejected (18 scenarios)"
-      - "cat-16 Tier C tail: 002/235/236/238/243"
+      - "cat-04 + cat-24 tool-rejected (18 scenarios) — devin-incompatible"
+      - "cat-16/239 repo-wide frontmatter cleanup — broad content debt"
     key_files:
       - "handover.md"
       - "tasks.md"
@@ -25,7 +25,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000008004"
       session_id: "008-summary-stub"
       parent_session_id: null
-    completion_pct: 92
+    completion_pct: 97
     open_questions: []
     answered_questions: []
 ---
@@ -41,15 +41,15 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| Status | PARTIAL (Phase 1 fully complete; Phase 2 80.6% complete with **16 fix commits** landed closing **24 of 29 FAILs**) |
+| Status | PARTIAL (Phase 1 fully complete; Phase 2 80.6% scenario coverage with **23 fix commits** landed closing **31 of 32 FAILs**) |
 | Branch | main |
 | Baseline | post packet 113 (commit b062b12b4) |
 | Pre-sweep checkpoint | `pre-008-sweep-20260516T144620Z` (id=2, global scope, 11,426 memories, 124 MB) — intact end-to-end |
-| Wall-clock actual | ~9 hours total (Phase 0 + Phase 1 + 3 Phase 2 waves + 16 codex fix dispatches across 2 rounds) |
-| Total commits this session | 16 fix + ~6 doc + 1 deferred-followon doc |
-| FAILs closed | 24 of 29 (83%) |
+| Wall-clock actual | ~11 hours total (Phase 0 + Phase 1 + 3 Phase 2 waves + 23 codex fix dispatches across 3 rounds) |
+| Total commits this session | 23 fix + ~7 doc + 2 deferred-followon docs |
+| FAILs closed | 31 of 32 (97%) |
 | Scenarios covered | 278 of 345 (80.6%) |
-| Remaining work | 5 cat-16 Tier C scenario/env defects + 18 cat-04/cat-24 tool-rejected scenarios + 1 manual playbook runner crash (Phase 4 follow-ons) |
+| Remaining work | 1 partial fix tail (cat-16/239 repo-wide frontmatter cleanup as broad content debt) + 18 cat-04/cat-24 tool-rejected scenarios (Phase 4+1 follow-ons) |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -90,7 +90,21 @@ Round 2 (11 commits):
 - `feedback_git_add_not_scope_strict` (new) — captures the bloat-commit incident + strict-scope mitigation pattern
 - `feedback_generate_context_regenerates_parent_metadata` (updated) — generalized to cover leaf packets, not just phase parents
 
-**24 of 29 total session FAILs closed by fixes** (1 Phase 1 + 23 Phase 2). Remaining 5 FAILs are cat-16 Tier C deferrals (002 scenario-expectation, 235 ground-truth env, 236 cp path, 238 fixture audit, 243 branch-policy collision) — all documented as Phase 4 follow-ons in `tasks.md`. Plus 1 Phase 4 follow-on surfaced by codex F: manual playbook runner crashes with `setEmbeddingModelReady is not a function` (unrelated to packet 113).
+**24 of 29 total session FAILs closed by fixes** (1 Phase 1 + 23 Phase 2 via 16 commits across rounds 1+2).
+
+Round 3 (7 commits via codex I — cat-16 Tier C tail + 2 partials + playbook runner crash):
+- `19ff50eef` — cat-16/002 phase-folder-creation + cat-16/236 phase-system-knowledge-node (FIXED)
+- `06823e4bf` — cat-16/235 eval-runner-cli ground-truth alignment (FIXED — likely also unblocks Phase 1 `eval_run_ablation` SKIP)
+- `f2eb10cd9` — cat-16/238 spec-validation-rule-engine + cat-16/236 fixture refresh (FIXED)
+- `35530c0eb` — cat-16/243 setup-native-module branch check relaxed on main (FIXED — honors `feedback_stay_on_main_no_feature_branches`)
+- `9924931fe` — cat-16/239 backfill-frontmatter (PARTIAL — vector cleanup + malformed handling now pass; repo-wide frontmatter cleanup deferred as broad content debt)
+- `9d42bc23a` — cat-16/242 spec-folder-detection (FIXED)
+- `c05613e05` — Manual playbook runner setEmbeddingModelReady removed (FIXED)
+
+**Final FAIL closure: 31 of 32 total session FAILs closed by 23 fix commits across 3 rounds** (1 Phase 1 + 28 Phase 2 originals + 3 Round-3-surfaced sub-defects under cat-16 cluster). Only remaining: cat-16/239 broad repo-frontmatter-cleanup tail (deferred as broad content debt, not a code defect).
+
+**Coverage gaps (Phase 4+1 follow-ons documented):**
+- cat-04 (3 scenarios) + cat-24 (15 scenarios) — 18 scenarios blocked by persistent devin "tool rejected" guard; agent-config expansion did NOT unlock; runtime change to cli-opencode deferred (would consume substantial session capacity for marginal coverage gain)
 <!-- /ANCHOR:what-built -->
 
 ---
