@@ -30,8 +30,12 @@ _memory:
       parent_session_id: null
     completion_pct: 90
     open_questions:
-      - "Council verdict on phase grouping (by target surface) + scope?"
-    answered_questions: []
+      - "H-9 bounded-evidence — revisit in packet 111+ if a real interpolation path is identified in deep-review architecture"
+    answered_questions:
+      - "Council verdict APPROVE-WITH-REVISIONS (5/5 unanimous REQUEST-CHANGES → all 7 spec edits applied)"
+      - "Phase grouping: target-surface (council §13 winning strategy A)"
+      - "All 4 MVP phases shipped: commits 45c5a7118, baaeaad52, 8b3039a1a, b29640496"
+      - "H-9 deferred to packet 111+ — current deep-review prompts use state/metadata pointers, not embedded file contents"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->
@@ -48,14 +52,15 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P2 (stretch goals — not blocking; packet 108 MVP already shipped) |
-| **Status** | Planned — awaiting council review |
+| **Status** | **MVP COMPLETE** — 4 phases shipped 2026-05-16; H-9 deferred to 111+ |
 | **Created** | 2026-05-16 |
 | **Branch** | `main` |
 | **Parent Packet** | `skilled-agent-orchestration/110-auto-review-stretch-uplift` |
-| **Active Child** | `001-mk-plugins-config-uplift` (first phase to implement post-council) |
+| **Active Child** | `004-deep-agent-improvement-uplift` (final phase complete) |
 | **Source Findings** | `106-upstream-auto-review-research/research/review-report.md` (stretch teachings) + `108-sk-code-review-auto-review-uplift/004-stretch-goals/spec.md` (deferred list) |
-| **Pre-implementation Gate** | deep-ai-council multi-seat review using cli-codex gpt-5.5 xhigh fast → ai-council/council-report.md |
-| **Implementation Executor** | cli-opencode + deepseek-v4-pro via `opencode run --model deepseek/deepseek-v4-pro --pure` |
+| **Pre-implementation Gate** | deep-ai-council multi-seat review using cli-codex gpt-5.5 xhigh fast → ai-council/council-report.md ✅ COMPLETE (5/5 REQUEST-CHANGES → 7 revisions applied) |
+| **Implementation Executor** | cli-opencode + deepseek-v4-pro via `opencode run --model deepseek/deepseek-v4-pro --pure` ✅ ALL 4 PHASES SHIPPED |
+| **Phase commits** | 45c5a7118 (001 H-5+M-6), baaeaad52 (002 M-1+M-2), 8b3039a1a (003 H-7), b29640496 (004 M-3) |
 <!-- /ANCHOR:metadata -->
 
 ---
