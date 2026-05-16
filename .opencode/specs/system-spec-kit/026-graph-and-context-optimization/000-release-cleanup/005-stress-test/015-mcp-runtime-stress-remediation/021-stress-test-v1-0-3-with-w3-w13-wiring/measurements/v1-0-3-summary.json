@@ -1,14 +1,14 @@
 {
   "runId": "phase-h-v1.0.3",
   "generatedAt": "2026-04-29T05:10:00.000Z",
-  "corpusVersion": "007-search-rag-measurement-driven-implementation-v1",
+  "corpusVersion": "004-search-rag-measurement-driven-implementation-v1",
   "caseCount": 12,
   "allBaseline": {
     "runId": "v1.0.3-all-baseline",
     "workstream": "all",
     "variant": "baseline",
     "hypothesis": "Global baseline should preserve Phase D harness pass/fail dimensions across all current fixtures.",
-    "corpusVersion": "007-search-rag-measurement-driven-implementation-v1",
+    "corpusVersion": "004-search-rag-measurement-driven-implementation-v1",
     "summary": {
       "precisionAt3": 0.458,
       "recallAt3": 0.625,
@@ -1130,7 +1130,7 @@
     "workstream": "all",
     "variant": "variant",
     "hypothesis": "Global baseline should preserve Phase D harness pass/fail dimensions across all current fixtures.",
-    "corpusVersion": "007-search-rag-measurement-driven-implementation-v1",
+    "corpusVersion": "004-search-rag-measurement-driven-implementation-v1",
     "summary": {
       "precisionAt3": 0.597,
       "recallAt3": 0.667,
@@ -2099,7 +2099,7 @@
         "workstream": "W3",
         "variant": "baseline",
         "hypothesis": "W3 trust-tree composition should improve citation-quality on multi-source contradiction cells without reducing precision, recall, or refusal-survival.",
-        "corpusVersion": "007-search-rag-measurement-driven-implementation-v1-W3",
+        "corpusVersion": "004-search-rag-measurement-driven-implementation-v1-W3",
         "summary": {
           "precisionAt3": 0.333,
           "recallAt3": 0.5,
@@ -2318,7 +2318,7 @@
         "workstream": "W3",
         "variant": "variant",
         "hypothesis": "W3 trust-tree composition should improve citation-quality on multi-source contradiction cells without reducing precision, recall, or refusal-survival.",
-        "corpusVersion": "007-search-rag-measurement-driven-implementation-v1-W3",
+        "corpusVersion": "004-search-rag-measurement-driven-implementation-v1-W3",
         "summary": {
           "precisionAt3": 0.667,
           "recallAt3": 1,
@@ -2516,7 +2516,7 @@
         "workstream": "W4",
         "variant": "baseline",
         "hypothesis": "W4 conditional rerank should improve precision@3 on ambiguous weak-agreement cells while keeping synthetic p95 latency under 5ms.",
-        "corpusVersion": "007-search-rag-measurement-driven-implementation-v1-W4",
+        "corpusVersion": "004-search-rag-measurement-driven-implementation-v1-W4",
         "summary": {
           "precisionAt3": 0.333,
           "recallAt3": 1,
@@ -2691,7 +2691,7 @@
         "workstream": "W4",
         "variant": "variant",
         "hypothesis": "W4 conditional rerank should improve precision@3 on ambiguous weak-agreement cells while keeping synthetic p95 latency under 5ms.",
-        "corpusVersion": "007-search-rag-measurement-driven-implementation-v1-W4",
+        "corpusVersion": "004-search-rag-measurement-driven-implementation-v1-W4",
         "summary": {
           "precisionAt3": 1,
           "recallAt3": 1,
@@ -2810,7 +2810,7 @@
         "workstream": "W5",
         "variant": "baseline",
         "hypothesis": "W5 shadow learned weights should improve advisor diagnostic citation-quality while leaving live recommendation behavior unchanged.",
-        "corpusVersion": "007-search-rag-measurement-driven-implementation-v1-W5",
+        "corpusVersion": "004-search-rag-measurement-driven-implementation-v1-W5",
         "summary": {
           "precisionAt3": 0.5,
           "recallAt3": 1,
@@ -2934,7 +2934,7 @@
         "workstream": "W5",
         "variant": "variant",
         "hypothesis": "W5 shadow learned weights should improve advisor diagnostic citation-quality while leaving live recommendation behavior unchanged.",
-        "corpusVersion": "007-search-rag-measurement-driven-implementation-v1-W5",
+        "corpusVersion": "004-search-rag-measurement-driven-implementation-v1-W5",
         "summary": {
           "precisionAt3": 0.5,
           "recallAt3": 1,
@@ -3077,7 +3077,7 @@
         "workstream": "W6",
         "variant": "baseline",
         "hypothesis": "W6 CocoIndex duplicate-density calibration should improve duplicate-heavy precision@3 and preserve recall through canonical path selection.",
-        "corpusVersion": "007-search-rag-measurement-driven-implementation-v1-W6",
+        "corpusVersion": "004-search-rag-measurement-driven-implementation-v1-W6",
         "summary": {
           "precisionAt3": 0.333,
           "recallAt3": 1,
@@ -3241,7 +3241,7 @@
         "workstream": "W6",
         "variant": "variant",
         "hypothesis": "W6 CocoIndex duplicate-density calibration should improve duplicate-heavy precision@3 and preserve recall through canonical path selection.",
-        "corpusVersion": "007-search-rag-measurement-driven-implementation-v1-W6",
+        "corpusVersion": "004-search-rag-measurement-driven-implementation-v1-W6",
         "summary": {
           "precisionAt3": 1,
           "recallAt3": 1,
@@ -3352,7 +3352,7 @@
         "workstream": "W7",
         "variant": "baseline",
         "hypothesis": "W7 degraded-readiness stress cells should preserve recall, citation-quality, and refusal-survival across stale, empty, full-scan-required, and unavailable graph states.",
-        "corpusVersion": "007-search-rag-measurement-driven-implementation-v1-W7",
+        "corpusVersion": "004-search-rag-measurement-driven-implementation-v1-W7",
         "summary": {
           "precisionAt3": 1,
           "recallAt3": 1,
@@ -3692,7 +3692,7 @@
         "workstream": "W7",
         "variant": "variant",
         "hypothesis": "W7 degraded-readiness stress cells should preserve recall, citation-quality, and refusal-survival across stale, empty, full-scan-required, and unavailable graph states.",
-        "corpusVersion": "007-search-rag-measurement-driven-implementation-v1-W7",
+        "corpusVersion": "004-search-rag-measurement-driven-implementation-v1-W7",
         "summary": {
           "precisionAt3": 1,
           "recallAt3": 1,

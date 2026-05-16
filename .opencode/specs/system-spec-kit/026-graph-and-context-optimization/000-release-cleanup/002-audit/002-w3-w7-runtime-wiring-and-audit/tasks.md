@@ -101,7 +101,7 @@ _memory:
 
 - [x] T021 Thread `tenantId`, `userId`, and `agentId` through envelope/audit metadata only (`mcp_server/lib/search/pipeline/types.ts:129`, `mcp_server/handlers/memory-search.ts:921`).
 - [x] T022 Delete empty directory candidate `mcp_server/tmp-test-fixtures/specs/` if still empty.
-- [x] T023 Investigate and delete duplicate empty `measurements/` stub under `.opencode/skills/system-spec-kit/specs/.../007-search-rag-measurement-driven-implementation/` if still empty.
+- [x] T023 Investigate and delete duplicate empty `measurements/` stub under `.opencode/skills/system-spec-kit/specs/.../004-search-rag-measurement-driven-implementation/` if still empty.
 - [x] T024 Run focused Vitest, typecheck, build, and strict validator.
 - [x] T025 Author implementation summary with findings closure matrix and file:line evidence.
 <!-- /ANCHOR:phase-3 -->

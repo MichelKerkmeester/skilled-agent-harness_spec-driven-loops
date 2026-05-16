@@ -114,7 +114,7 @@ Re-run the stress test against the now-clean infrastructure to:
 
 - v1.0.3 packet: `../021-stress-test-v1-0-3-with-w3-w13-wiring/findings-v1-0-3.md` + measurements
 - v1.0.2 packet: `../010-stress-test-rerun-v1-0-2/findings.md` + rubric
-- Phase E measurements: `005-review-remediation/007-search-rag-measurement-driven-implementation/measurements/`
+- Phase E measurements: `005-review-remediation/004-search-rag-measurement-driven-implementation/measurements/`
 - Stress-cycle pattern: `../../../../../skill/system-spec-kit/feature_catalog/14--stress-testing/01-stress-test-cycle.md`
 - Manual playbook: `../../../../../skill/system-spec-kit/manual_testing_playbook/14--stress-testing/01-run-stress-cycle.md`
 - Templates: `../../../../../skill/system-spec-kit/templates/stress-test/findings-rubric.template.json` + `../../../../../skill/system-spec-kit/templates/stress-test/findings-rubric.schema.md` + `../../../../../skill/system-spec-kit/templates/stress-test/findings.template.md`

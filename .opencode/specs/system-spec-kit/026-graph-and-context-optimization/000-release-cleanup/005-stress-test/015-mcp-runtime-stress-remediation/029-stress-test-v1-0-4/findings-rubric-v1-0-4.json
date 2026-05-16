@@ -2,7 +2,7 @@
   "version": "1.0.0",
   "cycle": "v1.0.4",
   "corpus": {
-    "name": "007-search-rag-measurement-driven-implementation-v1",
+    "name": "004-search-rag-measurement-driven-implementation-v1",
     "frozenAt": "2026-04-29T12:55:00.000Z",
     "cells": 12,
     "channelCaptures": 16,

@@ -1,7 +1,7 @@
 {
   "runId": "phase-k-v1.0.4-live-handler",
   "generatedAt": "2026-04-29T12:55:00.000Z",
-  "corpusVersion": "007-search-rag-measurement-driven-implementation-v1",
+  "corpusVersion": "004-search-rag-measurement-driven-implementation-v1",
   "caseCount": 12,
   "channelCaptureCount": 16,
   "method": {

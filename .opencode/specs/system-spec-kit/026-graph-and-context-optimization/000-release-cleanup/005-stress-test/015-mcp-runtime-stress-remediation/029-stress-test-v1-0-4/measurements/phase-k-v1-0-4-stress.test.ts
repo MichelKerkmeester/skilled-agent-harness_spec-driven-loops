@@ -73,7 +73,7 @@ vi.mock('/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.open
 const PACKET = '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/system-spec-kit/026-graph-and-context-optimization/011-mcp-runtime-stress-remediation/029-stress-test-v1-0-4';
 const PRIOR_V103 = '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/system-spec-kit/026-graph-and-context-optimization/011-mcp-runtime-stress-remediation/021-stress-test-v1-0-3-with-w3-w13-wiring';
 const PRIOR_V102 = '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/system-spec-kit/026-graph-and-context-optimization/011-mcp-runtime-stress-remediation/010-stress-test-rerun-v1-0-2';
-const PHASE_E = '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/007-search-rag-measurement-driven-implementation/measurements';
+const PHASE_E = '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-search-rag-measurement-driven-implementation/measurements';
 const MEASUREMENTS = resolve(PACKET, 'measurements');
 const EXPORT_BASE = resolve(MEASUREMENTS, 'v1-0-4-harness-export');
 const ENVELOPES = resolve(MEASUREMENTS, 'v1-0-4-envelopes.jsonl');

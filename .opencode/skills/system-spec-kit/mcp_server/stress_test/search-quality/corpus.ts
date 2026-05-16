@@ -190,7 +190,7 @@ const WORKSTREAM_SEARCH_QUALITY_CASES: SearchQualityCase[] = [
 ];
 
 const SEARCH_QUALITY_EXTENDED_CORPUS: SearchQualityCorpus = {
-  version: '007-search-rag-measurement-driven-implementation-v1',
+  version: '004-search-rag-measurement-driven-implementation-v1',
   cases: [
     ...SEARCH_QUALITY_CORPUS.cases,
     ...WORKSTREAM_SEARCH_QUALITY_CASES,

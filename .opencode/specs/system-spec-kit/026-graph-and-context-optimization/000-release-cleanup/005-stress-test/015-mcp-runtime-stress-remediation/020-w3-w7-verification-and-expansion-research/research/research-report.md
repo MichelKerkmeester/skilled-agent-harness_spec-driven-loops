@@ -53,7 +53,7 @@ Answer: **HIGH evidence**. `memory_search` touches W4 through the pipeline (`mem
 Answer: **HIGH evidence**. The requested `find` audit, excluding `node_modules` and `dist`, found two concrete empty directory deletion candidates:
 
 - `.opencode/skills/system-spec-kit/mcp_server/tmp-test-fixtures/specs`
-- `.opencode/skills/system-spec-kit/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/007-search-rag-measurement-driven-implementation/measurements`
+- `.opencode/skills/system-spec-kit/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-search-rag-measurement-driven-implementation/measurements`
 
 Placeholder-only directories were also found, but they look intentional: `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/out`, `.opencode/skills/system-spec-kit/scripts/test-fixtures/001-empty-folder`, and `.opencode/skills/system-spec-kit/scripts/test-fixtures/012-anchors-empty-memory/memory`.
 
@@ -152,7 +152,7 @@ Concrete fix: add real or ephemeral DB integration tests for code graph degraded
 Candidates:
 
 - `.opencode/skills/system-spec-kit/mcp_server/tmp-test-fixtures/specs`
-- `.opencode/skills/system-spec-kit/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/007-search-rag-measurement-driven-implementation/measurements`
+- `.opencode/skills/system-spec-kit/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-search-rag-measurement-driven-implementation/measurements`
 
 Do not delete in this packet; Phase G or cleanup can remove after owner confirmation.
 
@@ -257,16 +257,16 @@ Stop reason: max iteration 10 reached. Convergence threshold was `<= 0.10` for t
 - `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/020-w3-w7-verification-and-expansion-research/research/deep-research-strategy.md`
 - `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/019-search-query-rag-optimization-research/research/research-report.md:7`
 - `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/019-search-query-rag-optimization-research/research/research-report.md:21`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/007-search-rag-measurement-driven-implementation/implementation-summary.md:56`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/007-search-rag-measurement-driven-implementation/implementation-summary.md:57`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/007-search-rag-measurement-driven-implementation/implementation-summary.md:58`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/007-search-rag-measurement-driven-implementation/implementation-summary.md:59`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/007-search-rag-measurement-driven-implementation/implementation-summary.md:60`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/007-search-rag-measurement-driven-implementation/implementation-summary.md:66`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/007-search-rag-measurement-driven-implementation/implementation-summary.md:67`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/007-search-rag-measurement-driven-implementation/implementation-summary.md:68`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/007-search-rag-measurement-driven-implementation/implementation-summary.md:69`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/007-search-rag-measurement-driven-implementation/implementation-summary.md:70`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-search-rag-measurement-driven-implementation/implementation-summary.md:56`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-search-rag-measurement-driven-implementation/implementation-summary.md:57`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-search-rag-measurement-driven-implementation/implementation-summary.md:58`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-search-rag-measurement-driven-implementation/implementation-summary.md:59`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-search-rag-measurement-driven-implementation/implementation-summary.md:60`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-search-rag-measurement-driven-implementation/implementation-summary.md:66`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-search-rag-measurement-driven-implementation/implementation-summary.md:67`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-search-rag-measurement-driven-implementation/implementation-summary.md:68`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-search-rag-measurement-driven-implementation/implementation-summary.md:69`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-search-rag-measurement-driven-implementation/implementation-summary.md:70`
 - `.opencode/skills/system-spec-kit/mcp_server/lib/rag/trust-tree.ts:25`
 - `.opencode/skills/system-spec-kit/mcp_server/lib/rag/trust-tree.ts:52`
 - `.opencode/skills/system-spec-kit/mcp_server/lib/rag/trust-tree.ts:65`

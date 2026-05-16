@@ -3,7 +3,7 @@
   "workstream": "W5",
   "variant": "baseline",
   "hypothesis": "W5 shadow learned weights should improve advisor diagnostic citation-quality while leaving live recommendation behavior unchanged.",
-  "corpusVersion": "007-search-rag-measurement-driven-implementation-v1-W5",
+  "corpusVersion": "004-search-rag-measurement-driven-implementation-v1-W5",
   "summary": {
     "precisionAt3": 0.5,
     "recallAt3": 1,

@@ -8,7 +8,7 @@ importance_tier: "high"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/007-search-rag-measurement-driven-implementation"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-search-rag-measurement-driven-implementation"
     last_updated_at: "2026-04-29T03:35:49Z"
     last_updated_by: "codex"
     recent_action: "Completed verification checklist"
@@ -18,7 +18,7 @@ _memory:
       - "checklist.md"
     session_dedup:
       fingerprint: "sha256:007-search-rag-checklist-20260429"
-      session_id: "007-search-rag-measurement-driven-implementation-20260429"
+      session_id: "004-search-rag-measurement-driven-implementation-20260429"
       parent_session_id: "005-review-remediation"
     completion_pct: 100
     open_questions: []

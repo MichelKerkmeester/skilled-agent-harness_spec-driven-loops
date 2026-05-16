@@ -3,7 +3,7 @@
   "workstream": "W4",
   "variant": "baseline",
   "hypothesis": "W4 conditional rerank should improve precision@3 on ambiguous weak-agreement cells while keeping synthetic p95 latency under 5ms.",
-  "corpusVersion": "007-search-rag-measurement-driven-implementation-v1-W4",
+  "corpusVersion": "004-search-rag-measurement-driven-implementation-v1-W4",
   "summary": {
     "precisionAt3": 0.333,
     "recallAt3": 1,

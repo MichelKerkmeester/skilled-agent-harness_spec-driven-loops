@@ -28,7 +28,7 @@ Headline numbers:
 
 ## Methodology
 
-- **Corpus**: `SEARCH_QUALITY_EXTENDED_CORPUS`, version `007-search-rag-measurement-driven-implementation-v1`, 12 cases (`mcp_server/stress_test/search-quality/corpus.ts:192`).
+- **Corpus**: `SEARCH_QUALITY_EXTENDED_CORPUS`, version `004-search-rag-measurement-driven-implementation-v1`, 12 cases (`mcp_server/stress_test/search-quality/corpus.ts:192`).
 - **Rubric**: correctness / robustness / telemetry / regression-safety, scale `0-2`, equal weights. This follows the generalized stress-cycle dimensions (`feature_catalog/14--stress-testing/01-stress-test-cycle.md:40`).
 - **Measurement method**: PP-1 + PP-2 combined. The runner mocks `executePipeline` at the retrieval boundary while `handleMemorySearch` runs as production code, mirroring the PP-1 disclosure (`mcp_server/tests/handler-memory-search-live-envelope.vitest.ts:1`). Harness telemetry export is the PP-2 path (`mcp_server/stress_test/search-quality/harness.ts:103`, `mcp_server/stress_test/search-quality/harness.ts:199`).
 - **Comparison method**: same 12-case layout as v1.0.3 for telemetry comparability. v1.0.2 remains a directional baseline only because its sidecar is a 30-cell CLI-model rubric (`010-stress-test-rerun-v1-0-2/findings.md:28`, `010-stress-test-rerun-v1-0-2/findings-rubric.json:65`).

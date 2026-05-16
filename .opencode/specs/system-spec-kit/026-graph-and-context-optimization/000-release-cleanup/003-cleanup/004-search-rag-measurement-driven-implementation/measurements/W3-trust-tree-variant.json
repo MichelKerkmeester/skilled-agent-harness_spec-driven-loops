@@ -1,19 +1,19 @@
 {
-  "runId": "W3-baseline",
+  "runId": "W3-variant",
   "workstream": "W3",
-  "variant": "baseline",
+  "variant": "variant",
   "hypothesis": "W3 trust-tree composition should improve citation-quality on multi-source contradiction cells without reducing precision, recall, or refusal-survival.",
-  "corpusVersion": "007-search-rag-measurement-driven-implementation-v1-W3",
+  "corpusVersion": "004-search-rag-measurement-driven-implementation-v1-W3",
   "summary": {
-    "precisionAt3": 0.333,
-    "recallAt3": 0.5,
+    "precisionAt3": 0.667,
+    "recallAt3": 1,
     "latency": {
-      "p50": 0.14,
-      "p95": 0.14,
-      "p99": 0.14
+      "p50": 0.141,
+      "p95": 0.141,
+      "p99": 0.141
     },
     "refusalSurvival": 1,
-    "citationQuality": 0
+    "citationQuality": 1
   },
   "cases": [
     {
@@ -30,27 +30,17 @@
             "citationIds": [
               "trust-tree-response-policy"
             ]
-          },
-          {
-            "id": "unsupported-trust-claim",
-            "title": "Unsupported trust claim",
-            "channel": "memory_search",
-            "rank": 2,
-            "score": 0.5,
-            "citationIds": [
-              "unsupported-trust-claim"
-            ]
           }
         ],
         "code_graph_query": [
           {
-            "id": "code-graph-readiness-signal",
-            "title": "Code graph readiness signal",
+            "id": "trust-tree-contradiction-edge",
+            "title": "Contradiction edge provenance",
             "channel": "code_graph_query",
             "rank": 1,
             "score": 1,
             "citationIds": [
-              "code-graph-readiness-signal"
+              "trust-tree-contradiction-edge"
             ]
           }
         ],
@@ -59,8 +49,8 @@
             "id": "advisor-trust-state-signal",
             "title": "Advisor trust state signal",
             "channel": "skill_graph_query",
-            "rank": 1,
-            "score": 1,
+            "rank": 2,
+            "score": 0.5,
             "citationIds": [
               "advisor-trust-state-signal"
             ]
@@ -80,44 +70,33 @@
               "citationIds": [
                 "trust-tree-response-policy"
               ]
-            },
-            {
-              "id": "unsupported-trust-claim",
-              "title": "Unsupported trust claim",
-              "channel": "memory_search",
-              "rank": 2,
-              "score": 0.5,
-              "citationIds": [
-                "unsupported-trust-claim"
-              ]
             }
           ],
           "refused": false,
           "citationIds": [
-            "trust-tree-response-policy",
-            "unsupported-trust-claim"
+            "trust-tree-response-policy"
           ],
-          "latencyMs": 1
+          "latencyMs": 2
         },
         {
           "channel": "code_graph_query",
           "candidates": [
             {
-              "id": "code-graph-readiness-signal",
-              "title": "Code graph readiness signal",
+              "id": "trust-tree-contradiction-edge",
+              "title": "Contradiction edge provenance",
               "channel": "code_graph_query",
               "rank": 1,
               "score": 1,
               "citationIds": [
-                "code-graph-readiness-signal"
+                "trust-tree-contradiction-edge"
               ]
             }
           ],
           "refused": false,
           "citationIds": [
-            "code-graph-readiness-signal"
+            "trust-tree-contradiction-edge"
           ],
-          "latencyMs": 1
+          "latencyMs": 2
         },
         {
           "channel": "skill_graph_query",
@@ -126,8 +105,8 @@
               "id": "advisor-trust-state-signal",
               "title": "Advisor trust state signal",
               "channel": "skill_graph_query",
-              "rank": 1,
-              "score": 1,
+              "rank": 2,
+              "score": 0.5,
               "citationIds": [
                 "advisor-trust-state-signal"
               ]
@@ -137,7 +116,7 @@
           "citationIds": [
             "advisor-trust-state-signal"
           ],
-          "latencyMs": 1
+          "latencyMs": 2
         }
       ],
       "finalCandidates": [
@@ -152,41 +131,31 @@
           ]
         },
         {
-          "id": "code-graph-readiness-signal",
-          "title": "Code graph readiness signal",
+          "id": "trust-tree-contradiction-edge",
+          "title": "Contradiction edge provenance",
           "channel": "code_graph_query",
           "rank": 1,
           "score": 1,
           "citationIds": [
-            "code-graph-readiness-signal"
+            "trust-tree-contradiction-edge"
           ]
         },
         {
           "id": "advisor-trust-state-signal",
           "title": "Advisor trust state signal",
           "channel": "skill_graph_query",
-          "rank": 1,
-          "score": 1,
-          "citationIds": [
-            "advisor-trust-state-signal"
-          ]
-        },
-        {
-          "id": "unsupported-trust-claim",
-          "title": "Unsupported trust claim",
-          "channel": "memory_search",
           "rank": 2,
           "score": 0.5,
           "citationIds": [
-            "unsupported-trust-claim"
+            "advisor-trust-state-signal"
           ]
         }
       ],
       "finalRelevance": {
-        "relevantRetrieved": 1,
+        "relevantRetrieved": 2,
         "totalRelevant": 2,
-        "precisionAt3": 0.3333333333333333,
-        "recallAt3": 0.5
+        "precisionAt3": 0.6666666666666666,
+        "recallAt3": 1
       },
       "citationPolicy": {
         "expectedIds": [
@@ -195,11 +164,10 @@
         ],
         "observedIds": [
           "trust-tree-response-policy",
-          "unsupported-trust-claim",
-          "code-graph-readiness-signal",
+          "trust-tree-contradiction-edge",
           "advisor-trust-state-signal"
         ],
-        "passed": false
+        "passed": true
       },
       "refusalPolicy": {
         "expectedRefusal": false,
@@ -207,11 +175,11 @@
         "passed": true
       },
       "latency": {
-        "totalMs": 0.13954200000000583,
+        "totalMs": 0.14116599999999835,
         "byChannel": {
-          "memory_search": 1,
-          "code_graph_query": 1,
-          "skill_graph_query": 1
+          "memory_search": 2,
+          "code_graph_query": 2,
+          "skill_graph_query": 2
         }
       }
     }

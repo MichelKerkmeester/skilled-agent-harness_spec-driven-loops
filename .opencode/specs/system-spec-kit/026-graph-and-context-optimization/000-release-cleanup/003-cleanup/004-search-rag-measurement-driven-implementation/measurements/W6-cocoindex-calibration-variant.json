@@ -3,7 +3,7 @@
   "workstream": "W6",
   "variant": "variant",
   "hypothesis": "W6 CocoIndex duplicate-density calibration should improve duplicate-heavy precision@3 and preserve recall through canonical path selection.",
-  "corpusVersion": "007-search-rag-measurement-driven-implementation-v1-W6",
+  "corpusVersion": "004-search-rag-measurement-driven-implementation-v1-W6",
   "summary": {
     "precisionAt3": 1,
     "recallAt3": 1,

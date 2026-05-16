@@ -78,4 +78,4 @@ _memory:
 | `.../027/research/deep-research-config.json` | Created | OK | Loop config (cli-codex gpt-5.5 xhigh normal, 5 iters) |
 | `.../027/research/deep-research-state.jsonl` | Created | OK | State log: init + 5 iters + synthesis_complete |
 | `.../027/research/deltas/iteration-001..005.jsonl` | Created | OK | Per-iter delta records (5 files) |
-| Phase E gold battery measurements | Cited | OK | `.../000-release-cleanup/005-review-remediation/007-search-rag-measurement-driven-implementation/measurements/` referenced for RQ1 baseline |
+| Phase E gold battery measurements | Cited | OK | `.../000-release-cleanup/005-review-remediation/004-search-rag-measurement-driven-implementation/measurements/` referenced for RQ1 baseline |

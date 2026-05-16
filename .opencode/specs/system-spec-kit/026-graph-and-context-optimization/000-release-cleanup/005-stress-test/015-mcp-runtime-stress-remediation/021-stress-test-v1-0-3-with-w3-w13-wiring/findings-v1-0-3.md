@@ -19,7 +19,7 @@ The harness/module evidence is positive: W3, W4, W5, and W6 improve over their P
 
 - Used the existing search-quality corpus and `runMeasurement()` fixture harness. No harness files were modified.
 - Built 12 packet-local SearchDecisionEnvelope samples from production modules: `routeQuery`, `decideConditionalRerank`, `calibrateCocoIndexOverfetch`, `buildSearchDecisionEnvelope`, `recordSearchDecision`, and `recordShadowDelta`.
-- Compared W3-W7 metrics against Phase E measurement JSONs under `000-release-cleanup/005-review-remediation/007-search-rag-measurement-driven-implementation/measurements/`.
+- Compared W3-W7 metrics against Phase E measurement JSONs under `000-release-cleanup/005-review-remediation/004-search-rag-measurement-driven-implementation/measurements/`.
 - Compared v1.0.3 directionally against v1.0.2. The v1.0.2 score is a 30-cell CLI-model rubric; v1.0.3 is a deterministic harness telemetry rubric, so the comparison is not a like-for-like percentage.
 
 ## Aggregate Metrics

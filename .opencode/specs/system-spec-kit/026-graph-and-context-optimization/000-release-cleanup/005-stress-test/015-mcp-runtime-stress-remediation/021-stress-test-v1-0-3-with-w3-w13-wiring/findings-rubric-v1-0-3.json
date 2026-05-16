@@ -8,7 +8,7 @@
     "shadow": "measurements/v1-0-3-shadow-sink-sample.jsonl",
     "comparison": {
       "v102": "../010-stress-test-rerun-v1-0-2/findings-rubric.json",
-      "phaseE": "../../../000-release-cleanup/005-review-remediation/007-search-rag-measurement-driven-implementation/measurements/baseline-20260429T032525Z.json"
+      "phaseE": "../../../000-release-cleanup/005-review-remediation/004-search-rag-measurement-driven-implementation/measurements/baseline-20260429T032525Z.json"
     }
   },
   "rubric": {

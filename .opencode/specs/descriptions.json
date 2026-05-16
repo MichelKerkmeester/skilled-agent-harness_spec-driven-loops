@@ -3846,7 +3846,7 @@
       "lastUpdated": "2026-05-09T07:57:32.807Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/007-search-rag-measurement-driven-implementation",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-search-rag-measurement-driven-implementation",
       "description": "Feature Specification: 007 Search RAG Measurement-Driven Implementation",
       "keywords": [
         "feature",

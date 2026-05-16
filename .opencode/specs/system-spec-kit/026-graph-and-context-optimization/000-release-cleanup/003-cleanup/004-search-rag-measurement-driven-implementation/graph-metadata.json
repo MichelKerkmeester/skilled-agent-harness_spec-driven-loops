@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/007-search-rag-measurement-driven-implementation",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/007-search-rag-measurement-driven-implementation",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-search-rag-measurement-driven-implementation",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-search-rag-measurement-driven-implementation",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation",
   "children_ids": [],
   "migrated": false,
@@ -18,7 +18,7 @@
   },
   "derived": {
     "trigger_phrases": [
-      "007-search-rag-measurement-driven-implementation",
+      "004-search-rag-measurement-driven-implementation",
       "measurement driven implementation"
     ],
     "key_topics": [
