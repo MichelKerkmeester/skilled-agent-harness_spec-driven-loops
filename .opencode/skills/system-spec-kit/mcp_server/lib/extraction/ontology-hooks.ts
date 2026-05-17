@@ -1,7 +1,7 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Ontology Hooks
 // ───────────────────────────────────────────────────────────────
-// Feature catalog: Schema-guided extraction ontology hooks
+// Feature catalog: Auto entity extraction
 // Simple ontology hook interface that validates entity/relation
 // pairs against a configurable schema. Prevents out-of-vocabulary
 // entities from polluting the causal graph.

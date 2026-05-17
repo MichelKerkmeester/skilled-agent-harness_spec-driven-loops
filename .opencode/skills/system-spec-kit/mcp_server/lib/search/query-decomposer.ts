@@ -1,7 +1,7 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Query Decomposer
 // ───────────────────────────────────────────────────────────────
-// Feature catalog: Query decomposition (D2 REQ-D2-001)
+// Feature catalog: Query decomposition
 // Gated via SPECKIT_QUERY_DECOMPOSITION — deep-mode only.
 //
 // Bounded facet detection that decomposes multi-faceted questions

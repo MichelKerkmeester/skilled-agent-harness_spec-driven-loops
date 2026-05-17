@@ -25,7 +25,7 @@ import { getEntityDensityScore } from './entity-density.js';
 import { recordInvocation } from './routing-telemetry.js';
 
 // Feature catalog: Query complexity router
-// Feature catalog: Causal graph channel routing utilization
+// Feature catalog: Query complexity router
 
 
 /* ───────────────────────────────────────────────────────────────

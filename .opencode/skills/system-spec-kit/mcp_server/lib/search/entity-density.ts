@@ -12,7 +12,7 @@
 
 import type Database from 'better-sqlite3';
 
-// Feature catalog: Causal graph channel routing utilization
+// Feature catalog: Query complexity router
 
 /* ───────────────────────────────────────────────────────────────
    1. CONSTANTS & STATE

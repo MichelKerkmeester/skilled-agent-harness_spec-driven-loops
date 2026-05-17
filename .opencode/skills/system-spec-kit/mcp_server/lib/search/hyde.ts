@@ -1,7 +1,7 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: HyDE (Hypothetical Document Embeddings)
 // ───────────────────────────────────────────────────────────────
-// Feature catalog: D2 REQ-D2-004 — HyDE Active Mode
+// Feature catalog: HyDE (Hypothetical Document Embeddings)
 //
 // Gate: SPECKIT_HYDE — deep + low-confidence queries only.
 //

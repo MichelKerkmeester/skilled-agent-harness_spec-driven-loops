@@ -9,7 +9,7 @@ import type { IndexResult } from './types.js';
 
 // Feature catalog: SHA-256 content-hash deduplication
 // Feature catalog: Canonical ID dedup hardening
-// Feature catalog: Generation-time duplicate and empty content prevention
+// Feature catalog: Duplicate-save no-op feedback hardening
 
 
 const UNCHANGED_EMBEDDING_STATUSES = new Set(['success', 'pending', 'partial']);

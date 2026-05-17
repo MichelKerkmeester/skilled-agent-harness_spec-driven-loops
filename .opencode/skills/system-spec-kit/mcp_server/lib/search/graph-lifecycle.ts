@@ -1,7 +1,7 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Graph Lifecycle
 // ───────────────────────────────────────────────────────────────
-// Feature catalog: Graph-augmented retrieval — graph lifecycle
+// Feature catalog: Graph lifecycle refresh
 // REQ-D3-003: Graph Refresh on Write
 // REQ-D3-004: Deterministic Save-Time Enrichment (wiring side)
 //

@@ -96,7 +96,7 @@ export interface ReconsolidationResultCandidate extends Record<string, unknown> 
 
 // Feature catalog: Reconsolidation-on-save
 // Feature catalog: Memory indexing (memory_save)
-// Feature catalog: Assistive reconsolidation (REQ-D4-005)
+// Feature catalog: Assistive reconsolidation
 
 // ───────────────────────────────────────────────────────────────
 // ASSISTIVE RECONSOLIDATION CONSTANTS (REQ-D4-005)

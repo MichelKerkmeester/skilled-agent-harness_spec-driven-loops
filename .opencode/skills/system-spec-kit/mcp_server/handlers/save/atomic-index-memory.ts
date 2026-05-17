@@ -16,7 +16,7 @@ import type {
 } from './types.js';
 import { withSpecFolderLock } from './spec-folder-mutex.js';
 
-// Feature catalog: Canonical continuity writer
+// Feature catalog: Memory indexing (memory_save)
 // Feature catalog: Atomic-save parity and partial-indexing hints
 
 interface AtomicIndexOriginalState {

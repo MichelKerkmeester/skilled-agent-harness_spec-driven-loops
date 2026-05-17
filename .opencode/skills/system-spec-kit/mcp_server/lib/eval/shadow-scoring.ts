@@ -15,7 +15,7 @@
 // SPECKIT_SHADOW_SCORING is retained for tests/docs, but the write path remains disabled.
 import { initEvalDb, getEvalDb } from './eval-db.js';
 
-// Feature catalog: Shadow scoring
+// Feature catalog: Shadow scoring with holdout evaluation
 
 /* --- 1. ENV VAR GATE --- */
 

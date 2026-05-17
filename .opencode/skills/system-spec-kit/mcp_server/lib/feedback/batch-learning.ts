@@ -1,7 +1,7 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Batch Feedback Learning (REQ-D4-004)
 // ───────────────────────────────────────────────────────────────
-// Feature catalog: Weekly batch feedback learning pipeline
+// Feature catalog: Weekly batch feedback learning
 // Aggregates implicit feedback events from the ledger (see
 // feedback-ledger.ts), computes confidence-weighted signal scores
 // per memory, enforces min-support and boost-cap guards, and

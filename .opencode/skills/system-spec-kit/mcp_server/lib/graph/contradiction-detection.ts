@@ -1,7 +1,7 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Contradiction Detection
 // ───────────────────────────────────────────────────────────────
-// Feature catalog: Causal edge contradiction detection
+// Feature catalog: Graph and cognitive memory fixes
 // Detects when a new edge contradicts an existing one and
 // auto-invalidates the old edge via temporal-edges.
 // Feature-gated via SPECKIT_TEMPORAL_EDGES (shared gate).

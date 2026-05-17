@@ -1,7 +1,7 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: LLM Reformulation
 // ───────────────────────────────────────────────────────────────
-// Feature catalog: D2 REQ-D2-003 — Corpus-Grounded LLM Reformulation
+// Feature catalog: LLM query reformulation
 //
 // Gate: SPECKIT_LLM_REFORMULATION — deep-mode only.
 //

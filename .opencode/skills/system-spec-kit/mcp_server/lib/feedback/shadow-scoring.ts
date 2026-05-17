@@ -1,7 +1,7 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Shadow Scoring with Holdout (REQ-D4-006)
 // ───────────────────────────────────────────────────────────────
-// Feature catalog: Shadow evaluation system for feedback learning
+// Feature catalog: Shadow scoring with holdout evaluation
 // Compares would-have-changed rankings vs live rankings on a
 // holdout slice of queries. Tracks weekly improvement cycles and
 // gates promotion of learned signals to production.

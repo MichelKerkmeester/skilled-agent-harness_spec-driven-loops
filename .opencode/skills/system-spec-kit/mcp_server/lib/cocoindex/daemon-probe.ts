@@ -1,7 +1,7 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: CocoIndex Daemon Probe
 // ───────────────────────────────────────────────────────────────
-// Feature catalog: CocoIndex daemon health probe
+// Feature catalog: Warm server / daemon mode
 
 import { existsSync, readFileSync, statSync } from 'node:fs';
 import { homedir } from 'node:os';

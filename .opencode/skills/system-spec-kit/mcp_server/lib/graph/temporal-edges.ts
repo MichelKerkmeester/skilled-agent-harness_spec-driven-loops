@@ -1,7 +1,7 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Temporal Edges
 // ───────────────────────────────────────────────────────────────
-// Feature catalog: Temporal validity for causal edges
+// Feature catalog: Temporal contiguity layer
 // Adds valid_at / invalid_at lifecycle columns to causal_edges,
 // enabling edge invalidation and temporally-scoped graph queries.
 // Feature-gated via SPECKIT_TEMPORAL_EDGES (default OFF).

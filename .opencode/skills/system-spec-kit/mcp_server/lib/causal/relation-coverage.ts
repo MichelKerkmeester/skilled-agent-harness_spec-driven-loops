@@ -1,7 +1,7 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Relation Coverage
 // ───────────────────────────────────────────────────────────────
-// Feature catalog: Memory causal graph relation coverage targets
+// Feature catalog: Causal graph statistics (memory_causal_stats)
 
 import type Database from 'better-sqlite3';
 

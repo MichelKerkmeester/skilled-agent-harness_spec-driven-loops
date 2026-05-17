@@ -1,7 +1,7 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Usage Ranking Signal
 // ───────────────────────────────────────────────────────────────
-// Feature catalog: Usage-weighted ranking boost
+// Feature catalog: Access-driven popularity scoring
 // Computes a small log-scale score bonus from access_count so
 // frequently used memories can receive a bounded ranking nudge.
 

@@ -1,7 +1,7 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Query Surrogates
 // ───────────────────────────────────────────────────────────────
-// Feature catalog: D2 REQ-D2-005 — Index-Time Surrogates
+// Feature catalog: Index-time query surrogates
 //
 // Gate: SPECKIT_QUERY_SURROGATES — default: ON (graduated).
 //

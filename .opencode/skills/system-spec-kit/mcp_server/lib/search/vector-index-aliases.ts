@@ -1,7 +1,7 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Vector Index Aliases
 // ───────────────────────────────────────────────────────────────
-// Feature catalog: Namespace management CRUD tools
+// Feature catalog: Semantic and lexical search (memory_search)
 // Split from vector-index-store.ts — contains LRUCache, query caching,
 // Learning from selections, and enhanced search with ranking+diversity.
 

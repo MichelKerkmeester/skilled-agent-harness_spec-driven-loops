@@ -1,7 +1,7 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Feedback Event Ledger (REQ-D4-001)
 // ───────────────────────────────────────────────────────────────
-// Feature catalog: Implicit feedback event ledger
+// Feature catalog: Implicit feedback log
 // Records implicit feedback signals from search/save interactions
 // into a shadow-only SQLite table. No ranking side effects.
 //

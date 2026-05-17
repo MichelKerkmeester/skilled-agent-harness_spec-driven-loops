@@ -1,7 +1,7 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Usage Tracking
 // ───────────────────────────────────────────────────────────────
-// Feature catalog: Access count tracking for usage-weighted ranking
+// Feature catalog: Access-driven popularity scoring
 // Tracks per-memory access counts and computes log-scale ranking
 // boosts for frequently accessed memories.
 // Feature-gated via SPECKIT_USAGE_RANKING (default OFF).
@@ -77,4 +77,3 @@ export function getAccessCount(db: Database.Database, memoryId: number): number 
     return 0;
   }
 }
-

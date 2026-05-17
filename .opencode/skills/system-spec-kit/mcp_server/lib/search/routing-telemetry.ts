@@ -5,7 +5,7 @@
 // Surfaces graphChannelInvocationRate (and per-channel rates) for memory_health
 // (REQ-004). Pure in-memory state — no persistence, resets on process restart.
 
-// Feature catalog: Causal graph channel routing utilization
+// Feature catalog: Query complexity router
 
 /* ───────────────────────────────────────────────────────────────
    1. CONSTANTS & STATE

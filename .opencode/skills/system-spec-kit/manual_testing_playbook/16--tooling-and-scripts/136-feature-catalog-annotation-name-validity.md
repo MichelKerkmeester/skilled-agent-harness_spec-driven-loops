@@ -34,14 +34,14 @@ Validate Feature catalog annotation name validity against the documented validat
 
 ### Commands
 
-1. Extract all unique annotation names: `grep -rho "// Feature catalog: .*" .opencode/skills/system-spec-kit/mcp_server/ .opencode/skills/system-spec-kit/shared/ | sort -u`
+1. Extract all unique annotation names from source-like files: `grep -rho --include='*.ts' --include='*.js' --include='*.mts' --include='*.mjs' "// Feature catalog: .*" .opencode/skills/system-spec-kit/mcp_server/ .opencode/skills/system-spec-kit/shared/ | sort -u`
 2. Extract all H3 headings from `feature_catalog/FEATURE_CATALOG.md`: `grep "^### " FEATURE_CATALOG.md`
 3. Cross-reference: every annotation name must match an H3 heading exactly
 4. Report any mismatches
 
 ### Expected
 
-0 invalid annotation names; every `// Feature catalog:` value matches an H3 heading in the catalog.
+0 invalid annotation names; every source-file `// Feature catalog:` value matches an H3 heading in the catalog.
 
 ### Evidence
 
