@@ -450,35 +450,63 @@ Evidence:
 <!-- /ANCHOR:adr-010 -->
 
 <!-- ANCHOR:adr-011 -->
-## ADR-011: Flip retrieval rescue default-on; keep explicit false kill switch
+## ADR-011: Gate retrieval rescue default-on after cost/benefit sweep
 
 | Field | Value |
 |-------|-------|
 | Status | Accepted |
 | Date | 2026-05-17 |
-| Decision | DEFAULT-ON |
+| Decision | GATE DEFAULT-ON |
 
-ADR-010 proved the retrieval-rescue layer is the closure path for packet 008's remaining cat-24/409 failure. Keeping it opt-in defeats that path because normal operators do not set `SPECKIT_RERANK_LAYER=true` before searching.
+ADR-010 proved the retrieval-rescue layer is the closure path for packet 008's remaining cat-24/409 failure. The follow-up D sweep measured whether the default-on layer has acceptable cost and broader regression risk.
 
-The runtime gate now treats `SPECKIT_RERANK_LAYER` as default-on:
+The 30-scenario stratified sample covered:
+
+```text
+cat-13: 6 scenarios
+cat-14: 4 scenarios
+cat-15: 4 scenarios
+cat-16: 5 scenarios
+cat-17: 3 scenarios
+cat-24: 5 scenarios
+cat-25/03/04: 3 scenarios
+```
+
+Sanity probe:
+- cat-24/409 row 1 expected source `4460`.
+- ON row 1 top-5: `4460,8410,6118,8411,8412`.
+- OFF row 1 top-5: `4460,11240,8411,11045,10825`.
+- Full cat-24/409 flipped from OFF `4/10` top-3 FAIL to ON `8/10` top-3 PASS, proving the env-var toggle is active in fresh MCP children.
+
+Quality result:
+- OFF: `27/30` PASS.
+- ON: `28/30` PASS.
+- Net delta: `+1` scenario, with no observed quality regressions.
+- Only reversal: cat-24/409, OFF FAIL to ON PASS.
+
+Latency result:
+- Overall OFF median: `426.5 ms`.
+- Overall ON median: `922.5 ms`.
+- Overall median ratio: `2.16x`.
+- Overall OFF p95: `1411 ms`.
+- Overall ON p95: `3045 ms`.
+- Overall p95 ratio: `2.16x`.
+
+Under the stated verdict criteria this is **GATE default-on**, not unconditional KEEP:
+
+```text
+ON quality > OFF quality, but ON latency > 2x OFF latency.
+```
+
+Decision: keep the rescue layer default-on because it closes cat-24/409 and does not degrade sampled quality, but document the measured latency cost in the changelog and preserve the explicit rollback lever:
 
 ```text
 unset SPECKIT_RERANK_LAYER -> enabled
 SPECKIT_RERANK_LAYER=false -> disabled
 ```
 
-This preserves the operator rollback lever without requiring explicit enablement for the known-good path. The old `SPECKIT_TRIGGER_LANE_BOOST=true` alias is no longer needed for activation.
-
-Config notes were refreshed at the same time:
-
-- `.mcp.json` now documents 42 mk-spec-memory tools, including `embedder_list`, `embedder_set`, and `embedder_status`.
-- `.mcp.json` lists `SPECKIT_RERANK_LAYER` with the default-on opt-out flags.
-- `mcp_server/package.json` now describes the 42-tool surface and embedder control.
-- `evidence/mcp-notes-drift-audit.md` records the MCP-info sweep and follow-on drift.
-
-Verification:
-
-```text
-npx vitest run tests/retrieval-rescue.vitest.ts -> PASS
-```
+Evidence:
+- `evidence/d-sample-30.json`
+- `evidence/d-rescue-on-vs-off.jsonl`
+- `evidence/d-rescue-layer-cost-benefit.md`
 <!-- /ANCHOR:adr-011 -->

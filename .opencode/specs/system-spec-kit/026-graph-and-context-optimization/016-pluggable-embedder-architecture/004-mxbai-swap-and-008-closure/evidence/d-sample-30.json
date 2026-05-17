@@ -1,6 +1,6 @@
 {
-  "created_at": "2026-05-17T13:57:39.694Z",
-  "runner": "mk-spec-memory MCP memory_search via JSON-RPC; scripts/run-scenario.sh absent in repo",
+  "created_at": "2026-05-17T14:37:37.663Z",
+  "runner": "mk-spec-memory MCP memory_search via JSON-RPC; warmed MCP child per mode; bypassCache=true per measured query; scripts/run-scenario.sh absent in repo",
   "active_embedder_source_of_truth": "vec_metadata.active_embedder_name=nomic-embed-text-v1.5; active_embedder_dim=768",
   "categories": {
     "cat-13": 6,
