@@ -22,6 +22,8 @@ import {
   hasActiveEmbedderPointer,
   vecTableNameForDim,
 } from '../embedders/schema.js';
+import { getAdapter } from '../embedders/registry.js';
+import type { EmbedderAdapter } from '../embedders/adapter.js';
 import { checkSqliteIntegrity } from '../freshness/sqlite-integrity.js';
 import { parseSkillFrontmatter } from '../utils/skill-markdown.js';
 
@@ -766,8 +768,143 @@ export function indexSkillMetadata(skillDir: string): SkillGraphIndexResult {
   return summary;
 }
 
+/**
+ * Refresh embeddings for skill_nodes rows.
+ *
+ * Dual-path dispatch (010/004):
+ * - When `hasActiveEmbedderPointer(database)` returns true: use the pluggable
+ *   EmbedderAdapter layer (010/001) — embed via `getAdapter(active.name)` and
+ *   write to `vec_<active.dim>` table via INSERT OR REPLACE.
+ * - When the pointer is unset (fresh install / pre-pluggable state): keep the
+ *   legacy path — embed via `createEmbeddingsProvider()` factory and write to
+ *   the `skill_nodes.embedding` BLOB column.
+ *
+ * The legacy column is retained for backward compatibility; the reader
+ * (`loadSkillEmbeddings`) already prefers `vec_<dim>` when the pointer is set,
+ * so once the adapter path populates `vec_<dim>`, the legacy column becomes
+ * stale-but-harmless. A separate "legacy embedding column deprecation" packet
+ * may remove it once all installs have migrated.
+ */
 export async function refreshSkillEmbeddings(skillDir?: string): Promise<SkillEmbeddingRefreshResult> {
   const database = getDb();
+
+  if (hasActiveEmbedderPointer(database)) {
+    return refreshSkillEmbeddingsViaAdapter(database, skillDir);
+  }
+
+  return refreshSkillEmbeddingsLegacy(database, skillDir);
+}
+
+async function refreshSkillEmbeddingsViaAdapter(
+  database: Database.Database,
+  skillDir: string | undefined,
+): Promise<SkillEmbeddingRefreshResult> {
+  const active = getActiveEmbedder(database);
+  ensureVecTableForDim(database, active.dim);
+  const tableName = vecTableNameForDim(active.dim);
+  let adapter: EmbedderAdapter;
+  try {
+    const resolved = getAdapter(active.name);
+    if (!resolved) {
+      return {
+        embedded: 0,
+        skipped: 0,
+        failed: 0,
+        warnings: [`ADAPTER-UNAVAILABLE: ${active.name} (manifest not found in registry)`],
+      };
+    }
+    adapter = resolved;
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : String(error);
+    return {
+      embedded: 0,
+      skipped: 0,
+      failed: 0,
+      warnings: [`ADAPTER-UNAVAILABLE: ${active.name} (${message})`],
+    };
+  }
+  const modelId = active.name;
+  const warnings: string[] = [];
+  let embedded = 0;
+  let skipped = 0;
+  let failed = 0;
+
+  const rows = database.prepare(`
+    SELECT n.id AS id,
+           n.source_path AS source_path,
+           v.embedding AS vec_embedding,
+           v.model_id AS vec_model_id,
+           v.content_hash AS vec_content_hash
+    FROM skill_nodes n
+    LEFT JOIN ${tableName} v ON v.skill_id = n.id
+    ORDER BY n.id ASC
+  `).all() as Array<{
+    id: string;
+    source_path: string;
+    vec_embedding: Buffer | null;
+    vec_model_id: string | null;
+    vec_content_hash: string | null;
+  }>;
+
+  const upsertEmbedding = database.prepare(`
+    INSERT INTO ${tableName} (skill_id, embedding, model_id, content_hash, updated_at)
+    VALUES (?, ?, ?, ?, datetime('now'))
+    ON CONFLICT(skill_id) DO UPDATE SET
+      embedding = excluded.embedding,
+      model_id = excluded.model_id,
+      content_hash = excluded.content_hash,
+      updated_at = datetime('now')
+  `);
+  const deleteEmbedding = database.prepare(`DELETE FROM ${tableName} WHERE skill_id = ?`);
+
+  for (const row of rows) {
+    if (skillDir && !row.source_path.startsWith(skillDir)) {
+      skipped++;
+      continue;
+    }
+
+    const description = skillDescriptionForEmbedding(row.source_path).trim();
+    if (!description) {
+      deleteEmbedding.run(row.id);
+      skipped++;
+      continue;
+    }
+
+    const contentHash = computeContentHash(description);
+    if (
+      row.vec_embedding
+      && row.vec_model_id === modelId
+      && row.vec_content_hash === contentHash
+    ) {
+      skipped++;
+      continue;
+    }
+
+    try {
+      const vectors = await adapter.embed([description], { inputType: 'document' });
+      const vector = vectors[0];
+      if (!vector || vector.length !== active.dim) {
+        throw new Error(`adapter returned vector of length ${vector?.length ?? 0}, expected ${active.dim}`);
+      }
+      upsertEmbedding.run(row.id, encodeEmbedding(vector), modelId, contentHash);
+      embedded++;
+    } catch (error: unknown) {
+      failed++;
+      deleteEmbedding.run(row.id);
+      const message = error instanceof Error ? error.message : String(error);
+      const warning = `EMBEDDING-FAILED: ${row.id} (${message})`;
+      warnings.push(warning);
+      console.warn(`[skill-graph] ${warning}`);
+    }
+  }
+
+  return { embedded, skipped, failed, warnings };
+}
+
+async function refreshSkillEmbeddingsLegacy(
+  database: Database.Database,
+  skillDir: string | undefined,
+): Promise<SkillEmbeddingRefreshResult> {
   const provider = await createEmbeddingsProvider();
   const modelId = providerModelId(provider.getProfile());
   const warnings: string[] = [];
