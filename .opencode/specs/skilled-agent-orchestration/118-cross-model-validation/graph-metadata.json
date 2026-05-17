@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "packet_id": "118-cross-model-validation",
+  "spec_folder": "118-cross-model-validation",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+    "derived": {
+    "trigger_phrases": [],
+    "key_topics": [],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": ["spec.md","plan.md","tasks.md","checklist.md","decision-record.md"],
+    "entities": [],
+    "causal_summary": "Cross-model validation packet: run the 003-eval-loop 5 council-seeded variants against the 7 SWE 1.6 fixtures on deepseek-v4-pro (cli-opencode + DeepSeek direct API) and kimi-k2.6 (cli-opencode + opencode-go) to settle whether bundle-gate-aversion and framework-dominates-anti-hallucination generalize beyond SWE 1.6 or are small-model-specific",
+    "created_at": "2026-05-17T12:18:35Z",
+    "last_save_at": "2026-05-17T12:18:35Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": ["spec.md","plan.md","tasks.md","checklist.md","decision-record.md"]
+  }
+}

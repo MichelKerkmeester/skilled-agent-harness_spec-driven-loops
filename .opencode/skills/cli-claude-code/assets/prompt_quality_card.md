@@ -45,6 +45,8 @@ Select a framework from the task map, run the CLEAR 5-check, and escalate to `@p
 | Edit | `RCAF + TIDD-EC` |
 | Analyze / plan | `CRAFT` |
 
+> **Pre-planning density**: For non-trivial dispatches (multi-step tasks, code generation with acceptance criteria, anything touching more than one file), prefer **medium-density pre-planning** — 3-4 ordered steps with per-step acceptance criteria + verification command. Dense pre-plans (4+ steps with full I/O contracts per step) add prompt cost without yield. Lighter pre-plans leave too much structural decision-making to the model.
+
 ---
 
 ## 4. CLEAR 5-Check

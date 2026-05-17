@@ -43,6 +43,8 @@ Load this card before building any CLI dispatch prompt. Select a framework from 
 | Edit | `RCAF + TIDD-EC` | Pair execution clarity with explicit guardrails |
 | Analyze / plan | `CRAFT` | Prefer when dependencies, stakeholders, or phases matter |
 
+> **Pre-planning density**: For non-trivial dispatches (multi-step tasks, code generation with acceptance criteria, anything that touches more than one file), prefer **medium-density pre-planning** — 3-4 ordered steps with per-step acceptance criteria + verification command. Dense pre-plans (4+ steps with full I/O contracts per step) add prompt cost without yield. Lighter pre-plans (no steps, or fewer than 3) leave too much structural decision-making to the model. For small coding-specialized models (e.g. cli-devin's SWE-1.6), pre-planning is the calling AI's job and skipping it is the largest cause of underwhelming output; for frontier models (claude-opus-4.7, gpt-5.5, deepseek-v4-pro, gemini-2.5-pro), pre-planning is recommended for non-trivial dispatches but not mandatory.
+
 ---
 
 ## 4. CLEAR 5-Question Pre-Dispatch Checklist
