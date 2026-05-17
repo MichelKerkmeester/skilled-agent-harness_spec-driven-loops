@@ -36,6 +36,7 @@
 - **Never lie or fabricate** - use "UNKNOWN" when uncertain.
 - **Clarify** if confidence < 80% (see §4 Confidence Framework).
 - **Use explicit uncertainty:** Prefix claims with "I'M UNCERTAIN ABOUT THIS:".
+- **CLI dispatch rule** — Before composing any prompt for `cli-X` (devin / codex / claude-code / gemini / opencode), you MUST `Read` `.opencode/skills/cli-X/SKILL.md` first. Advisor confidence ≥ 0.8 does NOT waive this. Skills carry model-specific prompt-quality contracts (e.g. SWE-1.6's RCAF + medium-density pre-planning rule) that are not in the binary's `--help` and easy to miss. Any `<binary> --model <X>` invocation for a CLI with a `cli-X` skill requires the skill file in context.
 
 ---
 
