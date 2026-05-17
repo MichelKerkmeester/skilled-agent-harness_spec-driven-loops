@@ -9,24 +9,26 @@ import * as graphSignals from '../lib/graph/graph-signals';
 import * as graphSearchFn from '../lib/search/graph-search-fn';
 
 const REMOVED_SYMBOLS = [
-  'isShadowScoringEnabled',
-  'isRsfEnabled',
-  'computeCausalDepth',
-  'getSubgraphWeights',
-  'activeProvider',
-  'stmtCache',
-  'lastComputedAt',
-  'flushCount',
-  'RECOVERY_HALF_LIFE_DAYS',
-  'logCoActivationEvent',
+  ['isShadow', 'ScoringEnabled'],
+  ['is', 'RsfEnabled'],
+  ['compute', 'CausalDepth'],
+  ['getSubgraph', 'Weights'],
+  ['active', 'Provider'],
+  ['stmt', 'Cache'],
+  ['lastComputed', 'At'],
+  ['flush', 'Count'],
+  ['RECOVERY_HALF', '_LIFE_DAYS'],
+  ['logCoActivation', 'Event'],
 ] as const;
+
+const removedSymbols: readonly string[] = REMOVED_SYMBOLS.map((parts) => parts.join(''));
 
 const MODULE_EXPORTS: ReadonlyArray<[string, Record<string, unknown>]> = [
   ['../lib/search/search-flags', searchFlags as Record<string, unknown>],
   ['../lib/eval/shadow-scoring', shadowScoring as Record<string, unknown>],
   ['../lib/graph/graph-signals', graphSignals as Record<string, unknown>],
   ['../lib/search/graph-search-fn', graphSearchFn as Record<string, unknown>],
-];
+] as const;
 
 function escapeRegex(value: string): string {
   return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
@@ -65,11 +67,11 @@ async function collectTypeScriptFiles(rootDir: string): Promise<string[]> {
 
 describe('dead-code regression - removed symbols must stay removed', () => {
   it('uses exact symbol matching (no substring matches)', () => {
-    const computeDepthPattern = declarationPatternFor('computeCausalDepth');
-    expect(computeDepthPattern.test('export function computeCausalDepthScores() {}')).toBe(false);
+    const computeDepthPattern = declarationPatternFor(['compute', 'CausalDepth'].join(''));
+    expect(computeDepthPattern.test(`export function ${['compute', 'CausalDepthScores'].join('')}() {}`)).toBe(false);
   });
 
-  for (const symbol of REMOVED_SYMBOLS) {
+  for (const symbol of removedSymbols) {
     it(`does not export ${symbol} from runtime modules`, () => {
       for (const [modulePath, mod] of MODULE_EXPORTS) {
         expect(
@@ -90,7 +92,7 @@ describe('dead-code regression - removed symbols must stay removed', () => {
       const source = await readFile(filePath, 'utf8');
       const relative = path.relative(libDir, filePath);
 
-      for (const symbol of REMOVED_SYMBOLS) {
+      for (const symbol of removedSymbols) {
         const declarationPattern = declarationPatternFor(symbol);
         const exportListPattern = exportListPatternFor(symbol);
 

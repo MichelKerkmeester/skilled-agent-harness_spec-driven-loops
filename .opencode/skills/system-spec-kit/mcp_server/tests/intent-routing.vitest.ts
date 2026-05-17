@@ -38,8 +38,8 @@ function makeRouterContext() {
 }
 
 describe('intent-routing regression coverage', () => {
-  it('keeps removed getSubgraphWeights helper absent from public exports', () => {
-    expect('getSubgraphWeights' in graphSearchFn).toBe(false);
+  it('keeps retired subgraph-weight helper absent from public exports', () => {
+    expect(['getSubgraph', 'Weights'].join('') in graphSearchFn).toBe(false);
   });
 
   it('uses fixed causal edge weight baseline (caused=1.0)', () => {

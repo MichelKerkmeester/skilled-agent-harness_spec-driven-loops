@@ -114,7 +114,7 @@ graph/
 | `snapshotDegrees` | graph-signals.ts | Records current degree counts into `degree_snapshots` |
 | `computeMomentum` | graph-signals.ts | Computes single-node momentum from recent degree deltas |
 | `computeMomentumScores` | graph-signals.ts | Batch momentum computation with session caching |
-| `computeCausalDepthScores` | graph-signals.ts | Batch normalized causal depth via SCC condensation and longest-path DAG traversal |
+| `computeDepthScores` | graph-signals.ts | Batch normalized causal depth via SCC condensation and longest-path DAG traversal |
 | `applyGraphSignals` | graph-signals.ts | Applies momentum (+0.05 max) and depth (+0.05 max) bonuses to result rows |
 | `clearGraphSignalsCache` | graph-signals.ts | Clears momentum and depth session caches |
 | `ensureSummaryTable` | community-summaries.ts | Creates `community_summaries` table if not exists |

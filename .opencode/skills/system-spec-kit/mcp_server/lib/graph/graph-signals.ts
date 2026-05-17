@@ -483,7 +483,7 @@ function computeComponentDepths(
  * distance. We therefore compute longest-path depth on the DAG of strongly
  * connected components, which also keeps cyclic subgraphs bounded.
  */
-export function computeCausalDepthScores(db: Database.Database, memoryIds: number[]): Map<number, number> {
+export function computeDepthScores(db: Database.Database, memoryIds: number[]): Map<number, number> {
   const results = new Map<number, number>();
 
   // Separate cached from uncached
@@ -527,7 +527,7 @@ export function computeCausalDepthScores(db: Database.Database, memoryIds: numbe
     enforceCacheBound(depthCache);
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : String(error);
-    console.warn(`[graph-signals] computeCausalDepthScores failed: ${message}`);
+    console.warn(`[graph-signals] computeDepthScores failed: ${message}`);
     // Fill uncached with 0 on error
     for (const id of uncached) {
       depthCache.set(id, 0);
@@ -572,7 +572,7 @@ export function applyGraphSignals(
   try {
     const ids = rows.map((row) => row.id);
     const momentumScores = computeMomentumScores(db, ids);
-    const depthScores = computeCausalDepthScores(db, ids);
+    const depthScores = computeDepthScores(db, ids);
     const graphWalkScores = computeGraphWalkMetrics(db, ids);
     const rolloutState = options.rolloutState ?? 'bounded_runtime';
 

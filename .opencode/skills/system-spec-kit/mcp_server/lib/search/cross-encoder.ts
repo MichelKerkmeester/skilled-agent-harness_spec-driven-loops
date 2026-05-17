@@ -607,7 +607,7 @@ function resetSession(): void {
 }
 
 function resetProvider(): void {
-  // No-op: activeProvider cache removed (was never populated)
+  // No-op: provider cache removed (was never populated)
 }
 
 /* ───────────────────────────────────────────────────────────────

@@ -8,7 +8,7 @@ import {
   snapshotDegrees,
   computeMomentum,
   computeMomentumScores,
-  computeCausalDepthScores,
+  computeDepthScores,
   applyGraphSignals,
   clearGraphSignalsCache,
   __testables,
@@ -108,7 +108,7 @@ function seedReferenceDegreePeak(db: Database.Database): void {
 
 function populateGraphSignalCaches(db: Database.Database, memoryIds: number[]): void {
   computeMomentumScores(db, memoryIds);
-  computeCausalDepthScores(db, memoryIds);
+  computeDepthScores(db, memoryIds);
   expect(__testables.momentumCache.size).toBeGreaterThan(0);
   expect(__testables.depthCache.size).toBeGreaterThan(0);
 }
@@ -297,14 +297,14 @@ describe('Graph Signals (S8 — N2a + N2b)', () => {
     });
   });
 
-  // 5. computeCausalDepthScores
-  describe('computeCausalDepthScores', () => {
+  // 5. computeDepthScores
+  describe('computeDepthScores', () => {
     it('batch-computes depth for multiple nodes', () => {
       // Chain: 1 -> 2 -> 3
       insertEdge(db, 1, 2);
       insertEdge(db, 2, 3);
 
-      const scores = computeCausalDepthScores(db, [1, 2, 3]);
+      const scores = computeDepthScores(db, [1, 2, 3]);
       expect(scores.size).toBe(3);
       expect(scores.get(1)).toBeCloseTo(0, 5);    // root
       expect(scores.get(2)).toBeCloseTo(0.5, 5);  // 1/2
@@ -315,10 +315,10 @@ describe('Graph Signals (S8 — N2a + N2b)', () => {
       insertEdge(db, 1, 2);
       insertEdge(db, 2, 3);
 
-      const scores1 = computeCausalDepthScores(db, [1, 2, 3]);
+      const scores1 = computeDepthScores(db, [1, 2, 3]);
       // Mutate the graph
       insertEdge(db, 3, 4);
-      const scores2 = computeCausalDepthScores(db, [1, 2, 3]);
+      const scores2 = computeDepthScores(db, [1, 2, 3]);
 
       // Cache returns stale values — identical to first call
       expect(scores2.get(1)).toBe(scores1.get(1));
@@ -327,7 +327,7 @@ describe('Graph Signals (S8 — N2a + N2b)', () => {
     });
 
     it('returns empty map for empty list', () => {
-      const scores = computeCausalDepthScores(db, []);
+      const scores = computeDepthScores(db, []);
       expect(scores.size).toBe(0);
     });
 
@@ -338,7 +338,7 @@ describe('Graph Signals (S8 — N2a + N2b)', () => {
       insertEdge(db, 3, 2);
       insertEdge(db, 3, 4);
 
-      const scores = computeCausalDepthScores(db, [1, 2, 3, 4]);
+      const scores = computeDepthScores(db, [1, 2, 3, 4]);
 
       expect(scores.get(1)).toBeCloseTo(0, 5);
       expect(scores.get(2)).toBeCloseTo(0.5, 5);
@@ -351,7 +351,7 @@ describe('Graph Signals (S8 — N2a + N2b)', () => {
       insertEdge(db, 2, 3);
       insertEdge(db, 3, 1);
 
-      const scores = computeCausalDepthScores(db, [1, 2, 3]);
+      const scores = computeDepthScores(db, [1, 2, 3]);
 
       expect(scores.get(1)).toBe(0);
       expect(scores.get(2)).toBe(0);
@@ -363,7 +363,7 @@ describe('Graph Signals (S8 — N2a + N2b)', () => {
       insertEdge(db, 2, 1);
       insertEdge(db, 2, 3);
 
-      const scores = computeCausalDepthScores(db, [1, 2, 3]);
+      const scores = computeDepthScores(db, [1, 2, 3]);
 
       expect(scores.get(1)).toBeCloseTo(0, 5);
       expect(scores.get(2)).toBeCloseTo(0, 5);
@@ -377,7 +377,7 @@ describe('Graph Signals (S8 — N2a + N2b)', () => {
       insertEdge(db, 3, 4);
       insertEdge(db, 1, 4);
 
-      const scores = computeCausalDepthScores(db, [1, 2, 3, 4]);
+      const scores = computeDepthScores(db, [1, 2, 3, 4]);
 
       expect(scores.get(1)).toBeCloseTo(0, 5);
       expect(scores.get(2)).toBeCloseTo(1 / 3, 5);
@@ -644,7 +644,7 @@ describe('Graph Signals (S8 — N2a + N2b)', () => {
 
       // Populate the caches
       computeMomentumScores(db, [1, 2]);
-      computeCausalDepthScores(db, [1, 2, 3]);
+      computeDepthScores(db, [1, 2, 3]);
 
       expect(__testables.momentumCache.size).toBeGreaterThan(0);
       expect(__testables.depthCache.size).toBeGreaterThan(0);
@@ -921,7 +921,7 @@ describe('Graph Signals (S8 — N2a + N2b)', () => {
       const momentum = computeMomentum(db, 1);
       expect(momentum).toBe(0);
 
-      const scores = computeCausalDepthScores(db, [1]);
+      const scores = computeDepthScores(db, [1]);
       expect(scores.get(1)).toBe(0);
     });
 
@@ -941,11 +941,11 @@ describe('Graph Signals (S8 — N2a + N2b)', () => {
       // Should not throw
       expect(() => snapshotDegrees(db)).not.toThrow();
       expect(() => computeMomentum(db, 100)).not.toThrow();
-      expect(() => computeCausalDepthScores(db, [1, 50, 100, 150, 200])).not.toThrow();
+      expect(() => computeDepthScores(db, [1, 50, 100, 150, 200])).not.toThrow();
       expect(() => applyGraphSignals([{ id: 100, score: 0.5 }], db)).not.toThrow();
 
       // Verify reasonable depth results via batch function
-      const scores = computeCausalDepthScores(db, [200]);
+      const scores = computeDepthScores(db, [200]);
       // Node 200 is the deepest: depth 199, maxDepth 199, normalized = 1.0
       expect(scores.get(200)).toBeCloseTo(1.0, 5);
     });
