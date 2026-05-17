@@ -23,6 +23,16 @@ export {
 } from './schema.js';
 export type { ActiveEmbedder } from './schema.js';
 export {
+  ACTIVE_REINDEX_STATUSES,
+  cancelJob,
+  estimateEta,
+  getActiveJob,
+  getJobStatus,
+  resumeReindexJobs,
+  startReindex,
+} from './reindex.js';
+export type { ReindexJob, ReindexJobStatus, StartReindexOptions } from './reindex.js';
+export {
   OllamaAdapter,
   OllamaAdapterError,
   OllamaBackendUnreachableError,

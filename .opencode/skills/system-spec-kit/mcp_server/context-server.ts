@@ -131,6 +131,7 @@ import { startFileWatcher, type FSWatcher } from './lib/ops/file-watcher.js';
 import { getCanonicalPathKey } from './lib/utils/canonical-path.js';
 import { runBatchLearning } from './lib/feedback/batch-learning.js';
 import { getSessionSnapshot } from './lib/session/session-snapshot.js';
+import { resumeReindexJobs } from './lib/embedders/reindex.js';
 
 /* ───────────────────────────────────────────────────────────────
    2. TYPES
@@ -1732,6 +1733,16 @@ async function main(): Promise<void> {
     } catch (extractionErr: unknown) {
       const message = extractionErr instanceof Error ? extractionErr.message : String(extractionErr);
       throw new Error(`[context-server] Extraction adapter startup failed: ${message}`);
+    }
+
+    try {
+      const resumedEmbedderJobs = resumeReindexJobs(database);
+      if (resumedEmbedderJobs.length > 0) {
+        console.error('[context-server] Resumed embedder re-index jobs: %d', resumedEmbedderJobs.length);
+      }
+    } catch (reindexErr: unknown) {
+      const message = reindexErr instanceof Error ? reindexErr.message : String(reindexErr);
+      console.warn('[context-server] Embedder re-index resume failed:', message);
     }
 
     // T099: Background retry job for pending embeddings (REQ-031, CHK-179)

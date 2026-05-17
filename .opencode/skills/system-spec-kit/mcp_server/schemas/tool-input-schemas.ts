@@ -496,6 +496,16 @@ const memoryIngestCancelSchema = getSchema({
   jobId: z.string().min(1),
 });
 
+const embedderListSchema = getSchema({});
+
+const embedderSetSchema = getSchema({
+  name: z.string().min(1),
+});
+
+const embedderStatusSchema = getSchema({
+  jobId: z.string().min(1).optional(),
+});
+
 const skillGraphScanSchema = getSchema({
   skillsRoot: optionalPathString(),
 });
@@ -648,6 +658,9 @@ export const TOOL_SCHEMAS: Record<string, ToolInputSchema> = {
   memory_ingest_start: memoryIngestStartSchema as unknown as ToolInputSchema,
   memory_ingest_status: memoryIngestStatusSchema as unknown as ToolInputSchema,
   memory_ingest_cancel: memoryIngestCancelSchema as unknown as ToolInputSchema,
+  embedder_list: embedderListSchema as unknown as ToolInputSchema,
+  embedder_set: embedderSetSchema as unknown as ToolInputSchema,
+  embedder_status: embedderStatusSchema as unknown as ToolInputSchema,
   skill_graph_scan: skillGraphScanSchema as unknown as ToolInputSchema,
   skill_graph_query: skillGraphQuerySchema as unknown as ToolInputSchema,
   skill_graph_status: skillGraphStatusSchema as unknown as ToolInputSchema,
@@ -702,6 +715,9 @@ const ALLOWED_PARAMETERS: Record<string, string[]> = {
   memory_ingest_start: ['paths', 'specFolder', 'tenantId', 'userId', 'agentId', 'sessionId', 'provenanceSource', 'provenanceActor', 'governedAt', 'retentionPolicy', 'deleteAfter'],
   memory_ingest_status: ['jobId'],
   memory_ingest_cancel: ['jobId'],
+  embedder_list: [],
+  embedder_set: ['name'],
+  embedder_status: ['jobId'],
   skill_graph_scan: ['skillsRoot'],
   skill_graph_query: ['queryType', 'skillId', 'sourceSkillId', 'targetSkillId', 'family', 'minInbound', 'depth', 'limit'],
   skill_graph_status: [],

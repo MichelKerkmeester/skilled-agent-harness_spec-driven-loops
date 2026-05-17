@@ -1,0 +1,175 @@
+// -------------------------------------------------------------------
+// TEST: Embedder Reindex Orchestrator (016/003)
+// -------------------------------------------------------------------
+
+import Database from 'better-sqlite3';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+
+const mocks = vi.hoisted(() => ({
+  adapter: {
+    embed: vi.fn(async (texts: ReadonlyArray<string>) => (
+      texts.map((_text, index) => {
+        const vector = new Float32Array(1024);
+        vector[0] = index + 1;
+        return vector;
+      })
+    )),
+  },
+}));
+
+vi.mock('../lib/embedders/registry.js', () => ({
+  getManifest: (name: string) => {
+    if (name === 'embeddinggemma-300m') {
+      return { name, dim: 768, backend: 'llama-cpp' };
+    }
+    if (name === 'mxbai-embed-large-v1') {
+      return { name, dim: 1024, backend: 'ollama' };
+    }
+    return undefined;
+  },
+  getAdapter: (name: string) => (name === 'mxbai-embed-large-v1' ? mocks.adapter : undefined),
+}));
+
+import {
+  cancelJob,
+  getJobStatus,
+  resumeReindexJobs,
+  startReindex,
+} from '../lib/embedders/reindex.js';
+import { getActiveEmbedder, setActiveEmbedder } from '../lib/embedders/schema.js';
+
+const ORIGINAL_BATCH_SIZE = process.env.EMBEDDER_REINDEX_BATCH_SIZE;
+
+function createDatabase(): Database.Database {
+  const db = new Database(':memory:');
+  db.exec(`
+    CREATE TABLE memory_index (
+      id INTEGER PRIMARY KEY,
+      content_text TEXT,
+      title TEXT,
+      file_path TEXT
+    )
+  `);
+  const insert = db.prepare('INSERT INTO memory_index (id, content_text, title, file_path) VALUES (?, ?, ?, ?)');
+  for (let id = 1; id <= 10; id += 1) {
+    insert.run(id, `memory content ${id}`, `title ${id}`, `/tmp/${id}.md`);
+  }
+  return db;
+}
+
+async function waitForJob(
+  db: Database.Database,
+  jobId: string,
+  predicate: (status: NonNullable<ReturnType<typeof getJobStatus>>) => boolean,
+): Promise<NonNullable<ReturnType<typeof getJobStatus>>> {
+  for (let attempt = 0; attempt < 50; attempt += 1) {
+    const status = getJobStatus(jobId, db);
+    if (status && predicate(status)) {
+      return status;
+    }
+    await new Promise((resolve) => setTimeout(resolve, 10));
+  }
+  throw new Error(`Timed out waiting for job ${jobId}`);
+}
+
+describe('embedder reindex orchestrator', () => {
+  let db: Database.Database;
+
+  beforeEach(() => {
+    process.env.EMBEDDER_REINDEX_BATCH_SIZE = '2';
+    mocks.adapter.embed.mockClear();
+    db = createDatabase();
+  });
+
+  afterEach(() => {
+    db.close();
+    if (ORIGINAL_BATCH_SIZE === undefined) {
+      delete process.env.EMBEDDER_REINDEX_BATCH_SIZE;
+    } else {
+      process.env.EMBEDDER_REINDEX_BATCH_SIZE = ORIGINAL_BATCH_SIZE;
+    }
+  });
+
+  it('creates a persisted job and flips the active pointer only after completion', async () => {
+    const jobId = startReindex({ toName: 'mxbai-embed-large-v1' }, { db, autoStart: false });
+
+    expect(getJobStatus(jobId, db)).toMatchObject({
+      id: jobId,
+      fromName: 'embeddinggemma-300m',
+      toName: 'mxbai-embed-large-v1',
+      toDim: 1024,
+      total: 10,
+      processed: 0,
+      status: 'queued',
+    });
+    expect(getActiveEmbedder(db)).toEqual({ name: 'embeddinggemma-300m', dim: 768 });
+
+    resumeReindexJobs(db);
+    const completed = await waitForJob(db, jobId, (status) => status.status === 'completed');
+
+    expect(completed.processed).toBe(10);
+    expect(getActiveEmbedder(db)).toEqual({ name: 'mxbai-embed-large-v1', dim: 1024 });
+    const vectorCount = db.prepare('SELECT COUNT(*) AS count FROM vec_1024').get() as { count: number };
+    expect(vectorCount.count).toBe(10);
+  });
+
+  it('resumes a running job from the persisted processed offset', async () => {
+    setActiveEmbedder(db, 'embeddinggemma-300m', 768);
+    db.exec(`
+      CREATE TABLE embedder_jobs (
+        id TEXT PRIMARY KEY,
+        from_name TEXT NOT NULL,
+        to_name TEXT NOT NULL,
+        to_dim INTEGER NOT NULL,
+        total INTEGER NOT NULL,
+        processed INTEGER NOT NULL DEFAULT 0,
+        status TEXT NOT NULL CHECK(status IN ('queued', 'running', 'completed', 'failed', 'cancelled')),
+        started_at TEXT NOT NULL,
+        updated_at TEXT NOT NULL,
+        error TEXT
+      )
+    `);
+    db.exec('CREATE TABLE vec_1024 (id INTEGER PRIMARY KEY, vec BLOB NOT NULL)');
+    db.prepare(`
+      INSERT INTO embedder_jobs (id, from_name, to_name, to_dim, total, processed, status, started_at, updated_at)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+    `).run(
+      'emb-swap-resume',
+      'embeddinggemma-300m',
+      'mxbai-embed-large-v1',
+      1024,
+      10,
+      2,
+      'running',
+      new Date().toISOString(),
+      new Date().toISOString(),
+    );
+
+    resumeReindexJobs(db);
+    const completed = await waitForJob(db, 'emb-swap-resume', (status) => status.status === 'completed');
+
+    expect(completed.processed).toBe(10);
+    expect(mocks.adapter.embed).toHaveBeenCalledTimes(4);
+    const vectorCount = db.prepare('SELECT COUNT(*) AS count FROM vec_1024').get() as { count: number };
+    expect(vectorCount.count).toBe(8);
+  });
+
+  it('cancels a queued job before it runs', () => {
+    const jobId = startReindex({ toName: 'mxbai-embed-large-v1' }, { db, autoStart: false });
+
+    const cancelled = cancelJob(jobId, db);
+
+    expect(cancelled).toMatchObject({ id: jobId, status: 'cancelled' });
+  });
+
+  it('marks failed jobs and leaves the active pointer unchanged', async () => {
+    mocks.adapter.embed.mockRejectedValueOnce(new Error('embed failed'));
+    const jobId = startReindex({ toName: 'mxbai-embed-large-v1' }, { db, autoStart: false });
+
+    resumeReindexJobs(db);
+    const failed = await waitForJob(db, jobId, (status) => status.status === 'failed');
+
+    expect(failed.error).toBe('embed failed');
+    expect(getActiveEmbedder(db)).toEqual({ name: 'embeddinggemma-300m', dim: 768 });
+  });
+});

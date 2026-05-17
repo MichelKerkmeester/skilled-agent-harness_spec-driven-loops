@@ -71,6 +71,9 @@ type MemoryCrudModule = typeof import('./memory-crud.js');
 type MemoryIndexModule = typeof import('./memory-index.js');
 type MemoryBulkDeleteModule = typeof import('./memory-bulk-delete.js');
 type MemoryRetentionSweepModule = typeof import('./memory-retention-sweep.js');
+type EmbedderListModule = typeof import('./embedder-list.js');
+type EmbedderSetModule = typeof import('./embedder-set.js');
+type EmbedderStatusModule = typeof import('./embedder-status.js');
 type CheckpointsModule = typeof import('./checkpoints.js');
 type SessionLearningModule = typeof import('./session-learning.js');
 type EvalReportingModule = typeof import('./eval-reporting.js');
@@ -89,6 +92,9 @@ let memoryCrudModule: Promise<MemoryCrudModule> | null = null;
 let memoryIndexModule: Promise<MemoryIndexModule> | null = null;
 let memoryBulkDeleteModule: Promise<MemoryBulkDeleteModule> | null = null;
 let memoryRetentionSweepModule: Promise<MemoryRetentionSweepModule> | null = null;
+let embedderListModule: Promise<EmbedderListModule> | null = null;
+let embedderSetModule: Promise<EmbedderSetModule> | null = null;
+let embedderStatusModule: Promise<EmbedderStatusModule> | null = null;
 let checkpointsModule: Promise<CheckpointsModule> | null = null;
 let sessionLearningModule: Promise<SessionLearningModule> | null = null;
 let evalReportingModule: Promise<EvalReportingModule> | null = null;
@@ -159,6 +165,27 @@ function getMemoryRetentionSweepModule(): Promise<MemoryRetentionSweepModule> {
     memoryRetentionSweepModule = loadHandlerModule<MemoryRetentionSweepModule>('memory-retention-sweep');
   }
   return memoryRetentionSweepModule;
+}
+
+function getEmbedderListModule(): Promise<EmbedderListModule> {
+  if (!embedderListModule) {
+    embedderListModule = loadHandlerModule<EmbedderListModule>('embedder-list');
+  }
+  return embedderListModule;
+}
+
+function getEmbedderSetModule(): Promise<EmbedderSetModule> {
+  if (!embedderSetModule) {
+    embedderSetModule = loadHandlerModule<EmbedderSetModule>('embedder-set');
+  }
+  return embedderSetModule;
+}
+
+function getEmbedderStatusModule(): Promise<EmbedderStatusModule> {
+  if (!embedderStatusModule) {
+    embedderStatusModule = loadHandlerModule<EmbedderStatusModule>('embedder-status');
+  }
+  return embedderStatusModule;
 }
 
 function getCheckpointsModule(): Promise<CheckpointsModule> {
@@ -275,6 +302,14 @@ export const find_constitutional_files = lazyFunction(getMemoryIndexModule, 'fin
 // Memory bulk delete handler
 export const handleMemoryBulkDelete = lazyFunction(getMemoryBulkDeleteModule, 'handleMemoryBulkDelete');
 export const handleMemoryRetentionSweep = lazyFunction(getMemoryRetentionSweepModule, 'handleMemoryRetentionSweep');
+
+// Embedder handlers
+export const handleEmbedderList = lazyFunction(getEmbedderListModule, 'handleEmbedderList');
+export const handleEmbedderSet = lazyFunction(getEmbedderSetModule, 'handleEmbedderSet');
+export const handleEmbedderStatus = lazyFunction(getEmbedderStatusModule, 'handleEmbedderStatus');
+export const handle_embedder_list = lazyFunction(getEmbedderListModule, 'handle_embedder_list');
+export const handle_embedder_set = lazyFunction(getEmbedderSetModule, 'handle_embedder_set');
+export const handle_embedder_status = lazyFunction(getEmbedderStatusModule, 'handle_embedder_status');
 
 // Checkpoint handlers
 export const handleCheckpointCreate = lazyFunction(getCheckpointsModule, 'handleCheckpointCreate');

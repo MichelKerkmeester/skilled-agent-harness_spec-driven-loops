@@ -545,6 +545,43 @@ const memoryIngestCancel: ToolDefinition = {
   },
 };
 
+const embedderList: ToolDefinition = {
+  name: 'embedder_list',
+  description: '[L7:Maintenance] List registered embedding backends, active pointer state, and bounded readiness probe results.',
+  inputSchema: {
+    type: 'object',
+    additionalProperties: false,
+    properties: {},
+    required: [],
+  },
+};
+
+const embedderSet: ToolDefinition = {
+  name: 'embedder_set',
+  description: '[L7:Maintenance] Select an embedding backend by manifest name and queue a background re-index job. Active pointer flips only after full success.',
+  inputSchema: {
+    type: 'object',
+    additionalProperties: false,
+    properties: {
+      name: { type: 'string', minLength: 1, description: 'Registered embedder manifest name to activate after re-index.' },
+    },
+    required: ['name'],
+  },
+};
+
+const embedderStatus: ToolDefinition = {
+  name: 'embedder_status',
+  description: '[L7:Maintenance] Return progress for an embedder re-index job, or the latest active job when jobId is omitted.',
+  inputSchema: {
+    type: 'object',
+    additionalProperties: false,
+    properties: {
+      jobId: { type: 'string', minLength: 1, description: 'Optional embedder re-index job identifier.' },
+    },
+    required: [],
+  },
+};
+
 // Code Graph - Structural code analysis tools
 // Code-graph tool schemas migrated to system-code-graph standalone MCP server per ADR-002
 // (.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/015-mcp-topology-pivot/decision-record.md)
@@ -838,6 +875,9 @@ export const TOOL_DEFINITIONS: ToolDefinition[] = [
   memoryIngestStart,
   memoryIngestStatus,
   memoryIngestCancel,
+  embedderList,
+  embedderSet,
+  embedderStatus,
   // L8: Code Graph schemas live in system-code-graph per ADR-002
   // L8: Skill Graph schemas live in system-skill-advisor per 013/009/008.
   // L8: CocoIndex code-graph bridge schemas live in system-code-graph per ADR-002

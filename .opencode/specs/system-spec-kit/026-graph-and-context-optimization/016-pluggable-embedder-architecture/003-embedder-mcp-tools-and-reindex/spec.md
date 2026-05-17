@@ -10,17 +10,21 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-pluggable-embedder-architecture/003-embedder-mcp-tools-and-reindex"
-    last_updated_at: "2026-05-17T08:15:00Z"
-    last_updated_by: "main_agent"
-    recent_action: "Scaffolded phase 003"
-    next_safe_action: "Pickup via cli-devin SWE-1.6 paired dispatch after 016/002 lands"
-    blockers: ["016/001", "016/002"]
-    key_files: []
+    last_updated_at: "2026-05-17T07:05:00Z"
+    last_updated_by: "codex"
+    recent_action: "Implemented embedder MCP tools and re-index orchestrator"
+    next_safe_action: "Proceed to 016/004 mxbai swap using embedder_set"
+    blockers: []
+    key_files:
+      - ".opencode/skills/system-spec-kit/mcp_server/handlers/embedder-list.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/handlers/embedder-set.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/handlers/embedder-status.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "016-003-scaffold"
       parent_session_id: null
-    completion_pct: 5
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -35,10 +39,10 @@ _memory:
 |-------|-------|
 | Level | 1 |
 | Priority | P1 |
-| Status | Scaffolded |
+| Status | Shipped |
 | Branch | main |
-| Runtime | **cli-devin SWE-1.6** (paired-parallel dispatch, autonomous) |
-| Blocked by | 016/001 + 016/002 |
+| Runtime | Codex CLI |
+| Blocked by | None |
 
 
 <!-- /ANCHOR:metadata -->

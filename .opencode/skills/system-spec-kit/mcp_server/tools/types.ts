@@ -149,6 +149,16 @@ export interface RetentionSweepArgs {
   dryRun?: boolean;
 }
 
+/** Arguments for selecting the active embedder target. */
+export interface EmbedderSetArgs {
+  name: string;
+}
+
+/** Arguments for embedder re-index status polling. */
+export interface EmbedderStatusArgs {
+  jobId?: string;
+}
+
 /** Arguments for memory save requests. */
 export interface SaveArgs {
   filePath: string;

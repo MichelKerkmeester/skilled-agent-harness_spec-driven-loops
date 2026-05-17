@@ -15,6 +15,9 @@ import {
   handleMemoryValidate,
   handleMemoryBulkDelete,
   handleMemoryRetentionSweep,
+  handleEmbedderList,
+  handleEmbedderSet,
+  handleEmbedderStatus,
 } from '../handlers/index.js';
 import { validateToolArgs } from '../schemas/tool-input-schemas.js';
 
@@ -32,6 +35,8 @@ import type {
   MemoryValidateArgs,
   BulkDeleteArgs,
   RetentionSweepArgs,
+  EmbedderSetArgs,
+  EmbedderStatusArgs,
 } from './types.js';
 
 /** Tool names handled by this module */
@@ -48,6 +53,9 @@ export const TOOL_NAMES = new Set([
   'memory_validate',
   'memory_bulk_delete',
   'memory_retention_sweep',
+  'embedder_list',
+  'embedder_set',
+  'embedder_status',
 ]);
 
 /** Dispatch a tool call. Returns null if tool name not handled. */
@@ -85,6 +93,11 @@ export async function handleTool(name: string, args: Record<string, unknown>): P
     case 'memory_validate':       return handleMemoryValidate(parseArgs<MemoryValidateArgs>(validateToolArgs('memory_validate', args)));
     case 'memory_bulk_delete':    return handleMemoryBulkDelete(parseArgs<BulkDeleteArgs>(validateToolArgs('memory_bulk_delete', args)));
     case 'memory_retention_sweep': return handleMemoryRetentionSweep(parseArgs<RetentionSweepArgs>(validateToolArgs('memory_retention_sweep', args)));
+    case 'embedder_list':
+      validateToolArgs('embedder_list', args);
+      return handleEmbedderList();
+    case 'embedder_set':          return handleEmbedderSet(parseArgs<EmbedderSetArgs>(validateToolArgs('embedder_set', args)));
+    case 'embedder_status':       return handleEmbedderStatus(parseArgs<EmbedderStatusArgs>(validateToolArgs('embedder_status', args)));
     default: return null;
   }
 }

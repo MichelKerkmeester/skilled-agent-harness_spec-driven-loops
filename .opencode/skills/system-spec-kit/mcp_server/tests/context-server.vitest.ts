@@ -159,7 +159,7 @@ describe('Context Server', () => {
   // =================================================================
   // GROUP 2: Tool Definition Completeness
   // =================================================================
-  describe('Group 2: Tool Definitions (39 tools)', () => {
+  describe('Group 2: Tool Definitions (42 tools)', () => {
     const EXPECTED_TOOLS = [
       'memory_context',
       'memory_search',
@@ -190,6 +190,9 @@ describe('Context Server', () => {
       'memory_ingest_start',
       'memory_ingest_status',
       'memory_ingest_cancel',
+      'embedder_list',
+      'embedder_set',
+      'embedder_status',
       'session_health',
       'session_resume',
       'session_bootstrap',
