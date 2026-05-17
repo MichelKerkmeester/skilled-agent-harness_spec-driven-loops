@@ -13,9 +13,9 @@ _memory:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/010-skill-advisor-embedder-parity/002-jina-swap-and-reindex"
     last_updated_at: "2026-05-17T23:55:00Z"
     last_updated_by: "main_agent"
-    recent_action: "Authored swap-runbook + architecture-gap analysis"
-    next_safe_action: "Scaffold 010/004 for writer cross-wiring; then execute swap per runbook"
-    blockers: ["depends on 010/004 (writer cross-wire to EmbedderAdapter layer)"]
+    recent_action: "010/004 writer cross-wire shipped (c0ec765f4); 010/002 unblocked"
+    next_safe_action: "Execute swap per runbook §Swap procedure (post-010/004 wiring shipped); restart daemon + verify"
+    blockers: []
     key_files: ["evidence/swap-runbook.md", "../001-pluggable-architecture/review/review-report.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000022002"
@@ -37,10 +37,10 @@ _memory:
 
 | Field | Value |
 |---|---|
-| Status | PARTIAL (40% complete — runbook + analysis shipped; swap execution deferred) |
+| Status | UNBLOCKED 2026-05-18T00:18 (010/004 shipped at c0ec765f4; swap execution now possible — pending operator runbook execution) |
 | Artifact | `evidence/swap-runbook.md` (~200 lines, comprehensive) |
-| Owner | main agent |
-| Blockers | 010/004 writer cross-wiring (architecture gap) |
+| Owner | main agent (orig); next: operator executes runbook §"Swap procedure" |
+| Blockers | RESOLVED — 010/004 writer cross-wiring shipped 2026-05-18 |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:what-built -->
