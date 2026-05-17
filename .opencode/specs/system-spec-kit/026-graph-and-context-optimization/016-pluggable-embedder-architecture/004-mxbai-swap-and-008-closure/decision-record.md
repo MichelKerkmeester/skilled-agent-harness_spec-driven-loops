@@ -510,3 +510,36 @@ Evidence:
 - `evidence/d-rescue-on-vs-off.jsonl`
 - `evidence/d-rescue-layer-cost-benefit.md`
 <!-- /ANCHOR:adr-011 -->
+
+<!-- ANCHOR:adr-012 -->
+## ADR-012: Production embedder choice — jina-embeddings-v3+rescue
+
+**Comparison (cat-24/409 top-3 + median latency, all with rescue layer ON):**
+
+| Embedder | Dim | 409 top-3 | Median ms | p95 ms |
+|---|---:|---:|---:|---:|
+| embeddinggemma-300m | 768 | 7/10 | 787.5 ms | 936 ms |
+| jina-embeddings-v3 | 1024 | 9/10 | 893.5 ms | 1465 ms |
+| nomic-embed-text-v1.5 | 768 | 8/10 (D-RETRY) | 922.5 ms | 3045 ms |
+
+**Decision**: `jina-embeddings-v3` + rescue layer default-on as production config.
+
+**Reasoning**:
+- Rank by 409 PASS first: Jina reached `9/10`, Nomic reached `8/10`, and baseline Gemma reached only `7/10`.
+- Baseline Gemma is not sufficient with rescue alone, so the no-swap path is rejected.
+- Jina also beat Nomic on measured latency in this comparison: `893.5 ms` median vs `922.5 ms`, and `1465 ms` p95 vs `3045 ms`.
+- Jina does not reduce dimension cost; it moves to 1024-dimensional vectors. Its advantage is stronger 409 recall plus an 8192-token context profile.
+
+**Tradeoffs**:
+- Jina requires a 1024-dimensional vector table and a production re-index on install or activation.
+- Re-index time was materially slower than the original estimate: the measured 7738-row Jina jobs took tens of minutes in this environment.
+- The rescue layer kill switch remains available: `SPECKIT_RERANK_LAYER=false`.
+
+Restore outcome:
+- Nomic was restored and verified through `vec_metadata` for the requested sanity phase, but the one-row post-restore sanity check missed expected `4460` in top-3. Rerank timing was still present, so this is recorded as sanity drift rather than a blocker.
+- Final active production pointer was switched to Jina after the comparison, and `vec_metadata` reported `active_embedder_name -> jina-embeddings-v3`, `active_embedder_dim -> 1024`.
+
+Evidence:
+- `evidence/embedder-comparison-with-rescue.jsonl`
+- `evidence/embedder-comparison.csv`
+<!-- /ANCHOR:adr-012 -->
