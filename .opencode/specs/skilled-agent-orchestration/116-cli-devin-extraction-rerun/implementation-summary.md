@@ -8,14 +8,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/116-cli-devin-extraction-rerun"
-    last_updated_at: "2026-05-17T07:35:00Z"
+    last_updated_at: "2026-05-17T10:25:00Z"
     last_updated_by: "main_agent"
-    recent_action: "Re-run complete; v2 ranking stable; RCAF still wins"
-    next_safe_action: "Monitor v2 conclusions in production"
+    recent_action: "Shipped v3 mutation-depth-8 re-run"
+    next_safe_action: "Hold v1-0-6-0 uplift pending confirmation run"
     blockers: []
     key_files:
+      - "synthesis-v3.md"
       - "synthesis-v2.md"
+      - "state/eval-loop-state-v3.jsonl"
       - "state/eval-loop-state-v2.jsonl"
+      - "scripts/synthesize-v3.cjs"
       - "scripts/extract-files-from-markdown.cjs"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000116005"
@@ -132,3 +135,22 @@ No rate-limit pauses fired. Live claude-sonnet grader completed all dispatches w
 
 4. **Synthesis-v2 doesn't quantify per-fixture D1 unlock.** The aggregate ranking is stable, but individual fixtures may have shifted significantly. A v1.0.6.X follow-on could report per-fixture deltas to surface "RCAF wins overall but variant X dominates fixture Y" patterns. Out of scope for this run.
 <!-- /ANCHOR:limitations -->
+
+<!-- ANCHOR:rerun-v3 -->
+## Re-run v3 — mutation-depth-8 follow-on (2026-05-17)
+
+| Field | Value |
+|-------|-------|
+| **Trigger** | Follow-on #1 of 5: re-run loop-v2.cjs with max-iters=8 to unlock 3 additional hill-climb mutations beyond the v2 RCAF plateau |
+| **v3 iterations** | 8 of 8 (5 seeded + 3 mutated) |
+| **v3 winner** | `v-mut-d68b487314246cd3` (CONTEXT framework + medium pre-plan + 5-thought + standard bundle-gate + standard anti-hallucination) @ 0.5833 |
+| **v2 winner** | `v-004-rcaf-medium` @ 0.5664 |
+| **Delta** | +0.0169 (1.7% lift) |
+| **Confidence** | INCONCLUSIVE — single sample, below synthesize-v3 ≥0.02 confidence threshold |
+| **Variance check** | Same variants across runs swing 0.02–0.15 (e.g. v-005 ranges 0.4139–0.5610). The +0.0169 v3 winner delta is well within typical run-to-run noise |
+| **Recommendation** | Do NOT ship cli-devin v1.0.6.0 on this single sample. If pursued, run 2-3 confirmation iterations of `v-mut-d68b487314246cd3` against the same fixture set first; promote to default only if reproducible |
+
+Surprising finding: the CONTEXT framework was originally documented for deepseek-v4, not SWE 1.6. The mutator explored an axis the seeded queue (STAR / RCAF / BUILD) didn't cover. Whether this is a genuine framework-on-surface finding or run-to-run noise cannot be answered without a confirmation run.
+
+Artifacts: `synthesis-v3.md`, `scripts/synthesize-v3.cjs`, `state/{best-variant,eval-loop-state,mutation-coverage,eval-loop-dashboard}-v3`, `iterations/iteration-00{1..8}-v3.md`, `state/extraction-grader-cache/`.
+<!-- /ANCHOR:rerun-v3 -->
