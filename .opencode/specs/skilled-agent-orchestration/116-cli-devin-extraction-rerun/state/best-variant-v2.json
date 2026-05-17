@@ -1,0 +1,16 @@
+{
+  "variantId": "v-004-rcaf-medium",
+  "variantSignature": "f25ab8ef667e8c5b",
+  "variantScore": 0.5664,
+  "meta": {
+    "id": "v-004-rcaf-medium",
+    "framework": "RCAF",
+    "preplanning_density": "medium",
+    "thinking_threshold": "5",
+    "bundle_gate_strictness": "standard",
+    "anti_hallucination_strength": "standard",
+    "source": "seeded",
+    "description": "RCAF (Role/Context/Action/Format) with medium pre-plan. Tests whether a role-based framing improves SWE 1.6 output discipline."
+  },
+  "at_iter": 4
+}

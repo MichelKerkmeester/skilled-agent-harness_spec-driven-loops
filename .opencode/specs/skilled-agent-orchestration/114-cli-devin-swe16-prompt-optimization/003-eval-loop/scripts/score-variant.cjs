@@ -146,6 +146,27 @@ async function scoreVariantFixture(opts) {
   const outputFile = path.join(outputDir, `output-${variantId}-${fixture.id}.md`);
   fs.writeFileSync(outputFile, swe16OutputText);
 
+  // Optional: extract files from markdown output into fixture CWD before scoring.
+  // Gated on EVAL_LOOP_EXTRACT=true. When set, captures a pre-extraction seed
+  // snapshot so the next variant starts from pristine seed files.
+  let extractionResult = null;
+  let preExtractionSnapshot = null;
+  if (process.env.EVAL_LOOP_EXTRACT === 'true') {
+    const extractScriptPath = path.resolve(PACKET_ROOT, '..', '..', '116-cli-devin-extraction-rerun', 'scripts', 'extract-files-from-markdown.cjs');
+    if (fs.existsSync(extractScriptPath)) {
+      const extract = require(extractScriptPath);
+      // Snapshot seed directory contents before extraction so we can restore
+      preExtractionSnapshot = snapshotDir(fixtureCwdAbs);
+      try {
+        extractionResult = extract.extract(swe16OutputText, fixtureCwdAbs);
+      } catch (err) {
+        extractionResult = { error: err.message, written: [], skipped: [] };
+      }
+    } else {
+      extractionResult = { error: 'extraction script not found at ' + extractScriptPath };
+    }
+  }
+
   // Deterministic checks
   const acceptance = scoreAcceptanceDeterministic(fixture, outputFile, fixtureCwdAbs);
   const bundleGate = runDetCheck('bundle-gate', fixturePath, outputFile);
@@ -189,6 +210,11 @@ async function scoreVariantFixture(opts) {
   const d4_x_d1_inverse = grader.score >= 0.9 && finalAcc.score <= 0.4;
   const d5_x_d1_inverse = preplanning.score >= 0.8 && finalAcc.score <= 0.4;
 
+  // Restore fixture cwd to pristine seed state if we extracted
+  if (preExtractionSnapshot) {
+    restoreFromSnapshot(fixtureCwdAbs, preExtractionSnapshot);
+  }
+
   return {
     fixtureId: fixture.id,
     variantId,
@@ -202,6 +228,11 @@ async function scoreVariantFixture(opts) {
     },
     grader,
     hard_gate_failed: gate.hard_gate_failed,
+    extraction: extractionResult ? {
+      written_count: extractionResult.summary ? extractionResult.summary.written_count : 0,
+      skipped_count: extractionResult.summary ? extractionResult.summary.skipped_count : 0,
+      paths: (extractionResult.written || []).map((w) => w.inferred_path),
+    } : null,
     interaction_terms: {
       d2_x_d1_decoupled,
       d4_x_d1_inverse,
@@ -210,7 +241,58 @@ async function scoreVariantFixture(opts) {
   };
 }
 
-module.exports = { scoreVariantFixture };
+// Snapshot a directory tree (file paths + contents + symlinks) for restoration.
+// Used by EVAL_LOOP_EXTRACT to preserve fixture seeds across variants.
+function snapshotDir(rootAbs) {
+  if (!fs.existsSync(rootAbs)) return { exists: false, files: [] };
+  const files = [];
+  function walk(dir, relBase) {
+    const entries = fs.readdirSync(dir, { withFileTypes: true });
+    for (const e of entries) {
+      const abs = path.join(dir, e.name);
+      const rel = path.join(relBase, e.name);
+      if (e.isDirectory()) {
+        walk(abs, rel);
+      } else if (e.isFile()) {
+        files.push({ rel, content: fs.readFileSync(abs, 'utf8') });
+      }
+    }
+  }
+  walk(rootAbs, '');
+  return { exists: true, files };
+}
+
+function restoreFromSnapshot(rootAbs, snapshot) {
+  if (!snapshot || !snapshot.exists) return;
+  // Wipe contents (files added by extraction) and restore from snapshot
+  const seenRels = new Set(snapshot.files.map((f) => f.rel));
+  function walk(dir, relBase) {
+    if (!fs.existsSync(dir)) return;
+    const entries = fs.readdirSync(dir, { withFileTypes: true });
+    for (const e of entries) {
+      const abs = path.join(dir, e.name);
+      const rel = path.join(relBase, e.name);
+      if (e.isDirectory()) {
+        walk(abs, rel);
+        // Try removing now-empty dir (idempotent)
+        try { fs.rmdirSync(abs); } catch (_) {}
+      } else if (e.isFile()) {
+        if (!seenRels.has(rel)) {
+          try { fs.unlinkSync(abs); } catch (_) {}
+        }
+      }
+    }
+  }
+  walk(rootAbs, '');
+  // Restore each snapshot file
+  for (const f of snapshot.files) {
+    const target = path.join(rootAbs, f.rel);
+    fs.mkdirSync(path.dirname(target), { recursive: true });
+    fs.writeFileSync(target, f.content);
+  }
+}
+
+module.exports = { scoreVariantFixture, snapshotDir, restoreFromSnapshot };
 
 async function main() {
   const [variantPath, fixturePath, swe16OutputFile] = process.argv.slice(2);

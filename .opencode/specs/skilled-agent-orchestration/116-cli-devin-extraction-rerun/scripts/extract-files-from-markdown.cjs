@@ -57,7 +57,11 @@ const COMMENT_PATH_PATTERNS = [
 ];
 
 const MD_HEADER_PATH_RE = /^#{1,6}\s+`([^`]+\.[a-zA-Z0-9]+)`\s*$/;
+// Bare markdown header with file path (no backticks): "## wrapper.sh" or "### src/utils/format.ts"
+const MD_HEADER_BARE_PATH_RE = /^#{1,6}\s+([\.\/\-_a-zA-Z0-9]+\.[a-zA-Z0-9]+)\s*$/;
 const BACKTICKED_PATH_RE = /^`([^`\s]+\.[a-zA-Z0-9]+)`\s*$/;
+// Bold-emphasized path: "**wrapper.sh**" or "**src/utils/format.ts**"
+const BOLD_PATH_RE = /^\*\*([\.\/\-_a-zA-Z0-9]+\.[a-zA-Z0-9]+)\*\*\s*$/;
 const FENCED_BLOCK_RE = /^```(\w*)\s*$/;
 
 function looksLikeFilePath(s) {
@@ -91,16 +95,32 @@ function extract(swe16OutputText, fixtureCwdAbs, options = {}) {
     for (let lookback = 1; lookback <= 3 && i - lookback >= 0; lookback++) {
       const prevLine = lines[i - lookback];
       if (prevLine.trim() === '') continue;
+      // 1. Markdown header with backticked path: "### `src/foo.ts`"
       const headerMatch = prevLine.match(MD_HEADER_PATH_RE);
       if (headerMatch && looksLikeFilePath(headerMatch[1])) {
         inferredPath = headerMatch[1];
         inferredFrom = 'md_header';
         break;
       }
+      // 2. Markdown header with bare path: "## wrapper.sh" or "### src/foo.ts"
+      const headerBareMatch = prevLine.match(MD_HEADER_BARE_PATH_RE);
+      if (headerBareMatch && looksLikeFilePath(headerBareMatch[1])) {
+        inferredPath = headerBareMatch[1];
+        inferredFrom = 'md_header_bare';
+        break;
+      }
+      // 3. Backticked path on its own line: "`src/foo.ts`"
       const backtickMatch = prevLine.match(BACKTICKED_PATH_RE);
       if (backtickMatch && looksLikeFilePath(backtickMatch[1])) {
         inferredPath = backtickMatch[1];
         inferredFrom = 'backticked_path';
+        break;
+      }
+      // 4. Bold path: "**src/foo.ts**"
+      const boldMatch = prevLine.match(BOLD_PATH_RE);
+      if (boldMatch && looksLikeFilePath(boldMatch[1])) {
+        inferredPath = boldMatch[1];
+        inferredFrom = 'bold_path';
         break;
       }
       // If non-blank, non-matching line found, stop lookback
