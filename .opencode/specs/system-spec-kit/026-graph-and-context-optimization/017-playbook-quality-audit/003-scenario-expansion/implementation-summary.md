@@ -40,7 +40,7 @@ _memory:
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:what-built -->
-## 2. WHAT BUILT
+## 2. WHAT WAS BUILT
 
 **15 new scenarios** filling tool-coverage gaps identified by 017/001 + 017/002:
 
@@ -60,7 +60,7 @@ _memory:
 <!-- /ANCHOR:what-built -->
 
 <!-- ANCHOR:how-delivered -->
-## 3. HOW DELIVERED
+## 3. HOW IT WAS DELIVERED
 
 Codex `bb2bzcco3` scaffolded the packet + authored scenarios using the same `manual_testing_playbook` template (§1 OVERVIEW, §2 CONTRACT, §3 EXECUTION, §4 SOURCE FILES). Reproducible audit infrastructure shipped as `evidence/generate-playbook-quality-audit.js` (~55KB).
 
@@ -68,7 +68,7 @@ B-RETRY (codex `b855znbsv`) executed each scenario against the live MCP server (
 <!-- /ANCHOR:how-delivered -->
 
 <!-- ANCHOR:decisions -->
-## 4. DECISIONS
+## 4. KEY DECISIONS
 
 - **Run validation against live MCP** (not source-mode probe) to surface real handler gaps
 - **Hard-halt only on infra failures**, not schema mismatches — pre-classified expected FAILs (06/027, 07/028, 16/282, 16/283, 17/278) marked with root cause and CONTINUE
