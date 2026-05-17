@@ -22,8 +22,8 @@ A round-trip failure mode would be: store a memory about concept X, query with a
 - Real user request: `Read the 10-pair 409 fixture, query each paraphrase, and verify the expected source memory appears in top-3 each time.`
 - RCAF Prompt: `As a query-intelligence validation operator, read manual_testing_playbook/24--local-llm-query-intelligence/409-fixture.json, query each fixture paraphrase with Memory MCP, and verify the expected source memory appears in top-3. Return a pass/fail verdict with the per-sample table.`
 - Expected execution process: read 10 pairs from `409-fixture.json`; for each pair, query the `query` string and check the rank of `expected_source_memory_id`.
-- Expected signals: source memory in top-3 for >= 8 of 10 samples; mean rank <= 2.
-- Desired user-visible outcome: `PASS - 9 of 10 samples surface their source memory in top-3; mean rank 1.6.`
+- Expected signals: source memory in top-3 for >= 8 of 10 deterministic fixture rows; mean rank <= 2. Calibration source: 016/004 retrieval-rescue evidence reached 8/10 with the post-surgery fixture.
+- Desired user-visible outcome: `PASS - 8 of 10 fixture rows surface their source memory in top-3; mean rank <= 2.0.`
 - Pass/fail: PASS if >= 8/10 in top-3; PARTIAL if 5-7/10; FAIL if <= 4/10.
 
 ---
@@ -66,7 +66,7 @@ Validate Memory MCP round-trip recall: read 10 deterministic paraphrase pairs fr
 | 10     | fixture row 10   | 13352            | medium     | 2                     |
 ```
 
-Summary: 10/10 in top-3, mean rank 1.5 -> PASS
+Summary: 8/10 or better in top-3, mean rank <= 2.0 -> PASS
 
 ### Evidence
 

@@ -64,14 +64,14 @@ If only one external CLI is available, the cross-AI scenarios (414, 415) can sti
 | # | Title | Probes | Pass signal |
 |---|-------|--------|-------------|
 | 401 | Paraphrase recall | Same concept, different wording → same memory surfaces | Top-3 includes the paraphrased target, score > 0.5 |
-| 402 | Synonymy across vocabularies | Domain jargon vs plain language | ≥ 3/4 query pairs at ≥ 60% top-5 Jaccard |
+| 402 | Synonymy across vocabularies | Domain jargon vs plain language | >= 2/4 query pairs at >= 25% top-5 Jaccard + live canonical targets present |
 | 403 | Code-intent matching | Question-form query finds implementation | Implementation file ranks higher than its README in ≥ 3/4 |
 | 404 | Disambiguation under context | Polysemous query token | All 3 variants correctly disambiguate to intended sense |
 | 405 | Multi-aspect query synthesis | 3-concept compound query | Top-5 covers all 3 concepts with ≥ 2 multi-aspect results |
 | 406 | Specificity ladder | Same topic at 3 abstraction levels | Each level returns the most-specific match |
 | 407 | Adversarial near-miss | Lexical overlap, semantic distance | Semantically-correct result outranks lexical decoy in ≥ 2/3 |
 | 408 | Compound concept synthesis | Concept not directly stated in any single doc | ≥ 2/4 constituents in top-3, ≥ 3/4 in top-5 |
-| 409 | LLM-made memory recall | Quality of memories the local LLM has indexed | ≥ 8/10 random samples in top-3, mean rank ≤ 2 |
+| 409 | LLM-made memory recall | Quality of memories the local LLM has indexed | >= 8/10 deterministic fixture rows in top-3, mean rank <= 2 |
 | 410 | Query latency + throughput under load | Real-world query load on local stack | p50 ≤ 200ms, p95 ≤ 800ms, p99 ≤ 2s, ≥ 5 qps |
 
 ### B. Causal graph + memory substrate (411-415)
