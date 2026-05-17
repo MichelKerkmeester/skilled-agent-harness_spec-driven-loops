@@ -1,0 +1,17 @@
+{
+  "specFolder": "skilled-agent-orchestration/064-agent-create",
+  "description": "Spec: 064 — agent-create",
+  "keywords": [
+    "spec",
+    "064",
+    "agent-create"
+  ],
+  "lastUpdated": "2026-05-16T17:59:28.029Z",
+  "specId": "064",
+  "folderSlug": "agent-create",
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}

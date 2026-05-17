@@ -1,0 +1,19 @@
+{
+  "specFolder": "skilled-agent-orchestration/009-cli-self-invocation-guards",
+  "description": "Feature Specification: CLI Self-Invocation Guards",
+  "keywords": [
+    "feature",
+    "specification",
+    "cli",
+    "self-invocation",
+    "guards"
+  ],
+  "lastUpdated": "2026-05-16T17:59:27.641Z",
+  "specId": "009",
+  "folderSlug": "cli-self-invocation-guards",
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

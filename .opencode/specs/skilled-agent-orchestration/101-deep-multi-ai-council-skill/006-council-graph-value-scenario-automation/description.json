@@ -1,21 +1,24 @@
 {
+  "level": "1",
   "specFolder": "skilled-agent-orchestration/101-deep-multi-ai-council-skill/006-council-graph-value-scenario-automation",
-  "description": "Promote DAC-027..DAC-032 from operator A/B contracts into CI-protected fixture-driven vitest tests with measured baseline vs graph metrics, plus an operator fixture-seeder CLI",
+  "description": "Feature Specification: 101/006 Council Graph Value-Scenario Automation",
   "keywords": [
-    "council-graph",
-    "value-automation",
-    "vitest-fixtures",
-    "DAC-027",
-    "DAC-032",
-    "seed-council-value-fixture"
+    "feature",
+    "specification",
+    "101",
+    "006",
+    "council",
+    "graph",
+    "value-scenario",
+    "automation"
   ],
-  "lastUpdated": "2026-05-11T09:25:00.000Z",
+  "lastUpdated": "2026-05-16T17:59:28.559Z",
   "specId": "006",
   "folderSlug": "council-graph-value-scenario-automation",
   "parentChain": [
-    "skilled-agent-orchestration/101-deep-multi-ai-council-skill"
+    "skilled-agent-orchestration",
+    "101-deep-multi-ai-council-skill"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

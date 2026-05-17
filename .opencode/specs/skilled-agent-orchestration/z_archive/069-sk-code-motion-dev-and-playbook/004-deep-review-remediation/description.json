@@ -1,0 +1,22 @@
+{
+  "specFolder": "skilled-agent-orchestration/069-sk-code-motion-dev-and-playbook/004-deep-review-remediation",
+  "description": "Feature Specification: Packet 069 Deep Review Remediation",
+  "keywords": [
+    "feature",
+    "specification",
+    "packet",
+    "069",
+    "deep",
+    "review",
+    "remediation"
+  ],
+  "lastUpdated": "2026-05-16T17:59:28.137Z",
+  "specId": "004",
+  "folderSlug": "deep-review-remediation",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "069-sk-code-motion-dev-and-playbook"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

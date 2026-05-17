@@ -1,0 +1,20 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/068-sk-doc-organization/004-remediation",
+  "description": "Feature Specification: Phase 4: remediation",
+  "keywords": [
+    "feature",
+    "specification",
+    "phase",
+    "remediation"
+  ],
+  "lastUpdated": "2026-05-16T17:59:28.112Z",
+  "specId": "004",
+  "folderSlug": "remediation",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "068-sk-doc-organization"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

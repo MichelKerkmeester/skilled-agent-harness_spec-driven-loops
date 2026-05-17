@@ -1,0 +1,22 @@
+{
+  "specFolder": "skilled-agent-orchestration/083-skill-description-budget-trim",
+  "description": "Feature Specification: Skill Description Budget Trim",
+  "keywords": [
+    "feature",
+    "specification",
+    "skill",
+    "description",
+    "budget",
+    "trim"
+  ],
+  "lastUpdated": "2026-05-16T17:59:28.329Z",
+  "specId": "083",
+  "folderSlug": "skill-description-budget-trim",
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "06-05-26_13-38__manual-context-save.md"
+  ]
+}

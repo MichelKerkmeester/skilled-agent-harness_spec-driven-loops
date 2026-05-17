@@ -1,0 +1,22 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/072-sk-doc-router-rerun-refined-extraction",
+  "description": "Feature Specification: Refined Resource-Detection + Metric Re-extraction (072)",
+  "keywords": [
+    "feature",
+    "specification",
+    "refined",
+    "resource-detection",
+    "metric",
+    "re-extraction",
+    "072"
+  ],
+  "lastUpdated": "2026-05-16T17:59:28.237Z",
+  "specId": "072",
+  "folderSlug": "sk-doc-router-rerun-refined-extraction",
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

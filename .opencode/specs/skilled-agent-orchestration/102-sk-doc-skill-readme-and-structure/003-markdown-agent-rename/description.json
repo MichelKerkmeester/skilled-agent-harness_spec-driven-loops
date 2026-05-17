@@ -1,15 +1,19 @@
 {
   "level": "1",
-  "specFolder": "102-sk-doc-skill-readme-and-structure/003-markdown-agent-rename",
-  "description": "Phase 3: markdown-agent-rename",
+  "specFolder": "skilled-agent-orchestration/102-sk-doc-skill-readme-and-structure/003-markdown-agent-rename",
+  "description": "Feature Specification: markdown agent rename",
   "keywords": [
-    "phase",
-    "markdown-agent-rename"
+    "feature",
+    "specification",
+    "markdown",
+    "agent",
+    "rename"
   ],
-  "lastUpdated": "2026-05-10T12:31:54.466Z",
+  "lastUpdated": "2026-05-16T17:59:28.585Z",
   "specId": "003",
   "folderSlug": "markdown-agent-rename",
   "parentChain": [
+    "skilled-agent-orchestration",
     "102-sk-doc-skill-readme-and-structure"
   ],
   "memorySequence": 2,

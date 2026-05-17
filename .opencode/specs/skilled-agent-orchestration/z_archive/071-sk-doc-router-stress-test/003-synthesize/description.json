@@ -1,0 +1,20 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/071-sk-doc-router-stress-test/003-synthesize",
+  "description": "Feature Specification: Phase 3: synthesize",
+  "keywords": [
+    "feature",
+    "specification",
+    "phase",
+    "synthesize"
+  ],
+  "lastUpdated": "2026-05-16T17:59:28.210Z",
+  "specId": "003",
+  "folderSlug": "synthesize",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "071-sk-doc-router-stress-test"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

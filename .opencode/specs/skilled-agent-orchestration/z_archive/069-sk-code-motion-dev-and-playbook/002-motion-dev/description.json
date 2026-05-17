@@ -1,0 +1,22 @@
+{
+  "specFolder": "skilled-agent-orchestration/069-sk-code-motion-dev-and-playbook/002-motion-dev",
+  "description": "Feature Specification: sk-code Motion.dev Assets and References",
+  "keywords": [
+    "feature",
+    "specification",
+    "sk-code",
+    "motion",
+    "dev",
+    "assets",
+    "references"
+  ],
+  "lastUpdated": "2026-05-16T17:59:28.126Z",
+  "specId": "002",
+  "folderSlug": "motion-dev",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "069-sk-code-motion-dev-and-playbook"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

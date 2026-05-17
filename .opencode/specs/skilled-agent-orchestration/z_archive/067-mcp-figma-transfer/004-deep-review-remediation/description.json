@@ -1,0 +1,22 @@
+{
+  "level": "2",
+  "specFolder": "skilled-agent-orchestration/067-mcp-figma-transfer/004-deep-review-remediation",
+  "description": "Feature Specification: Phase 4 — Deep Review Remediation",
+  "keywords": [
+    "feature",
+    "specification",
+    "phase",
+    "deep",
+    "review",
+    "remediation"
+  ],
+  "lastUpdated": "2026-05-16T17:59:28.089Z",
+  "specId": "004",
+  "folderSlug": "deep-review-remediation",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "067-mcp-figma-transfer"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

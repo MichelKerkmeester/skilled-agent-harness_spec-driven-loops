@@ -1,0 +1,18 @@
+{
+  "specFolder": "skilled-agent-orchestration/001-cli-gemini-creation",
+  "description": "Feature Specification: cli-gemini Skill",
+  "keywords": [
+    "feature",
+    "specification",
+    "cli-gemini",
+    "skill"
+  ],
+  "lastUpdated": "2026-05-16T17:59:27.608Z",
+  "specId": "001",
+  "folderSlug": "cli-gemini-creation",
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,22 @@
+{
+  "specFolder": "skilled-agent-orchestration/046-cli-codex-tone-of-voice",
+  "description": "Feature Specification: Codex Tone-of-Voice Personalization",
+  "keywords": [
+    "feature",
+    "specification",
+    "codex",
+    "tone-of-voice",
+    "personalization"
+  ],
+  "lastUpdated": "2026-05-16T17:59:27.886Z",
+  "specId": "046",
+  "folderSlug": "cli-codex-tone-of-voice",
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "19-04-26_12-24__authored-codex-tone-of-voice-personalization.md",
+    "19-04-26_14-30__closed-spec-046-after-scope-pivot-original-plan.md"
+  ]
+}

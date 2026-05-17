@@ -1,21 +1,23 @@
 {
+  "level": "1",
   "specFolder": "skilled-agent-orchestration/101-deep-multi-ai-council-skill/007-council-infrastructure-hardening",
-  "description": "Close six residual gaps from 101/001..006: council test gate, 32-entry feature catalog, reverse-anchor meta-test, DAC-025 replay helper, Codex TOML parity broaden, fixture normalization provenance comments",
+  "description": "Feature Specification: 101/007 Council Infrastructure Hardening",
   "keywords": [
-    "council-infrastructure",
-    "test-gate",
-    "feature-catalog",
-    "anchor-integrity",
-    "replay-helper",
-    "codex-toml-parity"
+    "feature",
+    "specification",
+    "101",
+    "007",
+    "council",
+    "infrastructure",
+    "hardening"
   ],
-  "lastUpdated": "2026-05-11T11:00:00.000Z",
+  "lastUpdated": "2026-05-16T17:59:28.563Z",
   "specId": "007",
   "folderSlug": "council-infrastructure-hardening",
   "parentChain": [
-    "skilled-agent-orchestration/101-deep-multi-ai-council-skill"
+    "skilled-agent-orchestration",
+    "101-deep-multi-ai-council-skill"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

@@ -1,0 +1,22 @@
+{
+  "specFolder": "skilled-agent-orchestration/020-cmd-create-readme-install-merger",
+  "description": "Feature Specification: Merge create README and install guide commands",
+  "keywords": [
+    "feature",
+    "specification",
+    "merge",
+    "create",
+    "readme",
+    "install",
+    "guide",
+    "commands"
+  ],
+  "lastUpdated": "2026-05-16T17:59:27.693Z",
+  "specId": "020",
+  "folderSlug": "cmd-create-readme-install-merger",
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

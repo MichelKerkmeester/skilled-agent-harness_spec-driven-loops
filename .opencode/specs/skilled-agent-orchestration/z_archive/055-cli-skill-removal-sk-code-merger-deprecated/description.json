@@ -1,0 +1,19 @@
+{
+  "specFolder": "skilled-agent-orchestration/055-cli-skill-removal-sk-code-merger-deprecated",
+  "description": "Feature Specification: Remove sk-code-full-stack and sk-code-web",
+  "keywords": [
+    "feature",
+    "specification",
+    "remove",
+    "sk-code-full-stack",
+    "sk-code-web"
+  ],
+  "lastUpdated": "2026-05-16T17:59:27.922Z",
+  "specId": "055",
+  "folderSlug": "cli-skill-removal-sk-code-merger-deprecated",
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}

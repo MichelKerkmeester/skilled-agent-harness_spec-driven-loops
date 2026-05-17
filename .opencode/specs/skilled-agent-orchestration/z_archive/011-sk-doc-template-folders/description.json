@@ -1,0 +1,20 @@
+{
+  "specFolder": "skilled-agent-orchestration/011-sk-doc-template-folders",
+  "description": "Feature Specification: sk-doc Template Folder Reorganization",
+  "keywords": [
+    "feature",
+    "specification",
+    "sk-doc",
+    "template",
+    "folder",
+    "reorganization"
+  ],
+  "lastUpdated": "2026-05-16T17:59:27.649Z",
+  "specId": "011",
+  "folderSlug": "sk-doc-template-folders",
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

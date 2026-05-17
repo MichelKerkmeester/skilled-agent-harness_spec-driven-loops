@@ -1,0 +1,26 @@
+{
+  "completionPct": 0,
+  "lastOutcome": "Spec docs authored; awaiting Phase 001 completion + cli-codex dispatch.",
+  "specFolder": "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/001-rename-opencode-dirs/002-agents",
+  "description": "Feature Specification: 096/002 - rename .opencode/agent/ to .opencode/agents/",
+  "keywords": [
+    "feature",
+    "specification",
+    "096",
+    "002",
+    "rename",
+    "opencode",
+    "agent",
+    "agents"
+  ],
+  "lastUpdated": "2026-05-16T17:59:28.419Z",
+  "specId": "002",
+  "folderSlug": "agents",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "096-rename-opencode-dirs-to-plural",
+    "001-rename-opencode-dirs"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}

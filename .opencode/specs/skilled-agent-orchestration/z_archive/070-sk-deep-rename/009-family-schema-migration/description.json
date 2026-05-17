@@ -1,0 +1,22 @@
+{
+  "specFolder": "skilled-agent-orchestration/070-sk-deep-rename/009-family-schema-migration",
+  "description": "Feature Specification: Phase 009 Family Schema Migration",
+  "keywords": [
+    "feature",
+    "specification",
+    "phase",
+    "009",
+    "family",
+    "schema",
+    "migration"
+  ],
+  "lastUpdated": "2026-05-16T17:59:28.191Z",
+  "specId": "009",
+  "folderSlug": "family-schema-migration",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "070-sk-deep-rename"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

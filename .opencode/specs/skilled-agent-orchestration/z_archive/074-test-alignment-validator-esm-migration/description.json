@@ -1,0 +1,21 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/074-test-alignment-validator-esm-migration",
+  "description": "Feature Specification: 074 test-alignment-validator ESM Migration",
+  "keywords": [
+    "feature",
+    "specification",
+    "074",
+    "test-alignment-validator",
+    "esm",
+    "migration"
+  ],
+  "lastUpdated": "2026-05-16T17:59:28.247Z",
+  "specId": "074",
+  "folderSlug": "test-alignment-validator-esm-migration",
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,21 @@
+{
+  "specFolder": "skilled-agent-orchestration/091-command-description-trim",
+  "description": "Feature Specification: Command Description Trim",
+  "keywords": [
+    "feature",
+    "specification",
+    "command",
+    "description",
+    "trim"
+  ],
+  "lastUpdated": "2026-05-16T17:59:28.371Z",
+  "specId": "091",
+  "folderSlug": "command-description-trim",
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "06-05-26_18-04__manual-context-save.md"
+  ]
+}

@@ -1,22 +1,26 @@
 {
+  "level": "1",
   "specFolder": "skilled-agent-orchestration/101-deep-multi-ai-council-skill/005-deep-ai-council-fixups-and-graph-value-scenarios",
-  "description": "Fix 2 pre-existing vitest failures (Claude translated frontmatter parity + persist-artifacts HELPER_PATH) and author 6 value-comparison scenarios DAC-027..DAC-032 proving the council graph beats the no-graph baseline in real-world situations",
+  "description": "Feature Specification: 101/005 Deep AI Council Fix-ups and Graph Value Scenarios",
   "keywords": [
-    "deep-ai-council",
-    "council-graph",
-    "value-comparison",
-    "vitest-fixes",
-    "claude-translated-frontmatter",
-    "DAC-027",
-    "DAC-032"
+    "feature",
+    "specification",
+    "101",
+    "005",
+    "deep",
+    "council",
+    "fix-ups",
+    "graph",
+    "value",
+    "scenarios"
   ],
-  "lastUpdated": "2026-05-11T08:10:00.000Z",
+  "lastUpdated": "2026-05-16T17:59:28.554Z",
   "specId": "005",
   "folderSlug": "deep-ai-council-fixups-and-graph-value-scenarios",
   "parentChain": [
-    "skilled-agent-orchestration/101-deep-multi-ai-council-skill"
+    "skilled-agent-orchestration",
+    "101-deep-multi-ai-council-skill"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

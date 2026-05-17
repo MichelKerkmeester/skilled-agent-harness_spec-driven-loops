@@ -1,0 +1,21 @@
+{
+  "specFolder": "skilled-agent-orchestration/090-agent-description-trim",
+  "description": "Feature Specification: Agent Description Trim",
+  "keywords": [
+    "feature",
+    "specification",
+    "agent",
+    "description",
+    "trim"
+  ],
+  "lastUpdated": "2026-05-16T17:59:28.366Z",
+  "specId": "090",
+  "folderSlug": "agent-description-trim",
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "06-05-26_17-56__manual-context-save.md"
+  ]
+}

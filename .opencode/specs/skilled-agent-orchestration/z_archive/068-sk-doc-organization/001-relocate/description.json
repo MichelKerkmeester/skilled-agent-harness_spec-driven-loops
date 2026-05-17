@@ -1,0 +1,20 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/068-sk-doc-organization/001-relocate",
+  "description": "Feature Specification: Phase 1: relocate",
+  "keywords": [
+    "feature",
+    "specification",
+    "phase",
+    "relocate"
+  ],
+  "lastUpdated": "2026-05-16T17:59:28.099Z",
+  "specId": "001",
+  "folderSlug": "relocate",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "068-sk-doc-organization"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,26 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/078-opencode-authoring-recipe/004-validator-cleanup",
+  "description": "Feature Specification: 078/004 system-spec-kit Validator + MCP Tool Registry Cleanup",
+  "keywords": [
+    "feature",
+    "specification",
+    "078",
+    "004",
+    "system-spec-kit",
+    "validator",
+    "mcp",
+    "tool",
+    "registry",
+    "cleanup"
+  ],
+  "lastUpdated": "2026-05-16T17:59:28.285Z",
+  "specId": "004",
+  "folderSlug": "validator-cleanup",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "078-opencode-authoring-recipe"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

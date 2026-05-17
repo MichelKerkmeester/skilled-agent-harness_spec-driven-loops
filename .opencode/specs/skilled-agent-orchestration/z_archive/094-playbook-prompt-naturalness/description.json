@@ -1,0 +1,22 @@
+{
+  "completionPct": 0,
+  "lastOutcome": "Spec packet scaffolded; awaiting Phase A sk-doc edits.",
+  "specFolder": "skilled-agent-orchestration/094-playbook-prompt-naturalness",
+  "description": "Feature Specification: 094 - playbook prompt naturalness",
+  "keywords": [
+    "feature",
+    "specification",
+    "094",
+    "playbook",
+    "prompt",
+    "naturalness"
+  ],
+  "lastUpdated": "2026-05-16T17:59:28.395Z",
+  "specId": "094",
+  "folderSlug": "playbook-prompt-naturalness",
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}

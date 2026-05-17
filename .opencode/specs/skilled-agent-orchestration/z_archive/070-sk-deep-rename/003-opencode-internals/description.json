@@ -1,0 +1,22 @@
+{
+  "specFolder": "skilled-agent-orchestration/070-sk-deep-rename/003-opencode-internals",
+  "description": "Feature Specification: Phase 003 OpenCode Internal References",
+  "keywords": [
+    "feature",
+    "specification",
+    "phase",
+    "003",
+    "opencode",
+    "internal",
+    "references"
+  ],
+  "lastUpdated": "2026-05-16T17:59:28.163Z",
+  "specId": "003",
+  "folderSlug": "opencode-internals",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "070-sk-deep-rename"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

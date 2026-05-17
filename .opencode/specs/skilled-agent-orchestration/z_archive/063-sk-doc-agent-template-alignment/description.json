@@ -1,0 +1,20 @@
+{
+  "specFolder": "skilled-agent-orchestration/063-sk-doc-agent-template-alignment",
+  "description": "Spec: 063 — sk-doc Agent Template Alignment",
+  "keywords": [
+    "spec",
+    "063",
+    "sk-doc",
+    "agent",
+    "template",
+    "alignment"
+  ],
+  "lastUpdated": "2026-05-16T17:59:28.024Z",
+  "specId": "063",
+  "folderSlug": "sk-doc-agent-template-alignment",
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}

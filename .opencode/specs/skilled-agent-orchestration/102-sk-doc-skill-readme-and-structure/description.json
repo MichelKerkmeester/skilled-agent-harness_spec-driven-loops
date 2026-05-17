@@ -1,18 +1,21 @@
 {
   "level": "phase",
-  "specFolder": "102-sk-doc-skill-readme-and-structure",
-  "description": "Remediate all 7 P1 and 9 P2 findings from the 102 phase-parent deep-review",
+  "specFolder": "skilled-agent-orchestration/102-sk-doc-skill-readme-and-structure",
+  "description": "Feature Specification: sk-doc skill README and structure",
   "keywords": [
-    "remediate",
-    "findings",
-    "102",
-    "phase-parent",
-    "deep-review"
+    "feature",
+    "specification",
+    "sk-doc",
+    "skill",
+    "readme",
+    "structure"
   ],
-  "lastUpdated": "2026-05-11T08:28:00.001Z",
+  "lastUpdated": "2026-05-16T17:59:28.572Z",
   "specId": "102",
   "folderSlug": "sk-doc-skill-readme-and-structure",
-  "parentChain": [],
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
   "memorySequence": 0,
   "memoryNameHistory": []
 }

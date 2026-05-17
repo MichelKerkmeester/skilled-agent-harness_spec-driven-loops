@@ -1,0 +1,18 @@
+{
+  "specFolder": "skilled-agent-orchestration/041-sk-recursive-agent-loop/009-sk-agent-improver-self-test",
+  "description": "Spec: Agent-Improver Self-Test",
+  "keywords": [
+    "spec",
+    "agent-improver",
+    "self-test"
+  ],
+  "lastUpdated": "2026-05-16T17:59:27.822Z",
+  "specId": "009",
+  "folderSlug": "sk-agent-improver-self-test",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "041-sk-recursive-agent-loop"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

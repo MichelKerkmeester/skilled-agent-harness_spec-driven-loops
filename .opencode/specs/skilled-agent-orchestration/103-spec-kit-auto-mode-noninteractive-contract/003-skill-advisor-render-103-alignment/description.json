@@ -29,13 +29,15 @@
   "specFolder": "skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/003-skill-advisor-render-103-alignment",
   "description": "Feature Specification: Skill Advisor Render-Layer 103 Alignment",
   "keywords": [
+    "feature",
+    "specification",
     "skill",
     "advisor",
-    "render",
-    "first-action",
-    "noninteractive"
+    "render-layer",
+    "103",
+    "alignment"
   ],
-  "lastUpdated": "2026-05-11T00:00:00Z",
+  "lastUpdated": "2026-05-16T17:59:28.613Z",
   "specId": "003",
   "folderSlug": "skill-advisor-render-103-alignment",
   "parentChain": [

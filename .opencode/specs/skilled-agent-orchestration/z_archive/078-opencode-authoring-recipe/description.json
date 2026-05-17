@@ -1,0 +1,30 @@
+{
+  "level": "phase",
+  "specFolder": "skilled-agent-orchestration/078-opencode-authoring-recipe",
+  "description": "Feature Specification: Remediation per 077 research: 4-phase OpenCode authoring recipe, /spec_kit:complete authoring-time load, CocoIndex canonical-pr",
+  "keywords": [
+    "feature",
+    "specification",
+    "remediation",
+    "per",
+    "077",
+    "research",
+    "4-phase",
+    "opencode",
+    "authoring",
+    "recipe",
+    "complete",
+    "authoring-time",
+    "load",
+    "cocoindex",
+    "canonical-pr"
+  ],
+  "lastUpdated": "2026-05-16T17:59:28.265Z",
+  "specId": "078",
+  "folderSlug": "opencode-authoring-recipe",
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

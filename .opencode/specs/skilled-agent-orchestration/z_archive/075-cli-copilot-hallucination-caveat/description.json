@@ -1,0 +1,21 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/075-cli-copilot-hallucination-caveat",
+  "description": "Feature Specification: 075 cli-copilot Hallucination Caveat",
+  "keywords": [
+    "feature",
+    "specification",
+    "075",
+    "cli-copilot",
+    "hallucination",
+    "caveat"
+  ],
+  "lastUpdated": "2026-05-16T17:59:28.251Z",
+  "specId": "075",
+  "folderSlug": "cli-copilot-hallucination-caveat",
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

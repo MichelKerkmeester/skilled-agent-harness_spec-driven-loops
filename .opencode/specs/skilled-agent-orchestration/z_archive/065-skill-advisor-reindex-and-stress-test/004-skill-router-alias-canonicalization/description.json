@@ -1,0 +1,23 @@
+{
+  "completionPct": 100,
+  "lastOutcome": "CP-103 now scores PASS under explicit alias groups; sk-deep-review satisfies the expected spec_kit:deep-review capability.",
+  "specFolder": "skilled-agent-orchestration/065-skill-advisor-reindex-and-stress-test/004-skill-router-alias-canonicalization",
+  "description": "Spec: 065/004 - skill-router alias canonicalization",
+  "keywords": [
+    "spec",
+    "065",
+    "004",
+    "skill-router",
+    "alias",
+    "canonicalization"
+  ],
+  "lastUpdated": "2026-05-16T17:59:28.058Z",
+  "specId": "004",
+  "folderSlug": "skill-router-alias-canonicalization",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "065-skill-advisor-reindex-and-stress-test"
+  ],
+  "memorySequence": 4,
+  "memoryNameHistory": []
+}

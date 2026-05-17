@@ -1,0 +1,19 @@
+{
+  "specFolder": "skilled-agent-orchestration/061-agent-optimization/005-agent-orchestrate",
+  "description": "Spec: @orchestrate Agent Optimization",
+  "keywords": [
+    "spec",
+    "orchestrate",
+    "agent",
+    "optimization"
+  ],
+  "lastUpdated": "2026-05-16T17:59:27.983Z",
+  "specId": "005",
+  "folderSlug": "agent-orchestrate",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "061-agent-optimization"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}

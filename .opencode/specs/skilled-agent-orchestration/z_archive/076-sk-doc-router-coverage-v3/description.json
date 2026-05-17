@@ -1,0 +1,23 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/076-sk-doc-router-coverage-v3",
+  "description": "Feature Specification: 076 sk-doc Router Coverage v3",
+  "keywords": [
+    "feature",
+    "specification",
+    "076",
+    "sk-doc",
+    "router",
+    "coverage"
+  ],
+  "lastUpdated": "2026-05-16T17:59:28.255Z",
+  "specId": "076",
+  "folderSlug": "sk-doc-router-coverage-v3",
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "05-05-26_16-54__next-steps.md"
+  ]
+}

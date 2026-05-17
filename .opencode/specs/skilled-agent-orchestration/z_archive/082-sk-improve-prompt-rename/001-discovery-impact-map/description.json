@@ -1,0 +1,23 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/082-sk-improve-prompt-rename/001-discovery-impact-map",
+  "description": "Feature Specification: Phase 001 Discovery Impact Map",
+  "keywords": [
+    "feature",
+    "specification",
+    "phase",
+    "001",
+    "discovery",
+    "impact",
+    "map"
+  ],
+  "lastUpdated": "2026-05-16T17:59:28.305Z",
+  "specId": "001",
+  "folderSlug": "discovery-impact-map",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "082-sk-improve-prompt-rename"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

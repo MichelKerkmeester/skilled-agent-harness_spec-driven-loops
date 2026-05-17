@@ -1,0 +1,19 @@
+{
+  "specFolder": "skilled-agent-orchestration/061-agent-optimization/008-agent-deep-review",
+  "description": "Spec: @deep-review Agent Optimization",
+  "keywords": [
+    "spec",
+    "deep-review",
+    "agent",
+    "optimization"
+  ],
+  "lastUpdated": "2026-05-16T17:59:27.995Z",
+  "specId": "008",
+  "folderSlug": "agent-deep-review",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "061-agent-optimization"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}

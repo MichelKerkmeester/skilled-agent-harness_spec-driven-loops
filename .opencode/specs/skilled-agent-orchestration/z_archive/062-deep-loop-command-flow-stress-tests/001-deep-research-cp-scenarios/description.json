@@ -1,0 +1,20 @@
+{
+  "specFolder": "skilled-agent-orchestration/062-deep-loop-command-flow-stress-tests/001-deep-research-cp-scenarios",
+  "description": "Spec: deep-research CP-Scenario Authoring (001)",
+  "keywords": [
+    "spec",
+    "deep-research",
+    "cp-scenario",
+    "authoring",
+    "001"
+  ],
+  "lastUpdated": "2026-05-16T17:59:28.007Z",
+  "specId": "001",
+  "folderSlug": "deep-research-cp-scenarios",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "062-deep-loop-command-flow-stress-tests"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}

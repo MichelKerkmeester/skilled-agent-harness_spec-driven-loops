@@ -1,0 +1,18 @@
+{
+  "specFolder": "skilled-agent-orchestration/018-sk-code-opencode-refinement",
+  "description": "Feature Specification: sk-code-opencode refinement",
+  "keywords": [
+    "feature",
+    "specification",
+    "sk-code-opencode",
+    "refinement"
+  ],
+  "lastUpdated": "2026-05-16T17:59:27.677Z",
+  "specId": "018",
+  "folderSlug": "sk-code-opencode-refinement",
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

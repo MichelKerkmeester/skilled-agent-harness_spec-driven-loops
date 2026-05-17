@@ -1,0 +1,22 @@
+{
+  "specFolder": "skilled-agent-orchestration/084-ambiguity-window-confidence-fix",
+  "description": "Feature Specification: Ambiguity Window Confidence Fix",
+  "keywords": [
+    "feature",
+    "specification",
+    "ambiguity",
+    "window",
+    "confidence",
+    "fix"
+  ],
+  "lastUpdated": "2026-05-16T17:59:28.333Z",
+  "specId": "084",
+  "folderSlug": "ambiguity-window-confidence-fix",
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "06-05-26_14-05__manual-context-save.md"
+  ]
+}

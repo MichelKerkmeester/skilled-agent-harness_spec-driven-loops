@@ -1,0 +1,22 @@
+{
+  "specFolder": "skilled-agent-orchestration/086-skill-description-guardrails",
+  "description": "Feature Specification: Skill Description Budget Guardrails",
+  "keywords": [
+    "feature",
+    "specification",
+    "skill",
+    "description",
+    "budget",
+    "guardrails"
+  ],
+  "lastUpdated": "2026-05-16T17:59:28.352Z",
+  "specId": "086",
+  "folderSlug": "skill-description-guardrails",
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "06-05-26_14-33__manual-context-save.md"
+  ]
+}

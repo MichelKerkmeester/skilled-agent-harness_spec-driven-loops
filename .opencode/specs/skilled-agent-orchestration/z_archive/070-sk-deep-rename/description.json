@@ -1,0 +1,22 @@
+{
+  "specFolder": "skilled-agent-orchestration/070-sk-deep-rename",
+  "description": "Feature Specification: sk-deep-* → deep-* Skill Rename — Phase Parent",
+  "keywords": [
+    "feature",
+    "specification",
+    "sk-deep",
+    "deep",
+    "skill",
+    "rename",
+    "phase",
+    "parent"
+  ],
+  "lastUpdated": "2026-05-16T17:59:28.151Z",
+  "specId": "070",
+  "folderSlug": "sk-deep-rename",
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

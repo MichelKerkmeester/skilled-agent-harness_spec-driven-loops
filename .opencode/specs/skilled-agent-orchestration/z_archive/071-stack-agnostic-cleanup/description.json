@@ -1,0 +1,21 @@
+{
+  "level": "2",
+  "specFolder": "skilled-agent-orchestration/071-stack-agnostic-cleanup",
+  "description": "Feature Specification: Phase 071 Stack-Agnostic Cleanup",
+  "keywords": [
+    "feature",
+    "specification",
+    "phase",
+    "071",
+    "stack-agnostic",
+    "cleanup"
+  ],
+  "lastUpdated": "2026-05-16T17:59:28.223Z",
+  "specId": "071",
+  "folderSlug": "stack-agnostic-cleanup",
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

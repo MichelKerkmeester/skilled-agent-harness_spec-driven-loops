@@ -1,15 +1,19 @@
 {
   "level": "2",
-  "specFolder": "102-sk-doc-skill-readme-and-structure/001-sk-doc-reference-relocation",
-  "description": "Phase 1: sk-doc-reference-relocation",
+  "specFolder": "skilled-agent-orchestration/102-sk-doc-skill-readme-and-structure/001-sk-doc-reference-relocation",
+  "description": "Feature Specification: sk-doc reference relocation",
   "keywords": [
-    "phase",
-    "sk-doc-reference-relocation"
+    "feature",
+    "specification",
+    "sk-doc",
+    "reference",
+    "relocation"
   ],
-  "lastUpdated": "2026-05-10T11:34:47.975Z",
+  "lastUpdated": "2026-05-16T17:59:28.576Z",
   "specId": "001",
   "folderSlug": "sk-doc-reference-relocation",
   "parentChain": [
+    "skilled-agent-orchestration",
     "102-sk-doc-skill-readme-and-structure"
   ],
   "memorySequence": 1,

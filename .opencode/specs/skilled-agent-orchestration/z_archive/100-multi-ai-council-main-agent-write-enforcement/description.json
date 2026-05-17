@@ -1,0 +1,54 @@
+{
+  "title": "Multi-AI Council main-agent write enforcement",
+  "trigger_phrases": [
+    "multi-ai-council main agent",
+    "council main agent enforcement",
+    "council main agent write",
+    "council not writing artifacts",
+    "council opencode main agent",
+    "ai-council folder not created",
+    "100 multi-ai-council main agent"
+  ],
+  "level": 2,
+  "importance_tier": "critical",
+  "contextType": "implementation",
+  "status": "in_progress",
+  "priority": "P1",
+  "createdAt": "2026-05-09T17:50:00Z",
+  "branch": "main",
+  "parent_track": "skilled-agent-orchestration",
+  "parent_id": null,
+  "manual": {
+    "depends_on": [
+      "skilled-agent-orchestration/080-multi-ai-council-output-protocol",
+      "skilled-agent-orchestration/089-multi-ai-council-persistence",
+      "skilled-agent-orchestration/092-multi-ai-council-deferrals",
+      "skilled-agent-orchestration/098-multi-ai-council-write-authority"
+    ]
+  },
+  "derived": {
+    "status": "in_progress",
+    "completion_pct": 90,
+    "last_active_child_id": null
+  },
+  "lastUpdatedAt": null,
+  "specFolder": "skilled-agent-orchestration/100-multi-ai-council-main-agent-write-enforcement",
+  "description": "Feature Specification: Multi-AI Council main-agent write enforcement",
+  "keywords": [
+    "feature",
+    "specification",
+    "multi-ai",
+    "council",
+    "main-agent",
+    "write",
+    "enforcement"
+  ],
+  "lastUpdated": "2026-05-16T17:59:28.524Z",
+  "specId": "100",
+  "folderSlug": "multi-ai-council-main-agent-write-enforcement",
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

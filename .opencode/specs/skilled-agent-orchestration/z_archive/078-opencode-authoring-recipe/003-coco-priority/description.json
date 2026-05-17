@@ -1,0 +1,23 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/078-opencode-authoring-recipe/003-coco-priority",
+  "description": "Feature Specification: 078/003 mcp-coco-index Canonical-Priority + Portability",
+  "keywords": [
+    "feature",
+    "specification",
+    "078",
+    "003",
+    "mcp-coco-index",
+    "canonical-priority",
+    "portability"
+  ],
+  "lastUpdated": "2026-05-16T17:59:28.280Z",
+  "specId": "003",
+  "folderSlug": "coco-priority",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "078-opencode-authoring-recipe"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

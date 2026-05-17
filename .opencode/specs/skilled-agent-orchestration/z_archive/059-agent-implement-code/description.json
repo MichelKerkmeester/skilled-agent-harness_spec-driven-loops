@@ -1,0 +1,20 @@
+{
+  "specFolder": "skilled-agent-orchestration/059-agent-implement-code",
+  "description": "Feature Specification: @code Sub-Agent for Stack-Agnostic Code Implementation",
+  "keywords": [
+    "feature",
+    "specification",
+    "code",
+    "sub-agent",
+    "stack-agnostic",
+    "implementation"
+  ],
+  "lastUpdated": "2026-05-16T17:59:27.938Z",
+  "specId": "059",
+  "folderSlug": "agent-implement-code",
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

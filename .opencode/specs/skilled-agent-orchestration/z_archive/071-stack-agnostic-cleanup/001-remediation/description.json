@@ -1,0 +1,22 @@
+{
+  "level": "2",
+  "specFolder": "skilled-agent-orchestration/071-stack-agnostic-cleanup/001-remediation",
+  "description": "Feature Specification: Phase 071 Verifier Remediation",
+  "keywords": [
+    "feature",
+    "specification",
+    "phase",
+    "071",
+    "verifier",
+    "remediation"
+  ],
+  "lastUpdated": "2026-05-16T17:59:28.228Z",
+  "specId": "001",
+  "folderSlug": "remediation",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "071-stack-agnostic-cleanup"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

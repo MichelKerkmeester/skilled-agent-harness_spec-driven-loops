@@ -1,0 +1,22 @@
+{
+  "specFolder": "skilled-agent-orchestration/014-cmd-memory-output",
+  "description": "Feature Specification: Memory Command Dashboard Visual Design System",
+  "keywords": [
+    "feature",
+    "specification",
+    "memory",
+    "command",
+    "dashboard",
+    "visual",
+    "design",
+    "system"
+  ],
+  "lastUpdated": "2026-05-16T17:59:27.661Z",
+  "specId": "014",
+  "folderSlug": "cmd-memory-output",
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

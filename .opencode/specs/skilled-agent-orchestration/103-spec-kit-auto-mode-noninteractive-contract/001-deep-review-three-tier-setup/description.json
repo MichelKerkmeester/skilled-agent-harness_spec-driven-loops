@@ -1,27 +1,23 @@
 {
+  "level": "2",
   "specFolder": "skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/001-deep-review-three-tier-setup",
-  "description": "Bypass /spec_kit:deep-review:auto setup-phase stdin hang — fold setup-question pre-binding into the command markdown so :auto mode is truly non-intera",
+  "description": "Feature Specification: deep-review :auto non-interactive setup bypass",
   "keywords": [
-    "bypass",
+    "feature",
+    "specification",
     "deep-review",
     "auto",
-    "setup-phase",
-    "stdin",
-    "hang",
-    "fold",
-    "setup-question",
-    "pre-binding",
-    "command",
-    "markdown",
-    "mode",
-    "truly",
-    "non-interactive"
+    "non-interactive",
+    "setup",
+    "bypass"
   ],
-  "lastUpdated": "2026-05-11T09:32:52.259Z",
-  "specId": "028",
-  "folderSlug": "deep-review-noninteractive-setup-bypass",
-  "parentChain": [],
+  "lastUpdated": "2026-05-16T17:59:28.603Z",
+  "specId": "001",
+  "folderSlug": "deep-review-three-tier-setup",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "103-spec-kit-auto-mode-noninteractive-contract"
+  ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

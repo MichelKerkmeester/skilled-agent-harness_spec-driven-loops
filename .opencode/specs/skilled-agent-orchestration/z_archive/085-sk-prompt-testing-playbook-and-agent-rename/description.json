@@ -1,0 +1,29 @@
+{
+  "specFolder": "skilled-agent-orchestration/085-sk-prompt-testing-playbook-and-agent-rename",
+  "description": "Feature Specification: sk-prompt Manual Testing Playbook + @improve-prompt → @prompt-improver Agent Rename — Phase Parent",
+  "keywords": [
+    "feature",
+    "specification",
+    "sk-prompt",
+    "manual",
+    "testing",
+    "playbook",
+    "improve-prompt",
+    "prompt-improver",
+    "agent",
+    "rename",
+    "phase",
+    "parent"
+  ],
+  "lastUpdated": "2026-05-16T17:59:28.338Z",
+  "specId": "085",
+  "folderSlug": "sk-prompt-testing-playbook-and-agent-rename",
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "06-05-26_18-02__manual-context-save.md",
+    "06-05-26_18-40__manual-context-save.md"
+  ]
+}

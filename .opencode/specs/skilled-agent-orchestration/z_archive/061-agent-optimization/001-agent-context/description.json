@@ -1,0 +1,19 @@
+{
+  "specFolder": "skilled-agent-orchestration/061-agent-optimization/001-agent-context",
+  "description": "Spec: @context Agent Optimization",
+  "keywords": [
+    "spec",
+    "context",
+    "agent",
+    "optimization"
+  ],
+  "lastUpdated": "2026-05-16T17:59:27.971Z",
+  "specId": "001",
+  "folderSlug": "agent-context",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "061-agent-optimization"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}

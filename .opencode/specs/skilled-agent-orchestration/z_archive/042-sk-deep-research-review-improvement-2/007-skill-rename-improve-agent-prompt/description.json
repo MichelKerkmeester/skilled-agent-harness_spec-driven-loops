@@ -1,0 +1,23 @@
+{
+  "specFolder": "skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/007-skill-rename-improve-agent-prompt",
+  "description": "Feature Specification: Skill Rename - sk-improve-agent and sk-improve-prompt",
+  "keywords": [
+    "feature",
+    "specification",
+    "skill",
+    "rename",
+    "sk-improve-agent",
+    "sk-improve-prompt"
+  ],
+  "lastUpdated": "2026-05-16T17:59:27.862Z",
+  "specId": "007",
+  "folderSlug": "skill-rename-improve-agent-prompt",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "042-sk-deep-research-review-improvement-2"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "11-04-26_07-28__renamed-two-opencode-skills-to-align-with-the.md"
+  ]
+}

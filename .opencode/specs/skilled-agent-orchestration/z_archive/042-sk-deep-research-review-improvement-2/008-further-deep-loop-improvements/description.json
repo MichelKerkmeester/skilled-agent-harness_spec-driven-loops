@@ -1,0 +1,21 @@
+{
+  "specFolder": "skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements",
+  "description": "Feature Specification: Further Deep-Loop Improvements",
+  "keywords": [
+    "feature",
+    "specification",
+    "deep-loop",
+    "improvements"
+  ],
+  "lastUpdated": "2026-05-16T17:59:27.866Z",
+  "specId": "008",
+  "folderSlug": "further-deep-loop-improvements",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "042-sk-deep-research-review-improvement-2"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "11-04-26_14-10__phase-008-complete-closed-all-12-p0-p1-p2.md"
+  ]
+}

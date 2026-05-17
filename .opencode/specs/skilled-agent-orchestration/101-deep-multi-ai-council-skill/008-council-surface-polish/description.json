@@ -1,18 +1,22 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/101-deep-multi-ai-council-skill/008-council-surface-polish",
-  "description": "Surface 101/007 artifacts through SKILL.md, publish 101/001..007 series changelog, add smoke vitest covering replay helper + bash runner + pre-push hook",
+  "description": "Feature Specification: 101/008 Council Surface Polish",
   "keywords": [
-    "council-surface-polish",
-    "skill-md-cross-reference",
-    "deep-ai-council-changelog",
-    "council-helpers-smoke"
+    "feature",
+    "specification",
+    "101",
+    "008",
+    "council",
+    "surface",
+    "polish"
   ],
-  "lastUpdated": "2026-05-11T10:00:44.832Z",
+  "lastUpdated": "2026-05-16T17:59:28.568Z",
   "specId": "008",
   "folderSlug": "council-surface-polish",
   "parentChain": [
-    "skilled-agent-orchestration/101-deep-multi-ai-council-skill"
+    "skilled-agent-orchestration",
+    "101-deep-multi-ai-council-skill"
   ],
   "memorySequence": 1,
   "memoryNameHistory": [

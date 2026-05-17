@@ -1,0 +1,31 @@
+{
+  "level": "3",
+  "specFolder": "skilled-agent-orchestration/092-multi-ai-council-deferrals",
+  "description": "Feature Specification: Multi-AI Council Deferrals — state.jsonl v1.1 forward-compat metadata + memory-save payload routing + advisory-check + command ",
+  "keywords": [
+    "feature",
+    "specification",
+    "multi-ai",
+    "council",
+    "deferrals",
+    "state",
+    "jsonl",
+    "forward-compat",
+    "metadata",
+    "memory-save",
+    "payload",
+    "routing",
+    "advisory-check",
+    "command"
+  ],
+  "lastUpdated": "2026-05-16T17:59:28.375Z",
+  "specId": "092",
+  "folderSlug": "multi-ai-council-deferrals",
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "06-05-26_18-51__packet-092-shipped-end-to-end-via-spec-kit.md"
+  ]
+}

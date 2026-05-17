@@ -1,0 +1,26 @@
+{
+  "level": 2,
+  "specFolder": "skilled-agent-orchestration/081-cli-copilot-deprecation-due-to-price-hike",
+  "description": "Feature Specification: cli-copilot Total Deprecation",
+  "keywords": [
+    "feature",
+    "specification",
+    "cli-copilot",
+    "total",
+    "deprecation"
+  ],
+  "lastUpdated": "2026-05-16T17:59:28.297Z",
+  "specId": "081",
+  "folderSlug": "cli-copilot-deprecation-due-to-price-hike",
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 5,
+  "memoryNameHistory": [
+    "06-05-26_11-28__manual-context-save.md",
+    "06-05-26_12-24__manual-context-save.md",
+    "06-05-26_12-36__manual-context-save.md",
+    "06-05-26_13-12__manual-context-save.md",
+    "06-05-26_13-53__manual-context-save.md"
+  ]
+}

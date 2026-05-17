@@ -1,0 +1,20 @@
+{
+  "specFolder": "skilled-agent-orchestration/054-sk-code-merger",
+  "description": "Feature Specification: Merge sk-code-web + sk-code-full-stack into sk-code",
+  "keywords": [
+    "feature",
+    "specification",
+    "merge",
+    "sk-code-web",
+    "sk-code-full-stack",
+    "sk-code"
+  ],
+  "lastUpdated": "2026-05-16T17:59:27.918Z",
+  "specId": "054",
+  "folderSlug": "sk-code-merger",
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,19 @@
+{
+  "specFolder": "skilled-agent-orchestration/053-cli-skill-removal-mcp-clickup",
+  "description": "Feature Specification: Remove mcp-clickup skill",
+  "keywords": [
+    "feature",
+    "specification",
+    "remove",
+    "mcp-clickup",
+    "skill"
+  ],
+  "lastUpdated": "2026-05-16T17:59:27.914Z",
+  "specId": "053",
+  "folderSlug": "cli-skill-removal-mcp-clickup",
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}

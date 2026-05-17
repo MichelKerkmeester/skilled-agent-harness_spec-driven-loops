@@ -1,0 +1,46 @@
+{
+  "title": "cli-opencode `</dev/null` stdin-redirect fix",
+  "trigger_phrases": [
+    "097 cli-opencode stdin fix",
+    "opencode run hangs",
+    "opencode dev null stdin",
+    "opencode background dispatch hang",
+    "cli-opencode automation hang"
+  ],
+  "level": 2,
+  "importance_tier": "important",
+  "contextType": "fix",
+  "status": "in-progress",
+  "priority": "P0",
+  "createdAt": "2026-05-08T13:30:00Z",
+  "branch": "main",
+  "parent_track": "skilled-agent-orchestration",
+  "parent_id": null,
+  "manual": {
+    "depends_on": []
+  },
+  "derived": {
+    "status": "in-progress",
+    "completion_pct": 0,
+    "last_active_child_id": null
+  },
+  "specFolder": "skilled-agent-orchestration/097-cli-opencode-stdin-fix",
+  "description": "Feature Specification: cli-opencode `</dev/null` Stdin-Redirect Fix",
+  "keywords": [
+    "feature",
+    "specification",
+    "cli-opencode",
+    "dev",
+    "null",
+    "stdin-redirect",
+    "fix"
+  ],
+  "lastUpdated": "2026-05-16T17:59:28.508Z",
+  "specId": "097",
+  "folderSlug": "cli-opencode-stdin-fix",
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

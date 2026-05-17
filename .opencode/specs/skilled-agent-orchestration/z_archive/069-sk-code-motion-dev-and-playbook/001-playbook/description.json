@@ -1,0 +1,24 @@
+{
+  "specFolder": "skilled-agent-orchestration/069-sk-code-motion-dev-and-playbook/001-playbook",
+  "description": "Feature Specification: sk-code Manual Testing Playbook Motion.dev Refinement",
+  "keywords": [
+    "feature",
+    "specification",
+    "sk-code",
+    "manual",
+    "testing",
+    "playbook",
+    "motion",
+    "dev",
+    "refinement"
+  ],
+  "lastUpdated": "2026-05-16T17:59:28.122Z",
+  "specId": "001",
+  "folderSlug": "playbook",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "069-sk-code-motion-dev-and-playbook"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,17 @@
+{
+  "specFolder": "skilled-agent-orchestration/003-sk-prompt-initial-creation",
+  "description": "Feature Specification: sk-improve-prompt",
+  "keywords": [
+    "feature",
+    "specification",
+    "sk-improve-prompt"
+  ],
+  "lastUpdated": "2026-05-16T17:59:27.617Z",
+  "specId": "003",
+  "folderSlug": "sk-prompt-initial-creation",
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

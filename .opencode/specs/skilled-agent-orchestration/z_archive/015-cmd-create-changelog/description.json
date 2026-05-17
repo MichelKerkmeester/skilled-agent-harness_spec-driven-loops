@@ -1,0 +1,19 @@
+{
+  "specFolder": "skilled-agent-orchestration/015-cmd-create-changelog",
+  "description": "Feature Specification: Create Changelog Command",
+  "keywords": [
+    "feature",
+    "specification",
+    "create",
+    "changelog",
+    "command"
+  ],
+  "lastUpdated": "2026-05-16T17:59:27.665Z",
+  "specId": "015",
+  "folderSlug": "cmd-create-changelog",
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,22 @@
+{
+  "specFolder": "skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment",
+  "description": "Feature Specification: Agent-Improver Deep-Loop Alignment",
+  "keywords": [
+    "feature",
+    "specification",
+    "agent-improver",
+    "deep-loop",
+    "alignment"
+  ],
+  "lastUpdated": "2026-05-16T17:59:27.854Z",
+  "specId": "005",
+  "folderSlug": "agent-improver-deep-loop-alignment",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "042-sk-deep-research-review-improvement-2"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "11-04-26_05-00__phase-005-agent-improver-deep-loop-alignment-closeout.md"
+  ]
+}
