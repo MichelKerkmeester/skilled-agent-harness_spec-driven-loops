@@ -17,20 +17,25 @@ This file provides copy-paste prompt templates for the most common cli-devin dis
 
 ## 2. Default Coding Dispatch (SWE-1.6, auto mode) — REQUIRES sk-prompt + pre-planning
 
-> **SWE-1.6 prompt-quality contract (v1.0.2.0+)**: SWE-1.6 is coding-specialized but smaller than the complex-task models — it relies on the calling AI doing structural decomposition upfront. Every dispatch with `--model swe-1.6` MUST be composed through `sk-prompt` (one of STAR / RCAF / BUILD frameworks + CLEAR 5-check) AND include an explicit `<pre-plan>` block before the `<task>` block. The template below is the canonical pre-planned SWE-1.6 prompt shape.
+> **SWE-1.6 prompt-quality contract (v1.0.2.0+ — empirically tuned v1.0.5.0)**: SWE-1.6 is coding-specialized but smaller than the complex-task models — it relies on the calling AI doing structural decomposition upfront. Every dispatch with `--model swe-1.6` MUST be composed through `sk-prompt` (**default RCAF**; STAR for narrative, BUILD for multi-file refactor) + CLEAR 5-check AND include an explicit `<pre-plan>` block before the `<action>` block. The template below is the canonical pre-planned SWE-1.6 prompt shape, using RCAF (the empirically-best framework per 003-eval-loop).
 
-**Step 1 — pre-prompt through sk-prompt.** Before writing the `--prompt-file` payload, invoke `sk-prompt` with the raw task description. Pick STAR (Situation / Task / Action / Result) for the typical case, RCAF (Role / Context / Action / Format) for single-file generation, or BUILD (Bounds / User-need / Implementation / Limits / Done-when) for multi-file refactor. Run the CLEAR 5-check. If complexity ≥ 7/10 or compliance/security signals appear, dispatch `@prompt-improver` via the Task tool instead of inline composition.
+**Step 1 — pre-prompt through sk-prompt.** Before writing the `--prompt-file` payload, invoke `sk-prompt` with the raw task description. **Default to RCAF (Role / Context / Action / Format)** — it scored 33% higher than STAR in the 003-eval-loop optimization run (winner: v-004-rcaf-medium at 0.5796 vs v-001-baseline-star at 0.4357). Use STAR (Situation / Task / Action / Result) for narrative-heavy context-gathering tasks where role framing doesn't fit naturally. Use BUILD (Bounds / User-need / Implementation / Limits / Done-when) for well-defined multi-file refactors where scope boundaries dominate — but DO NOT pair BUILD with strict bundle-gate wording (003 run showed verbose constraints pushed SWE 1.6 toward defensive output and dropped the score). Run the CLEAR 5-check. If complexity ≥ 7/10 or compliance/security signals appear, dispatch `@prompt-improver` via the Task tool instead of inline composition.
 
-**Step 2 — compose the prompt with explicit pre-planning.** Use this template, filling every placeholder:
+**Step 2 — compose the prompt with RCAF + explicit pre-planning.** Use this template, filling every placeholder. The framework is RCAF by default; swap to STAR or BUILD only if the task clearly fits one of those shapes better.
 
 ```
-<framework>STAR | RCAF | BUILD</framework>
+<framework>RCAF</framework>
+
+<role>
+Senior implementation engineer working on <stack detected by sk-code, e.g. typescript-react, python-fastapi, go-stdlib>. Your job is to produce code that satisfies the acceptance criteria exactly, staying strictly in scope.
+</role>
 
 <context>
 Calling AI: <runtime + model>
 Spec folder: <path> (pre-approved, skip Gate 3) OR none
-Active surface: <stack detected by sk-code, e.g. typescript-react, python-fastapi, go-stdlib>
+Active surface: <stack from sk-code>
 Existing files in scope: <list>
+Allowed writes: <list of paths SWE-1.6 may touch — scope-creep is a hard fail>
 </context>
 
 <pre-plan>
@@ -38,7 +43,7 @@ Restate the task as 4 things BEFORE writing any code:
 
 1. Expected outputs (exact files, function signatures, return types, behavior)
 2. Available inputs / state (existing files, dependencies, repo conventions)
-3. Ordered sequence of steps to produce the output:
+3. Ordered sequence of steps to produce the output (medium density — 3 to 4 steps; dense plans did NOT help in the 003 run):
    a. <step a>
    b. <step b>
    c. <step c>
@@ -47,31 +52,32 @@ Restate the task as 4 things BEFORE writing any code:
 Now execute the plan. Stop after each step and confirm the artifact matches the plan before proceeding to the next step.
 </pre-plan>
 
-<task>
+<action>
 <one-line goal — derived from step 1 of the pre-plan>
-</task>
+</action>
 
-<constraints>
-- Permission mode: auto.
-- Do not modify files outside <scope>.
-- Stop and report if <stop condition>.
-- If any pre-plan step proves harder than expected (ambiguous input, surface mismatch, test that won't run), STOP and escalate — do not silently push past the plan.
-</constraints>
-
-<output>
-- Final file(s): <list>
-- Verification result: PASS or FAIL with rationale
-- Per-step status: which steps completed cleanly, which were skipped / failed and why
-</output>
+<format>
+Produce work as follows:
+- Code in fenced markdown blocks with file paths in comments
+- Inline verification commands at the end that prove acceptance
+- Permission mode: auto
+- Do not modify files outside <Allowed writes>
+- If any pre-plan step proves harder than expected (ambiguous input, surface mismatch, test that won't run), STOP and escalate — do not silently push past the plan
+</format>
 ```
 
 **Step 3 — dispatch.**
 
 ```bash
+# FRAMEWORK: RCAF (empirically-best for SWE-1.6 per 003-eval-loop, v1.0.5.0)
 devin --prompt-file /tmp/devin-prompt.md --model swe-1.6 --permission-mode auto -p 2>&1 </dev/null
 ```
 
-**Why pre-planning matters for SWE-1.6.** Without an explicit pre-plan, SWE-1.6 will start coding on the first interpretation that fits the prompt — which is often not the right one for ambiguous tasks. With the pre-plan block, SWE-1.6 first restates expected outputs / inputs / steps / verification BEFORE writing code, surfacing ambiguity early. This is the difference between SWE-1.6 producing usable output on first try vs needing multiple retries.
+**Why RCAF won.** The 003-eval-loop ran 5 council-seeded variants × 7 fixtures = 35 dispatches plus 1 hill-climbing mutation = 42 total dispatches. RCAF + medium pre-plan + 5-thought sequential_thinking threshold + standard bundle-gate language scored 0.5796 — 33% higher than the STAR baseline (0.4357) and 35% higher than BUILD + dense pre-plan (0.4293). Role-context-action-format produces tighter, more focused SWE 1.6 outputs than situation-task-action-result narrative framing. The role anchor gives SWE 1.6 immediate framing without burning tokens on situation-setting.
+
+**Why medium (not dense) pre-planning.** Dense pre-plans with 4+ steps and full I/O contracts per step did NOT translate to better text. SWE 1.6 followed the structure but didn't gain quality from it. 3-step medium pre-plans hit the sweet spot.
+
+**Why standard (not strict) bundle-gate language.** v-005 (BUILD + strict bundle-gate "smoke-run required" + aggressive anti-hallucination) scored 0.4846 — LOWER than v-004 RCAF baseline. Verbose constraint language pushes SWE 1.6 toward defensive output (more disclaimers, more "I can't do this" caveats) rather than direct code. Trust the framework to do the work; don't pile on imperatives.
 
 **When to escalate off SWE-1.6.** If the pre-planning step itself reveals the task is more complex than "context gathering / tool use / simple-to-medium well-defined" (ambiguous requirements, multi-step reasoning, large refactor scope), the calling AI should switch to `--model deepseek-v4` rather than throwing a longer freeform prompt at SWE-1.6.
 
