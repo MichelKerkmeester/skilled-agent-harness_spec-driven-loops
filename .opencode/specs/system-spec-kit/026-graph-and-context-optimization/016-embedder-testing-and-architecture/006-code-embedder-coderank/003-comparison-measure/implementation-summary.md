@@ -1,6 +1,6 @@
 ---
 title: "Summary: 018/003 comparison measure"
-description: "Pending — populated after comparison runs and ADR-001 lands"
+description: "Primary CocoIndex embedder comparison completed; ADR-001 keeps jina-code"
 trigger_phrases: ["018/003 summary"]
 importance_tier: "normal"
 contextType: "implementation"
@@ -9,18 +9,16 @@ _memory:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-code-embedder-coderank/003-comparison-measure"
     last_updated_at: "2026-05-17T18:50:00Z"
     last_updated_by: "main_agent"
-    recent_action: "Scaffolded packet"
-    next_safe_action: "Backfill after comparison"
-    blockers:
-      - "depends on 018/001"
-      - "depends on 018/002"
+    recent_action: "Measured jina-code vs gemma, restored production jina-code index, and authored ADR-001"
+    next_safe_action: "Keep CocoIndex production default on jina-code"
+    blockers: []
     key_files:
       - "spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000018003"
       session_id: "018-003-comparison-measure-impl"
       parent_session_id: "018-003-comparison-measure"
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -34,41 +32,44 @@ _memory:
 
 | Field | Value |
 |---|---|
-| Status | Pending — placeholder |
-| Artifact | TBD: `evidence/cocoindex-embedder-comparison.csv`, `decision-record.md` ADR-001 |
+| Status | Complete |
+| Artifact | `evidence/cocoindex-embedder-comparison.jsonl`, `evidence/cocoindex-embedder-comparison.csv`, `decision-record.md` ADR-001 |
 | Owner | main agent |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Pending. Will land at `evidence/cocoindex-embedder-comparison.jsonl` (per-pair rows), `evidence/cocoindex-embedder-comparison.csv` (aggregated), and `decision-record.md` ADR-001 (verdict + cited numbers).
+Ran the 018/002 fixture against the two primary local candidates: `sbert/jinaai/jina-embeddings-v2-base-code` and `sbert/google/embeddinggemma-300m`. Wrote 36 per-pair rows to `evidence/cocoindex-embedder-comparison.jsonl`, aggregate metrics to `evidence/cocoindex-embedder-comparison.csv`, and ADR-001 to `decision-record.md`.
 <!-- /ANCHOR:what-built -->
 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Pending. Will document the measurement runbook + per-candidate reindex wall-clock.
+For each primary candidate, stopped the daemon, reset the CocoIndex databases, set `COCOINDEX_CODE_EMBEDDING_MODEL`, ran a full `ccc index`, then executed direct `ccc search --limit 5` probes for all 18 fixture queries. Full reindex time was about 24-25 minutes per primary candidate. After measurement, restored production state by rebuilding the index with `sbert/jinaai/jina-embeddings-v2-base-code`.
 <!-- /ANCHOR:how-delivered -->
 
 <!-- ANCHOR:decisions -->
 ## Key Decisions
 
-- ADR-001 ratifies the production embedder choice for CocoIndex (analog of 016/004 ADR-012 for mk-spec-memory)
-- Optional candidates (jina-code, bge-code) included only if CodeRankEmbed vs gemma is inconclusive
+- ADR-001 verdict is KEEP-JINA-CODE.
+- Mirror-equivalent paths under `.opencode`, `.claude`, `.codex`, and `.gemini` are normalized for hit scoring because the fixture targets canonical `.opencode` paths while the index may return equivalent runtime mirrors.
+- Optional CodeRankEmbed and bge-code sweeps were deferred after the primary pair consumed the benchmark budget.
+- No config flip shipped because the accepted winner is already `_DEFAULT_MODEL`.
 <!-- /ANCHOR:decisions -->
 
 <!-- ANCHOR:verification -->
 ## Verification
 
-Pending. After comparison:
-- Run: `cat evidence/cocoindex-embedder-comparison.csv` — expect per-candidate rows
-- Read: `decision-record.md` ADR-001 verdict
-- Run: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <packet> --strict` — expect exit 0
+- Run: `cat evidence/cocoindex-embedder-comparison.csv` — PASS, rows for jina-code and gemma.
+- MPS gate: `_resolve_device(None) == "mps"` and `Config.from_env().device == "mps"`.
+- Rescue gate: no `rescue` / `SPECKIT_RERANK_LAYER` code under `cocoindex_code`.
+- Production restore: `ccc index` with jina-code completed with 8,427 files, 127,346 chunks, errors 0.
+- Run: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <packet> --strict` — PASS, exit 0.
 <!-- /ANCHOR:verification -->
 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-Pending — populated after comparison.
+The benchmark exposed search-surface noise: canonical docs and mirrored skill directories frequently outrank the canonical `.opencode` source file. That limits how much recall signal this fixture can provide without a path-class filter or mirror-aware scoring. Optional CodeRankEmbed and bge-code candidates remain deferred.
 <!-- /ANCHOR:limitations -->

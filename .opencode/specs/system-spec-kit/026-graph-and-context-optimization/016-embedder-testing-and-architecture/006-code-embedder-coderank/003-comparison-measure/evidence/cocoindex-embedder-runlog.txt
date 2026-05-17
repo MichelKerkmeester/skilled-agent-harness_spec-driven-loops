@@ -24,3 +24,34 @@
 [2026-05-17T22:34:28+0200] candidate start: sbert/google/embeddinggemma-300m
 [2026-05-17T22:34:32+0200] reset: sbert/google/embeddinggemma-300m
 [2026-05-17T22:34:32+0200] index start: sbert/google/embeddinggemma-300m
+[2026-05-17T22:59:05+0200] index complete: sbert/google/embeddinggemma-300m; tail='  Chunks: 127346\n  Files:  8427\n  Languages:\n    typescript: 96044 chunks\n    javascript: 15839 chunks\n    bash: 5308 chunks\n    python: 5150 chunks\n    markdown: 4953 chunks\n    html: 34 chunks\n    css: 11 chunks\n    json: 6 chunks\n    text: 1 chunks'
+[2026-05-17T22:59:09+0200] probe sbert/google/embeddinggemma-300m #01: hit=False ms=4011 top1=.opencode/skills/system-spec-kit/references/embedder-pluggability.md
+[2026-05-17T22:59:10+0200] probe sbert/google/embeddinggemma-300m #02: hit=False ms=443 top1=.claude/skills/system-spec-kit/mcp_server/handlers/embedder-set.ts
+[2026-05-17T22:59:10+0200] probe sbert/google/embeddinggemma-300m #03: hit=False ms=369 top1=.opencode/skills/system-spec-kit/references/embedder-pluggability.md
+[2026-05-17T22:59:10+0200] probe sbert/google/embeddinggemma-300m #04: hit=False ms=410 top1=.opencode/skills/system-spec-kit/references/structure/phase_definitions.md
+[2026-05-17T22:59:11+0200] probe sbert/google/embeddinggemma-300m #05: hit=False ms=377 top1=.claude/skills/system-spec-kit/mcp_server/tests/graph-readiness-mapper.vitest.ts
+[2026-05-17T22:59:11+0200] probe sbert/google/embeddinggemma-300m #06: hit=False ms=405 top1=.gemini/skills/system-skill-advisor/mcp_server/lib/embedders/adapters/ollama.ts
+[2026-05-17T22:59:12+0200] probe sbert/google/embeddinggemma-300m #07: hit=False ms=395 top1=.opencode/skills/sk-code/references/smart_routing.md
+[2026-05-17T22:59:12+0200] probe sbert/google/embeddinggemma-300m #08: hit=False ms=405 top1=.opencode/skills/system-code-graph/references/code-graph-readiness-check.md
+[2026-05-17T22:59:12+0200] probe sbert/google/embeddinggemma-300m #09: hit=False ms=371 top1=.opencode/skills/system-spec-kit/references/embedder-pluggability.md
+[2026-05-17T22:59:13+0200] probe sbert/google/embeddinggemma-300m #10: hit=False ms=359 top1=.opencode/skills/system-spec-kit/references/workflows/quick_reference.md
+[2026-05-17T22:59:13+0200] probe sbert/google/embeddinggemma-300m #11: hit=False ms=359 top1=.opencode/skills/system-spec-kit/references/embedder-pluggability.md
+[2026-05-17T22:59:13+0200] probe sbert/google/embeddinggemma-300m #12: hit=False ms=392 top1=.opencode/skills/system-spec-kit/references/structure/sub_folder_versioning.md
+[2026-05-17T22:59:14+0200] probe sbert/google/embeddinggemma-300m #13: hit=False ms=409 top1=.opencode/skills/mcp-code-mode/references/architecture.md
+[2026-05-17T22:59:14+0200] probe sbert/google/embeddinggemma-300m #14: hit=True ms=416 top1=.opencode/skills/system-code-graph/mcp_server/lib/structural-indexer.ts
+[2026-05-17T22:59:15+0200] probe sbert/google/embeddinggemma-300m #15: hit=False ms=372 top1=.opencode/skills/mcp-coco-index/references/tool_reference.md
+[2026-05-17T22:59:15+0200] probe sbert/google/embeddinggemma-300m #16: hit=False ms=403 top1=.gemini/skills/system-code-graph/mcp_server/tests/readiness-marker-atomic-write.vitest.ts
+[2026-05-17T22:59:15+0200] probe sbert/google/embeddinggemma-300m #17: hit=False ms=401 top1=.opencode/skills/sk-doc/assets/skill/skill_smart_router.md
+[2026-05-17T22:59:16+0200] probe sbert/google/embeddinggemma-300m #18: hit=False ms=370 top1=.gemini/skills/system-code-graph/mcp_server/tests/ensure-ready.vitest.ts
+[2026-05-17T22:59:16+0200] candidate done: sbert/google/embeddinggemma-300m; wall_s=1487
+[2026-05-17T22:59:16+0200] candidate start: sbert/nomic-ai/CodeRankEmbed
+[2026-05-17T22:59:19+0200] reset: sbert/nomic-ai/CodeRankEmbed
+[2026-05-17T22:59:20+0200] index start: sbert/nomic-ai/CodeRankEmbed
+[2026-05-17T23:00:01+0200] index FAILED: sbert/nomic-ai/CodeRankEmbed; rc=1; stderr=Indexing failed: Connection to daemon lost during indexing
+[2026-05-17T23:00:01+0200] candidate start: sbert/BAAI/bge-code-v1
+[2026-05-17T23:00:05+0200] reset: sbert/BAAI/bge-code-v1
+[2026-05-17T23:00:05+0200] index start: sbert/BAAI/bge-code-v1
+[2026-05-17T23:00:25+0200] index FAILED: sbert/BAAI/bge-code-v1; rc=1; stderr=Indexing failed: Connection to daemon lost during indexing
+[2026-05-17T23:00:25+0200] benchmark complete; wall_s=3037
+[2026-05-17T23:00:25+0200] summary {"embedder":"sbert/jinaai/jina-embeddings-v2-base-code","dim":768,"n_pairs":18,"total_hits":0,"hit_rate":"0.000","hit_easy":0,"hit_medium":0,"hit_hard":0,"median_ms":404,"p95_ms":590}
+[2026-05-17T23:00:25+0200] summary {"embedder":"sbert/google/embeddinggemma-300m","dim":768,"n_pairs":18,"total_hits":1,"hit_rate":"0.056","hit_easy":0,"hit_medium":0,"hit_hard":1,"median_ms":398,"p95_ms":4011}
