@@ -25,7 +25,8 @@ This is the canonical install + setup guide for the standalone Skill Advisor MCP
 - [9. OPERATOR CHECKS](#9--operator-checks)
 - [10. TROUBLESHOOTING](#10--troubleshooting)
 - [11. REFERENCE COMMANDS](#11--reference-commands)
-- [12. RELATED RESOURCES](#12--related-resources)
+- [12. CHOOSING AN EMBEDDER](#12--choosing-an-embedder)
+- [13. RELATED RESOURCES](#13--related-resources)
 
 ---
 
@@ -318,8 +319,90 @@ python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor_r
 
 <!-- /ANCHOR:11-reference-commands -->
 
-<!-- ANCHOR:12-related-resources -->
-## 12. RELATED RESOURCES
+<!-- ANCHOR:12-choosing-an-embedder -->
+## 12. CHOOSING AN EMBEDDER
+
+The skill-advisor `semantic_shadow` lane runs against a pluggable embedder layer that mirrors the `mk-spec-memory` layout. The same `EmbedderAdapter` contract, `MANIFESTS` registry, and `vec_<dim>` schema apply here, scoped to the package-local SQLite database at `mcp_server/database/skill-graph.sqlite`. This section is the new-user onboarding view; the canonical multi-MCP narrative lives at [embedder-pluggability.md](../system-spec-kit/references/embedder-pluggability.md).
+
+### 12.1 Current active default
+
+Production active pointer is the **gemma baseline**:
+
+```text
+active_embedder_name -> embeddinggemma-300m
+active_embedder_dim  -> 768
+backend              -> llama-cpp (shared embedding provider cascade)
+```
+
+The pluggable layer (`lib/embedders/`) shipped in packet `010/001` and is wired into the **read path**: `lib/scorer/lanes/semantic-shadow.ts` resolves query embeddings through `getAdapter(active.name)` and `lib/skill-graph/skill-graph-db.ts:loadSkillEmbeddings()` reads from `vec_<active.dim>` whenever an active pointer is set. The **write path** (`refreshSkillEmbeddings()`) still uses the legacy `createEmbeddingsProvider` factory and writes only the legacy `skill_nodes.embedding` BLOB column.
+
+This means `jina-embeddings-v3` (and every other non-baseline manifest) is **registered but not yet active by default**. Flipping the pointer in production is deferred to packet `010/004`, which closes the writer cross-wiring so a swap stays consistent across the read and write paths. Until then, the registered alternatives are usable for diagnostics, parity testing, and out-of-band experiments — see §12.4 for the operator-discipline runbook.
+
+### 12.2 Registered alternatives
+
+Source of truth: [`mcp_server/lib/embedders/registry.ts`](./mcp_server/lib/embedders/registry.ts). Six manifests are registered today, each as a frozen `EmbedderManifest`:
+
+| Name | Dim | Backend | Ollama tag / GGUF path | Max input | Notes |
+| --- | ---: | --- | --- | ---: | --- |
+| `embeddinggemma-300m` | 768 | `llama-cpp` | `unsloth-embeddinggemma-300m-GGUF/embeddinggemma-300m-Q8_0.gguf` | n/a | Legacy semantic-shadow baseline via shared provider cascade. **Current active default.** |
+| `jina-embeddings-v3` | 1024 | `ollama` | `hf.co/gaianet/jina-embeddings-v3-GGUF:Q4_K_M` | 8000 | Default for skill-advisor parity per `016/004` ADR-012; active swap deferred to `010/004`. |
+| `nomic-embed-text-v1.5` | 768 | `ollama` | `nomic-embed-text:v1.5` | 5000 | 768-dim retrieval specialist. Uses `search_query: ` / `search_document: ` prefix tokens. |
+| `jina-embeddings-v2-base-code` | 768 | `ollama` | `jina/jina-embeddings-v2-base-code:latest` | 8000 | Code-oriented Jina alternative for tool and script-heavy skill metadata. |
+| `mxbai-embed-large-v1` | 1024 | `ollama` | `mxbai-embed-large:latest` | 1200 | Paraphrase-strong 1024-dim candidate from the 016 comparison stack. |
+| `bge-m3` | 1024 | `ollama` | `bge-m3:latest` | 8000 | Multilingual dense retrieval candidate. |
+
+Adding a new candidate is a single registry row plus, if the backend is new, a single adapter under `mcp_server/lib/embedders/adapters/`. No call sites change. The adapter contract (`EmbedderAdapter` in `mcp_server/lib/embedders/adapter.ts`) is small — `embed()` plus `ready()`.
+
+### 12.3 Swap mechanism: `setActiveEmbedder(db, name, dim)`
+
+The skill-advisor swap surface is the database helper [`setActiveEmbedder()`](./mcp_server/lib/embedders/schema.ts) — **not** an environment variable. It writes the active pointer into `vec_metadata` and creates the matching `vec_<dim>` table:
+
+```typescript
+import Database from 'better-sqlite3';
+import { setActiveEmbedder } from './mcp_server/dist/.../lib/embedders/schema.js';
+
+const db = new Database('.opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sqlite');
+setActiveEmbedder(db, 'jina-embeddings-v3', 1024);
+```
+
+Effect of the call:
+
+- `vec_metadata.active_embedder_name` -> `jina-embeddings-v3`
+- `vec_metadata.active_embedder_dim` -> `1024`
+- `vec_1024` table created (if absent), schema `(skill_id, embedding BLOB, model_id, content_hash, updated_at)`
+- `hasActiveEmbedderPointer(db)` flips to `true`, so the read path (`semantic-shadow.ts`, `loadSkillEmbeddings()`) starts reading from `vec_<active.dim>`
+
+The mk-spec-memory `embedder_set` / `embedder_status` MCP tools are intentionally NOT mirrored here. The skill-advisor surface is one database helper. Operator discipline owns the swap workflow; there is no async re-index orchestrator on the skill-advisor side.
+
+### 12.4 Operator-safe swap runbook
+
+Until packet `010/004` closes the writer cross-wiring, **do not flip the active pointer in production**. The writer (`refreshSkillEmbeddings()`) still targets the legacy embeddings column and the new adapter, so flipping the pointer reads from an empty `vec_<new-dim>` table and silently degrades the `semantic_shadow` lane to zero results.
+
+The full operator runbook (snapshot + stop daemon + set pointer + rebuild + restart + smoke test + rollback) is documented at [`002-jina-swap-and-reindex/evidence/swap-runbook.md`](../../specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/010-skill-advisor-embedder-parity/002-jina-swap-and-reindex/evidence/swap-runbook.md). Read the "Architecture Context" and "Half-wired state" sections before any swap attempt.
+
+### 12.5 Device selection
+
+Skill-advisor does not ship an explicit `_resolve_device()` shim. Device selection inherits from the underlying backend:
+
+| Backend | Device handling |
+| --- | --- |
+| `llama-cpp` (gemma baseline) | Inherited from the shared `createEmbeddingsProvider` factory configuration. CPU on most installs; no automatic MPS probe on Apple Silicon. |
+| `ollama` (jina-v3, nomic, mxbai, bge-m3, jina-code) | Ollama owns runtime device handling. It already covers Metal / CUDA / CPU autonomously based on its own daemon configuration. |
+
+If you need MPS-style auto-detect for the gemma baseline, that lives on the CocoIndex side (see [embedder-pluggability.md §3](../system-spec-kit/references/embedder-pluggability.md)) and is not currently mirrored to skill-advisor. The Ollama-backed manifests get Metal acceleration for free once the Ollama daemon is configured for it.
+
+### 12.6 Cross-references
+
+- Canonical multi-MCP narrative: [`embedder-pluggability.md`](../system-spec-kit/references/embedder-pluggability.md) — covers `mk-spec-memory`, `mcp-coco-index`, and shared design rationale.
+- Memory-side analog (full MCP tool surface): [`system-spec-kit/mcp_server/INSTALL_GUIDE.md`](../system-spec-kit/mcp_server/INSTALL_GUIDE.md).
+- Skill-advisor adapter contract: [`mcp_server/lib/embedders/adapter.ts`](./mcp_server/lib/embedders/adapter.ts).
+- Skill-advisor schema helpers: [`mcp_server/lib/embedders/schema.ts`](./mcp_server/lib/embedders/schema.ts).
+- Architecture-gap follow-on: packet `010/004` (writer cross-wiring).
+
+<!-- /ANCHOR:12-choosing-an-embedder -->
+
+<!-- ANCHOR:13-related-resources -->
+## 13. RELATED RESOURCES
 
 | Document | Purpose |
 | --- | --- |
@@ -327,5 +410,6 @@ python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor_r
 | [ARCHITECTURE.md](./ARCHITECTURE.md) | Package-local architecture and public API entrypoints. |
 | [Hook reference](./references/hooks/skill-advisor-hook.md) | Claude, Copilot, Gemini, Codex, Devin and OpenCode plugin hook contract. |
 | [Manual testing playbook](./manual_testing_playbook/manual_testing_playbook.md) | OP-001 / OP-002 operator scenarios + indexer edge cases. |
+| [Embedder pluggability narrative](../system-spec-kit/references/embedder-pluggability.md) | Canonical two-MCP / two-embedder / two-mechanism reference. |
 
-<!-- /ANCHOR:12-related-resources -->
+<!-- /ANCHOR:13-related-resources -->

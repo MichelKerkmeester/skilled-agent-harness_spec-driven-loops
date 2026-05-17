@@ -217,6 +217,14 @@ system-skill-advisor/
 
 Per-call options on `advisor_recommend` (`topK`, `includeAttribution`) override matching defaults. Use environment variables for process-wide defaults and per-call options for one request.
 
+### Pluggable embedder layer
+
+The `semantic_shadow` lane (lowest live weight at `0.05`) runs against a pluggable embedder layer mirroring `mk-spec-memory`. The contract lives in `mcp_server/lib/embedders/`: an `EmbedderAdapter` interface, a frozen `MANIFESTS` registry of six vetted candidates (`embeddinggemma-300m`, `jina-embeddings-v3`, `nomic-embed-text-v1.5`, `jina-embeddings-v2-base-code`, `mxbai-embed-large-v1`, `bge-m3`), and a `setActiveEmbedder(db, name, dim)` helper that writes the active pointer into the package-local `skill-graph.sqlite`.
+
+The current active production default is `embeddinggemma-300m` @ 768d via the `llama-cpp` baseline. `jina-embeddings-v3` (1024d via Ollama) is registered as the parity-side default but the active swap is **deferred to packet `010/004`**, which closes the writer cross-wiring so a pointer flip stays consistent across the read and write paths. The swap mechanism is the `setActiveEmbedder()` database helper — there is no environment variable for this and no `embedder_set` MCP tool.
+
+See [INSTALL_GUIDE.md §12 "Choosing an embedder"](./INSTALL_GUIDE.md#12--choosing-an-embedder) for the chooser table, swap workflow, and known architecture gap. See [`embedder-pluggability.md`](../system-spec-kit/references/embedder-pluggability.md) for the canonical multi-MCP narrative covering mk-spec-memory and CocoIndex alongside skill-advisor.
+
 <!-- /ANCHOR:configuration -->
 
 ---
@@ -329,5 +337,6 @@ A: See [references/hooks/skill-advisor-hook.md](./references/hooks/skill-advisor
 | [feature_catalog/feature_catalog.md](./feature_catalog/feature_catalog.md) | Current feature inventory. |
 | [manual_testing_playbook/manual_testing_playbook.md](./manual_testing_playbook/manual_testing_playbook.md) | Manual validation scenario index. |
 | [changelog/v0.2.0.md](./changelog/v0.2.0.md) | v0.2.0 production isolation from system-spec-kit. |
+| [Embedder pluggability narrative](../system-spec-kit/references/embedder-pluggability.md) | Canonical two-MCP / two-embedder / two-mechanism reference shared with mk-spec-memory and CocoIndex. |
 
 <!-- /ANCHOR:related-documents -->
