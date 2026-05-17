@@ -360,8 +360,8 @@ export async function handleCodeGraphScan(args: ScanArgs): Promise<{ content: Ar
   const gitHeadChanged = previousGitHead !== null
     && currentGitHead !== null
     && previousGitHead !== currentGitHead;
-  const fullReindexTriggered = gitHeadChanged;
   const effectiveIncremental = incremental;
+  const fullReindexTriggered = gitHeadChanged && !effectiveIncremental;
 
   if (gitHeadChanged && incremental) {
     console.error(`[code-graph-scan] Git HEAD changed (${previousGitHead} -> ${currentGitHead}); honoring incremental content-hash reindex`);
@@ -611,8 +611,10 @@ export async function handleCodeGraphScan(args: ScanArgs): Promise<{ content: Ar
   }
 
   const scanPromotable = !severeParseErrorScan && structuralErrors.length === 0;
-  // structuralErrors is a subset of errors (both pushed together at L592-593); filter/dedup unnecessary
-  const failedScanErrors = errors.slice(0, 10);
+  const failedScanErrors = [
+    ...structuralErrors,
+    ...errors.filter(error => !structuralErrors.includes(error)),
+  ].slice(0, 10);
   const failedScan = scanPromotable
     ? null
     : graphDb.recordFailedScan({
