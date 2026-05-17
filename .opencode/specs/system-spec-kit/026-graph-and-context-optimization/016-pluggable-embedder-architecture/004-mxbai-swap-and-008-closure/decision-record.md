@@ -339,3 +339,57 @@ Evidence:
 - `evidence/cat-24-rerun.jsonl`
 - `evidence/embedder-comparison.csv`
 <!-- /ANCHOR:adr-008 -->
+
+<!-- ANCHOR:adr-009 -->
+## ADR-009: Keep 409 open after fixture surgery; move next to reranking
+
+| Field | Value |
+|-------|-------|
+| Status | Accepted |
+| Date | 2026-05-17 |
+| Decision | FIXTURE-FIXED-BUT-409-OPEN |
+
+The cat-24/409 audit found that the previous ground truth mixed three problems: orphaned `memory_index` rows, stale expected IDs, and a runtime random sampler that made retests depend on corpus drift. The repair pruned the active corpus and replaced 409's sampler with deterministic `409-fixture.json`.
+
+Corpus hygiene results:
+
+```text
+memory_index rows before prune: 12937
+orphaned file_path rows:        5446
+memory_index rows after prune:  7491
+orphaned file_path rows after:  0
+```
+
+The MCP checkpoint path was attempted first but failed before persistence with `Invalid string length`, so the safe fallback was a manual SQLite backup after `PRAGMA wal_checkpoint(TRUNCATE)`. The backup checkpoint is:
+
+```text
+/tmp/cat24-orphan-prune-pre-surgery-2026-05-17/context-index__llama-cpp__unsloth-embeddinggemma-300m-gguf__768__q8.sqlite
+sha256: 7a82138526398e39c73fd8e25b4fdf375b03b396bb8788aa0b4ab6257cd5132d
+```
+
+Fixture repair results:
+- 409 now reads 10 deterministic pairs from `manual_testing_playbook/24--local-llm-query-intelligence/409-fixture.json`.
+- 402 now references live targets for the stale lineages: `4437/5143 -> 7007`, `4400 -> 8048`, and `1534 -> 7636/7639` with `4356` pruned as orphaned.
+- 408 was remeasured with mirrored implementation paths counted as one factory/cascade constituent.
+
+`nomic-embed-text-v1.5` was reactivated as the current leader after the cleanup:
+
+```text
+emb-swap-2026-05-17T11-22-01-939Z-210a8d4a -> 7491/7491 completed
+active_embedder_name -> nomic-embed-text-v1.5
+active_embedder_dim  -> 768
+```
+
+Post-surgery cat-24 results:
+- 402: `FAIL` - live targets are now valid, but Memory Pair A/B measured only `11.11%` top-5 Jaccard each, and CocoIndex Pair C/D remained `0%`.
+- 408: `FAIL` - only the factory/cascade constituent appeared in top-K through mirrored implementation paths; `1/4` in top-3 and `1/4` in top-5.
+- 409: `FAIL` gate / `PARTIAL` band - deterministic fixture scored `6/10` top-3, up from the stale-fixture Nomic result of `5/10`, but still below the required `8/10`.
+
+The fixture surgery corrected the ground truth enough to make 409 measurement repeatable, but it did not close packet 008. The next attempt should stop testing same-shape dense swaps and implement a retrieval-stage improvement: a reranker gate, trigger-lane weighting, or sibling-document canonicalization that can lift faithful paraphrases and avoid near-neighbor spec siblings displacing the expected source.
+
+Packet 008 remains open. Do not mark the cat-24/409 failure closed or update 008 to `51/51` until a repaired scenario reaches the `8/10` top-3 gate.
+
+Evidence:
+- `evidence/corpus-hygiene-cleanup.md`
+- `evidence/cat-24-rerun.jsonl`
+<!-- /ANCHOR:adr-009 -->

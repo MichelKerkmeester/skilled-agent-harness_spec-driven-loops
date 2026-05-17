@@ -7,11 +7,11 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-pluggable-embedder-architecture/004-mxbai-swap-and-008-closure"
-    last_updated_at: "2026-05-17T10:35:38Z"
+    last_updated_at: "2026-05-17T11:32:46Z"
     last_updated_by: "main_agent"
-    recent_action: "Marked Snowflake result after activation completed but cat-24/409 still failed"
-    next_safe_action: "Keep rollback; evaluate option D reranker or another retrieval-stage change"
-    blockers: ["snowflake-arctic-embed-l-v2.0 active-vector 409 rerun reached only 1/10 top-3"]
+    recent_action: "Post-surgery cat-24 rerun recorded"
+    next_safe_action: "Evaluate option D reranker, trigger-lane weighting, or sibling-document canonicalization"
+    blockers: ["post-surgery nomic-embed-text-v1.5 409 rerun reached 6/10 top-3, below the 8/10 gate"]
     key_files:
       - "decision-record.md"
       - "evidence/mxbai-swap-status.json"
@@ -64,6 +64,10 @@ _memory:
 - [x] T2.5: Verify 409 reaches PASS (8/10 top-3) — NOT MET; rollback ADR-004 recorded
 - [x] T2.6: Re-run cat-24/409 under bge-m3 — NOT MET; 2/10 top-3 and rollback ADR-007 recorded
 - [x] T2.7: Re-run cat-24/409 under snowflake-arctic-embed-l-v2.0 — NOT MET; 1/10 top-3 and rollback ADR-008 recorded
+- [x] T2.8: Prune orphaned `memory_index` rows before repaired fixture measurement — `5446` rows removed, post-scan `0` orphans
+- [x] T2.9: Replace cat-24/409 runtime sampler with deterministic `409-fixture.json` — 10 live ID pairs, easy/medium/hard distribution
+- [x] T2.10: Repair cat-24/402 stale targets — `4437/5143 -> 7007`, `4400 -> 8048`, `1534 -> 7636/7639`; `4356` pruned
+- [x] T2.11: Re-run cat-24/402, 408, and 409 under post-surgery Nomic — 402 FAIL, 408 FAIL, 409 `6/10` top-3
 
 ### 008 PASS sample re-run
 - [x] T3.1: Pick 20-scenario sample across cat-01, cat-11, cat-15, cat-13, cat-23
@@ -78,6 +82,7 @@ _memory:
 - [x] T4.3b: Author `decision-record.md` ADR-003 (ROLLBACK after mapping fix; context-length failure mode)
 - [x] T4.3c: Author `decision-record.md` ADR-004 (ROLLBACK after bounded-input activation; 409 retrieval-quality failure)
 - [x] T4.3d: Author `decision-record.md` ADR-008 (ROLLBACK after Snowflake activation; cross-candidate dense-swap verdict)
+- [x] T4.3e: Author `decision-record.md` ADR-009 (fixture fixed, cat-24/409 still open; recommend reranking/trigger-lane weighting)
 - [x] T4.4: Update packet 008's implementation-summary.md to record 016/004 attempted closure but cat-24/409 remains open
 - [x] T4.5: Update packet 115's implementation-summary.md to mark SUPERSEDED by 016's pluggable architecture
 

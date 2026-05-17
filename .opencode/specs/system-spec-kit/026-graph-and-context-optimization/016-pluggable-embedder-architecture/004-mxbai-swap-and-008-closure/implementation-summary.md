@@ -1,17 +1,17 @@
 ---
 title: "Summary: 016/004 embedder swaps + 008 closure"
-description: "mxbai, jina, nomic, bge-m3, and snowflake-arctic retries completed, but cat-24/409 stayed below PASS; rollback retained and 008 remains open."
+description: "mxbai, jina, nomic, bge-m3, snowflake-arctic, and post-surgery Nomic retries completed, but repaired cat-24/409 stayed below PASS; 008 remains open."
 trigger_phrases: ["016/004 summary"]
 importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-pluggable-embedder-architecture/004-mxbai-swap-and-008-closure"
-    last_updated_at: "2026-05-17T10:35:38Z"
+    last_updated_at: "2026-05-17T11:32:46Z"
     last_updated_by: "main_agent"
-    recent_action: "Retried snowflake-arctic-embed-l-v2.0; cat-24/409 reached 1/10"
-    next_safe_action: "Evaluate option D reranker or another retrieval-stage change"
-    blockers: ["snowflake-arctic-embed-l-v2.0 active-vector 409 rerun reached only 1/10 top-3"]
+    recent_action: "Post-surgery Nomic rerun recorded"
+    next_safe_action: "Evaluate option D reranker, trigger-lane weighting, or sibling-document canonicalization"
+    blockers: ["post-surgery nomic-embed-text-v1.5 409 rerun reached 6/10 top-3, below the 8/10 gate"]
     key_files:
       - "decision-record.md"
       - "evidence/mxbai-swap-status.json"
@@ -19,6 +19,7 @@ _memory:
       - "evidence/008-pass-sample-rerun.jsonl"
       - "evidence/embedder-comparison.csv"
       - "evidence/swap-benchmark.csv"
+      - "evidence/corpus-hygiene-cleanup.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "016-004-summary"
@@ -36,7 +37,7 @@ _memory:
 ## 1. METADATA
 | Field | Value |
 |-------|-------|
-| Status | ROLLBACK — bounded-input mxbai, jina, nomic, bge-m3, and snowflake-arctic activations completed, but cat-24/409 stayed below PASS |
+| Status | OPEN — bounded-input dense swaps and post-surgery Nomic rerun completed, but repaired cat-24/409 stayed below PASS |
 | Branch | main |
 | Wall-clock estimate | 1-2 hours (mostly re-index wait + scenario re-runs) |
 | Closes | None; packet 008 cat-24/409 remains open |
@@ -62,6 +63,7 @@ Delivered failure-path evidence:
 - follow-up ADR-006 ROLLBACK after nomic-embed-text-v1.5 improved cat-24/409 to 5/10 top-3 but still missed the 8/10 PASS threshold
 - follow-up ADR-007 ROLLBACK after bge-m3 activated cleanly but cat-24/409 regressed to 2/10 top-3
 - follow-up ADR-008 ROLLBACK after snowflake-arctic-embed-l-v2.0 activated cleanly but cat-24/409 regressed to 1/10 top-3
+- follow-up ADR-009 after corpus hygiene and fixture repair improved Nomic cat-24/409 from stale-fixture 5/10 to deterministic-fixture 6/10 top-3, still below the 8/10 PASS threshold
 
 
 <!-- /ANCHOR:what-built -->
@@ -133,6 +135,15 @@ The Snowflake cat-24 rerun still did not close 008:
 
 The active pointer was restored directly to `embeddinggemma-300m` / `vec_768`. Cross-candidate evidence shows no pure dense swap closed 409; Nomic remains the best measured candidate at 5/10, so the next attempt should move to reranking or another retrieval-stage intervention.
 
+The fixture-surgery follow-up pruned `5446` orphaned `memory_index` rows from the active DB (`12937 -> 7491`, orphans `5446 -> 0`), replaced 409's runtime sampler with deterministic `409-fixture.json`, and repaired 402's stale target lineages. `nomic-embed-text-v1.5` was reactivated through job `emb-swap-2026-05-17T11-22-01-939Z-210a8d4a`, completing `7491/7491` rows.
+
+Post-surgery cat-24 did not close 008:
+- 402 stayed `FAIL`; stale targets are now live, but top-5 Jaccard remained `11.11%`, `11.11%`, `0%`, `0%`.
+- 408 stayed `FAIL`; counting mirrored implementation paths as the factory/cascade constituent, only `1/4` expected sources appeared in top-3/top-5.
+- 409 improved to `6/10` top-3 on the deterministic fixture, a PARTIAL scenario band but still below the `8/10` closure gate.
+
+The repaired evidence changes the next recommendation but not the closure state: packet 008 remains open, and the next attempt should be reranking, trigger-lane weighting, or sibling-document canonicalization.
+
 
 <!-- /ANCHOR:how-delivered -->
 <!-- ANCHOR:decisions -->
@@ -145,6 +156,7 @@ The active pointer was restored directly to `embeddinggemma-300m` / `vec_768`. C
 - ADR-006: ROLLBACK. Bounded Nomic activation completed and became the new leader at 5/10 top-3, but still failed the 8/10 closure gate.
 - ADR-007: ROLLBACK. Bge-m3 activated cleanly, but cat-24/409 regressed to 2/10 top-3.
 - ADR-008: ROLLBACK. Snowflake activated cleanly, but cat-24/409 regressed to 1/10 top-3; pure dense swaps did not close 409.
+- ADR-009: FIXTURE-FIXED-BUT-409-OPEN. The corpus and fixtures are repaired, and Nomic improved to 6/10, but the 8/10 gate still requires a retrieval-stage change.
 - Packet 115's standalone evaluation scaffold is superseded by 016's pluggable architecture, but 016/004 did not close packet 008 cat-24/409.
 
 
@@ -193,14 +205,21 @@ The active pointer was restored directly to `embeddinggemma-300m` / `vec_768`. C
 | cat-24/409 Snowflake re-run | PASS (8/10 top-3) | FAIL — 1/10 top-3 |
 | 008 PASS sample under Snowflake | ≥ 19/20 preserved | SKIP after decisive 409 failure |
 | active pointer after Snowflake rollback | `embeddinggemma-300m` | PASS — restored directly |
+| orphaned `memory_index` prune | remove dead `file_path` rows | PASS — `5446` pruned; post-scan `0` orphans |
+| 409 fixture repair | deterministic 10-pair fixture | PASS — `409-fixture.json` with live IDs and existing files |
+| 402 fixture repair | stale targets remapped | PASS — `4437/5143 -> 7007`, `4400 -> 8048`, `1534 -> 7636/7639`; `4356` pruned |
+| Nomic post-surgery swap job | completed | PASS — `7491/7491` |
+| cat-24/402 post-surgery | PASS (3/4 pairs >= 60%) | FAIL — `0/4` pairs reached threshold |
+| cat-24/408 post-surgery | PASS (>=2/4 top-3 and >=3/4 top-5) | FAIL — `1/4` top-3 and `1/4` top-5 |
+| cat-24/409 post-surgery | PASS (8/10 top-3) | FAIL gate / PARTIAL band — `6/10` top-3 |
 
 
 <!-- /ANCHOR:verification -->
 <!-- ANCHOR:limitations -->
 ## 6. KNOWN LIMITATIONS
-- cat-24/409 remains open. The best empirical result remains Nomic at 5/10 top-3; newest Snowflake result is 1/10.
+- cat-24/409 remains open. The best empirical result is now post-surgery Nomic at 6/10 top-3 against a deterministic fixture; the gate is 8/10.
 - The 20-scenario PASS sample was not rerun after the decisive 409 failure. Preservation rate for ADR-004 is 0/20 measured-preserved.
 - The 20-scenario PASS sample was also skipped for Jina, Nomic, bge-m3, and Snowflake after the decisive 409 failures.
-- The next retry should evaluate option D reranking or another retrieval-stage intervention rather than another same-shape pure dense embedder swap.
+- The next retry should evaluate option D reranking, trigger-lane weighting, or sibling-document canonicalization rather than another same-shape pure dense embedder swap.
 
 <!-- /ANCHOR:limitations -->
