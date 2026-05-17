@@ -9,9 +9,9 @@ _memory:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-pluggable-embedder-architecture/004-mxbai-swap-and-008-closure"
     last_updated_at: "2026-05-17T07:24:00Z"
     last_updated_by: "main_agent"
-    recent_action: "Marked retry results after adapter mapping fix exposed context-length activation failure"
-    next_safe_action: "Fix bounded-context re-index input sizing before retrying T1.1"
-    blockers: ["mxbai-embed-large-v1 activation failed at 0/12929 because full memory input exceeded context length"]
+    recent_action: "Marked retry2 results after bounded-input mxbai activation completed but cat-24/409 still failed"
+    next_safe_action: "Keep rollback; evaluate retrieval-quality alternatives before another 008 closure attempt"
+    blockers: ["mxbai active-vector 409 rerun reached only 2/10 top-3"]
     key_files:
       - "decision-record.md"
       - "evidence/mxbai-swap-status.json"
@@ -49,28 +49,30 @@ _memory:
 ### Swap
 - [x] T1.1: `mcp__mk_spec_memory__embedder_set({name: "mxbai-embed-large-v1"})` — captured jobId `emb-swap-2026-05-17T07-10-12-183Z-7078e904`
 - [x] T1.2: Poll `embedder_status`; status became `failed` at `0/12928`
-- [ ] T1.3: Verify active pointer: `embedder_list` shows mxbai-embed-large-v1 active — FAILED; baseline remained active
+- [x] T1.3: Verify active pointer: mxbai active after retry2 via direct vector-store check (`mxbai-embed-large-v1`, dim 1024)
 - [x] T1.4: Follow-up fixed `OllamaAdapter` provider-tag mapping and retried with checkpoint `pre-016-004-retry-20260517T072209Z`
 - [x] T1.5: Retry job `emb-swap-2026-05-17T07-22-22-214Z-8a6dcaa9` failed at `0/12929`; direct probe found `{"error":"the input length exceeds the context length"}` for the first 50-row memory batch
+- [x] T1.6: Retry2 added bounded inputs and completed job `emb-swap-2026-05-17T07-36-33-421Z-6bdfe475` at `12929/12929`
 
 ### Cat-24 re-run
-- [ ] T2.1: Dispatch cli-opencode for cat-24/402 (synonymy) — SKIPPED; mxbai not active
-- [ ] T2.2: Dispatch cli-opencode for cat-24/408 (compound concept) — SKIPPED; mxbai not active
-- [ ] T2.3: Dispatch cli-opencode for cat-24/409 (LLM-made-memory recall) — SKIPPED; mxbai not active
+- [x] T2.1: Dispatch/rerun cat-24/402 (synonymy) — FAIL under mxbai active-vector evidence
+- [x] T2.2: Dispatch/rerun cat-24/408 (compound concept) — FAIL under CocoIndex evidence
+- [x] T2.3: Dispatch/rerun cat-24/409 (LLM-made-memory recall) — FAIL, 2/10 top-3
 - [x] T2.4: Append rows to `evidence/cat-24-rerun.jsonl`
-- [ ] T2.5: Verify 409 reaches PASS (8/10 top-3) — NOT MET; rollback ADR-003 recorded
+- [x] T2.5: Verify 409 reaches PASS (8/10 top-3) — NOT MET; rollback ADR-004 recorded
 
 ### 008 PASS sample re-run
 - [x] T3.1: Pick 20-scenario sample across cat-01, cat-11, cat-15, cat-13, cat-23
 - [ ] T3.2: Dispatch cli-devin SWE-1.6 paired for the sample — SKIPPED; mxbai not active
 - [x] T3.3: Append rows to `evidence/008-pass-sample-rerun.jsonl`
-- [ ] T3.4: Verify ≥ 19/20 PASS preserved — NOT MEASURED; activation failed before sample execution, 0/20 executed under mxbai
+- [ ] T3.4: Verify ≥ 19/20 PASS preserved — NOT MEASURED after decisive 409 failure; 0/20 measured-preserved for ADR-004
 
 ### Benchmark + decision
 - [x] T4.1: Aggregate cat-24-rerun + 008-pass-sample into `evidence/swap-benchmark.csv`
 - [ ] T4.2: Measure cosine on known weak pair (target ≥ 0.43) — SKIPPED; mxbai not active
 - [x] T4.3: Author `decision-record.md` ADR-001 (ROLLBACK) + ADR-002 failure mode
 - [x] T4.3b: Author `decision-record.md` ADR-003 (ROLLBACK after mapping fix; context-length failure mode)
+- [x] T4.3c: Author `decision-record.md` ADR-004 (ROLLBACK after bounded-input activation; 409 retrieval-quality failure)
 - [x] T4.4: Update packet 008's implementation-summary.md to record 016/004 attempted closure but cat-24/409 remains open
 - [x] T4.5: Update packet 115's implementation-summary.md to mark SUPERSEDED by 016's pluggable architecture
 

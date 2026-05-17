@@ -10,8 +10,8 @@ _memory:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/008-mk-spec-memory-stress-test"
     last_updated_at: "2026-05-17T07:24:00Z"
     last_updated_by: "main_agent"
-    recent_action: "016/004 retry failed; cat-24/409 open"
-    next_safe_action: "Fix bounded-context re-index input sizing in 016 before retrying mxbai activation and cat-24/409"
+    recent_action: "016/004 retry2 activated mxbai but cat-24/409 still failed"
+    next_safe_action: "Evaluate retrieval-quality alternatives before another cat-24/409 closure attempt"
     blockers: []
     key_files:
       - "handover.md"
@@ -39,16 +39,16 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| Status | COMPLETE coverage (345/345 = **100%**); **50 of 51 total FAILs closed via 40 fix commits across 7 rounds** (3 cat-16 deferrals also closed in Round 7); 1 PARTIAL/OPEN (cat-24/409 embedding model) attempted in 016/004 but not closed because mxbai activation failed twice |
+| Status | COMPLETE coverage (345/345 = **100%**); **50 of 51 total FAILs closed via 40 fix commits across 7 rounds** (3 cat-16 deferrals also closed in Round 7); 1 PARTIAL/OPEN (cat-24/409 embedding model) attempted in 016/004 but not closed because mxbai reached only 2/10 top-3 |
 | Branch | main |
 | Baseline | post packet 113 (commit b062b12b4) |
 | Pre-sweep checkpoint | `pre-008-sweep-20260516T144620Z` (id=2, global scope, 11,426 memories, 124 MB) — intact end-to-end |
 | Wall-clock actual | ~17 hours total (Phase 0 + Phase 1 + 5 Phase 2 dispatch waves [3 devin + 4 opencode] + 12 codex fix dispatches across 6 rounds, 25 commits total) |
 | Total commits this session | 37 fix + ~12 doc + 2 deferred-followon docs + 1 frontmatter cleanup commit ≈ 52 commits |
-| FAILs closed | **50 of 51 (98%)** — 31 original + 19 newly-surfaced closed; cat-24/409 remains open after failed 016/004 mxbai activation retries |
+| FAILs closed | **50 of 51 (98%)** — 31 original + 19 newly-surfaced closed; cat-24/409 remains open after 016/004 mxbai retrieval-quality retry |
 | Scenarios covered | **345 of 345 (100%) across all 25 of 25 categories** |
 | Final classification | 57 PASS / 51 FAIL (47 closed by fixes) / 23 PARTIAL / 59 SKIP / 155 UNAUTOMATABLE |
-| Remaining work | Only cat-24/409 embedding-model PARTIAL/OPEN → packet 115 is superseded by 016 architecture; retry should happen after fixing 016 bounded-context re-index input sizing |
+| Remaining work | Only cat-24/409 embedding-model PARTIAL/OPEN → packet 115 is superseded by 016 architecture; retry should evaluate stronger chunking/model alternatives |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -63,6 +63,8 @@ _memory:
 **Wave 4 (cli-opencode) finding**: Devin SWE-1.6 has a runtime-specific opaque tool-rejection guard. Opencode's default OpenAI runtime doesn't share it. Opencode applied content-aware safety judgment (SKIP'd scenarios that legitimately required mutating real spec-folder state outside sandbox) instead of pre-flight blocking. New cat-24 FAILs surfaced this way: 402 (synonymy retrieval), 408 (compound concept synthesis), 409 (LLM-made-memory recall) — real defects in local-LLM query intelligence subsystem that devin's gate would have hidden.
 
 **016/004 follow-up result (2026-05-17):** The first concrete mxbai swap attempt did not close cat-24/409. `embedder_set({ name: "mxbai-embed-large-v1" })` failed at `0/12928` with `Ollama embedding request failed (400 Bad Request): [object Object]`; `embedder_list()` still showed `embeddinggemma-300m` active. Packet 016/004 recorded ADR-001 ROLLBACK and ADR-002 failure mode. A second retry after fixing `OllamaAdapter` provider-tag mapping also failed before activation: job `emb-swap-2026-05-17T07-22-22-214Z-8a6dcaa9` stopped at `0/12929`, and direct `/api/embed` probing of the first 50 memory rows with `mxbai-embed-large:latest` returned `{"error":"the input length exceeds the context length"}`. The old 409 evidence remains the authoritative classification: FAIL, only 1/10 exact source IDs observed in top-3/top-5 output. The 20-scenario PASS sample was not re-executed under mxbai because the active pointer never flipped.
+
+**016/004 retry2 result (2026-05-17):** Bounded Ollama input handling allowed mxbai re-index job `emb-swap-2026-05-17T07-36-33-421Z-6bdfe475` to complete `12929/12929`, but cat-24/409 still failed under active mxbai retrieval at 2/10 top-3 against the required 8/10. Packet 016/004 recorded ADR-004 ROLLBACK. The closure count remains 50/51; do not mark the 51st FAIL closed.
 
 **16 defect fix commits + 1 deferred-followon doc commit pushed to `main` in same session** via sequential cli-codex (gpt-5.5 reasoning_effort=high, service_tier=fast):
 
@@ -172,5 +174,5 @@ Current state (session end):
 - **70+ UNAUTOMATABLE rate (157/263 = 59.7%)**: cli-devin lacks slash-commands + multi-MCP orchestration that many playbook scenarios assume. Playbook needs runtime-tagged variants OR sweeps should run from richer runtimes (opencode/claude code).
 - **`eval_run_ablation` SKIP**: ground-truth alignment not present in current DB; env blocker unrelated to packet 113.
 - **One commit was bloated and recovered**: `7e5146202` originally captured 3,328 files due to pre-existing index state. Reverted via `54188cf66` and clean-recommitted as `b9437fcc9`. Memory note `feedback_git_add_not_scope_strict` codifies the prevention pattern.
-- **cat-24/409 remains open after 016/004**: mxbai activation failed before re-indexing twice. The first retry exposed adapter/provider-tag mapping; the second retry exposed bounded-context re-index input sizing. No new PASS/FAIL/PARTIAL recall measurement exists for mxbai. 50/51 remains the honest closure count.
+- **cat-24/409 remains open after 016/004**: mxbai activation eventually completed with bounded inputs, but the active retrieval rerun reached only 2/10 top-3. 50/51 remains the honest closure count.
 <!-- /ANCHOR:limitations -->

@@ -1,6 +1,6 @@
 {
   "packet": "016/004",
-  "timestamp": "2026-05-17T07:12:30Z",
+  "timestamp": "2026-05-17T07:47:00Z",
   "checkpoint": {
     "id": 3,
     "name": "pre-016-004-mxbai-swap-2026-05-17T07-12-00Z",
@@ -67,6 +67,42 @@
       "status": "400 Bad Request",
       "body": "{\"error\":\"the input length exceeds the context length\"}",
       "inference": "The manifest-to-Ollama tag mapping is correct, but the current re-index batch feeds full memory documents that exceed this Ollama model's context window."
+    }
+  },
+  "retry2_after_input_truncation": {
+    "timestamp": "2026-05-17T07:47:00Z",
+    "checkpoint": {
+      "id": 5,
+      "name": "pre-016-004-retry2-20260517T073305Z",
+      "createdAt": "2026-05-17T07:33:08.690Z"
+    },
+    "jobId": "emb-swap-2026-05-17T07-36-33-421Z-6bdfe475",
+    "fromName": "embeddinggemma-300m",
+    "toName": "mxbai-embed-large-v1",
+    "status": "completed",
+    "total": 12929,
+    "processed": 12929,
+    "maxInputChars": 1200,
+    "active_pointer_after_completion": {
+      "name": "mxbai-embed-large-v1",
+      "dim": 1024,
+      "ready": true
+    },
+    "cat24": {
+      "402": "FAIL",
+      "408": "FAIL",
+      "409": "FAIL",
+      "observed409Top3": "2/10",
+      "required409Top3": "8/10"
+    },
+    "decision": "ROLLBACK",
+    "rollback_after_adr004": {
+      "command": "setActiveEmbedder(db, \"embeddinggemma-300m\", 768)",
+      "active_pointer_after_rollback": {
+        "name": "embeddinggemma-300m",
+        "dim": 768
+      },
+      "timestamp": "2026-05-17T07:48:25.257Z"
     }
   }
 }

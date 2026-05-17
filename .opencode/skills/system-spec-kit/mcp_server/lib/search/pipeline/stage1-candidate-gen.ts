@@ -36,7 +36,6 @@
 import type { Stage1Input, Stage1Output, PipelineRow } from './types.js';
 import { resolveEffectiveScore } from './types.js';
 import * as vectorIndex from '../vector-index.js';
-import * as embeddings from '../../providers/embeddings.js';
 import * as hybridSearch from '../hybrid-search.js';
 import { vectorSearchWithContiguity } from '../../cognitive/temporal-contiguity.js';
 import { isMultiQueryEnabled, isEmbeddingExpansionEnabled, isMemorySummariesEnabled, isQueryDecompositionEnabled, isGraphConceptRoutingEnabled, isLlmReformulationEnabled, isHyDEEnabled, isQuerySurrogatesEnabled, isTemporalContiguityEnabled, isQueryConceptExpansionEnabled } from '../search-flags.js';
@@ -676,7 +675,7 @@ async function executeStage1Core(input: Stage1Input, startTime: number): Promise
     // Generate one embedding per concept
     const conceptEmbeddings: Float32Array[] = [];
     for (const concept of concepts) {
-      const emb = await embeddings.generateQueryEmbedding(concept);
+      const emb = await vectorIndex.generateQueryEmbedding(concept);
       if (!emb) {
         throw new Error(
           `[stage1-candidate-gen] Failed to generate embedding for concept: "${concept}"`
@@ -700,7 +699,7 @@ async function executeStage1Core(input: Stage1Input, startTime: number): Promise
     // Fix #16 — Cache this embedding for reuse in constitutional injection path
     // To avoid a duplicate generateQueryEmbedding() call.
     const effectiveEmbedding: Float32Array | number[] | null =
-      queryEmbedding ?? (await embeddings.generateQueryEmbedding(query));
+      queryEmbedding ?? (await vectorIndex.generateQueryEmbedding(query));
     cachedEmbedding = effectiveEmbedding;
 
     if (!effectiveEmbedding) {
@@ -752,7 +751,7 @@ async function executeStage1Core(input: Stage1Input, startTime: number): Promise
             const facetSettledResults = await withTimeout(
               Promise.allSettled(
                 allQueries.map(async (q): Promise<PipelineRow[]> => {
-                  const facetEmbedding = await embeddings.generateQueryEmbedding(q);
+                  const facetEmbedding = await vectorIndex.generateQueryEmbedding(q);
                   if (!facetEmbedding) {
                     console.warn('[stage1-candidate-gen] D2 facet embedding generation returned null');
                     return [];
@@ -815,7 +814,7 @@ async function executeStage1Core(input: Stage1Input, startTime: number): Promise
           const variantSettledResults = await withTimeout(
             Promise.allSettled(
               queryVariants.map(async (variant): Promise<PipelineRow[]> => {
-                const variantEmbedding = await embeddings.generateQueryEmbedding(variant);
+                const variantEmbedding = await vectorIndex.generateQueryEmbedding(variant);
                 if (!variantEmbedding) {
                   console.warn('[stage1-candidate-gen] Deep variant embedding generation returned null');
                   return [];
@@ -913,7 +912,7 @@ async function executeStage1Core(input: Stage1Input, startTime: number): Promise
                 );
                 return [];
               }),
-              embeddings.generateQueryEmbedding(expanded.combinedQuery).then(
+              vectorIndex.generateQueryEmbedding(expanded.combinedQuery).then(
                 async (expandedEmb): Promise<PipelineRow[]> => {
                   if (!expandedEmb) {
                     console.warn('[stage1-candidate-gen] Expanded query embedding generation returned null');
@@ -1014,7 +1013,7 @@ async function executeStage1Core(input: Stage1Input, startTime: number): Promise
 
   else if (searchType === 'vector') {
     const effectiveEmbedding: Float32Array | number[] | null =
-      queryEmbedding ?? (await embeddings.generateQueryEmbedding(query));
+      queryEmbedding ?? (await vectorIndex.generateQueryEmbedding(query));
 
     if (!effectiveEmbedding) {
       throw new Error('[stage1-candidate-gen] Failed to generate embedding for vector search query');
@@ -1112,7 +1111,7 @@ async function executeStage1Core(input: Stage1Input, startTime: number): Promise
     if (existingConstitutional.length === 0) {
       // Fix #16 — Reuse cached embedding instead of generating a new one
       const constitutionalEmbedding: Float32Array | number[] | null =
-        cachedEmbedding ?? queryEmbedding ?? (await embeddings.generateQueryEmbedding(query));
+        cachedEmbedding ?? queryEmbedding ?? (await vectorIndex.generateQueryEmbedding(query));
 
       if (constitutionalEmbedding) {
         const constitutionalResults = vectorIndex.vectorSearch(
@@ -1176,7 +1175,7 @@ async function executeStage1Core(input: Stage1Input, startTime: number): Promise
 
       if (allQueries.length > 1) {
         const reformEmbedding: Float32Array | number[] | null =
-          cachedEmbedding ?? queryEmbedding ?? (await embeddings.generateQueryEmbedding(query));
+          cachedEmbedding ?? queryEmbedding ?? (await vectorIndex.generateQueryEmbedding(query));
 
         if (reformEmbedding) {
           // FIX #7: Use Promise.allSettled so one failing reformulation
@@ -1184,7 +1183,7 @@ async function executeStage1Core(input: Stage1Input, startTime: number): Promise
           const reformSettledResults = await Promise.allSettled(
             allQueries.map(async (q, idx): Promise<PipelineRow[]> => {
               // Reuse cached embedding for original query (idx 0); generate fresh for variants
-              const emb = idx === 0 ? reformEmbedding : await embeddings.generateQueryEmbedding(q);
+              const emb = idx === 0 ? reformEmbedding : await vectorIndex.generateQueryEmbedding(q);
               if (!emb) {
                 console.warn('[stage1-candidate-gen] LLM reform embedding generation returned null');
                 return [];
@@ -1304,7 +1303,7 @@ async function executeStage1Core(input: Stage1Input, startTime: number): Promise
       const db = requireDb();
       if (checkScaleGate(db)) {
         const summaryEmbedding: Float32Array | number[] | null =
-          queryEmbedding ?? (await embeddings.generateQueryEmbedding(query));
+          queryEmbedding ?? (await vectorIndex.generateQueryEmbedding(query));
 
         if (summaryEmbedding) {
           const summaryResults = querySummaryEmbeddings(db, summaryEmbedding, limit);

@@ -34,6 +34,7 @@ describe('016/001 EmbedderRegistry', () => {
     expect(mxbai?.dim).toBe(1024);
     expect(mxbai?.backend).toBe('ollama');
     expect(mxbai?.ollamaName).toBe('mxbai-embed-large:latest');
+    expect(mxbai?.maxInputChars).toBe(1200);
   });
 
   it('getManifest returns undefined for unknown name', () => {
@@ -45,6 +46,7 @@ describe('016/001 EmbedderRegistry', () => {
     const nomic = getManifest('nomic-embed-text-v1.5');
     expect(nomic?.prefixQuery).toBe('search_query: ');
     expect(nomic?.prefixDocument).toBe('search_document: ');
+    expect(nomic?.maxInputChars).toBe(8000);
   });
 
   it('embeddinggemma-300m baseline does NOT declare prefix tokens', () => {

@@ -12,6 +12,8 @@ import { formatAgeString as format_age_string } from '../utils/format-helpers.js
 import { createLogger } from '../utils/logger.js';
 import { recordHistory } from '../storage/history.js';
 import * as embeddingsProvider from '../providers/embeddings.js';
+import { DEFAULT_ACTIVE_EMBEDDER, getActiveEmbedder } from '../embedders/schema.js';
+import { getAdapter } from '../embedders/registry.js';
 import {
   get_error_message,
   parse_trigger_phrases,
@@ -48,6 +50,12 @@ type CleanupOptions = {
   maxConfidence?: number;
   limit?: number;
 };
+type VectorSource = {
+  dim: number;
+  tableName: string;
+  idColumn: string;
+  embeddingColumn: string;
+};
 
 function appendSpecFolderScope(
   clauses: string[],
@@ -58,6 +66,36 @@ function appendSpecFolderScope(
   if (!specFolder) return;
   clauses.push(`(${column} = ? OR ${column} LIKE ?)`);
   params.push(specFolder, `${specFolder}/%`);
+}
+
+function tableExists(database: Database.Database, tableName: string): boolean {
+  const row = database.prepare(`
+    SELECT 1 AS found
+    FROM sqlite_master
+    WHERE type = 'table' AND name = ?
+    LIMIT 1
+  `).get(tableName) as { found?: number } | undefined;
+  return row?.found === 1;
+}
+
+function activeVectorSource(database: Database.Database): VectorSource {
+  const active = getActiveEmbedder(database);
+  const dimTableName = `vec_${active.dim}`;
+  if (active.name !== DEFAULT_ACTIVE_EMBEDDER.name && tableExists(database, dimTableName)) {
+    return {
+      dim: active.dim,
+      tableName: dimTableName,
+      idColumn: 'id',
+      embeddingColumn: 'vec',
+    };
+  }
+
+  return {
+    dim: get_embedding_dim(),
+    tableName: 'vec_memories',
+    idColumn: 'rowid',
+    embeddingColumn: 'embedding',
+  };
 }
 
 /* ───────────────────────────────────────────────────────────────
@@ -198,11 +236,10 @@ export function vector_search(
     includeArchived = false
   } = options;
 
-  // M9 FIX: Validate embedding dimension before querying
-  const expected_dim = get_embedding_dim();
-  if (!query_embedding || query_embedding.length !== expected_dim) {
+  const vectorSource = activeVectorSource(database);
+  if (!query_embedding || query_embedding.length !== vectorSource.dim) {
     throw new VectorIndexError(
-      `Invalid embedding dimension: expected ${expected_dim}, got ${query_embedding?.length}`,
+      `Invalid embedding dimension: expected ${vectorSource.dim}, got ${query_embedding?.length}`,
       VectorIndexErrorCode.EMBEDDING_VALIDATION,
     );
   }
@@ -265,11 +302,11 @@ export function vector_search(
     SELECT sub.*,
            ROUND((1 - sub.distance / 2) * 100, 2) as similarity
     FROM (
-      SELECT m.*, vec_distance_cosine(v.embedding, ?) as distance,
+      SELECT m.*, vec_distance_cosine(v.${vectorSource.embeddingColumn}, ?) as distance,
              ${decay_expr} as effective_importance
       FROM memory_index m
       JOIN active_memory_projection p ON p.active_memory_id = m.id
-      JOIN vec_memories v ON m.id = v.rowid
+      JOIN ${vectorSource.tableName} v ON m.id = v.${vectorSource.idColumn}
       WHERE ${where_clauses.join(' AND ')}
     ) sub
     WHERE sub.distance <= ?
@@ -338,11 +375,11 @@ export function multi_concept_search(
     throw new VectorIndexError('Multi-concept search requires 2-5 concepts', VectorIndexErrorCode.QUERY_FAILED);
   }
 
-  const expected_dim = get_embedding_dim();
+  const vectorSource = activeVectorSource(database);
   for (const emb of concepts) {
-    if (!emb || emb.length !== expected_dim) {
+    if (!emb || emb.length !== vectorSource.dim) {
       throw new VectorIndexError(
-        `Invalid embedding dimension: expected ${expected_dim}, got ${emb?.length}`,
+        `Invalid embedding dimension: expected ${vectorSource.dim}, got ${emb?.length}`,
         VectorIndexErrorCode.QUERY_FAILED,
       );
     }
@@ -354,11 +391,11 @@ export function multi_concept_search(
   const max_distance = 2 * (1 - minSimilarity / 100);
 
   const distance_expressions = concept_buffers.map((_, i) =>
-    `vec_distance_cosine(v.embedding, ?) as dist_${i}`
+    `vec_distance_cosine(v.${vectorSource.embeddingColumn}, ?) as dist_${i}`
   ).join(', ');
 
   const distance_filters = concept_buffers.map((_, _i) =>
-    `vec_distance_cosine(v.embedding, ?) <= ?`
+    `vec_distance_cosine(v.${vectorSource.embeddingColumn}, ?) <= ?`
   ).join(' AND ');
 
   const folder_filter = specFolder ? 'AND (m.spec_folder = ? OR m.spec_folder LIKE ?)' : '';
@@ -379,7 +416,7 @@ export function multi_concept_search(
         ${distance_expressions}
       FROM memory_index m
       JOIN active_memory_projection p ON p.active_memory_id = m.id
-      JOIN vec_memories v ON m.id = v.rowid
+      JOIN ${vectorSource.tableName} v ON m.id = v.${vectorSource.idColumn}
       WHERE m.embedding_status = 'success'
         AND (m.expires_at IS NULL OR m.expires_at > datetime('now'))
         ${folder_filter}
@@ -596,6 +633,25 @@ export async function generate_query_embedding(query: string): Promise<Float32Ar
   }
 
   try {
+    const database = initialize_db();
+    const active = getActiveEmbedder(database);
+    if (active.name !== DEFAULT_ACTIVE_EMBEDDER.name) {
+      const adapter = getAdapter(active.name);
+      if (!adapter) {
+        console.warn(`[vector-index] Active embedder adapter unavailable: ${active.name}`);
+        return null;
+      }
+
+      const activeAdapter = adapter as typeof adapter & {
+        embed: (
+          texts: ReadonlyArray<string>,
+          options?: { inputType?: 'query' | 'document' },
+        ) => Promise<Float32Array[]>;
+      };
+      const [embedding] = await activeAdapter.embed([query.trim()], { inputType: 'query' });
+      return embedding ?? null;
+    }
+
     const embeddings = embeddingsProvider;
     const embedding = await embeddings.generateQueryEmbedding(query.trim());
     return embedding;

@@ -133,6 +133,43 @@ describe('016/002 OllamaAdapter', () => {
     ]);
   });
 
+  it('truncates inputs longer than manifest maxInputChars before POST', async () => {
+    const adapter = new OllamaAdapter(testManifest({ maxInputChars: 5 }));
+
+    installFetchMock(async (_input, init) => {
+      const payload = JSON.parse(String(init?.body)) as { input: string[] };
+      expect(payload.input).toEqual(['abcde']);
+      return jsonResponse({ embeddings: [vector(3, 1)] });
+    });
+
+    await adapter.embed(['abcdefghij']);
+  });
+
+  it('sends inputs within manifest maxInputChars as-is', async () => {
+    const adapter = new OllamaAdapter(testManifest({ maxInputChars: 10 }));
+
+    installFetchMock(async (_input, init) => {
+      const payload = JSON.parse(String(init?.body)) as { input: string[] };
+      expect(payload.input).toEqual(['abcdef']);
+      return jsonResponse({ embeddings: [vector(3, 1)] });
+    });
+
+    await adapter.embed(['abcdef']);
+  });
+
+  it('does not truncate when maxInputChars is undefined', async () => {
+    const adapter = new OllamaAdapter(testManifest());
+    const longInput = 'x'.repeat(2000);
+
+    installFetchMock(async (_input, init) => {
+      const payload = JSON.parse(String(init?.body)) as { input: string[] };
+      expect(payload.input).toEqual([longInput]);
+      return jsonResponse({ embeddings: [vector(3, 1)] });
+    });
+
+    await adapter.embed([longInput]);
+  });
+
   it('ready() reads /api/tags and checks the ollama model name', async () => {
     const adapter = new OllamaAdapter(requireManifest('nomic-embed-text-v1.5'));
 

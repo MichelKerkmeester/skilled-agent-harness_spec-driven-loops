@@ -65,6 +65,12 @@ export interface EmbedderManifest {
   /** Prepended to document text. Required by nomic-embed (`"search_document: "`). */
   readonly prefixDocument?: string;
 
+  /**
+   * Maximum input characters sent to the backend after any required prefix is
+   * applied. Leave undefined when the backend/provider handles long inputs.
+   */
+  readonly maxInputChars?: number;
+
   /** Free-form notes (chosen-because, known-quirks, etc.). */
   readonly notes?: string;
 }

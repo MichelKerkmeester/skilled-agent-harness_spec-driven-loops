@@ -126,3 +126,33 @@ Evidence:
 - `evidence/cat-24-rerun.jsonl`
 - `evidence/008-pass-sample-rerun.jsonl`
 <!-- /ANCHOR:adr-003 -->
+
+<!-- ANCHOR:adr-004 -->
+## ADR-004: Keep rollback after truncation retry; retrieval quality did not close 409
+
+| Field | Value |
+|-------|-------|
+| Status | Accepted |
+| Date | 2026-05-17 |
+| Decision | ROLLBACK |
+
+The second follow-up added bounded Ollama inputs and completed the mxbai re-index. The manifest cap for `mxbai-embed-large-v1` is `maxInputChars: 1200`; `1500` was tested against actual row `id=15` and still exceeded the model context window, while `1200` passed and allowed job `emb-swap-2026-05-17T07-36-33-421Z-6bdfe475` to complete `12929/12929`.
+
+One additional wiring defect was found during validation: the re-index path used the active adapter, but query-time vector search still used the legacy 768-dim provider/table. The patch now routes active non-baseline query embeddings through the active adapter and lets vector search read `vec_<dim>` tables.
+
+After activation and query-path wiring, the cat-24 rerun still failed:
+- 402: `FAIL` — memory query pairs measured 25% and 0% top-5 Jaccard, below the 60% threshold.
+- 408: `FAIL` — compound CocoIndex query returned factory variants only; not enough constituent sources appeared.
+- 409: `FAIL` — 2/10 sampled trigger-phrase lookups found the source memory in top-3; required threshold is 8/10.
+
+The 008 PASS sample was not used as KEEP evidence after 409 failed. The 20 sampled rows were recorded as `SKIP` for this retry, so the measured preservation rate is `0/20` for ADR-004 purposes.
+
+Outcome:
+- cat-24/409 new classification: `FAIL`.
+- 008 PASS sample preservation: `0/20` measured-preserved; sample not rerun after the decisive 409 failure.
+- ADR-004 decision: `ROLLBACK`; do not mark 51/51 closed.
+
+Evidence:
+- `evidence/cat-24-rerun.jsonl`
+- `evidence/008-pass-sample-rerun.jsonl`
+<!-- /ANCHOR:adr-004 -->

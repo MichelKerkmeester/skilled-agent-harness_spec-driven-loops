@@ -41,6 +41,7 @@ const MANIFESTS: ReadonlyArray<EmbedderManifest> = Object.freeze([
     ollamaName: 'nomic-embed-text:v1.5',
     prefixQuery: 'search_query: ',
     prefixDocument: 'search_document: ',
+    maxInputChars: 8000,
     notes: 'Drop-in 768-dim swap candidate. Retrieval-specialist trained on 235M pairs with hard negatives. Requires prefix tokens.',
   },
   {
@@ -48,6 +49,7 @@ const MANIFESTS: ReadonlyArray<EmbedderManifest> = Object.freeze([
     dim: 1024,
     backend: 'ollama',
     ollamaName: 'mxbai-embed-large:latest',
+    maxInputChars: 1200,
     notes: 'Phase 016/004 target. AnglE loss explicitly optimizes paraphrase cosine — directly addresses 008/cat-24/409 LLM-made-memory recall.',
   },
   {

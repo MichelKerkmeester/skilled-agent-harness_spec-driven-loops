@@ -170,6 +170,7 @@ export class OllamaAdapter implements EmbedderAdapter {
 
   private readonly ollamaTag: string;
   private readonly baseUrl: string;
+  private readonly maxInputChars?: number;
 
   constructor(private readonly manifest: EmbedderManifest) {
     if (manifest.backend !== 'ollama') {
@@ -182,6 +183,7 @@ export class OllamaAdapter implements EmbedderAdapter {
     this.prefixDocument = manifest.prefixDocument;
     this.ollamaTag = getManifestModelName(manifest);
     this.baseUrl = getOllamaBaseUrl();
+    this.maxInputChars = manifest.maxInputChars;
   }
 
   async embed(texts: ReadonlyArray<string>, options: OllamaEmbedOptions = {}): Promise<Float32Array[]> {
@@ -189,7 +191,7 @@ export class OllamaAdapter implements EmbedderAdapter {
       return [];
     }
 
-    const input = texts.map((text) => this.applyPrefix(text, options.inputType ?? 'document'));
+    const input = texts.map((text) => this.prepareInput(text, options.inputType ?? 'document'));
     const body = await this.postEmbed(input);
     const rows = parseEmbeddingRows(body);
 
@@ -221,6 +223,20 @@ export class OllamaAdapter implements EmbedderAdapter {
   private applyPrefix(text: string, inputType: OllamaInputType): string {
     const prefix = inputType === 'query' ? this.prefixQuery : this.prefixDocument;
     return prefix ? `${prefix}${text}` : text;
+  }
+
+  private prepareInput(text: string, inputType: OllamaInputType): string {
+    const input = this.applyPrefix(text, inputType);
+    if (this.maxInputChars === undefined) {
+      return input;
+    }
+
+    const safeMaxInputChars = Math.floor(this.maxInputChars);
+    if (!Number.isFinite(safeMaxInputChars) || safeMaxInputChars <= 0 || input.length <= safeMaxInputChars) {
+      return input;
+    }
+
+    return input.slice(0, safeMaxInputChars);
   }
 
   private async postEmbed(input: ReadonlyArray<string>): Promise<unknown> {
