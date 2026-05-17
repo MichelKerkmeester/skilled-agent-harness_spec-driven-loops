@@ -158,6 +158,14 @@ describe('memory_context advisory metadata', () => {
       preferredTool: 'code_graph_query',
     });
     expect(parsed.data.queryIntentRouting.routedBackend).toBe('structural');
+    expect(parsed.data.queryIntentRouting.intent).toBe('structural');
+    expect(parsed.data.queryIntentRouting.intentTelemetry).toMatchObject({
+      intent: 'structural',
+      confidence: 0.95,
+      matchedKeywords: ['what calls'],
+      classifierVersion: 'query-intent-v1',
+    });
+    expect(typeof parsed.data.queryIntentRouting.intentTelemetry.runtimeId).toBe('string');
     expect(parsed.data.structuralRoutingNudge.message).toContain('Prefer `code_graph_query`');
     expect(parsed.hints).toContain(parsed.data.structuralRoutingNudge.message);
   });

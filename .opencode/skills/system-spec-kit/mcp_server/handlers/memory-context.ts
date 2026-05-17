@@ -16,6 +16,7 @@ import type { IntentTelemetry } from '../lib/search/intent-classifier.js';
 
 // Query-intent routing across the code-graph process boundary.
 import { callCodeGraphTool, classifyQueryIntent } from '../lib/code-graph-boundary.js';
+import { detectRuntime } from '../lib/runtime-detection.js';
 
 // Core handlers for routing
 import { handleMemorySearch } from './memory-search.js';
@@ -210,6 +211,8 @@ interface QueryIntentMetadata {
   confidence: number;
   matchedKeywords?: string[];
 }
+
+const QUERY_INTENT_TELEMETRY_VERSION = 'query-intent-v1';
 
 interface StrategyErrorPayload {
   error: string;
@@ -1743,14 +1746,23 @@ async function handleMemoryContext(args: ContextArgs): Promise<MCPResponse> {
       responseData.graphContext = graphContextResult;
     }
     if (queryIntentMetadata) {
+      const runtimeId = detectRuntime().runtime;
       // REQ-004 (Cluster 2): Annotate explicitly so callers do not confuse this
       // backend-channel selector with the authoritative `meta.intent` task intent.
       responseData.queryIntentRouting = {
         ...queryIntentMetadata,
+        intent: queryIntentMetadata.queryIntent,
         route: queryIntentMetadata.routedBackend,
         classificationKind: 'backend-routing',
         authoritativeFor: ['channel-selection'],
         seeAlso: 'meta.intent',
+        intentTelemetry: {
+          intent: queryIntentMetadata.queryIntent,
+          confidence: queryIntentMetadata.confidence,
+          matchedKeywords: queryIntentMetadata.matchedKeywords ?? [],
+          classifierVersion: QUERY_INTENT_TELEMETRY_VERSION,
+          runtimeId,
+        },
       };
     }
     const structuralRoutingNudge = buildStructuralRoutingNudge(

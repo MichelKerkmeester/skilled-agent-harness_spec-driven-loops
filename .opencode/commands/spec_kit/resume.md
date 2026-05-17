@@ -418,6 +418,8 @@ Call MCP tools directly — NEVER through Code Mode.
 
 **Note:** No `memory_load` tool. Use `session_bootstrap()` as the canonical first recovery call, or `memory_context({ mode: "resume", profile: "resume" })` when you want the direct resume-retrieval primitive. In the current handler, resume mode is effectively a focused recovery search over the anchors `state`, `next-steps`, `summary`, and `blockers`; use `memory_search` with `includeContent: true` only when one of those essential signals is still missing.
 
+SEARCH ROUTING: when resume reveals code-search follow-up work, send semantic or concept discovery to `mcp__cocoindex_code__search`, structural questions to `code_graph_query`, and exact literal text checks to grep-style search. This is the same routing contract surfaced by `session_bootstrap()` and `session_resume()`.
+
 ### Session Deduplication
 
 - Prefer deterministic ranked active candidates (archive/test/fixture filtered)
