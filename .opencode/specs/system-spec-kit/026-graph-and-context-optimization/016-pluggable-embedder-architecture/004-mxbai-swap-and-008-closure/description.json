@@ -1,6 +1,6 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-pluggable-embedder-architecture/004-mxbai-swap-and-008-closure",
-  "description": "016/004: mxbai-embed-large swap + close 008 cat-24/409",
+  "description": "016/004: mxbai-embed-large swap attempted; rollback after activation failure",
   "keywords": [
     "016",
     "004",
@@ -11,7 +11,7 @@
     "cat-24",
     "409"
   ],
-  "lastUpdated": "2026-05-17T06:35:18.410Z",
+  "lastUpdated": "2026-05-17T07:12:30.000Z",
   "specId": "004",
   "folderSlug": "mxbai-swap-and-008-closure",
   "parentChain": [

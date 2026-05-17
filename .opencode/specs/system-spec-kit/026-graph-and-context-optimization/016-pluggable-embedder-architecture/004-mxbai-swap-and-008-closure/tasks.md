@@ -9,15 +9,17 @@ _memory:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-pluggable-embedder-architecture/004-mxbai-swap-and-008-closure"
     last_updated_at: "2026-05-17T08:15:00Z"
     last_updated_by: "main_agent"
-    recent_action: "Scaffolded tasks stub"
-    next_safe_action: "After 016/003 ships; cli-opencode deepseek-v4-pro picks T0.1"
-    blockers: ["016/003"]
-    key_files: []
+    recent_action: "Marked execution results after failed mxbai activation"
+    next_safe_action: "Fix Ollama model-name mapping before retrying T1.1"
+    blockers: ["mxbai-embed-large-v1 activation failed at 0/12928"]
+    key_files:
+      - "decision-record.md"
+      - "evidence/mxbai-swap-status.json"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "016-004-tasks"
       parent_session_id: null
-    completion_pct: 5
+    completion_pct: 80
     open_questions: []
     answered_questions: []
 ---
@@ -34,48 +36,48 @@ _memory:
 <!-- /ANCHOR:notation -->
 <!-- ANCHOR:phase-1 -->
 ## 2. PHASE 1: SETUP
-- [ ] T0.1: Confirm 016/001, 016/002, 016/003 all shipped on main
-- [ ] T0.2: `git pull origin main`
-- [ ] T0.3: `ollama pull mxbai-embed-large`
-- [ ] T0.4: `mcp__mk_spec_memory__checkpoint_create({name: "pre-016-004-mxbai-swap-<UTC>"})`
-- [ ] T0.5: Capture baseline `ps aux | grep mcp-server` + `du -sh database/` for footprint comparison
+- [x] T0.1: Confirm 016/001, 016/002, 016/003 all shipped on main (`HEAD=eb9563fba`, required commits present)
+- [x] T0.2: `git pull origin main` (`Already up to date`)
+- [x] T0.3: `ollama pull mxbai-embed-large`
+- [x] T0.4: `mcp__mk_spec_memory__checkpoint_create({name: "pre-016-004-mxbai-swap-<UTC>"})` (id=3)
+- [x] T0.5: Capture baseline `ps aux | grep mcp-server` + `du -sh database/` for footprint comparison
 
 
 <!-- /ANCHOR:phase-1 -->
 <!-- ANCHOR:phase-2 -->
 ## 3. PHASE 2: IMPLEMENTATION
 ### Swap
-- [ ] T1.1: `mcp__mk_spec_memory__embedder_set({name: "mxbai-embed-large-v1"})` — capture jobId
-- [ ] T1.2: Poll `embedder_status` every 60 s until `completed`
-- [ ] T1.3: Verify active pointer: `embedder_list` shows mxbai-embed-large-v1 active
+- [x] T1.1: `mcp__mk_spec_memory__embedder_set({name: "mxbai-embed-large-v1"})` — captured jobId `emb-swap-2026-05-17T07-10-12-183Z-7078e904`
+- [x] T1.2: Poll `embedder_status`; status became `failed` at `0/12928`
+- [ ] T1.3: Verify active pointer: `embedder_list` shows mxbai-embed-large-v1 active — FAILED; baseline remained active
 
 ### Cat-24 re-run
-- [ ] T2.1: Dispatch cli-opencode for cat-24/402 (synonymy)
-- [ ] T2.2: Dispatch cli-opencode for cat-24/408 (compound concept)
-- [ ] T2.3: Dispatch cli-opencode for cat-24/409 (LLM-made-memory recall)
-- [ ] T2.4: Append rows to `evidence/cat-24-rerun.jsonl`
-- [ ] T2.5: Verify 409 reaches PASS (8/10 top-3) — if not, halt and ADR-002 rollback
+- [ ] T2.1: Dispatch cli-opencode for cat-24/402 (synonymy) — SKIPPED; mxbai not active
+- [ ] T2.2: Dispatch cli-opencode for cat-24/408 (compound concept) — SKIPPED; mxbai not active
+- [ ] T2.3: Dispatch cli-opencode for cat-24/409 (LLM-made-memory recall) — SKIPPED; mxbai not active
+- [x] T2.4: Append rows to `evidence/cat-24-rerun.jsonl`
+- [ ] T2.5: Verify 409 reaches PASS (8/10 top-3) — NOT MET; rollback ADR-002 recorded
 
 ### 008 PASS sample re-run
-- [ ] T3.1: Pick 20-scenario sample across cat-01, cat-11, cat-15, cat-13, cat-23
-- [ ] T3.2: Dispatch cli-devin SWE-1.6 paired for the sample
-- [ ] T3.3: Append rows to `evidence/008-pass-sample-rerun.jsonl`
-- [ ] T3.4: Verify ≥ 19/20 PASS preserved — if not, halt and ADR-002 rollback
+- [x] T3.1: Pick 20-scenario sample across cat-01, cat-11, cat-15, cat-13, cat-23
+- [ ] T3.2: Dispatch cli-devin SWE-1.6 paired for the sample — SKIPPED; mxbai not active
+- [x] T3.3: Append rows to `evidence/008-pass-sample-rerun.jsonl`
+- [ ] T3.4: Verify ≥ 19/20 PASS preserved — NOT MEASURED; rollback ADR-002 recorded
 
 ### Benchmark + decision
-- [ ] T4.1: Aggregate cat-24-rerun + 008-pass-sample into `evidence/swap-benchmark.csv`
-- [ ] T4.2: Measure cosine on known weak pair (target ≥ 0.43)
-- [ ] T4.3: Author `decision-record.md` ADR-001 (keep mxbai-embed-large)
-- [ ] T4.4: Update packet 008's implementation-summary.md to mark cat-24/409 CLOSED
-- [ ] T4.5: Update packet 115's implementation-summary.md to mark SUPERSEDED by 016
+- [x] T4.1: Aggregate cat-24-rerun + 008-pass-sample into `evidence/swap-benchmark.csv`
+- [ ] T4.2: Measure cosine on known weak pair (target ≥ 0.43) — SKIPPED; mxbai not active
+- [x] T4.3: Author `decision-record.md` ADR-001 (ROLLBACK) + ADR-002 failure mode
+- [x] T4.4: Update packet 008's implementation-summary.md to record 016/004 attempted closure but cat-24/409 remains open
+- [x] T4.5: Update packet 115's implementation-summary.md to mark SUPERSEDED by 016's pluggable architecture
 
 
 <!-- /ANCHOR:phase-2 -->
 <!-- ANCHOR:phase-3 -->
 ## 4. PHASE 3: VERIFICATION
-- [ ] T5.1: strict-validate 016/004 exit 0
-- [ ] T5.2: strict-validate 008 still exit 0
-- [ ] T5.3: Memory save via `/memory:save`
+- [x] T5.1: strict-validate 016/004 exit 0
+- [x] T5.2: strict-validate 008 still exit 0
+- [ ] T5.3: Memory save via `/memory:save` — attempted; `memory_save` returned E081 even on dry-run
 - [ ] T5.4: Commit + push: `feat(016/004): mxbai-embed-large swap — closes 008 cat-24/409 (51/51 FAILs)`
 
 
@@ -98,5 +100,3 @@ _memory:
 - Phase parent: 016-pluggable-embedder-architecture
 
 <!-- /ANCHOR:cross-refs -->
-
-

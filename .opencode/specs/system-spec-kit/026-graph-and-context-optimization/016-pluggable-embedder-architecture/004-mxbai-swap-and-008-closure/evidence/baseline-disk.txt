@@ -1,0 +1,1 @@
+788M	.opencode/skills/system-spec-kit/mcp_server/database/

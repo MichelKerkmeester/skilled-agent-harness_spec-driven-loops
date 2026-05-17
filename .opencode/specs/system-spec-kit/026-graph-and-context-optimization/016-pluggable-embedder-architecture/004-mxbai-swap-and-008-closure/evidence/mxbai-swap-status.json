@@ -1,0 +1,41 @@
+{
+  "packet": "016/004",
+  "timestamp": "2026-05-17T07:12:30Z",
+  "checkpoint": {
+    "id": 3,
+    "name": "pre-016-004-mxbai-swap-2026-05-17T07-12-00Z",
+    "createdAt": "2026-05-17T07:10:06.917Z",
+    "purpose": "mxbai-embed-large swap rollback insurance"
+  },
+  "attempted_swap": {
+    "jobId": "emb-swap-2026-05-17T07-10-12-183Z-7078e904",
+    "fromName": "embeddinggemma-300m",
+    "toName": "mxbai-embed-large-v1",
+    "status": "failed",
+    "total": 12928,
+    "processed": 0,
+    "error": "Ollama embedding request failed (400 Bad Request): [object Object]"
+  },
+  "active_pointer_after_failure": {
+    "name": "embeddinggemma-300m",
+    "dim": 768,
+    "backend": "llama-cpp",
+    "active": true,
+    "ready": true
+  },
+  "rollback": {
+    "command": "embedder_set({ name: \"embeddinggemma-300m\" })",
+    "jobId": "emb-swap-2026-05-17T07-11-35-980Z-eb8735c3",
+    "status_at_capture": "running",
+    "status_at_capture_detail": "same-to-same baseline re-index; active pointer already remained on embeddinggemma-300m",
+    "processed_at_capture": 1050,
+    "total": 12928,
+    "eta_seconds_at_capture": 4551
+  },
+  "direct_ollama_probe": {
+    "model_mxbai_embed_large": "PASS: /api/embed returned embeddings",
+    "model_mxbai_embed_large_v1": "FAIL: model \"mxbai-embed-large-v1\" not found, try pulling it first",
+    "evidence_file": "evidence/ollama-direct-embed-probe.txt",
+    "inference": "The local Ollama model is available as mxbai-embed-large; the failed MCP job likely used or exposed the manifest name mxbai-embed-large-v1 in a way Ollama rejected."
+  }
+}

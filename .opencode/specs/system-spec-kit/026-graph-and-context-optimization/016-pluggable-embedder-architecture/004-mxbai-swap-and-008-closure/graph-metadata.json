@@ -16,7 +16,8 @@
       "first concrete embedder swap",
       "016/004 plan",
       "016/004 tasks",
-      "016/004 summary"
+      "016/004 summary",
+      "mxbai rollback"
     ],
     "key_topics": [
       "016",
@@ -33,12 +34,15 @@
       "plan"
     ],
     "importance_tier": "normal",
-    "status": "complete",
+    "status": "rollback",
     "key_files": [
       "implementation-summary.md",
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "decision-record.md",
+      "evidence/mxbai-swap-status.json",
+      "evidence/swap-benchmark.csv"
     ],
     "entities": [
       {
@@ -186,16 +190,17 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Use the pluggable mechanism (built in 001/002/003) to perform the first real swap. Target: **mxbai-embed-large-v1** — chosen for cosine-optimized AnglE-loss training that directly addresses the paraphrase weakness behind cat-24/409.",
+    "causal_summary": "016/004 attempted the first concrete mxbai-embed-large-v1 swap through the pluggable embedder mechanism. The swap failed before re-index processing with an Ollama 400 response, the active pointer remained on embeddinggemma-300m, and ADR-001 records rollback rather than closing cat-24/409.",
     "created_at": "2026-05-17T06:35:18.410Z",
-    "last_save_at": "2026-05-17T06:35:18.410Z",
+    "last_save_at": "2026-05-17T07:12:30.000Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "decision-record.md"
     ]
   }
 }

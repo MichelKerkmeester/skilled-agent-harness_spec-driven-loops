@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: 115 embedding model evaluation"
-description: "Pre-execution stub. Backfilled after Phase 5 with benchmark results, ADR decision, and (if applicable) swap outcomes."
+description: "Superseded by 016 pluggable embedder architecture; 016/004 attempted mxbai activation and rolled back after Ollama failure."
 trigger_phrases:
   - "115 summary"
 importance_tier: "normal"
@@ -10,15 +10,16 @@ _memory:
     packet_pointer: "skilled-agent-orchestration/115-embedding-model-evaluation"
     last_updated_at: "2026-05-17T07:55:00Z"
     last_updated_by: "main_agent"
-    recent_action: "Author pre-execution stub"
-    next_safe_action: "Future session backfills after Phase 5"
-    blockers: []
-    key_files: []
+    recent_action: "Marked superseded by 016 pluggable embedder architecture"
+    next_safe_action: "Continue embedding swap work under 016 after fixing Ollama model-name mapping"
+    blockers: ["016/004 mxbai activation failed before re-index processing"]
+    key_files:
+      - "../system-spec-kit/026-graph-and-context-optimization/016-pluggable-embedder-architecture/004-mxbai-swap-and-008-closure/decision-record.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000115004"
       session_id: "115-summary-stub"
       parent_session_id: null
-    completion_pct: 5
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -34,10 +35,10 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| Status | Scaffolded (Phase 0 not started) |
+| Status | SUPERSEDED by 016 pluggable embedder architecture |
 | Branch | main |
 | Predecessor | `008-mk-spec-memory-stress-test` (cat-24/409 PARTIAL finding) |
-| Wall-clock estimate | 3-6 hours (depends on candidate count + benchmark depth) |
+| Wall-clock estimate | Superseded |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -45,13 +46,13 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## 2. WHAT WAS BUILT
 
-Pre-execution stub. To be backfilled after Phase 5 verification with:
-- Benchmark CSV results across candidate models
-- ADR-001 decision (swap / hybrid / no-change)
-- If swap: implementation diff summary + re-run validation evidence
-- If no-change: explicit accepted-PARTIAL rationale for 008/cat-24/409
+This standalone evaluation scaffold is superseded. Phase 016 built the pluggable embedder architecture first, which is the better execution path for model evaluation because each candidate can be activated through the same registry and re-index surface.
 
-Primary deliverable so far: this scaffold + spec.md + plan.md + tasks.md ready for fresh-session pickup.
+016/004 attempted the first concrete mxbai swap and rolled back after activation failed before any memories were processed. The failure and next action are recorded in:
+
+```text
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-pluggable-embedder-architecture/004-mxbai-swap-and-008-closure/decision-record.md
+```
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -59,13 +60,11 @@ Primary deliverable so far: this scaffold + spec.md + plan.md + tasks.md ready f
 <!-- ANCHOR:how-delivered -->
 ## 3. HOW IT WAS DELIVERED
 
-Pre-execution. Pickup via spec.md §7 (resolve open questions) then plan.md 5-phase flow:
-1. Phase 0: resolve Qs + checkpoint
-2. Phase 1: eval harness (reuse 114 or build)
-3. Phase 2: benchmark sweep
-4. Phase 3: analysis + ADR
-5. Phase 4: implement (if swap chosen)
-6. Phase 5: verify no regression
+No separate 115 execution is needed. The evaluation scope folded into 016:
+1. 016/001 added the adapter interface and registry.
+2. 016/002 added the Ollama adapter and schema layer.
+3. 016/003 added MCP activation/status tooling.
+4. 016/004 attempted mxbai activation and recorded rollback evidence.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -73,11 +72,9 @@ Pre-execution. Pickup via spec.md §7 (resolve open questions) then plan.md 5-ph
 <!-- ANCHOR:decisions -->
 ## 4. KEY DECISIONS
 
-Pre-execution. Pre-decided context from packet 008:
-- Codex K commit `8ec4f1491` (SQL + trigger-lane + rerank fixes) is preserved — DON'T revert during model swap
-- Embedding-model swap is the targeted next step, NOT pipeline-side changes
-- Current model: unsloth-embeddinggemma-300m-GGUF q8 (768-dim)
-- Acceptance: cat-24/409 reaches PASS OR explicit "PARTIAL accepted" rationale
+- SUPERSEDED: use 016 for future embedding-model activation and benchmark work.
+- Codex K commit `8ec4f1491` remains preserved; 016/004 did not edit `lib/search/*`.
+- Current active model after 016/004 remains `embeddinggemma-300m` because mxbai activation failed before re-indexing.
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -85,15 +82,11 @@ Pre-execution. Pre-decided context from packet 008:
 <!-- ANCHOR:verification -->
 ## 5. VERIFICATION
 
-Pre-execution. Future verification gate:
-
-| Check | Target |
-|-------|--------|
-| `evidence/benchmark-results.csv` has row per candidate | ≥ 3 candidates |
-| `decision-record.md` has ADR-001 | Present |
-| 008 cat-24/409 re-run with chosen model | PASS or accepted-PARTIAL with rationale |
-| 008 PASS sample (cat-01/11/15) re-run | No regression (≥ 95% of sample still PASS) |
-| `validate.sh --strict` on packet 115 | exit 0 |
+Superseded by 016 verification. 016/004 has:
+- `decision-record.md` with ADR-001 ROLLBACK and ADR-002 failure mode.
+- `evidence/mxbai-swap-status.json`
+- `evidence/swap-benchmark.csv`
+- strict validation pending under the 016/004 packet.
 <!-- /ANCHOR:verification -->
 
 ---
@@ -101,9 +94,6 @@ Pre-execution. Future verification gate:
 <!-- ANCHOR:limitations -->
 ## 6. KNOWN LIMITATIONS
 
-Pre-execution. Anticipated:
-- Schema-compatible candidate space limited to 768-dim models (or accept dim migration cost)
-- Smaller models may regress on multi-language scenarios if any
-- Model size affects disk/RAM on resource-constrained nodes
-- Benchmark results are domain-specific (mk-spec-memory corpus); MTEB rankings may not transfer
+- Historical scaffold only. Do not resume 115 as an independent packet unless 016 is explicitly abandoned.
+- cat-24/409 is not closed by this supersession; it remains open after 016/004 failed to activate mxbai.
 <!-- /ANCHOR:limitations -->

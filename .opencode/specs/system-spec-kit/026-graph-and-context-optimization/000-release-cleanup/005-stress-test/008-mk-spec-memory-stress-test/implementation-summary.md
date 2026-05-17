@@ -10,8 +10,8 @@ _memory:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/008-mk-spec-memory-stress-test"
     last_updated_at: "2026-05-17T07:58:00Z"
     last_updated_by: "main_agent"
-    recent_action: "Round 7: closed remaining 3 cat-16 deferrals + scaffolded packet 115 for cat-24/409"
-    next_safe_action: "Packet 008 effectively complete — pickup packet 115 for embedding-model evaluation"
+    recent_action: "016/004 attempted mxbai swap; activation failed before validation, so cat-24/409 remains open"
+    next_safe_action: "Fix 016 Ollama adapter/manifest mapping, then retry mxbai activation and rerun cat-24/409"
     blockers: []
     key_files:
       - "handover.md"
@@ -39,16 +39,16 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| Status | COMPLETE coverage (345/345 = **100%**); **50 of 51 total FAILs closed via 40 fix commits across 7 rounds** (3 cat-16 deferrals also closed in Round 7); 1 PARTIAL (cat-24/409 embedding model) handed off to scaffolded packet 115 |
+| Status | COMPLETE coverage (345/345 = **100%**); **50 of 51 total FAILs closed via 40 fix commits across 7 rounds** (3 cat-16 deferrals also closed in Round 7); 1 PARTIAL/OPEN (cat-24/409 embedding model) attempted in 016/004 but not closed because mxbai activation failed |
 | Branch | main |
 | Baseline | post packet 113 (commit b062b12b4) |
 | Pre-sweep checkpoint | `pre-008-sweep-20260516T144620Z` (id=2, global scope, 11,426 memories, 124 MB) — intact end-to-end |
 | Wall-clock actual | ~17 hours total (Phase 0 + Phase 1 + 5 Phase 2 dispatch waves [3 devin + 4 opencode] + 12 codex fix dispatches across 6 rounds, 25 commits total) |
 | Total commits this session | 37 fix + ~12 doc + 2 deferred-followon docs + 1 frontmatter cleanup commit ≈ 52 commits |
-| FAILs closed | **50 of 51 (98%)** — 31 original + 19 newly-surfaced closed; only cat-24/409 (embedding-model) handed to packet 115 |
+| FAILs closed | **50 of 51 (98%)** — 31 original + 19 newly-surfaced closed; cat-24/409 remains open after failed 016/004 mxbai activation |
 | Scenarios covered | **345 of 345 (100%) across all 25 of 25 categories** |
 | Final classification | 57 PASS / 51 FAIL (47 closed by fixes) / 23 PARTIAL / 59 SKIP / 155 UNAUTOMATABLE |
-| Remaining work | Only cat-24/409 embedding-model PARTIAL → handed to packet 115 scaffolded with full spec + plan + tasks + impl-summary |
+| Remaining work | Only cat-24/409 embedding-model PARTIAL/OPEN → packet 115 is superseded by 016 architecture; retry should happen after fixing 016 Ollama model-name mapping |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -61,6 +61,8 @@ _memory:
 **Phase 2 (345 scenarios, 85.8% complete):** Four dispatch waves. Waves 1-3 via paired-parallel cli-devin SWE-1.6 (Wave 1 hit Cognition rate limit after 6 paired-batches; Wave 2 resumed after reset and covered 14 more categories; Wave 3 added cat-14-pipeline remainder + cat-03 retry). Wave 4 via cli-opencode (default OpenAI runtime) cleared the cat-04 + cat-24 tool-rejected blockers that defeated devin: 18 scenarios processed cleanly with sandbox-aware SKIP/FAIL/PARTIAL/PASS classifications. **Final coverage: 296/345 rows across ALL 25 of 25 categories**. Remaining 49 scenarios are mid-batch cuts in cat-14-pipeline + cat-16 splits that didn't fully process under earlier rate limits. Evidence at `evidence/playbook-results.jsonl`.
 
 **Wave 4 (cli-opencode) finding**: Devin SWE-1.6 has a runtime-specific opaque tool-rejection guard. Opencode's default OpenAI runtime doesn't share it. Opencode applied content-aware safety judgment (SKIP'd scenarios that legitimately required mutating real spec-folder state outside sandbox) instead of pre-flight blocking. New cat-24 FAILs surfaced this way: 402 (synonymy retrieval), 408 (compound concept synthesis), 409 (LLM-made-memory recall) — real defects in local-LLM query intelligence subsystem that devin's gate would have hidden.
+
+**016/004 follow-up result (2026-05-17):** The first concrete mxbai swap attempt did not close cat-24/409. `embedder_set({ name: "mxbai-embed-large-v1" })` failed at `0/12928` with `Ollama embedding request failed (400 Bad Request): [object Object]`; `embedder_list()` still showed `embeddinggemma-300m` active. Packet 016/004 recorded ADR-001 ROLLBACK and ADR-002 failure mode. The old 409 evidence remains the authoritative classification: FAIL, only 1/10 exact source IDs observed in top-3/top-5 output.
 
 **16 defect fix commits + 1 deferred-followon doc commit pushed to `main` in same session** via sequential cli-codex (gpt-5.5 reasoning_effort=high, service_tier=fast):
 
@@ -170,4 +172,5 @@ Current state (session end):
 - **70+ UNAUTOMATABLE rate (157/263 = 59.7%)**: cli-devin lacks slash-commands + multi-MCP orchestration that many playbook scenarios assume. Playbook needs runtime-tagged variants OR sweeps should run from richer runtimes (opencode/claude code).
 - **`eval_run_ablation` SKIP**: ground-truth alignment not present in current DB; env blocker unrelated to packet 113.
 - **One commit was bloated and recovered**: `7e5146202` originally captured 3,328 files due to pre-existing index state. Reverted via `54188cf66` and clean-recommitted as `b9437fcc9`. Memory note `feedback_git_add_not_scope_strict` codifies the prevention pattern.
+- **cat-24/409 remains open after 016/004**: mxbai activation failed before re-indexing, so no new PASS/FAIL/PARTIAL recall measurement exists for mxbai. 50/51 remains the honest closure count.
 <!-- /ANCHOR:limitations -->

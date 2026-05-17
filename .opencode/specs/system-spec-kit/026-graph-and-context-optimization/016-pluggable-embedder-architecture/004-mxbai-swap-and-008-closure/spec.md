@@ -12,15 +12,18 @@ _memory:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-pluggable-embedder-architecture/004-mxbai-swap-and-008-closure"
     last_updated_at: "2026-05-17T08:15:00Z"
     last_updated_by: "main_agent"
-    recent_action: "Scaffolded phase 004"
-    next_safe_action: "Pickup via cli-opencode (--model deepseek/deepseek-v4-pro --pure) after 016/003 lands"
-    blockers: ["016/001", "016/002", "016/003"]
-    key_files: []
+    recent_action: "Attempted mxbai swap; embedder_set failed before re-index processing"
+    next_safe_action: "Fix Ollama adapter/manifest model-name mapping, then retry mxbai activation"
+    blockers: ["mxbai-embed-large-v1 activation failed with Ollama 400"]
+    key_files:
+      - "decision-record.md"
+      - "evidence/mxbai-swap-status.json"
+      - "evidence/swap-benchmark.csv"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "016-004-scaffold"
       parent_session_id: null
-    completion_pct: 5
+    completion_pct: 80
     open_questions: []
     answered_questions: []
 ---
@@ -35,7 +38,7 @@ _memory:
 |-------|-------|
 | Level | 1 |
 | Priority | P1 |
-| Status | Scaffolded |
+| Status | ROLLBACK — mxbai activation failed before validation |
 | Branch | main |
 | Runtime | **cli-opencode** (`--model deepseek/deepseek-v4-pro --pure --format json`) |
 | Blocked by | 016/001 + 016/002 + 016/003 |
