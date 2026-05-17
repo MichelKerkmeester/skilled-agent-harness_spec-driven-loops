@@ -1,0 +1,78 @@
+{
+  "name": "@spec-kit/mcp-server",
+  "version": "1.8.0",
+  "description": "Semantic Memory MCP Server - provides 33 tools for semantic search, memory management, validation, checkpoints, causal graphs, session learning, and auto-indexing",
+  "type": "module",
+  "main": "dist/api/index.js",
+  "exports": {
+    ".": "./dist/api/index.js",
+    "./server": "./dist/context-server.js",
+    "./api": "./dist/api/index.js",
+    "./api/*": "./dist/api/*.js"
+  },
+  "bin": {
+    "context-server": "./dist/context-server.js",
+    "spec-kit-cli": "./dist/cli.js"
+  },
+  "scripts": {
+    "build": "tsc --build && node scripts/finalize-dist.mjs",
+    "typecheck": "tsc --noEmit --composite false -p tsconfig.json",
+    "start": "node dist/context-server.js",
+    "check": "npm run lint && npx tsc --noEmit",
+    "check:full": "npm run check && npm run test",
+    "lint": "eslint . --ext .ts",
+    "test": "node scripts/run-tests.mjs",
+    "test:core": "vitest run --exclude tests/file-watcher.vitest.ts",
+    "test:file-watcher": "vitest run tests/file-watcher.vitest.ts",
+    "test:council": "vitest run tests/multi-ai-council-runtime-parity.vitest.ts tests/multi-ai-council-permission-scope.vitest.ts tests/multi-ai-council-audit-trail.vitest.ts tests/multi-ai-council-rollback.vitest.ts tests/council-graph.vitest.ts tests/council-graph-value-scenarios.vitest.ts tests/council-playbook-anchor-integrity.vitest.ts tests/council-helpers-smoke.vitest.ts ../scripts/tests/multi-ai-council-persist-artifacts.vitest.ts skill_advisor/tests/scorer/native-scorer.vitest.ts",
+    "test:council:full": "bash ../scripts/test-council-matrix.sh",
+    "hook-tests": "node --import ../scripts/node_modules/tsx/dist/loader.mjs ../../../../specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/016-hook-plugin-per-runtime-testing/runners/run-all-runtime-hooks.ts",
+    "stress": "vitest run --config vitest.stress.config.ts",
+    "stress:harness": "vitest run --config vitest.stress.config.ts mcp_server/stress_test/search-quality",
+    "stress:matrix": "vitest run --config vitest.stress.config.ts mcp_server/stress_test/matrix",
+    "stress:substrate": "vitest run --config vitest.stress.config.ts mcp_server/stress_test/substrate",
+    "test:task-enrichment": "echo 'Task-enrichment tests run in @spec-kit/scripts workspace'",
+    "test:hydra:phase1": "vitest run tests/memory-roadmap-flags.vitest.ts tests/memory-state-baseline.vitest.ts tests/migration-checkpoint-scripts.vitest.ts tests/vector-index-schema-compatibility.vitest.ts",
+    "test:watch": "vitest",
+    "bench:watcher": "node dist/skill_advisor/bench/watcher-benchmark.js",
+    "setup:codex-policy": "node dist/hooks/codex/setup.js"
+  },
+  "keywords": [
+    "mcp",
+    "claude",
+    "semantic-memory",
+    "vector-search",
+    "auto-indexing"
+  ],
+  "author": "Michel Kerkmeester",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20.11.0"
+  },
+  "dependencies": {
+    "@huggingface/transformers": "^3.8.1",
+    "@modelcontextprotocol/sdk": "^1.24.3",
+    "@spec-kit/shared": "file:../shared",
+    "better-sqlite3": "^12.6.2",
+    "chokidar": "^4.0.3",
+    "ignore": "^5.3.2",
+    "sqlite-vec": "^0.1.7-alpha.2",
+    "tree-sitter-wasms": "^0.1.13",
+    "web-tree-sitter": "^0.24.7",
+    "zod": "^4.1.12",
+    "zod-to-json-schema": "^3.25.2"
+  },
+  "optionalDependencies": {
+    "node-llama-cpp": "^3.15.1",
+    "sqlite-vec-darwin-arm64": "^0.1.7-alpha.2"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.13",
+    "@vitest/coverage-v8": "^4.1.2",
+    "eslint": "^9.39.1",
+    "globals": "^16.4.0",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.46.3",
+    "vitest": "^4.0.18"
+  }
+}
