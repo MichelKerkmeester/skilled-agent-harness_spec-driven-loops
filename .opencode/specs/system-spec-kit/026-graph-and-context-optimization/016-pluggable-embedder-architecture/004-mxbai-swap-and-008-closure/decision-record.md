@@ -9,22 +9,23 @@ contextType: "decision"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-pluggable-embedder-architecture/004-mxbai-swap-and-008-closure"
-    last_updated_at: "2026-05-17T07:24:00Z"
+    last_updated_at: "2026-05-17T08:51:45Z"
     last_updated_by: "codex"
-    recent_action: "Recorded failed mxbai retry after adapter mapping fix"
-    next_safe_action: "Add a model-context-safe re-index input strategy before retrying mxbai activation"
-    blockers: ["mxbai re-index first batch exceeds Ollama model context length"]
+    recent_action: "Recorded jina-v3 empirical rollback"
+    next_safe_action: "Evaluate nomic-embed-text-v1.5 as option B"
+    blockers: ["jina active-vector 409 rerun reached only 4/10 top-3"]
     key_files:
       - "evidence/mxbai-swap-status.json"
       - "evidence/ollama-direct-embed-probe.txt"
       - "evidence/swap-benchmark.csv"
+      - "evidence/cat-24-rerun.jsonl"
     session_dedup:
       fingerprint: "sha256:0160040000000000000000000000000000000000000000000000000000000004"
       session_id: "016-004-mxbai-rollback"
       parent_session_id: null
     completion_pct: 90
     open_questions:
-      - "Should re-index embed full content, summaries, chunks, or model-specific truncated text for bounded-context embedders?"
+      - "Will nomic-embed-text-v1.5 improve cat-24/409 without regressing existing PASS scenarios?"
     answered_questions:
       - "Ollama itself can embed with model mxbai-embed-large on this machine."
       - "mxbai-embed-large-v1 is not an Ollama model tag on this machine."
@@ -156,3 +157,38 @@ Evidence:
 - `evidence/cat-24-rerun.jsonl`
 - `evidence/008-pass-sample-rerun.jsonl`
 <!-- /ANCHOR:adr-004 -->
+
+<!-- ANCHOR:adr-005 -->
+## ADR-005: Roll back jina-embeddings-v3; 409 improved but did not pass
+
+| Field | Value |
+|-------|-------|
+| Status | Accepted |
+| Date | 2026-05-17 |
+| Decision | ROLLBACK |
+
+The Jina v3 candidate used the same pluggable embedder mechanism as the mxbai retry. The registry source now points at the Ollama-compatible GGUF tag:
+
+```text
+hf.co/gaianet/jina-embeddings-v3-GGUF:Q4_K_M
+```
+
+Direct Ollama probing returned 1024-dimensional embeddings, matching the `jina-embeddings-v3` manifest. The original registry tag `jina/jina-embeddings-v3:latest` and fallback `jina-embeddings-v3` were not pullable on this Ollama host.
+
+The first `embedder_set({ name: "jina-embeddings-v3" })` job reached `9100/12929`, then failed on an oversized input because the already-running MCP server had cached the pre-edit manifest without `maxInputChars`. The bounded retry resumed the same job from `9100`, using the source-loaded re-indexer with `maxInputChars: 8000`, and completed `12929/12929`. The active pointer flipped to `jina-embeddings-v3` for validation.
+
+The cat-24 rerun did not close packet 008:
+- 402: `FAIL` - memory query pairs measured 0% and 0% top-5 Jaccard; CocoIndex paired queries also lacked useful overlap.
+- 408: `FAIL` - the compound query returned factory variants but missed enough of `context-server.ts`, the llama-cpp provider, and the 017 summary.
+- 409: `FAIL` - 4/10 sampled trigger-phrase lookups found the source memory in top-3; required threshold is 8/10.
+
+The 008 PASS sample was skipped because 409 failed. There is no KEEP path for Jina without the gate scenario reaching PASS.
+
+Rollback outcome:
+- Active pointer restored to `embeddinggemma-300m` / `vec_768`.
+- The baseline re-index job queued by `embedder_set({ name: "embeddinggemma-300m" })` was cancelled after 200 rows because the baseline vectors already existed and a full re-index would take hours without changing the ADR decision.
+- Next candidate is option B: `nomic-embed-text-v1.5`.
+
+Evidence:
+- `evidence/cat-24-rerun.jsonl`
+<!-- /ANCHOR:adr-005 -->

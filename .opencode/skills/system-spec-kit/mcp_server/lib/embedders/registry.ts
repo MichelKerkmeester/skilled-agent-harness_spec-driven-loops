@@ -70,7 +70,8 @@ const MANIFESTS: ReadonlyArray<EmbedderManifest> = Object.freeze([
     name: 'jina-embeddings-v3',
     dim: 1024,
     backend: 'ollama',
-    ollamaName: 'jina/jina-embeddings-v3:latest',
+    ollamaName: 'hf.co/gaianet/jina-embeddings-v3-GGUF:Q4_K_M',
+    maxInputChars: 8000,
     notes: 'Multilingual + paraphrase-tuned. Matryoshka representation allows 256/512/768/1024 truncation.',
   },
 ]);

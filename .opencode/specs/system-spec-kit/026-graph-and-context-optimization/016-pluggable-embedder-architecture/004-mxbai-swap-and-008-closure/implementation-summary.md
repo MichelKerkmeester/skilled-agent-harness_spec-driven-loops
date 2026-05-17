@@ -1,17 +1,17 @@
 ---
-title: "Summary: 016/004 mxbai swap + 008 closure"
-description: "mxbai retry completed after bounded inputs, but cat-24/409 stayed FAIL; rollback retained and 008 remains open."
+title: "Summary: 016/004 embedder swaps + 008 closure"
+description: "mxbai and jina retries completed, but cat-24/409 stayed FAIL; rollback retained and 008 remains open."
 trigger_phrases: ["016/004 summary"]
 importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-pluggable-embedder-architecture/004-mxbai-swap-and-008-closure"
-    last_updated_at: "2026-05-17T07:47:00Z"
+    last_updated_at: "2026-05-17T08:51:45Z"
     last_updated_by: "main_agent"
-    recent_action: "Retried mxbai swap with bounded inputs; cat-24/409 still failed"
-    next_safe_action: "Evaluate next 409 retrieval alternative"
-    blockers: ["mxbai active-vector 409 rerun reached only 2/10 top-3"]
+    recent_action: "Retried jina-v3; cat-24/409 still failed"
+    next_safe_action: "Evaluate nomic-embed-text-v1.5 as option B"
+    blockers: ["jina active-vector 409 rerun reached only 4/10 top-3"]
     key_files:
       - "decision-record.md"
       - "evidence/mxbai-swap-status.json"
@@ -29,13 +29,13 @@ _memory:
 <!-- SPECKIT_TEMPLATE_SOURCE: implementation-summary-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 1 -->
 
-# Summary: 016/004 mxbai swap + 008 closure
+# Summary: 016/004 embedder swaps + 008 closure
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 | Field | Value |
 |-------|-------|
-| Status | ROLLBACK — bounded-input mxbai activation completed, but cat-24/409 stayed FAIL |
+| Status | ROLLBACK — bounded-input mxbai and jina activations completed, but cat-24/409 stayed FAIL |
 | Branch | main |
 | Wall-clock estimate | 1-2 hours (mostly re-index wait + scenario re-runs) |
 | Closes | None; packet 008 cat-24/409 remains open |
@@ -56,6 +56,7 @@ Delivered failure-path evidence:
 - `decision-record.md` with ADR-001 ROLLBACK and ADR-002 failure mode
 - follow-up ADR-003 ROLLBACK after the adapter mapping fix exposed a second failure mode: full-document re-index input exceeds the mxbai Ollama context window
 - follow-up ADR-004 ROLLBACK after bounded inputs completed the re-index but cat-24/409 still reached only 2/10 top-3
+- follow-up ADR-005 ROLLBACK after jina-embeddings-v3 improved cat-24/409 to 4/10 top-3 but still missed the 8/10 PASS threshold
 
 
 <!-- /ANCHOR:what-built -->
@@ -91,6 +92,17 @@ The post-activation cat-24 rerun did not close 008:
 - 408 stayed `FAIL`.
 - 409 stayed `FAIL` at 2/10 top-3, below the required 8/10.
 
+The Jina follow-up used Ollama tag `hf.co/gaianet/jina-embeddings-v3-GGUF:Q4_K_M`. The registry source sets `maxInputChars: 8000`, matching the 8192-token model context with headroom. Direct Ollama probing returned 1024-dimensional embeddings.
+
+The first Jina swap job `emb-swap-2026-05-17T07-58-27-788Z-3d368622` failed at `9100/12929` because the already-running MCP server had cached the pre-edit manifest without the input cap. The bounded source-loaded retry resumed the same job from `9100` and completed `12929/12929`; the active pointer flipped to `jina-embeddings-v3` for validation.
+
+The Jina cat-24 rerun still did not close 008:
+- 402 stayed `FAIL`.
+- 408 stayed `FAIL`.
+- 409 stayed `FAIL` at 4/10 top-3, below the required 8/10.
+
+Rollback was applied after the failed gate. The active pointer is back on `embeddinggemma-300m` / `vec_768`. The full baseline re-index job queued by rollback was cancelled after 200 rows because the baseline vectors already existed and the active pointer was restored directly.
+
 
 <!-- /ANCHOR:how-delivered -->
 <!-- ANCHOR:decisions -->
@@ -99,6 +111,7 @@ The post-activation cat-24 rerun did not close 008:
 - ADR-002: The local Ollama tag `mxbai-embed-large` works, while `mxbai-embed-large-v1` is not an Ollama model tag. My read is a model-name mapping defect between the registry manifest and Ollama adapter path.
 - ADR-003: ROLLBACK. The mapping defect is fixed, but the mxbai retry still failed before activation because full-document re-index inputs exceed the Ollama model context window.
 - ADR-004: ROLLBACK. Bounded inputs and active query/table wiring let mxbai activate, but cat-24/409 still failed on retrieval quality.
+- ADR-005: ROLLBACK. Bounded Jina v3 activation completed, but cat-24/409 still failed on retrieval quality at 4/10 top-3.
 - Packet 115's standalone evaluation scaffold is superseded by 016's pluggable architecture, but 016/004 did not close packet 008 cat-24/409.
 
 
@@ -122,14 +135,22 @@ The post-activation cat-24 rerun did not close 008:
 | `npm run typecheck` | exit 0 | PASS |
 | adapter mapping retry | mxbai active | FAIL — `0/12929`, context length exceeded |
 | bounded-input retry | mxbai active | PASS — job `emb-swap-2026-05-17T07-36-33-421Z-6bdfe475` completed |
+| `ollama pull jina/jina-embeddings-v3:latest` | exit 0 | FAIL — manifest does not exist |
+| `ollama pull jina-embeddings-v3` | exit 0 | FAIL — manifest does not exist |
+| `ollama pull hf.co/gaianet/jina-embeddings-v3-GGUF:Q4_K_M` | exit 0 | PASS |
+| Jina direct embed probe | 1024 dims | PASS |
+| Jina swap job | completed | PASS after bounded resume — `12929/12929` |
+| cat-24/409 Jina re-run | PASS (8/10 top-3) | FAIL — 4/10 top-3 |
+| 008 PASS sample under Jina | ≥ 19/20 preserved | SKIP after decisive 409 failure |
+| active pointer after rollback | `embeddinggemma-300m` | PASS |
 
 
 <!-- /ANCHOR:verification -->
 <!-- ANCHOR:limitations -->
 ## 6. KNOWN LIMITATIONS
-- cat-24/409 remains open. The new mxbai retrieval-quality result is `FAIL` at 2/10 top-3.
+- cat-24/409 remains open. The newest Jina retrieval-quality result is `FAIL` at 4/10 top-3.
 - The 20-scenario PASS sample was not rerun after the decisive 409 failure. Preservation rate for ADR-004 is 0/20 measured-preserved.
-- The rollback job was still running at capture time as a same-to-same baseline re-index. The active pointer was already on `embeddinggemma-300m`.
-- The next retry should fix re-index input sizing for bounded-context embedders before calling `embedder_set({ name: "mxbai-embed-large-v1" })` again.
+- The 20-scenario PASS sample was also skipped for Jina after the decisive 409 failure.
+- The next retry should evaluate option B, `nomic-embed-text-v1.5`, through the same pluggable mechanism.
 
 <!-- /ANCHOR:limitations -->
