@@ -1,0 +1,7 @@
+embedder,dim,context,cat24_402,cat24_408,cat24_409_recall,008_preserved
+embeddinggemma-300m,768,2048,baseline,baseline,1/10,baseline (50/51)
+mxbai-embed-large-v1,1024,512,FAIL,FAIL,2/10,not measured
+jina-embeddings-v3,1024,8192,FAIL,FAIL,4/10,not measured
+nomic-embed-text-v1.5,768,8192,FAIL,FAIL,5/10,not measured
+bge-m3,1024,8192,FAIL,FAIL,2/10,not measured
+snowflake-arctic-embed-l-v2.0,1024,8192,FAIL,FAIL,1/10,not measured

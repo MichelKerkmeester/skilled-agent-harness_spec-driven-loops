@@ -82,6 +82,14 @@ const MANIFESTS: ReadonlyArray<EmbedderManifest> = Object.freeze([
     maxInputChars: 8000,
     notes: 'BAAI multilingual hybrid (dense+sparse+colbert), 8192 context, top MTEB multilingual.',
   },
+  {
+    name: 'snowflake-arctic-embed-l-v2.0',
+    dim: 1024,
+    backend: 'ollama',
+    ollamaName: 'snowflake-arctic-embed2:latest',
+    maxInputChars: 8000,
+    notes: 'Snowflake late-2024 flagship. 8192 context, multilingual, top MTEB retrieval scores at release.',
+  },
 ]);
 
 export class NotImplementedError extends Error {

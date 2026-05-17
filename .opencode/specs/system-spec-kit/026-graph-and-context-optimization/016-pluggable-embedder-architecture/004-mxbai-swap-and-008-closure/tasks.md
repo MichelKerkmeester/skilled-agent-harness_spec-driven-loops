@@ -7,11 +7,11 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-pluggable-embedder-architecture/004-mxbai-swap-and-008-closure"
-    last_updated_at: "2026-05-17T09:52:13Z"
+    last_updated_at: "2026-05-17T10:35:38Z"
     last_updated_by: "main_agent"
-    recent_action: "Marked bge-m3 result after activation completed but cat-24/409 still failed"
-    next_safe_action: "Keep rollback; evaluate snowflake-arctic-l-v2 or another retrieval-quality alternative"
-    blockers: ["bge-m3 active-vector 409 rerun reached only 2/10 top-3"]
+    recent_action: "Marked Snowflake result after activation completed but cat-24/409 still failed"
+    next_safe_action: "Keep rollback; evaluate option D reranker or another retrieval-stage change"
+    blockers: ["snowflake-arctic-embed-l-v2.0 active-vector 409 rerun reached only 1/10 top-3"]
     key_files:
       - "decision-record.md"
       - "evidence/mxbai-swap-status.json"
@@ -54,6 +54,7 @@ _memory:
 - [x] T1.5: Retry job `emb-swap-2026-05-17T07-22-22-214Z-8a6dcaa9` failed at `0/12929`; direct probe found `{"error":"the input length exceeds the context length"}` for the first 50-row memory batch
 - [x] T1.6: Retry2 added bounded inputs and completed job `emb-swap-2026-05-17T07-36-33-421Z-6bdfe475` at `12929/12929`
 - [x] T1.7: bge-m3 registry entry added, `ollama pull bge-m3:latest` succeeded, and source/dist swap job `emb-swap-2026-05-17T09-14-12-620Z-ad2ca0ff` completed at `12937/12937`
+- [x] T1.8: Snowflake registry entry added, `ollama pull snowflake-arctic-embed2:latest` succeeded, and source/dist swap job `emb-swap-2026-05-17T09-59-49-824Z-5d4b2f72` completed at `12937/12937`
 
 ### Cat-24 re-run
 - [x] T2.1: Dispatch/rerun cat-24/402 (synonymy) — FAIL under mxbai active-vector evidence
@@ -62,6 +63,7 @@ _memory:
 - [x] T2.4: Append rows to `evidence/cat-24-rerun.jsonl`
 - [x] T2.5: Verify 409 reaches PASS (8/10 top-3) — NOT MET; rollback ADR-004 recorded
 - [x] T2.6: Re-run cat-24/409 under bge-m3 — NOT MET; 2/10 top-3 and rollback ADR-007 recorded
+- [x] T2.7: Re-run cat-24/409 under snowflake-arctic-embed-l-v2.0 — NOT MET; 1/10 top-3 and rollback ADR-008 recorded
 
 ### 008 PASS sample re-run
 - [x] T3.1: Pick 20-scenario sample across cat-01, cat-11, cat-15, cat-13, cat-23
@@ -75,6 +77,7 @@ _memory:
 - [x] T4.3: Author `decision-record.md` ADR-001 (ROLLBACK) + ADR-002 failure mode
 - [x] T4.3b: Author `decision-record.md` ADR-003 (ROLLBACK after mapping fix; context-length failure mode)
 - [x] T4.3c: Author `decision-record.md` ADR-004 (ROLLBACK after bounded-input activation; 409 retrieval-quality failure)
+- [x] T4.3d: Author `decision-record.md` ADR-008 (ROLLBACK after Snowflake activation; cross-candidate dense-swap verdict)
 - [x] T4.4: Update packet 008's implementation-summary.md to record 016/004 attempted closure but cat-24/409 remains open
 - [x] T4.5: Update packet 115's implementation-summary.md to mark SUPERSEDED by 016's pluggable architecture
 
@@ -85,7 +88,7 @@ _memory:
 - [x] T5.1: strict-validate 016/004 exit 0
 - [x] T5.2: strict-validate 008 still exit 0
 - [ ] T5.3: Memory save via `/memory:save` — attempted; `memory_save` returned E081 even on dry-run
-- [ ] T5.4: Commit + push: `chore(016/004): bge-m3 swap result (ADR-007 ROLLBACK)`
+- [x] T5.4: Commit + push: `chore(016/004): snowflake-arctic-embed-l-v2.0 swap result (ADR-008 ROLLBACK)` (`fcddf1cca`)
 
 
 <!-- /ANCHOR:phase-3 -->

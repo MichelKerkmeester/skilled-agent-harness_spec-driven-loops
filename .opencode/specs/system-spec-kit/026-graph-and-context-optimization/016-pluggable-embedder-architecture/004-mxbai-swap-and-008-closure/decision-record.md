@@ -9,11 +9,11 @@ contextType: "decision"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-pluggable-embedder-architecture/004-mxbai-swap-and-008-closure"
-    last_updated_at: "2026-05-17T09:52:13Z"
+    last_updated_at: "2026-05-17T10:35:38Z"
     last_updated_by: "codex"
-    recent_action: "Recorded bge-m3 empirical rollback"
-    next_safe_action: "Continue to snowflake-arctic-l-v2 or another retrieval-specialist candidate"
-    blockers: ["bge-m3 active-vector 409 rerun reached only 2/10 top-3"]
+    recent_action: "Recorded snowflake-arctic-embed-l-v2.0 empirical rollback"
+    next_safe_action: "Attempt option D reranker or another non-embedder retrieval change"
+    blockers: ["snowflake-arctic-embed-l-v2.0 active-vector 409 rerun reached only 1/10 top-3"]
     key_files:
       - "evidence/mxbai-swap-status.json"
       - "evidence/ollama-direct-embed-probe.txt"
@@ -25,12 +25,13 @@ _memory:
       parent_session_id: null
     completion_pct: 95
     open_questions:
-      - "Will snowflake-arctic-l-v2 improve cat-24/409 without regressing existing PASS scenarios?"
+      - "Will an option D reranker close cat-24/409 when pure dense embedder swaps did not?"
     answered_questions:
       - "Ollama itself can embed with model mxbai-embed-large on this machine."
       - "mxbai-embed-large-v1 is not an Ollama model tag on this machine."
       - "The adapter now resolves provider requests through manifest.ollamaName when present."
       - "The mxbai provider tag works for short inputs but rejects the first full-document re-index batch because it exceeds context length."
+      - "snowflake-arctic-embed-l-v2.0 activated cleanly but regressed cat-24/409 to 1/10 top-3."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: decision-record-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 1 -->
@@ -286,3 +287,55 @@ Rollback outcome:
 Evidence:
 - `evidence/cat-24-rerun.jsonl`
 <!-- /ANCHOR:adr-007 -->
+
+<!-- ANCHOR:adr-008 -->
+## ADR-008: Roll back snowflake-arctic-embed-l-v2.0; pure dense swaps did not close 409
+
+| Field | Value |
+|-------|-------|
+| Status | Accepted |
+| Date | 2026-05-17 |
+| Decision | ROLLBACK |
+
+The Snowflake candidate used the same pluggable embedder mechanism as the prior swaps. The Ollama tag that worked on this host is:
+
+```text
+snowflake-arctic-embed2:latest
+```
+
+Direct Ollama probing returned 1024-dimensional embeddings, matching the `snowflake-arctic-embed-l-v2.0` manifest. The registry declares `maxInputChars: 8000`, matching the intended long-context candidate profile with safety headroom.
+
+The live MCP transport was still holding the old registry, so the source/dist handler path was used after `npm run build`. A global checkpoint attempt failed before persistence with `Invalid string length`; a scoped checkpoint succeeded:
+
+```text
+pre-016-snowflake-arctic-swap-2026-05-17T09-59-19-806Z
+```
+
+The stale baseline re-index job from the Jina rollback was cancelled after confirming the active pointer was already `embeddinggemma-300m` / 768. The Snowflake re-index then completed:
+
+```text
+emb-swap-2026-05-17T09-59-49-824Z-5d4b2f72 -> 12937/12937 completed
+active_embedder_name -> snowflake-arctic-embed-l-v2.0
+active_embedder_dim  -> 1024
+```
+
+The cat-24 rerun did not close packet 008:
+- 402: `FAIL` - memory Pair A measured 25% top-5 Jaccard, Pair B measured 0%, and CocoIndex Pair C/D path overlap was 0%.
+- 408: `FAIL` - the compound query returned mirrored factory variants and related migration narratives, but missed enough required constituent files.
+- 409: `FAIL` - 1/10 sampled trigger-phrase lookups found the source memory in top-3; required threshold is 8/10.
+
+Cross-candidate verdict:
+- Best pure dense candidate remains `nomic-embed-text-v1.5` at 5/10 top-3 for cat-24/409.
+- Jina reached 4/10; mxbai and bge-m3 reached 2/10; Snowflake regressed to 1/10.
+- None of the five tested embedders closed 409, so the next attempt should move to option D: reranking, trigger-lane weighting, or another retrieval-stage change rather than another same-shape dense swap.
+
+The 008 PASS sample was skipped because 409 did not reach PASS. There is no KEEP path for Snowflake without the gate scenario reaching PASS.
+
+Rollback outcome:
+- The active pointer was restored directly to `embeddinggemma-300m` / `vec_768`; Snowflake vectors remain available as evidence but are not active.
+- Packet 008 remains open.
+
+Evidence:
+- `evidence/cat-24-rerun.jsonl`
+- `evidence/embedder-comparison.csv`
+<!-- /ANCHOR:adr-008 -->
