@@ -85,6 +85,13 @@ function normalizeErrorMessage(value: unknown): string {
   if (value instanceof Error) {
     return value.message;
   }
+  if (typeof value === 'object' && value !== null) {
+    try {
+      return JSON.stringify(value);
+    } catch {
+      return String(value);
+    }
+  }
   return String(value);
 }
 
@@ -161,7 +168,7 @@ export class OllamaAdapter implements EmbedderAdapter {
   readonly prefixQuery?: string;
   readonly prefixDocument?: string;
 
-  private readonly model: string;
+  private readonly ollamaTag: string;
   private readonly baseUrl: string;
 
   constructor(private readonly manifest: EmbedderManifest) {
@@ -173,7 +180,7 @@ export class OllamaAdapter implements EmbedderAdapter {
     this.dim = manifest.dim;
     this.prefixQuery = manifest.prefixQuery;
     this.prefixDocument = manifest.prefixDocument;
-    this.model = getManifestModelName(manifest);
+    this.ollamaTag = getManifestModelName(manifest);
     this.baseUrl = getOllamaBaseUrl();
   }
 
@@ -208,7 +215,7 @@ export class OllamaAdapter implements EmbedderAdapter {
     }
 
     const body = await readJson(response);
-    return parseOllamaTagNames(body).has(this.model);
+    return parseOllamaTagNames(body).has(this.ollamaTag);
   }
 
   private applyPrefix(text: string, inputType: OllamaInputType): string {
@@ -217,7 +224,7 @@ export class OllamaAdapter implements EmbedderAdapter {
   }
 
   private async postEmbed(input: ReadonlyArray<string>): Promise<unknown> {
-    const batchResponse = await this.postJson('/api/embed', { model: this.model, input });
+    const batchResponse = await this.postJson('/api/embed', { model: this.ollamaTag, input });
     if (batchResponse.response.ok) {
       return batchResponse.body;
     }
@@ -227,7 +234,7 @@ export class OllamaAdapter implements EmbedderAdapter {
     }
 
     const singleResponse = await this.postJson('/api/embeddings', {
-      model: this.model,
+      model: this.ollamaTag,
       prompt: input[0],
     });
     if (!singleResponse.response.ok) {
@@ -254,7 +261,7 @@ export class OllamaAdapter implements EmbedderAdapter {
 
   private throwForEmbeddingResponse(response: Response, body: unknown): never {
     if (isModelMissingResponse(response, body)) {
-      throw new OllamaModelNotLoadedError(this.model);
+      throw new OllamaModelNotLoadedError(this.ollamaTag);
     }
 
     throw new OllamaAdapterError(
@@ -264,7 +271,7 @@ export class OllamaAdapter implements EmbedderAdapter {
 
   private toVector(row: number[]): Float32Array {
     if (row.length !== this.dim) {
-      throw new OllamaDimensionMismatchError(this.model, this.dim, row.length);
+      throw new OllamaDimensionMismatchError(this.ollamaTag, this.dim, row.length);
     }
     return new Float32Array(row);
   }

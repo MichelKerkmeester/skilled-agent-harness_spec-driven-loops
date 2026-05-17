@@ -10,11 +10,11 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-pluggable-embedder-architecture/004-mxbai-swap-and-008-closure"
-    last_updated_at: "2026-05-17T08:15:00Z"
+    last_updated_at: "2026-05-17T07:24:00Z"
     last_updated_by: "main_agent"
-    recent_action: "Attempted mxbai swap; embedder_set failed before re-index processing"
-    next_safe_action: "Fix Ollama adapter/manifest model-name mapping, then retry mxbai activation"
-    blockers: ["mxbai-embed-large-v1 activation failed with Ollama 400"]
+    recent_action: "Retried mxbai swap; context-length failure"
+    next_safe_action: "Fix bounded-context re-index input sizing, then retry mxbai activation"
+    blockers: ["mxbai-embed-large-v1 activation failed because full memory input exceeded Ollama context length"]
     key_files:
       - "decision-record.md"
       - "evidence/mxbai-swap-status.json"
@@ -38,7 +38,7 @@ _memory:
 |-------|-------|
 | Level | 1 |
 | Priority | P1 |
-| Status | ROLLBACK — mxbai activation failed before validation |
+| Status | ROLLBACK — adapter mapping fixed; mxbai activation still failed before validation on context-length limits |
 | Branch | main |
 | Runtime | **cli-opencode** (`--model deepseek/deepseek-v4-pro --pure --format json`) |
 | Blocked by | 016/001 + 016/002 + 016/003 |

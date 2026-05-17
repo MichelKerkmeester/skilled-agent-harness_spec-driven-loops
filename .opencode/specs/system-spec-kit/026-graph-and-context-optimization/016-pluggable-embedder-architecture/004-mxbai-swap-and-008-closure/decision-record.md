@@ -9,11 +9,11 @@ contextType: "decision"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-pluggable-embedder-architecture/004-mxbai-swap-and-008-closure"
-    last_updated_at: "2026-05-17T07:12:30Z"
+    last_updated_at: "2026-05-17T07:24:00Z"
     last_updated_by: "codex"
-    recent_action: "Recorded failed mxbai swap attempt and rollback decision"
-    next_safe_action: "Fix the Ollama adapter/manifest model-name mapping before retrying mxbai activation"
-    blockers: ["mxbai-embed-large-v1 failed before re-index processing"]
+    recent_action: "Recorded failed mxbai retry after adapter mapping fix"
+    next_safe_action: "Add a model-context-safe re-index input strategy before retrying mxbai activation"
+    blockers: ["mxbai re-index first batch exceeds Ollama model context length"]
     key_files:
       - "evidence/mxbai-swap-status.json"
       - "evidence/ollama-direct-embed-probe.txt"
@@ -22,12 +22,14 @@ _memory:
       fingerprint: "sha256:0160040000000000000000000000000000000000000000000000000000000004"
       session_id: "016-004-mxbai-rollback"
       parent_session_id: null
-    completion_pct: 80
+    completion_pct: 90
     open_questions:
-      - "Should the Ollama adapter use a provider model id distinct from the embedder registry manifest name?"
+      - "Should re-index embed full content, summaries, chunks, or model-specific truncated text for bounded-context embedders?"
     answered_questions:
       - "Ollama itself can embed with model mxbai-embed-large on this machine."
       - "mxbai-embed-large-v1 is not an Ollama model tag on this machine."
+      - "The adapter now resolves provider requests through manifest.ollamaName when present."
+      - "The mxbai provider tag works for short inputs but rejects the first full-document re-index batch because it exceeds context length."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: decision-record-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 1 -->
@@ -91,3 +93,36 @@ One diagnostic probe matters for the next retry:
 
 My read: the local Ollama model is installed and usable, but the MCP swap path likely sent or exposed the registry manifest name where Ollama needed the model tag `mxbai-embed-large`. That needs a focused adapter/manifest fix before retrying the swap.
 <!-- /ANCHOR:adr-002 -->
+
+<!-- ANCHOR:adr-003 -->
+## ADR-003: Keep rollback after retry; context-length failure remains
+
+| Field | Value |
+|-------|-------|
+| Status | Accepted |
+| Date | 2026-05-17 |
+| Decision | ROLLBACK |
+
+The follow-up patched `OllamaAdapter` so provider calls use `manifest.ollamaName ?? manifest.name`; `ready()`, `/api/embed`, and `/api/embeddings` now all share the resolved Ollama tag. Targeted coverage confirms both distinct `ollamaName` and no-`ollamaName` fallback behavior.
+
+The retry still did not reach validation. `embedder_set({ name: "mxbai-embed-large-v1" })` queued job `emb-swap-2026-05-17T07-22-22-214Z-8a6dcaa9`, then failed at `0/12929`. The active pointer remained `embeddinggemma-300m`.
+
+Direct Ollama probes separated the two failure modes:
+
+```text
+/api/embed model=mxbai-embed-large:latest input=["alpha","beta"] -> embeddings returned
+first 50 memory rows, max content length 19668 chars               -> 400 {"error":"the input length exceeds the context length"}
+```
+
+So the mapping defect is closed, but the concrete mxbai activation is still blocked by full-document re-index inputs exceeding this Ollama model's context window. This is not evidence that cat-24/409 passes or fails under mxbai retrieval quality; mxbai never became active.
+
+Outcome:
+- cat-24/409 new classification: `FAIL` for closure purposes, because it did not reach PASS and the old packet 008 FAIL remains authoritative.
+- 008 PASS sample preservation: not measured under mxbai; 0/20 sample scenarios were executed because activation failed first.
+- ADR-003 decision: `ROLLBACK`; keep `embeddinggemma-300m` active until re-index input sizing is fixed.
+
+Evidence:
+- `evidence/mxbai-swap-status.json`
+- `evidence/cat-24-rerun.jsonl`
+- `evidence/008-pass-sample-rerun.jsonl`
+<!-- /ANCHOR:adr-003 -->

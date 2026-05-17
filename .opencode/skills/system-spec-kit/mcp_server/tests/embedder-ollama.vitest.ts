@@ -14,6 +14,7 @@ import {
   OllamaDimensionMismatchError,
   OllamaModelNotLoadedError,
 } from '../lib/embedders/adapters/ollama.js';
+import type { EmbedderManifest } from '../lib/embedders/types.js';
 
 const ORIGINAL_FETCH = globalThis.fetch;
 const ORIGINAL_OLLAMA_BASE_URL = process.env.OLLAMA_BASE_URL;
@@ -46,6 +47,15 @@ function requireManifest(name: string) {
   return manifest;
 }
 
+function testManifest(overrides: Partial<EmbedderManifest> = {}): EmbedderManifest {
+  return {
+    name: 'canonical-test-model',
+    dim: 3,
+    backend: 'ollama',
+    ...overrides,
+  };
+}
+
 afterEach(() => {
   globalThis.fetch = ORIGINAL_FETCH;
   if (ORIGINAL_OLLAMA_BASE_URL === undefined) {
@@ -73,6 +83,35 @@ describe('016/002 OllamaAdapter', () => {
     expect(embeddings[0]).toBeInstanceOf(Float32Array);
     expect(embeddings[0]).toHaveLength(1024);
     expect(embeddings[1]?.[0]).toBeCloseTo(2);
+  });
+
+  it('uses manifest ollamaName in embed POST bodies when it differs from name', async () => {
+    const adapter = new OllamaAdapter(testManifest({
+      name: 'canonical-provider-key',
+      ollamaName: 'provider-tag:latest',
+    }));
+
+    installFetchMock(async (_input, init) => {
+      const payload = JSON.parse(String(init?.body)) as { model: string; input: string[] };
+      expect(payload.model).toBe('provider-tag:latest');
+      expect(payload.input).toEqual(['alpha']);
+      return jsonResponse({ embeddings: [vector(3, 1)] });
+    });
+
+    await adapter.embed(['alpha']);
+  });
+
+  it('falls back to manifest name in embed POST bodies when ollamaName is absent', async () => {
+    const adapter = new OllamaAdapter(testManifest({ name: 'canonical-provider-key' }));
+
+    installFetchMock(async (_input, init) => {
+      const payload = JSON.parse(String(init?.body)) as { model: string; input: string[] };
+      expect(payload.model).toBe('canonical-provider-key');
+      expect(payload.input).toEqual(['alpha']);
+      return jsonResponse({ embeddings: [vector(3, 1)] });
+    });
+
+    await adapter.embed(['alpha']);
   });
 
   it('prepends document and query prefixes for prefixed manifests', async () => {
@@ -156,6 +195,19 @@ describe('016/002 OllamaAdapter', () => {
 
     installFetchMock(async () => jsonResponse({ embeddings: [vector(3, 1)] }));
     await expect(adapter.embed(['alpha'])).rejects.toBeInstanceOf(OllamaDimensionMismatchError);
+  });
+
+  it('serializes Ollama JSON error bodies instead of reporting [object Object]', async () => {
+    const adapter = new OllamaAdapter(requireManifest('mxbai-embed-large-v1'));
+
+    installFetchMock(async () => jsonResponse(
+      { error: 'the input length exceeds the context length' },
+      { status: 400, statusText: 'Bad Request' },
+    ));
+
+    await expect(adapter.embed(['alpha'])).rejects.toThrow(
+      'Ollama embedding request failed (400 Bad Request): {"error":"the input length exceeds the context length"}',
+    );
   });
 
   it('registry getAdapter constructs Ollama adapters and returns undefined for unknown names', () => {
