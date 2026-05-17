@@ -47,8 +47,14 @@ function detectCopilotHookPolicy(): HookPolicy {
     const parsed = JSON.parse(readFileSync(settingsPath, 'utf-8')) as { hooks?: unknown };
     const hooks = parsed.hooks;
     if (!hooks || typeof hooks !== 'object') return 'disabled_by_scope';
-    const hasPromptWrapper = hasCopilotWrapper(hooks, 'UserPromptSubmit', '/hooks/copilot/user-prompt-submit.js');
-    const hasStartupWrapper = hasCopilotWrapper(hooks, 'SessionStart', '/hooks/copilot/session-prime.js');
+    const hasPromptWrapper = hasCopilotWrapper(hooks, 'UserPromptSubmit', [
+      '/hooks/copilot/user-prompt-submit.js',
+      '.github/hooks/scripts/user-prompt-submitted.sh',
+    ]);
+    const hasStartupWrapper = hasCopilotWrapper(hooks, 'SessionStart', [
+      '/hooks/copilot/session-prime.js',
+      '.github/hooks/scripts/session-start.sh',
+    ]);
     return hasPromptWrapper && hasStartupWrapper ? 'enabled' : 'disabled_by_scope';
   } catch {
     return 'unavailable';
@@ -82,32 +88,40 @@ function hasNamedHookEntries(hooks: unknown, eventName: string): boolean {
   return Array.isArray(entries) && entries.length > 0;
 }
 
-function hasCopilotWrapper(hooks: unknown, eventName: string, commandNeedle: string): boolean {
+function hasCopilotWrapper(hooks: unknown, eventName: string, commandNeedles: string[]): boolean {
   if (typeof hooks !== 'object' || hooks === null) return false;
   const entries = (hooks as Record<string, unknown>)[eventName];
   if (!Array.isArray(entries)) return false;
   return entries.some((entry) => {
     if (typeof entry !== 'object' || entry === null) return false;
     const record = entry as Record<string, unknown>;
+    const bash = record.bash;
+    if (
+      record.type === 'command'
+      && typeof bash === 'string'
+      && commandNeedles.some((needle) => bash.includes(needle))
+      && typeof record.timeoutSec === 'number'
+      && Number.isFinite(record.timeoutSec)
+      && record.timeoutSec > 0
+    ) {
+      return true;
+    }
+
     const nested = record.hooks;
     if (Array.isArray(nested)) {
       return nested.some((hook) => {
         if (typeof hook !== 'object' || hook === null) return false;
         const command = hook as Record<string, unknown>;
+        const nestedCommand = command.command;
         return command.type === 'command'
-          && typeof command.command === 'string'
-          && command.command.includes(commandNeedle)
+          && typeof nestedCommand === 'string'
+          && commandNeedles.some((needle) => nestedCommand.includes(needle))
           && typeof command.timeout === 'number'
           && Number.isFinite(command.timeout)
           && command.timeout > 0;
       });
     }
-    return record.type === 'command'
-      && typeof record.bash === 'string'
-      && record.bash.includes(commandNeedle)
-      && typeof record.timeoutSec === 'number'
-      && Number.isFinite(record.timeoutSec)
-      && record.timeoutSec > 0;
+    return false;
   });
 }
 

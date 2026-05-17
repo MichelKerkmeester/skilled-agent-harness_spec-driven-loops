@@ -78,6 +78,35 @@ describe('runtime detection', () => {
       expect(result.hookPolicy).toBe('enabled');
     });
 
+    it('detects copilot-cli with top-level Copilot wrapper fields', () => {
+      clearRuntimeEnv();
+      process.env.COPILOT_CLI = '1';
+      tempDir = mkdtempSync(join(tmpdir(), 'copilot-runtime-top-level-'));
+      mkdirSync(join(tempDir, '.claude'), { recursive: true });
+      writeFileSync(join(tempDir, '.claude', 'settings.local.json'), JSON.stringify({
+        hooks: {
+          UserPromptSubmit: [{
+            type: 'command',
+            bash: '.github/hooks/scripts/user-prompt-submitted.sh',
+            timeoutSec: 5,
+            matcher: '',
+            hooks: [{ type: 'command', command: 'node /hooks/claude/user-prompt-submit.js', timeout: 3 }],
+          }],
+          SessionStart: [{
+            type: 'command',
+            bash: '.github/hooks/scripts/session-start.sh',
+            timeoutSec: 5,
+            matcher: '',
+            hooks: [{ type: 'command', command: 'node /hooks/claude/session-prime.js', timeout: 3 }],
+          }],
+        },
+      }));
+      process.chdir(tempDir);
+
+      const result = detectRuntime();
+      expect(result).toEqual({ runtime: 'copilot-cli', hookPolicy: 'enabled' });
+    });
+
     it('treats copilot-cli as disabled_by_scope when no repo hook config exists', () => {
       clearRuntimeEnv();
       process.env.COPILOT_CLI = '1';

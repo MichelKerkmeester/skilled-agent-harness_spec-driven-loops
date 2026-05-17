@@ -31,6 +31,9 @@
   "hooks": {
     "UserPromptSubmit": [
       {
+        "type": "command",
+        "bash": ".github/hooks/scripts/user-prompt-submitted.sh",
+        "timeoutSec": 5,
         "matcher": "",
         "hooks": [
           {
@@ -55,6 +58,9 @@
     ],
     "SessionStart": [
       {
+        "type": "command",
+        "bash": ".github/hooks/scripts/session-start.sh",
+        "timeoutSec": 5,
         "matcher": "",
         "hooks": [
           {
