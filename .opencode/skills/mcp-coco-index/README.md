@@ -66,7 +66,7 @@ If that exploration feeds into Spec Kit packet recovery, `/spec_kit:resume` rema
 
 ### Key Statistics
 
-This skill runs version 1.0.0 and exposes 2 MCP tools (search and cocoindex_refresh_index). It supports 28+ programming languages and uses the google/embeddinggemma-300m embedding model by default via sentence-transformers (768-dim bf16, local, no API key, Metal/MPS accelerated on Apple Silicon). The model is unified with the Memory MCP, both using the EmbeddingGemma 768d model family. Vector storage uses SQLite via sqlite-vec, with a chunk size of 1000 characters (250 char minimum, 150 char overlap) and cosine similarity (0.0 to 1.0) as the similarity metric.
+This skill runs version 1.0.0 and exposes 2 MCP tools (search and cocoindex_refresh_index). It supports 28+ programming languages and uses the jinaai/jina-embeddings-v2-base-code embedding model by default via sentence-transformers (768-dim, local, no API key, Metal/MPS accelerated on Apple Silicon — auto-detected). The code-tuned default was ratified in packet 018 after a comparison against gemma-300m, nomic-CodeRankEmbed, and BAAI/bge-code-v1. Vector storage uses SQLite via sqlite-vec, with a chunk size of 1000 characters (250 char minimum, 150 char overlap) and cosine similarity (0.0 to 1.0) as the similarity metric.
 
 ### Key Features
 
@@ -134,9 +134,9 @@ ccc search "database migration" --path "src/**" --limit 5
 
 CocoIndex Code resolves queries by embedding the natural-language query text and comparing the resulting vector against pre-computed vectors for every code chunk in the index. This means the search engine reads intent, not characters. A query for "graceful shutdown handler" finds code that tears down servers or releases resources, even if the words "graceful", "shutdown", or "handler" never appear in that code.
 
-The default embedding model is `google/embeddinggemma-300m`, a 768-dimensional model from the same family as the Spec Kit Memory MCP. This unification means both MCP servers share the same vector space, enabling future cross-MCP retrieval. The model runs locally via sentence-transformers on PyTorch with Metal/MPS acceleration on Apple Silicon and requires no API key.
+The default embedding model is `jinaai/jina-embeddings-v2-base-code`, a 768-dimensional code-tuned BERT (161M params). It runs locally via sentence-transformers on PyTorch with Metal/MPS acceleration on Apple Silicon — auto-detected by `_resolve_device()`. No API key required. The dimension matches the previous gemma baseline (768d) so the index schema is unchanged across the swap.
 
-Users can switch to alternative models by editing the global settings file (`~/.cocoindex_code/global_settings.yml`). Available alternatives include `voyage/voyage-code-3` (1024d cloud via LiteLLM, requires `VOYAGE_API_KEY`). Changing models requires a full reset and reindex because vector dimensions are incompatible.
+The full registry of vetted alternatives — including `nomic-ai/CodeRankEmbed`, `BAAI/bge-code-v1`, and `Salesforce/SFR-Embedding-Code-2B_R` — lives in `cocoindex_code/registered_embedders.py`. See [INSTALL_GUIDE.md §4 "Choosing an embedder"](INSTALL_GUIDE.md) for the swap runbook. Cloud alternatives like `voyage/voyage-code-3` still work via LiteLLM if you set `VOYAGE_API_KEY`. Changing embedders requires `ccc reset && ccc index` because the on-disk vectors must match the live model's dimensionality.
 
 Language and path filters apply after ranking, which means they narrow an already semantically ranked result set rather than replacing semantic ranking with keyword matching. This design keeps the filters fast and the results meaningful. For multi-query agent sessions, use the default `refresh_index=false` search path and call `cocoindex_refresh_index` explicitly after code changes. The daemon has a known concurrency issue where simultaneous `refresh_index=true` requests can cause `ComponentContext` errors.
 
@@ -190,8 +190,14 @@ The CLI and MCP interfaces are complementary, not redundant. The CLI handles ind
 
 | Model | Type | Dimensions | API Key | Best For |
 |---|---|---|---|---|
-| `google/embeddinggemma-300m` | Local via sentence-transformers | 768 | None | Default. Unified with Memory MCP. Metal/MPS accelerated |
-| `voyage/voyage-code-3` | Cloud via LiteLLM | 1024 | `VOYAGE_API_KEY` | Higher dimensional cloud embeddings (requires API key) |
+| `jinaai/jina-embeddings-v2-base-code` | Local via sentence-transformers | 768 | None | **Default.** Code-tuned. Metal/MPS auto-detect on Apple Silicon |
+| `google/embeddinggemma-300m` | Local via sentence-transformers | 768 | None | Pre-018 baseline. General-text. Kept for benchmark comparisons |
+| `nomic-ai/CodeRankEmbed` | Local via sentence-transformers | 768 | None | Alternative code-tuned. Python-leaning training data |
+| `BAAI/bge-code-v1` | Local via sentence-transformers | 768 | None | Multilingual code coverage focus |
+| `Salesforce/SFR-Embedding-Code-2B_R` | Local via sentence-transformers | 2048 | None | Largest, highest quality. Needs ~4 GB RAM headroom |
+| `voyage/voyage-code-3` | Cloud via LiteLLM | 1024 | `VOYAGE_API_KEY` | Higher-dim cloud option (requires API key) |
+
+Full registry with RAM/disk/MPS metadata in `cocoindex_code/registered_embedders.py`. Swap runbook in [INSTALL_GUIDE.md §4](INSTALL_GUIDE.md).
 
 **Similarity score interpretation**
 
@@ -269,7 +275,7 @@ Controls the embedding model used for all projects on this machine.
 ```yaml
 embedding:
   provider: sentence-transformers       # or litellm for cloud models
-  model: google/embeddinggemma-300m     # default 768d (also: voyage/voyage-code-3)
+  model: jinaai/jina-embeddings-v2-base-code  # default 768d code-tuned (see registered_embedders.py for alternatives)
   device: auto                          # auto | cpu | cuda | mps (auto-detects if omitted)
 envs:
   VOYAGE_API_KEY: "your-key-here"       # required only for voyage cloud models
@@ -313,7 +319,8 @@ Set `"disabled": false` to activate. The MCP server is disabled by default to av
 |---|---|---|
 | `COCOINDEX_CODE_ROOT_PATH` | auto-detected | Override project root for indexing |
 | `COCOINDEX_CODE_DIR` | `~/.cocoindex_code` | Override config and data directory |
-| `COCOINDEX_CODE_EMBEDDING_MODEL` | `sbert/google/embeddinggemma-300m` | Override the cocoindex embedding model |
+| `COCOINDEX_CODE_EMBEDDING_MODEL` | `sbert/jinaai/jina-embeddings-v2-base-code` | Override the cocoindex embedding model (default = jina-code per registered_embedders.py) |
+| `COCOINDEX_CODE_DEVICE` | auto-detect (cuda → mps → cpu) | Override compute device. Use `cpu` as kill switch if MPS produces unstable results |
 | `COCOINDEX_QUERY_PROMPT_NAME` | from registry | Override cocoindex query-prompt routing |
 | `VOYAGE_API_KEY` | (none) | Required only when using Voyage cloud models |
 
@@ -497,7 +504,7 @@ A: Index lifecycle operations (`index`, `status`, `reset`, `init`, `daemon`) are
 
 **Q: When should I switch from the default model?**
 
-A: The default model (`google/embeddinggemma-300m`, 768 dimensions) provides strong code search quality out of the box and runs locally with no API key. Switch to `voyage/voyage-code-3` (1024d cloud via LiteLLM) when you want higher-dimensional cloud embeddings and have a `VOYAGE_API_KEY`. Voyage Code 3 was trained specifically on code and can give better discrimination on nuanced queries, but adds an API dependency. Switching models requires `ccc reset && ccc index` because vector dimensions are incompatible.
+A: The default model (`jinaai/jina-embeddings-v2-base-code`, 768 dimensions) provides strong code search quality out of the box and runs locally with no API key. Switch to `voyage/voyage-code-3` (1024d cloud via LiteLLM) when you want higher-dimensional cloud embeddings and have a `VOYAGE_API_KEY`. Voyage Code 3 was trained specifically on code and can give better discrimination on nuanced queries, but adds an API dependency. Switching models requires `ccc reset && ccc index` because vector dimensions are incompatible.
 
 ---
 
