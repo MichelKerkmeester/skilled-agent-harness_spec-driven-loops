@@ -10,7 +10,14 @@
 //      016-pluggable-embedder-architecture/001-embedder-adapter-interface/spec.md
 // ───────────────────────────────────────────────────────────────
 
-import type { EmbedderManifest } from './types.js';
+import {
+  generateEmbedding,
+  getEmbeddingDimension,
+  isModelLoaded,
+} from '../providers/embeddings.js';
+import type { EmbedderAdapter } from './adapter.js';
+import { OllamaAdapter } from './adapters/ollama.js';
+import type { BackendKind, EmbedderManifest } from './types.js';
 
 /**
  * Frozen list of supported embedder manifests. Add a new model = append a
@@ -66,6 +73,50 @@ const MANIFESTS: ReadonlyArray<EmbedderManifest> = Object.freeze([
   },
 ]);
 
+export class NotImplementedError extends Error {
+  constructor(backend: BackendKind) {
+    super(`Embedder backend is not implemented yet: ${backend}`);
+    this.name = 'NotImplementedError';
+    Object.setPrototypeOf(this, new.target.prototype);
+  }
+}
+
+class LlamaCppBaselineAdapter implements EmbedderAdapter {
+  readonly name: string;
+  readonly dim: number;
+  readonly backend: BackendKind = 'llama-cpp';
+  readonly prefixQuery?: string;
+  readonly prefixDocument?: string;
+
+  constructor(private readonly manifest: EmbedderManifest) {
+    this.name = manifest.name;
+    this.dim = manifest.dim;
+    this.prefixQuery = manifest.prefixQuery;
+    this.prefixDocument = manifest.prefixDocument;
+  }
+
+  async embed(texts: ReadonlyArray<string>): Promise<Float32Array[]> {
+    const results: Float32Array[] = [];
+    for (const text of texts) {
+      const embedding = await generateEmbedding(text);
+      if (!embedding) {
+        throw new Error(`llama-cpp embedding provider returned no embedding for ${this.name}`);
+      }
+      if (embedding.length !== this.dim) {
+        throw new Error(
+          `llama-cpp embedding dimension mismatch for ${this.name}: expected ${this.dim}, got ${embedding.length}`,
+        );
+      }
+      results.push(embedding);
+    }
+    return results;
+  }
+
+  async ready(): Promise<boolean> {
+    return isModelLoaded() && getEmbeddingDimension() === this.dim;
+  }
+}
+
 /**
  * Look up an embedder manifest by canonical name.
  * Returns the frozen manifest, or `undefined` if no match.
@@ -90,4 +141,33 @@ export function listManifests(): ReadonlyArray<EmbedderManifest> {
  */
 export function listSupportedDimensions(): ReadonlyArray<number> {
   return Array.from(new Set(MANIFESTS.map((m) => m.dim))).sort((a, b) => a - b);
+}
+
+/**
+ * Construct the concrete adapter for a registered embedder.
+ * Unknown names return `undefined`; known-but-unwired backends throw so
+ * callers can distinguish typo from unsupported backend.
+ */
+export function getAdapter(name: string): EmbedderAdapter | undefined {
+  const manifest = getManifest(name);
+  if (!manifest) {
+    return undefined;
+  }
+
+  switch (manifest.backend) {
+    case 'ollama':
+      return new OllamaAdapter(manifest);
+    case 'llama-cpp':
+      if (manifest.name !== 'embeddinggemma-300m') {
+        throw new NotImplementedError(manifest.backend);
+      }
+      return new LlamaCppBaselineAdapter(manifest);
+    case 'api':
+    case 'sentence-transformers':
+      throw new NotImplementedError(manifest.backend);
+    default: {
+      const unreachable: never = manifest.backend;
+      throw new NotImplementedError(unreachable);
+    }
+  }
 }

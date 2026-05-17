@@ -7,17 +7,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-pluggable-embedder-architecture/002-ollama-backend-and-multi-dim-schema"
-    last_updated_at: "2026-05-17T08:15:00Z"
-    last_updated_by: "main_agent"
-    recent_action: "Scaffolded plan stub"
-    next_safe_action: "After 016/001 lands; cli-codex picks up"
-    blockers: ["016/001 not yet shipped"]
+    last_updated_at: "2026-05-17T06:50:50Z"
+    last_updated_by: "codex"
+    recent_action: "Delivered two-layer swap mechanism and registry adapter factory"
+    next_safe_action: "Phase 016/003 MCP tools + reindex orchestrator"
+    blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "016-002-plan"
       parent_session_id: null
-    completion_pct: 5
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -39,10 +39,10 @@ _memory:
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 ### Definition of Done
-- [ ] OllamaAdapter compiles + tests pass
-- [ ] `ensureVecTableForDim(dim)` works for 768, 1024, 384
-- [ ] Existing vec_768 + 008 corpus untouched (PASS sample re-runs clean)
-- [ ] Active-embedder pointer reads/writes via settings row
+- [x] OllamaAdapter compiles + tests pass (`npm run build`, `npx tsc --noEmit`, `npx vitest run tests/embedder-ollama.vitest.ts`)
+- [x] `ensureVecTableForDim(dim)` works for 768, 1024, 384 (`npx vitest run tests/embedder-schema.vitest.ts`)
+- [x] Existing vec_768 + 008 corpus untouched (`node dist/cli.js stats`, prohibited search files diff clean)
+- [x] Active-embedder pointer reads/writes via existing `vec_metadata` settings rows
 
 
 <!-- /ANCHOR:quality-gates -->
@@ -75,7 +75,7 @@ export class OllamaAdapter implements EmbedderAdapter {
 ## 4. IMPLEMENTATION PHASES
 1. Implement OllamaAdapter against 016/001 interface
 2. Implement schema helpers (lazy create + active pointer)
-3. Wire into existing retrieval pipeline read path (don't switch active yet — that's phase 003+004)
+3. Add registry `getAdapter()` bridge without switching existing retrieval callers
 4. Vitest coverage
 5. Verify packet 008 vec_768 untouched
 
@@ -103,5 +103,4 @@ export class OllamaAdapter implements EmbedderAdapter {
 Additive — new files + ONE additive column in settings table. Rollback = revert commit + drop new tables.
 
 <!-- /ANCHOR:rollback -->
-
 

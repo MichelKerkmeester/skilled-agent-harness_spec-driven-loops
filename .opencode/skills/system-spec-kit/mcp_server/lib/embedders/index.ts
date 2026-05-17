@@ -8,4 +8,25 @@
 
 export type { BackendKind, EmbedderManifest } from './types.js';
 export type { EmbedderAdapter } from './adapter.js';
-export { getManifest, listManifests, listSupportedDimensions } from './registry.js';
+export {
+  getAdapter,
+  getManifest,
+  listManifests,
+  listSupportedDimensions,
+  NotImplementedError,
+} from './registry.js';
+export {
+  DEFAULT_ACTIVE_EMBEDDER,
+  ensureVecTableForDim,
+  getActiveEmbedder,
+  setActiveEmbedder,
+} from './schema.js';
+export type { ActiveEmbedder } from './schema.js';
+export {
+  OllamaAdapter,
+  OllamaAdapterError,
+  OllamaBackendUnreachableError,
+  OllamaDimensionMismatchError,
+  OllamaModelNotLoadedError,
+} from './adapters/ollama.js';
+export type { OllamaEmbedOptions, OllamaInputType } from './adapters/ollama.js';
