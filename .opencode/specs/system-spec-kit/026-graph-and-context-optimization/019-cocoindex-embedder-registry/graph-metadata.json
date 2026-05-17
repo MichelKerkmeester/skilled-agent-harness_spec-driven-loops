@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/019-cocoindex-embedder-registry",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/019-cocoindex-embedder-registry",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization",
+  "children_ids": [
+    "system-spec-kit/026-graph-and-context-optimization/019-cocoindex-embedder-registry/001-declarative-registry",
+    "system-spec-kit/026-graph-and-context-optimization/019-cocoindex-embedder-registry/002-install-guide-updates"
+  ],
+  "manual": {
+    "depends_on": [
+      "system-spec-kit/026-graph-and-context-optimization/016-pluggable-embedder-architecture/004-mxbai-swap-and-008-closure",
+      "system-spec-kit/026-graph-and-context-optimization/018-code-embedder-coderank"
+    ],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "019 cocoindex embedder registry",
+      "cocoindex pluggable parity",
+      "new-user embedder onboarding"
+    ],
+    "key_topics": [
+      "019",
+      "cocoindex",
+      "embedder",
+      "registry",
+      "parity",
+      "new-user",
+      "onboarding",
+      "install-guide"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "001-declarative-registry/spec.md",
+      "002-install-guide-updates/spec.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
