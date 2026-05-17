@@ -1,0 +1,1 @@
+MOCK deepseek-v4 dispatch — variant=prompt-fix-001-hallucinated-cli-flag

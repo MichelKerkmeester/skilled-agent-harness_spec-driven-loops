@@ -13,10 +13,9 @@ _memory:
     packet_pointer: ".opencode/specs/skilled-agent-orchestration/118-cross-model-validation"
     last_updated_at: "2026-05-17T12:18:35Z"
     last_updated_by: "cli-codex"
-    recent_action: "documented-cli-devin-pivot-per-adr-002"
-    next_safe_action: "build-cross-model-confirm-harness-using-cli-devin"
-    blockers:
-      - "cli-opencode 1.15.1 InstanceRef bug; pivot to cli-devin per ADR-002"
+    recent_action: "applied-split-surface-dispatch-per-adr-003"
+    next_safe_action: "run-full-70-dispatch-validation-via-cross-model-confirm-cjs"
+    blockers: []
     key_files:
       - ".opencode/specs/skilled-agent-orchestration/118-cross-model-validation/scripts/cross-model-confirm.cjs"
       - ".opencode/specs/skilled-agent-orchestration/118-cross-model-validation/state/confirm-results.jsonl"

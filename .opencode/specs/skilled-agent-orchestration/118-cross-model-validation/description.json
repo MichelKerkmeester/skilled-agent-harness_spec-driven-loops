@@ -1,37 +1,18 @@
 {
-  "specFolder": "118-cross-model-validation",
-  "description": "Cross-model validation packet: run the 003-eval-loop 5 council-seeded variants against the 7 SWE 1.6 fixtures on deepseek-v4-pro (cli-opencode + DeepS",
+  "level": "3",
+  "specFolder": "skilled-agent-orchestration/118-cross-model-validation",
+  "description": "Feature Specification: cross-model-validation",
   "keywords": [
-    "cross-model",
-    "validation",
-    "packet",
-    "run",
-    "003-eval-loop",
-    "council-seeded",
-    "variants",
-    "against",
-    "swe",
-    "fixtures",
-    "deepseek-v4-pro",
-    "cli-opencode",
-    "deepseek",
-    "direct",
-    "api",
-    "kimi-k2",
-    "opencode-go",
-    "settle",
-    "whether",
-    "bundle-gate-aversion",
-    "framework-dominates-anti-hallucination",
-    "generalize",
-    "beyond",
-    "small-model-specific"
+    "feature",
+    "specification",
+    "cross-model-validation"
   ],
-  "lastUpdated": "2026-05-17T12:18:35.996Z",
+  "lastUpdated": "2026-05-17T12:55:57.006Z",
   "specId": "118",
   "folderSlug": "cross-model-validation",
-  "parentChain": [],
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "3"
+  "memoryNameHistory": []
 }

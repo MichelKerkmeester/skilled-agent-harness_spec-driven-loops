@@ -173,4 +173,40 @@ Use cli-devin as the dispatch surface for both target models. `--model deepseek-
 - If the operator later restores cli-opencode 1.14.50, the harness can be re-pointed at cli-opencode trivially (dispatcher abstraction is per-model in `cross-model-confirm.cjs`).
 - The decision is reversible: ADR-001's cli-opencode surface remains the documented preference if the binary returns to a working state before the validation run begins.
 
+### Subsequent status
+
+ADR-002 was the chosen plan until 2026-05-17 mid-session, when ADR-003 superseded it: the operator downgraded cli-opencode to 1.14.51 (pre-1.15.x regression), restoring the deepseek-v4-pro route. See ADR-003 below. The cli-devin run kicked off under ADR-002 was killed after the first dispatch timed out at 15 minutes (cli-devin's deepseek-v4 preset proved too slow for complex fixtures with non-RCAF variants).
+
 <!-- /ANCHOR:adr-002 -->
+
+<!-- ANCHOR:adr-003 -->
+## ADR-003: Split-Surface Dispatch After cli-opencode Restored
+
+**Status**: Accepted (supersedes ADR-002 for the deepseek-v4-pro route)
+**Decision date**: 2026-05-17
+
+### Context
+
+Operator downgraded cli-opencode to 1.14.51 (latest pre-1.15.x version) via `npm install -g opencode-ai@1.14.51`. Smoke-test confirmed `opencode run --model deepseek/deepseek-v4-pro --variant high` returns clean text responses through the JSON event stream. The deepseek-v4-pro route through cli-opencode is now available exactly as ADR-001 originally planned.
+
+However, the opencode-go billing account returned `401 Insufficient balance` on the kimi-k2.6 route through `opencode-go/kimi-k2.6`. Topping up was offered but the operator chose to dispatch kimi-k2.6 via cli-devin instead (which already worked in smoke-test at 1.0000 on fix-007 with sub-30-second dispatch time).
+
+### Decision
+
+Split-surface dispatch routed by model in `DISPATCH_ROUTE`:
+
+| Model | Surface | Dispatch shape |
+|-------|---------|----------------|
+| `deepseek-v4-pro` | cli-opencode 1.14.51 + DeepSeek direct API | `opencode run --model deepseek/deepseek-v4-pro --variant high --format json --dir <eval-cwd> "<prompt>"` |
+| `kimi-k2.6` | cli-devin | `devin --print --model kimi-k2.6 --permission-mode auto --prompt-file <prompt>` |
+
+The harness's `dispatchByModel()` reads the route map and selects the dispatcher per-model. Each dispatcher returns the same `{ok, stdout, stderr, elapsed_ms}` shape so the downstream scoring pipeline is dispatcher-agnostic.
+
+### Consequences
+
+- The deepseek-v4-pro route now matches the operator's original ADR-001 intent byte-for-byte (cli-opencode + DeepSeek direct API).
+- The kimi-k2.6 route is via cli-devin's built-in `--model kimi-k2.6` preset. This is NOT the originally-planned cli-opencode + opencode-go route, but it functionally measures the same model (Moonshot Kimi k2.6) — the dispatch surface differs (cli-devin's preset vs opencode-go's gateway), and the report makes this explicit.
+- Per-dispatch timeout raised from 15 min (ADR-002) to 25 min (DEFAULT_TIMEOUT_MS = 1500000ms) because the first cli-devin/deepseek-v4 dispatch under ADR-002 timed out at 15 min on a complex fixture with the v-001-baseline-star variant. Frontier models are slower per dispatch than SWE-1.6 but the dispatches that have completed produce significantly higher scores (0.96-1.00 on fix-007 vs SWE-1.6 baseline 0.5664 aggregate).
+- If the operator tops up opencode-go credits later, ADR-001's pure cli-opencode dispatch can be restored by editing `DISPATCH_ROUTE['kimi-k2.6']` to surface `cli-opencode` with model `opencode-go/kimi-k2.6`.
+
+<!-- /ANCHOR:adr-003 -->
