@@ -35,7 +35,7 @@ Validate the memory roadmap baseline snapshot and cite persisted metrics plus mi
 ### Commands
 
 1. `cd .opencode/skills/system-spec-kit/mcp_server`
-2. `npm test -- --run tests/memory-state-baseline.vitest.ts`
+2. `npx vitest run tests/memory-state-baseline.vitest.ts`
 
 ### Expected
 
@@ -52,7 +52,7 @@ Test transcript + suite summary
 
 ### Failure Triage
 
-Re-run `npm test -- --run tests/memory-state-baseline.vitest.ts -t persist`; inspect `lib/eval/memory-state-baseline.ts` and eval DB path resolution if assertions drift
+Re-run `npx vitest run tests/memory-state-baseline.vitest.ts -t persist`; inspect `lib/eval/memory-state-baseline.ts` and eval DB path resolution if assertions drift
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
