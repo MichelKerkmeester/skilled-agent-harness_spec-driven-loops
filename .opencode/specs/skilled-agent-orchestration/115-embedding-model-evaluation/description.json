@@ -1,0 +1,22 @@
+{
+  "specFolder": "skilled-agent-orchestration/115-embedding-model-evaluation",
+  "description": "Feature Specification: Add User Authentication",
+  "keywords": [
+    "feature",
+    "specification",
+    "add",
+    "user",
+    "authentication"
+  ],
+  "lastUpdated": "2026-05-17T05:56:47.908Z",
+  "specId": "115",
+  "folderSlug": "embedding-model-evaluation",
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "17-05-26_06-54__scaffolded-packet-115-for-embedding-model.md",
+    "17-05-26_06-56__scaffolded-packet-115-for-embedding-model.md"
+  ]
+}
