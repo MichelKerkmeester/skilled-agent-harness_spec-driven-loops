@@ -39,7 +39,7 @@ Validate CLI matrix adapter runner smoke against the documented validation surfa
 ```bash
 OUT="/tmp/spec-kit-matrix-smoke-$(date +%s)"
 cd .opencode/skills/system-spec-kit
-npx tsx mcp_server/matrix_runners/run-matrix.ts \
+./scripts/node_modules/.bin/tsx mcp_server/matrix_runners/run-matrix.ts \
   --output "$OUT" \
   --filter F5 \
   --executors cli-codex,cli-gemini,cli-claude-code,cli-opencode \
@@ -58,6 +58,9 @@ for file in "$OUT"/F5-*.jsonl; do
     has("status") and
     has("durationMs") and
     has("evidence") and
+    (.evidence | has("stdout")) and
+    (.evidence | has("stderr")) and
+    (.evidence | has("exitCode")) and
     (.featureId == "F5") and
     (.status | IN("PASS","FAIL","TIMEOUT_CELL","NA","BLOCKED"))
   ' "$file"
