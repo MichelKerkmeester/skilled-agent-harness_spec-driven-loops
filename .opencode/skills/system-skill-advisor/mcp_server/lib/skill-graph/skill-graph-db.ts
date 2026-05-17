@@ -806,22 +806,30 @@ async function refreshSkillEmbeddingsViaAdapter(
   try {
     const resolved = getAdapter(active.name);
     if (!resolved) {
-      return {
-        embedded: 0,
-        skipped: 0,
-        failed: 0,
-        warnings: [`ADAPTER-UNAVAILABLE: ${active.name} (manifest not found in registry)`],
-      };
+      const warning = `ADAPTER-UNAVAILABLE: ${active.name} (manifest not found in registry)`;
+      console.warn(`[skill-graph] ${warning}`);
+      // F review P2-1: failed = total skill_nodes count so refresh-watchers
+      // see an outage signal instead of "0 failed / 0 skipped" which looks
+      // like an empty corpus.
+      const rowCount = (database.prepare('SELECT COUNT(*) AS c FROM skill_nodes').get() as { c: number }).c;
+      return { embedded: 0, skipped: 0, failed: rowCount, warnings: [warning] };
     }
     adapter = resolved;
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : String(error);
-    return {
-      embedded: 0,
-      skipped: 0,
-      failed: 0,
-      warnings: [`ADAPTER-UNAVAILABLE: ${active.name} (${message})`],
-    };
+    const warning = `ADAPTER-UNAVAILABLE: ${active.name} (${message})`;
+    console.warn(`[skill-graph] ${warning}`);
+    const rowCount = (database.prepare('SELECT COUNT(*) AS c FROM skill_nodes').get() as { c: number }).c;
+    return { embedded: 0, skipped: 0, failed: rowCount, warnings: [warning] };
+  }
+
+  // F review P1-1: fail fast on adapter-vs-pointer dim mismatch instead of
+  // per-row EMBEDDING-FAILED noise + accidental vec_<dim> table emptying.
+  if (adapter.dim !== active.dim) {
+    const warning = `ADAPTER-DIM-MISMATCH: ${active.name} reports dim=${adapter.dim} but vec_metadata pointer dim=${active.dim}; fix configuration before refresh`;
+    console.warn(`[skill-graph] ${warning}`);
+    const rowCount = (database.prepare('SELECT COUNT(*) AS c FROM skill_nodes').get() as { c: number }).c;
+    return { embedded: 0, skipped: 0, failed: rowCount, warnings: [warning] };
   }
   const modelId = active.name;
   const warnings: string[] = [];

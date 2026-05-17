@@ -123,6 +123,7 @@ describe('010/004 refreshSkillEmbeddings round-trip', () => {
     dbDir = join(tmpRoot, '.skill-graph');
     mkdirSync(dbDir, { recursive: true });
     initDb(dbDir);
+    adapterEmbed.mockClear();
   });
 
   afterEach(() => {
@@ -175,9 +176,28 @@ describe('010/004 refreshSkillEmbeddings round-trip', () => {
     const result = await refreshSkillEmbeddings();
 
     expect(result.embedded).toBe(0);
+    // F review P2-1: failed = total row count so refresh-watchers see outage
+    expect(result.failed).toBeGreaterThan(0);
     expect(result.warnings.length).toBe(1);
     expect(result.warnings[0]).toContain('ADAPTER-UNAVAILABLE');
     expect(result.warnings[0]).toContain('definitely-not-a-real-embedder');
+  });
+
+  it('adapter path: fails fast on adapter-vs-pointer dim mismatch (P1-1)', async () => {
+    seedSkillTree(tmpRoot, 'sk-mismatch', 'dim mismatch test');
+    indexSkillMetadata(join(tmpRoot, '.opencode', 'skills'));
+    // Pointer says dim=768 but the mock adapter reports dim=1024
+    setActiveEmbedder(getDb(), 'mock-1024', 768);
+
+    const result = await refreshSkillEmbeddings();
+
+    expect(result.embedded).toBe(0);
+    expect(result.failed).toBeGreaterThan(0);
+    expect(result.warnings.length).toBe(1);
+    expect(result.warnings[0]).toContain('ADAPTER-DIM-MISMATCH');
+    expect(result.warnings[0]).toContain('mock-1024');
+    // Verify mock adapter was NOT called (fail-fast before any embed)
+    expect(adapterEmbed).not.toHaveBeenCalled();
   });
 
   it('legacy path: when pointer NOT set, falls back to createEmbeddingsProvider', async () => {
