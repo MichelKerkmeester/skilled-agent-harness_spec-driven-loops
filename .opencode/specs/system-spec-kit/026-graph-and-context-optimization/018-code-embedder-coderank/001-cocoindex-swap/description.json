@@ -1,0 +1,21 @@
+{
+  "level": "1",
+  "specFolder": "001-cocoindex-swap",
+  "description": "CocoIndex embedder default flip + MPS auto-detect patch",
+  "keywords": [
+    "cocoindex",
+    "embedder",
+    "swap",
+    "coderank",
+    "mps",
+    "config"
+  ],
+  "lastUpdated": "2026-05-17T18:50:00.000Z",
+  "specId": "018-001",
+  "folderSlug": "cocoindex-swap",
+  "parentChain": [
+    "system-spec-kit/026-graph-and-context-optimization/018-code-embedder-coderank"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}
