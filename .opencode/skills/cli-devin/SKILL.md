@@ -2,7 +2,7 @@
 name: cli-devin
 description: "Devin CLI orchestrator: dispatch Cognition AI's 'Devin for Terminal' for autonomous coding work with optional local-to-cloud handoff."
 allowed-tools: [Bash, Read, Glob, Grep]
-version: 1.0.5.2
+version: 1.0.6.0
 ---
 
 <!-- Keywords: devin, devin-cli, devin-for-terminal, cognition, swe-1.6, deepseek-v4, glm-5.1, kimi-k2.6, cloud-handoff, autonomous-agent, cross-ai, mcp, acp, permission-modes, complex-task-fallback -->
@@ -260,6 +260,11 @@ Devin runs four model presets. The skill defaults to SWE-1.6 for context gatheri
 2. When the task is complex (ambiguous, multi-step, reasoning-bound, or scope-broad), use DeepSeek v4.
 3. If DeepSeek v4 doesn't fit the shape of the complex task or doesn't deliver, fall back to GLM 5.1 or Kimi k2.6 (operator picks based on agentic vs large-context fit).
 4. Never silently switch — honor operator phrasing verbatim.
+
+**Preset reliability notes** (for long-running harnesses and scripted dispatches):
+- `--model deepseek-v4` is reasoning-bound and frequently exceeds 15 minutes on non-trivial fixtures. Long-running harnesses should set ≥ 25-minute per-dispatch timeouts when using this preset.
+- `--model kimi-k2.6` occasionally hangs ~25 minutes on complex fixtures (~5–10% failure rate at default timeouts). Either bump timeout to 30+ minutes or accept the failure rate and aggregate over ≥ 5 fixtures.
+- `--model swe-1.6` is the fastest preset; default per-dispatch timeouts (10–15 minutes) are typically sufficient.
 
 ### Devin Agent Delegation
 

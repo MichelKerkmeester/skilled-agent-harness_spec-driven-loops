@@ -1,0 +1,3 @@
+Now creating the fixture infrastructure:Step 1 done. Now Step 2 — write `transform.js`:Verify Step 2 — check for safe path usage:Step 2 passes: `__dirname` present, `process.cwd()` absent. Step 3 — run the script:ESM mode detected. Rewriting `transform.js` with ESM syntax:Step 2 verified. Running Step 3:Step 3 passes. Step 4 — acceptance sweep:All three acceptance criteria pass.
+
+**Build complete.** `transform.js` uses `import.meta.url` + `path.dirname` to derive the fixture base directory — immune to `process.cwd()` manipulation. All paths in both `transform.js` and `output/result.json` are bare-relative (`config/settings.json`, `output/result.json`). No external absolute paths, no home-relative paths, deterministic execution.

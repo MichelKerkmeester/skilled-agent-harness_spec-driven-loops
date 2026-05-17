@@ -2,7 +2,7 @@
 name: sk-prompt
 description: "Prompt engineering specialist: structured AI prompts via 7 frameworks, DEPTH thinking, CLEAR scoring."
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
-version: 1.3.0.0
+version: 1.3.1.0
 ---
 
 <!-- Keywords: prompt-engineering, prompt-improvement, improve prompt, improve this prompt, improve the prompt, enhance prompt, prompt improvement, DEPTH, RICCE, CLEAR-scoring, framework-selection, RCAF, COSTAR, CRAFT, TIDD-EC, CRISPE -->

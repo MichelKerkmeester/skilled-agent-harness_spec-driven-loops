@@ -45,7 +45,11 @@ Select a framework from the task map, run the CLEAR 5-check, and escalate to `@p
 | Parallel detached session (use case 2) | `CIDI` |
 | Cross-AI handback (use case 3) | `RCAF + TIDD-EC` |
 
-> **Pre-planning density**: For non-trivial dispatches (multi-step tasks, code generation with acceptance criteria, anything touching more than one file), prefer **medium-density pre-planning** — 3-4 ordered steps with per-step acceptance criteria + verification command. Dense pre-plans (4+ steps with full I/O contracts per step) add prompt cost without yield. Lighter pre-plans leave too much structural decision-making to the model.
+> **Pre-planning density**: For non-trivial dispatches (multi-step tasks, code generation with acceptance criteria, anything touching more than one file), prefer **medium-density pre-planning** — 3-4 ordered steps with per-step acceptance criteria + verification command. Dense pre-plans (4+ steps with full I/O contracts per step) add prompt cost without clear yield — medium pre-planning matches or beats dense on every measured model. Lighter pre-plans leave too much structural decision-making to the model.
+>
+> **Bundle-gate strictness**: Keep bundle-gate / acceptance-verification language at the "standard" level (single-layer check or implicit acceptance verification). Strict bundle-gate wording (multi-layer enforcement clauses, "smoke-run required", aggressive validation insistence) underperforms standard across every measured model — verbose constraints push models toward defensive output (more disclaimers, fewer direct code blocks) rather than the discipline the strict wording is trying to elicit.
+>
+> **Anti-hallucination wording is a secondary lever, not the primary one.** Framework choice (RCAF role anchor) is ~2.4× more impactful than aggressive anti-hallucination wording across measured models. Anti-hallucination wording is useful as a backstop for high-risk fixture clusters (CLI flag invention, library symbol references), but don't expect it to outweigh framework choice or pre-planning density.
 
 ---
 

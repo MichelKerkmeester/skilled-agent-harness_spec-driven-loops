@@ -1,16 +1,20 @@
 # Cross-Model Validation Analysis
 
-**Generated**: 2026-05-17T13:34:02.247Z
-**Models tested**: kimi-k2.6
-**Variants tested**: 1
-**Fixtures per model x variant**: 1
-**Total dispatches**: 1
+**Generated**: 2026-05-17T19:02:15.360Z
+**Models tested**: deepseek-v4-pro, kimi-k2.6
+**Variants tested**: 5
+**Fixtures per model x variant**: 7
+**Total dispatches**: 70
 
 ## Per-model x per-variant aggregate scores
 
-| Variant | SWE-1.6 baseline | kimi-k2.6 |
-|---------|------------------|------|
-| v-004-rcaf-medium | 0.5664 | 0.4250 (n=1) |
+| Variant | SWE-1.6 baseline | deepseek-v4-pro | kimi-k2.6 |
+|---------|------------------|------|------|
+| v-001-baseline-star | 0.5235 | 0.6893 (n=7) | — |
+| v-002-build-dense-preplan | 0.4468 | 0.7129 (n=7) | — |
+| v-003-anti-hallucination-strong | 0.5164 | 0.6871 (n=7) | 0.6933 (n=6) |
+| v-004-rcaf-medium | 0.5664 | 0.7604 (n=7) | 0.7689 (n=7) |
+| v-005-build-strict-bundle-gate | 0.5610 | 0.7079 (n=7) | 0.7384 (n=6) |
 
 ## Decision gates — does each SWE-1.6 finding hold cross-model?
 
@@ -20,7 +24,8 @@ SWE-1.6 finding: v-004-rcaf-medium (0.5664) > v-005-build-strict-bundle-gate (0.
 
 | Model | v-004 mean | v-005 mean | Δ (v-004 − v-005) | Hold? |
 |-------|-----------|-----------|---------------------|-------|
-| kimi-k2.6 | — | — | — | INCONCLUSIVE (missing data) |
+| deepseek-v4-pro | 0.7604 | 0.7079 | +0.0525 | YES |
+| kimi-k2.6 | 0.7689 | 0.7384 | +0.0305 | YES |
 
 ### Gate 2: Framework-dominates-anti-hallucination (RCAF without > STAR with)
 
@@ -28,21 +33,23 @@ SWE-1.6 finding: v-004-rcaf-medium (0.5664) > v-003-anti-hallucination-strong (0
 
 | Model | v-004 mean | v-003 mean | Δ (v-004 − v-003) | Hold? |
 |-------|-----------|-----------|---------------------|-------|
-| kimi-k2.6 | — | — | — | INCONCLUSIVE (missing data) |
+| deepseek-v4-pro | 0.7604 | 0.6871 | +0.0732 | YES |
+| kimi-k2.6 | 0.7689 | 0.6933 | +0.0756 | YES |
 
 ## Best variant per model
 
 | Model | Best variant | Score |
 |-------|--------------|-------|
-| kimi-k2.6 | v-004-rcaf-medium | 0.4250 |
+| deepseek-v4-pro | v-004-rcaf-medium | 0.7604 |
+| kimi-k2.6 | v-004-rcaf-medium | 0.7689 |
 
 ## Verdict + cross-CLI propagation recommendation
 
-**Gate 1 (bundle-gate-aversion)**: 0/0 models confirm (none). 
-**Gate 2 (framework-dominates-anti-hallucination)**: 0/0 models confirm (none).
+**Gate 1 (bundle-gate-aversion)**: 2/2 models confirm (deepseek-v4-pro, kimi-k2.6). 
+**Gate 2 (framework-dominates-anti-hallucination)**: 2/2 models confirm (deepseek-v4-pro, kimi-k2.6).
 
-**Gate 1 verdict**: Bundle-gate-aversion does NOT hold cross-model → keep SWE-1.6-specific in cli-devin only.
-**Gate 2 verdict**: Framework-dominates-anti-hallucination does NOT hold cross-model → keep SWE-1.6-specific in cli-devin only.
+**Gate 1 verdict**: Bundle-gate-aversion holds on all tested models → propagate "standard-over-strict" guidance cross-CLI.
+**Gate 2 verdict**: Framework-dominates-anti-hallucination holds on all tested models → propagate "RCAF framework primary lever, anti-hallucination wording secondary" guidance cross-CLI.
 
 ## Surface caveats
 
