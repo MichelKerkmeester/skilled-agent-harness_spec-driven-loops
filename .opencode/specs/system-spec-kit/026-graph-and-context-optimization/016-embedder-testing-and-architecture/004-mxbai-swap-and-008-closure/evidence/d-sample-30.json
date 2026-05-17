@@ -1,0 +1,487 @@
+{
+  "created_at": "2026-05-17T14:37:37.663Z",
+  "runner": "mk-spec-memory MCP memory_search via JSON-RPC; warmed MCP child per mode; bypassCache=true per measured query; scripts/run-scenario.sh absent in repo",
+  "active_embedder_source_of_truth": "vec_metadata.active_embedder_name=nomic-embed-text-v1.5; active_embedder_dim=768",
+  "categories": {
+    "cat-13": 6,
+    "cat-14": 4,
+    "cat-15": 4,
+    "cat-16": 5,
+    "cat-17": 3,
+    "cat-24": 5,
+    "cat-25/03/04": 3
+  },
+  "scenarios": [
+    {
+      "category": "cat-13",
+      "scenario_id": "cat-13/003",
+      "title": "Context Save + Index Update",
+      "source_file": ".opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/003-context-save-index-update.md",
+      "predicate": "memory_search returns non-empty top-K for context save/index update signals",
+      "queries": [
+        {
+          "query": "context save index update memory_search memory_context memory_index_scan E_LINEAGE candidate_changed"
+        }
+      ]
+    },
+    {
+      "category": "cat-13",
+      "scenario_id": "cat-13/042",
+      "title": "Spec folder description discovery",
+      "source_file": ".opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/042-spec-folder-description-discovery-pi-b3.md",
+      "predicate": "memory_search returns non-empty top-K for description.json folder routing signals",
+      "queries": [
+        {
+          "query": "description.json spec folder description discovery folder routing memory_context stale detection"
+        }
+      ]
+    },
+    {
+      "category": "cat-13",
+      "scenario_id": "cat-13/133",
+      "title": "Dry-run preflight for memory_save",
+      "source_file": ".opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/133-dry-run-preflight-for-memory-save.md",
+      "predicate": "memory_search returns non-empty top-K for dry-run memory_save preflight signals",
+      "queries": [
+        {
+          "query": "dry-run preflight memory_save semantic insufficiency no index mutation force true rejects thin memory"
+        }
+      ]
+    },
+    {
+      "category": "cat-13",
+      "scenario_id": "cat-13/155",
+      "title": "Post-save quality review",
+      "source_file": ".opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/155-post-save-quality-review.md",
+      "predicate": "memory_search returns non-empty top-K for post-save quality review signals",
+      "queries": [
+        {
+          "query": "post-save quality review generate-context payload PASSED issue severity title trigger_phrases importance_tier"
+        }
+      ]
+    },
+    {
+      "category": "cat-13",
+      "scenario_id": "cat-13/177",
+      "title": "Hybrid decay policy",
+      "source_file": ".opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/177-hybrid-decay-policy-speckit-hybrid-decay-policy.md",
+      "predicate": "memory_search returns non-empty top-K for hybrid decay policy symbols",
+      "queries": [
+        {
+          "query": "hybrid decay policy SPECKIT_HYBRID_DECAY_POLICY calculateRetrievability getHybridDecayMultiplier"
+        }
+      ]
+    },
+    {
+      "category": "cat-13",
+      "scenario_id": "cat-13/203",
+      "title": "Memory causal trust display",
+      "source_file": ".opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/203-memory-causal-trust-display.md",
+      "predicate": "memory_search returns non-empty top-K for trust badge display signals",
+      "queries": [
+        {
+          "query": "memory causal trust display trustBadges confidence extractionAge lastAccessAge orphan weightHistoryChanged"
+        }
+      ]
+    },
+    {
+      "category": "cat-14",
+      "scenario_id": "cat-14/049",
+      "title": "4-stage pipeline refactor",
+      "source_file": ".opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/049-4-stage-pipeline-refactor-r6.md",
+      "predicate": "memory_search returns non-empty top-K for four-stage pipeline invariant",
+      "queries": [
+        {
+          "query": "4-stage pipeline refactor candidate fusion rerank final-rank stage scores immutable"
+        }
+      ]
+    },
+    {
+      "category": "cat-14",
+      "scenario_id": "cat-14/129",
+      "title": "Lineage state active projection and asOf resolution",
+      "source_file": ".opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/129-lineage-state-active-projection-and-asof-resolution.md",
+      "predicate": "memory_search returns non-empty top-K for lineage projection/asOf signals",
+      "queries": [
+        {
+          "query": "lineage state active projection asOf resolution malformed chain timestamp order"
+        }
+      ]
+    },
+    {
+      "category": "cat-14",
+      "scenario_id": "cat-14/203",
+      "title": "Atomic write-then-index API",
+      "source_file": ".opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/203-atomic-write-then-index-api.md",
+      "predicate": "memory_search returns non-empty top-K for atomic write/index/rename ordering",
+      "queries": [
+        {
+          "query": "atomic write then index API pending path retry final rename cleanup on validation failure"
+        }
+      ]
+    },
+    {
+      "category": "cat-14",
+      "scenario_id": "cat-14/204",
+      "title": "Embedding retry orchestrator",
+      "source_file": ".opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/204-embedding-retry-orchestrator.md",
+      "predicate": "memory_search returns non-empty top-K for pending embedding retry orchestration",
+      "queries": [
+        {
+          "query": "embedding retry orchestrator pending lexical-only storage retry manager backoff vector refresh"
+        }
+      ]
+    },
+    {
+      "category": "cat-15",
+      "scenario_id": "cat-15/055",
+      "title": "Dual-scope memory auto-surface",
+      "source_file": ".opencode/skills/system-spec-kit/manual_testing_playbook/15--retrieval-enhancements/055-dual-scope-memory-auto-surface-tm-05.md",
+      "predicate": "memory_search returns non-empty top-K for auto-surface hooks",
+      "queries": [
+        {
+          "query": "dual-scope memory auto-surface non-memory-aware tool path compaction relevant memories"
+        }
+      ]
+    },
+    {
+      "category": "cat-15",
+      "scenario_id": "cat-15/057",
+      "title": "Spec-folder hierarchy as retrieval structure",
+      "source_file": ".opencode/skills/system-spec-kit/manual_testing_playbook/15--retrieval-enhancements/057-spec-folder-hierarchy-as-retrieval-structure-s4.md",
+      "predicate": "memory_search returns non-empty top-K for hierarchy-aware retrieval",
+      "queries": [
+        {
+          "query": "spec-folder hierarchy retrieval self parent sibling depth ranking"
+        }
+      ]
+    },
+    {
+      "category": "cat-15",
+      "scenario_id": "cat-15/096",
+      "title": "Provenance-rich response envelopes",
+      "source_file": ".opencode/skills/system-spec-kit/manual_testing_playbook/15--retrieval-enhancements/096-provenance-rich-response-envelopes-p0-2.md",
+      "predicate": "memory_search returns non-empty top-K for provenance-rich response envelope trace fields",
+      "queries": [
+        {
+          "query": "provenance-rich response envelopes includeTrace scores source metadata search results"
+        }
+      ]
+    },
+    {
+      "category": "cat-15",
+      "scenario_id": "cat-15/145",
+      "title": "Contextual tree injection",
+      "source_file": ".opencode/skills/system-spec-kit/manual_testing_playbook/15--retrieval-enhancements/145-contextual-tree-injection-p1-4.md",
+      "predicate": "memory_search returns non-empty top-K for contextual tree injection",
+      "queries": [
+        {
+          "query": "contextual tree injection retrieval hierarchy session context tree source expansion"
+        }
+      ]
+    },
+    {
+      "category": "cat-16",
+      "scenario_id": "cat-16/237",
+      "title": "Spec Lifecycle Automation",
+      "source_file": ".opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/237-spec-lifecycle-automation.md",
+      "predicate": "memory_search returns non-empty top-K for spec lifecycle automation signals",
+      "queries": [
+        {
+          "query": "spec lifecycle automation upgrade completeness completion gate help output"
+        }
+      ]
+    },
+    {
+      "category": "cat-16",
+      "scenario_id": "cat-16/240",
+      "title": "Core Workflow Infrastructure",
+      "source_file": ".opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/240-core-workflow-infrastructure.md",
+      "predicate": "memory_search returns non-empty top-K for core workflow infrastructure tests",
+      "queries": [
+        {
+          "query": "core workflow infrastructure post-save review indexing scoring regressions targeted vitest suites"
+        }
+      ]
+    },
+    {
+      "category": "cat-16",
+      "scenario_id": "cat-16/281",
+      "title": "Embedder list registry inventory",
+      "source_file": ".opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/281-embedder-list-registry-inventory.md",
+      "predicate": "memory_search returns non-empty top-K for embedder_list registry inventory",
+      "queries": [
+        {
+          "query": "embedder_list registry inventory active provider dimensions ollama manifest ready status"
+        }
+      ]
+    },
+    {
+      "category": "cat-16",
+      "scenario_id": "cat-16/282",
+      "title": "Embedder set dry-run and validation",
+      "source_file": ".opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/282-embedder-set-dry-run-and-validation.md",
+      "predicate": "memory_search returns non-empty top-K for embedder_set dry-run validation",
+      "queries": [
+        {
+          "query": "embedder_set dry-run validation unknown embedder job preview active pointer unchanged"
+        }
+      ]
+    },
+    {
+      "category": "cat-16",
+      "scenario_id": "cat-16/283",
+      "title": "Embedder status job and active pointer",
+      "source_file": ".opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/283-embedder-status-job-and-active-pointer.md",
+      "predicate": "memory_search returns non-empty top-K for embedder_status active pointer job state",
+      "queries": [
+        {
+          "query": "embedder_status job active pointer vec_metadata active_embedder_name active_embedder_dim"
+        }
+      ]
+    },
+    {
+      "category": "cat-17",
+      "scenario_id": "cat-17/273",
+      "title": "Session-resume caller binding and Unicode sanitization",
+      "source_file": ".opencode/skills/system-spec-kit/manual_testing_playbook/17--governance/273-session-resume-caller-binding-and-unicode-sanitization.md",
+      "predicate": "memory_search returns non-empty top-K for session-resume caller binding and sanitization",
+      "queries": [
+        {
+          "query": "session_resume caller binding unicode sanitization mismatched caller session IDs permissive mode"
+        }
+      ]
+    },
+    {
+      "category": "cat-17",
+      "scenario_id": "cat-17/274",
+      "title": "Council graph upsert status query",
+      "source_file": ".opencode/skills/system-spec-kit/manual_testing_playbook/17--governance/274-council-graph-upsert-status-query.md",
+      "predicate": "memory_search returns non-empty top-K for council graph upsert status query",
+      "queries": [
+        {
+          "query": "council graph upsert status query validation node non-negative node edge counts"
+        }
+      ]
+    },
+    {
+      "category": "cat-17",
+      "scenario_id": "cat-17/276",
+      "title": "Deep-loop graph upsert status query",
+      "source_file": ".opencode/skills/system-spec-kit/manual_testing_playbook/17--governance/276-deep-loop-graph-upsert-status-query.md",
+      "predicate": "memory_search returns non-empty top-K for deep-loop graph upsert status query",
+      "queries": [
+        {
+          "query": "deep-loop graph upsert status query validation node non-negative node edge counts"
+        }
+      ]
+    },
+    {
+      "category": "cat-24",
+      "scenario_id": "cat-24/402",
+      "title": "Synonymy across vocabularies",
+      "source_file": ".opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/402-synonymy-across-vocabularies.md",
+      "predicate": "memory-search subset: both memory query pairs surface live targets 7007/8048 in top-5 and at least two pairs have >=25% top-5 Jaccard",
+      "multi": "synonymy",
+      "queries": [
+        {
+          "pair": "A",
+          "query": "V8 cross-spec contamination overreach checklist",
+          "expected_ids": [
+            7007
+          ]
+        },
+        {
+          "pair": "A",
+          "query": "checklist for preventing one spec from pulling unrelated foreign spec identifiers into generated content",
+          "expected_ids": [
+            7007
+          ]
+        },
+        {
+          "pair": "B",
+          "query": "template consolidation decision compose.sh levels addendum generator",
+          "expected_ids": [
+            8048
+          ]
+        },
+        {
+          "pair": "B",
+          "query": "ADR about merging spec-kit templates into the level and addendum generator",
+          "expected_ids": [
+            8048
+          ]
+        }
+      ]
+    },
+    {
+      "category": "cat-24",
+      "scenario_id": "cat-24/408",
+      "title": "Compound concept synthesis",
+      "source_file": ".opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/408-compound-concept-synthesis.md",
+      "predicate": "memory_search top-K constituent-source coverage for auto-migration+cascade+warmup query",
+      "multi": "constituents",
+      "expected_path_substrings": [
+        "shared/embeddings/factory",
+        "mcp_server/context-server",
+        "shared/embeddings/providers/llama-cpp",
+        "018-llama-cpp-auto-migration/implementation-summary.md"
+      ],
+      "queries": [
+        {
+          "query": "what happens when llama-cpp auto-migration starts but the provider warmup fails does the cascade fall back to hf-local or does migration error out"
+        }
+      ]
+    },
+    {
+      "category": "cat-24",
+      "scenario_id": "cat-24/409",
+      "title": "LLM-made memory recall fixture",
+      "source_file": ".opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/409-fixture.json",
+      "predicate": "full 10-row fixture: PASS when >=8/10 expected source IDs appear in top-3; row 1 is the toggle sanity probe",
+      "multi": "fixture409",
+      "queries": [
+        {
+          "row": 1,
+          "query": "documentation verification checklist for the CocoIndex complete-fork author docs phase",
+          "expected_ids": [
+            4460
+          ],
+          "difficulty": "easy"
+        },
+        {
+          "row": 2,
+          "query": "checklist for fixing V8 cross-spec contamination and ADR numeric prefix overreach in the local embeddings migration",
+          "expected_ids": [
+            7007
+          ],
+          "difficulty": "medium"
+        },
+        {
+          "row": 3,
+          "query": "deep-research summary comparing Contextador's retrieval ergonomics and MCP query surface against Public's existing substrate",
+          "expected_ids": [
+            7479
+          ],
+          "difficulty": "medium"
+        },
+        {
+          "row": 4,
+          "query": "ADR about consolidating spec-kit templates into the level and addendum generator instead of leaving compose scripts separate",
+          "expected_ids": [
+            8048
+          ],
+          "difficulty": "medium"
+        },
+        {
+          "row": 5,
+          "query": "research packet for turning review findings into fix-completeness inventories and cross-surface planner checks",
+          "expected_ids": [
+            7639
+          ],
+          "difficulty": "hard"
+        },
+        {
+          "row": 6,
+          "query": "implementation summary for the FIX-010-v2 remediation of packet docs, review strategy state, and inert planner imports",
+          "expected_ids": [
+            7636
+          ],
+          "difficulty": "easy"
+        },
+        {
+          "row": 7,
+          "query": "file ledger resource map for the testing playbook trio follow-up quality pass",
+          "expected_ids": [
+            7183
+          ],
+          "difficulty": "easy"
+        },
+        {
+          "row": 8,
+          "query": "plan covering memory indexer invariants, PE lineage guardrails, scan recheck bypass, and constitutional tier cleanup",
+          "expected_ids": [
+            12897
+          ],
+          "difficulty": "hard"
+        },
+        {
+          "row": 9,
+          "query": "stress-test task list tracking cat-14 pipeline gaps, cat-16 tooling fixes, and the remaining cat-24 memory-recall failure",
+          "expected_ids": [
+            13310
+          ],
+          "difficulty": "hard"
+        },
+        {
+          "row": 10,
+          "query": "task checklist for the mxbai swap that planned a 20-scenario PASS sample across cat-01, cat-11, cat-15, cat-13, and cat-23",
+          "expected_ids": [
+            13352
+          ],
+          "difficulty": "medium"
+        }
+      ]
+    },
+    {
+      "category": "cat-24",
+      "scenario_id": "cat-24/405",
+      "title": "Multi-aspect query synthesis",
+      "source_file": ".opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/405-multi-aspect-query-synthesis.md",
+      "predicate": "memory_search returns non-empty top-K for Apple Silicon Metal GPU embedding-default query",
+      "queries": [
+        {
+          "query": "Apple Silicon Metal GPU embedding default provider selection"
+        }
+      ]
+    },
+    {
+      "category": "cat-24",
+      "scenario_id": "cat-24/407",
+      "title": "Adversarial near-miss",
+      "source_file": ".opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/407-adversarial-near-miss.md",
+      "predicate": "memory_search returns non-empty top-K for adversarial near-miss semantic target query",
+      "queries": [
+        {
+          "query": "where are embedding results cached by content hash to skip recomputation"
+        }
+      ]
+    },
+    {
+      "category": "cat-25/03/04",
+      "scenario_id": "cat-03/015",
+      "title": "Session bootstrap reader-ready context",
+      "source_file": ".opencode/skills/system-spec-kit/manual_testing_playbook/03--discovery/015-session-bootstrap-reader-ready-context.md",
+      "predicate": "memory_search returns non-empty top-K for session bootstrap recovery signals",
+      "queries": [
+        {
+          "query": "session bootstrap reader-ready context graph readiness degraded mode next action session_resume code_graph_scan"
+        }
+      ]
+    },
+    {
+      "category": "cat-25/03/04",
+      "scenario_id": "cat-03/016",
+      "title": "Session resume continuity ladder",
+      "source_file": ".opencode/skills/system-spec-kit/manual_testing_playbook/03--discovery/016-session-resume-continuity-ladder.md",
+      "predicate": "memory_search returns non-empty top-K for session resume continuity ladder",
+      "queries": [
+        {
+          "query": "session_resume continuity ladder handover implementation-summary tasks phase parent last active child"
+        }
+      ]
+    },
+    {
+      "category": "cat-25/03/04",
+      "scenario_id": "cat-04/014",
+      "title": "Workspace scanning and indexing",
+      "source_file": ".opencode/skills/system-spec-kit/manual_testing_playbook/04--maintenance/014-workspace-scanning-and-indexing-memory-index-scan.md",
+      "predicate": "memory_search returns non-empty top-K for workspace scanning/indexing memory_index_scan signals",
+      "queries": [
+        {
+          "query": "workspace scanning indexing memory_index_scan atomic lease spec-doc warn-only last_index_scan"
+        }
+      ]
+    }
+  ]
+}

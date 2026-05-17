@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/010-skill-advisor-embedder-parity/002-jina-swap-and-reindex",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/010-skill-advisor-embedder-parity/002-jina-swap-and-reindex",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/010-skill-advisor-embedder-parity",
+  "children_ids": [],
+  "manual": {"depends_on": ["system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/010-skill-advisor-embedder-parity/001-pluggable-architecture"], "supersedes": [], "related_to": []},
+  "derived": {
+    "trigger_phrases": ["022/002 jina swap", "skill-graph reindex", "skill-advisor jina default"],
+    "key_topics": ["022", "jina-swap", "reindex", "skill-graph", "skill-advisor"],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": ["spec.md", "plan.md", "tasks.md"]
+  }
+}

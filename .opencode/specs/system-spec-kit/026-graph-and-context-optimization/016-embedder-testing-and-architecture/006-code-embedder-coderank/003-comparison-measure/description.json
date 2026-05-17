@@ -1,0 +1,22 @@
+{
+  "level": "1",
+  "specFolder": "003-comparison-measure",
+  "description": "Comparison measurement + ADR-001 ratifying CocoIndex embedder choice",
+  "keywords": [
+    "comparison",
+    "measurement",
+    "adr",
+    "cocoindex",
+    "embedder",
+    "benchmark",
+    "ratification"
+  ],
+  "lastUpdated": "2026-05-17T18:50:00.000Z",
+  "specId": "018-003",
+  "folderSlug": "comparison-measure",
+  "parentChain": [
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-code-embedder-coderank"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}

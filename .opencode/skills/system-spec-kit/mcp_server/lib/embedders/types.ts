@@ -5,7 +5,7 @@
 // architecture. Pure types only — no runtime imports.
 //
 // See: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/
-//      016-pluggable-embedder-architecture/spec.md
+//      016-embedder-testing-and-architecture/spec.md
 // ───────────────────────────────────────────────────────────────
 
 /**

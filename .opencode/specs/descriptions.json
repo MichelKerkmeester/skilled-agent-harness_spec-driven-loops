@@ -8999,7 +8999,7 @@
       "lastUpdated": "2026-05-16T10:03:53.711Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-pluggable-embedder-architecture",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture",
       "description": "016: Pluggable embedder architecture",
       "keywords": [
         "016",
@@ -9010,7 +9010,7 @@
       "lastUpdated": "2026-05-17T06:35:11.664Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-pluggable-embedder-architecture/001-embedder-adapter-interface",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-embedder-adapter-interface",
       "description": "016/001: EmbedderAdapter interface + EmbedderRegistry",
       "keywords": [
         "016",
@@ -9022,7 +9022,7 @@
       "lastUpdated": "2026-05-17T12:55:57.028Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-pluggable-embedder-architecture/002-ollama-backend-and-multi-dim-schema",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-ollama-backend-and-multi-dim-schema",
       "description": "016/002: Ollama backend adapter + dim-tagged vec schema",
       "keywords": [
         "016",
@@ -9037,7 +9037,7 @@
       "lastUpdated": "2026-05-17T12:55:57.032Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-pluggable-embedder-architecture/003-embedder-mcp-tools-and-reindex",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/003-embedder-mcp-tools-and-reindex",
       "description": "016/003: Embedder MCP tools + re-index orchestrator",
       "keywords": [
         "016",
@@ -9051,7 +9051,7 @@
       "lastUpdated": "2026-05-17T12:55:57.037Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-pluggable-embedder-architecture/004-mxbai-swap-and-008-closure",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-mxbai-swap-and-008-closure",
       "description": "016/004: mxbai-embed-large swap + close 008 cat-24/409",
       "keywords": [
         "016",

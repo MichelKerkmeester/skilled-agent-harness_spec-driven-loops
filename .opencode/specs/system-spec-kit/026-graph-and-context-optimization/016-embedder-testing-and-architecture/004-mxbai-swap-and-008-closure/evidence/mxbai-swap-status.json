@@ -1,0 +1,108 @@
+{
+  "packet": "016/004",
+  "timestamp": "2026-05-17T07:47:00Z",
+  "checkpoint": {
+    "id": 3,
+    "name": "pre-016-004-mxbai-swap-2026-05-17T07-12-00Z",
+    "createdAt": "2026-05-17T07:10:06.917Z",
+    "purpose": "mxbai-embed-large swap rollback insurance"
+  },
+  "attempted_swap": {
+    "jobId": "emb-swap-2026-05-17T07-10-12-183Z-7078e904",
+    "fromName": "embeddinggemma-300m",
+    "toName": "mxbai-embed-large-v1",
+    "status": "failed",
+    "total": 12928,
+    "processed": 0,
+    "error": "Ollama embedding request failed (400 Bad Request): [object Object]"
+  },
+  "active_pointer_after_failure": {
+    "name": "embeddinggemma-300m",
+    "dim": 768,
+    "backend": "llama-cpp",
+    "active": true,
+    "ready": true
+  },
+  "rollback": {
+    "command": "embedder_set({ name: \"embeddinggemma-300m\" })",
+    "jobId": "emb-swap-2026-05-17T07-11-35-980Z-eb8735c3",
+    "status_at_capture": "running",
+    "status_at_capture_detail": "same-to-same baseline re-index; active pointer already remained on embeddinggemma-300m",
+    "processed_at_capture": 1050,
+    "total": 12928,
+    "eta_seconds_at_capture": 4551
+  },
+  "direct_ollama_probe": {
+    "model_mxbai_embed_large": "PASS: /api/embed returned embeddings",
+    "model_mxbai_embed_large_v1": "FAIL: model \"mxbai-embed-large-v1\" not found, try pulling it first",
+    "evidence_file": "evidence/ollama-direct-embed-probe.txt",
+    "inference": "The local Ollama model is available as mxbai-embed-large; the failed MCP job likely used or exposed the manifest name mxbai-embed-large-v1 in a way Ollama rejected."
+  },
+  "retry_after_adapter_mapping_fix": {
+    "timestamp": "2026-05-17T07:24:00Z",
+    "checkpoint": {
+      "id": 4,
+      "name": "pre-016-004-retry-20260517T072209Z",
+      "createdAt": "2026-05-17T07:22:19.904Z"
+    },
+    "jobId": "emb-swap-2026-05-17T07-22-22-214Z-8a6dcaa9",
+    "fromName": "embeddinggemma-300m",
+    "toName": "mxbai-embed-large-v1",
+    "status": "failed",
+    "total": 12929,
+    "processed": 0,
+    "error": "Ollama embedding request failed (400 Bad Request): [object Object]",
+    "active_pointer_after_failure": {
+      "name": "embeddinggemma-300m",
+      "dim": 768,
+      "backend": "llama-cpp",
+      "active": true,
+      "ready": true
+    },
+    "direct_context_probe": {
+      "endpoint": "/api/embed",
+      "model": "mxbai-embed-large:latest",
+      "first_batch_size": 50,
+      "first_batch_max_content_chars": 19668,
+      "status": "400 Bad Request",
+      "body": "{\"error\":\"the input length exceeds the context length\"}",
+      "inference": "The manifest-to-Ollama tag mapping is correct, but the current re-index batch feeds full memory documents that exceed this Ollama model's context window."
+    }
+  },
+  "retry2_after_input_truncation": {
+    "timestamp": "2026-05-17T07:47:00Z",
+    "checkpoint": {
+      "id": 5,
+      "name": "pre-016-004-retry2-20260517T073305Z",
+      "createdAt": "2026-05-17T07:33:08.690Z"
+    },
+    "jobId": "emb-swap-2026-05-17T07-36-33-421Z-6bdfe475",
+    "fromName": "embeddinggemma-300m",
+    "toName": "mxbai-embed-large-v1",
+    "status": "completed",
+    "total": 12929,
+    "processed": 12929,
+    "maxInputChars": 1200,
+    "active_pointer_after_completion": {
+      "name": "mxbai-embed-large-v1",
+      "dim": 1024,
+      "ready": true
+    },
+    "cat24": {
+      "402": "FAIL",
+      "408": "FAIL",
+      "409": "FAIL",
+      "observed409Top3": "2/10",
+      "required409Top3": "8/10"
+    },
+    "decision": "ROLLBACK",
+    "rollback_after_adr004": {
+      "command": "setActiveEmbedder(db, \"embeddinggemma-300m\", 768)",
+      "active_pointer_after_rollback": {
+        "name": "embeddinggemma-300m",
+        "dim": 768
+      },
+      "timestamp": "2026-05-17T07:48:25.257Z"
+    }
+  }
+}

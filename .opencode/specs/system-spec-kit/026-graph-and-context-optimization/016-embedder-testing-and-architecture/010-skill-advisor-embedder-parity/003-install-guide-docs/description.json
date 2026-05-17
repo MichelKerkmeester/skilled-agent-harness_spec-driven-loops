@@ -1,0 +1,12 @@
+{
+  "level": "1",
+  "specFolder": "003-install-guide-docs",
+  "description": "Skill-advisor INSTALL_GUIDE + README for new-user onboarding",
+  "keywords": ["install-guide", "readme", "skill-advisor", "embedder-docs"],
+  "lastUpdated": "2026-05-17T21:25:00.000Z",
+  "specId": "022-003",
+  "folderSlug": "install-guide-docs",
+  "parentChain": ["system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/010-skill-advisor-embedder-parity"],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}

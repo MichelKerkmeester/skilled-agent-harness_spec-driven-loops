@@ -1,0 +1,42 @@
+{
+  "reviewTarget": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-deep-review-stack/",
+  "reviewTargetType": "spec-folder",
+  "reviewDimensions": ["correctness", "security", "traceability", "maintainability"],
+  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-deep-review-stack",
+  "maxIterations": 20,
+  "convergenceThreshold": 0.10,
+  "executionMode": "auto",
+  "resource_map": { "emit": true },
+  "config": {
+    "executor": {
+      "type": "cli-devin",
+      "model": "swe-1.6",
+      "reasoningEffort": "",
+      "serviceTier": "",
+      "timeoutSeconds": 900
+    }
+  },
+  "scopeManifest": {
+    "include": [
+      ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/**/*.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/rerank/retrieval-rescue.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/embedder-list.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/embedder-set.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/embedder-status.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/dist-freshness.vitest.ts",
+      ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/config.py",
+      ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/registered_embedders.py",
+      ".opencode/skills/mcp-coco-index/mcp_server/tests/test_config.py",
+      ".opencode/skills/mcp-coco-index/mcp_server/tests/test_registered_embedders.py"
+    ],
+    "exclude": [
+      "**/node_modules/**",
+      "**/.venv/**",
+      "**/dist/**",
+      "**/z_archive/**"
+    ]
+  },
+  "createdAt": "2026-05-17T20:55:00Z",
+  "createdBy": "main_agent + /spec_kit:deep-review:auto"
+}

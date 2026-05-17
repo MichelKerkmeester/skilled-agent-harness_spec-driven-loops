@@ -1,0 +1,18 @@
+{
+  "level": "phase",
+  "specFolder": "017-playbook-quality-audit",
+  "description": "Playbook quality audit",
+  "keywords": [
+    "playbook",
+    "quality",
+    "audit"
+  ],
+  "lastUpdated": "2026-05-17T13:05:56.806Z",
+  "specId": "017",
+  "folderSlug": "playbook-quality-audit",
+  "parentChain": [],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "17-05-26_14-05__audited-345-pre-expansion-manual-testing-playbook.md"
+  ]
+}

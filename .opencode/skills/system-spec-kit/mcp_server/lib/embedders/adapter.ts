@@ -5,7 +5,7 @@
 // backend adapter implements. Phases 016/002-004 wire real adapters.
 //
 // See: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/
-//      016-pluggable-embedder-architecture/001-embedder-adapter-interface/spec.md
+//      016-embedder-testing-and-architecture/001-embedder-adapter-interface/spec.md
 // ───────────────────────────────────────────────────────────────
 
 import type { BackendKind } from './types.js';

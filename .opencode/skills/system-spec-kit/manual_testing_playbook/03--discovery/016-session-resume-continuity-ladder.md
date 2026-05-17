@@ -34,7 +34,7 @@ Run session_resume for a known spec folder and verify handover/continuity/spec-d
 
 ### Commands
 
-1. `session_resume({ specFolder: ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-pluggable-embedder-architecture" })`
+1. `session_resume({ specFolder: ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture" })`
 2. Check for phase-parent redirect/listing behavior.
 3. Check that returned context cites child continuity before broad parent history.
 

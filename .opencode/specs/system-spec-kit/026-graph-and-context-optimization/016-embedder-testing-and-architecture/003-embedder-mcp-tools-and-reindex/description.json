@@ -1,0 +1,25 @@
+{
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/003-embedder-mcp-tools-and-reindex",
+  "description": "016/003: Embedder MCP tools + re-index orchestrator",
+  "keywords": [
+    "016",
+    "003",
+    "embedder",
+    "mcp",
+    "tools",
+    "re-index",
+    "orchestrator"
+  ],
+  "lastUpdated": "2026-05-17T12:55:57.037Z",
+  "specId": "003",
+  "folderSlug": "embedder-mcp-tools-and-reindex",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "016-embedder-testing-and-architecture"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "17-05-26_07-35__scaffolded-016-embedder-testing-and-architecture.md"
+  ]
+}

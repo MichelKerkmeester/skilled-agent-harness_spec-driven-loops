@@ -1,0 +1,110 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/005-playbook-quality-audit",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/005-playbook-quality-audit",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture",
+  "children_ids": [
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/005-playbook-quality-audit/001-fairness-audit",
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/005-playbook-quality-audit/002-tool-coverage-audit",
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/005-playbook-quality-audit/003-scenario-expansion"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "017 playbook quality audit",
+      "manual testing playbook fairness audit",
+      "mk-spec-memory tool coverage audit"
+    ],
+    "key_topics": [
+      "017",
+      "playbook",
+      "quality",
+      "audit",
+      "manual",
+      "testing",
+      "fairness",
+      "mk-spec-memory",
+      "tool",
+      "coverage",
+      "test",
+      "corpus"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "001-fairness-audit/evidence/playbook-fairness-audit.csv",
+      "002-tool-coverage-audit/evidence/tool-coverage-audit.csv",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "playbook-fairness-audit.csv",
+        "kind": "file",
+        "path": "001-fairness-audit/evidence/playbook-fairness-audit.csv",
+        "source": "derived"
+      },
+      {
+        "name": "tool-coverage-audit.csv",
+        "kind": "file",
+        "path": "002-tool-coverage-audit/evidence/tool-coverage-audit.csv",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Native Codex",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. ROOT PURPOSE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. SUB-PHASE LIST",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "4. WHAT NEEDS DONE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "017: Playbook quality audit (phase parent)",
+        "kind": "quoted",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Audit the manual testing playbook as a test corpus, not as prose. The immediate trigger was cat-24 fixture surgery: stale exact IDs, random sampling, aspirational thresholds, and orphaned memory rows made several retrieval-quality scenarios look like model failures when the ground truth itself had drifted.",
+    "created_at": "2026-05-17T12:59:58Z",
+    "last_save_at": "2026-05-17T13:06:04.961Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": "2026-05-17T13:06:04.961Z"
+  }
+}

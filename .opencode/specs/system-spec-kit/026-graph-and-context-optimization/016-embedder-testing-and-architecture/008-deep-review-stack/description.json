@@ -1,0 +1,20 @@
+{
+  "level": "1",
+  "specFolder": "020-deep-review-016-019-stack",
+  "description": "20-iter deep-review of 016-019 stack via cli-devin SWE 1.6",
+  "keywords": [
+    "deep-review",
+    "cli-devin",
+    "swe-1.6",
+    "embedder",
+    "rescue-layer",
+    "registry",
+    "adversarial-review"
+  ],
+  "lastUpdated": "2026-05-17T20:35:00.000Z",
+  "specId": "020",
+  "folderSlug": "deep-review-016-019-stack",
+  "parentChain": [],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}

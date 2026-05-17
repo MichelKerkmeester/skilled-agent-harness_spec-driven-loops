@@ -7,7 +7,7 @@
 // a stable surface to implement against.
 //
 // See: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/
-//      016-pluggable-embedder-architecture/001-embedder-adapter-interface/spec.md
+//      016-embedder-testing-and-architecture/001-embedder-adapter-interface/spec.md
 // ───────────────────────────────────────────────────────────────
 
 import {

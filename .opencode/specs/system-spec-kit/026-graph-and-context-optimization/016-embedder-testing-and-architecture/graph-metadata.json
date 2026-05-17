@@ -1,0 +1,99 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization",
+  "children_ids": [
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-embedder-adapter-interface",
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-ollama-backend-and-multi-dim-schema",
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/003-embedder-mcp-tools-and-reindex",
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-mxbai-swap-and-008-closure",
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/005-playbook-quality-audit",
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-code-embedder-coderank",
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/007-cocoindex-embedder-registry",
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-deep-review-stack",
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/009-skill-docs-alignment",
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/010-skill-advisor-embedder-parity"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "016 pluggable embedder architecture",
+      "embedder adapter interface",
+      "any embedder zero migration",
+      "mxbai-embed-large swap"
+    ],
+    "key_topics": [
+      "016",
+      "pluggable",
+      "embedder",
+      "architecture",
+      "adapter",
+      "interface",
+      "zero",
+      "migration",
+      "mxbai-embed-large",
+      "swap",
+      "make",
+      "mk-spec-memory"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "008-deep-review-stack/review/review-report.md",
+      "004-mxbai-swap-and-008-closure/decision-record.md",
+      "004-mxbai-swap-and-008-closure/evidence/008-closure-narrative.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Native Claude",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "one MCP",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. ROOT PURPOSE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Make mk-spec-memory **embedder-agnostic** so end users can swap models with a single MCP call \u2014 no code changes, no schema migration, no GGUF wrangling. Build the abstraction once; reuse it forever.",
+    "created_at": "2026-05-17T06:35:11.664Z",
+    "last_save_at": "2026-05-17T06:35:11.664Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ]
+  }
+}

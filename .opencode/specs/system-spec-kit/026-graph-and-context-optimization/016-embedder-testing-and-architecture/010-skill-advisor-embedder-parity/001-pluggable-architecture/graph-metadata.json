@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/010-skill-advisor-embedder-parity/001-pluggable-architecture",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/010-skill-advisor-embedder-parity/001-pluggable-architecture",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/010-skill-advisor-embedder-parity",
+  "children_ids": [],
+  "manual": {"depends_on": [], "supersedes": [], "related_to": []},
+  "derived": {
+    "trigger_phrases": ["022/001 pluggable architecture", "skill-advisor EmbedderAdapter", "skill-graph vec_metadata"],
+    "key_topics": ["022", "pluggable", "adapter", "registry", "vec-metadata", "skill-advisor"],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": ["spec.md", "plan.md", "tasks.md"]
+  }
+}

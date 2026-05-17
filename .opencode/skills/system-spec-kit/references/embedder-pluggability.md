@@ -139,7 +139,7 @@ Verdict: GATE default-on. Document the latency cost; preserve `SPECKIT_RERANK_LA
 
 ### ADR trail summary (016/004)
 
-Source: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-pluggable-embedder-architecture/004-mxbai-swap-and-008-closure/decision-record.md` (commit `1aa46e523`).
+Source: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-mxbai-swap-and-008-closure/decision-record.md` (commit `1aa46e523`).
 
 | ADR | Verdict | Key finding |
 |---|---|---|
@@ -393,18 +393,18 @@ This document was authored against the following source files at the commits bel
 |---|---|---|
 | Memory adapter interface | `3d9e89d1f` | `.opencode/skills/system-spec-kit/mcp_server/lib/embedders/adapter.ts` |
 | Memory MANIFESTS registry | `4a4e166ab` | `.opencode/skills/system-spec-kit/mcp_server/lib/embedders/registry.ts` |
-| Memory ADR trail (001–012) | `1aa46e523` | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-pluggable-embedder-architecture/004-mxbai-swap-and-008-closure/decision-record.md` |
+| Memory ADR trail (001–012) | `1aa46e523` | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-mxbai-swap-and-008-closure/decision-record.md` |
 | Memory ADR evidence | `1aa46e523` | (sibling) `evidence/embedder-comparison-with-rescue.jsonl` |
 | CocoIndex `_DEFAULT_MODEL` + `_resolve_device` | `8f909d229` | `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/config.py` |
 | CocoIndex `registered_embedders.py` | `49e3338ff` | `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/registered_embedders.py` |
 | CocoIndex INSTALL_GUIDE §4 | `49e3338ff` | `.opencode/skills/mcp-coco-index/INSTALL_GUIDE.md` |
-| Packet 018 (CocoIndex code-embedder swap) | (parent) | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/018-code-embedder-coderank/spec.md` |
-| Packet 019 (CocoIndex registry parity) | (parent) | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/019-cocoindex-embedder-registry/spec.md` |
+| Packet 018 (CocoIndex code-embedder swap) | (parent) | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-code-embedder-coderank/spec.md` |
+| Packet 019 (CocoIndex registry parity) | (parent) | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/007-cocoindex-embedder-registry/spec.md` |
 
 ### Cross-links
 
 - CocoIndex installer chooser table: [`.opencode/skills/mcp-coco-index/INSTALL_GUIDE.md`](../../mcp-coco-index/INSTALL_GUIDE.md) §4 "Choosing an embedder"
 - CocoIndex registry source: [`registered_embedders.py`](../../mcp-coco-index/mcp_server/cocoindex_code/registered_embedders.py)
-- Memory ADR trail: [`decision-record.md`](../../../specs/system-spec-kit/026-graph-and-context-optimization/016-pluggable-embedder-architecture/004-mxbai-swap-and-008-closure/decision-record.md)
+- Memory ADR trail: [`decision-record.md`](../../../specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-mxbai-swap-and-008-closure/decision-record.md)
 - Memory registry source: [`registry.ts`](../mcp_server/lib/embedders/registry.ts)
 - Memory adapter interface: [`adapter.ts`](../mcp_server/lib/embedders/adapter.ts)

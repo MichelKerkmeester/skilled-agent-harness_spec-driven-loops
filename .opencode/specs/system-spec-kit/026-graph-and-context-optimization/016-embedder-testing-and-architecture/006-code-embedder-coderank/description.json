@@ -1,0 +1,20 @@
+{
+  "level": "phase",
+  "specFolder": "018-code-embedder-coderank",
+  "description": "CocoIndex code-embedder swap to nomic-ai CodeRankEmbed",
+  "keywords": [
+    "cocoindex",
+    "code-embedder",
+    "coderank",
+    "nomic",
+    "code-search",
+    "metal",
+    "mps"
+  ],
+  "lastUpdated": "2026-05-17T18:50:00.000Z",
+  "specId": "018",
+  "folderSlug": "code-embedder-coderank",
+  "parentChain": [],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}
