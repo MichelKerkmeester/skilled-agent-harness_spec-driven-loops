@@ -39,7 +39,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Pending. Will land at `.opencode/skills/system-skill-advisor/INSTALL_GUIDE.md` (new "Choosing an embedder" section) + `README.md` (short pointer paragraph).
+Pending. Will land at `.opencode/skills/system-skill-advisor/INSTALL_GUIDE.md` (new "Choosing an embedder" section + alternatives table from 022/001 MANIFESTS + swap runbook citing 022/002 evidence/swap-runbook.md) + `.opencode/skills/system-skill-advisor/README.md` (1-paragraph "Embedder choice" pointer linking to INSTALL_GUIDE + 021/003 canonical narrative).
 <!-- /ANCHOR:what-built -->
 
 <!-- ANCHOR:how-delivered -->
