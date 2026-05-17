@@ -74,6 +74,14 @@ const MANIFESTS: ReadonlyArray<EmbedderManifest> = Object.freeze([
     maxInputChars: 8000,
     notes: 'Multilingual + paraphrase-tuned. Matryoshka representation allows 256/512/768/1024 truncation.',
   },
+  {
+    name: 'bge-m3',
+    dim: 1024,
+    backend: 'ollama',
+    ollamaName: 'bge-m3:latest',
+    maxInputChars: 8000,
+    notes: 'BAAI multilingual hybrid (dense+sparse+colbert), 8192 context, top MTEB multilingual.',
+  },
 ]);
 
 export class NotImplementedError extends Error {

@@ -7,11 +7,11 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-pluggable-embedder-architecture/004-mxbai-swap-and-008-closure"
-    last_updated_at: "2026-05-17T07:24:00Z"
+    last_updated_at: "2026-05-17T09:52:13Z"
     last_updated_by: "main_agent"
-    recent_action: "Marked retry2 results after bounded-input mxbai activation completed but cat-24/409 still failed"
-    next_safe_action: "Keep rollback; evaluate retrieval-quality alternatives before another 008 closure attempt"
-    blockers: ["mxbai active-vector 409 rerun reached only 2/10 top-3"]
+    recent_action: "Marked bge-m3 result after activation completed but cat-24/409 still failed"
+    next_safe_action: "Keep rollback; evaluate snowflake-arctic-l-v2 or another retrieval-quality alternative"
+    blockers: ["bge-m3 active-vector 409 rerun reached only 2/10 top-3"]
     key_files:
       - "decision-record.md"
       - "evidence/mxbai-swap-status.json"
@@ -53,6 +53,7 @@ _memory:
 - [x] T1.4: Follow-up fixed `OllamaAdapter` provider-tag mapping and retried with checkpoint `pre-016-004-retry-20260517T072209Z`
 - [x] T1.5: Retry job `emb-swap-2026-05-17T07-22-22-214Z-8a6dcaa9` failed at `0/12929`; direct probe found `{"error":"the input length exceeds the context length"}` for the first 50-row memory batch
 - [x] T1.6: Retry2 added bounded inputs and completed job `emb-swap-2026-05-17T07-36-33-421Z-6bdfe475` at `12929/12929`
+- [x] T1.7: bge-m3 registry entry added, `ollama pull bge-m3:latest` succeeded, and source/dist swap job `emb-swap-2026-05-17T09-14-12-620Z-ad2ca0ff` completed at `12937/12937`
 
 ### Cat-24 re-run
 - [x] T2.1: Dispatch/rerun cat-24/402 (synonymy) — FAIL under mxbai active-vector evidence
@@ -60,6 +61,7 @@ _memory:
 - [x] T2.3: Dispatch/rerun cat-24/409 (LLM-made-memory recall) — FAIL, 2/10 top-3
 - [x] T2.4: Append rows to `evidence/cat-24-rerun.jsonl`
 - [x] T2.5: Verify 409 reaches PASS (8/10 top-3) — NOT MET; rollback ADR-004 recorded
+- [x] T2.6: Re-run cat-24/409 under bge-m3 — NOT MET; 2/10 top-3 and rollback ADR-007 recorded
 
 ### 008 PASS sample re-run
 - [x] T3.1: Pick 20-scenario sample across cat-01, cat-11, cat-15, cat-13, cat-23
@@ -83,7 +85,7 @@ _memory:
 - [x] T5.1: strict-validate 016/004 exit 0
 - [x] T5.2: strict-validate 008 still exit 0
 - [ ] T5.3: Memory save via `/memory:save` — attempted; `memory_save` returned E081 even on dry-run
-- [ ] T5.4: Commit + push: `feat(016/004): mxbai-embed-large swap — closes 008 cat-24/409 (51/51 FAILs)`
+- [ ] T5.4: Commit + push: `chore(016/004): bge-m3 swap result (ADR-007 ROLLBACK)`
 
 
 <!-- /ANCHOR:phase-3 -->

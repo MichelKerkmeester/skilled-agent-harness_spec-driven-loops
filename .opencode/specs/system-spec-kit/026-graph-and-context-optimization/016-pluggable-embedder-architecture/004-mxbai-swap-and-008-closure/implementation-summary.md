@@ -1,17 +1,17 @@
 ---
 title: "Summary: 016/004 embedder swaps + 008 closure"
-description: "mxbai, jina, and nomic retries completed, but cat-24/409 stayed below PASS; rollback retained and 008 remains open."
+description: "mxbai, jina, nomic, and bge-m3 retries completed, but cat-24/409 stayed below PASS; rollback retained and 008 remains open."
 trigger_phrases: ["016/004 summary"]
 importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-pluggable-embedder-architecture/004-mxbai-swap-and-008-closure"
-    last_updated_at: "2026-05-17T09:08:34Z"
+    last_updated_at: "2026-05-17T09:52:13Z"
     last_updated_by: "main_agent"
-    recent_action: "Retried nomic; cat-24/409 reached 5/10"
-    next_safe_action: "Evaluate bge-m3 as next candidate"
-    blockers: ["nomic active-vector 409 rerun reached only 5/10 top-3"]
+    recent_action: "Retried bge-m3; cat-24/409 reached 2/10"
+    next_safe_action: "Evaluate snowflake-arctic-l-v2 or another retrieval-specialist candidate"
+    blockers: ["bge-m3 active-vector 409 rerun reached only 2/10 top-3"]
     key_files:
       - "decision-record.md"
       - "evidence/mxbai-swap-status.json"
@@ -35,7 +35,7 @@ _memory:
 ## 1. METADATA
 | Field | Value |
 |-------|-------|
-| Status | ROLLBACK — bounded-input mxbai, jina, and nomic activations completed, but cat-24/409 stayed below PASS |
+| Status | ROLLBACK — bounded-input mxbai, jina, nomic, and bge-m3 activations completed, but cat-24/409 stayed below PASS |
 | Branch | main |
 | Wall-clock estimate | 1-2 hours (mostly re-index wait + scenario re-runs) |
 | Closes | None; packet 008 cat-24/409 remains open |
@@ -58,6 +58,7 @@ Delivered failure-path evidence:
 - follow-up ADR-004 ROLLBACK after bounded inputs completed the re-index but cat-24/409 still reached only 2/10 top-3
 - follow-up ADR-005 ROLLBACK after jina-embeddings-v3 improved cat-24/409 to 4/10 top-3 but still missed the 8/10 PASS threshold
 - follow-up ADR-006 ROLLBACK after nomic-embed-text-v1.5 improved cat-24/409 to 5/10 top-3 but still missed the 8/10 PASS threshold
+- follow-up ADR-007 ROLLBACK after bge-m3 activated cleanly but cat-24/409 regressed to 2/10 top-3
 
 
 <!-- /ANCHOR:what-built -->
@@ -111,6 +112,15 @@ The Nomic cat-24 rerun still did not close 008:
 - 408 stayed `FAIL`.
 - 409 stayed below PASS at 5/10 top-3. This is the new empirical leader, but the required threshold is 8/10.
 
+The bge-m3 follow-up used Ollama tag `bge-m3:latest`. Direct probing returned 1024-dimensional embeddings. The manifest sets `maxInputChars: 8000`, and source/dist re-index job `emb-swap-2026-05-17T09-14-12-620Z-ad2ca0ff` completed `12937/12937`; the active pointer flipped to `bge-m3` for validation.
+
+The bge-m3 cat-24 rerun still did not close 008:
+- 402 stayed `FAIL`.
+- 408 stayed `FAIL`.
+- 409 stayed below PASS at 2/10 top-3. This ties mxbai and regresses below Jina and Nomic.
+
+Rollback restore via checkpoint failed because the checkpoint allowlist rejected `memory_entities`, so the active pointer was restored directly to `embeddinggemma-300m` / `vec_768`.
+
 
 <!-- /ANCHOR:how-delivered -->
 <!-- ANCHOR:decisions -->
@@ -121,6 +131,7 @@ The Nomic cat-24 rerun still did not close 008:
 - ADR-004: ROLLBACK. Bounded inputs and active query/table wiring let mxbai activate, but cat-24/409 still failed on retrieval quality.
 - ADR-005: ROLLBACK. Bounded Jina v3 activation completed, but cat-24/409 still failed on retrieval quality at 4/10 top-3.
 - ADR-006: ROLLBACK. Bounded Nomic activation completed and became the new leader at 5/10 top-3, but still failed the 8/10 closure gate.
+- ADR-007: ROLLBACK. Bge-m3 activated cleanly, but cat-24/409 regressed to 2/10 top-3.
 - Packet 115's standalone evaluation scaffold is superseded by 016's pluggable architecture, but 016/004 did not close packet 008 cat-24/409.
 
 
@@ -157,14 +168,20 @@ The Nomic cat-24 rerun still did not close 008:
 | Nomic swap job | completed | PASS — `12937/12937` |
 | cat-24/409 Nomic re-run | PASS (8/10 top-3) | FAIL — 5/10 top-3 |
 | 008 PASS sample under Nomic | ≥ 19/20 preserved | SKIP after decisive 409 failure |
+| `ollama pull bge-m3:latest` | exit 0 | PASS |
+| Bge-m3 direct embed probe | 1024 dims | PASS |
+| Bge-m3 swap job | completed | PASS — `12937/12937` |
+| cat-24/409 Bge-m3 re-run | PASS (8/10 top-3) | FAIL — 2/10 top-3 |
+| 008 PASS sample under Bge-m3 | ≥ 19/20 preserved | SKIP after decisive 409 failure |
+| active pointer after bge rollback | `embeddinggemma-300m` | PASS — restored directly after checkpoint restore allowlist failure |
 
 
 <!-- /ANCHOR:verification -->
 <!-- ANCHOR:limitations -->
 ## 6. KNOWN LIMITATIONS
-- cat-24/409 remains open. The newest Nomic retrieval-quality result is below PASS at 5/10 top-3.
+- cat-24/409 remains open. The best empirical result remains Nomic at 5/10 top-3; newest bge-m3 result is 2/10.
 - The 20-scenario PASS sample was not rerun after the decisive 409 failure. Preservation rate for ADR-004 is 0/20 measured-preserved.
-- The 20-scenario PASS sample was also skipped for Jina and Nomic after the decisive 409 failures.
-- The next retry should evaluate `bge-m3` or another retrieval-specialist model through the same pluggable mechanism.
+- The 20-scenario PASS sample was also skipped for Jina, Nomic, and bge-m3 after the decisive 409 failures.
+- The next retry should evaluate `snowflake-arctic-l-v2` or another retrieval-specialist model through the same pluggable mechanism.
 
 <!-- /ANCHOR:limitations -->

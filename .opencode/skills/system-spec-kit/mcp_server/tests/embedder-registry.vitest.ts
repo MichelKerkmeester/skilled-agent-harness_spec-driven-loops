@@ -14,9 +14,9 @@ import {
 import type { EmbedderManifest } from '../lib/embedders/index.js';
 
 describe('016/001 EmbedderRegistry', () => {
-  it('lists 6 manifests in declaration order, baseline first', () => {
+  it('lists 7 manifests in declaration order, baseline first', () => {
     const all = listManifests();
-    expect(all).toHaveLength(6);
+    expect(all).toHaveLength(7);
     expect(all[0]?.name).toBe('embeddinggemma-300m');
     expect(all.map((m) => m.name)).toEqual([
       'embeddinggemma-300m',
@@ -25,6 +25,7 @@ describe('016/001 EmbedderRegistry', () => {
       'bge-small-en-v1.5',
       'bge-large-en-v1.5',
       'jina-embeddings-v3',
+      'bge-m3',
     ]);
   });
 
@@ -47,6 +48,14 @@ describe('016/001 EmbedderRegistry', () => {
     expect(nomic?.prefixQuery).toBe('search_query: ');
     expect(nomic?.prefixDocument).toBe('search_document: ');
     expect(nomic?.maxInputChars).toBe(5000);
+  });
+
+  it('bge-m3 declares the 1024-dim Ollama manifest with 8K input cap', () => {
+    const bgeM3 = getManifest('bge-m3');
+    expect(bgeM3?.dim).toBe(1024);
+    expect(bgeM3?.backend).toBe('ollama');
+    expect(bgeM3?.ollamaName).toBe('bge-m3:latest');
+    expect(bgeM3?.maxInputChars).toBe(8000);
   });
 
   it('embeddinggemma-300m baseline does NOT declare prefix tokens', () => {

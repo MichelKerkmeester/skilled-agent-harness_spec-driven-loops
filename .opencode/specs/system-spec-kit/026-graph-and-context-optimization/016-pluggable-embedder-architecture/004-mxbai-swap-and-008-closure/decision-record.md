@@ -9,11 +9,11 @@ contextType: "decision"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-pluggable-embedder-architecture/004-mxbai-swap-and-008-closure"
-    last_updated_at: "2026-05-17T09:08:34Z"
+    last_updated_at: "2026-05-17T09:52:13Z"
     last_updated_by: "codex"
-    recent_action: "Recorded nomic empirical rollback"
-    next_safe_action: "Evaluate bge-m3 as the next retrieval-specialist candidate"
-    blockers: ["nomic active-vector 409 rerun reached only 5/10 top-3"]
+    recent_action: "Recorded bge-m3 empirical rollback"
+    next_safe_action: "Continue to snowflake-arctic-l-v2 or another retrieval-specialist candidate"
+    blockers: ["bge-m3 active-vector 409 rerun reached only 2/10 top-3"]
     key_files:
       - "evidence/mxbai-swap-status.json"
       - "evidence/ollama-direct-embed-probe.txt"
@@ -25,7 +25,7 @@ _memory:
       parent_session_id: null
     completion_pct: 95
     open_questions:
-      - "Will bge-m3 improve cat-24/409 without regressing existing PASS scenarios?"
+      - "Will snowflake-arctic-l-v2 improve cat-24/409 without regressing existing PASS scenarios?"
     answered_questions:
       - "Ollama itself can embed with model mxbai-embed-large on this machine."
       - "mxbai-embed-large-v1 is not an Ollama model tag on this machine."
@@ -244,3 +244,45 @@ Rollback outcome:
 Evidence:
 - `evidence/cat-24-rerun.jsonl`
 <!-- /ANCHOR:adr-006 -->
+
+<!-- ANCHOR:adr-007 -->
+## ADR-007: Roll back bge-m3; long-context activation succeeded but 409 regressed
+
+| Field | Value |
+|-------|-------|
+| Status | Accepted |
+| Date | 2026-05-17 |
+| Decision | ROLLBACK |
+
+The BAAI bge-m3 candidate used the same pluggable embedder mechanism as the prior swaps. The Ollama tag that worked on this host is:
+
+```text
+bge-m3:latest
+```
+
+Direct Ollama probing returned 1024-dimensional embeddings, matching the `bge-m3` manifest. The registry now declares `maxInputChars: 8000`, using the model's long context with headroom.
+
+The live MCP process had loaded the pre-edit registry and returned `UNKNOWN_EMBEDDER` for `embedder_set({ name: "bge-m3" })`. After building the MCP server, the same source/dist handler path queued and completed:
+
+```text
+emb-swap-2026-05-17T09-14-12-620Z-ad2ca0ff -> 12937/12937 completed
+active_embedder_name -> bge-m3
+active_embedder_dim  -> 1024
+```
+
+The cat-24 rerun still did not close packet 008:
+- 402: `FAIL` - memory Pair A and Pair B measured 0% top-5 Jaccard; CocoIndex Pair C and Pair D also measured 0% path overlap.
+- 408: `FAIL` - the compound query surfaced mirrored factory variants and related migration narratives, but missed the required constituent files.
+- 409: `FAIL` - 2/10 sampled trigger-phrase lookups found the source memory in top-3; required threshold is 8/10.
+
+Bge-m3 tied mxbai at 2/10 and regressed below Jina's 4/10 and Nomic's 5/10. The 008 PASS sample was skipped because 409 did not reach PASS.
+
+Rollback outcome:
+- `checkpoint_restore` for `pre-016-bge-m3-swap-2026-05-17T09-13-45Z` failed because the checkpoint restore allowlist rejected `memory_entities`.
+- The active pointer was restored directly to `embeddinggemma-300m` / `vec_768`; bge-m3 vectors remain available as evidence but are not active.
+- Packet 008 remains open.
+- Next candidate should be `snowflake-arctic-l-v2` or another retrieval-specialist model.
+
+Evidence:
+- `evidence/cat-24-rerun.jsonl`
+<!-- /ANCHOR:adr-007 -->
