@@ -17,9 +17,9 @@ This file provides copy-paste prompt templates for the most common cli-devin dis
 
 ## 2. Default Coding Dispatch (SWE-1.6, auto mode) — REQUIRES sk-prompt + pre-planning
 
-> **SWE-1.6 prompt-quality contract (v1.0.2.0+ — empirically tuned v1.0.5.0)**: SWE-1.6 is coding-specialized but smaller than the complex-task models — it relies on the calling AI doing structural decomposition upfront. Every dispatch with `--model swe-1.6` MUST be composed through `sk-prompt` (**default RCAF**; STAR for narrative, BUILD for multi-file refactor) + CLEAR 5-check AND include an explicit `<pre-plan>` block before the `<action>` block. The template below is the canonical pre-planned SWE-1.6 prompt shape, using RCAF (the empirically-best framework per 003-eval-loop).
+> **SWE-1.6 prompt-quality contract**: SWE-1.6 is coding-specialized but smaller than the complex-task models — it relies on the calling AI doing structural decomposition upfront. Every dispatch with `--model swe-1.6` MUST be composed through `sk-prompt` (**default RCAF**; STAR for narrative-heavy tasks, BUILD for multi-file refactor) + CLEAR 5-check AND include an explicit `<pre-plan>` block before the `<action>` block. The template below is the canonical pre-planned SWE-1.6 prompt shape, using RCAF.
 
-**Step 1 — pre-prompt through sk-prompt.** Before writing the `--prompt-file` payload, invoke `sk-prompt` with the raw task description. **Default to RCAF (Role / Context / Action / Format)** — it scored 33% higher than STAR in the 003-eval-loop optimization run (winner: v-004-rcaf-medium at 0.5796 vs v-001-baseline-star at 0.4357). Use STAR (Situation / Task / Action / Result) for narrative-heavy context-gathering tasks where role framing doesn't fit naturally. Use BUILD (Bounds / User-need / Implementation / Limits / Done-when) for well-defined multi-file refactors where scope boundaries dominate — but DO NOT pair BUILD with strict bundle-gate wording (003 run showed verbose constraints pushed SWE 1.6 toward defensive output and dropped the score). Run the CLEAR 5-check. If complexity ≥ 7/10 or compliance/security signals appear, dispatch `@prompt-improver` via the Task tool instead of inline composition.
+**Step 1 — pre-prompt through sk-prompt.** Before writing the `--prompt-file` payload, invoke `sk-prompt` with the raw task description. **Default to RCAF (Role / Context / Action / Format)** — the role anchor gives SWE-1.6 immediate framing without burning tokens on situation-setting, producing tighter and more focused output. Use STAR (Situation / Task / Action / Result) for narrative-heavy context-gathering tasks where role framing doesn't fit naturally. Use BUILD (Bounds / User-need / Implementation / Limits / Done-when) for well-defined multi-file refactors where scope boundaries dominate — but DO NOT pair BUILD with strict bundle-gate wording (verbose constraint language pushes SWE 1.6 toward defensive output rather than direct code). Run the CLEAR 5-check. If complexity ≥ 7/10 or compliance/security signals appear, dispatch `@prompt-improver` via the Task tool instead of inline composition.
 
 **Step 2 — compose the prompt with RCAF + explicit pre-planning.** Use this template, filling every placeholder. The framework is RCAF by default; swap to STAR or BUILD only if the task clearly fits one of those shapes better.
 
@@ -69,15 +69,15 @@ Produce work as follows:
 **Step 3 — dispatch.**
 
 ```bash
-# FRAMEWORK: RCAF (empirically-best for SWE-1.6 per 003-eval-loop, v1.0.5.0)
+# FRAMEWORK: RCAF
 devin --prompt-file /tmp/devin-prompt.md --model swe-1.6 --permission-mode auto -p 2>&1 </dev/null
 ```
 
-**Why RCAF won.** The 003-eval-loop ran 5 council-seeded variants × 7 fixtures = 35 dispatches plus 1 hill-climbing mutation = 42 total dispatches. RCAF + medium pre-plan + 5-thought sequential_thinking threshold + standard bundle-gate language scored 0.5796 — 33% higher than the STAR baseline (0.4357) and 35% higher than BUILD + dense pre-plan (0.4293). Role-context-action-format produces tighter, more focused SWE 1.6 outputs than situation-task-action-result narrative framing. The role anchor gives SWE 1.6 immediate framing without burning tokens on situation-setting.
+**Why RCAF is the default.** Role-context-action-format produces tighter, more focused SWE 1.6 outputs than situation-task-action-result narrative framing. The role anchor gives SWE 1.6 immediate framing without burning tokens on situation-setting. The result is less prose preamble and more direct code.
 
-**Why medium (not dense) pre-planning.** Dense pre-plans with 4+ steps and full I/O contracts per step did NOT translate to better text. SWE 1.6 followed the structure but didn't gain quality from it. 3-step medium pre-plans hit the sweet spot.
+**Why medium (not dense) pre-planning.** Dense pre-plans with 4+ steps and full I/O contracts per step do not translate to better output. SWE 1.6 follows the structure but does not gain quality from it. 3-step medium pre-plans hit the sweet spot — enough structure to surface ambiguity early, not so much that the prompt itself becomes the task.
 
-**Why standard (not strict) bundle-gate language.** v-005 (BUILD + strict bundle-gate "smoke-run required" + aggressive anti-hallucination) scored 0.4846 — LOWER than v-004 RCAF baseline. Verbose constraint language pushes SWE 1.6 toward defensive output (more disclaimers, more "I can't do this" caveats) rather than direct code. Trust the framework to do the work; don't pile on imperatives.
+**Why standard (not strict) bundle-gate language.** Verbose constraint language ("smoke-run required", aggressive anti-hallucination wording, multi-layer enforcement clauses) pushes SWE 1.6 toward defensive output: more disclaimers, more "I can't do this in this session" caveats, less direct code. Trust the framework and the pre-plan to do the work; do not pile on imperatives.
 
 **When to escalate off SWE-1.6.** If the pre-planning step itself reveals the task is more complex than "context gathering / tool use / simple-to-medium well-defined" (ambiguous requirements, multi-step reasoning, large refactor scope), the calling AI should switch to `--model deepseek-v4` rather than throwing a longer freeform prompt at SWE-1.6.
 
