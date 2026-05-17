@@ -57,7 +57,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 (phase parent) |
 | **Priority** | P2 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-05-16 |
 | **Branch** | `main` |
 | **Parent Spec** | n/a (root packet under skilled-agent-orchestration) |
@@ -122,10 +122,10 @@ Run a bespoke deep-loop that iteratively mutates cli-devin's prompt scaffolding,
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 001 | `001-council-design/` | deep-ai-council ratifies rubric + fixtures + knobs + loop shape | Planned |
-| 002 | `002-eval-rig/` | Build fixtures + grader + cache + deterministic checks (testable in isolation, no SWE 1.6 dispatches) | Planned |
-| 003 | `003-eval-loop/` | Run bespoke deep-loop iterations; depends on 002 green | Planned |
-| 004 | `004-skill-uplift/` | Apply winning patterns to `.opencode/skills/cli-devin/`; depends on 003 synthesis.md | Planned |
+| 001 | `001-council-design/` | deep-ai-council ratifies rubric + fixtures + knobs + loop shape | Complete |
+| 002 | `002-eval-rig/` | Build fixtures + grader + cache + deterministic checks (testable in isolation, no SWE 1.6 dispatches) | Complete |
+| 003 | `003-eval-loop/` | Run bespoke deep-loop iterations; depends on 002 green | Complete |
+| 004 | `004-skill-uplift/` | Apply winning patterns to `.opencode/skills/cli-devin/`; depends on 003 synthesis.md | Complete |
 
 ### Phase Transition Rules
 
