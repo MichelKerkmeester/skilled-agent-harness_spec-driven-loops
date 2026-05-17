@@ -52,7 +52,7 @@ Pending. Will record reindex wall-clock, disk size, and smoke-test results.
 <!-- ANCHOR:decisions -->
 ## Key Decisions
 
-- Default flipped to `sbert/nomic-ai/CodeRankEmbed` based on code-tuned model rationale (see 018 parent spec.md §1 OVERVIEW)
+- Default flipped to `sbert/jinaai/jina-embeddings-v2-base-code` based on code-tuned model rationale (see 018 parent spec.md §1 OVERVIEW)
 - MPS auto-detect added so Apple Silicon users get GPU acceleration without env-var setup
 - `COCOINDEX_CODE_DEVICE=cpu` preserved as kill switch
 <!-- /ANCHOR:decisions -->

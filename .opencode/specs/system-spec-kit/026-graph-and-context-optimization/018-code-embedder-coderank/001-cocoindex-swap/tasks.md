@@ -48,10 +48,10 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T003 Edit `_DEFAULT_MODEL` to `sbert/nomic-ai/CodeRankEmbed` (`cocoindex_code/config.py`)
+- [ ] T003 Edit `_DEFAULT_MODEL` to `sbert/jinaai/jina-embeddings-v2-base-code` (`cocoindex_code/config.py`)
 - [ ] T004 Add MPS branch to device resolution (`cocoindex_code/config.py`)
 - [ ] T005 [P] Add vitest covering MPS branch (`tests/`)
-- [ ] T006 First-time download CodeRankEmbed via sentence-transformers
+- [ ] T006 First-time download jina-code via sentence-transformers
 - [ ] T007 Trigger CocoIndex reindex via `cocoindex_refresh_index`
 <!-- /ANCHOR:phase-2 -->
 

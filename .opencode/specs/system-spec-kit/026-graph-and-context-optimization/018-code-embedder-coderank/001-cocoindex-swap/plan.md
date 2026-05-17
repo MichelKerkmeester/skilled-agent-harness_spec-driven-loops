@@ -29,7 +29,7 @@ _memory:
 ## 1. SUMMARY
 
 Three edits to `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/config.py`:
-1. Flip `_DEFAULT_MODEL` to `sbert/nomic-ai/CodeRankEmbed`
+1. Flip `_DEFAULT_MODEL` to `sbert/jinaai/jina-embeddings-v2-base-code`
 2. Add MPS branch to device resolution
 3. Vitest covering the new MPS branch
 
@@ -106,7 +106,7 @@ Code Graph reaches CocoIndex via `system-code-graph/mcp_server/lib/` bridge — 
 
 | Trigger | Action |
 |---|---|
-| MPS bug in CodeRankEmbed | Operator sets `COCOINDEX_CODE_DEVICE=cpu` |
-| CodeRankEmbed worse than gemma (per 018/003) | Revert `_DEFAULT_MODEL` + reindex |
+| MPS bug in jina-code | Operator sets `COCOINDEX_CODE_DEVICE=cpu` |
+| jina-code worse than gemma (per 018/003) | Revert `_DEFAULT_MODEL` + reindex |
 | Bridge breaks | Hold swap, patch bridge response-shape |
 <!-- /ANCHOR:rollback -->

@@ -55,7 +55,7 @@ Purpose: empirically benchmark candidates against the 018/002 fixture and ratify
 ## 3. SCOPE
 
 In scope:
-- Run gemma (baseline), CodeRankEmbed, and optionally jina-code + bge-code against 018/002 fixture
+- Run gemma (baseline), jina-code, and optionally CodeRankEmbed + bge-code against 018/002 fixture
 - Capture per-pair top-3 hits + latency
 - Aggregate per-difficulty + overall scores
 - Write `evidence/cocoindex-embedder-comparison.{jsonl,csv}`
@@ -82,7 +82,7 @@ Out of scope:
 ## 5. SUCCESS CRITERIA
 
 - All 5 requirements met
-- ADR-001 verdict is one of: KEEP-CODERANK / KEEP-GEMMA / ADOPT-OTHER
+- ADR-001 verdict is one of: KEEP-JINA-CODE / KEEP-GEMMA / ADOPT-OTHER
 - Strict-validate PASSED
 - A memory note ratifies the choice for future-session pickup
 <!-- /ANCHOR:success-criteria -->
@@ -105,5 +105,5 @@ Dependencies:
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Whether to include jina-code + bge-code in the first sweep, or defer to a second round if CodeRankEmbed shows clear win/loss vs gemma. Decide at measurement time.
+- Whether to include CodeRankEmbed + bge-code in the first sweep, or defer to a second round if jina-code shows clear win/loss vs gemma. Decide at measurement time.
 <!-- /ANCHOR:questions -->

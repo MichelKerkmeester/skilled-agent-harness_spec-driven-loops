@@ -1,6 +1,6 @@
 ---
-title: "018: Code embedder swap to nomic-ai/CodeRankEmbed (phase parent)"
-description: "Phase parent for swapping CocoIndex (and transitively Code Graph's semantic bridge) from sbert/google/embeddinggemma-300m to a code-specific embedder. Three children: cocoindex swap implementation, code-retrieval fixture authoring, and embedder comparison + ADR ratification."
+title: "018: Code embedder swap to jinaai/jina-embeddings-v2-base-code (phase parent)"
+description: "Phase parent for swapping CocoIndex (and transitively Code Graph's semantic bridge) from sbert/google/embeddinggemma-300m to jina's code-tuned embedder. Three children: cocoindex swap implementation, code-retrieval fixture authoring, embedder comparison + ADR ratification."
 trigger_phrases:
   - "018 code embedder coderank"
   - "cocoindex embedder swap"
@@ -37,19 +37,19 @@ _memory:
 
 CocoIndex (semantic code search) currently uses `sbert/google/embeddinggemma-300m` — a general-text embedder, not code-tuned. Code Graph's `mk-code-index` reaches CocoIndex through a bridge in `lib/`, so swapping CocoIndex's embedder also affects Code Graph's semantic queries.
 
-This packet swaps to `sbert/nomic-ai/CodeRankEmbed` (137M params, 768 dim, code-tuned, Metal-ready via PyTorch MPS) after measuring against the current gemma baseline.
+This packet swaps to `sbert/jinaai/jina-embeddings-v2-base-code` (161M params, 768 dim, code-tuned, Metal-ready via PyTorch MPS) after measuring against the current gemma baseline. Dim matches gemma (768) — no schema migration needed inside CocoIndex's index.
 
-mk-spec-memory continues with `nomic-embed-text-v1.5` (set by 016/004 + rescue layer per ADR-010/011) — text-tuned model for prose memory entries. Two embedders for two different content types.
+mk-spec-memory uses `jina-embeddings-v3` (text-tuned, 1024 dim, Q4_K_M via Ollama) set by 016/004 ADR-012 + rescue layer per ADR-010/011. Both systems on the jina family but distinct variants: text-v3 for prose memory entries (mk-spec-memory) + v2-base-code for source code (CocoIndex).
 <!-- /ANCHOR:overview -->
 
 <!-- ANCHOR:scope -->
 ## 2. SCOPE
 
 In scope:
-- CocoIndex embedder swap from `embeddinggemma-300m` to `nomic-ai/CodeRankEmbed` via `COCOINDEX_CODE_EMBEDDING_MODEL` env var
+- CocoIndex embedder swap from `embeddinggemma-300m` to `jinaai/jina-embeddings-v2-base-code` via `COCOINDEX_CODE_EMBEDDING_MODEL` env var
 - MPS device auto-detection patch (current code only auto-detects CUDA; add MPS branch for Apple Silicon)
 - Code-retrieval fixture (10-20 deterministic query/expected-source pairs scoped to actual repo code)
-- Benchmark gemma baseline vs CodeRankEmbed (and optionally jina-code, bge-code) on the fixture
+- Benchmark gemma baseline vs jina-code (and optionally CodeRankEmbed, bge-code) on the fixture
 - ADR ratifying production embedder choice for CocoIndex
 
 Out of scope:
@@ -81,8 +81,8 @@ Out of scope:
 <!-- ANCHOR:success -->
 ## 5. SUCCESS CRITERIA
 
-- CodeRankEmbed installed + indexable; reindex of repo completes without errors
-- Fixture measurement shows CodeRankEmbed ≥ gemma on top-3 recall (or operator accepts gemma if measurement is inconclusive)
+- jina-code installed + indexable; reindex of repo completes without errors
+- Fixture measurement shows jina-code ≥ gemma on top-3 recall (or operator accepts gemma if measurement is inconclusive)
 - ADR-001 ratifies the production choice with empirical evidence
 - Code Graph semantic queries (via CocoIndex bridge) continue to work post-swap (smoke test)
 - MPS auto-detect patch lands; CocoIndex auto-uses Apple Silicon GPU when available

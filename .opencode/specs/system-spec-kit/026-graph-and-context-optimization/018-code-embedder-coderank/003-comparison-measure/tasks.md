@@ -52,8 +52,8 @@ _memory:
 ## Phase 2: Implementation
 
 - [ ] T004 Sweep candidate 1 (gemma baseline) — swap, reindex, measure
-- [ ] T005 Sweep candidate 2 (CodeRankEmbed) — swap, reindex, measure
-- [ ] T006 [P] Sweep candidate 3 (jina-code) — optional
+- [ ] T005 Sweep candidate 2 (jina-code — primary) — swap, reindex, measure
+- [ ] T006 [P] Sweep candidate 3 (CodeRankEmbed) — optional
 - [ ] T007 [P] Sweep candidate 4 (bge-code) — optional
 - [ ] T008 Aggregate per-pair JSONL into per-embedder CSV
 - [ ] T009 Author ADR-001 in `decision-record.md`

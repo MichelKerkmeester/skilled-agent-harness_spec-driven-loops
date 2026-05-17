@@ -1,9 +1,9 @@
 ---
-title: "Spec: 018/001 CocoIndex embedder swap to CodeRankEmbed"
-description: "Swap CocoIndex default embedder from gemma to nomic-ai/CodeRankEmbed + MPS auto-detect patch"
+title: "Spec: 018/001 CocoIndex embedder swap to jina-code"
+description: "Swap CocoIndex default embedder from gemma to nomic-ai/jina-code + MPS auto-detect patch"
 trigger_phrases:
   - "018/001 cocoindex swap"
-  - "CodeRankEmbed activation"
+  - "jina-code activation"
   - "MPS auto-detect patch"
 importance_tier: "important"
 contextType: "implementation"
@@ -29,7 +29,7 @@ _memory:
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 1 -->
 
-# Spec: 018/001 CocoIndex embedder swap to CodeRankEmbed
+# Spec: 018/001 CocoIndex embedder swap to jina-code
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
@@ -54,7 +54,7 @@ Purpose: swap to a code-tuned embedder and unlock Apple Silicon acceleration wit
 ## 3. SCOPE
 
 In scope:
-- Edit `cocoindex_code/config.py`: change `_DEFAULT_MODEL` to `sbert/nomic-ai/CodeRankEmbed`
+- Edit `cocoindex_code/config.py`: change `_DEFAULT_MODEL` to `sbert/jinaai/jina-embeddings-v2-base-code`
 - Add MPS branch to device resolution (CUDA → MPS → CPU fallback chain)
 - Add vitest assertion covering the MPS auto-detect branch
 - Document reindex runbook for the operator
@@ -70,7 +70,7 @@ Out of scope:
 
 | # | Requirement |
 |---|---|
-| R1 | `_DEFAULT_MODEL` defaults to CodeRankEmbed when no env var set |
+| R1 | `_DEFAULT_MODEL` defaults to jina-code when no env var set |
 | R2 | `COCOINDEX_CODE_EMBEDDING_MODEL` env var continues to override default |
 | R3 | Device resolution returns `"mps"` when `torch.backends.mps.is_available()` on Apple Silicon |
 | R4 | `COCOINDEX_CODE_DEVICE=cpu` continues to force CPU as fallback |
@@ -91,7 +91,7 @@ Out of scope:
 ## 6. RISKS & DEPENDENCIES
 
 Risks:
-- **CodeRankEmbed first-time download (~270MB)** adds latency on cold start; document in runbook
+- **jina-code first-time download (~270MB)** adds latency on cold start; document in runbook
 - **MPS bug in older PyTorch versions** — we're on 2.11.0 (clean); `COCOINDEX_CODE_DEVICE=cpu` is the kill switch
 - **Reindex cost** — repository-size dependent; operator must accept the one-time cold-start hit
 
