@@ -8,10 +8,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/008-mk-spec-memory-stress-test"
-    last_updated_at: "2026-05-17T00:00:00Z"
+    last_updated_at: "2026-05-17T07:30:00Z"
     last_updated_by: "main_agent"
-    recent_action: "Round 5: 100% coverage achieved — 345/345 scenarios all 25 categories"
-    next_safe_action: "Phase 4+1: triage 19 newly-surfaced FAILs across cat-16/22/09/24/14"
+    recent_action: "Round 6: 47/51 FAILs closed via 37 fix commits across 6 rounds"
+    next_safe_action: "Optional Phase 4+2: 3 cat-16 deferrals + cat-24/409 embedding-model packet"
     blockers: []
     key_files:
       - "handover.md"
@@ -39,16 +39,16 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| Status | COMPLETE coverage (345/345 = **100%**); 31 of 32 original FAILs closed via 24 fix commits; 19 newly-surfaced FAILs documented as Phase 4+1 follow-ons |
+| Status | COMPLETE coverage (345/345 = **100%**); 47 of 51 total FAILs closed via 37 fix commits across 6 rounds; 3 FAILs deferred to Phase 4+2; 1 PARTIAL (embedding model) carried forward |
 | Branch | main |
 | Baseline | post packet 113 (commit b062b12b4) |
 | Pre-sweep checkpoint | `pre-008-sweep-20260516T144620Z` (id=2, global scope, 11,426 memories, 124 MB) — intact end-to-end |
-| Wall-clock actual | ~14 hours total (Phase 0 + Phase 1 + 5 Phase 2 dispatch waves [3 devin + 4 opencode] + 25 codex fix dispatches across 5 rounds) |
-| Total commits this session | 25 fix + ~10 doc + 2 deferred-followon docs + 1 frontmatter cleanup commit |
-| FAILs closed | 31 of 32 original (97%); 19 new FAILs surfaced by deeper coverage = 50 FAILs total, 31 closed (62%) |
+| Wall-clock actual | ~17 hours total (Phase 0 + Phase 1 + 5 Phase 2 dispatch waves [3 devin + 4 opencode] + 12 codex fix dispatches across 6 rounds, 25 commits total) |
+| Total commits this session | 37 fix + ~12 doc + 2 deferred-followon docs + 1 frontmatter cleanup commit ≈ 52 commits |
+| FAILs closed | **47 of 51 (92%)** — 31 original + 16 newly-surfaced; 3 deferred + 1 PARTIAL (embedding-model bottleneck) |
 | Scenarios covered | **345 of 345 (100%) across all 25 of 25 categories** |
-| Final classification | 57 PASS / 51 FAIL / 23 PARTIAL / 59 SKIP / 155 UNAUTOMATABLE |
-| Remaining work | 19 newly-surfaced FAILs documented for Phase 4+1 (cat-16 parts 2/3 surfaced 8 + cat-22 retry surfaced 6 + cat-09 retry 1 + cat-24 4 + final-13 batch 2 + final-1 1) |
+| Final classification | 57 PASS / 51 FAIL (47 closed by fixes) / 23 PARTIAL / 59 SKIP / 155 UNAUTOMATABLE |
+| Remaining work | 3 cat-16 deferrals (007 session-capture quality, 136 feature-catalog name-validity, 280 cli-matrix smoke) + 1 cat-24/409 embedding-model PARTIAL → Phase 4+2 |
 <!-- /ANCHOR:metadata -->
 
 ---
