@@ -1,0 +1,146 @@
+[
+  {
+    "id": 1,
+    "query": "registry of available embedding backends with dimensions and model notes",
+    "expected_source_path": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/registry.ts",
+    "expected_symbol": "listManifests",
+    "difficulty": "easy",
+    "category": "mk-spec-memory-embedder"
+  },
+  {
+    "id": 2,
+    "query": "handler that accepts an embedder name and queues a reindex job",
+    "expected_source_path": ".opencode/skills/system-spec-kit/mcp_server/handlers/embedder-set.ts",
+    "expected_symbol": "handleEmbedderSet",
+    "difficulty": "easy",
+    "category": "mk-spec-memory-handler"
+  },
+  {
+    "id": 3,
+    "query": "CocoIndex configuration that chooses the default local code embedding model",
+    "expected_source_path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/config.py",
+    "expected_symbol": "Config.from_env",
+    "difficulty": "easy",
+    "category": "cocoindex-code"
+  },
+  {
+    "id": 4,
+    "query": "shell validator for spec folders with strict mode and recursive phase support",
+    "expected_source_path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+    "expected_symbol": "parse_args",
+    "difficulty": "easy",
+    "category": "spec-kit-script"
+  },
+  {
+    "id": 5,
+    "query": "Vitest coverage for code graph readiness snapshots and stale state",
+    "expected_source_path": ".opencode/skills/system-code-graph/mcp_server/tests/code-graph-status-readiness-snapshot.vitest.ts",
+    "expected_symbol": "describe",
+    "difficulty": "easy",
+    "category": "vitest-case"
+  },
+  {
+    "id": 6,
+    "query": "construct an Ollama-backed embedder and apply query/document prefixes before embedding",
+    "expected_source_path": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/adapters/ollama.ts",
+    "expected_symbol": "OllamaAdapter",
+    "difficulty": "medium",
+    "category": "mk-spec-memory-embedder"
+  },
+  {
+    "id": 7,
+    "query": "single scoring stage where recency, graph, feedback, and rescue boosts are combined",
+    "expected_source_path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts",
+    "expected_symbol": "executeStage2Fusion",
+    "difficulty": "medium",
+    "category": "rescue-layer"
+  },
+  {
+    "id": 8,
+    "query": "readiness probe that checks whether the semantic code index is fresh or absent",
+    "expected_source_path": ".opencode/skills/system-code-graph/mcp_server/lib/ccc-readiness-probe.ts",
+    "expected_symbol": "probeCocoIndexReadiness",
+    "difficulty": "medium",
+    "category": "code-graph-lib"
+  },
+  {
+    "id": 9,
+    "query": "declarative list of vetted sentence transformer candidates for local code search",
+    "expected_source_path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/registered_embedders.py",
+    "expected_symbol": "MANIFESTS",
+    "difficulty": "medium",
+    "category": "cocoindex-code"
+  },
+  {
+    "id": 10,
+    "query": "context save command that reads structured JSON and refreshes graph metadata",
+    "expected_source_path": ".opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js",
+    "expected_symbol": "HELP_TEXT",
+    "difficulty": "medium",
+    "category": "spec-kit-script"
+  },
+  {
+    "id": 11,
+    "query": "Apple Silicon device fallback that prefers Metal when CUDA is unavailable",
+    "expected_source_path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/config.py",
+    "expected_symbol": "_resolve_device",
+    "difficulty": "hard",
+    "category": "cocoindex-code"
+  },
+  {
+    "id": 12,
+    "query": "paraphrase recovery path that promotes sibling memory artifacts from the same folder",
+    "expected_source_path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/rerank/retrieval-rescue.ts",
+    "expected_symbol": "applyRetrievalRescueLayer",
+    "difficulty": "hard",
+    "category": "rescue-layer"
+  },
+  {
+    "id": 13,
+    "query": "bounded token budget allocation for assembling structural context responses",
+    "expected_source_path": ".opencode/skills/system-code-graph/mcp_server/lib/budget-allocator.ts",
+    "expected_symbol": "allocateBudget",
+    "difficulty": "hard",
+    "category": "code-graph-lib"
+  },
+  {
+    "id": 14,
+    "query": "filesystem walker that emits typed structural symbols and import edges",
+    "expected_source_path": ".opencode/skills/system-code-graph/mcp_server/lib/structural-indexer.ts",
+    "expected_symbol": "StructuralIndexer",
+    "difficulty": "hard",
+    "category": "code-graph-lib"
+  },
+  {
+    "id": 15,
+    "query": "query-time path class adjustment that favors implementation files over generated copies",
+    "expected_source_path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/query.py",
+    "expected_symbol": "_ranked_result",
+    "difficulty": "hard",
+    "category": "cocoindex-code"
+  },
+  {
+    "id": 16,
+    "query": "atomic readiness marker persistence tested for partial writes",
+    "expected_source_path": ".opencode/skills/system-code-graph/mcp_server/tests/readiness-marker-atomic-write.vitest.ts",
+    "expected_symbol": "describe",
+    "difficulty": "medium",
+    "category": "vitest-case"
+  },
+  {
+    "id": 17,
+    "query": "file matcher that lets explicitly canonical skill resources bypass hidden directory exclusions",
+    "expected_source_path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/indexer.py",
+    "expected_symbol": "CanonicalResourceMatcher",
+    "difficulty": "hard",
+    "category": "cocoindex-code"
+  },
+  {
+    "id": 18,
+    "query": "integration test for reprocessing only changed files during an index refresh",
+    "expected_source_path": ".opencode/skills/mcp-coco-index/mcp_server/tests/test_refresh_split.py",
+    "expected_symbol": "test_refresh",
+    "difficulty": "medium",
+    "category": "cocoindex-code"
+  }
+]

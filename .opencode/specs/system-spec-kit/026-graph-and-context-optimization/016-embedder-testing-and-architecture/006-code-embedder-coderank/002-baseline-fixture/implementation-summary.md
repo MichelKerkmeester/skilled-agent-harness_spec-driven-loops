@@ -1,6 +1,6 @@
 ---
 title: "Summary: 018/002 baseline fixture"
-description: "Pending — populated after fixture authoring lands"
+description: "Authored 18-pair deterministic CocoIndex retrieval fixture"
 trigger_phrases: ["018/002 summary"]
 importance_tier: "normal"
 contextType: "implementation"
@@ -9,8 +9,8 @@ _memory:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-code-embedder-coderank/002-baseline-fixture"
     last_updated_at: "2026-05-17T18:50:00Z"
     last_updated_by: "main_agent"
-    recent_action: "Scaffolded packet"
-    next_safe_action: "Backfill after fixture lands"
+    recent_action: "Authored 18-pair fixture and idempotent validator"
+    next_safe_action: "Run 003-comparison-measure against the fixture"
     blockers: []
     key_files:
       - "spec.md"
@@ -18,7 +18,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000018002"
       session_id: "018-002-baseline-fixture-impl"
       parent_session_id: "018-002-baseline-fixture"
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -32,41 +32,40 @@ _memory:
 
 | Field | Value |
 |---|---|
-| Status | Pending — placeholder |
-| Artifact | TBD: `evidence/code-retrieval-fixture.json` |
+| Status | Complete |
+| Artifact | `evidence/code-retrieval-fixture.json`, `evidence/fixture-validate.sh` |
 | Owner | main agent |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Pending. Will land at `evidence/code-retrieval-fixture.json` (10-20 pairs) and `evidence/fixture-validate.sh` (path-existence + indexability check). Difficulty distribution: ~5 easy / ~5 medium / ~5 hard.
+Authored `evidence/code-retrieval-fixture.json` with 18 deterministic query → expected source pairs. Distribution: 5 easy, 7 medium, 6 hard. Domains include mk-spec-memory embedder code, mk-spec-memory handler code, Code Graph libraries, the mk-spec-memory rescue/fusion layer, CocoIndex Python code, spec-kit scripts, and Vitest/Python tests.
 <!-- /ANCHOR:what-built -->
 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Pending. Will document the survey + authoring + validation flow.
+Surveyed representative repo files first, then wrote natural-language queries with enough overlap for easy cases and paraphrased/semantic-only wording for harder cases. Added `evidence/fixture-validate.sh` to check fixture shape, path existence, safe repo-relative paths, difficulty distribution, and `DEFAULT_INCLUDED_PATTERNS` compatibility from CocoIndex settings.
 <!-- /ANCHOR:how-delivered -->
 
 <!-- ANCHOR:decisions -->
 ## Key Decisions
 
-- Fixture authored by main agent (or operator), not by codex — to avoid AI-hallucinated source/query pairs that don't map to real repo state
-- Difficulty mix: ~5 easy / ~5 medium / ~5 hard for statistical sensitivity across the difficulty spectrum
+- Fixture pairs are all indexable code paths; `system-spec-kit/templates/` was surveyed but not scored because it currently contains only `.md`, `.tmpl`, `.json`, and metadata files, which do not match CocoIndex's code-only include patterns.
+- Difficulty mix is 5 easy / 7 medium / 6 hard for sensitivity across lexical and semantic retrieval behavior.
 <!-- /ANCHOR:decisions -->
 
 <!-- ANCHOR:verification -->
 ## Verification
 
-Pending. After authoring:
-- Run: `bash evidence/fixture-validate.sh` — expect exit 0
-- Hand-review for lexical leakage
-- Run: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <packet> --strict` — expect exit 0
+- Run: `bash evidence/fixture-validate.sh` — PASS, exit 0, 18 pairs with distribution `easy=5`, `medium=7`, `hard=6`.
+- Hand-review: queries avoid exact source snippets and avoid adversarial/human-unanswerable wording.
+- Run: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <packet> --strict` — PASS, exit 0.
 <!-- /ANCHOR:verification -->
 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-Pending — populated after authoring.
+Doc-template artifacts under `system-spec-kit/templates/` are not scored because they are not indexable under the active CocoIndex include patterns. That keeps the validator honest and avoids fixture rows that cannot be returned after a clean reindex.
 <!-- /ANCHOR:limitations -->
