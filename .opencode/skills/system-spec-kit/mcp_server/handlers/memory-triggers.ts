@@ -6,6 +6,7 @@ import { validateFilePath } from '@spec-kit/shared/utils/path-security';
 
 // Feature catalog: Trigger phrase matching (memory_match_triggers)
 // Feature catalog: BM25 trigger phrase re-index gate
+// Feature catalog: Classification-based decay
 
 
 /* ───────────────────────────────────────────────────────────────
