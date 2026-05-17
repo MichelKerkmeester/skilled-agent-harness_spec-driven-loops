@@ -1,0 +1,21 @@
+{
+  "level": "3",
+  "specFolder": "skilled-agent-orchestration/116-cli-devin-extraction-rerun",
+  "description": "Build markdown-to-disk extraction layer that closes the 003-eval-loop file-extraction gap. Wire extraction into 114/002 score-variant.cjs behind env flag. Re-run 5 council-seeded variants × 7 fixtures with extraction + live claude-sonnet grader. Compare v2 ranking against 003's v1 to confirm or revise the RCAF winner.",
+  "keywords": [
+    "cli-devin",
+    "swe-1.6",
+    "extraction-layer",
+    "live-grader",
+    "rerun",
+    "d1-unlock"
+  ],
+  "lastUpdated": "2026-05-17T05:35:00Z",
+  "specId": "116",
+  "folderSlug": "cli-devin-extraction-rerun",
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}
