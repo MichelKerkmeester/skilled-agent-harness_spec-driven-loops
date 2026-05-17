@@ -47,7 +47,23 @@ triggerPhrases:
 
 ## How to dispatch
 
-Use `/spec_kit:deep-review:auto` with `cli-devin` executor + `swe-1.6` model for the **iteration workers**. The **loop-manager orchestrator** above the iterations is a **native Opus Agent** (Agent tool with `subagent_type=claude` or similar), NOT cli-codex. Follow the cli-devin constitutional preload rule (`cli-dispatch-skill-preload.md`).
+**Two roles, two executors:**
+
+| Role | Executor | Why |
+|---|---|---|
+| **Loop-manager orchestrator** (manages iter sequencing, convergence, synthesis, commit) | **Native Anthropic Agent** (Agent tool with `subagent_type=claude` / `code` / `orchestrate`) | Per the "Native Opus preference for implementation work" mandate in AGENTS.md. Opus has the judgment for iter-by-iter adjudication + final synthesis. cli-codex is NOT used here. |
+| **Per-iter review worker** (one dimension/pass, P0/P1/P2 finding) | **cli-devin SWE-1.6** with `--agent-config .opencode/skills/cli-devin/assets/agent-config-deep-review-iter.json` | Per operator directive ("Run more SWE 1.6 based deep review"). The recipe pins the read-only profile + sequential_thinking + RCAF prompt-quality contract. |
+
+Follow the cli-devin constitutional preload rule (`cli-dispatch-skill-preload.md`) — the loop manager MUST read cli-devin/SKILL.md §3 + prompt_templates.md §2 + deep-loop-iter-contract.md before composing per-iter prompts.
+
+**Per-iter prompt contract** (the loop manager enforces this when authoring each iter prompt):
+- `Framework: RCAF` declared at top
+- Explicit ROLE + CONTEXT + ACTION + FORMAT sections
+- Medium-density pre-planning (3-4 ordered steps, NOT high-density)
+- `<ref_file>` tags around every cited path
+- sequential_thinking mandate
+- Spec folder pre-approved (Gate 3 skip)
+- DO NOT pair BUILD framework with strict bundle-gate wording (pushes SWE-1.6 toward defensive output)
 
 ### Iteration count tiering
 
