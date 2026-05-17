@@ -1,0 +1,16 @@
+{
+  "variantId": "v-mut-d68b487314246cd3",
+  "variantSignature": "d68b487314246cd3",
+  "variantScore": 0.5833,
+  "meta": {
+    "id": "v-mut-ab47da0161b16956",
+    "framework": "CONTEXT",
+    "preplanning_density": "medium",
+    "thinking_threshold": "5",
+    "bundle_gate_strictness": "standard",
+    "anti_hallucination_strength": "standard",
+    "source": "mutated",
+    "parent_signature": ""
+  },
+  "at_iter": 8
+}

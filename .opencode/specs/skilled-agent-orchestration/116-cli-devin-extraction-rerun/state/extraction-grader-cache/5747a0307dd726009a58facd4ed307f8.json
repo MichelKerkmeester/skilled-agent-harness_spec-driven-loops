@@ -1,0 +1,9 @@
+{
+  "raw": "{\"inferred_path\":\"src/utils/format.ts\",\"confidence\":0.85,\"reason\":\"TS function declaration suggests src/utils\"}",
+  "parsed": {
+    "inferred_path": "src/utils/format.ts",
+    "confidence": 0.85,
+    "reason": "TS function declaration suggests src/utils"
+  },
+  "when": "2026-05-17T08:01:15.304Z"
+}
