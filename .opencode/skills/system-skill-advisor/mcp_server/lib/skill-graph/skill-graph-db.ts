@@ -15,6 +15,13 @@ import { createEmbeddingsProvider } from '@spec-kit/shared/embeddings/factory.js
 import { createHash } from 'node:crypto';
 import { existsSync, mkdirSync, readFileSync, readdirSync, renameSync, rmSync, statSync } from 'node:fs';
 import { basename, dirname, join, relative, resolve } from 'node:path';
+import {
+  ensureVecMetadataTable,
+  ensureVecTableForDim,
+  getActiveEmbedder,
+  hasActiveEmbedderPointer,
+  vecTableNameForDim,
+} from '../embedders/schema.js';
 import { checkSqliteIntegrity } from '../freshness/sqlite-integrity.js';
 import { parseSkillFrontmatter } from '../utils/skill-markdown.js';
 
@@ -174,6 +181,12 @@ const SCHEMA_SQL = `
     updated_at TEXT DEFAULT (datetime('now'))
   );
 
+  CREATE TABLE IF NOT EXISTS vec_metadata (
+    key TEXT PRIMARY KEY,
+    value TEXT NOT NULL,
+    created_at TEXT DEFAULT (datetime('now'))
+  );
+
   CREATE INDEX IF NOT EXISTS idx_skill_nodes_family ON skill_nodes(family);
   CREATE INDEX IF NOT EXISTS idx_skill_nodes_category ON skill_nodes(category);
   CREATE INDEX IF NOT EXISTS idx_skill_nodes_hash ON skill_nodes(content_hash);
@@ -223,6 +236,10 @@ function recoverMalformedDatabase(databasePath: string, reason: string): void {
 }
 
 function ensureSchemaMigrations(database: Database.Database): void {
+  ensureVecMetadataTable(database);
+  ensureVecTableForDim(database, 768);
+  ensureVecTableForDim(database, 1024);
+
   database.exec(`
     CREATE TABLE IF NOT EXISTS skill_graph_metadata (
       key TEXT PRIMARY KEY,
@@ -820,6 +837,44 @@ export async function refreshSkillEmbeddings(skillDir?: string): Promise<SkillEm
 
 export function loadSkillEmbeddings(skillIds?: readonly string[]): SkillEmbeddingRow[] {
   const database = getDb();
+  if (hasActiveEmbedderPointer(database)) {
+    const active = getActiveEmbedder(database);
+    const tableName = vecTableNameForDim(active.dim);
+    ensureVecTableForDim(database, active.dim);
+
+    const activeRows = skillIds && skillIds.length > 0
+      ? database.prepare(`
+          SELECT skill_id, embedding, model_id, content_hash
+          FROM ${tableName}
+          WHERE skill_id IN (${skillIds.map(() => '?').join(', ')})
+          ORDER BY skill_id ASC
+        `).all(...skillIds)
+      : database.prepare(`
+          SELECT skill_id, embedding, model_id, content_hash
+          FROM ${tableName}
+          ORDER BY skill_id ASC
+        `).all();
+
+    return (activeRows as Array<{
+      skill_id: string;
+      embedding: Buffer;
+      model_id: string;
+      content_hash: string;
+    }>)
+      .map((row) => {
+        const embedding = decodeEmbedding(row.embedding);
+        return embedding
+          ? {
+              skillId: row.skill_id,
+              embedding,
+              modelId: row.model_id,
+              contentHash: row.content_hash,
+            }
+          : null;
+      })
+      .filter((row): row is SkillEmbeddingRow => row !== null);
+  }
+
   const rows = skillIds && skillIds.length > 0
     ? database.prepare(`
         SELECT id, embedding, embedding_model_id, embedding_content_hash
