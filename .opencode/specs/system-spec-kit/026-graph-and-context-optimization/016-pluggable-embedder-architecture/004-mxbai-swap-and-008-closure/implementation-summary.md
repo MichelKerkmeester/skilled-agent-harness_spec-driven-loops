@@ -7,19 +7,19 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-pluggable-embedder-architecture/004-mxbai-swap-and-008-closure"
-    last_updated_at: "2026-05-17T11:54:33Z"
+    last_updated_at: "2026-05-17T18:25:00Z"
     last_updated_by: "main_agent"
-    recent_action: "Retrieval-rescue layer recorded in ADR-010; cat-24/409 reached 8/10 top-3"
-    next_safe_action: "Use ADR-010 and evidence rows as packet 008 closure proof"
+    recent_action: "ADR-011 default-on gated; D-RETRY confirmed 8/10 after dist rebuild"
+    next_safe_action: "Await codex boa26jubw for jina+gemma+rescue comparison; ADR-012 will ratify embedder choice"
     blockers: []
     key_files:
       - "decision-record.md"
-      - "evidence/mxbai-swap-status.json"
       - "evidence/cat-24-rerun.jsonl"
-      - "evidence/008-pass-sample-rerun.jsonl"
+      - "evidence/d-rescue-on-vs-off.jsonl"
+      - "evidence/d-sample-30.json"
+      - "evidence/008-pass-rerun-default-on-rescue.jsonl"
+      - "evidence/008-rescue-default-on-regression-report.md"
       - "evidence/embedder-comparison.csv"
-      - "evidence/swap-benchmark.csv"
-      - "evidence/corpus-hygiene-cleanup.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "016-004-summary"
@@ -235,3 +235,29 @@ The retrieval-rescue follow-up implemented that recommendation without adding a 
 - The 20-scenario PASS sample was preserved through a guarded regression proxy rather than full manual replay of all 20 playbook scenarios.
 
 <!-- /ANCHOR:limitations -->
+
+<!-- ANCHOR:post-publish-verification -->
+## 7. POST-PUBLISH VERIFICATION (2026-05-17 evening)
+
+After the opt-in rescue layer (`489d4e0d7`) and default-on flip (`19bd78000`) shipped, **a separate D-sweep dispatch (codex `bqtbn2atx`, originally) discovered that the mcp_server `dist/` had not been rebuilt since 11:58 UTC**. The rescue layer code was in source but never compiled — meaning the runtime was reading the old non-rescue dist while we were claiming the layer was firing.
+
+**Recovery sequence:**
+
+| Action | Commit / artifact |
+|--------|---|
+| Rebuilt `mcp_server` dist via `npm run build` | dist mtime 16:27:57 |
+| Re-dispatched D-sweep with fresh dist (D-RETRY codex `b9kxi6c6c`) | `e964ba505` |
+| ADR-011 ratified: GATE DEFAULT-ON (cat-24/409 OFF 4/10 → ON 8/10, +2.16× latency) | decision-record.md |
+| Authored dist-freshness vitest to prevent recurrence | `ab7f17ae1` |
+| Audited 3 commits in the stale-dist window (12:00–16:27): `4a4e166ab`, `489d4e0d7`, `19bd78000` — all retroactively validated | (no separate commit, audit in handover memory) |
+
+**Retroactive truth table:**
+
+| Earlier claim | Then | Now (post-rebuild) |
+|---|---|---|
+| `489d4e0d7` closed cat-24/409 at 8/10 | Unverifiable (dist stale) | ✅ Confirmed via D-RETRY (4/10 OFF, 8/10 ON) |
+| `19bd78000` default-on rescue | NO-OP at runtime | ✅ Active and verified |
+| `a01b3be01` 50/50 PASS, "default-on KEEP" | Actually measured baseline-no-rescue | ✅ Verdict accidentally correct (those 50 don't depend on rescue) |
+
+**Open thread:** ADR-012 to ratify embedder choice itself (jina + gemma + rescue comparison vs nomic+rescue currently running as codex `boa26jubw`).
+<!-- /ANCHOR:post-publish-verification -->
