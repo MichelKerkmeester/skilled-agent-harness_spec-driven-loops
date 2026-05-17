@@ -9,11 +9,11 @@ contextType: "decision"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-pluggable-embedder-architecture/004-mxbai-swap-and-008-closure"
-    last_updated_at: "2026-05-17T08:51:45Z"
+    last_updated_at: "2026-05-17T09:08:34Z"
     last_updated_by: "codex"
-    recent_action: "Recorded jina-v3 empirical rollback"
-    next_safe_action: "Evaluate nomic-embed-text-v1.5 as option B"
-    blockers: ["jina active-vector 409 rerun reached only 4/10 top-3"]
+    recent_action: "Recorded nomic empirical rollback"
+    next_safe_action: "Evaluate bge-m3 as the next retrieval-specialist candidate"
+    blockers: ["nomic active-vector 409 rerun reached only 5/10 top-3"]
     key_files:
       - "evidence/mxbai-swap-status.json"
       - "evidence/ollama-direct-embed-probe.txt"
@@ -23,9 +23,9 @@ _memory:
       fingerprint: "sha256:0160040000000000000000000000000000000000000000000000000000000004"
       session_id: "016-004-mxbai-rollback"
       parent_session_id: null
-    completion_pct: 90
+    completion_pct: 95
     open_questions:
-      - "Will nomic-embed-text-v1.5 improve cat-24/409 without regressing existing PASS scenarios?"
+      - "Will bge-m3 improve cat-24/409 without regressing existing PASS scenarios?"
     answered_questions:
       - "Ollama itself can embed with model mxbai-embed-large on this machine."
       - "mxbai-embed-large-v1 is not an Ollama model tag on this machine."
@@ -185,10 +185,62 @@ The cat-24 rerun did not close packet 008:
 The 008 PASS sample was skipped because 409 failed. There is no KEEP path for Jina without the gate scenario reaching PASS.
 
 Rollback outcome:
-- Active pointer restored to `embeddinggemma-300m` / `vec_768`.
+- Active pointer restored to `embeddinggemma-300m` / 768-dim baseline retrieval.
 - The baseline re-index job queued by `embedder_set({ name: "embeddinggemma-300m" })` was cancelled after 200 rows because the baseline vectors already existed and a full re-index would take hours without changing the ADR decision.
 - Next candidate is option B: `nomic-embed-text-v1.5`.
 
 Evidence:
 - `evidence/cat-24-rerun.jsonl`
 <!-- /ANCHOR:adr-005 -->
+
+<!-- ANCHOR:adr-006 -->
+## ADR-006: Roll back nomic-embed-text-v1.5; new leader but still below PASS
+
+| Field | Value |
+|-------|-------|
+| Status | Accepted |
+| Date | 2026-05-17 |
+| Decision | ROLLBACK |
+
+The Nomic candidate used the same pluggable embedder mechanism as the mxbai and Jina retries. The Ollama tag that worked on this host is:
+
+```text
+nomic-embed-text:v1.5
+```
+
+Direct Ollama probing returned 768-dimensional embeddings, matching the `nomic-embed-text-v1.5` manifest. The registry already declared the required task prefixes:
+
+```text
+prefixQuery: search_query:
+prefixDocument: search_document:
+```
+
+One local runtime constraint changed the manifest before the successful swap. The prior `maxInputChars: 8000` cap failed immediately at `0/12937` with:
+
+```text
+Ollama embedding request failed (400 Bad Request): {"error":"the input length exceeds the context length"}
+```
+
+Direct row probes showed that memory row `id=19` passed at 6000 chars but failed at 8000, while rows `id=27` and `id=33` still failed at 6000. The first 50-row batch passed at `maxInputChars: 5000`, so the manifest was tightened to `5000` and the fresh source/dist re-index job completed:
+
+```text
+emb-swap-2026-05-17T08-58-41-066Z-04af90ac -> 12937/12937 completed
+active_embedder_name -> nomic-embed-text-v1.5
+active_embedder_dim  -> 768
+```
+
+The cat-24 rerun still did not close packet 008:
+- 402: `FAIL` - memory Pair A and Pair B measured 0% top-5 Jaccard; CocoIndex Pair C and Pair D also measured 0% path overlap.
+- 408: `FAIL` - the compound query still missed enough required constituent files.
+- 409: `FAIL` - 5/10 sampled trigger-phrase lookups found the source memory in top-3; required threshold is 8/10.
+
+Nomic is the new empirical leader for cat-24/409 (`5/10`, above Jina's `4/10` and mxbai's `2/10`), but it still fails the closure gate. The 008 PASS sample was skipped because 409 did not reach PASS.
+
+Rollback outcome:
+- Active pointer restored to `embeddinggemma-300m` / `vec_768`.
+- Packet 008 remains open.
+- Next candidate should be `bge-m3` or another retrieval-specialist model with stronger trigger-phrase round-trip behavior.
+
+Evidence:
+- `evidence/cat-24-rerun.jsonl`
+<!-- /ANCHOR:adr-006 -->

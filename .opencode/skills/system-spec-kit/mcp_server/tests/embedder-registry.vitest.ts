@@ -46,7 +46,7 @@ describe('016/001 EmbedderRegistry', () => {
     const nomic = getManifest('nomic-embed-text-v1.5');
     expect(nomic?.prefixQuery).toBe('search_query: ');
     expect(nomic?.prefixDocument).toBe('search_document: ');
-    expect(nomic?.maxInputChars).toBe(8000);
+    expect(nomic?.maxInputChars).toBe(5000);
   });
 
   it('embeddinggemma-300m baseline does NOT declare prefix tokens', () => {

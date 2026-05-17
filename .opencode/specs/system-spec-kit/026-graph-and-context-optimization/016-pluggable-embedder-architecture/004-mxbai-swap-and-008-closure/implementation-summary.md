@@ -1,17 +1,17 @@
 ---
 title: "Summary: 016/004 embedder swaps + 008 closure"
-description: "mxbai and jina retries completed, but cat-24/409 stayed FAIL; rollback retained and 008 remains open."
+description: "mxbai, jina, and nomic retries completed, but cat-24/409 stayed below PASS; rollback retained and 008 remains open."
 trigger_phrases: ["016/004 summary"]
 importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-pluggable-embedder-architecture/004-mxbai-swap-and-008-closure"
-    last_updated_at: "2026-05-17T08:51:45Z"
+    last_updated_at: "2026-05-17T09:08:34Z"
     last_updated_by: "main_agent"
-    recent_action: "Retried jina-v3; cat-24/409 still failed"
-    next_safe_action: "Evaluate nomic-embed-text-v1.5 as option B"
-    blockers: ["jina active-vector 409 rerun reached only 4/10 top-3"]
+    recent_action: "Retried nomic; cat-24/409 reached 5/10"
+    next_safe_action: "Evaluate bge-m3 as next candidate"
+    blockers: ["nomic active-vector 409 rerun reached only 5/10 top-3"]
     key_files:
       - "decision-record.md"
       - "evidence/mxbai-swap-status.json"
@@ -35,7 +35,7 @@ _memory:
 ## 1. METADATA
 | Field | Value |
 |-------|-------|
-| Status | ROLLBACK — bounded-input mxbai and jina activations completed, but cat-24/409 stayed FAIL |
+| Status | ROLLBACK — bounded-input mxbai, jina, and nomic activations completed, but cat-24/409 stayed below PASS |
 | Branch | main |
 | Wall-clock estimate | 1-2 hours (mostly re-index wait + scenario re-runs) |
 | Closes | None; packet 008 cat-24/409 remains open |
@@ -57,6 +57,7 @@ Delivered failure-path evidence:
 - follow-up ADR-003 ROLLBACK after the adapter mapping fix exposed a second failure mode: full-document re-index input exceeds the mxbai Ollama context window
 - follow-up ADR-004 ROLLBACK after bounded inputs completed the re-index but cat-24/409 still reached only 2/10 top-3
 - follow-up ADR-005 ROLLBACK after jina-embeddings-v3 improved cat-24/409 to 4/10 top-3 but still missed the 8/10 PASS threshold
+- follow-up ADR-006 ROLLBACK after nomic-embed-text-v1.5 improved cat-24/409 to 5/10 top-3 but still missed the 8/10 PASS threshold
 
 
 <!-- /ANCHOR:what-built -->
@@ -103,6 +104,13 @@ The Jina cat-24 rerun still did not close 008:
 
 Rollback was applied after the failed gate. The active pointer is back on `embeddinggemma-300m` / `vec_768`. The full baseline re-index job queued by rollback was cancelled after 200 rows because the baseline vectors already existed and the active pointer was restored directly.
 
+The Nomic follow-up used Ollama tag `nomic-embed-text:v1.5`. Direct probing returned 768-dimensional embeddings. The original `maxInputChars: 8000` manifest cap failed on local row probes and on the first re-index batch, so the manifest was tightened to the measured safe cap `5000`. Fresh re-index job `emb-swap-2026-05-17T08-58-41-066Z-04af90ac` completed `12937/12937`; the active pointer flipped to `nomic-embed-text-v1.5` for validation.
+
+The Nomic cat-24 rerun still did not close 008:
+- 402 stayed `FAIL`.
+- 408 stayed `FAIL`.
+- 409 stayed below PASS at 5/10 top-3. This is the new empirical leader, but the required threshold is 8/10.
+
 
 <!-- /ANCHOR:how-delivered -->
 <!-- ANCHOR:decisions -->
@@ -112,6 +120,7 @@ Rollback was applied after the failed gate. The active pointer is back on `embed
 - ADR-003: ROLLBACK. The mapping defect is fixed, but the mxbai retry still failed before activation because full-document re-index inputs exceed the Ollama model context window.
 - ADR-004: ROLLBACK. Bounded inputs and active query/table wiring let mxbai activate, but cat-24/409 still failed on retrieval quality.
 - ADR-005: ROLLBACK. Bounded Jina v3 activation completed, but cat-24/409 still failed on retrieval quality at 4/10 top-3.
+- ADR-006: ROLLBACK. Bounded Nomic activation completed and became the new leader at 5/10 top-3, but still failed the 8/10 closure gate.
 - Packet 115's standalone evaluation scaffold is superseded by 016's pluggable architecture, but 016/004 did not close packet 008 cat-24/409.
 
 
@@ -129,8 +138,8 @@ Rollback was applied after the failed gate. The active pointer is back on `embed
 | 008 PASS sample | ≥ 19/20 preserved | SKIP after decisive 409 failure; 0/20 measured-preserved |
 | Cosine on weak pair | ≥ 0.43 (baseline 0.2829) | SKIP — mxbai not active |
 | DB footprint | captured | PASS — 788M baseline and post-failure |
-| strict-validate 016/004 | exit 0 | Pending final validation |
-| strict-validate 008 | exit 0 | Pending final validation |
+| strict-validate 016/004 | exit 0 | PASS |
+| strict-validate 008 | exit 0 | PASS |
 | `npx vitest run tests/embedder-ollama.vitest.ts` | exit 0 | PASS — 10/10 |
 | `npm run typecheck` | exit 0 | PASS |
 | adapter mapping retry | mxbai active | FAIL — `0/12929`, context length exceeded |
@@ -143,14 +152,19 @@ Rollback was applied after the failed gate. The active pointer is back on `embed
 | cat-24/409 Jina re-run | PASS (8/10 top-3) | FAIL — 4/10 top-3 |
 | 008 PASS sample under Jina | ≥ 19/20 preserved | SKIP after decisive 409 failure |
 | active pointer after rollback | `embeddinggemma-300m` | PASS |
+| `ollama pull nomic-embed-text:v1.5` | exit 0 | PASS |
+| Nomic direct embed probe | 768 dims | PASS |
+| Nomic swap job | completed | PASS — `12937/12937` |
+| cat-24/409 Nomic re-run | PASS (8/10 top-3) | FAIL — 5/10 top-3 |
+| 008 PASS sample under Nomic | ≥ 19/20 preserved | SKIP after decisive 409 failure |
 
 
 <!-- /ANCHOR:verification -->
 <!-- ANCHOR:limitations -->
 ## 6. KNOWN LIMITATIONS
-- cat-24/409 remains open. The newest Jina retrieval-quality result is `FAIL` at 4/10 top-3.
+- cat-24/409 remains open. The newest Nomic retrieval-quality result is below PASS at 5/10 top-3.
 - The 20-scenario PASS sample was not rerun after the decisive 409 failure. Preservation rate for ADR-004 is 0/20 measured-preserved.
-- The 20-scenario PASS sample was also skipped for Jina after the decisive 409 failure.
-- The next retry should evaluate option B, `nomic-embed-text-v1.5`, through the same pluggable mechanism.
+- The 20-scenario PASS sample was also skipped for Jina and Nomic after the decisive 409 failures.
+- The next retry should evaluate `bge-m3` or another retrieval-specialist model through the same pluggable mechanism.
 
 <!-- /ANCHOR:limitations -->

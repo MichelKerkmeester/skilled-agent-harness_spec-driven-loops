@@ -41,7 +41,7 @@ const MANIFESTS: ReadonlyArray<EmbedderManifest> = Object.freeze([
     ollamaName: 'nomic-embed-text:v1.5',
     prefixQuery: 'search_query: ',
     prefixDocument: 'search_document: ',
-    maxInputChars: 8000,
+    maxInputChars: 5000,
     notes: 'Drop-in 768-dim swap candidate. Retrieval-specialist trained on 235M pairs with hard negatives. Requires prefix tokens.',
   },
   {
