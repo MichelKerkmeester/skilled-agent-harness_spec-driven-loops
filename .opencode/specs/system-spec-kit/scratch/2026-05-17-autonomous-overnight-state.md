@@ -122,3 +122,39 @@ After each wave or major decision, commit a state update to this file under `## 
 - 00:04 — Committed 010/004 scaffold (5a406a3fc, 724 lines). 6 commits this autonomous session.
 - 00:15 — Implemented 010/004 directly (refactored skill-graph-db.ts:refreshSkillEmbeddings into dispatcher + adapter helper + legacy helper). Wrote refresh-roundtrip.vitest.ts (4/4 pass). Build clean. Strict-validate 0e/0w PASSED. Committed c0ec765f4. 010/002 unblocked.
 - 00:18 — @markdown agent completed 010/003 INSTALL_GUIDE + README work (e5daebb03). 010/002 implementation-summary updated to mark dependency RESOLVED. F deep-review (5-iter post-impl on c0ec765f4) dispatch in flight via cli-devin SWE-1.6. 9 commits this autonomous session.
+- 00:23 — All 5 F iters complete. F verdict = PASS-advisories (0 P0, 1 P1, 2 P2). Strongest signals: iter 1 (correctness) + iter 5 (architecture-fit) BOTH found ZERO findings (same pattern as E review). Wall time ~3 min total. Committed 955c03036.
+- 00:25 — Applied F advisory fixes: P1-1 (dim-mismatch early-fail), P2-1 (failed=rowCount signal), P2-2 (console.warn ADAPTER-UNAVAILABLE). 5/5 round-trip tests pass; full suite shows no new regressions vs task #49 baseline (in fact 7 fewer failures — likely flakiness in pre-existing). Committed ab0c7de71.
+
+## Final state (2026-05-18T00:25, end of autonomous overnight session)
+
+**11 commits shipped on `main`:**
+1. 7d88af590 chore(scratch): autonomous-overnight state (pre-compaction)
+2. 8e13210ac docs(specs): D re-review of 016/008 remediation PASS-advisories
+3. 170aa2c98 fix(system-spec-kit): remove P0-D dead telemetry counter
+4. d5c1355b1 docs(specs): E post-impl review of 016/010/001 PASS-advisories
+5. 105250e5f docs(010/002): runbook + architecture-gap analysis PARTIAL
+6. 5a406a3fc chore(010/004): scaffold writer cross-wire follow-on packet
+7. e5daebb03 docs(010/003): skill-advisor INSTALL_GUIDE + README (via @markdown)
+8. c0ec765f4 feat(010/004): wire skill-graph-db writer to EmbedderAdapter layer
+9. 3ec8bdba3 docs(010/002): mark 010/004 dependency RESOLVED
+10. 955c03036 docs(010/004): F post-impl review PASS-advisories
+11. ab0c7de71 fix(010/004): apply F review advisories (P1-1 + P2-1 + P2-2)
+
+**016 umbrella state:**
+- 010/001 (pluggable layer): SHIPPED + E review PASS-advisories
+- 010/002 (jina swap): UNBLOCKED (runbook ready; operator can execute swap)
+- 010/003 (INSTALL_GUIDE + README): SHIPPED
+- 010/004 (writer cross-wire): SHIPPED + F review PASS-advisories + advisories applied
+- 008 remediation (review-002): SHIPPED + D re-review PASS-advisories
+- Dead code (P0-D from D review): FIXED
+
+**Wave coverage:**
+- Wave 1 (parallel C/D/E): ✅ all complete
+- Wave 2 (process D/E verdicts): ✅ both PASS-advisories
+- Wave 3 (010/002 + 010/003): ✅ shipped (010/002 needed deeper packet 010/004 first)
+- Wave 4 (P2 backlog, follow-ons): partial — 010/004 advisories applied; remaining E review P2 items deferred to backlog
+
+**Deferred to follow-on (operator action when awake):**
+- Execute 010/002 swap-runbook procedure (kill daemons → snapshot → call setActiveEmbedder('jina-embeddings-v3', 1024) → trigger refreshSkillEmbeddings → smoke-test recommend queries → verify vec_1024 populated)
+- Address remaining E review P2 items (test/type-safety/observability polish — 8 items)
+- Pre-existing test failures (task #49) — not addressed this session
