@@ -1,73 +1,141 @@
 ---
-title: "Summary: 022/002"
-description: "Pending"
-trigger_phrases: ["022/002 summary"]
-importance_tier: "normal"
+title: "Summary: 010/002 jina swap + reindex (PARTIAL — blocked on 010/004)"
+description: "Operator runbook authored; actual swap blocked by writer cross-wiring gap discovered during execution. Deferred to 010/004 follow-on packet."
+trigger_phrases:
+  - "010/002 summary"
+  - "jina swap partial"
+  - "skill-graph architecture gap"
+  - "010/004 follow-on"
+importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/010-skill-advisor-embedder-parity/002-jina-swap-and-reindex"
-    last_updated_at: "2026-05-17T21:25:00Z"
+    last_updated_at: "2026-05-17T23:55:00Z"
     last_updated_by: "main_agent"
-    recent_action: "Scaffolded packet"
-    next_safe_action: "Backfill after swap"
-    blockers: ["depends on 022/001"]
-    key_files: ["spec.md"]
+    recent_action: "Authored swap-runbook + architecture-gap analysis"
+    next_safe_action: "Scaffold 010/004 for writer cross-wiring; then execute swap per runbook"
+    blockers: ["depends on 010/004 (writer cross-wire to EmbedderAdapter layer)"]
+    key_files: ["evidence/swap-runbook.md", "../001-pluggable-architecture/review/review-report.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000022002"
-      session_id: "022-002-jina-swap-and-reindex-impl"
-      parent_session_id: "022-002-jina-swap-and-reindex"
-    completion_pct: 0
-    open_questions: []
-    answered_questions: []
+      session_id: "010-002-jina-swap-and-reindex-impl"
+      parent_session_id: "010-002-jina-swap-and-reindex"
+    completion_pct: 40
+    open_questions:
+      - "Should 010/004 wire writer to use NEW adapter exclusively, or keep dual-path for backward compat?"
+    answered_questions:
+      - "Q: Auto-promote or operator-driven? A: Operator-driven via explicit setActiveEmbedder() call (per spec.md §7)."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: implementation-summary-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 1 -->
 
-# Summary: 022/002
+# Summary: 010/002 jina swap + reindex — PARTIAL (BLOCKED on 010/004)
 
 <!-- ANCHOR:metadata -->
 ## Metadata
 
 | Field | Value |
 |---|---|
-| Status | Pending |
-| Artifact | TBD: `evidence/swap-runbook.md` + reindexed skill-graph.sqlite |
+| Status | PARTIAL (40% complete — runbook + analysis shipped; swap execution deferred) |
+| Artifact | `evidence/swap-runbook.md` (~200 lines, comprehensive) |
 | Owner | main agent |
+| Blockers | 010/004 writer cross-wiring (architecture gap) |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Pending. Will land at `evidence/swap-runbook.md` documenting daemon-stop + setActiveEmbedder + reindex + smoke-test flow. Reindexed skill-graph.sqlite with jina-v3 vectors.
+**Shipped:**
+1. **Comprehensive operator runbook** at `evidence/swap-runbook.md`:
+   - Architecture context explaining 010/001's parallel layer + half-wired state
+   - Step-by-step swap procedure (assuming 010/004 ships)
+   - Rollback procedure
+   - Known architecture gap with explicit path forward via 010/004
+2. **DB snapshot** at `.opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sqlite.snap-pre-jina-2026-05-17` (4KB, captured during 010/002 execution attempt)
+3. **Architecture-gap discovery document** (this file's §"How It Was Delivered")
+
+**Deferred (requires 010/004):**
+- R1-R4 from spec.md §4 (active pointer set, reindex, smoke tests)
+- vec_1024 table population
+- Daemon restart verification
 <!-- /ANCHOR:what-built -->
 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Pending.
+**Execution timeline (2026-05-17 evening, autonomous overnight):**
+
+1. **Discovery phase**: Main agent attempted to execute 010/002 as scoped per spec. Killed 3 stale skill-advisor daemons (PIDs 86491, 60515, 52320). Snapshotted DB.
+
+2. **Architecture mismatch surfaced**: Inspecting `skill-graph-db.ts` revealed:
+   - Writer path (`refreshSkillEmbeddings`, line 769): still calls OLD `createEmbeddingsProvider()` factory + writes to legacy `skill_nodes.embedding` BLOB column
+   - Reader path (`loadSkillEmbeddings`, line 838): NEW path via `vec_<active.dim>` when `hasActiveEmbedderPointer()` is true
+   - OLD factory doesn't support Ollama provider — cannot produce jina-v3 vectors
+   - Net: setting active pointer without writer cross-wiring leaves `vec_1024` empty → silent semantic-shadow degradation
+
+3. **Independent confirmation**: E deep-review (concurrent with 010/002 execution) flagged the same defect:
+   - P1-1 (regression-risk, iter 3): "active embedder pointer switches reads to vec tables while refresh still writes legacy embeddings"
+   - P2-11 (documentation-alignment, iter 8): "docs claim env-var embedder swap but implementation only selects active embedder from vec_metadata"
+   - Two reviewers, two perspectives, same finding → high signal
+
+4. **Decision to defer execution**: Given (a) the architectural gap requires modifying load-bearing `skill-graph-db.ts:refreshSkillEmbeddings`, (b) the user requested autonomous-safe overnight execution, (c) the cross-wiring needs its own deep-review per post-implementation mandate, (d) the existing E review recommended Option (c) [SIMPLEST]: operator-discipline approach — main agent chose to ship the runbook + analysis + scaffold 010/004 follow-on instead of attempting risky load-bearing refactor unsupervised.
+
+5. **Runbook authoring**: Comprehensive 200-line operator runbook authored documenting the architectural state, the safe swap procedure (post-010/004), rollback, and cross-references.
+
+**Wall time**: ~30 min (discovery → runbook → commit).
 <!-- /ANCHOR:how-delivered -->
 
 <!-- ANCHOR:decisions -->
 ## Key Decisions
 
-- Operator-driven swap (no auto-promote) per 022/002 spec.md §7
-- Skill metadata corpus is small (~hundreds of entries) — reindex < 5 min
-- 5-query smoke-test as accept gate (low overhead)
+- **D1**: Defer actual swap execution to 010/004 follow-on packet.
+  - Rationale: writer cross-wiring requires load-bearing refactor of skill-graph-db.ts; not safe for autonomous execution without prior deep-review
+  - Alternative considered: attempt the refactor + smoke-test in autonomous mode — rejected as too risky per state doc's "If you hit a blocker... DOCUMENT it" guidance
+  - Confirmation: E review P1-1 Option (c) [SIMPLEST] explicitly recommends operator-discipline approach
+
+- **D2**: Ship comprehensive runbook anyway, even though swap execution deferred.
+  - Rationale: 010/004 implementation will need this exact runbook; authoring it now reduces 010/004 scope to "refactor + verify against runbook" instead of "refactor + design swap procedure"
+  - Side benefit: documents the architectural gap for future reviewers
+
+- **D3**: Snapshot the DB even though no destructive write occurred.
+  - Rationale: snapshot is rollback insurance for 010/004 execution; cheaper to keep than to recreate (4KB)
+  - Verified MD5: `504cdc8dd8cbdb209121d9032a78eabe` matches live DB at decision time (no destructive change confirmed)
+
+- **D4**: Operator-driven swap (no auto-promote) per 010/002 spec.md §7 — retained.
 <!-- /ANCHOR:decisions -->
 
 <!-- ANCHOR:verification -->
 ## Verification
 
-Pending:
-- `sqlite3 skill-graph.sqlite "SELECT value FROM vec_metadata WHERE key='active_embedder_name'"` → `jina-embeddings-v3`
-- 5 smoke queries: top-3 includes expected skills
-- vitest passes
-- Strict-validate PASSED
+| Item | Result |
+|---|---|
+| `evidence/swap-runbook.md` exists + ≥150 lines | ✅ (~200 lines) |
+| DB snapshot captured at expected path | ✅ |
+| Architecture-gap documented with file:line evidence | ✅ (runbook §"Architecture Context") |
+| 010/004 follow-on path described | ✅ (runbook §"Known Architecture Gap") |
+| Cross-reference to E review P1-1 + P2-11 | ✅ (runbook §"Cross-references") |
+| Strict-validate | (pending — see post-commit step) |
+
+Items NOT verified (deferred to 010/004 + then runbook execution):
+- R1: active pointer = jina-embeddings-v3 (DEFERRED)
+- R2: reindex success + row count preserved (DEFERRED)
+- R3: semantic-shadow non-empty top-3 (DEFERRED)
+- R4: `skill_advisor.py recommend` includes expected skills (DEFERRED)
+- R5: regression test suite passes (N/A — no code change in this packet)
 <!-- /ANCHOR:verification -->
 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-Pending.
+1. **Swap NOT executed**: Active embedder remains at default (gemma baseline). vec_1024 table not created. No production behavioral change in this packet.
+
+2. **010/004 required**: The complete swap requires the writer cross-wiring refactor. 010/004 should:
+   - Modify `refreshSkillEmbeddings()` to use `getAdapter(active.name)` from new layer when `hasActiveEmbedderPointer()` is true
+   - Add round-trip integration test
+   - Run post-implementation deep-review (5-iter — single-commit tier per `post-implementation-deep-review.md`)
+
+3. **Snapshot age**: The snapshot at `database/skill-graph.sqlite.snap-pre-jina-2026-05-17` will become stale if the DB schema changes before 010/004 ships. 010/004 should re-snapshot before executing the swap.
+
+4. **Documentation-vs-implementation gap (P2-11)**: 010/002 spec.md §3 originally claimed operator runbook would "stop daemon, set env var or call setActiveEmbedder...". This implementation-summary corrects the env-var path (NOT supported by the OLD factory architecture). Future spec revisions should align with the runbook.
 <!-- /ANCHOR:limitations -->
