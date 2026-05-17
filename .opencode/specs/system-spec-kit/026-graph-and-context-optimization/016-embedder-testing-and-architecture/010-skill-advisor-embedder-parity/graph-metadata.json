@@ -6,7 +6,8 @@
   "children_ids": [
     "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/010-skill-advisor-embedder-parity/001-pluggable-architecture",
     "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/010-skill-advisor-embedder-parity/002-jina-swap-and-reindex",
-    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/010-skill-advisor-embedder-parity/003-install-guide-docs"
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/010-skill-advisor-embedder-parity/003-install-guide-docs",
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/010-skill-advisor-embedder-parity/004-skill-graph-db-writer-cross-wire"
   ],
   "manual": {
     "depends_on": [
@@ -43,7 +44,8 @@
       "002-jina-swap-and-reindex/spec.md",
       "003-install-guide-docs/spec.md"
     ],
-    "last_active_child_id": null,
-    "last_active_at": null
+    "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/010-skill-advisor-embedder-parity/004-skill-graph-db-writer-cross-wire",
+    "last_active_at": "2026-05-17T22:02:54.685Z",
+    "last_save_at": "2026-05-17T22:02:54.685Z"
   }
 }
