@@ -1,0 +1,25 @@
+{
+  "level": "3",
+  "specFolder": "skilled-agent-orchestration/113-cli-devin-prompt-quality-arc/004-skill-uplift",
+  "description": "Feature Specification: Skill Uplift — Apply winners to cli-devin",
+  "keywords": [
+    "feature",
+    "specification",
+    "skill",
+    "uplift",
+    "apply",
+    "winners",
+    "cli-devin"
+  ],
+  "lastUpdated": "2026-05-16T17:59:28.636Z",
+  "specId": "004",
+  "folderSlug": "skill-uplift",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "113-cli-devin-prompt-quality-arc"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "skilled-agent-orchestration/114-cli-devin-swe16-prompt-optimization/004-skill-uplift"
+  ]
+}
