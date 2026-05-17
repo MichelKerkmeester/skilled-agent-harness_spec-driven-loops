@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/022-skill-advisor-embedder-parity/003-install-guide-docs",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/022-skill-advisor-embedder-parity/003-install-guide-docs",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/022-skill-advisor-embedder-parity",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [
+      "system-spec-kit/026-graph-and-context-optimization/022-skill-advisor-embedder-parity/001-pluggable-architecture",
+      "system-spec-kit/026-graph-and-context-optimization/022-skill-advisor-embedder-parity/002-jina-swap-and-reindex"
+    ],
+    "supersedes": [],
+    "related_to": [
+      "system-spec-kit/026-graph-and-context-optimization/021-skill-docs-alignment/003-embedder-pluggability-narrative"
+    ]
+  },
+  "derived": {
+    "trigger_phrases": ["022/003 install guide", "skill-advisor onboarding docs"],
+    "key_topics": ["022", "install-guide", "readme", "skill-advisor", "embedder-docs"],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": ["spec.md", "plan.md", "tasks.md"]
+  }
+}
