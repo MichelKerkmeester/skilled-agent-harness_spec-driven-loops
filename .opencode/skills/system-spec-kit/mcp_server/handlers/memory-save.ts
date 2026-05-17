@@ -3335,9 +3335,12 @@ async function atomicSaveMemory(params: AtomicSaveParams, options: AtomicSaveOpt
     captureOriginalState: captureAtomicSaveOriginalState,
     restoreOriginalState: restoreAtomicSaveOriginalState,
     cleanupPendingFile: cleanupAtomicSavePendingFile,
-    writePendingAndPromote: (pendingPath, currentFilePath, persistedContent) => {
+    writePendingFile: (pendingPath, persistedContent) => {
       fs.mkdirSync(path.dirname(pendingPath), { recursive: true });
       fs.writeFileSync(pendingPath, persistedContent, 'utf-8');
+    },
+    promotePendingFile: (pendingPath, currentFilePath) => {
+      fs.mkdirSync(path.dirname(currentFilePath), { recursive: true });
       fs.renameSync(pendingPath, currentFilePath);
     },
     mapSuccessResult: (indexResult, context) => {

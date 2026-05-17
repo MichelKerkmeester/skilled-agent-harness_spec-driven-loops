@@ -2112,47 +2112,7 @@ describe('Handler Memory Save (T518) [deferred - requires DB test fixtures]', ()
       expect(fs.existsSync(filePath)).toBe(false);
     });
 
-    it('surfaces rollback error metadata when rejected save cannot restore the original file', async () => {
-      process.env.SPECKIT_TEST_DISABLE_CANONICAL_ROUTING = 'true';
-      const checkExistingRowMock = vi.fn().mockReturnValue(
-        buildIndexResult({
-          status: 'rejected',
-          id: 0,
-          message: 'Quality gate rejected: signal density too low',
-          rejectionReason: 'Quality gate rejected: signal density too low',
-        })
-      );
-
-      const harness = await loadAtomicSaveHarness({
-        checkExistingRowMock,
-        nodeFsModuleFactory: async () => {
-          const actual = await vi.importActual<typeof import('node:fs')>('node:fs');
-          return {
-            ...actual,
-            writeFileSync: vi.fn((targetPath: fs.PathOrFileDescriptor, data: string | NodeJS.ArrayBufferView, options?: fs.WriteFileOptions) => {
-              if (String(targetPath).includes('rejected-rollback-metadata.md') && typeof data === 'string' && data === '# original on disk') {
-                throw new Error('simulated rollback write failure');
-              }
-              return actual.writeFileSync(targetPath, data as never, options as never);
-            }),
-          };
-        },
-      });
-
-      const filePath = createAtomicSaveTargetPath('rejected-rollback-metadata.md');
-      fs.writeFileSync(filePath, '# original on disk', 'utf8');
-      const result = await harness.module.atomicSaveMemory(
-        { file_path: filePath, content: '# rejected outcome', plannerMode: 'full-auto' },
-        { force: true }
-      );
-
-      expect(result.success).toBe(false);
-      expect(result.status).toBe('rejected');
-      expect(result.error).toContain('rollback failed');
-      expect(result.errorMetadata).toEqual({ rollbackError: 'simulated rollback write failure' });
-    });
-
-    it('preserves rollback delete error metadata when rejected save cannot remove a promoted new file', async () => {
+    it('surfaces pending cleanup error metadata when rejected save cannot remove the pending file', async () => {
       process.env.SPECKIT_TEST_DISABLE_CANONICAL_ROUTING = 'true';
       const checkExistingRowMock = vi.fn().mockReturnValue(
         buildIndexResult({
@@ -2170,7 +2130,47 @@ describe('Handler Memory Save (T518) [deferred - requires DB test fixtures]', ()
           return {
             ...actual,
             unlinkSync: vi.fn((targetPath: fs.PathLike) => {
-              if (String(targetPath).includes('rejected-rollback-delete-metadata.md')) {
+              if (String(targetPath).includes('rejected-rollback-metadata')) {
+                throw new Error('simulated pending cleanup failure');
+              }
+              return actual.unlinkSync(targetPath);
+            }),
+          };
+        },
+      });
+
+      const filePath = createAtomicSaveTargetPath('rejected-rollback-metadata.md');
+      fs.writeFileSync(filePath, '# original on disk', 'utf8');
+      const result = await harness.module.atomicSaveMemory(
+        { file_path: filePath, content: '# rejected outcome', plannerMode: 'full-auto' },
+        { force: true }
+      );
+
+      expect(result.success).toBe(false);
+      expect(result.status).toBe('rejected');
+      expect(result.error).toContain('Pending file cleanup failed');
+      expect(result.errorMetadata).toEqual({ pendingCleanupError: 'simulated pending cleanup failure' });
+    });
+
+    it('preserves pending cleanup delete error metadata when rejected save cannot remove a new pending file', async () => {
+      process.env.SPECKIT_TEST_DISABLE_CANONICAL_ROUTING = 'true';
+      const checkExistingRowMock = vi.fn().mockReturnValue(
+        buildIndexResult({
+          status: 'rejected',
+          id: 0,
+          message: 'Quality gate rejected: signal density too low',
+          rejectionReason: 'Quality gate rejected: signal density too low',
+        })
+      );
+
+      const harness = await loadAtomicSaveHarness({
+        checkExistingRowMock,
+        nodeFsModuleFactory: async () => {
+          const actual = await vi.importActual<typeof import('node:fs')>('node:fs');
+          return {
+            ...actual,
+            unlinkSync: vi.fn((targetPath: fs.PathLike) => {
+              if (String(targetPath).includes('rejected-rollback-delete-metadata')) {
                 throw new Error('simulated rollback unlink failure');
               }
               return actual.unlinkSync(targetPath);
@@ -2187,8 +2187,8 @@ describe('Handler Memory Save (T518) [deferred - requires DB test fixtures]', ()
 
       expect(result.success).toBe(false);
       expect(result.status).toBe('rejected');
-      expect(result.error).toContain('rollback failed');
-      expect(result.errorMetadata).toEqual({ rollbackError: 'simulated rollback unlink failure' });
+      expect(result.error).toContain('Pending file cleanup failed');
+      expect(result.errorMetadata).toEqual({ pendingCleanupError: 'simulated rollback unlink failure' });
     });
 
     it('does not persist embedding cache writes before hard quality-gate rejection', async () => {
@@ -2850,7 +2850,7 @@ describe('Handler Memory Save (T518) [deferred - requires DB test fixtures]', ()
       expect(fs.readFileSync(filePath, 'utf8')).toBe('# original on disk');
     });
 
-    it('does not start DB indexing when pending promotion fails before atomic save indexing', async () => {
+    it('indexes before final rename and preserves the original file when promotion fails', async () => {
       process.env.SPECKIT_TEST_DISABLE_CANONICAL_ROUTING = 'true';
       const checkExistingRowMock = vi.fn(() => buildIndexResult({ status: 'indexed', id: 911 }));
       const renameSyncMock = vi.fn((from: string | Buffer | URL, to: string | Buffer | URL) => {
@@ -2882,7 +2882,7 @@ describe('Handler Memory Save (T518) [deferred - requires DB test fixtures]', ()
       expect(result.status).toBe('error');
       expect(result.error).toContain('simulated rename failure');
       expect(renameSyncMock).toHaveBeenCalled();
-      expect(harness.checkExistingRowMock).not.toHaveBeenCalled();
+      expect(harness.checkExistingRowMock).toHaveBeenCalled();
       expect(fs.readFileSync(filePath, 'utf8')).toBe(originalContent);
     });
 

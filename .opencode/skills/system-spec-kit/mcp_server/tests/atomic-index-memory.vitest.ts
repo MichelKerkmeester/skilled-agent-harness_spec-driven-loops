@@ -142,7 +142,7 @@ describe('atomicIndexMemory', () => {
     expect(fs.readFileSync(filePath, 'utf8')).toBe('# original content');
   });
 
-  it('surfaces rollback metadata when rejected writes cannot restore the original state', async () => {
+  it('surfaces pending cleanup metadata when rejected writes cannot remove the pending file', async () => {
     const root = createTempRoot();
     tempRoots.push(root);
     const filePath = createTargetPath(root, 'plan.md');
@@ -157,17 +157,18 @@ describe('atomicIndexMemory', () => {
           message: 'Rejected by canonical validator',
           rejectionReason: 'Rejected by canonical validator',
         }),
-        restoreOriginalState: () => ({
-          restored: false,
-          error: 'simulated rollback failure',
+        cleanupPendingFile: () => ({
+          cleaned: false,
+          existed: true,
+          error: 'simulated pending cleanup failure',
         }),
       }),
     );
 
     expect(result.success).toBe(false);
     expect(result.status).toBe('rejected');
-    expect(result.error).toContain('rollback failed');
-    expect(result.errorMetadata).toEqual({ rollbackError: 'simulated rollback failure' });
+    expect(result.error).toContain('Pending file cleanup failed');
+    expect(result.errorMetadata).toEqual({ pendingCleanupError: 'simulated pending cleanup failure' });
   });
 
   it('retries once when canonical indexing throws and then succeeds', async () => {
@@ -236,13 +237,13 @@ describe('atomicIndexMemory', () => {
       firstRelease = resolve;
     });
 
+    const pendingWrites: string[] = [];
     const promotions: string[] = [];
     let callCount = 0;
 
-    const defaultWritePendingAndPromote = (pendingPath: string, finalPath: string, content: string): void => {
+    const defaultWritePendingFile = (pendingPath: string, content: string): void => {
       fs.mkdirSync(path.dirname(pendingPath), { recursive: true });
       fs.writeFileSync(pendingPath, content, 'utf-8');
-      fs.renameSync(pendingPath, finalPath);
     };
 
     const dependencies = buildDependencies({
@@ -252,9 +253,13 @@ describe('atomicIndexMemory', () => {
         persistedContent: params.content,
         prepared: { token: params.content },
       }),
-      writePendingAndPromote: (pendingPath, finalPath, content) => {
-        promotions.push(content);
-        defaultWritePendingAndPromote(pendingPath, finalPath, content);
+      writePendingFile: (pendingPath, content) => {
+        pendingWrites.push(content);
+        defaultWritePendingFile(pendingPath, content);
+      },
+      promotePendingFile: (pendingPath, finalPath) => {
+        promotions.push(fs.readFileSync(pendingPath, 'utf-8'));
+        fs.renameSync(pendingPath, finalPath);
       },
       indexPrepared: async () => {
         callCount += 1;
@@ -273,8 +278,9 @@ describe('atomicIndexMemory', () => {
     );
 
     await firstReady;
-    expect(fs.readFileSync(filePath, 'utf8')).toBe('# first canonical write');
-    expect(promotions).toEqual(['# first canonical write']);
+    expect(fs.existsSync(filePath)).toBe(false);
+    expect(pendingWrites).toEqual(['# first canonical write']);
+    expect(promotions).toEqual([]);
 
     const secondSave = atomicIndexMemory(
       { file_path: filePath, content: '# second canonical write' },
@@ -282,8 +288,9 @@ describe('atomicIndexMemory', () => {
       dependencies,
     );
 
-    expect(promotions).toEqual(['# first canonical write']);
-    expect(fs.readFileSync(filePath, 'utf8')).toBe('# first canonical write');
+    expect(pendingWrites).toEqual(['# first canonical write']);
+    expect(promotions).toEqual([]);
+    expect(fs.existsSync(filePath)).toBe(false);
 
     firstRelease?.();
 

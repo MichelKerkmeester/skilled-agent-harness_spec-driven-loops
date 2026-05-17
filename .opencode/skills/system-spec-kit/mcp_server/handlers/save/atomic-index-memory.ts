@@ -87,7 +87,8 @@ export interface AtomicIndexDependencies<TPrepared = unknown> {
     originalState: AtomicIndexOriginalState,
   ) => AtomicIndexRestoreResult;
   cleanupPendingFile?: (pendingPath: string) => AtomicIndexPendingCleanupResult;
-  writePendingAndPromote?: (pendingPath: string, filePath: string, content: string) => void;
+  writePendingFile?: (pendingPath: string, content: string) => void;
+  promotePendingFile?: (pendingPath: string, filePath: string) => void;
 }
 
 function toErrorMessage(error: unknown): string {
@@ -169,9 +170,13 @@ function cleanupPendingFile(pendingPath: string): AtomicIndexPendingCleanupResul
   };
 }
 
-function writePendingAndPromote(pendingPath: string, filePath: string, content: string): void {
+function writePendingFile(pendingPath: string, content: string): void {
   fs.mkdirSync(path.dirname(pendingPath), { recursive: true });
   fs.writeFileSync(pendingPath, content, 'utf-8');
+}
+
+function promotePendingFile(pendingPath: string, filePath: string): void {
+  fs.mkdirSync(path.dirname(filePath), { recursive: true });
   fs.renameSync(pendingPath, filePath);
 }
 
@@ -194,16 +199,16 @@ function buildRejectedResult(
     specFolder: indexResult.specFolder,
     title: indexResult.title,
     summary: rollbackSucceeded
-      ? 'Atomic index rejected after file promotion rollback'
-      : 'Atomic index rejected but original file rollback failed',
+      ? 'Atomic index rejected before file promotion'
+      : 'Atomic index rejected but pending file cleanup failed',
     message: indexResult.message ?? indexResult.rejectionReason ?? 'Memory save rejected',
     embeddingStatus: indexResult.embeddingStatus,
     hints: [
       rollbackSucceeded
-        ? 'Original file content was restored because the save was rejected after promotion'
-        : 'Original file rollback failed after rejection; manual recovery may be required',
+        ? 'Pending file was removed because the save was rejected before promotion'
+        : 'Pending file cleanup failed after rejection; manual cleanup may be required',
     ],
-    ...(rollbackSucceeded ? {} : { error: 'Original file rollback failed after rejected save' }),
+    ...(rollbackSucceeded ? {} : { error: 'Pending file cleanup failed after rejected save' }),
     ...(rollbackSucceeded || !errorMetadata ? {} : { errorMetadata }),
   };
 }
@@ -352,23 +357,27 @@ export async function atomicIndexMemory<TPrepared = unknown>(
           lastEffectiveFilePath = effectiveFilePath;
           lastPendingPath = pendingPath;
 
-          (dependencies.writePendingAndPromote ?? writePendingAndPromote)(pendingPath, effectiveFilePath, persistedContent);
-          promotedToFinalPath = true;
-          anyPromotionAttempted = true;
+          (dependencies.writePendingFile ?? writePendingFile)(pendingPath, persistedContent);
 
           const lockedIndexResult = await dependencies.indexPrepared(lockedContext);
 
           if (lockedIndexResult.status === 'rejected') {
             handledFailureWhileLocked = true;
-            const rollbackResult = (dependencies.restoreOriginalState ?? restoreOriginalState)(
-              effectiveFilePath,
-              originalState ?? captureOriginalState(effectiveFilePath),
-            );
-            rollbackSucceededAfterRejectedSave = rollbackResult.restored;
-            if (!rollbackResult.restored && rollbackResult.error) {
-              mergeErrorMetadata({ rollbackError: rollbackResult.error });
+            const pendingCleanupResult = (dependencies.cleanupPendingFile ?? cleanupPendingFile)(pendingPath);
+            rollbackSucceededAfterRejectedSave = pendingCleanupResult.cleaned;
+            if (!pendingCleanupResult.cleaned && pendingCleanupResult.error) {
+              mergeErrorMetadata({ pendingCleanupError: pendingCleanupResult.error });
             }
+            return {
+              kind: 'indexed',
+              indexResult: lockedIndexResult,
+              context: lockedContext,
+            } as const;
           }
+
+          (dependencies.promotePendingFile ?? promotePendingFile)(pendingPath, effectiveFilePath);
+          promotedToFinalPath = true;
+          anyPromotionAttempted = true;
 
           return {
             kind: 'indexed',
