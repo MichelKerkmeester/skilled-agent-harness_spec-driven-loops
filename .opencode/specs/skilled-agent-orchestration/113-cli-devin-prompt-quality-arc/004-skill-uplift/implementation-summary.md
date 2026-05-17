@@ -10,8 +10,8 @@ _memory:
     packet_pointer: "skilled-agent-orchestration/113-cli-devin-prompt-quality-arc/004-skill-uplift"
     last_updated_at: "2026-05-17T00:30:00Z"
     last_updated_by: "main_agent"
-    recent_action: "Applied RCAF winner to cli-devin (v1-0-5-0 release)"
-    next_safe_action: "Monitor v1-0-5-0 dispatches in production"
+    recent_action: "Shipped cli-devin v1-0-5-0 with RCAF defaults"
+    next_safe_action: "None — cli-devin shipped through v1-0-6-1 via 005 006 007"
     blockers: []
     key_files:
       - ".opencode/skills/cli-devin/SKILL.md"
@@ -19,8 +19,8 @@ _memory:
       - ".opencode/skills/cli-devin/assets/prompt_quality_card.md"
       - ".opencode/skills/cli-devin/changelog/v1.0.5.0.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000114045"
-      session_id: "114-004-summary"
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000113004"
+      session_id: "113-004-summary"
       parent_session_id: null
     completion_pct: 100
     open_questions: []

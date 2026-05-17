@@ -1,6 +1,6 @@
 # Cross-Model Validation Analysis
 
-**Generated**: 2026-05-17T19:02:15.360Z
+**Generated**: 2026-05-17T20:05:06.707Z
 **Models tested**: deepseek-v4-pro, kimi-k2.6
 **Variants tested**: 5
 **Fixtures per model x variant**: 7
@@ -53,7 +53,7 @@ SWE-1.6 finding: v-004-rcaf-medium (0.5664) > v-003-anti-hallucination-strong (0
 
 ## Surface caveats
 
-- `deepseek-v4` is dispatched via cli-devin's `--model deepseek-v4` preset. This may not be byte-equivalent to `deepseek/deepseek-v4-pro` (originally planned via cli-opencode in ADR-001). Devin's CLI does not expose a `--variant` knob for reasoning effort tier selection. See `decision-record.md` ADR-002.
-- `kimi-k2.6` is dispatched via cli-devin's `--model kimi-k2.6` preset.
+- `deepseek-v4-pro` is dispatched via cli-opencode 1.14.51 + DeepSeek direct API (`opencode run --model deepseek/deepseek-v4-pro --variant high`). This matches ADR-001 byte-for-byte after the cli-opencode 1.15.x downgrade.
+- `kimi-k2.6` is dispatched via cli-devin's `--model kimi-k2.6` preset (ADR-003 split-surface decision: opencode-go account ran out of credits mid-packet, so the originally-planned `opencode-go/kimi-k2.6` route was unreachable; cli-devin's preset is a working surface). The two routes differ on the gateway layer, not on the Kimi model itself.
 - Grader: claude-sonnet-4-5 (matches 113/003 baseline). Grader cache shared with prior runs via sha256(swe16_output_text) key, so re-dispatches of identical outputs incur no grader cost.
 - Per-fixture seed snapshot/restore is active via 113/003/score-variant.cjs `snapshotDir`+`restoreFromSnapshot` helpers when `EVAL_LOOP_EXTRACT=true`.

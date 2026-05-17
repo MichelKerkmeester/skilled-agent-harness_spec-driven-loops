@@ -21,7 +21,7 @@ _memory:
       - "scripts/synthesize-v3.cjs"
       - "scripts/extract-files-from-markdown.cjs"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000116005"
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000113005"
       session_id: "113-005-summary"
       parent_session_id: null
     completion_pct: 100

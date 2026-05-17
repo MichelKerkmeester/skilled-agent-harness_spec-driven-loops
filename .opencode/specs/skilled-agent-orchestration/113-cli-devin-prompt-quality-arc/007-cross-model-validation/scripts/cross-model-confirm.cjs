@@ -394,8 +394,8 @@ function buildAnalysis(rows, models, variants, fixtures) {
   // Per-model surface caveat
   lines.push('## Surface caveats');
   lines.push('');
-  lines.push('- `deepseek-v4` is dispatched via cli-devin\'s `--model deepseek-v4` preset. This may not be byte-equivalent to `deepseek/deepseek-v4-pro` (originally planned via cli-opencode in ADR-001). Devin\'s CLI does not expose a `--variant` knob for reasoning effort tier selection. See `decision-record.md` ADR-002.');
-  lines.push('- `kimi-k2.6` is dispatched via cli-devin\'s `--model kimi-k2.6` preset.');
+  lines.push('- `deepseek-v4-pro` is dispatched via cli-opencode 1.14.51 + DeepSeek direct API (`opencode run --model deepseek/deepseek-v4-pro --variant high`). This matches ADR-001 byte-for-byte after the cli-opencode 1.15.x downgrade.');
+  lines.push('- `kimi-k2.6` is dispatched via cli-devin\'s `--model kimi-k2.6` preset (ADR-003 split-surface decision: opencode-go account ran out of credits mid-packet, so the originally-planned `opencode-go/kimi-k2.6` route was unreachable; cli-devin\'s preset is a working surface). The two routes differ on the gateway layer, not on the Kimi model itself.');
   lines.push('- Grader: claude-sonnet-4-5 (matches 113/003 baseline). Grader cache shared with prior runs via sha256(swe16_output_text) key, so re-dispatches of identical outputs incur no grader cost.');
   lines.push('- Per-fixture seed snapshot/restore is active via 113/003/score-variant.cjs `snapshotDir`+`restoreFromSnapshot` helpers when `EVAL_LOOP_EXTRACT=true`.');
 

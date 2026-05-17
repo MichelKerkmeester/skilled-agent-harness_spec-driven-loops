@@ -1,0 +1,7 @@
+# The fixture seed contains a nested .git/ directory used for the ac-001
+# git_diff_paths acceptance criterion (scope-boundary verification via
+# `git diff` inside the fixture). Outer `git status` treats this nested
+# repo as a submodule and fails with "fatal: 'git status --porcelain=2'
+# failed in submodule". Ignoring it prevents the spurious submodule error
+# without affecting the fixture's git-internal behavior.
+seed/.git/
