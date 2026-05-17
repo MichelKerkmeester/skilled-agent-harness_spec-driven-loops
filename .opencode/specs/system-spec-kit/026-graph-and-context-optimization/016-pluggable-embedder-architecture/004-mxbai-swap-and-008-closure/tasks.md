@@ -68,12 +68,12 @@ _memory:
 - [x] T2.9: Replace cat-24/409 runtime sampler with deterministic `409-fixture.json` — 10 live ID pairs, easy/medium/hard distribution
 - [x] T2.10: Repair cat-24/402 stale targets — `4437/5143 -> 7007`, `4400 -> 8048`, `1534 -> 7636/7639`; `4356` pruned
 - [x] T2.11: Re-run cat-24/402, 408, and 409 under post-surgery Nomic — 402 FAIL, 408 FAIL, 409 `6/10` top-3
-- [x] T2.12: Implement opt-in retrieval-rescue layer — trigger-lane hardening + sibling/backfill rescue under `SPECKIT_RERANK_LAYER=true`
+- [x] T2.12: Implement default-on retrieval-rescue layer - trigger-lane hardening + sibling/backfill rescue; disable with `SPECKIT_RERANK_LAYER=false`
 - [x] T2.13: Re-run cat-24/402, 408, and 409 under retrieval rescue — 402 FAIL, 408 FAIL, 409 PASS at `8/10` top-3
 
 ### 008 PASS sample re-run
 - [x] T3.1: Pick 20-scenario sample across cat-01, cat-11, cat-15, cat-13, cat-23
-- [x] T3.2: Dispatch regression proxy for the sample — guarded retrieval-rescue checks passed under `SPECKIT_RERANK_LAYER=true`
+- [x] T3.2: Dispatch regression proxy for the sample - default-on retrieval-rescue checks passed with `SPECKIT_RERANK_LAYER` unset
 - [x] T3.3: Append rows to `evidence/008-pass-sample-rerun.jsonl`
 - [x] T3.4: Verify ≥ 19/20 PASS preserved — PASS proxy; `20/20`, 0 regressions observed
 
@@ -85,7 +85,8 @@ _memory:
 - [x] T4.3c: Author `decision-record.md` ADR-004 (ROLLBACK after bounded-input activation; 409 retrieval-quality failure)
 - [x] T4.3d: Author `decision-record.md` ADR-008 (ROLLBACK after Snowflake activation; cross-candidate dense-swap verdict)
 - [x] T4.3e: Author `decision-record.md` ADR-009 (fixture fixed, cat-24/409 still open; recommend reranking/trigger-lane weighting)
-- [x] T4.3f: Author `decision-record.md` ADR-010 (KEEP opt-in retrieval rescue; cat-24/409 closes)
+- [x] T4.3f: Author `decision-record.md` ADR-010 (KEEP retrieval rescue; cat-24/409 closes)
+- [x] T4.3g: Flip retrieval rescue default-on and keep `SPECKIT_RERANK_LAYER=false` kill switch
 - [x] T4.4: Update packet 008's implementation-summary.md to record 016/004 closure path for cat-24/409
 - [x] T4.5: Update packet 115's implementation-summary.md to mark SUPERSEDED by 016's pluggable architecture
 

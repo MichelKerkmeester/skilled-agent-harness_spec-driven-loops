@@ -5,14 +5,18 @@ import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 
 import { handleMemorySearch } from '../handlers/memory-search';
 import * as hybridSearch from '../lib/search/hybrid-search';
-import { applyRetrievalRescueLayer, __testables } from '../lib/search/rerank/retrieval-rescue';
+import {
+  applyRetrievalRescueLayer,
+  isRetrievalRescueEnabled,
+  __testables,
+} from '../lib/search/rerank/retrieval-rescue';
 import * as vectorIndex from '../lib/search/vector-index';
 import type { PipelineRow } from '../lib/search/pipeline/types';
 
 const savedRescueFlag = process.env.SPECKIT_RERANK_LAYER;
 
-function enableRescue(): void {
-  process.env.SPECKIT_RERANK_LAYER = 'true';
+function resetRescueFlagsForDefault(): void {
+  delete process.env.SPECKIT_RERANK_LAYER;
 }
 
 function restoreRescueFlag(): void {
@@ -30,11 +34,21 @@ function extractSearchRows(result: Awaited<ReturnType<typeof handleMemorySearch>
 
 describe('retrieval rescue layer', () => {
   beforeAll(() => {
-    enableRescue();
+    resetRescueFlagsForDefault();
   });
 
   afterAll(() => {
     restoreRescueFlag();
+  });
+
+  it('is enabled by default and disabled only by explicit false', () => {
+    expect(isRetrievalRescueEnabled()).toBe(true);
+
+    process.env.SPECKIT_RERANK_LAYER = 'false';
+    expect(isRetrievalRescueEnabled()).toBe(false);
+
+    delete process.env.SPECKIT_RERANK_LAYER;
+    expect(isRetrievalRescueEnabled()).toBe(true);
   });
 
   it('demotes generic trigger-only archive neighbors below richer task matches', () => {

@@ -448,3 +448,37 @@ Evidence:
 - `evidence/008-pass-sample-rerun.jsonl`
 - `mcp_server/tests/retrieval-rescue.vitest.ts`
 <!-- /ANCHOR:adr-010 -->
+
+<!-- ANCHOR:adr-011 -->
+## ADR-011: Flip retrieval rescue default-on; keep explicit false kill switch
+
+| Field | Value |
+|-------|-------|
+| Status | Accepted |
+| Date | 2026-05-17 |
+| Decision | DEFAULT-ON |
+
+ADR-010 proved the retrieval-rescue layer is the closure path for packet 008's remaining cat-24/409 failure. Keeping it opt-in defeats that path because normal operators do not set `SPECKIT_RERANK_LAYER=true` before searching.
+
+The runtime gate now treats `SPECKIT_RERANK_LAYER` as default-on:
+
+```text
+unset SPECKIT_RERANK_LAYER -> enabled
+SPECKIT_RERANK_LAYER=false -> disabled
+```
+
+This preserves the operator rollback lever without requiring explicit enablement for the known-good path. The old `SPECKIT_TRIGGER_LANE_BOOST=true` alias is no longer needed for activation.
+
+Config notes were refreshed at the same time:
+
+- `.mcp.json` now documents 42 mk-spec-memory tools, including `embedder_list`, `embedder_set`, and `embedder_status`.
+- `.mcp.json` lists `SPECKIT_RERANK_LAYER` with the default-on opt-out flags.
+- `mcp_server/package.json` now describes the 42-tool surface and embedder control.
+- `evidence/mcp-notes-drift-audit.md` records the MCP-info sweep and follow-on drift.
+
+Verification:
+
+```text
+npx vitest run tests/retrieval-rescue.vitest.ts -> PASS
+```
+<!-- /ANCHOR:adr-011 -->

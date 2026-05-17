@@ -40,7 +40,7 @@ _memory:
 ## 2. QUALITY GATES
 ### Definition of Done
 - [x] Nomic active after dense-swap comparison and post-surgery re-index
-- [x] cat-24/409 reaches PASS through opt-in retrieval rescue (`8/10`)
+- [x] cat-24/409 reaches PASS through default-on retrieval rescue (`8/10`)
 - [x] 008 PASS sample preserves ≥ 95% (`20/20` proxy, 0 regressions observed)
 - [x] ADR-010 records final KEEP decision for the retrieval-rescue layer
 - [x] Evidence rows capture cat-24 and preservation results
@@ -114,4 +114,3 @@ If cat-24/409 doesn't reach PASS OR 008 regression > 5%:
 4. Optional: open 117-embedding-model-evaluation-take-2 to evaluate other candidates
 
 <!-- /ANCHOR:rollback -->
-

@@ -12,8 +12,8 @@ _memory:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-pluggable-embedder-architecture/004-mxbai-swap-and-008-closure"
     last_updated_at: "2026-05-17T11:54:33Z"
     last_updated_by: "main_agent"
-    recent_action: "Added opt-in retrieval-rescue layer; cat-24/409 reached 8/10 top-3"
-    next_safe_action: "Keep retrieval rescue guarded behind SPECKIT_RERANK_LAYER; use ADR-010 as closure evidence"
+    recent_action: "Flipped retrieval-rescue layer default-on; cat-24/409 closure path remains 8/10 top-3"
+    next_safe_action: "Use ADR-010/011 as closure evidence; kill switch is SPECKIT_RERANK_LAYER=false"
     blockers: []
     key_files:
       - "decision-record.md"
@@ -38,7 +38,7 @@ _memory:
 |-------|-------|
 | Level | 1 |
 | Priority | P1 |
-| Status | CLOSED — ADR-010 keeps opt-in retrieval rescue; cat-24/409 reached 8/10 under Nomic |
+| Status | CLOSED - ADR-011 flips retrieval rescue default-on; cat-24/409 reached 8/10 under Nomic |
 | Branch | main |
 | Runtime | **cli-opencode** (`--model deepseek/deepseek-v4-pro --pure --format json`) |
 | Blocked by | 016/001 + 016/002 + 016/003 |

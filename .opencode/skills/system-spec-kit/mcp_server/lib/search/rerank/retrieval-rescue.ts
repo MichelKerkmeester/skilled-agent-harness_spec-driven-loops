@@ -1,7 +1,7 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Retrieval Rescue
 // ───────────────────────────────────────────────────────────────
-// Opt-in candidate rescue layer for trigger-rich paraphrase queries.
+// Default-on candidate rescue layer for trigger-rich paraphrase queries.
 
 import type Database from 'better-sqlite3';
 
@@ -61,13 +61,13 @@ const SIBLING_DOCUMENT_TYPES = [
   'research',
 ];
 
-function envFlag(name: string): boolean {
+function envFlagExplicitFalse(name: string): boolean {
   const raw = process.env[name]?.trim().toLowerCase();
-  return raw === 'true' || raw === '1';
+  return raw === 'false';
 }
 
 export function isRetrievalRescueEnabled(): boolean {
-  return envFlag('SPECKIT_RERANK_LAYER') || envFlag('SPECKIT_TRIGGER_LANE_BOOST');
+  return !envFlagExplicitFalse('SPECKIT_RERANK_LAYER');
 }
 
 function normalizeText(value: unknown): string {

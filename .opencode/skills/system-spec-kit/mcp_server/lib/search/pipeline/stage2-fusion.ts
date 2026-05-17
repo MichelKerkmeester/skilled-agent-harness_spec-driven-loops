@@ -29,7 +29,7 @@
 // 4.  Intent weights          — non-hybrid search post-scoring adjustment
 // 5.  Artifact routing        — class-based weight boosts
 // 6.  Feedback signals        — learned trigger boosts + negative demotions
-// 6a. Retrieval rescue        — opt-in trigger/sibling/backfill rescue layer
+// 6a. Retrieval rescue        — default-on trigger/sibling/backfill rescue layer
 // 7.  Artifact limiting       — result count cap from routing strategy
 // 8.  Anchor metadata         — extract named ANCHOR sections (annotation)
 // 9.  Validation metadata     — spec quality signals enrichment + quality scoring

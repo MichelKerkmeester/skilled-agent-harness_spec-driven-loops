@@ -20,7 +20,7 @@
       "008 mk-spec-memory stress test",
       "mk-spec-memory stress test",
       "manual testing playbook full run",
-      "39 tool sweep",
+      "42 tool sweep",
       "345 scenario sweep",
       "z_archive validation",
       "cli-devin SWE-1.6",
