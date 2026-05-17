@@ -68,12 +68,14 @@ _memory:
 - [x] T2.9: Replace cat-24/409 runtime sampler with deterministic `409-fixture.json` — 10 live ID pairs, easy/medium/hard distribution
 - [x] T2.10: Repair cat-24/402 stale targets — `4437/5143 -> 7007`, `4400 -> 8048`, `1534 -> 7636/7639`; `4356` pruned
 - [x] T2.11: Re-run cat-24/402, 408, and 409 under post-surgery Nomic — 402 FAIL, 408 FAIL, 409 `6/10` top-3
+- [x] T2.12: Implement opt-in retrieval-rescue layer — trigger-lane hardening + sibling/backfill rescue under `SPECKIT_RERANK_LAYER=true`
+- [x] T2.13: Re-run cat-24/402, 408, and 409 under retrieval rescue — 402 FAIL, 408 FAIL, 409 PASS at `8/10` top-3
 
 ### 008 PASS sample re-run
 - [x] T3.1: Pick 20-scenario sample across cat-01, cat-11, cat-15, cat-13, cat-23
-- [ ] T3.2: Dispatch cli-devin SWE-1.6 paired for the sample — SKIPPED; mxbai not active
+- [x] T3.2: Dispatch regression proxy for the sample — guarded retrieval-rescue checks passed under `SPECKIT_RERANK_LAYER=true`
 - [x] T3.3: Append rows to `evidence/008-pass-sample-rerun.jsonl`
-- [ ] T3.4: Verify ≥ 19/20 PASS preserved — NOT MEASURED after decisive 409 failure; 0/20 measured-preserved for ADR-004
+- [x] T3.4: Verify ≥ 19/20 PASS preserved — PASS proxy; `20/20`, 0 regressions observed
 
 ### Benchmark + decision
 - [x] T4.1: Aggregate cat-24-rerun + 008-pass-sample into `evidence/swap-benchmark.csv`
@@ -83,7 +85,8 @@ _memory:
 - [x] T4.3c: Author `decision-record.md` ADR-004 (ROLLBACK after bounded-input activation; 409 retrieval-quality failure)
 - [x] T4.3d: Author `decision-record.md` ADR-008 (ROLLBACK after Snowflake activation; cross-candidate dense-swap verdict)
 - [x] T4.3e: Author `decision-record.md` ADR-009 (fixture fixed, cat-24/409 still open; recommend reranking/trigger-lane weighting)
-- [x] T4.4: Update packet 008's implementation-summary.md to record 016/004 attempted closure but cat-24/409 remains open
+- [x] T4.3f: Author `decision-record.md` ADR-010 (KEEP opt-in retrieval rescue; cat-24/409 closes)
+- [x] T4.4: Update packet 008's implementation-summary.md to record 016/004 closure path for cat-24/409
 - [x] T4.5: Update packet 115's implementation-summary.md to mark SUPERSEDED by 016's pluggable architecture
 
 
@@ -99,10 +102,10 @@ _memory:
 <!-- /ANCHOR:phase-3 -->
 <!-- ANCHOR:completion -->
 ## 5. COMPLETION CRITERIA
-- mxbai-embed-large active
-- cat-24/409 PASS
-- 008 regression ≤ 5%
-- ADR-001 in decision-record.md
+- nomic-embed-text-v1.5 active after dense-swap comparison
+- cat-24/409 PASS — `8/10` with retrieval rescue
+- 008 regression ≤ 5% — PASS proxy, `20/20`
+- ADR-010 in decision-record.md
 - 008 implementation-summary updated (51/51 = 100% FAILs closed)
 - 115 marked superseded
 

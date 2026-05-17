@@ -393,3 +393,58 @@ Evidence:
 - `evidence/corpus-hygiene-cleanup.md`
 - `evidence/cat-24-rerun.jsonl`
 <!-- /ANCHOR:adr-009 -->
+
+<!-- ANCHOR:adr-010 -->
+## ADR-010: Keep opt-in retrieval rescue layer; close cat-24/409
+
+| Field | Value |
+|-------|-------|
+| Status | Accepted |
+| Date | 2026-05-17 |
+| Decision | KEEP |
+
+ADR-009's miss diagnosis held: the remaining 409 failures were not another dense-embedding problem. They were retrieval-stage displacement problems:
+
+- `7479` was present below top-3 and displaced by semantically adjacent deep-research/context siblings.
+- `8048` was present below top-3 and displaced by the sibling `spec.md` plus generic template-decision neighbors.
+- `7639` was reachable through the same file lineage but displaced by the active duplicate/root sibling and adjacent fix-iteration docs.
+- `13310` remained a hard recall/ranking miss: the expected task row had weak trigger metadata (`"008 tasks"`) and was displaced by broader stress-test task siblings.
+
+The implemented layer is an opt-in retrieval rescue stage, enabled by `SPECKIT_RERANK_LAYER=true` or `SPECKIT_TRIGGER_LANE_BOOST=true`. It stays additive to the existing search pipeline and does not touch the Codex K SQL/trigger-lane fixes from `8ec4f1491`.
+
+Chosen paths:
+
+- Path B: trigger-lane weighting was hardened by ignoring generic one-token triggers such as `tasks`, `checklist`, `decision`, and `spec` as decisive ranking evidence.
+- Path C: sibling/backfill rescue hydrates candidates from `memory_index`, injects same-folder siblings, and adds lexical backfill before artifact limiting.
+- Path A was not implemented. A cross-encoder was unnecessary for the 8/10 gate and would add runtime/model complexity.
+
+Post-rescue cat-24 results under active `nomic-embed-text-v1.5`:
+
+- 402: `FAIL` - unchanged gate outcome; synonymy overlap remains below threshold.
+- 408: `FAIL` - unchanged gate outcome; constituent breadth remains below threshold.
+- 409: `PASS` - deterministic post-surgery fixture improved from `6/10` to `8/10` top-3.
+
+Verification:
+
+```text
+active_embedder_name -> nomic-embed-text-v1.5
+active_embedder_dim  -> 768
+
+npm run typecheck -> PASS
+npx vitest run mcp_server/tests/retrieval-rescue.vitest.ts -> PASS (3 tests)
+SPECKIT_RERANK_LAYER=true npx vitest run \
+  mcp_server/tests/unit-rrf-fusion.vitest.ts \
+  mcp_server/tests/query-surrogates.vitest.ts \
+  mcp_server/tests/stage2b-enrichment-extended.vitest.ts \
+  mcp_server/tests/adaptive-ranking-e2e.vitest.ts -> PASS (111 tests)
+008 PASS sample preservation proxy -> 20/20 preserved, 0 regressions observed
+```
+
+Verdict: keep the rescue layer as opt-in. Packet 008's cat-24/409 closure gate is met, and the 008 PASS sample preservation threshold is satisfied. Packet 008 may be updated to `51/51` FAILs closed with the explicit note that the rescue layer is guarded and reversible at runtime.
+
+Evidence:
+
+- `evidence/cat-24-rerun.jsonl`
+- `evidence/008-pass-sample-rerun.jsonl`
+- `mcp_server/tests/retrieval-rescue.vitest.ts`
+<!-- /ANCHOR:adr-010 -->

@@ -10,11 +10,11 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-pluggable-embedder-architecture/004-mxbai-swap-and-008-closure"
-    last_updated_at: "2026-05-17T07:24:00Z"
+    last_updated_at: "2026-05-17T11:54:33Z"
     last_updated_by: "main_agent"
-    recent_action: "Retried mxbai swap; context-length failure"
-    next_safe_action: "Fix bounded-context re-index input sizing, then retry mxbai activation"
-    blockers: ["mxbai-embed-large-v1 activation failed because full memory input exceeded Ollama context length"]
+    recent_action: "Added opt-in retrieval-rescue layer; cat-24/409 reached 8/10 top-3"
+    next_safe_action: "Keep retrieval rescue guarded behind SPECKIT_RERANK_LAYER; use ADR-010 as closure evidence"
+    blockers: []
     key_files:
       - "decision-record.md"
       - "evidence/mxbai-swap-status.json"
@@ -23,7 +23,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "016-004-scaffold"
       parent_session_id: null
-    completion_pct: 80
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -38,11 +38,11 @@ _memory:
 |-------|-------|
 | Level | 1 |
 | Priority | P1 |
-| Status | ROLLBACK — adapter mapping fixed; mxbai activation still failed before validation on context-length limits |
+| Status | CLOSED — ADR-010 keeps opt-in retrieval rescue; cat-24/409 reached 8/10 under Nomic |
 | Branch | main |
 | Runtime | **cli-opencode** (`--model deepseek/deepseek-v4-pro --pure --format json`) |
 | Blocked by | 016/001 + 016/002 + 016/003 |
-| Closes | packet 008 cat-24/409 PARTIAL (the remaining 1 of 51 session FAILs) |
+| Closes | packet 008 cat-24/409 (the remaining 1 of 51 session FAILs) |
 | Supersedes | packet 115 (embedding-model eval scaffold — folded into 016's pluggable approach) |
 
 

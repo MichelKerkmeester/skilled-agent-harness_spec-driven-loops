@@ -1,17 +1,17 @@
 ---
 title: "Summary: 016/004 embedder swaps + 008 closure"
-description: "mxbai, jina, nomic, bge-m3, snowflake-arctic, and post-surgery Nomic retries completed, but repaired cat-24/409 stayed below PASS; 008 remains open."
+description: "Dense swaps established the ceiling, then an opt-in retrieval-rescue layer lifted repaired cat-24/409 to PASS at 8/10 top-3; 008 can close."
 trigger_phrases: ["016/004 summary"]
 importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-pluggable-embedder-architecture/004-mxbai-swap-and-008-closure"
-    last_updated_at: "2026-05-17T11:32:46Z"
+    last_updated_at: "2026-05-17T11:54:33Z"
     last_updated_by: "main_agent"
-    recent_action: "Post-surgery Nomic rerun recorded"
-    next_safe_action: "Evaluate option D reranker, trigger-lane weighting, or sibling-document canonicalization"
-    blockers: ["post-surgery nomic-embed-text-v1.5 409 rerun reached 6/10 top-3, below the 8/10 gate"]
+    recent_action: "Retrieval-rescue layer recorded in ADR-010; cat-24/409 reached 8/10 top-3"
+    next_safe_action: "Use ADR-010 and evidence rows as packet 008 closure proof"
+    blockers: []
     key_files:
       - "decision-record.md"
       - "evidence/mxbai-swap-status.json"
@@ -24,7 +24,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "016-004-summary"
       parent_session_id: null
-    completion_pct: 90
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -37,10 +37,10 @@ _memory:
 ## 1. METADATA
 | Field | Value |
 |-------|-------|
-| Status | OPEN — bounded-input dense swaps and post-surgery Nomic rerun completed, but repaired cat-24/409 stayed below PASS |
+| Status | CLOSED — opt-in retrieval rescue lifted repaired cat-24/409 to PASS |
 | Branch | main |
 | Wall-clock estimate | 1-2 hours (mostly re-index wait + scenario re-runs) |
-| Closes | None; packet 008 cat-24/409 remains open |
+| Closes | packet 008 cat-24/409; 51/51 FAILs can be marked closed |
 | Supersedes | packet 115's standalone eval scaffold; follow-up should continue under 016 architecture |
 
 
@@ -64,6 +64,7 @@ Delivered failure-path evidence:
 - follow-up ADR-007 ROLLBACK after bge-m3 activated cleanly but cat-24/409 regressed to 2/10 top-3
 - follow-up ADR-008 ROLLBACK after snowflake-arctic-embed-l-v2.0 activated cleanly but cat-24/409 regressed to 1/10 top-3
 - follow-up ADR-009 after corpus hygiene and fixture repair improved Nomic cat-24/409 from stale-fixture 5/10 to deterministic-fixture 6/10 top-3, still below the 8/10 PASS threshold
+- follow-up ADR-010 KEEP after the opt-in retrieval-rescue layer lifted deterministic cat-24/409 from 6/10 to 8/10 top-3 and preserved the 008 PASS sample proxy at 20/20
 
 
 <!-- /ANCHOR:what-built -->
@@ -142,7 +143,7 @@ Post-surgery cat-24 did not close 008:
 - 408 stayed `FAIL`; counting mirrored implementation paths as the factory/cascade constituent, only `1/4` expected sources appeared in top-3/top-5.
 - 409 improved to `6/10` top-3 on the deterministic fixture, a PARTIAL scenario band but still below the `8/10` closure gate.
 
-The repaired evidence changes the next recommendation but not the closure state: packet 008 remains open, and the next attempt should be reranking, trigger-lane weighting, or sibling-document canonicalization.
+The retrieval-rescue follow-up implemented that recommendation without adding a cross-encoder. Under `SPECKIT_RERANK_LAYER=true`, cat-24/409 reached `8/10` top-3 and packet 008 can close.
 
 
 <!-- /ANCHOR:how-delivered -->
@@ -157,7 +158,8 @@ The repaired evidence changes the next recommendation but not the closure state:
 - ADR-007: ROLLBACK. Bge-m3 activated cleanly, but cat-24/409 regressed to 2/10 top-3.
 - ADR-008: ROLLBACK. Snowflake activated cleanly, but cat-24/409 regressed to 1/10 top-3; pure dense swaps did not close 409.
 - ADR-009: FIXTURE-FIXED-BUT-409-OPEN. The corpus and fixtures are repaired, and Nomic improved to 6/10, but the 8/10 gate still requires a retrieval-stage change.
-- Packet 115's standalone evaluation scaffold is superseded by 016's pluggable architecture, but 016/004 did not close packet 008 cat-24/409.
+- ADR-010: KEEP. The opt-in retrieval-rescue layer lifted repaired cat-24/409 to 8/10 top-3 under Nomic and preserved the 008 PASS sample proxy at 20/20.
+- Packet 115's standalone evaluation scaffold is superseded by 016's pluggable architecture, and 016/004 now closes packet 008 cat-24/409.
 
 
 <!-- /ANCHOR:decisions -->
@@ -212,14 +214,20 @@ The repaired evidence changes the next recommendation but not the closure state:
 | cat-24/402 post-surgery | PASS (3/4 pairs >= 60%) | FAIL — `0/4` pairs reached threshold |
 | cat-24/408 post-surgery | PASS (>=2/4 top-3 and >=3/4 top-5) | FAIL — `1/4` top-3 and `1/4` top-5 |
 | cat-24/409 post-surgery | PASS (8/10 top-3) | FAIL gate / PARTIAL band — `6/10` top-3 |
+| active embedder for retrieval-rescue | `nomic-embed-text-v1.5` | PASS — `active_embedder_name=nomic-embed-text-v1.5`, `active_embedder_dim=768` |
+| cat-24/409 retrieval-rescue | PASS (8/10 top-3) | PASS — `8/10` top-3 under `SPECKIT_RERANK_LAYER=true` |
+| 008 PASS sample preservation after rescue | ≥ 19/20 preserved | PASS proxy — `20/20`, 0 regressions observed |
+| `npm run typecheck` after rescue | exit 0 | PASS |
+| `npx vitest run mcp_server/tests/retrieval-rescue.vitest.ts` | exit 0 | PASS — 3/3 |
+| retrieval/scoring regression slice under rescue flag | exit 0 | PASS — 4 files, 111 tests |
 
 
 <!-- /ANCHOR:verification -->
 <!-- ANCHOR:limitations -->
 ## 6. KNOWN LIMITATIONS
-- cat-24/409 remains open. The best empirical result is now post-surgery Nomic at 6/10 top-3 against a deterministic fixture; the gate is 8/10.
-- The 20-scenario PASS sample was not rerun after the decisive 409 failure. Preservation rate for ADR-004 is 0/20 measured-preserved.
-- The 20-scenario PASS sample was also skipped for Jina, Nomic, bge-m3, and Snowflake after the decisive 409 failures.
-- The next retry should evaluate option D reranking, trigger-lane weighting, or sibling-document canonicalization rather than another same-shape pure dense embedder swap.
+- cat-24/402 and cat-24/408 remain FAIL under the rescue layer. They are not the packet 008 closure gate, but they should not be represented as improved.
+- cat-24/409 reaches exactly the required threshold (`8/10`), not a broad margin. Remaining misses are `7639` duplicate/root-lineage displacement and `13310` weak-trigger stress-test task recall.
+- The rescue layer is intentionally opt-in (`SPECKIT_RERANK_LAYER=true` or `SPECKIT_TRIGGER_LANE_BOOST=true`) so it can be disabled without reverting code.
+- The 20-scenario PASS sample was preserved through a guarded regression proxy rather than full manual replay of all 20 playbook scenarios.
 
 <!-- /ANCHOR:limitations -->

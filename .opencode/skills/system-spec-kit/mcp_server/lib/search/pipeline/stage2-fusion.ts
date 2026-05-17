@@ -29,6 +29,7 @@
 // 4.  Intent weights          — non-hybrid search post-scoring adjustment
 // 5.  Artifact routing        — class-based weight boosts
 // 6.  Feedback signals        — learned trigger boosts + negative demotions
+// 6a. Retrieval rescue        — opt-in trigger/sibling/backfill rescue layer
 // 7.  Artifact limiting       — result count cap from routing strategy
 // 8.  Anchor metadata         — extract named ANCHOR sections (annotation)
 // 9.  Validation metadata     — spec quality signals enrichment + quality scoring
@@ -93,6 +94,7 @@ import { ensureUsageColumn } from '../../graph/usage-tracking.js';
 import { isGraphUnifiedEnabled } from '../graph-flags.js';
 import { resolveFusionIntentContract } from '../search-utils.js';
 import { sortDeterministicRows } from './ranking-contract.js';
+import { applyRetrievalRescueLayer, isRetrievalRescueEnabled } from '../rerank/retrieval-rescue.js';
 
 // Feature catalog: 4-stage pipeline architecture
 // Feature catalog: MPAB chunk-to-memory aggregation
@@ -1352,10 +1354,28 @@ export async function executeStage2(input: Stage2Input): Promise<Stage2Output> {
     }
   }
 
-  // -- 7. Artifact-based result limiting --
+  // -- 6a. Retrieval rescue + 7. Artifact-based result limiting --
   // The routing strategy may specify a maxResults count stricter than the
   // Overall pipeline limit. Apply it here so Stage 3 reranks a pre-trimmed set.
   syncScoreAliasesInPlace(results);
+  if (isRetrievalRescueEnabled()) {
+    try {
+      let rescueDb: Database.Database | null = null;
+      try {
+        rescueDb = requireDb();
+      } catch {
+        rescueDb = null;
+      }
+      results = applyRetrievalRescueLayer(config.query, results, {
+        db: rescueDb,
+        artifactClass: config.artifactRouting?.strategy?.artifactClass as string | undefined
+          ?? config.artifactRouting?.detectedClass,
+      });
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : String(err);
+      console.warn(`[stage2-fusion] retrieval rescue layer failed: ${message}`);
+    }
+  }
   results = sortDeterministicRows(results as Array<PipelineRow & { id: number }>);
   if (
     config.artifactRouting &&

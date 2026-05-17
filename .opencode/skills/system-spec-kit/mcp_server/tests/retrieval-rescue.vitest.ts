@@ -1,0 +1,133 @@
+import { readFileSync } from 'fs';
+import { resolve } from 'path';
+
+import { afterAll, beforeAll, describe, expect, it } from 'vitest';
+
+import { handleMemorySearch } from '../handlers/memory-search';
+import * as hybridSearch from '../lib/search/hybrid-search';
+import { applyRetrievalRescueLayer, __testables } from '../lib/search/rerank/retrieval-rescue';
+import * as vectorIndex from '../lib/search/vector-index';
+import type { PipelineRow } from '../lib/search/pipeline/types';
+
+const savedRescueFlag = process.env.SPECKIT_RERANK_LAYER;
+
+function enableRescue(): void {
+  process.env.SPECKIT_RERANK_LAYER = 'true';
+}
+
+function restoreRescueFlag(): void {
+  if (savedRescueFlag === undefined) {
+    delete process.env.SPECKIT_RERANK_LAYER;
+  } else {
+    process.env.SPECKIT_RERANK_LAYER = savedRescueFlag;
+  }
+}
+
+function extractSearchRows(result: Awaited<ReturnType<typeof handleMemorySearch>>): Array<{ id: number }> {
+  const envelope = JSON.parse(result.content[0].text) as { data?: { results?: Array<{ id: number }> } };
+  return envelope.data?.results ?? [];
+}
+
+describe('retrieval rescue layer', () => {
+  beforeAll(() => {
+    enableRescue();
+  });
+
+  afterAll(() => {
+    restoreRescueFlag();
+  });
+
+  it('demotes generic trigger-only archive neighbors below richer task matches', () => {
+    const query = 'stress-test task list tracking cat-14 pipeline gaps, cat-16 tooling fixes, and the remaining cat-24 memory-recall failure';
+    const rows: PipelineRow[] = [
+      {
+        id: 1,
+        title: 'Tasks: Remaining archived remediation',
+        file_path: '/repo/.opencode/specs/system-spec-kit/z_archive/054-remediation/tasks.md',
+        spec_folder: 'system-spec-kit/z_archive/054-remediation',
+        document_type: 'tasks',
+        trigger_phrases: '["tasks","remaining"]',
+        content: 'Generic remaining remediation task list.',
+        score: 1,
+        rrfScore: 1,
+        intentAdjustedScore: 1,
+      },
+      {
+        id: 2,
+        title: 'Tasks: 008 mk-spec-memory stress test',
+        file_path: '/repo/.opencode/specs/system-spec-kit/026/008-mk-spec-memory-stress-test/tasks.md',
+        spec_folder: 'system-spec-kit/026/008-mk-spec-memory-stress-test',
+        document_type: 'tasks',
+        trigger_phrases: '["008 tasks"]',
+        content: 'cat-14-pipeline gaps, cat-16 tooling fixes, stress-test execution, memory recall failure',
+        score: 0.1,
+        rrfScore: 0.1,
+        intentAdjustedScore: 0.1,
+      },
+    ];
+
+    const ranked = applyRetrievalRescueLayer(query, rows);
+    expect(ranked[0].id).toBe(2);
+  });
+
+  it('scores specific decision records above sibling specs for ADR-shaped queries', () => {
+    const query = 'ADR about consolidating spec-kit templates into the level and addendum generator instead of leaving compose scripts separate';
+    const specScore = __testables.lexicalScore(query, {
+      id: 10,
+      title: 'Feature Specification: Template System Consolidation',
+      file_path: '/repo/spec.md',
+      spec_folder: 'system-spec-kit/074-template-system-consolidation',
+      document_type: 'spec',
+      trigger_phrases: '["template consolidation","spec-kit templates","core addendum"]',
+      content: 'Consolidate spec-kit templates into level and addendum generator.',
+    });
+    const decisionScore = __testables.lexicalScore(query, {
+      id: 11,
+      title: 'Decision Record: Template System Consolidation',
+      file_path: '/repo/decision-record.md',
+      spec_folder: 'system-spec-kit/074-template-system-consolidation',
+      document_type: 'decision_record',
+      trigger_phrases: '["template consolidation decision","spec-kit template ADR","compose.sh decision"]',
+      content: 'Decision to consolidate templates into the generator instead of compose scripts.',
+    });
+
+    expect(decisionScore.score).toBeGreaterThan(specScore.score);
+  });
+
+  it('keeps the post-surgery cat-24/409 fixture at or above 8/10 top-3', async () => {
+    const fixturePath = resolve(
+      import.meta.dirname,
+      '..',
+      '..',
+      'manual_testing_playbook',
+      '24--local-llm-query-intelligence',
+      '409-fixture.json'
+    );
+    const fixture = JSON.parse(readFileSync(fixturePath, 'utf8')) as Array<{
+      query: string;
+      expected_source_memory_id: number;
+    }>;
+
+    const db = vectorIndex.initialize_db();
+    hybridSearch.init(db, vectorIndex.vectorSearch, null);
+
+    let top3Hits = 0;
+    for (const pair of fixture) {
+      const result = await handleMemorySearch({
+        query: pair.query,
+        limit: 10,
+        rerank: false,
+        includeContent: false,
+        includeConstitutional: false,
+        bypassCache: true,
+      });
+      const ids = extractSearchRows(result).map((row) => row.id);
+      const rank = ids.indexOf(pair.expected_source_memory_id);
+      if (rank >= 0 && rank < 3) {
+        top3Hits++;
+      }
+    }
+
+    expect(top3Hits).toBeGreaterThanOrEqual(8);
+  }, 30_000);
+});

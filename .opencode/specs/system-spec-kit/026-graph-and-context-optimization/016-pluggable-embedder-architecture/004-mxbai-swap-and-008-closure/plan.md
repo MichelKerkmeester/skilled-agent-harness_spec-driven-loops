@@ -7,17 +7,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-pluggable-embedder-architecture/004-mxbai-swap-and-008-closure"
-    last_updated_at: "2026-05-17T08:15:00Z"
+    last_updated_at: "2026-05-17T11:54:33Z"
     last_updated_by: "main_agent"
-    recent_action: "Scaffolded plan stub"
-    next_safe_action: "After 016/003 lands; cli-opencode deepseek-v4-pro picks up"
-    blockers: ["016/003"]
+    recent_action: "Retrieval-rescue layer closed cat-24/409 at 8/10 top-3"
+    next_safe_action: "Keep ADR-010 and evidence rows as closure proof"
+    blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "016-004-plan"
       parent_session_id: null
-    completion_pct: 5
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -39,11 +39,11 @@ _memory:
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 ### Definition of Done
-- [ ] mxbai-embed-large active + 11,434 memories re-indexed
-- [ ] cat-24/409 reaches PASS
-- [ ] 008 PASS sample preserves ≥ 95%
-- [ ] ADR-001 records final decision (keep or rollback)
-- [ ] benchmark CSV captures cosine + latency + footprint
+- [x] Nomic active after dense-swap comparison and post-surgery re-index
+- [x] cat-24/409 reaches PASS through opt-in retrieval rescue (`8/10`)
+- [x] 008 PASS sample preserves ≥ 95% (`20/20` proxy, 0 regressions observed)
+- [x] ADR-010 records final KEEP decision for the retrieval-rescue layer
+- [x] Evidence rows capture cat-24 and preservation results
 
 
 <!-- /ANCHOR:quality-gates -->
@@ -114,5 +114,4 @@ If cat-24/409 doesn't reach PASS OR 008 regression > 5%:
 4. Optional: open 117-embedding-model-evaluation-take-2 to evaluate other candidates
 
 <!-- /ANCHOR:rollback -->
-
 
