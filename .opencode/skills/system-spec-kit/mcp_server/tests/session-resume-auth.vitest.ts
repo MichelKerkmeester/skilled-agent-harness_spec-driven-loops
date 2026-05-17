@@ -238,6 +238,37 @@ describe('session-resume auth binding', () => {
     expectLatestScopeClauses('requested-session');
   });
 
+  it('re-reads auth mode at call time when strict follows permissive in one process', async () => {
+    const workspacePath = createWorkspace();
+    workspacesToRemove.push(workspacePath);
+    writeImplementationSummary(workspacePath);
+    process.chdir(workspacePath);
+
+    const { handleSessionResume, runWithCallerContext } = await loadModules();
+    vi.stubEnv('MCP_SESSION_RESUME_AUTH_MODE', 'permissive');
+    const first = await runWithCallerContext(
+      makeCallerContext('transport-session'),
+      () => handleSessionResume({
+        specFolder: SPEC_FOLDER,
+        minimal: true,
+        sessionId: 'requested-session',
+      }),
+    );
+    expect(JSON.parse(first.content[0].text).status).toBe('ok');
+
+    vi.unstubAllEnvs();
+    await expect(runWithCallerContext(
+      makeCallerContext('transport-session'),
+      () => handleSessionResume({
+        specFolder: SPEC_FOLDER,
+        minimal: true,
+        sessionId: 'requested-session',
+      }),
+    )).rejects.toThrow(
+      "Session-ID mismatch: args.sessionId='requested-session' vs callerContext.sessionId='transport-session' — rejecting cross-session resume",
+    );
+  });
+
   it('defaults to strict mode when MCP_SESSION_RESUME_AUTH_MODE is unset', async () => {
     delete process.env.MCP_SESSION_RESUME_AUTH_MODE;
 

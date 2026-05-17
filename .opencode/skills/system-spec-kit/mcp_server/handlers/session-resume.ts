@@ -48,7 +48,10 @@ import type { MCPResponse } from '@spec-kit/shared/types';
 
 export const CACHED_SESSION_SUMMARY_SCHEMA_VERSION = 1;
 export const CACHED_SESSION_SUMMARY_MAX_AGE_MS = 30 * 60 * 1000;
-const SESSION_RESUME_AUTH_PERMISSIVE = process.env.MCP_SESSION_RESUME_AUTH_MODE === 'permissive';
+
+function isSessionResumeAuthPermissive(): boolean {
+  return process.env.MCP_SESSION_RESUME_AUTH_MODE === 'permissive';
+}
 
 export interface CachedSessionSummaryCandidate {
   schemaVersion: number;
@@ -553,7 +556,7 @@ export async function handleSessionResume(args: SessionResumeArgs): Promise<MCPR
   // boundary; HTTP/WS callers still carry server-generated session IDs and hit this guard.
   if (requestedSessionId && callerCtx?.sessionId && requestedSessionId !== callerCtx.sessionId) {
     const message = `Session-ID mismatch: args.sessionId='${requestedSessionId}' vs callerContext.sessionId='${callerCtx.sessionId}'`;
-    if (SESSION_RESUME_AUTH_PERMISSIVE) {
+    if (isSessionResumeAuthPermissive()) {
       console.warn(`[session-resume] ${message} (permissive mode — allowing)`);
     } else {
       throw new Error(`${message} — rejecting cross-session resume`);
