@@ -3,11 +3,15 @@
 from __future__ import annotations
 
 import json
+import logging
 import os
 from dataclasses import dataclass
 from pathlib import Path
 
 _DEFAULT_MODEL = "sbert/jinaai/jina-embeddings-v2-base-code"
+_VALID_DEVICES = {"cuda", "mps", "cpu"}
+
+logger = logging.getLogger(__name__)
 
 
 def _find_root_with_marker(start: Path, markers: list[str]) -> Path | None:
@@ -47,14 +51,21 @@ def _resolve_device(env_override: str | None) -> str | None:
     """Resolve compute device for embedder inference.
 
     Resolution order:
-    1. env_override (caller-supplied COCOINDEX_CODE_DEVICE) if non-empty — trust as-is
+    1. env_override (caller-supplied COCOINDEX_CODE_DEVICE) if valid
     2. Probe PyTorch backends in preference CUDA -> MPS -> CPU
     3. Return None if PyTorch not importable (let downstream framework choose)
 
     Lazy torch import keeps config import cheap when downstream doesn't need device hints.
     """
     if env_override:
-        return env_override
+        normalized = env_override.strip().lower()
+        if normalized in _VALID_DEVICES:
+            return normalized
+        logger.warning(
+            "Ignoring invalid COCOINDEX_CODE_DEVICE=%r; expected one of %s",
+            env_override,
+            sorted(_VALID_DEVICES),
+        )
 
     try:
         import torch  # noqa: PLC0415 — lazy import; torch is heavy
@@ -93,6 +104,12 @@ def _parse_json_string_list_env(var_name: str) -> list[str]:
     return result
 
 
+def _is_registered_embedder(name: str) -> bool:
+    from cocoindex_code.registered_embedders import get_embedder_metadata  # noqa: PLC0415
+
+    return get_embedder_metadata(name) is not None
+
+
 @dataclass
 class Config:
     """Configuration loaded from environment variables."""
@@ -111,6 +128,12 @@ class Config:
         root_path_str = os.environ.get("COCOINDEX_CODE_ROOT_PATH")
         if root_path_str:
             root = Path(root_path_str).resolve()
+            if not root.exists():
+                logger.warning(
+                    "Ignoring COCOINDEX_CODE_ROOT_PATH=%r because it does not exist; falling back to discovery",
+                    root_path_str,
+                )
+                root = _discover_codebase_root()
         else:
             root = _discover_codebase_root()
 
@@ -120,6 +143,13 @@ class Config:
             "COCOINDEX_CODE_EMBEDDING_MODEL",
             _DEFAULT_MODEL,
         )
+        if not _is_registered_embedder(embedding_model):
+            logger.warning(
+                "Ignoring unknown COCOINDEX_CODE_EMBEDDING_MODEL=%r; falling back to %r",
+                embedding_model,
+                _DEFAULT_MODEL,
+            )
+            embedding_model = _DEFAULT_MODEL
 
         # Index directory is always under the root
         index_dir = root / ".cocoindex_code"

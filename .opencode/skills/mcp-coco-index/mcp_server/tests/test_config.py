@@ -3,11 +3,12 @@
 from __future__ import annotations
 
 import sys
+from pathlib import Path
 from unittest.mock import MagicMock, patch
 
 import pytest
 
-from cocoindex_code.config import _DEFAULT_MODEL, _resolve_device
+from cocoindex_code.config import _DEFAULT_MODEL, Config, _resolve_device
 
 
 class TestDefaultEmbedder:
@@ -17,12 +18,19 @@ class TestDefaultEmbedder:
 
 
 class TestResolveDevice:
-    def test_env_override_wins(self) -> None:
-        """Explicit env override returns as-is without probing."""
+    def test_env_override_wins_for_valid_devices(self) -> None:
+        """Explicit valid env override returns without probing."""
         assert _resolve_device("cuda") == "cuda"
         assert _resolve_device("mps") == "mps"
         assert _resolve_device("cpu") == "cpu"
-        assert _resolve_device("xpu") == "xpu"  # unknown values pass through
+
+    def test_invalid_env_override_falls_back_to_auto_detect(self) -> None:
+        """Unknown device values are ignored rather than passed downstream."""
+        fake_torch = MagicMock()
+        fake_torch.cuda.is_available.return_value = False
+        fake_torch.backends.mps.is_available.return_value = False
+        with patch.dict(sys.modules, {"torch": fake_torch}):
+            assert _resolve_device("xpu") == "cpu"
 
     def test_no_env_no_torch_returns_none(self) -> None:
         """If torch is unimportable, fall back to None (downstream picks)."""
@@ -60,3 +68,32 @@ class TestResolveDevice:
         fake_torch.backends.mps.is_available.return_value = True
         with patch.dict(sys.modules, {"torch": fake_torch}):
             assert _resolve_device("") == "mps"
+
+
+class TestConfigValidation:
+    def test_missing_root_path_falls_back_to_discovery(self, tmp_path: Path) -> None:
+        with (
+            patch.dict(
+                "os.environ",
+                {
+                    "COCOINDEX_CODE_ROOT_PATH": str(tmp_path / "missing"),
+                    "COCOINDEX_CODE_EMBEDDING_MODEL": _DEFAULT_MODEL,
+                },
+                clear=True,
+            ),
+            patch("cocoindex_code.config._discover_codebase_root", return_value=tmp_path),
+        ):
+            assert Config.from_env().codebase_root_path == tmp_path
+
+    def test_unknown_embedding_model_falls_back_to_default(self, tmp_path: Path) -> None:
+        with (
+            patch.dict(
+                "os.environ",
+                {
+                    "COCOINDEX_CODE_ROOT_PATH": str(tmp_path),
+                    "COCOINDEX_CODE_EMBEDDING_MODEL": "sbert/unknown/model",
+                },
+                clear=True,
+            ),
+        ):
+            assert Config.from_env().embedding_model == _DEFAULT_MODEL

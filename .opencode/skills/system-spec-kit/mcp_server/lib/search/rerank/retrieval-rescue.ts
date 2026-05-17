@@ -7,6 +7,7 @@ import type Database from 'better-sqlite3';
 
 import { resolveEffectiveScore } from '../pipeline/types.js';
 import type { PipelineRow } from '../pipeline/types.js';
+import { createLogger } from '../../utils/logger.js';
 
 type RescueOptions = {
   db?: Database.Database | null;
@@ -60,6 +61,16 @@ const SIBLING_DOCUMENT_TYPES = [
   'plan',
   'research',
 ];
+
+const RESCUE_SCORE_CAP = 1.0;
+const RESCUE_TOP_K = 10;
+const logger = createLogger('retrieval-rescue');
+
+const telemetryCounters = {
+  rescueRuns: 0,
+  rescueTopKHits: 0,
+  capSuppressedCandidates: 0,
+};
 
 function envFlagExplicitFalse(name: string): boolean {
   const raw = process.env[name]?.trim().toLowerCase();
@@ -166,18 +177,28 @@ function phraseScore(query: string, phrases: string[]): number {
 }
 
 function documentHintScore(tokens: string[], row: PipelineRow, artifactClass?: string | null): number {
-  const docType = normalizeText(row.document_type);
+  const docType = String(row.document_type ?? '').toLowerCase().trim();
+  const searchableDocType = normalizeText(row.document_type);
   let score = 0;
   for (const hint of DOCUMENT_HINTS) {
-    if (!hint.types.map(normalizeText).includes(docType)) continue;
+    if (!hint.types.some((type) => type === docType || normalizeText(type) === searchableDocType)) continue;
     if (hint.terms.some((term) => tokens.includes(term))) {
       score = Math.max(score, hint.weight);
     }
   }
-  if (artifactClass && normalizeText(artifactClass).includes('decision') && docType === 'decision record') {
+  if (artifactClass && normalizeText(artifactClass).includes('decision') && docType === 'decision_record') {
     score = Math.max(score, 0.24);
   }
   return score;
+}
+
+function computeRescueLayerScore(baseScore: number, rescueScore: number): { score: number; wouldHaveBeenCapped: boolean } {
+  const uncapped = Math.min(baseScore, 1) * 0.03 + rescueScore * 0.78;
+  const score = Math.min(RESCUE_SCORE_CAP, uncapped);
+  return {
+    score,
+    wouldHaveBeenCapped: uncapped > RESCUE_SCORE_CAP,
+  };
 }
 
 function lexicalScore(query: string, row: PipelineRow, artifactClass?: string | null): { score: number; signals: string[] } {
@@ -354,7 +375,19 @@ export function applyRetrievalRescueLayer(
   const rescued = expanded.map((row): ScoredRow => {
     const baseScore = resolveEffectiveScore(row);
     const rescue = lexicalScore(query, row, options.artifactClass);
-    const score = Math.min(0.82, Math.min(baseScore, 1) * 0.03 + rescue.score * 0.78);
+    // ADR-013: rescue candidates should compete after the outer normalization
+    // clamp, not be held below original-lane candidates by a local 0.82 cap.
+    const { score, wouldHaveBeenCapped } = computeRescueLayerScore(baseScore, rescue.score);
+    if (wouldHaveBeenCapped) {
+      telemetryCounters.capSuppressedCandidates += 1;
+      logger.info('retrieval rescue cap counter incremented', {
+        event: 'retrieval_rescue_cap_would_apply',
+        counter: telemetryCounters.capSuppressedCandidates,
+        rowId: row.id,
+        baseScore,
+        rescueScore: rescue.score,
+      });
+    }
     const boost = Math.max(0, score - baseScore);
     return {
       ...syncScore(row, score),
@@ -364,7 +397,7 @@ export function applyRetrievalRescueLayer(
     };
   });
 
-  return rescued.sort((a, b) => {
+  const sorted = rescued.sort((a, b) => {
     const scoreDelta = resolveEffectiveScore(b) - resolveEffectiveScore(a);
     if (scoreDelta !== 0) return scoreDelta;
     const aRescue = a.retrievalRescueScore ?? 0;
@@ -372,11 +405,34 @@ export function applyRetrievalRescueLayer(
     if (bRescue !== aRescue) return bRescue - aRescue;
     return a.id - b.id;
   });
+
+  telemetryCounters.rescueRuns += 1;
+  const topKHits = sorted
+    .slice(0, RESCUE_TOP_K)
+    .filter((row) => (row.retrievalRescueBoost ?? 0) > 0).length;
+  telemetryCounters.rescueTopKHits += topKHits;
+  logger.debug('retrieval rescue summary', {
+    event: 'retrieval_rescue_hit_rate',
+    topK: RESCUE_TOP_K,
+    topKHits,
+    hitRate: topKHits / Math.max(1, Math.min(RESCUE_TOP_K, sorted.length)),
+    cumulativeRuns: telemetryCounters.rescueRuns,
+    cumulativeTopKHits: telemetryCounters.rescueTopKHits,
+  });
+
+  return sorted;
 }
 
 export const __testables = {
   queryTokens,
   lexicalScore,
+  computeRescueLayerScore,
+  telemetryCounters,
+  resetTelemetryCounters: () => {
+    telemetryCounters.rescueRuns = 0;
+    telemetryCounters.rescueTopKHits = 0;
+    telemetryCounters.capSuppressedCandidates = 0;
+  },
   parseTriggerPhrases,
   mergeSiblingCandidates,
 };

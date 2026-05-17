@@ -10,6 +10,7 @@ import {
   getAdapter,
   listManifests,
 } from '../lib/embedders/index.js';
+import { parseBoundedEnv } from '../lib/util/env.js';
 
 import type { BackendKind } from '../lib/embedders/index.js';
 import type { MCPResponse } from './types.js';
@@ -32,17 +33,20 @@ interface EmbedderListEntry {
 // -------------------------------------------------------------------
 
 const DEFAULT_READY_TIMEOUT_MS = 750;
+const MIN_READY_TIMEOUT_MS = 50;
+const MAX_READY_TIMEOUT_MS = 10_000;
 
 // -------------------------------------------------------------------
 // 3. HELPERS
 // -------------------------------------------------------------------
 
 function getReadyTimeoutMs(): number {
-  const parsed = Number.parseInt(process.env.EMBEDDER_READY_TIMEOUT_MS ?? '', 10);
-  if (Number.isInteger(parsed) && parsed > 0) {
-    return parsed;
-  }
-  return DEFAULT_READY_TIMEOUT_MS;
+  return parseBoundedEnv(
+    'EMBEDDER_READY_TIMEOUT_MS',
+    DEFAULT_READY_TIMEOUT_MS,
+    MIN_READY_TIMEOUT_MS,
+    MAX_READY_TIMEOUT_MS,
+  );
 }
 
 async function withTimeout(promise: Promise<boolean>, timeoutMs: number): Promise<boolean> {

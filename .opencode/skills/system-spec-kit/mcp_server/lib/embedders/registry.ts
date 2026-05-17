@@ -177,9 +177,6 @@ export function getAdapter(name: string): EmbedderAdapter | undefined {
     case 'ollama':
       return new OllamaAdapter(manifest);
     case 'llama-cpp':
-      if (manifest.name !== 'embeddinggemma-300m') {
-        throw new NotImplementedError(manifest.backend);
-      }
       return new LlamaCppBaselineAdapter(manifest);
     case 'api':
     case 'sentence-transformers':

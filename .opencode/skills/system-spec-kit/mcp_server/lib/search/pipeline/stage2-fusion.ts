@@ -95,6 +95,7 @@ import { isGraphUnifiedEnabled } from '../graph-flags.js';
 import { resolveFusionIntentContract } from '../search-utils.js';
 import { sortDeterministicRows } from './ranking-contract.js';
 import { applyRetrievalRescueLayer, isRetrievalRescueEnabled } from '../rerank/retrieval-rescue.js';
+import { createLogger } from '../../utils/logger.js';
 
 // Feature catalog: 4-stage pipeline architecture
 // Feature catalog: MPAB chunk-to-memory aggregation
@@ -125,6 +126,7 @@ interface ValidationMetadataLike {
 /** Number of top results used as seeds for co-activation spreading. */
 const SPREAD_ACTIVATION_TOP_N = 5;
 const DEFAULT_LEARNED_STAGE2_MODEL_RELATIVE_PATH = path.join('models', 'learned-stage2-combiner.json');
+const logger = createLogger('stage2-fusion');
 
 /** Recency fusion weight — controls how much recency score contributes to the fused score.
  *  Env-tunable via SPECKIT_RECENCY_FUSION_WEIGHT (default 0.07). */
@@ -1370,6 +1372,14 @@ export async function executeStage2(input: Stage2Input): Promise<Stage2Output> {
         db: rescueDb,
         artifactClass: config.artifactRouting?.strategy?.artifactClass as string | undefined
           ?? config.artifactRouting?.detectedClass,
+      });
+      logger.debug('retrieval rescue layer completed', {
+        event: 'stage2_retrieval_rescue_success',
+        resultCount: results.length,
+        hasDb: rescueDb !== null,
+        artifactClass: config.artifactRouting?.strategy?.artifactClass
+          ?? config.artifactRouting?.detectedClass
+          ?? null,
       });
     } catch (err: unknown) {
       const message = err instanceof Error ? err.message : String(err);

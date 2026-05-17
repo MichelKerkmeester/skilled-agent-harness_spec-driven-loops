@@ -40,7 +40,7 @@ function validateDim(dim: number): void {
   }
 }
 
-function vecTableNameForDim(dim: number): string {
+export function vecTableNameForDim(dim: number): string {
   validateDim(dim);
   return `vec_${dim}`;
 }
@@ -109,9 +109,9 @@ export function setActiveEmbedder(db: Database.Database, name: string, dim: numb
         (?, ?)
     `).run(
       ACTIVE_EMBEDDER_NAME_KEY,
-      DEFAULT_ACTIVE_EMBEDDER.name,
+      trimmedName,
       ACTIVE_EMBEDDER_DIM_KEY,
-      String(DEFAULT_ACTIVE_EMBEDDER.dim),
+      String(dim),
     );
 
     db.prepare(`

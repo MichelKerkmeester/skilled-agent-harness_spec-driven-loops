@@ -12,8 +12,11 @@ import {
   ensureVecTableForDim,
   getActiveEmbedder,
   setActiveEmbedder,
+  vecTableNameForDim,
 } from './schema.js';
 import { getAdapter, getManifest } from './registry.js';
+import { parseBoundedEnv } from '../util/env.js';
+import { createLogger } from '../utils/logger.js';
 
 // -------------------------------------------------------------------
 // 1. TYPE DEFINITIONS
@@ -68,6 +71,9 @@ interface MemoryRow {
 // -------------------------------------------------------------------
 
 const DEFAULT_BATCH_SIZE = 50;
+const MIN_BATCH_SIZE = 1;
+const MAX_BATCH_SIZE = 1_000;
+const logger = createLogger('embedder-reindex');
 const JOB_TABLE_SQL = `
   CREATE TABLE IF NOT EXISTS embedder_jobs (
     id TEXT PRIMARY KEY,
@@ -100,19 +106,7 @@ function nowIso(): string {
 }
 
 function getBatchSize(): number {
-  const raw = process.env.EMBEDDER_REINDEX_BATCH_SIZE;
-  const parsed = raw ? Number.parseInt(raw, 10) : NaN;
-  if (Number.isInteger(parsed) && parsed > 0) {
-    return parsed;
-  }
-  return DEFAULT_BATCH_SIZE;
-}
-
-function tableNameForDim(dim: number): string {
-  if (!Number.isInteger(dim) || dim <= 0) {
-    throw new RangeError(`Embedder dimension must be a positive integer, got ${dim}`);
-  }
-  return `vec_${dim}`;
+  return parseBoundedEnv('EMBEDDER_REINDEX_BATCH_SIZE', DEFAULT_BATCH_SIZE, MIN_BATCH_SIZE, MAX_BATCH_SIZE);
 }
 
 function yieldToEventLoop(): Promise<void> {
@@ -262,7 +256,7 @@ async function runJob(db: Database.Database, jobId: string): Promise<void> {
   }
 
   ensureVecTableForDim(db, initialJob.toDim);
-  const tableName = tableNameForDim(initialJob.toDim);
+  const tableName = vecTableNameForDim(initialJob.toDim);
   const batchSize = getBatchSize();
   let processed = initialJob.processed;
 
@@ -302,6 +296,14 @@ async function runJob(db: Database.Database, jobId: string): Promise<void> {
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : String(error);
     setJobStatus(db, jobId, 'failed', processed, message);
+    logger.error('embedder reindex job failed', {
+      event: 'embedder_reindex_failed',
+      jobId,
+      toName: initialJob.toName,
+      processed,
+      total: initialJob.total,
+      error: message,
+    });
   }
 }
 

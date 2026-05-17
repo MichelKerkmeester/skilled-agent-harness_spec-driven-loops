@@ -10,11 +10,14 @@ hf_url for authoritative current values.
 
 from __future__ import annotations
 
+import logging
 from dataclasses import dataclass
 from typing import Literal
 
 
 EmbedderCategory = Literal["text", "code"]
+
+logger = logging.getLogger(__name__)
 
 
 @dataclass(frozen=True)
