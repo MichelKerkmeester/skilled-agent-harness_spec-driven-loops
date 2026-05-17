@@ -69,7 +69,6 @@ const logger = createLogger('retrieval-rescue');
 const telemetryCounters = {
   rescueRuns: 0,
   rescueTopKHits: 0,
-  capSuppressedCandidates: 0,
 };
 
 function envFlagExplicitFalse(name: string): boolean {
@@ -192,13 +191,13 @@ function documentHintScore(tokens: string[], row: PipelineRow, artifactClass?: s
   return score;
 }
 
-function computeRescueLayerScore(baseScore: number, rescueScore: number): { score: number; wouldHaveBeenCapped: boolean } {
+function computeRescueLayerScore(baseScore: number, rescueScore: number): number {
+  // ADR-013: keep RESCUE_SCORE_CAP clamp as defense-in-depth even though the
+  // formula ceiling (0.03 + 0.78 = 0.81) is below the 1.0 cap with rescueScore
+  // bounded to [0,1] at the lexicalScore site. The cap exists in case the
+  // formula or input bounds change in the future.
   const uncapped = Math.min(baseScore, 1) * 0.03 + rescueScore * 0.78;
-  const score = Math.min(RESCUE_SCORE_CAP, uncapped);
-  return {
-    score,
-    wouldHaveBeenCapped: uncapped > RESCUE_SCORE_CAP,
-  };
+  return Math.min(RESCUE_SCORE_CAP, uncapped);
 }
 
 function lexicalScore(query: string, row: PipelineRow, artifactClass?: string | null): { score: number; signals: string[] } {
@@ -377,17 +376,7 @@ export function applyRetrievalRescueLayer(
     const rescue = lexicalScore(query, row, options.artifactClass);
     // ADR-013: rescue candidates should compete after the outer normalization
     // clamp, not be held below original-lane candidates by a local 0.82 cap.
-    const { score, wouldHaveBeenCapped } = computeRescueLayerScore(baseScore, rescue.score);
-    if (wouldHaveBeenCapped) {
-      telemetryCounters.capSuppressedCandidates += 1;
-      logger.info('retrieval rescue cap counter incremented', {
-        event: 'retrieval_rescue_cap_would_apply',
-        counter: telemetryCounters.capSuppressedCandidates,
-        rowId: row.id,
-        baseScore,
-        rescueScore: rescue.score,
-      });
-    }
+    const score = computeRescueLayerScore(baseScore, rescue.score);
     const boost = Math.max(0, score - baseScore);
     return {
       ...syncScore(row, score),
@@ -431,7 +420,6 @@ export const __testables = {
   resetTelemetryCounters: () => {
     telemetryCounters.rescueRuns = 0;
     telemetryCounters.rescueTopKHits = 0;
-    telemetryCounters.capSuppressedCandidates = 0;
   },
   parseTriggerPhrases,
   mergeSiblingCandidates,

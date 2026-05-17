@@ -24,15 +24,15 @@ describe('deep-review retrieval rescue remediation', () => {
     expect(withArtifact.signals).toContain('doc:0.24');
   });
 
-  it('caps synthetic high rescue scores at the normalization ceiling', () => {
+  it('clamps synthetic over-ceiling rescue scores at the defense-in-depth cap', () => {
     __testables.resetTelemetryCounters();
 
+    // Defense-in-depth: cap clamps the formula even when rescueScore exceeds
+    // the [0,1] bound it normally has. With rescueScore = 1.4, uncapped =
+    // 1 * 0.03 + 1.4 * 0.78 = 1.122 → clamped to 1.0 by RESCUE_SCORE_CAP.
     const result = __testables.computeRescueLayerScore(1, 1.4);
 
-    expect(result).toEqual({
-      score: 1,
-      wouldHaveBeenCapped: true,
-    });
+    expect(result).toBe(1);
   });
 
   it('records rescue hit-rate telemetry when rescue changes top-k ordering', () => {
