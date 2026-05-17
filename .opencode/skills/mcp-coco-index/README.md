@@ -77,7 +77,7 @@ This skill runs version 1.0.0 and exposes 2 MCP tools (search and cocoindex_refr
 - Incremental indexing: Only re-embeds changed files on subsequent runs
 - Daemon architecture: Auto-starts, auto-restarts on version or settings change
 - Spec Kit integration: Companion lifecycle tools (`ccc_status`, `ccc_reindex`, `ccc_feedback`) and code-graph/session integration are available through system-spec-kit
-- EmbeddingGemma default: Unified 768d local model shared with Memory MCP, no API key, Metal/MPS accelerated
+- Jina-code default: 768d code-tuned `jinaai/jina-embeddings-v2-base-code` via sentence-transformers; Metal/MPS auto-detected on Apple Silicon, no API key. Note: mk-spec-memory uses `jina-embeddings-v3` (1024d text-tuned) — both jina, but different variants for different content types
 - 28+ languages: Language-aware chunk splitting preserves function and class boundaries
 
 In the broader system-spec-kit stack, CocoIndex is the semantic half of a three-system retrieval model: CocoIndex finds conceptually similar code, Code Graph answers structural questions, and session bootstrap surfaces CocoIndex readiness during recovery. The companion lifecycle helpers exposed through system-spec-kit are `ccc_status`, `ccc_reindex`, and `ccc_feedback`.

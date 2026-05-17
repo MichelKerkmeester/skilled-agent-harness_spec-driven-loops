@@ -292,7 +292,7 @@ When you search, the system checks five sources at once -- like a librarian who 
 
 | Channel          | How It Works                                        | Good For                                       |
 | ---------------- | --------------------------------------------------- | ---------------------------------------------- |
-| **Vector**       | Compares meaning via embeddings (EmbeddingGemma 768d default) | Finding related content even when words differ |
+| **Vector**       | Compares meaning via embeddings (jina-embeddings-v3 1024d default per ADR-012) | Finding related content even when words differ |
 | **FTS5**         | Full-text search on exact words and phrases         | Specific terms and error messages              |
 | **BM25**         | Keyword relevance scoring                           | Ranking when you know roughly what you want    |
 | **Causal Graph** | Follows cause-and-effect links between memories     | "Why did we choose this?" questions            |
