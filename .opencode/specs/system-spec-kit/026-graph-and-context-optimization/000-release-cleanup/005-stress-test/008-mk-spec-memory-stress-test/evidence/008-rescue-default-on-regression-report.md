@@ -12,7 +12,7 @@
 
 ## Baselines Compared
 
-- Prior 20-row smoke sample: 20/20 preserved under opt-in rescue layer (`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-pluggable-embedder-architecture/004-mxbai-swap-and-008-closure/evidence/008-pass-sample-rerun.jsonl`)
+- Prior 20-row smoke sample: 20/20 preserved under opt-in rescue layer (`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-mxbai-swap-and-008-closure/evidence/008-pass-sample-rerun.jsonl`)
 - Original 008 closure baseline: 57 PASS / 51 FAIL closed, with cat-24/409 closed by 016/004 ADR-010
 - Current 50-row default-on sample: 50/50 PASS
 

@@ -50,14 +50,20 @@ Use different strategy lenses for each seat. The temperature values describe the
 
 ## 3. AI VANTAGE TARGETS
 
-Prefer distinct executor or AI-system vantages where available:
+> **Primary mode: in-CLI.** The default council run uses the CURRENT active runtime's own model bench as seats — no external dispatch needed. The "Vantage Target" below names *which CLI's models supply the round's seats*, whether that CLI is the active runtime (in-CLI mode) or an externally-dispatched one (via the `cli-*` skill family).
+>
+> **One-CLI-per-round invariant.** A single round MUST run all its seats through ONE CLI's models. Seat diversity inside a round comes from different models/reasoning lenses on that CLI (and from different strategy lenses). Multiple CLIs in the same deliberation are staged as MULTIPLE rounds, each with its own state event. See `SKILL.md §0` Operational Modes and `§4` ALWAYS rule 6 / NEVER rule 5.
 
-| Vantage Target | Role in the Council | Typical Pairing |
-| --- | --- | --- |
-| `cli-codex` | Implementation realism, code-change sequencing, refactor constraints | Analytical or Pragmatic |
-| `cli-gemini` | Breadth, external ecosystem awareness, alternative framing | Creative or Research |
-| `cli-claude-code` | Deep decomposition, correctness scrutiny, edge-case reasoning | Analytical or Critical |
-| native `@deep-research` | Evidence-first investigation and citation discipline | Research or Critical |
+Vantage = the CLI whose model bench supplies the round's seats. Each row below is a complete round option:
+
+| Vantage Target | Mode | Same-CLI Seat Diversity Options | Role in the Council | Typical Strategy Pairing |
+| --- | --- | --- | --- | --- |
+| `cli-claude-code` | in-CLI when active runtime is Claude Code; otherwise external | model: Opus / Sonnet / Haiku; reasoning: high / xhigh | Deep decomposition, correctness scrutiny, edge-case reasoning | Analytical or Critical |
+| `cli-codex` | in-CLI when active runtime is Codex; otherwise external | model: gpt-5.5 / gpt-5.5-pro / gpt-5.5-fast; reasoning: medium / high / xhigh | Implementation realism, code-change sequencing, refactor constraints | Analytical or Pragmatic |
+| `cli-opencode` | in-CLI when active runtime is OpenCode; otherwise external | model via `opencode-go/*` gateway (`deepseek-v4-pro`, `kimi-k2.6`, `glm-5.1`, etc.) or direct provider (`deepseek/deepseek-v4-pro`, `openai/gpt-5.5-pro`); `--variant low/medium/high` | Full plugin/skill/MCP runtime, cross-model gateway, broad model bench within one CLI | Holistic, Research, or Creative |
+| native `@deep-research` | always in-CLI (active runtime's research agent) | n/a (single-seat round) | Evidence-first investigation and citation discipline | Research or Critical |
+
+The default council run is an in-CLI round on the active runtime. External-CLI rounds are dispatched only when the active runtime cannot supply the required vantage or when explicit cross-AI validation is requested by the caller.
 
 Unavailable vantages may be simulated only when clearly labeled as simulated. Do not imply an external AI participated when it did not.
 
@@ -89,14 +95,14 @@ when Claude Code did not run.
 
 ### Pairing Guidance
 
-Pair lenses and vantages to create complementary coverage:
+Pair lenses and vantages to create complementary coverage. **All pairings below are SINGLE-ROUND patterns** — each entry stays within one CLI; multi-CLI rounds are not pairings, they are sequential rounds.
 
-- Analytical + `cli-codex`: implementation sequence and codebase fit.
-- Pragmatic + `cli-codex`: minimal working path and churn control.
-- Creative + `cli-gemini`: alternative framing and breadth.
-- Research + `cli-gemini`: ecosystem context and external unknowns.
-- Analytical + `cli-claude-code`: deep decomposition.
-- Critical + `cli-claude-code`: edge-case and correctness scrutiny.
+- Analytical + `cli-codex` (gpt-5.5 high): implementation sequence and codebase fit.
+- Pragmatic + `cli-codex` (gpt-5.5 medium): minimal working path and churn control.
+- Holistic + `cli-opencode` (deepseek-v4-pro high): system-wide impact, broad architectural fit via gateway model bench.
+- Research + `cli-opencode` (multiple gateway models in one round): ecosystem context and external unknowns covered by multiple models within ONE CLI invocation.
+- Analytical + `cli-claude-code` (Opus high): deep decomposition.
+- Critical + `cli-claude-code` (Opus xhigh): edge-case and correctness scrutiny.
 - Research + native `@deep-research`: source discipline and evidence reduction.
 - Critical + native `@deep-research`: evidence-backed challenge to assumptions.
 
@@ -122,9 +128,9 @@ Good:
 Analytical + Critical + Pragmatic
 ```
 
-### 2. Vantage Diversity
+### 2. Vantage Diversity (within a single round)
 
-Selected seats seek different AI-system or native-agent perspectives when available.
+Within ONE round, vantage diversity is achieved via DIFFERENT MODELS or REASONING LEVELS on the SAME CLI (e.g. on `cli-opencode`: `opencode-go/deepseek-v4-pro --variant high` + `opencode-go/kimi-k2.6`; on `cli-claude-code`: Opus + Haiku). Across-CLI diversity is staged as ADDITIONAL ROUNDS — each round runs on one CLI only.
 
 If real external vantages are unavailable, preserve lens diversity and label simulated vantages.
 
@@ -213,45 +219,48 @@ Instead:
 
 ## 6. TASK-TYPE AUTO-SELECTION
 
-Use this flow when the user does not specify seats.
+Use this flow when the user does not specify seats. **Each row below = ONE round on ONE CLI.** Multi-CLI deliberations stage additional CLIs as sequential dedicated rounds, never folded into the same round.
 
 ```text
 Task Type Received
     │
     ├─► Bug Fix
-    │   └─► Analytical + Critical + Pragmatic (N=3)
-    │       Vantages sought: cli-claude-code, cli-codex, cli-gemini
-    │       Rationale: Root cause needs systematic analysis,
-    │       edge cases need scrutiny, fix should be minimal
+    │   └─► Round 1 (recommended): cli-claude-code
+    │       Seats: Analytical (Opus high) + Critical (Opus xhigh) + Pragmatic (Sonnet)
+    │       Rationale: deep decomposition + edge-case scrutiny + minimal-fix lens.
+    │       Optional Round 2: cli-codex (gpt-5.5 high) for implementation-realism cross-check.
     │
     ├─► New Feature
-    │   └─► Creative + Analytical + Holistic (N=3)
-    │       Vantages sought: cli-gemini, cli-codex, cli-claude-code
-    │       Rationale: Novel approaches explored, then
-    │       structured, then checked for system fit
+    │   └─► Round 1: cli-opencode (via opencode-go gateway)
+    │       Seats: Creative (kimi-k2.6) + Analytical (deepseek-v4-pro high) + Holistic (glm-5.1)
+    │       Rationale: broad model bench within one CLI; novel → structured → system-fit.
+    │       Optional Round 2: cli-claude-code for correctness-scrutiny pass.
     │
     ├─► Refactoring
-    │   └─► Holistic + Pragmatic + Critical (N=3)
-    │       Vantages sought: cli-opencode, cli-codex, cli-claude-code
-    │       Rationale: System impact first, simplicity second,
-    │       regression risk third
+    │   └─► Round 1: cli-codex
+    │       Seats: Holistic (gpt-5.5-pro) + Pragmatic (gpt-5.5 medium) + Critical (gpt-5.5 xhigh)
+    │       Rationale: implementation-realism CLI excels at refactor sequencing.
+    │       Optional Round 2: cli-claude-code for regression-risk deep dive.
     │
     ├─► Architecture
-    │   └─► Analytical + Critical + Holistic (N=3)
-    │       Vantages sought: cli-claude-code, native @deep-research, cli-gemini
-    │       Rationale: Balance structure, risk, and system fit
+    │   └─► Round 1: cli-claude-code
+    │       Seats: Analytical (Opus high) + Critical (Opus xhigh) + Holistic (Sonnet)
+    │       Rationale: deep-decomposition CLI for trade-off mapping.
+    │       Optional Round 2: native @deep-research (single-seat) for evidence backstop.
     │
     ├─► Research / Unknowns
-    │   └─► Research + Critical + Creative (N=3)
-    │       Vantages sought: native @deep-research, cli-gemini, cli-claude-code
-    │       Rationale: Establish evidence, test assumptions,
-    │       explore viable alternatives
+    │   └─► Round 1: native @deep-research (single seat)
+    │       Rationale: evidence-first investigation with citation discipline.
+    │       Optional Round 2: cli-opencode (multiple gateway models) for alternative framing.
+    │       Optional Round 3: cli-claude-code (Critical lens) to test assumptions.
     │
     └─► Custom (user specifies)
-        └─► User-selected strategies (N=user-defined, max 3)
+        └─► User-selected strategies (N=user-defined, max 3 PER ROUND).
+            If user names seats from multiple CLIs, the council MUST stage them as
+            separate dedicated rounds (one CLI per round) rather than mixing.
 ```
 
-Respect user-selected custom strategies up to the maximum of three. If the user requests more than three, stage extra viewpoints as follow-up validation instead of widening the first round.
+Respect user-selected custom strategies up to the maximum of three PER ROUND. If the user requests more than three seats or multiple CLIs, stage them as additional dedicated rounds — never widen a single round beyond its CLI boundary.
 
 ---
 

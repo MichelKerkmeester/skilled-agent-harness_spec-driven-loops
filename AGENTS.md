@@ -37,8 +37,6 @@
 - **Clarify** if confidence < 80% (see §4 Confidence Framework).
 - **Use explicit uncertainty:** Prefix claims with "I'M UNCERTAIN ABOUT THIS:".
 - **CLI dispatch rule** — Before composing any prompt for `cli-X` (devin / codex / claude-code / gemini / opencode), you MUST `Read` `.opencode/skills/cli-X/SKILL.md` first. Advisor confidence ≥ 0.8 does NOT waive this. Skills carry model-specific prompt-quality contracts (e.g. SWE-1.6's RCAF + medium-density pre-planning rule) that are not in the binary's `--help` and easy to miss. Any `<binary> --model <X>` invocation for a CLI with a `cli-X` skill requires the skill file in context.
-- **Native Opus preference for implementation work** — Default to native Anthropic Agents (Agent tool with `subagent_type=claude/code/markdown/etc`) for implementation, refactor, remediation, and orchestration work. Use `cli-codex` only when explicitly named by the operator, when running deeply-parallel cheap work, or when Opus is unavailable. cli-devin SWE-1.6 stays the executor for deep-review iteration workers per the post-implementation-deep-review constitutional rule.
-- **Post-implementation deep-review rule** — Run `/spec_kit:deep-review:auto` (executor cli-devin, model swe-1.6) after every substantive implementation phase OR whenever uncertain about correctness. Default 10 iter for sub-phase reviews, 5-7 for single-commit remediation reviews, 20 for umbrella-stack reviews. Loop-manager orchestrator is a native Opus Agent, NOT cli-codex. See `.opencode/skills/system-spec-kit/constitutional/post-implementation-deep-review.md` for the full rubric (what counts as "substantive", iter tiering, where review packets live, verdict→next-action table).
 
 ---
 

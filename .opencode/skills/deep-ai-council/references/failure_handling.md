@@ -182,7 +182,7 @@ Honest labels:
 
 ```text
 simulated cli-codex lens
-simulated cli-gemini lens
+simulated cli-opencode lens
 native inline Research lens
 ```
 
@@ -190,7 +190,7 @@ Unsafe claims:
 
 ```text
 cli-codex recommended...
-cli-gemini confirmed...
+cli-opencode confirmed...
 Claude Code found...
 ```
 

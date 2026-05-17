@@ -18,7 +18,9 @@
       "Read(<repo-root>/**)",
       "mcp__sequential_thinking__*",
       "Write(<packet-root>/research/iterations/iteration-*.md)",
-      "Write(<packet-root>/research/deep-research-state.jsonl)"
+      "Write(<packet-root>/research/deep-research-state.jsonl)",
+      "Write(<packet-root>/review/iterations/iteration-*.md)",
+      "Write(<packet-root>/review/deep-review-state.jsonl)"
     ]
   }
 }

@@ -264,10 +264,12 @@ Dispatch mode: sequential inline; external vantages simulated.
 Dishonest label:
 
 ```text
-cli-gemini agreed with cli-codex.
+cli-opencode agreed with cli-codex.
 ```
 
-unless those tools actually ran.
+— ALSO violates the one-CLI-per-round invariant (these would need to be TWO dedicated rounds, not one). See `SKILL.md §4` ALWAYS rule 6.
+
+Unless those tools actually ran (and were dispatched as separate rounds).
 
 ---
 

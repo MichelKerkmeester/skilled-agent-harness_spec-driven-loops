@@ -46,7 +46,7 @@ Use this for future command-owned council workflows, completion flows, or planni
 
 ### CLI-Skill Playbook
 
-`cli-claude-code`, `cli-codex`, `cli-opencode`, and `cli-gemini` playbooks may capture a council report from an external runtime and then invoke the same helper locally.
+`cli-claude-code`, `cli-codex`, and `cli-opencode` playbooks may capture a council report from an external runtime and then invoke the same helper locally. Each playbook stays within ONE CLI per round (`SKILL.md §4` ALWAYS rule 6); multi-CLI deliberations stage additional dedicated rounds.
 
 Use this when an external AI vantage contributes the report but packet artifacts still need to land in the local spec folder.
 

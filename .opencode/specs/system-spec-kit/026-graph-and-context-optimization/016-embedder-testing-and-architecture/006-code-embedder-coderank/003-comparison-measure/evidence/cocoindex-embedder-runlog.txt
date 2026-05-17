@@ -1,0 +1,26 @@
+[2026-05-17T22:09:48+0200] candidate start: sbert/jinaai/jina-embeddings-v2-base-code
+[2026-05-17T22:09:51+0200] reset: sbert/jinaai/jina-embeddings-v2-base-code
+[2026-05-17T22:09:51+0200] index start: sbert/jinaai/jina-embeddings-v2-base-code
+[2026-05-17T22:34:21+0200] index complete: sbert/jinaai/jina-embeddings-v2-base-code; tail='  Chunks: 127346\n  Files:  8427\n  Languages:\n    typescript: 96044 chunks\n    javascript: 15839 chunks\n    bash: 5308 chunks\n    python: 5150 chunks\n    markdown: 4953 chunks\n    html: 34 chunks\n    css: 11 chunks\n    json: 6 chunks\n    text: 1 chunks'
+[2026-05-17T22:34:22+0200] probe sbert/jinaai/jina-embeddings-v2-base-code #01: hit=False ms=590 top1=.opencode/skills/system-spec-kit/references/embedder-pluggability.md
+[2026-05-17T22:34:22+0200] probe sbert/jinaai/jina-embeddings-v2-base-code #02: hit=False ms=480 top1=.gemini/skills/system-spec-kit/mcp_server/handlers/embedder-set.ts
+[2026-05-17T22:34:22+0200] probe sbert/jinaai/jina-embeddings-v2-base-code #03: hit=False ms=398 top1=.opencode/skills/system-spec-kit/references/embedder-pluggability.md
+[2026-05-17T22:34:23+0200] probe sbert/jinaai/jina-embeddings-v2-base-code #04: hit=False ms=422 top1=.opencode/skills/system-spec-kit/references/structure/phase_definitions.md
+[2026-05-17T22:34:23+0200] probe sbert/jinaai/jina-embeddings-v2-base-code #05: hit=False ms=380 top1=.codex/skills/system-spec-kit/mcp_server/tests/graph-readiness-mapper.vitest.ts
+[2026-05-17T22:34:24+0200] probe sbert/jinaai/jina-embeddings-v2-base-code #06: hit=False ms=428 top1=.gemini/skills/system-skill-advisor/mcp_server/lib/embedders/adapters/ollama.ts
+[2026-05-17T22:34:24+0200] probe sbert/jinaai/jina-embeddings-v2-base-code #07: hit=False ms=409 top1=.opencode/skills/sk-code/references/smart_routing.md
+[2026-05-17T22:34:24+0200] probe sbert/jinaai/jina-embeddings-v2-base-code #08: hit=False ms=420 top1=.opencode/skills/system-code-graph/references/code-graph-readiness-check.md
+[2026-05-17T22:34:25+0200] probe sbert/jinaai/jina-embeddings-v2-base-code #09: hit=False ms=378 top1=.opencode/skills/system-spec-kit/references/embedder-pluggability.md
+[2026-05-17T22:34:25+0200] probe sbert/jinaai/jina-embeddings-v2-base-code #10: hit=False ms=379 top1=.opencode/skills/system-spec-kit/references/workflows/quick_reference.md
+[2026-05-17T22:34:26+0200] probe sbert/jinaai/jina-embeddings-v2-base-code #11: hit=False ms=379 top1=.opencode/skills/system-spec-kit/references/embedder-pluggability.md
+[2026-05-17T22:34:26+0200] probe sbert/jinaai/jina-embeddings-v2-base-code #12: hit=False ms=405 top1=.opencode/skills/system-spec-kit/references/structure/sub_folder_versioning.md
+[2026-05-17T22:34:26+0200] probe sbert/jinaai/jina-embeddings-v2-base-code #13: hit=False ms=407 top1=.opencode/skills/mcp-code-mode/references/architecture.md
+[2026-05-17T22:34:27+0200] probe sbert/jinaai/jina-embeddings-v2-base-code #14: hit=False ms=411 top1=.gemini/skills/system-code-graph/mcp_server/lib/structural-indexer.ts
+[2026-05-17T22:34:27+0200] probe sbert/jinaai/jina-embeddings-v2-base-code #15: hit=False ms=376 top1=.opencode/skills/mcp-coco-index/references/tool_reference.md
+[2026-05-17T22:34:28+0200] probe sbert/jinaai/jina-embeddings-v2-base-code #16: hit=False ms=403 top1=.gemini/skills/system-code-graph/mcp_server/tests/readiness-marker-atomic-write.vitest.ts
+[2026-05-17T22:34:28+0200] probe sbert/jinaai/jina-embeddings-v2-base-code #17: hit=False ms=396 top1=.opencode/skills/sk-doc/assets/skill/skill_smart_router.md
+[2026-05-17T22:34:28+0200] probe sbert/jinaai/jina-embeddings-v2-base-code #18: hit=False ms=374 top1=.gemini/skills/system-code-graph/mcp_server/tests/ensure-ready.vitest.ts
+[2026-05-17T22:34:28+0200] candidate done: sbert/jinaai/jina-embeddings-v2-base-code; wall_s=1480
+[2026-05-17T22:34:28+0200] candidate start: sbert/google/embeddinggemma-300m
+[2026-05-17T22:34:32+0200] reset: sbert/google/embeddinggemma-300m
+[2026-05-17T22:34:32+0200] index start: sbert/google/embeddinggemma-300m

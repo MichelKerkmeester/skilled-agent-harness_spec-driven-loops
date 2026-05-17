@@ -28,10 +28,13 @@ specs/<track>/<NNN-name>/ai-council/
 |-- ai-council-strategy.md
 |-- ai-council-state.jsonl
 |-- seats/
-|   |-- round-001/
-|   |   |-- seat-001-cli-codex.md
-|   |   |-- seat-002-cli-gemini.md
-|   |   |-- seat-003-cli-claude-code.md
+|   |-- round-001/                        # ONE CLI per round (e.g. all cli-codex seats)
+|   |   |-- seat-001-cli-codex-gpt-5-5-high.md
+|   |   |-- seat-002-cli-codex-gpt-5-5-pro.md
+|   |   |-- seat-003-cli-codex-gpt-5-5-xhigh.md
+|   |-- round-002/                        # additional CLI = additional dedicated round
+|   |   |-- seat-001-cli-claude-code-opus.md
+|   |   |-- seat-002-cli-claude-code-sonnet.md
 |-- deliberations/
 |   |-- round-001.md
 |-- critiques/

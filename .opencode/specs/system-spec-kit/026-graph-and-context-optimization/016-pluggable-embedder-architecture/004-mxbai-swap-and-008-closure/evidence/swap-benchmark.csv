@@ -1,4 +1,0 @@
-model,dim,idle_ram_mb,vec_table_size_mb,cat24_409_classification,cat24_409_recall_top3,008_pass_preserved,paraphrase_cosine_weak_pair,mean_latency_per_search_ms
-embeddinggemma-300m,768,UNKNOWN,UNKNOWN,FAIL,1/10,baseline,0.2829,UNKNOWN
-mxbai-embed-large-v1,1024,UNKNOWN,UNKNOWN,SKIP_NOT_ACTIVATED,NOT_RUN,0/20 executed,UNKNOWN,UNKNOWN
-bge-m3,1024,UNKNOWN,UNKNOWN,FAIL,2/10,skipped because 409 failed,UNKNOWN,UNKNOWN

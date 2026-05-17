@@ -206,7 +206,6 @@ Evidence to capture:
 | OpenCode | `.opencode/agents/deep-ai-council.md` |
 | Claude | `.claude/agents/deep-ai-council.md` |
 | Codex | `.codex/agents/deep-ai-council.toml` |
-| Gemini | `.gemini/agents/deep-ai-council.md` |
 
 ---
 
@@ -267,6 +266,5 @@ Agent definitions:
 | OpenCode | `.opencode/agents/deep-ai-council.md` |
 | Claude | `.claude/agents/deep-ai-council.md` |
 | Codex | `.codex/agents/deep-ai-council.toml` |
-| Gemini | `.gemini/agents/deep-ai-council.md` |
 
 Related skills: `deep-research` for evidence-first research vantages and `system-spec-kit` for packet validation, resume, and continuity.
