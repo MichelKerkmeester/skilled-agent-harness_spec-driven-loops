@@ -111,3 +111,6 @@ After each wave or major decision, commit a state update to this file under `## 
 ## Progress log (append-only)
 
 - 22:50 — Wave 1 in flight (C/D/E). State doc written. Going autonomous.
+- 23:40 (post-compaction) — Main agent took over stalled D + E loops. D iters 3-7 extracted from devin stdouts. D verdict = PASS-advisories (1 P0-D = dead telemetry counter, 4 P1, 3 P2; original 3 P0 fully closed). D review-report.md authored. Committed 8e13210ac.
+- 23:45 — P0-D fix applied + committed 170aa2c98. computeRescueLayerScore simplified to return number, dead capSuppressedCandidates removed, vitest updated. 7/7 remediation tests pass.
+- 23:46 — E iter 1-8 done (correctness/security/regression-risk/testing-coverage/type-safety/error-handling/observability/documentation-alignment): 0 P0, 1 P1 (regression-risk adapter pointer split), 11 P2. iter 9 (architecture-fit) + iter 10 (adversarial-residual) running. Wave 3 010/002 dispatched in parallel via native @code Opus agent (a6ffb5e3abc102b8b).
