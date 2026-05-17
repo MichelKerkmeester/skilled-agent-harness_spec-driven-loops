@@ -1073,13 +1073,45 @@ export function saveDescriptionCache(cache: DescriptionCache, cachePath: string)
  * @returns Array of absolute directory paths that exist.
  */
 export function getSpecsBasePaths(workspacePath?: string): string[] {
-  const root = workspacePath ?? process.cwd();
+  const root = resolveWorkspaceRoot(workspacePath ?? process.cwd());
   const candidates = [
     path.join(root, 'specs'),
     path.join(root, '.opencode', 'specs'),
   ];
 
   return normalizeBasePaths(candidates);
+}
+
+function resolveWorkspaceRoot(startPath: string): string {
+  let current = path.resolve(startPath);
+
+  try {
+    const stat = fs.existsSync(current) ? fs.statSync(current) : null;
+    if (stat?.isFile()) {
+      current = path.dirname(current);
+    }
+  } catch (_error: unknown) {
+    // Fall back to string-based path normalization below.
+  }
+
+  const segments = current.split(path.sep);
+  const opencodeIndex = segments.lastIndexOf('.opencode');
+  if (opencodeIndex > 0) {
+    return segments.slice(0, opencodeIndex).join(path.sep) || path.sep;
+  }
+
+  for (let i = 0; i < 12; i += 1) {
+    if (fs.existsSync(path.join(current, '.opencode'))) {
+      return current;
+    }
+    const parent = path.dirname(current);
+    if (parent === current) {
+      break;
+    }
+    current = parent;
+  }
+
+  return path.resolve(startPath);
 }
 
 /**

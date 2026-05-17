@@ -167,6 +167,16 @@ describe('PI-B3: getSpecsBasePaths', () => {
     expect(result).toContain(openCodeSpecsDir);
   });
 
+  it('T046-05c: resolves repo specs when called from inside .opencode tooling', () => {
+    const openCodeSpecsDir = path.join(tmpDir, '.opencode', 'specs');
+    const toolDir = path.join(tmpDir, '.opencode', 'skills', 'system-spec-kit', 'mcp_server');
+    fs.mkdirSync(openCodeSpecsDir, { recursive: true });
+    fs.mkdirSync(toolDir, { recursive: true });
+
+    const result = getSpecsBasePaths(toolDir);
+    expect(result).toEqual([openCodeSpecsDir]);
+  });
+
   it('T046-05a: deduplicates specs symlink that points to .opencode/specs', () => {
     const openCodeSpecsDir = path.join(tmpDir, '.opencode', 'specs');
     const specsLinkPath = path.join(tmpDir, 'specs');
