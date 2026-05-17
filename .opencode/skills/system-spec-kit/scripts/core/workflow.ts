@@ -1318,6 +1318,86 @@ async function runWorkflow(options: WorkflowOptions = {}): Promise<WorkflowResul
   // No longer exists. Quality + sufficiency + template-contract checks for canonical-doc
   // Saves are owned by the content-router (handlers/memory-save.ts) and Step 11.5 indexer.
 
+  const sessionObservations = Array.isArray(sessionData.OBSERVATIONS) ? sessionData.OBSERVATIONS : [];
+  const sessionFiles = Array.isArray(sessionData.FILES) ? sessionData.FILES : [];
+  const sessionOutcomes = Array.isArray(sessionData.OUTCOMES) ? sessionData.OUTCOMES : [];
+  const sessionDecisions = Array.isArray(decisions.DECISIONS) ? decisions.DECISIONS : [];
+  const canonicalQualityContent = [
+    `# ${sessionData.TITLE}`,
+    sessionData.QUICK_SUMMARY,
+    sessionData.SUMMARY,
+    ...sessionObservations.map((observation) => [
+      observation.TITLE,
+      observation.NARRATIVE,
+      observation.FACTS_LIST,
+    ].filter(Boolean).join('\n')),
+    ...sessionFiles.map((file) => `${file.FILE_PATH}: ${file.DESCRIPTION}`),
+    ...sessionOutcomes.map((outcome) => outcome.OUTCOME),
+    sessionData.NEXT_ACTION ? `Next: ${sessionData.NEXT_ACTION}` : '',
+    sessionData.BLOCKERS ? `Blockers: ${sessionData.BLOCKERS}` : '',
+  ].filter((entry) => typeof entry === 'string' && entry.trim().length > 0).join('\n\n');
+  const canonicalTriggerPhrases = filterTriggerPhrases([
+    ...(Array.isArray(collectedData._manualTriggerPhrases) ? collectedData._manualTriggerPhrases : []),
+    sessionData.TITLE,
+    sessionData.TOPIC,
+    specFolderName,
+  ].filter((phrase): phrase is string => typeof phrase === 'string' && phrase.trim().length > 0));
+  const sufficiencyResult = evaluateMemorySufficiency({
+    title: sessionData.TITLE,
+    content: canonicalQualityContent,
+    triggerPhrases: canonicalTriggerPhrases,
+    sourceClassification: sessionData.CONTEXT_TYPE,
+    files: sessionFiles.map((file) => ({
+      path: file.FILE_PATH,
+      description: file.DESCRIPTION,
+      synthetic: file._synthetic,
+      provenance: file._provenance,
+      specRelevant: true,
+    })),
+    observations: sessionObservations.map((observation) => ({
+      title: observation.TITLE,
+      narrative: observation.NARRATIVE,
+      facts: observation.FACTS_LIST ? [observation.FACTS_LIST] : [],
+      specRelevant: true,
+    })),
+    decisions: sessionDecisions.map((decision) => [
+      decision.TITLE,
+      decision.CHOSEN,
+      decision.RATIONALE,
+    ].filter(Boolean).join(' - ')),
+    nextActions: sessionData.NEXT_ACTION ? [sessionData.NEXT_ACTION] : [],
+    blockers: sessionData.BLOCKERS ? [sessionData.BLOCKERS] : [],
+    outcomes: sessionOutcomes.map((outcome) => outcome.OUTCOME),
+    recentContext: Array.isArray(collectedData.recentContext) ? collectedData.recentContext : [],
+    anchors: ['summary', 'observations', 'files', 'outcomes'],
+  });
+  const qualityValidation = validateMemoryQualityContent(canonicalQualityContent);
+  const validatorSignals: ValidationSignal[] = qualityValidation.ruleResults.map((signal) => ({
+    ruleId: signal.ruleId,
+    passed: signal.passed,
+  }));
+  const qualityResult = scoreMemoryQualityV2({
+    content: canonicalQualityContent,
+    validatorSignals,
+    hadContamination,
+    contaminationSeverity: contaminationMaxSeverity,
+    messageCount: sessionData.MESSAGE_COUNT,
+    toolCount: sessionData.TOOL_COUNT,
+    decisionCount: effectiveDecisionCount,
+    sufficiencyScore: sufficiencyResult.score,
+    insufficientContext: !sufficiencyResult.pass,
+  });
+  if (!sufficiencyResult.pass) {
+    throw new Error(formatSufficiencyAbort(sufficiencyResult));
+  }
+  if (qualityResult.score01 < CONFIG.QUALITY_ABORT_THRESHOLD) {
+    throw new Error(
+      `QUALITY_GATE_ABORT: Memory quality score ${qualityResult.score100}/100 `
+      + `(${qualityResult.score01.toFixed(2)}) is below minimum threshold `
+      + `(${CONFIG.QUALITY_ABORT_THRESHOLD.toFixed(2)})`
+    );
+  }
+
   // Step 9: Write files with atomic writes and rollback on failure
   log('Step 9: Writing files...');
   if (duplicateExistingFilename) {

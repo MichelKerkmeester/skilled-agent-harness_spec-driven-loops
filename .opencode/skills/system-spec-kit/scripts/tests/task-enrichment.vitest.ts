@@ -1205,10 +1205,10 @@ describe('workflow seam guardrail', () => {
     }
   });
 
-  // TODO(003-006): re-enable after 003-memory-quality-issues/006-memory-duplication-reduction lands the compact wrapper template fixtures
-  it.skip('rejects thin explicit JSON saves with INSUFFICIENT_CONTEXT_ABORT', async () => {
+  it('rejects thin explicit JSON saves with INSUFFICIENT_CONTEXT_ABORT', async () => {
     const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'speckit-workflow-'));
-    const specFolderPath = path.join(tempRoot, '009-perfect-session-capturing');
+    const originalCwd = process.cwd();
+    const specFolderPath = path.join(tempRoot, '.opencode', 'specs', 'system-spec-kit', '009-perfect-session-capturing');
     const contextDir = path.join(tempRoot, 'memory');
     fs.mkdirSync(specFolderPath, { recursive: true });
     fs.mkdirSync(contextDir, { recursive: true });
@@ -1242,6 +1242,7 @@ describe('workflow seam guardrail', () => {
     const { runWorkflow } = await import('../core/workflow');
 
     try {
+      process.chdir(tempRoot);
       await expect(runWorkflow({
         dataFile: '/tmp/context.json',
         collectedData: {
@@ -1254,14 +1255,15 @@ describe('workflow seam guardrail', () => {
 
       expect(workflowHarness.writtenFiles).toHaveLength(0);
     } finally {
+      process.chdir(originalCwd);
       fs.rmSync(tempRoot, { recursive: true, force: true });
     }
   });
 
-  // TODO(003-006): re-enable after 003-memory-quality-issues/006-memory-duplication-reduction lands the compact wrapper template fixtures
-  it.skip('uses canonical score01 when applying the workflow quality abort threshold', async () => {
+  it('uses canonical score01 when applying the workflow quality abort threshold', async () => {
     const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'speckit-workflow-'));
-    const specFolderPath = path.join(tempRoot, '009-perfect-session-capturing');
+    const originalCwd = process.cwd();
+    const specFolderPath = path.join(tempRoot, '.opencode', 'specs', 'system-spec-kit', '009-perfect-session-capturing');
     const contextDir = path.join(tempRoot, 'memory');
     fs.mkdirSync(specFolderPath, { recursive: true });
     fs.mkdirSync(contextDir, { recursive: true });
@@ -1296,6 +1298,7 @@ describe('workflow seam guardrail', () => {
     CONFIG.QUALITY_ABORT_THRESHOLD = 0.5;
 
     try {
+      process.chdir(tempRoot);
       await expect(runWorkflow({
         dataFile: '/tmp/context.json',
         collectedData: {
@@ -1315,6 +1318,7 @@ describe('workflow seam guardrail', () => {
 
       expect(workflowHarness.writtenFiles).toHaveLength(0);
     } finally {
+      process.chdir(originalCwd);
       CONFIG.QUALITY_ABORT_THRESHOLD = previousThreshold;
       fs.rmSync(tempRoot, { recursive: true, force: true });
     }
