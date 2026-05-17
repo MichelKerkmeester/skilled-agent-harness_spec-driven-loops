@@ -7,7 +7,7 @@ import os
 from dataclasses import dataclass
 from pathlib import Path
 
-_DEFAULT_MODEL = "sbert/google/embeddinggemma-300m"
+_DEFAULT_MODEL = "sbert/jinaai/jina-embeddings-v2-base-code"
 
 
 def _find_root_with_marker(start: Path, markers: list[str]) -> Path | None:
@@ -41,6 +41,31 @@ def _discover_codebase_root() -> Path:
     markers = [".git", "pyproject.toml", "package.json", "Cargo.toml", "go.mod"]
     root = _find_root_with_marker(cwd, markers)
     return root if root is not None else cwd
+
+
+def _resolve_device(env_override: str | None) -> str | None:
+    """Resolve compute device for embedder inference.
+
+    Resolution order:
+    1. env_override (caller-supplied COCOINDEX_CODE_DEVICE) if non-empty — trust as-is
+    2. Probe PyTorch backends in preference CUDA -> MPS -> CPU
+    3. Return None if PyTorch not importable (let downstream framework choose)
+
+    Lazy torch import keeps config import cheap when downstream doesn't need device hints.
+    """
+    if env_override:
+        return env_override
+
+    try:
+        import torch  # noqa: PLC0415 — lazy import; torch is heavy
+    except ImportError:
+        return None
+
+    if torch.cuda.is_available():
+        return "cuda"
+    if torch.backends.mps.is_available():
+        return "mps"
+    return "cpu"
 
 
 def _parse_json_string_list_env(var_name: str) -> list[str]:
@@ -99,8 +124,8 @@ class Config:
         # Index directory is always under the root
         index_dir = root / ".cocoindex_code"
 
-        # Device: auto-detect CUDA or use env override
-        device = os.environ.get("COCOINDEX_CODE_DEVICE")
+        # Device: env override wins; otherwise probe CUDA -> MPS -> CPU
+        device = _resolve_device(os.environ.get("COCOINDEX_CODE_DEVICE"))
 
         # Extra file extensions (format: "inc:php,yaml,toml" — optional lang after colon)
         raw_extra = os.environ.get("COCOINDEX_CODE_EXTRA_EXTENSIONS", "")
