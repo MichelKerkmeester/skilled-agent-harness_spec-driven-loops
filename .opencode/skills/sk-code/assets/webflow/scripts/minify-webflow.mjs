@@ -9,6 +9,12 @@
 //
 // Minifies all JavaScript files from src/2_javascript/ to src/2_javascript/z_minified/
 // Uses terser with --compress --mangle for safe minification.
+//
+// Output naming convention (as of 2026-05-17): every output file ends in .min.js.
+// A source file foo.js produces z_minified/foo.min.js; unsuffixed .js files are
+// never written to z_minified/. This makes the minified set self-identifying
+// and prevents the "is this minified or not?" ambiguity that the old
+// dual-output convention created. See: to_min_path() helper below.
 
 import { execSync } from 'child_process';
 import { readdirSync, statSync, existsSync, readFileSync, mkdirSync, writeFileSync } from 'fs';
@@ -38,6 +44,15 @@ const FORCE_MODE = args.includes('--force');
 function get_file_hash(file_path) {
   const content = readFileSync(file_path, 'utf-8');
   return createHash('md5').update(content).digest('hex');
+}
+
+// Map a source relative path (e.g. "hero/hero_video.js") to the canonical
+// minified output relative path ("hero/hero_video.min.js"). Output paths in
+// z_minified/ only ever use the .min.js suffix.
+function to_min_path(relative_path) {
+  return relative_path.endsWith('.min.js')
+    ? relative_path
+    : relative_path.replace(/\.js$/, '.min.js');
 }
 
 // Recursively find all .js files in directory
@@ -73,7 +88,7 @@ function find_js_files(dir, base_dir = dir) {
 // Minify a single file using terser
 function minify_file(relative_path) {
   const source_path = join(SOURCE_DIR, relative_path);
-  const output_path = join(OUTPUT_DIR, relative_path);
+  const output_path = join(OUTPUT_DIR, to_min_path(relative_path));
   const output_dir = dirname(output_path);
 
   // Ensure output directory exists
@@ -172,7 +187,7 @@ async function main() {
 
   for (const file of files) {
     const source_path = join(SOURCE_DIR, file);
-    const output_path = join(OUTPUT_DIR, file);
+    const output_path = join(OUTPUT_DIR, to_min_path(file));
     const current_hash = get_file_hash(source_path);
     const previous_hash = manifest.get(file);
 

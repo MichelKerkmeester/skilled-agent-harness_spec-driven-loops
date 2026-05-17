@@ -1,0 +1,60 @@
+{"scenario_id":"cat-13/003","mode":"on","result":"PASS","ms":1090,"top3_hits":1,"top5_hits":1,"notes":"retrieval-smoke top5_ids=12895,4032,4564,8818,13032"}
+{"scenario_id":"cat-13/042","mode":"on","result":"PASS","ms":552,"top3_hits":1,"top5_hits":1,"notes":"retrieval-smoke top5_ids=10507,4032,4564,11496,7359"}
+{"scenario_id":"cat-13/133","mode":"on","result":"PASS","ms":767,"top3_hits":1,"top5_hits":1,"notes":"retrieval-smoke top5_ids=9653,8966,11282,8285,8959"}
+{"scenario_id":"cat-13/155","mode":"on","result":"PASS","ms":829,"top3_hits":1,"top5_hits":1,"notes":"retrieval-smoke top5_ids=10567,10962,9638,9872,9800"}
+{"scenario_id":"cat-13/177","mode":"on","result":"PASS","ms":473,"top3_hits":1,"top5_hits":1,"notes":"retrieval-smoke top5_ids=248,10143,10145,249,247"}
+{"scenario_id":"cat-13/203","mode":"on","result":"PASS","ms":471,"top3_hits":1,"top5_hits":1,"notes":"retrieval-smoke top5_ids=8783,7561,4032,4564,7564"}
+{"scenario_id":"cat-14/049","mode":"on","result":"PASS","ms":339,"top3_hits":1,"top5_hits":1,"notes":"retrieval-smoke top5_ids=10099,11431,4032,4564,10098"}
+{"scenario_id":"cat-14/129","mode":"on","result":"PASS","ms":419,"top3_hits":1,"top5_hits":1,"notes":"retrieval-smoke top5_ids=10357,10354,10358,10359,4564"}
+{"scenario_id":"cat-14/203","mode":"on","result":"PASS","ms":395,"top3_hits":1,"top5_hits":1,"notes":"retrieval-smoke top5_ids=5142,8263,9203,4564,4032"}
+{"scenario_id":"cat-14/204","mode":"on","result":"PASS","ms":472,"top3_hits":1,"top5_hits":1,"notes":"retrieval-smoke top5_ids=8263,5142,8264,5141,13349"}
+{"scenario_id":"cat-15/055","mode":"on","result":"PASS","ms":513,"top3_hits":1,"top5_hits":1,"notes":"retrieval-smoke top5_ids=11092,11088,12554,11164,11591"}
+{"scenario_id":"cat-15/057","mode":"on","result":"PASS","ms":504,"top3_hits":1,"top5_hits":1,"notes":"retrieval-smoke top5_ids=8809,9696,9458,7485,9459"}
+{"scenario_id":"cat-15/096","mode":"on","result":"PASS","ms":228,"top3_hits":1,"top5_hits":1,"notes":"retrieval-smoke top5_ids=10907,10148,4032,4564,7298"}
+{"scenario_id":"cat-15/145","mode":"on","result":"PASS","ms":276,"top3_hits":1,"top5_hits":1,"notes":"retrieval-smoke top5_ids=7479,4333,10926,11565,8808"}
+{"scenario_id":"cat-16/237","mode":"on","result":"PASS","ms":268,"top3_hits":1,"top5_hits":1,"notes":"retrieval-smoke top5_ids=9744,9743,8716,128,10657"}
+{"scenario_id":"cat-16/240","mode":"on","result":"PASS","ms":272,"top3_hits":1,"top5_hits":1,"notes":"retrieval-smoke top5_ids=7166,1370,13003,13027,11308"}
+{"scenario_id":"cat-16/281","mode":"on","result":"PASS","ms":251,"top3_hits":1,"top5_hits":1,"notes":"retrieval-smoke top5_ids=13354,8970,8856,8918,8939"}
+{"scenario_id":"cat-16/282","mode":"on","result":"PASS","ms":243,"top3_hits":1,"top5_hits":1,"notes":"retrieval-smoke top5_ids=13354,13026,13027,13003,11290"}
+{"scenario_id":"cat-16/283","mode":"on","result":"PASS","ms":239,"top3_hits":1,"top5_hits":1,"notes":"retrieval-smoke top5_ids=13354,4032,13346,4564,13350"}
+{"scenario_id":"cat-17/273","mode":"on","result":"PASS","ms":222,"top3_hits":1,"top5_hits":1,"notes":"retrieval-smoke top5_ids=11126,11062,4564,4032,11575"}
+{"scenario_id":"cat-17/274","mode":"on","result":"PASS","ms":276,"top3_hits":1,"top5_hits":1,"notes":"retrieval-smoke top5_ids=484,4032,68,486,4564"}
+{"scenario_id":"cat-17/276","mode":"on","result":"PASS","ms":296,"top3_hits":1,"top5_hits":1,"notes":"retrieval-smoke top5_ids=12178,4032,13030,4564,484"}
+{"scenario_id":"cat-24/402","mode":"on","result":"FAIL","ms":1073,"top3_hits":1,"top5_hits":2,"notes":"memory-pair subset expected_top5=2/4 expected_top3=1/4 jaccard=A:0.11 B:0.11"}
+{"scenario_id":"cat-24/408","mode":"on","result":"FAIL","ms":265,"top3_hits":0,"top5_hits":0,"notes":"constituent_paths top3=0/4 top5=0/4 top5_ids=5109,9267,9274,4564,4032"}
+{"scenario_id":"cat-24/409","mode":"on","result":"FAIL","ms":3071,"top3_hits":4,"top5_hits":5,"notes":"fixture409 top3=4/10 top5=5/10 row1_top5=4460,11240,8411,11045,10825 row1_expected=4460"}
+{"scenario_id":"cat-24/405","mode":"on","result":"PASS","ms":197,"top3_hits":1,"top5_hits":1,"notes":"retrieval-smoke top5_ids=8149,8969,11298,11296,8968"}
+{"scenario_id":"cat-24/407","mode":"on","result":"PASS","ms":229,"top3_hits":1,"top5_hits":1,"notes":"retrieval-smoke top5_ids=7935,6864,7938,7936,13008"}
+{"scenario_id":"cat-03/015","mode":"on","result":"PASS","ms":302,"top3_hits":1,"top5_hits":1,"notes":"retrieval-smoke top5_ids=4032,9259,4564,9268,11297"}
+{"scenario_id":"cat-03/016","mode":"on","result":"PASS","ms":306,"top3_hits":1,"top5_hits":1,"notes":"retrieval-smoke top5_ids=11560,11579,11573,11580,11585"}
+{"scenario_id":"cat-04/014","mode":"on","result":"PASS","ms":263,"top3_hits":1,"top5_hits":1,"notes":"retrieval-smoke top5_ids=10803,8245,11544,10804,8943"}
+{"scenario_id":"cat-13/003","mode":"off","result":"PASS","ms":822,"top3_hits":1,"top5_hits":1,"notes":"retrieval-smoke top5_ids=12895,4032,4564,8818,13032"}
+{"scenario_id":"cat-13/042","mode":"off","result":"PASS","ms":502,"top3_hits":1,"top5_hits":1,"notes":"retrieval-smoke top5_ids=10507,4032,4564,11496,7359"}
+{"scenario_id":"cat-13/133","mode":"off","result":"PASS","ms":649,"top3_hits":1,"top5_hits":1,"notes":"retrieval-smoke top5_ids=9653,8966,11282,8285,8959"}
+{"scenario_id":"cat-13/155","mode":"off","result":"PASS","ms":510,"top3_hits":1,"top5_hits":1,"notes":"retrieval-smoke top5_ids=10567,10962,9638,9872,9800"}
+{"scenario_id":"cat-13/177","mode":"off","result":"PASS","ms":466,"top3_hits":1,"top5_hits":1,"notes":"retrieval-smoke top5_ids=248,10143,10145,249,247"}
+{"scenario_id":"cat-13/203","mode":"off","result":"PASS","ms":454,"top3_hits":1,"top5_hits":1,"notes":"retrieval-smoke top5_ids=8783,7561,4032,4564,7564"}
+{"scenario_id":"cat-14/049","mode":"off","result":"PASS","ms":473,"top3_hits":1,"top5_hits":1,"notes":"retrieval-smoke top5_ids=10099,11431,4032,4564,10098"}
+{"scenario_id":"cat-14/129","mode":"off","result":"PASS","ms":371,"top3_hits":1,"top5_hits":1,"notes":"retrieval-smoke top5_ids=10357,10354,10358,10359,4564"}
+{"scenario_id":"cat-14/203","mode":"off","result":"PASS","ms":391,"top3_hits":1,"top5_hits":1,"notes":"retrieval-smoke top5_ids=5142,8263,9203,4564,4032"}
+{"scenario_id":"cat-14/204","mode":"off","result":"PASS","ms":346,"top3_hits":1,"top5_hits":1,"notes":"retrieval-smoke top5_ids=8263,5142,8264,5141,13349"}
+{"scenario_id":"cat-15/055","mode":"off","result":"PASS","ms":520,"top3_hits":1,"top5_hits":1,"notes":"retrieval-smoke top5_ids=11092,11088,12554,11164,11591"}
+{"scenario_id":"cat-15/057","mode":"off","result":"PASS","ms":418,"top3_hits":1,"top5_hits":1,"notes":"retrieval-smoke top5_ids=8809,9696,9458,7485,9459"}
+{"scenario_id":"cat-15/096","mode":"off","result":"PASS","ms":416,"top3_hits":1,"top5_hits":1,"notes":"retrieval-smoke top5_ids=10907,10148,4032,4564,7298"}
+{"scenario_id":"cat-15/145","mode":"off","result":"PASS","ms":427,"top3_hits":1,"top5_hits":1,"notes":"retrieval-smoke top5_ids=7479,4333,10926,11565,8808"}
+{"scenario_id":"cat-16/237","mode":"off","result":"PASS","ms":276,"top3_hits":1,"top5_hits":1,"notes":"retrieval-smoke top5_ids=9744,9743,8716,128,10657"}
+{"scenario_id":"cat-16/240","mode":"off","result":"PASS","ms":268,"top3_hits":1,"top5_hits":1,"notes":"retrieval-smoke top5_ids=7166,1370,13003,13027,11308"}
+{"scenario_id":"cat-16/281","mode":"off","result":"PASS","ms":258,"top3_hits":1,"top5_hits":1,"notes":"retrieval-smoke top5_ids=13354,8970,8856,8918,8939"}
+{"scenario_id":"cat-16/282","mode":"off","result":"PASS","ms":247,"top3_hits":1,"top5_hits":1,"notes":"retrieval-smoke top5_ids=13354,13026,13027,13003,11290"}
+{"scenario_id":"cat-16/283","mode":"off","result":"PASS","ms":217,"top3_hits":1,"top5_hits":1,"notes":"retrieval-smoke top5_ids=13354,4032,13346,4564,13350"}
+{"scenario_id":"cat-17/273","mode":"off","result":"PASS","ms":206,"top3_hits":1,"top5_hits":1,"notes":"retrieval-smoke top5_ids=11126,11062,4564,4032,11575"}
+{"scenario_id":"cat-17/274","mode":"off","result":"PASS","ms":266,"top3_hits":1,"top5_hits":1,"notes":"retrieval-smoke top5_ids=484,4032,68,486,4564"}
+{"scenario_id":"cat-17/276","mode":"off","result":"PASS","ms":280,"top3_hits":1,"top5_hits":1,"notes":"retrieval-smoke top5_ids=12178,4032,13030,4564,484"}
+{"scenario_id":"cat-24/402","mode":"off","result":"FAIL","ms":1074,"top3_hits":1,"top5_hits":2,"notes":"memory-pair subset expected_top5=2/4 expected_top3=1/4 jaccard=A:0.11 B:0.11"}
+{"scenario_id":"cat-24/408","mode":"off","result":"FAIL","ms":263,"top3_hits":0,"top5_hits":0,"notes":"constituent_paths top3=0/4 top5=0/4 top5_ids=5109,9267,9274,4564,4032"}
+{"scenario_id":"cat-24/409","mode":"off","result":"FAIL","ms":3003,"top3_hits":4,"top5_hits":5,"notes":"fixture409 top3=4/10 top5=5/10 row1_top5=4460,11240,8411,11045,10825 row1_expected=4460"}
+{"scenario_id":"cat-24/405","mode":"off","result":"PASS","ms":214,"top3_hits":1,"top5_hits":1,"notes":"retrieval-smoke top5_ids=8149,8969,11298,11296,8968"}
+{"scenario_id":"cat-24/407","mode":"off","result":"PASS","ms":233,"top3_hits":1,"top5_hits":1,"notes":"retrieval-smoke top5_ids=7935,6864,7938,7936,13008"}
+{"scenario_id":"cat-03/015","mode":"off","result":"PASS","ms":303,"top3_hits":1,"top5_hits":1,"notes":"retrieval-smoke top5_ids=4032,9259,4564,9268,11297"}
+{"scenario_id":"cat-03/016","mode":"off","result":"PASS","ms":295,"top3_hits":1,"top5_hits":1,"notes":"retrieval-smoke top5_ids=11560,11579,11573,11580,11585"}
+{"scenario_id":"cat-04/014","mode":"off","result":"PASS","ms":258,"top3_hits":1,"top5_hits":1,"notes":"retrieval-smoke top5_ids=10803,8245,11544,10804,8943"}

@@ -1,0 +1,22 @@
+[
+  {
+    "scenarioId": "001",
+    "category": "08--bug-fixes-and-data-integrity",
+    "status": "UNAUTOMATABLE",
+    "filePath": "08--bug-fixes-and-data-integrity/001-graph-channel-id-fix-g1.md",
+    "prompt": "Validate Graph channel ID fix (G1) and confirm graph hits are non-zero when causal edges exist.\n\nValidate Graph channel ID fix (G1) and confirm graph hits are non-zero when causal edges exist.`\n- Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.",
+    "expectedSignals": [
+      "Graph channel returns >0 hits when causal edges exist"
+    ],
+    "matchedSignals": [],
+    "unmatchedSignals": [
+      "Graph channel returns >0 hits when causal edges exist"
+    ],
+    "handlerCalls": [],
+    "evidence": [
+      "Command sequence is not expressible as direct handler calls: 1. Create linked memories\n2. Run graph-capable query\n3. Verify graph hits"
+    ],
+    "steps": [],
+    "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
+  }
+]

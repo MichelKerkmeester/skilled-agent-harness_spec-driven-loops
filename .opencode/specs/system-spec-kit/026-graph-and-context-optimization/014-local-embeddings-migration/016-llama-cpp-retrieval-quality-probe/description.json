@@ -1,28 +1,30 @@
 {
-  "specId": "016",
-  "folderSlug": "llama-cpp-retrieval-quality-probe",
   "title": "llama-cpp retrieval quality probe",
-  "description": "Measures whether the llama-cpp vector parity miss from packet 015 affects real Memory MCP retrieval rankings. On 200 sampled documents and 50 derived queries, llama-cpp met equivalent retrieval thresholds against hf-local.",
-  "parentChain": [
-    "014-local-embeddings-setup-a"
-  ],
-  "memorySequence": 16,
   "level": "1",
   "status": "complete",
   "importance_tier": "important",
   "contextType": "implementation",
-  "keywords": [
-    "llama-cpp",
-    "hf-local",
-    "retrieval quality",
-    "ranking overlap",
-    "Spearman",
-    "MRR",
-    "EmbeddingGemma",
-    "Memory MCP",
-    "default flip"
-  ],
   "created_at": "2026-05-13T10:23:12Z",
-  "last_updated_at": "2026-05-13T10:23:12Z"
+  "last_updated_at": "2026-05-13T10:23:12Z",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/016-llama-cpp-retrieval-quality-probe",
+  "description": "Feature Specification: 016 llama-cpp retrieval quality probe",
+  "keywords": [
+    "feature",
+    "specification",
+    "016",
+    "llama-cpp",
+    "retrieval",
+    "quality",
+    "probe"
+  ],
+  "lastUpdated": "2026-05-16T17:59:28.665Z",
+  "specId": "016",
+  "folderSlug": "llama-cpp-retrieval-quality-probe",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "014-local-embeddings-migration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
 }
-

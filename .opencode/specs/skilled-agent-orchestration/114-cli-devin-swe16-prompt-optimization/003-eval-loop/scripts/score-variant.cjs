@@ -241,6 +241,14 @@ async function scoreVariantFixture(opts) {
   };
 }
 
+// Directories the snapshot/restore should never traverse into.
+// .git contains files with restricted permissions (read fails with EACCES) and
+// is never produced by the harness anyway. node_modules + dist are skipped for
+// the same reason: they don't change during a dispatch and walking them is
+// expensive. The exclusion is hard-coded because fixture seeds are small +
+// well-known; if a future fixture needs a tracked .git/, it should be renamed.
+const SNAPSHOT_EXCLUDE_DIRS = new Set(['.git', 'node_modules', 'dist']);
+
 // Snapshot a directory tree (file paths + contents + symlinks) for restoration.
 // Used by EVAL_LOOP_EXTRACT to preserve fixture seeds across variants.
 function snapshotDir(rootAbs) {
@@ -249,12 +257,17 @@ function snapshotDir(rootAbs) {
   function walk(dir, relBase) {
     const entries = fs.readdirSync(dir, { withFileTypes: true });
     for (const e of entries) {
+      if (e.isDirectory() && SNAPSHOT_EXCLUDE_DIRS.has(e.name)) continue;
       const abs = path.join(dir, e.name);
       const rel = path.join(relBase, e.name);
       if (e.isDirectory()) {
         walk(abs, rel);
       } else if (e.isFile()) {
-        files.push({ rel, content: fs.readFileSync(abs, 'utf8') });
+        try {
+          files.push({ rel, content: fs.readFileSync(abs, 'utf8') });
+        } catch (_) {
+          // Skip unreadable files (e.g. permission-restricted) instead of crashing.
+        }
       }
     }
   }
@@ -270,6 +283,7 @@ function restoreFromSnapshot(rootAbs, snapshot) {
     if (!fs.existsSync(dir)) return;
     const entries = fs.readdirSync(dir, { withFileTypes: true });
     for (const e of entries) {
+      if (e.isDirectory() && SNAPSHOT_EXCLUDE_DIRS.has(e.name)) continue;
       const abs = path.join(dir, e.name);
       const rel = path.join(relBase, e.name);
       if (e.isDirectory()) {

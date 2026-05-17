@@ -60,6 +60,14 @@ const PATTERNS = {
    2. UTILITIES
 ──────────────────────────────────────────────────────────────── */
 
+// Map a source relative path ("hero/x.js") to the canonical minified output
+// path ("hero/x.min.js"). z_minified/ only ever contains .min.js files.
+function to_min_path(relative_path) {
+  return relative_path.endsWith('.min.js')
+    ? relative_path
+    : relative_path.replace(/\.js$/, '.min.js');
+}
+
 // Recursively find all .js files in directory
 function find_js_files(dir, base_dir = dir) {
   const files = [];
@@ -235,7 +243,7 @@ function compare_patterns(original, minified, file_name) {
 // Verify a single file
 function verify_file(relative_path) {
   const source_path = join(SOURCE_DIR, relative_path);
-  const output_path = join(OUTPUT_DIR, relative_path);
+  const output_path = join(OUTPUT_DIR, to_min_path(relative_path));
 
   // Check files exist
   if (!existsSync(source_path)) {

@@ -1,40 +1,18 @@
 {
-  "specFolder": "117-cli-cross-rcaf-propagation",
-  "description": "Propagate RCAF default + medium pre-plan composition guidance to 4 sibling CLI skills (cli-claude-code, cli-codex, cli-gemini, cli-opencode) following",
+  "level": "3",
+  "specFolder": "skilled-agent-orchestration/117-cli-cross-rcaf-propagation",
+  "description": "Feature Specification: cli-cross-rcaf-propagation",
   "keywords": [
-    "propagate",
-    "rcaf",
-    "default",
-    "medium",
-    "pre-plan",
-    "composition",
-    "guidance",
-    "sibling",
-    "cli",
-    "skills",
-    "cli-claude-code",
-    "cli-codex",
-    "cli-gemini",
-    "cli-opencode",
-    "following",
-    "003-eval-loop",
-    "empirical",
-    "winners",
-    "swe",
-    "bundle-gate-aversion",
-    "anti-hallucination-deprioritization",
-    "findings",
-    "held",
-    "until",
-    "cross-model",
-    "validation",
-    "completes"
+    "feature",
+    "specification",
+    "cli-cross-rcaf-propagation"
   ],
-  "lastUpdated": "2026-05-17T12:18:18.647Z",
+  "lastUpdated": "2026-05-17T12:55:57.000Z",
   "specId": "117",
   "folderSlug": "cli-cross-rcaf-propagation",
-  "parentChain": [],
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "3"
+  "memoryNameHistory": []
 }

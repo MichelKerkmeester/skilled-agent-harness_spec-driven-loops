@@ -1,5 +1,5 @@
-import { getUserData } from './a';
+import { fetchUser } from './a';
 export async function loadAvatar(id: string) {
-  const u = await getUserData(id);
+  const u = await fetchUser(id);
   return u.avatarUrl;
 }

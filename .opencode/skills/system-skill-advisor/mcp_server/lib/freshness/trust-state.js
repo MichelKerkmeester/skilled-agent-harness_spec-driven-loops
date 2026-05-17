@@ -1,0 +1,106 @@
+// ───────────────────────────────────────────────────────────────
+// MODULE: Advisor Freshness Trust State
+// ───────────────────────────────────────────────────────────────
+// PR 4 / F71 / F17 / F18: canonical TrustState surface. This module is
+// the SINGLE source of truth for the 4-value caller-trust axis used by
+// every freshness producer (advisor, hook brief, code-graph handlers).
+//
+// Migration map (V1-V5 → canonical):
+//   V1  ensure-ready GraphFreshness = 'fresh' | 'stale' | 'empty'
+//       → DELETED, re-exported from ops-hardening (V2 superset).
+//   V2  ops-hardening GraphFreshness = 'fresh' | 'stale' | 'empty' | 'error'
+//       → CANONICAL L1 storage vocabulary (graph internal state).
+//   V3  ops-hardening StructuralReadiness = 'ready' | 'stale' | 'missing'
+//       → CANONICAL L2 readiness vocabulary (handler-level summary).
+//   V4  startup-brief graphState = 'ready' | 'stale' | 'empty' | 'missing'
+//       → CANONICAL L4 startup-surface vocabulary (now also accepts
+//         'error' via the trustStateFromGraphState mapper widening).
+//   V5  SkillGraphTrustState = 'live' | 'stale' | 'absent' | 'unavailable'
+//       → CANONICAL L3 caller-trust vocabulary (THIS module). Widened
+//         to include 'unavailable' for unreachable scopes.
+//
+// Cross-module mapping (V2 → V5 via readiness-contract.ts):
+//   'fresh' → 'live'
+//   'stale' → 'stale'
+//   'empty' → 'absent'
+//   'error' → 'unavailable'  ← PR 4 widening
+//
+// During the migration window we keep the SharedPayloadTrustState super-
+// type (8 values) as the wire-level union and re-export the 4-value
+// SkillGraphTrustState here as the advisor-facing alias. External
+// consumers should depend on `SkillGraphTrustState` from this module
+// rather than carving out their own narrower unions.
+import { isSpeckitMetricsEnabled, speckitMetrics } from '../metrics.js';
+// F-018-D3-01: SkillGraphTrustState now derives from a canonical tuple in
+// trust-state-values.ts. The local re-export keeps every existing consumer
+// importing this path; the tuple is the single source of truth.
+import { SKILL_GRAPH_TRUST_STATE_VALUES, isSkillGraphTrustState, } from './trust-state-values.js';
+export { SKILL_GRAPH_TRUST_STATE_VALUES, isSkillGraphTrustState, };
+let lastObservedTrustState = null;
+function recordTrustStateTransition(next) {
+    if (!isSpeckitMetricsEnabled()) {
+        lastObservedTrustState = next;
+        return;
+    }
+    const previous = lastObservedTrustState;
+    if (previous !== null && previous !== next) {
+        speckitMetrics.incrementCounter('spec_kit.freshness.state_transitions_total', { from_state: previous, to_state: next });
+    }
+    lastObservedTrustState = next;
+}
+export function createTrustState(input) {
+    const checkedAt = (input.now ?? new Date()).toISOString();
+    const snapshot = computeTrustState(input, checkedAt);
+    recordTrustStateTransition(snapshot.state);
+    return snapshot;
+}
+function computeTrustState(input, checkedAt) {
+    if (!input.daemonAvailable) {
+        return {
+            state: 'unavailable',
+            reason: input.reason ?? 'DAEMON_UNAVAILABLE',
+            generation: input.generation,
+            checkedAt,
+            lastLiveAt: input.lastLiveAt ?? null,
+        };
+    }
+    if (!input.hasSources || !input.hasArtifact) {
+        return {
+            state: 'absent',
+            reason: input.reason ?? (input.hasSources ? 'SKILL_GRAPH_ABSENT' : 'SKILL_SOURCES_ABSENT'),
+            generation: input.generation,
+            checkedAt,
+            lastLiveAt: input.lastLiveAt ?? null,
+        };
+    }
+    if (input.sourceChanged) {
+        return {
+            state: 'stale',
+            reason: input.reason ?? 'SOURCE_NEWER_THAN_SKILL_GRAPH',
+            generation: input.generation,
+            checkedAt,
+            lastLiveAt: input.lastLiveAt ?? null,
+        };
+    }
+    return {
+        state: 'live',
+        reason: null,
+        generation: input.generation,
+        checkedAt,
+        lastLiveAt: input.lastLiveAt ?? checkedAt,
+    };
+}
+export function failOpenTrustState(reason, generation = 0) {
+    return createTrustState({
+        hasSources: false,
+        hasArtifact: false,
+        sourceChanged: false,
+        daemonAvailable: false,
+        generation,
+        reason,
+    });
+}
+export function isReaderUsable(state) {
+    return state === 'live' || state === 'stale';
+}
+//# sourceMappingURL=trust-state.js.map

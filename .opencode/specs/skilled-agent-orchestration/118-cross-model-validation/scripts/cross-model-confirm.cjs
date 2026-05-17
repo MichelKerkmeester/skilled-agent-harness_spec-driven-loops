@@ -74,6 +74,7 @@ function parseArgs() {
     variants: ['v-001-baseline-star', 'v-002-build-dense-preplan', 'v-003-anti-hallucination-strong', 'v-004-rcaf-medium', 'v-005-build-strict-bundle-gate'],
     fixtures: null,  // null = all
     mock: false,
+    append: false,
   };
   for (let i = 0; i < argv.length; i++) {
     const a = argv[i];
@@ -81,6 +82,7 @@ function parseArgs() {
     else if (a === '--variants') args.variants = argv[++i].split(',');
     else if (a === '--fixtures') args.fixtures = argv[++i].split(',');
     else if (a === '--mock') args.mock = true;
+    else if (a === '--append') args.append = true;
   }
   return args;
 }
@@ -407,11 +409,18 @@ async function main() {
   process.stderr.write(`Cross-model: models=${args.models.length} variants=${args.variants.length} fixtures=${fixtures.length} total=${args.models.length * args.variants.length * fixtures.length} mock=${args.mock}\n`);
 
   fs.mkdirSync(path.join(PACKET_ROOT, 'state'), { recursive: true });
-  fs.writeFileSync(RESULTS_JSONL, '');
+  if (!args.append) {
+    fs.writeFileSync(RESULTS_JSONL, '');
+  } else {
+    process.stderr.write(`Append mode: keeping existing rows in ${RESULTS_JSONL}\n`);
+  }
 
   if (!process.env.EVAL_LOOP_EXTRACT) process.env.EVAL_LOOP_EXTRACT = 'true';
 
-  const rows = [];
+  // Seed rows from existing JSONL when in append mode (so buildAnalysis sees the full picture)
+  const rows = args.append && fs.existsSync(RESULTS_JSONL)
+    ? fs.readFileSync(RESULTS_JSONL, 'utf8').split('\n').filter((l) => l.trim()).map((l) => { try { return JSON.parse(l); } catch (_) { return null; } }).filter(Boolean)
+    : [];
   let dispatchCount = 0;
   const totalDispatches = args.models.length * variantFiles.length * fixtures.length;
   for (const model of args.models) {

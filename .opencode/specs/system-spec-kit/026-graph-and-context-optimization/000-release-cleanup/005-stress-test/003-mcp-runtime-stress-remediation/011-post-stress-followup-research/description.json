@@ -7,7 +7,7 @@
     "v1.0.2 P0 P1 P2 research",
     "intelligence system seam research"
   ],
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-mcp-runtime-stress-remediation/011-post-stress-followup-research",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/003-mcp-runtime-stress-remediation/011-post-stress-followup-research",
   "description": "Feature Specification: Post-Stress Follow-Up Research — refine v1.0.2 P0/P1/P2 fix proposals",
   "keywords": [
     "feature",
@@ -19,13 +19,14 @@
     "fix",
     "proposals"
   ],
-  "lastUpdated": "2026-05-08T08:26:57.173Z",
+  "lastUpdated": "2026-05-16T21:09:37.419Z",
   "specId": "011",
   "folderSlug": "post-stress-followup-research",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
     "000-release-cleanup",
+    "005-stress-test",
     "003-mcp-runtime-stress-remediation"
   ],
   "memorySequence": 0,

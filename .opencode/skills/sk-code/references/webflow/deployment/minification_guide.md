@@ -81,13 +81,15 @@ npx terser [source] --compress --mangle -o [output]
 ### Example
 
 ```bash
-# Minify single file
-npx terser src/javascript/hero/hero_video.js --compress --mangle -o src/javascript/z_minified/hero/hero_video.js
+# Minify single file — output ALWAYS uses .min.js suffix in z_minified/
+npx terser src/javascript/hero/hero_video.js --compress --mangle -o src/javascript/z_minified/hero/hero_video.min.js
 
 # Check sizes
-wc -c src/javascript/hero/hero_video.js src/javascript/z_minified/hero/hero_video.js
+wc -c src/javascript/hero/hero_video.js src/javascript/z_minified/hero/hero_video.min.js
 # Output: 27187 (original) → 8085 (minified) = 70% reduction
 ```
+
+> **Output naming convention (2026-05-17):** `src/2_javascript/z_minified/` contains **only `.min.js` files**. The minify pipeline (`minify-webflow.mjs`) automatically rewrites the output filename from `foo.js` → `foo.min.js`. Do NOT place unsuffixed `.js` files in `z_minified/`.
 
 ---
 
@@ -179,7 +181,7 @@ animate(element, { opacity: [0, 1], y: ['4rem', '0px'] });
 npx terser src/javascript/[folder]/[file].js \
   --compress \
   --mangle \
-  -o src/javascript/z_minified/[folder]/[file].js
+  -o src/javascript/z_minified/[folder]/[file].min.js
 ```
 
 For batch minification of all files:
@@ -335,8 +337,8 @@ node .opencode/skills/sk-code/assets/webflow/scripts/minify-webflow.mjs --force
 **Output:**
 ```
 Processing 39 source files...
-→ hero/hero_video.js (27187B) -> z_minified/hero/hero_video.js (8085B) [updated]
-= form/form_validation.js (50727B) -> z_minified/form/form_validation.js (19303B) [unchanged]
+→ hero/hero_video.js (27187B) -> z_minified/hero/hero_video.min.js (8085B) [updated]
+= form/form_validation.js (50727B) -> z_minified/form/form_validation.min.js (19303B) [unchanged]
 ...
 Summary:
   Updated: 1
@@ -411,7 +413,7 @@ window['initHero'] = function() { ... };  // Bracket notation preserves name
    grep -o '"[^"]*"' src/javascript/hero/hero_video.js | sort -u > original_strings.txt
    
    # Extract strings from minified
-   grep -o '"[^"]*"' src/javascript/z_minified/hero/hero_video.js | sort -u > minified_strings.txt
+   grep -o '"[^"]*"' src/javascript/z_minified/hero/hero_video.min.js | sort -u > minified_strings.txt
    
    # Compare
    diff original_strings.txt minified_strings.txt
@@ -456,9 +458,9 @@ bdg stop
 ### For Single File
 
 ```bash
-# Step 1: Minify
+# Step 1: Minify (output uses .min.js suffix)
 npx terser src/javascript/hero/hero_video.js --compress --mangle \
-  -o src/javascript/z_minified/hero/hero_video.js
+  -o src/javascript/z_minified/hero/hero_video.min.js
 
 # Step 2: Verify (runs on all, but check specific file in output)
 node .opencode/skills/sk-code/assets/webflow/scripts/verify-minification.mjs

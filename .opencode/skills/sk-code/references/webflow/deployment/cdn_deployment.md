@@ -158,22 +158,24 @@ grep -r "script_name.js?v=" src/0_html/
 
 **Step 2: Upload File**
 1. Click "Upload" button
-2. Select the minified file from `src/2_javascript/z_minified/`
-3. File will be named same as source (e.g., `hero_video.js`)
+2. Select the minified file from `src/2_javascript/z_minified/` (always `.min.js`)
+3. File on R2 retains the `.min.js` suffix (e.g., `hero_video.min.js`)
 4. Click "Upload" to confirm
 
 **Step 3: Verify Upload**
 1. File should appear in bucket file list
 2. Click on file to view details
 3. Copy public URL to verify accessibility
-4. Test URL in browser: `https://pub-53729c3289024c618f90a09ec4c63bf9.r2.dev/hero_video.js`
+4. Test URL in browser: `https://pub-53729c3289024c618f90a09ec4c63bf9.r2.dev/hero_video.min.js`
 
 ### File Naming
 
-| Source File                              | Minified File                        | R2 Upload Name       |
-| ---------------------------------------- | ------------------------------------ | -------------------- |
-| `src/2_javascript/hero/hero_video.js`    | `z_minified/hero/hero_video.js`      | `hero_video.js`      |
-| `src/2_javascript/form/form_validation.js` | `z_minified/form/form_validation.js` | `form_validation.js` |
+> **Convention (2026-05-17):** `z_minified/` contains **only `.min.js` files**. The minify pipeline rewrites `foo.js` → `foo.min.js` on output. R2 uploads keep the `.min.js` suffix, and HTML script tags reference the `.min.js` filename.
+
+| Source File                              | Minified File                              | R2 Upload Name           |
+| ---------------------------------------- | ------------------------------------------ | ------------------------ |
+| `src/2_javascript/hero/hero_video.js`    | `z_minified/hero/hero_video.min.js`        | `hero_video.min.js`      |
+| `src/2_javascript/form/form_validation.js` | `z_minified/form/form_validation.min.js` | `form_validation.min.js` |
 
 **Note:** R2 bucket uses flat structure - upload files directly without folder paths.
 
@@ -213,11 +215,11 @@ grep -r "script_name.js?v=" src/0_html/
 
 ```
 1. Edit JS      → src/2_javascript/[folder]/[file].js
-2. Minify       → npx terser [source] --compress --mangle -o z_minified/[folder]/[file].js
+2. Minify       → npx terser [source] --compress --mangle -o z_minified/[folder]/[file].min.js
 3. Verify       → node .opencode/skills/sk-code/assets/webflow/scripts/verify-minification.mjs
 4. Test         → node .opencode/skills/sk-code/assets/webflow/scripts/test-minified-runtime.mjs
-5. Update HTML  → Increment ?v=X.X.X in all referencing HTML files
-6. Upload       → Cloudflare Dashboard → R2 → Upload minified file
+5. Update HTML  → Increment ?v=X.X.X in all referencing HTML files (use .min.js)
+6. Upload       → Cloudflare Dashboard → R2 → Upload minified .min.js file
 7. Verify live  → Hard refresh, check console, test functionality
 ```
 

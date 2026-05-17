@@ -1,10 +1,9 @@
 {
   "command": "mk-skill-advisor-launcher",
-  "start": "2026-05-16T06:15:36.375Z",
-  "end": "2026-05-16T06:15:41.789Z",
-  "status": "failed",
-  "actions": [
-    "installed dependencies and built @spec-kit/system-skill-advisor MCP server"
-  ],
-  "error": "npm run build exited 2"
+  "start": "2026-05-17T14:30:29.586Z",
+  "end": "2026-05-17T14:30:29.589Z",
+  "status": "ready",
+  "actions": [],
+  "server": ".opencode/skills/system-skill-advisor/mcp_server/dist/system-skill-advisor/mcp_server/advisor-server.js",
+  "database": ".opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sqlite"
 }
