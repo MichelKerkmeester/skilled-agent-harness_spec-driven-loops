@@ -196,7 +196,7 @@ The `Write` allow list is the only place a Devin iter can mutate the tree. The n
 
 Each iter prompt MUST include five blocks, in this order:
 
-1. **STAR / RCAF / BUILD framework tag** — the first line states which framework the prompt uses (`Framework: BUILD`).
+1. **RCAF / STAR / BUILD framework tag** — the first line states which framework the prompt uses (`Framework: RCAF`). RCAF is the SWE-1.6 default per SKILL.md §4 #12; STAR for narrative-heavy iters, BUILD for synthesis passes where multi-file scope boundaries dominate.
 2. **Pre-planning block** — ordered steps, per-step acceptance criteria, stop conditions, verification approach.
 3. **Scoped RQ or review angle** — one research question per research iter, one review dimension per review iter, one consolidation directive per synthesis pass.
 4. **Sequential_thinking invocation marker** — the prompt must include a line: "Sequential_thinking is mandatory before output." The recipe's `mcp_servers` and `system_instructions` enforce this at the runtime layer; the prompt body reinforces visually.

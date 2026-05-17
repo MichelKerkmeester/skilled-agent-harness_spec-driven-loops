@@ -50,7 +50,7 @@ Add a one-line marker near the top of the prompt body so the model sees it: "App
 ## 3. RESEARCH-ITER SKELETON
 
 ```markdown
-Framework: BUILD
+Framework: RCAF
 
 # Iter NNN — Research
 
@@ -103,7 +103,7 @@ Every claim in the Findings or Evidence sections MUST be followed by a `<ref_fil
 ## 4. REVIEW-ITER SKELETON
 
 ```markdown
-Framework: STAR
+Framework: RCAF
 
 # Iter NNN — Review
 
@@ -160,7 +160,7 @@ Every claim in the Findings or Evidence sections MUST be followed by a `<ref_fil
 ## 5. SYNTHESIS SKELETON
 
 ```markdown
-Framework: BUILD
+Framework: RCAF
 
 # Synthesis — <research or review or delta-verified>
 
