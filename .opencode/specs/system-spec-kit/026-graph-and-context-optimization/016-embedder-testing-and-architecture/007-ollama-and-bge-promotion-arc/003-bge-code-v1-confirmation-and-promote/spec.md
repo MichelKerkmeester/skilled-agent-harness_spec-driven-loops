@@ -88,3 +88,17 @@ Out of scope:
 - If promoted, all 4 config + doc files coherent (no mention of jina-code as default after this commit).
 - If held, the decision is recorded with the run data so future re-promotion attempts have a baseline to beat.
 <!-- /ANCHOR:success-criteria -->
+
+<!-- ANCHOR:skill-local-promotion -->
+## 7. PROMOTION TO SKILL-LOCAL BENCHMARKS
+
+On a PROMOTE outcome, a curated subset of this 3-run evidence plus a fresh `benchmark_report.md` is promoted to `.opencode/skills/mcp-coco-index/mcp_server/benchmarks/benchmark-<promotion-date>/`, following the sk-doc skill-local benchmarks convention. The folder amends or replaces the existing single-run report at `benchmark-2026-05-18/` per the FORMAT.md re-run guidance (amend in place when the headline holds; new dated subfolder only if the winner flips).
+
+Authority and mechanics:
+
+- Adoption criteria and case studies: `.opencode/skills/sk-doc/references/benchmarks_format.md`
+- Canonical format mechanics (layout, ten-section structure, symlink, promotion workflow): `.opencode/skills/system-spec-kit/mcp_server/benchmarks/FORMAT.md`
+- Report template: `.opencode/skills/sk-doc/assets/benchmark/benchmark_report_template.md`
+
+A HOLD outcome does not promote; the standing `benchmark-2026-05-18/` report retains its provisional caveat and this packet's `implementation-summary.md` records the negative result. Convention provenance: `../../005-cross-cutting-quality/004-skill-local-benchmarks-format/`.
+<!-- /ANCHOR:skill-local-promotion -->

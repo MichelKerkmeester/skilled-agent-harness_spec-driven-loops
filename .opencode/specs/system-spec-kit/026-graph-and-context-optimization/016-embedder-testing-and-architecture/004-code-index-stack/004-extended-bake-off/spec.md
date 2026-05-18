@@ -114,3 +114,17 @@ Dependencies:
 - Did nomic-CodeRankEmbed's prior "Connection to daemon lost" failure repeat, or was it transient? Root cause analysis pending.
 - Should this packet include a partial retry of bge-code-v1? Default: NO (defer pending nomic stability).
 <!-- /ANCHOR:questions -->
+
+<!-- ANCHOR:skill-local-promotion -->
+## 8. PROMOTION TO SKILL-LOCAL BENCHMARKS (RETROACTIVE)
+
+On May 18, 2026 a curated subset of this packet's evidence plus a fresh `benchmark_report.md` was promoted to `.opencode/skills/mcp-coco-index/mcp_server/benchmarks/benchmark-2026-05-18/`, following the sk-doc skill-local benchmarks convention. The promotion compresses the bake-off headline (bge-code-v1 11/18 single-run lead, jina-code + 2 others tied at 9/18) into a curated operator-facing entry point alongside the MCP code, and ships a sidecar `risk-analysis-rerank-nondeterminism.md` to flag the single-run signal caveat and the mid-validation reranker swap from `gte-multilingual-reranker-base` to `BAAI/bge-reranker-v2-m3`. Confirmation of the bge-code-v1 lead is owned by follow-on packet `../../007-ollama-and-bge-promotion-arc/003-bge-code-v1-confirmation-and-promote/`; an amend to the existing `benchmark-2026-05-18/` report (not a new dated subfolder) is the planned shape if confirmation holds.
+
+Authority and mechanics:
+
+- Adoption criteria and case studies: `.opencode/skills/sk-doc/references/benchmarks_format.md`
+- Canonical format mechanics: `.opencode/skills/system-spec-kit/mcp_server/benchmarks/FORMAT.md`
+- Report template (used for this promotion): `.opencode/skills/sk-doc/assets/benchmark/benchmark_report_template.md`
+
+Convention provenance: `../../005-cross-cutting-quality/004-skill-local-benchmarks-format/`.
+<!-- /ANCHOR:skill-local-promotion -->

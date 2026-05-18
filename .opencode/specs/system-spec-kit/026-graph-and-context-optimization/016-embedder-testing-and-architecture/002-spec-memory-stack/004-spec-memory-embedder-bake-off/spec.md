@@ -151,3 +151,17 @@ Verify:
 
 Defer to phase parent (`016-embedder-testing-and-architecture/spec.md`) for orchestration-level open questions.
 <!-- /ANCHOR:questions -->
+
+<!-- ANCHOR:skill-local-promotion -->
+## 8. PROMOTION TO SKILL-LOCAL BENCHMARKS (RETROACTIVE)
+
+A curated subset of this packet's evidence plus a fresh `benchmark_report.md` was promoted to `.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-17/`, following the sk-doc skill-local benchmarks convention. Bench data was captured on May 17, 2026 (the date the run completed); the format itself was authored on May 18, 2026 and the folder was filled the same day, so `benchmark-2026-05-17/` reflects the data date per the convention. The promotion compresses twelve ADRs of audit trail (mxbai rollback, three additional rollbacks, retrieval-rescue pivot, jina-v3 + rescue ratification per ADR-012) into a single operator-facing entry point, and ships a `runtime-measurements.md` companion capturing the RAM/Metal-residency/latency profile for the three finalists.
+
+Authority and mechanics:
+
+- Adoption criteria and case studies: `.opencode/skills/sk-doc/references/benchmarks_format.md`
+- Canonical format mechanics: `.opencode/skills/system-spec-kit/mcp_server/benchmarks/FORMAT.md`
+- Report template (used for this promotion): `.opencode/skills/sk-doc/assets/benchmark/benchmark_report_template.md`
+
+Convention provenance: `../../005-cross-cutting-quality/004-skill-local-benchmarks-format/`.
+<!-- /ANCHOR:skill-local-promotion -->

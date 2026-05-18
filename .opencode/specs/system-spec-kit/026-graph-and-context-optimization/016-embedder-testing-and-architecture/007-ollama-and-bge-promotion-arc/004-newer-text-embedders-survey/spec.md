@@ -113,3 +113,19 @@ Dependencies:
 - Is there a HF-side filter for "released after date X" that doesn't depend on the `created` sort field? (Crawl approach assumes yes.)
 - Should the survey include closed-source API embedders (Voyage, Cohere) for reference, or strictly local-first? Default: local-first only.
 <!-- /ANCHOR:open-questions -->
+
+<!-- ANCHOR:skill-local-promotion -->
+## 9. CONDITIONAL PROMOTION TO SKILL-LOCAL BENCHMARKS
+
+This survey is research-only and produces no measured numbers; the survey itself never promotes. Promotion is **only** triggered if R3 fires — that is, a MEASURE-tier candidate emerges, a follow-on bench packet is scaffolded under `016/007/` (e.g., `005-newer-text-embedder-bench`), and that follow-on run lands a headline worth defending against the standing ADR-012 (jina-v3 + rescue) baseline.
+
+Conditional promotion target on a follow-on bench win: `.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-<run-date>/`. Per FORMAT.md re-run guidance, if the new candidate beats jina-v3 the May 17, 2026 `benchmark-2026-05-17/` report is amended with a "Re-run YYYY-MM-DD" section rather than forked into a new dated subfolder; a new subfolder is added only when the winner flips on a materially different fixture or stack.
+
+Authority and mechanics (load only if a follow-on bench is actually triggered):
+
+- Adoption criteria and case studies: `.opencode/skills/sk-doc/references/benchmarks_format.md`
+- Canonical format mechanics: `.opencode/skills/system-spec-kit/mcp_server/benchmarks/FORMAT.md`
+- Report template: `.opencode/skills/sk-doc/assets/benchmark/benchmark_report_template.md`
+
+Convention provenance: `../../005-cross-cutting-quality/004-skill-local-benchmarks-format/`.
+<!-- /ANCHOR:skill-local-promotion -->
