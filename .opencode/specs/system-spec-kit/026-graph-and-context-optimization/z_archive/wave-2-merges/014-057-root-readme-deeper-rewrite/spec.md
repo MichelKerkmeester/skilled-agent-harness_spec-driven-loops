@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-local-embeddings-foundation/057-root-readme-deeper-rewrite"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/057-root-readme-deeper-rewrite"
     last_updated_at: "2026-05-15T14:30:00Z"
     last_updated_by: "main_agent"
     recent_action: "Scaffolded 057 packet"
@@ -46,7 +46,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-05-15 |
 | **Branch** | `main` |
-| **Parent** | `system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-local-embeddings-foundation` |
+| **Parent** | `system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation` |
 | **Depends on** | `054-root-readme-deep-research` (shipped) |
 | **Successor** | None |
 | **Handoff Criteria** | ./README.md HVR score >= 95 (target >= 98), all Phase-4-missed iter findings addressed, packet strict-validate PASS, single primary commit on main |

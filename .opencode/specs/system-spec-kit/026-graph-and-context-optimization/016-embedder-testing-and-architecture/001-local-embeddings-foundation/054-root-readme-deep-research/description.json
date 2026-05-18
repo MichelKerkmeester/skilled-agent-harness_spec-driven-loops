@@ -1,0 +1,23 @@
+{
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/054-root-readme-deep-research",
+  "description": "Deep-research follow-on to Phase D's single-pass root README audit. Runs 20 cli-devin SWE 1.6 iterations clustered into 7 thematic tracks (counts/inventories, claim accuracy, HVR voice, diagrams, external refs/footer, FAQ/Quick Start, cross-runtime + residual). Synthesizes findings into a verified delta. Sonnet @markdown applies HVR-compliant surgical edits to ./README.md.",
+  "keywords": [
+    "root-readme",
+    "deep-research",
+    "cli-devin-swe-1-6",
+    "hvr-sk-doc-style",
+    "sonnet-markdown-writer",
+    "20-iteration-sweep"
+  ],
+  "lastUpdated": "2026-05-15T13:35:00Z",
+  "specId": "056",
+  "folderSlug": "root-readme-deep-research",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "014-local-embeddings-migration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

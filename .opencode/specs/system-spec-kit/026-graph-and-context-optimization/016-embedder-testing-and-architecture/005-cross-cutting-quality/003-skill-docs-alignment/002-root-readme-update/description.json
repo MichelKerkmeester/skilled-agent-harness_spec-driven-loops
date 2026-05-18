@@ -1,0 +1,12 @@
+{
+  "level": "1",
+  "specFolder": "002-root-readme-update",
+  "description": "Root README refresh for 016-019 changes",
+  "keywords": ["root-readme", "refresh", "embedder", "architecture"],
+  "lastUpdated": "2026-05-17T20:40:00.000Z",
+  "specId": "021-002",
+  "folderSlug": "root-readme-update",
+  "parentChain": ["system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/005-cross-cutting-quality/003-skill-docs-alignment"],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}

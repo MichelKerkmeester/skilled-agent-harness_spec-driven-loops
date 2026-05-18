@@ -13,10 +13,10 @@
     "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor",
     "system-spec-kit/026-graph-and-context-optimization/009-hook-parity",
     "system-spec-kit/026-graph-and-context-optimization/010-template-levels",
-    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-cocoindex-stack/010-daemon-resilience",
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-cocoindex-stack/010-daemon-resilience",
     "system-spec-kit/026-graph-and-context-optimization/012-causal-graph-channel-routing",
     "system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator",
-    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-local-embeddings-foundation",
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation",
     "system-spec-kit/026-graph-and-context-optimization/015-mcp-shared-dependency-startup-fix"
   ],
   "migrated": true,

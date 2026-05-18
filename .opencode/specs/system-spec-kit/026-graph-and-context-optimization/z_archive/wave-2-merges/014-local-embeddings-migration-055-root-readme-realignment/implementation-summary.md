@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-local-embeddings-foundation/055-root-readme-realignment"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/055-root-readme-realignment"
     last_updated_at: "2026-05-15T12:55:00Z"
     last_updated_by: "main_agent"
     recent_action: "Authored impl-summary stub"
@@ -36,7 +36,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-local-embeddings-foundation/055-root-readme-realignment |
+| **Spec Folder** | system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/055-root-readme-realignment |
 | **Phase** | D of 4 (final phase) |
 | **Completed** | 2026-05-15 |
 | **Level** | 1 |

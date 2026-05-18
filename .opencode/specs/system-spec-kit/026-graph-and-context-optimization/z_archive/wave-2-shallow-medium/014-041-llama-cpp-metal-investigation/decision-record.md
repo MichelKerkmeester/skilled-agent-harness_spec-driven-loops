@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "decision"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-local-embeddings-foundation/041-llama-cpp-metal-investigation"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/041-llama-cpp-metal-investigation"
     last_updated_at: "2026-05-14T15:55:00Z"
     last_updated_by: "orchestrator-post-investigation"
     recent_action: "Recorded post-decision execution outcome: Option A succeeded operationally despite ADR recommending defer"

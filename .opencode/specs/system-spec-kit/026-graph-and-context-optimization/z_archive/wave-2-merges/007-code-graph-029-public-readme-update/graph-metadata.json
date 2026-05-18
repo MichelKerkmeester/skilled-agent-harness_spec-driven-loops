@@ -12,8 +12,8 @@
     "related_to": [
       "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/020-coco-index-feature-catalog",
       "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-expansion-and-alignment",
-      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-local-embeddings-foundation/038-embedding-error-propagation",
-      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-local-embeddings-foundation/039-token-aware-chunking"
+      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/038-embedding-error-propagation",
+      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/039-token-aware-chunking"
     ]
   },
   "derived": {

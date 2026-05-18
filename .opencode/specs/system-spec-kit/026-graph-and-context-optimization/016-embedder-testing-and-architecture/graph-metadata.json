@@ -4,13 +4,11 @@
   "spec_folder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization",
   "children_ids": [
-    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-mk-spec-memory-stack",
-    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-local-embeddings-foundation",
-    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/005-playbook-quality-audit",
-    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-cocoindex-stack",
-    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-deep-review-stack",
-    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/009-skill-docs-alignment",
-    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/010-skill-advisor-embedder-parity",
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation",
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-mk-spec-memory-stack",
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/003-skill-advisor-stack",
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-cocoindex-stack",
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/005-cross-cutting-quality",
     "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/012-mcp-launcher-concurrency-arc"
   ],
   "manual": {

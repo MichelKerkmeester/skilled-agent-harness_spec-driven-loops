@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-cocoindex-stack/003-comparison-measure",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-cocoindex-stack/003-comparison-measure",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-cocoindex-stack",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [
+      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-cocoindex-stack/001-cocoindex-swap",
+      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-cocoindex-stack/002-baseline-fixture"
+    ],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "018/003 comparison measure",
+      "ADR-001 cocoindex embedder choice",
+      "code embedder benchmark"
+    ],
+    "key_topics": [
+      "018",
+      "comparison",
+      "measurement",
+      "adr",
+      "cocoindex",
+      "embedder",
+      "benchmark",
+      "ratification"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ]
+  }
+}

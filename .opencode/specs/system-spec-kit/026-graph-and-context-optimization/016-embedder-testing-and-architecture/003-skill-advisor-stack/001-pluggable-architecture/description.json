@@ -1,0 +1,12 @@
+{
+  "level": "1",
+  "specFolder": "001-pluggable-architecture",
+  "description": "EmbedderAdapter + MANIFESTS + schema for skill-advisor",
+  "keywords": ["pluggable", "adapter", "registry", "vec-metadata", "skill-advisor"],
+  "lastUpdated": "2026-05-17T21:25:00.000Z",
+  "specId": "022-001",
+  "folderSlug": "pluggable-architecture",
+  "parentChain": ["system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/003-skill-advisor-stack"],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}

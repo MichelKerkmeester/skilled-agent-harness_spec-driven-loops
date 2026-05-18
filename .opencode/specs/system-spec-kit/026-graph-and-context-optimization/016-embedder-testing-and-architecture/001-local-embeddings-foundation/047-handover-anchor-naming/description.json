@@ -1,0 +1,26 @@
+{
+  "level": "2",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/047-handover-anchor-naming",
+  "description": "Align handover_state routing with the canonical session-notes handover anchor and verify the planner path.",
+  "keywords": [
+    "align",
+    "routing",
+    "canonical",
+    "session-notes",
+    "handover",
+    "anchor",
+    "verify",
+    "planner",
+    "path"
+  ],
+  "lastUpdated": "2026-05-14T16:56:27.036Z",
+  "specId": "046",
+  "folderSlug": "handover-anchor-naming",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "014-local-embeddings-migration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

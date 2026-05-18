@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-local-embeddings-foundation/054-code-folder-readmes"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/054-code-folder-readmes"
     last_updated_at: "2026-05-15T12:30:00Z"
     last_updated_by: "main_agent"
     recent_action: "Inventoried 8 target folders"
@@ -90,7 +90,7 @@ opencode run --model deepseek/deepseek-v4-pro --variant high --agent general --d
 python3 .opencode/skills/sk-doc/scripts/validate_document.py <path> --type readme
 python3 .opencode/skills/sk-doc/scripts/audit_readmes.py
 bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh \
-  .opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-local-embeddings-foundation/054-code-folder-readmes --strict
+  .opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/054-code-folder-readmes --strict
 ```
 
 ### Sonnet double-check (parallel)

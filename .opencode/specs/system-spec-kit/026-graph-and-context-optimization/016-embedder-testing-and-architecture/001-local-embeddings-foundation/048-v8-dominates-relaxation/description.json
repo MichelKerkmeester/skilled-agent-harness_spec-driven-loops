@@ -1,0 +1,25 @@
+{
+  "level": "2",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/048-v8-dominates-relaxation",
+  "description": "Relax V8 foreign-spec dominance detection for high-cross-reference docs and parent handovers while preserving strict generic-doc detection.",
+  "keywords": [
+    "v8",
+    "dominates",
+    "foreign-spec",
+    "handover",
+    "parent",
+    "allowlist",
+    "threshold",
+    "validator"
+  ],
+  "lastUpdated": "2026-05-14T17:16:00.000Z",
+  "specId": "047",
+  "folderSlug": "v8-dominates-relaxation",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "014-local-embeddings-migration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

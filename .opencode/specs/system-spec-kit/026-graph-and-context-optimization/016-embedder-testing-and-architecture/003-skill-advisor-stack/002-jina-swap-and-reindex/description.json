@@ -1,0 +1,12 @@
+{
+  "level": "1",
+  "specFolder": "002-jina-swap-and-reindex",
+  "description": "Skill-advisor jina-v3 activation + reindex",
+  "keywords": ["jina-swap", "reindex", "skill-graph", "skill-advisor"],
+  "lastUpdated": "2026-05-17T21:25:00.000Z",
+  "specId": "022-002",
+  "folderSlug": "jina-swap-and-reindex",
+  "parentChain": ["system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/003-skill-advisor-stack"],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}

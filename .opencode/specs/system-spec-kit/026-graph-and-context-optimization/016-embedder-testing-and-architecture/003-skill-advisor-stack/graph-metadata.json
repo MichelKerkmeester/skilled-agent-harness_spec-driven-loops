@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/003-skill-advisor-stack",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/003-skill-advisor-stack",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture",
+  "children_ids": [
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/003-skill-advisor-stack/001-pluggable-architecture",
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/003-skill-advisor-stack/002-jina-swap-and-reindex",
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/003-skill-advisor-stack/003-install-guide-docs",
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/003-skill-advisor-stack/004-skill-graph-db-writer-cross-wire"
+  ],
+  "manual": {
+    "depends_on": [
+      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-mk-spec-memory-stack/004-mxbai-swap-and-008-closure",
+      "system-spec-kit/026-graph-and-context-optimization/019-cocoindex-embedder-registry"
+    ],
+    "supersedes": [],
+    "related_to": [
+      "system-spec-kit/026-graph-and-context-optimization/021-skill-docs-alignment",
+      "system-spec-kit/026-graph-and-context-optimization/020-deep-review-016-019-stack"
+    ]
+  },
+  "derived": {
+    "trigger_phrases": [
+      "022 skill advisor embedder parity",
+      "skill-advisor jina swap",
+      "skill-advisor pluggable embedder"
+    ],
+    "key_topics": [
+      "022",
+      "skill-advisor",
+      "embedder",
+      "parity",
+      "jina",
+      "pluggable",
+      "auto-detect",
+      "vec-metadata"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "001-pluggable-architecture/spec.md",
+      "002-jina-swap-and-reindex/spec.md",
+      "003-install-guide-docs/spec.md"
+    ],
+    "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/003-skill-advisor-stack/004-skill-graph-db-writer-cross-wire",
+    "last_active_at": "2026-05-17T22:02:54.685Z",
+    "last_save_at": "2026-05-17T22:02:54.685Z"
+  }
+}

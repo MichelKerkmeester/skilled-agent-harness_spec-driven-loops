@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/038-embedding-error-propagation",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/038-embedding-error-propagation",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "038 embedding error propagation",
+      "embedding generation returned null bug",
+      "generateDocumentEmbedding catch swallow",
+      "retry-manager failure_reason masking",
+      "circuit breaker accounting fix",
+      "038 embedding error propagation plan",
+      "retry-manager failure_reason masking plan",
+      "circuit breaker accounting fix plan",
+      "038 embedding error propagation tasks",
+      "retry-manager failure_reason masking tasks",
+      "038 embedding error propagation summary",
+      "retry-manager failure_reason masking summary"
+    ],
+    "key_topics": [
+      "038",
+      "embedding",
+      "error",
+      "propagation",
+      "generation",
+      "returned",
+      "null",
+      "bug",
+      "generatedocumentembedding",
+      "catch",
+      "swallow",
+      "retry-manager"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/shared/embeddings.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts",
+      ".opencode/skills/system-spec-kit/scripts/evals/run-ablation.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/embeddings.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/retry-manager.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts",
+      "handlers/save/reconsolidation-bridge.ts",
+      "lib/search/pipeline/stage1-candidate-gen.ts",
+      "handlers/eval-reporting.ts",
+      "scripts/evals/run-ablation.ts",
+      "shared/embeddings.ts",
+      "tests/embeddings.vitest.ts",
+      "tests/retry-manager.vitest.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "embeddings.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/shared/embeddings.ts",
+        "source": "derived"
+      },
+      {
+        "name": "stage1-candidate-gen.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts",
+        "source": "derived"
+      },
+      {
+        "name": "eval-reporting.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts",
+        "source": "derived"
+      },
+      {
+        "name": "run-ablation.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/evals/run-ablation.ts",
+        "source": "derived"
+      },
+      {
+        "name": "embeddings.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/embeddings.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "retry-manager.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/retry-manager.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "reconsolidation-bridge.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Embedding Provider Error Propagation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Let",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Explicit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Contract Clarification",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Let real provider failures propagate to callers that already know how to record them, while keeping intentional degraded-null behavior at call sites that use null as a fallback signal.",
+    "created_at": "2026-05-14T14:31:45Z",
+    "last_save_at": "2026-05-14T15:06:22.190317Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ]
+  }
+}

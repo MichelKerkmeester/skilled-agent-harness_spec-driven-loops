@@ -1,0 +1,66 @@
+{
+  "reviewTarget": "ba6816a490b1a20d4f74135179c10096c5348921",
+  "reviewTargetType": "commit",
+  "reviewDimensions": [
+    "regression-risk",
+    "correctness-completeness",
+    "p1-group-1-coverage",
+    "p1-group-3-observability",
+    "p1-group-4-architecture",
+    "security",
+    "adversarial-residual"
+  ],
+  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/005-cross-cutting-quality/002-deep-review-stack/review-002-remediation",
+  "maxIterations": 7,
+  "convergenceThreshold": 0.10,
+  "convergenceRule": "early-stop on 3 consecutive iters with zero new P0+P1",
+  "executionMode": "auto",
+  "resource_map": { "emit": true },
+  "config": {
+    "executor": {
+      "type": "cli-devin",
+      "model": "swe-1.6",
+      "permissionMode": "auto",
+      "agentConfig": ".opencode/skills/cli-devin/assets/agent-config-deep-review-iter.json",
+      "timeoutSeconds": 900
+    }
+  },
+  "scopeManifest": {
+    "include": [
+      ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/schema.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/rerank/retrieval-rescue.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/registry.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/embedder-set.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/embedder-list.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/util/env.ts",
+      ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/config.py",
+      ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/registered_embedders.py",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/embedders/deep-review-remediation.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/search/deep-review-remediation.vitest.ts",
+      ".opencode/skills/mcp-coco-index/mcp_server/tests/test_config.py"
+    ],
+    "exclude": [
+      "**/node_modules/**",
+      "**/.venv/**",
+      "**/dist/**",
+      "**/z_archive/**"
+    ]
+  },
+  "perIterAngle": {
+    "1": "regression-risk — schema.ts tx-wrap claim vs actual diff (no BEGIN/COMMIT), P0-C cap-removal score-distribution side-effects, public export of vecTableNameForDim, deleted local tableNameForDim callers",
+    "2": "correctness-completeness — 3 P0 fixes: are they semantically complete? Commit msg says 'INSERT-OR-IGNORE binds caller args + tx wrap' but diff shows no transaction wrapping; P0-C cap raise to 1.0 — clamp upstream verified?; P0-B docType normalization tweak — any other docType string-equality compares that share the same root cause?",
+    "3": "P1-Group-1 completeness — were ALL input-validation gaps closed across config.py / handlers / reindex? Are there sibling files (embedder-status.ts, adapter.ts, registered_embedders.py) with similar gaps still open? parseBoundedEnv helper coverage check",
+    "4": "P1-Group-3 observability — are the audit/error/rescue-telemetry logs structured + greppable? Any sensitive data leaked (embedder names with secrets, db paths, env values)? Are log levels appropriate (debug for telemetry, info for swap, error for failure)?",
+    "5": "P1-Group-4 architecture — registry.ts llama-cpp gate removal: any callers depending on the removed throw? Manifest-name parity broken? tableNameForDim dedupe in reindex.ts → vecTableNameForDim re-export from schema.ts: any orphan callers in other modules?",
+    "6": "security — parseBoundedEnv env-var validation: any injection vectors via integer overflow / NaN / Infinity? logger calls: any format-string risks (printf-style injection)? Python _resolve_device allowlist: complete vs PyTorch backend names? config.py warnings: log injection via env values?",
+    "7": "adversarial-residual — explicitly hunt for things iter 1-6 missed; if all clear, look for new P0/P1 in same files; check the 7 new vitest cases for false-positive coverage (do they actually exercise the bug, or just exercise the happy path?)"
+  },
+  "knownContext": {
+    "priorReview": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/005-cross-cutting-quality/002-deep-review-stack/review/review-report.md",
+    "commitMsgVsCodeDelta": "commit msg claims 'tx wrap' for P0-A but diff shows only binding correction — no BEGIN/COMMIT statements added; this gap is the seed observation for iter 2"
+  },
+  "createdAt": "2026-05-17T22:30:00Z",
+  "createdBy": "main_agent (Claude Opus 4.7 1M) + /spec_kit:deep-review:auto loop-manager"
+}

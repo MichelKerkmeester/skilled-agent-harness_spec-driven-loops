@@ -9,8 +9,8 @@
     "supersedes": [],
     "related_to": [
       "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-code-folder-readmes",
-      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-local-embeddings-foundation/054-code-folder-readmes",
-      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-local-embeddings-foundation/055-root-readme-realignment"
+      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/054-code-folder-readmes",
+      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/055-root-readme-realignment"
     ]
   },
   "derived": {

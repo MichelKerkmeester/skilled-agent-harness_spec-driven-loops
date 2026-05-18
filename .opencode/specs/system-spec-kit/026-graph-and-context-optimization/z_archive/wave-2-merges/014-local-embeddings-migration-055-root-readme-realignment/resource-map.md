@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-local-embeddings-foundation/055-root-readme-realignment"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/055-root-readme-realignment"
     last_updated_at: "2026-05-15T12:55:00Z"
     last_updated_by: "main_agent"
     recent_action: "Inventoried input files + assets"
@@ -90,7 +90,7 @@ Agent({ subagent_type: 'markdown', prompt: '...verified delta + scope directive 
 
 ```bash
 bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh \
-  .opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-local-embeddings-foundation/055-root-readme-realignment --strict
+  .opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/055-root-readme-realignment --strict
 git diff README.md  # inspect surgical-edit discipline
 ```
 <!-- /ANCHOR:execution-paths -->

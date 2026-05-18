@@ -1,0 +1,38 @@
+{
+  "title": "040 V-rule cross-spec overreach fix",
+  "schema_version": 1,
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/041-v-rule-cross-spec-overreach",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/041-v-rule-cross-spec-overreach",
+  "summary": "Fix V8 cross-spec contamination overreach so ADR-like docs, metric labels, nested child packets, and actual current packet paths are classified correctly.",
+  "tags": [
+    "memory-quality",
+    "v8",
+    "cross-spec-contamination",
+    "adr",
+    "nested-packets"
+  ],
+  "is_phase_parent": false,
+  "created_at": "2026-05-14T00:00:00Z",
+  "updated_at": "2026-05-14T15:37:00Z",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/041-v-rule-cross-spec-overreach",
+  "description": "040 - V-rule Cross-spec Overreach Fix",
+  "keywords": [
+    "040",
+    "v-rule",
+    "V8",
+    "cross-spec",
+    "ADR",
+    "decision-record",
+    "spec-folder"
+  ],
+  "lastUpdated": "2026-05-14T15:37:00Z",
+  "specId": "040",
+  "folderSlug": "v-rule-cross-spec-overreach",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "014-local-embeddings-migration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

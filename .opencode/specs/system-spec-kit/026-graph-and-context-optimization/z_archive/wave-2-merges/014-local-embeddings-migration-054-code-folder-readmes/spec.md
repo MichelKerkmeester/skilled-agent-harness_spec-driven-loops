@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-local-embeddings-foundation/054-code-folder-readmes"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/054-code-folder-readmes"
     last_updated_at: "2026-05-15T12:30:00Z"
     last_updated_by: "main_agent"
     recent_action: "Scaffolded Phase C packet after scope-discovery reduction"
@@ -52,7 +52,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-05-15 |
 | **Branch** | `main` |
-| **Parent** | `system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-local-embeddings-foundation` |
+| **Parent** | `system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation` |
 | **Phase** | C of 4 |
 | **Predecessors** | `007-code-graph/017-code-folder-readmes` (Phase A), `008-skill-advisor/002-code-folder-readmes` (Phase B) |
 | **Successor** | `014-local-embeddings-migration/055-root-readme-realignment` (Phase D) |
