@@ -79,5 +79,5 @@ If the OS has reused the recorded PID for another live process, the launcher tre
 
 - `.opencode/bin/mk-spec-memory-launcher.cjs` owns the inline PID-file primitive.
 - `.opencode/skills/system-spec-kit/references/memory/memory_system.md` documents spec-memory storage behavior.
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-cross-launcher-lease-propagation/spec.md` defines the propagation packet.
+- Internal design notes define the propagation contract.
 <!-- /ANCHOR:5-related -->

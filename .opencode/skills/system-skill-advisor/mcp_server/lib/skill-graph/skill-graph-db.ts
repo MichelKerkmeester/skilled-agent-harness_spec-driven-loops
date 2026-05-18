@@ -141,6 +141,16 @@ const WEIGHT_BANDS: Readonly<Record<SkillEdgeType, readonly [number, number]>> =
   conflicts_with: [0.5, 1.0],
 } as const;
 
+function isWalFallbackError(error: unknown): boolean {
+  const code = (error as { code?: string }).code ?? '';
+  // better-sqlite3/libsqlite3 on SQLite 3.x may surface base or extended result codes.
+  return /^(?:SQLITE_READONLY|SQLITE_CANTOPEN|SQLITE_IOERR)(?:_|$)/.test(code)
+    || code === 'EACCES'
+    || code === 'EROFS'
+    || code === 'EPERM'
+    || code === 'ENOSPC';
+}
+
 // ───────────────────────────────────────────────────────────────
 // 3. SCHEMA
 // ───────────────────────────────────────────────────────────────
@@ -289,13 +299,7 @@ export function initDb(dbDir: string): Database.Database {
       db.pragma('journal_mode = WAL');
     } catch (error: unknown) {
       const code = (error as { code?: string }).code ?? '';
-      if (
-        code === 'EACCES' ||
-        code === 'EROFS' ||
-        code === 'SQLITE_READONLY' ||
-        code === 'SQLITE_CANTOPEN' ||
-        code === 'SQLITE_IOERR_WRITE'
-      ) {
+      if (isWalFallbackError(error)) {
         console.warn(`[skill-graph] WAL mode unavailable (${code}); falling back to journal_mode=DELETE. Concurrent readers may stall during writes; performance degraded vs WAL mode.`);
         db.pragma('journal_mode = DELETE');
       } else {

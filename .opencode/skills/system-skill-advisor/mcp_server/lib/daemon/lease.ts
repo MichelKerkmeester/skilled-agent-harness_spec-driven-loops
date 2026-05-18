@@ -50,22 +50,37 @@ export interface SkillGraphLease {
 
 const DEFAULT_STALE_AFTER_MS = 30_000;
 const DEFAULT_HEARTBEAT_MS = 5_000;
-const LEASE_RELATIVE_PATH = join('.opencode', 'skills', '.advisor-state', 'skill-graph-daemon-lease.sqlite');
+const LEASE_DB_FILENAME = 'skill-graph-daemon-lease.sqlite';
 
 interface OpenLeaseDatabaseOptions {
   readonly readonly?: boolean;
 }
 
+function resolveSkillAdvisorDbDir(workspaceRoot: string): string {
+  const overrideDbDir = process.env.MK_SKILL_ADVISOR_DB_DIR ?? process.env.SYSTEM_SKILL_ADVISOR_DB_DIR;
+  if (overrideDbDir) {
+    return resolve(overrideDbDir);
+  }
+  return join(
+    resolve(workspaceRoot),
+    '.opencode',
+    'skills',
+    'system-skill-advisor',
+    'mcp_server',
+    'database',
+  );
+}
+
 function defaultLeaseDbPath(workspaceRoot: string): string {
-  return join(resolve(workspaceRoot), LEASE_RELATIVE_PATH);
+  return join(resolveSkillAdvisorDbDir(workspaceRoot), LEASE_DB_FILENAME);
 }
 
 function resolveLeaseDbPath(workspaceRoot: string, leaseDbPath?: string): string {
   return leaseDbPath ?? defaultLeaseDbPath(workspaceRoot);
 }
 
-function workspaceKey(workspaceRoot: string): string {
-  return resolve(workspaceRoot);
+function workspaceKey(workspaceRoot: string, leaseDbPath?: string): string {
+  return dirname(resolveLeaseDbPath(workspaceRoot, leaseDbPath));
 }
 
 function createOwnerId(): string {
@@ -115,7 +130,7 @@ export function readLeaseSnapshot(
       SELECT workspace_key, owner_id, pid, acquired_at, heartbeat_at
       FROM skill_graph_daemon_lease
       WHERE workspace_key = ?
-    `).get(workspaceKey(workspaceRoot)) as {
+    `).get(workspaceKey(workspaceRoot, options.leaseDbPath)) as {
       workspace_key: string;
       owner_id: string;
       pid: number;
@@ -173,7 +188,7 @@ export function isLeaseHeld(
 }
 
 export function acquireSkillGraphLease(options: LeaseOptions): SkillGraphLease {
-  const workspace = workspaceKey(options.workspaceRoot);
+  const workspace = workspaceKey(options.workspaceRoot, options.leaseDbPath);
   const ownerId = options.ownerId ?? createOwnerId();
   const staleAfterMs = options.staleAfterMs ?? DEFAULT_STALE_AFTER_MS;
   const heartbeatMs = options.heartbeatMs ?? DEFAULT_HEARTBEAT_MS;

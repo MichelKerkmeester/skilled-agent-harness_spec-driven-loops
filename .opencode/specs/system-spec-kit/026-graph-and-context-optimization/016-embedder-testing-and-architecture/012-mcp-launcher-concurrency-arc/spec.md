@@ -1,6 +1,6 @@
 ---
 title: "MCP Launcher Concurrency Arc — Phase Parent"
-description: "Umbrella for the 4-phase arc that delivered single-writer lease enforcement at the launcher boundary across all 3 MCP launchers (skill-advisor, code-graph, spec-memory), plus the review-driven hardening that followed."
+description: "Umbrella for the 5-phase arc that delivered single-writer lease enforcement at the launcher boundary across all 3 MCP launchers (skill-advisor, code-graph, spec-memory), plus the review-driven hardening that followed."
 trigger_phrases:
   - "mcp launcher concurrency arc"
   - "launcher lease arc"
@@ -8,6 +8,20 @@ trigger_phrases:
   - "daemon corruption arc"
 importance_tier: "important"
 contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/012-mcp-launcher-concurrency-arc"
+    last_updated_at: "2026-05-18T00:00:00Z"
+    last_updated_by: "main_agent"
+    recent_action: "Added Phase 005 remediation traceability"
+    next_safe_action: "Validate arc parent and child packet"
+    blockers: []
+    key_files:
+      - "001-concurrent-daemon-corruption-fix/spec.md"
+      - "002-cross-launcher-lease-propagation/spec.md"
+      - "003-launcher-race-and-error-surface-hardening/spec.md"
+      - "004-launcher-diagnostics-and-signal-coverage/spec.md"
+      - "005-lease-correctness-and-arc-traceability/spec.md"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-phase-parent | v2.2 -->
 # MCP Launcher Concurrency Arc
@@ -30,7 +44,7 @@ contextType: "general"
 
 The three MCP launchers (`mk-skill-advisor-launcher.cjs`, `mk-code-index-launcher.cjs`, `mk-spec-memory-launcher.cjs`) all shared the same architectural smell: nothing prevented multiple launcher instances from running concurrently in the same workspace. Skill-advisor's SQLite quarantine path turned that smell into a visible failure (1005 `.corrupt` files in 6 hours during a benchmark run). Code-graph and spec-memory absorbed the race silently because their WAL + busy_timeout settings happened to be compatible, but the same code-path could have failed under different conditions.
 
-This arc fixes the smell at its source — single-writer enforcement at the launcher process boundary — and propagates the fix uniformly across all 3 launchers. The 4 phases were sized to keep each commit focused on one decision class.
+This arc fixes the smell at its source — single-writer enforcement at the launcher process boundary — and propagates the fix uniformly across all 3 launchers. The 5 phases were sized to keep each commit focused on one decision class.
 <!-- /ANCHOR:root-purpose -->
 
 ---
@@ -44,7 +58,19 @@ This arc fixes the smell at its source — single-writer enforcement at the laun
 | 002 | `002-cross-launcher-lease-propagation/` | Complete | Inline PID-file primitive mirrored into `mk-code-index-launcher.cjs` and `mk-spec-memory-launcher.cjs`. New `references/launcher-lease.md` for each skill. Spec-memory's launcher additionally forwards SIGTERM to its `context-server.js` child. |
 | 003 | `003-launcher-race-and-error-surface-hardening/` | Complete | Closes 9 P1 findings from a 3-reviewer parallel audit of 001+002: race-window correctness (re-probe after write, SIGTERM `child.once('exit')` handler, env-var parsing parity), error-surface correctness (EPERM → `held: true`, pragma ordering swap, broadened EACCES predicate to include `SqliteError(code='SQLITE_READONLY')`), and test-isolation hygiene (stdout-close gate before exit assert, host env strip, new skill-advisor subprocess test). |
 | 004 | `004-launcher-diagnostics-and-signal-coverage/` | Complete | Closes all 14 P2 findings from the same audit: PID-reuse diagnostics (`startedAt=<iso>` in `LEASE_HELD_BY:` line), SIGQUIT + uncaughtException cleanup hooks, readonly-probe path in `isLeaseHeld()`, `checkSqliteIntegrity` busy_timeout, code-index `stateFile` collision removal, DELETE-mode warn expansion, `MK_*_DB_DIR` override constraint documented, plus 6 test-hygiene fixes. Strict spec validate reaches 0/0 (errors/warnings) for the first time in the arc. |
+| 005 | `005-lease-correctness-and-arc-traceability/` | Complete | Closes 13 P1 findings from the 29-iteration deep review: child status drift, strict-validate evidence, central invariants, REQ/test traceability, skill-advisor coverage gaps, resolved-DB-dir lease ownership, widened SQLite WAL fallback matching, and unconditional lease cleanup. |
 <!-- /ANCHOR:phase-map -->
+
+---
+
+## Cross-Cutting Invariants
+
+Future maintainers MUST preserve these across all 3 launchers (skill-advisor / code-graph / spec-memory):
+
+1. **Single-writer lease at launcher boundary.** Each launcher writes its PID file via atomic temp+rename and only proceeds if no live owner exists.
+2. **SQLite WAL + busy_timeout ≥ 5000ms.** All three DB-open paths (handler boot, watcher refresh, rebuild-from-source) set both pragmas. WAL→DELETE fallback only on documented filesystem errors.
+3. **Signal-handler parity.** SIGTERM, SIGINT, SIGQUIT, and uncaughtException all clear the lease file before exit, in all 3 launchers.
+4. **Lease cleanup is unconditional.** clearLeaseFile() runs whether the child exited cleanly, was killed, or hung past SIGKILL grace.
 
 ---
 

@@ -45,7 +45,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-05-18 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
@@ -144,7 +144,7 @@ Close the 9 P1s in one focused pass so the lease enforcement contract holds unde
 | REQ-006 | EACCES catch broadened | Catch matches `EACCES`, `EROFS`, `SQLITE_READONLY`, `SQLITE_CANTOPEN`, `SQLITE_IOERR_WRITE` and falls back to `journal_mode = DELETE`. |
 | REQ-007 | Spawn-twice tests gate on stdout 'close' before asserting exit | Both 007 test files wait for stdout buffer to flush before checking `exit.code === 0` AND `stdout.includes('LEASE_HELD_BY:')`. |
 | REQ-008 | Host env vars stripped in tests | `spawnLauncher` helpers explicitly delete `MK_SKILL_ADVISOR_STRICT_SINGLE_WRITER`, `MK_CODE_INDEX_STRICT_SINGLE_WRITER`, `MK_SPEC_MEMORY_STRICT_SINGLE_WRITER` from baseline env before merging test-specific env. |
-| REQ-009 | Skill-advisor subprocess spawn-twice test exists | New `system-skill-advisor/mcp_server/tests/launcher-lease.vitest.ts` carries 3 cases mirroring 007: spawn-twice exit-0 + dead-PID reclaim + env-var disable. |
+| REQ-009 | Skill-advisor subprocess launcher-lease coverage exists | `system-skill-advisor/mcp_server/tests/launcher-lease.vitest.ts` carries the 6-case launcher lease matrix: spawn-twice exit-0, `startedAt` reporting, dead-PID reclaim, clean-exit PID cleanup, SIGQUIT PID cleanup, and env-disable sibling boot. Phase 005 adds resolved-DB-dir override coverage on top of this baseline. |
 
 ### P1 - Required (complete OR user-approved deferral)
 

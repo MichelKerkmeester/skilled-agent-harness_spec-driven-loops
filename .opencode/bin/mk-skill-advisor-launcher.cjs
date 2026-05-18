@@ -116,11 +116,14 @@ function exists(p) {
 }
 
 function advisorDbPath() {
+  return path.join(resolvedAdvisorDbDir(), 'skill-graph.sqlite');
+}
+
+function resolvedAdvisorDbDir() {
   const overrideDbDir = process.env.MK_SKILL_ADVISOR_DB_DIR ?? process.env.SYSTEM_SKILL_ADVISOR_DB_DIR;
-  const resolvedDbDir = overrideDbDir
+  return overrideDbDir
     ? path.resolve(overrideDbDir)
-    : dbDir;
-  return path.join(resolvedDbDir, 'skill-graph.sqlite');
+    : path.resolve(dbDir);
 }
 
 function writeState(payload) {
@@ -129,11 +132,7 @@ function writeState(payload) {
 }
 
 function leasePath() {
-  const overrideDbDir = process.env.MK_SKILL_ADVISOR_DB_DIR ?? process.env.SYSTEM_SKILL_ADVISOR_DB_DIR;
-  const resolvedDbDir = overrideDbDir
-    ? path.resolve(overrideDbDir)
-    : dbDir;
-  return path.join(resolvedDbDir, '.mk-skill-advisor-launcher.json');
+  return path.join(resolvedAdvisorDbDir(), '.mk-skill-advisor-launcher.json');
 }
 
 function readLeaseFile() {
@@ -324,6 +323,9 @@ function installSignalHandlers() {
         });
         childProcess.kill(signal);
         setTimeout(() => {
+          if (childProcess && childProcess.exitCode === null && childProcess.signalCode === null) {
+            childProcess.kill('SIGKILL');
+          }
           clearLeaseFile();
           process.exit(128);
         }, 5000).unref();
@@ -350,6 +352,8 @@ async function main() {
 
   try {
     installSignalHandlers();
+    // REQ-011: lease cleanup runs unconditionally regardless of child termination path.
+    process.on('exit', clearLeaseFile);
     refreshPaths();
     log(`DB: ${advisorDbPath()}`);
 

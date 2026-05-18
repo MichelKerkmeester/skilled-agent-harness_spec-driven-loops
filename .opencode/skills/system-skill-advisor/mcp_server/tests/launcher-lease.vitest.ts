@@ -207,6 +207,8 @@ describe('mk-skill-advisor launcher lease', () => {
     delete baseEnv.MK_SKILL_ADVISOR_STRICT_SINGLE_WRITER;
     delete baseEnv.MK_CODE_INDEX_STRICT_SINGLE_WRITER;
     delete baseEnv.MK_SPEC_MEMORY_STRICT_SINGLE_WRITER;
+    delete baseEnv.MK_SKILL_ADVISOR_DB_DIR;
+    delete baseEnv.SYSTEM_SKILL_ADVISOR_DB_DIR;
 
     const run: LauncherRun = {
       child: spawn(process.execPath, [workspace.launcherPath], {
@@ -262,7 +264,8 @@ describe('mk-skill-advisor launcher lease', () => {
     }
   });
 
-  it('exits with LEASE_HELD_BY when a live owner exists', async () => {
+  // REQ-001: duplicate launcher exits before opening SQLite.
+  it('REQ-001: spawning launcher #2 while #1 is alive exits 0 with LEASE_HELD_BY', async () => {
     const workspace = createWorkspace();
     spawnLauncher(workspace);
     const ownerPid = await waitForLeaseOwner(workspace);
@@ -276,6 +279,7 @@ describe('mk-skill-advisor launcher lease', () => {
     expect(second.stdout).toMatch(new RegExp(`^LEASE_HELD_BY:${ownerPid} startedAt=\\d{4}-\\d{2}-\\d{2}T`, 'm'));
   });
 
+  // REQ-010: live-owner diagnostics include the recorded startedAt value.
   it('reports the lease startedAt value for a live owner', async () => {
     const workspace = createWorkspace();
     const holder = await createLivePid();
@@ -301,6 +305,24 @@ describe('mk-skill-advisor launcher lease', () => {
     }
   });
 
+  // REQ-012: different workspaces sharing one resolved DB directory share one lease.
+  it('uses the resolved DB directory as the launcher lease boundary', async () => {
+    const firstWorkspace = createWorkspace();
+    const secondWorkspace = createWorkspace();
+    secondWorkspace.dbDir = firstWorkspace.dbDir;
+    secondWorkspace.leaseFilePath = firstWorkspace.leaseFilePath;
+    spawnLauncher(firstWorkspace);
+    const ownerPid = await waitForLeaseOwner(firstWorkspace);
+
+    const second = spawnLauncher(secondWorkspace);
+    await waitForStdoutClose(second);
+    const exit = await waitForExit(second.child, 8000);
+
+    expect(exit.code).toBe(0);
+    expect(second.stdout).toContain(`LEASE_HELD_BY:${ownerPid}`);
+  });
+
+  // REQ-004: dead-PID lease files are reclaimable.
   it('reclaims a dead-pid lease file and logs staleReclaimed', async () => {
     const workspace = createWorkspace();
     const deadPid = await createDeadPid();
@@ -321,6 +343,7 @@ describe('mk-skill-advisor launcher lease', () => {
     expect(existsSync(workspace.leaseFilePath)).toBe(true);
   });
 
+  // REQ-003: clean child exit removes the lease file.
   it('removes the PID file on clean exit', async () => {
     const workspace = createWorkspace();
     const run = spawnLauncher(workspace);
@@ -332,6 +355,7 @@ describe('mk-skill-advisor launcher lease', () => {
     expect(existsSync(workspace.leaseFilePath)).toBe(false);
   });
 
+  // REQ-002 / REQ-011: SIGQUIT follows the same lease cleanup path.
   it('removes the PID file on SIGQUIT', async () => {
     const workspace = createWorkspace();
     const run = spawnLauncher(workspace);
@@ -343,6 +367,7 @@ describe('mk-skill-advisor launcher lease', () => {
     expect(existsSync(workspace.leaseFilePath)).toBe(false);
   });
 
+  // REQ-005: strict single-writer can be disabled for intentional parallel runs.
   it('boots a sibling when strict single-writer is disabled', async () => {
     const workspace = createWorkspace();
     spawnLauncher(workspace);

@@ -79,5 +79,5 @@ If the OS has reused the recorded PID for another live process, the launcher tre
 
 - `.opencode/bin/mk-code-index-launcher.cjs` owns the inline PID-file primitive.
 - `.opencode/skills/system-code-graph/references/database-path-policy.md` documents the code-graph database directory.
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-cross-launcher-lease-propagation/spec.md` defines the propagation packet.
+- Internal design notes define the propagation contract.
 <!-- /ANCHOR:5-related -->

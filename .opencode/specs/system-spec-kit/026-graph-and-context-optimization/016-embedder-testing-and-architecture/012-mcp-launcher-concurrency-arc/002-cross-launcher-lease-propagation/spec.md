@@ -45,7 +45,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P2 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-05-18 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
@@ -168,7 +168,7 @@ Each of the two launchers becomes single-writer at the process boundary, mirrori
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
 | Risk | Duplicate dev-workflow breakage | Med | Env-var gate `MK_*_STRICT_SINGLE_WRITER=0` lets devs run parallel launchers intentionally for testing. |
-| Risk | PID-file write race (two launchers start within milliseconds) | Low | The bootstrap lock (already in place) absorbs short windows. Lease check happens after the bootstrap lock so only one launcher writes the PID file at a time. |
+| Risk | PID-file write race (two launchers start within milliseconds) | Low | Race protection is provided by the atomic temp-file+rename in writeLeaseFile(), NOT by bootstrap-lock ordering. Lease check is intentionally before the bootstrap lock; the re-probe after lock acquisition closes the residual race window. |
 | Risk | PID-file cleanup misses on SIGKILL | Med | Stale-PID reclaim handles this — next launcher sees the dead PID and overwrites. |
 | Dependency | None | n/a | n/a |
 <!-- /ANCHOR:risks -->

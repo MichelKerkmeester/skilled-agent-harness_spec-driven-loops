@@ -122,8 +122,12 @@ function writeState(payload) {
   fs.writeFileSync(stateFile, `${JSON.stringify(payload, null, 2)}\n`);
 }
 
+function resolvedDbDir() {
+  return path.resolve(process.env.SPECKIT_CODE_GRAPH_DB_DIR ?? dbDir);
+}
+
 function leasePath() {
-  return path.join(dbDir, PID_FILE_NAME);
+  return path.join(resolvedDbDir(), PID_FILE_NAME);
 }
 
 function readLeaseFile() {
@@ -151,7 +155,7 @@ function isLeaseHeld() {
 }
 
 function writeLeaseFile() {
-  fs.mkdirSync(dbDir, { recursive: true });
+  fs.mkdirSync(path.dirname(leasePath()), { recursive: true });
   const tmp = leasePath() + '.tmp.' + process.pid;
   fs.writeFileSync(tmp, JSON.stringify({ pid: process.pid, startedAt: new Date().toISOString() }, null, 2));
   fs.renameSync(tmp, leasePath());
@@ -304,7 +308,7 @@ async function acquireBootstrapLock() {
 function launchServer() {
   // Set DB dir for the child process (operator-set env var wins).
   if (!process.env.SPECKIT_CODE_GRAPH_DB_DIR) {
-    process.env.SPECKIT_CODE_GRAPH_DB_DIR = dbDir;
+    process.env.SPECKIT_CODE_GRAPH_DB_DIR = resolvedDbDir();
   }
 
   const server = path.join(kitDir, 'mcp_server', 'dist', 'index.js');
@@ -332,8 +336,15 @@ function installSignalHandlers() {
   for (const signal of ['SIGINT', 'SIGTERM', 'SIGHUP', 'SIGQUIT']) {
     process.on(signal, () => {
       if (childProcess && !childProcess.killed) {
+        childProcess.once('exit', () => {
+          clearLeaseFile();
+          process.exit(128);
+        });
         childProcess.kill(signal);
         setTimeout(() => {
+          if (childProcess && childProcess.exitCode === null && childProcess.signalCode === null) {
+            childProcess.kill('SIGKILL');
+          }
           clearLeaseFile();
           process.exit(128);
         }, 5000).unref();
@@ -360,6 +371,8 @@ function installSignalHandlers() {
 
   try {
     installSignalHandlers();
+    // REQ-011: lease cleanup runs unconditionally regardless of child termination path.
+    process.on('exit', clearLeaseFile);
     refreshPaths();
     ensureLayout(actions);
     refreshPaths();
@@ -416,9 +429,6 @@ function installSignalHandlers() {
       process.stdout.write(`LEASE_HELD_BY:${reprobe ? reprobe.pid : 'unknown'} startedAt=${startedAt}\n`);
       process.exit(0);
     }
-    const onExit = () => clearLeaseFile();
-    process.on('exit', onExit);
-
     launchServer();
   } catch (error) {
     log(`failed: ${JSON.stringify({ start: started, end: now(), actions, error: error.message })}`);

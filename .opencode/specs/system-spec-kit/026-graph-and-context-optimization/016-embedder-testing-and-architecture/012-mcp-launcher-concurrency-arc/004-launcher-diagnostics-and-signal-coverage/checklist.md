@@ -107,6 +107,8 @@ _memory:
   - **Evidence**: Strict single-writer disabled variants remain covered in all 3 suites.
 - [x] CHK-FIX-007 [P1] Evidence pinned to explicit commands
   - **Evidence**: Implementation summary and changelog list concrete command transcripts.
+- [x] CHK-FIX-008 [P1] Strict validate evidence captured
+  - **Evidence**: Phase 005 reran `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/012-mcp-launcher-concurrency-arc/004-launcher-diagnostics-and-signal-coverage --strict`; output recorded `Summary: Errors: 0  Warnings: 0` and `RESULT: PASSED`.
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -159,4 +161,3 @@ _memory:
 
 **Verification Date**: 2026-05-18
 <!-- /ANCHOR:summary -->
-
