@@ -175,3 +175,46 @@ A single skill-advisor daemon owns the SQLite file at any time. Sibling launcher
 - Should `process.exit(0)` (graceful, looks-like-success) or `process.exit(1)` (signals "not me") be used when the lease is held? Lean `exit(0)` so MCP-config retry loops don't restart-storm.
 - Does the watcher inside the winning daemon also benefit from WAL, or does it only read? Verify whether the watcher writes during freshness updates.
 <!-- /ANCHOR:questions -->
+
+---
+
+<!-- ANCHOR:nfr -->
+## 8. NON-FUNCTIONAL REQUIREMENTS
+
+| NFR | Target | How Verified |
+|-----|--------|--------------|
+| Launcher-exit latency on lease-held | <2 seconds from spawn to exit code 0 | vitest timing assertion |
+| Zero false-positive on liveness probe | `kill -0` only; no other signals issued | code grep + review |
+| Backward compat with existing tests | All current advisor/daemon/skill-graph suites green | `vitest --run` summary |
+| WAL fallback for read-only filesystems | EACCES on WAL switch → `journal_mode=DELETE` with logged warning | mocked test or manual verify |
+| Soak result reproducibility | Zero `.corrupt` files over 24h with benchmark load | `find -name '*.corrupt'` after soak |
+<!-- /ANCHOR:nfr -->
+
+---
+
+<!-- ANCHOR:edge-cases -->
+## 9. EDGE CASES
+
+- **Stale PID in lease file.** `.mk-skill-advisor-launcher.json` lists a PID whose process is gone. → New launcher reclaims and logs `staleReclaimed: true`.
+- **PID reuse collision.** OS recycles the recorded PID to an unrelated process (rare on macOS due to PID-space size). → `kill -0` returns success, new launcher exits silently. Acceptable false-negative; operator can `rm` the lease file to recover.
+- **Lease file missing entirely.** No `.mk-skill-advisor-launcher.json`. → New launcher claims fresh, no exit.
+- **Lease file corrupt JSON.** → New launcher reclaims as if stale, logs `staleReclaimed: true` with reason `corrupt-lease-file`.
+- **Concurrent spawn race.** Two launchers spawn within 100ms of each other; both see no owner. → SQLite-level lock via the new WAL+busy_timeout absorbs the race for short windows; lease primitive must use atomic file write (already does per existing `lease.ts`).
+- **Read-only `database/` directory** (CI sandbox). → WAL switch falls back to `journal_mode=DELETE` with warning. Test pass.
+- **Symlink in DB path.** Launcher's standalone-storage guard already rejects external absolute paths; symlinks within workspace OK.
+<!-- /ANCHOR:edge-cases -->
+
+---
+
+<!-- ANCHOR:complexity -->
+## 10. COMPLEXITY
+
+| Dimension | Score | Rationale |
+|-----------|------:|-----------|
+| Lines of code | 80–150 | Launcher CJS edit + 1 lib helper + pragma in DB-open + 1 vitest case |
+| Files touched | 5–6 | launcher.cjs, lease.ts, lifecycle.ts, skill-graph-db.ts, daemon-lease-contract.md, launcher-bootstrap.vitest.ts |
+| Cross-skill blast radius | Low | All edits inside `.opencode/skills/system-skill-advisor/`; no spec-kit / code-graph touches |
+| Test surface | Medium | New spawn-twice test + WAL assertion + soak script |
+| Reviewer hours | 1–2 | Single reviewer pass; logic is local and well-scoped |
+| Risk of regression | Low | Lease primitive already tested; only its enforcement scope widens |
+<!-- /ANCHOR:complexity -->

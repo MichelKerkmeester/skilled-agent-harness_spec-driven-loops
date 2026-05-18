@@ -1,143 +1,129 @@
 ---
-title: "Verification Checklist: Add User Authentication [template:examples/level_2/checklist.md]"
-description: "verification evidence. Each item marked [x] includes evidence of completion. -->"
+title: "Verification Checklist: Concurrent Daemon Corruption Fix"
+description: "P0/P1/P2 verification evidence for the launcher-boundary single-writer lease + WAL/busy_timeout fix in skill-advisor."
 trigger_phrases:
-  - "verification"
-  - "checklist"
-  - "add"
-  - "user"
-  - "authentication"
-  - "template"
+  - "checklist 008/006"
+  - "concurrent daemon corruption checklist"
+  - "skill-advisor lease verification"
 importance_tier: "normal"
 contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/006-concurrent-daemon-corruption-fix"
+    last_updated_at: "2026-05-18T05:05:00Z"
+    last_updated_by: "main_agent"
+    recent_action: "Authored P0/P1/P2 checklist with FIX COMPLETENESS section"
+    next_safe_action: "Dispatch cli-devin SWE-1.6 RCAF for implementation"
+    blockers: []
+    key_files:
+      - "spec.md"
+      - "plan.md"
+      - "tasks.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "scaffold-006-concurrent-daemon-corruption-fix"
+      parent_session_id: null
+    completion_pct: 10
+    open_questions: []
+    answered_questions: []
 ---
-# Verification Checklist: Add User Authentication
+# Verification Checklist: Concurrent Daemon Corruption Fix
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->
 
-<!-- EXAMPLE: This is a filled-in Level 2 checklist demonstrating how to document
-verification evidence. Each item marked [x] includes evidence of completion. -->
-
 ---
 
 <!-- ANCHOR:protocol -->
-## Verification Protocol
+## 1. VERIFICATION PROTOCOL
 
 | Priority | Handling | Completion Impact |
 |----------|----------|-------------------|
 | **[P0]** | HARD BLOCKER | Cannot claim done until complete |
 | **[P1]** | Required | Must complete OR get user approval |
-| **[P2]** | Optional | Can defer with documented reason |
+| **[P2]** | Strongly recommended | Document if deferred |
 
-
+Every checked item must include evidence: command output, file path, log line, or test name.
 <!-- /ANCHOR:protocol -->
+
 ---
 
 <!-- ANCHOR:pre-impl -->
-## Pre-Implementation
+## 2. PRE-IMPLEMENTATION
 
-- [x] CHK-001 [P0] Requirements documented in spec.md
-  - **Evidence**: spec.md created with 7 sections, all requirements listed
-- [x] CHK-002 [P0] Technical approach defined in plan.md
-  - **Evidence**: plan.md includes architecture, phases, and dependencies
-- [x] CHK-003 [P1] Dependencies identified and available
-  - **Evidence**: bcrypt@5.1.1, jsonwebtoken@9.0.0, express-validator@7.0.1 installed
-
-
+- [ ] **[CHK-001] [P0] Spec read and root cause confirmed.** spec.md §2 PROBLEM & PURPOSE matches the field-observed pattern: 1005 .corrupt files in 6h from 3 concurrent daemons.
+- [ ] **[CHK-002] [P0] Lease primitive verified intact.** `lib/daemon/lease.ts` `acquireSkillGraphLease()` returns `{acquired, ownerId, result}` and is reusable from launcher context.
+- [ ] **[CHK-003] [P1] Test fixtures available.** `tests/launcher-bootstrap.vitest.ts` exists with at least one launcher spawn-and-exit case.
 <!-- /ANCHOR:pre-impl -->
+
 ---
 
 <!-- ANCHOR:code-quality -->
-## Code Quality
+## 3. CODE QUALITY
 
-- [x] CHK-010 [P0] Code passes lint/format checks
-  - **Evidence**: `npm run lint` exits 0, no warnings
-- [x] CHK-011 [P0] No console errors or warnings
-  - **Evidence**: Browser devtools clean during manual testing
-- [x] CHK-012 [P1] Error handling implemented
-  - **Evidence**: All endpoints have try/catch, return appropriate status codes
-- [x] CHK-013 [P1] Code follows project patterns
-  - **Evidence**: MVC structure maintained, matches existing auth patterns
-
-
+- [ ] **[CHK-004] [P0] No new lint or type errors.** `npm --prefix .opencode/skills/system-skill-advisor/mcp_server run typecheck` exits 0.
+- [ ] **[CHK-005] [P0] Lease check is the FIRST DB-related call in the launcher.** Reading `mk-skill-advisor-launcher.cjs` top-to-bottom, the lease check precedes any `Database` constructor or DB-path resolution.
+- [ ] **[CHK-006] [P1] WAL pragma is set in the single `openDb` (or equivalent) path.** Only one call site sets `journal_mode=WAL`; no scattered duplicates.
 <!-- /ANCHOR:code-quality -->
+
 ---
 
 <!-- ANCHOR:testing -->
-## Testing
+## 4. TESTING
 
-- [x] CHK-020 [P0] All acceptance criteria met
-  - **Evidence**: REQ-001 through REQ-007 verified in integration tests
-- [x] CHK-021 [P0] Manual testing complete
-  - **Evidence**: Full user journey tested in Chrome 120, Firefox 121
-- [x] CHK-022 [P1] Edge cases tested
-  - **Evidence**: Duplicate email, invalid input, expired token all handled
-- [x] CHK-023 [P1] Error scenarios validated
-  - **Evidence**: Database failure gracefully handled with generic error
-
-
+- [ ] **[CHK-007] [P0] Spawn-twice test green.** New vitest case: launcher #1 alive → launcher #2 spawned → #2 exits code 0 within 2s with `LEASE_HELD_BY:<pid>` line. Evidence: vitest name + assertion.
+- [ ] **[CHK-008] [P0] WAL assertion test green.** Open the DB via the production handler path; assert `PRAGMA journal_mode == 'wal'` and `PRAGMA busy_timeout == 5000`.
+- [ ] **[CHK-009] [P1] Existing advisor + daemon + skill-graph suites pass.** `vitest --run` across `advisor-*`, `daemon-*`, `skill-graph-*` exits 0.
 <!-- /ANCHOR:testing -->
+
+---
+
+<!-- ANCHOR:fix-completeness -->
+## 5. FIX COMPLETENESS
+
+- [ ] **[CHK-010] [P0] 24-hour zero-`.corrupt` soak (SC-001).** With the benchmark active, `find .opencode/skills/system-skill-advisor/mcp_server/database -name '*.corrupt'` returns empty after 24 hours. Evidence: timestamp + find output.
+- [ ] **[CHK-011] [P0] Launcher idempotency (SC-002).** Spawn launcher while owner alive: exit code 0 in <2s. `lsof -p <pid>` shows no `skill-graph.sqlite` open before exit.
+- [ ] **[CHK-012] [P0] Three-DB-open paths all set pragmas (SC-003).** Handler boot, watcher refresh, `rebuild-from-source` — assert WAL + busy_timeout on each via vitest.
+- [ ] **[CHK-013] [P1] Stale-PID reclaim works (REQ-004).** Manually fake a dead PID in `.mk-skill-advisor-launcher.json`; new launcher reclaims and logs `staleReclaimed: true`.
+- [ ] **[CHK-014] [P1] No advisor surface regression.** `advisor_recommend({prompt: "create a new agent"})` returns same top-3 ranking as pre-fix baseline (within 0.01 score delta).
+<!-- /ANCHOR:fix-completeness -->
+
 ---
 
 <!-- ANCHOR:security -->
-## Security
+## 6. SECURITY
 
-- [x] CHK-030 [P0] No hardcoded secrets
-  - **Evidence**: JWT_SECRET loaded from .env, not committed
-- [x] CHK-031 [P0] Input validation implemented
-  - **Evidence**: express-validator schemas in src/validators/auth.js
-- [x] CHK-032 [P1] Auth/authz working correctly
-  - **Evidence**: Protected routes return 401 without valid token
-
-
+- [ ] **[CHK-015] [P1] Lease file is workspace-local.** `.mk-skill-advisor-launcher.json` resolves under `.opencode/skills/system-skill-advisor/mcp_server/database/`; no absolute paths escape workspace root.
+- [ ] **[CHK-016] [P2] No PID-spoofing attack surface.** Launcher only does `kill -0 <pid>` (existence probe), never `kill <signal> <pid>` against the recorded owner. Avoids killing unrelated processes if the lease file is tampered with.
 <!-- /ANCHOR:security -->
+
 ---
 
 <!-- ANCHOR:docs -->
-## Documentation
+## 7. DOCUMENTATION
 
-- [x] CHK-040 [P1] Spec/plan/tasks synchronized
-  - **Evidence**: All three documents reflect final implementation
-- [x] CHK-041 [P1] Code comments adequate
-  - **Evidence**: JSDoc comments on all public functions
-- [x] CHK-042 [P2] README updated (if applicable)
-  - **Evidence**: Auth section added to main README
-
-
+- [ ] **[CHK-017] [P1] `references/daemon-lease-contract.md` §2 updated** to describe launcher-boundary enforcement + WAL pragma.
+- [ ] **[CHK-018] [P1] `changelog/006-concurrent-daemon-corruption-fix.md` created** with summary + Why + Upgrade + verification evidence.
+- [ ] **[CHK-019] [P2] `SKILL.md` version bumped** (current 0.3.0 → next minor) to reflect the safety improvement.
 <!-- /ANCHOR:docs -->
+
 ---
 
 <!-- ANCHOR:file-org -->
-## File Organization
+## 8. FILE ORGANIZATION
 
-- [x] CHK-050 [P1] Temp files in scratch/ only
-  - **Evidence**: No temp files created outside scratch/
-- [x] CHK-051 [P1] scratch/ cleaned before completion
-  - **Evidence**: scratch/ folder empty
-
-
+- [ ] **[CHK-020] [P1] Edits stay within scope listed in spec.md §3.** No drive-by changes to scorer, schema, or query surfaces.
+- [ ] **[CHK-021] [P1] Strict validate green.** `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <packet> --strict` reports `RESULT: PASSED`.
 <!-- /ANCHOR:file-org -->
+
 ---
 
 <!-- ANCHOR:summary -->
-## Verification Summary
+## 9. VERIFICATION SUMMARY
 
-| Category | Total | Verified |
-|----------|-------|----------|
-| P0 Items | 7 | 7/7 |
-| P1 Items | 8 | 8/8 |
-| P2 Items | 2 | 2/2 |
-
-**Verification Date**: 2025-01-17
-**Verified By**: AI Assistant (Claude)
-
+- [ ] All P0 items complete with evidence
+- [ ] All P1 items complete with evidence OR deferred with user approval recorded in `implementation-summary.md`
+- [ ] Strict spec validate PASSED
+- [ ] `recent_action` in `implementation-summary.md` frontmatter is compact (<96 chars, ≤16 tokens, no narrative discourse)
+- [ ] `next_safe_action` begins with an imperative verb
 <!-- /ANCHOR:summary -->
-
----
-
-<!--
-Level 2 checklist - Verification focus
-Mark [x] with evidence when verified
-P0 must complete, P1 need approval to defer
--->

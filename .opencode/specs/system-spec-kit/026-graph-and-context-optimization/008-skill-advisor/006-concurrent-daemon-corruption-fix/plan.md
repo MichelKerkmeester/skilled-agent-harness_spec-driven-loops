@@ -148,9 +148,61 @@ Required inventories:
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: Production launcher refuses to start when it should (false-positive lease detection), OR new WAL pragma causes regression in a test/dev environment.
+- **Procedure**: `git revert <commit-sha>` then restart `mk_skill_advisor` MCP server. Lease file `.mk-skill-advisor-launcher.json` survives the revert harmlessly.
 <!-- /ANCHOR:rollback -->
+
+---
+
+<!-- ANCHOR:phase-deps -->
+## 8. PHASE DEPENDENCIES
+
+| Phase | Depends On | Output | Consumer |
+|-------|-----------|--------|----------|
+| 1. Lease hoist | `lib/daemon/lease.ts` (existing) | `isLeaseHeld()` helper export | Launcher CJS |
+| 2. Launcher exit-on-lease-held | Phase 1 | Exit code 0 + log line | Phase 4 (test) |
+| 3. WAL + busy_timeout pragma | `lib/skill-graph/skill-graph-db.ts` (existing) | `openDb()` initializes pragmas | All DB consumers |
+| 4. Spawn-twice + WAL assertion tests | Phases 1–3 | Green vitest suite | CI |
+| 5. Reference doc update | Phases 1–3 | `daemon-lease-contract.md §2` patch | Future readers |
+| 6. Changelog entry | Phases 1–5 | `changelog/006-*.md` | Release notes |
+
+No external dependencies. All work is inside `.opencode/skills/system-skill-advisor/`.
+<!-- /ANCHOR:phase-deps -->
+
+---
+
+<!-- ANCHOR:effort -->
+## 9. EFFORT ESTIMATE
+
+| Phase | Lines of Code | Time |
+|-------|--------------:|------|
+| 1. Lease hoist (`isLeaseHeld` helper) | 15–25 | 15 min |
+| 2. Launcher exit-on-lease-held | 20–30 | 20 min |
+| 3. WAL + busy_timeout pragma | 5–10 | 10 min |
+| 4. Vitest: spawn-twice + WAL | 60–90 | 45 min |
+| 5. `daemon-lease-contract.md §2` patch | 20–40 | 10 min |
+| 6. Changelog entry | 30–50 | 10 min |
+| **Total authoring** | **150–245** | **~110 min** |
+| 7. Strict validate + final review | n/a | 15 min |
+| 8. 24-hour soak (background) | n/a | 24h elapsed, ~5 min hands-on |
+| **Total wall-clock to claim done** | — | **2–3 hours active + 24h soak** |
+<!-- /ANCHOR:effort -->
+
+---
+
+<!-- ANCHOR:enhanced-rollback -->
+## 10. ENHANCED ROLLBACK
+
+| Condition | Detection | Action | Recovery Time |
+|-----------|-----------|--------|---------------|
+| Launcher refuses to start in dev workflow | Operator reports MCP unavailable | Set env `MK_SKILL_ADVISOR_STRICT_SINGLE_WRITER=0`, restart | <1 min |
+| Spawn-twice test flakes in CI | CI fails on the new test only | Increase timing tolerance from 2s → 5s in the test | <5 min |
+| WAL pragma breaks read-only mount | EACCES on `journal_mode=WAL` | Fallback already coded: drops to `journal_mode=DELETE` with warning | Automatic |
+| False stale-reclaim on PID-reuse | Lease file owner = unrelated process | `rm .mk-skill-advisor-launcher.json`, restart launcher | <1 min |
+| Regression in advisor scorer ranking | `advisor_recommend` returns different top-1 | `git revert` → rerun benchmark to confirm baseline restored | <10 min |
+
+Full revert path: `git revert <sha-of-006-fix>` then restart MCP server. The lease file format is unchanged across revert, so no migration is required either direction.
+<!-- /ANCHOR:enhanced-rollback -->
 
 ---
 
