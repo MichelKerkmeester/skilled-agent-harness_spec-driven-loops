@@ -9,8 +9,8 @@ _memory:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/011-rerank-model-fit-investigation"
     last_updated_at: "2026-05-18T19:22:26Z"
     last_updated_by: "main_agent"
-    recent_action: "Authored tasks"
-    next_safe_action: "Execute T001"
+    recent_action: "Completed Phase 1 web/model-card survey"
+    next_safe_action: "Run gated Phase 2 targeted 8-probe bench after CocoIndex restore"
     blockers: []
     key_files:
       - "plan.md"
@@ -18,7 +18,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000004011"
       session_id: "016-004-011-tasks"
       parent_session_id: "016-004-011"
-    completion_pct: 0
+    completion_pct: 20
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 1 -->
@@ -36,7 +36,8 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## 2. PHASE 1: SETUP
 
-- [ ] T001 - Survey / read source material per plan.md Phase 1
+- [x] T001 - Survey / read source material per plan.md Phase 1
+  - Evidence: `research.md` documents candidate triage, source links, MEASURE commands, and the gated Phase 2 plan.
 <!-- /ANCHOR:phase-1 -->
 
 <!-- ANCHOR:phase-2 -->
