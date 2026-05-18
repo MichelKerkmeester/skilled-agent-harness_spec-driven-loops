@@ -1,7 +1,7 @@
 # Lease Hardening From Review
 
 **Date:** 2026-05-18
-**Packet:** `016-embedder-testing-and-architecture/012-mcp-launcher-concurrency-arc/003-lease-hardening-from-review`
+**Packet:** `016-embedder-testing-and-architecture/012-mcp-launcher-concurrency-arc/003-launcher-race-and-error-surface-hardening`
 **Predecessor:** `016-embedder-testing-and-architecture/012-mcp-launcher-concurrency-arc/002-cross-launcher-lease-propagation`
 
 ## Summary

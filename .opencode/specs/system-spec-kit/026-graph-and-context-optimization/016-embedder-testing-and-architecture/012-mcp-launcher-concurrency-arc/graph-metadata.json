@@ -6,8 +6,8 @@
   "children_ids": [
     "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/012-mcp-launcher-concurrency-arc/001-concurrent-daemon-corruption-fix",
     "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/012-mcp-launcher-concurrency-arc/002-cross-launcher-lease-propagation",
-    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/012-mcp-launcher-concurrency-arc/003-lease-hardening-from-review",
-    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/012-mcp-launcher-concurrency-arc/004-p2-cleanup-from-review"
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/012-mcp-launcher-concurrency-arc/003-launcher-race-and-error-surface-hardening",
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/012-mcp-launcher-concurrency-arc/004-launcher-diagnostics-and-signal-coverage"
   ],
   "manual": {
     "depends_on": [],
@@ -46,7 +46,7 @@
     "last_save_at": "2026-05-18T08:15:00Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/012-mcp-launcher-concurrency-arc/004-p2-cleanup-from-review",
+    "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/012-mcp-launcher-concurrency-arc/004-launcher-diagnostics-and-signal-coverage",
     "source_docs": ["spec.md"]
   }
 }

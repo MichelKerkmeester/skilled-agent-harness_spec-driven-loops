@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/012-mcp-launcher-concurrency-arc/003-lease-hardening-from-review"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/012-mcp-launcher-concurrency-arc/003-launcher-race-and-error-surface-hardening"
     last_updated_at: "2026-05-18T08:35:00Z"
     last_updated_by: "main_agent"
     recent_action: "Closed packet 008 with 9 P1 review fixes shipped"
@@ -108,7 +108,7 @@ Both 007 test files' `spawnLauncher` helpers now delete `MK_SKILL_ADVISOR_STRICT
 | `.opencode/skills/system-code-graph/mcp_server/tests/launcher-lease.vitest.ts` | Modify (+16) | Stdout-close gate + env strip |
 | `.opencode/skills/system-spec-kit/mcp_server/tests/launcher-lease.vitest.ts` | Modify (+16) | Same |
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/launcher-lease.vitest.ts` | Create (+289) | New subprocess test (3 cases) |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/012-mcp-launcher-concurrency-arc/changelog/003-lease-hardening-from-review.md` | Create (+115) | Changelog with upgrade notes + verification evidence |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/012-mcp-launcher-concurrency-arc/changelog/003-launcher-race-and-error-surface-hardening.md` | Create (+115) | Changelog with upgrade notes + verification evidence |
 <!-- /ANCHOR:what-built -->
 
 ---
