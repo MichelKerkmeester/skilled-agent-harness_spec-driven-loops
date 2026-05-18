@@ -16,7 +16,7 @@ _memory:
     last_updated_at: "2026-05-18T19:52:00Z"
     last_updated_by: "main_agent"
     recent_action: "cli-codex 007 dispatched PID 20832; pre-compaction handover.md authored"
-    next_safe_action: "Wait for cli-codex 007 Commit Handoff; review + git add per its path list + commit. See handover.md §7 for the full post-compaction recovery flow."
+    next_safe_action: "Apply cli-codex 007 Commit Handoff per handover.md §7"
     blockers: []
     key_files:
       - "handover.md"
