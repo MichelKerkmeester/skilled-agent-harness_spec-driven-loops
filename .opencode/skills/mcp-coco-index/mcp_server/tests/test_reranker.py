@@ -148,7 +148,7 @@ def test_config_rerank_defaults(tmp_path: Path) -> None:
     ):
         cfg = Config.from_env()
 
-    assert cfg.rerank_enabled is False
+    assert cfg.rerank_enabled is True
     assert cfg.rerank_model == _DEFAULT_RERANK_MODEL
     assert cfg.rerank_top_k == _DEFAULT_RERANK_TOP_K == 20
 

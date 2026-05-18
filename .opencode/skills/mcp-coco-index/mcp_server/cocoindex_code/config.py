@@ -306,7 +306,7 @@ class Config:
             50,
             1000,
         )
-        hybrid_enabled = _parse_bool_env("COCOINDEX_HYBRID", False)
+        hybrid_enabled = _parse_bool_env("COCOINDEX_HYBRID", True)
         hybrid_vector_weight = _parse_float_env(
             "COCOINDEX_HYBRID_VECTOR_WEIGHT",
             _DEFAULT_HYBRID_VECTOR_WEIGHT,
@@ -325,7 +325,7 @@ class Config:
             1,
             500,
         )
-        rerank_enabled = _parse_bool_env("COCOINDEX_RERANK", False)
+        rerank_enabled = _parse_bool_env("COCOINDEX_RERANK", True)
         rerank_model = os.environ.get("COCOINDEX_RERANK_MODEL", _DEFAULT_RERANK_MODEL).strip()
         if not rerank_model:
             logger.warning(
