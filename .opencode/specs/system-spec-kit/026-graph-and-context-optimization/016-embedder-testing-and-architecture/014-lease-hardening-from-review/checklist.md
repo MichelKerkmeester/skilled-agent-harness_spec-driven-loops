@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/008-lease-hardening-from-review"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/014-lease-hardening-from-review"
     last_updated_at: "2026-05-18T08:32:00Z"
     last_updated_by: "main_agent"
     recent_action: "Authored checklist after codex + main-agent finish of all 10 phases"
@@ -104,7 +104,7 @@ _memory:
 <!-- ANCHOR:docs -->
 ## 7. DOCUMENTATION
 
-- [x] **[CHK-021] [P1] `008-skill-advisor/changelog/008-lease-hardening-from-review.md` written.** Includes Summary + What Changed table + Upgrade Notes + Verification Evidence + Deferred P2s list.
+- [x] **[CHK-021] [P1] `016-embedder-testing-and-architecture/changelog/014-lease-hardening-from-review.md` written.** Includes Summary + What Changed table + Upgrade Notes + Verification Evidence + Deferred P2s list.
 - [x] **[CHK-022] [P2] No `references/` docs updated.** None needed; new behavior is operator-facing, captured in changelog Upgrade Notes.
 <!-- /ANCHOR:docs -->
 

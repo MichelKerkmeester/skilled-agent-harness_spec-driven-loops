@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/006-concurrent-daemon-corruption-fix"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/012-concurrent-daemon-corruption-fix"
     last_updated_at: "2026-05-18T07:18:00Z"
     last_updated_by: "main_agent"
     recent_action: "Closed packet 006 with cli-devin SWE-1.6 RCAF implementation"
@@ -70,7 +70,7 @@ The launcher now calls `isLeaseHeld()` before any database path resolution or MC
 
 ### Tests + Docs + Changelog
 
-`launcher-bootstrap.vitest.ts` gains 3 cases in a new `lease-held single-writer enforcement` describe: held-by-current-PID, no-lease, and WAL+busy_timeout pragma assertion on fresh DB open. `references/daemon-lease-contract.md §2` documents the launcher-boundary enforcement subsection + WAL/busy_timeout subsection. `008-skill-advisor/changelog/006-concurrent-daemon-corruption-fix.md` records the fix with upgrade notes (zero migration).
+`launcher-bootstrap.vitest.ts` gains 3 cases in a new `lease-held single-writer enforcement` describe: held-by-current-PID, no-lease, and WAL+busy_timeout pragma assertion on fresh DB open. `references/daemon-lease-contract.md §2` documents the launcher-boundary enforcement subsection + WAL/busy_timeout subsection. `016-embedder-testing-and-architecture/changelog/012-concurrent-daemon-corruption-fix.md` records the fix with upgrade notes (zero migration).
 
 ### Files Changed
 
@@ -81,7 +81,7 @@ The launcher now calls `isLeaseHeld()` before any database path resolution or MC
 | `.opencode/skills/system-skill-advisor/mcp_server/lib/skill-graph/skill-graph-db.ts` | Modify (+12) | WAL pragma with EACCES fallback + `busy_timeout = 5000` |
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/launcher-bootstrap.vitest.ts` | Modify (+52) | 3 new lease-held + WAL pragma tests |
 | `.opencode/skills/system-skill-advisor/references/daemon-lease-contract.md` | Modify (+24) | §2 launcher-boundary enforcement + WAL subsections |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/changelog/006-concurrent-daemon-corruption-fix.md` | Create (+42) | Changelog entry with upgrade notes + verification evidence |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/changelog/012-concurrent-daemon-corruption-fix.md` | Create (+42) | Changelog entry with upgrade notes + verification evidence |
 | `.opencode/skills/system-skill-advisor/mcp_server/database/.gitignore` | Modify (+2) | Add `*.corrupt-shm`/`*.corrupt-wal` patterns (new SQLite sidecar quarantine names observed) |
 <!-- /ANCHOR:what-built -->
 

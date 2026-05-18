@@ -1,5 +1,5 @@
 {
-  "specFolder": "008-skill-advisor/006-concurrent-daemon-corruption-fix",
+  "specFolder": "016-embedder-testing-and-architecture/012-concurrent-daemon-corruption-fix",
   "description": "Phase 1: concurrent-daemon-corruption-fix",
   "keywords": [
     "phase",

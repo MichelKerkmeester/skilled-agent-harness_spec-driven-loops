@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-cross-launcher-lease-propagation"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/013-cross-launcher-lease-propagation"
     last_updated_at: "2026-05-18T07:55:00Z"
     last_updated_by: "main_agent"
     recent_action: "Authored P0/P1/P2 checklist after codex implementation"
@@ -103,7 +103,7 @@ Every checked item must include evidence: command output, file path, log line, o
 
 - [x] **[CHK-017] [P1] `system-code-graph/references/launcher-lease.md` created.** 83 lines; covers OVERVIEW, PID-FILE FORMAT, ENV-VAR OVERRIDE, STALE RECLAIM PATH, RELATED.
 - [x] **[CHK-018] [P1] `system-spec-kit/references/launcher-lease.md` created.** 83 lines; mirrors code-graph version with spec-memory specifics.
-- [x] **[CHK-019] [P1] `008-skill-advisor/changelog/007-cross-launcher-lease-propagation.md` created.** 103 lines; summary + what-changed + upgrade notes + verification evidence.
+- [x] **[CHK-019] [P1] `016-embedder-testing-and-architecture/changelog/013-cross-launcher-lease-propagation.md` created.** 103 lines; summary + what-changed + upgrade notes + verification evidence.
 <!-- /ANCHOR:docs -->
 
 ---

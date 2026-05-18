@@ -24,10 +24,12 @@ Raise `CHUNK_SIZE` from 1000 → **1500-2000 chars**, reduce `CHUNK_OVERLAP` for
 
 ## Literature evidence
 
-- **Wu et al. 2026** (arXiv:2605.04763v1): controlled 864-setting study. Function chunking *never* Pareto-optimal; Sliding Window + cAST dominate. Chunk size has weaker non-monotonic effect (≤1.9pp).
-- **Zhang et al. 2025** (arXiv:2506.15655): cAST gives +4.3pp Recall@5 on RepoEval, +2.67 Pass@1 on SWE-bench. Tree-sitter AST chunking.
+<!-- ANCHOR:citations -->
+- **Wu et al. 2026** ([arXiv:2605.04763v1](https://arxiv.org/abs/2605.04763)): controlled 864-setting study. Function chunking *never* Pareto-optimal; Sliding Window + cAST dominate. Chunk size has weaker non-monotonic effect (≤1.9pp).
+- **Zhang et al. 2025** ([arXiv:2506.15655](https://arxiv.org/abs/2506.15655)): cAST gives +4.3pp Recall@5 on RepoEval, +2.67 Pass@1 on SWE-bench. Tree-sitter AST chunking.
 - **Storia-AI/sage benchmarks**: ≤800 tokens ideal; smaller has marginal gains. top_k=25 retrieval → rerank top 3.
-- **arXiv:2407.19794, LlamaIndex docs, NVIDIA 2024**: converge on 512-1024 tokens as optimal for code (our current 1000 *chars* maps to only ~250-400 tokens — way below optimal).
+- **[arXiv:2407.19794](https://arxiv.org/abs/2407.19794), LlamaIndex docs, NVIDIA 2024**: converge on 512-1024 tokens as optimal for code (our current 1000 *chars* maps to only ~250-400 tokens — way below optimal).
+<!-- /ANCHOR:citations -->
 
 ## Corpus analysis (from iter 5)
 

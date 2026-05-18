@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/006-concurrent-daemon-corruption-fix"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/012-concurrent-daemon-corruption-fix"
     last_updated_at: "2026-05-18T04:48:00Z"
     last_updated_by: "main_agent"
     recent_action: "Filed packet from root-cause diagnosis"

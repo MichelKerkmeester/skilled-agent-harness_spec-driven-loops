@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-cross-launcher-lease-propagation"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/013-cross-launcher-lease-propagation"
     last_updated_at: "2026-05-18T07:56:00Z"
     last_updated_by: "main_agent"
     recent_action: "Closed packet 007 via cli-codex gpt-5.5 high fast"
@@ -76,7 +76,7 @@ Same primitive, with one adaptation: spec-memory spawns a child `context-server.
 
 ### Changelog
 
-`008-skill-advisor/changelog/007-cross-launcher-lease-propagation.md` records the patch with summary, what-changed table, upgrade notes (zero migration), and full verification evidence including the manual spawn-twice transcripts.
+`016-embedder-testing-and-architecture/changelog/013-cross-launcher-lease-propagation.md` records the patch with summary, what-changed table, upgrade notes (zero migration), and full verification evidence including the manual spawn-twice transcripts.
 
 ### Files Changed
 
@@ -88,7 +88,7 @@ Same primitive, with one adaptation: spec-memory spawns a child `context-server.
 | `.opencode/skills/system-spec-kit/mcp_server/tests/launcher-lease.vitest.ts` | Create (+182) | 3 spawn-based tests |
 | `.opencode/skills/system-code-graph/references/launcher-lease.md` | Create (+83) | Code-graph lease reference |
 | `.opencode/skills/system-spec-kit/references/launcher-lease.md` | Create (+83) | Spec-memory lease reference |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/changelog/007-cross-launcher-lease-propagation.md` | Create (+103) | Packet changelog |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/changelog/013-cross-launcher-lease-propagation.md` | Create (+103) | Packet changelog |
 <!-- /ANCHOR:what-built -->
 
 ---

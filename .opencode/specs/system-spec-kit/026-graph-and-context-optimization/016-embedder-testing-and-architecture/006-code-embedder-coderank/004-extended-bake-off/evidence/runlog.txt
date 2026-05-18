@@ -81,3 +81,22 @@ or edit it manually.
     json: 6 chunks
     text: 1 chunks
 [2026-05-18T08:12:22+0200] restore complete; CocoIndex back on jina-code baseline
+[2026-05-18T09:24:55+0200] benchmark start; candidates=sbert/nomic-ai/CodeRankEmbed sbert/BAAI/bge-code-v1
+[2026-05-18T09:24:55+0200] candidate start: sbert/nomic-ai/CodeRankEmbed
+[2026-05-18T09:24:55+0200] pre-pull start: sbert/nomic-ai/CodeRankEmbed
+[transformers] A new version of the following files was downloaded from https://huggingface.co/nomic-ai/CodeRankEmbed:
+- configuration_hf_nomic_bert.py
+. Make sure to double-check they do not contain any added malicious code. To avoid downloading new versions of the code file, you can pin a revision.
+[transformers] A new version of the following files was downloaded from https://huggingface.co/nomic-ai/CodeRankEmbed:
+- modeling_hf_nomic_bert.py
+. Make sure to double-check they do not contain any added malicious code. To avoid downloading new versions of the code file, you can pin a revision.
+<All keys matched successfully>
+[2026-05-18T09:25:19+0200] pre-pull done: sbert/nomic-ai/CodeRankEmbed
+[2026-05-18T09:25:19+0200] reset: sbert/nomic-ai/CodeRankEmbed
+The following files will be deleted:
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.cocoindex_code/cocoindex.db
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.cocoindex_code/target_sqlite.db
+Databases deleted.
+Settings file still exists. Run `ccc reset --all` to remove it too,
+or edit it manually.
+[2026-05-18T09:25:19+0200] index start: sbert/nomic-ai/CodeRankEmbed

@@ -133,8 +133,15 @@ Keep this theme as the single active parent for the full skill advisor system. E
 | 10 | `003-skill-advisor-standards-alignment/` | Complete | Feature Specification: Skill-Advisor Standards Alignment |
 | 11 | `001-skill-advisor-hook-improvements/` | Research Queued | Feature Specification: Skill-Advisor Hook Improvements |
 | 12 | `005-skill-advisor-setup-command/` | Implemented | Feature Specification: Skill Advisor Setup Command |
-| 005-docs | 006-concurrent-daemon-corruption-fix | [Criteria TBD] | [Verification TBD] |
 <!-- /ANCHOR:phase-map -->
+
+<!-- The 4 daemon-corruption packets that were briefly registered here (006-009) were
+     moved 2026-05-18 to `016-embedder-testing-and-architecture/012-015` per operator
+     directive. See those packets for the daemon-arc work history (006→007→008→009
+     became 012→013→014→015). The MCP-launcher concurrency code they ship still lives
+     under system-skill-advisor, but the spec-folder docs now sit under the embedder
+     umbrella where they were operationally discovered. -->
+
 
 ---
 

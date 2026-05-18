@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/009-p2-cleanup-from-review",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/009-p2-cleanup-from-review",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/015-p2-cleanup-from-review",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/015-p2-cleanup-from-review",
   "parent_id": null,
   "children_ids": [],
   "manual": {
