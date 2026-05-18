@@ -1,0 +1,12 @@
+{
+  "level": "feature",
+  "specFolder": "007-auto-embedder-selection-and-llama-cpp-purge",
+  "description": "Replace hardcoded embeddinggemma-300m default with smart precedence-chain auto-selection at daemon bootstrap (Voyage API > OpenAI API > Ollama+jina-v3 > hf-local). Purge all llama-cpp / node-llama-cpp / embeddinggemma surface. Persist auto-detection to vec_metadata so subsequent starts honor the operator's environment.",
+  "keywords": ["auto-embedder-selection","llama-cpp-purge","voyage","openai","ollama-fallback","hf-local","embedder-precedence","embeddinggemma-removal","bootstrap-probe"],
+  "lastUpdated": "2026-05-18T19:46:36.000Z",
+  "specId": "007",
+  "folderSlug": "auto-embedder-selection-and-llama-cpp-purge",
+  "parentChain": ["system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture","system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack"],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}
