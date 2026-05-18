@@ -8,7 +8,7 @@
     "cleanup",
     "ordering"
   ],
-  "lastUpdated": "2026-05-18T15:23:22.724Z",
+  "lastUpdated": "2026-05-18T15:58:25.915Z",
   "specId": "006",
   "folderSlug": "lease-canonicalization-and-cleanup-ordering",
   "parentChain": [
@@ -17,6 +17,8 @@
     "016-embedder-testing-and-architecture",
     "012-mcp-launcher-concurrency-arc"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": []
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "18-05-26_16-58__phase-006-closed-6-p1-5-p2-from-ai-council-review.md"
+  ]
 }

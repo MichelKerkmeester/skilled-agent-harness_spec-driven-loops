@@ -7,7 +7,8 @@
     "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/012-mcp-launcher-concurrency-arc/001-concurrent-daemon-corruption-fix",
     "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/012-mcp-launcher-concurrency-arc/002-cross-launcher-lease-propagation",
     "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/012-mcp-launcher-concurrency-arc/003-launcher-race-and-error-surface-hardening",
-    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/012-mcp-launcher-concurrency-arc/004-launcher-diagnostics-and-signal-coverage"
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/012-mcp-launcher-concurrency-arc/004-launcher-diagnostics-and-signal-coverage",
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/012-mcp-launcher-concurrency-arc/006-lease-canonicalization-and-cleanup-ordering"
   ],
   "manual": {
     "depends_on": [],
@@ -32,7 +33,9 @@
     ],
     "importance_tier": "important",
     "status": "complete",
-    "key_files": ["spec.md"],
+    "key_files": [
+      "spec.md"
+    ],
     "entities": [
       "mk-skill-advisor-launcher.cjs",
       "mk-code-index-launcher.cjs",
@@ -43,10 +46,13 @@
     ],
     "causal_summary": "Phase parent for the 4-phase arc that introduced launcher-boundary single-writer lease enforcement across all 3 MCP launchers, plus 2 hardening passes from a 3-reviewer parallel audit.",
     "created_at": "2026-05-18T08:15:00Z",
-    "last_save_at": "2026-05-18T08:15:00Z",
+    "last_save_at": "2026-05-18T15:58:29.330Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/012-mcp-launcher-concurrency-arc/004-launcher-diagnostics-and-signal-coverage",
-    "source_docs": ["spec.md"]
+    "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/012-mcp-launcher-concurrency-arc/006-lease-canonicalization-and-cleanup-ordering",
+    "source_docs": [
+      "spec.md"
+    ],
+    "last_active_at": "2026-05-18T15:58:29.330Z"
   }
 }
