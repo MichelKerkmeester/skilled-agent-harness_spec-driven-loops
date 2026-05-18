@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/012-fixture-audit-probe-10",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/012-fixture-audit-probe-10",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack",
+  "children_ids": [],
+  "manual": {
+    "depends_on": ["system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/007-ollama-and-bge-promotion-arc/003-bge-code-v1-confirmation-and-promote"],
+    "supersedes": [],
+    "related_to": ["system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/011-rerank-model-fit-investigation","system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/002-baseline-fixture"]
+  },
+  "derived": {
+    "trigger_phrases": ["fixture audit probe 10","expected_source_path correctness","code retrieval fixture review"],
+    "key_topics": ["012","fixture-audit","probe-10","expected-source-path","research"],
+    "importance_tier": "normal",
+    "status": "planned",
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
