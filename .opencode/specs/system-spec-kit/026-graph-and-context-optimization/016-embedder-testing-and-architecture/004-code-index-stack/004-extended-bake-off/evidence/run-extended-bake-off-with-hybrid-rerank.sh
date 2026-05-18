@@ -15,6 +15,15 @@ OUT_CSV="$SCRIPT_DIR/cocoindex-embedder-comparison-with-hybrid-rerank.csv"
 OUT_JSONL="$SCRIPT_DIR/cocoindex-embedder-comparison-with-hybrid-rerank.jsonl"
 RUNLOG="$SCRIPT_DIR/runlog-with-hybrid-rerank.txt"
 
+# Canonical ccc binary — prefer the editable local venv install (production-truthful);
+# fall back to whatever's on PATH. After 016/005/005-cocoindex-install-hygiene both pipx
+# and local venv point at the same editable source so either should be safe; the local
+# venv is the explicit pick to avoid PATH ordering drift.
+CCC="${CCC:-$REPO_ROOT/.opencode/skills/mcp-coco-index/mcp_server/.venv/bin/ccc}"
+if [ ! -x "$CCC" ]; then
+  CCC="$(command -v ccc)"
+fi
+
 cd "$REPO_ROOT"
 
 if [ ! -f "$FIXTURE" ]; then
@@ -60,20 +69,23 @@ run_candidate() {
   # Set env + reset + reindex
   export COCOINDEX_CODE_EMBEDDING_MODEL="$candidate"
   log "reset: $candidate"
-  if ! ccc reset --force 2>&1 | tee -a "$RUNLOG" | tail -3; then
+  if ! "$CCC" reset --force 2>&1 | tee -a "$RUNLOG" | tail -3; then
     log "reset FAILED: $candidate"
     return 1
   fi
 
   log "index start: $candidate"
   local idx_out
-  if ! idx_out=$(ccc index 2>&1); then
+  if ! idx_out=$("$CCC" index 2>&1); then
     log "index FAILED: $candidate; rc=$?; stderr=$(echo "$idx_out" | tail -3)"
     return 1
   fi
   log "index complete: $candidate; tail='$(echo "$idx_out" | tail -5 | tr '\n' ' ')'"
 
-  # Probe fixture pairs + record hits + latency
+  # Probe fixture pairs + record hits + latency.
+  # Export CCC for the Python heredoc so per-probe `ccc search` uses the canonical binary
+  # rather than re-resolving via PATH (which could land on a different ccc install).
+  export CCC
   local probes
   probes=$($REPO_ROOT/.opencode/skills/mcp-coco-index/mcp_server/.venv/bin/python3 - "$FIXTURE" "$candidate" "$OUT_JSONL" <<'PYTHON'
 import json
@@ -85,6 +97,7 @@ import time
 fixture_path = sys.argv[1]
 candidate = sys.argv[2]
 jsonl_path = sys.argv[3]
+ccc_bin = os.environ.get("CCC", "ccc")
 pairs = json.loads(open(fixture_path).read())
 
 hits = 0
@@ -98,7 +111,7 @@ for i, p in enumerate(pairs, 1):
 
     t0 = time.monotonic()
     result = subprocess.run(
-        ["ccc", "search", query, "--limit", "5"],
+        [ccc_bin, "search", query, "--limit", "5"],
         capture_output=True, text=True, timeout=30,
     )
     latency_ms = int((time.monotonic() - t0) * 1000)
@@ -197,6 +210,6 @@ log "results: CSV=$OUT_CSV JSONL=$OUT_JSONL RUNLOG=$RUNLOG"
 # Restore baseline (jina-code) regardless of outcomes
 log "restore: setting COCOINDEX_CODE_EMBEDDING_MODEL back to jina-code"
 export COCOINDEX_CODE_EMBEDDING_MODEL="sbert/jinaai/jina-embeddings-v2-base-code"
-ccc reset --force 2>&1 | tail -3 | tee -a "$RUNLOG"
-ccc index 2>&1 | tail -5 | tee -a "$RUNLOG"
+"$CCC" reset --force 2>&1 | tail -3 | tee -a "$RUNLOG"
+"$CCC" index 2>&1 | tail -5 | tee -a "$RUNLOG"
 log "restore complete; CocoIndex back on jina-code baseline"

@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/005-cross-cutting-quality/005-cocoindex-install-hygiene",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/005-cross-cutting-quality/005-cocoindex-install-hygiene",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/005-cross-cutting-quality",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [
+      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/004-extended-bake-off"
+    ],
+    "supersedes": [],
+    "related_to": [
+      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/005-cross-cutting-quality/004-skill-local-benchmarks-format"
+    ]
+  },
+  "derived": {
+    "trigger_phrases": [
+      "016/005/005 cocoindex install hygiene",
+      "cocoindex pipx stale install",
+      "ccc editable install drift",
+      "pipx direct_url editable"
+    ],
+    "key_topics": [
+      "cocoindex-install-hygiene",
+      "pipx-editable-install",
+      "ccc-drift",
+      "direct-url-json",
+      "hybrid-rerank-benchmark"
+    ],
+    "importance_tier": "important",
+    "status": "blocked",
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

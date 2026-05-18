@@ -870,6 +870,45 @@ echo $COCOINDEX_CODE_ROOT_PATH
 
 4. Restart your AI client completely.
 
+### Stale pipx Install (Modules Missing After Feature Ship)
+
+**Symptom:** `ccc index` and `ccc search` run without error, but recently-shipped features (e.g., reranker, hybrid search, FTS5, new embedder registry entries) appear to be absent. Bench numbers regress to pre-feature baselines. Importing the affected module from `~/.local/pipx/venvs/cocoindex-code/bin/python` returns `ImportError: cannot import name 'X' from 'cocoindex_code'`.
+
+**Cause:** The pipx install was created without the `--editable` flag, so site-packages contains a frozen COPY of the source as it existed at install time. New modules added to local source never propagate.
+
+**Diagnosis:**
+
+```bash
+# pipx direct_url.json — should have `"editable": true`
+cat /Users/<you>/.local/pipx/venvs/cocoindex-code/lib/python3.11/site-packages/cocoindex_code-*.dist-info/direct_url.json
+# Editable: {"dir_info": {"editable": true}, "url": "file:///.../mcp_server"}
+# Non-editable: {"dir_info": {}, "url": "file:///.../mcp_server"}  ← BUG
+```
+
+**Fix — switch pipx to editable pointing at the local source:**
+
+```bash
+pipx install --force --editable /path/to/Public/.opencode/skills/mcp-coco-index/mcp_server
+```
+
+**Verify the fix:**
+
+```bash
+# direct_url.json now shows editable
+cat /Users/<you>/.local/pipx/venvs/cocoindex-code/lib/python3.11/site-packages/cocoindex_code-*.dist-info/direct_url.json
+
+# Modules now resolve to local source
+/Users/<you>/.local/pipx/venvs/cocoindex-code/bin/python -c "
+from cocoindex_code import reranker, fts_index, fusion, registered_embedders
+print(reranker.__file__)
+"
+# Expected: paths under .../Public/.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/
+```
+
+**Why this matters for benchmarks:** the bench harness `run-extended-bake-off-with-hybrid-rerank.sh` historically resolved `ccc` via PATH, which landed on `~/.local/bin/ccc` (pipx). With a non-editable pipx, the bench measured a different stack than production. The harness now resolves to the local-venv ccc explicitly via `$CCC`; pipx editable is still the right state for any other shell that runs `ccc` directly.
+
+See `016/005-cross-cutting-quality/005-cocoindex-install-hygiene/` for the full root-cause analysis and the bench-harness change.
+
 ### Venv Corrupted
 
 ```bash

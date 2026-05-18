@@ -1,0 +1,22 @@
+{
+  "level": "feature",
+  "specFolder": "005-cocoindex-install-hygiene",
+  "description": "Documents and verifies the CocoIndex ccc install drift where PATH resolves to a stale non-editable pipx install while production MCP uses the local editable venv. Captures the intended editable pipx repair, harness hardening, install-guide troubleshooting, and the current sandbox permission blocker.",
+  "keywords": [
+    "cocoindex-install-hygiene",
+    "pipx-editable-install",
+    "ccc-drift",
+    "direct-url-json",
+    "hybrid-rerank-benchmark",
+    "install-troubleshooting"
+  ],
+  "lastUpdated": "2026-05-18T18:47:20.510Z",
+  "specId": "005",
+  "folderSlug": "cocoindex-install-hygiene",
+  "parentChain": [
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture",
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/005-cross-cutting-quality"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}
