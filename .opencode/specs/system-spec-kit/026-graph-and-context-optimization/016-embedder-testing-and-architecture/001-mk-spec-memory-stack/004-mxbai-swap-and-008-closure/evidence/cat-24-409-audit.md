@@ -154,7 +154,7 @@ The sources mostly exist:
 
 - `shared/embeddings/factory.ts` owns provider resolution and auto-migration support. See `.opencode/skills/system-spec-kit/shared/embeddings/factory.ts:66-87` and `.opencode/skills/system-spec-kit/shared/embeddings/factory.ts:138-220`.
 - `mcp_server/context-server.ts` runs auto-migration and logs fallback re-resolution on failure. See `.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1554-1557`.
-- `014-local-embeddings-migration/018-llama-cpp-auto-migration/implementation-summary.md` documents the startup auto-migration behavior and fallback. See `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/018-llama-cpp-auto-migration/implementation-summary.md:51`.
+- `014-local-embeddings-migration/018-llama-cpp-auto-migration/implementation-summary.md` documents the startup auto-migration behavior and fallback. See `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-local-embeddings-foundation/018-llama-cpp-auto-migration/implementation-summary.md:51`.
 
 The fairness problem is duplication and source-set rigidity. CocoIndex often returns mirrored `.codex`, `.gemini`, or generated declaration variants of the same implementation, so path-level scoring can mark semantically correct hits as misses. The scenario is still useful as a breadth stress test, but its PASS bar should dedupe equivalent mirrored files before applying the "2 of 4 in top-3, 3 of 4 in top-5" rule.
 

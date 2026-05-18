@@ -21,7 +21,7 @@
 [13] FAIL[B1] .sh /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/commands/doctor/scripts/mcp-doctor.sh :: resolved is not a function
 [14] OK .py /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/071-sk-doc-router-stress-test/003-synthesize/scripts/extract_metrics.py
 [15] OK .py /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/072-sk-doc-router-rerun-refined-extraction/scripts/extract_metrics_v2.py
-[16] OK .py /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/076-sk-doc-router-coverage-v3/scripts/extract_metrics_v3.py
+[16] OK .py /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/076-sk-doc-missing-router-intents-bullet-aware-matrix/scripts/extract_metrics_v3.py
 [17] OK .py /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/scratch/reorg-2026-04-25/refresh_metadata.py
 [18] OK .py /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/scratch/reorg-2026-04-25/rewrite_paths.py
 [19] OK .py /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/scratch/reorg-2026-04-25/rewrite_relative_refs.py
@@ -32,7 +32,7 @@
 [24] FAIL[B1] .sh /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/069-sk-code-motion-dev-and-playbook/005-playbook-cross-cli-execution/scripts/run_matrix.sh :: resolved is not a function
 [25] OK .sh /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/069-sk-code-motion-dev-and-playbook/005-playbook-cross-cli-execution/scripts/run_opencode.sh
 [26] FAIL[B1] .sh /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/071-sk-doc-router-stress-test/002-matrix-execute/scripts/run-matrix.sh :: resolved is not a function
-[27] FAIL[B1] .sh /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/076-sk-doc-router-coverage-v3/scripts/run-matrix-076.sh :: resolved is not a function
+[27] FAIL[B1] .sh /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/076-sk-doc-missing-router-intents-bullet-aware-matrix/scripts/run-matrix-076.sh :: resolved is not a function
 [28] OK .sh /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/077-spec-kit-coco-sk-code-research/research/scripts/dispatch-iter.sh
 [29] OK .sh /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/077-spec-kit-coco-sk-code-research/research/scripts/run-loop.sh
 [30] OK .sh /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-mcp-runtime-stress-remediation/001-search-intelligence-stress-test/001-scenario-design/scripts/dispatch-cli-codex.sh

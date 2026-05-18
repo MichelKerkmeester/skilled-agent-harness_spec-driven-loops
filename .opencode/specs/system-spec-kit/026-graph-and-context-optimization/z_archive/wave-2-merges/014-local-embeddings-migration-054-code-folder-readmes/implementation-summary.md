@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/054-code-folder-readmes"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-local-embeddings-foundation/054-code-folder-readmes"
     last_updated_at: "2026-05-15T12:30:00Z"
     last_updated_by: "main_agent"
     recent_action: "Authored impl-summary stub"
@@ -36,7 +36,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/054-code-folder-readmes |
+| **Spec Folder** | system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-local-embeddings-foundation/054-code-folder-readmes |
 | **Phase** | C of 4 |
 | **Completed** | 2026-05-15 |
 | **Level** | 1 |

@@ -1,0 +1,44 @@
+{
+  "topic": "Validate and stress-test the two-bug remediation plan for mcp-coco-index daemon. Surface missed bug surfaces, alternative root causes, edge cases, and cross-cutting interactions with the broader cocoindex runtime that the spec might have missed. Produce a remediation backlog with severity (P0/P1/P2) and concrete file:line citations.",
+  "maxIterations": 5,
+  "convergenceThreshold": 0.10,
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 90,
+  "maxToolCallsPerIteration": 14,
+  "maxMinutesPerIteration": 12,
+  "progressiveSynthesis": true,
+  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-cocoindex-stack/010-daemon-resilience",
+  "createdAt": "2026-05-07T08:00:00Z",
+  "status": "initialized",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-5.5",
+    "reasoningEffort": "high",
+    "serviceTier": "fast",
+    "sandboxMode": "workspace-write",
+    "timeoutSeconds": 900
+  },
+  "lineage": {
+    "sessionId": "2026-05-07-026-011-cocoindex-daemon-research",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "allowedModes": ["new", "resume", "restart"],
+    "deferredModes": ["fork", "completed-continue"],
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "convergence": {
+    "thresholdMode": "delta",
+    "stopReasons": ["converged", "max_iterations", "all_answered", "exhausted_approaches"],
+    "qualityGuards": {
+      "novelty_floor": 0.15,
+      "delta_meaning_check": true,
+      "minimum_iterations_before_converge": 3
+    }
+  },
+  "resourceMap": {
+    "emit": true,
+    "outputPath": "research/resource-map.md"
+  }
+}

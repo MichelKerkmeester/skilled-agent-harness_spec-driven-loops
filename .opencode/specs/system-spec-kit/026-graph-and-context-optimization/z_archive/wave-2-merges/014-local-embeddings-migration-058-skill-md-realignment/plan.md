@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/058-skill-md-realignment"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-local-embeddings-foundation/058-skill-md-realignment"
     last_updated_at: "2026-05-15T15:00:00Z"
     last_updated_by: "main_agent"
     recent_action: "Wrote 5-phase plan"

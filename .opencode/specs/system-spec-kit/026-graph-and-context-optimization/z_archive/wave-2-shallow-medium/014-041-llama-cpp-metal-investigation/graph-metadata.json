@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/041-llama-cpp-metal-investigation",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/041-llama-cpp-metal-investigation",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-local-embeddings-foundation/041-llama-cpp-metal-investigation",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-local-embeddings-foundation/041-llama-cpp-metal-investigation",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-local-embeddings-foundation",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -47,14 +47,14 @@
       "implementation-summary.md",
       "research.md",
       "decision-record.md",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/041-llama-cpp-metal-investigation/spec.md",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/041-llama-cpp-metal-investigation/plan.md",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/041-llama-cpp-metal-investigation/tasks.md",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/041-llama-cpp-metal-investigation/implementation-summary.md",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/041-llama-cpp-metal-investigation/research.md",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/041-llama-cpp-metal-investigation/decision-record.md",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/041-llama-cpp-metal-investigation/description.json",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/041-llama-cpp-metal-investigation/graph-metadata.json",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-local-embeddings-foundation/041-llama-cpp-metal-investigation/spec.md",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-local-embeddings-foundation/041-llama-cpp-metal-investigation/plan.md",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-local-embeddings-foundation/041-llama-cpp-metal-investigation/tasks.md",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-local-embeddings-foundation/041-llama-cpp-metal-investigation/implementation-summary.md",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-local-embeddings-foundation/041-llama-cpp-metal-investigation/research.md",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-local-embeddings-foundation/041-llama-cpp-metal-investigation/decision-record.md",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-local-embeddings-foundation/041-llama-cpp-metal-investigation/description.json",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-local-embeddings-foundation/041-llama-cpp-metal-investigation/graph-metadata.json",
       "scratch/system-probes.txt",
       "shared/embeddings/providers/llama-cpp.ts",
       "scratch/probe-gpulayers-zero.mjs",
@@ -66,49 +66,49 @@
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/041-llama-cpp-metal-investigation/spec.md",
+        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-local-embeddings-foundation/041-llama-cpp-metal-investigation/spec.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
-        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/041-llama-cpp-metal-investigation/plan.md",
+        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-local-embeddings-foundation/041-llama-cpp-metal-investigation/plan.md",
         "source": "derived"
       },
       {
         "name": "tasks.md",
         "kind": "doc",
-        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/041-llama-cpp-metal-investigation/tasks.md",
+        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-local-embeddings-foundation/041-llama-cpp-metal-investigation/tasks.md",
         "source": "derived"
       },
       {
         "name": "implementation-summary.md",
         "kind": "doc",
-        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/041-llama-cpp-metal-investigation/implementation-summary.md",
+        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-local-embeddings-foundation/041-llama-cpp-metal-investigation/implementation-summary.md",
         "source": "derived"
       },
       {
         "name": "research.md",
         "kind": "doc",
-        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/041-llama-cpp-metal-investigation/research.md",
+        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-local-embeddings-foundation/041-llama-cpp-metal-investigation/research.md",
         "source": "derived"
       },
       {
         "name": "decision-record.md",
         "kind": "doc",
-        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/041-llama-cpp-metal-investigation/decision-record.md",
+        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-local-embeddings-foundation/041-llama-cpp-metal-investigation/decision-record.md",
         "source": "derived"
       },
       {
         "name": "description.json",
         "kind": "config",
-        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/041-llama-cpp-metal-investigation/description.json",
+        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-local-embeddings-foundation/041-llama-cpp-metal-investigation/description.json",
         "source": "derived"
       },
       {
         "name": "graph-metadata.json",
         "kind": "config",
-        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/041-llama-cpp-metal-investigation/graph-metadata.json",
+        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-local-embeddings-foundation/041-llama-cpp-metal-investigation/graph-metadata.json",
         "source": "derived"
       },
       {

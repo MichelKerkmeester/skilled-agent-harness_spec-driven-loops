@@ -16,7 +16,7 @@ Spec folder (pre-approved, skip Gate 3): `.opencode/specs/system-spec-kit/026-gr
 ## CONTEXT FROM PACKET
 
 5. **`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/spec.md` §3.4** — per-command specification.
-6. **`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/011-cocoindex-daemon-resilience/spec.md`** — predecessor packet shipping daemon idempotency fix (3.4.1.0). Reference for "refuse if daemon unhealthy" semantics.
+6. **`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-cocoindex-stack/010-daemon-resilience/spec.md`** — predecessor packet shipping daemon idempotency fix (3.4.1.0). Reference for "refuse if daemon unhealthy" semantics.
 
 ## SUBSYSTEM CONTRACT
 

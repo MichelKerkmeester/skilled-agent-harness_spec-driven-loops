@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-local-embeddings-foundation/035-cocoindex-mcp-reliability",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-local-embeddings-foundation/035-cocoindex-mcp-reliability",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-local-embeddings-foundation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [
+      {
+        "packet_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-local-embeddings-foundation/032-substrate-repair-followups",
+        "reason": "032 captured the repeated-query evidence with -32001 Request timed out and msgspec decode failures, especially scenarios 404 and 407.",
+        "source": "manual"
+      }
+    ],
+    "supersedes": [],
+    "related_to": [
+      {
+        "packet_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-local-embeddings-foundation/037-llama-cpp-embedding-worker-deep-dive",
+        "reason": "037 repairs embedding worker availability but does not address MCP transport timeout behavior.",
+        "source": "manual"
+      },
+      {
+        "packet_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-local-embeddings-foundation/039-token-aware-chunking",
+        "reason": "039 reduces embedding overload but leaves daemon/MCP serialization reliability as a separate concern.",
+        "source": "manual"
+      }
+    ]
+  },
+  "derived": {
+    "trigger_phrases": [
+      "035 cocoindex mcp reliability",
+      "cocoindex mcp timeout",
+      "msgspec decode errors",
+      "request timed out -32001"
+    ],
+    "key_topics": [
+      "035",
+      "cocoindex",
+      "mcp",
+      "json-rpc",
+      "msgspec",
+      "daemon",
+      "ipc"
+    ],
+    "importance_tier": "critical",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/server.py",
+      ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/client.py",
+      ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/daemon.py",
+      ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/protocol.py",
+      ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/query.py",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [],
+    "causal_summary": "035 maps the CocoIndex MCP path and finds that current evidence points to MCP/client timeout cancellation while the daemon continues processing and later sees disconnected clients; msgspec decode errors remain unproven in live logs and need targeted IPC instrumentation.",
+    "created_at": "2026-05-14T00:00:00Z",
+    "last_save_at": "2026-05-14T00:00:00Z",
+    "save_lineage": "manual_packet",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ]
+  }
+}

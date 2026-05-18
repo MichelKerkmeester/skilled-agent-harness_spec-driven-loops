@@ -1,0 +1,39 @@
+{
+  "title": "035 CocoIndex MCP Reliability",
+  "schema_version": 1,
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-local-embeddings-foundation/035-cocoindex-mcp-reliability",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-local-embeddings-foundation/035-cocoindex-mcp-reliability",
+  "summary": "Diagnose sporadic CocoIndex MCP timeouts and msgspec decode failures under repeated query load without modifying CocoIndex source.",
+  "tags": [
+    "cocoindex",
+    "mcp",
+    "reliability",
+    "timeout",
+    "msgspec",
+    "diagnostic"
+  ],
+  "is_phase_parent": false,
+  "created_at": "2026-05-14T00:00:00Z",
+  "updated_at": "2026-05-14T00:00:00Z",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-local-embeddings-foundation/035-cocoindex-mcp-reliability",
+  "description": "035 - CocoIndex MCP Reliability",
+  "keywords": [
+    "035",
+    "cocoindex",
+    "mcp",
+    "request-timeout",
+    "msgspec",
+    "daemon",
+    "json-rpc"
+  ],
+  "lastUpdated": "2026-05-14T00:00:00Z",
+  "specId": "035",
+  "folderSlug": "cocoindex-mcp-reliability",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "014-local-embeddings-migration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

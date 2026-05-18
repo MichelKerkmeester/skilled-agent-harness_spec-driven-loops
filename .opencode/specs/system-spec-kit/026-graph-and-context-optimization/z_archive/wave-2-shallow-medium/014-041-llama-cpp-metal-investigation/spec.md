@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/041-llama-cpp-metal-investigation"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-local-embeddings-foundation/041-llama-cpp-metal-investigation"
     last_updated_at: "2026-05-14T15:23:23Z"
     last_updated_by: "cli-codex-gpt5.5-xhigh-fast-041"
     recent_action: "Created research-only packet for llama-cpp Metal backend failures"
@@ -88,15 +88,15 @@ Document the local cause analysis and record a grounded recommendation without i
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/041-llama-cpp-metal-investigation/spec.md` | Create | Level 1 scope and requirements |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/041-llama-cpp-metal-investigation/plan.md` | Create | Research execution plan |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/041-llama-cpp-metal-investigation/tasks.md` | Create | Research task ledger |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/041-llama-cpp-metal-investigation/implementation-summary.md` | Create | Research delivery summary |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/041-llama-cpp-metal-investigation/research.md` | Create | Cause analysis and evidence |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/041-llama-cpp-metal-investigation/decision-record.md` | Create | ADR for recommendation |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/041-llama-cpp-metal-investigation/description.json` | Create | Packet identity metadata |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/041-llama-cpp-metal-investigation/graph-metadata.json` | Create | Packet graph metadata |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/041-llama-cpp-metal-investigation/scratch/` | Create | Read-only probe captures and scratch script |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-local-embeddings-foundation/041-llama-cpp-metal-investigation/spec.md` | Create | Level 1 scope and requirements |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-local-embeddings-foundation/041-llama-cpp-metal-investigation/plan.md` | Create | Research execution plan |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-local-embeddings-foundation/041-llama-cpp-metal-investigation/tasks.md` | Create | Research task ledger |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-local-embeddings-foundation/041-llama-cpp-metal-investigation/implementation-summary.md` | Create | Research delivery summary |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-local-embeddings-foundation/041-llama-cpp-metal-investigation/research.md` | Create | Cause analysis and evidence |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-local-embeddings-foundation/041-llama-cpp-metal-investigation/decision-record.md` | Create | ADR for recommendation |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-local-embeddings-foundation/041-llama-cpp-metal-investigation/description.json` | Create | Packet identity metadata |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-local-embeddings-foundation/041-llama-cpp-metal-investigation/graph-metadata.json` | Create | Packet graph metadata |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-local-embeddings-foundation/041-llama-cpp-metal-investigation/scratch/` | Create | Read-only probe captures and scratch script |
 <!-- /ANCHOR:scope -->
 
 ---

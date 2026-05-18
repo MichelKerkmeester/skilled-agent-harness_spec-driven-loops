@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/055-root-readme-realignment"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-local-embeddings-foundation/055-root-readme-realignment"
     last_updated_at: "2026-05-15T12:55:00Z"
     last_updated_by: "main_agent"
     recent_action: "Scaffolded Phase D packet"
@@ -47,7 +47,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-05-15 |
 | **Branch** | `main` |
-| **Parent** | `system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration` |
+| **Parent** | `system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-local-embeddings-foundation` |
 | **Phase** | D of 4 (final phase) |
 | **Predecessors** | Phases A (007/035), B (008/024), C (014/054) all shipped |
 | **Successor** | None (final phase) |

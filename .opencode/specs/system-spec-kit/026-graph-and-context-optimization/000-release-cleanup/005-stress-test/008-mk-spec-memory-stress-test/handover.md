@@ -230,7 +230,7 @@ For scenarios flagged PARTIAL due to z_archive count change:
 | cli-devin SKILL | `.opencode/skills/cli-devin/SKILL.md` |
 | Packet 113 (z_archive un-exclusion) | `.opencode/specs/skilled-agent-orchestration/113-z-archive-memory-indexing/` |
 | Packet 113 implementation-summary | `113-z-archive-memory-indexing/implementation-summary.md` |
-| Packet 111 (dispatch pattern reference) | `.opencode/specs/skilled-agent-orchestration/111-026-cleanup-remediation/` |
+| Packet 111 (dispatch pattern reference) | `.opencode/specs/skilled-agent-orchestration/111-026-wave-3-base-files-renumbering-name-cleanup/` |
 | MCP servers config | `.claude/mcp.json` (symlinked from `.mcp.json` per commit 280fe4888) |
 | Validate script | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <folder> --strict` |
 <!-- /ANCHOR:next-session -->

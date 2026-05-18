@@ -1,0 +1,38 @@
+{
+  "title": "032 substrate-repair-followups (phase parent)",
+  "schema_version": 1,
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-local-embeddings-foundation/032-substrate-repair-followups",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-local-embeddings-foundation/032-substrate-repair-followups",
+  "summary": "Phase parent for 5 approved follow-ups to 022's substrate-repair work: ADR-002 implementation, scenario re-run, build fix, embedding cleanup, RSS instrumentation. Two-wave codex dispatch plan.",
+  "tags": [
+    "phase-parent",
+    "substrate",
+    "followups",
+    "memory-mcp",
+    "post-022"
+  ],
+  "is_phase_parent": true,
+  "created_at": "2026-05-14T11:05:00Z",
+  "updated_at": "2026-05-14T11:05:00Z",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-local-embeddings-foundation/032-substrate-repair-followups",
+  "description": "032 — Substrate-repair Follow-ups (Phase Parent)",
+  "keywords": [
+    "032",
+    "substrate-repair",
+    "follow-ups",
+    "phase",
+    "parent"
+  ],
+  "lastUpdated": "2026-05-14T13:53:25.030Z",
+  "specId": "032",
+  "folderSlug": "substrate-repair-followups",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "014-local-embeddings-migration"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "14-05-26_14-53__scoped-scaffolded-and-shipped-the-032-substrate.md"
+  ]
+}

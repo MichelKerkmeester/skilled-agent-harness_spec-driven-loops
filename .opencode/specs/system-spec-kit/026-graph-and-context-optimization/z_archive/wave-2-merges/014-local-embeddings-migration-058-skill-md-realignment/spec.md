@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/058-skill-md-realignment"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-local-embeddings-foundation/058-skill-md-realignment"
     last_updated_at: "2026-05-15T15:00:00Z"
     last_updated_by: "main_agent"
     recent_action: "Scaffolded 058 packet"
@@ -52,7 +52,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-05-15 |
 | **Branch** | `main` |
-| **Parent** | `system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration` |
+| **Parent** | `system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-local-embeddings-foundation` |
 | **Depends on** | `057-root-readme-deeper-rewrite` (shipped) |
 | **Successor** | None |
 | **Handoff Criteria** | 3 SKILL.md + 3 mcp_server READMEs aligned to authorities; 7+ new references docs created; packet strict-validate PASS; single primary commit on main |
