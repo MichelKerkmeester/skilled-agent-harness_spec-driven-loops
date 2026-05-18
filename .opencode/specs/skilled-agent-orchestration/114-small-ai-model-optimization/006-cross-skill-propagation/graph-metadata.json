@@ -34,43 +34,76 @@
       "phase"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
+      ".opencode/skills/cli-opencode/references/context-budget.md",
+      ".opencode/skills/cli-opencode/assets/prompt_templates.md",
+      ".opencode/skills/sk-prompt/assets/cli_prompt_quality_card.md",
+      ".opencode/skills/sk-small-model/references/pattern-index.md",
+      ".opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/006-cross-skill-propagation/spec.md",
+      ".opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/006-cross-skill-propagation/tasks.md",
+      ".opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/006-cross-skill-propagation/checklist.md",
+      ".opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/006-cross-skill-propagation/implementation-summary.md",
       "spec.md",
       "plan.md",
       "checklist.md",
       "implementation-summary.md",
+      ".opencode/skills/cli-devin/references/context-budget.md",
       "tasks.md"
     ],
     "entities": [
       {
+        "name": "context-budget.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-opencode/references/context-budget.md",
+        "source": "derived"
+      },
+      {
+        "name": "prompt_templates.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-opencode/assets/prompt_templates.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli_prompt_quality_card.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-prompt/assets/cli_prompt_quality_card.md",
+        "source": "derived"
+      },
+      {
+        "name": "pattern-index.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-small-model/references/pattern-index.md",
+        "source": "derived"
+      },
+      {
         "name": "spec.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": ".opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/006-cross-skill-propagation/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": ".opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/006-cross-skill-propagation/tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": ".opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/006-cross-skill-propagation/checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": ".opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/006-cross-skill-propagation/implementation-summary.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -158,39 +191,15 @@
         "source": "derived"
       },
       {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
+        "name": "built",
+        "kind": "key_phrase",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Phase E of 114 roadmap. Propagate the context-budget patterns from cli-devin Phase C to cli-opencode (eviction support for larger-context models like DeepSeek-v4-pro / Kimi-k2.6) and sk-prompt (budget-awareness composition guidance in cli_prompt_quality_card.md). 2-stage tool routing port from smallcode is deferred or dropped per research iter-011 verdict (overlaps mcp-code-mode). Effort: ~6-12 hours.",
     "created_at": "2026-05-18T12:42:58.569Z",
-    "last_save_at": "2026-05-18T15:17:56.795Z",
+    "last_save_at": "2026-05-18T18:04:41.216Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

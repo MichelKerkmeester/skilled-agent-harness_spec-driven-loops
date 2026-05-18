@@ -41,6 +41,10 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
+      ".opencode/skills/sk-small-model/SKILL.md",
+      ".opencode/skills/sk-small-model/description.json",
+      ".opencode/skills/sk-small-model/graph-metadata.json",
+      ".opencode/skills/sk-small-model/references/pattern-index.md",
       ".opencode/skills/cli-devin/graph-metadata.json",
       ".opencode/skills/cli-opencode/graph-metadata.json",
       ".opencode/skills/sk-prompt/graph-metadata.json",
@@ -53,9 +57,27 @@
     ],
     "entities": [
       {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-small-model/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "description.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-small-model/description.json",
+        "source": "derived"
+      },
+      {
         "name": "graph-metadata.json",
         "kind": "config",
-        "path": ".opencode/skills/cli-devin/graph-metadata.json",
+        "path": ".opencode/skills/sk-small-model/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "pattern-index.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-small-model/references/pattern-index.md",
         "source": "derived"
       },
       {
@@ -177,29 +199,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "skill_advisor.py",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Phase A of the 114 follow-on roadmap. Create a thin sentinel `sk-small-model` skill that holds only philosophy + pattern index pointing at the real patterns living in `cli-devin/references/` and `cli-opencode/references/`. Wire enhances edges from cli-devin, cli-opencode, sk-prompt, and sk-code into the sentinel so the skill-advisor co-surfaces small-model guidance on any small-model dispatch. Add the \"Small-model dispatch rule\" to AGENTS.md as a sibling to the existing CLI dispatch rule. This phase is the FOUNDATION — every downstream phase (003–006) depends on this routing being in place. Effort: ~6 hours across 2 packets internal to this phase.",
     "created_at": "2026-05-18T12:27:06.089Z",
-    "last_save_at": "2026-05-18T15:17:56.790Z",
+    "last_save_at": "2026-05-18T18:04:41.210Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

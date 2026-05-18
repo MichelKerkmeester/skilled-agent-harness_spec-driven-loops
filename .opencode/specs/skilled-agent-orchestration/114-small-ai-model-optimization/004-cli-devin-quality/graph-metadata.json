@@ -19,7 +19,8 @@
       "cli-devin quality tasks",
       "cli-devin quality checklist",
       "cli-devin quality ADRs",
-      "cli-devin quality summary"
+      "cli-devin quality summary",
+      "phase 004 implementation"
     ],
     "key_topics": [
       "cli-devin",
@@ -36,7 +37,7 @@
       "checklist"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -193,7 +194,7 @@
     ],
     "causal_summary": "Phase C of 114 follow-on roadmap. Ship two related improvements to cli-devin SWE-1.6 dispatches: (1) per-model token-budget engine adapted from smallcode-master src/context/budget.ms — token allocation defaults, fit-to-budget truncation with `[... N tokens cut]` markers, priority eviction; (2) output-verification pipeline adapted from smallcode src/governor/verifier.ms + hard_fail.ms — compile→execute→smoke-test→lint with confidence scoring, refuse-to-ship gate on hard-fail. Effort: ~28 hours across 3 internal sub-packets. Daily quality lift on the most-used dispatch surface.",
     "created_at": "2026-05-18T12:36:32.578Z",
-    "last_save_at": "2026-05-18T15:17:56.793Z",
+    "last_save_at": "2026-05-18T18:04:41.213Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
