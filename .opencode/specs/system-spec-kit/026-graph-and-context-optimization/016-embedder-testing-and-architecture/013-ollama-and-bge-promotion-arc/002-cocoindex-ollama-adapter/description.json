@@ -1,0 +1,15 @@
+{
+  "level": "feature",
+  "specFolder": "002-cocoindex-ollama-adapter",
+  "description": "Add Ollama provider support to CocoIndex via LiteLLM. Register ollama embedders in MANIFESTS. Smoke-test end-to-end",
+  "keywords": ["ollama-adapter","cocoindex","litellm","embedder-registry"],
+  "lastUpdated": "2026-05-18T15:59:11.000Z",
+  "specId": "002",
+  "folderSlug": "002-cocoindex-ollama-adapter",
+  "parentChain": [
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture",
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/013-ollama-and-bge-promotion-arc"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}

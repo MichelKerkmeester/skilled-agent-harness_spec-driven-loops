@@ -1,0 +1,15 @@
+{
+  "level": "feature",
+  "specFolder": "004-spec-memory-bge-m3-benchmark",
+  "description": "Text-side fixture + 4-candidate bench for mk-spec-memory (jina-code vs bge-base / bge-large / bge-m3). Promote winner if margin sufficient",
+  "keywords": ["bge-m3","spec-memory","text-embedder","fixture-authoring","mk-spec-memory"],
+  "lastUpdated": "2026-05-18T15:59:11.000Z",
+  "specId": "004",
+  "folderSlug": "004-spec-memory-bge-m3-benchmark",
+  "parentChain": [
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture",
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/013-ollama-and-bge-promotion-arc"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}

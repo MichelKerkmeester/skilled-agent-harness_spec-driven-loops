@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/013-ollama-and-bge-promotion-arc/001-indexer-surface-investigation",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/013-ollama-and-bge-promotion-arc/001-indexer-surface-investigation",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/013-ollama-and-bge-promotion-arc",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": ["016/013/001 indexer investigation","what does AI council index","deep loop indexer surface"],
+    "key_topics": ["001","indexer-investigation","ai-council","deep-research","deep-review","content-type"],
+    "importance_tier": "normal",
+    "status": "planned",
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

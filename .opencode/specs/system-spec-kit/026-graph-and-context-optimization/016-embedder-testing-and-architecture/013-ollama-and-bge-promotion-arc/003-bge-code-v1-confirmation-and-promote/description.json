@@ -1,0 +1,15 @@
+{
+  "level": "feature",
+  "specFolder": "003-bge-code-v1-confirmation-and-promote",
+  "description": "3-run replay of the 4-candidate bench to confirm bge-code-v1's 11/18 lead. If reproducible, promote to CocoIndex default",
+  "keywords": ["bge-code-v1","default-promotion","3-run-confirmation","cocoindex"],
+  "lastUpdated": "2026-05-18T15:59:11.000Z",
+  "specId": "003",
+  "folderSlug": "003-bge-code-v1-confirmation-and-promote",
+  "parentChain": [
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture",
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/013-ollama-and-bge-promotion-arc"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}
