@@ -6,7 +6,8 @@
   "children_ids": [
     "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-code-embedder-coderank/001-cocoindex-swap",
     "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-code-embedder-coderank/002-baseline-fixture",
-    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-code-embedder-coderank/003-comparison-measure"
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-code-embedder-coderank/003-comparison-measure",
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-code-embedder-coderank/004-extended-bake-off"
   ],
   "manual": {
     "depends_on": [
@@ -43,7 +44,8 @@
       "002-baseline-fixture/spec.md",
       "003-comparison-measure/spec.md"
     ],
-    "last_active_child_id": null,
-    "last_active_at": null
+    "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-code-embedder-coderank/004-extended-bake-off",
+    "last_active_at": "2026-05-18T05:13:47.097Z",
+    "last_save_at": "2026-05-18T05:13:47.097Z"
   }
 }

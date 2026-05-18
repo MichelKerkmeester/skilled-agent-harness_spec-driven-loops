@@ -75,3 +75,9 @@ or edit it manually.
 Databases deleted.
 Settings file still exists. Run `ccc reset --all` to remove it too,
 or edit it manually.
+    markdown: 4960 chunks
+    html: 34 chunks
+    css: 11 chunks
+    json: 6 chunks
+    text: 1 chunks
+[2026-05-18T08:12:22+0200] restore complete; CocoIndex back on jina-code baseline

@@ -1,0 +1,31 @@
+{
+  "specFolder": "003-hybrid-search-bm25-fusion",
+  "description": "Spec: 016/011/003-hybrid-search-bm25-fusion — Hybrid Search (BM25 + Semantic Fusion)",
+  "keywords": [
+    "spec",
+    "016",
+    "011",
+    "003-hybrid-search-bm25-fusion",
+    "hybrid",
+    "search",
+    "bm25",
+    "semantic",
+    "fusion"
+  ],
+  "lastUpdated": "2026-05-18T05:13:46.575Z",
+  "specId": "003",
+  "folderSlug": "hybrid-search-bm25-fusion",
+  "parentChain": [
+    "..",
+    ".opencode",
+    "specs",
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "016-embedder-testing-and-architecture",
+    "011-cocoindex-retrieval-improvements"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "18-05-26_06-13__scaffolded-packet-during-2026-05-18-autonomous.md"
+  ]
+}
