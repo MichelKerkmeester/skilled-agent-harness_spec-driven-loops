@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/007-cocoindex-embedder-registry/001-declarative-registry",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/007-cocoindex-embedder-registry/001-declarative-registry",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/007-cocoindex-embedder-registry",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-cocoindex-stack/005-declarative-registry",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-cocoindex-stack/005-declarative-registry",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-cocoindex-stack",
   "children_ids": [],
   "manual": {
     "depends_on": [],

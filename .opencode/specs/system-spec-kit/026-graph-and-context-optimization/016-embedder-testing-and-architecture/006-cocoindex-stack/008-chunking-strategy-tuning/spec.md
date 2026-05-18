@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/011-cocoindex-retrieval-improvements/002-chunking-strategy-tuning"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-cocoindex-stack/008-chunking-strategy-tuning"
     last_updated_at: "2026-05-18T00:35:00Z"
     last_updated_by: "main_agent"
     recent_action: "Scaffolded research-phase packet"

@@ -20,10 +20,10 @@ Synthesize iters 8–9 evidence for hybrid BM25+semantic fusion in CocoIndex, an
 
 | # | Source | Annotation |
 |---|--------|------------|
-| 1 | `006-code-embedder-coderank/003-comparison-measure/decision-record.md` | ADR-001: KEEP-JINA-CODE verdict. Baseline 38.9% hit rate (7/18). Embedder swap not dominant lever. |
-| 2 | `011-cocoindex-retrieval-improvements/spec.md` | Umbrella spec: 3 structural improvements that affect ALL embedders. Research-first, implementation after convergence. |
+| 1 | `006-cocoindex-stack/003-comparison-measure/decision-record.md` | ADR-001: KEEP-JINA-CODE verdict. Baseline 38.9% hit rate (7/18). Embedder swap not dominant lever. |
+| 2 | `006-cocoindex-stack/spec.md` | Umbrella spec: 3 structural improvements that affect ALL embedders. Research-first, implementation after convergence. |
 | 3 | `003-hybrid-search-bm25-fusion/spec.md` | Phase spec: scope = BM25 options, fusion algorithms (RRF vs linear), normalization, mirror mk-spec-memory pattern. |
-| 4 | `006-code-embedder-coderank/002-baseline-fixture/evidence/code-retrieval-fixture.json` | 18-pair fixture used as quality substrate. Mix of easy/medium/hard queries, many containing exact symbol names. |
+| 4 | `006-cocoindex-stack/002-baseline-fixture/evidence/code-retrieval-fixture.json` | 18-pair fixture used as quality substrate. Mix of easy/medium/hard queries, many containing exact symbol names. |
 | 5 | `system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts` | mk-spec-memory's Stage 2 fusion (proven pattern, ~1300 LOC of signal integration). Hybrid search applies intent-aware scoring internally — post-search intent weighting only for non-hybrid. |
 | 6 | `system-spec-kit/mcp_server/lib/search/bm25-index.ts` | mk-spec-memory's BM25 implementation: in-memory `BM25Index` class (648 LOC) with `DEFAULT_K1=1.2`, `DEFAULT_B=0.75`, field weights [10, 5, 2, 1]. Also defines `BM25_FTS5_WEIGHTS`. |
 | 7 | `system-spec-kit/mcp_server/lib/search/hybrid-search.ts` | Full hybrid pipeline (~2735 LOC): vector + FTS5 + BM25 + trigger + graph + degree channels, fused via `fuseResultsMulti` from `rrf-fusion.ts`. FTS weight=0.3, BM25 weight=0.6, vector=1.0, trigger=1.4, graph=0.5. |

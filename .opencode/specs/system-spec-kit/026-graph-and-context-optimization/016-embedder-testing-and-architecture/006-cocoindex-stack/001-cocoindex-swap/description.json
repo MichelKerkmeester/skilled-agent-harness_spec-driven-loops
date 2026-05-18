@@ -14,7 +14,7 @@
   "specId": "018-001",
   "folderSlug": "cocoindex-swap",
   "parentChain": [
-    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-code-embedder-coderank"
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-cocoindex-stack"
   ],
   "memorySequence": 1,
   "memoryNameHistory": []

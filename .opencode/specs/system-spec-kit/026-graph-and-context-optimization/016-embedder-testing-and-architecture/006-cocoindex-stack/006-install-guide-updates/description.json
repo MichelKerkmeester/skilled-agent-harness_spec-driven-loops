@@ -13,7 +13,7 @@
   "specId": "019-002",
   "folderSlug": "install-guide-updates",
   "parentChain": [
-    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/007-cocoindex-embedder-registry"
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-cocoindex-stack"
   ],
   "memorySequence": 1,
   "memoryNameHistory": []

@@ -9,7 +9,7 @@ importance_tier: "high"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/011-cocoindex-retrieval-improvements/003-hybrid-search-bm25-fusion"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-cocoindex-stack/009-hybrid-search-bm25-fusion"
     last_updated_at: "2026-05-18T08:40:00Z"
     last_updated_by: "cli-codex"
     recent_action: "Implemented opt-in CocoIndex hybrid search with SQLite FTS5 BM25 lane and RRF fusion"

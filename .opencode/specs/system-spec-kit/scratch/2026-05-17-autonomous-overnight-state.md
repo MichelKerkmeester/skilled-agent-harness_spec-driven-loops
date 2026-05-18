@@ -16,7 +16,7 @@ User wants ALL outstanding embedder work driven to **100% perfection and verific
 
 ## Output destinations to monitor
 
-- C → `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-code-embedder-coderank/003-comparison-measure/evidence/`
+- C → `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-cocoindex-stack/003-comparison-measure/evidence/`
 - D → `.../008-deep-review-stack/review-002-remediation/`
 - E → `.../010-skill-advisor-embedder-parity/001-pluggable-architecture/review/`
 

@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/011-cocoindex-retrieval-improvements/002-chunking-strategy-tuning"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-cocoindex-stack/008-chunking-strategy-tuning"
     last_updated_at: "2026-05-18T00:35:00Z"
     last_updated_by: "main_agent"
     recent_action: "Authored research-stub tasks"
@@ -73,5 +73,5 @@ _memory:
 - Spec: `spec.md`
 - Plan: `plan.md`
 - Parent umbrella: `../spec.md` (016/011)
-- Fixture: `../../006-code-embedder-coderank/002-baseline-fixture/evidence/code-retrieval-fixture.json`
+- Fixture: `../../006-cocoindex-stack/002-baseline-fixture/evidence/code-retrieval-fixture.json`
 <!-- /ANCHOR:cross-refs -->

@@ -6,7 +6,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/007-cocoindex-embedder-registry/001-declarative-registry"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-cocoindex-stack/005-declarative-registry"
     last_updated_at: "2026-05-17T20:20:00Z"
     last_updated_by: "main_agent"
     recent_action: "Authored implementation phases"

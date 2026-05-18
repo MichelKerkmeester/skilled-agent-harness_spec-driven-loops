@@ -19,7 +19,7 @@
     "system-spec-kit",
     "026-graph-and-context-optimization",
     "016-embedder-testing-and-architecture",
-    "011-cocoindex-retrieval-improvements"
+    "006-cocoindex-stack"
   ],
   "memorySequence": 1,
   "memoryNameHistory": [

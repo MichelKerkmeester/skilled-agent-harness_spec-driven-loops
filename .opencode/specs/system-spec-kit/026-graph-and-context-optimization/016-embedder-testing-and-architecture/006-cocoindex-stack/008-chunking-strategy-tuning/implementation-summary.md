@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/011-cocoindex-retrieval-improvements/002-chunking-strategy-tuning"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-cocoindex-stack/008-chunking-strategy-tuning"
     last_updated_at: "2026-05-18T06:20:46Z"
     last_updated_by: "cli-codex"
     recent_action: "Implemented Stage A chunking defaults and environment overrides"
@@ -77,7 +77,7 @@ cAST/tree-sitter integration: deferred to Phase 2 (separate follow-on packet —
 - Config smoke check: `.venv/bin/python -c "import cocoindex_code.config as c; cfg = c.Config.from_env(); print(f'chunk_size={cfg.chunk_size}, overlap={cfg.chunk_overlap}, min={cfg.min_chunk_size}')"` returned `chunk_size=1500, overlap=200, min=250`.
 - Targeted tests: `.venv/bin/python -m pytest tests/test_config.py -v` passed `16 passed`.
 - OpenCode alignment check: `python3 .opencode/skills/sk-code/assets/scripts/verify_alignment_drift.py --root .opencode/skills/mcp-coco-index/mcp_server` passed with 0 errors and 18 warnings. Warnings are existing package-wide shebang/docstring policy findings.
-- Strict spec validation: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/011-cocoindex-retrieval-improvements/002-chunking-strategy-tuning/ --strict` passed with 0 errors and 0 warnings.
+- Strict spec validation: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-cocoindex-stack/008-chunking-strategy-tuning/ --strict` passed with 0 errors and 0 warnings.
 <!-- /ANCHOR:verification -->
 
 <!-- ANCHOR:limitations -->

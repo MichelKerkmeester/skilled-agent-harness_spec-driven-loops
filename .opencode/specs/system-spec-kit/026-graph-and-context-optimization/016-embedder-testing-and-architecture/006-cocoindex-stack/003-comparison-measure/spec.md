@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-code-embedder-coderank/003-comparison-measure"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-cocoindex-stack/003-comparison-measure"
     last_updated_at: "2026-05-17T18:50:00Z"
     last_updated_by: "main_agent"
     recent_action: "Ran primary CocoIndex embedder comparison and accepted ADR-001 KEEP-JINA-CODE"

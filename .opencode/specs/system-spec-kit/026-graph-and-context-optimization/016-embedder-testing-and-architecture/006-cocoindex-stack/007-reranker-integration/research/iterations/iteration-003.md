@@ -14,10 +14,10 @@ What top-K candidate depth should CocoIndex rerank with a cross-encoder — K=10
 
 # SCOPE READ
 
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-code-embedder-coderank/003-comparison-measure/decision-record.md` — ADR-001 benchmark context: direct `ccc search --limit 5`, 7/18 top-3 hit rate for both jina-code and gemma, latency baseline.
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/011-cocoindex-retrieval-improvements/spec.md` — umbrella scope: structural improvements affect all embedders; reranker expected as one candidate +10-20 pp lever.
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/011-cocoindex-retrieval-improvements/001-reranker-integration/spec.md` — child scope: cross-encoder model selection, integration after embedder top-K, added p95 target under 500 ms, and explicit K question.
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-code-embedder-coderank/002-baseline-fixture/evidence/code-retrieval-fixture.json` — 18 query/expected-source pairs used for quality measurement.
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-cocoindex-stack/003-comparison-measure/decision-record.md` — ADR-001 benchmark context: direct `ccc search --limit 5`, 7/18 top-3 hit rate for both jina-code and gemma, latency baseline.
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-cocoindex-stack/spec.md` — umbrella scope: structural improvements affect all embedders; reranker expected as one candidate +10-20 pp lever.
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-cocoindex-stack/007-reranker-integration/spec.md` — child scope: cross-encoder model selection, integration after embedder top-K, added p95 target under 500 ms, and explicit K question.
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-cocoindex-stack/002-baseline-fixture/evidence/code-retrieval-fixture.json` — 18 query/expected-source pairs used for quality measurement.
 - `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/query.py` — current CocoIndex query candidate-fetch, lightweight scoring, dedup, and “rerank” telemetry stage.
 - BEIR example + paper — BEIR reranking baseline reranks top-100 BM25 hits with a cross-encoder; paper reports BM25+CE top-100 and broad nDCG gains.
 - MTEB two-stage reranking docs — MTEB converts retrieval predictions to reranking tasks with `top_k=100`.
@@ -29,7 +29,7 @@ What top-K candidate depth should CocoIndex rerank with a cross-encoder — K=10
 
 1. The local benchmark baseline is weak enough that reranking is plausibly a major lever, but only if the correct chunks are already in the candidate pool. ADR-001 used direct `ccc search --limit 5` calls, and both `jina-code` and `gemma` produced 7/18 top-3 hits (38.9%) on the fixture; jina-code median/p95 were 404/590 ms, gemma median/p95 were 398/4011 ms. Evidence: `.opencode/.../decision-record.md:55`, `.opencode/.../decision-record.md:82-85`.
 
-2. The parent spec already frames reranking as a structural improvement that should affect all embedders and estimates typical reranker lift at +10-20 percentage points. That puts a realistic target near 9-11 hits out of 18, or 50.0-61.1% top-3 hit rate, if first-stage recall contains enough missed targets. Evidence: `.opencode/.../011-cocoindex-retrieval-improvements/spec.md:50-53`, `.opencode/.../011-cocoindex-retrieval-improvements/spec.md:76-80`.
+2. The parent spec already frames reranking as a structural improvement that should affect all embedders and estimates typical reranker lift at +10-20 percentage points. That puts a realistic target near 9-11 hits out of 18, or 50.0-61.1% top-3 hit rate, if first-stage recall contains enough missed targets. Evidence: `.opencode/.../006-cocoindex-stack/spec.md:50-53`, `.opencode/.../006-cocoindex-stack/spec.md:76-80`.
 
 3. The child spec constrains this K sweep more tightly than BEIR/MTEB defaults: integration is after embedder top-K retrieval and before result return, rerank latency target is added p95 under 500 ms, and top-K size is explicitly open at K=10/K=20/K=50. Evidence: `.opencode/.../001-reranker-integration/spec.md:57-63`, `.opencode/.../001-reranker-integration/spec.md:73-79`, `.opencode/.../001-reranker-integration/spec.md:105-109`.
 

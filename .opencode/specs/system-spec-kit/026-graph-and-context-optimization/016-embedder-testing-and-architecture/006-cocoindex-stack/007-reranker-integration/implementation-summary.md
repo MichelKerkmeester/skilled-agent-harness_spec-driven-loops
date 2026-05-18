@@ -9,7 +9,7 @@ importance_tier: "high"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/011-cocoindex-retrieval-improvements/001-reranker-integration"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-cocoindex-stack/007-reranker-integration"
     last_updated_at: "2026-05-18T00:00:00Z"
     last_updated_by: "cli-codex"
     recent_action: "Implemented opt-in GTE cross-encoder reranker after hybrid RRF fusion."
@@ -72,7 +72,7 @@ The implementation mirrors mk-spec-memory's stage 3 pattern: feature flag first,
 Completed:
 - `.venv/bin/python -m pytest tests/ -v` — 70 passed.
 - `python3 .opencode/skills/sk-code/assets/scripts/verify_alignment_drift.py --root .opencode/skills/mcp-coco-index/mcp_server` — passed with 0 errors / 22 existing style warnings.
-- `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/011-cocoindex-retrieval-improvements/001-reranker-integration --strict` — passed with 0 errors / 0 warnings.
+- `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-cocoindex-stack/007-reranker-integration --strict` — passed with 0 errors / 0 warnings.
 
 Default-on promotion remains gated on the 18-pair fixture: p95 added latency under 500ms and at least +2 top-3 hits.
 <!-- /ANCHOR:verification -->

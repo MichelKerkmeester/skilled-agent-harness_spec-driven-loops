@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-code-embedder-coderank/004-extended-bake-off"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-cocoindex-stack/004-extended-bake-off"
     last_updated_at: "2026-05-18T00:40:00Z"
     last_updated_by: "main_agent"
     recent_action: "Authored phases"
