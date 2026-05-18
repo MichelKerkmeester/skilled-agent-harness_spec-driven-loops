@@ -93,4 +93,4 @@ For each variant:
 
 ## 4. NOTES
 
-This scenario stresses the embedding's ability to distinguish senses based on surrounding context. EmbeddingGemma's pretraining should handle these common English-language disambiguations cleanly, but ambiguous queries (e.g., bare "save context" without a qualifier) may legitimately return mixed top-K — that's not a failure of the disambiguation itself.
+This scenario stresses the embedding's ability to distinguish senses based on surrounding context. Current local and Ollama models should handle these common English-language disambiguations cleanly, but ambiguous queries (e.g., bare "save context" without a qualifier) may legitimately return mixed top-K — that's not a failure of the disambiguation itself.

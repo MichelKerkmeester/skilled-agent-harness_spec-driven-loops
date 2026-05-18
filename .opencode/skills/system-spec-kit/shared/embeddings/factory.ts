@@ -3,18 +3,11 @@
 // ───────────────────────────────────────────────────────────────────
 
 import { execFileSync } from 'child_process';
-import { existsSync, mkdirSync, readdirSync, rmSync, writeFileSync } from 'fs';
-import os from 'os';
+import { existsSync, readdirSync } from 'fs';
 import path from 'path';
-import { fileURLToPath, pathToFileURL } from 'url';
+import { fileURLToPath } from 'url';
 
 import { HfLocalProvider, resolveDtype as resolveHfLocalDtype } from './providers/hf-local.js';
-import {
-  getLlamaCppAvailability,
-  LLAMA_CPP_DEFAULT_MODEL_PATH,
-  resolveLlamaCppModelPath,
-  resolveWorkspaceNodeLlamaCppEntrypoint,
-} from './llama-cpp-availability.js';
 import { OpenAIProvider, MODEL_DIMENSIONS as OPENAI_MODEL_DIMENSIONS } from './providers/openai.js';
 import {
   getOllamaManifest,
@@ -70,7 +63,7 @@ function parseValidationErrorBody(payload: unknown): ValidationErrorBody {
   };
 }
 
-type SupportedProviderName = 'voyage' | 'openai' | 'hf-local' | 'llama-cpp' | 'ollama';
+type SupportedProviderName = 'voyage' | 'openai' | 'hf-local' | 'ollama';
 type ConfiguredProviderName = SupportedProviderName | 'auto';
 type ProviderFactoryMetadata = {
   requestedProvider: string;
@@ -88,11 +81,6 @@ type StartupEmbeddingConfig = {
   validation: ApiKeyValidationResult;
 };
 
-export type AutoMigrationResult =
-  | { status: 'skipped'; reason: string }
-  | { status: 'completed'; sourceRows: number; targetRows: number; wallClockSeconds: number; deletedFiles: string[] }
-  | { status: 'failed'; reason: string; preservedSource: string; fallbackProvider: 'hf-local' };
-
 interface ValidateApiKeyOptions {
   timeout?: number;
   provider?: SupportedProviderName;
@@ -106,50 +94,8 @@ let lastProviderFactoryFingerprint: string | null = null;
 
 const providerValidationCache = new Map<string, Promise<ApiKeyValidationResult>>();
 
-interface MigrationRunResult {
-  status: 'completed' | 'no-op' | 'failed';
-  source: string;
-  target: string;
-  source_rows: number;
-  target_rows: number;
-  migrated_rows: number;
-  skipped_rows: number;
-  pruned_target_only_rows: number;
-  summary_rows: number;
-  validation_sample_size: number;
-  mismatches: number;
-  wall_clock_seconds: number;
-  started_at: string;
-  completed_at: string;
-  reason?: string;
-}
-
-type MigrationRunner = (opts: {
-  source?: string;
-  target?: string;
-  validationSampleSize?: number;
-  logger?: (msg: string) => void;
-}) => Promise<MigrationRunResult>;
-
-interface AutoMigrationTestOverrides {
-  databaseDir?: string;
-  runMigration?: MigrationRunner;
-}
-
-let autoMigrationTestOverrides: AutoMigrationTestOverrides | null = null;
-
-export function setAutoMigrationTestOverridesForTests(overrides: AutoMigrationTestOverrides | null): void {
-  autoMigrationTestOverrides = overrides;
-}
-
-export const SUPPORTED_PROVIDERS = ['openai', 'voyage', 'hf-local', 'llama-cpp', 'ollama', 'auto'] as const;
+export const SUPPORTED_PROVIDERS = ['openai', 'voyage', 'hf-local', 'ollama', 'auto'] as const;
 const SUPPORTED_PROVIDER_SET: ReadonlySet<string> = new Set(SUPPORTED_PROVIDERS);
-
-const LLAMA_CPP_MIGRATION_MODEL = 'unsloth/embeddinggemma-300m-GGUF';
-const LLAMA_CPP_INSTALL_HINT = "Run 'bash .opencode/skills/system-spec-kit/scripts/install-llama-cpp.sh' to enable the faster default.";
-
-let llamaCppFallbackWarned = false;
-let migrationPendingWarned = false;
 
 // 014-local-embeddings-setup-a / 007-voyage-cleanup-and-egress-monitoring:
 // Runtime guard that fires once per process startup if VOYAGE_API_KEY is present
@@ -195,10 +141,9 @@ function warnIfVoyageWouldShadowLocal(explicitProvider: string | null): void {
 }
 
 const DEFAULT_PROVIDER_MODELS: Readonly<Record<SupportedProviderName, string>> = {
-  voyage: 'voyage-4',
+  voyage: 'voyage-code-3',
   openai: 'text-embedding-3-small',
-  'hf-local': 'onnx-community/embeddinggemma-300m-ONNX',
-  'llama-cpp': 'unsloth/embeddinggemma-300m-GGUF',
+  'hf-local': 'BAAI/bge-base-en-v1.5',
   ollama: 'jina-embeddings-v3',
 };
 
@@ -207,23 +152,12 @@ export const VALID_PROVIDER_DIMENSIONS = Object.freeze({
   voyage: Object.freeze({ ...VOYAGE_MODEL_DIMENSIONS }),
   openai: Object.freeze({ ...OPENAI_MODEL_DIMENSIONS }),
   'hf-local': Object.freeze({
+    'BAAI/bge-base-en-v1.5': 768,
     'nomic-ai/nomic-embed-text-v1.5': 768,
-    // 014-local-embeddings-setup-a / 001-prefix-registry-architecture:
-    // Additional locally-runnable embedding models registered for Setup A and
-    // documented fallbacks. Dimensions are model-native; EmbeddingGemma also
-    // supports Matryoshka truncation via the EMBEDDING_DIM env override.
-    'google/embeddinggemma-300m': 768,
-    // transformers.js-compatible ONNX port (used by HfLocalProvider on Node)
-    'onnx-community/embeddinggemma-300m-ONNX': 768,
     'intfloat/e5-large-v2': 1024,
     'mixedbread-ai/mxbai-embed-large-v1': 1024,
     'Snowflake/snowflake-arctic-embed-l-v2.0': 1024,
     'BAAI/bge-m3': 1024,
-  }),
-  'llama-cpp': Object.freeze({
-    'unsloth/embeddinggemma-300m-GGUF': 768,
-    'ggml-org/embeddinggemma-300M-GGUF': 768,
-    'google/embeddinggemma-300m': 768,
   }),
   ollama: Object.freeze({ ...OLLAMA_MODEL_DIMENSIONS }),
 } satisfies Record<SupportedProviderName, Readonly<Record<string, number>>>);
@@ -260,8 +194,6 @@ function resolveConfiguredModel(provider: SupportedProviderName, model?: string)
       return process.env.VOYAGE_EMBEDDINGS_MODEL || DEFAULT_PROVIDER_MODELS.voyage;
     case 'openai':
       return process.env.OPENAI_EMBEDDINGS_MODEL || DEFAULT_PROVIDER_MODELS.openai;
-    case 'llama-cpp':
-      return process.env.LLAMA_CPP_EMBEDDINGS_MODEL || DEFAULT_PROVIDER_MODELS['llama-cpp'];
     case 'ollama':
       return process.env.OLLAMA_EMBEDDINGS_MODEL || resolveActiveOllamaEmbedder()?.name || DEFAULT_PROVIDER_MODELS.ollama;
     case 'hf-local':
@@ -297,31 +229,11 @@ function buildProviderConfigFingerprint(provider: string): string {
     OPENAI_EMBEDDINGS_MODEL: process.env.OPENAI_EMBEDDINGS_MODEL || '',
     HF_EMBEDDINGS_MODEL: process.env.HF_EMBEDDINGS_MODEL || '',
     HF_EMBEDDINGS_DTYPE: process.env.HF_EMBEDDINGS_DTYPE || '',
-    LLAMA_CPP_EMBEDDINGS_MODEL: process.env.LLAMA_CPP_EMBEDDINGS_MODEL || '',
-    LLAMA_CPP_EMBEDDINGS_MODEL_PATH: process.env.LLAMA_CPP_EMBEDDINGS_MODEL_PATH || '',
-    LLAMA_CPP_EMBEDDINGS_DTYPE: process.env.LLAMA_CPP_EMBEDDINGS_DTYPE || '',
     OLLAMA_BASE_URL: process.env.OLLAMA_BASE_URL || '',
     OLLAMA_EMBEDDINGS_MODEL: process.env.OLLAMA_EMBEDDINGS_MODEL || '',
     MEMORY_DB_PATH: process.env.MEMORY_DB_PATH || '',
     SPEC_KIT_DB_DIR: process.env.SPEC_KIT_DB_DIR || process.env.SPECKIT_DB_DIR || '',
-    MEMORY_AUTO_MIGRATE_HF_TO_LLAMA: process.env.MEMORY_AUTO_MIGRATE_HF_TO_LLAMA || '',
   });
-}
-
-function resolveLlamaCppDtype(): string {
-  return resolveActiveProfileDtype('llama-cpp') || 'q8';
-}
-
-function resolveLlamaCppProfileModel(model: string): string {
-  return model.replace(/\//g, '-');
-}
-
-function warnLlamaCppUnavailable(reason: string): void {
-  if (llamaCppFallbackWarned) {
-    return;
-  }
-  llamaCppFallbackWarned = true;
-  console.warn(`Local embeddings: llama-cpp unavailable (${reason}) — falling back to hf-local. ${LLAMA_CPP_INSTALL_HINT}`);
 }
 
 function resolveSpecKitPackageRoot(): string | null {
@@ -450,7 +362,7 @@ function readActiveOllamaEmbedderFromDb(sqlitePath: string): ActiveOllamaEmbedde
   }
   if (manifest.dim !== dim) {
     warnActiveOllamaFallback(
-      `Active embedder ${name} has metadata dim ${dim}, but its manifest dim is ${manifest.dim}; falling back to embeddinggemma.`,
+      `Active embedder ${name} has metadata dim ${dim}, but its manifest dim is ${manifest.dim}; continuing provider cascade.`,
     );
     return null;
   }
@@ -458,7 +370,7 @@ function readActiveOllamaEmbedderFromDb(sqlitePath: string): ActiveOllamaEmbedde
   const expectedTable = `vec_${dim}`;
   if (!tableExistsInSqlite(sqlitePath, expectedTable)) {
     warnActiveOllamaFallback(
-      `Active embedder ${name} points to ${expectedTable}, but that table is missing in ${sqlitePath}; falling back to embeddinggemma.`,
+      `Active embedder ${name} points to ${expectedTable}, but that table is missing in ${sqlitePath}; continuing provider cascade.`,
     );
     return null;
   }
@@ -466,7 +378,7 @@ function readActiveOllamaEmbedderFromDb(sqlitePath: string): ActiveOllamaEmbedde
   const rowCount = countRowsInSqliteTable(sqlitePath, expectedTable);
   if (rowCount === null || rowCount <= 0) {
     warnActiveOllamaFallback(
-      `Active embedder ${name} points to ${expectedTable}, but that table is empty in ${sqlitePath}; falling back to embeddinggemma.`,
+      `Active embedder ${name} points to ${expectedTable}, but that table is empty in ${sqlitePath}; continuing provider cascade.`,
     );
     return null;
   }
@@ -486,230 +398,6 @@ function resolveActiveOllamaEmbedder(): ActiveOllamaEmbedder | null {
     }
   }
   return null;
-}
-
-function countMemoryIndexRows(sqlitePath: string): number | null {
-  try {
-    const output = execFileSync('sqlite3', [
-      sqlitePath,
-      'SELECT COUNT(*) FROM memory_index;',
-    ], {
-      encoding: 'utf8',
-      stdio: ['ignore', 'pipe', 'ignore'],
-      timeout: 2000,
-    }).trim();
-    const parsed = Number.parseInt(output, 10);
-    return Number.isFinite(parsed) ? parsed : null;
-  } catch (_error: unknown) {
-    return null;
-  }
-}
-
-function countMemoryIndexRowsForModel(sqlitePath: string, model: string): number | null {
-  try {
-    const escapedModel = model.replace(/'/g, "''");
-    const output = execFileSync('sqlite3', [
-      sqlitePath,
-      `SELECT COUNT(*) FROM memory_index WHERE embedding_model = '${escapedModel}';`,
-    ], {
-      encoding: 'utf8',
-      stdio: ['ignore', 'pipe', 'ignore'],
-      timeout: 2000,
-    }).trim();
-    const parsed = Number.parseInt(output, 10);
-    return Number.isFinite(parsed) ? parsed : null;
-  } catch (_error: unknown) {
-    return null;
-  }
-}
-
-interface HfLocalSourceStore {
-  path: string;
-  rows: number;
-}
-
-function logAutoMigrationDiagnostic(message: string): void {
-  process.stderr.write(`${message}\n`);
-}
-
-function logAutoMigrationSkip(reason: string): AutoMigrationResult {
-  logAutoMigrationDiagnostic(`AUTO_MIGRATION_SKIP: ${reason}`);
-  return { status: 'skipped', reason };
-}
-
-function isAutoMigrationOptedOut(): boolean {
-  return process.env.MEMORY_AUTO_MIGRATE_HF_TO_LLAMA?.trim().toLowerCase() === 'false';
-}
-
-function findLargestHfLocalSourceStore(databaseDir: string): HfLocalSourceStore | null {
-  let largest: HfLocalSourceStore | null = null;
-  for (const filename of readdirSync(databaseDir)) {
-    if (!filename.startsWith('context-index__hf-local__') || !filename.endsWith('.sqlite')) {
-      continue;
-    }
-    const sqlitePath = path.join(databaseDir, filename);
-    const rows = countMemoryIndexRows(sqlitePath);
-    if (rows !== null && rows > 0 && (!largest || rows > largest.rows)) {
-      largest = { path: sqlitePath, rows };
-    }
-  }
-  return largest;
-}
-
-async function loadAutoMigrationRunner(): Promise<MigrationRunner> {
-  if (autoMigrationTestOverrides?.runMigration) {
-    return autoMigrationTestOverrides.runMigration;
-  }
-
-  const packageRoot = resolveSpecKitPackageRoot();
-  if (!packageRoot) {
-    throw new Error('unable to resolve system-spec-kit package root');
-  }
-
-  const candidates = [
-    path.join(packageRoot, 'scripts', 'dist', 'migrate-embeddings-to-llama-cpp.js'),
-    path.join(packageRoot, 'scripts', 'migrate-embeddings-to-llama-cpp.js'),
-    path.join(packageRoot, 'scripts', 'migrate-embeddings-to-llama-cpp.ts'),
-  ];
-
-  for (const candidate of candidates) {
-    if (!existsSync(candidate)) {
-      continue;
-    }
-    const mod = await import(pathToFileURL(candidate).href) as { runMigration?: MigrationRunner };
-    if (typeof mod.runMigration === 'function') {
-      return mod.runMigration;
-    }
-  }
-
-  throw new Error('runMigration export not found for llama-cpp migration script');
-}
-
-function deleteSourceStoreAndCompanions(sourcePath: string): string[] {
-  const deletedFiles: string[] = [];
-  for (const candidate of [sourcePath, `${sourcePath}-shm`, `${sourcePath}-wal`]) {
-    if (existsSync(candidate)) {
-      deletedFiles.push(candidate);
-    }
-    rmSync(candidate, { force: true });
-  }
-  return deletedFiles;
-}
-
-function writeAutoMigrationMarker(
-  databaseDir: string,
-  sourcePath: string,
-  targetPath: string,
-  sourceRows: number,
-  wallClockSeconds: number,
-): void {
-  mkdirSync(databaseDir, { recursive: true });
-  writeFileSync(
-    path.join(databaseDir, '.auto-migration-complete.json'),
-    JSON.stringify({
-      migrated_at: new Date().toISOString(),
-      source_basename: path.basename(sourcePath),
-      target_basename: path.basename(targetPath),
-      source_rows: sourceRows,
-      wall_clock_seconds: wallClockSeconds,
-    }, null, 2) + '\n',
-    'utf8',
-  );
-}
-
-export async function runAutoMigrationIfNeeded(profile: EmbeddingProfile): Promise<AutoMigrationResult> {
-  if (profile.provider !== 'llama-cpp') {
-    return logAutoMigrationSkip(`active provider is ${profile.provider}`);
-  }
-
-  const packageRoot = resolveSpecKitPackageRoot();
-  const databaseDir = autoMigrationTestOverrides?.databaseDir
-    ?? (packageRoot ? path.join(packageRoot, 'mcp_server', 'database') : null);
-  if (!databaseDir || !existsSync(databaseDir)) {
-    return logAutoMigrationSkip('database directory not found');
-  }
-
-  let source: HfLocalSourceStore | null = null;
-  try {
-    source = findLargestHfLocalSourceStore(databaseDir);
-  } catch (error: unknown) {
-    return logAutoMigrationSkip(`unable to inspect hf-local sources: ${getErrorMessage(error)}`);
-  }
-  if (!source) {
-    return logAutoMigrationSkip('no hf-local source store with rows');
-  }
-
-  if (isAutoMigrationOptedOut()) {
-    if (!migrationPendingWarned) {
-      migrationPendingWarned = true;
-      console.warn(
-        `MIGRATION_PENDING: hf-local store contains ${source.rows} rows. ` +
-        "Run 'tsx .opencode/skills/system-spec-kit/scripts/migrate-embeddings-to-llama-cpp.ts' to migrate.",
-      );
-    }
-    return logAutoMigrationSkip('opt-out via MEMORY_AUTO_MIGRATE_HF_TO_LLAMA=false');
-  }
-
-  const targetPath = profile.getDatabasePath(databaseDir);
-  const targetRows = countMemoryIndexRows(targetPath);
-  const targetLlamaRows = countMemoryIndexRowsForModel(targetPath, LLAMA_CPP_MIGRATION_MODEL);
-  if (targetRows !== null && targetRows >= source.rows && targetLlamaRows !== null && targetLlamaRows >= source.rows) {
-    return logAutoMigrationSkip('target up to date; already migrated');
-  }
-
-  logAutoMigrationDiagnostic(
-    `AUTO_MIGRATION_START: re-embedding ${source.rows} rows from ${source.path} -> ${targetPath}`,
-  );
-
-  try {
-    const runMigration = await loadAutoMigrationRunner();
-    const migration = await runMigration({
-      source: source.path,
-      target: targetPath,
-      validationSampleSize: 10,
-      logger: (msg: string) => logAutoMigrationDiagnostic(`[auto-migration] ${msg}`),
-    });
-
-    if (migration.status === 'no-op') {
-      return logAutoMigrationSkip(migration.reason || 'target already migrated');
-    }
-
-    const targetAfterRows = countMemoryIndexRows(targetPath) ?? migration.target_rows;
-    const validationOk = migration.status === 'completed'
-      && source.rows === targetAfterRows
-      && migration.mismatches === 0;
-    if (!validationOk) {
-      const reason = migration.reason
-        || `validation failed: source_rows=${source.rows}, target_rows=${targetAfterRows}, mismatches=${migration.mismatches}`;
-      console.error(`AUTO_MIGRATION_FAILED: ${reason}; hf-local store preserved at ${source.path}`);
-      return {
-        status: 'failed',
-        reason,
-        preservedSource: source.path,
-        fallbackProvider: 'hf-local',
-      };
-    }
-
-    const deletedFiles = deleteSourceStoreAndCompanions(source.path);
-    writeAutoMigrationMarker(databaseDir, source.path, targetPath, source.rows, migration.wall_clock_seconds);
-    logAutoMigrationDiagnostic(`AUTO_MIGRATION_COMPLETE: deleted ${path.basename(source.path)}; wrote marker`);
-    return {
-      status: 'completed',
-      sourceRows: source.rows,
-      targetRows: targetAfterRows,
-      wallClockSeconds: migration.wall_clock_seconds,
-      deletedFiles,
-    };
-  } catch (error: unknown) {
-    const reason = getErrorMessage(error);
-    console.error(`AUTO_MIGRATION_FAILED: ${reason}; hf-local store preserved at ${source.path}`);
-    return {
-      status: 'failed',
-      reason,
-      preservedSource: source.path,
-      fallbackProvider: 'hf-local',
-    };
-  }
 }
 
 function setLastProviderFactoryMetadata(metadata: ProviderFactoryMetadata): void {
@@ -758,12 +446,10 @@ function getProviderInfoForResolution(resolution: ProviderResolution): ProviderI
     config: {
       EMBEDDINGS_PROVIDER: explicitProvider || 'auto',
       VOYAGE_API_KEY: process.env.VOYAGE_API_KEY ? '***set***' : 'not set',
-      VOYAGE_EMBEDDINGS_MODEL: process.env.VOYAGE_EMBEDDINGS_MODEL || 'voyage-4',
+      VOYAGE_EMBEDDINGS_MODEL: process.env.VOYAGE_EMBEDDINGS_MODEL || DEFAULT_PROVIDER_MODELS.voyage,
       OPENAI_API_KEY: process.env.OPENAI_API_KEY ? '***set***' : 'not set',
-      OPENAI_EMBEDDINGS_MODEL: process.env.OPENAI_EMBEDDINGS_MODEL || 'text-embedding-3-small',
+      OPENAI_EMBEDDINGS_MODEL: process.env.OPENAI_EMBEDDINGS_MODEL || DEFAULT_PROVIDER_MODELS.openai,
       HF_EMBEDDINGS_MODEL: process.env.HF_EMBEDDINGS_MODEL || DEFAULT_PROVIDER_MODELS['hf-local'],
-      LLAMA_CPP_EMBEDDINGS_MODEL: process.env.LLAMA_CPP_EMBEDDINGS_MODEL || DEFAULT_PROVIDER_MODELS['llama-cpp'],
-      LLAMA_CPP_EMBEDDINGS_MODEL_PATH: process.env.LLAMA_CPP_EMBEDDINGS_MODEL_PATH || 'default GGUF cache path',
       OLLAMA_BASE_URL: resolveOllamaBaseUrl(),
       OLLAMA_EMBEDDINGS_MODEL: process.env.OLLAMA_EMBEDDINGS_MODEL || resolveActiveOllamaEmbedder()?.name || DEFAULT_PROVIDER_MODELS.ollama,
     },
@@ -835,9 +521,7 @@ export function getStartupEmbeddingProfile(): EmbeddingProfile {
 
   const profile = new EmbeddingProfile({
     provider,
-    model: provider === 'llama-cpp'
-      ? resolveLlamaCppProfileModel(model)
-      : provider === 'ollama'
+    model: provider === 'ollama'
         ? resolveOllamaCanonicalModel(model)
         : model,
     dim,
@@ -893,13 +577,10 @@ function isPlaceholderKey(key: string): boolean {
  * Resolve provider based on env vars.
  * Precedence:
  * 1) EMBEDDINGS_PROVIDER,
- * 2) VOYAGE_API_KEY,
- * 3) OPENAI_API_KEY,
- * 4) llama-cpp local default when available,
+ * 2) persisted vec_metadata active Ollama pointer,
+ * 3) VOYAGE_API_KEY,
+ * 4) OPENAI_API_KEY,
  * 5) hf-local local fallback.
- *
- * `MEMORY_AUTO_MIGRATE_HF_TO_LLAMA=false` disables destructive startup
- * migration and preserves the pre-018 warning + manual-script behavior.
  */
 export function resolveProvider(): ProviderResolution {
   const explicitProvider = getExplicitProviderOverride();
@@ -942,18 +623,9 @@ export function resolveProvider(): ProviderResolution {
     }
   }
 
-  const llamaCppAvailability = getLlamaCppAvailability();
-  if (llamaCppAvailability.available) {
-    return {
-      name: 'llama-cpp',
-      reason: 'Default local provider (llama-cpp GGUF q8)',
-    };
-  }
-
-  warnLlamaCppUnavailable(llamaCppAvailability.reason || 'availability probe failed');
   return {
     name: 'hf-local',
-    reason: 'Final fallback provider (transformers.js/ONNX q8)',
+    reason: 'Local fallback provider',
   };
 }
 
@@ -1010,23 +682,6 @@ async function createProviderInstance(
         timeout: options.timeout,
       });
 
-    case 'llama-cpp': {
-      if (options.baseUrl) {
-        console.warn('[factory] LlamaCppProvider does not support baseUrl option - ignored');
-      }
-      const { LlamaCppProvider } = await import('./providers/llama-cpp.js');
-      const availability = await LlamaCppProvider.canLoad();
-      if (!availability.available) {
-        throw new Error(availability.reason || 'llama-cpp availability probe failed');
-      }
-      return new LlamaCppProvider({
-        model: options.model,
-        dim: options.dim,
-        maxTextLength: options.maxTextLength,
-        timeout: options.timeout,
-      });
-    }
-
     case 'ollama': {
       const model = resolveConfiguredModel('ollama', options.model);
       if (options.apiKey) {
@@ -1078,7 +733,7 @@ function buildProviderValidationCacheKey(options: ValidateApiKeyOptions): string
 
 async function ensureCloudProviderValidated(options: ValidateApiKeyOptions): Promise<ApiKeyValidationResult> {
   const providerName = options.provider;
-  if (!providerName || providerName === 'hf-local' || providerName === 'llama-cpp' || providerName === 'ollama') {
+  if (!providerName || providerName === 'hf-local' || providerName === 'ollama') {
     return {
       valid: true,
       provider: providerName || 'hf-local',
@@ -1107,8 +762,8 @@ async function ensureCloudProviderValidated(options: ValidateApiKeyOptions): Pro
 
 function getCascadeFallbackOrder(failedProvider: SupportedProviderName): SupportedProviderName[] {
   const cascadeOrder: SupportedProviderName[] = failedProvider === 'ollama'
-    ? ['ollama', 'llama-cpp', 'hf-local']
-    : ['voyage', 'openai', 'llama-cpp', 'hf-local'];
+    ? ['ollama', 'hf-local']
+    : ['voyage', 'openai', 'ollama', 'hf-local'];
   const failedIndex = cascadeOrder.indexOf(failedProvider);
   return failedIndex === -1 ? [] : cascadeOrder.slice(failedIndex + 1);
 }
@@ -1242,10 +897,7 @@ export async function createEmbeddingsProvider(options: CreateProviderOptions = 
       if (!success) {
         console.warn(`[factory] Warmup failed for ${providerName}`);
 
-        if ((providerName === 'openai' || providerName === 'voyage' || providerName === 'llama-cpp' || providerName === 'ollama') && allowsAutomaticFallback(options.provider)) {
-          if (providerName === 'llama-cpp') {
-            warnLlamaCppUnavailable(`warmup failed for ${providerName}`);
-          }
+        if ((providerName === 'openai' || providerName === 'voyage' || providerName === 'ollama') && allowsAutomaticFallback(options.provider)) {
           return createFallbackProvider(
             providerName,
             options,
@@ -1269,10 +921,7 @@ export async function createEmbeddingsProvider(options: CreateProviderOptions = 
     console.error(`[factory] Error creating provider ${providerName}:`, getErrorMessage(error));
 
     // Resume the auto cascade when the selected backend is unavailable.
-    if ((providerName === 'openai' || providerName === 'voyage' || providerName === 'llama-cpp' || providerName === 'ollama') && allowsAutomaticFallback(options.provider)) {
-      if (providerName === 'llama-cpp') {
-        warnLlamaCppUnavailable(getErrorMessage(error));
-      }
+    if ((providerName === 'openai' || providerName === 'voyage' || providerName === 'ollama') && allowsAutomaticFallback(options.provider)) {
       return createFallbackProvider(
         providerName,
         options,
@@ -1319,7 +968,7 @@ export async function validateApiKey(options: ValidateApiKeyOptions = {}): Promi
   const providerName: SupportedProviderName = options.provider || (resolveProvider().name as SupportedProviderName);
 
   // Local providers don't need API key validation
-  if (providerName === 'hf-local' || providerName === 'llama-cpp' || providerName === 'ollama') {
+  if (providerName === 'hf-local' || providerName === 'ollama') {
     return {
       valid: true,
       provider: providerName,

@@ -40,7 +40,7 @@ contextType: "reference"
 |---|---|
 | Skill | `system-spec-kit` |
 | MCP server | `mk-spec-memory` |
-| Stack | TypeScript, Node, Ollama, llama-cpp |
+| Stack | TypeScript, Node, Ollama, ollama |
 | Folder root | `.opencode/skills/system-spec-kit/mcp_server/benchmarks/` |
 
 ### Purpose of this folder

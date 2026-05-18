@@ -82,7 +82,7 @@ One row per candidate. Latency is end-to-end `memory_search` round-trip with the
 |---|---|---|---|---|---|---|---|---|
 | **jinaai/jina-embeddings-v3** | Ollama (Q4_K_M GGUF) | 1024 | 8192 (loaded at 4096) | 4/10 | **9/10** | **893** | **1465** | **ADR-012 PROMOTE — production default** |
 | nomic-ai/nomic-embed-text-v1.5 | Ollama (F16) | 768 | 2048 default, 8192 max | 5/10 | 8/10 (D-RETRY) | 922 | 3045 | ADR-006 rolled back, strong runner-up |
-| google/embeddinggemma-300m | llama-cpp (Q8 GGUF) | 768 | 2048 | 1/10 | 7/10 | 787 | 936 | Baseline, kept as schema fallback (`DEFAULT_ACTIVE_EMBEDDER` in `schema.ts:25`) |
+| google/bge-base-en-v1.5 | ollama (Q8 GGUF) | 768 | 2048 | 1/10 | 7/10 | 787 | 936 | Baseline, kept as schema fallback (`DEFAULT_ACTIVE_EMBEDDER` in `schema.ts:25`) |
 | BAAI/bge-m3 | Ollama | 1024 | 8192 | 2/10 | not measured with rescue | n/a | n/a | ADR-007 rolled back |
 | mixedbread-ai/mxbai-embed-large-v1 | Ollama | 1024 | 512 | 2/10 | not measured with rescue | n/a | n/a | ADR-001..004 rolled back |
 | Snowflake/snowflake-arctic-embed-l-v2.0 | Ollama | 1024 | 8192 | 1/10 | not measured with rescue | n/a | n/a | ADR-008 rolled back |
@@ -129,7 +129,7 @@ The single-shot 10-query fixture is the headline measurement. The 30-scenario st
 
 - Apple Silicon (M-series, Metal-active, `torch.backends.mps.is_available() == True`).
 - Ollama daemon for `jina-embeddings-v3`, `nomic-embed-text-v1.5`, `mxbai-embed-large-v1`, `bge-m3`, and `snowflake-arctic-embed-l-v2.0`.
-- llama-cpp for the `embeddinggemma-300m` baseline.
+- ollama for the `bge-base-en-v1.5` baseline.
 - `mk-spec-memory` MCP server (TypeScript and Node). This is a completely different stack from the code-side bake-off (Python and `sentence-transformers`). Do not cross-reference latency or recall numbers across the two stacks.
 
 <!-- /ANCHOR:methodology -->
@@ -171,11 +171,11 @@ The single-shot 10-query fixture is the headline measurement. The 30-scenario st
 | Strengths observed | 8/10 cat-24/409 with rescue. Zero schema migration cost because it is also 768-dim. Raw embed latency ~12 ms is the fastest of the three measured. |
 | Weaknesses observed | High end-to-end p95 of 3045 ms — over twice the winner. Requires prefix token discipline in the registry manifest. |
 
-### 4.3 `google/embeddinggemma-300m` — baseline fallback
+### 4.3 `google/bge-base-en-v1.5` — baseline fallback
 
 | Property | Value |
 |---|---|
-| llama-cpp model | `unsloth-embeddinggemma-300m-GGUF/embeddinggemma-300m-Q8_0.gguf` |
+| ollama model | `unsloth-bge-base-en-v1.5-GGUF/bge-base-en-v1.5-Q8_0.gguf` |
 | Dim | 768 |
 | Params | 300M |
 | Quantization | Q8 GGUF |
@@ -184,7 +184,7 @@ The single-shot 10-query fixture is the headline measurement. The 30-scenario st
 | Context | 2048 |
 | Released | September 2025 |
 | Category | General-purpose text, not retrieval-specialized |
-| Strengths observed | Fastest end-to-end at 787 ms median, 936 ms p95. No external daemon dependency because llama-cpp runs in-process. Kept as the schema fallback. |
+| Strengths observed | Fastest end-to-end at 787 ms median, 936 ms p95. No external daemon dependency because ollama runs in-process. Kept as the schema fallback. |
 | Weaknesses observed | Only 7/10 on cat-24/409 with rescue, below the 8/10 PASS gate. Cannot stand alone as the production embedder. |
 
 ### 4.4 `BAAI/bge-m3` — rolled back (ADR-007)
@@ -315,7 +315,7 @@ cat-24/402 (synonymy) and cat-24/408 (compound concept) did not close under any 
 - **Rescue layer changes the ranking.** Pre-rescue numbers (gemma 1/10, jina 4/10, nomic 5/10) suggest a very different leader. Always measure with rescue on if comparing against production.
 - **Schema migration cost is one-time but real.** Plan the `vec_1024` rebuild window once when activating jina-v3 in a fresh environment. Subsequent searches see no migration cost.
 - **Latency profile may shift if the rescue layer is optimized.** Current p95 of 1465 ms for jina-v3 is dominated by stage-3 rerank time, not by jina-v3's ~60 ms raw embed. A rescue-layer speedup would compress p95 for every candidate.
-- **Stack distinction.** `mk-spec-memory` uses Ollama as its primary backend for `jina-embeddings-v3`, `nomic-embed-text-v1.5`, `bge-m3`, `mxbai-embed-large-v1`, and `snowflake-arctic-embed-l-v2.0`, plus llama-cpp for the gemma baseline. The sibling code-side bake-off uses Python `sentence-transformers`. **Do not cross-reference performance numbers** between this report and the sibling bake-off at `.opencode/skills/mcp-coco-index/mcp_server/benchmarks/`.
+- **Stack distinction.** `mk-spec-memory` uses Ollama as its primary backend for `jina-embeddings-v3`, `nomic-embed-text-v1.5`, `bge-m3`, `mxbai-embed-large-v1`, and `snowflake-arctic-embed-l-v2.0`, plus ollama for the gemma baseline. The sibling code-side bake-off uses Python `sentence-transformers`. **Do not cross-reference performance numbers** between this report and the sibling bake-off at `.opencode/skills/mcp-coco-index/mcp_server/benchmarks/`.
 - **Per-probe row reuse for nomic.** The 8/10 nomic-with-rescue figure cited in Section 2 is a D-RETRY measurement reused from the ADR-011 sweep, not a fresh 10-row rerun. A one-row post-restore sanity check missed expected `4460` in top-3 with rerank timing still present. The row is preserved as historical baseline evidence rather than as a fresh measurement.
 - **nomic prefix discipline.** `nomic-embed-text-v1.5` requires `search_query: ` and `search_document: ` prefix tokens. The manifest in the registry already declares them. Any future swap path must preserve them.
 
@@ -330,7 +330,7 @@ cat-24/402 (synonymy) and cat-24/408 (compound concept) did not close under any 
 
 - **Keep `jina-embeddings-v3` as the production embedder for `mk-spec-memory`.** Set through `embedder_set({ name: "jina-embeddings-v3" })` and verify `active_embedder_name` in `vec_metadata` after activation.
 - **Keep the retrieval-rescue layer default-on.** Do not unset `SPECKIT_RERANK_LAYER` unless an operator needs the kill switch. The 2.16x latency cost is documented and acceptable for the +1 net quality delta and the cat-24/409 closure.
-- **Keep `embeddinggemma-300m` listed as `DEFAULT_ACTIVE_EMBEDDER` in `schema.ts:25`.** It remains the schema fallback for fresh installs that have not yet completed a `vec_1024` migration.
+- **Keep `bge-base-en-v1.5` listed as `DEFAULT_ACTIVE_EMBEDDER` in `schema.ts:25`.** It remains the schema fallback for fresh installs that have not yet completed a `vec_1024` migration.
 - **Budget the `vec_1024` re-index window once per fresh environment.** Tens of minutes on Apple Silicon Metal for 7738 rows is the observed cost.
 
 ### Tier 2 — validate first

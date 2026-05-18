@@ -90,7 +90,7 @@ STEADY    (2nd pass, warm provider):     p50=142 ms  p95=612 ms  p99=1.8 s  qps=
 This scenario is sensitive to system load. Run it when no other heavy processes are active on the machine. Repeat 3 times and report the median of medians if results are noisy.
 
 If targets are missed:
-- p50 high → embedding inference is slow (check provider; llama-cpp Metal should be fast on Apple Silicon).
+- p50 high → embedding inference is slow (check provider; ollama Metal should be fast on Apple Silicon).
 - p95/p99 high but p50 fine → outliers are likely first-cold-cache events; pre-warm or increase the steady-state sample.
 - qps low → likely sequential bottleneck; check concurrent-generation handling.
 

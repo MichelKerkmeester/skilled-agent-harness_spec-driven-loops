@@ -502,7 +502,6 @@ function classifySaveErrorCode(errorMessage: string): string {
     lower.includes('failed to generate embedding')
     || lower.includes('embedding generation failed')
     || lower.includes('embedding timeout')
-    || lower.includes('llama-cpp')
     || lower.includes('hf-local')
   ) {
     return 'E086'; // MEMORY_SAVE_EMBEDDING_FAILED

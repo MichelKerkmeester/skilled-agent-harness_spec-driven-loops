@@ -38,7 +38,7 @@ describe('local LLM prefix system', () => {
 
   it('T1 registers all documented hf-local model prefixes', () => {
     const expectedModels = [
-      'onnx-community/embeddinggemma-300m-ONNX',
+      'BAAI/bge-base-en-v1.5',
       'nomic-ai/nomic-embed-text-v1.5',
       'intfloat/e5-large-v2',
       'mixedbread-ai/mxbai-embed-large-v1',
@@ -51,12 +51,12 @@ describe('local LLM prefix system', () => {
     }
   });
 
-  it('T2 returns the EmbeddingGemma document prefix', () => {
-    expect(getPrefixFor('onnx-community/embeddinggemma-300m-ONNX', 'document')).toBe('title: none | text: ');
+  it('T2 returns the BGE document prefix', () => {
+    expect(getPrefixFor('BAAI/bge-base-en-v1.5', 'document')).toBe('');
   });
 
-  it('T3 returns the EmbeddingGemma query prefix', () => {
-    expect(getPrefixFor('onnx-community/embeddinggemma-300m-ONNX', 'query')).toBe('task: search result | query: ');
+  it('T3 returns the BGE query prefix', () => {
+    expect(getPrefixFor('BAAI/bge-base-en-v1.5', 'query')).toBe('Represent this sentence for searching relevant passages: ');
   });
 
   it('T4 returns the Nomic document prefix', () => {
@@ -66,7 +66,7 @@ describe('local LLM prefix system', () => {
   it('T5 lets HF_EMBEDDINGS_PREFIX_DOC override the registry', () => {
     process.env.HF_EMBEDDINGS_PREFIX_DOC = 'fixture-document: ';
 
-    expect(getPrefixFor('onnx-community/embeddinggemma-300m-ONNX', 'document')).toBe('fixture-document: ');
+    expect(getPrefixFor('BAAI/bge-base-en-v1.5', 'document')).toBe('fixture-document: ');
   });
 
   it('T6 returns the safe empty-string fallback for unknown models', () => {

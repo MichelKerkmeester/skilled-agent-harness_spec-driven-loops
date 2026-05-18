@@ -2,7 +2,7 @@
 
 ## Purpose
 
-This suite validates the documented post-014 local embedding runtime behavior against executable Vitest checks. It covers the hf-local and llama-cpp provider cascade, default model/profile selection, profile-keyed sqlite filenames, prefix resolution, auto-migration behavior, native module readiness, cross-platform branches, offline degradation, and benchmark harnesses for local embedding performance.
+This suite validates the documented local embedding runtime behavior against executable Vitest checks. It covers default model/profile selection, profile-keyed sqlite filenames, prefix resolution, offline degradation, and benchmark harnesses for local embedding performance.
 
 ## How To Run
 
@@ -24,24 +24,18 @@ SPECKIT_RUN_BENCHMARKS=true npx vitest bench mcp_server/tests/local-llm-features
 
 | Group | File | Summary |
 | --- | --- | --- |
-| Provider cascade | `cascade-resolution.vitest.ts` | Verifies Voyage, OpenAI, llama-cpp, hf-local, and explicit-provider resolution. |
 | Default models | `default-model-selection.vitest.ts` | Checks provider-specific default model and dimension selection through startup profiles. |
-| Embedding shape | `embedding-shape.vitest.ts` | Exercises real hf-local and optional llama-cpp vector generation when local models exist. |
 | Prefix system | `prefix-system.vitest.ts` | Validates model-keyed prefixes plus environment overrides. |
-| Auto-migration | `auto-migration.vitest.ts` | Uses isolated sqlite fixtures and migration test overrides. |
 | Health reporting | `health-reporting.vitest.ts` | Checks provider metadata, health-check behavior, and health payload shape. |
-| Native modules | `native-modules.vitest.ts` | Verifies optional native module resolution and dynamic imports. |
 | Profile DB filename | `profile-db-filename.vitest.ts` | Asserts profile-keyed database filenames for all providers. |
-| Cross-platform | `cross-platform.vitest.ts` | Gates Apple Silicon and non-Apple behavior with platform checks. |
 | Offline degradation | `offline-degradation.vitest.ts` | Covers cache hits, keyword fallback, and retry backoff invariants. |
 | Embedding latency | `performance/embedding-latency.bench.ts` | Captures per-text-length latency summaries. |
 | Throughput | `performance/throughput.bench.ts` | Captures batch-size throughput summaries. |
 | Cold start | `performance/cold-start.bench.ts` | Captures provider creation to first embedding. |
-| Migration throughput | `performance/migration-throughput.bench.ts` | Captures simulated 100-row migration rows/sec. |
 
 ## Skip Conditions
 
-Tests that need `onnx-community/embeddinggemma-300m-ONNX` skip when the local Transformers.js cache is absent at `~/.cache/huggingface/transformers/onnx-community/embeddinggemma-300m-ONNX`. llama-cpp tests skip unless `getLlamaCppAvailability()` reports the optional module and GGUF model are installed. Apple Silicon checks skip unless `process.platform === 'darwin' && process.arch === 'arm64'`; macOS Metal checks skip on non-Darwin hosts.
+Tests that need `BAAI/bge-base-en-v1.5` skip when the local model cache is absent. The bootstrap auto-selection suite covers cloud, Ollama, and hf-local precedence without requiring real network calls.
 
 ## Baseline Format
 
@@ -50,7 +44,7 @@ Benchmark runs write JSON files under `performance/baselines/` using this schema
 ```json
 {
   "provider": "hf-local",
-  "model": "onnx-community/embeddinggemma-300m-ONNX",
+  "model": "BAAI/bge-base-en-v1.5",
   "dim": 768,
   "dtype": "q8",
   "samples": 10,

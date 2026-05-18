@@ -43,7 +43,7 @@ function writeBaseline(): void {
   if (!runs.length) return;
   const result: BaselineResult = {
     provider: 'hf-local',
-    model: 'onnx-community/embeddinggemma-300m-ONNX',
+    model: 'BAAI/bge-base-en-v1.5',
     dim: 768,
     dtype: 'q8',
     samples: samples.length,

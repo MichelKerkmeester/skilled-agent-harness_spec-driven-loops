@@ -217,7 +217,7 @@ Spec-kit's quality gates run at three layers.
 | ADR-004 | FSRS power-law forgetting curve, tuned by content type and importance | Accepted |
 | ADR-005 | 4-level documentation contract (Levels 1, 2, 3, 3+) with manifest templates | Accepted |
 | ADR-006 | Save gate runs 3 layers (intake, router, quality review) on every save | Accepted |
-| ADR-007 | Embedding provider auto-cascade: Voyage → OpenAI → llama-cpp → hf-local | Accepted |
+| ADR-007 | Embedding provider auto-cascade: Voyage → OpenAI → ollama → hf-local | Accepted |
 
 <!-- /ANCHOR:decision-records -->
 

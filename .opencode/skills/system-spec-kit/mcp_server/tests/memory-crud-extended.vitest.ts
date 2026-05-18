@@ -1160,8 +1160,8 @@ describe('handleMemoryHealth - Happy Path', () => {
     if (!handler?.handleMemoryHealth || !vectorIndex) { throw new Error('Test setup incomplete: memory-crud handler or vector-index unavailable'); }
     installHealthMocks({
       dbAvailable: true,
-      providerMetadata: { provider: 'hf-local', model: 'onnx-community/embeddinggemma-300m-ONNX', healthy: true },
-      embeddingProfile: { dim: 768, getDatabasePath: (base: string) => base + '/context-index__hf-local__onnx-community_embeddinggemma-300m-onnx__768__q8.sqlite' },
+      providerMetadata: { provider: 'hf-local', model: 'BAAI/bge-base-en-v1.5', healthy: true },
+      embeddingProfile: { dim: 768, getDatabasePath: (base: string) => base + '/context-index__hf-local__baai_bge-base-en-v1.5__768__q8.sqlite' },
     });
     const result = await handler.handleMemoryHealth({});
     const parsed = parseResponse(result);

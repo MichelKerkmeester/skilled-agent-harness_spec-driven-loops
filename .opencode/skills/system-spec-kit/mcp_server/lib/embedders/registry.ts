@@ -10,11 +10,6 @@
 //      016-embedder-testing-and-architecture/001-embedder-adapter-interface/spec.md
 // ───────────────────────────────────────────────────────────────
 
-import {
-  generateEmbedding,
-  getEmbeddingDimension,
-  isModelLoaded,
-} from '../providers/embeddings.js';
 import type { EmbedderAdapter } from './adapter.js';
 import { OllamaAdapter } from './adapters/ollama.js';
 import type { BackendKind, EmbedderManifest } from './types.js';
@@ -23,17 +18,9 @@ import type { BackendKind, EmbedderManifest } from './types.js';
  * Frozen list of supported embedder manifests. Add a new model = append a
  * row here + ensure the manifest's `backend` adapter exists.
  *
- * Order matches the spec.md §3 candidate table (current baseline first,
- * then 5 alternatives ranked by likely paraphrase-recall improvement).
+ * Order keeps the ADR-012 local fallback candidates grouped by provider.
  */
 const MANIFESTS: ReadonlyArray<EmbedderManifest> = Object.freeze([
-  {
-    name: 'embeddinggemma-300m',
-    dim: 768,
-    backend: 'llama-cpp',
-    modelPath: 'unsloth-embeddinggemma-300m-GGUF/embeddinggemma-300m-Q8_0.gguf',
-    notes: 'Current baseline. q8 quantization. General-purpose embedding model from Google.',
-  },
   {
     name: 'nomic-embed-text-v1.5',
     dim: 768,
@@ -100,42 +87,6 @@ export class NotImplementedError extends Error {
   }
 }
 
-class LlamaCppBaselineAdapter implements EmbedderAdapter {
-  readonly name: string;
-  readonly dim: number;
-  readonly backend: BackendKind = 'llama-cpp';
-  readonly prefixQuery?: string;
-  readonly prefixDocument?: string;
-
-  constructor(private readonly manifest: EmbedderManifest) {
-    this.name = manifest.name;
-    this.dim = manifest.dim;
-    this.prefixQuery = manifest.prefixQuery;
-    this.prefixDocument = manifest.prefixDocument;
-  }
-
-  async embed(texts: ReadonlyArray<string>): Promise<Float32Array[]> {
-    const results: Float32Array[] = [];
-    for (const text of texts) {
-      const embedding = await generateEmbedding(text);
-      if (!embedding) {
-        throw new Error(`llama-cpp embedding provider returned no embedding for ${this.name}`);
-      }
-      if (embedding.length !== this.dim) {
-        throw new Error(
-          `llama-cpp embedding dimension mismatch for ${this.name}: expected ${this.dim}, got ${embedding.length}`,
-        );
-      }
-      results.push(embedding);
-    }
-    return results;
-  }
-
-  async ready(): Promise<boolean> {
-    return isModelLoaded() && getEmbeddingDimension() === this.dim;
-  }
-}
-
 /**
  * Look up an embedder manifest by canonical name.
  * Returns the frozen manifest, or `undefined` if no match.
@@ -145,9 +96,7 @@ export function getManifest(name: string): EmbedderManifest | undefined {
 }
 
 /**
- * List all registered manifests in declaration order. The first entry is
- * the legacy baseline (`embeddinggemma-300m`); subsequent entries are
- * candidates evaluated in phase 016/004.
+ * List all registered manifests in declaration order.
  */
 export function listManifests(): ReadonlyArray<EmbedderManifest> {
   return MANIFESTS;
@@ -176,8 +125,6 @@ export function getAdapter(name: string): EmbedderAdapter | undefined {
   switch (manifest.backend) {
     case 'ollama':
       return new OllamaAdapter(manifest);
-    case 'llama-cpp':
-      return new LlamaCppBaselineAdapter(manifest);
     case 'api':
     case 'sentence-transformers':
       throw new NotImplementedError(manifest.backend);

@@ -16,7 +16,7 @@ const mocks = vi.hoisted(() => ({
   startReindex: vi.fn(() => 'emb-swap-test'),
   getJobStatus: vi.fn(() => ({
     id: 'emb-swap-test',
-    fromName: 'embeddinggemma-300m',
+    fromName: 'auto',
     toName: 'mxbai-embed-large-v1',
     toDim: 1024,
     total: 10,

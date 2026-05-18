@@ -37,11 +37,11 @@ You are <external-CLI>. I am Claude validating Memory MCP drift detection. memor
 
 Step 1 — write `<spec-folder>` (baseline):
   ---
-  title: "EmbeddingGemma 300m canonical local model (768-dim)"
+  title: "BGE local fallback 300m canonical local model (768-dim)"
   description: "Drift baseline (scenario 413)."
-  trigger_phrases: ["EmbeddingGemma canonical local model", "768-dim vector default"]
+  trigger_phrases: ["BGE local fallback canonical local model", "768-dim vector default"]
   ---
-  EmbeddingGemma 300m is the canonical local embedding model for Memory MCP, producing 768-dimensional vectors via either ONNX (hf-local) or GGUF Q8_0 (llama-cpp). Both provider paths are post-014 supported.
+  BGE local fallback 300m is the canonical local embedding model for Memory MCP, producing 768-dimensional vectors via either ONNX (hf-local) or GGUF Q8_0 (ollama). Both provider paths are post-014 supported.
 
   Then `memory_save({filePath})` → BASELINE_ID. (Do NOT pass `retentionPolicy: "ephemeral"` — see post-014/022 follow-up note in 401-paraphrase-recall.md.)
 
@@ -50,7 +50,7 @@ Step 2 — for each of 5 variants V1..V5, write `<spec-folder><n>/research.md` t
 V1 (mild — supplementary detail, no real contradiction):
   title: "Embedding prefix registry"
   trigger_phrases: ["embedding prefix registry", "task-specific embedding prefixes"]
-  body: "EmbeddingGemma 300m supports task-specific prefixes via the PREFIX_REGISTRY in hf-local.ts. Document and query embeddings use different prefixes."
+  body: "BGE local fallback 300m supports task-specific prefixes via the PREFIX_REGISTRY in hf-local.ts. Document and query embeddings use different prefixes."
 
 V2 (mild contradiction — different model name):
   title: "MiniLM canonical local model"
@@ -58,9 +58,9 @@ V2 (mild contradiction — different model name):
   body: "MiniLM-L6-v2 is the canonical local embedding model. It produces 384-dimensional vectors and is the default for local search."
 
 V3 (medium — outdated cascade order):
-  title: "llama-cpp explicit opt-in only"
-  trigger_phrases: ["llama-cpp explicit opt-in", "hf-local default no-key"]
-  body: "Auto cascade resolves to hf-local when no cloud keys are present; llama-cpp is explicit opt-in only and never auto-selects."
+  title: "ollama explicit opt-in only"
+  trigger_phrases: ["ollama explicit opt-in", "hf-local default no-key"]
+  body: "Auto cascade resolves to hf-local when no cloud keys are present; ollama is explicit opt-in only and never auto-selects."
 
 V4 (strong — flat-out wrong dim):
   title: "1024-dim standard for local providers"
@@ -106,7 +106,7 @@ Step 5 — return JSON:
     "contradicting": [
       { "parent_id": "c5...", "score": 0.71, "rationale": "denies local-LLM support" },
       { "parent_id": "c4...", "score": 0.66, "rationale": "1024 vs 768 dim mismatch" },
-      { "parent_id": "c2...", "score": 0.58, "rationale": "MiniLM vs EmbeddingGemma" },
+      { "parent_id": "c2...", "score": 0.58, "rationale": "MiniLM vs BGE local fallback" },
       { "parent_id": "c3...", "score": 0.51, "rationale": "cascade-order disagreement" }
     ]
   },

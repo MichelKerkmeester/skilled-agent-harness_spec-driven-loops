@@ -4,7 +4,6 @@
 
 import * as fs from 'fs';
 import * as path from 'path';
-import { getLlamaCppAvailability } from './llama-cpp-availability.js';
 import type { ParsedProfileSlug, ProfileJson } from '../types.js';
 
 // ---------------------------------------------------------------
@@ -109,7 +108,7 @@ export class EmbeddingProfile {
   }
 }
 
-type ActiveProfileProvider = 'voyage' | 'openai' | 'hf-local' | 'llama-cpp' | 'ollama';
+type ActiveProfileProvider = 'voyage' | 'openai' | 'hf-local' | 'ollama';
 
 const OLLAMA_MODEL_DIMENSIONS: Readonly<Record<string, number>> = Object.freeze({
   'nomic-embed-text-v1.5': 768,
@@ -132,25 +131,12 @@ export const ALLOWED_HF_LOCAL_DTYPES: ReadonlyArray<string> = [
   'bnb4',
 ];
 
-export const ALLOWED_LLAMA_CPP_DTYPES: ReadonlyArray<string> = [
-  'q8',
-  'q4',
-  'q4_0',
-  'q4_1',
-  'q5_0',
-  'q5_1',
-  'q8_0',
-  'f16',
-  'f32',
-];
-
 function normalizeProfileProvider(value: string | undefined | null): ActiveProfileProvider | null {
   const normalized = value?.trim().toLowerCase();
   if (
     normalized === 'voyage'
     || normalized === 'openai'
     || normalized === 'hf-local'
-    || normalized === 'llama-cpp'
     || normalized === 'ollama'
   ) {
     return normalized;
@@ -179,25 +165,20 @@ export function resolveActiveProfileProvider(): ActiveProfileProvider {
   if (hasUsableApiKey(process.env.OPENAI_API_KEY)) {
     return 'openai';
   }
-  if (getLlamaCppAvailability().available) {
-    return 'llama-cpp';
-  }
   return 'hf-local';
 }
 
 function resolveActiveProfileModel(provider: ActiveProfileProvider): string {
   switch (provider) {
     case 'voyage':
-      return process.env.VOYAGE_EMBEDDINGS_MODEL || 'voyage-4';
+      return process.env.VOYAGE_EMBEDDINGS_MODEL || 'voyage-code-3';
     case 'openai':
       return process.env.OPENAI_EMBEDDINGS_MODEL || 'text-embedding-3-small';
-    case 'llama-cpp':
-      return (process.env.LLAMA_CPP_EMBEDDINGS_MODEL || 'unsloth/embeddinggemma-300m-GGUF').replace(/\//g, '-');
     case 'ollama':
       return process.env.OLLAMA_EMBEDDINGS_MODEL || 'jina-embeddings-v3';
     case 'hf-local':
     default:
-      return process.env.HF_EMBEDDINGS_MODEL || 'onnx-community/embeddinggemma-300m-ONNX';
+      return process.env.HF_EMBEDDINGS_MODEL || 'BAAI/bge-base-en-v1.5';
   }
 }
 
@@ -221,6 +202,9 @@ function resolveActiveProfileDim(provider: ActiveProfileProvider, model: string)
   }
   if (provider === 'hf-local' && model === 'BAAI/bge-m3') {
     return 1024;
+  }
+  if (provider === 'hf-local' && model === 'BAAI/bge-base-en-v1.5') {
+    return 768;
   }
   if (provider === 'voyage') {
     return 1024;
@@ -254,9 +238,6 @@ function resolveAllowedDtype(
 export function resolveActiveProfileDtype(provider: ActiveProfileProvider): string | null {
   if (provider === 'hf-local') {
     return resolveAllowedDtype(process.env.HF_EMBEDDINGS_DTYPE, ALLOWED_HF_LOCAL_DTYPES, 'q8');
-  }
-  if (provider === 'llama-cpp') {
-    return resolveAllowedDtype(process.env.LLAMA_CPP_EMBEDDINGS_DTYPE, ALLOWED_LLAMA_CPP_DTYPES, 'q8');
   }
   if (provider === 'voyage' || provider === 'openai') {
     return 'cloud';

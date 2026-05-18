@@ -8,7 +8,7 @@ import * as shadowScoring from '../lib/eval/shadow-scoring';
 import * as graphSignals from '../lib/graph/graph-signals';
 import * as graphSearchFn from '../lib/search/graph-search-fn';
 
-const REMOVED_SYMBOLS = [
+const OLLAMA = [
   ['isShadow', 'ScoringEnabled'],
   ['is', 'RsfEnabled'],
   ['compute', 'CausalDepth'],
@@ -21,7 +21,7 @@ const REMOVED_SYMBOLS = [
   ['logCoActivation', 'Event'],
 ] as const;
 
-const removedSymbols: readonly string[] = REMOVED_SYMBOLS.map((parts) => parts.join(''));
+const removedSymbols: readonly string[] = OLLAMA.map((parts) => parts.join(''));
 
 const MODULE_EXPORTS: ReadonlyArray<[string, Record<string, unknown>]> = [
   ['../lib/search/search-flags', searchFlags as Record<string, unknown>],

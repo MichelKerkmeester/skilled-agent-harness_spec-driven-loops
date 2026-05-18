@@ -76,9 +76,9 @@ describe('local LLM offline degradation', () => {
     const vector = new Float32Array(768).fill(0.25);
     const contentHash = computeContentHash('cached local text');
     initEmbeddingCache(db);
-    storeEmbedding(db, contentHash, 'onnx-community/embeddinggemma-300m-ONNX', Buffer.from(vector.buffer), 768);
+    storeEmbedding(db, contentHash, 'BAAI/bge-base-en-v1.5', Buffer.from(vector.buffer), 768);
 
-    const cached = lookupEmbedding(db, contentHash, 'onnx-community/embeddinggemma-300m-ONNX', 768);
+    const cached = lookupEmbedding(db, contentHash, 'BAAI/bge-base-en-v1.5', 768);
 
     expect(cached).toBeInstanceOf(Buffer);
     expect(provider).not.toHaveBeenCalled();

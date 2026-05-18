@@ -712,9 +712,9 @@ Precedence chain identified
 Provider selection audit.
 
 #### Scenario Contract
-Prompt: `Validate 5. Embedding and API against memory_search({ query:"EMBEDDINGS_PROVIDER auto provider selection rules llama-cpp hf-local EmbeddingGemma", limit:20 }).`
+Prompt: `Validate 5. Embedding and API against memory_search({ query:"EMBEDDINGS_PROVIDER auto provider selection rules ollama hf-local BGE local fallback", limit:20 }).`
 
-Provider rules show explicit provider override, cloud key precedence, local `llama-cpp` default, and `hf-local` fallback with current EmbeddingGemma model IDs.
+Provider rules show explicit provider override, cloud key precedence, local `ollama` default, and `hf-local` fallback with current BGE local fallback model IDs.
 
 #### Test Execution
 > **Feature File:** [EX-032](19--feature-flag-reference/032-5-embedding-and-api.md)
@@ -2106,7 +2106,7 @@ Job state transitions through queued→parsing→embedding→indexing→complete
 > **Feature File:** [097](05--lifecycle/097-async-ingestion-job-lifecycle-p0-3.md)
 > **Catalog:** [05--lifecycle/05-async-ingestion-job-lifecycle.md](../feature_catalog/05--lifecycle/05-async-ingestion-job-lifecycle.md)
 
-### 098 | Local GGUF reranker via node-llama-cpp 
+### 098 | Local GGUF reranker via Ollama runtime 
 
 #### Description
 Confirm reranker gating and graceful fallback.
@@ -2117,8 +2117,8 @@ Prompt: `Validate the local GGUF reranker behavior for RERANKER_LOCAL=1 and grac
 Reranker not activated for truthy-but-not-'true' values; silent fallback when model file missing; custom model path lowers the total-memory threshold to 2GB from the default 8GB; getRerankerStatus reports cache hits/misses/staleHits/evictions with bounded p95 latency; applyLengthPenalty is compatibility-only; scoring runs sequentially in logs
 
 #### Test Execution
-> **Feature File:** [098](11--scoring-and-calibration/098-local-gguf-reranker-via-node-llama-cpp-p1-5.md)
-> **Catalog:** [11--scoring-and-calibration/14-local-gguf-reranker-via-node-llama-cpp.md](../feature_catalog/11--scoring-and-calibration/14-local-gguf-reranker-via-node-llama-cpp.md)
+> **Feature File:** [098](11--scoring-and-calibration/098-local-gguf-reranker-via-Ollama runtime-p1-5.md)
+> **Catalog:** [11--scoring-and-calibration/14-local-gguf-reranker-via-Ollama runtime.md](../feature_catalog/11--scoring-and-calibration/14-local-gguf-reranker-via-Ollama runtime.md)
 
 ### 099 | Real-time filesystem watching 
 
@@ -2162,19 +2162,19 @@ confirm:true accepted; confirm:false rejected with Zod literal error; bulk delet
 > **Feature File:** [101](02--mutation/101-memory-delete-confirm-schema-tightening.md)
 > **Catalog:** *(memory_delete confirm schema — covered by `02--mutation/03`)*
 
-### 102 | node-llama-cpp optionalDependencies
+### 102 | Ollama runtime optionalDependencies
 
 #### Description
 Confirm install succeeds without native build tools.
 
 #### Scenario Contract
-Prompt: `Validate node-llama-cpp optionalDependencies and graceful dynamic-import fallback behavior.`
+Prompt: `Validate Ollama runtime optionalDependencies and graceful dynamic-import fallback behavior.`
 
-node-llama-cpp listed in optionalDependencies (not dependencies); npm install completes without error on clean env; dynamic import with graceful fallback when module absent
+Ollama runtime listed in optionalDependencies (not dependencies); npm install completes without error on clean env; dynamic import with graceful fallback when module absent
 
 #### Test Execution
-> **Feature File:** [102](11--scoring-and-calibration/102-node-llama-cpp-optionaldependencies.md)
-> **Catalog:** *(node-llama-cpp optionalDependencies — covered by `11--scoring-and-calibration/14`)*
+> **Feature File:** [102](11--scoring-and-calibration/102-Ollama runtime-optionaldependencies.md)
+> **Catalog:** *(Ollama runtime optionalDependencies — covered by `11--scoring-and-calibration/14`)*
 
 ### 103 | UX hook module coverage (`mutation-feedback`, `response-hints`)
 
@@ -3700,11 +3700,11 @@ This split playbook keeps automated coverage references in three places:
 | 095 | Features | Strict Zod schema validation (P0-1) | [095](14--pipeline-architecture/095-strict-zod-schema-validation-p0-1.md) | [14--pipeline-architecture/13-strict-zod-schema-validation.md](../feature_catalog/14--pipeline-architecture/13-strict-zod-schema-validation.md) |
 | 096 | Features | Provenance-rich response envelopes (P0-2) | [096](15--retrieval-enhancements/096-provenance-rich-response-envelopes-p0-2.md) | [15--retrieval-enhancements/08-provenance-rich-response-envelopes.md](../feature_catalog/15--retrieval-enhancements/08-provenance-rich-response-envelopes.md) |
 | 097 | Features | Async ingestion job lifecycle (P0-3) | [097](05--lifecycle/097-async-ingestion-job-lifecycle-p0-3.md) | [05--lifecycle/05-async-ingestion-job-lifecycle.md](../feature_catalog/05--lifecycle/05-async-ingestion-job-lifecycle.md) |
-| 098 | Features | Local GGUF reranker via node-llama-cpp  | [098](11--scoring-and-calibration/098-local-gguf-reranker-via-node-llama-cpp-p1-5.md) | [11--scoring-and-calibration/14-local-gguf-reranker-via-node-llama-cpp.md](../feature_catalog/11--scoring-and-calibration/14-local-gguf-reranker-via-node-llama-cpp.md) |
+| 098 | Features | Local GGUF reranker via Ollama runtime  | [098](11--scoring-and-calibration/098-local-gguf-reranker-via-Ollama runtime-p1-5.md) | [11--scoring-and-calibration/14-local-gguf-reranker-via-Ollama runtime.md](../feature_catalog/11--scoring-and-calibration/14-local-gguf-reranker-via-Ollama runtime.md) |
 | 099 | Features | Real-time filesystem watching  | [099](16--tooling-and-scripts/099-real-time-filesystem-watching-p1-7.md) | [16--tooling-and-scripts/06-real-time-filesystem-watching-with-chokidar.md](../feature_catalog/16--tooling-and-scripts/06-real-time-filesystem-watching-with-chokidar.md) |
 | 100 | Features | Async shutdown with deadline (server lifecycle) | [100](05--lifecycle/100-async-shutdown-with-deadline-server-lifecycle.md) | *(server lifecycle — no dedicated catalog entry)* |
 | 101 | Features | memory_delete confirm schema tightening | [101](02--mutation/101-memory-delete-confirm-schema-tightening.md) | *(memory_delete confirm schema — covered by `02--mutation/03`)* |
-| 102 | Features | node-llama-cpp optionalDependencies | [102](11--scoring-and-calibration/102-node-llama-cpp-optionaldependencies.md) | *(node-llama-cpp optionalDependencies — covered by `11--scoring-and-calibration/14`)* |
+| 102 | Features | Ollama runtime optionalDependencies | [102](11--scoring-and-calibration/102-Ollama runtime-optionaldependencies.md) | *(Ollama runtime optionalDependencies — covered by `11--scoring-and-calibration/14`)* |
 | 103 | Features | UX hook module coverage (`mutation-feedback`, `response-hints`) | [103](18--ux-hooks/103-ux-hook-module-coverage-mutation-feedback-response-hints.md) | [18--ux-hooks/05-dedicated-ux-hook-modules.md](../feature_catalog/18--ux-hooks/05-dedicated-ux-hook-modules.md) |
 | 104 | Features | Mutation save-path UX parity and no-op hardening | [104](18--ux-hooks/104-mutation-save-path-ux-parity-and-no-op-hardening.md) | [18--ux-hooks/09-duplicate-save-no-op-feedback-hardening.md](../feature_catalog/18--ux-hooks/09-duplicate-save-no-op-feedback-hardening.md) |
 | 105 | Features | Context-server success-envelope finalization | [105](18--ux-hooks/105-context-server-success-envelope-finalization.md) | [18--ux-hooks/08-context-server-success-hint-append.md](../feature_catalog/18--ux-hooks/08-context-server-success-hint-append.md) |

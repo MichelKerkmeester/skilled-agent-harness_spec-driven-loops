@@ -32,7 +32,7 @@ These variables control memory system behavior, token budgets, script execution,
 | `SPECKIT_DYNAMIC_INIT` | `true` | Inject dynamic startup instructions with memory/index summary at MCP initialization |
 | `SPECKIT_CONTEXT_HEADERS` | `true` | Prepend contextual tree headers to markdown search content chunks |
 | `SPECKIT_FILE_WATCHER` | `false` | Enable chokidar-based real-time markdown re-indexing |
-| `RERANKER_LOCAL` | `false` | Enable local GGUF reranker path in Stage 3 (`node-llama-cpp`) |
+| `RERANKER_LOCAL` | `false` | Enable local GGUF reranker path in Stage 3 (`Ollama runtime`) |
 | `SPECKIT_RERANKER_MODEL` | `models/bge-reranker-v2-m3.Q4_K_M.gguf` | Optional model path override for local reranker |
 
 Codex note: point `SPEC_KIT_DB_DIR` at a writable directory outside read-only repo paths (for example under your home directory or `/tmp`) so the MCP server can derive and create the active SQLite database safely. Use `MEMORY_DB_PATH` only when you intentionally need one fixed sqlite file.
@@ -45,14 +45,14 @@ The MCP server supports multiple embedding providers for semantic search. Provid
 1. Explicit `EMBEDDINGS_PROVIDER` setting
 2. `VOYAGE_API_KEY` detected (auto-selects Voyage)
 3. `OPENAI_API_KEY` detected (auto-selects OpenAI)
-4. `llama-cpp` when `node-llama-cpp` loads and the GGUF model is reachable
+4. `ollama` when `Ollama runtime` loads and the GGUF model is reachable
 5. Falls back to `hf-local` (Hugging Face local inference)
 
 ### Provider Selection
 
 | Variable | Default | Purpose |
 |----------|---------|---------|
-| `EMBEDDINGS_PROVIDER` | `auto` | Explicit provider: `voyage`, `openai`, `llama-cpp`, `hf-local`, or `auto` |
+| `EMBEDDINGS_PROVIDER` | `auto` | Explicit provider: `voyage`, `openai`, `ollama`, `hf-local`, or `auto` |
 
 ### Voyage AI Provider
 
@@ -72,7 +72,7 @@ The MCP server supports multiple embedding providers for semantic search. Provid
 
 | Variable | Default | Purpose |
 |----------|---------|---------|
-| `HF_EMBEDDINGS_MODEL` | `onnx-community/embeddinggemma-300m-ONNX` | hf-local model name (768 dimensions) |
+| `HF_EMBEDDINGS_MODEL` | `onnx-community/bge-base-en-v1.5-ONNX` | hf-local model name (768 dimensions) |
 
 ### Rate Limiting
 

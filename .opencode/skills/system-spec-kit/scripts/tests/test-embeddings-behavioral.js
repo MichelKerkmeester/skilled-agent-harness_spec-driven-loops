@@ -239,8 +239,8 @@ async function testPureFunctionsAndConstants() {
   // --- Constants ---
   assertEqual(emb.EMBEDDING_DIM, 768, 'EB-001: EMBEDDING_DIM is 768');
   assertEqual(emb.EMBEDDING_TIMEOUT, 30000, 'EB-002: EMBEDDING_TIMEOUT is 30000ms');
-  assertEqual(emb.MODEL_NAME, 'onnx-community/embeddinggemma-300m-ONNX', 'EB-003: MODEL_NAME is EmbeddingGemma default');
-  assertEqual(emb.DEFAULT_MODEL_NAME, 'onnx-community/embeddinggemma-300m-ONNX', 'EB-004: DEFAULT_MODEL_NAME matches MODEL_NAME');
+  assertEqual(emb.MODEL_NAME, 'BAAI/bge-base-en-v1.5', 'EB-003: MODEL_NAME is BGE default');
+  assertEqual(emb.DEFAULT_MODEL_NAME, 'BAAI/bge-base-en-v1.5', 'EB-004: DEFAULT_MODEL_NAME matches MODEL_NAME');
   assert(typeof emb.MAX_TEXT_LENGTH === 'number' && emb.MAX_TEXT_LENGTH > 0,
     'EB-005: MAX_TEXT_LENGTH is a positive number', `${emb.MAX_TEXT_LENGTH}`);
   assert(typeof emb.BATCH_DELAY_MS === 'number',

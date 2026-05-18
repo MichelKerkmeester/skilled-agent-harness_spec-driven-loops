@@ -136,18 +136,14 @@ describe('Embeddings Architecture (T513)', () => {
       expect(resolution.reason).toContain('OPENAI_API_KEY');
     });
 
-    it('T513-01d: auto mode selects llama-cpp when installed, otherwise falls through to hf-local', () => {
+    it('T513-01d: auto mode falls through to hf-local when no cloud key or active Ollama DB is available', () => {
       delete process.env.EMBEDDINGS_PROVIDER;
       delete process.env.VOYAGE_API_KEY;
       delete process.env.OPENAI_API_KEY;
 
       const resolution = resolveProvider();
-      expect(['llama-cpp', 'hf-local']).toContain(resolution.name);
-      if (resolution.name === 'llama-cpp') {
-        expect(resolution.reason).toContain('llama-cpp');
-      } else {
-        expect(resolution.reason).toContain('Default fallback');
-      }
+      expect(resolution.name).toBe('hf-local');
+      expect(resolution.reason).toContain('Local fallback');
     });
   });
 
@@ -204,19 +200,16 @@ describe('Embeddings Architecture (T513)', () => {
         dimensionChanged: boolean;
       } }).factoryMetadata;
 
-      // Post-029 cascade fallback: Voyage fail -> OpenAI (no key, skipped) -> llama-cpp (if installed) -> hf-local.
-      // The effective provider depends on machine availability; both are valid cascade landings.
-      const LOCAL_PROVIDERS = ['llama-cpp', 'hf-local'];
-      expect(LOCAL_PROVIDERS).toContain(provider.getMetadata().provider);
+      expect(provider.getMetadata().provider).toBe('hf-local');
       expect(factoryMetadata?.requestedProvider).toBe('voyage');
-      expect(LOCAL_PROVIDERS).toContain(factoryMetadata?.effectiveProvider);
+      expect(factoryMetadata?.effectiveProvider).toBe('hf-local');
       expect(factoryMetadata?.dimensionChanged).toBe(true);
       expect(factoryMetadata?.fallbackReason).toContain('warmup failed');
 
       const info = getProviderInfo();
-      expect(LOCAL_PROVIDERS).toContain(info.provider);
+      expect(info.provider).toBe('hf-local');
       expect(info.requestedProvider).toBe('voyage');
-      expect(LOCAL_PROVIDERS).toContain(info.effectiveProvider);
+      expect(info.effectiveProvider).toBe('hf-local');
       expect(info.dimensionChanged).toBe(true);
     });
 
@@ -282,27 +275,22 @@ describe('Embeddings Architecture (T513)', () => {
       const profile = getStartupEmbeddingProfile();
 
       expect(profile.provider).toBe('voyage');
-      expect(profile.model).toBe('voyage-4');
+      expect(profile.model).toBe('voyage-code-3');
       expect(profile.dim).toBe(1024);
-      expect(profile.getDatabasePath('/tmp/spec-kit-db')).toBe('/tmp/spec-kit-db/context-index__voyage__voyage-4__1024__cloud.sqlite');
+      expect(profile.getDatabasePath('/tmp/spec-kit-db')).toBe('/tmp/spec-kit-db/context-index__voyage__voyage-code-3__1024__cloud.sqlite');
     });
 
-    it('T513-03f: startup profile uses installed llama-cpp DB path or hf-local fallback with no API keys', () => {
+    it('T513-03f: startup profile uses hf-local fallback with no API keys', () => {
       delete process.env.EMBEDDINGS_PROVIDER;
       delete process.env.VOYAGE_API_KEY;
       delete process.env.OPENAI_API_KEY;
 
       const profile = getStartupEmbeddingProfile();
 
-      expect(['llama-cpp', 'hf-local']).toContain(profile.provider);
+      expect(profile.provider).toBe('hf-local');
       expect(profile.dim).toBe(768);
-      if (profile.provider === 'llama-cpp') {
-        expect(profile.model).toBe('unsloth-embeddinggemma-300m-GGUF');
-        expect(profile.getDatabasePath('/tmp/spec-kit-db')).toBe('/tmp/spec-kit-db/context-index__llama-cpp__unsloth-embeddinggemma-300m-gguf__768__q8.sqlite');
-      } else {
-        expect(profile.model).toBe('onnx-community/embeddinggemma-300m-ONNX');
-        expect(profile.getDatabasePath('/tmp/spec-kit-db')).toBe('/tmp/spec-kit-db/context-index__hf-local__onnx-community_embeddinggemma-300m-onnx__768__q8.sqlite');
-      }
+      expect(profile.model).toBe('BAAI/bge-base-en-v1.5');
+      expect(profile.getDatabasePath('/tmp/spec-kit-db')).toBe('/tmp/spec-kit-db/context-index__hf-local__baai_bge-base-en-v1.5__768__q8.sqlite');
     });
 
     it('T513-03g: hf-local inference respects provider timeout', async () => {

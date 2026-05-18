@@ -1,6 +1,6 @@
 ---
 title: "411 — Causal graph link quality (does the local LLM connect related memories?)"
-description: "Save a sequence of causally-related memories (cause → effect → mitigation), then verify memory_causal_link surfaces the chain. Probes whether EmbeddingGemma's semantic representation gives the causal-graph builder enough signal to form correct edges."
+description: "Save a sequence of causally-related memories (cause → effect → mitigation), then verify memory_causal_link surfaces the chain. Probes whether BGE local fallback's semantic representation gives the causal-graph builder enough signal to form correct edges."
 audited_post_018: true
 ---
 
@@ -8,7 +8,7 @@ audited_post_018: true
 
 ## 1. OVERVIEW
 
-The Memory MCP's causal graph is derived from embedding similarity + temporal proximity + explicit `memory_causal_link` calls. The quality of the auto-derived edges depends on the local LLM's embedding: if EmbeddingGemma represents "cause" and "effect" memories in nearby vector space, the causal-edge builder finds them; if it doesn't, edges are missed and the graph degrades.
+The Memory MCP's causal graph is derived from embedding similarity + temporal proximity + explicit `memory_causal_link` calls. The quality of the auto-derived edges depends on the local LLM's embedding: if BGE local fallback represents "cause" and "effect" memories in nearby vector space, the causal-edge builder finds them; if it doesn't, edges are missed and the graph degrades.
 
 This scenario stores a 3-step causal chain (problem → root cause → mitigation), waits for indexing + edge derivation, then queries the causal graph to confirm the chain is intact.
 
@@ -35,7 +35,7 @@ The behavior is user-observable: a downstream AI consumer that calls `memory_dri
 The external CLI receives this verbatim:
 
 ```
-You are <external-CLI>. I am Claude orchestrating a Memory MCP causal-graph validation. The local LLM (EmbeddingGemma via llama-cpp) is the embedding backbone.
+You are <external-CLI>. I am Claude orchestrating a Memory MCP causal-graph validation. The local LLM (BGE local fallback via ollama) is the embedding backbone.
 
 1. Write three canonical research-doc files under `<spec-folder>`. memory_save requires `filePath` to a canonical spec doc; the directory containing the file becomes its spec-folder for grouping.
 
@@ -45,7 +45,7 @@ You are <external-CLI>. I am Claude orchestrating a Memory MCP causal-graph vali
      description: "Causal chain test — problem step (scenario 411)."
      trigger_phrases: ["stale results after provider switch", "post-migration semantic search"]
      ---
-     Memory MCP semantic search returns stale results after a provider switch from hf-local to llama-cpp. Symptoms: top-K contains pre-migration entries with mismatched dimensions.
+     Memory MCP semantic search returns stale results after a provider switch from hf-local to ollama. Symptoms: top-K contains pre-migration entries with mismatched dimensions.
 
    File B — `<spec-folder>` (root cause):
      ---

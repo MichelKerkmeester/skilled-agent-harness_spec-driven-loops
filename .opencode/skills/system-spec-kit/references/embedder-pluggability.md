@@ -40,7 +40,7 @@ Both are pluggable. They use different mechanisms because they index different c
 
 `mcp-coco-index` indexes source code: function bodies, import graphs, identifiers, doc-comments. Code recall benefits from code-tuned embedders trained on `<query, source-snippet>` pairs across languages.
 
-Trying to share one embedder across both was rejected empirically. The pre-018 baseline used `embeddinggemma-300m` (general-text) for both, and CocoIndex code recall lagged measurably. Packet 018 swapped CocoIndex to a code-tuned model; packet 016/004 settled mk-spec-memory on a text-tuned Jina variant after a five-candidate sweep.
+Trying to share one embedder across both was rejected empirically. The pre-018 baseline used `bge-base-en-v1.5` (general-text) for both, and CocoIndex code recall lagged measurably. Packet 018 swapped CocoIndex to a code-tuned model; packet 016/004 settled mk-spec-memory on a text-tuned Jina variant after a five-candidate sweep.
 
 ### What "out-of-box for any embedder" means
 
@@ -73,9 +73,9 @@ Source of truth: `.opencode/skills/system-spec-kit/mcp_server/lib/embedders/regi
 {
   name: string,           // canonical name; matches active_embedder_name
   dim: number,            // vector dimension; routes to vec_<dim> table
-  backend: BackendKind,   // 'llama-cpp' | 'ollama' | 'sentence-transformers' | 'api'
+  backend: BackendKind,   // 'ollama' | 'ollama' | 'sentence-transformers' | 'api'
   ollamaName?: string,    // Ollama model tag (when backend === 'ollama')
-  modelPath?: string,     // GGUF path (when backend === 'llama-cpp')
+  modelPath?: string,     // GGUF path (when backend === 'ollama')
   prefixQuery?: string,   // optional query-time prefix (e.g. "search_query: ")
   prefixDocument?: string,// optional document-time prefix
   maxInputChars?: number, // cap to keep inputs under model context window
@@ -83,7 +83,7 @@ Source of truth: `.opencode/skills/system-spec-kit/mcp_server/lib/embedders/regi
 }
 ```
 
-Eight candidates are registered today (in declaration order): `embeddinggemma-300m` (legacy baseline, `llama-cpp` backend), `nomic-embed-text-v1.5`, `mxbai-embed-large-v1`, `bge-small-en-v1.5`, `bge-large-en-v1.5`, `jina-embeddings-v3` (active default), `bge-m3`, `snowflake-arctic-embed-l-v2.0`.
+Eight candidates are registered today (in declaration order): `bge-base-en-v1.5` (legacy baseline, `ollama` backend), `nomic-embed-text-v1.5`, `mxbai-embed-large-v1`, `bge-small-en-v1.5`, `bge-large-en-v1.5`, `jina-embeddings-v3` (active default), `bge-m3`, `snowflake-arctic-embed-l-v2.0`.
 
 Adding a new candidate is a single registry row plus, if the backend is new, a single adapter file under `.opencode/skills/system-spec-kit/mcp_server/lib/embedders/adapters/`. No call sites change. The adapter contract is small (see §2: EmbedderAdapter interface).
 
@@ -250,7 +250,7 @@ The override is unconditional. It bypasses the probe and is passed straight thro
 
 ### Packet trail (018 + 019)
 
-- **018/001** (`8f909d229`) — Default flip from `embeddinggemma-300m` to `jinaai/jina-embeddings-v2-base-code`; MPS auto-detect branch added; unit test covers the MPS fallback.
+- **018/001** (`8f909d229`) — Default flip from `bge-base-en-v1.5` to `jinaai/jina-embeddings-v2-base-code`; MPS auto-detect branch added; unit test covers the MPS fallback.
 - **018/002** — Code-retrieval fixture (10–20 deterministic query→source pairs) for benchmarking the swap.
 - **018/003** — Benchmark gemma baseline vs jina-code on the fixture; ADR-001 ratifies the production choice.
 - **019/001** (`49e3338ff`) — `registered_embedders.py` declarative registry + parity test against `config.py`.
@@ -313,7 +313,7 @@ COCOINDEX_CODE_DEVICE set?
          └─ else              → "cpu"
 ```
 
-mk-spec-memory inherits device selection from the underlying backend. The `llama-cpp` baseline (gemma) uses the local llama-cpp configuration; `ollama` backends inherit Ollama's own device handling, which already covers Metal/CUDA/CPU autonomously. There is no equivalent `_resolve_device` shim on the memory side because Ollama owns the runtime.
+mk-spec-memory inherits device selection from the underlying backend. The `ollama` baseline (gemma) uses the local ollama configuration; `ollama` backends inherit Ollama's own device handling, which already covers Metal/CUDA/CPU autonomously. There is no equivalent `_resolve_device` shim on the memory side because Ollama owns the runtime.
 
 ---
 
@@ -323,7 +323,7 @@ The table below lists embedders that work in either MCP without any code changes
 
 | Embedder | mk-spec-memory backend | mcp-coco-index backend | Dim | Approx RAM | MPS | Notes |
 |---|---|---|---:|---:|:---:|---|
-| `embeddinggemma-300m` | llama-cpp (baseline) | sbert (legacy baseline) | 768 | ~600 MB | Yes | General-text; baseline on both sides pre-swap. |
+| `bge-base-en-v1.5` | ollama (baseline) | sbert (legacy baseline) | 768 | ~600 MB | Yes | General-text; baseline on both sides pre-swap. |
 | `jina-embeddings-v3` | ollama (DEFAULT) | — (not in registry) | 1024 | ~600 MB (GGUF Q4_K_M) | n/a | Text-tuned; production memory default per ADR-012. |
 | `jinaai/jina-embeddings-v2-base-code` | — (not in registry) | sbert (DEFAULT) | 768 | ~600 MB | Yes | Code-tuned, 8192 ctx; production CocoIndex default per 018 ADR-001. |
 | `jinaai/jina-embeddings-v2-base-en` | — | sbert | 768 | ~600 MB | Yes | English-text variant for docs-heavy repos. |

@@ -1,6 +1,6 @@
 ---
 title: "406 — Specificity ladder"
-description: "Three queries about the same topic at increasing levels of specificity ('local LLM' → 'Q8_0 GGUF quantization' → 'unsloth/embeddinggemma-300m-GGUF') should each return results matched to that level — not collapse to the most-specific match for every query."
+description: "Three queries about the same topic at increasing levels of specificity ('local LLM' → 'Q8_0 GGUF quantization' → 'unsloth/bge-base-en-v1.5-GGUF') should each return results matched to that level — not collapse to the most-specific match for every query."
 audited_post_018: true
 ---
 
@@ -10,14 +10,14 @@ audited_post_018: true
 
 A common failure mode of semantic search: every query returns the most-specific match in the corpus, even when the operator asks an abstract question. The ranker should respect the query's specificity level — abstract queries return overview docs, specific queries return source code or exact references.
 
-This scenario fires 3 queries about the same topic (EmbeddingGemma local embeddings) at 3 different specificity levels and verifies each returns level-appropriate top-K.
+This scenario fires 3 queries about the same topic (BGE local fallback local embeddings) at 3 different specificity levels and verifies each returns level-appropriate top-K.
 
 ---
 
 ## 2. SCENARIO CONTRACT
 
 - Objective: Confirm specificity-aware ranking.
-- Real user request: `Verify that abstract vs specific queries about EmbeddingGemma return level-appropriate results, not all collapsing to the same most-specific match.`
+- Real user request: `Verify that abstract vs specific queries about BGE local fallback return level-appropriate results, not all collapsing to the same most-specific match.`
 - RCAF Prompt: `As a query-intelligence validation operator, fire 3 queries on the same topic at 3 specificity levels, and verify the top-3 of each is calibrated to that level. Return a pass/fail verdict.`
 - Expected execution process: fire 3 queries, inspect top-3 of each, classify each result as ABSTRACT / MID / SPECIFIC, verify the top-3 weighted average matches the query level.
 - Expected signals: abstract query's top-3 weighted average is more abstract than the specific query's top-3; the specific query's top-3 includes the exact code reference; the abstract query's top-3 does NOT lead with the exact code reference.
@@ -31,7 +31,7 @@ This scenario fires 3 queries about the same topic (EmbeddingGemma local embeddi
 ### Prompt
 
 ```
-Fire 3 queries on EmbeddingGemma at abstract/mid/specific levels and verify each top-3 is level-appropriate.
+Fire 3 queries on BGE local fallback at abstract/mid/specific levels and verify each top-3 is level-appropriate.
 ```
 
 ### Commands
@@ -48,20 +48,20 @@ Expected top-3: high-level READMEs (`shared/README.md`, `mcp_server/INSTALL_GUID
 **Level 2 — MID:**
 ```
 mcp__cocoindex_code__search({
-  query: "Q8_0 GGUF quantization for sentence embeddings via llama-cpp",
+  query: "Q8_0 GGUF quantization for sentence embeddings via ollama",
   num_results: 5,
 })
 ```
-Expected top-3: design/architecture docs + the llama-cpp provider source (`shared/embeddings/providers/llama-cpp.ts`, `references/memory/embedding_resilience.md`).
+Expected top-3: design/architecture docs + the ollama provider source (`shared/embeddings/providers/ollama.ts`, `references/memory/embedding_resilience.md`).
 
 **Level 3 — SPECIFIC:**
 ```
 mcp__cocoindex_code__search({
-  query: "LLAMA_CPP_DEFAULT_MODEL_PATH constant in llama-cpp-availability",
+  query: "OLLAMA_DEFAULT_MODEL_PATH constant in ollama-availability",
   num_results: 5,
 })
 ```
-Expected top-3: `shared/embeddings/llama-cpp-availability.ts` ranked #1 with the exact constant cited.
+Expected top-3: `shared/embeddings/ollama-availability.ts` ranked #1 with the exact constant cited.
 
 For each level, classify the top-3 results as:
 - `A` — Abstract (README, overview doc, high-level reference)
@@ -75,7 +75,7 @@ For each level, classify the top-3 results as:
 |----------|----------------------------------|---------------|--------------|
 | 1 (ABS)  | "local embeddings for memory..." | A, A, M       | YES          |
 | 2 (MID)  | "Q8_0 GGUF quantization..."      | M, S, M       | YES          |
-| 3 (SPEC) | "LLAMA_CPP_DEFAULT_MODEL_PATH..."| S, S, S       | YES          |
+| 3 (SPEC) | "OLLAMA_DEFAULT_MODEL_PATH..."| S, S, S       | YES          |
 ```
 
 ### Evidence

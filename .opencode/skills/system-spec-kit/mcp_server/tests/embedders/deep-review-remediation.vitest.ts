@@ -2,7 +2,6 @@ import Database from 'better-sqlite3';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import { setActiveEmbedder, vecTableNameForDim } from '../../lib/embedders/schema.js';
-import { getAdapter } from '../../lib/embedders/registry.js';
 import { handleEmbedderSet } from '../../handlers/embedder-set.js';
 
 describe('deep-review embedder remediation', () => {
@@ -51,9 +50,4 @@ describe('deep-review embedder remediation', () => {
     );
   });
 
-  it('allows any registered llama-cpp manifest to construct the llama adapter', () => {
-    const adapter = getAdapter('embeddinggemma-300m');
-
-    expect(adapter?.backend).toBe('llama-cpp');
-  });
 });

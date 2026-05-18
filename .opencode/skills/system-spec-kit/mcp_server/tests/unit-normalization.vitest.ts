@@ -17,7 +17,7 @@ function makeFullDbRow(): MemoryDbRow {
     importance_weight: 0.85,
     created_at: '2025-01-15T10:30:00Z',
     updated_at: '2025-02-01T14:00:00Z',
-    embedding_model: 'onnx-community/embeddinggemma-300m-ONNX',
+    embedding_model: 'BAAI/bge-base-en-v1.5',
     embedding_generated_at: '2025-01-15T10:31:00Z',
     embedding_status: 'completed',
     retry_count: 0,
@@ -98,7 +98,7 @@ describe('Normalization Layer (T001-T007)', () => {
     expect(memory.anchorId).toBe('auth-flow');
     expect(memory.importanceWeight).toBe(0.85);
     expect(memory.createdAt).toBe('2025-01-15T10:30:00Z');
-    expect(memory.embeddingModel).toBe('onnx-community/embeddinggemma-300m-ONNX');
+    expect(memory.embeddingModel).toBe('BAAI/bge-base-en-v1.5');
     expect(memory.embeddingStatus).toBe('completed');
     expect(memory.importanceTier).toBe('critical');
     expect(memory.contextType).toBe('decision');

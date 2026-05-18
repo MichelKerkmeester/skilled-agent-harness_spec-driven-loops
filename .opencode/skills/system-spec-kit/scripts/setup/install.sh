@@ -191,8 +191,8 @@ configure_mcp() {
             "EMBEDDINGS_PROVIDER": "auto",
             "SPEC_KIT_DB_DIR": ".opencode/skills/system-spec-kit/mcp_server/database",
             "_NOTE_1_DATABASE": "Auto-derives profile-specific DB files inside: .opencode/skills/system-spec-kit/mcp_server/database/",
-            "_NOTE_2_PROVIDERS": "Supports: Voyage (1024 dims), OpenAI (1536/3072 dims), llama-cpp (768 dims, GGUF Q8_0, auto when installed), HF Local (768 dims, no API needed)",
-            "_NOTE_3_CLOUD_PROVIDERS": "In auto mode: VOYAGE_API_KEY selects Voyage embeddings + rerank-2.5, OPENAI_API_KEY selects OpenAI, otherwise auto-cascade resolves to llama-cpp (when GGUF runtime is installed) or hf-local (final fallback)",
+            "_NOTE_2_PROVIDERS": "Supports: Voyage (1024 dims), OpenAI (1536/3072 dims), Ollama active manifests, HF Local (768 dims, no API needed)",
+            "_NOTE_3_CLOUD_PROVIDERS": "In auto mode: VOYAGE_API_KEY selects Voyage, OPENAI_API_KEY selects OpenAI, otherwise auto-selection probes Ollama pulled models and then hf-local",
             "_NOTE_4_PORTABLE": "Uses relative paths and auto-derived DB names so provider switches do not require manual sqlite path edits",
             "_NOTE_5_FEATURE_FLAGS": "Opt-out flags: SPECKIT_ADAPTIVE_FUSION default ON; SPECKIT_EXTENDED_TELEMETRY default OFF"
         }
@@ -271,7 +271,7 @@ sessions with constitutional tier priorities.
 
 Features:
     - Semantic search via vector embeddings
-    - Multiple embedding providers (Voyage, OpenAI, llama-cpp, local HF)
+    - Multiple embedding providers (Voyage, OpenAI, Ollama, local HF)
     - Constitutional tier memories (always surface first)
     - Checkpoint save/restore
     - Trigger phrase matching
@@ -298,8 +298,8 @@ Requirements:
 Embedding Providers (auto-cascade resolution order):
     1. Voyage AI (VOYAGE_API_KEY)
     2. OpenAI (OPENAI_API_KEY)
-    3. llama-cpp (auto-selected when GGUF runtime is installed)
-    4. Local Hugging Face EmbeddingGemma (no API key needed, final fallback)
+    3. Ollama pulled models (Jina v3, Nomic, BGE-M3, then MXBAI)
+    4. Local Hugging Face BGE (no API key needed, final fallback)
 
 After installation:
     Restart OpenCode to load the new MCP server.

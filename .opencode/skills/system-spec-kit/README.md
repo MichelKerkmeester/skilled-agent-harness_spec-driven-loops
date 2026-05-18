@@ -77,7 +77,7 @@ Context survives across sessions through persistent semantic memory and session 
 
 ### Requirements
 
-Requires Node.js 18+, TypeScript 5.0+, and Bash 4.0+. Embedding access is optional. Without a key the runtime falls back to local embedding cascade: Voyage and OpenAI when keys are set, then llama-cpp when the GGUF runtime is installed, then HF Local ONNX as the final tier.
+Requires Node.js 18+, TypeScript 5.0+, and Bash 4.0+. Embedding access is optional. Without a key the runtime falls back to local embedding cascade: Voyage and OpenAI when keys are set, then ollama when the GGUF runtime is installed, then HF Local ONNX as the final tier.
 
 Workspace module profile:
 
@@ -618,12 +618,12 @@ Session starts
 
 ### Embedding Providers
 
-The indexed-continuity store converts text to numerical embeddings for vector search. Five providers are supported. The default cascade (when `EMBEDDINGS_PROVIDER=auto` or unset) is Voyage -> OpenAI -> llama-cpp -> hf-local:
+The indexed-continuity store converts text to numerical embeddings for vector search. Five providers are supported. The default cascade (when `EMBEDDINGS_PROVIDER=auto` or unset) is Voyage -> OpenAI -> ollama -> hf-local:
 
 | Provider          | Dimensions | Notes                                                            |
 | ----------------- | ---------- | ---------------------------------------------------------------- |
-| llama-cpp         | 768        | Auto when GGUF runtime is installed. Apple Silicon Metal GPU acceleration when available; CPU fallback otherwise. |
-| HuggingFace Local | 768        | Final fallback when llama-cpp runtime is unavailable. q8 ONNX on CPU. |
+| ollama         | 768        | Auto when GGUF runtime is installed. Apple Silicon Metal GPU acceleration when available; CPU fallback otherwise. |
+| HuggingFace Local | 768        | Final fallback when ollama runtime is unavailable. q8 ONNX on CPU. |
 | Voyage AI         | 1024       | Cloud opt-in. Requires `VOYAGE_API_KEY`. Gated by egress guard.  |
 | OpenAI            | 1536       | Cloud opt-in. Requires `OPENAI_API_KEY`.                         |
 
@@ -633,9 +633,9 @@ The indexed-continuity store converts text to numerical embeddings for vector se
 | -------------------- | ----------- | ---------------------------------------------------- |
 | `VOYAGE_API_KEY`     | No          | Voyage AI cloud embeddings (opt-in)                  |
 | `OPENAI_API_KEY`     | No          | OpenAI cloud embeddings (opt-in)                     |
-| `LLAMA_CPP_EMBEDDINGS_MODEL` | No  | Override llama-cpp model (default: `unsloth/embeddinggemma-300m-GGUF`) |
-| `LLAMA_CPP_EMBEDDINGS_GGUF_FILE` | No | GGUF filename (default: `embeddinggemma-300M-Q8_0.gguf`)         |
-| `HF_EMBEDDINGS_MODEL` | No         | Override hf-local model (default: `onnx-community/embeddinggemma-300m-ONNX`) |
+| `OLLAMA_EMBEDDINGS_MODEL` | No  | Override ollama model (default: `unsloth/bge-base-en-v1.5-GGUF`) |
+| `OLLAMA_EMBEDDINGS_GGUF_FILE` | No | GGUF filename (default: `bge-base-en-v1.5-300M-Q8_0.gguf`)         |
+| `HF_EMBEDDINGS_MODEL` | No         | Override hf-local model (default: `onnx-community/bge-base-en-v1.5-ONNX`) |
 | `HF_EMBEDDINGS_DTYPE` | No         | hf-local dtype: `q8` default, also `fp32`, `fp16`, `q4`, `int8`, `uint8`, `bnb4` |
 | `MEMORY_AUTO_MIGRATE_HF_TO_LLAMA` | No | Set to `false` to disable 018 auto-migration on first startup |
 | `SPEC_KIT_DB_DIR` / `SPECKIT_DB_DIR` | No | Preferred database-directory override; runtime derives the sqlite filename from the active embedding profile |

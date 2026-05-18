@@ -16,10 +16,10 @@ This scenario validates Embeddings and Retry API for `219`. It focuses on verify
 
 
 - Objective: Verify the public provider API stays stable while embedding generation, caching, batching, retry backoff, and recovery behavior remain wired through the documented layers.
-- Real user request: `` Please validate Embeddings and Retry API against mcp_server/api/providers.ts and tell me whether the expected signals are present: `mcp_server/api/providers.ts` is a pure public re-export surface; `shared/embeddings.ts` contains the documented weighted text, cache, batching, profile helpers, provider cascade, and current `llama-cpp`/`hf-local` model IDs; `retry-manager.ts` encodes pending/retry/failed/success recovery, retry delays, circuit breaker behavior, and successful refresh of vector/index state. ``
+- Real user request: `` Please validate Embeddings and Retry API against mcp_server/api/providers.ts and tell me whether the expected signals are present: `mcp_server/api/providers.ts` is a pure public re-export surface; `shared/embeddings.ts` contains the documented weighted text, cache, batching, profile helpers, provider cascade, and current `ollama`/`hf-local` model IDs; `retry-manager.ts` encodes pending/retry/failed/success recovery, retry delays, circuit breaker behavior, and successful refresh of vector/index state. ``
 - Prompt: `Validate Embeddings and Retry API against mcp_server/api/providers.ts and return pass/fail with cited evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
-- Expected signals: `mcp_server/api/providers.ts` is a pure public re-export surface; `shared/embeddings.ts` contains the documented weighted text, cache, batching, profile helpers, provider cascade, `unsloth/embeddinggemma-300m-GGUF`, and `onnx-community/embeddinggemma-300m-ONNX`; `retry-manager.ts` encodes pending/retry/failed/success recovery, retry delays, circuit breaker behavior, and successful refresh of vector/index state
+- Expected signals: `mcp_server/api/providers.ts` is a pure public re-export surface; `shared/embeddings.ts` contains the documented weighted text, cache, batching, profile helpers, provider cascade, `unsloth/bge-base-en-v1.5-GGUF`, and `onnx-community/bge-base-en-v1.5-ONNX`; `retry-manager.ts` encodes pending/retry/failed/success recovery, retry delays, circuit breaker behavior, and successful refresh of vector/index state
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
 - Pass/fail: PASS if the stable API surface, shared embedding substrate, and retry orchestration layers align with the documented contract; FAIL if public exports are incomplete, shared embedding lifecycle helpers are missing, or retry recovery behavior is not present
 
@@ -43,7 +43,7 @@ Validate Embeddings and Retry API against mcp_server/api/providers.ts and return
 
 ### Expected
 
-`mcp_server/api/providers.ts` is a pure public re-export surface; `shared/embeddings.ts` contains the documented weighted text, cache, batching, profile helpers, provider cascade, `unsloth/embeddinggemma-300m-GGUF`, and `onnx-community/embeddinggemma-300m-ONNX`; `retry-manager.ts` encodes pending/retry/failed/success recovery, retry delays, circuit breaker behavior, and successful refresh of vector/index state
+`mcp_server/api/providers.ts` is a pure public re-export surface; `shared/embeddings.ts` contains the documented weighted text, cache, batching, profile helpers, provider cascade, `unsloth/bge-base-en-v1.5-GGUF`, and `onnx-community/bge-base-en-v1.5-ONNX`; `retry-manager.ts` encodes pending/retry/failed/success recovery, retry delays, circuit breaker behavior, and successful refresh of vector/index state
 
 ### Evidence
 

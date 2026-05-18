@@ -1,9 +1,9 @@
 ---
 title: Embedder Architecture
-description: Dual encode/index embedder architecture for shared factory providers, registry adapters, active vec_metadata pointers, and dim-tagged vector tables.
+description: Dual encode/index embedder architecture for bootstrap auto-selection, shared factory providers, registry adapters, active vec_metadata pointers, and dim-tagged vector tables.
 trigger_phrases:
   - "embedder architecture"
-  - "ollama encode path"
+  - "bootstrap auto-selection"
   - "active_embedder_name"
   - "vec dim tables"
   - "embedder_set runbook"
@@ -11,138 +11,74 @@ trigger_phrases:
 
 # Embedder Architecture
 
-The post-016 embedder architecture for spec-memory: dual encode/index code paths kept symmetric via a shared active pointer.
+Spec-memory keeps query encoding and document indexing symmetric by persisting the active embedder in `vec_metadata` and resolving providers from that pointer.
 
----
+## Overview
 
-<!-- ANCHOR:overview -->
-## 1. OVERVIEW
+Query encoding and document indexing MUST use the same embedder. If indexing writes Jina vectors but search encodes queries with a different model, the system can look healthy while returning low-quality or incompatible vectors.
 
-### Core Principle
-
-Query encoding and document indexing MUST use the same embedder. Asymmetry between the two paths produces silent dimension mismatches and fallbacks that look healthy but return the wrong vectors.
-
-### Purpose
-
-Documents why there are two embedder code paths (shared factory for search/save + registry adapters for swap/re-index), how they are kept symmetric via the `vec_metadata` active pointer, and how operators swap embedders safely without regressing query quality.
-
-### When to Use
-
-- Operators swapping the active embedder (mxbai → jina → nomic etc.) via the `embedder_set` MCP tool
-- Engineers adding a new embedder backend (Ollama / Voyage / OpenAI / hf-local / llama-cpp)
-- Debugging "index uses model X but search uses model Y" symptoms (the exact bug 016/002/006 closes)
-- Understanding RSS attribution of `context-server.js` per embedder choice
-
-### Prerequisites
-
-- Familiarity with the predecessor packets:
-  - 016/002/001 — adapter interface
-  - 016/002/002 — Ollama backend + multi-dim schema
-  - 016/002/003 — MCP tools + re-index orchestrator
-  - 016/002/004 — bake-off + ADR-012 Jina v3 selection
-  - 016/002/006 — shared factory encode-path wiring
-- Working Ollama install (`ollama list` reachable) for any non-llama-cpp manifest
-- Spec-memory MCP daemon running; `vec_metadata` populated
-
-### Key Sources
-
-- `shared/embeddings/factory.ts` — shared provider factory
-- `shared/embeddings/providers/ollama.ts` — OllamaProvider (added in 006)
-- `mcp_server/lib/embedders/registry.ts` — registry + adapter factory
-- `mcp_server/lib/embedders/adapters/ollama.ts` — re-index OllamaAdapter
-- `mcp_server/lib/embedders/schema.ts` — vec_metadata helpers
-- `mcp_server/lib/embedders/reindex.ts` — background re-index orchestrator
-- ADR-012: `<arc>/016/002/004-spec-memory-embedder-bake-off/decision-record.md`
-
-<!-- /ANCHOR:overview -->
-
----
-
-<!-- ANCHOR:dual-paths -->
-## 2. DUAL CODE PATHS
-
-There are two embedder paths:
+The runtime has two embedder paths:
 
 | Path | Location | Used for |
 |------|----------|----------|
 | Shared factory | `shared/embeddings/factory.ts` and `shared/embeddings/providers/*` | Search-time and save-time calls through `generateEmbedding()`, `generateDocumentEmbedding()`, and `generateQueryEmbedding()` |
 | Registry adapters | `mcp_server/lib/embedders/registry.ts` and `mcp_server/lib/embedders/adapters/*` | Embedder manifests, readiness checks, and re-index jobs launched by `embedder_set` |
 
-The factory path is the stable API used by the MCP retrieval pipeline. The registry path is the swap/re-index orchestration surface introduced by 016/002. Both paths must encode with the same model whenever an active embedder is selected.
+Both paths must agree on the active model and vector dimension.
 
-016/002/006 closes the half-migration where re-index used `OllamaAdapter` but search-time factory calls still selected llama-cpp.
+## Bootstrap Auto-Selection
 
-<!-- /ANCHOR:dual-paths -->
+On daemon bootstrap, `context-server.ts` opens the vector database and calls `ensureActiveEmbedder()`. If `vec_metadata` already has a valid active pointer, startup reuses it. If the pointer is empty, `autoSelectActiveEmbedder()` probes this precedence chain and persists the first available choice:
 
-<!-- ANCHOR:pointer -->
-## 3. ACTIVE POINTER
+| Tier | Probe | Persisted active embedder |
+|------|-------|---------------------------|
+| 1 | `VOYAGE_API_KEY` set and `https://api.voyageai.com/v1/embeddings` accepts `voyage-code-3` | `{ name: "voyage-code-3", dim: 1024, provider: "voyage" }` |
+| 2 | `OPENAI_API_KEY` set and OpenAI embeddings endpoint is reachable | `{ name: "text-embedding-3-small", dim: 1536, provider: "openai" }` |
+| 3 | Ollama `/api/tags` reachable and an ADR-012 priority model is pulled | first pulled of `jina-embeddings-v3`, `nomic-embed-text-v1.5`, `bge-m3`, `mxbai-embed-large-v1` |
+| 4 | `sentence-transformers` importable in the spec-memory Python runtime | `{ name: "BAAI/bge-base-en-v1.5", dim: 768, provider: "hf-local" }` |
 
-The active embedder is stored in `vec_metadata`:
+If all probes fail, startup fails with an error listing every tier and the reason it was rejected. There is no silent local model fallback.
 
-| Key | Example | Meaning |
-|-----|---------|---------|
-| `active_embedder_name` | `jina-embeddings-v3` | Canonical manifest name |
-| `active_embedder_dim` | `1024` | Native vector dimension for the active table |
+The selected pointer is persisted in:
 
-Auto provider resolution in `shared/embeddings/factory.ts` consults this pointer. If the active name resolves to an Ollama manifest and the matching dim-tagged table exists with rows, the shared factory selects `ollama`.
+| Key | Meaning |
+|-----|---------|
+| `active_embedder_name` | canonical active model or manifest name |
+| `active_embedder_dim` | native vector dimension |
+| `active_embedder_provider` | `voyage`, `openai`, `ollama`, or `hf-local` |
 
-If the table is missing, empty, or has a dimension that contradicts the manifest, the factory logs a warning and continues to the EmbeddingGemma-capable fallback chain instead of crashing.
+A filesystem lock beside the active database serializes concurrent daemon starts, so two bootstraps do not both write the pointer.
 
-<!-- /ANCHOR:pointer -->
+## Dim-Tagged Tables
 
-<!-- ANCHOR:dim-tables -->
-## 4. DIM-TAGGED TABLES
-
-The legacy baseline table is `vec_memories` at 768 dimensions. New embedders use dim-tagged tables:
+Dim-tagged vector tables keep incompatible vectors separated:
 
 | Table | Dimension | Typical models |
 |-------|-----------|----------------|
 | `vec_384` | 384 | `bge-small-en-v1.5` |
-| `vec_768` | 768 | `nomic-embed-text-v1.5` |
-| `vec_1024` | 1024 | `jina-embeddings-v3`, `mxbai-embed-large-v1`, `bge-m3`, `bge-large-en-v1.5`, `snowflake-arctic-embed-l-v2.0` |
+| `vec_768` | 768 | `nomic-embed-text-v1.5`, `BAAI/bge-base-en-v1.5` |
+| `vec_1024` | 1024 | `jina-embeddings-v3`, `mxbai-embed-large-v1`, `bge-m3`, `bge-large-en-v1.5`, `snowflake-arctic-embed-l-v2.0`, `voyage-code-3` |
+| `vec_1536` | 1536 | `text-embedding-3-small` |
 
-Search queries must be encoded to the same dimension as the active vector source. A 768-dim query against `vec_1024` is invalid and either errors or forces fallback to an older table.
+Search queries must be encoded to the same dimension as the active vector source. A 768-dim query against `vec_1024` is invalid.
 
-<!-- /ANCHOR:dim-tables -->
+## Supported Manifests
 
-<!-- ANCHOR:manifests -->
-## 5. SUPPORTED MANIFESTS
+The MCP registry currently exposes these Ollama-backed re-index manifests:
 
-| Manifest | Backend | Provider-facing model | Dim | Notes |
-|----------|---------|------------------------|-----|-------|
-| `embeddinggemma-300m` | llama-cpp | `unsloth/embeddinggemma-300m-GGUF` | 768 | Legacy/local baseline |
-| `nomic-embed-text-v1.5` | Ollama | `nomic-embed-text:v1.5` | 768 | Requires query/document prefixes |
-| `mxbai-embed-large-v1` | Ollama | `mxbai-embed-large:latest` | 1024 | AnglE/paraphrase-oriented candidate |
-| `bge-small-en-v1.5` | Ollama | `bge-small-en-v1.5:latest` | 384 | Compact candidate |
-| `bge-large-en-v1.5` | Ollama | `bge-large-en-v1.5:latest` | 1024 | Large BAAI candidate |
-| `jina-embeddings-v3` | Ollama | `hf.co/gaianet/jina-embeddings-v3-GGUF:Q4_K_M` | 1024 | Current production target |
-| `bge-m3` | Ollama | `bge-m3:latest` | 1024 | Multilingual hybrid model |
-| `snowflake-arctic-embed-l-v2.0` | Ollama | `snowflake-arctic-embed2:latest` | 1024 | Snowflake multilingual candidate |
-| `voyage-4` | Voyage API | `voyage-4` | 1024 | Cloud compatibility provider |
-| `text-embedding-3-small` | OpenAI API | `text-embedding-3-small` | 1536 | Cloud compatibility provider |
-| `onnx-community/embeddinggemma-300m-ONNX` | hf-local | same | 768 | Final local fallback |
+| Manifest | Ollama model | Dim | Notes |
+|----------|--------------|-----|-------|
+| `nomic-embed-text-v1.5` | `nomic-embed-text:v1.5` | 768 | Requires query/document prefixes |
+| `mxbai-embed-large-v1` | `mxbai-embed-large:latest` | 1024 | AnglE/paraphrase-oriented candidate |
+| `bge-small-en-v1.5` | `bge-small-en-v1.5:latest` | 384 | Compact candidate |
+| `bge-large-en-v1.5` | `bge-large-en-v1.5:latest` | 1024 | Large BAAI candidate |
+| `jina-embeddings-v3` | `hf.co/gaianet/jina-embeddings-v3-GGUF:Q4_K_M` | 1024 | ADR-012 production local target |
+| `bge-m3` | `bge-m3:latest` | 1024 | Multilingual hybrid model |
+| `snowflake-arctic-embed-l-v2.0` | `snowflake-arctic-embed2:latest` | 1024 | Snowflake multilingual candidate |
 
-The registry and shared provider manifest lists must stay symmetric for Ollama rows until the manifest table is promoted into a package-safe shared module.
+Cloud and hf-local providers are selected during bootstrap, not by `embedder_set`.
 
-<!-- /ANCHOR:manifests -->
-
-<!-- ANCHOR:symmetry -->
-## 6. QUERY-INDEX SYMMETRY
-
-The invariant is simple: the model that indexes documents must also encode search queries.
-
-| Operation | Correct active Jina v3 behavior |
-|-----------|----------------------------------|
-| Re-index | `embedder_set({ name: "jina-embeddings-v3" })` uses registry `getAdapter(name).embed()` and writes 1024-dim rows to `vec_1024` |
-| Query | `generateQueryEmbedding(query)` resolves shared `OllamaProvider` and returns a 1024-dim vector |
-| Vector search | `activeVectorSource()` reads `vec_1024` when the active pointer names a non-baseline embedder |
-
-016/002/006 exists because the index path had moved to Ollama while the query path still selected llama-cpp.
-
-<!-- /ANCHOR:symmetry -->
-
-<!-- ANCHOR:swap-runbook -->
-## 7. SWAP RUNBOOK
+## Swap Runbook
 
 1. Pull the Ollama model:
 
@@ -150,7 +86,7 @@ The invariant is simple: the model that indexes documents must also encode searc
 ollama pull hf.co/gaianet/jina-embeddings-v3-GGUF:Q4_K_M
 ```
 
-2. Start or confirm Ollama is listening:
+2. Confirm Ollama is listening:
 
 ```bash
 curl http://127.0.0.1:11434/api/tags
@@ -163,37 +99,27 @@ curl http://127.0.0.1:11434/api/tags
 ```
 
 4. Poll `embedder_status` until the job completes.
-
-5. Confirm `vec_metadata.active_embedder_name` and `active_embedder_dim` point at the completed model.
-
-6. Restart the spec-memory daemon after code changes so it loads the new shared dist.
+5. Confirm `vec_metadata.active_embedder_name`, `active_embedder_dim`, and `active_embedder_provider`.
+6. Restart the daemon after code changes so it loads the rebuilt shared dist.
 
 The re-index job writes the target dim table and flips the active pointer only after completion. Existing tables remain on disk for rollback.
 
-<!-- /ANCHOR:swap-runbook -->
+## RSS Expectations
 
-<!-- ANCHOR:rss -->
-## 8. RSS EXPECTATIONS
-
-| Backend | Expected memory shape |
-|---------|-----------------------|
-| Ollama | Model memory lives mostly in the Ollama process; spec-memory should not import or load `node-llama-cpp` for active Ollama manifests |
-| llama-cpp | spec-memory imports `node-llama-cpp` and loads the GGUF model in-process |
-| hf-local | spec-memory loads Transformers.js/ONNX state in-process |
+| Provider | Expected memory shape |
+|----------|-----------------------|
+| Ollama | Model memory lives mostly in the Ollama process |
+| hf-local | spec-memory loads local Python or Transformers.js model state in-process |
 | Voyage/OpenAI | spec-memory keeps only client/request state; model memory is remote |
 
-For active `jina-embeddings-v3`, the expected operator result after daemon restart is that `context-server.js` no longer loads the EmbeddingGemma GGUF via node-llama-cpp, reducing RSS by the previous in-process model cost.
+For active `jina-embeddings-v3`, the expected operator result after daemon restart is that `context-server.js` uses Ollama for query encoding and does not load an extra in-process embedding model.
 
-<!-- /ANCHOR:rss -->
-
-<!-- ANCHOR:cross-links -->
-## 9. References and Related Resources
+## References
 
 - Packet 016/002/001: adapter interface
 - Packet 016/002/002: Ollama backend and multi-dim schema
 - Packet 016/002/003: MCP tools and re-index
 - Packet 016/002/004: bake-off and Jina v3 selection
 - Packet 016/002/006: shared factory encode-path wiring
+- Packet 016/002/007: bootstrap auto-selection and native provider purge
 - Related resilience doc: [embedding_resilience.md](./embedding_resilience.md)
-
-<!-- /ANCHOR:cross-links -->

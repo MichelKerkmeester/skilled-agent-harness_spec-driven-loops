@@ -68,7 +68,7 @@ const DEFAULT_CANDIDATE_LIMIT = 5;
 /** Maximum distinct expanded terms appended to combinedQuery. */
 const MAX_EXPANSION_TERMS = 8;
 
-/** Conservative query-size cap before llama-cpp embedding worker token preflight. */
+/** Conservative query-size cap before embedding provider token preflight. */
 export const COMBINED_QUERY_CHAR_BUDGET = 6500;
 
 /** Minimum token length — short tokens (≤2 chars) add noise, not signal. */

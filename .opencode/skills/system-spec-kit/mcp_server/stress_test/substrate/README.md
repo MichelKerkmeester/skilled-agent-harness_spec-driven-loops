@@ -17,7 +17,6 @@ trigger_phrases:
 | `run-substrate-stress-harness.mjs` | Copy of the 045 direct MCP runner adapted to run from `mcp_server/stress_test/substrate/`. |
 | `substrate-runner-harness.vitest.ts` | Subprocess smoke for scenarios 403, 404, 407, and 410 through shared Memory and CocoIndex MCP daemons. |
 | `query-expansion-bound-stress.vitest.ts` | Bounded combined-query construction for 100 expansion-eligible queries. |
-| `token-aware-chunking-edge-stress.vitest.ts` | llama-cpp tokenizer-budget edge behavior with a mocked runtime. |
 | `v-rule-save-flood-stress.vitest.ts` | V8 cross-spec contamination rules under a 50-save canonical-doc flood. |
 
 ## Run Recipe
@@ -33,7 +32,6 @@ Run only the pure-logic substrate checks:
 ```bash
 npx vitest run --config vitest.stress.config.ts \
   stress_test/substrate/query-expansion-bound-stress.vitest.ts \
-  stress_test/substrate/token-aware-chunking-edge-stress.vitest.ts \
   stress_test/substrate/v-rule-save-flood-stress.vitest.ts
 ```
 

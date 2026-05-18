@@ -42,7 +42,7 @@ describe('local LLM health reporting', () => {
 
     expect(metadata).toMatchObject({
       provider: 'hf-local',
-      model: 'onnx-community/embeddinggemma-300m-ONNX',
+      model: 'BAAI/bge-base-en-v1.5',
       dim: 768,
       dtype: 'q8',
     });

@@ -7,7 +7,7 @@ description: "Manual scenario validating /doctor memory bootstrap behavior when 
 
 ## 1. OVERVIEW
 
-This scenario validates `/doctor memory` on a disposable workspace that has never created the memory continuity-index. It proves the command can bootstrap the active resolved profile database (llama-cpp profile when GGUF runtime is installed, hf-local profile otherwise), create the required schema, run the initial scan, and finish the post-apply gold battery without relying on a prior `memory_index_scan` run.
+This scenario validates `/doctor memory` on a disposable workspace that has never created the memory continuity-index. It proves the command can bootstrap the active resolved profile database (ollama profile when GGUF runtime is installed, hf-local profile otherwise), create the required schema, run the initial scan, and finish the post-apply gold battery without relying on a prior `memory_index_scan` run.
 
 The behavior is user-observable: a real operator starts with no active resolved profile Memory MCP database, asks for memory bootstrap, and receives an applied report instead of a missing-index failure.
 
@@ -19,7 +19,7 @@ The behavior is user-observable: a real operator starts with no active resolved 
 - Real user request: `Bootstrap the memory continuity-index from scratch. The workspace has no active Memory MCP database yet.`
 - Prompt: `Bootstrap the memory continuity-index from scratch. The workspace has no active Memory MCP database yet.`
 - Prompt voice: Natural-human.
-- Exact command sequence: create disposable workspace -> confirm the active profile DB is absent (e.g., `context-index__llama-cpp__unsloth-embeddinggemma-300m-gguf__768__q8.sqlite` when GGUF runtime installed, else `context-index__hf-local__onnx-community_embeddinggemma-300m-onnx__768__q8.sqlite`) -> run `/doctor memory --incremental=true` -> verify DB file and gold-battery output.
+- Exact command sequence: create disposable workspace -> confirm the active profile DB is absent (e.g., `context-index__ollama__unsloth-bge-base-en-v1.5-gguf__768__q8.sqlite` when GGUF runtime installed, else `context-index__hf-local__onnx-community_bge-base-en-v1.5-onnx__768__q8.sqlite`) -> run `/doctor memory --incremental=true` -> verify DB file and gold-battery output.
 - Expected signals: schema creation or missing-index bootstrap path, initial `memory_index_scan`, nonzero or empty-corpus-safe scan summary, gold-battery exit 0, final status `APPLIED`.
 - Desired user-visible outcome: A concise applied verdict naming the new database path and the gold-battery result.
 - Pass/fail: PASS if the database exists after the run and post-verify succeeds; FAIL if the command treats the missing DB as an unrecoverable error.

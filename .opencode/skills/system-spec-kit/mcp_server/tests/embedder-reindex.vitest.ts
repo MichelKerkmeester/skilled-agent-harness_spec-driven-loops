@@ -19,11 +19,11 @@ const mocks = vi.hoisted(() => ({
 
 vi.mock('../lib/embedders/registry.js', () => ({
   getManifest: (name: string) => {
-    if (name === 'embeddinggemma-300m') {
-      return { name, dim: 768, backend: 'llama-cpp' };
-    }
     if (name === 'mxbai-embed-large-v1') {
       return { name, dim: 1024, backend: 'ollama' };
+    }
+    if (name === 'nomic-embed-text-v1.5') {
+      return { name, dim: 768, backend: 'ollama' };
     }
     return undefined;
   },
@@ -95,14 +95,14 @@ describe('embedder reindex orchestrator', () => {
 
     expect(getJobStatus(jobId, db)).toMatchObject({
       id: jobId,
-      fromName: 'embeddinggemma-300m',
+      fromName: 'auto',
       toName: 'mxbai-embed-large-v1',
       toDim: 1024,
       total: 10,
       processed: 0,
       status: 'queued',
     });
-    expect(getActiveEmbedder(db)).toEqual({ name: 'embeddinggemma-300m', dim: 768 });
+    expect(getActiveEmbedder(db)).toEqual({ name: 'auto', dim: 0 });
 
     resumeReindexJobs(db);
     const completed = await waitForJob(db, jobId, (status) => status.status === 'completed');
@@ -114,7 +114,7 @@ describe('embedder reindex orchestrator', () => {
   });
 
   it('resumes a running job from the persisted processed offset', async () => {
-    setActiveEmbedder(db, 'embeddinggemma-300m', 768);
+    setActiveEmbedder(db, 'nomic-embed-text-v1.5', 768, 'ollama');
     db.exec(`
       CREATE TABLE embedder_jobs (
         id TEXT PRIMARY KEY,
@@ -135,7 +135,7 @@ describe('embedder reindex orchestrator', () => {
       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
     `).run(
       'emb-swap-resume',
-      'embeddinggemma-300m',
+      'nomic-embed-text-v1.5',
       'mxbai-embed-large-v1',
       1024,
       10,
@@ -170,6 +170,6 @@ describe('embedder reindex orchestrator', () => {
     const failed = await waitForJob(db, jobId, (status) => status.status === 'failed');
 
     expect(failed.error).toBe('embed failed');
-    expect(getActiveEmbedder(db)).toEqual({ name: 'embeddinggemma-300m', dim: 768 });
+    expect(getActiveEmbedder(db)).toEqual({ name: 'auto', dim: 0 });
   });
 });

@@ -7,12 +7,12 @@ import { describe, expect, it, vi } from 'vitest';
 const mocks = vi.hoisted(() => ({
   checkDatabaseUpdated: vi.fn(async () => false),
   getDb: vi.fn(() => ({})),
-  getActiveEmbedder: vi.fn(() => ({ name: 'embeddinggemma-300m', dim: 768 })),
+  getActiveEmbedder: vi.fn(() => ({ name: 'jina-embeddings-v3', dim: 1024, provider: 'ollama' })),
   listManifests: vi.fn(() => [
-    { name: 'embeddinggemma-300m', dim: 768, backend: 'llama-cpp', notes: 'baseline' },
+    { name: 'jina-embeddings-v3', dim: 1024, backend: 'ollama', notes: 'current local pick' },
     { name: 'mxbai-embed-large-v1', dim: 1024, backend: 'ollama' },
   ]),
-  readyGemma: vi.fn(async () => true),
+  readyJina: vi.fn(async () => true),
   readyMxbai: vi.fn(async () => false),
 }));
 
@@ -28,7 +28,7 @@ vi.mock('../lib/embedders/index.js', () => ({
   getActiveEmbedder: mocks.getActiveEmbedder,
   listManifests: mocks.listManifests,
   getAdapter: (name: string) => {
-    if (name === 'embeddinggemma-300m') return { ready: mocks.readyGemma };
+    if (name === 'jina-embeddings-v3') return { ready: mocks.readyJina };
     if (name === 'mxbai-embed-large-v1') return { ready: mocks.readyMxbai };
     return undefined;
   },
@@ -46,12 +46,12 @@ describe('embedder_list', () => {
 
     expect(data).toEqual([
       {
-        name: 'embeddinggemma-300m',
-        dim: 768,
-        backend: 'llama-cpp',
+        name: 'jina-embeddings-v3',
+        dim: 1024,
+        backend: 'ollama',
         active: true,
         ready: true,
-        notes: 'baseline',
+        notes: 'current local pick',
       },
       {
         name: 'mxbai-embed-large-v1',
@@ -64,10 +64,10 @@ describe('embedder_list', () => {
   });
 
   it('treats adapter probe failures as not ready', async () => {
-    mocks.readyGemma.mockRejectedValueOnce(new Error('backend down'));
+    mocks.readyJina.mockRejectedValueOnce(new Error('backend down'));
 
     const data = dataFrom(await handleEmbedderList()) as Array<{ name: string; ready: boolean }>;
 
-    expect(data.find((entry) => entry.name === 'embeddinggemma-300m')?.ready).toBe(false);
+    expect(data.find((entry) => entry.name === 'jina-embeddings-v3')?.ready).toBe(false);
   });
 });

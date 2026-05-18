@@ -6,7 +6,7 @@ import { describe, expect, it, vi } from 'vitest';
 
 const baseJob = {
   id: 'emb-swap-test',
-  fromName: 'embeddinggemma-300m',
+  fromName: 'auto',
   toName: 'mxbai-embed-large-v1',
   toDim: 1024,
   total: 20,
@@ -55,7 +55,7 @@ describe('embedder_status', () => {
       total: 20,
       processed: 10,
       eta: 10,
-      fromName: 'embeddinggemma-300m',
+      fromName: 'auto',
       toName: 'mxbai-embed-large-v1',
     });
   });

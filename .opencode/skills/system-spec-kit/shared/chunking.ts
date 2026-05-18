@@ -16,7 +16,7 @@ import type { PriorityPatterns, PriorityBuckets } from './types.js';
 /**
  * Maximum text length for embedding generation.
  * This value is used across all embedding providers.
- * Based on the EmbeddingGemma 300M profile window used by the local defaults.
+ * Based on the local embedding profile window used by current defaults.
  */
 export const MAX_TEXT_LENGTH: number = 8000;
 /** Defines reserved overview. */

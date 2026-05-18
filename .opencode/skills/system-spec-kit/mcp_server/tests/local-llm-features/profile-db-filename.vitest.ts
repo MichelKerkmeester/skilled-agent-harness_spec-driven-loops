@@ -44,26 +44,17 @@ describe('local LLM profile database filenames', () => {
 
   it('T1 creates the hf-local profile-keyed filename', () => {
     const dbPath = resolveActiveProfileDbPath(
-      profile('hf-local', 'onnx-community/embeddinggemma-300m-ONNX', 768, 'q8'),
+      profile('hf-local', 'BAAI/bge-base-en-v1.5', 768, 'q8'),
       tempDir,
     );
 
-    expect(path.basename(dbPath)).toBe('context-index__hf-local__onnx-community_embeddinggemma-300m-onnx__768__q8.sqlite');
-  });
-
-  it('T2 creates the llama-cpp profile-keyed filename', () => {
-    const dbPath = resolveActiveProfileDbPath(
-      profile('llama-cpp', 'unsloth-embeddinggemma-300m-gguf', 768, 'q8'),
-      tempDir,
-    );
-
-    expect(path.basename(dbPath)).toBe('context-index__llama-cpp__unsloth-embeddinggemma-300m-gguf__768__q8.sqlite');
+    expect(path.basename(dbPath)).toBe('context-index__hf-local__baai_bge-base-en-v1.5__768__q8.sqlite');
   });
 
   it('T3 creates the Voyage cloud filename with cloud dtype', () => {
-    const dbPath = resolveActiveProfileDbPath(profile('voyage', 'voyage-4', 1024, 'cloud'), tempDir);
+    const dbPath = resolveActiveProfileDbPath(profile('voyage', 'voyage-code-3', 1024, 'cloud'), tempDir);
 
-    expect(path.basename(dbPath)).toBe('context-index__voyage__voyage-4__1024__cloud.sqlite');
+    expect(path.basename(dbPath)).toBe('context-index__voyage__voyage-code-3__1024__cloud.sqlite');
   });
 
   it('T4 creates the OpenAI cloud filename with cloud dtype', () => {
@@ -73,16 +64,16 @@ describe('local LLM profile database filenames', () => {
   });
 
   it('T5 createProfileSlug normalizes slashes and uppercase model names', () => {
-    expect(createProfileSlug('hf-local', 'ONNX-Community/EmbeddingGemma-300m-ONNX', 768, 'Q8')).toBe(
-      'hf-local__onnx-community_embeddinggemma-300m-onnx__768__q8',
+    expect(createProfileSlug('hf-local', 'BAAI/BGE-Base-EN-v1.5', 768, 'Q8')).toBe(
+      'hf-local__baai_bge-base-en-v1.5__768__q8',
     );
   });
 
   it('T6 profile filenames never collapse to the legacy singleton context-index.sqlite', () => {
     const profiles = [
-      profile('hf-local', 'onnx-community/embeddinggemma-300m-ONNX', 768, 'q8'),
-      profile('llama-cpp', 'unsloth-embeddinggemma-300m-gguf', 768, 'q8'),
-      profile('voyage', 'voyage-4', 1024, 'cloud'),
+      profile('hf-local', 'BAAI/bge-base-en-v1.5', 768, 'q8'),
+      profile('ollama', 'jina-embeddings-v3', 1024, null),
+      profile('voyage', 'voyage-code-3', 1024, 'cloud'),
       profile('openai', 'text-embedding-3-small', 1536, 'cloud'),
     ];
 

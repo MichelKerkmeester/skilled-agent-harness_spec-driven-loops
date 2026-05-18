@@ -188,9 +188,7 @@ describe('local-reranker fallback on error', () => {
       accessThrows: false,
     });
 
-    // rerankLocal will call canUseLocalReranker (passes), then ensureModelLoaded
-    // which calls loadNodeLlamaCpp via dynamic import — that will fail because
-    // node-llama-cpp is not installed. The catch block returns original candidates.
+    // rerankLocal keeps the compatibility fallback path and returns original candidates.
     const candidates = [
       { id: 1, content: 'first' },
       { id: 2, content: 'second' },
@@ -248,11 +246,7 @@ describe('local-reranker concurrent model load (H4 fix)', () => {
 
     const mod = await loadRerankerModule({ totalmem: 16 * 1024 * 1024 * 1024, accessThrows: false });
 
-    // The module uses dynamic import via `new Function('m', 'return import(m)')` for
-    // node-llama-cpp. Since that package is not installed, both concurrent calls will
-    // fail at the same loadNodeLlamaCpp call — but they should share the same promise.
-    // We verify this by checking that both calls return the original candidates (fallback)
-    // and neither throws.
+    // Both concurrent calls should return the original candidates and neither should throw.
 
     const candidates = [
       { id: 1, content: 'alpha' },
@@ -288,10 +282,7 @@ describe('local-reranker MAX_RERANK_CANDIDATES enforcement', () => {
       content: `candidate ${i}`,
     }));
 
-    // rerankLocal will fail at model load (node-llama-cpp not installed) and fall
-    // back to original candidates. We verify the slicing logic by checking
-    // __testables.resolveRowText works for all candidates and that the source code
-    // enforces the limit via `candidates.slice(0, MAX_RERANK_CANDIDATES)`.
+    // The compatibility shim returns the original candidates.
     const result = await mod.rerankLocal('query', candidates, 60);
 
     // Fallback returns all 60 original candidates

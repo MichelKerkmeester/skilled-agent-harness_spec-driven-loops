@@ -8,11 +8,11 @@ audited_post_018: true
 
 ## 1. OVERVIEW
 
-Not every answer lives in one file. A query like "how does the auto-migration from hf-local to llama-cpp interact with the cascade fallback when llama-cpp warmup fails?" requires synthesis across:
+Not every answer lives in one file. A query like "how does the auto-migration from hf-local to ollama interact with the cascade fallback when ollama warmup fails?" requires synthesis across:
 - `factory.ts:resolveProvider` (cascade order)
 - `factory.ts` cascade fallback logic
 - `context-server.ts` auto-migration trigger
-- `018-llama-cpp-auto-migration/implementation-summary.md` (operational narrative)
+- `018-ollama-auto-migration/implementation-summary.md` (operational narrative)
 
 A good ranker brings these together in top-K so the operator can synthesize. A poor ranker hits one and stops.
 
@@ -42,7 +42,7 @@ Fire a compound question about auto-migration + cascade fallback + warmup failur
 
 ```
 mcp__cocoindex_code__search({
-  query: "what happens when llama-cpp auto-migration starts but the provider warmup fails — does the cascade fall back to hf-local or does migration error out?",
+  query: "what happens when ollama auto-migration starts but the provider warmup fails — does the cascade fall back to hf-local or does migration error out?",
   num_results: 10,
 })
 ```
@@ -50,7 +50,7 @@ mcp__cocoindex_code__search({
 Expected constituent files (the 4 sources whose union answers the question):
 1. `shared/embeddings/factory.ts` — cascade fallback logic (resumes cascade on warmup failure)
 2. `mcp_server/context-server.ts` — auto-migration trigger and failure path
-3. `shared/embeddings/providers/llama-cpp.ts` — provider warmup implementation
+3. `shared/embeddings/providers/ollama.ts` — provider warmup implementation
 4. `<spec-folder>` - operator narrative
 
 For each, capture rank in the top-10 (or `>10` if absent).
@@ -62,12 +62,12 @@ For each, capture rank in the top-10 (or `>10` if absent).
 |------------------------------------------|---------------:|
 | factory.ts (cascade fallback)            | 1              |
 | context-server.ts (auto-migration entry) | 3              |
-| llama-cpp.ts (warmup impl)               | 2              |
-| 018-llama-cpp-auto-migration summary       | 7              |
+| ollama.ts (warmup impl)               | 2              |
+| 018-ollama-auto-migration summary       | 7              |
 ```
 
 Summary:
-- In top-3: 3 of 4 constituents (factory, llama-cpp, context-server)
+- In top-3: 3 of 4 constituents (factory, ollama, context-server)
 - In top-5: 3 of 4 (017 summary still at rank 7)
 - In top-10: all 4
 

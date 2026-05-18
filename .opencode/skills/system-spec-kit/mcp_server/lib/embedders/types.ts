@@ -13,11 +13,10 @@
  * Each kind has its own concrete adapter under `./adapters/`.
  *
  * - `ollama`: HTTP API against a local ollama daemon (port 11434 by default)
- * - `llama-cpp`: direct llama.cpp invocation with a GGUF model file
  * - `api`: remote OpenAI-compatible embeddings API
  * - `sentence-transformers`: Python sidecar speaking sentence-transformers
  */
-export type BackendKind = 'ollama' | 'llama-cpp' | 'api' | 'sentence-transformers';
+export type BackendKind = 'ollama' | 'api' | 'sentence-transformers';
 
 /**
  * Static declaration of an embedder's properties. The registry holds an array
@@ -52,9 +51,6 @@ export interface EmbedderManifest {
    * the canonical manifest name.
    */
   readonly ollamaName?: string;
-
-  /** GGUF file path for `backend: 'llama-cpp'`. */
-  readonly modelPath?: string;
 
   /** HTTP URL for `backend: 'api'` (e.g. OpenAI-compatible embeddings). */
   readonly apiUrl?: string;

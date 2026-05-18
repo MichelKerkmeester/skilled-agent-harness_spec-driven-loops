@@ -1,6 +1,6 @@
 ---
 title: "401 — Paraphrase recall"
-description: "Validates that a memory stored with one phrasing is retrievable when the operator queries with a paraphrase. Probes EmbeddingGemma's semantic compression: cosine similarity between original and paraphrase should beat the lexical-overlap-only baseline."
+description: "Validates that a memory stored with one phrasing is retrievable when the operator queries with a paraphrase. Probes BGE local fallback's semantic compression: cosine similarity between original and paraphrase should beat the lexical-overlap-only baseline."
 audited_post_018: true
 ---
 
@@ -88,7 +88,7 @@ The top-3 should include a memory whose content references FSRS or the stored ph
 - The exact `memory_search` query string.
 - A table of the top 10 results: `rank | score | parent_id | content_snippet`.
 - The rank at which the stored memory appears.
-- Note which provider was active (llama-cpp vs hf-local) from `memory_health`.
+- Note which provider was active (ollama vs hf-local) from `memory_health`.
 
 ---
 

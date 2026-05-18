@@ -39,7 +39,7 @@ description: "Test memory for cross-AI retrieval validation."
 trigger_phrases: ["cross-AI handoff scenario 414", "shared Memory MCP retrieval probe"]
 ---
 
-Cross-AI handoff test: this memory was stored by Claude during validation scenario 414. The retrieval test verifies any MCP-connected AI (Codex, Gemini, claude-code) can find it via memory_search using the trigger phrases below. Active embedding provider should be local-LLM (llama-cpp + EmbeddingGemma).
+Cross-AI handoff test: this memory was stored by Claude during validation scenario 414. The retrieval test verifies any MCP-connected AI (Codex, Gemini, claude-code) can find it via memory_search using the trigger phrases below. Active embedding provider should be local-LLM (ollama + BGE local fallback).
 ```
 
 Then saves it:

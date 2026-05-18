@@ -68,10 +68,7 @@ import { createMCPErrorResponse, wrapForMCP } from './lib/response/envelope.js';
 // T303: Startup checks (extracted from this file)
 import { detectNodeVersionMismatch, checkSqliteVersion } from './startup-checks.js';
 import {
-  getStartupEmbeddingProfile,
   getStartupEmbeddingDimension,
-  resolveProvider,
-  runAutoMigrationIfNeeded,
   resolveStartupEmbeddingConfig,
   validateConfiguredEmbeddingsProvider,
 } from '@spec-kit/shared/embeddings/factory';
@@ -132,6 +129,7 @@ import { getCanonicalPathKey } from './lib/utils/canonical-path.js';
 import { runBatchLearning } from './lib/feedback/batch-learning.js';
 import { getSessionSnapshot } from './lib/session/session-snapshot.js';
 import { resumeReindexJobs } from './lib/embedders/reindex.js';
+import { ensureActiveEmbedder } from './lib/embedders/schema.js';
 
 /* ───────────────────────────────────────────────────────────────
    2. TYPES
@@ -1493,6 +1491,23 @@ async function main(): Promise<void> {
 
   validateConfiguredEmbeddingsProvider();
 
+  console.error('[context-server] Initializing database...');
+  const startupDb = vectorIndex.initializeDb();
+  dbInitialized = true;
+  console.error('[context-server] Database initialized');
+  console.error('[context-server] Database path: ' + DATABASE_PATH);
+
+  try {
+    const active = await ensureActiveEmbedder(startupDb, { timeoutMs: API_KEY_VALIDATION_TIMEOUT_MS });
+    console.error(
+      `[context-server] Active embedder: ${active.name} (${active.dim}d${active.provider ? `, ${active.provider}` : ''})`,
+    );
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : String(error);
+    console.error(`[context-server] FATAL: ${message}`);
+    process.exit(1);
+  }
+
   // T087-T090: Pre-Flight API Key Validation (REQ-029)
   // Validates API key at startup to fail fast with actionable error messages
   // Skip validation if SPECKIT_SKIP_API_VALIDATION=true (for testing/CI)
@@ -1550,26 +1565,11 @@ async function main(): Promise<void> {
     console.warn('[context-server] API key validation skipped (SPECKIT_SKIP_API_VALIDATION=true)');
   }
 
-  const resolvedProfile = getStartupEmbeddingProfile();
-  const migrationResult = await runAutoMigrationIfNeeded(resolvedProfile);
-  if (migrationResult.status === 'failed') {
-    const reResolvedProvider = resolveProvider().name;
-    console.error(`[context-server] auto-migration failed; re-resolved provider=${reResolvedProvider}. reason=${migrationResult.reason}`);
-    process.env.EMBEDDINGS_PROVIDER = reResolvedProvider;
-    startupEmbeddingConfig = await resolveStartupEmbeddingConfig({ timeout: API_KEY_VALIDATION_TIMEOUT_MS });
-  }
-
   if (!process.env.EMBEDDING_DIM) {
     process.env.EMBEDDING_DIM = String(
       startupEmbeddingConfig?.dimension ?? getStartupEmbeddingDimension(),
     );
   }
-
-  console.error('[context-server] Initializing database...');
-  vectorIndex.initializeDb();
-  dbInitialized = true;
-  console.error('[context-server] Database initialized');
-  console.error('[context-server] Database path: ' + DATABASE_PATH);
 
   // Initialize db-state module with dependencies
   // P4-12/P4-19 FIX: Pass sessionManager and incrementalIndex so db-state can

@@ -766,15 +766,11 @@ function detectConfiguredModelName(): string {
   const effectiveProvider = providerInfo.effectiveProvider || providerInfo.provider;
   switch (effectiveProvider) {
     case 'voyage':
-      return providerInfo.config.VOYAGE_EMBEDDINGS_MODEL || 'voyage-4';
+      return providerInfo.config.VOYAGE_EMBEDDINGS_MODEL || 'voyage-code-3';
     case 'openai':
       return providerInfo.config.OPENAI_EMBEDDINGS_MODEL || 'text-embedding-3-small';
-    case 'llama-cpp':
-      return (providerInfo.config.LLAMA_CPP_EMBEDDINGS_MODEL || 'unsloth/embeddinggemma-300m-GGUF')
-        .replace(/\//g, '-')
-        .replace(/[^a-zA-Z0-9-_.]/g, '_')
-        .replace(/__+/g, '_')
-        .toLowerCase();
+    case 'ollama':
+      return providerInfo.config.OLLAMA_EMBEDDINGS_MODEL || 'jina-embeddings-v3';
     case 'hf-local':
     default:
       return providerInfo.config.HF_EMBEDDINGS_MODEL || DEFAULT_MODEL_NAME;
@@ -874,7 +870,7 @@ const EMBEDDING_DIM: number = 768;
 const EMBEDDING_TIMEOUT: number = 30000;
 // MAX_TEXT_LENGTH is imported from chunking.ts (single source of truth)
 // DEFAULT_MODEL_NAME is the fallback; use get_model_name() for the actual active model
-export const DEFAULT_MODEL_NAME: string = 'onnx-community/embeddinggemma-300m-ONNX';
+export const DEFAULT_MODEL_NAME: string = 'BAAI/bge-base-en-v1.5';
 // Legacy alias for backwards compatibility
 export let MODEL_NAME: string = detectConfiguredModelName();
 const BATCH_RATE_LIMIT_DELAY: number = BATCH_DELAY_MS; // Alias for export

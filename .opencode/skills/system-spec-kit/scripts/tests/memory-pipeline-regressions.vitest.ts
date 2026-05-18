@@ -108,7 +108,7 @@ describe('memory pipeline regressions', () => {
 
     const embeddings = await import('../../shared/embeddings');
 
-    expect(embeddings.MODEL_NAME).toBe('onnx-community/embeddinggemma-300m-ONNX');
+    expect(embeddings.MODEL_NAME).toBe('BAAI/bge-base-en-v1.5');
 
     await embeddings.getEmbeddingProfileAsync();
 

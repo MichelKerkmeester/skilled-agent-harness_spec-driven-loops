@@ -15,7 +15,7 @@ async function loadFactory(): Promise<typeof import('../../../shared/embeddings/
 }
 
 describe('local LLM default model selection', () => {
-  // CLAIM: post-014 ship state — hf-local, llama-cpp, Voyage, and OpenAI each have documented default models and dimensions.
+  // CLAIM: post-016/002/007 ship state — hf-local, Ollama, Voyage, and OpenAI each have documented default models and dimensions.
   beforeAll(() => {
     tempDir = mkdtempSync(path.join(tmpdir(), 'spec-kit-test-'));
     writeFileSync(path.join(tempDir, 'claim.txt'), 'default-model-selection');
@@ -24,7 +24,6 @@ describe('local LLM default model selection', () => {
   beforeEach(() => {
     process.env = { ...originalEnv };
     delete process.env.HF_EMBEDDINGS_MODEL;
-    delete process.env.LLAMA_CPP_EMBEDDINGS_MODEL;
     delete process.env.VOYAGE_EMBEDDINGS_MODEL;
     delete process.env.OPENAI_EMBEDDINGS_MODEL;
     delete process.env.EMBEDDING_DIM;
@@ -41,36 +40,35 @@ describe('local LLM default model selection', () => {
     }
   });
 
-  it('T1 selects the hf-local EmbeddingGemma ONNX default', async () => {
+  it('T1 selects the hf-local BGE default', async () => {
     process.env.EMBEDDINGS_PROVIDER = 'hf-local';
 
     const { getStartupEmbeddingProfile } = await loadFactory();
     const profile = getStartupEmbeddingProfile();
 
-    expect(profile.model).toBe('onnx-community/embeddinggemma-300m-ONNX');
+    expect(profile.model).toBe('BAAI/bge-base-en-v1.5');
     expect(profile.dim).toBe(768);
     expect(profile.dtype).toBe('q8');
   });
 
-  it('T2 selects the normalized llama-cpp EmbeddingGemma GGUF default', async () => {
-    process.env.EMBEDDINGS_PROVIDER = 'llama-cpp';
+  it('T2 selects the Ollama Jina default', async () => {
+    process.env.EMBEDDINGS_PROVIDER = 'ollama';
 
     const { getStartupEmbeddingProfile } = await loadFactory();
     const profile = getStartupEmbeddingProfile();
 
-    expect(profile.model).toBe('unsloth-embeddinggemma-300m-GGUF');
-    expect(profile.model).toBe('unsloth/embeddinggemma-300m-GGUF'.replace(/\//g, '-'));
-    expect(profile.dim).toBe(768);
-    expect(profile.dtype).toBe('q8');
+    expect(profile.model).toBe('jina-embeddings-v3');
+    expect(profile.dim).toBe(1024);
+    expect(profile.dtype).toBeNull();
   });
 
-  it('T3 selects voyage-4 for Voyage profiles', async () => {
+  it('T3 selects voyage-code-3 for Voyage profiles', async () => {
     process.env.EMBEDDINGS_PROVIDER = 'voyage';
 
     const { getStartupEmbeddingProfile } = await loadFactory();
     const profile = getStartupEmbeddingProfile();
 
-    expect(profile.model).toBe('voyage-4');
+    expect(profile.model).toBe('voyage-code-3');
     expect(profile.dim).toBe(1024);
     // Cloud providers use synthetic 'cloud' dtype slug for uniform provider/model/dim/dtype contract (029 ship state)
     expect(profile.dtype).toBe('cloud');

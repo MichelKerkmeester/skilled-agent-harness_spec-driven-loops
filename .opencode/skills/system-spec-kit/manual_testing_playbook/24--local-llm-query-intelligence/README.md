@@ -1,6 +1,6 @@
 ---
 title: "24 — Local-LLM memory substrate (query intelligence + causal graph + cross-AI handoff)"
-description: "Operator-driven scenarios that evaluate the real-world behavior of the post-014 local-LLM stack (EmbeddingGemma 300m q8 via llama-cpp on Apple Silicon Metal, with hf-local ONNX fallback) as a SHARED memory substrate for AI assistants. Goes beyond mechanical embedding shape checks: tests query intelligence, causal-graph quality, drift detection, cross-AI memory handoff, and concurrent multi-AI safety."
+description: "Operator-driven scenarios that evaluate the real-world behavior of the post-014 local-LLM stack (BGE local fallback 300m q8 via ollama on Apple Silicon Metal, with hf-local ONNX fallback) as a SHARED memory substrate for AI assistants. Goes beyond mechanical embedding shape checks: tests query intelligence, causal-graph quality, drift detection, cross-AI memory handoff, and concurrent multi-AI safety."
 audited_post_018: true
 ---
 
@@ -10,7 +10,7 @@ audited_post_018: true
 
 The vitest-style tests in `mcp_server/tests/local-llm-features/` verify the **mechanical** properties of the local-LLM stack: vector shape, determinism, L2 normalization, cascade resolution, profile-keyed DB filenames, auto-migration, native module loading. Those are necessary but not sufficient — they cannot tell you whether the system **actually behaves correctly** for the AI assistants that depend on it.
 
-This playbook fills that gap. The local LLM (EmbeddingGemma via llama-cpp) is the embedding backbone that powers:
+This playbook fills that gap. The local LLM (BGE local fallback via ollama) is the embedding backbone that powers:
 
 - **Query intelligence** — does a paraphrased query find the right memory?
 - **Causal graph quality** — does the embedding give the edge builder enough signal to connect related memories without false-linking unrelated ones?
@@ -26,7 +26,7 @@ Every scenario uses this prompt shape (mirrors production):
 
 ```
 You are <external-CLI-name>. I am <orchestrating-AI> running <scenario-title>.
-The local LLM (EmbeddingGemma via llama-cpp) is the embedding backbone.
+The local LLM (BGE local fallback via ollama) is the embedding backbone.
 
 I need you to:
 1. <concrete action through MCP tool>
@@ -39,9 +39,9 @@ The orchestrating AI invokes the external CLI through `codex exec`, `gemini ...`
 ## Pre-flight (run once before the suite)
 
 ```bash
-# Confirm the active provider is the canonical llama-cpp path:
-test -f ~/.cache/huggingface/gguf/embeddinggemma-300m/embeddinggemma-300M-Q8_0.gguf \
-  && echo "llama-cpp ready" || echo "llama-cpp missing — scenarios will exercise hf-local fallback instead"
+# Confirm the active provider is the canonical ollama path:
+test -f ~/.cache/huggingface/gguf/bge-base-en-v1.5/bge-base-en-v1.5-300M-Q8_0.gguf \
+  && echo "ollama ready" || echo "ollama missing — scenarios will exercise hf-local fallback instead"
 
 # Confirm the Memory MCP database exists and is the active profile:
 ls .opencode/skills/system-spec-kit/mcp_server/database/context-index__*.sqlite | head -3
@@ -100,14 +100,14 @@ Each file follows the same shape:
 - **PASS** — Top-K matches expected signals, observed within latency bounds, all AI-to-CLI handoffs returned coherent JSON, no errors in any transcript.
 - **PARTIAL** — Result contains the expected target but with a notable deviation (ranked below threshold but still in top-10, one of 3 CLIs failed but the other 2 passed, etc.). Still actionable, with specifics noted.
 - **FAIL** — Expected target absent from top-K, OR cross-AI handoff produced corrupt JSON / errors, OR concurrent reads returned inconsistent data.
-- **SKIP** — Pre-flight missing (no llama-cpp + hf-local both unavailable, no indexed corpus, no external CLI for cross-AI scenarios). Document the blocker.
+- **SKIP** — Pre-flight missing (no ollama + hf-local both unavailable, no indexed corpus, no external CLI for cross-AI scenarios). Document the blocker.
 
 Aggregate the 15 scenarios into a single packet-level summary in `_sandbox/24--local-llm-query-intelligence/evidence/summary.md`.
 
 ## Related references
 
 - Vitest mechanical checks: `mcp_server/tests/local-llm-features/*.vitest.ts` (10 files, 53 tests)
-- Quality property checks: `mcp_server/tests/local-llm-features/llama-cpp-quality.vitest.ts` (determinism, L2 norm, similarity ordering, 10 tests)
+- Quality property checks: `mcp_server/tests/local-llm-features/ollama-quality.vitest.ts` (determinism, L2 norm, similarity ordering, 10 tests)
 - Embedding architecture: `shared/embeddings/README.md`, `references/memory/embedding_resilience.md`
 - Cascade behavior: `shared/embeddings/factory.ts:resolveProvider`, `shared/embeddings/profile.ts:resolveActiveProfileProvider`
 - Causal graph: `shared/embeddings/causal-graph-db.ts`, `mcp_server/handlers/memory-causal-*.ts`

@@ -36,7 +36,7 @@ Run memory health check. I just edited a few spec docs and want to know if the i
 
 ### Commands
 
-1. Use a disposable workspace with an existing active resolved profile database (for example, `.opencode/skills/system-spec-kit/mcp_server/database/context-index__llama-cpp__unsloth-embeddinggemma-300m-gguf__768__q8.sqlite` when GGUF runtime is installed, otherwise `.opencode/skills/system-spec-kit/mcp_server/database/context-index__hf-local__onnx-community_embeddinggemma-300m-onnx__768__q8.sqlite`).
+1. Use a disposable workspace with an existing active resolved profile database (for example, `.opencode/skills/system-spec-kit/mcp_server/database/context-index__ollama__unsloth-bge-base-en-v1.5-gguf__768__q8.sqlite` when GGUF runtime is installed, otherwise `.opencode/skills/system-spec-kit/mcp_server/database/context-index__hf-local__onnx-community_bge-base-en-v1.5-onnx__768__q8.sqlite`).
 2. If the index is not populated, run `/doctor memory --incremental=true` once and wait for a successful gold-battery result.
 3. Pick three markdown files under `.opencode/specs/` and append a harmless sandbox-only marker line to each file.
 4. Do not run `/memory:save`, `memory_index_scan`, or `/doctor memory` after those edits.

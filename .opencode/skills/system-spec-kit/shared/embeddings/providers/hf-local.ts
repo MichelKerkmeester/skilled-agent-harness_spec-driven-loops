@@ -10,7 +10,7 @@ import type { IEmbeddingProvider, ProviderMetadata, TaskPrefixMap } from '../../
 // 1. CONFIGURATION
 // ---------------------------------------------------------------
 
-const DEFAULT_MODEL: string = 'onnx-community/embeddinggemma-300m-ONNX';
+const DEFAULT_MODEL: string = 'BAAI/bge-base-en-v1.5';
 const EMBEDDING_DIM: number = 768;
 // MAX_TEXT_LENGTH imported from chunking.ts (single source of truth)
 const EMBEDDING_TIMEOUT: number = 30000;
@@ -33,7 +33,7 @@ export const TASK_PREFIX: TaskPrefixMap = {
 // 1b. PREFIX REGISTRY (014-local-embeddings-setup-a / 001-prefix-registry-architecture)
 // ---------------------------------------------------------------
 // Model-keyed prefix lookup. Different embedding models use different prefix
-// conventions (Nomic vs E5 vs EmbeddingGemma vs Snowflake-Arctic vs mxbai vs bge).
+// conventions (Nomic vs E5 vs Snowflake-Arctic vs mxbai vs bge).
 // Hardcoding Nomic's `search_document:` / `search_query:` for every model causes
 // ~5-8% silent recall loss when running a non-Nomic model.
 //
@@ -55,14 +55,9 @@ export const PREFIX_REGISTRY: Readonly<Record<string, Readonly<ModelPrefixConfig
     document: 'search_document: ',
     query: 'search_query: ',
   }),
-  'google/embeddinggemma-300m': Object.freeze({
-    document: 'title: none | text: ',
-    query: 'task: search result | query: ',
-  }),
-  // transformers.js-compatible ONNX port of the same model (shares prefix shape)
-  'onnx-community/embeddinggemma-300m-ONNX': Object.freeze({
-    document: 'title: none | text: ',
-    query: 'task: search result | query: ',
+  'BAAI/bge-base-en-v1.5': Object.freeze({
+    document: '',
+    query: 'Represent this sentence for searching relevant passages: ',
   }),
   'intfloat/e5-large-v2': Object.freeze({
     document: 'passage: ',
@@ -86,7 +81,7 @@ export const PREFIX_REGISTRY: Readonly<Record<string, Readonly<ModelPrefixConfig
  * Resolve the prefix string for a given (modelId, kind) pair.
  * Returns '' (empty string) as the safe final fallback.
  *
- * @param modelId - HuggingFace model id, e.g. 'google/embeddinggemma-300m'
+ * @param modelId - HuggingFace model id, e.g. 'BAAI/bge-base-en-v1.5'
  * @param kind    - 'document' for index-time embeddings, 'query' for search-time embeddings
  */
 export function getPrefixFor(modelId: string, kind: 'document' | 'query'): string {
@@ -138,11 +133,10 @@ interface HfLocalOptions {
 
 // 014-local-embeddings-setup-a / 005-q4-quantization:
 // Allowed dtypes for ONNX model variants exposed by @huggingface/transformers.
-// EmbeddingGemma-300m-ONNX ships fp32, fp16, q4, q4f16, quantized (int8),
-// and a no_gather_q4 variant. 014/012 flipped the system default fp32->q8;
-// q8 gives ~99% quality at 1/4 the RAM (~310MB vs ~620MB) and is the
-// recommended baseline. Users can opt back to fp32 by setting
-// HF_EMBEDDINGS_DTYPE=fp32 in .env.local.
+// Local transformer models expose several dtype variants through
+// @huggingface/transformers. q8 remains the default because it keeps local
+// bootstrap memory bounded while preserving enough retrieval quality for the
+// fallback path. Users can opt back to fp32 by setting HF_EMBEDDINGS_DTYPE=fp32.
 export type HfLocalDtype = 'fp32' | 'fp16' | 'q4' | 'q4f16' | 'q8' | 'int8' | 'uint8' | 'bnb4';
 
 export function resolveDtype(explicit?: string): HfLocalDtype {

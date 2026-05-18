@@ -225,7 +225,7 @@ contextType: "reference"
 |---|---:|---:|---:|---:|---|
 | `jina-embeddings-v3` | 1024 | 9/10 | 893 | 1465 | WINNER |
 | `nomic-embed-text-v1.5` | 768 | 8/10 | 922 | 3045 | RUNNER-UP |
-| `embeddinggemma-300m` | 768 | 7/10 | 787 | 936 | BASELINE |
+| `bge-base-en-v1.5` | 768 | 7/10 | 787 | 936 | BASELINE |
 | `bge-m3` | 1024 | 2/10 | — | — | ROLLBACK |
 | `snowflake-arctic-embed-l-v2.0` | 1024 | 1/10 | — | — | ROLLBACK |
 | `mxbai-embed-large-v1` | 1024 | 2/10 | — | — | ROLLBACK |

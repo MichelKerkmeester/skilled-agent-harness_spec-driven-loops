@@ -32,8 +32,8 @@ trigger_phrases:
 
 Current state:
 
-- Supported provider names are `llama-cpp`, `voyage`, `openai`, `hf-local` and `auto`.
-- `auto` cascades cloud-keys-first then local: `VOYAGE_API_KEY` -> `OPENAI_API_KEY` -> `llama-cpp` (auto when GGUF runtime is installed; Apple Silicon Metal GPU acceleration when available, CPU fallback otherwise) -> `hf-local` (final fallback when llama-cpp runtime is unavailable).
+- Supported provider names are `ollama`, `voyage`, `openai`, `hf-local` and `auto`.
+- `auto` cascades cloud-keys-first then local: `VOYAGE_API_KEY` -> `OPENAI_API_KEY` -> `ollama` (auto when GGUF runtime is installed; Apple Silicon Metal GPU acceleration when available, CPU fallback otherwise) -> `hf-local` (final fallback when ollama runtime is unavailable).
 - Profiles derive provider, model, dimension, optional base URL and database filename.
 - Provider modules isolate external API and local model behavior from the factory.
 
@@ -49,7 +49,7 @@ embeddings/
 +-- factory.ts              # Provider resolution, validation and construction
 +-- profile.ts              # Profile slugs and database path derivation
 +-- providers/
-|   +-- llama-cpp.ts        # Default local GGUF provider (Metal-accelerated)
+|   +-- ollama.ts        # Default local GGUF provider (Metal-accelerated)
 |   +-- hf-local.ts         # Fallback local ONNX provider
 |   +-- openai.ts           # OpenAI provider
 |   +-- voyage.ts           # Voyage provider
@@ -87,8 +87,8 @@ profile.ts -> providers/*
 |---|---|
 | `factory.ts` | Resolves configured provider, validates API keys and creates `IEmbeddingProvider` instances. |
 | `profile.ts` | Creates profile slugs, parses slugs and maps profiles to SQLite database paths. |
-| `providers/llama-cpp.ts` | Implements llama-cpp GGUF embedding with Metal GPU health check, lazy session init and EmbeddingGemma prefixes. |
-| `providers/hf-local.ts` | Implements local ONNX embedding (fallback when llama-cpp is unavailable). |
+| `providers/ollama.ts` | Implements ollama GGUF embedding with Metal GPU health check, lazy session init and BGE local fallback prefixes. |
+| `providers/hf-local.ts` | Implements local ONNX embedding (fallback when ollama is unavailable). |
 | `providers/openai.ts` | Implements OpenAI embedding requests and model dimensions. |
 | `providers/voyage.ts` | Implements Voyage embedding requests, model dimensions and base URL resolution. |
 | `providers/README.md` | Documents provider-specific contracts and behavior. |

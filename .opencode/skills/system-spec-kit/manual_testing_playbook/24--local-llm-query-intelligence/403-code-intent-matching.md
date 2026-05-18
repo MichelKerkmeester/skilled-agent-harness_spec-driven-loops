@@ -45,14 +45,14 @@ mcp__cocoindex_code__search({
 ```
 Expected: `shared/embeddings/factory.ts` (impl) ranks above `shared/embeddings/README.md` (docs).
 
-**Query B — llama-cpp availability probe:**
+**Query B — ollama availability probe:**
 ```
 mcp__cocoindex_code__search({
-  query: "how does the system detect whether llama-cpp runtime is installed",
+  query: "how does the system detect whether ollama runtime is installed",
   num_results: 10,
 })
 ```
-Expected: `shared/embeddings/llama-cpp-availability.ts` (impl) ranks above `shared/embeddings/providers/README.md` (docs).
+Expected: `shared/embeddings/ollama-availability.ts` (impl) ranks above `shared/embeddings/providers/README.md` (docs).
 
 **Query C — sqlite-vec virtual table creation:**
 ```
@@ -84,7 +84,7 @@ A table like:
 | Query | Impl file               | Impl rank | Doc file                          | Doc rank | Impl > Doc? |
 |-------|-------------------------|----------:|-----------------------------------|---------:|------------|
 | A     | factory.ts              | 1         | shared/embeddings/README.md       | 4        | YES         |
-| B     | llama-cpp-availability.ts| 2         | providers/README.md               | 6        | YES         |
+| B     | ollama-availability.ts| 2         | providers/README.md               | 6        | YES         |
 | C     | vector-index-store.ts   | 1         | embedding_resilience.md           | 5        | YES         |
 | D     | profile.ts              | 3         | INSTALL_GUIDE.md                  | 2        | NO          |
 ```

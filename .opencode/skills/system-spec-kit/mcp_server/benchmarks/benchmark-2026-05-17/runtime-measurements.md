@@ -63,7 +63,7 @@ All three loaded simultaneously, Metal backend.
 |---|---|---|---|---|---|---|---|
 | `jina-embeddings-v3` | Q4_K_M | 558.31M | 1024 | **495 MB** | ~1.1 GB | **100% GPU (Metal)** | 8192 (loaded at 4096) |
 | `nomic-embed-text` | F16 | 137M | 768 | 578 MB | ~270 MB | 100% GPU (Metal) | 2048 default / 8192 max |
-| `embeddinggemma-300m` (baseline) | Q8 GGUF | 300M | 768 | (cycled out during probe) | ~300 MB | 100% GPU (Metal) | 2048 |
+| `bge-base-en-v1.5` (baseline) | Q8 GGUF | 300M | 768 | (cycled out during probe) | ~300 MB | 100% GPU (Metal) | 2048 |
 
 ### Key observation
 
@@ -104,7 +104,7 @@ End-to-end `memory_search` latency under the rescue layer, measured against the 
 |---|---|---|---|
 | `jina-embeddings-v3` + rescue | **893** | **1465** | Winner — closes cat-24/409 at 9/10. |
 | `nomic-embed-text-v1.5` + rescue | 922 | 3045 | Runner-up — 8/10 cat-24/409 (D-RETRY). |
-| `embeddinggemma-300m` + rescue | 787 | 936 | Baseline — 7/10 cat-24/409, fastest but lowest recall. |
+| `bge-base-en-v1.5` + rescue | 787 | 936 | Baseline — 7/10 cat-24/409, fastest but lowest recall. |
 
 ### Read
 

@@ -10,7 +10,7 @@ audited_post_018: true
 
 A lexical-only ranker (FTS5, BM25) would rank by term-frequency overlap; a semantic ranker should weight meaning. This scenario fires queries crafted so that the lexically-closest file is semantically WRONG, and the semantically-correct file has lower term overlap.
 
-If EmbeddingGemma's semantic representation is functioning correctly, it pulls the right answer despite lexical decoys. If it's degraded (or the embedding lane is disabled in favor of FTS5), the wrong file ranks first.
+If BGE local fallback's semantic representation is functioning correctly, it pulls the right answer despite lexical decoys. If it's degraded (or the embedding lane is disabled in favor of FTS5), the wrong file ranks first.
 
 ---
 
@@ -63,7 +63,7 @@ mcp__cocoindex_code__search({
 Confirm: `vector-index-store.ts` ranks above `vector-index-impl.vitest.ts`.
 
 **Query C — "provider factory" decoy:**
-Lexical decoy: `embeddings-llama-cpp-factory.vitest.ts` (test file)
+Lexical decoy: `embeddings-ollama-factory.vitest.ts` (test file)
 Semantic target: `shared/embeddings/factory.ts` (the impl)
 
 ```
@@ -73,7 +73,7 @@ mcp__cocoindex_code__search({
 })
 ```
 
-Confirm: `factory.ts` ranks above `embeddings-llama-cpp-factory.vitest.ts`.
+Confirm: `factory.ts` ranks above `embeddings-ollama-factory.vitest.ts`.
 
 For each query, capture:
 - Rank of the semantic target.
@@ -87,7 +87,7 @@ For each query, capture:
 |-------|------------------------------|------------:|---------------------------------|-----------:|----------------|
 | A     | embedding-cache.ts           | 1           | embedding-circuit-breaker.vitest| 6          | YES            |
 | B     | vector-index-store.ts        | 2           | vector-index-impl.vitest.ts     | 5          | YES            |
-| C     | factory.ts                   | 1           | embeddings-llama-cpp-factory.vt | 4          | YES            |
+| C     | factory.ts                   | 1           | embeddings-ollama-factory.vt | 4          | YES            |
 ```
 
 ### Evidence

@@ -1,6 +1,6 @@
 ---
 title: "412 — Causal coverage under bulk save (does the local LLM cluster correctly?)"
-description: "Save 20 memories spanning 4 distinct topics (5 per topic). Verify causal_edges form within each topic cluster but not across. Probes EmbeddingGemma's intra-cluster cohesion vs inter-cluster separation."
+description: "Save 20 memories spanning 4 distinct topics (5 per topic). Verify causal_edges form within each topic cluster but not across. Probes BGE local fallback's intra-cluster cohesion vs inter-cluster separation."
 audited_post_018: true
 ---
 
@@ -37,16 +37,16 @@ You are <external-CLI>. I am Claude orchestrating a memory-substrate validation.
 
 Topic 1 — embedding provider cascade:
   - "Voyage and OpenAI API keys take priority over local providers"
-  - "llama-cpp auto-selects when GGUF runtime is installed locally"
-  - "hf-local is the final fallback when no cloud keys and no llama-cpp"
+  - "ollama auto-selects when GGUF runtime is installed locally"
+  - "hf-local is the final fallback when no cloud keys and no ollama"
   - "EMBEDDINGS_PROVIDER=auto delegates resolution to factory.ts"
   - "The cascade resumes after warmup failure rather than one-hop fallback"
 
 Topic 2 — profile DB filenames:
   - "Profile slug encodes provider, model, dim, and dtype"
   - "Voyage cloud profile uses 'cloud' as the synthetic dtype slug"
-  - "llama-cpp DB ends in __unsloth-embeddinggemma-300m-gguf__768__q8.sqlite"
-  - "hf-local DB ends in __onnx-community_embeddinggemma-300m-onnx__768__q8.sqlite"
+  - "ollama DB ends in __unsloth-bge-base-en-v1.5-gguf__768__q8.sqlite"
+  - "hf-local DB ends in __onnx-community_bge-base-en-v1.5-onnx__768__q8.sqlite"
   - "Generic context-index.sqlite is the legacy singleton path"
 
 Topic 3 — doctor command boundaries:

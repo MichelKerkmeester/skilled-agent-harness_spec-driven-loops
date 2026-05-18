@@ -17,6 +17,7 @@ export {
 } from './registry.js';
 export {
   DEFAULT_ACTIVE_EMBEDDER,
+  ensureActiveEmbedder,
   ensureVecTableForDim,
   getActiveEmbedder,
   setActiveEmbedder,

@@ -55,23 +55,23 @@ You rarely touch this server directly. Six surfaces drive it for you:
 
 ### Embedding Provider Cascade
 
-The runtime resolves an embedding provider on every cold start. The default `auto` cascade tries Voyage first when `VOYAGE_API_KEY` is set, then OpenAI when `OPENAI_API_KEY` is set, then a local `llama-cpp` runtime running an `EmbeddingGemma` GGUF, then `hf-local` ONNX as the final fallback. Pin one explicitly with `EMBEDDINGS_PROVIDER` if you want deterministic behavior.
+The runtime resolves an embedding provider on every cold start. The default `auto` cascade tries Voyage first when `VOYAGE_API_KEY` is set, then OpenAI when `OPENAI_API_KEY` is set, then a local `ollama` runtime running an `BGE local fallback` GGUF, then `hf-local` ONNX as the final fallback. Pin one explicitly with `EMBEDDINGS_PROVIDER` if you want deterministic behavior.
 
-The `llama-cpp` path keeps a separate vector index profile (`llama-cpp__unsloth-embeddinggemma-300m-gguf__768__q8`) so its embeddings never mix with `hf-local` results. Install it with:
+The `ollama` path keeps a separate vector index profile (`ollama__unsloth-bge-base-en-v1.5-gguf__768__q8`) so its embeddings never mix with `hf-local` results. Install it with:
 
 ```bash
-bash .opencode/skills/system-spec-kit/scripts/install-llama-cpp.sh
+bash .opencode/skills/system-spec-kit/scripts/install-ollama.sh
 ```
 
 ### Auto-Migration From `hf-local`
 
-Old `hf-local` installations migrate themselves on first daemon startup. The server detects the largest `context-index__hf-local__*.sqlite`, re-embeds every row into the `llama-cpp` store, validates row counts plus a sample-vector check, deletes the source sqlite (and any `-shm` / `-wal` companions), then drops `.auto-migration-complete.json` into `database/` so the migration never runs twice.
+Old `hf-local` installations migrate themselves on first daemon startup. The server detects the largest `context-index__hf-local__*.sqlite`, re-embeds every row into the `ollama` store, validates row counts plus a sample-vector check, deletes the source sqlite (and any `-shm` / `-wal` companions), then drops `.auto-migration-complete.json` into `database/` so the migration never runs twice.
 
 Opt out by setting `MEMORY_AUTO_MIGRATE_HF_TO_LLAMA=false` and running the migration script manually:
 
 ```bash
 MEMORY_AUTO_MIGRATE_HF_TO_LLAMA=false
-npx tsx .opencode/skills/system-spec-kit/scripts/migrate-embeddings-to-llama-cpp.ts
+npx tsx .opencode/skills/system-spec-kit/scripts/migrate-embeddings-to-ollama.ts
 ```
 
 Use `EMBEDDINGS_PROVIDER=hf-local` directly when a host cannot load the GGUF runtime, or when you want the canonical fallback for a specific run.

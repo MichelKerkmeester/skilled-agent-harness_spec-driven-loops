@@ -13,6 +13,28 @@ description: "Plain-English changelog of all code changes in the spec-memory sta
 
 ---
 
+## v5.0 — Bootstrap auto-selection + llama-cpp purge (016/002/007)
+
+**Shipped:** 2026-05-18
+**Status:** Implemented; live daemon restart smoke blocked by sandbox process permissions in this Codex run.
+
+### What changed
+
+- Fresh daemon bootstrap no longer assumes `embeddinggemma-300m`. When `vec_metadata` has no active pointer, startup probes Voyage, OpenAI, Ollama, then hf-local and persists `active_embedder_name`, `active_embedder_dim`, and `active_embedder_provider`.
+- `embeddinggemma-300m` was removed from the embedder registry and `DEFAULT_ACTIVE_EMBEDDER` is now the `auto` sentinel.
+- The shared `LlamaCppProvider`, availability probe, install/migration scripts, package dependency, stale generated sidecars, and tests/docs for the llama-cpp path were removed.
+- `embedder-auto-selection.vitest.ts` covers Voyage, OpenAI, Ollama Jina/Nomic priority, hf-local, failure diagnostics, metadata persistence, and lock serialization.
+- The operator migration path is explicit: keep the legacy DB and GGUF artifacts until the new auto-selected DB is verified and reindexed.
+
+### Verification
+
+- Strict packet validation: run by Codex for 016/002/007.
+- MCP typecheck: `npm --prefix .opencode/skills/system-spec-kit/mcp_server run typecheck`.
+- Targeted tests: `embedder-auto-selection` and `embedder-ollama`.
+- Purge gate: `git grep -l 'llama-cpp\|node-llama-cpp\|embeddinggemma\|LlamaCppProvider' .opencode/skills/system-spec-kit/` returns no output.
+
+---
+
 ## Why this stack matters
 
 Before this work, `mk-spec-memory` had exactly one embedding model baked into the code (`embeddinggemma-300m` via llama.cpp). Swapping models meant editing source. Worse, one specific test scenario (cat-24/409 in packet 008) kept failing because the baseline model could not connect paraphrased ideas to their original wording — and there was no easy way to try a different model.

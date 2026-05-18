@@ -2070,7 +2070,7 @@ See [`11--scoring-and-calibration/13-scoring-and-fusion-corrections.md`](11--sco
 
 ---
 
-### Local GGUF reranker via node-llama-cpp
+### Local GGUF reranker via Ollama runtime
 
 #### Description
 
@@ -2078,13 +2078,13 @@ After the initial search finds candidate results, this feature uses a small AI m
 
 #### Current Reality
 
-**IMPLEMENTED (Sprint 019).** Implements the `RERANKER_LOCAL` flag with `node-llama-cpp` in Stage 3 using `bge-reranker-v2-m3.Q4_K_M.gguf` (~350MB). Activation is strict: `RERANKER_LOCAL` must equal `'true'`, rollout gating must permit the feature, the configured model path must be readable and the host must meet the total-memory threshold (8GB by default, 2GB when `SPECKIT_RERANKER_MODEL` is set). The guard intentionally checks total system RAM rather than free-memory readings. Sequential per-candidate inference remains intentional. If local execution is unavailable or runtime scoring fails, the local path returns the incoming order unchanged. New file: `lib/search/local-reranker.ts`.
+**IMPLEMENTED (Sprint 019).** Implements the `RERANKER_LOCAL` flag with `Ollama runtime` in Stage 3 using `bge-reranker-v2-m3.Q4_K_M.gguf` (~350MB). Activation is strict: `RERANKER_LOCAL` must equal `'true'`, rollout gating must permit the feature, the configured model path must be readable and the host must meet the total-memory threshold (8GB by default, 2GB when `SPECKIT_RERANKER_MODEL` is set). The guard intentionally checks total system RAM rather than free-memory readings. Sequential per-candidate inference remains intentional. If local execution is unavailable or runtime scoring fails, the local path returns the incoming order unchanged. New file: `lib/search/local-reranker.ts`.
 
 The shared cross-encoder path now keys its reranker cache by provider, query, and canonicalized document IDs. Because the length penalty was retired, `applyLengthPenalty` no longer changes cache keys or scores. `getRerankerStatus()` exposes cache `hits`, `misses`, `staleHits`, `evictions`, entry counts, TTL, and bounded p95 latency so operators can inspect cache behavior directly.
 
 #### Source Files
 
-See [`11--scoring-and-calibration/14-local-gguf-reranker-via-node-llama-cpp.md`](11--scoring-and-calibration/14-local-gguf-reranker-via-node-llama-cpp.md) for full implementation and test file listings.
+See [`11--scoring-and-calibration/14-local-gguf-reranker-via-Ollama runtime.md`](11--scoring-and-calibration/14-local-gguf-reranker-via-Ollama runtime.md) for full implementation and test file listings.
 
 ---
 
@@ -4596,10 +4596,10 @@ These settings pick which embedding and reranking providers the system uses and 
 | Name | Default | Type | Source File | Description |
 |---|---|---|---|---|
 | `COHERE_API_KEY` | _(none)_ | string | `tests/search-limits-scoring.vitest.ts` | API key for the Cohere reranker provider. When present, the cross-encoder reranker uses Cohere's rerank API. Falls back to local or Voyage reranker when absent. |
-| `EMBEDDING_DIM` | _(provider default)_ | number | `lib/search/vector-index-store.ts`, `shared/embeddings/factory.ts` | Compatibility check and startup override for the stored vector dimension. Any positive explicit `EMBEDDING_DIM` value is honored first; otherwise runtime dimension selection comes from the active provider profile (Voyage 1024, OpenAI 1536, local EmbeddingGemma 768). |
-| `EMBEDDINGS_PROVIDER` | `'auto'` | string | `shared/embeddings/factory.ts` | Selects the embedding provider. Valid values include `'auto'`, `'openai'`, `'hf-local'`, `'llama-cpp'`, and `'voyage'`. In `'auto'` mode, resolution precedence is explicit `EMBEDDINGS_PROVIDER` -> `VOYAGE_API_KEY` -> `OPENAI_API_KEY` -> local `llama-cpp` default -> `hf-local` fallback. The local default model is `unsloth/embeddinggemma-300m-GGUF`; the fallback model is `onnx-community/embeddinggemma-300m-ONNX` q8. |
+| `EMBEDDING_DIM` | _(provider default)_ | number | `lib/search/vector-index-store.ts`, `shared/embeddings/factory.ts` | Compatibility check and startup override for the stored vector dimension. Any positive explicit `EMBEDDING_DIM` value is honored first; otherwise runtime dimension selection comes from the active provider profile (Voyage 1024, OpenAI 1536, local BGE local fallback 768). |
+| `EMBEDDINGS_PROVIDER` | `'auto'` | string | `shared/embeddings/factory.ts` | Selects the embedding provider. Valid values include `'auto'`, `'openai'`, `'hf-local'`, `'ollama'`, and `'voyage'`. In `'auto'` mode, resolution precedence is explicit `EMBEDDINGS_PROVIDER` -> `VOYAGE_API_KEY` -> `OPENAI_API_KEY` -> local `ollama` default -> `hf-local` fallback. The local default model is `unsloth/bge-base-en-v1.5-GGUF`; the fallback model is `onnx-community/bge-base-en-v1.5-ONNX` q8. |
 | `OPENAI_API_KEY` | _(none)_ | string | `tests/embeddings.vitest.ts` | API key for the OpenAI embeddings provider. Required when `EMBEDDINGS_PROVIDER` is `'openai'` or when `'auto'` mode selects OpenAI as the available provider. |
-| `RERANKER_LOCAL` | `false` | boolean | `lib/search/local-reranker.ts` | **IMPLEMENTED (Sprint 019).** When set to `'true'` (strict string equality, not truthy), enables the local GGUF reranker via `node-llama-cpp`. Requires model file on disk and sufficient total system memory (8GB default, 2GB with custom `SPECKIT_RERANKER_MODEL`). Sequential per-candidate inference; expect 200-400ms for top-20 on Apple Silicon (CHK-113). Falls back to the original candidate ordering on precondition failure or runtime inference error. |
+| `RERANKER_LOCAL` | `false` | boolean | `lib/search/local-reranker.ts` | **IMPLEMENTED (Sprint 019).** When set to `'true'` (strict string equality, not truthy), enables the local GGUF reranker via `Ollama runtime`. Requires model file on disk and sufficient total system memory (8GB default, 2GB with custom `SPECKIT_RERANKER_MODEL`). Sequential per-candidate inference; expect 200-400ms for top-20 on Apple Silicon (CHK-113). Falls back to the original candidate ordering on precondition failure or runtime inference error. |
 | `VOYAGE_API_KEY` | _(none)_ | string | `tests/embeddings.vitest.ts` | API key for the Voyage AI embeddings and reranker provider. In `'auto'` mode, Voyage is preferred over OpenAI and local providers when this key is present. |
 
 #### Source Files

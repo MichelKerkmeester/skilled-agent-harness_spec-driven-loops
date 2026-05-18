@@ -2,7 +2,17 @@
 // MODULE: Embedders — schema helpers
 // ───────────────────────────────────────────────────────────────
 
+import { createHash } from 'node:crypto';
+import os from 'node:os';
+import path from 'node:path';
+
 import Database from 'better-sqlite3';
+
+import {
+  autoSelectActiveEmbedder,
+  type AutoSelectOptions,
+  type AutoSelectedEmbedderProvider,
+} from '@spec-kit/shared/embeddings/auto-select';
 
 // ───────────────────────────────────────────────────────────────
 // 1. TYPE DEFINITIONS
@@ -11,6 +21,7 @@ import Database from 'better-sqlite3';
 export interface ActiveEmbedder {
   readonly name: string;
   readonly dim: number;
+  readonly provider?: AutoSelectedEmbedderProvider;
 }
 
 interface MetadataRow {
@@ -23,12 +34,13 @@ interface MetadataRow {
 // ───────────────────────────────────────────────────────────────
 
 export const DEFAULT_ACTIVE_EMBEDDER: ActiveEmbedder = Object.freeze({
-  name: 'embeddinggemma-300m',
-  dim: 768,
+  name: 'auto',
+  dim: 0,
 });
 
 const ACTIVE_EMBEDDER_NAME_KEY = 'active_embedder_name';
 const ACTIVE_EMBEDDER_DIM_KEY = 'active_embedder_dim';
+const ACTIVE_EMBEDDER_PROVIDER_KEY = 'active_embedder_provider';
 
 // ───────────────────────────────────────────────────────────────
 // 3. HELPERS
@@ -60,10 +72,52 @@ function readActivePointerRows(db: Database.Database): Map<string, string> {
   const rows = db.prepare(`
     SELECT key, value
     FROM vec_metadata
-    WHERE key IN (?, ?)
-  `).all(ACTIVE_EMBEDDER_NAME_KEY, ACTIVE_EMBEDDER_DIM_KEY) as MetadataRow[];
+    WHERE key IN (?, ?, ?)
+  `).all(
+    ACTIVE_EMBEDDER_NAME_KEY,
+    ACTIVE_EMBEDDER_DIM_KEY,
+    ACTIVE_EMBEDDER_PROVIDER_KEY,
+  ) as MetadataRow[];
 
   return new Map(rows.map((row) => [row.key, row.value]));
+}
+
+function normalizeProvider(value: string | undefined): AutoSelectedEmbedderProvider | undefined {
+  if (
+    value === 'voyage'
+    || value === 'openai'
+    || value === 'ollama'
+    || value === 'hf-local'
+  ) {
+    return value;
+  }
+  return undefined;
+}
+
+function readActiveEmbedderIfValid(db: Database.Database): ActiveEmbedder | null {
+  const rows = readActivePointerRows(db);
+  const name = rows.get(ACTIVE_EMBEDDER_NAME_KEY);
+  const dimRaw = rows.get(ACTIVE_EMBEDDER_DIM_KEY);
+  const dim = typeof dimRaw === 'string' ? Number.parseInt(dimRaw, 10) : NaN;
+
+  if (!name || !Number.isInteger(dim) || dim <= 0) {
+    return null;
+  }
+
+  const provider = normalizeProvider(rows.get(ACTIVE_EMBEDDER_PROVIDER_KEY));
+  return provider ? { name, dim, provider } : { name, dim };
+}
+
+function getDatabaseName(db: Database.Database): string {
+  const candidate = (db as Database.Database & { name?: unknown }).name;
+  return typeof candidate === 'string' && candidate.length > 0 ? candidate : ':memory:';
+}
+
+function resolveAutoSelectLockPath(db: Database.Database): string {
+  const dbName = getDatabaseName(db);
+  const digest = createHash('sha256').update(dbName).digest('hex').slice(0, 16);
+  const lockDir = dbName === ':memory:' ? os.tmpdir() : path.dirname(dbName);
+  return path.join(lockDir, `.active-embedder-auto-select-${digest}.lock`);
 }
 
 // ───────────────────────────────────────────────────────────────
@@ -81,24 +135,53 @@ export function ensureVecTableForDim(db: Database.Database, dim: number): void {
 }
 
 export function getActiveEmbedder(db: Database.Database): ActiveEmbedder {
-  const rows = readActivePointerRows(db);
-  const name = rows.get(ACTIVE_EMBEDDER_NAME_KEY);
-  const dimRaw = rows.get(ACTIVE_EMBEDDER_DIM_KEY);
-  const dim = typeof dimRaw === 'string' ? Number.parseInt(dimRaw, 10) : NaN;
-
-  if (!name || !Number.isInteger(dim) || dim <= 0) {
-    return DEFAULT_ACTIVE_EMBEDDER;
-  }
-
-  return { name, dim };
+  return readActiveEmbedderIfValid(db) ?? DEFAULT_ACTIVE_EMBEDDER;
 }
 
-export function setActiveEmbedder(db: Database.Database, name: string, dim: number): void {
+export async function ensureActiveEmbedder(
+  db: Database.Database,
+  options: Omit<AutoSelectOptions, 'metadataStore'> = {},
+): Promise<ActiveEmbedder> {
+  const active = readActiveEmbedderIfValid(db);
+  if (active) {
+    return active;
+  }
+
+  const selected = await autoSelectActiveEmbedder({
+    ...options,
+    lockPath: options.lockPath ?? resolveAutoSelectLockPath(db),
+    metadataStore: {
+      readActiveEmbedder: () => {
+        const existing = readActiveEmbedderIfValid(db);
+        return existing?.provider
+          ? { name: existing.name, dim: existing.dim, provider: existing.provider }
+          : null;
+      },
+      persistActiveEmbedder: (embedder) => {
+        setActiveEmbedder(db, embedder.name, embedder.dim, embedder.provider);
+      },
+    },
+  });
+
+  return {
+    name: selected.name,
+    dim: selected.dim,
+    provider: selected.provider,
+  };
+}
+
+export function setActiveEmbedder(
+  db: Database.Database,
+  name: string,
+  dim: number,
+  provider?: AutoSelectedEmbedderProvider,
+): void {
   const trimmedName = name.trim();
   if (trimmedName.length === 0) {
     throw new TypeError('Active embedder name must be non-empty');
   }
   validateDim(dim);
+  const trimmedProvider = provider?.trim();
   ensureVecMetadataTable(db);
 
   const writePointer = db.transaction(() => {
@@ -106,12 +189,15 @@ export function setActiveEmbedder(db: Database.Database, name: string, dim: numb
       INSERT OR IGNORE INTO vec_metadata (key, value)
       VALUES
         (?, ?),
+        (?, ?),
         (?, ?)
     `).run(
       ACTIVE_EMBEDDER_NAME_KEY,
       trimmedName,
       ACTIVE_EMBEDDER_DIM_KEY,
       String(dim),
+      ACTIVE_EMBEDDER_PROVIDER_KEY,
+      trimmedProvider ?? '',
     );
 
     db.prepare(`
@@ -119,16 +205,20 @@ export function setActiveEmbedder(db: Database.Database, name: string, dim: numb
       SET value = CASE key
         WHEN ? THEN ?
         WHEN ? THEN ?
+        WHEN ? THEN ?
         ELSE value
       END
-      WHERE key IN (?, ?)
+      WHERE key IN (?, ?, ?)
     `).run(
       ACTIVE_EMBEDDER_NAME_KEY,
       trimmedName,
       ACTIVE_EMBEDDER_DIM_KEY,
       String(dim),
+      ACTIVE_EMBEDDER_PROVIDER_KEY,
+      trimmedProvider ?? '',
       ACTIVE_EMBEDDER_NAME_KEY,
       ACTIVE_EMBEDDER_DIM_KEY,
+      ACTIVE_EMBEDDER_PROVIDER_KEY,
     );
   });
 

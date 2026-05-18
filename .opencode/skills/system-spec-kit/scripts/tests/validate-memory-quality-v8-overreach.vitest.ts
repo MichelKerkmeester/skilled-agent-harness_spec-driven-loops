@@ -92,22 +92,22 @@ The adr-003-context-size-decision title follows the same decision-record convent
   });
 
   it('T040-03 derives the current spec from the last numbered segment of a nested file path', () => {
-    const decisionRecordPath = '.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/037-llama-cpp-embedding-worker-deep-dive/decision-record.md';
+    const decisionRecordPath = '.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/037-token-budget-worker-deep-dive/decision-record.md';
     const content = `---
-title: "ADR-003 llama-cpp token budget"
+title: "ADR-003 embedding token budget"
 trigger_phrases:
-  - "llama-cpp token budget"
+  - "embedding token budget"
 tool_count: 0
 ---
 
-# ADR-003 llama-cpp token budget
+# ADR-003 embedding token budget
 
-The 037-llama-cpp-embedding-worker-deep-dive packet documents the current decision.
+The 037-token-budget-worker-deep-dive packet documents the current decision.
 It also references parent packet 026-graph-and-context-optimization as lineage.
 `;
 
     const result = validateMemoryQualityContent(content, { filePath: decisionRecordPath });
-    expect(result.contaminationAudit.passedThrough).toContain('current_spec:037-llama-cpp-embedding-worker-deep-dive');
+    expect(result.contaminationAudit.passedThrough).toContain('current_spec:037-token-budget-worker-deep-dive');
     expect(result.ruleResults.find((rule) => rule.ruleId === 'V8')?.passed).toBe(true);
   });
 

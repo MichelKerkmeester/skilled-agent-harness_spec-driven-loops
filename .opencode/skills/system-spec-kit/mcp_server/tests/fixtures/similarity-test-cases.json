@@ -136,7 +136,7 @@
     "description": "Test cases for semantic similarity scoring validation",
     "version": "1.0.0",
     "created": "2026-01-28",
-    "embeddingModel": "google/embeddinggemma-300m",
+    "embeddingModel": "BAAI/bge-base-en-v1.5",
     "dimensions": 768,
     "notes": [
       "Expected ranges are approximate based on typical embedding model behavior",

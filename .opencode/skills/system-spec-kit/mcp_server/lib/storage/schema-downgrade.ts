@@ -33,7 +33,7 @@ interface SchemaDowngradeResult {
 
 const TARGET_FROM_VERSION = 16;
 const TARGET_TO_VERSION = 15;
-const REMOVED_COLUMNS = ['parent_id', 'chunk_index', 'chunk_label'] as const;
+const OLLAMA = ['parent_id', 'chunk_index', 'chunk_label'] as const;
 
 const V15_COLUMNS = [
   'id',
@@ -247,7 +247,7 @@ function downgradeSchemaV16ToV15(
     throw new Error(`Downgrade supports only v${TARGET_FROM_VERSION} -> v${TARGET_TO_VERSION}. Current schema is v${currentVersion}.`);
   }
 
-  ensureColumnsExist(database, REMOVED_COLUMNS);
+  ensureColumnsExist(database, OLLAMA);
 
   const checkpointName = options.checkpointName || `pre-schema-downgrade-v16-to-v15-${nowTimestampForName()}`;
   const checkpoint = checkpoints.createCheckpoint({
@@ -257,7 +257,7 @@ function downgradeSchemaV16ToV15(
       reason: 'schema downgrade v16->v15',
       fromVersion: TARGET_FROM_VERSION,
       toVersion: TARGET_TO_VERSION,
-      removedColumns: [...REMOVED_COLUMNS],
+      removedColumns: [...OLLAMA],
     },
   });
 
@@ -309,7 +309,7 @@ function downgradeSchemaV16ToV15(
     toVersion: TARGET_TO_VERSION,
     checkpointName: checkpointName,
     preservedRows: row.count,
-    removedColumns: [...REMOVED_COLUMNS],
+    removedColumns: [...OLLAMA],
   };
 }
 

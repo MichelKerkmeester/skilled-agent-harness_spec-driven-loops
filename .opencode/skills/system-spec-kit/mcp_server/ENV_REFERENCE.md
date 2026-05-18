@@ -443,7 +443,7 @@ When `VOYAGE_API_KEY` is present and local reranking is not forced, the default 
 <!-- ANCHOR:embedding -->
 ## 15. EMBEDDING
 
-Embedding provider selection stays auto-cascaded unless you force it. In `EMBEDDINGS_PROVIDER=auto`, the runtime selects Voyage `voyage-4` (1024 dims) when `VOYAGE_API_KEY` is set, then OpenAI `text-embedding-3-small` (1536 dims) when `OPENAI_API_KEY` is set, then llama-cpp EmbeddingGemma GGUF (768 dims) when the local GGUF runtime is available, and finally hf-local EmbeddingGemma ONNX q8 (768 dims). If you override only `SPEC_KIT_DB_DIR` / `SPECKIT_DB_DIR`, the sqlite filename is derived automatically from that active profile.
+Embedding provider selection stays auto-cascaded unless you force it. In `EMBEDDINGS_PROVIDER=auto`, the runtime selects Voyage `voyage-4` (1024 dims) when `VOYAGE_API_KEY` is set, then OpenAI `text-embedding-3-small` (1536 dims) when `OPENAI_API_KEY` is set, then ollama BGE local fallback GGUF (768 dims) when the local GGUF runtime is available, and finally hf-local BGE local fallback ONNX q8 (768 dims). If you override only `SPEC_KIT_DB_DIR` / `SPECKIT_DB_DIR`, the sqlite filename is derived automatically from that active profile.
 
 | Variable | Default | Type | Description | Source |
 |----------|---------|------|-------------|--------|

@@ -113,7 +113,18 @@ This guide addresses the full installation lifecycle and common failures after m
 | `.opencode/skills/system-spec-kit/mcp_server/database/context-index__*.sqlite` | Active repo-local memory database resolved from the embedding profile |
 | `.opencode/skills/system-spec-kit/mcp_server/database/code-graph.sqlite` | Default repo-local structural code-graph database used by the checked-in configs |
 
-The checked-in repo configs currently point `SPEC_KIT_DB_DIR` at `mcp_server/database/`. The runtime derives the active sqlite filename through `shared/embeddings/profile.ts:resolveActiveProfileDbPath`. Local profile filenames are `context-index__llama-cpp__unsloth-embeddinggemma-300m-gguf__768__q8.sqlite` and `context-index__hf-local__onnx-community_embeddinggemma-300m-onnx__768__q8.sqlite`; cloud profiles use the synthetic `cloud` dtype, for example `context-index__voyage__voyage-4__1024__cloud.sqlite` and `context-index__openai__text-embedding-3-small__1536__cloud.sqlite`. Override `MEMORY_DB_PATH` only when you intentionally want to pin one exact sqlite file.
+The checked-in repo configs currently point `SPEC_KIT_DB_DIR` at `mcp_server/database/`. The runtime derives the active sqlite filename from the selected embedding profile. Typical filenames are `context-index__ollama__jina-embeddings-v3__1024.sqlite`, `context-index__hf-local__baai_bge-base-en-v1.5__768__q8.sqlite`, `context-index__voyage__voyage-code-3__1024__cloud.sqlite`, and `context-index__openai__text-embedding-3-small__1536__cloud.sqlite`. Override `MEMORY_DB_PATH` only when you intentionally want to pin one exact sqlite file.
+
+### What Gets Picked
+
+On first daemon startup, when `vec_metadata` has no active embedder, the server probes this precedence chain and persists the first working choice:
+
+1. Voyage API: `VOYAGE_API_KEY` set and `voyage-code-3` embeddings reachable.
+2. OpenAI API: `OPENAI_API_KEY` set and `text-embedding-3-small` embeddings reachable.
+3. Ollama: `/api/tags` reachable, selecting the first pulled model in ADR-012 order: `jina-embeddings-v3`, `nomic-embed-text-v1.5`, `bge-m3`, `mxbai-embed-large-v1`.
+4. hf-local: `sentence-transformers` importable, selecting `BAAI/bge-base-en-v1.5`.
+
+If no tier is reachable, startup fails with a clear probe report. Fix the relevant API key, Ollama pull, or Python environment, then restart the MCP server.
 
 The Code Graph system uses a separate database stored alongside the spec-doc record index:
 
@@ -1018,7 +1029,7 @@ Use this procedure when an update leaves the server broken and you need to resto
 **Step 1: Back up the current database (if it has data you want to keep)**
 
 ```bash
-ACTIVE_DB=.opencode/skills/system-spec-kit/mcp_server/database/context-index__llama-cpp__unsloth-embeddinggemma-300m-gguf__768__q8.sqlite
+ACTIVE_DB=.opencode/skills/system-spec-kit/mcp_server/database/context-index__ollama__jina-embeddings-v3__1024.sqlite
 cp "$ACTIVE_DB" \
    .opencode/skills/system-spec-kit/mcp_server/database/rollback-$(date +%Y%m%d-%H%M%S).sqlite
 ```
@@ -1163,6 +1174,7 @@ MCP TOOLS: memory_context, memory_search, memory_match_triggers,
 
 | Version | Date | Summary |
 |---|---|---|
-| v1.7.2 | 2026-03-15 | Dependency audit: `sqlite-vec-darwin-arm64` moved to `optionalDependencies`. Added `@huggingface/transformers` (with `onnxruntime-common` transitively), `chokidar`, `zod`. `node-llama-cpp` added as optional. Rollback procedure added. Prerequisites script (`check-prerequisites.sh`) documented. |
+| v1.8.0 | 2026-05-18 | Bootstrap auto-selection now persists Voyage, OpenAI, Ollama, or hf-local into `vec_metadata`; native GGUF provider surface removed. |
+| v1.7.2 | 2026-03-15 | Dependency audit: `sqlite-vec-darwin-arm64` moved to `optionalDependencies`. Added `@huggingface/transformers` (with `onnxruntime-common` transitively), `chokidar`, `zod`. Rollback procedure added. Prerequisites script (`check-prerequisites.sh`) documented. |
 | v1.7.x | 2026-02-20 | Cross-encoder reranking enabled by default. Co-activation score boost fix. Query expansion on deep mode. Evidence gap warnings. MMR reranking with intent-mapped lambda. Phase system support (recursive validation, phase detection scoring). Feature flag updates. `memory_context` tokenUsage parameter. 28-tool surface area. |
 | v1.x | 2025 | Adaptive fusion, extended telemetry, artifact-class routing, append-only mutation ledger, typed retrieval contracts. Semantic search, trigger matching, intent-aware context, session deduplication. |

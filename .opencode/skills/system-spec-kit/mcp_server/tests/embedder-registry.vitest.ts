@@ -14,18 +14,18 @@ import {
 import type { EmbedderManifest } from '../lib/embedders/index.js';
 
 describe('016/001 EmbedderRegistry', () => {
-  it('lists 7 manifests in declaration order, baseline first', () => {
+  it('lists 7 manifests in declaration order', () => {
     const all = listManifests();
     expect(all).toHaveLength(7);
-    expect(all[0]?.name).toBe('embeddinggemma-300m');
+    expect(all[0]?.name).toBe('nomic-embed-text-v1.5');
     expect(all.map((m) => m.name)).toEqual([
-      'embeddinggemma-300m',
       'nomic-embed-text-v1.5',
       'mxbai-embed-large-v1',
       'bge-small-en-v1.5',
       'bge-large-en-v1.5',
       'jina-embeddings-v3',
       'bge-m3',
+      'snowflake-arctic-embed-l-v2.0',
     ]);
   });
 
@@ -58,13 +58,6 @@ describe('016/001 EmbedderRegistry', () => {
     expect(bgeM3?.maxInputChars).toBe(8000);
   });
 
-  it('embeddinggemma-300m baseline does NOT declare prefix tokens', () => {
-    const gemma = getManifest('embeddinggemma-300m');
-    expect(gemma?.prefixQuery).toBeUndefined();
-    expect(gemma?.prefixDocument).toBeUndefined();
-    expect(gemma?.backend).toBe('llama-cpp');
-  });
-
   it('listSupportedDimensions returns unique sorted dim values', () => {
     const dims = listSupportedDimensions();
     expect(dims).toEqual([384, 768, 1024]);
@@ -78,7 +71,7 @@ describe('016/001 EmbedderRegistry', () => {
   });
 
   it('every manifest declares a known backend kind', () => {
-    const knownBackends = new Set(['ollama', 'llama-cpp', 'api', 'sentence-transformers']);
+    const knownBackends = new Set(['ollama', 'api', 'sentence-transformers']);
     for (const m of listManifests()) {
       expect(knownBackends.has(m.backend)).toBe(true);
     }
