@@ -1,0 +1,4 @@
+# Runtime-quarantined SQLite copies (auto-recovery output). Never commit.
+*.corrupt
+*.corrupt-shm
+*.corrupt-wal

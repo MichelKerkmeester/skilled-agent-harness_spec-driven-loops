@@ -26,24 +26,38 @@ The freshness daemon holds a workspace single-writer lease so two concurrent adv
 <!-- ANCHOR:2-lease-lifecycle -->
 ## 2. LEASE LIFECYCLE
 
+### Launcher-Boundary Enforcement
+
+The `mk-skill-advisor-launcher.cjs` script enforces single-writer semantics at process startup before opening the SQLite skill-graph database. It calls `isLeaseHeld()` from `lib/daemon/lease.ts` to probe the lease state:
+
+- If `held === true && staleReclaimable === false`: the launcher prints `LEASE_HELD_BY:<ownerPid>` to stdout and exits with code 0 without opening the database.
+- If `staleReclaimable === true`: the launcher logs `staleReclaimed: true` and continues normal bootstrap (the existing `acquireSkillGraphLease` call reclaims the lease).
+- If `held === false`: the launcher continues normal bootstrap.
+
+This enforcement is gated by the `MK_SKILL_ADVISOR_STRICT_SINGLE_WRITER` environment variable (default `1`/true). When set to `0` or `false`, the launcher logs a warning and continues without exiting (dev override).
+
 ### Acquire
 
-Daemon attempts lease acquisition on startup. The lease file lives next to the SQLite database at `mcp_server/database/.skill-graph.lease`. On success it records:
+Daemon attempts lease acquisition on startup. The lease database lives at `.opencode/skills/.advisor-state/skill-graph-daemon-lease.sqlite`. On success it records:
 
 - holder PID
-- holder hostname
+- holder hostname (via owner ID)
 - acquisition timestamp
 - expected heartbeat interval
 
-If the file exists plus the holder appears live (PID alive, recent heartbeat within timeout), acquisition blocks. The blocking process logs `lease-busy` plus waits with backoff.
+If the lease is held by another live process, acquisition fails. The blocking process logs `lease-busy` plus waits with backoff.
 
 ### Heartbeat
 
-The lease-holder updates the lease file timestamp every 30 seconds. Other daemon instances inspect the timestamp to decide whether the lease is still held.
+The lease-holder updates the heartbeat timestamp every 30 seconds. Other daemon instances inspect the timestamp to decide whether the lease is still held.
 
 ### Release
 
-On clean shutdown (SIGTERM, MCP server stop) the daemon releases the lease by deleting the lease file. Another waiting daemon then acquires.
+On clean shutdown (SIGTERM, MCP server stop) the daemon releases the lease by deleting the lease record. Another waiting daemon then acquires.
+
+### WAL and Busy Timeout Pragmas
+
+Every skill-graph database open sets `PRAGMA journal_mode=WAL` and `PRAGMA busy_timeout=5000` to improve concurrency safety and handle short-term lock contention. If the filesystem is read-only (EACCES), WAL mode falls back to `journal_mode=DELETE` with a logged warning.
 
 <!-- /ANCHOR:2-lease-lifecycle -->
 

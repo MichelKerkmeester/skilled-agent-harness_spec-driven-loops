@@ -7,6 +7,8 @@ import { mkdirSync, mkdtempSync, rmSync, utimesSync, writeFileSync } from 'node:
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { afterEach, describe, expect, it } from 'vitest';
+import { initDb, closeDb, resolveSkillGraphDbDir } from '../lib/skill-graph/skill-graph-db.js';
+import { isLeaseHeld, acquireSkillGraphLease } from '../lib/daemon/lease.js';
 
 const require = createRequire(import.meta.url);
 const launcher = require('../../../../bin/mk-skill-advisor-launcher.cjs') as {
@@ -77,5 +79,55 @@ describe('mk-skill-advisor launcher bootstrap', () => {
       HOME: '/tmp/home',
       MK_SKILL_ADVISOR_DB_DIR: '/tmp/db',
     });
+  });
+});
+
+describe('lease-held single-writer enforcement', () => {
+  const tempDirs: string[] = [];
+
+  afterEach(() => {
+    closeDb();
+    while (tempDirs.length > 0) {
+      const dir = tempDirs.pop();
+      if (dir) rmSync(dir, { recursive: true, force: true });
+    }
+  });
+
+  it('isLeaseHeld returns held: true when lease is acquired by current process', () => {
+    const tempDir = mkdtempSync(join(tmpdir(), 'lease-test-'));
+    tempDirs.push(tempDir);
+
+    const lease = acquireSkillGraphLease({ workspaceRoot: tempDir });
+    const result = isLeaseHeld(tempDir);
+
+    expect(result.held).toBe(true);
+    expect(result.ownerPid).toBe(process.pid);
+    expect(result.staleReclaimable).toBe(false);
+
+    lease.close();
+  });
+
+  it('isLeaseHeld returns held: false when no lease exists', () => {
+    const tempDir = mkdtempSync(join(tmpdir(), 'lease-test-'));
+    tempDirs.push(tempDir);
+
+    const result = isLeaseHeld(tempDir);
+
+    expect(result.held).toBe(false);
+    expect(result.ownerPid).toBe(null);
+    expect(result.staleReclaimable).toBe(false);
+  });
+
+  it('WAL pragma is set on every fresh DB open', () => {
+    const tempDbDir = mkdtempSync(join(tmpdir(), 'skill-graph-db-test-'));
+    tempDirs.push(tempDbDir);
+    process.env.MK_SKILL_ADVISOR_DB_DIR = tempDbDir;
+
+    const db = initDb(tempDbDir);
+    const journalMode = db.pragma('journal_mode', { simple: true }) as string;
+    const busyTimeout = db.pragma('busy_timeout', { simple: true }) as number;
+
+    expect(journalMode).toBe('wal');
+    expect(busyTimeout).toBe(5000);
   });
 });

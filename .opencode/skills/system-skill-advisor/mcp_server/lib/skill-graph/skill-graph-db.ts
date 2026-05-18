@@ -284,7 +284,17 @@ export function initDb(dbDir: string): Database.Database {
       recoverMalformedDatabase(dbPath, integrity.reason);
     }
     db = new Database(dbPath);
-    db.pragma('journal_mode = WAL');
+    try {
+      db.pragma('journal_mode = WAL');
+    } catch (error: unknown) {
+      if ((error as NodeJS.ErrnoException).code === 'EACCES') {
+        console.warn('[skill-graph] WAL mode failed (read-only filesystem), falling back to DELETE journal mode');
+        db.pragma('journal_mode = DELETE');
+      } else {
+        throw error;
+      }
+    }
+    db.pragma('busy_timeout = 5000');
     db.pragma('foreign_keys = ON');
     db.exec(SCHEMA_SQL);
     ensureSchemaMigrations(db);

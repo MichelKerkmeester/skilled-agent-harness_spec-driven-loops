@@ -302,6 +302,29 @@ async function main() {
     refreshPaths();
     log(`DB: ${advisorDbPath()}`);
 
+    const strictSingleWriter = process.env.MK_SKILL_ADVISOR_STRICT_SINGLE_WRITER !== '0' &&
+                               process.env.MK_SKILL_ADVISOR_STRICT_SINGLE_WRITER !== 'false';
+    if (strictSingleWriter) {
+      try {
+        const leasePath = path.join(mcpDir, 'dist', 'system-skill-advisor', 'mcp_server', 'lib', 'daemon', 'lease.js');
+        const leaseModule = require(leasePath);
+        const leaseResult = leaseModule.isLeaseHeld(root);
+        if (leaseResult.held && !leaseResult.staleReclaimable) {
+          process.stdout.write(`LEASE_HELD_BY:${leaseResult.ownerPid}\n`);
+          process.exit(0);
+        }
+        if (leaseResult.staleReclaimable) {
+          log('staleReclaimed: true');
+        }
+      } catch (error) {
+        if (error.code !== 'MODULE_NOT_FOUND') {
+          log(`lease check failed: ${error.message}`);
+        }
+      }
+    } else {
+      log('MK_SKILL_ADVISOR_STRICT_SINGLE_WRITER is disabled; skipping lease check');
+    }
+
     lockHeld = await acquireBootstrapLock();
     if (lockHeld) {
       buildIfNeeded(actions);

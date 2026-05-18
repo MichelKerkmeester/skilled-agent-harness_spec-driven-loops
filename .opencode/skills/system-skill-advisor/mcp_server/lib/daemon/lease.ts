@@ -31,6 +31,12 @@ export interface LeaseSnapshot {
   readonly heartbeatAt: number;
 }
 
+export interface LeaseHeldResult {
+  readonly held: boolean;
+  readonly ownerPid: number | null;
+  readonly staleReclaimable: boolean;
+}
+
 export interface SkillGraphLease {
   readonly ownerId: string;
   readonly acquired: boolean;
@@ -104,6 +110,26 @@ export function readLeaseSnapshot(
     };
   } finally {
     db.close();
+  }
+}
+
+export function isLeaseHeld(
+  workspaceRoot: string,
+  options: Pick<LeaseOptions, 'leaseDbPath'> = {},
+): LeaseHeldResult {
+  const snapshot = readLeaseSnapshot(workspaceRoot, options);
+  if (!snapshot) {
+    return { held: false, ownerPid: null, staleReclaimable: false };
+  }
+
+  try {
+    process.kill(snapshot.pid, 0);
+    return { held: true, ownerPid: snapshot.pid, staleReclaimable: false };
+  } catch (error: unknown) {
+    if ((error as NodeJS.ErrnoException).code === 'ESRCH') {
+      return { held: false, ownerPid: snapshot.pid, staleReclaimable: true };
+    }
+    throw error;
   }
 }
 
