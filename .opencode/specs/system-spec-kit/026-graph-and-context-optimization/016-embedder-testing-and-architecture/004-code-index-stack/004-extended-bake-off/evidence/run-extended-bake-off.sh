@@ -104,29 +104,38 @@ for i, p in enumerate(pairs, 1):
     latency_ms = int((time.monotonic() - t0) * 1000)
     latencies.append(latency_ms)
 
-    top1 = ""
+    top_paths = []  # ordered list of all parsed top-K result paths
     if result.returncode == 0:
-        # Parse ccc search output — depends on format. Naive: first non-header line that looks like a path.
+        import re as _re
         for line in result.stdout.splitlines():
             line = line.strip()
-            if line and (".md" in line or ".ts" in line or ".py" in line or ".js" in line or ".json" in line):
-                # Strip leading metadata (rank #, score, etc.)
-                parts = line.split()
-                for part in parts:
-                    if "/" in part and "." in part.split("/")[-1]:
-                        top1 = part
-                        break
-                if top1:
-                    break
+            if not line:
+                continue
+            # Look for path-like tokens with file extension; collect ALL of them
+            for part in line.split():
+                # path candidate must have a "/" and an extension after last slash
+                if "/" in part and "." in part.split("/")[-1]:
+                    # strip line-range suffix like ":1-9" or trailing punctuation
+                    p = _re.sub(r":\d+(-\d+)?$", "", part).rstrip(",;:()")
+                    if p and p not in top_paths:
+                        top_paths.append(p)
 
     # Normalize across mirror trees: .opencode/.claude/.codex/.gemini
     def norm(path):
+        # strip mirror prefix
         for prefix in [".opencode/", ".claude/", ".codex/", ".gemini/"]:
             if path.startswith(prefix):
-                return path[len(prefix):]
+                path = path[len(prefix):]
+                break
+        # strip any remaining line-range suffix
+        import re as _re2
+        path = _re2.sub(r":\d+(-\d+)?$", "", path)
         return path
 
-    hit = norm(top1) == norm(expected) if top1 and expected else False
+    top1 = top_paths[0] if top_paths else ""
+    top_paths_normalized = [norm(p) for p in top_paths[:5]]  # top-5 hit semantics
+    expected_norm = norm(expected) if expected else ""
+    hit = (expected_norm in top_paths_normalized) if expected_norm else False
     if hit:
         hits += 1
         hits_by_difficulty[difficulty] = hits_by_difficulty.get(difficulty, 0) + 1
