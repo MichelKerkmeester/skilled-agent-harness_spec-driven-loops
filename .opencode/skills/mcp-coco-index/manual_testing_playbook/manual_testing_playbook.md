@@ -46,7 +46,7 @@ Canonical package artifacts:
 
 ## 1. OVERVIEW
 
-This playbook provides 23 deterministic scenarios across 7 categories validating the `mcp-coco-index` skill surface. Each scenario maps to a dedicated feature file with the canonical objective, prompt summary, expected signals, and feature-file reference.
+This playbook provides 31 deterministic scenarios across 7 categories validating the `mcp-coco-index` skill surface. Each scenario maps to a dedicated feature file with the canonical objective, prompt summary, expected signals, and feature-file reference.
 
 ### REALISTIC TEST MODEL
 
@@ -179,7 +179,7 @@ Expected signals: Step 1: exits without error; Step 2: shows zero files or "not 
 
 ## 8. MCP SEARCH TOOL
 
-This category covers 7 scenario summaries while the linked feature files remain the canonical execution contract.
+This category covers 10 scenario summaries while the linked feature files remain the canonical execution contract.
 
 ### MCP-001 | Basic semantic search
 
@@ -285,12 +285,38 @@ Expected signals: Both calls return JSON; at most one contains `ComponentContext
 #### Test Execution
 > **Feature File:** [MCP-008](02--mcp-search-tool/008-concurrent-refresh-race.md)
 
+### MCP-009 | Hybrid search behavior
+
+#### Description
+Verify `COCOINDEX_HYBRID=true` produces a merged vector + FTS5/BM25 result set that materially differs from vector-only retrieval against the same query.
+
+#### Scenario Contract
+Prompt summary: As a manual-testing orchestrator, run the same MCP CocoIndex search query first with COCOINDEX_HYBRID unset and then with COCOINDEX_HYBRID=true against the current CocoIndex daemon in this repository. Verify the hybrid response carries non-null fts5_score and rrf_score on every result, and that the two result sets differ in at least one of file paths, top-K ordering, or score-leader. Return a concise user-facing pass/fail verdict with the main reason.
+
+Expected signals: HYBRID-OFF results leave `fts5_score`/`rrf_score` null; HYBRID-ON results populate both fields on every entry; the two result sets differ in at least one rank swap, path addition, or score-leader change
+
+#### Test Execution
+> **Feature File:** [MCP-009](02--mcp-search-tool/009-hybrid-search-behavior.md)
+
+### MCP-010 | Reranker behavior
+
+#### Description
+Verify `COCOINDEX_RERANK=true` produces a measurably re-ordered top-K against the same query, with `reranker_score` reflecting cross-encoder relevance rather than echoing the upstream score.
+
+#### Scenario Contract
+Prompt summary: As a manual-testing orchestrator, run the same MCP CocoIndex search query first with COCOINDEX_RERANK unset and then with COCOINDEX_RERANK=true against the current CocoIndex daemon in this repository. Verify every reranked result carries non-null pre_rerank_score and reranker_score, the two scores differ on at least one entry, reranker_score varies across entries, and the top-3 ordering differs from the rerank-off baseline by at least one rank swap. Return a concise user-facing pass/fail verdict with the main reason.
+
+Expected signals: RERANK-OFF results leave `pre_rerank_score`/`reranker_score` null; RERANK-ON results populate both fields on every entry; `reranker_score` differs from `pre_rerank_score` on at least one entry; `reranker_score` varies across entries; top-3 ordering differs from RERANK-OFF by at least one rank swap
+
+#### Test Execution
+> **Feature File:** [MCP-010](02--mcp-search-tool/010-reranker-behavior.md)
+
 
 ---
 
 ## 9. CONFIGURATION
 
-This category covers 3 scenario summaries while the linked feature files remain the canonical execution contract.
+This category covers 7 scenario summaries while the linked feature files remain the canonical execution contract.
 
 ### CFG-001 | Default model verification
 
@@ -343,6 +369,45 @@ Expected signals: `ccc status` invoked from the subdirectory with the env var se
 
 #### Test Execution
 > **Feature File:** [CFG-004](03--configuration/004-root-path-env-var-override.md)
+
+### CFG-005 | Chunking env-var overrides
+
+#### Description
+Verify `COCOINDEX_CODE_CHUNK_SIZE` (and the two sibling chunk env vars) override the documented defaults; a clean reindex with `COCOINDEX_CODE_CHUNK_SIZE=2000` produces fewer chunks than the 1500 default against the same source tree.
+
+#### Scenario Contract
+Prompt summary: As a manual-testing orchestrator, capture a BASELINE chunk count at the 1500 default with a clean reset+reindex, then export COCOINDEX_CODE_CHUNK_SIZE=2000, reset+reindex again, and confirm the PINNED chunk count is strictly smaller while the file count is unchanged. Return a concise user-facing pass/fail verdict with the main reason.
+
+Expected signals: PINNED chunk count is strictly less than BASELINE chunk count; PINNED file count equals BASELINE file count; daemon log records no `Ignoring invalid COCOINDEX_CODE_CHUNK_SIZE` warning
+
+#### Test Execution
+> **Feature File:** [CFG-005](03--configuration/005-chunking-env-override.md)
+
+### CFG-006 | Hybrid search opt-in
+
+#### Description
+Verify `COCOINDEX_HYBRID=true` activates the FTS5 + RRF hybrid lane; sample MCP search responses then carry non-null `fts5_score` and `rrf_score` on every result, while the same query with the env unset leaves both fields null.
+
+#### Scenario Contract
+Prompt summary: As a manual-testing orchestrator, run a sample MCP CocoIndex search with COCOINDEX_HYBRID unset (HYBRID-OFF), then export COCOINDEX_HYBRID=true and rerun (HYBRID-ON) against the current CocoIndex daemon in this repository. Verify HYBRID-OFF results leave fts5_score and rrf_score null; HYBRID-ON results populate both fields on every entry; daemon log records the lane switch. Return a concise user-facing pass/fail verdict with the main reason.
+
+Expected signals: HYBRID-OFF response leaves `fts5_score` and `rrf_score` null on every result; HYBRID-ON response populates both fields on every result; daemon.log shows `lane=hybrid_rrf` after the env flip and no warn-on-invalid fallback
+
+#### Test Execution
+> **Feature File:** [CFG-006](03--configuration/006-hybrid-search-opt-in.md)
+
+### CFG-007 | Reranker opt-in
+
+#### Description
+Verify `COCOINDEX_RERANK=true` activates the GTE cross-encoder rerank stage; sample MCP search responses then carry non-null `pre_rerank_score` and `reranker_score` on every result; the first call after a cold cache triggers a one-time ~0.61GB model download from Hugging Face (Alibaba-NLP/gte-multilingual-reranker-base).
+
+#### Scenario Contract
+Prompt summary: As a manual-testing orchestrator, run a sample MCP CocoIndex search with COCOINDEX_RERANK unset (RERANK-OFF), then export COCOINDEX_RERANK=true, restart the daemon, and rerun (RERANK-ON) against the current CocoIndex daemon in this repository. Verify the cold-cache first call triggers the ~0.61GB GTE model download; RERANK-OFF results leave pre_rerank_score and reranker_score null; RERANK-ON results populate both fields on every entry. Return a concise user-facing pass/fail verdict with the main reason.
+
+Expected signals: RERANK-OFF response leaves `pre_rerank_score` and `reranker_score` null on every result; RERANK-ON response populates both fields on every result; cold-cache first call has noticeably longer wall-clock and daemon.log shows GTE cross-encoder load activity
+
+#### Test Execution
+> **Feature File:** [CFG-007](03--configuration/007-reranker-opt-in.md)
 
 
 ---
@@ -522,6 +587,8 @@ Expected signals: `session_bootstrap.resume.cocoIndex.available` and `session_re
 - MCP-006: [Result limit](02--mcp-search-tool/006-result-limit.md)
 - MCP-007: [No-refresh search](02--mcp-search-tool/007-no-refresh-search.md)
 - MCP-008: [Concurrent refresh_index race](02--mcp-search-tool/008-concurrent-refresh-race.md)
+- MCP-009: [Hybrid search behavior](02--mcp-search-tool/009-hybrid-search-behavior.md)
+- MCP-010: [Reranker behavior](02--mcp-search-tool/010-reranker-behavior.md)
 
 ### CONFIGURATION
 
@@ -529,6 +596,9 @@ Expected signals: `session_bootstrap.resume.cocoIndex.available` and `session_re
 - CFG-002: [Project settings inspection](03--configuration/002-project-settings-inspection.md)
 - CFG-003: [Status verification](03--configuration/003-status-verification.md)
 - CFG-004: [Root-path env-var override](03--configuration/004-root-path-env-var-override.md)
+- CFG-005: [Chunking env-var overrides](03--configuration/005-chunking-env-override.md)
+- CFG-006: [Hybrid search opt-in](03--configuration/006-hybrid-search-opt-in.md)
+- CFG-007: [Reranker opt-in](03--configuration/007-reranker-opt-in.md)
 
 ### DAEMON LIFECYCLE
 
