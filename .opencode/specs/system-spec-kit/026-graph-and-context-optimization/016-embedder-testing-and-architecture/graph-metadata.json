@@ -9,7 +9,8 @@
     "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/003-skill-advisor-stack",
     "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack",
     "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/005-cross-cutting-quality",
-    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-mcp-launcher-concurrency-arc"
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-mcp-launcher-concurrency-arc",
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/007-ollama-and-bge-promotion-arc"
   ],
   "manual": {
     "depends_on": [],
@@ -18,32 +19,30 @@
   },
   "derived": {
     "trigger_phrases": [
-      "016 pluggable embedder architecture",
+      "016 embedder testing and architecture",
+      "embedder umbrella program",
       "embedder adapter interface",
       "any embedder zero migration",
-      "mxbai-embed-large swap"
+      "jina-v3 production embedder"
     ],
     "key_topics": [
       "016",
-      "pluggable",
       "embedder",
+      "testing",
       "architecture",
+      "umbrella",
+      "program",
       "adapter",
       "interface",
       "zero",
       "migration",
-      "mxbai-embed-large",
-      "swap",
-      "make",
-      "mk-spec-memory"
+      "jina-v3",
+      "production"
     ],
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      "spec.md",
-      "008-deep-review-stack/review/review-report.md",
-      "004-spec-memory-embedder-bake-off/decision-record.md",
-      "004-spec-memory-embedder-bake-off/evidence/008-closure-narrative.md"
+      "spec.md"
     ],
     "entities": [
       {
@@ -53,19 +52,13 @@
         "source": "derived"
       },
       {
-        "name": "Native Claude",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "one MCP",
+        "name": "a",
         "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "a",
+        "name": "hasAdvisories",
         "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
@@ -81,15 +74,23 @@
         "kind": "heading",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "3. SUB-PHASE LIST",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "Make mk-spec-memory **embedder-agnostic** so end users can swap models with a single MCP call \u2014 no code changes, no schema migration, no GGUF wrangling. Build the abstraction once; reuse it forever.",
+    "causal_summary": "Make mk-spec-memory **embedder-agnostic** so end users can swap models with a single MCP call — no code changes, no schema migration, no GGUF wrangling. Build the abstraction once; reuse it forever.",
     "created_at": "2026-05-17T06:35:11.664Z",
-    "last_save_at": "2026-05-17T06:35:11.664Z",
+    "last_save_at": "2026-05-18T20:39:58.777Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": "2026-05-18T20:39:58.777Z"
   }
 }

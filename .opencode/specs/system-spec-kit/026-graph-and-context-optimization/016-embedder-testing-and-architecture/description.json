@@ -7,15 +7,16 @@
     "embedder",
     "architecture"
   ],
-  "lastUpdated": "2026-05-17T06:35:11.664Z",
+  "lastUpdated": "2026-05-18T20:38:48.981Z",
   "specId": "016",
   "folderSlug": "pluggable-embedder_architecture",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization"
   ],
-  "memorySequence": 1,
+  "memorySequence": 2,
   "memoryNameHistory": [
-    "17-05-26_07-35__scaffolded-016-embedder-testing-and-architecture-as.md"
+    "17-05-26_07-35__scaffolded-016-embedder-testing-and-architecture-as.md",
+    "18-05-26_21-38__autonomous-run-kick-off-after-pre-compaction.md"
   ]
 }
