@@ -84,7 +84,7 @@ Every checked item must include evidence: command output, file path, log line, o
 - [x] **[CHK-011] [P0] All 3 launchers now share the LEASE_HELD_BY contract.** Evidence: `grep -c 'LEASE_HELD_BY' .opencode/bin/mk-*-launcher.cjs` returns 3.
 - [x] **[CHK-012] [P0] Manual spawn-twice probe for each launcher (REQ-001 + REQ-002).** Evidence (codex log): `second_exit=0`, `second_stdout=LEASE_HELD_BY:<pid>`, `lease_after_kill=gone` for both `mk-code-index` (PID 52613) and `mk-spec-memory` (PID 55959).
 - [x] **[CHK-013] [P1] PID files clean up on SIGTERM (REQ-003).** Evidence (codex log): `lease_after_kill=gone` for both probes.
-- [ ] **[CHK-014] [P2] 24-hour zombie audit (SC-002).** Deferred to operator after restart; expected outcome: at most 3 PIDs across the 3 launcher names regardless of connected runtimes.
+- [ ] **[CHK-014] [P2] 24-hour zombie audit (SC-002).** Verification automated via `.opencode/skills/system-skill-advisor/mcp_server/scripts/verify-zombie-soak.sh`. Procedure: (1) restart MCP-using runtimes so the new 008/006-009 launcher binaries activate; (2) use the workspace normally for ≥ 24 hours across all connected runtimes; (3) run `bash .opencode/skills/system-skill-advisor/mcp_server/scripts/verify-zombie-soak.sh --verbose > /tmp/soak-evidence-$(date +%Y%m%d).log 2>&1`; (4) attach the log here, mark this checkbox, and update CHK-018 in `008/008/checklist.md` if it references the same soak. Script exits 0 if no launcher exceeds 1 instance; exits 1 if duplicates present (zombie state — investigate).
 <!-- /ANCHOR:fix-completeness -->
 
 ---
