@@ -14,7 +14,8 @@ import {
   setActiveEmbedder,
   vecTableNameForDim,
 } from './schema.js';
-import { getAdapter, getManifest } from './registry.js';
+import { getEmbedderAdapter } from './execution-router.js';
+import { getManifest } from './registry.js';
 import { parseBoundedEnv } from '../util/env.js';
 import { createLogger } from '../utils/logger.js';
 
@@ -249,11 +250,12 @@ async function runJob(db: Database.Database, jobId: string): Promise<void> {
     return;
   }
 
-  const adapter = getAdapter(initialJob.toName);
-  if (!adapter) {
+  const manifest = getManifest(initialJob.toName);
+  if (!manifest) {
     setJobStatus(db, jobId, 'failed', undefined, `UNKNOWN_EMBEDDER: ${initialJob.toName}`);
     return;
   }
+  const adapter = getEmbedderAdapter(manifest.backend, initialJob.toName, initialJob.toDim);
 
   ensureVecTableForDim(db, initialJob.toDim);
   const tableName = vecTableNameForDim(initialJob.toDim);

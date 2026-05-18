@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/010-embedder-sidecar-execution",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/010-embedder-sidecar-execution",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [
+      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/007-auto-embedder-selection-and-llama-cpp-purge",
+      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/008-byte-aware-health-telemetry",
+      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/009-byte-bounded-embedding-cache"
+    ],
+    "supersedes": [],
+    "related_to": [
+      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/005-context-server-memory-reduction-research"
+    ]
+  },
+  "derived": {
+    "trigger_phrases": [
+      "embedder sidecar execution",
+      "hf-local sidecar",
+      "local embedder process isolation",
+      "sidecar_workers memory health",
+      "embedder sidecar execution plan",
+      "sidecar routing plan",
+      "hf-local isolation plan",
+      "embedder sidecar execution tasks",
+      "sidecar lifecycle task checklist",
+      "hf-local sidecar task list",
+      "embedder sidecar execution summary",
+      "sidecar_workers implementation summary",
+      "embedder sidecar commit handoff"
+    ],
+    "key_topics": [
+      "embedder",
+      "sidecar",
+      "hf-local",
+      "execution",
+      "worker",
+      "memory",
+      "router",
+      "health"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/sidecar-client.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/sidecar-worker.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/execution-router.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/embedder-sidecar.vitest.ts",
+      ".opencode/skills/system-spec-kit/references/memory/embedder_architecture.md",
+      ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "entities": [],
+    "causal_summary": "Local in-process embedding providers can load large model state into the MCP daemon; routing those providers through idle-evicted sidecars keeps database writes central while allowing model RSS to leave the MCP process.",
+    "created_at": "2026-05-19T00:00:00.000Z",
+    "last_save_at": "2026-05-19T00:15:00.000Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ]
+  }
+}

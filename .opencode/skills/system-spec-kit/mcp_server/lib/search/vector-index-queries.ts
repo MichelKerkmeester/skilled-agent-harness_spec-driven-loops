@@ -12,8 +12,10 @@ import { formatAgeString as format_age_string } from '../utils/format-helpers.js
 import { createLogger } from '../utils/logger.js';
 import { recordHistory } from '../storage/history.js';
 import * as embeddingsProvider from '../providers/embeddings.js';
+import { getStartupEmbeddingProfile } from '@spec-kit/shared/embeddings';
 import { DEFAULT_ACTIVE_EMBEDDER, getActiveEmbedder } from '../embedders/schema.js';
-import { getAdapter } from '../embedders/registry.js';
+import { getEmbedderAdapter } from '../embedders/execution-router.js';
+import { getManifest } from '../embedders/registry.js';
 import {
   computeContentHash,
   getActiveEmbeddingProfileKey,
@@ -662,26 +664,18 @@ export async function generate_query_embedding(query: string): Promise<Float32Ar
       );
     }
 
-    let embedding: Float32Array | null = null;
-    if (active.name !== DEFAULT_ACTIVE_EMBEDDER.name) {
-      const adapter = getAdapter(active.name);
-      if (!adapter) {
-        console.warn(`[vector-index] Active embedder adapter unavailable: ${active.name}`);
-        return null;
-      }
-
-      const activeAdapter = adapter as typeof adapter & {
-        embed: (
-          texts: ReadonlyArray<string>,
-          options?: { inputType?: 'query' | 'document' },
-        ) => Promise<Float32Array[]>;
-      };
-      const [activeEmbedding] = await activeAdapter.embed([trimmedQuery], { inputType: 'query' });
-      embedding = activeEmbedding ?? null;
-    } else {
-      const embeddings = embeddingsProvider;
-      embedding = await embeddings.generateQueryEmbedding(trimmedQuery);
-    }
+    const provider = active.name !== DEFAULT_ACTIVE_EMBEDDER.name
+      ? active.provider ?? getManifest(active.name)?.backend ?? 'ollama'
+      : getStartupEmbeddingProfile().provider;
+    const adapter = getEmbedderAdapter(provider, modelId, embeddingDim);
+    const activeAdapter = adapter as typeof adapter & {
+      embed: (
+        texts: ReadonlyArray<string>,
+        options?: { inputType?: 'query' | 'document' },
+      ) => Promise<Float32Array[]>;
+    };
+    const [activeEmbedding] = await activeAdapter.embed([trimmedQuery], { inputType: 'query' });
+    const embedding: Float32Array | null = activeEmbedding ?? null;
 
     if (embedding) {
       storeEmbedding(

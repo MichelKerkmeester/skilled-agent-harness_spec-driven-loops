@@ -452,6 +452,9 @@ Embedding provider selection stays auto-cascaded unless you force it. In `EMBEDD
 | `SPECKIT_EMBEDDING_CIRCUIT_BREAKER` | `true` | boolean | Circuit breaker for embedding model failures. Graduated ON. | `shared/embeddings.ts` |
 | `SPECKIT_EMBEDDING_CB_THRESHOLD` | `3` | number | Consecutive failure count before circuit breaker opens. | `shared/embeddings.ts` |
 | `SPECKIT_EMBEDDING_CB_COOLDOWN_MS` | `60000` | number | Cooldown period in ms before circuit breaker resets (min 1000). | `shared/embeddings.ts` |
+| `SPECKIT_EMBEDDER_EXECUTION` | `auto` | string | Embedder runtime execution policy: `auto` sidecars local in-process providers (`hf-local`, future `sentence-transformers`, future `llama-cpp`) while keeping Voyage/OpenAI/Ollama direct; `direct` forces in-process; `sidecar` forces worker execution. | `lib/embedders/execution-router.ts` |
+| `SPECKIT_EMBEDDER_SIDECAR_IDLE_MS` | `300000` | number | Idle timeout in milliseconds before an embedder sidecar worker is terminated. | `lib/embedders/sidecar-client.ts` |
+| `SPECKIT_EMBEDDER_SIDECAR_PING_TIMEOUT_MS` | `2000` | number | Health ping timeout in milliseconds before the sidecar client respawns a worker. | `lib/embedders/sidecar-client.ts` |
 | `SPECKIT_EMBED_CACHE_MAX_BYTES` | `104857600` | number | Global hard cap for persistent embedding cache rows across all profiles and document/query kinds. Defaults to 100 MB. | `lib/cache/embedding-cache.ts` |
 | `SPECKIT_EMBED_CACHE_PROFILE_MAX_BYTES` | `52428800` | number | Per-profile cap for persistent embedding cache rows. Defaults to 50 MB per active embedder profile. | `lib/cache/embedding-cache.ts` |
 | `SPECKIT_QUERY_EMBED_CACHE_MAX_BYTES` | `26214400` | number | Separate cap for cached query embeddings (`input_kind='query'`). Defaults to 25 MB. | `lib/cache/embedding-cache.ts` |

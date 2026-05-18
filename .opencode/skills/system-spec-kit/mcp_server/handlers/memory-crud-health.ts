@@ -37,6 +37,7 @@ import {
   type CacheByteEstimates,
   type DetailedMemorySnapshot,
 } from '../lib/telemetry/heap-profiler.js';
+import { getSidecarWorkerSnapshot } from '../lib/embedders/execution-router.js';
 
 import type { MCPResponse, EmbeddingProfile } from './types.js';
 import type { HealthArgs, PartialProviderMetadata } from './memory-crud-types.js';
@@ -137,6 +138,7 @@ interface FullMemoryReport {
   cache_byte_estimates: CacheByteEstimates & {
     embedding_cache_by_profile: Record<string, EmbeddingCacheProfileStats>;
   };
+  sidecar_workers: ReturnType<typeof getSidecarWorkerSnapshot>;
   recommended_action: string;
 }
 
@@ -284,6 +286,7 @@ function getFullMemoryReport(
         ? getEmbeddingCacheByProfileStats(database)
         : {},
     },
+    sidecar_workers: getSidecarWorkerSnapshot(),
     recommended_action: getRecommendedAction(snapshot),
   };
 }

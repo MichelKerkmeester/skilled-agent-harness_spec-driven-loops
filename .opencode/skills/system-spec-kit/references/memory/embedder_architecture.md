@@ -118,6 +118,22 @@ For active `jina-embeddings-v3`, the expected operator result after daemon resta
 
 `memory_health` accepts `includeFullReport:true` for byte-aware runtime diagnostics. The extended report includes RSS, V8 heap totals, external memory, ArrayBuffer memory, V8 malloc counters, cache byte estimates for tool cache, trigger matcher regex retention, and the in-process embedding LRU.
 
+### Sidecar Execution
+
+Embedding execution is routed through `mcp_server/lib/embedders/execution-router.ts`. The router keeps SQLite reads/writes, cache lookup/store, and vector table mutations in the MCP process, but can move heavy local model runtimes into a child Node sidecar that speaks JSONL over stdio.
+
+`SPECKIT_EMBEDDER_EXECUTION` controls routing:
+
+| Value | Voyage/OpenAI | Ollama | hf-local | Future sentence-transformers / llama-cpp |
+|-------|---------------|--------|----------|------------------------------------------|
+| `auto` | direct | direct | sidecar | sidecar |
+| `direct` | direct | direct | direct | direct |
+| `sidecar` | sidecar | sidecar | sidecar | sidecar |
+
+Sidecars are lazy: the worker is not forked until the first embedding request for a `(provider, model)` tuple. `SPECKIT_EMBEDDER_SIDECAR_IDLE_MS` evicts an idle worker after 300000 ms by default, so the MCP daemon's RSS stays small and local model memory can leave the machine-wide resident set after idle. `SPECKIT_EMBEDDER_SIDECAR_PING_TIMEOUT_MS` bounds the health ping before each request; a timed-out worker is respawned before embedding.
+
+Full `memory_health` reports expose `sidecar_workers`, keyed by provider/model, with the worker pid, model, last request timestamp, idle age, and request count. An empty object means no sidecar is currently spawned.
+
 ### Profile-Aware Caching
 
 Persistent document and query embeddings are cached by `content_hash`, active `profile_key`, `input_kind`, `model_id`, and `dimensions`. The profile key is derived from `vec_metadata.active_embedder_provider`, `active_embedder_name`, and `active_embedder_dim`, so switching between Jina, Voyage, OpenAI, or hf-local profiles no longer reuses an incompatible cache row.

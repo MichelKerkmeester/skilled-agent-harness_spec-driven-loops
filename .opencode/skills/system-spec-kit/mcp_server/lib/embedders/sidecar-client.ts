@@ -1,0 +1,437 @@
+// ───────────────────────────────────────────────────────────────
+// MODULE: Embedders — sidecar client
+// ───────────────────────────────────────────────────────────────
+
+import { fork, type ChildProcess } from 'node:child_process';
+import { existsSync } from 'node:fs';
+import { dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+import type { EmbedderAdapter } from './adapter.js';
+import type { BackendKind } from './types.js';
+
+// ───────────────────────────────────────────────────────────────
+// 1. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────
+
+export type EmbedderSidecarInputType = 'document' | 'query';
+
+export interface SidecarClientOptions {
+  readonly provider: string;
+  readonly model: string;
+  readonly dimensions: number;
+  readonly backend?: BackendKind;
+  readonly workerPath?: string;
+  readonly idleMs?: number;
+  readonly pingTimeoutMs?: number;
+  readonly env?: NodeJS.ProcessEnv;
+}
+
+export interface SidecarWorkerInfo {
+  readonly pid: number;
+  readonly model: string;
+  readonly last_request_at: number;
+  readonly idle_for_ms: number;
+  readonly request_count: number;
+}
+
+interface SidecarEmbedOptions {
+  readonly inputType?: EmbedderSidecarInputType;
+}
+
+interface PendingRequest {
+  readonly resolve: (value: unknown) => void;
+  readonly reject: (reason: unknown) => void;
+  readonly timer?: NodeJS.Timeout;
+}
+
+interface SidecarEmbeddingResponse {
+  readonly id: number;
+  readonly type: 'embedding';
+  readonly vectors: number[][];
+  readonly dimensions: number;
+}
+
+interface SidecarPongResponse {
+  readonly id: number;
+  readonly type: 'pong';
+}
+
+interface SidecarErrorResponse {
+  readonly id: number;
+  readonly type: 'error';
+  readonly message: string;
+}
+
+type SidecarResponse = SidecarEmbeddingResponse | SidecarPongResponse | SidecarErrorResponse;
+
+// ───────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ───────────────────────────────────────────────────────────────
+
+const DEFAULT_IDLE_MS = 300_000;
+const DEFAULT_PING_TIMEOUT_MS = 2_000;
+const MIN_TIMEOUT_MS = 1;
+
+// ───────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ───────────────────────────────────────────────────────────────
+
+function parsePositiveIntegerEnv(name: string, fallback: number): number {
+  const raw = process.env[name];
+  if (raw === undefined || raw.trim().length === 0) {
+    return fallback;
+  }
+
+  const parsed = Number.parseInt(raw, 10);
+  return Number.isFinite(parsed) && parsed >= MIN_TIMEOUT_MS ? parsed : fallback;
+}
+
+function defaultWorkerPath(): string {
+  const currentDir = dirname(fileURLToPath(import.meta.url));
+  const compiled = join(currentDir, 'sidecar-worker.js');
+  if (existsSync(compiled)) {
+    return compiled;
+  }
+
+  return join(currentDir, 'sidecar-worker.ts');
+}
+
+function toBackendKind(provider: string, fallback?: BackendKind): BackendKind {
+  if (fallback) {
+    return fallback;
+  }
+  if (provider === 'ollama') {
+    return 'ollama';
+  }
+  if (provider === 'openai' || provider === 'voyage' || provider === 'api') {
+    return 'api';
+  }
+  return 'sentence-transformers';
+}
+
+function responseHasId(value: unknown): value is { id: number } {
+  return (
+    typeof value === 'object'
+    && value !== null
+    && typeof (value as { id?: unknown }).id === 'number'
+  );
+}
+
+function toErrorMessage(error: unknown): string {
+  return error instanceof Error ? error.message : String(error);
+}
+
+// ───────────────────────────────────────────────────────────────
+// 4. CORE LOGIC
+// ───────────────────────────────────────────────────────────────
+
+export class SidecarClient implements EmbedderAdapter {
+  readonly name: string;
+  readonly dim: number;
+  readonly backend: BackendKind;
+
+  private readonly provider: string;
+  private readonly workerPath: string;
+  private readonly idleMs: number;
+  private readonly pingTimeoutMs: number;
+  private readonly env: NodeJS.ProcessEnv;
+  private child: ChildProcess | null = null;
+  private nextId = 1;
+  private stdoutBuffer = '';
+  private pending = new Map<number, PendingRequest>();
+  private idleTimer: NodeJS.Timeout | null = null;
+  private lastRequestAt = 0;
+  private requestCount = 0;
+  private shuttingDown = false;
+
+  constructor(options: SidecarClientOptions) {
+    this.provider = options.provider;
+    this.name = options.model;
+    this.dim = options.dimensions;
+    this.backend = toBackendKind(options.provider, options.backend);
+    this.workerPath = options.workerPath ?? defaultWorkerPath();
+    this.idleMs = options.idleMs ?? parsePositiveIntegerEnv('SPECKIT_EMBEDDER_SIDECAR_IDLE_MS', DEFAULT_IDLE_MS);
+    this.pingTimeoutMs = options.pingTimeoutMs
+      ?? parsePositiveIntegerEnv('SPECKIT_EMBEDDER_SIDECAR_PING_TIMEOUT_MS', DEFAULT_PING_TIMEOUT_MS);
+    this.env = options.env ?? process.env;
+  }
+
+  async embed(texts: ReadonlyArray<string>, options: SidecarEmbedOptions = {}): Promise<Float32Array[]> {
+    if (texts.length === 0) {
+      return [];
+    }
+
+    await this.ensureHealthyWorker();
+    this.lastRequestAt = Date.now();
+    this.requestCount += 1;
+    this.scheduleIdleEviction();
+
+    const response = await this.sendRequest<SidecarEmbeddingResponse>({
+      type: 'embed',
+      input: [...texts],
+      model: this.name,
+      dimensions: this.dim,
+      inputType: options.inputType ?? 'document',
+    });
+
+    if (response.dimensions !== this.dim) {
+      throw new Error(`Sidecar embedding dimension mismatch for ${this.name}: expected ${this.dim}, got ${response.dimensions}`);
+    }
+
+    if (response.vectors.length !== texts.length) {
+      throw new Error(`Sidecar returned ${response.vectors.length} embeddings for ${texts.length} inputs`);
+    }
+
+    return response.vectors.map((vector) => {
+      if (vector.length !== this.dim) {
+        throw new Error(`Sidecar vector dimension mismatch for ${this.name}: expected ${this.dim}, got ${vector.length}`);
+      }
+      return new Float32Array(vector);
+    });
+  }
+
+  async ready(): Promise<boolean> {
+    try {
+      await this.ensureHealthyWorker();
+      return true;
+    } catch {
+      return false;
+    }
+  }
+
+  getWorkerInfo(now: number = Date.now()): SidecarWorkerInfo | null {
+    if (!this.child?.pid) {
+      return null;
+    }
+
+    return {
+      pid: this.child.pid,
+      model: this.name,
+      last_request_at: this.lastRequestAt,
+      idle_for_ms: this.lastRequestAt > 0 ? Math.max(0, now - this.lastRequestAt) : 0,
+      request_count: this.requestCount,
+    };
+  }
+
+  async shutdown(): Promise<void> {
+    const child = this.child;
+    if (!child) {
+      this.clearIdleTimer();
+      return;
+    }
+
+    try {
+      await this.sendRequest({ type: 'shutdown' }, this.pingTimeoutMs);
+    } catch {
+      if (!child.killed) {
+        child.kill('SIGTERM');
+      }
+    } finally {
+      this.clearIdleTimer();
+      this.cleanupChild();
+    }
+  }
+
+  private async ensureHealthyWorker(): Promise<void> {
+    this.ensureWorker();
+    const healthy = await this.ping();
+    if (healthy) {
+      return;
+    }
+
+    this.restartWorker();
+    const respawnHealthy = await this.ping();
+    if (!respawnHealthy) {
+      throw new Error(`Embedder sidecar failed health check for ${this.provider}:${this.name}`);
+    }
+  }
+
+  private ensureWorker(): void {
+    if (this.child && !this.child.killed) {
+      return;
+    }
+
+    this.shuttingDown = false;
+    this.stdoutBuffer = '';
+    const child = fork(this.workerPath, [], {
+      stdio: ['pipe', 'pipe', 'pipe', 'ipc'],
+      env: {
+        ...this.env,
+        SPECKIT_EMBEDDER_SIDECAR_PROVIDER: this.provider,
+        SPECKIT_EMBEDDER_SIDECAR_MODEL: this.name,
+        SPECKIT_EMBEDDER_SIDECAR_DIMENSIONS: String(this.dim),
+      },
+    });
+    this.child = child;
+
+    child.stdout?.setEncoding('utf8');
+    child.stdout?.on('data', (chunk: string) => this.handleStdout(chunk));
+
+    child.stderr?.setEncoding('utf8');
+    child.stderr?.on('data', (chunk: string) => {
+      const pid = child.pid ?? 'unknown';
+      for (const line of chunk.split(/\r?\n/)) {
+        if (line.length > 0) {
+          process.stderr.write(`[sidecar:${pid}] ${line}\n`);
+        }
+      }
+    });
+
+    child.once('exit', () => {
+      if (!this.shuttingDown) {
+        this.rejectAllPending(new Error(`Embedder sidecar exited for ${this.provider}:${this.name}`));
+      }
+      this.cleanupChild();
+    });
+  }
+
+  private restartWorker(): void {
+    this.killWorker();
+    this.ensureWorker();
+  }
+
+  private killWorker(): void {
+    if (!this.child) {
+      return;
+    }
+
+    this.shuttingDown = true;
+    this.child.kill('SIGTERM');
+    this.cleanupChild();
+  }
+
+  private cleanupChild(): void {
+    this.child?.stdout?.removeAllListeners();
+    this.child?.stderr?.removeAllListeners();
+    this.child?.removeAllListeners();
+    this.child = null;
+    this.stdoutBuffer = '';
+    this.clearIdleTimer();
+  }
+
+  private async ping(): Promise<boolean> {
+    try {
+      const response = await this.sendRequest<SidecarPongResponse>({ type: 'ping' }, this.pingTimeoutMs);
+      return response.type === 'pong';
+    } catch {
+      return false;
+    }
+  }
+
+  private sendRequest<T extends SidecarResponse>(
+    payload: Record<string, unknown>,
+    timeoutMs?: number,
+  ): Promise<T> {
+    this.ensureWorker();
+    const child = this.child;
+    if (!child?.stdin || child.killed) {
+      return Promise.reject(new Error(`Embedder sidecar is unavailable for ${this.provider}:${this.name}`));
+    }
+
+    const id = this.nextId;
+    this.nextId += 1;
+    const request = { id, ...payload };
+
+    return new Promise<T>((resolve, reject) => {
+      let timer: NodeJS.Timeout | undefined;
+      if (timeoutMs !== undefined) {
+        timer = setTimeout(() => {
+          this.pending.delete(id);
+          reject(new Error(`Embedder sidecar request timed out after ${timeoutMs}ms`));
+        }, timeoutMs);
+      }
+
+      this.pending.set(id, {
+        resolve: (value: unknown) => resolve(value as T),
+        reject,
+        timer,
+      });
+
+      child.stdin!.write(`${JSON.stringify(request)}\n`, (error: Error | null | undefined) => {
+        if (!error) {
+          return;
+        }
+        if (timer) {
+          clearTimeout(timer);
+        }
+        this.pending.delete(id);
+        reject(error);
+      });
+    });
+  }
+
+  private handleStdout(chunk: string): void {
+    this.stdoutBuffer += chunk;
+
+    let newlineIndex = this.stdoutBuffer.indexOf('\n');
+    while (newlineIndex !== -1) {
+      const line = this.stdoutBuffer.slice(0, newlineIndex).trim();
+      this.stdoutBuffer = this.stdoutBuffer.slice(newlineIndex + 1);
+      if (line.length > 0) {
+        this.handleResponseLine(line);
+      }
+      newlineIndex = this.stdoutBuffer.indexOf('\n');
+    }
+  }
+
+  private handleResponseLine(line: string): void {
+    let parsed: unknown;
+    try {
+      parsed = JSON.parse(line);
+    } catch (error: unknown) {
+      process.stderr.write(`[sidecar:${this.child?.pid ?? 'unknown'}] invalid json: ${toErrorMessage(error)}\n`);
+      return;
+    }
+
+    if (!responseHasId(parsed)) {
+      return;
+    }
+
+    const pending = this.pending.get(parsed.id);
+    if (!pending) {
+      return;
+    }
+
+    this.pending.delete(parsed.id);
+    if (pending.timer) {
+      clearTimeout(pending.timer);
+    }
+
+    const response = parsed as SidecarResponse;
+    if (response.type === 'error') {
+      pending.reject(new Error(response.message));
+      return;
+    }
+    pending.resolve(response);
+  }
+
+  private rejectAllPending(error: Error): void {
+    for (const [id, pending] of this.pending.entries()) {
+      if (pending.timer) {
+        clearTimeout(pending.timer);
+      }
+      pending.reject(error);
+      this.pending.delete(id);
+    }
+  }
+
+  private scheduleIdleEviction(): void {
+    this.clearIdleTimer();
+    this.idleTimer = setTimeout(() => {
+      if (this.pending.size > 0) {
+        this.scheduleIdleEviction();
+        return;
+      }
+      this.killWorker();
+    }, this.idleMs);
+    this.idleTimer.unref?.();
+  }
+
+  private clearIdleTimer(): void {
+    if (this.idleTimer) {
+      clearTimeout(this.idleTimer);
+      this.idleTimer = null;
+    }
+  }
+}
