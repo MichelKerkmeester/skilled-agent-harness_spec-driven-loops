@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "architecture"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/028-architecture-md"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/005-code-graph/028-architecture-md"
     last_updated_at: "2026-05-14T17:44:37Z"
     last_updated_by: "codex"
     recent_action: "Created and validated system-code-graph architecture.md"
@@ -81,7 +81,7 @@ Create `.opencode/skills/system-code-graph/architecture.md` as the HVR-compliant
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `.opencode/skills/system-code-graph/architecture.md` | Create | Architecture reference for the extracted code graph skill. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/028-architecture-md/` | Create | Level 1 packet docs and metadata. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/028-architecture-md/` | Create | Level 1 packet docs and metadata. |
 <!-- /ANCHOR:scope -->
 
 ---

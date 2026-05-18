@@ -1,0 +1,30 @@
+{
+  "level": "2",
+  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/006-system-skill-advisor-extraction/021-codegraph-rpc-surface",
+  "description": "Expose code-graph query intent classification through mk-code-index and remove the spec-kit local shim.",
+  "keywords": [
+    "expose",
+    "code-graph",
+    "query",
+    "intent",
+    "classification",
+    "mk-code-index",
+    "remove",
+    "spec-kit",
+    "local",
+    "shim"
+  ],
+  "lastUpdated": "2026-05-15T09:22:32.334Z",
+  "specId": "021",
+  "folderSlug": "codegraph-rpc-surface",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "006-skill-advisor",
+    "006-system-skill-advisor-extraction"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

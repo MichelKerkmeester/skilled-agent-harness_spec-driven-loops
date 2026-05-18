@@ -1,20 +1,15 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-deep-review-program/008-validator-spec-doc-integrity",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-deep-review-program/008-validator-spec-doc-integrity",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-deep-review-program",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-release-readiness/003-deep-review-program/008-validator-spec-doc-integrity",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-release-readiness/003-deep-review-program/008-validator-spec-doc-integrity",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-release-readiness/003-deep-review-program",
   "children_ids": [],
-  "migrated": false,
-  "migration_source": "new",
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-deep-review-program"
-    ],
+    "depends_on": [],
     "supersedes": [],
-    "related_to": [
-      "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/009-phase-parent-documentation",
-      "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-followup-quality-pass/004-sk-doc-template-alignment"
-    ]
+    "related_to": []
   },
   "derived": {
     "trigger_phrases": [
@@ -24,76 +19,186 @@
       "phase-parent detection consistency"
     ],
     "key_topics": [
+      "045-008-validator-spec-doc-integrity",
       "validator",
-      "spec-doc-integrity",
+      "audit",
+      "spec",
+      "doc",
+      "integrity",
+      "review",
       "phase-parent",
-      "strict-mode",
-      "template-headers",
-      "frontmatter-memory",
-      "links-valid"
+      "detection",
+      "consistency",
+      "release",
+      "gate"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md",
-      "review-report.md",
-      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
-      ".opencode/skills/system-spec-kit/scripts/rules/check-spec-doc-integrity.sh",
-      ".opencode/skills/system-spec-kit/scripts/rules/check-template-headers.sh",
-      ".opencode/skills/system-spec-kit/scripts/rules/check-links.sh",
-      ".opencode/skills/system-spec-kit/scripts/utils/template-structure.js",
-      ".opencode/skills/system-spec-kit/scripts/lib/shell-common.sh",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/spec/is-phase-parent.ts",
-      ".opencode/skills/system-spec-kit/scripts/dist/spec/is-phase-parent.js"
+      "implementation-summary.md"
     ],
     "entities": [
       {
         "name": "validate.sh",
         "kind": "script",
         "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
-        "source": "review"
+        "source": "derived"
       },
       {
-        "name": "check-spec-doc-integrity.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/rules/check-spec-doc-integrity.sh",
-        "source": "review"
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
       },
       {
-        "name": "template-structure.js",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/utils/template-structure.js",
-        "source": "review"
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
       },
       {
-        "name": "is_phase_parent",
-        "kind": "function",
-        "path": ".opencode/skills/system-spec-kit/scripts/lib/shell-common.sh",
-        "source": "review"
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
       },
       {
-        "name": "isPhaseParent",
-        "kind": "function",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/spec/is-phase-parent.ts",
-        "source": "review"
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Validator Spec Doc Integrity",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Produce",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Create Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "Deep-review angle 8: validator + spec-doc structural integrity, including strict mode coverage, Level 1/2/3 boundaries, phase-parent detection agreement, evidence markers and template enforcement.",
+    "causal_summary": "The spec validator is a release gate for system-spec-kit packets, phase parents and deep-review output. A release-readiness audit needs to verify that strict mode catches malformed spec documents, avoids rejecting valid phase-parent and research packet structures, and produces actionable findings.",
     "created_at": "2026-04-29T19:47:00.000Z",
-    "last_save_at": "2026-04-29T19:47:00.000Z",
-    "save_lineage": "same_pass",
+    "last_save_at": "2026-05-18T08:15:52.980Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md",
-      "review-report.md"
+      "implementation-summary.md"
     ]
   }
 }

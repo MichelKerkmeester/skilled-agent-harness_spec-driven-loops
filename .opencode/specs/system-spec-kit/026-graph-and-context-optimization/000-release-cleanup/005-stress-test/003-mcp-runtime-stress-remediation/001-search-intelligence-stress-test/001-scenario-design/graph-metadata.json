@@ -1,59 +1,210 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/001-search-intelligence-stress-test/001-scenario-design",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/001-search-intelligence-stress-test/001-scenario-design",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/001-search-intelligence-stress-test",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/003-mcp-runtime-stress-remediation/001-search-intelligence-stress-test/001-scenario-design",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/003-mcp-runtime-stress-remediation/001-search-intelligence-stress-test/001-scenario-design",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/003-mcp-runtime-stress-remediation/001-search-intelligence-stress-test",
   "children_ids": [],
-  "migrated": false,
-  "migration_source": null,
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
     "depends_on": [],
     "supersedes": [],
-    "related_to": [
-      "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/001-search-intelligence-stress-test/002-scenario-execution",
-      "system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/005-memory-search-runtime-bugs"
-    ]
+    "related_to": []
   },
   "derived": {
     "trigger_phrases": [
       "001-scenario-design",
-      "scenario corpus",
-      "9 scenarios",
-      "5 dimension rubric",
+      "scenario corpus design",
+      "9 scenario test corpus",
+      "search query intelligence rubric",
       "cli dispatch matrix",
-      "output schema",
-      "scoring methodology"
+      "scenario design plan",
+      "rubric methodology",
+      "dispatch matrix authoring",
+      "scenario design tasks",
+      "corpus authoring",
+      "dispatch script tasks",
+      "scenario design summary"
     ],
     "key_topics": [
       "001-scenario-design",
+      "scenario",
       "corpus",
+      "design",
+      "test",
+      "search",
+      "query",
+      "intelligence",
       "rubric",
-      "dispatch-matrix",
-      "scenarios",
-      "scoring",
-      "playbook"
+      "cli",
+      "dispatch",
+      "matrix"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "scripts/dispatch-cli-codex.sh",
+      ".opencode/commands/memory/search.md",
+      "scripts/dispatch-cli-copilot.sh",
+      "scripts/dispatch-cli-opencode.sh",
+      "scripts/run-all.sh",
+      ".opencode/skills/cli-codex/SKILL.md",
+      ".opencode/skills/cli-opencode/SKILL.md"
     ],
     "entities": [
-      {"name": "spec.md", "kind": "doc", "path": "spec.md", "source": "derived"},
-      {"name": "plan.md", "kind": "doc", "path": "plan.md", "source": "derived"},
-      {"name": "tasks.md", "kind": "doc", "path": "tasks.md", "source": "derived"},
-      {"name": "implementation-summary.md", "kind": "doc", "path": "implementation-summary.md", "source": "derived"},
-      {"name": "Scenario Corpus", "kind": "proper_noun", "path": "spec.md", "source": "derived"},
-      {"name": "Scoring Rubric", "kind": "proper_noun", "path": "spec.md", "source": "derived"},
-      {"name": "Dispatch Matrix", "kind": "proper_noun", "path": "spec.md", "source": "derived"}
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-cli-codex.sh",
+        "kind": "script",
+        "path": "scripts/dispatch-cli-codex.sh",
+        "source": "derived"
+      },
+      {
+        "name": "search.md",
+        "kind": "doc",
+        "path": ".opencode/commands/memory/search.md",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-cli-copilot.sh",
+        "kind": "script",
+        "path": "scripts/dispatch-cli-copilot.sh",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-cli-opencode.sh",
+        "kind": "script",
+        "path": "scripts/dispatch-cli-opencode.sh",
+        "source": "derived"
+      },
+      {
+        "name": "run-all.sh",
+        "kind": "script",
+        "path": "scripts/run-all.sh",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-codex/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scenario Design Sub",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Design Complete",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Sibling Sub",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Corpus Version",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scenario Design",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Build",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scenario Corpus",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
     ],
-    "causal_summary": "Sub-phase 001 of the Search Intelligence Stress-Test Playbook. Ships the design fixture for the playbook: 9 scenarios (S1-S3 Search, Q1-Q3 Query, I1-I3 Intelligence), each with prompt + expected outcome + target tools + success indicators + cross-reference to sibling defects packet 005 where applicable. The 5-dim 0-2 scoring rubric (correctness, tool selection, latency, token efficiency, hallucination) plus narrative dim balances measurability with inter-rater reliability. The per-CLI dispatch matrix codifies invocation contracts: cli-codex (gpt-5.5 medium fast read-only) (gpt-5.4 high allow-all-tools, max 3 concurrent), cli-opencode (opencode-go/deepseek-v4-pro high agent=general format=json with full Spec Kit Memory MCP access; ablation cell uses agent=context for fairness). The output schema captures per-run prompt + output + meta.json + score.md, plus aggregate findings.md, with reproducibility via meta.json (latency, tokens, model, exit_code, db_snapshot_hash). Scoring methodology specifies single-scorer-per-cell for v1.0.0 with second-reviewer escalation for ≤4/10 outliers and tie-breaker rules.",
+    "causal_summary": "Without a fixed corpus + rubric + dispatch matrix, \"stress-test\" devolves into ad-hoc prompting — non-reproducible, partial, and impossible to compare across CLIs or over time. The parent spec mandates a deterministic test fixture; this sub-phase delivers it.",
     "created_at": "2026-04-26T14:55:00Z",
-    "last_save_at": "2026-04-26T14:55:00Z",
-    "save_lineage": "manual",
+    "last_save_at": "2026-05-18T08:15:53.222Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",

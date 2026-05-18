@@ -70,7 +70,7 @@ Output ONLY the structured Markdown below, NOTHING else. Do not print a preamble
 
 ## Convergence Signal
 
-<one-sentence: how much NEW info did this iteration surface vs the existing reviews you can see in the packet at .opencode/specs/.../026-.../007-code-graph/017-isolation-arc-deep-review/review/review-report.md? newInfoRatio between 0.0 and 1.0>
+<one-sentence: how much NEW info did this iteration surface vs the existing reviews you can see in the packet at .opencode/specs/.../026-.../005-code-graph/017-isolation-arc-deep-review/review/review-report.md? newInfoRatio between 0.0 and 1.0>
 ```
 
 If you have ZERO findings at a severity, write the table header + a single row `| — | — | None | — | — |`.

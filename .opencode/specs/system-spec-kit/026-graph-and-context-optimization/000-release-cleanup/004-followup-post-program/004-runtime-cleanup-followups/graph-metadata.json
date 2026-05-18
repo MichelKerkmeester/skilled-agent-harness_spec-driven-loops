@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-runtime-cleanup-followups",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-runtime-cleanup-followups",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-followup-post-program/004-runtime-cleanup-followups",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-followup-post-program/004-runtime-cleanup-followups",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-followup-post-program",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -44,22 +44,14 @@
     "status": "complete",
     "key_files": [
       ".opencode/skills/system-spec-kit/SKILL.md",
-      "mcp_server/skill_advisor/lib/utils/workspace-root.ts",
-      "mcp_server/dist/skill_advisor/lib/utils/workspace-root.js",
-      "mcp_server/database/context-index__voyage__voyage-4__1024__cloud.sqlite",
       "scratch/fts-vec-mismatch-ids.txt",
       "scratch/pre-bulk-delete-stats.json",
       "scratch/fts-vec-diagnosis.md",
-      "code_graph/lib/utils/workspace-path.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/utils/workspace-root.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/dist/skill_advisor/lib/utils/workspace-root.js",
       "implementation-summary.md",
       "checklist.md",
-      "dist/skill_advisor/lib/utils/workspace-root.js",
       "spec.md",
       "plan.md",
       ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/graph-metadata.json",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-runtime-cleanup-followups/implementation-summary.md",
       "tasks.md",
       "handover.md"
     ],
@@ -68,24 +60,6 @@
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".opencode/skills/system-spec-kit/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "workspace-root.ts",
-        "kind": "code",
-        "path": "mcp_server/skill_advisor/lib/utils/workspace-root.ts",
-        "source": "derived"
-      },
-      {
-        "name": "workspace-root.js",
-        "kind": "code",
-        "path": "mcp_server/dist/skill_advisor/lib/utils/workspace-root.js",
-        "source": "derived"
-      },
-      {
-        "name": "context-index__voyage__voyage-4__1024__cloud.sqlite",
-        "kind": "file",
-        "path": "mcp_server/database/context-index__voyage__voyage-4__1024__cloud.sqlite",
         "source": "derived"
       },
       {
@@ -107,15 +81,9 @@
         "source": "derived"
       },
       {
-        "name": "workspace-path.ts",
-        "kind": "code",
-        "path": "code_graph/lib/utils/workspace-path.ts",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
-        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-runtime-cleanup-followups/implementation-summary.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -207,11 +175,35 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Overview Three",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Three",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "This is **Phase 54** of `000-release-cleanup`. It captures three operational follow-ons surfaced during post-restart verification of packet 096's singular→plural path rename.",
     "created_at": "2026-05-08T08:36:13Z",
-    "last_save_at": "2026-05-08T09:53:17.915Z",
+    "last_save_at": "2026-05-18T08:15:53.207Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

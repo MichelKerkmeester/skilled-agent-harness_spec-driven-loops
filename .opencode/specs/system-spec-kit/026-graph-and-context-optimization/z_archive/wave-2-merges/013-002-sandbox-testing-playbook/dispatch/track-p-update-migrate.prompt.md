@@ -4,7 +4,7 @@
 
 You are Codex (gpt-5.5 high fast) dispatched by Claude Opus 4.7 to author 11 manual testing playbook scenarios: 8 for `/doctor:update` orchestrator (DOC-337..DOC-344, covering G4-G9 + 2 extras) + 3 for version-migration end-to-end (DOC-345..DOC-347).
 
-Spec folder (pre-approved, skip Gate 3): `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/002-sandbox-testing-playbook/`
+Spec folder (pre-approved, skip Gate 3): `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/002-sandbox-testing-playbook/`
 
 ## CANONICAL TEMPLATE SOURCES (read first; treat as locked)
 

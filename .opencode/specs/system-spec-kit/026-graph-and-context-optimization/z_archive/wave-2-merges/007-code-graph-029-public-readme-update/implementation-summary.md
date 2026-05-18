@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/029-public-readme-update"
+    packet_pointer: ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/029-public-readme-update"
     last_updated_at: "2026-05-14T19:30:00Z"
     last_updated_by: "cli-codex-gpt5.5-xhigh-fast-015"
     recent_action: "Strict validation passed; git staging blocked"
@@ -90,7 +90,7 @@ The update reused existing README sections and linked existing repo docs instead
 | `rg --line-number "TODO\|TBD\|PLACEHOLDER\|\[PLACEHOLDER\]\|\[TODO\]" README.md 015-public-readme-update/` | PASS with one expected README reference to the `check-placeholders.sh` script name. |
 | First `validate.sh --strict` run on 015 packet | FAIL, exit 2, because this summary still contained interim verification language. |
 | Remediation | Replaced interim verification wording with concrete evidence and compacted `next_safe_action`. |
-| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/029-public-readme-update --strict` | PASS, exit 0, no warnings after remediation. |
+| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/029-public-readme-update --strict` | PASS, exit 0, no warnings after remediation. |
 | `git add -- README.md .opencode/specs/.../015-public-readme-update` | BLOCKED, exit 128, sandbox could not create `.git/index.lock`. |
 <!-- /ANCHOR:verification -->
 

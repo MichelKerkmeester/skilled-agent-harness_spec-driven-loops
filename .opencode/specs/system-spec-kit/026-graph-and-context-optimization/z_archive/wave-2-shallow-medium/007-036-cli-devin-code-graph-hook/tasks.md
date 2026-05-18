@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/036-cli-devin-code-graph-hook"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/005-code-graph/036-cli-devin-code-graph-hook"
     last_updated_at: "2026-05-15T17:35:00Z"
     last_updated_by: "cli-codex-phase-b"
     recent_action: "Phase B synthesis complete"
@@ -83,7 +83,7 @@ _memory:
 | T3.3 | Run `tsc --noEmit`; it must pass. | F009/Q9 |
 | T3.4 | Run `vitest run` on touched code-graph/session-start test files; all must be green. | F009/Q9 |
 | T3.5 | Run sk-doc DQI rescore on touched authored docs; target >= 4.0 each. | F010/Q10 |
-| T3.6 | Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/036-cli-devin-code-graph-hook --strict`; exit 0 required unless frozen research warnings are explicitly recorded. | F010/Q10 |
+| T3.6 | Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/036-cli-devin-code-graph-hook --strict`; exit 0 required unless frozen research warnings are explicitly recorded. | F010/Q10 |
 | T4.1 | Run code-graph MCP server boot smoke and verify all 10 public tools respond. | F009/Q9 |
 | T4.2 | Run 5-runtime SessionStart hook smoke across Claude, Gemini, Codex, OpenCode, and Devin. | F003/Q3, F004/Q4 |
 | T4.3 | Run Devin live `/hooks` slash command and startup smoke. | F001/Q1, ADR-003 |

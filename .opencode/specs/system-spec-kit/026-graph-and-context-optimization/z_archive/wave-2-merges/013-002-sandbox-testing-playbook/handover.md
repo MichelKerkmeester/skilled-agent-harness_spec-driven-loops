@@ -1,5 +1,5 @@
 ---
-title: "Session Handover: Sandbox Testing Playbook [system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/002-sandbox-testing-playbook/handover]"
+title: "Session Handover: Sandbox Testing Playbook [system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/002-sandbox-testing-playbook/handover]"
 description: "Handover for the doctor command surface + sandbox testing playbook work. 23 scenarios + 23 wrappers authored, mode reduction applied, 2 of 4 fixtures wired (v3.3 + v3.4), nothing actually executed end-to-end. Next agent picks up at: build Docker image OR run harness against existing fixtures OR generate empty/partial fixtures."
 trigger_phrases:
   - "002-sandbox-testing-playbook handover"
@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/002-sandbox-testing-playbook"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/002-sandbox-testing-playbook"
     last_updated_at: "2026-05-09T18:35:00Z"
     last_updated_by: "spec-kit-handover"
     recent_action: "Wired v3.4 fixture; harness end-to-end smoke verified; no scenarios actually executed"
@@ -24,7 +24,7 @@ _memory:
       - ".opencode/skills/system-spec-kit/manual_testing_playbook/_sandbox/23--doctor-commands/fixtures/manifest.json"
       - ".opencode/skills/system-spec-kit/manual_testing_playbook/_sandbox/23--doctor-commands/fixtures/fetch-fixtures.sh"
       - ".opencode/skills/system-spec-kit/manual_testing_playbook/_sandbox/23--doctor-commands/harness/reset-state.sh"
-      - ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/002-sandbox-testing-playbook/external/"
+      - ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/002-sandbox-testing-playbook/external/"
       - ".opencode/commands/doctor/assets/"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -115,7 +115,7 @@ _memory:
   - Track E: fix 001 packet pre-existing TEMPLATE_HEADERS + ANCHORS_VALID drift (same fix that resolved 002 earlier this session)
 
 - **Read first:**
-  - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/002-sandbox-testing-playbook/spec.md` (REQ-001..REQ-043 + ADR-008 mode-reduction record)
+  - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/002-sandbox-testing-playbook/spec.md` (REQ-001..REQ-043 + ADR-008 mode-reduction record)
   - `.opencode/specs/.../002-sandbox-testing-playbook/implementation-summary.md` (deliverable inventory + dispatch results)
   - `.opencode/specs/.../001-doctor-commands/spec.md` (council 10-line orchestrator contract — REQ-004..REQ-017 + ADR-002..ADR-008)
 
@@ -141,7 +141,7 @@ _memory:
 - [ ] Memory: most-recent /memory:save was on 001-doctor-commands packet (covering YAML rename + path-ref updates)
 - [ ] Spec packet: `002-sandbox-testing-playbook` (Level 3, REQ-001..REQ-043, 7 ADRs)
 - [ ] Sibling packet: `001-doctor-commands` (Level 2, REQ-001..REQ-023, ADR-001..ADR-008 council 10-line + ADR-009 mode-reduction)
-- [ ] Phase parent: `013-doctor-update-orchestrator` (lean trio; both children in scope)
+- [ ] Phase parent: `010-doctor-update-orchestrator` (lean trio; both children in scope)
 - [ ] Memory rules in CLAUDE.md: "Stay on main, no feature branches" + "DELETE not archive" + "On phone → paste full content in chat" + "Stop over-confirming"
 <!-- /ANCHOR:next-session -->
 
@@ -224,9 +224,9 @@ SPECKIT_SANDBOX=1 SPECKIT_WORKSPACE_ROOT=/tmp/doctor_test_ws_$$ \
 
 # 5. Validate spec packets
 bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh \
-  .opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/002-sandbox-testing-playbook --strict
+  .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/002-sandbox-testing-playbook --strict
 bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh \
-  .opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator --strict
+  .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator --strict
 bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh \
-  .opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/001-doctor-commands --strict
+  .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/001-doctor-commands --strict
 ```

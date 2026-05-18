@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/026-system-spec-kit-codegraph-residue-audit",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/026-system-spec-kit-codegraph-residue-audit",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/007-code-graph",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/026-system-spec-kit-codegraph-residue-audit",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/026-system-spec-kit-codegraph-residue-audit",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/005-code-graph",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -56,12 +56,12 @@
       ".opencode/skills/system-spec-kit/manual_testing_playbook/06--analysis/026-code-graph-edge-explanation-blast-radius-uplift.md",
       ".opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/271-code-graph-phase-dag-runner.md",
       ".opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/279-graph-degraded-stress-cell-isolation.md",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/026-system-spec-kit-codegraph-residue-audit/spec.md",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/026-system-spec-kit-codegraph-residue-audit/plan.md",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/026-system-spec-kit-codegraph-residue-audit/tasks.md",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/026-system-spec-kit-codegraph-residue-audit/implementation-summary.md",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/026-system-spec-kit-codegraph-residue-audit/description.json",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/026-system-spec-kit-codegraph-residue-audit/graph-metadata.json",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/026-system-spec-kit-codegraph-residue-audit/spec.md",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/026-system-spec-kit-codegraph-residue-audit/plan.md",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/026-system-spec-kit-codegraph-residue-audit/tasks.md",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/026-system-spec-kit-codegraph-residue-audit/implementation-summary.md",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/026-system-spec-kit-codegraph-residue-audit/description.json",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/026-system-spec-kit-codegraph-residue-audit/graph-metadata.json",
       ".opencode/skills/system-code-graph/INSTALL_GUIDE.md",
       ".opencode/install_guides/README.md",
       ".opencode/commands/doctor/scripts/mcp-doctor.sh",
@@ -153,37 +153,37 @@
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/026-system-spec-kit-codegraph-residue-audit/spec.md",
+        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/026-system-spec-kit-codegraph-residue-audit/spec.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
-        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/026-system-spec-kit-codegraph-residue-audit/plan.md",
+        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/026-system-spec-kit-codegraph-residue-audit/plan.md",
         "source": "derived"
       },
       {
         "name": "tasks.md",
         "kind": "doc",
-        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/026-system-spec-kit-codegraph-residue-audit/tasks.md",
+        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/026-system-spec-kit-codegraph-residue-audit/tasks.md",
         "source": "derived"
       },
       {
         "name": "implementation-summary.md",
         "kind": "doc",
-        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/026-system-spec-kit-codegraph-residue-audit/implementation-summary.md",
+        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/026-system-spec-kit-codegraph-residue-audit/implementation-summary.md",
         "source": "derived"
       },
       {
         "name": "description.json",
         "kind": "config",
-        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/026-system-spec-kit-codegraph-residue-audit/description.json",
+        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/026-system-spec-kit-codegraph-residue-audit/description.json",
         "source": "derived"
       },
       {
         "name": "graph-metadata.json",
         "kind": "config",
-        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/026-system-spec-kit-codegraph-residue-audit/graph-metadata.json",
+        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/026-system-spec-kit-codegraph-residue-audit/graph-metadata.json",
         "source": "derived"
       },
       {

@@ -5,7 +5,7 @@
     "cli-devin SWE-1.6 deep-review",
     "code-graph release-readiness audit"
   ],
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/037-system-code-graph-comprehensive-deep-review",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/037-system-code-graph-comprehensive-deep-review",
   "importance_tier": "important",
   "contextType": "implementation",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-3-deep-archives/007-037-system-code-graph-comprehensive-deep-review",

@@ -4,7 +4,7 @@
 
 You are Codex (gpt-5.5 high fast) dispatched by Claude Opus 4.7 to author 3 manual testing playbook scenarios covering `/doctor:causal-graph` command modes.
 
-Spec folder (pre-approved, skip Gate 3): `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/002-sandbox-testing-playbook/`
+Spec folder (pre-approved, skip Gate 3): `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/002-sandbox-testing-playbook/`
 
 ## CANONICAL TEMPLATE SOURCES (read first; treat as locked)
 

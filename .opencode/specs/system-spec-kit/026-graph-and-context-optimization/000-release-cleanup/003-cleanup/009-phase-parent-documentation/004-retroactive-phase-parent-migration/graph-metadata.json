@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/009-phase-parent-documentation/004-retroactive-phase-parent-migration",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/009-phase-parent-documentation/004-retroactive-phase-parent-migration",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/009-phase-parent-documentation",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cleanup/009-phase-parent-documentation/004-retroactive-phase-parent-migration",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cleanup/009-phase-parent-documentation/004-retroactive-phase-parent-migration",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cleanup/009-phase-parent-documentation",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -39,10 +39,9 @@
       "worker"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
-      "templates/phase_parent/spec.md",
       "plan.md",
       "tasks.md",
       "scratch/regression-baseline-pre-004.txt",
@@ -198,7 +197,7 @@
     ],
     "causal_summary": "The lean-trio policy is enforced for new phase parents (validator, template, generator, resume, docs). But the repo already contains 28 legacy phase parents created before the policy: 21 active and 7 archived. They split into two practical states:",
     "created_at": "2026-04-27T14:00:00Z",
-    "last_save_at": "2026-04-27T15:51:53.232821+00:00",
+    "last_save_at": "2026-05-18T08:15:53.102Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

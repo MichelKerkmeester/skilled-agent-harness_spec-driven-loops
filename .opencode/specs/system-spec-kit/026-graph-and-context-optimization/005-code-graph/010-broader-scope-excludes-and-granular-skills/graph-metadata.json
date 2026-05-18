@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/010-broader-scope-excludes-and-granular-skills",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/010-broader-scope-excludes-and-granular-skills",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/005-code-graph",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "broader default excludes",
+      "granular skill selection",
+      "per skill code graph",
+      "exclude opencode subdirs",
+      "include skills list",
+      "code graph scope policy",
+      "fix completeness",
+      "fingerprint v2",
+      "doc-language opt-in",
+      "candidate manifest drift fix",
+      "stored scope precedence",
+      "FIX-009-v3 readiness"
+    ],
+    "key_topics": [
+      "broader",
+      "default",
+      "excludes",
+      "granular",
+      "skill",
+      "selection",
+      "per",
+      "code",
+      "graph",
+      "exclude",
+      "opencode",
+      "subdirs"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "mcp_server/lib/utils/index-scope.ts",
+      "mcp_server/tool-schemas.ts",
+      "mcp_server/schemas/tool-input-schemas.ts",
+      "mcp_server/utils/tool-input-schema.ts",
+      "mcp_server/tests/tool-input-schema.vitest.ts",
+      "mcp_server/ENV_REFERENCE.md",
+      "review/iterations/iteration-005.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "index-scope.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/utils/index-scope.ts",
+        "source": "derived"
+      },
+      {
+        "name": "tool-schemas.ts",
+        "kind": "code",
+        "path": "mcp_server/tool-schemas.ts",
+        "source": "derived"
+      },
+      {
+        "name": "tool-input-schemas.ts",
+        "kind": "code",
+        "path": "mcp_server/schemas/tool-input-schemas.ts",
+        "source": "derived"
+      },
+      {
+        "name": "tool-input-schema.ts",
+        "kind": "code",
+        "path": "mcp_server/utils/tool-input-schema.ts",
+        "source": "derived"
+      },
+      {
+        "name": "tool-input-schema.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/tool-input-schema.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "ENV_REFERENCE.md",
+        "kind": "doc",
+        "path": "mcp_server/ENV_REFERENCE.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-005.md",
+        "kind": "doc",
+        "path": "review/iterations/iteration-005.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Broader Default Excludes",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Granular Skills",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Default",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Focused Vitest",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Centralize",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Packet 009 excluded `.opencode/skills/**` from default code-graph scans, but adjacent internal-heavy folders remained in the default scan surface. The `includeSkills` argument was also all-or-nothing, which made targeted skill graph work expensive when only one or two `sk-*` folders were relevant.",
+    "created_at": "2026-05-09T19:30:52.527Z",
+    "last_save_at": "2026-05-18T08:15:53.438Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ]
+  }
+}

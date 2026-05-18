@@ -1,5 +1,5 @@
 ---
-title: "...-spec-kit/026-graph-and-context-optimization/009-hook-parity/007-copilot-writer-wiring/implementation-summary]"
+title: "...-spec-kit/026-graph-and-context-optimization/007-hook-parity/007-copilot-writer-wiring/implementation-summary]"
 description: "The Copilot writer-wiring commands are restored in .claude/settings.local.json, so the top-level wrappers again point at the packet 011 writers for UserPromptSubmit and SessionStart."
 trigger_phrases:
   - "spec"
@@ -14,7 +14,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/009-hook-parity/007-copilot-writer-wiring"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-hook-parity/007-copilot-writer-wiring"
     last_updated_at: "2026-04-24T00:00:00Z"
     last_updated_by: "codex-gpt-5"
     recent_action: "Reapplied the top-level Copilot writer commands for UserPromptSubmit and SessionStart in .claude/settings.local.json"

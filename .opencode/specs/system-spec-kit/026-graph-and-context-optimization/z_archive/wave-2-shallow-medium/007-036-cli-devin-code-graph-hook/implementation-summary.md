@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/036-cli-devin-code-graph-hook"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/005-code-graph/036-cli-devin-code-graph-hook"
     last_updated_at: "2026-05-15T16:25:00Z"
     last_updated_by: "claude-opus-4-7-phase-e"
     recent_action: "Phase D verification + Phase E reconciliation complete"
@@ -95,7 +95,7 @@ See `decision-record.md` for full ADR content with research evidence citations.
 <!-- ANCHOR:verification -->
 ## Verification
 
-- **Strict validate (packet)**: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/036-cli-devin-code-graph-hook --strict` → exit 0, 0 errors, 0 warnings.
+- **Strict validate (packet)**: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/036-cli-devin-code-graph-hook --strict` → exit 0, 0 errors, 0 warnings.
 - **Devin SessionStart smoke test**: `echo '{"source":"startup","session_id":"test"}' | node .opencode/skills/system-spec-kit/mcp_server/dist/system-spec-kit/mcp_server/hooks/devin/session-start.js` → returns `{"hookSpecificOutput":{"hookEventName":"SessionStart","additionalContext":"## Session Context\\n..."}}`, exit 0.
 - **Vitest**: `cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/devin-session-start-hook.vitest.ts` → 11/11 passed.
 - **Plugin rename grep**: 0 hits for `spec-kit-compact-code-graph` in current code/docs (excluding z_archive + changelogs).

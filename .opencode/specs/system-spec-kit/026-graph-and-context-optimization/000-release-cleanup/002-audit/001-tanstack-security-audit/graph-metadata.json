@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/015-tanstack-security-audit",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/015-tanstack-security-audit",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-audit/001-tanstack-security-audit",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-audit/001-tanstack-security-audit",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-audit",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -16,7 +16,13 @@
       "TanStack supply-chain check",
       "Public repo security audit",
       "dead-man switch IOC scan",
-      "post-2026-05-15 security review"
+      "post-2026-05-15 security review",
+      "015 global security sweep plan",
+      "Mini Shai-Hulud audit plan",
+      "security sweep iteration plan",
+      "015 global security sweep tasks",
+      "Mini Shai-Hulud audit tasks",
+      "security sweep dispatch tasks"
     ],
     "key_topics": [
       "015",
@@ -33,24 +39,34 @@
       "repo"
     ],
     "importance_tier": "critical",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
-      ".gemini/settings.json",
-      ".vscode/mcp.json",
+      "research/review-report.md",
       "research/deep-research-state.jsonl",
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".devin/config.json",
+      ".gemini/settings.json",
+      ".claude/mcp.json",
+      ".codex/config.toml",
+      ".vscode/mcp.json",
+      "research/prompts/iteration-001.md",
+      "research/prompts/iteration-002.md",
+      "research/prompts/iteration-003.md",
+      "research/prompts/iteration-004.md",
+      "research/prompts/iteration-005.md",
+      "research/prompts/iteration-006.md",
+      "research/prompts/iteration-007.md",
+      "research/prompts/iteration-008.md",
+      "research/prompts/iteration-009.md"
     ],
     "entities": [
       {
-        "name": "settings.json",
-        "kind": "config",
-        "path": ".gemini/settings.json",
-        "source": "derived"
-      },
-      {
-        "name": "mcp.json",
-        "kind": "config",
-        "path": ".vscode/mcp.json",
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "research/review-report.md",
         "source": "derived"
       },
       {
@@ -63,6 +79,102 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "config.json",
+        "kind": "config",
+        "path": ".devin/config.json",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".gemini/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "mcp.json",
+        "kind": "config",
+        "path": ".claude/mcp.json",
+        "source": "derived"
+      },
+      {
+        "name": "config.toml",
+        "kind": "file",
+        "path": ".codex/config.toml",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": "research/prompts/iteration-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-002.md",
+        "kind": "doc",
+        "path": "research/prompts/iteration-002.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-003.md",
+        "kind": "doc",
+        "path": "research/prompts/iteration-003.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-004.md",
+        "kind": "doc",
+        "path": "research/prompts/iteration-004.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-005.md",
+        "kind": "doc",
+        "path": "research/prompts/iteration-005.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-006.md",
+        "kind": "doc",
+        "path": "research/prompts/iteration-006.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-007.md",
+        "kind": "doc",
+        "path": "research/prompts/iteration-007.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-008.md",
+        "kind": "doc",
+        "path": "research/prompts/iteration-008.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-009.md",
+        "kind": "doc",
+        "path": "research/prompts/iteration-009.md",
         "source": "derived"
       },
       {
@@ -94,21 +206,18 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Purpose Run",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The 2026-05-15 TanStack Mini Shai-Hulud disclosure is a watershed npm supply-chain event: first documented npm worm shipping with valid SLSA provenance signatures. The compromised packages' release pipeline was hijacked, and the malicious versions look 100% legitimate to standard supply-chain defenders. 2FA didn't help; SLSA didn't help. Affected ~518M computers per the disclosure. The dead-man's-switch design means revoking a stolen token TRIGGERS the payload (`rm -rf ~/`), making remediation actively dangerous.",
     "created_at": "2026-05-15T18:27:58.266Z",
-    "last_save_at": "2026-05-15T18:27:58.266Z",
+    "last_save_at": "2026-05-18T08:15:52.992Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
     ]
   }
 }

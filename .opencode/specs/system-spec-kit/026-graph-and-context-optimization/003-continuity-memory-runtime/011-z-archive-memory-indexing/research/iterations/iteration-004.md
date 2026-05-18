@@ -10,12 +10,12 @@ Audit recent packets under 026 (007, 008, 010, 011, 012, 013, 014) for z_archive
 | (none) | - | - | - |
 
 ## Confirmed-already-known
-- 007-code-graph: 50 z_archive references all relate to code-graph scan excludes (separate system from memory indexing)
-- 008-skill-advisor: 100 z_archive references are mostly historical path citations to archived packets or research questions about skill-graph daemon behavior
-- 010-template-levels: 17 z_archive references are about archive marker validation sweeps, not memory indexing
+- 005-code-graph: 50 z_archive references all relate to code-graph scan excludes (separate system from memory indexing)
+- 006-skill-advisor: 100 z_archive references are mostly historical path citations to archived packets or research questions about skill-graph daemon behavior
+- 008-template-levels: 17 z_archive references are about archive marker validation sweeps, not memory indexing
 - 011-cocoindex-daemon-resilience: 0 matches
-- 012-causal-graph-channel-routing: 0 matches
-- 013-doctor-update-orchestrator: 4 z_archive references are about archival records and crash handling, not memory indexing exclusion
+- 009-causal-graph-channel-routing: 0 matches
+- 010-doctor-update-orchestrator: 4 z_archive references are about archival records and crash handling, not memory indexing exclusion
 - 014-local-embeddings-migration: 46 z_archive references are within test corpus embedded content, not code claims
 
 ## Gaps for next iter

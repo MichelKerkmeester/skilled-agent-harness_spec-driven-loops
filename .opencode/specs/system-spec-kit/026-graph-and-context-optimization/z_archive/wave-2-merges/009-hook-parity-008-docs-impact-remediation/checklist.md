@@ -1,5 +1,5 @@
 ---
-title: "Checkl [system-spec-kit/026-graph-and-context-optimization/009-hook-parity/008-docs-impact-remediation/checklist]"
+title: "Checkl [system-spec-kit/026-graph-and-context-optimization/007-hook-parity/008-docs-impact-remediation/checklist]"
 description: "Active verification checklist for 13 flagged file updates. P0 maps to HIGH-severity rows, P1 to MED, P2 to optional drift prevention."
 trigger_phrases:
   - "docs impact remediation checklist"
@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/009-hook-parity/008-docs-impact-remediation"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-hook-parity/008-docs-impact-remediation"
     last_updated_at: "2026-04-24T15:25:01Z"
     last_updated_by: "backfill-memory-block"
     recent_action: "Backfilled _memory block (repo-wide frontmatter sweep)"
@@ -46,7 +46,7 @@ Mark each item `[x]` only with **evidence**: file path + line range, commit hash
 
 ### Graph / Validation
 
-- [x] **T-014** 009 parent `graph-metadata.json` `children_ids` includes `system-spec-kit/026-graph-and-context-optimization/009-hook-parity/008-docs-impact-remediation`. [Evidence: parent 009 graph-metadata.json children_ids count=12 incl. 012-docs-impact-remediation]
+- [x] **T-014** 009 parent `graph-metadata.json` `children_ids` includes `system-spec-kit/026-graph-and-context-optimization/007-hook-parity/008-docs-impact-remediation`. [Evidence: parent 009 graph-metadata.json children_ids count=12 incl. 012-docs-impact-remediation]
 - [x] **T-015** `validate.sh --strict` exits 0 or 1 on this packet. [Evidence: validate.sh exits 2 (5 err / 4 warn) matching sibling 010 baseline; no semantic regression]
 - [x] **T-016** `description.json` + this packet's `graph-metadata.json` refreshed via canonical save. [Evidence: description.json + graph-metadata.json written at packet creation; schema OK; derived block populated]
 

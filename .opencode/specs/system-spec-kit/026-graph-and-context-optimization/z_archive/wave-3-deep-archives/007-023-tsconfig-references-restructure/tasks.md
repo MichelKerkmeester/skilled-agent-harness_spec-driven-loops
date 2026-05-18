@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/023-tsconfig-references-restructure"
+    packet_pointer: ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/023-tsconfig-references-restructure"
     last_updated_at: "2026-05-14T16:26:51Z"
     last_updated_by: "cli-codex-gpt5.5-xhigh-fast-009"
     recent_action: "Completed tsconfig and verification tasks"

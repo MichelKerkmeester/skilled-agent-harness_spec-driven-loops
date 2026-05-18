@@ -1,0 +1,19 @@
+{
+  "level": "phase",
+  "specFolder": "013-system-code-graph-extraction",
+  "description": "Phase parent for migrating the code-graph subsystem out of system-spec-kit into a dedicated `.opencode/skills/system-code-graph/` package with first-class SKILL.md, references, manual_testing_playbook, feature_catalog, and a clean MCP server integration story.",
+  "keywords": [
+    "system-code-graph",
+    "code-graph-extraction",
+    "code-graph-package-move",
+    "mcp-server-topology",
+    "skill-folder-first-class",
+    "structural-migration"
+  ],
+  "lastUpdated": "2026-05-14T07:00:38Z",
+  "specId": "014",
+  "folderSlug": "system-code-graph-extraction",
+  "parentChain": [
+    "005-code-graph"
+  ]
+}

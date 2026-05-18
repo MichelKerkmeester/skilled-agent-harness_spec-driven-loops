@@ -46,23 +46,22 @@
       ".opencode/skills/system-spec-kit/scripts/resource-map/extract-from-evidence.cjs",
       ".opencode/skills/system-spec-kit/scripts/resource-map/README.md",
       ".opencode/skills/system-spec-kit/mcp_server/scripts/tests/resource-map-extractor.vitest.ts",
-      ".opencode/skills/sk-deep-review/scripts/reduce-state.cjs",
-      ".opencode/skills/sk-deep-research/scripts/reduce-state.cjs",
       ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml",
       ".opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml",
       ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml",
       ".opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml",
-      ".opencode/skills/sk-deep-review/SKILL.md",
-      ".opencode/skills/sk-deep-research/SKILL.md",
       ".opencode/commands/spec_kit/deep-review.md",
       ".opencode/commands/spec_kit/deep-research.md",
-      ".opencode/skills/sk-deep-review/references/convergence.md",
-      ".opencode/skills/sk-deep-research/references/convergence.md",
-      ".opencode/skills/sk-deep-review/feature_catalog/01--loop-lifecycle/06-resource-map-emission.md",
-      ".opencode/skills/sk-deep-research/feature_catalog/01--loop-lifecycle/06-resource-map-emission.md",
-      ".opencode/skills/sk-deep-review/manual_testing_playbook/06--synthesis-save-and-guardrails/029-resource-map-emission.md",
-      ".opencode/skills/sk-deep-research/manual_testing_playbook/06--synthesis-save-and-guardrails/027-resource-map-emission.md",
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "research/research.md",
+      "mcp_server/vitest.config.ts",
+      "tasks.md",
+      "scripts/resource-map/README.md",
+      "scripts/tests/resource-map-extractor.vitest.ts",
+      "scripts/resource-map/extract-from-evidence.cjs",
+      "implementation-summary.md",
+      "checklist.md"
     ],
     "entities": [
       {
@@ -81,12 +80,6 @@
         "name": "resource-map-extractor.vitest.ts",
         "kind": "test",
         "path": ".opencode/skills/system-spec-kit/mcp_server/scripts/tests/resource-map-extractor.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "reduce-state.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/sk-deep-review/scripts/reduce-state.cjs",
         "source": "derived"
       },
       {
@@ -114,12 +107,6 @@
         "source": "derived"
       },
       {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-deep-review/SKILL.md",
-        "source": "derived"
-      },
-      {
         "name": "deep-review.md",
         "kind": "doc",
         "path": ".opencode/commands/spec_kit/deep-review.md",
@@ -132,33 +119,45 @@
         "source": "derived"
       },
       {
-        "name": "convergence.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-deep-review/references/convergence.md",
-        "source": "derived"
-      },
-      {
-        "name": "06-resource-map-emission.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-deep-review/feature_catalog/01--loop-lifecycle/06-resource-map-emission.md",
-        "source": "derived"
-      },
-      {
-        "name": "029-resource-map-emission.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-deep-review/manual_testing_playbook/06--synthesis-save-and-guardrails/029-resource-map-emission.md",
-        "source": "derived"
-      },
-      {
-        "name": "027-resource-map-emission.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-deep-research/manual_testing_playbook/06--synthesis-save-and-guardrails/027-resource-map-emission.md",
-        "source": "derived"
-      },
-      {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "vitest.config.ts",
+        "kind": "code",
+        "path": "mcp_server/vitest.config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -212,7 +211,7 @@
     ],
     "causal_summary": "This is the second child packet under `011-resource-map-template`. Phase 001 restores the local-owner artifact contract for deep-research and deep-review packets. This phase builds on that restored contract by making the two autonomous deep-loop skills (`sk-deep-research` and `sk-deep-review`) emit a filled `resource-map.md` at convergence beside the actual resolved packet artifacts. The aggregated map carries dimension-specific signals: review maps include P0/P1/P2 findings-per-file counts; research maps include citation counts per file. Both shapes share the same ten-category skeleton so reviewers can read them without learning two templates.",
     "created_at": "2026-04-24T00:00:00.000Z",
-    "last_save_at": "2026-04-26T09:17:15.719Z",
+    "last_save_at": "2026-05-18T08:15:53.358Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

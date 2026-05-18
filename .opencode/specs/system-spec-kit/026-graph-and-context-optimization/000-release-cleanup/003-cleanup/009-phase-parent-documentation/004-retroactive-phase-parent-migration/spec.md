@@ -53,7 +53,7 @@ _memory:
 ### Problem Statement
 The lean-trio policy is enforced for new phase parents (validator, template, generator, resume, docs). But the repo already contains 28 legacy phase parents created before the policy: 21 active and 7 archived. They split into two practical states:
 - **Category B** (lean trio present + heavy docs): 21 parents — `description.json` + `graph-metadata.json` exist but may be stale; spec.md may be a heavy narrative rather than the lean manifest.
-- **Category C** (lean trio incomplete): 7 parents — missing `spec.md` outright (e.g. `023-hybrid-rag-fusion-refinement/`, `024-compact-code-graph/`, `026/000-release-cleanup/`, `026/007-code-graph/`).
+- **Category C** (lean trio incomplete): 7 parents — missing `spec.md` outright (e.g. `023-hybrid-rag-fusion-refinement/`, `024-compact-code-graph/`, `026/000-release-cleanup/`, `026/005-code-graph/`).
 
 Tolerant policy (shipped in 001) prevents validation churn: legacy parents continue to validate. But future readers (human + AI) still see a mixed surface — some parents have proper lean spec.md manifests, others have heavy narrative content or missing files. The pointer mechanism (`derived.last_active_child_id`) is also absent on most legacy parents, so resume falls back to listing rather than redirecting.
 
@@ -109,7 +109,7 @@ Mutated by dispatched cli-copilot workers (per worker JSON report; not enumerate
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | Every C-category phase parent (lean trio incomplete) gains the missing components. | Post-migration: each of `023-hybrid-rag-fusion-refinement/`, `024-compact-code-graph/`, `026/000-release-cleanup/`, `026/007-code-graph/` (plus archived equivalents) has `spec.md` + `description.json` + `graph-metadata.json` present and valid. `is_phase_parent()` continues to return true. |
+| REQ-001 | Every C-category phase parent (lean trio incomplete) gains the missing components. | Post-migration: each of `023-hybrid-rag-fusion-refinement/`, `024-compact-code-graph/`, `026/000-release-cleanup/`, `026/005-code-graph/` (plus archived equivalents) has `spec.md` + `description.json` + `graph-metadata.json` present and valid. `is_phase_parent()` continues to return true. |
 | REQ-002 | Every B-category phase parent has refreshed metadata. | `description.json.lastUpdated` is within the migration window; `graph-metadata.json.derived.last_save_at` is fresh; `graph-metadata.json.derived.children_ids` matches the actual filesystem children. |
 | REQ-003 | Manual block in `graph-metadata.json` preserved verbatim. | For every touched parent, the post-migration `manual.depends_on`, `manual.supersedes`, `manual.related_to` arrays are byte-equal to the pre-migration values. |
 | REQ-004 | Heavy docs preserved at parent level. | For every B-category parent, `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md` (whichever existed pre-migration) are still present post-migration with no content changes. |

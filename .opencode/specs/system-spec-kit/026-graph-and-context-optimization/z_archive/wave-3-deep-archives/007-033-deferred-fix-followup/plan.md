@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/033-deferred-fix-followup"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/005-code-graph/033-deferred-fix-followup"
     last_updated_at: "2026-05-14T21:35:00Z"
     last_updated_by: "orchestrator-deferred-fix"
     recent_action: "Authored plan"

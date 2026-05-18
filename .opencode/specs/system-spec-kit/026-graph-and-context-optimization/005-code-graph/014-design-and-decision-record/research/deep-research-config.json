@@ -1,0 +1,35 @@
+{
+  "research_topic": "Code-graph extraction from system-spec-kit into standalone system-code-graph skill",
+  "spec_folder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/014-design-and-decision-record",
+  "execution_mode": "AUTONOMOUS",
+  "max_iterations": 10,
+  "convergence_threshold": 0.05,
+  "executor": "native",
+  "executor_timeout": 1800,
+  "resource_map_emit": true,
+  "questions": [
+    "Q1: Complete touchpoint inventory",
+    "Q2: Database extraction shape evaluation",
+    "Q3: MCP server topology evaluation",
+    "Q4: Tool-id stability evaluation",
+    "Q5: Cross-subsystem import direction",
+    "Q6: Plugin bridge disposition",
+    "Q7: Implementation phase decomposition",
+    "Q8: Risk catalog"
+  ],
+  "questions_category_map": {
+    "Q1": "inventory",
+    "Q2": "architecture",
+    "Q3": "architecture",
+    "Q4": "architecture",
+    "Q5": "architecture",
+    "Q6": "architecture",
+    "Q7": "planning",
+    "Q8": "risks"
+  },
+  "expected_artifacts": [
+    "research/research.md",
+    "resource-map.md",
+    "decision-record.md"
+  ]
+}

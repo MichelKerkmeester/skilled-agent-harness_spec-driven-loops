@@ -78,6 +78,6 @@ _memory:
 - Spec: `spec.md`
 - Plan: `plan.md`
 - Parent: `../spec.md`
-- Reference: `../../016-embedder-testing-and-architecture/002-mk-spec-memory-stack/004-mxbai-swap-and-008-closure/`
+- Reference: `../../016-embedder-testing-and-architecture/002-spec-memory-stack/004-mxbai-swap-and-008-closure/`
 - Consumers: `../002-jina-swap-and-reindex/`, `../003-install-guide-docs/`
 <!-- /ANCHOR:cross-refs -->

@@ -9,23 +9,89 @@
     "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/006-research/003-system-deep-bugs-and-improvements",
     "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/006-research/004-deep-research-finding-remediation"
   ],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
     "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
   "derived": {
-    "trigger_phrases": ["000-release-cleanup/006-research", "cleanup-research"],
-    "key_topics": ["deep-research", "automation", "remediation", "system-improvements", "investigation", "supplemental-research", "self-management"],
+    "trigger_phrases": [
+      "000-release-cleanup/006-research",
+      "cleanup-research",
+      "deep research charters"
+    ],
+    "key_topics": [
+      "000-release-cleanup",
+      "006-research",
+      "cleanup-research",
+      "deep",
+      "research",
+      "charters",
+      "sub-phase",
+      "groups",
+      "remediation",
+      "work",
+      "automation",
+      "self-management"
+    ],
     "importance_tier": "normal",
-    "status": "in_progress",
-    "key_files": ["spec.md"],
-    "entities": [],
-    "causal_summary": "This sub-phase groups deep research charters and remediation work for automation self-management, system bugs, and supplemental investigations. The 001-automation-self-management-deep and 003-system-deep-bugs-and-improvements packets establish research baselines, while 004-deep-research-finding-remediation closes findings from those investigations.",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Research Charters",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Charter",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Automation Reality Supplemental",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "System Deep Research",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Finding Remediation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "This sub-phase groups deep research charters and remediation work for automation self-management, system bugs, and supplemental investigations. The four children bind together thematically through their focus on investigation-driven improvement: 016 and 017 explore automation capabilities and reality, while 046 conducts system-wide deep research and 049 remediates findings from those investigations.",
     "created_at": "2026-05-16T09:00:00Z",
-    "last_save_at": "2026-05-16T11:30:00Z",
-    "save_lineage": "cli-devin-swe-1.6-w3f",
+    "last_save_at": "2026-05-18T08:15:53.304Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "source_docs": ["spec.md", "README.md"]
+    "source_docs": [
+      "spec.md"
+    ]
   }
 }

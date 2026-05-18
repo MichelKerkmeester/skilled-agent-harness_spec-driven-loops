@@ -125,7 +125,7 @@
 3. **(P2) — Code-graph file-watcher debounce**
    - Evidence: pre-flight T003 detected 4-hour staleness drift. Required manual `code_graph_scan` recovery.
    - Recommended fix: tighten debounce or add freshness self-check to `code_graph_status`.
-   - Owner: 007-code-graph-fast-fail follow-up or 024-compact-code-graph maintenance packet.
+   - Owner: 005-code-graph-fast-fail follow-up or 024-compact-code-graph maintenance packet.
 
 4. **(P2) — REQ-003 vocabulary violation persists**
    - Evidence: S2 cells across all CLIs use "memory entries" / "Spec Kit Memory" rather than canonical "Trigger-matched spec-doc records".

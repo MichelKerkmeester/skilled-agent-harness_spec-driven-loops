@@ -11,6 +11,8 @@
     "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test",
     "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/006-research"
   ],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
     "depends_on": [],
     "supersedes": [],
@@ -24,9 +26,12 @@
       "002-sk-code-opencode-alignment",
       "003-dead-code-audit",
       "004-dead-code-pruning",
-      "005-review-remediation"
+      "resource map",
+      "000-release-cleanup resource map",
+      "path catalog 000-release-cleanup"
     ],
     "key_topics": [
+      "000-release-cleanup",
       "000",
       "release",
       "cleanup",
@@ -34,14 +39,16 @@
       "002-sk-code-opencode-alignment",
       "003-dead-code-audit",
       "004-dead-code-pruning",
-      "005-review-remediation"
+      "resource",
+      "map",
+      "path",
+      "catalog"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "planned",
     "key_files": [
       "spec.md",
-      "description.json",
-      "graph-metadata.json"
+      "resource-map.md"
     ],
     "entities": [
       {
@@ -51,42 +58,92 @@
         "source": "derived"
       },
       {
-        "name": "description.json",
+        "name": "resource-map.md",
         "kind": "doc",
-        "path": "description.json",
+        "path": "resource-map.md",
         "source": "derived"
       },
       {
-        "name": "graph-metadata.json",
-        "kind": "doc",
-        "path": "graph-metadata.json",
-        "source": "derived"
-      },
-      {
-        "name": "000 Release Cleanup",
+        "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Release Cleanup",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Resource Map",
+        "kind": "proper_noun",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "Author Instructions",
+        "kind": "proper_noun",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "real",
+        "kind": "key_phrase",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "Summary",
+        "kind": "heading",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. Documents",
+        "kind": "heading",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "6. Specs",
+        "kind": "heading",
+        "path": "resource-map.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "Feature Specification: 000 Release Cleanup",
+    "causal_summary": "This parent packet coordinates the phased work under `000 Release Cleanup` so the child packets stay discoverable and the root purpose remains clear while implementation details live below the parent level. The current child surface includes 001-memory-terminology, 002-sk-code-opencode-alignment, 003-dead-code-audit, 004-dead-code-pruning.",
     "created_at": "2026-04-27T13:33:11Z",
-    "last_save_at": "2026-05-16T11:30:00Z",
-    "save_lineage": "cli-devin-swe-1.6-w3f",
-    "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/031-cocoindex-voyage-only-this-machine",
-    "last_active_at": "2026-05-10T10:45:13.409Z",
+    "last_save_at": "2026-05-18T08:15:52.948Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
-    ],
-    "restructure_note": "Recataloged 2026-05-16 (Wave 2.B per packet 109): 59 flat \u2192 6 sub-phases. 2 dup-prefix packets removed as empty -alt-orig stubs. Each sub-phase has its own NNN-named children.",
-    "sub_phases": {
-      "001-release-readiness": 6,
-      "002-audit": 7,
-      "003-cleanup": 29,
-      "004-followup-post-program": 4,
-      "005-stress-test": 7,
-      "006-research": 4
-    }
+      "spec.md",
+      "resource-map.md"
+    ]
   }
 }

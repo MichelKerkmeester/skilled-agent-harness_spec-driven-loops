@@ -1,47 +1,211 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/005-remaining-p1-p2-remediation",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/005-remaining-p1-p2-remediation",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-release-readiness/005-remaining-p1-p2-remediation",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-release-readiness/005-remaining-p1-p2-remediation",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-release-readiness",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-synthesis-and-remediation"
-    ],
+    "depends_on": [],
     "supersedes": [],
-    "related_to": [
-      "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-deep-review-program"
-    ]
+    "related_to": []
   },
   "derived": {
     "trigger_phrases": [
       "005-remaining-p1-p2-remediation",
       "P1 P2 backlog",
       "release polish",
-      "conservative defaults pass"
+      "conservative defaults pass",
+      "Tier gamma defaults",
+      "resource map",
+      "005-remaining-p1-p2-remediation resource map",
+      "path catalog 005-remaining-p1-p2-remediation"
+    ],
+    "key_topics": [
+      "005-remaining-p1-p2-remediation",
+      "backlog",
+      "release",
+      "polish",
+      "conservative",
+      "defaults",
+      "pass",
+      "tier",
+      "gamma",
+      "resource",
+      "map",
+      "path"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
+      "decision-record.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "decision-record.md",
-      "remediation-log.md",
-      "deferred-p2.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "resource-map.md"
     ],
+    "entities": [
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Apply",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Surgical Tier",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Apply",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Surgical",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Create Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Apply Tier",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Packet 046 fixed the release-blocking P0s and a small Tier beta set, but 24 P1",
+    "created_at": "2026-05-18T08:15:52.987Z",
+    "last_save_at": "2026-05-18T08:15:52.987Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
       "decision-record.md",
-      "remediation-log.md",
-      "deferred-p2.md",
-      "implementation-summary.md"
-    ],
-    "entities": []
+      "implementation-summary.md",
+      "resource-map.md"
+    ]
   }
 }

@@ -5,7 +5,7 @@
   "parent_id": "system-spec-kit/026-graph-and-context-optimization",
   "children_ids": [
     "system-spec-kit/026-graph-and-context-optimization/002-resource-map-deep-loop-fix/001-reverse-parent-research-review-folders",
-    "system-spec-kit/026-graph-and-context-optimization/002-resource-map-deep-loop-fix/002-resource-map-deep-loop-fix-creation",
+    "system-spec-kit/026-graph-and-context-optimization/002-resource-map-deep-loop-fix/002-resource-map-template-creation",
     "system-spec-kit/026-graph-and-context-optimization/002-resource-map-deep-loop-fix/003-resource-map-deep-loop-integration"
   ],
   "migrated": true,
@@ -21,14 +21,9 @@
       "resource map template packet",
       "resource map template and deep loop integration",
       "reverse parent folders resource map",
-      "011-resource-map-template plan",
-      "resource map template implementation plan",
-      "011-resource-map-template tasks",
-      "resource map template task list",
-      "011-resource-map-template checklist",
-      "resource map template verification checklist",
-      "011-resource-map-template decision record",
-      "resource map template ADR"
+      "resource map",
+      "002-resource-map-deep-loop-fix resource map",
+      "path catalog 002-resource-map-deep-loop-fix"
     ],
     "key_topics": [
       "011-resource-map-template",
@@ -42,55 +37,24 @@
       "reverse",
       "parent",
       "folders",
-      "plan"
+      "002-resource-map-deep-loop-fix"
     ],
-    "importance_tier": "normal",
-    "status": "in_progress",
+    "importance_tier": "important",
+    "status": "planned",
     "key_files": [
-      "references/templates/level_specifications.md",
-      "scripts/resource-map/extract-from-evidence.cjs",
-      "mcp_server/vitest.config.ts",
-      "implementation-summary.md",
+      "resource-map.md",
       ".opencode/skills/system-spec-kit/shared/review-research-paths.cjs",
-      ".opencode/skills/sk-deep-review/scripts/reduce-state.cjs",
-      ".opencode/skills/sk-deep-research/scripts/reduce-state.cjs",
-      ".opencode/skills/system-spec-kit/templates/resource-map.md",
       ".opencode/skills/system-spec-kit/mcp_server/lib/config/spec-doc-paths.ts",
       ".opencode/skills/system-spec-kit/scripts/resource-map/extract-from-evidence.cjs",
-      "plan.md",
-      "tasks.md",
-      "checklist.md",
-      "decision-record.md",
       "001-reverse-parent-research-review-folders/spec.md",
-      "002-resource-map-deep-loop-fix-creation/spec.md",
       "003-resource-map-deep-loop-integration/spec.md",
-      "scripts/migrate-deep-loop-local-owner.cjs",
-      "scripts/migrate-deep-loop-legacy-owner-map.cjs",
-      "templates/README.md"
+      "spec.md"
     ],
     "entities": [
       {
-        "name": "level_specifications.md",
+        "name": "resource-map.md",
         "kind": "doc",
-        "path": "references/templates/level_specifications.md",
-        "source": "derived"
-      },
-      {
-        "name": "extract-from-evidence.cjs",
-        "kind": "file",
-        "path": "scripts/resource-map/extract-from-evidence.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "vitest.config.ts",
-        "kind": "code",
-        "path": "mcp_server/vitest.config.ts",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
+        "path": "resource-map.md",
         "source": "derived"
       },
       {
@@ -100,57 +64,21 @@
         "source": "derived"
       },
       {
-        "name": "reduce-state.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/sk-deep-review/scripts/reduce-state.cjs",
-        "source": "derived"
-      },
-      {
         "name": "spec-doc-paths.ts",
         "kind": "code",
         "path": ".opencode/skills/system-spec-kit/mcp_server/lib/config/spec-doc-paths.ts",
         "source": "derived"
       },
       {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "decision-record.md",
-        "kind": "doc",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "migrate-deep-loop-local-owner.cjs",
+        "name": "extract-from-evidence.cjs",
         "kind": "file",
-        "path": "scripts/migrate-deep-loop-local-owner.cjs",
+        "path": ".opencode/skills/system-spec-kit/scripts/resource-map/extract-from-evidence.cjs",
         "source": "derived"
       },
       {
-        "name": "migrate-deep-loop-legacy-owner-map.cjs",
-        "kind": "file",
-        "path": "scripts/migrate-deep-loop-legacy-owner-map.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": "templates/README.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -190,42 +118,50 @@
         "source": "derived"
       },
       {
-        "name": "Implementation Plan",
+        "name": "Resource Map",
         "kind": "proper_noun",
-        "path": "plan.md",
+        "path": "resource-map.md",
         "source": "derived"
       },
       {
-        "name": "Technical Context",
+        "name": "Author Instructions",
         "kind": "proper_noun",
-        "path": "plan.md",
+        "path": "resource-map.md",
         "source": "derived"
       },
       {
-        "name": "Overview Three",
-        "kind": "proper_noun",
-        "path": "plan.md",
+        "name": "real",
+        "kind": "key_phrase",
+        "path": "resource-map.md",
         "source": "derived"
       },
       {
-        "name": "Pattern Local",
-        "kind": "proper_noun",
-        "path": "plan.md",
+        "name": "Summary",
+        "kind": "heading",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. Documents",
+        "kind": "heading",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "6. Specs",
+        "kind": "heading",
+        "path": "resource-map.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The 011-resource-map-template packet introduces a lean, level-agnostic `resource-map.md` template that catalogs every file path a spec folder touches, restores the local-owner deep-loop artifact contract broken by an earlier centralized placement policy, and wires automatic resource-map emission into both `sk-deep-research` and `sk-deep-review` at convergence.",
     "created_at": "2026-04-24T00:00:00Z",
-    "last_save_at": "2026-04-26T09:17:15.711Z",
+    "last_save_at": "2026-05-18T08:15:53.349Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
-      "plan.md",
-      "tasks.md",
-      "checklist.md",
-      "decision-record.md",
-      "implementation-summary.md"
+      "resource-map.md"
     ]
   }
 }

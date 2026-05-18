@@ -1,19 +1,15 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/015-cocoindex-seed-telemetry-passthrough",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/015-cocoindex-seed-telemetry-passthrough",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/003-mcp-runtime-stress-remediation/015-cocoindex-seed-telemetry-passthrough",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/003-mcp-runtime-stress-remediation/015-cocoindex-seed-telemetry-passthrough",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/003-mcp-runtime-stress-remediation",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/011-post-stress-followup-research",
-      "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/010-stress-test-rerun-v1-0-2",
-      "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/004-cocoindex-overfetch-dedup"
-    ],
+    "depends_on": [],
     "supersedes": [],
-    "related_to": [
-      "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/003-memory-context-truncation-contract"
-    ]
+    "related_to": []
   },
   "derived": {
     "trigger_phrases": [
@@ -26,6 +22,8 @@
       "cocoindex seed telemetry plan",
       "cocoindex seed telemetry tasks",
       "cocoindex seed telemetry checklist",
+      "015 checklist",
+      "verification 015",
       "cocoindex seed telemetry summary"
     ],
     "key_topics": [
@@ -34,80 +32,31 @@
       "seed",
       "telemetry",
       "passthrough",
-      "rawScore",
-      "pathClass",
-      "rankingSignals",
-      "code-graph-context",
-      "additive-metadata",
-      "p2"
+      "fork",
+      "leverage",
+      "rawscore",
+      "pathclass",
+      "rankingsignals",
+      "q-opp",
+      "fidelity"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
-      "mcp_server/code_graph/handlers/context.ts",
-      "mcp_server/code_graph/lib/seed-resolver.ts",
-      "mcp_server/schemas/tool-input-schemas.ts",
-      "mcp_server/tests/code-graph-context-cocoindex-telemetry-passthrough.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts",
       "spec.md",
-      "plan.md",
       "tasks.md",
+      "mcp_server/lib/search/hybrid-search.ts",
+      "plan.md",
       "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
       {
-        "name": "context.ts",
-        "kind": "code",
-        "path": "mcp_server/code_graph/handlers/context.ts",
-        "source": "manual"
-      },
-      {
-        "name": "seed-resolver.ts",
-        "kind": "code",
-        "path": "mcp_server/code_graph/lib/seed-resolver.ts",
-        "source": "manual"
-      },
-      {
         "name": "tool-input-schemas.ts",
         "kind": "code",
-        "path": "mcp_server/schemas/tool-input-schemas.ts",
-        "source": "manual"
-      },
-      {
-        "name": "code-graph-context-cocoindex-telemetry-passthrough.vitest.ts",
-        "kind": "code",
-        "path": "mcp_server/tests/code-graph-context-cocoindex-telemetry-passthrough.vitest.ts",
-        "source": "manual"
-      },
-      {
-        "name": "ContextHandlerArgs",
-        "kind": "type",
-        "path": "mcp_server/code_graph/handlers/context.ts",
-        "source": "manual"
-      },
-      {
-        "name": "CocoIndexSeed",
-        "kind": "type",
-        "path": "mcp_server/code_graph/lib/seed-resolver.ts",
-        "source": "manual"
-      },
-      {
-        "name": "ArtifactRef",
-        "kind": "type",
-        "path": "mcp_server/code_graph/lib/seed-resolver.ts",
-        "source": "manual"
-      },
-      {
-        "name": "codeGraphSeedSchema",
-        "kind": "schema",
-        "path": "mcp_server/schemas/tool-input-schemas.ts",
-        "source": "manual"
-      },
-      {
-        "name": "resolveCocoIndexSeed",
-        "kind": "function",
-        "path": "mcp_server/code_graph/lib/seed-resolver.ts",
-        "source": "manual"
+        "path": ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts",
+        "source": "derived"
       },
       {
         "name": "spec.md",
@@ -116,15 +65,21 @@
         "source": "derived"
       },
       {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "hybrid-search.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/search/hybrid-search.ts",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -138,12 +93,114 @@
         "kind": "doc",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Novel Finding",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Three",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Layered",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "All Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "optional",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "same",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "Per-seed CocoIndex fork telemetry passthrough (rawScore, pathClass, rankingSignals) on code_graph_context anchors. Closes Q-OPP from research.md §6 and Novel Finding #5 from 010 stress test. The fork (cocoindex_code v0.2.3+spec-kit-fork.0.2.0) emits these fields per QueryResult; previously code_graph_context dropped them when accepting CocoIndex seeds, losing audit and explanation provenance. This packet extends the seed schema (snake_case + camelCase), normalizes wire names, propagates fields through resolveCocoIndexSeed, and conditionally emits them on returned anchors. Pure additive metadata: anchor score, confidence, resolution, source, and ordering remain byte-equal pre vs post on a fixed fixture corpus. Excludes any change to mcp_server/lib/search/* (research.md §6.3 alt #3 REJECTED — would double-apply the fork's path_class signal). Excludes the response-level dedupedAliases / uniqueResultCount counters (research.md §6.3 alt #2 deferred).",
+    "causal_summary": "The CocoIndex fork (cocoindex_code v0.2.3+spec-kit-fork.0.2.0) emits 5 new telemetry fields per query result — `raw_score`, `path_class`, `rankingSignals`, `dedupedAliases`, `uniqueResultCount` — but `code_graph_context` drops all of them when a CocoIndex result is supplied as a seed. Anchors returned to the model lose provenance information that would help the model explain why the fork ranked one chunk over another. v1.0.2 stress test confirmed `dedupedAliases:26` lives on the fork side and never reaches the consumer.",
     "created_at": "2026-04-27T19:55:00.000Z",
-    "last_save_at": "2026-04-27T19:55:00.000Z",
-    "save_lineage": "manual_author",
+    "last_save_at": "2026-05-18T08:15:53.254Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",

@@ -7,13 +7,13 @@ trigger_phrases:
   - "code-graph"
 importance_tier: "important"
 contextType: "implementation"
-packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/036-cli-devin-code-graph-hook"
+packet_pointer: "system-spec-kit/026-graph-and-context-optimization/005-code-graph/036-cli-devin-code-graph-hook"
 status: "Complete"
 last_updated_at: "2026-05-15T16:55:00Z"
 last_updated_by: "cli-devin-swe-1-6"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/036-cli-devin-code-graph-hook"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/005-code-graph/036-cli-devin-code-graph-hook"
     last_updated_at: "2026-05-15T16:55:00Z"
     last_updated_by: "cli-devin-swe-1-6"
     recent_action: "Phase A deep-research complete"

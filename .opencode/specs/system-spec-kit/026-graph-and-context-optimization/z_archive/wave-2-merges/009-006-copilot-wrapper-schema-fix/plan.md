@@ -1,5 +1,5 @@
 ---
-title: "Implemen [system-spec-kit/026-graph-and-context-optimization/009-hook-parity/006-copilot-wrapper-schema-fix/plan]"
+title: "Implemen [system-spec-kit/026-graph-and-context-optimization/007-hook-parity/006-copilot-wrapper-schema-fix/plan]"
 description: "Reapply the reverted JSON patch so .claude/settings.local.json again carries the top-level Copilot-safe wrapper fields on all four matcher wrappers."
 trigger_phrases:
   - "implemen"
@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/009-hook-parity/006-copilot-wrapper-schema-fix"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-hook-parity/006-copilot-wrapper-schema-fix"
     last_updated_at: "2026-04-23T15:20:00Z"
     last_updated_by: "codex-gpt-5.4"
     recent_action: "Patch reverted in 6cd00aa51b — fields no longer present in settings.local.json"

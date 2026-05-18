@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/020-system-code-graph-doc-alignment",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/020-system-code-graph-doc-alignment",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/005-code-graph",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "028 spec",
+      "system-code-graph doc drift",
+      "mk-code-index tool count drift",
+      "graph-metadata topology",
+      "028 plan",
+      "system-code-graph doc drift plan",
+      "028 tasks",
+      "028 implementation summary"
+    ],
+    "key_topics": [
+      "028",
+      "spec",
+      "system-code-graph",
+      "doc",
+      "drift",
+      "mk-code-index",
+      "tool",
+      "count",
+      "graph-metadata",
+      "topology",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-code-graph/SKILL.md",
+      ".opencode/skills/system-code-graph/README.md",
+      ".opencode/skills/system-code-graph/ARCHITECTURE.md",
+      ".opencode/skills/system-code-graph/INSTALL_GUIDE.md",
+      ".opencode/skills/system-code-graph/feature_catalog/feature_catalog.md",
+      ".opencode/skills/system-code-graph/graph-metadata.json",
+      "mcp_server/tool-schemas.ts",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-code-graph/changelog/v1.0.3.0.md",
+      ".opencode/skills/system-code-graph/mcp_server/tool-schemas.ts",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-code-graph/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-code-graph/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "ARCHITECTURE.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-code-graph/ARCHITECTURE.md",
+        "source": "derived"
+      },
+      {
+        "name": "INSTALL_GUIDE.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-code-graph/INSTALL_GUIDE.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature_catalog.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-code-graph/feature_catalog/feature_catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-code-graph/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "tool-schemas.ts",
+        "kind": "code",
+        "path": "mcp_server/tool-schemas.ts",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.0.3.0.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-code-graph/changelog/v1.0.3.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Drift Alignment",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Authored",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Land",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Six",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Direct",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Authored docs under `.opencode/skills/system-code-graph/` disagree with the live runtime on four points: (1) tool count is claimed as `10` in 6 places and `12` in `graph-metadata.json`, but `mcp_server/tool-schemas.ts` registers 11; (2) `graph-metadata.json` still declares `mcp_server_topology: \"co-resident\"` with host `mk-spec-memory`, but `mcp_server/index.ts:28` runs the standalone `mk-code-index` server (per ADR-001 / packet 014 extraction and v1.0.3.0 three-way isolation finalize); (3) `SKILL.md._memory.continuity` was last updated 2026-05-14 and predates v1.0.3.0 work; (4) `version: 1.0.0.0` in SKILL.md frontmatter and README key-stats no longer matches the newest changelog `v1.0.3.0.md`.",
+    "created_at": "2026-05-16T09:01:20Z",
+    "last_save_at": "2026-05-18T08:15:53.474Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ]
+  }
+}

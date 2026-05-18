@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/022-orphan-code-graph-db-cleanup"
+    packet_pointer: ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/022-orphan-code-graph-db-cleanup"
     last_updated_at: "2026-05-14T13:15:00Z"
     last_updated_by: "cli-codex-gpt5.5-xhigh-fast"
     recent_action: "Planned scoped cleanup and verification"

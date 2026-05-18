@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/022-orphan-code-graph-db-cleanup"
+    packet_pointer: ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/022-orphan-code-graph-db-cleanup"
     last_updated_at: "2026-05-14T13:15:00Z"
     last_updated_by: "cli-codex-gpt5.5-xhigh-fast"
     recent_action: "Cleanup implemented and verified"
@@ -17,7 +17,7 @@ _memory:
     key_files:
       - ".opencode/bin/spec-kit-memory-launcher.cjs"
       - ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts"
-      - ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/022-orphan-code-graph-db-cleanup/spec.md"
+      - ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/022-orphan-code-graph-db-cleanup/spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-05-14-008-orphan-code-graph-db-cleanup"
@@ -72,7 +72,7 @@ Removed stale spec-kit memory input-schema entries for `code_graph_*`, `detect_c
 | `.opencode/skills/system-spec-kit/mcp_server/database/code-graph.sqlite*` | Deleted | Remove direct orphan DB files. |
 | `.opencode/skills/system-spec-kit/mcp_server/dist/code_graph/` | Deleted | Remove stale pre-extraction compiled code. |
 | `.opencode/skills/system-spec-kit/mcp_server/dist/system-code-graph/` | Deleted | Remove stale compiled standalone code copied under spec-kit memory; deleted again after typecheck regenerated it. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/022-orphan-code-graph-db-cleanup/` | Created | Document this cleanup and verification. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/022-orphan-code-graph-db-cleanup/` | Created | Document this cleanup and verification. |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -106,7 +106,7 @@ The cleanup stayed on `main` and avoided the unrelated system-code-graph shared/
 | `find .opencode/skills/system-spec-kit/mcp_server/dist/code_graph .opencode/skills/system-spec-kit/mcp_server/dist/system-code-graph -maxdepth 1 -print` | PASS, no paths returned. |
 | `TOOL_DEFINITIONS` filtered for `code_graph_*`, `detect_changes`, `ccc_*` | PASS, `NO_CODE_GRAPH_TOOLS`, total registered tools 45. |
 | `cd .opencode/skills/system-spec-kit/mcp_server && npx tsc --noEmit` | PASS, exit 0. |
-| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/022-orphan-code-graph-db-cleanup --strict` | PASS, exit 0. |
+| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/022-orphan-code-graph-db-cleanup --strict` | PASS, exit 0. |
 <!-- /ANCHOR:verification -->
 
 ---

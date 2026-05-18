@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/024-mcp-tool-rename-mk-code-index",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/024-mcp-tool-rename-mk-code-index",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/007-code-graph",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/024-mcp-tool-rename-mk-code-index",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/024-mcp-tool-rename-mk-code-index",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/005-code-graph",
   "children_ids": [],
   "manual": {
     "depends_on": [
-      "system-spec-kit/026-graph-and-context-optimization/007-code-graph/013-system-code-graph-extraction"
+      "system-spec-kit/026-graph-and-context-optimization/005-code-graph/013-system-code-graph-extraction"
     ],
     "supersedes": [],
     "related_to": []
@@ -106,5 +106,5 @@
     ]
   },
   "migrated": true,
-  "migration_source": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/013-system-code-graph-extraction/010-mcp-tool-rename-mk-code-index"
+  "migration_source": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/013-system-code-graph-extraction/010-mcp-tool-rename-mk-code-index"
 }

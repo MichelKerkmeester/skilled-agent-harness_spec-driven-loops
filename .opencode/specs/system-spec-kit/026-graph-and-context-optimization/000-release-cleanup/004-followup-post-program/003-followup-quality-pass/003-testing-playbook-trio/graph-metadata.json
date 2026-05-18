@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-followup-quality-pass/003-testing-playbook-trio",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-followup-quality-pass/003-testing-playbook-trio",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-followup-quality-pass",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-followup-post-program/003-followup-quality-pass/003-testing-playbook-trio",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-followup-post-program/003-followup-quality-pass/003-testing-playbook-trio",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-followup-post-program/003-followup-quality-pass",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -44,25 +44,14 @@
     "status": "in_progress",
     "key_files": [
       ".opencode/skills/system-spec-kit/manual_testing_playbook/04--maintenance/278-memory-retention-sweep-basic-flow.md",
-      ".opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/279-advisor-status-rebuild-separation.md",
       ".opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/280-cli-matrix-adapter-runner-smoke.md",
-      ".opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/281-code-graph-read-path-selective-self-heal.md",
-      ".opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/282-code-graph-cell-coverage-evidence.md",
-      ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/01--native-mcp-tools/006-advisor-status-rebuild-separation.md",
       ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
-      ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/manual_testing_playbook.md",
       "spec.md",
       "plan.md",
       "checklist.md",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-followup-quality-pass/003-testing-playbook-trio/checklist.md",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-followup-quality-pass/003-testing-playbook-trio/description.json",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-followup-quality-pass/003-testing-playbook-trio/discovery-notes.md",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-followup-quality-pass/003-testing-playbook-trio/graph-metadata.json",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-followup-quality-pass/003-testing-playbook-trio/implementation-summary.md",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-followup-quality-pass/003-testing-playbook-trio/plan.md",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-followup-quality-pass/003-testing-playbook-trio/research/prompts/iteration-001.md",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-followup-quality-pass/003-testing-playbook-trio/spec.md",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-followup-quality-pass/003-testing-playbook-trio/tasks.md"
+      "tasks.md",
+      "implementation-summary.md",
+      "resource-map.md"
     ],
     "entities": [
       {
@@ -72,33 +61,9 @@
         "source": "derived"
       },
       {
-        "name": "279-advisor-status-rebuild-separation.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/279-advisor-status-rebuild-separation.md",
-        "source": "derived"
-      },
-      {
         "name": "280-cli-matrix-adapter-runner-smoke.md",
         "kind": "doc",
         "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/280-cli-matrix-adapter-runner-smoke.md",
-        "source": "derived"
-      },
-      {
-        "name": "281-code-graph-read-path-selective-self-heal.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/281-code-graph-read-path-selective-self-heal.md",
-        "source": "derived"
-      },
-      {
-        "name": "282-code-graph-cell-coverage-evidence.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/282-code-graph-cell-coverage-evidence.md",
-        "source": "derived"
-      },
-      {
-        "name": "006-advisor-status-rebuild-separation.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/01--native-mcp-tools/006-advisor-status-rebuild-separation.md",
         "source": "derived"
       },
       {
@@ -110,55 +75,37 @@
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-followup-quality-pass/003-testing-playbook-trio/spec.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
-        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-followup-quality-pass/003-testing-playbook-trio/plan.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
         "name": "checklist.md",
         "kind": "doc",
-        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-followup-quality-pass/003-testing-playbook-trio/checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "description.json",
-        "kind": "config",
-        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-followup-quality-pass/003-testing-playbook-trio/description.json",
-        "source": "derived"
-      },
-      {
-        "name": "discovery-notes.md",
-        "kind": "doc",
-        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-followup-quality-pass/003-testing-playbook-trio/discovery-notes.md",
-        "source": "derived"
-      },
-      {
-        "name": "graph-metadata.json",
-        "kind": "config",
-        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-followup-quality-pass/003-testing-playbook-trio/graph-metadata.json",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-followup-quality-pass/003-testing-playbook-trio/implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "iteration-001.md",
-        "kind": "doc",
-        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-followup-quality-pass/003-testing-playbook-trio/research/prompts/iteration-001.md",
+        "path": "checklist.md",
         "source": "derived"
       },
       {
         "name": "tasks.md",
         "kind": "doc",
-        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-followup-quality-pass/003-testing-playbook-trio/tasks.md",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
         "source": "derived"
       },
       {
@@ -208,11 +155,53 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Pattern Split",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Operator",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Packets 031-036 shipped or corrected operator-visible surfaces, but the reusable manual testing playbooks did not yet give operators copy-pasteable validation entries for the new handlers and runners. The gap affects retention enforcement, Skill Advisor rebuild separation, CLI matrix adapters, code-graph read-path repair, and packet 035 code-graph cell evidence.",
     "created_at": "2026-04-29T15:41:05Z",
-    "last_save_at": "2026-04-29T18:38:59.800Z",
+    "last_save_at": "2026-05-18T08:15:53.195Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

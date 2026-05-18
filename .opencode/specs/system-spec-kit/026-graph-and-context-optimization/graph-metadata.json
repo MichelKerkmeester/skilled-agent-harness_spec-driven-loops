@@ -8,16 +8,15 @@
     "system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline",
     "system-spec-kit/026-graph-and-context-optimization/002-resource-map-deep-loop-fix",
     "system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime",
-    "system-spec-kit/026-graph-and-context-optimization/006-external-project-adoption",
-    "system-spec-kit/026-graph-and-context-optimization/007-code-graph",
-    "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor",
-    "system-spec-kit/026-graph-and-context-optimization/009-hook-parity",
-    "system-spec-kit/026-graph-and-context-optimization/010-template-levels",
-    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-cocoindex-stack/010-daemon-resilience",
-    "system-spec-kit/026-graph-and-context-optimization/012-causal-graph-channel-routing",
-    "system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator",
-    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation",
-    "system-spec-kit/026-graph-and-context-optimization/015-mcp-shared-dependency-startup-fix"
+    "system-spec-kit/026-graph-and-context-optimization/004-external-project-adoption",
+    "system-spec-kit/026-graph-and-context-optimization/005-code-graph",
+    "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor",
+    "system-spec-kit/026-graph-and-context-optimization/007-hook-parity",
+    "system-spec-kit/026-graph-and-context-optimization/008-template-levels",
+    "system-spec-kit/026-graph-and-context-optimization/009-causal-graph-channel-routing",
+    "system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator",
+    "system-spec-kit/026-graph-and-context-optimization/011-mcp-shared-dependency-startup-fix",
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture"
   ],
   "migrated": true,
   "migration_source": "legacy",
@@ -83,6 +82,12 @@
         "source": "derived"
       },
       {
+        "name": "Planning Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Key Decisions",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -101,14 +106,32 @@
         "source": "derived"
       },
       {
-        "name": "Problem Statement The",
+        "name": "Resource Map",
         "kind": "proper_noun",
-        "path": "spec.md",
+        "path": "resource-map.md",
         "source": "derived"
       },
       {
-        "name": "Resource Map",
+        "name": "Author Instructions",
         "kind": "proper_noun",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "Restructure Note",
+        "kind": "proper_noun",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "real",
+        "kind": "key_phrase",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "PHASE-TO-ARTIFACT MAP",
+        "kind": "key_phrase",
         "path": "resource-map.md",
         "source": "derived"
       },
@@ -117,88 +140,16 @@
         "kind": "heading",
         "path": "resource-map.md",
         "source": "derived"
-      },
-      {
-        "name": "2. Documents",
-        "kind": "heading",
-        "path": "resource-map.md",
-        "source": "derived"
-      },
-      {
-        "name": "6. Specs",
-        "kind": "heading",
-        "path": "resource-map.md",
-        "source": "derived"
-      },
-      {
-        "name": "9. Config",
-        "kind": "heading",
-        "path": "resource-map.md",
-        "source": "derived"
-      },
-      {
-        "name": "Resource Map: 026-graph-and-context-optimization",
-        "kind": "quoted",
-        "path": "resource-map.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "Packet `026-graph-and-context-optimization` presents a 10-wrapper active navigation surface after two topical consolidation passes plus a post-push topology adjustment. The first pass (2026-04-21) collapsed 29 chronological phase folders into nine thematic wrappers with originals preserved as child packets. The second pass (2026-04-25 12:10) merged the former `006-search-routing-advisor/` into `008-skill-advisor/`, redistributed children of the former `009-hook-package/` across `007-code-graph/`, `008-skill-advisor/`, and the renamed `010-hook-parity/`. A subsequent post-push adjustment (2026-04-25 14:45) renamed `010-hook-parity/` to `009-hook-parity/` and removed the post-hoc `009-memory-causal-graph/` documentation packet (causal-graph infrastructure remains in production code; documentation lives in `010-graph-impact-and-affordance-uplift/005-memory-causal-trust-display/` from a display-layer perspective).",
+    "causal_summary": "Packet `026-graph-and-context-optimization` presents a 10-wrapper active navigation surface after two topical consolidation passes plus a post-push topology adjustment. The first pass (2026-04-21) collapsed 29 chronological phase folders into nine thematic wrappers with originals preserved as child packets. The second pass (2026-04-25 12:10) merged the former `006-search-routing-advisor/` into `006-skill-advisor/`, redistributed children of the former `009-hook-package/` across `005-code-graph/`, `006-skill-advisor/`, and the renamed `010-hook-parity/`. A subsequent post-push adjustment (2026-04-25 14:45) renamed `010-hook-parity/` to `007-hook-parity/` and removed the post-hoc `009-memory-causal-graph/` documentation packet (causal-graph infrastructure remains in production code; documentation lives in `010-graph-impact-and-affordance-uplift/005-memory-causal-trust-display/` from a display-layer perspective).",
     "created_at": "2026-04-12T09:02:53.443Z",
-    "last_save_at": "2026-05-16T09:00:00Z",
-    "save_lineage": "main_agent",
+    "last_save_at": "2026-05-18T08:15:52.941Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "resource-map.md"
-    ],
-    "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/015-tanstack-security-audit",
-    "last_active_at": "2026-05-15T18:27:59.589Z",
-    "restructure_note": "Post-restructure Wave 1-3 (packet 107): 4 renames, 7 merges, 8 deletes, 22+ archives. See z_archive/wave-2-merges/ + wave-3-deep-archives/. Active top-level children: 15 (+ 999 research packet).",
-    "phase_sequence": [
-      "001",
-      "002",
-      "003",
-      "005",
-      "006",
-      "007",
-      "008",
-      "009",
-      "010",
-      "011",
-      "012",
-      "013",
-      "014"
-    ],
-    "meta_phase_ids": [
-      "000"
-    ],
-    "phase_parent_flag": {
-      "000": true,
-      "001": true,
-      "003": true,
-      "006": true,
-      "007": true,
-      "008": true,
-      "009": true,
-      "010": true,
-      "012": true,
-      "013": true,
-      "014": true
-    },
-    "phase_renames": {
-      "014-local-llama-cpp": "014-local-embeddings-migration",
-      "015-global-security-sweep-and-supply-chain-audit": "015-tanstack-security-audit",
-      "006-graph-impact-and-affordance-uplift": "006-external-project-adoption",
-      "002-resource-map-template": "002-resource-map-deep-loop-fix",
-      "004-runtime-executor-hardening": "\u2192absorbed-into-003"
-    },
-    "resume_priority": [
-      "999",
-      "998",
-      "005",
-      "007",
-      "014"
     ]
   }
 }

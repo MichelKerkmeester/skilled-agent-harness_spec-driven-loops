@@ -60,7 +60,7 @@ _memory:
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This is **Phase 6** of the 008-skill-advisor track. Phases 1–5 (`001-skill-graph`, `002-scorer`, `003-router`, `004-hardening`, `005-docs`) built the advisor. This phase hardens its concurrency boundary, which `004-hardening` did not cover.
+This is **Phase 6** of the 006-skill-advisor track. Phases 1–5 (`001-skill-graph`, `002-scorer`, `003-router`, `004-hardening`, `005-docs`) built the advisor. This phase hardens its concurrency boundary, which `004-hardening` did not cover.
 
 **Scope Boundary**: changes are limited to the launcher + daemon-lifecycle + skill-graph DB open path. No scorer, schema, or query-surface changes.
 
@@ -71,7 +71,7 @@ This is **Phase 6** of the 008-skill-advisor track. Phases 1–5 (`001-skill-gra
 - Every DB open sets `PRAGMA journal_mode=WAL` and `PRAGMA busy_timeout=5000`.
 - 24-hour soak with deliberate duplicate-launch attempts produces zero `.corrupt` files.
 
-**Changelog**: when this phase closes, add `changelog/006-concurrent-daemon-corruption-fix.md` to the 008-skill-advisor parent changelog folder.
+**Changelog**: when this phase closes, add `changelog/006-concurrent-daemon-corruption-fix.md` to the 006-skill-advisor parent changelog folder.
 <!-- /ANCHOR:phase-context -->
 
 ---

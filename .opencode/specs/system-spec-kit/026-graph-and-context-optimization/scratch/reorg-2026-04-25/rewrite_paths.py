@@ -3,7 +3,7 @@
 Apply ordered path-string substitutions across the 026 spec tree.
 
 Order: longest-prefix-first to avoid prefix collisions
-(e.g. `009-hook-package/008-skill-advisor-plugin-hardening` is replaced
+(e.g. `009-hook-package/006-skill-advisor-plugin-hardening` is replaced
 before the bare `009-hook-package` → `010-hook-parity` rule fires).
 
 Skips iteration logs and review iteration files (point-in-time audit

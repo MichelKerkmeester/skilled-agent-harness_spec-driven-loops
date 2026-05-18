@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/034-mcp-namespace-operational-sweep",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/034-mcp-namespace-operational-sweep",
   "description": "Operational sweep of 3 files where packet 010's mcp__system_code_graph__ → mcp__mk_code_index__ rename was missed.",
   "keywords": [
     "mcp-namespace",
@@ -14,7 +14,7 @@
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "007-code-graph",
+    "005-code-graph",
     "013-system-code-graph-extraction"
   ],
   "memorySequence": 1

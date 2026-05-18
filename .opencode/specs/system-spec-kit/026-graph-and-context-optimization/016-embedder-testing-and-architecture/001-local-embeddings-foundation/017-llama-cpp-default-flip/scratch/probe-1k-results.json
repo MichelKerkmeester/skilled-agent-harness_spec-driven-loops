@@ -173,7 +173,7 @@
       "spearman_rho_top10": 0.727273
     },
     {
-      "query": "--- title: \"... ization/009-hook-parity/005-codex-hook-parity-remediation/research/007-deep-review-remediation-pt-02/research]\" description: \"Synthesis of 10 iterations investigating the exact Codex CLI 0.",
+      "query": "--- title: \"... ization/007-hook-parity/005-codex-hook-parity-remediation/research/007-deep-review-remediation-pt-02/research]\" description: \"Synthesis of 10 iterations investigating the exact Codex CLI 0.",
       "target_doc_id": "1692",
       "hf_local_top5": [
         {

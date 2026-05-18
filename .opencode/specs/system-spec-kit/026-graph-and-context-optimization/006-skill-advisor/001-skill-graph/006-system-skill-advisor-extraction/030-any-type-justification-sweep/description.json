@@ -1,0 +1,29 @@
+{
+  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/006-system-skill-advisor-extraction/030-any-type-justification-sweep",
+  "description": "Review possible any-type findings and close false positives or missing justifications.",
+  "keywords": [
+    "review",
+    "possible",
+    "any-type",
+    "findings",
+    "close",
+    "false",
+    "positives",
+    "missing",
+    "justifications"
+  ],
+  "lastUpdated": "2026-05-15T12:05:29.368Z",
+  "specId": "030",
+  "folderSlug": "any-type-justification-sweep",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "006-skill-advisor",
+    "006-system-skill-advisor-extraction"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

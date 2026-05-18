@@ -41,7 +41,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->"
 
 ## EXECUTIVE SUMMARY
 
-Packet `026-graph-and-context-optimization` presents a 10-wrapper active navigation surface after two topical consolidation passes plus a post-push topology adjustment. The first pass (2026-04-21) collapsed 29 chronological phase folders into nine thematic wrappers with originals preserved as child packets. The second pass (2026-04-25 12:10) merged the former `006-search-routing-advisor/` into `008-skill-advisor/`, redistributed children of the former `009-hook-package/` across `007-code-graph/`, `008-skill-advisor/`, and the renamed `010-hook-parity/`. A subsequent post-push adjustment (2026-04-25 14:45) renamed `010-hook-parity/` to `009-hook-parity/` and removed the post-hoc `009-memory-causal-graph/` documentation packet (causal-graph infrastructure remains in production code; documentation lives in `010-graph-impact-and-affordance-uplift/005-memory-causal-trust-display/` from a display-layer perspective).
+Packet `026-graph-and-context-optimization` presents a 10-wrapper active navigation surface after two topical consolidation passes plus a post-push topology adjustment. The first pass (2026-04-21) collapsed 29 chronological phase folders into nine thematic wrappers with originals preserved as child packets. The second pass (2026-04-25 12:10) merged the former `006-search-routing-advisor/` into `006-skill-advisor/`, redistributed children of the former `009-hook-package/` across `005-code-graph/`, `006-skill-advisor/`, and the renamed `010-hook-parity/`. A subsequent post-push adjustment (2026-04-25 14:45) renamed `010-hook-parity/` to `007-hook-parity/` and removed the post-hoc `009-memory-causal-graph/` documentation packet (causal-graph infrastructure remains in production code; documentation lives in `010-graph-impact-and-affordance-uplift/005-memory-causal-trust-display/` from a display-layer perspective).
 
 **Key Decisions**: Consolidate by theme rather than chronology, keep root `research/`, `review/`, and `scratch/` folders in place, and use `merged-phase-map.md` plus per-phase context index files as the bridge from old paths to active homes.
 
@@ -83,7 +83,7 @@ Provide one canonical 10-wrapper active map after two topical consolidation pass
 - Maintain the 10-wrapper active surface produced by both consolidation passes plus the post-push topology adjustment.
 - Keep original phase packets as direct child folders under their thematic wrapper.
 - Update root docs, metadata, `merged-phase-map.md`, and per-wrapper context indexes bridge docs as further moves happen.
-- Refresh moved packet metadata with new paths plus migration aliases for old packet IDs (including second-pass aliases from `008-skill-advisor/` and the rename chain `009-hook-package` → `010-hook-parity` → `009-hook-parity`).
+- Refresh moved packet metadata with new paths plus migration aliases for old packet IDs (including second-pass aliases from `006-skill-advisor/` and the rename chain `009-hook-package` → `010-hook-parity` → `007-hook-parity`).
 
 ### Out of Scope
 - Changing runtime code.
@@ -115,9 +115,9 @@ Provide one canonical 10-wrapper active map after two topical consolidation pass
 | `003-continuity-memory-runtime/` | Cache hooks, memory quality, continuity refactor, and memory-save rewrite | Four child phases preserved intact. |
 | `004-runtime-executor-hardening/` | Foundational runtime, CLI executor matrix, and system hardening | Three child phases preserved intact. |
 | `005-memory-indexer-invariants/` | Memory indexer lineage fix and constitutional-tier index-scope invariants (root-only merge) | No child phases — both tracks merged into root docs. |
-| `007-code-graph/` | Code graph upgrades, self-contained package migration, context/scan scope, and code-graph hook/advisor refinement | Five child phases (last two added in second pass from former `009-hook-package/013` and `009-hook-package/015`). |
-| `008-skill-advisor/` | Skill advisor system: search/routing tuning, advisor graph, phrase boosters, smart-router, advisor docs/standards, hook surface, daemon unification, plugin hardening, and hook improvements | 11 child phases (six absorbed from former `006-search-routing-advisor/` plus five from former `009-hook-package/{001,002,008,009,014}`). |
-| `009-hook-parity/` | Runtime hook parity across Claude / Codex / Copilot / OpenCode plugin: schema fixes, wrapper wiring fixes, parity remediations | Eight child phases renumbered 001-008 after second-pass migrations out. Renamed from `010-hook-parity/` during the post-push topology adjustment. |
+| `005-code-graph/` | Code graph upgrades, self-contained package migration, context/scan scope, and code-graph hook/advisor refinement | Five child phases (last two added in second pass from former `009-hook-package/013` and `009-hook-package/015`). |
+| `006-skill-advisor/` | Skill advisor system: search/routing tuning, advisor graph, phrase boosters, smart-router, advisor docs/standards, hook surface, daemon unification, plugin hardening, and hook improvements | 11 child phases (six absorbed from former `006-search-routing-advisor/` plus five from former `009-hook-package/{001,002,008,009,014}`). |
+| `007-hook-parity/` | Runtime hook parity across Claude / Codex / Copilot / OpenCode plugin: schema fixes, wrapper wiring fixes, parity remediations | Eight child phases renumbered 001-008 after second-pass migrations out. Renamed from `010-hook-parity/` during the post-push topology adjustment. |
 | `010-graph-impact-and-affordance-uplift/` | External Project pt-01 + pt-02 adoption: phase-DAG runner, edge explanation/impact uplift, advisor affordance evidence, memory causal trust display, docs/catalogs rollup | Six child phases. Owns memory-causal-trust display documentation under `005-memory-causal-trust-display/`. |
 | `003-mcp-runtime-stress-remediation/` | v1.0.1 MCP-runtime stress-test → deep research → remediation cycle: 006 sweep, 007 deep research (10 iterations producing Q1–Q8 diagnoses), 008–014 remediation packets, plus 013 daemon-rebuild contract. Carved out of `003-continuity-memory-runtime/` on 2026-04-27 once the cycle's topology became clear. | Nine child phases (006–014) plus `HANDOVER-deferred.md` tracking the four still-open follow-ups. |
 
@@ -145,10 +145,10 @@ Research convergence in the archived `001-research-and-baseline` corpus means sy
 | From | To | Criteria | Verification |
 |------|----|----------|--------------|
 | `001-research-and-baseline` | `003-continuity-memory-runtime` | Research and baseline findings remain available before runtime/memory consolidation. | Both wrappers validate and expose context indexes. |
-| `003-continuity-memory-runtime` | `007-code-graph` | Continuity and memory surfaces are stable enough for graph-package and graph-context work. | Child packets covering memory/runtime are preserved with metadata aliases. |
-| `007-code-graph` | `008-skill-advisor` | Code-graph upgrades and hook/advisor refinement land before advisor system unification. | Second-pass code-graph children (`004`, `005`) carry migration aliases from `009-hook-package/{013,015}`. |
-| `008-skill-advisor` | `009-hook-parity` | Advisor consolidation precedes runtime hook parity work that touches advisor + memory hooks. | `008-skill-advisor` has 11 children; `009-hook-parity` retains migration aliases for `009-hook-package`, `010-hook-package`, and `010-hook-parity`. |
-| `009-hook-parity` | `010-graph-impact-and-affordance-uplift` | Runtime hook parity precedes the External Project adoption uplift program. | `010-graph-impact-and-affordance-uplift` consumes graph and advisor surfaces in display-only mode and houses the causal-graph display documentation. |
+| `003-continuity-memory-runtime` | `005-code-graph` | Continuity and memory surfaces are stable enough for graph-package and graph-context work. | Child packets covering memory/runtime are preserved with metadata aliases. |
+| `005-code-graph` | `006-skill-advisor` | Code-graph upgrades and hook/advisor refinement land before advisor system unification. | Second-pass code-graph children (`004`, `005`) carry migration aliases from `009-hook-package/{013,015}`. |
+| `006-skill-advisor` | `007-hook-parity` | Advisor consolidation precedes runtime hook parity work that touches advisor + memory hooks. | `006-skill-advisor` has 11 children; `007-hook-parity` retains migration aliases for `009-hook-package`, `010-hook-package`, and `010-hook-parity`. |
+| `007-hook-parity` | `010-graph-impact-and-affordance-uplift` | Runtime hook parity precedes the External Project adoption uplift program. | `010-graph-impact-and-affordance-uplift` consumes graph and advisor surfaces in display-only mode and houses the causal-graph display documentation. |
 <!-- /ANCHOR:phase-map -->
 
 ---
@@ -162,7 +162,7 @@ Research convergence in the archived `001-research-and-baseline` corpus means sy
 |----|-------------|---------------------|
 | REQ-001 | Maintain a topical-thematic active phase surface. | Root direct phase folders are exactly the 10 approved wrappers; numbering gaps at `006`, `010`, and `011` are intentional and documented. |
 | REQ-002 | Preserve every original phase packet across both consolidation passes. | Every old phase `001` through `029` appears exactly once in the first-pass section of `merged-phase-map.md`, every second-pass move/rename appears exactly once in the appended second-pass section, and the post-push adjustment (rename + removal) is recorded as a sub-section. |
-| REQ-003 | Keep metadata resolvable after moves. | All migrated `description.json` and `graph-metadata.json` files parse and record migration aliases or source fields, including second-pass aliases for `008-skill-advisor/` and the rename chain `009-hook-package` → `010-hook-parity` → `009-hook-parity`. |
+| REQ-003 | Keep metadata resolvable after moves. | All migrated `description.json` and `graph-metadata.json` files parse and record migration aliases or source fields, including second-pass aliases for `006-skill-advisor/` and the rename chain `009-hook-package` → `010-hook-parity` → `007-hook-parity`. |
 
 ### P1 - Required (complete OR user-approved deferral)
 
@@ -271,7 +271,7 @@ Research convergence in the archived `001-research-and-baseline` corpus means sy
 **As a** maintainer, **I want** thematic phase folders, **so that** I can navigate the packet without scanning the original twenty-nine sibling folders.
 
 **Acceptance Criteria**:
-1. Given the root packet folder is listed, When I inspect direct numeric children, Then I see the 10 approved wrappers (`000`, `001`, `002`, `003`, `004`, `005`, `007`, `008`, `009-hook-parity`, `012`) and no others.
+1. Given the root packet folder is listed, When I inspect direct numeric children, Then I see the 10 approved wrappers (`000`, `001`, `002`, `003`, `004`, `005`, `007`, `008`, `007-hook-parity`, `012`) and no others.
 
 ---
 
@@ -306,7 +306,7 @@ The 026 phase parent underwent its first restructure wave per `999-spec-026-rest
 
 ### Changes shipped (Wave 1-3)
 
-- **4 renames** (W1): `002-resource-map-template` → `002-resource-map-deep-loop-fix`; `006-graph-impact-and-affordance-uplift` → `006-external-project-adoption`; `014-local-llama-cpp` → `014-local-embeddings-migration`; `015-global-security-sweep-and-supply-chain-audit` → `015-tanstack-security-audit`
+- **4 renames** (W1): `002-resource-map-template` → `002-resource-map-deep-loop-fix`; `006-graph-impact-and-affordance-uplift` → `004-external-project-adoption`; `014-local-llama-cpp` → `014-local-embeddings-migration`; `015-global-security-sweep-and-supply-chain-audit` → `015-tanstack-security-audit`
 - **7 PROCEED merges** (W2/M2-M7+M11): `057→056`, `007/002→007/014`, `007/016-020→007/014`, `004→003 (with nested children preserved)`, `009/006+007→009/002`, `013/002→013/001`, 5 documentation alignment artifacts archived
 - **8 CONTAINED deletes** (W3.1): 014/* re-review artifacts with zero external references
 - **14 DEEP archives** (W3.2): 007/* post-extraction cleanup + deep-review campaign artifacts moved to `z_archive/wave-3-deep-archives/`
@@ -321,7 +321,7 @@ The 026 phase parent underwent its first restructure wave per `999-spec-026-rest
 - M10 (`015 → 000`, BLOCKED on 000 recatalog — 000 has 59 children with duplicate 006/007 prefixes)
 - 18 SHALLOW + MEDIUM deletes (require per-packet ref-count proof)
 - iter 039 full parent-doc restructure (20-section spec.md proposal)
-- 008-skill-advisor internal phase restructuring
+- 006-skill-advisor internal phase restructuring
 - Phase lifecycle governance (iter 047)
 
 

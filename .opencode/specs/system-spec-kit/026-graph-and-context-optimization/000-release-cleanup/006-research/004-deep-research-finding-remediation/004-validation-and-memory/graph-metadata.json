@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-deep-research-finding-remediation/004-validation-and-memory",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-deep-research-finding-remediation/004-validation-and-memory",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-deep-research-finding-remediation",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/006-research/004-deep-research-finding-remediation/004-validation-and-memory",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/006-research/004-deep-research-finding-remediation/004-validation-and-memory",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/006-research/004-deep-research-finding-remediation",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -41,8 +41,6 @@
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      "mcp_server/skill_advisor/schemas/advisor-tool-schemas.ts",
-      "mcp_server/skill_advisor/handlers/advisor-validate.ts",
       "mcp_server/formatters/search-results.ts",
       "mcp_server/lib/parsing/memory-parser.ts",
       "lib/description/description-schema.ts",
@@ -52,7 +50,6 @@
       "scripts/rules/check-evidence.sh",
       "scripts/lib/check-priority-helper.sh",
       "scripts/rules/check-template-headers.sh",
-      "mcp_server/skill_advisor/handlers/advisor-recommend.ts",
       "mcp_server/tests/memory-parser-description-schema.vitest.ts",
       "mcp_server/tests/memory-parser-causal-links-snake-case.vitest.ts",
       "mcp_server/tests/causal-links-processor-null-insert.vitest.ts",
@@ -60,21 +57,12 @@
       "mcp_server/package.json",
       ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
       "tests/memory-parser-extended.vitest.ts",
-      "skill_advisor/tests/handlers/advisor-validate.vitest.ts"
+      "checklist.md",
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md"
     ],
     "entities": [
-      {
-        "name": "advisor-tool-schemas.ts",
-        "kind": "code",
-        "path": "mcp_server/skill_advisor/schemas/advisor-tool-schemas.ts",
-        "source": "derived"
-      },
-      {
-        "name": "advisor-validate.ts",
-        "kind": "code",
-        "path": "mcp_server/skill_advisor/handlers/advisor-validate.ts",
-        "source": "derived"
-      },
       {
         "name": "search-results.ts",
         "kind": "code",
@@ -130,12 +118,6 @@
         "source": "derived"
       },
       {
-        "name": "advisor-recommend.ts",
-        "kind": "code",
-        "path": "mcp_server/skill_advisor/handlers/advisor-recommend.ts",
-        "source": "derived"
-      },
-      {
         "name": "memory-parser-description-schema.vitest.ts",
         "kind": "test",
         "path": "mcp_server/tests/memory-parser-description-schema.vitest.ts",
@@ -178,9 +160,27 @@
         "source": "derived"
       },
       {
-        "name": "advisor-validate.vitest.ts",
-        "kind": "test",
-        "path": "skill_advisor/tests/handlers/advisor-validate.vitest.ts",
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Thirteen validators and parsers across the advisor, memory, and spec-validation subsystems leak loose-typing, generic-parse, and false-positive bugs identified by packet 046's deep research:",
     "created_at": "2026-05-01T05:18:48Z",
-    "last_save_at": "2026-05-01T06:25:04.324Z",
+    "last_save_at": "2026-05-18T08:15:53.320Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

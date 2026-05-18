@@ -28,7 +28,7 @@ The advisor packet iteration-02 recommended:
 - **Fallback**: Option A (skill-owned) if inheritance doesn't work
 - **Rationale**: Start simple, add complexity only if needed
 
-**Evidence**: <ref_file file="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/025-cli-devin-skill-advisor-hook/research/iterations/iteration-02.md" />
+**Evidence**: <ref_file file="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/025-cli-devin-skill-advisor-hook/research/iterations/iteration-02.md" />
 
 ### Finding 2: Option A (system-spec-kit/hooks/devin/) Advantages
 
@@ -81,7 +81,7 @@ Q1 found that:
 
 This uncertainty makes Option C a calculated risk rather than a guaranteed solution.
 
-**Evidence**: <ref_file file="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/036-cli-devin-code-graph-hook/research/iterations/iteration-01.md" />
+**Evidence**: <ref_file file="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/036-cli-devin-code-graph-hook/research/iterations/iteration-01.md" />
 
 ## Confidence
 

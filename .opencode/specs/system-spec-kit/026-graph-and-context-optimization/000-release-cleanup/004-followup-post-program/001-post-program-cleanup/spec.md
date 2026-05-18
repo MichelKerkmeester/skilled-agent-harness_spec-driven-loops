@@ -94,7 +94,7 @@ Make the post-program state auditable, traceable, and validator-clean where the 
 | `graph-metadata.json` | Create | Packet graph metadata and derived status. |
 | `../../001-memory-indexer-storage-boundary/graph-metadata.json` | Modify | Refresh stale `planned` status. |
 | `../../002-tier2-remediation/graph-metadata.json` | Modify | Refresh stale `planned` status. |
-| `../../../008-skill-advisor/002-daemon-and-unification/graph-metadata.json` | Modify | Refresh stale source-packet status. |
+| `../../../006-skill-advisor/002-daemon-and-unification/graph-metadata.json` | Modify | Refresh stale source-packet status. |
 | `../../../005-memory-indexer-invariants/implementation-summary.md` | Modify | Refresh continuity freshness without closing CHK-T15. |
 | `../../../005-memory-indexer-invariants/graph-metadata.json` | Modify | Refresh metadata save timestamp while preserving CHK-T15 status. |
 | `../../../003-mcp-runtime-stress-remediation/*` | Modify | Targeted validator hygiene if bounded. |

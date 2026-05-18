@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/022-orphan-code-graph-db-cleanup"
+    packet_pointer: ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/022-orphan-code-graph-db-cleanup"
     last_updated_at: "2026-05-14T13:15:00Z"
     last_updated_by: "cli-codex-gpt5.5-xhigh-fast"
     recent_action: "Created cleanup packet and removed orphan code-graph artifacts from the system-spec-kit tree"
@@ -94,7 +94,7 @@ Remove the stale artifacts and add a launch-time guard so spec-kit memory never 
 | `.opencode/skills/system-spec-kit/mcp_server/database/code-graph.sqlite*` | Delete | Remove direct orphan code-graph database files. |
 | `.opencode/skills/system-spec-kit/mcp_server/dist/code_graph/` | Delete | Remove stale pre-extraction compiled code-graph output. |
 | `.opencode/skills/system-spec-kit/mcp_server/dist/system-code-graph/` | Delete | Remove stale compiled standalone code-graph copy from the spec-kit memory build tree. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/022-orphan-code-graph-db-cleanup/` | Create | Track this cleanup packet and verification evidence. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/022-orphan-code-graph-db-cleanup/` | Create | Track this cleanup packet and verification evidence. |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -116,7 +116,7 @@ Remove the stale artifacts and add a launch-time guard so spec-kit memory never 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-005 | Typecheck still passes | `cd .opencode/skills/system-spec-kit/mcp_server && npx tsc --noEmit` exits 0. |
-| REQ-006 | Packet docs validate | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/022-orphan-code-graph-db-cleanup --strict` exits 0. |
+| REQ-006 | Packet docs validate | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/022-orphan-code-graph-db-cleanup --strict` exits 0. |
 <!-- /ANCHOR:requirements -->
 
 ---

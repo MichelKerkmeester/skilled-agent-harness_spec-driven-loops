@@ -8,40 +8,19 @@
     "system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/002-memory-quality-remediation",
     "system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/003-continuity-refactor-gates",
     "system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/004-memory-save-rewrite",
+    "system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/005-memory-search-runtime-bugs",
+    "system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/006-search-clusters-4-7-remediation",
+    "system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/007-foundational-runtime",
+    "system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/008-sk-deep-cli-runtime-execution",
+    "system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/009-system-hardening",
+    "system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/010-memory-indexer-invariants",
     "system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/011-z-archive-memory-indexing"
   ],
   "migrated": true,
   "migration_source": "legacy",
   "manual": {
     "depends_on": [],
-    "supersedes": [
-      {
-        "packet_id": "system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/001-cache-warning-hooks",
-        "reason": "supersedes relationship preserved during phase consolidation",
-        "source": "026-phase-consolidation",
-        "spec_folder": "system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/001-cache-warning-hooks"
-      },
-      {
-        "packet_id": "system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/002-memory-quality-remediation",
-        "reason": "supersedes relationship preserved during phase consolidation",
-        "source": "026-phase-consolidation",
-        "spec_folder": "system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/002-memory-quality-remediation"
-      },
-      {
-        "packet_id": "system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/003-continuity-refactor-gates",
-        "reason": "supersedes relationship preserved during phase consolidation",
-        "source": "026-phase-consolidation",
-        "spec_folder": "system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/003-continuity-refactor-gates"
-      },
-      {
-        "packet_id": "system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/004-memory-save-rewrite",
-        "reason": "supersedes relationship preserved during phase consolidation",
-        "source": "026-phase-consolidation",
-        "spec_folder": "system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/004-memory-save-rewrite"
-      },
-      "system-spec-kit/026-graph-and-context-optimization/004-runtime-executor-hardening",
-      "system-spec-kit/026-graph-and-context-optimization/005-memory-indexer-invariants"
-    ],
+    "supersedes": [],
     "related_to": []
   },
   "derived": {
@@ -51,7 +30,10 @@
       "001-cache-warning-hooks",
       "002-memory-quality-remediation",
       "003-continuity-refactor-gates",
-      "004-memory-save-rewrite"
+      "004-memory-save-rewrite",
+      "resource map",
+      "003-continuity-memory-runtime resource map",
+      "path catalog 003-continuity-memory-runtime"
     ],
     "key_topics": [
       "002-continuity-memory-runtime",
@@ -68,12 +50,10 @@
       "003-continuity-refactor-gates"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "planned",
     "key_files": [
       "spec.md",
-      "plan.md",
-      "tasks.md",
-      "implementation-summary.md"
+      "resource-map.md"
     ],
     "entities": [
       {
@@ -83,21 +63,9 @@
         "source": "derived"
       },
       {
-        "name": "plan.md",
+        "name": "resource-map.md",
         "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
+        "path": "resource-map.md",
         "source": "derived"
       },
       {
@@ -137,100 +105,50 @@
         "source": "derived"
       },
       {
-        "name": "Implementation Plan",
+        "name": "Resource Map",
         "kind": "proper_noun",
-        "path": "plan.md",
+        "path": "resource-map.md",
         "source": "derived"
       },
       {
-        "name": "Technical Context",
+        "name": "Author Instructions",
         "kind": "proper_noun",
-        "path": "plan.md",
+        "path": "resource-map.md",
         "source": "derived"
       },
       {
-        "name": "Spec Kit Level",
-        "kind": "proper_noun",
-        "path": "plan.md",
+        "name": "real",
+        "kind": "key_phrase",
+        "path": "resource-map.md",
         "source": "derived"
       },
       {
-        "name": "Overview This",
-        "kind": "proper_noun",
-        "path": "plan.md",
+        "name": "Summary",
+        "kind": "heading",
+        "path": "resource-map.md",
         "source": "derived"
       },
       {
-        "name": "Pattern Active",
-        "kind": "proper_noun",
-        "path": "plan.md",
+        "name": "1. READMEs",
+        "kind": "heading",
+        "path": "resource-map.md",
         "source": "derived"
       },
       {
-        "name": "Continuity Memory",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Context Index",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "What Was Built This",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Direct Children",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
+        "name": "2. Documents",
+        "kind": "heading",
+        "path": "resource-map.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The first consolidation preserved old packets behind an extra archive layer, which made the active phase surface harder to browse.",
     "created_at": "2026-04-21T13:00:00Z",
-    "last_save_at": "2026-04-26T09:17:15.722Z",
-    "save_lineage": "same_pass",
+    "last_save_at": "2026-05-18T08:15:53.361Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
-      "plan.md",
-      "tasks.md",
-      "implementation-summary.md"
+      "resource-map.md"
     ]
   }
 }

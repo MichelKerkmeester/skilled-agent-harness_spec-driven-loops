@@ -1,0 +1,23 @@
+{
+  "specFolder": "008-template-levels",
+  "description": "RM-8 prompt hardening: explicit allowed-write list and rm/mv/sed -i ban in deep-review iteration prompt template",
+  "keywords": [
+    "rm-8",
+    "prompt",
+    "hardening",
+    "explicit",
+    "allowed-write",
+    "list",
+    "sed",
+    "ban",
+    "deep-review",
+    "iteration",
+    "template"
+  ],
+  "lastUpdated": "2026-05-11T05:45:02.910Z",
+  "specId": "010",
+  "folderSlug": "template-levels",
+  "parentChain": [],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

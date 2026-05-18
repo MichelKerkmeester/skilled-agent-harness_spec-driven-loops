@@ -1,5 +1,5 @@
 ---
-title: "Decision Record: Sandbox Testing Playbook [system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/002-sandbox-testing-playbook/decision-record]"
+title: "Decision Record: Sandbox Testing Playbook [system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/002-sandbox-testing-playbook/decision-record]"
 description: "Architecture Decision Records for the 002 packet — captures the 5 cross-cutting decisions that justify the Level 3 designation: ID range strategy, sandbox location, fixture-hosting strategy, scenario-shape choice, harness-language choice."
 trigger_phrases:
   - "002-sandbox-testing-playbook ADRs"
@@ -9,7 +9,7 @@ contextType: "implementation"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/002-sandbox-testing-playbook"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/002-sandbox-testing-playbook"
     last_updated_at: "2026-05-09T16:22:00Z"
     last_updated_by: "spec-author"
     recent_action: "Authored 7 ADRs covering ID range sandbox fixtures scenario harness language"

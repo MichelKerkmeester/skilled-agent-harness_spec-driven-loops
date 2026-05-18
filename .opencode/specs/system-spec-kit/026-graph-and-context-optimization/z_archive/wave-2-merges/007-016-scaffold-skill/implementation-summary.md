@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/016-scaffold-skill"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/005-code-graph/016-scaffold-skill"
     last_updated_at: "2026-05-14T09:13:21Z"
     last_updated_by: "claude"
     recent_action: "Recalibration backfill post-manual-reorg"

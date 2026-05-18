@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/003-memory-context-truncation-contract",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/003-memory-context-truncation-contract",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/003-mcp-runtime-stress-remediation/003-memory-context-truncation-contract",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/003-mcp-runtime-stress-remediation/003-memory-context-truncation-contract",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/003-mcp-runtime-stress-remediation",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -41,13 +41,18 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/_support/token-budget-assertions.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/token-budget-enforcement.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/memory-context.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/dist/handlers/memory-context.js",
+      "spec.md",
+      "tasks.md",
       "mcp_server/handlers/memory-context.ts",
       "mcp_server/tests/token-budget-enforcement.vitest.ts",
       "mcp_server/tests/memory-context.vitest.ts",
       "mcp_server/dist/handlers/memory-context.js",
-      "spec.md",
       "plan.md",
-      "tasks.md",
       "implementation-summary.md",
       "dist/handlers/memory-context.js"
     ],
@@ -55,25 +60,31 @@
       {
         "name": "memory-context.ts",
         "kind": "code",
-        "path": "mcp_server/handlers/memory-context.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts",
+        "source": "derived"
+      },
+      {
+        "name": "token-budget-assertions.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/_support/token-budget-assertions.ts",
         "source": "derived"
       },
       {
         "name": "token-budget-enforcement.vitest.ts",
         "kind": "test",
-        "path": "mcp_server/tests/token-budget-enforcement.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/token-budget-enforcement.vitest.ts",
         "source": "derived"
       },
       {
         "name": "memory-context.vitest.ts",
         "kind": "test",
-        "path": "mcp_server/tests/memory-context.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/memory-context.vitest.ts",
         "source": "derived"
       },
       {
         "name": "memory-context.js",
         "kind": "code",
-        "path": "mcp_server/dist/handlers/memory-context.js",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/dist/handlers/memory-context.js",
         "source": "derived"
       },
       {
@@ -83,15 +94,15 @@
         "source": "derived"
       },
       {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -179,12 +190,6 @@
         "source": "derived"
       },
       {
-        "name": "Source Implementation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
         "name": "Completion Criteria",
         "kind": "proper_noun",
         "path": "tasks.md",
@@ -199,7 +204,7 @@
     ],
     "causal_summary": "The 005 post-remediation verification (2026-04-26 18:49) showed that the Cluster 1 truncation fix is NOT live in the daemon: `memory_context({input:\"Semantic Search\"})` still returns `meta.tokenBudgetEnforcement.{enforced:true, truncated:true, returnedResultCount:3, originalResultCount:5}` while `actualTokens=65 / budgetTokens=3500` (1.9% utilization) and `data.content[0].text` still contains `{\"count\":0,\"results\":[]}`. The 007 research isolated the root cause as soft contracts: `actualTokens` is reported AFTER fallback (post-enforcement size), there is no `preEnforcementTokens` to distinguish overflow from returned size, and the wrapper has no payload/count invariant assertion that the metadata's `returnedResultCount` matches the actual `JSON.parse(content[0].text).data.results.length`.",
     "created_at": "2026-04-27T07:29:35.265Z",
-    "last_save_at": "2026-04-27T07:29:35.265Z",
+    "last_save_at": "2026-05-18T08:15:53.228Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

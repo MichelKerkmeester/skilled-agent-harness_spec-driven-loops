@@ -1,0 +1,23 @@
+{
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/019-system-code-graph-uplift",
+  "description": "Phased uplift of the system-code-graph skill: 20-iter deep-research at parent root informs three implementation children covering SKILL.md/references polish + INSTALL_GUIDE drift fixes (001), marketing-voice README rewrite (002), and exhaustive sk-doc validate_document.py 1:1 alignment across every authored doc (003). Deep-research dispatched via cli-devin SWE 1.6 per the deep-research SKILL workflow.",
+  "keywords": [
+    "system-code-graph-uplift",
+    "marketing-readme",
+    "sk-doc-1to1-alignment",
+    "deep-research-20-iter",
+    "cli-devin-swe-1.6",
+    "phase-parent"
+  ],
+  "lastUpdated": "2026-05-16T09:37:48Z",
+  "specId": "019",
+  "folderSlug": "system-code-graph-uplift",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "005-code-graph"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "phase-parent"
+}

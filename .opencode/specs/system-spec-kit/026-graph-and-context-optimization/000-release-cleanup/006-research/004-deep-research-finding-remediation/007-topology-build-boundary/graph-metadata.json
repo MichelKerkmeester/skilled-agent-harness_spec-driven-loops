@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-deep-research-finding-remediation/007-topology-build-boundary",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-deep-research-finding-remediation/007-topology-build-boundary",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-deep-research-finding-remediation",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/006-research/004-deep-research-finding-remediation/007-topology-build-boundary",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/006-research/004-deep-research-finding-remediation/007-topology-build-boundary",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/006-research/004-deep-research-finding-remediation",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -11,83 +11,55 @@
   },
   "derived": {
     "trigger_phrases": [
-      "this",
-      "phase",
-      "your",
-      "value",
-      "here",
-      "template",
-      "phase child header",
-      "implementation",
-      "plan",
-      "name",
-      "plan core",
-      "tasks"
+      "F-019-D4-02",
+      "F-019-D4-03",
+      "F-020-D5-01",
+      "F-020-D5-02",
+      "F-020-D5-03",
+      "F-020-D5-04",
+      "topology and build dist boundary remediation",
+      "phase path grammar",
+      "phase parent health",
+      "advisor source path snake case",
+      "source dist alignment checker",
+      "orphan harness dist"
     ],
     "key_topics": [
-      "phase",
-      "value",
-      "template",
-      "child",
-      "header",
-      "implementation",
-      "plan",
-      "name",
-      "core",
-      "tasks",
-      "sub-phase",
-      "children"
+      "f-019-d4-02",
+      "f-019-d4-03",
+      "f-020-d5-01",
+      "f-020-d5-02",
+      "f-020-d5-03",
+      "f-020-d5-04",
+      "topology",
+      "build",
+      "dist",
+      "boundary",
+      "remediation",
+      "phase"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      "spec.md",
-      "plan.md",
-      "mcp_server/tests/phase-parent-health.vitest.ts",
-      "mcp_server/skill_advisor/tests/compat/plugin-bridge-smoke.vitest.ts",
-      "scripts/tests/check-source-dist-alignment-orphans.vitest.ts",
       ".opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml",
       "mcp_server/lib/spec/is-phase-parent.ts",
       "scripts/spec/is-phase-parent.ts",
       "scripts/rules/check-phase-parent-content.sh",
-      ".opencode/plugins/spec-kit-skill-advisor.js",
       "scripts/evals/check-source-dist-alignment.ts",
-      "mcp_server/plugin_bridges/spec-kit-skill-advisor-bridge.mjs",
-      "tasks.md",
+      "stress_test/search-quality/harness.ts",
+      "mcp_server/tests/phase-parent-health.vitest.ts",
+      "scripts/tests/check-source-dist-alignment-orphans.vitest.ts",
+      "mcp_server/dist/lib/spec/is-phase-parent.js",
+      "scripts/dist/spec/is-phase-parent.js",
+      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+      ".opencode/skills/system-spec-kit/scripts/evals/check-source-dist-alignment.ts",
       "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md"
     ],
     "entities": [
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "phase-parent-health.vitest.ts",
-        "kind": "test",
-        "path": "mcp_server/tests/phase-parent-health.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "plugin-bridge-smoke.vitest.ts",
-        "kind": "test",
-        "path": "mcp_server/skill_advisor/tests/compat/plugin-bridge-smoke.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "check-source-dist-alignment-orphans.vitest.ts",
-        "kind": "test",
-        "path": "scripts/tests/check-source-dist-alignment-orphans.vitest.ts",
-        "source": "derived"
-      },
       {
         "name": "spec_kit_implement_auto.yaml",
         "kind": "config",
@@ -107,27 +79,39 @@
         "source": "derived"
       },
       {
-        "name": "spec-kit-skill-advisor.js",
-        "kind": "code",
-        "path": ".opencode/plugins/spec-kit-skill-advisor.js",
-        "source": "derived"
-      },
-      {
         "name": "check-source-dist-alignment.ts",
         "kind": "code",
         "path": "scripts/evals/check-source-dist-alignment.ts",
         "source": "derived"
       },
       {
-        "name": "spec-kit-skill-advisor-bridge.mjs",
-        "kind": "file",
-        "path": "mcp_server/plugin_bridges/spec-kit-skill-advisor-bridge.mjs",
+        "name": "harness.ts",
+        "kind": "code",
+        "path": "stress_test/search-quality/harness.ts",
         "source": "derived"
       },
       {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
+        "name": "phase-parent-health.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/phase-parent-health.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "check-source-dist-alignment-orphans.vitest.ts",
+        "kind": "test",
+        "path": "scripts/tests/check-source-dist-alignment-orphans.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "is-phase-parent.js",
+        "kind": "code",
+        "path": "mcp_server/dist/lib/spec/is-phase-parent.js",
+        "source": "derived"
+      },
+      {
+        "name": "validate.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
         "source": "derived"
       },
       {
@@ -143,7 +127,43 @@
         "source": "derived"
       },
       {
-        "name": "Child Header",
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Topology And Build",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Dist Boundary Remediation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -155,25 +175,7 @@
         "source": "derived"
       },
       {
-        "name": "Parent Plan",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Handoff Criteria",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase Context This",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Scope Boundary",
+        "name": "Problem Statement Six",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -185,27 +187,27 @@
         "source": "derived"
       },
       {
-        "name": "Technical Context",
+        "name": "Technical Context The",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Test Type",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Key Components",
-        "kind": "proper_noun",
+        "name": "allowlisted",
+        "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 7** of the Sub-phase children for 049 deep-research finding remediation specification.",
+    "causal_summary": "Six P2 findings from packet 046's deep research (D4 phase-topology, D5 build/dist boundary) leak topology drift, cache-signature drift, and stale dist artifacts the existing tooling cannot see:",
     "created_at": "2026-05-01T05:18:48Z",
-    "last_save_at": "2026-05-01T06:52:26.736Z",
+    "last_save_at": "2026-05-18T08:15:53.327Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

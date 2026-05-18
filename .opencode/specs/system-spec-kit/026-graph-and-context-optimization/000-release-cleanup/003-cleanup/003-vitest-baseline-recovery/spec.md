@@ -83,7 +83,7 @@ The packet does **not** introduce new functionality. It restores the baseline.
 
 - **skill_advisor/tests/scorer/** — `projection-fallback-049-005.vitest.ts`, `native-scorer.vitest.ts`, plus likely siblings. Failure pattern: expected `'filesystem-fallback'` source label, getting `'filesystem'`. Looks like fixture-drift after a behavior change.
 - **tests/hooks/** — likely fixture drift around hook-payload schemas after the cross-runtime parity work.
-- **tests/scaffold/** — possibly drift after the manifest-driven template redesign (010-template-levels).
+- **tests/scaffold/** — possibly drift after the manifest-driven template redesign (008-template-levels).
 - **tests/alignment/** — workflow-invariance allowlist; new templates need entries.
 - **tests/code-graph/** — possibly drift after phase 012/007 parser_skip_list landed.
 

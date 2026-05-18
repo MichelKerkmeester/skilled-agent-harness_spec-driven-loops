@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "verification"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/030-manual-testing-verification"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/005-code-graph/030-manual-testing-verification"
     last_updated_at: "2026-05-14T20:05:00Z"
     last_updated_by: "orchestrator-patch"
     recent_action: "Restructured plan to template anchors"

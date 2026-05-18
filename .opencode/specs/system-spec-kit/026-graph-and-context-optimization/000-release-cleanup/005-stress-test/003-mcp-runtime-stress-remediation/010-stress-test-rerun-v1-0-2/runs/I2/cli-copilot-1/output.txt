@@ -200,12 +200,12 @@ I’ve confirmed the handler path: `handlers/memory-search.ts` builds a hybrid p
 I’ve got the main split now: the observed payload shape comes from the D5 retrieval-UX layer, while the actual candidate generation still starts in the V2 pipeline + hybrid search. I’m pulling the newer 026 tuning packet because that looks like the most recent routing-focused follow-on.
 
 ● Search (glob)
-  │ "**/008-skill-advisor/001-search-and-routing-tuning/**/spec.md" in
+  │ "**/006-skill-advisor/001-search-and-routing-tuning/**/spec.md" in
   │ .opencode/specs/system-spec-kit/026-graph-and-context-optimization
   └ 1 file found
 
 ● Search (glob)
-  │ "**/008-skill-advisor/001-search-and-routing-tuning/**/description.json" in
+  │ "**/006-skill-advisor/001-search-and-routing-tuning/**/description.json" in
   │ .opencode/specs/system-spec-kit/026-graph-and-context-optimization
   └ 4 files found
 
@@ -275,7 +275,7 @@ If the bug is actually **earlier in retrieval**, start here next:
 3. `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts` — best first place for candidate-generation/search-routing issues.
 4. `.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts` — low-level hybrid retrieval path.
 5. `.opencode/specs/system-spec-kit/023-hybrid-rag-fusion-refinement/007-hybrid-search-null-db-fix/spec.md` — best historical spec for prior search-pipeline failure modes.
-6. `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-search-and-routing-tuning/implementation-summary.md` — best recent summary for shipped search-fusion and routing tuning.
+6. `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-search-and-routing-tuning/implementation-summary.md` — best recent summary for shipped search-fusion and routing tuning.
 
 
 Changes   +0 -0

@@ -9,23 +9,89 @@
     "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-followup-post-program/003-followup-quality-pass",
     "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-followup-post-program/004-runtime-cleanup-followups"
   ],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
     "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
   "derived": {
-    "trigger_phrases": ["000-release-cleanup/004-followup-post-program", "followup-post-program"],
-    "key_topics": ["post-program-cleanup", "quality-pass", "runtime-cleanup", "vitest-recovery", "followup-work", "iterative-improvements", "release-cleanup"],
+    "trigger_phrases": [
+      "000-release-cleanup/004-followup-post-program",
+      "followup-post-program",
+      "post-program cleanup phases"
+    ],
+    "key_topics": [
+      "000-release-cleanup",
+      "004-followup-post-program",
+      "followup-post-program",
+      "post-program",
+      "cleanup",
+      "phases",
+      "coordinate",
+      "followup",
+      "work",
+      "across",
+      "quality",
+      "passes"
+    ],
     "importance_tier": "normal",
-    "status": "in_progress",
-    "key_files": ["spec.md"],
-    "entities": [],
-    "causal_summary": "Coordinates followup and post-program work across quality passes, runtime cleanup, test recovery, and iterative improvements. The sub-phase includes 002-vitest-recovery-followup for test baseline recovery and 004-runtime-cleanup-followups for packet 096 followups including workspace root hardening and memory health diagnostics.",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Program Work",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Program Cleanup",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Quality Pass",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. ROOT PURPOSE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PHASE CHILDREN",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Coordinate followup and post-program work across quality passes, runtime cleanup, test recovery, and iterative improvements. This sub-phase binds together 4 child packets that address cleanup tasks and quality refinements after major program milestones, ensuring system health and test coverage through targeted remediation efforts.",
     "created_at": "2026-05-16T09:00:00Z",
-    "last_save_at": "2026-05-16T11:30:00Z",
-    "save_lineage": "cli-devin-swe-1.6-w3f",
+    "last_save_at": "2026-05-18T08:15:53.182Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "source_docs": ["spec.md", "README.md"]
+    "source_docs": [
+      "spec.md"
+    ]
   }
 }

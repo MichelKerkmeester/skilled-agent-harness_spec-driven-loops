@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/033-deferred-fix-followup",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/033-deferred-fix-followup",
   "description": "Closes the 5 deferred findings from 018 — architecture.md reconstruction, launcher kitDir-derived path, 3 new playbook scenarios.",
   "keywords": [
     "deferred-fix",
@@ -14,7 +14,7 @@
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "007-code-graph",
+    "005-code-graph",
     "013-system-code-graph-extraction"
   ],
   "memorySequence": 1

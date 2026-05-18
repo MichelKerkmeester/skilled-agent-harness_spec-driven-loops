@@ -1,0 +1,21 @@
+{
+  "level": "2",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/004-apply-metadata-fixes-and-resweep",
+  "description": "Apply 015/005's top-8 audit recommendations to skill graph-metadata.json and SKILL.md descriptions, invalidate the embedding cache, re-run the seeded 7-vector sweep, document deltas vs the 015/004 baseline.",
+  "keywords": [
+    "metadata-fixes-apply",
+    "post-audit-skill-edits",
+    "embedding-cache-invalidate",
+    "seeded-sweep-rerun",
+    "metadata-aware-delta"
+  ],
+  "lastUpdated": "2026-05-14T01:00:00Z",
+  "specId": "006",
+  "folderSlug": "apply-metadata-fixes-and-resweep",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "006-skill-advisor",
+    "002-skill-advisor-semantic-lane"
+  ]
+}

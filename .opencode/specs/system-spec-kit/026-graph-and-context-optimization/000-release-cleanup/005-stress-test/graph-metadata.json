@@ -13,23 +13,89 @@
     "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/007-stress-test-gap-remediation",
     "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/008-mk-spec-memory-stress-test"
   ],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
     "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
   "derived": {
-    "trigger_phrases": ["000-release-cleanup/005-stress-test", "stress-test"],
-    "key_topics": ["stress-test", "coverage", "remediation", "mcp-runtime", "documentation", "pattern", "audit", "gap"],
+    "trigger_phrases": [
+      "000-release-cleanup/005-stress-test",
+      "stress-test",
+      "stress-coverage"
+    ],
+    "key_topics": [
+      "000-release-cleanup",
+      "005-stress-test",
+      "stress-test",
+      "stress-coverage",
+      "phase",
+      "parent",
+      "coordinates",
+      "stress",
+      "testing",
+      "coverage",
+      "validation",
+      "work"
+    ],
     "importance_tier": "normal",
-    "status": "in_progress",
-    "key_files": ["spec.md"],
-    "entities": [],
-    "causal_summary": "This phase parent coordinates stress testing and coverage validation across 8 child packets, addressing test pattern documentation, MCP runtime stress remediation, structural organization, and the post packet 113 mk-spec-memory comprehensive sweep. Children 006-stress-coverage-audit-and-run and 007-stress-test-gap-remediation focus on coverage audit and closing 10 P0 coverage gaps; 008-mk-spec-memory-stress-test runs all 39 mk-spec-memory tools + 345 manual_testing_playbook scenarios via cli-devin SWE-1.6 post the z_archive un-exclusion in commit b062b12b4.",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Stress Testing",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Cycle Doc",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Observability Cleanup",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Stress Test Pattern Documentation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Runtime Stress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "This phase parent coordinates stress testing and coverage validation work across 7 child packets. The children collectively address test pattern documentation, MCP runtime stress remediation, stress test folder completion, expansion and alignment, coverage audit and run, and gap remediation to ensure comprehensive stress test coverage for the MCP runtime environment.",
     "created_at": "2026-05-16T09:00:00Z",
-    "last_save_at": "2026-05-16T11:30:00Z",
-    "save_lineage": "cli-devin-swe-1.6-w3f",
+    "last_save_at": "2026-05-18T08:15:53.210Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "source_docs": ["spec.md", "README.md"]
+    "source_docs": [
+      "spec.md"
+    ]
   }
 }

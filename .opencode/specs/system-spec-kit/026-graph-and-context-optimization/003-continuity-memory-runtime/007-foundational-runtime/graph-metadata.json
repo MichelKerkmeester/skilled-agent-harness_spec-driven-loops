@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/004-runtime-executor-hardening/001-foundational-runtime",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/004-runtime-executor-hardening/001-foundational-runtime",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/004-runtime-executor-hardening",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/007-foundational-runtime",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/007-foundational-runtime",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -50,7 +50,6 @@
       "scripts/validation/evidence-marker-lint.ts",
       "hooks/shared-provenance.ts",
       "hooks/claude/shared.ts",
-      "hooks/copilot/compact-cache.ts",
       "lib/governance/scope-governance.ts",
       "scripts/tests/gate-3-classifier.vitest.ts",
       "lib/utils/exhaustiveness.ts",
@@ -59,10 +58,11 @@
       "lib/context/caller-context.ts",
       "handlers/session-resume.ts",
       "mcp_server/lib/utils/exhaustiveness.ts",
-      "hooks/copilot/session-prime.ts",
       "checklist.md",
       "scripts/core/workflow.ts",
-      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh"
+      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+      "plan.md",
+      "tasks.md"
     ],
     "entities": [
       {
@@ -108,12 +108,6 @@
         "source": "derived"
       },
       {
-        "name": "compact-cache.ts",
-        "kind": "code",
-        "path": "hooks/copilot/compact-cache.ts",
-        "source": "derived"
-      },
-      {
         "name": "scope-governance.ts",
         "kind": "code",
         "path": "lib/governance/scope-governance.ts",
@@ -150,12 +144,6 @@
         "source": "derived"
       },
       {
-        "name": "session-prime.ts",
-        "kind": "code",
-        "path": "hooks/copilot/session-prime.ts",
-        "source": "derived"
-      },
-      {
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
@@ -171,6 +159,18 @@
         "name": "validate.sh",
         "kind": "script",
         "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -212,7 +212,7 @@
     ],
     "causal_summary": "Phase 017 (27 `fix(016)` commits landing P0-A/B/C/D, S1-S7 structural refactors, M3-M13 medium refactors, 21 quick wins, 34 test migrations) completed the remediation scoped from the 50-iteration Phase 016 research. A 7-iteration deep-review then meta-audited Phase 017 and produced verdict **CONDITIONAL** with 10 P1 + 18 P2 findings across 3 clusters (A scope-normalization, B canonical-save-surface, C ASCII-only sanitization) + 4 standalone P1s. A subsequent 7-iteration deep-research segment (iters 51-57) extended that inventory by 14 new findings (9 P1, 5 P2), confirmed 3 compound-hypothesis attack chains, refuted all 5 P2→P1 upgrade candidates, and ruled out P0 escalation under expanded threat models.",
     "created_at": "2026-04-18T14:40:19.024Z",
-    "last_save_at": "2026-04-26T09:17:15.737Z",
+    "last_save_at": "2026-05-18T08:15:53.377Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

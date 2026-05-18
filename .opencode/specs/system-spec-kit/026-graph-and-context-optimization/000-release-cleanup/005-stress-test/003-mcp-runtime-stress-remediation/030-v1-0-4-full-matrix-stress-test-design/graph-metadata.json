@@ -1,39 +1,213 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/030-v1-0-4-full-matrix-stress-test-design",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/030-v1-0-4-full-matrix-stress-test-design",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/003-mcp-runtime-stress-remediation/030-v1-0-4-full-matrix-stress-test-design",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/003-mcp-runtime-stress-remediation/030-v1-0-4-full-matrix-stress-test-design",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/003-mcp-runtime-stress-remediation",
   "children_ids": [],
-  "migrated": false,
-  "migration_source": null,
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/020-w3-w7-verification-and-expansion-research",
-      "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/022-stress-test-results-deep-research",
-      "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/023-live-handler-envelope-capture-seam",
-      "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/024-harness-telemetry-export-mode",
-      "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/025-memory-search-degraded-readiness-wiring",
-      "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/028-deep-review-skill-contract-fixes",
-      "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/029-stress-test-v1-0-4"
-    ],
+    "depends_on": [],
     "supersedes": [],
-    "related_to": [
-      "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/001-search-intelligence-stress-test",
-      "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/010-stress-test-rerun-v1-0-2",
-      "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/021-stress-test-v1-0-3-with-w3-w13-wiring"
-    ]
+    "related_to": []
   },
   "derived": {
-    "trigger_phrases": ["030-v1-0-4-full-matrix-stress-test-design", "v1.0.4 full matrix stress test", "system-spec-kit feature cli matrix", "full-matrix stress design"],
-    "key_topics": ["stress-test", "v1.0.4", "full-matrix", "cli-executors", "feature-surfaces", "rubric", "harness-aggregator", "design-only"],
+    "trigger_phrases": [
+      "030-v1-0-4-full-matrix-stress-test-design",
+      "v1.0.4 full matrix stress test",
+      "system-spec-kit feature cli matrix",
+      "full-matrix stress design",
+      "v1.0.4 full matrix stress plan",
+      "full matrix executor plan",
+      "stress harness extension plan",
+      "full matrix stress tasks",
+      "v1.0.4 execution phase tasks",
+      "future stress runner tasks",
+      "full matrix checklist",
+      "v1.0.4 full matrix DQI"
+    ],
+    "key_topics": [
+      "030-v1-0-4-full-matrix-stress-test-design",
+      "full",
+      "matrix",
+      "stress",
+      "test",
+      "system-spec-kit",
+      "feature",
+      "cli",
+      "full-matrix",
+      "design",
+      "plan",
+      "executor"
+    ],
     "importance_tier": "important",
     "status": "complete",
-    "key_files": ["spec.md", "plan.md", "tasks.md", "checklist.md", "decision-record.md", "corpus-plan.md", "implementation-summary.md"],
-    "entities": [],
-    "causal_summary": "Design-only Level 3 packet defining the full-matrix v1.0.4 stress test across F1-F14 feature surfaces and seven executor surfaces. It recommends per-feature runners plus a meta-aggregator and makes the future full matrix a new baseline rather than directly comparing aggregate percent to v1.0.2, v1.0.3, or packet 029.",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "decision-record.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Matrix Stress Test Design",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Use Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Design Complete",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execution Pending",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit Memory",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Feature",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Matrix Stress Test Execution Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Design Packet Closure",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execution Pre",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Schema Setup",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "This packet designs the full v1.0.4 stress matrix that packet 029 explicitly did not attempt. Packet 029 proved a narrow 12-case telemetry posture: it produced 16 live handler envelopes, scored `93/96 = 96.9%`, kept harness quality flat at `75.4%`, and warned that v1.0.2's 30-cell CLI-model baseline is not exact same-cell comparable (`029-stress-test-v1-0-4/findings-v1-0-4.md:19`, `:23`, `:24`, `:25`, `:27`).",
     "created_at": "2026-04-29T11:40:34.000Z",
-    "last_save_at": "2026-04-29T11:40:34.000Z",
-    "save_lineage": "new",
-    "source_docs": ["spec.md", "plan.md", "tasks.md", "checklist.md", "decision-record.md", "corpus-plan.md", "implementation-summary.md"]
+    "last_save_at": "2026-05-18T08:15:53.288Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ]
   }
 }

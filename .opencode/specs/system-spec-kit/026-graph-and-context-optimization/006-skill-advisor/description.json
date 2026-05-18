@@ -1,0 +1,29 @@
+{
+  "specFolder": "006-skill-advisor",
+  "description": "Close all 14 P2 findings from 006+007 parallel review — diagnostics, signal handlers, readonly probe, DELETE-mode log, integrity-check timeout, test h",
+  "keywords": [
+    "close",
+    "findings",
+    "006",
+    "007",
+    "parallel",
+    "review",
+    "diagnostics",
+    "signal",
+    "handlers",
+    "readonly",
+    "probe",
+    "delete-mode",
+    "log",
+    "integrity-check",
+    "timeout",
+    "test",
+    "hygiene"
+  ],
+  "lastUpdated": "2026-05-18T06:42:51.159Z",
+  "specId": "008",
+  "folderSlug": "skill-advisor",
+  "parentChain": [],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

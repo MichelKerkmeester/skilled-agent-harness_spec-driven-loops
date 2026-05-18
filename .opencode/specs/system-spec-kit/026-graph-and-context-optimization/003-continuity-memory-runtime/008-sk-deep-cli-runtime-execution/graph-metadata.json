@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/004-runtime-executor-hardening/002-sk-deep-cli-runtime-execution",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/004-runtime-executor-hardening/002-sk-deep-cli-runtime-execution",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/004-runtime-executor-hardening",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/008-sk-deep-cli-runtime-execution",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/008-sk-deep-cli-runtime-execution",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -42,33 +42,12 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/changelog/12--sk-deep-research/v1.10.0.0.md",
-      ".opencode/changelog/13--sk-deep-review/v1.7.0.0.md",
-      ".opencode/changelog/01--system-spec-kit/v3.4.0.2.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "v1.10.0.0.md",
-        "kind": "doc",
-        "path": ".opencode/changelog/12--sk-deep-research/v1.10.0.0.md",
-        "source": "derived"
-      },
-      {
-        "name": "v1.7.0.0.md",
-        "kind": "doc",
-        "path": ".opencode/changelog/13--sk-deep-review/v1.7.0.0.md",
-        "source": "derived"
-      },
-      {
-        "name": "v3.4.0.2.md",
-        "kind": "doc",
-        "path": ".opencode/changelog/01--system-spec-kit/v3.4.0.2.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -194,11 +173,29 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "What Shipped",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Metrics",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Downstream Remediation",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Merged packet covering the CLI executor arc: 001-executor-feature (ex-018, native + cli-codex) plus 002-runtime-matrix (ex-019 + cli-gemini + cli-claude-code). Shared executor-config.ts, dispatch YAML branching, per-kind flag validation.",
     "created_at": "2026-04-18T14:39:22.815Z",
-    "last_save_at": "2026-04-26T09:17:15.742Z",
+    "last_save_at": "2026-05-18T08:15:53.382Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

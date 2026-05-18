@@ -60,7 +60,7 @@ _memory:
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-**Phase 9** of the 008-skill-advisor track. Operator directive: "don't defer anything" — close every P2 from the 3-reviewer audit that 008 deferred. None are correctness blockers; collectively they tighten diagnostics, signal coverage, and test discrimination.
+**Phase 9** of the 006-skill-advisor track. Operator directive: "don't defer anything" — close every P2 from the 3-reviewer audit that 008 deferred. None are correctness blockers; collectively they tighten diagnostics, signal coverage, and test discrimination.
 
 **Scope boundary** — same files as 006/007/008 plus `sqlite-integrity.ts` (touched for one P2). Out of scope: new infrastructure, architectural redesign.
 

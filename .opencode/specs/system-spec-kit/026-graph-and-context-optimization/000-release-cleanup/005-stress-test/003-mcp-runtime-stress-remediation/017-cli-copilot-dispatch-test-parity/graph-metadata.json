@@ -1,34 +1,15 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/017-cli-copilot-dispatch-test-parity",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/017-cli-copilot-dispatch-test-parity",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/003-mcp-runtime-stress-remediation/017-cli-copilot-dispatch-test-parity",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/003-mcp-runtime-stress-remediation/017-cli-copilot-dispatch-test-parity",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/003-mcp-runtime-stress-remediation",
   "children_ids": [],
-  "migrated": false,
-  "migration_source": null,
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      {
-        "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/011-post-stress-followup-research",
-        "reason": "F-004 evidence + §7 Packet B PASS gate come from the 011 deep-review report",
-        "source": "017-impl-2026-04-27",
-        "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/011-post-stress-followup-research"
-      },
-      {
-        "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/012-copilot-target-authority-helper",
-        "reason": "buildCopilotPromptArg helper + both _auto.yaml wire-ins are the production contract this test pins; if 012 is reverted, this test will not compile",
-        "source": "017-impl-2026-04-27",
-        "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/012-copilot-target-authority-helper"
-      }
-    ],
+    "depends_on": [],
     "supersedes": [],
-    "related_to": [
-      {
-        "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/016-degraded-readiness-envelope-parity",
-        "reason": "Sibling Packet A from the 011 deep-review remediation set; both packets land independently and gate the CONDITIONAL → PASS conversion together",
-        "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/016-degraded-readiness-envelope-parity"
-      }
-    ]
+    "related_to": []
   },
   "derived": {
     "trigger_phrases": [
@@ -37,30 +18,86 @@
       "F-004 cli-matrix test fix",
       "cli-matrix.vitest.ts buildCopilotPromptArg parity",
       "Packet B cli-copilot test hardening",
-      "promptFileBody dispatch test"
+      "promptFileBody dispatch test",
+      "017 plan",
+      "cli-copilot dispatch test parity plan",
+      "cli-matrix buildCopilotPromptArg parity plan",
+      "017 tasks",
+      "cli-copilot dispatch test parity tasks",
+      "017 checklist"
     ],
     "key_topics": [
+      "017-cli-copilot-dispatch-test-parity",
       "cli-copilot",
-      "buildCopilotPromptArg",
-      "promptFileBody",
-      "target-authority",
-      "deep-loop",
-      "executor-config",
-      "test-only",
-      "F-004",
-      "Packet-B",
-      "v1.0.2-remediation"
+      "dispatch",
+      "test",
+      "parity",
+      "f-004",
+      "cli-matrix",
+      "fix",
+      "vitest",
+      "buildcopilotpromptarg",
+      "packet",
+      "hardening"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
-      "spec.md",
-      "plan.md",
-      "tasks.md",
+      "mcp_server/tests/deep-loop/cli-matrix.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/cli-matrix.vitest.ts",
+      "tests/deep-loop/cli-matrix.vitest.ts",
       "checklist.md",
-      "implementation-summary.md"
+      "tasks.md",
+      "mcp_server/vitest.config.ts",
+      ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml",
+      ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml",
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md"
     ],
     "entities": [
+      {
+        "name": "cli-matrix.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/deep-loop/cli-matrix.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "vitest.config.ts",
+        "kind": "code",
+        "path": "mcp_server/vitest.config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec_kit_deep-research_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "spec_kit_deep-review_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -74,54 +111,100 @@
         "source": "derived"
       },
       {
-        "name": "tasks.md",
-        "kind": "doc",
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Dispatch Test Parity",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Complete",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Rewrite",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Pure",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "cli-matrix.vitest.ts",
-        "kind": "test",
-        "path": "../../../../../../.opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/cli-matrix.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "buildCopilotPromptArg",
-        "kind": "function",
-        "path": "../../../../../../.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts",
-        "source": "derived"
-      },
-      {
-        "name": "spec_kit_deep-research_auto.yaml",
-        "kind": "workflow",
-        "path": "../../../../../../.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "spec_kit_deep-review_auto.yaml",
-        "kind": "workflow",
-        "path": "../../../../../../.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml",
+        "name": "All Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "Rewrites the cli-copilot section of mcp_server/tests/deep-loop/cli-matrix.vitest.ts so the assertions model buildCopilotPromptArg's built.argv + promptFileBody shape directly (the contract packet 012 ships) instead of the legacy resolveCopilotPromptArg / -p \"$(cat ...)\" command-string form. Adds a dedicated describe block with 5 cases covering all 3 targetAuthority branches plus a static-grep ordering check on both _auto.yaml dispatch sites. Updates the smoke test to model the approved-large-prompt happy path with promptFileBody written to disk before subprocess invocation. buildDispatchCommand's cli-copilot branch now throws (anti-regression). 13/13 cli-matrix tests pass; 73/73 deep-loop suite pass; 29/29 executor-config helper tests pass. Production code (executor-config.ts + both _auto.yaml files) is byte-stable. Closes F-004 P2 from the 011 deep-review.",
+    "causal_summary": "The 011 deep-review report (`../011-post-stress-followup-research/review/review-report.md`) §4 surfaced F-004 [P2]:",
     "created_at": "2026-04-27T18:30:00Z",
-    "last_save_at": "2026-04-27T18:30:00Z",
-    "save_lineage": "implementation-completion-2026-04-27",
-    "last_active_child_id": null,
-    "last_active_at": "2026-04-27T18:30:00Z",
+    "last_save_at": "2026-05-18T08:15:53.262Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",

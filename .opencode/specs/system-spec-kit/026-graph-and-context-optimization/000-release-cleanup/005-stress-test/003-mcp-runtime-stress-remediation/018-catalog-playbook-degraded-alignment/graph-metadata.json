@@ -1,20 +1,15 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/018-catalog-playbook-degraded-alignment",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/018-catalog-playbook-degraded-alignment",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/003-mcp-runtime-stress-remediation/018-catalog-playbook-degraded-alignment",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/003-mcp-runtime-stress-remediation/018-catalog-playbook-degraded-alignment",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/003-mcp-runtime-stress-remediation",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/011-post-stress-followup-research",
-      "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/016-degraded-readiness-envelope-parity",
-      "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/014-graph-status-readiness-snapshot",
-      "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/015-cocoindex-seed-telemetry-passthrough"
-    ],
+    "depends_on": [],
     "supersedes": [],
-    "related_to": [
-      "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/005-code-graph-fast-fail"
-    ]
+    "related_to": []
   },
   "derived": {
     "trigger_phrases": [
@@ -25,30 +20,29 @@
       "F-008 readiness contract handler-local",
       "packet C deep-review docs",
       "catalog playbook degraded plan",
+      "018 plan",
       "catalog playbook degraded tasks",
+      "018 tasks",
       "catalog playbook degraded checklist",
-      "catalog playbook degraded summary"
+      "018 checklist"
     ],
     "key_topics": [
       "018-catalog-playbook-degraded-alignment",
       "catalog",
       "playbook",
-      "degraded-readiness",
-      "fallbackDecision",
-      "rankingSignals",
-      "shared-vocabulary",
-      "handler-local-payload",
-      "code-graph-context",
-      "code-graph-status",
-      "p2",
-      "docs-only"
+      "degraded",
+      "alignment",
+      "f-005",
+      "fallbackdecision",
+      "f-007",
+      "rankingsignals",
+      "array",
+      "f-008",
+      "readiness"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      "feature_catalog/22--context-preservation-and-code-graph/15-code-graph-auto-trigger.md",
-      "feature_catalog/22--context-preservation-and-code-graph/24-code-graph-readiness-contract.md",
-      "manual_testing_playbook/22--context-preservation-and-code-graph/255-cocoindex-code-graph-routing.md",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -56,42 +50,6 @@
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "15-code-graph-auto-trigger.md",
-        "kind": "doc",
-        "path": "feature_catalog/22--context-preservation-and-code-graph/15-code-graph-auto-trigger.md",
-        "source": "manual"
-      },
-      {
-        "name": "24-code-graph-readiness-contract.md",
-        "kind": "doc",
-        "path": "feature_catalog/22--context-preservation-and-code-graph/24-code-graph-readiness-contract.md",
-        "source": "manual"
-      },
-      {
-        "name": "255-cocoindex-code-graph-routing.md",
-        "kind": "doc",
-        "path": "manual_testing_playbook/22--context-preservation-and-code-graph/255-cocoindex-code-graph-routing.md",
-        "source": "manual"
-      },
-      {
-        "name": "tool-input-schemas.ts",
-        "kind": "code",
-        "path": "mcp_server/schemas/tool-input-schemas.ts",
-        "source": "manual"
-      },
-      {
-        "name": "rankingSignals",
-        "kind": "schema",
-        "path": "mcp_server/schemas/tool-input-schemas.ts",
-        "source": "manual"
-      },
-      {
-        "name": "fallbackDecision",
-        "kind": "type",
-        "path": "mcp_server/code_graph/handlers/query.ts",
-        "source": "manual"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -121,12 +79,126 @@
         "kind": "doc",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Three",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Align",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Three",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verify Zod",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Forward",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Three Markdown",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Update Pass",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "All Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Scenarios",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "Docs-only Packet C from the 011-post-stress-followup-research deep-review (review-report.md §4 / F-005, F-007, F-008 doc parts; §7 Packet C). Aligns three operator-facing documentation surfaces with the shipped (or expected, pending packet 016) runtime contract for the code-graph degraded-readiness envelope. Edits: (1) feature_catalog/22--context-preservation-and-code-graph/15-code-graph-auto-trigger.md — split single fallbackDecision bullet into per-handler bullets (query / context / status) with a footnote pointing at packet 016's implementation-summary.md (or review-report.md §3 / §7 Packet A as binding-expectation fallback while 016 is in flight); (2) feature_catalog/22--context-preservation-and-code-graph/24-code-graph-readiness-contract.md — state explicitly that the contract is shared-vocabulary / handler-local-shape and list concrete per-handler shape; (3) manual_testing_playbook/22--context-preservation-and-code-graph/255-cocoindex-code-graph-routing.md — change rankingSignals (object) to rankingSignals (array of strings) matching the Zod schema z.array(z.string()).optional() at mcp_server/schemas/tool-input-schemas.ts:482-492. NO code change. NO edit to packets 003-015, 016, or 017. NO per-runtime copies (stat -f %l confirmed link count = 1 per file; only .opencode/ hosts them). Decision-record-supplement in spec.md §8 captures the 016-coordination strategy; if 016's actual contract differs from review-report.md §3 / §7 Packet A, a Packet C-prime patch updates the wording (single-edit; same surface).",
+    "causal_summary": "Three operator-facing documentation surfaces drifted from the shipped runtime contract in ways that mislead readers reproducing degraded-state scenarios:",
     "created_at": "2026-04-27T22:45:00.000Z",
-    "last_save_at": "2026-04-27T22:45:00.000Z",
-    "save_lineage": "manual_author",
+    "last_save_at": "2026-05-18T08:15:53.264Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",

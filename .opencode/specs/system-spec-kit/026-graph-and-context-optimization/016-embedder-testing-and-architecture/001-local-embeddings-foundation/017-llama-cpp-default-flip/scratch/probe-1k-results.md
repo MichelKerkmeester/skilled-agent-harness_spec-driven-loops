@@ -112,7 +112,7 @@ llama-cpp top-5:
 
 ### Example 4
 
-Query: --- title: "... ization/009-hook-parity/005-codex-hook-parity-remediation/research/007-deep-review-remediation-pt-02/research]" description: "Synthesis of 10 iterations investigating the exact Codex CLI 0.
+Query: --- title: "... ization/007-hook-parity/005-codex-hook-parity-remediation/research/007-deep-review-remediation-pt-02/research]" description: "Synthesis of 10 iterations investigating the exact Codex CLI 0.
 
 Target doc: 1692
 
@@ -121,20 +121,20 @@ Overlap@5: 0.8; Spearman top-10: 0.763636
 hf-local top-5:
 
 ```text
-1. 1692 (0.8431) - ...ization/009-hook-parity/005-codex-hook-parity-remediation/research/007-deep-review-remediation-pt
-2. 1681 (0.7912) - ...ation/009-hook-parity/004-copilot-hook-parity-remediation/research/007-deep-review-remediation-pt
-3. 1691 (0.7799) - ...t/026-graph-and-context-optimization/009-hook-parity/003-codex-hook-parity-remediation/implementa
-4. 1678 (0.7696) - 029 - Runti [system-spec-kit/026-graph-and-context-optimization/009-hook-parity/001-hook-parity-reme
-5. 1486 (0.7558) - ...ion/009-hook-parity/013-code-graph-hook-improvements/research/028-code-graph-hook-improvements-pt
+1. 1692 (0.8431) - ...ization/007-hook-parity/005-codex-hook-parity-remediation/research/007-deep-review-remediation-pt
+2. 1681 (0.7912) - ...ation/007-hook-parity/004-copilot-hook-parity-remediation/research/007-deep-review-remediation-pt
+3. 1691 (0.7799) - ...t/026-graph-and-context-optimization/007-hook-parity/003-codex-hook-parity-remediation/implementa
+4. 1678 (0.7696) - 029 - Runti [system-spec-kit/026-graph-and-context-optimization/007-hook-parity/001-hook-parity-reme
+5. 1486 (0.7558) - ...ion/007-hook-parity/013-code-graph-hook-improvements/research/028-code-graph-hook-improvements-pt
 ```
 
 llama-cpp top-5:
 
 ```text
-1. 1692 (0.7626) - ...ization/009-hook-parity/005-codex-hook-parity-remediation/research/007-deep-review-remediation-pt
-2. 1681 (0.7094) - ...ation/009-hook-parity/004-copilot-hook-parity-remediation/research/007-deep-review-remediation-pt
-3. 1691 (0.6883) - ...t/026-graph-and-context-optimization/009-hook-parity/003-codex-hook-parity-remediation/implementa
-4. 1678 (0.6878) - 029 - Runti [system-spec-kit/026-graph-and-context-optimization/009-hook-parity/001-hook-parity-reme
+1. 1692 (0.7626) - ...ization/007-hook-parity/005-codex-hook-parity-remediation/research/007-deep-review-remediation-pt
+2. 1681 (0.7094) - ...ation/007-hook-parity/004-copilot-hook-parity-remediation/research/007-deep-review-remediation-pt
+3. 1691 (0.6883) - ...t/026-graph-and-context-optimization/007-hook-parity/003-codex-hook-parity-remediation/implementa
+4. 1678 (0.6878) - 029 - Runti [system-spec-kit/026-graph-and-context-optimization/007-hook-parity/001-hook-parity-reme
 5. 1690 (0.6696) - Description: Feature Specification: Codex CLI Hook Parity Remediation
 ```
 

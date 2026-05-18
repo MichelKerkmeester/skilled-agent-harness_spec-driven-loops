@@ -1,26 +1,226 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/028-doc-alignment-and-readme-filling",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/028-doc-alignment-and-readme-filling",
-  "parent_id": null,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cleanup/028-doc-alignment-and-readme-filling",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cleanup/028-doc-alignment-and-readme-filling",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cleanup",
   "children_ids": [],
   "manual": {
     "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
-    "derived": {
-    "trigger_phrases": [],
-    "key_topics": [],
+  "derived": {
+    "trigger_phrases": [
+      "doc alignment phase 053",
+      "multi-ai-council frontmatter",
+      "extension guide migration frontmatter",
+      "predicates folder readme",
+      "code_graph utils folder readme",
+      "operator_runbook merge manual_testing_playbook",
+      "release cleanup phase 053",
+      "phase 053 plan",
+      "wave a wave b wave c",
+      "cli-codex dispatch plan",
+      "phase 053 tasks",
+      "wave dispatch tasks"
+    ],
+    "key_topics": [
+      "doc",
+      "alignment",
+      "phase",
+      "053",
+      "multi-ai-council",
+      "frontmatter",
+      "extension",
+      "guide",
+      "migration",
+      "predicates",
+      "folder",
+      "readme"
+    ],
     "importance_tier": "important",
-    "status": "planned",
-    "key_files": ["spec.md","plan.md","tasks.md"],
-    "entities": [],
-    "causal_summary": "Phase 1: doc-alignment-and-readme-filling",
+    "status": "complete",
+    "key_files": [
+      "templates/manifest/EXTENSION_GUIDE.md",
+      "templates/manifest/MIGRATION.md",
+      "shared/parsing/README.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "resource-map.md",
+      "shared/predicates/README.md",
+      ".opencode/skills/system-spec-kit/shared/predicates/README.md",
+      "implementation-summary.md",
+      ".opencode/skills/sk-doc/assets/skill/skill_reference_template.md",
+      ".opencode/skills/sk-doc/assets/testing_playbook/manual_testing_playbook_template.md",
+      ".opencode/skills/sk-doc/SKILL.md",
+      ".opencode/skills/cli-claude-code/references/integration_patterns.md",
+      ".opencode/skills/system-spec-kit/shared/parsing/README.md",
+      ".opencode/skills/cli-claude-code/manual_testing_playbook/manual_testing_playbook.md",
+      ".opencode/skills/cli-claude-code/manual_testing_playbook/01--cli-invocation/001-base-non-interactive-invocation.md",
+      ".opencode/skills/system-spec-kit/templates/manifest/EXTENSION_GUIDE.md"
+    ],
+    "entities": [
+      {
+        "name": "EXTENSION_GUIDE.md",
+        "kind": "doc",
+        "path": "templates/manifest/EXTENSION_GUIDE.md",
+        "source": "derived"
+      },
+      {
+        "name": "MIGRATION.md",
+        "kind": "doc",
+        "path": "templates/manifest/MIGRATION.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "shared/parsing/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill_reference_template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/assets/skill/skill_reference_template.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual_testing_playbook_template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/assets/testing_playbook/manual_testing_playbook_template.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "integration_patterns.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-claude-code/references/integration_patterns.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual_testing_playbook.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-claude-code/manual_testing_playbook/manual_testing_playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "001-base-non-interactive-invocation.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-claude-code/manual_testing_playbook/01--cli-invocation/001-base-non-interactive-invocation.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Dispatch Wave",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "This is **Phase 53** of the `000-release-cleanup` parent under `026-graph-and-context-optimization`.",
     "created_at": "2026-05-07T10:45:30Z",
-    "last_save_at": "2026-05-07T10:45:30Z",
+    "last_save_at": "2026-05-18T08:15:53.170Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "source_docs": ["spec.md","plan.md","tasks.md"]
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "resource-map.md"
+    ]
   }
 }

@@ -32,7 +32,7 @@
           "description": "Code-graph SessionStart hook is registered in Claude config"
         },
         {
-          "source": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-cli-devin-skill-advisor-hook/research/iterations/iteration-01.md",
+          "source": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/004-cli-devin-skill-advisor-hook/research/iterations/iteration-01.md",
           "type": "parallel-research",
           "description": "Advisor packet reached identical findings for UserPromptSubmit"
         }
@@ -90,7 +90,7 @@
       "confidence": "MEDIUM",
       "evidence": [
         {
-          "source": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-cli-devin-skill-advisor-hook/research/iterations/iteration-02.md",
+          "source": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/004-cli-devin-skill-advisor-hook/research/iterations/iteration-02.md",
           "type": "parallel-research",
           "description": "Advisor packet recommended identical hybrid approach for UserPromptSubmit"
         },

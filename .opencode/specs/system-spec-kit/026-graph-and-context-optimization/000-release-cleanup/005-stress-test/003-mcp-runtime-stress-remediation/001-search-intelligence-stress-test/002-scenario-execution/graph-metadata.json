@@ -1,59 +1,205 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/001-search-intelligence-stress-test/002-scenario-execution",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/001-search-intelligence-stress-test/002-scenario-execution",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/001-search-intelligence-stress-test",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/003-mcp-runtime-stress-remediation/001-search-intelligence-stress-test/002-scenario-execution",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/003-mcp-runtime-stress-remediation/001-search-intelligence-stress-test/002-scenario-execution",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/003-mcp-runtime-stress-remediation/001-search-intelligence-stress-test",
   "children_ids": [],
-  "migrated": false,
-  "migration_source": null,
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/001-search-intelligence-stress-test/001-scenario-design"
-    ],
+    "depends_on": [],
     "supersedes": [],
-    "related_to": [
-      "system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/005-memory-search-runtime-bugs"
-    ]
+    "related_to": []
   },
   "derived": {
     "trigger_phrases": [
       "002-scenario-execution",
       "stress test execution",
-      "scenario run harness",
-      "manual scoring workflow",
-      "findings aggregation",
-      "cross-AI comparison",
-      "execution scaffold"
+      "playbook run harness",
+      "findings synthesis",
+      "cross-AI scoring",
+      "execution plan",
+      "scoring workflow",
+      "concurrency strategy",
+      "execution tasks",
+      "scoring tasks",
+      "findings synthesis tasks",
+      "execution scaffold summary"
     ],
     "key_topics": [
       "002-scenario-execution",
+      "stress",
+      "test",
       "execution",
-      "dispatch",
-      "scoring",
+      "playbook",
+      "run",
+      "harness",
       "findings",
-      "scaffold",
-      "playbook"
+      "synthesis",
+      "cross-ai",
+      "scoring",
+      "plan"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/cli-codex/SKILL.md",
+      ".opencode/skills/cli-opencode/SKILL.md"
     ],
     "entities": [
-      {"name": "spec.md", "kind": "doc", "path": "spec.md", "source": "derived"},
-      {"name": "plan.md", "kind": "doc", "path": "plan.md", "source": "derived"},
-      {"name": "tasks.md", "kind": "doc", "path": "tasks.md", "source": "derived"},
-      {"name": "implementation-summary.md", "kind": "doc", "path": "implementation-summary.md", "source": "derived"},
-      {"name": "Execution Workflow", "kind": "proper_noun", "path": "spec.md", "source": "derived"},
-      {"name": "Findings Format", "kind": "proper_noun", "path": "spec.md", "source": "derived"}
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-codex/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scenario Execution Sub",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Sibling Sub",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Corpus Version Consumed",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scenario Execution",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Search Intelligence Stress",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Four",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria This",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
     ],
-    "causal_summary": "Sub-phase 002 of the Search Intelligence Stress-Test Playbook. Execution scaffold consuming 001's dispatch matrix and scripts. Defines a 4-stage flow: pre-flight (verify CLIs + auth + DB snapshot + CocoIndex daemon), dispatch (loop 9 scenarios × 3 CLIs + ablation cells), manual scoring (operator fills score.md per cell using 001 rubric), aggregation (synthesize findings.md with cross-CLI comparison + top wins/failures + 005-defect cross-references + recommendations). Concurrency: serial for cli-codex and cli-opencode; max 3 concurrent for cli-copilot per repo Phase 018 convention. Idempotency via run-folder existence check enables resume mid-sweep. Per-run artifacts capture prompt + output + meta.json (latency, tokens, model, exit_code, db_snapshot_hash) + score.md per 001 output schema. Manual scoring is operator-time-bound (~5 min/cell × 27 cells ≈ 2-3 hours); auto-scoring deferred to v2. Aggregation requires human judgment for cross-CLI insight; finishings.md template provides skeleton with required sections. Actual execution deferred to a dedicated session; this packet defines the contract.",
+    "causal_summary": "Define the run harness contract: pre-flight checks, dispatch loop, output capture, scoring workflow, and findings aggregation. The actual run is a separate execution session against this scaffold (estimated 30-45 min wall-clock for N=1 sweep).",
     "created_at": "2026-04-26T15:00:00Z",
-    "last_save_at": "2026-04-26T15:00:00Z",
-    "save_lineage": "manual",
+    "last_save_at": "2026-05-18T08:15:53.224Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",

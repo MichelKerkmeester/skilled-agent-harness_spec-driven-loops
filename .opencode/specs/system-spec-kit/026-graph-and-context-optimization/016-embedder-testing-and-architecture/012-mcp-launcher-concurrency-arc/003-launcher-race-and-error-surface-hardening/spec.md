@@ -60,7 +60,7 @@ _memory:
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This is **Phase 8** of the 008-skill-advisor track, addressing P1 findings from the 3-reviewer parallel audit of packets 006 and 007. The shipped code works on the happy path (typecheck + 9 vitest tests + manual probes all PASS), but reviewers surfaced 9 latent correctness gaps. This packet closes them.
+This is **Phase 8** of the 006-skill-advisor track, addressing P1 findings from the 3-reviewer parallel audit of packets 006 and 007. The shipped code works on the happy path (typecheck + 9 vitest tests + manual probes all PASS), but reviewers surfaced 9 latent correctness gaps. This packet closes them.
 
 **Scope boundary** — fixes are mostly mechanical (5 are 2-4 line changes); two larger items are the spec-memory SIGTERM ordering refactor and the new skill-advisor subprocess test file. Out of scope: 14 P2 findings (logged as known issues), architectural redesign, schema changes.
 

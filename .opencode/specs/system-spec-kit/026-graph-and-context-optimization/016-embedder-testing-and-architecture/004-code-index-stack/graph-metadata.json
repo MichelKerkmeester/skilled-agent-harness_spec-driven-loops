@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture",
+  "children_ids": [
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/001-cocoindex-swap",
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/002-baseline-fixture",
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/003-comparison-measure",
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/004-extended-bake-off",
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/010-daemon-resilience"
+  ],
+  "manual": {
+    "depends_on": [
+      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/004-mxbai-swap-and-008-closure"
+    ],
+    "supersedes": [],
+    "related_to": [
+      "system-spec-kit/026-graph-and-context-optimization/017-playbook-quality-audit"
+    ]
+  },
+  "derived": {
+    "trigger_phrases": [
+      "018 code embedder coderank",
+      "cocoindex embedder swap",
+      "code-specific embedder comparison"
+    ],
+    "key_topics": [
+      "018",
+      "cocoindex",
+      "code-embedder",
+      "coderank",
+      "nomic",
+      "code-search",
+      "metal",
+      "mps",
+      "embedder-swap",
+      "code-graph-bridge"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "001-cocoindex-swap/spec.md",
+      "002-baseline-fixture/spec.md",
+      "003-comparison-measure/spec.md"
+    ],
+    "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/004-extended-bake-off",
+    "last_active_at": "2026-05-18T05:13:47.097Z",
+    "last_save_at": "2026-05-18T05:13:47.097Z"
+  }
+}

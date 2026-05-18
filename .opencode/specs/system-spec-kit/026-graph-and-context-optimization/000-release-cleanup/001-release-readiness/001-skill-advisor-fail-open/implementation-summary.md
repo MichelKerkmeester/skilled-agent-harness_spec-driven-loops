@@ -22,7 +22,7 @@ _memory:
       - ".opencode/skills/system-spec-kit/mcp_server/handlers/skill-graph/scan.ts"
       - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/freshness/rebuild-from-source.ts"
       - ".opencode/skills/system-spec-kit/mcp_server/handlers/skill-graph/response-envelope.ts"
-      - "specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-daemon-and-unification/decision-record"
+      - "specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/002-daemon-and-unification/decision-record"
     session_dedup:
       fingerprint: "sha256:001-skill-advisor-fail-open-2026-04-28"
       session_id: "001-skill-advisor-fail-open-remediation"
@@ -49,7 +49,7 @@ _memory:
 | **Spec Folder** | 001-skill-advisor-fail-open |
 | **Completed** | 2026-04-28 |
 | **Level** | 2 |
-| **Source Review** | `specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-daemon-and-unification/review/002-daemon-and-unification-pt-01/review-report` |
+| **Source Review** | `specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/002-daemon-and-unification/review/002-daemon-and-unification-pt-01/review-report` |
 | **Result** | 18/18 source findings closed |
 <!-- /ANCHOR:metadata -->
 
@@ -110,10 +110,10 @@ The 008/008 packet now uses the runtime `skill_advisor` path spelling, carries f
 | `.opencode/skills/system-spec-kit/mcp_server/tests/fixtures/skill-graph-db.ts` | Created | Share SQLite graph metadata fixture setup. |
 | `.opencode/skills/system-spec-kit/mcp_server/tests/skill-graph-handlers.vitest.ts` | Modified | Use shared SQLite fixture and trusted scan context. |
 | `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/skill-graph-db.vitest.ts` | Modified | Use shared SQLite fixture. |
-| `specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-daemon-and-unification/spec.md` | Modified | Document trusted-caller model and runtime path spelling. |
-| `specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-daemon-and-unification/checklist.md` | Modified | Add resolvable evidence anchors and validation status. |
-| `specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-daemon-and-unification/decision-record.md` | Modified | Add child ADRs for the remediated sub-tracks. |
-| `specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-daemon-and-unification/implementation-summary.md` | Modified | Fix lane weight and promotion-gate traceability. |
+| `specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/002-daemon-and-unification/spec.md` | Modified | Document trusted-caller model and runtime path spelling. |
+| `specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/002-daemon-and-unification/checklist.md` | Modified | Add resolvable evidence anchors and validation status. |
+| `specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/002-daemon-and-unification/decision-record.md` | Modified | Add child ADRs for the remediated sub-tracks. |
+| `specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/002-daemon-and-unification/implementation-summary.md` | Modified | Fix lane weight and promotion-gate traceability. |
 | `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/04--operator-h5/003-unavailable-daemon.md` | Modified | Add untrusted scan negative case. |
 | `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/feature_catalog/04--scorer-fusion/01-five-lane-fusion.md` | Modified | Align derived_generated lane weight at 0.15. |
 | `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/feature_catalog/04--scorer-fusion/06-weights-config.md` | Modified | Document registry-derived lane weights. |
@@ -164,7 +164,7 @@ Phase 4 reduced drift risk in repeated patterns. Lane metadata, compatibility de
 | `python3 -m pytest skill_advisor/tests/python/test_skill_advisor.py` | PASS, exit 0; 4 tests. |
 | `npm run typecheck` | PASS, exit 0. |
 | `npm run build` | PASS, exit 0. |
-| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-daemon-and-unification --strict` | PASS, exit 0. |
+| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/002-daemon-and-unification --strict` | PASS, exit 0. |
 | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/001-skill-advisor-fail-open --strict` | PASS, exit 0. |
 ### Per-Finding Disposition
 

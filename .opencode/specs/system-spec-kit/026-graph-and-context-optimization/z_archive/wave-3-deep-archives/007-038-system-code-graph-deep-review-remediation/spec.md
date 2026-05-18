@@ -10,7 +10,7 @@ importance_tier: "critical"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/038-system-code-graph-deep-review-remediation"
+    packet_pointer: ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/038-system-code-graph-deep-review-remediation"
     last_updated_at: "2026-05-15T20:35:00Z"
     last_updated_by: "main-agent-038-closeout"
     recent_action: "all_phases_complete_v1.0.2.0_shipped"

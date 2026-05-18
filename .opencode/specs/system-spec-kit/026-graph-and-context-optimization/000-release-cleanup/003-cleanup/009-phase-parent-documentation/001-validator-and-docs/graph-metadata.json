@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/009-phase-parent-documentation/001-validator-and-docs",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/009-phase-parent-documentation/001-validator-and-docs",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/009-phase-parent-documentation",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cleanup/009-phase-parent-documentation/001-validator-and-docs",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cleanup/009-phase-parent-documentation/001-validator-and-docs",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cleanup/009-phase-parent-documentation",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -41,7 +41,7 @@
       "validator"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "plan.md",
       "tasks.md",
@@ -51,7 +51,6 @@
       "lib/shell-common.sh",
       "mcp_server/lib/spec/is-phase-parent.ts",
       "scripts/dist/spec/is-phase-parent.js",
-      "templates/phase_parent/spec.md",
       ".opencode/skills/system-spec-kit/scripts/lib/shell-common.sh",
       ".opencode/skills/system-spec-kit/mcp_server/lib/spec/is-phase-parent.ts",
       ".opencode/skills/system-spec-kit/scripts/dist/spec/is-phase-parent.js",
@@ -59,10 +58,11 @@
       ".opencode/skills/system-spec-kit/scripts/rules/check-files.sh",
       ".opencode/skills/system-spec-kit/scripts/rules/check-level-match.sh",
       ".opencode/skills/system-spec-kit/scripts/rules/check-graph-metadata.sh",
-      ".opencode/skills/system-spec-kit/templates/phase_parent/spec.md",
       ".opencode/skills/system-spec-kit/SKILL.md",
       "scripts/package.json",
-      "templates/resource-map.md"
+      ".opencode/skills/system-spec-kit/scripts/spec/create.sh",
+      ".opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js",
+      ".opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook.md"
     ],
     "entities": [
       {
@@ -150,6 +150,24 @@
         "source": "derived"
       },
       {
+        "name": "create.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec/create.sh",
+        "source": "derived"
+      },
+      {
+        "name": "generate-context.js",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js",
+        "source": "derived"
+      },
+      {
+        "name": "skill-advisor-hook.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -190,29 +208,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview Sharpen",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Layered",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "When a spec folder has phase children (e.g. `026/{007-code-graph,008-skill-advisor,...}/`), the parent currently authors a full Level 1/2/3 document set (`plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md`) describing program-level intent. As phases execute, pivot, and converge over weeks, the parent docs drift from child reality. AI assistants reading the resume ladder treat the stale parent docs as authoritative, hallucinate current state, and propose work against outdated plans.",
+    "causal_summary": "When a spec folder has phase children (e.g. `026/{005-code-graph,006-skill-advisor,...}/`), the parent currently authors a full Level 1/2/3 document set (`plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md`) describing program-level intent. As phases execute, pivot, and converge over weeks, the parent docs drift from child reality. AI assistants reading the resume ladder treat the stale parent docs as authoritative, hallucinate current state, and propose work against outdated plans.",
     "created_at": "2026-04-27T08:55:00Z",
-    "last_save_at": "2026-04-27T09:51:11.180Z",
+    "last_save_at": "2026-05-18T08:15:53.091Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

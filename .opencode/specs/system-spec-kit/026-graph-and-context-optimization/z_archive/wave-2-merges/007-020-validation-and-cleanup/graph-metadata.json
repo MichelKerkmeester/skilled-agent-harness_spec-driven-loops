@@ -1,18 +1,18 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/020-validation-and-cleanup",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/020-validation-and-cleanup",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/007-code-graph",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/020-validation-and-cleanup",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/020-validation-and-cleanup",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/005-code-graph",
   "children_ids": [],
   "migrated": true,
   "manual": {
     "depends_on": [
-      "system-spec-kit/026-graph-and-context-optimization/007-code-graph/019-doc-and-runtime-migration"
+      "system-spec-kit/026-graph-and-context-optimization/005-code-graph/019-doc-and-runtime-migration"
     ],
     "supersedes": [],
     "related_to": [
-      "system-spec-kit/026-graph-and-context-optimization/007-code-graph/013-system-code-graph-extraction",
-      "system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-design-and-decision-record"
+      "system-spec-kit/026-graph-and-context-optimization/005-code-graph/013-system-code-graph-extraction",
+      "system-spec-kit/026-graph-and-context-optimization/005-code-graph/014-design-and-decision-record"
     ]
   },
   "derived": {
@@ -62,5 +62,5 @@
       "plan.md"
     ]
   },
-  "migration_source": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/013-system-code-graph-extraction/006-validation-and-cleanup"
+  "migration_source": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/013-system-code-graph-extraction/006-validation-and-cleanup"
 }

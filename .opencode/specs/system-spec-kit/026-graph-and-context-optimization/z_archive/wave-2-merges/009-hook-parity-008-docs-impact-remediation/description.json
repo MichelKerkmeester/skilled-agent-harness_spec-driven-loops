@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/009-hook-parity/008-docs-impact-remediation",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-hook-parity/008-docs-impact-remediation",
   "description": "Feature Specification: Documentation Impact Remediation for 009 Hook/Daemon Parity",
   "keywords": [
     "feature",
@@ -18,7 +18,7 @@
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "009-hook-parity"
+    "007-hook-parity"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

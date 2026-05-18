@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Sandbox Testing Playbook [system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/002-sandbox-testing-playbook/plan]"
+title: "Implementation Plan: Sandbox Testing Playbook [system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/002-sandbox-testing-playbook/plan]"
 description: "Five-phase plan for authoring 23 manual playbook scenarios + Docker sandbox harness. Phase A scaffolds the packet; Phase B dispatches 4 parallel cli-codex tracks for scenarios; Phase C updates the root playbook; Phase D dispatches cli-codex for the sandbox harness; Phase E runs verification gates G1-G7."
 trigger_phrases:
   - "002-sandbox-testing-playbook plan"
@@ -10,7 +10,7 @@ contextType: "implementation"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/002-sandbox-testing-playbook"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/002-sandbox-testing-playbook"
     last_updated_at: "2026-05-09T16:10:00Z"
     last_updated_by: "spec-author"
     recent_action: "Authored Level 3 plan with 5 phases + dispatch design + reuse patterns"

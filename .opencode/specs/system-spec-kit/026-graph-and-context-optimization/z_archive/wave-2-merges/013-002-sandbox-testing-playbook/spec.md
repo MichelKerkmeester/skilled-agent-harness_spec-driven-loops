@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Sandbox Testing Playbook [system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/002-sandbox-testing-playbook/spec]"
+title: "Feature Specification: Sandbox Testing Playbook [system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/002-sandbox-testing-playbook/spec]"
 description: "Author 23 manual testing playbook scenarios (IDs 323-336, 338-342, 344-347; gaps at 337 + 343) covering all 5 doctor commands plus version-migration end-to-end, plus a Docker sandbox harness (Dockerfile + docker-compose.yml + fixture-fetch + 4 harness scripts + 23 per-scenario shell wrappers) under .opencode/skills/system-spec-kit/manual_testing_playbook/23--doctor-commands/ and _sandbox/23--doctor-commands/. Validates the runtime contract authored in sibling 001-doctor-commands."
 trigger_phrases:
   - "002-sandbox-testing-playbook"
@@ -15,7 +15,7 @@ contextType: "implementation"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/002-sandbox-testing-playbook"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/002-sandbox-testing-playbook"
     last_updated_at: "2026-05-09T16:05:00Z"
     last_updated_by: "spec-author"
     recent_action: "Authored Level 3 spec for 23 scenarios plus sandbox harness"
@@ -338,12 +338,12 @@ Author the validation half of 013's deliverable: 23 manual playbook scenarios (I
 - `../001-doctor-commands/checklist.md`
 - `../001-doctor-commands/implementation-summary.md`
 - `../001-doctor-commands/decision-record.md`
-- `../../../010-template-levels/003-template-greenfield-impl/spec.md`
-- `../../../010-template-levels/003-template-greenfield-impl/plan.md`
-- `../../../010-template-levels/003-template-greenfield-impl/tasks.md`
-- `../../../010-template-levels/003-template-greenfield-impl/checklist.md`
-- `../../../010-template-levels/003-template-greenfield-impl/implementation-summary.md`
-- `../../../010-template-levels/003-template-greenfield-impl/decision-record.md`
+- `../../../008-template-levels/003-template-greenfield-impl/spec.md`
+- `../../../008-template-levels/003-template-greenfield-impl/plan.md`
+- `../../../008-template-levels/003-template-greenfield-impl/tasks.md`
+- `../../../008-template-levels/003-template-greenfield-impl/checklist.md`
+- `../../../008-template-levels/003-template-greenfield-impl/implementation-summary.md`
+- `../../../008-template-levels/003-template-greenfield-impl/decision-record.md`
 
 ---
 

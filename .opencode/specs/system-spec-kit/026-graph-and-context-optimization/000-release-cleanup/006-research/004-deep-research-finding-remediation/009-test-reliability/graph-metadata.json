@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-deep-research-finding-remediation/009-test-reliability",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-deep-research-finding-remediation/009-test-reliability",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-deep-research-finding-remediation",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/006-research/004-deep-research-finding-remediation/009-test-reliability",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/006-research/004-deep-research-finding-remediation/009-test-reliability",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/006-research/004-deep-research-finding-remediation",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -45,7 +45,6 @@
       "mcp_server/stress_test/session/gate-d-resume-perf.vitest.ts",
       "mcp_server/stress_test/session/gate-d-benchmark-session-resume.vitest.ts",
       "mcp_server/tests/envelope.vitest.ts",
-      "mcp_server/stress_test/skill-advisor/opencode-plugin-bridge-stress.vitest.ts",
       "mcp_server/tests/hybrid-search-flags.vitest.ts",
       "mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts",
       ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
@@ -78,12 +77,6 @@
         "name": "envelope.vitest.ts",
         "kind": "test",
         "path": "mcp_server/tests/envelope.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "opencode-plugin-bridge-stress.vitest.ts",
-        "kind": "test",
-        "path": "mcp_server/stress_test/skill-advisor/opencode-plugin-bridge-stress.vitest.ts",
         "source": "derived"
       },
       {
@@ -199,11 +192,17 @@
         "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Six tests in the stress-test and unit-test surface have reliability defects that make them brittle on non-developer machines, in CI, or under repeated runs. One test hard-codes the original developer's local checkout path. One asserts absolute latency budgets that can fail on slower hardware. One uses real-timer sleeps with elapsed-time assertions, slowing the suite and producing flakes. Two tests mutate process env vars (`SPECKIT_SKILL_ADVISOR_PLUGIN_DISABLED`, `SPECKIT_MMR`) without restoration, leaking state across the run. One test uses a repo-local temp fixture root that collides between parallel runs and survives crashes.",
     "created_at": "2026-05-01T05:18:48Z",
-    "last_save_at": "2026-05-01T05:58:28.244Z",
+    "last_save_at": "2026-05-18T08:15:53.331Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

@@ -1,29 +1,227 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/027-memory-context-structural-channel-research",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/027-memory-context-structural-channel-research",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/003-mcp-runtime-stress-remediation/027-memory-context-structural-channel-research",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/003-mcp-runtime-stress-remediation/027-memory-context-structural-channel-research",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/003-mcp-runtime-stress-remediation",
   "children_ids": [],
-  "migrated": false,
-  "migration_source": null,
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/022-stress-test-results-deep-research"
-    ],
+    "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
   "derived": {
-    "trigger_phrases": ["027-memory-context-structural-channel-research", "memory_context structural routing", "code_graph_query channel fusion", "structural-semantic retrieval fusion"],
-    "key_topics": ["memory_context", "structural-channel", "code_graph_query", "fusion", "intent-routing"],
+    "trigger_phrases": [
+      "027-memory-context-structural-channel-research",
+      "memory_context structural routing",
+      "code_graph_query channel fusion",
+      "structural-semantic retrieval fusion",
+      "memory_context structural routing plan",
+      "code_graph_query channel fusion plan",
+      "memory_context structural routing tasks",
+      "code_graph_query channel fusion tasks",
+      "memory_context structural routing checklist",
+      "code_graph_query channel fusion verification",
+      "memory_context structural routing implementation summary",
+      "code_graph_query channel fusion research complete"
+    ],
+    "key_topics": [
+      "027-memory-context-structural-channel-research",
+      "structural",
+      "routing",
+      "channel",
+      "fusion",
+      "structural-semantic",
+      "retrieval",
+      "plan",
+      "tasks",
+      "checklist",
+      "verification",
+      "implementation"
+    ],
     "importance_tier": "important",
-    "status": "planned",
-    "key_files": ["spec.md", "research/deep-research-config.json", "research/deep-research-strategy.md", "research/deep-research-state.jsonl"],
-    "entities": [],
-    "causal_summary": "5-iteration deep research on extending memory_context with code_graph_query as structural retrieval channel. Answers three RQs: intent signal reliability, merged response shape, envelope routing-trace coverage. Synthesizes Planning Packet for implementation phase.",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "research/deep-research-state.jsonl",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "research/iterations/iteration-001.md",
+      "research/iterations/iteration-002.md",
+      "research/iterations/iteration-003.md",
+      "research/iterations/iteration-004.md",
+      "research/iterations/iteration-005.md",
+      "research/deltas/iteration-001.jsonl",
+      "research/deltas/iteration-002.jsonl",
+      "research/deltas/iteration-003.jsonl",
+      "research/deltas/iteration-004.jsonl",
+      "research/deltas/iteration-005.jsonl",
+      "research/research-report.md",
+      "implementation-summary.md",
+      "mcp_server/handlers/memory-context.ts",
+      "mcp_server/lib/search/search-decision-envelope.ts",
+      "mcp_server/lib/query/query-plan.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/deep-research-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-002.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-002.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-003.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-003.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-004.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-004.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-005.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-005.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-001.jsonl",
+        "kind": "file",
+        "path": "research/deltas/iteration-001.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-002.jsonl",
+        "kind": "file",
+        "path": "research/deltas/iteration-002.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-003.jsonl",
+        "kind": "file",
+        "path": "research/deltas/iteration-003.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-004.jsonl",
+        "kind": "file",
+        "path": "research/deltas/iteration-004.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-005.jsonl",
+        "kind": "file",
+        "path": "research/deltas/iteration-005.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "research-report.md",
+        "kind": "doc",
+        "path": "research/research-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "memory-context.ts",
+        "kind": "code",
+        "path": "mcp_server/handlers/memory-context.ts",
+        "source": "derived"
+      },
+      {
+        "name": "search-decision-envelope.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/search/search-decision-envelope.ts",
+        "source": "derived"
+      },
+      {
+        "name": "query-plan.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/query/query-plan.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Research Charter",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Structural Channel Routing",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Planning Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Today",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Today the system has two parallel retrieval surfaces with no routing layer between them:",
     "created_at": "2026-04-29T09:30:00.000Z",
-    "last_save_at": "2026-04-29T09:30:00.000Z",
-    "save_lineage": "new",
-    "source_docs": ["spec.md"]
+    "last_save_at": "2026-05-18T08:15:53.282Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "resource-map.md"
+    ]
   }
 }

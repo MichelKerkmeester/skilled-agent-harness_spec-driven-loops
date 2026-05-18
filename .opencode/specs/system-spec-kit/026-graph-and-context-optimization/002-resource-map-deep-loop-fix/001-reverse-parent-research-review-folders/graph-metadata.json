@@ -45,8 +45,6 @@
       ".opencode/skills/system-spec-kit/shared/review-research-paths.cjs",
       ".opencode/skills/system-spec-kit/scripts/migrate-deep-loop-local-owner.cjs",
       ".opencode/skills/system-spec-kit/scripts/migrate-deep-loop-legacy-owner-map.cjs",
-      ".opencode/skills/sk-deep-research/scripts/reduce-state.cjs",
-      ".opencode/skills/sk-deep-review/scripts/reduce-state.cjs",
       ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml",
       ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml",
       "implementation-summary.md",
@@ -54,13 +52,15 @@
       "plan.md",
       "checklist.md",
       "tasks.md",
-      ".opencode/skills/sk-deep-research/README.md",
-      ".opencode/skills/sk-deep-review/README.md",
       ".opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml",
       ".opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml",
       ".opencode/agents/deep-research.md",
       ".claude/agents/deep-research.md",
-      ".gemini/agents/deep-research.md"
+      ".gemini/agents/deep-research.md",
+      ".codex/agents/deep-research.toml",
+      ".opencode/agents/deep-review.md",
+      ".claude/agents/deep-review.md",
+      ".gemini/agents/deep-review.md"
     ],
     "entities": [
       {
@@ -85,12 +85,6 @@
         "name": "migrate-deep-loop-legacy-owner-map.cjs",
         "kind": "file",
         "path": ".opencode/skills/system-spec-kit/scripts/migrate-deep-loop-legacy-owner-map.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "reduce-state.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/sk-deep-research/scripts/reduce-state.cjs",
         "source": "derived"
       },
       {
@@ -136,12 +130,6 @@
         "source": "derived"
       },
       {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-deep-research/README.md",
-        "source": "derived"
-      },
-      {
         "name": "spec_kit_deep-research_confirm.yaml",
         "kind": "config",
         "path": ".opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml",
@@ -157,6 +145,18 @@
         "name": "deep-research.md",
         "kind": "doc",
         "path": ".opencode/agents/deep-research.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research.toml",
+        "kind": "file",
+        "path": ".codex/agents/deep-research.toml",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review.md",
+        "kind": "doc",
+        "path": ".opencode/agents/deep-review.md",
         "source": "derived"
       },
       {
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "This packet reverses the parent-root artifact placement policy introduced during the `007-deep-review-remediation/006-integrity-parity-closure` follow-up work and reinforced by later canonical-placement commits. It restores the earlier ownership model: root specs keep root-local `research/` and `review/`, while child phases and sub-phases keep packet folders inside their own local `research/` and `review/` directories. It also owns the repo-wide migration of child packets that were already centralized under ancestor roots, including the later manual owner-map cleanup that emptied the remaining root `research/` and `review/` packet directories under `026-graph-and-context-optimization`.",
     "created_at": "2026-04-24T12:32:52.475Z",
-    "last_save_at": "2026-04-26T09:17:15.714Z",
+    "last_save_at": "2026-05-18T08:15:53.351Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

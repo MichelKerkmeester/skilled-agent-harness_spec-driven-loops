@@ -25,7 +25,7 @@ If the listed files do not exist or are empty, treat absence itself as a finding
 
 ## CONTEXT — what has already been reviewed in prior iterations
 
-The state log at `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/037-system-code-graph-comprehensive-deep-review/review/deep-review-state.jsonl` lists prior iterations. Avoid duplicating findings — focus on NEW evidence from your scope.
+The state log at `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/037-system-code-graph-comprehensive-deep-review/review/deep-review-state.jsonl` lists prior iterations. Avoid duplicating findings — focus on NEW evidence from your scope.
 
 ## OUTPUT FORMAT
 

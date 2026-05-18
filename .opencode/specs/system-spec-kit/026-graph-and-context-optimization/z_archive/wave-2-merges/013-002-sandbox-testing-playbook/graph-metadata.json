@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/002-sandbox-testing-playbook",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/002-sandbox-testing-playbook",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/002-sandbox-testing-playbook",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/002-sandbox-testing-playbook",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -50,14 +50,14 @@
       "scripts/tests/test-validation.sh",
       "implementation-summary.md",
       "dispatch/track-d-sandbox.prompt.md",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/002-sandbox-testing-playbook/spec.md",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/002-sandbox-testing-playbook/spec.md",
       "handover.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/002-sandbox-testing-playbook/spec.md",
+        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/002-sandbox-testing-playbook/spec.md",
         "source": "derived"
       },
       {

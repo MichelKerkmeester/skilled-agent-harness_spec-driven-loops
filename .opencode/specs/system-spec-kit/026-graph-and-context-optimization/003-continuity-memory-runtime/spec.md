@@ -51,7 +51,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->"
 | **Branch** | `026-graph-and-context-optimization` |
 | **Parent Spec** | ../spec.md |
 | **Predecessor** | ../001-research-and-baseline/spec.md |
-| **Successor** | ../007-code-graph/spec.md |
+| **Successor** | ../005-code-graph/spec.md |
 <!-- /ANCHOR:metadata -->
 
 ---

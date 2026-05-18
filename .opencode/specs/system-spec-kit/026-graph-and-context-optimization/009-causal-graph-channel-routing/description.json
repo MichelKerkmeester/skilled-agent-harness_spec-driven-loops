@@ -1,0 +1,29 @@
+{
+  "level": "3",
+  "specFolder": "026-graph-and-context-optimization/009-causal-graph-channel-routing",
+  "description": "Phase parent for graph-channel routing utilization. 001-initial-delivery ships the override (complete, CONDITIONAL deep-review verdict). 002-deep-review-remediation closes 3 P1 + 39 P2 deep-review findings via cli-codex gpt-5.5 reasoning=high service_tier=fast.",
+  "keywords": [
+    "009-causal-graph-channel-routing",
+    "012 phase parent",
+    "graph channel routing phases",
+    "012 deep-review remediation",
+    "shouldPreserveGraph phases",
+    "entity-density cache wiring",
+    "routing-telemetry remediation",
+    "deep-review 012 CONDITIONAL"
+  ],
+  "lastUpdated": "2026-05-11T10:36:32.851Z",
+  "specId": "012",
+  "folderSlug": "causal-graph-channel-routing",
+  "parentChain": [
+    "026-graph-and-context-optimization"
+  ],
+  "memorySequence": 5,
+  "memoryNameHistory": [
+    "08-05-26_15-58__refined-012-packet-handover-md-post-mcp-restart.md",
+    "08-05-26_17-00__closed-all-deferred-stress-sub-criteria-for-012.md",
+    "11-05-26_08-55__manual-context-save.md",
+    "11-05-26_10-30__phase-parent-restructure-with-002-remediation.md",
+    "11-05-26_11-36__manual-context-save.md"
+  ]
+}

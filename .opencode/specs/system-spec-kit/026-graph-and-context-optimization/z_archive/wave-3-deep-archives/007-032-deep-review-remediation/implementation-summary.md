@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/032-deep-review-remediation"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/005-code-graph/032-deep-review-remediation"
     last_updated_at: "2026-05-14T21:10:00Z"
     last_updated_by: "orchestrator-remediation"
     recent_action: "Authored implementation-summary"

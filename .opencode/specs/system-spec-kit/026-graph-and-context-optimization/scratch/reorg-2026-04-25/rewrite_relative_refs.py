@@ -45,7 +45,7 @@ INTERNAL_RENUMBER = {
         "011-copilot-writer-wiring":             "007-copilot-writer-wiring",
         "012-docs-impact-remediation":           "008-docs-impact-remediation",
     },
-    "008-skill-advisor": {
+    "006-skill-advisor": {
         # 006-search-routing-advisor children: only renumber those that closed the gap at 004.
         "005-skill-advisor-docs-and-code-alignment":         "001-docs-and-code-alignment",
         "006-smart-router-remediation-and-opencode-plugin":  "003-smart-remediation-and-opencode-plugin",
@@ -54,11 +54,11 @@ INTERNAL_RENUMBER = {
         # Old slot referenced via ../001-skill-advisor-hook-surface (when sibling INSIDE 010).
         "001-skill-advisor-hook-surface":                    "004-skill-advisor-hook-surface",
         "002-daemon-and-unification":    "002-daemon-and-unification",
-        "008-skill-advisor-plugin-hardening":                "002-skill-advisor-plugin-hardening",
+        "006-skill-advisor-plugin-hardening":                "002-skill-advisor-plugin-hardening",
         "009-skill-advisor-standards-alignment":             "003-skill-advisor-standards-alignment",
         "014-skill-advisor-hook-improvements":               "001-skill-advisor-hook-improvements",
     },
-    "007-code-graph": {
+    "005-code-graph": {
         # 010 → 007 children get new slots 004 and 005. Internal sibling refs to those.
         "013-code-graph-hook-improvements":                  "003-code-graph-hook-improvements",
         "015-code-graph-advisor-refinement":                 "004-code-graph-advisor-refinement",
@@ -69,13 +69,13 @@ INTERNAL_RENUMBER = {
 # refs to it from inside 010-hook-parity must traverse up two levels.
 # Map: old child name → (new wrapper, new child name)
 ADVISOR_RELOCATIONS = {
-    "001-skill-advisor-hook-surface":                    ("008-skill-advisor", "004-skill-advisor-hook-surface"),
-    "002-daemon-and-unification":    ("008-skill-advisor", "002-daemon-and-unification"),
-    "008-skill-advisor-plugin-hardening":                ("008-skill-advisor", "002-skill-advisor-plugin-hardening"),
-    "009-skill-advisor-standards-alignment":             ("008-skill-advisor", "003-skill-advisor-standards-alignment"),
-    "014-skill-advisor-hook-improvements":               ("008-skill-advisor", "001-skill-advisor-hook-improvements"),
-    "013-code-graph-hook-improvements":                  ("007-code-graph", "003-code-graph-hook-improvements"),
-    "015-code-graph-advisor-refinement":                 ("007-code-graph", "004-code-graph-advisor-refinement"),
+    "001-skill-advisor-hook-surface":                    ("006-skill-advisor", "004-skill-advisor-hook-surface"),
+    "002-daemon-and-unification":    ("006-skill-advisor", "002-daemon-and-unification"),
+    "006-skill-advisor-plugin-hardening":                ("006-skill-advisor", "002-skill-advisor-plugin-hardening"),
+    "009-skill-advisor-standards-alignment":             ("006-skill-advisor", "003-skill-advisor-standards-alignment"),
+    "014-skill-advisor-hook-improvements":               ("006-skill-advisor", "001-skill-advisor-hook-improvements"),
+    "013-code-graph-hook-improvements":                  ("005-code-graph", "003-code-graph-hook-improvements"),
+    "015-code-graph-advisor-refinement":                 ("005-code-graph", "004-code-graph-advisor-refinement"),
 }
 
 # Top-level wrapper renumbering applied across all trees (from user's first-pass renumber that wasn't reflected in cross-refs).
@@ -86,9 +86,9 @@ TOP_LEVEL_RENUMBER = {
     "010-memory-indexer-lineage-and-concurrency-fix": "005-memory-indexer-invariants",
     "011-resource-map-template":               "002-resource-map-deep-loop-fix",
     "011-index-scope-and-constitutional-tier-invariants": "005-memory-indexer-invariants",
-    "003-code-graph-package":                  "007-code-graph",
+    "003-code-graph-package":                  "005-code-graph",
     "005-release-cleanup-playbooks":           "000-release-cleanup-playbooks",
-    "006-search-routing-advisor":              "008-skill-advisor",
+    "006-search-routing-advisor":              "006-skill-advisor",
     "009-hook-package":                        "010-hook-parity",
     "010-hook-package":                        "010-hook-parity",
 }
@@ -106,25 +106,25 @@ QUALIFIED_RELOCATIONS = [
     ("../../010-hook-parity/011-copilot-writer-wiring/",              "../../010-hook-parity/007-copilot-writer-wiring/"),
     ("../../010-hook-parity/012-docs-impact-remediation/",            "../../010-hook-parity/008-docs-impact-remediation/"),
     # 010-hook-parity slots that MOVED OUT to 008/007.
-    ("../../010-hook-parity/001-skill-advisor-hook-surface/",         "../../008-skill-advisor/004-skill-advisor-hook-surface/"),
-    ("../../010-hook-parity/002-daemon-and-unification/", "../../008-skill-advisor/002-daemon-and-unification/"),
-    ("../../010-hook-parity/008-skill-advisor-plugin-hardening/",     "../../008-skill-advisor/002-skill-advisor-plugin-hardening/"),
-    ("../../010-hook-parity/009-skill-advisor-standards-alignment/",  "../../008-skill-advisor/003-skill-advisor-standards-alignment/"),
-    ("../../010-hook-parity/014-skill-advisor-hook-improvements/",    "../../008-skill-advisor/001-skill-advisor-hook-improvements/"),
-    ("../../010-hook-parity/013-code-graph-hook-improvements/",       "../../007-code-graph/003-code-graph-hook-improvements/"),
-    ("../../010-hook-parity/015-code-graph-advisor-refinement/",      "../../007-code-graph/004-code-graph-advisor-refinement/"),
-    # 008-skill-advisor close-the-gap renumber for 006-children (005→004, 006→005, 007→006).
-    ("../../008-skill-advisor/005-skill-advisor-docs-and-code-alignment/",      "../../008-skill-advisor/001-docs-and-code-alignment/"),
-    ("../../008-skill-advisor/006-smart-router-remediation-and-opencode-plugin/", "../../008-skill-advisor/003-smart-remediation-and-opencode-plugin/"),
-    ("../../008-skill-advisor/007-deferred-remediation-and-telemetry-run/",      "../../008-skill-advisor/001-deferred-remediation-and-telemetry-run/"),
+    ("../../010-hook-parity/001-skill-advisor-hook-surface/",         "../../006-skill-advisor/004-skill-advisor-hook-surface/"),
+    ("../../010-hook-parity/002-daemon-and-unification/", "../../006-skill-advisor/002-daemon-and-unification/"),
+    ("../../010-hook-parity/006-skill-advisor-plugin-hardening/",     "../../006-skill-advisor/002-skill-advisor-plugin-hardening/"),
+    ("../../010-hook-parity/009-skill-advisor-standards-alignment/",  "../../006-skill-advisor/003-skill-advisor-standards-alignment/"),
+    ("../../010-hook-parity/014-skill-advisor-hook-improvements/",    "../../006-skill-advisor/001-skill-advisor-hook-improvements/"),
+    ("../../010-hook-parity/013-code-graph-hook-improvements/",       "../../005-code-graph/003-code-graph-hook-improvements/"),
+    ("../../010-hook-parity/015-code-graph-advisor-refinement/",      "../../005-code-graph/004-code-graph-advisor-refinement/"),
+    # 006-skill-advisor close-the-gap renumber for 006-children (005→004, 006→005, 007→006).
+    ("../../006-skill-advisor/005-skill-advisor-docs-and-code-alignment/",      "../../006-skill-advisor/001-docs-and-code-alignment/"),
+    ("../../006-skill-advisor/006-smart-router-remediation-and-opencode-plugin/", "../../006-skill-advisor/003-smart-remediation-and-opencode-plugin/"),
+    ("../../006-skill-advisor/007-deferred-remediation-and-telemetry-run/",      "../../006-skill-advisor/001-deferred-remediation-and-telemetry-run/"),
     # Top-level wrapper renames at fully-qualified depth.
     ("../../008-runtime-executor-hardening/", "../../004-runtime-executor-hardening/"),
     ("../../002-continuity-memory-runtime/",  "../../003-continuity-memory-runtime/"),
     ("../../010-memory-indexer-invariants/",  "../../005-memory-indexer-invariants/"),
     ("../../011-resource-map-template/",      "../../002-resource-map-deep-loop-fix/"),
     ("../../005-release-cleanup-playbooks/",  "../../000-release-cleanup-playbooks/"),
-    ("../../003-code-graph-package/",         "../../007-code-graph/"),
-    ("../../006-search-routing-advisor/",     "../../008-skill-advisor/"),
+    ("../../003-code-graph-package/",         "../../005-code-graph/"),
+    ("../../006-search-routing-advisor/",     "../../006-skill-advisor/"),
     ("../../009-hook-package/",               "../../010-hook-parity/"),
     ("../../010-hook-package/",               "../../010-hook-parity/"),
 ]
@@ -133,7 +133,7 @@ QUALIFIED_RELOCATIONS = [
 # changes from `../<old>/` to `../../<new-wrapper>/<new>/`.
 # Already covered for 010-hook-parity in ADVISOR_RELOCATIONS. Add for 008/007 trees.
 CROSS_TREE_FROM_008 = {
-    # When the file is inside 008-skill-advisor and references something that USED TO live in 010 alongside it
+    # When the file is inside 006-skill-advisor and references something that USED TO live in 010 alongside it
     # but is now in 010-hook-parity (after rename + renumber):
     "003-hook-parity-remediation":           ("010-hook-parity", "001-hook-parity-remediation"),
     "004-copilot-hook-parity-remediation":   ("010-hook-parity", "002-copilot-hook-parity-remediation"),
@@ -143,18 +143,18 @@ CROSS_TREE_FROM_008 = {
     "010-copilot-wrapper-schema-fix":        ("010-hook-parity", "006-copilot-wrapper-schema-fix"),
     "011-copilot-writer-wiring":             ("010-hook-parity", "007-copilot-writer-wiring"),
     "012-docs-impact-remediation":           ("010-hook-parity", "008-docs-impact-remediation"),
-    # And to 007-code-graph for code-graph slots that were in 010:
-    "013-code-graph-hook-improvements":      ("007-code-graph", "003-code-graph-hook-improvements"),
-    "015-code-graph-advisor-refinement":     ("007-code-graph", "004-code-graph-advisor-refinement"),
+    # And to 005-code-graph for code-graph slots that were in 010:
+    "013-code-graph-hook-improvements":      ("005-code-graph", "003-code-graph-hook-improvements"),
+    "015-code-graph-advisor-refinement":     ("005-code-graph", "004-code-graph-advisor-refinement"),
 }
 
 CROSS_TREE_FROM_007 = {
-    # Files in 007-code-graph/004 or /005 (came from 010) referencing old 010 siblings.
-    "001-skill-advisor-hook-surface":         ("008-skill-advisor", "004-skill-advisor-hook-surface"),
-    "002-daemon-and-unification": ("008-skill-advisor", "002-daemon-and-unification"),
-    "008-skill-advisor-plugin-hardening":     ("008-skill-advisor", "002-skill-advisor-plugin-hardening"),
-    "009-skill-advisor-standards-alignment":  ("008-skill-advisor", "003-skill-advisor-standards-alignment"),
-    "014-skill-advisor-hook-improvements":    ("008-skill-advisor", "001-skill-advisor-hook-improvements"),
+    # Files in 005-code-graph/004 or /005 (came from 010) referencing old 010 siblings.
+    "001-skill-advisor-hook-surface":         ("006-skill-advisor", "004-skill-advisor-hook-surface"),
+    "002-daemon-and-unification": ("006-skill-advisor", "002-daemon-and-unification"),
+    "006-skill-advisor-plugin-hardening":     ("006-skill-advisor", "002-skill-advisor-plugin-hardening"),
+    "009-skill-advisor-standards-alignment":  ("006-skill-advisor", "003-skill-advisor-standards-alignment"),
+    "014-skill-advisor-hook-improvements":    ("006-skill-advisor", "001-skill-advisor-hook-improvements"),
     "003-hook-parity-remediation":            ("010-hook-parity", "001-hook-parity-remediation"),
     "004-copilot-hook-parity-remediation":    ("010-hook-parity", "002-copilot-hook-parity-remediation"),
     "005-codex-hook-parity-remediation":      ("010-hook-parity", "003-codex-hook-parity-remediation"),
@@ -197,12 +197,12 @@ def apply_to_text(text: str, tree: str) -> tuple[str, list[tuple[str, str, int]]
         replace(patt, replacement)
 
     # 2. Tree-specific cross-tree from 008 to other wrappers (sibling form `../<oldslot>/`).
-    if tree == "008-skill-advisor":
+    if tree == "006-skill-advisor":
         for old, (new_wrapper, new_name) in CROSS_TREE_FROM_008.items():
             replace(f"../{old}/", f"../../{new_wrapper}/{new_name}/")
 
     # 3. Tree-specific cross-tree from 007 to other wrappers.
-    if tree == "007-code-graph":
+    if tree == "005-code-graph":
         for old, (new_wrapper, new_name) in CROSS_TREE_FROM_007.items():
             replace(f"../{old}/", f"../../{new_wrapper}/{new_name}/")
 
@@ -234,7 +234,7 @@ def main() -> int:
 
     # Walk only the three reorged trees + root.
     targets: list[Path] = []
-    for tree in ("007-code-graph", "008-skill-advisor", "010-hook-parity"):
+    for tree in ("005-code-graph", "006-skill-advisor", "010-hook-parity"):
         targets.append(SPEC_ROOT / tree)
     targets.append(SPEC_ROOT)  # for root files
 

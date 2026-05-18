@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/009-fix-iteration-quality-meta-research",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/009-fix-iteration-quality-meta-research",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/005-code-graph",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "fix iteration quality",
+      "class of bug vs finding",
+      "cross-cutting consumer detection",
+      "fix completeness checklist",
+      "FIX-010-v2",
+      "Planning Packet",
+      "verification checklist",
+      "implementation summary"
+    ],
+    "key_topics": [
+      "fix",
+      "iteration",
+      "quality",
+      "class",
+      "bug",
+      "finding",
+      "cross-cutting",
+      "consumer",
+      "detection",
+      "completeness",
+      "checklist",
+      "fix-010-v2"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "review/deep-review-strategy.md",
+      ".opencode/skills/sk-code-review/references/fix-completeness-checklist.md",
+      ".opencode/commands/spec_kit/assets/spec_kit_plan_auto.yaml",
+      ".opencode/commands/spec_kit/assets/spec_kit_plan_confirm.yaml",
+      "review/iterations/iteration-005.md",
+      "review/iterations/iteration-001.md",
+      "review/iterations/iteration-002.md",
+      "review/iterations/iteration-003.md",
+      "review/iterations/iteration-004.md",
+      "review/deep-review-state.jsonl",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "decision-record.md",
+      "research/deep-research-state.jsonl",
+      ".opencode/skills/system-spec-kit/templates/manifest/plan.md.tmpl",
+      ".opencode/skills/system-spec-kit/templates/manifest/checklist.md.tmpl",
+      ".opencode/skills/sk-code-review/SKILL.md",
+      ".opencode/skills/sk-code-review/references/review_core.md"
+    ],
+    "entities": [
+      {
+        "name": "deep-review-strategy.md",
+        "kind": "doc",
+        "path": "review/deep-review-strategy.md",
+        "source": "derived"
+      },
+      {
+        "name": "fix-completeness-checklist.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code-review/references/fix-completeness-checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec_kit_plan_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/spec_kit/assets/spec_kit_plan_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "spec_kit_plan_confirm.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/spec_kit/assets/spec_kit_plan_confirm.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-005.md",
+        "kind": "doc",
+        "path": "review/iterations/iteration-005.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": "review/iterations/iteration-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-002.md",
+        "kind": "doc",
+        "path": "review/iterations/iteration-002.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-003.md",
+        "kind": "doc",
+        "path": "review/iterations/iteration-003.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-004.md",
+        "kind": "doc",
+        "path": "review/iterations/iteration-004.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-state.jsonl",
+        "kind": "file",
+        "path": "review/deep-review-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/deep-research-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md.tmpl",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/templates/manifest/plan.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md.tmpl",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/templates/manifest/checklist.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code-review/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "review_core.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code-review/references/review_core.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Iteration Quality Meta",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Planning Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "This packet studies why the 009 fix path needed repeated review cycles and implements the resulting guardrails. The current FIX-010-v2 cycle remediates three active P1 findings in the 010 review lineage: stale canonical docs, missing review strategy state, and missing inert-data handling for Planning Packet imports.",
+    "created_at": "2026-05-09T19:30:52.609Z",
+    "last_save_at": "2026-05-18T08:15:53.436Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ]
+  }
+}

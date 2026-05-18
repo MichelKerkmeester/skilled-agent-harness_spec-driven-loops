@@ -47,7 +47,7 @@ _memory:
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |
 | **Parent Packet** | `026-graph-and-context-optimization` |
-| **Predecessor** | `009-hook-parity` |
+| **Predecessor** | `007-hook-parity` |
 | **Successor** | None (current tail of 026 active surface) |
 | **Handoff Criteria** | Phase 1 (`001-validator-and-docs`) ships the validator + template + docs sync. Phase 2 (`002-generator-and-polish`) lands the deferred generator pointer-write, create.sh template swap, content validator, and end-to-end test. |
 <!-- /ANCHOR:metadata -->

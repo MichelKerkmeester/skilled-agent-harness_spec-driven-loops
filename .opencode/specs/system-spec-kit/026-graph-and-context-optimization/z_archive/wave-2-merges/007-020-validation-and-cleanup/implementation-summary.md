@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/020-validation-and-cleanup"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/005-code-graph/020-validation-and-cleanup"
     last_updated_at: "2026-05-14T09:13:21Z"
     last_updated_by: "claude"
     recent_action: "Recalibration backfill post-manual-reorg"
@@ -44,7 +44,7 @@ _memory:
 
 - Completed the original validation and cleanup packet for the extraction train.
 - Confirmed typecheck/Vitest/gold-query/DB parity work from the six-phase extraction sequence (artifacts: `.opencode/skills/system-code-graph/mcp_server/tests/code-graph-verify.vitest.ts`, `.../tests/assets/code-graph-gold-queries.json`, `.../mcp_server/database/code-graph.sqlite`).
-- Recorded cleanup completion and parent phase status before the topology reversal (target files: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/013-system-code-graph-extraction/spec.md`, `.../graph-metadata.json`).
+- Recorded cleanup completion and parent phase status before the topology reversal (target files: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/013-system-code-graph-extraction/spec.md`, `.../graph-metadata.json`).
 - 007 supersedes Q3 topology decision only: ADR-002 in `.../007-mcp-topology-pivot/decision-record.md` changes MCP registration from co-resident spec_kit_memory to standalone system_code_graph. ADR-001 Constraint A remains unchanged: no code-graph algorithms, parsing, scoring, scan-scope policy, or query semantics change.
 <!-- /ANCHOR:what-built -->
 

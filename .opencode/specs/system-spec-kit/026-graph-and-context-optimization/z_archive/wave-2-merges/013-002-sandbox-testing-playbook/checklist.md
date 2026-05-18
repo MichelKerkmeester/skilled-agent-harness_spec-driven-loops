@@ -1,5 +1,5 @@
 ---
-title: "Verification Checklist: Sandbox Testing Playbook [system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/002-sandbox-testing-playbook/checklist]"
+title: "Verification Checklist: Sandbox Testing Playbook [system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/002-sandbox-testing-playbook/checklist]"
 description: "P0/P1/P2 verification checkpoints with evidence anchors for the 5-phase implementation."
 trigger_phrases:
   - "002-sandbox-testing-playbook checklist"
@@ -9,7 +9,7 @@ contextType: "implementation"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/002-sandbox-testing-playbook"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/002-sandbox-testing-playbook"
     last_updated_at: "2026-05-09T16:18:00Z"
     last_updated_by: "spec-author"
     recent_action: "Authored verification checklist with per-phase blocks"

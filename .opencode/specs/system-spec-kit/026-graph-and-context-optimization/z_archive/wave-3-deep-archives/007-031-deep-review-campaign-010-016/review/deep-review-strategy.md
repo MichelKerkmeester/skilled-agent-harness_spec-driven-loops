@@ -73,7 +73,7 @@ Review complete. Synthesize final report.
 <!-- MACHINE-OWNED: END -->
 
 ## 12. KNOWN CONTEXT
-Campaign 010-016 shipped 2026-05-14 under .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/013-system-code-graph-extraction/. Packets:
+Campaign 010-016 shipped 2026-05-14 under .opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/013-system-code-graph-extraction/. Packets:
 - 010: MCP server rename system_code_graph → mk-code-index (commit 7cfc16ed9)
 - 011: Skill docs sk-doc alignment (commit 4e511bda3)
 - 012: system-spec-kit code-graph residue audit (commit dfd0a0893)

@@ -1,20 +1,15 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/016-degraded-readiness-envelope-parity",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/016-degraded-readiness-envelope-parity",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/003-mcp-runtime-stress-remediation/016-degraded-readiness-envelope-parity",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/003-mcp-runtime-stress-remediation/016-degraded-readiness-envelope-parity",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/003-mcp-runtime-stress-remediation",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/011-post-stress-followup-research",
-      "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/014-graph-status-readiness-snapshot",
-      "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/015-cocoindex-seed-telemetry-passthrough"
-    ],
+    "depends_on": [],
     "supersedes": [],
-    "related_to": [
-      "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/005-code-graph-fast-fail",
-      "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/013-graph-degraded-stress-cell"
-    ]
+    "related_to": []
   },
   "derived": {
     "trigger_phrases": [
@@ -26,102 +21,41 @@
       "F-001 F-003 remediation",
       "rg fallback handler parity",
       "degraded readiness envelope parity plan",
+      "016 plan",
       "degraded readiness envelope parity tasks",
-      "degraded readiness envelope parity checklist",
-      "degraded readiness envelope parity decisions",
-      "degraded readiness envelope parity summary"
+      "016 tasks",
+      "degraded readiness envelope parity checklist"
     ],
     "key_topics": [
       "016-degraded-readiness-envelope-parity",
-      "code_graph_context",
-      "code_graph_status",
+      "degraded",
       "readiness",
-      "degraded-envelope",
-      "fallback-decision",
-      "rg-recovery",
-      "shared-vocabulary",
-      "trust-state",
-      "canonical-readiness",
-      "p1-remediation",
-      "review-report",
-      "F-001",
-      "F-003",
-      "F-009"
+      "envelope",
+      "parity",
+      "crash",
+      "unavailable",
+      "shared",
+      "degraded-readiness",
+      "vocabulary",
+      "f-001",
+      "f-003"
     ],
-    "importance_tier": "important",
-    "status": "complete",
+    "importance_tier": "normal",
+    "status": "in_progress",
     "key_files": [
-      "mcp_server/code_graph/handlers/context.ts",
-      "mcp_server/code_graph/handlers/status.ts",
-      "mcp_server/tests/readiness-contract.vitest.ts",
-      "mcp_server/tests/code-graph-degraded-readiness-envelope-parity.vitest.ts",
+      "decision-record.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "decision-record.md",
       "implementation-summary.md"
     ],
     "entities": [
       {
-        "name": "context.ts",
-        "kind": "code",
-        "path": "mcp_server/code_graph/handlers/context.ts",
-        "source": "manual"
-      },
-      {
-        "name": "status.ts",
-        "kind": "code",
-        "path": "mcp_server/code_graph/handlers/status.ts",
-        "source": "manual"
-      },
-      {
-        "name": "readiness-contract.ts",
-        "kind": "code",
-        "path": "mcp_server/code_graph/lib/readiness-contract.ts",
-        "source": "manual"
-      },
-      {
-        "name": "ensure-ready.ts",
-        "kind": "code",
-        "path": "mcp_server/code_graph/lib/ensure-ready.ts",
-        "source": "manual"
-      },
-      {
-        "name": "readiness-contract.vitest.ts",
-        "kind": "code",
-        "path": "mcp_server/tests/readiness-contract.vitest.ts",
-        "source": "manual"
-      },
-      {
-        "name": "code-graph-degraded-readiness-envelope-parity.vitest.ts",
-        "kind": "code",
-        "path": "mcp_server/tests/code-graph-degraded-readiness-envelope-parity.vitest.ts",
-        "source": "manual"
-      },
-      {
-        "name": "shouldBlockReadPath",
-        "kind": "function",
-        "path": "mcp_server/code_graph/handlers/context.ts",
-        "source": "manual"
-      },
-      {
-        "name": "buildContextFallbackDecision",
-        "kind": "function",
-        "path": "mcp_server/code_graph/handlers/context.ts",
-        "source": "manual"
-      },
-      {
-        "name": "handleCodeGraphStatus",
-        "kind": "function",
-        "path": "mcp_server/code_graph/handlers/status.ts",
-        "source": "manual"
-      },
-      {
-        "name": "buildReadinessBlock",
-        "kind": "function",
-        "path": "mcp_server/code_graph/lib/readiness-contract.ts",
-        "source": "manual"
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
       },
       {
         "name": "spec.md",
@@ -148,22 +82,124 @@
         "source": "derived"
       },
       {
-        "name": "decision-record.md",
-        "kind": "doc",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Ship",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "Closes the F-001 + F-003 P1 findings from the 012-015 integrated deep-review CONDITIONAL verdict. code_graph_context now blocks the read path on freshness === 'error' BEFORE buildContext() and emits a degraded envelope preserving readiness/canonicalReadiness/trustState/graphAnswersOmitted plus a fallbackDecision: { nextTool: 'rg', reason } matching the code_graph_query shape. code_graph_status now reads getGraphReadinessSnapshot() ahead of graphDb.getStats() and isolates stats into a try/catch so an unavailable DB never suppresses the readiness snapshot. Adds the missing error → missing/unavailable fixture to the shared readiness-contract test suite (F-009) and a new code-graph-degraded-readiness-envelope-parity.vitest.ts that pins F-001 + F-003 contracts plus a cross-handler vocabulary parity sweep (F-008 verification). Decision-record.md ADR-001 documents the shared-vocabulary-handler-local-payload split (F-006/F-008 docs); ADR-002 documents the snapshot-first AND isolate-stats defense-in-depth ordering. All three code-graph handlers (context/status/query) now emit the same canonical readiness fields and route degraded callers to the same rg recovery action.",
+    "causal_summary": "The 10-iteration cli-codex deep-review of the 012-015 integrated implementation surfaced two P1 cross-cutting findings (CONDITIONAL verdict):",
     "created_at": "2026-04-27T22:30:00.000Z",
-    "last_save_at": "2026-04-27T22:30:00.000Z",
-    "save_lineage": "manual_author",
+    "last_save_at": "2026-05-18T08:15:53.258Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",

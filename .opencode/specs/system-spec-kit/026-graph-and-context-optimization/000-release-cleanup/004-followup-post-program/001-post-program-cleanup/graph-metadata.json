@@ -1,57 +1,211 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/001-post-program-cleanup",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/001-post-program-cleanup",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-followup-post-program/001-post-program-cleanup",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-followup-post-program/001-post-program-cleanup",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-followup-post-program",
   "children_ids": [],
-  "migrated": false,
-  "migration_source": null,
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      "system-spec-kit/026-graph-and-context-optimization/005-memory-indexer-invariants",
-      "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation",
-      "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-daemon-and-unification"
-    ],
+    "depends_on": [],
     "supersedes": [],
-    "related_to": [
-      "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/001-memory-indexer-storage-boundary",
-      "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/001-mcp-stress-cycle-cleanup",
-      "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/001-skill-advisor-fail-open",
-      "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-tier2-remediation"
-    ]
+    "related_to": []
   },
   "derived": {
     "trigger_phrases": [
-      "001-post-program-cleanup",
+      "005 post-program cleanup",
       "026 validator hygiene",
-      "post-program status drift"
+      "release cleanup status drift",
+      "005 post-program cleanup plan",
+      "026 validator cleanup plan",
+      "005 post-program cleanup tasks",
+      "026 cleanup task ledger",
+      "005 post-program cleanup checklist",
+      "026 cleanup verification",
+      "005 post-program cleanup summary",
+      "026 cleanup implementation summary"
     ],
     "key_topics": [
-      "validator-hygiene",
-      "status-refresh",
-      "phase-map",
-      "rubric-replay"
+      "005",
+      "post-program",
+      "cleanup",
+      "026",
+      "validator",
+      "hygiene",
+      "release",
+      "status",
+      "drift",
+      "plan",
+      "tasks",
+      "task"
     ],
-    "importance_tier": "important",
-    "status": "in_progress",
+    "importance_tier": "high",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "review/001-post-program-cleanup-pt-01/review-report.md"
+      ".opencode/skills/system-spec-kit/scripts/rules/check-phase-links.sh",
+      "implementation-summary.md"
     ],
-    "entities": [],
-    "causal_summary": "Post-program cleanup packet for 026 release remediation status drift, validator hygiene, phase-map traceability, helper/fixture integration audit, and rubric replay verification.",
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-phase-links.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/rules/check-phase-links.sh",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Program Cleanup",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Focused Vitest",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Spec",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Audit Tier",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 026 deep-review remediation program landed most runtime and documentation fixes, but left post-program status and validator surfaces stale. Completed remediation packets still present as `planned`, parent maps omit the remediation child, and the source packets 005/011 are not strict-validator green.",
     "created_at": "2026-04-28T19:26:58Z",
-    "last_save_at": "2026-04-28T19:26:58Z",
-    "save_lineage": "new",
+    "last_save_at": "2026-05-18T08:15:53.183Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "review/001-post-program-cleanup-pt-01/review-report.md"
+      "implementation-summary.md"
     ]
   }
 }

@@ -5,9 +5,9 @@
   "parent_id": "system-spec-kit/026-graph-and-context-optimization",
   "children_ids": [
     "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation",
-    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-mk-spec-memory-stack",
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack",
     "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/003-skill-advisor-stack",
-    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-cocoindex-stack",
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack",
     "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/005-cross-cutting-quality",
     "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/012-mcp-launcher-concurrency-arc"
   ],

@@ -14,7 +14,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/026-system-spec-kit-codegraph-residue-audit"
+    packet_pointer: ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/026-system-spec-kit-codegraph-residue-audit"
     last_updated_at: "2026-05-15T13:00:00Z"
     last_updated_by: "main-agent-026-phase2"
     recent_action: "phase2_patches_landed"
@@ -103,7 +103,7 @@ Audit the scoped user-facing docs, rewrite stale ownership/path references to th
 | `.opencode/skills/system-spec-kit/ARCHITECTURE.md` | Modify | Remove stale subsystem ownership narrative and describe extracted integration boundaries. |
 | `.opencode/skills/system-spec-kit/feature_catalog/**/*.md` | Modify | Rewrite stale code-graph package paths and broken post-extraction references. |
 | `.opencode/skills/system-spec-kit/manual_testing_playbook/**/*.md` | Modify | Rewrite stale code-graph package and DB paths in retained historical/manual scenarios. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/026-system-spec-kit-codegraph-residue-audit/` | Create | Track this audit, triage, and verification. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/026-system-spec-kit-codegraph-residue-audit/` | Create | Track this audit, triage, and verification. |
 <!-- /ANCHOR:scope -->
 
 ---

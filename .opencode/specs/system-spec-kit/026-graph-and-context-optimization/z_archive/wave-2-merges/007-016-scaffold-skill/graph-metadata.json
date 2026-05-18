@@ -1,18 +1,18 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/016-scaffold-skill",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/016-scaffold-skill",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/007-code-graph",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/016-scaffold-skill",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/016-scaffold-skill",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/005-code-graph",
   "children_ids": [],
   "migrated": true,
   "manual": {
     "depends_on": [
-      "system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-design-and-decision-record"
+      "system-spec-kit/026-graph-and-context-optimization/005-code-graph/014-design-and-decision-record"
     ],
     "supersedes": [],
     "related_to": [
-      "system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-backend-resilience",
-      "system-spec-kit/026-graph-and-context-optimization/007-code-graph/010-broader-scope-excludes-and-granular-skills"
+      "system-spec-kit/026-graph-and-context-optimization/005-code-graph/005-code-graph-backend-resilience",
+      "system-spec-kit/026-graph-and-context-optimization/005-code-graph/010-broader-scope-excludes-and-granular-skills"
     ]
   },
   "derived": {
@@ -62,5 +62,5 @@
       "plan.md"
     ]
   },
-  "migration_source": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/013-system-code-graph-extraction/002-scaffold-skill"
+  "migration_source": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/013-system-code-graph-extraction/002-scaffold-skill"
 }

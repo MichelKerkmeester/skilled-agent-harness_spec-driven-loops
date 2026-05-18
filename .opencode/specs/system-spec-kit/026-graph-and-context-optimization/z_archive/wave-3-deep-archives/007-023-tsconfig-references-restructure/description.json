@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/023-tsconfig-references-restructure",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/023-tsconfig-references-restructure",
   "description": "TSConfig References Restructure",
   "keywords": [
     "tsconfig",
@@ -16,7 +16,7 @@
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "007-code-graph",
+    "005-code-graph",
     "013-system-code-graph-extraction"
   ],
   "memorySequence": 1,

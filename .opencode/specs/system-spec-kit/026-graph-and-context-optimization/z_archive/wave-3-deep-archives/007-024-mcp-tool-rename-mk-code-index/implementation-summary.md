@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/024-mcp-tool-rename-mk-code-index"
+    packet_pointer: ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/024-mcp-tool-rename-mk-code-index"
     last_updated_at: "2026-05-14T17:29:04Z"
     last_updated_by: "cli-codex-gpt5.5-xhigh-fast-010"
     recent_action: "Implemented MCP server rename"
@@ -127,7 +127,7 @@ Historical packet docs under children `001` through `009` were not edited.
 | `npx tsc` in `.opencode/skills/system-code-graph` | EXPECTED FAIL in network-disabled runtime; attempted registry lookup for `tsc` and exited 1 with `ENOTFOUND registry.npmjs.org`. |
 | `node node_modules/typescript/bin/tsc` in `.opencode/skills/system-code-graph` | PASS, exit 0. Dist regenerated under `.opencode/skills/system-code-graph/dist/system-code-graph/mcp_server/` with `mk-code-index` in emitted JS. |
 | `timeout 8 node .opencode/bin/mk-code-index-launcher.cjs </dev/null 2>&1 \| head -10` | PASS, exit 0. Output used `[mk-code-index-launcher]` prefix and contained no stale-prefix or missing-module errors. |
-| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/024-mcp-tool-rename-mk-code-index --strict` | PASS, exit 0 with 0 errors and 0 warnings. |
+| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/024-mcp-tool-rename-mk-code-index --strict` | PASS, exit 0 with 0 errors and 0 warnings. |
 | `python3 .opencode/skills/sk-code/assets/scripts/verify_alignment_drift.py --root .opencode/skills/system-code-graph` | PASS, exit 0 with 59 existing non-blocking warnings. |
 | `python3 .opencode/skills/sk-code/assets/scripts/verify_alignment_drift.py --root .opencode/commands/doctor` | PASS, exit 0 with 1 existing non-blocking warning. |
 | `python3 .opencode/skills/sk-code/assets/scripts/verify_alignment_drift.py --root .opencode/skills/system-spec-kit/mcp_server` | PASS, exit 0 with 6 existing non-blocking warnings. |

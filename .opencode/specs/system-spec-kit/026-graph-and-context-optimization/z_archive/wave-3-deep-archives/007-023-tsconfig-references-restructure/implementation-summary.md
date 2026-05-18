@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/023-tsconfig-references-restructure"
+    packet_pointer: ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/023-tsconfig-references-restructure"
     last_updated_at: "2026-05-14T16:26:51Z"
     last_updated_by: "cli-codex-gpt5.5-xhigh-fast-009"
     recent_action: "Implemented and verified Option A"
@@ -16,7 +16,7 @@ _memory:
     blockers: []
     key_files:
       - ".opencode/skills/system-code-graph/tsconfig.json"
-      - ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/023-tsconfig-references-restructure/spec.md"
+      - ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/023-tsconfig-references-restructure/spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-05-14-009-tsconfig-references-restructure"
@@ -90,7 +90,7 @@ The full `--listEmittedFiles` run also re-emitted existing included system-spec-
 | File | Action | Purpose |
 |------|--------|---------|
 | `.opencode/skills/system-code-graph/tsconfig.json` | Modified | Drop the project reference that prevented shared sources from emitting into this dist tree. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/023-tsconfig-references-restructure/` | Created | Document this fix and verification. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/023-tsconfig-references-restructure/` | Created | Document this fix and verification. |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -128,7 +128,7 @@ The implementation used Option A. Removing the project reference was enough; no 
 | `ls .opencode/skills/system-code-graph/dist/system-spec-kit/mcp_server/lib/utils/index-scope.js` | PASS, file exists after build-info clean. |
 | `timeout 8 node .opencode/bin/system-code-graph-launcher.cjs </dev/null 2>&1 \| head -10` | PASS, printed env-loading lines only; no `Cannot find module`. |
 | `python3 .opencode/skills/sk-code/assets/scripts/verify_alignment_drift.py --root .opencode/skills/system-code-graph` | PASS, exit 0 with 59 non-blocking warnings from existing generated/source style checks. |
-| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/023-tsconfig-references-restructure --strict` | PASS, exit 0 after compacting `spec.md` continuity frontmatter. |
+| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/023-tsconfig-references-restructure --strict` | PASS, exit 0 after compacting `spec.md` continuity frontmatter. |
 | `git add -- .opencode/skills/system-code-graph/tsconfig.json .opencode/specs/.../009-tsconfig-references-restructure` | BLOCKED, sandbox denied `.git/index.lock`; commit not created. |
 <!-- /ANCHOR:verification -->
 

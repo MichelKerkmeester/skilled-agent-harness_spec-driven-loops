@@ -60,7 +60,7 @@ _memory:
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This is **Phase 7** of the 008-skill-advisor track, directly propagating Phase 6's launcher-boundary lease into the two sibling MCP launchers that have the same architectural smell. Investigation after 006 shipped found `mk_code_index` running 3 concurrent daemons and `mk-spec-memory` running 4. Both already had WAL + busy_timeout from day one, which is why they accumulated zero `.corrupt` files despite the racing — but they have the same "launcher does not refuse to start when a sibling is alive" smell. Fixing it eliminates ~7 zombie processes worth of resource cost and aligns the three launchers on one concurrency model.
+This is **Phase 7** of the 006-skill-advisor track, directly propagating Phase 6's launcher-boundary lease into the two sibling MCP launchers that have the same architectural smell. Investigation after 006 shipped found `mk_code_index` running 3 concurrent daemons and `mk-spec-memory` running 4. Both already had WAL + busy_timeout from day one, which is why they accumulated zero `.corrupt` files despite the racing — but they have the same "launcher does not refuse to start when a sibling is alive" smell. Fixing it eliminates ~7 zombie processes worth of resource cost and aligns the three launchers on one concurrency model.
 
 **Scope Boundary** — only the two `.opencode/bin/mk-*-launcher.cjs` files, one ref doc each, one changelog, and tests under each skill's `mcp_server/tests/`. No DB schema, scorer, query, or context-server.js changes.
 

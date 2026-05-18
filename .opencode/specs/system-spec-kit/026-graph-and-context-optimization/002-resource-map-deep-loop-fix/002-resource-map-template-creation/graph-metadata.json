@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/002-resource-map-deep-loop-fix/002-resource-map-deep-loop-fix-creation",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/002-resource-map-deep-loop-fix/002-resource-map-deep-loop-fix-creation",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/002-resource-map-deep-loop-fix/002-resource-map-template-creation",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/002-resource-map-deep-loop-fix/002-resource-map-template-creation",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/002-resource-map-deep-loop-fix",
   "children_ids": [],
   "migrated": true,
@@ -44,25 +44,19 @@
     "status": "in_progress",
     "key_files": [
       "mcp_server/lib/config/spec-doc-paths.ts",
-      ".opencode/skills/system-spec-kit/templates/resource-map.md",
       ".opencode/skills/system-spec-kit/templates/README.md",
-      ".opencode/skills/system-spec-kit/templates/level_1/README.md",
-      ".opencode/skills/system-spec-kit/templates/level_2/README.md",
-      ".opencode/skills/system-spec-kit/templates/level_3/README.md",
-      ".opencode/skills/system-spec-kit/templates/level_3+/README.md",
       ".opencode/skills/system-spec-kit/SKILL.md",
       ".opencode/skills/system-spec-kit/README.md",
       ".opencode/skills/system-spec-kit/references/templates/level_specifications.md",
       ".opencode/skills/system-spec-kit/mcp_server/lib/config/spec-doc-paths.ts",
-      ".opencode/skills/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/25-resource-map-template.md",
-      ".opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/270-resource-map-template.md",
       "spec.md",
       "plan.md",
       "checklist.md",
       "resource-map.md",
-      ".opencode/skills/system-spec-kit/templates/addendum/phase/phase-child-header.md",
-      ".opencode/skills/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/23-tool-routing-enforcement.md",
-      ".opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/267-tool-routing-enforcement.md"
+      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/description.json",
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -90,18 +84,6 @@
         "source": "derived"
       },
       {
-        "name": "25-resource-map-template.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/25-resource-map-template.md",
-        "source": "derived"
-      },
-      {
-        "name": "270-resource-map-template.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/270-resource-map-template.md",
-        "source": "derived"
-      },
-      {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
@@ -126,21 +108,27 @@
         "source": "derived"
       },
       {
-        "name": "phase-child-header.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/templates/addendum/phase/phase-child-header.md",
+        "name": "validate.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
         "source": "derived"
       },
       {
-        "name": "23-tool-routing-enforcement.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/23-tool-routing-enforcement.md",
+        "name": "description.json",
+        "kind": "config",
+        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/description.json",
         "source": "derived"
       },
       {
-        "name": "267-tool-routing-enforcement.md",
+        "name": "tasks.md",
         "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/267-tool-routing-enforcement.md",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -208,11 +196,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "This is Phase 012 of the 026-graph-and-context-optimization specification. It introduces a reusable, level-agnostic template that catalogs every file path a packet touched, grouped by resource category, and wires it into the discovery surfaces so operators find it next to the other cross-cutting templates.",
     "created_at": "2026-04-24T00:00:00.000Z",
-    "last_save_at": "2026-04-26T09:17:15.717Z",
+    "last_save_at": "2026-05-18T08:15:53.354Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

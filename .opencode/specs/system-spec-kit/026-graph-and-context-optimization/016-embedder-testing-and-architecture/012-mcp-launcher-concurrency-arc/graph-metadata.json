@@ -13,7 +13,7 @@
     "depends_on": [],
     "supersedes": [],
     "related_to": [
-      "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor"
+      "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor"
     ]
   },
   "derived": {

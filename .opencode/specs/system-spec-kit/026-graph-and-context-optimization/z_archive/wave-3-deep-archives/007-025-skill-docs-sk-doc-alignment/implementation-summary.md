@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/025-skill-docs-sk-doc-alignment"
+    packet_pointer: ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/025-skill-docs-sk-doc-alignment"
     last_updated_at: "2026-05-14T17:43:47Z"
     last_updated_by: "cli-codex-gpt5.5-xhigh-fast-011"
     recent_action: "Aligned scoped skill docs with sk-doc standards"

@@ -1,5 +1,5 @@
 ---
-title: "...-kit/026-graph-and-context-optimization/009-hook-parity/006-copilot-wrapper-schema-fix/implementation-summary]"
+title: "...-kit/026-graph-and-context-optimization/007-hook-parity/006-copilot-wrapper-schema-fix/implementation-summary]"
 description: "The Copilot-safe wrapper-field patch has been reapplied in .claude/settings.local.json, restoring the top-level fields that packet 010 requires for Copilot-safe matcher wrappers."
 trigger_phrases:
   - "kit"
@@ -14,7 +14,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/009-hook-parity/006-copilot-wrapper-schema-fix"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-hook-parity/006-copilot-wrapper-schema-fix"
     last_updated_at: "2026-04-24T00:00:00Z"
     last_updated_by: "codex-gpt-5"
     recent_action: "Reapplied top-level type/bash/timeoutSec fields to all four Copilot matcher wrappers in .claude/settings.local.json"

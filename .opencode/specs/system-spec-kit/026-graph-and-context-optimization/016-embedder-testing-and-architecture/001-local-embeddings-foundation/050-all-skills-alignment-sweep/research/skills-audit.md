@@ -26,7 +26,7 @@ Audit ledger for the 19-skill documentation sweep.
 | Skill asset template | `.opencode/skills/sk-doc/assets/skill/skill_asset_template.md` |
 | Frontmatter rules | `.opencode/skills/sk-doc/assets/frontmatter_templates.md` |
 | Machine template rules | `.opencode/skills/sk-doc/assets/template_rules.json` |
-| Recent advisor handover | `008-skill-advisor/.../009-system-skill-advisor-extraction/handover.md` |
+| Recent advisor handover | `006-skill-advisor/.../009-system-skill-advisor-extraction/handover.md` |
 | Recent restructures | `git log --oneline -50` |
 
 ### Automated Checks

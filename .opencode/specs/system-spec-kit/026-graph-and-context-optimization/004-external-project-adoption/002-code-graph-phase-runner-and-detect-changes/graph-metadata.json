@@ -1,0 +1,211 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/004-external-project-adoption/002-code-graph-phase-runner-and-detect-changes",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/004-external-project-adoption/002-code-graph-phase-runner-and-detect-changes",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/004-external-project-adoption",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "012 phase runner",
+      "012 detect changes",
+      "code graph phase dag",
+      "diff hunk preflight",
+      "012/002 implementation summary",
+      "012 phase runner shipped",
+      "012 detect changes shipped"
+    ],
+    "key_topics": [
+      "012",
+      "phase",
+      "runner",
+      "detect",
+      "changes",
+      "code",
+      "graph",
+      "dag",
+      "diff",
+      "hunk",
+      "preflight",
+      "002"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "mcp_server/package.json",
+      "feature_catalog/03--discovery/04-detect-changes-preflight.md",
+      "feature_catalog/14--pipeline-architecture/25-code-graph-phase-dag-runner.md",
+      "manual_testing_playbook/03--discovery/014-detect-changes-preflight.md",
+      "manual_testing_playbook/14--pipeline-architecture/271-code-graph-phase-dag-runner.md",
+      "tests/memory/trust-badges.test.ts",
+      "handlers/index.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": "mcp_server/package.json",
+        "source": "derived"
+      },
+      {
+        "name": "04-detect-changes-preflight.md",
+        "kind": "doc",
+        "path": "feature_catalog/03--discovery/04-detect-changes-preflight.md",
+        "source": "derived"
+      },
+      {
+        "name": "25-code-graph-phase-dag-runner.md",
+        "kind": "doc",
+        "path": "feature_catalog/14--pipeline-architecture/25-code-graph-phase-dag-runner.md",
+        "source": "derived"
+      },
+      {
+        "name": "014-detect-changes-preflight.md",
+        "kind": "doc",
+        "path": "manual_testing_playbook/03--discovery/014-detect-changes-preflight.md",
+        "source": "derived"
+      },
+      {
+        "name": "271-code-graph-phase-dag-runner.md",
+        "kind": "doc",
+        "path": "manual_testing_playbook/14--pipeline-architecture/271-code-graph-phase-dag-runner.md",
+        "source": "derived"
+      },
+      {
+        "name": "trust-badges.test.ts",
+        "kind": "test",
+        "path": "tests/memory/trust-badges.test.ts",
+        "source": "derived"
+      },
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": "handlers/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Graph Phase Runner",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "cycle",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "existing",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "input",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "what",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Steps",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Diff Library Choice",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Adopt typed phase-DAG runner around code-graph scan; build read-only detect_changes handler that maps git diff hunks to symbols and refuses to answer when graph is stale.",
+    "created_at": "2026-04-25T10:48:07.133Z",
+    "last_save_at": "2026-05-18T08:15:53.395Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ]
+  }
+}

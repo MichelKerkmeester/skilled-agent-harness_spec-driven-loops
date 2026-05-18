@@ -1,55 +1,15 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/019-search-query-rag-optimization-research",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/019-search-query-rag-optimization-research",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/003-mcp-runtime-stress-remediation/019-search-query-rag-optimization-research",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/003-mcp-runtime-stress-remediation/019-search-query-rag-optimization-research",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/003-mcp-runtime-stress-remediation",
   "children_ids": [],
-  "migrated": false,
-  "migration_source": null,
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      {
-        "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/001-search-intelligence-stress-test",
-        "reason": "v1.0.1 baseline corpus and dispatch matrix",
-        "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/001-search-intelligence-stress-test"
-      },
-      {
-        "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/010-stress-test-rerun-v1-0-2",
-        "reason": "v1.0.2 rerun evidence and residual recommendations",
-        "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/010-stress-test-rerun-v1-0-2"
-      },
-      {
-        "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/002-mcp-runtime-improvement-research",
-        "reason": "10-iteration root-cause research baseline",
-        "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/002-mcp-runtime-improvement-research"
-      },
-      {
-        "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/011-post-stress-followup-research",
-        "reason": "Follow-up research on post-v1.0.2 residuals",
-        "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/011-post-stress-followup-research"
-      },
-      {
-        "packet_id": "system-spec-kit/026-graph-and-context-optimization/006-graph-impact-and-affordance-uplift/008-deep-research-review",
-        "reason": "Converged 10-iteration review precedent for registry and convergence audit format",
-        "spec_folder": "system-spec-kit/026-graph-and-context-optimization/006-graph-impact-and-affordance-uplift/008-deep-research-review"
-      }
-    ],
+    "depends_on": [],
     "supersedes": [],
-    "related_to": [
-      "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/003-memory-context-truncation-contract",
-      "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/004-cocoindex-overfetch-dedup",
-      "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/005-code-graph-fast-fail",
-      "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/006-causal-graph-window-metrics",
-      "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/007-intent-classifier-stability",
-      "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/009-memory-search-response-policy",
-      "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/012-copilot-target-authority-helper",
-      "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/013-graph-degraded-stress-cell",
-      "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/014-graph-status-readiness-snapshot",
-      "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/015-cocoindex-seed-telemetry-passthrough",
-      "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/016-degraded-readiness-envelope-parity",
-      "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/017-copilot-dispatch-authority-parity",
-      "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/018-stress-rerun-and-doc-alignment"
-    ]
+    "related_to": []
   },
   "derived": {
     "trigger_phrases": [
@@ -57,22 +17,28 @@
       "search query rag optimization research",
       "Phase C search query RAG optimization",
       "MCP runtime search optimization",
-      "query intelligence RAG fusion"
+      "query intelligence RAG fusion",
+      "019 search query rag plan",
+      "Phase C research plan",
+      "query intelligence optimization plan",
+      "019 search query rag tasks",
+      "Phase C research tasks",
+      "019 search query rag checklist",
+      "Phase C research verification"
     ],
     "key_topics": [
-      "search-optimization",
-      "query-intelligence",
-      "rag-fusion",
-      "memory-search",
-      "code-graph",
-      "skill-graph",
-      "skill-advisor",
-      "cocoindex",
-      "causal-graph",
-      "weak-retrieval-refusal",
-      "citation-policy",
-      "learned-fusion",
-      "rerank-cost"
+      "019-search-query-rag-optimization-research",
+      "search",
+      "query",
+      "rag",
+      "optimization",
+      "research",
+      "phase",
+      "mcp",
+      "runtime",
+      "intelligence",
+      "fusion",
+      "019"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -81,12 +47,76 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md",
-      "research/research-report.md",
+      "research/deep-research-config.json",
       "research/deep-research-state.jsonl",
-      "research/deep-research-strategy.md"
+      "research/deep-research-strategy.md",
+      "research/iterations/iteration-001.md",
+      "research/iterations/iteration-010.md",
+      "research/deltas/iter-001.jsonl",
+      "research/research-report.md",
+      "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-config.json",
+        "kind": "config",
+        "path": "research/deep-research-config.json",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/deep-research-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-strategy.md",
+        "kind": "doc",
+        "path": "research/deep-research-strategy.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-010.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-010.md",
+        "source": "derived"
+      },
+      {
+        "name": "iter-001.jsonl",
+        "kind": "file",
+        "path": "research/deltas/iter-001.jsonl",
+        "source": "derived"
+      },
       {
         "name": "research-report.md",
         "kind": "doc",
@@ -94,33 +124,95 @@
         "source": "derived"
       },
       {
-        "name": "Search Query RAG Optimization",
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Phase D",
-        "kind": "phase",
-        "path": "research/research-report.md",
+        "name": "Search Query",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Optimization Research",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Planning Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Produce",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Use Planning Packet",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "Phase C research-only packet that completes a 10-iteration deep-research loop over memory search, code graph search, skill graph/advisor, CocoIndex semantic search, causal graph, and RAG fusion. The report concludes that the highest-leverage Phase D work is an end-to-end search quality harness, an explicit query-plan contract, composed trust-tree/fusion observability, gated rerank experiments, and regression fixtures for degraded readiness, weak retrieval, advisor ambiguity, CocoIndex telemetry, and contradiction detection.",
+    "causal_summary": "The v1.0.2 stress rerun showed strong remediation progress, but the next optimization frontier is cross-system search quality rather than single-cell closure. The memory, code graph, skill advisor, CocoIndex, causal graph, and RAG composition paths each expose useful signals, but the system lacks a unified optimization plan for precision, recall, p95 latency, citation trust, degraded readiness, and learned fusion.",
     "created_at": "2026-04-28T20:42:26Z",
-    "last_save_at": "2026-04-28T20:42:26Z",
-    "save_lineage": "manual_author",
-    "last_active_child_id": null,
-    "last_active_at": "2026-04-28T20:42:26Z",
+    "last_save_at": "2026-05-18T08:15:53.266Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md",
-      "research/research-report.md"
+      "implementation-summary.md"
     ]
   }
 }
-

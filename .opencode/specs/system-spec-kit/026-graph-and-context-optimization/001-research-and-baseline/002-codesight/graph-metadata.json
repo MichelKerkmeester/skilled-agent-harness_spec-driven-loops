@@ -49,7 +49,6 @@
       "external/src/detectors/blast-radius.ts",
       "external/src/eval.ts",
       "implementation-summary.md",
-      ".opencode/skills/sk-deep-research/scripts/reduce-state.cjs",
       ".opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js",
       "external/src/ast/extract-routes.ts",
       "external/src/types.ts",
@@ -62,7 +61,8 @@
       "external/src/config.ts",
       "external/src/detectors/components.ts",
       "external/src/telemetry.ts",
-      "external/src/index.ts"
+      "external/src/index.ts",
+      "external/src/detectors/middleware.ts"
     ],
     "entities": [
       {
@@ -99,12 +99,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "reduce-state.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/sk-deep-research/scripts/reduce-state.cjs",
         "source": "derived"
       },
       {
@@ -186,6 +180,12 @@
         "source": "derived"
       },
       {
+        "name": "middleware.ts",
+        "kind": "code",
+        "path": "external/src/detectors/middleware.ts",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -212,7 +212,7 @@
     ],
     "causal_summary": "Phase 2 of `001-research-graph-context-systems` is a read-only audit of the codesight external Node.js/TypeScript skill (zero-runtime-dependency CLI that scans a project root and generates AI-assistant context artifacts) to translate its detector architecture, MCP tool design, profile generation, scanner heuristics, and blast-radius analysis into concrete improvements for `Code_Environment/Public`'s existing structural retrieval stack (Code Graph MCP, CocoIndex, Spec Kit Memory). The deliverable is an evidence-backed Adopt/Adapt/Reject table plus late-session adoption synthesis grounded in specific `external/src/` file:line citations across 20 deep-research iterations, not a generic feature inventory. No source files outside this spec folder are modified during the research phase.",
     "created_at": "2026-04-12T09:02:53.446Z",
-    "last_save_at": "2026-04-26T09:17:15.695Z",
+    "last_save_at": "2026-05-18T08:15:53.338Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

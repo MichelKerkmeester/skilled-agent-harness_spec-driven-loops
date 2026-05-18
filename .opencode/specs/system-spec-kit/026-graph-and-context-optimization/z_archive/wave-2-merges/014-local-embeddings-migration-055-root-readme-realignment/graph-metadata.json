@@ -6,8 +6,8 @@
   "children_ids": [],
   "manual": {
     "depends_on": [
-      "system-spec-kit/026-graph-and-context-optimization/007-code-graph/017-code-folder-readmes",
-      "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-code-folder-readmes",
+      "system-spec-kit/026-graph-and-context-optimization/005-code-graph/017-code-folder-readmes",
+      "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/002-code-folder-readmes",
       "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/054-code-folder-readmes"
     ],
     "supersedes": [],

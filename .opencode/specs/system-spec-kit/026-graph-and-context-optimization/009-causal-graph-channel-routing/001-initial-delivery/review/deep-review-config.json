@@ -1,0 +1,89 @@
+{
+  "topic": "Review: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-causal-graph-channel-routing",
+  "sessionId": "2026-05-11T05:42:00Z",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "migrationWindowEndsAt": "",
+  "maxIterations": 10,
+  "convergenceThreshold": 0.10,
+  "stuckThreshold": 2,
+  "maxDurationMinutes": 240,
+  "maxToolCallsPerIteration": 13,
+  "maxMinutesPerIteration": 15,
+  "progressiveSynthesis": false,
+  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-causal-graph-channel-routing",
+  "createdAt": "2026-05-11T05:42:00Z",
+  "status": "initialized",
+  "releaseReadinessState": "in-progress",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-opencode",
+    "model": "deepseek/deepseek-v4-pro",
+    "reasoningEffort": "high",
+    "serviceTier": null,
+    "sandboxMode": null,
+    "timeoutSeconds": 900
+  },
+  "mode": "review",
+  "reviewTarget": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-causal-graph-channel-routing",
+  "reviewTargetType": "spec-folder",
+  "reviewDimensions": [
+    "correctness",
+    "security",
+    "traceability",
+    "maintainability"
+  ],
+  "severityThreshold": "P2",
+  "crossReference": {
+    "core": ["spec_code", "checklist_evidence"],
+    "overlay": ["skill_agent", "agent_cross_runtime", "feature_catalog_code", "playbook_capability"]
+  },
+  "qualityGateThreshold": true,
+  "resource_map_present": true,
+  "resource_map": { "emit": true },
+  "reviewScopeFiles": [
+    ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-causal-graph-channel-routing/spec.md",
+    ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-causal-graph-channel-routing/plan.md",
+    ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-causal-graph-channel-routing/tasks.md",
+    ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-causal-graph-channel-routing/checklist.md",
+    ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-causal-graph-channel-routing/implementation-summary.md",
+    ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-causal-graph-channel-routing/resource-map.md",
+    ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-causal-graph-channel-routing/handover.md",
+    ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-causal-graph-channel-routing/changelog.md",
+    ".opencode/skills/system-spec-kit/mcp_server/lib/search/query-router.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/lib/search/entity-density.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/lib/search/routing-telemetry.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/tests/query-router.vitest.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/tests/entity-density.vitest.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/tests/routing-telemetry-stress.vitest.ts"
+  ],
+  "runtimeCapabilityResolver": ".opencode/skills/deep-review/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".opencode/skills/deep-review/scripts/reduce-state.cjs",
+  "fileProtection": {
+    "deep-review-config.json": "immutable",
+    "deep-review-state.jsonl": "append-only",
+    "deep-review-findings-registry.json": "auto-generated",
+    "deep-review-strategy.md": "mutable",
+    "deep-review-dashboard.md": "auto-generated",
+    ".deep-review-pause": "operator-controlled",
+    "review-report.md": "mutable",
+    "review-report-v*.md": "write-once",
+    "iteration-*.md": "write-once"
+  },
+  "reducer": {
+    "enabled": true,
+    "inputs": ["latestJSONLDelta", "newIterationFile", "priorReducedState"],
+    "outputs": ["findingsRegistry", "dashboardMetrics", "strategyUpdates"],
+    "metrics": ["dimensionsCovered", "findingsBySeverity", "openFindings", "resolvedFindings", "convergenceScore"]
+  },
+  "_optimizerManaged": {
+    "description": "Fields managed by the offline loop optimizer (042.004). See optimizer-manifest.json for the canonical tunable/locked field registry.",
+    "manifestPath": ".opencode/skills/system-spec-kit/scripts/optimizer/optimizer-manifest.json",
+    "tunableFields": ["convergenceThreshold", "stuckThreshold", "maxIterations"],
+    "lockedFields": ["lineageMode", "reducer", "fileProtection", "sessionId", "mode", "reviewDimensions"],
+    "promotionMode": "advisory-only"
+  }
+}

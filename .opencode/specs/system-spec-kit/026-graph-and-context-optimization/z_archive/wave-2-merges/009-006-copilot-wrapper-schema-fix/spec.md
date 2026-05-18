@@ -1,5 +1,5 @@
 ---
-title: "Feature [system-spec-kit/026-graph-and-context-optimization/009-hook-parity/006-copilot-wrapper-schema-fix/spec]"
+title: "Feature [system-spec-kit/026-graph-and-context-optimization/007-hook-parity/006-copilot-wrapper-schema-fix/spec]"
 description: "Eliminate the 'Neither bash nor powershell specified in hook command configuration' error that Copilot CLI 1.0.34 throws on every user prompt by adding top-level Copilot-safe fields to the Claude-style matcher wrappers in .claude/settings.local.json. Cross-runtime compatibility with Claude Code was empirically verified in pt-03 research iter-6."
 trigger_phrases:
   - "copilot wrapper schema fix"
@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/009-hook-parity/006-copilot-wrapper-schema-fix"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-hook-parity/006-copilot-wrapper-schema-fix"
     last_updated_at: "2026-04-23T15:20:00Z"
     last_updated_by: "codex-gpt-5.4"
     recent_action: "Patch reverted in 6cd00aa51b — fields no longer present in settings.local.json"
@@ -32,9 +32,9 @@ _memory:
 | **Priority** | P1 |
 | **Status** | Reverted - Needs Reapply |
 | **Created** | 2026-04-22 |
-| **Parent** | `026-graph-and-context-optimization/009-hook-parity/` |
+| **Parent** | `026-graph-and-context-optimization/007-hook-parity/` |
 | **Parent Spec** | `../spec.md` |
-| **Predecessor** | `../../008-skill-advisor/003-skill-advisor-standards-alignment/spec.md` |
+| **Predecessor** | `../../006-skill-advisor/003-skill-advisor-standards-alignment/spec.md` |
 | **Successor** | `../007-copilot-writer-wiring/spec.md` |
 | **Research** | `../../research/007-deep-review-remediation-pt-03/research.md` |
 
@@ -97,7 +97,7 @@ This blocks per-prompt refresh of `$HOME/.copilot/copilot-instructions.md` (the 
 
 | ID | Requirement | Acceptance |
 |---|---|---|
-| REQ-004 | Update `../../009-hook-parity/002-copilot-hook-parity-remediation/implementation-summary.md` §Known Limitations to reflect the resolved schema collision | File edited with a note referencing this packet + research pt-03 |
+| REQ-004 | Update `../../007-hook-parity/002-copilot-hook-parity-remediation/implementation-summary.md` §Known Limitations to reflect the resolved schema collision | File edited with a note referencing this packet + research pt-03 |
 
 ---
 

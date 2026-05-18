@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/001-cocoindex-swap",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/001-cocoindex-swap",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "018/001 cocoindex swap",
+      "CodeRankEmbed activation",
+      "MPS auto-detect patch"
+    ],
+    "key_topics": [
+      "018",
+      "cocoindex",
+      "embedder",
+      "swap",
+      "coderank",
+      "mps",
+      "config"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ]
+  }
+}

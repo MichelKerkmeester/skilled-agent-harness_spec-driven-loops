@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/039-system-code-graph-deferred-followon"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/005-code-graph/039-system-code-graph-deferred-followon"
     last_updated_at: "2026-05-15T18:30:00Z"
     last_updated_by: "claude-opus-4-7-039-close"
     recent_action: "verification_sweep_complete_11_of_12_closed_by_parallel"
@@ -98,7 +98,7 @@ Phase 4 (Ship v1.0.2.0): proceed to changelog + close.
 <!-- ANCHOR:verification -->
 ## Verification
 
-- **Strict validate**: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/039-system-code-graph-deferred-followon --strict` → exit 0, 0 errors, 0 warnings.
+- **Strict validate**: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/039-system-code-graph-deferred-followon --strict` → exit 0, 0 errors, 0 warnings.
 - **Per-finding verification commands** (all run from repo root):
   - P1-A4: `head -30 .opencode/skills/system-code-graph/feature_catalog/feature_catalog.md` shows sk-doc template hierarchy `## N. GROUP / ### Feature / #### Description`.
   - P1-A5: scenario 024 is under `## 9. DETECT CHANGES` (line 112), scenario 016 still under post-rename (line 165) — both correctly classified now.

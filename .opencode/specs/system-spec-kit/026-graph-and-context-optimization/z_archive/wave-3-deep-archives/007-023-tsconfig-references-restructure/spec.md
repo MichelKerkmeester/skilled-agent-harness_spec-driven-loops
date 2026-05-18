@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/023-tsconfig-references-restructure"
+    packet_pointer: ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/023-tsconfig-references-restructure"
     last_updated_at: "2026-05-14T16:26:51Z"
     last_updated_by: "cli-codex-gpt5.5-xhigh-fast-009"
     recent_action: "Removed tsconfig reference for shared emit"
@@ -93,7 +93,7 @@ Make the system-code-graph build self-contained for the included shared sources,
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `.opencode/skills/system-code-graph/tsconfig.json` | Modify | Remove the project reference that prevented included shared sources from emitting into this dist tree. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/023-tsconfig-references-restructure/` | Create | Track the scoped fix and verification evidence. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/023-tsconfig-references-restructure/` | Create | Track the scoped fix and verification evidence. |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -114,7 +114,7 @@ Make the system-code-graph build self-contained for the included shared sources,
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-004 | TypeScript accepts the config change | `node node_modules/typescript/bin/tsc --listEmittedFiles` in `.opencode/skills/system-code-graph` exits 0. |
-| REQ-005 | Packet docs validate | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/023-tsconfig-references-restructure --strict` exits 0. |
+| REQ-005 | Packet docs validate | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/023-tsconfig-references-restructure --strict` exits 0. |
 <!-- /ANCHOR:requirements -->
 
 ---

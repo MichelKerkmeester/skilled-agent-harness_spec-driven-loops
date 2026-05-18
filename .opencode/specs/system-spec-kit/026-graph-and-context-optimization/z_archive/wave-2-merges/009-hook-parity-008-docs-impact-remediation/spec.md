@@ -1,5 +1,5 @@
 ---
-title: "Feature [system-spec-kit/026-graph-and-context-optimization/009-hook-parity/008-docs-impact-remediation/spec]"
+title: "Feature [system-spec-kit/026-graph-and-context-optimization/007-hook-parity/008-docs-impact-remediation/spec]"
 description: "Update 13 external documentation files flagged by the 009 impact analysis (10 HIGH + 3 MED) to reflect the hook, advisor, plugin-loader, renderer, and Copilot wrapper behavior actually shipped across sub-packets 001-011. Source of truth is impact-analysis/merged-impact-report.md."
 trigger_phrases:
   - "docs impact remediation"
@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/009-hook-parity/008-docs-impact-remediation"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-hook-parity/008-docs-impact-remediation"
     last_updated_at: "2026-04-23T19:40:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Spec folder scaffolded from merged-impact-report.md (13 target files)"
@@ -32,7 +32,7 @@ _memory:
 | **Priority** | P1 |
 | **Status** | Planning |
 | **Created** | 2026-04-23 |
-| **Parent** | `026-graph-and-context-optimization/009-hook-parity/` |
+| **Parent** | `026-graph-and-context-optimization/007-hook-parity/` |
 | **Parent Spec** | `../spec.md` |
 | **Predecessor** | `../007-copilot-writer-wiring/spec.md` |
 | **Source Analysis** | `../impact-analysis/merged-impact-report.md` |
@@ -42,7 +42,7 @@ _memory:
 
 ## 2. PROBLEM
 
-Sub-packets 001-011 of `009-hook-parity` changed runtime hook contracts, advisor delivery, plugin-loader semantics, Copilot wrapper schema, Codex startup parity, and Claude prompt-time hook registration. The shipped behavior diverges from what the checked-in documentation still describes.
+Sub-packets 001-011 of `007-hook-parity` changed runtime hook contracts, advisor delivery, plugin-loader semantics, Copilot wrapper schema, Codex startup parity, and Claude prompt-time hook registration. The shipped behavior diverges from what the checked-in documentation still describes.
 
 Ten parallel `cli-codex` impact-analysis agents (one per sub-packet, `gpt-5.4` reasoning=high, fast tier) audited every path referenced by `009/path-references-audit.md` and flagged files as HIGH / MED / LOW. After dedup and severity rollup (MAX across agents), **13 unique files** require updates:
 

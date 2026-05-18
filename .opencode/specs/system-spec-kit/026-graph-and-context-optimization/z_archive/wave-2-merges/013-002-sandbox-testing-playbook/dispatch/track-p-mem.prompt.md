@@ -4,7 +4,7 @@
 
 You are Codex (gpt-5.5 high fast) dispatched by Claude Opus 4.7 to author 5 manual testing playbook scenarios covering `/doctor:memory` command modes. Each scenario tests a distinct user-observable behavior of the canonical `/doctor:memory` command.
 
-Spec folder (pre-approved, skip Gate 3): `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/002-sandbox-testing-playbook/`
+Spec folder (pre-approved, skip Gate 3): `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/002-sandbox-testing-playbook/`
 
 ## CANONICAL TEMPLATE SOURCES (read first; treat as locked)
 
@@ -16,8 +16,8 @@ Spec folder (pre-approved, skip Gate 3): `.opencode/specs/system-spec-kit/026-gr
 
 4. **`.opencode/commands/doctor/memory.md`** — Markdown entrypoint for `/doctor:memory`.
 5. **`.opencode/commands/doctor/assets/doctor_memory_{auto,confirm,apply,apply-confirm}.yaml`** — 4 mode YAMLs (already polished with upstream_assets, _invariant, field_handling, inline comments).
-6. **`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/001-doctor-commands/spec.md`** — REQ-001..REQ-023 + per-command spec.
-7. **`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/001-doctor-commands/decision-record.md`** — ADR-001 (memory_index_scan tx model: per-file, ~5s SIGINT settle).
+6. **`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/001-doctor-commands/spec.md`** — REQ-001..REQ-023 + per-command spec.
+7. **`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/001-doctor-commands/decision-record.md`** — ADR-001 (memory_index_scan tx model: per-file, ~5s SIGINT settle).
 
 ## IN_SCOPE_FILES (only these may be created)
 

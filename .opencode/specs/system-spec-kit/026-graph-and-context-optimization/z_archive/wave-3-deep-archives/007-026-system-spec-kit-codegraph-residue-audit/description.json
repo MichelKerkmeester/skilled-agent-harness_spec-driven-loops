@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/026-system-spec-kit-codegraph-residue-audit",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/026-system-spec-kit-codegraph-residue-audit",
   "description": "System Spec Kit Codegraph Residue Audit",
   "keywords": [
     "system-spec-kit",
@@ -16,7 +16,7 @@
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "007-code-graph",
+    "005-code-graph",
     "013-system-code-graph-extraction"
   ],
   "memorySequence": 2,

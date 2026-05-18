@@ -1,5 +1,5 @@
 ---
-title: "Feature [system-spec-kit/026-graph-and-context-optimization/009-hook-parity/007-copilot-writer-wiring/spec]"
+title: "Feature [system-spec-kit/026-graph-and-context-optimization/007-hook-parity/007-copilot-writer-wiring/spec]"
 description: "Route Copilot's userPromptSubmitted and sessionStart hooks to the system-spec-kit Copilot writers by replacing the 'bash: true' no-ops in .claude/settings.local.json with the actual writer commands. Bypasses the Superset-wrapper clobber of .github/hooks/superset-notify.json and makes the $HOME/.copilot/copilot-instructions.md Refreshed: timestamp advance per-prompt under Copilot."
 trigger_phrases:
   - "copilot writer wiring"
@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/009-hook-parity/007-copilot-writer-wiring"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-hook-parity/007-copilot-writer-wiring"
     last_updated_at: "2026-04-23T15:20:00Z"
     last_updated_by: "codex-gpt-5.4"
     recent_action: "Wiring was applied then reverted along with 010 in 6cd00aa51b"
@@ -29,7 +29,7 @@ _memory:
 | **Level** | 1 |
 | **Priority** | P1 |
 | **Status** | Reverted - Needs Reapply |
-| **Parent** | `026-graph-and-context-optimization/009-hook-parity/` |
+| **Parent** | `026-graph-and-context-optimization/007-hook-parity/` |
 | **Parent Spec** | `../spec.md` |
 | **Predecessor** | `../006-copilot-wrapper-schema-fix/spec.md` |
 | **Depends on** | `010-copilot-wrapper-schema-fix/` (schema crash must already be resolved) |

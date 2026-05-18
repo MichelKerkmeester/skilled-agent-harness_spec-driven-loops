@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "verification"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/017-physical-move-and-database"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/005-code-graph/017-physical-move-and-database"
     last_updated_at: "2026-05-14T08:15:39Z"
     last_updated_by: "codex"
     recent_action: "Completed Phase 003 verification checklist"

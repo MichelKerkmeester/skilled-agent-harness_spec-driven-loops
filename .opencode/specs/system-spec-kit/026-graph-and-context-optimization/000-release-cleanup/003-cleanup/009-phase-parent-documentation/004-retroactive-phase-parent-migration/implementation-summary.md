@@ -51,11 +51,11 @@ The lean-trio phase-parent policy now applies uniformly across the repo. 31 lega
 
 ### Lean trio synthesized for incomplete parents
 
-Worker 2 synthesized a fresh `spec.md` for `024-compact-code-graph/` (which never had one). Worker 3 synthesized lean specs for `026/000-release-cleanup/`, `026/007-code-graph/`, and 4 z_archive parents (`023-path-scoped-rules`, `027-memory-plugin-and-refinement`, `001-research-agentic-systems`, plus archived sub-trees). Each synthesized spec uses the canonical `templates/phase_parent/spec.md` shape: METADATA, PROBLEM & PURPOSE, SCOPE, PHASE DOCUMENTATION MAP populated from filesystem children, plus the inline content-discipline comment.
+Worker 2 synthesized a fresh `spec.md` for `024-compact-code-graph/` (which never had one). Worker 3 synthesized lean specs for `026/000-release-cleanup/`, `026/005-code-graph/`, and 4 z_archive parents (`023-path-scoped-rules`, `027-memory-plugin-and-refinement`, `001-research-agentic-systems`, plus archived sub-trees). Each synthesized spec uses the canonical `templates/phase_parent/spec.md` shape: METADATA, PROBLEM & PURPOSE, SCOPE, PHASE DOCUMENTATION MAP populated from filesystem children, plus the inline content-discipline comment.
 
 ### Metadata refresh on already-lean parents
 
-The remaining 24 parents already had a `spec.md` but stale `description.json` / `graph-metadata.json`. Workers refreshed `lastUpdated`, `memorySequence`, `derived.last_save_at`, and `derived.children_ids` from filesystem reality. The `manual.depends_on / supersedes / related_to` arrays were preserved byte-equal — most importantly on `026/007-code-graph/` which carries 3 prior packet supersession entries from the 026 phase-consolidation pass.
+The remaining 24 parents already had a `spec.md` but stale `description.json` / `graph-metadata.json`. Workers refreshed `lastUpdated`, `memorySequence`, `derived.last_save_at`, and `derived.children_ids` from filesystem reality. The `manual.depends_on / supersedes / related_to` arrays were preserved byte-equal — most importantly on `026/005-code-graph/` which carries 3 prior packet supersession entries from the 026 phase-consolidation pass.
 
 ### Worker output
 
@@ -89,7 +89,7 @@ The migration ran as 3 parallel cli-codex workers (PIDs 75987 / 75988 / 75989) w
 
 A first dispatch via cli-copilot stalled within minutes because cli-copilot's session-state writes to `~/.copilot/session-state/` were denied by its own sandbox; workers were live but blocked on every tool call. After killing the stuck PIDs, the same briefs re-dispatched cleanly via codex with `danger-full-access` sandbox.
 
-Verification ran in 3 stages: (1) per-worker JSON report parsing — confirmed 0 manual / 0 narrative violations; (2) regression check against `026-graph-and-context-optimization/` — parent-level error rules `[FRONTMATTER_MEMORY_BLOCK, SPEC_DOC_INTEGRITY, TEMPLATE_SOURCE]` byte-identical to the pre-migration baseline captured at `scratch/regression-baseline-pre-004.txt`; (3) spot-check of 5 random parents (`00--ai-systems/001-global-shared`, `022/008-hydra-db-based-features`, `024-compact-code-graph`, `026/007-code-graph`, `z_archive/020-mcp-working-memory-hybrid-rag`) confirming lean trio presence, manual block intact (notably `007-code-graph`'s 3-entry `supersedes` array), heavy docs preserved on Cat-B parents, and `last_save_at` refreshed.
+Verification ran in 3 stages: (1) per-worker JSON report parsing — confirmed 0 manual / 0 narrative violations; (2) regression check against `026-graph-and-context-optimization/` — parent-level error rules `[FRONTMATTER_MEMORY_BLOCK, SPEC_DOC_INTEGRITY, TEMPLATE_SOURCE]` byte-identical to the pre-migration baseline captured at `scratch/regression-baseline-pre-004.txt`; (3) spot-check of 5 random parents (`00--ai-systems/001-global-shared`, `022/008-hydra-db-based-features`, `024-compact-code-graph`, `026/005-code-graph`, `z_archive/020-mcp-working-memory-hybrid-rag`) confirming lean trio presence, manual block intact (notably `005-code-graph`'s 3-entry `supersedes` array), heavy docs preserved on Cat-B parents, and `last_save_at` refreshed.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -115,7 +115,7 @@ Verification ran in 3 stages: (1) per-worker JSON report parsing — confirmed 0
 |-------|--------|
 | All 3 worker JSON reports filed (REQ-006) | PASS — `worker-{1,2,3}-report.json` all present |
 | 31 phase parents processed, 0 skipped (REQ-001 + REQ-002) | PASS — 11 + 9 + 11 = 31 |
-| Manual block byte-equal pre/post (REQ-003) | PASS — 0 violations across all 3 worker reports; spot-check of 007-code-graph confirms 3 supersedes entries intact |
+| Manual block byte-equal pre/post (REQ-003) | PASS — 0 violations across all 3 worker reports; spot-check of 005-code-graph confirms 3 supersedes entries intact |
 | Heavy docs preserved at parent level (REQ-004) | PASS — spot-check of `00--ai-systems/001-global-shared` and `022/008` confirms `plan.md`, `tasks.md`, `implementation-summary.md` still present |
 | 026 regression: zero new error classes (REQ-005) | PASS — pre `[FRONTMATTER_MEMORY_BLOCK, SPEC_DOC_INTEGRITY, TEMPLATE_SOURCE]` (count=3) === post (count=3) at 026 root |
 | Narrative preservation (REQ-007) | PASS — 0 narrative violations across all 3 workers |

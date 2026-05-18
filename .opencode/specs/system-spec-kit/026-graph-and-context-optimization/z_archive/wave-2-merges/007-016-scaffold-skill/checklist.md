@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "verification"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/016-scaffold-skill"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/005-code-graph/016-scaffold-skill"
     last_updated_at: "2026-05-14T08:00:03Z"
     last_updated_by: "codex"
     recent_action: "Verified Phase 002 scaffold"

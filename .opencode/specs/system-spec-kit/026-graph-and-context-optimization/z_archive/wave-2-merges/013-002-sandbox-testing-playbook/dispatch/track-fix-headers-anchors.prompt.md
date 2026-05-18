@@ -4,13 +4,13 @@
 
 You are Codex (gpt-5.5 high fast) dispatched by Claude Opus 4.7 to add missing template headers + HTML anchors to 6 packet docs so `validate.sh --strict` passes G3.
 
-Spec folder (pre-approved, skip Gate 3): `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/002-sandbox-testing-playbook/`
+Spec folder (pre-approved, skip Gate 3): `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/002-sandbox-testing-playbook/`
 
 Branch: stay on `main`. Do not create or switch branches.
 
 ## CANONICAL TEMPLATE SOURCE (read first; treat as locked)
 
-`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/003-template-greenfield-impl/`
+`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-template-levels/003-template-greenfield-impl/`
 
 Use that packet's spec.md / plan.md / tasks.md / checklist.md / implementation-summary.md / decision-record.md as the canonical reference for required headers + anchors. The validator demands exact section names + matching `<!-- ANCHOR:slug -->` comments.
 
@@ -85,7 +85,7 @@ For ADR-001 only — the validator only flags ADR-001's missing anchors. ADR-002
 
 1. **Do NOT delete existing content.** Add or rename, but preserve all existing tables / requirements / ADRs / scripts. Validator wants additions, not rewrites.
 2. **Do NOT change frontmatter.** Frontmatter compact fixes already applied; do not touch `_memory.continuity.recent_action` or `next_safe_action`.
-3. Use the canonical 010/003 packet (`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/003-template-greenfield-impl/`) as your section/anchor reference. Match its structure exactly.
+3. Use the canonical 010/003 packet (`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-template-levels/003-template-greenfield-impl/`) as your section/anchor reference. Match its structure exactly.
 4. The validator checks section name match (case-insensitive) and `<!-- ANCHOR:slug -->` placement. Section name must be on a `## ` line in proper order; anchor must be on its own comment line just above the matching `## ` heading and closed with `<!-- /ANCHOR:slug -->` at end of section (or implicit-close before next anchor).
 5. For NEW sections (USER STORIES, RISK MATRIX, etc.), keep content brief but specific — extract from existing prose where possible, otherwise stub with bullet pointers (1-3 lines).
 6. For RENAMES (L2: → numbered), keep the existing content; only the heading changes.
@@ -97,7 +97,7 @@ For ADR-001 only — the validator only flags ADR-001's missing anchors. ADR-002
 ```bash
 cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh \
-  .opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/002-sandbox-testing-playbook \
+  .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/002-sandbox-testing-playbook \
   --strict --verbose 2>&1 | tail -80
 ```
 

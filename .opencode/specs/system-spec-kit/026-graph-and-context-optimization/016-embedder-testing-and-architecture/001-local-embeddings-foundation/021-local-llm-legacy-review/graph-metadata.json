@@ -8,7 +8,7 @@
     "depends_on": [],
     "supersedes": [],
     "related_to": [
-      "system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator"
+      "system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator"
     ]
   },
   "derived": {

@@ -1,0 +1,16 @@
+{
+  "topic": "Code graph + hooks/plugin + advisor bug-surface",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/011-real-world-usefulness-test/003-deep-research-issues",
+  "max_iterations": 10,
+  "convergence_threshold": 0.10,
+  "force_max_iterations": true,
+  "executor": {
+    "type": "cli-codex",
+    "model": "gpt-5.5",
+    "reasoningEffort": "high",
+    "serviceTier": "fast",
+    "timeoutSeconds": 600
+  },
+  "started_at": "2026-05-06T05:00:00Z",
+  "iterations_completed": 0
+}

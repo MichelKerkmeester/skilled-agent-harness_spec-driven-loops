@@ -1,0 +1,17 @@
+{
+  "specFolder": "008-template-levels/009-rm-8-prompt-hardening",
+  "description": "Phase 1: rm-8-prompt-hardening",
+  "keywords": [
+    "phase",
+    "rm-8-prompt-hardening"
+  ],
+  "lastUpdated": "2026-05-11T05:45:03.650Z",
+  "specId": "009",
+  "folderSlug": "rm-8-prompt-hardening",
+  "parentChain": [
+    "008-template-levels"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

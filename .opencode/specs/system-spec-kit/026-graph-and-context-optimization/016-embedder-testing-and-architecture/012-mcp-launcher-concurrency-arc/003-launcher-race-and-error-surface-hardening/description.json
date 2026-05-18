@@ -9,7 +9,7 @@
   "specId": "008",
   "folderSlug": "lease-hardening-from-review",
   "parentChain": [
-    "008-skill-advisor"
+    "006-skill-advisor"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/009-hook-parity/006-copilot-wrapper-schema-fix",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-hook-parity/006-copilot-wrapper-schema-fix",
   "description": "Feature Specification: Copilot Wrapper Schema Fix for .claude/settings.local.json",
   "keywords": [
     "feature",
@@ -19,7 +19,7 @@
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "009-hook-parity"
+    "007-hook-parity"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

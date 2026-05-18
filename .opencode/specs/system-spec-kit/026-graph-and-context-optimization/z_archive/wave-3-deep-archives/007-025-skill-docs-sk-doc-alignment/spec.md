@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/025-skill-docs-sk-doc-alignment"
+    packet_pointer: ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/025-skill-docs-sk-doc-alignment"
     last_updated_at: "2026-05-14T17:43:47Z"
     last_updated_by: "cli-codex-gpt5.5-xhigh-fast-011"
     recent_action: "Created 011 docs-only alignment packet"
@@ -45,7 +45,7 @@ _memory:
 | **Status** | Complete |
 | **Created** | 2026-05-14 |
 | **Branch** | `main` |
-| **Parent Chain** | `system-spec-kit` -> `026-graph-and-context-optimization` -> `007-code-graph` -> `013-system-code-graph-extraction` |
+| **Parent Chain** | `system-spec-kit` -> `026-graph-and-context-optimization` -> `005-code-graph` -> `013-system-code-graph-extraction` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -88,7 +88,7 @@ Bring the scoped skill docs up to sk-doc quality without touching README files, 
 | `.opencode/skills/system-code-graph/SKILL.md` | Modify | Refresh runtime routing, current references and success criteria. |
 | `.opencode/skills/system-code-graph/feature_catalog/**/*.md` | Modify | Tighten frontmatter, source anchors and current-reality entries. |
 | `.opencode/skills/system-code-graph/manual_testing_playbook/**/*.md` | Modify | Refresh root guidance, operator prompts and source-line references. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/025-skill-docs-sk-doc-alignment/` | Create | Track scope, plan, tasks and implementation evidence. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/025-skill-docs-sk-doc-alignment/` | Create | Track scope, plan, tasks and implementation evidence. |
 <!-- /ANCHOR:scope -->
 
 ---

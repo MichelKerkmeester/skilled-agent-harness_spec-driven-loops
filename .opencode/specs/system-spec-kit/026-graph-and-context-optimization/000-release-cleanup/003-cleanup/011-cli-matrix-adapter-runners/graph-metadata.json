@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/011-cli-matrix-adapter-runners",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/011-cli-matrix-adapter-runners",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cleanup/011-cli-matrix-adapter-runners",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cleanup/011-cli-matrix-adapter-runners",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cleanup",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -52,13 +52,13 @@
       "implementation-summary.md",
       ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/adapter-cli-claude-code.ts",
       ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/adapter-cli-codex.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/adapter-cli-copilot.ts",
       ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/adapter-cli-gemini.ts",
       ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/adapter-cli-opencode.ts",
       ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/templates/F10-deep-loop.md",
       ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/templates/F11-hooks.md",
       ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/templates/F12-validators.md",
-      ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/templates/F13-stress-cycle.md"
+      ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/templates/F13-stress-cycle.md",
+      ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/templates/F2-skill-advisor.md"
     ],
     "entities": [
       {
@@ -134,12 +134,6 @@
         "source": "derived"
       },
       {
-        "name": "adapter-cli-copilot.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/adapter-cli-copilot.ts",
-        "source": "derived"
-      },
-      {
         "name": "adapter-cli-gemini.ts",
         "kind": "code",
         "path": ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/adapter-cli-gemini.ts",
@@ -176,6 +170,12 @@
         "source": "derived"
       },
       {
+        "name": "F2-skill-advisor.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/templates/F2-skill-advisor.md",
+        "source": "derived"
+      },
+      {
         "name": "Matrix Adapter Runners",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -208,7 +208,7 @@
     ],
     "causal_summary": "Packet 035 signed off a CONDITIONAL baseline because the full Option C design was not executable: 42 cells were `RUNNER_MISSING`, and no complete `matrix-manifest.json`, feature x executor runner tree, or packet-030 meta-aggregator existed (`006-full-matrix-execution-validation/findings.md:5`, `:15`, `:73`, `:75`). Packet 030 had already established the target shape: F1-F14, external CLI executors, non-applicable cells as first-class outputs, and per-feature runners plus a meta-aggregator (`030-v1-0-4-full-matrix-stress-test-design/spec.md:48`, `:96`, `:97`, `:100`; `030-v1-0-4-full-matrix-stress-test-design/plan.md:52`, `:54`, `:95`, `:97`, `:99`).",
     "created_at": "2026-04-29T17:16:00Z",
-    "last_save_at": "2026-04-29T18:37:01.129Z",
+    "last_save_at": "2026-05-18T08:15:53.106Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

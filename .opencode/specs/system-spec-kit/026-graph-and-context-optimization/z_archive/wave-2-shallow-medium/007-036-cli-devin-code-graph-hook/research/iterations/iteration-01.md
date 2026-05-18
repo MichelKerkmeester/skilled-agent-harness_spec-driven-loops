@@ -10,7 +10,7 @@ Does `hookSpecificOutput.additionalContext` (Claude's context-injection field) a
 2. **Read Claude hook implementation**: Examined `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts` to understand the expected output format
 3. **Read Claude Code hooks reference**: Fetched <https://docs.anthropic.com/en/docs/claude-code/hooks> to verify the canonical `additionalContext` contract
 4. **Checked existing Devin configuration**: Read `.devin/config.json` and `.claude/settings.local.json`
-5. **Reviewed parallel advisor research**: Examined `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/025-cli-devin-skill-advisor-hook/research/iterations/iteration-01.md` for comparative findings
+5. **Reviewed parallel advisor research**: Examined `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/025-cli-devin-skill-advisor-hook/research/iterations/iteration-01.md` for comparative findings
 6. **Attempted empirical test**: BLOCKED by self-invocation constraint (cannot run `devin` recursively from within Devin)
 
 ## Findings
@@ -121,14 +121,14 @@ The original research plan called for writing a test hook script at `/tmp/devin-
 
 ### Finding 9: Parallel Advisor Research Reached Same Conclusion
 
-The advisor packet's iteration-01 (`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/025-cli-devin-skill-advisor-hook/research/iterations/iteration-01.md`) investigated the identical question for UserPromptSubmit and reached the same findings:
+The advisor packet's iteration-01 (`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/025-cli-devin-skill-advisor-hook/research/iterations/iteration-01.md`) investigated the identical question for UserPromptSubmit and reached the same findings:
 - Devin docs are silent on `additionalContext`
 - Claude hooks use it (or plain text for SessionStart)
 - Devin claims compatibility
 - Empirical test blocked by self-invocation
 - Recommendation: rely on inheritance via `read_config_from.claude=true`
 
-**Evidence**: <ref_file file="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/025-cli-devin-skill-advisor-hook/research/iterations/iteration-01.md" />
+**Evidence**: <ref_file file="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/025-cli-devin-skill-advisor-hook/research/iterations/iteration-01.md" />
 
 ## Confidence
 

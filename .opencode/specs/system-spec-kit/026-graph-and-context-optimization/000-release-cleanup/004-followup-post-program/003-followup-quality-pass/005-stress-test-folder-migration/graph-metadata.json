@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-followup-quality-pass/005-stress-test-folder-migration",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-followup-quality-pass/005-stress-test-folder-migration",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-followup-quality-pass",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-followup-post-program/003-followup-quality-pass/005-stress-test-folder-migration",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-followup-post-program/003-followup-quality-pass/005-stress-test-folder-migration",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-followup-post-program/003-followup-quality-pass",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -38,7 +38,6 @@
     "status": "in_progress",
     "key_files": [
       ".opencode/skills/system-spec-kit/mcp_server/stress_test/session/session-manager-stress.vitest.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/stress_test/code-graph/code-graph-degraded-sweep.vitest.ts",
       ".opencode/skills/system-spec-kit/mcp_server/vitest.config.ts",
       ".opencode/skills/system-spec-kit/mcp_server/package.json",
       ".opencode/skills/system-spec-kit/mcp_server/tsconfig.json",
@@ -54,21 +53,13 @@
       ".opencode/skills/system-spec-kit/mcp_server/README.md",
       ".opencode/skills/system-spec-kit/mcp_server/stress_test/README.md",
       ".opencode/skills/system-spec-kit/mcp_server/tests/README.md",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/011-post-stress-followup-research/research/research.md",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/011-post-stress-followup-research/review/iterations/iteration-001.md",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/011-post-stress-followup-research/review/iterations/iteration-002.md"
+      "resource-map.md"
     ],
     "entities": [
       {
         "name": "session-manager-stress.vitest.ts",
         "kind": "test",
         "path": ".opencode/skills/system-spec-kit/mcp_server/stress_test/session/session-manager-stress.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "code-graph-degraded-sweep.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/stress_test/code-graph/code-graph-degraded-sweep.vitest.ts",
         "source": "derived"
       },
       {
@@ -138,9 +129,9 @@
         "source": "derived"
       },
       {
-        "name": "iteration-002.md",
+        "name": "resource-map.md",
         "kind": "doc",
-        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/011-post-stress-followup-research/review/iterations/iteration-002.md",
+        "path": "resource-map.md",
         "source": "derived"
       },
       {
@@ -202,11 +193,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Stress-test coverage for the MCP server lived inside `mcp_server/tests/`, making it harder to distinguish explicit stress, load, and matrix-cell validation from the default unit and integration suite.",
     "created_at": "2026-04-29T15:55:02.000Z",
-    "last_save_at": "2026-04-29T18:39:32.877Z",
+    "last_save_at": "2026-05-18T08:15:53.200Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

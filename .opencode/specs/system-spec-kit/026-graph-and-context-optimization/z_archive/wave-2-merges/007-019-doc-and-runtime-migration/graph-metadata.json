@@ -1,17 +1,17 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/019-doc-and-runtime-migration",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/019-doc-and-runtime-migration",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/007-code-graph",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/019-doc-and-runtime-migration",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/019-doc-and-runtime-migration",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/005-code-graph",
   "children_ids": [],
   "migrated": true,
   "manual": {
     "depends_on": [
-      "system-spec-kit/026-graph-and-context-optimization/007-code-graph/018-rewire-consumers-and-tool-registration"
+      "system-spec-kit/026-graph-and-context-optimization/005-code-graph/018-rewire-consumers-and-tool-registration"
     ],
     "supersedes": [],
     "related_to": [
-      "system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-design-and-decision-record"
+      "system-spec-kit/026-graph-and-context-optimization/005-code-graph/014-design-and-decision-record"
     ]
   },
   "derived": {
@@ -63,5 +63,5 @@
       "plan.md"
     ]
   },
-  "migration_source": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/013-system-code-graph-extraction/005-doc-and-runtime-migration"
+  "migration_source": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/013-system-code-graph-extraction/005-doc-and-runtime-migration"
 }

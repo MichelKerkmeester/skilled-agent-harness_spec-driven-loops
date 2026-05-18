@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/002-code-graph-self-contained-package",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/002-code-graph-self-contained-package",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/007-code-graph",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/002-code-graph-self-contained-package",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/002-code-graph-self-contained-package",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/005-code-graph",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",

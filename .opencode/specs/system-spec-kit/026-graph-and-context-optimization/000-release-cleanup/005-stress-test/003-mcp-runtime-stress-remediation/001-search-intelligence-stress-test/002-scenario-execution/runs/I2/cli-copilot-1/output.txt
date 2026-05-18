@@ -50,7 +50,7 @@ The memory hit was right, but the on-disk path is a little different than the in
   │ (.opencode/specs/system-spec-kit/026-graph-and-context-optimization)
   └ 5 lines found
 
-I found the real packet split: the old indexed “search-routing-advisor” work now lives mainly under **`008-skill-advisor/001-search-and-routing-tuning`**, with adjacent runtime bug/stress-test packets under **`003-continuity-memory-runtime`**. I’m reading those three together so the recommendation is grounded in where search logic actually moved.
+I found the real packet split: the old indexed “search-routing-advisor” work now lives mainly under **`006-skill-advisor/001-search-and-routing-tuning`**, with adjacent runtime bug/stress-test packets under **`003-continuity-memory-runtime`**. I’m reading those three together so the recommendation is grounded in where search logic actually moved.
 
 ● List directory .opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-continuity-…
   └ 11 files found
@@ -106,7 +106,7 @@ I found the real packet split: the old indexed “search-routing-advisor” work
 I have the likely split now:
 
 - **Spec/history:** `003-continuity-memory-runtime/005-memory-search-runtime-bugs`
-- **Earlier implementation/tuning:** `008-skill-advisor/001-search-and-routing-tuning`
+- **Earlier implementation/tuning:** `006-skill-advisor/001-search-and-routing-tuning`
 - **Canonical command contract:** `.opencode/commands/memory/search.md`
 
 I’m doing one more focused pass on tests and formatter surfaces so I can tell you which files are best for **bug triage first** versus **design/history first**.
@@ -175,7 +175,7 @@ I’m doing one more focused pass on tests and formatter surfaces so I can tell 
   │ d
   └ L1:220 (160 lines read)
 
-Start with **`./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/005-memory-search-runtime-bugs/`**. That’s the most direct bug packet: it catalogs the observed `/memory:search` defects, maps them into root-cause clusters, and points to the implementation surfaces in `mcp_server`. The older “search-routing-advisor” lineage is now effectively split/flattened; the on-disk packet you want for prior tuning work is **`./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-search-and-routing-tuning/`**.
+Start with **`./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/005-memory-search-runtime-bugs/`**. That’s the most direct bug packet: it catalogs the observed `/memory:search` defects, maps them into root-cause clusters, and points to the implementation surfaces in `mcp_server`. The older “search-routing-advisor” lineage is now effectively split/flattened; the on-disk packet you want for prior tuning work is **`./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-search-and-routing-tuning/`**.
 
 If I were opening files in order, I’d do this:
 

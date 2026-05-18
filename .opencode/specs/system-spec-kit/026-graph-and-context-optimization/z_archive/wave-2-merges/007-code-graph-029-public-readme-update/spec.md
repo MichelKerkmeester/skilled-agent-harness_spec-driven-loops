@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/029-public-readme-update"
+    packet_pointer: ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/029-public-readme-update"
     last_updated_at: "2026-05-14T19:30:00Z"
     last_updated_by: "cli-codex-gpt5.5-xhigh-fast-015"
     recent_action: "Validated README update; git staging blocked"
@@ -89,7 +89,7 @@ Refresh the public README as an accurate aggregation layer for current docs: fir
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `README.md` | Modify | Public root README aggregation update. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/029-public-readme-update/` | Create | Track scope, plan, tasks, verification, and metadata for this packet. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/029-public-readme-update/` | Create | Track scope, plan, tasks, verification, and metadata for this packet. |
 <!-- /ANCHOR:scope -->
 
 ---

@@ -1,40 +1,15 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/012-copilot-target-authority-helper",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/012-copilot-target-authority-helper",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/003-mcp-runtime-stress-remediation/012-copilot-target-authority-helper",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/003-mcp-runtime-stress-remediation/012-copilot-target-authority-helper",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/003-mcp-runtime-stress-remediation",
   "children_ids": [],
-  "migrated": false,
-  "migration_source": null,
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      {
-        "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/011-post-stress-followup-research",
-        "reason": "Recommended approach + ranked alternatives + falsifiable success criteria for this fix come from the 011 deep-research synthesis §3",
-        "source": "012-impl-2026-04-27",
-        "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/011-post-stress-followup-research"
-      },
-      {
-        "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/010-stress-test-rerun-v1-0-2",
-        "reason": "v1.0.2 cell I1/cli-copilot-1 (2/8) is the failing-cell evidence this packet remediates; per-cell score.md is the falsifiable baseline",
-        "source": "012-impl-2026-04-27",
-        "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/010-stress-test-rerun-v1-0-2"
-      },
-      {
-        "packet_id": "system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/004-memory-save-rewrite",
-        "reason": "Planner-first /memory:save contract; this packet is the executor-layer enforcement upstream of that handler",
-        "source": "012-impl-2026-04-27",
-        "spec_folder": "system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/004-memory-save-rewrite"
-      }
-    ],
+    "depends_on": [],
     "supersedes": [],
-    "related_to": [
-      {
-        "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/009-memory-search-response-policy",
-        "reason": "P0 cli-copilot Gate 3 bypass is downstream of the response-policy contract this packet ratified server-side; defense-in-depth",
-        "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/009-memory-search-response-policy"
-      }
-    ]
+    "related_to": []
   },
   "derived": {
     "trigger_phrases": [
@@ -43,29 +18,100 @@
       "cli-copilot Gate 3 bypass fix",
       "buildCopilotPromptArg",
       "target authority preamble",
-      "P0 cli-copilot remediation"
+      "P0 cli-copilot remediation",
+      "012 plan",
+      "copilot authority helper plan",
+      "buildCopilotPromptArg plan",
+      "012 tasks",
+      "copilot authority helper tasks",
+      "012 checklist"
     ],
     "key_topics": [
+      "012-copilot-target-authority-helper",
+      "copilot",
+      "target",
+      "authority",
+      "helper",
       "cli-copilot",
-      "target-authority",
-      "gate-3",
-      "executor-config",
-      "deep-loop",
-      "planner-first",
-      "v1.0.2-remediation",
-      "buildCopilotPromptArg",
-      "TARGET AUTHORITY preamble"
+      "gate",
+      "bypass",
+      "fix",
+      "buildcopilotpromptarg",
+      "preamble",
+      "remediation"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
-      "spec.md",
-      "plan.md",
-      "tasks.md",
+      "mcp_server/lib/deep-loop/executor-config.ts",
+      ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml",
+      ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts",
+      "tests/deep-loop/executor-config.vitest.ts",
       "checklist.md",
-      "implementation-summary.md"
+      "tasks.md",
+      "mcp_server/tests/deep-loop/executor-config.vitest.ts",
+      "mcp_server/handlers/memory-save.ts",
+      "implementation-summary.md",
+      "mcp_server/vitest.config.ts",
+      "spec.md",
+      "plan.md"
     ],
     "entities": [
+      {
+        "name": "executor-config.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/deep-loop/executor-config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec_kit_deep-research_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "spec_kit_deep-review_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "executor-config.vitest.ts",
+        "kind": "test",
+        "path": "tests/deep-loop/executor-config.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "memory-save.ts",
+        "kind": "code",
+        "path": "mcp_server/handlers/memory-save.ts",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "vitest.config.ts",
+        "kind": "code",
+        "path": "mcp_server/vitest.config.ts",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -79,54 +125,88 @@
         "source": "derived"
       },
       {
-        "name": "tasks.md",
-        "kind": "doc",
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Copilot Target",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authority Helper",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Complete",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Pure",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "buildCopilotPromptArg",
-        "kind": "function",
-        "path": "../../../../../../.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts",
-        "source": "derived"
-      },
-      {
-        "name": "CopilotTargetAuthority",
-        "kind": "type",
-        "path": "../../../../../../.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts",
-        "source": "derived"
-      },
-      {
-        "name": "spec_kit_deep-research_auto.yaml",
-        "kind": "workflow",
-        "path": "../../../../../../.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "spec_kit_deep-review_auto.yaml",
-        "kind": "workflow",
-        "path": "../../../../../../.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml",
+        "name": "Next Steps",
+        "kind": "proper_noun",
+        "path": "tasks.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "Adds buildCopilotPromptArg as a sibling helper to resolveCopilotPromptArg in executor-config.ts. The helper accepts a typed CopilotTargetAuthority discriminated union and returns { argv, promptBody, enforcedPlanOnly }. Approved authority prepends a TARGET AUTHORITY preamble naming the workflow-resolved spec folder; missing authority on a write-intent dispatch replaces the prompt with a Gate-3 question and strips --allow-all-tools. Wired into both spec_kit_deep-research_auto.yaml (lines ~596-650) and spec_kit_deep-review_auto.yaml (lines ~667-720) cli-copilot dispatch blocks. Closes the v1.0.2 I1/cli-copilot 2/8 cell where cli-copilot mutated 009-phase-parent-documentation/004-retroactive-phase-parent-migration without authorization. 13 new vitest cases pass; 24 existing executor-config cases remain green; 37/37 total.",
+    "causal_summary": "The v1.0.2 stress-test rerun cell `runs/I1/cli-copilot-1` scored 2/8: cli-copilot mutated `009-phase-parent-documentation/004-retroactive-phase-parent-migration/graph-metadata.json` without operator authorization. The Gate 3 HARD BLOCK was bypassed because copilot autonomously selected a spec folder it found in session-bootstrap context. The pathology is that `--allow-all-tools` plus a prompt that mentions plausible folder names equals \"permission to mutate any of those folders\" from the model's perspective.",
     "created_at": "2026-04-27T20:00:00Z",
-    "last_save_at": "2026-04-27T20:00:00Z",
-    "save_lineage": "implementation-completion-2026-04-27",
-    "last_active_child_id": null,
-    "last_active_at": "2026-04-27T20:00:00Z",
+    "last_save_at": "2026-05-18T08:15:53.247Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",

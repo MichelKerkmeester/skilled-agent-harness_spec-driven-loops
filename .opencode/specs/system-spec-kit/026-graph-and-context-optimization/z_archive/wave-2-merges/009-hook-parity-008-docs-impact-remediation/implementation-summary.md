@@ -1,5 +1,5 @@
 ---
-title: "...pec-kit/026-graph-and-context-optimization/009-hook-parity/008-docs-impact-remediation/implementation-summary]"
+title: "...pec-kit/026-graph-and-context-optimization/007-hook-parity/008-docs-impact-remediation/implementation-summary]"
 description: "All 13 flagged documentation files updated via 12 parallel cli-codex gpt-5.4 high fast agents + 1 manual rescue. 151 insertions / 69 deletions across the 009 canonical contract surfaces, READMEs, install/reference docs, feature catalog, and testing playbook."
 trigger_phrases:
   - "docs impact remediation summary"
@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/009-hook-parity/008-docs-impact-remediation"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-hook-parity/008-docs-impact-remediation"
     last_updated_at: "2026-04-23T21:35:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "13/13 flagged files updated, applied reports written, cross-consistency gates verified"
@@ -201,8 +201,8 @@ None required for this packet. Potential adjacent work for future packets (not i
 
 ## 6. REFERENCES
 
-- Parent packet: `../spec.md` (009-hook-parity)
-- Sibling sub-packets: `../../008-skill-advisor/004-skill-advisor-hook-surface/` through `../007-copilot-writer-wiring/`
+- Parent packet: `../spec.md` (007-hook-parity)
+- Sibling sub-packets: `../../006-skill-advisor/004-skill-advisor-hook-surface/` through `../007-copilot-writer-wiring/`
 - Source analysis: `../impact-analysis/merged-impact-report.md`
 - Per-subpacket reports: `../impact-analysis/01-impact.md` through `10-impact.md`
 - Canonical path audit: `../path-references-audit.md`

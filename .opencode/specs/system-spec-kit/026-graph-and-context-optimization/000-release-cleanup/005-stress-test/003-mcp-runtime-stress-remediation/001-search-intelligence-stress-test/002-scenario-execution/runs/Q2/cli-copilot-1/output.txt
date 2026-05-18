@@ -41,7 +41,7 @@ I found the main search surfaces; now I’m narrowing to the canonical code and 
 
 ● Search (glob)
   │ "**/001-search-and-routing-tuning/**" in .opencode/specs/system-spec-kit/026
-  │ -graph-and-context-optimization/008-skill-advisor
+  │ -graph-and-context-optimization/006-skill-advisor
   └ 7 files found
 
 ● Search (grep)
@@ -217,7 +217,7 @@ The search system is centered in `.opencode/skills/system-spec-kit/mcp_server/` 
 - **Related routing/classification**
   - `.opencode/skills/system-spec-kit/mcp_server/lib/routing/content-router.ts:1278` — Tier 3 router prompt defines the 8 save-path categories and the 3-level resume ladder; adjacent to search because it governs continuity/recovery content routing
 - **Best spec packet to read**
-  - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-search-and-routing-tuning/implementation-summary.md:37` — best high-level shipped summary
+  - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-search-and-routing-tuning/implementation-summary.md:37` — best high-level shipped summary
   - Key shipped changes there:
     1. **search-fusion tuning** — rerank minimum raised to 4, continuity profile work, cache telemetry
     2. **content-routing accuracy** — better delivery vs handover classification, Tier 3 routing wired in

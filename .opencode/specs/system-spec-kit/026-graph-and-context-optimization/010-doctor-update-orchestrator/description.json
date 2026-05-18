@@ -1,0 +1,37 @@
+{
+  "childTopology": [
+    "001-doctor-commands",
+    "002-sandbox-testing-playbook",
+    "002-rm8-013-remediation-doc-honesty-security",
+    "003-router-phase",
+    "004-cutover-phase"
+  ],
+  "specFolder": "010-doctor-update-orchestrator",
+  "description": "Phase parent for the doctor command surface and the manual testing playbook that exercises it. 5 isolated /doctor:* commands plus the unified /doctor:update orchestrator (child 001) ship the runtime; a Docker sandbox + 23-scenario manual playbook (child 002) ships the validation harness; doc-honesty + security hardening + cross-runtime mirror remediation (child 003) closed the deep-review CONDITIONAL findings. Router consolidation (child 004) and hard cutover (child 005) now complete the timeline after dissolving 014.",
+  "keywords": [
+    "doctor",
+    "doctor-update",
+    "orchestrator",
+    "phase-parent",
+    "doctor-commands",
+    "sandbox-testing-playbook",
+    "manual-testing",
+    "spec-kit-version-migration",
+    "doctor-runtime-bootstrap",
+    "remediation",
+    "router-phase",
+    "cutover-phase",
+    "doctor-router",
+    "doctor-cutover"
+  ],
+  "lastUpdated": "2026-05-12T04:55:46Z",
+  "specId": "013",
+  "folderSlug": "doctor-update-orchestrator",
+  "parentChain": [],
+  "memorySequence": 3,
+  "memoryNameHistory": [
+    "10-05-26_07-23__root-cause-invent-a-smart-solution-to-this.md",
+    "10-05-26_07-59__root-cause.md",
+    "11-05-26_11-38__manual-context-save.md"
+  ]
+}

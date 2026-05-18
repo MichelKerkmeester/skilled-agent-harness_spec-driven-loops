@@ -24,72 +24,208 @@
       "quality fallback fts5 bm25 grep",
       "intent classifier stability corpus",
       "cocoindex daemon health probe",
-      "026/003/006 packet"
+      "026/003/006 packet",
+      "memory search clusters 4-7 remediation plan",
+      "causal-stats output hygiene plan",
+      "memory search state hygiene plan",
+      "quality fallback fts5 bm25 grep plan"
     ],
     "key_topics": [
-      "feature",
-      "specification",
       "memory",
       "search",
       "clusters",
       "4-7",
-      "remediation"
+      "remediation",
+      "causal-stats",
+      "output",
+      "hygiene",
+      "fix",
+      "state",
+      "folder",
+      "discovery"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
-      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-causal-stats.ts",
+      "handlers/causal-graph.ts",
+      "mcp_server/handlers/causal-graph.ts",
+      "mcp_server/lib/causal/relation-coverage.ts",
+      "mcp_server/handlers/memory-context.ts",
+      "mcp_server/handlers/memory-search.ts",
+      "mcp_server/lib/search/folder-discovery.ts",
+      "mcp_server/lib/cocoindex/daemon-probe.ts",
+      "mcp_server/handlers/memory-crud-health.ts",
+      "mcp_server/lib/search/query-router.ts",
+      "mcp_server/lib/query/query-plan.ts",
+      "mcp_server/lib/search/intent-classifier.ts",
       ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts",
       ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/search/intent-classifier.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/search/query-router.ts",
-      ".opencode/commands/memory/search.md"
+      ".opencode/skills/system-spec-kit/mcp_server/lib/cocoindex/daemon-probe.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/causal/relation-coverage.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/intent-classifier-corpus.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/causal-stats-output.vitest.ts"
     ],
     "entities": [
       {
-        "name": "spec.md",
-        "kind": "doc",
+        "name": "causal-graph.ts",
+        "kind": "code",
+        "path": "handlers/causal-graph.ts",
+        "source": "derived"
+      },
+      {
+        "name": "relation-coverage.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/causal/relation-coverage.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-context.ts",
+        "kind": "code",
+        "path": "mcp_server/handlers/memory-context.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-search.ts",
+        "kind": "code",
+        "path": "mcp_server/handlers/memory-search.ts",
+        "source": "derived"
+      },
+      {
+        "name": "folder-discovery.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/search/folder-discovery.ts",
+        "source": "derived"
+      },
+      {
+        "name": "daemon-probe.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/cocoindex/daemon-probe.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-crud-health.ts",
+        "kind": "code",
+        "path": "mcp_server/handlers/memory-crud-health.ts",
+        "source": "derived"
+      },
+      {
+        "name": "query-router.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/search/query-router.ts",
+        "source": "derived"
+      },
+      {
+        "name": "query-plan.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/query/query-plan.ts",
+        "source": "derived"
+      },
+      {
+        "name": "intent-classifier.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/search/intent-classifier.ts",
+        "source": "derived"
+      },
+      {
+        "name": "intent-classifier-corpus.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/intent-classifier-corpus.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "causal-stats-output.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/causal-stats-output.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "plan.md",
-        "kind": "doc",
+        "name": "Three Cluster",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scaffolded Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Close",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
+        "name": "Authored Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
+        "name": "Spec Kit Memory",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Scoped",
+        "kind": "proper_noun",
+        "path": "plan.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "Feature Specification: Memory search Clusters 4-7 remediation",
+    "causal_summary": "Phase 005 audited `/memory:search` against the indexed-continuity runtime and catalogued 17 defects spanning retrieval, output rendering, and the causal-graph subcommand. Cluster 1 (truncation), Cluster 2 (intent classifier), and Cluster 3 (rendering vocabulary) shipped P0 fixes in-phase. The remaining 13 P1/P2 defects across Clusters 4-7 were deferred to a follow-up packet, alongside a deferred CocoIndex daemon health probe (REQ-012, contingent on the daemon being runnable) and the deferral of formalizing the 20-paraphrase stability corpus (REQ-016, currently informal at `intent-classifier.vitest.ts:T060`). The result today: memory search works, but operators see noisy causal-stats output, leaked stale state across calls, weak-signal folder bindings, missing 3-tier FTS fallback on quality drops, and silent CocoIndex daemon failures.",
     "created_at": "2026-05-08T21:00:00Z",
-    "last_save_at": "2026-05-08T21:15:00Z",
+    "last_save_at": "2026-05-18T08:15:53.374Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md"
-    ],
-    "completion_pct": 100
-  },
-  "importance_tier": "important"
+      "implementation-summary.md",
+      "resource-map.md"
+    ]
+  }
 }

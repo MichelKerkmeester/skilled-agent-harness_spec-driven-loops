@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/009-hook-parity/007-copilot-writer-wiring",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-hook-parity/007-copilot-writer-wiring",
   "description": "Feature Specification: Copilot Writer Wiring via Claude Wrapper",
   "keywords": [
     "feature",
@@ -17,7 +17,7 @@
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "009-hook-parity"
+    "007-hook-parity"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

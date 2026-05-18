@@ -1,5 +1,5 @@
 ---
-title: "Tasks [system-spec-kit/026-graph-and-context-optimization/009-hook-parity/008-docs-impact-remediation/tasks]"
+title: "Tasks [system-spec-kit/026-graph-and-context-optimization/007-hook-parity/008-docs-impact-remediation/tasks]"
 description: "One task per flagged file, in plan.md phase order. Each task lists the specific change required and the sub-packet(s) driving it."
 trigger_phrases:
   - "docs impact remediation tasks"
@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/009-hook-parity/008-docs-impact-remediation"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-hook-parity/008-docs-impact-remediation"
     last_updated_at: "2026-04-24T15:25:01Z"
     last_updated_by: "backfill-memory-block"
     recent_action: "Backfilled _memory block (repo-wide frontmatter sweep)"
@@ -68,7 +68,7 @@ Each task ID maps to a REQ in `spec.md §4` and a phase in `plan.md §2`. `[009/
 
 | ID | Task | Priority | Rationale |
 |---|---|---|---|
-| T-014 | Add `system-spec-kit/026-graph-and-context-optimization/009-hook-parity/008-docs-impact-remediation` to 009 parent's `graph-metadata.json` `children_ids` | P0 | Parent must recognize child for graph traversal |
+| T-014 | Add `system-spec-kit/026-graph-and-context-optimization/007-hook-parity/008-docs-impact-remediation` to 009 parent's `graph-metadata.json` `children_ids` | P0 | Parent must recognize child for graph traversal |
 | T-015 | Run `validate.sh --strict` on this packet; address errors, document warnings | P0 | §SC-006 |
 | T-016 | Generate / refresh `description.json` and this packet's `graph-metadata.json` via canonical memory save so derived fields stay aligned | P0 | System-spec-kit governance rule |
 | T-017 | Optional P2: reconcile every mention of "Codex has no lifecycle hook" in updated files with post-05 native SessionStart description | P2 | [009/05] — drift prevention |

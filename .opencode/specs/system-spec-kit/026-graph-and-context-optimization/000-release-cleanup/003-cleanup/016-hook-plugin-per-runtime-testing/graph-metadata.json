@@ -1,22 +1,15 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/016-hook-plugin-per-runtime-testing",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/016-hook-plugin-per-runtime-testing",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cleanup/016-hook-plugin-per-runtime-testing",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cleanup/016-hook-plugin-per-runtime-testing",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cleanup",
   "children_ids": [],
-  "migrated": false,
-  "migration_source": "live-runtime-testing",
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/011-cli-matrix-adapter-runners",
-      "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-doc-truth-pass",
-      "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/010-half-auto-upgrades",
-      "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/013-evergreen-doc-packet-id-removal"
-    ],
+    "depends_on": [],
     "supersedes": [],
-    "related_to": [
-      "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/006-full-matrix-execution-validation"
-    ]
+    "related_to": []
   },
   "derived": {
     "trigger_phrases": [
@@ -24,62 +17,197 @@
       "runtime hook tests",
       "per-runtime hook validation",
       "cli skill hook tests",
-      "hook live testing"
+      "hook live testing",
+      "resource map",
+      "016-hook-plugin-per-runtime-testing resource map",
+      "path catalog 016-hook-plugin-per-runtime-testing"
     ],
     "key_topics": [
-      "hooks",
-      "plugins",
+      "016-hook-plugin-per-runtime-testing",
       "runtime",
-      "claude",
-      "codex",
-      "copilot",
-      "gemini",
-      "opencode",
-      "jsonl",
-      "live testing"
+      "hook",
+      "tests",
+      "per-runtime",
+      "validation",
+      "cli",
+      "skill",
+      "live",
+      "testing",
+      "resource",
+      "map"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
       "runners/common.ts",
       "runners/run-all-runtime-hooks.ts",
+      "runners/README.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
       "runners/test-claude-hooks.ts",
       "runners/test-codex-hooks.ts",
       "runners/test-copilot-hooks.ts",
       "runners/test-gemini-hooks.ts",
       "runners/test-opencode-plugins.ts",
-      "runners/README.md",
-      "results/claude-user-prompt-submit.jsonl",
-      "results/codex-user-prompt-submit-freshness.jsonl",
-      "results/copilot-user-prompt-submitted-next-prompt.jsonl",
       "results/gemini-before-agent-additional-context.jsonl",
-      "results/opencode-plugin-system-transform.jsonl",
-      "findings.md"
+      "results/copilot-user-prompt-submitted-next-prompt.jsonl",
+      "logs/iter-001.log",
+      "research/prompts/iteration-001.md",
+      "resource-map.md"
     ],
     "entities": [
       {
         "name": "common.ts",
         "kind": "code",
         "path": "runners/common.ts",
-        "source": "manual"
+        "source": "derived"
       },
       {
         "name": "run-all-runtime-hooks.ts",
         "kind": "code",
         "path": "runners/run-all-runtime-hooks.ts",
-        "source": "manual"
+        "source": "derived"
       },
       {
-        "name": "findings.md",
+        "name": "README.md",
         "kind": "doc",
-        "path": "findings.md",
-        "source": "manual"
+        "path": "runners/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "test-claude-hooks.ts",
+        "kind": "code",
+        "path": "runners/test-claude-hooks.ts",
+        "source": "derived"
+      },
+      {
+        "name": "test-codex-hooks.ts",
+        "kind": "code",
+        "path": "runners/test-codex-hooks.ts",
+        "source": "derived"
+      },
+      {
+        "name": "test-copilot-hooks.ts",
+        "kind": "code",
+        "path": "runners/test-copilot-hooks.ts",
+        "source": "derived"
+      },
+      {
+        "name": "test-gemini-hooks.ts",
+        "kind": "code",
+        "path": "runners/test-gemini-hooks.ts",
+        "source": "derived"
+      },
+      {
+        "name": "test-opencode-plugins.ts",
+        "kind": "code",
+        "path": "runners/test-opencode-plugins.ts",
+        "source": "derived"
+      },
+      {
+        "name": "gemini-before-agent-additional-context.jsonl",
+        "kind": "file",
+        "path": "results/gemini-before-agent-additional-context.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "copilot-user-prompt-submitted-next-prompt.jsonl",
+        "kind": "file",
+        "path": "results/copilot-user-prompt-submitted-next-prompt.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "iter-001.log",
+        "kind": "file",
+        "path": "logs/iter-001.log",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": "research/prompts/iteration-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "Hook Plugin Per Runtime Testing",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Create",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "Live tests hook + plugin wiring for each of 5 supported runtimes (Claude/Codex/Copilot/Gemini/OpenCode-plugin). Uses existing per-CLI skills (cli-codex/cli-copilot/cli-gemini/cli-claude-code/cli-opencode) plus the matrix_runners adapter helpers. Captures per-cell PASS/FAIL/SKIPPED with evidence; produces signed-off matrix + remediation tickets for any cells that fail.",
+    "causal_summary": "The hook contract docs and adapter scaffolding describe how Claude Code, Codex CLI, GitHub Copilot CLI, Gemini CLI, and OpenCode should receive Spec Kit prompt and lifecycle context. That contract still needed a live execution pass that invokes each runtime CLI and records whether the documented hook or plugin signal is observable in this host.",
     "created_at": "2026-04-29T19:12:00.000Z",
-    "last_save_at": "2026-04-29T19:12:00.000Z",
-    "save_lineage": "same_pass",
+    "last_save_at": "2026-05-18T08:15:53.128Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -87,7 +215,7 @@
       "tasks.md",
       "checklist.md",
       "implementation-summary.md",
-      "findings.md"
+      "resource-map.md"
     ]
   }
 }

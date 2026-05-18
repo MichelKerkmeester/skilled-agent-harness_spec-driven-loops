@@ -1,0 +1,211 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/004-external-project-adoption/004-skill-advisor-affordance-evidence",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/004-external-project-adoption/004-skill-advisor-affordance-evidence",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/004-external-project-adoption",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "012 affordance evidence",
+      "skill advisor affordance",
+      "tool resource routing evidence",
+      "affordance normalizer",
+      "012/004 plan",
+      "affordance evidence plan",
+      "skill advisor affordance plan",
+      "012/004 tasks",
+      "affordance evidence tasks",
+      "skill advisor affordance tasks",
+      "012/004 checklist",
+      "affordance evidence checklist"
+    ],
+    "key_topics": [
+      "012",
+      "affordance",
+      "evidence",
+      "skill",
+      "advisor",
+      "tool",
+      "resource",
+      "routing",
+      "normalizer",
+      "004",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".claude/settings.local.json",
+      "mcp_server/package.json",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "settings.local.json",
+        "kind": "config",
+        "path": ".claude/settings.local.json",
+        "source": "derived"
+      },
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": "mcp_server/package.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Advisor Affordance Evidence",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Skill Advisor",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Add",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Advisor",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Input",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Extend Python",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Add Vitest",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Skill Advisor's compiler whitelist is intentionally limited to `skill`, `agent`, `script`, `config`, and `reference`. Tool and resource affordances can improve routing recall, but free-form descriptions could introduce prompt-stuffing input or leak private matched phrases if passed directly into scoring.",
+    "created_at": "2026-04-25T10:48:08.547Z",
+    "last_save_at": "2026-05-18T08:15:53.399Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ]
+  }
+}

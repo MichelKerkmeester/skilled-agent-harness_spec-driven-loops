@@ -201,5 +201,5 @@ None. Pipeline and scope resolved at planning time.
 - **Implementation Plan**: See `plan.md`
 - **Task Breakdown**: See `tasks.md`
 - **Resource Map**: See `resource-map.md`
-- **Predecessors**: `../../007-code-graph/017-code-folder-readmes/`, `../../008-skill-advisor/002-code-folder-readmes/`, `../054-code-folder-readmes/`
+- **Predecessors**: `../../005-code-graph/017-code-folder-readmes/`, `../../006-skill-advisor/002-code-folder-readmes/`, `../054-code-folder-readmes/`
 <!-- /ANCHOR:related-docs -->

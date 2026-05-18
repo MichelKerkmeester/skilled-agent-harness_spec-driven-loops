@@ -1,5 +1,5 @@
 ---
-title: "Resource Map [system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/002-sandbox-testing-playbook]"
+title: "Resource Map [system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/002-sandbox-testing-playbook]"
 description: "Path catalog: 23 scenarios + 31 sandbox files + 8 packet docs + 1 root playbook modification + reuse-pattern citations."
 trigger_phrases:
   - "002 resource map"
@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/002-sandbox-testing-playbook"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/002-sandbox-testing-playbook"
     last_updated_at: "2026-05-09T16:25:00Z"
     last_updated_by: "spec-author"
     recent_action: "Authored resource map covering ~67 deliverables across packet, playbook, sandbox"

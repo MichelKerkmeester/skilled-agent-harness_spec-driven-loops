@@ -9,7 +9,7 @@
   "specId": "006",
   "folderSlug": "concurrent-daemon-corruption-fix",
   "parentChain": [
-    "008-skill-advisor"
+    "006-skill-advisor"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

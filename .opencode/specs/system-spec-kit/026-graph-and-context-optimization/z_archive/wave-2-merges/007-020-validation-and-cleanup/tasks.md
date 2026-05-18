@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "tasks"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/020-validation-and-cleanup"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/005-code-graph/020-validation-and-cleanup"
     last_updated_at: "2026-05-14T08:43:25Z"
     last_updated_by: "codex"
     recent_action: "All tasks complete"
@@ -87,7 +87,7 @@ _memory:
 <!-- ANCHOR:cross-refs -->
 ## CROSS-REFERENCES
 
-- Parent: `007-code-graph/013-system-code-graph-extraction`
+- Parent: `005-code-graph/013-system-code-graph-extraction`
 - Predecessor: `014/005-doc-and-runtime-migration`
 - New skill: `.opencode/skills/system-code-graph/`
 <!-- /ANCHOR:cross-refs -->

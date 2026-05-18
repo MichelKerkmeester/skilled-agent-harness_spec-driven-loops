@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-deep-research-finding-remediation/005-resource-leaks-silent-errors",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-deep-research-finding-remediation/005-resource-leaks-silent-errors",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-deep-research-finding-remediation",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/006-research/004-deep-research-finding-remediation/005-resource-leaks-silent-errors",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/006-research/004-deep-research-finding-remediation/005-resource-leaks-silent-errors",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/006-research/004-deep-research-finding-remediation",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -41,14 +41,8 @@
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      "mcp_server/skill_advisor/lib/daemon/watcher.ts",
       "mcp_server/lib/ops/file-watcher.ts",
-      "mcp_server/skill_advisor/lib/scorer/projection.ts",
-      "mcp_server/skill_advisor/lib/scorer/types.ts",
-      "mcp_server/skill_advisor/tests/daemon-watcher-resource-leaks-049-005.vitest.ts",
-      "mcp_server/skill_advisor/tests/scorer/projection-fallback-049-005.vitest.ts",
       "mcp_server/tests/file-watcher-queue-cap-049-005.vitest.ts",
-      "mcp_server/skill_advisor/tests/scorer/native-scorer.vitest.ts",
       ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
       "checklist.md",
       "implementation-summary.md",
@@ -58,51 +52,15 @@
     ],
     "entities": [
       {
-        "name": "watcher.ts",
-        "kind": "code",
-        "path": "mcp_server/skill_advisor/lib/daemon/watcher.ts",
-        "source": "derived"
-      },
-      {
         "name": "file-watcher.ts",
         "kind": "code",
         "path": "mcp_server/lib/ops/file-watcher.ts",
         "source": "derived"
       },
       {
-        "name": "projection.ts",
-        "kind": "code",
-        "path": "mcp_server/skill_advisor/lib/scorer/projection.ts",
-        "source": "derived"
-      },
-      {
-        "name": "types.ts",
-        "kind": "code",
-        "path": "mcp_server/skill_advisor/lib/scorer/types.ts",
-        "source": "derived"
-      },
-      {
-        "name": "daemon-watcher-resource-leaks-049-005.vitest.ts",
-        "kind": "test",
-        "path": "mcp_server/skill_advisor/tests/daemon-watcher-resource-leaks-049-005.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "projection-fallback-049-005.vitest.ts",
-        "kind": "test",
-        "path": "mcp_server/skill_advisor/tests/scorer/projection-fallback-049-005.vitest.ts",
-        "source": "derived"
-      },
-      {
         "name": "file-watcher-queue-cap-049-005.vitest.ts",
         "kind": "test",
         "path": "mcp_server/tests/file-watcher-queue-cap-049-005.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "native-scorer.vitest.ts",
-        "kind": "test",
-        "path": "mcp_server/skill_advisor/tests/scorer/native-scorer.vitest.ts",
         "source": "derived"
       },
       {
@@ -200,11 +158,47 @@
         "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "existing",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "F-004-A4-01",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "sentinel",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "finding IDs",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Five findings from packet 046's deep research describe long-running daemon resource leaks plus two silent error paths that hide degraded behavior from operators:",
     "created_at": "2026-05-01T05:18:48Z",
-    "last_save_at": "2026-05-01T07:55:29.751Z",
+    "last_save_at": "2026-05-18T08:15:53.322Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

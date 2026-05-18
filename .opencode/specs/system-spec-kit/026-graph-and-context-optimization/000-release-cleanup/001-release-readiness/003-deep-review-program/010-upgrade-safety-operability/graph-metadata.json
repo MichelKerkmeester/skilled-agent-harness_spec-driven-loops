@@ -1,20 +1,15 @@
 {
   "schema_version": 1,
-  "packet_id": "045-010-upgrade-safety-operability",
-  "spec_folder": "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-deep-review-program/010-upgrade-safety-operability",
-  "parent_id": "003-deep-review-program",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-release-readiness/003-deep-review-program/010-upgrade-safety-operability",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-release-readiness/003-deep-review-program/010-upgrade-safety-operability",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-release-readiness/003-deep-review-program",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-deep-review-program"
-    ],
+    "depends_on": [],
     "supersedes": [],
-    "related_to": [
-      "specs/system-spec-kit/026-graph-and-context-optimization/036-matrix_runners",
-      "specs/system-spec-kit/026-graph-and-context-optimization/037-stress-test-relocation",
-      "specs/system-spec-kit/026-graph-and-context-optimization/038-stress-test-folder-migration",
-      "specs/system-spec-kit/026-graph-and-context-optimization/039-feature-catalog"
-    ]
+    "related_to": []
   },
   "derived": {
     "trigger_phrases": [
@@ -25,55 +20,185 @@
       "doctor mcp install review"
     ],
     "key_topics": [
-      "upgrade safety",
+      "045-010-upgrade-safety-operability",
+      "upgrade",
+      "safety",
+      "audit",
       "operability",
-      "doctor mcp install",
-      "doctor mcp debug",
-      "db migrations",
-      "stress test relocation",
-      "hook tests",
-      "environment defaults",
-      "backwards compatibility"
+      "review",
+      "install",
+      "guide",
+      "doctor",
+      "mcp",
+      "recent",
+      "release-readiness"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-deep-review-program/010-upgrade-safety-operability/review-report.md",
-      "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-deep-review-program/010-upgrade-safety-operability/spec.md",
-      "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-deep-review-program/010-upgrade-safety-operability/plan.md",
-      "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-deep-review-program/010-upgrade-safety-operability/tasks.md",
-      "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-deep-review-program/010-upgrade-safety-operability/checklist.md",
-      "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-deep-review-program/010-upgrade-safety-operability/implementation-summary.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
-        "name": "review-report.md",
-        "type": "review-report",
-        "path": "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-deep-review-program/010-upgrade-safety-operability/review-report.md"
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
       },
       {
-        "name": "mcp-doctor.sh",
-        "type": "doctor-diagnostic",
-        "path": ".opencode/commands/doctor/scripts/mcp-doctor.sh"
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
       },
       {
-        "name": "vector-index-schema.ts",
-        "type": "migration-source",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts"
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Upgrade Safety Operability Deep Review",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Recent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Produce",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Audit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Date",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "Deep-review angle 10: upgrade safety + operability - DB migrations, install/upgrade flow, file relocations don't break imports, doctor commands diagnose, env var defaults sanity, backwards-compat.",
-    "created_at": "2026-04-29T23:15:00+02:00",
-    "last_save_at": "2026-04-29T23:15:00+02:00",
-    "save_lineage": "same_pass",
+    "causal_summary": "Recent release-readiness work moved stress tests, added matrix runners, refreshed install docs, and extended database and hook surfaces. The release needs a read-only operability audit to catch install drift, doctor false diagnostics, migration evidence gaps, stale environment defaults, and backwards-compatibility validation regressions.",
+    "created_at": "2026-05-18T08:15:52.983Z",
+    "last_save_at": "2026-05-18T08:15:52.983Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-deep-review-program/010-upgrade-safety-operability/spec.md",
-      "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-deep-review-program/010-upgrade-safety-operability/plan.md",
-      "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-deep-review-program/010-upgrade-safety-operability/tasks.md",
-      "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-deep-review-program/010-upgrade-safety-operability/checklist.md",
-      "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-deep-review-program/010-upgrade-safety-operability/implementation-summary.md",
-      "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-deep-review-program/010-upgrade-safety-operability/review-report.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
     ]
   }
 }

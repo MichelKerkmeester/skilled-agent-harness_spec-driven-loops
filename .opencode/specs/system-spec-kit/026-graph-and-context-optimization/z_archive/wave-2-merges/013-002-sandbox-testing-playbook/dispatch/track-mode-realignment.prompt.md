@@ -4,7 +4,7 @@
 
 You are Codex (gpt-5.5 high fast) dispatched by Claude Opus 4.7. The doctor command surface was reduced from 5 modes per command to a single interactive mode. The 25 manual playbook scenarios + 25 sandbox shell wrappers in `_sandbox/23--doctor-commands/scenarios/` were authored against the old multi-mode surface. They reference deleted yaml paths and deleted mode tags. Your job: curated rewrite that drops obsolete scenarios, rewrites surviving ones for the single-mode surface, and keeps sandbox + playbook + spec docs in lockstep.
 
-Spec folder (pre-approved, skip Gate 3): `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/002-sandbox-testing-playbook/`
+Spec folder (pre-approved, skip Gate 3): `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/002-sandbox-testing-playbook/`
 
 Branch: stay on `main`. Do not branch.
 
@@ -101,7 +101,7 @@ rm -f .opencode/skills/system-spec-kit/manual_testing_playbook/_sandbox/23--doct
 ## TASK 5: Update 002-sandbox-testing-playbook spec packet docs
 
 Files:
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/002-sandbox-testing-playbook/spec.md`
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/002-sandbox-testing-playbook/spec.md`
 - `.../002-sandbox-testing-playbook/plan.md`
 - `.../002-sandbox-testing-playbook/tasks.md`
 - `.../002-sandbox-testing-playbook/checklist.md`
@@ -121,7 +121,7 @@ Updates required:
 ## TASK 6: Update 001-doctor-commands packet docs
 
 Files:
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/001-doctor-commands/spec.md`
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/001-doctor-commands/spec.md`
 - `.../001-doctor-commands/plan.md`
 - `.../001-doctor-commands/tasks.md`
 - `.../001-doctor-commands/checklist.md`
@@ -171,8 +171,8 @@ for f in $PB/*.md; do
 done
 
 echo "=== Spec validate on packets ==="
-bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/002-sandbox-testing-playbook --strict 2>&1 | tail -5
-bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/001-doctor-commands --strict 2>&1 | tail -5
+bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/002-sandbox-testing-playbook --strict 2>&1 | tail -5
+bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/001-doctor-commands --strict 2>&1 | tail -5
 ```
 
 Targets:

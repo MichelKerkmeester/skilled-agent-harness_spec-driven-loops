@@ -49,7 +49,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->"
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |
 | **Parent Packet** | `026-graph-and-context-optimization` |
-| **Predecessor** | `009-hook-parity` |
+| **Predecessor** | `007-hook-parity` |
 | **Successor** | None (current tail of 026 active surface) |
 | **Handoff Criteria** | Validator + template + generator changes ship together so existing parents (e.g. 026) keep validating under tolerant policy |
 <!-- /ANCHOR:metadata -->
@@ -60,7 +60,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->"
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-When a spec folder has phase children (e.g. `026/{007-code-graph,008-skill-advisor,...}/`), the parent currently authors a full Level 1/2/3 document set (`plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md`) describing program-level intent. As phases execute, pivot, and converge over weeks, the parent docs drift from child reality. AI assistants reading the resume ladder treat the stale parent docs as authoritative, hallucinate current state, and propose work against outdated plans.
+When a spec folder has phase children (e.g. `026/{005-code-graph,006-skill-advisor,...}/`), the parent currently authors a full Level 1/2/3 document set (`plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md`) describing program-level intent. As phases execute, pivot, and converge over weeks, the parent docs drift from child reality. AI assistants reading the resume ladder treat the stale parent docs as authoritative, hallucinate current state, and propose work against outdated plans.
 
 ### Purpose
 A spec folder that has phase children only requires three files at the parent level: `spec.md` (root purpose + sub-phase manifest + what needs done), `description.json` (discovery metadata), and `graph-metadata.json` (children, status, continuity pointer). Everything else lives in children, where it stays accurate because it tracks one phase's actual work.

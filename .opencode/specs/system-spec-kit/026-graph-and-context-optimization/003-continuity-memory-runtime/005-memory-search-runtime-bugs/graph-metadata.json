@@ -49,8 +49,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      "mcp_server/code_graph/lib/query-intent-classifier.ts"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -93,12 +92,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "query-intent-classifier.ts",
-        "kind": "code",
-        "path": "mcp_server/code_graph/lib/query-intent-classifier.ts",
         "source": "derived"
       },
       {
@@ -196,11 +189,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Truncation Wrapper",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "A live `/memory:search` session against the indexed-continuity runtime exposed contract violations and degraded UX across the retrieval, output rendering, and causal-graph subcommands. The empty-arguments gate fired correctly, but every downstream stage produced at least one observable defect: the intent classifier emitted `fix_bug` (confidence 0.098) for the query \"Semantic Search\" despite the spec mandating `understand` as the no-keyword-match fallback; the `memory_context` wrapper reported `truncated=true` and zero `results` while consuming only 2% of its 3000-3500 token budget; the assistant rendering used the explicitly-forbidden phrase \"Auto-triggered memories\"; `causal-stats` returned three of six valid relation types and labeled itself `health: \"healthy\"` while reporting `meetsTarget: false`. The root spec at `.opencode/commands/memory/search.md` documents the intended behavior, but the runtime drifts from it on multiple axes.",
     "created_at": "2026-04-26T14:33:00Z",
-    "last_save_at": "2026-04-27T13:55:36.078Z",
+    "last_save_at": "2026-05-18T08:15:53.372Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

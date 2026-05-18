@@ -23,7 +23,7 @@
   "qualityGateThreshold": true,
   "releaseReadinessState": "converged",
   "resource_map_present": false,
-  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/031-deep-review-campaign-010-016",
+  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/031-deep-review-campaign-010-016",
   "reviewTarget": "code-graph-campaign-010-016",
   "reviewTargetType": "files",
   "reviewDimensions": [

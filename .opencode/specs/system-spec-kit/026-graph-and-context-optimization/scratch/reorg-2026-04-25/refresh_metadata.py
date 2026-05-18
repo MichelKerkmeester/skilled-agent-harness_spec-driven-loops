@@ -32,41 +32,41 @@ GENERATE_DESC = REPO_ROOT / ".opencode/skills/system-spec-kit/scripts/dist/spec-
 # Packets to refresh: every packet that moved, was renamed, or had its parent change.
 PACKETS = [
     # Root parents (children_ids changed)
-    "007-code-graph",
-    "008-skill-advisor",
-    "009-hook-parity",
+    "005-code-graph",
+    "006-skill-advisor",
+    "007-hook-parity",
 
     # 008 children (from 006 — keep numbering)
-    "008-skill-advisor/001-search-and-routing-tuning",
-    "008-skill-advisor/001-skill-advisor-graph",
-    "008-skill-advisor/002-advisor-phrase-booster-tailoring",
-    "008-skill-advisor/001-docs-and-code-alignment",
-    "008-skill-advisor/003-smart-remediation-and-opencode-plugin",
-    "008-skill-advisor/001-deferred-remediation-and-telemetry-run",
+    "006-skill-advisor/001-search-and-routing-tuning",
+    "006-skill-advisor/001-skill-advisor-graph",
+    "006-skill-advisor/002-advisor-phrase-booster-tailoring",
+    "006-skill-advisor/001-docs-and-code-alignment",
+    "006-skill-advisor/003-smart-remediation-and-opencode-plugin",
+    "006-skill-advisor/001-deferred-remediation-and-telemetry-run",
 
     # 008 children (from 010 — new parent + new slot)
-    "008-skill-advisor/004-skill-advisor-hook-surface",
-    "008-skill-advisor/002-daemon-and-unification",
-    "008-skill-advisor/002-skill-advisor-plugin-hardening",
-    "008-skill-advisor/003-skill-advisor-standards-alignment",
-    "008-skill-advisor/001-skill-advisor-hook-improvements",
+    "006-skill-advisor/004-skill-advisor-hook-surface",
+    "006-skill-advisor/002-daemon-and-unification",
+    "006-skill-advisor/002-skill-advisor-plugin-hardening",
+    "006-skill-advisor/003-skill-advisor-standards-alignment",
+    "006-skill-advisor/001-skill-advisor-hook-improvements",
 
     # 007 children (existing 001-003 + the 2 newcomers from 010)
-    "007-code-graph/001-code-graph-upgrades",
-    "007-code-graph/002-code-graph-self-contained-package",
-    "007-code-graph/002-code-graph-context-and-scan-scope",
-    "007-code-graph/003-code-graph-hook-improvements",
-    "007-code-graph/004-code-graph-advisor-refinement",
+    "005-code-graph/001-code-graph-upgrades",
+    "005-code-graph/002-code-graph-self-contained-package",
+    "005-code-graph/002-code-graph-context-and-scan-scope",
+    "005-code-graph/003-code-graph-hook-improvements",
+    "005-code-graph/004-code-graph-advisor-refinement",
 
-    # 009-hook-parity surviving children (parent_id same, packet_id renumbered)
-    "009-hook-parity/001-hook-parity-remediation",
-    "009-hook-parity/002-copilot-hook-parity-remediation",
-    "009-hook-parity/003-codex-hook-parity-remediation",
-    "009-hook-parity/004-claude-hook-findings-remediation",
-    "009-hook-parity/005-opencode-plugin-loader-remediation",
-    "009-hook-parity/006-copilot-wrapper-schema-fix",
-    "009-hook-parity/007-copilot-writer-wiring",
-    "009-hook-parity/008-docs-impact-remediation",
+    # 007-hook-parity surviving children (parent_id same, packet_id renumbered)
+    "007-hook-parity/001-hook-parity-remediation",
+    "007-hook-parity/002-copilot-hook-parity-remediation",
+    "007-hook-parity/003-codex-hook-parity-remediation",
+    "007-hook-parity/004-claude-hook-findings-remediation",
+    "007-hook-parity/005-opencode-plugin-loader-remediation",
+    "007-hook-parity/006-copilot-wrapper-schema-fix",
+    "007-hook-parity/007-copilot-writer-wiring",
+    "007-hook-parity/008-docs-impact-remediation",
 ]
 
 

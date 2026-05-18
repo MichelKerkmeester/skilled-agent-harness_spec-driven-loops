@@ -41,7 +41,7 @@
 
 ### 3. Extraction-line Packet References (UNVERIFIABLE)
 
-**RQ Request**: Check recent commits in extraction-line packets (007-code-graph, 008-skill-advisor, 014-local-llama-cpp)
+**RQ Request**: Check recent commits in extraction-line packets (005-code-graph, 006-skill-advisor, 014-local-llama-cpp)
 - **Reality**: These packet numbers do not exist as top-level extraction-line packets in the specs/ directory
 - **Finding**: The referenced packets appear to be child folders within other spec packets, not standalone extraction-line packets
 - **Suggested fix**: Update RQ to reference actual extraction-line packet numbers or clarify the packet structure being referenced

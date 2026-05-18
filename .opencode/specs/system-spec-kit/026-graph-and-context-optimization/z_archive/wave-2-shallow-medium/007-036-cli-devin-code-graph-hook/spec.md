@@ -14,7 +14,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/036-cli-devin-code-graph-hook"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/005-code-graph/036-cli-devin-code-graph-hook"
     last_updated_at: "2026-05-15T17:35:00Z"
     last_updated_by: "cli-codex-phase-b"
     recent_action: "Phase B synthesis complete"

@@ -4,7 +4,7 @@
 
 You are Codex (gpt-5.5 high fast) dispatched by Claude Opus 4.7 to author the Docker sandbox harness for the 25 manual testing playbook scenarios authored in Phase B (DOC-323..DOC-347). Single dispatch, full file set in scope (33 files): Dockerfile + docker-compose.yml + fixture-fetch + manifest + 4 harness scripts + 25 per-scenario shell wrappers.
 
-Spec folder (pre-approved, skip Gate 3): `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/002-sandbox-testing-playbook/`
+Spec folder (pre-approved, skip Gate 3): `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/002-sandbox-testing-playbook/`
 
 ## CANONICAL TEMPLATE SOURCES (read first; treat as locked)
 

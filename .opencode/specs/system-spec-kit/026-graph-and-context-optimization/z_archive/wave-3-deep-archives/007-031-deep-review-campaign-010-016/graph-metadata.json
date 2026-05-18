@@ -20,8 +20,8 @@
   },
   "createdAt": "2026-05-14T18:33:47Z",
   "updatedAt": "2026-05-14T21:00:00Z",
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/031-deep-review-campaign-010-016",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/007-code-graph",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/031-deep-review-campaign-010-016",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/005-code-graph",
   "migrated": true,
-  "migration_source": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/013-system-code-graph-extraction/017-deep-review-campaign-010-016"
+  "migration_source": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/013-system-code-graph-extraction/017-deep-review-campaign-010-016"
 }

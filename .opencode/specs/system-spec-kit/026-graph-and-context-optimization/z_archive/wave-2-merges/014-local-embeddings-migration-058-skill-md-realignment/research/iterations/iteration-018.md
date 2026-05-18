@@ -133,7 +133,7 @@ contextType: "reference"
 - Shared SQLite file with single-writer invariant (scan loop in system-code-graph)
 
 **Section 5 - Extraction history:**
-- Packet 014 (system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction)
+- Packet 014 (system-spec-kit/026-graph-and-context-optimization/005-code-graph/014-system-code-graph-extraction)
 - Executed 6-phase migration (015-020) + 14 follow-on phases (021-034)
 - ADR-001 locked: co-resident MCP (later superseded), stable tool-ids, DB move, sibling imports
 - ADR-002 superseded Q3: moved to standalone MCP topology

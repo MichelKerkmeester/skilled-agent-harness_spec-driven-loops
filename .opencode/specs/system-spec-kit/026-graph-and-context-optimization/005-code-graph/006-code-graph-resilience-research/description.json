@@ -1,0 +1,22 @@
+{
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/006-code-graph-resilience-research",
+  "description": "Feature Specification: Code Graph Resilience Research",
+  "keywords": [
+    "feature",
+    "specification",
+    "code",
+    "graph",
+    "resilience",
+    "research"
+  ],
+  "lastUpdated": "2026-05-08T08:26:57.655Z",
+  "specId": "007",
+  "folderSlug": "code-graph-resilience-research",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "005-code-graph"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

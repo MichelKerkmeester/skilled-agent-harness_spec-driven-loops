@@ -37,7 +37,7 @@ _memory:
 | **Created** | 2026-04-28 |
 | **Branch** | `main` |
 | **Parent** | `005-review-remediation` |
-| **Source review** | `specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-daemon-and-unification/review/002-daemon-and-unification-pt-01/review-report` |
+| **Source review** | `specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/002-daemon-and-unification/review/002-daemon-and-unification-pt-01/review-report` |
 | **Source verdict** | CONDITIONAL (P0=0, P1=3, P2=15 — all 3 P1s adversarially confirmed) |
 <!-- /ANCHOR:metadata -->
 
@@ -96,10 +96,10 @@ Close all three P1s with concrete fixes + regression tests, and absorb the 15 P2
 | `mcp_server/skill_advisor/handlers/advisor-status.ts` | Modify | DR-008-D2-P2-003 |
 | `mcp_server/skill_advisor/lib/freshness/generation.ts` | Modify | DR-008-D2-P2-003 |
 | `.opencode/plugins/spec-kit-skill-advisor.js` | Modify | DR-008-D2-P2-003 (plugin status output) |
-| `specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-daemon-and-unification/spec.md` | Modify | DR-008-D1-P2-002, DR-008-D3-P2-001 (hyphen to underscore + trusted-caller model) |
-| `specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-daemon-and-unification/checklist.md` | Modify | DR-008-D1-P2-001 (file:line evidence) |
-| `specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-daemon-and-unification/decision-record.md` | Modify | DR-008-D1-P2-002, DR-008-D4-P2-006 (path spelling + ADR sub-track split) |
-| `specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-daemon-and-unification/implementation-summary.md` | Modify | DR-008-D3-P2-003 (gate-bundle artifact reference cleanup) |
+| `specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/002-daemon-and-unification/spec.md` | Modify | DR-008-D1-P2-002, DR-008-D3-P2-001 (hyphen to underscore + trusted-caller model) |
+| `specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/002-daemon-and-unification/checklist.md` | Modify | DR-008-D1-P2-001 (file:line evidence) |
+| `specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/002-daemon-and-unification/decision-record.md` | Modify | DR-008-D1-P2-002, DR-008-D4-P2-006 (path spelling + ADR sub-track split) |
+| `specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/002-daemon-and-unification/implementation-summary.md` | Modify | DR-008-D3-P2-003 (gate-bundle artifact reference cleanup) |
 | `mcp_server/skill_advisor/lib/scorer/weights-config.ts` OR catalog/summary docs | Modify | DR-008-D3-P2-002 (lane weight 0.10 vs 0.15 reconciliation) |
 | `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/04--operator-h5/003-unavailable-daemon.md` | Modify | DR-008-D3-P2-001 (untrusted scan negative case) |
 | `mcp_server/skill_advisor/lib/daemon/watcher.ts` | Modify | DR-008-D4-P2-001 (extract daemon-state mutation helper with shared busy retry) |
@@ -191,7 +191,7 @@ Close all three P1s with concrete fixes + regression tests, and absorb the 15 P2
 
 ### Related Documents
 
-- **Source review report**: specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-daemon-and-unification/review/002-daemon-and-unification-pt-01/review-report
+- **Source review report**: specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/002-daemon-and-unification/review/002-daemon-and-unification-pt-01/review-report
 - **Implementation plan**: local plan document
 - **Tasks**: local tasks document
 - **Checklist**: local checklist document

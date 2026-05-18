@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/006-system-skill-advisor-extraction/015-mcp-server-rename-mk-skill-advisor",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/006-system-skill-advisor-extraction/015-mcp-server-rename-mk-skill-advisor",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/006-system-skill-advisor-extraction",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "013/009/015",
+      "mk_skill_advisor",
+      "mcp_mk-skill-advisor",
+      "system_skill_advisor rename",
+      "013/009/015 plan",
+      "mk_skill_advisor rename plan",
+      "013/009/015 tasks",
+      "mk_skill_advisor tasks",
+      "013/009/015 checklist",
+      "mk_skill_advisor verification",
+      "013/009/015 adr",
+      "mk_skill_advisor decision"
+    ],
+    "key_topics": [
+      "013",
+      "009",
+      "015",
+      "skill-advisor",
+      "rename",
+      "plan",
+      "tasks",
+      "checklist",
+      "verification",
+      "adr",
+      "decision",
+      "skill"
+    ],
+    "importance_tier": "critical",
+    "status": "complete",
+    "key_files": [
+      ".opencode/bin/mk-skill-advisor-launcher.cjs",
+      ".claude/mcp.json",
+      ".codex/config.toml",
+      ".gemini/settings.json",
+      ".opencode/skills/system-skill-advisor/mcp_server/database/.mk-skill-advisor-launcher.json",
+      ".opencode/skills/system-skill-advisor/mcp_server/advisor-server.ts",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "mk-skill-advisor-launcher.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/mk-skill-advisor-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "mcp.json",
+        "kind": "config",
+        "path": ".claude/mcp.json",
+        "source": "derived"
+      },
+      {
+        "name": "config.toml",
+        "kind": "file",
+        "path": ".codex/config.toml",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".gemini/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": ".mk-skill-advisor-launcher.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/database/.mk-skill-advisor-launcher.json",
+        "source": "derived"
+      },
+      {
+        "name": "advisor-server.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/advisor-server.ts",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Advisor",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Skill Advisor",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Runtime",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The Skill Advisor MCP server currently advertises the runtime id `system_skill_advisor`, while the custom MCP naming pattern has moved to `mk_*` ids such as `mk_code_index`. This packet renames only the MCP runtime identity and launcher surface to `mk_skill_advisor`.",
+    "created_at": "2026-05-14T20:09:35Z",
+    "last_save_at": "2026-05-14T20:38:49.472Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ]
+  }
+}

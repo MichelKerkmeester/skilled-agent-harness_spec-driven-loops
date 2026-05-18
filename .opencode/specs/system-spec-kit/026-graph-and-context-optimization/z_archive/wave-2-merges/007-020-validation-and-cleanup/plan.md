@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/020-validation-and-cleanup"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/005-code-graph/020-validation-and-cleanup"
     last_updated_at: "2026-05-14T08:43:25Z"
     last_updated_by: "codex"
     recent_action: "Validation plan executed"

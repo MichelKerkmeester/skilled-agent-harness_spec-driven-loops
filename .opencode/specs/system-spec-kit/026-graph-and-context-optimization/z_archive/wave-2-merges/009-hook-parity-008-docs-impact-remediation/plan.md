@@ -1,5 +1,5 @@
 ---
-title: "Implementat [system-spec-kit/026-graph-and-context-optimization/009-hook-parity/008-docs-impact-remediation/plan]"
+title: "Implementat [system-spec-kit/026-graph-and-context-optimization/007-hook-parity/008-docs-impact-remediation/plan]"
 description: "Phased plan to update 13 flagged documentation files in priority order. Canonical hook/runtime docs first, then package-level READMEs and supporting docs."
 trigger_phrases:
   - "docs impact remediation plan"
@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/009-hook-parity/008-docs-impact-remediation"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-hook-parity/008-docs-impact-remediation"
     last_updated_at: "2026-04-24T15:25:01Z"
     last_updated_by: "backfill-memory-block"
     recent_action: "Backfilled _memory block (repo-wide frontmatter sweep)"
@@ -103,7 +103,7 @@ Goal: make the upstream truth documents correct before any package/README touche
    - `grep -rn "skill_advisor.py" .opencode/README.md .opencode/skills/system-spec-kit/README.md AGENTS.md` should show only *fallback* references, never primary.
    - `grep -rn ".github/hooks/scripts" .opencode/skills/system-spec-kit/mcp_server/hooks/copilot/README.md` should be empty.
    - `grep -rn "CommonJS entrypoint.*plugin" .opencode/skills/system-spec-kit/ARCHITECTURE.md` should be empty.
-4. **Validator:** `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-hook-parity/008-docs-impact-remediation/ --strict` must exit 0 or 1.
+4. **Validator:** `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-hook-parity/008-docs-impact-remediation/ --strict` must exit 0 or 1.
 5. **Parent graph metadata:** 009's `graph-metadata.json` must list 012 in `children_ids` after implementation.
 
 ---

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/014-resource-maps-and-memory-finalization",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/014-resource-maps-and-memory-finalization",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cleanup/014-resource-maps-and-memory-finalization",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cleanup/014-resource-maps-and-memory-finalization",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cleanup",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -14,7 +14,10 @@
       "014-resource-maps-and-memory-finalization",
       "resource maps cycle",
       "memory finalization",
-      "session packet indexing"
+      "session packet indexing",
+      "resource map",
+      "014-resource-maps-and-memory-finalization resource map",
+      "path catalog 014-resource-maps-and-memory-finalization"
     ],
     "key_topics": [
       "014-resource-maps-and-memory-finalization",
@@ -26,75 +29,62 @@
       "session",
       "packet",
       "indexing",
-      "seventeen",
-      "session-touched",
-      "spec"
+      "map",
+      "path",
+      "catalog"
     ],
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-automation-reality-supplemental/resource-map.md",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-doc-truth-pass/resource-map.md",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-code-graph-watcher-retraction/resource-map.md",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/005-memory-retention-sweep/resource-map.md",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/010-half-auto-upgrades/resource-map.md",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/006-full-matrix-execution-validation/resource-map.md",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/011-cli-matrix-adapter-runners/resource-map.md",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-stress-test-folder-completion/resource-map.md",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/012-code-graph-catalog-and-playbook/resource-map.md",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/013-evergreen-doc-packet-id-removal/resource-map.md",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/014-resource-maps-and-memory-finalization/finalization-log.md",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/014-resource-maps-and-memory-finalization/spec.md",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/014-resource-maps-and-memory-finalization/plan.md",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/014-resource-maps-and-memory-finalization/tasks.md",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/014-resource-maps-and-memory-finalization/checklist.md",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/014-resource-maps-and-memory-finalization/implementation-summary.md",
-      ".opencode/skills/system-spec-kit/templates/resource-map.md",
       ".opencode/skills/sk-doc/references/global/evergreen_packet_id_rule.md",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/resource-map.md",
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "resource-map.md"
     ],
     "entities": [
       {
-        "name": "finalization-log.md",
+        "name": "evergreen_packet_id_rule.md",
         "kind": "doc",
-        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/014-resource-maps-and-memory-finalization/finalization-log.md",
+        "path": ".opencode/skills/sk-doc/references/global/evergreen_packet_id_rule.md",
         "source": "derived"
       },
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/014-resource-maps-and-memory-finalization/spec.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
-        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/014-resource-maps-and-memory-finalization/plan.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
         "name": "tasks.md",
         "kind": "doc",
-        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/014-resource-maps-and-memory-finalization/tasks.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
         "name": "checklist.md",
         "kind": "doc",
-        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/014-resource-maps-and-memory-finalization/checklist.md",
+        "path": "checklist.md",
         "source": "derived"
       },
       {
         "name": "implementation-summary.md",
         "kind": "doc",
-        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/014-resource-maps-and-memory-finalization/implementation-summary.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "evergreen_packet_id_rule.md",
+        "name": "resource-map.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-doc/references/global/evergreen_packet_id_rule.md",
+        "path": "resource-map.md",
         "source": "derived"
       },
       {
@@ -202,7 +192,7 @@
     ],
     "causal_summary": "Seventeen session-touched spec folders lacked final resource maps and fresh memory indexing. Without a path ledger and canonical save pass, downstream reviewers have to reconstruct touched files from git history and memory search may miss the latest packet state.",
     "created_at": "2026-04-29T18:41:25.655Z",
-    "last_save_at": "2026-04-29T18:43:30.879Z",
+    "last_save_at": "2026-05-18T08:15:53.119Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,7 +200,8 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "resource-map.md"
     ]
   }
 }

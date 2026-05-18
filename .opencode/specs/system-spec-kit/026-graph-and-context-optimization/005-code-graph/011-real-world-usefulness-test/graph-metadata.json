@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/011-real-world-usefulness-test",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/011-real-world-usefulness-test",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/005-code-graph",
+  "children_ids": [
+    "system-spec-kit/026-graph-and-context-optimization/005-code-graph/011-real-world-usefulness-test/001-execution",
+    "system-spec-kit/026-graph-and-context-optimization/005-code-graph/011-real-world-usefulness-test/002-native-rerun",
+    "system-spec-kit/026-graph-and-context-optimization/005-code-graph/011-real-world-usefulness-test/003-deep-research-issues",
+    "system-spec-kit/026-graph-and-context-optimization/005-code-graph/011-real-world-usefulness-test/004-remediation",
+    "system-spec-kit/026-graph-and-context-optimization/005-code-graph/011-real-world-usefulness-test/005-scope-guard",
+    "system-spec-kit/026-graph-and-context-optimization/005-code-graph/011-real-world-usefulness-test/006-cluster-a-to-e",
+    "system-spec-kit/026-graph-and-context-optimization/005-code-graph/011-real-world-usefulness-test/007-tree-sitter-parser-resilience"
+  ],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "real-world usefulness test",
+      "code graph usefulness",
+      "hook usefulness validation",
+      "runtime integration usefulness",
+      "026/007/012",
+      "real-world usefulness plan",
+      "CLI matrix",
+      "code graph usefulness campaign",
+      "hook usefulness campaign",
+      "real-world usefulness tasks",
+      "scenario runtime cells",
+      "026/007/012 tasks"
+    ],
+    "key_topics": [
+      "real-world",
+      "usefulness",
+      "test",
+      "code",
+      "graph",
+      "hook",
+      "validation",
+      "runtime",
+      "integration",
+      "026",
+      "007",
+      "012"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/011-real-world-usefulness-test/spec.md",
+      "specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/011-real-world-usefulness-test/plan.md",
+      "specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/011-real-world-usefulness-test/tasks.md",
+      "specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/011-real-world-usefulness-test/checklist.md",
+      "specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/011-real-world-usefulness-test/decision-record.md",
+      "specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/011-real-world-usefulness-test/implementation-summary.md",
+      "specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/011-real-world-usefulness-test/description.json",
+      "specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/011-real-world-usefulness-test/graph-metadata.json",
+      "specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/graph-metadata.json",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/011-real-world-usefulness-test/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/011-real-world-usefulness-test/plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/011-real-world-usefulness-test/tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/011-real-world-usefulness-test/checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/011-real-world-usefulness-test/decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/011-real-world-usefulness-test/implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "description.json",
+        "kind": "config",
+        "path": "specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/011-real-world-usefulness-test/description.json",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": "specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/011-real-world-usefulness-test/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "World Usefulness Test",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Planning Scaffold Complete",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execution Mode",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit Memory",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scoring Rubric",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Create Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Major Scenario Tasks",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Matrix Cell Tasks",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phases 001-011 shipped capability and resilience for code graph tooling, hooks, and runtime integration surfaces. That proves the systems can exist, but it does not prove they help an engineer move faster or make better decisions during normal coding work. The missing evidence is a real-world usefulness campaign with controls, repeated trials, and runtime-specific observations.",
+    "created_at": "2026-05-05T00:00:00.000Z",
+    "last_save_at": "2026-05-18T08:15:53.440Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ]
+  }
+}

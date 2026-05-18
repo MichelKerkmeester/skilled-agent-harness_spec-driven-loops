@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "tasks"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/019-doc-and-runtime-migration"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/005-code-graph/019-doc-and-runtime-migration"
     last_updated_at: "2026-05-14T08:21:27Z"
     last_updated_by: "codex"
     recent_action: "Completed Phase 005 doc migration and strict validation"
@@ -97,7 +97,7 @@ _memory:
 <!-- ANCHOR:cross-refs -->
 ## CROSS-REFERENCES
 
-- Parent: `007-code-graph/013-system-code-graph-extraction`
+- Parent: `005-code-graph/013-system-code-graph-extraction`
 - Previous child: `014/004-rewire-consumers-and-tool-registration`
 - ADR source: `014/001-design-and-decision-record/decision-record.md`
 - Target skill: `.opencode/skills/system-code-graph/`

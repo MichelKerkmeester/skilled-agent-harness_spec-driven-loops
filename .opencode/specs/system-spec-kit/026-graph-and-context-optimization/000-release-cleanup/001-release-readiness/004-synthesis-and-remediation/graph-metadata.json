@@ -1,15 +1,13 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-synthesis-and-remediation",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-synthesis-and-remediation",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-release-readiness/004-synthesis-and-remediation",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-release-readiness/004-synthesis-and-remediation",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-release-readiness",
   "children_ids": [],
-  "migrated": false,
-  "migration_source": "manual",
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-deep-review-program"
-    ],
+    "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
@@ -18,15 +16,24 @@
       "004-synthesis-and-remediation",
       "release-readiness aggregate",
       "P0 fixes implementation",
-      "release blocker remediation"
+      "release blocker remediation",
+      "resource map",
+      "004-synthesis-and-remediation resource map",
+      "path catalog 004-synthesis-and-remediation"
     ],
     "key_topics": [
-      "release readiness",
-      "P0 remediation",
-      "MCP schema governance",
-      "code graph readiness",
-      "validator strict mode",
-      "deep-loop workflow integrity"
+      "004-synthesis-and-remediation",
+      "release-readiness",
+      "aggregate",
+      "fixes",
+      "implementation",
+      "release",
+      "blocker",
+      "remediation",
+      "resource",
+      "map",
+      "path",
+      "catalog"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -36,29 +43,158 @@
       "tasks.md",
       "checklist.md",
       "implementation-summary.md",
-      "synthesis.md",
-      "remediation-log.md",
-      "description.json",
-      "graph-metadata.json"
+      "resource-map.md"
     ],
     "entities": [
       {
-        "name": "aggregate release verdict",
-        "kind": "synthesis",
-        "path": "synthesis.md",
-        "source": "manual"
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
       },
       {
-        "name": "P0 remediation log",
-        "kind": "implementation",
-        "path": "remediation-log.md",
-        "source": "manual"
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Release Readiness Synthesis",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Create",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Surgical",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Inspect Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "Synthesizes the 10 review-reports from 045 into aggregate verdict + sequenced remediation backlog. Implements P0 fixes + Tier beta P1 quick wins. Documents open questions for operator decision on Tier gamma items.",
-    "created_at": "2026-04-29T22:45:00.000+02:00",
-    "last_save_at": "2026-04-29T22:45:00.000+02:00",
-    "save_lineage": "new",
+    "causal_summary": "Packet 045 produced ten release-readiness review reports across workflow, memory, advisor, code graph, hooks, schemas, deep loops, validator, docs, and operability. The reports contain active P0/P1/P2 findings that need a single aggregate verdict and immediate remediation for release blockers.",
+    "created_at": "2026-05-18T08:15:52.985Z",
+    "last_save_at": "2026-05-18T08:15:52.985Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -66,8 +202,7 @@
       "tasks.md",
       "checklist.md",
       "implementation-summary.md",
-      "synthesis.md",
-      "remediation-log.md"
+      "resource-map.md"
     ]
   }
 }

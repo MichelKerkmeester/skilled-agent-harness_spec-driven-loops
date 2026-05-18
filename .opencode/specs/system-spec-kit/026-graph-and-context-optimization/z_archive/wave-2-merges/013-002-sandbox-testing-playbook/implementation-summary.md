@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Sandbox Testing Playbook [system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/002-sandbox-testing-playbook/implementation-summary]"
+title: "Implementation Summary: Sandbox Testing Playbook [system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/002-sandbox-testing-playbook/implementation-summary]"
 description: "All 5 phases delivered. 23 manual playbook scenarios authored at IDs 323-336, 338-342, 344-347 (gaps at 337 + 343 — see decision-record.md ADR-008) in 23--doctor-commands/ + 31-file Docker sandbox harness under _sandbox/23--doctor-commands/ + root playbook integrated. Phase E gates 5/7 green; G3 fails on documented cross-packet template-manifest issue; G4 phase parent lean-trio detection works with 1 minor frontmatter-memory-block issue. 68+ files total."
 trigger_phrases:
   - "002-sandbox-testing-playbook complete"
@@ -10,7 +10,7 @@ contextType: "implementation"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/002-sandbox-testing-playbook"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/002-sandbox-testing-playbook"
     last_updated_at: "2026-05-09T18:35:00Z"
     last_updated_by: "spec-kit-handover"
     recent_action: "Wired v3.4 fixture; harness end-to-end smoke verified; no scenarios actually executed"
@@ -24,7 +24,7 @@ _memory:
       - ".opencode/skills/system-spec-kit/manual_testing_playbook/_sandbox/23--doctor-commands/fixtures/manifest.json"
       - ".opencode/skills/system-spec-kit/manual_testing_playbook/_sandbox/23--doctor-commands/fixtures/fetch-fixtures.sh"
       - ".opencode/skills/system-spec-kit/manual_testing_playbook/_sandbox/23--doctor-commands/harness/reset-state.sh"
-      - ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/002-sandbox-testing-playbook/external/"
+      - ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/002-sandbox-testing-playbook/external/"
       - ".opencode/commands/doctor/assets/"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -51,7 +51,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/002-sandbox-testing-playbook` |
+| **Spec Folder** | `system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/002-sandbox-testing-playbook` |
 | **Status** | COMPLETE (~95% — G3 + G4 minor issues deferred) |
 | **Level** | 3 |
 | **Phases delivered** | A (scaffold inline) + B (4 parallel cli-codex tracks) + C (root playbook inline) + D (cli-codex sandbox harness) + E (verification inline) |

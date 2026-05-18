@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/036-cli-devin-code-graph-hook"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/005-code-graph/036-cli-devin-code-graph-hook"
     last_updated_at: "2026-05-15T17:35:00Z"
     last_updated_by: "cli-codex-phase-b"
     recent_action: "Phase B synthesis complete"
@@ -63,9 +63,9 @@ Status vocabulary: `OK`, `MISSING`, `PLANNED`.
 | `.opencode/skills/system-code-graph/feature_catalog/feature_catalog.md` | Updated | OK | Plugin rename and Devin variant docs. |
 | `.opencode/skills/system-code-graph/manual_testing_playbook/manual_testing_playbook.md` | Updated | OK | Devin `/hooks` and startup smoke. |
 | `.opencode/skills/cli-devin/references/devin_tools.md` | Updated | OK | Hooks row line 106. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/036-cli-devin-code-graph-hook/research/research.md` | Analyzed | OK | Frozen Phase A synthesis, 362 lines. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/036-cli-devin-code-graph-hook/research/iterations/iteration-01.md` | Analyzed | OK | Devin SessionStart uncertainty. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/036-cli-devin-code-graph-hook/research/iterations/iteration-05.md` | Analyzed | OK | Freshness handling. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/036-cli-devin-code-graph-hook/research/research.md` | Analyzed | OK | Frozen Phase A synthesis, 362 lines. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/036-cli-devin-code-graph-hook/research/iterations/iteration-01.md` | Analyzed | OK | Devin SessionStart uncertainty. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/036-cli-devin-code-graph-hook/research/iterations/iteration-05.md` | Analyzed | OK | Freshness handling. |
 <!-- /ANCHOR:documents -->
 
 ---
@@ -93,16 +93,16 @@ Status vocabulary: `OK`, `MISSING`, `PLANNED`.
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/036-cli-devin-code-graph-hook/spec.md` | Updated | OK | Phase B planning-complete spec. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/036-cli-devin-code-graph-hook/plan.md` | Updated | OK | Phase A-E plan. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/036-cli-devin-code-graph-hook/tasks.md` | Updated | OK | 25 atomic tasks. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/036-cli-devin-code-graph-hook/decision-record.md` | Updated | OK | ADR-001..003 accepted. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/036-cli-devin-code-graph-hook/checklist.md` | Updated | OK | Phase D verification slots. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/036-cli-devin-code-graph-hook/handover.md` | Updated | OK | Continuity completion_pct 40. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/036-cli-devin-code-graph-hook/resource-map.md` | Created | OK | This file. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/036-cli-devin-code-graph-hook/implementation-summary.md` | Analyzed | OK | Left placeholder by design. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/036-cli-devin-code-graph-hook/description.json` | Analyzed | OK | Metadata untouched in Phase B. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/036-cli-devin-code-graph-hook/graph-metadata.json` | Analyzed | OK | Metadata untouched in Phase B. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/036-cli-devin-code-graph-hook/spec.md` | Updated | OK | Phase B planning-complete spec. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/036-cli-devin-code-graph-hook/plan.md` | Updated | OK | Phase A-E plan. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/036-cli-devin-code-graph-hook/tasks.md` | Updated | OK | 25 atomic tasks. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/036-cli-devin-code-graph-hook/decision-record.md` | Updated | OK | ADR-001..003 accepted. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/036-cli-devin-code-graph-hook/checklist.md` | Updated | OK | Phase D verification slots. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/036-cli-devin-code-graph-hook/handover.md` | Updated | OK | Continuity completion_pct 40. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/036-cli-devin-code-graph-hook/resource-map.md` | Created | OK | This file. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/036-cli-devin-code-graph-hook/implementation-summary.md` | Analyzed | OK | Left placeholder by design. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/036-cli-devin-code-graph-hook/description.json` | Analyzed | OK | Metadata untouched in Phase B. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/036-cli-devin-code-graph-hook/graph-metadata.json` | Analyzed | OK | Metadata untouched in Phase B. |
 <!-- /ANCHOR:specs -->
 
 ---

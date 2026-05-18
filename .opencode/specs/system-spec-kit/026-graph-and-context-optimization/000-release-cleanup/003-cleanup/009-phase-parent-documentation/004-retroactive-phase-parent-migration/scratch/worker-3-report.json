@@ -319,7 +319,7 @@
       ]
     },
     {
-      "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph",
+      "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph",
       "category": "C",
       "in_archive": false,
       "actions": [
@@ -331,7 +331,7 @@
       "narrative_preserved": true,
       "validator_pre": {
         "version": "2.0.0",
-        "folder": "/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/worker3-pre-akk2hjsd/007-code-graph",
+        "folder": "/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/worker3-pre-akk2hjsd/005-code-graph",
         "level": 1,
         "levelMethod": "inferred",
         "config": null,
@@ -404,7 +404,7 @@
           {
             "rule": "FOLDER_NAMING",
             "status": "pass",
-            "message": "Folder name '007-code-graph' follows naming convention"
+            "message": "Folder name '005-code-graph' follows naming convention"
           },
           {
             "rule": "FRONTMATTER_VALID",
@@ -478,7 +478,7 @@
       },
       "validator_post": {
         "version": "2.0.0",
-        "folder": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph",
+        "folder": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph",
         "level": 2,
         "levelMethod": "explicit",
         "config": null,
@@ -556,7 +556,7 @@
           {
             "rule": "FOLDER_NAMING",
             "status": "pass",
-            "message": "Folder name '007-code-graph' follows naming convention"
+            "message": "Folder name '005-code-graph' follows naming convention"
           },
           {
             "rule": "FRONTMATTER_VALID",

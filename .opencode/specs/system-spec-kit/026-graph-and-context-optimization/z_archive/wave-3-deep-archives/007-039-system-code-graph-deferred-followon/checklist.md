@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/039-system-code-graph-deferred-followon"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/005-code-graph/039-system-code-graph-deferred-followon"
     last_updated_at: "2026-05-15T18:05:00Z"
     last_updated_by: "claude-opus-4-7-039-scaffold"
     recent_action: "checklist_authored"

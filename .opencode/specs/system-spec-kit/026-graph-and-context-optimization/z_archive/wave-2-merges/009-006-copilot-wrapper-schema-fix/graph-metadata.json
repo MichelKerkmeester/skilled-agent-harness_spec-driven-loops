@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/009-hook-parity/006-copilot-wrapper-schema-fix",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/009-hook-parity/006-copilot-wrapper-schema-fix",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/009-hook-parity",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/007-hook-parity/006-copilot-wrapper-schema-fix",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/007-hook-parity/006-copilot-wrapper-schema-fix",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/007-hook-parity",
   "children_ids": [],
   "manual": {
     "depends_on": [],

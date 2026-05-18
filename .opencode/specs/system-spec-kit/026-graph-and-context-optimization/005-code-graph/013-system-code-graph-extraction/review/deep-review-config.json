@@ -1,0 +1,22 @@
+{
+  "createdAt": "2026-05-14T11:00:00Z",
+  "target": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/013-system-code-graph-extraction",
+  "reviewDimensions": ["correctness", "spec-alignment", "completeness", "maintainability"],
+  "maxIterations": 10,
+  "convergenceThreshold": 0.05,
+  "executor": "native",
+  "executionMode": "autonomous",
+  "auditQuestions": [
+    {"id": "Q1", "question": "ADR-001 + ADR-002 correctness and internal consistency"},
+    {"id": "Q2", "question": "Completeness of file moves (108+ source files, 13 stress tests, plugin bridge, 7 external tests, 14 docs)"},
+    {"id": "Q3", "question": "Tool schema migration (10 schemas removed from spec-kit, 10 added to system-code-graph)"},
+    {"id": "Q4", "question": "opencode.json mutations"},
+    {"id": "Q5", "question": "Launcher correctness"},
+    {"id": "Q6", "question": "MCP entrypoint correctness"},
+    {"id": "Q7", "question": "Cross-subsystem import paths"},
+    {"id": "Q8", "question": "doctor/update.md MUTATION BOUNDARIES consistency"},
+    {"id": "Q9", "question": "Recalibration metadata on 001-007"},
+    {"id": "Q10", "question": "Cleanup completeness"}
+  ],
+  "verdict": "CONDITIONAL"
+}

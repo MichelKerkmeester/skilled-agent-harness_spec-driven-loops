@@ -1,18 +1,18 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/032-deep-review-remediation",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/032-deep-review-remediation",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/007-code-graph",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/032-deep-review-remediation",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/032-deep-review-remediation",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/005-code-graph",
   "children_ids": [],
   "manual": {
     "depends_on": [
-      "system-spec-kit/026-graph-and-context-optimization/007-code-graph/031-deep-review-campaign-010-016"
+      "system-spec-kit/026-graph-and-context-optimization/005-code-graph/031-deep-review-campaign-010-016"
     ],
     "supersedes": [],
     "related_to": [
-      "system-spec-kit/026-graph-and-context-optimization/007-code-graph/024-mcp-tool-rename-mk-code-index",
-      "system-spec-kit/026-graph-and-context-optimization/007-code-graph/025-skill-docs-sk-doc-alignment",
-      "system-spec-kit/026-graph-and-context-optimization/007-code-graph/016-readmes-update"
+      "system-spec-kit/026-graph-and-context-optimization/005-code-graph/024-mcp-tool-rename-mk-code-index",
+      "system-spec-kit/026-graph-and-context-optimization/005-code-graph/025-skill-docs-sk-doc-alignment",
+      "system-spec-kit/026-graph-and-context-optimization/005-code-graph/016-readmes-update"
     ]
   },
   "derived": {
@@ -48,5 +48,5 @@
     "save_lineage": "main_agent"
   },
   "migrated": true,
-  "migration_source": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/013-system-code-graph-extraction/018-deep-review-remediation"
+  "migration_source": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/013-system-code-graph-extraction/018-deep-review-remediation"
 }

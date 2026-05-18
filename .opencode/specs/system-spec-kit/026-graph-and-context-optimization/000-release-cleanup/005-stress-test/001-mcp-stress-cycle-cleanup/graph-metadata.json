@@ -1,27 +1,208 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/001-mcp-stress-cycle-cleanup",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/001-mcp-stress-cycle-cleanup",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/001-mcp-stress-cycle-cleanup",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/001-mcp-stress-cycle-cleanup",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test",
   "children_ids": [],
-  "migrated": false,
-  "migration_source": null,
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": ["system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation"],
+    "depends_on": [
+      {
+        "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation",
+        "reason": "Imported from legacy graph-metadata.json",
+        "source": "legacy"
+      }
+    ],
     "supersedes": [],
     "related_to": []
   },
   "derived": {
-    "trigger_phrases": ["001-mcp-stress-cycle-cleanup", "011 review remediation", "stress cycle doc drift", "v1.0.2 verdict replayability"],
-    "key_topics": ["mcp-runtime-stress", "doc-cleanup", "advisory", "P2", "remediation"],
+    "trigger_phrases": [
+      "001-mcp-stress-cycle-cleanup",
+      "011 review remediation",
+      "stress cycle doc drift",
+      "v1.0.2 verdict replayability",
+      "validator hygiene"
+    ],
+    "key_topics": [
+      "001-mcp-stress-cycle-cleanup",
+      "011",
+      "review",
+      "remediation",
+      "stress",
+      "cycle",
+      "doc",
+      "drift",
+      "verdict",
+      "replayability",
+      "validator",
+      "hygiene"
+    ],
     "importance_tier": "normal",
     "status": "complete",
-    "key_files": ["spec.md", "plan.md", "tasks.md", "implementation-summary.md"],
-    "entities": [],
-    "causal_summary": "Sub-phase that closes the 6 P2 advisories from the 003-mcp-runtime-stress-remediation deep-review report (PASS verdict).",
+    "key_files": [
+      "plan.md",
+      "tasks.md",
+      "spec.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Cycle Doc",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Observability Cleanup",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Close",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Cycle Doc Cleanup",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Six",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Documentation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Followup Research",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Planned Fixes",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built This",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 003-mcp-runtime-stress-remediation deep review confirmed the v1.0.2 verdict (6/7 PROVEN, 0 REGRESSION, 83.8% overall) holds independent verification, AND validated that the proposed P0 cli-copilot Gate 3 bypass fix in `executor-config.ts` + `buildCopilotPromptArg` is correctly implemented across all 5 sub-checks. The review surfaced 6 P2 advisories around documentation drift, navigation, and verdict replayability. None block release; closing them tightens the cycle's auditability.",
     "created_at": "2026-04-28T15:15:00.000Z",
-    "last_save_at": "2026-04-28T15:45:00.000Z",
-    "save_lineage": "new",
-    "source_docs": ["spec.md", "plan.md", "tasks.md", "implementation-summary.md"]
+    "last_save_at": "2026-05-18T08:15:53.212Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ]
   }
 }

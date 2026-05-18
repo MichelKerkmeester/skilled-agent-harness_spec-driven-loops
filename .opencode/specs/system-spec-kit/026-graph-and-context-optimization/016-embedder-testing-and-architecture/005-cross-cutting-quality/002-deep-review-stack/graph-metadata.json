@@ -6,7 +6,7 @@
   "children_ids": [],
   "manual": {
     "depends_on": [
-      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-mk-spec-memory-stack/004-mxbai-swap-and-008-closure",
+      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/004-mxbai-swap-and-008-closure",
       "system-spec-kit/026-graph-and-context-optimization/018-code-embedder-coderank/001-cocoindex-swap",
       "system-spec-kit/026-graph-and-context-optimization/019-cocoindex-embedder-registry/001-declarative-registry",
       "system-spec-kit/026-graph-and-context-optimization/019-cocoindex-embedder-registry/002-install-guide-updates"

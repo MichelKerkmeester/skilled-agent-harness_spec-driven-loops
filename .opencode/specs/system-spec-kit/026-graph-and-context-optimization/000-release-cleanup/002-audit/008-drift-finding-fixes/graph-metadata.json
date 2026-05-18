@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/008-drift-finding-fixes",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/008-drift-finding-fixes",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-audit/008-drift-finding-fixes",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-audit/008-drift-finding-fixes",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-audit",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -35,18 +35,6 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      "mcp_server/skill_advisor/lib/derived/extract.ts",
-      "mcp_server/skill_advisor/lib/derived/sync.ts",
-      "mcp_server/skill_advisor/feature_catalog/08--python-compat/02-regression-suite.md",
-      "mcp_server/skill_advisor/feature_catalog/08--python-compat/03-bench-runner.md",
-      "mcp_server/skill_advisor/tests/lifecycle-derived-metadata.vitest.ts",
-      "mcp_server/stress_test/skill-advisor/auto-indexing-derived-sync-stress.vitest.ts",
-      "mcp_server/stress_test/skill-advisor/generation-snapshot-stress.vitest.ts",
-      "mcp_server/stress_test/skill-advisor/python-bench-runner-stress.vitest.ts",
-      "mcp_server/skill_advisor/tests/manual-testing-playbook.vitest.ts",
-      "mcp_server/skill_advisor/tests/legacy/advisor-corpus-parity.vitest.ts",
-      "mcp_server/skill_advisor/tests/legacy/advisor-graph-health.vitest.ts",
-      "mcp_server/skill_advisor/tests/compat/plugin-bridge.vitest.ts",
       "plan.md",
       "spec.md",
       "checklist.md",
@@ -54,78 +42,6 @@
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "extract.ts",
-        "kind": "code",
-        "path": "mcp_server/skill_advisor/lib/derived/extract.ts",
-        "source": "derived"
-      },
-      {
-        "name": "sync.ts",
-        "kind": "code",
-        "path": "mcp_server/skill_advisor/lib/derived/sync.ts",
-        "source": "derived"
-      },
-      {
-        "name": "02-regression-suite.md",
-        "kind": "doc",
-        "path": "mcp_server/skill_advisor/feature_catalog/08--python-compat/02-regression-suite.md",
-        "source": "derived"
-      },
-      {
-        "name": "03-bench-runner.md",
-        "kind": "doc",
-        "path": "mcp_server/skill_advisor/feature_catalog/08--python-compat/03-bench-runner.md",
-        "source": "derived"
-      },
-      {
-        "name": "lifecycle-derived-metadata.vitest.ts",
-        "kind": "test",
-        "path": "mcp_server/skill_advisor/tests/lifecycle-derived-metadata.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "auto-indexing-derived-sync-stress.vitest.ts",
-        "kind": "test",
-        "path": "mcp_server/stress_test/skill-advisor/auto-indexing-derived-sync-stress.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "generation-snapshot-stress.vitest.ts",
-        "kind": "test",
-        "path": "mcp_server/stress_test/skill-advisor/generation-snapshot-stress.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "python-bench-runner-stress.vitest.ts",
-        "kind": "test",
-        "path": "mcp_server/stress_test/skill-advisor/python-bench-runner-stress.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "manual-testing-playbook.vitest.ts",
-        "kind": "test",
-        "path": "mcp_server/skill_advisor/tests/manual-testing-playbook.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "advisor-corpus-parity.vitest.ts",
-        "kind": "test",
-        "path": "mcp_server/skill_advisor/tests/legacy/advisor-corpus-parity.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "advisor-graph-health.vitest.ts",
-        "kind": "test",
-        "path": "mcp_server/skill_advisor/tests/legacy/advisor-graph-health.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "plugin-bridge.vitest.ts",
-        "kind": "test",
-        "path": "mcp_server/skill_advisor/tests/compat/plugin-bridge.vitest.ts",
-        "source": "derived"
-      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -197,11 +113,83 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Overview Packet",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Surgical",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "catalog-anchored",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Packets 042-044 surfaced 4 drift findings between the feature catalogs and product code, all flagged with `FIXME(<feature_id>)` markers in stress tests. One was a real bug (sa-011 non-idempotent derived sync), one a misread (sa-004 — catalog accommodates current behavior), one catalog drift (sa-036 — catalog says 52, fixture has 51), and one wording ambiguity (sa-037 — design ceiling vs measurement claimed as enforceable).",
     "created_at": "2026-05-01T03:28:16Z",
-    "last_save_at": "2026-05-01T03:43:33.084Z",
+    "last_save_at": "2026-05-18T08:15:53.032Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
