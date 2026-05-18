@@ -1,39 +1,83 @@
 # Research Synthesis: 016/011/003 Hybrid Search (BM25 + Semantic Fusion)
 
-> **Status**: DEFERRED — cli-devin daily quota exhausted before iter 8 could run (2026-05-18T05:20Z). Resume when quota refreshes.
+> **Status**: CONVERGED (3 of 3 iters complete) — 2026-05-18T07:52-07:54Z. iter 8-10 ran via cli-devin kimi-k2.6 (SWE-1.6 quota exhausted).
 
 ## Question
 
 Does adding BM25 lexical search + fusion (RRF or weighted-linear) to CocoIndex's semantic retrieval improve hit-rate on the 18-pair fixture? What weights/normalization?
 
-## State
+## Recommendation (one-liner)
 
-3 iters were planned (8, 9, 10) covering:
-- **iter 8** (bm25-engine-options): sqlite-fts5 vs tantivy vs manticore vs rank-bm25; cross-reference mk-spec-memory's bm25-index.ts
-- **iter 9** (fusion-algorithms): RRF vs weighted-linear vs CombSUM vs CombMNZ; mk-spec-memory's stage2-fusion.ts as proven precedent; BEIR/TREC literature
-- **iter 10** (hybrid-synthesis-and-cross-cutting): full synthesis + CROSS-CUTTING synthesis across all 3 phases (reranker + chunking + hybrid)
+Add **SQLite FTS5** lexical engine + **RRF fusion** (k=60 default, vector=0.7 / fts5=0.7), mirroring mk-spec-memory's `hybrid-search.ts` + `rrf-fusion.ts` proven pattern. Min-max normalize per channel before RRF. Ship opt-in (`COCOINDEX_HYBRID=true`), graduate to default-on after fixture validation.
 
-None of these executed due to cli-devin daily quota exhaustion.
+## Concrete decisions
 
-## Strong leading hypothesis (from prior context)
+| Component | Decision | Iter source |
+|---|---|---|
+| **BM25 engine** | **SQLite FTS5** (zero new deps, mirrors mk-spec-memory `sqlite-fts.ts`, 3ms queries at 1.7M+ docs) | iter 8 |
+| Rejected: tantivy (Rust) | Overkill (0.8ms latency but +Rust toolchain + new API surface + ~250MB RAM) | iter 8 |
+| Rejected: rank-bm25 (Python) | Too slow (~5s/query at 350K samples; 0.03-4.46 QPS) | iter 8 |
+| Rejected: manticore | Standalone daemon contradicts CocoIndex's embedded design | iter 8 |
+| **Fusion algorithm** | **RRF** (Reciprocal Rank Fusion), k=60 default — rank-robust, no normalization needed | iter 9 |
+| **Score weights** | vector=0.7, fts5=0.7 starting defaults; lexical weight 0.5-0.6 for code | iter 9, iter 10 |
+| **Normalization** | Min-max per channel before fusion (matches `hybrid-search.ts:125` contract) | iter 10 |
+| **Default vs opt-in** | Opt-in first (`COCOINDEX_HYBRID=true`); promote to default after fixture validation shows lift | iter 10 |
 
-mk-spec-memory's `lib/search/pipeline/stage2-fusion.ts` already implements hybrid search with `lib/search/bm25-index.ts` (sqlite-fts5 backend) — proven in production. The CocoIndex implementation would mirror this pattern, so iter 8/9 are primarily about cross-engine analysis + lift estimation, not greenfield design.
+## Cross-cutting integration (iter 10 — applies to all 3 §3 phases)
 
-## Cross-cutting note (iter 10 deferred)
+**Sequencing recommendation:**
 
-Iter 10 was scoped as cross-cutting synthesis covering all 3 phases. The reranker phase (016/011/001) DID converge with a clear recommendation (GTE inline at K=20, expected +2 to +4 hits = 50-61.1% post-rerank). The chunking + hybrid phases need their iter sweeps before integrated cross-cutting synthesis can be done.
+| Order | Phase | Action | Fixture target |
+|---|---|---|---|
+| 1st | 002 Chunking | Implement CHUNK_SIZE=1500 + per-language overrides; full reindex | Baseline measurement on new chunks |
+| 2nd | 003 Hybrid (this) | Add FTS5 + RRF fusion; A/B against pure semantic | Measure lift vs chunking-only baseline |
+| 3rd | 001 Reranker | Integrate cross-encoder (GTE) on hybrid top-k | Measure lift vs hybrid-only baseline |
+| 4th | Combined | Run full pipeline against 18-pair fixture | Validate total lift estimate |
 
-## Next steps when resuming
+**Conservative lift estimate (cumulative):**
+- Baseline: 38.9% (7/18)
+- + Chunking (002): ~43-45% (8/18)
+- + Hybrid (003): ~50% (9/18) [iter 10: "hybrid+reranker"]
+- + Reranker (001): ~55% (10/18) [iter 10: "with chunking"]
 
-1. Re-dispatch via cli-devin SWE-1.6 (verify quota refreshed)
-2. Use the prompts at `/tmp/devin-research-011-{8,9,10}.md` (rebuild via `python3 /tmp/build-research-iters.py` if /tmp cleared)
-3. Recipe: `.opencode/skills/cli-devin/assets/agent-config-deep-research-iter.json`
-4. Dispatch pattern: `devin -p --prompt-file /tmp/devin-research-011-N.md --agent-config <recipe> --permission-mode dangerous`
-5. Extract via `python3 /tmp/extract-research-iters.py 8 9 10`
+**Integration touchpoints:**
+- **Chunking → Hybrid**: Chunk boundaries determine FTS5 document granularity. Smaller (function-level) chunks may improve FTS5 recall but require RRF k adjustment.
+- **Hybrid → Reranker**: Reranker receives RRF-fused top-k as input. Reranker scores REPLACE RRF score (not additive) — matches `stage2-fusion.ts` → `stage3-rerank.ts` contract.
+- **All → Fixture**: 18-pair fixture is the shared quality substrate.
 
-## Open questions (carry forward)
+## Literature + mk-spec-memory precedent
 
-- Is sqlite-fts5 sufficient for our corpus scale (127K chunks) in CocoIndex's Python context?
-- Best fusion algorithm for code retrieval specifically (RRF k=60 default? linear-weighted 0.3 BM25 + 0.7 semantic?)
-- Whether to expose hybrid as opt-in or default-on
-- Total integrated lift estimate when ALL 3 (reranker + tuned chunking + hybrid) ship together
+- **mk-spec-memory proven pattern**: `lib/search/sqlite-fts.ts` + `lib/search/pipeline/stage2-fusion.ts` + `lib/search/rrf-fusion.ts` — production-proven. CocoIndex implementation should mirror this.
+- **BEIR/TREC hybrid retrieval literature**: RRF dominates linear-weighted for code corpora (rank-robust, no normalization needed).
+- **RRF k-value**: 60 is the standard default (Cormack et al. 2009, TREC blueprint). Higher k weights lower-ranked items more.
+
+## Implementation hints (cross-referenced)
+
+- **Code touchpoints**: `cocoindex_code/query.py:query_codebase()` extends to run KNN + FTS5 in parallel, normalize per channel, fuse via RRF, then apply existing post-fusion boosts (implementation_intent, canonical_paths). Returns same `QueryResults` contract.
+- **FTS5 schema**: Add `code_chunks_fts` virtual table to existing SQLite DB. Populate during indexing. Query with `bm25()`.
+- **Env tuning**: `COCOINDEX_HYBRID_VECTOR_WEIGHT`, `COCOINDEX_HYBRID_FTS5_WEIGHT`, `COCOINDEX_HYBRID_RRF_K`.
+- **Refresh sync**: FTS5 needs incremental updates during CocoIndex refresh — deletions + insertions tracked alongside vec store. (Open question for impl phase.)
+
+## Open questions (carry to implementation)
+
+- Incremental FTS5 maintenance vs full rebuild during refresh cycles
+- Language-specific tokenization (default `unicode61` is adequate for code; custom tokenizer not justified at this scale)
+- Whether to expose `--hybrid` CLI flag in `ccc search` or daemon-level default (recommend env var first, then CLI flag)
+
+## Source iterations
+
+| Iter | Dimension | File | Findings | Note |
+|---|---|---|---|---|
+| 8 | bm25-engine-options | `iterations/iteration-008.md` | 8 | FTS5 recommended; tantivy/rank-bm25/manticore rejected with rationale |
+| 9 | fusion-algorithms | `iterations/iteration-009.md` | 7 | RRF k=60 primary; lexical weight 0.5-0.6 for code |
+| 10 | hybrid-synthesis-and-cross-cutting | `iterations/iteration-010.md` | 10 | CONVERGED — full §3 cross-cutting roadmap: chunking→hybrid→reranker; cumulative 38.9%→55%; mirror mk-spec-memory `stage2-fusion.ts` |
+
+## Next steps
+
+1. **Sequence after chunking (002) ships** — chunking changes affect FTS5 document boundaries
+2. Refine `plan.md` + `tasks.md` from this synthesis
+3. Implementation: 
+   - Stage A: Add FTS5 table + populate during indexing (no fusion yet — measure pure FTS5 recall)
+   - Stage B: Add RRF fusion to `query_codebase` (opt-in via env)
+   - Stage C: Validate against 18-pair fixture; promote to default-on if lift confirmed
+4. Post-impl: 5-iter deep-review

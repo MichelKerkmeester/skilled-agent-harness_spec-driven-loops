@@ -1,0 +1,2 @@
+embedder,dim,n_pairs,total_hits,hit_rate,hit_easy,hit_medium,hit_hard,median_ms,p95_ms
+sbert/dunzhang/stella_en_400M_v5,1024,18,0,0.000,0,0,0,397,4283
