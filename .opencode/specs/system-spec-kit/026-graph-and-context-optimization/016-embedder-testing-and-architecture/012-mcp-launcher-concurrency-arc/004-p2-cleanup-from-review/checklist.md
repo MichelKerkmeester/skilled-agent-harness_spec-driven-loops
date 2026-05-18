@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/015-p2-cleanup-from-review"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/012-mcp-launcher-concurrency-arc/004-p2-cleanup-from-review"
     last_updated_at: "2026-05-18T06:52:00Z"
     last_updated_by: "main_agent"
     recent_action: "Verified P2 cleanup"

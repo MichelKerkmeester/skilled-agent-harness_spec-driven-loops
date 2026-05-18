@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/012-concurrent-daemon-corruption-fix",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/012-concurrent-daemon-corruption-fix",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/012-mcp-launcher-concurrency-arc/001-concurrent-daemon-corruption-fix",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/012-mcp-launcher-concurrency-arc/001-concurrent-daemon-corruption-fix",
   "parent_id": null,
   "children_ids": [],
   "manual": {

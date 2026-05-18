@@ -1,0 +1,26 @@
+{
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/012-mcp-launcher-concurrency-arc",
+  "description": "Phase parent for the 4-phase MCP launcher concurrency arc: launcher-boundary single-writer lease enforcement across skill-advisor, code-graph, and spec-memory + the review-driven hardening passes.",
+  "keywords": [
+    "012",
+    "mcp",
+    "launcher",
+    "concurrency",
+    "lease",
+    "single-writer",
+    "skill-advisor",
+    "code-graph",
+    "spec-memory",
+    "daemon-corruption"
+  ],
+  "lastUpdated": "2026-05-18T08:15:00Z",
+  "specId": "012",
+  "folderSlug": "mcp-launcher-concurrency-arc",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "016-embedder-testing-and-architecture"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

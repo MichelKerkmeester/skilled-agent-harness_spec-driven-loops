@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/013-cross-launcher-lease-propagation"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/012-mcp-launcher-concurrency-arc/002-cross-launcher-lease-propagation"
     last_updated_at: "2026-05-18T07:30:00Z"
     last_updated_by: "main_agent"
     recent_action: "Filed packet for code-graph + spec-memory launcher lease"
@@ -73,7 +73,7 @@ This is **Phase 7** of the 008-skill-advisor track, directly propagating Phase 6
 - Spawn-twice integration tests added under each skill's `mcp_server/tests/`.
 - Reference docs and `changelog/007-cross-launcher-lease-propagation.md`.
 
-**Changelog**: `016-embedder-testing-and-architecture/changelog/013-cross-launcher-lease-propagation.md`.
+**Changelog**: `016-embedder-testing-and-architecture/012-mcp-launcher-concurrency-arc/changelog/002-cross-launcher-lease-propagation.md`.
 <!-- /ANCHOR:phase-context -->
 
 ---
@@ -103,7 +103,7 @@ Each of the two launchers becomes single-writer at the process boundary, mirrori
 - Cleanup hooks — delete the PID file on SIGTERM, SIGINT, and normal exit (`process.on('exit', ...)`).
 - Tests — spawn-twice integration test under each skill's `mcp_server/tests/`.
 - Reference doc — new `launcher-lease.md` under each skill's `references/`.
-- Changelog entry — `016-embedder-testing-and-architecture/changelog/013-cross-launcher-lease-propagation.md`.
+- Changelog entry — `016-embedder-testing-and-architecture/012-mcp-launcher-concurrency-arc/changelog/002-cross-launcher-lease-propagation.md`.
 
 ### Out of Scope
 
@@ -123,7 +123,7 @@ Each of the two launchers becomes single-writer at the process boundary, mirrori
 | `.opencode/skills/system-spec-kit/references/launcher-lease.md` | Create | Equivalent for spec-memory. |
 | `.opencode/skills/system-code-graph/mcp_server/tests/launcher-lease.vitest.ts` | Create | Spawn-twice test for code-graph launcher. |
 | `.opencode/skills/system-spec-kit/mcp_server/tests/launcher-lease.vitest.ts` | Create | Spawn-twice test for spec-memory launcher. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/changelog/013-cross-launcher-lease-propagation.md` | Create | Changelog entry. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/012-mcp-launcher-concurrency-arc/changelog/002-cross-launcher-lease-propagation.md` | Create | Changelog entry. |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -147,7 +147,7 @@ Each of the two launchers becomes single-writer at the process boundary, mirrori
 | REQ-005 | Env-var dev override | `MK_CODE_INDEX_STRICT_SINGLE_WRITER=0` and `MK_SPEC_MEMORY_STRICT_SINGLE_WRITER=0` disable the exit behavior (with a warning log). |
 | REQ-006 | Tests added | New vitest `launcher-lease.vitest.ts` under each skill covers spawn-twice + stale-PID reclaim. |
 | REQ-007 | Reference docs | New `launcher-lease.md` under each skill's `references/`. |
-| REQ-008 | Changelog entry | `016-embedder-testing-and-architecture/changelog/013-cross-launcher-lease-propagation.md` documents the patch + upgrade notes (zero migration). |
+| REQ-008 | Changelog entry | `016-embedder-testing-and-architecture/012-mcp-launcher-concurrency-arc/changelog/002-cross-launcher-lease-propagation.md` documents the patch + upgrade notes (zero migration). |
 <!-- /ANCHOR:requirements -->
 
 ---

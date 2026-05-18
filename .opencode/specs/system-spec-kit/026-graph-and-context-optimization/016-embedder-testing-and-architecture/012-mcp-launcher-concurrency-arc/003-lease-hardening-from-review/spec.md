@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/014-lease-hardening-from-review"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/012-mcp-launcher-concurrency-arc/003-lease-hardening-from-review"
     last_updated_at: "2026-05-18T08:10:00Z"
     last_updated_by: "main_agent"
     recent_action: "Filed packet for 9 P1 review findings from 006+007"
@@ -77,7 +77,7 @@ This is **Phase 8** of the 008-skill-advisor track, addressing P1 findings from 
 - Strip `MK_*_STRICT_SINGLE_WRITER` from inherited env in spawnLauncher helpers
 - New `launcher-lease.vitest.ts` for skill-advisor mirroring 007 shape
 
-**Changelog**: `016-embedder-testing-and-architecture/changelog/014-lease-hardening-from-review.md`.
+**Changelog**: `016-embedder-testing-and-architecture/012-mcp-launcher-concurrency-arc/changelog/003-lease-hardening-from-review.md`.
 <!-- /ANCHOR:phase-context -->
 
 ---
@@ -124,7 +124,7 @@ Close the 9 P1s in one focused pass so the lease enforcement contract holds unde
 | `.opencode/skills/system-code-graph/mcp_server/tests/launcher-lease.vitest.ts` | Modify | Stdout-close gate; strip env var in `spawnLauncher`. |
 | `.opencode/skills/system-spec-kit/mcp_server/tests/launcher-lease.vitest.ts` | Modify | Same. |
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/launcher-lease.vitest.ts` | Create | New subprocess-level spawn-twice/stale-reclaim/env-disable suite mirroring 007 shape. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/changelog/014-lease-hardening-from-review.md` | Create | Changelog entry. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/012-mcp-launcher-concurrency-arc/changelog/003-lease-hardening-from-review.md` | Create | Changelog entry. |
 <!-- /ANCHOR:scope -->
 
 ---

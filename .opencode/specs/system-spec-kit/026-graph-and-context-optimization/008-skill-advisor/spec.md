@@ -136,11 +136,13 @@ Keep this theme as the single active parent for the full skill advisor system. E
 <!-- /ANCHOR:phase-map -->
 
 <!-- The 4 daemon-corruption packets that were briefly registered here (006-009) were
-     moved 2026-05-18 to `016-embedder-testing-and-architecture/012-015` per operator
-     directive. See those packets for the daemon-arc work history (006→007→008→009
-     became 012→013→014→015). The MCP-launcher concurrency code they ship still lives
-     under system-skill-advisor, but the spec-folder docs now sit under the embedder
-     umbrella where they were operationally discovered. -->
+     moved 2026-05-18 under a new phase parent at
+     `016-embedder-testing-and-architecture/012-mcp-launcher-concurrency-arc/` with
+     phase children 001-004 (formerly 006/007/008/009). See that arc for the
+     full work history. The MCP-launcher concurrency code they ship still lives
+     under system-skill-advisor + the 3 .opencode/bin/mk-*-launcher.cjs files,
+     but the spec-folder docs now sit under the embedder umbrella where they
+     were operationally discovered. -->
 
 
 ---

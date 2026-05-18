@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/015-p2-cleanup-from-review"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/012-mcp-launcher-concurrency-arc/004-p2-cleanup-from-review"
     last_updated_at: "2026-05-18T08:42:00Z"
     last_updated_by: "main_agent"
     recent_action: "Filed packet for all 14 P2 review findings"
@@ -77,7 +77,7 @@ _memory:
 - Test hygiene: launcher path constants exported + imported; terminate try/catch for SIGKILL race; stale-reclaim assert tightened; findDeadPid uses spawn-then-kill child; new clean-exit test asserts PID file removed
 - Timing margin: bump spawn-twice timeout 5s → 8s for loaded CI
 
-**Changelog**: `016-embedder-testing-and-architecture/changelog/015-p2-cleanup-from-review.md`.
+**Changelog**: `016-embedder-testing-and-architecture/012-mcp-launcher-concurrency-arc/changelog/004-p2-cleanup-from-review.md`.
 <!-- /ANCHOR:phase-context -->
 
 ---
@@ -124,7 +124,7 @@ Tightest possible diagnostics, signal coverage, and test discrimination across t
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/launcher-lease.vitest.ts` | Modify | C-stale-substring, C-findDeadPid, C-clean-exit-test, C-terminate-race, C-timing-margin |
 | `.opencode/skills/system-code-graph/mcp_server/tests/launcher-lease.vitest.ts` | Modify | Same C-* set |
 | `.opencode/skills/system-spec-kit/mcp_server/tests/launcher-lease.vitest.ts` | Modify | Same C-* set |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/changelog/015-p2-cleanup-from-review.md` | Create | Changelog |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/012-mcp-launcher-concurrency-arc/changelog/004-p2-cleanup-from-review.md` | Create | Changelog |
 <!-- /ANCHOR:scope -->
 
 ---
