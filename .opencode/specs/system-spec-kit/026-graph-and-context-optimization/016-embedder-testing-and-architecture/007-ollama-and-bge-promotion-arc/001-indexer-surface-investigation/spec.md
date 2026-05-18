@@ -22,7 +22,7 @@ contextType: "research"
 | Status | Planned (2026-05-18) |
 | Type | Research-only (no code changes) |
 | Owner | Main agent or @context agent |
-| Parent | `../spec.md` (013-ollama-and-bge-promotion-arc) |
+| Parent | `../spec.md` (007-ollama-and-bge-promotion-arc) |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->

@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/013-ollama-and-bge-promotion-arc",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/013-ollama-and-bge-promotion-arc",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/007-ollama-and-bge-promotion-arc",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/007-ollama-and-bge-promotion-arc",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture",
   "children_ids": [
-    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/013-ollama-and-bge-promotion-arc/001-indexer-surface-investigation",
-    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/013-ollama-and-bge-promotion-arc/002-cocoindex-ollama-adapter",
-    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/013-ollama-and-bge-promotion-arc/003-bge-code-v1-confirmation-and-promote",
-    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/013-ollama-and-bge-promotion-arc/004-newer-text-embedders-survey"
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/007-ollama-and-bge-promotion-arc/001-indexer-surface-investigation",
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/007-ollama-and-bge-promotion-arc/002-cocoindex-ollama-adapter",
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/007-ollama-and-bge-promotion-arc/003-bge-code-v1-confirmation-and-promote",
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/007-ollama-and-bge-promotion-arc/004-newer-text-embedders-survey"
   ],
   "manual": {
     "depends_on": [

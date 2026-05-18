@@ -27,7 +27,7 @@ contextType: "research"
 | Status | Planned (rescoped 2026-05-18) |
 | Type | Research-only (HF crawl). May trigger a follow-on bench if a strong candidate is identified. |
 | Owner | Main agent |
-| Parent | `../spec.md` (013-ollama-and-bge-promotion-arc) |
+| Parent | `../spec.md` (007-ollama-and-bge-promotion-arc) |
 | Supersedes / overlaps | The existing mk-spec-memory bake-off at `016/002-spec-memory-stack/004-spec-memory-embedder-bake-off/`. ADR-012 (jina-v3 + rescue) is the standing decision until this survey identifies a clearly stronger candidate. |
 <!-- /ANCHOR:metadata -->
 

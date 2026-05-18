@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/007-ollama-and-bge-promotion-arc/004-newer-text-embedders-survey",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/007-ollama-and-bge-promotion-arc/004-newer-text-embedders-survey",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/007-ollama-and-bge-promotion-arc",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": ["016/013/004 spec memory bench","bge-m3 jina-code comparison","mk-spec-memory swap"],
+    "key_topics": ["004","bge-m3","spec-memory","text-embedder","mk-spec-memory"],
+    "importance_tier": "important",
+    "status": "planned",
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

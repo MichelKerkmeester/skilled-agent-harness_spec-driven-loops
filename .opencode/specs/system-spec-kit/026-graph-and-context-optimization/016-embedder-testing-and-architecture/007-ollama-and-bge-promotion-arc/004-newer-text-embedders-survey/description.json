@@ -15,7 +15,7 @@
   "folderSlug": "004-newer-text-embedders-survey",
   "parentChain": [
     "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture",
-    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/013-ollama-and-bge-promotion-arc"
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/007-ollama-and-bge-promotion-arc"
   ],
   "memorySequence": 1,
   "memoryNameHistory": [

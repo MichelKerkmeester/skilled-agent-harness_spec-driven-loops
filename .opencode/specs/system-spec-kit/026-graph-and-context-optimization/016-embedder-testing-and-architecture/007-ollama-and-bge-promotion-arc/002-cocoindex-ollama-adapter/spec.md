@@ -22,7 +22,7 @@ contextType: "implementation"
 | Status | Planned (2026-05-18) |
 | Type | Implementation (Level 2 — bench harness + multi-file Python edits) |
 | Owner | Main agent or @code (dispatched via @orchestrate) |
-| Parent | `../spec.md` (013-ollama-and-bge-promotion-arc) |
+| Parent | `../spec.md` (007-ollama-and-bge-promotion-arc) |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->

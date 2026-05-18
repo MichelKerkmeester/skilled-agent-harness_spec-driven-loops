@@ -219,7 +219,7 @@ The full decision history is in `decision-record.md`. Quick map:
 - **`evidence/jina-runtime-measurements.md`** — live RAM / Metal / per-query latency for jina-v3 vs nomic vs gemma.
 - **`../CHANGELOG.md` v4.0 section** — operator-facing summary of this bake-off + rescue layer ship.
 - **`016/004/004-extended-bake-off/benchmark-results.md`** — sibling code-side bake-off (4 sbert candidates against an 18-pair code-retrieval fixture; bge-code-v1 wins 11/18). Different stack, different fixture, different conclusions.
-- **`016/013-ollama-and-bge-promotion-arc/004-newer-text-embedders-survey/`** — follow-on sub-phase being rescoped (bge-m3 lost here, so the re-bench would just repeat a failed experiment; re-scoping to "newer text embedders survey" — see commit history).
+- **`016/007-ollama-and-bge-promotion-arc/004-newer-text-embedders-survey/`** — follow-on sub-phase being rescoped (bge-m3 lost here, so the re-bench would just repeat a failed experiment; re-scoping to "newer text embedders survey" — see commit history).
 <!-- /ANCHOR:see-also -->
 
 <!-- ANCHOR:rename-history -->

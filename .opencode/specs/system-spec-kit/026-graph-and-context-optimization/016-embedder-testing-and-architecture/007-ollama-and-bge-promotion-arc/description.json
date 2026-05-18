@@ -1,6 +1,6 @@
 {
   "level": "phase",
-  "specFolder": "013-ollama-and-bge-promotion-arc",
+  "specFolder": "007-ollama-and-bge-promotion-arc",
   "description": "Phase parent: investigate indexer surfaces + add Ollama support to CocoIndex + 3-run-confirm bge-code-v1 + benchmark mk-spec-memory text embedders (jina-code vs bge-m3 / bge-large-en-v1.5)",
   "keywords": [
     "ollama-adapter",

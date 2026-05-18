@@ -22,7 +22,7 @@ contextType: "implementation"
 | Status | Planned (2026-05-18) |
 | Type | Bench + small config edit |
 | Owner | Main agent |
-| Parent | `../spec.md` (013-ollama-and-bge-promotion-arc) |
+| Parent | `../spec.md` (007-ollama-and-bge-promotion-arc) |
 | Power dependency | Yes — ~3-4 hours wall, schedule when plugged in |
 <!-- /ANCHOR:metadata -->
 
