@@ -69,6 +69,14 @@ export interface CacheStats {
   maxRegexCacheSize: number;
 }
 
+export interface RegexByteEstimate {
+  triggerEntries: number;
+  regexCount: number;
+  candidateIndexKeys: number;
+  candidateIndexRefs: number;
+  approxBytes: number;
+}
+
 export interface TriggerMatcherFailure {
   code: string;
   message: string;
@@ -585,6 +593,46 @@ export function getCacheStats(): CacheStats {
     ageMs: cacheTimestamp ? Date.now() - cacheTimestamp : null,
     regexCacheSize: regexLruCache.size,
     maxRegexCacheSize: CONFIG.MAX_REGEX_CACHE_SIZE,
+  };
+}
+
+/** Estimate retained trigger matcher bytes for health telemetry. */
+export function getRegexByteEstimate(): RegexByteEstimate {
+  const triggerEntries = triggerCache ? triggerCache.length : 0;
+  const regexCount = triggerEntries + regexLruCache.size;
+  let candidateIndexKeys = 0;
+  let candidateIndexRefs = 0;
+  let approxBytes = 0;
+
+  if (triggerCache) {
+    for (const entry of triggerCache) {
+      approxBytes += 256;
+      approxBytes += Buffer.byteLength(entry.phrase, 'utf8');
+      approxBytes += Buffer.byteLength(entry.specFolder, 'utf8');
+      approxBytes += Buffer.byteLength(entry.filePath, 'utf8');
+      approxBytes += entry.title ? Buffer.byteLength(entry.title, 'utf8') : 0;
+      approxBytes += Buffer.byteLength(entry.regex.source, 'utf8') + 512;
+    }
+  }
+
+  for (const [phrase, regex] of regexLruCache.entries()) {
+    approxBytes += Buffer.byteLength(phrase, 'utf8') + Buffer.byteLength(regex.source, 'utf8') + 512;
+  }
+
+  if (triggerCandidateIndex) {
+    candidateIndexKeys = triggerCandidateIndex.size;
+    for (const [key, refs] of triggerCandidateIndex.entries()) {
+      candidateIndexRefs += refs.size;
+      approxBytes += Buffer.byteLength(key, 'utf8') + 48 + refs.size * 8;
+    }
+  }
+
+  return {
+    triggerEntries,
+    regexCount,
+    candidateIndexKeys,
+    candidateIndexRefs,
+    approxBytes: Math.round(approxBytes),
   };
 }
 

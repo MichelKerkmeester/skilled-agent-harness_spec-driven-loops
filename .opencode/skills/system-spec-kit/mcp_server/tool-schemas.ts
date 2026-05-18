@@ -243,6 +243,11 @@ const memoryHealth: ToolDefinition = {
         default: 'full',
         description: 'Report mode. full returns system diagnostics; divergent_aliases returns compact divergent alias triage output.'
       },
+      includeFullReport: {
+        type: 'boolean',
+        default: false,
+        description: 'When true, includes detailed V8 heap, RSS, external memory, and cache byte estimates. Default false preserves compact health payloads.'
+      },
       limit: {
         type: 'number',
         default: 20,

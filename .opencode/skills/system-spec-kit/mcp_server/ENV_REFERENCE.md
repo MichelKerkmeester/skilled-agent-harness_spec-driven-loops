@@ -109,7 +109,7 @@ Generated from `lib/search/search-flags.ts`. "Default state" is the shipped beha
 <!-- PHASE-010-ENV-SLOT: SPECKIT_COCO_USE_SHARED_RERANK / SPECKIT_EMBEDDING_CACHE_* flags inserted here (027/010) -->
 <!-- PHASE-011-ENV-SLOT: SPECKIT_COCOINDEX_EXEMPLARS_* / SPECKIT_CONTEXT_CURATOR_* flags inserted here (027/011) -->
 
-Total unique variables documented: 129 (legacy HYDRA aliases removed in commit 6f2c2c939).
+Total unique variables documented: 131 (legacy HYDRA aliases removed in commit 6f2c2c939).
 
 ### Provisional Measurement Contract
 
@@ -174,6 +174,8 @@ the publication guard helpers used by the evaluation dashboard.
 | Variable | Default | Type | Description | Source |
 |----------|---------|------|-------------|--------|
 | `SPECKIT_DB_DIR` | (auto-detected) | string | Override database directory path. Also accepts `SPEC_KIT_DB_DIR`. | `core/config.ts`, `shared/config.ts` |
+| `SPECKIT_HEAP_SNAPSHOT_DIR` | (unset) | string | Opt-in directory for V8 heap snapshots written by byte-aware health telemetry. The server creates the directory with mode `0700` and snapshot files with mode `0600`; snapshots can contain sensitive memory contents. | `mcp_server/lib/telemetry/heap-profiler.ts` |
+| `SPECKIT_CONTEXT_SERVER_MAX_OLD_SPACE_MB` | (unset) | number | Optional child-process V8 old-space cap for `context-server.js`. The launcher passes `--max-old-space-size=<value>` only when set; no cap is applied by default. | `.opencode/bin/mk-spec-memory-launcher.cjs` |
 | `SPECKIT_EVAL_DB_PATH` | (null) | string | Custom file path for the eval reporting SQLite database. | `handlers/eval-reporting.ts` |
 | `SPECKIT_STRICT_SCHEMAS` | `true` | boolean | Enforce strict JSON schema validation on MCP tool inputs. Set `false` to relax. | `schemas/tool-input-schemas.ts` |
 | `SPECKIT_SKIP_API_VALIDATION` | `false` | boolean | Skip API-level input validation. Opt-in: set `true` to enable. | `context-server.ts` |

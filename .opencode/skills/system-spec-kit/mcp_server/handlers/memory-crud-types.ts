@@ -50,6 +50,7 @@ interface StatsArgs {
 /** Arguments for the memory_health handler. */
 interface HealthArgs {
   reportMode?: 'full' | 'divergent_aliases';
+  includeFullReport?: boolean;
   limit?: number;
   specFolder?: string;
   autoRepair?: boolean;

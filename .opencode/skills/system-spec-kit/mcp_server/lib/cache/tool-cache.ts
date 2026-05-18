@@ -32,6 +32,12 @@ interface CacheStats {
   maxSize: number;
 }
 
+interface CacheByteEstimate {
+  entries: number;
+  inFlightEntries: number;
+  approxBytes: number;
+}
+
 interface SetOptions {
   toolName?: string;
   ttlMs?: number;
@@ -471,6 +477,95 @@ function getStats(): CacheStats {
   };
 }
 
+function estimateValueBytes(value: unknown, seen: WeakSet<object> = new WeakSet(), depth = 0): number {
+  if (value === null || value === undefined) {
+    return 0;
+  }
+
+  if (typeof value === 'string') {
+    return Buffer.byteLength(value, 'utf8');
+  }
+  if (typeof value === 'number') {
+    return 8;
+  }
+  if (typeof value === 'boolean') {
+    return 4;
+  }
+  if (typeof value === 'bigint') {
+    return 8;
+  }
+  if (typeof value === 'symbol' || typeof value === 'function') {
+    return 0;
+  }
+  if (value instanceof ArrayBuffer) {
+    return value.byteLength;
+  }
+  if (ArrayBuffer.isView(value)) {
+    return value.byteLength;
+  }
+  if (value instanceof Date) {
+    return 8;
+  }
+  if (value instanceof RegExp) {
+    return Buffer.byteLength(value.source, 'utf8') + 256;
+  }
+
+  if (typeof value !== 'object' || seen.has(value)) {
+    return 0;
+  }
+  seen.add(value);
+
+  if (depth >= 4) {
+    return 64;
+  }
+
+  if (Array.isArray(value)) {
+    return value.reduce((total, item) => total + 16 + estimateValueBytes(item, seen, depth + 1), 24);
+  }
+
+  if (value instanceof Map) {
+    let total = 48;
+    for (const [key, item] of value.entries()) {
+      total += 32 + estimateValueBytes(key, seen, depth + 1) + estimateValueBytes(item, seen, depth + 1);
+    }
+    return total;
+  }
+
+  if (value instanceof Set) {
+    let total = 48;
+    for (const item of value.values()) {
+      total += 24 + estimateValueBytes(item, seen, depth + 1);
+    }
+    return total;
+  }
+
+  let total = 48;
+  for (const [key, item] of Object.entries(value as Record<string, unknown>)) {
+    total += Buffer.byteLength(key, 'utf8') + 16 + estimateValueBytes(item, seen, depth + 1);
+  }
+  return total;
+}
+
+function getByteEstimate(): CacheByteEstimate {
+  let approxBytes = 0;
+
+  for (const [key, entry] of cache.entries()) {
+    approxBytes += Buffer.byteLength(key, 'utf8') + 64;
+    approxBytes += Buffer.byteLength(entry.toolName, 'utf8') + 16;
+    approxBytes += estimateValueBytes(entry.value);
+  }
+
+  for (const [key, entry] of inFlight.entries()) {
+    approxBytes += Buffer.byteLength(key, 'utf8') + Buffer.byteLength(entry.toolName, 'utf8') + 96;
+  }
+
+  return {
+    entries: cache.size,
+    inFlightEntries: inFlight.size,
+    approxBytes: Math.round(approxBytes),
+  };
+}
+
 function resetStats(): void {
   stats.hits = 0;
   stats.misses = 0;
@@ -527,6 +622,7 @@ export {
   startCleanupInterval,
   stopCleanupInterval,
   getStats,
+  getByteEstimate,
   resetStats,
   getConfig,
   isEnabled,

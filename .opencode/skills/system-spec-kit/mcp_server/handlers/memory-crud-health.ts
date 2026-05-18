@@ -25,6 +25,12 @@ import {
   WINDOW_SIZE as ROUTING_TELEMETRY_WINDOW_SIZE,
 } from '../lib/search/routing-telemetry.js';
 import { probeCocoIndexDaemon } from '../lib/cocoindex/daemon-probe.js';
+import {
+  getCacheByteEstimates,
+  getDetailedMemorySnapshot,
+  type CacheByteEstimates,
+  type DetailedMemorySnapshot,
+} from '../lib/telemetry/heap-profiler.js';
 
 import type { MCPResponse, EmbeddingProfile } from './types.js';
 import type { HealthArgs, PartialProviderMetadata } from './memory-crud-types.js';
@@ -117,6 +123,13 @@ interface DivergentAliasBucket {
   variants: Map<string, string | null>;
   hashes: Set<string>;
   specFolders: Set<string>;
+}
+
+interface FullMemoryReport {
+  includeFullReport: true;
+  memory_snapshot: DetailedMemorySnapshot;
+  cache_byte_estimates: CacheByteEstimates;
+  recommended_action: string;
 }
 
 function toNormalizedPath(filePath: string): string {
@@ -219,6 +232,37 @@ function getDivergentAliasGroups(rows: AliasConflictDbRow[], limit: number): Div
   return groups.slice(0, limit);
 }
 
+function getRecommendedAction(snapshot: DetailedMemorySnapshot): string {
+  if (snapshot.heap_used_mb > 100) {
+    return 'Consider running heap snapshot via SPECKIT_HEAP_SNAPSHOT_DIR=/path/to/dir; large heap detected';
+  }
+  if (snapshot.external_mb > 50) {
+    return 'Consider running heap snapshot via SPECKIT_HEAP_SNAPSHOT_DIR=/path/to/dir; large external memory detected';
+  }
+  if (snapshot.array_buffers_mb > 50) {
+    return 'Consider running heap snapshot via SPECKIT_HEAP_SNAPSHOT_DIR=/path/to/dir; large ArrayBuffer memory detected';
+  }
+  if (snapshot.rss_mb > 512 && snapshot.heap_used_mb < 100) {
+    return 'RSS is high but V8 heap is not; inspect native SQLite/cache or external provider memory before changing old-space limits';
+  }
+
+  return 'No heap snapshot recommended from current thresholds';
+}
+
+function getFullMemoryReport(includeFullReport: boolean): FullMemoryReport | null {
+  if (!includeFullReport) {
+    return null;
+  }
+
+  const snapshot = getDetailedMemorySnapshot();
+  return {
+    includeFullReport: true,
+    memory_snapshot: snapshot,
+    cache_byte_estimates: getCacheByteEstimates(),
+    recommended_action: getRecommendedAction(snapshot),
+  };
+}
+
 /* ───────────────────────────────────────────────────────────────
    CORE LOGIC
 ──────────────────────────────────────────────────────────────── */
@@ -244,6 +288,7 @@ async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
 
   const {
     reportMode = 'full',
+    includeFullReport = false,
     limit: rawLimit = DEFAULT_DIVERGENT_ALIAS_LIMIT,
     specFolder,
     autoRepair = false,
@@ -255,6 +300,15 @@ async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
     return createMCPErrorResponse({
       tool: 'memory_health',
       error: `Invalid reportMode: ${String(reportMode)}. Expected "full" or "${DIVERGENT_ALIAS_REPORT_MODE}"`,
+      code: 'E_INVALID_INPUT',
+      details: { requestId },
+      startTime,
+    });
+  }
+  if (typeof includeFullReport !== 'boolean') {
+    return createMCPErrorResponse({
+      tool: 'memory_health',
+      error: 'includeFullReport must be a boolean',
       code: 'E_INVALID_INPUT',
       details: { requestId },
       startTime,
@@ -306,6 +360,7 @@ async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
     });
   }
   const safeLimit = Math.max(1, Math.min(Math.floor(rawLimit || DEFAULT_DIVERGENT_ALIAS_LIMIT), MAX_DIVERGENT_ALIAS_LIMIT));
+  const fullMemoryReport = getFullMemoryReport(includeFullReport);
 
   const database = vectorIndex.getDb();
   let memoryCount = 0;
@@ -392,6 +447,7 @@ async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
         totalDivergentGroups: aliasConflicts.divergentHashGroups,
         returnedGroups: divergentAliasGroups.length,
         groups: divergentAliasGroups,
+        ...(fullMemoryReport ?? {}),
       },
       hints,
       startTime,
@@ -501,6 +557,7 @@ async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
         actions: repairActions,
         process: processHealth,
         embeddingRetry,
+        ...(fullMemoryReport ?? {}),
       },
       hints: [
         'Re-run memory_health with autoRepair:true and confirmed:true to execute repair actions.',
@@ -698,6 +755,7 @@ async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
         totalRecorded: routingTelemetry.totalRecorded,
         windowSize: routingTelemetry.windowSize,
       },
+      ...(fullMemoryReport ?? {}),
     },
     hints,
     startTime,

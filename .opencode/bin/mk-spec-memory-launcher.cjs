@@ -271,6 +271,24 @@ function buildIfNeeded(actions) {
   }
 }
 
+function getContextServerNodeArgs() {
+  const nodeArgs = [];
+  const rawOldSpaceMb = process.env.SPECKIT_CONTEXT_SERVER_MAX_OLD_SPACE_MB;
+  if (rawOldSpaceMb === undefined || rawOldSpaceMb === null || String(rawOldSpaceMb).trim() === '') {
+    return nodeArgs;
+  }
+
+  const parsedOldSpaceMb = Number.parseInt(String(rawOldSpaceMb).trim(), 10);
+  if (!Number.isFinite(parsedOldSpaceMb) || parsedOldSpaceMb <= 0) {
+    log(`ignoring invalid SPECKIT_CONTEXT_SERVER_MAX_OLD_SPACE_MB=${JSON.stringify(rawOldSpaceMb)}`);
+    return nodeArgs;
+  }
+
+  nodeArgs.push(`--max-old-space-size=${parsedOldSpaceMb}`);
+  log(`applying context-server V8 old-space cap: ${parsedOldSpaceMb} MB`);
+  return nodeArgs;
+}
+
 async function acquireBootstrapLock() {
   fs.mkdirSync(dbDir, { recursive: true });
   const deadline = Date.now() + 120000;
@@ -295,7 +313,8 @@ async function acquireBootstrapLock() {
 
 function launchServer() {
   const server = path.join(kitDir, 'mcp_server', 'dist', 'context-server.js');
-  childProcess = spawn(process.execPath, [server], {
+  const nodeArgs = getContextServerNodeArgs();
+  childProcess = spawn(process.execPath, [...nodeArgs, server], {
     cwd: root,
     env: process.env,
     stdio: 'inherit',
