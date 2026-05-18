@@ -1,4 +1,4 @@
-import { spawn, type ChildProcess, type ChildProcessWithoutNullStreams } from 'node:child_process';
+import { spawn, spawnSync, type ChildProcess, type ChildProcessWithoutNullStreams } from 'node:child_process';
 import { copyFileSync, existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, symlinkSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
@@ -86,47 +86,8 @@ exports.isLeaseHeld = function isLeaseHeld(workspaceRoot) {
 
 function advisorServerSource(options: { ignoreSigterm?: boolean } = {}): string {
   return `
-const fs = require('fs');
-const path = require('path');
-
-function canonicalizePath(pathValue) {
-  const resolvedPath = path.resolve(pathValue);
-  try {
-    return fs.realpathSync.native(resolvedPath);
-  } catch (error) {
-    if (error.code === 'ENOENT') return resolvedPath;
-    throw error;
-  }
-}
-
-const dbDir = process.env.MK_SKILL_ADVISOR_DB_DIR
-  ? canonicalizePath(process.env.MK_SKILL_ADVISOR_DB_DIR)
-  : path.join(process.cwd(), '.opencode', 'skills', 'system-skill-advisor', 'mcp_server', 'database');
-const leasePath = path.join(dbDir, '.mk-skill-advisor-launcher.json');
-
-function readLease() {
-  try {
-    return JSON.parse(fs.readFileSync(leasePath, 'utf8'));
-  } catch {
-    return null;
-  }
-}
-
-function writeLease() {
-  fs.mkdirSync(dbDir, { recursive: true });
-  fs.writeFileSync(leasePath, JSON.stringify({ pid: process.pid, startedAt: new Date().toISOString() }));
-}
-
-function clearLease() {
-  const lease = readLease();
-  if (lease && lease.pid === process.pid) {
-    fs.unlinkSync(leasePath);
-  }
-}
-
-writeLease();
-${options.ignoreSigterm ? "process.on('SIGTERM', () => {});" : "process.on('SIGTERM', () => { clearLease(); process.exit(0); });"}
-process.on('SIGINT', () => { clearLease(); process.exit(0); });
+${options.ignoreSigterm ? "process.on('SIGTERM', () => {});" : "process.on('SIGTERM', () => { process.exit(0); });"}
+process.on('SIGINT', () => { process.exit(0); });
 setInterval(() => {}, 1000);
 `;
 }
@@ -205,6 +166,16 @@ function readLeasePid(leaseFilePath: string): number | null {
   } catch {
     return null;
   }
+}
+
+function countLauncherProcesses(launcherPath: string): number | null {
+  const result = spawnSync('ps', ['-A', '-o', 'command='], { encoding: 'utf8' });
+  if (result.error || result.status !== 0) {
+    return null;
+  }
+  return result.stdout
+    .split('\n')
+    .filter((line) => line.includes(launcherPath)).length;
 }
 
 describe('mk-skill-advisor launcher lease', () => {
@@ -310,6 +281,36 @@ describe('mk-skill-advisor launcher lease', () => {
     expect(exit.code).toBe(0);
     expect(second.stdout).toContain(`LEASE_HELD_BY:${ownerPid}`);
     expect(second.stdout).toMatch(new RegExp(`^LEASE_HELD_BY:${ownerPid} startedAt=\\d{4}-\\d{2}-\\d{2}T`, 'm'));
+  });
+
+  // 007-REQ-001: skill-advisor must reject concurrent launcher spawns; closes the 3-zombie observation from 2026-05-18T16:47Z.
+  it('007-REQ-001: spawn-three leaves only the first launcher alive', async () => {
+    const workspace = createWorkspace();
+    const first = spawnLauncher(workspace);
+    const ownerPid = await waitForLeaseOwner(workspace);
+
+    const second = spawnLauncher(workspace);
+    await waitForStdoutClose(second);
+    const secondExit = await waitForExit(second.child, 8000);
+
+    const third = spawnLauncher(workspace);
+    await waitForStdoutClose(third);
+    const thirdExit = await waitForExit(third.child, 8000);
+
+    expect(first.child.exitCode).toBeNull();
+    expect(first.child.pid).toBe(ownerPid);
+    expect(secondExit.code).toBe(0);
+    expect(thirdExit.code).toBe(0);
+    expect(second.stdout).toContain(`LEASE_HELD_BY:${ownerPid}`);
+    expect(third.stdout).toContain(`LEASE_HELD_BY:${ownerPid}`);
+
+    const launcherCount = countLauncherProcesses(workspace.launcherPath);
+    if (launcherCount === null) {
+      expect(second.child.exitCode).toBe(0);
+      expect(third.child.exitCode).toBe(0);
+    } else {
+      expect(launcherCount).toBe(1);
+    }
   });
 
   // 004-REQ-001: live-owner diagnostics include the recorded startedAt value.
