@@ -26,6 +26,7 @@ import {
 
 // Internal modules
 import { ALLOWED_BASE_PATHS, checkDatabaseUpdated } from '../core/index.js';
+import { ensureMemoryRuntimeInitialized } from '../lib/runtime/memory-runtime-guard.js';
 import { createFilePathValidator } from '../utils/validators.js';
 import * as memoryParser from '../lib/parsing/memory-parser.js';
 import * as transactionManager from '../lib/storage/transaction-manager.js';
@@ -2749,6 +2750,7 @@ async function indexMemoryFileFromScan(
 
 /** Handle memory_save tool - validates, indexes, and persists a memory file to the database */
 async function handleMemorySave(args: SaveArgs): Promise<MCPResponse> {
+  await ensureMemoryRuntimeInitialized('handler:memory_save');
   // A7-P2-1: Generate requestId for incident correlation in error responses
   const requestId = randomUUID();
   const restoreBarrier = checkpoints.getRestoreBarrierStatus();

@@ -7,6 +7,7 @@
 ──────────────────────────────────────────────────────────────── */
 
 import { checkDatabaseUpdated } from '../core/index.js';
+import { ensureMemoryRuntimeInitialized } from '../lib/runtime/memory-runtime-guard.js';
 import * as vectorIndex from '../lib/search/vector-index.js';
 import * as checkpoints from '../lib/storage/checkpoints.js';
 import * as mutationLedger from '../lib/storage/mutation-ledger.js';
@@ -66,6 +67,7 @@ function createDatabaseUnavailableDeleteResponse(): MCPResponse {
 
 /** Handle memory_delete tool -- deletes a single memory by ID or bulk-deletes by spec folder. */
 async function handleMemoryDelete(args: DeleteArgs): Promise<MCPResponse> {
+  await ensureMemoryRuntimeInitialized('handler:memory_delete');
   await checkDatabaseUpdated();
 
   const { id, specFolder, confirm } = args;

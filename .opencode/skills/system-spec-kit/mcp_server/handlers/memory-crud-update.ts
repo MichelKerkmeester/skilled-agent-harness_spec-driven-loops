@@ -8,6 +8,7 @@
 
 import { randomUUID } from 'node:crypto';
 import { checkDatabaseUpdated } from '../core/index.js';
+import { ensureMemoryRuntimeInitialized } from '../lib/runtime/memory-runtime-guard.js';
 import * as vectorIndex from '../lib/search/vector-index.js';
 import type { UpdateMemoryParams } from '../lib/search/vector-index.js';
 import * as embeddings from '../lib/providers/embeddings.js';
@@ -44,6 +45,7 @@ import type { UpdateArgs } from './memory-crud-types.js';
 
 /** Handle memory_update tool -- updates metadata fields and optionally regenerates embeddings. */
 async function handleMemoryUpdate(args: UpdateArgs): Promise<MCPResponse> {
+  await ensureMemoryRuntimeInitialized('handler:memory_update');
   // A7-P2-1: Generate requestId for incident correlation in error responses
   const requestId = randomUUID();
   await checkDatabaseUpdated();

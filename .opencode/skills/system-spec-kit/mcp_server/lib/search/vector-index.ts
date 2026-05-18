@@ -133,6 +133,8 @@ export {
   close_db,
   getDb,
   get_db,
+  tryGetDb,
+  try_get_db,
   getDbPath,
   get_db_path,
   clearConstitutionalCache,

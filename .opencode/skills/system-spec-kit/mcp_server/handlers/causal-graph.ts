@@ -14,6 +14,7 @@ import { buildRelationCoverageState } from '../lib/causal/relation-coverage.js';
 
 // Core utilities
 import { checkDatabaseUpdated } from '../core/index.js';
+import { ensureMemoryRuntimeInitialized } from '../lib/runtime/memory-runtime-guard.js';
 import { toErrorMessage } from '../utils/index.js';
 import { ErrorCodes, getRecoveryHint } from '../lib/errors.js';
 
@@ -448,6 +449,7 @@ function formatRelationSummary(chain: FlattenedChain, label: 'incoming' | 'outgo
 
 /** Handle memory_drift_why tool - traces causal relationships for a given memory */
 async function handleMemoryDriftWhy(args: DriftWhyArgs): Promise<MCPResponse> {
+  await ensureMemoryRuntimeInitialized('handler:memory_drift_why');
   const {
     memoryId,
     maxDepth: rawMaxDepth = 3,
@@ -667,6 +669,7 @@ async function handleMemoryDriftWhy(args: DriftWhyArgs): Promise<MCPResponse> {
 
 /** Handle memory_causal_link tool - creates a causal edge between two memories */
 async function handleMemoryCausalLink(args: CausalLinkArgs): Promise<MCPResponse> {
+  await ensureMemoryRuntimeInitialized('handler:memory_causal_link');
   const {
     sourceId,
     targetId,
@@ -777,6 +780,7 @@ async function handleMemoryCausalLink(args: CausalLinkArgs): Promise<MCPResponse
 
 /** Handle memory_causal_stats tool - returns graph coverage and health metrics */
 async function handleMemoryCausalStats(_args: CausalStatsArgs): Promise<MCPResponse> {
+  await ensureMemoryRuntimeInitialized('handler:memory_causal_stats');
   const startTime = Date.now();
 
   try {
@@ -895,6 +899,7 @@ async function handleMemoryCausalStats(_args: CausalStatsArgs): Promise<MCPRespo
 
 /** Handle memory_causal_unlink tool - deletes a causal edge by ID */
 async function handleMemoryCausalUnlink(args: CausalUnlinkArgs): Promise<MCPResponse> {
+  await ensureMemoryRuntimeInitialized('handler:memory_causal_unlink');
   const { edgeId } = args;
   const startTime = Date.now();
 

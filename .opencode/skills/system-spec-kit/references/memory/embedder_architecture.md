@@ -28,7 +28,7 @@ Both paths must agree on the active model and vector dimension.
 
 ## Bootstrap Auto-Selection
 
-On daemon bootstrap, `context-server.ts` opens the vector database and calls `ensureActiveEmbedder()`. If `vec_metadata` already has a valid active pointer, startup reuses it. If the pointer is empty, `autoSelectActiveEmbedder()` probes this precedence chain and persists the first available choice:
+On first memory-runtime use, `context-server.ts` opens the vector database and calls `ensureActiveEmbedder()`. If `vec_metadata` already has a valid active pointer, startup reuses it. If the pointer is empty, `autoSelectActiveEmbedder()` probes this precedence chain and persists the first available choice:
 
 | Tier | Probe | Persisted active embedder |
 |------|-------|---------------------------|
@@ -117,6 +117,14 @@ For active `jina-embeddings-v3`, the expected operator result after daemon resta
 ## Memory Diagnostics
 
 `memory_health` accepts `includeFullReport:true` for byte-aware runtime diagnostics. The extended report includes RSS, V8 heap totals, external memory, ArrayBuffer memory, V8 malloc counters, cache byte estimates for tool cache, trigger matcher regex retention, and the in-process embedding LRU.
+
+### Lazy Startup Gating
+
+The MCP server now starts with a thin bootstrap: tool schemas, validation, runtime detection, signal handlers, and stdio binding are registered immediately, while the memory runtime initializes on first memory-owning tool call. `ensureMemoryRuntimeInitialized(reason)` guards DB open, integrity and dimension checks, storage/search consumer init, BM25 warmup, reindex resume, retry manager startup, and the background scan.
+
+`memory_health` is intentionally lightweight before the guard fires. It uses `tryGetDb()` and reports `runtime_initialized: false` without opening SQLite or spawning embedder sidecars. After the first guarded memory call, the same field reports `true`, and full reports include DB-backed cache and consistency data again.
+
+The trade-off is first-call latency: the first `memory_search`, `memory_context`, `memory_save`, embedder, checkpoint, ingest, eval, causal, or session-learning call pays the runtime initialization cost. Idle startup stays smaller because SQLite, BM25, retry jobs, startup scans, and local model sidecars remain cold until memory is actually used.
 
 ### Sidecar Execution
 

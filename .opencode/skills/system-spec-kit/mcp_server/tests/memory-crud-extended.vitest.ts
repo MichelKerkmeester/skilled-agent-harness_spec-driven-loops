@@ -31,6 +31,7 @@ vi.mock('../lib/search/vector-index', async (importOriginal) => {
     ...actual,
     deleteMemory: vi.fn((...args: any[]) => actual.deleteMemory?.(...args)),
     getDb: vi.fn(() => actual.getDb?.()),
+    tryGetDb: vi.fn(() => actual.tryGetDb?.()),
     getMemory: vi.fn((...args: any[]) => actual.getMemory?.(...args)),
     getMemoriesByFolder: vi.fn((...args: any[]) => actual.getMemoriesByFolder?.(...args)),
     updateMemory: vi.fn((...args: any[]) => actual.updateMemory?.(...args)),
@@ -197,6 +198,7 @@ function installDeleteMocks(opts: {
 
   vi.mocked(vectorIndex.deleteMemory).mockImplementation((id: number) => { calls.deleteMemory.push(id); return deleteResult; });
   vi.mocked(vectorIndex.getDb).mockImplementation(() => fakeDb);
+  vi.mocked(vectorIndex.tryGetDb).mockImplementation(() => fakeDb);
 
   if (causalEdgesMod) {
     vi.mocked(causalEdgesMod.init).mockImplementation((db: any) => { calls.causalInit.push(db); });

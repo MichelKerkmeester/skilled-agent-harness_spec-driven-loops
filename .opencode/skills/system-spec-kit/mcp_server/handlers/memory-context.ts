@@ -8,6 +8,7 @@ import { readFileSync } from 'node:fs';
 // Layer definitions
 import * as layerDefs from '../lib/architecture/layer-definitions.js';
 import { checkDatabaseUpdated } from '../core/index.js';
+import { ensureMemoryRuntimeInitialized } from '../lib/runtime/memory-runtime-guard.js';
 import { toErrorMessage } from '../utils/index.js';
 
 // Intent classifier
@@ -1381,6 +1382,7 @@ function buildResponseMeta(params: BuildResponseMetaParams): Record<string, unkn
  * @returns MCP response with context-aware memory results
  */
 async function handleMemoryContext(args: ContextArgs): Promise<MCPResponse> {
+  await ensureMemoryRuntimeInitialized('handler:memory_context');
   const _contextStartTime = Date.now();
   const requestId = randomUUID();
 

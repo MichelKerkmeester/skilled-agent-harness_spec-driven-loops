@@ -11,6 +11,7 @@ import { checkDatabaseUpdated } from '../core/index.js';
 import { INDEX_SCAN_COOLDOWN, DEFAULT_BASE_PATH, BATCH_SIZE } from '../core/config.js';
 import { acquireIndexScanLease, completeIndexScanLease } from '../core/db-state.js';
 import { processBatches, requireDb, toErrorMessage, type RetryErrorResult } from '../utils/index.js';
+import { ensureMemoryRuntimeInitialized } from '../lib/runtime/memory-runtime-guard.js';
 import { getCanonicalPathKey } from '../lib/utils/canonical-path.js';
 
 /* ───────────────────────────────────────────────────────────────
@@ -194,6 +195,7 @@ async function indexSingleFile(
 
 /** Handle memory_index_scan tool - scans and indexes memory files with incremental support */
 async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
+  await ensureMemoryRuntimeInitialized('handler:memory_index_scan');
   const restoreBarrier = checkpoints.getRestoreBarrierStatus();
   if (restoreBarrier) {
     return createMCPErrorResponse({

@@ -5,6 +5,7 @@
 import path from 'path';
 
 import { checkDatabaseUpdated } from '../core/index.js';
+import { ensureMemoryRuntimeInitialized } from '../lib/runtime/memory-runtime-guard.js';
 import * as vectorIndex from '../lib/search/vector-index.js';
 import {
   init as initHybridSearch,
@@ -235,6 +236,7 @@ function buildRawFusionLists(
  * @returns MCP response with ablation report or K-sensitivity results
  */
 async function handleEvalRunAblation(args: RunAblationArgs): Promise<MCPResponse> {
+  await ensureMemoryRuntimeInitialized('handler:eval_run_ablation');
   if (args.mode === 'k_sensitivity') {
     return handleEvalKSensitivity({
       queries: args.queries,
@@ -353,6 +355,7 @@ const DEFAULT_K_SENSITIVITY_QUERIES = [
  * 3. Aggregates per-query sensitivity and formats the report
  */
 async function handleEvalKSensitivity(args: KSensitivityArgs): Promise<MCPResponse> {
+  await ensureMemoryRuntimeInitialized('handler:eval_run_ablation');
   await checkDatabaseUpdated();
 
   const db = vectorIndex.getDb();
@@ -396,6 +399,7 @@ async function handleEvalKSensitivity(args: KSensitivityArgs): Promise<MCPRespon
 }
 
 async function handleEvalReportingDashboard(args: ReportingDashboardArgs): Promise<MCPResponse> {
+  await ensureMemoryRuntimeInitialized('handler:eval_reporting_dashboard');
   await checkDatabaseUpdated();
 
   const report = await generateDashboardReport({

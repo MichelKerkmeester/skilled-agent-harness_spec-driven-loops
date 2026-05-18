@@ -5,6 +5,7 @@
 // Eliminates the need for direct DB scripts when cleaning up
 // Deprecated/temporary memories at scale.
 import { checkDatabaseUpdated } from '../core/index.js';
+import { ensureMemoryRuntimeInitialized } from '../lib/runtime/memory-runtime-guard.js';
 import { invalidateEntityDensityCache } from '../lib/search/entity-density.js';
 import * as vectorIndex from '../lib/search/vector-index.js';
 import * as checkpoints from '../lib/storage/checkpoints.js';
@@ -57,6 +58,7 @@ interface BulkDeleteArgs {
 ──────────────────────────────────────────────────────────────── */
 
 async function handleMemoryBulkDelete(args: BulkDeleteArgs): Promise<MCPResponse> {
+  await ensureMemoryRuntimeInitialized('handler:memory_bulk_delete');
   const restoreBarrier = checkpoints.getRestoreBarrierStatus();
   if (restoreBarrier) {
     return createMCPErrorResponse({

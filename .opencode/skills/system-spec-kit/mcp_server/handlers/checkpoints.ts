@@ -17,6 +17,7 @@ import { recordUserSelection } from '../lib/eval/ground-truth-feedback.js';
 import { recordNegativeFeedbackEvent } from '../lib/scoring/negative-feedback.js';
 import { recordAdaptiveSignal } from '../lib/cognitive/adaptive-ranking.js';
 import { checkDatabaseUpdated } from '../core/index.js';
+import { ensureMemoryRuntimeInitialized } from '../lib/runtime/memory-runtime-guard.js';
 import { requireDb, toErrorMessage } from '../utils/index.js';
 
 // REQ-019: Standardized Response Structure
@@ -372,6 +373,7 @@ function createCheckpointCreateFailureResponse(
  * @returns MCP response with checkpoint metadata
  */
 async function handleCheckpointCreate(args: CheckpointCreateArgs): Promise<MCPResponse> {
+  await ensureMemoryRuntimeInitialized('handler:checkpoint_create');
   const startTime = Date.now();
   await checkDatabaseUpdated();
   const { name, specFolder: spec_folder, metadata } = args;
@@ -445,6 +447,7 @@ async function handleCheckpointCreate(args: CheckpointCreateArgs): Promise<MCPRe
 
 /** Handle checkpoint_list tool - returns available checkpoints filtered by spec folder */
 async function handleCheckpointList(args: CheckpointListArgs): Promise<MCPResponse> {
+  await ensureMemoryRuntimeInitialized('handler:checkpoint_list');
   const startTime = Date.now();
   await checkDatabaseUpdated();
   const { specFolder: spec_folder, limit: raw_limit = 50 } = args;
@@ -490,6 +493,7 @@ async function handleCheckpointList(args: CheckpointListArgs): Promise<MCPRespon
 
 /** Handle checkpoint_restore tool - restores memory state from a named checkpoint */
 async function handleCheckpointRestore(args: CheckpointRestoreArgs): Promise<MCPResponse> {
+  await ensureMemoryRuntimeInitialized('handler:checkpoint_restore');
   const startTime = Date.now();
   const restoreBarrier = checkpoints.getRestoreBarrierStatus();
   if (restoreBarrier) {
@@ -651,6 +655,7 @@ async function handleCheckpointRestore(args: CheckpointRestoreArgs): Promise<MCP
 
 /** Handle checkpoint_delete tool - permanently removes a named checkpoint */
 async function handleCheckpointDelete(args: CheckpointDeleteArgs): Promise<MCPResponse> {
+  await ensureMemoryRuntimeInitialized('handler:checkpoint_delete');
   const startTime = Date.now();
   await checkDatabaseUpdated();
   const { name, confirmName } = args;
@@ -717,6 +722,7 @@ async function handleCheckpointDelete(args: CheckpointDeleteArgs): Promise<MCPRe
 
 /** Handle memory_validate tool - records user validation feedback to adjust confidence */
 async function handleMemoryValidate(args: MemoryValidateArgs): Promise<MCPResponse> {
+  await ensureMemoryRuntimeInitialized('handler:memory_validate');
   const startTime = Date.now();
   await checkDatabaseUpdated();
   const {

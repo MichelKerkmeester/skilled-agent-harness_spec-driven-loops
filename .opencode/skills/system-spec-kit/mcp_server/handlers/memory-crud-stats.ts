@@ -10,6 +10,7 @@ import { randomUUID } from 'node:crypto';
 import * as fs from 'fs';
 
 import { checkDatabaseUpdated } from '../core/index.js';
+import { ensureMemoryRuntimeInitialized } from '../lib/runtime/memory-runtime-guard.js';
 import * as vectorIndex from '../lib/search/vector-index.js';
 import * as folderScoring from '../lib/scoring/folder-scoring.js';
 import type { FolderMemoryInput } from '../lib/scoring/folder-scoring.js';
@@ -29,6 +30,7 @@ import type { StatsArgs } from './memory-crud-types.js';
 
 /** Handle memory_stats tool -- returns memory system statistics and folder rankings. */
 async function handleMemoryStats(args: StatsArgs | null): Promise<MCPResponse> {
+  await ensureMemoryRuntimeInitialized('handler:memory_stats');
   const startTime = Date.now();
   const requestId = randomUUID();
   try {

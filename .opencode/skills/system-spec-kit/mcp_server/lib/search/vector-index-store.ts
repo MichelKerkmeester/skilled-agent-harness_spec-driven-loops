@@ -870,6 +870,14 @@ export function get_db(): Database.Database {
   return initialize_db();
 }
 
+/**
+ * Returns the active vector-index database connection if it has already been
+ * initialized. This accessor never opens SQLite or creates schema.
+ */
+export function try_get_db(): Database.Database | null {
+  return db;
+}
+
 // Check if vector search is available (sqlite-vec loaded)
 /**
  * Reports whether sqlite-vec vector search is available.
@@ -1126,6 +1134,7 @@ export class SQLiteVectorStore extends IVectorStore {
 export { initialize_db as initializeDb };
 export { close_db as closeDb };
 export { get_db as getDb };
+export { try_get_db as tryGetDb };
 export { get_db_path as getDbPath };
 export { get_confirmed_embedding_dimension as getConfirmedEmbeddingDimension };
 export { get_embedding_dim as getEmbeddingDim };

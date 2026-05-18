@@ -13,6 +13,7 @@ import type Database from 'better-sqlite3';
 
 import { checkDatabaseUpdated } from '../core/index.js';
 import * as vectorIndex from '../lib/search/vector-index.js';
+import { isMemoryRuntimeInitialized } from '../lib/runtime/memory-runtime-guard.js';
 import * as embeddings from '../lib/providers/embeddings.js';
 import * as triggerMatcher from '../lib/parsing/trigger-matcher.js';
 import { createMCPSuccessResponse, createMCPErrorResponse } from '../lib/response/envelope.js';
@@ -300,18 +301,20 @@ async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
   const startTime = Date.now();
   // A7-P2-1: Generate requestId for incident correlation in error responses
   const requestId = randomUUID();
-  try {
-    await checkDatabaseUpdated();
-  } catch (dbStateErr: unknown) {
-    const message = toErrorMessage(dbStateErr);
-    console.error(`[memory-health] Database refresh failed [requestId=${requestId}]: ${message}`);
-    return createMCPErrorResponse({
-      tool: 'memory_health',
-      error: 'Database refresh failed before diagnostics completed. Retry the request or restart the MCP server.',
-      code: 'E021',
-      details: { requestId },
-      startTime,
-    });
+  if (isMemoryRuntimeInitialized()) {
+    try {
+      await checkDatabaseUpdated();
+    } catch (dbStateErr: unknown) {
+      const message = toErrorMessage(dbStateErr);
+      console.error(`[memory-health] Database refresh failed [requestId=${requestId}]: ${message}`);
+      return createMCPErrorResponse({
+        tool: 'memory_health',
+        error: 'Database refresh failed before diagnostics completed. Retry the request or restart the MCP server.',
+        code: 'E021',
+        details: { requestId },
+        startTime,
+      });
+    }
   }
 
   const {
@@ -388,7 +391,8 @@ async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
     });
   }
   const safeLimit = Math.max(1, Math.min(Math.floor(rawLimit || DEFAULT_DIVERGENT_ALIAS_LIMIT), MAX_DIVERGENT_ALIAS_LIMIT));
-  const database = vectorIndex.getDb();
+  const runtimeInitialized = isMemoryRuntimeInitialized();
+  const database = vectorIndex.tryGetDb();
   const fullMemoryReport = getFullMemoryReport(includeFullReport, database);
   let memoryCount = 0;
   let aliasConflicts: ReturnType<typeof summarizeAliasConflicts> = summarizeAliasConflicts([]);
@@ -397,7 +401,9 @@ async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
   const processHealth = {
     pid: process.pid,
     rss_mb: Math.round(process.memoryUsage().rss / 1024 / 1024),
+    uptime_s: Math.round(process.uptime()),
     uptime_seconds: Math.round(process.uptime()),
+    runtime_initialized: runtimeInitialized,
   };
   const embeddingRetry = {
     ...getEmbeddingRetryStats(),
@@ -447,7 +453,7 @@ async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
   if (reportMode === DIVERGENT_ALIAS_REPORT_MODE) {
     const hints: string[] = [];
     if (!database) {
-      hints.push('Database not connected - restart MCP server');
+      hints.push('Database runtime has not initialized yet; the first memory-owning tool call will initialize it.');
     }
     if (autoRepair) {
       hints.push('autoRepair is only applied in reportMode="full"');
@@ -465,6 +471,7 @@ async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
       data: {
         reportMode,
         status: database ? 'healthy' : 'degraded',
+        runtime_initialized: runtimeInitialized,
         databaseConnected: !!database,
         process: processHealth,
         embeddingRetry,
@@ -579,6 +586,7 @@ async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
       data: {
         status,
         reportMode,
+        runtime_initialized: runtimeInitialized,
         autoRepairRequested: true,
         needsConfirmation: true,
         actions: repairActions,
@@ -594,7 +602,7 @@ async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
   }
 
   if (!database) {
-    hints.push('Database not connected - restart MCP server');
+    hints.push('Database runtime has not initialized yet; the first memory-owning tool call will initialize it.');
   }
   if (!vectorIndex.isVectorSearchAvailable()) {
     hints.push('Vector search unavailable - fallback to BM25');
@@ -749,6 +757,7 @@ async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
     summary,
     data: {
       status,
+      runtime_initialized: runtimeInitialized,
       databaseConnected: !!database,
       vectorSearchAvailable: vectorIndex.isVectorSearchAvailable(),
       memoryCount,

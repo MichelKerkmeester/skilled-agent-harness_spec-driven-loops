@@ -182,7 +182,7 @@ async function getConstitutionalMemories(): Promise<ConstitutionalMemory[]> {
   }
 
   try {
-    const db: Database | null = vectorIndex.getDb();
+    const db: Database | null = vectorIndex.tryGetDb();
     if (!db) return [];
 
     const rows = db.prepare(`
@@ -286,7 +286,7 @@ function enforceAutoSurfaceTokenBudget(
  */
 function getAttentionWeightedMemoryIds(limit: number = 5): Set<number> {
   try {
-    const db: Database | null = vectorIndex.getDb();
+    const db: Database | null = vectorIndex.tryGetDb();
     if (!db) return new Set();
 
     // Query top attention-weighted memories, scoped to the current session

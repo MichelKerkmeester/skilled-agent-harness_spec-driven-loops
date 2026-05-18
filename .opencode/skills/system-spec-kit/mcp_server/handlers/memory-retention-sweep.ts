@@ -2,6 +2,7 @@
 // MODULE: Memory Retention Sweep Handler
 // ────────────────────────────────────────────────────────────────
 import { checkDatabaseUpdated } from '../core/index.js';
+import { ensureMemoryRuntimeInitialized } from '../lib/runtime/memory-runtime-guard.js';
 import * as vectorIndex from '../lib/search/vector-index.js';
 import { runMemoryRetentionSweep } from '../lib/governance/memory-retention-sweep.js';
 import { createMCPErrorResponse, createMCPSuccessResponse } from '../lib/response/envelope.js';
@@ -12,6 +13,7 @@ import type { MemoryRetentionSweepArgs } from '../lib/governance/memory-retentio
 
 /** Handle the memory_retention_sweep MCP tool request. */
 async function handleMemoryRetentionSweep(args: MemoryRetentionSweepArgs): Promise<MCPResponse> {
+  await ensureMemoryRuntimeInitialized('handler:memory_retention_sweep');
   await checkDatabaseUpdated();
 
   const database = vectorIndex.getDb();

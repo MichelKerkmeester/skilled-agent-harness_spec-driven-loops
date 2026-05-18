@@ -3,6 +3,7 @@
 // ───────────────────────────────────────────────────────────────
 import * as vectorIndex from '../lib/search/vector-index.js';
 import { checkDatabaseUpdated } from '../core/index.js';
+import { ensureMemoryRuntimeInitialized } from '../lib/runtime/memory-runtime-guard.js';
 import { MemoryError, ErrorCodes } from '../lib/errors.js';
 import { toErrorMessage } from '../utils/index.js';
 
@@ -299,6 +300,7 @@ function validateScores(
 
 /** Handle task_preflight tool - captures baseline knowledge scores before a task begins */
 async function handleTaskPreflight(args: PreflightArgs): Promise<MCPResponse> {
+  await ensureMemoryRuntimeInitialized('handler:task_preflight');
   const {
     specFolder: spec_folder,
     taskId,
@@ -456,6 +458,7 @@ async function handleTaskPreflight(args: PreflightArgs): Promise<MCPResponse> {
 
 /** Handle task_postflight tool - measures learning by comparing post-task scores to baseline */
 async function handleTaskPostflight(args: PostflightArgs): Promise<MCPResponse> {
+  await ensureMemoryRuntimeInitialized('handler:task_postflight');
   const {
     specFolder: spec_folder,
     taskId,
@@ -658,6 +661,7 @@ async function handleTaskPostflight(args: PostflightArgs): Promise<MCPResponse> 
 
 /** Handle memory_get_learning_history tool - retrieves learning records with optional summary stats */
 async function handleGetLearningHistory(args: LearningHistoryArgs): Promise<MCPResponse> {
+  await ensureMemoryRuntimeInitialized('handler:memory_get_learning_history');
   const {
     specFolder: spec_folder,
     sessionId: session_id,

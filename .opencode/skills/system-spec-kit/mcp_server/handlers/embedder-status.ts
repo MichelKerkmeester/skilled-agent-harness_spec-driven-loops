@@ -4,6 +4,7 @@
 
 import { checkDatabaseUpdated } from '../core/index.js';
 import { createMCPSuccessResponse } from '../lib/response/envelope.js';
+import { ensureMemoryRuntimeInitialized } from '../lib/runtime/memory-runtime-guard.js';
 import { get_db } from '../lib/search/vector-index-store.js';
 import {
   estimateEta,
@@ -65,6 +66,7 @@ function mapJob(job: ReindexJob | null, missingStatus: 'idle' | 'not_found'): Em
 // -------------------------------------------------------------------
 
 export async function handleEmbedderStatus(args: EmbedderStatusArgs = {}): Promise<MCPResponse> {
+  await ensureMemoryRuntimeInitialized('handler:embedder_status');
   const startTime = Date.now();
   await checkDatabaseUpdated();
 

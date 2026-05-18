@@ -9,6 +9,7 @@
 import { randomUUID } from 'node:crypto';
 
 import { checkDatabaseUpdated } from '../core/index.js';
+import { ensureMemoryRuntimeInitialized } from '../lib/runtime/memory-runtime-guard.js';
 import * as vectorIndex from '../lib/search/vector-index.js';
 import { createMCPSuccessResponse, createMCPErrorResponse } from '../lib/response/envelope.js';
 import { toErrorMessage } from '../utils/index.js';
@@ -28,6 +29,7 @@ import type { ListArgs } from './memory-crud-types.js';
 
 /** Handle memory_list tool -- returns paginated memory entries. */
 async function handleMemoryList(args: ListArgs): Promise<MCPResponse> {
+  await ensureMemoryRuntimeInitialized('handler:memory_list');
   const startTime = Date.now();
   const requestId = randomUUID();
   try {

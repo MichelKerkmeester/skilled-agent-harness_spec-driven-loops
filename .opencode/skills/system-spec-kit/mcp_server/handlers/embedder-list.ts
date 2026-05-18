@@ -4,6 +4,7 @@
 
 import { checkDatabaseUpdated } from '../core/index.js';
 import { createMCPSuccessResponse } from '../lib/response/envelope.js';
+import { ensureMemoryRuntimeInitialized } from '../lib/runtime/memory-runtime-guard.js';
 import { get_db } from '../lib/search/vector-index-store.js';
 import {
   getActiveEmbedder,
@@ -84,6 +85,7 @@ async function probeReady(name: string, timeoutMs: number): Promise<boolean> {
 // -------------------------------------------------------------------
 
 export async function handleEmbedderList(): Promise<MCPResponse> {
+  await ensureMemoryRuntimeInitialized('handler:embedder_list');
   const startTime = Date.now();
   await checkDatabaseUpdated();
 

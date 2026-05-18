@@ -62,6 +62,7 @@ import { trackQueryAndDetect, logResultCited } from '../lib/feedback/query-flow-
 
 // Core utilities
 import { checkDatabaseUpdated } from '../core/index.js';
+import { ensureMemoryRuntimeInitialized } from '../lib/runtime/memory-runtime-guard.js';
 import { validateQuery, requireDb, toErrorMessage } from '../utils/index.js';
 
 // Response envelope + formatters
@@ -638,6 +639,7 @@ function applySessionDedup(results: MemorySearchRow[], sessionId: string, enable
  * @returns MCP response with ranked search results
  */
 async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
+  await ensureMemoryRuntimeInitialized('handler:memory_search');
   const _searchStartTime = Date.now();
   resetLastLexicalCapabilitySnapshot();
   // BUG-001: Check for external database updates before processing

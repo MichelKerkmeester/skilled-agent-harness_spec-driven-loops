@@ -84,6 +84,11 @@ import { createUnifiedGraphSearchFn } from './lib/search/graph-search-fn.js';
 import { isGraphUnifiedEnabled } from './lib/search/graph-flags.js';
 import { callCodeGraphTool } from './lib/code-graph-boundary.js';
 import { detectRuntime, type RuntimeInfo } from './lib/runtime-detection.js';
+import {
+  ensureMemoryRuntimeInitialized,
+  isMemoryRuntimeInitialized,
+  registerInitTasks,
+} from './lib/runtime/memory-runtime-guard.js';
 import * as sessionBoost from './lib/search/session-boost.js';
 import * as causalBoost from './lib/search/causal-boost.js';
 import * as bm25Index from './lib/search/bm25-index.js';
@@ -209,6 +214,40 @@ const GRAPH_ENRICHMENT_SYMBOL_LIMIT = 4;
 const GRAPH_CONTEXT_EXCLUDED_TOOLS = new Set<string>([
   ...MEMORY_AWARE_TOOLS,
   // Code-graph MCP tools route through standalone mk-code-index per ADR-002.
+]);
+
+const MEMORY_RUNTIME_TOOL_NAMES = new Set<string>([
+  'memory_context',
+  'memory_search',
+  'memory_quick_search',
+  'memory_match_triggers',
+  'memory_save',
+  'memory_list',
+  'memory_stats',
+  'memory_delete',
+  'memory_update',
+  'memory_validate',
+  'memory_bulk_delete',
+  'memory_retention_sweep',
+  'memory_index_scan',
+  'memory_ingest_start',
+  'memory_ingest_status',
+  'memory_ingest_cancel',
+  'checkpoint_create',
+  'checkpoint_list',
+  'checkpoint_restore',
+  'checkpoint_delete',
+  'embedder_list',
+  'embedder_set',
+  'embedder_status',
+  'task_preflight',
+  'task_postflight',
+  'memory_get_learning_history',
+  'eval_run_ablation',
+  'eval_reporting_dashboard',
+  'memory_drift_why',
+  'memory_causal_link',
+  'memory_causal_stats',
 ]);
 
 interface GraphContextNeighborSummary {
@@ -691,6 +730,10 @@ function injectSessionPrimeHints(
 
 async function getMemoryStats(): Promise<DynamicMemoryStats> {
   try {
+    if (!vectorIndex.tryGetDb()) {
+      return { totalMemories: 0, specFolderCount: 0, activeCount: 0, staleCount: 0 };
+    }
+
     const response = await handleMemoryStats({
       folderRanking: 'count',
       includeArchived: true,
@@ -899,21 +942,31 @@ server.setRequestHandler(CallToolRequestSchema, async (request, _extra: unknown)
       recordMetricEvent({ kind: 'spec_folder_change', specFolder: validatedArgs.specFolder as string });
     }
 
-    const dbReinitialized = await checkDatabaseUpdated();
+    const memoryRuntimeRequired = MEMORY_RUNTIME_TOOL_NAMES.has(name);
+    if (memoryRuntimeRequired) {
+      await ensureMemoryRuntimeInitialized(`handler:${name}`);
+    }
+
+    const dbReinitialized = memoryRuntimeRequired
+      ? await checkDatabaseUpdated()
+      : false;
     if (dbReinitialized) {
       await invalidateReinitializedDbCaches();
     }
 
     let sessionPrimeContext: AutoSurfaceResult | null = null;
-    try {
-      sessionPrimeContext = await primeSessionIfNeeded(
-        name,
-        validatedArgs,
-        sessionTrackingId,
-      );
-    } catch (primeErr: unknown) {
-      const msg = primeErr instanceof Error ? primeErr.message : String(primeErr);
-      console.error(`[context-server] Session priming failed (non-fatal): ${msg}`);
+    const memoryRuntimeAvailable = memoryRuntimeRequired || isMemoryRuntimeInitialized();
+    if (memoryRuntimeAvailable) {
+      try {
+        sessionPrimeContext = await primeSessionIfNeeded(
+          name,
+          validatedArgs,
+          sessionTrackingId,
+        );
+      } catch (primeErr: unknown) {
+        const msg = primeErr instanceof Error ? primeErr.message : String(primeErr);
+        console.error(`[context-server] Session priming failed (non-fatal): ${msg}`);
+      }
     }
 
     // SK-004/TM-05: Auto-surface memories before dispatch (after validation)
@@ -922,7 +975,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request, _extra: unknown)
       name === 'memory_context' && validatedArgs.mode === 'resume';
 
     const autoSurfaceStart = Date.now();
-    if (MEMORY_AWARE_TOOLS.has(name)) {
+    if (MEMORY_AWARE_TOOLS.has(name) && memoryRuntimeAvailable) {
       const contextHint: string | null = extractContextHint(validatedArgs);
       if (contextHint) {
         try {
@@ -936,7 +989,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request, _extra: unknown)
           console.error(`[context-server] Auto-surface failed (non-fatal): ${msg}`);
         }
       }
-    } else {
+    } else if (memoryRuntimeAvailable) {
       try {
         autoSurfacedContext = await autoSurfaceAtToolDispatch(name, validatedArgs);
       } catch (surfaceErr: unknown) {
@@ -947,13 +1000,6 @@ server.setRequestHandler(CallToolRequestSchema, async (request, _extra: unknown)
     const autoSurfaceLatencyMs = Date.now() - autoSurfaceStart;
     if (autoSurfaceLatencyMs > 250) {
       console.warn(`[context-server] Auto-surface precheck exceeded p95 target: ${autoSurfaceLatencyMs}ms`);
-    }
-
-    // Ensure database is initialized (safe no-op if already done)
-    // P1-11 FIX: Module-level guard avoids redundant calls on every tool invocation
-    if (!dbInitialized) {
-      vectorIndex.initializeDb();
-      dbInitialized = true;
     }
 
     // T303: Dispatch to tool modules
@@ -974,7 +1020,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request, _extra: unknown)
 
     // REQ-014: Log follow_on_tool_use when a non-search tool is called after a recent search
     // Shadow-only: no ranking side effects. Fail-safe, never throws.
-    if (name !== 'memory_search' && name !== 'memory_context' && name !== 'session_health') {
+    if (isMemoryRuntimeInitialized() && name !== 'memory_search' && name !== 'memory_context' && name !== 'session_health') {
       try {
         const { logFollowOnToolUse } = await import('./lib/feedback/query-flow-tracker.js');
         const { requireDb } = await import('./utils/index.js');
@@ -1343,8 +1389,6 @@ let shuttingDown = false;
 // P1-09 FIX: Hoist transport to module scope so shutdown handlers can close it
 let transport: StdioServerTransport | null = null;
 let transportConnectedAt: string | null = null;
-// P1-11 FIX: Module-level guard to avoid redundant initializeDb() calls per tool invocation
-let dbInitialized = false;
 let fileWatcher: FSWatcher | null = null;
 
 /** Maximum time (ms) to wait for async cleanup before force-exiting. */
@@ -1491,11 +1535,11 @@ async function main(): Promise<void> {
 
   validateConfiguredEmbeddingsProvider();
 
-  console.error('[context-server] Initializing database...');
-  const startupDb = vectorIndex.initializeDb();
-  dbInitialized = true;
-  console.error('[context-server] Database initialized');
-  console.error('[context-server] Database path: ' + DATABASE_PATH);
+  registerInitTasks(async () => {
+    console.error('[context-server] Initializing database...');
+    const startupDb = vectorIndex.initializeDb();
+    console.error('[context-server] Database initialized');
+    console.error('[context-server] Database path: ' + DATABASE_PATH);
 
   try {
     const active = await ensureActiveEmbedder(startupDb, { timeoutMs: API_KEY_VALIDATION_TIMEOUT_MS });
@@ -1876,6 +1920,12 @@ async function main(): Promise<void> {
     throw err instanceof Error ? err : new Error(message);
   }
 
+    // Background startup scan
+    setImmediate(() => {
+      void startupScan(DEFAULT_BASE_PATH);
+    });
+  });
+
   // P1-09: Assign to module-level transport (not const) so shutdown handlers can close it
   if (isDynamicInitEnabled()) {
     try {
@@ -1896,10 +1946,6 @@ async function main(): Promise<void> {
   console.error(`[health] startup pid=${process.pid} rss=${rssMb}MB uptime=0s`);
   console.error('[context-server] Context MCP server running on stdio');
 
-  // Background startup scan
-  setImmediate(() => {
-    void startupScan(DEFAULT_BASE_PATH);
-  });
 }
 
 const isMain = process.argv[1] && decodeURIComponent(import.meta.url).endsWith(process.argv[1].replace(/\\/g, '/'));

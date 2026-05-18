@@ -13,6 +13,7 @@ import path from 'node:path';
 import { ALLOWED_BASE_PATHS, DATABASE_PATH, checkDatabaseUpdated } from '../core/index.js';
 import { MAX_INGEST_PATHS } from '../schemas/tool-input-schemas.js';
 import { createMCPSuccessResponse, createMCPErrorResponse } from '../lib/response/envelope.js';
+import { ensureMemoryRuntimeInitialized } from '../lib/runtime/memory-runtime-guard.js';
 import {
   createIngestJob,
   enqueueIngestJob,
@@ -140,6 +141,7 @@ function mapJobForResponse(job: IngestJob): Record<string, unknown> {
  * @returns MCP response with job ID and forecast
  */
 async function handleMemoryIngestStart(args: MemoryIngestStartArgs): Promise<MCPResponse> {
+  await ensureMemoryRuntimeInitialized('handler:memory_ingest_start');
   await checkDatabaseUpdated();
   const governanceDecision = validateGovernedIngest(args);
   if (!governanceDecision.allowed) {
@@ -292,6 +294,7 @@ async function handleMemoryIngestStart(args: MemoryIngestStartArgs): Promise<MCP
 }
 
 async function handleMemoryIngestStatus(args: MemoryIngestStatusArgs): Promise<MCPResponse> {
+  await ensureMemoryRuntimeInitialized('handler:memory_ingest_status');
   await checkDatabaseUpdated();
 
   if (!args.jobId || typeof args.jobId !== 'string') {
@@ -321,6 +324,7 @@ async function handleMemoryIngestStatus(args: MemoryIngestStatusArgs): Promise<M
 }
 
 async function handleMemoryIngestCancel(args: MemoryIngestCancelArgs): Promise<MCPResponse> {
+  await ensureMemoryRuntimeInitialized('handler:memory_ingest_cancel');
   await checkDatabaseUpdated();
 
   if (!args.jobId || typeof args.jobId !== 'string') {

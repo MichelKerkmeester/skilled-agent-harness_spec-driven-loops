@@ -28,6 +28,7 @@ import * as attentionDecay from '../lib/cognitive/attention-decay.js';
 import * as tierClassifier from '../lib/cognitive/tier-classifier.js';
 import type { TierInput, StateStats } from '../lib/cognitive/tier-classifier.js';
 import * as coActivation from '../lib/cognitive/co-activation.js';
+import { ensureMemoryRuntimeInitialized } from '../lib/runtime/memory-runtime-guard.js';
 
 // REQ-019: Standardized Response Structure
 import { createMCPSuccessResponse, createMCPEmptyResponse, createMCPErrorResponse } from '../lib/response/envelope.js';
@@ -183,6 +184,7 @@ async function getTieredContent(
 
 /** Handle memory_match_triggers tool - matches prompt against trigger phrases with cognitive decay */
 async function handleMemoryMatchTriggers(args: TriggerArgs): Promise<MCPResponse> {
+  await ensureMemoryRuntimeInitialized('handler:memory_match_triggers');
   const {
     prompt,
     limit: rawLimit = 3,

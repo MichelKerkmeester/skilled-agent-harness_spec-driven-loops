@@ -4,6 +4,7 @@
 
 import { checkDatabaseUpdated } from '../core/index.js';
 import { createMCPSuccessResponse } from '../lib/response/envelope.js';
+import { ensureMemoryRuntimeInitialized } from '../lib/runtime/memory-runtime-guard.js';
 import { get_db } from '../lib/search/vector-index-store.js';
 import { ensureVecTableForDim, getManifest } from '../lib/embedders/index.js';
 import { createLogger } from '../lib/utils/logger.js';
@@ -51,6 +52,7 @@ export class UnknownEmbedderError extends Error {
 // -------------------------------------------------------------------
 
 export async function handleEmbedderSet(args: EmbedderSetArgs): Promise<MCPResponse> {
+  await ensureMemoryRuntimeInitialized('handler:embedder_set');
   const startTime = Date.now();
   await checkDatabaseUpdated();
 
