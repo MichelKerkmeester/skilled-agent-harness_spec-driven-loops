@@ -15,7 +15,7 @@ _memory:
     next_safe_action: "Implement resolver after local and upstream dependencies merge"
     blockers:
       - "system-spec-kit/027-xce-research-based-refinement/008-code-graph-trace/001-contract"
-      - "system-spec-kit/027-xce-research-based-refinement/007-code-graph-hld-lld/002-lib-impl"
+      - "system-spec-kit/027-xce-research-based-refinement/005-code-graph-hld-lld/002-lib-impl"
     key_files: ["spec.md", "tasks.md", "checklist.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"

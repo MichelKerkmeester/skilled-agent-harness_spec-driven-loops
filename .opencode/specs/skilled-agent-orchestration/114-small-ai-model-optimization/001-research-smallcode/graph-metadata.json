@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/114-small-ai-model-optimization/001-research-smallcode",
+  "spec_folder": "skilled-agent-orchestration/114-small-ai-model-optimization/001-research-smallcode",
+  "parent_id": "skilled-agent-orchestration/114-small-ai-model-optimization",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "smallcode-master deep research",
+      "small-model patterns research",
+      "swe-1.6 dogfood loop",
+      "budget engine adoption research",
+      "skill architecture research smallcode",
+      "smallcode research plan",
+      "deep-research workflow plan",
+      "RQ tracking grid",
+      "swe-1.6 dogfood plan",
+      "smallcode research tasks",
+      "deep-research task list",
+      "swe-1.6 dogfood tasks"
+    ],
+    "key_topics": [
+      "smallcode-master",
+      "deep",
+      "research",
+      "small-model",
+      "patterns",
+      "swe-1",
+      "dogfood",
+      "loop",
+      "budget",
+      "engine",
+      "adoption",
+      "skill"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "research/research.md",
+      "research/deep-research-state.jsonl",
+      "decision-record.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "spec.md",
+      ".opencode/skills/cli-devin/SKILL.md",
+      ".opencode/skills/cli-opencode/SKILL.md",
+      ".opencode/skills/sk-prompt/SKILL.md",
+      "research/deep-research-config.json",
+      "implementation-summary.md",
+      ".opencode/skills/sk-prompt/assets/cli_prompt_quality_card.md",
+      ".opencode/skills/cli-devin/assets/agent-config-deep-research-iter.json",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/post-dispatch-validate.ts"
+    ],
+    "entities": [
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/deep-research-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-devin/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-config.json",
+        "kind": "config",
+        "path": "research/deep-research-config.json",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli_prompt_quality_card.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-prompt/assets/cli_prompt_quality_card.md",
+        "source": "derived"
+      },
+      {
+        "name": "agent-config-deep-research-iter.json",
+        "kind": "config",
+        "path": ".opencode/skills/cli-devin/assets/agent-config-deep-research-iter.json",
+        "source": "derived"
+      },
+      {
+        "name": "post-dispatch-validate.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/post-dispatch-validate.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Run",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Dogfood",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Autonomous",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Mine the external `smallcode-master` corpus (MIT, terminal-native AI coding agent purpose-built for 7B–20B local models, 87% single-file success on Gemma 4 4B-active) for runtime patterns that small models like SWE-1.6 need to produce reliable output. Dogfood the research on cli-devin SWE-1.6 across 20 deep-research iterations against 5 locked research questions (context budget engine, output verification pipeline, per-model profiles + escalation, structured permissions, skill architecture). Synthesize `research/research.md` with per-RQ candidate skill-deltas (file paths + acceptance criteria) ready to spawn follow-on remediation packets. The dogfood policy itself validates RQ1's budget-engine thesis in flight, since SWE-1.6's smaller context window forces every iteration to cite the preflight context-card rather than re-read smallcode source from scratch.",
+    "created_at": "2026-05-18T09:01:17.095Z",
+    "last_save_at": "2026-05-18T15:17:56.787Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ]
+  }
+}

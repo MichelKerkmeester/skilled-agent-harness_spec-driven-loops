@@ -14,7 +14,7 @@ contextType: "implementation"
 
 ## 2026-04-19
 
-> Spec folder: `026-graph-and-context-optimization/006-skill-advisor/004-skill-advisor-hook-surface/review/004-skill-advisor-hook-surface-tier2-pt-01` (Level 2)
+> Spec folder: `026-graph-and-context-optimization/006-skill-advisor/004-advisor-hook-surface-integration/review/004-advisor-hook-surface-integration-tier2-pt-01` (Level 2)
 > Parent packet: `026-graph-and-context-optimization/006-skill-advisor`
 
 ### Summary
@@ -35,7 +35,7 @@ None - review-only phase.
 
 ### Verification
 
-- Review report: `review/004-skill-advisor-hook-surface-tier2-pt-01/review-report.md`
+- Review report: `review/004-advisor-hook-surface-integration-tier2-pt-01/review-report.md`
 - Findings: 0 P0, 2 P1, 1 P2
 - P1-001: Copilot advisor brief is one prompt late (not current-turn equivalent).
 - P1-002: Release evidence claims completion while Level 3 checklist remains fully unchecked.

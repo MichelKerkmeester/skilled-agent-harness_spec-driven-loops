@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/041-sk-recursive-agent-loop/005-sk-recursive-agent-package-runtime-alignment",
-  "spec_folder": "skilled-agent-orchestration/041-sk-recursive-agent-loop/005-sk-recursive-agent-package-runtime-alignment",
-  "parent_id": "skilled-agent-orchestration/041-sk-recursive-agent-loop",
+  "packet_id": "skilled-agent-orchestration/z_archive/041-sk-recursive-agent-loop/005-sk-recursive-agent-package-runtime-alignment",
+  "spec_folder": "skilled-agent-orchestration/z_archive/041-sk-recursive-agent-loop/005-sk-recursive-agent-package-runtime-alignment",
+  "parent_id": "skilled-agent-orchestration/z_archive/041-sk-recursive-agent-loop",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -40,8 +40,6 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-improve-agent/SKILL.md",
-      ".opencode/skills/sk-improve-agent/README.md",
       ".opencode/specs/descriptions.json",
       "spec.md",
       "plan.md",
@@ -50,18 +48,6 @@
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-improve-agent/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-improve-agent/README.md",
-        "source": "derived"
-      },
       {
         "name": "descriptions.json",
         "kind": "config",
@@ -193,11 +179,23 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "After phase `004`, the agent-improver workflow was functionally strong, but the package still had a stricter alignment gap against the `sk-doc` templates. The source package docs were valid but not template-faithful enough, the mutator agent still used the old `agent-improvement-loop` name across runtimes, the command body and wrappers still reflected an older command shape, and the `.agents/skills/sk-improve-agent` mirror had not been resynchronized to the corrected source package.",
     "created_at": "2026-04-12T09:02:50.187Z",
-    "last_save_at": "2026-04-26T09:17:15.224Z",
+    "last_save_at": "2026-05-18T15:17:56.862Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -14,8 +14,8 @@ contextType: "implementation"
 
 ## 2026-04-22
 
-> Spec folder: `026-graph-and-context-optimization/007-hook-parity/002-copilot-hook-parity-remediation/research/007-deep-review-remediation-pt-01` (Level 2)
-> Parent packet: `026-graph-and-context-optimization/007-hook-parity/002-copilot-hook-parity-remediation`
+> Spec folder: `026-graph-and-context-optimization/007-hook-parity/002-copilot-custom-instructions-hook-parity/research/001-copilot-hook-gap-deep-review-remediation` (Level 2)
+> Parent packet: `026-graph-and-context-optimization/007-hook-parity/002-copilot-custom-instructions-hook-parity`
 
 ### Summary
 
@@ -35,8 +35,8 @@ None. Research-only phase.
 
 ### Verification
 
-- Review report at `002-copilot-hook-parity-remediation/review/002-copilot-hook-parity-remediation-tier2-pt-01/review-report.md`.
-- Research artifacts at `002-copilot-hook-parity-remediation/research/007-deep-review-remediation-pt-01/`.
+- Review report at `002-copilot-custom-instructions-hook-parity/review/002-copilot-custom-instructions-hook-parity-tier2-pt-01/review-report.md`.
+- Research artifacts at `002-copilot-custom-instructions-hook-parity/research/001-copilot-hook-gap-deep-review-remediation/`.
 - Findings informed the Outcome B decision in the parent implementation phase.
 
 ### Files Changed

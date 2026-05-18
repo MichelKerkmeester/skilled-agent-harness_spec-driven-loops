@@ -4,14 +4,14 @@ Runtime wiring, compliance checks, alignment reviews, sweeps. Hosts the absorbed
 
 ## Children (8)
 
-- `001-tanstack-security-audit`
-- `002-w3-w7-runtime-wiring-and-audit`
-- `003-doc-truth-pass`
-- `004-code-graph-watcher-retraction`
-- `005-memory-retention-sweep`
-- `006-full-matrix-execution-validation`
-- `007-runtime-command-agent-alignment-review`
-- `008-drift-finding-fixes`
+- `001-dependency-security-supply-chain-audit`
+- `002-runtime-wiring-enterprise-readiness-audit`
+- `003-documentation-truth-validation`
+- `004-code-graph-watcher-claim-retraction`
+- `005-memory-retention-policy-sweep`
+- `006-runtime-matrix-execution-validation`
+- `007-runtime-command-agent-alignment-audit`
+- `008-audit-drift-findings-remediation`
 
 ## Provenance
 

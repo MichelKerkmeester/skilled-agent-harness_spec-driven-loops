@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/097-cli-opencode-stdin-fix",
-  "spec_folder": "skilled-agent-orchestration/097-cli-opencode-stdin-fix",
+  "packet_id": "skilled-agent-orchestration/z_archive/097-cli-opencode-stdin-fix",
+  "spec_folder": "skilled-agent-orchestration/z_archive/097-cli-opencode-stdin-fix",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -15,31 +15,105 @@
       "opencode run hangs",
       "opencode dev null stdin",
       "opencode background dispatch hang",
-      "cli-opencode automation hang"
+      "cli-opencode automation hang",
+      "097 resource map",
+      "cli-opencode stdin fix paths",
+      "dev null fix file ledger"
     ],
     "key_topics": [
-      "feature",
-      "specification",
+      "097",
       "cli-opencode",
+      "stdin",
+      "fix",
+      "opencode",
+      "run",
+      "hangs",
       "dev",
       "null",
-      "stdin-redirect",
-      "fix"
+      "background",
+      "dispatch",
+      "hang"
     ],
     "importance_tier": "important",
-    "status": "in-progress",
+    "status": "in_progress",
     "key_files": [
-      "spec.md",
-      "plan.md",
-      "tasks.md",
-      "checklist.md",
       ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml",
       ".opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml",
       ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml",
       ".opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml",
-      ".opencode/skills/cli-opencode/SKILL.md"
+      ".opencode/skills/cli-opencode/SKILL.md",
+      ".opencode/skills/cli-opencode/references/integration_patterns.md",
+      ".opencode/skills/cli-opencode/references/cli_reference.md",
+      ".opencode/skills/cli-opencode/assets/prompt_templates.md",
+      ".opencode/skills/cli-opencode/README.md",
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "resource-map.md"
     ],
     "entities": [
+      {
+        "name": "spec_kit_deep-research_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "spec_kit_deep-research_confirm.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "spec_kit_deep-review_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "spec_kit_deep-review_confirm.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-opencode/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "integration_patterns.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-opencode/references/integration_patterns.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli_reference.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-opencode/references/cli_reference.md",
+        "source": "derived"
+      },
+      {
+        "name": "prompt_templates.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-opencode/assets/prompt_templates.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-opencode/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -65,24 +139,78 @@
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
+        "name": "resource-map.md",
         "kind": "doc",
-        "path": "implementation-summary.md",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Redirect Fix",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Barter",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Constraints",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Track",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "yaml",
+        "kind": "technology",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "stdout",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "diff",
+        "kind": "key_phrase",
+        "path": "plan.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "Feature Specification: cli-opencode `</dev/null` Stdin-Redirect Fix",
+    "causal_summary": "This fix adds **`</dev/null`** as a permanent rule across all automation surfaces that dispatch `opencode run` non-interactively. Touched files: 4 YAML workflow files (deep-research auto/confirm + deep-review auto/confirm), the `cli-opencode` skill (SKILL.md, README.md, references/cli_reference.md, references/integration_patterns.md, assets/prompt_templates.md), and 2 stress-test `dispatch-cli-opencode.sh` scripts. The Barter sibling repo's mirrored cli-opencode skill is included where present.",
     "created_at": "2026-05-08T13:30:00Z",
-    "last_save_at": "2026-05-08T13:30:00Z",
+    "last_save_at": "2026-05-18T15:17:57.069Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md"
-    ],
-    "completion_pct": 0
-  },
-  "importance_tier": "important"
+      "implementation-summary.md",
+      "resource-map.md"
+    ]
+  }
 }

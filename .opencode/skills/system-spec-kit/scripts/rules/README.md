@@ -173,7 +173,7 @@ Main flow:
 Run from the repository root:
 
 ```bash
-.opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/026-readme-code-template --strict
+.opencode/skills/system-spec-kit/scripts/spec/validate.sh <spec-folder> --strict
 python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/system-spec-kit/scripts/rules/README.md
 ```
 

@@ -1,20 +1,13 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/004-track-rereview",
-  "spec_folder": "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/004-track-rereview",
-  "parent_id": "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural",
+  "packet_id": "skilled-agent-orchestration/z_archive/096-rename-opencode-dirs-to-plural/004-track-rereview",
+  "spec_folder": "skilled-agent-orchestration/z_archive/096-rename-opencode-dirs-to-plural/004-track-rereview",
+  "parent_id": "skilled-agent-orchestration/z_archive/096-rename-opencode-dirs-to-plural",
   "children_ids": [],
-  "migrated": false,
-  "migration_source": null,
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      "skilled-agent-orchestration/093-testing-playbooks-code-review-and-git",
-      "skilled-agent-orchestration/094-playbook-prompt-naturalness",
-      "skilled-agent-orchestration/095-sk-code-review-playbook-execution",
-      "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural",
-      "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/002-track-review",
-      "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/003-remediation"
-    ],
+    "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
@@ -30,7 +23,8 @@
       "099 tasks track rereview",
       "deep-review tasks 093-098",
       "099 checklist track rereview",
-      "deep-review checklist 093-098"
+      "deep-review checklist 093-098",
+      "099 implementation summary"
     ],
     "key_topics": [
       "099",
@@ -48,28 +42,14 @@
     ],
     "importance_tier": "important",
     "status": "complete",
-    "completion_pct": 100,
-    "verdict": "FAIL",
-    "stop_reason": "maxIterationsReached",
-    "convergence_score": 1.0,
-    "active_findings": {
-      "P0": 0,
-      "P1": 13,
-      "P2": 6
-    },
-    "session_outcome": "deep_review_converged_verdict_fail_verdict_flip_refuted",
-    "is_phase_parent": false,
-    "level": 2,
     "key_files": [
-      ".opencode/specs/skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/004-track-rereview/review/review-report.md",
-      ".opencode/specs/skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/004-track-rereview/review/resource-map.md",
-      "review/review-report.md",
       "review/resource-map.md",
+      "review/review-report.md",
+      "implementation-summary.md",
       ".opencode/skills/system-spec-kit/shared/review-research-paths.cjs",
       ".opencode/skills/deep-review/scripts/reduce-state.cjs",
       "spec.md",
       "plan.md",
-      ".opencode/specs/skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/002-track-review/review/review-report.md",
       "review/deep-review-dashboard.md",
       "tasks.md",
       "checklist.md"
@@ -78,7 +58,13 @@
       {
         "name": "review-report.md",
         "kind": "doc",
-        "path": ".opencode/specs/skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/004-track-rereview/review/review-report.md",
+        "path": "review/review-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -212,24 +198,19 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "evidence",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Packet 097 (track-review of 093-096) converged with verdict FAIL on 2026-05-07: 1 active P0 (live",
     "created_at": "2026-05-07T19:05:00Z",
-    "last_save_at": "2026-05-07T18:09:01.043Z",
-    "save_lineage": "same_pass",
+    "last_save_at": "2026-05-18T15:17:57.061Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ]
   }
 }

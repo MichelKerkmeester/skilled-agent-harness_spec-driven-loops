@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/078-opencode-authoring-recipe",
-  "spec_folder": "skilled-agent-orchestration/078-opencode-authoring-recipe",
+  "packet_id": "skilled-agent-orchestration/z_archive/078-opencode-authoring-recipe",
+  "spec_folder": "skilled-agent-orchestration/z_archive/078-opencode-authoring-recipe",
   "parent_id": null,
   "children_ids": [
-    "skilled-agent-orchestration/078-opencode-authoring-recipe/001-sk-code-authoring",
-    "skilled-agent-orchestration/078-opencode-authoring-recipe/002-spec-kit-load",
-    "skilled-agent-orchestration/078-opencode-authoring-recipe/003-coco-priority",
-    "skilled-agent-orchestration/078-opencode-authoring-recipe/004-validator-cleanup"
+    "skilled-agent-orchestration/z_archive/078-opencode-authoring-recipe/001-sk-code-authoring",
+    "skilled-agent-orchestration/z_archive/078-opencode-authoring-recipe/002-spec-kit-load",
+    "skilled-agent-orchestration/z_archive/078-opencode-authoring-recipe/003-coco-priority",
+    "skilled-agent-orchestration/z_archive/078-opencode-authoring-recipe/004-validator-cleanup"
   ],
   "manual": {
     "depends_on": [],
@@ -84,7 +84,7 @@
     ],
     "causal_summary": "The 077 deep-research audit surfaced 22 P1 + 20 P2 findings across system-spec-kit, mcp-coco-index, and sk-code OpenCode side. The findings cluster into 4 dependent stages: sk-code OpenCode authoring assets are missing (Phase 1 = foundation), `/spec_kit:complete` loads sk-code at review-time not authoring-time (Phase 2 = integration), CocoIndex canonical-priority semantics are missing (Phase 3 = indexing), and system-spec-kit validator + MCP tool registry drift remains (Phase 4 = cleanup). Bundling them loses the dependency signal; splitting them into 4 child phases preserves the sequence.",
     "created_at": "2026-05-05T17:36:51Z",
-    "last_save_at": "2026-05-05T19:14:21.713Z",
+    "last_save_at": "2026-05-18T15:17:57.005Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

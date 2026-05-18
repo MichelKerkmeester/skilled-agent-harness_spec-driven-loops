@@ -100,7 +100,7 @@ PRE-BOUND SETUP ANSWERS:
   agent_name: quality-gate  # kebab-case string
   agent_path: .opencode/agents/  # runtime agent directory path
   spec_choice: new  # existing | new | update-related | skip
-  spec_path: .opencode/specs/103-example/001-quality-gate/  # explicit path when applicable
+  spec_path: <spec-folder>  # explicit path when applicable
   execution_mode: AUTONOMOUS  # from :auto suffix
   memory_choice: skip  # latest | recent3 | skip | n/a
 ```

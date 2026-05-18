@@ -39,7 +39,7 @@ The user-visible contract is concrete: Verify council_graph_upsert returns expli
 |------|-------|
 | `manual_testing_playbook/08--council-graph-integration/002-council-graph-upsert-empty-input-no-op-success.md` | Manual scenario contract |
 | `.opencode/skills/system-spec-kit/mcp_server/tests/council-graph.vitest.ts` | Test: "treats empty upsert as an explicit no-op success" |
-| `.opencode/specs/skilled-agent-orchestration/101-deep-multi-ai-council-skill/003-deep-ai-council-graph-support/checklist.md` | CHK-020 lists this behavior |
+| Internal design notes | CHK-020 lists this behavior |
 
 ---
 

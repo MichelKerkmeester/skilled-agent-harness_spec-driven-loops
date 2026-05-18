@@ -12,22 +12,22 @@
   "priority": "P1",
   "createdAt": "2026-05-12T00:00:00Z",
   "branch": "main",
-  "parent_id": "system-spec-kit/027-xce-research-based-refinement/007-code-graph-hld-lld",
+  "parent_id": "system-spec-kit/027-xce-research-based-refinement/005-code-graph-hld-lld",
   "manual": {
     "depends_on": [
-      "system-spec-kit/027-xce-research-based-refinement/007-code-graph-hld-lld/001-contract"
+      "system-spec-kit/027-xce-research-based-refinement/005-code-graph-hld-lld/001-contract"
     ]
   },
   "soft_depends_on": [
-    "system-spec-kit/027-xce-research-based-refinement/007-code-graph-hld-lld/002-lib-impl",
-    "system-spec-kit/027-xce-research-based-refinement/007-code-graph-hld-lld/003-handler"
+    "system-spec-kit/027-xce-research-based-refinement/005-code-graph-hld-lld/002-lib-impl",
+    "system-spec-kit/027-xce-research-based-refinement/005-code-graph-hld-lld/003-handler"
   ],
   "derived": {
     "status": "spec-scaffolded",
     "completion_pct": 0,
     "last_active_child_id": null
   },
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/007-code-graph-hld-lld/004-test",
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-code-graph-hld-lld/004-test",
   "description": "code-graph-hld-lld.vitest.ts test suite verifying classifier behavior against the published contract.",
   "keywords": [
     "hld-lld",

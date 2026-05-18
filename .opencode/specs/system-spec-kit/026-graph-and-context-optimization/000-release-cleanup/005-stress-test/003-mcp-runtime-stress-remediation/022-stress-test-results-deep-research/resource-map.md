@@ -40,8 +40,8 @@ _memory:
 | `research/research-report.md` | Created | OK | 9-section synthesis + Planning Packet |
 | `research/deep-research-strategy.md` | Created | OK | Iteration focus map |
 | iteration files (5 sibling files in research/iterations/) | Created | OK | Per-iter externalized findings (5 files) |
-| `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/021-stress-test-v1-0-3-with-w3-w13-wiring/findings-v1-0-3.md` | Cited | OK | Phase H source evidence |
-| `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/010-stress-test-rerun-v1-0-2/findings.md` | Cited | OK | v1.0.2 baseline comparison |
+| `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/021-stress-test-enterprise-wiring-expansion/findings-v1-0-3.md` | Cited | OK | Phase H source evidence |
+| `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/010-stress-test-close-loop-measurement-rerun/findings.md` | Cited | OK | v1.0.2 baseline comparison |
 
 ---
 

@@ -24,9 +24,9 @@ The `system-code-graph` skill is referenced under five different identifiers dep
 
 ### Key sources
 
-- ADR-001 (`007-code-graph/013-system-code-graph-extraction/`): MCP server name stability.
-- ADR-002 (`007-code-graph/014-design-and-decision-record/`): Skill folder slug + database path policy.
-- Cross-runtime consolidation packet (`007-code-graph/019-system-code-graph-uplift/`): launcher and shared-data-dir rename rationale.
+- ADR-001 (`005-code-graph/013-system-code-graph-extraction/`): MCP server name stability.
+- ADR-002 (`005-code-graph/014-design-and-decision-record/`): Skill folder slug + database path policy.
+- Cross-runtime consolidation packet (`005-code-graph/019-system-code-graph-uplift/`): launcher and shared-data-dir rename rationale.
 
 ---
 

@@ -42,7 +42,7 @@ _memory:
 | **Status** | scaffolded |
 | **Created** | 2026-05-12 |
 | **Parent Packet** | `system-spec-kit/027-xce-research-based-refinement/009-code-graph-impact-analysis` |
-| **Depends On** | `001-contract`; `system-spec-kit/027-xce-research-based-refinement/007-code-graph-hld-lld/002-lib-impl` |
+| **Depends On** | `001-contract`; `system-spec-kit/027-xce-research-based-refinement/005-code-graph-hld-lld/002-lib-impl` |
 <!-- /ANCHOR:metadata -->
 
 ---

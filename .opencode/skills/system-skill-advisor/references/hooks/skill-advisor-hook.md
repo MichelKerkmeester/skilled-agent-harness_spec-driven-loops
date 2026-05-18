@@ -249,4 +249,4 @@ Manual scenarios live in the Skill Advisor playbook:
 
 ---
 
-<!-- Source canonicalized from .opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook.md on 2026-05-16 (packet system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/005-docs/004-docs-quality-refactor/002). Keep in sync. -->
+<!-- Source canonicalized from .opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook.md on 2026-05-16. Keep in sync. -->

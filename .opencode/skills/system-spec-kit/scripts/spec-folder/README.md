@@ -111,7 +111,7 @@ npm --prefix .opencode/skills/system-spec-kit/scripts run build
 Expected result: TypeScript compiles and emits `scripts/dist/spec-folder/` files.
 
 ```bash
-node .opencode/skills/system-spec-kit/scripts/dist/spec-folder/nested-changelog.js .opencode/specs/system-spec-kit/example-parent/example-child
+node .opencode/skills/system-spec-kit/scripts/dist/spec-folder/nested-changelog.js <spec-folder>
 ```
 
 Expected result: prints nested changelog data for the supplied packet path when the path exists.

@@ -45,7 +45,7 @@ _memory:
 | **Branch** | `scaffold/021-cross-skill-doc-polish` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 21 of 21 |
-| **Predecessor** | 020-system-code-graph-doc-alignment |
+| **Predecessor** | 020-doc-drift-alignment |
 | **Successor** | None |
 | **Handoff Criteria** | [To be defined during planning] |
 <!-- /ANCHOR:metadata -->

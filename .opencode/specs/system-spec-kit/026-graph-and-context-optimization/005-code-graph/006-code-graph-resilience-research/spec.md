@@ -46,7 +46,7 @@ _memory:
 | **Type** | Research packet (deep-research loop target) |
 | **Parent** | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/` |
 | **Parent Spec** | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/spec.md` |
-| **Related** | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/005-code-graph-doctor-command/` (gates Phase B of that packet) |
+| **Related** | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/005-doctor-diagnostic-command-phase-a/` (gates Phase B of that packet) |
 <!-- /ANCHOR:metadata -->
 
 ---

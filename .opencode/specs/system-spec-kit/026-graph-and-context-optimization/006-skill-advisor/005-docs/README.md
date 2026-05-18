@@ -4,8 +4,8 @@ Code-folder readmes, docs/code alignment.
 
 ## Children (2)
 
-- `001-docs-and-code-alignment`
-- `002-code-folder-readmes`
+- `001-documentation-code-alignment`
+- `002-code-folder-readme-coverage`
 
 ## Provenance
 

@@ -85,12 +85,12 @@ prior findings with the real `BLOCKED_BY_TEST_SANDBOX` cause.
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `../016-hook-plugin-per-runtime-testing/runners/common.ts` | Modify | Add sandbox detection, `SKIPPED_SANDBOX`, root resolution, and run-output path. |
-| `../016-hook-plugin-per-runtime-testing/runners/run-all-runtime-hooks.ts` | Modify | Detect sandbox once, pass it to adapters, and print aggregate verdict. |
-| `../016-hook-plugin-per-runtime-testing/runners/test-*.ts` | Modify | Emit direct-smoke and live-cli cells separately. |
-| `../016-hook-plugin-per-runtime-testing/runners/README.md` | Modify | Document operator live mode and sandbox partial mode. |
+| `../016-runtime-hook-plugin-testing/runners/common.ts` | Modify | Add sandbox detection, `SKIPPED_SANDBOX`, root resolution, and run-output path. |
+| `../016-runtime-hook-plugin-testing/runners/run-all-runtime-hooks.ts` | Modify | Detect sandbox once, pass it to adapters, and print aggregate verdict. |
+| `../016-runtime-hook-plugin-testing/runners/test-*.ts` | Modify | Emit direct-smoke and live-cli cells separately. |
+| `../016-runtime-hook-plugin-testing/runners/README.md` | Modify | Document operator live mode and sandbox partial mode. |
 | `.opencode/skills/system-spec-kit/mcp_server/package.json` | Modify | Add `hook-tests` script using the local TS loader. |
-| `../016-hook-plugin-per-runtime-testing/findings.md` | Modify | Add corrected amendment while preserving original verdict. |
+| `../016-runtime-hook-plugin-testing/findings.md` | Modify | Add corrected amendment while preserving original verdict. |
 | `methodology-correction.md` | Create | Document root cause and corrected operator path. |
 <!-- /ANCHOR:scope -->
 

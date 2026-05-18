@@ -1,0 +1,17 @@
+{
+  "specFolder": "010-skill-id-field-rename",
+  "description": "Align system-skill-advisor graph skill id with extracted folder name and close graph-health/parity failures.",
+  "keywords": [
+    "skill-id-rename",
+    "system-skill-advisor",
+    "graph-health",
+    "advisor parity"
+  ],
+  "lastUpdated": "2026-05-14T16:14:46.828Z",
+  "specId": "010",
+  "folderSlug": "skill-id-rename",
+  "parentChain": [],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

@@ -1,0 +1,22 @@
+{
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-mcp-runtime-stress-remediation/014-code-graph-status-readiness-snapshot",
+  "description": "Feature Specification: code_graph_status read-only readiness snapshot",
+  "keywords": [
+    "feature",
+    "specification",
+    "read-only",
+    "readiness",
+    "snapshot"
+  ],
+  "lastUpdated": "2026-05-08T08:26:57.182Z",
+  "specId": "014",
+  "folderSlug": "graph-status-readiness-snapshot",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "000-release-cleanup",
+    "003-mcp-runtime-stress-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

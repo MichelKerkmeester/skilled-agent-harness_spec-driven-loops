@@ -50,7 +50,7 @@ This packet captures the current full-suite vitest baseline, classifies every fa
 
 - [x] Spec identifies scope, constraints, and forbidden Unit A files.
 - [x] Four-bucket triage taxonomy is defined in `spec.md`.
-- [x] Follow-up placeholder format is approved: `026/000/002-vitest-recovery-followup`.
+- [x] Follow-up placeholder format is approved: `026/000/002-vitest-baseline-recovery-followup`.
 - [x] Changelog replacement policy is approved.
 
 ### Definition of Done

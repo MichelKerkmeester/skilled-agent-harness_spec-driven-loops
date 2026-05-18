@@ -238,7 +238,7 @@ Co-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>
 
 Original:
 ```
-111 W3.A: author phase-parent base files for 008-skill-advisor/004-hardening
+111 W3.A: author phase-parent base files for 006-skill-advisor/004-hardening
 
 cli-devin SWE-1.6 dispatched. Test of W3.A protocol on smallest
 sub-phase (3 children) before fanning out to remaining 10.
@@ -248,7 +248,7 @@ Co-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>
 
 Rewritten:
 ```
-scaffold(008-skill-advisor/004-hardening): author phase-parent base files
+scaffold(006-skill-advisor/004-hardening): author phase-parent base files
 
 cli-devin SWE-1.6 dispatched. Test of W3.A protocol on smallest
 sub-phase (3 children) before fanning out to remaining 10.

@@ -37,9 +37,9 @@ The external CLI receives this verbatim:
 ```
 You are <external-CLI>. I am Claude orchestrating a Memory MCP causal-graph validation. The local LLM (EmbeddingGemma via llama-cpp) is the embedding backbone.
 
-1. Write three canonical research-doc files under `.opencode/specs/_sandbox/`. memory_save requires `filePath` to a canonical spec doc; the directory containing the file becomes its spec-folder for grouping.
+1. Write three canonical research-doc files under `<spec-folder>`. memory_save requires `filePath` to a canonical spec doc; the directory containing the file becomes its spec-folder for grouping.
 
-   File A — `.opencode/specs/_sandbox/24-411-A/research.md` (problem):
+   File A — `<spec-folder>` (problem):
      ---
      title: "Stale results after provider switch"
      description: "Causal chain test — problem step (scenario 411)."
@@ -47,7 +47,7 @@ You are <external-CLI>. I am Claude orchestrating a Memory MCP causal-graph vali
      ---
      Memory MCP semantic search returns stale results after a provider switch from hf-local to llama-cpp. Symptoms: top-K contains pre-migration entries with mismatched dimensions.
 
-   File B — `.opencode/specs/_sandbox/24-411-B/research.md` (root cause):
+   File B — `<spec-folder>` (root cause):
      ---
      title: "Embedding dimension mismatch after switch"
      description: "Causal chain test — root cause step (scenario 411)."
@@ -55,7 +55,7 @@ You are <external-CLI>. I am Claude orchestrating a Memory MCP causal-graph vali
      ---
      Provider switches change the embedding dimension and base model. Vectors stored with the old provider are dimensionally incompatible with new queries. The vector-index-store correctly refuses the mismatch but falls back to FTS5, which returns the stale lexical hits.
 
-   File C — `.opencode/specs/_sandbox/24-411-C/research.md` (mitigation):
+   File C — `<spec-folder>` (mitigation):
      ---
      title: "Auto-migration on provider switch"
      description: "Causal chain test — mitigation step (scenario 411)."
@@ -124,7 +124,7 @@ mcp__mk_spec_memory__memory_delete({ parent_id: C_ID })
 
 Then remove the on-disk test files:
 ```
-rm -rf .opencode/specs/_sandbox/24-411-A .opencode/specs/_sandbox/24-411-B .opencode/specs/_sandbox/24-411-C
+rm -rf <spec-folder> <spec-folder> <spec-folder>
 ```
 
 Memory delete also removes the causal edges attached to those memories.

@@ -5,8 +5,16 @@
     "Stay read-only. Never propose file mutations. Cite evidence with file:line.",
     "Honor the per-iter scoped research question stated in the prompt body.",
     "Produce the iteration-NNN.md output shape the iter template requires.",
-    "Stop conditions: emit the required output then exit. Do not request further input."
+    "Stop conditions: emit the required output then exit. Do not request further input.",
+    "Verification contract: verification_enabled defaults false. When an operator sets verification_enabled to true, produce code blocks with accurate language fences from verification_languages and expect post-dispatch validation to apply the output-verification rubric.",
+    "Bayesian scoring contract: bayesian_scoring_enabled defaults false. When true, track each tool call's success/failure to bayesian_score_file relative to the spec folder. Use Laplace smoothing: score = (success + 1) / (total + 2). If a tool's score < 0.5 after >=3 calls, demote it by skipping suggestions for that tool in the next iter.",
+    "Fallback contract: fallback_chain defaults to []. If populated, it is one step max and must consult sk-prompt/assets/model-profiles.json fallback_target semantics. Same-pool fallback is rejected; missing separate-pool fallback fails fast."
   ],
+  "verification_enabled": false,
+  "verification_languages": [],
+  "bayesian_scoring_enabled": false,
+  "bayesian_score_file": "research/agent-state/tool-scores-iter-NNN.json",
+  "fallback_chain": [],
   "allowed_tools": [
     "Read",
     "Grep",
@@ -20,6 +28,7 @@
       "mcp__sequential_thinking__*",
       "Write(<packet-root>/research/iterations/iteration-*.md)",
       "Write(<packet-root>/research/deep-research-state.jsonl)",
+      "Write(<packet-root>/research/agent-state/tool-scores-iter-*.json)",
       "Exec(rg)",
       "Exec(grep)",
       "Exec(git)",

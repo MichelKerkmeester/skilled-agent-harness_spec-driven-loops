@@ -9,7 +9,7 @@ description: "Argv-positional /doctor router that dispatches to per-subsystem YA
 
 `/doctor <target>` is the single entry point for per-subsystem maintenance diagnostics in the spec-kit ecosystem. It dispatches to one of seven subsystem YAML workflows (memory, causal-graph, code-graph, deep-loop, cocoindex, skill-advisor, skill-budget) by reading the canonical route manifest `.opencode/commands/doctor/_routes.yaml`. Two companion commands round out the surface: `/doctor:mcp <install|debug>` for MCP-server infrastructure repair, and `/doctor:update` for the cross-subsystem rebuild orchestrator.
 
-The router shipped as a hard cutover in `013-doctor-update-orchestrator` phases 004 + 005, replacing 10 standalone `/doctor:<name>` commands with 3 markdown files (`doctor.md`, `doctor/mcp.md`, `doctor/update.md`). Each subsystem keeps its existing YAML workflow under `assets/doctor_<target>.yaml` — only the markdown command surface was consolidated.
+The router shipped as a hard cutover in `010-doctor-update-orchestrator` phases 004 + 005, replacing 10 standalone `/doctor:<name>` commands with 3 markdown files (`doctor.md`, `doctor/mcp.md`, `doctor/update.md`). Each subsystem keeps its existing YAML workflow under `assets/doctor_<target>.yaml` — only the markdown command surface was consolidated.
 
 ---
 
@@ -63,9 +63,9 @@ The router itself never mutates anything. Each YAML workflow declares its own mu
 
 | File | Role |
 |------|------|
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/spec.md` | Phase parent (lean trio) |
-| `.../013-doctor-update-orchestrator/003-router-phase/` | Phase 4 / former packet 014 Phase 1 (additive router) — Level 2 docs |
-| `.../013-doctor-update-orchestrator/004-cutover-phase/` | Phase 5 / former packet 014 Phase 2 (hard cutover) — Level 2 docs |
+| Internal design notes | Phase parent (lean trio) |
+| Router phase docs | Additive router design |
+| Cutover phase docs | Hard cutover design |
 
 ---
 

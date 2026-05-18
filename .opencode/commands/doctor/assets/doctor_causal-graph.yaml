@@ -32,7 +32,7 @@ causal_graph_doctor_invariant: |
 # UPSTREAM ASSETS
 # ─────────────────────────────────────────────────────────────────
 upstream_assets:
-  packet: ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/001-doctor-commands"
+  contract: "local command design contract"
   files:
     spec: "spec.md"  # REQ-010 and REQ-017 cover causal coverage + validation
     decision_record: "decision-record.md"  # ADR set governs update orchestration safety
@@ -78,9 +78,9 @@ mutation_boundaries:
     - "mcp_server/database/context-index__*.sqlite"  # active profile DB for causal_edges table
     - "mcp_server/database/context-index__*.sqlite.pre-doctor-causal-graph.*.bak"  # causal-edge snapshot files only
   forbidden_targets:
-    - ".opencode/specs/**/*.md"  # never write into spec packet docs from causal doctor
-    - ".opencode/specs/**/description.json"  # metadata updates belong to memory-save tooling
-    - ".opencode/specs/**/graph-metadata.json"  # metadata not causal edge storage
+    - "<active-spec-folder>/**/*.md"  # never write into spec packet docs from causal doctor
+    - "<active-spec-folder>/description.json"  # metadata updates belong to memory-save tooling
+    - "<active-spec-folder>/graph-metadata.json"  # metadata not causal edge storage
     - ".opencode/skills/**/SKILL.md"  # never edit skill bodies
     - ".opencode/skills/**/graph-metadata.json"
     - ".opencode/agents/**/*.md"

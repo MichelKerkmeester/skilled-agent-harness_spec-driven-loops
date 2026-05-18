@@ -1,0 +1,19 @@
+{
+  "sessionId": "rvw-007-20260518-171741",
+  "reviewTarget": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-mcp-launcher-concurrency-arc/007-skill-advisor-zombie-launcher-fix",
+  "reviewTargetType": "spec-folder",
+  "reviewDimensions": ["correctness","security","traceability","maintainability"],
+  "specFolder": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-mcp-launcher-concurrency-arc/007-skill-advisor-zombie-launcher-fix",
+  "maxIterations": 10,
+  "convergenceThreshold": 0.10,
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-devin",
+    "model": "swe-1.6",
+    "permissionMode": "auto",
+    "timeoutSeconds": 900
+  },
+  "createdAt": "2026-05-18T17:17:41Z",
+  "status": "initialized",
+  "driver": "run-deep-review-arc.sh (non-canonical minimal driver)"
+}

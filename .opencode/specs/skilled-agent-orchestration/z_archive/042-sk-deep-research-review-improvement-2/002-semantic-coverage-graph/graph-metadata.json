@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/002-semantic-coverage-graph",
-  "spec_folder": "skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/002-semantic-coverage-graph",
-  "parent_id": "skilled-agent-orchestration/042-sk-deep-research-review-improvement-2",
+  "packet_id": "skilled-agent-orchestration/z_archive/042-sk-deep-research-review-improvement-2/002-semantic-coverage-graph",
+  "spec_folder": "skilled-agent-orchestration/z_archive/042-sk-deep-research-review-improvement-2/002-semantic-coverage-graph",
+  "parent_id": "skilled-agent-orchestration/z_archive/042-sk-deep-research-review-improvement-2",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -53,14 +53,14 @@
       ".opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/status.ts",
       ".opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts",
       ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
-      ".opencode/skills/sk-deep-research/scripts/reduce-state.cjs",
-      ".opencode/skills/sk-deep-research/references/state_format.md",
-      ".opencode/skills/sk-deep-research/references/convergence.md",
-      ".opencode/skills/sk-deep-review/references/state_format.md",
-      ".opencode/skills/sk-deep-review/references/convergence.md",
       ".opencode/agents/deep-research.md",
       ".opencode/agents/deep-review.md",
-      ".opencode/skills/system-spec-kit/scripts/tests/coverage-graph-core.vitest.ts"
+      ".opencode/skills/system-spec-kit/scripts/tests/coverage-graph-core.vitest.ts",
+      ".opencode/skills/system-spec-kit/scripts/tests/coverage-graph-signals.vitest.ts",
+      ".opencode/skills/system-spec-kit/scripts/tests/coverage-graph-convergence.vitest.ts",
+      "lib/storage/causal-edges.ts",
+      "lib/graph/graph-signals.ts",
+      "lib/graph/contradiction-detection.ts"
     ],
     "entities": [
       {
@@ -136,24 +136,6 @@
         "source": "derived"
       },
       {
-        "name": "reduce-state.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/sk-deep-research/scripts/reduce-state.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "state_format.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-deep-research/references/state_format.md",
-        "source": "derived"
-      },
-      {
-        "name": "convergence.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-deep-research/references/convergence.md",
-        "source": "derived"
-      },
-      {
         "name": "deep-research.md",
         "kind": "doc",
         "path": ".opencode/agents/deep-research.md",
@@ -169,6 +151,36 @@
         "name": "coverage-graph-core.vitest.ts",
         "kind": "test",
         "path": ".opencode/skills/system-spec-kit/scripts/tests/coverage-graph-core.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "coverage-graph-signals.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/coverage-graph-signals.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "coverage-graph-convergence.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/coverage-graph-convergence.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "causal-edges.ts",
+        "kind": "code",
+        "path": "lib/storage/causal-edges.ts",
+        "source": "derived"
+      },
+      {
+        "name": "graph-signals.ts",
+        "kind": "code",
+        "path": "lib/graph/graph-signals.ts",
+        "source": "derived"
+      },
+      {
+        "name": "contradiction-detection.ts",
+        "kind": "code",
+        "path": "lib/graph/contradiction-detection.ts",
         "source": "derived"
       },
       {
@@ -194,23 +206,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Parent Packet",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Parent Plan",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Phase 002 turns semantic convergence from an abstract idea into a concrete implementation plan. The coverage graph is the fourth graph system in the existing Spec Kit Memory stack, following the causal graph, the code structural graph, and the graph-signal layer already present under `.opencode/skills/system-spec-kit/mcp_server/`.",
     "created_at": "2026-04-12T09:02:50.193Z",
-    "last_save_at": "2026-04-26T09:17:15.246Z",
+    "last_save_at": "2026-05-18T15:17:56.875Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

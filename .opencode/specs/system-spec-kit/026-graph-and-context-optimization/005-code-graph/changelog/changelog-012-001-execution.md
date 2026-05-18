@@ -16,7 +16,7 @@ contextType: "implementation"
 
 ## 2026-05-05
 
-> Spec folder: `026-graph-and-context-optimization/005-code-graph/011-real-world-usefulness-test/001-execution` (Level 2)
+> Spec folder: `026-graph-and-context-optimization/005-code-graph/011-real-world-usefulness-test-planning/001-sandbox-usefulness-trials` (Level 2)
 > Parent packet: `026-graph-and-context-optimization/005-code-graph`
 
 ### Summary

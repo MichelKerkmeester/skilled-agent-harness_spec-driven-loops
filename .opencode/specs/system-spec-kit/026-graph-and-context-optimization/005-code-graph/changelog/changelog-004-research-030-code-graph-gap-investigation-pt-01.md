@@ -16,7 +16,7 @@ contextType: "research"
 
 ## 2026-04-22
 
-> Spec folder: `026-graph-and-context-optimization/005-code-graph/003-code-graph-hook-improvements/research/030-code-graph-gap-investigation-pt-01` (Research-only)
+> Spec folder: `026-graph-and-context-optimization/005-code-graph/003-resolver-and-hook-improvements/research/004-docs-and-validation-gap-investigation` (Research-only)
 > Parent packet: `026-graph-and-context-optimization/005-code-graph`
 
 ### Summary
@@ -55,11 +55,11 @@ The investigation converged by iteration 4. The `newInfoRatio` crossed below 0.0
 
 | File | What changed |
 |------|--------------|
-| `research/030-code-graph-gap-investigation-pt-01/research.md` (NEW) | Synthesis document |
-| `research/030-code-graph-gap-investigation-pt-01/iterations/iteration-01.md` through `iteration-04.md` (NEW) | Per-iteration pass narratives |
-| `research/030-code-graph-gap-investigation-pt-01/deltas/` (NEW) | Per-iteration delta records |
-| `research/030-code-graph-gap-investigation-pt-01/findings-registry.json` (NEW) | Structured findings registry |
-| `research/030-code-graph-gap-investigation-pt-01/deep-research-*.json|md` (NEW) | Config, state, strategy |
+| `research/004-docs-and-validation-gap-investigation/research.md` (NEW) | Synthesis document |
+| `research/004-docs-and-validation-gap-investigation/iterations/iteration-01.md` through `iteration-04.md` (NEW) | Per-iteration pass narratives |
+| `research/004-docs-and-validation-gap-investigation/deltas/` (NEW) | Per-iteration delta records |
+| `research/004-docs-and-validation-gap-investigation/findings-registry.json` (NEW) | Structured findings registry |
+| `research/004-docs-and-validation-gap-investigation/deep-research-*.json|md` (NEW) | Config, state, strategy |
 
 ### Follow-Ups
 

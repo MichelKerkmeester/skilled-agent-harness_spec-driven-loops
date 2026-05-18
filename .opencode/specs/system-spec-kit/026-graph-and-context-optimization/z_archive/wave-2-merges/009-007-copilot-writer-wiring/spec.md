@@ -33,7 +33,7 @@ _memory:
 | **Parent Spec** | `../spec.md` |
 | **Predecessor** | `../006-copilot-wrapper-schema-fix/spec.md` |
 | **Depends on** | `010-copilot-wrapper-schema-fix/` (schema crash must already be resolved) |
-| **Research** | `../../research/007-deep-review-remediation-pt-03/research.md` §7 |
+| **Research** | `../../research/002-copilot-hook-followup-deep-review-remediation/research.md` §7 |
 
 ## PROBLEM
 

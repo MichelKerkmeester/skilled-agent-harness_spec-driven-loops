@@ -49,7 +49,7 @@ _memory:
 
 ### Problem Statement
 
-Packet 035 signed off a CONDITIONAL baseline because the full Option C design was not executable: 42 cells were `RUNNER_MISSING`, and no complete `matrix-manifest.json`, feature x executor runner tree, or packet-030 meta-aggregator existed (`006-full-matrix-execution-validation/findings.md:5`, `:15`, `:73`, `:75`). Packet 030 had already established the target shape: F1-F14, external CLI executors, non-applicable cells as first-class outputs, and per-feature runners plus a meta-aggregator (`030-v1-0-4-full-matrix-stress-test-design/spec.md:48`, `:96`, `:97`, `:100`; `030-v1-0-4-full-matrix-stress-test-design/plan.md:52`, `:54`, `:95`, `:97`, `:99`).
+Packet 035 signed off a CONDITIONAL baseline because the full Option C design was not executable: 42 cells were `RUNNER_MISSING`, and no complete `matrix-manifest.json`, feature x executor runner tree, or packet-030 meta-aggregator existed (`006-runtime-matrix-execution-validation/findings.md:5`, `:15`, `:73`, `:75`). Packet 030 had already established the target shape: F1-F14, external CLI executors, non-applicable cells as first-class outputs, and per-feature runners plus a meta-aggregator (`030-clean-infrastructure-full-matrix-stress-design/spec.md:48`, `:96`, `:97`, `:100`; `030-clean-infrastructure-full-matrix-stress-design/plan.md:52`, `:54`, `:95`, `:97`, `:99`).
 
 ### Purpose
 

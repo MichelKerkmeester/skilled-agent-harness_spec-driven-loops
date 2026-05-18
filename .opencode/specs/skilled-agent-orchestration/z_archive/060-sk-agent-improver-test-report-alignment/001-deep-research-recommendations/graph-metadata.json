@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/060-sk-agent-improver-test-report-alignment",
-  "spec_folder": "skilled-agent-orchestration/060-sk-agent-improver-test-report-alignment",
-  "parent_id": null,
+  "packet_id": "skilled-agent-orchestration/z_archive/060-sk-agent-improver-test-report-alignment/001-deep-research-recommendations",
+  "spec_folder": "skilled-agent-orchestration/z_archive/060-sk-agent-improver-test-report-alignment/001-deep-research-recommendations",
+  "parent_id": "skilled-agent-orchestration/z_archive/060-sk-agent-improver-test-report-alignment",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -39,14 +39,16 @@
       "meta-application"
     ],
     "importance_tier": "high",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
-      ".opencode/skills/sk-improve-agent/SKILL.md",
-      ".opencode/agents/improve-agent.md",
+      "research/research.md",
+      "research/deep-research-config.json",
+      "research/deep-research-state.jsonl",
+      "research/deep-research-strategy.md",
+      "research/findings-registry.json",
+      "research/run-log.txt",
       ".opencode/commands/improve/agent.md",
       "implementation-summary.md",
-      ".opencode/specs/skilled-agent-orchestration/059-agent-implement-code/test-report.md",
-      ".opencode/skills/sk-deep-research/changelog/v1.9.0.0.md",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -54,22 +56,44 @@
       "decision-record.md",
       "handover.md",
       "resource-map.md",
-      ".opencode/specs/skilled-agent-orchestration/059-agent-implement-code/spec.md",
-      ".opencode/specs/skilled-agent-orchestration/059-agent-implement-code/decision-record.md",
-      ".opencode/skills/cli-copilot/manual_testing_playbook/04--agent-routing/004-code-vs-general-agent-perf-comparison.md",
-      ".opencode/skills/cli-copilot/manual_testing_playbook/04--agent-routing/005-unknown-stack-escalation-discipline.md"
+      "research/deep-research-dashboard.md",
+      "research/iterations/iteration-001.md"
     ],
     "entities": [
       {
-        "name": "SKILL.md",
+        "name": "research.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-improve-agent/SKILL.md",
+        "path": "research/research.md",
         "source": "derived"
       },
       {
-        "name": "improve-agent.md",
+        "name": "deep-research-config.json",
+        "kind": "config",
+        "path": "research/deep-research-config.json",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/deep-research-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-strategy.md",
         "kind": "doc",
-        "path": ".opencode/agents/improve-agent.md",
+        "path": "research/deep-research-strategy.md",
+        "source": "derived"
+      },
+      {
+        "name": "findings-registry.json",
+        "kind": "config",
+        "path": "research/findings-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "run-log.txt",
+        "kind": "file",
+        "path": "research/run-log.txt",
         "source": "derived"
       },
       {
@@ -82,18 +106,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "test-report.md",
-        "kind": "doc",
-        "path": ".opencode/specs/skilled-agent-orchestration/059-agent-implement-code/test-report.md",
-        "source": "derived"
-      },
-      {
-        "name": "v1.9.0.0.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-deep-research/changelog/v1.9.0.0.md",
         "source": "derived"
       },
       {
@@ -139,15 +151,15 @@
         "source": "derived"
       },
       {
-        "name": "004-code-vs-general-agent-perf-comparison.md",
+        "name": "deep-research-dashboard.md",
         "kind": "doc",
-        "path": ".opencode/skills/cli-copilot/manual_testing_playbook/04--agent-routing/004-code-vs-general-agent-perf-comparison.md",
+        "path": "research/deep-research-dashboard.md",
         "source": "derived"
       },
       {
-        "name": "005-unknown-stack-escalation-discipline.md",
+        "name": "iteration-001.md",
         "kind": "doc",
-        "path": ".opencode/skills/cli-copilot/manual_testing_playbook/04--agent-routing/005-unknown-stack-escalation-discipline.md",
+        "path": "research/iterations/iteration-001.md",
         "source": "derived"
       },
       {
@@ -191,23 +203,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Report Alignment",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Signposted Only",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "Packet 059 produced a stress-test methodology that surfaced two real design gaps in `@code` after a single round of failure-path scenarios \u2014 gaps that the pre-merge structural smoke test (CP-026) had missed entirely. The methodology is reusable: same-task A/B dispatch, sandboxed isolation, grep-only verdict signals, multi-round iterative edits with measurable score progression, and a smart-router audit asking \"does the skill *actually fire its routing logic*, or does the agent just read SKILL.md and stop?\"",
+    "causal_summary": "Packet 059 produced a stress-test methodology that surfaced two real design gaps in `@code` after a single round of failure-path scenarios — gaps that the pre-merge structural smoke test (CP-026) had missed entirely. The methodology is reusable: same-task A/B dispatch, sandboxed isolation, grep-only verdict signals, multi-round iterative edits with measurable score progression, and a smart-router audit asking \"does the skill *actually fire its routing logic*, or does the agent just read SKILL.md and stop?\"",
     "created_at": "2026-05-02T08:57:14.987Z",
-    "last_save_at": "2026-05-02T08:57:14.987Z",
+    "last_save_at": "2026-05-18T15:17:56.920Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,10 +217,9 @@
       "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
+      "research/research.md",
       "handover.md",
       "resource-map.md"
-    ],
-    "completion_pct": 100
-  },
-  "importance_tier": "normal"
+    ]
+  }
 }

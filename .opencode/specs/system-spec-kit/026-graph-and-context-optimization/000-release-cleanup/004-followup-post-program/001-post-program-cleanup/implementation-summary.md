@@ -64,9 +64,9 @@ This packet closed the bounded post-program cleanup work that can be done inside
 | `description.json` | Created | Adds packet discovery metadata. |
 | `graph-metadata.json` | Created | Adds packet graph metadata. |
 | `../../../005-memory-indexer-invariants/*` | Modified | Refreshed strict-validator freshness and template-header hygiene without closing CHK-T15. |
-| `../001-memory-indexer-storage-boundary/graph-metadata.json` | Modified | Marked completed sub-phase status as `complete`. |
-| `../002-tier2-remediation/graph-metadata.json` | Modified | Marked completed sub-phase status as `complete`. |
-| `../../../006-skill-advisor/002-daemon-and-unification/graph-metadata.json` | Modified | Marked validator-green source packet status as `complete`. |
+| `../001-memory-indexer-storage-boundary-remediation/graph-metadata.json` | Modified | Marked completed sub-phase status as `complete`. |
+| `../002-second-pass-release-readiness-remediation/graph-metadata.json` | Modified | Marked completed sub-phase status as `complete`. |
+| `../../../006-skill-advisor/002-skill-graph-daemon-native-advisor-tools/graph-metadata.json` | Modified | Marked validator-green source packet status as `complete`. |
 | `../../../000-release-cleanup/spec.md` | Modified | Added `005-review-remediation` to the phase map. |
 | `../../../spec.md` | Modified | Refreshed root row for `000-release-cleanup/`. |
 <!-- /ANCHOR:what-built -->

@@ -39,10 +39,10 @@
     "RQ10: Missing integration tests for future regressions"
   ],
   "sourcePackets": [
-    "001-search-intelligence-stress-test",
-    "010-stress-test-rerun-v1-0-2",
+    "001-search-intelligence-stress-playbook",
+    "010-stress-test-close-loop-measurement-rerun",
     "002-mcp-runtime-improvement-research",
-    "011-post-stress-followup-research",
+    "011-post-stress-finding-remediation-research",
     "006-graph-impact-and-affordance-uplift/008-deep-research-review"
   ],
   "scopeGuards": {

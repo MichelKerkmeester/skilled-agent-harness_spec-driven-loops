@@ -19,7 +19,7 @@ Operators use this feature when the real request is: Wipe the council graph for 
 
 The shipped surface is anchored by `council_graph_upsert`, `council_graph_status`, `deep-ai-council`. The playbook scenario `08--council-graph-integration/007-council-graph-derived-projection-rebuilds-from-artifacts.md` defines the operator prompt, command sequence, expected signals, evidence, and pass/fail criteria for DAC-025.
 
-Current behavior is grounded in `.opencode/specs/skilled-agent-orchestration/101-deep-multi-ai-council-skill/003-deep-ai-council-graph-support/decision-record.md`, which the scenario identifies as adr-001 derived-projection contract. Validation is anchored by `manual_testing_playbook/08--council-graph-integration/007-council-graph-derived-projection-rebuilds-from-artifacts.md`, covering manual scenario contract.
+Current behavior is grounded in internal design notes for adr-001 derived-projection contract. Validation is anchored by `manual_testing_playbook/08--council-graph-integration/007-council-graph-derived-projection-rebuilds-from-artifacts.md`, covering manual scenario contract.
 
 The user-visible contract is concrete: Verify deleting derived graph rows for one session and replaying from artifacts restores graph state without modifying artifacts. The catalog entry mirrors that contract so reviewers can move from feature inventory to the exact playbook scenario and source files without guessing.
 
@@ -31,7 +31,7 @@ The user-visible contract is concrete: Verify deleting derived graph rows for on
 
 | File | Layer | Role |
 |------|-------|------|
-| `.opencode/specs/skilled-agent-orchestration/101-deep-multi-ai-council-skill/003-deep-ai-council-graph-support/decision-record.md` | Spec | ADR-001 derived-projection contract |
+| Internal design notes | Spec | ADR-001 derived-projection contract |
 | `.opencode/skills/deep-ai-council/references/graph_support.md 5` | Reference | Recovery and rollback contract |
 | `.opencode/skills/system-spec-kit/mcp_server/lib/council-graph/council-graph-db.ts` | Library | Namespace-scoped delete + upsert |
 
@@ -40,7 +40,7 @@ The user-visible contract is concrete: Verify deleting derived graph rows for on
 | File | Focus |
 |------|-------|
 | `manual_testing_playbook/08--council-graph-integration/007-council-graph-derived-projection-rebuilds-from-artifacts.md` | Manual scenario contract |
-| `.opencode/specs/skilled-agent-orchestration/101-deep-multi-ai-council-skill/003-deep-ai-council-graph-support/checklist.md` | CHK-028 rollback path |
+| Internal design notes | CHK-028 rollback path |
 
 ---
 

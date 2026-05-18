@@ -1,6 +1,0 @@
-{
-  "specFolder": "026-graph-and-context-optimization/000-release-cleanup/025-architecture-diagrams-and-topology",
-  "description": "Add ASCII box-art architecture diagrams and directory topology trees to all code-folder READMEs and ARCHITECTURE.md",
-  "keywords": ["architecture", "diagram", "topology", "readme", "box-art", "visualization"],
-  "lastUpdated": "2026-05-02T00:00:00.000Z"
-}

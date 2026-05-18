@@ -32,7 +32,7 @@ The live system-spec-kit roots are `.opencode/skills/system-spec-kit/feature_cat
 | Code-graph playbooks | Confirmed current | 22--context-preservation-and-code-graph/254-code-graph-scan-query.md, 255-cocoindex-code-graph-routing.md, 264-query-intent-routing.md, 275-code-graph-readiness-contract.md, and 277-code-graph-fast-fail.md cover `readiness.action`, CocoIndex telemetry passthrough, IntentTelemetry, status side-effect freedom, and `fallbackDecision`. |
 | cli-copilot authority playbooks | Confirmed current | `cli-copilot/manual_testing_playbook/01--cli-invocation/005-*`, `006-*`, and `05--session-continuity/003-*` cover missing authority, large prompt preamble preservation, and I1 zero-mutation replay. |
 | Deep-loop dispatch playbooks | Confirmed current | sk-deep-research/.../030-cli-copilot-target-authority-dispatch.md and the matching sk-deep-review entry cover `buildCopilotPromptArg` dispatch routing. |
-| Remaining alignment | Still tracked | Packet `018-catalog-playbook-degraded-alignment/` remains in progress and owns remaining degraded-envelope / rankingSignals wording alignment. |
+| Remaining alignment | Still tracked | Packet `018-feature-catalog-playbook-degraded-alignment/` remains in progress and owns remaining degraded-envelope / rankingSignals wording alignment. |
 
 Historical sections below are retained for provenance; use this reconciliation block for current-state guidance.
 

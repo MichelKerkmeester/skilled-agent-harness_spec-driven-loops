@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/026-cmd-create-manual-testing-playbook",
-  "spec_folder": "skilled-agent-orchestration/026-cmd-create-manual-testing-playbook",
+  "packet_id": "skilled-agent-orchestration/z_archive/026-cmd-create-manual-testing-playbook",
+  "spec_folder": "skilled-agent-orchestration/z_archive/026-cmd-create-manual-testing-playbook",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -46,15 +46,8 @@
       ".opencode/commands/create/assets/create_testing_playbook_confirm.yaml",
       ".opencode/commands/create/README.txt",
       ".opencode/commands/README.txt",
-      ".opencode/README.md",
-      ".opencode/agents/write.md",
-      ".claude/agents/write.md",
-      ".codex/agents/write.toml",
       ".gemini/commands/create/testing-playbook.toml",
       "spec.md",
-      ".opencode/skills/sk-doc/references/specific/manual_testing_playbook_creation.md",
-      ".opencode/skills/sk-doc/assets/documentation/testing_playbook/manual_testing_playbook_template.md",
-      ".opencode/skills/sk-doc/assets/documentation/testing_playbook/manual_testing_playbook_snippet_template.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
@@ -87,24 +80,6 @@
         "source": "derived"
       },
       {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "write.md",
-        "kind": "doc",
-        "path": ".opencode/agents/write.md",
-        "source": "derived"
-      },
-      {
-        "name": "write.toml",
-        "kind": "file",
-        "path": ".codex/agents/write.toml",
-        "source": "derived"
-      },
-      {
         "name": "testing-playbook.toml",
         "kind": "file",
         "path": ".gemini/commands/create/testing-playbook.toml",
@@ -114,24 +89,6 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "manual_testing_playbook_creation.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/references/specific/manual_testing_playbook_creation.md",
-        "source": "derived"
-      },
-      {
-        "name": "manual_testing_playbook_template.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/assets/documentation/testing_playbook/manual_testing_playbook_template.md",
-        "source": "derived"
-      },
-      {
-        "name": "manual_testing_playbook_snippet_template.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/assets/documentation/testing_playbook/manual_testing_playbook_snippet_template.md",
         "source": "derived"
       },
       {
@@ -205,11 +162,47 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Implementation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Reference",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow User",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "This packet defines the implementation contract for `/create:testing-playbook`, a new create command that must scaffold the current integrated `manual_testing_playbook/` package. The command must honor the post-021 contract: root playbook plus numbered category folders, root-owned review/orchestration guidance, per-feature files that mimic feature-catalog entry structure, and no legacy review or sub-agent ledger sidecars or `snippets/` subtree.",
     "created_at": "2026-04-12T09:02:50.174Z",
-    "last_save_at": "2026-04-26T09:17:15.162Z",
+    "last_save_at": "2026-05-18T15:17:56.828Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

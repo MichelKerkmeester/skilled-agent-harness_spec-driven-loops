@@ -37,7 +37,7 @@ _memory:
 | **Created** | 2026-04-29 |
 | **Branch** | `main` |
 | **Parent** | `003-mcp-runtime-stress-remediation` |
-| **Source** | PP-1 TC-3 expected_fail (`023-live-handler-envelope-capture-seam`) + design recommendation from gpt-5.5 xhigh corrected by direct code inspection |
+| **Source** | PP-1 TC-3 expected_fail (`023-live-handler-envelope-capture-interface`) + design recommendation from gpt-5.5 xhigh corrected by direct code inspection |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -144,7 +144,7 @@ Add a shared `mapGraphReadinessToTelemetry()` helper that consumes a `GraphReadi
 | Risk | `getGraphReadinessSnapshot` requires a `rootDir` argument; handler may not have it readily | Handler can use `process.cwd()` or an existing resolved root; verify against the W10 test's pattern (`vi.spyOn(process, 'cwd').mockReturnValue(tempDir)`) |
 | Risk | Snapshot-derived telemetry is minimal (only freshness/action/reason); consumers may expect richer fields | Spec OUT-OF-SCOPE clarifies this; richer fields require the `handleCodeGraphQuery`-path which is not invoked by memory_search |
 | Dependency | `005-vestigial-embedding-readiness-gate-removal` shipped (e91d2c7c2) — not directly related but unblocked the PP-1 test that surfaces this | Already on main |
-| Dependency | `023-live-handler-envelope-capture-seam` shipped (af22aa045) — TC-3 expected_fail will flip | Already on main |
+| Dependency | `023-live-handler-envelope-capture-interface` shipped (af22aa045) — TC-3 expected_fail will flip | Already on main |
 <!-- /ANCHOR:risks -->
 
 ---

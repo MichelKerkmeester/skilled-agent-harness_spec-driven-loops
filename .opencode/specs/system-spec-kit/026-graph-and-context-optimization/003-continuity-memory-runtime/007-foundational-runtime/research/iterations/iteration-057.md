@@ -36,6 +36,6 @@ Deliverables produced:
 
 ## Next
 
-Next command: `/memory:save` or `/spec_kit:plan phase-017-p1-remediation`.
+Next command: `/memory:save` or `/spec_kit:plan phase-017-deep-review-p1-remediation`.
 
 Segment-2 output verdict: **CONDITIONAL-extended**. Severity ranking holds (0 P0 escalations) but default canonical-save path is structurally a metadata-freshness no-op (H-56-1 headline); Phase 017 scope expanded from 19 to 27 tasks.

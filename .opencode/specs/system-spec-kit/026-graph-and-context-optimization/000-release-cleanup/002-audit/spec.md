@@ -50,10 +50,10 @@ Coordinate system-wide audits, validation sweeps, and compliance checks to ensur
 The parent itself owns no implementation. All work lives in the children. Each child's spec.md is the source of truth for that child's scope.
 
 **Thematic groupings:**
-- **Security and supply-chain**: 001-tanstack-security-audit
-- **Runtime infrastructure**: 002-w3-w7-runtime-wiring-and-audit, 007-runtime-command-agent-alignment-review
-- **Documentation and graph**: 003-doc-truth-pass, 004-code-graph-watcher-retraction
-- **System validation and cleanup**: 005-memory-retention-sweep, 006-full-matrix-execution-validation, 008-drift-finding-fixes
+- **Security and supply-chain**: 001-dependency-security-supply-chain-audit
+- **Runtime infrastructure**: 002-runtime-wiring-enterprise-readiness-audit, 007-runtime-command-agent-alignment-audit
+- **Documentation and graph**: 003-documentation-truth-validation, 004-code-graph-watcher-claim-retraction
+- **System validation and cleanup**: 005-memory-retention-policy-sweep, 006-runtime-matrix-execution-validation, 008-audit-drift-findings-remediation
 
 ---
 

@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/070-sk-deep-rename/001-discovery-impact-map",
-  "spec_folder": "skilled-agent-orchestration/070-sk-deep-rename/001-discovery-impact-map",
-  "parent_id": "skilled-agent-orchestration/070-sk-deep-rename",
+  "packet_id": "skilled-agent-orchestration/z_archive/070-sk-deep-rename/001-discovery-impact-map",
+  "spec_folder": "skilled-agent-orchestration/z_archive/070-sk-deep-rename/001-discovery-impact-map",
+  "parent_id": "skilled-agent-orchestration/z_archive/070-sk-deep-rename",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      "skilled-agent-orchestration/070-sk-deep-rename"
-    ],
+    "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
@@ -16,14 +16,29 @@
       "070 phase 001",
       "sk-deep rename discovery",
       "sk-deep impact inventory",
-      "discovery impact map"
+      "discovery impact map",
+      "070 phase 001 plan",
+      "sk-deep discovery plan",
+      "impact map plan",
+      "070 phase 001 tasks",
+      "sk-deep discovery tasks",
+      "impact inventory tasks",
+      "070 phase 001 checklist",
+      "sk-deep discovery verification"
     ],
     "key_topics": [
-      "skill-rename",
-      "impact-inventory",
-      "grep-discovery",
-      "edge-case-audit",
-      "phase-partitioning"
+      "070",
+      "phase",
+      "001",
+      "sk-deep",
+      "rename",
+      "discovery",
+      "impact",
+      "inventory",
+      "map",
+      "plan",
+      "tasks",
+      "checklist"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -32,21 +47,157 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "inventory.md",
-      "inventory.tsv",
-      "edge-cases.md",
-      "description.json",
-      "graph-metadata.json"
+      "implementation-summary.md"
     ],
     "entities": [
-      "sk-deep-review",
-      "sk-deep-research",
-      "deep-review",
-      "deep-research"
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Discovery Impact Map",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completed Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Author Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Inventory Synthesis",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Date",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verified Phase",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
     ],
-    "causal_summary": "Phase 001 inventories active references to sk-deep-review and sk-deep-research before packet 070 renames them. It writes planning docs and inventory artifacts only inside the phase folder; all rename target edits are deferred to phases 002-005.",
+    "causal_summary": "Packet 070 will rename `sk-deep-review` to `deep-review` and `sk-deep-research` to `deep-research`. The parent packet estimates hundreds of active references across skill folders, runtime mirrors, MCP server code, scripts, fixtures, specs, root docs, and config files, so the downstream phases need a measured inventory rather than an estimate.",
     "created_at": "2026-05-05T18:30:00Z",
-    "last_save_at": "2026-05-05T19:10:00Z",
+    "last_save_at": "2026-05-18T15:17:56.978Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-05T19:10:00Z",
     "source_docs": [
@@ -54,10 +205,7 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "inventory.md",
-      "inventory.tsv",
-      "edge-cases.md"
+      "implementation-summary.md"
     ]
-  },
-  "importance_tier": "important"
+  }
 }

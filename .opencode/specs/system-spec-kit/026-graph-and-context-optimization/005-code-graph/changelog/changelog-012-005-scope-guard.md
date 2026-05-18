@@ -15,7 +15,7 @@ contextType: "implementation"
 
 ## 2026-05-06
 
-> Spec folder: `026-graph-and-context-optimization/005-code-graph/011-real-world-usefulness-test/005-scope-guard` (Level 2)
+> Spec folder: `026-graph-and-context-optimization/005-code-graph/011-real-world-usefulness-test-planning/005-scope-change-scan-guard` (Level 2)
 > Parent packet: `026-graph-and-context-optimization/005-code-graph`
 
 ### Summary

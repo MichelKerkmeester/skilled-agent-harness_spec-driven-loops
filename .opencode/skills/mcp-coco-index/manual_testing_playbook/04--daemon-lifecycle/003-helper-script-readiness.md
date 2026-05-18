@@ -84,7 +84,7 @@ Capture verbatim stdout, stderr, and exit code for steps 1, 2, 3, 5, 6. Capture 
 
 For stale-daemon recovery, link to the 6-step operator procedure instead of duplicating it here.
 See `.opencode/skills/mcp-coco-index/INSTALL_GUIDE.md` under "Operator recovery from stale daemon".
-The packet source is `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/011-cocoindex-daemon-resilience/implementation-summary.md` under "Known Limitations".
+The packet source is described under "Known Limitations".
 Use those references when steps 1 through 4 show a stale PID or socket state.
 
 ---

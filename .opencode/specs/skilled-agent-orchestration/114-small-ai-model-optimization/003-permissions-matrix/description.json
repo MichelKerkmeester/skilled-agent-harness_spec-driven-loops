@@ -1,0 +1,24 @@
+{
+  "specFolder": "003-permissions-matrix",
+  "description": "Feature Specification: cli-opencode permissions-matrix",
+  "keywords": [
+    "feature",
+    "specification",
+    "cli-opencode",
+    "permissions-matrix"
+  ],
+  "lastUpdated": "2026-05-18T12:32:47.354Z",
+  "specId": "003",
+  "folderSlug": "permissions-matrix",
+  "parentChain": [
+    "..",
+    ".opencode",
+    "specs",
+    "skilled-agent-orchestration",
+    "114-small-ai-model-optimization"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "18-05-26_13-32__003-l3-packet-authored.md"
+  ]
+}

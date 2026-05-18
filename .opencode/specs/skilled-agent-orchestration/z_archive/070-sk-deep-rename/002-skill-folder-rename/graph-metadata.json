@@ -1,14 +1,13 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/070-sk-deep-rename/002-skill-folder-rename",
-  "spec_folder": "skilled-agent-orchestration/070-sk-deep-rename/002-skill-folder-rename",
-  "parent_id": "skilled-agent-orchestration/070-sk-deep-rename",
+  "packet_id": "skilled-agent-orchestration/z_archive/070-sk-deep-rename/002-skill-folder-rename",
+  "spec_folder": "skilled-agent-orchestration/z_archive/070-sk-deep-rename/002-skill-folder-rename",
+  "parent_id": "skilled-agent-orchestration/z_archive/070-sk-deep-rename",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      "skilled-agent-orchestration/070-sk-deep-rename",
-      "skilled-agent-orchestration/070-sk-deep-rename/001-discovery-impact-map"
-    ],
+    "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
@@ -18,14 +17,28 @@
       "skill folder rename",
       "sk-deep-review -> deep-review",
       "sk-deep-research -> deep-research",
-      "skill graph rename"
+      "070 phase 002 plan",
+      "skill folder rename plan",
+      "skill graph rename plan",
+      "070 phase 002 tasks",
+      "skill folder rename tasks",
+      "skill graph rename tasks",
+      "070 phase 002 checklist",
+      "skill folder rename verification"
     ],
     "key_topics": [
-      "skill-rename",
-      "git-mv",
-      "skill-graph",
-      "advisor-rebuild",
-      "internal-reference-update"
+      "070",
+      "phase",
+      "002",
+      "skill",
+      "folder",
+      "rename",
+      "sk-deep-review",
+      "deep-review",
+      "sk-deep-research",
+      "deep-research",
+      "plan",
+      "graph"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -34,22 +47,151 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "description.json",
-      "graph-metadata.json",
-      ".opencode/skills/deep-review",
-      ".opencode/skills/deep-research",
-      ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json"
+      "implementation-summary.md"
     ],
     "entities": [
-      "deep-review",
-      "deep-research",
-      "sk-deep-review",
-      "sk-deep-research",
-      "skill-graph.json"
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Folder Rename",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completed Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Start Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Read Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Date",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Phase",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
     ],
-    "causal_summary": "Phase 002 physically renamed the two deep loop skill folders, updated internal renamed-folder references, and patched advisor graph source IDs before downstream phases update wider repo references.",
+    "causal_summary": "Phase 001 measured 130 Phase 002 files: the two old skill folder roots and `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json`. The folders must be physically renamed before downstream phases update references elsewhere, and the advisor graph JSON must recognize the new IDs as canonical.",
     "created_at": "2026-05-05T19:20:00Z",
-    "last_save_at": "2026-05-05T19:45:00Z",
+    "last_save_at": "2026-05-18T15:17:56.979Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-05T19:20:00Z",
     "source_docs": [
@@ -59,6 +201,5 @@
       "checklist.md",
       "implementation-summary.md"
     ]
-  },
-  "importance_tier": "important"
+  }
 }

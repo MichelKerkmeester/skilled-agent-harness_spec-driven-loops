@@ -18,7 +18,7 @@ contextType: "implementation"
 
 ## 2026-04-23
 
-> Spec folder: `026-graph-and-context-optimization/005-code-graph/002-code-graph-context-and-scan-scope` (Level 2)
+> Spec folder: `026-graph-and-context-optimization/005-code-graph/002-stale-highlights-and-scan-scope-fix` (Level 2)
 > Parent packet: `026-graph-and-context-optimization/005-code-graph`
 
 ### Summary

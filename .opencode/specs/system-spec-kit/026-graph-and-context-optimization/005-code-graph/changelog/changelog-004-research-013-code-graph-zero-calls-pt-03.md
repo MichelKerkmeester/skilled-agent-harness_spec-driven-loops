@@ -16,7 +16,7 @@ contextType: "research"
 
 ## 2026-04-22
 
-> Spec folder: `026-graph-and-context-optimization/005-code-graph/003-code-graph-hook-improvements/research/013-code-graph-zero-calls-pt-03` (Research-only)
+> Spec folder: `026-graph-and-context-optimization/005-code-graph/003-resolver-and-hook-improvements/research/003-ambiguous-symbol-resolution-research` (Research-only)
 > Parent packet: `026-graph-and-context-optimization/005-code-graph`
 
 ### Summary
@@ -56,11 +56,11 @@ Four findings were produced: F-001 (P0) the zero-edge result, F-002 (P1) the amb
 
 | File | What changed |
 |------|--------------|
-| `research/013-code-graph-zero-calls-pt-03/research.md` (NEW) | Synthesis document |
-| `research/013-code-graph-zero-calls-pt-03/iterations/iteration-01.md` through `iteration-03.md` (NEW) | Per-iteration pass narratives |
-| `research/013-code-graph-zero-calls-pt-03/deltas/` (NEW) | Per-iteration delta records |
-| `research/013-code-graph-zero-calls-pt-03/findings-registry.json` (NEW) | Structured findings registry |
-| `research/013-code-graph-zero-calls-pt-03/deep-research-*.json|md` (NEW) | Config, state, dashboard, strategy |
+| `research/003-ambiguous-symbol-resolution-research/research.md` (NEW) | Synthesis document |
+| `research/003-ambiguous-symbol-resolution-research/iterations/iteration-01.md` through `iteration-03.md` (NEW) | Per-iteration pass narratives |
+| `research/003-ambiguous-symbol-resolution-research/deltas/` (NEW) | Per-iteration delta records |
+| `research/003-ambiguous-symbol-resolution-research/findings-registry.json` (NEW) | Structured findings registry |
+| `research/003-ambiguous-symbol-resolution-research/deep-research-*.json|md` (NEW) | Config, state, dashboard, strategy |
 
 ### Follow-Ups
 

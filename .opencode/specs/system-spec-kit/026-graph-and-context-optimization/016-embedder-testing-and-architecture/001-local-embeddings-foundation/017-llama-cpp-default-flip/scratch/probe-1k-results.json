@@ -73,7 +73,7 @@
       "spearman_rho_top10": 0.827273
     },
     {
-      "query": "Spec folder: system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-memory-retention-sweep Description: Spec: Memory Retention Sweep Spec id: 020 Folder slug: memory-retention-sweep Parent chain: system-spec-kit > 026-graph-and-context-optimization > 000-release-cleanup Keywords: spec, memory,",
+      "query": "Spec folder: system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-memory-retention-policy-sweep Description: Spec: Memory Retention Sweep Spec id: 020 Folder slug: memory-retention-sweep Parent chain: system-spec-kit > 026-graph-and-context-optimization > 000-release-cleanup Keywords: spec, memory,",
       "target_doc_id": "885",
       "hf_local_top5": [
         {

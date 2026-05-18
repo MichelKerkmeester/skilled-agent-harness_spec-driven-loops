@@ -206,7 +206,7 @@
     ],
     "causal_summary": "Update umbrella docs (root README, skill SKILL.md/README, mcp_server README/INSTALL_GUIDE) reflecting capabilities shipped by 012/002-005. Per-packet feature_catalog + manual_testing_playbook entries are written inline by 002-005; this sub-phase rolls up indexes.",
     "created_at": "2026-04-25T10:48:09.975Z",
-    "last_save_at": "2026-05-18T08:15:53.402Z",
+    "last_save_at": "2026-05-18T15:17:57.313Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "085-sk-prompt-testing-playbook-and-agent-rename/001-prompt-improver-rename",
-  "spec_folder": "085-sk-prompt-testing-playbook-and-agent-rename/001-prompt-improver-rename",
-  "parent_id": null,
+  "packet_id": "skilled-agent-orchestration/z_archive/085-sk-prompt-testing-playbook-and-agent-rename/001-prompt-improver-rename",
+  "spec_folder": "skilled-agent-orchestration/z_archive/085-sk-prompt-testing-playbook-and-agent-rename/001-prompt-improver-rename",
+  "parent_id": "skilled-agent-orchestration/z_archive/085-sk-prompt-testing-playbook-and-agent-rename",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -10,25 +10,213 @@
     "related_to": []
   },
   "derived": {
-    "trigger_phrases": [],
-    "key_topics": [],
-    "importance_tier": "important",
+    "trigger_phrases": [
+      "085 phase 001",
+      "improve-prompt to prompt-improver agent rename",
+      "noun-form agent name",
+      "implementation",
+      "plan",
+      "name",
+      "template",
+      "plan core",
+      "tasks",
+      "tasks core",
+      "085 phase 001 summary",
+      "improve-prompt to prompt-improver complete"
+    ],
+    "key_topics": [
+      "085",
+      "phase",
+      "001",
+      "improve-prompt",
+      "prompt-improver",
+      "agent",
+      "rename",
+      "noun-form",
+      "name",
+      "implementation",
+      "plan",
+      "template"
+    ],
+    "importance_tier": "normal",
     "status": "complete",
     "key_files": [
+      ".codex/config.toml",
+      ".codex/agents/prompt-improver.toml",
+      ".opencode/commands/improve/prompt.md",
+      ".opencode/agents/prompt-improver.md",
+      ".claude/agents/prompt-improver.md",
+      ".gemini/agents/prompt-improver.md",
+      ".opencode/commands/improve/README.txt",
+      ".opencode/install_guides/SET-UP - AGENTS.md",
+      ".opencode/install_guides/README.md",
+      ".opencode/changelog/agent-orchestration/v2.4.0.0.md",
+      ".opencode/agents/README.txt",
+      ".claude/agents/README.txt",
+      ".codex/agents/README.txt",
+      ".gemini/agents/README.txt",
+      ".opencode/specs/descriptions.json",
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
-    "entities": [],
-    "causal_summary": "Phase 1: prompt-improver-rename",
+    "entities": [
+      {
+        "name": "config.toml",
+        "kind": "file",
+        "path": ".codex/config.toml",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-improver.toml",
+        "kind": "file",
+        "path": ".codex/agents/prompt-improver.toml",
+        "source": "derived"
+      },
+      {
+        "name": "prompt.md",
+        "kind": "doc",
+        "path": ".opencode/commands/improve/prompt.md",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-improver.md",
+        "kind": "doc",
+        "path": ".opencode/agents/prompt-improver.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".opencode/commands/improve/README.txt",
+        "source": "derived"
+      },
+      {
+        "name": "SET-UP - AGENTS.md",
+        "kind": "doc",
+        "path": ".opencode/install_guides/SET-UP - AGENTS.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/install_guides/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "v2.4.0.0.md",
+        "kind": "doc",
+        "path": ".opencode/changelog/agent-orchestration/v2.4.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "descriptions.json",
+        "kind": "config",
+        "path": ".opencode/specs/descriptions.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Rename",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Clean Architecture",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `@improve-prompt` agent name is verb-object phrasing — an outlier in the noun-form agent family (`@code`, `@review`, `@debug`, `@context`, `@deep-research`, `@deep-review`). This creates inconsistency in naming and makes the agent harder to reason about as an entity (an agent IS a thing, not an action). Renaming to `@prompt-improver` aligns with convention and matches the doer-of-action pattern (improver = noun for agent-that-improves).",
     "created_at": "2026-05-06T13:19:25Z",
-    "last_save_at": "2026-05-06T19:40:00Z",
+    "last_save_at": "2026-05-18T15:17:57.029Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ]
   }
 }

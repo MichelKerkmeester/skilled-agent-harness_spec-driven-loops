@@ -1,0 +1,22 @@
+{
+  "level": "1",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/028-documentation-alignment-readme-fill-in",
+  "description": "Feature Specification: Doc-alignment and missing-README fill-in",
+  "keywords": [
+    "feature",
+    "specification",
+    "doc-alignment",
+    "missing-readme",
+    "fill-in"
+  ],
+  "lastUpdated": "2026-05-08T08:26:57.546Z",
+  "specId": "053",
+  "folderSlug": "doc-alignment-and-readme-filling",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "000-release-cleanup"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,23 @@
+{
+  "schema_version": 2,
+  "spec_id": "011-mcp-server-package-extraction",
+  "title": "Full MCP extraction D2a",
+  "status": "in_progress",
+  "derived": {
+    "last_active_at": "2026-05-14T17:45:00Z",
+    "last_active_child_id": null,
+    "trigger_phrases": [
+      "013/009/011",
+      "mcp server full extraction",
+      "skill graph lifecycle advisor"
+    ],
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ]
+  }
+}

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/078-opencode-authoring-recipe/001-sk-code-authoring",
-  "spec_folder": "skilled-agent-orchestration/078-opencode-authoring-recipe/001-sk-code-authoring",
-  "parent_id": "skilled-agent-orchestration/078-opencode-authoring-recipe",
+  "packet_id": "skilled-agent-orchestration/z_archive/078-opencode-authoring-recipe/001-sk-code-authoring",
+  "spec_folder": "skilled-agent-orchestration/z_archive/078-opencode-authoring-recipe/001-sk-code-authoring",
+  "parent_id": "skilled-agent-orchestration/z_archive/078-opencode-authoring-recipe",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -48,7 +48,6 @@
       ".opencode/skills/sk-code/SKILL.md",
       ".opencode/skills/sk-code/description.json",
       ".opencode/skills/sk-code/changelog/v3.2.0.0.md",
-      ".opencode/skills/sk-doc/assets/documentation/changelog_template.md",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -107,12 +106,6 @@
         "name": "description.json",
         "kind": "config",
         "path": ".opencode/skills/sk-code/description.json",
-        "source": "derived"
-      },
-      {
-        "name": "changelog_template.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/assets/documentation/changelog_template.md",
         "source": "derived"
       },
       {
@@ -198,11 +191,17 @@
         "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Add 5 authoring checklists + 1 recipe asset + 1 SKILL.md surface refresh + 1 stale-link fix so that sk-code's OpenCode side ships first-class authoring assets matching the declared scope. Subsequent phases (2-4) depend on Phase 1 shipping first because `/spec_kit:complete` Phase 2 integration loads these assets, CocoIndex Phase 3 canonical-priority needs concrete canonical resources to prefer, and Phase 4 validator drift cleanup checks shape against the new authoring artifacts.",
     "created_at": "2026-05-05T17:36:52Z",
-    "last_save_at": "2026-05-05T19:14:21.716Z",
+    "last_save_at": "2026-05-18T15:17:57.005Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

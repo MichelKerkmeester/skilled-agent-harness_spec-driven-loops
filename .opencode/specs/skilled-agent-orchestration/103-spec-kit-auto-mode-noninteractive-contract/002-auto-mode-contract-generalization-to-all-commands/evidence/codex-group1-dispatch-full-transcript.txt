@@ -3530,7 +3530,7 @@ exec
 .opencode/commands/spec_kit/resume.md
 .opencode/skills/deep-ai-council/README.md
 .opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/002-auto-mode-contract-generalization-to-all-commands/tasks.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/graph-metadata.json
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/graph-metadata.json
 
 exec
 /bin/zsh -lc "node - <<'NODE'
@@ -3642,7 +3642,7 @@ exec
  M .opencode/commands/spec_kit/resume.md
  M .opencode/skills/deep-ai-council/README.md
  M .opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/002-auto-mode-contract-generalization-to-all-commands/tasks.md
- M .opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/graph-metadata.json
+ M .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/graph-metadata.json
 ?? .opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/002-auto-mode-contract-generalization-to-all-commands/evidence/
 
 diff --git a/.opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/002-auto-mode-contract-generalization-to-all-commands/evidence/codex-group1-dispatch.txt b/.opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/002-auto-mode-contract-generalization-to-all-commands/evidence/codex-group1-dispatch.txt
@@ -3967,7 +3967,7 @@ exec
  M .opencode/commands/spec_kit/resume.md
  M .opencode/skills/deep-ai-council/README.md
  M .opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/002-auto-mode-contract-generalization-to-all-commands/tasks.md
- M .opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/graph-metadata.json
+ M .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/graph-metadata.json
 ?? .opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/002-auto-mode-contract-generalization-to-all-commands/evidence/codex-group1-dispatch-full-transcript.txt
 ?? .opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/002-auto-mode-contract-generalization-to-all-commands/evidence/codex-group1-dispatch.txt
 

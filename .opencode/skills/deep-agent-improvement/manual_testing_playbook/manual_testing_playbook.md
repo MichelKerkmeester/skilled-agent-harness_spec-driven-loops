@@ -594,7 +594,7 @@ Expected signals: `experiment-registry.json` contains:
 
 ## 14. AGENT DISCIPLINE STRESS TESTS (CP-040..CP-045)
 
-This section originated as the 060 phase-parent's stress-test campaign for `@deep-agent-improvement`. The 6 scenarios test the agent + command discipline using `/improve:agent` (CP-040/043/044/045) and `@deep-agent-improvement` body (CP-041/042). Final composite score: **PASS 6 / PARTIAL 0 / FAIL 0** (after R3 CRITIC PASS verbatim emission requirement). See `.opencode/specs/skilled-agent-orchestration/060-sk-agent-improver-test-report-alignment/004-deep-agent-improvement-command-flow-stress-tests/test-report.md` for the full campaign narrative.
+This section originated as the 060 phase-parent's stress-test campaign for `@deep-agent-improvement`. The 6 scenarios test the agent + command discipline using `/improve:agent` (CP-040/043/044/045) and `@deep-agent-improvement` body (CP-041/042). Final composite score: **PASS 6 / PARTIAL 0 / FAIL 0** (after R3 CRITIC PASS verbatim emission requirement). See the local stress-test campaign notes for the full narrative.
 
 ### CP-040 | SKILL_LOAD_NOT_PROTOCOL script-routing fidelity **(SANDBOXED)**
 

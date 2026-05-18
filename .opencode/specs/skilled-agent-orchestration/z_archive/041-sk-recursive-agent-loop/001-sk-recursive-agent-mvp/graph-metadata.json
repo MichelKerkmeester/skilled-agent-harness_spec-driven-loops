@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/041-sk-recursive-agent-loop/001-sk-recursive-agent-mvp",
-  "spec_folder": "skilled-agent-orchestration/041-sk-recursive-agent-loop/001-sk-recursive-agent-mvp",
-  "parent_id": "skilled-agent-orchestration/041-sk-recursive-agent-loop",
+  "packet_id": "skilled-agent-orchestration/z_archive/041-sk-recursive-agent-loop/001-sk-recursive-agent-mvp",
+  "spec_folder": "skilled-agent-orchestration/z_archive/041-sk-recursive-agent-loop/001-sk-recursive-agent-mvp",
+  "parent_id": "skilled-agent-orchestration/z_archive/041-sk-recursive-agent-loop",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -42,55 +42,25 @@
     "status": "complete",
     "key_files": [
       "improvement/mirror-drift-report.md",
-      ".opencode/skills/sk-improve-agent/assets/target_manifest.jsonc",
-      ".opencode/skills/sk-improve-agent/assets/improvement_config.json",
-      ".opencode/skills/sk-improve-agent/scripts/reduce-state.cjs",
-      ".opencode/skills/sk-improve-agent/scripts/score-candidate.cjs",
       ".opencode/specs/descriptions.json",
       "plan.md",
       "tasks.md",
       "checklist.md",
       "decision-record.md",
       "spec.md",
-      ".opencode/skills/sk-improve-agent/SKILL.md",
-      ".opencode/skills/sk-improve-agent/README.md",
-      ".opencode/skills/sk-improve-agent/assets/improvement_charter.md",
-      ".opencode/skills/sk-improve-agent/assets/improvement_strategy.md",
       "improvement/agent-improvement-config.json",
       "improvement/agent-improvement-state.jsonl",
       "improvement/agent-improvement-dashboard.md",
       "improvement/experiment-registry.json",
-      "improvement/score-002.json"
+      "improvement/score-002.json",
+      "implementation-summary.md",
+      ".opencode/skills/README.md"
     ],
     "entities": [
       {
         "name": "mirror-drift-report.md",
         "kind": "doc",
         "path": "improvement/mirror-drift-report.md",
-        "source": "derived"
-      },
-      {
-        "name": "target_manifest.jsonc",
-        "kind": "file",
-        "path": ".opencode/skills/sk-improve-agent/assets/target_manifest.jsonc",
-        "source": "derived"
-      },
-      {
-        "name": "improvement_config.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-improve-agent/assets/improvement_config.json",
-        "source": "derived"
-      },
-      {
-        "name": "reduce-state.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/sk-improve-agent/scripts/reduce-state.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "score-candidate.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/sk-improve-agent/scripts/score-candidate.cjs",
         "source": "derived"
       },
       {
@@ -130,30 +100,6 @@
         "source": "derived"
       },
       {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-improve-agent/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-improve-agent/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "improvement_charter.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-improve-agent/assets/improvement_charter.md",
-        "source": "derived"
-      },
-      {
-        "name": "improvement_strategy.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-improve-agent/assets/improvement_strategy.md",
-        "source": "derived"
-      },
-      {
         "name": "agent-improvement-config.json",
         "kind": "config",
         "path": "improvement/agent-improvement-config.json",
@@ -184,6 +130,18 @@
         "source": "derived"
       },
       {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/README.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -206,11 +164,47 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Primary Runtime Surface",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Initial Target Under Test",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Create a repo-native `sk-improve-agent` system that borrows the good parts of `autoagent-main` without copying its trust boundary. The MVP is evaluator-first and proposal-only: it runs bounded experiments against one canonical source surface, scores candidates independently, records every attempt in an append-only ledger, and blocks canonical file mutation until the scorer and promotion contract are proven.",
     "created_at": "2026-04-12T09:02:50.185Z",
-    "last_save_at": "2026-04-26T09:17:15.212Z",
+    "last_save_at": "2026-05-18T15:17:56.856Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

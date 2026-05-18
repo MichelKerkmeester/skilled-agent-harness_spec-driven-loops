@@ -1,31 +1,208 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/006-cli-opencode-executor",
-  "spec_folder": "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/006-cli-opencode-executor",
-  "parent_id": "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural",
+  "packet_id": "skilled-agent-orchestration/z_archive/096-rename-opencode-dirs-to-plural/006-cli-opencode-executor",
+  "spec_folder": "skilled-agent-orchestration/z_archive/096-rename-opencode-dirs-to-plural/006-cli-opencode-executor",
+  "parent_id": "skilled-agent-orchestration/z_archive/096-rename-opencode-dirs-to-plural",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/005-remediation"
-    ],
+    "depends_on": [],
     "supersedes": [],
-    "related_to": [
-      "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/004-track-rereview"
-    ]
+    "related_to": []
   },
   "derived": {
     "trigger_phrases": [
       "101 cli-opencode executor",
-      "opencode executor"
+      "opencode executor",
+      "101 plan",
+      "101 tasks",
+      "101 checklist",
+      "101 implementation",
+      "cli-opencode executor summary"
     ],
     "key_topics": [
       "101",
       "cli-opencode",
-      "executor"
+      "executor",
+      "opencode",
+      "plan",
+      "tasks",
+      "checklist",
+      "implementation",
+      "summary",
+      "deep-review",
+      "deep-research",
+      "workflows"
     ],
+    "importance_tier": "high",
     "status": "complete",
-    "completion_pct": 100,
-    "level": 2,
-    "is_phase_parent": false
+    "key_files": [
+      "mcp_server/dist/lib/deep-loop/executor-config.js",
+      "mcp_server/lib/deep-loop/executor-config.ts",
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "executor-config.js",
+        "kind": "code",
+        "path": "mcp_server/dist/lib/deep-loop/executor-config.js",
+        "source": "derived"
+      },
+      {
+        "name": "executor-config.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/deep-loop/executor-config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Add",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Boundaries",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Error Scenarios",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Append",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Schema",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The deep-review/deep-research workflows support 4 executors (`native`, `cli-codex`, `cli-gemini`, `cli-claude-code`) but not `cli-opencode`. Users cannot dispatch deep-loop iterations via OpenCode CLI even though the cli-opencode skill exists for cross-AI handback. Requested explicitly during the post-100 verdict-flip re-run.",
+    "created_at": "2026-05-18T07:49:27.249Z",
+    "last_save_at": "2026-05-18T15:17:57.064Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ]
   }
 }

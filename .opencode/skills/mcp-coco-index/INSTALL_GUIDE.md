@@ -495,6 +495,35 @@ envs:
   VOYAGE_API_KEY: your-key-here
 ```
 
+**Using Ollama:** `ollama/nomic-embed-text` via LiteLLM provider. Requires a running Ollama daemon and the model pulled locally; no API key is needed.
+
+```bash
+# 1. Start Ollama, then pull the embedding model
+ollama serve
+ollama pull nomic-embed-text
+
+# 2. Point CocoIndex at the local daemon and model
+export OLLAMA_API_BASE="http://localhost:11434"
+export COCOINDEX_CODE_EMBEDDING_MODEL="ollama/nomic-embed-text"
+
+# 3. Rebuild vectors because the embedding backend changed
+.opencode/skills/mcp-coco-index/mcp_server/.venv/bin/ccc reset --force
+.opencode/skills/mcp-coco-index/mcp_server/.venv/bin/ccc index
+.opencode/skills/mcp-coco-index/mcp_server/.venv/bin/ccc search "test query" --limit 5
+```
+
+Equivalent `~/.cocoindex_code/global_settings.yml`:
+
+```yaml
+embedding:
+  provider: litellm
+  model: ollama/nomic-embed-text
+envs:
+  OLLAMA_API_BASE: http://localhost:11434
+```
+
+The registry marks Ollama-backed models with `requires_ollama_daemon=True`, so `ccc index` fails fast with a clear message when the daemon is unreachable or the model has not been pulled.
+
 **Vetted code-tuned alternatives:** see the curated registry below ("Choosing an embedder") or import `from cocoindex_code.registered_embedders import list_embedders` for the programmatic version. Cloud alternatives (OpenAI, Gemini, Cohere) still work via LiteLLM — see [Settings Reference](references/settings_reference.md) for the full list.
 
 > **CRITICAL**: Changing embedding models requires `ccc reset && ccc index` because different models produce different vector dimensions.
@@ -522,6 +551,7 @@ If you do want to swap, the registry of vetted candidates lives in `cocoindex_co
 | nomic-ai/CodeRankEmbed | 768 | ~550 MB | ~270 MB | code | Alternative code-tuned. Python-leaning. Try if jina underperforms on your repo. |
 | BAAI/bge-code-v1 | 768 | ~700 MB | ~340 MB | code | Multilingual code coverage emphasis. |
 | jinaai/jina-embeddings-v2-base-en | 768 | ~600 MB | ~280 MB | text | English-text variant. Docs-heavy repos. |
+| ollama/nomic-embed-text | 768 | ~600 MB | ~270 MB | text | Local Ollama option. Requires `ollama serve` + `ollama pull nomic-embed-text`; text-tuned, not code-tuned. |
 | Salesforce/SFR-Embedding-Code-2B_R | 2048 | ~4.5 GB | ~4 GB | code | Largest + highest quality. Need GPU/RAM headroom. |
 
 To swap (env var):

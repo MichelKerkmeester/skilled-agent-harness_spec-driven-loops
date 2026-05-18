@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "068-sk-doc-organization/002-update-and-mirror",
-  "spec_folder": "068-sk-doc-organization/002-update-and-mirror",
-  "parent_id": "068-sk-doc-organization",
+  "packet_id": "skilled-agent-orchestration/z_archive/068-sk-doc-organization/002-update-and-mirror",
+  "spec_folder": "skilled-agent-orchestration/z_archive/068-sk-doc-organization/002-update-and-mirror",
+  "parent_id": "skilled-agent-orchestration/z_archive/068-sk-doc-organization",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -10,25 +10,204 @@
     "related_to": []
   },
   "derived": {
-    "trigger_phrases": [],
-    "key_topics": [],
-    "importance_tier": "important",
+    "trigger_phrases": [
+      "068/002",
+      "update-and-mirror",
+      "sk-doc reference sweep",
+      "create command mirror",
+      "068/002 plan",
+      "update-and-mirror plan",
+      "068/002 tasks",
+      "update-and-mirror tasks",
+      "068/002 summary",
+      "update-and-mirror summary"
+    ],
+    "key_topics": [
+      "068",
+      "002",
+      "update-and-mirror",
+      "sk-doc",
+      "reference",
+      "sweep",
+      "create",
+      "command",
+      "mirror",
+      "plan",
+      "tasks",
+      "summary"
+    ],
+    "importance_tier": "normal",
     "status": "complete",
     "key_files": [
+      ".opencode/skills/sk-doc/SKILL.md",
+      ".opencode/commands/create/README.txt",
+      ".opencode/install_guides/SET-UP - Opencode Agents.md",
+      ".opencode/commands/create/agent.md",
+      ".gemini/commands/create/agent.toml",
+      ".gemini/commands/create/changelog.toml",
+      ".gemini/commands/create/feature-catalog.toml",
+      ".gemini/commands/create/testing-playbook.toml",
       "spec.md",
       "plan.md",
+      "implementation-summary.md",
       "tasks.md"
     ],
-    "entities": [],
-    "causal_summary": "Phase 2: update-and-mirror",
+    "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".opencode/commands/create/README.txt",
+        "source": "derived"
+      },
+      {
+        "name": "SET-UP - Opencode Agents.md",
+        "kind": "doc",
+        "path": ".opencode/install_guides/SET-UP - Opencode Agents.md",
+        "source": "derived"
+      },
+      {
+        "name": "agent.md",
+        "kind": "doc",
+        "path": ".opencode/commands/create/agent.md",
+        "source": "derived"
+      },
+      {
+        "name": "agent.toml",
+        "kind": "file",
+        "path": ".gemini/commands/create/agent.toml",
+        "source": "derived"
+      },
+      {
+        "name": "changelog.toml",
+        "kind": "file",
+        "path": ".gemini/commands/create/changelog.toml",
+        "source": "derived"
+      },
+      {
+        "name": "feature-catalog.toml",
+        "kind": "file",
+        "path": ".gemini/commands/create/feature-catalog.toml",
+        "source": "derived"
+      },
+      {
+        "name": "testing-playbook.toml",
+        "kind": "file",
+        "path": ".gemini/commands/create/testing-playbook.toml",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Path Convention",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "After Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Canonical",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "This is **Phase 2** of the Reorganize sk-doc/assets reorganization. After Phase 1 physically moved 4 asset items to `assets/` root and deleted the empty `agents/` subfolder, all dependent references still point to the OLD paths. Phase 2 closes that gap by applying 4 fixed-string substring substitutions across the canonical `.opencode/` tree and then replicating the changes to the other 3 runtime mirrors (`.claude/`, `.codex/`, `.gemini/`).",
     "created_at": "2026-05-05T07:55:03Z",
-    "last_save_at": "2026-05-05T09:05:00Z",
+    "last_save_at": "2026-05-18T15:17:56.964Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-05T09:05:00Z",
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ]
   }
 }

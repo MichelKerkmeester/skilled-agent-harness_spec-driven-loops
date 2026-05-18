@@ -10,7 +10,7 @@ Verdict: **trigger Phase D remediation, but start with measurement before changi
 
 Top actionable findings:
 
-1. **P1: End-to-end search-quality harness is missing.** v1.0.2 proved remediation progress at 83.8%, but the rerun itself notes N=1 limits and a marginal code-graph cell (`010-stress-test-rerun-v1-0-2/findings-rubric.json:71`, `010-stress-test-rerun-v1-0-2/findings.md:135`, `:87`).
+1. **P1: End-to-end search-quality harness is missing.** v1.0.2 proved remediation progress at 83.8%, but the rerun itself notes N=1 limits and a marginal code-graph cell (`010-stress-test-close-loop-measurement-rerun/findings-rubric.json:71`, `010-stress-test-close-loop-measurement-rerun/findings.md:135`, `:87`).
 2. **P1: Query intelligence needs an explicit query-plan contract.** Current routing still relies on deterministic term-count and heuristic/centroid classification surfaces (`query-classifier.ts:21`, `query-router.ts:62`, `intent-classifier.ts:158`).
 3. **P2: RAG fusion needs a composed trust tree.** Memory response policy, code graph fallback, advisor trustState, CocoIndex telemetry, and causal relation weights exist locally but are not represented as one answer-level provenance object (`search-results.ts:297`, `code_graph/handlers/context.ts:62`, `advisor-status.ts:101`, `seed-resolver.ts:20`, `causal-edges.ts:18`).
 4. **P2: Rerank should be conditional.** Cross-encoder and local rerank have useful gates, cache, and circuit breakers, but provider timeouts and local memory requirements make always-on rerank a poor default (`cross-encoder.ts:35`, `:161`, `local-reranker.ts:206`).
@@ -26,7 +26,7 @@ Answer: **HIGH evidence**. Start with latency instrumentation and benchmark corp
 
 ### RQ2: Precision and recall loss points
 
-Answer: **HIGH evidence**. Precision loss historically came from weak retrieval being cited as if authoritative; v1.0.1 I2 showed hallucinated path risk after weak memory search (`001-search-intelligence-stress-test/002-scenario-execution/findings.md:96`). Recall loss risk remains in routing and dedup windows: query router can skip channels by complexity (`query-router.ts:62`), while CocoIndex dedup depends on 4x overfetch (`query.py:282`). Current response policy reduces hallucination risk by refusing or asking under weak evidence (`search-results.ts:273`, `recovery-payload.ts:203`).
+Answer: **HIGH evidence**. Precision loss historically came from weak retrieval being cited as if authoritative; v1.0.1 I2 showed hallucinated path risk after weak memory search (`001-search-intelligence-stress-playbook/002-search-scenario-execution/findings.md:96`). Recall loss risk remains in routing and dedup windows: query router can skip channels by complexity (`query-router.ts:62`), while CocoIndex dedup depends on 4x overfetch (`query.py:282`). Current response policy reduces hallucination risk by refusing or asking under weak evidence (`search-results.ts:273`, `recovery-payload.ts:203`).
 
 ### RQ3: Query intelligence beyond sorted-token heuristic
 
@@ -47,7 +47,7 @@ Answer: **HIGH evidence**. Friction appears at integration boundaries:
 
 ### RQ6: v1.0.2 residuals
 
-Answer: **HIGH evidence**. v1.0.2 is a success baseline, not a failure baseline: +7.2pp, 6/7 PROVEN, 0 regressions (`010-stress-test-rerun-v1-0-2/findings.md:15`, `:73`). Residuals were marginal or proof-limited: packet 005 NEUTRAL, forced weak preamble caveat, N=1 limitations, and a still-bypassed copilot path in post-stress research (`010-stress-test-rerun-v1-0-2/findings.md:87`, `:135`, `011-post-stress-followup-research/research/research.md:29`). Later packets appear to have remediated several of those contract gaps, so Phase C should not mutate the closure tally.
+Answer: **HIGH evidence**. v1.0.2 is a success baseline, not a failure baseline: +7.2pp, 6/7 PROVEN, 0 regressions (`010-stress-test-close-loop-measurement-rerun/findings.md:15`, `:73`). Residuals were marginal or proof-limited: packet 005 NEUTRAL, forced weak preamble caveat, N=1 limitations, and a still-bypassed copilot path in post-stress research (`010-stress-test-close-loop-measurement-rerun/findings.md:87`, `:135`, `011-post-stress-finding-remediation-research/research/research.md:29`). Later packets appear to have remediated several of those contract gaps, so Phase C should not mutate the closure tally.
 
 ### RQ7: Underutilized affordances
 
@@ -114,11 +114,11 @@ Answer: **HIGH evidence**. Existing tests verify contracts, not outcome quality.
 
 | ID | Severity | Finding | Evidence | Recommended Action |
 |----|----------|---------|----------|--------------------|
-| F-001 | P1 | End-to-end search-quality harness is missing | `001-search-intelligence-stress-test/implementation-summary.md:54`, `010-stress-test-rerun-v1-0-2/findings.md:135` | Build corpus + metrics before ranking changes |
+| F-001 | P1 | End-to-end search-quality harness is missing | `001-search-intelligence-stress-playbook/implementation-summary.md:54`, `010-stress-test-close-loop-measurement-rerun/findings.md:135` | Build corpus + metrics before ranking changes |
 | F-004 | P1 | Query intelligence needs explicit query-plan contract | `query-classifier.ts:21`, `query-router.ts:62`, `intent-classifier.ts:158` | Add telemetry-only query plan |
 | F-020 | P1 | Phase D should start with measurement before behavior changes | Iterations 001 and 009 | Make harness first remediation packet |
-| F-002 | P2 | v1.0.2 residual is marginal code-graph evidence, not broad regression | `010-stress-test-rerun-v1-0-2/findings.md:73`, `:87` | Add degraded-readiness stress cells |
-| F-003 | P2 | Weak-retrieval hallucination remains canonical failure mode | `001-search-intelligence-stress-test/002-scenario-execution/findings.md:96` | Preserve refusal/citation contracts |
+| F-002 | P2 | v1.0.2 residual is marginal code-graph evidence, not broad regression | `010-stress-test-close-loop-measurement-rerun/findings.md:73`, `:87` | Add degraded-readiness stress cells |
+| F-003 | P2 | Weak-retrieval hallucination remains canonical failure mode | `001-search-intelligence-stress-playbook/002-search-scenario-execution/findings.md:96` | Preserve refusal/citation contracts |
 | F-005 | P2 | Memory search has local fusion signals but lacks shared evaluation telemetry | `hybrid-search.ts:560`, `:1248` | Log channel survival and final policy together |
 | F-006 | P2 | Weak-quality refusal contracts should not be bypassed | `search-results.ts:273`, `recovery-payload.ts:203` | Assert refusal survives rerank/fusion |
 | F-007 | P2 | Code graph fast-fail is implemented; residual is proof | `ensure-ready.ts:141`, `query.ts:787`, fallback tests | Test degraded states end-to-end |
@@ -133,7 +133,7 @@ Answer: **HIGH evidence**. Existing tests verify contracts, not outcome quality.
 | F-016 | P2 | Local trust contracts are not globally composed | `recovery-payload.ts:12`, `context.ts:62`, `advisor-status.ts:101` | Add trust tree |
 | F-017 | P2 | CocoIndex seed telemetry can be trust-tree leaf evidence | `seed-resolver.ts:20`, `:110` | Preserve path/raw/ranking signals |
 | F-018 | P2 | Existing tests are contract tests, not outcome tests | `memory-context-eval-channels.vitest.ts:1`, fallback/status tests | Add outcome benchmark |
-| F-019 | P2 | v1.0.2 N=1 limits require larger regression corpus | `010-stress-test-rerun-v1-0-2/findings.md:135` | Expand query matrix |
+| F-019 | P2 | v1.0.2 N=1 limits require larger regression corpus | `010-stress-test-close-loop-measurement-rerun/findings.md:135` | Expand query matrix |
 
 ### Adversarial Checks for P1 Findings
 
@@ -262,26 +262,26 @@ Dimension coverage:
 
 ## 8. Sources Reviewed
 
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/001-search-intelligence-stress-test/implementation-summary.md:54`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/001-search-intelligence-stress-test/implementation-summary.md:126`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/001-search-intelligence-stress-test/002-scenario-execution/findings.md:23`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/001-search-intelligence-stress-test/002-scenario-execution/findings.md:68`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/001-search-intelligence-stress-test/002-scenario-execution/findings.md:96`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/001-search-intelligence-stress-test/002-scenario-execution/findings.md:121`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/010-stress-test-rerun-v1-0-2/findings.md:15`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/010-stress-test-rerun-v1-0-2/findings.md:46`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/010-stress-test-rerun-v1-0-2/findings.md:73`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/010-stress-test-rerun-v1-0-2/findings.md:87`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/010-stress-test-rerun-v1-0-2/findings.md:135`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/010-stress-test-rerun-v1-0-2/findings-rubric.json:71`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/001-search-intelligence-stress-playbook/implementation-summary.md:54`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/001-search-intelligence-stress-playbook/implementation-summary.md:126`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/001-search-intelligence-stress-playbook/002-search-scenario-execution/findings.md:23`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/001-search-intelligence-stress-playbook/002-search-scenario-execution/findings.md:68`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/001-search-intelligence-stress-playbook/002-search-scenario-execution/findings.md:96`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/001-search-intelligence-stress-playbook/002-search-scenario-execution/findings.md:121`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/010-stress-test-close-loop-measurement-rerun/findings.md:15`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/010-stress-test-close-loop-measurement-rerun/findings.md:46`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/010-stress-test-close-loop-measurement-rerun/findings.md:73`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/010-stress-test-close-loop-measurement-rerun/findings.md:87`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/010-stress-test-close-loop-measurement-rerun/findings.md:135`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/010-stress-test-close-loop-measurement-rerun/findings-rubric.json:71`
 - `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/002-mcp-runtime-improvement-research/research/research.md:62`
 - `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/002-mcp-runtime-improvement-research/research/research.md:74`
 - `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/002-mcp-runtime-improvement-research/research/research.md:84`
 - `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/002-mcp-runtime-improvement-research/research/research.md:665`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/011-post-stress-followup-research/research/research.md:29`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/011-post-stress-followup-research/research/research.md:135`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/011-post-stress-followup-research/research/research.md:243`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/011-post-stress-followup-research/research/research.md:303`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/011-post-stress-finding-remediation-research/research/research.md:29`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/011-post-stress-finding-remediation-research/research/research.md:135`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/011-post-stress-finding-remediation-research/research/research.md:243`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/011-post-stress-finding-remediation-research/research/research.md:303`
 - `specs/system-spec-kit/026-graph-and-context-optimization/006-graph-impact-and-affordance-uplift/008-deep-research-review/research/research.md:92`
 - `specs/system-spec-kit/026-graph-and-context-optimization/006-graph-impact-and-affordance-uplift/008-deep-research-review/research/research.md:421`
 - `.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1`

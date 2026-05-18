@@ -1,18 +1,15 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/094-playbook-prompt-naturalness",
-  "spec_folder": "skilled-agent-orchestration/094-playbook-prompt-naturalness",
-  "parent_id": "skilled-agent-orchestration",
+  "packet_id": "skilled-agent-orchestration/z_archive/094-playbook-prompt-naturalness",
+  "spec_folder": "skilled-agent-orchestration/z_archive/094-playbook-prompt-naturalness",
+  "parent_id": null,
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      "skilled-agent-orchestration/093-testing-playbooks-code-review-and-git"
-    ],
+    "depends_on": [],
     "supersedes": [],
-    "related_to": [
-      "skilled-agent-orchestration/068-sk-doc-organization",
-      "skilled-agent-orchestration/063-sk-doc-agent-template-alignment"
-    ]
+    "related_to": []
   },
   "derived": {
     "trigger_phrases": [
@@ -20,7 +17,14 @@
       "playbook RCAF refactor",
       "natural human prompts in playbooks",
       "drop As a role default",
-      "playbook prompt voice"
+      "playbook prompt voice",
+      "094 plan",
+      "playbook naturalization plan",
+      "094 tasks",
+      "094 checklist",
+      "094 decision record",
+      "rcaf heuristic adr",
+      "natural human prompt heuristic"
     ],
     "key_topics": [
       "094",
@@ -28,14 +32,186 @@
       "prompt",
       "naturalness",
       "rcaf",
-      "natural-human",
-      "sk-doc"
+      "refactor",
+      "natural",
+      "human",
+      "prompts",
+      "playbooks",
+      "drop",
+      "role"
     ],
+    "importance_tier": "high",
     "status": "complete",
-    "completion_pct": 100,
-    "last_active_child_id": null,
-    "level": 2,
-    "is_phase_parent": false,
-    "session_outcome": "16_playbooks_naturalized_sk-doc_templates_updated_dqi_resolved"
+    "key_files": [
+      ".opencode/skills/sk-doc/assets/testing_playbook/manual_testing_playbook_snippet_template.md",
+      ".opencode/skills/sk-doc/assets/testing_playbook/manual_testing_playbook_template.md",
+      ".opencode/commands/create/testing-playbook.md",
+      ".opencode/specs/skilled-agent-orchestration/graph-metadata.json",
+      "decision-record.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "spec.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "manual_testing_playbook_snippet_template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/assets/testing_playbook/manual_testing_playbook_snippet_template.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual_testing_playbook_template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/assets/testing_playbook/manual_testing_playbook_template.md",
+        "source": "derived"
+      },
+      {
+        "name": "testing-playbook.md",
+        "kind": "doc",
+        "path": ".opencode/commands/create/testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/specs/skilled-agent-orchestration/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Apply Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Every",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Exact Prompt",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Naturalize",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Doc",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Every per-feature file across 16 `manual_testing_playbook/` packages (~498 files total) currently pins an \"Exact Prompt\" that opens with `As a {ROLE}, {ACTION} against {TARGET}. Verify {EXPECTED_OUTCOME}. Return {OUTPUT_FORMAT}.` (RCAF). Real humans almost never phrase requests that way in normal conversation. The formulaic wrapper makes the playbook scenarios feel synthetic and reduces their value as regression coverage for how AIs actually handle real-world requests.",
+    "created_at": "2026-05-18T07:49:27.228Z",
+    "last_save_at": "2026-05-18T15:17:57.042Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ]
   }
 }

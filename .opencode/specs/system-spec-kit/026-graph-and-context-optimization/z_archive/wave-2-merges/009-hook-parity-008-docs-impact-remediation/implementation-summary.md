@@ -202,7 +202,7 @@ None required for this packet. Potential adjacent work for future packets (not i
 ## 6. REFERENCES
 
 - Parent packet: `../spec.md` (007-hook-parity)
-- Sibling sub-packets: `../../006-skill-advisor/004-skill-advisor-hook-surface/` through `../007-copilot-writer-wiring/`
+- Sibling sub-packets: `../../006-skill-advisor/004-advisor-hook-surface-integration/` through `../007-copilot-writer-wiring/`
 - Source analysis: `../impact-analysis/merged-impact-report.md`
 - Per-subpacket reports: `../impact-analysis/01-impact.md` through `10-impact.md`
 - Canonical path audit: `../path-references-audit.md`

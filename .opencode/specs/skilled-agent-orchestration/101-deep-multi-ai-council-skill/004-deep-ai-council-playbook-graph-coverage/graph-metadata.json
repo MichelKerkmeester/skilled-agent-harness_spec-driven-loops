@@ -4,10 +4,10 @@
   "spec_folder": "skilled-agent-orchestration/101-deep-multi-ai-council-skill/004-deep-ai-council-playbook-graph-coverage",
   "parent_id": "skilled-agent-orchestration/101-deep-multi-ai-council-skill",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      "skilled-agent-orchestration/101-deep-multi-ai-council-skill/003-deep-ai-council-graph-support"
-    ],
+    "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
@@ -17,33 +17,207 @@
       "council graph playbook",
       "DAC-019",
       "DAC-026",
-      "council_graph integration scenarios"
+      "council_graph integration scenarios",
+      "101/004 plan",
+      "deep-ai-council playbook graph plan",
+      "council graph scenarios plan",
+      "101/004 tasks",
+      "deep-ai-council playbook graph tasks",
+      "101/004 summary",
+      "deep-ai-council playbook graph summary"
     ],
     "key_topics": [
       "deep-ai-council",
-      "council-graph",
       "playbook",
+      "graph",
+      "council",
+      "dac-019",
+      "dac-026",
       "integration",
-      "scenarios"
+      "scenarios",
+      "101",
+      "004",
+      "plan",
+      "tasks"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
+      "tests/council-graph.vitest.ts",
       "spec.md",
+      ".opencode/skills/deep-ai-council/manual_testing_playbook/05--scope-boundaries/001-graph-support-derived-and-scoped.md",
+      ".opencode/skills/deep-ai-council/manual_testing_playbook/manual_testing_playbook.md",
+      ".opencode/specs/skilled-agent-orchestration/101-deep-multi-ai-council-skill/spec.md",
+      ".opencode/specs/skilled-agent-orchestration/101-deep-multi-ai-council-skill/graph-metadata.json",
+      ".opencode/skills/deep-ai-council/manual_testing_playbook/08--council-graph-integration/001-council-graph-upsert-idempotency-and-self-loop-rejection.md",
+      ".opencode/skills/deep-ai-council/manual_testing_playbook/08--council-graph-integration/002-council-graph-upsert-empty-input-no-op-success.md",
+      ".opencode/skills/deep-ai-council/manual_testing_playbook/08--council-graph-integration/003-council-graph-query-hostile-metadata-redaction.md",
+      ".opencode/skills/deep-ai-council/manual_testing_playbook/08--council-graph-integration/004-council-graph-query-five-modes-prompt-safe-context.md",
+      ".opencode/skills/deep-ai-council/manual_testing_playbook/08--council-graph-integration/005-council-graph-convergence-three-state-decision-matrix.md",
+      ".opencode/skills/deep-ai-council/manual_testing_playbook/08--council-graph-integration/006-council-graph-status-recovery-payload-and-readiness.md",
+      ".opencode/skills/deep-ai-council/manual_testing_playbook/08--council-graph-integration/007-council-graph-derived-projection-rebuilds-from-artifacts.md",
+      ".opencode/skills/deep-ai-council/manual_testing_playbook/08--council-graph-integration/008-council-graph-tools-registered-separately-from-deep-loop.md",
       "plan.md",
-      "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/deep-ai-council/references/graph_support.md",
+      "tasks.md"
     ],
-    "entities": [],
-    "causal_summary": "Add 8 functional council-graph integration scenarios (DAC-019..DAC-026) to deep-ai-council manual testing playbook so Phase 003's shipped graph surface has operator-driven validation coverage.",
+    "entities": [
+      {
+        "name": "council-graph.vitest.ts",
+        "kind": "test",
+        "path": "tests/council-graph.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "001-graph-support-derived-and-scoped.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-ai-council/manual_testing_playbook/05--scope-boundaries/001-graph-support-derived-and-scoped.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual_testing_playbook.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-ai-council/manual_testing_playbook/manual_testing_playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/specs/skilled-agent-orchestration/101-deep-multi-ai-council-skill/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "001-council-graph-upsert-idempotency-and-self-loop-rejection.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-ai-council/manual_testing_playbook/08--council-graph-integration/001-council-graph-upsert-idempotency-and-self-loop-rejection.md",
+        "source": "derived"
+      },
+      {
+        "name": "002-council-graph-upsert-empty-input-no-op-success.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-ai-council/manual_testing_playbook/08--council-graph-integration/002-council-graph-upsert-empty-input-no-op-success.md",
+        "source": "derived"
+      },
+      {
+        "name": "003-council-graph-query-hostile-metadata-redaction.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-ai-council/manual_testing_playbook/08--council-graph-integration/003-council-graph-query-hostile-metadata-redaction.md",
+        "source": "derived"
+      },
+      {
+        "name": "004-council-graph-query-five-modes-prompt-safe-context.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-ai-council/manual_testing_playbook/08--council-graph-integration/004-council-graph-query-five-modes-prompt-safe-context.md",
+        "source": "derived"
+      },
+      {
+        "name": "005-council-graph-convergence-three-state-decision-matrix.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-ai-council/manual_testing_playbook/08--council-graph-integration/005-council-graph-convergence-three-state-decision-matrix.md",
+        "source": "derived"
+      },
+      {
+        "name": "006-council-graph-status-recovery-payload-and-readiness.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-ai-council/manual_testing_playbook/08--council-graph-integration/006-council-graph-status-recovery-payload-and-readiness.md",
+        "source": "derived"
+      },
+      {
+        "name": "007-council-graph-derived-projection-rebuilds-from-artifacts.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-ai-council/manual_testing_playbook/08--council-graph-integration/007-council-graph-derived-projection-rebuilds-from-artifacts.md",
+        "source": "derived"
+      },
+      {
+        "name": "008-council-graph-tools-registered-separately-from-deep-loop.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-ai-council/manual_testing_playbook/08--council-graph-integration/008-council-graph-tools-registered-separately-from-deep-loop.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph_support.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-ai-council/references/graph_support.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Council Playbook Graph Coverage",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 003 of `101-deep-multi-ai-council-skill` shipped a dedicated council graph (4 MCP tools, 8 node kinds, 10 relation kinds, 5 query modes, 3 convergence buckets) backed by `council-graph.sqlite` and verified by `tests/council-graph.vitest.ts`. The manual testing playbook was not updated to match: the entire shipped surface is exercised by zero operator-driven scenarios; the only mention of `council_graph_*` in the playbook tree is one textual line in DAC-011. The DAC-011 scenario file is also still named `001-graph-support-explicitly-out-of-scope.md` even though its content was rewritten in-place to \"Graph support stays derived and scoped\".",
     "created_at": "2026-05-11T05:27:10Z",
-    "last_save_at": "2026-05-11T07:50:00Z",
+    "last_save_at": "2026-05-18T15:17:56.734Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ]
   }
 }

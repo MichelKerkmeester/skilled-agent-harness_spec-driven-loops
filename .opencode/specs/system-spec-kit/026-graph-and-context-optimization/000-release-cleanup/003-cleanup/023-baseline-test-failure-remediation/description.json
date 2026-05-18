@@ -1,0 +1,22 @@
+{
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/023-baseline-test-failure-remediation",
+  "description": "Feature Specification: Pre-Existing Test Failure Remediation",
+  "keywords": [
+    "feature",
+    "specification",
+    "pre-existing",
+    "test",
+    "failure",
+    "remediation"
+  ],
+  "lastUpdated": "2026-05-08T08:26:57.434Z",
+  "specId": "047",
+  "folderSlug": "pre-existing-test-failure-remediation",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "000-release-cleanup"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}

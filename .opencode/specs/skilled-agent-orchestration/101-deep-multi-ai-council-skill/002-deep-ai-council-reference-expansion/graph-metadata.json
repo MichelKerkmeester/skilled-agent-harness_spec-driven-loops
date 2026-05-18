@@ -4,13 +4,12 @@
   "spec_folder": "skilled-agent-orchestration/101-deep-multi-ai-council-skill/002-deep-ai-council-reference-expansion",
   "parent_id": "skilled-agent-orchestration/101-deep-multi-ai-council-skill",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
     "depends_on": [],
     "supersedes": [],
-    "related_to": [
-      "skilled-agent-orchestration/101-deep-multi-ai-council-skill/001-deep-ai-council-skill-creation",
-      "skilled-agent-orchestration/101-deep-multi-ai-council-skill/003-deep-ai-council-graph-support"
-    ]
+    "related_to": []
   },
   "derived": {
     "trigger_phrases": [
@@ -20,83 +19,200 @@
       "council depth dispatch",
       "council failure handling",
       "council anti-patterns",
-      "deep-ai-council playbook expansion",
-      "deep-ai-council skill routing"
+      "101/004 plan",
+      "deep-ai-council reference expansion plan",
+      "101/004 tasks",
+      "deep-ai-council reference expansion tasks",
+      "101/004 summary",
+      "deep-ai-council reference expansion summary"
     ],
     "key_topics": [
+      "101",
+      "004",
       "deep-ai-council",
       "reference",
       "expansion",
+      "council",
       "scoring",
+      "rubric",
       "depth",
       "dispatch",
       "failure",
-      "handling",
-      "anti-patterns",
-      "playbook",
-      "routing"
+      "handling"
     ],
     "importance_tier": "important",
-    "status": "completed",
+    "status": "complete",
     "key_files": [
-      "spec.md",
-      "plan.md",
-      "tasks.md",
-      "implementation-summary.md",
       ".opencode/skills/deep-ai-council/references/scoring_rubric.md",
       ".opencode/skills/deep-ai-council/references/depth_dispatch.md",
       ".opencode/skills/deep-ai-council/references/failure_handling.md",
       ".opencode/skills/deep-ai-council/references/anti_patterns.md",
       ".opencode/skills/deep-ai-council/references/seat_diversity_patterns.md",
-      ".opencode/skills/deep-ai-council/manual_testing_playbook/06--depth-and-failure-handling/001-depth-detection-parallel-vs-sequential.md",
-      ".opencode/skills/deep-ai-council/manual_testing_playbook/06--depth-and-failure-handling/002-resume-after-interrupted-state.md",
-      ".opencode/skills/deep-ai-council/manual_testing_playbook/07--writer-library-contract/001-library-writer-call-sequence.md",
-      ".opencode/skills/deep-ai-council/manual_testing_playbook/07--writer-library-contract/002-five-dimension-scoring-rubric-application.md",
-      ".opencode/skills/deep-ai-council/manual_testing_playbook/07--writer-library-contract/003-hunter-skeptic-referee-cross-critique.md",
-      ".opencode/skills/deep-ai-council/manual_testing_playbook/07--writer-library-contract/004-out-of-scope-write-rejection.md",
+      ".opencode/skills/deep-ai-council/manual_testing_playbook/manual_testing_playbook.md",
       ".opencode/skills/deep-ai-council/SKILL.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
       ".opencode/agents/deep-ai-council.md",
-      ".claude/agents/deep-ai-council.md",
-      ".codex/agents/deep-ai-council.toml",
-      ".gemini/agents/deep-ai-council.md"
+      "manual_testing_playbook/manual_testing_playbook.md"
     ],
     "entities": [
       {
         "name": "scoring_rubric.md",
         "kind": "doc",
         "path": ".opencode/skills/deep-ai-council/references/scoring_rubric.md",
-        "source": "manual"
+        "source": "derived"
       },
       {
         "name": "depth_dispatch.md",
         "kind": "doc",
         "path": ".opencode/skills/deep-ai-council/references/depth_dispatch.md",
-        "source": "manual"
+        "source": "derived"
       },
       {
         "name": "failure_handling.md",
         "kind": "doc",
         "path": ".opencode/skills/deep-ai-council/references/failure_handling.md",
-        "source": "manual"
+        "source": "derived"
       },
       {
         "name": "anti_patterns.md",
         "kind": "doc",
         "path": ".opencode/skills/deep-ai-council/references/anti_patterns.md",
-        "source": "manual"
+        "source": "derived"
+      },
+      {
+        "name": "seat_diversity_patterns.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-ai-council/references/seat_diversity_patterns.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual_testing_playbook.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-ai-council/manual_testing_playbook/manual_testing_playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-ai-council/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-ai-council.md",
+        "kind": "doc",
+        "path": ".opencode/agents/deep-ai-council.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Council Reference Expansion",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Expand",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Reference",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "Packet 004 expanded deep-ai-council reference coverage, manual testing playbook scenarios, and SKILL.md routing for council scoring, depth dispatch, failure handling, and anti-pattern guidance.",
+    "causal_summary": "The agent body now contains five substantial council subsystems with no focused skill references: scoring and synthesis, depth-aware dispatch, failure handling, anti-pattern detection, and expanded seat-diversity guidance. The manual testing playbook also has six coverage gaps around writer-library sequence, depth detection, scoring, adversarial critique, scoped-write rejection, and interrupted-state resume.",
     "created_at": "2026-05-10T10:34:50Z",
-    "last_save_at": "2026-05-10T10:50:00.000Z",
+    "last_save_at": "2026-05-18T15:17:56.732Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      "description.json"
+      "implementation-summary.md"
     ]
   }
 }

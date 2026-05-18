@@ -1,15 +1,13 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/070-sk-deep-rename/003-opencode-internals",
-  "spec_folder": "skilled-agent-orchestration/070-sk-deep-rename/003-opencode-internals",
-  "parent_id": "skilled-agent-orchestration/070-sk-deep-rename",
+  "packet_id": "skilled-agent-orchestration/z_archive/070-sk-deep-rename/003-opencode-internals",
+  "spec_folder": "skilled-agent-orchestration/z_archive/070-sk-deep-rename/003-opencode-internals",
+  "parent_id": "skilled-agent-orchestration/z_archive/070-sk-deep-rename",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      "skilled-agent-orchestration/070-sk-deep-rename",
-      "skilled-agent-orchestration/070-sk-deep-rename/001-discovery-impact-map",
-      "skilled-agent-orchestration/070-sk-deep-rename/002-skill-folder-rename"
-    ],
+    "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
@@ -19,15 +17,28 @@
       "opencode internal references",
       "sk-deep-review -> deep-review",
       "sk-deep-research -> deep-research",
-      "graph metadata edge fix"
+      "070 phase 003 plan",
+      "opencode internal reference plan",
+      "graph metadata edge fix",
+      "070 phase 003 tasks",
+      "opencode internal reference tasks",
+      "070 phase 003 checklist",
+      "opencode internal reference verification",
+      "070 phase 003 implementation summary"
     ],
     "key_topics": [
-      "skill-rename",
-      "opencode-internals",
-      "graph-metadata",
-      "agent-command-references",
-      "mcp-server",
-      "active-specs"
+      "070",
+      "phase",
+      "003",
+      "opencode",
+      "internal",
+      "references",
+      "sk-deep-review",
+      "deep-review",
+      "sk-deep-research",
+      "deep-research",
+      "plan",
+      "reference"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -36,34 +47,167 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "description.json",
-      "graph-metadata.json",
+      "implementation-summary.md",
       ".opencode/skills/sk-code-review/graph-metadata.json",
-      ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/graph-metadata.json",
-      ".opencode/agent",
-      ".opencode/commands/spec_kit",
-      ".opencode/skills/system-spec-kit/mcp_server",
-      ".opencode/skills/system-spec-kit/scripts",
-      ".opencode/specs"
+      ".opencode/skills/system-spec-kit/scripts/test-fixtures/053-template-compliant-level2/graph-metadata.json"
     ],
     "entities": [
-      "deep-review",
-      "deep-research",
-      "sk-deep-review",
-      "sk-deep-research",
-      "graph-metadata.json"
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-code-review/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Internal References",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Initialized Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Start Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Read Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Render Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Date",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
     ],
-    "causal_summary": "Phase 003 updates all approved .opencode internal references after Phase 002 made deep-review and deep-research the canonical skill folder names.",
+    "causal_summary": "Phase 002 renamed the skill folders and updated the advisor graph source, but many `.opencode/` consumers still point at `sk-deep-review` and `sk-deep-research`. Three graph metadata edges are already known broken, so advisor edge resolution can remain degraded until Phase 003 updates every other active `.opencode/` reference.",
     "created_at": "2026-05-05T20:00:00Z",
-    "last_save_at": "2026-05-05T21:00:00Z",
+    "last_save_at": "2026-05-18T15:17:56.980Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-05T20:00:00Z",
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ]
-  },
-  "importance_tier": "important"
+  }
 }

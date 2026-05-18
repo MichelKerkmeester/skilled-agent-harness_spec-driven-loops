@@ -283,8 +283,8 @@ The scan discovers indexable files from three sources:
 | #   | Source         | Key                 | Location                              |
 | --- | -------------- | ------------------- | ------------------------------------- |
 | 1   | Constitutional | constitutionalFiles | .opencode/skills/*/constitutional/*.md |
-| 2   | Spec Documents | specDocFiles        | .opencode/specs/**/*.md with `_memory.continuity` extraction from canonical docs |
-| 3   | Graph Metadata | graphMetadataFiles  | .opencode/specs/**/graph-metadata.json |
+| 2   | Spec Documents | specDocFiles        | <active-spec-folder>/**/*.md with `_memory.continuity` extraction from canonical docs |
+| 3   | Graph Metadata | graphMetadataFiles  | <active-spec-folder>/graph-metadata.json |
 
 Graph metadata rows are generated from canonical packet docs. Derived `status` falls back to `implementation-summary.md` presence plus checklist completion when explicit status is absent, then stores the normalized lowercase value.
 

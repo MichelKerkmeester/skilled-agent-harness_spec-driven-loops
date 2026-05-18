@@ -1,8 +1,8 @@
 ---
-title: "Session Handover: 001-doctor-commands [system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/001-doctor-commands/handover]"
+title: "Session Handover: 001-initial-doctor-commands [system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/001-initial-doctor-commands/handover]"
 description: "Handover for the /doctor:update v3.3 hardening work. 13 fixes shipped across 2 council rounds + 2 patches. R1 live-verified end-to-end (16-min runtime, final_status: ok). R2 Phase 8 sub-actions live-verified but Phase 5/7/10 truncated by opencode 96K session budget. Next agent picks up at: full E2E re-verification with patches in place + addressing Track E pre-existing TEMPLATE_HEADERS/ANCHORS_VALID drift."
 trigger_phrases:
-  - "001-doctor-commands handover"
+  - "001-initial-doctor-commands handover"
   - "/doctor:update v3.3 hardening handover"
   - "doctor update orchestrator outstanding work"
   - "council R1 R2 handover"
@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/001-doctor-commands"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/001-initial-doctor-commands"
     last_updated_at: "2026-05-09T20:40:00Z"
     last_updated_by: "spec-kit-handover"
     recent_action: "Authored handover for outstanding /doctor:update v3.3 hardening verification work"
@@ -24,7 +24,7 @@ _memory:
       - "ai-council/council-report.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "spec-kit-handover-001-doctor-commands-2026-05-09"
+      session_id: "spec-kit-handover-001-initial-doctor-commands-2026-05-09"
       parent_session_id: null
     completion_pct: 99
     open_questions: []
@@ -32,7 +32,7 @@ _memory:
       - "Council R1 + R2 + patches shipped (13 fixes total)"
       - "R1 live-verified at 16-min runtime; R2 Phase 8 verified, Phase 5+ truncated"
 ---
-# Session Handover: 001-doctor-commands
+# Session Handover: 001-initial-doctor-commands
 
 <!-- SPECKIT_TEMPLATE_SOURCE: handover | v1.0 -->
 
@@ -86,10 +86,10 @@ _memory:
 | `.opencode/commands/doctor/assets/doctor_update.yaml` | +200 lines: Phase 1.5 (FIX-01), Phase 8 sub-actions (FIX-02/03/04/07/08/09), Phase 3 hook (FIX-05), Phase 5.5 (FIX-06), Phase 5.2 reporting (FIX-10), Phase 4 dashboard column. Patched FIX-12 + FIX-13. | committed in `ddb4e2520` (R1+R2) + new patches uncommitted |
 | `.opencode/commands/doctor/update.md` | +6 lines: WORKFLOW PHASES rows for Phase 1.5 and 5.5; INSTRUCTIONS step 5 expanded with Phase 8 sub-actions | committed in `ddb4e2520` |
 | `.opencode/skills/system-spec-kit/mcp_server/database/migration-manifest.json` | +77 lines: M-3.3.0.0-004 + M-3.3.0.0-005 added; deprecated_files entry for `.opencode/skill/`; M-001 + M-002 status flipped from DEFERRED to "auto-run by Phase 8"; consumed_by metadata updated; last_updated bumped | committed in `ddb4e2520` |
-| `001-doctor-commands/implementation-summary.md` | continuity reflects R1+R2+patches state at 1226 bytes (under 2048 limit), packet_pointer corrected (013 → 013/001-doctor-commands) | committed in `ddb4e2520` (continuity v1) + uncommitted (continuity v2 mentioning patches) |
-| `001-doctor-commands/description.json` + `graph-metadata.json` | Auto-refreshed by generate-context.js | committed in `ddb4e2520` |
-| `001-doctor-commands/ai-council/` | 10 council artifacts: config, state, strategy, 3 seats, deliberation, critique, council-report.md | committed in `ddb4e2520` |
-| `001-doctor-commands/handover.md` | THIS DOCUMENT | uncommitted |
+| `001-initial-doctor-commands/implementation-summary.md` | continuity reflects R1+R2+patches state at 1226 bytes (under 2048 limit), packet_pointer corrected (013 → 013/001-initial-doctor-commands) | committed in `ddb4e2520` (continuity v1) + uncommitted (continuity v2 mentioning patches) |
+| `001-initial-doctor-commands/description.json` + `graph-metadata.json` | Auto-refreshed by generate-context.js | committed in `ddb4e2520` |
+| `001-initial-doctor-commands/ai-council/` | 10 council artifacts: config, state, strategy, 3 seats, deliberation, critique, council-report.md | committed in `ddb4e2520` |
+| `001-initial-doctor-commands/handover.md` | THIS DOCUMENT | uncommitted |
 <!-- /ANCHOR:context-transfer -->
 
 ---
@@ -100,8 +100,8 @@ _memory:
 ### 3.1 Recommended Starting Point
 
 - **Read first:**
-  - `001-doctor-commands/ai-council/council-report.md` (full Round 1 deliberation, FIX-00..06 specs, 88% confidence verdict)
-  - `001-doctor-commands/implementation-summary.md` (continuity surface; reflects current state)
+  - `001-initial-doctor-commands/ai-council/council-report.md` (full Round 1 deliberation, FIX-00..06 specs, 88% confidence verdict)
+  - `001-initial-doctor-commands/implementation-summary.md` (continuity surface; reflects current state)
   - `.opencode/commands/doctor/assets/doctor_update.yaml` (the orchestrator workflow with all 13 fixes)
   - This file (`handover.md`) for the open-work state
 
@@ -140,9 +140,9 @@ _memory:
 
 ### 3.3 Critical Context to Load
 
-- [ ] Memory: most-recent /memory:save was on 001-doctor-commands; previous on 002-sandbox-testing-playbook
-- [ ] Spec packet: `001-doctor-commands` (Level 2, REQ-001..REQ-023, ADR-001..ADR-009)
-- [ ] Council artifacts: `001-doctor-commands/ai-council/council-report.md` (88% confidence verdict, 7 fixes)
+- [ ] Memory: most-recent /memory:save was on 001-initial-doctor-commands; previous on 002-sandbox-testing-playbook
+- [ ] Spec packet: `001-initial-doctor-commands` (Level 2, REQ-001..REQ-023, ADR-001..ADR-009)
+- [ ] Council artifacts: `001-initial-doctor-commands/ai-council/council-report.md` (88% confidence verdict, 7 fixes)
 - [ ] Sibling packet: `002-sandbox-testing-playbook` (handover at `002-sandbox-testing-playbook/handover.md`)
 - [ ] Phase parent: `010-doctor-update-orchestrator` (lean trio)
 - [ ] Memory rules in CLAUDE.md: "Stay on main, no feature branches" + "DELETE not archive" + "cli-codex preferred for grunt work" + "codex sandbox blocks sub-process network — pass `-c sandbox_workspace_write.network_access=true`"
@@ -156,7 +156,7 @@ _memory:
 
 - [x] All in-progress work in working tree (FIX-12 + FIX-13 patches uncommitted, will be in this commit)
 - [x] Current context saved via `_memory.continuity` frontmatter blocks (1226 bytes, under 2048 limit)
-- [x] Memory save run on 001-doctor-commands at handover time
+- [x] Memory save run on 001-initial-doctor-commands at handover time
 - [x] No breaking changes mid-implementation (all yaml.safe_load + jq validations PASS)
 - [ ] Tests passing — N/A; the live E2E verification is the test, and Phase 5/7/10 didn't complete (this is the open work)
 - [x] yaml.safe_load `doctor_update.yaml` PASSES
@@ -253,7 +253,7 @@ jq '.' .opencode/skills/system-spec-kit/mcp_server/database/migration-manifest.j
 
 # 2. Re-validate the packet (expect: exit 2 with TEMPLATE_HEADERS + ANCHORS_VALID baseline only)
 bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh \
-  .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/001-doctor-commands --strict
+  .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/001-initial-doctor-commands --strict
 
 # 3. Set up fresh v3.3 verification workspace (all signals primed to fire)
 rm -rf /tmp/sk_v3_3_fresh && mkdir -p /tmp/sk_v3_3_fresh

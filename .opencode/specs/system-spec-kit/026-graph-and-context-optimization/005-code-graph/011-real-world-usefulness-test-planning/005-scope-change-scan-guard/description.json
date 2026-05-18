@@ -1,0 +1,36 @@
+{
+  "title": "Scope-Change Guard",
+  "trigger_phrases": [
+    "026/007/012/005",
+    "scope-change guard",
+    "scope_change_scan_rejected",
+    "forceScopeChange",
+    "F-002 scope fingerprint"
+  ],
+  "level": 2,
+  "name": "Scope-Change Guard",
+  "contextType": "implementation",
+  "importance_tier": "critical",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/011-real-world-usefulness-test-planning/005-scope-change-scan-guard",
+  "created_at": "2026-05-06T07:44:35Z",
+  "status": "complete",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/011-real-world-usefulness-test-planning/005-scope-change-scan-guard",
+  "description": "Feature Specification: Scope-Change Guard",
+  "keywords": [
+    "feature",
+    "specification",
+    "scope-change",
+    "guard"
+  ],
+  "lastUpdated": "2026-05-08T08:26:57.693Z",
+  "specId": "005",
+  "folderSlug": "scope-guard",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "005-code-graph",
+    "011-real-world-usefulness-test-planning"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -248,6 +248,8 @@ devin --prompt-file <path> --model <id> --permission-mode <auto|dangerous> 2>&1 
 
 Devin runs four model presets. The skill defaults to SWE-1.6 for context gathering, tool use, and simple-to-medium well-defined code tasks. DeepSeek v4 is the primary pick for complex work; GLM 5.1 and Kimi k2.6 are the documented complex-task fallbacks when DeepSeek v4 doesn't fit or doesn't deliver.
 
+Per-model context budget defaults live in `assets/per-model-budgets.json`; the budget pattern is documented in `references/context-budget.md`, and the opt-in output-verification pipeline is documented in `references/output-verification.md`. Shared model facts, quota pools, and fallback targets live in `../sk-prompt/assets/model-profiles.json`.
+
 | Model | ID | Use Case |
 |-------|----|----------|
 | **Cognition SWE-1.6** ★ default | `swe-1.6` | Context gathering, tool use, simple-to-medium code tasks that are clearly defined beforehand. Optimized for fast iteration inside Devin's agent loop. **Free tier** — does not consume Pro quota; dispatches succeed even when the TUI shows `Pro · 0% remaining`. |

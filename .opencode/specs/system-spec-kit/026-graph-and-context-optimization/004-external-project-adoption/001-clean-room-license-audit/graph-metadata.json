@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Produce a single ADR in this sub-phase's `decision-record.md` (or surfaced into 012 phase-root `decision-record.md` ADR-012-001) confirming the license posture and explicit allow-list of pattern-only adaptations.",
     "created_at": "2026-04-25T10:48:06.447Z",
-    "last_save_at": "2026-05-18T08:15:53.393Z",
+    "last_save_at": "2026-05-18T15:17:57.305Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

@@ -114,7 +114,7 @@ Synthesis & Handover:
 ## Cross-References
 
 - Sibling 005-memory-search-runtime-bugs: defect catalog (REQ-001..017 + REQ-018/019 candidates)
-- Sibling 001-search-intelligence-stress-test: cross-AI stress-test (v1.0.0 + v1.0.1 findings, model hallucination class)
+- Sibling 001-search-intelligence-stress-playbook: cross-AI stress-test (v1.0.0 + v1.0.1 findings, model hallucination class)
 - Skill /spec_kit:deep-research:auto: workflow owner
 - CLAUDE.md Gate 4: skill-owned workflow enforcement
 - Memory feedback_codex_cli_fast_mode.md: cli-codex fast-mode invocation pattern

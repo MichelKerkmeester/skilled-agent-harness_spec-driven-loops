@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/053-cli-skill-removal-mcp-clickup",
-  "spec_folder": "skilled-agent-orchestration/053-cli-skill-removal-mcp-clickup",
+  "packet_id": "skilled-agent-orchestration/z_archive/053-cli-skill-removal-mcp-clickup",
+  "spec_folder": "skilled-agent-orchestration/z_archive/053-cli-skill-removal-mcp-clickup",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -13,53 +13,200 @@
     "trigger_phrases": [
       "remove mcp-clickup",
       "delete mcp-clickup skill",
-      "decommission mcp-clickup",
-      "053 skill removal",
+      "053 mcp-clickup",
+      "plan mcp-clickup removal",
       "053 plan",
+      "tasks mcp-clickup removal",
       "053 tasks",
-      "053 checklist"
+      "checklist mcp-clickup removal",
+      "053 checklist",
+      "053 implementation summary",
+      "mcp-clickup removed"
     ],
     "key_topics": [
+      "remove",
       "mcp-clickup",
+      "delete",
       "skill",
+      "053",
+      "plan",
       "removal",
-      "decommission",
-      "advisor",
-      "skill-graph",
-      "cleanup",
-      "053"
+      "tasks",
+      "checklist",
+      "implementation",
+      "summary",
+      "removed"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      ".opencode/skills/mcp-clickup",
-      ".opencode/changelog/mcp-clickup",
-      ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py",
-      ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json",
-      ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/graph-metadata.json",
-      ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/lexical.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/explicit.ts",
+      ".opencode/skills/.smart-router-telemetry/compliance.jsonl",
       ".opencode/skills/mcp-code-mode/graph-metadata.json",
       ".opencode/skills/README.md",
       ".opencode/install_guides/README.md",
       ".opencode/install_guides/SET-UP - AGENTS.md",
-      "README.md",
+      ".opencode/skills/mcp-code-mode/manual_testing_playbook/01--core-tools/003-tool-info-schema.md",
+      ".opencode/skills/mcp-code-mode/manual_testing_playbook/02--manual-namespace-contract/001-correct-manual-tool-form.md",
+      ".opencode/skills/mcp-code-mode/manual_testing_playbook/04--multi-tool-workflows/001-sequential-chain.md",
+      ".opencode/skills/mcp-code-mode/manual_testing_playbook/04--multi-tool-workflows/002-promise-all-parallel.md",
+      ".opencode/skills/mcp-code-mode/manual_testing_playbook/05--clickup-and-chrome-via-cm/001-clickup-create-read-delete.md",
+      ".opencode/skills/mcp-code-mode/manual_testing_playbook/05--clickup-and-chrome-via-cm/003-sibling-pair-handover.md",
+      ".opencode/skills/mcp-code-mode/manual_testing_playbook/07--recovery-and-config/005-partial-chain-rollback.md",
+      "implementation-summary.md",
+      "checklist.md",
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md",
-      "implementation-summary.md"
+      "tasks.md"
     ],
     "entities": [
-      { "name": "spec.md", "kind": "doc", "path": "spec.md", "source": "derived" },
-      { "name": "plan.md", "kind": "doc", "path": "plan.md", "source": "derived" },
-      { "name": "tasks.md", "kind": "doc", "path": "tasks.md", "source": "derived" },
-      { "name": "checklist.md", "kind": "doc", "path": "checklist.md", "source": "derived" },
-      { "name": "implementation-summary.md", "kind": "doc", "path": "implementation-summary.md", "source": "derived" }
+      {
+        "name": "compliance.jsonl",
+        "kind": "file",
+        "path": ".opencode/skills/.smart-router-telemetry/compliance.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/mcp-code-mode/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "SET-UP - AGENTS.md",
+        "kind": "doc",
+        "path": ".opencode/install_guides/SET-UP - AGENTS.md",
+        "source": "derived"
+      },
+      {
+        "name": "003-tool-info-schema.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-code-mode/manual_testing_playbook/01--core-tools/003-tool-info-schema.md",
+        "source": "derived"
+      },
+      {
+        "name": "001-correct-manual-tool-form.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-code-mode/manual_testing_playbook/02--manual-namespace-contract/001-correct-manual-tool-form.md",
+        "source": "derived"
+      },
+      {
+        "name": "001-sequential-chain.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-code-mode/manual_testing_playbook/04--multi-tool-workflows/001-sequential-chain.md",
+        "source": "derived"
+      },
+      {
+        "name": "002-promise-all-parallel.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-code-mode/manual_testing_playbook/04--multi-tool-workflows/002-promise-all-parallel.md",
+        "source": "derived"
+      },
+      {
+        "name": "001-clickup-create-read-delete.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-code-mode/manual_testing_playbook/05--clickup-and-chrome-via-cm/001-clickup-create-read-delete.md",
+        "source": "derived"
+      },
+      {
+        "name": "003-sibling-pair-handover.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-code-mode/manual_testing_playbook/05--clickup-and-chrome-via-cm/003-sibling-pair-handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "005-partial-chain-rollback.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-code-mode/manual_testing_playbook/07--recovery-and-config/005-partial-chain-rollback.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Mode",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Remove",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execute Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
     ],
-    "causal_summary": "The mcp-clickup skill is being decommissioned. This packet removes the skill folder, its changelog, and every cross-reference embedded in the skill advisor (scoring tables, skill graphs, signals, adjacency) and in repo-wide READMEs/install guides. Service-level ClickUp/UTCP references that flow through mcp-code-mode are intentionally preserved because they describe the upstream tool, not the orchestrator skill being removed.",
+    "causal_summary": "The `mcp-clickup` skill is being decommissioned. Its presence in the skill registry, advisor scoring tables, skill graphs, and READMEs creates routing edges and counts that no longer correspond to any executable skill, which would surface broken recommendations to operators.",
     "created_at": "2026-04-30T08:00:00Z",
-    "last_save_at": "2026-04-30T08:00:00Z",
+    "last_save_at": "2026-05-18T15:17:56.904Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

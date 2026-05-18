@@ -1,0 +1,26 @@
+{
+  "specFolder": "005-shared-intelligence",
+  "description": "Feature Specification: shared model intelligence — registry, Bayesian scoring, and quota-pool-aware fallback",
+  "keywords": [
+    "feature",
+    "specification",
+    "shared",
+    "model",
+    "intelligence",
+    "fallback"
+  ],
+  "lastUpdated": "2026-05-18T16:58:00.000Z",
+  "specId": "005",
+  "folderSlug": "shared-intelligence",
+  "parentChain": [
+    "..",
+    ".opencode",
+    "specs",
+    "skilled-agent-orchestration",
+    "114-small-ai-model-optimization"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "18-05-26_13-40__phase-d-shared-intelligence-packet-covers-three.md"
+  ]
+}

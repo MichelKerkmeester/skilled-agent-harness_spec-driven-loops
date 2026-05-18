@@ -1,51 +1,213 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/069-sk-code-motion-dev-and-playbook/004-deep-review-remediation",
-  "spec_folder": "skilled-agent-orchestration/069-sk-code-motion-dev-and-playbook/004-deep-review-remediation",
-  "parent_id": "skilled-agent-orchestration/069-sk-code-motion-dev-and-playbook",
+  "packet_id": "skilled-agent-orchestration/z_archive/069-sk-code-motion-dev-and-playbook/004-deep-review-remediation",
+  "spec_folder": "skilled-agent-orchestration/z_archive/069-sk-code-motion-dev-and-playbook/004-deep-review-remediation",
+  "parent_id": "skilled-agent-orchestration/z_archive/069-sk-code-motion-dev-and-playbook",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      "skilled-agent-orchestration/069-sk-code-motion-dev-and-playbook/review"
-    ],
+    "depends_on": [],
     "supersedes": [],
-    "related_to": [
-      "skilled-agent-orchestration/069-sk-code-motion-dev-and-playbook/001-playbook",
-      "skilled-agent-orchestration/069-sk-code-motion-dev-and-playbook/002-motion-dev",
-      "skilled-agent-orchestration/069-sk-code-motion-dev-and-playbook/003-cross-ref-metadata-sync"
-    ]
+    "related_to": []
   },
   "derived": {
     "trigger_phrases": [
       "069 deep review remediation",
       "packet 069 final remediation",
       "motion.dev review findings",
-      "sk-code remediation phase 004"
+      "sk-code remediation phase 004",
+      "069 remediation plan",
+      "packet 069 deep review fix plan",
+      "069 remediation tasks",
+      "deep review finding tasks",
+      "069 remediation checklist",
+      "deep review remediation verification",
+      "069 remediation complete",
+      "packet 069 deep review remediation summary"
     ],
     "key_topics": [
-      "deep-review-remediation",
-      "motion-dev",
+      "069",
+      "deep",
+      "review",
+      "remediation",
+      "packet",
+      "final",
+      "motion",
+      "dev",
+      "findings",
       "sk-code",
-      "no-clobber",
-      "snippet-runnability",
-      "spec-continuity"
+      "phase",
+      "004"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "spec.md",
+      ".opencode/skills/sk-code/SKILL.md",
+      ".opencode/skills/sk-code/README.md",
+      ".opencode/skills/sk-code/references/motion_dev/animate_and_timelines.md",
+      ".opencode/skills/sk-code/references/motion_dev/quick_start.md",
+      ".opencode/skills/sk-code/assets/motion_dev/snippets/layout_transition.js",
+      ".opencode/skills/sk-code/assets/motion_dev/snippets/es_module_bootstrap.js",
+      ".opencode/skills/sk-code/assets/motion_dev/snippets/stagger_animation.js",
+      ".opencode/skills/sk-code/assets/motion_dev/playbook_entries.md",
+      ".opencode/skills/sk-code/manual_testing_playbook/manual_testing_playbook.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "spec.md"
     ],
-    "entities": [],
-    "causal_summary": "Final remediation phase for Packet 069 that clears the 7-iteration deep-review FAIL verdict by fixing active P0, P1, and P2 findings across sk-code router docs, Motion snippets, playbook scenario files, spec continuity, and graph metadata.",
+    "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "animate_and_timelines.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/references/motion_dev/animate_and_timelines.md",
+        "source": "derived"
+      },
+      {
+        "name": "quick_start.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/references/motion_dev/quick_start.md",
+        "source": "derived"
+      },
+      {
+        "name": "layout_transition.js",
+        "kind": "code",
+        "path": ".opencode/skills/sk-code/assets/motion_dev/snippets/layout_transition.js",
+        "source": "derived"
+      },
+      {
+        "name": "es_module_bootstrap.js",
+        "kind": "code",
+        "path": ".opencode/skills/sk-code/assets/motion_dev/snippets/es_module_bootstrap.js",
+        "source": "derived"
+      },
+      {
+        "name": "stagger_animation.js",
+        "kind": "code",
+        "path": ".opencode/skills/sk-code/assets/motion_dev/snippets/stagger_animation.js",
+        "source": "derived"
+      },
+      {
+        "name": "playbook_entries.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/assets/motion_dev/playbook_entries.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual_testing_playbook.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/manual_testing_playbook/manual_testing_playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Review Remediation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Source Verdict",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Clear",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Primary Skill",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 7-iteration deep review for Packet 069 ended with a FAIL verdict. Two P0 blockers remain around Webflow no-clobber evidence and an undocumented Motion+ runnable snippet path. Seven P1 findings keep router, citation, continuity, snippet, and playbook precondition state inconsistent. Four P2 findings leave useful playbook polish and metadata accuracy gaps.",
     "created_at": "2026-05-05T12:00:00Z",
-    "last_save_at": "2026-05-05T12:00:00Z",
-    "save_lineage": "manual",
-    "last_active_child_id": null,
-    "last_active_at": "2026-05-05T12:00:00Z",
+    "last_save_at": "2026-05-18T15:17:56.972Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-05T12:00:00Z",
     "source_docs": [
       "spec.md",
@@ -54,6 +216,5 @@
       "checklist.md",
       "implementation-summary.md"
     ]
-  },
-  "importance_tier": "important"
+  }
 }

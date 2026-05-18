@@ -1,0 +1,51 @@
+{
+  "title": "/doctor:code-graph apply-mode (Phase B)",
+  "trigger_phrases": [
+    "doctor code graph apply mode",
+    "doctor code graph phase b",
+    "code-graph apply auto-fix",
+    "code-graph verification battery gating",
+    "code-graph recovery playbook automation",
+    "026/007/013 packet"
+  ],
+  "level": 3,
+  "importance_tier": "important",
+  "contextType": "implementation",
+  "status": "complete",
+  "priority": "P1",
+  "createdAt": "2026-05-08T21:30:00Z",
+  "branch": "main",
+  "parent_track": "system-spec-kit/026-graph-and-context-optimization/005-code-graph",
+  "parent_id": "005-code-graph",
+  "manual": {
+    "depends_on": [
+      "system-spec-kit/026-graph-and-context-optimization/005-code-graph/005-doctor-diagnostic-command-phase-a",
+      "system-spec-kit/026-graph-and-context-optimization/005-code-graph/006-code-graph-resilience-research"
+    ]
+  },
+  "derived": {
+    "status": "complete",
+    "completion_pct": 100,
+    "last_active_child_id": null
+  },
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/012-doctor-apply-mode-implementation",
+  "description": "Feature Specification: /doctor:code-graph apply-mode (Phase B)",
+  "keywords": [
+    "feature",
+    "specification",
+    "doctor",
+    "code-graph",
+    "apply-mode",
+    "phase"
+  ],
+  "lastUpdated": "2026-05-09T07:57:32.852Z",
+  "specId": "013",
+  "folderSlug": "doctor-apply-mode-phase-b",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "005-code-graph"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

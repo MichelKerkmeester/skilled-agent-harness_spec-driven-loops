@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "052-cli-skill-patterns",
-  "spec_folder": "052-cli-skill-patterns",
+  "packet_id": "skilled-agent-orchestration/z_archive/052-cli-skill-patterns",
+  "spec_folder": "skilled-agent-orchestration/z_archive/052-cli-skill-patterns",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -10,16 +10,208 @@
     "related_to": []
   },
   "derived": {
-    "trigger_phrases": [],
-    "key_topics": [],
-    "importance_tier": "important",
-    "status": "planned",
-    "key_files": ["spec.md","plan.md","tasks.md"],
-    "entities": [],
-    "causal_summary": "cli-skill-patterns",
+    "trigger_phrases": [
+      "cli skill patterns",
+      "cli skill consistency",
+      "cli sibling harmonization",
+      "do-not-collapse cli skills",
+      "cli skill plan",
+      "cli sibling diff plan",
+      "cli skill tasks",
+      "cli skill checklist",
+      "do-not-collapse verification",
+      "cli skill ADRs",
+      "cli harmonization decisions",
+      "cli-skill 052"
+    ],
+    "key_topics": [
+      "cli",
+      "skill",
+      "patterns",
+      "consistency",
+      "sibling",
+      "harmonization",
+      "do-not-collapse",
+      "skills",
+      "plan",
+      "diff",
+      "tasks",
+      "checklist"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/cli-claude-code/SKILL.md",
+      ".opencode/skills/cli-codex/SKILL.md",
+      ".opencode/skills/cli-gemini/SKILL.md",
+      ".opencode/skills/cli-opencode/SKILL.md",
+      "manual_testing_playbook/manual_testing_playbook.md",
+      "decision-record.md",
+      "scratch/provider-auth-preflight-template.md",
+      "implementation-summary.md",
+      "checklist.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-claude-code/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual_testing_playbook.md",
+        "kind": "doc",
+        "path": "manual_testing_playbook/manual_testing_playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "provider-auth-preflight-template.md",
+        "kind": "doc",
+        "path": "scratch/provider-auth-preflight-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Error Handling",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Default Invocation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Provider Auth Pre",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Smart Fallback",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Add Error Handling",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Edit Baseline",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 5 cli-* skills under `.opencode/skills/` (`cli-claude-code`, `cli-codex`, `cli-gemini`, `cli-opencode`) all expose the same intent — orchestrate an external CLI from another AI runtime — and were authored from the same 8-section template. Audit during packet 051 surfaced concrete drift: cli-copilot is missing the Error Handling table, cli-opencode duplicates UNKNOWN_FALLBACK_CHECKLIST 3×, cli-claude-code is missing the Default Invocation block, INTENT_SIGNALS counts differ (codex=8, others=7), and the new Provider Auth Pre-Flight pattern added to cli-opencode in 051 has no equivalent in the other 4 even though several of them have provider-auth failure modes.",
     "created_at": "2026-04-29T12:04:01Z",
-    "last_save_at": "2026-04-29T12:04:01Z",
+    "last_save_at": "2026-05-18T15:17:56.902Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "source_docs": ["spec.md","plan.md","tasks.md"]
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ]
   }
 }

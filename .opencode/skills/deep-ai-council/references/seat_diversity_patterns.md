@@ -267,7 +267,7 @@ Respect user-selected custom strategies up to the maximum of three PER ROUND. If
 ## 7. CROSS-REFERENCES
 
 - Agent body: `.opencode/agents/deep-ai-council.md` §3 and §16.
-- Decision record: `.opencode/specs/skilled-agent-orchestration/080-multi-ai-council-output-protocol/decision-record.md` ADR-001.
+- Decision context: local doctor command ADRs ADR-001.
 - Scoring rubric: `scoring_rubric.md`.
 - Depth dispatch: `depth_dispatch.md`.
 - Failure handling: `failure_handling.md`.

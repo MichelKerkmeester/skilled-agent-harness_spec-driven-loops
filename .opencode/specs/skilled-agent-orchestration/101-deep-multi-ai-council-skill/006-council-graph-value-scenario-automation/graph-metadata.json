@@ -4,11 +4,10 @@
   "spec_folder": "skilled-agent-orchestration/101-deep-multi-ai-council-skill/006-council-graph-value-scenario-automation",
   "parent_id": "skilled-agent-orchestration/101-deep-multi-ai-council-skill",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      "skilled-agent-orchestration/101-deep-multi-ai-council-skill/003-deep-ai-council-graph-support",
-      "skilled-agent-orchestration/101-deep-multi-ai-council-skill/005-deep-ai-council-fixups-and-graph-value-scenarios"
-    ],
+    "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
@@ -17,31 +16,200 @@
       "council graph value automation",
       "DAC-027 vitest",
       "value-scenario fixtures",
-      "101/006"
+      "101/006",
+      "101/006 plan",
+      "101/006 tasks",
+      "101/006 summary"
     ],
     "key_topics": [
-      "council-graph",
-      "value-automation",
-      "vitest-fixtures"
+      "council",
+      "graph",
+      "value",
+      "automation",
+      "dac-027",
+      "vitest",
+      "value-scenario",
+      "fixtures",
+      "101",
+      "006",
+      "plan",
+      "tasks"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/tests/council-graph-value-scenarios.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/fixtures/council-value/seed-helpers.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/fixtures/council-value/dac-027.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/fixtures/council-value/data/scenarios.cjs",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/council-graph-value-report.json",
+      ".opencode/skills/system-spec-kit/scripts/seed-council-value-fixture.cjs",
+      ".opencode/skills/deep-ai-council/manual_testing_playbook/manual_testing_playbook.md",
+      "mcp_server/tests/council-graph-value-scenarios.vitest.ts",
+      "mcp_server/tests/fixtures/council-value/seed-helpers.ts",
+      "scripts/seed-council-value-fixture.cjs",
+      "mcp_server/tests/council-graph-value-report.json",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
-    "entities": [],
-    "causal_summary": "Promote DAC-027..DAC-032 operator A/B value contracts into CI-protected fixture-driven vitest with measured baseline vs graph metrics plus operator fixture-seeder CLI.",
+    "entities": [
+      {
+        "name": "council-graph-value-scenarios.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/council-graph-value-scenarios.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "seed-helpers.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/fixtures/council-value/seed-helpers.ts",
+        "source": "derived"
+      },
+      {
+        "name": "dac-027.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/fixtures/council-value/dac-027.ts",
+        "source": "derived"
+      },
+      {
+        "name": "scenarios.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/fixtures/council-value/data/scenarios.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "council-graph-value-report.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/council-graph-value-report.json",
+        "source": "derived"
+      },
+      {
+        "name": "seed-council-value-fixture.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/scripts/seed-council-value-fixture.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "manual_testing_playbook.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-ai-council/manual_testing_playbook/manual_testing_playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Council Graph Value",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scenario Automation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Single",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Fixture",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "user",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 005 shipped 6 value-comparison scenarios DAC-027..DAC-032 that contrast the no-graph operator workflow with the with-graph MCP workflow on real-world council situations. The scenarios are operator-driven contracts only — they cannot regress automatically, and the \"12 file reads vs 1 MCP call\" claim is representative, not measured. A reviewer cannot today answer \"is the value claim still true after a graph code change?\" without re-running the scenarios by hand.",
     "created_at": "2026-05-11T09:25:00Z",
-    "last_save_at": "2026-05-11T09:25:00Z",
+    "last_save_at": "2026-05-18T15:17:56.737Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ]
   }
 }

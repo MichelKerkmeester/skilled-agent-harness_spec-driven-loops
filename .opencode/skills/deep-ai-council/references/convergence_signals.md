@@ -46,4 +46,4 @@ State schema and convergence fields are convention-only for v1. If drift appears
 
 Cross-references:
 - Agent body: `.opencode/agents/deep-ai-council.md` §16
-- Decision record: `.opencode/specs/skilled-agent-orchestration/080-multi-ai-council-output-protocol/decision-record.md` ADR-001 and ADR-003
+- Decision context: local doctor command ADRs ADR-001 and ADR-003

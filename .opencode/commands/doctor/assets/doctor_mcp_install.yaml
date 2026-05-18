@@ -35,7 +35,7 @@ mcp_install_doctor_invariant: |
 # UPSTREAM ASSETS
 # ─────────────────────────────────────────────────────────────────
 upstream_assets:
-  packet: ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/001-doctor-commands"
+  contract: "local command design contract"
   files:
     spec: "spec.md"
     decision_record: "decision-record.md"

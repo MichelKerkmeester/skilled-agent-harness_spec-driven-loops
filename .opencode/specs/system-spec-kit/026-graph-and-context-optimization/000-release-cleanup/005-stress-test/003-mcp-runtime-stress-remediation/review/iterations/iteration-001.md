@@ -10,14 +10,14 @@
 - `.opencode/skills/system-spec-kit/mcp_server/lib/search/graph-readiness-mapper.ts:54`
 - `.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-search-live-envelope.vitest.ts:280`
 - `.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/w10-degraded-readiness-integration.vitest.ts:47`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/023-live-handler-envelope-capture-seam/implementation-summary.md:64`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/023-live-handler-envelope-capture-interface/implementation-summary.md:64`
 - `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/025-memory-search-degraded-readiness-wiring/tasks.md:83`
 
 ## Findings
 
 ### F-001
 ```json
-{"id":"F-001","severity":"P1","dimension":"traceability","summary":"023 still presents degradedReadiness as an active expected-failure after 025 closed TC-3.","evidence":"specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/023-live-handler-envelope-capture-seam/implementation-summary.md:64","status":"new"}
+{"id":"F-001","severity":"P1","dimension":"traceability","summary":"023 still presents degradedReadiness as an active expected-failure after 025 closed TC-3.","evidence":"specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/023-live-handler-envelope-capture-interface/implementation-summary.md:64","status":"new"}
 ```
 Severity rationale: the runtime path is now correct, but canonical packet docs still tell resume readers the gap is active. The contradiction is material because `_memory.continuity` is part of the recovery ladder.
 

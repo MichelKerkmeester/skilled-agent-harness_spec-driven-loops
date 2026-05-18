@@ -177,7 +177,7 @@ Deep-research and deep-review artifacts (iterations, deltas, prompts, state logs
 **Layout (root spec plus flat-first child phases):**
 
 ```text
-specs/system-spec-kit/026-graph-and-context-optimization/
+<spec-folder>
 ├── spec.md
 ├── research/                               <- root-spec deep-research artifacts
 ├── review/                                 <- root-spec deep-review artifacts

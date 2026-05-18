@@ -9,7 +9,7 @@
     "system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/003-continuity-refactor-gates",
     "system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/004-memory-save-rewrite",
     "system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/005-memory-search-runtime-bugs",
-    "system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/006-search-clusters-4-7-remediation",
+    "system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/006-memory-search-health-fallback-stability-remediation",
     "system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/007-foundational-runtime",
     "system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/008-sk-deep-cli-runtime-execution",
     "system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/009-system-hardening",
@@ -143,7 +143,7 @@
     ],
     "causal_summary": "The first consolidation preserved old packets behind an extra archive layer, which made the active phase surface harder to browse.",
     "created_at": "2026-04-21T13:00:00Z",
-    "last_save_at": "2026-05-18T08:15:53.361Z",
+    "last_save_at": "2026-05-18T15:17:57.279Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

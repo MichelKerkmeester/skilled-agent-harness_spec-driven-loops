@@ -1,0 +1,30 @@
+{
+  "title": "051 CocoIndex Feature Catalog",
+  "trigger_phrases": [
+    "020-cocoindex-feature-catalog",
+    "mcp-coco-index feature catalog",
+    "cocoindex catalog",
+    "semantic search catalog"
+  ],
+  "contextType": "implementation",
+  "importance_tier": "important",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/020-cocoindex-feature-catalog",
+  "description": "Feature Specification: 051 CocoIndex Feature Catalog",
+  "keywords": [
+    "feature",
+    "specification",
+    "051",
+    "cocoindex",
+    "catalog"
+  ],
+  "lastUpdated": "2026-05-08T08:26:57.406Z",
+  "specId": "038",
+  "folderSlug": "coco-index-feature-catalog",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "000-release-cleanup"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

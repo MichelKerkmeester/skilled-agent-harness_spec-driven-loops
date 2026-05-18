@@ -123,6 +123,6 @@ python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sy
 | Document | Purpose |
 | -------- | ------- |
 | [shared/parsing/README.md](../parsing/README.md) | Peer shared package README pattern |
-| [runtime executor hardening research](../../../../../specs/system-spec-kit/026-graph-and-context-optimization/004-runtime-executor-hardening/001-foundational-runtime/research/FINAL-synthesis-and-review.md) | S7 and M11 source context for typed YAML predicate grammar |
+| runtime executor hardening research | S7 and M11 source context for typed YAML predicate grammar |
 
 <!-- /ANCHOR:related -->

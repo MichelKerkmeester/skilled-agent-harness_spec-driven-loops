@@ -60,7 +60,7 @@ The dispatched prompt body may contain one structured marker block. Parse it bef
 
 ```yaml
 PRE-BOUND SETUP ANSWERS:
-  spec_folder: .opencode/specs/103-example/001-passwordless-login/  # explicit spec or phase folder path
+  spec_folder: <spec-folder>  # explicit spec or phase folder path
   phase_folder: ""  # optional explicit phase child path
   no_redirect: false  # boolean
   detection_method: provided  # provided | phase-folder | ranked | none

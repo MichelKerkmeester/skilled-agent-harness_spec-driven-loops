@@ -299,7 +299,7 @@ These are documented for transparency but explicitly NOT updated per `spec.md` �
 | `specs/skilled-agent-orchestration/059-agent-implement-code/research/**` | many | Historical research artifacts |
 | `specs/skilled-agent-orchestration/060-sk-agent-improver-test-report-alignment/**` | dedicated spec family | Historical record of the 060 packet's improve-agent work |
 | `specs/skilled-agent-orchestration/070-sk-deep-rename/**` | precedent packet | Historical precedent — may mention sk-improve-agent in side notes |
-| `specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/**` | many | Advisor research artifacts |
+| `specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/**` | many | Advisor research artifacts |
 | Past skill changelog narrative entries (`v1.0.0.0..v1.2.2.0`) | 93 narrative refs | Factually accurate as written ("v1.0.0.0 created sk-improve-agent…"). Path strings inside those docs are updated; narrative prose is not |
 | system-spec-kit changelog narrative `v3.3.0.0.md` (lines 99-103, 163), `v3.4.0.0.md` (line 171 narrative context) | 8 narrative refs | Documents past releases; narrative untouched, path strings updated only |
 

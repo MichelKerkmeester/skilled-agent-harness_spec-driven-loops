@@ -10,7 +10,7 @@
     "system-spec-kit/027-xce-research-based-refinement/004-causal-graph-lifecycle-tombstones",
     "system-spec-kit/027-xce-research-based-refinement/005-frontmatter-causal-edge-promoter",
     "system-spec-kit/027-xce-research-based-refinement/006-statediff-reconciliation-layer",
-    "system-spec-kit/027-xce-research-based-refinement/007-code-graph-hld-lld",
+    "system-spec-kit/027-xce-research-based-refinement/005-code-graph-hld-lld",
     "system-spec-kit/027-xce-research-based-refinement/008-code-graph-trace",
     "system-spec-kit/027-xce-research-based-refinement/009-code-graph-impact-analysis",
     "system-spec-kit/027-xce-research-based-refinement/010-code-graph-adoption-eval",

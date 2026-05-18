@@ -4,11 +4,10 @@
   "spec_folder": "skilled-agent-orchestration/113-cli-devin-prompt-quality-arc/003-eval-loop",
   "parent_id": "skilled-agent-orchestration/113-cli-devin-prompt-quality-arc",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      "skilled-agent-orchestration/113-cli-devin-prompt-quality-arc/001-council-design",
-      "skilled-agent-orchestration/113-cli-devin-prompt-quality-arc/002-eval-rig"
-    ],
+    "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
@@ -18,39 +17,205 @@
       "cli-devin deep loop",
       "swe 1.6 iteration run",
       "hill-climbing convergence",
-      "3-signal weighted vote",
-      "rate-limit pause resume"
+      "113/003 plan",
+      "113/003 tasks",
+      "113/003 checklist",
+      "113/003 decisions",
+      "113/003 summary"
     ],
     "key_topics": [
-      "114",
+      "113",
       "003",
-      "eval-loop",
-      "iterations",
-      "convergence",
+      "eval",
+      "loop",
+      "cli-devin",
+      "deep",
+      "swe",
+      "iteration",
+      "run",
       "hill-climbing",
-      "synthesis",
-      "pause-resume"
+      "convergence",
+      "plan"
     ],
-    "importance_tier": "important",
-    "status": "draft",
+    "importance_tier": "normal",
+    "status": "in_progress",
     "key_files": [
+      "state/eval-loop-state.jsonl",
+      "state/best-variant.json",
+      "state/mutation-coverage.json",
+      "state/eval-loop-dashboard.md",
+      "iterations/iteration-001.md",
+      "scripts/loop.cjs",
+      "variants/v-001-baseline-star.md",
+      "state/eval-loop-config.json",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "scripts/converge.cjs",
+      "scripts/mutate.cjs",
+      "scripts/synthesize.cjs",
+      "spec.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "eval-loop-state.jsonl",
+        "kind": "file",
+        "path": "state/eval-loop-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "best-variant.json",
+        "kind": "config",
+        "path": "state/best-variant.json",
+        "source": "derived"
+      },
+      {
+        "name": "mutation-coverage.json",
+        "kind": "config",
+        "path": "state/mutation-coverage.json",
+        "source": "derived"
+      },
+      {
+        "name": "eval-loop-dashboard.md",
+        "kind": "doc",
+        "path": "state/eval-loop-dashboard.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": "iterations/iteration-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "loop.cjs",
+        "kind": "file",
+        "path": "scripts/loop.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "v-001-baseline-star.md",
+        "kind": "doc",
+        "path": "variants/v-001-baseline-star.md",
+        "source": "derived"
+      },
+      {
+        "name": "eval-loop-config.json",
+        "kind": "config",
+        "path": "state/eval-loop-config.json",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "converge.cjs",
+        "kind": "file",
+        "path": "scripts/converge.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "mutate.cjs",
+        "kind": "file",
+        "path": "scripts/mutate.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "synthesize.cjs",
+        "kind": "file",
+        "path": "scripts/synthesize.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Eval Loop",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement We",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Run the bespoke deep-loop. Each iteration picks a council-seeded variant or mutates the current best along one axis, dispatches cli-devin against SWE 1.6 for each fixture (parallel wave of 3), scores via the 002 rig (deterministic + grader, cached), aggregates a variant score, then evaluates convergence via 3-signal weighted vote. Loop legal-stops when stopScore > 0.60 AND coverage + quality + budget gates pass. Min 6 iterations. Synthesis ranks variants with confidence scores and key insights. Output is `synthesis.md` — the binding handoff for 004 to apply winners.",
+    "created_at": "2026-05-16T19:10:00Z",
+    "last_save_at": "2026-05-18T15:17:56.779Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
-    ],
-    "entities": [],
-    "causal_summary": "Third phase of 114 packet. Runs the bespoke deep-loop: council-seeded hill-climbing across prompt variants, real SWE 1.6 dispatches per fixture (parallel wave of 3), deterministic + grader scoring via 002 rig, 3-signal weighted-vote convergence (plateau 0.40 + mutation-exhaustion 0.35 + MAD 0.25), legal-stop bundle (coverage + quality + budget). Min 6 iterations. 7-mode failure-recovery (429, grader dispute, parse error, cache race, fixture missing, grader cache poisoning, auth expiration) with pause-sentinel for free-tier rate limits. Outputs synthesis.md ranking variants with confidence scores for 004 to apply. Depends on 001 ratified + 002 dry-run green.",
-    "created_at": "2026-05-16T19:10:00Z",
-    "last_save_at": "2026-05-16T19:10:00Z",
-    "save_lineage": "main_agent",
-    "last_accessed_at": null,
-    "source_docs": [
-      "spec.md",
-      "plan.md",
-      "tasks.md"
     ]
   }
 }

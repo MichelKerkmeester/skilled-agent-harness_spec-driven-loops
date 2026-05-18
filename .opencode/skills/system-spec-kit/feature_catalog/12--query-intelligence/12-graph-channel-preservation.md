@@ -66,7 +66,7 @@ The `SPECKIT_GRAPH_CHANNEL_PRESERVATION` flag is **enabled by default** (`isGrap
 | Telemetry rolling ring of 200 decisions | `routing-telemetry.ts` | 18-38 |
 | `data.routing` block in memory_health | `memory-crud-health.ts` | 629-683 |
 | Default-on flag (`raw !== 'false'`) | `query-router.ts:isGraphChannelPreservationEnabled` | 182-198 |
-| Spec REQ-001..REQ-008 | `specs/.../012-causal-graph-channel-routing/spec.md` | 136-155 |
+| Spec REQ-001..REQ-008 | `specs/.../009-causal-graph-channel-routing/spec.md` | 136-155 |
 
 <!-- /ANCHOR:source-files -->
 
@@ -76,5 +76,4 @@ The `SPECKIT_GRAPH_CHANNEL_PRESERVATION` flag is **enabled by default** (`isGrap
 - Canonical catalog source: `feature_catalog.md`
 - Feature file path: `12--query-intelligence/12-graph-channel-preservation.md`
 - Related entries: `12--query-intelligence/01-query-complexity-router.md` (tier classifier — unchanged here, override sits above it), `12--query-intelligence/11-graph-concept-routing.md` (graph traversal algorithm — unchanged here), `03--discovery/03-health-diagnostics-memoryhealth.md` (surfaces the new `data.routing` block)
-- Spec packet: `specs/system-spec-kit/026-graph-and-context-optimization/012-causal-graph-channel-routing/`
 <!-- /ANCHOR:source-metadata -->

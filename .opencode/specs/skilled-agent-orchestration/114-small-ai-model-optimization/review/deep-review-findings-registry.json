@@ -1,0 +1,25 @@
+{
+  "sessionId": "114-deep-review-2026-05-18",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "findings": [],
+  "openFindings": [],
+  "resolvedFindings": [],
+  "dimensionsCovered": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "metrics": {
+    "iterationsCompleted": 0,
+    "openFindings": 0,
+    "resolvedFindings": 0,
+    "findingsBySeverity": {"P0": 0, "P1": 0, "P2": 0},
+    "dimensionsCovered": [],
+    "convergenceScore": 0,
+    "coverageBySources": {}
+  },
+  "corruptionWarnings": [],
+  "status": "INITIALIZED"
+}

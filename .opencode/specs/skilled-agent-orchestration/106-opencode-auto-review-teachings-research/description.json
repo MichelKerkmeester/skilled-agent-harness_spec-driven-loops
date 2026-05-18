@@ -1,0 +1,19 @@
+{
+  "specFolder": "skilled-agent-orchestration/106-opencode-auto-review-teachings-research",
+  "description": "20-iter upstream auto-review research",
+  "keywords": [
+    "20-iter",
+    "upstream",
+    "auto-review",
+    "research"
+  ],
+  "lastUpdated": "2026-05-16T04:31:29.048Z",
+  "specId": "106",
+  "folderSlug": "upstream-auto-review-research",
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

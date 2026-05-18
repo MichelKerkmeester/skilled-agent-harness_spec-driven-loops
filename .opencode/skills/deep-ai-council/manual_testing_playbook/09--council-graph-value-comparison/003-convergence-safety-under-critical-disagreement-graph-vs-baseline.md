@@ -53,7 +53,7 @@ Operators run the exact prompt and command sequence for `DAC-029` and confirm th
 
 **No-graph baseline:**
 
-1. `bash: rg "Seat (A|B|C).*Plan X|endorses|dissent|disagree" .opencode/specs/sandbox/dac-029/ai-council/deliberations/*.md` (operator tallies seat positions)
+1. `bash: rg "Seat (A|B|C).*Plan X|endorses|dissent|disagree" <spec-folder>*.md` (operator tallies seat positions)
 2. Operator applies documented two-of-three rule from `references/convergence_signals.md` → records "would converge" conclusion.
 
 **With-graph:**

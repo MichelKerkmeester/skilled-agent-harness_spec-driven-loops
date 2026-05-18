@@ -73,7 +73,7 @@ Current `.claude/settings.local.json` again carries those top-level fields. `Use
 
 ## References
 
-- Research: `../../research/007-deep-review-remediation-pt-03/research.md`
+- Research: `../../research/002-copilot-hook-followup-deep-review-remediation/research.md`
   - §2 root cause
   - §4.2 patch shape (this packet must now reapply it)
   - §3.3 Claude Code cross-runtime compatibility evidence

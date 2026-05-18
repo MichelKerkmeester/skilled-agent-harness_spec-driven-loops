@@ -39,9 +39,9 @@ Operators run the exact prompt and command sequence for `DAC-025` and confirm th
 
 1. Pick a healthy session with persisted artifacts (e.g., `specFolder='sandbox/dac-025', sessionId='dac-025-run-01'`); confirm `ai-council/ai-council-state.jsonl` exists with rows.
 2. Snapshot `council_graph_status` counts.
-3. Snapshot artifact mtimes: `bash: stat -f '%m %N' .opencode/specs/sandbox/dac-025/ai-council/**/*`.
+3. Snapshot artifact mtimes: `bash: stat -f '%m %N' <spec-folder>**/*`.
 4. Delete derived rows scoped to `(sandbox/dac-025, dac-025-run-01)` via direct SQL or `council_graph_status` `recovery` payload guidance.
-5. Replay upserts with `node .opencode/skills/deep-ai-council/scripts/replay-graph-from-artifacts.cjs --spec-folder .opencode/specs/sandbox/dac-025 --session-id dac-025-run-01`, then pipe the emitted payload to `council_graph_upsert`.
+5. Replay upserts with `node .opencode/skills/deep-ai-council/scripts/replay-graph-from-artifacts.cjs --spec-folder <spec-folder> --session-id dac-025-run-01`, then pipe the emitted payload to `council_graph_upsert`.
 6. Re-run `council_graph_status`; compare counts to step 2.
 7. Re-snapshot artifact mtimes; compare to step 3.
 
@@ -52,11 +52,11 @@ Operators run the exact prompt and command sequence for `DAC-025` and confirm th
 ### Commands
 
 1. `tool: council_graph_status({ specFolder: 'sandbox/dac-025', sessionId: 'dac-025-run-01' })`
-2. `bash: stat -f '%m %N' .opencode/specs/sandbox/dac-025/ai-council/**/* | sort > /tmp/dac-025-pre-mtimes.txt`
+2. `bash: stat -f '%m %N' <spec-folder>**/* | sort > /tmp/dac-025-pre-mtimes.txt`
 3. `bash: # delete derived rows scoped to namespace (helper script or direct SQL per recovery payload guidance)`
-4. `bash: node .opencode/skills/deep-ai-council/scripts/replay-graph-from-artifacts.cjs --spec-folder .opencode/specs/sandbox/dac-025 --session-id dac-025-run-01 > /tmp/dac-025-upsert.json`
+4. `bash: node .opencode/skills/deep-ai-council/scripts/replay-graph-from-artifacts.cjs --spec-folder <spec-folder> --session-id dac-025-run-01 > /tmp/dac-025-upsert.json`
 5. `tool: council_graph_status({ specFolder: 'sandbox/dac-025', sessionId: 'dac-025-run-01' })`
-6. `bash: stat -f '%m %N' .opencode/specs/sandbox/dac-025/ai-council/**/* | sort > /tmp/dac-025-post-mtimes.txt`
+6. `bash: stat -f '%m %N' <spec-folder>**/* | sort > /tmp/dac-025-post-mtimes.txt`
 7. `bash: diff /tmp/dac-025-pre-mtimes.txt /tmp/dac-025-post-mtimes.txt`
 
 ### Expected
@@ -95,8 +95,8 @@ If counts diverge, inspect the replay loop for missing event types or out-of-ord
 
 | File | Role |
 |---|---|
-| `.opencode/specs/skilled-agent-orchestration/101-deep-multi-ai-council-skill/003-deep-ai-council-graph-support/decision-record.md` | ADR-001 derived-projection contract |
-| `.opencode/specs/skilled-agent-orchestration/101-deep-multi-ai-council-skill/003-deep-ai-council-graph-support/checklist.md` | CHK-028 rollback path |
+| Internal design notes | ADR-001 derived-projection contract |
+| Internal design notes | CHK-028 rollback path |
 | `.opencode/skills/deep-ai-council/references/graph_support.md` §5 | Recovery and rollback contract |
 | `.opencode/skills/system-spec-kit/mcp_server/lib/council-graph/council-graph-db.ts` | Namespace-scoped delete + upsert |
 

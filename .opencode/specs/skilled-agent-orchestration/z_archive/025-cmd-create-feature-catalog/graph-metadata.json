@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/025-cmd-create-feature-catalog",
-  "spec_folder": "skilled-agent-orchestration/025-cmd-create-feature-catalog",
+  "packet_id": "skilled-agent-orchestration/z_archive/025-cmd-create-feature-catalog",
+  "spec_folder": "skilled-agent-orchestration/z_archive/025-cmd-create-feature-catalog",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -46,15 +46,8 @@
       ".opencode/commands/create/assets/create_feature_catalog_confirm.yaml",
       ".opencode/commands/create/README.txt",
       ".opencode/commands/README.txt",
-      ".opencode/README.md",
-      ".opencode/agents/write.md",
-      ".claude/agents/write.md",
-      ".codex/agents/write.toml",
       ".gemini/commands/create/feature-catalog.toml",
       "spec.md",
-      ".opencode/skills/sk-doc/references/specific/feature_catalog_creation.md",
-      ".opencode/skills/sk-doc/assets/documentation/feature_catalog/feature_catalog_template.md",
-      ".opencode/skills/sk-doc/assets/documentation/feature_catalog/feature_catalog_snippet_template.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
@@ -87,24 +80,6 @@
         "source": "derived"
       },
       {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "write.md",
-        "kind": "doc",
-        "path": ".opencode/agents/write.md",
-        "source": "derived"
-      },
-      {
-        "name": "write.toml",
-        "kind": "file",
-        "path": ".codex/agents/write.toml",
-        "source": "derived"
-      },
-      {
         "name": "feature-catalog.toml",
         "kind": "file",
         "path": ".gemini/commands/create/feature-catalog.toml",
@@ -114,24 +89,6 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "feature_catalog_creation.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/references/specific/feature_catalog_creation.md",
-        "source": "derived"
-      },
-      {
-        "name": "feature_catalog_template.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/assets/documentation/feature_catalog/feature_catalog_template.md",
-        "source": "derived"
-      },
-      {
-        "name": "feature_catalog_snippet_template.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/assets/documentation/feature_catalog/feature_catalog_snippet_template.md",
         "source": "derived"
       },
       {
@@ -205,11 +162,47 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Implementation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Reference",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow User",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "This packet defines the implementation contract for a new `/create:feature-catalog` command that scaffolds the current `sk-doc` feature-catalog package shape. The command must create or update `feature_catalog/` using the shipped creation reference and both template files, then keep runtime mirrors and command-discovery surfaces aligned.",
     "created_at": "2026-04-12T09:02:50.173Z",
-    "last_save_at": "2026-04-26T09:17:15.159Z",
+    "last_save_at": "2026-05-18T15:17:56.827Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

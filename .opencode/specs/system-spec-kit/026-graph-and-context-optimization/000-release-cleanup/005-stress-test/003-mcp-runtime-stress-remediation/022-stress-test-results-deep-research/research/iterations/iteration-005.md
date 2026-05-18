@@ -7,12 +7,12 @@ Expansion candidate ranking + Planning Packet synthesis. This follows strategy i
 ## Sources Read
 
 - `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/022-stress-test-results-deep-research/research/deep-research-strategy.md:14`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/020-w3-w7-verification-and-expansion-research/research/research-report.md:70`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/020-w3-w7-verification-and-expansion-research/research/research-report.md:82`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/020-w3-w7-verification-and-expansion-research/research/research-report.md:90`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/020-w3-w7-verification-and-expansion-research/research/research-report.md:171`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/021-stress-test-v1-0-3-with-w3-w13-wiring/findings-v1-0-3.md:105`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/021-stress-test-v1-0-3-with-w3-w13-wiring/findings-v1-0-3.md:107`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/020-enterprise-readiness-verification-expansion-research/research/research-report.md:70`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/020-enterprise-readiness-verification-expansion-research/research/research-report.md:82`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/020-enterprise-readiness-verification-expansion-research/research/research-report.md:90`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/020-enterprise-readiness-verification-expansion-research/research/research-report.md:171`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/021-stress-test-enterprise-wiring-expansion/findings-v1-0-3.md:105`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/021-stress-test-enterprise-wiring-expansion/findings-v1-0-3.md:107`
 - `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:927`
 - `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1169`
 - `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1410`

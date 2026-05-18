@@ -23,7 +23,7 @@ The source-of-truth roots are `.opencode/skills/system-spec-kit/feature_catalog/
 | Code graph readiness / fast-fail | Confirmed current | 22--context-preservation-and-code-graph/15-code-graph-auto-trigger.md documents `fallbackDecision`, `getGraphReadinessSnapshot()`, `readiness.action`, `SELECTIVE_REINDEX_THRESHOLD`, and the packet-013 disambiguation. |
 | Readiness contract | Confirmed current | 22--context-preservation-and-code-graph/24-code-graph-readiness-contract.md documents handler-local degraded payload shapes and the non-mutating status snapshot. |
 | CocoIndex bridge | Confirmed current | 22--context-preservation-and-code-graph/09-cocoindex-bridge-context.md documents `rawScore`, `pathClass`, `rankingSignals`, fork telemetry, and the passthrough test. |
-| Catalog/playbook downstream alignment | Still tracked | Packet `018-catalog-playbook-degraded-alignment/` remains in progress and owns remaining degraded-envelope / rankingSignals wording alignment. |
+| Catalog/playbook downstream alignment | Still tracked | Packet `018-feature-catalog-playbook-degraded-alignment/` remains in progress and owns remaining degraded-envelope / rankingSignals wording alignment. |
 
 Historical sections below are retained for provenance; use this reconciliation block for current-state guidance.
 
@@ -62,7 +62,7 @@ Historical sections below are retained for provenance; use this reconciliation b
 - **Missing fields:** `preEnforcementTokens`, `returnedTokens`, `actualTokens` (now an alias of `returnedTokens`), `droppedAllResultsReason: "impossible_budget"`.
 - **Recommended diff:** After the existing `enforceTokenBudget()` sentence, append:
   > The token-budget envelope now exposes four explicit fields: `preEnforcementTokens` (captured before any truncation or fallback), `returnedTokens` (the final emitted budgeted size), `actualTokens` (kept as a backward-compatible alias of `returnedTokens` so downstream parsers don't break), and on empty fallback payloads only, `droppedAllResultsReason: "impossible_budget"`. The under-budget invariant is `preEnforcementTokens === returnedTokens === actualTokens` with no `droppedAllResultsReason`.
-- **Source:** `003-memory-context-truncation-contract/implementation-summary.md` lines 50–54.
+- **Source:** `003-memory-context-truncation-telemetry-contract/implementation-summary.md` lines 50–54.
 
 ### 3.2 Packet 004 — vendored cocoindex_code fork telemetry
 
@@ -82,7 +82,7 @@ Historical sections below are retained for provenance; use this reconciliation b
 - **Missing fields:** `fallbackDecision` envelope sub-field with three sub-fields: `nextTool: "code_graph_scan" | "rg"`, `reason: "full_scan_required" | "selective_reindex" | "scan_failed" | "scan_declined"`, `retryAfter?: "scan_complete"`.
 - **Recommended diff (15-code-graph-auto-trigger.md, after line 21):** Insert bullet:
   > - `fallbackDecision: { nextTool, reason, retryAfter? }` for caller routing. Empty/stale full-scan states return `nextTool:"code_graph_scan"`, `reason:"full_scan_required"`, `retryAfter:"scan_complete"`. Selective-reindex and fresh paths emit no `fallbackDecision`. Readiness-crash states return `nextTool:"rg"`, `reason:"scan_failed"`.
-- **Source:** `005-code-graph-fast-fail/implementation-summary.md` lines 55–57, 100–104; tasks.md line 54.
+- **Source:** `005-code-graph-fail-fast-routing/implementation-summary.md` lines 55–57, 100–104; tasks.md line 54.
 
 ### 3.4 Packet 006 — causal stats relation-window metrics
 
@@ -92,7 +92,7 @@ Historical sections below are retained for provenance; use this reconciliation b
 - **Recommended diff:** Append a new paragraph to §2:
   > The response now also reports rolling-window deltas and balance metrics: `deltaByRelation` (per-relation count of new edges in the active window), `dominantRelation` and `dominantRelationShare` (largest relation type and its share of the window total), `balanceStatus` (one of `balanced`, `relation_skewed`, `insufficient_data`), `remediationHint` (a string naming the producer when skew is detected, e.g. prediction-error supersede burst), and `windowStartedAt`. `by_relation` is zero-filled across all 6 relation types so a missing type appears as 0 rather than disappearing. When `dominantRelationShare > 0.80` AND total new edges in window >= 50, `balanceStatus` is `relation_skewed` and `remediationHint` is set. Auto-edge insertion on PE / reconsolidation paths now respects a per-relation per-window cap routed through shared cap logic so supersedes bursts cannot dominate the graph.
 - **Cross-impact:** 02--mutation/01-memory-indexing-memorysave.md should add one sentence in its PE/supersedes paragraph noting that auto-edge insertion is now capped per relation per window.
-- **Source:** `006-causal-graph-window-metrics/spec.md` lines 56–110.
+- **Source:** `006-causal-graph-relation-window-metrics/spec.md` lines 56–110.
 
 ### 3.5 Packet 007 — IntentTelemetry contract
 
@@ -101,7 +101,7 @@ Historical sections below are retained for provenance; use this reconciliation b
   - `.opencode/skills/system-spec-kit/feature_catalog/01--retrieval/01-unified-context-retrieval-memorycontext.md` (consumer surface)
 - **Missing fields:** `taskIntent.classificationKind`, `paraphraseGroup`, `backendRouting.classificationKind` (a normalized envelope across the two classification sites).
 - **Recommended diff (14-query-intent-classifier.md):** Replace the §2 one-liner with a real description that mentions the IntentTelemetry envelope, the three `classificationKind` markers, and `paraphraseGroup` as the stability token used so paraphrased queries map to the same group.
-- **Source:** `007-intent-classifier-stability/implementation-summary.md` (recent_action: "Implemented source/test/dist IntentTelemetry contract").
+- **Source:** `007-intent-classifier-stability-telemetry/implementation-summary.md` (recent_action: "Implemented source/test/dist IntentTelemetry contract").
 
 ### 3.6 Packet 008 — canonical MCP rebuild + restart + live-probe protocol
 
@@ -123,7 +123,7 @@ Historical sections below are retained for provenance; use this reconciliation b
 - **Missing fields:** `responsePolicy.requiredAction` (`ask_disambiguation` / `broaden_or_ask` / `refuse_without_evidence`), `responsePolicy.noCanonicalPathClaims`, `responsePolicy.citationRequiredForPaths`, `responsePolicy.safeResponse`, top-level `citationPolicy` (`cite_results` / `do_not_cite_results`).
 - **Recommended diff:** Add a new paragraph to §2:
   > When `requestQuality.label != "good"` AND `recovery.status` indicates degraded retrieval (`low_confidence`, `partial`, `no_results`), the response now carries a binding `responsePolicy` block with `requiredAction` (one of `ask_disambiguation`, `broaden_or_ask`, `refuse_without_evidence`), `noCanonicalPathClaims: true`, `citationRequiredForPaths: true`, and a fixed canonical `safeResponse` string the caller MUST emit instead of inventing details. All `memory_search` responses additionally carry a top-level `citationPolicy` set to `cite_results` (good quality) or `do_not_cite_results` (weak/partial/no_results). The `RecoveryAction` vocabulary was extended to include `ask_disambiguation`, `refuse_without_evidence`, and `broaden_or_ask`. Empty `suggestedQueries` together with `recommendedAction:"ask_user"` is now a contract violation: the runtime synthesizes at least 2 broadening suggestions OR sets `responsePolicy.requiredAction:"ask_disambiguation"`.
-- **Source:** `009-memory-search-response-policy/spec.md` lines 61–129.
+- **Source:** `009-memory-search-citation-response-policy/spec.md` lines 61–129.
 
 ### 3.8 Packet 012 — Copilot target authority helper
 
@@ -132,7 +132,7 @@ Historical sections below are retained for provenance; use this reconciliation b
   - §1 Overview — wraps every cli-copilot deep-loop dispatch with a typed `targetAuthority` token; closes the v1.0.2 I1 catastrophic-mutation pathology.
   - §2 Current reality — the three-branch behavior matrix (`approved` -> preamble; `missing` + writeIntent -> Gate-3 prompt and strip `--allow-all-tools`; `missing` + !writeIntent -> pass-through), large-prompt override resistance, the new `CopilotTargetAuthority` discriminated union, and `validateSpecFolder`.
   - §3 Source files — `mcp_server/lib/deep-loop/executor-config.ts`, `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`, `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`, plus the new vitest.
-- **Source:** `012-copilot-target-authority-helper/spec.md` lines 79–167.
+- **Source:** `012-copilot-target-authority-gate-helper/spec.md` lines 79–167.
 
 ### 3.9 Packet 013 — graph degraded stress cell + SELECTIVE_REINDEX_THRESHOLD export
 
@@ -140,7 +140,7 @@ Historical sections below are retained for provenance; use this reconciliation b
 - **Recommended diff:**
   1. In §3 Tests, add row: `mcp_server/stress_test/code-graph/code-graph-degraded-sweep.vitest.ts | Five-cell sweep: empty, broad-stale, bounded-stale, fresh, readiness-crash. Asserts fallbackDecision routing alongside readiness state.`
   2. Disambiguate the existing wording at line 15 — "Packet 013 made this visible" — to read "Spec 024-compact-code-graph packet 013 made this visible" so it is not confused with phase 011's own packet 013 (graph-degraded-stress-cell).
-- **Source:** `013-graph-degraded-stress-cell/implementation-summary.md` continuity (key_files: `mcp_server/stress_test/code-graph/code-graph-degraded-sweep.vitest.ts`).
+- **Source:** `013-code-graph-degraded-stress-cell/implementation-summary.md` continuity (key_files: `mcp_server/stress_test/code-graph/code-graph-degraded-sweep.vitest.ts`).
 
 ### 3.10 Packet 014 — getGraphReadinessSnapshot + readiness.action
 
@@ -152,7 +152,7 @@ Historical sections below are retained for provenance; use this reconciliation b
 - **Recommended diff (08-code-graph-storage-query.md line 13):** Replace "freshness plus readiness, trust, parse-health, and `graphQualitySummary` reporting" with "freshness plus readiness with `readiness.action: full_scan | selective_reindex | none`, trust, parse-health, and `graphQualitySummary` reporting".
 - **Recommended diff (15-code-graph-auto-trigger.md §3 Implementation table):** Add row: `mcp_server/code_graph/lib/ensure-ready.ts | Lib | Read-only sibling getGraphReadinessSnapshot() returns the same {action, freshness, reason} triplet without mutating cache, deleted-file cleanup, or inline indexer.` Also expand §1 to note that the readiness contract now has a dedicated non-mutating diagnostic helper.
 - **Recommended diff (24-code-graph-readiness-contract.md §2):** Append a sentence noting the readiness module now exposes a non-mutating `getGraphReadinessSnapshot()` for status reporting.
-- **Source:** `014-graph-status-readiness-snapshot/spec.md` lines 60–129.
+- **Source:** `014-code-graph-status-readiness-snapshot/spec.md` lines 60–129.
 
 ### 3.11 Packet 015 — cocoindex seed telemetry passthrough
 
@@ -170,7 +170,7 @@ Historical sections below are retained for provenance; use this reconciliation b
 
 A focused grep for old contract names that should now be wrong (`actualTokens`-only, `cite_results`, etc.) plus an inspection of the four most-affected catalog files turned up **zero direct contradictions**: no entry asserts that `code_graph_status.readiness.action` is fixed at `"none"`, that `memory_search` lacks a refusal contract, that cocoindex anchors are limited to `score/snippet/range`, etc. The catalog is stale by omission (the new fields and helpers are simply absent), with one borderline case worth correcting:
 
-- **22--context-preservation-and-code-graph/15-code-graph-auto-trigger.md line 15** — phrase "Packet 013 made this visible to callers" refers to spec `024-compact-code-graph` packet 013, NOT phase 011's own packet 013 (`013-graph-degraded-stress-cell`). With phase 011 landed, "Packet 013" is now ambiguous and could mislead a future reader. Recommended fix: prefix with the spec id.
+- **22--context-preservation-and-code-graph/15-code-graph-auto-trigger.md line 15** — phrase "Packet 013 made this visible to callers" refers to spec `024-compact-code-graph` packet 013, NOT phase 011's own packet 013 (`013-code-graph-degraded-stress-cell`). With phase 011 landed, "Packet 013" is now ambiguous and could mislead a future reader. Recommended fix: prefix with the spec id.
 
 No entries make claims that the new behavior breaks.
 

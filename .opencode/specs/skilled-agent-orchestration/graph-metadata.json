@@ -24,7 +24,7 @@
     "skilled-agent-orchestration/068-sk-doc-organization",
     "skilled-agent-orchestration/069-sk-code-motion-dev-and-playbook",
     "skilled-agent-orchestration/070-sk-deep-rename",
-    "skilled-agent-orchestration/076-sk-doc-router-coverage-v3",
+    "skilled-agent-orchestration/076-sk-doc-missing-router-intents-bullet-aware-matrix",
     "skilled-agent-orchestration/077-spec-kit-coco-sk-code-research",
     "skilled-agent-orchestration/080-multi-ai-council-output-protocol",
     "skilled-agent-orchestration/081-cli-copilot-deprecation-due-to-price-hike",
@@ -37,7 +37,8 @@
     "skilled-agent-orchestration/094-playbook-prompt-naturalness",
     "skilled-agent-orchestration/095-sk-code-review-playbook-execution",
     "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural",
-    "skilled-agent-orchestration/100-multi-ai-council-main-agent-write-enforcement"
+    "skilled-agent-orchestration/100-multi-ai-council-main-agent-write-enforcement",
+    "skilled-agent-orchestration/114-small-ai-model-optimization"
   ],
   "manual": {
     "depends_on": [],
@@ -79,12 +80,12 @@
     "entities": [],
     "causal_summary": "Track folder for skilled-agent-orchestration packets — improving how skills, agents, commands, and CLI executors collaborate across the OpenCode runtime. Hosts spec folders 051-070+ covering CLI providers, skill patterns + removals, sk-code merger + fullstack split, command-spec-kit UX, agent improvements, deep-loop stress tests, sk-doc alignment, agent creation, skill-advisor re-indexing, MCP transfers, sk-doc reorg, motion.dev integration, and rename refactors.",
     "created_at": "2026-05-05T11:35:00.000Z",
-    "last_save_at": "2026-05-07T22:23:13.285Z",
+    "last_save_at": "2026-05-18T08:50:26.106Z",
     "last_accessed_at": null,
     "source_docs": [
       "description.json"
     ],
-    "last_active_child_id": "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural",
-    "last_active_at": "2026-05-07T22:23:13.285Z"
+    "last_active_child_id": "skilled-agent-orchestration/114-small-ai-model-optimization",
+    "last_active_at": "2026-05-18T08:50:26.106Z"
   }
 }

@@ -19,8 +19,8 @@ _memory:
     next_safe_action: "Use normal shell for live verdict"
     blockers: []
     key_files:
-      - "../016-hook-plugin-per-runtime-testing/runners/common.ts"
-      - "../016-hook-plugin-per-runtime-testing/findings.md"
+      - "../016-runtime-hook-plugin-testing/runners/common.ts"
+      - "../016-runtime-hook-plugin-testing/findings.md"
       - "methodology-correction.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -67,12 +67,12 @@ adapters.
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `../016-hook-plugin-per-runtime-testing/runners/common.ts` | Modified | Add sandbox detection, `SKIPPED_SANDBOX`, repo-root detection, and run-output path. |
-| `../016-hook-plugin-per-runtime-testing/runners/run-all-runtime-hooks.ts` | Modified | Pass sandbox detection to runtime adapters and print verdict. |
-| `../016-hook-plugin-per-runtime-testing/runners/test-*.ts` | Modified | Split direct-smoke and live-cli cells. |
-| `../016-hook-plugin-per-runtime-testing/runners/README.md` | Modified | Document normal-shell live mode and sandbox partial mode. |
+| `../016-runtime-hook-plugin-testing/runners/common.ts` | Modified | Add sandbox detection, `SKIPPED_SANDBOX`, repo-root detection, and run-output path. |
+| `../016-runtime-hook-plugin-testing/runners/run-all-runtime-hooks.ts` | Modified | Pass sandbox detection to runtime adapters and print verdict. |
+| `../016-runtime-hook-plugin-testing/runners/test-*.ts` | Modified | Split direct-smoke and live-cli cells. |
+| `../016-runtime-hook-plugin-testing/runners/README.md` | Modified | Document normal-shell live mode and sandbox partial mode. |
 | `.opencode/skills/system-spec-kit/mcp_server/package.json` | Modified | Add `hook-tests` script. |
-| `../016-hook-plugin-per-runtime-testing/findings.md` | Modified | Add corrected classification amendment. |
+| `../016-runtime-hook-plugin-testing/findings.md` | Modified | Add corrected classification amendment. |
 | `methodology-correction.md` | Created | Explain root cause and operator path. |
 <!-- /ANCHOR:what-built -->
 

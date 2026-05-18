@@ -46,7 +46,7 @@ _memory:
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 56 of 56 |
-| **Predecessor** | 029-autoclean-orphan-files |
+| **Predecessor** | 029-autoclean-orphan-file-removal |
 | **Successor** | None |
 | **Handoff Criteria** | Advisor-suite failure count drops to 0 (or only failures unrelated to path rename remain) |
 <!-- /ANCHOR:metadata -->

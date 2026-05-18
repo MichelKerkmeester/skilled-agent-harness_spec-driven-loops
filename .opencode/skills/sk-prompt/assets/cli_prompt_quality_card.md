@@ -49,6 +49,12 @@ Load this card before building any CLI dispatch prompt. Select a framework from 
 >
 > **Anti-hallucination wording is a secondary lever, not the primary one.** Framework choice (RCAF role anchor) is ~2.4× more impactful than aggressive anti-hallucination wording across measured models. Anti-hallucination wording is useful as a backstop for high-risk fixture clusters (CLI flag invention, library symbol references, defensive validation of unverifiable claims), but don't expect it to outweigh framework choice or pre-planning density.
 
+For per-model defaults, quota pools, and fallback targets, see `sk-prompt/assets/model-profiles.json`.
+
+### Budget Awareness
+
+Prompts targeting small models (`swe-1.6`, `deepseek-v4-pro`, `kimi-k2.6`, `qwen3.6`) must respect the per-model context windows and quota metadata in `sk-prompt/assets/model-profiles.json`. Use `cli-devin/references/context-budget.md` as the canonical Phase 004 source for budget composition patterns; if evidence is trimmed, mark the boundary with `[... truncated N tokens]`, where `N` is the estimated token deficit and the model must not infer the omitted content.
+
 ---
 
 ## 4. CLEAR 5-Question Pre-Dispatch Checklist
@@ -120,4 +126,3 @@ When editing this file, also update the mirrors or run `.opencode/skills/scripts
 - `../../cli-claude-code/assets/prompt_quality_card.md`
 - `../../cli-codex/assets/prompt_quality_card.md`
 - `../../cli-gemini/assets/prompt_quality_card.md`
-

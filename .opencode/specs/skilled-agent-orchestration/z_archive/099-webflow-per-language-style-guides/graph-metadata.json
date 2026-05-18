@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/099-webflow-per-language-style-guides",
-  "spec_folder": "skilled-agent-orchestration/099-webflow-per-language-style-guides",
+  "packet_id": "skilled-agent-orchestration/z_archive/099-webflow-per-language-style-guides",
+  "spec_folder": "skilled-agent-orchestration/z_archive/099-webflow-per-language-style-guides",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -11,34 +11,111 @@
   },
   "derived": {
     "trigger_phrases": [
-      "099 webflow per-language style guides",
-      "webflow refactor",
-      "sk-code webflow tree",
+      "099",
+      "webflow per-language style guides",
+      "sk-code webflow refactor",
       "css_style_guide",
       "js_style_guide",
-      "099-webflow-per-language-style-guides"
+      "099 plan",
+      "webflow refactor plan",
+      "099 tasks",
+      "verification",
+      "checklist",
+      "name",
+      "template"
     ],
-    "key_topics": [],
+    "key_topics": [
+      "099",
+      "webflow",
+      "per-language",
+      "style",
+      "guides",
+      "sk-code",
+      "refactor",
+      "plan",
+      "tasks",
+      "verification",
+      "checklist",
+      "name"
+    ],
     "importance_tier": "normal",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
-      ".opencode/skills/sk-code/references/webflow/standards/code_style_guide.md",
-      ".opencode/skills/sk-code/references/webflow/standards/code_style_enforcement.md",
-      ".opencode/skills/sk-code/references/webflow/standards/code_quality_standards.md",
-      ".opencode/skills/sk-code/references/webflow/standards/quick_reference.md",
-      ".opencode/skills/sk-code/references/webflow/standards/shared_patterns.md"
+      ".opencode/skills/sk-code/SKILL.md",
+      "decision-record.md",
+      ".opencode/skills/sk-code/references/webflow/html/style_guide.md",
+      ".opencode/skills/sk-code/references/webflow/shared/cross_language_rules.md",
+      ".opencode/skills/sk-code/references/webflow/shared/enforcement.md",
+      ".opencode/skills/sk-code/references/webflow/shared/dev_workflow.md",
+      "plan.md",
+      ".opencode/skills/sk-code/references/universal/code_style_guide.md",
+      ".opencode/skills/sk-code/manual_testing_playbook/07--cross-stack-routing/005-snippet-reuse-cross-stack.md",
+      ".opencode/skills/sk-code/assets/webflow/checklists/code_quality_checklist.md",
+      "tasks.md",
+      "checklist.md",
+      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+      "implementation-summary.md",
+      "spec.md"
     ],
     "entities": [
       {
-        "name": "spec.md",
+        "name": "SKILL.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": ".opencode/skills/sk-code/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "style_guide.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/references/webflow/html/style_guide.md",
+        "source": "derived"
+      },
+      {
+        "name": "cross_language_rules.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/references/webflow/shared/cross_language_rules.md",
+        "source": "derived"
+      },
+      {
+        "name": "enforcement.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/references/webflow/shared/enforcement.md",
+        "source": "derived"
+      },
+      {
+        "name": "dev_workflow.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/references/webflow/shared/dev_workflow.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "code_style_guide.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/references/universal/code_style_guide.md",
+        "source": "derived"
+      },
+      {
+        "name": "005-snippet-reuse-cross-stack.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/manual_testing_playbook/07--cross-stack-routing/005-snippet-reuse-cross-stack.md",
+        "source": "derived"
+      },
+      {
+        "name": "code_quality_checklist.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/assets/webflow/checklists/code_quality_checklist.md",
         "source": "derived"
       },
       {
@@ -54,31 +131,90 @@
         "source": "derived"
       },
       {
+        "name": "validate.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "decision-record.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": "decision-record.md",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Refactor Webflow",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Pure",
+        "kind": "proper_noun",
+        "path": "plan.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "Refactored sk-code's Webflow reference tree from 5 monolithic standards/* files (3,831 lines mixing JS+CSS+HTML) into 10 per-language files under webflow/{javascript,css,html,shared}/ (4,058 lines), mirroring opencode's layout. Probe-verified across 3 axes: SC-001 CSS-only routing PASS, SC-002 JS-only routing PASS, SC-004 codegen PASS 12/12 JS + 6/6 CSS.",
+    "causal_summary": "The sk-code skill currently bundles JavaScript, CSS, and HTML style rules into five monolithic files under `references/webflow/standards/` (3,831 lines total), while the equivalent opencode-side reference tree is split per-language (`references/opencode/{javascript,typescript,python,shell,config,shared}/`). This asymmetry forces models to load mixed-language rule docs and increases the risk of mis-attributing rules across languages — a hypothesized cause of GPT 5.5's observed failure to apply correct CSS/JS comment style on Webflow tasks. This packet refactors the Webflow reference tree to mirror opencode's per-language layout and updates all cross-references and routing logic to match.",
     "created_at": "2026-05-09T19:30:52.197Z",
-    "last_save_at": "2026-05-09T19:30:52.197Z",
+    "last_save_at": "2026-05-18T15:17:57.073Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md",
-      "decision-record.md"
-    ],
-    "completion_pct": 100
-  },
-  "importance_tier": "normal"
+      "decision-record.md",
+      "implementation-summary.md"
+    ]
+  }
 }

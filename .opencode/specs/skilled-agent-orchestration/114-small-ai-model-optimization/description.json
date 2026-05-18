@@ -1,0 +1,26 @@
+{
+  "specFolder": "114-small-ai-model-optimization",
+  "description": "Feature Specification: small-AI-model optimization",
+  "keywords": [
+    "feature",
+    "specification",
+    "small-ai-model",
+    "optimization"
+  ],
+  "lastUpdated": "2026-05-18T15:14:34.538Z",
+  "specId": "114",
+  "folderSlug": "small-ai-model-optimization",
+  "parentChain": [
+    "..",
+    ".opencode",
+    "specs",
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 4,
+  "memoryNameHistory": [
+    "18-05-26_09-50__which-executor-for-the-20-iter-deep-research-run.md",
+    "18-05-26_10-11__phase-1-phase-3-phase-2-phase-4-all-complete.md",
+    "18-05-26_13-46__6-new-phase-children-authored-under-114-002.md",
+    "18-05-26_16-14__phase-007-hardening-ci-deleted-per-user-direction.md"
+  ]
+}

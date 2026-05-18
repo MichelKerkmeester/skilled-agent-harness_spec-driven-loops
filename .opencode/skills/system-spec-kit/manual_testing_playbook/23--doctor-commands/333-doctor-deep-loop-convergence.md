@@ -1,26 +1,26 @@
 ---
 title: "DOC-333 -- Doctor deep-loop convergence"
-description: "Manual scenario validating /doctor deep-loop gold-battery convergence signals for packets with three or more iterations."
+description: "Manual scenario validating /doctor deep-loop gold-battery convergence signals for work packets with three or more iterations."
 ---
 
 # DOC-333 -- Doctor deep-loop convergence
 
 ## 1. OVERVIEW
 
-This scenario validates the `/doctor deep-loop` post-rebuild gold battery. Any rebuilt packet with at least three research or review iterations must produce a non-empty `deep_loop_graph_convergence` signal.
+This scenario validates the `/doctor deep-loop` post-rebuild gold battery. Any rebuilt work packet with at least three research or review iterations must produce a non-empty `deep_loop_graph_convergence` signal.
 
-The test uses a known three-iteration packet, `026/001-research-and-baseline`, as the target. It proves the rebuilt coverage graph is not merely populated; it is rich enough to answer convergence questions with scores, answered questions, and supported claims.
+The test uses a known three-iteration work packet as the target. It proves the rebuilt coverage graph is not merely populated; it is rich enough to answer convergence questions with scores, answered questions, and supported claims.
 
 ---
 
 ## 2. SCENARIO CONTRACT
 
-- Objective: Verify post-rebuild convergence signal for a packet with three or more iterations.
+- Objective: Verify post-rebuild convergence signal for a work packet with three or more iterations.
 - Playbook ID: DOC-333.
-- Real user request: `Verify deep-loop convergence signal works on packet 026/001-research-and-baseline (3 iterations).`
-- Prompt: `Verify deep-loop convergence signal works on packet 026/001-research-and-baseline (3 iterations).`
-- Preconditions: `deep-loop-graph.sqlite` is populated or rebuildable, and `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/` has at least three deep-loop iteration markdown files.
-- Expected execution process: Confirm the packet has at least three iterations, run `/doctor deep-loop --scope=research`, then call `deep_loop_graph_convergence` for the target packet and latest iteration.
+- Real user request: `Verify deep-loop convergence signal works on a work packet with 3 iterations.`
+- Prompt: `Verify deep-loop convergence signal works on a work packet with 3 iterations.`
+- Preconditions: `deep-loop-graph.sqlite` is populated or rebuildable, and `<spec-folder>` has at least three deep-loop iteration markdown files.
+- Expected execution process: Confirm the target has at least three iterations, run `/doctor deep-loop --scope=research`, then call `deep_loop_graph_convergence` for the target and latest iteration.
 - Expected signals: Phase 4 gold battery runs; convergence response includes `convergence_score` or equivalent non-empty score plus signal artifacts such as answered questions, supported claims, blockers, or trace payload.
 - Desired user-visible outcome: A concise pass/fail verdict citing the convergence score and the non-empty signal fields.
 - Pass/fail: PASS if the convergence response is non-empty for the target packet after rebuild.
@@ -33,18 +33,18 @@ The test uses a known three-iteration packet, `026/001-research-and-baseline`, a
 ### Prompt
 
 ```
-Verify deep-loop convergence signal works on packet 026/001-research-and-baseline (3 iterations).
+Verify deep-loop convergence signal works on a work packet with 3 iterations.
 ```
 
 ### Commands
 
-1. In a disposable workspace, confirm the target packet exists.
-2. Count source iterations for the target packet:
-   - `find .opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline -path '*/research/iterations/*.md' | sort`
+1. In a disposable workspace, confirm the target work packet exists.
+2. Count source iterations for the target:
+   - `find <spec-folder> -path '*/research/iterations/*.md' | sort`
 3. Confirm at least three iteration files are present.
 4. Run `/doctor deep-loop --scope=research` through the real runtime.
 5. Capture the Phase 4 gold-battery summary from `.opencode/commands/doctor/assets/doctor_deep-loop.yaml`.
-6. Call `deep_loop_graph_convergence({specFolder: ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline", loopType: "research", iteration: <latest_iteration>, persistSnapshot: false})`.
+6. Call `deep_loop_graph_convergence({specFolder: "<spec-folder>", loopType: "research", iteration: <latest_iteration>, persistSnapshot: false})`.
 7. Capture the full convergence response and final state-log path.
 
 ### Expected
@@ -78,8 +78,8 @@ If the convergence call is empty, inspect the state log's inferred `sessionId` a
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
 - Command entrypoint: [.opencode/commands/doctor.md](../../../../commands/doctor.md)
 - Matching YAML asset: [.opencode/commands/doctor/assets/doctor_deep-loop.yaml](../../../../commands/doctor/assets/doctor_deep-loop.yaml)
-- Upstream spec context: [.opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/001-doctor-commands/spec.md](../../../../specs/system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/001-doctor-commands/spec.md)
-- Upstream ADR context: [.opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/001-doctor-commands/decision-record.md](../../../../specs/system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/001-doctor-commands/decision-record.md)
+- Design context: local doctor command contract
+- Decision context: local doctor command ADRs
 
 ---
 
@@ -90,6 +90,6 @@ If the convergence call is empty, inspect the state log's inferred `sessionId` a
 - Feature name: Doctor deep-loop convergence
 - Command mode: `/doctor deep-loop --scope=research`
 - YAML asset: `doctor_deep-loop.yaml`
-- Gold battery: non-empty convergence signal for packets with at least three iterations.
-- Target packet: `026-graph-and-context-optimization/001-research-and-baseline`
+- Gold battery: non-empty convergence signal for work packets with at least three iterations.
+- Target: work packet with at least three research iterations
 - Feature file path: `23--doctor-commands/333-doctor-deep-loop-convergence.md`

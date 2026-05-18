@@ -42,7 +42,7 @@ _memory:
 
 ### Overview
 
-Packet 030 recommended feature-owned runners plus a meta-aggregator rather than forcing every feature into one harness (`030-v1-0-4-full-matrix-stress-test-design/plan.md:52`, `:54`, `:89`, `:95`, `:99`). Packet 035 then found the adapter layer absent and recorded 42 `RUNNER_MISSING` cells (`006-full-matrix-execution-validation/findings.md:11`, `:15`, `:73`, `:75`). This packet implements the missing external CLI adapter layer and leaves real matrix execution to a later verification pass.
+Packet 030 recommended feature-owned runners plus a meta-aggregator rather than forcing every feature into one harness (`030-clean-infrastructure-full-matrix-stress-design/plan.md:52`, `:54`, `:89`, `:95`, `:99`). Packet 035 then found the adapter layer absent and recorded 42 `RUNNER_MISSING` cells (`006-runtime-matrix-execution-validation/findings.md:11`, `:15`, `:73`, `:75`). This packet implements the missing external CLI adapter layer and leaves real matrix execution to a later verification pass.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -103,8 +103,8 @@ Manifest-driven adapters with shared process/result normalization.
 
 ### Phase 1: Discovery
 
-- Read packet 030 spec and plan. Confirmed F1-F14, five external CLI executors, native/inline outside this packet, and first-class non-applicable cells (`030-v1-0-4-full-matrix-stress-test-design/spec.md:48`, `:96`, `:97`; `006-full-matrix-execution-validation/findings.md:35`, `:153`).
-- Read packet 035 findings and per-cell evidence. Confirmed 42 runner-missing cells and the ticket mapping to 036 (`006-full-matrix-execution-validation/findings.md:15`, `:199`, `:203`).
+- Read packet 030 spec and plan. Confirmed F1-F14, five external CLI executors, native/inline outside this packet, and first-class non-applicable cells (`030-clean-infrastructure-full-matrix-stress-design/spec.md:48`, `:96`, `:97`; `006-runtime-matrix-execution-validation/findings.md:35`, `:153`).
+- Read packet 035 findings and per-cell evidence. Confirmed 42 runner-missing cells and the ticket mapping to 036 (`006-runtime-matrix-execution-validation/findings.md:15`, `:199`, `:203`).
 
 ### Phase 2: Adapter Implementation
 

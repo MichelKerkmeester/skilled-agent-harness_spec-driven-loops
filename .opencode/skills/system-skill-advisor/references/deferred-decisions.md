@@ -1,6 +1,6 @@
 ---
 title: "Deferred Decisions (Tier D)"
-description: "Rationale plus recommendations for findings deferred from packets 002-007 of system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/005-docs/004-docs-quality-refactor that require explicit human decision before runtime or structural changes."
+description: "Rationale plus recommendations for deferred findings that require explicit human decision before runtime or structural changes."
 trigger_phrases:
   - "deferred decisions skill-advisor"
   - "tier d decisions"
@@ -17,7 +17,7 @@ importance_tier: "important"
 <!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
-This doc tracks findings from the `system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/005-docs/004-docs-quality-refactor` packet (children 001-007) that were deferred because they require:
+This doc tracks deferred findings that require:
 
 1. Runtime config changes that need explicit human approval (F4 `.devin/hooks.v1.json`).
 2. Architectural decisions about deprecation timelines (F6 dual hook locations).
@@ -169,7 +169,7 @@ Mark OLD as deprecated with a 90-day migration window. Concrete steps:
 
 20 scenario files under `manual_testing_playbook/0[5-8]--*/` use a deviating §3 TEST EXECUTION structure (numbered command steps plus `### Expected Signals` plus `### Failure Modes`) instead of the canonical sk-doc subsections (`### Prompt`, `### Commands`, `### Expected`, `### Evidence`, `### Pass / Fail`, `### Failure Triage`).
 
-### Action taken in packet 007
+### Action taken
 
 Each of the 20 files received a documentation note at the top of §3 TEST EXECUTION explaining the deviation is intentional and pointing here for rationale.
 
@@ -180,7 +180,7 @@ The current structure ties scenario semantics directly to runtime output checks 
 - Duplicate the information across the new subsections, increasing maintenance cost without adding value.
 - Force the runtime checks into a more abstract form, losing the directness that makes operator validation reliable.
 
-The deviation is intentional plus shipped in packet 007 with the documentation note.
+The deviation is intentional and shipped with the documentation note.
 
 ### Recommended action
 
@@ -197,7 +197,7 @@ None. Status quo. If a future sk-doc template revision broadens the canonical st
 
 `feature_catalog/feature_catalog.md` TOC numbers sections 1-8 sequentially while directory layout uses 01, 02, 03, 04, 06, 07, 08 (gap at 05). Section 5 (SCORER FUSION) in the TOC maps to directory `04--scorer-fusion`, section 6 (MCP SURFACE) maps to `06--mcp-surface`, creating a mismatch.
 
-### Action already taken (packet 004)
+### Action already taken
 
 Gap-05 explanatory note added to feature_catalog.md §1 documenting the intentional reservation. The note states the gap is preserved for spec-folder cross-reference stability.
 

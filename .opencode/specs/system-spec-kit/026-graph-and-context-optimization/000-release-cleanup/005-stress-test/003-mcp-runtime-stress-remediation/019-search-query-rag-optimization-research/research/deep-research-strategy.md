@@ -19,10 +19,10 @@ Optimize search, query intelligence, and RAG fusion across MCP runtime grounding
 
 ## Known Context
 
-- v1.0.1 stress data showed severe weak-retrieval behavior: S2 opencode was the best case through `memory_quick_search` plus CocoIndex, Q1 code graph had sparse results with high latency, and I2 hallucinated canonical paths after weak memory search (`001-search-intelligence-stress-test/002-scenario-execution/findings.md:23`, `:68`, `:96`, `:121`).
-- v1.0.2 improved the system to 83.8% overall with 6/7 packets PROVEN and zero regressions, while packet 005 remained NEUTRAL because code-graph fallback was not proven by stress rerun evidence (`010-stress-test-rerun-v1-0-2/findings.md:15`, `:73`, `:87`).
+- v1.0.1 stress data showed severe weak-retrieval behavior: S2 opencode was the best case through `memory_quick_search` plus CocoIndex, Q1 code graph had sparse results with high latency, and I2 hallucinated canonical paths after weak memory search (`001-search-intelligence-stress-playbook/002-search-scenario-execution/findings.md:23`, `:68`, `:96`, `:121`).
+- v1.0.2 improved the system to 83.8% overall with 6/7 packets PROVEN and zero regressions, while packet 005 remained NEUTRAL because code-graph fallback was not proven by stress rerun evidence (`010-stress-test-close-loop-measurement-rerun/findings.md:15`, `:73`, `:87`).
 - Prior root-cause research found recurring internal-signal gaps: stale daemon, memory_context fallback, weak memory_search advisory, CocoIndex duplicates, causal balance diagnostics, code graph recovery, and intent classifier contract evidence (`002-mcp-runtime-improvement-research/research/research.md:62`, `:74`, `:84`, `:94`).
-- Follow-up research narrowed residuals to authority tokens, graph fast-fail testability, graph status readiness action visibility, and CocoIndex seed-fidelity passthrough (`011-post-stress-followup-research/research/research.md:29`, `:243`, `:264`, `:303`).
+- Follow-up research narrowed residuals to authority tokens, graph fast-fail testability, graph status readiness action visibility, and CocoIndex seed-fidelity passthrough (`011-post-stress-finding-remediation-research/research/research.md:29`, `:243`, `:264`, `:303`).
 - Current source shows several follow-up contracts already landed: code graph readiness blocks full-scan read paths, CocoIndex seed metadata is preserved into code graph context, advisor has a five-lane registry, and memory search has adaptive fusion, response policy, token budget enforcement, and optional rerank gates.
 
 ## Completed Iterations

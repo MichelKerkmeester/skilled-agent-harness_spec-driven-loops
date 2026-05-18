@@ -1,43 +1,99 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/062-deep-loop-command-flow-stress-tests",
-  "spec_folder": "skilled-agent-orchestration/062-deep-loop-command-flow-stress-tests",
+  "packet_id": "skilled-agent-orchestration/z_archive/062-deep-loop-command-flow-stress-tests",
+  "spec_folder": "skilled-agent-orchestration/z_archive/062-deep-loop-command-flow-stress-tests",
   "parent_id": null,
   "children_ids": [
-    "skilled-agent-orchestration/062-deep-loop-command-flow-stress-tests/001-deep-research-cp-scenarios",
-    "skilled-agent-orchestration/062-deep-loop-command-flow-stress-tests/002-deep-research-stress-runs",
-    "skilled-agent-orchestration/062-deep-loop-command-flow-stress-tests/003-deep-review-cp-scenarios",
-    "skilled-agent-orchestration/062-deep-loop-command-flow-stress-tests/004-deep-review-stress-runs"
+    "skilled-agent-orchestration/z_archive/062-deep-loop-command-flow-stress-tests/001-deep-research-cp-scenarios",
+    "skilled-agent-orchestration/z_archive/062-deep-loop-command-flow-stress-tests/002-deep-research-stress-runs",
+    "skilled-agent-orchestration/z_archive/062-deep-loop-command-flow-stress-tests/003-deep-review-cp-scenarios",
+    "skilled-agent-orchestration/z_archive/062-deep-loop-command-flow-stress-tests/004-deep-review-stress-runs"
   ],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      "skilled-agent-orchestration/060-sk-agent-improver-test-report-alignment",
-      "skilled-agent-orchestration/061-agent-optimization/008-agent-deep-review",
-      "skilled-agent-orchestration/061-agent-optimization/009-agent-deep-research"
-    ],
+    "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
   "derived": {
     "trigger_phrases": [
       "062 root",
+      "062 phase parent",
       "deep-loop stress tests",
       "deep-research command-flow stress",
       "deep-review command-flow stress"
     ],
     "key_topics": [
       "062",
+      "root",
+      "phase",
+      "parent",
       "deep-loop",
-      "command-flow-stress",
-      "@deep-research",
-      "@deep-review",
-      "060-methodology-extension"
+      "stress",
+      "tests",
+      "deep-research",
+      "command-flow",
+      "deep-review",
+      "packet",
+      "060"
     ],
-    "status": "complete",
-    "completion_pct": 100,
-    "last_active_child_id": "skilled-agent-orchestration/062-deep-loop-command-flow-stress-tests/004-deep-review-stress-runs",
-    "level": 3,
-    "is_phase_parent": true,
-    "final_summary": "@deep-research: PASS 6/0/0 R1 clean. @deep-review: PASS 0/5/1 across R1+R2 \u2014 real gaps surfaced (CP-052 setup-binding, CP-056 refusal-discipline) deferred to follow-on packets."
+    "importance_tier": "high",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Loop Command",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Flow Stress Tests",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "command-capable",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "each",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "In packet 060/004 we proved that `@improve-agent`'s discipline lives in its command orchestrator (`/improve:agent`), not in the agent body. The 060/002 same-task A/B prepend-body stress scored **0/2/4** because we tested the wrong layer. Restructuring to per-CP layer partition (some scenarios test command-flow, some body-level) produced final composite **PASS 6 / PARTIAL 0 / FAIL 0** by R3.",
+    "created_at": "2026-05-18T07:49:27.110Z",
+    "last_save_at": "2026-05-18T15:17:56.937Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ]
   }
 }

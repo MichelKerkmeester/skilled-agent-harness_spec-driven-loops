@@ -1,5 +1,5 @@
 ---
-title: "Changelog: Skill Advisor Setup Command [006-skill-advisor/005-skill-advisor-setup-command]"
+title: "Changelog: Skill Advisor Setup Command [006-skill-advisor/005-advisor-setup-command]"
 description: "Chronological changelog for the Skill Advisor Setup Command phase."
 trigger_phrases:
   - "phase changelog"
@@ -14,7 +14,7 @@ contextType: "implementation"
 
 ## 2026-04-25
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/005-skill-advisor-setup-command` (Level 2)
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/005-advisor-setup-command` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor`
 
 ### Summary
@@ -50,7 +50,7 @@ You can now run /doctor:skill-advisor to interactively analyze every skill in yo
 - Both YAML workflows parse with python3 -c "import yaml; yaml.safe_load(...)" - PASS
 - Command markdown frontmatter parses (description, argument-hint, allowed-tools) - PASS
 - Command appears in runtime skill list as doctor:skill-advisor - PASS — visible in <system-reminder> skills list after creation
-- Strict spec-folder validation on 005-skill-advisor-setup-command/ - PASS — 0 errors, 0 warnings
+- Strict spec-folder validation on 005-advisor-setup-command/ - PASS — 0 errors, 0 warnings
 - description.json generated via generate-description.js - PASS
 - graph-metadata.json written with parent_id, related_to, derived entities - PASS
 - Acceptance scenarios count >= 4 for Level 2 - PASS — 5 scenarios with Given/When/Then markers
@@ -68,13 +68,13 @@ You can now run /doctor:skill-advisor to interactively analyze every skill in yo
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/context-index.md` | Modified | Added 012 child phase row, summary, and open-items entry |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/spec.md` | Modified | Added 012 row to phase documentation map |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/tasks.md` | Modified | Added T013 entry tracking the new child phase |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/005-skill-advisor-setup-command/spec.md` | Modified | Acceptance scenarios reformatted to validator pattern; cross-refs use full paths; template_source_hint moved up in frontmatter |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/005-skill-advisor-setup-command/plan.md` | Modified | Cross-refs use full paths; template_source_hint repositioned |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/005-skill-advisor-setup-command/tasks.md` | Modified | Cross-refs use full paths; template_source_hint repositioned |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/005-skill-advisor-setup-command/checklist.md` | Modified | template_source_hint repositioned for validator visibility |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/005-skill-advisor-setup-command/graph-metadata.json` | Created | Packet graph metadata (parent_id, related_to, derived entities, key files) |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/005-skill-advisor-setup-command/description.json` | Created | Packet description metadata via generate-description.js |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/005-skill-advisor-setup-command/implementation-summary.md` | Created | Post-implementation summary with verification table and known limitations |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/005-advisor-setup-command/spec.md` | Modified | Acceptance scenarios reformatted to validator pattern; cross-refs use full paths; template_source_hint moved up in frontmatter |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/005-advisor-setup-command/plan.md` | Modified | Cross-refs use full paths; template_source_hint repositioned |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/005-advisor-setup-command/tasks.md` | Modified | Cross-refs use full paths; template_source_hint repositioned |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/005-advisor-setup-command/checklist.md` | Modified | template_source_hint repositioned for validator visibility |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/005-advisor-setup-command/graph-metadata.json` | Created | Packet graph metadata (parent_id, related_to, derived entities, key files) |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/005-advisor-setup-command/description.json` | Created | Packet description metadata via generate-description.js |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/005-advisor-setup-command/implementation-summary.md` | Created | Post-implementation summary with verification table and known limitations |
 
 ### Follow-Ups
 

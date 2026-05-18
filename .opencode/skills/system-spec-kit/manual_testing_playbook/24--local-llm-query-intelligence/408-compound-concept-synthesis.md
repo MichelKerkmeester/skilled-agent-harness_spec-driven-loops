@@ -51,7 +51,7 @@ Expected constituent files (the 4 sources whose union answers the question):
 1. `shared/embeddings/factory.ts` — cascade fallback logic (resumes cascade on warmup failure)
 2. `mcp_server/context-server.ts` — auto-migration trigger and failure path
 3. `shared/embeddings/providers/llama-cpp.ts` — provider warmup implementation
-4. `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/018-llama-cpp-auto-migration/implementation-summary.md` - operator narrative
+4. `<spec-folder>` - operator narrative
 
 For each, capture rank in the top-10 (or `>10` if absent).
 

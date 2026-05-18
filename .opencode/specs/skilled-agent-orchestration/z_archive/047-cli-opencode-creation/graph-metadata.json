@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/047-cli-opencode-creation",
-  "spec_folder": "skilled-agent-orchestration/047-cli-opencode-creation",
+  "packet_id": "skilled-agent-orchestration/z_archive/047-cli-opencode-creation",
+  "spec_folder": "skilled-agent-orchestration/z_archive/047-cli-opencode-creation",
   "parent_id": null,
   "children_ids": [],
   "migrated": true,
@@ -45,36 +45,30 @@
     "key_files": [
       ".opencode/skills/cli-claude-code/graph-metadata.json",
       ".opencode/skills/cli-codex/graph-metadata.json",
-      ".opencode/skills/cli-copilot/graph-metadata.json",
       ".opencode/skills/cli-gemini/graph-metadata.json",
-      ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json",
       ".opencode/skills/system-spec-kit/mcp_server/database/skill-graph.sqlite",
       ".opencode/changelog/cli-opencode/v1.0.0.0.md",
       ".opencode/skills/README.md",
-      ".opencode/README.md",
       ".opencode/skills/cli-opencode/SKILL.md",
       "decision-record.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
       ".opencode/skills/cli-claude-code/SKILL.md",
-      ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/init-skill-graph.sh",
       ".opencode/commands/create/changelog.md",
-      ".opencode/skills/sk-doc/assets/documentation/changelog_template.md",
       ".opencode/skills/cli-opencode/references/cli_reference.md",
-      ".opencode/skills/cli-opencode/references/opencode_tools.md"
+      ".opencode/skills/cli-opencode/references/opencode_tools.md",
+      ".opencode/skills/cli-opencode/references/integration_patterns.md",
+      ".opencode/skills/cli-opencode/references/agent_delegation.md",
+      ".opencode/skills/cli-opencode/assets/prompt_quality_card.md",
+      ".opencode/skills/cli-opencode/assets/prompt_templates.md",
+      ".opencode/skills/cli-opencode/README.md"
     ],
     "entities": [
       {
         "name": "graph-metadata.json",
         "kind": "config",
         "path": ".opencode/skills/cli-claude-code/graph-metadata.json",
-        "source": "derived"
-      },
-      {
-        "name": "skill-graph.json",
-        "kind": "config",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json",
         "source": "derived"
       },
       {
@@ -126,21 +120,9 @@
         "source": "derived"
       },
       {
-        "name": "init-skill-graph.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/init-skill-graph.sh",
-        "source": "derived"
-      },
-      {
         "name": "changelog.md",
         "kind": "doc",
         "path": ".opencode/commands/create/changelog.md",
-        "source": "derived"
-      },
-      {
-        "name": "changelog_template.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/assets/documentation/changelog_template.md",
         "source": "derived"
       },
       {
@@ -153,6 +135,30 @@
         "name": "opencode_tools.md",
         "kind": "doc",
         "path": ".opencode/skills/cli-opencode/references/opencode_tools.md",
+        "source": "derived"
+      },
+      {
+        "name": "integration_patterns.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-opencode/references/integration_patterns.md",
+        "source": "derived"
+      },
+      {
+        "name": "agent_delegation.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-opencode/references/agent_delegation.md",
+        "source": "derived"
+      },
+      {
+        "name": "prompt_quality_card.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-opencode/assets/prompt_quality_card.md",
+        "source": "derived"
+      },
+      {
+        "name": "prompt_templates.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-opencode/assets/prompt_templates.md",
         "source": "derived"
       },
       {
@@ -202,17 +208,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Closeout Mark",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Add `cli-opencode` as a fifth sibling under `.opencode/skills/cli-*/` so external AI assistants (and detached OpenCode sessions) can invoke the OpenCode CLI the same way they already invoke Claude Code, Codex, Copilot, and Gemini. The skill ships nine files matching the canonical cli-* blueprint (3 root + 2 assets + 4 references), gets registered with the skill advisor through filesystem walking + sibling-edge updates + an optional TOKEN_BOOSTS entry, opens a new flat changelog bucket via `/create:changelog`, and touches eight specific lines in `.opencode/skills/README.md` plus two specific lines in `.opencode/README.md`. The hardest decisions land in the decision-record: the self-invocation guard signal (avoiding cycles when the orchestrator already IS opencode), the token-boost weight for the noisy \"opencode\" token (the framework name appears throughout the repo), and the three valid use cases that justify the skill's existence in a repo where opencode IS the host runtime.",
     "created_at": "2026-04-26T05:00:00Z",
-    "last_save_at": "2026-04-26T09:17:15.282Z",
+    "last_save_at": "2026-05-18T15:17:56.893Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

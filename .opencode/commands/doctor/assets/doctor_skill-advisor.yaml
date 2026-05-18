@@ -31,7 +31,7 @@ skill_advisor_doctor_invariant: |
 # UPSTREAM ASSETS
 # ─────────────────────────────────────────────────────────────────
 upstream_assets:
-  packet: ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor"
+  contract: "local command design contract"
   files:
     spec: "spec.md"  # advisor system requirements
     decision_record: "decision-record.md"  # ADRs for scoring lanes + thresholds

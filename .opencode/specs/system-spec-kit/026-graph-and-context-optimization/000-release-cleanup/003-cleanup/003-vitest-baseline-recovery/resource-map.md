@@ -33,7 +33,7 @@ Each fix carries a `// drift: <packet>` comment naming the originating packet:
 | Bucket | Annotation pattern | Count |
 |--------|---|---:|
 | environmental | `it.skip` + `// REASON: <env requirement>` | 28 |
-| runtime-regression | `it.fails.skip` + `// followup: 026/000/002-vitest-recovery-followup` | 152 |
+| runtime-regression | `it.fails.skip` + `// followup: 026/000/002-vitest-baseline-recovery-followup` | 152 |
 
 ## Changelog correction
 
@@ -59,7 +59,7 @@ Each fix carries a `// drift: <packet>` comment naming the originating packet:
 
 - **Tests classified**: 198 (4 buckets).
 - **Tests fixed in-packet**: 18 fixture-drift.
-- **Tests escalated**: 152 runtime-regression → `026/000/002-vitest-recovery-followup`.
+- **Tests escalated**: 152 runtime-regression → `026/000/002-vitest-baseline-recovery-followup`.
 - **Tests skipped (environmental)**: 28.
 - **Tests skipped (flaky)**: 0.
 - **Net delta**: +25 passing, -2 failing, +2 skipped.
@@ -75,4 +75,4 @@ Each fix carries a `// drift: <packet>` comment naming the originating packet:
 
 ## Follow-up
 
-The 196 remaining failures are tracked via annotation comments (`// followup: 026/000/002-vitest-recovery-followup`). Operators can `grep -rn 'followup: 026/000/007'` to inventory the deferred work. The follow-up packet itself is not scaffolded in this release.
+The 196 remaining failures are tracked via annotation comments (`// followup: 026/000/002-vitest-baseline-recovery-followup`). Operators can `grep -rn 'followup: 026/000/007'` to inventory the deferred work. The follow-up packet itself is not scaffolded in this release.

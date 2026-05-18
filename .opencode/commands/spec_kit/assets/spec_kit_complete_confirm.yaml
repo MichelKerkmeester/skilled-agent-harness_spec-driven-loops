@@ -330,7 +330,7 @@ agent_availability:
   cross_skill_authoring_load:
     purpose: "Load sk-code authoring resources at WRITE-TIME (Step 10), distinct from review-time review.standards_contract overlay."
     available_at_step: 10
-    condition: "Activate when any task in tasks.md targets a path under .opencode/skills/, .opencode/agents/, .opencode/commands/, or .opencode/specs/. sk-code v3.2.0.0+ ships authoring checklists (skill_authoring.md, agent_authoring.md, command_authoring.md, mcp_server_authoring.md, spec_folder_authoring.md) plus the spec_folder_write recipe."
+    condition: "Activate when any task in tasks.md targets a path under .opencode/skills/, .opencode/agents/, .opencode/commands/, or <spec-folder> sk-code v3.2.0.0+ ships authoring checklists (skill_authoring.md, agent_authoring.md, command_authoring.md, mcp_server_authoring.md, spec_folder_authoring.md) plus the spec_folder_write recipe."
     resources:
       - "sk-code/assets/opencode/checklists/{matching_target}_authoring.md"
       - "sk-code/assets/opencode/recipes/spec_folder_write.md (when target is under .opencode/specs/)"
@@ -934,7 +934,7 @@ workflow:
           3. The workflow STOPS and waits — it NEVER invokes Task tool → @debug itself. The user dispatches.
         on_continue_manually: 'Log "user declined debug at threshold N", proceed with existing manual flow, do NOT reset the failure counter.'
         on_skip: "Apply existing skip semantics (failure counter resets per reset_on: new_task)."
-      reference: ".opencode/specs/skilled-agent-orchestration/050-agent-debug-integration/spec.md (REQ-005 — no autonomous routing). Mirror of spec_kit_complete_auto.yaml debug_escalation block."
+      reference: "debug delegation safety contract"
 
     activities:
     - Load sk-code authoring-time resources for OpenCode targets — when any task in tasks.md targets a path under .opencode/skills/, .opencode/agents/, .opencode/commands/, or .opencode/specs/, load the matching sk-code authoring checklist (assets/opencode/checklists/{skill,agent,command,mcp_server,spec_folder}_authoring.md) AND assets/opencode/recipes/spec_folder_write.md BEFORE the first write. Authoring-time load is distinct from review-time load (see agent_dispatch.review.standards_contract). Skip when no .opencode/ targets are present.

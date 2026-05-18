@@ -10,14 +10,14 @@ Cross-cycle references: 023 -> 025 TC-3 flip; 010 -> 026 cleanup; 022 Planning P
 - `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/025-memory-search-degraded-readiness-wiring/implementation-summary.md:121`
 - `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/026-readiness-scaffolding-cleanup/implementation-summary.md:56`
 - `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/027-memory-context-structural-channel-research/research/research-report.md:64`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/028-deep-review-skill-contract-fixes/spec.md:17`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/028-deep-review-skill-contract-fixes/implementation-summary.md:14`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/028-deep-review-research-skill-contract-fixes/spec.md:17`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/028-deep-review-research-skill-contract-fixes/implementation-summary.md:14`
 
 ## Findings
 
 ### F-004
 ```json
-{"id":"F-004","severity":"P1","dimension":"traceability","summary":"028 spec/plan/tasks continuity still describes pre-implementation work despite the implementation summary marking the packet complete.","evidence":"specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/028-deep-review-skill-contract-fixes/spec.md:17","status":"new"}
+{"id":"F-004","severity":"P1","dimension":"traceability","summary":"028 spec/plan/tasks continuity still describes pre-implementation work despite the implementation summary marking the packet complete.","evidence":"specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/028-deep-review-research-skill-contract-fixes/spec.md:17","status":"new"}
 ```
 Severity rationale: 028 changes the deep-review contract itself. Stale continuity on that packet risks sending future resumes back into already-completed resolver/YAML work.
 

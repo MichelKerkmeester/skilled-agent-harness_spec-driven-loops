@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/041-sk-recursive-agent-loop/003-sk-recursive-agent-doc-alignment",
-  "spec_folder": "skilled-agent-orchestration/041-sk-recursive-agent-loop/003-sk-recursive-agent-doc-alignment",
-  "parent_id": "skilled-agent-orchestration/041-sk-recursive-agent-loop",
+  "packet_id": "skilled-agent-orchestration/z_archive/041-sk-recursive-agent-loop/003-sk-recursive-agent-doc-alignment",
+  "spec_folder": "skilled-agent-orchestration/z_archive/041-sk-recursive-agent-loop/003-sk-recursive-agent-doc-alignment",
+  "parent_id": "skilled-agent-orchestration/z_archive/041-sk-recursive-agent-loop",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -40,9 +40,7 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-improve-agent/SKILL.md",
       ".opencode/specs/descriptions.json",
-      ".opencode/skills/sk-improve-agent/README.md",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -51,21 +49,9 @@
     ],
     "entities": [
       {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-improve-agent/SKILL.md",
-        "source": "derived"
-      },
-      {
         "name": "descriptions.json",
         "kind": "config",
         "path": ".opencode/specs/descriptions.json",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-improve-agent/README.md",
         "source": "derived"
       },
       {
@@ -193,11 +179,23 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Date",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Packet `041-sk-improve-agent-loop` already completed the functional agent-improver work, but the package still had structural drift against `sk-doc` rules. The skill entrypoint at `.opencode/skills/sk-improve-agent/SKILL.md`, the skill README, the bundled references, markdown assets, the canonical loop agent, and the slash command all had section-shape or packaging issues that prevented clean `sk-doc` validation and kept packet `041` short of a true 100 percent closeout.",
     "created_at": "2026-04-12T09:02:50.186Z",
-    "last_save_at": "2026-04-26T09:17:15.220Z",
+    "last_save_at": "2026-05-18T15:17:56.860Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -53,9 +53,9 @@ Operators run the exact prompt and command sequence for `DAC-030` and confirm th
 
 **No-graph baseline:**
 
-1. `bash: cat .opencode/specs/sandbox/dac-030/ai-council/council-report.md | rg -i 'convergence|blocker|unresolved|max_rounds'`
-2. `bash: find .opencode/specs/sandbox/dac-030/ai-council/critiques/ -type f -name '*.md' | xargs wc -l` (capture artifact-volume baseline)
-3. `bash: for f in .opencode/specs/sandbox/dac-030/ai-council/critiques/*.md; do rg -l 'critical|disagreement|low evidence' "$f"; done` (operator builds unranked list)
+1. `bash: cat <spec-folder> | rg -i 'convergence|blocker|unresolved|max_rounds'`
+2. `bash: find <spec-folder> -type f -name '*.md' | xargs wc -l` (capture artifact-volume baseline)
+3. `bash: for f in <spec-folder>*.md; do rg -l 'critical|disagreement|low evidence' "$f"; done` (operator builds unranked list)
 
 **With-graph:**
 

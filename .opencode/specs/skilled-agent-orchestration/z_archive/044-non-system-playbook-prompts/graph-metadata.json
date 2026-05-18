@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/044-non-system-playbook-prompts",
-  "spec_folder": "skilled-agent-orchestration/044-non-system-playbook-prompts",
+  "packet_id": "skilled-agent-orchestration/z_archive/044-non-system-playbook-prompts",
+  "spec_folder": "skilled-agent-orchestration/z_archive/044-non-system-playbook-prompts",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -37,8 +37,6 @@
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      ".opencode/skills/sk-doc/assets/documentation/testing_playbook/manual_testing_playbook_template.md",
-      ".opencode/skills/sk-doc/assets/documentation/testing_playbook/manual_testing_playbook_snippet_template.md",
       "checklist.md",
       "spec.md",
       "plan.md",
@@ -46,18 +44,6 @@
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "manual_testing_playbook_template.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/assets/documentation/testing_playbook/manual_testing_playbook_template.md",
-        "source": "derived"
-      },
-      {
-        "name": "manual_testing_playbook_snippet_template.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/assets/documentation/testing_playbook/manual_testing_playbook_snippet_template.md",
-        "source": "derived"
-      },
       {
         "name": "checklist.md",
         "kind": "doc",
@@ -189,11 +175,23 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The repository now contains several non-system-spec-kit manual testing playbook packages that were authored at different maturity levels. Newer playbooks, especially the sk-deep-review and sk-deep-research packets, use richer orchestrator-led prompt framing, clearer expected process language, and stronger user-facing outcome statements, while older packages such as mcp-coco-index and sk-improve-agent still contain shorter prompt blocks, uneven terminology, or older scenario-contract phrasing.",
     "created_at": "2026-04-12T12:01:01Z",
-    "last_save_at": "2026-04-26T09:17:15.275Z",
+    "last_save_at": "2026-05-18T15:17:56.889Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

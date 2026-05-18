@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor",
-  "spec_folder": "skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor",
-  "parent_id": "skilled-agent-orchestration/042-sk-deep-research-review-improvement-2",
+  "packet_id": "skilled-agent-orchestration/z_archive/042-sk-deep-research-review-improvement-2/003-wave-executor",
+  "spec_folder": "skilled-agent-orchestration/z_archive/042-sk-deep-research-review-improvement-2/003-wave-executor",
+  "parent_id": "skilled-agent-orchestration/z_archive/042-sk-deep-research-review-improvement-2",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -44,21 +44,21 @@
       ".opencode/skills/system-spec-kit/scripts/lib/wave-coordination-board.cjs",
       ".opencode/skills/system-spec-kit/scripts/lib/wave-segment-state.cjs",
       ".opencode/skills/system-spec-kit/scripts/lib/wave-convergence.cjs",
-      ".opencode/skills/sk-deep-research/references/loop_protocol.md",
-      ".opencode/skills/sk-deep-research/references/state_format.md",
-      ".opencode/skills/sk-deep-research/assets/deep_research_config.json",
-      ".opencode/skills/sk-deep-research/assets/deep_research_strategy.md",
-      ".opencode/skills/sk-deep-review/references/loop_protocol.md",
-      ".opencode/skills/sk-deep-review/references/state_format.md",
-      ".opencode/skills/sk-deep-review/assets/deep_review_config.json",
-      ".opencode/skills/sk-deep-review/assets/deep_review_strategy.md",
-      ".opencode/skills/sk-deep-review/assets/review_mode_contract.yaml",
       ".opencode/commands/spec_kit/deep-research.md",
       ".opencode/commands/spec_kit/deep-review.md",
       ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml",
       ".opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml",
       ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml",
-      ".opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml"
+      ".opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml",
+      ".opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts",
+      ".opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts",
+      ".opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts",
+      ".opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts",
+      "spec.md",
+      "plan.md",
+      "decision-record.md",
+      "tasks.md",
+      "checklist.md"
     ],
     "entities": [
       {
@@ -89,48 +89,6 @@
         "name": "wave-convergence.cjs",
         "kind": "file",
         "path": ".opencode/skills/system-spec-kit/scripts/lib/wave-convergence.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "loop_protocol.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-deep-research/references/loop_protocol.md",
-        "source": "derived"
-      },
-      {
-        "name": "state_format.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-deep-research/references/state_format.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep_research_config.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-deep-research/assets/deep_research_config.json",
-        "source": "derived"
-      },
-      {
-        "name": "deep_research_strategy.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-deep-research/assets/deep_research_strategy.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep_review_config.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-deep-review/assets/deep_review_config.json",
-        "source": "derived"
-      },
-      {
-        "name": "deep_review_strategy.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-deep-review/assets/deep_review_strategy.md",
-        "source": "derived"
-      },
-      {
-        "name": "review_mode_contract.yaml",
-        "kind": "config",
-        "path": ".opencode/skills/sk-deep-review/assets/review_mode_contract.yaml",
         "source": "derived"
       },
       {
@@ -170,6 +128,60 @@
         "source": "derived"
       },
       {
+        "name": "deep-loop-wave-planner.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep-loop-wave-executor.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep-loop-wave-merge.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep-loop-wave-resume.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -192,23 +204,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Handoff Criteria",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase Context",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Phase 003 adds orchestrator-managed parallel wave execution so deep research and deep review can handle very large targets without abandoning the LEAF-worker model. It formalizes deterministic segmentation, packet-local coordination, segment-level convergence, and auditable merge behavior on top of the coverage-graph foundation from Phase 002.",
     "created_at": "2026-04-12T09:02:50.193Z",
-    "last_save_at": "2026-04-26T09:17:15.250Z",
+    "last_save_at": "2026-05-18T15:17:56.877Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

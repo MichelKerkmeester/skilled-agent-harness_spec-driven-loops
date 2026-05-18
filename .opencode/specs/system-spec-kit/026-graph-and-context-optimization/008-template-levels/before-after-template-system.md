@@ -236,7 +236,7 @@ Not because the refactor was hard — the manifest+resolver+renderer code itself
 - **868 existing spec folders** had to keep working. Every change had to be checked against a sample of them.
 - **Workflow invariance was a hard constraint** (ADR-005): the user-facing experience had to stay byte-identical. Renaming a path in one README that an AI agent reads literally would have broken the AI workflow. So we audited every public surface — agents, commands, references, assets, READMEs, CLAUDE.md, AGENTS.md, feature catalog, manual playbook — and cleaned out vocabulary leaks before letting the refactor merge.
 - **Three rounds of deep review** (10 cli-codex agents per round, 30 reviewers total). Each round found real issues. Each round was followed by remediation.
-- **One follow-up packet** (`004-deferred-followups/`) implemented 10 deferred items + 5 architectural decisions that didn't fit the contained-remediation budget of round 3.
+- **One follow-up packet** (`004-template-deferred-followup-fixes/`) implemented 10 deferred items + 5 architectural decisions that didn't fit the contained-remediation budget of round 3.
 
 Total session: ~6.5 hours of autonomous codex execution, supervised by a single human asking for status updates.
 
@@ -244,10 +244,10 @@ Total session: ~6.5 hours of autonomous codex execution, supervised by a single 
 
 ## 9. Related Documents
 
-- `001-consolidation-investigation/` — the original 10-iteration deep research (PARTIAL recommendation, rejected by user)
-- `002-template-greenfield-redesign/` — the 14-iteration redesign loop that produced the C+F hybrid + 5 ADRs
-- `003-template-greenfield-impl/` — the 6-phase implementation packet with checklist Gates 1-7
-- `004-deferred-followups/` — orchestrator + exit codes + version field + 5 more ADRs
+- `001-template-level-consolidation-research/` — the original 10-iteration deep research (PARTIAL recommendation, rejected by user)
+- `002-manifest-driven-template-design/` — the 14-iteration redesign loop that produced the C+F hybrid + 5 ADRs
+- `003-manifest-template-implementation-plan/` — the 6-phase implementation packet with checklist Gates 1-7
+- `004-template-deferred-followup-fixes/` — orchestrator + exit codes + version field + 5 more ADRs
 - `templates/manifest/EXTENSION_GUIDE.md` — maintainer guide
 - `templates/manifest/MIGRATION.md` — legacy marker compatibility
 - `templates/README.md` — top-level template-system orientation

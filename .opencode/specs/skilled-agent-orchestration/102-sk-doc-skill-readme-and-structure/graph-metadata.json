@@ -16,23 +16,107 @@
     "related_to": []
   },
   "derived": {
-    "trigger_phrases": [],
-    "key_topics": [],
+    "trigger_phrases": [
+      "sk-doc skill README",
+      "sk-doc references relocation",
+      "markdown agent rename"
+    ],
+    "key_topics": [
+      "sk-doc",
+      "skill",
+      "readme",
+      "references",
+      "relocation",
+      "markdown",
+      "agent",
+      "rename",
+      "packet",
+      "coordinates",
+      "documentation",
+      "agent-structure"
+    ],
     "importance_tier": "important",
-    "status": "completed",
+    "status": "planned",
     "key_files": [
+      "001-sk-doc-reference-relocation/spec.md",
+      "002-sk-doc-skill-readme-asset/spec.md",
+      "003-markdown-agent-rename/spec.md",
+      "004-sk-doc-playbook-markdown-agent-coverage/spec.md",
+      "005-deep-review-p1-p2-remediation/spec.md",
+      "review/deep-review-dashboard.md",
+      ".codex/config.toml",
+      ".codex/agents/markdown.toml",
       "spec.md"
     ],
-    "entities": [],
-    "causal_summary": "sk-doc skill README and structure",
+    "entities": [
+      {
+        "name": "deep-review-dashboard.md",
+        "kind": "doc",
+        "path": "review/deep-review-dashboard.md",
+        "source": "derived"
+      },
+      {
+        "name": "config.toml",
+        "kind": "file",
+        "path": ".codex/config.toml",
+        "source": "derived"
+      },
+      {
+        "name": "markdown.toml",
+        "kind": "file",
+        "path": ".codex/agents/markdown.toml",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Count",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Last Active Child",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope In",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Documentation Map",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "This packet coordinates the documentation and agent-structure work needed to make `sk-doc` easier to maintain and to rename the create documentation agent into the markdown agent identity. The parent stays lean; all implementation details live in the child phase folders.",
     "created_at": "2026-05-10T10:33:22Z",
-    "last_save_at": "2026-05-10T12:31:54.523Z",
+    "last_save_at": "2026-05-18T15:17:56.740Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
-    ],
-    "last_active_child_id": "skilled-agent-orchestration/102-sk-doc-skill-readme-and-structure/005-deep-review-p1-p2-remediation",
-    "last_active_at": "2026-05-11T09:30:00.000Z"
+    ]
   }
 }

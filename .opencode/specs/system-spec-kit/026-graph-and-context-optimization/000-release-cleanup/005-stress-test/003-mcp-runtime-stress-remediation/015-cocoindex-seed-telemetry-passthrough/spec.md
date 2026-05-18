@@ -39,7 +39,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->"
 # Feature Specification: CocoIndex seed telemetry passthrough
 
 <!-- SPECKIT_LEVEL: 1 -->
-<!-- PHASE_LINKS_PARENT: ../spec.md; PREDECESSOR: 014-graph-status-readiness-snapshot; SUCCESSOR: 016-degraded-readiness-envelope-parity -->
+<!-- PHASE_LINKS_PARENT: ../spec.md; PREDECESSOR: 014-code-graph-status-readiness-snapshot; SUCCESSOR: 016-degraded-readiness-envelope-parity -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 
 ---
@@ -53,7 +53,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->"
 | **Priority** | P2 (opportunity) |
 | **Status** | In Progress |
 | **Created** | 2026-04-27 |
-| **Sources** | research.md §6 (Q-OPP), 010 findings.md Novel Finding #5, 004-cocoindex-overfetch-dedup (fork extension) |
+| **Sources** | research.md §6 (Q-OPP), 010 findings.md Novel Finding #5, 004-cocoindex-overfetch-dedup-rerank (fork extension) |
 <!-- /ANCHOR:metadata -->
 
 ---

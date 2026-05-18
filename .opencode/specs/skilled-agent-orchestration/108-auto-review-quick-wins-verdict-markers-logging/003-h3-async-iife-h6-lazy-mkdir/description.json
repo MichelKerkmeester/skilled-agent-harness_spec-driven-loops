@@ -1,0 +1,22 @@
+{
+  "specFolder": "skilled-agent-orchestration/108-auto-review-quick-wins-verdict-markers-logging/003-h3-async-iife-h6-lazy-mkdir",
+  "description": "Phase 3: H-3 async-IIFE + H-6 lazy mkdir",
+  "keywords": [
+    "phase",
+    "h-3",
+    "async-iife",
+    "h-6",
+    "lazy",
+    "mkdir"
+  ],
+  "lastUpdated": "2026-05-16T05:33:43.245Z",
+  "specId": "003",
+  "folderSlug": "h3-async-iife-h6-lazy-mkdir",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "108-auto-review-quick-wins-verdict-markers-logging"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

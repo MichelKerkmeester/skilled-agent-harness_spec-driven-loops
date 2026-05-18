@@ -1,13 +1,13 @@
 ---
 title: "278 -- MCP daemon rebuild, restart, and live-probe protocol"
-description: "This scenario validates the canonical 4-part rebuild + restart + live-probe contract for MCP TypeScript fixes (packet 008). Source diff -> targeted vitest -> dist marker check + restart -> live MCP probe. Codifies the phantom-fix prevention loop."
+description: "This scenario validates the canonical 4-part rebuild + restart + live-probe contract for MCP TypeScript fixes. Source diff -> targeted vitest -> dist marker check + restart -> live MCP probe. Codifies the phantom-fix prevention loop."
 ---
 
 # 278 -- MCP daemon rebuild, restart, and live-probe protocol
 
 ## 1. OVERVIEW
 
-This scenario validates the canonical rebuild + restart + live-probe contract authored in packet 008. It focuses on confirming a TypeScript fix in `mcp_server/` is actually live in the running daemon, not just compiled to `dist/` or only passing in vitest. The contract codifies the v1.0.2 phantom-fix lesson where a fix passed targeted tests but the daemon kept serving stale code because the runtime had not been restarted.
+This scenario validates the canonical rebuild + restart + live-probe contract. It focuses on confirming a TypeScript fix in `mcp_server/` is actually live in the running daemon, not just compiled to `dist/` or only passing in vitest. The contract codifies the v1.0.2 phantom-fix lesson where a fix passed targeted tests but the daemon kept serving stale code because the runtime had not been restarted.
 
 ---
 
@@ -59,10 +59,10 @@ If dist marker missing: re-run `npm run build`, check `tsc -b` errors. If marker
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Reference (canonical contract): `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/008-mcp-daemon-rebuild-protocol/references/mcp-rebuild-restart-protocol.md`
-- Reference (probe queries): `.opencode/specs/.../008-mcp-daemon-rebuild-protocol/references/live-probe-template.md`
-- Reference (grep patterns): `.opencode/specs/.../008-mcp-daemon-rebuild-protocol/references/dist-marker-grep-cheatsheet.md`
-- Reference (verification checklist): `.opencode/specs/.../008-mcp-daemon-rebuild-protocol/references/implementation-verification-checklist.md`
+- Reference (canonical contract): `<spec-folder>`
+- Reference (probe queries): `<spec-folder>`
+- Reference (grep patterns): `<spec-folder>`
+- Reference (verification checklist): `<spec-folder>`
 - Sibling: [243-setup-native-module-health-and-mcp-installation.md](./243-setup-native-module-health-and-mcp-installation.md) (covers prerequisites and installer; this entry covers the post-fix verification loop)
 
 ---

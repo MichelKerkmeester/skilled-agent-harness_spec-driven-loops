@@ -15,7 +15,7 @@ contextType: "implementation"
 
 ## 2026-05-02
 
-> Spec folder: `026-graph-and-context-optimization/008-template-levels/008-z-archive-marker-validation-sweep` (Level 3)
+> Spec folder: `026-graph-and-context-optimization/008-template-levels/008-archive-marker-validation-unused-scaffold` (Level 3)
 > Parent packet: `026-graph-and-context-optimization/008-template-levels`
 
 ### Summary

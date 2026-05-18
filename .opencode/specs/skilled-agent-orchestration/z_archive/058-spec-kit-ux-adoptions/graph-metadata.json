@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/058-spec-kit-ux-adoptions",
-  "spec_folder": "skilled-agent-orchestration/058-spec-kit-ux-adoptions",
+  "packet_id": "skilled-agent-orchestration/z_archive/058-spec-kit-ux-adoptions",
+  "spec_folder": "skilled-agent-orchestration/z_archive/058-spec-kit-ux-adoptions",
   "parent_id": null,
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      "skilled-agent-orchestration/057-cmd-spec-kit-ux-upgrade"
-    ],
+    "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
@@ -18,44 +18,192 @@
       "spec kit ux implementation",
       "spar adoptions",
       "058 ux upgrade",
+      "058 spec kit ux plan",
+      "spec kit ux adoptions plan",
       "058 plan",
+      "058 spec kit ux tasks",
+      "spec kit ux adoptions tasks",
       "058 tasks",
-      "058 checklist"
+      "058 spec kit ux checklist"
     ],
     "key_topics": [
-      "spec-kit",
-      "ux",
+      "058",
+      "spec",
+      "kit",
       "adoptions",
-      "templates",
-      "command-taxonomy",
-      "personas",
-      "gate-copy",
-      "question-budget",
-      "phase-boundaries"
+      "implementation",
+      "spar",
+      "upgrade",
+      "plan",
+      "tasks",
+      "checklist",
+      "packet",
+      "057"
     ],
     "importance_tier": "high",
-    "status": "in_progress",
+    "status": "planned",
     "key_files": [
       "spec.md",
       "plan.md",
-      "tasks.md",
       "checklist.md",
-      "../057-cmd-spec-kit-ux-upgrade/research/research.md",
-      ".opencode/commands/spec_kit/plan.md",
-      ".opencode/commands/spec_kit/README.txt",
-      ".opencode/skills/system-spec-kit/templates",
-      ".opencode/skills/system-spec-kit/SKILL.md"
+      "tasks.md"
     ],
-    "causal_summary": "Implement 5 approved UX adoptions from packet 057 deep-research: gate copy split, phase boundary headers, four-axis command taxonomy doc, template inventory plus source manifest, and persona evaluation fixtures.",
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Builds On",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Rejected From",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Land",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Begin Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Land",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Documentation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Draft Required",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Apply Required",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Add Specify",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Vibe Vera",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Packet 057's 10-iteration deep-research run produced 12 ranked findings comparing external SPAR-Kit against our internal `system-spec-kit`. The user reviewed the recommendations and approved 5 for adoption (rejecting the higher-risk structural changes 061/062/064 and the now-orphaned boundary doc 066). The approved set is concentrated in copy/inventory work — low-to-medium risk, high operator-clarity payoff — but spans gate UX, command framing, taxonomy documentation, template classification, and doc-review fixtures. Without an implementation packet, the research findings sit in `research/research.md` with no execution path.",
     "created_at": "2026-05-01T11:00:00Z",
-    "last_save_at": "2026-05-01T11:00:00Z",
-    "save_lineage": "same_pass",
+    "last_save_at": "2026-05-18T15:17:56.914Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md"
     ]
-  },
-  "importance_tier": "normal"
+  }
 }

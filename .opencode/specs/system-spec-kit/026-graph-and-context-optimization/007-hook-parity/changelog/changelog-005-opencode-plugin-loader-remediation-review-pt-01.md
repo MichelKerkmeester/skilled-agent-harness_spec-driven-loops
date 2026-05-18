@@ -14,8 +14,8 @@ contextType: "implementation"
 
 ## 2026-04-22
 
-> Spec folder: `026-graph-and-context-optimization/007-hook-parity/005-opencode-plugin-loader-remediation/review/005-opencode-plugin-loader-remediation-tier2-pt-01` (Level 2)
-> Parent packet: `026-graph-and-context-optimization/007-hook-parity/005-opencode-plugin-loader-remediation`
+> Spec folder: `026-graph-and-context-optimization/007-hook-parity/005-opencode-plugin-loader-bridge-fixes/review/005-opencode-plugin-loader-bridge-fixes-tier2-pt-01` (Level 2)
+> Parent packet: `026-graph-and-context-optimization/007-hook-parity/005-opencode-plugin-loader-bridge-fixes`
 
 ### Summary
 
@@ -35,7 +35,7 @@ None. Review-only phase.
 
 ### Verification
 
-- Review report at `005-opencode-plugin-loader-remediation/review/005-opencode-plugin-loader-remediation-tier2-pt-01/review-report.md`.
+- Review report at `005-opencode-plugin-loader-bridge-fixes/review/005-opencode-plugin-loader-bridge-fixes-tier2-pt-01/review-report.md`.
 - Findings addressed: helper-location path corrections, defensive output guards, stable cache keys.
 
 ### Files Changed

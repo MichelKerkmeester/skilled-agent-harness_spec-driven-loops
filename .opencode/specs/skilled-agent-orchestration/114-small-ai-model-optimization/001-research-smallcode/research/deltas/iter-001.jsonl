@@ -1,0 +1,6 @@
+{"type":"iteration","iteration":1,"newInfoRatio":0.85,"status":"progress","focus":"RQ1 — Context Budget Engine","graphEvents":[]}
+{"type":"finding","id":"f-iter001-001","severity":"P1","label":"Percentage-based budget allocation with BudgetConfig struct","iteration":1}
+{"type":"finding","id":"f-iter001-002","severity":"P1","label":"Tool result truncation with informative suffix","iteration":1}
+{"type":"finding","id":"f-iter001-003","severity":"P1","label":"Priority-based eviction system (tool results first, conversation at 50%)","iteration":1}
+{"type":"finding","id":"f-iter001-004","severity":"P2","label":"File summarization threshold (line count > 200)","iteration":1}
+{"type":"finding","id":"f-iter001-005","severity":"P2","label":"Usage tracking and display with percentage calculation","iteration":1}

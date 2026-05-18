@@ -39,7 +39,7 @@ _memory:
 | `research/deep-research-strategy.md` | Created | OK | Iteration focus map |
 | iteration files (5 sibling files in research/iterations/) | Created | OK | Per-iter externalized findings (5 files) |
 | `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/022-stress-test-results-deep-research/research/research-report.md` | Cited | OK | Phase J context (predecessor research) |
-| `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/021-stress-test-v1-0-3-with-w3-w13-wiring/findings-v1-0-3.md` | Cited | OK | v1.0.3 corpus referenced for RQ1 false-positive analysis |
+| `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/021-stress-test-enterprise-wiring-expansion/findings-v1-0-3.md` | Cited | OK | v1.0.3 corpus referenced for RQ1 false-positive analysis |
 
 ---
 
@@ -78,4 +78,4 @@ _memory:
 | `.../027/research/deep-research-config.json` | Created | OK | Loop config (cli-codex gpt-5.5 xhigh normal, 5 iters) |
 | `.../027/research/deep-research-state.jsonl` | Created | OK | State log: init + 5 iters + synthesis_complete |
 | `.../027/research/deltas/iteration-001..005.jsonl` | Created | OK | Per-iter delta records (5 files) |
-| Phase E gold battery measurements | Cited | OK | `.../000-release-cleanup/005-review-remediation/004-search-rag-measurement-driven-implementation/measurements/` referenced for RQ1 baseline |
+| Phase E gold battery measurements | Cited | OK | `.../000-release-cleanup/005-review-remediation/004-search-rag-measurement-implementation/measurements/` referenced for RQ1 baseline |

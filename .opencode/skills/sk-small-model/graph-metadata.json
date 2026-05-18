@@ -1,0 +1,104 @@
+{
+  "schema_version": 2,
+  "skill_id": "sk-small-model",
+  "family": "sk-util",
+  "category": "utility",
+  "edges": {
+    "depends_on": [],
+    "enhances": [
+      {
+        "target": "cli-devin",
+        "weight": 0.5,
+        "context": "small-model dispatch surface — SWE-1.6 budget + verification patterns"
+      },
+      {
+        "target": "cli-opencode",
+        "weight": 0.5,
+        "context": "small-model dispatch surface — DeepSeek/Kimi/Qwen permissions matrix + budget patterns"
+      }
+    ],
+    "siblings": [],
+    "conflicts_with": [],
+    "prerequisite_for": []
+  },
+  "manual": {
+    "depends_on": [],
+    "related_to": [
+      "cli-devin",
+      "cli-opencode"
+    ]
+  },
+  "domains": [
+    "small-model",
+    "routing",
+    "budget",
+    "verification",
+    "permissions"
+  ],
+  "intent_signals": [
+    "small model",
+    "small-model dispatch",
+    "swe-1.6",
+    "deepseek-v4",
+    "kimi-k2.6",
+    "qwen3.6",
+    "context budget",
+    "output verification",
+    "structured permissions"
+  ],
+  "derived": {
+    "trigger_phrases": [
+      "small model",
+      "small-model dispatch",
+      "swe-1.6",
+      "swe 1.6",
+      "kimi",
+      "kimi-k2.6",
+      "deepseek",
+      "deepseek-v4",
+      "qwen",
+      "qwen3.6",
+      "haiku",
+      "claude haiku",
+      "gemini flash",
+      "context budget",
+      "output verification",
+      "model profile",
+      "structured permissions",
+      "tool scoring",
+      "small-model optimization"
+    ],
+    "key_topics": [
+      "sentinel skill",
+      "small-model patterns",
+      "pattern index",
+      "advisor routing"
+    ],
+    "intent_signals": [
+      "dispatch small model",
+      "route SWE-1.6",
+      "small-model output verification",
+      "small-model context budget",
+      "small-model structured permissions"
+    ],
+    "key_files": [
+      ".opencode/skills/sk-small-model/SKILL.md",
+      ".opencode/skills/sk-small-model/references/pattern-index.md"
+    ],
+    "entities": [
+      {
+        "name": "sk-small-model",
+        "kind": "skill",
+        "path": ".opencode/skills/sk-small-model/SKILL.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Sentinel skill for small-model optimization routing. It keeps real patterns in cli-devin and cli-opencode while providing a single advisor-discoverable anchor for small-model dispatch prompts.",
+    "source_docs": [
+      "SKILL.md",
+      "references/pattern-index.md"
+    ],
+    "created_at": "2026-05-18T00:00:00Z",
+    "last_updated_at": "2026-05-18T00:00:00Z"
+  }
+}

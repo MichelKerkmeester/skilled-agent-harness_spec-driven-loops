@@ -15,7 +15,7 @@ Verify language sub-detection for `.json` / `.jsonc` files within OPENCODE. Conf
 
 **Exact prompt**:
 ```
-Add a derived.last_active_child_id field to the .opencode/specs/skilled-agent-orchestration/059-code-agent/graph-metadata.json file with value "001-spec".
+Add a derived.last_active_child_id field to the <spec-folder> file with value "001-spec".
 ```
 
 **Expected detection**:

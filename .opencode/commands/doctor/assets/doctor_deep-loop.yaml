@@ -32,7 +32,7 @@ deep_loop_doctor_invariant: |
 # UPSTREAM ASSETS
 # ─────────────────────────────────────────────────────────────────
 upstream_assets:
-  packet: ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/001-doctor-commands"
+  contract: "local command design contract"
   files:
     spec: "spec.md"  # REQ-013 covers lazy-init/default-mode behavior
     decision_record: "decision-record.md"  # ADR-004/ADR-007 rollback and cancel safety
@@ -78,11 +78,11 @@ mutation_boundaries:
     - "mcp_server/database/deep-loop-graph.sqlite"  # coverage graph DB
     - "mcp_server/database/deep-loop-graph.sqlite.pre-doctor-deep-loop.*.bak"  # deep-loop snapshot files only
   forbidden_targets:
-    - ".opencode/specs/**/research/iterations/*.md"  # read-only source inputs, never rewritten
-    - ".opencode/specs/**/review/iterations/*.md"  # read-only source inputs, never rewritten
-    - ".opencode/specs/**/*.md"  # no spec packet doc writes from deep-loop doctor
-    - ".opencode/specs/**/description.json"  # metadata not deep-loop storage
-    - ".opencode/specs/**/graph-metadata.json"
+    - "<active-spec-folder>/research/iterations/*.md"  # read-only source inputs, never rewritten
+    - "<active-spec-folder>/review/iterations/*.md"  # read-only source inputs, never rewritten
+    - "<active-spec-folder>/**/*.md"  # no spec packet doc writes from deep-loop doctor
+    - "<active-spec-folder>/description.json"  # metadata not deep-loop storage
+    - "<active-spec-folder>/graph-metadata.json"
     - ".opencode/skills/**/SKILL.md"
     - ".opencode/skills/**/graph-metadata.json"
     - ".opencode/agents/**/*.md"
@@ -157,8 +157,8 @@ workflow:
   phase_0_discovery:
     purpose: "Detect graph presence, empty_graph state, staleness, and iteration folders."
     activities:
-      - "Glob: .opencode/specs/**/research/iterations/*.md when scope includes research."
-      - "Glob: .opencode/specs/**/review/iterations/*.md when scope includes review."
+      - "Glob: <active-spec-folder>/research/iterations/*.md when scope includes research."
+      - "Glob: <active-spec-folder>/review/iterations/*.md when scope includes review."
       - "Bash: stat -f '%m %z' mcp_server/database/deep-loop-graph.sqlite when present."
       - "Group iteration files by specFolder, loopType, and inferred sessionId from iteration metadata or folder path."
       - "Run deep_loop_graph_status({specFolder, loopType, sessionId}) for up to 10 sampled packet/session namespaces."

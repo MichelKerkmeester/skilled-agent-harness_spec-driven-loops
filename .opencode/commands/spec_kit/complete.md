@@ -63,7 +63,7 @@ The dispatched prompt body may contain one structured marker block. Parse it bef
 ```yaml
 PRE-BOUND SETUP ANSWERS:
   feature_description: Add passwordless login  # string
-  spec_folder: .opencode/specs/103-example/001-passwordless-login/  # existing | new | update-related | skip | phase-folder | explicit path
+  spec_folder: <spec-folder>  # existing | new | update-related | skip | phase-folder | explicit path
   execution_mode: AUTONOMOUS  # from :auto suffix
   dispatch_mode: single_agent  # single_agent | multi_small | multi_large
   memory_choice: skip  # latest | recent3 | skip | n/a

@@ -1,0 +1,237 @@
+{
+  "version": "1.0",
+  "description": "Repo-wide .opencode matrix. Allows writes/edits across .opencode while explicitly denying .git, node_modules, and ~/.config. Resolution semantics: most-specific glob wins; first-in-array breaks equal-specificity ties.",
+  "rules": [
+    {
+      "target_glob": "**",
+      "operation_class": "read",
+      "scope": "repo-wide",
+      "effect": "allow",
+      "rationale": "Repo-wide implementation needs broad read access."
+    },
+    {
+      "target_glob": ".git/**",
+      "operation_class": "write",
+      "scope": "repo-wide",
+      "effect": "deny",
+      "rationale": "Agents must not mutate git internals."
+    },
+    {
+      "target_glob": ".git/**",
+      "operation_class": "edit",
+      "scope": "repo-wide",
+      "effect": "deny",
+      "rationale": "Agents must not edit git internals."
+    },
+    {
+      "target_glob": ".git/**",
+      "operation_class": "delete",
+      "scope": "repo-wide",
+      "effect": "deny",
+      "rationale": "Agents must not delete git internals."
+    },
+    {
+      "target_glob": "node_modules/**",
+      "operation_class": "write",
+      "scope": "repo-wide",
+      "effect": "deny",
+      "rationale": "Dependency vendor trees are not authored source."
+    },
+    {
+      "target_glob": "node_modules/**",
+      "operation_class": "edit",
+      "scope": "repo-wide",
+      "effect": "deny",
+      "rationale": "Dependency vendor trees are not authored source."
+    },
+    {
+      "target_glob": "node_modules/**",
+      "operation_class": "delete",
+      "scope": "repo-wide",
+      "effect": "deny",
+      "rationale": "Deleting vendor trees is outside repo-wide source edits."
+    },
+    {
+      "target_glob": "~/.config/**",
+      "operation_class": "write",
+      "scope": "external",
+      "effect": "deny",
+      "rationale": "User-level configuration is outside the repository."
+    },
+    {
+      "target_glob": "~/.config/**",
+      "operation_class": "edit",
+      "scope": "external",
+      "effect": "deny",
+      "rationale": "User-level configuration is outside the repository."
+    },
+    {
+      "target_glob": "~/.config/**",
+      "operation_class": "delete",
+      "scope": "external",
+      "effect": "deny",
+      "rationale": "User-level configuration is outside the repository."
+    },
+    {
+      "target_glob": ".opencode/**",
+      "operation_class": "write",
+      "scope": "repo-wide",
+      "effect": "allow",
+      "rationale": "This profile allows authored writes across .opencode."
+    },
+    {
+      "target_glob": ".opencode/**",
+      "operation_class": "edit",
+      "scope": "repo-wide",
+      "effect": "allow",
+      "rationale": "This profile allows authored edits across .opencode."
+    },
+    {
+      "target_glob": "**",
+      "operation_class": "delete",
+      "scope": "repo-wide",
+      "effect": "deny",
+      "rationale": "Repo-wide write profile still denies deletions by default."
+    },
+    {
+      "target_glob": "Exec(rg)",
+      "operation_class": "execute",
+      "scope": "repo-wide",
+      "effect": "allow",
+      "rationale": "rg is read-only search."
+    },
+    {
+      "target_glob": "Exec(grep)",
+      "operation_class": "execute",
+      "scope": "repo-wide",
+      "effect": "allow",
+      "rationale": "grep is read-only search."
+    },
+    {
+      "target_glob": "Exec(git)",
+      "operation_class": "execute",
+      "scope": "repo-wide",
+      "effect": "allow",
+      "rationale": "git status/show/diff/log support inspection."
+    },
+    {
+      "target_glob": "Exec(ls)",
+      "operation_class": "execute",
+      "scope": "repo-wide",
+      "effect": "allow",
+      "rationale": "ls is read-only."
+    },
+    {
+      "target_glob": "Exec(find)",
+      "operation_class": "execute",
+      "scope": "repo-wide",
+      "effect": "allow",
+      "rationale": "find is allowed for discovery; destructive find -delete remains denied by default."
+    },
+    {
+      "target_glob": "Exec(cat)",
+      "operation_class": "execute",
+      "scope": "repo-wide",
+      "effect": "allow",
+      "rationale": "cat reads files."
+    },
+    {
+      "target_glob": "Exec(head)",
+      "operation_class": "execute",
+      "scope": "repo-wide",
+      "effect": "allow",
+      "rationale": "head reads file prefixes."
+    },
+    {
+      "target_glob": "Exec(tail)",
+      "operation_class": "execute",
+      "scope": "repo-wide",
+      "effect": "allow",
+      "rationale": "tail reads file suffixes."
+    },
+    {
+      "target_glob": "Exec(wc)",
+      "operation_class": "execute",
+      "scope": "repo-wide",
+      "effect": "allow",
+      "rationale": "wc counts content."
+    },
+    {
+      "target_glob": "Exec(awk)",
+      "operation_class": "execute",
+      "scope": "repo-wide",
+      "effect": "allow",
+      "rationale": "awk is allowed for read-only text processing."
+    },
+    {
+      "target_glob": "Exec(sed -i*)",
+      "operation_class": "execute",
+      "scope": "repo-wide",
+      "effect": "deny",
+      "rationale": "sed in-place editing is denied unless a narrower future profile allows it."
+    },
+    {
+      "target_glob": "Exec(sed)",
+      "operation_class": "execute",
+      "scope": "repo-wide",
+      "effect": "allow",
+      "rationale": "sed without -i is allowed for read-only inspection."
+    },
+    {
+      "target_glob": "Exec(rm*)",
+      "operation_class": "execute",
+      "scope": "repo-wide",
+      "effect": "deny",
+      "rationale": "rm deletes files and is banned by default."
+    },
+    {
+      "target_glob": "Exec(mv)",
+      "operation_class": "execute",
+      "scope": "repo-wide",
+      "effect": "deny",
+      "rationale": "mv can move files outside reviewable source paths."
+    },
+    {
+      "target_glob": "Exec(cp)",
+      "operation_class": "execute",
+      "scope": "repo-wide",
+      "effect": "deny",
+      "rationale": "cp can overwrite files outside reviewable source paths."
+    },
+    {
+      "target_glob": "Exec(npm)",
+      "operation_class": "execute",
+      "scope": "repo-wide",
+      "effect": "deny",
+      "rationale": "npm can mutate dependencies or run arbitrary scripts."
+    },
+    {
+      "target_glob": "Exec(pnpm)",
+      "operation_class": "execute",
+      "scope": "repo-wide",
+      "effect": "deny",
+      "rationale": "pnpm can mutate dependencies or run arbitrary scripts."
+    },
+    {
+      "target_glob": "Exec(yarn)",
+      "operation_class": "execute",
+      "scope": "repo-wide",
+      "effect": "deny",
+      "rationale": "yarn can mutate dependencies or run arbitrary scripts."
+    },
+    {
+      "target_glob": "Exec(node)",
+      "operation_class": "execute",
+      "scope": "repo-wide",
+      "effect": "deny",
+      "rationale": "node can execute arbitrary mutation scripts."
+    },
+    {
+      "target_glob": "Exec(python*)",
+      "operation_class": "execute",
+      "scope": "repo-wide",
+      "effect": "deny",
+      "rationale": "python can execute arbitrary mutation scripts."
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/034-sk-deep-research-review-folders",
-  "spec_folder": "skilled-agent-orchestration/034-sk-deep-research-review-folders",
+  "packet_id": "skilled-agent-orchestration/z_archive/034-sk-deep-research-review-folders",
+  "spec_folder": "skilled-agent-orchestration/z_archive/034-sk-deep-research-review-folders",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -41,8 +41,6 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      ".opencode/skills/sk-deep-review/assets/deep_review_strategy.md",
-      ".opencode/skills/sk-deep-review/assets/deep_review_dashboard.md",
       ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml",
       ".opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml",
       ".opencode/commands/spec_kit/deep-research.md",
@@ -50,31 +48,14 @@
       ".claude/agents/deep-review.md",
       ".codex/agents/deep-review.toml",
       ".gemini/agents/deep-review.md",
-      ".opencode/skills/sk-deep-research/SKILL.md",
-      ".opencode/skills/sk-deep-research/README.md",
-      ".opencode/skills/sk-deep-research/references/quick_reference.md",
-      ".opencode/skills/sk-deep-research/references/loop_protocol.md",
-      ".opencode/skills/sk-deep-research/references/state_format.md",
-      ".opencode/skills/sk-deep-research/references/convergence.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
       "decision-record.md",
-      "spec.md"
+      "spec.md",
+      "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "deep_review_strategy.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-deep-review/assets/deep_review_strategy.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep_review_dashboard.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-deep-review/assets/deep_review_dashboard.md",
-        "source": "derived"
-      },
       {
         "name": "spec_kit_deep-research_auto.yaml",
         "kind": "config",
@@ -106,42 +87,6 @@
         "source": "derived"
       },
       {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-deep-research/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-deep-research/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "quick_reference.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-deep-research/references/quick_reference.md",
-        "source": "derived"
-      },
-      {
-        "name": "loop_protocol.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-deep-research/references/loop_protocol.md",
-        "source": "derived"
-      },
-      {
-        "name": "state_format.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-deep-research/references/state_format.md",
-        "source": "derived"
-      },
-      {
-        "name": "convergence.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-deep-research/references/convergence.md",
-        "source": "derived"
-      },
-      {
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
@@ -169,6 +114,12 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -206,11 +157,53 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Implementation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Contract",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "This packet plans a dedicated `review/` subfolder inside the target spec so all review-mode outputs live together: config, JSONL state, strategy, dashboard, iteration artifacts, pause sentinel, and final report. The implementation also needs a legacy migration path because existing review sessions already persist their state under `scratch/`.",
     "created_at": "2026-04-12T09:02:50.178Z",
-    "last_save_at": "2026-04-26T09:17:15.182Z",
+    "last_save_at": "2026-05-18T15:17:56.838Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

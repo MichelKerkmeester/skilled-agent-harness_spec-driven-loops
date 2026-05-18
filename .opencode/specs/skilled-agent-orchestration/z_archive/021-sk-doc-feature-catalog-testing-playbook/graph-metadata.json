@@ -41,33 +41,20 @@
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      ".opencode/agents/write.md",
       ".opencode/skills/system-spec-kit/mcp_server/tests/feature-flag-reference-docs.vitest.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
       "implementation-summary.md",
-      ".opencode/skills/sk-doc/references/specific/agent_creation.md",
       ".opencode/skills/sk-doc/SKILL.md",
       ".opencode/skills/sk-doc/README.md",
       ".opencode/skills/sk-doc/references/global/quick_reference.md",
       ".opencode/skills/sk-doc/references/global/workflows.md",
-      ".opencode/skills/sk-doc/references/specific/install_guide_creation.md",
       ".opencode/skills/system-spec-kit/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md",
-      ".opencode/skills/system-spec-kit/feature_catalog/FEATURE_CATALOG.md",
-      ".opencode/skills/sk-doc/assets/documentation/feature_catalog/feature_catalog_template.md",
-      ".opencode/skills/sk-doc/assets/documentation/feature_catalog/feature_catalog_snippet_template.md",
-      ".opencode/skills/sk-doc/references/specific/manual_testing_playbook_creation.md",
-      ".opencode/skills/sk-doc/references/specific/feature_catalog_creation.md"
+      ".opencode/skills/system-spec-kit/feature_catalog/FEATURE_CATALOG.md"
     ],
     "entities": [
-      {
-        "name": "write.md",
-        "kind": "doc",
-        "path": ".opencode/agents/write.md",
-        "source": "derived"
-      },
       {
         "name": "feature-flag-reference-docs.vitest.ts",
         "kind": "test",
@@ -105,12 +92,6 @@
         "source": "derived"
       },
       {
-        "name": "agent_creation.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/references/specific/agent_creation.md",
-        "source": "derived"
-      },
-      {
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-doc/SKILL.md",
@@ -135,12 +116,6 @@
         "source": "derived"
       },
       {
-        "name": "install_guide_creation.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/references/specific/install_guide_creation.md",
-        "source": "derived"
-      },
-      {
         "name": "MANUAL_TESTING_PLAYBOOK.md",
         "kind": "doc",
         "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md",
@@ -150,30 +125,6 @@
         "name": "FEATURE_CATALOG.md",
         "kind": "doc",
         "path": ".opencode/skills/system-spec-kit/feature_catalog/FEATURE_CATALOG.md",
-        "source": "derived"
-      },
-      {
-        "name": "feature_catalog_template.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/assets/documentation/feature_catalog/feature_catalog_template.md",
-        "source": "derived"
-      },
-      {
-        "name": "feature_catalog_snippet_template.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/assets/documentation/feature_catalog/feature_catalog_snippet_template.md",
-        "source": "derived"
-      },
-      {
-        "name": "manual_testing_playbook_creation.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/references/specific/manual_testing_playbook_creation.md",
-        "source": "derived"
-      },
-      {
-        "name": "feature_catalog_creation.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/references/specific/feature_catalog_creation.md",
         "source": "derived"
       },
       {
@@ -205,11 +156,53 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Documentation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Testing Playbook Alignment Task",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "This packet records the final shipped documentation contract for the feature-catalog and manual-testing-playbook work. It replaces the earlier playbook-only framing with the broader reality: both document families, their templates, their references, and their downstream creation workflows were aligned together.",
     "created_at": "2026-04-12T09:02:50.221Z",
-    "last_save_at": "2026-04-26T09:17:15.327Z",
+    "last_save_at": "2026-05-18T15:17:56.820Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

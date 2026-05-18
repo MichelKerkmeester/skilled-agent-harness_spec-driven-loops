@@ -1,28 +1,23 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/003-remediation",
-  "spec_folder": "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/003-remediation",
-  "parent_id": "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural",
+  "packet_id": "skilled-agent-orchestration/z_archive/096-rename-opencode-dirs-to-plural/003-remediation",
+  "spec_folder": "skilled-agent-orchestration/z_archive/096-rename-opencode-dirs-to-plural/003-remediation",
+  "parent_id": "skilled-agent-orchestration/z_archive/096-rename-opencode-dirs-to-plural",
   "children_ids": [
-    "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/003-remediation/001-dist-rebuild",
-    "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/003-remediation/002-sk-deep-token-replace",
-    "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/003-remediation/003-narrative-validation-repair",
-    "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/003-remediation/004-hooks-resolver-tighten",
-    "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/003-remediation/005-checklist-evidence",
-    "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/003-remediation/006-skill-advisor-python",
-    "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/003-remediation/007-p2-doc-drift"
+    "skilled-agent-orchestration/z_archive/096-rename-opencode-dirs-to-plural/003-remediation/001-dist-rebuild",
+    "skilled-agent-orchestration/z_archive/096-rename-opencode-dirs-to-plural/003-remediation/002-sk-deep-token-replace",
+    "skilled-agent-orchestration/z_archive/096-rename-opencode-dirs-to-plural/003-remediation/003-narrative-validation-repair",
+    "skilled-agent-orchestration/z_archive/096-rename-opencode-dirs-to-plural/003-remediation/004-hooks-resolver-tighten",
+    "skilled-agent-orchestration/z_archive/096-rename-opencode-dirs-to-plural/003-remediation/005-checklist-evidence",
+    "skilled-agent-orchestration/z_archive/096-rename-opencode-dirs-to-plural/003-remediation/006-skill-advisor-python",
+    "skilled-agent-orchestration/z_archive/096-rename-opencode-dirs-to-plural/003-remediation/007-p2-doc-drift"
   ],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/002-track-review"
-    ],
+    "depends_on": [],
     "supersedes": [],
-    "related_to": [
-      "skilled-agent-orchestration/093-testing-playbooks-code-review-and-git",
-      "skilled-agent-orchestration/094-playbook-prompt-naturalness",
-      "skilled-agent-orchestration/095-sk-code-review-playbook-execution",
-      "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural"
-    ]
+    "related_to": []
   },
   "derived": {
     "trigger_phrases": [
@@ -35,16 +30,73 @@
     "key_topics": [
       "098",
       "remediation",
-      "deep-review",
-      "dist-rebuild",
+      "097",
+      "findings",
+      "dist",
+      "rebuild",
       "sk-deep",
-      "rename-cleanup"
+      "token",
+      "replace",
+      "rename",
+      "packet",
+      "deep-review"
     ],
-    "status": "complete",
-    "completion_pct": 100,
-    "last_active_child_id": "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/003-remediation/007-p2-doc-drift",
-    "level": "phase-parent",
-    "is_phase_parent": true,
-    "session_outcome": "all_7_phases_complete"
+    "importance_tier": "high",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Author Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Severity Cluster",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Findings Resolved",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-codex",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Packet 097 (`/spec_kit:deep-review:auto`, 10 iterations, gpt-5.5 high fast) ran an architectural cross-phase review of recently-shipped packets 093-096 and converged with a FAIL verdict driven by **1 P0** plus **12 P1** plus **9 P2** active findings. The single P0 (P0-001) blocks release; the P1 cluster captures dead-reference drift (`sk-deep-*` legacy tokens), 096 self-validation failures, narrative tautologies introduced by bulk sed, hook precedence weaknesses, unchecked checklist evidence, advisor state path drift, and Python support-tool singular-default residue. The P2 cluster captures install guide drift, Barter root README drift, and a dead Copilot guard branch.",
+    "created_at": "2026-05-18T07:49:27.237Z",
+    "last_save_at": "2026-05-18T15:17:57.052Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ]
   }
 }

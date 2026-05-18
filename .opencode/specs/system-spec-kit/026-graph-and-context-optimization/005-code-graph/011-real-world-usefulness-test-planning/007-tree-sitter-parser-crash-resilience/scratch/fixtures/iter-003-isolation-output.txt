@@ -1,0 +1,24 @@
+===== PROBE 1 =====
+[P1.alone-vitest] file=029-clean-infrastructure-stress-test/measurements/vitest.phase-k.config.ts bytes=634
+[P1.alone-vitest] OK rootKind=program hasError=false
+exit=0
+===== PROBE 2 =====
+[P2.alone-runners] file=016-runtime-hook-plugin-testing/runners/common.ts bytes=11284
+[P2.alone-runners] OK rootKind=program hasError=false
+exit=0
+===== PROBE 3 =====
+[P3.alone-bash] file=doctor/scripts/mcp-doctor-lib.sh bytes=7354
+[P3.alone-bash] THROW message=resolved is not a function
+exit=1
+===== PROBE 4 =====
+[P4a.clean-ts] file=code_graph/lib/structural-indexer.ts bytes=75305
+[P4a.clean-ts] OK rootKind=program hasError=false
+[P4b.then-vitest] file=029-clean-infrastructure-stress-test/measurements/vitest.phase-k.config.ts bytes=634
+[P4b.then-vitest] OK rootKind=program hasError=false
+exit=0
+===== PROBE 5 =====
+[P5a.bash-throw] file=doctor/scripts/mcp-doctor-lib.sh bytes=7354
+[P5a.bash-throw] THROW message=resolved is not a function
+[P5b.then-vitest] file=029-clean-infrastructure-stress-test/measurements/vitest.phase-k.config.ts bytes=634
+[P5b.then-vitest] OK rootKind=program hasError=false
+exit=0

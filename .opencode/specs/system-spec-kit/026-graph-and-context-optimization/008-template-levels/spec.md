@@ -3,12 +3,29 @@ title: "Feature Specification: Template Levels — Phase Parent (Investigation �
 template_source: "SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2"
 description: "Phase-parent for the spec-kit template-system rework. Three sub-phases: 001 investigated whether to consolidate the existing level-folder system; 002 reframed the question as a greenfield redesign and converged on the C+F hybrid manifest-driven design; 003 plans the 4-phase implementation."
 trigger_phrases:
-  - "010 template levels"
+  - "008 template levels"
   - "template levels phase parent"
   - "template system rework"
   - "spec-kit template phases"
 importance_tier: "high"
 contextType: "architecture"
+_memory:
+  continuity:
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-template-levels"
+    last_updated_at: "2026-05-18T00:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Renamed template-levels parent to 008-template-levels"
+    next_safe_action: "Validate packet after 026 phase root reorder"
+    blockers: []
+    key_files:
+      - "spec.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "026-template-levels-reorder-2026-05-18"
+      parent_session_id: null
+    completion_pct: 85
+    open_questions: []
+    answered_questions: []
 ---
 
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
@@ -71,9 +88,9 @@ This parent spec lists no files directly. Per-phase blast radius:
 
 | Phase | Folder | Authoritative file ledger |
 |-------|--------|---------------------------|
-| 001 | `001-consolidation-investigation/` | `001/research/research.md` (29.7 KB, PARTIAL recommendation, REJECTED) |
-| 002 | `002-template-greenfield-redesign/` | `002/research/research.md` (51.4 KB, C+F hybrid recommendation, ACCEPTED) |
-| 003 | `003-template-greenfield-impl/` | `003/resource-map.md` (~95 file references, the authoritative implementation ledger) |
+| 001 | `001-template-level-consolidation-research/` | `001/research/research.md` (29.7 KB, PARTIAL recommendation, REJECTED) |
+| 002 | `002-manifest-driven-template-design/` | `002/research/research.md` (51.4 KB, C+F hybrid recommendation, ACCEPTED) |
+| 003 | `003-manifest-template-implementation-plan/` | `003/resource-map.md` (~95 file references, the authoritative implementation ledger) |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -85,11 +102,11 @@ This parent spec lists no files directly. Per-phase blast radius:
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 001 | `001-consolidation-investigation` | Initial 10-iter deep-research loop on consolidating templates with backward-compat preservation | Complete (PARTIAL recommendation, REJECTED by user) |
-| 002 | `002-template-greenfield-redesign` | 14-iter deep-research loop on greenfield redesign + workflow-invariance constraint + 5 ADRs | Complete (C+F hybrid manifest-driven greenfield, ACCEPTED) |
-| 003 | `003-template-greenfield-impl` | 4-phase implementation plan with file-by-file blast radius (`resource-map.md`) and gated phases | Plan ready; awaiting implementation session |
+| 001 | `001-template-level-consolidation-research` | Initial 10-iter deep-research loop on consolidating templates with backward-compat preservation | Complete (PARTIAL recommendation, REJECTED by user) |
+| 002 | `002-manifest-driven-template-design` | 14-iter deep-research loop on greenfield redesign + workflow-invariance constraint + 5 ADRs | Complete (C+F hybrid manifest-driven greenfield, ACCEPTED) |
+| 003 | `003-manifest-template-implementation-plan` | 4-phase implementation plan with file-by-file blast radius (`resource-map.md`) and gated phases | Plan ready; awaiting implementation session |
 
-| 9 | 009-rm-8-prompt-hardening/ | [Phase 9 scope] | Pending |
+| 9 | 009-deep-review-iteration-prompt-hardening/ | [Phase 9 scope] | Pending |
 ### Phase Transition Rules
 
 - Each phase MUST pass `validate.sh --strict` independently before the next phase begins
@@ -104,7 +121,7 @@ This parent spec lists no files directly. Per-phase blast radius:
 | 001 | 002 | User rejection of PARTIAL framing; greenfield reframe articulated | Conversation transcript + spec.md §3 in 002 cites the rejection |
 | 002 | 003 | Design converged (C+F hybrid + 5 ADRs); workflow-invariance locked | 002/decision-record.md ADR-001 through ADR-005 all Accepted; 002/research/research.md §18 addendum present |
 | 003 | (impl session) | resource-map.md complete; plan.md phases gated; tasks.md actionable | 003/checklist.md Gates 1-4 listed; codex review remediated all P0+P1+P2 findings |
-| 008-z-archive-marker-validation-sweep | 009-rm-8-prompt-hardening | [Criteria TBD] | [Verification TBD] |
+| 008-archive-marker-validation-unused-scaffold | 009-deep-review-iteration-prompt-hardening | [Criteria TBD] | [Verification TBD] |
 <!-- /ANCHOR:phase-map -->
 
 ---
@@ -120,9 +137,9 @@ This parent spec lists no files directly. Per-phase blast radius:
 
 ## RELATED DOCUMENTS
 
-- **Phase children**: `001-consolidation-investigation/`, `002-template-greenfield-redesign/`, `003-template-greenfield-impl/`
+- **Phase children**: `001-template-level-consolidation-research/`, `002-manifest-driven-template-design/`, `003-manifest-template-implementation-plan/`
 - **Parent Spec**: `../spec.md` (026-graph-and-context-optimization)
 - **Graph Metadata**: `graph-metadata.json` (this folder; `derived.last_active_child_id` pointer)
-- **Headline design**: `002-template-greenfield-redesign/research/research.md` (51.4 KB synthesis)
-- **Implementation ledger**: `003-template-greenfield-impl/resource-map.md` (~95 file references)
-- **Inherited ADRs**: `002-template-greenfield-redesign/decision-record.md` (ADR-001 through ADR-005)
+- **Headline design**: `002-manifest-driven-template-design/research/research.md` (51.4 KB synthesis)
+- **Implementation ledger**: `003-manifest-template-implementation-plan/resource-map.md` (~95 file references)
+- **Inherited ADRs**: `002-manifest-driven-template-design/decision-record.md` (ADR-001 through ADR-005)

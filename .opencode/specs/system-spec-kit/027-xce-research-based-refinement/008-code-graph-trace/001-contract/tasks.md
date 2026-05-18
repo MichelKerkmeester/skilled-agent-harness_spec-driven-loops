@@ -14,7 +14,7 @@ _memory:
     recent_action: "Scaffolded trace contract tasks"
     next_safe_action: "Implement contract tasks after upstream dependency publishes"
     blockers:
-      - "system-spec-kit/027-xce-research-based-refinement/007-code-graph-hld-lld/001-contract"
+      - "system-spec-kit/027-xce-research-based-refinement/005-code-graph-hld-lld/001-contract"
     key_files: ["spec.md", "plan.md", "checklist.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"

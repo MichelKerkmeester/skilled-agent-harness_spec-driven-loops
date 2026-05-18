@@ -1,18 +1,21 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural",
-  "spec_folder": "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural",
-  "parent_id": "skilled-agent-orchestration",
+  "packet_id": "skilled-agent-orchestration/z_archive/096-rename-opencode-dirs-to-plural",
+  "spec_folder": "skilled-agent-orchestration/z_archive/096-rename-opencode-dirs-to-plural",
+  "parent_id": null,
   "children_ids": [
-    "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/001-rename-opencode-dirs",
-    "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/002-track-review",
-    "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/003-remediation",
-    "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/004-track-rereview",
-    "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/005-remediation",
-    "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/006-cli-opencode-executor",
-    "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/007-track-rereview",
-    "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/008-remediation"
+    "skilled-agent-orchestration/z_archive/096-rename-opencode-dirs-to-plural/001-rename-opencode-dirs",
+    "skilled-agent-orchestration/z_archive/096-rename-opencode-dirs-to-plural/002-track-review",
+    "skilled-agent-orchestration/z_archive/096-rename-opencode-dirs-to-plural/003-remediation",
+    "skilled-agent-orchestration/z_archive/096-rename-opencode-dirs-to-plural/004-track-rereview",
+    "skilled-agent-orchestration/z_archive/096-rename-opencode-dirs-to-plural/005-remediation",
+    "skilled-agent-orchestration/z_archive/096-rename-opencode-dirs-to-plural/006-cli-opencode-executor",
+    "skilled-agent-orchestration/z_archive/096-rename-opencode-dirs-to-plural/007-track-rereview",
+    "skilled-agent-orchestration/z_archive/096-rename-opencode-dirs-to-plural/008-remediation",
+    "skilled-agent-orchestration/z_archive/096-rename-opencode-dirs-to-plural/009-p2-032-cleanup"
   ],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
     "depends_on": [],
     "supersedes": [],
@@ -22,20 +25,161 @@
     "trigger_phrases": [
       "096 umbrella",
       "opencode plural rename cycle",
-      "post-rename review remediation"
+      "post-rename review remediation",
+      "skilled-agent-orchestration release cycle",
+      "096 resource map",
+      "rename and review cycle resources"
     ],
     "key_topics": [
       "096",
-      "opencode-plural-rename",
-      "deep-review",
+      "umbrella",
+      "opencode",
+      "plural",
+      "rename",
+      "cycle",
+      "post-rename",
+      "review",
       "remediation",
-      "umbrella"
+      "skilled-agent-orchestration",
+      "release",
+      "resource"
     ],
-    "status": "complete",
-    "completion_pct": 100,
-    "last_active_child_id": "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/008-remediation",
-    "level": "phase-parent",
-    "is_phase_parent": true,
-    "session_outcome": "8_phases_complete_release_ready"
+    "importance_tier": "high",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "resource-map.md",
+      "mcp_server/lib/deep-loop/executor-config.ts",
+      "mcp_server/hooks/claude/session-stop.ts",
+      "shared/review-research-paths.cjs",
+      "scripts/spec/check-smart-router.sh",
+      "mcp_server/tests/deep-loop/executor-config.vitest.ts",
+      "001-rename-opencode-dirs/resource-map.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "executor-config.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/deep-loop/executor-config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "session-stop.ts",
+        "kind": "code",
+        "path": "mcp_server/hooks/claude/session-stop.ts",
+        "source": "derived"
+      },
+      {
+        "name": "review-research-paths.cjs",
+        "kind": "file",
+        "path": "shared/review-research-paths.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "check-smart-router.sh",
+        "kind": "script",
+        "path": "scripts/spec/check-smart-router.sh",
+        "source": "derived"
+      },
+      {
+        "name": "executor-config.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/deep-loop/executor-config.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Findings Status",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. ROOT PURPOSE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. SUB-PHASE CONTROL FILE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "4. PARENT-LEVEL SUCCESS CRITERIA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Resource Map",
+        "kind": "proper_noun",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "Manual Testing Playbook",
+        "kind": "proper_noun",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. PHASE INVENTORY",
+        "kind": "heading",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. CROSS-PHASE DEPENDENCIES",
+        "kind": "heading",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. SURFACE INDEX (cumulative across phases)",
+        "kind": "heading",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "Source code surfaces touched",
+        "kind": "heading",
+        "path": "resource-map.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Track the complete opencode plural-directory rename cycle and the cascading post-rename quality work it triggered. What started as a 1-commit bulk rename grew into 8 phases of progressively deeper review and remediation:",
+    "created_at": "2026-05-18T07:49:27.230Z",
+    "last_save_at": "2026-05-18T15:17:57.044Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "resource-map.md"
+    ]
   }
 }

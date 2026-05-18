@@ -48,7 +48,7 @@ _memory:
 | **Spec Folder** | 016-degraded-readiness-envelope-parity |
 | **Completed** | 2026-04-27 |
 | **Level** | 2 |
-| **Source** | 011-post-stress-followup-research/review/review-report.md §3 (F-001, F-003), §4 (F-002, F-006, F-008, F-009), §7 Packet A |
+| **Source** | 011-post-stress-finding-remediation-research/review/review-report.md §3 (F-001, F-003), §4 (F-002, F-006, F-008, F-009), §7 Packet A |
 <!-- /ANCHOR:metadata -->
 
 ---

@@ -1,15 +1,13 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/070-sk-deep-rename/008-final-cleanup",
-  "spec_folder": "skilled-agent-orchestration/070-sk-deep-rename/008-final-cleanup",
-  "parent_id": "skilled-agent-orchestration/070-sk-deep-rename",
+  "packet_id": "skilled-agent-orchestration/z_archive/070-sk-deep-rename/008-final-cleanup",
+  "spec_folder": "skilled-agent-orchestration/z_archive/070-sk-deep-rename/008-final-cleanup",
+  "parent_id": "skilled-agent-orchestration/z_archive/070-sk-deep-rename",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      "skilled-agent-orchestration/070-sk-deep-rename",
-      "skilled-agent-orchestration/070-sk-deep-rename/006-advisor-and-validate",
-      "skilled-agent-orchestration/070-sk-deep-rename/007-deep-review-remediation"
-    ],
+    "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
@@ -18,17 +16,29 @@
       "070 phase 008",
       "final cleanup",
       "iterative review loop",
-      "spec folder audit",
       "deep-loop family",
-      "reference-category entity kind"
+      "reference-category entity kind",
+      "070 phase 008 plan",
+      "final cleanup plan",
+      "deep-loop family plan",
+      "070 phase 008 tasks",
+      "final cleanup tasks",
+      "deep-loop family tasks",
+      "070 phase 008 checklist"
     ],
     "key_topics": [
-      "advisor-routing",
-      "deep-review",
-      "deep-loop-family",
-      "skill-graph-validation",
-      "entity-kind-normalization",
-      "strict-validation"
+      "070",
+      "phase",
+      "008",
+      "final",
+      "cleanup",
+      "iterative",
+      "review",
+      "loop",
+      "deep-loop",
+      "family",
+      "reference-category",
+      "entity"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -39,26 +49,165 @@
       "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
-      "description.json",
-      "graph-metadata.json",
-      ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json",
-      ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_graph_compiler.py",
       ".opencode/skills/deep-review/graph-metadata.json",
       ".opencode/skills/deep-research/graph-metadata.json",
-      ".opencode/skills/sk-code/graph-metadata.json"
+      ".opencode/skills/sk-code-review/graph-metadata.json",
+      ".opencode/skills/sk-code/graph-metadata.json",
+      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+      "mcp_server/tool-schemas.ts",
+      "dist/tool-schemas.js",
+      "mcp_server/schemas/tool-input-schemas.ts",
+      "dist/schemas/tool-input-schemas.js"
     ],
     "entities": [
-      "deep-review",
-      "sk-code-review",
-      "deep-loop",
-      "deep-research",
-      "skill-graph.json",
-      "skill_graph_compiler.py",
-      "reference-category"
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/deep-review/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "validate.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "tool-schemas.ts",
+        "kind": "code",
+        "path": "mcp_server/tool-schemas.ts",
+        "source": "derived"
+      },
+      {
+        "name": "tool-schemas.js",
+        "kind": "code",
+        "path": "dist/tool-schemas.js",
+        "source": "derived"
+      },
+      {
+        "name": "tool-input-schemas.ts",
+        "kind": "code",
+        "path": "mcp_server/schemas/tool-input-schemas.ts",
+        "source": "derived"
+      },
+      {
+        "name": "tool-input-schemas.js",
+        "kind": "code",
+        "path": "dist/schemas/tool-input-schemas.js",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Final Cleanup",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Complete Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completed Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execute Packet",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
     ],
-    "causal_summary": "Phase 008 closes the final approved Packet 070 P1 cleanup by making deep-review win iterative review-loop audit prompts, renaming the internal deep-loop family taxonomy, and normalizing a rejected sk-code metadata entity kind to the compiler allow-list.",
+    "causal_summary": "Packet 070 still has three approved P1 cleanup gaps. Advisor routing can prefer single-pass `sk-code-review` over `deep-review` for iterative review-loop audit prompts, the internal graph family still uses the old `sk-deep` identity, and `sk-code` metadata uses a rejected `reference-category` entity kind.",
     "created_at": "2026-05-05T17:45:00Z",
-    "last_save_at": "2026-05-05T18:05:00Z",
+    "last_save_at": "2026-05-18T15:17:56.986Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-05T17:45:00Z",
     "source_docs": [
@@ -69,6 +218,5 @@
       "decision-record.md",
       "implementation-summary.md"
     ]
-  },
-  "importance_tier": "important"
+  }
 }

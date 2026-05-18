@@ -7,7 +7,7 @@ description: Canonical three-tier `:auto` setup-resolution contract shared by ev
 
 This reference module defines the single canonical `:auto` setup-resolution contract used by every user-invokable `/command:*:auto` surface in spec-kit (`/spec_kit:*`, `/create:*`, `/improve:*`). Each command's §0 cites this contract and supplies only its own per-field Default Resolution Table + `PRE-BOUND SETUP ANSWERS:` field list. The contract semantics, marker grammar, error format, and verification protocol live here.
 
-Origin: shipped in `.opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/001-deep-review-three-tier-setup/` (deep-review prototype) and generalized in `.../002-auto-mode-contract-generalization-to-all-commands/` (12-command rollout).
+Origin: shipped from the deep-review prototype and generalized in `.../002-auto-mode-contract-generalization-to-all-commands/` (12-command rollout).
 
 Related memory: `feedback_auto_mode_ask_only_when_ambiguous.md`, `feedback_codex_spawnagent_allowlist.md`, `feedback_gate3_no_tmp_exemption.md`.
 

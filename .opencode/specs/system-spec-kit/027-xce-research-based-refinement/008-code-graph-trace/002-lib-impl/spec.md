@@ -16,7 +16,7 @@ _memory:
     next_safe_action: "Implement code-graph-trace.ts after local contract and upstream HLD/LLD implementation merge"
     blockers:
       - "system-spec-kit/027-xce-research-based-refinement/008-code-graph-trace/001-contract"
-      - "system-spec-kit/027-xce-research-based-refinement/007-code-graph-hld-lld/002-lib-impl"
+      - "system-spec-kit/027-xce-research-based-refinement/005-code-graph-hld-lld/002-lib-impl"
     key_files: ["spec.md", "plan.md", "tasks.md", "checklist.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -43,7 +43,7 @@ _memory:
 | **Status** | spec-scaffolded |
 | **Created** | 2026-05-12 |
 | **Parent Packet** | `system-spec-kit/027-xce-research-based-refinement/008-code-graph-trace` |
-| **Depends on** | `001-contract`; `system-spec-kit/027-xce-research-based-refinement/007-code-graph-hld-lld/002-lib-impl` |
+| **Depends on** | `001-contract`; `system-spec-kit/027-xce-research-based-refinement/005-code-graph-hld-lld/002-lib-impl` |
 | **Estimated LOC** | ~210 |
 <!-- /ANCHOR:metadata -->
 

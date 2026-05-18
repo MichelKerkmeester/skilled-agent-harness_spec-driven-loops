@@ -4,10 +4,10 @@
   "spec_folder": "skilled-agent-orchestration/101-deep-multi-ai-council-skill/007-council-infrastructure-hardening",
   "parent_id": "skilled-agent-orchestration/101-deep-multi-ai-council-skill",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      "skilled-agent-orchestration/101-deep-multi-ai-council-skill/006-council-graph-value-scenario-automation"
-    ],
+    "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
@@ -18,26 +18,197 @@
       "deep-ai-council feature catalog",
       "council playbook anchor integrity",
       "council graph replay helper",
-      "101/007"
+      "101/007",
+      "101/007 plan",
+      "101/007 tasks",
+      "101/007 summary"
     ],
     "key_topics": [
-      "council-infrastructure",
-      "test-gate",
-      "feature-catalog",
-      "anchor-integrity"
+      "council",
+      "infrastructure",
+      "hardening",
+      "test",
+      "gate",
+      "deep-ai-council",
+      "feature",
+      "catalog",
+      "playbook",
+      "anchor",
+      "integrity",
+      "graph"
     ],
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/package.json",
+      ".opencode/skills/system-spec-kit/scripts/test-council-matrix.sh",
+      ".github/hooks/scripts/pre-push-council.sh",
+      ".opencode/skills/deep-ai-council/manual_testing_playbook/manual_testing_playbook.md",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/council-playbook-anchor-integrity.vitest.ts",
+      ".opencode/skills/deep-ai-council/scripts/replay-graph-from-artifacts.cjs",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/multi-ai-council-runtime-parity.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/fixtures/council-value/seed-helpers.ts",
+      "mcp_server/package.json",
+      "scripts/test-council-matrix.sh",
+      "mcp_server/tests/council-playbook-anchor-integrity.vitest.ts",
+      ".codex/agents/deep-ai-council.toml",
+      "tests/fixtures/council-value/dac-030.ts",
+      ".opencode/skills/deep-ai-council/manual_testing_playbook/08--council-graph-integration/007-council-graph-derived-projection-rebuilds-from-artifacts.md",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/fixtures/council-value/dac-030.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
-    "entities": [],
-    "causal_summary": "Close six residual gaps from 101/001..006 in a single dispatch: runnable test gate, 32-entry feature catalog, reverse-anchor meta-test, DAC-025 replay helper, Codex TOML parity broaden, fixture normalization provenance.",
+    "entities": [
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/package.json",
+        "source": "derived"
+      },
+      {
+        "name": "test-council-matrix.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/test-council-matrix.sh",
+        "source": "derived"
+      },
+      {
+        "name": "pre-push-council.sh",
+        "kind": "script",
+        "path": ".github/hooks/scripts/pre-push-council.sh",
+        "source": "derived"
+      },
+      {
+        "name": "manual_testing_playbook.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-ai-council/manual_testing_playbook/manual_testing_playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "council-playbook-anchor-integrity.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/council-playbook-anchor-integrity.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "replay-graph-from-artifacts.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-ai-council/scripts/replay-graph-from-artifacts.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "multi-ai-council-runtime-parity.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/multi-ai-council-runtime-parity.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "seed-helpers.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/fixtures/council-value/seed-helpers.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep-ai-council.toml",
+        "kind": "file",
+        "path": ".codex/agents/deep-ai-council.toml",
+        "source": "derived"
+      },
+      {
+        "name": "dac-030.ts",
+        "kind": "code",
+        "path": "tests/fixtures/council-value/dac-030.ts",
+        "source": "derived"
+      },
+      {
+        "name": "007-council-graph-derived-projection-rebuilds-from-artifacts.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-ai-council/manual_testing_playbook/08--council-graph-integration/007-council-graph-derived-projection-rebuilds-from-artifacts.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Council Infrastructure Hardening",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement After",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Single",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "After 101/006 shipped, six residual gaps remained: (1) no runnable council-test gate, so the 8-day test-rot window that surfaced in 101/004 can recur; (2) the playbook's §17 FEATURE CATALOG CROSS-REFERENCE INDEX carries 32 \"No feature catalog exists yet\" placeholders inherited from packet 002; (3) playbook scenario → vitest test-name anchors are one-way strings with no integrity check; (4) DAC-025's \"delete graph + replay from artifacts\" path is doc-only with no helper script; (5) the Codex TOML runtime mirror is only checked for sandbox/permission strings, not name + description prose; (6) DAC-030 and DAC-032 fixture helpers normalize operator-facing answers from grouped runtime responses without code-level provenance for future maintainers.",
     "created_at": "2026-05-11T11:00:00Z",
-    "last_save_at": "2026-05-11T11:35:00Z",
+    "last_save_at": "2026-05-18T15:17:56.738Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

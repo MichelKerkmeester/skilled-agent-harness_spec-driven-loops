@@ -48,10 +48,10 @@ This phase parent coordinates stress testing and coverage validation work across
 
 The parent itself owns no implementation. All work lives in the children. Each child's spec.md is the source of truth for that child's scope.
 
-- Documentation and pattern definition: 001-mcp-stress-cycle-cleanup, 002-stress-test-pattern-documentation
+- Documentation and pattern definition: 001-mcp-stress-cycle-doc-observability-cleanup, 002-stress-test-pattern-documentation
 - Runtime stress remediation: 003-mcp-runtime-stress-remediation
-- Structural organization: 004-stress-test-folder-completion, 005-expansion-and-alignment
-- Coverage validation and gap closure: 006-stress-coverage-audit-and-run, 007-stress-test-gap-remediation
+- Structural organization: 004-stress-test-folder-completion, 005-stress-test-expansion-alignment
+- Coverage validation and gap closure: 006-stress-coverage-audit-and-run, 007-stress-test-coverage-gap-remediation
 
 ---
 

@@ -25,12 +25,12 @@ phase_a_invariant: |
 # UPSTREAM ASSETS
 # ─────────────────────────────────────────────────────────────────
 upstream_assets:
-  packet: ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/001-doctor-commands"
+  contract: "local command design contract"
   files:
     spec: "spec.md"  # REQ-### for code-graph doctor
     decision_record: "decision-record.md"  # ADRs for code-graph diagnostic / apply modes
     checklist: "checklist.md#doctor-code-graph"  # acceptance bars
-    resilience_research: "../../../007-code-graph/006-code-graph-resilience-research"  # gold queries + staleness model
+    resilience_research: "local code-graph resilience contract"  # gold queries + staleness model
   pass_policy:
     diagnostic_only_default: true  # diagnostic mode is read-only; confirm workflow gates apply mode
     gold_battery_required: true  # post-apply validation must pass before mutation is kept

@@ -19,7 +19,7 @@ _memory:
     blockers: []
     key_files:
       - "resource-map.md"
-      - "001-doctor-commands/resource-map.md"
+      - "001-initial-doctor-commands/resource-map.md"
       - "002-sandbox-testing-playbook/resource-map.md"
       - "handover.md"
     session_dedup:
@@ -44,7 +44,7 @@ _memory:
 - **Expanded path coverage**: 140+ files when glob rows are expanded
 - **By category**: Commands=9, Skills=12, Specs=18, Scripts=12, Tests=9, Config=11, Meta=3, Verification=7
 - **Missing on disk**: 1 removed legacy handover path; all other listed repo paths are OK or runtime-generated
-- **Scope**: Parent aggregate for `010-doctor-update-orchestrator`, covering child phase `001-doctor-commands`, child phase `002-sandbox-testing-playbook`, the later root-cause launcher/bootstrap fix, and the scenario verification pass.
+- **Scope**: Parent aggregate for `010-doctor-update-orchestrator`, covering child phase `001-initial-doctor-commands`, child phase `002-sandbox-testing-playbook`, the later root-cause launcher/bootstrap fix, and the scenario verification pass.
 - **Generated**: 2026-05-10T09:28:30+02:00
 
 > **Action vocabulary**: `Created` | `Updated` | `Analyzed` | `Removed` | `Cited` | `Validated` | `Moved`.
@@ -103,11 +103,11 @@ _memory:
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/graph-metadata.json` | Updated | OK | Parent graph metadata refreshed by memory save. |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/handover.md` | Created | OK | Root handover with root-cause fix and scenario verification evidence. |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/resource-map.md` | Created | OK | This parent aggregate file. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/001-doctor-commands/{spec.md,plan.md,tasks.md,checklist.md,decision-record.md,implementation-summary.md,resource-map.md}` | Created | OK | Phase 001 canonical docs for doctor command authoring. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/001-doctor-commands/{description.json,graph-metadata.json}` | Created | OK | Phase 001 metadata. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/001-doctor-commands/ai-council/*` | Created | OK | Multi-AI council plan and report for orchestrator design/root-cause perspective. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/001-doctor-commands/dispatch/*.prompt.md` | Created | OK | Phase 001 cli-codex/worker dispatch prompts. |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/001-doctor-commands/handover.md` | Created | OK | Child handover for parity with sibling 002 (closes P2-007-003 from re-review). Documents Phase A-E completion + 003 RM-8 remediation outcomes + G4-G9 deferred runtime smoke gates. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/001-initial-doctor-commands/{spec.md,plan.md,tasks.md,checklist.md,decision-record.md,implementation-summary.md,resource-map.md}` | Created | OK | Phase 001 canonical docs for doctor command authoring. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/001-initial-doctor-commands/{description.json,graph-metadata.json}` | Created | OK | Phase 001 metadata. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/001-initial-doctor-commands/ai-council/*` | Created | OK | Multi-AI council plan and report for orchestrator design/root-cause perspective. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/001-initial-doctor-commands/dispatch/*.prompt.md` | Created | OK | Phase 001 cli-codex/worker dispatch prompts. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/001-initial-doctor-commands/handover.md` | Created | OK | Child handover for parity with sibling 002 (closes P2-007-003 from re-review). Documents Phase A-E completion + 003 RM-8 remediation outcomes + G4-G9 deferred runtime smoke gates. |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/002-sandbox-testing-playbook/{spec.md,plan.md,tasks.md,checklist.md,decision-record.md,implementation-summary.md,resource-map.md,handover.md}` | Created | OK | Phase 002 canonical docs for sandbox and testing playbook. |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/002-sandbox-testing-playbook/{description.json,graph-metadata.json}` | Created | OK | Phase 002 metadata. |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/002-sandbox-testing-playbook/dispatch/*.prompt.md` | Created | OK | Phase 002 dispatch prompts for scenarios, sandbox, and repair tracks. |

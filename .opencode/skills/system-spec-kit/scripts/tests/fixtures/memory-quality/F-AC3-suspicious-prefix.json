@@ -1,5 +1,5 @@
 {
-  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-quality-issues/003-sanitization-precedence",
+  "specFolder": "<spec-folder>",
   "sessionSummary": "Phase 3 replay keeps meaningful indexing terms while removing numbered and identifier-shaped junk that previously polluted saved trigger phrases.",
   "triggerPhrases": [
     "phase 7 cocoindex",

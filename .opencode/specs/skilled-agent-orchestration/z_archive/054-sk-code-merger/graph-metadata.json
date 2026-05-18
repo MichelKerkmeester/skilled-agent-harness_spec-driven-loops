@@ -1,15 +1,15 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/054-sk-code-merger",
-  "spec_folder": "skilled-agent-orchestration/054-sk-code-merger",
+  "packet_id": "skilled-agent-orchestration/z_archive/054-sk-code-merger",
+  "spec_folder": "skilled-agent-orchestration/z_archive/054-sk-code-merger",
   "parent_id": null,
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
     "depends_on": [],
     "supersedes": [],
-    "related_to": [
-      "skilled-agent-orchestration/053-cli-skill-removal-mcp-clickup"
-    ]
+    "related_to": []
   },
   "derived": {
     "trigger_phrases": [
@@ -18,86 +18,44 @@
       "create sk-code",
       "sk-code merger",
       "054 sk-code",
+      "sk-code merger plan",
       "054 plan",
+      "sk-code implementation plan",
+      "sk-code merger tasks",
       "054 tasks",
-      "054 checklist",
-      "sk-code smart router",
-      "sk-code stack detection"
+      "sk-code task list",
+      "sk-code merger checklist"
     ],
     "key_topics": [
-      "sk-code",
+      "merge",
       "sk-code-web",
       "sk-code-full-stack",
-      "skill",
+      "create",
+      "sk-code",
       "merger",
-      "smart-router",
-      "stack-detection",
-      "deprecation",
-      "advisor",
-      "skill-graph",
-      "placeholder",
-      "webflow",
-      "react",
-      "nodejs",
-      "go",
-      "swift",
-      "react-native",
-      "054"
+      "054",
+      "plan",
+      "implementation",
+      "tasks",
+      "task",
+      "list"
     ],
     "importance_tier": "high",
     "status": "in_progress",
     "key_files": [
-      ".opencode/skills/sk-code",
-      ".opencode/skills/sk-code/SKILL.md",
-      ".opencode/skills/sk-code/README.md",
-      ".opencode/skills/sk-code/CHANGELOG.md",
-      ".opencode/skills/sk-code/graph-metadata.json",
-      ".opencode/skills/sk-code-web/SKILL.md",
-      ".opencode/skills/sk-code-web/graph-metadata.json",
-      ".opencode/skills/sk-code-full-stack/SKILL.md",
-      ".opencode/skills/sk-code-full-stack/graph-metadata.json",
-      ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py",
-      ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/explicit.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/lexical.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json",
-      ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/graph-metadata.json",
-      ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/lane-attribution.test.ts",
-      ".opencode/skills/sk-code-review/SKILL.md",
-      ".opencode/skills/sk-code-review/graph-metadata.json",
-      ".opencode/skills/sk-code-opencode/SKILL.md",
-      ".opencode/skills/sk-code-opencode/graph-metadata.json",
-      ".opencode/skills/mcp-chrome-devtools/SKILL.md",
-      ".opencode/skills/mcp-chrome-devtools/graph-metadata.json",
-      ".opencode/skills/mcp-chrome-devtools/README.md",
-      ".opencode/skills/mcp-chrome-devtools/examples/README.md",
-      ".opencode/skills/mcp-figma/graph-metadata.json",
-      ".opencode/skills/cli-claude-code/SKILL.md",
-      ".opencode/skills/cli-codex/SKILL.md",
-      ".opencode/skills/cli-gemini/SKILL.md",
-      ".opencode/skills/sk-improve-prompt/SKILL.md",
-      ".opencode/skills/README.md",
-      "AGENTS.md",
-      "AGENTS_Barter.md",
-      "AGENTS_example_fs_enterprises.md",
-      "CLAUDE.md",
-      "README.md",
-      ".opencode/agents/deep-review.md",
-      ".claude/agents/deep-review.md",
-      ".gemini/agents/deep-review.md",
-      "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
       "decision-record.md",
-      "implementation-summary.md"
+      ".opencode/agents/deep-review.md",
+      ".claude/agents/deep-review.md",
+      ".gemini/agents/deep-review.md",
+      ".opencode/skills/README.md",
+      "implementation-summary.md",
+      "spec.md",
+      ".opencode/skills/sk-code/SKILL.md"
     ],
     "entities": [
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -123,16 +81,130 @@
         "source": "derived"
       },
       {
+        "name": "deep-review.md",
+        "kind": "doc",
+        "path": ".opencode/agents/deep-review.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/README.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "React Native",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Begin Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit Memory",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Create",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execute Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Setup",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "Two parallel code skills (sk-code-web and sk-code-full-stack) overlap in phase model and intent vocabulary, causing advisor routing ambiguity (0.87 vs 0.86 tie). This packet creates a new umbrella skill `sk-code` with stack-detection-first smart routing \u2014 web stack live (carried verbatim from sk-code-web), non-web stacks (React/Node/Go/Swift/React-Native) scaffolded as empty templated stubs pointing back to sk-code-full-stack for canonical content. Legacy skills preserved on disk untouched per user directive 'I dont want you to overwrite the 2 skills' \u2014 deprecation enforced via additive frontmatter keys plus a code-level DEPRECATED_SKILLS exclusion list in skill_advisor.py and explicit.ts that survives doctor:skill-advisor :confirm rebuilds. ~40 active cross-repo references retargeted across 7 tiers (advisor scoring, graph metadata, sister SKILL.md cross-refs, root instruction files, agent definitions, READMEs, deprecation markers); ~268 archival references in specs/, .opencode/changelog/, observability/ remain untouched. Five ADRs document routing ordering (stack-first), naming (bare sk-code), placeholder strategy (templated stubs), deprecation strategy (exclusion list), and universal/ namespace scoping (tight, no browser-coupled content).",
+    "causal_summary": "The repo currently runs two parallel \"code skills\" with overlapping responsibilities — `sk-code-web` (Webflow/CDN, the user's daily driver) and `sk-code-full-stack` (multi-stack reference for React/Node/Go/Swift/React-Native, used by other users). Both compete in the skill advisor's scoring tables (advisor returned `sk-code-full-stack 0.87 vs sk-code-web 0.86` at session start — within tie threshold), and ~884 cross-repo references touch one or the other. This packet creates a single new skill `sk-code` that smart-routes by detected stack, with web content carried forward verbatim and non-web stacks scaffolded as placeholder stubs that point back to `sk-code-full-stack` for current authoritative content. Both legacy skills are preserved on disk untouched (frontmatter-only deprecation marker) per the user directive *\"I dont want you to overwrite the 2 skills\"*.",
     "created_at": "2026-04-30T08:30:00Z",
-    "last_save_at": "2026-04-30T08:30:00Z",
-    "save_lineage": "same_pass",
+    "last_save_at": "2026-05-18T15:17:56.906Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -142,6 +214,5 @@
       "decision-record.md",
       "implementation-summary.md"
     ]
-  },
-  "importance_tier": "normal"
+  }
 }

@@ -1,0 +1,28 @@
+{
+  "childTopology": [],
+  "specFolder": "004-hard-cutover",
+  "description": "Phase 2 of the doctor command consolidation: hard cutover from legacy /doctor:* commands to the shipped /doctor router. Deletes 9 old .opencode markdown files and 9 old .gemini TOML files, rewrites manual playbook and sandbox invocations, annotates 013 historical records, rebuilds advisor indexing, and closes the 013 parent.",
+  "keywords": [
+    "cutover-phase",
+    "doctor-cutover",
+    "hard-delete",
+    "legacy-command-delete",
+    "10-to-3",
+    "playbook-sed",
+    "advisor-rebuild",
+    "phase-2",
+    "router-final-state"
+  ],
+  "lastUpdated": "2026-05-12T04:55:46Z",
+  "specId": "005",
+  "folderSlug": "cutover-phase",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "010-doctor-update-orchestrator"
+  ],
+  "memorySequence": 3,
+  "memoryNameHistory": [
+    "11-05-26_16-10__phase-1-static-router-verification-passed-7-7.md"
+  ]
+}

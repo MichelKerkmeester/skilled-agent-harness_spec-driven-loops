@@ -5,9 +5,9 @@
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup",
   "children_ids": [
     "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-followup-post-program/001-post-program-cleanup",
-    "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-followup-post-program/002-vitest-recovery-followup",
-    "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-followup-post-program/003-followup-quality-pass",
-    "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-followup-post-program/004-runtime-cleanup-followups"
+    "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-followup-post-program/002-vitest-baseline-recovery-followup",
+    "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-followup-post-program/003-post-program-quality-pass",
+    "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-followup-post-program/004-runtime-root-memory-cleanup-followups"
   ],
   "migrated": true,
   "migration_source": "legacy",
@@ -87,7 +87,7 @@
     ],
     "causal_summary": "Coordinate followup and post-program work across quality passes, runtime cleanup, test recovery, and iterative improvements. This sub-phase binds together 4 child packets that address cleanup tasks and quality refinements after major program milestones, ensuring system health and test coverage through targeted remediation efforts.",
     "created_at": "2026-05-16T09:00:00Z",
-    "last_save_at": "2026-05-18T08:15:53.182Z",
+    "last_save_at": "2026-05-18T15:17:57.168Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

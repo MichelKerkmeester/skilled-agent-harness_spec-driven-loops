@@ -218,7 +218,7 @@ system-code-graph/
 | `SPECKIT_CODE_GRAPH_INDEX_SKILLS` | `false` | Include `.opencode/skills/**` during scans. Also accepts comma-separated `sk-*` names. |
 | `SPECKIT_CODE_GRAPH_INDEX_AGENTS` | `false` | Include `.opencode/agents/**`. |
 | `SPECKIT_CODE_GRAPH_INDEX_COMMANDS` | `false` | Include `.opencode/commands/**`. |
-| `SPECKIT_CODE_GRAPH_INDEX_SPECS` | `false` | Include `.opencode/specs/**`. |
+| `SPECKIT_CODE_GRAPH_INDEX_SPECS` | `false` | Include `<active-spec-folder>/**`. |
 | `SPECKIT_CODE_GRAPH_INDEX_PLUGINS` | `false` | Include `.opencode/plugins/**`. |
 | `SPECKIT_CODE_GRAPH_DB_DIR` | `.opencode/.spec-kit/code-graph/database/` | Override database directory. Must stay inside the workspace for the launcher's standalone-storage guard to permit it. |
 | `SPECKIT_CODE_GRAPH_MAINTAINER_MODE` | unset | Set to `true` in `.env.local` (gitignored) to force all 5 `INDEX_*` flags to `true` at launcher startup. |

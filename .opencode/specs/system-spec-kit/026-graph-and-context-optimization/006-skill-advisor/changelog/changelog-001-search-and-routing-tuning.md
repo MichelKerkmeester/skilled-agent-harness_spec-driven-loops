@@ -17,7 +17,7 @@ contextType: "implementation"
 
 ## 2026-04-21
 
-> Spec folder: `026-graph-and-context-optimization/006-skill-advisor/001-search-and-routing-tuning` (Level 2)
+> Spec folder: `026-graph-and-context-optimization/006-skill-advisor/001-memory-search-routing-tuning` (Level 2)
 > Parent packet: `026-graph-and-context-optimization/006-skill-advisor`
 
 ### Summary

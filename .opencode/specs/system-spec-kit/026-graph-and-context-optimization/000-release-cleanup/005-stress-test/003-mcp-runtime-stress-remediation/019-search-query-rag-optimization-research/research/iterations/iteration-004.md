@@ -14,16 +14,16 @@ Assess the semantic search fork for precision/recall controls and downstream fus
 - `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/query.py:253`
 - `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/indexer.py:52`
 - `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/indexer.py:194`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/010-stress-test-rerun-v1-0-2/findings.md:46`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/011-post-stress-followup-research/research/research.md:243`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/010-stress-test-close-loop-measurement-rerun/findings.md:46`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/011-post-stress-finding-remediation-research/research/research.md:243`
 
 ## Findings
 
 - CocoIndex results now carry `source_realpath`, `content_hash`, `path_class`, `raw_score`, and `rankingSignals` (`schema.py:8`, `:24`). That is enough to expose duplicate collapse and path-class rerank evidence downstream.
 - Dedup keys use real path when available, otherwise content hash plus line range (`query.py:158`). Query execution overfetches at `4x` the requested unique window before dedup/ranking (`query.py:282`, `:283`).
 - Path-class rerank is intent-aware: implementation-intent queries get a small implementation-path bonus and non-implementation penalty while preserving raw score (`query.py:176`).
-- v1.0.2 evidence confirmed telemetry was visible: `dedupedAliases:26`, `uniqueResultCount:10`, and `path_class` surfaced in the S2 rerun (`010-stress-test-rerun-v1-0-2/findings.md:46`).
-- Follow-up research correctly reframed the remaining CocoIndex work as seed-fidelity passthrough and downstream use, not duplicated rerank (`011-post-stress-followup-research/research/research.md:243`, `:255`).
+- v1.0.2 evidence confirmed telemetry was visible: `dedupedAliases:26`, `uniqueResultCount:10`, and `path_class` surfaced in the S2 rerun (`010-stress-test-close-loop-measurement-rerun/findings.md:46`).
+- Follow-up research correctly reframed the remaining CocoIndex work as seed-fidelity passthrough and downstream use, not duplicated rerank (`011-post-stress-finding-remediation-research/research/research.md:243`, `:255`).
 
 ## Insights
 

@@ -1,17 +1,17 @@
 ---
 title: Skill Advisor Hook Validation Playbook
-description: Manual validation playbook for the shipped skill-advisor hook and MCP contract (Packet 014 surface).
+description: Manual validation playbook for the shipped skill-advisor hook and MCP contract.
 ---
 
 # Skill Advisor Hook Validation Playbook
 
-Use this playbook after changing any runtime hook registration, any advisor MCP handler (`advisor_recommend` / `advisor_validate`), the OpenCode plugin-helper bridge, or the shared render/threshold contract. It verifies the shipped Packet 014 surface: public `workspaceRoot` + effective-threshold state on advisor outputs, `thresholdSemantics`, prompt-safe accepted/corrected/ignored totals, durable JSONL diagnostics, runtime parity, the disable flag, and the rollback path.
+Use this playbook after changing any runtime hook registration, any advisor MCP handler (`advisor_recommend` / `advisor_validate`), the OpenCode plugin-helper bridge, or the shared render/threshold contract. It verifies the shipped hook surface: public `workspaceRoot` + effective-threshold state on advisor outputs, `thresholdSemantics`, prompt-safe accepted/corrected/ignored totals, durable JSONL diagnostics, runtime parity, the disable flag, and the rollback path.
 
 ---
 
 ## 1. OVERVIEW
 
-Manual validation playbook for the shipped skill-advisor hook and MCP contract (Packet 014 surface).
+Manual validation playbook for the shipped skill-advisor hook and MCP contract.
 
 ---
 
@@ -103,7 +103,7 @@ node --input-type=module -e "
 
 Pass conditions:
 
-- Response carries `metadata.workspaceRoot` + `metadata.effectiveThresholds` (Packet 014 surfaced state).
+- Response carries `metadata.workspaceRoot` + `metadata.effectiveThresholds`.
 - The default prompt-time threshold contract is `0.8` (confidence) / `0.35` (uncertainty) unless overridden.
 - No custom formatter is invoked — output matches the shared `renderAdvisorBrief(...)` invariants.
 
@@ -226,7 +226,7 @@ Pass condition: rollback and re-enable need no state cleanup.
 Copy this block into release notes or the parent implementation summary:
 
 ```text
-Advisor hook validation evidence (Packet 014 surface):
+Advisor hook validation evidence:
 - advisor_recommend contract: PASS — workspaceRoot + effectiveThresholds surfaced
 - advisor_validate contract: PASS — workspaceRoot + thresholdSemantics + accepted/corrected/ignored totals present
 - durable JSONL diagnostics: PASS — bounded sinks, read back by advisor_validate across processes

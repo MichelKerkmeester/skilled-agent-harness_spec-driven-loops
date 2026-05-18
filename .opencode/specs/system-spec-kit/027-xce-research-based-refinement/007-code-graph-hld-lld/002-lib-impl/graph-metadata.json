@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/027-xce-research-based-refinement/007-code-graph-hld-lld/002-lib-impl",
-  "spec_folder": "system-spec-kit/027-xce-research-based-refinement/007-code-graph-hld-lld/002-lib-impl",
-  "parent_id": "system-spec-kit/027-xce-research-based-refinement/007-code-graph-hld-lld",
+  "packet_id": "system-spec-kit/027-xce-research-based-refinement/005-code-graph-hld-lld/002-lib-impl",
+  "spec_folder": "system-spec-kit/027-xce-research-based-refinement/005-code-graph-hld-lld/002-lib-impl",
+  "parent_id": "system-spec-kit/027-xce-research-based-refinement/005-code-graph-hld-lld",
   "children_ids": [],
   "manual": {
     "depends_on": [

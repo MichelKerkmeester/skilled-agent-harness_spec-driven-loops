@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/100-multi-ai-council-main-agent-write-enforcement",
-  "spec_folder": "skilled-agent-orchestration/100-multi-ai-council-main-agent-write-enforcement",
+  "packet_id": "skilled-agent-orchestration/z_archive/100-multi-ai-council-main-agent-write-enforcement",
+  "spec_folder": "skilled-agent-orchestration/z_archive/100-multi-ai-council-main-agent-write-enforcement",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -32,57 +32,74 @@
   },
   "derived": {
     "trigger_phrases": [
-      "100 multi-ai-council main agent",
+      "multi-ai-council main agent",
       "council main agent enforcement",
+      "council main agent write",
       "council not writing artifacts",
       "council opencode main agent",
       "ai-council folder not created",
-      "Step 0 RESOLVE",
-      "PERSISTENCE VERIFICATION",
-      "SELF-CHECK Q11"
+      "100 multi-ai-council main agent",
+      "100 plan",
+      "council main agent enforcement plan",
+      "100 tasks",
+      "council main agent enforcement tasks",
+      "100 checklist"
     ],
     "key_topics": [
       "multi-ai-council",
-      "main-agent enforcement",
-      "ai-council persistence",
-      "Step 0 RESOLVE",
-      "PERSISTENCE VERIFICATION",
-      "SELF-CHECK Q11",
-      "scoped-write compulsion",
-      "4-runtime parity",
-      "agent body enforcement",
-      "HALT-and-ASK fallback"
+      "main",
+      "agent",
+      "council",
+      "enforcement",
+      "write",
+      "writing",
+      "artifacts",
+      "opencode",
+      "ai-council",
+      "folder",
+      "created"
     ],
-    "importance_tier": "important",
+    "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      ".opencode/agents/multi-ai-council.md",
-      ".claude/agents/multi-ai-council.md",
-      ".codex/agents/multi-ai-council.toml",
-      ".gemini/agents/multi-ai-council.md",
-      ".opencode/skills/system-spec-kit/references/multi-ai-council/folder-layout.md",
-      ".opencode/skills/system-spec-kit/references/multi-ai-council/state-format.md",
-      ".opencode/skills/system-spec-kit/scripts/multi-ai-council/lib/persist-artifacts.js",
-      ".opencode/changelog/agent-orchestration/v2.4.1.0.md",
-      ".opencode/specs/skilled-agent-orchestration/100-multi-ai-council-main-agent-write-enforcement/spec.md",
-      ".opencode/specs/skilled-agent-orchestration/100-multi-ai-council-main-agent-write-enforcement/plan.md",
-      ".opencode/specs/skilled-agent-orchestration/100-multi-ai-council-main-agent-write-enforcement/tasks.md",
-      ".opencode/specs/skilled-agent-orchestration/100-multi-ai-council-main-agent-write-enforcement/checklist.md",
-      ".opencode/specs/skilled-agent-orchestration/100-multi-ai-council-main-agent-write-enforcement/implementation-summary.md",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/multi-ai-council-runtime-parity.vitest.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/multi-ai-council-permission-scope.vitest.ts"
+      "plan.md",
+      ".opencode/specs/skilled-agent-orchestration/graph-metadata.json",
+      "mcp_server/tests/multi-ai-council-runtime-parity.vitest.ts",
+      "mcp_server/tests/multi-ai-council-permission-scope.vitest.ts",
+      "spec.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
       {
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/specs/skilled-agent-orchestration/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "multi-ai-council-runtime-parity.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/multi-ai-council-runtime-parity.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "multi-ai-council-permission-scope.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/multi-ai-council-permission-scope.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -104,51 +121,106 @@
         "source": "derived"
       },
       {
-        "name": "multi-ai-council.md",
-        "kind": "agent",
-        "path": ".opencode/agents/multi-ai-council.md",
-        "source": "derived"
-      },
-      {
-        "name": "multi-ai-council.toml",
-        "kind": "agent",
-        "path": ".codex/agents/multi-ai-council.toml",
-        "source": "derived"
-      },
-      {
-        "name": "persist-artifacts.js",
-        "kind": "lib",
-        "path": ".opencode/skills/system-spec-kit/scripts/multi-ai-council/lib/persist-artifacts.js",
-        "source": "derived"
-      },
-      {
-        "name": "Step 0 RESOLVE",
+        "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "PERSISTENCE VERIFICATION",
+        "name": "Problem Statement When",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "SELF-CHECK Q11",
+        "name": "Council Report",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "INVOCATION CONTRACT",
+        "name": "Purpose Add",
         "kind": "proper_noun",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Open Question",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Sandbox Smoke",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Confirm Insertion Points",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Author Canonical Edits",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Cite Step",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Breakdown",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Update References",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria All",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Reminders",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "Packet 100 (Level 2) — adds 5 enforcement gates to the multi-ai-council agent body across all 4 runtime mirrors (.opencode, .claude, .codex, .gemini) on top of packet 098's already-shipped scoped-write capability. Closes the gap where the council, when invoked as a main agent in opencode, returned chat-form reports without writing ai-council/** artifacts. Five gates: (1) §1 Step 0 RESOLVE — packet path resolution before seat dispatch with HALT-and-ASK fail-closed; (2) §7 ALWAYS/NEVER — hard write-or-fail rule with named-exports list; (3) §9 PERSISTENCE VERIFICATION block + SELF-CHECK Q11; (4) §12 OUTPUT PROTOCOL flipped from conditional to unconditional citing Step 0; (5) §13 INVOCATION CONTRACT first-call sequence numbered with explicit writeConfig→writeStrategyMd→writeStateJsonl→writeSeat×N→writeDeliberation→writeReport→writeStateJsonl(council_complete) chain. Pre-existing .codex drift in §7 NEVER, §9 PLAN VERIFICATION, §11 ANTI-PATTERNS aligned with scoped-write model in same dispatch. Iron Law text updated 4 mirrors from 'PLANNING-ONLY EVIDENCE' to 'SCOPED-WRITE PERSISTENCE EVIDENCE'. 4-runtime parity test passes; permission-scope test passes; full multi-ai-council vitest suite 23 passed 1 skipped. Strict validate 0 errors / 1 cosmetic priority-tag warning. Sandbox smoke A (no-packet HALT) + smoke B (packet-named full artifact set) pending live opencode dispatch by user. Changelog at .opencode/changelog/agent-orchestration/v2.4.1.0.md (patch bump v2.4.0.0 → v2.4.1.0). Predecessors: 080 (output protocol), 089 (persistence), 092 (deferrals), 098 (write authority).",
+    "causal_summary": "When the Multi-AI Council is invoked directly as a main agent in opencode (a Depth 0 user-initiated dispatch with no orchestrator wrapper), the council frequently completes its deliberation and returns a chat-form Multi-AI Council Report **without writing any `ai-council/**` artifacts to the spec folder**. The capability is in place — packet 098 shipped scoped-write permissions across all 4 runtime mirrors and the writer library lives at `.opencode/skills/system-spec-kit/scripts/multi-ai-council/lib/persist-artifacts.js`. The protocol is documented — §12 (folder layout), §13 (invocation contract), §14 (state schema), and §16 (persistence protocol) describe what to write and which functions to call. But the agent body has no **enforcement gate** that REQUIRES persistence before completion. Specifically:",
     "created_at": "2026-05-09T17:50:00+00:00",
-    "last_save_at": "2026-05-09T20:11:00+00:00",
+    "last_save_at": "2026-05-18T15:17:57.075Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -156,9 +228,6 @@
       "tasks.md",
       "checklist.md",
       "implementation-summary.md"
-    ],
-    "completion_pct": 90,
-    "last_active_child_id": null
-  },
-  "importance_tier": "important"
+    ]
+  }
 }

@@ -28,7 +28,7 @@ The example top-5 lists show no obvious canonicality regression beyond normal ra
 
 ### Example 1
 
-Query: Packet: system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-synthesis-and-remediation Spec Folder: system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-synthesis-and-remediation Status:
+Query: Packet: system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-release-readiness-findings-synthesis-remediation Spec Folder: system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-release-readiness-findings-synthesis-remediation Status:
 
 Target doc: 2299
 
@@ -140,7 +140,7 @@ llama-cpp top-5:
 
 ### Example 5
 
-Query: Packet: system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-followup-quality-pass/005-stress-test-folder-migration Spec Folder:
+Query: Packet: system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-post-program-quality-pass/005-stress-test-folder-migration Spec Folder:
 
 Target doc: 2278
 

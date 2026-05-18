@@ -34,8 +34,8 @@ Extending `memory_context`'s intent-aware routing to include `code_graph_query` 
 - `mcp_server/lib/query/query-plan.ts` (QueryPlan: intent, complexity, artifactClass, authorityNeed, selectedChannels, skippedChannels, routingReasons, fallbackPolicy)
 
 ### Evidence corpora
-- v1.0.3 stress: `specs/.../011/021-stress-test-v1-0-3-with-w3-w13-wiring/`
-- Phase E gold battery: `specs/.../000-release-cleanup/005-review-remediation/004-search-rag-measurement-driven-implementation/measurements/`
+- v1.0.3 stress: `specs/.../011/021-stress-test-enterprise-wiring-expansion/`
+- Phase E gold battery: `specs/.../000-release-cleanup/005-review-remediation/004-search-rag-measurement-implementation/measurements/`
 - Phase J research output: `specs/.../011/022-stress-test-results-deep-research/research/research-report.md`
 
 ## Constraints

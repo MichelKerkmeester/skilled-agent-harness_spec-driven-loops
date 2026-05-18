@@ -216,8 +216,8 @@
     "causal_summary": "Multi-stack coding standards, references, and assets — surface-aware patterns, checklists, and verification recipes for Webflow frontend, cross-stack motion.dev animation guidance, and OpenCode system code. Smart-routing internals choose WEBFLOW, OPENCODE, or UNKNOWN first; motion_dev is a peer resource category loaded for Motion API, performance, snippets, integration, and decision_matrix context.",
     "created_at": "2026-04-30T08:30:00Z",
     "last_updated_at": "2026-05-05T08:30:00Z",
-    "merger_packet": "skilled-agent-orchestration/066-sk-code-opencode-merger",
-    "motion_dev_packet": "skilled-agent-orchestration/069-sk-code-motion-dev-and-playbook",
+    "merger_packet": "internal design notes",
+    "motion_dev_packet": "internal design notes",
     "supported_surfaces": [
       "WEBFLOW",
       "OPENCODE"

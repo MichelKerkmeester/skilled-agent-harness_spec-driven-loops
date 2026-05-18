@@ -1,0 +1,6 @@
+{"type":"iteration","iteration":2,"newInfoRatio":0.78,"status":"insight","focus":"RQ2 — Output Verification Pipeline","graphEvents":[]}
+{"type":"finding","id":"f-iter002-001","severity":"P1","label":"Multi-stage verification pipeline with conditional execution (structural → compile → execute → smoke test → lint)","iteration":2}
+{"type":"finding","id":"f-iter002-002","severity":"P1","label":"Structural validation with auto-fix attempt (placeholder detection, truncation markers, balanced braces)","iteration":2}
+{"type":"finding","id":"f-iter002-003","severity":"P1","label":"Calibrated confidence scoring with weighted stage contributions (compile 35%, execute 25%, test 25%, lint 10%, auto-fix -5%)","iteration":2}
+{"type":"finding","id":"f-iter002-004","severity":"P1","label":"Hard-fail gatekeeper with decompose strategy (GovernorAction enum: Accept/Retry/HardFail, shouldHardFail logic, decompose strategies)","iteration":2}
+{"type":"finding","id":"f-iter002-005","severity":"P2","label":"Language-specific compile/execute commands with timeout (15s compile, 10s execute, 500-char error truncation)","iteration":2}

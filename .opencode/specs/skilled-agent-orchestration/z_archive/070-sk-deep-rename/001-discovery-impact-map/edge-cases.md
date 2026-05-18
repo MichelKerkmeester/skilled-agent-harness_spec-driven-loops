@@ -310,7 +310,7 @@ Snippet: `L3: "packet_id": "system-spec-kit/026-graph-and-context-optimization/0
 
 Snippet: `L8: "system-spec-kit/026-graph-and-context-optimization/004-runtime-executor-hardening/002-sk-deep-cli-runtime-execution",`
 
-### `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/003-smart-remediation-and-opencode-plugin/graph-metadata.json`
+### `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/003-smart-remediation-and-opencode-plugin/graph-metadata.json`
 
 Snippet: `L80: ".opencode/skills/sk-deep-research/SKILL.md",`
 
@@ -386,7 +386,7 @@ Snippet: `L3: "packet_id": "system-spec-kit/026-graph-and-context-optimization/0
 
 Snippet: `L8: "system-spec-kit/026-graph-and-context-optimization/004-runtime-executor-hardening/002-sk-deep-cli-runtime-execution",`
 
-### `specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/003-smart-remediation-and-opencode-plugin/graph-metadata.json`
+### `specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/003-smart-remediation-and-opencode-plugin/graph-metadata.json`
 
 Snippet: `L80: ".opencode/skills/sk-deep-research/SKILL.md",`
 

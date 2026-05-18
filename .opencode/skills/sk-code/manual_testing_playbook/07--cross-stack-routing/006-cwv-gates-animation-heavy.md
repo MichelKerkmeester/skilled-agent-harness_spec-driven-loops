@@ -65,7 +65,7 @@ Run this scenario through the Phase 005 universal prompt using `SCENARIO_ID=CS-0
 
 Evidence files:
 - `/tmp/skc-CS-006-<cli>.txt`
-- `specs/skilled-agent-orchestration/069-sk-code-motion-dev-and-playbook/005-playbook-cross-cli-execution/results/CS-006-<cli>.yaml`
+- `<spec-folder><cli>.yaml`
 
 ---
 

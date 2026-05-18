@@ -108,8 +108,8 @@ Packet 111's restructure work produced ~131+ commits prefixed `111 W{wave}.{sub-
 **Strip the `<NNN> W{wave}.{sub-wave-letter}{-suffix}:` prefix from the subject. Derive type and scope from path analysis per `derivation-heuristics.md`. Preserve the wave designator as a `Wave:` body trailer when present.**
 
 Examples:
-- Before: `111 W3.A: author phase-parent base files for 008-skill-advisor/004-hardening`
-- After (subject): `scaffold(008-skill-advisor/004-hardening): author phase-parent base files`
+- Before: `111 W3.A: author phase-parent base files for 006-skill-advisor/004-hardening`
+- After (subject): `scaffold(006-skill-advisor/004-hardening): author phase-parent base files`
 - After (body, last block): `Wave: 111-W3.A`
 
 - Before: `111 W3.D-B: renumber 014-local-embeddings-migration/_047-handover-anchor-naming -> 047-handover-anchor-naming`

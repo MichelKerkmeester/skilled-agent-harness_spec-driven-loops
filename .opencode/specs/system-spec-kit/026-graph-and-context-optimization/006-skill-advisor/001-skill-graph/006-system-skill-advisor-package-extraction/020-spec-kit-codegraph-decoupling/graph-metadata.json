@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/006-system-skill-advisor-package-extraction/020-spec-kit-codegraph-decoupling",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/006-system-skill-advisor-package-extraction/020-spec-kit-codegraph-decoupling",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/006-system-skill-advisor-package-extraction",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [
+      "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/006-system-skill-advisor-package-extraction/019-spec-kit-advisor-decoupling"
+    ],
+    "supersedes": [
+      "system-spec-kit/026-graph-and-context-optimization/005-code-graph/015-mcp-topology-pivot#ADR-002"
+    ],
+    "related_to": [
+      "system-spec-kit/026-graph-and-context-optimization/005-code-graph/015-mcp-topology-pivot"
+    ]
+  },
+  "derived": {
+    "trigger_phrases": [
+      "020 codegraph decoupling",
+      "spec-kit code graph decoupling",
+      "zero system-code-graph imports"
+    ],
+    "key_topics": [
+      "spec-kit",
+      "code-graph",
+      "shared-contracts",
+      "readiness-marker",
+      "mcp-rpc"
+    ],
+    "importance_tier": "critical",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/lib/code-graph-boundary.ts",
+      ".opencode/skills/system-code-graph/mcp_server/lib/readiness-marker.ts",
+      ".opencode/skills/system-spec-kit/shared/code-graph-contracts.ts",
+      "decision-record.md"
+    ],
+    "entities": [],
+    "causal_summary": "Packet 020 removes system-spec-kit MCP server source imports from system-code-graph and replaces them with shared contracts, a readiness marker, and MCP RPC.",
+    "created_at": "2026-05-15T08:24:07Z",
+    "last_save_at": "2026-05-15T09:35:00Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": "2026-05-15T09:35:00Z",
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ]
+  }
+}

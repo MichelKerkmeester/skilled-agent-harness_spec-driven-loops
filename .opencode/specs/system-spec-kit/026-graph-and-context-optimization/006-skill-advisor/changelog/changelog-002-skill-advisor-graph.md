@@ -15,7 +15,7 @@ contextType: "implementation"
 
 ## 2026-04-13
 
-> Spec folder: `026-graph-and-context-optimization/006-skill-advisor/001-skill-advisor-graph` (Level 2)
+> Spec folder: `026-graph-and-context-optimization/006-skill-advisor/001-skill-graph-metadata-routing-boosts` (Level 2)
 > Parent packet: `026-graph-and-context-optimization/006-skill-advisor`
 
 ### Summary

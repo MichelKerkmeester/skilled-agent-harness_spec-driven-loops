@@ -1,23 +1,22 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/069-sk-code-motion-dev-and-playbook",
-  "spec_folder": "skilled-agent-orchestration/069-sk-code-motion-dev-and-playbook",
-  "parent_id": "skilled-agent-orchestration",
+  "packet_id": "skilled-agent-orchestration/z_archive/069-sk-code-motion-dev-and-playbook",
+  "spec_folder": "skilled-agent-orchestration/z_archive/069-sk-code-motion-dev-and-playbook",
+  "parent_id": null,
   "children_ids": [
-    "skilled-agent-orchestration/069-sk-code-motion-dev-and-playbook/001-playbook",
-    "skilled-agent-orchestration/069-sk-code-motion-dev-and-playbook/002-motion-dev",
-    "skilled-agent-orchestration/069-sk-code-motion-dev-and-playbook/003-cross-ref-metadata-sync",
-    "skilled-agent-orchestration/069-sk-code-motion-dev-and-playbook/004-deep-review-remediation",
-    "skilled-agent-orchestration/069-sk-code-motion-dev-and-playbook/005-playbook-cross-cli-execution",
-    "skilled-agent-orchestration/069-sk-code-motion-dev-and-playbook/006-routing-precision-fixes"
+    "skilled-agent-orchestration/z_archive/069-sk-code-motion-dev-and-playbook/001-playbook",
+    "skilled-agent-orchestration/z_archive/069-sk-code-motion-dev-and-playbook/002-motion-dev",
+    "skilled-agent-orchestration/z_archive/069-sk-code-motion-dev-and-playbook/003-cross-ref-metadata-sync",
+    "skilled-agent-orchestration/z_archive/069-sk-code-motion-dev-and-playbook/004-deep-review-remediation",
+    "skilled-agent-orchestration/z_archive/069-sk-code-motion-dev-and-playbook/005-playbook-cross-cli-execution",
+    "skilled-agent-orchestration/z_archive/069-sk-code-motion-dev-and-playbook/006-routing-precision-fixes"
   ],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
     "depends_on": [],
     "supersedes": [],
-    "related_to": [
-      "skilled-agent-orchestration/066-sk-code-opencode-merger",
-      "skilled-agent-orchestration/068-sk-doc-organization"
-    ]
+    "related_to": []
   },
   "derived": {
     "trigger_phrases": [
@@ -29,35 +28,82 @@
       "playbook motion.dev integration"
     ],
     "key_topics": [
+      "069",
       "sk-code",
       "motion-dev",
-      "manual-testing-playbook",
-      "cross-stack-category",
-      "phase-parent",
-      "sk-doc-alignment",
-      "webflow-cross-references"
+      "motion",
+      "dev",
+      "category",
+      "cross-stack",
+      "playbook",
+      "refinement",
+      "assets",
+      "references",
+      "integration"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "planned",
     "key_files": [
-      "spec.md",
-      "description.json",
-      "graph-metadata.json",
-      "001-playbook/implementation-summary.md",
-      "002-motion-dev/implementation-summary.md",
-      "003-cross-ref-metadata-sync/implementation-summary.md"
+      ".opencode/skills/sk-code/manual_testing_playbook/manual_testing_playbook.md",
+      "spec.md"
     ],
-    "entities": [],
-    "causal_summary": "Phase parent for elevating motion.dev to a first-class cross-stack category under sk-code (peer to webflow, not nested) AND refining the existing manual_testing_playbook with motion.dev scenarios + animation regression + perf gates + cross-browser checks aligned to sk-doc standards. Three sub-phases: 001 refines the playbook, 002 populates motion_dev/ refs+assets from scratch citing official motion.dev docs and in-repo a_nobel_en_zn usage, 003 adds non-destructive See-also cross-references in webflow/* and refreshes sk-code metadata + router. Implementation by cli-codex (gpt-5.5 high, fast tier); verification by Opus sub-agent (@review or general-purpose) per packet.",
+    "entities": [
+      {
+        "name": "manual_testing_playbook.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/manual_testing_playbook/manual_testing_playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Stack Category",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Playbook Refinement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Motion.dev is currently referenced informally inside `sk-code/references/webflow/` (10 docs mention it) as a Webflow-specific animation library, even though the actual library is stack-agnostic and could be used in any future build (non-Webflow stacks: opencode tooling, future React/Next.js sites, electron apps, etc.). The dedicated `references/motion_dev/` and `assets/motion_dev/` folders exist but are EMPTY. Meanwhile, the existing `sk-code/manual_testing_playbook/` covers sk-code's surface routing (4 categories, 10 scenarios) but lacks motion.dev-specific scenarios, animation regression checks, and cross-browser/performance gates that operators need when validating animation-heavy work — and its alignment with the canonical sk-doc playbook standards (per `sk-doc/references/specific/manual_testing_playbook_creation.md`) needs reaffirmation.",
     "created_at": "2026-05-05T07:30:00Z",
-    "last_save_at": "2026-05-05T11:00:00Z",
+    "last_save_at": "2026-05-18T15:17:56.967Z",
     "save_lineage": "graph_only",
-    "last_active_child_id": "skilled-agent-orchestration/069-sk-code-motion-dev-and-playbook/004-deep-review-remediation",
-    "last_active_at": "2026-05-05T12:00:00Z",
     "last_accessed_at": "2026-05-05T12:00:00Z",
     "source_docs": [
       "spec.md"
     ]
-  },
-  "importance_tier": "important"
+  }
 }

@@ -15,7 +15,7 @@ contextType: "implementation"
 
 ## 2026-04-19
 
-> Spec folder: `026-graph-and-context-optimization/006-skill-advisor/003-smart-remediation-and-opencode-plugin` (Level 2)
+> Spec folder: `026-graph-and-context-optimization/006-skill-advisor/003-smart-remediation-opencode-plugin` (Level 2)
 > Parent packet: `026-graph-and-context-optimization/006-skill-advisor`
 
 ### Summary

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/050-agent-debug-integration",
-  "spec_folder": "skilled-agent-orchestration/050-agent-debug-integration",
+  "packet_id": "skilled-agent-orchestration/z_archive/050-agent-debug-integration",
+  "spec_folder": "skilled-agent-orchestration/z_archive/050-agent-debug-integration",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -12,14 +12,17 @@
   "derived": {
     "trigger_phrases": [
       "debug agent integration",
-      "debug user invoked",
+      "@debug user-invoked",
       "failure_count prompt",
       "debug-delegation scaffold",
       "agent description sync",
-      "050 agent debug",
-      "050 plan",
-      "050 tasks",
-      "050 checklist"
+      "debug integration plan",
+      "edit a edit b",
+      "failure prompt rewrite",
+      "scaffold generator",
+      "debug integration tasks",
+      "edit a edit b tasks",
+      "scaffold generator tasks"
     ],
     "key_topics": [
       "debug",
@@ -27,15 +30,16 @@
       "integration",
       "user-invoked",
       "prompt",
-      "scaffold",
       "debug-delegation",
-      "orchestrate",
-      "spec_kit_implement",
-      "spec_kit_complete",
-      "runtime-mirror"
+      "scaffold",
+      "description",
+      "sync",
+      "plan",
+      "edit",
+      "failure"
     ],
     "importance_tier": "important",
-    "status": "completed",
+    "status": "complete",
     "key_files": [
       ".opencode/agents/debug.md",
       ".opencode/agents/orchestrate.md",
@@ -44,23 +48,178 @@
       ".claude/agents/debug.md",
       ".codex/agents/debug.toml",
       ".gemini/agents/debug.md",
-      ".opencode/skills/system-spec-kit/templates/debug-delegation.md",
+      ".opencode/skills/system-spec-kit/scripts/spec/scaffold-debug-delegation.sh",
+      ".opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/071-debug-delegation-scaffold-generator.md",
+      ".opencode/commands/spec_kit/assets/spec_kit_complete_confirm.yaml",
+      ".opencode/commands/spec_kit/assets/spec_kit_implement_confirm.yaml",
+      ".claude/agents/orchestrate.md",
+      ".gemini/agents/orchestrate.md",
+      ".codex/agents/orchestrate.toml",
+      ".opencode/commands/spec_kit/implement.md",
+      ".opencode/commands/spec_kit/complete.md",
+      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+      "implementation-summary.md",
       "spec.md",
-      "plan.md",
-      "tasks.md",
-      "checklist.md",
-      "implementation-summary.md"
+      "plan.md"
     ],
-    "entities": [],
-    "causal_summary": "The @debug agent ships across all four CLI runtimes (OpenCode, Claude, Codex, Gemini) with descriptions promising auto-dispatch on failure_count >= 3, but no executable code maintains that counter or invokes the Task tool. Zero debug-delegation.md instances exist in any spec folder despite a fully formed template. This packet rewrites every aspirational claim across the four runtime debug definitions, the orchestrator routing prose (.opencode/agents/orchestrate.md), and the two implementation YAML configs (spec_kit_implement_auto.yaml, spec_kit_complete_auto.yaml) so the descriptions match the real (user-invoked, prompted-offer) behavior. It also replaces the buried A/B/C/D failure-threshold menu with a direct y/n/skip prompt that pre-fills a debug-delegation.md scaffold on opt-in. Hard user constraint: NO autonomous routing under any condition.",
+    "entities": [
+      {
+        "name": "debug.md",
+        "kind": "doc",
+        "path": ".opencode/agents/debug.md",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrate.md",
+        "kind": "doc",
+        "path": ".opencode/agents/orchestrate.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec_kit_implement_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "spec_kit_complete_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "debug.toml",
+        "kind": "file",
+        "path": ".codex/agents/debug.toml",
+        "source": "derived"
+      },
+      {
+        "name": "scaffold-debug-delegation.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec/scaffold-debug-delegation.sh",
+        "source": "derived"
+      },
+      {
+        "name": "071-debug-delegation-scaffold-generator.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/071-debug-delegation-scaffold-generator.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec_kit_complete_confirm.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/spec_kit/assets/spec_kit_complete_confirm.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "spec_kit_implement_confirm.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/spec_kit/assets/spec_kit_implement_confirm.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrate.toml",
+        "kind": "file",
+        "path": ".codex/agents/orchestrate.toml",
+        "source": "derived"
+      },
+      {
+        "name": "implement.md",
+        "kind": "doc",
+        "path": ".opencode/commands/spec_kit/implement.md",
+        "source": "derived"
+      },
+      {
+        "name": "complete.md",
+        "kind": "doc",
+        "path": ".opencode/commands/spec_kit/complete.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Debug Agent Integration",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Up Aspirational Claims",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Improve Discoverability",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A repo-wide audit of the `@debug` agent (`.opencode/agents/debug.md` plus three sibling runtime definitions in `.claude/`, `.codex/`, `.gemini/`) confirmed the agent is shelfware. Its description and the orchestrator routing both promise auto-dispatch on `failure_count >= 3`, but no executable code increments that counter or invokes the Task tool. Zero `debug-delegation.md` instances exist across all spec folders despite a fully formed template, and in the one place where a workflow does prompt the user (`spec_kit_implement_auto.yaml:413` / `spec_kit_complete_auto.yaml:898-910`), the prompt is a buried A/B/C/D menu that operators consistently skip.",
     "created_at": "2026-04-27T08:35:00Z",
-    "last_save_at": "2026-04-27T08:35:00Z",
+    "last_save_at": "2026-05-18T15:17:56.899Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md",
+      "handover.md"
     ]
   }
 }

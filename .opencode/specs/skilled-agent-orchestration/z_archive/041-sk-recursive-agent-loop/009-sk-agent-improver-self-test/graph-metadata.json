@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/041-sk-recursive-agent-loop/009-sk-agent-improver-self-test",
-  "spec_folder": "skilled-agent-orchestration/041-sk-recursive-agent-loop/009-sk-agent-improver-self-test",
-  "parent_id": "skilled-agent-orchestration/041-sk-recursive-agent-loop",
+  "packet_id": "skilled-agent-orchestration/z_archive/041-sk-recursive-agent-loop/009-sk-agent-improver-self-test",
+  "spec_folder": "skilled-agent-orchestration/z_archive/041-sk-recursive-agent-loop/009-sk-agent-improver-self-test",
+  "parent_id": "skilled-agent-orchestration/z_archive/041-sk-recursive-agent-loop",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -40,7 +40,6 @@
     "status": "complete",
     "key_files": [
       ".opencode/commands/improve/agent.md",
-      ".opencode/skills/sk-improve-agent/SKILL.md",
       "implementation-summary.md",
       "spec.md",
       "plan.md",
@@ -52,12 +51,6 @@
         "name": "agent.md",
         "kind": "doc",
         "path": ".opencode/commands/improve/agent.md",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-improve-agent/SKILL.md",
         "source": "derived"
       },
       {
@@ -191,11 +184,17 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Integration Scanner Observations",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The sk-improve-agent skill has been validated against handover, debug, orchestrate, and review agents (Phases 001-008), but never against itself. The agent-improver's own agent definition (`.opencode/agents/agent-improver.md`) has never been a target. This is the only agent in the system that describes the improvement workflow itself, creating a unique self-referential case where the integration scanner discovers its own surfaces, the profile generator extracts its own rules, and the scorer evaluates its own quality.",
     "created_at": "2026-04-13T04:55:07.905Z",
-    "last_save_at": "2026-04-26T09:17:15.233Z",
+    "last_save_at": "2026-05-18T15:17:56.866Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

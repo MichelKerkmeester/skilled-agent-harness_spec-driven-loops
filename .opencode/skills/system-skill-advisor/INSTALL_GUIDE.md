@@ -378,7 +378,7 @@ The mk-spec-memory `embedder_set` / `embedder_status` MCP tools are intentionall
 
 Until packet `010/004` closes the writer cross-wiring, **do not flip the active pointer in production**. The writer (`refreshSkillEmbeddings()`) still targets the legacy embeddings column and the new adapter, so flipping the pointer reads from an empty `vec_<new-dim>` table and silently degrades the `semantic_shadow` lane to zero results.
 
-The full operator runbook (snapshot + stop daemon + set pointer + rebuild + restart + smoke test + rollback) is documented at [`002-jina-swap-and-reindex/evidence/swap-runbook.md`](../../specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/003-skill-advisor-stack/002-jina-swap-and-reindex/evidence/swap-runbook.md). Read the "Architecture Context" and "Half-wired state" sections before any swap attempt.
+The full operator runbook (snapshot + stop daemon + set pointer + rebuild + restart + smoke test + rollback) is documented at [`002-jina-swap-and-reindex/evidence/swap-runbook.md`](../../<spec-folder>). Read the "Architecture Context" and "Half-wired state" sections before any swap attempt.
 
 ### 12.5 Device selection
 

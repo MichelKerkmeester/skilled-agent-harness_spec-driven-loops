@@ -34,9 +34,9 @@ _memory:
 | **Created** | 2026-04-22 |
 | **Parent** | `026-graph-and-context-optimization/007-hook-parity/` |
 | **Parent Spec** | `../spec.md` |
-| **Predecessor** | `../../006-skill-advisor/003-skill-advisor-standards-alignment/spec.md` |
+| **Predecessor** | `../../006-skill-advisor/003-advisor-standards-alignment/spec.md` |
 | **Successor** | `../007-copilot-writer-wiring/spec.md` |
-| **Research** | `../../research/007-deep-review-remediation-pt-03/research.md` |
+| **Research** | `../../research/002-copilot-hook-followup-deep-review-remediation/research.md` |
 
 ---
 
@@ -47,7 +47,7 @@ Copilot CLI 1.0.34 logs this error on every user prompt:
 Hook execution failed: Error: Neither 'bash' nor 'powershell' specified in hook command configuration
 ```
 
-Research packet `007-deep-review-remediation-pt-03` traced the root cause (8 iterations, converged at iter-8):
+Research packet `002-copilot-hook-followup-deep-review-remediation` traced the root cause (8 iterations, converged at iter-8):
 
 - Copilot merges hook configs from BOTH `.github/hooks/*.json` AND `.claude/settings.local.json`.
 - `.claude/settings.local.json` uses Claude's *nested* matcher shape (`hooks.UserPromptSubmit[0].hooks[0].command`) — the outer matcher-group object has no top-level `bash`/`powershell`.
@@ -97,7 +97,7 @@ This blocks per-prompt refresh of `$HOME/.copilot/copilot-instructions.md` (the 
 
 | ID | Requirement | Acceptance |
 |---|---|---|
-| REQ-004 | Update `../../007-hook-parity/002-copilot-hook-parity-remediation/implementation-summary.md` §Known Limitations to reflect the resolved schema collision | File edited with a note referencing this packet + research pt-03 |
+| REQ-004 | Update `../../007-hook-parity/002-copilot-custom-instructions-hook-parity/implementation-summary.md` §Known Limitations to reflect the resolved schema collision | File edited with a note referencing this packet + research pt-03 |
 
 ---
 

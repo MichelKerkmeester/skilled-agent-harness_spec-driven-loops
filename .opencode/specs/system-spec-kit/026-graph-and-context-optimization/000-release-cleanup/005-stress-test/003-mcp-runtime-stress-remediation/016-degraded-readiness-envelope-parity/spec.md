@@ -165,11 +165,11 @@ Ship the F-001 + F-003 production fixes plus F-002 / F-008 / F-009 supporting wo
 | Risk | Reordering `getGraphReadinessSnapshot` ahead of `getStats()` in `status.ts` introduces a side-effect regression. | Low | Snapshot helper is read-only by packet 014 contract (`tests/code-graph-status-readiness-snapshot.vitest.ts` Test E pins this) — calling it earlier never causes mutation. |
 | Risk | Stats `try/catch` swallows a DB-level error that should bubble. | Low | We re-emit stats failure as a structured `status: 'error'` envelope with the original error message in `message`. Operators retain full diagnostic detail. |
 | Risk | Cross-handler vocabulary diverges over time. | Medium | The new parity test (REQ-008) makes divergence a CI failure. Future handler changes that drop a canonical field will break this test. |
-| Dependency | 011-post-stress-followup-research/review/review-report.md | Internal — Closed | Source of truth (§3, §4, §7 Packet A). |
-| Dependency | `014-graph-status-readiness-snapshot` (snapshot helper) | Internal — Closed | Read-only contract is the foundation for F-003. |
+| Dependency | 011-post-stress-finding-remediation-research/review/review-report.md | Internal — Closed | Source of truth (§3, §4, §7 Packet A). |
+| Dependency | `014-code-graph-status-readiness-snapshot` (snapshot helper) | Internal — Closed | Read-only contract is the foundation for F-003. |
 | Dependency | `015-cocoindex-seed-telemetry-passthrough` | Internal — Closed | Cocoindex telemetry tests must stay green; we don't touch that path. |
-| Dependency | `005-code-graph-fast-fail` | Internal — Closed (related) | Same readiness vocabulary; no overlap in scope. |
-| Dependency | `013-graph-degraded-stress-cell` | Internal — Closed (related) | Stress cell that this remediation closes. |
+| Dependency | `005-code-graph-fail-fast-routing` | Internal — Closed (related) | Same readiness vocabulary; no overlap in scope. |
+| Dependency | `013-code-graph-degraded-stress-cell` | Internal — Closed (related) | Stress cell that this remediation closes. |
 <!-- /ANCHOR:risks -->
 
 ---

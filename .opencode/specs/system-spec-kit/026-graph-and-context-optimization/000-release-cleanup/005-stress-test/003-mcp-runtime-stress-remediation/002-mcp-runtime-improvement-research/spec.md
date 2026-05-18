@@ -35,7 +35,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->"
 # Feature Specification: MCP Runtime Improvement Deep Research
 
 <!-- SPECKIT_LEVEL: 1 -->
-<!-- PHASE_LINKS_PARENT: ../spec.md; PREDECESSOR: 001-search-intelligence-stress-test; SUCCESSOR: 003-memory-context-truncation-contract -->
+<!-- PHASE_LINKS_PARENT: ../spec.md; PREDECESSOR: 001-search-intelligence-stress-playbook; SUCCESSOR: 003-memory-context-truncation-telemetry-contract -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 
 ---
@@ -51,7 +51,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->"
 | **Created** | 2026-04-27 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
-| **Sibling Phases** | 005-memory-search-runtime-bugs (defect catalog source), 001-search-intelligence-stress-test (cross-AI stress-test source) |
+| **Sibling Phases** | 005-memory-search-runtime-bugs (defect catalog source), 001-search-intelligence-stress-playbook (cross-AI stress-test source) |
 | **Iteration Count** | 10 |
 | **Executor** | cli-codex (gpt-5.5, reasoning effort high, service_tier fast, sandbox workspace-write) |
 <!-- /ANCHOR:metadata -->
@@ -164,7 +164,7 @@ Run a 10-iteration deep research loop with cli-codex (gpt-5.5, high reasoning, f
 | Risk | Iteration dispatches stall greater than 60 min | Medium | Orchestrator monitors and intervenes if stalled |
 | Risk | Findings depend on live MCP daemon state which may be inconsistent | Medium | Each iteration documents the daemon snapshot context it queried |
 | Dependency | 005-memory-search-runtime-bugs spec docs | High | Already on disk |
-| Dependency | 001-search-intelligence-stress-test findings v1.0.0 + v1.0.1 | High | Just committed in Phase A |
+| Dependency | 001-search-intelligence-stress-playbook findings v1.0.0 + v1.0.1 | High | Just committed in Phase A |
 | Dependency | cli-codex CLI installed and authenticated with gpt-5.5 access | High | Pre-flight check in iteration zero |
 <!-- /ANCHOR:risks -->
 

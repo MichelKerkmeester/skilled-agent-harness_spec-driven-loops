@@ -37,7 +37,7 @@ Validate Spec-Folder Detection and Description Metadata against cd .opencode/ski
 1. `cd .opencode/skills/system-spec-kit/scripts && node tests/test-folder-detector-functional.js`
 2. `cd .opencode/skills/system-spec-kit/scripts && node tests/test-alignment-validator.js`
 3. `cd .opencode/skills/system-spec-kit/scripts && node tests/test-subfolder-resolution.js`
-4. `npx tsx .opencode/skills/system-spec-kit/scripts/spec-folder/generate-description.ts .opencode/specs/system-spec-kit/z_archive/022-hybrid-rag-fusion .opencode/specs --description "Manual scenario description"`
+4. `npx tsx .opencode/skills/system-spec-kit/scripts/spec-folder/generate-description.ts <spec-folder> .opencode/specs --description "Manual scenario description"`
 
 ### Expected
 

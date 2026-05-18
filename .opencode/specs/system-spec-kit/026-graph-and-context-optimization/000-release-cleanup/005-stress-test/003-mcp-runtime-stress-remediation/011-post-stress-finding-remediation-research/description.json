@@ -1,0 +1,34 @@
+{
+  "trigger_phrases": [
+    "011-post-stress-finding-remediation-research",
+    "v1.0.2 follow-up research",
+    "post-stress follow-up research",
+    "010 deep-research follow-up",
+    "v1.0.2 P0 P1 P2 research",
+    "intelligence system seam research"
+  ],
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/003-mcp-runtime-stress-remediation/011-post-stress-finding-remediation-research",
+  "description": "Feature Specification: Post-Stress Follow-Up Research — refine v1.0.2 P0/P1/P2 fix proposals",
+  "keywords": [
+    "feature",
+    "specification",
+    "post-stress",
+    "follow-up",
+    "research",
+    "refine",
+    "fix",
+    "proposals"
+  ],
+  "lastUpdated": "2026-05-16T21:09:37.419Z",
+  "specId": "011",
+  "folderSlug": "post-stress-followup-research",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "000-release-cleanup",
+    "005-stress-test",
+    "003-mcp-runtime-stress-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

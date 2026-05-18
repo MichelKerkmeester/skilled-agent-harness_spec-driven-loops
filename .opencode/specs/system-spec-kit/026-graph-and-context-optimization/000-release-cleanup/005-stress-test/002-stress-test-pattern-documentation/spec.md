@@ -36,7 +36,7 @@ _memory:
 | **Created** | 2026-04-29 |
 | **Branch** | `main` |
 | **Parent** | `005-review-remediation` |
-| **Source pattern** | 011/{001-search-intelligence-stress-test, 010-stress-test-rerun-v1-0-2, 021-stress-test-v1-0-3-with-w3-w13-wiring} |
+| **Source pattern** | 011/{001-search-intelligence-stress-playbook, 010-stress-test-close-loop-measurement-rerun, 021-stress-test-enterprise-wiring-expansion} |
 <!-- /ANCHOR:metadata -->
 
 ---

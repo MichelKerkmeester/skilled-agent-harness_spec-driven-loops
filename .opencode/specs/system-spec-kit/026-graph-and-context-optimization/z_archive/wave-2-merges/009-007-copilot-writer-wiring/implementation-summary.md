@@ -113,7 +113,7 @@ Packet 010 is reapplied, and packet 011 now restores these top-level commands:
 
 ## References
 
-- Research: `../../research/007-deep-review-remediation-pt-03/research.md` §7 (writer-wiring secondary gap)
+- Research: `../../research/002-copilot-hook-followup-deep-review-remediation/research.md` §7 (writer-wiring secondary gap)
 - Revert commit: `6cd00aa51b`
 - Writer source: `.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/user-prompt-submit.ts`
 - Writer dist: `.opencode/skills/system-spec-kit/mcp_server/dist/hooks/copilot/user-prompt-submit.js`

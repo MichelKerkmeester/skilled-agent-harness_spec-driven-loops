@@ -1,0 +1,53 @@
+{
+  "title": "Memory search Clusters 4-7 remediation",
+  "trigger_phrases": [
+    "memory search clusters 4-7 remediation",
+    "causal-stats output hygiene fix",
+    "memory state hygiene",
+    "folder discovery weak signal",
+    "quality fallback fts5 bm25 grep",
+    "intent classifier stability corpus",
+    "cocoindex daemon health probe",
+    "026/003/006 packet"
+  ],
+  "level": 2,
+  "importance_tier": "important",
+  "contextType": "implementation",
+  "status": "complete",
+  "priority": "P1",
+  "createdAt": "2026-05-08T21:00:00Z",
+  "branch": "main",
+  "parent_track": "system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime",
+  "parent_id": "003-continuity-memory-runtime",
+  "manual": {
+    "depends_on": [
+      "system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/005-memory-search-runtime-bugs"
+    ]
+  },
+  "derived": {
+    "status": "complete",
+    "completion_pct": 100,
+    "last_active_child_id": null
+  },
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/006-memory-search-health-fallback-stability-remediation",
+  "description": "Feature Specification: Memory search Clusters 4-7 remediation",
+  "keywords": [
+    "feature",
+    "specification",
+    "memory",
+    "search",
+    "clusters",
+    "4-7",
+    "remediation"
+  ],
+  "lastUpdated": "2026-05-09T07:57:32.842Z",
+  "specId": "006",
+  "folderSlug": "memory-search-clusters-4-7-remediation",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "003-continuity-memory-runtime"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

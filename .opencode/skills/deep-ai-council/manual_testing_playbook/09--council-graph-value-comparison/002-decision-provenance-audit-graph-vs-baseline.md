@@ -53,9 +53,9 @@ Operators run the exact prompt and command sequence for `DAC-028` and confirm th
 
 **No-graph baseline:**
 
-1. `bash: cat .opencode/specs/sandbox/dac-028/ai-council/council-report.md`
-2. `bash: ls .opencode/specs/sandbox/dac-028/ai-council/deliberations/ .opencode/specs/sandbox/dac-028/ai-council/critiques/ | wc -l`
-3. `bash: for f in .opencode/specs/sandbox/dac-028/ai-council/deliberations/*.md; do echo "=== $f ==="; rg 'Plan B|evidence|support' "$f"; done`
+1. `bash: cat <spec-folder>`
+2. `bash: ls <spec-folder> <spec-folder> | wc -l`
+3. `bash: for f in <spec-folder>*.md; do echo "=== $f ==="; rg 'Plan B|evidence|support' "$f"; done`
 4. Operator assembles narrative justification (transcript bullet).
 
 **With-graph:**

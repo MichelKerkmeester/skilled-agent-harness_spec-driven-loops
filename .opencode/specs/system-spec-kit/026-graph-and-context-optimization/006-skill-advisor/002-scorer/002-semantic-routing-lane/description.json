@@ -1,0 +1,21 @@
+{
+  "level": "phase",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/002-semantic-routing-lane",
+  "description": "Phase parent for activating the skill advisor's dormant semantic_shadow lane as a real cosine-similarity lane using local EmbeddingGemma, with weight rebalance gated behind an ablation sweep.",
+  "keywords": [
+    "skill-advisor",
+    "semantic-lane",
+    "cosine-similarity",
+    "embeddinggemma",
+    "ablation-sweep",
+    "lane-weight-rebalance"
+  ],
+  "lastUpdated": "2026-05-13T19:30:00Z",
+  "specId": "013",
+  "folderSlug": "skill-advisor-semantic-lane",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "006-skill-advisor"
+  ]
+}

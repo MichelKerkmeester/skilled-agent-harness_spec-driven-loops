@@ -44,7 +44,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->"
 | **Status** | Complete |
 | **Created** | 2026-04-29 |
 | **Branch** | `main` |
-| **Depends On** | `system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-followup-quality-pass/005-stress-test-folder-migration` |
+| **Depends On** | `system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-post-program-quality-pass/005-stress-test-folder-migration` |
 <!-- /ANCHOR:metadata -->
 
 ---

@@ -56,7 +56,7 @@ llama-cpp top-5:
 
 ### Example 2
 
-Query: Spec folder: system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-memory-retention-sweep Description: Spec: Memory Retention Sweep Spec id: 020 Folder slug: memory-retention-sweep Parent chain: system-spec-kit > 026-graph-and-context-optimization > 000-release-cleanup Keywords: spec, memory,
+Query: Spec folder: system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-memory-retention-policy-sweep Description: Spec: Memory Retention Sweep Spec id: 020 Folder slug: memory-retention-sweep Parent chain: system-spec-kit > 026-graph-and-context-optimization > 000-release-cleanup Keywords: spec, memory,
 
 Target doc: 885
 
@@ -123,7 +123,7 @@ hf-local top-5:
 ```text
 1. 1692 (0.8431) - ...ization/007-hook-parity/005-codex-hook-parity-remediation/research/007-deep-review-remediation-pt
 2. 1681 (0.7912) - ...ation/007-hook-parity/004-copilot-hook-parity-remediation/research/007-deep-review-remediation-pt
-3. 1691 (0.7799) - ...t/026-graph-and-context-optimization/007-hook-parity/003-codex-hook-parity-remediation/implementa
+3. 1691 (0.7799) - ...t/026-graph-and-context-optimization/007-hook-parity/003-codex-native-startup-advisor-hooks/implementa
 4. 1678 (0.7696) - 029 - Runti [system-spec-kit/026-graph-and-context-optimization/007-hook-parity/001-hook-parity-reme
 5. 1486 (0.7558) - ...ion/007-hook-parity/013-code-graph-hook-improvements/research/028-code-graph-hook-improvements-pt
 ```
@@ -133,7 +133,7 @@ llama-cpp top-5:
 ```text
 1. 1692 (0.7626) - ...ization/007-hook-parity/005-codex-hook-parity-remediation/research/007-deep-review-remediation-pt
 2. 1681 (0.7094) - ...ation/007-hook-parity/004-copilot-hook-parity-remediation/research/007-deep-review-remediation-pt
-3. 1691 (0.6883) - ...t/026-graph-and-context-optimization/007-hook-parity/003-codex-hook-parity-remediation/implementa
+3. 1691 (0.6883) - ...t/026-graph-and-context-optimization/007-hook-parity/003-codex-native-startup-advisor-hooks/implementa
 4. 1678 (0.6878) - 029 - Runti [system-spec-kit/026-graph-and-context-optimization/007-hook-parity/001-hook-parity-reme
 5. 1690 (0.6696) - Description: Feature Specification: Codex CLI Hook Parity Remediation
 ```

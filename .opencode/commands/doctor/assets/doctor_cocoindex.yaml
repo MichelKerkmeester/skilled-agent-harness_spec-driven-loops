@@ -32,7 +32,7 @@ cocoindex_doctor_invariant: |
 # UPSTREAM ASSETS
 # ─────────────────────────────────────────────────────────────────
 upstream_assets:
-  packet: ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/001-doctor-commands"
+  contract: "local command design contract"
   files:
     spec: "spec.md"  # REQ-017 gold-battery and subsystem coverage
     decision_record: "decision-record.md"  # ADR-004/ADR-007 retry, rollback, cancel safety
@@ -83,9 +83,9 @@ mutation_boundaries:
     - "<packet_scratch>/doctor-cocoindex-report.<timestamp>.md"
     - "<packet_scratch>/doctor-cocoindex-state.<timestamp>.json"  # packet-local state log
   forbidden_targets:
-    - ".opencode/specs/**/*.md"  # never write into spec packet docs from CocoIndex doctor
-    - ".opencode/specs/**/description.json"  # spec metadata not semantic index storage
-    - ".opencode/specs/**/graph-metadata.json"  # graph metadata is not a CocoIndex target
+    - "<active-spec-folder>/**/*.md"  # never write into spec packet docs from CocoIndex doctor
+    - "<active-spec-folder>/description.json"  # spec metadata not semantic index storage
+    - "<active-spec-folder>/graph-metadata.json"  # graph metadata is not a CocoIndex target
     - ".opencode/skills/system-spec-kit/mcp_server/database/**"  # system spec-kit DBs are separate
     - ".opencode/skills/**/SKILL.md"
     - ".opencode/skills/**/graph-metadata.json"

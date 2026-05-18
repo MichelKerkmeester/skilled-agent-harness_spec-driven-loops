@@ -470,7 +470,7 @@ workflow:
         On "continue manually": log "user declined debug at threshold N", proceed with existing manual flow, do NOT reset the failure counter.
         On "skip": apply existing skip semantics (failure counter resets per reset_on: new_task).
       no_autonomous_routing: true
-      reference: ".opencode/specs/skilled-agent-orchestration/050-agent-debug-integration/spec.md (REQ-005). Mirror of spec_kit_implement_auto.yaml debug_delegation block."
+      reference: "debug delegation safety contract"
     approach: incremental_implementation_with_reviews
     requirements: { follow: "Check skills folder for coding standards", update: task_checklist_progressively, test: before_commit, validate: continuously }
     confidence_checkpoint:

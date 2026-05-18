@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/041-sk-recursive-agent-loop/010-sk-agent-improver-self-test-fixes",
-  "spec_folder": "skilled-agent-orchestration/041-sk-recursive-agent-loop/010-sk-agent-improver-self-test-fixes",
-  "parent_id": "skilled-agent-orchestration/041-sk-recursive-agent-loop",
+  "packet_id": "skilled-agent-orchestration/z_archive/041-sk-recursive-agent-loop/010-sk-agent-improver-self-test-fixes",
+  "spec_folder": "skilled-agent-orchestration/z_archive/041-sk-recursive-agent-loop/010-sk-agent-improver-self-test-fixes",
+  "parent_id": "skilled-agent-orchestration/z_archive/041-sk-recursive-agent-loop",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -39,9 +39,6 @@
     "status": "planned",
     "key_files": [
       ".opencode/commands/improve/agent.md",
-      ".opencode/skills/sk-improve-agent/scripts/reduce-state.cjs",
-      ".opencode/skills/sk-improve-agent/assets/improvement_config.json",
-      ".opencode/skills/sk-improve-agent/assets/improvement_config_reference.md",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -52,24 +49,6 @@
         "name": "agent.md",
         "kind": "doc",
         "path": ".opencode/commands/improve/agent.md",
-        "source": "derived"
-      },
-      {
-        "name": "reduce-state.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/sk-improve-agent/scripts/reduce-state.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "improvement_config.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-improve-agent/assets/improvement_config.json",
-        "source": "derived"
-      },
-      {
-        "name": "improvement_config_reference.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-improve-agent/assets/improvement_config_reference.md",
         "source": "derived"
       },
       {
@@ -183,7 +162,7 @@
     ],
     "causal_summary": "Phase 009 (self-test) found 5 issues:",
     "created_at": "2026-04-13T04:55:07.906Z",
-    "last_save_at": "2026-04-26T09:17:15.235Z",
+    "last_save_at": "2026-05-18T15:17:56.868Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

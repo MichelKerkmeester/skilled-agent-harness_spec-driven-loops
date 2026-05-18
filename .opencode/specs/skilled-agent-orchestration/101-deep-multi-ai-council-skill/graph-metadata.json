@@ -40,9 +40,11 @@
       "specialized"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
-    "last_active_child_id": "skilled-agent-orchestration/101-deep-multi-ai-council-skill/008-council-surface-polish",
+    "status": "planned",
     "key_files": [
+      ".opencode/agents/deep-ai-council.md",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/multi-ai-council-runtime-parity.vitest.ts",
+      "scripts/tests/multi-ai-council-persist-artifacts.vitest.ts",
       "001-deep-ai-council-skill-creation/spec.md",
       "002-deep-ai-council-reference-expansion/spec.md",
       "003-deep-ai-council-graph-support/spec.md",
@@ -54,6 +56,24 @@
       "spec.md"
     ],
     "entities": [
+      {
+        "name": "deep-ai-council.md",
+        "kind": "doc",
+        "path": ".opencode/agents/deep-ai-council.md",
+        "source": "derived"
+      },
+      {
+        "name": "multi-ai-council-runtime-parity.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/multi-ai-council-runtime-parity.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "multi-ai-council-persist-artifacts.vitest.ts",
+        "kind": "test",
+        "path": "scripts/tests/multi-ai-council-persist-artifacts.vitest.ts",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -68,6 +88,12 @@
       },
       {
         "name": "Council Skill Extraction",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -89,17 +115,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Problem Statement The",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The council workflow currently belongs to `system-spec-kit`, but it is a specialized multi-agent planning workflow with its own agent persona, artifacts, persistence scripts, and future graph needs. Keeping that ownership inside `system-spec-kit` makes the core spec workflow responsible for council behavior that should evolve independently.",
     "created_at": "2026-05-10T06:35:39Z",
-    "last_save_at": "2026-05-10T06:39:58.324Z",
+    "last_save_at": "2026-05-18T15:17:56.730Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -42,7 +42,7 @@ Create the Phase 002 child packet, populate the empty `.opencode/skills/system-c
 ## QUALITY GATES
 
 ### Definition of Ready
-- [x] ADR-001 accepted in `001-design-and-decision-record/decision-record.md`.
+- [x] ADR-001 accepted in `001-extraction-design-and-adr/decision-record.md`.
 - [x] Gate 3 points to this new child packet.
 - [x] Phase boundary confirmed: no code moves until Phase 003.
 
@@ -123,7 +123,7 @@ Create the Phase 002 child packet, populate the empty `.opencode/skills/system-c
 <!-- ANCHOR:rollback -->
 ## ROLLBACK PLAN
 
-Revert the Phase 002 packet folder, remove newly added `system-code-graph` scaffold files, and restore parent 014 `graph-metadata.json` to the prior `001-design-and-decision-record` active child.
+Revert the Phase 002 packet folder, remove newly added `system-code-graph` scaffold files, and restore parent 014 `graph-metadata.json` to the prior `001-extraction-design-and-adr` active child.
 <!-- /ANCHOR:rollback -->
 
 ---

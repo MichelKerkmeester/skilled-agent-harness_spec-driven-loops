@@ -52,14 +52,14 @@ live CLI calls while preserving direct smoke coverage.
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [x] Historical evidence reviewed. [EVIDENCE: `../016-hook-plugin-per-runtime-testing/results/*.jsonl`]
+- [x] Historical evidence reviewed. [EVIDENCE: `../016-runtime-hook-plugin-testing/results/*.jsonl`]
 - [x] Constraints documented. [EVIDENCE: `spec.md`]
 - [x] Operator live mode identified. [EVIDENCE: `methodology-correction.md`]
 
 ### Definition of Done
 - [x] Sandbox mode reports direct-smoke pass cells. [EVIDENCE: runner output]
 - [x] Sandbox mode reports live-cli `SKIPPED_SANDBOX` cells. [EVIDENCE: runner output]
-- [x] Prior findings amended. [EVIDENCE: `../016-hook-plugin-per-runtime-testing/findings.md`]
+- [x] Prior findings amended. [EVIDENCE: `../016-runtime-hook-plugin-testing/findings.md`]
 - [x] Build and strict validation pass. [EVIDENCE: command outputs]
 <!-- /ANCHOR:quality-gates -->
 

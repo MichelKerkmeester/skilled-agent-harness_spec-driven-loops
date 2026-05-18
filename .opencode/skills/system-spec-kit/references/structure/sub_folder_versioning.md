@@ -74,7 +74,7 @@ If creating a sub-folder, the user (with AI guidance):
 
 ```bash
 .opencode/skills/system-spec-kit/scripts/spec/create.sh \
-  --subfolder specs/system-spec-kit \
+  --subfolder specs/<track> \
   --topic memory-overhaul \
   --level 3+ \
   "Wave 1 follow-up"
@@ -195,7 +195,7 @@ When using subfolder versioning, the spec-doc record save script (`generate-cont
 | `002-track/022-feature/011-phase`      | Resolves three-level nested packet path           |
 | `121-child` (bare)                     | Searches all parents, requires unique match        |
 | `specs/003-parent/121-child`           | Strips prefix, resolves nested                     |
-| `.opencode/specs/003-parent/121-child` | Strips prefix, resolves nested                     |
+| Internal design notes | Strips prefix, resolves nested                     |
 
 ### Generated Support Artifact Location
 
@@ -209,7 +209,7 @@ If a child name like `121-audit` exists under multiple parents, the script requi
 
 ```
 Error: Ambiguous child folder "121-audit" found in multiple parents:
-  - specs/system-spec-kit/121-audit/
+  - <spec-folder>
   - specs/005-<user-repo>/121-audit/
 Please specify the full path: parent/child
 ```
@@ -228,4 +228,3 @@ Please specify the full path: parent/child
 - `system-spec-kit` - Context preservation with semantic memory
 
 ---
-

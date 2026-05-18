@@ -7,7 +7,7 @@
 | ⚛️ **Hybrid RAG + Smart Graph** | Retrieval that blends semantic search with graph-aware project context |
 | 🔍 **Code Index + Graph** | Callers, imports, impact paths, and concept-based code discovery |
 | 🤖 **11 Specialized Agents** | Focused roles for implementation, review, research, docs, git, and more |
-| 🎯 **20 On-Demand Skills** | Skill Advisor routing for the right workflow at the right time |
+| 🎯 **21 On-Demand Skills** | Skill Advisor routing for the right workflow at the right time |
 
 **Reasons to try it**
 
@@ -64,7 +64,7 @@ The framework adds four layers on top of the base platform:
 |                        |                                                                                                                                                                                                                                                   |
 | ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **🤖 11 Agents**        | 11 custom specialists, multi-runtime                                                                                                                                                                                                              |
-| **🎯 20 Skills**        | Code, docs, git, prompts, MCP, research, review, council, improvement, cross-AI and standalone system packages                                                                                                                                    |
+| **🎯 21 Skills**        | Code, docs, git, prompts, MCP, research, review, council, improvement, cross-AI, small-model sentinel, and standalone system packages                                                                                                              |
 | **⌨️ 22 Commands**      | 6 spec_kit + 4 memory + 6 create + 2 improve + 3 doctor + 1 agent_router                                                                                                                                                                          |
 | **🔧 69 MCP Tools**     | mk-spec-memory (39), mk_skill_advisor (9), mk_code_index (11), code mode (7), CocoIndex (2), sequential thinking (1). See canonical count in FAQ                                                                            |
 | **🔍 CocoIndex Code**   | [Forked](.opencode/skills/mcp-coco-index/NOTICE) from [cocoindex-io/cocoindex-code](https://github.com/cocoindex-io/cocoindex-code) (Apache 2.0) - semantic code search via vector embeddings and natural-language discovery across 28+ languages |
@@ -92,7 +92,7 @@ The framework adds four layers on top of the base platform:
                  ▼                             ▼
          ┌───────────────┐          ┌──────────────────┐
          │ AGENT NETWORK │          │  SKILLS LIBRARY  │
-         │ 11 specialized│          │ 20 domain skills │
+         │ 11 specialized│          │ 21 domain skills │
          │ agents with   │◄────────►│ auto-loaded by   │
          │ routing logic │          │ task keywords    │
          └───────┬───────┘          └────────┬─────────┘
@@ -125,9 +125,9 @@ The framework adds four layers on top of the base platform:
 
 ### What's Shipped Recently
 
-Packet [014 system-code-graph extraction](.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-system-code-graph-extraction/) moved the code graph into `.opencode/skills/system-code-graph/` with its own MCP boundary. The follow-on 010 rename established `mk_code_index` as the standalone server identity and `mcp__mk_code_index__*` as the live documentation namespace.
+The code graph now lives in `.opencode/skills/system-code-graph/` with its own MCP boundary. A follow-on rename established `mk_code_index` as the standalone server identity and `mcp__mk_code_index__*` as the live documentation namespace.
 
-Recent 038/039 work also tightened the public surface without turning this README into a changelog: [038 CocoIndex feature catalog](.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/038-coco-index-feature-catalog/) added a canonical mcp-coco-index feature inventory, [039 stress-test expansion](.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/039-stress-test-expansion-and-alignment/) aligned stress coverage and the local llama-cpp [038](.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/038-embedding-error-propagation/) / [039](.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/039-token-aware-chunking/) packets hardened embedding failure reporting and token-aware truncation.
+Recent work also tightened the public surface without turning this README into a changelog: CocoIndex now has a canonical feature inventory, stress coverage is aligned, and the local llama-cpp path has stronger embedding failure reporting plus token-aware truncation.
 
 ### Embedder Architecture
 
@@ -559,7 +559,7 @@ Preview all checks without saving using `dryRun: true`. Learned relevance feedba
 &nbsp;
 #### Embedding Providers
 
-The embedder layer is pluggable (packet 016 architecture, ADRs 009-012). Swap defaults via env vars without touching code. Canonical narrative: [embedder-pluggability.md](.opencode/skills/system-spec-kit/references/embedder-pluggability.md).
+The embedder layer is pluggable. Swap defaults via env vars without touching code. Canonical narrative: [embedder-pluggability.md](.opencode/skills/system-spec-kit/references/embedder-pluggability.md).
 
 - **Ollama (jina-embeddings-v3)** - Default. Free, local, 1024d Q4_K_M served over HTTP. Pull once with `ollama pull jina/jina-embeddings-v3`.
 - **HuggingFace Local** - Fallback when the Ollama probe fails. Free, local, 768d q8 ONNX.
@@ -582,7 +582,7 @@ By default, code-graph scans your repo code only. Five `.opencode/` folders are 
 - `.opencode/skills/**`
 - `.opencode/agents/**`
 - `.opencode/commands/**`
-- `.opencode/specs/**`
+- `<active-spec-folder>/**`
 - `.opencode/plugins/**`
 
 Maintainers can opt folders back in process-wide with env vars:
@@ -790,7 +790,7 @@ For details, see the [Skill Advisor README](.opencode/skills/system-skill-adviso
 
 ### 🎯 Skills Library
 
-20 skills in `.opencode/skills/`, loaded on demand when Gate 2 matches a task (confidence >= 0.8 means the skill must be loaded).
+21 skills in `.opencode/skills/`, loaded on demand when Gate 2 matches a task (confidence >= 0.8 means the skill must be loaded).
 
 #### DOCUMENTATION
 
@@ -906,6 +906,14 @@ These skills let you run **cross-CLI agent teams from any starting CLI**. Whiche
 - Prompt engineering specialist auto-selecting from 7 proven frameworks (RCAF, COSTAR, RACE, CIDI, TIDD-EC, CRISPE, CRAFT)
 - DEPTH thinking methodology with 3-10 iteration rounds of progressive refinement
 - CLEAR quality scoring: Clarity, Logic, Expression, Reliability (40+/50 pass threshold)
+
+**sk-small-model**
+- Sentinel skill for small-model optimization patterns. Discovery anchor only — routes operators to executor-owned pattern files instead of hosting logic.
+- Active scope: SWE-1.6 (Cognition free tier via `cli-devin`), DeepSeek-v4-pro / Kimi-k2.6 / Qwen3.6 (Cognition Pro pool via `cli-opencode`). Optional stubs ready for Claude Haiku and Gemini Flash.
+- Co-surfaces alongside `cli-devin` and `cli-opencode` via `enhances` edges (weight 0.5). Lexical trigger phrases match model names + pattern names (`swe-1.6`, `kimi`, `deepseek`, `qwen`, `haiku`, `gemini flash`, `context budget`, `output verification`, `permissions matrix`, `quota fallback`, `model profile`, `tool scoring`).
+- `references/pattern-index.md` maps each pattern to its canonical executor-owned location: context budget engine + output verification + per-model budgets + confidence rubric (`cli-devin/`), permissions matrix schema + structured permissions (`cli-opencode/`), unified model registry + cross-CLI budget awareness (`sk-prompt/`), runtime helpers (`system-spec-kit/mcp_server/lib/deep-loop/`).
+- Frontier models (Opus, Sonnet, gpt-5.5, GLM-5.1) are explicitly out of scope. Quota fallback is pool-aware (SWE-1.6 free → separate-pool target only; same-pool retries forbidden), not tier-based escalation.
+- Adopting Haiku or Gemini Flash later is metadata-first: populate the registry stub, optionally set `fallback_target`, add trigger phrases, re-index the advisor. No code edits required when the new provider fits an existing quota-pool category.
 
 **deep-agent-improvement** 
 - Evaluator-first agent improvement with 5-dimension integration-aware scoring (structural, ruleCoherence, integration, outputQuality, systemFitness)
@@ -1403,7 +1411,7 @@ All 5 runtime MCP configs (`opencode.json`, `.claude/mcp.json`, `.codex/config.t
 SPECKIT_CODE_GRAPH_INDEX_SKILLS    (covers .opencode/skills/**)
 SPECKIT_CODE_GRAPH_INDEX_AGENTS    (covers .opencode/agents/**)
 SPECKIT_CODE_GRAPH_INDEX_COMMANDS  (covers .opencode/commands/**)
-SPECKIT_CODE_GRAPH_INDEX_SPECS     (covers .opencode/specs/**)
+SPECKIT_CODE_GRAPH_INDEX_SPECS     (covers <active-spec-folder>/**)
 SPECKIT_CODE_GRAPH_INDEX_PLUGINS   (covers .opencode/plugins/**)
 SPECKIT_CODE_GRAPH_DB_DIR          (optional code-graph SQLite directory override)
 ```
@@ -1441,7 +1449,7 @@ After that, `cat opencode.json` shows `"true"`. `git show HEAD:opencode.json` sh
 
 ## 5. FAQ
 
-**Q: Do I need all 20 skills installed to use the framework?**
+**Q: Do I need all 21 skills installed to use the framework?**
 
 A: No. Skills are loaded on demand by Gate 2. You only need the ones relevant to your work. The two core documentation skills - `system-spec-kit` and `sk-doc` - cover most documentation workflows. The MCP and cross-AI CLI skills require additional local tooling or API keys depending on the surface.
 &nbsp;
@@ -1517,4 +1525,4 @@ A: The feature catalog is a 290-entry reference across 22 categories documenting
 <!-- /ANCHOR:related-documents -->
 
 
-*Documentation version: 4.12 | Last updated: 2026-05-15 | Framework: 11 agents, 20 skills, 22 commands, 69 MCP tools (39 mk-spec-memory + 9 mk_skill_advisor + 11 mk_code_index + 7 code mode + 2 CocoIndex + 1 sequential thinking. Deferred / internal-only handlers do NOT count).*
+*Documentation version: 4.13 | Last updated: 2026-05-18 | Framework: 11 agents, 21 skills, 22 commands, 69 MCP tools (39 mk-spec-memory + 9 mk_skill_advisor + 11 mk_code_index + 7 code mode + 2 CocoIndex + 1 sequential thinking. Deferred / internal-only handlers do NOT count).*

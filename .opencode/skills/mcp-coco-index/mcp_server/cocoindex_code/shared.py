@@ -5,11 +5,14 @@
 # _QUERY_PROMPT_MODELS converted from set to dict; env override added.
 from __future__ import annotations
 
+import json
 import logging
 import os
 import pathlib
 from dataclasses import dataclass
 from typing import TYPE_CHECKING, Annotated, Union
+from urllib.error import URLError
+from urllib.request import urlopen
 
 import cocoindex as coco
 from cocoindex.connectors import sqlite
@@ -20,11 +23,14 @@ if TYPE_CHECKING:
     from cocoindex.ops.litellm import LiteLLMEmbedder
     from cocoindex.ops.sentence_transformers import SentenceTransformerEmbedder
 
+from .registered_embedders import get_embedder_metadata
 from .settings import EmbeddingSettings
 
 logger = logging.getLogger(__name__)
 
 SBERT_PREFIX = "sbert/"
+OLLAMA_PREFIX = "ollama/"
+DEFAULT_OLLAMA_API_BASE = "http://localhost:11434"
 
 # Models that define a "query" prompt for asymmetric retrieval.
 # Maps model_id -> prompt_name passed to SentenceTransformerEmbedder.
@@ -66,6 +72,57 @@ def resolve_query_prompt_name(model_name: str) -> str | None:
     return _QUERY_PROMPT_MODELS.get(model_name)
 
 
+def _ollama_api_base() -> str:
+    """Return the Ollama base URL used by LiteLLM."""
+    return os.environ.get("OLLAMA_API_BASE", DEFAULT_OLLAMA_API_BASE).rstrip("/")
+
+
+def _ollama_model_tag(model_name: str) -> str:
+    """Strip the LiteLLM provider prefix from an Ollama model name."""
+    if model_name.startswith(OLLAMA_PREFIX):
+        return model_name[len(OLLAMA_PREFIX) :]
+    return model_name
+
+
+def _ollama_tag_matches(requested: str, available: str) -> bool:
+    """Match Ollama tag names while accepting implicit latest tags."""
+    if requested == available:
+        return True
+    if ":" in requested:
+        return False
+    return available == f"{requested}:latest" or available.split(":", 1)[0] == requested
+
+
+def _ensure_ollama_daemon_ready(model_name: str) -> None:
+    """Fail fast when an Ollama-backed embedder cannot be served locally."""
+    base_url = _ollama_api_base()
+    tag = _ollama_model_tag(model_name)
+    try:
+        with urlopen(f"{base_url}/api/tags", timeout=2.0) as response:
+            payload = json.loads(response.read().decode("utf-8"))
+    except (OSError, URLError, TimeoutError, json.JSONDecodeError) as exc:
+        raise RuntimeError(
+            f"Ollama embedder {model_name!r} requires a running daemon at {base_url}. "
+            "Start Ollama or set OLLAMA_API_BASE before running ccc index."
+        ) from exc
+
+    models = payload.get("models", [])
+    if not isinstance(models, list):
+        models = []
+    available = {
+        value
+        for item in models
+        if isinstance(item, dict)
+        for value in (item.get("name"), item.get("model"))
+        if isinstance(value, str)
+    }
+    if not any(_ollama_tag_matches(tag, candidate) for candidate in available):
+        raise RuntimeError(
+            f"Ollama model {tag!r} is not available at {base_url}. "
+            f"Run `ollama pull {tag}` before running ccc index."
+        )
+
+
 # Type alias
 Embedder = Union["SentenceTransformerEmbedder", "LiteLLMEmbedder"]
 
@@ -105,7 +162,12 @@ def _build_embedder(settings: EmbeddingSettings) -> Embedder:
     else:
         from cocoindex.ops.litellm import LiteLLMEmbedder
 
-        instance = LiteLLMEmbedder(settings.model)
+        metadata = get_embedder_metadata(settings.model)
+        kwargs = {}
+        if metadata is not None and metadata.requires_ollama_daemon:
+            _ensure_ollama_daemon_ready(settings.model)
+            kwargs["api_base"] = _ollama_api_base()
+        instance = LiteLLMEmbedder(settings.model, **kwargs)
         query_prompt_name = None
         logger.info("Embedding model (LiteLLM): %s", settings.model)
 

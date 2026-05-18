@@ -210,6 +210,6 @@ Exact failure inventory generated at triage time.
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- **Q1**: Should `it.fails.skip` annotations point at follow-up packet IDs that don't exist yet? (Recommendation: yes — placeholders fine; e.g., `// followup: 026/000/002-vitest-recovery-followup`.)
+- **Q1**: Should `it.fails.skip` annotations point at follow-up packet IDs that don't exist yet? (Recommendation: yes — placeholders fine; e.g., `// followup: 026/000/002-vitest-baseline-recovery-followup`.)
 - **Q2**: For the v3.4.1.0 changelog row, should we keep "11,606 passed" historical for honesty and add a footnote, or replace outright? (Recommendation: replace — the row is currently false; replacement is a correction, not history rewriting.)
 <!-- /ANCHOR:questions -->

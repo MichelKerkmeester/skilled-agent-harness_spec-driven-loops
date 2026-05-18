@@ -1,5 +1,5 @@
 {
-  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-quality-issues/003-sanitization-precedence",
+  "specFolder": "<spec-folder>",
   "sessionSummary": "Phase 3 replay preserves spec kit retrieval language, semantic search adjacency, and the mcp integration topic without introducing junk trigger phrases.",
   "triggerPhrases": [
     "spec kit",

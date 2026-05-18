@@ -1,21 +1,18 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/093-testing-playbooks-code-review-and-git",
-  "spec_folder": "skilled-agent-orchestration/093-testing-playbooks-code-review-and-git",
-  "parent_id": "skilled-agent-orchestration",
+  "packet_id": "skilled-agent-orchestration/z_archive/093-testing-playbooks-code-review-and-git",
+  "spec_folder": "skilled-agent-orchestration/z_archive/093-testing-playbooks-code-review-and-git",
+  "parent_id": null,
   "children_ids": [
-    "skilled-agent-orchestration/093-testing-playbooks-code-review-and-git/001-sk-code-review-playbook",
-    "skilled-agent-orchestration/093-testing-playbooks-code-review-and-git/002-sk-git-playbook"
+    "skilled-agent-orchestration/z_archive/093-testing-playbooks-code-review-and-git/001-sk-code-review-playbook",
+    "skilled-agent-orchestration/z_archive/093-testing-playbooks-code-review-and-git/002-sk-git-playbook"
   ],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      "skilled-agent-orchestration/065-skill-advisor-reindex-and-stress-test"
-    ],
+    "depends_on": [],
     "supersedes": [],
-    "related_to": [
-      "skilled-agent-orchestration/063-sk-doc-agent-template-alignment",
-      "skilled-agent-orchestration/068-sk-doc-organization"
-    ]
+    "related_to": []
   },
   "derived": {
     "trigger_phrases": [
@@ -27,16 +24,81 @@
     ],
     "key_topics": [
       "093",
-      "testing-playbook",
+      "testing",
+      "playbooks",
       "sk-code-review",
+      "playbook",
       "sk-git",
-      "manual-testing"
+      "manual",
+      "review",
+      "git",
+      "produce",
+      "two",
+      "packages"
     ],
-    "status": "complete",
-    "completion_pct": 100,
-    "last_active_child_id": "skilled-agent-orchestration/093-testing-playbooks-code-review-and-git/002-sk-git-playbook",
-    "level": "phase-parent",
-    "is_phase_parent": true,
-    "session_outcome": "both_children_authored_validated_dqi_pass"
+    "importance_tier": "high",
+    "status": "planned",
+    "key_files": [
+      ".opencode/specs/skilled-agent-orchestration/graph-metadata.json",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/specs/skilled-agent-orchestration/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Produce two `manual_testing_playbook/` packages — one per skill — following the canonical sk-doc contract, with RCAF-pattern operator prompts that mirror real human-AI conversation, executable both natively and via external CLIs.",
+    "created_at": "2026-05-18T07:49:27.224Z",
+    "last_save_at": "2026-05-18T15:17:57.039Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ]
   }
 }

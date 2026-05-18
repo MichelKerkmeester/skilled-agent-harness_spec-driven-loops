@@ -1,0 +1,20 @@
+{
+  "level": "2",
+  "specFolder": "001-extraction-design-and-adr",
+  "description": "10-iteration deep-research investigation via cli-opencode + deepseek-v4-pro of the code-graph extraction surface; produces resource-map.md (every touchpoint to move/rewire/update), research/research.md (narrative synthesis), and decision-record.md (ADR-001 locking 8 architectural decisions: touchpoint inventory, DB shape, MCP topology, tool-id stability, cross-subsystem import direction, plugin-bridge disposition, implementation phase decomposition, risk catalog).",
+  "keywords": [
+    "code-graph-extraction-design",
+    "extraction-resource-map",
+    "architectural-shape-enumeration",
+    "adr-code-graph-extraction",
+    "mcp-server-topology-choice",
+    "deep-research-10-iter",
+    "deepseek-v4-pro"
+  ],
+  "lastUpdated": "2026-05-14T07:00:38Z",
+  "specId": "001",
+  "folderSlug": "design-and-decision-record",
+  "parentChain": [
+    "013-system-code-graph-extraction"
+  ]
+}

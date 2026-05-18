@@ -146,7 +146,7 @@ Plus:
 
 PLUS: `audit-findings.md` (per-catalog drift list before+after), `remediation-log.md` (per-file mapping log), `lint-results.md` (conformant-catalog lint outcome).
 
-**Deps**: `manual.depends_on=["system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/012-code-graph-catalog-and-playbook","system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/005-remaining-p1-p2-remediation"]`.
+**Deps**: `manual.depends_on=["system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/012-code-graph-catalog-and-playbook","system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/005-remaining-priority-findings-remediation"]`.
 
 **Trigger phrases**: `["019-feature-catalog-shape-realignment","feature catalog shape audit","sk-doc snippet template alignment","catalog OVERVIEW canonical"]`.
 

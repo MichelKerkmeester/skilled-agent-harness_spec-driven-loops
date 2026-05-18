@@ -35,7 +35,7 @@ update_orchestrator_invariant: |
 # UPSTREAM ASSETS
 # ─────────────────────────────────────────────────────────────────
 upstream_assets:
-  packet: ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/001-doctor-commands"
+  contract: "local command design contract"
   files:
     spec: "spec.md"  # REQ-004..REQ-017 orchestrator contract
     decision_record: "decision-record.md"  # ADR-001..ADR-008 safety decisions
@@ -117,9 +117,9 @@ mutation_boundaries:
     - ".opencode/skills/system-spec-kit/mcp_server/dist/**"  # generated MCP runtime output
     - ".opencode/skills/system-spec-kit/scripts/dist/**"  # generated migration helper output
   forbidden_targets:
-    - ".opencode/specs/**/*.md"  # never write into spec packet docs from /doctor:update
-    - ".opencode/specs/**/description.json"  # spec metadata belongs to memory-save tooling
-    - ".opencode/specs/**/graph-metadata.json"  # graph metadata not an orchestrator DB target
+    - "<active-spec-folder>/**/*.md"  # never write into spec packet docs from /doctor:update
+    - "<active-spec-folder>/description.json"  # spec metadata belongs to memory-save tooling
+    - "<active-spec-folder>/graph-metadata.json"  # graph metadata not an orchestrator DB target
     - ".opencode/skills/**/SKILL.md"  # never edit skill bodies
     - ".opencode/skills/**/graph-metadata.json"
     - ".opencode/skills/system-spec-kit/mcp_server/**/*.ts"
@@ -314,7 +314,7 @@ workflow:
           # FIX-13: --active-only skips z_archive/z_future paths that the script's path-validator
           # rejects with "Spec folder is not under a supported specs root" — those archive trees
           # are outside graph-metadata backfill's traversal contract. Note: this is separate from
-          # the memory index scope. Per packet 113 (commit b062b12b4), z_archive content IS
+          # the memory index scope. Per the archive-retention fix (commit b062b12b4), z_archive content IS
           # indexed into the memory DB and deprioritized via ARCHIVE_MULTIPLIERS 0.1; only
           # graph-metadata backfill's path-validator skips it.
           node .opencode/skills/system-spec-kit/scripts/dist/graph/backfill-graph-metadata.js --active-only 2>&1 \

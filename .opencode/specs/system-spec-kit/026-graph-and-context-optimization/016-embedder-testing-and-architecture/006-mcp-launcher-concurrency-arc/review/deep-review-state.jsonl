@@ -1,0 +1,6 @@
+{"type":"event","event":"session_start","sessionId":"rvw-phase-parent-20260518-091448","timestamp":"2026-05-18T09:14:48Z"}
+{"type":"iteration","iteration":1,"dimension":"correctness","findingsByP0":0,"findingsByP1":1,"findingsByP2":0,"verdict":"CONDITIONAL","newFindingsRatio":1.0,"durationSec":47,"exitCode":0,"timestamp":"2026-05-18T09:15:35Z"}
+{"type":"iteration","iteration":2,"dimension":"security","findingsByP0":0,"findingsByP1":0,"findingsByP2":2,"verdict":"PASS","newFindingsRatio":1.0,"durationSec":68,"exitCode":0,"timestamp":"2026-05-18T09:16:43Z"}
+{"type":"iteration","iteration":3,"dimension":"traceability","findingsByP0":0,"findingsByP1":0,"findingsByP2":1,"verdict":"CONDITIONAL","newFindingsRatio":1.0,"durationSec":112,"exitCode":0,"timestamp":"2026-05-18T09:18:35Z"}
+{"type":"iteration","iteration":4,"dimension":"maintainability","findingsByP0":0,"findingsByP1":0,"findingsByP2":2,"verdict":"CONDITIONAL","newFindingsRatio":1.0,"durationSec":81,"exitCode":0,"timestamp":"2026-05-18T09:19:56Z"}
+{"type":"event","event":"session_complete","sessionId":"rvw-phase-parent-20260518-091448","itersUsed":4,"itersAllocated":4,"converged":0,"verdict":"CONDITIONAL","timestamp":"2026-05-18T09:19:56Z"}

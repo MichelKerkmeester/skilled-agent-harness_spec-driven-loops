@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/066-sk-code-opencode-merger",
-  "spec_folder": "skilled-agent-orchestration/066-sk-code-opencode-merger",
+  "packet_id": "skilled-agent-orchestration/z_archive/066-sk-code-opencode-merger",
+  "spec_folder": "skilled-agent-orchestration/z_archive/066-sk-code-opencode-merger",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -9,18 +9,218 @@
     "supersedes": [],
     "related_to": []
   },
-    "derived": {
-    "trigger_phrases": [],
-    "key_topics": [],
+  "derived": {
+    "trigger_phrases": [
+      "sk-code-opencode merger",
+      "merge sk-code-opencode into sk-code",
+      "remove go react from sk-code",
+      "single sk-code",
+      "sk-code-opencode merger plan",
+      "single sk-code plan",
+      "resource map",
+      "sk-code-opencode merger tasks",
+      "single sk-code tasks",
+      "sk-code-opencode merger checklist",
+      "single sk-code verification",
+      "sk-code-opencode merger adr"
+    ],
+    "key_topics": [
+      "sk-code-opencode",
+      "merger",
+      "merge",
+      "sk-code",
+      "remove",
+      "react",
+      "single",
+      "plan",
+      "resource",
+      "map",
+      "tasks",
+      "checklist"
+    ],
     "importance_tier": "important",
-    "status": "planned",
-    "key_files": ["spec.md","plan.md","tasks.md","checklist.md","decision-record.md"],
-    "entities": [],
-    "causal_summary": "sk-code-opencode-merger",
+    "status": "complete",
+    "key_files": [
+      "resource-map.md",
+      "implementation-summary.md",
+      "checklist.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      ".opencode/skills/sk-code/SKILL.md",
+      ".opencode/skills/README.md",
+      ".opencode/skills/.smart-router-telemetry/compliance.jsonl",
+      "scripts/tests/alignment-drift-fixture-preservation.vitest.ts",
+      "spec.md",
+      ".opencode/install_guides/README.md",
+      ".opencode/install_guides/SET-UP - AGENTS.md",
+      ".opencode/skills/sk-code/README.md",
+      ".opencode/skills/sk-code-review/README.md",
+      ".opencode/skills/system-spec-kit/scripts/extractors/README.md",
+      ".opencode/skills/system-spec-kit/scripts/loaders/README.md",
+      ".opencode/skills/system-spec-kit/scripts/ops/README.md",
+      ".opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/05-code-standards-alignment.md",
+      ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md"
+    ],
+    "entities": [
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "compliance.jsonl",
+        "kind": "file",
+        "path": ".opencode/skills/.smart-router-telemetry/compliance.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "alignment-drift-fixture-preservation.vitest.ts",
+        "kind": "test",
+        "path": "scripts/tests/alignment-drift-fixture-preservation.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "SET-UP - AGENTS.md",
+        "kind": "doc",
+        "path": ".opencode/install_guides/SET-UP - AGENTS.md",
+        "source": "derived"
+      },
+      {
+        "name": "05-code-standards-alignment.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/05-code-standards-alignment.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature_catalog.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Surface",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Intent Classification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Before",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "This packet documents the consolidation of the former `sk-code-opencode` OpenCode-system-code standards skill into the single remaining `sk-code` skill. The implemented end state is one multi-stack `sk-code` that demonstrates how end users can combine stack branches by merging a language/system-code branch into the umbrella router, while removing the existing Go and React/NextJS placeholder branches from `sk-code`.",
     "created_at": "2026-05-03T11:04:06Z",
-    "last_save_at": "2026-05-03T11:04:06Z",
+    "last_save_at": "2026-05-18T15:17:56.951Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "source_docs": ["spec.md","plan.md","tasks.md","checklist.md","decision-record.md"]
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "resource-map.md"
+    ]
   }
 }

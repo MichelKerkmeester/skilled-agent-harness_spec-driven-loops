@@ -85,7 +85,7 @@ Each table cell `feature_id` MUST link back to the matrix row by id (just write 
 
 ### §4 — Follow-on Recommendation
 
-If §3 P0 table has any rows: write "RECOMMEND opening packet `007-stress-test-gap-remediation` to write missing tests for the P0 features above. Do not auto-create — the user must approve scope."
+If §3 P0 table has any rows: write "RECOMMEND opening packet `007-stress-test-coverage-gap-remediation` to write missing tests for the P0 features above. Do not auto-create — the user must approve scope."
 
 If §3 P0 table is empty: write "NO follow-on packet recommended. P1/P2 items roll into normal release-readiness backlog."
 

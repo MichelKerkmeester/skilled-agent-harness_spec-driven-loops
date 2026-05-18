@@ -569,8 +569,8 @@ The current repository has no dedicated automated test module for `sk-code-revie
 | Test Module | Coverage | Playbook Overlap |
 |---|---|---|
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/python/test_skill_advisor.py` | Skill-advisor routing cases for `sk-code-review`, `deep-review`, and review/write disambiguation | CR-016, CR-017, CR-018 |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-mcp-runtime-stress-remediation/029-stress-test-v1-0-4/measurements/phase-k-v1-0-4-stress.test.ts` | Stress fixture that maps review channel behavior to `sk-code-review` | CR-016 |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-mcp-runtime-stress-remediation/021-stress-test-v1-0-3-with-w3-w13-wiring/measurements/phase-h-stress.test.ts` | Earlier stress fixture for review channel expectations | CR-016 |
+| Internal design notes | Stress fixture that maps review channel behavior to `sk-code-review` | CR-016 |
+| Internal design notes | Earlier stress fixture for review channel expectations | CR-016 |
 
 Validator limitation: per-feature file completeness requires the structural sweep described in this playbook until `validate_document.py` recurses into category folders.
 

@@ -4,11 +4,11 @@ Search-and-routing tuning, phrase booster, smart router, hook surface, setup com
 
 ## Children (5)
 
-- `001-search-and-routing-tuning`
-- `002-advisor-phrase-booster-tailoring`
-- `003-smart-remediation-and-opencode-plugin`
-- `004-skill-advisor-hook-surface`
-- `005-skill-advisor-setup-command`
+- `001-memory-search-routing-tuning`
+- `002-advisor-phrase-booster-tuning`
+- `003-smart-remediation-opencode-plugin`
+- `004-advisor-hook-surface-integration`
+- `005-advisor-setup-command`
 
 ## Provenance
 

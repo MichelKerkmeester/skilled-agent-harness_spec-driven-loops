@@ -225,6 +225,6 @@ The shared SQLite file at `.opencode/.spec-kit/code-graph/database/code-graph.sq
 ### Cross-skill references
 
 - Shared lifecycle and context docs that stayed in `system-spec-kit`: `.opencode/skills/system-spec-kit/feature_catalog/22--context-preservation/`
-- Extraction history: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/013-system-code-graph-extraction/`
-- Latest uplift packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/019-system-code-graph-uplift/`
+- Extraction history: internal migration notes
+- Latest uplift context: internal implementation notes
 <!-- /ANCHOR:related-resources -->

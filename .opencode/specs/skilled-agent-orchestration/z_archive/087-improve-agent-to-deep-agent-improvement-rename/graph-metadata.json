@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/087-improve-agent-to-deep-agent-improvement-rename",
-  "spec_folder": "skilled-agent-orchestration/087-improve-agent-to-deep-agent-improvement-rename",
+  "packet_id": "skilled-agent-orchestration/z_archive/087-improve-agent-to-deep-agent-improvement-rename",
+  "spec_folder": "skilled-agent-orchestration/z_archive/087-improve-agent-to-deep-agent-improvement-rename",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -56,11 +56,11 @@
       "resource-map.md",
       ".opencode/commands/improve/README.txt",
       ".opencode/skills/sk-doc/assets/agent_template.md",
-      "barter/coder/.opencode/agents/improve-agent.md",
       "implementation-summary.md",
       ".claude/commands/improve/agent.md",
       ".claude/commands/improve/README.txt",
-      ".gemini/commands/improve/README.txt"
+      ".gemini/commands/improve/README.txt",
+      ".opencode/install_guides/SET-UP - AGENTS.md"
     ],
     "entities": [
       {
@@ -136,15 +136,15 @@
         "source": "derived"
       },
       {
-        "name": "improve-agent.md",
-        "kind": "doc",
-        "path": "barter/coder/.opencode/agents/improve-agent.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SET-UP - AGENTS.md",
+        "kind": "doc",
+        "path": ".opencode/install_guides/SET-UP - AGENTS.md",
         "source": "derived"
       },
       {
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Packet 079 renamed the skill `sk-improve-agent` → `deep-agent-improvement` but kept the agent name `@improve-agent` stable per the original 070-sk-deep-rename precedent. The 079 implementation-summary §Known Limitations #5 explicitly noted: \"If full naming-family alignment is desired, a follow-on packet can rename the agent.\" This packet is that follow-on.",
     "created_at": "2026-05-06T13:38:43.676Z",
-    "last_save_at": "2026-05-06T16:54:32.460Z",
+    "last_save_at": "2026-05-18T15:17:57.033Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

@@ -1,0 +1,25 @@
+{
+  "specFolder": "004-cli-devin-quality",
+  "description": "Feature Specification: cli-devin quality optimization",
+  "keywords": [
+    "feature",
+    "specification",
+    "cli-devin",
+    "quality",
+    "optimization"
+  ],
+  "lastUpdated": "2026-05-18T12:36:32.578Z",
+  "specId": "004",
+  "folderSlug": "cli-devin-quality",
+  "parentChain": [
+    "..",
+    ".opencode",
+    "specs",
+    "skilled-agent-orchestration",
+    "114-small-ai-model-optimization"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "18-05-26_13-36__004-l3-packet-authored-budget-engine-verification.md"
+  ]
+}

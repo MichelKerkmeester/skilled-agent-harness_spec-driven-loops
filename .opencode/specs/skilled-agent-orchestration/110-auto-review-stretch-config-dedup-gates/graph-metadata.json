@@ -1,0 +1,141 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/110-auto-review-stretch-config-dedup-gates",
+  "spec_folder": "skilled-agent-orchestration/110-auto-review-stretch-config-dedup-gates",
+  "parent_id": null,
+  "children_ids": [
+    "skilled-agent-orchestration/110-auto-review-stretch-config-dedup-gates/001-mk-plugins-config-uplift",
+    "skilled-agent-orchestration/110-auto-review-stretch-config-dedup-gates/002-sk-code-review-uplift",
+    "skilled-agent-orchestration/110-auto-review-stretch-config-dedup-gates/003-deep-review-uplift",
+    "skilled-agent-orchestration/110-auto-review-stretch-config-dedup-gates/004-deep-agent-improvement-uplift"
+  ],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "110 auto-review stretch uplift",
+      "auto-review stretch teachings",
+      "h5 3-tier config",
+      "h7 marker dedup",
+      "packet 108 follow-on"
+    ],
+    "key_topics": [
+      "110",
+      "auto-review",
+      "stretch",
+      "uplift",
+      "teachings",
+      "3-tier",
+      "config",
+      "marker",
+      "dedup",
+      "packet",
+      "108",
+      "follow-on"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "ai-council/council-report.md",
+      ".opencode/plugins/mk-skill-advisor.js",
+      ".opencode/plugins/mk-code-graph.js",
+      ".opencode/skills/sk-code-review/SKILL.md",
+      ".opencode/skills/deep-agent-improvement/scripts/mutation-coverage.cjs",
+      "skilled-agent-orchestration/106-opencode-auto-review-teachings-research/research/review-report.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "council-report.md",
+        "kind": "doc",
+        "path": "ai-council/council-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "mk-skill-advisor.js",
+        "kind": "code",
+        "path": ".opencode/plugins/mk-skill-advisor.js",
+        "source": "derived"
+      },
+      {
+        "name": "mk-code-graph.js",
+        "kind": "code",
+        "path": ".opencode/plugins/mk-code-graph.js",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code-review/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "mutation-coverage.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-agent-improvement/scripts/mutation-coverage.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "skilled-agent-orchestration/106-opencode-auto-review-teachings-research/research/review-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Review Stretch Uplift",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Active Child",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Source Findings",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Executor",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Packet 108 shipped 5 quick-win teachings (H-1, H-2, H-3, H-4, H-6) from 106's auto-review research, but 6 stretch teachings remain unadopted: H-5 (3-tier config for mk-* plugins), H-7 (marker-based dedup for deep-review multi-dimensional loops), M-1 (PR state dedup for sk-code-review), M-2 (optional min-evidence gate for sk-code-review), M-3 (mutation signature dedup for deep-agent-improvement), M-6 (async config init for mk-* plugins). The 108 packet deferred these to a stretch packet (now this packet 110 — number `109` was taken by parallel `109-subphase-recatalog-and-archive`). Per 110 council verdict (5/5 REQUEST-CHANGES → revisions applied), **H-9 (bounded evidence interpolation) is deferred** — current deep-review prompt packs use state/metadata pointers, not embedded file contents, so H-9's described interpolation point doesn't exist in the current architecture (H-9 may be revisited in a future packet 111+ if a real interpolation path is identified). Implementation cost (post-council revisions): MEDIUM (3-4h) for HIGH-impact items, LOW (~1h) for MEDIUM-impact items — total **~8-10h** after H-9 defer.",
+    "created_at": "2026-05-16T11:00:00Z",
+    "last_save_at": "2026-05-18T15:17:56.762Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ]
+  }
+}

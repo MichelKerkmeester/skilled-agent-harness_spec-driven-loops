@@ -203,7 +203,7 @@ Each recipe ships with `<repo-root>` and `<packet-root>` placeholders. The dispa
 | Placeholder | Substituted by | Example value |
 |-------------|----------------|---------------|
 | `<repo-root>` | Calling AI's CWD or explicit override | `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public` |
-| `<packet-root>` | `{spec_folder}` resolved by the command | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/055-cli-devin-deep-loop-alignment` |
+| `<packet-root>` | `{spec_folder}` resolved by the command | Internal design notes |
 
 The dispatcher writes the substituted JSON to a temp file (e.g. `${TMPDIR:-/tmp}/agent-config-iter-NNN.json`) and passes that temp path to `--agent-config`. The asset files remain unchanged.
 
@@ -248,7 +248,7 @@ devin -p \
 
 ```bash
 REPO_ROOT="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public"
-PACKET_ROOT=".opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/055-cli-devin-deep-loop-alignment"
+PACKET_ROOT="<spec-folder>"
 sed -e "s|<repo-root>|$REPO_ROOT|g" -e "s|<packet-root>|$PACKET_ROOT|g" \
   .opencode/skills/cli-devin/assets/agent-config-synthesis.json \
   > /tmp/agent-config-synthesis.json

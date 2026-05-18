@@ -37,7 +37,7 @@ _memory:
 | **Created** | 2026-04-29 |
 | **Branch** | `main` |
 | **Parent** | `003-mcp-runtime-stress-remediation` |
-| **Predecessor cycles** | `001-search-intelligence-stress-test` (v1.0.1), `010-stress-test-rerun-v1-0-2` (v1.0.2), `021-stress-test-v1-0-3-with-w3-w13-wiring` (v1.0.3) |
+| **Predecessor cycles** | `001-search-intelligence-stress-playbook` (v1.0.1), `010-stress-test-close-loop-measurement-rerun` (v1.0.2), `021-stress-test-enterprise-wiring-expansion` (v1.0.3) |
 | **Mode** | Deep research (`/spec_kit:deep-research:auto` pattern) |
 | **Iterations** | 5 (max); convergence allowed earlier |
 | **Executor** | cli-codex `gpt-5.5` reasoning=`xhigh` service-tier=default (normal) |
@@ -50,7 +50,7 @@ _memory:
 
 ### Problem Statement
 
-The v1.0.3 stress test (Phase H, packet `021-stress-test-v1-0-3-with-w3-w13-wiring`) ran the search/query/RAG stack against post-Phase-G wiring (W3 trust tree, W4 default-on conditional rerank, W5 shadow weights, W6 CocoIndex calibration, W7 degraded-readiness, W8 SearchDecisionEnvelope, W9 shadow JSONL sink, W10 degraded integration, W11 CocoIndex runtime consumer, W12 real QueryPlan to Stage 3, W13 decision audit + SLA). It produced 12-row envelope/audit/shadow samples, computed aggregate metrics, and confirmed W4 trigger logic fires real triggers (no `flag_disabled`/`unknown`).
+The v1.0.3 stress test (Phase H, packet `021-stress-test-enterprise-wiring-expansion`) ran the search/query/RAG stack against post-Phase-G wiring (W3 trust tree, W4 default-on conditional rerank, W5 shadow weights, W6 CocoIndex calibration, W7 degraded-readiness, W8 SearchDecisionEnvelope, W9 shadow JSONL sink, W10 degraded integration, W11 CocoIndex runtime consumer, W12 real QueryPlan to Stage 3, W13 decision audit + SLA). It produced 12-row envelope/audit/shadow samples, computed aggregate metrics, and confirmed W4 trigger logic fires real triggers (no `flag_disabled`/`unknown`).
 
 The verdict was **CONDITIONAL** with these qualifications:
 
@@ -79,10 +79,10 @@ Run 5 focused deep-research iterations on the v1.0.3 stress test results, extern
 
 ### In Scope
 
-- **Re-read v1.0.3 evidence**: `../021-stress-test-v1-0-3-with-w3-w13-wiring/findings-v1-0-3.md`, `../021-stress-test-v1-0-3-with-w3-w13-wiring/findings-rubric-v1-0-3.json`, `../021-stress-test-v1-0-3-with-w3-w13-wiring/measurements/v1-0-3-summary.json`, and the v1.0.3 JSONL samples (021 packet).
-- **Compare to v1.0.2 evidence**: `../010-stress-test-rerun-v1-0-2/findings.md`, `../010-stress-test-rerun-v1-0-2/findings-rubric.json` (010 packet).
+- **Re-read v1.0.3 evidence**: `../021-stress-test-enterprise-wiring-expansion/findings-v1-0-3.md`, `../021-stress-test-enterprise-wiring-expansion/findings-rubric-v1-0-3.json`, `../021-stress-test-enterprise-wiring-expansion/measurements/v1-0-3-summary.json`, and the v1.0.3 JSONL samples (021 packet).
+- **Compare to v1.0.2 evidence**: `../010-stress-test-close-loop-measurement-rerun/findings.md`, `../010-stress-test-close-loop-measurement-rerun/findings-rubric.json` (010 packet).
 - **Compare to v1.0.1 evidence**: corpus + dispatch matrix + scenario execution (001 packet).
-- **Compare to Phase E baselines**: `005-review-remediation/004-search-rag-measurement-driven-implementation/measurements/baseline-*.json` and W3-W7 baseline/variant pairs.
+- **Compare to Phase E baselines**: `005-review-remediation/004-search-rag-measurement-implementation/measurements/baseline-*.json` and W3-W7 baseline/variant pairs.
 - **Trace live handler embed-readiness gate**: `mcp_server/handlers/memory-search.ts` startup contract; identify where `Embedding model not ready after 30s timeout` originates and which seam unblocks deterministic test capture.
 - **Surface fixture-vs-handler envelope parity gap**: identify smallest change to harness so it natively emits SearchDecisionEnvelope/audit/shadow samples (without packet-local wrapper).
 - **Analyze W4 trigger distribution**: per-trigger rates, query-population skew, rerank gating policy validity.
@@ -101,11 +101,11 @@ Run 5 focused deep-research iterations on the v1.0.3 stress test results, extern
 
 ### Files to Read (representative; iterations may add more)
 
-- v1.0.3 evidence: `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/021-stress-test-v1-0-3-with-w3-w13-wiring/{findings-v1-0-3.md, findings-rubric-v1-0-3.json, implementation-summary.md, measurements/*}`
-- v1.0.2 evidence: `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/010-stress-test-rerun-v1-0-2/{findings.md, findings-rubric.json}`
-- v1.0.1 evidence: `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/001-search-intelligence-stress-test/`
-- Phase E measurement baselines: `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-search-rag-measurement-driven-implementation/measurements/`
-- Phase F research output: `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/020-w3-w7-verification-and-expansion-research/research/research-report.md`
+- v1.0.3 evidence: `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/021-stress-test-enterprise-wiring-expansion/{findings-v1-0-3.md, findings-rubric-v1-0-3.json, implementation-summary.md, measurements/*}`
+- v1.0.2 evidence: `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/010-stress-test-close-loop-measurement-rerun/{findings.md, findings-rubric.json}`
+- v1.0.1 evidence: `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/001-search-intelligence-stress-playbook/`
+- Phase E measurement baselines: `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-search-rag-measurement-implementation/measurements/`
+- Phase F research output: `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/020-enterprise-readiness-verification-expansion-research/research/research-report.md`
 - Runtime code (READ ONLY): `mcp_server/handlers/memory-search.ts`, `mcp_server/lib/search/{search-decision-envelope.ts, decision-audit.ts, rerank-gate.ts}`, `mcp_server/lib/rag/trust-tree.ts`, `mcp_server/lib/query/query-plan.ts`, `mcp_server/skill_advisor/lib/shadow/shadow-sink.ts`
 - Harness: `mcp_server/stress_test/search-quality/{harness,corpus,metrics,baseline.vitest}.ts`, `mcp_server/stress_test/search-quality/w*.vitest.ts`
 <!-- /ANCHOR:scope -->
@@ -161,7 +161,7 @@ Run 5 focused deep-research iterations on the v1.0.3 stress test results, extern
 | Risk | xhigh reasoning + 5 iters can drift into speculation if grounding is weak | Per-iter file:line citations are MANDATORY; speculation findings get severity≤P2 |
 | Risk | Telemetry JSONL samples are 12 rows — small sample size for statistical claims | Treat metric deltas as directional, not statistical; require corroborating runtime trace evidence for any "real win" claim |
 | Dependency | v1.0.1, v1.0.2, v1.0.3 packet artifacts must remain on disk | All currently committed on main |
-| Dependency | Phase F expansion ranking must remain on disk | `../020-w3-w7-verification-and-expansion-research/research/research-report.md` currently committed on main |
+| Dependency | Phase F expansion ranking must remain on disk | `../020-enterprise-readiness-verification-expansion-research/research/research-report.md` currently committed on main |
 <!-- /ANCHOR:risks -->
 
 ---

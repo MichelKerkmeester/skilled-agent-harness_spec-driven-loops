@@ -1,6 +1,6 @@
 [
   {
-    "query": "Packet: system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-synthesis-and-remediation Spec Folder: system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-synthesis-and-remediation Status:",
+    "query": "Packet: system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-release-readiness-findings-synthesis-remediation Spec Folder: system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-release-readiness-findings-synthesis-remediation Status:",
     "target_doc_id": "2299"
   },
   {
@@ -16,7 +16,7 @@
     "target_doc_id": "959"
   },
   {
-    "query": "Packet: system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-followup-quality-pass/005-stress-test-folder-migration Spec Folder:",
+    "query": "Packet: system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-post-program-quality-pass/005-stress-test-folder-migration Spec Folder:",
     "target_doc_id": "2278"
   },
   {
@@ -24,7 +24,7 @@
     "target_doc_id": "1100"
   },
   {
-    "query": "--- # SPECKIT_TEMPLATE_SOURCE: plan-core | v2. 2 title: \"Implementation Plan: CocoIndex over-fetch + canonical-identity dedup + path-class rerank [system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/004-cocoindex-overfetch-dedup/plan]\"",
+    "query": "--- # SPECKIT_TEMPLATE_SOURCE: plan-core | v2. 2 title: \"Implementation Plan: CocoIndex over-fetch + canonical-identity dedup + path-class rerank [system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/004-cocoindex-overfetch-dedup-rerank/plan]\"",
     "target_doc_id": "139"
   },
   {
@@ -48,7 +48,7 @@
     "target_doc_id": "802"
   },
   {
-    "query": "Packet: system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/009-phase-parent-documentation/001-validator-and-docs Spec Folder: system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/009-phase-parent-documentation/001-validator-and-docs",
+    "query": "Packet: system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/009-phase-parent-lean-trio-documentation/001-phase-parent-validator-docs Spec Folder: system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/009-phase-parent-lean-trio-documentation/001-phase-parent-validator-docs",
     "target_doc_id": "2228"
   },
   {
@@ -60,7 +60,7 @@
     "target_doc_id": "2128"
   },
   {
-    "query": "Packet: system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-followup-quality-pass Spec Folder: system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-followup-quality-pass Status: planned Importance Tier: important Summary:",
+    "query": "Packet: system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-post-program-quality-pass Spec Folder: system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-post-program-quality-pass Status: planned Importance Tier: important Summary:",
     "target_doc_id": "2280"
   },
   {
@@ -96,7 +96,7 @@
     "target_doc_id": "163"
   },
   {
-    "query": "Packet: system-spec-kit/026-graph-and-context-optimization/007-hook-parity/004-claude-hook-findings-remediation Spec Folder: system-spec-kit/026-graph-and-context-optimization/007-hook-parity/004-claude-hook-findings-remediation Status: complete Importance Tier: important Summary: End-to-end hook testing on 2026-04-23",
+    "query": "Packet: system-spec-kit/026-graph-and-context-optimization/007-hook-parity/004-claude-freshness-schema-harness-fixes Spec Folder: system-spec-kit/026-graph-and-context-optimization/007-hook-parity/004-claude-freshness-schema-harness-fixes Status: complete Importance Tier: important Summary: End-to-end hook testing on 2026-04-23",
     "target_doc_id": "2403"
   },
   {
@@ -188,7 +188,7 @@
     "target_doc_id": "1367"
   },
   {
-    "query": "Spec folder: system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/010-half-auto-upgrades Description: Spec: Half-Auto Upgrades Spec id: 021 Folder slug: half-auto-upgrades Parent chain: system-spec-kit > 026-graph-and-context-optimization > 000-release-cleanup Keywords: spec, half-auto, upgrades",
+    "query": "Spec folder: system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/010-half-auto-upgrade-doc-alignment Description: Spec: Half-Auto Upgrades Spec id: 021 Folder slug: half-auto-upgrades Parent chain: system-spec-kit > 026-graph-and-context-optimization > 000-release-cleanup Keywords: spec, half-auto, upgrades",
     "target_doc_id": "892"
   },
   {

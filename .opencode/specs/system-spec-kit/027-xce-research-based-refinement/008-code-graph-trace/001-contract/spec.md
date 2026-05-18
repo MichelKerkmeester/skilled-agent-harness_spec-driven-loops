@@ -15,7 +15,7 @@ _memory:
     recent_action: "Scaffolded child packet for trace contract work"
     next_safe_action: "Define TraceTool and trace-result interfaces after upstream Phase 002 contract publishes"
     blockers:
-      - "system-spec-kit/027-xce-research-based-refinement/007-code-graph-hld-lld/001-contract"
+      - "system-spec-kit/027-xce-research-based-refinement/005-code-graph-hld-lld/001-contract"
     key_files: ["spec.md", "plan.md", "tasks.md", "checklist.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -42,7 +42,7 @@ _memory:
 | **Status** | spec-scaffolded |
 | **Created** | 2026-05-12 |
 | **Parent Packet** | `system-spec-kit/027-xce-research-based-refinement/008-code-graph-trace` |
-| **Depends on** | `system-spec-kit/027-xce-research-based-refinement/007-code-graph-hld-lld/001-contract` |
+| **Depends on** | `system-spec-kit/027-xce-research-based-refinement/005-code-graph-hld-lld/001-contract` |
 | **Estimated LOC** | ~30 |
 <!-- /ANCHOR:metadata -->
 

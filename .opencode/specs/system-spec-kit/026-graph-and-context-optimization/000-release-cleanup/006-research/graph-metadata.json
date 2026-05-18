@@ -4,10 +4,10 @@
   "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/006-research",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup",
   "children_ids": [
-    "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/006-research/001-automation-self-management-deep",
-    "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/006-research/002-automation-reality-supplemental",
-    "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/006-research/003-system-deep-bugs-and-improvements",
-    "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/006-research/004-deep-research-finding-remediation"
+    "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/006-research/001-automation-self-management-research",
+    "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/006-research/002-automation-reality-supplemental-research",
+    "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/006-research/003-system-bug-improvement-research",
+    "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/006-research/004-deep-research-findings-remediation"
   ],
   "migrated": true,
   "migration_source": "legacy",
@@ -87,7 +87,7 @@
     ],
     "causal_summary": "This sub-phase groups deep research charters and remediation work for automation self-management, system bugs, and supplemental investigations. The four children bind together thematically through their focus on investigation-driven improvement: 016 and 017 explore automation capabilities and reality, while 046 conducts system-wide deep research and 049 remediates findings from those investigations.",
     "created_at": "2026-05-16T09:00:00Z",
-    "last_save_at": "2026-05-18T08:15:53.304Z",
+    "last_save_at": "2026-05-18T15:17:57.239Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

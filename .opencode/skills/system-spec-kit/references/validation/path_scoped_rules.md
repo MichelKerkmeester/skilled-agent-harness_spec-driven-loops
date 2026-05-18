@@ -50,7 +50,7 @@ ENVIRONMENT OVERRIDES (runtime control)
 | `**/memory/**`                                 | Minimal validation (generated continuity support artifacts validated by ANCHORS_VALID only) |
 | `.opencode/skills/system-spec-kit/templates/**` | Skip content validation      |
 | `specs/**/`                                    | Level-appropriate validation (recursive through nested packet families) |
-| `.opencode/specs/**/`                          | Level-appropriate validation (recursive through nested packet families) |
+| `<active-spec-folder>/**/`                          | Level-appropriate validation (recursive through nested packet families) |
 
 ### By Level
 

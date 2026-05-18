@@ -1,27 +1,24 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/061-agent-optimization",
-  "spec_folder": "skilled-agent-orchestration/061-agent-optimization",
+  "packet_id": "skilled-agent-orchestration/z_archive/061-agent-optimization",
+  "spec_folder": "skilled-agent-orchestration/z_archive/061-agent-optimization",
   "parent_id": null,
   "children_ids": [
-    "skilled-agent-orchestration/061-agent-optimization/001-agent-context",
-    "skilled-agent-orchestration/061-agent-optimization/002-agent-debug",
-    "skilled-agent-orchestration/061-agent-optimization/003-agent-write",
-    "skilled-agent-orchestration/061-agent-optimization/004-agent-review",
-    "skilled-agent-orchestration/061-agent-optimization/005-agent-orchestrate",
-    "skilled-agent-orchestration/061-agent-optimization/006-agent-multi-ai-council",
-    "skilled-agent-orchestration/061-agent-optimization/007-agent-improve-prompt",
-    "skilled-agent-orchestration/061-agent-optimization/008-agent-deep-review",
-    "skilled-agent-orchestration/061-agent-optimization/009-agent-deep-research"
+    "skilled-agent-orchestration/z_archive/061-agent-optimization/001-agent-context",
+    "skilled-agent-orchestration/z_archive/061-agent-optimization/002-agent-debug",
+    "skilled-agent-orchestration/z_archive/061-agent-optimization/004-agent-review",
+    "skilled-agent-orchestration/z_archive/061-agent-optimization/005-agent-orchestrate",
+    "skilled-agent-orchestration/z_archive/061-agent-optimization/006-agent-multi-ai-council",
+    "skilled-agent-orchestration/z_archive/061-agent-optimization/007-agent-improve-prompt",
+    "skilled-agent-orchestration/z_archive/061-agent-optimization/008-agent-deep-review",
+    "skilled-agent-orchestration/z_archive/061-agent-optimization/009-agent-deep-research"
   ],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      "skilled-agent-orchestration/060-sk-agent-improver-test-report-alignment"
-    ],
+    "depends_on": [],
     "supersedes": [],
-    "related_to": [
-      "skilled-agent-orchestration/059-agent-implement-code"
-    ]
+    "related_to": []
   },
   "derived": {
     "trigger_phrases": [
@@ -33,17 +30,74 @@
     ],
     "key_topics": [
       "061",
-      "agent-optimization",
-      "sk-improve-agent-application",
-      "9-agent-fleet",
-      "ultra-think-rename",
-      "multi-ai-council"
+      "root",
+      "phase",
+      "parent",
+      "agent",
+      "optimization",
+      "fleet",
+      "improvement",
+      "improve",
+      "agents",
+      "sk-improve-agent",
+      "triad"
     ],
-    "status": "complete",
-    "completion_pct": 100,
-    "last_active_child_id": "skilled-agent-orchestration/061-agent-optimization/008-agent-deep-review",
-    "level": 3,
-    "is_phase_parent": true,
-    "final_summary": "9 sub-phases \u00d7 5 iters complete. 6 agents promoted: @context, @debug, @ultra-think\u2192@multi-ai-council, @improve-prompt, @deep-review (trimmed iter-5), @deep-research (iter-5). 3 kept baseline (@write, @review, @orchestrate \u2014 substrate scoring ceiling). Substrate-ceiling pattern empirically confirmed."
+    "importance_tier": "high",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Agent Fleet Optimization",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "this",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "canonical",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "structural",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "ROOT PURPOSE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The sk-improve-agent triad was empirically validated in packet 060 — final composite **PASS 6 / PARTIAL 0 / FAIL 0** against a substrate built across 5 sub-phases. The methodology, rubric, and tooling are now production-ready.",
+    "created_at": "2026-05-18T07:49:27.101Z",
+    "last_save_at": "2026-05-18T15:17:56.929Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ]
   }
 }

@@ -1,0 +1,27 @@
+{
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-deep-research-findings-remediation/007-topology-build-boundary-remediation",
+  "description": "Feature Specification: 007 Topology And Build/Dist Boundary Remediation",
+  "keywords": [
+    "feature",
+    "specification",
+    "007",
+    "topology",
+    "build",
+    "dist",
+    "boundary",
+    "remediation"
+  ],
+  "lastUpdated": "2026-05-08T08:26:57.468Z",
+  "specId": "007",
+  "folderSlug": "topology-build-boundary",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "000-release-cleanup",
+    "004-deep-research-findings-remediation"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "01-05-26_07-52__closed-6-p2-findings-f-019-d4-02-03-and-f-020-d5.md"
+  ]
+}

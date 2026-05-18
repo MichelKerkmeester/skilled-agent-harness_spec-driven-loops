@@ -25,7 +25,7 @@ The top-level status is currently derived from two signals only: embedding model
 
 All health validation failures return MCP error envelopes with `E_INVALID_INPUT` and `data.details.requestId`. User-facing hints sanitize absolute paths and stack traces before returning error context.
 
-`data.routing` (added by packet 012) reports per-channel routing telemetry: `graphChannelInvocationRate`, `channelInvocationRates` (vector / fts / bm25 / graph / degree), `totalRecorded`, and `windowSize`. The values come from a 200-decision in-process rolling ring populated by `routing-telemetry.ts:recordInvocation()` on every `routeQuery()` call, and reset on process restart. Operators use this to watch graph-channel utilization without a separate probe — particularly relevant for verifying the `SPECKIT_GRAPH_CHANNEL_PRESERVATION` override is firing as expected. See `feature_catalog/12--query-intelligence/12-graph-channel-preservation.md` for the override mechanics.
+`data.routing` reports per-channel routing telemetry: `graphChannelInvocationRate`, `channelInvocationRates` (vector / fts / bm25 / graph / degree), `totalRecorded`, and `windowSize`. The values come from a 200-decision in-process rolling ring populated by `routing-telemetry.ts:recordInvocation()` on every `routeQuery()` call, and reset on process restart. Operators use this to watch graph-channel utilization without a separate probe — particularly relevant for verifying the `SPECKIT_GRAPH_CHANNEL_PRESERVATION` override is firing as expected. See `feature_catalog/12--query-intelligence/12-graph-channel-preservation.md` for the override mechanics.
 
 ---
 
@@ -43,7 +43,7 @@ All health validation failures return MCP error envelopes with `E_INVALID_INPUT`
 | `mcp_server/tool-schemas.ts` | MCP-visible JSON schema for `memory_health` arguments |
 | `mcp_server/lib/response/envelope.ts` | MCP success/error envelope helpers |
 | `mcp_server/lib/search/vector-index.ts` | Database access facade used by the handler |
-| `mcp_server/lib/search/routing-telemetry.ts` | Rolling channel-invocation telemetry surfaced under `data.routing` (added by packet 012) |
+| `mcp_server/lib/search/routing-telemetry.ts` | Rolling channel-invocation telemetry surfaced under `data.routing` |
 
 ### Validation And Tests
 

@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Adopt typed phase-DAG runner around code-graph scan; build read-only detect_changes handler that maps git diff hunks to symbols and refuses to answer when graph is stale.",
     "created_at": "2026-04-25T10:48:07.133Z",
-    "last_save_at": "2026-05-18T08:15:53.395Z",
+    "last_save_at": "2026-05-18T15:17:57.307Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

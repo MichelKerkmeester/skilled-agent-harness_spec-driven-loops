@@ -33,7 +33,7 @@ Write `review-report.md` at `specs/.../001-post-program-cleanup/review/001-post-
 
 **Specific review angles:**
 
-- **A1** Survey `derived.status` in graph-metadata.json across: 005-memory-indexer-invariants, 011-mcp-runtime-stress-remediation, 008/002-daemon-and-unification, 005-review-remediation/{001,002,003,004}. Flag any that don't reflect their actual completion state.
+- **A1** Survey `derived.status` in graph-metadata.json across: 005-memory-indexer-invariants, 011-mcp-runtime-stress-remediation, 008/002-skill-graph-daemon-native-advisor-tools, 005-review-remediation/{001,002,003,004}. Flag any that don't reflect their actual completion state.
 - **A2** Confirm 005-review-remediation/{001,004} sub-phase `derived.status` is `planned` while their `implementation-summary.md` says complete with green tests. P1 if confirmed.
 - **A3** Read `026/spec.md` PHASE DOCUMENTATION MAP. Confirm 005-review-remediation isn't listed as a child of `000-release-cleanup`. P2 traceability.
 - **A4** Run `validate.sh --strict` on `005-memory-indexer-invariants` and `011-mcp-runtime-stress-remediation`. Catalog the failure modes. Same kind of template debt as fixed in the program's hygiene pass for 7 OTHER packets.
@@ -48,7 +48,7 @@ Write `review-report.md` at `specs/.../001-post-program-cleanup/review/001-post-
 - **B2** Audit two new test fixtures: `mcp_server/tests/fixtures/memory-index-db.ts` and `mcp_server/tests/fixtures/skill-graph-db.ts`. Do they share infrastructure or duplicate setup? Could they be unified?
 - **B3** Run the FULL focused vitest suite (or sample 3-5 of the new regression tests) and confirm no inter-test state collisions or process leakage. The program tested focused subsets but never the full sweep with all new fixtures + tests loaded together.
 - **D1** Cross-check the 4 implementation-summary.md files (under 005-review-remediation/001/, 002/, 003/, 004/) for contradictions. E.g., do file:line citations agree across summaries when they reference the same file? Did codex's autonomous closures introduce any disposition drift between sub-phases?
-- **D2** Verify `findings-rubric.json` (002 sub-phase) — confirm the 30-cell scores actually map to data in `010-stress-test-rerun-v1-0-2/findings.md`. If any cell scores were synthesized due to gaps in the markdown narrative, that's a P1 audit issue.
+- **D2** Verify `findings-rubric.json` (002 sub-phase) — confirm the 30-cell scores actually map to data in `010-stress-test-close-loop-measurement-rerun/findings.md`. If any cell scores were synthesized due to gaps in the markdown narrative, that's a P1 audit issue.
 
 ### PHASE 2 — SYNTHESIZE
 

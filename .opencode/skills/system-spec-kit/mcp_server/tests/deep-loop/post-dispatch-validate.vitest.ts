@@ -1,4 +1,4 @@
-import { mkdtempSync, rmSync, statSync, writeFileSync } from 'node:fs';
+import { mkdtempSync, readFileSync, rmSync, statSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 
@@ -6,6 +6,7 @@ import { describe, expect, it } from 'vitest';
 
 import {
   PostDispatchValidationError,
+  runOptionalVerificationPass,
   validateIterationOutputs,
   validateOrThrow,
 } from '../../lib/deep-loop/post-dispatch-validate.js';
@@ -272,6 +273,138 @@ describe('post-dispatch-validate', () => {
           requiredJsonlFields: ['type', 'iteration', 'newInfoRatio', 'status', 'focus'],
         }),
       ).toBeUndefined();
+    });
+  });
+
+  it('marks verification-enabled bad code output as degraded in JSONL', () => {
+    withTempPaths(({ iterationFile, stateLogPath }) => {
+      writeFileSync(
+        iterationFile,
+        [
+          '# Iteration 1',
+          '',
+          '```typescript',
+          'export function broken() {',
+          '  return 1;',
+          '```',
+          '',
+        ].join('\n'),
+        'utf8',
+      );
+      writeFileSync(stateLogPath, '{"type":"event"}\n', 'utf8');
+      const previousStateLogSize = statSync(stateLogPath).size;
+
+      writeFileSync(
+        stateLogPath,
+        `${'{"type":"event"}\n'}${'{"type":"iteration","iteration":1,"newInfoRatio":0.4,"status":"continue","focus":"coverage"}\n'}`,
+        'utf8',
+      );
+
+      const result = validateIterationOutputs({
+        iterationFile,
+        stateLogPath,
+        previousStateLogSize,
+        requiredJsonlFields: ['type', 'iteration', 'newInfoRatio', 'status', 'focus'],
+        recipeConfig: {
+          verification_enabled: true,
+          verification_languages: ['typescript'],
+          verification_threshold: 0.5,
+        },
+      });
+
+      expect(result).toEqual({
+        ok: false,
+        reason: 'verification_degraded',
+        details: 'verification confidence 0.00 below threshold 0.50',
+      });
+      expect(readFileSync(stateLogPath, 'utf8')).toContain('"event":"verification_degraded"');
+      expect(readFileSync(stateLogPath, 'utf8')).toContain('"status":"degraded"');
+    });
+  });
+
+  it('passes verification-enabled good code output', () => {
+    withTempPaths(({ iterationFile, stateLogPath }) => {
+      writeFileSync(
+        iterationFile,
+        [
+          '# Iteration 1',
+          '',
+          '```typescript',
+          'export function add(left: number, right: number): number {',
+          '  return left + right;',
+          '}',
+          '```',
+          '',
+        ].join('\n'),
+        'utf8',
+      );
+      writeFileSync(stateLogPath, '{"type":"event"}\n', 'utf8');
+      const previousStateLogSize = statSync(stateLogPath).size;
+
+      writeFileSync(
+        stateLogPath,
+        `${'{"type":"event"}\n'}${'{"type":"iteration","iteration":1,"newInfoRatio":0.4,"status":"continue","focus":"coverage"}\n'}`,
+        'utf8',
+      );
+
+      expect(
+        validateIterationOutputs({
+          iterationFile,
+          stateLogPath,
+          previousStateLogSize,
+          requiredJsonlFields: ['type', 'iteration', 'newInfoRatio', 'status', 'focus'],
+          recipeConfig: {
+            verification_enabled: true,
+            verification_languages: ['typescript'],
+            verification_threshold: 0.5,
+          },
+        }),
+      ).toEqual({ ok: true });
+      expect(readFileSync(stateLogPath, 'utf8')).not.toContain('"event":"verification_degraded"');
+    });
+  });
+
+  it('keeps verification disabled as a no-op for backward compatibility', () => {
+    withTempPaths(({ iterationFile, stateLogPath }) => {
+      writeFileSync(
+        iterationFile,
+        [
+          '# Iteration 1',
+          '',
+          '```typescript',
+          'export function broken() {',
+          '  return 1;',
+          '```',
+          '',
+        ].join('\n'),
+        'utf8',
+      );
+      writeFileSync(stateLogPath, '{"type":"event"}\n', 'utf8');
+      const previousStateLogSize = statSync(stateLogPath).size;
+
+      writeFileSync(
+        stateLogPath,
+        `${'{"type":"event"}\n'}${'{"type":"iteration","iteration":1,"newInfoRatio":0.4,"status":"continue","focus":"coverage"}\n'}`,
+        'utf8',
+      );
+
+      expect(
+        validateIterationOutputs({
+          iterationFile,
+          stateLogPath,
+          previousStateLogSize,
+          requiredJsonlFields: ['type', 'iteration', 'newInfoRatio', 'status', 'focus'],
+          recipeConfig: {
+            verification_enabled: false,
+            verification_languages: ['typescript'],
+          },
+        }),
+      ).toEqual({ ok: true });
+      expect(runOptionalVerificationPass(iterationFile, { verification_enabled: false })).toEqual({
+        ok: true,
+        skipped: true,
+        reason: 'verification_disabled',
+      });
     });
   });
 });

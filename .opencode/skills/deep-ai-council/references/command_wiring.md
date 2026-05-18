@@ -55,7 +55,7 @@ Use this when an external AI vantage contributes the report but packet artifacts
 ## 3. SHELL SNIPPET
 
 ```bash
-PACKET=".opencode/specs/skilled-agent-orchestration/101-deep-multi-ai-council-skill"
+PACKET="<spec-folder>"
 REPORT="/tmp/council-report.md"
 PAYLOAD="/tmp/council-payload.json"
 

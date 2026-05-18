@@ -1,13 +1,13 @@
 ---
 title: "279 -- Graph degraded stress cell with SPEC_KIT_DB_DIR isolation"
-description: "This scenario validates the deterministic isolated-DB sweep that exercises all 4 fallbackDecision matrix branches without touching the live code-graph DB (packet 013). Pattern: initDb(tmpdir) + vi.spyOn(getDb) + sha256 byte-equality."
+description: "This scenario validates the deterministic isolated-DB sweep that exercises all 4 fallbackDecision matrix branches without touching the live code-graph DB. Pattern: initDb(tmpdir) + vi.spyOn(getDb) + sha256 byte-equality."
 ---
 
 # 279 -- Graph degraded stress cell with SPEC_KIT_DB_DIR isolation
 
 ## 1. OVERVIEW
 
-This scenario validates the integration sweep authored in packet 013 that closes the v1.0.2 NEUTRAL verdict on packet 005's fast-fail handler. It focuses on the test-isolation pattern (`initDb(tmpdir)` + `vi.spyOn(getDb)` + `vi.spyOn(process, 'cwd')`) plus the live-DB byte-equality guard that proves the sweep cannot mutate production bytes.
+This scenario validates the integration sweep that closes the v1.0.2 NEUTRAL verdict on the fast-fail handler. It focuses on the test-isolation pattern (`initDb(tmpdir)` + `vi.spyOn(getDb)` + `vi.spyOn(process, 'cwd')`) plus the live-DB byte-equality guard that proves the sweep cannot mutate production bytes.
 
 ---
 
@@ -59,7 +59,7 @@ If sha256 diff non-empty: inspect `mcp_server/tests/code-graph-degraded-sweep.vi
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
 - Sibling (operator-facing fast-fail contract): [22--context-preservation/277-code-graph-fast-fail.md](../22--context-preservation/277-code-graph-fast-fail.md)
 - Sibling (rebuild + restart + live probe): [278-mcp-daemon-rebuild-restart-live-probe.md](./278-mcp-daemon-rebuild-restart-live-probe.md)
-- Implementation summary: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/013-graph-degraded-stress-cell/implementation-summary.md`
+- Implementation context: local graph-degraded stress-cell notes
 
 ---
 

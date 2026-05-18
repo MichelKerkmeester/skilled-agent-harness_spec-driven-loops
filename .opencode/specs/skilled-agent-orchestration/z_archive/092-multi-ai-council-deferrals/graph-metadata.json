@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/092-multi-ai-council-deferrals",
-  "spec_folder": "skilled-agent-orchestration/092-multi-ai-council-deferrals",
+  "packet_id": "skilled-agent-orchestration/z_archive/092-multi-ai-council-deferrals",
+  "spec_folder": "skilled-agent-orchestration/z_archive/092-multi-ai-council-deferrals",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -41,7 +41,6 @@
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      ".codex/agents/multi-ai-council.toml",
       "plan.md",
       "tasks.md",
       "checklist.md",
@@ -50,12 +49,6 @@
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "multi-ai-council.toml",
-        "kind": "file",
-        "path": ".codex/agents/multi-ai-council.toml",
-        "source": "derived"
-      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -193,11 +186,17 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Level 3 (+Arch) is appropriate when:",
     "created_at": "2026-05-06T17:36:40Z",
-    "last_save_at": "2026-05-06T17:51:53.297Z",
+    "last_save_at": "2026-05-18T15:17:57.038Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

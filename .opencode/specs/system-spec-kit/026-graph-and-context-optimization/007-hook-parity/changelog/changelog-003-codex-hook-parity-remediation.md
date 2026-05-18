@@ -16,7 +16,7 @@ contextType: "implementation"
 
 ## 2026-04-22
 
-> Spec folder: `026-graph-and-context-optimization/007-hook-parity/003-codex-hook-parity-remediation` (Level 3)
+> Spec folder: `026-graph-and-context-optimization/007-hook-parity/003-codex-native-startup-advisor-hooks` (Level 3)
 > Parent packet: `026-graph-and-context-optimization/007-hook-parity`
 
 ### Summary

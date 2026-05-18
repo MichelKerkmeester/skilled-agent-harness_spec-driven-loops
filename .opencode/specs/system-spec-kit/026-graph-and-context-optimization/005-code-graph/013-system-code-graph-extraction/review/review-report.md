@@ -245,7 +245,7 @@ All use `mcp_server/lib/` (flattened) — not the old `mcp_server/code_graph/lib
 ### Q9 — Recalibration Metadata (Detailed Evidence)
 
 All 7 children have `derived.status: "complete"`:
-- `001-design-and-decision-record` — status: complete, last_save: 2026-05-14T09:13:21Z
+- `001-extraction-design-and-adr` — status: complete, last_save: 2026-05-14T09:13:21Z
 - `002-scaffold-skill` — status: complete, last_save: 2026-05-14T09:13:21Z
 - `003-physical-move-and-database` — status: complete, last_save: 2026-05-14T09:13:21Z
 - `004-rewire-consumers-and-tool-registration` — status: complete, last_save: 2026-05-14T09:13:21Z

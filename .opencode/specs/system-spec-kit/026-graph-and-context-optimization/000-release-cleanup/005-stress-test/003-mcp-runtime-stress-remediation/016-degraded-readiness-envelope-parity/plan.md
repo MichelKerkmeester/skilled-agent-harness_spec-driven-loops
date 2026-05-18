@@ -182,11 +182,11 @@ code_graph_status (stats crash)
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| 011-post-stress-followup-research / review-report.md | Internal | Green | Source of truth |
-| 014-graph-status-readiness-snapshot | Internal | Green | Read-only snapshot helper is the F-003 foundation |
+| 011-post-stress-finding-remediation-research / review-report.md | Internal | Green | Source of truth |
+| 014-code-graph-status-readiness-snapshot | Internal | Green | Read-only snapshot helper is the F-003 foundation |
 | 015-cocoindex-seed-telemetry-passthrough | Internal | Green | Healthy-path tests must stay green |
-| 013-graph-degraded-stress-cell | Internal | Green (related) | Stress cell this remediation closes |
-| 005-code-graph-fast-fail | Internal | Green (related) | Same readiness vocabulary; no overlap |
+| 013-code-graph-degraded-stress-cell | Internal | Green (related) | Stress cell this remediation closes |
+| 005-code-graph-fail-fast-routing | Internal | Green (related) | Same readiness vocabulary; no overlap |
 | 008-mcp-daemon-rebuild-protocol | Internal | Green | Live probe gating |
 <!-- /ANCHOR:dependencies -->
 

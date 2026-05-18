@@ -37,7 +37,7 @@ Move the scaffolded folder from the default location into the selected track, fo
 
 ```bash
 mv specs/078-opencode-authoring-recipe \
-  .opencode/specs/skilled-agent-orchestration/078-opencode-authoring-recipe/001-sk-code-authoring
+  <spec-folder>
 ```
 
 Verification gate: confirm the final path is under `specs/` or `.opencode/specs/` and matches the packet pointer.
@@ -106,7 +106,7 @@ Verification gate: confirm `git status --short` only includes the intended packe
 | TEMPLATE_HEADERS error | tasks.md must use canonical "Phase 1: Setup" / "Phase 2: Implementation" / "Phase 3: Verification" headers |
 | ANCHORS_VALID error | plan.md needs all 7 anchors (summary/quality-gates/architecture/phases/testing/dependencies/rollback) |
 | SPECDOC_SUFFICIENCY_004 | research.md needs at least one ANCHOR block containing a citation pattern (file path in backticks, markdown link, or "iteration-N" reference) |
-| FRONTMATTER_VALID error on packet_pointer | Use slash-separated relative path like "skilled-agent-orchestration/078-..." not just "078-..." |
+| FRONTMATTER_VALID error on packet_pointer | Use the full slash-separated relative path for the active work packet, not only its leaf folder name |
 
 ## 6. RELATED RESOURCES
 

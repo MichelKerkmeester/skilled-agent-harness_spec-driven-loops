@@ -16,7 +16,7 @@ contextType: "implementation"
 
 ## 2026-05-02
 
-> Spec folder: `026-graph-and-context-optimization/008-template-levels/005-skill-references-assets-alignment` (Level 3)
+> Spec folder: `026-graph-and-context-optimization/008-template-levels/005-skill-reference-asset-doc-alignment` (Level 3)
 > Parent packet: `026-graph-and-context-optimization/008-template-levels`
 
 ### Summary

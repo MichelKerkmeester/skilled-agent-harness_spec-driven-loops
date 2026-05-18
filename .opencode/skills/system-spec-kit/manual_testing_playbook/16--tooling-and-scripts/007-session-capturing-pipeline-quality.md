@@ -90,7 +90,7 @@ This snippet preserves the canonical memory/spec-kit operator workflow for `M-00
     - `cd .opencode/skills/system-spec-kit/mcp_server && npm run test:core -- tests/handler-memory-save.vitest.ts tests/recovery-hints.vitest.ts tests/quality-loop.vitest.ts tests/save-quality-gate.vitest.ts tests/preflight.vitest.ts tests/integration-save-pipeline.vitest.ts`
     - `cd .opencode/skills/system-spec-kit/mcp_server && npm run test`
     - `python3 .opencode/skills/sk-code/scripts/verify_alignment_drift.py --root .opencode/skills/system-spec-kit/scripts`
-    - `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing`
+    - `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <spec-folder>`
   - Manual/e2e scenarios:
     - `M-007a` Rich JSON-mode save: run `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js <json-data-file> 009-perfect-session-capturing` with a populated synthetic or sandbox JSON file and verify `qualityValidation.valid === true`, indexing succeeds, and a spec-doc record ID is returned.
     - `M-007a` Rich JSON-mode save: use the documented snake_case JSON contract or camelCase equivalent, then verify `qualityValidation.valid === true`, indexing succeeds, and a spec-doc record ID is returned.

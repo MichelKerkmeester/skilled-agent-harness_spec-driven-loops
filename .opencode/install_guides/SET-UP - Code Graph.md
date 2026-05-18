@@ -1,10 +1,10 @@
 # SET-UP - Code Graph
 
-User-facing diagnostic guide for `/doctor code-graph` (Phase A — diagnostic-only). Audit the code-graph index for stale + missed files and bloat directories without modifying any source files. Phase B (apply mode) is gated on the resilience-research packet 007.
+User-facing diagnostic guide for `/doctor code-graph` (Phase A — diagnostic-only). Audit the code-graph index for stale + missed files and bloat directories without modifying any source files. Phase B (apply mode) is gated on the resilience-research assets.
 
 > **Part of OpenCode Installation.** See the [Master Installation Guide](./README.md) for complete setup.
 > **Command:** `/doctor code-graph` (auto + confirm modes) — full reference in `.opencode/commands/doctor.md`.
-> **Phase:** A (read-only). Phase B (apply mode) coming after research packet 007 stabilizes.
+> **Phase:** A (read-only). Phase B (apply mode) coming after the resilience-research assets stabilize.
 
 ---
 
@@ -100,7 +100,7 @@ Apply mode mutates `.opencode/code-graph.config.json` only. Pre-apply snapshot l
 - Any source file in the workspace
 - Any code under `.opencode/skills/system-spec-kit/mcp_server/`
 - The code-graph SQLite database (mutations happen via `code_graph_scan` only)
-- The 007 research assets (`.opencode/specs/.../assets/` is read-only)
+- The code-graph resilience assets are read-only reference material
 
 After running diagnostic mode, `git status` should show no diffs outside the packet scratch path. After running apply mode, only `.opencode/code-graph.config.json` should change in the working tree.
 
@@ -125,7 +125,7 @@ The diagnostic report has four sections:
 | Medium | Common build-output pattern that usually benefits from exclusion (`dist/`, `build/`) | Review per-repo |
 | Low | Custom-named pattern detected via heuristics | Manual decision required |
 
-(Authoritative tier definitions land in research packet 007's `assets/exclude-rule-confidence.json` once that loop completes.)
+(Authoritative tier definitions land in the resilience assets once that loop completes.)
 
 ---
 
@@ -159,7 +159,5 @@ When Phase B ships, this entire flow (apply → verify → rollback if regressed
 
 - **Command reference:** `.opencode/commands/doctor.md`
 - **Workflow YAML:** `.opencode/commands/doctor/assets/doctor_code-graph_{auto,confirm}.yaml`
-- **Spec packet:** `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/005-code-graph-doctor-command/`
-- **Research packet (gates Phase B):** `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research/`
 - **Sibling doctor commands:** `/doctor:mcp install`, `/doctor:mcp debug`, `/doctor skill-advisor`
 - **Related guides:** [SET-UP - Skill Advisor](./SET-UP%20-%20Skill%20Advisor.md) (sibling 5-phase doctor command pattern)

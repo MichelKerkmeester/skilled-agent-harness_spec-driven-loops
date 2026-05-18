@@ -607,7 +607,7 @@ workflow:
     - "Run @markdown quality validation to score the created agent definition file"
     - "Validation checks: frontmatter validity, permission config, behavioral rules"
     - "Score against 100-point rubric (Accuracy 40%, Completeness 35%, Consistency 25%)"
-    - "Description budget check (packet 086): run `python3 .opencode/skills/sk-doc/scripts/quick_validate.py <agent-dir> --json` against the agent's frontmatter. Soft-warn when description > 130 chars; hard-fail > 1536. Hard-fail blocks completion; soft-warn surfaces the trim suggestion but does not block."
+    - "Description budget check: run `python3 .opencode/skills/sk-doc/scripts/quick_validate.py <agent-dir> --json` against the agent's frontmatter. Soft-warn when description > 130 chars; hard-fail > 1536. Hard-fail blocks completion; soft-warn surfaces the trim suggestion but does not block."
     on_low_score:
       threshold: 70
       action: "Log warnings and suggest improvements; do not block workflow"

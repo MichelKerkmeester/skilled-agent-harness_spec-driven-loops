@@ -14,12 +14,12 @@
 | `b1489f1b2` | `005-review-remediation/002-stress-test-pattern-documentation` | docs (sk-doc 14--stress-testing) |
 | `e91d2c7c2` | `005-review-remediation/005-vestigial-embedding-readiness-gate-removal` | fix (gate delete) |
 | `746afa266` | `011/022-stress-test-results-deep-research` | research (5-iter on v1.0.3) |
-| `af22aa045` | `011/023-live-handler-envelope-capture-seam` | test (PP-1 behavioral) |
+| `af22aa045` | `011/023-live-handler-envelope-capture-interface` | test (PP-1 behavioral) |
 | `c4f738b1d` | `011/024-harness-telemetry-export-mode` | test (PP-2 harness types) |
 | `bd0de4b6b` | `011/025-memory-search-degraded-readiness-wiring` | feat (degradedReadiness Option C) |
 | `733ce07c3` | `011/026-readiness-scaffolding-cleanup` | chore (8 prod + 18 test files) |
 | `cb19d4cb3` | `011/027-memory-context-structural-channel-research` | research (5-iter fusion) |
-| `649b46576` | `011/028-deep-review-skill-contract-fixes` | fix (resolver + YAMLs + docs) |
+| `649b46576` | `011/028-deep-review-research-skill-contract-fixes` | fix (resolver + YAMLs + docs) |
 
 ## Iteration Focus Map (Pre-Plan; iterations may refine)
 

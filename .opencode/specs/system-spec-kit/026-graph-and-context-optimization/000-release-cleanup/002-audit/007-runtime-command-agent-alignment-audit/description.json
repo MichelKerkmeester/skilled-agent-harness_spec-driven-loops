@@ -1,0 +1,33 @@
+{
+  "title": "049 Runtime Command Agent Alignment Review",
+  "trigger_phrases": [
+    "007-runtime-command-agent-alignment-audit",
+    "runtime command audit",
+    "agent alignment review",
+    "cross-runtime agent consistency"
+  ],
+  "contextType": "implementation",
+  "importance_tier": "important",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/007-runtime-command-agent-alignment-audit",
+  "description": "Feature Specification: 049 Runtime Command Agent Alignment Review",
+  "keywords": [
+    "feature",
+    "specification",
+    "049",
+    "runtime",
+    "command",
+    "agent",
+    "alignment",
+    "review"
+  ],
+  "lastUpdated": "2026-05-08T08:26:57.398Z",
+  "specId": "036",
+  "folderSlug": "runtime-command-agent-alignment-review",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "000-release-cleanup"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

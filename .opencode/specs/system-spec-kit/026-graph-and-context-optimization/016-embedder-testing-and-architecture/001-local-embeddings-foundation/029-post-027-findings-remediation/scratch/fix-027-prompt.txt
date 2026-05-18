@@ -34,7 +34,7 @@
 10. `PUBLIC_RELEASE.md` (line ~25: singleton example → profile-keyed placeholder)
 11. `.opencode/skills/system-spec-kit/shared/README.md` (lines ~207, ~364: `speckit_memory.db` references → `context-index__*.sqlite` profile pattern)
 12. `.opencode/skills/system-spec-kit/mcp_server/scripts/migrations/restore-checkpoint.ts` (line ~169: backup basename uses singleton — use `pre-restore-${path.basename(args.dbPath)}`)
-13. `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-runtime-cleanup-followups/graph-metadata.json` (line ~88: refresh stale DB path)
+13. `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-runtime-root-memory-cleanup-followups/graph-metadata.json` (line ~88: refresh stale DB path)
 14. `.opencode/skills/system-spec-kit/scripts/evals/run-bm25-baseline.ts` (line ~10: comment singleton sqlite)
 15. `.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-generator.ts` (line ~100: provenance comment singleton)
 16. `.opencode/skills/system-spec-kit/scripts/tests/test-folder-detector-functional.js` (line ~22: test points at singleton)

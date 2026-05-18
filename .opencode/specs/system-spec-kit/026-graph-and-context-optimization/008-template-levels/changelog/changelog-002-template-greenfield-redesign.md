@@ -17,7 +17,7 @@ contextType: "implementation"
 
 ## 2026-05-01
 
-> Spec folder: `026-graph-and-context-optimization/008-template-levels/002-template-greenfield-redesign` (Level 3)
+> Spec folder: `026-graph-and-context-optimization/008-template-levels/002-manifest-driven-template-design` (Level 3)
 > Parent packet: `026-graph-and-context-optimization/008-template-levels`
 
 ### Summary
@@ -55,18 +55,18 @@ Five ADRs formalize the decisions: ADR-001 (C+F hybrid chosen), ADR-002 (manifes
 
 | File | What changed |
 |------|--------------|
-| `002-template-greenfield-redesign/spec.md` | Greenfield spec with 10 requirements, 5 user stories, 5 candidate designs |
-| `002-template-greenfield-redesign/plan.md` | 4-phase implementation plan (ADD, MODIFY scaffolder, MODIFY validators, DELETE legacy) |
-| `002-template-greenfield-redesign/tasks.md` | 19 tasks across 3 phases |
-| `002-template-greenfield-redesign/decision-record.md` | ADR-001 through ADR-005 |
-| `002-template-greenfield-redesign/checklist.md` | Verification gates |
-| `002-template-greenfield-redesign/implementation-summary.md` | Research outcomes summary |
-| `002-template-greenfield-redesign/research/research.md` | 40.9 KB synthesized findings |
-| `002-template-greenfield-redesign/research/resource-map.md` | 11.5 KB file inventory |
-| `002-template-greenfield-redesign/research/iterations/` (14 files) | Iterative research output |
-| `002-template-greenfield-redesign/research/prompts/` (14 files) | Iteration prompts |
-| `002-template-greenfield-redesign/research/deltas/` (14 files) | Delta records |
-| `002-template-greenfield-redesign/review/` (5 iterations + report) | Deep review of research |
+| `002-manifest-driven-template-design/spec.md` | Greenfield spec with 10 requirements, 5 user stories, 5 candidate designs |
+| `002-manifest-driven-template-design/plan.md` | 4-phase implementation plan (ADD, MODIFY scaffolder, MODIFY validators, DELETE legacy) |
+| `002-manifest-driven-template-design/tasks.md` | 19 tasks across 3 phases |
+| `002-manifest-driven-template-design/decision-record.md` | ADR-001 through ADR-005 |
+| `002-manifest-driven-template-design/checklist.md` | Verification gates |
+| `002-manifest-driven-template-design/implementation-summary.md` | Research outcomes summary |
+| `002-manifest-driven-template-design/research/research.md` | 40.9 KB synthesized findings |
+| `002-manifest-driven-template-design/research/resource-map.md` | 11.5 KB file inventory |
+| `002-manifest-driven-template-design/research/iterations/` (14 files) | Iterative research output |
+| `002-manifest-driven-template-design/research/prompts/` (14 files) | Iteration prompts |
+| `002-manifest-driven-template-design/research/deltas/` (14 files) | Delta records |
+| `002-manifest-driven-template-design/review/` (5 iterations + report) | Deep review of research |
 
 Three commits touched this phase: `e933c152a7`, `79e97aec92`, `bdb739d973`.
 

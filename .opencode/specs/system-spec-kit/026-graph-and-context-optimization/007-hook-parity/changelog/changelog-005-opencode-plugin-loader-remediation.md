@@ -16,7 +16,7 @@ contextType: "implementation"
 
 ## 2026-04-22
 
-> Spec folder: `026-graph-and-context-optimization/007-hook-parity/005-opencode-plugin-loader-remediation` (Level 3)
+> Spec folder: `026-graph-and-context-optimization/007-hook-parity/005-opencode-plugin-loader-bridge-fixes` (Level 3)
 > Parent packet: `026-graph-and-context-optimization/007-hook-parity`
 
 ### Summary

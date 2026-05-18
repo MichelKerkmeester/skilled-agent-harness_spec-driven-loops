@@ -1,5 +1,5 @@
 {
-  "specFolder": ".opencode/specs/system-spec-kit/024-compact-code-graph",
+  "specFolder": "<spec-folder>",
   "sessionSummary": "Codex-cli-compact audit for tree-sitter and implementation-summary coverage across api cli mcp entry points.",
   "triggerPhrases": [
     "codex-cli-compact",

@@ -1,5 +1,5 @@
 {
-  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-quality-issues/003-sanitization-precedence",
+  "specFolder": "<spec-folder>",
   "sessionSummary": "Phase 3 replay proves standalone trigger junk no longer survives the save path when the packet context includes graph and issues language next to a valid mcp surface.",
   "triggerPhrases": [
     "and",

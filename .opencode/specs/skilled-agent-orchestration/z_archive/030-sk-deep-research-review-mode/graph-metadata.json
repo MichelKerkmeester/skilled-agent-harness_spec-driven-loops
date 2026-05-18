@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/030-sk-deep-research-review-mode",
-  "spec_folder": "skilled-agent-orchestration/030-sk-deep-research-review-mode",
+  "packet_id": "skilled-agent-orchestration/z_archive/030-sk-deep-research-review-mode",
+  "spec_folder": "skilled-agent-orchestration/z_archive/030-sk-deep-research-review-mode",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -51,16 +51,10 @@
       "plan.md",
       "tasks.md",
       ".opencode/commands/spec_kit/deep-research.md",
-      ".opencode/skills/sk-deep-research/README.md",
       ".opencode/commands/spec_kit/plan.md",
       ".opencode/agents/deep-review.md",
       ".opencode/agents/review.md",
-      ".opencode/skills/sk-deep-research/SKILL.md",
-      ".opencode/skills/sk-deep-review/assets/deep_review_strategy.md",
-      ".opencode/skills/sk-deep-research/references/convergence.md",
-      ".opencode/skills/sk-deep-research/references/quick_reference.md",
-      ".opencode/skills/sk-deep-research/references/loop_protocol.md",
-      ".opencode/skills/sk-deep-research/references/state_format.md"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -124,12 +118,6 @@
         "source": "derived"
       },
       {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-deep-research/README.md",
-        "source": "derived"
-      },
-      {
         "name": "deep-review.md",
         "kind": "doc",
         "path": ".opencode/agents/deep-review.md",
@@ -142,27 +130,9 @@
         "source": "derived"
       },
       {
-        "name": "deep_review_strategy.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-deep-review/assets/deep_review_strategy.md",
-        "source": "derived"
-      },
-      {
-        "name": "convergence.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-deep-research/references/convergence.md",
-        "source": "derived"
-      },
-      {
-        "name": "loop_protocol.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-deep-research/references/loop_protocol.md",
-        "source": "derived"
-      },
-      {
-        "name": "state_format.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-deep-research/references/state_format.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -206,11 +176,35 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Review",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Contract",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Currently, reviewing spec folders, code changes, skills, and their cross-references for release readiness is a manual, single-pass process. There is no iterative, convergence-driven review flow that systematically checks all dimensions such as correctness, security, patterns, spec alignment, completeness, and cross-reference integrity across a review target.",
     "created_at": "2026-04-12T09:02:50.177Z",
-    "last_save_at": "2026-04-26T09:17:15.172Z",
+    "last_save_at": "2026-05-18T15:17:56.834Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

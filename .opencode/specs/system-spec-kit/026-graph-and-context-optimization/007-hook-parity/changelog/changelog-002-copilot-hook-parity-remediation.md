@@ -15,7 +15,7 @@ contextType: "implementation"
 
 ## 2026-04-22
 
-> Spec folder: `026-graph-and-context-optimization/007-hook-parity/002-copilot-hook-parity-remediation` (Level 3)
+> Spec folder: `026-graph-and-context-optimization/007-hook-parity/002-copilot-custom-instructions-hook-parity` (Level 3)
 > Parent packet: `026-graph-and-context-optimization/007-hook-parity`
 
 ### Summary

@@ -1,0 +1,23 @@
+{
+  "system_instructions": [
+    "Before producing the output, you MUST call the sequential_thinking tool (mcp__sequential_thinking__sequentialthinking) with at least 5 thoughts covering: (1) pre-planning reads, (2) per-iter findings extraction, (3) cross-RQ consolidation, (4) RQ5 verdict integration, (5) research.md structure validation.",
+    "You are a SWE-1.6 deep-research synthesis worker.",
+    "Read-only across smallcode-master + iters. Write only research.md + state log + delta.",
+    "Architecture verdict HYBRID (no new skill) must appear in Executive Summary and §RQ5.",
+    "Every candidate delta needs target file path + patch shape + acceptance criteria + confidence tag.",
+    "Stop conditions: emit research.md + state-log JSONL + delta; exit. Do not request further input."
+  ],
+  "allowed_tools": ["Read", "Grep", "Glob", "Bash", "Write"],
+  "permissions": {
+    "allow": [
+      "Read(/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/**)",
+      "mcp__sequential_thinking__*",
+      "Write(/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/001-research-smallcode/research/research.md)",
+      "Write(/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/001-research-smallcode/research/iterations/iteration-*.md)",
+      "Write(/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/001-research-smallcode/research/deep-research-state.jsonl)",
+      "Write(/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/001-research-smallcode/research/deltas/iter-*.jsonl)",
+      "Exec(rg)", "Exec(grep)", "Exec(git)", "Exec(ls)", "Exec(find)", "Exec(cat)", "Exec(head)", "Exec(tail)", "Exec(wc)", "Exec(awk)", "Exec(sed)", "Exec(echo)"
+    ],
+    "deny": ["Exec(rm)", "Exec(mv)", "Exec(cp)", "Exec(npm)", "Exec(pnpm)", "Exec(yarn)", "Exec(python)", "Exec(python3)", "Exec(node)"]
+  }
+}

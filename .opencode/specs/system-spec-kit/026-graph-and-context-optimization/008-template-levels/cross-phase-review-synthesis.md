@@ -190,7 +190,7 @@ Files touched this pass: 7 (+15 / -8 lines).
 - `before-after-template-system.md` — what the template-system refactor did (plain language).
 - `memory-implications.md` — how the refactor affects the memory + indexing pipeline.
 - `spec.md` (parent) — phase manifest and parent purpose.
-- `001-consolidation-investigation/research/research.md` — original investigation that flagged the partial-consolidation path (later rejected; led to greenfield path).
-- `002-template-greenfield-redesign/research/research.md` — greenfield design rationale, 5 ADRs, 14-iteration deep-research loop.
-- `003-template-greenfield-impl/resource-map.md` — implementation file ledger, ≈95 file references, ADR-005 workflow invariance.
+- `001-template-level-consolidation-research/research/research.md` — original investigation that flagged the partial-consolidation path (later rejected; led to greenfield path).
+- `002-manifest-driven-template-design/research/research.md` — greenfield design rationale, 5 ADRs, 14-iteration deep-research loop.
+- `003-manifest-template-implementation-plan/resource-map.md` — implementation file ledger, ≈95 file references, ADR-005 workflow invariance.
 - Per-phase review reports — see §2 table.

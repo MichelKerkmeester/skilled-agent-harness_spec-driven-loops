@@ -42,13 +42,14 @@
       ".gemini/agents/code.md",
       ".codex/agents/orchestrate.toml",
       ".codex/agents/code.toml",
+      ".codex/config.toml",
+      ".opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml",
       ".opencode/skills/sk-doc/assets/agent_template.md",
       "resource-map.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "implementation-summary.md"
+      "checklist.md"
     ],
     "entities": [
       {
@@ -88,6 +89,18 @@
         "source": "derived"
       },
       {
+        "name": "config.toml",
+        "kind": "file",
+        "path": ".codex/config.toml",
+        "source": "derived"
+      },
+      {
+        "name": "spec_kit_implement_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml",
+        "source": "derived"
+      },
+      {
         "name": "agent_template.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-doc/assets/agent_template.md",
@@ -121,12 +134,6 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -188,17 +195,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The documentation authoring agent is currently named create, but the desired long-term identity is markdown. That rename has broad reference impact across runtime agent mirrors, orchestration docs, commands, skills, and root documentation.",
     "created_at": "2026-05-10T10:33:24Z",
-    "last_save_at": "2026-05-10T12:31:54.466Z",
+    "last_save_at": "2026-05-18T15:17:56.743Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

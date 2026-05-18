@@ -201,7 +201,7 @@ lib/search/
 
 ### Graph-Channel Preservation Overrides
 
-`query-router.ts` can preserve graph and BM25 channels even when the complexity tier would otherwise skip them. The graph path is guarded by `SPECKIT_GRAPH_CHANNEL_PRESERVATION`, intent signals, and the cached entity-density score from `entity-density.ts`; entity-rich queries stay eligible for causal graph retrieval because they are more likely to benefit from high-fanout memory rows. `routing-telemetry.ts` records the resulting channel choices in a rolling 200-decision window so maintainers can inspect graph invocation rates through health telemetry. The full design lives in `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/012-causal-graph-channel-routing/001-initial-delivery/spec.md`.
+`query-router.ts` can preserve graph and BM25 channels even when the complexity tier would otherwise skip them. The graph path is guarded by `SPECKIT_GRAPH_CHANNEL_PRESERVATION`, intent signals, and the cached entity-density score from `entity-density.ts`; entity-rich queries stay eligible for causal graph retrieval because they are more likely to benefit from high-fanout memory rows. `routing-telemetry.ts` records the resulting channel choices in a rolling 200-decision window so maintainers can inspect graph invocation rates through health telemetry. The full design lives in the local implementation notes.
 
 <!-- /ANCHOR:key-files -->
 

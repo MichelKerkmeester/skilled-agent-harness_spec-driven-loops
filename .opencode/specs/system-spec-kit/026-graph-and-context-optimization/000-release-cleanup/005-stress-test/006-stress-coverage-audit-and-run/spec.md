@@ -76,7 +76,7 @@ Produce a coverage matrix (54 rows × locked column schema), a narrative audit w
 - Lean trio (`spec.md`, `description.json`, `graph-metadata.json`) refresh via `generate-context.js`
 
 ### Out of Scope
-- Writing new stress tests — deferred to packet `007-stress-test-gap-remediation` only if P0 gaps surface
+- Writing new stress tests — deferred to packet `007-stress-test-coverage-gap-remediation` only if P0 gaps surface
 - Modifying feature catalogs — they are inputs, not outputs
 - Modifying product code in `mcp_server/code_graph/` or `mcp_server/skill_advisor/`
 - Manual-playbook updates — separate concern
@@ -117,7 +117,7 @@ Produce a coverage matrix (54 rows × locked column schema), a narrative audit w
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-006 | If any P0 gap is classified, `implementation-summary.md` recommends opening packet `007-stress-test-gap-remediation` (without auto-creating it) | Inspection of summary §Follow-on |
+| REQ-006 | If any P0 gap is classified, `implementation-summary.md` recommends opening packet `007-stress-test-coverage-gap-remediation` (without auto-creating it) | Inspection of summary §Follow-on |
 | REQ-007 | `coverage-matrix.csv` has separate columns for `stress_test_files` (direct) and `supplementary_stress_files` (memory/, session/, search-quality/, matrix/) | Header inspection |
 | REQ-008 | All 54 features traceable to at least one of: direct stress, supplementary stress, vitest unit, or manual playbook | No row has all four coverage columns empty |
 <!-- /ANCHOR:requirements -->
@@ -226,7 +226,7 @@ Produce a coverage matrix (54 rows × locked column schema), a narrative audit w
 
 - **Given** any P0 row in the gap inventory
 - **When** the packet completes
-- **Then** `implementation-summary.md` lists the gap rows by `feature_id` and recommends opening packet `007-stress-test-gap-remediation` without creating it
+- **Then** `implementation-summary.md` lists the gap rows by `feature_id` and recommends opening packet `007-stress-test-coverage-gap-remediation` without creating it
 
 ### AS-005: Strict validator passes
 

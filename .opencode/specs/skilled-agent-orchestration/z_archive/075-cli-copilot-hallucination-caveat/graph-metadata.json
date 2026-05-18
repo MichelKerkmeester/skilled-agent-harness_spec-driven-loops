@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "075-cli-copilot-hallucination-caveat",
-  "spec_folder": "075-cli-copilot-hallucination-caveat",
+  "packet_id": "skilled-agent-orchestration/z_archive/075-cli-copilot-hallucination-caveat",
+  "spec_folder": "skilled-agent-orchestration/z_archive/075-cli-copilot-hallucination-caveat",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -10,25 +10,187 @@
     "related_to": []
   },
   "derived": {
-    "trigger_phrases": [],
-    "key_topics": [],
-    "importance_tier": "important",
+    "trigger_phrases": [
+      "075",
+      "cli-copilot-hallucination-caveat",
+      "P1-072-001 docs",
+      "075 plan",
+      "075 tasks",
+      "075 summary"
+    ],
+    "key_topics": [
+      "075",
+      "cli-copilot-hallucination-caveat",
+      "p1-072-001",
+      "docs",
+      "plan",
+      "tasks",
+      "summary",
+      "packet",
+      "072",
+      "review-report-v2",
+      "surfaced",
+      "cli-copilot"
+    ],
+    "importance_tier": "normal",
     "status": "complete",
     "key_files": [
+      ".opencode/skills/sk-doc/SKILL.md",
       "spec.md",
       "plan.md",
+      "implementation-summary.md",
       "tasks.md"
     ],
-    "entities": [],
-    "causal_summary": "cli-copilot hallucination caveat in README + sk-doc invocation hints (075)",
+    "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Hallucination Caveat",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Add",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Resource Domains",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Core Implementation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Future",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Packet 072's review-report-v2.md surfaced P1-072-001: cli-copilot (claude-opus-4.7) HALLUCINATES sk-doc resource paths — citing files like `dqi_rubric.md` that don't exist in sk-doc's filesystem. cli-copilot scored 11.1% resource-accuracy vs cli-codex 66.7% on the 071 stress matrix. Maintainers and downstream consumers had no documentation warning about this behavior; if a caller naively `Read()`s cited paths, they'll get ENOENT errors.",
     "created_at": "2026-05-05T15:24:06Z",
-    "last_save_at": "2026-05-05T18:00:00Z",
+    "last_save_at": "2026-05-18T15:17:57.001Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ]
   }
 }

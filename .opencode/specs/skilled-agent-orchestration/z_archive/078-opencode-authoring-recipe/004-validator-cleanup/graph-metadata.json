@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/078-opencode-authoring-recipe/004-validator-cleanup",
-  "spec_folder": "skilled-agent-orchestration/078-opencode-authoring-recipe/004-validator-cleanup",
-  "parent_id": "skilled-agent-orchestration/078-opencode-authoring-recipe",
+  "packet_id": "skilled-agent-orchestration/z_archive/078-opencode-authoring-recipe/004-validator-cleanup",
+  "spec_folder": "skilled-agent-orchestration/z_archive/078-opencode-authoring-recipe/004-validator-cleanup",
+  "parent_id": "skilled-agent-orchestration/z_archive/078-opencode-authoring-recipe",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -15,38 +15,49 @@
       "validator-cleanup",
       "graph-metadata-shape",
       "ROLLOUT_FLAGS",
-      "implementation",
-      "plan",
-      "name",
-      "template",
-      "plan core",
-      "tasks",
-      "tasks core",
-      "summary"
+      "078/004 plan",
+      "078/004 tasks",
+      "078/004 summary",
+      "mcp-coco-index v1.1.1",
+      "validator shape rules"
     ],
     "key_topics": [
       "078",
       "004",
       "validator-cleanup",
       "graph-metadata-shape",
-      "implementation",
       "plan",
-      "name",
-      "template",
-      "core",
       "tasks",
       "summary",
+      "mcp-coco-index",
+      "validator",
+      "shape",
+      "rules",
       "add"
     ],
-    "importance_tier": "normal",
+    "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      "references/config/environment_variables.md",
+      ".opencode/skills/mcp-coco-index/changelog/v1.3.1.0.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "environment_variables.md",
+        "kind": "doc",
+        "path": "references/config/environment_variables.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.3.1.0.md",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -114,39 +125,21 @@
         "source": "derived"
       },
       {
-        "name": "Technical Context",
+        "name": "Tool Coverage",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
-        "kind": "proper_noun",
+        "name": "proper",
+        "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Key Components",
-        "kind": "proper_noun",
+        "name": "direct",
+        "kind": "key_phrase",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -162,20 +155,14 @@
         "source": "derived"
       },
       {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
+        "name": "explicit",
+        "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 3: Verification",
-        "kind": "heading",
+        "name": "stdin",
+        "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
@@ -190,11 +177,23 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "What Was Built Phase",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Add two new validator rules (graph-metadata + description shape checks) registered in validator-registry.json. Fix ROLLOUT_FLAGS to point at a markdown file (or remove the directory entry). Document mcp-coco-index MCP coverage gap explicitly in mcp-coco-index/SKILL.md. Audit + refresh search telemetry doc to match runtime emitted fields. Closes 6 P1 + 3 P2 findings; final phase of 078 remediation.",
     "created_at": "2026-05-05T17:36:54Z",
-    "last_save_at": "2026-05-05T19:14:21.724Z",
+    "last_save_at": "2026-05-18T15:17:57.008Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -153,6 +153,6 @@ None. Operating rules locked at plan time.
 - **Plan**: See `plan.md`
 - **Tasks**: See `tasks.md`
 - **Implementation Summary**: See `implementation-summary.md`
-- **Predecessor**: `005-cross-skill-decoupling/` (carrying the same refinement lens)
+- **Predecessor**: `005-cross-skill-documentation-decoupling/` (carrying the same refinement lens)
 - **Audit artifacts**: `research/audit-report.{json,md}` and per-skill `research/prompts/` + `research/logs/`
 <!-- /ANCHOR:related-docs -->

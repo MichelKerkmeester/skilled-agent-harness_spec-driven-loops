@@ -20,7 +20,7 @@ This phase parent was extracted from `003-continuity-memory-runtime/` on 2026-04
 
 ### Baseline
 
-- `001-search-intelligence-stress-test/` — v1.0.1 rubric design, 30-cell baseline sweep, and per-CLI findings.
+- `001-search-intelligence-stress-playbook/` — v1.0.1 rubric design, 30-cell baseline sweep, and per-CLI findings.
 
 ### Research
 
@@ -28,31 +28,31 @@ This phase parent was extracted from `003-continuity-memory-runtime/` on 2026-04
 
 ### Remediation
 
-- `003-memory-context-truncation-contract/` — token-budget envelope contract.
-- `004-cocoindex-overfetch-dedup/` — vendored CocoIndex fork, dedup, and path-class reranking.
-- `005-code-graph-fast-fail/` — `fallbackDecision` routing on blocked code-graph reads.
-- `006-causal-graph-window-metrics/` — relation-window metrics and per-relation cap.
-- `007-intent-classifier-stability/` — normalized IntentTelemetry and paraphrase grouping.
+- `003-memory-context-truncation-telemetry-contract/` — token-budget envelope contract.
+- `004-cocoindex-overfetch-dedup-rerank/` — vendored CocoIndex fork, dedup, and path-class reranking.
+- `005-code-graph-fail-fast-routing/` — `fallbackDecision` routing on blocked code-graph reads.
+- `006-causal-graph-relation-window-metrics/` — relation-window metrics and per-relation cap.
+- `007-intent-classifier-stability-telemetry/` — normalized IntentTelemetry and paraphrase grouping.
 - `008-mcp-daemon-rebuild-protocol/` — rebuild, restart, and live-probe protocol.
-- `009-memory-search-response-policy/` — weak-result refusal and citation policy.
+- `009-memory-search-citation-response-policy/` — weak-result refusal and citation policy.
 
 ### Rerun
 
-- `010-stress-test-rerun-v1-0-2/` — post-fix v1.0.2 rerun, scores, and findings.
+- `010-stress-test-close-loop-measurement-rerun/` — post-fix v1.0.2 rerun, scores, and findings.
 
 ### Followup Research
 
-- `011-post-stress-followup-research/` — post-stress research loop converting v1.0.2 follow-ups into patch-sized proposals.
+- `011-post-stress-finding-remediation-research/` — post-stress research loop converting v1.0.2 follow-ups into patch-sized proposals.
 
 ### Planned Fixes
 
-- `012-copilot-target-authority-helper/` — cli-copilot target-authority dispatch helper.
-- `013-graph-degraded-stress-cell/` — deterministic degraded-graph stress cell.
-- `014-graph-status-readiness-snapshot/` — read-only graph readiness snapshot for status.
+- `012-copilot-target-authority-gate-helper/` — cli-copilot target-authority dispatch helper.
+- `013-code-graph-degraded-stress-cell/` — deterministic degraded-graph stress cell.
+- `014-code-graph-status-readiness-snapshot/` — read-only graph readiness snapshot for status.
 - `015-cocoindex-seed-telemetry-passthrough/` — CocoIndex seed telemetry passthrough.
 - `016-degraded-readiness-envelope-parity/` — degraded-readiness envelope parity.
 - `017-cli-copilot-dispatch-test-parity/` — cli-copilot dispatch test parity.
-- `018-catalog-playbook-degraded-alignment/` — catalog/playbook degraded-alignment follow-up.
+- `018-feature-catalog-playbook-degraded-alignment/` — catalog/playbook degraded-alignment follow-up.
 
 ---
 
@@ -60,15 +60,15 @@ This phase parent was extracted from `003-continuity-memory-runtime/` on 2026-04
 
 | Original location (under `003-continuity-memory-runtime/`) | Carve-out location (this phase parent) | Final renumbered location (current) |
 |------------------------------------------------------------|----------------------------------------|--------------------------------------|
-| `006-search-intelligence-stress-test` | `011-…/006-search-intelligence-stress-test` | `011-…/001-search-intelligence-stress-test` |
+| `006-search-intelligence-stress-test` | `011-…/006-search-intelligence-stress-test` | `011-…/001-search-intelligence-stress-playbook` |
 | `007-mcp-runtime-improvement-research` | `011-…/007-mcp-runtime-improvement-research` | `011-…/002-mcp-runtime-improvement-research` |
-| `008-memory-context-truncation-contract` | `011-…/008-memory-context-truncation-contract` | `011-…/003-memory-context-truncation-contract` |
-| `009-cocoindex-overfetch-dedup` | `011-…/009-cocoindex-overfetch-dedup` | `011-…/004-cocoindex-overfetch-dedup` |
-| `010-code-graph-fast-fail` | `011-…/010-code-graph-fast-fail` | `011-…/005-code-graph-fast-fail` |
-| `011-causal-graph-window-metrics` | `011-…/011-causal-graph-window-metrics` | `011-…/006-causal-graph-window-metrics` |
-| `012-intent-classifier-stability` | `011-…/012-intent-classifier-stability` | `011-…/007-intent-classifier-stability` |
+| `008-memory-context-truncation-contract` | `011-…/008-memory-context-truncation-contract` | `011-…/003-memory-context-truncation-telemetry-contract` |
+| `009-cocoindex-overfetch-dedup` | `011-…/009-cocoindex-overfetch-dedup` | `011-…/004-cocoindex-overfetch-dedup-rerank` |
+| `010-code-graph-fast-fail` | `011-…/010-code-graph-fast-fail` | `011-…/005-code-graph-fail-fast-routing` |
+| `011-causal-graph-window-metrics` | `011-…/011-causal-graph-window-metrics` | `011-…/006-causal-graph-relation-window-metrics` |
+| `012-intent-classifier-stability` | `011-…/012-intent-classifier-stability` | `011-…/007-intent-classifier-stability-telemetry` |
 | `013-mcp-daemon-rebuild-protocol` | `011-…/013-mcp-daemon-rebuild-protocol` | `011-…/008-mcp-daemon-rebuild-protocol` |
-| `014-memory-search-response-policy` | `011-…/014-memory-search-response-policy` | `011-…/009-memory-search-response-policy` |
+| `014-memory-search-response-policy` | `011-…/014-memory-search-response-policy` | `011-…/009-memory-search-citation-response-policy` |
 
 The slug suffix is preserved across both rename steps; only the leading number prefix changes. `git log --follow` from the current path traces history through both renames back to the original location under 003.
 
@@ -93,7 +93,7 @@ The slug suffix is preserved across both rename steps; only the leading number p
 The carve-out + renumber rewrite swept all path-form references across the moved subtree, the top-level `.opencode/specs/descriptions.json` discovery index, and the `.opencode/skills/mcp-coco-index/README.md` documentation. Two intentional exclusions remain:
 
 - `003-continuity-refactor-gates/description.json` and `004-memory-save-rewrite/description.json` retain `intermediate_spec_folder` aliases that reference even older historical paths (a prior, unrelated renumber). Those are separate provenance records and were not touched.
-- Two CLI run logs under `001-search-intelligence-stress-test/002-scenario-execution/runs/{S3/cli-opencode-pure-1,I2/cli-copilot-1}/output.txt` capture verbatim CLI output from the original sweep and reference the legacy 003/006 path. They are immutable historical evidence and were not rewritten.
+- Two CLI run logs under `001-search-intelligence-stress-playbook/002-search-scenario-execution/runs/{S3/cli-opencode-pure-1,I2/cli-copilot-1}/output.txt` capture verbatim CLI output from the original sweep and reference the legacy 003/006 path. They are immutable historical evidence and were not rewritten.
 
 ---
 
@@ -104,5 +104,5 @@ The carve-out + renumber rewrite swept all path-form references across the moved
 | `./spec.md` | Phase parent root: purpose, sub-phase manifest, what needs done. Does **not** contain migration narrative. |
 | `./HANDOVER-deferred.md` | Four still-open follow-ups (re-run 001 sweep, tune 006 production cap, ship 007 v2, layer client-side hallucination guard). |
 | `./resource-map.md` | Parent-aggregate file ledger covering both the carve-out and the renumber. |
-| `../009-phase-parent-documentation/spec.md` | Predecessor packet that defined the lean phase-parent contract this folder follows. |
+| `../009-phase-parent-lean-trio-documentation/spec.md` | Predecessor packet that defined the lean phase-parent contract this folder follows. |
 | `../003-continuity-memory-runtime/spec.md` | Original phase parent whose mid-phase scaffolding produced this carve-out. |

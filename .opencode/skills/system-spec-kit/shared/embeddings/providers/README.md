@@ -131,7 +131,7 @@ For README-only edits, `validate_document.py` is the required file-level check.
 | [shared/types.ts](../../types.ts) | `IEmbeddingProvider` and shared retrieval types |
 | [shared/utils/retry.ts](../../utils/retry.ts) | Retry helper used by cloud providers |
 | [mcp_server/README.md](../../../mcp_server/README.md) | Memory MCP server entry point, auto-migration lifecycle, env vars |
-| [packet 018](../../../../../specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/018-llama-cpp-auto-migration/) | hf-local to llama-cpp auto-migration spec |
+| packet 018 | hf-local to llama-cpp auto-migration spec |
 
 <!-- /ANCHOR:related -->
 

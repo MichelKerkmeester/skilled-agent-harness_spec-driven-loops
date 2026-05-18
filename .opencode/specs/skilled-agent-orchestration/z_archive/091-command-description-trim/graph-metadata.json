@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/091-command-description-trim",
-  "spec_folder": "skilled-agent-orchestration/091-command-description-trim",
+  "packet_id": "skilled-agent-orchestration/z_archive/091-command-description-trim",
+  "spec_folder": "skilled-agent-orchestration/z_archive/091-command-description-trim",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -39,12 +39,10 @@
       ".opencode/skills/sk-prompt/SKILL.md",
       ".opencode/commands/create/changelog.md",
       ".opencode/commands/create/sk-skill.md",
-      ".opencode/commands/doctor/code-graph.md",
       ".opencode/commands/improve/agent.md",
       ".opencode/commands/improve/prompt.md",
       ".opencode/commands/memory/manage.md",
       ".opencode/commands/memory/search.md",
-      ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/explicit.ts",
       "spec.md",
       "plan.md",
       "implementation-summary.md",
@@ -70,12 +68,6 @@
         "source": "derived"
       },
       {
-        "name": "code-graph.md",
-        "kind": "doc",
-        "path": ".opencode/commands/doctor/code-graph.md",
-        "source": "derived"
-      },
-      {
         "name": "agent.md",
         "kind": "doc",
         "path": ".opencode/commands/improve/agent.md",
@@ -97,12 +89,6 @@
         "name": "search.md",
         "kind": "doc",
         "path": ".opencode/commands/memory/search.md",
-        "source": "derived"
-      },
-      {
-        "name": "explicit.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/explicit.ts",
         "source": "derived"
       },
       {
@@ -194,11 +180,23 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "After packets 083 (skills+commands first pass), 086 (audit tooling shipped), and 090 (agent trims), 8 items remain `OVER-SOFT` in the audit: `sk-prompt` (132/130) and 7 commands clustered at 112-122 chars (target 110). Each is mild over-soft (≤22 chars over) — not failure-class. Project total is currently 5,546 chars with +54 headroom under the 5,600 ceiling. Acceptable, but tight; one more reasonable additions and we cross over again.",
     "created_at": "2026-05-06T17:04:32.499Z",
-    "last_save_at": "2026-05-06T17:04:32.499Z",
+    "last_save_at": "2026-05-18T15:17:57.037Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

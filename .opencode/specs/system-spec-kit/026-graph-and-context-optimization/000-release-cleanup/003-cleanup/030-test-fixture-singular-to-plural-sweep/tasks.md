@@ -92,7 +92,7 @@ _memory:
 
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
-- **Predecessor**: `../004-runtime-cleanup-followups/handover.md` (item #4 in §3.2)
+- **Predecessor**: `../004-runtime-root-memory-cleanup-followups/handover.md` (item #4 in §3.2)
 <!-- /ANCHOR:cross-refs -->
 
 ---

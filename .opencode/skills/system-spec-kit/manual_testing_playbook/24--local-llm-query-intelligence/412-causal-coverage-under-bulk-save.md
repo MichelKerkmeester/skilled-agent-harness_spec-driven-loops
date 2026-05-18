@@ -63,7 +63,7 @@ Topic 4 — chunking + retrieval:
   - "Re-rank stage applies channel diversification and confidence cliff"
   - "MMR diversifies the final top-K to avoid duplicate content"
 
-For each of the 20 memories, write a canonical research-doc file at `.opencode/specs/_sandbox/24-412-T<topic>-<n>/research.md` where <topic> is 1-4 and <n> is 1-5. Each file has frontmatter (title from content first words, description "Cluster coverage probe", trigger_phrases drawn from the content) and the content sentence as the body. Then call `memory_save({filePath})` once per file (20 calls). Capture the 20 parent_ids grouped by topic. (Do NOT pass `retentionPolicy: "ephemeral"` — see post-014/022 follow-up note in 401-paraphrase-recall.md.)
+For each of the 20 memories, write a canonical research-doc file at `<spec-folder><topic>-<n>/research.md` where <topic> is 1-4 and <n> is 1-5. Each file has frontmatter (title from content first words, description "Cluster coverage probe", trigger_phrases drawn from the content) and the content sentence as the body. Then call `memory_save({filePath})` once per file (20 calls). Capture the 20 parent_ids grouped by topic. (Do NOT pass `retentionPolicy: "ephemeral"` — see post-014/022 follow-up note in 401-paraphrase-recall.md.)
 
 After all 20 saves complete, wait 8 seconds for indexing + edge derivation. Then:
 
@@ -114,5 +114,5 @@ Loop memory_delete over the 20 captured parent_ids, then remove on-disk files:
 for ID in <20 parent_ids>:
   mcp__mk_spec_memory__memory_delete({ parent_id: ID })
 
-rm -rf .opencode/specs/_sandbox/24-412-*
+rm -rf <spec-folder>*
 ```

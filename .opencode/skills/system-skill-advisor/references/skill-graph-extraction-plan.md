@@ -16,7 +16,7 @@ trigger_phrases:
 <!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
-This reference documents the current ownership state of the `lib/skill-graph/` library inside `system-skill-advisor` and explains the documentation drift that the 058 realignment packet corrects. Extraction from `system-spec-kit` is already complete and no code movement remains.
+This reference documents the current ownership state of the `lib/skill-graph/` library inside `system-skill-advisor` and explains the documentation drift corrected during the realignment. Extraction from `system-spec-kit` is already complete and no code movement remains.
 
 ---
 
@@ -46,9 +46,9 @@ The library owns the SQLite schema, indexing logic and relationship query helper
 <!-- ANCHOR:3-documentation-drift -->
 ## 3. DOCUMENTATION DRIFT
 
-Prior to packet 058, [SKILL.md](../SKILL.md) stated that `lib/skill-graph/` database and query logic remained in `system-spec-kit` until a pending packet 011 cleanup. That historical claim sat near the bottom of SKILL.md before the realignment delta corrected it.
+Before the realignment, [SKILL.md](../SKILL.md) stated that `lib/skill-graph/` database and query logic remained in `system-spec-kit` until a pending cleanup. That historical claim sat near the bottom of SKILL.md before the realignment delta corrected it.
 
-That statement is outdated. The extraction completed earlier and no `skill-graph` folder exists under `system-spec-kit/mcp_server/lib/`. File search across the spec-kit tree confirms the absence. The pending-packet reference is obsolete and was removed by edit A-020 in the [058 verified delta](../../../../specs/system-spec-kit/026-graph-and-context-optimization/z_archive/wave-2-merges/014-local-embeddings-migration-058-skill-md-realignment/research/delta-verified.md). The current [SKILL.md §4 RULES](../SKILL.md) plus §7 INTEGRATION POINTS reflect the post-extraction state.
+That statement is outdated. The extraction completed earlier and no `skill-graph` folder exists under `system-spec-kit/mcp_server/lib/`. File search across the spec-kit tree confirms the absence. The pending-cleanup reference is obsolete and was removed during the verified documentation delta. The current [SKILL.md §4 RULES](../SKILL.md) plus §7 INTEGRATION POINTS reflect the post-extraction state.
 
 ---
 
@@ -59,7 +59,7 @@ That statement is outdated. The extraction completed earlier and no `skill-graph
 
 Extraction is complete. `lib/skill-graph/` is fully migrated to `system-skill-advisor/mcp_server/lib/skill-graph/`.
 
-No pending extraction work remains. The packet 011 cleanup reference is obsolete and SKILL.md drift is corrected by the 058 realignment delta. Downstream code paths now import the library only from the advisor package.
+No pending extraction work remains. The old cleanup reference is obsolete and SKILL.md drift is corrected by the realignment delta. Downstream code paths now import the library only from the advisor package.
 
 ---
 
@@ -70,8 +70,8 @@ No pending extraction work remains. The packet 011 cleanup reference is obsolete
 
 The remaining work is purely documentation alignment, not code movement:
 
-- Update [SKILL.md](../SKILL.md) to state that extraction is complete. (Tracked as edit A-020 in the [058 verified delta](../../../../specs/system-spec-kit/026-graph-and-context-optimization/z_archive/wave-2-merges/014-local-embeddings-migration-058-skill-md-realignment/research/delta-verified.md).) **Done** as of packet `system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/005-docs/004-docs-quality-refactor/002-bug-fixes`: ARCHITECTURE.md §1 plus §9 plus SKILL.md §4 RULES now describe `lib/skill-graph/` as package-local to system-skill-advisor.
-- Remove the obsolete `pending packet 011 cleanup` reference from any operator or maintainer docs that still cite it. **Done** as of packet `system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/005-docs/004-docs-quality-refactor/002-bug-fixes`: the future-work bullet was removed from ARCHITECTURE.md §9.
+- Update [SKILL.md](../SKILL.md) to state that extraction is complete. **Done**: ARCHITECTURE.md §1 plus §9 plus SKILL.md §4 RULES now describe `lib/skill-graph/` as package-local to system-skill-advisor.
+- Remove the obsolete pending-cleanup reference from any operator or maintainer docs that still cite it. **Done**: the future-work bullet was removed from ARCHITECTURE.md §9.
 - Preserve a migration note where helpful so operators reading historical context understand the prior location.
 
 No further refactor is planned for `lib/skill-graph/` itself. Future ownership changes would be tracked as a separate packet with its own ADR and migration plan.

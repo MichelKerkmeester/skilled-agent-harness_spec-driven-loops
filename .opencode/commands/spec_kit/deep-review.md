@@ -69,7 +69,7 @@ The dispatched prompt body may contain one structured marker block. Parse it bef
 
 ```yaml
 PRE-BOUND SETUP ANSWERS:
-  review_target: specs/skilled-agent-orchestration/102-sk-doc-skill-readme-and-structure
+  review_target: <spec-folder>
   review_target_type: spec-folder  # one of: spec-folder | skill | agent | track | files
   review_dimensions: all  # or comma-separated subset: correctness, security, traceability, maintainability
   spec_folder: existing  # one of: existing | new | update-related | phase-folder, or an explicit specs/.opencode/specs path

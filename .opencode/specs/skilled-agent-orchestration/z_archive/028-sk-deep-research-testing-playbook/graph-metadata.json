@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/028-sk-deep-research-testing-playbook",
-  "spec_folder": "skilled-agent-orchestration/028-sk-deep-research-testing-playbook",
+  "packet_id": "skilled-agent-orchestration/z_archive/028-sk-deep-research-testing-playbook",
+  "spec_folder": "skilled-agent-orchestration/z_archive/028-sk-deep-research-testing-playbook",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -48,11 +48,6 @@
       "checklist.md",
       "decision-record.md",
       "spec.md",
-      ".opencode/skills/sk-deep-research/SKILL.md",
-      ".opencode/skills/sk-deep-research/README.md",
-      ".opencode/skills/sk-doc/references/specific/manual_testing_playbook_creation.md",
-      ".opencode/skills/sk-doc/assets/documentation/testing_playbook/manual_testing_playbook_template.md",
-      ".opencode/skills/sk-doc/assets/documentation/testing_playbook/manual_testing_playbook_snippet_template.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -96,36 +91,6 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-deep-research/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-deep-research/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "manual_testing_playbook_creation.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/references/specific/manual_testing_playbook_creation.md",
-        "source": "derived"
-      },
-      {
-        "name": "manual_testing_playbook_template.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/assets/documentation/testing_playbook/manual_testing_playbook_template.md",
-        "source": "derived"
-      },
-      {
-        "name": "manual_testing_playbook_snippet_template.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/assets/documentation/testing_playbook/manual_testing_playbook_snippet_template.md",
         "source": "derived"
       },
       {
@@ -199,11 +164,41 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Manual Testing",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Implement the first `manual_testing_playbook/` package for `.opencode/skills/sk-deep-research/` as a greenfield documentation package derived from the live deep-research command, skill, README, references, assets, and `.codex/agents/deep-research.toml`. The approved plan is fixed: 19 scenarios using IDs `DR-001` through `DR-019`, organized into 6 numbered categories, with explicit disclosure that no `feature_catalog/` exists yet for `sk-deep-research`.",
     "created_at": "2026-04-12T09:02:50.175Z",
-    "last_save_at": "2026-04-26T09:17:15.167Z",
+    "last_save_at": "2026-05-18T15:17:56.830Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -77,8 +77,8 @@ If any existing edge weight changed or any edge was deleted, fail with `mutation
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
 - Command entrypoint: [.opencode/commands/doctor.md](../../../../commands/doctor.md)
 - Matching YAML asset: [.opencode/commands/doctor/assets/doctor_causal-graph.yaml](../../../../commands/doctor/assets/doctor_causal-graph.yaml)
-- Upstream spec context: [.opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/001-doctor-commands/spec.md](../../../../specs/system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/001-doctor-commands/spec.md)
-- Upstream ADR context: [.opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/001-doctor-commands/decision-record.md](../../../../specs/system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/001-doctor-commands/decision-record.md)
+- Design context: local doctor command contract
+- Decision context: local doctor command ADRs
 
 ---
 

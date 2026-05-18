@@ -18,7 +18,7 @@ contextType: "implementation"
 
 ## 2026-05-01
 
-> Spec folder: `026-graph-and-context-optimization/008-template-levels/004-deferred-followups` (Level 3)
+> Spec folder: `026-graph-and-context-optimization/008-template-levels/004-template-deferred-followup-fixes` (Level 3)
 > Parent packet: `026-graph-and-context-optimization/008-template-levels`
 
 ### Summary
@@ -67,8 +67,8 @@ Five ADRs formalize the policy choices: validation orchestration, lenient sessio
 | `scripts/spec/validate.sh` | Orchestrator routing and exit-code taxonomy |
 | `scripts/templates/inline-gate-renderer.ts` | Batch `--out-dir` mode |
 | `scripts/memory/generate-context.ts` | Canonical save advisory lock |
-| `004-deferred-followups/decision-record.md` | Five ADRs (validation, lineage, exit codes, version, migration) |
-| `004-deferred-followups/implementation-summary.md` | Followup outcomes summary |
+| `004-template-deferred-followup-fixes/decision-record.md` | Five ADRs (validation, lineage, exit codes, version, migration) |
+| `004-template-deferred-followup-fixes/implementation-summary.md` | Followup outcomes summary |
 
 Three commits: `e933c152a7`, `79e97aec92`, `bdb739d973`.
 

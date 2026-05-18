@@ -1,0 +1,24 @@
+{
+  "specFolder": "002-foundation-routing",
+  "description": "Feature Specification: foundation routing",
+  "keywords": [
+    "feature",
+    "specification",
+    "foundation",
+    "routing"
+  ],
+  "lastUpdated": "2026-05-18T12:27:06.089Z",
+  "specId": "002",
+  "folderSlug": "foundation-routing",
+  "parentChain": [
+    "..",
+    ".opencode",
+    "specs",
+    "skilled-agent-orchestration",
+    "114-small-ai-model-optimization"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "18-05-26_13-27__phase-002-foundation-routing-l2-packet-authored.md"
+  ]
+}

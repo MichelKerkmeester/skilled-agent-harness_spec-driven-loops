@@ -1,0 +1,24 @@
+{
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-release-readiness-deep-review-audits/003-skill-advisor-freshness-audit",
+  "description": "Feature Specification: Skill Advisor Freshness Release-Readiness Audit",
+  "keywords": [
+    "feature",
+    "specification",
+    "skill",
+    "advisor",
+    "freshness",
+    "release-readiness",
+    "audit"
+  ],
+  "lastUpdated": "2026-05-08T08:26:57.342Z",
+  "specId": "003",
+  "folderSlug": "skill-advisor-freshness",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "000-release-cleanup",
+    "003-release-readiness-deep-review-audits"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}

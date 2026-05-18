@@ -156,7 +156,7 @@ Template compliance scaffold for 003-mcp-figma-skill-removal/implementation-summ
 |---|---|---|
 | On main branch | ✅ PASS | `main` |
 | Pre-existing 7 modified files surviving | ✅ PASS | All present (.claude/.codex/.gemini/.opencode `agent/create.*` + sk-deep-review tmpl + system-spec-kit/scripts/lib/template-utils.sh + create.sh) |
-| Pre-existing 6 untracked review folders surviving | ✅ PASS | 010-template-levels review folders + cross-phase synthesis intact |
+| Pre-existing 6 untracked review folders surviving | ✅ PASS | 008-template-levels review folders + cross-phase synthesis intact |
 | sk-code unrelated work NOT in Phase 3 commits | ✅ PASS | `git show --stat` confirms commits touch ONLY mcp-figma/mcp-code-mode/skill_advisor/README/observability/install_guides files |
 
 ---

@@ -1,18 +1,13 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/070-sk-deep-rename/006-advisor-and-validate",
-  "spec_folder": "skilled-agent-orchestration/070-sk-deep-rename/006-advisor-and-validate",
-  "parent_id": "skilled-agent-orchestration/070-sk-deep-rename",
+  "packet_id": "skilled-agent-orchestration/z_archive/070-sk-deep-rename/006-advisor-and-validate",
+  "spec_folder": "skilled-agent-orchestration/z_archive/070-sk-deep-rename/006-advisor-and-validate",
+  "parent_id": "skilled-agent-orchestration/z_archive/070-sk-deep-rename",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      "skilled-agent-orchestration/070-sk-deep-rename",
-      "skilled-agent-orchestration/070-sk-deep-rename/001-discovery-impact-map",
-      "skilled-agent-orchestration/070-sk-deep-rename/002-skill-folder-rename",
-      "skilled-agent-orchestration/070-sk-deep-rename/003-opencode-internals",
-      "skilled-agent-orchestration/070-sk-deep-rename/004-runtime-mirrors",
-      "skilled-agent-orchestration/070-sk-deep-rename/005-root-and-config"
-    ],
+    "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
@@ -22,47 +17,200 @@
       "advisor rebuild validation",
       "deep-review deep-research probes",
       "final grep audit",
-      "sk-deep-review to deep-review",
-      "sk-deep-research to deep-research"
+      "070 phase 006 plan",
+      "advisor rebuild plan",
+      "final validation plan",
+      "070 phase 006 tasks",
+      "advisor validation tasks",
+      "final grep tasks",
+      "070 phase 006 checklist",
+      "advisor rebuild verification"
     ],
     "key_topics": [
-      "skill-rename",
-      "advisor-rebuild",
-      "advisor-probes",
-      "strict-validation",
-      "narrative-cleanup",
-      "final-grep"
+      "070",
+      "phase",
+      "006",
+      "advisor",
+      "rebuild",
+      "validation",
+      "deep-review",
+      "deep-research",
+      "probes",
+      "final",
+      "grep",
+      "audit"
     ],
     "importance_tier": "important",
-    "status": "remediation-needed",
+    "status": "in_progress",
     "key_files": [
+      ".codex/agents/deep-research.toml",
+      ".codex/agents/deep-review.toml",
+      ".codex/agents/orchestrate.toml",
+      ".codex/config.toml",
+      "implementation-summary.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md",
-      "description.json",
-      "graph-metadata.json"
+      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh"
     ],
     "entities": [
-      "sk-deep-review",
-      "sk-deep-research",
-      "deep-review",
-      "deep-research",
-      "skill_advisor.py",
-      "build-skill-graph.js"
+      {
+        "name": "deep-research.toml",
+        "kind": "file",
+        "path": ".codex/agents/deep-research.toml",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review.toml",
+        "kind": "file",
+        "path": ".codex/agents/deep-review.toml",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrate.toml",
+        "kind": "file",
+        "path": ".codex/agents/orchestrate.toml",
+        "source": "derived"
+      },
+      {
+        "name": "config.toml",
+        "kind": "file",
+        "path": ".codex/config.toml",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Advisor Rebuild",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Finalize Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Initialized Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Verification",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Created Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
     ],
-    "causal_summary": "Phase 006 closes Packet 070 by restoring source-side parent narrative for renaming sk-deep-review to deep-review and sk-deep-research to deep-research, rebuilding advisor graph data, probing routing, auditing residual references, and validating the child and parent spec folders.",
+    "causal_summary": "Phases 001-005 completed the broad rename from `sk-deep-review`/`sk-deep-research` to `deep-review`/`deep-research`, but Packet 070 still needs final advisor freshness, active-scope audits, and strict validation evidence. The parent narrative also has historical rename-source prose that was over-replaced and now reads as if the source and target names were identical.",
     "created_at": "2026-05-05T20:00:00Z",
-    "last_save_at": "2026-05-05T20:00:00Z",
+    "last_save_at": "2026-05-18T15:17:56.984Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-05T20:00:00Z",
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ]
-  },
-  "importance_tier": "important"
+  }
 }

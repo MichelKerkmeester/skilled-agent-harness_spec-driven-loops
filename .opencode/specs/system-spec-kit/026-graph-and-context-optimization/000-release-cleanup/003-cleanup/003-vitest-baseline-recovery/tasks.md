@@ -62,7 +62,7 @@ _memory:
 
 - [ ] T009 Fix fixture-drift expectations with `// drift:` packet comments.
 - [ ] T010 Fix runtime regressions that fit the <=30 LOC single-file rule.
-- [ ] T011 Annotate larger runtime regressions with `it.fails.skip` and `// followup: 026/000/002-vitest-recovery-followup`.
+- [ ] T011 Annotate larger runtime regressions with `it.fails.skip` and `// followup: 026/000/002-vitest-baseline-recovery-followup`.
 - [ ] T012 Annotate environmental failures with `it.skip` and `// REASON: <env requirement>`.
 - [ ] T013 Run five-sample checks for flaky candidates and annotate with `// flake-rate: ~X/5 runs`.
 - [ ] T014 Update `.opencode/skills/system-spec-kit/changelog/v3.4.1.0.md` verification table row.
@@ -105,6 +105,6 @@ _memory:
 - **Plan**: `plan.md`
 - **Checklist**: `checklist.md`
 - **Implementation summary**: `implementation-summary.md`
-- **Follow-up placeholder**: `026/000/002-vitest-recovery-followup`
+- **Follow-up placeholder**: `026/000/002-vitest-baseline-recovery-followup`
 
 <!-- /ANCHOR:cross-refs -->

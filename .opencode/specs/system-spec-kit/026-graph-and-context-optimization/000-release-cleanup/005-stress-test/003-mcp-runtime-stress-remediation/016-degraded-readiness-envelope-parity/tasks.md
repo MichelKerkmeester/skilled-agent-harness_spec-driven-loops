@@ -42,7 +42,7 @@ _memory:
 
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
-- [x] T001 Read review-report.md §3, §4, §7 Packet A end-to-end (from ../011-post-stress-followup-research/review/)
+- [x] T001 Read review-report.md §3, §4, §7 Packet A end-to-end (from ../011-post-stress-finding-remediation-research/review/)
 - [x] T002 Read `context.ts:1-320`, `status.ts:1-250`, `ensure-ready.ts:507-525`, `readiness-contract.ts:1-249`, and `query.ts:780-830, 1075-1130` to lock down call shapes and existing helpers
 - [x] T003 Author spec.md / plan.md / tasks.md / checklist.md / decision-record.md
 - [x] T004 [P] Generate description.json + graph-metadata.json
@@ -134,6 +134,6 @@ _memory:
 - **Checklist**: checklist.md
 - **Decision Record**: decision-record.md
 - **Implementation Summary**: implementation-summary.md
-- **Sources**: ../011-post-stress-followup-research/review/review-report.md §3 (F-001, F-003), §4 (F-002, F-006, F-008, F-009), §7 Packet A
-- **Companions**: ../014-graph-status-readiness-snapshot (snapshot helper foundation); ../015-cocoindex-seed-telemetry-passthrough (cocoindex healthy path); ../013-graph-degraded-stress-cell (stress cell this remediation closes); ../005-code-graph-fast-fail (related readiness vocabulary)
+- **Sources**: ../011-post-stress-finding-remediation-research/review/review-report.md §3 (F-001, F-003), §4 (F-002, F-006, F-008, F-009), §7 Packet A
+- **Companions**: ../014-code-graph-status-readiness-snapshot (snapshot helper foundation); ../015-cocoindex-seed-telemetry-passthrough (cocoindex healthy path); ../013-code-graph-degraded-stress-cell (stress cell this remediation closes); ../005-code-graph-fail-fast-routing (related readiness vocabulary)
 <!-- /ANCHOR:cross-refs -->

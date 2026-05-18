@@ -18078,24 +18078,24 @@ index 8bafa4aead27f93138eea630d552dc17585b942e..878d5f29eb6218dd3e2bc9419ebcf4f5
  M .opencode/skills/system-spec-kit/mcp_server/skill_advisor/data/shadow-deltas.jsonl
  M .opencode/skills/system-spec-kit/mcp_server/tests/query-router.vitest.ts
  M .opencode/skills/system-spec-kit/mcp_server/tests/routing-telemetry-stress.vitest.ts
- M .opencode/specs/system-spec-kit/026-graph-and-context-optimization/012-causal-graph-channel-routing/001-initial-delivery/checklist.md
- M .opencode/specs/system-spec-kit/026-graph-and-context-optimization/012-causal-graph-channel-routing/001-initial-delivery/graph-metadata.json
- M .opencode/specs/system-spec-kit/026-graph-and-context-optimization/012-causal-graph-channel-routing/001-initial-delivery/handover.md
- M .opencode/specs/system-spec-kit/026-graph-and-context-optimization/012-causal-graph-channel-routing/001-initial-delivery/implementation-summary.md
- M .opencode/specs/system-spec-kit/026-graph-and-context-optimization/012-causal-graph-channel-routing/001-initial-delivery/plan.md
- M .opencode/specs/system-spec-kit/026-graph-and-context-optimization/012-causal-graph-channel-routing/001-initial-delivery/scratch/live-smoke-results.md
- M .opencode/specs/system-spec-kit/026-graph-and-context-optimization/012-causal-graph-channel-routing/001-initial-delivery/spec.md
- M .opencode/specs/system-spec-kit/026-graph-and-context-optimization/012-causal-graph-channel-routing/002-deep-review-remediation/checklist.md
- M .opencode/specs/system-spec-kit/026-graph-and-context-optimization/012-causal-graph-channel-routing/002-deep-review-remediation/decision-record.md
- M .opencode/specs/system-spec-kit/026-graph-and-context-optimization/012-causal-graph-channel-routing/002-deep-review-remediation/implementation-summary.md
- M .opencode/specs/system-spec-kit/026-graph-and-context-optimization/012-causal-graph-channel-routing/002-deep-review-remediation/plan.md
- M .opencode/specs/system-spec-kit/026-graph-and-context-optimization/012-causal-graph-channel-routing/002-deep-review-remediation/spec.md
- M .opencode/specs/system-spec-kit/026-graph-and-context-optimization/012-causal-graph-channel-routing/002-deep-review-remediation/tasks.md
+ M .opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-causal-graph-channel-routing/001-initial-delivery/checklist.md
+ M .opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-causal-graph-channel-routing/001-initial-delivery/graph-metadata.json
+ M .opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-causal-graph-channel-routing/001-initial-delivery/handover.md
+ M .opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-causal-graph-channel-routing/001-initial-delivery/implementation-summary.md
+ M .opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-causal-graph-channel-routing/001-initial-delivery/plan.md
+ M .opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-causal-graph-channel-routing/001-initial-delivery/scratch/live-smoke-results.md
+ M .opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-causal-graph-channel-routing/001-initial-delivery/spec.md
+ M .opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-causal-graph-channel-routing/002-deep-review-remediation/checklist.md
+ M .opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-causal-graph-channel-routing/002-deep-review-remediation/decision-record.md
+ M .opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-causal-graph-channel-routing/002-deep-review-remediation/implementation-summary.md
+ M .opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-causal-graph-channel-routing/002-deep-review-remediation/plan.md
+ M .opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-causal-graph-channel-routing/002-deep-review-remediation/spec.md
+ M .opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-causal-graph-channel-routing/002-deep-review-remediation/tasks.md
  M .opencode/specs/system-spec-kit/028-deep-review-noninteractive-setup-bypass/checklist.md
  M .opencode/specs/system-spec-kit/028-deep-review-noninteractive-setup-bypass/implementation-summary.md
  M .opencode/specs/system-spec-kit/028-deep-review-noninteractive-setup-bypass/tasks.md
 ?? .opencode/skills/system-spec-kit/mcp_server/tests/__helpers__/
-?? .opencode/specs/system-spec-kit/026-graph-and-context-optimization/012-causal-graph-channel-routing/002-deep-review-remediation/review/
+?? .opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-causal-graph-channel-routing/002-deep-review-remediation/review/
 ?? .opencode/specs/system-spec-kit/028-deep-review-noninteractive-setup-bypass/evidence/
 
 exec

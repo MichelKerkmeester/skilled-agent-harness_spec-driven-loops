@@ -1,52 +1,199 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/061-agent-optimization/007-agent-improve-prompt",
-  "spec_folder": "skilled-agent-orchestration/061-agent-optimization/007-agent-improve-prompt",
-  "parent_id": "skilled-agent-orchestration/061-agent-optimization",
+  "packet_id": "skilled-agent-orchestration/z_archive/061-agent-optimization/007-agent-improve-prompt",
+  "spec_folder": "skilled-agent-orchestration/z_archive/061-agent-optimization/007-agent-improve-prompt",
+  "parent_id": "skilled-agent-orchestration/z_archive/061-agent-optimization",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      "skilled-agent-orchestration/061-agent-optimization"
-    ],
+    "depends_on": [],
     "supersedes": [],
-    "related_to": [
-      "skilled-agent-orchestration/060-sk-agent-improver-test-report-alignment"
-    ]
+    "related_to": []
   },
   "derived": {
     "trigger_phrases": [
-      "007 optimize improve-prompt",
-      "improve improve-prompt agent",
-      "improve-prompt agent improvement",
-      "061/007"
+      "007-agent-improve-prompt",
+      "improve-prompt optimization"
     ],
     "key_topics": [
-      "007",
-      "agent-optimization",
+      "007-agent-improve-prompt",
       "improve-prompt",
-      "sk-improve-agent-application"
+      "optimization",
+      "improvement",
+      "focus",
+      "prompt",
+      "engineering",
+      "framework",
+      "selection",
+      "clear",
+      "validation",
+      "companion"
     ],
+    "importance_tier": "high",
     "status": "complete",
-    "completion_pct": 100,
-    "last_active_child_id": null,
-    "level": 1,
-    "is_phase_parent": false,
-    "session_outcome": "promoted",
-    "stop_reason": "converged",
-    "iterations_run": 5,
-    "best_iter": 1,
-    "best_weighted_score": 0,
-    "best_delta": 3,
-    "operator_review_pending": false,
-    "actual_promotion_complete": true,
-    "promoted_iter": 5,
-    "promotion_decision": "orchestrator_recommended_operator_confirmed",
-    "promotion_rationale": "iter-5 synthesis +3 delta with rich integration-touchpoint additions; substrate-recommended promotion",
-    "mirrors_synced": [
-      ".opencode/agents/improve-prompt.md",
-      ".claude/agents/improve-prompt.md",
-      ".gemini/agents/improve-prompt.md",
-      ".codex/agents/improve-prompt.toml"
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Agent Optimization",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Improvement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Begin Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the Task",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "re-running",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "git",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. TASK NOTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PHASE 1: SETUP",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "T-001: Read target + scan integration surface",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "T-002: Generate dynamic 5-dimension profile",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "T-003: Dispatch /improve:agent",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Score Progression",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Journal Events",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-copilot",
+        "kind": "key_phrase",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Improvement focus: **Prompt engineering; framework selection; CLEAR validation**. Companion to /improve:prompt command. Smallest agent in fleet.",
+    "created_at": "2026-05-18T07:49:27.107Z",
+    "last_save_at": "2026-05-18T15:17:56.934Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
     ]
   }
 }

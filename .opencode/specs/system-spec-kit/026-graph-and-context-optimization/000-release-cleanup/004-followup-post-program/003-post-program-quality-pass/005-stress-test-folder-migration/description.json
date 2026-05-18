@@ -1,0 +1,27 @@
+{
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-post-program-quality-pass/005-stress-test-folder-migration",
+  "description": "Feature Specification: 037/005 Stress Test Folder Migration",
+  "keywords": [
+    "feature",
+    "specification",
+    "037",
+    "005",
+    "stress",
+    "test",
+    "folder",
+    "migration"
+  ],
+  "lastUpdated": "2026-05-08T08:26:57.288Z",
+  "specId": "005",
+  "folderSlug": "stress-test-folder-migration",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "000-release-cleanup",
+    "003-post-program-quality-pass"
+  ],
+  "memorySequence": 6,
+  "memoryNameHistory": [
+    "29-04-26_19-39__resource-map-authored-and-memory-finalization.md"
+  ]
+}

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/086-skill-description-guardrails",
-  "spec_folder": "skilled-agent-orchestration/086-skill-description-guardrails",
+  "packet_id": "skilled-agent-orchestration/z_archive/086-skill-description-guardrails",
+  "spec_folder": "skilled-agent-orchestration/z_archive/086-skill-description-guardrails",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -41,22 +41,16 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-doc/assets/documentation/frontmatter_templates.md",
       ".opencode/skills/sk-doc/assets/skill/skill_md_template.md",
-      ".opencode/skills/sk-doc/references/specific/skill_creation.md",
       ".opencode/skills/sk-doc/assets/agent_template.md",
       ".opencode/skills/sk-doc/assets/command_template.md",
       ".opencode/skills/sk-doc/scripts/quick_validate.py",
       ".opencode/skills/sk-doc/scripts/tests/test_quick_validate_086.py",
       ".opencode/commands/create/assets/create_sk_skill_confirm.yaml",
       ".opencode/commands/create/assets/create_agent_confirm.yaml",
-      ".opencode/commands/doctor/skill-budget.md",
-      ".opencode/commands/doctor/assets/doctor_skill-budget_auto.yaml",
-      ".opencode/commands/doctor/assets/doctor_skill-budget_confirm.yaml",
       ".opencode/commands/doctor/scripts/audit_descriptions.py",
       ".opencode/commands/create/sk-skill.md",
       ".opencode/commands/create/agent.md",
-      ".claude/commands/doctor/skill-budget.md",
       "spec.md",
       "plan.md",
       "implementation-summary.md",
@@ -64,21 +58,9 @@
     ],
     "entities": [
       {
-        "name": "frontmatter_templates.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/assets/documentation/frontmatter_templates.md",
-        "source": "derived"
-      },
-      {
         "name": "skill_md_template.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-doc/assets/skill/skill_md_template.md",
-        "source": "derived"
-      },
-      {
-        "name": "skill_creation.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/references/specific/skill_creation.md",
         "source": "derived"
       },
       {
@@ -115,24 +97,6 @@
         "name": "create_agent_confirm.yaml",
         "kind": "config",
         "path": ".opencode/commands/create/assets/create_agent_confirm.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "skill-budget.md",
-        "kind": "doc",
-        "path": ".opencode/commands/doctor/skill-budget.md",
-        "source": "derived"
-      },
-      {
-        "name": "doctor_skill-budget_auto.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/doctor/assets/doctor_skill-budget_auto.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "doctor_skill-budget_confirm.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/doctor/assets/doctor_skill-budget_confirm.yaml",
         "source": "derived"
       },
       {
@@ -206,11 +170,41 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Purpose Bake",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Three",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Layer",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Packets 083 (skill description budget trim) and 084 (ambiguity dual-margin fix) revealed that skill/command/agent description authoring has hidden constraints with no current enforcement: (1) total skill-metadata budget caps at 8,000 chars (`SLASH_COMMAND_TOOL_CHAR_BUDGET`); (2) per-item hard cap is 1,536 chars; (3) a memory-rule \"stack-agnostic phrasing\" forbids enumerating Webflow/Go/Next.js etc. in descriptions; (4) advisor routing depends on keyword density. Packet 083 had to manually trim 36 frontmatter descriptions because authoring guidance was thin and contradictory: `frontmatter_templates.md:198` says \"10-200 characters\", `skill_md_template.md:75` says \"150-300 chars\", `skill_creation.md:397` says nothing about length. Zero create-time validation. Zero permanent drift audit. Without guardrails, the next dropped-from-discovery warning is a matter of when, not if.",
     "created_at": "2026-05-06T13:33:18.960Z",
-    "last_save_at": "2026-05-06T13:33:18.960Z",
+    "last_save_at": "2026-05-18T15:17:57.031Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

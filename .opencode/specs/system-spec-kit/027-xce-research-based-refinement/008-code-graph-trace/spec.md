@@ -45,7 +45,7 @@ _memory:
 | **Branch** | `main` |
 | **Parent Packet** | `system-spec-kit/027-xce-research-based-refinement` |
 | **Packet ID** | `system-spec-kit/027-xce-research-based-refinement/008-code-graph-trace` |
-| **Depends on** | `system-spec-kit/027-xce-research-based-refinement/007-code-graph-hld-lld` |
+| **Depends on** | `system-spec-kit/027-xce-research-based-refinement/005-code-graph-hld-lld` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -101,8 +101,8 @@ This phase parent coordinates four independently executable child packets for `c
 
 ### Phase Transition Rules
 
-- `001-contract` can start after `system-spec-kit/027-xce-research-based-refinement/007-code-graph-hld-lld/001-contract` publishes.
-- `002-lib-impl` starts after local `001-contract` and `system-spec-kit/027-xce-research-based-refinement/007-code-graph-hld-lld/002-lib-impl` merge.
+- `001-contract` can start after `system-spec-kit/027-xce-research-based-refinement/005-code-graph-hld-lld/001-contract` publishes.
+- `002-lib-impl` starts after local `001-contract` and `system-spec-kit/027-xce-research-based-refinement/005-code-graph-hld-lld/002-lib-impl` merge.
 - `003-handler` and `004-test` depend on local `001-contract`; test work may use contract doubles until the library is ready.
 - Each child validates independently with `validate.sh --strict`.
 

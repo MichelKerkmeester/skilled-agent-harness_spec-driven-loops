@@ -8962,7 +8962,7 @@ exec
 .opencode/skills/sk-doc/README.md
 .opencode/skills/sk-doc/SKILL.md
 .opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/002-auto-mode-contract-generalization-to-all-commands/tasks.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/graph-metadata.json
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/graph-metadata.json
 
  succeeded in 0ms:
 diff --git a/.opencode/commands/create/agent.md b/.opencode/commands/create/agent.md
@@ -9828,7 +9828,7 @@ exec
  M .opencode/skills/sk-doc/README.md
  M .opencode/skills/sk-doc/SKILL.md
  M .opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/002-auto-mode-contract-generalization-to-all-commands/tasks.md
- M .opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/graph-metadata.json
+ M .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/graph-metadata.json
 ?? .opencode/skills/sk-doc/changelog/v1.5.0.0.md
 ?? .opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/002-auto-mode-contract-generalization-to-all-commands/evidence/
 

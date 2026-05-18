@@ -120,7 +120,7 @@ State schema evolution is additive-only:
 4. Existing rows are append-only history and MUST NOT be rewritten to backfill metadata.
 5. Changes that would break v1 callers require a new packet and explicit migration plan.
 
-This follows agent body §14 and ADR-001 in `.opencode/specs/skilled-agent-orchestration/092-multi-ai-council-deferrals/decision-record.md`.
+This follows agent body §14 and ADR-001 in the internal design notes.
 
 ---
 
@@ -179,5 +179,5 @@ Per ADR-003, validation is convention-only for v1. Do not add a runtime schema v
 
 Cross-references:
 - Agent body: `.opencode/agents/deep-ai-council.md` §14
-- Packet 092 decision record: `.opencode/specs/skilled-agent-orchestration/092-multi-ai-council-deferrals/decision-record.md` ADR-001
-- Decision record: `.opencode/specs/skilled-agent-orchestration/080-multi-ai-council-output-protocol/decision-record.md` ADR-003 and ADR-004
+- Decision context: ADR-001 in internal design notes
+- Decision context: local doctor command ADRs ADR-003 and ADR-004

@@ -1,0 +1,19 @@
+{
+  "sessionId": "rvw-004-20260518-105404",
+  "reviewTarget": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-mcp-launcher-concurrency-arc/004-launcher-diagnostics-and-signal-coverage",
+  "reviewTargetType": "spec-folder",
+  "reviewDimensions": ["correctness","security","traceability","maintainability"],
+  "specFolder": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-mcp-launcher-concurrency-arc/004-launcher-diagnostics-and-signal-coverage",
+  "maxIterations": 5,
+  "convergenceThreshold": 0.10,
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-devin",
+    "model": "swe-1.6",
+    "permissionMode": "auto",
+    "timeoutSeconds": 900
+  },
+  "createdAt": "2026-05-18T10:54:04Z",
+  "status": "initialized",
+  "driver": "run-deep-review-arc.sh (non-canonical minimal driver)"
+}

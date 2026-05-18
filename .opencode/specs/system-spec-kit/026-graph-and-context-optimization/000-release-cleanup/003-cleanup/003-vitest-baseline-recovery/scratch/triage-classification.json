@@ -34,7 +34,7 @@
       "fullName": "CHECKPOINTS EXTENDED TESTS [deferred - requires DB test fixtures] Storage: T107 Schema Validation Before Restore T107-07: null row rejects restore",
       "title": "T107-07: null row rejects restore",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected 'Malformed snapshot row memories.0: In…' to contain 'not an object'"
     },
     {
@@ -42,7 +42,7 @@
       "fullName": "T013: staged swap regressions successful swap deletes old children and links new children atomically",
       "title": "successful swap deletes old children and links new children atomically",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected 'error' to be 'updated' // Object.is equality"
     },
     {
@@ -50,7 +50,7 @@
       "fullName": "T013: staged swap regressions swap failure rolls back: old children remain and staged children are cleaned",
       "title": "swap failure rolls back: old children remain and staged children are cleaned",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected 'Chunked indexing aborted: all 2 chunk…' to contain 'failed to finalize safe swap'"
     },
     {
@@ -58,7 +58,7 @@
       "fullName": "T013: staged swap regressions fails safe-swap finalization when old-child bulk delete fails and keeps old children linked",
       "title": "fails safe-swap finalization when old-child bulk delete fails and keeps old children linked",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected 'Chunked indexing aborted: all 2 chunk…' to contain 'failed to finalize safe swap'"
     },
     {
@@ -66,7 +66,7 @@
       "fullName": "T013: staged swap regressions partial embedding failures still swap successfully with mixed child statuses",
       "title": "partial embedding failures still swap successfully with mixed child statuses",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected 'error' to be 'updated' // Object.is equality"
     },
     {
@@ -74,7 +74,7 @@
       "fullName": "T013: staged swap regressions uses normalized content hash for chunk embedding cache keys",
       "title": "uses normalized content hash for chunk embedding cache keys",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "SqliteError: no such column: last_review"
     },
     {
@@ -82,7 +82,7 @@
       "fullName": "code_graph_status DB-unavailable envelope (F-003) preserves the readiness snapshot when graphDb.getStats() throws (stats failure isolated)",
       "title": "preserves the readiness snapshot when graphDb.getStats() throws (stats failure isolated)",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "Error: [vitest] No \"getStoredCodeGraphScope\" export is defined on the \"../code_graph/lib/code-graph-db.js\" mock. Did you forget to return it from \"vi.mock\"?"
     },
     {
@@ -90,7 +90,7 @@
       "fullName": "code_graph_status DB-unavailable envelope (F-003) preserves the readiness snapshot when the snapshot itself reports a probe crash",
       "title": "preserves the readiness snapshot when the snapshot itself reports a probe crash",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "Error: [vitest] No \"getStoredCodeGraphScope\" export is defined on the \"../code_graph/lib/code-graph-db.js\" mock. Did you forget to return it from \"vi.mock\"?"
     },
     {
@@ -98,7 +98,7 @@
       "fullName": "code_graph_status DB-unavailable envelope (F-003) still ships the ok envelope with action-level readiness on the healthy path",
       "title": "still ships the ok envelope with action-level readiness on the healthy path",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "Error: [vitest] No \"getStoredCodeGraphScope\" export is defined on the \"../code_graph/lib/code-graph-db.js\" mock. Did you forget to return it from \"vi.mock\"?"
     },
     {
@@ -106,7 +106,7 @@
       "fullName": "cross-handler shared degraded-readiness vocabulary parity context crash and status crash agree on canonicalReadiness=\"missing\" + trustState=\"unavailable\"",
       "title": "context crash and status crash agree on canonicalReadiness=\"missing\" + trustState=\"unavailable\"",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "Error: [vitest] No \"getStoredCodeGraphScope\" export is defined on the \"../code_graph/lib/code-graph-db.js\" mock. Did you forget to return it from \"vi.mock\"?"
     },
     {
@@ -114,7 +114,7 @@
       "fullName": "code_graph_status readiness snapshot routing (Packet 014) surfaces readiness.action=\"none\" for a fresh graph (criterion A)",
       "title": "surfaces readiness.action=\"none\" for a fresh graph (criterion A)",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "Error: [vitest] No \"getStoredCodeGraphScope\" export is defined on the \"../code_graph/lib/code-graph-db.js\" mock. Did you forget to return it from \"vi.mock\"?"
     },
     {
@@ -122,7 +122,7 @@
       "fullName": "code_graph_status readiness snapshot routing (Packet 014) surfaces readiness.action=\"full_scan\" for an empty graph with descriptive reason (criterion B)",
       "title": "surfaces readiness.action=\"full_scan\" for an empty graph with descriptive reason (criterion B)",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "Error: [vitest] No \"getStoredCodeGraphScope\" export is defined on the \"../code_graph/lib/code-graph-db.js\" mock. Did you forget to return it from \"vi.mock\"?"
     },
     {
@@ -130,7 +130,7 @@
       "fullName": "code_graph_status readiness snapshot routing (Packet 014) surfaces readiness.action=\"full_scan\" for broad stale (>50 files) (criterion C)",
       "title": "surfaces readiness.action=\"full_scan\" for broad stale (>50 files) (criterion C)",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "Error: [vitest] No \"getStoredCodeGraphScope\" export is defined on the \"../code_graph/lib/code-graph-db.js\" mock. Did you forget to return it from \"vi.mock\"?"
     },
     {
@@ -138,7 +138,7 @@
       "fullName": "code_graph_status readiness snapshot routing (Packet 014) surfaces readiness.action=\"selective_reindex\" for bounded stale (criterion D)",
       "title": "surfaces readiness.action=\"selective_reindex\" for bounded stale (criterion D)",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "Error: [vitest] No \"getStoredCodeGraphScope\" export is defined on the \"../code_graph/lib/code-graph-db.js\" mock. Did you forget to return it from \"vi.mock\"?"
     },
     {
@@ -146,7 +146,7 @@
       "fullName": "code_graph_status readiness snapshot routing (Packet 014) surfaces readiness for an unavailable graph without throwing",
       "title": "surfaces readiness for an unavailable graph without throwing",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "Error: [vitest] No \"getStoredCodeGraphScope\" export is defined on the \"../code_graph/lib/code-graph-db.js\" mock. Did you forget to return it from \"vi.mock\"?"
     },
     {
@@ -154,7 +154,7 @@
       "fullName": "code_graph_status readiness snapshot routing (Packet 014) preserves canonicalReadiness/trustState mapping from freshness",
       "title": "preserves canonicalReadiness/trustState mapping from freshness",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "Error: [vitest] No \"getStoredCodeGraphScope\" export is defined on the \"../code_graph/lib/code-graph-db.js\" mock. Did you forget to return it from \"vi.mock\"?"
     },
     {
@@ -162,7 +162,7 @@
       "fullName": "code_graph_status is side-effect free (criterion E) does NOT call any mutating code-graph-db export",
       "title": "does NOT call any mutating code-graph-db export",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "Error: [vitest] No \"getStoredCodeGraphScope\" export is defined on the \"../code_graph/lib/code-graph-db.js\" mock. Did you forget to return it from \"vi.mock\"?"
     },
     {
@@ -170,7 +170,7 @@
       "fullName": "code_graph_status is side-effect free (criterion E) does NOT call ensureCodeGraphReady (mutating entry point)",
       "title": "does NOT call ensureCodeGraphReady (mutating entry point)",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "Error: [vitest] No \"getStoredCodeGraphScope\" export is defined on the \"../code_graph/lib/code-graph-db.js\" mock. Did you forget to return it from \"vi.mock\"?"
     },
     {
@@ -178,7 +178,7 @@
       "fullName": "code_graph_status is side-effect free (criterion E) uses the read-only snapshot helper with process.cwd()",
       "title": "uses the read-only snapshot helper with process.cwd()",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "Error: [vitest] No \"getStoredCodeGraphScope\" export is defined on the \"../code_graph/lib/code-graph-db.js\" mock. Did you forget to return it from \"vi.mock\"?"
     },
     {
@@ -186,7 +186,7 @@
       "fullName": "Codex UserPromptSubmit advisor hook execs the compiled Codex hook and emits non-empty additionalContext",
       "title": "execs the compiled Codex hook and emits non-empty additionalContext",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected undefined to be truthy"
     },
     {
@@ -194,7 +194,7 @@
       "fullName": "Context Server Group 2: Tool Definitions (49 tools) T11c: Tool count is current expected list length",
       "title": "T11c: Tool count is current expected list length",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected 50 to be 49 // Object.is equality"
     },
     {
@@ -202,7 +202,7 @@
       "fullName": "Context Server Group 2: Tool Definitions (49 tools) T13: No unexpected tools",
       "title": "T13: No unexpected tools",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected [ 'memory_retention_sweep' ] to have a length of +0 but got 1"
     },
     {
@@ -210,7 +210,7 @@
       "fullName": "Context Server Group 3: Tool Dispatch Coverage T16b: dispatchTool(name, args) called",
       "title": "T16b: dispatchTool(name, args) called",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected '// ──────────────────────────────────…' to match /dispatchTool\\(name,\\s*args\\)/"
     },
     {
@@ -218,7 +218,7 @@
       "fullName": "Context Server Group 3b: After-Tool Callback Pipeline T000b: callbacks are triggered after dispatchTool and non-blocking",
       "title": "T000b: callbacks are triggered after dispatchTool and non-blocking",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected '// ──────────────────────────────────…' to match /const\\s+result\\s*=\\s*await\\s+runWithC…/"
     },
     {
@@ -226,7 +226,7 @@
       "fullName": "Context Server Group 3b: After-Tool Callback Pipeline T000e: non-memory-aware tools invoke TM-05 tool-dispatch hook at runtime",
       "title": "T000e: non-memory-aware tools invoke TM-05 tool-dispatch hook at runtime",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected '// ──────────────────────────────────…' to contain 'autoSurfacedContext = await autoSurfa…'"
     },
     {
@@ -234,7 +234,7 @@
       "fullName": "Context Server Group 3b: After-Tool Callback Pipeline T000g: memory_context resume mode invokes TM-05 compaction hook at runtime",
       "title": "T000g: memory_context resume mode invokes TM-05 compaction hook at runtime",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected '// ──────────────────────────────────…' to contain 'name === \\'memory_context\\' && args.m…'"
     },
     {
@@ -242,7 +242,7 @@
       "fullName": "Context Server Group 3b: After-Tool Callback Pipeline T000h: memory_context non-resume mode keeps SK-004 memory-aware path",
       "title": "T000h: memory_context non-resume mode keeps SK-004 memory-aware path",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected '// ──────────────────────────────────…' to contain 'name === \\'memory_context\\' && args.m…'"
     },
     {
@@ -250,7 +250,7 @@
       "fullName": "Context Server Group 8: Input Validation T32a: Schema validation delegated to tool modules",
       "title": "T32a: Schema validation delegated to tool modules",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected '// ──────────────────────────────────…' to match /dispatchTool\\(name,\\s*args\\)/"
     },
     {
@@ -258,7 +258,7 @@
       "fullName": "Context Server Group 15: Module Imports T67: Imports Memory parser from './lib/parsing/memory-parser.js'",
       "title": "T67: Imports Memory parser from './lib/parsing/memory-parser.js'",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected false to be true // Object.is equality"
     },
     {
@@ -266,7 +266,7 @@
       "fullName": "copilot hook wiring routes sessionStart through the repo-local wrapper and other events through Superset",
       "title": "routes sessionStart through the repo-local wrapper and other events through Superset",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected '/Users/michelkerkmeester/.superset/ho…' to be '.github/hooks/scripts/session-start.sh' // Object.is equality"
     },
     {
@@ -274,7 +274,7 @@
       "fullName": "code-graph SQLite recovery stores file mtimes and reports stale files via mtime checks",
       "title": "stores file mtimes and reports stale files via mtime checks",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected false to be true // Object.is equality"
     },
     {
@@ -282,7 +282,7 @@
       "fullName": "Memory roadmap flag documentation manual playbook 125 matches the canonical roadmap contract",
       "title": "manual playbook 125 matches the canonical roadmap contract",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected '---\\ntitle: \"Spec Kit Memory: Manual …' to contain '### 125 | Memory roadmap capability f…'"
     },
     {
@@ -306,7 +306,7 @@
       "fullName": "Gate D regression constitutional memory discovers constitutional guidance from dedicated skill files and skips README placeholders",
       "title": "discovers constitutional guidance from dedicated skill files and skips README placeholders",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected [] to deeply equal [ Array(1) ]"
     },
     {
@@ -314,7 +314,7 @@
       "fullName": "Gate D intent routing regression routes canonical queries across auto, quick, deep, focused, and resume without archived or legacy-memory fallback",
       "title": "routes canonical queries across auto, quick, deep, focused, and resume without archived or legacy-memory fallback",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected undefined to be 'focused' // Object.is equality"
     },
     {
@@ -322,7 +322,7 @@
       "fullName": "Gate D intent routing regression resume handler does not fall back to legacy memory when spec-docs resolve",
       "title": "resume handler does not fall back to legacy memory when spec-docs resolve",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "TypeError: Cannot read properties of undefined (reading '0')"
     },
     {
@@ -330,7 +330,7 @@
       "fullName": "graph metadata integration discovers root graph-metadata files under canonical specs",
       "title": "discovers root graph-metadata files under canonical specs",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected [ Array(1) ] to deeply equal [ Array(1) ]"
     },
     {
@@ -338,7 +338,7 @@
       "fullName": "graph metadata schema and parser accepts derived metadata created from canonical packet docs",
       "title": "accepts derived metadata created from canonical packet docs",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected [ 'spec.md', 'plan.md', …(2) ] to deeply equal ArrayContaining{…}"
     },
     {
@@ -346,7 +346,7 @@
       "fullName": "graph metadata schema and parser drops obsolete memory metadata references and nonexistent key-file candidates",
       "title": "drops obsolete memory metadata references and nonexistent key-file candidates",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected [ 'spec.md', 'plan.md', …(2) ] to include 'scripts/core/workflow.ts'"
     },
     {
@@ -354,7 +354,7 @@
       "fullName": "graph metadata schema and parser raises the entity cap to 24 and rejects bare runtime names",
       "title": "raises the entity cap to 24 and rejects bare runtime names",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected [ { name: 'spec.md', …(3) }, …(14) ] to have a length of 24 but got 15"
     },
     {
@@ -362,7 +362,7 @@
       "fullName": "code graph query trust emission emits separate trust axes on code-graph payloads",
       "title": "emits separate trust axes on code-graph payloads",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected 'regex' to be 'ast' // Object.is equality"
     },
     {
@@ -370,7 +370,7 @@
       "fullName": "Graph Signals (S8 — N2a + N2b) cache invalidation after causal edge mutations invalidates graph and degree caches after memory deletion removes causal edges",
       "title": "invalidates graph and degree caches after memory deletion removes causal edges",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "SqliteError: no such column: content_hash"
     },
     {
@@ -378,7 +378,7 @@
       "fullName": "Handler Memory Context (T524) [deferred - requires DB test fixtures] Auto Mode Routing (T524-1 to T524-3) T524-2: Short question routes to focused mode",
       "title": "T524-2: Short question routes to focused mode",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected 'resume' to be 'focused' // Object.is equality"
     },
     {
@@ -386,7 +386,7 @@
       "fullName": "Handler Memory Context (T524) [deferred - requires DB test fixtures] tokenUsage fallback contract and pressure policy lane T018/T019: 55% pressure keeps intent-selected mode (no override)",
       "title": "T018/T019: 55% pressure keeps intent-selected mode (no override)",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected 'resume' to be 'focused' // Object.is equality"
     },
     {
@@ -394,7 +394,7 @@
       "fullName": "Handler Memory Context (T524) [deferred - requires DB test fixtures] tokenUsage fallback contract and pressure policy lane T017: estimator unavailable logs WARN and keeps auto-selected mode",
       "title": "T017: estimator unavailable logs WARN and keeps auto-selected mode",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected 'resume' to be 'focused' // Object.is equality"
     },
     {
@@ -402,7 +402,7 @@
       "fullName": "Handler Memory Context (T524) [deferred - requires DB test fixtures] Error Response Structure (T524-7 to T524-8) keeps successful retrievals when telemetry assembly throws",
       "title": "keeps successful retrievals when telemetry assembly throws",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected 'resume' to be 'focused' // Object.is equality"
     },
     {
@@ -410,7 +410,7 @@
       "fullName": "Handler Memory Context (T524) [deferred - requires DB test fixtures] Error Response Structure (T524-7 to T524-8) keeps successful retrievals when session inferred mode persistence throws",
       "title": "keeps successful retrievals when session inferred mode persistence throws",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected 'resume' to be 'focused' // Object.is equality"
     },
     {
@@ -418,7 +418,7 @@
       "fullName": "Handler Memory CRUD (T519) [deferred - requires DB test fixtures] handleMemoryDelete Input Validation T519-D4: Non-numeric id throws",
       "title": "T519-D4: Non-numeric id throws",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "Error: expected [Function] to throw error matching /Invalid|number/ but got 'memory_delete requires confirm: true'"
     },
     {
@@ -426,7 +426,7 @@
       "fullName": "Handler Memory CRUD (T519) [deferred - requires DB test fixtures] handleMemoryDelete Input Validation T519-D5: Partially numeric id strings are rejected",
       "title": "T519-D5: Partially numeric id strings are rejected",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "Error: expected [Function] to throw error matching /Invalid|integer|number/ but got 'memory_delete requires confirm: true'"
     },
     {
@@ -434,7 +434,7 @@
       "fullName": "Handler Memory Index (T520) [deferred - requires DB test fixtures] findConstitutionalFiles T520-7: finds constitutional .md files",
       "title": "T520-7: finds constitutional .md files",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected +0 to be 1 // Object.is equality"
     },
     {
@@ -442,7 +442,7 @@
       "fullName": "Handler Memory Save (T518) [deferred - requires DB test fixtures] atomic-save failure injection fails open to natural Tier 2 routing when Tier 3 transport throws",
       "title": "fails open to natural Tier 2 routing when Tier 3 transport throws",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected \"vi.fn()\" to be called 1 times, but got 2 times"
     },
     {
@@ -450,7 +450,7 @@
       "fullName": "Hooks mutation wiring keeps hooks README documented exports aligned with explicit hooks barrel exports",
       "title": "keeps hooks README documented exports aligned with explicit hooks barrel exports",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected null not to be null"
     },
     {
@@ -458,7 +458,7 @@
       "fullName": "Layer Definitions Tests TOOL_LAYER_MAP Constant every registered tool has a layer definition",
       "title": "every registered tool has a layer definition",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected [ 'memory_retention_sweep', …(1) ] to deeply equal []"
     },
     {
@@ -466,7 +466,7 @@
       "fullName": "Layer Definitions Tests TOOL_LAYER_MAP Constant tool definition prefixes stay aligned with TOOL_LAYER_MAP",
       "title": "tool definition prefixes stay aligned with TOOL_LAYER_MAP",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected 'L4' to be undefined // Object.is equality"
     },
     {
@@ -474,7 +474,7 @@
       "fullName": "Memory Context Session State Persistence persists an auto-discovered spec folder in the initial session state save",
       "title": "persists an auto-discovered spec folder in the initial session state save",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected \"vi.fn()\" to be called with arguments: [ 'session-123', ObjectContaining{…} ]"
     },
     {
@@ -482,7 +482,7 @@
       "fullName": "handleMemoryDelete - Happy Path EXT-D1: Single ID delete returns deleted=1",
       "title": "EXT-D1: Single ID delete returns deleted=1",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "Error: memory_delete requires confirm: true"
     },
     {
@@ -490,7 +490,7 @@
       "fullName": "handleMemoryDelete - Happy Path EXT-D2: Delete non-existent returns deleted=0",
       "title": "EXT-D2: Delete non-existent returns deleted=0",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "Error: memory_delete requires confirm: true"
     },
     {
@@ -498,7 +498,7 @@
       "fullName": "handleMemoryDelete - Happy Path EXT-D3: String ID \"7\" parsed to numeric 7",
       "title": "EXT-D3: String ID \"7\" parsed to numeric 7",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "Error: memory_delete requires confirm: true"
     },
     {
@@ -506,7 +506,7 @@
       "fullName": "handleMemoryDelete - Happy Path EXT-D4: Successful delete clears caches",
       "title": "EXT-D4: Successful delete clears caches",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "Error: memory_delete requires confirm: true"
     },
     {
@@ -514,7 +514,7 @@
       "fullName": "handleMemoryDelete - Happy Path EXT-D5: Failed delete does not clear caches",
       "title": "EXT-D5: Failed delete does not clear caches",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "Error: memory_delete requires confirm: true"
     },
     {
@@ -522,7 +522,7 @@
       "fullName": "handleMemoryDelete - Happy Path EXT-D6: Single delete with unavailable DB returns E_DB_UNAVAILABLE envelope",
       "title": "EXT-D6: Single delete with unavailable DB returns E_DB_UNAVAILABLE envelope",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "Error: memory_delete requires confirm: true"
     },
     {
@@ -530,7 +530,7 @@
       "fullName": "handleMemoryDelete - Happy Path EXT-D7: Single delete surfaces mutation-ledger append warnings",
       "title": "EXT-D7: Single delete surfaces mutation-ledger append warnings",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "Error: memory_delete requires confirm: true"
     },
     {
@@ -538,7 +538,7 @@
       "fullName": "handleMemoryDelete - Causal Edge Cleanup EXT-CE1: Causal edges cleaned up on single delete",
       "title": "EXT-CE1: Causal edges cleaned up on single delete",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "Error: memory_delete requires confirm: true"
     },
     {
@@ -546,7 +546,7 @@
       "fullName": "handleMemoryDelete - Causal Edge Cleanup EXT-CE2: Causal edge cleanup failure aborts delete transaction",
       "title": "EXT-CE2: Causal edge cleanup failure aborts delete transaction",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "Error: expected [Function] to throw error including 'Mock edge cleanup error' but got 'memory_delete requires confirm: true'"
     },
     {
@@ -554,7 +554,7 @@
       "fullName": "handleMemoryDelete - Causal Edge Cleanup EXT-CE3: No edge cleanup when delete fails",
       "title": "EXT-CE3: No edge cleanup when delete fails",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "Error: memory_delete requires confirm: true"
     },
     {
@@ -562,7 +562,7 @@
       "fullName": "handleMemoryHealth - Happy Path EXT-H15: autoRepair cleans orphaned vectors but preserves orphaned files under temp-root workspaces",
       "title": "EXT-H15: autoRepair cleans orphaned vectors but preserves orphaned files under temp-root workspaces",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected false to be true // Object.is equality"
     },
     {
@@ -570,7 +570,7 @@
       "fullName": "MCP Response Envelope Structure EXT-ENV1: Success response envelope structure",
       "title": "EXT-ENV1: Success response envelope structure",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "Error: memory_delete requires confirm: true"
     },
     {
@@ -578,7 +578,7 @@
       "fullName": "MCP Response Envelope Structure EXT-ENV2: Envelope has summary, data, hints, meta",
       "title": "EXT-ENV2: Envelope has summary, data, hints, meta",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "Error: memory_delete requires confirm: true"
     },
     {
@@ -586,7 +586,7 @@
       "fullName": "Mutation ledger wiring EXT-ML1: single delete logs a delete mutation",
       "title": "EXT-ML1: single delete logs a delete mutation",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "Error: memory_delete requires confirm: true"
     },
     {
@@ -595,7 +595,7 @@
       "title": "keeps description parentChain aligned with the live specFolder route",
       "bucket": "environmental",
       "action": "skip with REASON: missing fixture/generated artifact/local DB",
-      "evidence": "Error: ENOENT: no such file or directory, open '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-search-routing-advisor/001-search-and-routing-tuning/001-search-fusion-tuning/description.json'"
+      "evidence": "Error: ENOENT: no such file or directory, open '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-search-routing-advisor/001-memory-search-routing-tuning/001-search-fusion-tuning/description.json'"
     },
     {
       "file": ".opencode/skills/system-spec-kit/mcp_server/tests/migration-lineage-identity.vitest.ts",
@@ -603,7 +603,7 @@
       "title": "keeps packet-local migration docs anchored to current paths",
       "bucket": "environmental",
       "action": "skip with REASON: missing fixture/generated artifact/local DB",
-      "evidence": "Error: ENOENT: no such file or directory, open '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-search-routing-advisor/001-search-and-routing-tuning/001-search-fusion-tuning/prompts/deep-research-prompt.md'"
+      "evidence": "Error: ENOENT: no such file or directory, open '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-search-routing-advisor/001-memory-search-routing-tuning/001-search-fusion-tuning/prompts/deep-research-prompt.md'"
     },
     {
       "file": ".opencode/skills/system-spec-kit/mcp_server/tests/migration-lineage-identity.vitest.ts",
@@ -658,7 +658,7 @@
       "fullName": "PI-B2: Progressive Validation Pipeline CHK-PI-B2-001: Detect level -- all violations identified Level 1 detect with --json produces JSON output",
       "title": "Level 1 detect with --json produces JSON output",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected '{\"folder\":\"/var/folders/3c/zfqcqsts0k…' to contain '\"results\"'"
     },
     {
@@ -666,7 +666,7 @@
       "fullName": "PI-B2: Progressive Validation Pipeline CHK-PI-B2-010: Existing validate.sh callers unaffected validate.sh --json produces valid JSON",
       "title": "validate.sh --json produces valid JSON",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected undefined to be defined"
     },
     {
@@ -675,7 +675,7 @@
       "title": "keeps feature catalog acceptance counts aligned with live root catalogs",
       "bucket": "environmental",
       "action": "skip with REASON: missing fixture/generated artifact/local DB",
-      "evidence": "Error: ENOENT: no such file or directory, open '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-search-routing-advisor/001-skill-advisor-graph/008-deep-skill-feature-catalogs/spec.md'"
+      "evidence": "Error: ENOENT: no such file or directory, open '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-search-routing-advisor/001-skill-graph-metadata-routing-boosts/008-deep-skill-feature-catalogs/spec.md'"
     },
     {
       "file": ".opencode/skills/system-spec-kit/mcp_server/tests/remediation-008-docs.vitest.ts",
@@ -690,7 +690,7 @@
       "fullName": "H5: all tool schemas have additionalProperties: false total tool count matches expected",
       "title": "total tool count matches expected",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected 54 to be 50 // Object.is equality"
     },
     {
@@ -698,7 +698,7 @@
       "fullName": "skill graph handlers preserves the live graph when a custom scan root contains no skills",
       "title": "preserves the live graph when a custom scan root contains no skills",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected [] to deeply equal [ { id: 'alpha' } ]"
     },
     {
@@ -706,7 +706,7 @@
       "fullName": "spec-doc-structure contract freezes the failure-code ordering from Gate C research",
       "title": "freezes the failure-code ordering from Gate C research",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected [ 'SPECDOC_FRONTMATTER_001', …(8) ] to deeply equal [ 'SPECDOC_FRONTMATTER_001', …(6) ]"
     },
     {
@@ -714,7 +714,7 @@
       "fullName": "spec-doc-structure contract passes validate.sh --strict on a Level 3 filled template fixture once continuity blocks are present",
       "title": "passes validate.sh --strict on a Level 3 filled template fixture once continuity blocks are present",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected 2 to be +0 // Object.is equality"
     },
     {
@@ -722,7 +722,7 @@
       "fullName": "spec-doc-structure contract keeps validate.sh help aligned with the validator registry",
       "title": "keeps validate.sh help aligned with the validator registry",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected 'validate-spec.sh - Spec Folder Valida…' to contain 'GRAPH_METADATA_SHAPE'"
     },
     {
@@ -730,7 +730,7 @@
       "fullName": "spec-doc-structure contract fails semantic-empty authored frontmatter fields",
       "title": "fails semantic-empty authored frontmatter fields",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected '\\nSpec Folder Validation v3.0.0\\n\\n  …' to contain 'Empty required frontmatter field: tit…'"
     },
     {
@@ -738,7 +738,7 @@
       "fullName": "spec-doc-structure contract fails duplicate opening anchor IDs during packet validation",
       "title": "fails duplicate opening anchor IDs during packet validation",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected '\\nSpec Folder Validation v3.0.0\\n\\n  …' to contain 'Duplicate anchor ID \\'section\\''"
     },
     {
@@ -746,7 +746,7 @@
       "fullName": "stage3-rerank regression (F-16) floors negative cross-encoder scores at rerank output boundary",
       "title": "floors negative cross-encoder scores at rerank output boundary",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected false to be true // Object.is equality"
     },
     {
@@ -754,7 +754,7 @@
       "fullName": "stage3-rerank regression (F-16) floors negative local-reranker scores at rerank output boundary",
       "title": "floors negative local-reranker scores at rerank output boundary",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected false to be true // Object.is equality"
     },
     {
@@ -762,7 +762,7 @@
       "fullName": "stage3-rerank regression (F-16) preserves attentionScore as an independent signal after reranking",
       "title": "preserves attentionScore as an independent signal after reranking",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected false to be true // Object.is equality"
     },
     {
@@ -770,7 +770,7 @@
       "fullName": "stage3-rerank regression (F-16) skips cross-encoder reranking for 3-result candidate sets and keeps 4-result sets eligible",
       "title": "skips cross-encoder reranking for 3-result candidate sets and keeps 4-result sets eligible",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected false to be true // Object.is equality"
     },
     {
@@ -778,7 +778,7 @@
       "fullName": "stage3-rerank regression (F-16) applies the same 4-result minimum to the local GGUF reranker path",
       "title": "applies the same 4-result minimum to the local GGUF reranker path",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected false to be true // Object.is equality"
     },
     {
@@ -786,7 +786,7 @@
       "fullName": "startup-brief builds graph outline and session continuity when data exists",
       "title": "builds graph outline and session continuity when data exists",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected 'missing' to be 'ready' // Object.is equality"
     },
     {
@@ -794,7 +794,7 @@
       "fullName": "startup-brief returns empty graph state with summary but no outline for empty indexes",
       "title": "returns empty graph state with summary but no outline for empty indexes",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected 'missing' to be 'empty' // Object.is equality"
     },
     {
@@ -802,7 +802,7 @@
       "fullName": "startup-brief reports stale graph state when freshness detection says stale even with graph counts present",
       "title": "reports stale graph state when freshness detection says stale even with graph counts present",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected 'missing' to be 'stale' // Object.is equality"
     },
     {
@@ -810,7 +810,7 @@
       "fullName": "startup-brief includes orientation note when highlights are present",
       "title": "includes orientation note when highlights are present",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: the given combination of arguments (null and string) is invalid for this assertion. You can use an array, a map, an object, a set, a string, or a weakset instead of a string"
     },
     {
@@ -818,7 +818,7 @@
       "fullName": "startup-brief omits highlights section when queryStartupHighlights returns empty",
       "title": "omits highlights section when queryStartupHighlights returns empty",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected 'missing' to be 'ready' // Object.is equality"
     },
     {
@@ -826,7 +826,7 @@
       "fullName": "startup-brief respects custom highlightCount parameter",
       "title": "respects custom highlightCount parameter",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected \"vi.fn()\" to be called with arguments: [ 3 ]"
     },
     {
@@ -834,7 +834,7 @@
       "fullName": "MCP stdio logging safety uses stderr-safe logging in runtime sources",
       "title": "uses stderr-safe logging in runtime sources",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected [ …(11) ] to deeply equal []"
     },
     {
@@ -842,7 +842,7 @@
       "fullName": "scan handler integration - incremental:false passes skipFreshFiles=false for caller-requested full scans",
       "title": "passes skipFreshFiles=false for caller-requested full scans",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected +0 to be 3 // Object.is equality"
     },
     {
@@ -850,7 +850,7 @@
       "fullName": "Vector Index Implementation [deferred - requires DB test fixtures] Delete Operations delete_memory_from_database aborts the primary delete when vec cleanup fails unexpectedly",
       "title": "delete_memory_from_database aborts the primary delete when vec cleanup fails unexpectedly",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected [Function] to throw error matching /Vector deletion failed/ but got 'database.prepare(...).get is not a fu…'"
     },
     {
@@ -858,7 +858,7 @@
       "fullName": "indexer-types getDefaultConfig excludes .opencode default folders by default and exposes the active scope fingerprint",
       "title": "excludes .opencode default folders by default and exposes the active scope fingerprint",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected true to be false // Object.is equality"
     },
     {
@@ -866,7 +866,7 @@
       "fullName": "indexer-types getDefaultConfig lets an explicit per-call false override an env opt-in",
       "title": "lets an explicit per-call false override an env opt-in",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected true to be false // Object.is equality"
     },
     {
@@ -874,7 +874,7 @@
       "fullName": "indexer-types getDefaultConfig excludes .opencode/agents by default and includes it through env or per-call opt-in",
       "title": "excludes .opencode/agents by default and includes it through env or per-call opt-in",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected true to be false // Object.is equality"
     },
     {
@@ -882,7 +882,7 @@
       "fullName": "indexer-types getDefaultConfig excludes .opencode/commands by default and includes it through env or per-call opt-in",
       "title": "excludes .opencode/commands by default and includes it through env or per-call opt-in",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected true to be false // Object.is equality"
     },
     {
@@ -890,7 +890,7 @@
       "fullName": "indexer-types getDefaultConfig supports granular per-call skill selection with one, two and zero skills",
       "title": "supports granular per-call skill selection with one, two and zero skills",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected true to be false // Object.is equality"
     },
     {
@@ -898,7 +898,7 @@
       "fullName": "indexer-types getDefaultConfig supports granular skill selection from csv env",
       "title": "supports granular skill selection from csv env",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected true to be false // Object.is equality"
     },
     {
@@ -914,7 +914,7 @@
       "fullName": "structural-indexer parseFile - TypeScript indexes selected skill and agent doc rows without opening other default-excluded folders",
       "title": "indexes selected skill and agent doc rows without opening other default-excluded folders",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected [ '.opencode/agents/code.md', …(3) ] to deeply equal [ '.opencode/agents/code.md', …(2) ]"
     },
     {
@@ -922,7 +922,7 @@
       "fullName": "code-graph verify handleCodeGraphVerify resolves the default battery path inside the 007 packet",
       "title": "resolves the default battery path inside the 007 packet",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected 'error' to be 'ok' // Object.is equality"
     },
     {
@@ -930,7 +930,7 @@
       "fullName": "code-graph verify handleCodeGraphVerify resolves the default gold-battery path correctly without phantom skill/ segment",
       "title": "resolves the default gold-battery path correctly without phantom skill/ segment",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected 'error' not to be 'error' // Object.is equality"
     },
     {
@@ -954,7 +954,7 @@
       "fullName": "alignment drift malformed fixture preservation allows the verifier to pass for the fixture directory without masking other JSON files",
       "title": "allows the verifier to pass for the fixture directory without masking other JSON files",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected 2 to be +0 // Object.is equality"
     },
     {
@@ -962,7 +962,7 @@
       "fullName": "canonical-save validator rollout fails when a live packet root has metadata but no root spec",
       "title": "fails when a live packet root has metadata but no root spec",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected '\\nSpec Folder Validation v3.0.0\\n\\n  …' to contain 'CANONICAL_SAVE_ROOT_SPEC_REQUIRED'"
     },
     {
@@ -970,7 +970,7 @@
       "fullName": "canonical-save validator rollout fails when a live packet root graph metadata has empty source_docs",
       "title": "fails when a live packet root graph metadata has empty source_docs",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected '\\nSpec Folder Validation v3.0.0\\n\\n  …' to contain 'CANONICAL_SAVE_SOURCE_DOCS_REQUIRED'"
     },
     {
@@ -978,7 +978,7 @@
       "fullName": "canonical-save validator rollout grandfathers missing save_lineage before the cutoff and fails after it",
       "title": "grandfathers missing save_lineage before the cutoff and fails after it",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected 2 to be +0 // Object.is equality"
     },
     {
@@ -986,7 +986,7 @@
       "fullName": "canonical-save validator rollout reports packet identity drift as a soft detector",
       "title": "reports packet identity drift as a soft detector",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected 2 to be +0 // Object.is equality"
     },
     {
@@ -994,7 +994,7 @@
       "fullName": "canonical-save validator rollout reports description/graph freshness skew as a soft detector",
       "title": "reports description/graph freshness skew as a soft detector",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected 2 to be +0 // Object.is equality"
     },
     {
@@ -1002,7 +1002,7 @@
       "fullName": "canonical-save validator rollout passes the canonical-save rule pack on the full 026 tree with the grandfathering window",
       "title": "passes the canonical-save rule pack on the full 026 tree with the grandfathering window",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected 2 to be +0 // Object.is equality"
     },
     {
@@ -1010,7 +1010,7 @@
       "fullName": "check-source-dist-alignment orphan detection (F-020-D5-02) passes when every dist *.js has a matching source .ts",
       "title": "passes when every dist *.js has a matching source .ts",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected 1 to be +0 // Object.is equality"
     },
     {
@@ -1050,7 +1050,7 @@
       "fullName": "continuity-freshness wires stale continuity into validate.sh strict mode as a warning failure",
       "title": "wires stale continuity into validate.sh strict mode as a warning failure",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected '\\nSpec Folder Validation v3.0.0\\n\\n  …' to contain 'CONTINUITY_FRESHNESS'"
     },
     {
@@ -1066,7 +1066,7 @@
       "fullName": "/memory:learn command docs documents the constitutional workflow without contradictory qualification text",
       "title": "documents the constitutional workflow without contradictory qualification text",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected '---\\ndescription: Create and manage c…' to contain '# /memory:learn — Constitutional Memo…'"
     },
     {
@@ -1082,7 +1082,7 @@
       "fullName": "validate.sh normalizer lint passes strict mode when the target tree has no local normalizer helpers",
       "title": "passes strict mode when the target tree has no local normalizer helpers",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected 2 to be +0 // Object.is equality"
     },
     {
@@ -1090,7 +1090,7 @@
       "fullName": "validate.sh normalizer lint fails strict mode and lists violating files when local helper declarations are found",
       "title": "fails strict mode and lists violating files when local helper declarations are found",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected '\\nSpec Folder Validation v3.0.0\\n\\n  …' to contain 'duplicate-normalize.ts'"
     },
     {
@@ -1098,7 +1098,7 @@
       "fullName": "validate.sh normalizer lint skips the rule outside strict mode",
       "title": "skips the rule outside strict mode",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected 2 to be +0 // Object.is equality"
     },
     {
@@ -1106,7 +1106,7 @@
       "fullName": "outsourced agent handback docs keeps all four skill docs aligned on post-010 handback guidance",
       "title": "keeps all four skill docs aligned on post-010 handback guidance",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: .opencode/skills/cli-codex/SKILL.md should mention the handback delimiter: expected '---\\nname: cli-codex\\ndescription: \"C…' to contain 'MEMORY_HANDBACK_START'"
     },
     {
@@ -1146,7 +1146,7 @@
       "fullName": "stateless enrichment guardrails keeps only project-confined file targets when spec docs list absolute paths",
       "title": "keeps only project-confined file targets when spec docs list absolute paths",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected [ { …(3) } ] to deeply equal ArrayContaining{…}"
     },
     {
@@ -1154,7 +1154,7 @@
       "fullName": "stateless enrichment guardrails uses spec-declared file targets to scope git context beyond the spec folder path itself",
       "title": "uses spec-declared file targets to scope git context beyond the spec folder path itself",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected [ { …(5) }, { …(5) }, { …(5) }, …(3) ] to deeply equal ArrayContaining{…}"
     },
     {
@@ -1162,7 +1162,7 @@
       "fullName": "validation pipeline integration returns structured diagnostics for valid and invalid spec-folder states",
       "title": "returns structured diagnostics for valid and invalid spec-folder states",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected undefined to be true // Object.is equality"
     },
     {
@@ -1170,7 +1170,7 @@
       "fullName": "spec-folder creation and template parity keeps template levels and required files available",
       "title": "keeps template levels and required files available",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected false to be true // Object.is equality"
     },
     {
@@ -1290,7 +1290,7 @@
       "fullName": "skill graph watcher foundation AC-1 reindexes a changed SKILL.md and bumps generation after the reindex commit",
       "title": "AC-1 reindexes a changed SKILL.md and bumps generation after the reindex commit",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected \"vi.fn()\" to be called 1 times, but got 0 times"
     },
     {
@@ -1298,7 +1298,7 @@
       "fullName": "skill graph watcher foundation AC-7 coalesces atomic rename unlink/add into one reindex for the final filename",
       "title": "AC-7 coalesces atomic rename unlink/add into one reindex for the final filename",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected \"vi.fn()\" to be called 1 times, but got 0 times"
     },
     {
@@ -1306,7 +1306,7 @@
       "fullName": "skill graph watcher foundation AC-7 reindexes deletion events when a watched file disappears before debounce fires",
       "title": "AC-7 reindexes deletion events when a watched file disappears before debounce fires",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected \"vi.fn()\" to be called 1 times, but got 0 times"
     },
     {
@@ -1314,7 +1314,7 @@
       "fullName": "skill graph watcher foundation AC-3 retries SQLITE_BUSY with bounded backoff and eventually commits",
       "title": "AC-3 retries SQLITE_BUSY with bounded backoff and eventually commits",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected \"vi.fn()\" to be called 3 times, but got 0 times"
     },
     {
@@ -1322,7 +1322,7 @@
       "fullName": "skill graph watcher foundation quarantines malformed SKILL.md and recovers when the file becomes valid",
       "title": "quarantines malformed SKILL.md and recovers when the file becomes valid",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected +0 to be 1 // Object.is equality"
     },
     {
@@ -1330,7 +1330,7 @@
       "fullName": "skill graph watcher foundation adds derived.key_files as dynamic narrow watch targets",
       "title": "adds derived.key_files as dynamic narrow watch targets",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected [] to include '/var/folders/3c/zfqcqsts0kn19cgblj82g…'"
     },
     {
@@ -1338,7 +1338,7 @@
       "fullName": "skill graph watcher foundation rejects absolute, escaping, and symlinked-out derived.key_files watch targets",
       "title": "rejects absolute, escaping, and symlinked-out derived.key_files watch targets",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected [] to include '/var/folders/3c/zfqcqsts0kn19cgblj82g…'"
     },
     {
@@ -1346,7 +1346,7 @@
       "fullName": "skill graph watcher foundation opens the reindex-storm circuit breaker and coalesces the burst",
       "title": "opens the reindex-storm circuit breaker and coalesces the burst",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected false to be true // Object.is equality"
     },
     {
@@ -1354,7 +1354,7 @@
       "fullName": "F-003-A3-01: refreshTargets unwatches removed paths and prunes caches calls watcher.unwatch() for paths that disappear between scans",
       "title": "calls watcher.unwatch() for paths that disappear between scans",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected 0 to be greater than 0"
     },
     {
@@ -1362,7 +1362,7 @@
       "fullName": "F-004-A4-04: malformed graph-metadata.json records diagnostic instead of silently dropping targets records MALFORMED_GRAPH_METADATA diagnostic when JSON.parse fails",
       "title": "records MALFORMED_GRAPH_METADATA diagnostic when JSON.parse fails",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected undefined to be defined"
     },
     {
@@ -1370,7 +1370,7 @@
       "fullName": "F-004-A4-04: malformed graph-metadata.json records diagnostic instead of silently dropping targets records a diagnostic when derived is the wrong shape",
       "title": "records a diagnostic when derived is the wrong shape",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected undefined to be defined"
     },
     {
@@ -1378,7 +1378,7 @@
       "fullName": "F-004-A4-04: malformed graph-metadata.json records diagnostic instead of silently dropping targets discoverWatchTargets stays backward-compatible without the callback",
       "title": "discoverWatchTargets stays backward-compatible without the callback",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected false to be true // Object.is equality"
     },
     {
@@ -1386,7 +1386,7 @@
       "fullName": "027/002 derived metadata acceptance AC-1 and B1 extract deterministic derived metadata from every approved source category",
       "title": "AC-1 and B1 extract deterministic derived metadata from every approved source category",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected [ …(4) ] to include '.opencode/skills/alpha/docs/key-file.…'"
     },
     {
@@ -1394,7 +1394,7 @@
       "fullName": "027/002 derived metadata acceptance AC-1 refreshes provenance when a B1 input changes and targets only that skill",
       "title": "AC-1 refreshes provenance when a B1 input changes and targets only that skill",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected [] to deeply equal [ 'alpha' ]"
     },
     {
@@ -1402,7 +1402,7 @@
       "fullName": "027/002 derived metadata acceptance drops absolute, escaping, and symlinked-out derived key files from extraction and provenance",
       "title": "drops absolute, escaping, and symlinked-out derived key files from extraction and provenance",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected [ …(5) ] to not include '.opencode/skills/alpha/docs/outside-l…'"
     },
     {
@@ -1410,7 +1410,7 @@
       "fullName": "skill_graph_scan caller authority allows trusted callers to scan and publish graph data",
       "title": "allows trusted callers to scan and publish graph data",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected { skillsRoot: '[REDACTED_PATH]', …(8) } to match object { indexedNodes: 1 }"
     },
     {
@@ -1418,7 +1418,7 @@
       "fullName": "spec-kit skill advisor plugin bridge compat path falls back to the Python-backed brief producer when native is forced local",
       "title": "falls back to the Python-backed brief producer when native is forced local",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected 'fail_open' to be 'ok' // Object.is equality"
     },
     {
@@ -1426,7 +1426,7 @@
       "fullName": "python compatibility suite runs the Python skill-advisor compatibility tests from vitest",
       "title": "runs the Python skill-advisor compatibility tests from vitest",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: ============================================================"
     },
     {
@@ -1434,7 +1434,7 @@
       "fullName": "advisor_status handler reports live freshness",
       "title": "reports live freshness",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected 'absent' to be 'live' // Object.is equality"
     },
     {
@@ -1442,7 +1442,7 @@
       "fullName": "advisor_status handler keeps signed generations live when source mtimes exceed skipped SQLite writes",
       "title": "keeps signed generations live when source mtimes exceed skipped SQLite writes",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected 'absent' to be 'live' // Object.is equality"
     },
     {
@@ -1450,7 +1450,7 @@
       "fullName": "advisor_status handler marks live generations stale when nested graph metadata is newer than the database",
       "title": "marks live generations stale when nested graph metadata is newer than the database",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected 'absent' to be 'stale' // Object.is equality"
     },
     {
@@ -1458,7 +1458,7 @@
       "fullName": "advisor_status handler reports stale freshness",
       "title": "reports stale freshness",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected 'absent' to be 'stale' // Object.is equality"
     },
     {
@@ -1466,7 +1466,7 @@
       "fullName": "advisor_status handler reports unavailable for corrupt generation metadata",
       "title": "reports unavailable for corrupt generation metadata",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected 'absent' to be 'unavailable' // Object.is equality"
     },
     {
@@ -1474,7 +1474,7 @@
       "fullName": "advisor_status handler caps metadata scanning when requested to avoid unbounded status walks",
       "title": "caps metadata scanning when requested to avoid unbounded status walks",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected +0 to be 1 // Object.is equality"
     },
     {
@@ -1482,7 +1482,7 @@
       "fullName": "027/003 AC-1/AC-2 regression-protection parity and §11 gates preserves all Python-correct corpus decisions while improving accuracy",
       "title": "preserves all Python-correct corpus decisions while improving accuracy",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected 98 to be greater than or equal to 140"
     },
     {
@@ -1490,7 +1490,7 @@
       "fullName": "getAdvisorFreshness AS1 returns live state when all sources are present and fresh",
       "title": "AS1 returns live state when all sources are present and fresh",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected 'absent' to be 'live' // Object.is equality"
     },
     {
@@ -1498,7 +1498,7 @@
       "fullName": "getAdvisorFreshness AS2 returns stale when SKILL.md is newer than skill-graph.sqlite",
       "title": "AS2 returns stale when SKILL.md is newer than skill-graph.sqlite",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected 'absent' to be 'stale' // Object.is equality"
     },
     {
@@ -1506,7 +1506,7 @@
       "fullName": "getAdvisorFreshness AS3 returns absent when skill-graph.sqlite is missing and no JSON fallback exists",
       "title": "AS3 returns absent when skill-graph.sqlite is missing and no JSON fallback exists",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected 'ADVISOR_SOURCE_MISSING' to be 'SKILL_GRAPH_SQLITE_MISSING' // Object.is equality"
     },
     {
@@ -1514,7 +1514,7 @@
       "fullName": "getAdvisorFreshness AS4 returns unavailable when the source probe fails",
       "title": "AS4 returns unavailable when the source probe fails",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected 'absent' to be 'unavailable' // Object.is equality"
     },
     {
@@ -1522,7 +1522,7 @@
       "fullName": "getAdvisorFreshness AS5 suppresses deleted skills instead of reusing stale fingerprints",
       "title": "AS5 suppresses deleted skills instead of reusing stale fingerprints",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected false to be true // Object.is equality"
     },
     {
@@ -1530,7 +1530,7 @@
       "fullName": "getAdvisorFreshness AS6 treats JSON fallback as stale and never live",
       "title": "AS6 treats JSON fallback as stale and never live",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected 'absent' to be 'stale' // Object.is equality"
     },
     {
@@ -1538,7 +1538,7 @@
       "fullName": "getAdvisorFreshness AS7 advances generation after a rebuild signal",
       "title": "AS7 advances generation after a rebuild signal",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected 'absent' to be 'live' // Object.is equality"
     },
     {
@@ -1546,7 +1546,7 @@
       "fullName": "getAdvisorFreshness AS8 returns a cache hit within the 15-minute TTL and invalidates on signature change",
       "title": "AS8 returns a cache hit within the 15-minute TTL and invalidates on signature change",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected { state: 'absent', …(6) } not to be { state: 'absent', …(6) } // Object.is equality"
     },
     {
@@ -1554,7 +1554,7 @@
       "fullName": "getAdvisorFreshness changes source signature for same-size same-mtime source rewrites",
       "title": "changes source signature for same-size same-mtime source rewrites",
       "bucket": "runtime-regression",
-      "action": "escalate: followup 026/000/002-vitest-recovery-followup",
+      "action": "escalate: followup 026/000/002-vitest-baseline-recovery-followup",
       "evidence": "AssertionError: expected undefined not to be undefined // Object.is equality"
     },
     {

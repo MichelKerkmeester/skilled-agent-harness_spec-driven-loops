@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/027-cmd-create-yaml-refinement",
-  "spec_folder": "skilled-agent-orchestration/027-cmd-create-yaml-refinement",
-  "parent_id": null,
+  "packet_id": "skilled-agent-orchestration/z_archive/029-sk-deep-research-first-upgrade/027-cmd-create-yaml-refinement",
+  "spec_folder": "skilled-agent-orchestration/z_archive/029-sk-deep-research-first-upgrade/027-cmd-create-yaml-refinement",
+  "parent_id": "skilled-agent-orchestration/z_archive/029-sk-deep-research-first-upgrade",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -208,7 +208,7 @@
     ],
     "causal_summary": "This packet defines the refinement pass for `.opencode/commands/create/assets/*.yaml` so the create-command suite more closely matches the richer `spec_kit` command YAML style. The work must strengthen the newer feature-catalog and testing-playbook assets, then add a shared structural contract across the broader create suite without rewriting command behavior or changing command names.",
     "created_at": "2026-04-12T09:02:50.175Z",
-    "last_save_at": "2026-04-26T09:17:15.164Z",
+    "last_save_at": "2026-05-18T15:17:56.832Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

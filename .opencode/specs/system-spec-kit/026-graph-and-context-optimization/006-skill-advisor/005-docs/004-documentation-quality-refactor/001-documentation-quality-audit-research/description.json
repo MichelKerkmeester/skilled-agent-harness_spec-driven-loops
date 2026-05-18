@@ -1,0 +1,25 @@
+{
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/005-docs/004-documentation-quality-refactor/001-documentation-quality-audit-research",
+  "description": "Feature Specification: 001-documentation-quality-audit-research (skill-advisor docs audit via 20-iter cli-devin SWE 1.6 deep-research)",
+  "keywords": [
+    "skill-advisor",
+    "audit",
+    "deep-research",
+    "20-iter",
+    "cli-devin",
+    "swe-1.6",
+    "findings-ledger"
+  ],
+  "lastUpdated": "2026-05-16T00:00:00Z",
+  "specId": "001",
+  "folderSlug": "audit-and-research",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "006-skill-advisor",
+    "005-docs",
+    "004-documentation-quality-refactor"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

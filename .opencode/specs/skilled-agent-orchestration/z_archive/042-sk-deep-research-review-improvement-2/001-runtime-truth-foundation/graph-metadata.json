@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/001-runtime-truth-foundation",
-  "spec_folder": "skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/001-runtime-truth-foundation",
-  "parent_id": "skilled-agent-orchestration/042-sk-deep-research-review-improvement-2",
+  "packet_id": "skilled-agent-orchestration/z_archive/042-sk-deep-research-review-improvement-2/001-runtime-truth-foundation",
+  "spec_folder": "skilled-agent-orchestration/z_archive/042-sk-deep-research-review-improvement-2/001-runtime-truth-foundation",
+  "parent_id": "skilled-agent-orchestration/z_archive/042-sk-deep-research-review-improvement-2",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -42,25 +42,25 @@
     "status": "complete",
     "key_files": [
       "scratch/codex-gpt54-deep-research.md",
-      ".opencode/specs/system-spec-kit/z_future/agentic-system-upgrade/001-research-agentic-systems/consolidated-research-report.md",
-      ".opencode/skills/sk-deep-research/SKILL.md",
-      ".opencode/skills/sk-deep-research/references/loop_protocol.md",
-      ".opencode/skills/sk-deep-research/references/convergence.md",
-      ".opencode/skills/sk-deep-research/references/state_format.md",
-      ".opencode/skills/sk-deep-research/references/quick_reference.md",
-      ".opencode/skills/sk-deep-research/assets/deep_research_config.json",
-      ".opencode/skills/sk-deep-research/assets/deep_research_strategy.md",
-      ".opencode/skills/sk-deep-research/assets/deep_research_dashboard.md",
-      ".opencode/skills/sk-deep-research/scripts/reduce-state.cjs",
-      ".opencode/skills/sk-deep-review/SKILL.md",
-      ".opencode/skills/sk-deep-review/references/loop_protocol.md",
-      ".opencode/skills/sk-deep-review/references/convergence.md",
-      ".opencode/skills/sk-deep-review/references/state_format.md",
-      ".opencode/skills/sk-deep-review/references/quick_reference.md",
-      ".opencode/skills/sk-deep-review/assets/review_mode_contract.yaml",
-      ".opencode/skills/sk-deep-review/assets/deep_review_config.json",
-      ".opencode/skills/sk-deep-review/assets/deep_review_strategy.md",
-      ".opencode/skills/sk-deep-review/assets/deep_review_dashboard.md"
+      ".opencode/commands/spec_kit/deep-research.md",
+      ".opencode/commands/spec_kit/deep-review.md",
+      ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml",
+      ".opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml",
+      ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml",
+      ".opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml",
+      ".opencode/agents/deep-research.md",
+      ".opencode/agents/deep-review.md",
+      ".claude/agents/deep-research.md",
+      ".gemini/agents/deep-research.md",
+      ".codex/agents/deep-research.toml",
+      ".claude/agents/deep-review.md",
+      ".gemini/agents/deep-review.md",
+      ".codex/agents/deep-review.toml",
+      ".opencode/skills/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts",
+      ".opencode/skills/system-spec-kit/scripts/tests/deep-review-reducer-schema.vitest.ts",
+      ".opencode/skills/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts",
+      ".opencode/skills/system-spec-kit/scripts/tests/deep-review-contract-parity.vitest.ts",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -70,87 +70,81 @@
         "source": "derived"
       },
       {
-        "name": "consolidated-research-report.md",
+        "name": "deep-research.md",
         "kind": "doc",
-        "path": ".opencode/specs/system-spec-kit/z_future/agentic-system-upgrade/001-research-agentic-systems/consolidated-research-report.md",
+        "path": ".opencode/commands/spec_kit/deep-research.md",
         "source": "derived"
       },
       {
-        "name": "SKILL.md",
+        "name": "deep-review.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-deep-research/SKILL.md",
+        "path": ".opencode/commands/spec_kit/deep-review.md",
         "source": "derived"
       },
       {
-        "name": "loop_protocol.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-deep-research/references/loop_protocol.md",
-        "source": "derived"
-      },
-      {
-        "name": "convergence.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-deep-research/references/convergence.md",
-        "source": "derived"
-      },
-      {
-        "name": "state_format.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-deep-research/references/state_format.md",
-        "source": "derived"
-      },
-      {
-        "name": "quick_reference.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-deep-research/references/quick_reference.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep_research_config.json",
+        "name": "spec_kit_deep-research_auto.yaml",
         "kind": "config",
-        "path": ".opencode/skills/sk-deep-research/assets/deep_research_config.json",
+        "path": ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml",
         "source": "derived"
       },
       {
-        "name": "deep_research_strategy.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-deep-research/assets/deep_research_strategy.md",
+        "name": "spec_kit_deep-research_confirm.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml",
         "source": "derived"
       },
       {
-        "name": "deep_research_dashboard.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-deep-research/assets/deep_research_dashboard.md",
+        "name": "spec_kit_deep-review_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml",
         "source": "derived"
       },
       {
-        "name": "reduce-state.cjs",
+        "name": "spec_kit_deep-review_confirm.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research.toml",
         "kind": "file",
-        "path": ".opencode/skills/sk-deep-research/scripts/reduce-state.cjs",
+        "path": ".codex/agents/deep-research.toml",
         "source": "derived"
       },
       {
-        "name": "review_mode_contract.yaml",
-        "kind": "config",
-        "path": ".opencode/skills/sk-deep-review/assets/review_mode_contract.yaml",
+        "name": "deep-review.toml",
+        "kind": "file",
+        "path": ".codex/agents/deep-review.toml",
         "source": "derived"
       },
       {
-        "name": "deep_review_config.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-deep-review/assets/deep_review_config.json",
+        "name": "deep-research-reducer.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts",
         "source": "derived"
       },
       {
-        "name": "deep_review_strategy.md",
+        "name": "deep-review-reducer-schema.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/deep-review-reducer-schema.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-contract-parity.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-contract-parity.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/deep-review-contract-parity.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-deep-review/assets/deep_review_strategy.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep_review_dashboard.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-deep-review/assets/deep_review_dashboard.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -206,11 +200,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "This packet converts the consolidated agentic-systems research into one implementation plan for the two autonomous deep-loop products: `sk-deep-research` and `sk-deep-review`. The work is centered on runtime truth, not feature sprawl: real stop reasons, legal completion gates, resume-from-run semantics, auditability, claim verification, behavior-first tests, and richer dashboards that make loop state easier to trust and resume.",
     "created_at": "2026-04-12T09:02:50.192Z",
-    "last_save_at": "2026-04-26T09:17:15.241Z",
+    "last_save_at": "2026-05-18T15:17:56.873Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

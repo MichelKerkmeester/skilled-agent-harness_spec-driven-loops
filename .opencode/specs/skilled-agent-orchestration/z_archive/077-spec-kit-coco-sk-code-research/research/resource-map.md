@@ -59,7 +59,7 @@ Inventory of every file/path the 077 research touched or recommended, grouped by
 | `.opencode/specs/skilled-agent-orchestration/077-spec-kit-coco-sk-code-research/` | This packet |
 | `.opencode/specs/skilled-agent-orchestration/068-sk-doc-organization/` | Predecessor — assets/ root reorg |
 | `.opencode/specs/skilled-agent-orchestration/069-sk-code-motion-dev-and-playbook/` | Just shipped sk-code v3.1.0.0 (out of scope here) |
-| `.opencode/specs/skilled-agent-orchestration/076-sk-doc-router-coverage-v3/` | Most recent prior packet (different scope) |
+| `.opencode/specs/skilled-agent-orchestration/076-sk-doc-missing-router-intents-bullet-aware-matrix/` | Most recent prior packet (different scope) |
 
 ## Scripts
 

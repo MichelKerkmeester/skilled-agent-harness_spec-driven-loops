@@ -1,30 +1,44 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/069-sk-code-motion-dev-and-playbook/001-playbook",
-  "spec_folder": "skilled-agent-orchestration/069-sk-code-motion-dev-and-playbook/001-playbook",
-  "parent_id": "skilled-agent-orchestration/069-sk-code-motion-dev-and-playbook",
+  "packet_id": "skilled-agent-orchestration/z_archive/069-sk-code-motion-dev-and-playbook/001-playbook",
+  "spec_folder": "skilled-agent-orchestration/z_archive/069-sk-code-motion-dev-and-playbook/001-playbook",
+  "parent_id": "skilled-agent-orchestration/z_archive/069-sk-code-motion-dev-and-playbook",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
     "depends_on": [],
     "supersedes": [],
-    "related_to": [
-      "skilled-agent-orchestration/069-sk-code-motion-dev-and-playbook"
-    ]
+    "related_to": []
   },
   "derived": {
     "trigger_phrases": [
       "sk-code playbook refinement",
       "motion.dev manual testing",
       "animation regression playbook",
-      "cross-browser performance gates"
+      "cross-browser performance gates",
+      "sk-code playbook plan",
+      "motion.dev playbook plan",
+      "sk-code playbook tasks",
+      "motion.dev playbook tasks",
+      "sk-code playbook checklist",
+      "motion.dev playbook verification",
+      "sk-code playbook implementation summary",
+      "motion.dev playbook summary"
     ],
     "key_topics": [
       "sk-code",
-      "manual-testing-playbook",
-      "motion-dev",
-      "animation-regression",
+      "playbook",
+      "refinement",
+      "motion",
+      "dev",
+      "manual",
+      "testing",
+      "animation",
+      "regression",
       "cross-browser",
-      "core-web-vitals"
+      "performance",
+      "gates"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -34,15 +48,160 @@
       "tasks.md",
       "checklist.md",
       "implementation-summary.md",
-      "description.json",
-      "graph-metadata.json"
+      ".opencode/skills/sk-code/manual_testing_playbook/manual_testing_playbook.md",
+      "a_nobel_en_zn/2_javascript/navigation/nav_dropdown.js",
+      "a_nobel_en_zn/2_javascript/slider/testimonial.js"
     ],
-    "entities": [],
-    "causal_summary": "Packet 1 extends the existing sk-code manual testing playbook with two new sk-doc-aligned category folders: motion.dev and animation regression scenarios, plus cross-browser and performance-gate scenarios. Packet 2 owns full motion_dev reference population; Packet 3 owns webflow cross-references and metadata sync.",
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual_testing_playbook.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/manual_testing_playbook/manual_testing_playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "nav_dropdown.js",
+        "kind": "code",
+        "path": "a_nobel_en_zn/2_javascript/navigation/nav_dropdown.js",
+        "source": "derived"
+      },
+      {
+        "name": "testimonial.js",
+        "kind": "code",
+        "path": "a_nobel_en_zn/2_javascript/slider/testimonial.js",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Manual Testing Playbook Motion",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Surface",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Defined Packet",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Extend",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Split",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Created Packet",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Create Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Core Web Vitals",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The sk-code manual testing playbook already follows the sk-doc playbook package contract, but it stops at routing and advisor scenarios. It does not yet cover motion.dev runtime integration, animation regression evidence, cross-browser animation behavior, or Core Web Vitals/performance checks for animation-heavy Webflow work.",
     "created_at": "2026-05-05T07:30:00Z",
-    "last_save_at": "2026-05-05T07:30:00Z",
+    "last_save_at": "2026-05-18T15:17:56.968Z",
     "save_lineage": "graph_only",
-    "last_active_at": null,
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -51,6 +210,5 @@
       "checklist.md",
       "implementation-summary.md"
     ]
-  },
-  "importance_tier": "important"
+  }
 }

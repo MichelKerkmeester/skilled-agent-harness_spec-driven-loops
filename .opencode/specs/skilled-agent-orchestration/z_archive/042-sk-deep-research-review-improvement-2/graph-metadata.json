@@ -1,19 +1,19 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/042-sk-deep-research-review-improvement-2",
-  "spec_folder": "skilled-agent-orchestration/042-sk-deep-research-review-improvement-2",
+  "packet_id": "skilled-agent-orchestration/z_archive/042-sk-deep-research-review-improvement-2",
+  "spec_folder": "skilled-agent-orchestration/z_archive/042-sk-deep-research-review-improvement-2",
   "parent_id": null,
   "children_ids": [
-    "skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/001-runtime-truth-foundation",
-    "skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/002-semantic-coverage-graph",
-    "skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor",
-    "skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer",
-    "skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment",
-    "skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/006-graph-testing-and-playbook-alignment",
-    "skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/007-skill-rename-improve-agent-prompt",
-    "skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements",
-    "skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/009-round3-review-remediation",
-    "skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/010-root-level-review-research-convention"
+    "skilled-agent-orchestration/z_archive/042-sk-deep-research-review-improvement-2/001-runtime-truth-foundation",
+    "skilled-agent-orchestration/z_archive/042-sk-deep-research-review-improvement-2/002-semantic-coverage-graph",
+    "skilled-agent-orchestration/z_archive/042-sk-deep-research-review-improvement-2/003-wave-executor",
+    "skilled-agent-orchestration/z_archive/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer",
+    "skilled-agent-orchestration/z_archive/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment",
+    "skilled-agent-orchestration/z_archive/042-sk-deep-research-review-improvement-2/006-graph-testing-and-playbook-alignment",
+    "skilled-agent-orchestration/z_archive/042-sk-deep-research-review-improvement-2/007-skill-rename-improve-agent-prompt",
+    "skilled-agent-orchestration/z_archive/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements",
+    "skilled-agent-orchestration/z_archive/042-sk-deep-research-review-improvement-2/009-round3-review-remediation",
+    "skilled-agent-orchestration/z_archive/042-sk-deep-research-review-improvement-2/010-root-level-review-research-convention"
   ],
   "manual": {
     "depends_on": [],
@@ -28,12 +28,12 @@
       "runtime improvement",
       "phase overview",
       "parent packet",
-      "implementation plan",
-      "parent overview",
-      "phase plan",
-      "tasks",
-      "phase index",
-      "verification checklist"
+      "deep",
+      "research",
+      "further",
+      "improvements",
+      "resource map",
+      "skilled-agent-orchestration 042-sk-deep-research-review-improvement-2 resource map"
     ],
     "key_topics": [
       "042",
@@ -46,24 +46,15 @@
       "overview",
       "parent",
       "packet",
-      "implementation",
-      "plan"
+      "improvements",
+      "resource"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "planned",
     "key_files": [
       "review/archive-rvw-2026-04-11/review-report.md",
-      ".opencode/skills/sk-deep-review/references/state_format.md",
-      ".opencode/skills/sk-deep-review/references/loop_protocol.md",
-      ".opencode/agents/deep-review.md",
-      ".opencode/skills/sk-deep-review/references/convergence.md",
-      "008-further-deep-loop-improvements/implementation-summary.md",
+      "resource-map.md",
       "spec.md",
-      "tasks.md",
-      "checklist.md",
-      "implementation-summary.md",
-      "decision-record.md",
-      "plan.md",
       "research/research.md"
     ],
     "entities": [
@@ -74,63 +65,15 @@
         "source": "derived"
       },
       {
-        "name": "state_format.md",
+        "name": "resource-map.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-deep-review/references/state_format.md",
-        "source": "derived"
-      },
-      {
-        "name": "loop_protocol.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-deep-review/references/loop_protocol.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep-review.md",
-        "kind": "doc",
-        "path": ".opencode/agents/deep-review.md",
-        "source": "derived"
-      },
-      {
-        "name": "convergence.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-deep-review/references/convergence.md",
+        "path": "resource-map.md",
         "source": "derived"
       },
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "decision-record.md",
-        "kind": "doc",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -176,55 +119,81 @@
         "source": "derived"
       },
       {
-        "name": "Implementation Plan",
+        "name": "Further Improvements",
         "kind": "proper_noun",
-        "path": "plan.md",
+        "path": "research/research.md",
         "source": "derived"
       },
       {
-        "name": "Technical Context",
+        "name": "Loop Skills",
         "kind": "proper_noun",
-        "path": "plan.md",
+        "path": "research/research.md",
         "source": "derived"
       },
       {
-        "name": "Spec Kit",
+        "name": "Executive Summary",
         "kind": "proper_noun",
-        "path": "plan.md",
+        "path": "research/research.md",
         "source": "derived"
       },
       {
-        "name": "Overview This",
+        "name": "Method This",
         "kind": "proper_noun",
-        "path": "plan.md",
+        "path": "research/research.md",
         "source": "derived"
       },
       {
-        "name": "Deep Review",
+        "name": "Runtime Gaps",
         "kind": "proper_noun",
-        "path": "tasks.md",
+        "path": "research/research.md",
         "source": "derived"
       },
       {
-        "name": "Task Notation",
+        "name": "Resource Map",
         "kind": "proper_noun",
-        "path": "tasks.md",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "Author Instructions",
+        "kind": "proper_noun",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "Summary",
+        "kind": "heading",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. READMEs",
+        "kind": "heading",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. Documents",
+        "kind": "heading",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "6. Specs",
+        "kind": "heading",
+        "path": "resource-map.md",
         "source": "derived"
       }
     ],
     "causal_summary": "This parent packet coordinates **eight child implementation phases plus a post-phase-008 closing-audit remediation pass**. The bundle keeps the same core goal as the original packet: make `sk-deep-research`, `sk-deep-review`, and `sk-improve-agent` easier to trust, resume, scale, and improve without collapsing them into a hidden generic workflow. What changed is the delivery model. The detailed design and task breakdown live in dedicated child folders (`001`–`008`) plus the live `review/` packet that drives closing audits, while this root spec tracks the cross-phase shape, sequencing, and handoff logic.",
     "created_at": "2026-04-12T09:02:50.190Z",
-    "last_save_at": "2026-04-26T09:17:15.239Z",
+    "last_save_at": "2026-05-18T15:17:56.869Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
-      "plan.md",
-      "tasks.md",
-      "checklist.md",
-      "decision-record.md",
-      "implementation-summary.md",
-      "research/research.md"
+      "research/research.md",
+      "resource-map.md"
     ]
   }
 }

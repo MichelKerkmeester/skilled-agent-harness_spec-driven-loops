@@ -5,8 +5,16 @@
     "Read every research/iterations/iteration-NNN.md and the JSONL delta state.",
     "Consolidate findings into the required output file: research.md for research, review-report.md for review, delta-verified.md for surgical edit lists.",
     "Cite each consolidated finding by iter number and file:line.",
-    "Stop conditions: emit the consolidated file then exit. Do not edit any other file."
+    "Stop conditions: emit the consolidated file then exit. Do not edit any other file.",
+    "Verification contract: verification_enabled defaults false. When an operator sets verification_enabled to true, produce code blocks with accurate language fences from verification_languages and expect post-dispatch validation to apply the output-verification rubric.",
+    "Bayesian scoring contract: bayesian_scoring_enabled defaults false. When true, track each tool call's success/failure to bayesian_score_file relative to the spec folder. Use Laplace smoothing: score = (success + 1) / (total + 2). If a tool's score < 0.5 after >=3 calls, demote it by skipping suggestions for the next synthesis pass.",
+    "Fallback contract: fallback_chain defaults to []. If populated, it is one step max and must consult sk-prompt/assets/model-profiles.json fallback_target semantics. Same-pool fallback is rejected; missing separate-pool fallback fails fast."
   ],
+  "verification_enabled": false,
+  "verification_languages": [],
+  "bayesian_scoring_enabled": false,
+  "bayesian_score_file": "synthesis/agent-state/tool-scores-synthesis.json",
+  "fallback_chain": [],
   "allowed_tools": [
     "Read",
     "Grep",
@@ -21,6 +29,7 @@
       "Write(<packet-root>/research/research.md)",
       "Write(<packet-root>/research/delta-verified.md)",
       "Write(<packet-root>/research/review-report.md)",
+      "Write(<packet-root>/synthesis/agent-state/tool-scores-synthesis.json)",
       "Exec(rg)",
       "Exec(grep)",
       "Exec(git status)",

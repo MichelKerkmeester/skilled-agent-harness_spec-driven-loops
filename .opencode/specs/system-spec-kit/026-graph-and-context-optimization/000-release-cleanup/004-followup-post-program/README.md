@@ -5,9 +5,9 @@ Quality passes, post-program cleanup, iterative improvements.
 ## Children (4)
 
 - `001-post-program-cleanup`
-- `002-vitest-recovery-followup`
-- `003-followup-quality-pass`
-- `004-runtime-cleanup-followups`
+- `002-vitest-baseline-recovery-followup`
+- `003-post-program-quality-pass`
+- `004-runtime-root-memory-cleanup-followups`
 
 ## Provenance
 

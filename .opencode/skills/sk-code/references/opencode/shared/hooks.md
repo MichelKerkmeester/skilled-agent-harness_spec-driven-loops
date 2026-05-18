@@ -31,7 +31,7 @@ This reference documents the runtime hook entrypoints under `.opencode/skills/sy
 
 | Source | Path | Purpose |
 |---|---|---|
-| Dead-code audit | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-dead-code-audit/dead-code-audit-report.md` | Canonical evidence: 15 hook entrypoints classified `dynamic-only-reference`, all KEEP |
+| Dead-code audit | Internal design notes | Canonical evidence: 15 hook entrypoints classified `dynamic-only-reference`, all KEEP |
 | Skill Advisor hook reference | `.opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook.md` | Per-runtime advisor hook contract, smoke tests, control flags |
 | Hook system reference | `.opencode/skills/system-spec-kit/references/config/hook_system.md` | Runtime-specific hook system deep-dive |
 | Copilot hook README | `.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/README.md` | Canonical contract for managed custom-instructions writer |
@@ -247,7 +247,7 @@ Hooks are RUNTIME-SPECIFIC. Adding `compact-inject` to Claude does NOT auto-add 
 
 ### Canonical Evidence
 
-- Dead-code audit (003): `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-dead-code-audit/dead-code-audit-report.md` - 15 hook entrypoints classified `dynamic-only-reference`, KEEP
+- Dead-code audit (003): `<spec-folder>` - 15 hook entrypoints classified `dynamic-only-reference`, KEEP
 - Per-runtime hook directories: `mcp_server/hooks/{claude,codex,gemini,copilot}/README.md`
 
 ### Runtime-Specific Deep-Dives (do not duplicate)

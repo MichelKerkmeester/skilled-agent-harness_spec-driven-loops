@@ -33,9 +33,9 @@ A downstream AI consumer calling `memory_drift_why` should get useful explanatio
 ### Prompt (AI-to-CLI handoff)
 
 ```
-You are <external-CLI>. I am Claude validating Memory MCP drift detection. memory_save needs a filePath to a canonical spec doc; create one research.md per memory under `.opencode/specs/_sandbox/24-413-<label>/`.
+You are <external-CLI>. I am Claude validating Memory MCP drift detection. memory_save needs a filePath to a canonical spec doc; create one research.md per memory under `<spec-folder><label>/`.
 
-Step 1 — write `.opencode/specs/_sandbox/24-413-baseline/research.md` (baseline):
+Step 1 — write `<spec-folder>` (baseline):
   ---
   title: "EmbeddingGemma 300m canonical local model (768-dim)"
   description: "Drift baseline (scenario 413)."
@@ -45,7 +45,7 @@ Step 1 — write `.opencode/specs/_sandbox/24-413-baseline/research.md` (baselin
 
   Then `memory_save({filePath})` → BASELINE_ID. (Do NOT pass `retentionPolicy: "ephemeral"` — see post-014/022 follow-up note in 401-paraphrase-recall.md.)
 
-Step 2 — for each of 5 variants V1..V5, write `.opencode/specs/_sandbox/24-413-V<n>/research.md` then save:
+Step 2 — for each of 5 variants V1..V5, write `<spec-folder><n>/research.md` then save:
 
 V1 (mild — supplementary detail, no real contradiction):
   title: "Embedding prefix registry"
@@ -134,5 +134,5 @@ Loop memory_delete over BASELINE_ID + V1..V5, then remove on-disk files:
 for ID in [BASELINE_ID, V1, V2, V3, V4, V5]:
   mcp__mk_spec_memory__memory_delete({ parent_id: ID })
 
-rm -rf .opencode/specs/_sandbox/24-413-baseline .opencode/specs/_sandbox/24-413-V1 .opencode/specs/_sandbox/24-413-V2 .opencode/specs/_sandbox/24-413-V3 .opencode/specs/_sandbox/24-413-V4 .opencode/specs/_sandbox/24-413-V5
+rm -rf <spec-folder> <spec-folder> <spec-folder> <spec-folder> <spec-folder> <spec-folder>
 ```

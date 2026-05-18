@@ -1,22 +1,220 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/065-skill-advisor-reindex-and-stress-test/002-memory-save-negative-trigger-calibration",
-  "spec_folder": "skilled-agent-orchestration/065-skill-advisor-reindex-and-stress-test/002-memory-save-negative-trigger-calibration",
-  "parent_id": "skilled-agent-orchestration/065-skill-advisor-reindex-and-stress-test",
+  "packet_id": "skilled-agent-orchestration/z_archive/065-skill-advisor-reindex-and-stress-test/002-memory-save-negative-trigger-calibration",
+  "spec_folder": "skilled-agent-orchestration/z_archive/065-skill-advisor-reindex-and-stress-test/002-memory-save-negative-trigger-calibration",
+  "parent_id": "skilled-agent-orchestration/z_archive/065-skill-advisor-reindex-and-stress-test",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": ["skilled-agent-orchestration/065-skill-advisor-reindex-and-stress-test/001-baseline-reindex-and-stress-results"],
+    "depends_on": [
+      {
+        "packet_id": "skilled-agent-orchestration/065-skill-advisor-reindex-and-stress-test/001-baseline-reindex-and-stress-results",
+        "reason": "Imported from legacy graph-metadata.json",
+        "source": "legacy"
+      }
+    ],
     "supersedes": [],
     "related_to": []
   },
   "derived": {
-    "trigger_phrases": ["065/002 memory save calibration", "memory save false positive"],
-    "key_topics": ["065", "002", "memory-save", "calibration"],
+    "trigger_phrases": [
+      "065/002 memory save calibration",
+      "memory save false positive",
+      "save file prompt",
+      "065/002 plan",
+      "memory save calibration plan",
+      "065/002 tasks",
+      "memory save calibration tasks",
+      "065/002 checklist",
+      "memory save calibration checklist",
+      "065/002 implementation summary",
+      "065/002 resource map",
+      "memory save calibration resources"
+    ],
+    "key_topics": [
+      "065",
+      "002",
+      "memory",
+      "save",
+      "calibration",
+      "false",
+      "positive",
+      "file",
+      "prompt",
+      "plan",
+      "tasks",
+      "checklist"
+    ],
+    "importance_tier": "high",
     "status": "complete",
-    "completion_pct": 100,
-    "last_active_child_id": null,
-    "level": 1,
-    "is_phase_parent": false,
-    "session_outcome": "Completed memory-save negative trigger calibration. CP-101 drops memory:save to 0.49 on file-save prompts, CP-104 routes memory:save top-1 at 0.82, and save context remains top-1 at 0.9039."
+    "key_files": [
+      "implementation-summary.md",
+      "tasks.md",
+      "checklist.md",
+      "resource-map.md",
+      "spec.md",
+      "plan.md",
+      ".opencode/skills/sk-doc/graph-metadata.json"
+    ],
+    "entities": [
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "Original Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "confidence",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PROBLEM & PURPOSE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. SCOPE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "4. REQUIREMENTS",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. ARCHITECTURE",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "4. IMPLEMENTATION PHASES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "5. TESTING STRATEGY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "6. DEPENDENCIES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. TASK NOTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PHASE 1: SETUP",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "T-001: [x] Reproduce CP-101, CP-104, and `save context`",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "T-002: [x] Locate `memory:save` advisor metadata and scoring inputs",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. PHASE 2: IMPLEMENTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The baseline router campaign found two related memory-save issues. `memory:save` scored 0.82 for `save the file I'm working on`, which is a file operation rather than context preservation. The advisor also missed `preserve everything we figured out today so the next session doesn't lose it`, which is context preservation without literal `save` or `context`.",
+    "created_at": "2026-05-18T07:49:27.132Z",
+    "last_save_at": "2026-05-18T15:17:56.947Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "resource-map.md"
+    ]
   }
 }

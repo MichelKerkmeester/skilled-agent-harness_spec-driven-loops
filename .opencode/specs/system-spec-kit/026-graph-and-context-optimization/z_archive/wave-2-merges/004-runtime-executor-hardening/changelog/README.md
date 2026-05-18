@@ -21,7 +21,7 @@ The foundational runtime phase (004/001) is the largest single remediation effor
 | Phase | Date | Title | One-line story |
 |-------|------|-------|----------------|
 | 004/001 review pt-01 | 2026-04-17 | [Foundational runtime deep review pt-01](./changelog-001-foundational-runtime-review-pt-01.md) | 7-iteration deep-review of Phase 016 remediation. 0 P0, 10 P1, 18 P2 findings. Verdict CONDITIONAL. |
-| 004/001 review pt-02 | 2026-04-17 | [Foundational runtime remediation review pt-02](./changelog-001-foundational-runtime-review-pt-02.md) | 10-iteration deep-review of Phase 017 remediation code. 0 P0, 5 P1, 15 P2. Two retractions. Verdict CONDITIONAL. |
+| 004/001 review pt-02 | 2026-04-17 | [Foundational runtime remediation review pt-02](./changelog-001-foundational-runtime-review-followup.md) | 10-iteration deep-review of Phase 017 remediation code. 0 P0, 5 P1, 15 P2. Two retractions. Verdict CONDITIONAL. |
 | 004/001 | 2026-04-17 | [Foundational runtime remediation](./changelog-001-foundational-runtime.md) | 25 commits closed 27 tasks. H-56-1 metadata no-op eliminated. 5 architectural primitives. 6 sibling handlers at parity. |
 | 004/002 | 2026-04-18 | [SK deep CLI runtime execution](./changelog-002-sk-deep-cli-runtime-execution.md) | Executor selection for iterative skills is now a first-class YAML branch. 4 CLI executors. 116 tests. Native path byte-for-byte identical. |
 | 004/003 | 2026-04-18 to 2026-04-19 | [System hardening](./changelog-003-system-hardening.md) | 6 Tier 1 investigations converged. 2 P0 fixes. Gate 3 F1 68.6% to 97.66%. NFKC unification. Description regen merge policy. Validator registry. |

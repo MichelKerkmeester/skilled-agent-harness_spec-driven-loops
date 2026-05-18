@@ -17,7 +17,7 @@ contextType: "research"
 
 ## 2026-04-21
 
-> Spec folder: `026-graph-and-context-optimization/005-code-graph/003-code-graph-hook-improvements/research/028-code-graph-hook-improvements-pt-01` (Research-only)
+> Spec folder: `026-graph-and-context-optimization/005-code-graph/003-resolver-and-hook-improvements/research/001-subtree-scan-freshness-and-startup-research` (Research-only)
 > Parent packet: `026-graph-and-context-optimization/005-code-graph`
 
 ### Summary
@@ -55,11 +55,11 @@ The investigation stopped at the 10-iteration cap. The `newInfoRatio` trajectory
 
 | File | What changed |
 |------|--------------|
-| `research/028-code-graph-hook-improvements-pt-01/research.md` (NEW) | Synthesis document |
-| `research/028-code-graph-hook-improvements-pt-01/iterations/iteration-01.md` through `iteration-10.md` (NEW) | Per-iteration pass narratives |
-| `research/028-code-graph-hook-improvements-pt-01/deltas/` (NEW) | Per-iteration delta records |
-| `research/028-code-graph-hook-improvements-pt-01/findings-registry.json` (NEW) | Structured findings registry |
-| `research/028-code-graph-hook-improvements-pt-01/deep-research-*.json|md` (NEW) | Config, state, dashboard, strategy |
+| `research/001-subtree-scan-freshness-and-startup-research/research.md` (NEW) | Synthesis document |
+| `research/001-subtree-scan-freshness-and-startup-research/iterations/iteration-01.md` through `iteration-10.md` (NEW) | Per-iteration pass narratives |
+| `research/001-subtree-scan-freshness-and-startup-research/deltas/` (NEW) | Per-iteration delta records |
+| `research/001-subtree-scan-freshness-and-startup-research/findings-registry.json` (NEW) | Structured findings registry |
+| `research/001-subtree-scan-freshness-and-startup-research/deep-research-*.json|md` (NEW) | Config, state, dashboard, strategy |
 
 ### Follow-Ups
 

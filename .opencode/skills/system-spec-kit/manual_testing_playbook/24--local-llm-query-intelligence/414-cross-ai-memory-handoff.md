@@ -30,7 +30,7 @@ This scenario tests that **storage AI ≠ retrieval AI** does NOT degrade recall
 
 ### Phase 1 — Orchestrating AI stores
 
-The orchestrating AI (the one running the playbook) first writes a canonical research-doc file at `.opencode/specs/_sandbox/24-414/research.md`:
+The orchestrating AI (the one running the playbook) first writes a canonical research-doc file at `<spec-folder>`:
 
 ```markdown
 ---
@@ -139,5 +139,5 @@ Per CLI:
 
 ```
 mcp__mk_spec_memory__memory_delete({ parent_id: STORED_ID })
-rm -rf .opencode/specs/_sandbox/24-414/
+rm -rf <spec-folder>
 ```

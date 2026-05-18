@@ -147,7 +147,7 @@ Full report: `review/review-report.md` at this packet root.
 
 - **Doc to read first:** this handover (§5 priorities, §6 post-restart steps, §7 test plan)
 - **Key reference:** `007-mcp-topology-pivot/decision-record.md` for the final architecture (standalone MCP)
-- **Resource map:** `001-design-and-decision-record/resource-map.md` for the full touchpoint catalog
+- **Resource map:** `001-extraction-design-and-adr/resource-map.md` for the full touchpoint catalog
 - **Recovery surface:** `/spec_kit:resume system-spec-kit/026-graph-and-context-optimization/005-code-graph/013-system-code-graph-extraction/`
 
 ### 4.2 Priority Tasks Remaining
@@ -462,7 +462,7 @@ These are NOT blockers for 014's PASS verdict; they're future cleanup or enhance
 ### 9.4 Possible coordination with 015/009 (skill-advisor extraction)
 
 The skill-advisor extraction (`015-skill-advisor-semantic-lane/009-system-skill-advisor-extraction/`) is in_progress with only its 001 ADR shipped. Now that 014 has shipped the standalone-MCP pattern end-to-end, 015/009 can mirror this packet's approach directly. Consider:
-- Cross-link 015/009's spec to 014's ADR-002 and 014/001-design-and-decision-record/
+- Cross-link 015/009's spec to 014's ADR-002 and 014/001-extraction-design-and-adr/
 - Lift the launcher pattern from `.opencode/bin/system-code-graph-launcher.cjs` for `system-skill-advisor-launcher.cjs`
 - Apply the same path-flattening lesson (don't keep the inner `skill_advisor/` subdir if not needed)
 
@@ -554,10 +554,10 @@ These risks were surfaced by ADR-001's risk catalog (R1-R6) and ADR-002 mitigati
 | Document | Path |
 |----------|------|
 | Phase parent spec | `spec.md` (this folder) |
-| ADR-001 (Q1, Q2, Q4-Q8) | `001-design-and-decision-record/decision-record.md` |
+| ADR-001 (Q1, Q2, Q4-Q8) | `001-extraction-design-and-adr/decision-record.md` |
 | ADR-002 (Q3 supersession) | `007-mcp-topology-pivot/decision-record.md` |
-| Resource map (280+ touchpoints) | `001-design-and-decision-record/resource-map.md` |
-| Research synthesis | `001-design-and-decision-record/research/research.md` |
+| Resource map (280+ touchpoints) | `001-extraction-design-and-adr/resource-map.md` |
+| Research synthesis | `001-extraction-design-and-adr/research/research.md` |
 | Deep-review report | `review/review-report.md` |
 | Per-phase implementation summaries | `001-007/*/implementation-summary.md` |
 | Plan file (this session, historical) | `/Users/michelkerkmeester/.claude/plans/analyze-the-code-graph-synchronous-adleman.md` |

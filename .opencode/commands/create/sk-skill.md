@@ -104,7 +104,7 @@ PRE-BOUND SETUP ANSWERS:
   skill_path: .opencode/skills/  # directory path
   execution_mode: AUTONOMOUS  # from :auto suffix
   spec_choice: new  # existing | new | update-related | skip | phase-folder
-  spec_path: .opencode/specs/103-example/001-my-skill/  # explicit path when applicable
+  spec_path: <spec-folder>  # explicit path when applicable
   memory_choice: skip  # latest | recent3 | skip | n/a
   chained_handoff_valid: false  # boolean
 ```

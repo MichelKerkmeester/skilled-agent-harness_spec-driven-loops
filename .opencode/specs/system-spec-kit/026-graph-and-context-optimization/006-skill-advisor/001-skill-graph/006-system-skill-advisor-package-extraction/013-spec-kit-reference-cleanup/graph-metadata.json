@@ -1,0 +1,22 @@
+{
+  "schema_version": 2,
+  "spec_id": "013-spec-kit-reference-cleanup",
+  "title": "Sweep stale advisor refs from spec-kit docs",
+  "status": "complete",
+  "derived": {
+    "last_active_at": "2026-05-14T19:30:00Z",
+    "last_active_child_id": null,
+    "trigger_phrases": [
+      "013/009/013",
+      "spec-kit advisor ref cleanup",
+      "stale advisor docs"
+    ],
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ]
+  }
+}

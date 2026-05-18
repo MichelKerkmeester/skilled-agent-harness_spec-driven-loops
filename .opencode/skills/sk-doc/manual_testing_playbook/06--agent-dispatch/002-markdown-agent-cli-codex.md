@@ -88,7 +88,7 @@ SK_DOC_RESOURCES_LOADED=<actual existing paths loaded>
 CHANGELOG_SECTIONS=<sections produced>
 STATUS=OK PATH=/tmp/sk-test-dummy-CHANGELOG-cli-codex.md'
 
-EVIDENCE='/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/102-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/evidence/SD-019-cli-codex.txt'
+EVIDENCE='/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/<spec-folder>'
 
 codex exec \
   --model gpt-5.5 \
@@ -151,5 +151,5 @@ This scenario is fixed to `cli-codex` and verifies inline-contract execution. SD
 - Playbook ID: SD-019
 - Canonical root source: `manual_testing_playbook.md`
 - Feature file path: `06--agent-dispatch/002-markdown-agent-cli-codex.md`
-- Introduced by: `.opencode/specs/skilled-agent-orchestration/102-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage`
-- Revised by: `.opencode/specs/skilled-agent-orchestration/102-sk-doc-skill-readme-and-structure/005-deep-review-p1-p2-remediation` (post codex meta-analysis 2026-05-11; F-001 resolved via inline-contract workaround)
+- Introduced by: `<spec-folder>`
+- Revised by: `<spec-folder>` (post codex meta-analysis 2026-05-11; F-001 resolved via inline-contract workaround)

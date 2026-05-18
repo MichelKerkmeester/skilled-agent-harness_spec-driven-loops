@@ -8,33 +8,99 @@
     "skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/002-auto-mode-contract-generalization-to-all-commands",
     "skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/003-skill-advisor-render-103-alignment"
   ],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
     "depends_on": [],
-    "supersedes": [
-      "system-spec-kit/028-deep-review-noninteractive-setup-bypass"
-    ],
-    "related_to": [
-      "skilled-agent-orchestration/102-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage"
-    ]
+    "supersedes": [],
+    "related_to": []
   },
   "derived": {
-    "trigger_phrases": [],
-    "key_topics": [],
+    "trigger_phrases": [
+      "spec-kit auto mode contract",
+      "auto mode noninteractive setup",
+      "F-Stage-E-001"
+    ],
+    "key_topics": [
+      "spec-kit",
+      "auto",
+      "mode",
+      "contract",
+      "noninteractive",
+      "setup",
+      "f-stage-e-001",
+      "packet",
+      "coordinates",
+      "autonomous",
+      "setup-resolution",
+      "three-tier"
+    ],
     "importance_tier": "important",
-    "status": "in-progress",
+    "status": "planned",
     "key_files": [
+      ".opencode/skills/system-spec-kit/references/workflows/auto_mode_contract.md",
+      "001-deep-review-three-tier-setup/spec.md",
+      "002-auto-mode-contract-generalization-to-all-commands/spec.md",
+      ".opencode/specs/skilled-agent-orchestration/102-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/implementation-summary.md",
       "spec.md"
     ],
-    "entities": [],
-    "causal_summary": "spec-kit :auto non-interactive contract phase parent (deep-review three-tier + 12-command generalization)",
+    "entities": [
+      {
+        "name": "auto_mode_contract.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/references/workflows/auto_mode_contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Count",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Last Active Child",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope In",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Documentation Map",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "This packet coordinates the spec-kit `:auto` (autonomous) setup-resolution contract: a three-tier flow (resolve confidently → ask one targeted clarification when genuinely ambiguous → fail fast as last resort) that ensures `/command:*:auto` dispatches never hang on stdin under non-interactive runtimes.",
     "created_at": "2026-05-11T12:30:00Z",
-    "last_save_at": "2026-05-11T12:30:00Z",
-    "save_lineage": "manual_init",
+    "last_save_at": "2026-05-18T15:17:56.748Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
-    ],
-    "last_active_child_id": "skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/002-auto-mode-contract-generalization-to-all-commands",
-    "last_active_at": "2026-05-11T12:30:00Z"
+    ]
   }
 }

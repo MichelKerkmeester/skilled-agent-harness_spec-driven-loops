@@ -12,8 +12,8 @@ Identify regression tests that would catch future precision, recall, latency, an
 - `.opencode/skills/system-spec-kit/mcp_server/tests/code-graph-query-fallback-decision.vitest.ts:132`
 - `.opencode/skills/system-spec-kit/mcp_server/tests/code-graph-status-readiness-snapshot.vitest.ts:129`
 - `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/002-mcp-runtime-improvement-research/research/research.md:665`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/011-post-stress-followup-research/research/research.md:135`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/010-stress-test-rerun-v1-0-2/findings.md:135`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/011-post-stress-finding-remediation-research/research/research.md:135`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/010-stress-test-close-loop-measurement-rerun/findings.md:135`
 
 ## Findings
 
@@ -21,7 +21,7 @@ Identify regression tests that would catch future precision, recall, latency, an
 - Code graph fallback tests cover empty graph, stale full-scan, readiness error to `rg`, and no inline full scan (`code-graph-query-fallback-decision.vitest.ts:76`, `:132`, `:162`).
 - Status snapshot tests cover fresh, empty, broad stale, bounded stale, and unavailable graph states (`code-graph-status-readiness-snapshot.vitest.ts:129`, `:191`).
 - Prior root-cause research explicitly called out missing regression tests across multiple surfaces (`002-mcp-runtime-improvement-research/research/research.md:665`).
-- v1.0.2 itself warned about N=1 limits and forced weak preamble caveats (`010-stress-test-rerun-v1-0-2/findings.md:135`).
+- v1.0.2 itself warned about N=1 limits and forced weak preamble caveats (`010-stress-test-close-loop-measurement-rerun/findings.md:135`).
 
 ## Insights
 

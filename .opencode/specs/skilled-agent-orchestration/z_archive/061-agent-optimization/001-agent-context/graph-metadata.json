@@ -1,48 +1,204 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/061-agent-optimization/001-agent-context",
-  "spec_folder": "skilled-agent-orchestration/061-agent-optimization/001-agent-context",
-  "parent_id": "skilled-agent-orchestration/061-agent-optimization",
+  "packet_id": "skilled-agent-orchestration/z_archive/061-agent-optimization/001-agent-context",
+  "spec_folder": "skilled-agent-orchestration/z_archive/061-agent-optimization/001-agent-context",
+  "parent_id": "skilled-agent-orchestration/z_archive/061-agent-optimization",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      "skilled-agent-orchestration/061-agent-optimization"
-    ],
+    "depends_on": [],
     "supersedes": [],
-    "related_to": [
-      "skilled-agent-orchestration/060-sk-agent-improver-test-report-alignment"
-    ]
+    "related_to": []
   },
   "derived": {
     "trigger_phrases": [
-      "001 optimize context",
-      "improve context agent",
-      "context agent improvement",
-      "061/001"
+      "001-agent-context",
+      "context optimization"
     ],
     "key_topics": [
-      "001",
-      "agent-optimization",
+      "001-agent-context",
       "context",
-      "sk-improve-agent-application"
+      "optimization",
+      "improvement",
+      "focus",
+      "leaf",
+      "retrieval",
+      "discipline",
+      "no-dispatch",
+      "invariant",
+      "cocoindex",
+      "grep"
     ],
+    "importance_tier": "high",
     "status": "complete",
-    "completion_pct": 100,
-    "last_active_child_id": null,
-    "level": 1,
-    "is_phase_parent": false,
-    "session_outcome": "promoted",
-    "stop_reason": "blockedStop",
-    "iterations_run": 5,
-    "final_score": "100/100/100/100/100 (baseline already at ceiling)",
-    "promotion_decision": "operator_override",
-    "promotion_rationale": "qualitative improvements (write-boundary hardening, query routing matrix, tool selection flow) not measurable by structural-presence dimensions; explicit user approval",
-    "mirrors_synced": [
+    "key_files": [
+      "improvement/candidates/iter-1-candidate-001.md",
       ".opencode/agents/context.md",
       ".claude/agents/context.md",
       ".gemini/agents/context.md",
-      ".codex/agents/context.toml"
+      ".codex/agents/context.toml",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
     ],
-    "iter_2_5_backfill_complete": true
+    "entities": [
+      {
+        "name": "iter-1-candidate-001.md",
+        "kind": "doc",
+        "path": "improvement/candidates/iter-1-candidate-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "context.md",
+        "kind": "doc",
+        "path": ".opencode/agents/context.md",
+        "source": "derived"
+      },
+      {
+        "name": "context.toml",
+        "kind": "file",
+        "path": ".codex/agents/context.toml",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Agent Optimization",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Improvement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Begin Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the Task",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "re-running",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "git",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. TASK NOTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PHASE 1: SETUP",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "T-001: Read target + scan integration surface",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "T-002: Generate dynamic 5-dimension profile",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "T-003: Dispatch /improve:agent",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Improvement focus: **LEAF retrieval discipline; no-dispatch invariant; CocoIndex/grep routing fidelity**. LEAF — must NOT dispatch sub-agents, use Task tool, or write files. Returns results to caller; never holds in nested context.",
+    "created_at": "2026-05-18T07:49:27.101Z",
+    "last_save_at": "2026-05-18T15:17:56.929Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ]
   }
 }

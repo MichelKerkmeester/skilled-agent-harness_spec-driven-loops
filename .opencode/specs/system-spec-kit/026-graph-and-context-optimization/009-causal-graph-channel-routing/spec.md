@@ -1,16 +1,33 @@
 ---
-title: "012 Causal Graph Channel Routing Utilization (Phase Parent)"
+title: "009 Causal Graph Channel Routing Utilization (Phase Parent)"
 description: "Phase parent for the graph-channel routing override and its post-delivery remediation. 001 ships the initial routing override (delivered 2026-05-08); 002 resolves the 0 P0 / 3 P1 / 39 P2 findings from the 2026-05-11 deep review (10-iter, cli-opencode + deepseek/deepseek-v4-pro)."
 trigger_phrases:
   - "009-causal-graph-channel-routing"
   - "graph channel routing phases"
-  - "012 phase parent"
-  - "012 deep-review remediation"
+  - "009 phase parent"
+  - "009 deep-review remediation"
 importance_tier: "important"
 contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/009-causal-graph-channel-routing"
+    last_updated_at: "2026-05-18T00:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Renamed causal-graph routing parent to 009-causal-graph-channel-routing"
+    next_safe_action: "Validate packet after 026 phase root reorder"
+    blockers: []
+    key_files:
+      - "spec.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "026-causal-graph-routing-reorder-2026-05-18"
+      parent_session_id: null
+    completion_pct: 85
+    open_questions: []
+    answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: phase-parent-core | v1.0 -->
-# Phase Parent: 012 Causal Graph Channel Routing Utilization
+# Phase Parent: 009 Causal Graph Channel Routing Utilization
 
 <!-- SPECKIT_LEVEL: 3 -->
 

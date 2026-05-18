@@ -74,8 +74,8 @@ Confirm the edited files are within the indexed markdown corpus and have mtimes 
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
 - Command entrypoint: `.opencode/commands/doctor.md`
 - YAML asset: `.opencode/commands/doctor/assets/doctor_memory.yaml`
-- Command spec: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/001-doctor-commands/spec.md`
-- Decision record: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/001-doctor-commands/decision-record.md`
+- Command contract: local doctor command behavior
+- Decision context: local doctor command ADRs
 
 ---
 

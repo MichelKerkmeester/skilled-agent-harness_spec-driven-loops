@@ -53,8 +53,8 @@ Operators run the exact prompt and command sequence for `DAC-027` and confirm th
 
 **No-graph baseline:**
 
-1. `bash: find .opencode/specs/sandbox/dac-027/ai-council/ -type f | wc -l` (capture count, expect ≥12)
-2. `bash: for f in .opencode/specs/sandbox/dac-027/ai-council/deliberations/*.md .opencode/specs/sandbox/dac-027/ai-council/critiques/*.md; do rg -l 'DISAGREEMENT|disagreement|conflict|unresolved' "$f" 2>/dev/null; done` (manual review of each hit follows)
+1. `bash: find <spec-folder> -type f | wc -l` (capture count, expect ≥12)
+2. `bash: for f in <spec-folder>*.md <spec-folder>*.md; do rg -l 'DISAGREEMENT|disagreement|conflict|unresolved' "$f" 2>/dev/null; done` (manual review of each hit follows)
 3. Capture operator's conclusion in a transcript bullet.
 
 **With-graph:**

@@ -25,7 +25,7 @@ class EmbedderMetadata:
     """Metadata describing one vetted embedder candidate."""
 
     name: str
-    """sbert/ or litellm/ prefixed model string consumed by COCOINDEX_CODE_EMBEDDING_MODEL."""
+    """sbert/, litellm/, or ollama/ prefixed model string consumed by COCOINDEX_CODE_EMBEDDING_MODEL."""
 
     dim: int
     """Embedding dimension. Must match the index schema or trigger a re-index on swap."""
@@ -47,6 +47,9 @@ class EmbedderMetadata:
 
     notes: str
     """When to prefer this embedder — operator-facing guidance."""
+
+    requires_ollama_daemon: bool = False
+    """True when the embedder requires a reachable local Ollama daemon."""
 
 
 MANIFESTS: tuple[EmbedderMetadata, ...] = (
@@ -99,6 +102,17 @@ MANIFESTS: tuple[EmbedderMetadata, ...] = (
         category="text",
         hf_url="https://huggingface.co/jinaai/jina-embeddings-v2-base-en",
         notes="English-text-tuned variant of jina v2. Use if your repo is documentation-heavy rather than code-heavy.",
+    ),
+    EmbedderMetadata(
+        name="ollama/nomic-embed-text",
+        dim=768,
+        ram_mb=600,
+        disk_mb=270,
+        mps_compatible=True,
+        category="text",
+        hf_url="https://huggingface.co/nomic-ai/nomic-embed-text-v1.5",
+        notes="Local Ollama text embedder. Useful for operators who already run Ollama and want an immediate 768d local option; not code-tuned, so benchmark before replacing the default code model.",
+        requires_ollama_daemon=True,
     ),
     EmbedderMetadata(
         name="sbert/Salesforce/SFR-Embedding-Code-2B_R",

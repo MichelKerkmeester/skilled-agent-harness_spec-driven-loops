@@ -1,0 +1,20 @@
+{
+  "level": "3",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-template-levels/006-command-markdown-yaml-workflow-alignment",
+  "description": "Feature Specification: command-md-yaml-alignment",
+  "keywords": [
+    "feature",
+    "specification",
+    "command-md-yaml-alignment"
+  ],
+  "lastUpdated": "2026-05-08T08:26:57.797Z",
+  "specId": "006",
+  "folderSlug": "command-md-yaml-alignment",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "008-template-levels"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

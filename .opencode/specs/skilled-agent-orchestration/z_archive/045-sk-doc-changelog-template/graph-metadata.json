@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/045-sk-doc-changelog-template",
-  "spec_folder": "skilled-agent-orchestration/045-sk-doc-changelog-template",
+  "packet_id": "skilled-agent-orchestration/z_archive/045-sk-doc-changelog-template",
+  "spec_folder": "skilled-agent-orchestration/z_archive/045-sk-doc-changelog-template",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -36,19 +36,12 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-doc/assets/documentation/changelog_template.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "changelog_template.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/assets/documentation/changelog_template.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -186,11 +179,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Release Notes",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The canonical changelog and release-notes template previously lived at the create-command asset path (`.opencode/commands/create/assets/changelog_template`). Every other documentation template (README, install guide, llms.txt, frontmatter, feature catalog, manual playbook) lives under `.opencode/skills/sk-doc/assets/documentation/`. The mismatch hid the template from sk-doc Smart Routing and made the path inconsistent with the rest of the documentation template surface.",
     "created_at": "2026-04-18T09:14:07.277Z",
-    "last_save_at": "2026-04-26T09:17:15.277Z",
+    "last_save_at": "2026-05-18T15:17:56.890Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

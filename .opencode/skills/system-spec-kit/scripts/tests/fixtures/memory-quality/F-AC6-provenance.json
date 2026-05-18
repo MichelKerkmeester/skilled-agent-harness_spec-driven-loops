@@ -1,5 +1,5 @@
 {
-  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-quality-issues/002-single-owner-metadata",
+  "specFolder": "<spec-folder>",
   "sessionSummary": "Phase 2 PR-4 adds JSON-mode git provenance without changing the authored memory narrative.",
   "observations": [
     {

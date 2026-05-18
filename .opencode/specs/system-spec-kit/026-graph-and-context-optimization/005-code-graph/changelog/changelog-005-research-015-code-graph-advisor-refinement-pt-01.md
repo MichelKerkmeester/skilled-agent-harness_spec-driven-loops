@@ -16,7 +16,7 @@ contextType: "research"
 
 ## 2026-04-23
 
-> Spec folder: `026-graph-and-context-optimization/005-code-graph/004-code-graph-advisor-refinement/research/015-code-graph-advisor-refinement-pt-01` (Research-only)
+> Spec folder: `026-graph-and-context-optimization/005-code-graph/004-code-graph-and-advisor-refinement-research-and-fixes/research/001-code-graph-advisor-refinement-roadmap` (Research-only)
 > Parent packet: `026-graph-and-context-optimization/005-code-graph`
 
 ### Summary

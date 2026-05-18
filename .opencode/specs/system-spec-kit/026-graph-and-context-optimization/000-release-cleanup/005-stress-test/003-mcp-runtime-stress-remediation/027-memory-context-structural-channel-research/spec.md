@@ -93,7 +93,7 @@ Run 5 focused deep-research iterations answering three sub-questions, then synth
 - `mcp_server/code_graph/handlers/query.ts` (code_graph_query response shape)
 - `mcp_server/lib/search/search-decision-envelope.ts` (envelope contract)
 - `mcp_server/lib/query/query-plan.ts` (intent + channels contract)
-- v1.0.3 corpus and findings: `specs/.../011/021-stress-test-v1-0-3-with-w3-w13-wiring/`
+- v1.0.3 corpus and findings: `specs/.../011/021-stress-test-enterprise-wiring-expansion/`
 - Phase J research output: `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/022-stress-test-results-deep-research/research/research-report.md`
 <!-- /ANCHOR:scope -->
 

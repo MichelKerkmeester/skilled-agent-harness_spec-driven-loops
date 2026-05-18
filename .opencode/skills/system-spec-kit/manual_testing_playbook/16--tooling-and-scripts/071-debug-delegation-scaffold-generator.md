@@ -40,13 +40,13 @@ Validate Debug-delegation scaffold generator + failure-threshold prompt rehearsa
 
 1. Create a throwaway spec folder under `/tmp` matching the approved-root pattern:
    ```bash
-   mkdir -p /tmp/scaf-test/.opencode/specs/test-packet/099-rehearsal/scratch
-   touch /tmp/scaf-test/.opencode/specs/test-packet/099-rehearsal/spec.md
+   mkdir -p /tmp/scaf-test/<spec-folder>
+   touch /tmp/scaf-test/<spec-folder>
    ```
 2. Run the scaffold generator with synthetic data:
    ```bash
    bash .opencode/skills/system-spec-kit/scripts/spec/scaffold-debug-delegation.sh \
-     --spec-folder /tmp/scaf-test/.opencode/specs/test-packet/099-rehearsal \
+     --spec-folder /tmp/scaf-test/<spec-folder> \
      --task-id "T999" \
      --error-category "test_failure" \
      --error-message "Expected 'foo' to equal 'bar' at line 42" \
@@ -56,14 +56,14 @@ Validate Debug-delegation scaffold generator + failure-threshold prompt rehearsa
    ```
 3. Verify the produced file:
    ```bash
-   test -f /tmp/scaf-test/.opencode/specs/test-packet/099-rehearsal/debug-delegation.md
-   grep -c "^## [0-9]\." /tmp/scaf-test/.opencode/specs/test-packet/099-rehearsal/debug-delegation.md  # expect 5
-   grep -E "Clear cache and retry|Hardcode value|Add wait" /tmp/scaf-test/.opencode/specs/test-packet/099-rehearsal/debug-delegation.md  # expect 3 hits
+   test -f /tmp/scaf-test/<spec-folder>
+   grep -c "^## [0-9]\." /tmp/scaf-test/<spec-folder>  # expect 5
+   grep -E "Clear cache and retry|Hardcode value|Add wait" /tmp/scaf-test/<spec-folder>  # expect 3 hits
    ```
 4. Run the generator a second time with the same args and confirm versioned output:
    ```bash
-   bash .opencode/skills/system-spec-kit/scripts/spec/scaffold-debug-delegation.sh --spec-folder /tmp/scaf-test/.opencode/specs/test-packet/099-rehearsal --task-id "T999" --errors-json '[{"approach":"x","result":"x"},{},{}]'
-   test -f /tmp/scaf-test/.opencode/specs/test-packet/099-rehearsal/debug-delegation-002.md
+   bash .opencode/skills/system-spec-kit/scripts/spec/scaffold-debug-delegation.sh --spec-folder /tmp/scaf-test/<spec-folder> --task-id "T999" --errors-json '[{"approach":"x","result":"x"},{},{}]'
+   test -f /tmp/scaf-test/<spec-folder>
    ```
 5. Confirm no @debug autonomous dispatch (the script is plain Bash; verify by reading the script):
    ```bash
@@ -106,7 +106,7 @@ Validate Debug-delegation scaffold generator + failure-threshold prompt rehearsa
 - Helper script: `.opencode/skills/system-spec-kit/scripts/spec/scaffold-debug-delegation.sh`
 - Schema source: `.opencode/agents/debug.md` (Debug Context Handoff format, lines 60-89)
 - Workflow YAML: `.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml` (debug_delegation block) and `.../spec_kit_complete_auto.yaml` (debug_escalation block)
-- Spec folder: `.opencode/specs/skilled-agent-orchestration/050-agent-debug-integration/` (REQ-004, REQ-005)
+- Spec folder: `<spec-folder>` (REQ-004, REQ-005)
 - User constraint memory: `feedback_debug_agent_user_invoked_only.md`
 
 ---

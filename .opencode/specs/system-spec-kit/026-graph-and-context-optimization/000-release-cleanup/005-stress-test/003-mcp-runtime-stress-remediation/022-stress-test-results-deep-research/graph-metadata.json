@@ -210,9 +210,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The v1.0.3 stress test (Phase H, packet `021-stress-test-v1-0-3-with-w3-w13-wiring`) ran the search/query/RAG stack against post-Phase-G wiring (W3 trust tree, W4 default-on conditional rerank, W5 shadow weights, W6 CocoIndex calibration, W7 degraded-readiness, W8 SearchDecisionEnvelope, W9 shadow JSONL sink, W10 degraded integration, W11 CocoIndex runtime consumer, W12 real QueryPlan to Stage 3, W13 decision audit + SLA). It produced 12-row envelope/audit/shadow samples, computed aggregate metrics, and confirmed W4 trigger logic fires real triggers (no `flag_disabled`/`unknown`).",
+    "causal_summary": "The v1.0.3 stress test (Phase H, packet `021-stress-test-enterprise-wiring-expansion`) ran the search/query/RAG stack against post-Phase-G wiring (W3 trust tree, W4 default-on conditional rerank, W5 shadow weights, W6 CocoIndex calibration, W7 degraded-readiness, W8 SearchDecisionEnvelope, W9 shadow JSONL sink, W10 degraded integration, W11 CocoIndex runtime consumer, W12 real QueryPlan to Stage 3, W13 decision audit + SLA). It produced 12-row envelope/audit/shadow samples, computed aggregate metrics, and confirmed W4 trigger logic fires real triggers (no `flag_disabled`/`unknown`).",
     "created_at": "2026-04-29T07:15:00.000Z",
-    "last_save_at": "2026-05-18T08:15:53.271Z",
+    "last_save_at": "2026-05-18T15:17:57.218Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

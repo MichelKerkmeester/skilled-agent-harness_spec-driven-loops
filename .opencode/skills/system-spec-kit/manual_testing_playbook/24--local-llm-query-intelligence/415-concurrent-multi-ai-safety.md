@@ -34,7 +34,7 @@ This scenario simulates the race and checks the result for coherence.
 
 Orchestrating AI stores 5 baseline memories. For each i in 1..5:
 
-  a. Write `.opencode/specs/_sandbox/24-415-base-{i}/research.md`:
+  a. Write `<spec-folder>{i}/research.md`:
      ```markdown
      ---
      title: "Concurrent safety probe baseline 415-{i}"
@@ -86,7 +86,7 @@ External CLI-B (use a different CLI than CLI-A):
 codex exec --model "gpt-5.5" -c approval_policy=never --sandbox workspace-write - <<'PROMPT'
 You are <CLI-B>. Wait 3 seconds for CLI-A's reader to start its loop, then fire 10 memory_save calls back-to-back (no delay between them). For each i in 1..10:
 
-  a. Write `.opencode/specs/_sandbox/24-415-write-{i}/research.md`:
+  a. Write `<spec-folder>{i}/research.md`:
      ---
      title: "Concurrent write probe 415-{i}"
      description: "Concurrent write test against active reader."
@@ -165,5 +165,5 @@ Loop memory_delete over the 15 captured parent_ids (5 pre-seed + 10 writes), the
 for ID in [<5 baseline parent_ids> + <10 write parent_ids>]:
   mcp__mk_spec_memory__memory_delete({ parent_id: ID })
 
-rm -rf .opencode/specs/_sandbox/24-415-*
+rm -rf <spec-folder>*
 ```

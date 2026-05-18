@@ -28,8 +28,8 @@ All 10 finding clusters (A–J) from the original deep-review report (§3 of `re
 - `parent/description.json:7` — overwritten description (P2-009-001)
 - `parent/graph-metadata.json:220` — last_active_child_id populated (Cluster A closed)
 - `002-sandbox-testing-playbook/handover.md:33` — completion_pct drift (P2-007-001)
-- `001-doctor-commands/` — no handover.md (P2-007-003, confirmed by Glob)
-- `002-rm8-013-remediation-doc-honesty-security/implementation-summary.md` — deferred findings record
+- `001-initial-doctor-commands/` — no handover.md (P2-007-003, confirmed by Glob)
+- `002-deep-review-remediation/implementation-summary.md` — deferred findings record
 
 ## Findings by Severity
 
@@ -65,7 +65,7 @@ Each active P2 is re-adjudicated below using the CLAIM ADJUDICATION schema.
 #### P2-RG-001 [P2] Malformed PHASE DOCUMENTATION MAP row in parent spec.md (iter-2/7/8/9, now re-adjudicated as P2-007-002)
 
 - **File**: `parent/spec.md:106`
-- **Claim**: Row reads `| 002-sandbox-testing-playbook | 002-rm8-013-remediation-doc-honesty-security | [Criteria TBD] | [Verification TBD] |`. The Phase column is missing its number, the Folder column has the remediation packet name instead of a child folder, and the row structure does not match the two-phase layout described in the same table (lines 104-105).
+- **Claim**: Row reads `| 002-sandbox-testing-playbook | 002-deep-review-remediation | [Criteria TBD] | [Verification TBD] |`. The Phase column is missing its number, the Folder column has the remediation packet name instead of a child folder, and the row structure does not match the two-phase layout described in the same table (lines 104-105).
 - **EvidenceRefs**: `spec.md:106` (read confirms the row is present and malformed), iter-2 §P2-RG-001, iter-7 §P2-007-002, iter-8, iter-9
 - **CounterevidenceSought**: Could this row be intentional — e.g., documenting the 003 remediation as a temporary phase? No: the table header defines columns `Phase | Folder | Status | Description`. Row 3 has no phase number, the folder column is a remediation packet (not a phase child), and fields are TBD. This looks like a Batch A artifact that was never cleaned up.
 - **AlternativeExplanation**: The remediation Batch A may have added this row as a placeholder when updating the parent spec.md, intending to fill it in later. It was left incomplete.
@@ -94,9 +94,9 @@ Each active P2 is re-adjudicated below using the CLAIM ADJUDICATION schema.
 
 #### P2-007-003 [P2] 001 child lacks handover.md
 
-- **File**: `001-doctor-commands/` (file absent)
-- **Claim**: Sibling 002 has a handover.md for resumption continuity; 001 has no equivalent. The parent resource-map.md line 110 marks a former `001-doctor-commands/handover.md` as MISSING (Moved).
-- **EvidenceRefs**: Glob of `001-doctor-commands/` (24 files, no `handover.md`), parent/resource-map.md (marks handover.md as MISSING/Moved)
+- **File**: `001-initial-doctor-commands/` (file absent)
+- **Claim**: Sibling 002 has a handover.md for resumption continuity; 001 has no equivalent. The parent resource-map.md line 110 marks a former `001-initial-doctor-commands/handover.md` as MISSING (Moved).
+- **EvidenceRefs**: Glob of `001-initial-doctor-commands/` (24 files, no `handover.md`), parent/resource-map.md (marks handover.md as MISSING/Moved)
 - **CounterevidenceSought**: Is handover.md required for child packets? No — `handover.md` is a cross-cutting optional doc per the spec kit. 001's IMS continuity block (`implementation-summary.md` frontmatter) serves the same purpose for resumption. The absence is a convention gap, not a functional defect.
 - **AlternativeExplanation**: 001 was authored before the handover.md convention was established for this phase parent's children. Or 001's implementation-summary.md continuity block is the intended resumption ladder for this child, and no separate handover.md is needed.
 - **FinalSeverity**: P2 (confirmed — borderline trivial). The continuity ladder works through IMS frontmatter. A handover.md would be nice-to-have for parity with sibling 002 but is not required.
@@ -137,7 +137,7 @@ Each active P2 is re-adjudicated below using the CLAIM ADJUDICATION schema.
 - **003/implementation-summary.md §Findings closure tally**: Documents 30/30 P1 closed, 28/30 P2 closed, 2 deferred — accurate.
 - **Parent graph-metadata.json**: `last_active_child_id` = `002-sandbox-testing-playbook` (line 220), `derived.status` = `in_progress` — correct.
 - **Parent spec.md §3 PHASE DOCUMENTATION MAP**: Rows 1-2 (phases 1 and 2) correctly enumerate child folders with status and descriptions. Row 3 is malformed (P2-RG-001).
-- **Cross-child references**: 002 spec.md references `../001-doctor-commands/spec.md` and `../001-doctor-commands/decision-record.md` — both exist on disk.
+- **Cross-child references**: 002 spec.md references `../001-initial-doctor-commands/spec.md` and `../001-initial-doctor-commands/decision-record.md` — both exist on disk.
 - **Resource-map.md**: 38 OK rows, 1 MISSING (pre-existing — 001 child handover.md moved to parent). No broken paths.
 
 ## Adversarial Self-Check Conclusion

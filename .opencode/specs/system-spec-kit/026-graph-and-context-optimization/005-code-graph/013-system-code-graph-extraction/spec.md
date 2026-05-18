@@ -62,7 +62,7 @@ That coupling makes it harder to:
 
 This phase migrates code-graph into `.opencode/skills/system-code-graph/` with its own first-class SKILL.md, graph-metadata.json, references/, manual_testing_playbook/, feature_catalog/, and a clean MCP server integration story.
 
-The 007 line — through `001-code-graph-upgrades`, `002-code-graph-context-and-scan-scope`, `005-code-graph-backend-resilience`, `010-broader-scope-excludes-and-granular-skills`, and `012-doctor-apply-mode-phase-b` — proved code-graph is empirically stable and well-instrumented; this is a structural cleanup, not a functional change.
+The 007 line — through `001-code-graph-runtime-upgrades`, `002-stale-highlights-and-scan-scope-fix`, `005-code-graph-backend-resilience`, `010-broader-excludes-and-granular-skills`, and `012-doctor-apply-mode-implementation` — proved code-graph is empirically stable and well-instrumented; this is a structural cleanup, not a functional change.
 
 ## 8. FOLLOW-ON PHASES
 
@@ -72,7 +72,7 @@ All 20 children were promoted to direct `005-code-graph/` siblings on 2026-05-15
 
 All work is shipped. The extraction was executed in 6 phases (now at slots 015-020 as direct 005-code-graph siblings), followed by 14 follow-on phases (021-034).
 
-- **001→014-design-and-decision-record** *(complete — ADR-001 accepted)*: 3-iteration deep-research loop answered all 8 questions. ADR-001 locks: co-resident MCP topology (in-process with spec_kit_memory), stable tool-ids (code_graph_*/ccc_* preserved), DB moves to new skill with SPECKIT_CODE_GRAPH_DB_DIR env fallback, cross-subsystem consumers import from sibling skill (../../system-code-graph/mcp_server/lib/), plugin bridge moves code-graph-specific files (shared message schema stays), 6-phase implementation sequence confirmed, 6-risk catalog with detection/mitigation/rollback. Full disposition catalog in resource-map.md (~280 touchpoints: ~170 move, ~90 update, ~25 stay-and-rewire, ~5 never-move).
+- **001→014-extraction-design-and-decision-record** *(complete — ADR-001 accepted)*: 3-iteration deep-research loop answered all 8 questions. ADR-001 locks: co-resident MCP topology (in-process with spec_kit_memory), stable tool-ids (code_graph_*/ccc_* preserved), DB moves to new skill with SPECKIT_CODE_GRAPH_DB_DIR env fallback, cross-subsystem consumers import from sibling skill (../../system-code-graph/mcp_server/lib/), plugin bridge moves code-graph-specific files (shared message schema stays), 6-phase implementation sequence confirmed, 6-risk catalog with detection/mitigation/rollback. Full disposition catalog in resource-map.md (~280 touchpoints: ~170 move, ~90 update, ~25 stay-and-rewire, ~5 never-move).
 
 - **002→016-scaffold-skill** *(complete)*: created `.opencode/skills/system-code-graph/` with SKILL.md, README.md, description.json, graph-metadata.json, package.json, tsconfig.json, vitest.config.ts, feature_catalog/, manual_testing_playbook/, database/, references/, lib/, handlers/, tools/, tests/.
 
@@ -96,7 +96,7 @@ All work is shipped. The extraction was executed in 6 phases (now at slots 015-0
 ## 7. DEPENDENCIES
 
 - `005-code-graph/005-code-graph-backend-resilience` shipped on main (backend hardening before structural extraction).
-- `005-code-graph/010-broader-scope-excludes-and-granular-skills` shipped on main (scan-scope policy stable).
+- `005-code-graph/010-broader-excludes-and-granular-skills` shipped on main (scan-scope policy stable).
 - `008-template-levels` shipped (template foundations for the new skill's documentation).
 - `015-skill-advisor-semantic-lane/009-system-skill-advisor-extraction` precedent (in_progress; provides the design pattern this packet mirrors exactly).
 - Acknowledgement: `005-code-graph/002-code-graph-self-contained-package` is superseded by 014 (scope strictly extended from intra-skill self-containment to standalone sibling-skill extraction; 002's partial work landed on disk during the 003-008 train and is reused as the starting point).

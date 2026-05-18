@@ -40,7 +40,7 @@ _memory:
 
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 1 -->
-<!-- PHASE_LINKS_PARENT: ../spec.md; PREDECESSOR: 016-degraded-readiness-envelope-parity; SUCCESSOR: 018-catalog-playbook-degraded-alignment -->
+<!-- PHASE_LINKS_PARENT: ../spec.md; PREDECESSOR: 016-degraded-readiness-envelope-parity; SUCCESSOR: 018-feature-catalog-playbook-degraded-alignment -->
 
 # Feature Specification: cli-copilot Dispatch Test Parity — close F-004 P2 from 011 deep-review
 
@@ -56,7 +56,7 @@ _memory:
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |
 | **Parent Packet** | `003-mcp-runtime-stress-remediation` |
-| **Predecessor** | `../011-post-stress-followup-research` (deep-review report §4 F-004 + §7 Packet B identifies this fix) |
+| **Predecessor** | `../011-post-stress-finding-remediation-research` (deep-review report §4 F-004 + §7 Packet B identifies this fix) |
 | **Successor** | None (sibling to 016 + 018) |
 | **Handoff Criteria** | `cli-matrix.vitest.ts` cli-copilot section models `buildCopilotPromptArg`'s `built.argv` + `promptFileBody` shape; all 3 `targetAuthority` branches asserted; YAML write-then-dispatch ordering pinned via static grep; sibling deep-loop tests + executor-config-copilot-target-authority tests stay green; `validate.sh --strict` returns 0 structural errors. |
 <!-- /ANCHOR:metadata -->
@@ -68,7 +68,7 @@ _memory:
 
 ### Problem Statement
 
-The 011 deep-review report (`../011-post-stress-followup-research/review/review-report.md`) §4 surfaced F-004 [P2]:
+The 011 deep-review report (`../011-post-stress-finding-remediation-research/review/review-report.md`) §4 surfaced F-004 [P2]:
 
 > `mcp_server/tests/deep-loop/cli-matrix.vitest.ts:17-20` claims to mirror YAML, but its cli-copilot branch (lines 40-56) still builds `-p "$(cat ...)"` / `resolveCopilotPromptArg()` strings instead of the `built.argv` + `promptFileBody` flow that 012 introduced.
 

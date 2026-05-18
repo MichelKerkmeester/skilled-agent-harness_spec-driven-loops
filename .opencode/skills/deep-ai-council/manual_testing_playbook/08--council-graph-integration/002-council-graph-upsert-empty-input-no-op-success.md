@@ -91,7 +91,7 @@ If the call errors, inspect `handlers/council-graph/upsert.ts` for the empty-inp
 |---|---|
 | `.opencode/skills/system-spec-kit/mcp_server/handlers/council-graph/upsert.ts` | MCP handler: explicit empty-input no-op branch (P1-001 remediation) |
 | `.opencode/skills/system-spec-kit/mcp_server/tests/council-graph.vitest.ts` | Test: "treats empty upsert as an explicit no-op success" |
-| `.opencode/specs/skilled-agent-orchestration/101-deep-multi-ai-council-skill/003-deep-ai-council-graph-support/checklist.md` | CHK-020 lists this behavior |
+| Internal design notes | CHK-020 lists this behavior |
 
 ---
 

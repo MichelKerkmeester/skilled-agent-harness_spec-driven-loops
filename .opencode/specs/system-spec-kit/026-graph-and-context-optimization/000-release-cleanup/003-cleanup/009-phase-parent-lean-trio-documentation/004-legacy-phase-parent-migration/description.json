@@ -1,0 +1,25 @@
+{
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/009-phase-parent-lean-trio-documentation/004-legacy-phase-parent-migration",
+  "description": "Feature Specification: Retroactive Phase-Parent Migration",
+  "keywords": [
+    "feature",
+    "specification",
+    "retroactive",
+    "phase-parent",
+    "migration"
+  ],
+  "lastUpdated": "2026-05-08T08:26:57.136Z",
+  "specId": "004",
+  "folderSlug": "retroactive-phase-parent-migration",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "000-release-cleanup",
+    "009-phase-parent-lean-trio-documentation"
+  ],
+  "memorySequence": 3,
+  "memoryNameHistory": [
+    "27-04-26_14-56__phase-4-of-the-010-phase-parent-documentation.md",
+    "27-04-26_16-01__user-requested-a-context-save-for-the-current.md"
+  ]
+}

@@ -38,6 +38,11 @@ Constraints:
 Success criteria:
 - <list>
 
+Budget awareness:
+- Apply `../references/context-budget.md`; canonical semantics live in `../../cli-devin/references/context-budget.md`.
+- When content is cut for context budget, keep the retained span and insert `[... truncated N tokens]`.
+- Treat truncation markers as intentional boundaries; do not infer missing evidence.
+
 Memory Epilogue:
 At the end of your response, include a structured handback inside delimiters:
 

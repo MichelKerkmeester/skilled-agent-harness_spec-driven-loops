@@ -1,0 +1,132 @@
+{
+  "topic": "Review: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-template-levels/005-skill-reference-asset-doc-alignment",
+  "sessionId": "2026-05-04T07:25:51.952Z",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "migrationWindowEndsAt": "",
+  "maxIterations": 5,
+  "convergenceThreshold": 0.1,
+  "stuckThreshold": 2,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": false,
+  "specFolder": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-template-levels/005-skill-reference-asset-doc-alignment",
+  "createdAt": "2026-05-04T07:25:51.952Z",
+  "status": "complete",
+  "releaseReadinessState": "in-progress",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "native",
+    "model": null,
+    "reasoningEffort": null,
+    "serviceTier": null,
+    "sandboxMode": null,
+    "timeoutSeconds": 900
+  },
+  "mode": "review",
+  "reviewTarget": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-template-levels/005-skill-reference-asset-doc-alignment",
+  "reviewTargetType": "spec_folder",
+  "reviewDimensions": [
+    "implementation-spec-alignment",
+    "code-correctness",
+    "template-rendering-correctness",
+    "validator-coverage",
+    "cross-runtime-mirror-consistency"
+  ],
+  "canonicalDimensionMap": {
+    "implementation-spec-alignment": "traceability",
+    "code-correctness": "correctness",
+    "template-rendering-correctness": "correctness",
+    "validator-coverage": "maintainability",
+    "cross-runtime-mirror-consistency": "traceability"
+  },
+  "resource_map_present": false,
+  "resource_map": {
+    "emit": true
+  },
+  "reviewScopeFiles": [
+    ".opencode/skills/system-spec-kit/SKILL.md",
+    ".opencode/skills/system-spec-kit/assets/complexity_decision_matrix.md",
+    ".opencode/skills/system-spec-kit/assets/level_decision_matrix.md",
+    ".opencode/skills/system-spec-kit/assets/parallel_dispatch_config.md",
+    ".opencode/skills/system-spec-kit/assets/template_mapping.md",
+    ".opencode/skills/system-spec-kit/references/config/environment_variables.md",
+    ".opencode/skills/system-spec-kit/references/intake-contract.md",
+    ".opencode/skills/system-spec-kit/references/memory/save_workflow.md",
+    ".opencode/skills/system-spec-kit/references/structure/folder_structure.md",
+    ".opencode/skills/system-spec-kit/references/structure/phase_definitions.md",
+    ".opencode/skills/system-spec-kit/references/structure/phase_system.md",
+    ".opencode/skills/system-spec-kit/references/templates/level_selection_guide.md",
+    ".opencode/skills/system-spec-kit/references/templates/level_specifications.md",
+    ".opencode/skills/system-spec-kit/references/templates/template_guide.md",
+    ".opencode/skills/system-spec-kit/references/validation/path_scoped_rules.md",
+    ".opencode/skills/system-spec-kit/references/validation/template_compliance_contract.md",
+    ".opencode/skills/system-spec-kit/references/validation/validation_rules.md",
+    ".opencode/skills/system-spec-kit/references/workflows/execution_methods.md",
+    ".opencode/skills/system-spec-kit/references/workflows/quick_reference.md",
+    ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-template-levels/graph-metadata.json"
+  ],
+  "implementationContextFiles": [
+    ".opencode/skills/system-spec-kit/templates/README.md",
+    ".opencode/skills/system-spec-kit/templates/manifest/spec-kit-docs.json",
+    ".opencode/skills/system-spec-kit/templates/manifest/*.md.tmpl",
+    ".opencode/skills/system-spec-kit/scripts/spec/create.sh",
+    ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+    ".opencode/skills/system-spec-kit/scripts/templates/inline-gate-renderer.ts",
+    ".opencode/skills/system-spec-kit/scripts/templates/inline-gate-renderer.sh",
+    ".opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/lib/templates/level-contract-resolver.ts",
+    ".opencode/commands/spec_kit/deep-review.md",
+    ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml"
+  ],
+  "severityThreshold": "P2",
+  "crossReference": {
+    "core": [
+      "spec_code",
+      "checklist_evidence"
+    ],
+    "overlay": [
+      "skill_agent",
+      "agent_cross_runtime",
+      "feature_catalog_code",
+      "playbook_capability"
+    ]
+  },
+  "qualityGateThreshold": true,
+  "runtimeCapabilityResolver": ".opencode/skills/sk-deep-review/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".opencode/skills/sk-deep-review/scripts/reduce-state.cjs",
+  "fileProtection": {
+    "deep-review-config.json": "immutable",
+    "deep-review-state.jsonl": "append-only",
+    "deep-review-findings-registry.json": "auto-generated",
+    "deep-review-strategy.md": "mutable",
+    "deep-review-dashboard.md": "auto-generated",
+    ".deep-review-pause": "operator-controlled",
+    "review-report.md": "mutable",
+    "review-report-v*.md": "write-once",
+    "iteration-*.md": "write-once"
+  },
+  "reducer": {
+    "enabled": true,
+    "inputs": [
+      "latestJSONLDelta",
+      "newIterationFile",
+      "priorReducedState"
+    ],
+    "outputs": [
+      "findingsRegistry",
+      "dashboardMetrics",
+      "strategyUpdates"
+    ],
+    "metrics": [
+      "dimensionsCovered",
+      "findingsBySeverity",
+      "openFindings",
+      "resolvedFindings",
+      "convergenceScore"
+    ]
+  }
+}

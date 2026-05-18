@@ -11,9 +11,9 @@ This document records the **2026-05-04 destructive scope violation incident**, t
 
 ## 1. INCIDENT (2026-05-04)
 
-Source-of-truth: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/cross-phase-review-synthesis.md` §5 (events table) and §6 (RM-8 row).
+Source-of-truth: local destructive-scope violation policy.
 
-- **What ran**: `/spec_kit:deep-review:auto` against the 010-template-levels phase parent across phases 007 and 008.
+- **What ran**: `/spec_kit:deep-review:auto` against the 008-template-levels phase parent across phases 007 and 008.
 - **Executor**: cli-opencode (`opencode run`) with `--model opencode-go/deepseek-v4-pro --variant high --dangerously-skip-permissions --pure --dir <repo-root>`.
 - **Damage**: **44 files deleted** across phases 007 and 008. Spec docs (`spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md`, `description.json`, `graph-metadata.json`) **and** the `review/` packet subtrees were physically removed.
 - **Recovery**: `git restore` from commit `7beb80769` (a pre-dispatch "bundled session sync") — single command. **No findings lost**, but ≈30 minutes of recovery time and trust damage.
@@ -47,7 +47,7 @@ opencode run \
 
 ### Layer B — instruction-only guard
 
-Before the RM-8 mitigation (packet `010-template-levels/009-rm-8-prompt-hardening/`), the only safeguard against the model was a single prose line in `.opencode/skills/deep-review/assets/prompt_pack_iteration.md.tmpl` §CONSTRAINTS:
+Before the RM-8 mitigation (packet `008-template-levels/009-rm-8-prompt-hardening/`), the only safeguard against the model was a single prose line in `.opencode/skills/deep-review/assets/prompt_pack_iteration.md.tmpl` §CONSTRAINTS:
 
 > "Review target is READ-ONLY. Do not modify reviewed files."
 
@@ -71,7 +71,7 @@ The default risk surface for cli-opencode is **any non-interactive `opencode run
 
 This is instruction-side mitigation. It tightens the guard but does NOT remove the underlying capability. Confirm the dispatched prompt contains these strings literally before relying on this layer alone.
 
-Packet of record: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/009-rm-8-prompt-hardening/`.
+Policy record: local destructive-scope violation policy.
 
 ### Layer 2 (STRONGLY RECOMMENDED) — git worktree isolation
 
@@ -142,8 +142,8 @@ This requires changes to the YAML wrapper (pre/post hooks) and is a separate pac
 
 ## 6. RELATED MATERIAL
 
-- **Incident source**: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/cross-phase-review-synthesis.md` §5 (events) and §6 (RM-8)
-- **RM-8 hardening packet**: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/009-rm-8-prompt-hardening/`
+- **Incident source**: local destructive-scope violation policy
+- **RM-8 hardening context**: local destructive-scope violation policy
 - **Hardened prompt template**: `.opencode/skills/deep-review/assets/prompt_pack_iteration.md.tmpl` §CONSTRAINTS
 - **YAML dispatch surface**: `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` step `if_cli_opencode`
 - **Memory feedback**: `feedback_opencode_run_requires_dev_null_stdin.md`, `feedback_opencode_provider_fallback.md`, `feedback_cli_executor_only_when_requested.md`

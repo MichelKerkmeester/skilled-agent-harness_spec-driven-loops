@@ -25,11 +25,11 @@ Two-part:
 
 ### Read these first
 
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/016-hook-plugin-per-runtime-testing/findings.md` (the verdict that needs amendment)
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/016-hook-plugin-per-runtime-testing/results/*.jsonl` (the actual evidence per cell)
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/016-hook-plugin-per-runtime-testing/runners/common.ts`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/016-hook-plugin-per-runtime-testing/runners/run-all-runtime-hooks.ts`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/016-hook-plugin-per-runtime-testing/runners/test-{claude,codex,copilot,gemini,opencode}-{hooks,plugins}.ts`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/016-runtime-hook-plugin-testing/findings.md` (the verdict that needs amendment)
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/016-runtime-hook-plugin-testing/results/*.jsonl` (the actual evidence per cell)
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/016-runtime-hook-plugin-testing/runners/common.ts`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/016-runtime-hook-plugin-testing/runners/run-all-runtime-hooks.ts`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/016-runtime-hook-plugin-testing/runners/test-{claude,codex,copilot,gemini,opencode}-{hooks,plugins}.ts`
 - `.opencode/skills/system-spec-kit/mcp_server/package.json` (where to add an `npm run hook-tests` script)
 
 ### Implementation
@@ -72,7 +72,7 @@ Add to `.opencode/skills/system-spec-kit/mcp_server/package.json` scripts:
 
 ```json
 {
-  "hook-tests": "npx tsx ../../../specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/016-hook-plugin-per-runtime-testing/runners/run-all-runtime-hooks.ts"
+  "hook-tests": "npx tsx ../../../specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/016-runtime-hook-plugin-testing/runners/run-all-runtime-hooks.ts"
 }
 ```
 
@@ -85,7 +85,7 @@ Update `043/runners/README.md` to document:
 
 #### Phase 4: Amend 043 findings.md
 
-Edit `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/016-hook-plugin-per-runtime-testing/findings.md` to:
+Edit `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/016-runtime-hook-plugin-testing/findings.md` to:
 - Add an "Amendment (044)" section at the TOP that says the original verdict misattributed cause
 - Reclassify each cell:
   - Claude UserPromptSubmit: `BLOCKED_BY_TEST_SANDBOX` (was FAIL); reason: claude binary couldn't access its credentials inside the sandboxed child process
@@ -102,7 +102,7 @@ DO NOT delete the original "Verdict" section — preserve it as historical recor
 #### Phase 5: Verify build + integration
 
 - `cd .opencode/skills/system-spec-kit/mcp_server && npm run build` — must succeed
-- `npx tsx specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/016-hook-plugin-per-runtime-testing/runners/run-all-runtime-hooks.ts` (this WILL run inside the cli-codex test sandbox; should now report SKIPPED_SANDBOX for live cells, PASS for direct smokes — verify the new behavior works)
+- `npx tsx specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/016-runtime-hook-plugin-testing/runners/run-all-runtime-hooks.ts` (this WILL run inside the cli-codex test sandbox; should now report SKIPPED_SANDBOX for live cells, PASS for direct smokes — verify the new behavior works)
 
 ### Packet structure to create (Level 2)
 
@@ -110,7 +110,7 @@ DO NOT delete the original "Verdict" section — preserve it as historical recor
 
 PLUS: `methodology-correction.md` at packet root with the full root-cause analysis (sandbox stripping access to user state).
 
-**Deps**: `manual.depends_on=["system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/016-hook-plugin-per-runtime-testing"]`.
+**Deps**: `manual.depends_on=["system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/016-runtime-hook-plugin-testing"]`.
 
 **Trigger phrases**: `["017-hook-test-sandbox-fix","hook test methodology","sandbox detection","BLOCKED_BY_TEST_SANDBOX","operator-run-outside-sandbox"]`.
 

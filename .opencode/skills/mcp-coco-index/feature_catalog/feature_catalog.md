@@ -36,7 +36,7 @@ Use this catalog as the canonical inventory for the live `mcp-coco-index` featur
 |---|---:|---|
 | CLI commands | 7 features | `01--cli-commands/` |
 | MCP server | 4 features | `02--mcp-server/` |
-| Indexing pipeline | 6 features | `03--indexing-pipeline/` |
+| Indexing pipeline | 7 features | `03--indexing-pipeline/` |
 | Daemon and readiness | 5 features | `04--daemon-and-readiness/` |
 | Search and ranking | 8 features | `05--search-and-ranking/` |
 | Patches and extensions | 6 features | `06--patches-and-extensions/` |
@@ -290,7 +290,7 @@ Creates sentence-transformer or LiteLLM embedders from user settings.
 
 #### Current Reality
 
-Default user settings choose the local sentence-transformers provider with `google/embeddinggemma-300m`; environment defaults may present the same model as `sbert/google/embeddinggemma-300m`. When the provider is `sentence-transformers`, the factory strips the legacy `sbert/` prefix and resolves the `InstructionRetrieval` query prompt for EmbeddingGemma. Other providers route through LiteLLM.
+Default user settings choose the local sentence-transformers provider with `google/embeddinggemma-300m`; environment defaults may present the same model as `sbert/google/embeddinggemma-300m`. When the provider is `sentence-transformers`, the factory strips the legacy `sbert/` prefix and resolves the `InstructionRetrieval` query prompt for EmbeddingGemma. Other providers route through LiteLLM. Registered `ollama/` models use the LiteLLM path with an additional local daemon/model readiness check.
 
 #### Source Files
 
@@ -327,6 +327,22 @@ The indexer calls `ensure_fts_table` when the vector target is mounted and `popu
 #### Source Files
 
 See [`03--indexing-pipeline/06-fts5-lexical-index.md`](03--indexing-pipeline/06-fts5-lexical-index.md) for full implementation and validation file listings.
+
+---
+
+### Ollama embedding adapter
+
+#### Description
+
+Routes registered `ollama/` embedders through LiteLLM with local daemon readiness checks.
+
+#### Current Reality
+
+`ollama/nomic-embed-text` is registered as a 768-dimensional text embedder with `requires_ollama_daemon=True`. The factory checks the local Ollama daemon and pulled model before constructing the LiteLLM embedder, then passes `OLLAMA_API_BASE` through to the LiteLLM call path.
+
+#### Source Files
+
+See [`03--indexing-pipeline/07-ollama-embedding-adapter.md`](03--indexing-pipeline/07-ollama-embedding-adapter.md) for full implementation and validation file listings.
 
 ---
 

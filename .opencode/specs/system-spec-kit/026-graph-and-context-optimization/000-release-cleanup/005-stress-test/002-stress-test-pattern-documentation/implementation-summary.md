@@ -116,7 +116,7 @@ The docs were derived from the actual stress cycle artifacts, not from a fresh a
 | JSON parse for `findings-rubric.template.json` | PASS, exit 0. Node parsed the template successfully. |
 | Seven A/B/C file existence check | PASS, exit 0. Shell existence loop returned `seven files exist`. |
 | Markdown spot check | PASS, exit 0. Opened the feature catalog entry and confirmed frontmatter, H1, overview, rubric, verdict, and source sections. |
-| Optional historical packet validation | PASS for modified roots. `001-search-intelligence-stress-test --strict --no-recursive`, `010-stress-test-rerun-v1-0-2 --strict`, and `021-stress-test-v1-0-3-with-w3-w13-wiring --strict` exited 0. Recursive 001 strict still reports pre-existing child template-header warnings, so the parent-only validation is the scoped evidence for the one-line parent note. |
+| Optional historical packet validation | PASS for modified roots. `001-search-intelligence-stress-playbook --strict --no-recursive`, `010-stress-test-close-loop-measurement-rerun --strict`, and `021-stress-test-enterprise-wiring-expansion --strict` exited 0. Recursive 001 strict still reports pre-existing child template-header warnings, so the parent-only validation is the scoped evidence for the one-line parent note. |
 <!-- /ANCHOR:verification -->
 
 ---

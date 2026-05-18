@@ -7,7 +7,7 @@
       "severity": "P1",
       "dimension": "traceability",
       "summary": "023 still presents degradedReadiness as an active expected-failure after 025 closed TC-3.",
-      "evidence": "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/023-live-handler-envelope-capture-seam/implementation-summary.md:64",
+      "evidence": "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/023-live-handler-envelope-capture-interface/implementation-summary.md:64",
       "status": "open"
     },
     {
@@ -31,7 +31,7 @@
       "severity": "P1",
       "dimension": "traceability",
       "summary": "028 spec/plan/tasks continuity still describes pre-implementation work despite the implementation summary marking the packet complete.",
-      "evidence": "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/028-deep-review-skill-contract-fixes/spec.md:17",
+      "evidence": "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/028-deep-review-research-skill-contract-fixes/spec.md:17",
       "status": "open"
     },
     {

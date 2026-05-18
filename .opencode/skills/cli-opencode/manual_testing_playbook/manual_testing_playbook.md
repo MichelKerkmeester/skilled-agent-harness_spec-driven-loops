@@ -298,7 +298,7 @@ Verify a Claude Code-led dispatch via cli-opencode reaches a fresh OpenCode sess
 
 #### Scenario Contract
 
-Prompt summary: You are Claude Code dispatching from a fresh shell into a new OpenCode session via cli-opencode use case 1. Goal: have OpenCode call the memory_health MCP tool and return the database status. Context: spec folder `<repo-root>/.opencode/specs/skilled-agent-orchestration/048-cli-testing-playbooks/` (pre-approved, skip Gate 3). Plugin runtime required (Spec Kit Memory MCP). Constraints: must load system-spec-kit skill. Must call memory_health and return its result. Success criteria: dispatched session emits a tool.call event for memory_health, returns the database status. The session.completed event includes the status summary. Memory Epilogue is NOT required for this test.
+Prompt summary: You are Claude Code dispatching from a fresh shell into a new OpenCode session via cli-opencode use case 1. Goal: have OpenCode call the memory_health MCP tool and return the database status. Context: spec folder `<repo-root>/<spec-folder>` (pre-approved, skip Gate 3). Plugin runtime required (Spec Kit Memory MCP). Constraints: must load system-spec-kit skill. Must call memory_health and return its result. Success criteria: dispatched session emits a tool.call event for memory_health, returns the database status. The session.completed event includes the status summary. Memory Epilogue is NOT required for this test.
 
 Expected signals: Dispatch exits 0. Tool.call event for memory_health appears. Session.completed references the database status.
 

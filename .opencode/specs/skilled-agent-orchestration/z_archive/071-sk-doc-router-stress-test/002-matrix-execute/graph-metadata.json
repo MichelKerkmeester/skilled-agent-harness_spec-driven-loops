@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "071-sk-doc-router-stress-test/002-matrix-execute",
-  "spec_folder": "071-sk-doc-router-stress-test/002-matrix-execute",
-  "parent_id": "071-sk-doc-router-stress-test",
+  "packet_id": "skilled-agent-orchestration/z_archive/071-sk-doc-router-stress-test/002-matrix-execute",
+  "spec_folder": "skilled-agent-orchestration/z_archive/071-sk-doc-router-stress-test/002-matrix-execute",
+  "parent_id": "skilled-agent-orchestration/z_archive/071-sk-doc-router-stress-test",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -10,25 +10,191 @@
     "related_to": []
   },
   "derived": {
-    "trigger_phrases": [],
-    "key_topics": [],
-    "importance_tier": "important",
+    "trigger_phrases": [
+      "071/002",
+      "matrix-execute",
+      "071/002 plan",
+      "071/002 tasks",
+      "071/002 summary"
+    ],
+    "key_topics": [
+      "071",
+      "002",
+      "matrix-execute",
+      "plan",
+      "tasks",
+      "summary",
+      "phase",
+      "packet",
+      "executes",
+      "45-cell",
+      "test",
+      "matrix"
+    ],
+    "importance_tier": "normal",
     "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
+      "implementation-summary.md",
       "tasks.md"
     ],
-    "entities": [],
-    "causal_summary": "Phase 2: matrix-execute",
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Single",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Core Implementation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Mark Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "reflective",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "This is Phase 2 of the 071 packet. Executes the 45-cell test matrix (15 scenarios from Phase 1 × 3 CLIs: cli-codex, cli-opencode) via run-matrix.sh dispatcher.",
     "created_at": "2026-05-05T10:27:20Z",
-    "last_save_at": "2026-05-05T15:55:00Z",
+    "last_save_at": "2026-05-18T15:17:56.991Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-05T15:55:00Z",
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ]
   }
 }

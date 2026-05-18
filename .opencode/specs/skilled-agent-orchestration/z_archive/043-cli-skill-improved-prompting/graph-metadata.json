@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/043-cli-skill-improved-prompting",
-  "spec_folder": "skilled-agent-orchestration/043-cli-skill-improved-prompting",
+  "packet_id": "skilled-agent-orchestration/z_archive/043-cli-skill-improved-prompting",
+  "spec_folder": "skilled-agent-orchestration/z_archive/043-cli-skill-improved-prompting",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -38,41 +38,22 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-improve-prompt/assets/cli_prompt_quality_card.md",
       ".opencode/skills/cli-claude-code/assets/prompt_quality_card.md",
       ".opencode/skills/cli-codex/assets/prompt_quality_card.md",
-      ".opencode/skills/cli-copilot/assets/prompt_quality_card.md",
       ".opencode/skills/cli-gemini/assets/prompt_quality_card.md",
-      ".opencode/skills/sk-improve-prompt/SKILL.md",
       ".opencode/commands/improve/prompt.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
       "decision-record.md",
       "spec.md",
-      ".opencode/specs/skilled-agent-orchestration/043-cli-skill-improved-prompting/spec.md",
-      ".opencode/specs/skilled-agent-orchestration/043-cli-skill-improved-prompting/plan.md",
-      ".opencode/specs/skilled-agent-orchestration/043-cli-skill-improved-prompting/implementation-summary.md",
-      "implementation-summary.md",
-      ".opencode/specs/skilled-agent-orchestration/043-cli-skill-improved-prompting/decision-record.md"
+      "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "cli_prompt_quality_card.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-improve-prompt/assets/cli_prompt_quality_card.md",
-        "source": "derived"
-      },
       {
         "name": "prompt_quality_card.md",
         "kind": "doc",
         "path": ".opencode/skills/cli-claude-code/assets/prompt_quality_card.md",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-improve-prompt/SKILL.md",
         "source": "derived"
       },
       {
@@ -84,7 +65,7 @@
       {
         "name": "plan.md",
         "kind": "doc",
-        "path": ".opencode/specs/skilled-agent-orchestration/043-cli-skill-improved-prompting/plan.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -102,19 +83,19 @@
       {
         "name": "decision-record.md",
         "kind": "doc",
-        "path": ".opencode/specs/skilled-agent-orchestration/043-cli-skill-improved-prompting/decision-record.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/skilled-agent-orchestration/043-cli-skill-improved-prompting/spec.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "implementation-summary.md",
         "kind": "doc",
-        "path": ".opencode/specs/skilled-agent-orchestration/043-cli-skill-improved-prompting/implementation-summary.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -200,11 +181,23 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Current Packet State",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The four CLI orchestration skills currently build dispatch prompts ad hoc from their local prompt-template assets. That keeps dispatches lightweight, but it leaves framework choice, prompt-quality checks, and escalation behavior implicit. This packet adds a two-tier prompt-quality layer: a tiny guard-safe mirror card that every CLI skill can load by default, and a fresh-context `@improve-prompt` agent that handles only the hard cases.",
     "created_at": "2026-04-12T09:02:50.198Z",
-    "last_save_at": "2026-04-26T09:17:15.272Z",
+    "last_save_at": "2026-05-18T15:17:56.888Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

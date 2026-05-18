@@ -3,7 +3,7 @@
 Fix relative path cross-references inside reorged child packets.
 
 The first-pass rewrite operated on full-spec-path strings like
-`026-graph-and-context-optimization/006-search-routing-advisor/001-search-and-routing-tuning`.
+`026-graph-and-context-optimization/006-search-routing-advisor/001-memory-search-routing-tuning`.
 That missed two patterns:
   1. `../NNN-old-name/` sibling references that need renumbering after the move
   2. Cross-tree pointers (`../old-sibling-now-moved-to-008-or-007/`)
@@ -36,27 +36,27 @@ SKIP_EXTS = {".log", ".jsonl"}
 # Inside-tree renumber maps: old slot name → new slot name.
 INTERNAL_RENUMBER = {
     "010-hook-parity": {
-        "003-hook-parity-remediation":           "001-hook-parity-remediation",
-        "004-copilot-hook-parity-remediation":   "002-copilot-hook-parity-remediation",
-        "005-codex-hook-parity-remediation":     "003-codex-hook-parity-remediation",
-        "006-claude-hook-findings-remediation":  "004-claude-hook-findings-remediation",
-        "007-opencode-plugin-loader-remediation": "005-opencode-plugin-loader-remediation",
+        "003-hook-parity-remediation":           "001-runtime-hook-parity-findings-remediation",
+        "004-copilot-hook-parity-remediation":   "002-copilot-custom-instructions-hook-parity",
+        "005-codex-hook-parity-remediation":     "003-codex-native-startup-advisor-hooks",
+        "006-claude-hook-findings-remediation":  "004-claude-freshness-schema-harness-fixes",
+        "007-opencode-plugin-loader-remediation": "005-opencode-plugin-loader-bridge-fixes",
         "010-copilot-wrapper-schema-fix":        "006-copilot-wrapper-schema-fix",
         "011-copilot-writer-wiring":             "007-copilot-writer-wiring",
         "012-docs-impact-remediation":           "008-docs-impact-remediation",
     },
     "006-skill-advisor": {
         # 006-search-routing-advisor children: only renumber those that closed the gap at 004.
-        "005-skill-advisor-docs-and-code-alignment":         "001-docs-and-code-alignment",
-        "006-smart-router-remediation-and-opencode-plugin":  "003-smart-remediation-and-opencode-plugin",
-        "007-deferred-remediation-and-telemetry-run":        "001-deferred-remediation-and-telemetry-run",
+        "005-skill-advisor-docs-and-code-alignment":         "001-documentation-code-alignment",
+        "006-smart-router-remediation-and-opencode-plugin":  "003-smart-remediation-opencode-plugin",
+        "007-deferred-remediation-and-telemetry-run":        "001-deferred-remediation-telemetry-run",
         # 010-hook-package advisor children → 008 with new slots 007-011.
         # Old slot referenced via ../001-skill-advisor-hook-surface (when sibling INSIDE 010).
-        "001-skill-advisor-hook-surface":                    "004-skill-advisor-hook-surface",
-        "002-daemon-and-unification":    "002-daemon-and-unification",
-        "006-skill-advisor-plugin-hardening":                "002-skill-advisor-plugin-hardening",
-        "009-skill-advisor-standards-alignment":             "003-skill-advisor-standards-alignment",
-        "014-skill-advisor-hook-improvements":               "001-skill-advisor-hook-improvements",
+        "001-skill-advisor-hook-surface":                    "004-advisor-hook-surface-integration",
+        "002-skill-graph-daemon-native-advisor-tools":    "002-skill-graph-daemon-native-advisor-tools",
+        "006-skill-advisor-plugin-hardening":                "002-advisor-plugin-hardening",
+        "009-skill-advisor-standards-alignment":             "003-advisor-standards-alignment",
+        "014-skill-advisor-hook-improvements":               "001-advisor-hook-brief-improvements",
     },
     "005-code-graph": {
         # 010 → 007 children get new slots 004 and 005. Internal sibling refs to those.
@@ -69,11 +69,11 @@ INTERNAL_RENUMBER = {
 # refs to it from inside 010-hook-parity must traverse up two levels.
 # Map: old child name → (new wrapper, new child name)
 ADVISOR_RELOCATIONS = {
-    "001-skill-advisor-hook-surface":                    ("006-skill-advisor", "004-skill-advisor-hook-surface"),
-    "002-daemon-and-unification":    ("006-skill-advisor", "002-daemon-and-unification"),
-    "006-skill-advisor-plugin-hardening":                ("006-skill-advisor", "002-skill-advisor-plugin-hardening"),
-    "009-skill-advisor-standards-alignment":             ("006-skill-advisor", "003-skill-advisor-standards-alignment"),
-    "014-skill-advisor-hook-improvements":               ("006-skill-advisor", "001-skill-advisor-hook-improvements"),
+    "001-skill-advisor-hook-surface":                    ("006-skill-advisor", "004-advisor-hook-surface-integration"),
+    "002-skill-graph-daemon-native-advisor-tools":    ("006-skill-advisor", "002-skill-graph-daemon-native-advisor-tools"),
+    "006-skill-advisor-plugin-hardening":                ("006-skill-advisor", "002-advisor-plugin-hardening"),
+    "009-skill-advisor-standards-alignment":             ("006-skill-advisor", "003-advisor-standards-alignment"),
+    "014-skill-advisor-hook-improvements":               ("006-skill-advisor", "001-advisor-hook-brief-improvements"),
     "013-code-graph-hook-improvements":                  ("005-code-graph", "003-code-graph-hook-improvements"),
     "015-code-graph-advisor-refinement":                 ("005-code-graph", "004-code-graph-advisor-refinement"),
 }
@@ -97,26 +97,26 @@ TOP_LEVEL_RENUMBER = {
 # Order matters: longest specifics first.
 QUALIFIED_RELOCATIONS = [
     # 010-hook-parity slots: renumber stays in same wrapper.
-    ("../../010-hook-parity/003-hook-parity-remediation/",            "../../010-hook-parity/001-hook-parity-remediation/"),
-    ("../../010-hook-parity/004-copilot-hook-parity-remediation/",    "../../010-hook-parity/002-copilot-hook-parity-remediation/"),
-    ("../../010-hook-parity/005-codex-hook-parity-remediation/",      "../../010-hook-parity/003-codex-hook-parity-remediation/"),
-    ("../../010-hook-parity/006-claude-hook-findings-remediation/",   "../../010-hook-parity/004-claude-hook-findings-remediation/"),
-    ("../../010-hook-parity/007-opencode-plugin-loader-remediation/", "../../010-hook-parity/005-opencode-plugin-loader-remediation/"),
+    ("../../010-hook-parity/003-hook-parity-remediation/",            "../../010-hook-parity/001-runtime-hook-parity-findings-remediation/"),
+    ("../../010-hook-parity/004-copilot-hook-parity-remediation/",    "../../010-hook-parity/002-copilot-custom-instructions-hook-parity/"),
+    ("../../010-hook-parity/005-codex-hook-parity-remediation/",      "../../010-hook-parity/003-codex-native-startup-advisor-hooks/"),
+    ("../../010-hook-parity/006-claude-hook-findings-remediation/",   "../../010-hook-parity/004-claude-freshness-schema-harness-fixes/"),
+    ("../../010-hook-parity/007-opencode-plugin-loader-remediation/", "../../010-hook-parity/005-opencode-plugin-loader-bridge-fixes/"),
     ("../../010-hook-parity/010-copilot-wrapper-schema-fix/",         "../../010-hook-parity/006-copilot-wrapper-schema-fix/"),
     ("../../010-hook-parity/011-copilot-writer-wiring/",              "../../010-hook-parity/007-copilot-writer-wiring/"),
     ("../../010-hook-parity/012-docs-impact-remediation/",            "../../010-hook-parity/008-docs-impact-remediation/"),
     # 010-hook-parity slots that MOVED OUT to 008/007.
-    ("../../010-hook-parity/001-skill-advisor-hook-surface/",         "../../006-skill-advisor/004-skill-advisor-hook-surface/"),
-    ("../../010-hook-parity/002-daemon-and-unification/", "../../006-skill-advisor/002-daemon-and-unification/"),
-    ("../../010-hook-parity/006-skill-advisor-plugin-hardening/",     "../../006-skill-advisor/002-skill-advisor-plugin-hardening/"),
-    ("../../010-hook-parity/009-skill-advisor-standards-alignment/",  "../../006-skill-advisor/003-skill-advisor-standards-alignment/"),
-    ("../../010-hook-parity/014-skill-advisor-hook-improvements/",    "../../006-skill-advisor/001-skill-advisor-hook-improvements/"),
+    ("../../010-hook-parity/001-skill-advisor-hook-surface/",         "../../006-skill-advisor/004-advisor-hook-surface-integration/"),
+    ("../../010-hook-parity/002-skill-graph-daemon-native-advisor-tools/", "../../006-skill-advisor/002-skill-graph-daemon-native-advisor-tools/"),
+    ("../../010-hook-parity/006-skill-advisor-plugin-hardening/",     "../../006-skill-advisor/002-advisor-plugin-hardening/"),
+    ("../../010-hook-parity/009-skill-advisor-standards-alignment/",  "../../006-skill-advisor/003-advisor-standards-alignment/"),
+    ("../../010-hook-parity/014-skill-advisor-hook-improvements/",    "../../006-skill-advisor/001-advisor-hook-brief-improvements/"),
     ("../../010-hook-parity/013-code-graph-hook-improvements/",       "../../005-code-graph/003-code-graph-hook-improvements/"),
     ("../../010-hook-parity/015-code-graph-advisor-refinement/",      "../../005-code-graph/004-code-graph-advisor-refinement/"),
     # 006-skill-advisor close-the-gap renumber for 006-children (005→004, 006→005, 007→006).
-    ("../../006-skill-advisor/005-skill-advisor-docs-and-code-alignment/",      "../../006-skill-advisor/001-docs-and-code-alignment/"),
-    ("../../006-skill-advisor/006-smart-router-remediation-and-opencode-plugin/", "../../006-skill-advisor/003-smart-remediation-and-opencode-plugin/"),
-    ("../../006-skill-advisor/007-deferred-remediation-and-telemetry-run/",      "../../006-skill-advisor/001-deferred-remediation-and-telemetry-run/"),
+    ("../../006-skill-advisor/005-skill-advisor-docs-and-code-alignment/",      "../../006-skill-advisor/001-documentation-code-alignment/"),
+    ("../../006-skill-advisor/006-smart-router-remediation-and-opencode-plugin/", "../../006-skill-advisor/003-smart-remediation-opencode-plugin/"),
+    ("../../006-skill-advisor/007-deferred-remediation-and-telemetry-run/",      "../../006-skill-advisor/001-deferred-remediation-telemetry-run/"),
     # Top-level wrapper renames at fully-qualified depth.
     ("../../008-runtime-executor-hardening/", "../../004-runtime-executor-hardening/"),
     ("../../002-continuity-memory-runtime/",  "../../003-continuity-memory-runtime/"),
@@ -135,11 +135,11 @@ QUALIFIED_RELOCATIONS = [
 CROSS_TREE_FROM_008 = {
     # When the file is inside 006-skill-advisor and references something that USED TO live in 010 alongside it
     # but is now in 010-hook-parity (after rename + renumber):
-    "003-hook-parity-remediation":           ("010-hook-parity", "001-hook-parity-remediation"),
-    "004-copilot-hook-parity-remediation":   ("010-hook-parity", "002-copilot-hook-parity-remediation"),
-    "005-codex-hook-parity-remediation":     ("010-hook-parity", "003-codex-hook-parity-remediation"),
-    "006-claude-hook-findings-remediation":  ("010-hook-parity", "004-claude-hook-findings-remediation"),
-    "007-opencode-plugin-loader-remediation": ("010-hook-parity", "005-opencode-plugin-loader-remediation"),
+    "003-hook-parity-remediation":           ("010-hook-parity", "001-runtime-hook-parity-findings-remediation"),
+    "004-copilot-hook-parity-remediation":   ("010-hook-parity", "002-copilot-custom-instructions-hook-parity"),
+    "005-codex-hook-parity-remediation":     ("010-hook-parity", "003-codex-native-startup-advisor-hooks"),
+    "006-claude-hook-findings-remediation":  ("010-hook-parity", "004-claude-freshness-schema-harness-fixes"),
+    "007-opencode-plugin-loader-remediation": ("010-hook-parity", "005-opencode-plugin-loader-bridge-fixes"),
     "010-copilot-wrapper-schema-fix":        ("010-hook-parity", "006-copilot-wrapper-schema-fix"),
     "011-copilot-writer-wiring":             ("010-hook-parity", "007-copilot-writer-wiring"),
     "012-docs-impact-remediation":           ("010-hook-parity", "008-docs-impact-remediation"),
@@ -150,16 +150,16 @@ CROSS_TREE_FROM_008 = {
 
 CROSS_TREE_FROM_007 = {
     # Files in 005-code-graph/004 or /005 (came from 010) referencing old 010 siblings.
-    "001-skill-advisor-hook-surface":         ("006-skill-advisor", "004-skill-advisor-hook-surface"),
-    "002-daemon-and-unification": ("006-skill-advisor", "002-daemon-and-unification"),
-    "006-skill-advisor-plugin-hardening":     ("006-skill-advisor", "002-skill-advisor-plugin-hardening"),
-    "009-skill-advisor-standards-alignment":  ("006-skill-advisor", "003-skill-advisor-standards-alignment"),
-    "014-skill-advisor-hook-improvements":    ("006-skill-advisor", "001-skill-advisor-hook-improvements"),
-    "003-hook-parity-remediation":            ("010-hook-parity", "001-hook-parity-remediation"),
-    "004-copilot-hook-parity-remediation":    ("010-hook-parity", "002-copilot-hook-parity-remediation"),
-    "005-codex-hook-parity-remediation":      ("010-hook-parity", "003-codex-hook-parity-remediation"),
-    "006-claude-hook-findings-remediation":   ("010-hook-parity", "004-claude-hook-findings-remediation"),
-    "007-opencode-plugin-loader-remediation": ("010-hook-parity", "005-opencode-plugin-loader-remediation"),
+    "001-skill-advisor-hook-surface":         ("006-skill-advisor", "004-advisor-hook-surface-integration"),
+    "002-skill-graph-daemon-native-advisor-tools": ("006-skill-advisor", "002-skill-graph-daemon-native-advisor-tools"),
+    "006-skill-advisor-plugin-hardening":     ("006-skill-advisor", "002-advisor-plugin-hardening"),
+    "009-skill-advisor-standards-alignment":  ("006-skill-advisor", "003-advisor-standards-alignment"),
+    "014-skill-advisor-hook-improvements":    ("006-skill-advisor", "001-advisor-hook-brief-improvements"),
+    "003-hook-parity-remediation":            ("010-hook-parity", "001-runtime-hook-parity-findings-remediation"),
+    "004-copilot-hook-parity-remediation":    ("010-hook-parity", "002-copilot-custom-instructions-hook-parity"),
+    "005-codex-hook-parity-remediation":      ("010-hook-parity", "003-codex-native-startup-advisor-hooks"),
+    "006-claude-hook-findings-remediation":   ("010-hook-parity", "004-claude-freshness-schema-harness-fixes"),
+    "007-opencode-plugin-loader-remediation": ("010-hook-parity", "005-opencode-plugin-loader-bridge-fixes"),
 }
 
 

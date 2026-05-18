@@ -109,5 +109,5 @@ _memory:
 - **Specification**: spec.md
 - **Plan**: plan.md
 - **Sources**: ../005-memory-search-runtime-bugs (post-remediation lesson), ../002-mcp-runtime-improvement-research (Q1, §11 Rec #1)
-- **Cited by**: ../003-memory-context-truncation-contract, ../009-memory-search-response-policy (and others)
+- **Cited by**: ../003-memory-context-truncation-telemetry-contract, ../009-memory-search-citation-response-policy (and others)
 <!-- /ANCHOR:cross-refs -->

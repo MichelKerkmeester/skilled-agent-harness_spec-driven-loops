@@ -355,7 +355,7 @@ The canonical save path updates packet docs first. During `memory_index_scan()`,
 
 | Content Type | Location | Weight | Indexed By |
 |-------------|----------|--------|------------|
-| Spec documents | `.opencode/specs/**/*.md` and `specs/**/*.md` | Per-type multiplier | `findSpecDocuments()` |
+| Spec documents | `<active-spec-folder>/**/*.md` and `specs/**/*.md` | Per-type multiplier | `findSpecDocuments()` |
 | Constitutional rules | `.opencode/skills/*/constitutional/*.md` | 1.0 | `findConstitutionalFiles()` |
 | Graph metadata | `graph-metadata.json` adjacent to spec docs | Packet metadata weighting | Graph metadata parser + scan pipeline |
 
@@ -427,7 +427,7 @@ For retrieval, `memory_context()` routes queries across 7 intents (including `fi
 grep -r "ANCHOR:.*decision.*auth" .opencode/specs/*/implementation-summary.md .opencode/specs/*/handover.md .opencode/specs/*/spec.md
 
 # List all anchors in a file
-grep "<!-- ANCHOR:" .opencode/specs/049-*/*.md
+grep "<!-- ANCHOR:" <spec-folder>*/*.md
 
 # Extract specific section
 sed -n '/<!-- ANCHOR:decision-jwt-049 -->/,/<!-- \/ANCHOR:decision-jwt-049 -->/p' file.md
@@ -485,7 +485,7 @@ sed -n '/<!-- ANCHOR:decision-jwt-049 -->/,/<!-- \/ANCHOR:decision-jwt-049 -->/p
 grep -r "ANCHOR:.*keyword" .opencode/specs/###-current-spec/*.md .opencode/specs/###-current-spec/**/**/*.md
 
 # Cross-spec search if broader context needed
-grep -r "ANCHOR:.*keyword" .opencode/specs/**/*.md
+grep -r "ANCHOR:.*keyword" <active-spec-folder>/**/*.md
 
 # Extract specific anchor directly (UPPERCASE format)
 sed -n '/<!-- ANCHOR:decision-auth-049 -->/,/<!-- \/ANCHOR:decision-auth-049 -->/p' file.md

@@ -74,7 +74,7 @@ If row count is wrong, inspect `doctor_update.yaml` Phase 4 dashboard rows and c
 - Command entrypoint: [.opencode/commands/doctor/update.md](../../../../commands/doctor/update.md)
 - Matching YAML asset: [.opencode/commands/doctor/assets/doctor_update.yaml](../../../../commands/doctor/assets/doctor_update.yaml)
 - Migration manifest: [.opencode/skills/system-spec-kit/mcp_server/database/migration-manifest.json](../../mcp_server/database/migration-manifest.json)
-- Upstream ADR context: [.opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/001-doctor-commands/decision-record.md](../../../../specs/system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/001-doctor-commands/decision-record.md)
+- Decision context: local doctor command ADRs
 
 ---
 

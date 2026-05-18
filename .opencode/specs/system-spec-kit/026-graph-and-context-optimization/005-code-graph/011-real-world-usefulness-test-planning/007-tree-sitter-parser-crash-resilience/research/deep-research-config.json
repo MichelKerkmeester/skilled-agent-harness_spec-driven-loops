@@ -1,0 +1,51 @@
+{
+  "topic": "Tree-sitter parser memory-access-out-of-bounds crash cohort: discriminate among native-version, WASM-grammar, and content-syntax hypotheses for the ~17.5% failure rate (1640/9349 files) at agents+commands+specs+plugins=all scope. Skills-only scope is parser-clean.",
+  "maxIterations": 7,
+  "convergenceThreshold": 0.10,
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 180,
+  "maxToolCallsPerIteration": 14,
+  "maxMinutesPerIteration": 12,
+  "progressiveSynthesis": true,
+  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/011-real-world-usefulness-test-planning/007-tree-sitter-parser-crash-resilience",
+  "createdAt": "2026-05-06T13:50:00Z",
+  "status": "initialized",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-5.5",
+    "reasoningEffort": "high",
+    "serviceTier": "fast",
+    "sandboxMode": "workspace-write",
+    "timeoutSeconds": 900
+  },
+  "lineage": {
+    "sessionId": "2026-05-06-parser-resilience-deep-research",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "allowedModes": ["new", "resume", "restart"],
+    "deferredModes": ["fork", "completed-continue"],
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "research/findings-registry.json",
+    "dashboardFile": "research/deep-research-dashboard.md",
+    "strategyFile": "research/deep-research-strategy.md"
+  },
+  "convergence": {
+    "thresholdMode": "delta",
+    "stopReasons": ["converged", "max_iterations", "all_answered", "exhausted_approaches"],
+    "qualityGuards": {
+      "novelty_floor": 0.15,
+      "delta_meaning_check": true,
+      "minimum_iterations_before_converge": 3
+    }
+  },
+  "resourceMap": {
+    "emit": true,
+    "outputPath": "research/resource-map.md"
+  }
+}

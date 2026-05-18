@@ -136,7 +136,7 @@ mcp_server/
 `-- README.md
 ```
 
-**Default scope is end-user repo only.** `.opencode/skills/**`, `.opencode/agents/**`, `.opencode/commands/**`, `.opencode/specs/**`, and `.opencode/plugins/**` are excluded by default.
+**Default scope is end-user repo only.** `.opencode/skills/**`, `.opencode/agents/**`, `.opencode/commands/**`, `<active-spec-folder>/**`, and `.opencode/plugins/**` are excluded by default.
 
 Allowed dependency direction:
 

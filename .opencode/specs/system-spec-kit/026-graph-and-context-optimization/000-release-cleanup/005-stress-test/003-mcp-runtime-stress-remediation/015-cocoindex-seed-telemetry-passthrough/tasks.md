@@ -102,8 +102,8 @@ _memory:
 - **Specification**: spec.md
 - **Plan**: plan.md
 - **Sources**:
-  - `../011-post-stress-followup-research/research/research.md` §6 (Q-OPP) — primary source of truth
-  - `../010-stress-test-rerun-v1-0-2/findings.md` Novel Finding #5 — v1.0.2 evidence
-  - `../004-cocoindex-overfetch-dedup/spec.md` — fork extension (cocoindex_code 0.2.3+spec-kit-fork.0.2.0)
-- **Related siblings**: `../003-memory-context-truncation-contract` (indirect — separate response-envelope concern)
+  - `../011-post-stress-finding-remediation-research/research/research.md` §6 (Q-OPP) — primary source of truth
+  - `../010-stress-test-close-loop-measurement-rerun/findings.md` Novel Finding #5 — v1.0.2 evidence
+  - `../004-cocoindex-overfetch-dedup-rerank/spec.md` — fork extension (cocoindex_code 0.2.3+spec-kit-fork.0.2.0)
+- **Related siblings**: `../003-memory-context-truncation-telemetry-contract` (indirect — separate response-envelope concern)
 <!-- /ANCHOR:cross-refs -->

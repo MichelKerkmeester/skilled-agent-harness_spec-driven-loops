@@ -75,7 +75,7 @@ Captured the pre-recovery and post-recovery vitest JSON reports, generated a 198
 
 | Decision | Rationale |
 |----------|-----------|
-| Use placeholder follow-up `026/000/002-vitest-recovery-followup` | User explicitly approved placeholder IDs for escalated runtime or flaky cases. |
+| Use placeholder follow-up `026/000/002-vitest-baseline-recovery-followup` | User explicitly approved placeholder IDs for escalated runtime or flaky cases. |
 | Replace the changelog row outright | User explicitly confirmed the current row is false and should be corrected. |
 
 <!-- /ANCHOR:decisions -->
@@ -89,7 +89,7 @@ Pending final verification.
 | Bucket | Count | Action |
 |--------|-------|--------|
 | Fixture drift | 18 | Partially attempted; not all fixes persisted through post-run |
-| Runtime regression | 152 | Follow-up required: `026/000/002-vitest-recovery-followup` |
+| Runtime regression | 152 | Follow-up required: `026/000/002-vitest-baseline-recovery-followup` |
 | Environmental | 28 | Missing generated fixtures, command/skill path fixtures, DB/schema artifacts |
 | Flaky | 0 | No flake candidates sampled; failures were deterministic in the captured runs |
 
@@ -108,7 +108,7 @@ Pending final verification.
 
 1. Stop conditions are not met: the post-run still has 196 failures.
 2. Strict validation was not run to completion as a completion gate because the packet is not complete.
-3. Several broad runtime-regression clusters exceed the packet's <=30 LOC single-file repair rule and need `026/000/002-vitest-recovery-followup`.
+3. Several broad runtime-regression clusters exceed the packet's <=30 LOC single-file repair rule and need `026/000/002-vitest-baseline-recovery-followup`.
 4. `description.json` and `graph-metadata.json` remain in-progress intentionally; marking them complete would be false.
 
 <!-- /ANCHOR:limitations -->

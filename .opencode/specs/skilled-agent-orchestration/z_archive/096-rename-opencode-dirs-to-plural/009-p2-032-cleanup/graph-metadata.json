@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/009-p2-032-cleanup",
-  "spec_folder": "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/009-p2-032-cleanup",
-  "parent_id": "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural",
+  "packet_id": "skilled-agent-orchestration/z_archive/096-rename-opencode-dirs-to-plural/009-p2-032-cleanup",
+  "spec_folder": "skilled-agent-orchestration/z_archive/096-rename-opencode-dirs-to-plural/009-p2-032-cleanup",
+  "parent_id": "skilled-agent-orchestration/z_archive/096-rename-opencode-dirs-to-plural",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -14,20 +14,38 @@
       "P2-032 strategy doc cleanup",
       "aliases.ts cross-ref broken",
       "plural rename cosmetic followup",
-      "096/009 packet"
+      "096/009 packet",
+      "P2-032 cleanup plan",
+      "096/009 plan",
+      "strategy doc cleanup plan",
+      "P2-032 tasks",
+      "096/009 tasks",
+      "P2-032 closed",
+      "096/009 implementation",
+      "strategy doc cleanup done"
     ],
     "key_topics": [
-      "feature",
-      "specification",
       "p2-032",
-      "strategy-doc",
-      "cleanup"
+      "strategy",
+      "doc",
+      "cleanup",
+      "aliases",
+      "cross-ref",
+      "broken",
+      "plural",
+      "rename",
+      "cosmetic",
+      "followup",
+      "096"
     ],
     "importance_tier": "normal",
-    "status": "in-progress",
+    "status": "complete",
     "key_files": [
-      "specs/skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/007-track-rereview/review/deep-review-strategy.md",
-      "specs/skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/008-remediation/implementation-summary.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "resource-map.md"
     ],
     "entities": [
       {
@@ -53,19 +71,139 @@
         "kind": "doc",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Remove",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Direct",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Preservation Iter",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "Feature Specification: P2-032 strategy-doc cleanup",
+    "causal_summary": "The 007-track-rereview deep-review strategy doc lists `aliases.ts` as one of the \"6 surfaces\" 101-cli-opencode-executor touched. It does not. Iter-1 of the review caught the discrepancy as a `CROSS_REF_BROKEN` and re-framed the underlying P2 finding (P2-027) as an asymmetric advisor-coverage defect. The strategy doc that produced the false framing was never patched, and the drift was logged as P2-032 in 008-remediation as cosmetic-deferred.",
     "created_at": "2026-05-08T20:45:00Z",
-    "last_save_at": "2026-05-08T20:45:00Z",
+    "last_save_at": "2026-05-18T15:17:57.068Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
-    ],
-    "completion_pct": 0
-  },
-  "importance_tier": "normal"
+      "implementation-summary.md",
+      "resource-map.md"
+    ]
+  }
 }

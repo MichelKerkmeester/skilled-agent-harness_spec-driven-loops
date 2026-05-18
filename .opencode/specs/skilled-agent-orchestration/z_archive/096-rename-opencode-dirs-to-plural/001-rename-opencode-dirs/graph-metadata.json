@@ -1,18 +1,18 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural",
-  "spec_folder": "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural",
-  "parent_id": "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural",
+  "packet_id": "skilled-agent-orchestration/z_archive/096-rename-opencode-dirs-to-plural/001-rename-opencode-dirs",
+  "spec_folder": "skilled-agent-orchestration/z_archive/096-rename-opencode-dirs-to-plural/001-rename-opencode-dirs",
+  "parent_id": "skilled-agent-orchestration/z_archive/096-rename-opencode-dirs-to-plural",
   "children_ids": [
-    "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/001-rename-opencode-dirs/001-skills",
-    "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/001-rename-opencode-dirs/002-agents",
-    "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/001-rename-opencode-dirs/003-commands",
-    "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/001-rename-opencode-dirs/004-symlinks"
+    "skilled-agent-orchestration/z_archive/096-rename-opencode-dirs-to-plural/001-rename-opencode-dirs/001-skills",
+    "skilled-agent-orchestration/z_archive/096-rename-opencode-dirs-to-plural/001-rename-opencode-dirs/002-agents",
+    "skilled-agent-orchestration/z_archive/096-rename-opencode-dirs-to-plural/001-rename-opencode-dirs/003-commands",
+    "skilled-agent-orchestration/z_archive/096-rename-opencode-dirs-to-plural/001-rename-opencode-dirs/004-symlinks"
   ],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      "skilled-agent-orchestration/095-sk-code-review-playbook-execution"
-    ],
+    "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
@@ -26,16 +26,154 @@
     ],
     "key_topics": [
       "096",
-      "rename",
       "plural",
+      "rename",
       "opencode",
-      "discovery"
+      "skill",
+      "skills",
+      "agent",
+      "agents",
+      "command",
+      "commands",
+      "discovery",
+      "fix"
     ],
-    "status": "complete",
-    "completion_pct": 100,
-    "last_active_child_id": "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/001-rename-opencode-dirs/004-symlinks",
-    "level": "phase-parent",
-    "is_phase_parent": true,
-    "session_outcome": "all_4_phases_complete"
+    "importance_tier": "high",
+    "status": "planned",
+    "key_files": [
+      "resource-map.md",
+      ".claude/settings.local.json",
+      ".opencode/skills/sk-prompt/graph-metadata.json",
+      ".opencode/skills/deep-research/assets/runtime_capabilities.json",
+      ".opencode/commands/agent_router.md",
+      ".opencode/skills/deep-agent-improvement/assets/target_manifest.jsonc",
+      ".opencode/commands/doctor/scripts/mcp-doctor.sh",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "settings.local.json",
+        "kind": "config",
+        "path": ".claude/settings.local.json",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-prompt/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "runtime_capabilities.json",
+        "kind": "config",
+        "path": ".opencode/skills/deep-research/assets/runtime_capabilities.json",
+        "source": "derived"
+      },
+      {
+        "name": "agent_router.md",
+        "kind": "doc",
+        "path": ".opencode/commands/agent_router.md",
+        "source": "derived"
+      },
+      {
+        "name": "target_manifest.jsonc",
+        "kind": "file",
+        "path": ".opencode/skills/deep-agent-improvement/assets/target_manifest.jsonc",
+        "source": "derived"
+      },
+      {
+        "name": "mcp-doctor.sh",
+        "kind": "script",
+        "path": ".opencode/commands/doctor/scripts/mcp-doctor.sh",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Opencode Env",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "opencode",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "bulk",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. ROOT PURPOSE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Resource Map",
+        "kind": "proper_noun",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "Wide Totals",
+        "kind": "proper_noun",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "Runtime Agent Directory",
+        "kind": "proper_noun",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Hard",
+        "kind": "proper_noun",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "Path Locations",
+        "kind": "proper_noun",
+        "path": "resource-map.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Per opencode official docs (`https://opencode.ai/docs/skills`, `/agents`, `/commands`), opencode's project-level discovery looks for **`.opencode/skills/`**, **`.opencode/agents/`**, **`.opencode/commands/`** (all plural). This repo uses singular for all three, so opencode's built-in discovery silently fails on every dispatch. This packet aligns the repo with opencode convention.",
+    "created_at": "2026-05-18T07:49:27.231Z",
+    "last_save_at": "2026-05-18T15:17:57.045Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "resource-map.md"
+    ]
   }
 }

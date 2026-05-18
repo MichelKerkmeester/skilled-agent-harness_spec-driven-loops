@@ -92,8 +92,8 @@ If a council_graph tool is missing, inspect ADR-001 vs current `tools/index.ts` 
 | `.opencode/skills/system-spec-kit/mcp_server/tools/index.ts` | Tool dispatcher registration |
 | `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts` | Tool descriptor registry |
 | `.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts` | Strict input schemas |
-| `.opencode/specs/skilled-agent-orchestration/101-deep-multi-ai-council-skill/003-deep-ai-council-graph-support/decision-record.md` | ADR-001: dedicated graph decision |
-| `.opencode/specs/skilled-agent-orchestration/101-deep-multi-ai-council-skill/003-deep-ai-council-graph-support/checklist.md` | CHK-011 (deep-loop boundary) + CHK-023 (tool registration) |
+| Internal design notes | ADR-001: dedicated graph decision |
+| Internal design notes | CHK-011 (deep-loop boundary) + CHK-023 (tool registration) |
 
 ---
 

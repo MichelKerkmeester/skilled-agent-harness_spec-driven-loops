@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The root `README.md` described stale runtime counts and omitted several recently added MCP server capabilities. It also contained one evergreen-doc violation by linking to a packet-local implementation folder from narrative README content.",
     "created_at": "2026-04-29T18:48:57.000Z",
-    "last_save_at": "2026-05-18T08:15:53.124Z",
+    "last_save_at": "2026-05-18T15:17:57.144Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

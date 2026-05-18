@@ -34,14 +34,14 @@ The user-visible contract is concrete: Verify council_graph_* tools are register
 | `.opencode/skills/system-spec-kit/mcp_server/tools/index.ts` | Tool Registry | Tool dispatcher registration |
 | `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts` | Tool Registry | Tool descriptor registry |
 | `.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts` | Schema | Strict input schemas |
-| `.opencode/specs/skilled-agent-orchestration/101-deep-multi-ai-council-skill/003-deep-ai-council-graph-support/decision-record.md` | Spec | ADR-001: dedicated graph decision |
+| Internal design notes | Spec | ADR-001: dedicated graph decision |
 
 ### Validation And Tests
 
 | File | Focus |
 |------|-------|
 | `manual_testing_playbook/08--council-graph-integration/008-council-graph-tools-registered-separately-from-deep-loop.md` | Manual scenario contract |
-| `.opencode/specs/skilled-agent-orchestration/101-deep-multi-ai-council-skill/003-deep-ai-council-graph-support/checklist.md` | CHK-011 (deep-loop boundary) + CHK-023 (tool registration) |
+| Internal design notes | CHK-011 (deep-loop boundary) + CHK-023 (tool registration) |
 
 ---
 

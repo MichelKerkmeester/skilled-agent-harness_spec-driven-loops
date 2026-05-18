@@ -36,6 +36,7 @@ Spec folder: <path> (pre-approved, skip Gate 3) OR none
 Active surface: <stack from sk-code>
 Existing files in scope: <list>
 Allowed writes: <list of paths SWE-1.6 may touch — scope-creep is a hard fail>
+Context budget: Tool results may include markers like `[... truncated 1200 tokens]`. Treat those markers as intentional budget boundaries: do not assume omitted content is absent, do not invent the omitted section, and request narrower evidence if the missing span is required.
 </context>
 
 <pre-plan>

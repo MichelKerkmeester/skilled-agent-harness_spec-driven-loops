@@ -28,7 +28,7 @@ memory_doctor_invariant: |
   before restoring snapshots for cross-file consistency.
 
 upstream_assets:
-  packet: ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/001-doctor-commands"
+  contract: "local command design contract"
   files:
     spec: "spec.md"  # REQ-005..REQ-007 cover flock, snapshots, dashboard
     decision_record: "decision-record.md"  # ADR-001 documents memory_index_scan tx model
@@ -66,9 +66,9 @@ mutation_boundaries:
     - "mcp_server/database/context-index__*.sqlite"  # provider-keyed active profile DBs
     - "mcp_server/database/context-index*.sqlite.pre-doctor-memory.*.bak"  # memory snapshot files only
   forbidden_targets:
-    - ".opencode/specs/**/*.md"  # never write into spec packet docs from /doctor memory
-    - ".opencode/specs/**/description.json"  # spec metadata belongs to memory-save tooling
-    - ".opencode/specs/**/graph-metadata.json"  # graph metadata is not a memory doctor target
+    - "<active-spec-folder>/**/*.md"  # never write into spec packet docs from /doctor memory
+    - "<active-spec-folder>/description.json"  # spec metadata belongs to memory-save tooling
+    - "<active-spec-folder>/graph-metadata.json"  # graph metadata is not a memory doctor target
     - ".opencode/skills/**/SKILL.md"  # never edit skill bodies
     - ".opencode/skills/**/graph-metadata.json"
     - ".opencode/agents/**/*.md"

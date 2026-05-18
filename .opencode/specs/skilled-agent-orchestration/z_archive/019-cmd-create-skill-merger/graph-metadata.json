@@ -44,9 +44,6 @@
       ".opencode/commands/create/sk-skill.md",
       ".opencode/commands/create/assets/create_sk_skill_auto.yaml",
       ".opencode/commands/create/assets/create_sk_skill_confirm.yaml",
-      ".opencode/agents/write.md",
-      ".codex/agents/write.toml",
-      ".opencode/README.md",
       ".opencode/install_guides/README.md",
       ".opencode/install_guides/SET-UP - AGENTS.md",
       "spec.md",
@@ -75,21 +72,9 @@
         "source": "derived"
       },
       {
-        "name": "write.md",
-        "kind": "doc",
-        "path": ".opencode/agents/write.md",
-        "source": "derived"
-      },
-      {
-        "name": "write.toml",
-        "kind": "file",
-        "path": ".codex/agents/write.toml",
-        "source": "derived"
-      },
-      {
         "name": "README.md",
         "kind": "doc",
-        "path": ".opencode/README.md",
+        "path": ".opencode/install_guides/README.md",
         "source": "derived"
       },
       {
@@ -199,11 +184,23 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Reference Alignment",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The create command surface for skills was fragmented across separate command files and YAML workflows (`/create:skill`, `/create:skill_reference`, `/create:skill_asset`). That duplication increased maintenance cost and made routing behavior harder to keep consistent across operation and mode variants. After canonical merger, active runtime and onboarding documentation still needed explicit synchronization to canonical `/create:sk-skill` references.",
     "created_at": "2026-04-12T09:02:50.220Z",
-    "last_save_at": "2026-04-26T09:17:15.322Z",
+    "last_save_at": "2026-05-18T15:17:56.817Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/040-sk-deep-research-review-improvement-1/001-sk-deep-research-improvements",
-  "spec_folder": "skilled-agent-orchestration/040-sk-deep-research-review-improvement-1/001-sk-deep-research-improvements",
-  "parent_id": "skilled-agent-orchestration/040-sk-deep-research-review-improvement-1",
+  "packet_id": "skilled-agent-orchestration/z_archive/040-sk-deep-research-review-improvement-1/001-sk-deep-research-improvements",
+  "spec_folder": "skilled-agent-orchestration/z_archive/040-sk-deep-research-review-improvement-1/001-sk-deep-research-improvements",
+  "parent_id": "skilled-agent-orchestration/z_archive/040-sk-deep-research-review-improvement-1",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -41,15 +41,6 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-deep-research/README.md",
-      ".opencode/skills/sk-deep-research/SKILL.md",
-      ".opencode/skills/sk-deep-research/references/quick_reference.md",
-      ".opencode/skills/sk-deep-research/references/state_format.md",
-      ".opencode/skills/sk-deep-research/references/loop_protocol.md",
-      ".opencode/skills/sk-deep-research/references/capability_matrix.md",
-      ".opencode/skills/sk-deep-research/assets/runtime_capabilities.json",
-      ".opencode/skills/sk-deep-research/scripts/runtime-capabilities.cjs",
-      ".opencode/skills/sk-deep-research/scripts/reduce-state.cjs",
       ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml",
       ".opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml",
       ".opencode/agents/deep-research.md",
@@ -58,65 +49,13 @@
       ".codex/agents/deep-research.toml",
       ".opencode/skills/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts",
       ".opencode/skills/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts",
-      ".opencode/skills/sk-deep-research/manual_testing_playbook/manual_testing_playbook.md",
-      ".opencode/skills/sk-deep-research/manual_testing_playbook/03--iteration-execution-and-state-discipline/008-iteration-writes-iteration-jsonl-and-strategy-update.md",
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/package.json"
     ],
     "entities": [
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-deep-research/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-deep-research/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "quick_reference.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-deep-research/references/quick_reference.md",
-        "source": "derived"
-      },
-      {
-        "name": "state_format.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-deep-research/references/state_format.md",
-        "source": "derived"
-      },
-      {
-        "name": "loop_protocol.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-deep-research/references/loop_protocol.md",
-        "source": "derived"
-      },
-      {
-        "name": "capability_matrix.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-deep-research/references/capability_matrix.md",
-        "source": "derived"
-      },
-      {
-        "name": "runtime_capabilities.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-deep-research/assets/runtime_capabilities.json",
-        "source": "derived"
-      },
-      {
-        "name": "runtime-capabilities.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/sk-deep-research/scripts/runtime-capabilities.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "reduce-state.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/sk-deep-research/scripts/reduce-state.cjs",
-        "source": "derived"
-      },
       {
         "name": "spec_kit_deep-research_auto.yaml",
         "kind": "config",
@@ -154,21 +93,33 @@
         "source": "derived"
       },
       {
-        "name": "manual_testing_playbook.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-deep-research/manual_testing_playbook/manual_testing_playbook.md",
-        "source": "derived"
-      },
-      {
-        "name": "008-iteration-writes-iteration-jsonl-and-strategy-update.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-deep-research/manual_testing_playbook/03--iteration-execution-and-state-discipline/008-iteration-writes-iteration-jsonl-and-strategy-update.md",
-        "source": "derived"
-      },
-      {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": ".opencode/package.json",
         "source": "derived"
       },
       {
@@ -206,11 +157,53 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Every Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Declarative",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Make Phase 1 the durable contract for research lineage, reducer-owned state, and runtime parity so later deep-review work inherits a stable packet model instead of ambiguous conventions.",
     "created_at": "2026-04-12T09:02:50.183Z",
-    "last_save_at": "2026-04-26T09:17:15.203Z",
+    "last_save_at": "2026-05-18T15:17:56.848Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

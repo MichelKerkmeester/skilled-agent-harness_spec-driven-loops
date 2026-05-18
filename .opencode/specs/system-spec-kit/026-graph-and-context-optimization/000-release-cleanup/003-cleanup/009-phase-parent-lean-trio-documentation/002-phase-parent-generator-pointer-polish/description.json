@@ -1,0 +1,26 @@
+{
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/009-phase-parent-lean-trio-documentation/002-phase-parent-generator-pointer-polish",
+  "description": "Feature Specification: Phase Parent Generator Pointer + Polish",
+  "keywords": [
+    "feature",
+    "specification",
+    "phase",
+    "parent",
+    "generator",
+    "pointer",
+    "polish"
+  ],
+  "lastUpdated": "2026-05-08T08:26:57.126Z",
+  "specId": "002",
+  "folderSlug": "generator-and-polish",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "000-release-cleanup",
+    "009-phase-parent-lean-trio-documentation"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "27-04-26_12-11__phase-2-follow-on-shipped-via-cli-codex-gpt-5-5.md"
+  ]
+}

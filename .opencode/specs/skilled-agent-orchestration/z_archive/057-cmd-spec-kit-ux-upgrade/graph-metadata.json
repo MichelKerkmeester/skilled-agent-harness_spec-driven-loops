@@ -1,9 +1,11 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/057-cmd-spec-kit-ux-upgrade",
-  "spec_folder": "skilled-agent-orchestration/057-cmd-spec-kit-ux-upgrade",
+  "packet_id": "skilled-agent-orchestration/z_archive/057-cmd-spec-kit-ux-upgrade",
+  "spec_folder": "skilled-agent-orchestration/z_archive/057-cmd-spec-kit-ux-upgrade",
   "parent_id": null,
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
     "depends_on": [],
     "supersedes": [],
@@ -16,43 +18,210 @@
       "spec kit ux upgrade",
       "system-spec-kit improvements",
       "external spec kit research",
-      "057 deep research",
-      "cmd-spec-kit-ux-upgrade"
+      "057 plan",
+      "spar-kit synthesis plan",
+      "spec kit ux upgrade plan",
+      "057 tasks",
+      "spar-kit synthesis tasks",
+      "057 checklist",
+      "spar-kit synthesis verification"
     ],
     "key_topics": [
-      "spec-kit",
-      "ux",
+      "057",
+      "spec",
+      "kit",
       "spar-kit",
-      "research",
-      "orchestration",
-      "templates",
-      "commands",
-      "agents",
       "comparison",
-      "deep-research"
+      "upgrade",
+      "system-spec-kit",
+      "improvements",
+      "external",
+      "research",
+      "plan",
+      "synthesis"
     ],
-    "importance_tier": "high",
-    "status": "in_progress",
+    "importance_tier": "normal",
+    "status": "complete",
     "key_files": [
+      "research/research.md",
+      "research/resource-map.md",
+      "research/deep-research-state.jsonl",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
       "spec.md",
-      "external/README.md",
-      "external/technicalBrief.md",
-      "external/install-root/skills/spar-specify/SKILL.md",
-      "external/install-root/skills/spar-plan/SKILL.md",
+      "skilled-agent-orchestration/graph-metadata.json",
       ".opencode/skills/system-spec-kit/SKILL.md",
-      ".opencode/skills/system-spec-kit/templates",
-      ".opencode/commands/spec_kit",
-      ".opencode/commands/memory",
-      ".opencode/commands/create",
-      ".opencode/agent"
+      "scripts/dist/memory/generate-context.js",
+      "research/deep-research-strategy.md",
+      "research/findings-registry.json",
+      "research/iterations/iteration-001.md",
+      "research/iterations/iteration-010.md",
+      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+      ".opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml",
+      ".opencode/commands/spec_kit/plan.md",
+      ".opencode/commands/spec_kit/implement.md",
+      ".opencode/commands/spec_kit/complete.md"
     ],
-    "causal_summary": "Compare external SPAR-Kit (Specify/Plan/Act/Retain) against internal system-spec-kit (SKILL.md, templates, commands, agents) to identify adoptable UX/orchestration patterns via 10-iteration cli-codex deep-research run.",
+    "entities": [
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/deep-research-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": "skilled-agent-orchestration/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "generate-context.js",
+        "kind": "code",
+        "path": "scripts/dist/memory/generate-context.js",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-strategy.md",
+        "kind": "doc",
+        "path": "research/deep-research-strategy.md",
+        "source": "derived"
+      },
+      {
+        "name": "findings-registry.json",
+        "kind": "config",
+        "path": "research/findings-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-010.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-010.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "spec_kit_complete_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "implement.md",
+        "kind": "doc",
+        "path": ".opencode/commands/spec_kit/implement.md",
+        "source": "derived"
+      },
+      {
+        "name": "complete.md",
+        "kind": "doc",
+        "path": ".opencode/commands/spec_kit/complete.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Run Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Our",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Run",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope Comparison",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "SPECKIT_TEMPLATE_SOURCE: \"spec-core + level2-verify | v2.2\"",
     "created_at": "2026-05-01T07:30:00Z",
-    "last_save_at": "2026-05-01T07:30:00Z",
-    "save_lineage": "same_pass",
+    "last_save_at": "2026-05-18T15:17:56.911Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "research/research.md"
     ]
-  },
-  "importance_tier": "normal"
+  }
 }

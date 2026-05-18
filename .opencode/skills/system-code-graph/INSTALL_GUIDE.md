@@ -224,7 +224,7 @@ Legacy installs (database at `.opencode/skills/system-code-graph/mcp_server/data
 | `SPECKIT_CODE_GRAPH_INDEX_SKILLS` | `false` | Include `.opencode/skills/**`. Also accepts comma-separated `sk-*` allowlist (e.g. `sk-doc,sk-git`). |
 | `SPECKIT_CODE_GRAPH_INDEX_AGENTS` | `false` | Include `.opencode/agents/**`. |
 | `SPECKIT_CODE_GRAPH_INDEX_COMMANDS` | `false` | Include `.opencode/commands/**`. |
-| `SPECKIT_CODE_GRAPH_INDEX_SPECS` | `false` | Include `.opencode/specs/**`. |
+| `SPECKIT_CODE_GRAPH_INDEX_SPECS` | `false` | Include `<active-spec-folder>/**`. |
 | `SPECKIT_CODE_GRAPH_INDEX_PLUGINS` | `false` | Include `.opencode/plugins/**`. |
 
 End-user defaults are all `false` so the indexer is quiet and the SQLite file stays small. Per-call `code_graph_scan` arguments (`includeSkills`, `includeAgents`, `includeCommands`, `includeSpecs`, `includePlugins`) override the env defaults for one-shot scans.

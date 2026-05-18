@@ -1,36 +1,208 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/005-remediation",
-  "spec_folder": "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/005-remediation",
-  "parent_id": "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural",
+  "packet_id": "skilled-agent-orchestration/z_archive/096-rename-opencode-dirs-to-plural/005-remediation",
+  "spec_folder": "skilled-agent-orchestration/z_archive/096-rename-opencode-dirs-to-plural/005-remediation",
+  "parent_id": "skilled-agent-orchestration/z_archive/096-rename-opencode-dirs-to-plural",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/004-track-rereview"
-    ],
+    "depends_on": [],
     "supersedes": [],
-    "related_to": [
-      "skilled-agent-orchestration/093-testing-playbooks-code-review-and-git",
-      "skilled-agent-orchestration/094-playbook-prompt-naturalness",
-      "skilled-agent-orchestration/095-sk-code-review-playbook-execution",
-      "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural",
-      "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/003-remediation"
-    ]
+    "related_to": []
   },
   "derived": {
     "trigger_phrases": [
       "100 remediation",
       "099 findings remediation",
-      "post-098 hardening"
+      "post-098 hardening",
+      "100 plan",
+      "099 remediation plan",
+      "100 tasks",
+      "100 checklist",
+      "100/implementation",
+      "099 remediation summary"
     ],
     "key_topics": [
       "100",
-      "099-remediation",
-      "post-098-hardening"
+      "remediation",
+      "099",
+      "findings",
+      "post-098",
+      "hardening",
+      "plan",
+      "tasks",
+      "checklist",
+      "implementation",
+      "summary",
+      "packet"
     ],
+    "importance_tier": "high",
     "status": "complete",
-    "completion_pct": 100,
-    "level": 2,
-    "is_phase_parent": false
+    "key_files": [
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Convert",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope All",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change See",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Sequential Edit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Manual Testing Playbook",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Packet 099 deep-review (10 iterations, gpt-5.5 high fast) confirmed P0=0 holding (098/001 dist rebuild succeeded) but verdict remained FAIL on 13 active P1 findings: 1 carryover (P1-007) plus 12 NEW findings surfaced by the remediation itself, including source/dist parity gaps (P1-015, P1-016), security spec_folder shell injection in YAML (P1-019), 098 sub-phase strict-validate failures (P1-024), advisor missing deep-review alias (P1-025), validator zero-inventory false-pass (P1-020), shared-CLI path resolver gap (P1-021), 095 internally contradictory results (P1-017), 096/004 anchor mismatch (P1-022), playbooks not linked from owning SKILL.md (P1-018), and continuity blockers field empty despite documented deferrals (P1-023).",
+    "created_at": "2026-05-18T07:49:27.247Z",
+    "last_save_at": "2026-05-18T15:17:57.062Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ]
   }
 }

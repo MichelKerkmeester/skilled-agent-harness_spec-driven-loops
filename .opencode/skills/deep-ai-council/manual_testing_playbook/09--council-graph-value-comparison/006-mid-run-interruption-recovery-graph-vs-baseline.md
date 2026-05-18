@@ -53,9 +53,9 @@ Operators run the exact prompt and command sequence for `DAC-032` and confirm th
 
 **No-graph baseline:**
 
-1. `bash: tail -20 .opencode/specs/sandbox/dac-032/ai-council/ai-council-state.jsonl | jq -c '.'` (operator inspects event stream)
-2. `bash: rg -c 'round_complete|council_complete' .opencode/specs/sandbox/dac-032/ai-council/ai-council-state.jsonl` (count completion events)
-3. `bash: find .opencode/specs/sandbox/dac-032/ai-council/ -type f -newer /tmp/dac-032-marker 2>/dev/null` (manual artifact-tree audit)
+1. `bash: tail -20 <spec-folder> | jq -c '.'` (operator inspects event stream)
+2. `bash: rg -c 'round_complete|council_complete' <spec-folder>` (count completion events)
+3. `bash: find <spec-folder> -type f -newer /tmp/dac-032-marker 2>/dev/null` (manual artifact-tree audit)
 4. Operator builds recovery hypothesis from raw evidence.
 
 **With-graph:**

@@ -1,24 +1,21 @@
 {
   "schema_version": 1,
-  "packet_id": "112-commit-standards-and-retroactive-rewrite",
-  "spec_folder": "112-commit-standards-and-retroactive-rewrite",
+  "packet_id": "skilled-agent-orchestration/112-commit-standards-and-retroactive-rewrite",
+  "spec_folder": "skilled-agent-orchestration/112-commit-standards-and-retroactive-rewrite",
   "parent_id": null,
   "children_ids": [
-    "112-commit-standards-and-retroactive-rewrite/001-prerequisites-and-baseline",
-    "112-commit-standards-and-retroactive-rewrite/002-commit-standards-definition",
-    "112-commit-standards-and-retroactive-rewrite/003-sk-git-skill-update",
-    "112-commit-standards-and-retroactive-rewrite/004-cli-devin-rewrite-prompts",
-    "112-commit-standards-and-retroactive-rewrite/005-retroactive-rewrite-execution"
+    "skilled-agent-orchestration/112-commit-standards-and-retroactive-rewrite/001-prerequisites-and-baseline",
+    "skilled-agent-orchestration/112-commit-standards-and-retroactive-rewrite/002-commit-standards-definition",
+    "skilled-agent-orchestration/112-commit-standards-and-retroactive-rewrite/003-sk-git-skill-update",
+    "skilled-agent-orchestration/112-commit-standards-and-retroactive-rewrite/004-cli-devin-rewrite-prompts",
+    "skilled-agent-orchestration/112-commit-standards-and-retroactive-rewrite/005-retroactive-rewrite-execution"
   ],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
     "depends_on": [],
     "supersedes": [],
-    "related_to": [
-      ".opencode/skills/sk-git",
-      ".opencode/skills/cli-devin",
-      ".opencode/skills/deep-research",
-      ".opencode/skills/deep-review"
-    ]
+    "related_to": []
   },
   "derived": {
     "trigger_phrases": [
@@ -30,41 +27,138 @@
       "git filter-repo message rewrite"
     ],
     "key_topics": [
-      "commit-message-standards",
-      "conventional-commits",
-      "retroactive-rewrite",
-      "git-filter-repo",
+      "112-commit-standards-and-retroactive-rewrite",
+      "commit",
+      "standards",
+      "retroactive",
+      "rewrite",
       "sk-git",
+      "update",
       "cli-devin",
-      "deep-loop-pattern"
+      "git",
+      "filter-repo",
+      "message",
+      "skill"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
-    "last_active_child_id": "112-commit-standards-and-retroactive-rewrite/003-sk-git-skill-update",
+    "status": "planned",
     "key_files": [
-      "spec.md",
-      "001-prerequisites-and-baseline/spec.md",
-      "002-commit-standards-definition/spec.md",
-      "003-sk-git-skill-update/spec.md",
-      "004-cli-devin-rewrite-prompts/spec.md",
-      "005-retroactive-rewrite-execution/spec.md"
+      ".opencode/skills/sk-git/SKILL.md",
+      ".opencode/skills/sk-git/assets/commit_message_template.md",
+      ".opencode/skills/sk-git/references/commit_workflows.md",
+      ".opencode/skills/cli-devin/assets/deep-loop-iter-template.md",
+      ".opencode/skills/cli-devin/assets/agent-config-deep-research-iter.json",
+      ".opencode/skills/cli-devin/references/deep-loop-iter-contract.md",
+      ".opencode/skills/deep-research/references/state_format.md",
+      ".opencode/skills/deep-research/references/loop_protocol.md",
+      ".opencode/skills/deep-research/references/convergence.md",
+      "spec.md"
     ],
     "entities": [
-      "sk-git",
-      "cli-devin",
-      "git-filter-repo",
-      "deep-research",
-      "deep-review",
-      "sequential_thinking"
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-git/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "commit_message_template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-git/assets/commit_message_template.md",
+        "source": "derived"
+      },
+      {
+        "name": "commit_workflows.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-git/references/commit_workflows.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-loop-iter-template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-devin/assets/deep-loop-iter-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "agent-config-deep-research-iter.json",
+        "kind": "config",
+        "path": ".opencode/skills/cli-devin/assets/agent-config-deep-research-iter.json",
+        "source": "derived"
+      },
+      {
+        "name": "deep-loop-iter-contract.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-devin/references/deep-loop-iter-contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "state_format.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-research/references/state_format.md",
+        "source": "derived"
+      },
+      {
+        "name": "loop_protocol.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-research/references/loop_protocol.md",
+        "source": "derived"
+      },
+      {
+        "name": "convergence.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-research/references/convergence.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Commit Standards",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Retroactive Rewrite",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Begin Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Sequential Thinking",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
     ],
-    "causal_summary": "Phase 002 closed 2026-05-16: 7 ADRs Accepted, commit-standards.md + derivation-heuristics.md + hand-sample-validation.md (20/20 deterministic) shipped. Phase 003 (sk-git skill update) next. Local-only HEAD-only rewrite.",
+    "causal_summary": "The `sk-git` skill documents conventional-commit-style standards at `.opencode/skills/sk-git/SKILL.md` §3 and `assets/commit_message_template.md`, but the git log itself does not follow them. A 30-commit sample of recent HEAD shows 100% of commits prefixed with internal packet IDs (`111 W3.C:`, `111 W3.D-A:`), no message bodies, no Co-Authored-By trailers on the most recent activity (older history carries 3,498 Claude trailers in various forms), and free-form subjects that violate the imperative-mood + length rules. The standards exist on paper but nothing enforces them at commit time, and no retroactive normalization has been performed.",
     "created_at": "2026-05-16T09:42:32Z",
-    "last_save_at": "2026-05-16T09:42:32Z",
-    "save_lineage": "scaffold_with_manual_curation",
+    "last_save_at": "2026-05-18T15:17:56.768Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md",
-      "/Users/michelkerkmeester/.claude/plans/create-a-new-phased-synchronous-mitten.md"
+      "spec.md"
     ]
   }
 }

@@ -17,7 +17,7 @@ contextType: "implementation"
 
 ## 2026-04-23
 
-> Spec folder: `026-graph-and-context-optimization/007-hook-parity/004-claude-hook-findings-remediation` (Level 2)
+> Spec folder: `026-graph-and-context-optimization/007-hook-parity/004-claude-freshness-schema-harness-fixes` (Level 2)
 > Parent packet: `026-graph-and-context-optimization/007-hook-parity`
 
 ### Summary

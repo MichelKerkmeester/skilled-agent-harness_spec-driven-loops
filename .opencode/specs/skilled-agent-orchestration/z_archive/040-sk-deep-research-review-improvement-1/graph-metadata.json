@@ -1,11 +1,11 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/040-sk-deep-research-review-improvement-1",
-  "spec_folder": "skilled-agent-orchestration/040-sk-deep-research-review-improvement-1",
+  "packet_id": "skilled-agent-orchestration/z_archive/040-sk-deep-research-review-improvement-1",
+  "spec_folder": "skilled-agent-orchestration/z_archive/040-sk-deep-research-review-improvement-1",
   "parent_id": null,
   "children_ids": [
-    "skilled-agent-orchestration/040-sk-deep-research-review-improvement-1/001-sk-deep-research-improvements",
-    "skilled-agent-orchestration/040-sk-deep-research-review-improvement-1/002-sk-deep-review-improvements"
+    "skilled-agent-orchestration/z_archive/040-sk-deep-research-review-improvement-1/001-sk-deep-research-improvements",
+    "skilled-agent-orchestration/z_archive/040-sk-deep-research-review-improvement-1/002-sk-deep-review-improvements"
   ],
   "manual": {
     "depends_on": [],
@@ -18,14 +18,14 @@
       "deep review improvement",
       "040 spec",
       "lineage reducer parity",
-      "040 plan",
-      "deep research review plan",
-      "reducer parity plan",
-      "040 tasks",
-      "deep research review tasks",
-      "reducer parity tasks",
-      "verification",
-      "checklist"
+      "research",
+      "report",
+      "040",
+      "auto",
+      "deep",
+      "resource map",
+      "skilled-agent-orchestration 040-sk-deep-research-review-improvement-1 resource map",
+      "path catalog skilled-agent-orchestration 040-sk-deep-research-review-improvement-1"
     ],
     "key_topics": [
       "deep",
@@ -37,35 +37,22 @@
       "lineage",
       "reducer",
       "parity",
-      "plan",
-      "tasks",
-      "verification"
+      "report",
+      "auto",
+      "resource"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "planned",
     "key_files": [
-      "tasks.md",
       "research/research.md",
       "research/recommendations-sk-deep-research.md",
       "research/recommendations-sk-deep-review.md",
-      "001-sk-deep-research-improvements/plan.md",
-      "002-sk-deep-review-improvements/plan.md",
-      "001-sk-deep-research-improvements/tasks.md",
-      "002-sk-deep-review-improvements/tasks.md",
       "research/deep-research-state.jsonl",
       "research/iterations/iteration-001.md",
-      "spec.md",
-      "plan.md",
-      "checklist.md",
-      "implementation-summary.md"
+      "resource-map.md",
+      "spec.md"
     ],
     "entities": [
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
       {
         "name": "research.md",
         "kind": "doc",
@@ -97,27 +84,15 @@
         "source": "derived"
       },
       {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -157,66 +132,69 @@
         "source": "derived"
       },
       {
-        "name": "Implementation Plan",
+        "name": "Research Report",
         "kind": "proper_noun",
-        "path": "plan.md",
+        "path": "research/research.md",
         "source": "derived"
       },
       {
-        "name": "Technical Context",
+        "name": "Executive Summary This",
         "kind": "proper_noun",
-        "path": "plan.md",
+        "path": "research/research.md",
         "source": "derived"
       },
       {
-        "name": "Spec Kit",
+        "name": "Internal Systems Analyzed",
         "kind": "proper_noun",
-        "path": "plan.md",
+        "path": "research/research.md",
         "source": "derived"
       },
       {
-        "name": "Task Format",
+        "name": "Resource Map",
         "kind": "proper_noun",
-        "path": "tasks.md",
+        "path": "resource-map.md",
         "source": "derived"
       },
       {
-        "name": "Task Notation",
+        "name": "Author Instructions",
         "kind": "proper_noun",
-        "path": "tasks.md",
+        "path": "resource-map.md",
         "source": "derived"
       },
       {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
+        "name": "Summary",
+        "kind": "heading",
+        "path": "resource-map.md",
         "source": "derived"
       },
       {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "tasks.md",
+        "name": "2. Documents",
+        "kind": "heading",
+        "path": "resource-map.md",
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
+        "name": "6. Specs",
+        "kind": "heading",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "description:",
+        "kind": "quoted",
+        "path": "resource-map.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Make both skills operate under explicit, testable packet contracts — canonical naming, lifecycle branches, reducer semantics, release-readiness states, and runtime parity — all backed by executable Vitest guards.",
     "created_at": "2026-04-12T09:02:50.183Z",
-    "last_save_at": "2026-04-26T09:17:15.199Z",
+    "last_save_at": "2026-05-18T15:17:56.847Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
-      "plan.md",
-      "tasks.md",
-      "checklist.md",
-      "implementation-summary.md",
-      "research/research.md"
+      "research/research.md",
+      "resource-map.md"
     ]
   }
 }

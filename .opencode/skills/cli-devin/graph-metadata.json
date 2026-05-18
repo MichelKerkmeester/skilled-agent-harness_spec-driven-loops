@@ -5,7 +5,13 @@
   "category": "cli-orchestrator",
   "edges": {
     "depends_on": [],
-    "enhances": [],
+    "enhances": [
+      {
+        "target": "sk-small-model",
+        "weight": 0.5,
+        "context": "small-model patterns sentinel"
+      }
+    ],
     "siblings": [
       {
         "target": "cli-claude-code",

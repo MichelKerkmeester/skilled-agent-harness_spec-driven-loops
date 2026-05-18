@@ -5,7 +5,7 @@ trigger_phrases:
   - "phase 012 changelog"
   - "skill advisor setup command"
   - "doctor skill-advisor command"
-  - "005-skill-advisor-setup-command"
+  - "005-advisor-setup-command"
 importance_tier: "important"
 contextType: "implementation"
 ---
@@ -16,7 +16,7 @@ contextType: "implementation"
 
 ## 2026-04-25
 
-> Spec folder: `026-graph-and-context-optimization/006-skill-advisor/005-skill-advisor-setup-command` (Level 2)
+> Spec folder: `026-graph-and-context-optimization/006-skill-advisor/005-advisor-setup-command` (Level 2)
 > Parent packet: `026-graph-and-context-optimization/006-skill-advisor`
 
 ### Summary
@@ -37,7 +37,7 @@ The packet shipped clean after a 7-iteration cli-copilot deep-review pass return
 - `.opencode/README.md` counts corrected to 22 commands and 30 YAML files. Doctor namespace included in the breakdown.
 - `.opencode/commands/spec_kit/README.txt` gained the skill-advisor row in the commands table, the structure tree, and a usage example.
 - `.opencode/skills/system-spec-kit/mcp_server/README.md` Section 3.1.14 addendum points operators at the new tuning surface.
-- Parent `006-skill-advisor/{context-index,spec,tasks}.md` updated: 11 to 12 children, trigger phrases include `005-skill-advisor-setup-command` and `/spec_kit:skill-advisor` (the command was later renamed to `/doctor:skill-advisor` in a follow-on namespace refactor).
+- Parent `006-skill-advisor/{context-index,spec,tasks}.md` updated: 11 to 12 children, trigger phrases include `005-advisor-setup-command` and `/spec_kit:skill-advisor` (the command was later renamed to `/doctor:skill-advisor` in a follow-on namespace refactor).
 - All 4 child docs in the packet had `template_source_hint:` repositioned higher in the frontmatter so the validator's `head -n 20` sample sees the magic string. Same hidden bug had been silently failing the validator on the parent.
 - Acceptance scenarios in `spec.md` reformatted with literal `**Given**/**When**/**Then**` bold markers so `check-section-counts.sh` counts them correctly. The original inline form had zero matches and triggered a false-positive "found 0 acceptance scenarios" warning.
 
@@ -81,10 +81,10 @@ The packet shipped clean after a 7-iteration cli-copilot deep-review pass return
 | `.opencode/README.md` | Counts corrected to 22 commands / 30 YAML, doctor in breakdown. |
 | `.opencode/skills/system-spec-kit/mcp_server/README.md` | Section 3.1.14 addendum points operators at the new tuning surface. |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/{context-index,spec,tasks}.md` | 11 to 12 children, trigger phrases include the new packet and command. |
-| `.opencode/specs/.../005-skill-advisor-setup-command/spec.md` | Acceptance scenarios reformatted to validator pattern. Cross-refs use full paths. `template_source_hint` moved up. |
-| `.opencode/specs/.../005-skill-advisor-setup-command/{plan,tasks,checklist}.md` | Cross-refs use full paths. `template_source_hint` repositioned. |
-| `.opencode/specs/.../005-skill-advisor-setup-command/{description,graph-metadata}.json` | Created via `generate-description.js` and packet metadata helper. |
-| `.opencode/specs/.../005-skill-advisor-setup-command/implementation-summary.md` | Created. |
+| `.opencode/specs/.../005-advisor-setup-command/spec.md` | Acceptance scenarios reformatted to validator pattern. Cross-refs use full paths. `template_source_hint` moved up. |
+| `.opencode/specs/.../005-advisor-setup-command/{plan,tasks,checklist}.md` | Cross-refs use full paths. `template_source_hint` repositioned. |
+| `.opencode/specs/.../005-advisor-setup-command/{description,graph-metadata}.json` | Created via `generate-description.js` and packet metadata helper. |
+| `.opencode/specs/.../005-advisor-setup-command/implementation-summary.md` | Created. |
 
 Implementation commit: `62640cb8b`. Pt-02 re-review verdict PASS.
 

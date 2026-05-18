@@ -53,7 +53,7 @@ Operators run the exact prompt and command sequence for `DAC-031` and confirm th
 
 **No-graph baseline:**
 
-1. `bash: for id in c1 c2 c3 c4 c5 decA decB; do echo "$id: $(rg -c "$id" .opencode/specs/sandbox/dac-031/ai-council/**/*.md 2>/dev/null | wc -l)"; done` (text-level cross-reference estimate)
+1. `bash: for id in c1 c2 c3 c4 c5 decA decB; do echo "$id: $(rg -c "$id" <spec-folder>**/*.md 2>/dev/null | wc -l)"; done` (text-level cross-reference estimate)
 2. Operator builds ranked top-3 estimate from raw counts.
 
 **With-graph:**

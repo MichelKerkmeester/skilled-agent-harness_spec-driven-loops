@@ -51,16 +51,16 @@
       ".opencode/skills/cli-devin/references/cloud_handoff.md",
       ".opencode/skills/cli-devin/assets/prompt_quality_card.md",
       ".opencode/skills/cli-devin/assets/prompt_templates.md",
-      ".opencode/skills/cli-devin/changelog/CHANGELOG.md",
-      ".opencode/skills/cli-devin/manual_testing_playbook/README.md",
+      ".opencode/skills/cli-devin/changelog/v1.0.0.0.md",
+      ".opencode/skills/cli-devin/manual_testing_playbook/manual_testing_playbook.md",
       ".opencode/skills/cli-devin/graph-metadata.json",
       ".opencode/skills/cli-claude-code/graph-metadata.json",
       ".opencode/skills/cli-codex/graph-metadata.json",
       ".opencode/skills/cli-gemini/graph-metadata.json",
       ".opencode/skills/cli-opencode/graph-metadata.json",
+      "manual_testing_playbook/manual_testing_playbook.md",
       "implementation-summary.md",
-      "spec.md",
-      "plan.md"
+      "changelog/v1.0.0.0.md"
     ],
     "entities": [
       {
@@ -118,9 +118,15 @@
         "source": "derived"
       },
       {
-        "name": "CHANGELOG.md",
+        "name": "v1.0.0.0.md",
         "kind": "doc",
-        "path": ".opencode/skills/cli-devin/changelog/CHANGELOG.md",
+        "path": ".opencode/skills/cli-devin/changelog/v1.0.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual_testing_playbook.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-devin/manual_testing_playbook/manual_testing_playbook.md",
         "source": "derived"
       },
       {
@@ -133,18 +139,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -206,11 +200,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Default Invocation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The repo's CLI-executor skill family (`cli-claude-code`, `cli-codex`, `cli-gemini`, `cli-opencode`) lets any one CLI delegate tasks to any other CLI as a peer. Cognition AI's \"Devin for Terminal\" (the official `devin` Rust CLI) is now a viable peer — it brings a unique local-to-cloud handoff capability no other family member has — but there is no `cli-devin` skill to route to it. Today, cross-AI dispatches to Devin require ad-hoc Bash, with no self-invocation guard, no auth pre-flight, no agent-routing surface, and no documented prompt contract.",
     "created_at": "2026-05-15T07:01:57.575Z",
-    "last_save_at": "2026-05-15T07:01:57.575Z",
+    "last_save_at": "2026-05-18T15:17:56.752Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

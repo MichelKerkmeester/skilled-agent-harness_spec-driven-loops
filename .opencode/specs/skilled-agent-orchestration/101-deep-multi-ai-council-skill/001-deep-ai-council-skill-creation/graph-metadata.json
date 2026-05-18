@@ -39,21 +39,28 @@
       "tasks"
     ],
     "importance_tier": "important",
-    "status": "completed",
+    "status": "complete",
     "key_files": [
+      ".opencode/skills/deep-ai-council/SKILL.md",
+      ".opencode/skills/deep-ai-council/graph-metadata.json",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      ".opencode/skills/deep-ai-council/SKILL.md",
-      ".opencode/skills/deep-ai-council/scripts/persist-artifacts.cjs",
-      ".opencode/agents/deep-ai-council.md",
-      ".claude/agents/deep-ai-council.md",
-      ".codex/agents/deep-ai-council.toml",
-      ".gemini/agents/deep-ai-council.md",
-      ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/fusion.ts"
+      "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-ai-council/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/deep-ai-council/graph-metadata.json",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -79,18 +86,6 @@
         "source": "derived"
       },
       {
-        "name": "deep-ai-council.md",
-        "kind": "doc",
-        "path": ".opencode/agents/deep-ai-council.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep-ai-council.toml",
-        "kind": "file",
-        "path": ".codex/agents/deep-ai-council.toml",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -98,6 +93,12 @@
       },
       {
         "name": "Council Skill Creation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Index Phase",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -116,12 +117,6 @@
       },
       {
         "name": "Phase Context This",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Scope Boundary",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -151,12 +146,6 @@
         "source": "derived"
       },
       {
-        "name": "Pattern Dedicated",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
         "name": "Task Notation",
         "kind": "proper_noun",
         "path": "tasks.md",
@@ -181,27 +170,33 @@
         "source": "derived"
       },
       {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
         "name": "Implementation Summary",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Implement Phase",
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built This",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Package",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "Phase 1 created the dedicated deep-ai-council skill package, runtime mirrors, council artifact helpers, and advisor routing regression coverage.",
+    "causal_summary": "This is **Phase 1** of the Deep AI Council skill extraction specification.",
     "created_at": "2026-05-10T06:35:39Z",
-    "last_save_at": "2026-05-10T08:10:34.000Z",
+    "last_save_at": "2026-05-18T15:17:56.730Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

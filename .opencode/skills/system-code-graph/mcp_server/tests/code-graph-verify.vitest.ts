@@ -61,7 +61,7 @@ const VERIFY_FIXTURE_BATTERY_PATH = fileURLToPath(new URL(
 ));
 
 const DEFAULT_VERIFY_BATTERY_PATH = fileURLToPath(new URL(
-  '../../../../specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research/assets/code-graph-gold-queries.json',
+  '../../../../specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/006-code-graph-resilience-research/assets/code-graph-gold-queries.json',
   import.meta.url,
 ));
 

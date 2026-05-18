@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/041-sk-recursive-agent-loop/004-sk-recursive-agent-promotion-verification",
-  "spec_folder": "skilled-agent-orchestration/041-sk-recursive-agent-loop/004-sk-recursive-agent-promotion-verification",
-  "parent_id": "skilled-agent-orchestration/041-sk-recursive-agent-loop",
+  "packet_id": "skilled-agent-orchestration/z_archive/041-sk-recursive-agent-loop/004-sk-recursive-agent-promotion-verification",
+  "spec_folder": "skilled-agent-orchestration/z_archive/041-sk-recursive-agent-loop/004-sk-recursive-agent-promotion-verification",
+  "parent_id": "skilled-agent-orchestration/z_archive/041-sk-recursive-agent-loop",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -40,9 +40,7 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-improve-agent/references/evaluator_contract.md",
       "improvement/score-handover-candidate-002.json",
-      "improvement/handover-candidate-validation.log",
       "improvement/benchmark-runs/handover/run-001.json",
       "improvement/benchmark-runs/handover/run-002.json",
       "improvement/benchmark-runs/handover/repeatability.json",
@@ -50,10 +48,8 @@
       "improvement/benchmark-runs/context-prime/run-002.json",
       "improvement/benchmark-runs/context-prime/repeatability.json",
       "improvement/promotion-001.json",
-      "improvement/promotion-validation.log",
       "improvement/rollback-001.json",
       "improvement/post-rollback-compare.txt",
-      ".opencode/skills/sk-improve-agent/scripts/score-candidate.cjs",
       ".opencode/specs/descriptions.json",
       "spec.md",
       "plan.md",
@@ -63,21 +59,9 @@
     ],
     "entities": [
       {
-        "name": "evaluator_contract.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-improve-agent/references/evaluator_contract.md",
-        "source": "derived"
-      },
-      {
         "name": "score-handover-candidate-002.json",
         "kind": "config",
         "path": "improvement/score-handover-candidate-002.json",
-        "source": "derived"
-      },
-      {
-        "name": "handover-candidate-validation.log",
-        "kind": "file",
-        "path": "improvement/handover-candidate-validation.log",
         "source": "derived"
       },
       {
@@ -105,12 +89,6 @@
         "source": "derived"
       },
       {
-        "name": "promotion-validation.log",
-        "kind": "file",
-        "path": "improvement/promotion-validation.log",
-        "source": "derived"
-      },
-      {
         "name": "rollback-001.json",
         "kind": "config",
         "path": "improvement/rollback-001.json",
@@ -120,12 +98,6 @@
         "name": "post-rollback-compare.txt",
         "kind": "file",
         "path": "improvement/post-rollback-compare.txt",
-        "source": "derived"
-      },
-      {
-        "name": "score-candidate.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/sk-improve-agent/scripts/score-candidate.cjs",
         "source": "derived"
       },
       {
@@ -205,11 +177,35 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Verification",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "After phase `003`, the agent-improver package and packet hierarchy were clean, but two important proof points were still missing: a successful guarded promotion path for the canonical handover target, and explicit repeatability evidence for the second target `context-prime`. Without those artifacts, the system said promotion was guarded, but it had not yet shown the full success path end to end in a child phase under `041`.",
     "created_at": "2026-04-12T09:02:50.187Z",
-    "last_save_at": "2026-04-26T09:17:15.222Z",
+    "last_save_at": "2026-05-18T15:17:56.861Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "068-sk-doc-organization/003-verify-and-ship",
-  "spec_folder": "068-sk-doc-organization/003-verify-and-ship",
-  "parent_id": "068-sk-doc-organization",
+  "packet_id": "skilled-agent-orchestration/z_archive/068-sk-doc-organization/003-verify-and-ship",
+  "spec_folder": "skilled-agent-orchestration/z_archive/068-sk-doc-organization/003-verify-and-ship",
+  "parent_id": "skilled-agent-orchestration/z_archive/068-sk-doc-organization",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -10,25 +10,196 @@
     "related_to": []
   },
   "derived": {
-    "trigger_phrases": [],
-    "key_topics": [],
-    "importance_tier": "important",
+    "trigger_phrases": [
+      "068/003",
+      "verify-and-ship",
+      "opus verification",
+      "068/003 plan",
+      "verify-and-ship plan",
+      "068/003 tasks",
+      "verify-and-ship tasks",
+      "068/003 summary",
+      "verify-and-ship summary"
+    ],
+    "key_topics": [
+      "068",
+      "003",
+      "verify-and-ship",
+      "opus",
+      "verification",
+      "plan",
+      "tasks",
+      "summary",
+      "phase",
+      "sk-doc",
+      "asset",
+      "reorganization"
+    ],
+    "importance_tier": "normal",
     "status": "complete",
     "key_files": [
+      ".opencode/skills/sk-doc/SKILL.md",
+      "implementation-summary.md",
       "spec.md",
       "plan.md",
       "tasks.md"
     ],
-    "entities": [],
-    "causal_summary": "Phase 3: verify-and-ship",
+    "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Phases",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Sequential",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execute Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Confirm Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Stage Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "This is **Phase 3** of the sk-doc asset reorganization — terminal phase. Phases 1 and 2 already moved 4 asset items to assets/ root and updated all dependent references across 4 runtimes. Phase 3 is the verification + ship gate: validate, get a fresh-context Opus verifier to confirm correctness, refresh graph metadata, and close the packet.",
     "created_at": "2026-05-05T07:55:04Z",
-    "last_save_at": "2026-05-05T09:05:00Z",
+    "last_save_at": "2026-05-18T15:17:56.965Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-05T09:05:00Z",
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ]
   }
 }

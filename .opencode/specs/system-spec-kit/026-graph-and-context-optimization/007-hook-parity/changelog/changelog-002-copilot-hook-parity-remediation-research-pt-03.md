@@ -15,8 +15,8 @@ contextType: "implementation"
 
 ## 2026-04-23
 
-> Spec folder: `026-graph-and-context-optimization/007-hook-parity/002-copilot-hook-parity-remediation/research/007-deep-review-remediation-pt-03` (Level 2)
-> Parent packet: `026-graph-and-context-optimization/007-hook-parity/002-copilot-hook-parity-remediation`
+> Spec folder: `026-graph-and-context-optimization/007-hook-parity/002-copilot-custom-instructions-hook-parity/research/002-copilot-hook-followup-deep-review-remediation` (Level 2)
+> Parent packet: `026-graph-and-context-optimization/007-hook-parity/002-copilot-custom-instructions-hook-parity`
 
 ### Summary
 
@@ -36,7 +36,7 @@ None. Research-only phase.
 
 ### Verification
 
-- Research report at `002-copilot-hook-parity-remediation/research/007-deep-review-remediation-pt-03/research.md` (8 iterations, converged at iter-8).
+- Research report at `002-copilot-custom-instructions-hook-parity/research/002-copilot-hook-followup-deep-review-remediation/research.md` (8 iterations, converged at iter-8).
 - Findings directly produced the patch specification for phase 006 (`copilot-wrapper-schema-fix`).
 - Also identified the secondary writer-wiring gap (Superset wrapper clobbers per-prompt refresh), addressed in phase 007 (`copilot-writer-wiring`).
 

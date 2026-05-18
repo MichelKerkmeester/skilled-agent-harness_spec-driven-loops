@@ -47,7 +47,7 @@ _memory:
 | **Spec Folder** | 015-cocoindex-seed-telemetry-passthrough |
 | **Completed** | 2026-04-27 |
 | **Level** | 1 |
-| **Source** | 011-post-stress-followup-research/research/research.md §6 (Q-OPP) |
+| **Source** | 011-post-stress-finding-remediation-research/research/research.md §6 (Q-OPP) |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -79,7 +79,7 @@ The change is **pure additive metadata**. Anchor `score`, `confidence`, `resolut
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/015-cocoindex-seed-telemetry-passthrough/tasks.md` | Added | Packet tasks |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/015-cocoindex-seed-telemetry-passthrough/checklist.md` | Added | Packet verification checklist |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/015-cocoindex-seed-telemetry-passthrough/description.json` | Added | Spec metadata |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/015-cocoindex-seed-telemetry-passthrough/graph-metadata.json` | Added | Graph metadata (parent_id 011; depends_on 011-post-stress-followup-research / 010-stress-test-rerun-v1-0-2 / 004-cocoindex-overfetch-dedup; related_to 003-memory-context-truncation-contract) |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/015-cocoindex-seed-telemetry-passthrough/graph-metadata.json` | Added | Graph metadata (parent_id 011; depends_on 011-post-stress-finding-remediation-research / 010-stress-test-close-loop-measurement-rerun / 004-cocoindex-overfetch-dedup-rerank; related_to 003-memory-context-truncation-telemetry-contract) |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/015-cocoindex-seed-telemetry-passthrough/implementation-summary.md` | Added | This file |
 <!-- /ANCHOR:what-built -->
 

@@ -32,7 +32,7 @@ skill_budget_doctor_invariant: |
 # UPSTREAM ASSETS
 # ─────────────────────────────────────────────────────────────────
 upstream_assets:
-  packet: ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/001-doctor-commands"
+  contract: "local command design contract"
   audit_script: ".opencode/commands/doctor/scripts/audit_descriptions.py"
   reference_doc: ".opencode/skills/sk-doc/assets/frontmatter_templates.md"
   doc_reference: ".opencode/skills/sk-doc/assets/frontmatter_templates.md#description-budget--trim-style"

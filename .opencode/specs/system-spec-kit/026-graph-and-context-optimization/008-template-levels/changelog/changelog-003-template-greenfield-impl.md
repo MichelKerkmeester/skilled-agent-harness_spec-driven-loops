@@ -18,7 +18,7 @@ contextType: "implementation"
 
 ## 2026-05-01
 
-> Spec folder: `026-graph-and-context-optimization/008-template-levels/003-template-greenfield-impl` (Level 3)
+> Spec folder: `026-graph-and-context-optimization/008-template-levels/003-manifest-template-implementation-plan` (Level 3)
 > Parent packet: `026-graph-and-context-optimization/008-template-levels`
 
 ### Summary

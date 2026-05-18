@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/024-sk-deep-research-refinement",
-  "spec_folder": "skilled-agent-orchestration/024-sk-deep-research-refinement",
+  "packet_id": "skilled-agent-orchestration/z_archive/024-sk-deep-research-refinement",
+  "spec_folder": "skilled-agent-orchestration/z_archive/024-sk-deep-research-refinement",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -48,10 +48,6 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      ".opencode/skills/sk-deep-research/SKILL.md",
-      ".opencode/skills/sk-deep-research/references/convergence.md",
-      ".opencode/skills/sk-deep-research/references/loop_protocol.md",
-      ".opencode/skills/sk-deep-research/references/state_format.md",
       ".opencode/commands/spec_kit/deep-research.md",
       ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml",
       ".opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml",
@@ -101,30 +97,6 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-deep-research/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "convergence.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-deep-research/references/convergence.md",
-        "source": "derived"
-      },
-      {
-        "name": "loop_protocol.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-deep-research/references/loop_protocol.md",
-        "source": "derived"
-      },
-      {
-        "name": "state_format.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-deep-research/references/state_format.md",
         "source": "derived"
       },
       {
@@ -204,11 +176,35 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Meta",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Agent",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The sk-deep-research system (v1) is functional but has 18 documented improvement proposals (from spec 023) that need rigorous validation, prioritization refinement, and implementation-ready specifications before they can be executed. The proposals were derived from a 14-iteration research cycle but need a second-pass deep investigation that:",
     "created_at": "2026-04-12T09:02:50.173Z",
-    "last_save_at": "2026-04-26T09:17:15.157Z",
+    "last_save_at": "2026-05-18T15:17:56.826Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

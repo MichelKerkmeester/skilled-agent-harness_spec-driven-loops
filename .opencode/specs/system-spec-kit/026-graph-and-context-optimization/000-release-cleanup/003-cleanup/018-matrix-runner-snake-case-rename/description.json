@@ -1,0 +1,22 @@
+{
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/018-matrix-runner-snake-case-rename",
+  "description": "Feature Specification: 047 matrix_runners Snake Case Rename",
+  "keywords": [
+    "feature",
+    "specification",
+    "047",
+    "snake",
+    "case",
+    "rename"
+  ],
+  "lastUpdated": "2026-05-08T08:26:57.390Z",
+  "specId": "034",
+  "folderSlug": "matrix-runners-snake-case-rename",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "000-release-cleanup"
+  ],
+  "memorySequence": 47,
+  "memoryNameHistory": []
+}

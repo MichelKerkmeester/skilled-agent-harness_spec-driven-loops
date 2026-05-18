@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/022-mcp-coco-integration/059-agent-implement-code",
-  "spec_folder": "skilled-agent-orchestration/022-mcp-coco-integration/059-agent-implement-code",
-  "parent_id": "skilled-agent-orchestration/022-mcp-coco-integration",
+  "packet_id": "skilled-agent-orchestration/z_archive/059-agent-implement-code",
+  "spec_folder": "skilled-agent-orchestration/z_archive/059-agent-implement-code",
+  "parent_id": null,
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -21,7 +21,7 @@
       "code agent plan",
       "@code implementation plan",
       "deep research dispatch plan",
-      "sk-code auto-load agent",
+      "sk-code agent",
       "phase parent transition 022"
     ],
     "key_topics": [
@@ -41,57 +41,32 @@
     "importance_tier": "high",
     "status": "in_progress",
     "key_files": [
-      ".opencode/agents/orchestrate.md",
-      "decision-record.md",
-      ".opencode/specs/skilled-agent-orchestration/022-mcp-coco-integration/graph-metadata.json",
-      ".opencode/specs/skilled-agent-orchestration/022-mcp-coco-integration/description.json",
-      "checklist.md",
-      "implementation-summary.md",
+      "spec.md",
       "plan.md",
       "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "handover.md",
+      ".opencode/agents/code.md",
+      ".opencode/agents/orchestrate.md",
+      "research/synthesis.md",
       ".opencode/agents/review.md",
-      ".opencode/agents/write.md",
-      ".opencode/agents/context.md",
       ".opencode/skills/sk-code/SKILL.md",
+      ".opencode/skills/cli-opencode/SKILL.md",
       ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
       ".opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js",
-      "spec.md"
+      ".opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook.md",
+      "research/stream-01-oh-my-opencode-slim/deep-research-config.json",
+      "research/stream-02-opencode-swarm-main/deep-research-config.json",
+      "research/stream-01-oh-my-opencode-slim/research.md",
+      "research/stream-02-opencode-swarm-main/research.md"
     ],
     "entities": [
       {
-        "name": "orchestrate.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/agents/orchestrate.md",
-        "source": "derived"
-      },
-      {
-        "name": "decision-record.md",
-        "kind": "doc",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "graph-metadata.json",
-        "kind": "config",
-        "path": ".opencode/specs/skilled-agent-orchestration/022-mcp-coco-integration/graph-metadata.json",
-        "source": "derived"
-      },
-      {
-        "name": "description.json",
-        "kind": "config",
-        "path": ".opencode/specs/skilled-agent-orchestration/022-mcp-coco-integration/description.json",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -107,21 +82,51 @@
         "source": "derived"
       },
       {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "code.md",
+        "kind": "doc",
+        "path": ".opencode/agents/code.md",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrate.md",
+        "kind": "doc",
+        "path": ".opencode/agents/orchestrate.md",
+        "source": "derived"
+      },
+      {
+        "name": "synthesis.md",
+        "kind": "doc",
+        "path": "research/synthesis.md",
+        "source": "derived"
+      },
+      {
         "name": "review.md",
         "kind": "doc",
         "path": ".opencode/agents/review.md",
-        "source": "derived"
-      },
-      {
-        "name": "write.md",
-        "kind": "doc",
-        "path": ".opencode/agents/write.md",
-        "source": "derived"
-      },
-      {
-        "name": "context.md",
-        "kind": "doc",
-        "path": ".opencode/agents/context.md",
         "source": "derived"
       },
       {
@@ -143,9 +148,15 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
+        "name": "skill-advisor-hook.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": ".opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-config.json",
+        "kind": "config",
+        "path": "research/stream-01-oh-my-opencode-slim/deep-research-config.json",
         "source": "derived"
       },
       {
@@ -195,17 +206,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Executive Summary",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Author a new write-capable code-implementation sub-agent at `.opencode/agents/code.md`, modeled on `review.md` but flipped to `write/edit/patch: allow`. The agent is codebase/repo-agnostic via auto-loading the `sk-code` skill (which owns stack detection internally), dispatchable only by `@orchestrate`, and enforces `task: deny` to keep it LEAF-depth-1. Packet-internal research dispatches three parallel `/spec_kit:deep-research:auto` streams (10 iters each, executed via `cli-copilot` with `gpt-5.5 high`) across two external multi-agent reference implementations (`oh-my-opencode-slim`, `opencode-swarm-main`) and our own `.opencode/agents/` inventory before authoring the agent file.",
     "created_at": "2026-05-01T14:39:36.273Z",
-    "last_save_at": "2026-05-01T14:39:36.273Z",
+    "last_save_at": "2026-05-18T15:17:56.916Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,8 +219,9 @@
       "tasks.md",
       "checklist.md",
       "decision-record.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "handover.md",
+      "resource-map.md"
     ]
-  },
-  "importance_tier": "normal"
+  }
 }

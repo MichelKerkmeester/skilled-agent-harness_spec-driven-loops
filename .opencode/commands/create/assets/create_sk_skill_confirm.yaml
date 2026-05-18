@@ -378,7 +378,7 @@ workflow:
       - Enforce hard minimum threshold (75)
       - Compare against operation target score
       - Run fix-and-revalidate loop if needed
-      - "Description budget check (packet 086): quick_validate.py warns when description > 130 chars (skill) and hard-fails > 1536 chars. Soft-warning is non-blocking; hard-fail blocks the fix_loop."
+      - "Description budget check: quick_validate.py warns when description > 130 chars (skill) and hard-fails > 1536 chars. Soft-warning is non-blocking; hard-fail blocks the fix_loop."
     thresholds:
       hard_minimum: 75
       operation_targets:

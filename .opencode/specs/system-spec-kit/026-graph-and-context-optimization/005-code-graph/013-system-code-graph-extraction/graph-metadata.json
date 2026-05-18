@@ -165,7 +165,7 @@
     ],
     "causal_summary": "Code-graph today lives at `.opencode/skills/system-spec-kit/mcp_server/code_graph/`. It is a sizeable subsystem — 108 files (29 lib TS modules, 10 MCP handlers, 2 tool registrations, 28 vitest files plus a gold-queries asset, 16 in-package feature_catalog + manual_testing_playbook docs, 23 READMEs), 12 MCP tools (`code_graph_scan`, `code_graph_query`, `code_graph_context`, `code_graph_status`, `code_graph_verify`, `code_graph_apply`, `detect_changes`, `ccc_status`, `ccc_reindex`, `ccc_feedback`, plus 2 more dispatched through `tool-schemas.ts`), backed by `mcp_server/database/code-graph.sqlite` (55 MB live index with 7 exclusive tables: code_files / code_nodes / code_edges / code_graph_metadata / parse_diagnostics / parser_skip_list / schema_version), buried 5 levels deep inside `system-spec-kit`. It is consumed by 5 cross-subsystem handlers (memory-search, session-resume, session-bootstrap, session-health, memory-context), 6 startup-injection hooks across 4 runtimes, 7 agent files, 5 commands, a plugin bridge plus 2 `.mjs` siblings, a constitutional rule, and 4 top-level project docs.",
     "created_at": "2026-05-14T07:00:38Z",
-    "last_save_at": "2026-05-18T08:15:53.459Z",
+    "last_save_at": "2026-05-18T15:17:57.355Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-14T07:00:38Z",
     "source_docs": [

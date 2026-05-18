@@ -1,0 +1,20 @@
+{
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/007-vitest-broad-suite-honesty",
+  "description": "Spec: Broad-Suite Vitest Honesty",
+  "keywords": [
+    "spec",
+    "broad-suite",
+    "vitest",
+    "honesty"
+  ],
+  "lastUpdated": "2026-05-02T10:39:47.940Z",
+  "specId": "012",
+  "folderSlug": "broad-suite-vitest-honesty",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "000-release-cleanup"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}

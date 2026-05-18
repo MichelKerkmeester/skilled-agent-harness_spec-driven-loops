@@ -1,38 +1,198 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/062-deep-loop-command-flow-stress-tests/002-deep-research-stress-runs",
-  "spec_folder": "skilled-agent-orchestration/062-deep-loop-command-flow-stress-tests/002-deep-research-stress-runs",
-  "parent_id": "skilled-agent-orchestration/062-deep-loop-command-flow-stress-tests",
+  "packet_id": "skilled-agent-orchestration/z_archive/062-deep-loop-command-flow-stress-tests/002-deep-research-stress-runs",
+  "spec_folder": "skilled-agent-orchestration/z_archive/062-deep-loop-command-flow-stress-tests/002-deep-research-stress-runs",
+  "parent_id": "skilled-agent-orchestration/z_archive/062-deep-loop-command-flow-stress-tests",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      "skilled-agent-orchestration/062-deep-loop-command-flow-stress-tests"
-    ],
+    "depends_on": [],
     "supersedes": [],
-    "related_to": [
-      "skilled-agent-orchestration/060-sk-agent-improver-test-report-alignment/004-improve-agent-command-flow-stress-tests"
-    ]
+    "related_to": []
   },
   "derived": {
     "trigger_phrases": [
-      "002 deep-research stress",
-      "R1\u2192R2\u2192R3 stress runs for @deep-research; target PA",
       "002-deep-research-stress-runs"
     ],
     "key_topics": [
-      "002",
+      "002-deep-research-stress-runs",
+      "stress",
+      "runs",
+      "against",
+      "001-authored",
+      "scenarios",
+      "target",
+      "final",
+      "pass",
+      "spec",
       "deep-research",
-      "command-flow-stress",
-      "060-methodology"
+      "002"
     ],
+    "importance_tier": "high",
     "status": "complete",
-    "completion_pct": 100,
-    "last_active_child_id": null,
-    "level": 1,
-    "is_phase_parent": false,
-    "session_outcome": "converged",
-    "stop_reason": "PASS_R1",
-    "iterations_run": 1,
-    "final_composite": "PASS 6/0/0"
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Stress Runs",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "command-orchestrator",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "targeted",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "lessons",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Begin Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "subcat",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. ARCHITECTURE",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. TASK NOTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PHASE 1: SETUP",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "T-001: Re-read 060/004 spec/plan/tasks",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "T-002: Re-read 060/003 §7 (preflight + rubric)",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. PHASE 2: IMPLEMENTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. WHAT WAS BUILT",
+        "kind": "heading",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. HOW IT WAS DELIVERED",
+        "kind": "heading",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "4. KEY DECISIONS",
+        "kind": "heading",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "R1→R2→R3 stress runs against the 001-authored CP scenarios; target final PASS 6/0/0.",
+    "created_at": "2026-05-18T07:49:27.112Z",
+    "last_save_at": "2026-05-18T15:17:56.938Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ]
   }
 }

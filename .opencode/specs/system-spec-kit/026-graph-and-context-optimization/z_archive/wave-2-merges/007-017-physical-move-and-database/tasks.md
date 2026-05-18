@@ -89,5 +89,5 @@ _memory:
 - Parent: `005-code-graph/013-system-code-graph-extraction`
 - Predecessor: `014/002-scaffold-skill`
 - Atomic sibling: `014/004-rewire-consumers-and-tool-registration`
-- ADR: `014/001-design-and-decision-record/decision-record.md`
+- ADR: `014/001-extraction-design-and-adr/decision-record.md`
 <!-- /ANCHOR:cross-refs -->

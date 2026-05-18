@@ -53,7 +53,7 @@ Related documents:
 | State log | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/002-mcp-runtime-improvement-research/research/002-mcp-runtime-improvement-research-pt-01/deep-research-state.jsonl` |
 | Findings registry | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/002-mcp-runtime-improvement-research/research/002-mcp-runtime-improvement-research-pt-01/findings-registry.json` |
 | Source packet 005 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/005-memory-search-runtime-bugs/` |
-| Source packet 006 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/001-search-intelligence-stress-test/` |
+| Source packet 006 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/001-search-intelligence-stress-playbook/` |
 Provenance note: Q1-Q7 have detailed iteration markdown plus delta evidence. Q8 is represented in the state log as an answered intent-classifier consistency pass, but the visible `iteration-009.md` was later overwritten by a Q4 pass. This synthesis keeps Q8 as state-log-supported and labels residual evidence gaps instead of inventing missing narrative details.
 ---
 <!-- ANCHOR:investigation-report -->
@@ -991,7 +991,7 @@ Research contributors and source surfaces:
 | Packet | Relevance |
 |--------|-----------|
 | 005-memory-search-runtime-bugs | Original defect catalog and claimed P0 remediation |
-| 001-search-intelligence-stress-test | Cross-AI stress-test, live probes, weak-retrieval hallucination evidence |
+| 001-search-intelligence-stress-playbook | Cross-AI stress-test, live probes, weak-retrieval hallucination evidence |
 | 024-compact-code-graph | Prior code graph and CocoIndex bridge context |
 ### Change Log
 | Date | Version | Changes | Author |

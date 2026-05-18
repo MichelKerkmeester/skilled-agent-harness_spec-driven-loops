@@ -63,7 +63,7 @@ Active surface: <stack detected by sk-code>
 cat > /tmp/devin-prompt.md <<'EOF'
 <context>
 Calling AI: cli-codex (gpt-5.5 medium) running in /repo
-Spec folder: .opencode/specs/foo/001-bar/ (pre-approved, skip Gate 3)
+Spec folder: <spec-folder> (pre-approved, skip Gate 3)
 Active surface: typescript-react (sk-code detection)
 </context>
 

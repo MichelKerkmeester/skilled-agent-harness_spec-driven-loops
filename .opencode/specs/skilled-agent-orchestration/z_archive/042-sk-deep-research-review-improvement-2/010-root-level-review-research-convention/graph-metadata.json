@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/010-root-level-review-research-convention",
-  "spec_folder": "skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/010-root-level-review-research-convention",
-  "parent_id": "skilled-agent-orchestration/042-sk-deep-research-review-improvement-2",
+  "packet_id": "skilled-agent-orchestration/z_archive/042-sk-deep-research-review-improvement-2/010-root-level-review-research-convention",
+  "spec_folder": "skilled-agent-orchestration/z_archive/042-sk-deep-research-review-improvement-2/010-root-level-review-research-convention",
+  "parent_id": "skilled-agent-orchestration/z_archive/042-sk-deep-research-review-improvement-2",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -43,8 +43,6 @@
     "key_files": [
       "spec.md",
       ".opencode/skills/system-spec-kit/shared/review-research-paths.cjs",
-      ".opencode/skills/sk-deep-review/scripts/reduce-state.cjs",
-      ".opencode/skills/sk-deep-research/scripts/reduce-state.cjs",
       ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml",
       ".opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml",
       ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml",
@@ -57,10 +55,10 @@
       ".gemini/agents/deep-research.md",
       ".codex/agents/deep-review.toml",
       ".codex/agents/deep-research.toml",
-      ".opencode/skills/sk-deep-review/SKILL.md",
-      ".opencode/skills/sk-deep-research/SKILL.md",
-      ".opencode/skills/sk-deep-review/README.md",
-      ".opencode/skills/sk-deep-research/README.md"
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -73,12 +71,6 @@
         "name": "review-research-paths.cjs",
         "kind": "file",
         "path": ".opencode/skills/system-spec-kit/shared/review-research-paths.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "reduce-state.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/sk-deep-review/scripts/reduce-state.cjs",
         "source": "derived"
       },
       {
@@ -130,15 +122,27 @@
         "source": "derived"
       },
       {
-        "name": "SKILL.md",
+        "name": "plan.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-deep-review/SKILL.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "README.md",
+        "name": "tasks.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-deep-review/README.md",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -200,17 +204,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "State Packet Location",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "When running `/spec_kit:deep-review` or `/spec_kit:deep-research` on a child phase inside a parent spec tree, both skills create their output folders (`review/`, `research/`) **inside the child phase folder**. In a spec tree with many nested phases (like `026-graph-and-context-optimization` with 14 phases, some 3-4 levels deep), this scatters review and research artifacts across dozens of nested directories. Finding a specific review requires knowing the exact nesting path. Manual consolidation after the fact (as we did for 026 -- moving 42 review + 18 research folders) is tedious and error-prone.",
     "created_at": "2026-04-18T07:39:57.335Z",
-    "last_save_at": "2026-04-26T09:17:15.269Z",
+    "last_save_at": "2026-05-18T15:17:56.886Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

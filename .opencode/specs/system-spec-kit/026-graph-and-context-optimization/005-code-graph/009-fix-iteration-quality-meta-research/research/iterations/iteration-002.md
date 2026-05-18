@@ -4,7 +4,7 @@
 
 I audited sibling packets under:
 
-`../001-code-graph-upgrades` through `../008-code-graph-backend-resilience`
+`../001-code-graph-runtime-upgrades` through `../008-code-graph-backend-resilience`
 
 The first pass was a packet artifact inventory:
 
@@ -25,11 +25,11 @@ Important caveat: the current `005-code-graph` packet names are post-consolidati
 
 For each candidate packet I read the active or nested `implementation-summary.md`, `decision-record.md` where present, `review/review-report.md`, `review/deep-review-state.jsonl`, and `research/deep-research-state.jsonl` where present. Key direct reads included:
 
-- `001-code-graph-upgrades/implementation-summary.md`, `review/review-report.md`, `review/deep-review-state.jsonl`
+- `001-code-graph-runtime-upgrades/implementation-summary.md`, `review/review-report.md`, `review/deep-review-state.jsonl`
 - `002-code-graph-self-contained-package/implementation-summary.md`
 - `003-code-graph-context-and-scan-scope/implementation-summary.md`, `research/deep-research-state.jsonl`
 - `004-code-graph-hook-improvements/implementation-summary.md`, `review/review-report.md`, `review/deep-review-state.jsonl`
-- `005-code-graph-advisor-refinement/implementation-summary.md`, `decision-record.md`, `review/015-code-graph-advisor-refinement-pt-01/review-report.md`, `review/015-code-graph-advisor-refinement-pt-01/deep-review-state.jsonl`, `research/015-code-graph-advisor-refinement-pt-01/deep-research-state.jsonl`, `applied/B1.md` through `applied/B6.md`, and `applied/F35-calibration.md`
+- `005-code-graph-advisor-refinement/implementation-summary.md`, `decision-record.md`, `review/001-code-graph-advisor-refinement-roadmap/review-report.md`, `review/001-code-graph-advisor-refinement-roadmap/deep-review-state.jsonl`, `research/001-code-graph-advisor-refinement-roadmap/deep-research-state.jsonl`, `applied/B1.md` through `applied/B6.md`, and `applied/F35-calibration.md`
 - `006-code-graph-doctor-command/implementation-summary.md`
 - `005-code-graph-resilience-research/implementation-summary.md`, `decision-record.md`, `research/deep-research-state.jsonl`
 - `008-code-graph-backend-resilience/implementation-summary.md`, `review/review-report.md`, `review/deep-review-state.jsonl`
@@ -40,7 +40,7 @@ I also did a broader quick scan of the 026 tree for `review-report.md`, `deep-re
 
 | Packet | Rounds-to-clean | Failure modes seen (1-5) | Compressible? |
 |---|---:|---|---|
-| `001-code-graph-upgrades` | 2 review iterations, then 1 post-remediation verification record (`run:25`) | 2, 4 | Yes. This was a small wrong-surface traceability drift: scratch prompts asked for detector provenance on `code_graph_status`, while the live surface was `code_graph_scan`. A single response-surface inventory would have compressed it. |
+| `001-code-graph-runtime-upgrades` | 2 review iterations, then 1 post-remediation verification record (`run:25`) | 2, 4 | Yes. This was a small wrong-surface traceability drift: scratch prompts asked for detector provenance on `code_graph_status`, while the live surface was `code_graph_scan`. A single response-surface inventory would have compressed it. |
 | `003-code-graph-context-and-scan-scope` | 5-iteration research diagnosis, then 2 absorbed implementation sub-phases (`001-incremental-fullscan-recovery`, `002-cross-file-dedup-defense`) | 3, 4 | Mostly yes. The core bug was algorithmic: `indexFiles()` applied the stale gate even for full scans, and duplicate symbol IDs surfaced later. A full-vs-incremental truth table plus cross-file uniqueness tests would likely have collapsed both rounds into one. |
 | `004-code-graph-hook-improvements` | Not clean in audited artifacts. Ten review iterations converged with 5 P1 + 5 P2, and the implementation summary still records strict-validation blockers. | 2, 3, 4 | Partially. The findings are compressible by surface enumeration, but I found no clean closure artifact. Misses spanned query ranking, context seed shape, deadline accounting, no-op incremental scan semantics, runtime parity evidence, and missing packet-local reports. |
 | `005-code-graph-advisor-refinement` | 20 research iterations, 7 review iterations, then at least 3 remediation waves: B1-B5, F35, B6. Final summary claims PASS after B6. | 2, 3, 4, 5 | Partially. The initial 11 P1 + 3 P2 were compressed into coherent batches, which is the good version of broad remediation. B6 shows the residual non-compressible part: later daemon-hardening changed one runtime truth and regressed the Python compat shim plus playbook inventory. |

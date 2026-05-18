@@ -147,7 +147,7 @@ The Emit phase stages and commits three files atomically:
 Relationship objects use:
 ```json
 {
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/NNN-slug",
+  "packet_id": "project-track/NNN-slug",
   "reason": "one-sentence justification",
   "source": "spec.md:Scope",
   "spec_folder": "optional-override-path",
@@ -272,8 +272,8 @@ Reads `handover.md` and `_memory.continuity` for `reentry_reason` and `resume_qu
 
 This module supersedes the deleted standalone intake command surface that packet `012-command-graph-consolidation` removed from `026-graph-and-context-optimization`. The former standalone intake surface duplicated the same logic that `/spec_kit:plan` and `/spec_kit:complete` carried inline, producing three parallel copies that drifted independently. Consolidation into this single reference eliminates drift risk and simplifies the command graph.
 
-**Packet reference:** `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/012-command-graph-consolidation/`
+**Packet reference:** internal design notes
 
-**Delivery note:** The packet delivered 15 milestones (M1-M9 on 2026-04-14, M10-M15 on 2026-04-15). `/spec_kit:plan` and `/spec_kit:complete` reference this module in place of inline intake blocks; `/spec_kit:plan --intake-only` provides the standalone invocation path with an explicit YAML gate. See the packet's `decision-record.md` for the architectural rationale (ADR-002 through ADR-010).
+**Delivery note:** The implementation delivered 15 milestones (M1-M9 on 2026-04-14, M10-M15 on 2026-04-15). `/spec_kit:plan` and `/spec_kit:complete` reference this module in place of inline intake blocks; `/spec_kit:plan --intake-only` provides the standalone invocation path with an explicit YAML gate. See the local decision record for the architectural rationale (ADR-002 through ADR-010).
 
 ---

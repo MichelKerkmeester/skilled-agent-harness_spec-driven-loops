@@ -13,7 +13,7 @@ Natural language code search through two complementary approaches: CLI (ccc) for
 
 ## 1. WHEN TO USE
 
-> **Forked From**: This skill bundles a soft-fork of [cocoindex-code](https://github.com/cocoindex-io/cocoindex-code) (Apache 2.0). Upstream version forked: 0.2.3. Current fork version: 0.2.3+spec-kit-fork.0.2.0. Patches: REQ-001..006 (mirror dedup + path-class reranking) from the spec packet at `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/004-cocoindex-overfetch-dedup/` (currently numbered `004`; tracked as `009` during research and in commit history). See NOTICE and changelog/CHANGELOG.md for the full attribution and modification list.
+> **Forked From**: This skill bundles a soft-fork of [cocoindex-code](https://github.com/cocoindex-io/cocoindex-code) (Apache 2.0). Upstream version forked: 0.2.3. Current fork version: 0.2.3+spec-kit-fork.0.2.0. Patches: REQ-001..006 (mirror dedup + path-class reranking) from the local fork patch set. See NOTICE and changelog/CHANGELOG.md for the full attribution and modification list.
 
 > **v1.2.0 retrieval-quality features (opt-in, default OFF)**: Hybrid search (SQLite FTS5 + RRF fusion) and cross-encoder rerank (GTE multilingual) are env-flag enabled and mirror the proven retrieval stack used by `mk-spec-memory`. Production search behavior is unchanged unless `COCOINDEX_HYBRID=1` or `COCOINDEX_RERANK=1` is set. Chunking defaults were also retuned (CHUNK_SIZE 1000 → 1500) for better function-boundary preservation. See [INSTALL_GUIDE.md §4 "Tuning + optional retrieval features"](INSTALL_GUIDE.md) for the full env-var matrix.
 

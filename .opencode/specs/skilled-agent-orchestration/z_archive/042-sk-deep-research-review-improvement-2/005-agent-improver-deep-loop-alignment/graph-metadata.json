@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment",
-  "spec_folder": "skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment",
-  "parent_id": "skilled-agent-orchestration/042-sk-deep-research-review-improvement-2",
+  "packet_id": "skilled-agent-orchestration/z_archive/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment",
+  "spec_folder": "skilled-agent-orchestration/z_archive/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment",
+  "parent_id": "skilled-agent-orchestration/z_archive/042-sk-deep-research-review-improvement-2",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -41,110 +41,19 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/changelog/15--sk-improve-agent/v1.1.0.0.md",
-      ".opencode/changelog/15--sk-improve-agent/v1.2.0.0.md",
-      ".opencode/changelog/15--sk-improve-agent/v1.2.1.0.md",
-      ".opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs",
-      ".opencode/skills/sk-improve-agent/SKILL.md",
       ".opencode/commands/improve/agent.md",
-      ".opencode/agents/improve-agent.md",
-      ".opencode/skills/sk-improve-agent/scripts/mutation-coverage.cjs",
-      ".opencode/skills/sk-improve-agent/scripts/trade-off-detector.cjs",
-      ".opencode/skills/sk-improve-agent/scripts/candidate-lineage.cjs",
-      ".opencode/skills/sk-improve-agent/scripts/benchmark-stability.cjs",
-      ".opencode/skills/sk-improve-agent/assets/improvement_config.json",
-      ".opencode/skills/sk-improve-agent/assets/improvement_charter.md",
-      ".opencode/skills/sk-improve-agent/assets/improvement_strategy.md",
       "decision-record.md",
       "implementation-summary.md",
-      ".opencode/skills/sk-improve-agent/references/loop_protocol.md",
-      ".opencode/skills/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/022-mutation-coverage-graph-tracking.md",
-      ".opencode/skills/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/023-trade-off-detection.md",
-      ".opencode/skills/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/024-candidate-lineage.md"
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "tasks.md"
     ],
     "entities": [
-      {
-        "name": "v1.1.0.0.md",
-        "kind": "doc",
-        "path": ".opencode/changelog/15--sk-improve-agent/v1.1.0.0.md",
-        "source": "derived"
-      },
-      {
-        "name": "v1.2.0.0.md",
-        "kind": "doc",
-        "path": ".opencode/changelog/15--sk-improve-agent/v1.2.0.0.md",
-        "source": "derived"
-      },
-      {
-        "name": "v1.2.1.0.md",
-        "kind": "doc",
-        "path": ".opencode/changelog/15--sk-improve-agent/v1.2.1.0.md",
-        "source": "derived"
-      },
-      {
-        "name": "improvement-journal.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-improve-agent/SKILL.md",
-        "source": "derived"
-      },
       {
         "name": "agent.md",
         "kind": "doc",
         "path": ".opencode/commands/improve/agent.md",
-        "source": "derived"
-      },
-      {
-        "name": "improve-agent.md",
-        "kind": "doc",
-        "path": ".opencode/agents/improve-agent.md",
-        "source": "derived"
-      },
-      {
-        "name": "mutation-coverage.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/sk-improve-agent/scripts/mutation-coverage.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "trade-off-detector.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/sk-improve-agent/scripts/trade-off-detector.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "candidate-lineage.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/sk-improve-agent/scripts/candidate-lineage.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "benchmark-stability.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/sk-improve-agent/scripts/benchmark-stability.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "improvement_config.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-improve-agent/assets/improvement_config.json",
-        "source": "derived"
-      },
-      {
-        "name": "improvement_charter.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-improve-agent/assets/improvement_charter.md",
-        "source": "derived"
-      },
-      {
-        "name": "improvement_strategy.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-improve-agent/assets/improvement_strategy.md",
         "source": "derived"
       },
       {
@@ -160,27 +69,27 @@
         "source": "derived"
       },
       {
-        "name": "loop_protocol.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-improve-agent/references/loop_protocol.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "022-mutation-coverage-graph-tracking.md",
+        "name": "plan.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/022-mutation-coverage-graph-tracking.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "023-trade-off-detection.md",
+        "name": "checklist.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/023-trade-off-detection.md",
+        "path": "checklist.md",
         "source": "derived"
       },
       {
-        "name": "024-candidate-lineage.md",
+        "name": "tasks.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/024-candidate-lineage.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -206,11 +115,89 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Plan",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Primary Surface",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Runtime Mirrors",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execution Protocol",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 005 completed the runtime-truth alignment for the improve-agent skill family. The delivered work added an append-only audit journal, an improvement-scoped mutation coverage graph, dimension trade-off detection, candidate lineage tracking for optional parallel waves, and benchmark stability scoring so the improver loop could behave like the deeper research and review loops instead of remaining an isolated evaluator.",
     "created_at": "2026-04-12T09:02:50.195Z",
-    "last_save_at": "2026-04-26T09:17:15.256Z",
+    "last_save_at": "2026-05-18T15:17:56.880Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

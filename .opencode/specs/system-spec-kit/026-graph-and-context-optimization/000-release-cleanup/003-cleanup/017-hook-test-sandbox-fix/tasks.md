@@ -89,7 +89,7 @@ _memory:
 ## Cross-References
 
 - Parent packet: `system-spec-kit/026-graph-and-context-optimization`
-- Dependency: `system-spec-kit/026-graph-and-context-optimization/016-hook-plugin-per-runtime-testing`
+- Dependency: `system-spec-kit/026-graph-and-context-optimization/016-runtime-hook-plugin-testing`
 - Root-cause writeup: `methodology-correction.md`
 <!-- /ANCHOR:cross-refs -->
 

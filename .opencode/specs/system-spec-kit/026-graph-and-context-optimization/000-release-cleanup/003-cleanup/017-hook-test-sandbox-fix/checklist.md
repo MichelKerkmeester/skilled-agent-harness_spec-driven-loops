@@ -44,7 +44,7 @@ _memory:
 
 - [x] CHK-001 [P0] Requirements documented. [EVIDENCE: `spec.md`]
 - [x] CHK-002 [P0] Technical approach defined. [EVIDENCE: `plan.md`]
-- [x] CHK-003 [P1] Historical evidence reviewed. [EVIDENCE: `../016-hook-plugin-per-runtime-testing/results/*.jsonl`]
+- [x] CHK-003 [P1] Historical evidence reviewed. [EVIDENCE: `../016-runtime-hook-plugin-testing/results/*.jsonl`]
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -52,10 +52,10 @@ _memory:
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [x] CHK-010 [P0] Runner changes are scoped to methodology files. [EVIDENCE: `../016-hook-plugin-per-runtime-testing/runners/*.ts`]
+- [x] CHK-010 [P0] Runner changes are scoped to methodology files. [EVIDENCE: `../016-runtime-hook-plugin-testing/runners/*.ts`]
 - [x] CHK-011 [P0] Hook and plugin source code is unchanged. [EVIDENCE: `git status --short`]
-- [x] CHK-012 [P1] `SKIPPED_SANDBOX` remains distinct from `SKIPPED`. [EVIDENCE: `../016-hook-plugin-per-runtime-testing/runners/common.ts`]
-- [x] CHK-013 [P1] Runner output avoids rewriting historical results. [EVIDENCE: `../016-hook-plugin-per-runtime-testing/run-output/latest/`]
+- [x] CHK-012 [P1] `SKIPPED_SANDBOX` remains distinct from `SKIPPED`. [EVIDENCE: `../016-runtime-hook-plugin-testing/runners/common.ts`]
+- [x] CHK-013 [P1] Runner output avoids rewriting historical results. [EVIDENCE: `../016-runtime-hook-plugin-testing/run-output/latest/`]
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -66,7 +66,7 @@ _memory:
 - [x] CHK-020 [P0] Sandboxed runner reports direct smokes separately from live skips. [EVIDENCE: `npm --prefix .opencode/skills/system-spec-kit/mcp_server run hook-tests`]
 - [x] CHK-021 [P0] MCP server build passes. [EVIDENCE: `npm --prefix .opencode/skills/system-spec-kit/mcp_server run build`]
 - [x] CHK-022 [P1] Strict validator exits 0 for this packet. [EVIDENCE: `validate.sh --strict`]
-- [x] CHK-023 [P1] Prior findings amendment preserves the original verdict as history. [EVIDENCE: `../016-hook-plugin-per-runtime-testing/findings.md`]
+- [x] CHK-023 [P1] Prior findings amendment preserves the original verdict as history. [EVIDENCE: `../016-runtime-hook-plugin-testing/findings.md`]
 <!-- /ANCHOR:testing -->
 
 ---
@@ -75,7 +75,7 @@ _memory:
 ## Security
 
 - [x] CHK-030 [P0] No secrets or auth material added to docs or runner output. [EVIDENCE: reviewed changed files]
-- [x] CHK-031 [P1] Sandbox probe writes only a temporary home probe and removes it. [EVIDENCE: `../016-hook-plugin-per-runtime-testing/runners/common.ts`]
+- [x] CHK-031 [P1] Sandbox probe writes only a temporary home probe and removes it. [EVIDENCE: `../016-runtime-hook-plugin-testing/runners/common.ts`]
 <!-- /ANCHOR:security -->
 
 ---
@@ -84,8 +84,8 @@ _memory:
 ## Documentation
 
 - [x] CHK-040 [P0] Methodology correction written. [EVIDENCE: `methodology-correction.md`]
-- [x] CHK-041 [P1] Operator run path documented. [EVIDENCE: `../016-hook-plugin-per-runtime-testing/runners/README.md`]
-- [x] CHK-042 [P1] Prior findings reclassified. [EVIDENCE: `../016-hook-plugin-per-runtime-testing/findings.md`]
+- [x] CHK-041 [P1] Operator run path documented. [EVIDENCE: `../016-runtime-hook-plugin-testing/runners/README.md`]
+- [x] CHK-042 [P1] Prior findings reclassified. [EVIDENCE: `../016-runtime-hook-plugin-testing/findings.md`]
 <!-- /ANCHOR:docs -->
 
 ---

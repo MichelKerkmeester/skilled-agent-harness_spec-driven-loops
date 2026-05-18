@@ -99,5 +99,5 @@ _memory:
 
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
-- **Predecessor**: `../005-cross-skill-decoupling/`
+- **Predecessor**: `../005-cross-skill-documentation-decoupling/`
 <!-- /ANCHOR:cross-refs -->

@@ -51,7 +51,7 @@ _memory:
 
 Packet 036 built the missing external CLI adapter layer for packet 030's matrix design. The implementation adds a shared adapter contract, five per-CLI adapters, a 70-cell manifest, feature prompt templates, a manifest-driven meta-runner, five mocked adapter smoke tests, runner docs, and this Level 2 packet documentation.
 
-The work directly addresses packet 035's highest-leverage gap: the CONDITIONAL verdict listed 42 `RUNNER_MISSING` cells and noted no complete matrix manifest, runner tree, or meta-aggregator existed (`006-full-matrix-execution-validation/findings.md:5`, `:15`, `:73`, `:75`).
+The work directly addresses packet 035's highest-leverage gap: the CONDITIONAL verdict listed 42 `RUNNER_MISSING` cells and noted no complete matrix manifest, runner tree, or meta-aggregator existed (`006-runtime-matrix-execution-validation/findings.md:5`, `:15`, `:73`, `:75`).
 
 ### Matrix Adapter Layer
 

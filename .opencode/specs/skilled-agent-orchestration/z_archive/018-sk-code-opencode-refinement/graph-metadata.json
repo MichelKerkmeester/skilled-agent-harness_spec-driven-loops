@@ -41,32 +41,25 @@
     "importance_tier": "critical",
     "status": "in_progress",
     "key_files": [
-      ".opencode/skills/sk-code-opencode/SKILL.md",
       ".opencode/skills/sk-code-review/SKILL.md",
       ".opencode/skills/sk-code-review/references/code_quality_checklist.md",
       ".opencode/skills/sk-code-review/references/solid_checklist.md",
       "scratch/final-quality-evidence-2026-02-22.md",
       "tasks.md",
       "checklist.md",
-      ".opencode/skills/sk-code-opencode/references/shared/universal_patterns.md",
-      ".opencode/skills/sk-code-opencode/references/shared/code_organization.md",
-      ".opencode/skills/sk-code-opencode/references/javascript/style_guide.md",
-      ".opencode/skills/sk-code-opencode/references/typescript/style_guide.md",
-      ".opencode/skills/sk-code-opencode/references/python/style_guide.md",
-      ".opencode/skills/sk-code-opencode/references/shell/style_guide.md",
-      ".opencode/skills/sk-code-opencode/references/config/style_guide.md",
-      ".opencode/skills/sk-code-opencode/assets/checklists/universal_checklist.md",
-      ".opencode/skills/sk-code-opencode/assets/checklists/javascript_checklist.md",
-      ".opencode/skills/sk-code-opencode/assets/checklists/typescript_checklist.md",
-      ".opencode/skills/sk-code-opencode/assets/checklists/python_checklist.md",
-      ".opencode/skills/sk-code-opencode/assets/checklists/shell_checklist.md",
-      ".opencode/skills/sk-code-opencode/assets/checklists/config_checklist.md"
+      "plan.md",
+      "decision-record.md",
+      "spec.md",
+      "research/research.md",
+      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+      ".opencode/skills/sk-code-review/references/quick_reference.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-code-opencode/SKILL.md",
+        "path": ".opencode/skills/sk-code-review/SKILL.md",
         "source": "derived"
       },
       {
@@ -100,57 +93,45 @@
         "source": "derived"
       },
       {
-        "name": "universal_patterns.md",
+        "name": "plan.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-code-opencode/references/shared/universal_patterns.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "code_organization.md",
+        "name": "decision-record.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-code-opencode/references/shared/code_organization.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "style_guide.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-code-opencode/references/javascript/style_guide.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "universal_checklist.md",
+        "name": "research.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-code-opencode/assets/checklists/universal_checklist.md",
+        "path": "research/research.md",
         "source": "derived"
       },
       {
-        "name": "javascript_checklist.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-code-opencode/assets/checklists/javascript_checklist.md",
+        "name": "validate.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
         "source": "derived"
       },
       {
-        "name": "typescript_checklist.md",
+        "name": "quick_reference.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-code-opencode/assets/checklists/typescript_checklist.md",
+        "path": ".opencode/skills/sk-code-review/references/quick_reference.md",
         "source": "derived"
       },
       {
-        "name": "python_checklist.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-code-opencode/assets/checklists/python_checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "shell_checklist.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-code-opencode/assets/checklists/shell_checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "config_checklist.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-code-opencode/assets/checklists/config_checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -206,11 +187,23 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Pattern Governance",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "SPECKIT_TEMPLATE_SOURCE: \"spec-core + level2-verify + level3-arch + level3plus-govern | v2.2\"",
     "created_at": "2026-04-12T09:02:50.219Z",
-    "last_save_at": "2026-04-26T09:17:15.319Z",
+    "last_save_at": "2026-05-18T15:17:56.815Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

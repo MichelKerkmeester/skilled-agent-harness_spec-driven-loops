@@ -71,7 +71,7 @@ What this reveals:
 
 | Cycle | Proved | Disproved | Left Open |
 |---|---|---|---|
-| v1.0.1 | A reproducible 9-scenario, 30-cell playbook can expose search/intelligence behavior (`001-scenario-design/spec.md:133`, `002-scenario-execution/findings.md:7`). | The MCP-equipped path is not automatically safer: opencode hallucinated under weak retrieval and copilot mutated the wrong folder (`002-scenario-execution/findings.md:14`, `002-scenario-execution/findings.md:15`). | N=1 variance, weak-retrieval guard, code-graph sparseness, vocabulary violations (`002-scenario-execution/findings.md:79`). |
+| v1.0.1 | A reproducible 9-scenario, 30-cell playbook can expose search/intelligence behavior (`001-search-scenario-design/spec.md:133`, `002-search-scenario-execution/findings.md:7`). | The MCP-equipped path is not automatically safer: opencode hallucinated under weak retrieval and copilot mutated the wrong folder (`002-search-scenario-execution/findings.md:14`, `002-search-scenario-execution/findings.md:15`). | N=1 variance, weak-retrieval guard, code-graph sparseness, vocabulary violations (`002-search-scenario-execution/findings.md:79`). |
 | v1.0.2 | Remediation materially improved the matrix: 76.7% -> 83.8%, zero regressions, 6/7 packets proven (`010/findings.md:15`, `010/findings.md:16`, `010/findings-rubric.json:79`). | The v1.0.1 catastrophic I2/opencode behavior was not durable after response-policy remediation (`010/findings.md:17`, `010/findings.md:52`). | Packet 005 degraded graph path stayed neutral, copilot I1 remained unsafe, N=1 remained a limit (`010/findings.md:75`, `010/findings.md:103`, `010/findings.md:144`). |
 | v1.0.3 | W3-W13 source/module contracts and packet-local telemetry samples exist; W4 real triggers fire; W8-W13 have envelope/audit/shadow shape (`021/findings-v1-0-3.md:69`, `021/findings-v1-0-3.md:85`). | Placeholder W4 trigger concern is closed for this sample: no `flag_disabled` or `unknown` triggers (`021/findings-v1-0-3.md:63`, `021/findings-v1-0-3.md:65`). | Live handler emission, harness-native telemetry export, production selectivity, and W3 causal contradiction sample correctness (`021/findings-v1-0-3.md:101`, `phase-h-stress.test.ts:190`). |
 
@@ -131,7 +131,7 @@ No RQ surfaces a confirmed v1.0.3 regression against v1.0.2 or v1.0.1. The W3 ca
 
 - **Leverage**: Very high
 - **Feasibility**: High
-- **Owning packet number**: `023-live-handler-envelope-capture-seam`
+- **Owning packet number**: `023-live-handler-envelope-capture-interface`
 - **Recommended Phase**: Phase K, stress cycle v1.0.4
 - **Dependencies**: `handleMemorySearch`, core readiness setter/mock, seeded DB or pipeline fixture, temp `SPECKIT_SEARCH_DECISION_AUDIT_PATH`, one corpus case with deterministic candidates.
 - **Acceptance criteria sketches**:
@@ -186,47 +186,47 @@ Executor note: packet config requested `cli-codex` gpt-5.5 xhigh. This runtime i
 
 - `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/022-stress-test-results-deep-research/spec.md:1`
 - `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/022-stress-test-results-deep-research/research/deep-research-strategy.md:1`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/021-stress-test-v1-0-3-with-w3-w13-wiring/findings-v1-0-3.md:14`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/021-stress-test-v1-0-3-with-w3-w13-wiring/findings-v1-0-3.md:20`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/021-stress-test-v1-0-3-with-w3-w13-wiring/findings-v1-0-3.md:37`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/021-stress-test-v1-0-3-with-w3-w13-wiring/findings-v1-0-3.md:55`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/021-stress-test-v1-0-3-with-w3-w13-wiring/findings-v1-0-3.md:69`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/021-stress-test-v1-0-3-with-w3-w13-wiring/findings-v1-0-3.md:85`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/021-stress-test-v1-0-3-with-w3-w13-wiring/findings-v1-0-3.md:101`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/021-stress-test-v1-0-3-with-w3-w13-wiring/findings-v1-0-3.md:111`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/021-stress-test-v1-0-3-with-w3-w13-wiring/findings-rubric-v1-0-3.json:27`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/021-stress-test-v1-0-3-with-w3-w13-wiring/findings-rubric-v1-0-3.json:371`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/021-stress-test-v1-0-3-with-w3-w13-wiring/findings-rubric-v1-0-3.json:382`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/021-stress-test-v1-0-3-with-w3-w13-wiring/findings-rubric-v1-0-3.json:415`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/021-stress-test-v1-0-3-with-w3-w13-wiring/measurements/v1-0-3-summary.json:5`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/021-stress-test-v1-0-3-with-w3-w13-wiring/measurements/v1-0-3-summary.json:4041`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/021-stress-test-v1-0-3-with-w3-w13-wiring/measurements/v1-0-3-summary.json:4052`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/021-stress-test-v1-0-3-with-w3-w13-wiring/measurements/v1-0-3-summary.json:4061`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/021-stress-test-v1-0-3-with-w3-w13-wiring/measurements/v1-0-3-envelopes.jsonl:1`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/021-stress-test-v1-0-3-with-w3-w13-wiring/measurements/v1-0-3-envelopes.jsonl:5`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/021-stress-test-v1-0-3-with-w3-w13-wiring/measurements/v1-0-3-envelopes.jsonl:6`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/021-stress-test-v1-0-3-with-w3-w13-wiring/measurements/v1-0-3-envelopes.jsonl:9`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/021-stress-test-v1-0-3-with-w3-w13-wiring/measurements/v1-0-3-envelopes.jsonl:12`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/021-stress-test-v1-0-3-with-w3-w13-wiring/measurements/v1-0-3-shadow-sink-sample.jsonl:1`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/021-stress-test-v1-0-3-with-w3-w13-wiring/measurements/phase-h-stress.test.ts:45`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/021-stress-test-v1-0-3-with-w3-w13-wiring/measurements/phase-h-stress.test.ts:49`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/021-stress-test-v1-0-3-with-w3-w13-wiring/measurements/phase-h-stress.test.ts:82`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/021-stress-test-v1-0-3-with-w3-w13-wiring/measurements/phase-h-stress.test.ts:137`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/021-stress-test-v1-0-3-with-w3-w13-wiring/measurements/phase-h-stress.test.ts:157`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/021-stress-test-v1-0-3-with-w3-w13-wiring/measurements/phase-h-stress.test.ts:190`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/021-stress-test-v1-0-3-with-w3-w13-wiring/measurements/phase-h-stress.test.ts:213`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/021-stress-test-v1-0-3-with-w3-w13-wiring/measurements/phase-h-stress.test.ts:239`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/001-search-intelligence-stress-test/001-scenario-design/spec.md:133`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/001-search-intelligence-stress-test/002-scenario-execution/findings.md:7`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/001-search-intelligence-stress-test/002-scenario-execution/findings.md:14`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/001-search-intelligence-stress-test/002-scenario-execution/findings.md:79`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/010-stress-test-rerun-v1-0-2/findings.md:15`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/010-stress-test-rerun-v1-0-2/findings.md:69`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/010-stress-test-rerun-v1-0-2/findings-rubric.json:65`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/010-stress-test-rerun-v1-0-2/findings-rubric.json:79`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/020-w3-w7-verification-and-expansion-research/research/research-report.md:9`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/020-w3-w7-verification-and-expansion-research/research/research-report.md:64`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/020-w3-w7-verification-and-expansion-research/research/research-report.md:171`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/021-stress-test-enterprise-wiring-expansion/findings-v1-0-3.md:14`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/021-stress-test-enterprise-wiring-expansion/findings-v1-0-3.md:20`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/021-stress-test-enterprise-wiring-expansion/findings-v1-0-3.md:37`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/021-stress-test-enterprise-wiring-expansion/findings-v1-0-3.md:55`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/021-stress-test-enterprise-wiring-expansion/findings-v1-0-3.md:69`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/021-stress-test-enterprise-wiring-expansion/findings-v1-0-3.md:85`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/021-stress-test-enterprise-wiring-expansion/findings-v1-0-3.md:101`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/021-stress-test-enterprise-wiring-expansion/findings-v1-0-3.md:111`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/021-stress-test-enterprise-wiring-expansion/findings-rubric-v1-0-3.json:27`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/021-stress-test-enterprise-wiring-expansion/findings-rubric-v1-0-3.json:371`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/021-stress-test-enterprise-wiring-expansion/findings-rubric-v1-0-3.json:382`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/021-stress-test-enterprise-wiring-expansion/findings-rubric-v1-0-3.json:415`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/021-stress-test-enterprise-wiring-expansion/measurements/v1-0-3-summary.json:5`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/021-stress-test-enterprise-wiring-expansion/measurements/v1-0-3-summary.json:4041`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/021-stress-test-enterprise-wiring-expansion/measurements/v1-0-3-summary.json:4052`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/021-stress-test-enterprise-wiring-expansion/measurements/v1-0-3-summary.json:4061`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/021-stress-test-enterprise-wiring-expansion/measurements/v1-0-3-envelopes.jsonl:1`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/021-stress-test-enterprise-wiring-expansion/measurements/v1-0-3-envelopes.jsonl:5`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/021-stress-test-enterprise-wiring-expansion/measurements/v1-0-3-envelopes.jsonl:6`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/021-stress-test-enterprise-wiring-expansion/measurements/v1-0-3-envelopes.jsonl:9`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/021-stress-test-enterprise-wiring-expansion/measurements/v1-0-3-envelopes.jsonl:12`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/021-stress-test-enterprise-wiring-expansion/measurements/v1-0-3-shadow-sink-sample.jsonl:1`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/021-stress-test-enterprise-wiring-expansion/measurements/phase-h-stress.test.ts:45`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/021-stress-test-enterprise-wiring-expansion/measurements/phase-h-stress.test.ts:49`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/021-stress-test-enterprise-wiring-expansion/measurements/phase-h-stress.test.ts:82`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/021-stress-test-enterprise-wiring-expansion/measurements/phase-h-stress.test.ts:137`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/021-stress-test-enterprise-wiring-expansion/measurements/phase-h-stress.test.ts:157`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/021-stress-test-enterprise-wiring-expansion/measurements/phase-h-stress.test.ts:190`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/021-stress-test-enterprise-wiring-expansion/measurements/phase-h-stress.test.ts:213`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/021-stress-test-enterprise-wiring-expansion/measurements/phase-h-stress.test.ts:239`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/001-search-intelligence-stress-playbook/001-search-scenario-design/spec.md:133`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/001-search-intelligence-stress-playbook/002-search-scenario-execution/findings.md:7`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/001-search-intelligence-stress-playbook/002-search-scenario-execution/findings.md:14`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/001-search-intelligence-stress-playbook/002-search-scenario-execution/findings.md:79`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/010-stress-test-close-loop-measurement-rerun/findings.md:15`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/010-stress-test-close-loop-measurement-rerun/findings.md:69`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/010-stress-test-close-loop-measurement-rerun/findings-rubric.json:65`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/010-stress-test-close-loop-measurement-rerun/findings-rubric.json:79`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/020-enterprise-readiness-verification-expansion-research/research/research-report.md:9`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/020-enterprise-readiness-verification-expansion-research/research/research-report.md:64`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/020-enterprise-readiness-verification-expansion-research/research/research-report.md:171`
 - `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:61`
 - `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:621`
 - `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:927`

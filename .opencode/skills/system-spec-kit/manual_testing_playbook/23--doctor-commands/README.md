@@ -31,5 +31,4 @@ Per-scenario fixtures are fetched on demand by `_sandbox/.../harness/fetch-fixtu
 - Router source: `.opencode/commands/doctor.md`
 - Route manifest: `.opencode/commands/doctor/_routes.yaml`
 - CI assertion: `.opencode/commands/doctor/scripts/route-validate.sh`
-- Spec packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/` (phases `003-router-phase/` + `004-cutover-phase/`)
 - Root playbook index: `../manual_testing_playbook.md`

@@ -78,7 +78,6 @@ Verify post-restart MCP is running the new dist (`memory_health.data.routing` ex
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
 - Feature catalog: [12--query-intelligence/12-graph-channel-preservation.md](../../feature_catalog/12--query-intelligence/12-graph-channel-preservation.md)
 - Health diagnostics: [03--discovery/03-health-diagnostics-memoryhealth.md](../../feature_catalog/03--discovery/03-health-diagnostics-memoryhealth.md)
-- Spec packet: `specs/system-spec-kit/026-graph-and-context-optimization/012-causal-graph-channel-routing/`
 
 ---
 

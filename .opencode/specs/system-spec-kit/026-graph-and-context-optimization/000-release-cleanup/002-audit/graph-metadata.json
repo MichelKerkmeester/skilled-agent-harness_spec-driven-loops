@@ -4,14 +4,14 @@
   "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-audit",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup",
   "children_ids": [
-    "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-audit/001-tanstack-security-audit",
-    "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-audit/002-w3-w7-runtime-wiring-and-audit",
-    "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-audit/003-doc-truth-pass",
-    "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-audit/004-code-graph-watcher-retraction",
-    "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-audit/005-memory-retention-sweep",
-    "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-audit/006-full-matrix-execution-validation",
-    "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-audit/007-runtime-command-agent-alignment-review",
-    "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-audit/008-drift-finding-fixes"
+    "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-audit/001-dependency-security-supply-chain-audit",
+    "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-audit/002-runtime-wiring-enterprise-readiness-audit",
+    "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-audit/003-documentation-truth-validation",
+    "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-audit/004-code-graph-watcher-claim-retraction",
+    "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-audit/005-memory-retention-policy-sweep",
+    "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-audit/006-runtime-matrix-execution-validation",
+    "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-audit/007-runtime-command-agent-alignment-audit",
+    "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-audit/008-audit-drift-findings-remediation"
   ],
   "migrated": true,
   "migration_source": "legacy",
@@ -91,7 +91,7 @@
     ],
     "causal_summary": "Coordinate system-wide audits, validation sweeps, and compliance checks to ensure runtime wiring correctness, security posture, documentation accuracy, and agent alignment. This phase parent binds together 8 children that perform targeted audits and remediation across security, runtime infrastructure, memory retention, execution validation, and drift detection, providing comprehensive validation coverage for the release cleanup effort.",
     "created_at": "2026-05-16T09:00:00Z",
-    "last_save_at": "2026-05-18T08:15:52.991Z",
+    "last_save_at": "2026-05-18T15:17:57.100Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

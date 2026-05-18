@@ -2,7 +2,7 @@
 
 ## Charter
 
-Investigate WHY the 008-end-user-scope-default packet required 4 review rounds
+Investigate WHY the 008-end-user-scope-default-and-opt-in packet required 4 review rounds
 (Run 1 CONDITIONAL → FIX-009 → Run 2 FAIL → FIX-009-v2 → Run 3 FAIL → FIX-009-v3
 → Run 4 PASS) to converge clean, despite each individual fix being focused and
 verified. Recommend specific edits to FIX prompt templates, sk-code-review,

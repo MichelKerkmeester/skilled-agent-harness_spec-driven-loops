@@ -45,7 +45,7 @@ _memory:
 ## Pre-Implementation
 
 - [x] CHK-210 [P0] ADR-001 read. (Phase 002 row and Q3 co-resident topology verified)
-- [x] CHK-211 [P0] Precedent packet read. (`001-design-and-decision-record` docs)
+- [x] CHK-211 [P0] Precedent packet read. (`001-extraction-design-and-adr` docs)
 - [x] CHK-212 [P1] Existing placeholder state inspected. (`system-code-graph` had empty SKILL/README/graph metadata)
 <!-- /ANCHOR:pre-impl -->
 

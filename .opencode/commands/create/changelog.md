@@ -100,7 +100,7 @@ The dispatched prompt body may contain one structured marker block. Parse it bef
 ```yaml
 PRE-BOUND SETUP ANSWERS:
   source_type: spec_folder  # spec_folder | component | git_history
-  spec_folder: .opencode/specs/103-example/001-finished-work/  # explicit path for spec_folder source
+  spec_folder: <spec-folder>  # explicit path for spec_folder source
   component_hint: system-spec-kit  # component slug/name when source_type is component
   version_bump: minor  # major | minor | patch | build | auto
   execution_mode: AUTONOMOUS  # from :auto suffix
@@ -343,7 +343,7 @@ The YAML workflow (Step 2) scans this directory to build the component mapping. 
 **Example 1: From spec folder (auto mode)**
 
 ```
-/create:changelog .opencode/specs/01--system-spec-kit/042-memory-upgrade :auto
+/create:changelog <spec-folder> :auto
 ```
 
 → Reads spec artifacts, detects component as `01--system-spec-kit`, calculates next version, generates changelog
@@ -375,7 +375,7 @@ The YAML workflow (Step 2) scans this directory to build the component mapping. 
 **Example 5: Create changelog AND publish release**
 
 ```
-/create:changelog .opencode/specs/01.../042... --release :auto
+/create:changelog <spec-folder> --release :auto
 ```
 
 → Creates changelog, creates annotated tag, pushes tag, creates GitHub release with formatted notes

@@ -51,7 +51,7 @@ Memory-mandated flags:
 ```bash
 PROMPT='Use the @markdown agent to scaffold a v0.1.0 changelog for a stub skill named sk-test-dummy via /create:changelog. Write the result to /tmp/sk-test-dummy-CHANGELOG-cli-opencode.md. Do NOT install the stub skill into the .opencode/skills/ tree. Report which agent received the work, which sk-doc resources were loaded, and the changelog sections produced.'
 
-EVIDENCE='/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/102-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/evidence/SD-020-cli-opencode.txt'
+EVIDENCE='/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/<spec-folder>'
 
 REPO_ROOT='/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public'
 
@@ -112,4 +112,4 @@ This scenario is fixed to `cli-opencode` with the DeepSeek v4 Pro DIRECT API pro
 - Playbook ID: SD-020
 - Canonical root source: `manual_testing_playbook.md`
 - Feature file path: `06--agent-dispatch/003-markdown-agent-cli-opencode.md`
-- Introduced by: `.opencode/specs/skilled-agent-orchestration/102-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage`
+- Introduced by: `<spec-folder>`

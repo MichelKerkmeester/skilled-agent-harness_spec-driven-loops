@@ -15,7 +15,7 @@ OpenCode 1.3.17+ auto-loads JavaScript files in `.opencode/plugins/` at session 
 - [2. QUICK START](#2--quick-start)
 - [3. CURRENT ENTRYPOINTS](#3--current-entrypoints)
 - [4. BRIDGE MODULES](#4--bridge-modules)
-- [5. CONFIGURATION (Packet 110)](#5-configuration-packet-110)
+- [5. CONFIGURATION](#5--configuration)
 - [6. UPGRADE NOTES](#6--upgrade-notes)
 - [7. RELATED](#7--related)
 
@@ -42,7 +42,7 @@ When OpenCode boots, every `.js` file in this folder is invoked once. To add a n
 | File | Role |
 |---|---|
 | `mk-skill-advisor.js` | Prompt-time Skill Advisor plugin. Surfaces a compact skill recommendation when a user prompt arrives. Routes via `mk-skill-advisor-bridge.mjs`. |
-| `mk-code-graph.js` | Transport-backed code-graph context plugin (OpenCode session integration). Routes context requests via `mk-code-graph-bridge.mjs`. The underlying MCP server name stays `mk-code-index` for stable tool-prefix `mcp__mk_code_index__*` — see ADR-002 in the 036 packet for the naming asymmetry rationale. |
+| `mk-code-graph.js` | Transport-backed code-graph context plugin (OpenCode session integration). Routes context requests via `mk-code-graph-bridge.mjs`. The underlying MCP server name stays `mk-code-index` for stable tool-prefix `mcp__mk_code_index__*`. |
 
 ---
 
@@ -56,11 +56,11 @@ Helper bridge modules are co-located with their owning skill, not in this folder
 
 This keeps plugin entrypoints minimal and lets owning skills own their bridge contracts.
 
-**Naming asymmetry note:** The plugin and bridge are named `mk-code-graph` (matching the `system-code-graph` skill folder). The underlying MCP server name remains `mk-code-index` (tool prefix `mcp__mk_code_index__*`), kept stable to avoid breaking tool consumers — see ADR-002 in the 036 packet.
+**Naming asymmetry note:** The plugin and bridge are named `mk-code-graph` (matching the `system-code-graph` skill folder). The underlying MCP server name remains `mk-code-index` (tool prefix `mcp__mk_code_index__*`), kept stable to avoid breaking tool consumers.
 
 ---
 
-## 5. CONFIGURATION (Packet 110)
+## 5. CONFIGURATION
 
 Both plugins support a **4-tier configuration precedence** (highest to lowest):
 

@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-import pytest
-
 from cocoindex_code.config import _DEFAULT_MODEL
 from cocoindex_code.registered_embedders import (
     MANIFESTS,
@@ -33,7 +31,7 @@ class TestRegistryShape:
         """Every entry has populated, schema-compliant fields."""
         for m in MANIFESTS:
             assert isinstance(m, EmbedderMetadata)
-            assert m.name.startswith(("sbert/", "litellm/"))
+            assert m.name.startswith(("sbert/", "litellm/", "ollama/"))
             assert m.dim > 0
             assert m.ram_mb > 0
             assert m.disk_mb > 0
@@ -41,6 +39,14 @@ class TestRegistryShape:
             assert m.category in ("text", "code")
             assert m.hf_url.startswith("https://huggingface.co/")
             assert len(m.notes) > 0
+            assert isinstance(m.requires_ollama_daemon, bool)
+
+    def test_ollama_candidate_is_registered(self) -> None:
+        metadata = get_embedder_metadata("ollama/nomic-embed-text")
+
+        assert metadata is not None
+        assert metadata.dim == 768
+        assert metadata.requires_ollama_daemon is True
 
 
 class TestDefaultAlignment:

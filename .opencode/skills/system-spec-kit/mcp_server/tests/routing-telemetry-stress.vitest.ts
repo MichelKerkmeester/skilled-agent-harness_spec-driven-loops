@@ -4,7 +4,7 @@
 // Stress coverage for routing-telemetry ring buffer + routeQuery latency
 // at higher N than the 012-T4.1 microbenchmark (200-iter), plus cache-
 // invalidation behavior under repeated invocations. Authored as scenario 3
-// closeout for packet 012-causal-graph-channel-routing.
+// closeout for packet 009-causal-graph-channel-routing.
 
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import { routeQuery } from '../lib/search/query-router';

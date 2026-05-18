@@ -37,7 +37,7 @@ Verify Memory MCP paraphrase recall: store a memory about FSRS, then query with 
 ### Commands
 
 1. Write a canonical research-doc file with the test content. memory_save requires a `filePath` to a canonical spec doc on the allowlist (`research.md` is the simplest fit). Path:
-   `.opencode/specs/_sandbox/24-401/research.md`
+   `<spec-folder>`
 
    File contents:
    ```markdown
@@ -100,5 +100,5 @@ memory_delete({ parent_id: STORED_ID })
 
 Then remove the on-disk test file:
 ```
-rm -rf .opencode/specs/_sandbox/24-401/
+rm -rf <spec-folder>
 ```

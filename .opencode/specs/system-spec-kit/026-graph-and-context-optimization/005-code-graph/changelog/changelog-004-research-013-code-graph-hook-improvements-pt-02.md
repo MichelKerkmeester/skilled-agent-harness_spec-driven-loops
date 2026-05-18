@@ -17,7 +17,7 @@ contextType: "research"
 
 ## 2026-04-22
 
-> Spec folder: `026-graph-and-context-optimization/005-code-graph/003-code-graph-hook-improvements/research/013-code-graph-hook-improvements-pt-02` (Research-only)
+> Spec folder: `026-graph-and-context-optimization/005-code-graph/003-resolver-and-hook-improvements/research/002-readiness-cocoindex-and-startup-contract-research` (Research-only)
 > Parent packet: `026-graph-and-context-optimization/005-code-graph`
 
 ### Summary
@@ -54,11 +54,11 @@ The investigation stopped at the 10-iteration cap. The `newInfoRatio` trajectory
 
 | File | What changed |
 |------|--------------|
-| `research/013-code-graph-hook-improvements-pt-02/research.md` (NEW) | Synthesis document with 17 sections |
-| `research/013-code-graph-hook-improvements-pt-02/iterations/iteration-01.md` through `iteration-10.md` (NEW) | Per-iteration pass narratives |
-| `research/013-code-graph-hook-improvements-pt-02/deltas/` (NEW) | Per-iteration delta records in JSONL |
-| `research/013-code-graph-hook-improvements-pt-02/findings-registry.json` (NEW) | Structured findings registry |
-| `research/013-code-graph-hook-improvements-pt-02/deep-research-*.json|md` (NEW) | Config, state, dashboard, strategy files |
+| `research/002-readiness-cocoindex-and-startup-contract-research/research.md` (NEW) | Synthesis document with 17 sections |
+| `research/002-readiness-cocoindex-and-startup-contract-research/iterations/iteration-01.md` through `iteration-10.md` (NEW) | Per-iteration pass narratives |
+| `research/002-readiness-cocoindex-and-startup-contract-research/deltas/` (NEW) | Per-iteration delta records in JSONL |
+| `research/002-readiness-cocoindex-and-startup-contract-research/findings-registry.json` (NEW) | Structured findings registry |
+| `research/002-readiness-cocoindex-and-startup-contract-research/deep-research-*.json|md` (NEW) | Config, state, dashboard, strategy files |
 
 ### Follow-Ups
 

@@ -1,5 +1,5 @@
 {
-  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-quality-issues/002-single-owner-metadata",
+  "specFolder": "<spec-folder>",
   "sessionSummary": "Phase 2 PR-3 validation keeps the importance-tier resolver authoritative while the managed-frontmatter rewrite re-emits both serialized tier locations from the same resolved value. This fixture models the historical drift case where an explicit important-tier save could later be normalized back to a default-looking frontmatter tier if migration treated the serializer as a second authority.",
   "importance_tier": "important",
   "filesModified": [

@@ -14,14 +14,14 @@
 ### Packet Docs
 
 - `022-stress-test-results-deep-research/research/research.md` - sampled research synthesis and evidence discipline.
-- `023-live-handler-envelope-capture-seam/implementation-summary.md:55-115` - PP-1 TC-3 stale limitation.
+- `023-live-handler-envelope-capture-interface/implementation-summary.md:55-115` - PP-1 TC-3 stale limitation.
 - `024-harness-telemetry-export-mode/implementation-summary.md` - harness export and telemetry context.
 - `025-memory-search-degraded-readiness-wiring/tasks.md:80-102` - stale blocked verification tasks.
 - `025-memory-search-degraded-readiness-wiring/implementation-summary.md:110-125` - TC-3 closure and focused verification.
 - `026-readiness-scaffolding-cleanup/implementation-summary.md:50-145` - zero-reference claim and broad-suite caveat.
 - `027-memory-context-structural-channel-research/research/research.md` - sampled research synthesis and deferred planning.
-- `028-deep-review-skill-contract-fixes/spec.md:1-40` - stale continuity/status.
-- `028-deep-review-skill-contract-fixes/implementation-summary.md:1-110` - completed resolver/YAML contract fix.
+- `028-deep-review-research-skill-contract-fixes/spec.md:1-40` - stale continuity/status.
+- `028-deep-review-research-skill-contract-fixes/implementation-summary.md:1-110` - completed resolver/YAML contract fix.
 
 ### Runtime and Test Code
 
@@ -48,9 +48,9 @@
 
 | Finding | File:line | Recommended action | Blocking severity |
 |---------|-----------|--------------------|-------------------|
-| F-001 | `023-live-handler-envelope-capture-seam/implementation-summary.md:64` | Amend active limitation/continuity to say 025 closed TC-3; keep historical test-only context if desired. | P1 |
+| F-001 | `023-live-handler-envelope-capture-interface/implementation-summary.md:64` | Amend active limitation/continuity to say 025 closed TC-3; keep historical test-only context if desired. | P1 |
 | F-002 | `025-memory-search-degraded-readiness-wiring/tasks.md:83` | Update tasks/completion criteria to reflect final `tsc --noEmit` pass after 026; remove blocked marker or add resolution note. | P1 |
-| F-004 | `028-deep-review-skill-contract-fixes/spec.md:17` | Update `_memory.continuity`, status, and completion percentage to match `implementation-summary.md`. | P1 |
+| F-004 | `028-deep-review-research-skill-contract-fixes/spec.md:17` | Update `_memory.continuity`, status, and completion percentage to match `implementation-summary.md`. | P1 |
 | F-005 | `026-readiness-scaffolding-cleanup/implementation-summary.md:58` | Decide broad-suite policy: fix unrelated stale failures or carry an explicit release-readiness allowlist. | P1 |
 | F-003 | `.opencode/skills/system-spec-kit/mcp_server/core/README.md:40` | Remove `embedding-readiness state` from `db-state.ts` ownership list. | P2 |
 | F-006 | `.opencode/skills/system-spec-kit/references/structure/folder_structure.md:196` | Change the first-run child example to flat `research/`/`review/`; show `pt-NN` only for conflict/branch cases. | P2 |
@@ -64,7 +64,7 @@
 
 ## Finding Cross-References
 
-- F-001 links `023-live-handler-envelope-capture-seam/implementation-summary.md:64` to final closure evidence in `025-memory-search-degraded-readiness-wiring/implementation-summary.md:122` and `handler-memory-search-live-envelope.vitest.ts:302`.
+- F-001 links `023-live-handler-envelope-capture-interface/implementation-summary.md:64` to final closure evidence in `025-memory-search-degraded-readiness-wiring/implementation-summary.md:122` and `handler-memory-search-live-envelope.vitest.ts:302`.
 - F-002 links `025-memory-search-degraded-readiness-wiring/tasks.md:83` to 026 final TypeScript pass evidence in `026-readiness-scaffolding-cleanup/implementation-summary.md:57`.
 - F-003 links stale docs in `core/README.md:40` to 026 zero-reference claim in `026-readiness-scaffolding-cleanup/implementation-summary.md:56`.
 - F-004 links stale `028/spec.md:17` to completion evidence in `028/implementation-summary.md:14` and resolver tests in `review-research-paths.vitest.ts:87`.

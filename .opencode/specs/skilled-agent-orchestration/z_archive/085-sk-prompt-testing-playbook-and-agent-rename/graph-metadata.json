@@ -1,11 +1,11 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/085-sk-prompt-testing-playbook-and-agent-rename",
-  "spec_folder": "skilled-agent-orchestration/085-sk-prompt-testing-playbook-and-agent-rename",
+  "packet_id": "skilled-agent-orchestration/z_archive/085-sk-prompt-testing-playbook-and-agent-rename",
+  "spec_folder": "skilled-agent-orchestration/z_archive/085-sk-prompt-testing-playbook-and-agent-rename",
   "parent_id": null,
   "children_ids": [
-    "skilled-agent-orchestration/085-sk-prompt-testing-playbook-and-agent-rename/001-prompt-improver-rename",
-    "skilled-agent-orchestration/085-sk-prompt-testing-playbook-and-agent-rename/002-sk-prompt-testing-playbook"
+    "skilled-agent-orchestration/z_archive/085-sk-prompt-testing-playbook-and-agent-rename/001-prompt-improver-rename",
+    "skilled-agent-orchestration/z_archive/085-sk-prompt-testing-playbook-and-agent-rename/002-sk-prompt-testing-playbook"
   ],
   "migrated": true,
   "migration_source": "legacy",
@@ -44,6 +44,7 @@
       ".opencode/specs/descriptions.json",
       ".codex/config.toml",
       "manual_testing_playbook/manual_testing_playbook.md",
+      ".claude/CLAUDE.md",
       "spec.md"
     ],
     "entities": [
@@ -75,6 +76,12 @@
         "name": "manual_testing_playbook.md",
         "kind": "doc",
         "path": "manual_testing_playbook/manual_testing_playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "CLAUDE.md",
+        "kind": "doc",
+        "path": ".claude/CLAUDE.md",
         "source": "derived"
       },
       {
@@ -122,13 +129,11 @@
     ],
     "causal_summary": "Two related gaps surfaced after packet 082 renamed the skill `sk-improve-prompt` → `sk-prompt`:",
     "created_at": "2026-05-06T15:30:00Z",
-    "last_save_at": "2026-05-06T17:40:34.468Z",
+    "last_save_at": "2026-05-18T15:17:57.028Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
-    ],
-    "last_active_child_id": null,
-    "last_active_at": "2026-05-06T17:40:34.468Z"
+    ]
   }
 }

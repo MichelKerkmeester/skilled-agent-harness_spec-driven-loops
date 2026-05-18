@@ -144,7 +144,7 @@ Three parallel Explore-agent audits surfaced the issues, the user locked three d
 |----------|-----|
 | Lightweight Smart Routing restructure (keep tool table as Resource Domains body) | This skill is tool-keyed, not folder-keyed. Adding the canonical Python `INTENT_MODEL`/`RESOURCE_MAP` pseudocode would be ceremonial when no `references/<key>/` subfolders exist to feed it. The classifier (`code_graph_classify_query_intent`) and the schema array (`CODE_GRAPH_TOOL_SCHEMAS`) are the router authority; the table documents the surface. |
 | Remove `_memory.continuity` from SKILL.md frontmatter | Continuity state belongs in the packet's `implementation-summary.md`, not in the skill's runtime contract. The block referenced a stale packet path (`029-system-code-graph-uplift`) that doesn't exist — corrected to the real parent (`026/005-code-graph/`). |
-| Land work in a new phase child (`021-cross-skill-doc-polish`) | Keeps the audit work isolated from the active `019-system-code-graph-uplift` packet. Doc-only scope, no architectural change, Level 2 documentation. |
+| Land work in a new phase child (`021-cross-skill-doc-polish`) | Keeps the audit work isolated from the active `019-system-code-graph-uplift-phase-parent` packet. Doc-only scope, no architectural change, Level 2 documentation. |
 <!-- /ANCHOR:decisions -->
 
 ---

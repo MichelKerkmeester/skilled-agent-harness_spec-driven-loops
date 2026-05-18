@@ -1,0 +1,25 @@
+{
+  "specFolder": "019-spec-kit-advisor-decoupling",
+  "description": "Fully isolate system-spec-kit from system-skill-advisor source imports by moving advisor-owned hooks/tests/stress coverage and replacing residual imports with local utilities or process-boundary gateways.",
+  "keywords": [
+    "spec-kit-advisor-decoupling",
+    "import-isolation",
+    "system-skill-advisor",
+    "hooks",
+    "mcp"
+  ],
+  "lastUpdated": "2026-05-15T06:55:00Z",
+  "specId": "019",
+  "folderSlug": "spec-kit-advisor-decoupling",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "006-skill-advisor",
+    "006-system-skill-advisor-package-extraction"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [
+    "019-advisor-schema-boundary-contract"
+  ],
+  "level": "3"
+}

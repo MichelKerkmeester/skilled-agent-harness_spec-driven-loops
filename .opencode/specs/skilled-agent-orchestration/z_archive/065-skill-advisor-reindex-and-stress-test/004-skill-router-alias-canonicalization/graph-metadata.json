@@ -1,22 +1,220 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/065-skill-advisor-reindex-and-stress-test/004-skill-router-alias-canonicalization",
-  "spec_folder": "skilled-agent-orchestration/065-skill-advisor-reindex-and-stress-test/004-skill-router-alias-canonicalization",
-  "parent_id": "skilled-agent-orchestration/065-skill-advisor-reindex-and-stress-test",
+  "packet_id": "skilled-agent-orchestration/z_archive/065-skill-advisor-reindex-and-stress-test/004-skill-router-alias-canonicalization",
+  "spec_folder": "skilled-agent-orchestration/z_archive/065-skill-advisor-reindex-and-stress-test/004-skill-router-alias-canonicalization",
+  "parent_id": "skilled-agent-orchestration/z_archive/065-skill-advisor-reindex-and-stress-test",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": ["skilled-agent-orchestration/065-skill-advisor-reindex-and-stress-test/001-baseline-reindex-and-stress-results"],
+    "depends_on": [
+      {
+        "packet_id": "skilled-agent-orchestration/065-skill-advisor-reindex-and-stress-test/001-baseline-reindex-and-stress-results",
+        "reason": "Imported from legacy graph-metadata.json",
+        "source": "legacy"
+      }
+    ],
     "supersedes": [],
     "related_to": []
   },
   "derived": {
-    "trigger_phrases": ["065/004 alias canonicalization", "skill router aliases"],
-    "key_topics": ["065", "004", "alias", "canonicalization"],
+    "trigger_phrases": [
+      "065/004 alias canonicalization",
+      "skill router aliases",
+      "deep review alias",
+      "065/004 plan",
+      "alias canonicalization plan",
+      "065/004 tasks",
+      "alias canonicalization tasks",
+      "065/004 checklist",
+      "alias canonicalization checklist",
+      "065/004 implementation summary",
+      "065/004 resource map",
+      "alias canonicalization resources"
+    ],
+    "key_topics": [
+      "065",
+      "004",
+      "alias",
+      "canonicalization",
+      "skill",
+      "router",
+      "aliases",
+      "deep",
+      "review",
+      "plan",
+      "tasks",
+      "checklist"
+    ],
+    "importance_tier": "high",
     "status": "complete",
-    "completion_pct": 100,
-    "last_active_child_id": null,
-    "level": 1,
-    "is_phase_parent": false,
-    "session_outcome": "complete_cp103_alias_aware_deep_review_pass"
+    "key_files": [
+      "resource-map.md",
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      ".opencode/commands/spec_kit/deep-review.md"
+    ],
+    "entities": [
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review.md",
+        "kind": "doc",
+        "path": ".opencode/commands/spec_kit/deep-review.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PROBLEM & PURPOSE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. SCOPE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "4. REQUIREMENTS",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "5. SUCCESS CRITERIA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "6. RISKS & DEPENDENCIES",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "alias-aware",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. ARCHITECTURE",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "4. IMPLEMENTATION PHASES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "5. TESTING STRATEGY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. TASK NOTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PHASE 1: SETUP",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "T-001: [x] Inventory command/skill id pairs",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "T-002: [x] Reproduce CP-103 WARN",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. PHASE 2: IMPLEMENTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "CP-103 expected `spec_kit:deep-review`, while the advisor returned `sk-deep-review`. The underlying capability was present, but the campaign could only score it as WARN because accepted aliases are not formalized.",
+    "created_at": "2026-05-18T07:49:27.134Z",
+    "last_save_at": "2026-05-18T15:17:56.949Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "resource-map.md"
+    ]
   }
 }

@@ -72,7 +72,7 @@ The dispatched prompt body may contain one structured marker block. Parse it bef
 ```yaml
 PRE-BOUND SETUP ANSWERS:
   research_topic: WebSocket reconnection strategies  # string
-  spec_folder: .opencode/specs/103-example/001-research/  # existing | new | update-related | phase-folder | explicit path
+  spec_folder: <spec-folder>  # existing | new | update-related | phase-folder | explicit path
   execution_mode: AUTONOMOUS  # from :auto suffix
   maxIterations: 10  # positive integer
   convergenceThreshold: 0.05  # decimal 0..1

@@ -1,0 +1,25 @@
+{
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-deep-research-findings-remediation/003-skill-advisor-quality-remediation",
+  "description": "Feature Specification: 003 Advisor Quality",
+  "keywords": [
+    "feature",
+    "specification",
+    "003",
+    "advisor",
+    "quality"
+  ],
+  "lastUpdated": "2026-05-08T08:26:57.450Z",
+  "specId": "003",
+  "folderSlug": "advisor-quality",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "000-release-cleanup",
+    "004-deep-research-findings-remediation"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "01-05-26_08-18__closed-8-advisor-quality-findings-f-006-b1-01-03.md",
+    "01-05-26_08-20__closed-8-advisor-quality-findings-f-006-b1-01-03.md"
+  ]
+}

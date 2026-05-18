@@ -335,7 +335,7 @@ Wave 2 executed per `998-aggressive-restructure-research/resource-map.md`.
 
 - **W2.A graph-metadata sync**: 000 children_ids 7→59→6 sub-phases; 008 children_ids 13→26→5 sub-phases; 026 parent gained `phase_sequence`, `meta_phase_ids`, `phase_parent_flag`, `phase_renames`, `resume_priority` derived fields per iter 015.
 - **W2.B 000 recatalog**: 59 flat children → 6 sub-phases (001-release-readiness/002-audit/003-cleanup/004-followup-post-program/005-stress-test/006-research) per 998 iter-003 keyword rules.
-- **W2.C M10 unblock**: 015-tanstack-security-audit absorbed → 000/002-audit/001-tanstack-security-audit. 015 top-level slot freed.
+- **W2.C M10 unblock**: 015-tanstack-security-audit absorbed → 000/002-audit/001-dependency-security-supply-chain-audit. 015 top-level slot freed.
 - **W2.D 008 5 sub-phases**: 26 children → skill-graph 7 / scorer 8 / router 5 / hardening 4 / docs 2 per 998 iter-005.
 
 ### Active top-level children (post-Wave-2)

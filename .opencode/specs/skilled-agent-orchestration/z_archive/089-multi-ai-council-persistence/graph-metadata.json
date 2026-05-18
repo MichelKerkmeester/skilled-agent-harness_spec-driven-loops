@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/089-multi-ai-council-persistence",
-  "spec_folder": "skilled-agent-orchestration/089-multi-ai-council-persistence",
+  "packet_id": "skilled-agent-orchestration/z_archive/089-multi-ai-council-persistence",
+  "spec_folder": "skilled-agent-orchestration/z_archive/089-multi-ai-council-persistence",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -41,13 +41,7 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      ".opencode/skills/system-spec-kit/scripts/multi-ai-council/persist-artifacts.cjs",
-      ".opencode/skills/system-spec-kit/references/multi-ai-council/output-schema.md",
       ".opencode/skills/system-spec-kit/scripts/tests/multi-ai-council-persist-artifacts.vitest.ts",
-      ".opencode/agents/multi-ai-council.md",
-      ".claude/agents/multi-ai-council.md",
-      ".gemini/agents/multi-ai-council.md",
-      ".codex/agents/multi-ai-council.toml",
       ".opencode/skills/system-spec-kit/scripts/tests/multi-ai-council-validator.vitest.ts",
       ".opencode/skills/system-spec-kit/scripts/tests/multi-ai-council-mirror-parity.vitest.ts",
       "decision-record.md",
@@ -55,42 +49,18 @@
       "plan.md",
       "checklist.md",
       "tasks.md",
-      ".opencode/specs/skilled-agent-orchestration/080-multi-ai-council-output-protocol/research/research.md",
       ".opencode/skills/system-spec-kit/scripts/tests/fixtures/multi-ai-council/council-output-full.md",
       ".opencode/skills/system-spec-kit/scripts/tests/fixtures/multi-ai-council/council-output-minimal.md",
       ".opencode/skills/system-spec-kit/scripts/tests/fixtures/multi-ai-council/council-output-missing-required.md",
-      "references/multi-ai-council/output-schema.md",
-      "scripts/tests/multi-ai-council-persist-artifacts.vitest.ts"
+      "scripts/tests/multi-ai-council-persist-artifacts.vitest.ts",
+      "scripts/tests/multi-ai-council-mirror-parity.vitest.ts",
+      "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "persist-artifacts.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/scripts/multi-ai-council/persist-artifacts.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "output-schema.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/references/multi-ai-council/output-schema.md",
-        "source": "derived"
-      },
       {
         "name": "multi-ai-council-persist-artifacts.vitest.ts",
         "kind": "test",
         "path": ".opencode/skills/system-spec-kit/scripts/tests/multi-ai-council-persist-artifacts.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "multi-ai-council.md",
-        "kind": "doc",
-        "path": ".opencode/agents/multi-ai-council.md",
-        "source": "derived"
-      },
-      {
-        "name": "multi-ai-council.toml",
-        "kind": "file",
-        "path": ".codex/agents/multi-ai-council.toml",
         "source": "derived"
       },
       {
@@ -154,6 +124,12 @@
         "source": "derived"
       },
       {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -206,11 +182,29 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Setup Spec",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Packet 080 introduced the `ai-council/` subfolder convention but the agent retains `write: deny` per its planning-only invariant — actual persistence requires an orchestrator. Packet 080's 10-iteration deep-research (research.md §7) produced a concrete P0 scope: ship a persistence helper, document a normative caller protocol (§17), promote §8 OUTPUT FORMAT to a shared schema artifact, add fixture-driven tests, harden the validator regression test, and add 4-runtime mirror parity testing. This packet delivers all six items while preserving ADR-001's lightweight bound (no dedicated skill folder).",
     "created_at": "2026-05-06T17:06:24Z",
-    "last_save_at": "2026-05-06T17:28:14.557Z",
+    "last_save_at": "2026-05-18T15:17:57.035Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

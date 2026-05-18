@@ -1,0 +1,24 @@
+{
+  "specFolder": "006-cross-skill-propagation",
+  "description": "Feature Specification: cross-skill propagation",
+  "keywords": [
+    "feature",
+    "specification",
+    "cross-skill",
+    "propagation"
+  ],
+  "lastUpdated": "2026-05-18T12:42:58.569Z",
+  "specId": "006",
+  "folderSlug": "cross-skill-propagation",
+  "parentChain": [
+    "..",
+    ".opencode",
+    "specs",
+    "skilled-agent-orchestration",
+    "114-small-ai-model-optimization"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "18-05-26_13-42__phase-e-cross-skill-propagation-packet-authored.md"
+  ]
+}

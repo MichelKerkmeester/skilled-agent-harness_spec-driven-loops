@@ -1,14 +1,13 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/070-sk-deep-rename/004-runtime-mirrors",
-  "spec_folder": "skilled-agent-orchestration/070-sk-deep-rename/004-runtime-mirrors",
-  "parent_id": "skilled-agent-orchestration/070-sk-deep-rename",
+  "packet_id": "skilled-agent-orchestration/z_archive/070-sk-deep-rename/004-runtime-mirrors",
+  "spec_folder": "skilled-agent-orchestration/z_archive/070-sk-deep-rename/004-runtime-mirrors",
+  "parent_id": "skilled-agent-orchestration/z_archive/070-sk-deep-rename",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      "skilled-agent-orchestration/070-sk-deep-rename",
-      "skilled-agent-orchestration/070-sk-deep-rename/001-discovery-impact-map"
-    ],
+    "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
@@ -18,42 +17,202 @@
       "runtime mirrors",
       "claude codex gemini deep skill rename",
       "sk-deep-review -> deep-review",
-      "sk-deep-research -> deep-research"
+      "sk-deep-research -> deep-research",
+      "070 phase 004 plan",
+      "runtime mirror rename plan",
+      "claude codex gemini rename plan",
+      "070 phase 004 tasks",
+      "runtime mirror rename tasks",
+      "claude codex gemini tasks",
+      "070 phase 004 checklist"
     ],
     "key_topics": [
-      "runtime-mirrors",
-      "claude-agents",
-      "codex-agents",
-      "gemini-agents",
-      "deep-skill-rename"
+      "070",
+      "phase",
+      "004",
+      "runtime",
+      "mirrors",
+      "claude",
+      "codex",
+      "gemini",
+      "deep",
+      "skill",
+      "rename",
+      "sk-deep-review"
     ],
     "importance_tier": "important",
-    "status": "blocked",
+    "status": "in_progress",
     "key_files": [
+      ".claude/agents/deep-research.md",
+      ".claude/agents/deep-review.md",
+      ".claude/agents/orchestrate.md",
+      ".gemini/agents/deep-research.md",
+      ".gemini/agents/deep-review.md",
+      ".gemini/agents/orchestrate.md",
+      ".gemini/commands/spec_kit/deep-research.toml",
+      ".codex/agents/deep-review.toml",
+      ".codex/agents/deep-research.toml",
+      ".codex/agents/orchestrate.toml",
+      ".codex/config.toml",
       "spec.md",
+      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+      ".claude/agents/README.txt",
+      ".codex/agents/README.txt",
+      ".gemini/agents/README.txt",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md",
-      "description.json",
-      "graph-metadata.json",
-      ".claude/agents",
-      ".codex/agents",
-      ".gemini/agents",
-      ".gemini/commands/spec_kit/deep-research.toml"
+      "implementation-summary.md"
     ],
     "entities": [
-      "deep-review",
-      "deep-research",
-      "sk-deep-review",
-      "sk-deep-research",
-      ".claude",
-      ".codex",
-      ".gemini"
+      {
+        "name": "deep-research.md",
+        "kind": "doc",
+        "path": ".claude/agents/deep-research.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review.md",
+        "kind": "doc",
+        "path": ".claude/agents/deep-review.md",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrate.md",
+        "kind": "doc",
+        "path": ".claude/agents/orchestrate.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research.toml",
+        "kind": "file",
+        "path": ".gemini/commands/spec_kit/deep-research.toml",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review.toml",
+        "kind": "file",
+        "path": ".codex/agents/deep-review.toml",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrate.toml",
+        "kind": "file",
+        "path": ".codex/agents/orchestrate.toml",
+        "source": "derived"
+      },
+      {
+        "name": "config.toml",
+        "kind": "file",
+        "path": ".codex/config.toml",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".claude/agents/README.txt",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Runtime Mirrors",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Initialized Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Planned Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
     ],
-    "causal_summary": "Phase 004 updated writable Claude and Gemini runtime mirror references, but Codex runtime mirror references remain blocked by sandbox write denial.",
+    "causal_summary": "Phase 001 found runtime mirror files in `.claude`, `.codex`, and `.gemini` that still reference the old deep-loop skill names. These mirrors must match the canonical post-rename skill IDs so runtime-specific agents and commands no longer point readers or dispatch metadata at stale skill names.",
     "created_at": "2026-05-05T16:20:37Z",
-    "last_save_at": "2026-05-05T16:20:37Z",
+    "last_save_at": "2026-05-18T15:17:56.981Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-05T16:20:37Z",
     "source_docs": [
@@ -63,6 +222,5 @@
       "checklist.md",
       "implementation-summary.md"
     ]
-  },
-  "importance_tier": "important"
+  }
 }

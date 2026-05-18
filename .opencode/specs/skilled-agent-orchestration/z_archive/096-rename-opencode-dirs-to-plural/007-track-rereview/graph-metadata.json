@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/007-track-rereview",
-  "spec_folder": "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/007-track-rereview",
-  "parent_id": null,
+  "packet_id": "skilled-agent-orchestration/z_archive/096-rename-opencode-dirs-to-plural/007-track-rereview",
+  "spec_folder": "skilled-agent-orchestration/z_archive/096-rename-opencode-dirs-to-plural/007-track-rereview",
+  "parent_id": "skilled-agent-orchestration/z_archive/096-rename-opencode-dirs-to-plural",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -47,16 +47,11 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      ".opencode/specs/skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/007-track-rereview/review/review-report.md",
-      ".opencode/specs/skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/007-track-rereview/review/resource-map.md",
-      ".opencode/specs/skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/007-track-rereview/implementation-summary.md",
       "implementation-summary.md",
       "review/review-report.md",
       "review/resource-map.md",
       ".opencode/skills/system-spec-kit/shared/review-research-paths.cjs",
       ".opencode/skills/deep-review/scripts/reduce-state.cjs",
-      ".opencode/specs/skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/002-track-review/review/review-report.md",
-      ".opencode/specs/skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/004-track-rereview/review/review-report.md",
       "review/deep-review-dashboard.md"
     ],
     "entities": [
@@ -85,15 +80,15 @@
         "source": "derived"
       },
       {
-        "name": "review-report.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": ".opencode/specs/skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/007-track-rereview/review/review-report.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
+        "name": "review-report.md",
         "kind": "doc",
-        "path": ".opencode/specs/skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/007-track-rereview/implementation-summary.md",
+        "path": "review/review-report.md",
         "source": "derived"
       },
       {
@@ -207,7 +202,7 @@
     ],
     "causal_summary": "Packet 099 (re-review of 093-098) converged with verdict FAIL on 2026-05-07: 0 P0, 13 P1, 6 P2.",
     "created_at": "2026-05-07T20:55:00Z",
-    "last_save_at": "2026-05-07T22:23:11.659Z",
+    "last_save_at": "2026-05-18T15:17:57.065Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

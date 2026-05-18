@@ -207,7 +207,7 @@
     ],
     "causal_summary": "Evergreen docs were carrying mutable packet and phase references. Those references rot when packet folders are renumbered, archived, or consolidated, even though the runtime behavior they describe remains current.",
     "created_at": "2026-04-29T20:05:00.000Z",
-    "last_save_at": "2026-05-18T08:15:53.112Z",
+    "last_save_at": "2026-05-18T15:17:57.140Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

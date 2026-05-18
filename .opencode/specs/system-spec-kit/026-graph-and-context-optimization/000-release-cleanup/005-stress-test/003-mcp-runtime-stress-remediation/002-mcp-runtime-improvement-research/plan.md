@@ -150,7 +150,7 @@ This is a research packet — no code is shipped. Testing is verification of the
 | Dependency | Source | Notes |
 |------------|--------|-------|
 | 005-memory-search-runtime-bugs spec docs | Sibling packet on disk | Source for REQ-001..017 + REQ-018/019 candidates |
-| 001-search-intelligence-stress-test findings | Just committed Phase A | Source for v1.0.0 + v1.0.1 averages and model hallucination class |
+| 001-search-intelligence-stress-playbook findings | Just committed Phase A | Source for v1.0.0 + v1.0.1 averages and model hallucination class |
 | /spec_kit:deep-research:auto skill | .opencode/skills/sk-deep-research/ | Owns iteration state and convergence detection |
 | cli-codex CLI with gpt-5.5 | Installed and authenticated | Per-iteration investigation executor |
 <!-- /ANCHOR:dependencies -->

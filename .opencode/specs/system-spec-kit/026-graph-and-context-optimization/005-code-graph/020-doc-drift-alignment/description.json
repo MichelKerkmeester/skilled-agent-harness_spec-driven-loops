@@ -1,0 +1,22 @@
+{
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/020-doc-drift-alignment",
+  "description": "Reconcile four doc-drift issues across the system-code-graph skill: tool count (10/12 \u2192 11) in SKILL.md/README.md/ARCHITECTURE.md/INSTALL_GUIDE.md/feature_catalog.md/graph-metadata.json; graph-metadata.json topology (co-resident \u2192 standalone); SKILL.md _memory.continuity refresh; and version string 1.0.0.0 \u2192 1.0.3.1. Doc-only, no source-code changes.",
+  "keywords": [
+    "doc-drift",
+    "tool-count-reconciliation",
+    "graph-metadata-topology",
+    "system-code-graph",
+    "mk-code-index"
+  ],
+  "lastUpdated": "2026-05-16T09:01:20Z",
+  "specId": "020",
+  "folderSlug": "system-code-graph-doc-alignment",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "005-code-graph"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

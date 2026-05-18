@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/079-sk-deep-agent-improvement",
-  "spec_folder": "skilled-agent-orchestration/079-sk-deep-agent-improvement",
+  "packet_id": "skilled-agent-orchestration/z_archive/079-sk-deep-agent-improvement",
+  "spec_folder": "skilled-agent-orchestration/z_archive/079-sk-deep-agent-improvement",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -41,40 +41,28 @@
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py",
-      ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json",
       ".opencode/skills/system-spec-kit/mcp_server/database/skill-graph.sqlite",
       ".opencode/skills/README.md",
       ".opencode/skills/system-spec-kit/changelog/v3.3.0.0.md",
       ".opencode/commands/improve/agent.md",
       ".gemini/commands/improve/improve-agent.toml",
-      ".codex/agents/improve-agent.toml",
-      ".opencode/agents/improve-agent.md",
-      ".claude/agents/improve-agent.md",
-      ".gemini/agents/improve-agent.md",
       ".opencode/install_guides/README.md",
-      "code_graph/lib/index-scope-policy.ts",
-      "code_graph/tests/code-graph-query-handler.vitest.ts",
       "matrix_runners/run-matrix.ts",
       ".opencode/skills/deep-agent-improvement/SKILL.md",
       ".opencode/skills/deep-agent-improvement/changelog/v1.3.0.0.md",
-      "dist/skill_advisor/lib/scorer/fusion.js",
       "changelog/v3.3.0.0.md",
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "resource-map.md",
+      ".opencode/install_guides/SET-UP - AGENTS.md",
+      "implementation-summary.md",
+      "database/skill-graph.sqlite",
+      ".opencode/commands/improve/README.txt",
+      ".opencode/skills/deep-agent-improvement/README.md"
     ],
     "entities": [
-      {
-        "name": "skill_advisor.py",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py",
-        "source": "derived"
-      },
-      {
-        "name": "skill-graph.json",
-        "kind": "config",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json",
-        "source": "derived"
-      },
       {
         "name": "skill-graph.sqlite",
         "kind": "file",
@@ -106,24 +94,6 @@
         "source": "derived"
       },
       {
-        "name": "improve-agent.md",
-        "kind": "doc",
-        "path": ".opencode/agents/improve-agent.md",
-        "source": "derived"
-      },
-      {
-        "name": "index-scope-policy.ts",
-        "kind": "code",
-        "path": "code_graph/lib/index-scope-policy.ts",
-        "source": "derived"
-      },
-      {
-        "name": "code-graph-query-handler.vitest.ts",
-        "kind": "test",
-        "path": "code_graph/tests/code-graph-query-handler.vitest.ts",
-        "source": "derived"
-      },
-      {
         "name": "run-matrix.ts",
         "kind": "code",
         "path": "matrix_runners/run-matrix.ts",
@@ -142,15 +112,51 @@
         "source": "derived"
       },
       {
-        "name": "fusion.js",
-        "kind": "code",
-        "path": "dist/skill_advisor/lib/scorer/fusion.js",
-        "source": "derived"
-      },
-      {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "SET-UP - AGENTS.md",
+        "kind": "doc",
+        "path": ".opencode/install_guides/SET-UP - AGENTS.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".opencode/commands/improve/README.txt",
         "source": "derived"
       },
       {
@@ -200,17 +206,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Overview Symbolic",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The skill folder `.opencode/skills/sk-improve-agent/` is named with the legacy `sk-` prefix that has been deprecated for autonomous-loop skills. Sister skills `sk-deep-review` and `sk-deep-research` were renamed to `deep-review` / `deep-research` in packet 070-sk-deep-rename (2026-05-01/02), establishing the convention that skills carrying autonomous iteration/evaluation loops adopt a `deep-*` semantic prefix. `sk-improve-agent` is the third skill in this family — it runs an evaluator-first improvement loop with packet-local candidates, deterministic scoring, and promotion gates — but its name is still inconsistent with the modern convention. The mismatch causes two practical problems: (a) skill-advisor trigger phrases and graph relationships are awkwardly bifurcated between `sk-` and non-`sk-` family signals, and (b) discoverability suffers because users searching for \"deep agent improvement\" do not naturally find a skill called `sk-improve-agent`.",
     "created_at": "2026-05-06T07:55:50.002Z",
-    "last_save_at": "2026-05-06T13:07:34.019Z",
+    "last_save_at": "2026-05-18T15:17:57.010Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

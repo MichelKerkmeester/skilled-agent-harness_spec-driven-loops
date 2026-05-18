@@ -16,7 +16,7 @@ contextType: "implementation"
 
 ## 2026-05-06
 
-> Spec folder: `026-graph-and-context-optimization/005-code-graph/011-real-world-usefulness-test` (Level 2, Phase Parent)
+> Spec folder: `026-graph-and-context-optimization/005-code-graph/011-real-world-usefulness-test-planning` (Level 2, Phase Parent)
 
 ### Summary
 
@@ -32,13 +32,13 @@ The 012 track has 7 child phases. Each has its own changelog:
 
 | Child | Date | Title | Changelog |
 |-------|------|-------|-----------|
-| 012/001 | 2026-05-05 | Real-World Usefulness Test Execution | [changelog-012-001-execution.md](./changelog-012-001-execution.md) |
-| 012/002 | 2026-05-05 | Native Rerun of Deferred Usefulness Cells | [changelog-012-002-native-rerun.md](./changelog-012-002-native-rerun.md) |
-| 012/003 | 2026-05-06 | Deep Research Issues | [changelog-012-003-deep-research-issues.md](./changelog-012-003-deep-research-issues.md) |
-| 012/004 | 2026-05-06 | Index Can No Longer Be Wiped | [changelog-012-004-remediation.md](./changelog-012-004-remediation.md) |
-| 012/005 | 2026-05-06 | Scope Changes Need Explicit Consent | [changelog-012-005-scope-guard.md](./changelog-012-005-scope-guard.md) |
-| 012/006 | 2026-05-06 | Cluster A to E Polish | [changelog-012-006-cluster-a-to-e.md](./changelog-012-006-cluster-a-to-e.md) |
-| 012/007 | 2026-05-06 | Tree-sitter Parser Resilience | [changelog-012-007-tree-sitter-parser-resilience.md](./changelog-012-007-tree-sitter-parser-resilience.md) |
+| 012/001 | 2026-05-05 | Real-World Usefulness Test Execution | [changelog-012-001-sandbox-usefulness-trials.md](./changelog-012-001-sandbox-usefulness-trials.md) |
+| 012/002 | 2026-05-05 | Native Rerun of Deferred Usefulness Cells | [changelog-012-002-native-deferred-trial-rerun.md](./changelog-012-002-native-deferred-trial-rerun.md) |
+| 012/003 | 2026-05-06 | Deep Research Issues | [changelog-012-003-code-graph-bug-surface-research.md](./changelog-012-003-code-graph-bug-surface-research.md) |
+| 012/004 | 2026-05-06 | Index Can No Longer Be Wiped | [changelog-012-004-zero-node-and-parser-remediation.md](./changelog-012-004-zero-node-and-parser-remediation.md) |
+| 012/005 | 2026-05-06 | Scope Changes Need Explicit Consent | [changelog-012-005-scope-change-scan-guard.md](./changelog-012-005-scope-change-scan-guard.md) |
+| 012/006 | 2026-05-06 | Cluster A to E Polish | [changelog-012-006-readiness-hooks-advisor-polish.md](./changelog-012-006-readiness-hooks-advisor-polish.md) |
+| 012/007 | 2026-05-06 | Tree-sitter Parser Resilience | [changelog-012-007-tree-sitter-parser-crash-resilience.md](./changelog-012-007-tree-sitter-parser-crash-resilience.md) |
 
 ### Added
 
@@ -74,13 +74,13 @@ The 012 track has 7 child phases. Each has its own changelog:
 
 | File | What changed |
 |------|--------------|
-| `011-real-world-usefulness-test/001-execution/` | Sandbox usefulness trials and synthesis |
-| `011-real-world-usefulness-test/002-native-rerun/` | Native rerun protocol and backlog fixes |
-| `011-real-world-usefulness-test/003-deep-research-issues/` | 10-iteration deep-research sweep |
-| `011-real-world-usefulness-test/004-remediation/` | P0 zero-node scan rejection |
-| `011-real-world-usefulness-test/005-scope-guard/` | P1 scope-change force flag |
-| `011-real-world-usefulness-test/006-cluster-a-to-e/` | Medium-priority cluster polish |
-| `011-real-world-usefulness-test/007-tree-sitter-parser-resilience/` | Parser skip-list and quarantine sentinel |
+| `011-real-world-usefulness-test-planning/001-sandbox-usefulness-trials/` | Sandbox usefulness trials and synthesis |
+| `011-real-world-usefulness-test-planning/002-native-deferred-trial-rerun/` | Native rerun protocol and backlog fixes |
+| `011-real-world-usefulness-test-planning/003-code-graph-bug-surface-research/` | 10-iteration deep-research sweep |
+| `011-real-world-usefulness-test-planning/004-zero-node-and-parser-remediation/` | P0 zero-node scan rejection |
+| `011-real-world-usefulness-test-planning/005-scope-change-scan-guard/` | P1 scope-change force flag |
+| `011-real-world-usefulness-test-planning/006-readiness-hooks-advisor-polish/` | Medium-priority cluster polish |
+| `011-real-world-usefulness-test-planning/007-tree-sitter-parser-crash-resilience/` | Parser skip-list and quarantine sentinel |
 
 ### Follow-Ups
 

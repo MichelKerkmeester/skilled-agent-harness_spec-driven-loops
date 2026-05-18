@@ -59,7 +59,7 @@ Keep additions BRIEF — one or two sentences each in the relevant section, with
 #### Issue 5: Evergreen-doc rule violation
 
 Per the rule (root README is evergreen-class, packet IDs forbidden):
-- **Line 514** has a hardlink to `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/004-cocoindex-overfetch-dedup/` — replace with a feature-description + path pattern. E.g., "Patches authored as part of the cocoindex overfetch dedup work; see `.opencode/skills/mcp-coco-index/changelog/CHANGELOG.md` for the per-release patch list" — and remove the explicit packet-folder URL.
+- **Line 514** has a hardlink to `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/004-cocoindex-overfetch-dedup-rerank/` — replace with a feature-description + path pattern. E.g., "Patches authored as part of the cocoindex overfetch dedup work; see `.opencode/skills/mcp-coco-index/changelog/CHANGELOG.md` for the per-release patch list" — and remove the explicit packet-folder URL.
 
 Other "packet-shaped" matches in the README that are NOT violations (per the rule's exemption for instructional template content):
 - Lines 230-238: `022-big-feature/`, `001-data-model/`, `002-api-endpoints/`, `003-frontend/` — these are illustrative spec-folder examples in a code block, not real packet refs. Keep as-is.

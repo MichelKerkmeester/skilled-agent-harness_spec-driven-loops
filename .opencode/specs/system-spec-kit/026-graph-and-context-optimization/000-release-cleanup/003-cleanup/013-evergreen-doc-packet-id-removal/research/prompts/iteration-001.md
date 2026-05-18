@@ -101,7 +101,7 @@ If the grep is empty: PASS. If hits remain: fix or document why (e.g., a legitim
 
 PLUS: `audit-findings.md` at packet root.
 
-**Deps**: `manual.depends_on=["system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-followup-quality-pass/004-sk-doc-template-alignment","system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-stress-test-folder-completion","system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/012-code-graph-catalog-and-playbook"]`. (Picks up after 038 + 039 land so it can audit their output too.)
+**Deps**: `manual.depends_on=["system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-post-program-quality-pass/004-sk-doc-template-alignment","system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-stress-test-folder-completion","system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/012-code-graph-catalog-and-playbook"]`. (Picks up after 038 + 039 land so it can audit their output too.)
 
 **Trigger phrases**: `["013-evergreen-doc-packet-id-removal","evergreen doc rule","no packet ids in readmes","sk-doc evergreen rule","packet id audit"]`.
 

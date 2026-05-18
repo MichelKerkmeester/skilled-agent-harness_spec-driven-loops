@@ -40,7 +40,7 @@ The indexed-continuity store indexes content from two active sources, plus a ret
 
 | Source | Location Pattern | Memory Type | Default Tier | Discovery |
 |--------|-----------------|-------------|--------------|-----------|
-| **Spec Documents** | `specs/**/*.md` and `.opencode/specs/**/*.md` | Per-type (spec, plan, tasks, etc.) | `normal` | `findSpecDocuments()` |
+| **Spec Documents** | `specs/**/*.md` and `<active-spec-folder>/**/*.md` | Per-type (spec, plan, tasks, etc.) | `normal` | `findSpecDocuments()` |
 | **Constitutional Rules** | `.opencode/skills/*/constitutional/*.md` | `meta-cognitive` | `constitutional` | `findConstitutionalFiles()` |
 | **Retired Compatibility Artifacts** | Older `specs/*/memory/*.{md,txt}` files already present in historical packets | Varies (episodic, procedural, etc.) | `normal` | Historical compatibility only |
 

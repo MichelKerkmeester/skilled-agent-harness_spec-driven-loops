@@ -1,5 +1,5 @@
 {
-  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-graph-context-systems/004-graphify",
+  "specFolder": "<spec-folder>",
   "sessionSummary": "Investigated sibling-memory trigger duplication while keeping the claude optimization settings continuation discoverable for Phase 6.",
   "triggerPhrases": [
     "claude optimization settings"

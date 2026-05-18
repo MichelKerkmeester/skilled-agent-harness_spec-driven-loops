@@ -43,7 +43,7 @@ _memory:
 | **Status** | scaffolded |
 | **Created** | 2026-05-12 |
 | **Parent Packet** | `system-spec-kit/027-xce-research-based-refinement/009-code-graph-impact-analysis` |
-| **Soft Dependency** | `system-spec-kit/027-xce-research-based-refinement/007-code-graph-hld-lld/001-contract` |
+| **Soft Dependency** | `system-spec-kit/027-xce-research-based-refinement/005-code-graph-hld-lld/001-contract` |
 <!-- /ANCHOR:metadata -->
 
 ---

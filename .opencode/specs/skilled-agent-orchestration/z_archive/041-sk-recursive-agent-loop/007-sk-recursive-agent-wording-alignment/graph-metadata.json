@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/041-sk-recursive-agent-loop/007-sk-recursive-agent-wording-alignment",
-  "spec_folder": "skilled-agent-orchestration/041-sk-recursive-agent-loop/007-sk-recursive-agent-wording-alignment",
-  "parent_id": "skilled-agent-orchestration/041-sk-recursive-agent-loop",
+  "packet_id": "skilled-agent-orchestration/z_archive/041-sk-recursive-agent-loop/007-sk-recursive-agent-wording-alignment",
+  "spec_folder": "skilled-agent-orchestration/z_archive/041-sk-recursive-agent-loop/007-sk-recursive-agent-wording-alignment",
+  "parent_id": "skilled-agent-orchestration/z_archive/041-sk-recursive-agent-loop",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -40,8 +40,6 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-improve-agent/SKILL.md",
-      ".opencode/skills/sk-improve-agent/README.md",
       ".opencode/specs/descriptions.json",
       "spec.md",
       "plan.md",
@@ -50,18 +48,6 @@
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-improve-agent/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-improve-agent/README.md",
-        "source": "derived"
-      },
       {
         "name": "descriptions.json",
         "kind": "config",
@@ -193,11 +179,23 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Date",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "After phase `006`, the agent-improver program was structurally aligned, but several current surfaces still had awkward phrasing, inconsistent terminology, or minor wording bugs across the source skill package, runtime mirrors, wrapper prompts, and parent packet docs.",
     "created_at": "2026-04-12T09:02:50.188Z",
-    "last_save_at": "2026-04-26T09:17:15.228Z",
+    "last_save_at": "2026-05-18T15:17:56.864Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

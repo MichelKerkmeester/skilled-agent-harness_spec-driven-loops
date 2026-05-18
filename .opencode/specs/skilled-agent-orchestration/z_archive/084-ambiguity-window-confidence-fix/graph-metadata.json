@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/084-ambiguity-window-confidence-fix",
-  "spec_folder": "skilled-agent-orchestration/084-ambiguity-window-confidence-fix",
+  "packet_id": "skilled-agent-orchestration/z_archive/084-ambiguity-window-confidence-fix",
+  "spec_folder": "skilled-agent-orchestration/z_archive/084-ambiguity-window-confidence-fix",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -41,44 +41,12 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      "mcp_server/skill_advisor/lib/scorer/ambiguity.ts",
-      "mcp_server/skill_advisor/tests/scorer/native-scorer.vitest.ts",
-      "mcp_server/skill_advisor/tests/scorer/advisor-quality-049-003.vitest.ts",
-      "mcp_server/skill_advisor/feature_catalog/04--scorer-fusion/03-ambiguity.md",
-      ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/ambiguity.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/scorer/native-scorer.vitest.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/scorer/advisor-quality-049-003.vitest.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/feature_catalog/04--scorer-fusion/03-ambiguity.md",
       "spec.md",
       "plan.md",
       "implementation-summary.md",
       "tasks.md"
     ],
     "entities": [
-      {
-        "name": "ambiguity.ts",
-        "kind": "code",
-        "path": "mcp_server/skill_advisor/lib/scorer/ambiguity.ts",
-        "source": "derived"
-      },
-      {
-        "name": "native-scorer.vitest.ts",
-        "kind": "test",
-        "path": "mcp_server/skill_advisor/tests/scorer/native-scorer.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "advisor-quality-049-003.vitest.ts",
-        "kind": "test",
-        "path": "mcp_server/skill_advisor/tests/scorer/advisor-quality-049-003.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "03-ambiguity.md",
-        "kind": "doc",
-        "path": "mcp_server/skill_advisor/feature_catalog/04--scorer-fusion/03-ambiguity.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -198,11 +166,35 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Restart Claude Code",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Widened",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "SAD-002 (manual playbook) verified the ambiguity contract but exposed a calibration gap: the scorer flagged the cross-domain prompt \"Review the OpenCode docs and improve the prompt package for a release note workflow\" as `ambiguous: false` even though the top-2 confidences (sk-code 0.9287 vs sk-prompt 0.8888) were within 0.04 of each other. The current detector (in `lib/scorer/ambiguity.ts`) only compares `score` (gap 0.078, just over the 0.05 margin), not `confidence` (gap 0.04, well within 0.05). The feature catalog at `feature_catalog/04--scorer-fusion/03-ambiguity.md` already documents this as a \"0.05 confidence window\" — so docs and code disagree.",
     "created_at": "2026-05-06T13:05:18.900Z",
-    "last_save_at": "2026-05-06T13:05:18.900Z",
+    "last_save_at": "2026-05-18T15:17:57.027Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

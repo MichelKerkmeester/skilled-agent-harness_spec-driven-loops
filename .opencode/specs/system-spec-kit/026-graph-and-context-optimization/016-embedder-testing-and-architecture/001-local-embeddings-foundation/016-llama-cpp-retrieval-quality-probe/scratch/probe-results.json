@@ -23,7 +23,7 @@
   "one_line_interpretation": "Retrieval rank ordering is stable enough that the prior vector-cosine miss looks migration-only, assuming a one-time re-index.",
   "examples": [
     {
-      "query": "Packet: system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-synthesis-and-remediation Spec Folder: system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-synthesis-and-remediation Status:",
+      "query": "Packet: system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-release-readiness-findings-synthesis-remediation Spec Folder: system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-release-readiness-findings-synthesis-remediation Status:",
       "target_doc_id": "2299",
       "hf_local_top5": [
         {
@@ -223,7 +223,7 @@
       "spearman_rho_top10": 0.866667
     },
     {
-      "query": "Packet: system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-followup-quality-pass/005-stress-test-folder-migration Spec Folder:",
+      "query": "Packet: system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-post-program-quality-pass/005-stress-test-folder-migration Spec Folder:",
       "target_doc_id": "2278",
       "hf_local_top5": [
         {

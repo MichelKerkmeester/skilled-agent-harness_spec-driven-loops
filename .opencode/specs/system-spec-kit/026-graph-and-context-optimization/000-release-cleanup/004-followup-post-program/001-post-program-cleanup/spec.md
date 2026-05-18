@@ -92,9 +92,9 @@ Make the post-program state auditable, traceable, and validator-clean where the 
 | `implementation-summary.md` | Create | Final disposition table and known limitations. |
 | `description.json` | Create | Packet metadata for graph/memory discovery. |
 | `graph-metadata.json` | Create | Packet graph metadata and derived status. |
-| `../../001-memory-indexer-storage-boundary/graph-metadata.json` | Modify | Refresh stale `planned` status. |
-| `../../002-tier2-remediation/graph-metadata.json` | Modify | Refresh stale `planned` status. |
-| `../../../006-skill-advisor/002-daemon-and-unification/graph-metadata.json` | Modify | Refresh stale source-packet status. |
+| `../../001-memory-indexer-storage-boundary-remediation/graph-metadata.json` | Modify | Refresh stale `planned` status. |
+| `../../002-second-pass-release-readiness-remediation/graph-metadata.json` | Modify | Refresh stale `planned` status. |
+| `../../../006-skill-advisor/002-skill-graph-daemon-native-advisor-tools/graph-metadata.json` | Modify | Refresh stale source-packet status. |
 | `../../../005-memory-indexer-invariants/implementation-summary.md` | Modify | Refresh continuity freshness without closing CHK-T15. |
 | `../../../005-memory-indexer-invariants/graph-metadata.json` | Modify | Refresh metadata save timestamp while preserving CHK-T15 status. |
 | `../../../003-mcp-runtime-stress-remediation/*` | Modify | Targeted validator hygiene if bounded. |

@@ -55,7 +55,7 @@ scripts/kpi/
 Flow:
 
 ```text
-quality-kpi.sh -> .opencode/specs/**/memory/*.md -> JSON rates + summary
+quality-kpi.sh -> <active-spec-folder>/**/memory/*.md -> JSON rates + summary
 ```
 
 Metrics:

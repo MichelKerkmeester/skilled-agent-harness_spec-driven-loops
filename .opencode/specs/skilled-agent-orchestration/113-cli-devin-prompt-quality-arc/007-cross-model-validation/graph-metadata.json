@@ -10,21 +10,201 @@
     "related_to": []
   },
   "derived": {
-    "trigger_phrases": [],
-    "key_topics": [],
-    "importance_tier": "important",
-    "status": "planned",
+    "trigger_phrases": [
+      "113/007 cross model validation",
+      "deepseek kimi validation harness",
+      "bundle gate aversion confirmation",
+      "framework anti hallucination validation",
+      "cross model confirm cjs",
+      "113/007 implementation plan",
+      "cross model confirm harness plan",
+      "deepseek kimi validation plan",
+      "score variant fixture reuse",
+      "113/007 validation tasks",
+      "cross model confirm tasks",
+      "deepseek kimi dispatch tasks"
+    ],
+    "key_topics": [
+      "113",
+      "007",
+      "cross",
+      "model",
+      "validation",
+      "deepseek",
+      "kimi",
+      "harness",
+      "bundle",
+      "gate",
+      "aversion",
+      "confirmation"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
     "key_files": [
-      "spec.md",
+      "state/cross-model-results.jsonl",
+      "scripts/analyze-only.cjs",
+      ".opencode/specs/skilled-agent-orchestration/113-cli-devin-prompt-quality-arc/007-cross-model-validation/scripts/cross-model-confirm.cjs",
+      ".opencode/specs/skilled-agent-orchestration/113-cli-devin-prompt-quality-arc/007-cross-model-validation/analysis.md",
+      ".opencode/specs/skilled-agent-orchestration/113-cli-devin-prompt-quality-arc/007-cross-model-validation/implementation-summary.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "decision-record.md"
+      "decision-record.md",
+      "scripts/cross-model-confirm.cjs",
+      ".opencode/specs/skilled-agent-orchestration/113-cli-devin-prompt-quality-arc/005-extraction-rerun/scripts/extract-files-from-markdown.cjs",
+      ".opencode/specs/skilled-agent-orchestration/113-cli-devin-prompt-quality-arc/003-eval-loop/scripts/score-variant.cjs",
+      "spec.md",
+      "implementation-summary.md"
     ],
-    "entities": [],
-    "causal_summary": "Cross-model validation packet: run the 003-eval-loop 5 council-seeded variants against the 7 SWE 1.6 fixtures on deepseek-v4-pro (cli-opencode + DeepSeek direct API) and kimi-k2.6 (cli-opencode + opencode-go) to settle whether bundle-gate-aversion and framework-dominates-anti-hallucination generalize beyond SWE 1.6 or are small-model-specific",
+    "entities": [
+      {
+        "name": "cross-model-results.jsonl",
+        "kind": "file",
+        "path": "state/cross-model-results.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "analyze-only.cjs",
+        "kind": "file",
+        "path": "scripts/analyze-only.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "cross-model-confirm.cjs",
+        "kind": "file",
+        "path": ".opencode/specs/skilled-agent-orchestration/113-cli-devin-prompt-quality-arc/007-cross-model-validation/scripts/cross-model-confirm.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "analysis.md",
+        "kind": "doc",
+        "path": ".opencode/specs/skilled-agent-orchestration/113-cli-devin-prompt-quality-arc/007-cross-model-validation/analysis.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": ".opencode/specs/skilled-agent-orchestration/113-cli-devin-prompt-quality-arc/007-cross-model-validation/implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "extract-files-from-markdown.cjs",
+        "kind": "file",
+        "path": ".opencode/specs/skilled-agent-orchestration/113-cli-devin-prompt-quality-arc/005-extraction-rerun/scripts/extract-files-from-markdown.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "score-variant.cjs",
+        "kind": "file",
+        "path": ".opencode/specs/skilled-agent-orchestration/113-cli-devin-prompt-quality-arc/003-eval-loop/scripts/score-variant.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Build",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Packet",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Confirm",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Packet 113/007 plans a 70-dispatch cross-model confirmation run for the 113/003 eval-loop findings that were not propagated in packet 113/006. It reuses the existing SWE 1.6 fixtures, prompt variants, scoring pipeline, and extraction logic while routing both target models through cli-opencode.",
     "created_at": "2026-05-17T12:18:35Z",
-    "last_save_at": "2026-05-17T12:18:35Z",
+    "last_save_at": "2026-05-18T15:17:56.785Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -32,7 +212,8 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "decision-record.md"
+      "decision-record.md",
+      "implementation-summary.md"
     ]
   }
 }

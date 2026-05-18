@@ -1,0 +1,17 @@
+{
+  "specFolder": "018-followup-p2-cleanup",
+  "description": "Audit and close P2 findings from the 013/009 10-iteration deep review with surgical fixes and named follow-ons.",
+  "keywords": [
+    "p2-cleanup",
+    "deep-review",
+    "dispatch",
+    "runtime-parity"
+  ],
+  "lastUpdated": "2026-05-15T06:09:08Z",
+  "specId": "018",
+  "folderSlug": "p2-cleanup",
+  "parentChain": [],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

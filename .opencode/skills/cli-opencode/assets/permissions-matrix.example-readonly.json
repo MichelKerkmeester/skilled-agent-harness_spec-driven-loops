@@ -1,0 +1,174 @@
+{
+  "version": "1.0",
+  "description": "Read-only corpus matrix. Allows repository reads and read-only shell inspection commands. Resolution semantics: most-specific glob wins; first-in-array breaks equal-specificity ties.",
+  "rules": [
+    {
+      "target_glob": "**",
+      "operation_class": "read",
+      "scope": "repo-wide",
+      "effect": "allow",
+      "rationale": "Read-only research and review loops need broad corpus inspection."
+    },
+    {
+      "target_glob": "Exec(rg)",
+      "operation_class": "execute",
+      "scope": "repo-wide",
+      "effect": "allow",
+      "rationale": "rg is read-only search when used without shell redirection."
+    },
+    {
+      "target_glob": "Exec(grep)",
+      "operation_class": "execute",
+      "scope": "repo-wide",
+      "effect": "allow",
+      "rationale": "grep is read-only search."
+    },
+    {
+      "target_glob": "Exec(git)",
+      "operation_class": "execute",
+      "scope": "repo-wide",
+      "effect": "allow",
+      "rationale": "git status/show/diff/log support read-only inspection."
+    },
+    {
+      "target_glob": "Exec(ls)",
+      "operation_class": "execute",
+      "scope": "repo-wide",
+      "effect": "allow",
+      "rationale": "ls lists files without mutation."
+    },
+    {
+      "target_glob": "Exec(find)",
+      "operation_class": "execute",
+      "scope": "repo-wide",
+      "effect": "allow",
+      "rationale": "find is allowed for discovery; destructive find -delete is separately denied by command-specific matching."
+    },
+    {
+      "target_glob": "Exec(cat)",
+      "operation_class": "execute",
+      "scope": "repo-wide",
+      "effect": "allow",
+      "rationale": "cat reads files."
+    },
+    {
+      "target_glob": "Exec(head)",
+      "operation_class": "execute",
+      "scope": "repo-wide",
+      "effect": "allow",
+      "rationale": "head reads file prefixes."
+    },
+    {
+      "target_glob": "Exec(tail)",
+      "operation_class": "execute",
+      "scope": "repo-wide",
+      "effect": "allow",
+      "rationale": "tail reads file suffixes."
+    },
+    {
+      "target_glob": "Exec(wc)",
+      "operation_class": "execute",
+      "scope": "repo-wide",
+      "effect": "allow",
+      "rationale": "wc counts content without mutation."
+    },
+    {
+      "target_glob": "Exec(awk)",
+      "operation_class": "execute",
+      "scope": "repo-wide",
+      "effect": "allow",
+      "rationale": "awk is allowed for read-only text inspection."
+    },
+    {
+      "target_glob": "Exec(sed -i*)",
+      "operation_class": "execute",
+      "scope": "repo-wide",
+      "effect": "deny",
+      "rationale": "sed in-place editing mutates files and is banned in read-only mode."
+    },
+    {
+      "target_glob": "Exec(sed)",
+      "operation_class": "execute",
+      "scope": "repo-wide",
+      "effect": "allow",
+      "rationale": "sed without in-place editing is allowed for read-only text inspection."
+    },
+    {
+      "target_glob": "Exec(rm*)",
+      "operation_class": "execute",
+      "scope": "repo-wide",
+      "effect": "deny",
+      "rationale": "rm deletes files and would recreate the RM-8 failure mode."
+    },
+    {
+      "target_glob": "Exec(mv)",
+      "operation_class": "execute",
+      "scope": "repo-wide",
+      "effect": "deny",
+      "rationale": "mv can remove or relocate packet files."
+    },
+    {
+      "target_glob": "Exec(cp)",
+      "operation_class": "execute",
+      "scope": "repo-wide",
+      "effect": "deny",
+      "rationale": "cp can overwrite files and is outside read-only review."
+    },
+    {
+      "target_glob": "Exec(npm)",
+      "operation_class": "execute",
+      "scope": "repo-wide",
+      "effect": "deny",
+      "rationale": "npm can install packages, rewrite lockfiles, or run arbitrary scripts."
+    },
+    {
+      "target_glob": "Exec(pnpm)",
+      "operation_class": "execute",
+      "scope": "repo-wide",
+      "effect": "deny",
+      "rationale": "pnpm can mutate dependencies or execute package scripts."
+    },
+    {
+      "target_glob": "Exec(yarn)",
+      "operation_class": "execute",
+      "scope": "repo-wide",
+      "effect": "deny",
+      "rationale": "yarn can mutate dependencies or execute package scripts."
+    },
+    {
+      "target_glob": "Exec(node)",
+      "operation_class": "execute",
+      "scope": "repo-wide",
+      "effect": "deny",
+      "rationale": "node can execute arbitrary mutation scripts."
+    },
+    {
+      "target_glob": "Exec(python*)",
+      "operation_class": "execute",
+      "scope": "repo-wide",
+      "effect": "deny",
+      "rationale": "python can execute arbitrary mutation scripts."
+    },
+    {
+      "target_glob": "**",
+      "operation_class": "write",
+      "scope": "repo-wide",
+      "effect": "deny",
+      "rationale": "Read-only matrix denies all writes."
+    },
+    {
+      "target_glob": "**",
+      "operation_class": "edit",
+      "scope": "repo-wide",
+      "effect": "deny",
+      "rationale": "Read-only matrix denies edits."
+    },
+    {
+      "target_glob": "**",
+      "operation_class": "delete",
+      "scope": "repo-wide",
+      "effect": "deny",
+      "rationale": "Read-only matrix denies deletions."
+    }
+  ]
+}

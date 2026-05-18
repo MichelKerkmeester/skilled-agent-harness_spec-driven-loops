@@ -8,6 +8,26 @@ trigger_phrases:
   - "ollama embedder registry"
 importance_tier: "important"
 contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/007-ollama-and-bge-promotion-arc/002-cocoindex-ollama-adapter"
+    last_updated_at: "2026-05-18T17:41:16Z"
+    last_updated_by: "codex"
+    recent_action: "Implemented CocoIndex Ollama adapter"
+    next_safe_action: "Review and commit scoped files"
+    blockers: []
+    key_files:
+      - ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/shared.py"
+      - ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/registered_embedders.py"
+      - ".opencode/skills/mcp-coco-index/mcp_server/tests/test_ollama_routing.py"
+    session_dedup:
+      fingerprint: "sha256:cocoindex-ollama-adapter-2026-05-18"
+      session_id: "codex-2026-05-18-cocoindex-ollama-adapter"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "LiteLLM is declared through cocoindex[litellm] and already imported in shared.py."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->
@@ -19,7 +39,7 @@ contextType: "implementation"
 
 | Field | Value |
 |---|---|
-| Status | Planned (2026-05-18) |
+| Status | Completed (2026-05-18) |
 | Type | Implementation (Level 2 — bench harness + multi-file Python edits) |
 | Owner | Main agent or @code (dispatched via @orchestrate) |
 | Parent | `../spec.md` (007-ollama-and-bge-promotion-arc) |

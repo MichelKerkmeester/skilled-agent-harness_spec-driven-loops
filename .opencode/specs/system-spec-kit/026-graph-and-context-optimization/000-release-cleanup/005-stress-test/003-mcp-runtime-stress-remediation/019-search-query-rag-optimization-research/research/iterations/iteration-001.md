@@ -6,18 +6,18 @@ Establish what the v1.0.1 and v1.0.2 stress corpus already proved, then define t
 
 ## Sources
 
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/001-search-intelligence-stress-test/implementation-summary.md:54`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/001-search-intelligence-stress-test/002-scenario-execution/findings.md:23`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/010-stress-test-rerun-v1-0-2/findings.md:15`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/010-stress-test-rerun-v1-0-2/findings.md:73`
-- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/010-stress-test-rerun-v1-0-2/findings-rubric.json:71`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/001-search-intelligence-stress-playbook/implementation-summary.md:54`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/001-search-intelligence-stress-playbook/002-search-scenario-execution/findings.md:23`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/010-stress-test-close-loop-measurement-rerun/findings.md:15`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/010-stress-test-close-loop-measurement-rerun/findings.md:73`
+- `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/010-stress-test-close-loop-measurement-rerun/findings-rubric.json:71`
 
 ## Findings
 
-- The v1.0.1 baseline was already a search-intelligence test, not a generic runtime smoke test: it used 9 scenarios, a 5-dimension rubric, and a cross-AI dispatch matrix (`001-search-intelligence-stress-test/implementation-summary.md:54`). That makes it a usable seed corpus for future search-quality evaluation.
-- The baseline failure pattern was uneven by surface. S2 succeeded through `memory_quick_search` plus CocoIndex, while Q1 exposed sparse code-graph behavior and I2 showed hallucinated path risk after weak retrieval (`001-search-intelligence-stress-test/002-scenario-execution/findings.md:23`, `:68`, `:96`).
-- The v1.0.2 rerun materially improved the system: +7.2 percentage points, 6/7 remediation packets PROVEN, and 0 regressions (`010-stress-test-rerun-v1-0-2/findings.md:15`, `:73`). The sidecar recomputed the overall score at 83.8% (`010-stress-test-rerun-v1-0-2/findings-rubric.json:71`).
-- Packet 005 was the key marginal result: code-graph fallback was NEUTRAL in the rerun, while token budget, CocoIndex dedup, and response policy were PROVEN (`010-stress-test-rerun-v1-0-2/findings.md:87`).
+- The v1.0.1 baseline was already a search-intelligence test, not a generic runtime smoke test: it used 9 scenarios, a 5-dimension rubric, and a cross-AI dispatch matrix (`001-search-intelligence-stress-playbook/implementation-summary.md:54`). That makes it a usable seed corpus for future search-quality evaluation.
+- The baseline failure pattern was uneven by surface. S2 succeeded through `memory_quick_search` plus CocoIndex, while Q1 exposed sparse code-graph behavior and I2 showed hallucinated path risk after weak retrieval (`001-search-intelligence-stress-playbook/002-search-scenario-execution/findings.md:23`, `:68`, `:96`).
+- The v1.0.2 rerun materially improved the system: +7.2 percentage points, 6/7 remediation packets PROVEN, and 0 regressions (`010-stress-test-close-loop-measurement-rerun/findings.md:15`, `:73`). The sidecar recomputed the overall score at 83.8% (`010-stress-test-close-loop-measurement-rerun/findings-rubric.json:71`).
+- Packet 005 was the key marginal result: code-graph fallback was NEUTRAL in the rerun, while token budget, CocoIndex dedup, and response policy were PROVEN (`010-stress-test-close-loop-measurement-rerun/findings.md:87`).
 
 ## Insights
 

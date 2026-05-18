@@ -1,0 +1,26 @@
+{
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-post-program-quality-pass/006-readme-cascade-refresh",
+  "description": "Feature Specification: 037/006 README Cascade Refresh",
+  "keywords": [
+    "feature",
+    "specification",
+    "037",
+    "006",
+    "readme",
+    "cascade",
+    "refresh"
+  ],
+  "lastUpdated": "2026-05-08T08:26:57.309Z",
+  "specId": "006",
+  "folderSlug": "readme-cascade-refresh",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "000-release-cleanup",
+    "003-post-program-quality-pass"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "29-04-26_19-39__resource-map-authored-and-memory-finalization.md"
+  ]
+}

@@ -4,13 +4,13 @@ Metadata, structural migration, daemon/advisor unification, extraction.
 
 ## Children (7)
 
-- `001-skill-advisor-graph`
-- `002-daemon-and-unification`
-- `003-skill-metadata-quality-audit`
-- `004-apply-metadata-fixes-and-resweep`
-- `005-populate-intent-signals-and-relationships`
-- `006-system-skill-advisor-extraction`
-- `007-cross-skill-auto-propagation`
+- `001-skill-graph-metadata-routing-boosts`
+- `002-skill-graph-daemon-native-advisor-tools`
+- `003-skill-metadata-embedding-quality-audit`
+- `004-metadata-fixes-and-seeded-sweep-rerun`
+- `005-intent-signals-and-skill-relationships`
+- `006-system-skill-advisor-package-extraction`
+- `007-cross-skill-enhancement-edge-propagation`
 
 ## Provenance
 

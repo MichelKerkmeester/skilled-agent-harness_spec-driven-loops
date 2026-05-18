@@ -37,19 +37,19 @@ PACKETS = [
     "007-hook-parity",
 
     # 008 children (from 006 — keep numbering)
-    "006-skill-advisor/001-search-and-routing-tuning",
-    "006-skill-advisor/001-skill-advisor-graph",
-    "006-skill-advisor/002-advisor-phrase-booster-tailoring",
-    "006-skill-advisor/001-docs-and-code-alignment",
-    "006-skill-advisor/003-smart-remediation-and-opencode-plugin",
-    "006-skill-advisor/001-deferred-remediation-and-telemetry-run",
+    "006-skill-advisor/001-memory-search-routing-tuning",
+    "006-skill-advisor/001-skill-graph-metadata-routing-boosts",
+    "006-skill-advisor/002-advisor-phrase-booster-tuning",
+    "006-skill-advisor/001-documentation-code-alignment",
+    "006-skill-advisor/003-smart-remediation-opencode-plugin",
+    "006-skill-advisor/001-deferred-remediation-telemetry-run",
 
     # 008 children (from 010 — new parent + new slot)
-    "006-skill-advisor/004-skill-advisor-hook-surface",
-    "006-skill-advisor/002-daemon-and-unification",
-    "006-skill-advisor/002-skill-advisor-plugin-hardening",
-    "006-skill-advisor/003-skill-advisor-standards-alignment",
-    "006-skill-advisor/001-skill-advisor-hook-improvements",
+    "006-skill-advisor/004-advisor-hook-surface-integration",
+    "006-skill-advisor/002-skill-graph-daemon-native-advisor-tools",
+    "006-skill-advisor/002-advisor-plugin-hardening",
+    "006-skill-advisor/003-advisor-standards-alignment",
+    "006-skill-advisor/001-advisor-hook-brief-improvements",
 
     # 007 children (existing 001-003 + the 2 newcomers from 010)
     "005-code-graph/001-code-graph-upgrades",
@@ -59,11 +59,11 @@ PACKETS = [
     "005-code-graph/004-code-graph-advisor-refinement",
 
     # 007-hook-parity surviving children (parent_id same, packet_id renumbered)
-    "007-hook-parity/001-hook-parity-remediation",
-    "007-hook-parity/002-copilot-hook-parity-remediation",
-    "007-hook-parity/003-codex-hook-parity-remediation",
-    "007-hook-parity/004-claude-hook-findings-remediation",
-    "007-hook-parity/005-opencode-plugin-loader-remediation",
+    "007-hook-parity/001-runtime-hook-parity-findings-remediation",
+    "007-hook-parity/002-copilot-custom-instructions-hook-parity",
+    "007-hook-parity/003-codex-native-startup-advisor-hooks",
+    "007-hook-parity/004-claude-freshness-schema-harness-fixes",
+    "007-hook-parity/005-opencode-plugin-loader-bridge-fixes",
     "007-hook-parity/006-copilot-wrapper-schema-fix",
     "007-hook-parity/007-copilot-writer-wiring",
     "007-hook-parity/008-docs-impact-remediation",

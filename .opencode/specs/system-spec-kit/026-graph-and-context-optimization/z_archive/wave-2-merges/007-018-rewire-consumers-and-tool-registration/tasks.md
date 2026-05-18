@@ -89,5 +89,5 @@ _memory:
 
 - Parent: `005-code-graph/013-system-code-graph-extraction`
 - Atomic sibling: `014/003-physical-move-and-database`
-- ADR: `014/001-design-and-decision-record/decision-record.md`
+- ADR: `014/001-extraction-design-and-adr/decision-record.md`
 <!-- /ANCHOR:cross-refs -->

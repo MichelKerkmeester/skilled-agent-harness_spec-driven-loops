@@ -61,7 +61,7 @@
       "research/deep-research-config.json",
       ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/006-code-graph-resilience-research/spec.md",
       ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/006-code-graph-resilience-research/plan.md",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/005-code-graph-doctor-command/spec.md",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/005-doctor-diagnostic-command-phase-a/spec.md",
       "spec.md"
     ],
     "entities": [
@@ -212,7 +212,7 @@
     ],
     "causal_summary": "The code graph index has three observable failure modes today:",
     "created_at": "2026-04-25T20:30:00Z",
-    "last_save_at": "2026-05-18T08:15:53.428Z",
+    "last_save_at": "2026-05-18T15:17:57.332Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

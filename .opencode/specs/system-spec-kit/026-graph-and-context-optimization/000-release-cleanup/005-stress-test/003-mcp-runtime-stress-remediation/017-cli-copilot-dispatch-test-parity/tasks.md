@@ -46,7 +46,7 @@ _memory:
 ## Phase 1: Setup
 
 - [x] **T001** Read 011 deep-review report §4 F-004 + §7 Packet B PASS gate.
-  - **Files**: `../011-post-stress-followup-research/review/review-report.md` (lines 91-99 + 170-174)
+  - **Files**: `../011-post-stress-finding-remediation-research/review/review-report.md` (lines 91-99 + 170-174)
   - **Acceptance**: F-004's evidence (line numbers in `cli-matrix.vitest.ts:17-20` and `40-56`) and Packet B's PASS gate ("models built.argv, promptFileBody, and @PROMPT_PATH behavior, not the legacy command string") are both quoted in spec.md §2.
 - [x] **T002** [P] Read existing `cli-matrix.vitest.ts` end-to-end; identify the 3 cli-copilot dispatch tests + smoke test that need updating.
   - **File**: `mcp_server/tests/deep-loop/cli-matrix.vitest.ts`
@@ -106,7 +106,7 @@ _memory:
 - [x] **T205** Author `implementation-summary.md` with verification table, decisions, known limitations, next steps.
   - **File**: `implementation-summary.md`
   - **Acceptance**: All anchors populated; not a placeholder.
-- [x] **T206** Author `description.json` and `graph-metadata.json` with `specId="017"`, `folderSlug="cli-copilot-dispatch-test-parity"`, `parentChain` to 011, `depends_on=[011-post-stress-followup-research, 012-copilot-target-authority-helper]`, `related_to=[016-degraded-readiness-envelope-parity]`.
+- [x] **T206** Author `description.json` and `graph-metadata.json` with `specId="017"`, `folderSlug="cli-copilot-dispatch-test-parity"`, `parentChain` to 011, `depends_on=[011-post-stress-finding-remediation-research, 012-copilot-target-authority-gate-helper]`, `related_to=[016-degraded-readiness-envelope-parity]`.
   - **Files**: `description.json`, `graph-metadata.json`
   - **Acceptance**: schema_version=1; `derived.status="complete"` once impl-summary is in place.
 
@@ -138,8 +138,8 @@ _memory:
 - **Plan**: See `plan.md`
 - **Checklist**: See `checklist.md`
 - **Implementation summary**: See `implementation-summary.md`
-- **Source of recommendations**: `../011-post-stress-followup-research/review/review-report.md` §4 F-004 + §7 Packet B
-- **Production helper this test pins**: `../012-copilot-target-authority-helper/spec.md` (`buildCopilotPromptArg`)
+- **Source of recommendations**: `../011-post-stress-finding-remediation-research/review/review-report.md` §4 F-004 + §7 Packet B
+- **Production helper this test pins**: `../012-copilot-target-authority-gate-helper/spec.md` (`buildCopilotPromptArg`)
 - **Sibling packet (P1)**: `../016-degraded-readiness-envelope-parity` (Packet A; degraded-readiness envelope work)
-- **Sibling packet (P2 docs)**: `../018-catalog-playbook-degraded-alignment` (Packet C; catalog/playbook drift)
+- **Sibling packet (P2 docs)**: `../018-feature-catalog-playbook-degraded-alignment` (Packet C; catalog/playbook drift)
 <!-- /ANCHOR:cross-refs -->

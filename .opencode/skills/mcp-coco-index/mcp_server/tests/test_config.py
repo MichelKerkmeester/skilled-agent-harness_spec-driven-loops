@@ -108,6 +108,17 @@ class TestConfigValidation:
         ):
             assert Config.from_env().embedding_model == _DEFAULT_MODEL
 
+    def test_registered_ollama_model_is_accepted(self, tmp_path: Path) -> None:
+        with patch.dict(
+            "os.environ",
+            {
+                "COCOINDEX_CODE_ROOT_PATH": str(tmp_path),
+                "COCOINDEX_CODE_EMBEDDING_MODEL": "ollama/nomic-embed-text",
+            },
+            clear=True,
+        ):
+            assert Config.from_env().embedding_model == "ollama/nomic-embed-text"
+
 
 class TestChunkConfigValidation:
     def test_default_chunk_params(self, tmp_path: Path) -> None:

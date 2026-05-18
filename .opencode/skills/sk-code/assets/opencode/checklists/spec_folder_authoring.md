@@ -18,7 +18,7 @@ This checklist keeps spec folder writes compatible with the system-spec-kit vali
 
 ## 3. PRE-CHECKS
 
-- [ ] Read the Level 1 contract files in an existing packet such as `.opencode/specs/skilled-agent-orchestration/078-opencode-authoring-recipe/001-sk-code-authoring/spec.md`.
+- [ ] Read the Level 1 contract files in an existing packet such as `<spec-folder>`.
 - [ ] Read templates from `.opencode/skills/system-spec-kit/templates/` and the manifest entries under `.opencode/skills/system-spec-kit/templates/manifest/`.
 - [ ] Verify the required Level 1 docs: `spec.md`, `plan.md`, `tasks.md`, and `implementation-summary.md`.
 - [ ] Confirm required anchor counts for the selected level before writing.
@@ -46,5 +46,5 @@ This checklist keeps spec folder writes compatible with the system-spec-kit vali
 ## 6. RELATED RESOURCES
 
 - sk-doc templates and system-spec-kit/templates/manifest/ (source-of-truth for document contract rules)
-- Prior example: `.opencode/specs/skilled-agent-orchestration/078-opencode-authoring-recipe/001-sk-code-authoring/spec.md`
+- Prior example: `<spec-folder>`
 - Verification recipes: `.opencode/skills/sk-code/assets/opencode/recipes/spec_folder_write.md`

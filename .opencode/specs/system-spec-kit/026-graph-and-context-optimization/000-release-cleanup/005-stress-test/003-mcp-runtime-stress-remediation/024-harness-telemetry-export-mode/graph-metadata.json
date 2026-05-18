@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The search-quality harness at `mcp_server/stress_test/search-quality/` is intentionally database-agnostic and result-oriented:",
     "created_at": "2026-04-29T08:45:00.000Z",
-    "last_save_at": "2026-05-18T08:15:53.274Z",
+    "last_save_at": "2026-05-18T15:17:57.221Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

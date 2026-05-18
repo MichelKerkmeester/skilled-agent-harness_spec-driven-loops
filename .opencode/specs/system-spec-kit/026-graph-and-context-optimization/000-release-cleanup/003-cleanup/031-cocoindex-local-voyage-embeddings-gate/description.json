@@ -1,0 +1,28 @@
+{
+  "level": "2",
+  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/031-cocoindex-local-voyage-embeddings-gate",
+  "description": "Feature Specification: 057 CocoIndex Voyage-Only on Local Machine",
+  "keywords": [
+    "feature",
+    "specification",
+    "057",
+    "cocoindex",
+    "voyage-only",
+    "local",
+    "machine"
+  ],
+  "lastUpdated": "2026-05-10T10:45:10.601Z",
+  "specId": "057",
+  "folderSlug": "cocoindex-voyage-only-this-machine",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "000-release-cleanup"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "10-05-26_11-45__manual-context-save.md"
+  ]
+}

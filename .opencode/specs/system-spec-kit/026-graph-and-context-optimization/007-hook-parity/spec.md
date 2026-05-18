@@ -6,11 +6,11 @@ trigger_phrases:
   - "hook parity"
   - "runtime hook parity"
   - "claude codex copilot opencode hook parity"
-  - "001-hook-parity-remediation"
-  - "002-copilot-hook-parity-remediation"
-  - "003-codex-hook-parity-remediation"
-  - "004-claude-hook-findings-remediation"
-  - "005-opencode-plugin-loader-remediation"
+  - "001-runtime-hook-parity-findings-remediation"
+  - "002-copilot-custom-instructions-hook-parity"
+  - "003-codex-native-startup-advisor-hooks"
+  - "004-claude-freshness-schema-harness-fixes"
+  - "005-opencode-plugin-loader-bridge-fixes"
   - "006-copilot-wrapper-schema-fix"
   - "007-copilot-writer-wiring"
   - "008-docs-impact-remediation"
@@ -104,11 +104,11 @@ Keep this parent narrow to runtime hook parity: schema fixes, wrapper wiring fix
 
 | Phase | Folder | Status | Description |
 |-------|--------|--------|-------------|
-| 1 | `001-hook-parity-remediation/` | Complete | Feature Specification: 029 — Runtime Hook Parity Remediation |
-| 2 | `002-copilot-hook-parity-remediation/` | Complete | Feature Specification: Copilot CLI Hook Parity Remediation |
-| 3 | `003-codex-hook-parity-remediation/` | Complete | Feature Specification: Codex CLI Hook Parity Remediation |
-| 4 | `004-claude-hook-findings-remediation/` | In Progress | Feature Specification: Claude Hook Findings Remediation |
-| 5 | `005-opencode-plugin-loader-remediation/` | Complete | Feature Specification: OpenCode Plugin Loader Remediation |
+| 1 | `001-runtime-hook-parity-findings-remediation/` | Complete | Feature Specification: 029 — Runtime Hook Parity Remediation |
+| 2 | `002-copilot-custom-instructions-hook-parity/` | Complete | Feature Specification: Copilot CLI Hook Parity Remediation |
+| 3 | `003-codex-native-startup-advisor-hooks/` | Complete | Feature Specification: Codex CLI Hook Parity Remediation |
+| 4 | `004-claude-freshness-schema-harness-fixes/` | In Progress | Feature Specification: Claude Hook Findings Remediation |
+| 5 | `005-opencode-plugin-loader-bridge-fixes/` | Complete | Feature Specification: OpenCode Plugin Loader Remediation |
 | 6 | `006-copilot-wrapper-schema-fix/` | Reverted - Needs Reapply | Copilot Wrapper Schema Fix landed historically, then reverted; the top-level wrapper fields must be reapplied. |
 | 7 | `007-copilot-writer-wiring/` | Reverted - Needs Reapply | Copilot Writer Wiring landed historically, then reverted; reapply after packet 006 restores the wrapper shape. |
 | 8 | `008-docs-impact-remediation/` | Planning | Feature Specification: Documentation Impact Remediation for the hook-parity packets. |
