@@ -9,7 +9,7 @@
   ],
   "lastUpdated": "2026-05-17T06:35:11.664Z",
   "specId": "016",
-  "folderSlug": "pluggable-embedder-architecture",
+  "folderSlug": "pluggable-embedder_architecture",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization"

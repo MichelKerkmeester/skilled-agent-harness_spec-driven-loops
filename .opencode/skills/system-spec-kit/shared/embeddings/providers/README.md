@@ -1,6 +1,6 @@
 ---
 title: "Embedding Providers"
-description: "Concrete embedding provider implementations for llama-cpp, HuggingFace Local, OpenAI and Voyage AI backends."
+description: "Concrete embedding provider implementations for Ollama, llama-cpp, HuggingFace Local, OpenAI and Voyage AI backends."
 trigger_phrases:
   - "embedding providers"
   - "llama-cpp embeddings"
@@ -36,6 +36,8 @@ This folder contains provider adapters for the `IEmbeddingProvider` interface fr
 
 The parent package owns provider selection in `../factory.ts`. Files in this folder should stay focused on backend behavior: request shaping, retries, task prefixes, metadata and health checks.
 
+Ollama closes the 016/002 dual-path migration: the MCP registry/re-index path writes Ollama vectors to `vec_<dim>`, while the shared factory path encodes queries. Both paths must use the same active manifest.
+
 > **Auto-migration on first startup.** When the active provider resolves to `llama-cpp` and a pre-existing `context-index__hf-local__*.sqlite` store is present, the Memory MCP server re-embeds the rows into the new llama-cpp store and deletes the source. The logic lives in the MCP server startup path, not in this folder. See the MCP server README and packet 018 for the full lifecycle.
 
 <!-- /ANCHOR:overview -->
@@ -48,6 +50,7 @@ The parent package owns provider selection in `../factory.ts`. Files in this fol
 ```text
 providers/
 ├── README.md      # This file
+├── ollama.ts      # Ollama provider for active registry manifests
 ├── llama-cpp.ts   # llama-cpp GGUF provider (default local)
 ├── hf-local.ts    # HuggingFace local ONNX provider (fallback)
 ├── openai.ts      # OpenAI embeddings provider
@@ -56,6 +59,7 @@ providers/
 
 | File | Provider | Default model | Dimensions | Role |
 | ---- | -------- | ------------- | ---------- | ---- |
+| `ollama.ts` | Ollama | `jina-embeddings-v3` | 384, 768, 1024 | Active embedder provider for Jina v3, Nomic, mxbai, BGE, and Snowflake manifests |
 | `llama-cpp.ts` | llama-cpp | `unsloth/embeddinggemma-300m-GGUF` | 768 | Default local provider. Metal GPU acceleration, Q8_0 GGUF quantization, EmbeddingGemma prefixes |
 | `hf-local.ts` | HuggingFace Local | `onnx-community/embeddinggemma-300m-ONNX` | 768 | Fallback local provider. ONNX q8 quantization on CPU when llama-cpp is unavailable |
 | `openai.ts` | OpenAI | `text-embedding-3-small` | 1536 | Cloud provider with OpenAI usage tracking and retry handling |
@@ -128,6 +132,7 @@ For README-only edits, `validate_document.py` is the required file-level check.
 | [embeddings/README.md](../README.md) | Parent embeddings package overview |
 | [embeddings/factory.ts](../factory.ts) | Provider selection and auto-detection logic |
 | [embeddings/profile.ts](../profile.ts) | Per-profile database path generation |
+| [embedder_architecture.md](../../../references/memory/embedder_architecture.md) | Dual registry/factory architecture, active pointer, and operator runbook |
 | [shared/types.ts](../../types.ts) | `IEmbeddingProvider` and shared retrieval types |
 | [shared/utils/retry.ts](../../utils/retry.ts) | Retry helper used by cloud providers |
 | [mcp_server/README.md](../../../mcp_server/README.md) | Memory MCP server entry point, auto-migration lifecycle, env vars |

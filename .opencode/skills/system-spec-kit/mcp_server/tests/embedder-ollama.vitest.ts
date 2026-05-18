@@ -2,8 +2,19 @@
 // TEST: Ollama embedder adapter (016/002)
 // ───────────────────────────────────────────────────────────────
 
+import { execFileSync } from 'node:child_process';
+import { existsSync, mkdtempSync, rmSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import path from 'node:path';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
+import {
+  createEmbeddingsProvider,
+  resolveProvider,
+} from '../../shared/dist/embeddings/factory.js';
+import {
+  __ollamaProviderTestables,
+} from '../../shared/dist/embeddings/providers/ollama.js';
 import {
   getAdapter,
   getManifest,
@@ -18,6 +29,8 @@ import type { EmbedderManifest } from '../lib/embedders/types.js';
 
 const ORIGINAL_FETCH = globalThis.fetch;
 const ORIGINAL_OLLAMA_BASE_URL = process.env.OLLAMA_BASE_URL;
+const ORIGINAL_ENV = { ...process.env };
+let tempDir: string | null = null;
 
 function installFetchMock(
   handler: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>,
@@ -39,6 +52,21 @@ function vector(dim: number, seed: number): number[] {
   return Array.from({ length: dim }, (_, index) => seed + index / 100);
 }
 
+function createActiveJinaDb(dbDir: string, withVec1024Rows: boolean): string {
+  const dbPath = path.join(dbDir, 'context-index.sqlite');
+  execFileSync('sqlite3', [
+    dbPath,
+    [
+      'CREATE TABLE vec_metadata (key TEXT PRIMARY KEY, value TEXT NOT NULL);',
+      "INSERT INTO vec_metadata (key, value) VALUES ('active_embedder_name', 'jina-embeddings-v3');",
+      "INSERT INTO vec_metadata (key, value) VALUES ('active_embedder_dim', '1024');",
+      withVec1024Rows ? 'CREATE TABLE vec_1024 (id INTEGER PRIMARY KEY, vec BLOB NOT NULL);' : '',
+      withVec1024Rows ? "INSERT INTO vec_1024 (id, vec) VALUES (1, x'00');" : '',
+    ].filter(Boolean).join('\n'),
+  ]);
+  return dbPath;
+}
+
 function requireManifest(name: string) {
   const manifest = getManifest(name);
   if (!manifest) {
@@ -57,12 +85,18 @@ function testManifest(overrides: Partial<EmbedderManifest> = {}): EmbedderManife
 }
 
 afterEach(() => {
+  process.env = { ...ORIGINAL_ENV };
   globalThis.fetch = ORIGINAL_FETCH;
   if (ORIGINAL_OLLAMA_BASE_URL === undefined) {
     delete process.env.OLLAMA_BASE_URL;
   } else {
     process.env.OLLAMA_BASE_URL = ORIGINAL_OLLAMA_BASE_URL;
   }
+  if (tempDir && existsSync(tempDir)) {
+    rmSync(tempDir, { recursive: true, force: true });
+  }
+  tempDir = null;
+  __ollamaProviderTestables.resetAvailabilityCache();
   vi.restoreAllMocks();
 });
 
@@ -250,5 +284,80 @@ describe('016/002 OllamaAdapter', () => {
   it('registry getAdapter constructs Ollama adapters and returns undefined for unknown names', () => {
     expect(getAdapter('mxbai-embed-large-v1')).toBeInstanceOf(OllamaAdapter);
     expect(getAdapter('missing-model')).toBeUndefined();
+  });
+});
+
+describe('016/006 shared OllamaProvider factory wiring', () => {
+  it('routes explicit EMBEDDINGS_PROVIDER=ollama through OllamaProvider and returns 1024-dim jina vectors', async () => {
+    process.env.EMBEDDINGS_PROVIDER = 'ollama';
+    process.env.OLLAMA_EMBEDDINGS_MODEL = 'jina-embeddings-v3';
+    delete process.env.VOYAGE_API_KEY;
+    delete process.env.OPENAI_API_KEY;
+
+    installFetchMock(async (input, init) => {
+      const pathname = new URL(String(input)).pathname;
+      if (pathname === '/api/tags') {
+        return jsonResponse({
+          models: [{ name: 'hf.co/gaianet/jina-embeddings-v3-GGUF:Q4_K_M' }],
+        });
+      }
+
+      expect(pathname).toBe('/api/embed');
+      const payload = JSON.parse(String(init?.body)) as { model: string; input: string[] };
+      expect(payload.model).toBe('hf.co/gaianet/jina-embeddings-v3-GGUF:Q4_K_M');
+      expect(payload.input).toEqual(['test query']);
+      return jsonResponse({ embeddings: [vector(1024, 1)] });
+    });
+
+    expect(resolveProvider()).toMatchObject({ name: 'ollama' });
+    const provider = await createEmbeddingsProvider({ warmup: false });
+    const embedding = await provider.generateEmbedding('test query');
+
+    expect(embedding).toBeInstanceOf(Float32Array);
+    expect(embedding).toHaveLength(1024);
+    expect(provider.constructor.name).toBe('OllamaProvider');
+    expect(provider.getMetadata()).toMatchObject({
+      provider: 'ollama',
+      model: 'jina-embeddings-v3',
+      dim: 1024,
+    });
+  });
+
+  it('auto-selects Ollama from vec_metadata when vec_1024 exists and has rows', async () => {
+    tempDir = mkdtempSync(path.join(tmpdir(), 'spec-kit-ollama-provider-'));
+    createActiveJinaDb(tempDir, true);
+    process.env.SPEC_KIT_DB_DIR = tempDir;
+    delete process.env.EMBEDDINGS_PROVIDER;
+    delete process.env.VOYAGE_API_KEY;
+    delete process.env.OPENAI_API_KEY;
+
+    installFetchMock(async (input, init) => {
+      const pathname = new URL(String(input)).pathname;
+      if (pathname === '/api/tags') {
+        return jsonResponse({
+          models: [{ name: 'hf.co/gaianet/jina-embeddings-v3-GGUF:Q4_K_M' }],
+        });
+      }
+
+      expect(pathname).toBe('/api/embed');
+      const payload = JSON.parse(String(init?.body)) as { input: string[] };
+      expect(payload.input).toEqual(['search']);
+      return jsonResponse({ embeddings: [vector(1024, 1)] });
+    });
+
+    expect(resolveProvider()).toMatchObject({ name: 'ollama' });
+    const provider = await createEmbeddingsProvider({ warmup: false });
+    await expect(provider.embedQuery('search')).resolves.toHaveLength(1024);
+  });
+
+  it('does not select Ollama from vec_metadata when the active vec_1024 table is missing', () => {
+    tempDir = mkdtempSync(path.join(tmpdir(), 'spec-kit-ollama-provider-'));
+    createActiveJinaDb(tempDir, false);
+    process.env.SPEC_KIT_DB_DIR = tempDir;
+    delete process.env.EMBEDDINGS_PROVIDER;
+    delete process.env.VOYAGE_API_KEY;
+    delete process.env.OPENAI_API_KEY;
+
+    expect(resolveProvider().name).not.toBe('ollama');
   });
 });

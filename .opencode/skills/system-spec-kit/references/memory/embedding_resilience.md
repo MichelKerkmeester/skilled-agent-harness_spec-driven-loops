@@ -22,6 +22,7 @@ The embedding resilience system ensures semantic search remains functional even 
 | Embeddings Factory | `shared/embeddings/factory.ts` | Provider selection and fallback |
 | Voyage Provider | `shared/embeddings/providers/voyage.ts` | First cloud cascade provider when `VOYAGE_API_KEY` is usable |
 | OpenAI Provider | `shared/embeddings/providers/openai.ts` | Second cloud cascade provider when `OPENAI_API_KEY` is usable |
+| Ollama Provider | `shared/embeddings/providers/ollama.ts` | Active-manifest provider for Jina v3 and other Ollama-backed `vec_<dim>` tables |
 | llama-cpp Provider | `shared/embeddings/providers/llama-cpp.ts` | Default local provider when the GGUF runtime and model are installed |
 | HF Local Provider | `shared/embeddings/providers/hf-local.ts` | Final local fallback using Transformers.js and the ONNX EmbeddingGemma model |
 | Retry Manager | `mcp_server/lib/providers/retry-manager.ts` | Exponential backoff handling |
@@ -38,6 +39,8 @@ Governance boundaries still apply in every degradation mode. Fallback providers,
 ## 2. PROVIDER FALLBACK CHAIN
 
 The system attempts providers in order until one succeeds (REQ-029):
+
+Auto mode has one active-embedder exception before the cloud/local cascade: if `vec_metadata.active_embedder_name` points at an Ollama manifest and the matching `vec_<active_embedder_dim>` table exists with rows, the shared factory selects `ollama`. If that table is missing or empty, the factory logs a warning and continues to the fallback chain below.
 
 ### Fallback Order
 
@@ -61,14 +64,21 @@ The system attempts providers in order until one succeeds (REQ-029):
 └───────────────────────────────────┬───────────────────────────────┘
                                     ↓ FAIL
 ┌───────────────────────────────────────────────────────────────────┐
-│ 3. LLAMA-CPP (Default Local When Installed)                       │
+│ 3. OLLAMA (Active embedder only)                                   │
+│    Model: active vec_metadata manifest, e.g. jina-embeddings-v3    │
+│    Quality: selected by embedder bake-off / active pointer         │
+│    Latency: local Ollama runtime dependent                         │
+└───────────────────────────────────┬───────────────────────────────┘
+                                    ↓ FAIL
+┌───────────────────────────────────────────────────────────────────┐
+│ 4. LLAMA-CPP (Default Local When Installed)                       │
 │    Model: unsloth/embeddinggemma-300m-GGUF                        │
 │    Quality: Local EmbeddingGemma, q8 GGUF                         │
 │    Latency: local runtime dependent                               │
 └───────────────────────────────────┬───────────────────────────────┘
                                     ↓ FAIL
 ┌───────────────────────────────────────────────────────────────────┐
-│ 4. HF-LOCAL (Final Local Provider)                                │
+│ 5. HF-LOCAL (Final Local Provider)                                │
 │    Model: onnx-community/embeddinggemma-300m-ONNX                 │
 │    Quality: Local EmbeddingGemma, q8 ONNX                         │
 │    Latency: local runtime dependent                               │
@@ -105,18 +115,25 @@ const PROVIDER_CHAIN: ProviderConfig[] = [
     priority: 2
   },
   {
+    name: 'ollama',
+    envKey: 'OLLAMA_BASE_URL',
+    model: 'jina-embeddings-v3',
+    dimensions: 1024,
+    priority: 3
+  },
+  {
     name: 'llama-cpp',
     envKey: 'LLAMA_CPP_EMBEDDINGS_MODEL',
     model: 'unsloth/embeddinggemma-300m-GGUF',
     dimensions: 768,
-    priority: 3
+    priority: 4
   },
   {
     name: 'hf-local',
     envKey: 'HF_EMBEDDINGS_MODEL',
     model: 'onnx-community/embeddinggemma-300m-ONNX',
     dimensions: 768,
-    priority: 4
+    priority: 5
   }
 ];
 ```

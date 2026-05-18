@@ -109,7 +109,17 @@ export class EmbeddingProfile {
   }
 }
 
-type ActiveProfileProvider = 'voyage' | 'openai' | 'hf-local' | 'llama-cpp';
+type ActiveProfileProvider = 'voyage' | 'openai' | 'hf-local' | 'llama-cpp' | 'ollama';
+
+const OLLAMA_MODEL_DIMENSIONS: Readonly<Record<string, number>> = Object.freeze({
+  'nomic-embed-text-v1.5': 768,
+  'mxbai-embed-large-v1': 1024,
+  'bge-small-en-v1.5': 384,
+  'bge-large-en-v1.5': 1024,
+  'jina-embeddings-v3': 1024,
+  'bge-m3': 1024,
+  'snowflake-arctic-embed-l-v2.0': 1024,
+});
 
 export const ALLOWED_HF_LOCAL_DTYPES: ReadonlyArray<string> = [
   'fp32',
@@ -141,6 +151,7 @@ function normalizeProfileProvider(value: string | undefined | null): ActiveProfi
     || normalized === 'openai'
     || normalized === 'hf-local'
     || normalized === 'llama-cpp'
+    || normalized === 'ollama'
   ) {
     return normalized;
   }
@@ -182,6 +193,8 @@ function resolveActiveProfileModel(provider: ActiveProfileProvider): string {
       return process.env.OPENAI_EMBEDDINGS_MODEL || 'text-embedding-3-small';
     case 'llama-cpp':
       return (process.env.LLAMA_CPP_EMBEDDINGS_MODEL || 'unsloth/embeddinggemma-300m-GGUF').replace(/\//g, '-');
+    case 'ollama':
+      return process.env.OLLAMA_EMBEDDINGS_MODEL || 'jina-embeddings-v3';
     case 'hf-local':
     default:
       return process.env.HF_EMBEDDINGS_MODEL || 'onnx-community/embeddinggemma-300m-ONNX';
@@ -211,6 +224,9 @@ function resolveActiveProfileDim(provider: ActiveProfileProvider, model: string)
   }
   if (provider === 'voyage') {
     return 1024;
+  }
+  if (provider === 'ollama') {
+    return OLLAMA_MODEL_DIMENSIONS[model] ?? 1024;
   }
   return 768;
 }
@@ -256,7 +272,11 @@ function createActiveProfileFromEnv(): EmbeddingProfile {
     model,
     dim: resolveActiveProfileDim(provider, model),
     dtype: resolveActiveProfileDtype(provider),
-    baseUrl: provider === 'voyage' ? (process.env.VOYAGE_API_URL || null) : null,
+    baseUrl: provider === 'voyage'
+      ? (process.env.VOYAGE_API_URL || null)
+      : provider === 'ollama'
+        ? ((process.env.OLLAMA_BASE_URL || 'http://127.0.0.1:11434').replace(/\/+$/, ''))
+        : null,
   });
 }
 

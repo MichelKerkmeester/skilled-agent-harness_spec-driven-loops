@@ -197,6 +197,7 @@ RESOURCE_MAP = {
         "references/validation/phase_checklists.md",
     ],
     "RETRIEVAL_TUNING": [
+        "references/memory/embedder_architecture.md",
         "references/memory/embedding_resilience.md",
         "references/memory/trigger_config.md",
     ],

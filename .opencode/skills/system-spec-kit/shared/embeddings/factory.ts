@@ -16,6 +16,13 @@ import {
   resolveWorkspaceNodeLlamaCppEntrypoint,
 } from './llama-cpp-availability.js';
 import { OpenAIProvider, MODEL_DIMENSIONS as OPENAI_MODEL_DIMENSIONS } from './providers/openai.js';
+import {
+  getOllamaManifest,
+  MODEL_DIMENSIONS as OLLAMA_MODEL_DIMENSIONS,
+  OllamaProvider,
+  resolveOllamaBaseUrl,
+  resolveOllamaCanonicalModel,
+} from './providers/ollama.js';
 import { EmbeddingProfile, resolveActiveProfileDtype } from './profile.js';
 import { VoyageProvider, MODEL_DIMENSIONS as VOYAGE_MODEL_DIMENSIONS, resolveVoyageBaseUrl } from './providers/voyage.js';
 import type {
@@ -63,7 +70,7 @@ function parseValidationErrorBody(payload: unknown): ValidationErrorBody {
   };
 }
 
-type SupportedProviderName = 'voyage' | 'openai' | 'hf-local' | 'llama-cpp';
+type SupportedProviderName = 'voyage' | 'openai' | 'hf-local' | 'llama-cpp' | 'ollama';
 type ConfiguredProviderName = SupportedProviderName | 'auto';
 type ProviderFactoryMetadata = {
   requestedProvider: string;
@@ -135,7 +142,7 @@ export function setAutoMigrationTestOverridesForTests(overrides: AutoMigrationTe
   autoMigrationTestOverrides = overrides;
 }
 
-export const SUPPORTED_PROVIDERS = ['openai', 'voyage', 'hf-local', 'llama-cpp', 'auto'] as const;
+export const SUPPORTED_PROVIDERS = ['openai', 'voyage', 'hf-local', 'llama-cpp', 'ollama', 'auto'] as const;
 const SUPPORTED_PROVIDER_SET: ReadonlySet<string> = new Set(SUPPORTED_PROVIDERS);
 
 const LLAMA_CPP_MIGRATION_MODEL = 'unsloth/embeddinggemma-300m-GGUF';
@@ -192,6 +199,7 @@ const DEFAULT_PROVIDER_MODELS: Readonly<Record<SupportedProviderName, string>> =
   openai: 'text-embedding-3-small',
   'hf-local': 'onnx-community/embeddinggemma-300m-ONNX',
   'llama-cpp': 'unsloth/embeddinggemma-300m-GGUF',
+  ollama: 'jina-embeddings-v3',
 };
 
 // Correctness: one canonical dimension map for startup and runtime
@@ -217,6 +225,7 @@ export const VALID_PROVIDER_DIMENSIONS = Object.freeze({
     'ggml-org/embeddinggemma-300M-GGUF': 768,
     'google/embeddinggemma-300m': 768,
   }),
+  ollama: Object.freeze({ ...OLLAMA_MODEL_DIMENSIONS }),
 } satisfies Record<SupportedProviderName, Readonly<Record<string, number>>>);
 
 function normalizeProviderName(value: string | undefined | null): string | null {
@@ -253,6 +262,8 @@ function resolveConfiguredModel(provider: SupportedProviderName, model?: string)
       return process.env.OPENAI_EMBEDDINGS_MODEL || DEFAULT_PROVIDER_MODELS.openai;
     case 'llama-cpp':
       return process.env.LLAMA_CPP_EMBEDDINGS_MODEL || DEFAULT_PROVIDER_MODELS['llama-cpp'];
+    case 'ollama':
+      return process.env.OLLAMA_EMBEDDINGS_MODEL || resolveActiveOllamaEmbedder()?.name || DEFAULT_PROVIDER_MODELS.ollama;
     case 'hf-local':
     default:
       return process.env.HF_EMBEDDINGS_MODEL || DEFAULT_PROVIDER_MODELS['hf-local'];
@@ -289,6 +300,10 @@ function buildProviderConfigFingerprint(provider: string): string {
     LLAMA_CPP_EMBEDDINGS_MODEL: process.env.LLAMA_CPP_EMBEDDINGS_MODEL || '',
     LLAMA_CPP_EMBEDDINGS_MODEL_PATH: process.env.LLAMA_CPP_EMBEDDINGS_MODEL_PATH || '',
     LLAMA_CPP_EMBEDDINGS_DTYPE: process.env.LLAMA_CPP_EMBEDDINGS_DTYPE || '',
+    OLLAMA_BASE_URL: process.env.OLLAMA_BASE_URL || '',
+    OLLAMA_EMBEDDINGS_MODEL: process.env.OLLAMA_EMBEDDINGS_MODEL || '',
+    MEMORY_DB_PATH: process.env.MEMORY_DB_PATH || '',
+    SPEC_KIT_DB_DIR: process.env.SPEC_KIT_DB_DIR || process.env.SPECKIT_DB_DIR || '',
     MEMORY_AUTO_MIGRATE_HF_TO_LLAMA: process.env.MEMORY_AUTO_MIGRATE_HF_TO_LLAMA || '',
   });
 }
@@ -320,6 +335,155 @@ function resolveSpecKitPackageRoot(): string | null {
       return currentDir;
     }
     currentDir = path.dirname(currentDir);
+  }
+  return null;
+}
+
+interface ActiveOllamaEmbedder {
+  name: string;
+  dim: number;
+  dbPath: string;
+}
+
+const activeOllamaWarnings = new Set<string>();
+
+function warnActiveOllamaFallback(message: string): void {
+  if (activeOllamaWarnings.has(message)) {
+    return;
+  }
+  activeOllamaWarnings.add(message);
+  console.warn(`[factory] ${message}`);
+}
+
+function quoteSqlString(value: string): string {
+  return `'${value.replace(/'/g, "''")}'`;
+}
+
+function quoteSqlIdentifier(value: string): string {
+  return `"${value.replace(/"/g, '""')}"`;
+}
+
+function querySqliteScalar(sqlitePath: string, sql: string): string | null {
+  try {
+    const output = execFileSync('sqlite3', [sqlitePath, sql], {
+      encoding: 'utf8',
+      stdio: ['ignore', 'pipe', 'ignore'],
+      timeout: 2000,
+    }).trim();
+    return output.length > 0 ? output : null;
+  } catch (_error: unknown) {
+    return null;
+  }
+}
+
+function readVecMetadataValue(sqlitePath: string, key: string): string | null {
+  return querySqliteScalar(
+    sqlitePath,
+    `SELECT value FROM vec_metadata WHERE key = ${quoteSqlString(key)} LIMIT 1;`,
+  );
+}
+
+function tableExistsInSqlite(sqlitePath: string, tableName: string): boolean {
+  return querySqliteScalar(
+    sqlitePath,
+    `SELECT COUNT(*) FROM sqlite_master WHERE type = 'table' AND name = ${quoteSqlString(tableName)};`,
+  ) === '1';
+}
+
+function countRowsInSqliteTable(sqlitePath: string, tableName: string): number | null {
+  const output = querySqliteScalar(sqlitePath, `SELECT COUNT(*) FROM ${quoteSqlIdentifier(tableName)};`);
+  if (output === null) {
+    return null;
+  }
+  const parsed = Number.parseInt(output, 10);
+  return Number.isFinite(parsed) ? parsed : null;
+}
+
+function resolveConfiguredDatabaseCandidates(): string[] {
+  const candidates: string[] = [];
+
+  if (process.env.MEMORY_DB_PATH?.trim()) {
+    return [path.resolve(process.cwd(), process.env.MEMORY_DB_PATH.trim())];
+  }
+
+  const configuredDir = process.env.SPEC_KIT_DB_DIR?.trim() || process.env.SPECKIT_DB_DIR?.trim();
+  const packageRoot = resolveSpecKitPackageRoot();
+  const databaseDirs = [
+    configuredDir ? path.resolve(process.cwd(), configuredDir) : null,
+    !configuredDir && packageRoot ? path.join(packageRoot, 'mcp_server', 'database') : null,
+  ].filter((value): value is string => typeof value === 'string' && value.length > 0);
+
+  for (const databaseDir of databaseDirs) {
+    if (!existsSync(databaseDir)) {
+      continue;
+    }
+    try {
+      for (const filename of readdirSync(databaseDir)) {
+        if (filename.endsWith('.sqlite')) {
+          candidates.push(path.join(databaseDir, filename));
+        }
+      }
+    } catch (_error: unknown) {
+      // Ignore unreadable database directories; provider resolution can still use env.
+    }
+  }
+
+  return Array.from(new Set(candidates));
+}
+
+function readActiveOllamaEmbedderFromDb(sqlitePath: string): ActiveOllamaEmbedder | null {
+  if (!existsSync(sqlitePath) || !tableExistsInSqlite(sqlitePath, 'vec_metadata')) {
+    return null;
+  }
+
+  const name = readVecMetadataValue(sqlitePath, 'active_embedder_name');
+  const dimRaw = readVecMetadataValue(sqlitePath, 'active_embedder_dim');
+  const dim = typeof dimRaw === 'string' ? Number.parseInt(dimRaw, 10) : NaN;
+
+  if (!name || !Number.isInteger(dim) || dim <= 0) {
+    return null;
+  }
+
+  const manifest = getOllamaManifest(name);
+  if (!manifest) {
+    return null;
+  }
+  if (manifest.dim !== dim) {
+    warnActiveOllamaFallback(
+      `Active embedder ${name} has metadata dim ${dim}, but its manifest dim is ${manifest.dim}; falling back to embeddinggemma.`,
+    );
+    return null;
+  }
+
+  const expectedTable = `vec_${dim}`;
+  if (!tableExistsInSqlite(sqlitePath, expectedTable)) {
+    warnActiveOllamaFallback(
+      `Active embedder ${name} points to ${expectedTable}, but that table is missing in ${sqlitePath}; falling back to embeddinggemma.`,
+    );
+    return null;
+  }
+
+  const rowCount = countRowsInSqliteTable(sqlitePath, expectedTable);
+  if (rowCount === null || rowCount <= 0) {
+    warnActiveOllamaFallback(
+      `Active embedder ${name} points to ${expectedTable}, but that table is empty in ${sqlitePath}; falling back to embeddinggemma.`,
+    );
+    return null;
+  }
+
+  return {
+    name: manifest.name,
+    dim: manifest.dim,
+    dbPath: sqlitePath,
+  };
+}
+
+function resolveActiveOllamaEmbedder(): ActiveOllamaEmbedder | null {
+  for (const sqlitePath of resolveConfiguredDatabaseCandidates()) {
+    const active = readActiveOllamaEmbedderFromDb(sqlitePath);
+    if (active) {
+      return active;
+    }
   }
   return null;
 }
@@ -600,6 +764,8 @@ function getProviderInfoForResolution(resolution: ProviderResolution): ProviderI
       HF_EMBEDDINGS_MODEL: process.env.HF_EMBEDDINGS_MODEL || DEFAULT_PROVIDER_MODELS['hf-local'],
       LLAMA_CPP_EMBEDDINGS_MODEL: process.env.LLAMA_CPP_EMBEDDINGS_MODEL || DEFAULT_PROVIDER_MODELS['llama-cpp'],
       LLAMA_CPP_EMBEDDINGS_MODEL_PATH: process.env.LLAMA_CPP_EMBEDDINGS_MODEL_PATH || 'default GGUF cache path',
+      OLLAMA_BASE_URL: resolveOllamaBaseUrl(),
+      OLLAMA_EMBEDDINGS_MODEL: process.env.OLLAMA_EMBEDDINGS_MODEL || resolveActiveOllamaEmbedder()?.name || DEFAULT_PROVIDER_MODELS.ollama,
     },
   };
 }
@@ -669,12 +835,20 @@ export function getStartupEmbeddingProfile(): EmbeddingProfile {
 
   const profile = new EmbeddingProfile({
     provider,
-    model: provider === 'llama-cpp' ? resolveLlamaCppProfileModel(model) : model,
+    model: provider === 'llama-cpp'
+      ? resolveLlamaCppProfileModel(model)
+      : provider === 'ollama'
+        ? resolveOllamaCanonicalModel(model)
+        : model,
     dim,
     dtype: provider === 'hf-local'
       ? resolveHfLocalDtype()
       : resolveActiveProfileDtype(provider),
-    baseUrl: provider === 'voyage' ? resolveVoyageBaseUrl() : null,
+    baseUrl: provider === 'voyage'
+      ? resolveVoyageBaseUrl()
+      : provider === 'ollama'
+        ? resolveOllamaBaseUrl()
+        : null,
   });
   return profile;
 }
@@ -733,6 +907,14 @@ export function resolveProvider(): ProviderResolution {
     return {
       name: explicitProvider,
       reason: 'Explicit EMBEDDINGS_PROVIDER variable',
+    };
+  }
+
+  const activeOllamaEmbedder = resolveActiveOllamaEmbedder();
+  if (activeOllamaEmbedder) {
+    return {
+      name: 'ollama',
+      reason: `vec_metadata active_embedder_name=${activeOllamaEmbedder.name} (${activeOllamaEmbedder.dim}-dim)`,
     };
   }
 
@@ -845,6 +1027,31 @@ async function createProviderInstance(
       });
     }
 
+    case 'ollama': {
+      const model = resolveConfiguredModel('ollama', options.model);
+      if (options.apiKey) {
+        console.warn('[factory] OllamaProvider does not support apiKey option - ignored');
+      }
+      if (options.dtype) {
+        console.warn('[factory] OllamaProvider does not support dtype option - ignored');
+      }
+      const availability = await OllamaProvider.canLoad({
+        model,
+        baseUrl: options.baseUrl,
+        timeout: options.timeout,
+      });
+      if (!availability.available) {
+        throw new Error(availability.reason || 'Ollama availability probe failed');
+      }
+      return new OllamaProvider({
+        model,
+        dim: options.dim,
+        baseUrl: options.baseUrl,
+        maxTextLength: options.maxTextLength,
+        timeout: options.timeout,
+      });
+    }
+
     default:
       throw new Error(
         `Unknown provider: ${providerName}. ` +
@@ -859,7 +1066,11 @@ function buildProviderValidationCacheKey(options: ValidateApiKeyOptions): string
     || (provider === 'voyage' ? process.env.VOYAGE_API_KEY : process.env.OPENAI_API_KEY)
     || '';
   const baseUrl = options.baseUrl
-    || (provider === 'voyage' ? resolveVoyageBaseUrl() : (process.env.OPENAI_BASE_URL || 'https://api.openai.com/v1'));
+    || (provider === 'voyage'
+      ? resolveVoyageBaseUrl()
+      : provider === 'ollama'
+        ? resolveOllamaBaseUrl()
+        : (process.env.OPENAI_BASE_URL || 'https://api.openai.com/v1'));
   const model = resolveConfiguredModel(provider, options.model);
 
   return JSON.stringify({ provider, apiKey, baseUrl, model });
@@ -867,7 +1078,7 @@ function buildProviderValidationCacheKey(options: ValidateApiKeyOptions): string
 
 async function ensureCloudProviderValidated(options: ValidateApiKeyOptions): Promise<ApiKeyValidationResult> {
   const providerName = options.provider;
-  if (!providerName || providerName === 'hf-local' || providerName === 'llama-cpp') {
+  if (!providerName || providerName === 'hf-local' || providerName === 'llama-cpp' || providerName === 'ollama') {
     return {
       valid: true,
       provider: providerName || 'hf-local',
@@ -895,7 +1106,9 @@ async function ensureCloudProviderValidated(options: ValidateApiKeyOptions): Pro
 }
 
 function getCascadeFallbackOrder(failedProvider: SupportedProviderName): SupportedProviderName[] {
-  const cascadeOrder: SupportedProviderName[] = ['voyage', 'openai', 'llama-cpp', 'hf-local'];
+  const cascadeOrder: SupportedProviderName[] = failedProvider === 'ollama'
+    ? ['ollama', 'llama-cpp', 'hf-local']
+    : ['voyage', 'openai', 'llama-cpp', 'hf-local'];
   const failedIndex = cascadeOrder.indexOf(failedProvider);
   return failedIndex === -1 ? [] : cascadeOrder.slice(failedIndex + 1);
 }
@@ -1029,7 +1242,7 @@ export async function createEmbeddingsProvider(options: CreateProviderOptions = 
       if (!success) {
         console.warn(`[factory] Warmup failed for ${providerName}`);
 
-        if ((providerName === 'openai' || providerName === 'voyage' || providerName === 'llama-cpp') && allowsAutomaticFallback(options.provider)) {
+        if ((providerName === 'openai' || providerName === 'voyage' || providerName === 'llama-cpp' || providerName === 'ollama') && allowsAutomaticFallback(options.provider)) {
           if (providerName === 'llama-cpp') {
             warnLlamaCppUnavailable(`warmup failed for ${providerName}`);
           }
@@ -1056,7 +1269,7 @@ export async function createEmbeddingsProvider(options: CreateProviderOptions = 
     console.error(`[factory] Error creating provider ${providerName}:`, getErrorMessage(error));
 
     // Resume the auto cascade when the selected backend is unavailable.
-    if ((providerName === 'openai' || providerName === 'voyage' || providerName === 'llama-cpp') && allowsAutomaticFallback(options.provider)) {
+    if ((providerName === 'openai' || providerName === 'voyage' || providerName === 'llama-cpp' || providerName === 'ollama') && allowsAutomaticFallback(options.provider)) {
       if (providerName === 'llama-cpp') {
         warnLlamaCppUnavailable(getErrorMessage(error));
       }
@@ -1106,7 +1319,7 @@ export async function validateApiKey(options: ValidateApiKeyOptions = {}): Promi
   const providerName: SupportedProviderName = options.provider || (resolveProvider().name as SupportedProviderName);
 
   // Local providers don't need API key validation
-  if (providerName === 'hf-local' || providerName === 'llama-cpp') {
+  if (providerName === 'hf-local' || providerName === 'llama-cpp' || providerName === 'ollama') {
     return {
       valid: true,
       provider: providerName,
