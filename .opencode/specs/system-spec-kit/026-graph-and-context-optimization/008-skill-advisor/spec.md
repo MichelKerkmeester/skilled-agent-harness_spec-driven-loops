@@ -133,6 +133,7 @@ Keep this theme as the single active parent for the full skill advisor system. E
 | 10 | `003-skill-advisor-standards-alignment/` | Complete | Feature Specification: Skill-Advisor Standards Alignment |
 | 11 | `001-skill-advisor-hook-improvements/` | Research Queued | Feature Specification: Skill-Advisor Hook Improvements |
 | 12 | `005-skill-advisor-setup-command/` | Implemented | Feature Specification: Skill Advisor Setup Command |
+| 005-docs | 006-concurrent-daemon-corruption-fix | [Criteria TBD] | [Verification TBD] |
 <!-- /ANCHOR:phase-map -->
 
 ---

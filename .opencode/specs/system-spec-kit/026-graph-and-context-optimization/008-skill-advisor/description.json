@@ -1,19 +1,21 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor",
-  "description": "Feature Specification: Skill Advisor",
+  "specFolder": "008-skill-advisor",
+  "description": "Single-writer lease enforcement: kill SQLite corruption from concurrent skill-advisor daemons",
   "keywords": [
-    "feature",
-    "specification",
-    "skill",
-    "advisor"
+    "single-writer",
+    "lease",
+    "enforcement",
+    "kill",
+    "sqlite",
+    "corruption",
+    "concurrent",
+    "skill-advisor",
+    "daemons"
   ],
-  "lastUpdated": "2026-04-26T07:03:47.535Z",
+  "lastUpdated": "2026-05-18T04:46:07.940Z",
   "specId": "008",
   "folderSlug": "skill-advisor",
-  "parentChain": [
-    "system-spec-kit",
-    "026-graph-and-context-optimization"
-  ],
+  "parentChain": [],
   "memorySequence": 0,
   "memoryNameHistory": []
 }
