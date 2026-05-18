@@ -1,25 +1,32 @@
 ---
-title: "Summary: 016/004 embedder swaps + 008 closure"
-description: "Dense swaps established the ceiling, then a default-on retrieval-rescue layer lifted repaired cat-24/409 to PASS at 8/10 top-3; 008 can close."
-trigger_phrases: ["016/004 summary"]
+title: "Summary: 016/004 mk-spec-memory text-embedder bake-off — jina-embeddings-v3 + rescue layer ships"
+description: "6-candidate text-embedder bake-off + retrieval-rescue layer integration for mk-spec-memory. Dense swaps established the ceiling (best non-rescue: nomic 5/10); rescue layer + jina-embeddings-v3 reaches 9/10 on cat-24/409. ADR-012 promotes jina-v3 + rescue as production default. See benchmark-results.md for the headline doc."
+trigger_phrases:
+  - "016/004 summary"
+  - "spec memory bake-off summary"
+  - "jina-v3 rescue ships"
+  - "mk-spec-memory embedder shipped"
 importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/004-mxbai-swap-and-008-closure"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/004-spec-memory-embedder-bake-off"
     last_updated_at: "2026-05-17T18:25:00Z"
     last_updated_by: "main_agent"
     recent_action: "ADR-011 default-on gated; D-RETRY confirmed 8/10 after dist rebuild"
     next_safe_action: "Await codex boa26jubw for jina+gemma+rescue comparison; ADR-012 will ratify embedder choice"
     blockers: []
     key_files:
+      - "benchmark-results.md"
       - "decision-record.md"
+      - "evidence/embedder-comparison-with-rescue.jsonl"
+      - "evidence/embedder-comparison.csv"
+      - "evidence/jina-runtime-measurements.md"
       - "evidence/cat-24-rerun.jsonl"
       - "evidence/d-rescue-on-vs-off.jsonl"
       - "evidence/d-sample-30.json"
       - "evidence/008-pass-rerun-default-on-rescue.jsonl"
       - "evidence/008-rescue-default-on-regression-report.md"
-      - "evidence/embedder-comparison.csv"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "016-004-summary"
@@ -31,17 +38,20 @@ _memory:
 <!-- SPECKIT_TEMPLATE_SOURCE: implementation-summary-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 1 -->
 
-# Summary: 016/004 embedder swaps + 008 closure
+# Summary: 016/004 mk-spec-memory text-embedder bake-off — jina-embeddings-v3 + rescue layer ships
+
+> **⭐ Headline doc:** **[`benchmark-results.md`](./benchmark-results.md)** — 6-candidate analysis + per-embedder profiles + ADR map.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 | Field | Value |
 |-------|-------|
-| Status | CLOSED - default-on retrieval rescue lifted repaired cat-24/409 to PASS |
+| Status | SHIPPED - ADR-012 selects jina-embeddings-v3 + rescue layer as production default; cat-24/409 closed at 9/10 |
 | Branch | main |
 | Wall-clock estimate | 1-2 hours (mostly re-index wait + scenario re-runs) |
 | Closes | packet 008 cat-24/409; 51/51 FAILs can be marked closed |
 | Supersedes | packet 115's standalone eval scaffold; follow-up should continue under 016 architecture |
+| Folder rename | 2026-05-18: from `004-mxbai-swap-and-008-closure` to surface bake-off scope |
 
 
 <!-- /ANCHOR:metadata -->

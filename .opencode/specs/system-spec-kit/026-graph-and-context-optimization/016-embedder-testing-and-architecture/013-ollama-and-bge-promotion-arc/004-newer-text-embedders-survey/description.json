@@ -1,0 +1,24 @@
+{
+  "level": "feature",
+  "specFolder": "004-newer-text-embedders-survey",
+  "description": "Live HF crawl for text embedders released after May 2026 (post-ADR-012). Research-only by default — only triggers a follow-on bench if a clearly stronger candidate emerges vs jina-embeddings-v3 + rescue layer (mk-spec-memory production default).",
+  "keywords": [
+    "newer-text-embedders",
+    "hf-crawl",
+    "survey",
+    "post-adr-012",
+    "mk-spec-memory-candidate-refresh",
+    "research"
+  ],
+  "lastUpdated": "2026-05-18T18:30:00.000Z",
+  "specId": "004",
+  "folderSlug": "004-newer-text-embedders-survey",
+  "parentChain": [
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture",
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/013-ollama-and-bge-promotion-arc"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "18-05-26_18-30__rescoped-from-004-spec-memory-bge-m3-benchmark.md"
+  ]
+}

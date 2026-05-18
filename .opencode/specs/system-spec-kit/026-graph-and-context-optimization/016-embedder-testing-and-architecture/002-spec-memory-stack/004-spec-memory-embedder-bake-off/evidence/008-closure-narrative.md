@@ -66,4 +66,4 @@ Conclusion: **no pure dense swap closes cat-24/409 alone**. Rescue layer is the 
 - `embedder-comparison-with-rescue.jsonl` — 3-row authoritative leaderboard
 - `cat-24-409-audit.md` — fixture audit (ADR-009 source)
 - `corpus-hygiene-cleanup.md` — orphan-row prune evidence
-- `../../../000-release-cleanup/005-stress-test/008-mk-spec-memory-stress-test/implementation-summary.md` — packet 008 summary
+- `../../../000-release-cleanup/005-stress-test/008-spec-memory-mcp-stress-test/implementation-summary.md` — packet 008 summary

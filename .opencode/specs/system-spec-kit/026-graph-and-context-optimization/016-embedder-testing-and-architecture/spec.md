@@ -47,7 +47,7 @@ _memory:
 | Status | Scaffolded |
 | Created | 2026-05-17 |
 | Branch | main |
-| Predecessor | `008-mk-spec-memory-stress-test` (cat-24/409 PARTIAL — embedding model bottleneck) |
+| Predecessor | `008-spec-memory-mcp-stress-test` (cat-24/409 PARTIAL — embedding model bottleneck) |
 | Related | `014-local-embeddings-migration` (existing EmbeddingGemma setup work — Complete) |
 | Related | `115-embedding-model-evaluation` (sibling-track scaffold; superseded by this 016 packet via "build pluggable layer FIRST" decision) |
 <!-- /ANCHOR:metadata -->
@@ -76,7 +76,7 @@ First concrete swap target: **mxbai-embed-large-v1** (Mixedbread AI, 335M params
 | 001 | `001-embedder-adapter-interface` | `EmbedderAdapter` interface + `EmbedderRegistry` lookup. Pure types + small registry. ✅ Shipped |
 | 002 | `002-ollama-backend-and-multi-dim-schema` | Ollama HTTP-API adapter + lazy `vec_<dim>` table creation + active-embedder pointer. ✅ Shipped |
 | 003 | `003-embedder-mcp-tools-and-reindex` | `embedder_list` / `embedder_set` / `embedder_status` MCP tools + background re-index orchestrator. ✅ Shipped |
-| 004 | `004-mxbai-swap-and-008-closure` | Embedder leaderboard sweep (6 models tested) + retrieval-rescue layer + ADR-009/010/011/012 + 008/cat-24/409 51/51 closure. Production winner: jina-embeddings-v3 + rescue. ✅ Shipped |
+| 004 | `004-spec-memory-embedder-bake-off` | Embedder leaderboard sweep (6 models tested) + retrieval-rescue layer + ADR-009/010/011/012 + 008/cat-24/409 51/51 closure. Production winner: jina-embeddings-v3 + rescue. ✅ Shipped |
 | 005 | `005-playbook-quality-audit` (was 017) | Fairness audit + tool-coverage audit + scenario expansion (15 new + 3 repaired). B-RETRY validation 10/18 PASS. ✅ Shipped |
 | 006 | `004-code-index-stack` (was 018) | CocoIndex default flipped from gemma to `sbert/jinaai/jina-embeddings-v2-base-code` + MPS auto-detect; reindex Public (127K chunks) + anobel.com (3K chunks). ✅ Shipped (003-comparison-measure deferred) |
 | 007 | `004-code-index-stack` (was 019) | `registered_embedders.py` catalog of 6 vetted code embedders + INSTALL_GUIDE "Choosing an embedder" section. ✅ Shipped |

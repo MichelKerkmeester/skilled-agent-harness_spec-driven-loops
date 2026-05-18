@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/013-ollama-and-bge-promotion-arc/004-spec-memory-bge-m3-benchmark",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/013-ollama-and-bge-promotion-arc/004-spec-memory-bge-m3-benchmark",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/013-ollama-and-bge-promotion-arc/004-newer-text-embedders-survey",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/013-ollama-and-bge-promotion-arc/004-newer-text-embedders-survey",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/013-ollama-and-bge-promotion-arc",
   "children_ids": [],
   "manual": {

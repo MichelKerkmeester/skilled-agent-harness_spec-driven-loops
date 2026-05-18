@@ -27,10 +27,10 @@ Evidence:
 
 The current 016/004 reruns reused the same 10 trigger-bearing samples from prior 008 evidence rather than drawing a fresh random sample. The explicit sample ids are visible in later rerun rows, especially the Jina, Nomic, bge-m3, and Snowflake evidence:
 
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/004-mxbai-swap-and-008-closure/evidence/cat-24-rerun.jsonl:12`
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/004-mxbai-swap-and-008-closure/evidence/cat-24-rerun.jsonl:15`
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/004-mxbai-swap-and-008-closure/evidence/cat-24-rerun.jsonl:18`
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/004-mxbai-swap-and-008-closure/evidence/cat-24-rerun.jsonl:21`
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/004-spec-memory-embedder-bake-off/evidence/cat-24-rerun.jsonl:12`
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/004-spec-memory-embedder-bake-off/evidence/cat-24-rerun.jsonl:15`
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/004-spec-memory-embedder-bake-off/evidence/cat-24-rerun.jsonl:18`
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/004-spec-memory-embedder-bake-off/evidence/cat-24-rerun.jsonl:21`
 
 ## Test Pair Inventory
 
@@ -49,8 +49,8 @@ All rows below are present in `memory_index` with `embedding_status=success`. Fi
 | 5 | 4437 | `040 checklist` | `014-local-llama-cpp/040-v-rule-cross-spec-overreach/checklist.md` | stale/orphaned: indexed row exists, file missing | broken | 1 | Live/current row exists as id 5143 under `014-local-embeddings-migration/040-v-rule-cross-spec-overreach/checklist.md`; exact id 4437 is stale. |
 | 6 | 9326 | `020 mcp namespace operational sweep` | archived `007-034-mcp-namespace-operational-sweep/spec.md` | present, embedded | medium | 4 | Correct source is archived and has close sibling rows; top-3 may be sensitive to sibling dedup/reassembly. |
 | 7 | 4400 | `template consolidation decision` | `008-template-levels/001-template-consolidation-investigation/decision-record.md` | stale/orphaned: indexed row exists, file missing | broken | 3 | Live/current equivalent exists as id 8048 under `008-template-levels/001-consolidation-investigation/decision-record.md`; exact id 4400 is stale. |
-| 8 | 687 | `system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/014-phase-parent-documentation` | `014-phase-parent-documentation/description.json` | stale/orphaned: indexed row exists, file missing | broken | 1 | Current phase-parent docs live under `000-release-cleanup/003-cleanup/009-phase-parent-documentation/...`; exact id 687 points at a removed path. |
-| 9 | 7183 | `037/003-testing-playbook-trio resource map` | `003-testing-playbook-trio/resource-map.md` | present, embedded | easy | 1 | Exact title/spec overlap. |
+| 8 | 687 | `system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/014-phase-parent-documentation` | `014-phase-parent-documentation/description.json` | stale/orphaned: indexed row exists, file missing | broken | 1 | Current phase-parent docs live under `000-release-cleanup/003-cleanup/009-phase-parent-lean-trio-documentation/...`; exact id 687 points at a removed path. |
+| 9 | 7183 | `037/003-testing-playbook-trio-alignment resource map` | `003-testing-playbook-trio-alignment/resource-map.md` | present, embedded | easy | 1 | Exact title/spec overlap. |
 | 10 | 1534 | `FIX-010-v2` | `005-code-graph/010-fix-iteration-quality-meta-research/tasks.md` | stale/orphaned: indexed row exists, file missing | broken | 2 | Current packet is `005-code-graph/009-fix-iteration-quality-meta-research`; exact id 1534 points at a removed/renumbered path. |
 
 Difficulty distribution:
@@ -70,12 +70,12 @@ This is not a clean embedder-quality fixture. The dense-only failures are confou
 
 | Embedder | 409 top-3 recall | Evidence |
 |---|---:|---|
-| `embeddinggemma-300m` baseline | 1/10 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/004-mxbai-swap-and-008-closure/evidence/embedder-comparison.csv:2` |
-| `mxbai-embed-large-v1` | 2/10 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/004-mxbai-swap-and-008-closure/evidence/cat-24-rerun.jsonl:9` |
-| `jina-embeddings-v3` | 4/10 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/004-mxbai-swap-and-008-closure/evidence/cat-24-rerun.jsonl:12` |
-| `nomic-embed-text-v1.5` | 5/10 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/004-mxbai-swap-and-008-closure/evidence/cat-24-rerun.jsonl:15` |
-| `bge-m3` | 2/10 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/004-mxbai-swap-and-008-closure/evidence/cat-24-rerun.jsonl:18` |
-| `snowflake-arctic-embed-l-v2.0` | 1/10 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/004-mxbai-swap-and-008-closure/evidence/cat-24-rerun.jsonl:21` |
+| `embeddinggemma-300m` baseline | 1/10 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/004-spec-memory-embedder-bake-off/evidence/embedder-comparison.csv:2` |
+| `mxbai-embed-large-v1` | 2/10 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/004-spec-memory-embedder-bake-off/evidence/cat-24-rerun.jsonl:9` |
+| `jina-embeddings-v3` | 4/10 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/004-spec-memory-embedder-bake-off/evidence/cat-24-rerun.jsonl:12` |
+| `nomic-embed-text-v1.5` | 5/10 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/004-spec-memory-embedder-bake-off/evidence/cat-24-rerun.jsonl:15` |
+| `bge-m3` | 2/10 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/004-spec-memory-embedder-bake-off/evidence/cat-24-rerun.jsonl:18` |
+| `snowflake-arctic-embed-l-v2.0` | 1/10 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/004-spec-memory-embedder-bake-off/evidence/cat-24-rerun.jsonl:21` |
 
 Current audit spot-check with `memory_search(..., profile: "quick", rerank: false)` found 9/10 expected ids in the top-5. That does **not** rescue the fixture: several of those hits are stale rows pointing at missing files. The system can currently return orphaned records, which is a corpus hygiene defect, not evidence that exact-id ground truth is fair.
 

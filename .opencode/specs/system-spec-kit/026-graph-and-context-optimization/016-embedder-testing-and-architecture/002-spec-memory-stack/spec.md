@@ -19,7 +19,7 @@ _memory:
       - "001-adapter-interface/spec.md"
       - "002-ollama-backend-and-multi-dim-schema/spec.md"
       - "003-mcp-tools-and-reindex/spec.md"
-      - "004-mxbai-swap-and-008-closure/spec.md"
+      - "004-spec-memory-embedder-bake-off/spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000016001"
       session_id: "016-mk-spec-memory-stack"
@@ -56,7 +56,7 @@ All 4 sub-phases shipped before this restructure landed. The restructure is pure
 | 001-adapter-interface | EmbedderAdapter contract + MANIFESTS registry | Shipped |
 | 002-ollama-backend-and-multi-dim-schema | OllamaAdapter + vec_<dim> schema | Shipped |
 | 003-mcp-tools-and-reindex | embedder_list/set/status + reindex orchestrator | Shipped |
-| 004-mxbai-swap-and-008-closure | mxbai swap + cat-24/409 closure | Shipped |
+| 004-spec-memory-embedder-bake-off | mxbai swap + cat-24/409 closure | Shipped |
 <!-- /ANCHOR:phase-map -->
 
 <!-- ANCHOR:cross-refs -->

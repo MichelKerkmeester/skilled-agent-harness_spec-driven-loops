@@ -15,7 +15,7 @@ Audited MCP-info surfaces for stale mk-spec-memory tool counts, embedder-tool me
   - `_NOTE_8_FEATURE_FLAGS`: added default-on `SPECKIT_RERANK_LAYER`.
 - `.opencode/skills/system-spec-kit/mcp_server/package.json`
   - Description now says `42 tools` and includes embedder control.
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/008-mk-spec-memory-stress-test/graph-metadata.json`
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/008-spec-memory-mcp-stress-test/graph-metadata.json`
   - Trigger phrase refreshed from `39 tool sweep` to `42 tool sweep`.
 
 ## Audited Clean

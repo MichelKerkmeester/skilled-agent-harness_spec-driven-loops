@@ -1,11 +1,11 @@
 ---
 title: "Spec: 016/013 Ollama + BGE Promotion Arc — phase parent"
-description: "Phase parent. 4 sub-phases: (001) investigate what each retrieval system actually indexes, (002) add Ollama adapter to CocoIndex via LiteLLM, (003) 3-run-confirm + promote bge-code-v1 as the CocoIndex default, (004) text-side fixture + benchmark mk-spec-memory's current jina-code vs bge-m3 / bge-large-en-v1.5. Outcome: clear embedder routing + Ollama support + validated defaults across CocoIndex and mk-spec-memory."
+description: "Phase parent. 4 sub-phases: (001) investigate what each retrieval system actually indexes, (002) add Ollama adapter to CocoIndex via LiteLLM, (003) 3-run-confirm + promote bge-code-v1 as the CocoIndex default, (004) survey newer text embedders released after May 2026 — only bench if a clearly stronger candidate emerges (mk-spec-memory bake-off already shipped jina-embeddings-v3 + rescue per ADR-012). Outcome: clear embedder routing + Ollama support + validated defaults across CocoIndex and mk-spec-memory."
 trigger_phrases:
   - "016/013 ollama and bge promotion"
   - "ollama adapter cocoindex"
   - "bge-code-v1 default promotion"
-  - "bge-m3 spec memory benchmark"
+  - "newer text embedders survey"
   - "indexer surface investigation"
 importance_tier: "important"
 contextType: "implementation"
@@ -33,7 +33,7 @@ The 004-extended-bake-off (just shipped) surfaced three follow-ons that this arc
 
 1. **No Ollama support in CocoIndex.** Registry is sbert-only. Operators with an Ollama daemon already running can't share the model load between systems. mk-spec-memory's TS-side registry has Ollama; CocoIndex's Python-side does not.
 2. **bge-code-v1 won the bench (11/18 = 61.1%) but only with single-run signal.** Per the `113/005` noise-floor lesson, single-sample wins under ~2% are noise; 11.1pp is well above noise but the 4 unique probes need confirming before swapping the default.
-3. **mk-spec-memory still uses jina-code (a code-tuned model) for text content.** No text-side benchmark has been done. bge-m3 (8192 ctx, BGE family) is the natural text equivalent and worth measuring.
+3. **mk-spec-memory's text-embedder default may be stale.** Investigation surfaced an existing 6-candidate bake-off at `../002-spec-memory-stack/004-spec-memory-embedder-bake-off/` — production is `jina-embeddings-v3 + rescue layer` per ADR-012 (May 17, 2026). Worth checking whether anything stronger has shipped since.
 
 Plus one foundational gap:
 
@@ -50,7 +50,7 @@ In scope (4 sub-phases):
 | `001-indexer-surface-investigation/` | Map each retrieval/dispatch system to its indexer + content type. AI council, deep-research, deep-review, sk-doc, skill-advisor, CocoIndex, mk-spec-memory, code-graph. | Research-only |
 | `002-cocoindex-ollama-adapter/` | Add Ollama provider to CocoIndex's `registered_embedders.py` via LiteLLM ollama path. Verify glue end-to-end. | Implementation |
 | `003-bge-code-v1-confirmation-and-promote/` | Re-run the 4-candidate bench 3× to confirm bge-code-v1's 11/18 holds. If yes, swap `_DEFAULT_MODEL` jina-code → bge-code-v1 in CocoIndex config. | Implementation |
-| `004-spec-memory-bge-m3-benchmark/` | Build text fixture for mk-spec-memory (~15-20 query/path pairs over spec docs). Bench candidates: jina-code (current), bge-base-en-v1.5, bge-large-en-v1.5, bge-m3. Swap default if a clear winner emerges. | Implementation |
+| `004-newer-text-embedders-survey/` | HF crawl for text embedders released after 2026-05-01 (post-ADR-012). Triage SKIP / CONSIDER / MEASURE per candidate. Only bench if a clearly stronger candidate emerges than jina-embeddings-v3 + rescue (current production). | Research (may trigger follow-on bench) |
 
 Out of scope:
 - Stella revival via xformers (deferred indefinitely — non-viable on Apple Silicon, see 004-extended-bake-off/benchmark-results.md §8).
@@ -80,12 +80,13 @@ Out of scope:
                   │
                   └──► 003 (bge-code-v1 confirm + promote)
                   │
-                  └──► 004 (spec-memory bge-m3 bench)
+                  └──► 004 (newer text embedders survey)
 ```
 
-- **001 runs first** — its findings inform 002's scope (do we also need Ollama in mk-spec-memory? — likely no per probe #6 evidence, but verify) and 004's fixture design (which spec docs are in mk-spec-memory's corpus).
+- **001 runs first** — its findings inform 002's scope (do we also need Ollama in mk-spec-memory? — likely no per probe #6 evidence, but verify) and gives 004 background on which packets consume text embeddings.
 - **002, 003, 004 can run in any order after 001** — independent of each other.
 - **003 is laptop-power-dependent** (3 bench runs ≈ 3-4 hours wall). Schedule when plugged in.
+- **004 is cheap by default** (~30-60 min HF crawl). Only escalates to follow-on bench if a candidate beats jina-v3 on paper.
 <!-- /ANCHOR:sequencing -->
 
 <!-- ANCHOR:success-criteria -->
@@ -94,7 +95,7 @@ Out of scope:
 - All 4 sub-phases reach `completion_pct=100` with strict-validate PASSED.
 - 001 produces a clear table mapping system → indexer → content type — used as input by 002 and 004.
 - Either bge-code-v1 is promoted to CocoIndex default (with 3-run evidence) OR there's a documented decision to hold at jina-code, with reasoning.
-- Either bge-m3 (or alternative) is promoted to mk-spec-memory default OR there's a documented decision to hold at jina-code, with reasoning.
+- 004 produces a documented survey result: either a "MEASURE-tier" candidate gets a follow-on bench packet, or ADR-012 (jina-v3 + rescue) is confirmed as still-holds.
 - An Ollama embedder can actually power CocoIndex search end-to-end if the operator wants to switch.
 <!-- /ANCHOR:success-criteria -->
 
@@ -104,7 +105,7 @@ Out of scope:
 Risks:
 - **LiteLLM Ollama path may be untested in CocoIndex.** Current MANIFESTS are sbert-only; the comment in `config.py` says non-sbert names route to LiteLLM, but this path may have rotted. 002 needs to verify before assuming "drop in a manifest entry" is sufficient.
 - **3-run bench is expensive.** ~75 min × 3 runs = ~225 min wall. Power-dependent. 003 must dispatch in background or wait for plugged-in window.
-- **Text fixture authoring is the slowest part of 004.** ~15-20 query/expected-path pairs need hand-curation against the spec-doc corpus. Estimated 1-2 hours.
+- **Survey scope creep on 004.** Easy to spend hours on HF crawl. Time-box to 30-60 min. Default to SKIP unless paper claims paraphrase/recall-specific lift over jina-v3 era.
 
 Dependencies:
 - 004-extended-bake-off shipped (DONE, commit `69025f4a3`).
@@ -118,5 +119,5 @@ Dependencies:
 - Does AI council read CocoIndex code embeddings, mk-spec-memory text embeddings, or both? (To be answered by 001.)
 - Does deep-research / deep-review need code retrieval during iteration, or only spec-doc retrieval? (To be answered by 001.)
 - Is LiteLLM's Ollama provider actually loaded in CocoIndex's dependency graph today? (To be answered by 002 first-step verification.)
-- Are mk-spec-memory text queries already long enough to benefit from bge-m3's 8192 ctx, or does its current chunking limit context regardless? (To be answered by 004 fixture work.)
+- Has anything stronger than `jina-embeddings-v3 + rescue` shipped since May 17, 2026? (To be answered by 004 survey.)
 <!-- /ANCHOR:open-questions -->

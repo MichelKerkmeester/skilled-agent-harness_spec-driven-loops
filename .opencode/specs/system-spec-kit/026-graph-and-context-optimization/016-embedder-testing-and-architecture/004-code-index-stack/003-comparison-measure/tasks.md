@@ -79,5 +79,5 @@ All 13 tasks marked `[x]`. ADR-001 verdict committed. Strict-validate PASSED. Me
 - Plan: `plan.md`
 - Parent: `../spec.md`
 - Dependencies: `../001-cocoindex-swap/`, `../002-baseline-fixture/`
-- Analog: `../../016-embedder-testing-and-architecture/002-spec-memory-stack/004-mxbai-swap-and-008-closure/decision-record.md` ADR-012
+- Analog: `../../016-embedder-testing-and-architecture/002-spec-memory-stack/004-spec-memory-embedder-bake-off/decision-record.md` ADR-012
 <!-- /ANCHOR:cross-refs -->

@@ -57,7 +57,7 @@ In scope:
 Out of scope:
 - Adding new candidates (already done by 004-extended-bake-off).
 - Bench harness refactoring (use the existing script as-is).
-- Promoting in mk-spec-memory (separate concern — 004-spec-memory-bge-m3-benchmark sub-phase).
+- Promoting in mk-spec-memory (separate concern — 004-newer-text-embedders-survey sub-phase).
 <!-- /ANCHOR:scope -->
 
 <!-- ANCHOR:requirements -->

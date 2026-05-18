@@ -7,7 +7,7 @@
     "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/013-ollama-and-bge-promotion-arc/001-indexer-surface-investigation",
     "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/013-ollama-and-bge-promotion-arc/002-cocoindex-ollama-adapter",
     "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/013-ollama-and-bge-promotion-arc/003-bge-code-v1-confirmation-and-promote",
-    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/013-ollama-and-bge-promotion-arc/004-spec-memory-bge-m3-benchmark"
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/013-ollama-and-bge-promotion-arc/004-newer-text-embedders-survey"
   ],
   "manual": {
     "depends_on": [

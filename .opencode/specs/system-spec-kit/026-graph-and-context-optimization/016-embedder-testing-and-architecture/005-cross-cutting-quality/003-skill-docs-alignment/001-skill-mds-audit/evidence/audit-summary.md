@@ -102,7 +102,7 @@ Sweep of skill documentation across `.opencode/skills/*/SKILL.md` and `*/README.
 - [x] Grepped for `google/embeddinggemma` across allowlist — all occurrences captured
 - [x] Grepped for `EmbeddingGemma.*default` across allowlist — cross-checked against architectural claims
 - [x] Checked for "unified embedder family" claims — confirmed CocoIndex and mk-spec-memory now use separate variants
-- [x] Verified ADR-012 as ratification source — confirmed 016/004-mxbai-swap-and-008-closure section
+- [x] Verified ADR-012 as ratification source — confirmed 016/004-spec-memory-embedder-bake-off section
 
 ## Recommendations
 

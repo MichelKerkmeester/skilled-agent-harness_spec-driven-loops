@@ -126,7 +126,7 @@ The four sub-phases in this stack rebuilt the embedder layer from the ground up.
 
 ---
 
-## v4.0 — mxbai swap + retrieval-rescue layer + cat-24/409 closure (016/004 mxbai-swap-and-008-closure)
+## v4.0 — Spec-memory embedder bake-off + retrieval-rescue layer + cat-24/409 closure (`016/004-spec-memory-embedder-bake-off`, renamed 2026-05-18 from `004-mxbai-swap-and-008-closure`)
 
 **Shipped:** 2026-05-17 13:59 (rescue layer [`489d4e0d7`](#)) → 14:57 (default-on flip [`19bd78000`](#)) → 22:01 (P0 + P1 closures [`ba6816a49`](#)) → 23:46 (dead-counter cleanup [`170aa2c98`](#))
 **Status:** Shipped, packet 008 closed

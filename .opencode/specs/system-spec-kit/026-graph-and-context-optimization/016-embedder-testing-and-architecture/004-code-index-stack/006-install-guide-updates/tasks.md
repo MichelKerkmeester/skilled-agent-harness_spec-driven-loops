@@ -79,5 +79,5 @@ All 11 tasks marked `[x]`. Links resolve. Read-through succeeds. Strict-validate
 - Parent: `../spec.md`
 - Source: `../001-declarative-registry/`
 - Operational ref: `../../018-code-embedder-coderank/001-cocoindex-swap/evidence/swap-runbook.md`
-- ADR (when available): `../../018-code-embedder-coderank/004-mxbai-swap-and-008-closure/decision-record.md`
+- ADR (when available): `../../018-code-embedder-coderank/004-spec-memory-embedder-bake-off/decision-record.md`
 <!-- /ANCHOR:cross-refs -->

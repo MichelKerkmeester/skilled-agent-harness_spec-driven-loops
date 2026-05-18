@@ -113,4 +113,4 @@ See `swap-runbook.md` (sibling file) for the daemon-restart + reindex-trigger se
 - `../../019-cocoindex-embedder-registry/001-declarative-registry/` — registered_embedders.py registry (consumes the default set here)
 - `../../019-cocoindex-embedder-registry/002-install-guide-updates/` — INSTALL_GUIDE alternatives section
 - `.opencode/skills/system-spec-kit/references/embedder-pluggability.md` — canonical narrative
-- mk-spec-memory analog: `../../016-embedder-testing-and-architecture/002-spec-memory-stack/004-mxbai-swap-and-008-closure/evidence/jina-runtime-measurements.md`
+- mk-spec-memory analog: `../../016-embedder-testing-and-architecture/002-spec-memory-stack/004-spec-memory-embedder-bake-off/evidence/jina-runtime-measurements.md`

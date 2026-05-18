@@ -1164,7 +1164,7 @@
       "lastUpdated": "2026-05-16T05:50:00Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/106-upstream-auto-review-research",
+      "specFolder": "skilled-agent-orchestration/106-opencode-auto-review-teachings-research",
       "description": "20-iter upstream auto-review research",
       "keywords": [
         "20-iter",
@@ -1175,7 +1175,7 @@
       "lastUpdated": "2026-05-16T04:31:29.048Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/108-sk-code-review-auto-review-uplift",
+      "specFolder": "skilled-agent-orchestration/108-auto-review-quick-wins-verdict-markers-logging",
       "description": "Phase-parent for sk-code-review auto-review uplift (4 children)",
       "keywords": [
         "phase-parent",
@@ -1187,7 +1187,7 @@
       "lastUpdated": "2026-05-16T05:33:42.951Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/108-sk-code-review-auto-review-uplift/001-h1-final-line-contract",
+      "specFolder": "skilled-agent-orchestration/108-auto-review-quick-wins-verdict-markers-logging/001-h1-final-line-contract",
       "description": "Phase 1: H-1 final-line exact-string contract",
       "keywords": [
         "phase",
@@ -1199,7 +1199,7 @@
       "lastUpdated": "2026-05-16T05:33:43.047Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/108-sk-code-review-auto-review-uplift/002-h2-loop-prevention-markers",
+      "specFolder": "skilled-agent-orchestration/108-auto-review-quick-wins-verdict-markers-logging/002-h2-loop-prevention-markers",
       "description": "Phase 2: H-2 loop-prevention header markers",
       "keywords": [
         "phase",
@@ -1211,7 +1211,7 @@
       "lastUpdated": "2026-05-16T05:33:43.145Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/108-sk-code-review-auto-review-uplift/003-h3-async-iife-h6-lazy-mkdir",
+      "specFolder": "skilled-agent-orchestration/108-auto-review-quick-wins-verdict-markers-logging/003-h3-async-iife-h6-lazy-mkdir",
       "description": "Phase 3: H-3 async-IIFE + H-6 lazy mkdir",
       "keywords": [
         "phase",
@@ -1224,7 +1224,7 @@
       "lastUpdated": "2026-05-16T05:33:43.245Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/108-sk-code-review-auto-review-uplift/004-stretch-goals",
+      "specFolder": "skilled-agent-orchestration/108-auto-review-quick-wins-verdict-markers-logging/004-stretch-goals",
       "description": "Phase 4: stretch goals (optional)",
       "keywords": [
         "phase",
@@ -1235,7 +1235,7 @@
       "lastUpdated": "2026-05-16T05:33:43.342Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/109-026-restructure-execution-wave-2",
+      "specFolder": "skilled-agent-orchestration/109-subphase-recatalog-and-archive",
       "description": "Execute 998 Wave 2 PROCEED operations: 000 recatalog (6 sub-phases), 008 internal phases (5 sub-phases), parent-doc derived fields, SHALLOW+MEDIUM archive, M10 015→000 unblock. 6 sub-waves on main, per-op atomic commit.",
       "keywords": [
         "109-wave-2-execution",
@@ -1246,7 +1246,7 @@
       "lastUpdated": "2026-05-16T09:00:00Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/110-auto-review-stretch-uplift",
+      "specFolder": "skilled-agent-orchestration/110-auto-review-stretch-config-dedup-gates",
       "description": "Phase-parent for 110 auto-review stretch uplift (4 children)",
       "keywords": [
         "phase-parent",
@@ -1259,7 +1259,7 @@
       "lastUpdated": "2026-05-16T06:47:29.107Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/110-auto-review-stretch-uplift/001-mk-plugins-config-uplift",
+      "specFolder": "skilled-agent-orchestration/110-auto-review-stretch-config-dedup-gates/001-mk-plugins-config-uplift",
       "description": "110 phase 001-mk-plugins-config-uplift",
       "keywords": [
         "110",
@@ -1269,7 +1269,7 @@
       "lastUpdated": "2026-05-16T06:47:29.220Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/110-auto-review-stretch-uplift/002-sk-code-review-uplift",
+      "specFolder": "skilled-agent-orchestration/110-auto-review-stretch-config-dedup-gates/002-sk-code-review-uplift",
       "description": "110 phase 002-sk-code-review-uplift",
       "keywords": [
         "110",
@@ -1279,7 +1279,7 @@
       "lastUpdated": "2026-05-16T06:47:29.329Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/110-auto-review-stretch-uplift/003-deep-review-uplift",
+      "specFolder": "skilled-agent-orchestration/110-auto-review-stretch-config-dedup-gates/003-deep-review-uplift",
       "description": "110 phase 003-deep-review-uplift",
       "keywords": [
         "110",
@@ -1289,7 +1289,7 @@
       "lastUpdated": "2026-05-16T06:47:29.450Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/110-auto-review-stretch-uplift/004-deep-agent-improvement-uplift",
+      "specFolder": "skilled-agent-orchestration/110-auto-review-stretch-config-dedup-gates/004-deep-agent-improvement-uplift",
       "description": "110 phase 004-deep-agent-improvement-uplift",
       "keywords": [
         "110",
@@ -1299,7 +1299,7 @@
       "lastUpdated": "2026-05-16T06:47:29.556Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/111-026-cleanup-remediation",
+      "specFolder": "skilled-agent-orchestration/111-base-files-renumbering-name-cleanup",
       "description": "Wave 3 cleanup: author 33 sub-phase base files (cli-devin SWE-1.6 × 11), renumber 86 sub-phase + 22 parent children sequentially, resolve 2 dup-prefix pairs under 014, shorten ~25 verbose names, sync 17 phase-parent graph-metadata + spec.md tables.",
       "keywords": [
         "111-cleanup-wave-3",
@@ -3454,7 +3454,7 @@
       "lastUpdated": "2026-05-16T17:59:28.251Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/z_archive/076-sk-doc-router-coverage-v3",
+      "specFolder": "skilled-agent-orchestration/z_archive/076-sk-doc-missing-router-intents-bullet-aware-matrix",
       "description": "Feature Specification: 076 sk-doc Router Coverage v3",
       "keywords": [
         "feature",
@@ -6307,7 +6307,7 @@
       "lastUpdated": "2026-05-16T19:00:00Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-external-project-adoption",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-external-project-adoption",
       "description": "Feature Specification: Graph Impact and Affordance Uplift (012)",
       "keywords": [
         "feature",
@@ -6321,7 +6321,7 @@
       "lastUpdated": "2026-05-02T10:39:48.719Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-external-project-adoption/001-clean-room-license-audit",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-external-project-adoption/001-clean-room-license-audit",
       "description": "Feature Specification: Clean-Room License Audit (012/001)",
       "keywords": [
         "feature",
@@ -6335,7 +6335,7 @@
       "lastUpdated": "2026-04-26T07:03:47.547Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-external-project-adoption/002-code-graph-phase-runner-and-detect-changes",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-external-project-adoption/002-code-graph-phase-runner-and-detect-changes",
       "description": "Feature Specification: Code Graph Phase Runner + detect_changes Preflight (012/002)",
       "keywords": [
         "feature",
@@ -6351,7 +6351,7 @@
       "lastUpdated": "2026-04-26T07:03:47.552Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-external-project-adoption/003-code-graph-edge-explanation-and-impact-uplift",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-external-project-adoption/003-code-graph-edge-explanation-and-impact-uplift",
       "description": "Feature Specification: Code Graph Edge Explanation + Impact Uplift (012/003)",
       "keywords": [
         "feature",
@@ -6368,7 +6368,7 @@
       "lastUpdated": "2026-04-26T07:03:47.557Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-external-project-adoption/004-skill-advisor-affordance-evidence",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-external-project-adoption/004-skill-advisor-affordance-evidence",
       "description": "Feature Specification: Skill Advisor Affordance Evidence (012/004)",
       "keywords": [
         "feature",
@@ -6383,7 +6383,7 @@
       "lastUpdated": "2026-05-08T08:26:57.620Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-external-project-adoption/005-memory-causal-trust-display",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-external-project-adoption/005-memory-causal-trust-display",
       "description": "Feature Specification: Memory Causal Trust Display (012/005)",
       "keywords": [
         "feature",
@@ -6398,7 +6398,7 @@
       "lastUpdated": "2026-04-26T07:03:47.570Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-external-project-adoption/006-docs-and-catalogs-rollup",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-external-project-adoption/006-docs-and-catalogs-rollup",
       "description": "Feature Specification: Docs and Catalogs Rollup (012/006)",
       "keywords": [
         "feature",
@@ -6412,7 +6412,7 @@
       "lastUpdated": "2026-05-08T08:26:57.625Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-external-project-adoption/007-review-remediation",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-external-project-adoption/007-review-remediation",
       "description": "Remediation sub-phase consolidating 21 P1 + 12 actionable P2 findings from the 7-iteration deep-review pass over 010/001-006. P0 LICENSE finding resol",
       "keywords": [
         "remediation",
@@ -6437,7 +6437,7 @@
       "lastUpdated": "2026-04-25T13:51:18.730Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-external-project-adoption/008-deep-research-review",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-external-project-adoption/008-deep-research-review",
       "description": "Feature Specification: Deep Research Review 008",
       "keywords": [
         "feature",
@@ -6450,7 +6450,7 @@
       "lastUpdated": "2026-05-02T10:39:48.731Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-code-graph",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/005-code-graph",
       "description": "Cross-skill doc polish: fix tool counts, restructure system-code-graph SKILL.md to canonical sk-doc shape, add new reference docs, sync upstream metad",
       "keywords": [
         "cross-skill",
@@ -6476,7 +6476,7 @@
       "lastUpdated": "2026-05-16T14:47:30.905Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/001-code-graph-upgrades",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/001-code-graph-upgrades",
       "description": "Feature Specification: Code Graph Upgrades",
       "keywords": [
         "feature",
@@ -6488,7 +6488,7 @@
       "lastUpdated": "2026-05-08T08:26:57.629Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/002-code-graph-context-and-scan-scope",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/002-code-graph-context-and-scan-scope",
       "description": "Feature Specification: Code Graph Context + Scan Scope Remediation",
       "keywords": [
         "feature",
@@ -6503,7 +6503,7 @@
       "lastUpdated": "2026-05-08T08:26:57.638Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/003-code-graph-hook-improvements",
       "description": "Feature Specification: Code-Graph System + Hooks Improvement Investigation",
       "keywords": [
         "feature",
@@ -6517,7 +6517,7 @@
       "lastUpdated": "2026-05-08T08:26:57.642Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-advisor-refinement",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/004-code-graph-advisor-refinement",
       "description": "Feature Specification: Code Graph and Skill Advisor Refinement Research",
       "keywords": [
         "feature",
@@ -6532,7 +6532,7 @@
       "lastUpdated": "2026-05-08T08:26:57.646Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/005-code-graph-doctor-command",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/005-code-graph-doctor-command",
       "description": "Feature Specification: Code Graph Doctor Command",
       "keywords": [
         "feature",
@@ -6545,7 +6545,7 @@
       "lastUpdated": "2026-05-08T08:26:57.651Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/006-code-graph-resilience-research",
       "description": "Feature Specification: Code Graph Resilience Research",
       "keywords": [
         "feature",
@@ -6558,7 +6558,7 @@
       "lastUpdated": "2026-05-08T08:26:57.655Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-backend-resilience",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/005-code-graph-backend-resilience",
       "description": "Feature Specification: Code Graph Backend Resilience",
       "keywords": [
         "feature",
@@ -6571,7 +6571,7 @@
       "lastUpdated": "2026-05-08T08:26:57.659Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/008-end-user-scope-default",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/008-end-user-scope-default",
       "description": "Feature Specification: End-User Scope Default for Code Graph Indexing",
       "keywords": [
         "feature",
@@ -6586,7 +6586,7 @@
       "lastUpdated": "2026-05-08T08:26:57.663Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/009-fix-iteration-quality-meta-research",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/009-fix-iteration-quality-meta-research",
       "description": "Feature Specification: Fix-Iteration Quality Meta-Research",
       "keywords": [
         "feature",
@@ -6598,7 +6598,7 @@
       "lastUpdated": "2026-05-08T08:26:57.668Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/010-broader-scope-excludes-and-granular-skills",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/010-broader-scope-excludes-and-granular-skills",
       "description": "Feature Specification: Broader Default Excludes and Granular Skills",
       "keywords": [
         "feature",
@@ -6612,7 +6612,7 @@
       "lastUpdated": "2026-05-08T08:26:57.672Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/011-real-world-usefulness-test",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/011-real-world-usefulness-test",
       "description": "Planning-only Level 2 packet for testing whether code graph, hooks, and plugin/runtime integrations improve day-to-day engineering work.",
       "keywords": [
         "planning-only",
@@ -6634,7 +6634,7 @@
       "lastUpdated": "2026-05-05T21:37:24.298Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/011-real-world-usefulness-test/001-execution",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/011-real-world-usefulness-test/001-execution",
       "description": "Feature Specification: Real-World Usefulness Test Execution",
       "keywords": [
         "feature",
@@ -6647,7 +6647,7 @@
       "lastUpdated": "2026-05-08T08:26:57.676Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/011-real-world-usefulness-test/002-native-rerun",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/011-real-world-usefulness-test/002-native-rerun",
       "description": "Feature Specification: Native Rerun of Deferred Usefulness Cells",
       "keywords": [
         "feature",
@@ -6661,7 +6661,7 @@
       "lastUpdated": "2026-05-08T08:26:57.680Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/011-real-world-usefulness-test/003-deep-research-issues",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/011-real-world-usefulness-test/003-deep-research-issues",
       "description": "Feature Specification: Deep Research Issues",
       "keywords": [
         "feature",
@@ -6673,7 +6673,7 @@
       "lastUpdated": "2026-05-08T08:26:57.684Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/011-real-world-usefulness-test/004-remediation",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/011-real-world-usefulness-test/004-remediation",
       "description": "Feature Specification: Code-Graph Bug Remediation",
       "keywords": [
         "feature",
@@ -6685,7 +6685,7 @@
       "lastUpdated": "2026-05-08T08:26:57.689Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/011-real-world-usefulness-test/005-scope-guard",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/011-real-world-usefulness-test/005-scope-guard",
       "description": "Feature Specification: Scope-Change Guard",
       "keywords": [
         "feature",
@@ -6696,7 +6696,7 @@
       "lastUpdated": "2026-05-08T08:26:57.693Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/011-real-world-usefulness-test/006-cluster-a-to-e",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/011-real-world-usefulness-test/006-cluster-a-to-e",
       "description": "Feature Specification: Code Graph + Advisor + Hooks Polish",
       "keywords": [
         "feature",
@@ -6710,7 +6710,7 @@
       "lastUpdated": "2026-05-08T08:26:57.697Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/011-real-world-usefulness-test/007-tree-sitter-parser-resilience",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/011-real-world-usefulness-test/007-tree-sitter-parser-resilience",
       "description": "Feature Specification: Tree-sitter parser resilience",
       "keywords": [
         "feature",
@@ -6722,7 +6722,7 @@
       "lastUpdated": "2026-05-08T08:26:57.702Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/012-doctor-apply-mode-phase-b",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/012-doctor-apply-mode-phase-b",
       "description": "Feature Specification: /doctor:code-graph apply-mode (Phase B)",
       "keywords": [
         "feature",
@@ -6735,7 +6735,7 @@
       "lastUpdated": "2026-05-09T07:57:32.852Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/013-system-code-graph-extraction",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/013-system-code-graph-extraction",
       "description": "Phase parent for migrating the code-graph subsystem out of system-spec-kit into a dedicated `.opencode/skills/system-code-graph/` package with first-class SKILL.md, references, manual_testing_playbook, feature_catalog, and a clean MCP server integration story.",
       "keywords": [
         "system-code-graph",
@@ -6748,7 +6748,7 @@
       "lastUpdated": "2026-05-14T07:00:38Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/014-design-and-decision-record",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/014-design-and-decision-record",
       "description": "10-iteration deep-research investigation via cli-opencode + deepseek-v4-pro of the code-graph extraction surface; produces resource-map.md (every touchpoint to move/rewire/update), research/research.md (narrative synthesis), and decision-record.md (ADR-001 locking 8 architectural decisions: touchpoint inventory, DB shape, MCP topology, tool-id stability, cross-subsystem import direction, plugin-bridge disposition, implementation phase decomposition, risk catalog).",
       "keywords": [
         "code-graph-extraction-design",
@@ -6762,7 +6762,7 @@
       "lastUpdated": "2026-05-14T07:00:38Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/015-mcp-topology-pivot",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/015-mcp-topology-pivot",
       "description": "ADR-002 standalone MCP topology pivot for system-code-graph: moves code-graph tool schemas and MCP registration out of spec_kit_memory while preserving stable tool IDs, direct library imports, and code-graph behavior.",
       "keywords": [
         "mcp-topology-pivot",
@@ -6774,7 +6774,7 @@
       "lastUpdated": "2026-05-14T09:24:15Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/016-readmes-update",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/016-readmes-update",
       "description": "System Code Graph README Update",
       "keywords": [
         "system",
@@ -6786,7 +6786,7 @@
       "lastUpdated": "2026-05-14T17:51:29.602Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/017-code-folder-readmes",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/017-code-folder-readmes",
       "description": "Author sk-doc-aligned READMEs for 3 missing code folders in system-code-graph: mcp_server/ (root), mcp_server/core/, mcp_server/plugin_bridges/. Two-pass pipeline: cli-devin SWE 1.6 for context gathering, cli-opencode deepseek-v4-pro for sk-doc-aligned markdown authoring.",
       "keywords": [
         "code-folder-readme",
@@ -6797,7 +6797,7 @@
       "lastUpdated": "2026-05-15T08:50:00Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/018-three-way-isolation-finalize",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/018-three-way-isolation-finalize",
       "description": "Feature Specification: Three-way Isolation Finalize",
       "keywords": [
         "feature",
@@ -6809,7 +6809,7 @@
       "lastUpdated": "2026-05-17T12:55:58.758Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/019-system-code-graph-uplift",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/019-system-code-graph-uplift",
       "description": "Phased uplift of the system-code-graph skill: 20-iter deep-research at parent root informs three implementation children covering SKILL.md/references polish + INSTALL_GUIDE drift fixes (001), marketing-voice README rewrite (002), and exhaustive sk-doc validate_document.py 1:1 alignment across every authored doc (003). Deep-research dispatched via cli-devin SWE 1.6 per the deep-research SKILL workflow.",
       "keywords": [
         "system-code-graph-uplift",
@@ -6822,7 +6822,7 @@
       "lastUpdated": "2026-05-16T09:37:48Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/019-system-code-graph-uplift/001-skill-md-and-references-polish",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/019-system-code-graph-uplift/001-skill-md-and-references-polish",
       "description": "Phase 1. Research synthesized at parent 019/research/research.md §10. Awaiting plan.md/tasks.md scaffold. Scope: SKILL.md problem-hook framing, references/ HVR pass, mcp_server per-folder README usefulness audit (7 validation-only + plugin_bridges targeted alignment per D2), INSTALL_GUIDE drift fixes (lines 49/56/195 + 15 additional bugs per research §6.1), useful-gap primers sized to system-spec-kit siblings (per D4). Task ordering per research §10: SKILL.md hook first, then batch by file-type.",
       "keywords": [
         "phase-stub",
@@ -6833,7 +6833,7 @@
       "lastUpdated": "2026-05-16T09:37:48Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/019-system-code-graph-uplift/002-readme-marketing-rewrite",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/019-system-code-graph-uplift/002-readme-marketing-rewrite",
       "description": "Phase 2. Research synthesized at parent 019/research/research.md §11. README.md rewrite in marketing voice: mimic Public root README + system-spec-kit README problem-first arc (OVERVIEW hook -> solution -> stats -> QUICK START -> FEATURES -> CONFIGURATION -> FAQ -> RELATED). Per D1, accept resemblance to exemplars; do not enforce strict HVR pass-bar. Avoid the 3 worst-case carries per research §6.4: semicolons in technical sentences, Oxford commas in lists, em dashes for emphasis. Use periods, commas, and parentheses instead.",
       "keywords": [
         "phase-stub",
@@ -6844,7 +6844,7 @@
       "lastUpdated": "2026-05-16T09:37:48Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/020-system-code-graph-doc-alignment",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/020-system-code-graph-doc-alignment",
       "description": "Reconcile four doc-drift issues across the system-code-graph skill: tool count (10/12 → 11) in SKILL.md/README.md/ARCHITECTURE.md/INSTALL_GUIDE.md/feature_catalog.md/graph-metadata.json; graph-metadata.json topology (co-resident → standalone); SKILL.md _memory.continuity refresh; and version string 1.0.0.0 → 1.0.3.1. Doc-only, no source-code changes.",
       "keywords": [
         "doc-drift",
@@ -6856,7 +6856,7 @@
       "lastUpdated": "2026-05-16T09:01:20Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/021-cross-skill-doc-polish",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/021-cross-skill-doc-polish",
       "description": "Phase 1: cross-skill-doc-polish",
       "keywords": [
         "phase",
@@ -6865,7 +6865,7 @@
       "lastUpdated": "2026-05-16T14:47:31.803Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor",
       "description": "Feature Specification: Skill Advisor",
       "keywords": [
         "feature",
@@ -6876,7 +6876,7 @@
       "lastUpdated": "2026-04-26T07:03:47.535Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-graph",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph",
       "description": "Phase parent for skill graph infrastructure covering metadata quality, structural migration, daemon/advisor unification, and extraction across 7 child packets.",
       "keywords": [
         "skill-graph",
@@ -6890,7 +6890,7 @@
       "lastUpdated": "2026-05-16T09:00:00Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-graph/001-skill-advisor-graph",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph/001-skill-advisor-graph",
       "description": "Feature Specification: Skill Advisor Graph",
       "keywords": [
         "feature",
@@ -6902,7 +6902,7 @@
       "lastUpdated": "2026-05-08T08:26:57.706Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-graph/002-daemon-and-unification",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph/002-daemon-and-unification",
       "description": "Feature Specification: 027 - Skill Graph Daemon and Advisor Unification",
       "keywords": [
         "feature",
@@ -6917,7 +6917,7 @@
       "lastUpdated": "2026-05-08T08:26:57.730Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-graph/003-skill-metadata-quality-audit",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph/003-skill-metadata-quality-audit",
       "description": "Audit each active skill's graph-metadata.json and SKILL.md description, score on dimensions that affect lexical/derived/cosine advisor lanes, recommend per-skill improvements; research only, no skill files modified.",
       "keywords": [
         "skill-metadata-audit",
@@ -6930,7 +6930,7 @@
       "lastUpdated": "2026-05-14T00:30:00Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-graph/004-apply-metadata-fixes-and-resweep",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph/004-apply-metadata-fixes-and-resweep",
       "description": "Apply 015/005's top-8 audit recommendations to skill graph-metadata.json and SKILL.md descriptions, invalidate the embedding cache, re-run the seeded 7-vector sweep, document deltas vs the 015/004 baseline.",
       "keywords": [
         "metadata-fixes-apply",
@@ -6942,7 +6942,7 @@
       "lastUpdated": "2026-05-14T01:00:00Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-graph/005-populate-intent-signals-and-relationships",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph/005-populate-intent-signals-and-relationships",
       "description": "Populate derived.intent_signals + manual.depends_on + manual.related_to in graph-metadata.json across all 17 active skills so the lexical, derived, and graph_causal advisor lanes have skill-side structured signal.",
       "keywords": [
         "intent-signals-populate",
@@ -6954,7 +6954,7 @@
       "lastUpdated": "2026-05-14T01:30:00Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-graph/006-system-skill-advisor-extraction",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph/006-system-skill-advisor-extraction",
       "description": "Phase parent for migrating the skill advisor subsystem out of system-spec-kit into a dedicated `.opencode/skills/system-skill-advisor/` package with first-class SKILL.md, references, manual_testing_playbook, feature_catalog, and a clean MCP server integration story.",
       "keywords": [
         "system-skill-advisor",
@@ -6967,7 +6967,7 @@
       "lastUpdated": "2026-05-15T12:29:53.146Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-graph/006-system-skill-advisor-extraction/001-design-and-decision-record",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph/006-system-skill-advisor-extraction/001-design-and-decision-record",
       "description": "Read-only survey of the skill advisor surface + 4-shape architectural enumeration + 6-criterion scoring + ADR-001 locking the chosen shape. No code moves; subsequent migration children (002-005) gate on this packet's ADR.",
       "keywords": [
         "advisor-extraction-design",
@@ -6979,7 +6979,7 @@
       "lastUpdated": "2026-05-14T02:00:00Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-graph/006-system-skill-advisor-extraction/002-scaffold-advisor-package",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph/006-system-skill-advisor-extraction/002-scaffold-advisor-package",
       "description": "Stand up `.opencode/skills/system-skill-advisor/` package envelope per ADR-001: author SKILL.md, graph-metadata.json, catalog/playbook/references, DB-path policy, install-guide stub, empty mcp_server/ scaffold. No runtime move.",
       "keywords": [
         "system-skill-advisor-scaffold",
@@ -6991,7 +6991,7 @@
       "lastUpdated": "2026-05-14T03:30:00Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-graph/006-system-skill-advisor-extraction/003-move-advisor-source-db-and-tests",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph/006-system-skill-advisor-extraction/003-move-advisor-source-db-and-tests",
       "description": "Step 2 of ADR-001's locked 5-phase migration: relocate advisor TS source (handlers, lib, tools, schemas, scripts, compat, tests, bench, data) + skill-graph SQLite from system-spec-kit/mcp_server/skill_advisor/ to system-skill-advisor/mcp_server/. Memory MCP keeps registering advisor tools; standalone launcher is child 004.",
       "keywords": [
         "advisor-source-move",
@@ -7003,7 +7003,7 @@
       "lastUpdated": "2026-05-14T10:45:00Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-graph/006-system-skill-advisor-extraction/004-standalone-mcp-launcher-and-runtime-configs",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph/006-system-skill-advisor-extraction/004-standalone-mcp-launcher-and-runtime-configs",
       "description": "Step 3 of ADR-001's locked 5-phase migration: add .opencode/bin/skill-advisor-launcher.cjs and system_skill_advisor MCP registrations in OpenCode, Codex, Claude, and Gemini. Preserve spec_kit_memory unchanged, keep advisor_* tool ids stable, use SYSTEM_SKILL_ADVISOR_DB_DIR env override before the package-local skill-graph.sqlite default, and prove cold-start build behavior.",
       "keywords": [
         "standalone-mcp-launcher",
@@ -7016,7 +7016,7 @@
       "lastUpdated": "2026-05-14T12:45:00Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-graph/006-system-skill-advisor-extraction/005-hooks-compat-and-consumer-cutover",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph/006-system-skill-advisor-extraction/005-hooks-compat-and-consumer-cutover",
       "description": "Step 4 of ADR-001's 5-phase migration: redirect advisor_* consumers from spec_kit_memory to the standalone system_skill_advisor MCP server without changing public tool ids. Covers hooks, OpenCode plugin bridge, Python shim, doctor workflows, install guides, and the temporary memory-side legacy proxy removed in child 006.",
       "keywords": [
         "advisor-consumer-cutover",
@@ -7028,7 +7028,7 @@
       "lastUpdated": "2026-05-14T12:45:00Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-graph/006-system-skill-advisor-extraction/006-validation-cleanup-and-deprecation-removal",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph/006-system-skill-advisor-extraction/006-validation-cleanup-and-deprecation-removal",
       "description": "Step 5 of ADR-001's locked 5-phase migration: validate all prior standalone advisor extraction deliverables, then remove the temporary spec_kit_memory advisor proxy, deprecation hints, and stale old mcp_server/skill_advisor/ path references once post-005 consumers target system_skill_advisor.",
       "keywords": [
         "advisor-validation-suite",
@@ -7041,7 +7041,7 @@
       "lastUpdated": "2026-05-14T12:45:00Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-graph/006-system-skill-advisor-extraction/007-skill-graph-db-rename",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph/006-system-skill-advisor-extraction/007-skill-graph-db-rename",
       "description": "Follow-on cleanup after the system-skill-advisor extraction: rename system-spec-kit's skill metadata index DB to graph-metadata-index.sqlite so skill-graph.sqlite is exclusive to the advisor scorer DB.",
       "keywords": [
         "skill-graph-db-rename",
@@ -7053,7 +7053,7 @@
       "lastUpdated": "2026-05-14T13:20:00Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-graph/006-system-skill-advisor-extraction/008-move-skill-graph-tools-to-advisor",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph/006-system-skill-advisor-extraction/008-move-skill-graph-tools-to-advisor",
       "description": "Level 3 scaffold for moving the four skill_graph_* MCP tools from spec_kit_memory ownership to system_skill_advisor ownership while keeping public tool ids stable and using a short proxy window.",
       "keywords": [
         "skill-graph-tools-to-advisor",
@@ -7065,7 +7065,7 @@
       "lastUpdated": "2026-05-14T00:00:00Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-graph/006-system-skill-advisor-extraction/009-fix-script-fs-scope",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph/006-system-skill-advisor-extraction/009-fix-script-fs-scope",
       "description": "Level 2 packet for two surgical advisor-script filesystem-scope fixes: constraining skill_graph_compiler.py to .opencode/skills and pointing skill_advisor.py at the package-local mcp_server/database SQLite file.",
       "keywords": [
         "fix-script-fs-scope",
@@ -7077,7 +7077,7 @@
       "lastUpdated": "2026-05-14T00:00:00Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-graph/006-system-skill-advisor-extraction/010-skill-id-rename",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph/006-system-skill-advisor-extraction/010-skill-id-rename",
       "description": "Align system-skill-advisor graph skill id with extracted folder name and close graph-health/parity failures.",
       "keywords": [
         "skill-id-rename",
@@ -7088,7 +7088,7 @@
       "lastUpdated": "2026-05-14T16:14:46.828Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-graph/006-system-skill-advisor-extraction/011-mcp-server-full-extraction",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph/006-system-skill-advisor-extraction/011-mcp-server-full-extraction",
       "description": "Move skill graph library and lifecycle ownership fully into system_skill_advisor as D2a of the clean-cut MCP extraction.",
       "keywords": [
         "013/009/011",
@@ -7100,7 +7100,7 @@
       "lastUpdated": "2026-05-14T17:45:00.000Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-graph/006-system-skill-advisor-extraction/012-doc-alignment-sk-doc",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph/006-system-skill-advisor-extraction/012-doc-alignment-sk-doc",
       "description": "Align system-skill-advisor documentation with sk-doc templates and current post-013/009 advisor state.",
       "keywords": [
         "doc-alignment",
@@ -7111,7 +7111,7 @@
       "lastUpdated": "2026-05-14T18:45:00.000Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-graph/006-system-skill-advisor-extraction/013-spec-kit-ref-cleanup",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph/006-system-skill-advisor-extraction/013-spec-kit-ref-cleanup",
       "description": "Audit and clean stale system-skill-advisor references from system-spec-kit operator-facing docs.",
       "keywords": [
         "spec-kit-ref-cleanup",
@@ -7122,7 +7122,7 @@
       "lastUpdated": "2026-05-14T19:30:00.000Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-graph/006-system-skill-advisor-extraction/014-manual-testing-validation",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph/006-system-skill-advisor-extraction/014-manual-testing-validation",
       "description": "End-to-end manual testing of the Skill Advisor surface via cli-opencode native MCP tools, validating 42+ scenarios across 9 categories.",
       "keywords": [
         "manual-testing",
@@ -7134,7 +7134,7 @@
       "lastUpdated": "2026-05-14T18:30:00Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-graph/006-system-skill-advisor-extraction/015-mcp-server-rename-mk-skill-advisor",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph/006-system-skill-advisor-extraction/015-mcp-server-rename-mk-skill-advisor",
       "description": "Rename the Skill Advisor MCP server id and launcher from system_skill_advisor to mk_skill_advisor while preserving folder and tool ids.",
       "keywords": [
         "mk_skill_advisor",
@@ -7146,7 +7146,7 @@
       "lastUpdated": "2026-05-14T20:38:49.472Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-graph/006-system-skill-advisor-extraction/016-p2-remediation-015-deep-review",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph/006-system-skill-advisor-extraction/016-p2-remediation-015-deep-review",
       "description": "Close 015 deep-review P2 advisories and document D2b shared seam decisions for mk_skill_advisor cleanup.",
       "keywords": [
         "p2-remediation",
@@ -7158,7 +7158,7 @@
       "lastUpdated": "2026-05-14T21:42:00.000Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-graph/006-system-skill-advisor-extraction/017-p1-remediation",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph/006-system-skill-advisor-extraction/017-p1-remediation",
       "description": "Close R-004 stale launcher lockdir recovery and S-004 shadow sink path containment from the 013/009 10-iteration deep review.",
       "keywords": [
         "p1-remediation",
@@ -7169,7 +7169,7 @@
       "lastUpdated": "2026-05-15T06:09:08Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-graph/006-system-skill-advisor-extraction/018-p2-cleanup",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph/006-system-skill-advisor-extraction/018-p2-cleanup",
       "description": "Audit and close P2 findings from the 013/009 10-iteration deep review with surgical fixes and named follow-ons.",
       "keywords": [
         "p2-cleanup",
@@ -7180,7 +7180,7 @@
       "lastUpdated": "2026-05-15T06:09:08Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-graph/006-system-skill-advisor-extraction/019-spec-kit-advisor-decoupling",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph/006-system-skill-advisor-extraction/019-spec-kit-advisor-decoupling",
       "description": "Fully isolate system-spec-kit from system-skill-advisor source imports by moving advisor-owned hooks/tests/stress coverage and replacing residual imports with local utilities or process-boundary gateways.",
       "keywords": [
         "spec-kit-advisor-decoupling",
@@ -7192,7 +7192,7 @@
       "lastUpdated": "2026-05-15T06:55:00Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-graph/006-system-skill-advisor-extraction/020-spec-kit-codegraph-decoupling",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph/006-system-skill-advisor-extraction/020-spec-kit-codegraph-decoupling",
       "description": "Full source decoupling between system-spec-kit MCP server and system-code-graph.",
       "keywords": [
         "spec-kit",
@@ -7205,7 +7205,7 @@
       "lastUpdated": "2026-05-15T09:35:00Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-graph/006-system-skill-advisor-extraction/021-codegraph-rpc-surface",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph/006-system-skill-advisor-extraction/021-codegraph-rpc-surface",
       "description": "Expose code-graph query intent classification through mk-code-index and remove the spec-kit local shim.",
       "keywords": [
         "expose",
@@ -7222,7 +7222,7 @@
       "lastUpdated": "2026-05-15T09:22:32.334Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-graph/006-system-skill-advisor-extraction/022-plugin-bridge-unit-isolation",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph/006-system-skill-advisor-extraction/022-plugin-bridge-unit-isolation",
       "description": "Follow-on close-out packet for system-skill-advisor extraction",
       "keywords": [
         "follow-on",
@@ -7234,7 +7234,7 @@
       "lastUpdated": "2026-05-15T10:58:10.936Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-graph/006-system-skill-advisor-extraction/023-subprocess-env-whitelist",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph/006-system-skill-advisor-extraction/023-subprocess-env-whitelist",
       "description": "Follow-on close-out packet for system-skill-advisor extraction",
       "keywords": [
         "follow-on",
@@ -7246,7 +7246,7 @@
       "lastUpdated": "2026-05-15T10:58:11.088Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-graph/006-system-skill-advisor-extraction/024-dfidf-cold-start-cache",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph/006-system-skill-advisor-extraction/024-dfidf-cold-start-cache",
       "description": "Follow-on close-out packet for system-skill-advisor extraction",
       "keywords": [
         "follow-on",
@@ -7258,7 +7258,7 @@
       "lastUpdated": "2026-05-15T10:58:11.231Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-graph/006-system-skill-advisor-extraction/025-parent-doc-drift-refresh",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph/006-system-skill-advisor-extraction/025-parent-doc-drift-refresh",
       "description": "Follow-on close-out packet for system-skill-advisor extraction",
       "keywords": [
         "follow-on",
@@ -7270,7 +7270,7 @@
       "lastUpdated": "2026-05-15T10:58:11.367Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-graph/006-system-skill-advisor-extraction/026-sk-code-and-code-readme-audit",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph/006-system-skill-advisor-extraction/026-sk-code-and-code-readme-audit",
       "description": "Feature Specification: sk-code compliance and code README coverage audit",
       "keywords": [
         "feature",
@@ -7285,7 +7285,7 @@
       "lastUpdated": "2026-05-17T12:55:58.758Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-graph/006-system-skill-advisor-extraction/027-ts-header-normalization",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph/006-system-skill-advisor-extraction/027-ts-header-normalization",
       "description": "Normalize TypeScript source module headers found by the packet 026 sk-code audit.",
       "keywords": [
         "normalize",
@@ -7302,7 +7302,7 @@
       "lastUpdated": "2026-05-15T12:05:28.546Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-graph/006-system-skill-advisor-extraction/028-generated-js-and-declaration-alignment",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph/006-system-skill-advisor-extraction/028-generated-js-and-declaration-alignment",
       "description": "Align audited JavaScript, ESM, CJS, and declaration outputs with sk-code header and strict-mode policy.",
       "keywords": [
         "align",
@@ -7320,7 +7320,7 @@
       "lastUpdated": "2026-05-15T12:05:28.848Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-graph/006-system-skill-advisor-extraction/029-python-package-header-policy",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph/006-system-skill-advisor-extraction/029-python-package-header-policy",
       "description": "Apply sk-code Python package header policy to audited Python package files.",
       "keywords": [
         "apply",
@@ -7335,7 +7335,7 @@
       "lastUpdated": "2026-05-15T12:05:29.116Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-graph/006-system-skill-advisor-extraction/030-any-type-justification-sweep",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph/006-system-skill-advisor-extraction/030-any-type-justification-sweep",
       "description": "Review possible any-type findings and close false positives or missing justifications.",
       "keywords": [
         "review",
@@ -7351,7 +7351,7 @@
       "lastUpdated": "2026-05-15T12:05:29.368Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-graph/007-cross-skill-auto-propagation",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph/007-cross-skill-auto-propagation",
       "description": "Feature Specification: skill_graph_propagate_enhances — cross-skill auto-propagation MVP",
       "keywords": [
         "feature",
@@ -7363,7 +7363,7 @@
       "lastUpdated": "2026-05-15T13:54:39.269Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-scorer",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/002-scorer",
       "description": "Phase parent for skill advisor scoring optimization across 8 children: embed cache, cosine wiring, ablation/weight/corpus sweeps, and routing calibration to activate semantic similarity lanes.",
       "keywords": [
         "scorer",
@@ -7378,7 +7378,7 @@
       "lastUpdated": "2026-05-16T09:00:00Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-scorer/001-skill-advisor-hook-improvements",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/002-scorer/001-skill-advisor-hook-improvements",
       "description": "Feature Specification: Skill-Advisor Hook Improvements",
       "keywords": [
         "feature",
@@ -7390,7 +7390,7 @@
       "lastUpdated": "2026-05-08T08:26:57.744Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-scorer/002-skill-advisor-semantic-lane",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/002-scorer/002-skill-advisor-semantic-lane",
       "description": "Phase parent for activating the skill advisor's dormant semantic_shadow lane as a real cosine-similarity lane using local EmbeddingGemma, with weight rebalance gated behind an ablation sweep.",
       "keywords": [
         "skill-advisor",
@@ -7403,7 +7403,7 @@
       "lastUpdated": "2026-05-13T19:30:00Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-scorer/003-embed-cache-and-cosine-wiring",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/002-scorer/003-embed-cache-and-cosine-wiring",
       "description": "Add per-skill embedding cache to skill-graph.sqlite, embed prompts at recommend-time, surface cosine score as a shadow-only lane (no live behavior change).",
       "keywords": [
         "skill-embedding-cache",
@@ -7416,7 +7416,7 @@
       "lastUpdated": "2026-05-13T19:30:00Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-scorer/004-ablation-sweep-and-promote",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/002-scorer/004-ablation-sweep-and-promote",
       "description": "Sweep candidate lane weight vectors via eval_run_ablation; pick the best; promote the cosine lane to live in lane-registry.ts; document chosen weights as an ADR.",
       "keywords": [
         "ablation-sweep",
@@ -7428,7 +7428,7 @@
       "lastUpdated": "2026-05-13T19:30:00Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-scorer/005-weight-sweep-harness",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/002-scorer/005-weight-sweep-harness",
       "description": "Extend scoring core with laneWeightsOverride, add runLaneWeightSweep, author 20-30 prompt corpus split today-correct vs intent-described, sweep candidate vectors, emit a recommendation markdown.",
       "keywords": [
         "lane-weight-sweep",
@@ -7440,7 +7440,7 @@
       "lastUpdated": "2026-05-13T20:45:00Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-scorer/006-corpus-seeded-sweep",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/002-scorer/006-corpus-seeded-sweep",
       "description": "Seed cosine embeddings into the lane-weight sweep test fixture so the sweep can finally measure cosine-lane effects, then emit a numbers-driven weight recommendation.",
       "keywords": [
         "corpus-seeded-sweep",
@@ -7452,7 +7452,7 @@
       "lastUpdated": "2026-05-14T00:00:00Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-scorer/007-harder-intent-corpus-resweep",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/002-scorer/007-harder-intent-corpus-resweep",
       "description": "Author 15-25 lexical-mis-route prompts in a sibling fixture, extend sweep test, re-run, document whether the cosine lane lifts recall on harder cases.",
       "keywords": [
         "harder-intent-corpus",
@@ -7463,7 +7463,7 @@
       "lastUpdated": "2026-05-14T01:30:00Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-scorer/008-advisor-routing-calibration",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/002-scorer/008-advisor-routing-calibration",
       "description": "Damp explicit/lexical lane contributions when their evidence is weak; sweep damping configurations against the 24-prompt + 22-harder corpora using the 015/003 harness; recommend a damping config that lifts harder-corpus intent-described accuracy without regressing the today-correct baseline.",
       "keywords": [
         "advisor-routing-calibration",
@@ -7476,7 +7476,7 @@
       "lastUpdated": "2026-05-14T02:15:00Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/003-router",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/003-router",
       "description": "Phase parent for intent routing optimization across the skill advisor system. Coordinates 5 children covering search-and-routing tuning, phrase booster tailoring, smart router remediation, hook surface integration, and setup command infrastructure.",
       "keywords": [
         "router",
@@ -7491,7 +7491,7 @@
       "lastUpdated": "2026-05-16T09:00:00Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/003-router/001-search-and-routing-tuning",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/003-router/001-search-and-routing-tuning",
       "description": "Feature Specification: Search and Routing Tuning Coordination Parent",
       "keywords": [
         "feature",
@@ -7505,7 +7505,7 @@
       "lastUpdated": "2026-04-25T12:42:51.242Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/003-router/002-advisor-phrase-booster-tailoring",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/003-router/002-advisor-phrase-booster-tailoring",
       "description": "Feature Specification: Advisor Phrase-Booster Tailoring",
       "keywords": [
         "feature",
@@ -7517,7 +7517,7 @@
       "lastUpdated": "2026-05-08T08:26:57.710Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/003-router/003-smart-remediation-and-opencode-plugin",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/003-router/003-smart-remediation-and-opencode-plugin",
       "description": "Feature Specification: Smart-Router Remediation + OpenCode Plugin",
       "keywords": [
         "feature",
@@ -7530,7 +7530,7 @@
       "lastUpdated": "2026-05-08T08:26:57.718Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/003-router/004-skill-advisor-hook-surface",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/003-router/004-skill-advisor-hook-surface",
       "description": "Feature Specification: Skill-Advisor Hook Surface",
       "keywords": [
         "feature",
@@ -7542,7 +7542,7 @@
       "lastUpdated": "2026-05-08T08:26:57.726Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/003-router/005-skill-advisor-setup-command",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/003-router/005-skill-advisor-setup-command",
       "description": "Feature Specification: Skill Advisor Setup Command",
       "keywords": [
         "feature",
@@ -7555,7 +7555,7 @@
       "lastUpdated": "2026-05-08T08:26:57.749Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-hardening",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/004-hardening",
       "description": "Phase parent for skill-advisor hardening and safety improvements across 4 child packets. Covers deferred remediation, telemetry measurement, plugin hardening, standards alignment, and CLI Devin integration hooks.",
       "keywords": [
         "hardening",
@@ -7570,7 +7570,7 @@
       "lastUpdated": "2026-05-16T09:00:00Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-hardening/001-deferred-remediation-and-telemetry-run",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/004-hardening/001-deferred-remediation-and-telemetry-run",
       "description": "Feature Specification: Deferred Remediation + Telemetry Measurement Run",
       "keywords": [
         "feature",
@@ -7584,7 +7584,7 @@
       "lastUpdated": "2026-05-08T08:26:57.722Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-hardening/002-skill-advisor-plugin-hardening",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/004-hardening/002-skill-advisor-plugin-hardening",
       "description": "Feature Specification: Skill-Advisor Plugin Hardening",
       "keywords": [
         "feature",
@@ -7596,7 +7596,7 @@
       "lastUpdated": "2026-05-08T08:26:57.735Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-hardening/003-skill-advisor-standards-alignment",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/004-hardening/003-skill-advisor-standards-alignment",
       "description": "Feature Specification: Skill-Advisor Standards Alignment",
       "keywords": [
         "feature",
@@ -7608,7 +7608,7 @@
       "lastUpdated": "2026-05-08T08:26:57.739Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-hardening/004-cli-devin-skill-advisor-hook",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/004-hardening/004-cli-devin-skill-advisor-hook",
       "description": "Feature Specification: CLI Devin Skill Advisor UserPromptSubmit Hook + Plugin Rename + Post-Extraction Audit",
       "keywords": [
         "feature",
@@ -7627,7 +7627,7 @@
       "lastUpdated": "2026-05-15T13:05:18.133Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-docs",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/005-docs",
       "description": "Phase parent for skill-advisor documentation work across 3 children: docs/code alignment, code-folder READMEs, and doc/config drift fixes.",
       "keywords": [
         "skill-advisor-docs",
@@ -7641,7 +7641,7 @@
       "lastUpdated": "2026-05-16T09:00:00Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-docs/001-docs-and-code-alignment",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/005-docs/001-docs-and-code-alignment",
       "description": "Feature Specification: Skill-Advisor Docs + Phase 020 Code Alignment",
       "keywords": [
         "feature",
@@ -7656,7 +7656,7 @@
       "lastUpdated": "2026-05-08T08:26:57.714Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-docs/002-code-folder-readmes",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/005-docs/002-code-folder-readmes",
       "description": "Phase B of the 4-phase code-folder README pipeline. Discovery showed actual gaps are smaller than the original plan: 2 fixture folders need new sk-doc READMEs (tests/fixtures/lifecycle, tests/scorer/fixtures), 5 existing READMEs need only a TABLE OF CONTENTS anchor block added (lib/context, lib/scorer/lanes, lib/scorer/lanes/__tests__, scripts/routing-accuracy, stress_test/search-quality). 2 of the originally-listed 9 (lib/skill-graph, stress_test/skill-advisor) already pass sk-doc validate from an earlier upgrade.",
       "keywords": [
         "code-folder-readme",
@@ -7668,7 +7668,7 @@
       "lastUpdated": "2026-05-15T11:55:00Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-docs/003-doc-and-config-drift-fixes",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/005-docs/003-doc-and-config-drift-fixes",
       "description": "Feature Specification: system-skill-advisor doc + config drift fixes — TS5103 build, 8-vs-9 tool count, stale opencode.json comment",
       "keywords": [
         "skill-advisor",
@@ -7684,7 +7684,7 @@
       "lastUpdated": "2026-05-16T09:12:00.324Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-docs/004-docs-quality-refactor",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/005-docs/004-docs-quality-refactor",
       "description": "Phase parent: docs-quality refactor — coordinated docs-quality work for system-skill-advisor across 8 children: audit, bug-fixes, marketing README, sk-doc 1:1 alignment, content additions, deferred-cleanup, deferred-final, tier-d-execution.",
       "keywords": [
         "skill-advisor",
@@ -7701,7 +7701,7 @@
       "lastUpdated": "2026-05-16T12:23:49.343Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-docs/004-docs-quality-refactor/001-audit-and-research",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/005-docs/004-docs-quality-refactor/001-audit-and-research",
       "description": "Feature Specification: 001-audit-and-research (skill-advisor docs audit via 20-iter cli-devin SWE 1.6 deep-research)",
       "keywords": [
         "skill-advisor",
@@ -7715,7 +7715,7 @@
       "lastUpdated": "2026-05-16T00:00:00Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-docs/004-docs-quality-refactor/002-bug-fixes",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/005-docs/004-docs-quality-refactor/002-bug-fixes",
       "description": "Feature Specification: 002-bug-fixes (skeleton, pre-synthesis) — audit-confirmed P0 bug fixes for system-skill-advisor",
       "keywords": [
         "skill-advisor",
@@ -7728,7 +7728,7 @@
       "lastUpdated": "2026-05-16T00:00:00Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-docs/004-docs-quality-refactor/003-readme-marketing-rewrite",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/005-docs/004-docs-quality-refactor/003-readme-marketing-rewrite",
       "description": "Feature Specification: 003-readme-marketing-rewrite (skeleton, pre-synthesis) — marketing-style README rewrite for system-skill-advisor",
       "keywords": [
         "skill-advisor",
@@ -7741,7 +7741,7 @@
       "lastUpdated": "2026-05-16T00:00:00Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-docs/004-docs-quality-refactor/004-sk-doc-1to1-alignment",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/005-docs/004-docs-quality-refactor/004-sk-doc-1to1-alignment",
       "description": "Feature Specification: 004-sk-doc-1to1-alignment (skeleton, pre-synthesis) — per-file 1:1 sk-doc template alignment",
       "keywords": [
         "skill-advisor",
@@ -7754,7 +7754,7 @@
       "lastUpdated": "2026-05-16T00:00:00Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-docs/004-docs-quality-refactor/005-content-additions-and-hvr",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/005-docs/004-docs-quality-refactor/005-content-additions-and-hvr",
       "description": "Feature Specification: 005-content-additions-and-hvr (skeleton, pre-synthesis) — 5 new reference docs + canonical hook-reference copy + HVR sweep",
       "keywords": [
         "skill-advisor",
@@ -7769,7 +7769,7 @@
       "lastUpdated": "2026-05-16T00:00:00Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-docs/004-docs-quality-refactor/006-deferred-cleanup",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/005-docs/004-docs-quality-refactor/006-deferred-cleanup",
       "description": "Feature Specification: 006-deferred-cleanup — Tier A + Tier B re-verify + bulk Oxford comma sweep closure pass",
       "keywords": [
         "skill-advisor",
@@ -7784,7 +7784,7 @@
       "lastUpdated": "2026-05-16T00:00:00Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-docs/004-docs-quality-refactor/007-deferred-final",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/005-docs/004-docs-quality-refactor/007-deferred-final",
       "description": "Feature Specification: 007-deferred-final — single-dispatch cli-opencode + DeepSeek API closure of all remaining deferred items",
       "keywords": [
         "skill-advisor",
@@ -7799,7 +7799,7 @@
       "lastUpdated": "2026-05-16T00:00:00Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-docs/004-docs-quality-refactor/008-tier-d-execution",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/005-docs/004-docs-quality-refactor/008-tier-d-execution",
       "description": "Feature Specification: 008-tier-d-execution — F4 .devin/hooks.v1.json migration, F6 OLD hook location deprecation banners, F37 catalog/playbook cross-reference table",
       "keywords": [
         "tier-d-execution",
@@ -7812,7 +7812,7 @@
       "lastUpdated": "2026-05-16T00:00:00Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-docs/005-cross-skill-decoupling",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/005-docs/005-cross-skill-decoupling",
       "description": "Three coordinated doc cleanups: removed 26 cross-skill references from system-spec-kit's README + mcp_server/README + ARCHITECTURE; zeroed Section 1 tables across all three READMEs (spec-kit, advisor, code-graph); conformed advisor + code-graph ARCHITECTURE.md to spec-kit's canonical 8-section template at terse depth (≤220 lines each). spec-kit/ARCHITECTURE.md becomes the template anchor.",
       "keywords": [
         "cross-skill-decoupling",
@@ -7825,7 +7825,7 @@
       "lastUpdated": "2026-05-16T12:33:24Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-docs/006-skill-readme-refinement-survey",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/005-docs/006-skill-readme-refinement-survey",
       "description": "cli-devin SWE 1.6 audited 17 non-system skill READMEs for em dashes, Section 1 tables, banned words/phrases, cross-skill coupling, and frontmatter drift; then autonomously remediated all 17 across 4 parallel waves plus a 3-skill cleanup wave covering audit false-negatives. All 17 READMEs end at em=0 and zero tables in Section 1.",
       "keywords": [
         "skill-readme-refinement",
@@ -7837,7 +7837,7 @@
       "lastUpdated": "2026-05-16T13:25:00Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/009-hook-parity",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-hook-parity",
       "description": "Feature Specification: Hook Parity",
       "keywords": [
         "feature",
@@ -7848,7 +7848,7 @@
       "lastUpdated": "2026-04-25T12:42:51.115Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/009-hook-parity/001-hook-parity-remediation",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-hook-parity/001-hook-parity-remediation",
       "description": "Feature Specification: 029 - Runtime Hook Parity Remediation",
       "keywords": [
         "feature",
@@ -7862,7 +7862,7 @@
       "lastUpdated": "2026-05-08T08:26:57.754Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/009-hook-parity/002-copilot-hook-parity-remediation",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-hook-parity/002-copilot-hook-parity-remediation",
       "description": "Feature Specification: Copilot CLI Hook Parity Remediation",
       "keywords": [
         "feature",
@@ -7876,7 +7876,7 @@
       "lastUpdated": "2026-05-08T08:26:57.759Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/009-hook-parity/003-codex-hook-parity-remediation",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-hook-parity/003-codex-hook-parity-remediation",
       "description": "Feature Specification: Codex CLI Hook Parity Remediation",
       "keywords": [
         "feature",
@@ -7890,7 +7890,7 @@
       "lastUpdated": "2026-05-08T08:26:57.764Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/009-hook-parity/004-claude-hook-findings-remediation",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-hook-parity/004-claude-hook-findings-remediation",
       "description": "Feature Specification: Claude Hook Findings Remediation",
       "keywords": [
         "feature",
@@ -7903,7 +7903,7 @@
       "lastUpdated": "2026-05-08T08:26:57.769Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/009-hook-parity/005-opencode-plugin-loader-remediation",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-hook-parity/005-opencode-plugin-loader-remediation",
       "description": "Feature Specification: OpenCode Plugin Loader Remediation",
       "keywords": [
         "feature",
@@ -7916,7 +7916,7 @@
       "lastUpdated": "2026-05-08T08:26:57.773Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/010-template-levels",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-template-levels",
       "description": "RM-8 prompt hardening: explicit allowed-write list and rm/mv/sed -i ban in deep-review iteration prompt template",
       "keywords": [
         "rm-8",
@@ -7934,7 +7934,7 @@
       "lastUpdated": "2026-05-11T05:45:02.910Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/010-template-levels/001-consolidation-investigation",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-template-levels/001-consolidation-investigation",
       "description": "Feature Specification: Template System Consolidation — Levels and Addendum to Generator",
       "keywords": [
         "feature",
@@ -7949,7 +7949,7 @@
       "lastUpdated": "2026-05-08T08:26:57.781Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/010-template-levels/002-template-greenfield-redesign",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-template-levels/002-template-greenfield-redesign",
       "description": "Feature Specification: Template Backend Greenfield Redesign",
       "keywords": [
         "feature",
@@ -7962,7 +7962,7 @@
       "lastUpdated": "2026-05-08T08:26:57.785Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/010-template-levels/003-template-greenfield-impl",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-template-levels/003-template-greenfield-impl",
       "description": "Feature Specification: Template Greenfield Implementation — C+F Hybrid Manifest-Driven (4 Phases)",
       "keywords": [
         "feature",
@@ -7977,7 +7977,7 @@
       "lastUpdated": "2026-05-02T10:39:48.807Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/010-template-levels/004-deferred-followups",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-template-levels/004-deferred-followups",
       "description": "Feature Specification: deferred-followups",
       "keywords": [
         "feature",
@@ -7987,7 +7987,7 @@
       "lastUpdated": "2026-05-08T08:26:57.789Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/010-template-levels/005-skill-references-assets-alignment",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-template-levels/005-skill-references-assets-alignment",
       "description": "Feature Specification: skill references assets alignment",
       "keywords": [
         "feature",
@@ -8000,7 +8000,7 @@
       "lastUpdated": "2026-05-08T08:26:57.793Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/010-template-levels/006-command-md-yaml-alignment",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-template-levels/006-command-md-yaml-alignment",
       "description": "Feature Specification: command-md-yaml-alignment",
       "keywords": [
         "feature",
@@ -8010,7 +8010,7 @@
       "lastUpdated": "2026-05-08T08:26:57.797Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/010-template-levels/007-fleet-marker-validation-sweep",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-template-levels/007-fleet-marker-validation-sweep",
       "description": "Feature Specification: fleet-marker-validation-sweep",
       "keywords": [
         "feature",
@@ -8020,7 +8020,7 @@
       "lastUpdated": "2026-05-08T08:26:57.801Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/010-template-levels/008-z-archive-marker-validation-sweep",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-template-levels/008-z-archive-marker-validation-sweep",
       "description": "Feature Specification: z-archive-marker-validation-sweep",
       "keywords": [
         "feature",
@@ -8030,7 +8030,7 @@
       "lastUpdated": "2026-05-08T08:26:57.805Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/010-template-levels/009-rm-8-prompt-hardening",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-template-levels/009-rm-8-prompt-hardening",
       "description": "Phase 1: rm-8-prompt-hardening",
       "keywords": [
         "phase",
@@ -8051,10 +8051,10 @@
       "lastUpdated": "2026-05-08T08:26:57.809Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/012-causal-graph-channel-routing",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/009-causal-graph-channel-routing",
       "description": "Phase parent for graph-channel routing utilization. 001-initial-delivery ships the override (complete, CONDITIONAL deep-review verdict). 002-deep-review-remediation closes 3 P1 + 39 P2 deep-review findings via cli-codex gpt-5.5 reasoning=high service_tier=fast.",
       "keywords": [
-        "012-causal-graph-channel-routing",
+        "009-causal-graph-channel-routing",
         "012 phase parent",
         "graph channel routing phases",
         "012 deep-review remediation",
@@ -8066,10 +8066,10 @@
       "lastUpdated": "2026-05-11T10:36:32.851Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/012-causal-graph-channel-routing/001-initial-delivery",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/009-causal-graph-channel-routing/001-initial-delivery",
       "description": "Initial delivery (2026-05-08) of the graph-channel routing override. shouldPreserveGraph + entity-density override + routing-telemetry rolling counter expose graphChannelInvocationRate via memory_health. Verdict from packet-level deep review (10 iterations, cli-opencode + deepseek/deepseek-v4-pro): CONDITIONAL with 0 P0 / 3 P1 / 39 P2 findings — see 002-deep-review-remediation/ for the cleanup phase.",
       "keywords": [
-        "012-causal-graph-channel-routing initial delivery",
+        "009-causal-graph-channel-routing initial delivery",
         "shouldPreserveGraph",
         "entity-density override",
         "graphChannelInvocationRate",
@@ -8082,7 +8082,7 @@
       "lastUpdated": "2026-05-11T10:30:00Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/012-causal-graph-channel-routing/002-deep-review-remediation",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/009-causal-graph-channel-routing/002-deep-review-remediation",
       "description": "Level 3 plan to close 3 P1 + 39 P2 deep-review findings from 2026-05-11 (cli-opencode + deepseek/deepseek-v4-pro). 21 batches across 4 tiers; implementation via cli-codex gpt-5.5 reasoning=high service_tier=fast.",
       "keywords": [
         "002-deep-review-remediation",
@@ -8097,7 +8097,7 @@
       "lastUpdated": "2026-05-11T10:35:00Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator",
       "description": "Phase parent for the doctor command surface and the manual testing playbook that exercises it. 5 isolated /doctor:* commands plus the unified /doctor:update orchestrator (child 001) ship the runtime; a Docker sandbox + 23-scenario manual playbook (child 002) ships the validation harness; doc-honesty + security hardening + cross-runtime mirror remediation (child 003) closed the deep-review CONDITIONAL findings. Router consolidation (child 004) and hard cutover (child 005) now complete the timeline after dissolving 014.",
       "keywords": [
         "doctor",
@@ -8118,7 +8118,7 @@
       "lastUpdated": "2026-05-12T04:55:46Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/001-doctor-commands",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/001-doctor-commands",
       "description": "Feature Specification: 013 Doctor Update Orchestrator",
       "keywords": [
         "feature",
@@ -8131,7 +8131,7 @@
       "lastUpdated": "2026-05-11T08:39:07.900Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/002-rm8-013-remediation-doc-honesty-security",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/002-rm8-013-remediation-doc-honesty-security",
       "description": "Phase 1: rm8-013-remediation-doc-honesty-security",
       "keywords": [
         "phase",
@@ -8140,7 +8140,7 @@
       "lastUpdated": "2026-05-11T08:32:26.168Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/003-router-phase",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/003-router-phase",
       "description": "Phase 1 of the doctor command consolidation: author .opencode/commands/doctor.md (router, ~250-300 LOC) + .opencode/commands/doctor/mcp.md (~150 LOC) + .opencode/commands/doctor/_routes.yaml (canonical route manifest) + .opencode/commands/doctor/scripts/route-validate.sh (CI assertion). Ships ADDITIVELY alongside the existing 10 commands. Mirrors land in .claude / .gemini / .codex. No YAML modifications, no deletes, no playbook touch — those are Phase 2.",
       "keywords": [
         "router-phase",
@@ -8157,7 +8157,7 @@
       "lastUpdated": "2026-05-12T04:55:46Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/004-cutover-phase",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/004-cutover-phase",
       "description": "Phase 2 of the doctor command consolidation: hard cutover from legacy /doctor:* commands to the shipped /doctor router. Deletes 9 old .opencode markdown files and 9 old .gemini TOML files, rewrites manual playbook and sandbox invocations, annotates 013 historical records, rebuilds advisor indexing, and closes the 013 parent.",
       "keywords": [
         "cutover-phase",
@@ -8986,7 +8986,7 @@
       "lastUpdated": "2026-05-15T19:00:00Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/015-mcp-shared-dependency-startup-fix",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/011-mcp-shared-dependency-startup-fix",
       "description": "Fix mk_skill_advisor and mk_code_index MCP startup crashes by declaring @spec-kit/shared as a local runtime dependency in the packages that import it.",
       "keywords": [
         "mcp-startup",
@@ -9051,7 +9051,7 @@
       "lastUpdated": "2026-05-17T12:55:57.037Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-mxbai-swap-and-008-closure",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-spec-memory-embedder-bake-off",
       "description": "016/004: mxbai-embed-large swap + close 008 cat-24/409",
       "keywords": [
         "016",
@@ -9154,7 +9154,7 @@
       "lastUpdated": "2026-05-14T08:43:25Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-2-merges/007-code-graph-029-public-readme-update",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-2-merges/005-code-graph-029-public-readme-update",
       "description": "Public README Update",
       "keywords": [
         "public",
@@ -9200,7 +9200,7 @@
       "lastUpdated": "2026-04-25T12:42:54.166Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-2-merges/009-hook-parity-008-docs-impact-remediation",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-2-merges/007-hook-parity-008-docs-impact-remediation",
       "description": "Feature Specification: Documentation Impact Remediation for 009 Hook/Daemon Parity",
       "keywords": [
         "feature",
@@ -9539,7 +9539,7 @@
       "lastUpdated": "2026-05-13T09:00:49.639Z"
     },
     {
-      "specFolder": "system-spec-kit/027-xce-research-based-refinement/007-code-graph-hld-lld",
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-code-graph-hld-lld",
       "description": "Phase parent for deterministic HLD/LLD narrative generation over code_graph data.",
       "keywords": [
         "phase-parent",
@@ -9552,7 +9552,7 @@
       "lastUpdated": "2026-05-12T00:00:00.000Z"
     },
     {
-      "specFolder": "system-spec-kit/027-xce-research-based-refinement/007-code-graph-hld-lld/001-contract",
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-code-graph-hld-lld/001-contract",
       "description": "TypeScript HldLldClassifier interface and FileRole enum types defining the deterministic HLD/LLD generation contract.",
       "keywords": [
         "hld-lld",
@@ -9564,7 +9564,7 @@
       "lastUpdated": "2026-05-12T00:00:00.000Z"
     },
     {
-      "specFolder": "system-spec-kit/027-xce-research-based-refinement/007-code-graph-hld-lld/002-lib-impl",
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-code-graph-hld-lld/002-lib-impl",
       "description": "code-graph-hld-lld.ts implementation conforming to the published HldLldClassifier contract.",
       "keywords": [
         "hld-lld",
@@ -9576,7 +9576,7 @@
       "lastUpdated": "2026-05-12T00:00:00.000Z"
     },
     {
-      "specFolder": "system-spec-kit/027-xce-research-based-refinement/007-code-graph-hld-lld/003-handler",
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-code-graph-hld-lld/003-handler",
       "description": "MCP handler handlers/hld-lld.ts wiring the code_graph_hld_lld tool dispatch using the contract interface.",
       "keywords": [
         "hld-lld",
@@ -9588,7 +9588,7 @@
       "lastUpdated": "2026-05-12T00:00:00.000Z"
     },
     {
-      "specFolder": "system-spec-kit/027-xce-research-based-refinement/007-code-graph-hld-lld/004-test",
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-code-graph-hld-lld/004-test",
       "description": "code-graph-hld-lld.vitest.ts test suite verifying classifier behavior against the published contract.",
       "keywords": [
         "hld-lld",

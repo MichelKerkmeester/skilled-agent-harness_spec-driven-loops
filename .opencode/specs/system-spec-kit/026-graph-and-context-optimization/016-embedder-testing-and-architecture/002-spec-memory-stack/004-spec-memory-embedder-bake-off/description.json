@@ -1,0 +1,33 @@
+{
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/004-spec-memory-embedder-bake-off",
+  "description": "mk-spec-memory text-embedder bake-off — 6 candidates compared on the cat-24/409 paraphrase-recall fixture. jina-embeddings-v3 wins 9/10 with rescue layer (ADR-012). Also produced ADRs 001-011 covering 5 rolled-back swap attempts + retrieval-rescue layer cost/benefit. See benchmark-results.md for the headline + per-candidate analysis.",
+  "keywords": [
+    "spec-memory",
+    "embedder-bake-off",
+    "text-embedder",
+    "jina-embeddings-v3",
+    "bge-m3",
+    "nomic-embed-text",
+    "embeddinggemma",
+    "mxbai-embed-large",
+    "snowflake-arctic-embed",
+    "cat-24-409",
+    "retrieval-rescue",
+    "adr-012",
+    "benchmark-results"
+  ],
+  "lastUpdated": "2026-05-18T18:20:00.000Z",
+  "specId": "004",
+  "folderSlug": "spec-memory-embedder-bake-off",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "016-embedder-testing-and-architecture",
+    "002-spec-memory-stack"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "17-05-26_07-35__scaffolded-016-embedder-testing-and-architecture.md",
+    "18-05-26_18-20__renamed-from-004-mxbai-swap-and-008-closure.md"
+  ]
+}

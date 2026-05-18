@@ -1,24 +1,32 @@
 ---
-title: "016/004: mxbai-embed-large swap + close 008 cat-24/409"
-description: "Phase 4 of 016 (final). First concrete swap via the new pluggable mechanism. Swap to mxbai-embed-large-v1, re-run cat-24 scenarios, verify no regression on 008's 56 PASS scenarios, close cat-24/409 to PASS."
+title: "016/004: mk-spec-memory text-embedder bake-off (6 candidates) + retrieval-rescue layer + cat-24/409 closure"
+description: "mk-spec-memory's authoritative text-embedder benchmark. Entry hypothesis (mxbai-embed-large) failed; expanded into a 6-candidate bake-off (mxbai, jina-v3, nomic-v1.5, bge-m3, snowflake-arctic-l, gemma baseline). No pure dense swap closed cat-24/409 — added a retrieval-rescue layer (ADR-010/011). Final production default: jina-embeddings-v3 + rescue layer per ADR-012. Headline: benchmark-results.md."
 trigger_phrases:
-  - "016/004 mxbai swap"
-  - "close 008 cat-24/409"
-  - "first concrete embedder swap"
+  - "spec memory benchmark"
+  - "mk-spec-memory embedder benchmark"
+  - "spec memory bake-off"
+  - "016/004 spec memory bake-off"
+  - "text embedder benchmark"
+  - "jina-embeddings-v3 spec memory"
+  - "adr-012 production embedder"
+  - "cat-24-409 benchmark"
+  - "retrieval rescue layer"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/004-mxbai-swap-and-008-closure"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/004-spec-memory-embedder-bake-off"
     last_updated_at: "2026-05-17T11:54:33Z"
     last_updated_by: "main_agent"
     recent_action: "Flipped retrieval-rescue layer default-on; cat-24/409 closure path remains 8/10 top-3"
     next_safe_action: "Use ADR-010/011 as closure evidence; kill switch is SPECKIT_RERANK_LAYER=false"
     blockers: []
     key_files:
+      - "benchmark-results.md"
       - "decision-record.md"
-      - "evidence/mxbai-swap-status.json"
-      - "evidence/swap-benchmark.csv"
+      - "evidence/embedder-comparison-with-rescue.jsonl"
+      - "evidence/embedder-comparison.csv"
+      - "evidence/jina-runtime-measurements.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "016-004-scaffold"
@@ -30,7 +38,10 @@ _memory:
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 1 -->
 
-# 016/004: mxbai-embed-large swap + close 008 cat-24/409
+# 016/004: mk-spec-memory text-embedder bake-off (6 candidates) + retrieval-rescue layer + cat-24/409 closure
+
+> **⭐ Looking for the benchmark numbers?** → See **[`benchmark-results.md`](./benchmark-results.md)** — headline + per-candidate analysis + ADR map.
+> Code-side bake-off (CocoIndex / sbert backend) is at `../../../004-code-index-stack/004-extended-bake-off/benchmark-results.md`.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
@@ -38,18 +49,33 @@ _memory:
 |-------|-------|
 | Level | 1 |
 | Priority | P1 |
-| Status | CLOSED - ADR-011 flips retrieval rescue default-on; cat-24/409 reached 8/10 under Nomic |
+| Status | SHIPPED - ADR-012 selects jina-embeddings-v3 + rescue layer as production default; cat-24/409 closed at 9/10 under jina-v3 (was 8/10 under nomic) |
 | Branch | main |
 | Runtime | **cli-opencode** (`--model deepseek/deepseek-v4-pro --pure --format json`) |
 | Blocked by | 016/001 + 016/002 + 016/003 |
 | Closes | packet 008 cat-24/409 (the remaining 1 of 51 session FAILs) |
 | Supersedes | packet 115 (embedding-model eval scaffold — folded into 016's pluggable approach) |
+| Folder rename | 2026-05-18: renamed from `004-mxbai-swap-and-008-closure` → `004-spec-memory-embedder-bake-off` for discoverability (entry hypothesis became one of 6 rolled-back candidates; the bake-off + rescue layer is the actual scope shipped) |
 
 
 <!-- /ANCHOR:metadata -->
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
-Use the pluggable mechanism (built in 001/002/003) to perform the first real swap. Target: **mxbai-embed-large-v1** — chosen for cosine-optimized AnglE-loss training that directly addresses the paraphrase weakness behind cat-24/409.
+
+mk-spec-memory's text-retrieval quality had one outstanding failure (cat-24/409 "LLM-made-memory recall") blocking packet 008's closure to 51/51 PASS. The entry hypothesis: swap to **mxbai-embed-large-v1** (cosine-optimized AnglE-loss training, expected to fix paraphrase recall) via the pluggable mechanism shipped in 001/002/003.
+
+Outcome: **mxbai failed early** (context-length limit, jaccard regression). The packet expanded into a **6-candidate bake-off**:
+
+| Candidate | Source of strength | Outcome |
+|---|---|---|
+| mxbai-embed-large-v1 | AnglE-loss paraphrase optimization | Failed (ADR-001..004) |
+| jina-embeddings-v3 | Multilingual + paraphrase-tuned, 8192 ctx, Matryoshka | 4/10 raw, **9/10 with rescue → ADR-012 winner** |
+| nomic-embed-text-v1.5 | 235M-pair hard-negatives retrieval training | 5/10 raw, 8/10 with rescue |
+| bge-m3 | Multilingual + dense/sparse/multivec | 2/10 raw — rolled back (ADR-007) |
+| snowflake-arctic-embed-l-v2.0 | 74-lang general retrieval | 1/10 raw — rolled back (ADR-008) |
+| embeddinggemma-300m | Baseline | 1/10 raw, 7/10 with rescue — kept as schema fallback |
+
+After 5 rolled-back swaps proved that no pure dense embedder closes the gate, the packet pivoted to a **retrieval-rescue layer** (sibling injection + trigger-lane re-weighting) on top of the existing pipeline (ADR-010 + ADR-011). With rescue ON, jina-embeddings-v3 reached 9/10 on cat-24/409 and was selected as production (ADR-012).
 
 Verify:
 1. The end-to-end swap mechanism works on a live corpus
