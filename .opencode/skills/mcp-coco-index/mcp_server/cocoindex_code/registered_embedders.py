@@ -110,6 +110,16 @@ MANIFESTS: tuple[EmbedderMetadata, ...] = (
         hf_url="https://huggingface.co/Salesforce/SFR-Embedding-Code-2B_R",
         notes="Large (2B params), top-of-leaderboard on CoIR benchmark. Use if you have GPU/RAM headroom and need maximum code retrieval quality. Slower inference.",
     ),
+    EmbedderMetadata(
+        name="sbert/dunzhang/stella_en_400M_v5",
+        dim=1024,
+        ram_mb=800,
+        disk_mb=400,
+        mps_compatible=True,
+        category="text",
+        hf_url="https://huggingface.co/dunzhang/stella_en_400M_v5",
+        notes="Small (400M), fast, surprisingly competitive on code + text retrieval. Default 1024d (also supports 768/512). MTEB-strong. Schema migration needed when swapping from 768d default (use vec_1024).",
+    ),
 )
 
 

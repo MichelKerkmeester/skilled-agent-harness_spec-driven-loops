@@ -1,0 +1,29 @@
+{
+  "specFolder": "002-chunking-strategy-tuning",
+  "description": "Spec: 016/011/002-chunking-strategy-tuning — Chunking Strategy Tuning",
+  "keywords": [
+    "spec",
+    "016",
+    "011",
+    "002-chunking-strategy-tuning",
+    "chunking",
+    "strategy",
+    "tuning"
+  ],
+  "lastUpdated": "2026-05-18T05:13:46.123Z",
+  "specId": "002",
+  "folderSlug": "chunking-strategy-tuning",
+  "parentChain": [
+    "..",
+    ".opencode",
+    "specs",
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "016-embedder-testing-and-architecture",
+    "011-section3-structural-improvements"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "18-05-26_06-13__scaffolded-packet-during-2026-05-18-autonomous.md"
+  ]
+}

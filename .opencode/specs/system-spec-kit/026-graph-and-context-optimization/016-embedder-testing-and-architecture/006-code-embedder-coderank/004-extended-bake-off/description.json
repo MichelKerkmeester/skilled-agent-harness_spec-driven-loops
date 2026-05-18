@@ -1,0 +1,29 @@
+{
+  "specFolder": "004-extended-bake-off",
+  "description": "Spec: 016/006/004 Extended Code-Embedder Bake-Off",
+  "keywords": [
+    "spec",
+    "016",
+    "006",
+    "004",
+    "extended",
+    "code-embedder",
+    "bake-off"
+  ],
+  "lastUpdated": "2026-05-18T05:13:47.028Z",
+  "specId": "004",
+  "folderSlug": "extended-bake-off",
+  "parentChain": [
+    "..",
+    ".opencode",
+    "specs",
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "016-embedder-testing-and-architecture",
+    "006-code-embedder-coderank"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "18-05-26_06-13__scaffolded-packet-during-2026-05-18-autonomous.md"
+  ]
+}
