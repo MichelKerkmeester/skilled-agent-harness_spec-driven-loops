@@ -11,9 +11,9 @@ set -uo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(git -C "$SCRIPT_DIR" rev-parse --show-toplevel)"
 FIXTURE="$REPO_ROOT/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/002-baseline-fixture/evidence/code-retrieval-fixture.json"
-OUT_CSV="$SCRIPT_DIR/cocoindex-embedder-comparison-extended.csv"
-OUT_JSONL="$SCRIPT_DIR/cocoindex-embedder-comparison-extended.jsonl"
-RUNLOG="$SCRIPT_DIR/runlog.txt"
+OUT_CSV="$SCRIPT_DIR/cocoindex-embedder-comparison-with-hybrid-rerank.csv"
+OUT_JSONL="$SCRIPT_DIR/cocoindex-embedder-comparison-with-hybrid-rerank.jsonl"
+RUNLOG="$SCRIPT_DIR/runlog-with-hybrid-rerank.txt"
 
 cd "$REPO_ROOT"
 
