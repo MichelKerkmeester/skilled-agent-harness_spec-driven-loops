@@ -3,7 +3,7 @@
 // ───────────────────────────────────────────────────────────────
 
 import Database from 'better-sqlite3';
-import { existsSync, mkdirSync } from 'node:fs';
+import { chmodSync, existsSync, mkdirSync, realpathSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 
 export interface LeaseOptions {
@@ -37,6 +37,7 @@ export interface LeaseHeldResult {
   readonly ownerPid: number | null;
   readonly staleReclaimable: boolean;
   readonly startedAt: string | null;
+  readonly legacyPath?: string | null;
 }
 
 export interface SkillGraphLease {
@@ -51,24 +52,47 @@ export interface SkillGraphLease {
 const DEFAULT_STALE_AFTER_MS = 30_000;
 const DEFAULT_HEARTBEAT_MS = 5_000;
 const LEASE_DB_FILENAME = 'skill-graph-daemon-lease.sqlite';
+const LEGACY_LEASE_RELATIVE_PATH = join(
+  '.opencode',
+  'skills',
+  '.advisor-state',
+  LEASE_DB_FILENAME,
+);
 
 interface OpenLeaseDatabaseOptions {
   readonly readonly?: boolean;
 }
 
+function canonicalizePath(pathValue: string): string {
+  const resolvedPath = resolve(pathValue);
+  try {
+    return realpathSync.native(resolvedPath);
+  } catch (error: unknown) {
+    if ((error as NodeJS.ErrnoException).code === 'ENOENT') {
+      return resolvedPath;
+    }
+    throw error;
+  }
+}
+
+function ensureCanonicalDir(dirPath: string): string {
+  mkdirSync(canonicalizePath(dirPath), { recursive: true, mode: 0o700 });
+  return canonicalizePath(dirPath);
+}
+
 function resolveSkillAdvisorDbDir(workspaceRoot: string): string {
   const overrideDbDir = process.env.MK_SKILL_ADVISOR_DB_DIR ?? process.env.SYSTEM_SKILL_ADVISOR_DB_DIR;
   if (overrideDbDir) {
-    return resolve(overrideDbDir);
+    return canonicalizePath(overrideDbDir);
   }
-  return join(
-    resolve(workspaceRoot),
+  return canonicalizePath(join(
+    canonicalizePath(workspaceRoot),
     '.opencode',
     'skills',
     'system-skill-advisor',
     'mcp_server',
     'database',
-  );
+  ));
 }
 
 function defaultLeaseDbPath(workspaceRoot: string): string {
@@ -76,11 +100,19 @@ function defaultLeaseDbPath(workspaceRoot: string): string {
 }
 
 function resolveLeaseDbPath(workspaceRoot: string, leaseDbPath?: string): string {
-  return leaseDbPath ?? defaultLeaseDbPath(workspaceRoot);
+  return leaseDbPath ? canonicalizePath(leaseDbPath) : defaultLeaseDbPath(workspaceRoot);
+}
+
+function legacyLeaseDbPath(workspaceRoot: string): string {
+  return canonicalizePath(join(canonicalizePath(workspaceRoot), LEGACY_LEASE_RELATIVE_PATH));
 }
 
 function workspaceKey(workspaceRoot: string, leaseDbPath?: string): string {
   return dirname(resolveLeaseDbPath(workspaceRoot, leaseDbPath));
+}
+
+function legacyWorkspaceKey(workspaceRoot: string): string {
+  return resolve(workspaceRoot);
 }
 
 function createOwnerId(): string {
@@ -107,11 +139,14 @@ export function openLeaseDatabase(
 ): Database.Database {
   const dbPath = resolveLeaseDbPath(workspaceRoot, leaseDbPath);
   if (!options.readonly) {
-    mkdirSync(dirname(dbPath), { recursive: true });
+    ensureCanonicalDir(dirname(dbPath));
   }
   const db = options.readonly
     ? new Database(dbPath, { readonly: true, fileMustExist: true })
     : new Database(dbPath);
+  if (!options.readonly) {
+    chmodSync(dbPath, 0o600);
+  }
   db.pragma('busy_timeout = 1000');
   if (!options.readonly) {
     ensureSchema(db);
@@ -119,18 +154,19 @@ export function openLeaseDatabase(
   return db;
 }
 
-export function readLeaseSnapshot(
+function readLeaseSnapshotForKey(
   workspaceRoot: string,
-  options: Pick<LeaseOptions, 'leaseDbPath'> = {},
-  openOptions: OpenLeaseDatabaseOptions = {},
+  leaseDbPath: string | undefined,
+  key: string,
+  openOptions: OpenLeaseDatabaseOptions,
 ): LeaseSnapshot | null {
-  const db = openLeaseDatabase(workspaceRoot, options.leaseDbPath, openOptions);
+  const db = openLeaseDatabase(workspaceRoot, leaseDbPath, openOptions);
   try {
     const row = db.prepare(`
       SELECT workspace_key, owner_id, pid, acquired_at, heartbeat_at
       FROM skill_graph_daemon_lease
       WHERE workspace_key = ?
-    `).get(workspaceKey(workspaceRoot, options.leaseDbPath)) as {
+    `).get(key) as {
       workspace_key: string;
       owner_id: string;
       pid: number;
@@ -151,49 +187,114 @@ export function readLeaseSnapshot(
   }
 }
 
-export function isLeaseHeld(
+export function readLeaseSnapshot(
   workspaceRoot: string,
   options: Pick<LeaseOptions, 'leaseDbPath'> = {},
+  openOptions: OpenLeaseDatabaseOptions = {},
+): LeaseSnapshot | null {
+  return readLeaseSnapshotForKey(
+    workspaceRoot,
+    options.leaseDbPath,
+    workspaceKey(workspaceRoot, options.leaseDbPath),
+    openOptions,
+  );
+}
+
+function readLeaseHeldAt(
+  workspaceRoot: string,
+  leaseDbPath: string | undefined,
+  key: string,
+  legacyPath: string | null = null,
 ): LeaseHeldResult {
-  if (!existsSync(resolveLeaseDbPath(workspaceRoot, options.leaseDbPath))) {
-    return { held: false, ownerPid: null, staleReclaimable: false, startedAt: null };
+  if (!existsSync(resolveLeaseDbPath(workspaceRoot, leaseDbPath))) {
+    return { held: false, ownerPid: null, staleReclaimable: false, startedAt: null, legacyPath };
   }
   let snapshot: LeaseSnapshot | null;
   try {
-    snapshot = readLeaseSnapshot(workspaceRoot, options, { readonly: true });
+    snapshot = readLeaseSnapshotForKey(workspaceRoot, leaseDbPath, key, { readonly: true });
   } catch (error: unknown) {
     const code = (error as NodeJS.ErrnoException).code;
     if (code === 'ENOENT' || code === 'SQLITE_CANTOPEN') {
-      return { held: false, ownerPid: null, staleReclaimable: false, startedAt: null };
+      return { held: false, ownerPid: null, staleReclaimable: false, startedAt: null, legacyPath };
     }
     throw error;
   }
   if (!snapshot) {
-    return { held: false, ownerPid: null, staleReclaimable: false, startedAt: null };
+    return { held: false, ownerPid: null, staleReclaimable: false, startedAt: null, legacyPath };
   }
 
   try {
     process.kill(snapshot.pid, 0);
-    return { held: true, ownerPid: snapshot.pid, staleReclaimable: false, startedAt: snapshot.startedAt };
+    return {
+      held: true,
+      ownerPid: snapshot.pid,
+      staleReclaimable: false,
+      startedAt: snapshot.startedAt,
+      legacyPath,
+    };
   } catch (error: unknown) {
     const code = (error as NodeJS.ErrnoException).code;
     if (code === 'ESRCH') {
-      return { held: false, ownerPid: snapshot.pid, staleReclaimable: true, startedAt: snapshot.startedAt };
+      return {
+        held: false,
+        ownerPid: snapshot.pid,
+        staleReclaimable: true,
+        startedAt: snapshot.startedAt,
+        legacyPath,
+      };
     }
     if (code === 'EPERM') {
-      return { held: true, ownerPid: snapshot.pid, staleReclaimable: false, startedAt: snapshot.startedAt };
+      return {
+        held: true,
+        ownerPid: snapshot.pid,
+        staleReclaimable: false,
+        startedAt: snapshot.startedAt,
+        legacyPath,
+      };
     }
     throw error;
   }
 }
 
+export function isLeaseHeld(
+  workspaceRoot: string,
+  options: Pick<LeaseOptions, 'leaseDbPath'> = {},
+): LeaseHeldResult {
+  const primary = readLeaseHeldAt(
+    workspaceRoot,
+    options.leaseDbPath,
+    workspaceKey(workspaceRoot, options.leaseDbPath),
+  );
+  if (primary.held) {
+    return primary;
+  }
+
+  if (!options.leaseDbPath) {
+    const legacyPath = legacyLeaseDbPath(workspaceRoot);
+    const legacy = readLeaseHeldAt(
+      workspaceRoot,
+      legacyPath,
+      legacyWorkspaceKey(workspaceRoot),
+      legacyPath,
+    );
+    if (legacy.held) {
+      return legacy;
+    }
+    if (legacy.staleReclaimable) {
+      return legacy;
+    }
+  }
+
+  return primary;
+}
+
 export function acquireSkillGraphLease(options: LeaseOptions): SkillGraphLease {
-  const workspace = workspaceKey(options.workspaceRoot, options.leaseDbPath);
   const ownerId = options.ownerId ?? createOwnerId();
   const staleAfterMs = options.staleAfterMs ?? DEFAULT_STALE_AFTER_MS;
   const heartbeatMs = options.heartbeatMs ?? DEFAULT_HEARTBEAT_MS;
   const now = options.now ?? (() => Date.now());
   const db = openLeaseDatabase(options.workspaceRoot, options.leaseDbPath);
+  const workspace = workspaceKey(options.workspaceRoot, options.leaseDbPath);
   let acquired = false;
 
   const reserve = db.transaction((): LeaseAcquireResult => {

@@ -17,7 +17,7 @@ importance_tier: "important"
 <!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
-The freshness daemon holds a workspace single-writer lease so two concurrent advisor processes never race on the SQLite skill graph file. This doc defines lease acquisition, heartbeat, release, contention recovery plus stale lease handling. For freshness state transitions see [`freshness-contract.md`](./freshness-contract.md). Source-of-truth: `mcp_server/lib/daemon/lease.ts`.
+The freshness daemon holds a resolved-database-directory single-writer lease so two concurrent advisor processes never race on the SQLite skill graph file. This doc defines lease acquisition, heartbeat, release, contention recovery plus stale lease handling. For freshness state transitions see [`freshness-contract.md`](./freshness-contract.md). Source-of-truth: `mcp_server/lib/daemon/lease.ts`.
 
 <!-- /ANCHOR:1-overview -->
 
@@ -38,10 +38,12 @@ This enforcement is gated by the `MK_SKILL_ADVISOR_STRICT_SINGLE_WRITER` environ
 
 ### Acquire
 
-Daemon attempts lease acquisition on startup. The lease database lives at `.opencode/skills/.advisor-state/skill-graph-daemon-lease.sqlite`. On success it records:
+Daemon attempts lease acquisition on startup. The lease database lives next to the canonical skill graph database directory as `skill-graph-daemon-lease.sqlite`. Canonical means lexical `path.resolve()` followed by `fs.realpathSync.native()` when the path exists; if the directory did not exist yet, the daemon creates it and canonicalizes again before deriving the `workspace_key`.
+
+With the default configuration that directory is `.opencode/skills/system-skill-advisor/mcp_server/database/`. With `MK_SKILL_ADVISOR_DB_DIR` or `SYSTEM_SKILL_ADVISOR_DB_DIR`, the override relocates both `skill-graph.sqlite` and `skill-graph-daemon-lease.sqlite` together. On success the lease row records:
 
 - holder PID
-- holder hostname (via owner ID)
+- holder owner ID
 - acquisition timestamp
 - expected heartbeat interval
 
@@ -66,7 +68,7 @@ Every skill-graph database open sets `PRAGMA journal_mode=WAL` and `PRAGMA busy_
 <!-- ANCHOR:3-contention-recovery -->
 ## 3. CONTENTION RECOVERY
 
-When two daemons start within the heartbeat window, both attempt acquisition. The lease file uses atomic create (open-with-O_EXCL) so only one wins. The loser logs `lease-busy holder=<pid>` plus retries with exponential backoff: 1s, 2s, 4s, 8s, 16s, capped at 30s.
+When two daemons start within the heartbeat window, both attempt acquisition. The lease database enforces a single row per canonical database-directory `workspace_key`, so only one owner can hold the lease for a given SQLite directory. The loser logs `lease-busy holder=<pid>` plus retries with exponential backoff: 1s, 2s, 4s, 8s, 16s, capped at 30s.
 
 If the lease holder responds with an MCP `advisor_status` call showing `live` trust state, the waiter accepts the holder as canonical plus exits without competing. If the holder is unresponsive past 3 retry cycles, the waiter inspects the heartbeat timestamp. If stale (>2x heartbeat interval), the waiter triggers stale-lease recovery (see §4).
 
@@ -81,17 +83,21 @@ A lease is stale when:
 
 1. The recorded PID does not exist in the process table, OR
 2. The heartbeat timestamp is older than 2x the heartbeat interval (default 60s), OR
-3. The recorded hostname differs from the current host (cross-host lease leak).
+3. The lease row is present but no live owner can be verified.
 
 Stale-lease recovery procedure:
 
 1. Verify the PID is dead via `kill -0 <pid>`. If `ESRCH`, PID is gone.
 2. Verify heartbeat timestamp is older than 60s.
 3. If both confirmed, log `stale-lease detected holder=<pid> age=<seconds>`.
-4. Delete the lease file.
+4. Delete the lease row.
 5. Retry acquisition once via the normal lifecycle.
 
-The lease file deletion is atomic. If two daemons race on stale-lease cleanup, only one wins the re-acquisition.
+The lease row deletion is guarded by owner ID. If two daemons race on stale-lease cleanup, only one wins the re-acquisition.
+
+### Legacy Probe During Rolling Starts
+
+During the Phase 006 compatibility window, launcher startup also probes the old lease database at `.opencode/skills/.advisor-state/skill-graph-daemon-lease.sqlite`. If that legacy database contains a live owner, the launcher exits `0` with `LEASE_HELD_BY:<pid> ... (legacy path)` and does not open the skill graph DB. If the legacy owner is stale or dead, startup logs the stale legacy observation and proceeds with the canonical lease beside the resolved DB directory. The launcher observes but does not migrate the legacy database.
 
 <!-- /ANCHOR:4-stale-lease-handling -->
 
@@ -102,12 +108,12 @@ The lease file deletion is atomic. If two daemons race on stale-lease cleanup, o
 
 | Failure | Symptom | Recovery |
 |---|---|---|
-| Lease holder PID killed without releasing | New daemon waits forever in `lease-busy` loop | Stale-lease recovery fires after 60s heartbeat timeout. If recovery itself fails, manually delete `mcp_server/database/.skill-graph.lease` |
-| Hostname mismatch (cross-host lease leak) | Lease file claims a hostname that is not the current host | Stale-lease recovery fires immediately. The lease file should not survive a workstation reboot if cleanup runs |
-| Filesystem locks the lease file | Stale-lease cleanup fails with EBUSY or EPERM | Check filesystem permissions on `mcp_server/database/`. Verify no antivirus or backup process is holding the file open |
+| Lease holder PID killed without releasing | New daemon waits until the row is stale | Stale-lease recovery fires after heartbeat timeout. If recovery itself fails, inspect `skill-graph-daemon-lease.sqlite` beside the DB directory |
+| Legacy rolling-start owner still alive | New launcher prints `LEASE_HELD_BY:<pid> ... (legacy path)` | Stop the old owner or wait for it to exit, then restart with the canonical lease path |
+| Filesystem locks the lease database | Stale-lease cleanup fails with EBUSY or EPERM | Check filesystem permissions on the resolved database directory. Verify no antivirus or backup process is holding the file open |
 | Two daemons acquire concurrently due to filesystem race | SQLite database shows corruption (rare on macOS APFS, possible on NFS) | Stop both daemons. Delete `skill-graph.sqlite{,-wal,-shm}`. Run `advisor_rebuild --force` |
 | Heartbeat thread dies but main daemon continues | Lease ages out, waiter triggers stale-lease recovery, kills the lease | Restart the daemon (MCP server restart). Investigate why heartbeat thread crashed |
-| Lease file checksum mismatch (corruption) | Daemon refuses to read the lease | Delete the lease file. Re-acquire. The lease format is non-critical state (rebuilds from runtime metadata) |
+| Lease database corruption | Daemon refuses to read the lease | Delete `skill-graph-daemon-lease.sqlite`. Re-acquire. The lease format is non-critical state |
 
 <!-- /ANCHOR:5-failure-modes -->
 
@@ -116,21 +122,30 @@ The lease file deletion is atomic. If two daemons race on stale-lease cleanup, o
 <!-- ANCHOR:6-db-dir-override -->
 ## 6. DATABASE DIRECTORY OVERRIDE CONSTRAINT
 
-`MK_SKILL_ADVISOR_DB_DIR` and `SYSTEM_SKILL_ADVISOR_DB_DIR` override the skill graph database directory. The daemon lease check remains keyed by `workspaceKey(workspaceRoot)`, not by the resolved database directory.
+`MK_SKILL_ADVISOR_DB_DIR` and `SYSTEM_SKILL_ADVISOR_DB_DIR` override the skill graph database directory. The daemon lease database is co-located with that canonical directory, so two workspaces pointing at the same SQLite directory through different symlinks or path aliases share the same single-writer boundary.
 
-That means the override can disconnect "same workspace" from "same SQLite file":
+This keeps "same SQLite file" and "same lease owner" aligned:
 
-- Two launchers in the same workspace pointing at different DB directories share the same lease key. The second launcher sees `LEASE_HELD_BY:<pid>` and exits even though the two processes would write different databases. This is a false positive.
-- Two launchers in different workspaces pointing at the same shared DB directory use different lease keys. Both can pass the lease check and then write the same SQLite database. This is a false negative and can corrupt the shared DB.
+- Two launchers in different workspaces pointing at the same shared DB directory contend on the same lease and the second launcher exits with `LEASE_HELD_BY:<pid>`.
+- Two launchers in one workspace pointing at different DB directories use different lease files and can run independently because they write different databases.
 
-Recommended operator practice: do not use the DB-dir override in strict single-writer mode. If an override is unavoidable, coordinate the processes externally or unset `MK_SKILL_ADVISOR_STRICT_SINGLE_WRITER` per process so the operational risk is explicit.
+Recommended operator practice: keep strict single-writer mode enabled unless the intent is an isolated test run against separate DB directories.
 
 <!-- /ANCHOR:6-db-dir-override -->
 
 ---
 
-<!-- ANCHOR:7-related -->
-## 7. RELATED
+<!-- ANCHOR:7-cleanup-ordering -->
+## 7. CLEANUP ORDERING INVARIANT
+
+The launcher keeps `process.on('exit', clearLeaseFile)` as a normal-exit backstop, but signal mirroring cannot rely on it. If a child exits due to `SIGKILL`, Node cannot run parent `exit` handlers after `process.kill(process.pid, 'SIGKILL')`. The launcher therefore calls `clearLeaseFile()` synchronously before mirroring any child exit signal, and parent signal handlers clear the lease before exiting after the 5s SIGKILL backstop.
+
+<!-- /ANCHOR:7-cleanup-ordering -->
+
+---
+
+<!-- ANCHOR:8-related -->
+## 8. RELATED
 
 - [`freshness-contract.md`](./freshness-contract.md), daemon responsibilities plus trust state vocabulary
 - [`db-path-policy.md`](./db-path-policy.md), where the lease file plus SQLite live
@@ -139,4 +154,4 @@ Recommended operator practice: do not use the DB-dir override in strict single-w
 - `manual_testing_playbook/05--auto-update-daemon/002-lease-single-writer.md`, operator scenario
 - `mcp_server/lib/daemon/lease.ts`, source-of-truth implementation
 
-<!-- /ANCHOR:7-related -->
+<!-- /ANCHOR:8-related -->

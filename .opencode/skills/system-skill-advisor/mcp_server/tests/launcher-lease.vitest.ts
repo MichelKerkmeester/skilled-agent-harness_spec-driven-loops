@@ -1,5 +1,5 @@
 import { spawn, type ChildProcess, type ChildProcessWithoutNullStreams } from 'node:child_process';
-import { copyFileSync, existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { copyFileSync, existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, symlinkSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -29,45 +29,78 @@ function leaseModuleSource(): string {
 const fs = require('fs');
 const path = require('path');
 
+function canonicalizePath(pathValue) {
+  const resolvedPath = path.resolve(pathValue);
+  try {
+    return fs.realpathSync.native(resolvedPath);
+  } catch (error) {
+    if (error.code === 'ENOENT') return resolvedPath;
+    throw error;
+  }
+}
+
 function leaseFile(workspaceRoot) {
   const dir = process.env.MK_SKILL_ADVISOR_DB_DIR
-    ? path.resolve(process.env.MK_SKILL_ADVISOR_DB_DIR)
+    ? canonicalizePath(process.env.MK_SKILL_ADVISOR_DB_DIR)
     : path.join(workspaceRoot, '.opencode', 'skills', 'system-skill-advisor', 'mcp_server', 'database');
   return path.join(dir, '.mk-skill-advisor-launcher.json');
 }
 
-function readLease(workspaceRoot) {
+function legacyLeaseFile(workspaceRoot) {
+  return path.join(canonicalizePath(workspaceRoot), '.opencode', 'skills', '.advisor-state', 'skill-graph-daemon-lease.sqlite');
+}
+
+function readLease(filePath) {
   try {
-    const parsed = JSON.parse(fs.readFileSync(leaseFile(workspaceRoot), 'utf8'));
+    const parsed = JSON.parse(fs.readFileSync(filePath, 'utf8'));
     if (typeof parsed.pid === 'number') return parsed;
   } catch {
   }
   return null;
 }
 
-exports.isLeaseHeld = function isLeaseHeld(workspaceRoot) {
-  const lease = readLease(workspaceRoot);
-  if (!lease) return { held: false, ownerPid: null, staleReclaimable: false, startedAt: null };
+function leaseHeldFromFile(filePath, legacyPath = null) {
+  const lease = readLease(filePath);
+  if (!lease) return { held: false, ownerPid: null, staleReclaimable: false, startedAt: null, legacyPath };
   const startedAt = lease.startedAt ?? new Date(0).toISOString();
   try {
     process.kill(lease.pid, 0);
-    return { held: true, ownerPid: lease.pid, staleReclaimable: false, startedAt };
+    return { held: true, ownerPid: lease.pid, staleReclaimable: false, startedAt, legacyPath };
   } catch (error) {
-    if (error.code === 'ESRCH') return { held: false, ownerPid: lease.pid, staleReclaimable: true, startedAt };
-    if (error.code === 'EPERM') return { held: true, ownerPid: lease.pid, staleReclaimable: false, startedAt };
+    if (error.code === 'ESRCH') return { held: false, ownerPid: lease.pid, staleReclaimable: true, startedAt, legacyPath };
+    if (error.code === 'EPERM') return { held: true, ownerPid: lease.pid, staleReclaimable: false, startedAt, legacyPath };
     throw error;
   }
+}
+
+exports.isLeaseHeld = function isLeaseHeld(workspaceRoot) {
+  const primary = leaseHeldFromFile(leaseFile(workspaceRoot));
+  if (primary.held) return primary;
+  const legacyPath = legacyLeaseFile(workspaceRoot);
+  const legacy = leaseHeldFromFile(legacyPath, legacyPath);
+  if (legacy.held || legacy.staleReclaimable) return legacy;
+  return primary;
 };
 `;
 }
 
-function advisorServerSource(): string {
+function advisorServerSource(options: { ignoreSigterm?: boolean } = {}): string {
   return `
 const fs = require('fs');
 const path = require('path');
 
+function canonicalizePath(pathValue) {
+  const resolvedPath = path.resolve(pathValue);
+  try {
+    return fs.realpathSync.native(resolvedPath);
+  } catch (error) {
+    if (error.code === 'ENOENT') return resolvedPath;
+    throw error;
+  }
+}
+
 const dbDir = process.env.MK_SKILL_ADVISOR_DB_DIR
-  ? path.resolve(process.env.MK_SKILL_ADVISOR_DB_DIR)
+  ? canonicalizePath(process.env.MK_SKILL_ADVISOR_DB_DIR)
   : path.join(process.cwd(), '.opencode', 'skills', 'system-skill-advisor', 'mcp_server', 'database');
 const leasePath = path.join(dbDir, '.mk-skill-advisor-launcher.json');
 
@@ -92,7 +125,7 @@ function clearLease() {
 }
 
 writeLease();
-process.on('SIGTERM', () => { clearLease(); process.exit(0); });
+${options.ignoreSigterm ? "process.on('SIGTERM', () => {});" : "process.on('SIGTERM', () => { clearLease(); process.exit(0); });"}
 process.on('SIGINT', () => { clearLease(); process.exit(0); });
 setInterval(() => {}, 1000);
 `;
@@ -178,7 +211,7 @@ describe('mk-skill-advisor launcher lease', () => {
   const tempDirs: string[] = [];
   const launcherRuns: LauncherRun[] = [];
 
-  function createWorkspace(): Workspace {
+  function createWorkspace(options: { ignoreChildSigterm?: boolean } = {}): Workspace {
     const root = mkdtempSync(join(tmpdir(), 'mk-skill-advisor-lease-'));
     tempDirs.push(root);
 
@@ -190,7 +223,7 @@ describe('mk-skill-advisor launcher lease', () => {
     const leaseModule = join(root, '.opencode/skills/system-skill-advisor/mcp_server/dist/system-skill-advisor/mcp_server/lib/daemon/lease.js');
     mkdirSync(dirname(advisorServer), { recursive: true });
     mkdirSync(dirname(leaseModule), { recursive: true });
-    writeFileSync(advisorServer, advisorServerSource(), 'utf8');
+    writeFileSync(advisorServer, advisorServerSource({ ignoreSigterm: options.ignoreChildSigterm }), 'utf8');
     writeFileSync(leaseModule, leaseModuleSource(), 'utf8');
 
     const dbDir = join(root, 'skill-advisor-db');
@@ -264,8 +297,8 @@ describe('mk-skill-advisor launcher lease', () => {
     }
   });
 
-  // REQ-001: duplicate launcher exits before opening SQLite.
-  it('REQ-001: spawning launcher #2 while #1 is alive exits 0 with LEASE_HELD_BY', async () => {
+  // 001-REQ-001: duplicate launcher exits before opening SQLite.
+  it('001-REQ-001: spawning launcher #2 while #1 is alive exits 0 with LEASE_HELD_BY', async () => {
     const workspace = createWorkspace();
     spawnLauncher(workspace);
     const ownerPid = await waitForLeaseOwner(workspace);
@@ -279,7 +312,7 @@ describe('mk-skill-advisor launcher lease', () => {
     expect(second.stdout).toMatch(new RegExp(`^LEASE_HELD_BY:${ownerPid} startedAt=\\d{4}-\\d{2}-\\d{2}T`, 'm'));
   });
 
-  // REQ-010: live-owner diagnostics include the recorded startedAt value.
+  // 004-REQ-001: live-owner diagnostics include the recorded startedAt value.
   it('reports the lease startedAt value for a live owner', async () => {
     const workspace = createWorkspace();
     const holder = await createLivePid();
@@ -305,7 +338,7 @@ describe('mk-skill-advisor launcher lease', () => {
     }
   });
 
-  // REQ-012: different workspaces sharing one resolved DB directory share one lease.
+  // 005-REQ-011: different workspaces sharing one resolved DB directory share one lease.
   it('uses the resolved DB directory as the launcher lease boundary', async () => {
     const firstWorkspace = createWorkspace();
     const secondWorkspace = createWorkspace();
@@ -322,7 +355,57 @@ describe('mk-skill-advisor launcher lease', () => {
     expect(second.stdout).toContain(`LEASE_HELD_BY:${ownerPid}`);
   });
 
-  // REQ-004: dead-PID lease files are reclaimable.
+  // 006-REQ-001: symlink aliases to one real DB directory share one lease boundary.
+  it('uses the real DB directory as the launcher lease boundary across symlink aliases', async () => {
+    const workspace = createWorkspace();
+    const realDbDir = join(workspace.root, 'real-skill-advisor-db');
+    const aliasOne = join(workspace.root, 'alias-one-db');
+    const aliasTwo = join(workspace.root, 'alias-two-db');
+    mkdirSync(realDbDir, { recursive: true });
+    symlinkSync(realDbDir, aliasOne, 'dir');
+    symlinkSync(realDbDir, aliasTwo, 'dir');
+    workspace.dbDir = aliasOne;
+    workspace.leaseFilePath = join(realDbDir, '.mk-skill-advisor-launcher.json');
+
+    spawnLauncher(workspace);
+    const ownerPid = await waitForLeaseOwner(workspace);
+
+    const second = spawnLauncher(workspace, { MK_SKILL_ADVISOR_DB_DIR: aliasTwo });
+    await waitForStdoutClose(second);
+    const exit = await waitForExit(second.child, 8000);
+
+    expect(exit.code).toBe(0);
+    expect(second.stdout).toContain(`LEASE_HELD_BY:${ownerPid}`);
+  });
+
+  // 006-REQ-002: live legacy daemon lease blocks rolling-start duplicates.
+  it('reports LEASE_HELD_BY from the legacy daemon lease path', async () => {
+    const workspace = createWorkspace();
+    const holder = await createLivePid();
+    const startedAt = '2026-05-18T00:00:00.000Z';
+    const legacyPath = join(workspace.root, '.opencode', 'skills', '.advisor-state', 'skill-graph-daemon-lease.sqlite');
+
+    try {
+      mkdirSync(dirname(legacyPath), { recursive: true });
+      writeFileSync(legacyPath, JSON.stringify({ pid: holder.pid, startedAt }));
+
+      const run = spawnLauncher(workspace);
+      await waitForStdoutClose(run);
+      const exit = await waitForExit(run.child, 8000);
+
+      expect(exit.code).toBe(0);
+      expect(run.stdout).toContain(`LEASE_HELD_BY:${holder.pid} startedAt=${startedAt} (legacy path)`);
+    } finally {
+      holder.kill('SIGTERM');
+      try {
+        await waitForExit(holder, 1000);
+      } catch {
+        holder.kill('SIGKILL');
+      }
+    }
+  });
+
+  // 003-REQ-009 / 001-REQ-004: dead-PID lease files are reclaimable.
   it('reclaims a dead-pid lease file and logs staleReclaimed', async () => {
     const workspace = createWorkspace();
     const deadPid = await createDeadPid();
@@ -343,7 +426,7 @@ describe('mk-skill-advisor launcher lease', () => {
     expect(existsSync(workspace.leaseFilePath)).toBe(true);
   });
 
-  // REQ-003: clean child exit removes the lease file.
+  // 002-REQ-003: clean child exit removes the lease file.
   it('removes the PID file on clean exit', async () => {
     const workspace = createWorkspace();
     const run = spawnLauncher(workspace);
@@ -355,7 +438,7 @@ describe('mk-skill-advisor launcher lease', () => {
     expect(existsSync(workspace.leaseFilePath)).toBe(false);
   });
 
-  // REQ-002 / REQ-011: SIGQUIT follows the same lease cleanup path.
+  // 004-REQ-002 / 005-REQ-013: SIGQUIT follows the same lease cleanup path.
   it('removes the PID file on SIGQUIT', async () => {
     const workspace = createWorkspace();
     const run = spawnLauncher(workspace);
@@ -367,7 +450,19 @@ describe('mk-skill-advisor launcher lease', () => {
     expect(existsSync(workspace.leaseFilePath)).toBe(false);
   });
 
-  // REQ-005: strict single-writer can be disabled for intentional parallel runs.
+  // 006-REQ-003: parent SIGTERM backstop clears lease when child ignores SIGTERM.
+  it('removes the PID file when the child ignores SIGTERM until the SIGKILL backstop', async () => {
+    const workspace = createWorkspace({ ignoreChildSigterm: true });
+    const run = spawnLauncher(workspace);
+    await waitForLeaseOwner(workspace);
+
+    run.child.kill('SIGTERM');
+    await waitForExit(run.child, 8000);
+
+    expect(existsSync(workspace.leaseFilePath)).toBe(false);
+  });
+
+  // 003-REQ-003 / 001-REQ-004: strict single-writer can be disabled for intentional parallel runs.
   it('boots a sibling when strict single-writer is disabled', async () => {
     const workspace = createWorkspace();
     spawnLauncher(workspace);

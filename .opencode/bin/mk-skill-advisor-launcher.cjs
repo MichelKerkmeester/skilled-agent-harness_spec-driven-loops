@@ -115,6 +115,21 @@ function exists(p) {
   return fs.existsSync(p);
 }
 
+function canonicalizePath(pathValue) {
+  const resolvedPath = path.resolve(pathValue);
+  try {
+    return fs.realpathSync.native(resolvedPath);
+  } catch (error) {
+    if (error.code === 'ENOENT') return resolvedPath;
+    throw error;
+  }
+}
+
+function ensureCanonicalDir(dirPath) {
+  fs.mkdirSync(canonicalizePath(dirPath), { recursive: true, mode: 0o700 });
+  return canonicalizePath(dirPath);
+}
+
 function advisorDbPath() {
   return path.join(resolvedAdvisorDbDir(), 'skill-graph.sqlite');
 }
@@ -122,12 +137,12 @@ function advisorDbPath() {
 function resolvedAdvisorDbDir() {
   const overrideDbDir = process.env.MK_SKILL_ADVISOR_DB_DIR ?? process.env.SYSTEM_SKILL_ADVISOR_DB_DIR;
   return overrideDbDir
-    ? path.resolve(overrideDbDir)
-    : path.resolve(dbDir);
+    ? canonicalizePath(overrideDbDir)
+    : canonicalizePath(dbDir);
 }
 
 function writeState(payload) {
-  fs.mkdirSync(dbDir, { recursive: true });
+  ensureCanonicalDir(dbDir);
   fs.writeFileSync(stateFile, `${JSON.stringify(payload, null, 2)}\n`);
 }
 
@@ -301,9 +316,12 @@ function launchServer() {
 
   childProcess.on('exit', (code, signal) => {
     if (signal) {
+      // council P1-Seat2: clear lease before signal mirror; process.on('exit') doesn't fire on SIGKILL.
+      clearLeaseFile();
       process.kill(process.pid, signal);
       return;
     }
+    clearLeaseFile();
     process.exit(code ?? 0);
   });
 
@@ -363,13 +381,14 @@ async function main() {
         const leasePath = path.join(mcpDir, 'dist', 'system-skill-advisor', 'mcp_server', 'lib', 'daemon', 'lease.js');
         const leaseModule = require(leasePath);
         const leaseResult = leaseModule.isLeaseHeld(root);
+        const legacyMarker = leaseResult.legacyPath ? ' (legacy path)' : '';
         if (leaseResult.held && !leaseResult.staleReclaimable) {
           const startedAt = leaseResult.startedAt ?? new Date(0).toISOString();
-          process.stdout.write(`LEASE_HELD_BY:${leaseResult.ownerPid} startedAt=${startedAt}\n`);
+          process.stdout.write(`LEASE_HELD_BY:${leaseResult.ownerPid} startedAt=${startedAt}${legacyMarker}\n`);
           process.exit(0);
         }
         if (leaseResult.staleReclaimable) {
-          log('staleReclaimed: true');
+          log(`staleReclaimed: true${legacyMarker ? ' (legacy path)' : ''}`);
         }
       } catch (error) {
         if (error.code !== 'MODULE_NOT_FOUND') {

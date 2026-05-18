@@ -79,7 +79,7 @@ _memory:
 - [x] T019 Run code-graph launcher vitest.
 - [x] T020 Run spec-kit launcher vitest.
 - [x] T021 Run full skill-advisor vitest suite and record count.
-- [ ] T022 [B] Stage explicit paths only and commit once on main. Blocked: sandbox cannot create `.git/index.lock`; `git add` exits 128 before staging.
+- [x] T022 Stage explicit paths only and commit once on main. Evidence: main agent committed `bd8a90747` on 2026-05-18 with subject `feat(012/005): close lease correctness and traceability findings`; commit summary was 24 files changed, 1319 insertions(+), 72 deletions(-). Main agent executed the final commit after codex sandbox blocked `.git/index.lock` (worktree changes were complete; only git index write was blocked).
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -87,8 +87,8 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`.
-- [ ] No `[B]` blocked tasks remaining.
+- [x] All tasks marked `[x]`.
+- [x] No `[B]` blocked tasks remaining.
 - [x] Verification evidence copied into `checklist.md` and `implementation-summary.md`.
 <!-- /ANCHOR:completion -->
 

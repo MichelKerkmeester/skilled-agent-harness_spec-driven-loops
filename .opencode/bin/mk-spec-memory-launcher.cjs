@@ -84,22 +84,43 @@ function exists(p) {
   return fs.existsSync(p);
 }
 
+function canonicalizePath(pathValue) {
+  const resolvedPath = path.resolve(pathValue);
+  try {
+    return fs.realpathSync.native(resolvedPath);
+  } catch (error) {
+    if (error.code === 'ENOENT') return resolvedPath;
+    throw error;
+  }
+}
+
+function ensureCanonicalDir(dirPath) {
+  fs.mkdirSync(canonicalizePath(dirPath), { recursive: true, mode: 0o700 });
+  return canonicalizePath(dirPath);
+}
+
 function writeState(payload) {
-  fs.mkdirSync(dbDir, { recursive: true });
+  fs.mkdirSync(dbDir, { recursive: true, mode: 0o700 });
   fs.writeFileSync(stateFile, `${JSON.stringify(payload, null, 2)}\n`);
 }
 
 function resolvedDbDir() {
-  return path.resolve(dbDir);
+  return canonicalizePath(dbDir);
 }
 
 function leasePath() {
   return path.join(resolvedDbDir(), PID_FILE_NAME);
 }
 
-function readLeaseFile() {
+function legacyLeasePaths() {
+  return [
+    path.join(opencodeDir, 'skill', 'system-spec-kit', 'mcp_server', 'database', PID_FILE_NAME),
+  ].map(canonicalizePath);
+}
+
+function readLeaseFile(filePath = leasePath()) {
   try {
-    const raw = fs.readFileSync(leasePath(), 'utf8');
+    const raw = fs.readFileSync(filePath, 'utf8');
     const parsed = JSON.parse(raw);
     if (typeof parsed.pid === 'number') return parsed;
   } catch {
@@ -108,24 +129,37 @@ function readLeaseFile() {
   return null;
 }
 
-function isLeaseHeld() {
-  const lease = readLeaseFile();
-  if (!lease) return { held: false, ownerPid: null, staleReclaimable: false, startedAt: null };
+function leaseHeldFromFile(filePath, legacyPath = null) {
+  const lease = readLeaseFile(filePath);
+  if (!lease) return { held: false, ownerPid: null, staleReclaimable: false, startedAt: null, legacyPath };
   const startedAt = lease.startedAt ?? new Date(0).toISOString();
   try {
     process.kill(lease.pid, 0);
-    return { held: true, ownerPid: lease.pid, staleReclaimable: false, startedAt };
+    return { held: true, ownerPid: lease.pid, staleReclaimable: false, startedAt, legacyPath };
   } catch (error) {
-    if (error.code === 'ESRCH') return { held: false, ownerPid: lease.pid, staleReclaimable: true, startedAt };
+    if (error.code === 'ESRCH') return { held: false, ownerPid: lease.pid, staleReclaimable: true, startedAt, legacyPath };
     throw error;
   }
 }
 
+function isLeaseHeld() {
+  const primary = leaseHeldFromFile(leasePath());
+  if (primary.held) return primary;
+
+  for (const legacyPath of legacyLeasePaths()) {
+    if (legacyPath === leasePath()) continue;
+    const legacy = leaseHeldFromFile(legacyPath, legacyPath);
+    if (legacy.held || legacy.staleReclaimable) return legacy;
+  }
+
+  return primary;
+}
+
 function writeLeaseFile() {
-  fs.mkdirSync(path.dirname(leasePath()), { recursive: true });
-  const tmp = leasePath() + '.tmp.' + process.pid;
-  fs.writeFileSync(tmp, JSON.stringify({ pid: process.pid, startedAt: new Date().toISOString() }, null, 2));
-  fs.renameSync(tmp, leasePath());
+  const currentLeasePath = path.join(ensureCanonicalDir(path.dirname(leasePath())), PID_FILE_NAME);
+  const tmp = currentLeasePath + '.tmp.' + process.pid;
+  fs.writeFileSync(tmp, JSON.stringify({ pid: process.pid, startedAt: new Date().toISOString() }, null, 2), { mode: 0o600 });
+  fs.renameSync(tmp, currentLeasePath);
 }
 
 function clearLeaseFile() {
@@ -267,9 +301,12 @@ function launchServer() {
 
   childProcess.on('exit', (code, signal) => {
     if (signal) {
+      // council P1-Seat2: clear lease before signal mirror; process.on('exit') doesn't fire on SIGKILL.
+      clearLeaseFile();
       process.kill(process.pid, signal);
       return;
     }
+    clearLeaseFile();
     process.exit(code ?? 0);
   });
 
@@ -321,24 +358,26 @@ function installSignalHandlers() {
     // REQ-011: lease cleanup runs unconditionally regardless of child termination path.
     process.on('exit', clearLeaseFile);
     refreshPaths();
-    ensureLayout(actions);
-    refreshPaths();
-    enforceStandaloneCodeGraphDb(actions);
 
     const strictSingleWriter = !isStrictModeDisabled(process.env.MK_SPEC_MEMORY_STRICT_SINGLE_WRITER);
     if (strictSingleWriter) {
       const leaseResult = isLeaseHeld();
       if (leaseResult.held && !leaseResult.staleReclaimable) {
         const startedAt = leaseResult.startedAt ?? new Date(0).toISOString();
-        process.stdout.write(`LEASE_HELD_BY:${leaseResult.ownerPid} startedAt=${startedAt}\n`);
+        const legacyMarker = leaseResult.legacyPath ? ' (legacy path)' : '';
+        process.stdout.write(`LEASE_HELD_BY:${leaseResult.ownerPid} startedAt=${startedAt}${legacyMarker}\n`);
         process.exit(0);
       }
       if (leaseResult.staleReclaimable) {
-        log('staleReclaimed: true');
+        log(`staleReclaimed: true${leaseResult.legacyPath ? ' (legacy path)' : ''}`);
       }
     } else {
       log('MK_SPEC_MEMORY_STRICT_SINGLE_WRITER is disabled; skipping lease check');
     }
+
+    ensureLayout(actions);
+    refreshPaths();
+    enforceStandaloneCodeGraphDb(actions);
 
     lockHeld = await acquireBootstrapLock();
     if (lockHeld) {

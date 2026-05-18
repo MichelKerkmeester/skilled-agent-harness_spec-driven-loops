@@ -67,7 +67,8 @@ This arc fixes the smell at its source — single-writer enforcement at the laun
 
 Future maintainers MUST preserve these across all 3 launchers (skill-advisor / code-graph / spec-memory):
 
-1. **Single-writer lease at launcher boundary.** Each launcher writes its PID file via atomic temp+rename and only proceeds if no live owner exists.
+1a. **Inline PID-file lease at launcher boundary.** Code-graph and spec-memory write PID files via atomic temp+rename and only proceed if no live owner exists.
+1b. **Daemon SQLite lease DB at launcher boundary.** Skill-advisor probes the daemon lease database before opening the skill graph DB; the lease DB lives beside the canonicalized skill graph DB directory and blocks a second live owner.
 2. **SQLite WAL + busy_timeout ≥ 5000ms.** All three DB-open paths (handler boot, watcher refresh, rebuild-from-source) set both pragmas. WAL→DELETE fallback only on documented filesystem errors.
 3. **Signal-handler parity.** SIGTERM, SIGINT, SIGQUIT, and uncaughtException all clear the lease file before exit, in all 3 launchers.
 4. **Lease cleanup is unconditional.** clearLeaseFile() runs whether the child exited cleanly, was killed, or hung past SIGKILL grace.

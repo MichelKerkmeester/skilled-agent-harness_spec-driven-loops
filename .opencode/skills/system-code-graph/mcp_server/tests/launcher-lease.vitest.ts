@@ -20,7 +20,7 @@ const pidFileRelativePath = '.opencode/.spec-kit/code-graph/database/.mk-code-in
 const tempDirs: string[] = [];
 const launcherRuns: LauncherRun[] = [];
 
-function createWorkspace(): { root: string; launcherPath: string; pidFilePath: string } {
+function createWorkspace(options: { ignoreChildSigterm?: boolean } = {}): { root: string; launcherPath: string; pidFilePath: string } {
   const root = mkdtempSync(join(tmpdir(), 'mk-code-index-lease-'));
   tempDirs.push(root);
 
@@ -34,7 +34,9 @@ function createWorkspace(): { root: string; launcherPath: string; pidFilePath: s
   mkdirSync(dirname(nestedServer), { recursive: true });
   writeFileSync(
     directServer,
-    "process.on('SIGTERM', () => process.exit(0)); process.on('SIGINT', () => process.exit(0)); setInterval(() => {}, 1000);\n",
+    options.ignoreChildSigterm
+      ? "process.on('SIGTERM', () => {}); process.on('SIGINT', () => process.exit(0)); setInterval(() => {}, 1000);\n"
+      : "process.on('SIGTERM', () => process.exit(0)); process.on('SIGINT', () => process.exit(0)); setInterval(() => {}, 1000);\n",
     'utf8',
   );
   writeFileSync(nestedServer, 'export {};\n', 'utf8');
@@ -178,7 +180,7 @@ describe('mk-code-index launcher lease', () => {
     }
   });
 
-  // REQ-001: duplicate launcher exits before opening SQLite.
+  // 002-REQ-001: duplicate launcher exits before opening SQLite.
   it('exits with LEASE_HELD_BY when a live owner exists', async () => {
     const workspace = createWorkspace();
     const first = spawnLauncher(workspace.launcherPath, workspace.root);
@@ -193,7 +195,7 @@ describe('mk-code-index launcher lease', () => {
     expect(second.stdout).toMatch(new RegExp(`^LEASE_HELD_BY:${first.child.pid} startedAt=\\d{4}-\\d{2}-\\d{2}T`, 'm'));
   });
 
-  // REQ-002: live-owner diagnostics include the recorded startedAt value.
+  // 004-REQ-001: live-owner diagnostics include the recorded startedAt value.
   it('reports the lease startedAt value for a live owner', async () => {
     const workspace = createWorkspace();
     const holder = await createLivePid();
@@ -219,7 +221,7 @@ describe('mk-code-index launcher lease', () => {
     }
   });
 
-  // REQ-012: the launcher lease follows the resolved code-graph DB directory.
+  // 005-REQ-011: the launcher lease follows the resolved code-graph DB directory.
   it('stores the PID file next to SPECKIT_CODE_GRAPH_DB_DIR when overridden', async () => {
     const workspace = createWorkspace();
     const dbDir = join(workspace.root, 'shared-code-graph-db');
@@ -234,7 +236,7 @@ describe('mk-code-index launcher lease', () => {
     expect(existsSync(workspace.pidFilePath)).toBe(false);
   });
 
-  // REQ-004: dead-PID lease files are reclaimable.
+  // 002-REQ-004 / 004-REQ-009: dead-PID lease files are reclaimable.
   it('reclaims a dead-pid lease file and logs staleReclaimed', async () => {
     const workspace = createWorkspace();
     mkdirSync(dirname(workspace.pidFilePath), { recursive: true });
@@ -248,7 +250,7 @@ describe('mk-code-index launcher lease', () => {
     expect(readLeasePid(workspace.pidFilePath)).toBe(run.child.pid);
   });
 
-  // REQ-003: clean child exit removes the lease file.
+  // 002-REQ-003 / 004-REQ-010: clean child exit removes the lease file.
   it('removes the PID file on clean exit', async () => {
     const workspace = createWorkspace();
     const run = spawnLauncher(workspace.launcherPath, workspace.root);
@@ -260,7 +262,7 @@ describe('mk-code-index launcher lease', () => {
     expect(existsSync(workspace.pidFilePath)).toBe(false);
   });
 
-  // REQ-011: SIGQUIT follows the same lease cleanup path.
+  // 004-REQ-002 / 005-REQ-013: SIGQUIT follows the same lease cleanup path.
   it('removes the PID file on SIGQUIT', async () => {
     const workspace = createWorkspace();
     const run = spawnLauncher(workspace.launcherPath, workspace.root);
@@ -272,7 +274,54 @@ describe('mk-code-index launcher lease', () => {
     expect(existsSync(workspace.pidFilePath)).toBe(false);
   });
 
-  // REQ-005: strict single-writer can be disabled for intentional parallel runs.
+  // 006-REQ-002: live legacy launcher lease blocks rolling-start duplicates.
+  it('reports LEASE_HELD_BY from the legacy launcher lease path', async () => {
+    const workspace = createWorkspace();
+    const holder = await createLivePid();
+    const startedAt = '2026-05-18T00:00:00.000Z';
+    const legacyPath = join(
+      workspace.root,
+      '.opencode',
+      'skills',
+      'system-code-graph',
+      'mcp_server',
+      'database',
+      '.mk-code-index-launcher.json',
+    );
+
+    try {
+      mkdirSync(dirname(legacyPath), { recursive: true });
+      writeFileSync(legacyPath, JSON.stringify({ pid: holder.pid, startedAt }));
+
+      const run = spawnLauncher(workspace.launcherPath, workspace.root);
+      await waitForStdoutClose(run);
+      const exit = await waitForExit(run.child, 8000);
+
+      expect(exit.code).toBe(0);
+      expect(run.stdout).toContain(`LEASE_HELD_BY:${holder.pid} startedAt=${startedAt} (legacy path)`);
+    } finally {
+      holder.kill('SIGTERM');
+      try {
+        await waitForExit(holder, 1000);
+      } catch {
+        holder.kill('SIGKILL');
+      }
+    }
+  });
+
+  // 006-REQ-003: parent SIGTERM backstop clears lease when child ignores SIGTERM.
+  it('removes the PID file when the child ignores SIGTERM until the SIGKILL backstop', async () => {
+    const workspace = createWorkspace({ ignoreChildSigterm: true });
+    const run = spawnLauncher(workspace.launcherPath, workspace.root);
+    await waitForLeasePid(workspace.pidFilePath, run.child.pid);
+
+    run.child.kill('SIGTERM');
+    await waitForExit(run.child, 8000);
+
+    expect(existsSync(workspace.pidFilePath)).toBe(false);
+  });
+
+  // 002-REQ-005 / 003-REQ-003: strict single-writer can be disabled for intentional parallel runs.
   it('boots a sibling when strict single-writer is disabled', async () => {
     const workspace = createWorkspace();
     const first = spawnLauncher(workspace.launcherPath, workspace.root);

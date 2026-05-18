@@ -3,12 +3,14 @@
 // ───────────────────────────────────────────────────────────────
 
 import { createRequire } from 'node:module';
-import { mkdirSync, mkdtempSync, readFileSync, rmSync, utimesSync, writeFileSync } from 'node:fs';
+import { mkdirSync, mkdtempSync, readFileSync, realpathSync, rmSync, utimesSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { dirname, join } from 'node:path';
 import { afterEach, describe, expect, it } from 'vitest';
-import { initDb, closeDb, resolveSkillGraphDbDir } from '../lib/skill-graph/skill-graph-db.js';
+import { initDb, getDb, closeDb, resolveSkillGraphDbDir } from '../lib/skill-graph/skill-graph-db.js';
 import { isLeaseHeld, acquireSkillGraphLease, openLeaseDatabase } from '../lib/daemon/lease.js';
+import { rebuildAdvisorIndex } from '../handlers/advisor-rebuild.js';
+import type { AdvisorStatusOutput } from '../schemas/advisor-tool-schemas.js';
 
 const require = createRequire(import.meta.url);
 const launcher = require('../../../../bin/mk-skill-advisor-launcher.cjs') as {
@@ -100,6 +102,31 @@ function findDeadPid(): number {
   throw new Error('unable to find an unused pid for stale lease coverage');
 }
 
+function advisorStatus(freshness: AdvisorStatusOutput['freshness'], generation: number): AdvisorStatusOutput {
+  const checkedAt = new Date().toISOString();
+  return {
+    freshness,
+    generation,
+    trustState: {
+      state: freshness,
+      reason: freshness === 'live' ? null : 'runtime-test',
+      generation,
+      checkedAt,
+      lastLiveAt: freshness === 'live' ? checkedAt : null,
+    },
+    lastGenerationBump: null,
+    lastScanAt: null,
+    skillCount: 0,
+    laneWeights: {
+      explicit_author: 0.42,
+      lexical: 0.28,
+      graph_causal: 0.13,
+      derived_generated: 0.12,
+      semantic_shadow: 0.05,
+    },
+  };
+}
+
 describe('lease-held single-writer enforcement', () => {
   const tempDirs: string[] = [];
 
@@ -139,7 +166,7 @@ describe('lease-held single-writer enforcement', () => {
       leaseDb.prepare(`
         INSERT INTO skill_graph_daemon_lease (workspace_key, owner_id, pid, acquired_at, heartbeat_at)
         VALUES (?, ?, ?, ?, ?)
-      `).run(dirname(leaseDbPath), 'dead-owner', deadPid, timestamp, timestamp);
+      `).run(realpathSync.native(dirname(leaseDbPath)), 'dead-owner', deadPid, timestamp, timestamp);
     } finally {
       leaseDb.close();
     }
@@ -192,22 +219,38 @@ describe('lease-held single-writer enforcement', () => {
     expect(busyTimeout).toBe(5000);
   });
 
-  it('SC-003 static: watcher refresh path uses the shared WAL+busy_timeout DB opener', () => {
+  it('005-REQ-009 runtime: advisor_rebuild opens DB with WAL and busy_timeout pragmas', () => {
+    const workspaceRoot = mkdtempSync(join(tmpdir(), 'skill-graph-runtime-open-'));
+    const tempDbDir = mkdtempSync(join(tmpdir(), 'skill-graph-db-test-'));
+    tempDirs.push(workspaceRoot, tempDbDir);
+    mkdirSync(join(workspaceRoot, '.opencode', 'skills'), { recursive: true });
+    process.env.MK_SKILL_ADVISOR_DB_DIR = tempDbDir;
+    let statusCalls = 0;
+
+    rebuildAdvisorIndex({ workspaceRoot, force: true }, {
+      readStatus: () => {
+        statusCalls += 1;
+        return advisorStatus(statusCalls > 1 ? 'live' : 'stale', statusCalls);
+      },
+      publishGeneration: () => undefined,
+      sourceSignature: () => 'runtime-test-signature',
+    });
+
+    const db = getDb();
+    const resolvedDir = resolveSkillGraphDbDir();
+    const journalMode = db.pragma('journal_mode', { simple: true }) as string;
+    const busyTimeout = db.pragma('busy_timeout', { simple: true }) as number;
+
+    expect(resolvedDir).toBe(tempDbDir);
+    expect(journalMode).toBe('wal');
+    expect(busyTimeout).toBe(5000);
+  });
+
+  it('005-REQ-009 static: watcher refresh path uses the shared DB opener', () => {
     const dbSource = sourceText('../lib/skill-graph/skill-graph-db.ts');
     const watcherSource = sourceText('../lib/daemon/watcher.ts');
 
-    expect(dbSource).toMatch(/db\.pragma\('busy_timeout = 5000'\)[\s\S]*db\.pragma\('journal_mode = WAL'\)/);
     expect(dbSource).toMatch(/export function getDb\(\): Database\.Database \{\s*if \(!db\) initDb\(resolveSkillGraphDbDir\(\)\)/);
-    expect(dbSource).toMatch(/export function indexSkillMetadata\(skillDir: string\): SkillGraphIndexResult \{\s*const database = getDb\(\)/);
     expect(watcherSource).toContain('const defaultReindex = async (): Promise<ReindexResult> => indexSkillMetadata(skillsRoot);');
-  });
-
-  it('SC-003 static: rebuild path uses the shared WAL+busy_timeout DB opener', () => {
-    const dbSource = sourceText('../lib/skill-graph/skill-graph-db.ts');
-    const rebuildSource = sourceText('../handlers/advisor-rebuild.ts');
-
-    expect(dbSource).toMatch(/db\.pragma\('busy_timeout = 5000'\)[\s\S]*db\.pragma\('journal_mode = WAL'\)/);
-    expect(rebuildSource).toContain("import { indexSkillMetadata } from '../lib/skill-graph/skill-graph-db.js';");
-    expect(rebuildSource).toContain('const summary = (dependencies.indexSkills ?? indexSkillMetadata)(skillsRoot);');
   });
 });

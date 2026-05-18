@@ -1,0 +1,22 @@
+{
+  "level": "2",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/012-mcp-launcher-concurrency-arc/006-lease-canonicalization-and-cleanup-ordering",
+  "description": "Lease Canonicalization and Cleanup Ordering",
+  "keywords": [
+    "lease",
+    "canonicalization",
+    "cleanup",
+    "ordering"
+  ],
+  "lastUpdated": "2026-05-18T15:23:22.724Z",
+  "specId": "006",
+  "folderSlug": "lease-canonicalization-and-cleanup-ordering",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "016-embedder-testing-and-architecture",
+    "012-mcp-launcher-concurrency-arc"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

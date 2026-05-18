@@ -112,7 +112,7 @@ Every checked item must include evidence: command output, file path, log line, o
 ## 8. FILE ORGANIZATION
 
 - [x] **[CHK-020] [P1] Edits stay within scope listed in spec.md §3.** All 7 modified files appear in the §3 table; no drive-by edits to scorer, schema, or context-server.js.
-- [x] **[CHK-021] [P1] Strict validate green after metadata cleanup.** Pending: re-run after this checklist + plan.md anchors land.
+- [x] **[CHK-021] [P1] Strict validate green after metadata cleanup.** Evidence: Phase 005 verification reran strict validation for the arc parent and child packets after metadata cleanup; Phase 006 keeps this item checked and reruns the parent strict validator as a final gate.
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -123,7 +123,7 @@ Every checked item must include evidence: command output, file path, log line, o
 - [x] All P0 items complete with evidence
 - [x] All P1 items complete with evidence
 - [ ] All P2 items complete (CHK-014 soak deferred to operator)
-- [ ] Strict spec validate PASSED (run after commit)
+- [x] Strict spec validate PASSED (validated by Phase 005 and rechecked by Phase 006 final gates)
 - [x] `recent_action` in `implementation-summary.md` frontmatter is compact (<96 chars, ≤16 tokens, no narrative discourse)
 - [x] `next_safe_action` begins with an imperative verb
 <!-- /ANCHOR:summary -->
