@@ -14,7 +14,7 @@ Complete installation and configuration guide for CocoIndex Code, a semantic cod
 > **Part of OpenCode Installation.** See the [Master Installation Guide](../README.md) for complete setup.
 > **Package:** local editable `cocoindex-code` soft-fork | **Dependencies:** Python 3.11+
 
-**Version:** 1.0.0 | **Updated:** 2026-03-18 | **Protocol:** MCP (stdio)
+**Version:** 1.2.0 | **Updated:** 2026-05-18 | **Protocol:** MCP (stdio)
 
 ---
 
@@ -311,6 +311,45 @@ Connect CocoIndex Code to your AI assistant (Phase 4). The MCP server runs via `
 
 **Key environment variable:**
 - `COCOINDEX_CODE_ROOT_PATH` - The root directory of the project to search. Set this to your project root.
+
+### Tuning + optional retrieval features (v1.2.0+)
+
+All 10 variables below are **opt-in** with safe defaults. Production behavior is unchanged unless you explicitly set the flags. Source of truth: `mcp_server/cocoindex_code/config.py`.
+
+**Chunking (always on, tunable defaults):**
+
+| Variable | Default | Range | Description |
+|---|---:|---|---|
+| `COCOINDEX_CODE_CHUNK_SIZE` | `1500` | 100–8000 | Max characters per code chunk before splitting. Raised from 1000 → 1500 in v1.2.0 for better function-boundary preservation. |
+| `COCOINDEX_CODE_CHUNK_OVERLAP` | `200` | 0–1000 | Character overlap between adjacent chunks for cross-chunk continuity. |
+| `COCOINDEX_CODE_MIN_CHUNK_SIZE` | `250` | 50–1000 | Smallest chunk emitted; smaller fragments are merged with neighbors. |
+
+See [`feature_catalog/chunking.md`](feature_catalog/chunking.md) for the tuning rationale and benchmark methodology.
+
+**Hybrid search (opt-in, default OFF):**
+
+Adds SQLite FTS5 lexical channel fused with vector channel via Reciprocal Rank Fusion. Mirrors the proven retrieval-quality stack used by `mk-spec-memory`.
+
+| Variable | Default | Range | Description |
+|---|---:|---|---|
+| `COCOINDEX_HYBRID` | `false` | bool (`1/true/yes/on` or `0/false/no/off`) | Enable hybrid (vector + FTS5) retrieval. |
+| `COCOINDEX_HYBRID_VECTOR_WEIGHT` | `0.7` | 0.0–2.0 | RRF weight for the vector channel. |
+| `COCOINDEX_HYBRID_FTS5_WEIGHT` | `0.7` | 0.0–2.0 | RRF weight for the FTS5 lexical channel. |
+| `COCOINDEX_HYBRID_RRF_K` | `60` | 1–500 | RRF dampening constant; higher k flattens the influence of top-ranked hits. |
+
+See [`feature_catalog/hybrid-search.md`](feature_catalog/hybrid-search.md) for activation guidance and tuning notes.
+
+**Cross-encoder reranker (opt-in, default OFF):**
+
+Applies a local GTE cross-encoder rerank to the top-K candidates after retrieval. Higher relevance at the cost of additional inference time per query.
+
+| Variable | Default | Range | Description |
+|---|---:|---|---|
+| `COCOINDEX_RERANK` | `false` | bool | Enable cross-encoder rerank pass over retrieval results. |
+| `COCOINDEX_RERANK_MODEL` | `Alibaba-NLP/gte-multilingual-reranker-base` | string | HuggingFace model id for the cross-encoder; first use downloads to `~/.cache/huggingface/hub/`. |
+| `COCOINDEX_RERANK_TOP_K` | `20` | 5–100 | Number of retrieval candidates passed to the reranker before final cut. |
+
+See [`feature_catalog/reranker.md`](feature_catalog/reranker.md) for model trade-offs, RAM requirements, and when to enable.
 
 ### Configuration for All 6 CLI Environments
 
@@ -940,6 +979,7 @@ ccc daemon status             # Check daemon status
 
 | Version | Date       | Changes                                                      |
 | ------- | ---------- | ------------------------------------------------------------ |
+| 1.2.0   | 2026-05-18 | Add chunking tunables, hybrid (FTS5 + RRF), GTE cross-encoder reranker (all opt-in) |
 | 1.1.0   | 2026-03-18 | Add embedding model config, 28+ languages, settings reference |
 | 1.0.0   | 2026-03-18 | Initial installation guide                                    |
 

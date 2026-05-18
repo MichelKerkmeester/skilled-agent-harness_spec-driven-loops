@@ -66,7 +66,7 @@ If that exploration feeds into Spec Kit packet recovery, `/spec_kit:resume` rema
 
 ### Key Statistics
 
-This skill runs version 1.0.0 and exposes 2 MCP tools (search and cocoindex_refresh_index). It supports 28+ programming languages and uses the jinaai/jina-embeddings-v2-base-code embedding model by default via sentence-transformers (768-dim, local, no API key, Metal/MPS accelerated on Apple Silicon — auto-detected). The code-tuned default was ratified in packet 018 after a comparison against gemma-300m, nomic-CodeRankEmbed, and BAAI/bge-code-v1. Vector storage uses SQLite via sqlite-vec, with a chunk size of 1000 characters (250 char minimum, 150 char overlap) and cosine similarity (0.0 to 1.0) as the similarity metric.
+This skill runs version 1.2.0 and exposes 2 MCP tools (search and cocoindex_refresh_index). It supports 28+ programming languages and uses the jinaai/jina-embeddings-v2-base-code embedding model by default via sentence-transformers (768-dim, local, no API key, Metal/MPS accelerated on Apple Silicon — auto-detected). The code-tuned default was ratified in packet 018 after a comparison against gemma-300m, nomic-CodeRankEmbed, and BAAI/bge-code-v1. Vector storage uses SQLite via sqlite-vec, with a default chunk size of 1500 characters (250 char minimum, 200 char overlap, all tunable via env vars in v1.2.0+) and cosine similarity (0.0 to 1.0) as the similarity metric. Hybrid search (FTS5 + RRF) and cross-encoder rerank are opt-in v1.2.0 features (default OFF).
 
 ### Key Features
 
@@ -81,6 +81,16 @@ This skill runs version 1.0.0 and exposes 2 MCP tools (search and cocoindex_refr
 - 28+ languages: Language-aware chunk splitting preserves function and class boundaries
 
 In the broader system-spec-kit stack, CocoIndex is the semantic half of a three-system retrieval model: CocoIndex finds conceptually similar code, Code Graph answers structural questions, and session bootstrap surfaces CocoIndex readiness during recovery. The companion lifecycle helpers exposed through system-spec-kit are `ccc_status`, `ccc_reindex`, and `ccc_feedback`.
+
+### v1.2.0 Retrieval-Quality Capabilities (Opt-in)
+
+Three opt-in retrieval features shipped in v1.2.0. All default OFF — production behavior is unchanged unless you flip the env flag.
+
+- **Chunking tunables** — `CHUNK_SIZE` raised 1000 → 1500 for better function-boundary preservation; new env overrides `COCOINDEX_CODE_CHUNK_SIZE`, `COCOINDEX_CODE_CHUNK_OVERLAP`, `COCOINDEX_CODE_MIN_CHUNK_SIZE`.
+- **Hybrid search** (`COCOINDEX_HYBRID=1`) — SQLite FTS5 lexical channel fused with the vector channel via Reciprocal Rank Fusion. Mirrors the retrieval stack used by `mk-spec-memory`. Tunable via `COCOINDEX_HYBRID_VECTOR_WEIGHT`, `COCOINDEX_HYBRID_FTS5_WEIGHT`, `COCOINDEX_HYBRID_RRF_K`.
+- **Cross-encoder rerank** (`COCOINDEX_RERANK=1`) — Local GTE multilingual reranker applied to the top-K candidates. Tunable via `COCOINDEX_RERANK_MODEL`, `COCOINDEX_RERANK_TOP_K`. First use downloads the model to `~/.cache/huggingface/hub/`.
+
+Full env-var matrix with defaults and valid ranges: [INSTALL_GUIDE.md §4 "Tuning + optional retrieval features"](INSTALL_GUIDE.md).
 
 <!-- /ANCHOR:overview -->
 

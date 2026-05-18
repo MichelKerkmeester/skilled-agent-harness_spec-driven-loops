@@ -27,9 +27,10 @@ Use this file to identify the folder boundary, the likely verification path, and
 
 | Metric | Value |
 |---|---:|
-| Code files | 16 |
+| Code files | 20 |
 | README scope | Direct files in this folder |
 | Audit packet | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/006-system-skill-advisor-extraction/026-sk-code-and-code-readme-audit` |
+| v1.2.0 additions | `fts_index.py`, `fusion.py`, `reranker.py` (opt-in retrieval-quality modules) |
 
 <!-- /ANCHOR:overview -->
 
@@ -66,6 +67,8 @@ Load this folder through the owning skill workflow or MCP server entrypoint.
 | Folder boundary | Documents direct code files under `mcp_server/cocoindex_code`. |
 | sk-code alignment | Points reviewers at OpenCode naming, header, error-handling, and type-discipline checks. |
 | Verification handoff | Records the expected owner and audit packet for follow-up work. |
+| Hybrid retrieval (v1.2.0) | `fts_index.py` + `fusion.py` add SQLite FTS5 + RRF fusion (opt-in via `COCOINDEX_HYBRID=1`). |
+| Cross-encoder rerank (v1.2.0) | `reranker.py` adds a local GTE multilingual rerank pass (opt-in via `COCOINDEX_RERANK=1`). |
 
 <!-- /ANCHOR:features -->
 
@@ -76,19 +79,26 @@ Load this folder through the owning skill workflow or MCP server entrypoint.
 
 | Path | Purpose |
 |---|---|
-| `__init__.py` | PY source file in this folder. |
-| `__main__.py` | PY source file in this folder. |
-| `_version.py` | PY source file in this folder. |
-| `cli.py` | PY source file in this folder. |
-| `client.py` | PY source file in this folder. |
-| `config.py` | PY source file in this folder. |
-| `daemon.py` | PY source file in this folder. |
-| `indexer.py` | PY source file in this folder. |
-| `observability.py` | PY source file in this folder. |
-| `project.py` | PY source file in this folder. |
-| `protocol.py` | PY source file in this folder. |
-| `query.py` | PY source file in this folder. |
-| Additional files | 4 more code files in this folder |
+| `__init__.py` | Package marker for the `cocoindex_code` module. |
+| `__main__.py` | Entry point for `python -m cocoindex_code`. |
+| `_version.py` | Fork version string (`0.2.3+spec-kit-fork.0.2.0`). |
+| `cli.py` | `ccc` CLI command implementations (search, index, status, init, reset, daemon, mcp). |
+| `client.py` | Client-side daemon IPC wrapper. |
+| `config.py` | Environment-variable configuration loader; defaults for chunking, hybrid, rerank live here. |
+| `daemon.py` | Background daemon that manages projects, indexing, and search IPC. |
+| `fts_index.py` | **v1.2.0.** SQLite FTS5 helpers for the lexical channel of hybrid search. |
+| `fusion.py` | **v1.2.0.** Reciprocal Rank Fusion (RRF) for combining vector + FTS5 rankings. |
+| `indexer.py` | Per-project indexing pipeline: discovery, chunking, embedding, storage. |
+| `observability.py` | Structured logging and metrics helpers. |
+| `project.py` | Per-project state and lifecycle (`ProjectRegistry`). |
+| `protocol.py` | Msgpack IPC protocol shared by daemon + client. |
+| `query.py` | Search execution: vector query, optional hybrid fusion, optional rerank. |
+| `registered_embedders.py` | Vetted embedder registry (jina-code default + alternatives). |
+| `reranker.py` | **v1.2.0.** Optional GTE multilingual cross-encoder rerank over top-K candidates. |
+| `schema.py` | Result row dataclasses (`QueryResult`, telemetry fields). |
+| `server.py` | MCP stdio server exposing `search` + `cocoindex_refresh_index`. |
+| `settings.py` | `~/.cocoindex_code/global_settings.yml` and per-project settings loader. |
+| `shared.py` | Cross-cutting utilities (path resolution, normalization). |
 
 <!-- /ANCHOR:structure -->
 
