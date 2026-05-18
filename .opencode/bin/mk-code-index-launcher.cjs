@@ -86,7 +86,8 @@ let kitDir = path.join(skillsDir, 'system-code-graph');
 // Legacy location (mcp_server/database/) is auto-migrated on first startup.
 let dbDir = path.join(opencodeDir, '.spec-kit', 'code-graph', 'database');
 let lockDir = path.join(dbDir, '.mk-code-index-launcher.lockdir');
-let stateFile = path.join(dbDir, '.mk-code-index-launcher.json');
+const PID_FILE_NAME = '.mk-code-index-launcher.json';
+let stateFile = path.join(dbDir, PID_FILE_NAME);
 
 const rel = (p) => path.relative(root, p) || '.';
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -103,7 +104,7 @@ function refreshPaths() {
   kitDir = path.join(skillsDir, 'system-code-graph');
   dbDir = path.join(opencodeDir, '.spec-kit', 'code-graph', 'database');
   lockDir = path.join(dbDir, '.mk-code-index-launcher.lockdir');
-  stateFile = path.join(dbDir, '.mk-code-index-launcher.json');
+  stateFile = path.join(dbDir, PID_FILE_NAME);
 }
 
 function exists(p) {
@@ -113,6 +114,49 @@ function exists(p) {
 function writeState(payload) {
   fs.mkdirSync(dbDir, { recursive: true });
   fs.writeFileSync(stateFile, `${JSON.stringify(payload, null, 2)}\n`);
+}
+
+function leasePath() {
+  return path.join(dbDir, PID_FILE_NAME);
+}
+
+function readLeaseFile() {
+  try {
+    const raw = fs.readFileSync(leasePath(), 'utf8');
+    const parsed = JSON.parse(raw);
+    if (typeof parsed.pid === 'number') return parsed;
+  } catch {
+    // Missing or corrupt lease files are treated as no active lease.
+  }
+  return null;
+}
+
+function isLeaseHeld() {
+  const lease = readLeaseFile();
+  if (!lease) return { held: false, ownerPid: null, staleReclaimable: false };
+  try {
+    process.kill(lease.pid, 0);
+    return { held: true, ownerPid: lease.pid, staleReclaimable: false };
+  } catch (error) {
+    if (error.code === 'ESRCH') return { held: false, ownerPid: lease.pid, staleReclaimable: true };
+    throw error;
+  }
+}
+
+function writeLeaseFile() {
+  fs.mkdirSync(dbDir, { recursive: true });
+  const tmp = leasePath() + '.tmp.' + process.pid;
+  fs.writeFileSync(tmp, JSON.stringify({ pid: process.pid, startedAt: new Date().toISOString() }, null, 2));
+  fs.renameSync(tmp, leasePath());
+}
+
+function clearLeaseFile() {
+  try {
+    const lease = readLeaseFile();
+    if (lease && lease.pid === process.pid) fs.unlinkSync(leasePath());
+  } catch {
+    // Idempotent cleanup.
+  }
 }
 
 function run(command, args, options = {}) {
@@ -277,15 +321,21 @@ function launchServer() {
   });
 }
 
-for (const signal of ['SIGINT', 'SIGTERM', 'SIGHUP']) {
-  process.on(signal, () => {
-    if (childProcess && !childProcess.killed) {
-      childProcess.kill(signal);
-      setTimeout(() => process.exit(128), 5000).unref();
-      return;
-    }
-    process.exit(128);
-  });
+function installSignalHandlers() {
+  for (const signal of ['SIGINT', 'SIGTERM', 'SIGHUP']) {
+    process.on(signal, () => {
+      if (childProcess && !childProcess.killed) {
+        childProcess.kill(signal);
+        setTimeout(() => {
+          clearLeaseFile();
+          process.exit(128);
+        }, 5000).unref();
+        return;
+      }
+      clearLeaseFile();
+      process.exit(128);
+    });
+  }
 }
 
 (async () => {
@@ -294,6 +344,7 @@ for (const signal of ['SIGINT', 'SIGTERM', 'SIGHUP']) {
   let lockHeld = false;
 
   try {
+    installSignalHandlers();
     refreshPaths();
     ensureLayout(actions);
     refreshPaths();
@@ -322,6 +373,21 @@ for (const signal of ['SIGINT', 'SIGTERM', 'SIGHUP']) {
       );
     }
 
+    const strictSingleWriter = process.env.MK_CODE_INDEX_STRICT_SINGLE_WRITER !== '0' &&
+                               process.env.MK_CODE_INDEX_STRICT_SINGLE_WRITER !== 'false';
+    if (strictSingleWriter) {
+      const leaseResult = isLeaseHeld();
+      if (leaseResult.held && !leaseResult.staleReclaimable) {
+        process.stdout.write(`LEASE_HELD_BY:${leaseResult.ownerPid}\n`);
+        process.exit(0);
+      }
+      if (leaseResult.staleReclaimable) {
+        log('staleReclaimed: true');
+      }
+    } else {
+      log('MK_CODE_INDEX_STRICT_SINGLE_WRITER is disabled; skipping lease check');
+    }
+
     lockHeld = await acquireBootstrapLock();
     if (lockHeld) {
       buildIfNeeded(actions);
@@ -334,6 +400,10 @@ for (const signal of ['SIGINT', 'SIGTERM', 'SIGHUP']) {
         server: rel(path.join(kitDir, 'mcp_server', 'dist', 'index.js')),
       });
     }
+
+    writeLeaseFile();
+    const onExit = () => clearLeaseFile();
+    process.on('exit', onExit);
 
     launchServer();
   } catch (error) {
