@@ -9,7 +9,7 @@
     "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/003-skill-advisor-stack",
     "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack",
     "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/005-cross-cutting-quality",
-    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/012-mcp-launcher-concurrency-arc"
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-mcp-launcher-concurrency-arc"
   ],
   "manual": {
     "depends_on": [],
@@ -42,8 +42,8 @@
     "key_files": [
       "spec.md",
       "008-deep-review-stack/review/review-report.md",
-      "004-mxbai-swap-and-008-closure/decision-record.md",
-      "004-mxbai-swap-and-008-closure/evidence/008-closure-narrative.md"
+      "004-spec-memory-embedder-bake-off/decision-record.md",
+      "004-spec-memory-embedder-bake-off/evidence/008-closure-narrative.md"
     ],
     "entities": [
       {

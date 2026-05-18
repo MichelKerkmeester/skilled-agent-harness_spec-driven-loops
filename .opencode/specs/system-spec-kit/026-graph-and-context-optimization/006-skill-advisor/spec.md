@@ -7,18 +7,18 @@ trigger_phrases:
   - "skill advisor system"
   - "skill advisor hook"
   - "search/routing tuning, skill graph and advisor unification, advisor docs and standards, smart-router, hook surface, plugin hardening, and hook improvements"
-  - "001-search-and-routing-tuning"
-  - "001-skill-advisor-graph"
-  - "002-advisor-phrase-booster-tailoring"
-  - "001-docs-and-code-alignment"
-  - "003-smart-remediation-and-opencode-plugin"
-  - "001-deferred-remediation-and-telemetry-run"
-  - "004-skill-advisor-hook-surface"
-  - "002-daemon-and-unification"
-  - "002-skill-advisor-plugin-hardening"
-  - "003-skill-advisor-standards-alignment"
-  - "001-skill-advisor-hook-improvements"
-  - "005-skill-advisor-setup-command"
+  - "001-memory-search-routing-tuning"
+  - "001-skill-graph-metadata-routing-boosts"
+  - "002-advisor-phrase-booster-tuning"
+  - "001-documentation-code-alignment"
+  - "003-smart-remediation-opencode-plugin"
+  - "001-deferred-remediation-telemetry-run"
+  - "004-advisor-hook-surface-integration"
+  - "002-skill-graph-daemon-native-advisor-tools"
+  - "002-advisor-plugin-hardening"
+  - "003-advisor-standards-alignment"
+  - "001-advisor-hook-brief-improvements"
+  - "005-advisor-setup-command"
   - "/doctor:skill-advisor"
 importance_tier: "important"
 contextType: "implementation"
@@ -121,23 +121,23 @@ Keep this theme as the single active parent for the full skill advisor system. E
 
 | Phase | Folder | Status | Description |
 |-------|--------|--------|-------------|
-| 1 | `001-search-and-routing-tuning/` | Complete | Feature Specification: Search and Routing Tuning Coordination Parent |
-| 2 | `001-skill-advisor-graph/` | Implemented | Feature Specification: Skill Advisor Graph |
-| 3 | `002-advisor-phrase-booster-tailoring/` | Draft | Feature Specification: Advisor Phrase-Booster Tailoring |
-| 4 | `001-docs-and-code-alignment/` | Spec Ready | Feature Specification: Skill-Advisor Docs + Phase 020 Code Alignment |
-| 5 | `003-smart-remediation-and-opencode-plugin/` | Spec Ready | Feature Specification: Smart-Router Remediation + OpenCode Plugin |
-| 6 | `001-deferred-remediation-and-telemetry-run/` | Spec Ready | Feature Specification: Deferred Remediation + Telemetry Measurement Run |
-| 7 | `004-skill-advisor-hook-surface/` | In Progress | Feature Specification: Skill-Advisor Hook Surface |
-| 8 | `002-daemon-and-unification/` | In Progress | Feature Specification: 027 - Skill Graph Daemon and Advisor Unification |
-| 9 | `002-skill-advisor-plugin-hardening/` | Complete | Feature Specification: Skill-Advisor Plugin Hardening |
-| 10 | `003-skill-advisor-standards-alignment/` | Complete | Feature Specification: Skill-Advisor Standards Alignment |
-| 11 | `001-skill-advisor-hook-improvements/` | Research Queued | Feature Specification: Skill-Advisor Hook Improvements |
-| 12 | `005-skill-advisor-setup-command/` | Implemented | Feature Specification: Skill Advisor Setup Command |
+| 1 | `001-memory-search-routing-tuning/` | Complete | Feature Specification: Search and Routing Tuning Coordination Parent |
+| 2 | `001-skill-graph-metadata-routing-boosts/` | Implemented | Feature Specification: Skill Advisor Graph |
+| 3 | `002-advisor-phrase-booster-tuning/` | Draft | Feature Specification: Advisor Phrase-Booster Tailoring |
+| 4 | `001-documentation-code-alignment/` | Spec Ready | Feature Specification: Skill-Advisor Docs + Phase 020 Code Alignment |
+| 5 | `003-smart-remediation-opencode-plugin/` | Spec Ready | Feature Specification: Smart-Router Remediation + OpenCode Plugin |
+| 6 | `001-deferred-remediation-telemetry-run/` | Spec Ready | Feature Specification: Deferred Remediation + Telemetry Measurement Run |
+| 7 | `004-advisor-hook-surface-integration/` | In Progress | Feature Specification: Skill-Advisor Hook Surface |
+| 8 | `002-skill-graph-daemon-native-advisor-tools/` | In Progress | Feature Specification: 027 - Skill Graph Daemon and Advisor Unification |
+| 9 | `002-advisor-plugin-hardening/` | Complete | Feature Specification: Skill-Advisor Plugin Hardening |
+| 10 | `003-advisor-standards-alignment/` | Complete | Feature Specification: Skill-Advisor Standards Alignment |
+| 11 | `001-advisor-hook-brief-improvements/` | Research Queued | Feature Specification: Skill-Advisor Hook Improvements |
+| 12 | `005-advisor-setup-command/` | Implemented | Feature Specification: Skill Advisor Setup Command |
 <!-- /ANCHOR:phase-map -->
 
 <!-- The 4 daemon-corruption packets that were briefly registered here (006-009) were
      moved 2026-05-18 under a new phase parent at
-     `016-embedder-testing-and-architecture/012-mcp-launcher-concurrency-arc/` with
+     `016-embedder-testing-and-architecture/006-mcp-launcher-concurrency-arc/` with
      phase children 001-004 (formerly 006/007/008/009). See that arc for the
      full work history. The MCP-launcher concurrency code they ship still lives
      under system-skill-advisor + the 3 .opencode/bin/mk-*-launcher.cjs files,

@@ -1,0 +1,17 @@
+{
+  "specFolder": "016-embedder-testing-and-architecture/006-mcp-launcher-concurrency-arc/002-cross-launcher-lease-propagation",
+  "description": "Phase 1: cross-launcher-lease-propagation",
+  "keywords": [
+    "phase",
+    "cross-launcher-lease-propagation"
+  ],
+  "lastUpdated": "2026-05-18T05:41:21.545Z",
+  "specId": "007",
+  "folderSlug": "cross-launcher-lease-propagation",
+  "parentChain": [
+    "006-skill-advisor"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}
