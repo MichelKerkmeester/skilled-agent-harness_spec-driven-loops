@@ -34,3 +34,5 @@ class QueryResult:
     raw_score: float
     path_class: str
     rankingSignals: list[str]
+    fts5_score: float | None = None
+    rrf_score: float | None = None

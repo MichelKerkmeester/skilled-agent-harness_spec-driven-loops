@@ -182,6 +182,8 @@ def print_search_results(response: SearchResponse) -> None:
         )
         if r.rankingSignals:
             _typer.echo(f"rankingSignals: {', '.join(r.rankingSignals)}")
+        if r.rrf_score is not None or r.fts5_score is not None:
+            _typer.echo(f"rrf_score: {r.rrf_score} | fts5_score: {r.fts5_score}")
         _typer.echo(r.content)
 
 

@@ -19,6 +19,7 @@ from cocoindex.resources.id import IdGenerator
 from pathspec import GitIgnoreSpec
 
 from .config import config
+from .fts_index import FtsChunkRow, ensure_fts_table, populate_fts
 from .settings import PROJECT_SETTINGS, is_canonical_path
 from .shared import (
     CODEBASE_DIR,
@@ -248,6 +249,7 @@ async def process_file(
 ) -> None:
     """Process a single file: chunk, embed, and store."""
     embedder = coco.use_context(EMBEDDER)
+    db = coco.use_context(SQLITE_DB)
 
     try:
         content = await file.read_text()
@@ -284,9 +286,10 @@ async def process_file(
 
     async def process(chunk: Chunk) -> None:
         normalized_content = _normalize_chunk_content(chunk.text)
+        chunk_id = await id_gen.next_id(chunk.text)
         table.declare_row(
             row=CodeChunk(
-                id=await id_gen.next_id(chunk.text),
+                id=chunk_id,
                 file_path=file_path,
                 source_realpath=source_realpath,
                 language=language,
@@ -298,6 +301,18 @@ async def process_file(
                 embedding=await embedder.embed(chunk.text),
             )
         )
+        with db.transaction() as conn:
+            populate_fts(
+                conn,
+                [
+                    FtsChunkRow(
+                        chunk_id=chunk_id,
+                        content=chunk.text,
+                        file_path=file_path,
+                        language=language,
+                    )
+                ],
+            )
 
     await coco.map(process, chunks)
 
@@ -329,6 +344,9 @@ async def indexer_main() -> None:
             ],
         ),
     )
+    db = coco.use_context(SQLITE_DB)
+    with db.transaction() as conn:
+        ensure_fts_table(conn)
 
     base_matcher = CanonicalResourceMatcher(
         included_patterns=ps.include_patterns,

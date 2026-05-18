@@ -51,6 +51,14 @@ Add **SQLite FTS5** lexical engine + **RRF fusion** (k=60 default, vector=0.7 / 
 - **BEIR/TREC hybrid retrieval literature**: RRF dominates linear-weighted for code corpora (rank-robust, no normalization needed).
 - **RRF k-value**: 60 is the standard default (Cormack et al. 2009, TREC blueprint). Higher k weights lower-ranked items more.
 
+## Citations
+
+<!-- ANCHOR:citations -->
+- Cormack, Clarke, and Buettcher (2009), "Reciprocal Rank Fusion Outperforms Condorcet and Individual Rank Learning Methods", SIGIR.
+- Local implementation precedent: `.opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts`.
+- Local implementation precedent: `.opencode/skills/system-spec-kit/shared/algorithms/rrf-fusion.ts`.
+<!-- /ANCHOR:citations -->
+
 ## Implementation hints (cross-referenced)
 
 - **Code touchpoints**: `cocoindex_code/query.py:query_codebase()` extends to run KNN + FTS5 in parallel, normalize per channel, fuse via RRF, then apply existing post-fusion boosts (implementation_intent, canonical_paths). Returns same `QueryResults` contract.

@@ -9,6 +9,7 @@ from pathlib import Path
 import cocoindex as coco
 from cocoindex.connectors import sqlite
 
+from .fts_index import sync_fts_from_code_chunks
 from .indexer import indexer_main
 from .protocol import IndexingProgress
 from .settings import PROJECT_SETTINGS, ProjectSettings, load_gitignore_spec
@@ -66,6 +67,9 @@ class Project:
                         on_progress(progress)
                     await asyncio.sleep(0.1)
         finally:
+            db = self._env.get_context(SQLITE_DB)
+            with db.transaction() as conn:
+                sync_fts_from_code_chunks(conn)
             self._indexing_stats = None
             self._initial_index_done = True
 

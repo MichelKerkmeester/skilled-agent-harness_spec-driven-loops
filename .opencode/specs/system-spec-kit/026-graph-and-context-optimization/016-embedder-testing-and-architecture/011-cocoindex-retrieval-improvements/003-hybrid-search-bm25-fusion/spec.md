@@ -1,31 +1,34 @@
 ---
-title: "Spec: 016/011/003-hybrid-search-bm25-fusion — Hybrid Search (BM25 + Semantic Fusion) (research)"
-description: "Research phase for §3 structural retrieval improvements. Deep-research informs implementation plan."
+title: "Spec: 016/011/003-hybrid-search-bm25-fusion — Hybrid Search (BM25 + Semantic Fusion)"
+description: "Implemented opt-in SQLite FTS5 + RRF fusion for CocoIndex retrieval."
 trigger_phrases:
   - "016/011/003"
   - "hybrid search (bm25 + semantic fusion) research"
   - "hybrid search (bm25 + semantic fusion) hybrid"
 importance_tier: "important"
-contextType: "research"
+contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/011-cocoindex-retrieval-improvements/003-hybrid-search-bm25-fusion"
     last_updated_at: "2026-05-18T00:35:00Z"
     last_updated_by: "main_agent"
-    recent_action: "Scaffolded research-phase packet"
-    next_safe_action: "Run deep-research iters (cli-devin SWE-1.6)"
-    blockers: []
-    key_files: ["spec.md", "research/research.md (pending after iters)"]
+    recent_action: "Implemented opt-in SQLite FTS5 + RRF hybrid search"
+    next_safe_action: "Run fixture and latency validation before default-on promotion"
+    blockers: ["fixture benchmark pending", "latency benchmark pending"]
+    key_files: ["spec.md", "research/research.md", "cocoindex_code/query.py", "cocoindex_code/fts_index.py", "cocoindex_code/fusion.py"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000011003"
       session_id: "016-011-003-hybrid-search-bm25-fusion"
       parent_session_id: null
-    completion_pct: 5
+    completion_pct: 80
     open_questions:
       - "Is sqlite-fts5 sufficient for our corpus scale (127K chunks)"
       - "Best fusion algorithm for code retrieval specifically"
       - "Whether to expose hybrid as opt-in or default-on"
-    answered_questions: []
+    answered_questions:
+      - "SQLite FTS5 selected as embedded lexical engine"
+      - "RRF selected as fusion algorithm"
+      - "Hybrid remains opt-in until fixture validation"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 1 -->
@@ -37,9 +40,9 @@ _memory:
 
 | Field | Value |
 |---|---|
-| Status | Research phase (created 2026-05-18) |
+| Status | Implemented; fixture benchmark pending |
 | Level | 1 |
-| Owner | Main agent |
+| Owner | cli-codex |
 | Parent | `../spec.md` (016/011 umbrella) |
 <!-- /ANCHOR:metadata -->
 
@@ -48,7 +51,7 @@ _memory:
 
 **Research question**: Does adding BM25 lexical search + fusion (RRF or weighted-linear) to CocoIndex's semantic retrieval improve hit-rate on the 18-pair fixture? What weights/normalization?
 
-This packet is part of §3 structural improvements identified in the 018/003 follow-up discussion (38.9% baseline hit rate, embedder swap unlikely to be the dominant lever). Research first, then plan, then implement.
+This packet is part of §3 structural improvements identified in the 018/003 follow-up discussion (38.9% baseline hit rate, embedder swap unlikely to be the dominant lever). Research converged on SQLite FTS5 + weighted RRF; implementation is now opt-in behind `COCOINDEX_HYBRID=true`.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:scope -->
@@ -60,6 +63,7 @@ This packet is part of §3 structural improvements identified in the 018/003 fol
 - Normalization (min-max, z-score, none)
 - Mirror mk-spec-memory's stage2-fusion.ts pattern (already proven there)
 - BM25 vs semantic weighting (typical 0.3/0.7 vs 0.5/0.5)
+- CocoIndex implementation: FTS5 table, indexing sync, RRF fusion, config flags, result transparency, and tests
 
 ### Out of scope
 - Removing semantic search entirely (BM25-only) — counter-productive
@@ -76,6 +80,7 @@ This packet is part of §3 structural improvements identified in the 018/003 fol
 | R3 | Recommended approach with estimated hit-rate lift on 18-pair fixture |
 | R4 | RAM/latency cost estimate for the recommendation |
 | R5 | Post-research: scaffold plan.md + tasks.md if recommendation goes into implementation |
+| R6 | Preserve vector-only behavior unless `COCOINDEX_HYBRID=true` |
 <!-- /ANCHOR:requirements -->
 
 <!-- ANCHOR:success-criteria -->
@@ -85,6 +90,8 @@ This packet is part of §3 structural improvements identified in the 018/003 fol
 - `research/research.md` complete with synthesis + cited evidence
 - Clear go/no-go signal for implementation
 - Strict-validate PASSED
+- `mcp-coco-index` test suite PASSED
+- Fixture benchmark remains pending before default-on promotion
 <!-- /ANCHOR:success-criteria -->
 
 <!-- ANCHOR:risks -->
@@ -103,7 +110,7 @@ Dependencies:
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Is sqlite-fts5 sufficient for our corpus scale (127K chunks)
-- Best fusion algorithm for code retrieval specifically
-- Whether to expose hybrid as opt-in or default-on
+- Answered: SQLite FTS5 is sufficient for opt-in implementation and avoids new dependencies.
+- Answered: weighted Reciprocal Rank Fusion is the selected fusion algorithm.
+- Answered: hybrid is exposed as env opt-in and remains default-off until fixture validation.
 <!-- /ANCHOR:questions -->

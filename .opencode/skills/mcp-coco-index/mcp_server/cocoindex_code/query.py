@@ -10,6 +10,9 @@ import sqlite3
 from pathlib import Path
 from typing import Any
 
+from .config import config
+from .fts_index import query_fts
+from .fusion import FusedRow, RankedRow, rrf_fuse
 from .observability import elapsed_ms, log_stage, monotonic_ms
 from .schema import QueryResult
 from .settings import PROJECT_SETTINGS, is_canonical_path
@@ -91,6 +94,10 @@ def _select_chunk_columns(conn: sqlite3.Connection) -> str:
     )
 
 
+def _select_chunk_columns_with_id(conn: sqlite3.Connection) -> str:
+    return f"id AS chunk_id, {_select_chunk_columns(conn)}"
+
+
 def _knn_query(
     conn: sqlite3.Connection,
     embedding_bytes: bytes,
@@ -160,6 +167,75 @@ def _full_scan_query(
     ).fetchall()
 
 
+def _knn_query_with_ids(
+    conn: sqlite3.Connection,
+    embedding_bytes: bytes,
+    k: int,
+    language: str | None = None,
+) -> list[tuple[Any, ...]]:
+    """Run a vec0 KNN query and include the chunk id for fusion."""
+    select_columns = _select_chunk_columns_with_id(conn)
+    if language is not None:
+        return conn.execute(
+            f"""
+            SELECT {select_columns}, distance
+            FROM code_chunks_vec
+            WHERE embedding MATCH ? AND k = ? AND language = ?
+            ORDER BY distance
+            """,
+            (embedding_bytes, k, language),
+        ).fetchall()
+
+    return conn.execute(
+        f"""
+        SELECT {select_columns}, distance
+        FROM code_chunks_vec
+        WHERE embedding MATCH ? AND k = ?
+        ORDER BY distance
+        """,
+        (embedding_bytes, k),
+    ).fetchall()
+
+
+def _full_scan_query_with_ids(
+    conn: sqlite3.Connection,
+    embedding_bytes: bytes,
+    limit: int,
+    offset: int,
+    languages: list[str] | None = None,
+    paths: list[str] | None = None,
+) -> list[tuple[Any, ...]]:
+    """Full scan with chunk ids included for fusion."""
+    select_columns = _select_chunk_columns_with_id(conn)
+    conditions: list[str] = []
+    params: list[Any] = [embedding_bytes]
+
+    if languages:
+        placeholders = ",".join("?" for _ in languages)
+        conditions.append(f"language IN ({placeholders})")
+        params.extend(languages)
+
+    if paths:
+        path_clauses = " OR ".join("file_path GLOB ?" for _ in paths)
+        conditions.append(f"({path_clauses})")
+        params.extend(paths)
+
+    where = f"WHERE {' AND '.join(conditions)}" if conditions else ""
+    params.extend([limit, offset])
+
+    return conn.execute(
+        f"""
+        SELECT {select_columns},
+               vec_distance_L2(embedding, ?) as distance
+        FROM code_chunks_vec
+        {where}
+        ORDER BY distance
+        LIMIT ? OFFSET ?
+        """,
+        params,
+    ).fetchall()
+
+
 def _dedup_key(row: tuple[Any, ...]) -> tuple[str, str, int, int]:
     (
         _file_path,
@@ -176,6 +252,91 @@ def _dedup_key(row: tuple[Any, ...]) -> tuple[str, str, int, int]:
         return ("source_realpath", str(source_realpath), start_line, end_line)
     fallback_hash = content_hash or _hash_content(content)
     return ("content_hash", str(fallback_hash), start_line, end_line)
+
+
+def _dedup_key_from_record(record: dict[str, Any]) -> tuple[str, str, int, int]:
+    source_realpath = record.get("source_realpath")
+    start_line = int(record["start_line"])
+    end_line = int(record["end_line"])
+    if source_realpath:
+        return ("source_realpath", str(source_realpath), start_line, end_line)
+    fallback_hash = record.get("content_hash") or _hash_content(str(record["content"]))
+    return ("content_hash", str(fallback_hash), start_line, end_line)
+
+
+def _record_from_vector_row(row: tuple[Any, ...]) -> dict[str, Any]:
+    (
+        chunk_id,
+        file_path,
+        source_realpath,
+        language,
+        content,
+        content_hash,
+        path_class,
+        start_line,
+        end_line,
+        distance,
+    ) = row
+    return {
+        "chunk_id": int(chunk_id),
+        "file_path": file_path,
+        "source_realpath": source_realpath,
+        "language": language,
+        "content": content,
+        "content_hash": content_hash,
+        "path_class": path_class,
+        "start_line": start_line,
+        "end_line": end_line,
+        "distance": distance,
+    }
+
+
+def _record_from_chunk_row(row: tuple[Any, ...]) -> dict[str, Any]:
+    (
+        chunk_id,
+        file_path,
+        source_realpath,
+        language,
+        content,
+        content_hash,
+        path_class,
+        start_line,
+        end_line,
+    ) = row
+    return {
+        "chunk_id": int(chunk_id),
+        "file_path": file_path,
+        "source_realpath": source_realpath,
+        "language": language,
+        "content": content,
+        "content_hash": content_hash,
+        "path_class": path_class,
+        "start_line": start_line,
+        "end_line": end_line,
+        "distance": None,
+    }
+
+
+def _fetch_chunk_records(
+    conn: sqlite3.Connection,
+    chunk_ids: list[int],
+) -> dict[int, dict[str, Any]]:
+    if not chunk_ids:
+        return {}
+
+    placeholders = ",".join("?" for _ in chunk_ids)
+    rows = conn.execute(
+        f"""
+        SELECT {_select_chunk_columns_with_id(conn)}
+        FROM code_chunks_vec
+        WHERE id IN ({placeholders})
+        """,
+        chunk_ids,
+    ).fetchall()
+    return {
+        record["chunk_id"]: record
+        for record in (_record_from_chunk_row(row) for row in rows)
+    }
 
 
 def _ranked_result(
@@ -227,6 +388,54 @@ def _ranked_result(
     )
 
 
+def _hybrid_ranked_result(
+    fused: FusedRow,
+    record: dict[str, Any],
+    *,
+    implementation_intent: bool,
+    canonical_paths: list[str] | None = None,
+) -> QueryResult:
+    raw_score = fused.vector_score if fused.vector_score is not None else 0.0
+    score = fused.rrf_score
+    path_class = record.get("path_class") or "implementation"
+    ranking_signals = ["hybrid_rrf"]
+
+    if fused.vector_rank is not None:
+        ranking_signals.append("vector_lane")
+    if fused.fts_rank is not None:
+        ranking_signals.append("fts5_lane")
+
+    if implementation_intent:
+        if path_class == "implementation":
+            score += 0.05
+            ranking_signals.append("implementation_boost")
+        elif path_class == "spec_research":
+            score -= 0.05
+            ranking_signals.append("spec_research_penalty")
+        elif path_class == "docs":
+            score -= 0.05
+            ranking_signals.append("docs_penalty")
+
+    file_path = str(record["file_path"])
+    if canonical_paths and is_canonical_path(file_path, canonical_paths):
+        score += 0.10
+        ranking_signals.append("canonical_resource_boost")
+
+    return QueryResult(
+        file_path=file_path,
+        language=str(record["language"]),
+        content=str(record["content"]),
+        start_line=int(record["start_line"]),
+        end_line=int(record["end_line"]),
+        score=score,
+        raw_score=raw_score,
+        path_class=str(path_class),
+        rankingSignals=ranking_signals,
+        fts5_score=fused.fts_score,
+        rrf_score=fused.rrf_score,
+    )
+
+
 def _dedup_and_rank_rows(
     rows: list[tuple[Any, ...]],
     *,
@@ -265,6 +474,73 @@ def _dedup_and_rank_rows(
         window,
         deduped_aliases=deduped_aliases,
         unique_result_count=len(window),
+    )
+
+
+def _dedup_and_rank_hybrid_rows(
+    fused_rows: list[FusedRow],
+    records_by_id: dict[int, dict[str, Any]],
+    *,
+    query: str,
+    limit: int,
+    offset: int,
+    canonical_paths: list[str] | None = None,
+) -> QueryResults:
+    implementation_intent = _has_implementation_intent(query)
+    ranked = [
+        (
+            _hybrid_ranked_result(
+                fused,
+                record,
+                implementation_intent=implementation_intent,
+                canonical_paths=canonical_paths,
+            ),
+            record,
+        )
+        for fused in fused_rows
+        if (record := records_by_id.get(fused.chunk_id)) is not None
+    ]
+    ranked.sort(key=lambda item: item[0].score, reverse=True)
+
+    seen: set[tuple[str, str, int, int]] = set()
+    unique: list[QueryResult] = []
+    deduped_aliases = 0
+    for result, record in ranked:
+        key = _dedup_key_from_record(record)
+        if key in seen:
+            deduped_aliases += 1
+            continue
+        seen.add(key)
+        unique.append(result)
+
+    window = unique[offset : offset + limit]
+    return QueryResults(
+        window,
+        deduped_aliases=deduped_aliases,
+        unique_result_count=len(window),
+    )
+
+
+def _hybrid_vector_rows(
+    conn: sqlite3.Connection,
+    embedding_bytes: bytes,
+    fetch_k: int,
+    languages: list[str] | None,
+    paths: list[str] | None,
+) -> list[tuple[Any, ...]]:
+    if paths:
+        return _full_scan_query_with_ids(conn, embedding_bytes, fetch_k, 0, languages, paths)
+    if not languages or len(languages) == 1:
+        lang = languages[0] if languages else None
+        return _knn_query_with_ids(conn, embedding_bytes, fetch_k, lang)
+    return heapq.nsmallest(
+        fetch_k,
+        (
+            row
+            for lang in languages
+            for row in _knn_query_with_ids(conn, embedding_bytes, fetch_k, lang)
+        ),
+        key=lambda row: row[9],
     )
 
 
@@ -312,7 +588,48 @@ async def query_codebase(
 
     stage_start = monotonic_ms()
     with db.readonly() as conn:
-        if paths:
+        if config.hybrid_enabled:
+            vector_rows = _hybrid_vector_rows(conn, embedding_bytes, fetch_k, languages, paths)
+            vector_records = {
+                record["chunk_id"]: record
+                for record in (_record_from_vector_row(row) for row in vector_rows)
+            }
+            vector_results = [
+                RankedRow(
+                    chunk_id=int(row[0]),
+                    score=_l2_to_score(float(row[9])),
+                )
+                for row in vector_rows
+            ]
+            fts_rows = query_fts(
+                conn,
+                query,
+                fetch_k,
+                languages=languages,
+                paths=paths,
+            )
+            fts_results = [
+                RankedRow(chunk_id=chunk_id, score=bm25_score)
+                for chunk_id, bm25_score in fts_rows
+            ]
+            fused_rows = rrf_fuse(
+                vector_results,
+                fts_results,
+                k=config.hybrid_rrf_k,
+                vector_weight=config.hybrid_vector_weight,
+                fts_weight=config.hybrid_fts5_weight,
+            )
+            missing_ids = [
+                fused.chunk_id
+                for fused in fused_rows
+                if fused.chunk_id not in vector_records
+            ]
+            records_by_id = {
+                **vector_records,
+                **_fetch_chunk_records(conn, missing_ids),
+            }
+            rows = []
+        elif paths:
             rows = _full_scan_query(conn, embedding_bytes, fetch_k, 0, languages, paths)
         elif not languages or len(languages) == 1:
             lang = languages[0] if languages else None
@@ -333,17 +650,28 @@ async def query_codebase(
             req_id=req_id,
             stage="index_lookup",
             duration_ms=elapsed_ms(stage_start),
-            result_count=len(rows),
+            result_count=len(fused_rows) if config.hybrid_enabled else len(rows),
+            lane="hybrid_rrf" if config.hybrid_enabled else "vector_only",
         )
 
     stage_start = monotonic_ms()
-    results = _dedup_and_rank_rows(
-        rows,
-        query=query,
-        limit=limit,
-        offset=offset,
-        canonical_paths=project_settings.canonical_resource_paths,
-    )
+    if config.hybrid_enabled:
+        results = _dedup_and_rank_hybrid_rows(
+            fused_rows,
+            records_by_id,
+            query=query,
+            limit=limit,
+            offset=offset,
+            canonical_paths=project_settings.canonical_resource_paths,
+        )
+    else:
+        results = _dedup_and_rank_rows(
+            rows,
+            query=query,
+            limit=limit,
+            offset=offset,
+            canonical_paths=project_settings.canonical_resource_paths,
+        )
     if req_id is not None:
         log_stage(
             logger,
@@ -351,5 +679,6 @@ async def query_codebase(
             stage="rerank",
             duration_ms=elapsed_ms(stage_start),
             result_count=len(results),
+            lane="hybrid_rrf" if config.hybrid_enabled else "vector_only",
         )
     return results

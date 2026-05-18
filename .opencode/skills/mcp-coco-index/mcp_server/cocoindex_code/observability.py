@@ -67,16 +67,19 @@ def log_stage(
     stage: str,
     duration_ms: int,
     result_count: int = 0,
+    lane: str | None = None,
 ) -> None:
     """Emit a standard request-stage timing log entry."""
-    log_json(
-        logger,
-        event="cocoindex_stage",
-        reqId=req_id,
-        stage=stage,
-        durationMs=duration_ms,
-        resultCount=result_count,
-    )
+    fields: dict[str, Any] = {
+        "event": "cocoindex_stage",
+        "reqId": req_id,
+        "stage": stage,
+        "durationMs": duration_ms,
+        "resultCount": result_count,
+    }
+    if lane is not None:
+        fields["lane"] = lane
+    log_json(logger, **fields)
 
 
 def log_response_size(

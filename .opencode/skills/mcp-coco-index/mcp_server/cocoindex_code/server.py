@@ -65,6 +65,8 @@ class CodeChunkResult(BaseModel):
         default_factory=list,
         description="Ranking boosts or penalties applied to this result",
     )
+    fts5_score: float | None = Field(default=None, description="FTS5 BM25 score when hybrid search is enabled")
+    rrf_score: float | None = Field(default=None, description="RRF fused score when hybrid search is enabled")
 
 
 class SearchResultModel(BaseModel):
@@ -212,6 +214,8 @@ def create_mcp_server(client: DaemonClient, project_root: str) -> FastMCP:
                             raw_score=r.raw_score,
                             path_class=r.path_class,
                             rankingSignals=r.rankingSignals,
+                            fts5_score=r.fts5_score,
+                            rrf_score=r.rrf_score,
                         )
                         for r in resp.results
                     ],

@@ -11,6 +11,9 @@ import pytest
 from cocoindex_code.config import (
     _DEFAULT_CHUNK_OVERLAP,
     _DEFAULT_CHUNK_SIZE,
+    _DEFAULT_HYBRID_FTS5_WEIGHT,
+    _DEFAULT_HYBRID_RRF_K,
+    _DEFAULT_HYBRID_VECTOR_WEIGHT,
     _DEFAULT_MIN_CHUNK_SIZE,
     _DEFAULT_MODEL,
     Config,
@@ -188,3 +191,65 @@ class TestChunkConfigValidation:
 
         assert cfg.min_chunk_size == _DEFAULT_MIN_CHUNK_SIZE
         assert "Ignoring invalid COCOINDEX_CODE_MIN_CHUNK_SIZE='49'" in caplog.text
+
+
+class TestHybridConfigValidation:
+    def test_default_hybrid_params(self, tmp_path: Path) -> None:
+        with patch.dict(
+            "os.environ",
+            {"COCOINDEX_CODE_ROOT_PATH": str(tmp_path)},
+            clear=True,
+        ):
+            cfg = Config.from_env()
+
+        assert cfg.hybrid_enabled is False
+        assert cfg.hybrid_vector_weight == _DEFAULT_HYBRID_VECTOR_WEIGHT == 0.7
+        assert cfg.hybrid_fts5_weight == _DEFAULT_HYBRID_FTS5_WEIGHT == 0.7
+        assert cfg.hybrid_rrf_k == _DEFAULT_HYBRID_RRF_K == 60
+
+    def test_hybrid_env_overrides(self, tmp_path: Path) -> None:
+        with patch.dict(
+            "os.environ",
+            {
+                "COCOINDEX_CODE_ROOT_PATH": str(tmp_path),
+                "COCOINDEX_HYBRID": "true",
+                "COCOINDEX_HYBRID_VECTOR_WEIGHT": "1.2",
+                "COCOINDEX_HYBRID_FTS5_WEIGHT": "0.4",
+                "COCOINDEX_HYBRID_RRF_K": "40",
+            },
+            clear=True,
+        ):
+            cfg = Config.from_env()
+
+        assert cfg.hybrid_enabled is True
+        assert cfg.hybrid_vector_weight == 1.2
+        assert cfg.hybrid_fts5_weight == 0.4
+        assert cfg.hybrid_rrf_k == 40
+
+    def test_invalid_hybrid_params_fall_back(
+        self,
+        tmp_path: Path,
+        caplog: pytest.LogCaptureFixture,
+    ) -> None:
+        caplog.set_level("WARNING", logger="cocoindex_code.config")
+        with patch.dict(
+            "os.environ",
+            {
+                "COCOINDEX_CODE_ROOT_PATH": str(tmp_path),
+                "COCOINDEX_HYBRID": "perhaps",
+                "COCOINDEX_HYBRID_VECTOR_WEIGHT": "2.1",
+                "COCOINDEX_HYBRID_FTS5_WEIGHT": "nope",
+                "COCOINDEX_HYBRID_RRF_K": "0",
+            },
+            clear=True,
+        ):
+            cfg = Config.from_env()
+
+        assert cfg.hybrid_enabled is False
+        assert cfg.hybrid_vector_weight == _DEFAULT_HYBRID_VECTOR_WEIGHT
+        assert cfg.hybrid_fts5_weight == _DEFAULT_HYBRID_FTS5_WEIGHT
+        assert cfg.hybrid_rrf_k == _DEFAULT_HYBRID_RRF_K
+        assert "Ignoring invalid COCOINDEX_HYBRID='perhaps'" in caplog.text
+        assert "Ignoring invalid COCOINDEX_HYBRID_VECTOR_WEIGHT='2.1'" in caplog.text
+        assert "Ignoring invalid COCOINDEX_HYBRID_FTS5_WEIGHT='nope'" in caplog.text
+        assert "Ignoring invalid COCOINDEX_HYBRID_RRF_K='0'" in caplog.text

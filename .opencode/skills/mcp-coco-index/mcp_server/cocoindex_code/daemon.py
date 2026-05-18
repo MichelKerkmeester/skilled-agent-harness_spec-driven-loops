@@ -506,6 +506,8 @@ class ProjectRegistry:
                 raw_score=r.raw_score,
                 path_class=r.path_class,
                 rankingSignals=r.rankingSignals,
+                fts5_score=r.fts5_score,
+                rrf_score=r.rrf_score,
             )
             for r in results
         ]

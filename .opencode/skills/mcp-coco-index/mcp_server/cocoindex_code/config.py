@@ -12,6 +12,9 @@ _DEFAULT_MODEL = "sbert/jinaai/jina-embeddings-v2-base-code"
 _DEFAULT_CHUNK_SIZE = 1500
 _DEFAULT_CHUNK_OVERLAP = 200
 _DEFAULT_MIN_CHUNK_SIZE = 250
+_DEFAULT_HYBRID_VECTOR_WEIGHT = 0.7
+_DEFAULT_HYBRID_FTS5_WEIGHT = 0.7
+_DEFAULT_HYBRID_RRF_K = 60
 _VALID_DEVICES = {"cuda", "mps", "cpu"}
 
 logger = logging.getLogger(__name__)
@@ -145,6 +148,65 @@ def _parse_int_env(
     return default
 
 
+def _parse_bool_env(var_name: str, default: bool) -> bool:
+    """Parse a boolean environment variable with common truthy/falsy values."""
+    raw_value = os.environ.get(var_name)
+    if raw_value is None or not raw_value.strip():
+        return default
+
+    normalized = raw_value.strip().lower()
+    if normalized in {"1", "true", "yes", "on"}:
+        return True
+    if normalized in {"0", "false", "no", "off"}:
+        return False
+
+    logger.warning(
+        "Ignoring invalid %s=%r; expected boolean; falling back to %s",
+        var_name,
+        raw_value,
+        default,
+    )
+    return default
+
+
+def _parse_float_env(
+    var_name: str,
+    default: float,
+    min_value: float,
+    max_value: float,
+) -> float:
+    """Parse a bounded float environment variable with default fallback."""
+    raw_value = os.environ.get(var_name)
+    if raw_value is None or not raw_value.strip():
+        return default
+
+    try:
+        value = float(raw_value)
+    except ValueError:
+        logger.warning(
+            "Ignoring invalid %s=%r; expected float between %s and %s; falling back to %s",
+            var_name,
+            raw_value,
+            min_value,
+            max_value,
+            default,
+        )
+        return default
+
+    if min_value <= value <= max_value:
+        return value
+
+    logger.warning(
+        "Ignoring invalid %s=%r; expected float between %s and %s; falling back to %s",
+        var_name,
+        raw_value,
+        min_value,
+        max_value,
+        default,
+    )
+    return default
+
+
 def _is_registered_embedder(name: str) -> bool:
     from cocoindex_code.registered_embedders import get_embedder_metadata  # noqa: PLC0415
 
@@ -164,6 +226,10 @@ class Config:
     chunk_size: int
     chunk_overlap: int
     min_chunk_size: int
+    hybrid_enabled: bool
+    hybrid_vector_weight: float
+    hybrid_fts5_weight: float
+    hybrid_rrf_k: int
 
     @classmethod
     def from_env(cls) -> Config:
@@ -235,6 +301,25 @@ class Config:
             50,
             1000,
         )
+        hybrid_enabled = _parse_bool_env("COCOINDEX_HYBRID", False)
+        hybrid_vector_weight = _parse_float_env(
+            "COCOINDEX_HYBRID_VECTOR_WEIGHT",
+            _DEFAULT_HYBRID_VECTOR_WEIGHT,
+            0.0,
+            2.0,
+        )
+        hybrid_fts5_weight = _parse_float_env(
+            "COCOINDEX_HYBRID_FTS5_WEIGHT",
+            _DEFAULT_HYBRID_FTS5_WEIGHT,
+            0.0,
+            2.0,
+        )
+        hybrid_rrf_k = _parse_int_env(
+            "COCOINDEX_HYBRID_RRF_K",
+            _DEFAULT_HYBRID_RRF_K,
+            1,
+            500,
+        )
 
         return cls(
             codebase_root_path=root,
@@ -246,6 +331,10 @@ class Config:
             chunk_size=chunk_size,
             chunk_overlap=chunk_overlap,
             min_chunk_size=min_chunk_size,
+            hybrid_enabled=hybrid_enabled,
+            hybrid_vector_weight=hybrid_vector_weight,
+            hybrid_fts5_weight=hybrid_fts5_weight,
+            hybrid_rrf_k=hybrid_rrf_k,
         )
 
     @property

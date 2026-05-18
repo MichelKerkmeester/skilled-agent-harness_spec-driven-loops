@@ -10,15 +10,15 @@ _memory:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/011-cocoindex-retrieval-improvements/003-hybrid-search-bm25-fusion"
     last_updated_at: "2026-05-18T00:35:00Z"
     last_updated_by: "main_agent"
-    recent_action: "Authored research-stub tasks"
-    next_safe_action: "Run deep-research; post-research refine"
-    blockers: []
-    key_files: ["spec.md", "plan.md"]
+    recent_action: "Implemented opt-in FTS5 + RRF hybrid search"
+    next_safe_action: "Run fixture and latency validation"
+    blockers: ["fixture benchmark pending", "latency benchmark pending"]
+    key_files: ["spec.md", "plan.md", "implementation-summary.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000011003"
       session_id: "016-011-003-hybrid-search-bm25-fusion-tasks"
       parent_session_id: "016-011-003-hybrid-search-bm25-fusion"
-    completion_pct: 5
+    completion_pct: 80
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 1 -->
@@ -39,17 +39,17 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Run deep-research iters (cli-devin SWE-1.6) — output goes to research/research.md
-- [ ] T002 Review research synthesis; decide go/no-go
+- [x] T001 Run deep-research iters (cli-devin SWE-1.6) — output goes to research/research.md
+- [x] T002 Review research synthesis; decide go/no-go
 <!-- /ANCHOR:phase-1 -->
 
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T003 Refine spec/plan from research findings
-- [ ] T004 Implement recommended approach
-- [ ] T005 Add tests + benchmark harness integration
-- [ ] T006 Build clean
+- [x] T003 Refine spec/plan from research findings
+- [x] T004 Implement recommended approach
+- [x] T005 Add tests for FTS creation/population/query, RRF fusion, config, and query dispatch
+- [x] T006 Test suite clean: `.venv/bin/python -m pytest tests/ -v` passed 60/60
 <!-- /ANCHOR:phase-2 -->
 
 <!-- ANCHOR:phase-3 -->
@@ -64,7 +64,7 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-10 tasks `[x]`. Research convergence + implementation + benchmark lift documented.
+Implementation is complete and unit-validated. Fixture hit-rate and latency benchmarks remain before default-on promotion.
 <!-- /ANCHOR:completion -->
 
 <!-- ANCHOR:cross-refs -->
