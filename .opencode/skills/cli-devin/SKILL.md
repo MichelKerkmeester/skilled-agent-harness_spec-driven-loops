@@ -2,7 +2,7 @@
 name: cli-devin
 description: "Devin CLI orchestrator: dispatch Cognition AI's 'Devin for Terminal' for autonomous coding work with optional local-to-cloud handoff."
 allowed-tools: [Bash, Read, Glob, Grep]
-version: 1.0.6.1
+version: 1.0.6.2
 ---
 
 <!-- Keywords: devin, devin-cli, devin-for-terminal, cognition, swe-1.6, deepseek-v4, glm-5.1, kimi-k2.6, cloud-handoff, autonomous-agent, cross-ai, mcp, acp, permission-modes, complex-task-fallback -->
@@ -250,7 +250,7 @@ Devin runs four model presets. The skill defaults to SWE-1.6 for context gatheri
 
 | Model | ID | Use Case |
 |-------|----|----------|
-| **Cognition SWE-1.6** ★ default | `swe-1.6` | Context gathering, tool use, simple-to-medium code tasks that are clearly defined beforehand. Optimized for fast iteration inside Devin's agent loop. |
+| **Cognition SWE-1.6** ★ default | `swe-1.6` | Context gathering, tool use, simple-to-medium code tasks that are clearly defined beforehand. Optimized for fast iteration inside Devin's agent loop. **Free tier** — does not consume Pro quota; dispatches succeed even when the TUI shows `Pro · 0% remaining`. |
 | **DeepSeek v4** (DeepSeek) | `deepseek-v4` | **Primary for complex tasks** — ambiguous problems, multi-step work, deep reasoning, large refactors, architectural decisions, root-cause debugging. |
 | **GLM 5.1** (Zhipu) | `glm-5.1` | Complex-task **fallback** when DeepSeek v4 doesn't fit (e.g. agentic / tool-use heavy, MCP chains, structured planning). |
 | **Kimi k2.6** (Moonshot) | `kimi-k2.6` | Complex-task **fallback** when the work needs an unusually large context window (long files, sprawling diffs, multi-repo grep). |
@@ -265,6 +265,7 @@ Devin runs four model presets. The skill defaults to SWE-1.6 for context gatheri
 - `--model deepseek-v4` is reasoning-bound and frequently exceeds 15 minutes on non-trivial fixtures. Long-running harnesses should set ≥ 25-minute per-dispatch timeouts when using this preset.
 - `--model kimi-k2.6` occasionally hangs ~25 minutes on complex fixtures (~5–10% failure rate at default timeouts). Either bump timeout to 30+ minutes or accept the failure rate and aggregate over ≥ 5 fixtures.
 - `--model swe-1.6` is the fastest preset; default per-dispatch timeouts (10–15 minutes) are typically sufficient.
+- `--model swe-1.6` runs on Devin's **Free tier** and does not gate on Pro quota. When the TUI banner reads `Pro · 0% remaining (resets in <Nh Mm>)`, SWE-1.6 dispatches continue to succeed; `--model deepseek-v4`, `--model glm-5.1`, and `--model kimi-k2.6` will fail with quota errors until the Pro window resets. Cross-AI dispatches that need to ride out a Pro-quota exhaustion should pin to `--model swe-1.6` for the duration.
 
 ### Devin Agent Delegation
 
@@ -337,6 +338,7 @@ devin update
 |-------|----------|
 | CLI not installed | `curl -fsSL https://cli.devin.ai/install.sh \| bash` (macOS/Linux); `irm https://static.devin.ai/cli/setup.ps1 \| iex` (Windows) |
 | Auth missing | Run `devin auth login` (authenticates via Codeium / Windsurf / Devin bridge at `server.codeium.com`); do not auto-login |
+| `Pro · 0% remaining` banner in TUI | Only affects Pro-tier models (`deepseek-v4`, `glm-5.1`, `kimi-k2.6`, Claude/Gemini variants). `--model swe-1.6` runs on the Free tier and continues to dispatch normally. Switch to SWE-1.6 for the duration of the Pro window, or wait for the Pro window to reset. |
 | Auth expired | Run `devin auth logout && devin auth login` |
 | Wrong profile | Use `devin --config <path>` to override; profiles live at `~/.config/devin/config.json` |
 | Task ran but no files changed | `--permission-mode auto` may have paused for confirmation — re-dispatch with explicit `dangerous` or `dangerous` (operator-approved) or run interactively |
