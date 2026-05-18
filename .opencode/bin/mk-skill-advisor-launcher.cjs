@@ -96,6 +96,14 @@ function log(message) {
   process.stderr.write(`[mk-skill-advisor-launcher] ${message}\n`);
 }
 
+// 008-REQ-002: gate verbose error/path logging behind MK_SKILL_ADVISOR_DEBUG.
+// Operationally-important events keep using log(); error stacks + DB-path traces use debug().
+function debug(message) {
+  if (process.env.MK_SKILL_ADVISOR_DEBUG === '1') {
+    process.stderr.write(`[mk-skill-advisor-launcher] [debug] ${message}\n`);
+  }
+}
+
 function createChildEnv(sourceEnv = process.env) {
   return Object.fromEntries(
     Object.entries(sourceEnv).filter(([key, value]) => CHILD_ENV_ALLOWLIST.has(key) && typeof value === 'string'),
@@ -204,7 +212,7 @@ function checkStrictSingleWriter() {
     }
   } catch (error) {
     if (error.code !== 'MODULE_NOT_FOUND') {
-      log(`lease check failed: ${error.message}`);
+      debug(`lease check failed: ${error.message}`);
     }
   }
 
@@ -381,7 +389,8 @@ function launchServer() {
   });
 
   childProcess.on('error', (error) => {
-    log(error.stack || error.message);
+    log(`child process error: ${error.message}`);
+    debug(error.stack || error.message);
     process.exit(1);
   });
 }
@@ -428,7 +437,7 @@ async function main() {
     // REQ-011: lease cleanup runs unconditionally regardless of child termination path.
     process.on('exit', clearLeaseFile);
     refreshPaths();
-    log(`DB: ${advisorDbPath()}`);
+    debug(`DB: ${advisorDbPath()}`);
 
     const strictSingleWriter = !isStrictModeDisabled(process.env.MK_SKILL_ADVISOR_STRICT_SINGLE_WRITER);
     if (strictSingleWriter) {
@@ -449,16 +458,19 @@ async function main() {
         server: rel(serverEntrypoint()),
         database: rel(advisorDbPath()),
       });
-    }
 
-    if (strictSingleWriter && checkStrictSingleWriter()) return;
-
-    writeLeaseFile();
-    const reprobe = readLeaseFile();
-    if (!reprobe || reprobe.pid !== process.pid) {
-      const startedAt = reprobe?.startedAt ?? new Date(0).toISOString();
-      process.stdout.write(`LEASE_HELD_BY:${reprobe ? reprobe.pid : 'unknown'} startedAt=${startedAt}\n`);
-      return;
+      // 008-REQ-001: PID guard write + reprobe stay inside the bootstrap-lock critical section.
+      // Closes the visual race window flagged in 007's deep-review iter-001 P2 finding: two
+      // launchers cannot simultaneously pass the strict-single-writer check and race to write
+      // their PID guards because both writers serialize on the bootstrap lock.
+      if (strictSingleWriter && checkStrictSingleWriter()) return;
+      writeLeaseFile();
+      const reprobe = readLeaseFile();
+      if (!reprobe || reprobe.pid !== process.pid) {
+        const startedAt = reprobe?.startedAt ?? new Date(0).toISOString();
+        process.stdout.write(`LEASE_HELD_BY:${reprobe ? reprobe.pid : 'unknown'} startedAt=${startedAt}\n`);
+        return;
+      }
     }
 
     launchServer();
@@ -475,7 +487,8 @@ async function main() {
     } catch {
       // If state logging itself fails, stderr still carries the actionable error.
     }
-    log(error.stack || error.message);
+    log(`launcher failed: ${error.message}`);
+    debug(error.stack || error.message);
     process.exit(1);
   } finally {
     if (lockHeld) {
