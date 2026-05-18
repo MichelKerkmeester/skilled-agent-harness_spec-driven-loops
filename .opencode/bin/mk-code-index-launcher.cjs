@@ -172,6 +172,8 @@ function leaseHeldFromFile(filePath, legacyPath = null) {
     return { held: true, ownerPid: lease.pid, staleReclaimable: false, startedAt, legacyPath };
   } catch (error) {
     if (error.code === 'ESRCH') return { held: false, ownerPid: lease.pid, staleReclaimable: true, startedAt, legacyPath };
+    // 016/006/009: mirror skill-advisor parity — EPERM means the process exists but we lack permission (e.g. sandbox); treat as live lease.
+    if (error.code === 'EPERM') return { held: true, ownerPid: lease.pid, staleReclaimable: false, startedAt, legacyPath };
     throw error;
   }
 }

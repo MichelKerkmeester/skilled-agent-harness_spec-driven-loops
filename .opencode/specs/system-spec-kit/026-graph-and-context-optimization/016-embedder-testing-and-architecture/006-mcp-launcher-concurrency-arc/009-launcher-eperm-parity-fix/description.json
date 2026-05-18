@@ -1,0 +1,26 @@
+{
+  "level": "1",
+  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-mcp-launcher-concurrency-arc/009-launcher-eperm-parity-fix",
+  "description": "Launcher EPERM Parity Fix",
+  "keywords": [
+    "launcher",
+    "eperm",
+    "parity",
+    "fix"
+  ],
+  "lastUpdated": "2026-05-18T20:00:10.250Z",
+  "specId": "009",
+  "folderSlug": "launcher-eperm-parity-fix",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "016-embedder-testing-and-architecture",
+    "006-mcp-launcher-concurrency-arc"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "18-05-26_21-00__phase-009-eperm-parity-fix-added-eperm-branch-to.md"
+  ]
+}
