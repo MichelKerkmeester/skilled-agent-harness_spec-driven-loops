@@ -139,12 +139,13 @@ function readLeaseFile() {
 
 function isLeaseHeld() {
   const lease = readLeaseFile();
-  if (!lease) return { held: false, ownerPid: null, staleReclaimable: false };
+  if (!lease) return { held: false, ownerPid: null, staleReclaimable: false, startedAt: null };
+  const startedAt = lease.startedAt ?? new Date(0).toISOString();
   try {
     process.kill(lease.pid, 0);
-    return { held: true, ownerPid: lease.pid, staleReclaimable: false };
+    return { held: true, ownerPid: lease.pid, staleReclaimable: false, startedAt };
   } catch (error) {
-    if (error.code === 'ESRCH') return { held: false, ownerPid: lease.pid, staleReclaimable: true };
+    if (error.code === 'ESRCH') return { held: false, ownerPid: lease.pid, staleReclaimable: true, startedAt };
     throw error;
   }
 }
@@ -328,7 +329,7 @@ function launchServer() {
 }
 
 function installSignalHandlers() {
-  for (const signal of ['SIGINT', 'SIGTERM', 'SIGHUP']) {
+  for (const signal of ['SIGINT', 'SIGTERM', 'SIGHUP', 'SIGQUIT']) {
     process.on(signal, () => {
       if (childProcess && !childProcess.killed) {
         childProcess.kill(signal);
@@ -342,6 +343,14 @@ function installSignalHandlers() {
       process.exit(128);
     });
   }
+  process.on('uncaughtException', (err) => {
+    try {
+      clearLeaseFile();
+    } catch {
+      // Preserve default uncaughtException crash behavior.
+    }
+    throw err;
+  });
 }
 
 (async () => {
@@ -383,7 +392,8 @@ function installSignalHandlers() {
     if (strictSingleWriter) {
       const leaseResult = isLeaseHeld();
       if (leaseResult.held && !leaseResult.staleReclaimable) {
-        process.stdout.write(`LEASE_HELD_BY:${leaseResult.ownerPid}\n`);
+        const startedAt = leaseResult.startedAt ?? new Date(0).toISOString();
+        process.stdout.write(`LEASE_HELD_BY:${leaseResult.ownerPid} startedAt=${startedAt}\n`);
         process.exit(0);
       }
       if (leaseResult.staleReclaimable) {
@@ -396,20 +406,14 @@ function installSignalHandlers() {
     lockHeld = await acquireBootstrapLock();
     if (lockHeld) {
       buildIfNeeded(actions);
-      writeState({
-        command: 'mk-code-index-launcher',
-        start: started,
-        end: now(),
-        status: 'ready',
-        actions,
-        server: rel(path.join(kitDir, 'mcp_server', 'dist', 'index.js')),
-      });
+      log(`ready: ${JSON.stringify({ start: started, end: now(), actions, server: rel(path.join(kitDir, 'mcp_server', 'dist', 'index.js')) })}`);
     }
 
     writeLeaseFile();
     const reprobe = readLeaseFile();
     if (!reprobe || reprobe.pid !== process.pid) {
-      process.stdout.write(`LEASE_HELD_BY:${reprobe ? reprobe.pid : 'unknown'}\n`);
+      const startedAt = reprobe?.startedAt ?? new Date(0).toISOString();
+      process.stdout.write(`LEASE_HELD_BY:${reprobe ? reprobe.pid : 'unknown'} startedAt=${startedAt}\n`);
       process.exit(0);
     }
     const onExit = () => clearLeaseFile();
@@ -417,18 +421,7 @@ function installSignalHandlers() {
 
     launchServer();
   } catch (error) {
-    try {
-      writeState({
-        command: 'mk-code-index-launcher',
-        start: started,
-        end: now(),
-        status: 'failed',
-        actions,
-        error: error.message,
-      });
-    } catch {
-      // If state logging itself fails, stderr still carries the actionable error.
-    }
+    log(`failed: ${JSON.stringify({ start: started, end: now(), actions, error: error.message })}`);
     log(error.stack || error.message);
     process.exit(1);
   } finally {

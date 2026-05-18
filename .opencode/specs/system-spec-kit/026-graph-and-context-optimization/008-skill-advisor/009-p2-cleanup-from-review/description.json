@@ -1,0 +1,17 @@
+{
+  "specFolder": "008-skill-advisor/009-p2-cleanup-from-review",
+  "description": "Phase 1: p2-cleanup-from-review",
+  "keywords": [
+    "phase",
+    "p2-cleanup-from-review"
+  ],
+  "lastUpdated": "2026-05-18T06:42:51.884Z",
+  "specId": "009",
+  "folderSlug": "p2-cleanup-from-review",
+  "parentChain": [
+    "008-skill-advisor"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

@@ -18,6 +18,7 @@ export function checkSqliteIntegrity(dbPath: string): { ok: true } | { ok: false
   let db: Database.Database | null = null;
   try {
     db = new Database(dbPath, { readonly: true, fileMustExist: true });
+    db.pragma('busy_timeout = 5000');
     const row = db.prepare('PRAGMA quick_check').get() as { quick_check?: string } | undefined;
     const value = row?.quick_check ?? 'unknown';
     if (value !== 'ok') {

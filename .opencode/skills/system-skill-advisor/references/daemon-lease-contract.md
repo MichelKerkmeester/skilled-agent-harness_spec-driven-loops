@@ -113,8 +113,24 @@ The lease file deletion is atomic. If two daemons race on stale-lease cleanup, o
 
 ---
 
-<!-- ANCHOR:6-related -->
-## 6. RELATED
+<!-- ANCHOR:6-db-dir-override -->
+## 6. DATABASE DIRECTORY OVERRIDE CONSTRAINT
+
+`MK_SKILL_ADVISOR_DB_DIR` and `SYSTEM_SKILL_ADVISOR_DB_DIR` override the skill graph database directory. The daemon lease check remains keyed by `workspaceKey(workspaceRoot)`, not by the resolved database directory.
+
+That means the override can disconnect "same workspace" from "same SQLite file":
+
+- Two launchers in the same workspace pointing at different DB directories share the same lease key. The second launcher sees `LEASE_HELD_BY:<pid>` and exits even though the two processes would write different databases. This is a false positive.
+- Two launchers in different workspaces pointing at the same shared DB directory use different lease keys. Both can pass the lease check and then write the same SQLite database. This is a false negative and can corrupt the shared DB.
+
+Recommended operator practice: do not use the DB-dir override in strict single-writer mode. If an override is unavoidable, coordinate the processes externally or unset `MK_SKILL_ADVISOR_STRICT_SINGLE_WRITER` per process so the operational risk is explicit.
+
+<!-- /ANCHOR:6-db-dir-override -->
+
+---
+
+<!-- ANCHOR:7-related -->
+## 7. RELATED
 
 - [`freshness-contract.md`](./freshness-contract.md), daemon responsibilities plus trust state vocabulary
 - [`db-path-policy.md`](./db-path-policy.md), where the lease file plus SQLite live
@@ -123,4 +139,4 @@ The lease file deletion is atomic. If two daemons race on stale-lease cleanup, o
 - `manual_testing_playbook/05--auto-update-daemon/002-lease-single-writer.md`, operator scenario
 - `mcp_server/lib/daemon/lease.ts`, source-of-truth implementation
 
-<!-- /ANCHOR:6-related -->
+<!-- /ANCHOR:7-related -->

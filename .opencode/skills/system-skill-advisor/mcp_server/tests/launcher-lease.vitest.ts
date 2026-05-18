@@ -5,6 +5,9 @@ import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { afterEach, describe, expect, it } from 'vitest';
 
+// These paths are test fixtures coupled to the production launcher layout.
+// If a launcher moves, update the fixture path and copied production file together.
+
 interface LauncherRun {
   child: ChildProcessWithoutNullStreams;
   stdout: string;
@@ -44,13 +47,14 @@ function readLease(workspaceRoot) {
 
 exports.isLeaseHeld = function isLeaseHeld(workspaceRoot) {
   const lease = readLease(workspaceRoot);
-  if (!lease) return { held: false, ownerPid: null, staleReclaimable: false };
+  if (!lease) return { held: false, ownerPid: null, staleReclaimable: false, startedAt: null };
+  const startedAt = lease.startedAt ?? new Date(0).toISOString();
   try {
     process.kill(lease.pid, 0);
-    return { held: true, ownerPid: lease.pid, staleReclaimable: false };
+    return { held: true, ownerPid: lease.pid, staleReclaimable: false, startedAt };
   } catch (error) {
-    if (error.code === 'ESRCH') return { held: false, ownerPid: lease.pid, staleReclaimable: true };
-    if (error.code === 'EPERM') return { held: true, ownerPid: lease.pid, staleReclaimable: false };
+    if (error.code === 'ESRCH') return { held: false, ownerPid: lease.pid, staleReclaimable: true, startedAt };
+    if (error.code === 'EPERM') return { held: true, ownerPid: lease.pid, staleReclaimable: false, startedAt };
     throw error;
   }
 };
@@ -147,6 +151,20 @@ async function createDeadPid(): Promise<number> {
   return pid;
 }
 
+async function createLivePid(): Promise<ChildProcess> {
+  const child = spawn(process.execPath, ['-e', 'setInterval(() => {}, 1000);'], {
+    stdio: 'ignore',
+  });
+  await new Promise<void>((resolve, reject) => {
+    child.once('spawn', () => resolve());
+    child.once('error', reject);
+  });
+  if (typeof child.pid !== 'number') {
+    throw new Error('live-pid child did not get a pid');
+  }
+  return child;
+}
+
 function readLeasePid(leaseFilePath: string): number | null {
   try {
     const parsed = JSON.parse(readFileSync(leaseFilePath, 'utf8')) as { pid?: unknown };
@@ -218,7 +236,11 @@ describe('mk-skill-advisor launcher lease', () => {
       await waitForExit(run.child, 1000);
     } catch {
       run.child.kill('SIGKILL');
-      await waitForExit(run.child, 1000);
+      try {
+        await waitForExit(run.child, 1000);
+      } catch {
+        // Best-effort teardown; the temp dir cleanup below is authoritative.
+      }
     }
   }
 
@@ -247,10 +269,36 @@ describe('mk-skill-advisor launcher lease', () => {
 
     const second = spawnLauncher(workspace);
     await waitForStdoutClose(second);
-    const exit = await waitForExit(second.child, 5000);
+    const exit = await waitForExit(second.child, 8000);
 
     expect(exit.code).toBe(0);
     expect(second.stdout).toContain(`LEASE_HELD_BY:${ownerPid}`);
+    expect(second.stdout).toMatch(new RegExp(`^LEASE_HELD_BY:${ownerPid} startedAt=\\d{4}-\\d{2}-\\d{2}T`, 'm'));
+  });
+
+  it('reports the lease startedAt value for a live owner', async () => {
+    const workspace = createWorkspace();
+    const holder = await createLivePid();
+    const startedAt = '2026-05-18T00:00:00.000Z';
+
+    try {
+      mkdirSync(dirname(workspace.leaseFilePath), { recursive: true });
+      writeFileSync(workspace.leaseFilePath, JSON.stringify({ pid: holder.pid, startedAt }));
+
+      const run = spawnLauncher(workspace);
+      await waitForStdoutClose(run);
+      const exit = await waitForExit(run.child, 8000);
+
+      expect(exit.code).toBe(0);
+      expect(run.stdout).toContain(`LEASE_HELD_BY:${holder.pid} startedAt=${startedAt}`);
+    } finally {
+      holder.kill('SIGTERM');
+      try {
+        await waitForExit(holder, 1000);
+      } catch {
+        holder.kill('SIGKILL');
+      }
+    }
   });
 
   it('reclaims a dead-pid lease file and logs staleReclaimed', async () => {
@@ -260,7 +308,8 @@ describe('mk-skill-advisor launcher lease', () => {
     writeFileSync(workspace.leaseFilePath, JSON.stringify({ pid: deadPid, startedAt: new Date().toISOString() }));
 
     const run = spawnLauncher(workspace);
-    await waitFor(() => run.stderr.includes('staleReclaimed: true'), 2000, 'stale reclaim log');
+    await waitFor(() => /^.*staleReclaimed: true\b/m.test(run.stderr), 2000, 'stale reclaim log');
+    expect(run.stderr).toMatch(/^.*staleReclaimed: true\b/m);
     // Wait for the launcher's stub server to overwrite the pre-written deadPid lease.
     await waitFor(() => {
       const pid = readLeasePid(workspace.leaseFilePath);
@@ -270,6 +319,28 @@ describe('mk-skill-advisor launcher lease', () => {
 
     expect(ownerPid).not.toBe(deadPid);
     expect(existsSync(workspace.leaseFilePath)).toBe(true);
+  });
+
+  it('removes the PID file on clean exit', async () => {
+    const workspace = createWorkspace();
+    const run = spawnLauncher(workspace);
+    await waitForLeaseOwner(workspace);
+
+    run.child.kill('SIGTERM');
+    await waitForExit(run.child, 5000);
+
+    expect(existsSync(workspace.leaseFilePath)).toBe(false);
+  });
+
+  it('removes the PID file on SIGQUIT', async () => {
+    const workspace = createWorkspace();
+    const run = spawnLauncher(workspace);
+    await waitForLeaseOwner(workspace);
+
+    run.child.kill('SIGQUIT');
+    await waitForExit(run.child, 5000);
+
+    expect(existsSync(workspace.leaseFilePath)).toBe(false);
   });
 
   it('boots a sibling when strict single-writer is disabled', async () => {

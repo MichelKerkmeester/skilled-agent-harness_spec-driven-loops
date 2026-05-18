@@ -1,9 +1,12 @@
-import { spawn, type ChildProcessWithoutNullStreams } from 'node:child_process';
+import { spawn, type ChildProcess, type ChildProcessWithoutNullStreams } from 'node:child_process';
 import { copyFileSync, existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { afterEach, describe, expect, it } from 'vitest';
+
+// These paths are test fixtures coupled to the production launcher layout.
+// If a launcher moves, update the fixture path and copied production file together.
 
 interface LauncherRun {
   child: ChildProcessWithoutNullStreams;
@@ -76,7 +79,7 @@ async function waitFor(predicate: () => boolean, timeoutMs: number, label: strin
 }
 
 async function waitForExit(
-  child: ChildProcessWithoutNullStreams,
+  child: ChildProcess,
   timeoutMs: number,
 ): Promise<{ code: number | null; signal: NodeJS.Signals | null }> {
   if (child.exitCode !== null || child.signalCode !== null) {
@@ -105,13 +108,17 @@ async function waitForStdoutClose(run: LauncherRun): Promise<void> {
 async function terminate(run: LauncherRun): Promise<void> {
   if (run.child.exitCode !== null || run.child.signalCode !== null) return;
   run.child.kill('SIGTERM');
-  try {
-    await waitForExit(run.child, 1000);
-  } catch {
-    run.child.kill('SIGKILL');
-    await waitForExit(run.child, 1000);
+    try {
+      await waitForExit(run.child, 1000);
+    } catch {
+      run.child.kill('SIGKILL');
+      try {
+        await waitForExit(run.child, 1000);
+      } catch {
+        // Best-effort teardown; the temp dir cleanup below is authoritative.
+      }
+    }
   }
-}
 
 function readLeasePid(pidFilePath: string): number | null {
   try {
@@ -127,15 +134,35 @@ async function waitForLeasePid(pidFilePath: string, pid: number | undefined): Pr
   await waitFor(() => readLeasePid(pidFilePath) === pid, 2000, `lease pid ${pid}`);
 }
 
-function findDeadPid(): number {
-  for (let pid = 999_999; pid > 900_000; pid--) {
-    try {
-      process.kill(pid, 0);
-    } catch (error) {
-      if ((error as NodeJS.ErrnoException).code === 'ESRCH') return pid;
-    }
+async function createDeadPid(): Promise<number> {
+  const child = spawn(process.execPath, ['-e', 'setInterval(() => {}, 1000);'], {
+    stdio: 'ignore',
+  });
+  await new Promise<void>((resolve, reject) => {
+    child.once('spawn', () => resolve());
+    child.once('error', reject);
+  });
+  if (typeof child.pid !== 'number') {
+    throw new Error('dead-pid child did not get a pid');
   }
-  throw new Error('Could not find a dead pid for stale lease testing');
+  const pid = child.pid;
+  child.kill('SIGTERM');
+  await waitForExit(child, 1000);
+  return pid;
+}
+
+async function createLivePid(): Promise<ChildProcess> {
+  const child = spawn(process.execPath, ['-e', 'setInterval(() => {}, 1000);'], {
+    stdio: 'ignore',
+  });
+  await new Promise<void>((resolve, reject) => {
+    child.once('spawn', () => resolve());
+    child.once('error', reject);
+  });
+  if (typeof child.pid !== 'number') {
+    throw new Error('live-pid child did not get a pid');
+  }
+  return child;
 }
 
 describe('mk-code-index launcher lease', () => {
@@ -157,22 +184,71 @@ describe('mk-code-index launcher lease', () => {
 
     const second = spawnLauncher(workspace.launcherPath, workspace.root);
     await waitForStdoutClose(second);
-    const exit = await waitForExit(second.child, 5000);
+    const exit = await waitForExit(second.child, 8000);
 
     expect(exit.code).toBe(0);
     expect(second.stdout).toContain(`LEASE_HELD_BY:${first.child.pid}`);
+    expect(second.stdout).toMatch(new RegExp(`^LEASE_HELD_BY:${first.child.pid} startedAt=\\d{4}-\\d{2}-\\d{2}T`, 'm'));
+  });
+
+  it('reports the lease startedAt value for a live owner', async () => {
+    const workspace = createWorkspace();
+    const holder = await createLivePid();
+    const startedAt = '2026-05-18T00:00:00.000Z';
+
+    try {
+      mkdirSync(dirname(workspace.pidFilePath), { recursive: true });
+      writeFileSync(workspace.pidFilePath, JSON.stringify({ pid: holder.pid, startedAt }));
+
+      const run = spawnLauncher(workspace.launcherPath, workspace.root);
+      await waitForStdoutClose(run);
+      const exit = await waitForExit(run.child, 8000);
+
+      expect(exit.code).toBe(0);
+      expect(run.stdout).toContain(`LEASE_HELD_BY:${holder.pid} startedAt=${startedAt}`);
+    } finally {
+      holder.kill('SIGTERM');
+      try {
+        await waitForExit(holder, 1000);
+      } catch {
+        holder.kill('SIGKILL');
+      }
+    }
   });
 
   it('reclaims a dead-pid lease file and logs staleReclaimed', async () => {
     const workspace = createWorkspace();
     mkdirSync(dirname(workspace.pidFilePath), { recursive: true });
-    writeFileSync(workspace.pidFilePath, JSON.stringify({ pid: findDeadPid(), startedAt: new Date().toISOString() }));
+    writeFileSync(workspace.pidFilePath, JSON.stringify({ pid: await createDeadPid(), startedAt: new Date().toISOString() }));
 
     const run = spawnLauncher(workspace.launcherPath, workspace.root);
-    await waitFor(() => run.stderr.includes('staleReclaimed: true'), 2000, 'stale reclaim log');
+    await waitFor(() => /^.*staleReclaimed: true\b/m.test(run.stderr), 2000, 'stale reclaim log');
+    expect(run.stderr).toMatch(/^.*staleReclaimed: true\b/m);
     await waitForLeasePid(workspace.pidFilePath, run.child.pid);
 
     expect(readLeasePid(workspace.pidFilePath)).toBe(run.child.pid);
+  });
+
+  it('removes the PID file on clean exit', async () => {
+    const workspace = createWorkspace();
+    const run = spawnLauncher(workspace.launcherPath, workspace.root);
+    await waitForLeasePid(workspace.pidFilePath, run.child.pid);
+
+    run.child.kill('SIGTERM');
+    await waitForExit(run.child, 5000);
+
+    expect(existsSync(workspace.pidFilePath)).toBe(false);
+  });
+
+  it('removes the PID file on SIGQUIT', async () => {
+    const workspace = createWorkspace();
+    const run = spawnLauncher(workspace.launcherPath, workspace.root);
+    await waitForLeasePid(workspace.pidFilePath, run.child.pid);
+
+    run.child.kill('SIGQUIT');
+    await waitForExit(run.child, 5000);
+
+    expect(existsSync(workspace.pidFilePath)).toBe(false);
   });
 
   it('boots a sibling when strict single-writer is disabled', async () => {

@@ -3,7 +3,7 @@
 // ───────────────────────────────────────────────────────────────
 
 import Database from 'better-sqlite3';
-import { mkdirSync } from 'node:fs';
+import { existsSync, mkdirSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 
 export interface LeaseOptions {
@@ -29,12 +29,14 @@ export interface LeaseSnapshot {
   readonly pid: number;
   readonly acquiredAt: number;
   readonly heartbeatAt: number;
+  readonly startedAt: string;
 }
 
 export interface LeaseHeldResult {
   readonly held: boolean;
   readonly ownerPid: number | null;
   readonly staleReclaimable: boolean;
+  readonly startedAt: string | null;
 }
 
 export interface SkillGraphLease {
@@ -50,8 +52,16 @@ const DEFAULT_STALE_AFTER_MS = 30_000;
 const DEFAULT_HEARTBEAT_MS = 5_000;
 const LEASE_RELATIVE_PATH = join('.opencode', 'skills', '.advisor-state', 'skill-graph-daemon-lease.sqlite');
 
+interface OpenLeaseDatabaseOptions {
+  readonly readonly?: boolean;
+}
+
 function defaultLeaseDbPath(workspaceRoot: string): string {
   return join(resolve(workspaceRoot), LEASE_RELATIVE_PATH);
+}
+
+function resolveLeaseDbPath(workspaceRoot: string, leaseDbPath?: string): string {
+  return leaseDbPath ?? defaultLeaseDbPath(workspaceRoot);
 }
 
 function workspaceKey(workspaceRoot: string): string {
@@ -75,19 +85,31 @@ function ensureSchema(db: Database.Database): void {
   `);
 }
 
-export function openLeaseDatabase(workspaceRoot: string, leaseDbPath?: string): Database.Database {
-  const dbPath = leaseDbPath ?? defaultLeaseDbPath(workspaceRoot);
-  mkdirSync(dirname(dbPath), { recursive: true });
-  const db = new Database(dbPath);
-  ensureSchema(db);
+export function openLeaseDatabase(
+  workspaceRoot: string,
+  leaseDbPath?: string,
+  options: OpenLeaseDatabaseOptions = {},
+): Database.Database {
+  const dbPath = resolveLeaseDbPath(workspaceRoot, leaseDbPath);
+  if (!options.readonly) {
+    mkdirSync(dirname(dbPath), { recursive: true });
+  }
+  const db = options.readonly
+    ? new Database(dbPath, { readonly: true, fileMustExist: true })
+    : new Database(dbPath);
+  db.pragma('busy_timeout = 1000');
+  if (!options.readonly) {
+    ensureSchema(db);
+  }
   return db;
 }
 
 export function readLeaseSnapshot(
   workspaceRoot: string,
   options: Pick<LeaseOptions, 'leaseDbPath'> = {},
+  openOptions: OpenLeaseDatabaseOptions = {},
 ): LeaseSnapshot | null {
-  const db = openLeaseDatabase(workspaceRoot, options.leaseDbPath);
+  const db = openLeaseDatabase(workspaceRoot, options.leaseDbPath, openOptions);
   try {
     const row = db.prepare(`
       SELECT workspace_key, owner_id, pid, acquired_at, heartbeat_at
@@ -107,6 +129,7 @@ export function readLeaseSnapshot(
       pid: row.pid,
       acquiredAt: row.acquired_at,
       heartbeatAt: row.heartbeat_at,
+      startedAt: new Date(row.acquired_at).toISOString(),
     };
   } finally {
     db.close();
@@ -117,21 +140,33 @@ export function isLeaseHeld(
   workspaceRoot: string,
   options: Pick<LeaseOptions, 'leaseDbPath'> = {},
 ): LeaseHeldResult {
-  const snapshot = readLeaseSnapshot(workspaceRoot, options);
+  if (!existsSync(resolveLeaseDbPath(workspaceRoot, options.leaseDbPath))) {
+    return { held: false, ownerPid: null, staleReclaimable: false, startedAt: null };
+  }
+  let snapshot: LeaseSnapshot | null;
+  try {
+    snapshot = readLeaseSnapshot(workspaceRoot, options, { readonly: true });
+  } catch (error: unknown) {
+    const code = (error as NodeJS.ErrnoException).code;
+    if (code === 'ENOENT' || code === 'SQLITE_CANTOPEN') {
+      return { held: false, ownerPid: null, staleReclaimable: false, startedAt: null };
+    }
+    throw error;
+  }
   if (!snapshot) {
-    return { held: false, ownerPid: null, staleReclaimable: false };
+    return { held: false, ownerPid: null, staleReclaimable: false, startedAt: null };
   }
 
   try {
     process.kill(snapshot.pid, 0);
-    return { held: true, ownerPid: snapshot.pid, staleReclaimable: false };
+    return { held: true, ownerPid: snapshot.pid, staleReclaimable: false, startedAt: snapshot.startedAt };
   } catch (error: unknown) {
     const code = (error as NodeJS.ErrnoException).code;
     if (code === 'ESRCH') {
-      return { held: false, ownerPid: snapshot.pid, staleReclaimable: true };
+      return { held: false, ownerPid: snapshot.pid, staleReclaimable: true, startedAt: snapshot.startedAt };
     }
     if (code === 'EPERM') {
-      return { held: true, ownerPid: snapshot.pid, staleReclaimable: false };
+      return { held: true, ownerPid: snapshot.pid, staleReclaimable: false, startedAt: snapshot.startedAt };
     }
     throw error;
   }

@@ -296,7 +296,7 @@ export function initDb(dbDir: string): Database.Database {
         code === 'SQLITE_CANTOPEN' ||
         code === 'SQLITE_IOERR_WRITE'
       ) {
-        console.warn(`[skill-graph] WAL mode unavailable (${code}); falling back to journal_mode=DELETE. Concurrent readers may stall during writes.`);
+        console.warn(`[skill-graph] WAL mode unavailable (${code}); falling back to journal_mode=DELETE. Concurrent readers may stall during writes; performance degraded vs WAL mode.`);
         db.pragma('journal_mode = DELETE');
       } else {
         throw error;

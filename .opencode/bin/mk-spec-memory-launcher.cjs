@@ -106,12 +106,13 @@ function readLeaseFile() {
 
 function isLeaseHeld() {
   const lease = readLeaseFile();
-  if (!lease) return { held: false, ownerPid: null, staleReclaimable: false };
+  if (!lease) return { held: false, ownerPid: null, staleReclaimable: false, startedAt: null };
+  const startedAt = lease.startedAt ?? new Date(0).toISOString();
   try {
     process.kill(lease.pid, 0);
-    return { held: true, ownerPid: lease.pid, staleReclaimable: false };
+    return { held: true, ownerPid: lease.pid, staleReclaimable: false, startedAt };
   } catch (error) {
-    if (error.code === 'ESRCH') return { held: false, ownerPid: lease.pid, staleReclaimable: true };
+    if (error.code === 'ESRCH') return { held: false, ownerPid: lease.pid, staleReclaimable: true, startedAt };
     throw error;
   }
 }
@@ -275,7 +276,7 @@ function launchServer() {
 }
 
 function installSignalHandlers() {
-  for (const signal of ['SIGINT', 'SIGTERM', 'SIGHUP']) {
+  for (const signal of ['SIGINT', 'SIGTERM', 'SIGHUP', 'SIGQUIT']) {
     process.on(signal, () => {
       if (childProcess && !childProcess.killed) {
         childProcess.once('exit', () => {
@@ -294,6 +295,14 @@ function installSignalHandlers() {
       process.exit(128);
     });
   }
+  process.on('uncaughtException', (err) => {
+    try {
+      clearLeaseFile();
+    } catch {
+      // Preserve default uncaughtException crash behavior.
+    }
+    throw err;
+  });
 }
 
 (async () => {
@@ -312,7 +321,8 @@ function installSignalHandlers() {
     if (strictSingleWriter) {
       const leaseResult = isLeaseHeld();
       if (leaseResult.held && !leaseResult.staleReclaimable) {
-        process.stdout.write(`LEASE_HELD_BY:${leaseResult.ownerPid}\n`);
+        const startedAt = leaseResult.startedAt ?? new Date(0).toISOString();
+        process.stdout.write(`LEASE_HELD_BY:${leaseResult.ownerPid} startedAt=${startedAt}\n`);
         process.exit(0);
       }
       if (leaseResult.staleReclaimable) {
@@ -338,7 +348,8 @@ function installSignalHandlers() {
     writeLeaseFile();
     const reprobe = readLeaseFile();
     if (!reprobe || reprobe.pid !== process.pid) {
-      process.stdout.write(`LEASE_HELD_BY:${reprobe ? reprobe.pid : 'unknown'}\n`);
+      const startedAt = reprobe?.startedAt ?? new Date(0).toISOString();
+      process.stdout.write(`LEASE_HELD_BY:${reprobe ? reprobe.pid : 'unknown'} startedAt=${startedAt}\n`);
       process.exit(0);
     }
     const onExit = () => clearLeaseFile();

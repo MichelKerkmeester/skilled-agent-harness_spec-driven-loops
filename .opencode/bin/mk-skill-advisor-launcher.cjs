@@ -128,6 +128,35 @@ function writeState(payload) {
   fs.writeFileSync(stateFile, `${JSON.stringify(payload, null, 2)}\n`);
 }
 
+function leasePath() {
+  const overrideDbDir = process.env.MK_SKILL_ADVISOR_DB_DIR ?? process.env.SYSTEM_SKILL_ADVISOR_DB_DIR;
+  const resolvedDbDir = overrideDbDir
+    ? path.resolve(overrideDbDir)
+    : dbDir;
+  return path.join(resolvedDbDir, '.mk-skill-advisor-launcher.json');
+}
+
+function readLeaseFile() {
+  try {
+    const parsed = JSON.parse(fs.readFileSync(leasePath(), 'utf8'));
+    if (typeof parsed.pid === 'number') return parsed;
+  } catch {
+    // Missing or corrupt launcher lease files are treated as already clear.
+  }
+  return null;
+}
+
+function clearLeaseFile() {
+  try {
+    const lease = readLeaseFile();
+    if (lease && (lease.pid === process.pid || lease.pid === childProcess?.pid)) {
+      fs.unlinkSync(leasePath());
+    }
+  } catch {
+    // Idempotent cleanup.
+  }
+}
+
 function run(command, args, options = {}) {
   const result = spawnSync(command, args, {
     cwd: options.cwd || root,
@@ -286,16 +315,32 @@ function launchServer() {
 }
 
 function installSignalHandlers() {
-  for (const signal of ['SIGINT', 'SIGTERM', 'SIGHUP']) {
+  for (const signal of ['SIGINT', 'SIGTERM', 'SIGHUP', 'SIGQUIT']) {
     process.on(signal, () => {
       if (childProcess && !childProcess.killed) {
+        childProcess.once('exit', () => {
+          clearLeaseFile();
+          process.exit(128);
+        });
         childProcess.kill(signal);
-        setTimeout(() => process.exit(128), 5000).unref();
+        setTimeout(() => {
+          clearLeaseFile();
+          process.exit(128);
+        }, 5000).unref();
         return;
       }
+      clearLeaseFile();
       process.exit(128);
     });
   }
+  process.on('uncaughtException', (err) => {
+    try {
+      clearLeaseFile();
+    } catch {
+      // Preserve default uncaughtException crash behavior.
+    }
+    throw err;
+  });
 }
 
 async function main() {
@@ -315,7 +360,8 @@ async function main() {
         const leaseModule = require(leasePath);
         const leaseResult = leaseModule.isLeaseHeld(root);
         if (leaseResult.held && !leaseResult.staleReclaimable) {
-          process.stdout.write(`LEASE_HELD_BY:${leaseResult.ownerPid}\n`);
+          const startedAt = leaseResult.startedAt ?? new Date(0).toISOString();
+          process.stdout.write(`LEASE_HELD_BY:${leaseResult.ownerPid} startedAt=${startedAt}\n`);
           process.exit(0);
         }
         if (leaseResult.staleReclaimable) {
