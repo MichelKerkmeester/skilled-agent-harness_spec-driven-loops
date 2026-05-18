@@ -43,7 +43,7 @@ Canonical package artifacts:
 - [10. AGENT ROUTING (`CO-013..CO-017`, `CO-032..CO-034`)](#10--agent-routing-co-013co-017-co-032co-034)
 - [11. SESSION CONTINUITY (`CO-018..CO-020`)](#11--session-continuity-co-018co-020)
 - [12. INTEGRATION PATTERNS (`CO-021..CO-022`)](#12--integration-patterns-co-021co-022)
-- [13. PROMPT TEMPLATES (`CO-023..CO-025`)](#13--prompt-templates-co-023co-025)
+- [13. PROMPT TEMPLATES (`CO-023..CO-025`, `CO-035..CO-036`)](#13--prompt-templates-co-023co-025-co-035co-036)
 - [14. PARALLEL DETACHED (`CO-026..CO-028`)](#14--parallel-detached-co-026co-028)
 - [15. CROSS-REPO AND CROSS-SERVER (`CO-029..CO-031`)](#15--cross-repo-and-cross-server-co-029co-031)
 - [16. AUTOMATED TEST CROSS-REFERENCE](#16--automated-test-cross-reference)
@@ -604,7 +604,7 @@ Expected signals: Exit 0. Exactly one MEMORY_HANDBACK delimiter pair. Payload pa
 
 ---
 
-## 13. PROMPT TEMPLATES (`CO-023..CO-025`)
+## 13. PROMPT TEMPLATES (`CO-023..CO-025`, `CO-035..CO-036`)
 
 This category covers 3 scenario summaries while the linked feature files remain the canonical execution contract. The category exercises the 13-template inventory in `assets/prompt_templates.md`, the CLEAR quality card and a real template-driven dispatch.
 
@@ -655,6 +655,42 @@ Expected signals: Exit 0. Mtime unchanged. Zero Edit/Write tool.calls. Severity 
 #### Test Execution
 
 > **Feature File:** [CO-025](07--prompt-templates/003-template-applied-to-real-dispatch.md)
+
+### CO-035 | DeepSeek-v4-pro via opencode-go through sk-small-model + sk-prompt (triple-skill flow)
+
+#### Description
+
+Verify the small-model dispatch matrix surfaces both `sk-small-model` and `cli-opencode` for a DeepSeek-v4-pro prompt, that `sk-prompt` composes the request with the right framework + `--variant high` recommendation, and that `cli-opencode` dispatches via the opencode-go provider path. This is the production happy-path for opencode-go-pool DeepSeek work.
+
+#### Scenario Contract
+
+Prompt: `Consult sk-small-model for the DeepSeek-v4-pro dispatch matrix and pick the cli-opencode opencode-go path (vs cli-devin Cognition Pro or cli-opencode DeepSeek API direct). Compose the prompt through sk-prompt with the right framework and --variant high recommendation. Dispatch with --model opencode-go/deepseek-v4-pro --variant high and capture the output.`
+
+Expected signals: Advisor returns `sk-small-model` (conf ≥ 0.85) AND `cli-opencode` (conf ≥ 0.80). Composed prompt declares `--variant high` choice. `opencode run --model opencode-go/deepseek-v4-pro --variant high --dir <repo-root>` exits 0. Output addresses the pre-plan acceptance criteria.
+
+Desired user-visible outcome: A working implementation plus the dispatch-matrix consultation evidence showing the opencode-go path was picked over the other two DeepSeek-v4-pro paths.
+
+#### Test Execution
+
+> **Feature File:** [CO-035](07--prompt-templates/004-deepseek-v4-via-opencode-go-with-sk-small-model.md)
+
+### CO-036 | Kimi-k2.6 via opencode-go through sk-small-model + sk-prompt
+
+#### Description
+
+Verify the dispatch matrix for Kimi-k2.6 (two paths: cli-devin Cognition Pro + cli-opencode opencode-go), that the operator consciously picks the opencode-go path for long-context work, that `sk-prompt` composes with a large-context framework (Kimi's strength), and that `cli-opencode --model opencode-go/kimi-k2.6` runs. Mirrors DV-029 but on the opencode-go side.
+
+#### Scenario Contract
+
+Prompt: `Consult sk-small-model for the Kimi-k2.6 dispatch matrix and pick the cli-opencode opencode-go path. Compose through sk-prompt with a large-context framework (RCAF with extended Context section) and dispatch with --model opencode-go/kimi-k2.6 --variant high.`
+
+Expected signals: Advisor returns `sk-small-model` + `cli-opencode` above threshold. model-profiles.json kimi-k2.6 entry shows 2 executors, primary_quota_pool=cognition-pro (operator overrides to opencode-go). `opencode run --model opencode-go/kimi-k2.6 --variant high` exits 0. Output references at least 5 distinct input files (large-context advantage).
+
+Desired user-visible outcome: A consolidated multi-file analysis demonstrating Kimi-k2.6's large-context advantage, dispatched via the opencode-go pool with the matrix-consultation evidence trail.
+
+#### Test Execution
+
+> **Feature File:** [CO-036](07--prompt-templates/005-kimi-k2-6-via-opencode-go-with-sk-small-model.md)
 
 ---
 

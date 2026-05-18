@@ -53,9 +53,9 @@ The index is the contract; executor skills own the patterns. If a path here is m
 
 | Executor / Skill | Owns | Surface |
 | --- | --- | --- |
-| `cli-devin` | SWE-1.6 dispatch patterns | Budget engine, output verification, confidence rubric, per-model budgets, quota fallback |
-| `cli-opencode` | DeepSeek / Kimi / Qwen dispatch patterns | Permissions matrix, budget propagation mirror |
-| `sk-prompt` | Cross-CLI prompt quality + model registry | Model-profiles.json, cli_prompt_quality_card.md |
+| `cli-devin` | SWE-1.6 (free) + DeepSeek-v4-pro / Kimi-k2.6 / GLM-5.1 via Cognition Pro | Budget engine, output verification, confidence rubric, per-model budgets, quota fallback |
+| `cli-opencode` | DeepSeek-v4-pro via DeepSeek API direct + DeepSeek/Kimi/Qwen/GLM via opencode-go pool | Permissions matrix, budget propagation mirror |
+| `sk-prompt` | Cross-CLI prompt quality + model registry | Model-profiles.json (each entry has `executors` array), cli_prompt_quality_card.md |
 | `system-spec-kit` | Runtime helpers (TypeScript) | bayesian-scorer.ts, fallback-router.ts, permissions-gate.ts |
 | `sk-small-model` (this skill) | Discovery + index only | This file, SKILL.md, graph-metadata.json |
 

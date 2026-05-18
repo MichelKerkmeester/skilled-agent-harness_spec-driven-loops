@@ -39,7 +39,7 @@ Canonical package artifacts:
 - [6. SUB-AGENT ORCHESTRATION AND WAVE PLANNING](#6--sub-agent-orchestration-and-wave-planning)
 - [7. CLI INVOCATION (`DV-001..DV-004`)](#7--cli-invocation-dv-001dv-004)
 - [8. PERMISSION MODES (`DV-005..DV-007`)](#8--permission-modes-dv-005dv-007)
-- [9. MODEL PRESETS (`DV-008..DV-010`, `DV-026`)](#9--model-presets-dv-008dv-010-dv-026)
+- [9. MODEL PRESETS (`DV-008..DV-010`, `DV-026`, `DV-028..DV-029`)](#9--model-presets-dv-008dv-010-dv-026-dv-028dv-029)
 - [10. DEVIN SURFACES (`DV-011..DV-013`)](#10--devin-surfaces-dv-011dv-013)
 - [11. SESSION CONTINUITY (`DV-014..DV-016`)](#11--session-continuity-dv-014dv-016)
 - [12. CLOUD HANDOFF (`DV-017..DV-018`, `DV-027`)](#12--cloud-handoff-dv-017dv-018-dv-027)
@@ -337,9 +337,9 @@ Desired user-visible outcome: A working sandboxed write plus OS-level evidence t
 
 ---
 
-## 9. MODEL PRESETS (`DV-008..DV-010`, `DV-026`)
+## 9. MODEL PRESETS (`DV-008..DV-010`, `DV-026`, `DV-028..DV-029`)
 
-This category covers 4 scenario summaries while the linked feature files remain the canonical execution contract. The four scenarios validate the cli-devin model preset: SWE-1.6 default (DV-008) + DeepSeek v4 primary for complex tasks (DV-009) + GLM 5.1 complex-task fallback for agentic / tool-use (DV-010) + Kimi k2.6 complex-task fallback for large context (DV-026). DV-026 uses an out-of-category ID to avoid renumbering DV-011..DV-025 already in use.
+This category covers 6 scenario summaries while the linked feature files remain the canonical execution contract. The four single-skill scenarios validate the cli-devin model preset: SWE-1.6 default (DV-008) + DeepSeek v4 primary for complex tasks (DV-009) + GLM 5.1 complex-task fallback for agentic / tool-use (DV-010) + Kimi k2.6 complex-task fallback for large context (DV-026). DV-026 uses an out-of-category ID to avoid renumbering DV-011..DV-025 already in use. The two integration scenarios (DV-028, DV-029) validate the full triple-skill flow with **sk-small-model** + **sk-prompt** + **cli-devin** acting together on a real dispatch.
 
 ### DV-008 | SWE-1.6 (default — context gathering / tool use / simple-medium tasks)
 
@@ -412,6 +412,42 @@ Desired user-visible outcome: A working consolidated analysis that demonstrates 
 #### Test Execution
 
 > **Feature File:** [DV-026](03--model-presets/004-kimi-k2-6-complex-fallback.md)
+
+### DV-028 | SWE-1.6 dispatch via sk-small-model + sk-prompt (triple-skill flow)
+
+#### Description
+
+Verify that a small-model dispatch prompt surfaces `sk-small-model` and `sk-prompt` alongside `cli-devin`, that `sk-prompt` produces a CLEAR-passing RCAF prompt with a `<pre-plan>` block per the SWE-1.6 contract, and that `cli-devin` dispatches the resulting prompt with `--model swe-1.6`. This is the load-bearing happy path for SWE-1.6 work — the three skills must compose correctly.
+
+#### Scenario Contract
+
+Prompt: `Run the skill advisor on "dispatch SWE-1.6 to write a debounce utility" and confirm sk-small-model + cli-devin both surface above the 0.8 threshold. Compose the actual dispatch through sk-prompt with RCAF + a 3-step pre-plan block, then run cli-devin with --model swe-1.6 --permission-mode auto and capture the output.`
+
+Expected signals: Advisor returns `sk-small-model` (conf ≥ 0.85) AND `cli-devin` (conf ≥ 0.80). The composed prompt file contains an explicit `<pre-plan>` block with ≥ 3 ordered steps + acceptance criteria. `devin --model swe-1.6` exits 0. Stdout contains a working debounce function.
+
+Desired user-visible outcome: A working debounce function plus evidence that the three-skill integration produces a higher-quality dispatch than a bare `devin` invocation would.
+
+#### Test Execution
+
+> **Feature File:** [DV-028](03--model-presets/005-swe16-via-sk-small-model-and-sk-prompt.md)
+
+### DV-029 | DeepSeek-v4-pro via cli-devin Cognition Pro through sk-small-model + sk-prompt
+
+#### Description
+
+Verify the dispatch matrix in `sk-prompt/assets/model-profiles.json` correctly identifies cli-devin as a Cognition-Pro path for DeepSeek-v4-pro (one of three available paths), that `sk-prompt` composes a complex-task framework (RCAF or BUILD with medium pre-plan density) for the DeepSeek dispatch, and that `cli-devin --model deepseek-v4` runs to completion. Validates the same triple-skill flow on a Pro-tier model where executor choice and quota_pool selection matter.
+
+#### Scenario Contract
+
+Prompt: `Consult sk-small-model for the DeepSeek-v4-pro dispatch matrix and pick the cli-devin Cognition Pro path. Compose the prompt through sk-prompt with the right framework + medium pre-plan + standard bundle-gate per the cli-devin v1.0.6.x contract. Dispatch a complex multi-step task with --model deepseek-v4 --permission-mode auto and capture the output.`
+
+Expected signals: Operator records the executor selection rationale citing `sk-prompt/assets/model-profiles.json` deepseek-v4-pro entry. The composed prompt uses RCAF or BUILD framework with medium pre-plan density and standard bundle-gate wording (NOT strict). `devin --model deepseek-v4` exits 0. Output addresses all 3 acceptance criteria in the pre-plan.
+
+Desired user-visible outcome: A working implementation that demonstrates the model-profile-driven path selection + sk-prompt composition path. Evidence the executor choice (Cognition Pro vs DeepSeek API direct vs opencode-go) was made consciously.
+
+#### Test Execution
+
+> **Feature File:** [DV-029](03--model-presets/006-deepseek-v4-via-sk-small-model-and-sk-prompt.md)
 
 ---
 

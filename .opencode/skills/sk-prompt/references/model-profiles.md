@@ -13,18 +13,19 @@ The registry is data, not routing code.
 
 CLI skills may read it for model facts, context lengths, quota-pool labels, and future fallback targets.
 
-The active Phase 005 scope is intentionally slim:
+The active small-model rotation is:
 
 - SWE-1.6
 - DeepSeek-v4-pro
 - Kimi-k2.6
 - Qwen3.6
+- GLM-5.1
 - optional Claude Haiku stub
 - optional Gemini Flash stub
 
-Do not add GLM-5.1, gpt-5.5, Opus, or Sonnet in this packet.
+Frontier models (gpt-5.5, Opus, Sonnet) remain out of scope.
 
-Those models were part of an earlier research shape, but the user confirmed a small-only rotation on 2026-05-18.
+Each model declares an `executors` array — one item per dispatch path. A model with multiple paths (DeepSeek-v4-pro is the canonical example: cli-devin → Cognition Pro, cli-opencode → DeepSeek API direct, cli-opencode → opencode-go) lists each path as a separate entry with its own `provider` and `quota_pool` so the fallback engine can pick a different pool when one is exhausted. `primary_quota_pool` records the preferred path.
 
 ## Source Evidence
 

@@ -54,7 +54,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete (all 6 phases shipped 2026-05-18) |
 | **Created** | 2026-05-18 |
 | **Branch** | `main` |
 | **Parent Spec** | `../` (skilled-agent-orchestration track root) |
@@ -128,13 +128,17 @@ This phase decomposition mines smallcode-master systematically (20 deep-research
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
 | 001 | `001-research-smallcode/` | Deep-research loop: 20 iters of cli-devin SWE-1.6 mining smallcode-master for 5 research questions. Output: `research/research.md` synthesis (1204 lines, HYBRID-with-Anchor verdict, 41 artifacts, 12 follow-on packets indexed). | **Complete** (synthesis shipped 2026-05-18) |
-| 002 | `002-foundation-routing/` | Phase A: sentinel `sk-small-model` skill + AGENTS.md rule + per-skill `enhances` edges. P0 (foundation for 003-006). ~6 hrs. | Draft (ready to implement) |
-| 003 | `003-permissions-matrix/` | Phase B: structured permissions-matrix schema + runtime gate for cli-opencode, replacing RM-8 four-layer prose. P0 (RM-8 prevention). ~12 hrs. | Draft (depends on 002) |
-| 004 | `004-cli-devin-quality/` | Phase C: per-model token-budget engine + output-verification pipeline (compile/run/test/lint + hard-fail) for cli-devin SWE-1.6. P1 (daily quality lift). ~28 hrs. | Draft (depends on 002) |
-| 005 | `005-shared-intelligence/` | Phase D: unified model-profile registry (4 required + 2 optional stubs for Haiku/Gemini Flash) + bayesian per-tool scoring + quota-pool-aware FALLBACK engine (NOT small→frontier escalator; user's rotation is small-only). P2. ~20 hrs (down from ~26 after bloat removal). | Draft (depends on 002+004) |
-| 006 | `006-cross-skill-propagation/` | Phase E: propagate budget patterns to cli-opencode + sk-prompt. P3 (lower priority). ~5 hrs. | Draft (depends on 004) |
+| 002 | `002-foundation-routing/` | Phase A: sentinel `sk-small-model` skill + AGENTS.md rule + per-skill `enhances` edges. P0 (foundation for 003-006). ~6 hrs. | **Complete** (shipped 2026-05-18) |
+| 003 | `003-permissions-matrix/` | Phase B: structured permissions-matrix schema + runtime gate for cli-opencode, replacing RM-8 four-layer prose. P0 (RM-8 prevention). ~12 hrs. | **Complete** (shipped 2026-05-18) |
+| 004 | `004-cli-devin-quality/` | Phase C: per-model token-budget engine + output-verification pipeline (compile/run/test/lint + hard-fail) for cli-devin SWE-1.6. P1 (daily quality lift). ~28 hrs. | **Complete** (shipped 2026-05-18) |
+| 005 | `005-shared-intelligence/` | Phase D: unified model-profile registry + bayesian per-tool scoring + quota-pool-aware FALLBACK engine (NOT small→frontier escalator; user's rotation is small-only). P2. ~20 hrs. | **Complete** (shipped 2026-05-18) |
+| 006 | `006-cross-skill-propagation/` | Phase E: propagate budget patterns to cli-opencode + sk-prompt. P3 (lower priority). ~5 hrs. | **Complete** (shipped 2026-05-18) |
 
-**Model scope (confirmed 2026-05-18)**: User's actual rotation is small-only — SWE-1.6 (Cognition free), DeepSeek-v4-pro + Kimi-k2.6 + Qwen3.6 (all share Cognition Pro pool via cli-opencode), with optional future Claude Haiku (Anthropic separate quota) and Gemini Flash (Google separate quota). Frontier models (Opus, Sonnet, gpt-5.5, GLM-5.1) are out of scope. Phase D was reworked to a quota-pool-aware fallback instead of a small→frontier escalator. Phase C's per-model-budgets.json was slimmed to 4 required + 2 optional. Phase A's trigger phrases were updated to name the actual models.
+**Model scope (confirmed 2026-05-18, refined post-implementation)**: Active small-model rotation is **SWE-1.6, DeepSeek-v4-pro, Kimi-k2.6, Qwen3.6, GLM-5.1**. Dispatch matrix:
+- **cli-devin** runs SWE-1.6 (Cognition free) + DeepSeek-v4-pro / Kimi-k2.6 / GLM-5.1 (Cognition Pro plan).
+- **cli-opencode + DeepSeek API provider** runs DeepSeek-v4-pro (direct `DEEPSEEK_API_KEY`; requires `--pure`).
+- **cli-opencode + opencode-go provider** runs DeepSeek-v4-pro / Kimi-k2.6 / Qwen3.6 / GLM-5.1 (workspace-wide opencode-go credit pool).
+- Optional unverified separate-pool stubs: Claude Haiku (Anthropic), Gemini Flash (Google). Frontier models (Opus, Sonnet, gpt-5.5) are out of scope. Phase D's fallback router is quota-pool-aware and rejects same-pool retries.
 
 **Roadmap**: See `roadmap/follow-on-phases.md` for the full phase-by-phase plan, dependency graph, sequencing rationale, and execution playbook.
 

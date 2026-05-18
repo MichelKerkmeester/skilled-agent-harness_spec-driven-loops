@@ -1,11 +1,11 @@
 ---
 name: sk-small-model
-description: Sentinel for small-model optimization patterns. Routing anchor only; real patterns live in cli-devin/references/ and cli-opencode/references/.
+description: Sentinel for small-model optimization patterns covering SWE-1.6 + DeepSeek-v4-pro + Kimi-k2.6 + Qwen3.6 + GLM-5.1 across cli-devin and cli-opencode (DeepSeek API + opencode-go provider) dispatch paths. Routing anchor only; real patterns live in cli-devin/references/ and cli-opencode/references/.
 allowed-tools: []
 version: 0.1.0
 ---
 
-<!-- Keywords: small-model, swe-1.6, deepseek-v4, kimi-k2.6, qwen3.6, haiku, gemini-flash, context-budget, output-verification, model-profiles, structured-permissions, quota-fallback -->
+<!-- Keywords: small-model, swe-1.6, deepseek-v4, kimi-k2.6, qwen3.6, glm-5.1, haiku, gemini-flash, opencode-go, deepseek-api, context-budget, output-verification, model-profiles, structured-permissions, quota-fallback -->
 
 # sk-small-model — Small-Model Optimization Sentinel
 
@@ -19,13 +19,16 @@ A discovery anchor that surfaces alongside `cli-devin` or `cli-opencode` wheneve
 
 **Use when**:
 - Dispatching to SWE-1.6 (Cognition free tier) via `cli-devin`
-- Dispatching to DeepSeek-v4-pro, Kimi-k2.6, or Qwen3.6 (Cognition Pro pool) via `cli-opencode`
+- Dispatching to DeepSeek-v4-pro, Kimi-k2.6, or GLM-5.1 (Cognition Pro plan) via `cli-devin`
+- Dispatching to DeepSeek-v4-pro directly via `cli-opencode` + DeepSeek API provider (`DEEPSEEK_API_KEY`, `--pure` required)
+- Dispatching to DeepSeek-v4-pro, Kimi-k2.6, Qwen3.6, or GLM-5.1 via `cli-opencode` + opencode-go provider (workspace credit pool)
 - Optional future targets: Claude Haiku (Anthropic separate quota), Gemini Flash (Google separate quota)
 - Asking "where is the small-model X pattern?" — context budget, output verification, model profiles, structured permissions, quota fallback
 
 **Keyword Triggers**:
 - `small model`, `small-model dispatch`
-- Model names: `swe-1.6`, `kimi-k2.6`, `deepseek-v4`, `qwen3.6`, `haiku`, `gemini flash`
+- Model names: `swe-1.6`, `kimi-k2.6`, `deepseek-v4`, `qwen3.6`, `glm-5.1`, `haiku`, `gemini flash`
+- Provider names: `opencode-go`, `deepseek-api`, `cognition pro`, `cognition free`
 - Pattern names: `context budget`, `output verification`, `model profile`, `structured permissions`, `quota fallback`, `tool scoring`
 
 ### Use Cases
@@ -41,7 +44,7 @@ Operators read `references/pattern-index.md` to find the canonical location of e
 ### When NOT to Use
 
 **Do not use for**:
-- Frontier-model dispatch (Opus, Sonnet, gpt-5.5, GLM-5.1) — those are out of scope for the 114 arc
+- Frontier-model dispatch (Opus, Sonnet, gpt-5.5) — those are out of scope for the 114 arc
 - Bulk copying of pattern bodies into other skills — the patterns are runtime-specific to their executor
 - Adding new runtime logic — this sentinel is documentation routing only
 
@@ -124,13 +127,27 @@ Operators do not invoke a router from inside this skill. They follow `references
 3. **Navigate to owner** — Operator opens the linked executor file (e.g. `cli-devin/references/context-budget.md`) for the actual pattern body.
 4. **Apply pattern** — Pattern is applied within the executor's prompt-pack or recipe, not from this sentinel.
 
+### Dispatch Matrix
+
+| Model | Executor → Provider (quota pool) | Status |
+| --- | --- | --- |
+| SWE-1.6 | `cli-devin` → cognition (cognition-free) | active |
+| DeepSeek-v4-pro | `cli-devin` → cognition (cognition-pro) · `cli-opencode` → deepseek-api (deepseek-api) · `cli-opencode` → opencode-go (opencode-go) | active (3 paths) |
+| Kimi-k2.6 | `cli-devin` → cognition (cognition-pro) · `cli-opencode` → opencode-go (opencode-go) | active (2 paths) |
+| Qwen3.6 | `cli-opencode` → opencode-go (opencode-go) | active (single path) |
+| GLM-5.1 | `cli-devin` → cognition (cognition-pro) · `cli-opencode` → opencode-go (opencode-go) | active (2 paths) |
+| Haiku | `cli-claude-code` → anthropic (anthropic) | optional-unverified |
+| Gemini Flash | `cli-gemini` → google (google) | optional-unverified |
+
+Canonical source: `sk-prompt/assets/model-profiles.json` (each entry's `executors` array enumerates the paths above).
+
 ### Ownership Boundary
 
 | Executor | Owns (Phases 002-006) |
 | --- | --- |
-| `cli-devin` | SWE-1.6 budget defaults, output verification, confidence-scoring rubric, per-model-budgets.json, quota-fallback reference |
-| `cli-opencode` | DeepSeek/Kimi/Qwen budget propagation (mirror), permissions matrix schema, structured permissions reference |
-| `sk-prompt` | Model-profile registry (`model-profiles.json`), cross-CLI budget awareness card |
+| `cli-devin` | SWE-1.6 + Cognition-Pro models (DeepSeek/Kimi/GLM via Devin) — budget defaults, output verification, confidence-scoring rubric, per-model-budgets.json, quota-fallback reference |
+| `cli-opencode` | DeepSeek API direct path + opencode-go pool (DeepSeek/Kimi/Qwen/GLM) — budget propagation mirror, permissions matrix schema, structured permissions reference |
+| `sk-prompt` | Model-profile registry (`model-profiles.json`) with per-model `executors` array, cross-CLI budget awareness card |
 | `system-spec-kit` | Runtime helpers (`bayesian-scorer.ts`, `fallback-router.ts`, `permissions-gate.ts`) |
 
 ### Adopting a New Provider (Haiku, Gemini Flash, others)
@@ -155,7 +172,7 @@ No code edits are required to adopt a new small-model provider when its quota po
 2. **Link to canonical patterns** — every reference in this skill MUST point at an executor-owned file, never duplicate the pattern body.
 3. **Keep trigger phrases honest.** Add a phrase only when a new model or pattern actually exists. Stale triggers degrade advisor confidence.
 4. **Update the index when downstream phases ship or move files.** The pattern-index is a contract; broken links erode trust.
-5. **Honor the in-scope model set** — SWE-1.6, DeepSeek-v4-pro, Kimi-k2.6, Qwen3.6 required; Haiku, Gemini Flash optional. Frontier models (Opus, Sonnet, gpt-5.5, GLM-5.1) are explicitly out of scope.
+5. **Honor the in-scope model set** — SWE-1.6, DeepSeek-v4-pro, Kimi-k2.6, Qwen3.6, GLM-5.1 required; Haiku, Gemini Flash optional. Frontier models (Opus, Sonnet, gpt-5.5) are explicitly out of scope.
 
 ### NEVER
 

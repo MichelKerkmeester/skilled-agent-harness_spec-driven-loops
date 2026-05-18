@@ -909,10 +909,15 @@ These skills let you run **cross-CLI agent teams from any starting CLI**. Whiche
 
 **sk-small-model**
 - Sentinel skill for small-model optimization patterns. Discovery anchor only — routes operators to executor-owned pattern files instead of hosting logic.
-- Active scope: SWE-1.6 (Cognition free tier via `cli-devin`), DeepSeek-v4-pro / Kimi-k2.6 / Qwen3.6 (Cognition Pro pool via `cli-opencode`). Optional stubs ready for Claude Haiku and Gemini Flash.
-- Co-surfaces alongside `cli-devin` and `cli-opencode` via `enhances` edges (weight 0.5). Lexical trigger phrases match model names + pattern names (`swe-1.6`, `kimi`, `deepseek`, `qwen`, `haiku`, `gemini flash`, `context budget`, `output verification`, `permissions matrix`, `quota fallback`, `model profile`, `tool scoring`).
+- Active dispatch matrix:
+  - **cli-devin**: SWE-1.6 (Cognition free tier) + DeepSeek-v4-pro / Kimi-k2.6 / GLM-5.1 (Cognition Pro plan).
+  - **cli-opencode + DeepSeek API provider**: DeepSeek-v4-pro (direct `DEEPSEEK_API_KEY`; requires `--pure`).
+  - **cli-opencode + opencode-go provider**: DeepSeek-v4-pro / Kimi-k2.6 / Qwen3.6 / GLM-5.1 (workspace-wide opencode-go credit pool).
+  - Optional stubs ready for Claude Haiku and Gemini Flash.
+- Each model in `sk-prompt/assets/model-profiles.json` declares its dispatch paths through an `executors` array (executor + provider + `quota_pool`), so the fallback engine can pick a different pool when one is exhausted.
+- Co-surfaces alongside `cli-devin` and `cli-opencode` via `enhances` edges (weight 0.5). Lexical trigger phrases match model names + pattern names (`swe-1.6`, `kimi`, `deepseek`, `qwen`, `glm-5.1`, `opencode-go`, `deepseek-api`, `haiku`, `gemini flash`, `context budget`, `output verification`, `permissions matrix`, `quota fallback`, `model profile`, `tool scoring`).
 - `references/pattern-index.md` maps each pattern to its canonical executor-owned location: context budget engine + output verification + per-model budgets + confidence rubric (`cli-devin/`), permissions matrix schema + structured permissions (`cli-opencode/`), unified model registry + cross-CLI budget awareness (`sk-prompt/`), runtime helpers (`system-spec-kit/mcp_server/lib/deep-loop/`).
-- Frontier models (Opus, Sonnet, gpt-5.5, GLM-5.1) are explicitly out of scope. Quota fallback is pool-aware (SWE-1.6 free → separate-pool target only; same-pool retries forbidden), not tier-based escalation.
+- Frontier models (Opus, Sonnet, gpt-5.5) are explicitly out of scope. Quota fallback is pool-aware (different-pool target only; same-pool retries forbidden), not tier-based escalation.
 - Adopting Haiku or Gemini Flash later is metadata-first: populate the registry stub, optionally set `fallback_target`, add trigger phrases, re-index the advisor. No code edits required when the new provider fits an existing quota-pool category.
 
 **deep-agent-improvement** 

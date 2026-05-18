@@ -9,12 +9,12 @@
       {
         "target": "cli-devin",
         "weight": 0.5,
-        "context": "small-model dispatch surface — SWE-1.6 budget + verification patterns"
+        "context": "cli-devin executor: SWE-1.6 (Cognition free) + DeepSeek-v4-pro / Kimi-k2.6 / GLM-5.1 (Cognition Pro)"
       },
       {
         "target": "cli-opencode",
         "weight": 0.5,
-        "context": "small-model dispatch surface — DeepSeek/Kimi/Qwen permissions matrix + budget patterns"
+        "context": "cli-opencode executor: DeepSeek-v4-pro via DeepSeek API direct + DeepSeek/Kimi/Qwen/GLM via opencode-go pool"
       }
     ],
     "siblings": [],
@@ -42,6 +42,9 @@
     "deepseek-v4",
     "kimi-k2.6",
     "qwen3.6",
+    "glm-5.1",
+    "opencode-go",
+    "deepseek-api",
     "context budget",
     "output verification",
     "structured permissions"
@@ -56,8 +59,14 @@
       "kimi-k2.6",
       "deepseek",
       "deepseek-v4",
+      "deepseek-api",
       "qwen",
       "qwen3.6",
+      "glm",
+      "glm-5.1",
+      "opencode-go",
+      "cognition free",
+      "cognition pro",
       "haiku",
       "claude haiku",
       "gemini flash",

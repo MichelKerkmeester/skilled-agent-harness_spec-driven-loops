@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-15T13:00:24.640916+00:00",
-  "skill_count": 20,
+  "generated_at": "2026-05-18T18:19:45.411919+00:00",
+  "skill_count": 21,
   "families": {
     "cli": [
       "cli-claude-code",
@@ -28,7 +28,8 @@
       "deep-agent-improvement",
       "sk-doc",
       "sk-git",
-      "sk-prompt"
+      "sk-prompt",
+      "sk-small-model"
     ],
     "system": [
       "system-code-graph",
@@ -54,6 +55,9 @@
       }
     },
     "cli-devin": {
+      "enhances": {
+        "sk-small-model": 0.5
+      },
       "siblings": {
         "cli-claude-code": 0.5,
         "cli-codex": 0.5,
@@ -70,6 +74,9 @@
       }
     },
     "cli-opencode": {
+      "enhances": {
+        "sk-small-model": 0.5
+      },
       "siblings": {
         "cli-claude-code": 0.5,
         "cli-codex": 0.5,
@@ -173,6 +180,12 @@
         "deep-agent-improvement": 0.4
       }
     },
+    "sk-small-model": {
+      "enhances": {
+        "cli-devin": 0.5,
+        "cli-opencode": 0.5
+      }
+    },
     "system-code-graph": {
       "depends_on": {
         "system-spec-kit": 0.8
@@ -206,7 +219,8 @@
         "sk-prompt": 0.7,
         "system-spec-kit": 0.7,
         "cli-devin": 0.7,
-        "cli-opencode": 0.7
+        "cli-opencode": 0.7,
+        "deep-ai-council": 0.7
       }
     },
     "system-spec-kit": {
@@ -409,6 +423,20 @@
       "enhance prompt",
       "prompt framework",
       "clear score"
+    ],
+    "sk-small-model": [
+      "small model",
+      "small-model dispatch",
+      "swe-1.6",
+      "deepseek-v4",
+      "kimi-k2.6",
+      "qwen3.6",
+      "glm-5.1",
+      "opencode-go",
+      "deepseek-api",
+      "context budget",
+      "output verification",
+      "structured permissions"
     ],
     "system-code-graph": [
       "code graph",
