@@ -1,0 +1,595 @@
+[2026-05-18T10:39:41+0200] benchmark start; candidates=sbert/jinaai/jina-embeddings-v2-base-code sbert/google/embeddinggemma-300m sbert/nomic-ai/CodeRankEmbed sbert/BAAI/bge-code-v1 sbert/dunzhang/stella_en_400M_v5
+[2026-05-18T10:39:41+0200] candidate start: sbert/jinaai/jina-embeddings-v2-base-code
+[2026-05-18T10:39:41+0200] pre-pull start: sbert/jinaai/jina-embeddings-v2-base-code
+[transformers] A new version of the following files was downloaded from https://huggingface.co/jinaai/jina-bert-v2-qk-post-norm:
+- configuration_bert.py
+. Make sure to double-check they do not contain any added malicious code. To avoid downloading new versions of the code file, you can pin a revision.
+/Users/michelkerkmeester/.cache/huggingface/modules/transformers_modules/jinaai/jina_hyphen_bert_hyphen_v2_hyphen_qk_hyphen_post_hyphen_norm/3baf9e3ac750e76e8edd3019170176884695fb94/configuration_bert.py:29: UserWarning: optimum is not installed. To use OnnxConfig and BertOnnxConfig, make sure that `optimum` package is installed
+  warnings.warn("optimum is not installed. To use OnnxConfig and BertOnnxConfig, make sure that `optimum` package is installed")
+[transformers] A new version of the following files was downloaded from https://huggingface.co/jinaai/jina-bert-v2-qk-post-norm:
+- modeling_bert.py
+. Make sure to double-check they do not contain any added malicious code. To avoid downloading new versions of the code file, you can pin a revision.
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/sentence_transformers/util/decorators.py", line 41, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/sentence_transformers/sentence_transformer/model.py", line 183, in __init__
+    super().__init__(
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/sentence_transformers/base/model.py", line 198, in __init__
+    modules, self.module_kwargs = self._load_modules(
+                                  ^^^^^^^^^^^^^^^^^^^
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/sentence_transformers/base/model.py", line 974, in _load_modules
+    return self._load_config_modules(model_name_or_path, **load_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/sentence_transformers/base/model.py", line 1165, in _load_config_modules
+    module = module_class.load(
+             ^^^^^^^^^^^^^^^^^^
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/sentence_transformers/base/modules/transformer.py", line 1708, in load
+    return cls(model_name_or_path=model_name_or_path, **init_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/sentence_transformers/util/decorators.py", line 87, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/sentence_transformers/base/modules/transformer.py", line 642, in __init__
+    self.model = self._load_model(
+                 ^^^^^^^^^^^^^^^^^
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/sentence_transformers/base/modules/transformer.py", line 1414, in _load_model
+    return model_cls.from_pretrained(model_name_or_path, config=config, **model_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/transformers/models/auto/auto_factory.py", line 379, in from_pretrained
+    model_class = get_class_from_dynamic_module(
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/transformers/dynamic_module_utils.py", line 627, in get_class_from_dynamic_module
+    return get_class_in_module(class_name, final_module, force_reload=force_download)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/transformers/dynamic_module_utils.py", line 309, in get_class_in_module
+    module_spec.loader.exec_module(module)
+  File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/Users/michelkerkmeester/.cache/huggingface/modules/transformers_modules/jinaai/jina_hyphen_bert_hyphen_v2_hyphen_qk_hyphen_post_hyphen_norm/3baf9e3ac750e76e8edd3019170176884695fb94/modeling_bert.py", line 45, in <module>
+    from transformers.pytorch_utils import (
+ImportError: cannot import name 'find_pruneable_heads_and_indices' from 'transformers.pytorch_utils' (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/transformers/pytorch_utils.py)
+[2026-05-18T10:39:47+0200] pre-pull done: sbert/jinaai/jina-embeddings-v2-base-code
+[2026-05-18T10:39:47+0200] reset: sbert/jinaai/jina-embeddings-v2-base-code
+The following files will be deleted:
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.cocoindex_code/cocoindex.db
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.cocoindex_code/target_sqlite.db
+Databases deleted.
+Settings file still exists. Run `ccc reset --all` to remove it too,
+or edit it manually.
+[2026-05-18T10:39:47+0200] index start: sbert/jinaai/jina-embeddings-v2-base-code
+[2026-05-18T11:05:39+0200] index complete: sbert/jinaai/jina-embeddings-v2-base-code; tail='    markdown: 4972 chunks     html: 34 chunks     css: 11 chunks     json: 6 chunks     text: 1 chunks '
+[2026-05-18T11:05:47+0200] probes done: sbert/jinaai/jina-embeddings-v2-base-code; summary=sbert/jinaai/jina-embeddings-v2-base-code,768,18,0,0.000,0,0,0,463,647
+[2026-05-18T11:05:47+0200] candidate done: sbert/jinaai/jina-embeddings-v2-base-code; wall_s=1566
+[2026-05-18T11:05:47+0200] candidate start: sbert/google/embeddinggemma-300m
+[2026-05-18T11:05:47+0200] pre-pull start: sbert/google/embeddinggemma-300m
+Loading weights:   0%|          | 0/314 [00:00<?, ?it/s]Loading weights: 100%|██████████| 314/314 [00:00<00:00, 7975.22it/s]
+[2026-05-18T11:05:56+0200] pre-pull done: sbert/google/embeddinggemma-300m
+[2026-05-18T11:05:56+0200] reset: sbert/google/embeddinggemma-300m
+The following files will be deleted:
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.cocoindex_code/cocoindex.db
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.cocoindex_code/target_sqlite.db
+Databases deleted.
+Settings file still exists. Run `ccc reset --all` to remove it too,
+or edit it manually.
+[2026-05-18T11:05:56+0200] index start: sbert/google/embeddinggemma-300m
+[2026-05-18T11:14:02+0200] benchmark start; candidates=sbert/jinaai/jina-embeddings-v2-base-code sbert/google/embeddinggemma-300m sbert/nomic-ai/CodeRankEmbed sbert/BAAI/bge-code-v1 sbert/dunzhang/stella_en_400M_v5
+[2026-05-18T11:14:02+0200] candidate start: sbert/jinaai/jina-embeddings-v2-base-code
+[2026-05-18T11:14:02+0200] pre-pull start: sbert/jinaai/jina-embeddings-v2-base-code
+/Users/michelkerkmeester/.cache/huggingface/modules/transformers_modules/jinaai/jina_hyphen_bert_hyphen_v2_hyphen_qk_hyphen_post_hyphen_norm/3baf9e3ac750e76e8edd3019170176884695fb94/configuration_bert.py:29: UserWarning: optimum is not installed. To use OnnxConfig and BertOnnxConfig, make sure that `optimum` package is installed
+  warnings.warn("optimum is not installed. To use OnnxConfig and BertOnnxConfig, make sure that `optimum` package is installed")
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/sentence_transformers/util/decorators.py", line 41, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/sentence_transformers/sentence_transformer/model.py", line 183, in __init__
+    super().__init__(
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/sentence_transformers/base/model.py", line 198, in __init__
+    modules, self.module_kwargs = self._load_modules(
+                                  ^^^^^^^^^^^^^^^^^^^
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/sentence_transformers/base/model.py", line 974, in _load_modules
+    return self._load_config_modules(model_name_or_path, **load_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/sentence_transformers/base/model.py", line 1165, in _load_config_modules
+    module = module_class.load(
+             ^^^^^^^^^^^^^^^^^^
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/sentence_transformers/base/modules/transformer.py", line 1708, in load
+    return cls(model_name_or_path=model_name_or_path, **init_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/sentence_transformers/util/decorators.py", line 87, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/sentence_transformers/base/modules/transformer.py", line 642, in __init__
+    self.model = self._load_model(
+                 ^^^^^^^^^^^^^^^^^
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/sentence_transformers/base/modules/transformer.py", line 1414, in _load_model
+    return model_cls.from_pretrained(model_name_or_path, config=config, **model_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/transformers/models/auto/auto_factory.py", line 379, in from_pretrained
+    model_class = get_class_from_dynamic_module(
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/transformers/dynamic_module_utils.py", line 627, in get_class_from_dynamic_module
+    return get_class_in_module(class_name, final_module, force_reload=force_download)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/transformers/dynamic_module_utils.py", line 309, in get_class_in_module
+    module_spec.loader.exec_module(module)
+  File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/Users/michelkerkmeester/.cache/huggingface/modules/transformers_modules/jinaai/jina_hyphen_bert_hyphen_v2_hyphen_qk_hyphen_post_hyphen_norm/3baf9e3ac750e76e8edd3019170176884695fb94/modeling_bert.py", line 45, in <module>
+    from transformers.pytorch_utils import (
+ImportError: cannot import name 'find_pruneable_heads_and_indices' from 'transformers.pytorch_utils' (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/transformers/pytorch_utils.py)
+[2026-05-18T11:14:07+0200] pre-pull done: sbert/jinaai/jina-embeddings-v2-base-code
+[2026-05-18T11:14:07+0200] reset: sbert/jinaai/jina-embeddings-v2-base-code
+The following files will be deleted:
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.cocoindex_code/cocoindex.db
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.cocoindex_code/target_sqlite.db
+Databases deleted.
+Settings file still exists. Run `ccc reset --all` to remove it too,
+or edit it manually.
+[2026-05-18T11:14:07+0200] index start: sbert/jinaai/jina-embeddings-v2-base-code
+[2026-05-18T11:40:15+0200] index complete: sbert/jinaai/jina-embeddings-v2-base-code; tail='    markdown: 3343 chunks     html: 19 chunks     css: 8 chunks     json: 6 chunks     text: 1 chunks '
+[2026-05-18T11:40:34+0200] probes done: sbert/jinaai/jina-embeddings-v2-base-code; summary=sbert/jinaai/jina-embeddings-v2-base-code,768,18,0,0.000,0,0,0,689,6024
+[2026-05-18T11:40:34+0200] candidate done: sbert/jinaai/jina-embeddings-v2-base-code; wall_s=1592
+[2026-05-18T11:40:34+0200] candidate start: sbert/google/embeddinggemma-300m
+[2026-05-18T11:40:34+0200] pre-pull start: sbert/google/embeddinggemma-300m
+Loading weights:   0%|          | 0/314 [00:00<?, ?it/s]Loading weights: 100%|██████████| 314/314 [00:00<00:00, 9314.74it/s]
+[2026-05-18T11:40:42+0200] pre-pull done: sbert/google/embeddinggemma-300m
+[2026-05-18T11:40:42+0200] reset: sbert/google/embeddinggemma-300m
+The following files will be deleted:
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.cocoindex_code/cocoindex.db
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.cocoindex_code/target_sqlite.db
+Databases deleted.
+Settings file still exists. Run `ccc reset --all` to remove it too,
+or edit it manually.
+[2026-05-18T11:40:42+0200] index start: sbert/google/embeddinggemma-300m
+[2026-05-18T11:50:19+0200] benchmark start; candidates=sbert/jinaai/jina-embeddings-v2-base-code sbert/google/embeddinggemma-300m sbert/nomic-ai/CodeRankEmbed sbert/BAAI/bge-code-v1 sbert/dunzhang/stella_en_400M_v5
+[2026-05-18T11:50:19+0200] candidate start: sbert/jinaai/jina-embeddings-v2-base-code
+[2026-05-18T11:50:19+0200] pre-pull start: sbert/jinaai/jina-embeddings-v2-base-code
+/Users/michelkerkmeester/.cache/huggingface/modules/transformers_modules/jinaai/jina_hyphen_bert_hyphen_v2_hyphen_qk_hyphen_post_hyphen_norm/3baf9e3ac750e76e8edd3019170176884695fb94/configuration_bert.py:29: UserWarning: optimum is not installed. To use OnnxConfig and BertOnnxConfig, make sure that `optimum` package is installed
+  warnings.warn("optimum is not installed. To use OnnxConfig and BertOnnxConfig, make sure that `optimum` package is installed")
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/sentence_transformers/util/decorators.py", line 41, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/sentence_transformers/sentence_transformer/model.py", line 183, in __init__
+    super().__init__(
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/sentence_transformers/base/model.py", line 198, in __init__
+    modules, self.module_kwargs = self._load_modules(
+                                  ^^^^^^^^^^^^^^^^^^^
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/sentence_transformers/base/model.py", line 974, in _load_modules
+    return self._load_config_modules(model_name_or_path, **load_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/sentence_transformers/base/model.py", line 1165, in _load_config_modules
+    module = module_class.load(
+             ^^^^^^^^^^^^^^^^^^
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/sentence_transformers/base/modules/transformer.py", line 1708, in load
+    return cls(model_name_or_path=model_name_or_path, **init_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/sentence_transformers/util/decorators.py", line 87, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/sentence_transformers/base/modules/transformer.py", line 642, in __init__
+    self.model = self._load_model(
+                 ^^^^^^^^^^^^^^^^^
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/sentence_transformers/base/modules/transformer.py", line 1414, in _load_model
+    return model_cls.from_pretrained(model_name_or_path, config=config, **model_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/transformers/models/auto/auto_factory.py", line 379, in from_pretrained
+    model_class = get_class_from_dynamic_module(
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/transformers/dynamic_module_utils.py", line 627, in get_class_from_dynamic_module
+    return get_class_in_module(class_name, final_module, force_reload=force_download)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/transformers/dynamic_module_utils.py", line 309, in get_class_in_module
+    module_spec.loader.exec_module(module)
+  File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/Users/michelkerkmeester/.cache/huggingface/modules/transformers_modules/jinaai/jina_hyphen_bert_hyphen_v2_hyphen_qk_hyphen_post_hyphen_norm/3baf9e3ac750e76e8edd3019170176884695fb94/modeling_bert.py", line 45, in <module>
+    from transformers.pytorch_utils import (
+ImportError: cannot import name 'find_pruneable_heads_and_indices' from 'transformers.pytorch_utils' (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/transformers/pytorch_utils.py)
+[2026-05-18T11:50:25+0200] pre-pull done: sbert/jinaai/jina-embeddings-v2-base-code
+[2026-05-18T11:50:25+0200] reset: sbert/jinaai/jina-embeddings-v2-base-code
+The following files will be deleted:
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.cocoindex_code/cocoindex.db
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.cocoindex_code/target_sqlite.db
+Databases deleted.
+Settings file still exists. Run `ccc reset --all` to remove it too,
+or edit it manually.
+[2026-05-18T11:50:26+0200] index start: sbert/jinaai/jina-embeddings-v2-base-code
+[2026-05-18T11:50:27+0200] index FAILED: sbert/jinaai/jina-embeddings-v2-base-code; rc=0; stderr=Project: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+Indexing failed: Daemon error: environment already open in this program; close it to be able to open it again with different options
+[2026-05-18T11:50:27+0200] candidate marked failed: sbert/jinaai/jina-embeddings-v2-base-code
+[2026-05-18T11:50:27+0200] candidate start: sbert/google/embeddinggemma-300m
+[2026-05-18T11:50:27+0200] pre-pull start: sbert/google/embeddinggemma-300m
+Loading weights:   0%|          | 0/314 [00:00<?, ?it/s]Loading weights: 100%|██████████| 314/314 [00:00<00:00, 6895.31it/s]
+[2026-05-18T11:50:36+0200] pre-pull done: sbert/google/embeddinggemma-300m
+[2026-05-18T11:50:36+0200] reset: sbert/google/embeddinggemma-300m
+The following files will be deleted:
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.cocoindex_code/cocoindex.db
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.cocoindex_code/target_sqlite.db
+Databases deleted.
+Settings file still exists. Run `ccc reset --all` to remove it too,
+or edit it manually.
+[2026-05-18T11:50:36+0200] index start: sbert/google/embeddinggemma-300m
+[2026-05-18T11:50:37+0200] index FAILED: sbert/google/embeddinggemma-300m; rc=0; stderr=Project: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+Indexing failed: Daemon error: environment already open in this program; close it to be able to open it again with different options
+[2026-05-18T11:50:37+0200] candidate marked failed: sbert/google/embeddinggemma-300m
+[2026-05-18T11:50:37+0200] candidate start: sbert/nomic-ai/CodeRankEmbed
+[2026-05-18T11:50:37+0200] pre-pull start: sbert/nomic-ai/CodeRankEmbed
+<All keys matched successfully>
+[2026-05-18T11:50:45+0200] pre-pull done: sbert/nomic-ai/CodeRankEmbed
+[2026-05-18T11:50:45+0200] reset: sbert/nomic-ai/CodeRankEmbed
+The following files will be deleted:
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.cocoindex_code/cocoindex.db
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.cocoindex_code/target_sqlite.db
+Databases deleted.
+Settings file still exists. Run `ccc reset --all` to remove it too,
+or edit it manually.
+[2026-05-18T11:50:45+0200] index start: sbert/nomic-ai/CodeRankEmbed
+[2026-05-18T11:50:46+0200] index FAILED: sbert/nomic-ai/CodeRankEmbed; rc=0; stderr=Project: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+Indexing failed: Daemon error: environment already open in this program; close it to be able to open it again with different options
+[2026-05-18T11:50:46+0200] candidate marked failed: sbert/nomic-ai/CodeRankEmbed
+[2026-05-18T11:50:46+0200] candidate start: sbert/BAAI/bge-code-v1
+[2026-05-18T11:50:46+0200] pre-pull start: sbert/BAAI/bge-code-v1
+Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]Loading weights: 100%|██████████| 338/338 [00:00<00:00, 7105.64it/s]
+[2026-05-18T11:50:58+0200] pre-pull done: sbert/BAAI/bge-code-v1
+[2026-05-18T11:50:58+0200] reset: sbert/BAAI/bge-code-v1
+The following files will be deleted:
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.cocoindex_code/cocoindex.db
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.cocoindex_code/target_sqlite.db
+Databases deleted.
+Settings file still exists. Run `ccc reset --all` to remove it too,
+or edit it manually.
+[2026-05-18T11:50:58+0200] index start: sbert/BAAI/bge-code-v1
+[2026-05-18T11:50:59+0200] index FAILED: sbert/BAAI/bge-code-v1; rc=0; stderr=Project: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+Indexing failed: Daemon error: environment already open in this program; close it to be able to open it again with different options
+[2026-05-18T11:50:59+0200] candidate marked failed: sbert/BAAI/bge-code-v1
+[2026-05-18T11:50:59+0200] candidate start: sbert/dunzhang/stella_en_400M_v5
+[2026-05-18T11:50:59+0200] pre-pull start: sbert/dunzhang/stella_en_400M_v5
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/sentence_transformers/util/decorators.py", line 41, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/sentence_transformers/sentence_transformer/model.py", line 183, in __init__
+    super().__init__(
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/sentence_transformers/base/model.py", line 198, in __init__
+    modules, self.module_kwargs = self._load_modules(
+                                  ^^^^^^^^^^^^^^^^^^^
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/sentence_transformers/base/model.py", line 974, in _load_modules
+    return self._load_config_modules(model_name_or_path, **load_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/sentence_transformers/base/model.py", line 1165, in _load_config_modules
+    module = module_class.load(
+             ^^^^^^^^^^^^^^^^^^
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/sentence_transformers/base/modules/transformer.py", line 1708, in load
+    return cls(model_name_or_path=model_name_or_path, **init_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/sentence_transformers/util/decorators.py", line 87, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/sentence_transformers/base/modules/transformer.py", line 642, in __init__
+    self.model = self._load_model(
+                 ^^^^^^^^^^^^^^^^^
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/sentence_transformers/base/modules/transformer.py", line 1414, in _load_model
+    return model_cls.from_pretrained(model_name_or_path, config=config, **model_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/transformers/models/auto/auto_factory.py", line 390, in from_pretrained
+    return model_class.from_pretrained(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/transformers/modeling_utils.py", line 4201, in from_pretrained
+    model = cls(config, *model_args, **model_kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/michelkerkmeester/.cache/huggingface/modules/transformers_modules/dunzhang/stella_en_400M_v5/ffeb2b7ee715c226d4ffe5e4619f7dbb48624c20/modeling.py", line 823, in __init__
+    self.encoder = NewEncoder(config)
+                   ^^^^^^^^^^^^^^^^^^
+  File "/Users/michelkerkmeester/.cache/huggingface/modules/transformers_modules/dunzhang/stella_en_400M_v5/ffeb2b7ee715c226d4ffe5e4619f7dbb48624c20/modeling.py", line 696, in __init__
+    self.layer = nn.ModuleList([NewLayer(config) for _ in range(config.num_hidden_layers)])
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/michelkerkmeester/.cache/huggingface/modules/transformers_modules/dunzhang/stella_en_400M_v5/ffeb2b7ee715c226d4ffe5e4619f7dbb48624c20/modeling.py", line 696, in <listcomp>
+    self.layer = nn.ModuleList([NewLayer(config) for _ in range(config.num_hidden_layers)])
+                                ^^^^^^^^^^^^^^^^
+  File "/Users/michelkerkmeester/.cache/huggingface/modules/transformers_modules/dunzhang/stella_en_400M_v5/ffeb2b7ee715c226d4ffe5e4619f7dbb48624c20/modeling.py", line 630, in __init__
+    self.attention = NEW_ATTENTION_CLASSES[attn_implementation](
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/michelkerkmeester/.cache/huggingface/modules/transformers_modules/dunzhang/stella_en_400M_v5/ffeb2b7ee715c226d4ffe5e4619f7dbb48624c20/modeling.py", line 451, in __init__
+    assert self.memory_efficient_attention is not None, 'please install xformers'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: please install xformers
+[2026-05-18T11:51:05+0200] pre-pull done: sbert/dunzhang/stella_en_400M_v5
+[2026-05-18T11:51:05+0200] reset: sbert/dunzhang/stella_en_400M_v5
+The following files will be deleted:
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.cocoindex_code/cocoindex.db
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.cocoindex_code/target_sqlite.db
+Databases deleted.
+Settings file still exists. Run `ccc reset --all` to remove it too,
+or edit it manually.
+[2026-05-18T11:51:05+0200] index start: sbert/dunzhang/stella_en_400M_v5
+[2026-05-18T11:51:06+0200] index FAILED: sbert/dunzhang/stella_en_400M_v5; rc=0; stderr=Project: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+Indexing failed: Daemon error: environment already open in this program; close it to be able to open it again with different options
+[2026-05-18T11:51:06+0200] candidate marked failed: sbert/dunzhang/stella_en_400M_v5
+[2026-05-18T11:51:06+0200] benchmark complete; total_wall_s=47
+[2026-05-18T11:51:06+0200] results: CSV=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/004-extended-bake-off/evidence/cocoindex-embedder-comparison-with-hybrid-rerank.csv JSONL=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/004-extended-bake-off/evidence/cocoindex-embedder-comparison-with-hybrid-rerank.jsonl RUNLOG=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/004-extended-bake-off/evidence/runlog-with-hybrid-rerank.txt
+[2026-05-18T11:51:06+0200] restore: setting COCOINDEX_CODE_EMBEDDING_MODEL back to jina-code
+Databases deleted.
+Settings file still exists. Run `ccc reset --all` to remove it too,
+or edit it manually.
+Project: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+Indexing failed: Daemon error: environment already open in this program; close it to be able to open it again with different options
+[2026-05-18T11:51:07+0200] restore complete; CocoIndex back on jina-code baseline
+[2026-05-18T11:56:30+0200] benchmark start; candidates=sbert/jinaai/jina-embeddings-v2-base-code sbert/google/embeddinggemma-300m sbert/nomic-ai/CodeRankEmbed sbert/BAAI/bge-code-v1 sbert/dunzhang/stella_en_400M_v5
+[2026-05-18T11:56:30+0200] candidate start: sbert/jinaai/jina-embeddings-v2-base-code
+[2026-05-18T11:56:30+0200] pre-pull start: sbert/jinaai/jina-embeddings-v2-base-code
+/Users/michelkerkmeester/.cache/huggingface/modules/transformers_modules/jinaai/jina_hyphen_bert_hyphen_v2_hyphen_qk_hyphen_post_hyphen_norm/3baf9e3ac750e76e8edd3019170176884695fb94/configuration_bert.py:29: UserWarning: optimum is not installed. To use OnnxConfig and BertOnnxConfig, make sure that `optimum` package is installed
+  warnings.warn("optimum is not installed. To use OnnxConfig and BertOnnxConfig, make sure that `optimum` package is installed")
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/sentence_transformers/util/decorators.py", line 41, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/sentence_transformers/sentence_transformer/model.py", line 183, in __init__
+    super().__init__(
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/sentence_transformers/base/model.py", line 198, in __init__
+    modules, self.module_kwargs = self._load_modules(
+                                  ^^^^^^^^^^^^^^^^^^^
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/sentence_transformers/base/model.py", line 974, in _load_modules
+    return self._load_config_modules(model_name_or_path, **load_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/sentence_transformers/base/model.py", line 1165, in _load_config_modules
+    module = module_class.load(
+             ^^^^^^^^^^^^^^^^^^
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/sentence_transformers/base/modules/transformer.py", line 1708, in load
+    return cls(model_name_or_path=model_name_or_path, **init_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/sentence_transformers/util/decorators.py", line 87, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/sentence_transformers/base/modules/transformer.py", line 642, in __init__
+    self.model = self._load_model(
+                 ^^^^^^^^^^^^^^^^^
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/sentence_transformers/base/modules/transformer.py", line 1414, in _load_model
+    return model_cls.from_pretrained(model_name_or_path, config=config, **model_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/transformers/models/auto/auto_factory.py", line 379, in from_pretrained
+    model_class = get_class_from_dynamic_module(
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/transformers/dynamic_module_utils.py", line 627, in get_class_from_dynamic_module
+    return get_class_in_module(class_name, final_module, force_reload=force_download)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/transformers/dynamic_module_utils.py", line 309, in get_class_in_module
+    module_spec.loader.exec_module(module)
+  File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/Users/michelkerkmeester/.cache/huggingface/modules/transformers_modules/jinaai/jina_hyphen_bert_hyphen_v2_hyphen_qk_hyphen_post_hyphen_norm/3baf9e3ac750e76e8edd3019170176884695fb94/modeling_bert.py", line 45, in <module>
+    from transformers.pytorch_utils import (
+ImportError: cannot import name 'find_pruneable_heads_and_indices' from 'transformers.pytorch_utils' (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/transformers/pytorch_utils.py)
+[2026-05-18T11:56:33+0200] pre-pull done: sbert/jinaai/jina-embeddings-v2-base-code
+[2026-05-18T11:56:33+0200] reset: sbert/jinaai/jina-embeddings-v2-base-code
+The following files will be deleted:
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.cocoindex_code/cocoindex.db
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.cocoindex_code/target_sqlite.db
+Databases deleted.
+Settings file still exists. Run `ccc reset --all` to remove it too,
+or edit it manually.
+[2026-05-18T11:56:34+0200] index start: sbert/jinaai/jina-embeddings-v2-base-code
+[2026-05-18T12:23:48+0200] index complete: sbert/jinaai/jina-embeddings-v2-base-code; tail='    markdown: 3342 chunks     html: 19 chunks     css: 8 chunks     json: 6 chunks     text: 1 chunks '
+[2026-05-18T12:24:03+0200] probes done: sbert/jinaai/jina-embeddings-v2-base-code; summary=sbert/jinaai/jina-embeddings-v2-base-code,768,18,7,0.389,1,4,2,576,4761
+[2026-05-18T12:24:03+0200] candidate done: sbert/jinaai/jina-embeddings-v2-base-code; wall_s=1653
+[2026-05-18T12:24:03+0200] candidate start: sbert/google/embeddinggemma-300m
+[2026-05-18T12:24:03+0200] pre-pull start: sbert/google/embeddinggemma-300m
+Loading weights:   0%|          | 0/314 [00:00<?, ?it/s]Loading weights: 100%|██████████| 314/314 [00:00<00:00, 11943.73it/s]
+[2026-05-18T12:24:10+0200] pre-pull done: sbert/google/embeddinggemma-300m
+[2026-05-18T12:24:10+0200] reset: sbert/google/embeddinggemma-300m
+The following files will be deleted:
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.cocoindex_code/cocoindex.db
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.cocoindex_code/target_sqlite.db
+Databases deleted.
+Settings file still exists. Run `ccc reset --all` to remove it too,
+or edit it manually.
+[2026-05-18T12:24:10+0200] index start: sbert/google/embeddinggemma-300m
+[2026-05-18T12:55:10+0200] index complete: sbert/google/embeddinggemma-300m; tail='    markdown: 3342 chunks     html: 19 chunks     css: 8 chunks     json: 6 chunks     text: 1 chunks '
+[2026-05-18T12:55:20+0200] probes done: sbert/google/embeddinggemma-300m; summary=sbert/google/embeddinggemma-300m,768,18,7,0.389,1,4,2,533,785
+[2026-05-18T12:55:20+0200] candidate done: sbert/google/embeddinggemma-300m; wall_s=1877
+[2026-05-18T12:55:20+0200] candidate start: sbert/nomic-ai/CodeRankEmbed
+[2026-05-18T12:55:20+0200] pre-pull start: sbert/nomic-ai/CodeRankEmbed
+<All keys matched successfully>
+[2026-05-18T12:55:28+0200] pre-pull done: sbert/nomic-ai/CodeRankEmbed
+[2026-05-18T12:55:28+0200] reset: sbert/nomic-ai/CodeRankEmbed
+The following files will be deleted:
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.cocoindex_code/cocoindex.db
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.cocoindex_code/target_sqlite.db
+Databases deleted.
+Settings file still exists. Run `ccc reset --all` to remove it too,
+or edit it manually.
+[2026-05-18T12:55:28+0200] index start: sbert/nomic-ai/CodeRankEmbed
+[2026-05-18T13:41:56+0200] benchmark start; candidates=sbert/jinaai/jina-embeddings-v2-base-code sbert/google/embeddinggemma-300m sbert/nomic-ai/CodeRankEmbed sbert/BAAI/bge-code-v1 sbert/dunzhang/stella_en_400M_v5
+[2026-05-18T13:41:56+0200] candidate start: sbert/jinaai/jina-embeddings-v2-base-code
+[2026-05-18T13:41:56+0200] pre-pull start: sbert/jinaai/jina-embeddings-v2-base-code
+/Users/michelkerkmeester/.cache/huggingface/modules/transformers_modules/jinaai/jina_hyphen_bert_hyphen_v2_hyphen_qk_hyphen_post_hyphen_norm/3baf9e3ac750e76e8edd3019170176884695fb94/configuration_bert.py:29: UserWarning: optimum is not installed. To use OnnxConfig and BertOnnxConfig, make sure that `optimum` package is installed
+  warnings.warn("optimum is not installed. To use OnnxConfig and BertOnnxConfig, make sure that `optimum` package is installed")
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/sentence_transformers/util/decorators.py", line 41, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/sentence_transformers/sentence_transformer/model.py", line 183, in __init__
+    super().__init__(
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/sentence_transformers/base/model.py", line 198, in __init__
+    modules, self.module_kwargs = self._load_modules(
+                                  ^^^^^^^^^^^^^^^^^^^
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/sentence_transformers/base/model.py", line 974, in _load_modules
+    return self._load_config_modules(model_name_or_path, **load_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/sentence_transformers/base/model.py", line 1165, in _load_config_modules
+    module = module_class.load(
+             ^^^^^^^^^^^^^^^^^^
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/sentence_transformers/base/modules/transformer.py", line 1708, in load
+    return cls(model_name_or_path=model_name_or_path, **init_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/sentence_transformers/util/decorators.py", line 87, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/sentence_transformers/base/modules/transformer.py", line 642, in __init__
+    self.model = self._load_model(
+                 ^^^^^^^^^^^^^^^^^
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/sentence_transformers/base/modules/transformer.py", line 1414, in _load_model
+    return model_cls.from_pretrained(model_name_or_path, config=config, **model_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/transformers/models/auto/auto_factory.py", line 379, in from_pretrained
+    model_class = get_class_from_dynamic_module(
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/transformers/dynamic_module_utils.py", line 627, in get_class_from_dynamic_module
+    return get_class_in_module(class_name, final_module, force_reload=force_download)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/transformers/dynamic_module_utils.py", line 309, in get_class_in_module
+    module_spec.loader.exec_module(module)
+  File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/Users/michelkerkmeester/.cache/huggingface/modules/transformers_modules/jinaai/jina_hyphen_bert_hyphen_v2_hyphen_qk_hyphen_post_hyphen_norm/3baf9e3ac750e76e8edd3019170176884695fb94/modeling_bert.py", line 45, in <module>
+    from transformers.pytorch_utils import (
+ImportError: cannot import name 'find_pruneable_heads_and_indices' from 'transformers.pytorch_utils' (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/transformers/pytorch_utils.py)
+[2026-05-18T13:42:00+0200] pre-pull done: sbert/jinaai/jina-embeddings-v2-base-code
+[2026-05-18T13:42:00+0200] reset: sbert/jinaai/jina-embeddings-v2-base-code
+The following files will be deleted:
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.cocoindex_code/cocoindex.db
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.cocoindex_code/target_sqlite.db
+Databases deleted.
+Settings file still exists. Run `ccc reset --all` to remove it too,
+or edit it manually.
+[2026-05-18T13:42:01+0200] index start: sbert/jinaai/jina-embeddings-v2-base-code
+[2026-05-18T14:10:00+0200] index complete: sbert/jinaai/jina-embeddings-v2-base-code; tail='    markdown: 3342 chunks     html: 19 chunks     css: 8 chunks     json: 6 chunks     text: 1 chunks '
+[2026-05-18T14:10:25+0200] probes done: sbert/jinaai/jina-embeddings-v2-base-code; summary=sbert/jinaai/jina-embeddings-v2-base-code,768,18,9,0.500,3,4,2,1002,7305
+[2026-05-18T14:10:25+0200] candidate done: sbert/jinaai/jina-embeddings-v2-base-code; wall_s=1709
+[2026-05-18T14:10:25+0200] candidate start: sbert/google/embeddinggemma-300m
+[2026-05-18T14:10:25+0200] pre-pull start: sbert/google/embeddinggemma-300m
+Loading weights:   0%|          | 0/314 [00:00<?, ?it/s]Loading weights: 100%|██████████| 314/314 [00:00<00:00, 8467.29it/s]
+[2026-05-18T14:10:34+0200] pre-pull done: sbert/google/embeddinggemma-300m
+[2026-05-18T14:10:34+0200] reset: sbert/google/embeddinggemma-300m
+The following files will be deleted:
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.cocoindex_code/cocoindex.db
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.cocoindex_code/target_sqlite.db
+Databases deleted.
+Settings file still exists. Run `ccc reset --all` to remove it too,
+or edit it manually.
+[2026-05-18T14:10:34+0200] index start: sbert/google/embeddinggemma-300m
+[2026-05-18T14:38:19+0200] index complete: sbert/google/embeddinggemma-300m; tail='    markdown: 3342 chunks     html: 19 chunks     css: 8 chunks     json: 6 chunks     text: 1 chunks '
+[2026-05-18T14:38:55+0200] probes done: sbert/google/embeddinggemma-300m; summary=sbert/google/embeddinggemma-300m,768,18,9,0.500,3,4,2,947,18848
+[2026-05-18T14:38:55+0200] candidate done: sbert/google/embeddinggemma-300m; wall_s=1710
+[2026-05-18T14:38:55+0200] candidate start: sbert/nomic-ai/CodeRankEmbed
+[2026-05-18T14:38:55+0200] pre-pull start: sbert/nomic-ai/CodeRankEmbed
+<All keys matched successfully>
+[2026-05-18T14:39:03+0200] pre-pull done: sbert/nomic-ai/CodeRankEmbed
+[2026-05-18T14:39:03+0200] reset: sbert/nomic-ai/CodeRankEmbed
+The following files will be deleted:
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.cocoindex_code/cocoindex.db
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.cocoindex_code/target_sqlite.db
+Databases deleted.
+Settings file still exists. Run `ccc reset --all` to remove it too,
+or edit it manually.
+[2026-05-18T14:39:04+0200] index start: sbert/nomic-ai/CodeRankEmbed
+[2026-05-18T15:07:36+0200] index complete: sbert/nomic-ai/CodeRankEmbed; tail='    markdown: 3342 chunks     html: 19 chunks     css: 8 chunks     json: 6 chunks     text: 1 chunks '
+[2026-05-18T15:07:58+0200] probes done: sbert/nomic-ai/CodeRankEmbed; summary=sbert/nomic-ai/CodeRankEmbed,768,18,9,0.500,3,4,2,1204,2027
+[2026-05-18T15:07:58+0200] candidate done: sbert/nomic-ai/CodeRankEmbed; wall_s=1743
+[2026-05-18T15:07:58+0200] candidate start: sbert/BAAI/bge-code-v1
+[2026-05-18T15:07:58+0200] pre-pull start: sbert/BAAI/bge-code-v1
+Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]Loading weights: 100%|██████████| 338/338 [00:00<00:00, 7770.64it/s]
+[2026-05-18T15:08:10+0200] pre-pull done: sbert/BAAI/bge-code-v1
+[2026-05-18T15:08:10+0200] reset: sbert/BAAI/bge-code-v1
+The following files will be deleted:
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.cocoindex_code/cocoindex.db
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.cocoindex_code/target_sqlite.db
+Databases deleted.
+Settings file still exists. Run `ccc reset --all` to remove it too,
+or edit it manually.
+[2026-05-18T15:08:11+0200] index start: sbert/BAAI/bge-code-v1
+[2026-05-18T16:01:59+0200] benchmark start; candidates=sbert/BAAI/bge-code-v1 sbert/dunzhang/stella_en_400M_v5
+[2026-05-18T16:01:59+0200] candidate start: sbert/BAAI/bge-code-v1
+[2026-05-18T16:01:59+0200] pre-pull start: sbert/BAAI/bge-code-v1
+Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]Loading weights: 100%|██████████| 338/338 [00:00<00:00, 8641.88it/s]
+[2026-05-18T16:02:07+0200] pre-pull done: sbert/BAAI/bge-code-v1
+[2026-05-18T16:02:07+0200] reset: sbert/BAAI/bge-code-v1
+The following files will be deleted:
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.cocoindex_code/cocoindex.db
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.cocoindex_code/target_sqlite.db
+Databases deleted.
+Settings file still exists. Run `ccc reset --all` to remove it too,
+or edit it manually.
+[2026-05-18T16:02:07+0200] index start: sbert/BAAI/bge-code-v1
+[2026-05-18T16:29:22+0200] index complete: sbert/BAAI/bge-code-v1; tail='    markdown: 4965 chunks     html: 34 chunks     css: 11 chunks     json: 6 chunks     text: 1 chunks '
+[2026-05-18T16:29:36+0200] probes done: sbert/BAAI/bge-code-v1; summary=sbert/BAAI/bge-code-v1,768,18,11,0.611,3,5,3,504,4974
+[2026-05-18T16:29:36+0200] candidate done: sbert/BAAI/bge-code-v1; wall_s=1657
+[2026-05-18T16:29:36+0200] candidate start: sbert/dunzhang/stella_en_400M_v5
+[2026-05-18T16:29:36+0200] pre-pull start: sbert/dunzhang/stella_en_400M_v5
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/sentence_transformers/util/decorators.py", line 41, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/sentence_transformers/sentence_transformer/model.py", line 183, in __init__
+    super().__init__(
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/sentence_transformers/base/model.py", line 198, in __init__
+    modules, self.module_kwargs = self._load_modules(
+                                  ^^^^^^^^^^^^^^^^^^^
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/sentence_transformers/base/model.py", line 974, in _load_modules
+    return self._load_config_modules(model_name_or_path, **load_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/sentence_transformers/base/model.py", line 1165, in _load_config_modules
+    module = module_class.load(
+             ^^^^^^^^^^^^^^^^^^
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/sentence_transformers/base/modules/transformer.py", line 1708, in load
+    return cls(model_name_or_path=model_name_or_path, **init_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/sentence_transformers/util/decorators.py", line 87, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/sentence_transformers/base/modules/transformer.py", line 642, in __init__
+    self.model = self._load_model(
+                 ^^^^^^^^^^^^^^^^^
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/sentence_transformers/base/modules/transformer.py", line 1414, in _load_model
+    return model_cls.from_pretrained(model_name_or_path, config=config, **model_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/transformers/models/auto/auto_factory.py", line 390, in from_pretrained
+    return model_class.from_pretrained(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/transformers/modeling_utils.py", line 4201, in from_pretrained
+    model = cls(config, *model_args, **model_kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/michelkerkmeester/.cache/huggingface/modules/transformers_modules/dunzhang/stella_en_400M_v5/ffeb2b7ee715c226d4ffe5e4619f7dbb48624c20/modeling.py", line 823, in __init__
+    self.encoder = NewEncoder(config)
+                   ^^^^^^^^^^^^^^^^^^
+  File "/Users/michelkerkmeester/.cache/huggingface/modules/transformers_modules/dunzhang/stella_en_400M_v5/ffeb2b7ee715c226d4ffe5e4619f7dbb48624c20/modeling.py", line 696, in __init__
+    self.layer = nn.ModuleList([NewLayer(config) for _ in range(config.num_hidden_layers)])
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/michelkerkmeester/.cache/huggingface/modules/transformers_modules/dunzhang/stella_en_400M_v5/ffeb2b7ee715c226d4ffe5e4619f7dbb48624c20/modeling.py", line 696, in <listcomp>
+    self.layer = nn.ModuleList([NewLayer(config) for _ in range(config.num_hidden_layers)])
+                                ^^^^^^^^^^^^^^^^
+  File "/Users/michelkerkmeester/.cache/huggingface/modules/transformers_modules/dunzhang/stella_en_400M_v5/ffeb2b7ee715c226d4ffe5e4619f7dbb48624c20/modeling.py", line 630, in __init__
+    self.attention = NEW_ATTENTION_CLASSES[attn_implementation](
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/michelkerkmeester/.cache/huggingface/modules/transformers_modules/dunzhang/stella_en_400M_v5/ffeb2b7ee715c226d4ffe5e4619f7dbb48624c20/modeling.py", line 451, in __init__
+    assert self.memory_efficient_attention is not None, 'please install xformers'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: please install xformers
+[2026-05-18T16:29:42+0200] pre-pull done: sbert/dunzhang/stella_en_400M_v5
+[2026-05-18T16:29:42+0200] reset: sbert/dunzhang/stella_en_400M_v5
+The following files will be deleted:
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.cocoindex_code/cocoindex.db
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.cocoindex_code/target_sqlite.db
+Databases deleted.
+Settings file still exists. Run `ccc reset --all` to remove it too,
+or edit it manually.
+[2026-05-18T16:29:43+0200] index start: sbert/dunzhang/stella_en_400M_v5
+[2026-05-18T16:54:40+0200] index FAILED: sbert/dunzhang/stella_en_400M_v5; rc=0; stderr=Project: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+[2026-05-18T16:54:40+0200] candidate marked failed: sbert/dunzhang/stella_en_400M_v5
+[2026-05-18T16:54:40+0200] benchmark complete; total_wall_s=3161
+[2026-05-18T16:54:40+0200] results: CSV=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/004-extended-bake-off/evidence/cocoindex-embedder-comparison-with-hybrid-rerank.csv JSONL=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/004-extended-bake-off/evidence/cocoindex-embedder-comparison-with-hybrid-rerank.jsonl RUNLOG=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/004-extended-bake-off/evidence/runlog-with-hybrid-rerank.txt
+[2026-05-18T16:54:40+0200] restore: setting COCOINDEX_CODE_EMBEDDING_MODEL back to jina-code
+Databases deleted.
+Settings file still exists. Run `ccc reset --all` to remove it too,
+or edit it manually.
+Project: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+Indexing failed: Daemon error: environment already open in this program; close it to be able to open it again with different options
+[2026-05-18T16:54:41+0200] restore complete; CocoIndex back on jina-code baseline
