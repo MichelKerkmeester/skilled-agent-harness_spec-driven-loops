@@ -36,9 +36,9 @@ Use this catalog as the canonical inventory for the live `mcp-coco-index` featur
 |---|---:|---|
 | CLI commands | 7 features | `01--cli-commands/` |
 | MCP server | 4 features | `02--mcp-server/` |
-| Indexing pipeline | 5 features | `03--indexing-pipeline/` |
+| Indexing pipeline | 6 features | `03--indexing-pipeline/` |
 | Daemon and readiness | 5 features | `04--daemon-and-readiness/` |
-| Search and ranking | 6 features | `05--search-and-ranking/` |
+| Search and ranking | 8 features | `05--search-and-ranking/` |
 | Patches and extensions | 6 features | `06--patches-and-extensions/` |
 | Installation tooling | 4 features | `07--installation-tooling/` |
 | Configuration | 5 features | `08--configuration/` |
@@ -314,6 +314,22 @@ See [`03--indexing-pipeline/05-vector-table-persistence.md`](03--indexing-pipeli
 
 ---
 
+### FTS5 lexical index
+
+#### Description
+
+Mirrors indexed chunks into a SQLite FTS5 virtual table for lexical retrieval.
+
+#### Current Reality
+
+The indexer calls `ensure_fts_table` when the vector target is mounted and `populate_fts` per chunk during `process_file`, so the `code_chunks_fts` virtual table is produced as a side effect of normal indexing. FTS5 rows are always written; query-time use is opt-in via `COCOINDEX_HYBRID=true`. See also [`05--search-and-ranking/07-hybrid-search-bm25-rrf.md`](05--search-and-ranking/07-hybrid-search-bm25-rrf.md) for the consuming search lane.
+
+#### Source Files
+
+See [`03--indexing-pipeline/06-fts5-lexical-index.md`](03--indexing-pipeline/06-fts5-lexical-index.md) for full implementation and validation file listings.
+
+---
+
 ## 5. DAEMON AND READINESS
 
 These entries cover daemon lifecycle, project registry behavior, indexing concurrency and readiness helper scripts.
@@ -495,6 +511,38 @@ The CLI prints `No results found.` for successful empty responses. MCP responses
 #### Source Files
 
 See [`05--search-and-ranking/06-no-results-handling.md`](05--search-and-ranking/06-no-results-handling.md) for full implementation and validation file listings.
+
+---
+
+### Hybrid search (BM25 + RRF fusion)
+
+#### Description
+
+Fuses vector and FTS5 BM25 result lists with weighted Reciprocal Rank Fusion when enabled.
+
+#### Current Reality
+
+`query_codebase` dispatches on `config.hybrid_enabled`. When true, it runs the vector channel and the FTS5 channel sequentially, then fuses both with `rrf_fuse` using `COCOINDEX_HYBRID_VECTOR_WEIGHT`, `COCOINDEX_HYBRID_FTS5_WEIGHT` and `COCOINDEX_HYBRID_RRF_K`. Lift estimates are research-derived and not yet validated on the fixture suite. Opt-in via `COCOINDEX_HYBRID=true`. Requires the FTS5 surface from [`03--indexing-pipeline/06-fts5-lexical-index.md`](03--indexing-pipeline/06-fts5-lexical-index.md).
+
+#### Source Files
+
+See [`05--search-and-ranking/07-hybrid-search-bm25-rrf.md`](05--search-and-ranking/07-hybrid-search-bm25-rrf.md) for full implementation and validation file listings.
+
+---
+
+### Reranker (GTE cross-encoder)
+
+#### Description
+
+Reranks the top hybrid candidates with a local GTE cross-encoder when enabled.
+
+#### Current Reality
+
+`reranker.rerank` runs after RRF fusion when both `COCOINDEX_HYBRID=true` and `COCOINDEX_RERANK=true`. The cross-encoder score replaces the fused score for the first `COCOINDEX_RERANK_TOP_K` candidates and `pre_rerank_score` is preserved for audit. Default model is `Alibaba-NLP/gte-multilingual-reranker-base`; the reranker is fail-soft on model-load failure and skipped when available RAM is below the 2 GB gate. Lift estimates are research-derived and not yet validated on the fixture suite.
+
+#### Source Files
+
+See [`05--search-and-ranking/08-reranker-gte-cross-encoder.md`](05--search-and-ranking/08-reranker-gte-cross-encoder.md) for full implementation and validation file listings.
 
 ---
 
