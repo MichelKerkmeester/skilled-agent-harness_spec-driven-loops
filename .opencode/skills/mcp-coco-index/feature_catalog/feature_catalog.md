@@ -322,7 +322,7 @@ Mirrors indexed chunks into a SQLite FTS5 virtual table for lexical retrieval.
 
 #### Current Reality
 
-The indexer calls `ensure_fts_table` when the vector target is mounted and `populate_fts` per chunk during `process_file`, so the `code_chunks_fts` virtual table is produced as a side effect of normal indexing. FTS5 rows are always written; query-time use is opt-in via `COCOINDEX_HYBRID=true`. See also [`05--search-and-ranking/07-hybrid-search-bm25-rrf.md`](05--search-and-ranking/07-hybrid-search-bm25-rrf.md) for the consuming search lane.
+The indexer calls `ensure_fts_table` when the vector target is mounted and `populate_fts` per chunk during `process_file`, so the `code_chunks_fts` virtual table is produced as a side effect of normal indexing. FTS5 rows are always written; query-time use is default-on as of v1.10 (`COCOINDEX_HYBRID=true`) and operators can fall back to vector-only by setting `COCOINDEX_HYBRID=false`. See also [`05--search-and-ranking/07-hybrid-search-bm25-rrf.md`](05--search-and-ranking/07-hybrid-search-bm25-rrf.md) for the consuming search lane.
 
 #### Source Files
 
@@ -522,7 +522,7 @@ Fuses vector and FTS5 BM25 result lists with weighted Reciprocal Rank Fusion whe
 
 #### Current Reality
 
-`query_codebase` dispatches on `config.hybrid_enabled`. When true, it runs the vector channel and the FTS5 channel sequentially, then fuses both with `rrf_fuse` using `COCOINDEX_HYBRID_VECTOR_WEIGHT`, `COCOINDEX_HYBRID_FTS5_WEIGHT` and `COCOINDEX_HYBRID_RRF_K`. Lift estimates are research-derived and not yet validated on the fixture suite. Opt-in via `COCOINDEX_HYBRID=true`. Requires the FTS5 surface from [`03--indexing-pipeline/06-fts5-lexical-index.md`](03--indexing-pipeline/06-fts5-lexical-index.md).
+`query_codebase` dispatches on `config.hybrid_enabled`. The flag is **default-on** as of v1.10; when true, the dispatcher runs the vector channel and the FTS5 channel sequentially, then fuses both with `rrf_fuse` using `COCOINDEX_HYBRID_VECTOR_WEIGHT`, `COCOINDEX_HYBRID_FTS5_WEIGHT` and `COCOINDEX_HYBRID_RRF_K`. Operators fall back to vector-only retrieval by setting `COCOINDEX_HYBRID=false`. Lift estimates are research-derived and not yet validated on the fixture suite. Requires the FTS5 surface from [`03--indexing-pipeline/06-fts5-lexical-index.md`](03--indexing-pipeline/06-fts5-lexical-index.md).
 
 #### Source Files
 
@@ -530,19 +530,19 @@ See [`05--search-and-ranking/07-hybrid-search-bm25-rrf.md`](05--search-and-ranki
 
 ---
 
-### Reranker (GTE cross-encoder)
+### Reranker (cross-encoder)
 
 #### Description
 
-Reranks the top hybrid candidates with a local GTE cross-encoder when enabled.
+Reranks the top hybrid candidates with a local cross-encoder; default-on as of v1.10.
 
 #### Current Reality
 
-`reranker.rerank` runs after RRF fusion when both `COCOINDEX_HYBRID=true` and `COCOINDEX_RERANK=true`. The cross-encoder score replaces the fused score for the first `COCOINDEX_RERANK_TOP_K` candidates and `pre_rerank_score` is preserved for audit. Default model is `Alibaba-NLP/gte-multilingual-reranker-base`; the reranker is fail-soft on model-load failure and skipped when available RAM is below the 2 GB gate. Lift estimates are research-derived and not yet validated on the fixture suite.
+`reranker.rerank` runs after RRF fusion. Both `COCOINDEX_HYBRID` and `COCOINDEX_RERANK` are default-on (`true`); operators opt out by setting them to `false`. The cross-encoder score replaces the fused score for the first `COCOINDEX_RERANK_TOP_K` candidates and `pre_rerank_score` is preserved for audit. Default model is `BAAI/bge-reranker-v2-m3` (swapped from `Alibaba-NLP/gte-multilingual-reranker-base` in v1.10 because GTE fails on Apple Silicon MPS and `RerankerAdapter` silently falls back). The reranker is fail-soft on model-load failure and skipped when available RAM is below the 2 GB gate.
 
 #### Source Files
 
-See [`05--search-and-ranking/08-reranker-gte-cross-encoder.md`](05--search-and-ranking/08-reranker-gte-cross-encoder.md) for full implementation and validation file listings.
+See [`05--search-and-ranking/08-reranker-cross-encoder.md`](05--search-and-ranking/08-reranker-cross-encoder.md) for full implementation and validation file listings.
 
 ---
 
@@ -774,7 +774,7 @@ Supports runtime overrides for config directory, root path, device and legacy va
 
 #### Current Reality
 
-`COCOINDEX_CODE_DIR` changes the global settings directory. `COCOINDEX_CODE_ROOT_PATH` pins the project root for helper scripts and legacy config. Extra extension and excluded pattern environment variables remain in the compatibility config path.
+`COCOINDEX_CODE_DIR` changes the global settings directory. `COCOINDEX_CODE_ROOT_PATH` pins the project root for helper scripts and legacy config. Extra extension and excluded pattern environment variables remain in the compatibility config path. Chunking, hybrid search and cross-encoder reranking are also driven by environment variables consumed by `Config.from_env`; hybrid and reranker are default-on (`COCOINDEX_HYBRID=true`, `COCOINDEX_RERANK=true`) and the reranker default model is `BAAI/bge-reranker-v2-m3`.
 
 #### Source Files
 

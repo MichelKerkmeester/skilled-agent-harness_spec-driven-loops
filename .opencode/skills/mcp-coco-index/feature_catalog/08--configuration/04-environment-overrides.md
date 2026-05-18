@@ -30,24 +30,24 @@ Environment overrides give agents and CI runs deterministic control over where C
 | `COCOINDEX_CODE_CHUNK_OVERLAP` | 200 | 0..1000 | Overlap between adjacent chunks. |
 | `COCOINDEX_CODE_MIN_CHUNK_SIZE` | 250 | 50..1000 | Minimum chunk size before merging with a neighbor. |
 
-### Hybrid search overrides (opt-in)
+### Hybrid search overrides (default ON)
 
 | Variable | Default | Bounds | Behavior |
 |----------|--------:|--------|----------|
-| `COCOINDEX_HYBRID` | `false` | truthy/falsy | Opt-in flag that enables the FTS5 + RRF hybrid lane in `query_codebase`. |
+| `COCOINDEX_HYBRID` | `true` | truthy/falsy | Default-on flag for the FTS5 + RRF hybrid lane in `query_codebase`. Set `false` to fall back to vector-only retrieval. |
 | `COCOINDEX_HYBRID_VECTOR_WEIGHT` | 0.7 | 0.0..2.0 | Weight applied to the vector channel during RRF fusion. |
 | `COCOINDEX_HYBRID_FTS5_WEIGHT` | 0.7 | 0.0..2.0 | Weight applied to the FTS5 channel during RRF fusion. |
 | `COCOINDEX_HYBRID_RRF_K` | 60 | 1..500 | RRF smoothing constant `k` in `1 / (k + rank)`. |
 
-### Reranker overrides (opt-in)
+### Reranker overrides (default ON)
 
 | Variable | Default | Bounds | Behavior |
 |----------|--------:|--------|----------|
-| `COCOINDEX_RERANK` | `false` | truthy/falsy | Opt-in flag that enables cross-encoder reranking after RRF fusion. |
-| `COCOINDEX_RERANK_MODEL` | `Alibaba-NLP/gte-multilingual-reranker-base` | non-empty string | Cross-encoder model name passed to `sentence-transformers.CrossEncoder`. Empty values fall back to the default with a warning. |
+| `COCOINDEX_RERANK` | `true` | truthy/falsy | Default-on flag for cross-encoder reranking after RRF fusion. Set `false` to disable the rerank stage. |
+| `COCOINDEX_RERANK_MODEL` | `BAAI/bge-reranker-v2-m3` | non-empty string | Cross-encoder model name passed to `sentence-transformers.CrossEncoder`. Empty values fall back to the default with a warning. Pin `Alibaba-NLP/gte-multilingual-reranker-base` only on non-MPS backends — GTE currently fails on Apple Silicon MPS and `RerankerAdapter` falls back silently. |
 | `COCOINDEX_RERANK_TOP_K` | 20 | 5..100 | Number of candidates passed to the cross-encoder; the remaining tail keeps its prior order. |
 
-Chunking, hybrid and reranking overrides are research-derived Stage A defaults; lift estimates are not yet validated on the fixture suite. The reranker only loads when `COCOINDEX_RERANK=true` and available RAM clears the 2 GB gate enforced by `RerankerAdapter._load_model`.
+Chunking, hybrid and reranking overrides are research-derived Stage A defaults; lift estimates are not yet validated on the fixture suite. The reranker loads on first call unless `COCOINDEX_RERANK=false` is set and skips when available RAM is below the 2 GB gate enforced by `RerankerAdapter._load_model`.
 <!-- /ANCHOR:current-reality -->
 
 ---
@@ -61,7 +61,7 @@ Chunking, hybrid and reranking overrides are research-derived Stage A defaults; 
 |------|-------|------|
 | `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/settings.py:123` | Settings | Uses `COCOINDEX_CODE_DIR` for global settings location. |
 | `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/config.py:115` | Config helper | `_parse_int_env` bounds chunking and RRF integer overrides. |
-| `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/config.py:153` | Config helper | `_parse_bool_env` parses opt-in flags for hybrid and reranker. |
+| `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/config.py:153` | Config helper | `_parse_bool_env` parses the hybrid and reranker boolean flags (default-on as of v1.10). |
 | `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/config.py:174` | Config helper | `_parse_float_env` bounds RRF channel weights. |
 | `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/config.py:291` | Config | Loads chunking, hybrid and reranker env vars into the `Config` singleton. |
 | `.opencode/skills/mcp-coco-index/scripts/common.sh:123` | Script helper | Runs `ccc` with `COCOINDEX_CODE_ROOT_PATH`. |

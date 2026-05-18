@@ -1,19 +1,41 @@
 ---
-title: "08. Reranker (GTE cross-encoder)"
-description: "Reranks the top hybrid candidates with a local GTE cross-encoder when enabled."
+title: "08. Reranker (cross-encoder)"
+description: "Reranks the top hybrid candidates with a local cross-encoder; default model is BAAI/bge-reranker-v2-m3."
 ---
 
-# 08. Reranker (GTE cross-encoder)
+# 08. Reranker (cross-encoder)
 
-Reranks the top hybrid candidates with a local GTE cross-encoder when enabled. The reranker runs after RRF fusion and dedup but before the pagination window, replacing the fused score on the reranked head while preserving the prior score on `pre_rerank_score` for audit.
+Reranks the top hybrid candidates with a local cross-encoder when enabled. The reranker runs after RRF fusion and dedup but before the pagination window, replacing the fused score on the reranked head while preserving the prior score on `pre_rerank_score` for audit.
 
 ---
 
 <!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
-Cross-encoders score full `(query, candidate)` pairs and typically lift top-N precision when query and chunk wording disagree. The reranker is opt-in via `COCOINDEX_RERANK=true`. The default model is `Alibaba-NLP/gte-multilingual-reranker-base`. Estimated lift is research-derived and not yet validated on the fixture suite; default-on adoption is gated on p95 latency add under 500 ms and a measurable hit improvement on the 18-pair fixture.
+Cross-encoders score full `(query, candidate)` pairs and typically lift top-N precision when query and chunk wording disagree. The reranker is **default-on** as of v1.10 (`COCOINDEX_RERANK=true`); operators opt out by setting `COCOINDEX_RERANK=false`. The default model is `BAAI/bge-reranker-v2-m3` (Apache-2.0, ~568M params, MPS-compatible).
 <!-- /ANCHOR:overview -->
+
+---
+
+<!-- ANCHOR:known-limitations -->
+## 1a. KNOWN LIMITATIONS — GTE on Apple Silicon MPS
+
+The prior default `Alibaba-NLP/gte-multilingual-reranker-base` currently fails on Apple Silicon MPS with the following error under sentence-transformers 5.4.1 + transformers 5.8.0 + torch 2.11.0:
+
+```
+AcceleratorError: index 733634176249652595 is out of bounds: 0, range 0 to 21
+```
+
+`RerankerAdapter` catches the exception and returns candidates in their unranked order, so the daemon continues to respond successfully but **every query effectively bypasses the reranker** — `pre_rerank_score` and `reranker_score` stay populated but the order is the upstream RRF order. This silent fallback was caught during end-to-end validation immediately after the v1.10 default-on promotion, before any benchmark could observe degraded rerank quality.
+
+Mitigation in v1.10: the default model was swapped to `BAAI/bge-reranker-v2-m3`, which works on MPS. Operators on non-MPS backends, or those validating future ST/transformers compatibility patches, can re-pin GTE via:
+
+```bash
+export COCOINDEX_RERANK_MODEL="Alibaba-NLP/gte-multilingual-reranker-base"
+```
+
+The fail-soft contract still applies: if any reranker model fails to load or to predict, the daemon logs a warning and returns the upstream candidate order unchanged.
+<!-- /ANCHOR:known-limitations -->
 
 ---
 
@@ -58,6 +80,6 @@ Cross-encoders score full `(query, candidate)` pairs and typically lift top-N pr
 
 - Group: Search and ranking
 - Canonical catalog source: `feature_catalog.md`
-- Feature file path: `05--search-and-ranking/08-reranker-gte-cross-encoder.md`
+- Feature file path: `05--search-and-ranking/08-reranker-cross-encoder.md`
 
 <!-- /ANCHOR:source-metadata -->

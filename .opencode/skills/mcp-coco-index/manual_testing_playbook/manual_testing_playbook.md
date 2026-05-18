@@ -383,28 +383,28 @@ Expected signals: PINNED chunk count is strictly less than BASELINE chunk count;
 #### Test Execution
 > **Feature File:** [CFG-005](03--configuration/005-chunking-env-override.md)
 
-### CFG-006 | Hybrid search opt-in
+### CFG-006 | Hybrid search default-on (with opt-out)
 
 #### Description
-Verify `COCOINDEX_HYBRID=true` activates the FTS5 + RRF hybrid lane; sample MCP search responses then carry non-null `fts5_score` and `rrf_score` on every result, while the same query with the env unset leaves both fields null.
+Verify hybrid search is on by default (`COCOINDEX_HYBRID=true` as of v1.10) and sample MCP search responses then carry non-null `fts5_score` and `rrf_score` on every result. Also verify operators can disable the FTS5 + RRF lane via `COCOINDEX_HYBRID=false`, which returns the response shape to vector-only with both fields null.
 
 #### Scenario Contract
-Prompt summary: As a manual-testing orchestrator, run a sample MCP CocoIndex search with COCOINDEX_HYBRID unset (HYBRID-OFF), then export COCOINDEX_HYBRID=true and rerun (HYBRID-ON) against the current CocoIndex daemon in this repository. Verify HYBRID-OFF results leave fts5_score and rrf_score null; HYBRID-ON results populate both fields on every entry; daemon log records the lane switch. Return a concise user-facing pass/fail verdict with the main reason.
+Prompt summary: As a manual-testing orchestrator, run a sample MCP CocoIndex search with `COCOINDEX_HYBRID` unset (DEFAULT-ON) and confirm both hybrid fields are populated, then export `COCOINDEX_HYBRID=false` and rerun (HYBRID-DISABLED) against the current CocoIndex daemon in this repository. Verify DEFAULT-ON results populate `fts5_score` and `rrf_score` on every entry; HYBRID-DISABLED results leave both fields null; daemon log records the lane switch. Return a concise user-facing pass/fail verdict with the main reason.
 
-Expected signals: HYBRID-OFF response leaves `fts5_score` and `rrf_score` null on every result; HYBRID-ON response populates both fields on every result; daemon.log shows `lane=hybrid_rrf` after the env flip and no warn-on-invalid fallback
+Expected signals: DEFAULT-ON (env unset) response populates `fts5_score` and `rrf_score` on every result; HYBRID-DISABLED (`COCOINDEX_HYBRID=false`) response leaves both fields null on every result; daemon.log shows `lane=hybrid_rrf` in DEFAULT-ON and falls back cleanly under the explicit opt-out
 
 #### Test Execution
 > **Feature File:** [CFG-006](03--configuration/006-hybrid-search-opt-in.md)
 
-### CFG-007 | Reranker opt-in
+### CFG-007 | Reranker default-on (with opt-out)
 
 #### Description
-Verify `COCOINDEX_RERANK=true` activates the GTE cross-encoder rerank stage; sample MCP search responses then carry non-null `pre_rerank_score` and `reranker_score` on every result; the first call after a cold cache triggers a one-time ~0.61GB model download from Hugging Face (Alibaba-NLP/gte-multilingual-reranker-base).
+Verify the reranker is on by default (`COCOINDEX_RERANK=true` as of v1.10) and that the default model `BAAI/bge-reranker-v2-m3` populates non-null `pre_rerank_score` and `reranker_score` on every result. Also verify operators can disable the rerank stage via `COCOINDEX_RERANK=false`. First call after a cold cache triggers a one-time ~2.3 GB model download from Hugging Face (`BAAI/bge-reranker-v2-m3`).
 
 #### Scenario Contract
-Prompt summary: As a manual-testing orchestrator, run a sample MCP CocoIndex search with COCOINDEX_RERANK unset (RERANK-OFF), then export COCOINDEX_RERANK=true, restart the daemon, and rerun (RERANK-ON) against the current CocoIndex daemon in this repository. Verify the cold-cache first call triggers the ~0.61GB GTE model download; RERANK-OFF results leave pre_rerank_score and reranker_score null; RERANK-ON results populate both fields on every entry. Return a concise user-facing pass/fail verdict with the main reason.
+Prompt summary: As a manual-testing orchestrator, run a sample MCP CocoIndex search with `COCOINDEX_RERANK` unset (DEFAULT-ON) and confirm both rerank fields are populated, then export `COCOINDEX_RERANK=false`, restart the daemon, and rerun (RERANK-DISABLED) to confirm both fields go null. Verify the cold-cache first call triggers the ~2.3 GB BGE model download; DEFAULT-ON results populate `pre_rerank_score` and `reranker_score` on every entry; RERANK-DISABLED results leave both fields null. Return a concise user-facing pass/fail verdict with the main reason.
 
-Expected signals: RERANK-OFF response leaves `pre_rerank_score` and `reranker_score` null on every result; RERANK-ON response populates both fields on every result; cold-cache first call has noticeably longer wall-clock and daemon.log shows GTE cross-encoder load activity
+Expected signals: DEFAULT-ON (env unset) response populates `pre_rerank_score` and `reranker_score` on every result; RERANK-DISABLED (`COCOINDEX_RERANK=false`) response leaves both fields null on every result; cold-cache first call has noticeably longer wall-clock and daemon.log shows `BAAI/bge-reranker-v2-m3` cross-encoder load activity
 
 #### Test Execution
 > **Feature File:** [CFG-007](03--configuration/007-reranker-opt-in.md)

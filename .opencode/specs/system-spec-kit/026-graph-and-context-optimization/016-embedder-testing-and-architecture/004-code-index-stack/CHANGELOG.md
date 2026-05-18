@@ -255,6 +255,56 @@ This stack ships 10 sub-phases that progressively upgraded CocoIndex from "gener
 
 ---
 
+## v1.10 — Reranker default model swap (GTE→BGE) + hybrid/rerank promoted to default-on
+
+**Shipped:** 2026-05-18
+**Commits:** `4ec84cec2` (defaults flip) + `c6a6493e6` (reranker model swap)
+
+### What changed
+
+Two related fixes shipped on the same day:
+
+**Fix 1 — Defaults flipped to default-on** (`4ec84cec2`)
+
+- `COCOINDEX_HYBRID` default `false` → **`true`** (SQLite FTS5 + RRF fusion now on by default)
+- `COCOINDEX_RERANK` default `false` → **`true`** (cross-encoder rerank now on by default)
+- Operators opt **out** by setting either env var to `false`; the prior opt-in posture is reversed
+- Test updates: 3 assertions flipped in `test_config.py` + `test_reranker.py`; 32/32 tests still pass
+
+**Fix 2 — Reranker default model swapped GTE → BGE** (`c6a6493e6`)
+
+- Default `COCOINDEX_RERANK_MODEL` changed from `Alibaba-NLP/gte-multilingual-reranker-base` to **`BAAI/bge-reranker-v2-m3`** (Apache-2.0, ~568M params)
+- Triggered by an end-to-end validation run immediately after the Fix-1 default-on promotion, before any production benchmark
+- On Apple Silicon MPS, GTE-multilingual fails inside `sentence_transformers.CrossEncoder.predict` under sentence-transformers 5.4.1 + transformers 5.8.0 + torch 2.11.0:
+  ```
+  AcceleratorError: index 733634176249652595 is out of bounds: 0, range 0 to 21
+  ```
+- `RerankerAdapter`'s try/except correctly caught the exception and returned candidates in upstream RRF order — but **silently**. The response still populated `pre_rerank_score` and `reranker_score`, so a "did I get a response with rerank fields?" smoke check could not distinguish a real rerank from a silent fallback. Every prior search query with `COCOINDEX_RERANK=true` on MPS got zero reranker contribution between the default-on flip and this swap.
+- BGE-reranker-v2-m3 was validated end-to-end: properly reranks 3 fake candidates (moves `user_login.py` from rank 3 to rank 1 for the query "how does user login work")
+- 7/7 reranker unit tests still pass (mocked path unaffected by the default-model change)
+- Operators on non-MPS backends, or those validating future ST/transformers compatibility patches, can re-pin GTE via `COCOINDEX_RERANK_MODEL=Alibaba-NLP/gte-multilingual-reranker-base`
+
+### Why it matters
+
+- The default-on flip means the hybrid + rerank lift estimates from v1.6 / v1.8 now apply to every operator's default install instead of only those who opted in. Operators who need the prior vector-only behavior have two flags to set explicitly.
+- The silent-fallback bug discovered immediately after the default-on promotion is the load-bearing example of why "did the response succeed?" is not enough to verify the rerank stage actually ran. The fail-soft contract in `RerankerAdapter` is correct as a safety mechanism but obscures load-time and per-call failures unless you also inspect `daemon.log` for `RerankerAdapter` warnings.
+- Discovery happened end-to-end (smoke search against the running daemon) rather than via the 18-pair fixture benchmark, which would have hidden the silent fallback because the prior bake-off measured retrieval quality, not the reranker-ran-vs-fell-back distinction. The unit test suite was unaffected because the model load is mocked.
+- The first cold-cache call now downloads ~2.3 GB (BGE) instead of ~0.61 GB (GTE), so the first-pull window is noticeably longer; the per-call inference cost remains comparable.
+
+### Files affected
+
+- `mcp_server/cocoindex_code/config.py` — defaults for `COCOINDEX_HYBRID`, `COCOINDEX_RERANK`, `_DEFAULT_RERANK_MODEL`
+- `mcp_server/tests/test_config.py` — assertions for the new hybrid default
+- `mcp_server/tests/test_reranker.py` — assertion for the new rerank default
+- `.opencode/skills/mcp-coco-index/INSTALL_GUIDE.md` — flipped opt-in language to default-on; documented GTE/MPS failure + escape hatch
+- `.opencode/skills/mcp-coco-index/feature_catalog/05--search-and-ranking/08-reranker-cross-encoder.md` — renamed from `08-reranker-gte-cross-encoder.md`; added Known Limitations section for GTE-on-MPS
+- `.opencode/skills/mcp-coco-index/feature_catalog/08--configuration/04-environment-overrides.md` — updated default values + reranker-model description
+- `.opencode/skills/mcp-coco-index/feature_catalog/feature_catalog.md` — root catalog cross-reference for the renamed reranker file
+- `.opencode/skills/mcp-coco-index/manual_testing_playbook/manual_testing_playbook.md` — CFG-006/CFG-007 descriptions reframed default-on with opt-out
+- `.opencode/skills/mcp-coco-index/manual_testing_playbook/03--configuration/007-reranker-opt-in.md` — scenario commands + expected signals updated to validate the default-on path and the explicit opt-out (filename kept for catalog stability)
+
+---
+
 ## Cross-cutting research arc (016/011)
 
 Sub-phases 007-009 (reranker / chunking / hybrid) were preceded by a **10-iteration deep-research run** via cli-devin SWE-1.6 (later kimi-k2.6 after SWE-1.6 quota hit). Findings live at:
@@ -271,20 +321,21 @@ All 3 research arcs CONVERGED with concrete recommendations + estimated lift fig
 
 | Phase | Status | Est. lift vs baseline (38.9%) |
 |---|---|---|
-| v1.7 chunking | shipped opt-in | +4-6pp → ~43-45% |
-| v1.8 hybrid (on top of chunking) | shipped opt-in | +5-10pp → ~50% |
-| v1.6 reranker (on top of hybrid) | shipped opt-in | +5-10pp → ~55% |
+| v1.7 chunking | shipped default-on | +4-6pp → ~43-45% |
+| v1.8 hybrid (on top of chunking) | shipped default-on (v1.10) | +5-10pp → ~50% |
+| v1.6 reranker (on top of hybrid) | shipped default-on (v1.10) with BGE default (v1.10) | +5-10pp → ~55% |
 
-**All 3 features are OPT-IN.** Production behavior is unchanged until operators enable them via env vars. To enable the full stack:
+**All 3 features are now DEFAULT-ON as of v1.10.** Hybrid (BM25+RRF) and cross-encoder rerank flipped from opt-in to default-on in `4ec84cec2`; the reranker default model swapped from GTE to BGE in `c6a6493e6` to avoid the silent Apple Silicon MPS fallback. To opt out of any layer:
 
 ```bash
-export COCOINDEX_CODE_CHUNK_SIZE=1500     # already default; explicit for clarity
-export COCOINDEX_HYBRID=true              # enable BM25+RRF fusion
-export COCOINDEX_RERANK=true              # enable GTE cross-encoder reranker
-ccc reset --force && ccc index            # full reindex picks up new chunking + populates FTS5 table
+export COCOINDEX_HYBRID=false             # fall back to vector-only retrieval
+export COCOINDEX_RERANK=false             # skip the cross-encoder rerank stage
+# To pin the prior GTE reranker (non-MPS backends only — broken on Apple Silicon):
+# export COCOINDEX_RERANK_MODEL=Alibaba-NLP/gte-multilingual-reranker-base
+ccc reset --force && ccc index            # only needed if changing chunk size or restarting from a clean state
 ```
 
-To validate: run the 18-pair fixture via the bake-off harness with the new env stack and confirm hit-rate improvement.
+To validate: run the 18-pair fixture via the bake-off harness with `COCOINDEX_HYBRID=true COCOINDEX_RERANK=true` (now the default) versus `COCOINDEX_HYBRID=false COCOINDEX_RERANK=false` and confirm hit-rate improvement.
 
 ---
 
@@ -292,15 +343,17 @@ To validate: run the 18-pair fixture via the bake-off harness with the new env s
 
 - **Stage B chunking** — raise `CHUNK_SIZE` to 2000 + per-language overrides (TS=2000, MD=800, Python=1500). Pending Stage A reindex benchmark.
 - **cAST tree-sitter chunking** — Zhang et al. 2025 showed +4.3pp on RepoEval. High engineering cost — deferred to a separate packet.
-- **Reranker default-on** — gates: p95 latency add <500ms + ≥+2 hits on fixture. Pending measurement.
-- **Hybrid default-on** — same gate (lift confirmed on fixture).
+- **Reranker default-on** — **shipped in v1.10 (`4ec84cec2`)** ahead of the original p95-latency / +2-hits gate; subsequent benchmark sweep on the 18-pair fixture is queued to retroactively confirm the gate post-promotion.
+- **Hybrid default-on** — **shipped in v1.10 (`4ec84cec2`)** alongside the reranker promotion; same retroactive-benchmark follow-on applies.
+- **Reranker default-model regression watch (GTE)** — re-evaluate `Alibaba-NLP/gte-multilingual-reranker-base` once `sentence-transformers` / `transformers` ship a fix for the MPS `AcceleratorError`; until then BGE-reranker-v2-m3 stays as the default per `c6a6493e6`.
 - **Per-implementation post-impl deep-review** — constitutional mandate; not yet run for 007/008/009 commits.
 
 ---
 
 ## How to use this changelog
 
-- **New operator?** Read v1.0 → v1.5 to understand the baseline, then v1.6 → v1.8 to know what's opt-in available.
-- **Debugging a search-quality issue?** Check v1.8 hybrid + v1.6 reranker — likely the most impactful levers if not already enabled.
+- **New operator?** Read v1.0 → v1.5 to understand the baseline, then v1.6 → v1.10 to know what is on by default and how to opt out.
+- **Debugging a search-quality issue?** Check v1.8 hybrid + v1.6 reranker — both default-on as of v1.10. Confirm `daemon.log` shows `lane=hybrid_rrf` and a `BAAI/bge-reranker-v2-m3` load trace before assuming the lanes are doing real work (v1.10's silent-fallback bug is the cautionary tale).
 - **Considering a new embedder?** Read v1.3 + v1.4 (registry pattern) before adding entries to `registered_embedders.py`.
 - **Daemon flakiness?** v1.9 is the relevant history.
+- **Reranker model question (GTE vs BGE)?** v1.10 is the relevant history — BGE is the default; GTE is opt-in via env var and currently broken on Apple Silicon MPS.

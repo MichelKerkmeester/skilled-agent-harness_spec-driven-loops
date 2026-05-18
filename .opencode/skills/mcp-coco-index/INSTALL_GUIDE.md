@@ -312,9 +312,9 @@ Connect CocoIndex Code to your AI assistant (Phase 4). The MCP server runs via `
 **Key environment variable:**
 - `COCOINDEX_CODE_ROOT_PATH` - The root directory of the project to search. Set this to your project root.
 
-### Tuning + optional retrieval features (v1.2.0+)
+### Tuning + retrieval features (v1.2.0+)
 
-All 10 variables below are **opt-in** with safe defaults. Production behavior is unchanged unless you explicitly set the flags. Source of truth: `mcp_server/cocoindex_code/config.py`.
+All 10 variables below have safe defaults. Hybrid (BM25+RRF) and cross-encoder rerank are **default-on** as of the v1.10 promotion (2026-05-18); operators opt **out** by setting the flags to `false`. Source of truth: `mcp_server/cocoindex_code/config.py`.
 
 **Chunking (always on, tunable defaults):**
 
@@ -326,28 +326,30 @@ All 10 variables below are **opt-in** with safe defaults. Production behavior is
 
 See [`feature_catalog/chunking.md`](feature_catalog/chunking.md) for the tuning rationale and benchmark methodology.
 
-**Hybrid search (opt-in, default OFF):**
+**Hybrid search (default ON):**
 
 Adds SQLite FTS5 lexical channel fused with vector channel via Reciprocal Rank Fusion. Mirrors the proven retrieval-quality stack used by `mk-spec-memory`.
 
 | Variable | Default | Range | Description |
 |---|---:|---|---|
-| `COCOINDEX_HYBRID` | `false` | bool (`1/true/yes/on` or `0/false/no/off`) | Enable hybrid (vector + FTS5) retrieval. |
+| `COCOINDEX_HYBRID` | `true` | bool (`1/true/yes/on` or `0/false/no/off`) | Enable hybrid (vector + FTS5) retrieval. Set `false` to fall back to vector-only. |
 | `COCOINDEX_HYBRID_VECTOR_WEIGHT` | `0.7` | 0.0–2.0 | RRF weight for the vector channel. |
 | `COCOINDEX_HYBRID_FTS5_WEIGHT` | `0.7` | 0.0–2.0 | RRF weight for the FTS5 lexical channel. |
 | `COCOINDEX_HYBRID_RRF_K` | `60` | 1–500 | RRF dampening constant; higher k flattens the influence of top-ranked hits. |
 
 See [`feature_catalog/hybrid-search.md`](feature_catalog/hybrid-search.md) for activation guidance and tuning notes.
 
-**Cross-encoder reranker (opt-in, default OFF):**
+**Cross-encoder reranker (default ON):**
 
-Applies a local GTE cross-encoder rerank to the top-K candidates after retrieval. Higher relevance at the cost of additional inference time per query.
+Applies a local cross-encoder rerank to the top-K candidates after retrieval. Higher relevance at the cost of additional inference time per query.
 
 | Variable | Default | Range | Description |
 |---|---:|---|---|
-| `COCOINDEX_RERANK` | `false` | bool | Enable cross-encoder rerank pass over retrieval results. |
-| `COCOINDEX_RERANK_MODEL` | `Alibaba-NLP/gte-multilingual-reranker-base` | string | HuggingFace model id for the cross-encoder; first use downloads to `~/.cache/huggingface/hub/`. |
+| `COCOINDEX_RERANK` | `true` | bool | Enable cross-encoder rerank pass over retrieval results. Set `false` to disable. |
+| `COCOINDEX_RERANK_MODEL` | `BAAI/bge-reranker-v2-m3` | string | HuggingFace model id for the cross-encoder; first use downloads (~2.3 GB) to `~/.cache/huggingface/hub/`. |
 | `COCOINDEX_RERANK_TOP_K` | `20` | 5–100 | Number of retrieval candidates passed to the reranker before final cut. |
+
+> **Model swap (v1.10):** the default reranker was switched from `Alibaba-NLP/gte-multilingual-reranker-base` to `BAAI/bge-reranker-v2-m3` (Apache-2.0, ~568M params) on 2026-05-18. GTE-multilingual currently fails on Apple Silicon MPS with `AcceleratorError: index ... is out of bounds` (sentence-transformers 5.4.1 + transformers 5.8.0 + torch 2.11.0); the reranker module catches the error but silently returns the unranked order, so every prior `COCOINDEX_RERANK=true` query on MPS got zero rerank contribution. Operators on non-MPS backends, or those who want to test future ST/transformers compatibility fixes, can pin GTE via `COCOINDEX_RERANK_MODEL=Alibaba-NLP/gte-multilingual-reranker-base`.
 
 See [`feature_catalog/reranker.md`](feature_catalog/reranker.md) for model trade-offs, RAM requirements, and when to enable.
 
@@ -979,7 +981,8 @@ ccc daemon status             # Check daemon status
 
 | Version | Date       | Changes                                                      |
 | ------- | ---------- | ------------------------------------------------------------ |
-| 1.2.0   | 2026-05-18 | Add chunking tunables, hybrid (FTS5 + RRF), GTE cross-encoder reranker (all opt-in) |
+| 1.2.1   | 2026-05-18 | Promote hybrid + reranker to default-on; swap reranker default GTE → `BAAI/bge-reranker-v2-m3` (GTE/MPS incompatibility) |
+| 1.2.0   | 2026-05-18 | Add chunking tunables, hybrid (FTS5 + RRF), cross-encoder reranker (opt-in at the time) |
 | 1.1.0   | 2026-03-18 | Add embedding model config, 28+ languages, settings reference |
 | 1.0.0   | 2026-03-18 | Initial installation guide                                    |
 
