@@ -169,7 +169,7 @@ The router discovers markdown resources recursively from `references/` and `asse
 - `assets/feature_catalog/` and `assets/testing_playbook/` at the assets/ root for feature catalog and manual testing playbook package templates.
 - `assets/flowcharts/` for reusable ASCII flowchart patterns and diagram examples.
 
-> **Cross-CLI consumption note** (per packets 071/072 stress-test data): when sk-doc is dispatched via an external CLI and the caller consumes the routing-trace output LITERALLY (e.g. attempts to `Read()` cited resource paths), prefer **cli-codex** (gpt-5.5/high/fast) — it scored 66.7% resource-accuracy vs cli-opencode 47.2% on the sk-doc router stress matrix. claude-opus-4.7 tends to hallucinate plausible-sounding paths that don't exist in this skill's filesystem; treat its routing trace as advisory and verify cited paths before reading. See `specs/skilled-agent-orchestration/072-sk-doc-router-rerun-refined-extraction/review-report-v2.md` for the full data + P1-072-001 hallucination finding.
+> **Cross-CLI consumption note** (per packets 071/072 stress-test data): when sk-doc is dispatched via an external CLI and the caller consumes the routing-trace output LITERALLY (e.g. attempts to `Read()` cited resource paths), prefer **cli-codex** (gpt-5.5/high/fast) — it scored 66.7% resource-accuracy vs cli-opencode 47.2% on the sk-doc router stress matrix. claude-opus-4.7 tends to hallucinate plausible-sounding paths that don't exist in this skill's filesystem; treat its routing trace as advisory and verify cited paths before reading. See the local router stress-test notes for the full data and hallucination finding.
 
 ### Resource Loading Levels
 
@@ -207,6 +207,7 @@ INTENT_SIGNALS = {
     "FEATURE_CATALOG": {"weight": 4, "keywords": ["feature catalog", "feature inventory", "catalog snippet"]},
     "README_CREATION": {"weight": 3, "keywords": ["create readme", "readme creation", "write readme", "add documentation", "folder readme"]},
     "CHANGELOG": {"weight": 4, "keywords": ["changelog", "release notes", "changelog template", "release template", "create changelog", "github release"]},
+    "BENCHMARK": {"weight": 4, "keywords": ["benchmark", "benchmark report", "benchmarks format", "mcp_server benchmarks", "benchmark_report.md", "skill-local benchmark"]},
 }
 
 RESOURCE_MAP = {
@@ -221,6 +222,7 @@ RESOURCE_MAP = {
     "FEATURE_CATALOG": ["references/feature_catalog_creation.md", "assets/feature_catalog/feature_catalog_template.md"],
     "README_CREATION": ["references/readme_creation.md", "assets/readme/readme_template.md"],
     "CHANGELOG": ["assets/changelog_template.md"],
+    "BENCHMARK": ["references/benchmarks_format.md", "assets/benchmark/benchmark_report_template.md"],
 }
 
 LOADING_LEVELS = {
