@@ -11,7 +11,7 @@
   ],
   "manual": {
     "depends_on": [
-      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-mxbai-swap-and-008-closure"
+      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-mk-spec-memory-stack/004-mxbai-swap-and-008-closure"
     ],
     "supersedes": [],
     "related_to": [

@@ -1,0 +1,27 @@
+{
+  "specFolder": "001-mk-spec-memory-stack",
+  "description": "016/001: mk-spec-memory stack (phase parent)",
+  "keywords": [
+    "016",
+    "001",
+    "mk-spec-memory",
+    "stack",
+    "phase",
+    "parent"
+  ],
+  "lastUpdated": "2026-05-18T07:50:58.091Z",
+  "specId": "001",
+  "folderSlug": "mk-spec-memory-stack",
+  "parentChain": [
+    "..",
+    ".opencode",
+    "specs",
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "016-embedder-testing-and-architecture"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "18-05-26_08-50__created-mk-spec-memory-stack-phase-parent.md"
+  ]
+}

@@ -75,5 +75,5 @@ All 9 tasks marked `[x]`. pytest 35+/35+ pass. Strict-validate PASSED.
 - Plan: `plan.md`
 - Parent: `../spec.md`
 - Consumer: `../002-install-guide-updates/`
-- Analog: `../../016-embedder-testing-and-architecture/004-mxbai-swap-and-008-closure/` (the mk-spec-memory side)
+- Analog: `../../016-embedder-testing-and-architecture/001-mk-spec-memory-stack/004-mxbai-swap-and-008-closure/` (the mk-spec-memory side)
 <!-- /ANCHOR:cross-refs -->
