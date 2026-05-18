@@ -18,6 +18,7 @@ from cocoindex.resources.file import FilePathMatcher, PatternFilePathMatcher
 from cocoindex.resources.id import IdGenerator
 from pathspec import GitIgnoreSpec
 
+from .config import config
 from .settings import PROJECT_SETTINGS, is_canonical_path
 from .shared import (
     CODEBASE_DIR,
@@ -29,9 +30,9 @@ from .shared import (
 )
 
 # Chunking configuration
-CHUNK_SIZE = 1000
+CHUNK_SIZE = 1500
 MIN_CHUNK_SIZE = 250
-CHUNK_OVERLAP = 150
+CHUNK_OVERLAP = 200
 
 # Chunking splitter (stateless, can be module-level)
 splitter = RecursiveSplitter()
@@ -267,12 +268,15 @@ async def process_file(
     project_root = coco.use_context(CODEBASE_DIR)
     source_realpath = os.path.realpath(project_root / file.file_path.path)
     path_class = classify_path(file.file_path.path)
+    chunk_size = getattr(config, "chunk_size", CHUNK_SIZE)
+    min_chunk_size = getattr(config, "min_chunk_size", MIN_CHUNK_SIZE)
+    chunk_overlap = getattr(config, "chunk_overlap", CHUNK_OVERLAP)
 
     chunks = splitter.split(
         content,
-        chunk_size=CHUNK_SIZE,
-        min_chunk_size=MIN_CHUNK_SIZE,
-        chunk_overlap=CHUNK_OVERLAP,
+        chunk_size=chunk_size,
+        min_chunk_size=min_chunk_size,
+        chunk_overlap=chunk_overlap,
         language=language,
     )
 

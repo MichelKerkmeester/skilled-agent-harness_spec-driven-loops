@@ -9,6 +9,9 @@ from dataclasses import dataclass
 from pathlib import Path
 
 _DEFAULT_MODEL = "sbert/jinaai/jina-embeddings-v2-base-code"
+_DEFAULT_CHUNK_SIZE = 1500
+_DEFAULT_CHUNK_OVERLAP = 200
+_DEFAULT_MIN_CHUNK_SIZE = 250
 _VALID_DEVICES = {"cuda", "mps", "cpu"}
 
 logger = logging.getLogger(__name__)
@@ -104,6 +107,44 @@ def _parse_json_string_list_env(var_name: str) -> list[str]:
     return result
 
 
+def _parse_int_env(
+    var_name: str,
+    default: int,
+    min_value: int,
+    max_value: int,
+) -> int:
+    """Parse a bounded integer environment variable with default fallback."""
+    raw_value = os.environ.get(var_name)
+    if raw_value is None or not raw_value.strip():
+        return default
+
+    try:
+        value = int(raw_value)
+    except ValueError:
+        logger.warning(
+            "Ignoring invalid %s=%r; expected integer between %s and %s; falling back to %s",
+            var_name,
+            raw_value,
+            min_value,
+            max_value,
+            default,
+        )
+        return default
+
+    if min_value <= value <= max_value:
+        return value
+
+    logger.warning(
+        "Ignoring invalid %s=%r; expected integer between %s and %s; falling back to %s",
+        var_name,
+        raw_value,
+        min_value,
+        max_value,
+        default,
+    )
+    return default
+
+
 def _is_registered_embedder(name: str) -> bool:
     from cocoindex_code.registered_embedders import get_embedder_metadata  # noqa: PLC0415
 
@@ -120,6 +161,9 @@ class Config:
     device: str | None
     extra_extensions: dict[str, str | None]
     excluded_patterns: list[str]
+    chunk_size: int
+    chunk_overlap: int
+    min_chunk_size: int
 
     @classmethod
     def from_env(cls) -> Config:
@@ -173,6 +217,25 @@ class Config:
         # Excluded file glob patterns
         excluded_patterns = _parse_json_string_list_env("COCOINDEX_CODE_EXCLUDED_PATTERNS")
 
+        chunk_size = _parse_int_env(
+            "COCOINDEX_CODE_CHUNK_SIZE",
+            _DEFAULT_CHUNK_SIZE,
+            100,
+            8000,
+        )
+        chunk_overlap = _parse_int_env(
+            "COCOINDEX_CODE_CHUNK_OVERLAP",
+            _DEFAULT_CHUNK_OVERLAP,
+            0,
+            1000,
+        )
+        min_chunk_size = _parse_int_env(
+            "COCOINDEX_CODE_MIN_CHUNK_SIZE",
+            _DEFAULT_MIN_CHUNK_SIZE,
+            50,
+            1000,
+        )
+
         return cls(
             codebase_root_path=root,
             embedding_model=embedding_model,
@@ -180,6 +243,9 @@ class Config:
             device=device,
             extra_extensions=extra_extensions,
             excluded_patterns=excluded_patterns,
+            chunk_size=chunk_size,
+            chunk_overlap=chunk_overlap,
+            min_chunk_size=min_chunk_size,
         )
 
     @property

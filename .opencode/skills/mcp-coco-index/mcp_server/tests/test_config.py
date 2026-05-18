@@ -8,7 +8,14 @@ from unittest.mock import MagicMock, patch
 
 import pytest
 
-from cocoindex_code.config import _DEFAULT_MODEL, Config, _resolve_device
+from cocoindex_code.config import (
+    _DEFAULT_CHUNK_OVERLAP,
+    _DEFAULT_CHUNK_SIZE,
+    _DEFAULT_MIN_CHUNK_SIZE,
+    _DEFAULT_MODEL,
+    Config,
+    _resolve_device,
+)
 
 
 class TestDefaultEmbedder:
@@ -97,3 +104,87 @@ class TestConfigValidation:
             ),
         ):
             assert Config.from_env().embedding_model == _DEFAULT_MODEL
+
+
+class TestChunkConfigValidation:
+    def test_default_chunk_params(self, tmp_path: Path) -> None:
+        with patch.dict(
+            "os.environ",
+            {"COCOINDEX_CODE_ROOT_PATH": str(tmp_path)},
+            clear=True,
+        ):
+            cfg = Config.from_env()
+
+        assert cfg.chunk_size == _DEFAULT_CHUNK_SIZE == 1500
+        assert cfg.chunk_overlap == _DEFAULT_CHUNK_OVERLAP == 200
+        assert cfg.min_chunk_size == _DEFAULT_MIN_CHUNK_SIZE == 250
+
+    def test_env_override_chunk_size(self, tmp_path: Path) -> None:
+        with patch.dict(
+            "os.environ",
+            {
+                "COCOINDEX_CODE_ROOT_PATH": str(tmp_path),
+                "COCOINDEX_CODE_CHUNK_SIZE": "2000",
+            },
+            clear=True,
+        ):
+            assert Config.from_env().chunk_size == 2000
+
+    def test_invalid_chunk_size_falls_back(
+        self,
+        tmp_path: Path,
+        caplog: pytest.LogCaptureFixture,
+    ) -> None:
+        caplog.set_level("WARNING", logger="cocoindex_code.config")
+        with patch.dict(
+            "os.environ",
+            {
+                "COCOINDEX_CODE_ROOT_PATH": str(tmp_path),
+                "COCOINDEX_CODE_CHUNK_SIZE": "invalid",
+            },
+            clear=True,
+        ):
+            cfg = Config.from_env()
+
+        assert cfg.chunk_size == _DEFAULT_CHUNK_SIZE
+        assert "Ignoring invalid COCOINDEX_CODE_CHUNK_SIZE='invalid'" in caplog.text
+
+    @pytest.mark.parametrize("value", ["99", "8001"])
+    def test_chunk_size_out_of_bounds_falls_back(
+        self,
+        tmp_path: Path,
+        caplog: pytest.LogCaptureFixture,
+        value: str,
+    ) -> None:
+        caplog.set_level("WARNING", logger="cocoindex_code.config")
+        with patch.dict(
+            "os.environ",
+            {
+                "COCOINDEX_CODE_ROOT_PATH": str(tmp_path),
+                "COCOINDEX_CODE_CHUNK_SIZE": value,
+            },
+            clear=True,
+        ):
+            cfg = Config.from_env()
+
+        assert cfg.chunk_size == _DEFAULT_CHUNK_SIZE
+        assert f"Ignoring invalid COCOINDEX_CODE_CHUNK_SIZE='{value}'" in caplog.text
+
+    def test_min_chunk_size_validated(
+        self,
+        tmp_path: Path,
+        caplog: pytest.LogCaptureFixture,
+    ) -> None:
+        caplog.set_level("WARNING", logger="cocoindex_code.config")
+        with patch.dict(
+            "os.environ",
+            {
+                "COCOINDEX_CODE_ROOT_PATH": str(tmp_path),
+                "COCOINDEX_CODE_MIN_CHUNK_SIZE": "49",
+            },
+            clear=True,
+        ):
+            cfg = Config.from_env()
+
+        assert cfg.min_chunk_size == _DEFAULT_MIN_CHUNK_SIZE
+        assert "Ignoring invalid COCOINDEX_CODE_MIN_CHUNK_SIZE='49'" in caplog.text

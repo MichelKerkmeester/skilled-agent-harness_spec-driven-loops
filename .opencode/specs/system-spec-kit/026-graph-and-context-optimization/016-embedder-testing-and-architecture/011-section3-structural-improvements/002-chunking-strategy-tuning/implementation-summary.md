@@ -30,21 +30,26 @@ _memory:
 
 | Field | Value |
 |---|---|
-| Status | RESEARCH PENDING |
-| Artifact | TBD post-research |
-| Owner | Main agent |
+| Status | IMPLEMENTED 2026-05-18T08:00 (Stage A — CHUNK_SIZE 1000→1500, OVERLAP 150→200, env-overrides) |
+| Artifact | `cocoindex_code/indexer.py` + `cocoindex_code/config.py` + `tests/test_config.py` (6 new chunk-config tests) |
+| Owner | cli-codex gpt-5.5 high fast (impl) + main agent (commit + summary update) |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Scaffolding only:
-- `spec.md` (002-chunking-strategy-tuning)
-- `plan.md` (research-stub phases)
-- `tasks.md` (10 tasks T001-T010)
-- `implementation-summary.md` (this file)
+Stage A shipped (per converged research recommendation):
 
-Implementation pending research convergence + plan refinement.
+- `cocoindex_code/indexer.py`: CHUNK_SIZE 1000→1500, CHUNK_OVERLAP 150→200, MIN_CHUNK_SIZE unchanged. Per-call lookup of `Config` chunk-params with module constants as last-resort defaults.
+- `cocoindex_code/config.py`: new `_parse_int_env(var, default, min, max)` helper with warn-on-invalid fallback (mirrors `_is_registered_embedder` pattern); 3 new defaults; 3 new `Config` fields (chunk_size, chunk_overlap, min_chunk_size); env-loading with validated bounds:
+  - `COCOINDEX_CODE_CHUNK_SIZE` (100..8000)
+  - `COCOINDEX_CODE_CHUNK_OVERLAP` (0..1000)
+  - `COCOINDEX_CODE_MIN_CHUNK_SIZE` (50..1000)
+- `tests/test_config.py`: new `TestChunkConfigValidation` class with 6 cases — defaults, env override, invalid → fallback, parametrized out-of-bounds (99 + 8001), min_chunk_size validation.
+
+Stage B deferred: raise to 2000 + per-language overrides (TS=2000 / MD=800 / Python=1500). Pending Stage A reindex benchmark to validate lift before further tuning.
+
+cAST/tree-sitter integration: deferred to Phase 2 (separate follow-on packet — high engineering cost for marginal additional gain).
 <!-- /ANCHOR:what-built -->
 
 <!-- ANCHOR:how-delivered -->
