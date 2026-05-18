@@ -34,9 +34,9 @@ Commit `ed5eb0e567fc6b087b3c08e52dbea2b6c0510cb1` — "feat(016/010/001): skill-
 
 | File | Purpose |
 |---|---|
-| `.../010-skill-advisor-embedder-parity/001-pluggable-architecture/spec.md` | What was shipped and why (R1–R7) |
-| `.../010-skill-advisor-embedder-parity/001-pluggable-architecture/plan.md` | Implementation plan |
-| `.../010-skill-advisor-embedder-parity/001-pluggable-architecture/implementation-summary.md` | Build evidence (npm run build pass, vitest 4/4 pass, schema probe) |
+| `.../003-skill-advisor-stack/001-pluggable-architecture/spec.md` | What was shipped and why (R1–R7) |
+| `.../003-skill-advisor-stack/001-pluggable-architecture/plan.md` | Implementation plan |
+| `.../003-skill-advisor-stack/001-pluggable-architecture/implementation-summary.md` | Build evidence (npm run build pass, vitest 4/4 pass, schema probe) |
 
 ## Output destination
 

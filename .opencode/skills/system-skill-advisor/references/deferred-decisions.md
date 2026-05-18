@@ -1,6 +1,6 @@
 ---
 title: "Deferred Decisions (Tier D)"
-description: "Rationale plus recommendations for findings deferred from packets 002-007 of system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-docs/004-docs-quality-refactor that require explicit human decision before runtime or structural changes."
+description: "Rationale plus recommendations for findings deferred from packets 002-007 of system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/005-docs/004-docs-quality-refactor that require explicit human decision before runtime or structural changes."
 trigger_phrases:
   - "deferred decisions skill-advisor"
   - "tier d decisions"
@@ -17,7 +17,7 @@ importance_tier: "important"
 <!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
-This doc tracks findings from the `system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-docs/004-docs-quality-refactor` packet (children 001-007) that were deferred because they require:
+This doc tracks findings from the `system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/005-docs/004-docs-quality-refactor` packet (children 001-007) that were deferred because they require:
 
 1. Runtime config changes that need explicit human approval (F4 `.devin/hooks.v1.json`).
 2. Architectural decisions about deprecation timelines (F6 dual hook locations).
@@ -119,7 +119,7 @@ NOT included in the F6 removal:
 - `session-prime.ts` / `session-start.ts` (per code-graph SKILL.md ADR-001)
 - `shared.ts` / `session-stop.ts` / `claude-transcript.ts` / `compact-inject.ts` (unverified consumers)
 
-A future packet (`008-skill-advisor/010-old-hooks-helper-migration` or similar) should migrate the helpers to NEW before they can be removed from OLD. That packet is separate from F6 and is NOT bounded by the 2026-08-16 date.
+A future packet (`006-skill-advisor/010-old-hooks-helper-migration` or similar) should migrate the helpers to NEW before they can be removed from OLD. That packet is separate from F6 and is NOT bounded by the 2026-08-16 date.
 
 ### Original-current state (preserved for history)
 

@@ -75,7 +75,7 @@ _memory:
 
 - Spec: `spec.md`
 - Plan: `plan.md`
-- Parent: `../spec.md` (016/006-cocoindex-stack)
+- Parent: `../spec.md` (016/004-code-index-stack)
 - Baseline data: `../003-comparison-measure/evidence/cocoindex-embedder-comparison.csv`
 - Fixture: `../002-baseline-fixture/evidence/code-retrieval-fixture.json`
 - Registry: `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/registered_embedders.py`

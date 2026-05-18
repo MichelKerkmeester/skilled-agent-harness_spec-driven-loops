@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
-This phase parent groups all mk-spec-memory (TypeScript MCP) embedder + architecture work that was previously spread across the top-level `016/001-004` slots. The grouping mirrors the `006-cocoindex-stack` pattern — one umbrella per skill surface so the 016 root stays scannable.
+This phase parent groups all mk-spec-memory (TypeScript MCP) embedder + architecture work that was previously spread across the top-level `016/001-004` slots. The grouping mirrors the `004-code-index-stack` pattern — one umbrella per skill surface so the 016 root stays scannable.
 
 mk-spec-memory is the TypeScript MCP server that powers `memory_save`, `memory_search`, `memory_context`, and related continuity tools. Its embedder stack ships:
 
@@ -62,8 +62,8 @@ All 4 sub-phases shipped before this restructure landed. The restructure is pure
 <!-- ANCHOR:cross-refs -->
 ## 3. CROSS-REFERENCES
 
-- Sibling umbrella: `../006-cocoindex-stack/` — CocoIndex (Python) embedder + retrieval pipeline work
-- Sibling umbrella: `../010-skill-advisor-embedder-parity/` — skill-advisor (TypeScript) embedder parity work (mirrors this stack's adapter pattern)
+- Sibling umbrella: `../004-code-index-stack/` — CocoIndex (Python) embedder + retrieval pipeline work
+- Sibling umbrella: `../003-skill-advisor-stack/` — skill-advisor (TypeScript) embedder parity work (mirrors this stack's adapter pattern)
 - Cross-cutting: `../008-deep-review-stack/` — 20-iter deep-review covering the work in this stack
 - Cross-cutting: `../009-skill-docs-alignment/` — docs sweep covering the work in this stack
 <!-- /ANCHOR:cross-refs -->

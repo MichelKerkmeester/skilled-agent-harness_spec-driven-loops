@@ -131,7 +131,7 @@ devin --permission-mode auto
 - `.opencode/skills/system-skill-advisor/hooks/devin/user-prompt-submit.ts` (advisor implementation source)
 - `.opencode/skills/system-spec-kit/mcp_server/hooks/devin/user-prompt-submit.ts` (shim source)
 - `.devin/hooks.v1.json` (registration)
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/004-cli-devin-skill-advisor-hook/decision-record.md` (ADR-001 hybrid strategy, ADR-003 bridge migration)
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/004-cli-devin-skill-advisor-hook/decision-record.md` (ADR-001 hybrid strategy, ADR-003 bridge migration)
 
 ---
 

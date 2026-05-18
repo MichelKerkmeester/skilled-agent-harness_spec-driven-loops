@@ -73,5 +73,5 @@ Implementation is complete and unit-validated. Fixture hit-rate and latency benc
 - Spec: `spec.md`
 - Plan: `plan.md`
 - Parent umbrella: `../spec.md` (016/011)
-- Fixture: `../../006-cocoindex-stack/002-baseline-fixture/evidence/code-retrieval-fixture.json`
+- Fixture: `../../004-code-index-stack/002-baseline-fixture/evidence/code-retrieval-fixture.json`
 <!-- /ANCHOR:cross-refs -->

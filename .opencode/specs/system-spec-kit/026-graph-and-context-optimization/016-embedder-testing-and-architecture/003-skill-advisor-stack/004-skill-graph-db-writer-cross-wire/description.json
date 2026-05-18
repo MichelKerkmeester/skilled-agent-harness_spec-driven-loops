@@ -21,7 +21,7 @@
     "system-spec-kit",
     "026-graph-and-context-optimization",
     "016-embedder-testing-and-architecture",
-    "010-skill-advisor-embedder-parity"
+    "003-skill-advisor-stack"
   ],
   "memorySequence": 1,
   "memoryNameHistory": [

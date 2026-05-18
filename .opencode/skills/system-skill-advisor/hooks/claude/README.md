@@ -29,7 +29,7 @@ Use this file to identify the folder boundary, the likely verification path and 
 |---|---:|
 | Code files | 1 |
 | README scope | Direct files in this folder |
-| Audit packet | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-graph/006-system-skill-advisor-extraction/026-sk-code-and-code-readme-audit` |
+| Audit packet | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph/006-system-skill-advisor-extraction/026-sk-code-and-code-readme-audit` |
 
 <!-- /ANCHOR:overview -->
 

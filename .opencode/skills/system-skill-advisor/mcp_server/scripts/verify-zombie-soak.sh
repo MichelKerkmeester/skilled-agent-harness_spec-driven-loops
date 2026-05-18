@@ -3,7 +3,7 @@
 # SCRIPT: verify-zombie-soak.sh
 # ───────────────────────────────────────────────────────────────
 # Verifies SC-002 (zero-zombie soak) for the three MCP launchers
-# shipped in packets 008-skill-advisor/006-009. Run after the new
+# shipped in packets 006-skill-advisor/006-009. Run after the new
 # launcher binaries have been live for ≥ 24 hours under normal
 # multi-runtime use.
 #
@@ -101,7 +101,7 @@ printf "\n"
 if [ "$EXIT" -eq 0 ]; then
   printf "RESULT: PASS — no zombie launchers detected.\n"
 else
-  printf "RESULT: FAIL — duplicate launcher(s) present. The 008-skill-advisor lease invariants may be broken; investigate.\n"
+  printf "RESULT: FAIL — duplicate launcher(s) present. The 006-skill-advisor lease invariants may be broken; investigate.\n"
 fi
 
 exit "$EXIT"

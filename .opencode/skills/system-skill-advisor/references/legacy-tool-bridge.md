@@ -30,7 +30,7 @@ Document the public-tool-id stability contract during the standalone System Skil
 **Public tool ids stay stable. Only the MCP server namespace changes.** Callers continue to invoke `advisor_*` ids unchanged.
 
 ### Key Sources
-- ADR-001 (chose compatibility-first over public rename). See `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-graph/006-system-skill-advisor-extraction/001-design-and-decision-record/decision-record.md`.
+- ADR-001 (chose compatibility-first over public rename). See `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph/006-system-skill-advisor-extraction/001-design-and-decision-record/decision-record.md`.
 - [`references/standalone-mcp-shape.md`](./standalone-mcp-shape.md) (the new server's wiring).
 - [`references/tool-ids-reference.md`](./tool-ids-reference.md) (canonical tool id list).
 

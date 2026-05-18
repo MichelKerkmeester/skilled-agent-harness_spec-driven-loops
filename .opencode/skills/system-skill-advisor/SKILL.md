@@ -47,7 +47,7 @@ Activation signals:
 - A runtime hook needs a skill recommendation before execution.
 - An operator asks about `advisor_recommend`, `advisor_status`, `advisor_rebuild`, `advisor_validate`, `skill_graph_scan`, `skill_graph_query`, `skill_graph_status`, `skill_graph_validate` or `skill_graph_propagate_enhances`.
 - A packet touches the skill graph, skill metadata, advisor scorer, advisor feature catalog or manual testing playbook.
-- A migration step references ADR-001: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-graph/006-system-skill-advisor-extraction/001-design-and-decision-record/decision-record.md`.
+- A migration step references ADR-001: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph/006-system-skill-advisor-extraction/001-design-and-decision-record/decision-record.md`.
 
 Do not use this skill as a replacement for the recommended target skill. For example, route code implementation to `sk-code`, documentation authoring to `sk-doc`, git work to `sk-git` and MCP orchestration to `mcp-code-mode` after the advisor has made the recommendation.
 
@@ -215,9 +215,9 @@ Escalate if:
 
 Primary contract:
 
-- ADR-001: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-graph/006-system-skill-advisor-extraction/001-design-and-decision-record/decision-record.md`
-- Extraction survey: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-graph/006-system-skill-advisor-extraction/001-design-and-decision-record/research/extraction-survey.md`
-- Standalone MCP discussion: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-graph/006-system-skill-advisor-extraction/001-design-and-decision-record/research/standalone-mcp-discussion.md`
+- ADR-001: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph/006-system-skill-advisor-extraction/001-design-and-decision-record/decision-record.md`
+- Extraction survey: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph/006-system-skill-advisor-extraction/001-design-and-decision-record/research/extraction-survey.md`
+- Standalone MCP discussion: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph/006-system-skill-advisor-extraction/001-design-and-decision-record/research/standalone-mcp-discussion.md`
 
 Package references:
 

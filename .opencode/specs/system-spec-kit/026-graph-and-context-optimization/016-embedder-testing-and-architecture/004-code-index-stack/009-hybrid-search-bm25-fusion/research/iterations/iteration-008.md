@@ -19,7 +19,7 @@ Which BM25 implementation should CocoIndex use for hybrid search (BM25 + semanti
 | Source | Annotation |
 |--------|------------|
 | `decision-record.md` (ADR-001) | Baseline context: 38.9% hit rate, jina-code kept, 127,346 chunks indexed. Embedder swap not the dominant lever — structural changes needed. |
-| `006-cocoindex-stack/spec.md` | Umbrella spec: §3 covers reranker, chunking, hybrid search. 3-4 iters allocated per child phase. |
+| `004-code-index-stack/spec.md` | Umbrella spec: §3 covers reranker, chunking, hybrid search. 3-4 iters allocated per child phase. |
 | `003-hybrid-search-bm25-fusion/spec.md` | Phase spec: in-scope = BM25 implementation options, fusion algorithms, normalization; out-of-scope = Elasticsearch (too heavy). |
 | `code-retrieval-fixture.json` | 18-pair fixture used as quality measurement substrate. Queries are natural language (e.g. "handler that accepts an embedder name"). |
 | `bm25-index.ts` | mk-spec-memory's in-memory BM25 engine (custom tokenization, K1=1.2, B=0.75, simple stemmer). Production path actually uses sqlite-fts.ts. |

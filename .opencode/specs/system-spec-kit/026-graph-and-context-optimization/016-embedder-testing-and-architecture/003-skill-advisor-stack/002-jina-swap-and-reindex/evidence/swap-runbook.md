@@ -150,7 +150,7 @@ This packet ships:
 
 ## Cross-references
 
-- **E review P1-1**: `010-skill-advisor-embedder-parity/001-pluggable-architecture/review/review-report.md` §4 (regression-risk: pointer/refresh split)
+- **E review P1-1**: `003-skill-advisor-stack/001-pluggable-architecture/review/review-report.md` §4 (regression-risk: pointer/refresh split)
 - **E review P2-11**: same review §5 (documentation-alignment: docs claim env-var swap; impl uses vec_metadata)
 - **D review P0-D fix**: commit `170aa2c98` (rescue-cap dead telemetry — unrelated but adjacent)
 - **mk-spec-memory analog**: `016/001-003` (proves the pattern works at scale)

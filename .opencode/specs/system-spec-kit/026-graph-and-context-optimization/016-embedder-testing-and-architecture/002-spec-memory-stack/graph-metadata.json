@@ -83,7 +83,7 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This phase parent groups all mk-spec-memory (TypeScript MCP) embedder + architecture work that was previously spread across the top-level `016/001-004` slots. The grouping mirrors the `006-cocoindex-stack` pattern — one umbrella per skill surface so the 016 root stays scannable.",
+    "causal_summary": "This phase parent groups all mk-spec-memory (TypeScript MCP) embedder + architecture work that was previously spread across the top-level `016/001-004` slots. The grouping mirrors the `004-code-index-stack` pattern — one umbrella per skill surface so the 016 root stays scannable.",
     "created_at": "2026-05-18T07:50:58.091Z",
     "last_save_at": "2026-05-18T07:51:04.139Z",
     "save_lineage": "same_pass",

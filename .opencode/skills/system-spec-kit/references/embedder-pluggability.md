@@ -398,8 +398,8 @@ This document was authored against the following source files at the commits bel
 | CocoIndex `_DEFAULT_MODEL` + `_resolve_device` | `8f909d229` | `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/config.py` |
 | CocoIndex `registered_embedders.py` | `49e3338ff` | `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/registered_embedders.py` |
 | CocoIndex INSTALL_GUIDE §4 | `49e3338ff` | `.opencode/skills/mcp-coco-index/INSTALL_GUIDE.md` |
-| Packet 018 (CocoIndex code-embedder swap) | (parent) | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-code-embedder-coderank/spec.md` |
-| Packet 019 (CocoIndex registry parity) | (parent) | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/007-cocoindex-embedder-registry/spec.md` |
+| Packet 018 (CocoIndex code-embedder swap) | (parent) | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/spec.md` |
+| Packet 019 (CocoIndex registry parity) | (parent) | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/spec.md` |
 
 ### Cross-links
 
