@@ -38,6 +38,12 @@ function loadEnvFile(filePath) {
   }
   return count;
 }
+
+function isStrictModeDisabled(value) {
+  if (value === undefined || value === null) return false;
+  const v = String(value).trim().toLowerCase();
+  return v === '0' || v === 'false' || v === 'no' || v === 'off' || v === '';
+}
 for (const fname of ['.env.local', '.env']) {
   const p = path.join(root, fname);
   if (fs.existsSync(p)) {
@@ -302,8 +308,7 @@ async function main() {
     refreshPaths();
     log(`DB: ${advisorDbPath()}`);
 
-    const strictSingleWriter = process.env.MK_SKILL_ADVISOR_STRICT_SINGLE_WRITER !== '0' &&
-                               process.env.MK_SKILL_ADVISOR_STRICT_SINGLE_WRITER !== 'false';
+    const strictSingleWriter = !isStrictModeDisabled(process.env.MK_SKILL_ADVISOR_STRICT_SINGLE_WRITER);
     if (strictSingleWriter) {
       try {
         const leasePath = path.join(mcpDir, 'dist', 'system-skill-advisor', 'mcp_server', 'lib', 'daemon', 'lease.js');

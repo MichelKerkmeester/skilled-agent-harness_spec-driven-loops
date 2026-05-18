@@ -48,6 +48,12 @@ function loadEnvFile(filePath) {
   }
   return count;
 }
+
+function isStrictModeDisabled(value) {
+  if (value === undefined || value === null) return false;
+  const v = String(value).trim().toLowerCase();
+  return v === '0' || v === 'false' || v === 'no' || v === 'off' || v === '';
+}
 for (const fname of ['.env.local', '.env']) {
   const p = path.join(root, fname);
   if (fs.existsSync(p)) {
@@ -373,8 +379,7 @@ function installSignalHandlers() {
       );
     }
 
-    const strictSingleWriter = process.env.MK_CODE_INDEX_STRICT_SINGLE_WRITER !== '0' &&
-                               process.env.MK_CODE_INDEX_STRICT_SINGLE_WRITER !== 'false';
+    const strictSingleWriter = !isStrictModeDisabled(process.env.MK_CODE_INDEX_STRICT_SINGLE_WRITER);
     if (strictSingleWriter) {
       const leaseResult = isLeaseHeld();
       if (leaseResult.held && !leaseResult.staleReclaimable) {
@@ -402,6 +407,11 @@ function installSignalHandlers() {
     }
 
     writeLeaseFile();
+    const reprobe = readLeaseFile();
+    if (!reprobe || reprobe.pid !== process.pid) {
+      process.stdout.write(`LEASE_HELD_BY:${reprobe ? reprobe.pid : 'unknown'}\n`);
+      process.exit(0);
+    }
     const onExit = () => clearLeaseFile();
     process.on('exit', onExit);
 

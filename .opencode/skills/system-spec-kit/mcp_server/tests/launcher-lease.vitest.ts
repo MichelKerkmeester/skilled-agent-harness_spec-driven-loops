@@ -43,10 +43,15 @@ function createWorkspace(): { root: string; launcherPath: string; pidFilePath: s
 }
 
 function spawnLauncher(launcherPath: string, root: string, env: NodeJS.ProcessEnv = {}): LauncherRun {
+  const baseEnv = { ...process.env };
+  delete baseEnv.MK_SKILL_ADVISOR_STRICT_SINGLE_WRITER;
+  delete baseEnv.MK_CODE_INDEX_STRICT_SINGLE_WRITER;
+  delete baseEnv.MK_SPEC_MEMORY_STRICT_SINGLE_WRITER;
+
   const run: LauncherRun = {
     child: spawn(process.execPath, [launcherPath], {
       cwd: root,
-      env: { ...process.env, ...env },
+      env: { ...baseEnv, ...env },
       stdio: ['ignore', 'pipe', 'pipe'],
     }),
     stdout: '',
@@ -90,6 +95,13 @@ async function waitForExit(
       resolve({ code, signal });
     };
     child.once('exit', onExit);
+  });
+}
+
+async function waitForStdoutClose(run: LauncherRun): Promise<void> {
+  if (run.child.stdout.closed) return;
+  await new Promise<void>((resolve) => {
+    run.child.stdout.once('close', () => resolve());
   });
 }
 
@@ -147,7 +159,8 @@ describe('mk-spec-memory launcher lease', () => {
     await waitForLeasePid(workspace.pidFilePath, first.child.pid);
 
     const second = spawnLauncher(workspace.launcherPath, workspace.root);
-    const exit = await waitForExit(second.child, 2000);
+    await waitForStdoutClose(second);
+    const exit = await waitForExit(second.child, 5000);
 
     expect(exit.code).toBe(0);
     expect(second.stdout).toContain(`LEASE_HELD_BY:${first.child.pid}`);

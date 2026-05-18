@@ -284,17 +284,24 @@ export function initDb(dbDir: string): Database.Database {
       recoverMalformedDatabase(dbPath, integrity.reason);
     }
     db = new Database(dbPath);
+    db.pragma('busy_timeout = 5000');
     try {
       db.pragma('journal_mode = WAL');
     } catch (error: unknown) {
-      if ((error as NodeJS.ErrnoException).code === 'EACCES') {
-        console.warn('[skill-graph] WAL mode failed (read-only filesystem), falling back to DELETE journal mode');
+      const code = (error as { code?: string }).code ?? '';
+      if (
+        code === 'EACCES' ||
+        code === 'EROFS' ||
+        code === 'SQLITE_READONLY' ||
+        code === 'SQLITE_CANTOPEN' ||
+        code === 'SQLITE_IOERR_WRITE'
+      ) {
+        console.warn(`[skill-graph] WAL mode unavailable (${code}); falling back to journal_mode=DELETE. Concurrent readers may stall during writes.`);
         db.pragma('journal_mode = DELETE');
       } else {
         throw error;
       }
     }
-    db.pragma('busy_timeout = 5000');
     db.pragma('foreign_keys = ON');
     db.exec(SCHEMA_SQL);
     ensureSchemaMigrations(db);

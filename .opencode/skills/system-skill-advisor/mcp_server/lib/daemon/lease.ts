@@ -126,8 +126,12 @@ export function isLeaseHeld(
     process.kill(snapshot.pid, 0);
     return { held: true, ownerPid: snapshot.pid, staleReclaimable: false };
   } catch (error: unknown) {
-    if ((error as NodeJS.ErrnoException).code === 'ESRCH') {
+    const code = (error as NodeJS.ErrnoException).code;
+    if (code === 'ESRCH') {
       return { held: false, ownerPid: snapshot.pid, staleReclaimable: true };
+    }
+    if (code === 'EPERM') {
+      return { held: true, ownerPid: snapshot.pid, staleReclaimable: false };
     }
     throw error;
   }

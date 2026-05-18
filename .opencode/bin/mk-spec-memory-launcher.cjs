@@ -38,6 +38,12 @@ function loadEnvFile(filePath) {
   }
   return count;
 }
+
+function isStrictModeDisabled(value) {
+  if (value === undefined || value === null) return false;
+  const v = String(value).trim().toLowerCase();
+  return v === '0' || v === 'false' || v === 'no' || v === 'off' || v === '';
+}
 for (const fname of ['.env.local', '.env']) {
   const p = path.join(root, fname);
   if (fs.existsSync(p)) {
@@ -272,10 +278,15 @@ function installSignalHandlers() {
   for (const signal of ['SIGINT', 'SIGTERM', 'SIGHUP']) {
     process.on(signal, () => {
       if (childProcess && !childProcess.killed) {
-        childProcess.kill(signal);
-        setTimeout(() => {
+        childProcess.once('exit', () => {
           clearLeaseFile();
           process.exit(128);
+        });
+        childProcess.kill(signal);
+        setTimeout(() => {
+          if (childProcess && childProcess.exitCode === null && childProcess.signalCode === null) {
+            childProcess.kill('SIGKILL');
+          }
         }, 5000).unref();
         return;
       }
@@ -297,8 +308,7 @@ function installSignalHandlers() {
     refreshPaths();
     enforceStandaloneCodeGraphDb(actions);
 
-    const strictSingleWriter = process.env.MK_SPEC_MEMORY_STRICT_SINGLE_WRITER !== '0' &&
-                               process.env.MK_SPEC_MEMORY_STRICT_SINGLE_WRITER !== 'false';
+    const strictSingleWriter = !isStrictModeDisabled(process.env.MK_SPEC_MEMORY_STRICT_SINGLE_WRITER);
     if (strictSingleWriter) {
       const leaseResult = isLeaseHeld();
       if (leaseResult.held && !leaseResult.staleReclaimable) {
@@ -326,6 +336,11 @@ function installSignalHandlers() {
     }
 
     writeLeaseFile();
+    const reprobe = readLeaseFile();
+    if (!reprobe || reprobe.pid !== process.pid) {
+      process.stdout.write(`LEASE_HELD_BY:${reprobe ? reprobe.pid : 'unknown'}\n`);
+      process.exit(0);
+    }
     const onExit = () => clearLeaseFile();
     process.on('exit', onExit);
 

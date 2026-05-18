@@ -1,0 +1,17 @@
+{
+  "specFolder": "008-skill-advisor/008-lease-hardening-from-review",
+  "description": "Phase 1: lease-hardening-from-review",
+  "keywords": [
+    "phase",
+    "lease-hardening-from-review"
+  ],
+  "lastUpdated": "2026-05-18T06:19:31.620Z",
+  "specId": "008",
+  "folderSlug": "lease-hardening-from-review",
+  "parentChain": [
+    "008-skill-advisor"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}
