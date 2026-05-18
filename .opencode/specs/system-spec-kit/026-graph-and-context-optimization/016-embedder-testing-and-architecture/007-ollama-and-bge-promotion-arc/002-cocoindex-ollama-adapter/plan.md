@@ -158,3 +158,52 @@ Consumer inventory: `rg -n "requires_ollama_daemon|ollama/nomic-embed-text|_ensu
 - **Trigger**: Ollama route breaks default indexing or introduces daemon checks for non-Ollama providers.
 - **Procedure**: Revert the scoped changes to `shared.py`, `registered_embedders.py`, Ollama tests, and docs. Existing `sbert/` manifests and sentence-transformers path are otherwise unchanged.
 <!-- /ANCHOR:rollback -->
+
+---
+
+<!-- ANCHOR:phase-deps -->
+## L2: PHASE DEPENDENCIES
+
+```
+Phase 1 (Setup) ──► Phase 2 (Core) ──► Phase 3 (Verify)
+```
+
+| Phase | Depends On | Blocks |
+|-------|------------|--------|
+| Setup | None | Core |
+| Core | Setup | Verify |
+| Verify | Core | Commit handoff |
+<!-- /ANCHOR:phase-deps -->
+
+---
+
+<!-- ANCHOR:effort -->
+## L2: EFFORT ESTIMATION
+
+| Phase | Complexity | Estimated Effort |
+|-------|------------|------------------|
+| Setup | Medium | 30-45 minutes |
+| Core Implementation | Medium | 1-2 hours |
+| Verification | Medium | 45-60 minutes |
+| **Total** | | **2-4 hours** |
+<!-- /ANCHOR:effort -->
+
+---
+
+<!-- ANCHOR:enhanced-rollback -->
+## L2: ENHANCED ROLLBACK
+
+### Pre-deployment Checklist
+- [x] Default sbert path unchanged.
+- [x] Ollama route covered by mocked tests.
+- [x] Operator docs updated.
+
+### Rollback Procedure
+1. Revert the scoped files listed in `implementation-summary.md`.
+2. Restart any CocoIndex daemon using the changed checkout.
+3. Run targeted config and registry tests.
+
+### Data Reversal
+- **Has data migrations?** No.
+- **Reversal procedure**: Remove any Ollama-built `.cocoindex_code/` index and rebuild with the desired embedder.
+<!-- /ANCHOR:enhanced-rollback -->

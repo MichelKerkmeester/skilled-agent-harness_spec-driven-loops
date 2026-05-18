@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import json
 import logging
 import os
 from dataclasses import replace
@@ -14,6 +15,33 @@ logger = logging.getLogger(__name__)
 
 MIN_AVAILABLE_RAM_BYTES = 2 * 1024 * 1024 * 1024
 _ADAPTERS: dict[str, "RerankerAdapter"] = {}
+
+
+def _maybe_log_scores(query: str, head: list[QueryResult], scores: list[float]) -> None:
+    """Env-gated per-probe top-K score logger. Off unless COCOINDEX_RERANK_LOG_PATH is set.
+
+    Writes one JSON line per rerank call: {query, candidates: [{file_path, pre_score, rerank_score}]}.
+    Used by the 016/007/003 pre-confirmation instrumentation to size rerank non-determinism risk.
+    """
+    log_path = os.environ.get("COCOINDEX_RERANK_LOG_PATH", "").strip()
+    if not log_path:
+        return
+    try:
+        row = {
+            "query": query,
+            "candidates": [
+                {
+                    "file_path": c.file_path,
+                    "pre_score": float(c.score) if c.score is not None else None,
+                    "rerank_score": float(s),
+                }
+                for c, s in zip(head, scores, strict=True)
+            ],
+        }
+        with open(log_path, "a", encoding="utf-8") as f:
+            f.write(json.dumps(row) + "\n")
+    except Exception as exc:  # pragma: no cover - never break rerank because logging failed
+        logger.warning("rerank score log failed: %s (path=%r)", exc, log_path)
 
 
 def _available_ram_bytes() -> int | None:
@@ -105,6 +133,8 @@ class RerankerAdapter:
                 exc,
             )
             return candidates
+
+        _maybe_log_scores(query, head, scores)
 
         reranked_head = [
             replace(

@@ -13,8 +13,8 @@
     "trigger_phrases": ["016/013/002 ollama adapter","cocoindex ollama support","litellm ollama"],
     "key_topics": ["002","ollama-adapter","cocoindex","litellm","embedder"],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "completed",
     "last_active_child_id": null,
-    "last_active_at": null
+    "last_active_at": "2026-05-18T17:41:16Z"
   }
 }

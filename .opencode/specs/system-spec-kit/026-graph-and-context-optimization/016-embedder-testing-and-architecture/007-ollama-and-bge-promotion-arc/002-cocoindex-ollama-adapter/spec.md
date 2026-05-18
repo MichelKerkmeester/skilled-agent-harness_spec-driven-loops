@@ -21,7 +21,7 @@ _memory:
       - ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/registered_embedders.py"
       - ".opencode/skills/mcp-coco-index/mcp_server/tests/test_ollama_routing.py"
     session_dedup:
-      fingerprint: "sha256:cocoindex-ollama-adapter-2026-05-18"
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "codex-2026-05-18-cocoindex-ollama-adapter"
       parent_session_id: null
     completion_pct: 100
@@ -91,8 +91,15 @@ Out of scope:
 | R7 | Strict-validate PASSED on this sub-phase. |
 <!-- /ANCHOR:requirements -->
 
+<!-- ANCHOR:success-criteria -->
+## 5. SUCCESS CRITERIA
+
+- Operator with Ollama running can `export COCOINDEX_CODE_EMBEDDING_MODEL=ollama/nomic-embed-text && ccc reset --force && ccc index && ccc search "query"` and get meaningful results.
+- Adapter pattern is generalizable: adding another Ollama model later (e.g., `ollama/mxbai-embed-large`) is a one-line MANIFESTS entry.
+<!-- /ANCHOR:success-criteria -->
+
 <!-- ANCHOR:risks -->
-## 5. RISKS
+## 6. RISKS & DEPENDENCIES
 
 - **LiteLLM may not be a CocoIndex dependency.** If LiteLLM isn't already installed, this requires a pyproject.toml change. Check `mcp-coco-index/mcp_server/pyproject.toml` first.
 - **Ollama provider auth.** LiteLLM ollama provider typically needs `OLLAMA_API_BASE` (default `http://localhost:11434`). Add to env-var docs.
@@ -100,9 +107,48 @@ Out of scope:
 - **Daemon startup race.** If Ollama isn't running when `ccc index` starts, all chunks fail to embed. Add a graceful failure path with a clear error message.
 <!-- /ANCHOR:risks -->
 
-<!-- ANCHOR:success-criteria -->
-## 6. SUCCESS CRITERIA
+<!-- ANCHOR:questions -->
 
-- Operator with Ollama running can `export COCOINDEX_CODE_EMBEDDING_MODEL=ollama/nomic-embed-text && ccc reset --force && ccc index && ccc search "query"` and get meaningful results.
-- Adapter pattern is generalizable: adding another Ollama model later (e.g., `ollama/mxbai-embed-large`) is a one-line MANIFESTS entry.
-<!-- /ANCHOR:success-criteria -->
+<!-- ANCHOR:nfr -->
+## L2: NON-FUNCTIONAL REQUIREMENTS
+
+### Performance
+- **NFR-P01**: The default sbert path must keep its current behavior and not perform Ollama daemon checks.
+- **NFR-P02**: Ollama readiness checks should fail within a short timeout before indexing begins.
+
+### Reliability
+- **NFR-R01**: Missing Ollama daemon or missing model must produce an actionable error.
+- **NFR-R02**: Registered 768-dimensional Ollama models must remain schema-compatible with the default vector dimension.
+<!-- /ANCHOR:nfr -->
+
+<!-- ANCHOR:edge-cases -->
+## L2: EDGE CASES
+
+### Data Boundaries
+- Empty registry lookup: unknown model names fall back to the default.
+- Explicit Ollama version tag: exact tags must match the pulled model.
+- Implicit Ollama tag: `nomic-embed-text` may match `nomic-embed-text:latest`.
+
+### Error Scenarios
+- Ollama daemon unreachable: factory raises a clear `RuntimeError`.
+- Model not pulled: factory tells the operator to run `ollama pull`.
+- Temp-project indexing blocked by sandbox: smoke result is recorded without changing benchmark scope.
+<!-- /ANCHOR:edge-cases -->
+
+<!-- ANCHOR:complexity -->
+## L2: COMPLEXITY ASSESSMENT
+
+| Dimension | Score | Notes |
+|-----------|-------|-------|
+| Scope | 14/25 | Multi-file Python, docs, tests, and packet metadata. |
+| Risk | 10/25 | Provider routing and local daemon dependency, default path preserved. |
+| Research | 10/20 | LiteLLM path, local package source, and TS adapter reference reviewed. |
+| **Total** | **34/70** | **Level 2** |
+<!-- /ANCHOR:complexity -->
+
+---
+
+## 10. OPEN QUESTIONS
+
+- None. Full `ccc index` smoke is tracked as a known sandbox limitation in `implementation-summary.md`, not an open design question.
+<!-- /ANCHOR:questions -->

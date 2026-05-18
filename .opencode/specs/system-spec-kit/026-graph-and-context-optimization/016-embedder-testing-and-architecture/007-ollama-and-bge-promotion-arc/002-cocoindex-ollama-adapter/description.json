@@ -1,9 +1,9 @@
 {
   "level": "feature",
   "specFolder": "002-cocoindex-ollama-adapter",
-  "description": "Add Ollama provider support to CocoIndex via LiteLLM. Register ollama embedders in MANIFESTS. Smoke-test end-to-end",
+  "description": "Add Ollama provider support to CocoIndex via LiteLLM. Register ollama/nomic-embed-text, add daemon readiness checks, tests, docs, and smoke evidence.",
   "keywords": ["ollama-adapter","cocoindex","litellm","embedder-registry"],
-  "lastUpdated": "2026-05-18T15:59:11.000Z",
+  "lastUpdated": "2026-05-18T17:41:16.000Z",
   "specId": "002",
   "folderSlug": "002-cocoindex-ollama-adapter",
   "parentChain": [
