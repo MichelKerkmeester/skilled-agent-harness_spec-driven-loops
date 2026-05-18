@@ -1,12 +1,14 @@
 ---
-title: "Benchmark Results: 4-candidate Embedder Bake-Off with hybrid+rerank defaults on"
-description: "Detailed retrieval evaluation of jina-code, gemma, nomic-CodeRankEmbed, bge-code-v1, and stella against the 18-pair code-retrieval fixture, with hybrid (FTS5+vector RRF) and cross-encoder rerank enabled by default. Headline: bge-code-v1 wins 11/18 = 61.1% at the lowest latency."
+title: "Benchmark Results: 4-candidate Embedder Bake-Off with hybrid+rerank defaults on (PARTIALLY INVALIDATED — see Erratum)"
+description: "Detailed retrieval evaluation of jina-code, gemma, nomic-CodeRankEmbed, bge-code-v1, and stella against the 18-pair code-retrieval fixture, with hybrid (FTS5+vector RRF) and cross-encoder rerank enabled by default. Headline as recorded: bge-code-v1 wins 11/18 = 61.1%. ERRATUM 2026-05-18 evening: rerank was NOT firing in this bench because pipx daemon lacked the reranker module; see Section 0 + 016/007/003/pre-confirmation-margin-analysis.md."
 trigger_phrases:
   - "bge-code-v1 benchmark"
   - "embedder bake-off results"
   - "hybrid rerank benchmark"
   - "stella xformers failure"
   - "016/004/004 results"
+  - "May 18 benchmark erratum"
+  - "rerank not firing baseline"
 importance_tier: "important"
 contextType: "implementation"
 ---
@@ -15,8 +17,27 @@ contextType: "implementation"
 
 # Benchmark Results: 4-candidate Code-Embedder Bake-Off (hybrid+rerank on)
 
+<!-- ANCHOR:erratum -->
+## 0. ERRATUM (added 2026-05-18 evening)
+
+**The "hybrid+rerank ON" claim in this report is partially invalidated for the May 18 morning bench.** Cross-encoder rerank was NOT firing during the original measurements because the pipx-installed `cocoindex-code` at `~/.local/pipx/venvs/cocoindex-code/` was a non-editable May 7 copy that did not contain the `reranker.py`, `fts_index.py`, `fusion.py`, or `registered_embedders.py` modules. The bench harness invoked `ccc` from PATH which resolved to the stale pipx, so the rerank code path was effectively dead.
+
+What this report ACTUALLY measured: pure vector retrieval against the chunk-1500/overlap-200 + RRF (without FTS5 sparse) + NO-rerank stack. The bge-code-v1 win at 11/18 = 61.1% was real, but the "+2 pairs via hybrid+rerank" framing is structurally wrong.
+
+The instrumented evening re-bench (single candidate, after install hygiene fix) found bge-code-v1 drops to **10/18 = 55.6%** with rerank actually firing, AND all 4 previously-unique-win probes flip to MISSES with margins < 0.05. The rerank — when it fires — exhibits a systematic failure mode (tests / refs / .ts source outrank implementations / dist / integration tests on paraphrase-heavy queries).
+
+**For the corrected numbers + a full 4-candidate re-baseline**, see:
+- `../../007-ollama-and-bge-promotion-arc/003-bge-code-v1-confirmation-and-promote/pre-confirmation-margin-analysis.md` — the invalidation finding + per-probe margin analysis
+- `../../005-cross-cutting-quality/005-cocoindex-install-hygiene/` — the pipx editable + harness CCC-pinning fix that makes future bench runs production-truthful
+- `../../007-ollama-and-bge-promotion-arc/003-bge-code-v1-confirmation-and-promote/` (rescoped) — the planned 4-candidate re-baseline using the corrected pipeline
+
+The rest of this doc (Sections 1-12) is preserved as historical record of what was measured at the time. Treat the numbers as "pure-vector + RRF-no-FTS5 + NO-rerank" results, not "hybrid+rerank ON" — and prefer the rescoped 007/003 packet for the production decision.
+<!-- /ANCHOR:erratum -->
+
+---
+
 <!-- ANCHOR:headline -->
-## 1. Headline
+## 1. Headline (as originally measured — see Section 0 Erratum)
 
 **`BAAI/bge-code-v1` wins both accuracy and latency.** 11/18 hits = 61.1%, +2 pairs (+11.1pp) over the 3-way tie at 9/18 = 50.0% held by jina-code, gemma-300m, and nomic-CodeRankEmbed. It is also ~2× faster at the median (504ms vs ~1000-1200ms).
 

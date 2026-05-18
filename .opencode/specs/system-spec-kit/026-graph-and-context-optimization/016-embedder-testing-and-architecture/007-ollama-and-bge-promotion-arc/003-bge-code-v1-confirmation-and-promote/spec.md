@@ -1,63 +1,79 @@
 ---
-title: "Spec: 016/013/003 bge-code-v1 3-Run Confirmation + Promote"
-description: "Re-run the 4-candidate code-embedder bench 3× to confirm bge-code-v1's 11/18 = 61.1% lead is reproducible. If 3/3 runs land at ≥10/18 (no run drops to the 9/18 noise plateau), swap CocoIndex's _DEFAULT_MODEL from jina-code to bge-code-v1 + update INSTALL_GUIDE / feature_catalog / CHANGELOG."
+title: "Spec: 016/007/003 4-Candidate Re-Baseline (Corrected Pipeline) + Promote Decision"
+description: "Scope changed 2026-05-18 evening. Original plan: 3-run bge-code-v1-only confirmation. Replaced with: full 4-candidate re-baseline against the corrected pipeline (pipx editable + harness CCC-pinned + rerank actually firing per 016/005/005 hygiene fix). The May 18 morning 11/18 = 61.1% baseline was invalidated — that bench ran with the reranker module missing from pipx. Re-run all 4 candidates (jina-code, gemma, nomic-CodeRankEmbed, bge-code-v1) end-to-end; produce new ranking; promote (or hold) based on rigorous comparison."
 trigger_phrases:
-  - "016/013/003 bge-code-v1 promote"
-  - "bge-code-v1 3-run confirmation"
-  - "cocoindex default swap"
-  - "code embedder default change"
+  - "016/007/003 4-candidate re-baseline"
+  - "corrected pipeline rebench"
+  - "post install-hygiene re-baseline"
+  - "cocoindex default re-evaluation"
+  - "rerank-firing baseline"
 importance_tier: "important"
 contextType: "implementation"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->
 
-# Spec: 016/013/003 bge-code-v1 Confirmation + Promote
+# Spec: 016/007/003 4-Candidate Re-Baseline (Corrected Pipeline) + Promote Decision
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
 | Field | Value |
 |---|---|
-| Status | Planned (2026-05-18) |
-| Type | Bench + small config edit |
+| Status | Planned — scope changed 2026-05-18 evening (was: bge-code-v1-only 3-run; now: 4-candidate re-baseline) |
+| Type | Bench (4-candidate) + decision write + potential config swap |
 | Owner | Main agent |
 | Parent | `../spec.md` (007-ollama-and-bge-promotion-arc) |
-| Power dependency | Yes — ~3-4 hours wall, schedule when plugged in |
+| Power dependency | Yes — ~80-110 min wall, schedule when plugged in |
+| Scope-change driver | `pre-confirmation-margin-analysis.md` invalidated May 18 morning baseline (rerank wasn't firing); install hygiene shipped in `016/005/005` makes a re-baseline necessary and tractable |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
-The 004-extended-bake-off measured bge-code-v1 at **11/18 = 61.1%** — a +2-pair lead over the 9/18 three-way tie. The lead is well above the historical noise floor (~2pp from `113/005`), but:
+### Original framing (now invalidated)
 
-- Only 4 unique probes account for the entire gap. Any of those could be fragile to retry variance.
-- Cross-encoder reranker has tiny non-determinism (`torch.use_deterministic_algorithms` not set).
-- LMDB read order can shift on warm vs cold daemon starts.
+The 004-extended-bake-off measured bge-code-v1 at **11/18 = 61.1%** on May 18 morning — a +2-pair lead over the 9/18 three-way tie. The plan was a 3-run replay to confirm the lead before swapping `_DEFAULT_MODEL`.
 
-Before swapping the production default in `cocoindex_code/config.py:11`, we want 3 independent runs that all land at ≥10/18 for bge-code-v1.
+### Why that framing was invalid
+
+The 2026-05-18 evening instrumented bench (see `./pre-confirmation-margin-analysis.md`) discovered that the May 18 morning bench ran against a **pipx daemon that did not have the reranker module installed**. The "hybrid+rerank ON" claim was structurally false — `reranker.py` did not exist in pipx site-packages. The 11/18 result reflected pure vector retrieval, not the production stack.
+
+After the install hygiene fix (`016/005/005-cocoindex-install-hygiene/`) and bench-harness CCC pinning, an instrumented single-candidate re-run produced:
+- bge-code-v1: **10/18 = 55.6%** (median 1313ms, p95 12474ms) — not 11/18
+- All 4 previously-"unique-win" probes are now MISSES with margins < 0.05
+- The rerank is making things WORSE on these queries (lexical-cue density rewards tests/refs over implementations)
+
+A 3-run confirmation of a methodology that was already invalid is pointless. The right question is no longer "does bge-code-v1's lead hold?" but "with rerank actually firing, who wins?"
+
+### New framing
+
+Re-baseline ALL 4 candidates (jina-code, gemma-300m, nomic-CodeRankEmbed, bge-code-v1) against the corrected pipeline. Produce a new ranking. Promote (or hold) based on the corrected numbers, not the May 18 morning ones.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
 
 In scope:
-- Run `evidence/run-extended-bake-off-with-hybrid-rerank.sh` 3 times against the 4 measured candidates (jina-code, gemma-300m, nomic-CodeRankEmbed, bge-code-v1).
-- Capture each run's CSV to a separate file (`evidence/run-1.csv`, `run-2.csv`, `run-3.csv`).
-- Calculate per-candidate variance (min / median / max hit rate across 3 runs).
-- IF bge-code-v1's min hit rate across 3 runs ≥ 10/18 AND median ≥ 10/18 → **PROMOTE**:
-  1. Edit `cocoindex_code/config.py:11` — change `_DEFAULT_MODEL` from `sbert/jinaai/jina-embeddings-v2-base-code` to `sbert/BAAI/bge-code-v1`.
-  2. Update `cocoindex_code/registered_embedders.py:54-62` — move bge-code-v1 entry above jina-code, mark as DEFAULT in notes.
-  3. Update `INSTALL_GUIDE.md` references to default embedder.
-  4. Update `feature_catalog/` entries.
-  5. Update CHANGELOG.md with the promotion record.
-  6. Run final smoke search to verify swap works.
-- IF any of 3 runs drops to 9/18 or below → **HOLD** at jina-code, document the decision in implementation-summary.md.
+- Run `evidence/run-extended-bake-off-with-hybrid-rerank.sh` ONCE against all 4 candidates against the **corrected pipeline** (post-016/005/005 install hygiene fix). Single run, not 3-run — the previous methodology was tuned to a non-issue (non-determinism); the real question now is "what does the production stack actually do".
+- Capture results in `evidence/cocoindex-embedder-comparison-rebaseline-<YYYY-MM-DD>.csv` and matching `.jsonl`.
+- For each candidate, record:
+  - Hit rate (top-5, mirror-tree-normalized) — overall + easy / medium / hard
+  - Median + p95 latency
+  - Per-probe trace (JSONL) — useful for spotting the same systematic rerank failure mode across candidates
+- Decide PROMOTE / HOLD on the corrected numbers:
+  - PROMOTE rule: bge-code-v1 wins by ≥2 pairs over the next-best AND fails at < 2 of the 4 historically-unique probes (3/10/14/18)
+  - HOLD rule: any other outcome — document the new ranking and recommend follow-on (e.g., rerank model investigation, fixture audit)
+- If PROMOTE: update `cocoindex_code/config.py:11` `_DEFAULT_MODEL`, `registered_embedders.py`, `INSTALL_GUIDE.md`, `feature_catalog/`, `CHANGELOG.md`.
+- If HOLD: update the implementation-summary with the new ranking and recommendations.
 
 Out of scope:
-- Adding new candidates (already done by 004-extended-bake-off).
-- Bench harness refactoring (use the existing script as-is).
-- Promoting in mk-spec-memory (separate concern — 004-newer-text-embedders-survey sub-phase).
+- Adding new candidates (still the same 4 — jina-code, gemma-300m, nomic-CodeRankEmbed, bge-code-v1).
+- 3-run replays (the non-determinism framing is moot; do a single rigorous run on the corrected pipeline first).
+- Bench harness refactoring (harness already pinned to local-venv ccc per 016/005/005).
+- Promoting in mk-spec-memory (separate track — see 016/002/006-ollama-encode-path-wiring/ for the spec-memory side).
+- Rerank model investigation (separate follow-on — see 016/004/005 if scaffolded).
+- Fixture audit (separate follow-on — probe 10 specifically may have wrong expected path).
 <!-- /ANCHOR:scope -->
 
 <!-- ANCHOR:requirements -->
@@ -65,28 +81,31 @@ Out of scope:
 
 | # | Requirement |
 |---|---|
-| R1 | 3 separate CSV files, each with 4 candidate rows, committed to `evidence/`. |
-| R2 | Aggregated variance table in `implementation-summary.md` showing min/median/max per candidate. |
-| R3 | Explicit PROMOTE or HOLD decision documented with rationale. |
-| R4 | If PROMOTE: config + registry + 3 doc files updated in a single coherent commit. |
-| R5 | Smoke search post-promote returns expected paths for at least 5 probes. |
-| R6 | Strict-validate PASSED. |
+| R1 | One CSV with 4 rows + matching JSONL with 72 per-probe rows (4×18), committed to `evidence/`. |
+| R2 | Ranking table in `implementation-summary.md` showing each candidate's hit rate + per-difficulty + latency. |
+| R3 | Per-probe failure-mode analysis: did the 4 historically-unique probes (3/10/14/18) hit or miss under each candidate? Capture in a small table. |
+| R4 | Explicit PROMOTE or HOLD decision documented with rationale, citing this packet's `pre-confirmation-margin-analysis.md` for the May 18 invalidation context. |
+| R5 | If PROMOTE: config + registry + 3 doc files updated in a single coherent commit. Smoke search post-promote returns expected paths for at least 5 probes. |
+| R6 | Strict-validate PASSED on this packet. |
 <!-- /ANCHOR:requirements -->
 
 <!-- ANCHOR:risks -->
 ## 5. RISKS
 
-- **Battery drain.** 3 runs × ~75min each = ~3.5 hours wall. Must be plugged in.
-- **Daemon wedge.** LMDB lock issues can stall a run; bench harness should handle but verify between runs.
-- **Variance surprise.** If bge-code-v1 lands 8/18, 11/18, 10/18 across runs, decision becomes harder. Have a tiebreaker plan: take median, but if any run sits at the universal floor (7/18) suspect a bug.
+- **Battery drain.** ~80-110 min wall for 4 candidates. Must be plugged in.
+- **Daemon wedge.** LMDB lock issues can stall a run; the harness now resolves `$CCC` deterministically (per 016/005/005) so cold-start hygiene is better, but verify between candidates.
+- **Systematic rerank failure mode.** Per `pre-confirmation-margin-analysis.md`, the BGE-reranker-v2-m3 demotes implementations below tests/refs on paraphrase-heavy queries. If ALL 4 candidates regress vs the May 18 morning numbers, that's expected (rerank now firing). The interesting comparison is the relative ordering, not absolute hit rates.
+- **None of the 4 may win cleanly.** All candidates may end up clustered in 9/18-10/18 territory. In that case, HOLD jina-code as default and pivot to follow-on packets (rerank model investigation + fixture audit).
 <!-- /ANCHOR:risks -->
 
 <!-- ANCHOR:success-criteria -->
 ## 6. SUCCESS CRITERIA
 
-- Clear PROMOTE or HOLD outcome with 3-run evidence.
-- If promoted, all 4 config + doc files coherent (no mention of jina-code as default after this commit).
-- If held, the decision is recorded with the run data so future re-promotion attempts have a baseline to beat.
+- All 4 candidates re-measured against the corrected pipeline (pipx editable + harness CCC-pinned + rerank firing).
+- Clear PROMOTE or HOLD outcome with per-candidate + per-probe evidence.
+- If promoted: all 4 config + doc files coherent (no mention of jina-code as default after the commit).
+- If held: the new ranking is documented + follow-on packets are referenced (rerank model fit, fixture audit).
+- This packet's `pre-confirmation-margin-analysis.md` is cross-linked from the implementation-summary so the May 18 invalidation story stays visible.
 <!-- /ANCHOR:success-criteria -->
 
 <!-- ANCHOR:skill-local-promotion -->
