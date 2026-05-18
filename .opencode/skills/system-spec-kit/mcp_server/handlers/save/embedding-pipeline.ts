@@ -9,7 +9,12 @@ import {
   sanitizeAndLogEmbeddingFailure,
   sanitizeEmbeddingFailureMessage,
 } from '../../lib/providers/retry-manager.js';
-import { computeContentHash, lookupEmbedding, storeEmbedding } from '../../lib/cache/embedding-cache.js';
+import {
+  computeContentHash,
+  getActiveEmbeddingProfileKey,
+  lookupEmbedding,
+  storeEmbedding,
+} from '../../lib/cache/embedding-cache.js';
 import { normalizeContentForEmbedding } from '../../lib/parsing/content-normalizer.js';
 import type { ParsedMemory } from '../../lib/parsing/memory-parser.js';
 import type { WeightedDocumentSections } from '@spec-kit/shared/index';
@@ -25,6 +30,8 @@ export interface EmbeddingResult {
   failureReason: string | null;
   pendingCacheWrite?: {
     cacheKey: string;
+    profileKey: string;
+    inputKind: 'document';
     modelId: string;
     embeddingBuffer: Buffer;
     dimensions: number;
@@ -111,8 +118,7 @@ function buildParsedMemoryWeightedSections(parsed: ParsedMemory): WeightedDocume
   };
 }
 
-function computeCacheKey(content: string, model: string): string {
-  void model;
+function computeCacheKey(content: string): string {
   return computeContentHash(normalizeContentForEmbedding(content));
 }
 
@@ -127,12 +133,18 @@ export async function generateOrCacheEmbedding(
   let embeddingFailureReason: string | null = null;
   const modelId = embeddings.getModelName();
   const embeddingDim = embeddings.getEmbeddingDimension();
-  const cacheKey = computeCacheKey(parsed.content, modelId);
+  const profileKey = getActiveEmbeddingProfileKey(database, modelId, embeddingDim);
+  const inputKind = 'document' as const;
+  const cacheKey = computeCacheKey(parsed.content);
 
   if (asyncEmbedding) {
-    const cachedBuf = lookupEmbedding(database, cacheKey, modelId, embeddingDim);
+    const cachedBuf = lookupEmbedding(database, cacheKey, modelId, embeddingDim, { profileKey, inputKind });
     if (cachedBuf) {
-      embedding = new Float32Array(new Uint8Array(cachedBuf).buffer);
+      embedding = new Float32Array(
+        cachedBuf.buffer,
+        cachedBuf.byteOffset,
+        Math.floor(cachedBuf.byteLength / Float32Array.BYTES_PER_ELEMENT),
+      );
       embeddingStatus = 'success';
       console.error(`[memory-save] Embedding cache HIT for ${path.basename(filePath)} (async mode)`);
     } else {
@@ -142,10 +154,14 @@ export async function generateOrCacheEmbedding(
   } else {
     try {
       // Check persistent embedding cache before calling provider
-      const cachedBuf = lookupEmbedding(database, cacheKey, modelId, embeddingDim);
+      const cachedBuf = lookupEmbedding(database, cacheKey, modelId, embeddingDim, { profileKey, inputKind });
       if (cachedBuf) {
         // Cache hit: convert Buffer to Float32Array
-        embedding = new Float32Array(new Uint8Array(cachedBuf).buffer);
+        embedding = new Float32Array(
+          cachedBuf.buffer,
+          cachedBuf.byteOffset,
+          Math.floor(cachedBuf.byteLength / Float32Array.BYTES_PER_ELEMENT),
+        );
         embeddingStatus = 'success';
         console.error(`[memory-save] Embedding cache HIT for ${path.basename(filePath)}`);
       } else {
@@ -163,6 +179,8 @@ export async function generateOrCacheEmbedding(
             failureReason: embeddingFailureReason,
             pendingCacheWrite: {
               cacheKey,
+              profileKey,
+              inputKind,
               modelId,
               embeddingBuffer: embBuf,
               dimensions: embedding.length,
@@ -205,6 +223,10 @@ export function persistPendingEmbeddingCacheWrite(
     pendingCacheWrite.modelId,
     pendingCacheWrite.embeddingBuffer,
     pendingCacheWrite.dimensions,
+    {
+      profileKey: pendingCacheWrite.profileKey,
+      inputKind: pendingCacheWrite.inputKind,
+    },
   );
   console.error(`[memory-save] Embedding cache STORE after quality gate for ${path.basename(filePath)}`);
 }

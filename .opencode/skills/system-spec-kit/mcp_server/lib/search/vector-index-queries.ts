@@ -15,6 +15,12 @@ import * as embeddingsProvider from '../providers/embeddings.js';
 import { DEFAULT_ACTIVE_EMBEDDER, getActiveEmbedder } from '../embedders/schema.js';
 import { getAdapter } from '../embedders/registry.js';
 import {
+  computeContentHash,
+  getActiveEmbeddingProfileKey,
+  lookupEmbedding,
+  storeEmbedding,
+} from '../cache/embedding-cache.js';
+import {
   get_error_message,
   parse_trigger_phrases,
   to_embedding_buffer,
@@ -635,6 +641,28 @@ export async function generate_query_embedding(query: string): Promise<Float32Ar
   try {
     const database = initialize_db();
     const active = getActiveEmbedder(database);
+    const trimmedQuery = query.trim();
+    const modelId = active.name !== DEFAULT_ACTIVE_EMBEDDER.name
+      ? active.name
+      : embeddingsProvider.getModelName();
+    const embeddingDim = active.name !== DEFAULT_ACTIVE_EMBEDDER.name
+      ? active.dim
+      : embeddingsProvider.getEmbeddingDimension();
+    const profileKey = getActiveEmbeddingProfileKey(database, modelId, embeddingDim);
+    const contentHash = computeContentHash(trimmedQuery);
+    const cached = lookupEmbedding(database, contentHash, modelId, embeddingDim, {
+      profileKey,
+      inputKind: 'query',
+    });
+    if (cached) {
+      return new Float32Array(
+        cached.buffer,
+        cached.byteOffset,
+        Math.floor(cached.byteLength / Float32Array.BYTES_PER_ELEMENT),
+      );
+    }
+
+    let embedding: Float32Array | null = null;
     if (active.name !== DEFAULT_ACTIVE_EMBEDDER.name) {
       const adapter = getAdapter(active.name);
       if (!adapter) {
@@ -648,12 +676,24 @@ export async function generate_query_embedding(query: string): Promise<Float32Ar
           options?: { inputType?: 'query' | 'document' },
         ) => Promise<Float32Array[]>;
       };
-      const [embedding] = await activeAdapter.embed([query.trim()], { inputType: 'query' });
-      return embedding ?? null;
+      const [activeEmbedding] = await activeAdapter.embed([trimmedQuery], { inputType: 'query' });
+      embedding = activeEmbedding ?? null;
+    } else {
+      const embeddings = embeddingsProvider;
+      embedding = await embeddings.generateQueryEmbedding(trimmedQuery);
     }
 
-    const embeddings = embeddingsProvider;
-    const embedding = await embeddings.generateQueryEmbedding(query.trim());
+    if (embedding) {
+      storeEmbedding(
+        database,
+        contentHash,
+        modelId,
+        Buffer.from(embedding.buffer, embedding.byteOffset, embedding.byteLength),
+        embedding.length,
+        { profileKey, inputKind: 'query' },
+      );
+    }
+
     return embedding;
   } catch (error: unknown) {
     console.warn(`[vector-index] Query embedding failed: ${get_error_message(error)}`);

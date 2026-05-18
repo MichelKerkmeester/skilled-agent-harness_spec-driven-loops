@@ -109,7 +109,7 @@ Generated from `lib/search/search-flags.ts`. "Default state" is the shipped beha
 <!-- PHASE-010-ENV-SLOT: SPECKIT_COCO_USE_SHARED_RERANK / SPECKIT_EMBEDDING_CACHE_* flags inserted here (027/010) -->
 <!-- PHASE-011-ENV-SLOT: SPECKIT_COCOINDEX_EXEMPLARS_* / SPECKIT_CONTEXT_CURATOR_* flags inserted here (027/011) -->
 
-Total unique variables documented: 131 (legacy HYDRA aliases removed in commit 6f2c2c939).
+Total unique variables documented: 135 (legacy HYDRA aliases removed in commit 6f2c2c939).
 
 ### Provisional Measurement Contract
 
@@ -452,6 +452,10 @@ Embedding provider selection stays auto-cascaded unless you force it. In `EMBEDD
 | `SPECKIT_EMBEDDING_CIRCUIT_BREAKER` | `true` | boolean | Circuit breaker for embedding model failures. Graduated ON. | `shared/embeddings.ts` |
 | `SPECKIT_EMBEDDING_CB_THRESHOLD` | `3` | number | Consecutive failure count before circuit breaker opens. | `shared/embeddings.ts` |
 | `SPECKIT_EMBEDDING_CB_COOLDOWN_MS` | `60000` | number | Cooldown period in ms before circuit breaker resets (min 1000). | `shared/embeddings.ts` |
+| `SPECKIT_EMBED_CACHE_MAX_BYTES` | `104857600` | number | Global hard cap for persistent embedding cache rows across all profiles and document/query kinds. Defaults to 100 MB. | `lib/cache/embedding-cache.ts` |
+| `SPECKIT_EMBED_CACHE_PROFILE_MAX_BYTES` | `52428800` | number | Per-profile cap for persistent embedding cache rows. Defaults to 50 MB per active embedder profile. | `lib/cache/embedding-cache.ts` |
+| `SPECKIT_QUERY_EMBED_CACHE_MAX_BYTES` | `26214400` | number | Separate cap for cached query embeddings (`input_kind='query'`). Defaults to 25 MB. | `lib/cache/embedding-cache.ts` |
+| `SPECKIT_EMBED_CACHE_MAX_ENTRIES_PER_PROFILE` | `50000` | number | Secondary safety cap on embedding cache row count per profile after byte limits are applied. | `lib/cache/embedding-cache.ts` |
 <!-- /ANCHOR:embedding -->
 
 ---

@@ -9,6 +9,7 @@
 import { randomUUID } from 'node:crypto';
 import { existsSync, readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
+import type Database from 'better-sqlite3';
 
 import { checkDatabaseUpdated } from '../core/index.js';
 import * as vectorIndex from '../lib/search/vector-index.js';
@@ -25,6 +26,11 @@ import {
   WINDOW_SIZE as ROUTING_TELEMETRY_WINDOW_SIZE,
 } from '../lib/search/routing-telemetry.js';
 import { probeCocoIndexDaemon } from '../lib/cocoindex/daemon-probe.js';
+import {
+  getByteEstimate as getEmbeddingCacheByteEstimate,
+  getEmbeddingCacheByProfileStats,
+  type EmbeddingCacheProfileStats,
+} from '../lib/cache/embedding-cache.js';
 import {
   getCacheByteEstimates,
   getDetailedMemorySnapshot,
@@ -128,7 +134,9 @@ interface DivergentAliasBucket {
 interface FullMemoryReport {
   includeFullReport: true;
   memory_snapshot: DetailedMemorySnapshot;
-  cache_byte_estimates: CacheByteEstimates;
+  cache_byte_estimates: CacheByteEstimates & {
+    embedding_cache_by_profile: Record<string, EmbeddingCacheProfileStats>;
+  };
   recommended_action: string;
 }
 
@@ -249,16 +257,33 @@ function getRecommendedAction(snapshot: DetailedMemorySnapshot): string {
   return 'No heap snapshot recommended from current thresholds';
 }
 
-function getFullMemoryReport(includeFullReport: boolean): FullMemoryReport | null {
+function getFullMemoryReport(
+  includeFullReport: boolean,
+  database: Database.Database | null,
+): FullMemoryReport | null {
   if (!includeFullReport) {
     return null;
   }
 
   const snapshot = getDetailedMemorySnapshot();
+  const cacheByteEstimates = getCacheByteEstimates();
+  if (database) {
+    const embeddingEstimate = getEmbeddingCacheByteEstimate(database);
+    cacheByteEstimates.embedding_cache_in_process = {
+      entries: embeddingEstimate.entries,
+      approx_bytes: embeddingEstimate.approxBytes,
+    };
+  }
+
   return {
     includeFullReport: true,
     memory_snapshot: snapshot,
-    cache_byte_estimates: getCacheByteEstimates(),
+    cache_byte_estimates: {
+      ...cacheByteEstimates,
+      embedding_cache_by_profile: database
+        ? getEmbeddingCacheByProfileStats(database)
+        : {},
+    },
     recommended_action: getRecommendedAction(snapshot),
   };
 }
@@ -360,9 +385,8 @@ async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
     });
   }
   const safeLimit = Math.max(1, Math.min(Math.floor(rawLimit || DEFAULT_DIVERGENT_ALIAS_LIMIT), MAX_DIVERGENT_ALIAS_LIMIT));
-  const fullMemoryReport = getFullMemoryReport(includeFullReport);
-
   const database = vectorIndex.getDb();
+  const fullMemoryReport = getFullMemoryReport(includeFullReport, database);
   let memoryCount = 0;
   let aliasConflicts: ReturnType<typeof summarizeAliasConflicts> = summarizeAliasConflicts([]);
   let aliasRows: AliasConflictDbRow[] = [];

@@ -118,6 +118,14 @@ For active `jina-embeddings-v3`, the expected operator result after daemon resta
 
 `memory_health` accepts `includeFullReport:true` for byte-aware runtime diagnostics. The extended report includes RSS, V8 heap totals, external memory, ArrayBuffer memory, V8 malloc counters, cache byte estimates for tool cache, trigger matcher regex retention, and the in-process embedding LRU.
 
+### Profile-Aware Caching
+
+Persistent document and query embeddings are cached by `content_hash`, active `profile_key`, `input_kind`, `model_id`, and `dimensions`. The profile key is derived from `vec_metadata.active_embedder_provider`, `active_embedder_name`, and `active_embedder_dim`, so switching between Jina, Voyage, OpenAI, or hf-local profiles no longer reuses an incompatible cache row.
+
+The cache is byte-bounded rather than count-bounded. `SPECKIT_EMBED_CACHE_MAX_BYTES` caps all embedding cache rows, `SPECKIT_EMBED_CACHE_PROFILE_MAX_BYTES` caps each profile, `SPECKIT_QUERY_EMBED_CACHE_MAX_BYTES` caps query rows separately, and `SPECKIT_EMBED_CACHE_MAX_ENTRIES_PER_PROFILE` remains as a secondary safety limit. LRU eviction uses `last_used_at`, then calls SQLite `PRAGMA shrink_memory` when rows are deleted.
+
+Full `memory_health` reports expose `cache_byte_estimates.embedding_cache_by_profile`, with document/query breakdowns per profile. Use that field to verify profile switches do not stack unbounded historical cache rows.
+
 Heap snapshots remain opt-in because they can contain indexed text, prompts, file paths, and secret-shaped values. Set `SPECKIT_HEAP_SNAPSHOT_DIR=/path/to/private/dir` before launching the context server, then call the heap profiler snapshot path during an investigation; the server creates the directory with mode `0700` and each `.heapsnapshot` with mode `0600`.
 
 `SPECKIT_CONTEXT_SERVER_MAX_OLD_SPACE_MB` can pass `--max-old-space-size=<mb>` to the spawned `context-server.js` child for profiling or leak-canary sessions. Leave it unset for normal operation until packed BM25 and byte-bounded cache packets have reduced retained heap enough to pick a safe cap.
