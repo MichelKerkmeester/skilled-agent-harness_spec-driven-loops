@@ -36,3 +36,5 @@ class QueryResult:
     rankingSignals: list[str]
     fts5_score: float | None = None
     rrf_score: float | None = None
+    pre_rerank_score: float | None = None
+    reranker_score: float | None = None

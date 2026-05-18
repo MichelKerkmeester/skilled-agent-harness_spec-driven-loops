@@ -47,6 +47,15 @@ Add feature-gated inline `query_codebase()` rerank with `Alibaba-NLP/gte-multili
 | 3 | reranker-topk-sweep | `iterations/iteration-003.md` | 10 | K=20 first prod default; sweep K=10/20/50/100 with candidate-depth + latency gates |
 | 4 | reranker-synthesis | `iterations/iteration-004.md` | 8 | (this synthesis derived from iter 4 directly) |
 
+<!-- ANCHOR:citations -->
+## Citations
+
+- Local integration precedent: `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts`
+- Local fallback precedent: `.opencode/skills/system-spec-kit/mcp_server/lib/search/local-reranker.ts`
+- Target implementation path: `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/query.py`
+- Model card: https://huggingface.co/Alibaba-NLP/gte-multilingual-reranker-base
+<!-- /ANCHOR:citations -->
+
 ## Next steps
 
 1. Refine `plan.md` from this synthesis — concrete implementation phases (schema plumbing → inline integration → harness sweep → opt-in flag → benchmark gate → default-on promotion).

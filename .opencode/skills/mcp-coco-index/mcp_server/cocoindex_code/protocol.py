@@ -105,6 +105,8 @@ class SearchResult(_msgspec.Struct):
     rankingSignals: list[str] = _msgspec.field(default_factory=list)
     fts5_score: float | None = None
     rrf_score: float | None = None
+    pre_rerank_score: float | None = None
+    reranker_score: float | None = None
 
 
 class SearchResponse(_msgspec.Struct, tag="search"):

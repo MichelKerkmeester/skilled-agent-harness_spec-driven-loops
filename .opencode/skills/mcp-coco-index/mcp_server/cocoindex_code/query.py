@@ -10,10 +10,18 @@ import sqlite3
 from pathlib import Path
 from typing import Any
 
+from . import reranker
 from .config import config
 from .fts_index import query_fts
 from .fusion import FusedRow, RankedRow, rrf_fuse
-from .observability import elapsed_ms, log_stage, monotonic_ms
+from .observability import (
+    LANE_HYBRID_RERANK,
+    LANE_HYBRID_RRF,
+    LANE_VECTOR_ONLY,
+    elapsed_ms,
+    log_stage,
+    monotonic_ms,
+)
 from .schema import QueryResult
 from .settings import PROJECT_SETTINGS, is_canonical_path
 from .shared import EMBEDDER, SQLITE_DB, query_prompt_name
@@ -440,10 +448,8 @@ def _dedup_and_rank_rows(
     rows: list[tuple[Any, ...]],
     *,
     query: str,
-    limit: int,
-    offset: int,
     canonical_paths: list[str] | None = None,
-) -> QueryResults:
+) -> tuple[list[QueryResult], int]:
     implementation_intent = _has_implementation_intent(query)
     ranked = [
         (
@@ -469,12 +475,7 @@ def _dedup_and_rank_rows(
         seen.add(key)
         unique.append(result)
 
-    window = unique[offset : offset + limit]
-    return QueryResults(
-        window,
-        deduped_aliases=deduped_aliases,
-        unique_result_count=len(window),
-    )
+    return unique, deduped_aliases
 
 
 def _dedup_and_rank_hybrid_rows(
@@ -482,10 +483,8 @@ def _dedup_and_rank_hybrid_rows(
     records_by_id: dict[int, dict[str, Any]],
     *,
     query: str,
-    limit: int,
-    offset: int,
     canonical_paths: list[str] | None = None,
-) -> QueryResults:
+) -> tuple[list[QueryResult], int]:
     implementation_intent = _has_implementation_intent(query)
     ranked = [
         (
@@ -513,7 +512,17 @@ def _dedup_and_rank_hybrid_rows(
         seen.add(key)
         unique.append(result)
 
-    window = unique[offset : offset + limit]
+    return unique, deduped_aliases
+
+
+def _window_results(
+    candidates: list[QueryResult],
+    *,
+    limit: int,
+    offset: int,
+    deduped_aliases: int,
+) -> QueryResults:
+    window = candidates[offset : offset + limit]
     return QueryResults(
         window,
         deduped_aliases=deduped_aliases,
@@ -651,34 +660,52 @@ async def query_codebase(
             stage="index_lookup",
             duration_ms=elapsed_ms(stage_start),
             result_count=len(fused_rows) if config.hybrid_enabled else len(rows),
-            lane="hybrid_rrf" if config.hybrid_enabled else "vector_only",
+            lane=LANE_HYBRID_RRF if config.hybrid_enabled else LANE_VECTOR_ONLY,
         )
 
     stage_start = monotonic_ms()
+    rerank_applied = False
     if config.hybrid_enabled:
-        results = _dedup_and_rank_hybrid_rows(
+        candidates, deduped_aliases = _dedup_and_rank_hybrid_rows(
             fused_rows,
             records_by_id,
             query=query,
-            limit=limit,
-            offset=offset,
             canonical_paths=project_settings.canonical_resource_paths,
         )
+        if config.rerank_enabled:
+            reranked_candidates = reranker.rerank(
+                query,
+                candidates,
+                top_k=config.rerank_top_k,
+                model_name=config.rerank_model,
+            )
+            rerank_applied = reranked_candidates is not candidates
+            candidates = reranked_candidates
     else:
-        results = _dedup_and_rank_rows(
+        candidates, deduped_aliases = _dedup_and_rank_rows(
             rows,
             query=query,
-            limit=limit,
-            offset=offset,
             canonical_paths=project_settings.canonical_resource_paths,
         )
+    results = _window_results(
+        candidates,
+        limit=limit,
+        offset=offset,
+        deduped_aliases=deduped_aliases,
+    )
     if req_id is not None:
         log_stage(
             logger,
             req_id=req_id,
-            stage="rerank",
+            stage="rerank" if rerank_applied else "heuristic_rank",
             duration_ms=elapsed_ms(stage_start),
             result_count=len(results),
-            lane="hybrid_rrf" if config.hybrid_enabled else "vector_only",
+            lane=(
+                LANE_HYBRID_RERANK
+                if rerank_applied
+                else LANE_HYBRID_RRF
+                if config.hybrid_enabled
+                else LANE_VECTOR_ONLY
+            ),
         )
     return results

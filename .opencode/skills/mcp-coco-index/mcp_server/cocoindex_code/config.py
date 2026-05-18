@@ -15,6 +15,8 @@ _DEFAULT_MIN_CHUNK_SIZE = 250
 _DEFAULT_HYBRID_VECTOR_WEIGHT = 0.7
 _DEFAULT_HYBRID_FTS5_WEIGHT = 0.7
 _DEFAULT_HYBRID_RRF_K = 60
+_DEFAULT_RERANK_MODEL = "Alibaba-NLP/gte-multilingual-reranker-base"
+_DEFAULT_RERANK_TOP_K = 20
 _VALID_DEVICES = {"cuda", "mps", "cpu"}
 
 logger = logging.getLogger(__name__)
@@ -230,6 +232,9 @@ class Config:
     hybrid_vector_weight: float
     hybrid_fts5_weight: float
     hybrid_rrf_k: int
+    rerank_enabled: bool
+    rerank_model: str
+    rerank_top_k: int
 
     @classmethod
     def from_env(cls) -> Config:
@@ -320,6 +325,20 @@ class Config:
             1,
             500,
         )
+        rerank_enabled = _parse_bool_env("COCOINDEX_RERANK", False)
+        rerank_model = os.environ.get("COCOINDEX_RERANK_MODEL", _DEFAULT_RERANK_MODEL).strip()
+        if not rerank_model:
+            logger.warning(
+                "Ignoring empty COCOINDEX_RERANK_MODEL; falling back to %r",
+                _DEFAULT_RERANK_MODEL,
+            )
+            rerank_model = _DEFAULT_RERANK_MODEL
+        rerank_top_k = _parse_int_env(
+            "COCOINDEX_RERANK_TOP_K",
+            _DEFAULT_RERANK_TOP_K,
+            5,
+            100,
+        )
 
         return cls(
             codebase_root_path=root,
@@ -335,6 +354,9 @@ class Config:
             hybrid_vector_weight=hybrid_vector_weight,
             hybrid_fts5_weight=hybrid_fts5_weight,
             hybrid_rrf_k=hybrid_rrf_k,
+            rerank_enabled=rerank_enabled,
+            rerank_model=rerank_model,
+            rerank_top_k=rerank_top_k,
         )
 
     @property

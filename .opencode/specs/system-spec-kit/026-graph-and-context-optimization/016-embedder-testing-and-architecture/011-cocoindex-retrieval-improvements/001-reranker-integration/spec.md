@@ -1,6 +1,6 @@
 ---
-title: "Spec: 016/011/001-reranker-integration — Reranker Integration (research)"
-description: "Research phase for §3 structural retrieval improvements. Deep-research informs implementation plan."
+title: "Spec: 016/011/001-reranker-integration — Reranker Integration"
+description: "Opt-in GTE cross-encoder reranker integration for CocoIndex hybrid retrieval."
 trigger_phrases:
   - "016/011/001"
   - "reranker integration research"
@@ -12,20 +12,24 @@ _memory:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/011-cocoindex-retrieval-improvements/001-reranker-integration"
     last_updated_at: "2026-05-18T00:35:00Z"
     last_updated_by: "main_agent"
-    recent_action: "Scaffolded research-phase packet"
-    next_safe_action: "Run deep-research iters (cli-devin SWE-1.6)"
+    recent_action: "Implemented opt-in GTE cross-encoder reranker after hybrid RRF fusion."
+    next_safe_action: "Run the 18-pair quality and p95 latency gate before default-on promotion."
     blockers: []
-    key_files: ["spec.md", "research/research.md (pending after iters)"]
+    key_files:
+      - "research/research.md"
+      - ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/reranker.py"
+      - ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/query.py"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000011001"
       session_id: "016-011-001-reranker-integration"
       parent_session_id: null
-    completion_pct: 5
+    completion_pct: 100
     open_questions:
-      - "Optimal K for rerank (lift vs latency curve)"
-      - "Best reranker for code (vs general-text reranker)"
-      - "Whether to expose rerank as opt-in vs default-on"
-    answered_questions: []
+      - "Whether fixture and latency gates justify default-on promotion"
+    answered_questions:
+      - "K=20 selected for first production integration"
+      - "Alibaba-NLP/gte-multilingual-reranker-base selected as the Apache-2.0 first-pick model"
+      - "Reranker ships opt-in behind COCOINDEX_RERANK"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 1 -->
@@ -37,7 +41,7 @@ _memory:
 
 | Field | Value |
 |---|---|
-| Status | Research phase (created 2026-05-18) |
+| Status | Implemented (created 2026-05-18) |
 | Level | 1 |
 | Owner | Main agent |
 | Parent | `../spec.md` (016/011 umbrella) |
@@ -46,25 +50,25 @@ _memory:
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
-**Research question**: Which cross-encoder reranker maximizes top-3 hit-rate lift on the 18-pair fixture with acceptable latency, and where in the CocoIndex pipeline should it integrate?
+**Implementation question**: Which cross-encoder reranker should run after CocoIndex hybrid RRF fusion, and how should it preserve score auditability while staying safe by default?
 
-This packet is part of §3 structural improvements identified in the 018/003 follow-up discussion (38.9% baseline hit rate, embedder swap unlikely to be the dominant lever). Research first, then plan, then implement.
+This packet is part of §3 structural improvements identified in the 018/003 follow-up discussion. Research converged on `Alibaba-NLP/gte-multilingual-reranker-base`, K=20, opt-in rollout, score replacement, and default-on only after fixture and latency gates.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
 
 ### In scope
-- Cross-encoder model selection (jina-reranker-v2, mxbai-rerank-large-v2, bge-reranker-v2-m3, gte-multilingual-reranker)
-- Integration point: after embedder top-K retrieval, before result return
+- Cross-encoder model selection
+- Integration point: after hybrid RRF fusion plus heuristic boosts, before final result slicing
 - Latency budget (target: rerank adds <500ms to total p95)
 - Sentence-transformers vs Ollama backend tradeoffs
-- Top-K size to rerank (K=10? K=20? K=50?)
+- Top-K size to rerank
 
 ### Out of scope
 - Custom reranker training (use pre-trained only)
 - LLM-as-reranker (separate scope)
-- Implementation — that comes after research convergence
+- Default-on promotion before fixture and latency gates pass
 <!-- /ANCHOR:scope -->
 
 <!-- ANCHOR:requirements -->
@@ -72,39 +76,36 @@ This packet is part of §3 structural improvements identified in the 018/003 fol
 
 | # | Requirement |
 |---|---|
-| R1 | Deep-research run completes (3-4 iters from the cross-cutting 10-iter umbrella allocation) |
-| R2 | `research/research.md` synthesis cites concrete evidence (URLs, file:line, benchmarks) |
-| R3 | Recommended approach with estimated hit-rate lift on 18-pair fixture |
-| R4 | RAM/latency cost estimate for the recommendation |
-| R5 | Post-research: scaffold plan.md + tasks.md if recommendation goes into implementation |
+| R1 | Deep-research run completes and converges on a concrete reranker |
+| R2 | `research/research.md` synthesis records the model, K, rollout, and integration decisions |
+| R3 | Implementation preserves RRF/heuristic score auditability while replacing final score with reranker score |
+| R4 | Reranker defaults off behind `COCOINDEX_RERANK=true` |
+| R5 | Unit tests cover import safety, fallback, score replacement, and query integration |
 <!-- /ANCHOR:requirements -->
 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- Deep-research convergence (no new findings in last 1-2 iters)
-- `research/research.md` complete with synthesis + cited evidence
-- Clear go/no-go signal for implementation
-- Strict-validate PASSED
+- Deep-research convergence recorded in `research/research.md`
+- Opt-in implementation integrated in CocoIndex query path
+- Existing CocoIndex pytest suite passes
+- Strict-validate passes
 <!-- /ANCHOR:success-criteria -->
 
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
 Risks:
-- Research scope creep — bounded by 3-4 iters per packet
-- Recommendations may require architecture change in CocoIndex — flag in research
+- Cross-encoder model loading can be slow or unavailable; lazy loading and graceful unchanged-order fallback reduce blast radius.
+- Default-on rollout could regress latency; fixture and p95 gates remain required before promotion.
 
 Dependencies:
-- 006/004 extended bake-off (runs in parallel) — informs whether embedder is dominant lever
 - 018/003 fixture (`002-baseline-fixture/evidence/code-retrieval-fixture.json`) — quality measurement substrate
-- cli-devin SWE-1.6 + `agent-config-deep-research-iter.json` recipe
+- `sentence-transformers` local optional dependency for actual model loading
 <!-- /ANCHOR:risks -->
 
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Optimal K for rerank (lift vs latency curve)
-- Best reranker for code (vs general-text reranker)
-- Whether to expose rerank as opt-in vs default-on
+- Default-on promotion depends on the 18-pair fixture showing at least +2 top-3 hits and p95 added latency under 500ms.
 <!-- /ANCHOR:questions -->

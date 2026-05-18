@@ -508,6 +508,8 @@ class ProjectRegistry:
                 rankingSignals=r.rankingSignals,
                 fts5_score=r.fts5_score,
                 rrf_score=r.rrf_score,
+                pre_rerank_score=r.pre_rerank_score,
+                reranker_score=r.reranker_score,
             )
             for r in results
         ]

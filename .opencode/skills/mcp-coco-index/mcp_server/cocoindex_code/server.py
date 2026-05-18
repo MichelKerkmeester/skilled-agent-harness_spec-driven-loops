@@ -67,6 +67,8 @@ class CodeChunkResult(BaseModel):
     )
     fts5_score: float | None = Field(default=None, description="FTS5 BM25 score when hybrid search is enabled")
     rrf_score: float | None = Field(default=None, description="RRF fused score when hybrid search is enabled")
+    pre_rerank_score: float | None = Field(default=None, description="Score before cross-encoder reranking")
+    reranker_score: float | None = Field(default=None, description="Raw cross-encoder reranker score")
 
 
 class SearchResultModel(BaseModel):
@@ -216,6 +218,8 @@ def create_mcp_server(client: DaemonClient, project_root: str) -> FastMCP:
                             rankingSignals=r.rankingSignals,
                             fts5_score=r.fts5_score,
                             rrf_score=r.rrf_score,
+                            pre_rerank_score=r.pre_rerank_score,
+                            reranker_score=r.reranker_score,
                         )
                         for r in resp.results
                     ],

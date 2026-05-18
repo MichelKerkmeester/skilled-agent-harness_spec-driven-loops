@@ -184,6 +184,11 @@ def print_search_results(response: SearchResponse) -> None:
             _typer.echo(f"rankingSignals: {', '.join(r.rankingSignals)}")
         if r.rrf_score is not None or r.fts5_score is not None:
             _typer.echo(f"rrf_score: {r.rrf_score} | fts5_score: {r.fts5_score}")
+        if r.reranker_score is not None or r.pre_rerank_score is not None:
+            _typer.echo(
+                f"reranker_score: {r.reranker_score} | "
+                f"pre_rerank_score: {r.pre_rerank_score}"
+            )
         _typer.echo(r.content)
 
 
