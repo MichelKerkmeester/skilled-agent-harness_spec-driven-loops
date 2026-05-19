@@ -1,0 +1,39 @@
+{
+  "level": "1",
+  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/017-factory-shard-fallback-for-hf-voyage-openai",
+  "description": "Factory provider resolver audit for ADR-012 shard fallback parity across hf-local, voyage, and openai; no source patch required because factory.ts has",
+  "keywords": [
+    "factory",
+    "provider",
+    "resolver",
+    "audit",
+    "adr-012",
+    "shard",
+    "fallback",
+    "parity",
+    "across",
+    "hf-local",
+    "voyage",
+    "openai",
+    "source",
+    "patch",
+    "required",
+    "because",
+    "non-ollama",
+    "active-embedder",
+    "resolvers"
+  ],
+  "lastUpdated": "2026-05-19T19:24:29.202Z",
+  "specId": "017",
+  "folderSlug": "factory-shard-fallback-for-hf-voyage-openai",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "016-embedder-testing-and-architecture",
+    "002-spec-memory-stack"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

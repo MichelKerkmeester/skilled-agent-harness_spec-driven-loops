@@ -1,17 +1,19 @@
 {
+  "level": "1",
   "specFolder": "002-spec-memory-stack/016-reindex-populates-vec-memories-knn-table",
   "description": "Phase 1: reindex-populates-vec-memories-knn-table",
   "keywords": [
     "phase",
     "reindex-populates-vec-memories-knn-table"
   ],
-  "lastUpdated": "2026-05-19T18:51:12.655Z",
+  "lastUpdated": "2026-05-19T19:14:13.717Z",
   "specId": "016",
   "folderSlug": "reindex-populates-vec-memories-knn-table",
   "parentChain": [
     "002-spec-memory-stack"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "19-05-26_20-14__diagnosed-and-fixed-two-cooperating-bugs-that.md"
+  ]
 }

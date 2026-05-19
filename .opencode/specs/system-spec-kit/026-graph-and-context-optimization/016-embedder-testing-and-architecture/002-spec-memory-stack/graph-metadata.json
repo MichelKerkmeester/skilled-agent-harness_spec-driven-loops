@@ -7,7 +7,20 @@
     "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/001-adapter-interface",
     "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/002-ollama-backend-and-multi-dim-schema",
     "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/003-mcp-tools-and-reindex",
-    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/004-spec-memory-embedder-bake-off"
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/004-spec-memory-embedder-bake-off",
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/005-context-server-memory-reduction-research",
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/006-ollama-encode-path-wiring",
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/007-auto-embedder-selection-and-llama-cpp-purge",
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/008-byte-aware-health-telemetry",
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/009-byte-bounded-embedding-cache",
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/010-embedder-sidecar-execution",
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/011-lazy-startup-gating",
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/012-canonical-vector-shard-split",
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/013-bm25-fts5-rag-fusion-investigation",
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/014-fts5-default-lexical-with-guardrails",
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/015-cascade-reorder-and-nomic-hf-local-default",
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/016-reindex-populates-vec-memories-knn-table",
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/017-factory-shard-fallback-for-hf-voyage-openai"
   ],
   "manual": {
     "depends_on": [],
@@ -47,6 +60,18 @@
         "source": "derived"
       },
       {
+        "name": "embedder_set",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "embedding_status",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "1. OVERVIEW",
         "kind": "heading",
         "path": "spec.md",
@@ -69,29 +94,15 @@
         "kind": "quoted",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "trigger_phrases:   -",
-        "kind": "quoted",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "-",
-        "kind": "quoted",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "This phase parent groups all mk-spec-memory (TypeScript MCP) embedder + architecture work that was previously spread across the top-level `016/001-004` slots. The grouping mirrors the `004-code-index-stack` pattern — one umbrella per skill surface so the 016 root stays scannable.",
     "created_at": "2026-05-18T07:50:58.091Z",
-    "last_save_at": "2026-05-18T07:51:04.139Z",
+    "last_save_at": "2026-05-19T19:24:48.032Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
-    ],
-    "last_active_child_id": null,
-    "last_active_at": "2026-05-18T07:51:04.139Z"
+    ]
   }
 }
